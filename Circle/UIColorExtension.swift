@@ -33,4 +33,8 @@ extension UIColor {
     class func navigationBarTitleColor() -> UIColor {
         return UIColor.whiteColor()
     }
+    
+    class func tabBarTintColor() -> UIColor {
+        return UIColor(red: 49, green: 45, blue: 41)
+    }
 }

@@ -4,10 +4,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <scenes>
-        <!--Tab Bar Controller-->
+        <!--Main Tab View Controller-->
         <scene sceneID="RSn-qC-alH">
             <objects>
-                <tabBarController id="Lvt-AE-kqt" sceneMemberID="viewController">
+                <tabBarController id="Lvt-AE-kqt" customClass="MainTabViewController" customModule="Circle" customModuleProvider="target" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="Qji-CS-nJD">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
@@ -28,7 +28,7 @@
         <scene sceneID="pY4-Hu-kfo">
             <objects>
                 <navigationController title="People" id="RMx-3f-FxP" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="People" id="9Ob-ow-r9f"/>
+                    <tabBarItem key="tabBarItem" title="People" image="People" id="9Ob-ow-r9f"/>
                     <navigationBar key="navigationBar" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="Pmd-2v-anx">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -100,7 +100,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="nBX-vw-NrO">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="nBX-vw-NrO">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nBX-vw-NrO" id="QLJ-ib-vhR">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -122,7 +122,7 @@
         <scene sceneID="bTq-k8-4c9">
             <objects>
                 <navigationController title="You" id="z9N-dc-Uzy" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="You" id="4nW-bz-NsA"/>
+                    <tabBarItem key="tabBarItem" title="You" image="Profile" id="4nW-bz-NsA"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="j7i-hR-bwk">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -144,7 +144,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="dH3-rm-v7X">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="dH3-rm-v7X">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dH3-rm-v7X" id="hxG-di-EPf">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -166,7 +166,7 @@
         <scene sceneID="tDb-8c-9iE">
             <objects>
                 <navigationController title="Messages" id="X03-ni-Aei" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Messages" id="cGc-Xg-vdU"/>
+                    <tabBarItem key="tabBarItem" title="Messages" image="Messages" id="cGc-Xg-vdU"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ddf-sJ-aqM">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -238,6 +238,11 @@
             <point key="canvasLocation" x="542" y="409"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Messages" width="32" height="32"/>
+        <image name="People" width="32" height="32"/>
+        <image name="Profile" width="32" height="32"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="6S0-TO-JiA"/>
     </inferredMetricsTieBreakers>

@@ -18,6 +18,7 @@
 		8F0004BB1A241BDE0096477A /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0004BA1A241BDE0096477A /* UIColorExtension.swift */; };
 		8F0004BE1A24225A0096477A /* ContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0004BC1A24225A0096477A /* ContactTableViewCell.swift */; };
 		8F0004BF1A24225A0096477A /* ContactTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F0004BD1A24225A0096477A /* ContactTableViewCell.xib */; };
+		8F22CB731A264A8A0026376E /* MainTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F22CB721A264A8A0026376E /* MainTabViewController.swift */; };
 		A73E1BB3914D1A036D2FAE47 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FD94FE17CC5CD80FF96B24E5 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -48,6 +49,7 @@
 		8F0004BA1A241BDE0096477A /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		8F0004BC1A24225A0096477A /* ContactTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactTableViewCell.swift; sourceTree = "<group>"; };
 		8F0004BD1A24225A0096477A /* ContactTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactTableViewCell.xib; sourceTree = "<group>"; };
+		8F22CB721A264A8A0026376E /* MainTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabViewController.swift; sourceTree = "<group>"; };
 		CC982AC8BAF0AFF23DCD301A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		FD94FE17CC5CD80FF96B24E5 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -145,6 +147,7 @@
 			children = (
 				8F00049A1A2419730096477A /* PeopleViewController.swift */,
 				8F00049C1A2419730096477A /* ProfileViewController.swift */,
+				8F22CB721A264A8A0026376E /* MainTabViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -341,6 +344,7 @@
 				8F0004991A2419730096477A /* Circle.xcdatamodeld in Sources */,
 				8F0004BB1A241BDE0096477A /* UIColorExtension.swift in Sources */,
 				8F00049B1A2419730096477A /* PeopleViewController.swift in Sources */,
+				8F22CB731A264A8A0026376E /* MainTabViewController.swift in Sources */,
 				8F00049D1A2419730096477A /* ProfileViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
