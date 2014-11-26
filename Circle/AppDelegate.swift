@@ -23,12 +23,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         splitViewController.delegate = self
         
         // Customize Appearance
-        application.setStatusBarStyle(.LightContent, animated: false)
-        self.window!.tintColor = UIColor.appTintColor()
-        UINavigationBar.appearance().tintColor = UIColor.navigationBarTintColor()
-        UINavigationBar.appearance().barTintColor = UIColor.navigationBarBarTintColor()
-        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.navigationBarTitleColor()]
+        self.customizeAppearance(application)
         
+        // Setup Parse
+        self.setupParse(launchOptions)
+
         return true
     }
 
