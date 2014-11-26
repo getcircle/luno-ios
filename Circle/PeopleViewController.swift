@@ -26,6 +26,10 @@ class PeopleViewController: UITableViewController, NSFetchedResultsControllerDel
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        self.managedObjectContext = NSManagedObjectContext()
+        let appDelegate =  UIApplication.sharedApplication().delegate as AppDelegate
+        self.managedObjectContext?.persistentStoreCoordinator = appDelegate.persistentStoreCoordinator
+        
         self.navigationItem.leftBarButtonItem = self.editButtonItem()
 
         let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "insertNewObject:")
