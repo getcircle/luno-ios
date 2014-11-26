@@ -13,22 +13,36 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Ravi" translatesAutoresizingMaskIntoConstraints="NO" id="aPO-lf-ekc" userLabel="ProfileImage">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Ravi" translatesAutoresizingMaskIntoConstraints="NO" id="aPO-lf-ekc" userLabel="ProfileImage">
                         <rect key="frame" x="10" y="10" width="44" height="44"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="44" id="RUh-GW-mgl"/>
+                        </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="John Appleseed" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kLj-XX-M8r" userLabel="Name">
-                        <rect key="frame" x="62" y="11" width="228" height="22"/>
-                        <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="20"/>
-                        <color key="textColor" red="0.13333333333333333" green="0.13333333333333333" blue="0.13333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="CEO" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="egn-YF-pNu" userLabel="Title">
-                        <rect key="frame" x="62" y="39" width="228" height="15"/>
-                        <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CEO" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="egn-YF-pNu" userLabel="Title">
+                        <rect key="frame" x="64" y="34" width="246" height="18"/>
+                        <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="13"/>
                         <color key="textColor" red="0.53333333333333333" green="0.53333333333333333" blue="0.53333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="John Appleseed" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kLj-XX-M8r" userLabel="Name">
+                        <rect key="frame" x="64" y="12" width="246" height="24"/>
+                        <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="17"/>
+                        <color key="textColor" red="0.13333333333333333" green="0.13333333333333333" blue="0.13333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="kLj-XX-M8r" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="64" id="4hf-b2-mWP"/>
+                    <constraint firstAttribute="trailing" secondItem="egn-YF-pNu" secondAttribute="trailing" constant="10" id="Adk-FH-Ivd"/>
+                    <constraint firstItem="kLj-XX-M8r" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="Qkz-s0-mBR"/>
+                    <constraint firstAttribute="bottom" secondItem="aPO-lf-ekc" secondAttribute="bottom" constant="9" id="ROF-15-1fS"/>
+                    <constraint firstItem="aPO-lf-ekc" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="UEQ-Jp-w3g"/>
+                    <constraint firstItem="egn-YF-pNu" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="64" id="fJK-hE-VXK"/>
+                    <constraint firstItem="aPO-lf-ekc" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="fRn-fB-N4K"/>
+                    <constraint firstItem="egn-YF-pNu" firstAttribute="top" secondItem="kLj-XX-M8r" secondAttribute="bottom" constant="-2" id="gr5-66-jKf"/>
+                    <constraint firstAttribute="trailing" secondItem="kLj-XX-M8r" secondAttribute="trailing" constant="10" id="xWZ-W2-8tz"/>
+                </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="name" destination="kLj-XX-M8r" id="apC-3S-AU3"/>
