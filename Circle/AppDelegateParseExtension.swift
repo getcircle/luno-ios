@@ -12,9 +12,16 @@ import Parse
 extension AppDelegate {
 
     func setupParse(launchOptions: [NSObject: AnyObject]?) {
+
+        // Load custom subclasses
+        Person.load()
+
+        // Setup keys and init Parse
         let applicationID = "6sLV1l2Pu7FMXa1rQCa8GIQ5B9xg3lbX8snFMLiB"
         let clientKey = "W1hR6R8Ie4J3U3nFzB5iduZ9yIdPNbiUHGgrCYxW"
         Parse.setApplicationId(applicationID, clientKey: clientKey)
+        
+        // Track app launches
         PFAnalytics.trackAppOpenedWithLaunchOptionsInBackground(launchOptions, block: nil)
     }
 }

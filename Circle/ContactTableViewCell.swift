@@ -21,10 +21,10 @@ class ContactTableViewCell: UITableViewCell {
         profileImg.layer.masksToBounds = true
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    func setPerson(person: Person!) {
+        name.text = person.firstName + " " + person.lastName
+        title.text = person.title
+        profileImg.setImageWithURL(NSURL(string: person.profileImageURL),
+            placeholderImage: UIImage(named: "DefaultPerson"))
     }
-    
 }
