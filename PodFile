@@ -1,0 +1,5 @@
+source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '7.0'
+workspace 'Circle'
+xcodeproj 'Circle.xcodeproj'
+pod 'AFNetworking', '~> 2.5'
