@@ -11,8 +11,8 @@ import Parse
 
 class PeopleViewController: UITableViewController {
 
-    var profileViewController: ProfileViewController? = nil
-    var people:[Person]? = nil
+    var profileViewController: ProfileViewController?
+    var people: [Person]?
 
     override func awakeFromNib() {
         super.awakeFromNib()
