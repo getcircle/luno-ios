@@ -1,5 +1,5 @@
 //
-//  MasterViewController.swift
+//  PeopleViewController.swift
 //  Circle
 //
 //  Created by Ravi Rani on 11/24/14.
@@ -9,9 +9,9 @@
 import UIKit
 import CoreData
 
-class MasterViewController: UITableViewController, NSFetchedResultsControllerDelegate {
+class PeopleViewController: UITableViewController, NSFetchedResultsControllerDelegate {
 
-    var detailViewController: DetailViewController? = nil
+    var profileViewController: ProfileViewController? = nil
     var managedObjectContext: NSManagedObjectContext? = nil
 
 
@@ -32,7 +32,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         self.navigationItem.rightBarButtonItem = addButton
         if let split = self.splitViewController {
             let controllers = split.viewControllers
-            self.detailViewController = controllers[controllers.count-1].topViewController as? DetailViewController
+            self.profileViewController = controllers[controllers.count-1].topViewController as? ProfileViewController
         }
         
         // Customize table view
@@ -76,7 +76,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         if segue.identifier == "showDetail" {
             if let indexPath = self.tableView.indexPathForSelectedRow() {
             let object = self.fetchedResultsController.objectAtIndexPath(indexPath) as NSManagedObject
-                let controller = (segue.destinationViewController as UINavigationController).topViewController as DetailViewController
+                let controller = (segue.destinationViewController as UINavigationController).topViewController as ProfileViewController
                 controller.detailItem = object
                 controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
                 controller.navigationItem.leftItemsSupplementBackButton = true

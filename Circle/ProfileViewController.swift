@@ -1,5 +1,5 @@
 //
-//  DetailViewController.swift
+//  ProfileViewController.swift
 //  Circle
 //
 //  Created by Ravi Rani on 11/24/14.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DetailViewController: UIViewController {
+class ProfileViewController: UIViewController {
 
     @IBOutlet weak var detailDescriptionLabel: UILabel!
 
