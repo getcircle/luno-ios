@@ -76,7 +76,7 @@ class PeopleViewController: UITableViewController {
         }
     }
 
-    // MARK: - Table View
+    // MARK: - Table View Delegate
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
@@ -90,7 +90,7 @@ class PeopleViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("ContactCell", forIndexPath: indexPath) as ContactTableViewCell
         
         if let person = self.people?[indexPath.row] {
-            cell.setPerson(person)
+            cell.person = person
         }
 
         return cell
