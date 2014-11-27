@@ -8,20 +8,53 @@
 
 import UIKit
 
-class ContactTableViewCell: UITableViewCell {
+class ContactTableViewCell: MGSwipeTableCell {
 
     @IBOutlet var profileImg: UIImageView!
     @IBOutlet var name: UILabel!
     @IBOutlet var title: UILabel!
+    var person:Person! {
+        didSet {
+            populateData()
+        }
+    }
 
     override func awakeFromNib() {
         super.awakeFromNib()
+
         // Initialization code
         profileImg.layer.cornerRadius = profileImg.frame.size.width/2.0
         profileImg.layer.masksToBounds = true
+        
+        // Add accessory buttons
+        addAccessoryButtons()
     }
 
-    func setPerson(person: Person!) {
+    func addAccessoryButtons() {
+        let favoriteButton = MGSwipeButton(
+            title: "",
+            icon: UIImage(named: "Favorites"),
+            backgroundColor: UIColor.accessoryButtonBackgroundColor(),
+            padding: 16)
+        
+        self.leftButtons = [favoriteButton]
+        
+        let emailButton = MGSwipeButton(
+            title: "",
+            icon: UIImage(named: "Email"),
+            backgroundColor: UIColor.accessoryButtonBackgroundColor(),
+            padding:20)
+        
+        let messageButton = MGSwipeButton(
+            title: "",
+            icon: UIImage(named: "Messages"),
+            backgroundColor: UIColor.accessoryButtonBackgroundColor(),
+            padding:20)
+        
+        self.rightButtons = [messageButton, emailButton]
+    }
+    
+    private func populateData() {
         name.text = person.firstName + " " + person.lastName
         title.text = person.title
         profileImg.setImageWithURL(NSURL(string: person.profileImageURL),

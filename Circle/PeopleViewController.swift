@@ -9,7 +9,7 @@
 import UIKit
 import Parse
 
-class PeopleViewController: UITableViewController {
+class PeopleViewController: UITableViewController, MGSwipeTableCellDelegate {
 
     var profileViewController: ProfileViewController?
     var people: [Person]?
@@ -76,7 +76,7 @@ class PeopleViewController: UITableViewController {
         }
     }
 
-    // MARK: - Table View
+    // MARK: - Table View Delegate
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
@@ -90,10 +90,29 @@ class PeopleViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("ContactCell", forIndexPath: indexPath) as ContactTableViewCell
         
         if let person = self.people?[indexPath.row] {
-            cell.setPerson(person)
+            cell.person = person
+            cell.delegate = self
         }
 
         return cell
     }
+    
+    // MARK: - Swipe Cell Delegate
+    
+    func swipeTableCell(cell: ContactTableViewCell!, tappedButtonAtIndex index: Int, direction: MGSwipeDirection, fromExpansion: Bool) -> Bool {
+        switch direction {
+            case .LeftToRight:
+                // Left button tapped
+                println("Will mark favorite")
+            case .RightToLeft:
+                // Right buttons tapped
+                println("Email = \(cell.person.email)")
+            default:
+                break
+        }
+        
+        return true
+    }
+    
 }
 
