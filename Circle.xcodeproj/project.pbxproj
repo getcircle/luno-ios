@@ -21,6 +21,9 @@
 		8F22CB751A26600D0026376E /* AppDelegateParseExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F22CB741A26600D0026376E /* AppDelegateParseExtension.swift */; };
 		8F22CB771A2661890026376E /* AppDelegateAppearanceExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F22CB761A2661890026376E /* AppDelegateAppearanceExtension.swift */; };
 		8F22CB791A266D3F0026376E /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F22CB781A266D3F0026376E /* Person.swift */; };
+		8F22CBE01A27A8E60026376E /* ProfileHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F22CBDE1A27A8E60026376E /* ProfileHeaderCollectionReusableView.swift */; };
+		8F22CBE11A27A8E60026376E /* ProfileHeaderCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F22CBDF1A27A8E60026376E /* ProfileHeaderCollectionReusableView.xib */; };
+		8F22CBE31A27AE9B0026376E /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F22CBE21A27AE9B0026376E /* UIImageViewExtension.swift */; };
 		A73E1BB3914D1A036D2FAE47 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FD94FE17CC5CD80FF96B24E5 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -55,6 +58,9 @@
 		8F22CB761A2661890026376E /* AppDelegateAppearanceExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegateAppearanceExtension.swift; sourceTree = "<group>"; };
 		8F22CB781A266D3F0026376E /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		8F22CB7A1A268C040026376E /* Circle-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Circle-Bridging-Header.h"; sourceTree = "<group>"; };
+		8F22CBDE1A27A8E60026376E /* ProfileHeaderCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileHeaderCollectionReusableView.swift; sourceTree = "<group>"; };
+		8F22CBDF1A27A8E60026376E /* ProfileHeaderCollectionReusableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileHeaderCollectionReusableView.xib; sourceTree = "<group>"; };
+		8F22CBE21A27AE9B0026376E /* UIImageViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
 		CC982AC8BAF0AFF23DCD301A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		FD94FE17CC5CD80FF96B24E5 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -163,6 +169,8 @@
 			children = (
 				8F0004BC1A24225A0096477A /* ContactTableViewCell.swift */,
 				8F0004BD1A24225A0096477A /* ContactTableViewCell.xib */,
+				8F22CBDE1A27A8E60026376E /* ProfileHeaderCollectionReusableView.swift */,
+				8F22CBDF1A27A8E60026376E /* ProfileHeaderCollectionReusableView.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -173,6 +181,7 @@
 				8F0004BA1A241BDE0096477A /* UIColorExtension.swift */,
 				8F22CB741A26600D0026376E /* AppDelegateParseExtension.swift */,
 				8F22CB761A2661890026376E /* AppDelegateAppearanceExtension.swift */,
+				8F22CBE21A27AE9B0026376E /* UIImageViewExtension.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -296,6 +305,7 @@
 				8F0004BF1A24225A0096477A /* ContactTableViewCell.xib in Resources */,
 				8F0004A01A2419730096477A /* Main.storyboard in Resources */,
 				8F0004A51A2419730096477A /* LaunchScreen.xib in Resources */,
+				8F22CBE11A27A8E60026376E /* ProfileHeaderCollectionReusableView.xib in Resources */,
 				8F0004A21A2419730096477A /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -349,6 +359,7 @@
 			files = (
 				8F22CB791A266D3F0026376E /* Person.swift in Sources */,
 				8F0004BE1A24225A0096477A /* ContactTableViewCell.swift in Sources */,
+				8F22CBE01A27A8E60026376E /* ProfileHeaderCollectionReusableView.swift in Sources */,
 				8F0004961A2419730096477A /* AppDelegate.swift in Sources */,
 				8F0004BB1A241BDE0096477A /* UIColorExtension.swift in Sources */,
 				8F00049B1A2419730096477A /* PeopleViewController.swift in Sources */,
