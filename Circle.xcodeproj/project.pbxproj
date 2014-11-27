@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		8F0004961A2419730096477A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0004951A2419730096477A /* AppDelegate.swift */; };
-		8F0004991A2419730096477A /* Circle.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8F0004971A2419730096477A /* Circle.xcdatamodeld */; };
 		8F00049B1A2419730096477A /* PeopleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F00049A1A2419730096477A /* PeopleViewController.swift */; };
 		8F00049D1A2419730096477A /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F00049C1A2419730096477A /* ProfileViewController.swift */; };
 		8F0004A01A2419730096477A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F00049E1A2419730096477A /* Main.storyboard */; };
@@ -40,7 +39,6 @@
 		8F0004901A2419730096477A /* Circle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Circle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F0004941A2419730096477A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8F0004951A2419730096477A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		8F0004981A2419730096477A /* Circle.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Circle.xcdatamodel; sourceTree = "<group>"; };
 		8F00049A1A2419730096477A /* PeopleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleViewController.swift; sourceTree = "<group>"; };
 		8F00049C1A2419730096477A /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		8F00049F1A2419730096477A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -182,7 +180,6 @@
 		8F0004C31A25BA370096477A /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				8F0004971A2419730096477A /* Circle.xcdatamodeld */,
 				8F22CB781A266D3F0026376E /* Person.swift */,
 			);
 			name = Models;
@@ -353,7 +350,6 @@
 				8F22CB791A266D3F0026376E /* Person.swift in Sources */,
 				8F0004BE1A24225A0096477A /* ContactTableViewCell.swift in Sources */,
 				8F0004961A2419730096477A /* AppDelegate.swift in Sources */,
-				8F0004991A2419730096477A /* Circle.xcdatamodeld in Sources */,
 				8F0004BB1A241BDE0096477A /* UIColorExtension.swift in Sources */,
 				8F00049B1A2419730096477A /* PeopleViewController.swift in Sources */,
 				8F22CB731A264A8A0026376E /* MainTabViewController.swift in Sources */,
@@ -573,19 +569,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		8F0004971A2419730096477A /* Circle.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				8F0004981A2419730096477A /* Circle.xcdatamodel */,
-			);
-			currentVersion = 8F0004981A2419730096477A /* Circle.xcdatamodel */;
-			path = Circle.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 8F0004881A2419730096477A /* Project object */;
 }
