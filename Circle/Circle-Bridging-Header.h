@@ -7,3 +7,5 @@
 //
 
 #import "UIImageView+AFNetworking.h"
+#import "MGSwipeTableCell.h"
+#import "MGSwipeButton.h"

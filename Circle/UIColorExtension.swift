@@ -37,4 +37,8 @@ extension UIColor {
     class func tabBarTintColor() -> UIColor {
         return UIColor(red: 49, green: 45, blue: 41)
     }
+    
+    class func accessoryButtonBackgroundColor() -> UIColor {
+        return UIColor(red: 240, green: 240, blue: 240)
+    }
 }
