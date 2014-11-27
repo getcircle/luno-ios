@@ -14,6 +14,7 @@ extension AppDelegate {
     func setupParse(launchOptions: [NSObject: AnyObject]?) {
 
         // Load custom subclasses
+        Message.load()
         Person.load()
 
         // Setup keys and init Parse

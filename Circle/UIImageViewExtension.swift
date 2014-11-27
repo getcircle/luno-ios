@@ -20,4 +20,12 @@ extension UIImageView {
             layer.borderWidth = 1.0
         }
     }
+
+    func setImageWithPerson(person: Person!) {
+        self.setImageWithURL(
+            NSURL(string: person.profileImageURL),
+            placeholderImage: UIImage(named: "DefaultPerson")
+        )
+    }
 }
+
