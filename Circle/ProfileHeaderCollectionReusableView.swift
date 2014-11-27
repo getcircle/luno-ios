@@ -19,7 +19,7 @@ class ProfileHeaderCollectionReusableView: UICollectionReusableView {
         super.awakeFromNib()
 
         // Initialization code
-        let blurEffect = UIBlurEffect(style: .Light)
+        let blurEffect = UIBlurEffect(style: .Dark)
         visualEffectView = UIVisualEffectView(effect: blurEffect)
         visualEffectView.frame = backgroundImage.frame
         insertSubview(visualEffectView, aboveSubview: backgroundImage)
@@ -27,7 +27,7 @@ class ProfileHeaderCollectionReusableView: UICollectionReusableView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        profileImage.makeItCircular()
+        profileImage.makeItCircular(true)
         visualEffectView.frame = backgroundImage.frame
     }
     

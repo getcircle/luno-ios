@@ -23,7 +23,7 @@ class ContactTableViewCell: MGSwipeTableCell {
         super.awakeFromNib()
 
         // Initialization code
-        profileImg.makeItCircular()
+        profileImg.makeItCircular(false)
 
         // Add accessory buttons
         addAccessoryButtons()
