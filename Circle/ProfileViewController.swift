@@ -13,7 +13,7 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var detailDescriptionLabel: UILabel!
 
 
-    var detailItem: AnyObject? {
+    var person: Person! {
         didSet {
             // Update the view.
             self.configureView()
@@ -22,9 +22,9 @@ class ProfileViewController: UIViewController {
 
     func configureView() {
         // Update the user interface for the detail item.
-        if let detail: AnyObject = self.detailItem {
+        if let person = self.person {
             if let label = self.detailDescriptionLabel {
-                label.text = detail.valueForKey("timeStamp")!.description
+                label.text = person.firstName
             }
         }
     }
@@ -34,12 +34,5 @@ class ProfileViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         self.configureView()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-
 }
 

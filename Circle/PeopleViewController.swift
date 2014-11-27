@@ -26,11 +26,6 @@ class PeopleViewController: UITableViewController, MGSwipeTableCellDelegate {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view, typically from a nib.
-        if let split = self.splitViewController {
-            let controllers = split.viewControllers
-            self.profileViewController = controllers[controllers.count-1].topViewController as? ProfileViewController
-        }
-        
         customizeTableView()
         loadInitialData()
     }
@@ -43,17 +38,17 @@ class PeopleViewController: UITableViewController, MGSwipeTableCellDelegate {
         tableView.rowHeight = 64.0
         addDummyFooterView()
     }
-    
+
     private func addDummyFooterView() {
         // Add dummy footer view
         let footerView = UIView(frame: CGRectMake(0.0, 0.0, self.tableView.frame.size.width, 10.0))
         footerView.backgroundColor = UIColor.clearColor()
         tableView.tableFooterView = footerView
     }
-    
+
     private func loadInitialData() {
         let parseQuery = Person.query() as PFQuery
-        parseQuery.cachePolicy = kPFCachePolicyCacheThenNetwork
+        parseQuery.cachePolicy = kPFCachePolicyCacheElseNetwork
         parseQuery.findObjectsInBackgroundWithBlock { (objects: [AnyObject]!, error: NSError!) -> Void in
             if error == nil {
                 self.people = objects as? [Person]
@@ -67,17 +62,17 @@ class PeopleViewController: UITableViewController, MGSwipeTableCellDelegate {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showDetail" {
             if let indexPath = self.tableView.indexPathForSelectedRow() {
-            let object = self.people?[indexPath.row]
+                let person = self.people?[indexPath.row]
                 let controller = (segue.destinationViewController as UINavigationController).topViewController as ProfileViewController
-                controller.detailItem = object
-                controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
+                controller.person = person
+                controller.navigationItem.leftBarButtonItem = self.tabBarController?.splitViewController?.displayModeButtonItem()
                 controller.navigationItem.leftItemsSupplementBackButton = true
             }
         }
     }
 
     // MARK: - Table View Delegate
-    
+
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
@@ -88,7 +83,7 @@ class PeopleViewController: UITableViewController, MGSwipeTableCellDelegate {
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("ContactCell", forIndexPath: indexPath) as ContactTableViewCell
-        
+
         if let person = self.people?[indexPath.row] {
             cell.person = person
             cell.delegate = self
@@ -96,9 +91,9 @@ class PeopleViewController: UITableViewController, MGSwipeTableCellDelegate {
 
         return cell
     }
-    
+
     // MARK: - Swipe Cell Delegate
-    
+
     func swipeTableCell(cell: ContactTableViewCell!, tappedButtonAtIndex index: Int, direction: MGSwipeDirection, fromExpansion: Bool) -> Bool {
         switch direction {
             case .LeftToRight:
@@ -110,9 +105,29 @@ class PeopleViewController: UITableViewController, MGSwipeTableCellDelegate {
             default:
                 break
         }
-        
+
         return true
     }
-    
+
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if let person = self.people?[indexPath.row] {
+
+            if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
+                // Perform the segue only on the iPad
+                performSegueWithIdentifier("showDetail", sender: tableView)
+            }
+            else {
+                // For iPhone manually push the detail view
+                // This is required because of our custom setup of tab
+                // view controller as the master view controller
+
+                let profileVC = self.storyboard?.instantiateViewControllerWithIdentifier("ProfileViewController") as ProfileViewController
+                profileVC.person = person
+                self.navigationController?.pushViewController(profileVC, animated: true)
+            }
+        }
+
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
 }
 
