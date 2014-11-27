@@ -352,6 +352,7 @@
 				8F0004961A2419730096477A /* AppDelegate.swift in Sources */,
 				8F0004BB1A241BDE0096477A /* UIColorExtension.swift in Sources */,
 				8F00049B1A2419730096477A /* PeopleViewController.swift in Sources */,
+				8F22CBE31A27AE9B0026376E /* UIImageViewExtension.swift in Sources */,
 				8F22CB731A264A8A0026376E /* MainTabViewController.swift in Sources */,
 				8F22CB771A2661890026376E /* AppDelegateAppearanceExtension.swift in Sources */,
 				8F22CB751A26600D0026376E /* AppDelegateParseExtension.swift in Sources */,
