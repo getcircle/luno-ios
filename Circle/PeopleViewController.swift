@@ -50,6 +50,7 @@ class PeopleViewController: UITableViewController, MGSwipeTableCellDelegate {
     private func loadInitialData() {
         let parseQuery = Person.query() as PFQuery
         parseQuery.cachePolicy = kPFCachePolicyCacheElseNetwork
+        parseQuery.includeKey("manager")
         parseQuery.findObjectsInBackgroundWithBlock { (objects: [AnyObject]!, error: NSError!) -> Void in
             if error == nil {
                 self.people = objects as? [Person]

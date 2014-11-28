@@ -34,7 +34,7 @@ class Person : PFObject, PFSubclassing {
         return self.objectForKey("cell") as String!
     }
 
-    var city:String! {
+    var location:String! {
         return self.objectForKey("location") as String!
     }
 
@@ -48,6 +48,14 @@ class Person : PFObject, PFSubclassing {
 
     var hasDirectReports:Bool!
     
+    var hasManager: Bool {
+        return manager != nil
+    }
+    
+    func description() -> String {
+        return firstName + " " + lastName
+    }
+    
     override class func load() {
         self.registerSubclass()
     }
@@ -55,19 +63,30 @@ class Person : PFObject, PFSubclassing {
     class func parseClassName() -> String! {
         return "Person"
     }
-    
+
+    // Please note that the following two arrays are
+    // supposed to be 1:1. If you add anything to one
+    // of them, be sure to add correspoding entry
+    // in the other one.
+    //
+    // Also, the order here is important because this is
+    // how the profile view will show the entries.
+    //
+    // Eventually this info will be sent by the backend.
     let attributeTitles = [
         "Email",
         "Cell Phone",
         "City",
-        "Country"
+        "Country",
+        "Manager"
     ]
     
     private let attributeKeys = [
         "email",
         "cell",
         "location",
-        "country"
+        "country",
+        "manager"
     ]
     
     func attributes() -> [String] {
@@ -75,8 +94,8 @@ class Person : PFObject, PFSubclassing {
         assert(attributeTitles.count == attributeKeys.count, "Attribute titles and keys should have 1:1 mapping")
         var attributes = [String]()
         for index in 0..<attributeKeys.count {
-            if let value = (self.objectForKey(attributeKeys[index]) as? String) {
-                attributes.append(value)
+            if let value: AnyObject = self.objectForKey(attributeKeys[index]) {
+                attributes.append(value.description())
             }
         }
         
