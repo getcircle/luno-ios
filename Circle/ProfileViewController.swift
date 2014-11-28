@@ -8,38 +8,53 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
-    @IBOutlet weak var detailDescriptionLabel: UILabel!
-
-
-    var detailItem: AnyObject? {
-        didSet {
-            // Update the view.
-            self.configureView()
-        }
-    }
-
-    func configureView() {
-        // Update the user interface for the detail item.
-        if let detail: AnyObject = self.detailItem {
-            if let label = self.detailDescriptionLabel {
-                label.text = detail.valueForKey("timeStamp")!.description
-            }
-        }
-    }
+    var person: Person!
+    private var dataSource: ProfileDataSource!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+     
         // Do any additional setup after loading the view, typically from a nib.
-        self.configureView()
+        customizeCollectionView()
+        
+        // Add data source
+        assert(person != nil, "Person object needs to be set before loading this view.")
+        dataSource = ProfileDataSource(person: person)
+        collectionView.dataSource = dataSource
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        navigationController?.navigationBar.makeTransparent()
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+       navigationController?.navigationBar.makeOpaque()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    private func customizeCollectionView() {
+        collectionView.backgroundColor = UIColor.viewBackgroundColor()
+        collectionView.registerNib(
+            UINib(nibName: "ProfileAttributeCollectionViewCell", bundle: nil),
+            forCellWithReuseIdentifier: ProfileAttributeCollectionViewCell.classReuseIdentifier)
+
+        collectionView.registerNib(
+            UINib(nibName: "ProfileHeaderCollectionReusableView", bundle: nil),
+            forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
+            withReuseIdentifier: ProfileHeaderCollectionReusableView.classReuseIdentifier)
     }
-
-
+    
+    // MARK: Layout delegate
+    
+    // This has to be implemented as a delegate method because the layout can only
+    // set it for all headers
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        if section == 0 {
+            return CGSizeMake(collectionView.frame.size.width, ProfileCollectionViewLayout.profileHeaderHeight)
+        }
+        
+        return CGSizeZero
+    }
 }
 

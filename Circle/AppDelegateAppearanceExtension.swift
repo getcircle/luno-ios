@@ -12,7 +12,7 @@ extension AppDelegate {
     
     func customizeAppearance(application: UIApplication) {
         application.setStatusBarStyle(.LightContent, animated: false)
-        self.window!.tintColor = UIColor.appTintColor()
+        window!.tintColor = UIColor.appTintColor()
         UINavigationBar.appearance().tintColor = UIColor.navigationBarTintColor()
         UINavigationBar.appearance().barTintColor = UIColor.navigationBarBarTintColor()
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.navigationBarTitleColor()]

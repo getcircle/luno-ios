@@ -19,13 +19,16 @@ class ContactTableViewCell: MGSwipeTableCell {
         }
     }
 
+    class var classReuseIdentifier: String {
+        return "ContactCell"
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
 
         // Initialization code
-        profileImg.layer.cornerRadius = profileImg.frame.size.width/2.0
-        profileImg.layer.masksToBounds = true
-        
+        profileImg.makeItCircular(false)
+
         // Add accessory buttons
         addAccessoryButtons()
     }
@@ -36,24 +39,24 @@ class ContactTableViewCell: MGSwipeTableCell {
             icon: UIImage(named: "Favorites"),
             backgroundColor: UIColor.accessoryButtonBackgroundColor(),
             padding: 16)
-        
+
         self.leftButtons = [favoriteButton]
-        
+
         let emailButton = MGSwipeButton(
             title: "",
             icon: UIImage(named: "Email"),
             backgroundColor: UIColor.accessoryButtonBackgroundColor(),
             padding:20)
-        
+
         let messageButton = MGSwipeButton(
             title: "",
             icon: UIImage(named: "Messages"),
             backgroundColor: UIColor.accessoryButtonBackgroundColor(),
             padding:20)
-        
+
         self.rightButtons = [messageButton, emailButton]
     }
-    
+
     private func populateData() {
         name.text = person.firstName + " " + person.lastName
         title.text = person.title

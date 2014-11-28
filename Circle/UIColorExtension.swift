@@ -41,4 +41,12 @@ extension UIColor {
     class func accessoryButtonBackgroundColor() -> UIColor {
         return UIColor(red: 240, green: 240, blue: 240)
     }
+    
+    class func separatorViewColor() -> UIColor {
+        return UIColor(red: 222, green: 222, blue: 222)
+    }
+    
+    class func viewBackgroundColor() -> UIColor {
+        return UIColor.whiteColor()
+    }
 }
