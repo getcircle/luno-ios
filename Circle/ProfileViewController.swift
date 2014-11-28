@@ -21,8 +21,7 @@ class ProfileViewController: UICollectionViewController, UICollectionViewDelegat
         }
     }
     
-    var attributesTitles: [String] = []
-    var attributesValues: [String] = []
+    var attributesTitles: [String] = [], attributesValues: [String] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -85,21 +84,6 @@ class ProfileViewController: UICollectionViewController, UICollectionViewDelegat
         }
         
         return supplementaryView
-    }
-    
-    // MARK: Flow Layout
-    
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        return CGSizeMake(self.collectionView.bounds.width, 44.0)
-    }
-    
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
-        return UIEdgeInsetsZero
-    }
-    
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSizeMake(self.collectionView.bounds.width, 200.0)
-    
     }
 }
 

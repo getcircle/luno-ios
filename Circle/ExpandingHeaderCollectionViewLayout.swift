@@ -10,13 +10,23 @@ import UIKit
 
 class ExpandingHeaderCollectionViewLayout: UICollectionViewFlowLayout {
     
+    let initialHeaderHeight: CGFloat = 200.0
+    let cellHeight: CGFloat = 44.0
+    
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        self.registerClass(SeparatorDecorationView.self,
+        registerClass(SeparatorDecorationView.self,
             forDecorationViewOfKind: SeparatorDecorationView.kind)
 
-        self.registerClass(SpacerDecorationView.self,
+        registerClass(SpacerDecorationView.self,
             forDecorationViewOfKind: SpacerDecorationView.kind)
+        
+        sectionInset = UIEdgeInsetsZero
+    }
+    
+    override func prepareLayout() {
+        itemSize = CGSizeMake(collectionView!.bounds.width, cellHeight)
+        headerReferenceSize = CGSizeMake(collectionView!.bounds.width, initialHeaderHeight)
     }
     
     override func shouldInvalidateLayoutForBoundsChange(newBounds: CGRect) -> Bool {
@@ -28,7 +38,6 @@ class ExpandingHeaderCollectionViewLayout: UICollectionViewFlowLayout {
         let contentOffset = self.collectionView!.contentOffset
         var attributes = super.layoutAttributesForElementsInRect(rect) as [UICollectionViewLayoutAttributes]
         
-        let initialHeaderHeight: CGFloat = 200.0
         var separatorViewYPositions = [CGFloat]()
         var spacerViewYPositions = [CGFloat]()
         
