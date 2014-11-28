@@ -14,6 +14,8 @@ class ProfileCollectionViewLayout: UICollectionViewFlowLayout {
         return 200.0
     }
     
+    // 44.0 height of nav bar + 20.0 height of status bar
+    let offsetToMakeProfileHeaderSticky: CGFloat = ProfileCollectionViewLayout.profileHeaderHeight - 64.0
     let cellHeight: CGFloat = 44.0
     
     required init(coder aDecoder: NSCoder) {
@@ -47,15 +49,23 @@ class ProfileCollectionViewLayout: UICollectionViewFlowLayout {
                 if attribute.indexPath.section != 0 {
                     attribute.hidden = true
                 }
-                else if attribute.representedElementKind == UICollectionElementKindSectionHeader && contentOffset.y <= 0 {
-                    
-                    // Stretch the header when scrolling down
-                    var frameToModify = attribute.frame
-                    frameToModify.origin.y = contentOffset.y
-                    frameToModify.size.height = max(
-                        ProfileCollectionViewLayout.profileHeaderHeight,
-                        ProfileCollectionViewLayout.profileHeaderHeight - contentOffset.y)
-                    attribute.frame = frameToModify
+                else if attribute.representedElementKind == UICollectionElementKindSectionHeader {
+                    if contentOffset.y <= 0 {
+                        // Stretch the header when scrolling down
+                        var frameToModify = attribute.frame
+                        frameToModify.origin.y = contentOffset.y
+                        frameToModify.size.height = max(
+                            ProfileCollectionViewLayout.profileHeaderHeight,
+                            ProfileCollectionViewLayout.profileHeaderHeight - contentOffset.y)
+                        attribute.frame = frameToModify
+                    }
+                    else {
+                        // Pin supplementary view to the top after it reaches nav bar height
+                        var frameToModify = attribute.frame
+                        frameToModify.origin.y = max(0.0, contentOffset.y - offsetToMakeProfileHeaderSticky)
+                        attribute.frame = frameToModify
+                        attribute.zIndex = 100
+                    }
                 }
 
             default:
