@@ -221,8 +221,7 @@
                             </collectionViewCell>
                         </cells>
                         <connections>
-                            <outlet property="dataSource" destination="ofx-aS-lg0" id="bcv-AB-W1A"/>
-                            <outlet property="delegate" destination="ofx-aS-lg0" id="YRw-8y-rez"/>
+                            <outlet property="delegate" destination="ofx-aS-lg0" id="Cqc-oc-PjA"/>
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" id="BAe-1F-mQe"/>

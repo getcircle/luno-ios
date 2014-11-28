@@ -10,20 +10,19 @@ import UIKit
 
 class ProfileViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
-    var person: Person! {
-        didSet {
-            // Update the view.
-            attributes = person.attributes()
-            self.collectionView.reloadData()
-        }
-    }
-    
-    var attributes: [String] = []
+    var person: Person!
+    private var dataSource: ProfileDataSource!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+     
         // Do any additional setup after loading the view, typically from a nib.
         customizeCollectionView()
+        
+        // Add data source
+        assert(person != nil, "Person object needs to be set before loading this view.")
+        dataSource = ProfileDataSource(person: person)
+        collectionView.dataSource = dataSource
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -46,42 +45,9 @@ class ProfileViewController: UICollectionViewController, UICollectionViewDelegat
             withReuseIdentifier: ProfileHeaderCollectionReusableView.classReuseIdentifier)
     }
     
-    // MARK: Data source
     
-    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        return 1
-    }
-
-    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return attributes.count
-    }
-    
-    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(
-            ProfileAttributeCollectionViewCell.classReuseIdentifier,
-            forIndexPath: indexPath) as ProfileAttributeCollectionViewCell
-        
-        if person.attributeTitles.count > indexPath.row {
-            cell.nameLabel.text = person.attributeTitles[indexPath.row]
-            cell.valueLabel.text = attributes[indexPath.row]
-        }
-        return cell
-    }
-    
-    override func collectionView(collectionView: UICollectionView,
-        viewForSupplementaryElementOfKind kind: String,
-        atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
-            
-        let supplementaryView = collectionView.dequeueReusableSupplementaryViewOfKind(
-            kind,
-            withReuseIdentifier: ProfileHeaderCollectionReusableView.classReuseIdentifier,
-            forIndexPath: indexPath) as ProfileHeaderCollectionReusableView
-            
-        if person != nil {
-            supplementaryView.setPerson(person)
         }
         
-        return supplementaryView
     }
 }
 
