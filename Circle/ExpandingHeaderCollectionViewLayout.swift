@@ -9,7 +9,16 @@
 import UIKit
 
 class ExpandingHeaderCollectionViewLayout: UICollectionViewFlowLayout {
+    
+    required init(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        self.registerClass(SeparatorDecorationView.self,
+            forDecorationViewOfKind: SeparatorDecorationView.kind)
 
+        self.registerClass(SpacerDecorationView.self,
+            forDecorationViewOfKind: SpacerDecorationView.kind)
+    }
+    
     override func shouldInvalidateLayoutForBoundsChange(newBounds: CGRect) -> Bool {
         return true
     }
@@ -19,18 +28,50 @@ class ExpandingHeaderCollectionViewLayout: UICollectionViewFlowLayout {
         let contentOffset = self.collectionView!.contentOffset
         var attributes = super.layoutAttributesForElementsInRect(rect) as [UICollectionViewLayoutAttributes]
         
-        if contentOffset.y <= 0 {
-            let initialHeaderHeight: CGFloat = 200.0
-            for attribute in attributes {
-                if attribute.representedElementCategory == .SupplementaryView {
-                    if attribute.representedElementKind == UICollectionElementKindSectionHeader {
-                        var frameToModify = attribute.frame
-                        frameToModify.origin.y = contentOffset.y
-                        frameToModify.size.height = max(initialHeaderHeight, initialHeaderHeight - contentOffset.y)
-                        attribute.frame = frameToModify
-                    }
+        let initialHeaderHeight: CGFloat = 200.0
+        var separatorViewYPositions = [CGFloat]()
+        var spacerViewYPositions = [CGFloat]()
+        
+        for attribute in attributes {
+            switch attribute.representedElementCategory {
+            case .SupplementaryView:
+                // Just stretching the header when scrolling down
+                if attribute.representedElementKind == UICollectionElementKindSectionHeader && contentOffset.y <= 0 {
+                    var frameToModify = attribute.frame
+                    frameToModify.origin.y = contentOffset.y
+                    frameToModify.size.height = max(initialHeaderHeight, initialHeaderHeight - contentOffset.y)
+                    attribute.frame = frameToModify
                 }
+                
+                // Add a spacer after every supplementary view
+                spacerViewYPositions.append(attribute.frame.size.height + attribute.frame.origin.y)
+                
+            case .Cell:
+                // Add a separator decoration view at the end of a cell
+                attribute.frame.origin.y = attribute.frame.origin.y + 30.0
+                separatorViewYPositions.append(attribute.frame.size.height + attribute.frame.origin.y)
+                
+            default:
+                break
             }
+        }
+
+        // Add spacers
+        for spacerViewYPosition in spacerViewYPositions {
+            var decorationViewAttribute = UICollectionViewLayoutAttributes(
+                forDecorationViewOfKind: SpacerDecorationView.kind,
+                withIndexPath: NSIndexPath(index: 0))
+            decorationViewAttribute.frame = CGRectMake(0.0, spacerViewYPosition, self.collectionView!.frame.size.width, 30.0)
+            attributes.append(decorationViewAttribute)
+        }
+        
+        // Add separators
+        for separatorViewYPosition in separatorViewYPositions {
+            var decorationViewAttribute = UICollectionViewLayoutAttributes(
+                forDecorationViewOfKind: SeparatorDecorationView.kind,
+                withIndexPath: NSIndexPath(index: 0))
+            decorationViewAttribute.frame = CGRectMake(0.0, separatorViewYPosition, self.collectionView!.frame.size.width, 0.5)
+            attributes.append(decorationViewAttribute)
         }
         
         return attributes
