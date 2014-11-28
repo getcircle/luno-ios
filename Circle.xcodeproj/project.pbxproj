@@ -128,9 +128,9 @@
 			isa = PBXGroup;
 			children = (
 				8F0004951A2419730096477A /* AppDelegate.swift */,
-				8F22CBE41A27ED190026376E /* ExpandingHeaderCollectionViewLayout.swift */,
 				8F0004C41A25BA510096477A /* Assets */,
 				8F0004C21A25BA0F0096477A /* Extensions */,
+				8F22CBF21A2864760026376E /* Layouts */,
 				8F0004C31A25BA370096477A /* Models */,
 				8F0004C51A25BA650096477A /* Storyboards */,
 				8F0004931A2419730096477A /* Supporting Files */,
@@ -226,6 +226,14 @@
 				8F00049E1A2419730096477A /* Main.storyboard */,
 			);
 			name = Storyboards;
+			sourceTree = "<group>";
+		};
+		8F22CBF21A2864760026376E /* Layouts */ = {
+			isa = PBXGroup;
+			children = (
+				8F22CBE41A27ED190026376E /* ExpandingHeaderCollectionViewLayout.swift */,
+			);
+			name = Layouts;
 			sourceTree = "<group>";
 		};
 		D3792F80AEE37ECED92A044F /* Pods */ = {
