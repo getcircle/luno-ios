@@ -1,5 +1,5 @@
 //
-//  ExpandingHeaderCollectionViewLayout.swift
+//  ProfileCollectionViewLayout.swift
 //  Circle
 //
 //  Created by Ravi Rani on 11/27/14.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ExpandingHeaderCollectionViewLayout: UICollectionViewFlowLayout {
+class ProfileCollectionViewLayout: UICollectionViewFlowLayout {
     
     class var profileHeaderHeight: CGFloat {
         return 200.0
@@ -28,7 +28,7 @@ class ExpandingHeaderCollectionViewLayout: UICollectionViewFlowLayout {
     
     override func prepareLayout() {
         itemSize = CGSizeMake(collectionView!.bounds.width, cellHeight)
-        headerReferenceSize = CGSizeMake(collectionView!.bounds.width, ExpandingHeaderCollectionViewLayout.profileHeaderHeight)
+        headerReferenceSize = CGSizeMake(collectionView!.bounds.width, ProfileCollectionViewLayout.profileHeaderHeight)
     }
     
     override func shouldInvalidateLayoutForBoundsChange(newBounds: CGRect) -> Bool {
@@ -56,8 +56,8 @@ class ExpandingHeaderCollectionViewLayout: UICollectionViewFlowLayout {
                     var frameToModify = attribute.frame
                     frameToModify.origin.y = contentOffset.y
                     frameToModify.size.height = max(
-                        ExpandingHeaderCollectionViewLayout.profileHeaderHeight,
-                        ExpandingHeaderCollectionViewLayout.profileHeaderHeight - contentOffset.y)
+                        ProfileCollectionViewLayout.profileHeaderHeight,
+                        ProfileCollectionViewLayout.profileHeaderHeight - contentOffset.y)
                     attribute.frame = frameToModify
                 }
                 

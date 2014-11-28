@@ -51,7 +51,7 @@ class ProfileViewController: UICollectionViewController, UICollectionViewDelegat
     // set it for all headers
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         if section == 0 {
-            return CGSizeMake(collectionView.frame.size.width, ExpandingHeaderCollectionViewLayout.profileHeaderHeight)
+            return CGSizeMake(collectionView.frame.size.width, ProfileCollectionViewLayout.profileHeaderHeight)
         }
         
         return CGSizeZero
