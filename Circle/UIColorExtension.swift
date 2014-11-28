@@ -47,6 +47,6 @@ extension UIColor {
     }
     
     class func viewBackgroundColor() -> UIColor {
-        return UIColor(red: 240, green: 240, blue: 240)
+        return UIColor.whiteColor()
     }
 }

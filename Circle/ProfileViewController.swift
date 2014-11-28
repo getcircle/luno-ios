@@ -13,20 +13,17 @@ class ProfileViewController: UICollectionViewController, UICollectionViewDelegat
     var person: Person! {
         didSet {
             // Update the view.
-            for (title, value) in person.attributes() {
-                attributesTitles.append(title)
-                attributesValues.append(value)
-            }
+            attributes = person.attributes()
             self.collectionView.reloadData()
         }
     }
     
-    var attributesTitles: [String] = [], attributesValues: [String] = []
+    var attributes: [String] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        self.customizeCollectionView()
+        customizeCollectionView()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -38,6 +35,7 @@ class ProfileViewController: UICollectionViewController, UICollectionViewDelegat
     }
 
     private func customizeCollectionView() {
+        collectionView.backgroundColor = UIColor.viewBackgroundColor()
         collectionView.registerNib(
             UINib(nibName: "ProfileAttributeCollectionViewCell", bundle: nil),
             forCellWithReuseIdentifier: ProfileAttributeCollectionViewCell.classReuseIdentifier)
@@ -55,7 +53,7 @@ class ProfileViewController: UICollectionViewController, UICollectionViewDelegat
     }
 
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return attributesValues.count
+        return attributes.count
     }
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
@@ -63,9 +61,9 @@ class ProfileViewController: UICollectionViewController, UICollectionViewDelegat
             ProfileAttributeCollectionViewCell.classReuseIdentifier,
             forIndexPath: indexPath) as ProfileAttributeCollectionViewCell
         
-        if attributesTitles.count > indexPath.row {
-            cell.nameLabel.text = attributesTitles[indexPath.row]
-            cell.valueLabel.text = attributesValues[indexPath.row]
+        if person.attributeTitles.count > indexPath.row {
+            cell.nameLabel.text = person.attributeTitles[indexPath.row]
+            cell.valueLabel.text = attributes[indexPath.row]
         }
         return cell
     }

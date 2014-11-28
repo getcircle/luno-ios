@@ -30,6 +30,18 @@ class Person : PFObject, PFSubclassing {
         return self.objectForKey("title") as String!
     }
 
+    var cell:String! {
+        return self.objectForKey("cell") as String!
+    }
+
+    var city:String! {
+        return self.objectForKey("location") as String!
+    }
+
+    var country:String! {
+        return self.objectForKey("country") as String!
+    }
+    
     var manager:Person! {
         return self.objectForKey("manager") as Person!
     }
@@ -44,13 +56,27 @@ class Person : PFObject, PFSubclassing {
         return "Person"
     }
     
-    func attributes() -> [String:String] {
-        var attributeTitleAndKeys = ["Email": "email"]
-        var attributes = [String:String]()
-        
-        for (title, key) in attributeTitleAndKeys {
-            if let value = (self.objectForKey(key) as? String) {
-                attributes[title] = value
+    let attributeTitles = [
+        "Email",
+        "Cell Phone",
+        "City",
+        "Country"
+    ]
+    
+    private let attributeKeys = [
+        "email",
+        "cell",
+        "location",
+        "country"
+    ]
+    
+    func attributes() -> [String] {
+
+        assert(attributeTitles.count == attributeKeys.count, "Attribute titles and keys should have 1:1 mapping")
+        var attributes = [String]()
+        for index in 0..<attributeKeys.count {
+            if let value = (self.objectForKey(attributeKeys[index]) as? String) {
+                attributes.append(value)
             }
         }
         

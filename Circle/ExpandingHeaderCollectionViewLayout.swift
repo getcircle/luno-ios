@@ -22,6 +22,8 @@ class ExpandingHeaderCollectionViewLayout: UICollectionViewFlowLayout {
             forDecorationViewOfKind: SpacerDecorationView.kind)
         
         sectionInset = UIEdgeInsetsZero
+        minimumInteritemSpacing = 0.0
+        minimumLineSpacing = 0.0
     }
     
     override func prepareLayout() {
@@ -57,6 +59,7 @@ class ExpandingHeaderCollectionViewLayout: UICollectionViewFlowLayout {
                 
             case .Cell:
                 // Add a separator decoration view at the end of a cell
+                // (spacerViewYPositions.count > 0 ? 30.0 : 0.0)
                 attribute.frame.origin.y = attribute.frame.origin.y + 30.0
                 separatorViewYPositions.append(attribute.frame.size.height + attribute.frame.origin.y)
                 
@@ -75,11 +78,11 @@ class ExpandingHeaderCollectionViewLayout: UICollectionViewFlowLayout {
         }
         
         // Add separators
-        for separatorViewYPosition in separatorViewYPositions {
+        for index in 0..<separatorViewYPositions.count {
             var decorationViewAttribute = UICollectionViewLayoutAttributes(
                 forDecorationViewOfKind: SeparatorDecorationView.kind,
-                withIndexPath: NSIndexPath(index: 0))
-            decorationViewAttribute.frame = CGRectMake(0.0, separatorViewYPosition, self.collectionView!.frame.size.width, 0.5)
+                withIndexPath: NSIndexPath(index: index + 1 + spacerViewYPositions.count))
+            decorationViewAttribute.frame = CGRectMake(0.0, separatorViewYPositions[index], self.collectionView!.frame.size.width, 0.5)
             attributes.append(decorationViewAttribute)
         }
         
