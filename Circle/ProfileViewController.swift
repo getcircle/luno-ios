@@ -54,7 +54,7 @@ class ProfileViewController: UICollectionViewController, UICollectionViewDelegat
         self.collectionView.registerNib(
             UINib(nibName: "ProfileHeaderCollectionReusableView", bundle: nil),
             forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
-            withReuseIdentifier: "ProfileHeaderView")
+            withReuseIdentifier: ProfileHeaderCollectionReusableView.classReuseIdentifier)
     }
     
     // MARK: Data source
@@ -85,7 +85,7 @@ class ProfileViewController: UICollectionViewController, UICollectionViewDelegat
             
         let supplementaryView = collectionView.dequeueReusableSupplementaryViewOfKind(
             kind,
-            withReuseIdentifier: "ProfileHeaderView",
+            withReuseIdentifier: ProfileHeaderCollectionReusableView.classReuseIdentifier,
             forIndexPath: indexPath) as ProfileHeaderCollectionReusableView
             
         if person != nil {

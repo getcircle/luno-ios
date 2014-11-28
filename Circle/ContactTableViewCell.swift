@@ -19,6 +19,10 @@ class ContactTableViewCell: MGSwipeTableCell {
         }
     }
 
+    class var classReuseIdentifier: String {
+        return "ContactCell"
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
 

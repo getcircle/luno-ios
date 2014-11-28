@@ -34,7 +34,7 @@ class PeopleViewController: UITableViewController, MGSwipeTableCellDelegate {
         // Customize table view
         tableView.registerNib(
             UINib(nibName: "ContactTableViewCell", bundle: nil),
-            forCellReuseIdentifier: "ContactCell")
+            forCellReuseIdentifier: ContactTableViewCell.classReuseIdentifier)
         tableView.separatorInset = UIEdgeInsetsMake(0.0, 64.0, 0.0, 0.0)
         tableView.rowHeight = 64.0
         addDummyFooterView()
@@ -83,7 +83,7 @@ class PeopleViewController: UITableViewController, MGSwipeTableCellDelegate {
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("ContactCell", forIndexPath: indexPath) as ContactTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier(ContactTableViewCell.classReuseIdentifier, forIndexPath: indexPath) as ContactTableViewCell
 
         if let person = self.people?[indexPath.row] {
             cell.person = person

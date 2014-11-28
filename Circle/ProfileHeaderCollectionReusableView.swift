@@ -16,6 +16,10 @@ class ProfileHeaderCollectionReusableView: UICollectionReusableView {
     @IBOutlet weak var backgroundImage: UIImageView!
     var visualEffectView: UIVisualEffectView!
     
+    class var classReuseIdentifier: String {
+        return "ProfileHeaderView"
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
 
