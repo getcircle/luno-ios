@@ -13,9 +13,16 @@ class ProfileViewController: UICollectionViewController, UICollectionViewDelegat
     var person: Person! {
         didSet {
             // Update the view.
+            for (title, value) in person.attributes() {
+                attributesTitles.append(title)
+                attributesValues.append(value)
+            }
             self.collectionView.reloadData()
         }
     }
+    
+    var attributesTitles: [String] = []
+    var attributesValues: [String] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +48,10 @@ class ProfileViewController: UICollectionViewController, UICollectionViewDelegat
 
     private func customizeCollectionView() {
         self.collectionView.registerNib(
+            UINib(nibName: "ProfileAttributeCollectionViewCell", bundle: nil),
+            forCellWithReuseIdentifier: ProfileAttributeCollectionViewCell.classReuseIdentifier)
+
+        self.collectionView.registerNib(
             UINib(nibName: "ProfileHeaderCollectionReusableView", bundle: nil),
             forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
             withReuseIdentifier: "ProfileHeaderView")
@@ -53,12 +64,18 @@ class ProfileViewController: UICollectionViewController, UICollectionViewDelegat
     }
 
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return attributesValues.count
     }
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as UICollectionViewCell
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(
+            ProfileAttributeCollectionViewCell.classReuseIdentifier,
+            forIndexPath: indexPath) as ProfileAttributeCollectionViewCell
         
+        if attributesTitles.count > indexPath.row {
+            cell.nameLabel.text = attributesTitles[indexPath.row]
+            cell.valueLabel.text = attributesValues[indexPath.row]
+        }
         return cell
     }
     

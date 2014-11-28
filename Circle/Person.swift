@@ -43,4 +43,17 @@ class Person : PFObject, PFSubclassing {
     class func parseClassName() -> String! {
         return "Person"
     }
+    
+    func attributes() -> [String:String] {
+        var attributeTitleAndKeys = ["Email": "email"]
+        var attributes = [String:String]()
+        
+        for (title, key) in attributeTitleAndKeys {
+            if let value = (self.objectForKey(key) as? String) {
+                attributes[title] = value
+            }
+        }
+        
+        return attributes
+    }
 }
