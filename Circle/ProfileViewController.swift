@@ -31,27 +31,19 @@ class ProfileViewController: UICollectionViewController, UICollectionViewDelegat
     }
     
     override func viewWillAppear(animated: Bool) {
-        if let navigationBar = self.navigationController?.navigationBar {
-            navigationBar.translucent = true
-            navigationBar.shadowImage = UIImage()
-            navigationBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
-        }
+        navigationController?.navigationBar.makeTransparent()
     }
     
     override func viewWillDisappear(animated: Bool) {
-        if let navigationBar = self.navigationController?.navigationBar {
-            navigationBar.translucent = false
-            navigationBar.shadowImage = nil
-            navigationBar.setBackgroundImage(nil, forBarMetrics: .Default)
-        }
+       navigationController?.navigationBar.makeOpaque()
     }
 
     private func customizeCollectionView() {
-        self.collectionView.registerNib(
+        collectionView.registerNib(
             UINib(nibName: "ProfileAttributeCollectionViewCell", bundle: nil),
             forCellWithReuseIdentifier: ProfileAttributeCollectionViewCell.classReuseIdentifier)
 
-        self.collectionView.registerNib(
+        collectionView.registerNib(
             UINib(nibName: "ProfileHeaderCollectionReusableView", bundle: nil),
             forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
             withReuseIdentifier: ProfileHeaderCollectionReusableView.classReuseIdentifier)

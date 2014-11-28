@@ -29,6 +29,7 @@
 		8F22CBE91A27FDA70026376E /* ProfileAttributeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F22CBE71A27FDA70026376E /* ProfileAttributeCollectionViewCell.xib */; };
 		8F22CBED1A283D3D0026376E /* SeparatorDecorationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F22CBEC1A283D3D0026376E /* SeparatorDecorationView.swift */; };
 		8F22CBEF1A283FE40026376E /* SpacerDecorationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F22CBEE1A283FE40026376E /* SpacerDecorationView.swift */; };
+		8F22CBF11A2844F50026376E /* UINavigationBarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F22CBF01A2844F50026376E /* UINavigationBarExtension.swift */; };
 		A73E1BB3914D1A036D2FAE47 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FD94FE17CC5CD80FF96B24E5 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -71,6 +72,7 @@
 		8F22CBE71A27FDA70026376E /* ProfileAttributeCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileAttributeCollectionViewCell.xib; sourceTree = "<group>"; };
 		8F22CBEC1A283D3D0026376E /* SeparatorDecorationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeparatorDecorationView.swift; sourceTree = "<group>"; };
 		8F22CBEE1A283FE40026376E /* SpacerDecorationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpacerDecorationView.swift; sourceTree = "<group>"; };
+		8F22CBF01A2844F50026376E /* UINavigationBarExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UINavigationBarExtension.swift; sourceTree = "<group>"; };
 		CC982AC8BAF0AFF23DCD301A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		FD94FE17CC5CD80FF96B24E5 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -197,6 +199,7 @@
 				8F22CB741A26600D0026376E /* AppDelegateParseExtension.swift */,
 				8F22CB761A2661890026376E /* AppDelegateAppearanceExtension.swift */,
 				8F22CBE21A27AE9B0026376E /* UIImageViewExtension.swift */,
+				8F22CBF01A2844F50026376E /* UINavigationBarExtension.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -382,6 +385,7 @@
 				8F22CBE51A27ED190026376E /* ExpandingHeaderCollectionViewLayout.swift in Sources */,
 				8F0004BB1A241BDE0096477A /* UIColorExtension.swift in Sources */,
 				8F00049B1A2419730096477A /* PeopleViewController.swift in Sources */,
+				8F22CBF11A2844F50026376E /* UINavigationBarExtension.swift in Sources */,
 				8F22CBE31A27AE9B0026376E /* UIImageViewExtension.swift in Sources */,
 				8F22CB731A264A8A0026376E /* MainTabViewController.swift in Sources */,
 				8F22CB771A2661890026376E /* AppDelegateAppearanceExtension.swift in Sources */,
