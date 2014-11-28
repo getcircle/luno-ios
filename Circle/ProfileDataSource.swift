@@ -19,7 +19,8 @@ class ProfileDataSource: NSObject, UICollectionViewDataSource {
         "country"
     ]
     let managerInfoKeySet = [
-        "manager"
+        "manager",
+        "department"
     ]
 
     let keyToTitle = [
@@ -27,7 +28,8 @@ class ProfileDataSource: NSObject, UICollectionViewDataSource {
         "cell": "Cell Phone",
         "location": "City",
         "country": "Country",
-        "manager": "Manager"
+        "manager": "Manager",
+        "department": "Department"
     ]
     
     var dataSourceKeys = [AnyObject]()

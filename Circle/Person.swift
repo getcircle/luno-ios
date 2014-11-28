@@ -46,6 +46,10 @@ class Person : PFObject, PFSubclassing {
         return self.objectForKey("manager") as Person!
     }
 
+    var department:String! {
+        return self.objectForKey("department") as String!
+    }
+    
     var hasDirectReports:Bool!
     
     var hasManager: Bool {
