@@ -11,6 +11,7 @@ import UIKit
 class ProfileHeaderCollectionReusableView: UICollectionReusableView {
 
     @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var backgroundImage: UIImageView!
     var visualEffectView: UIVisualEffectView!
@@ -33,6 +34,8 @@ class ProfileHeaderCollectionReusableView: UICollectionReusableView {
     
     func setPerson(person: Person!) {
         nameLabel.text = person.firstName + " " + person.lastName
+        titleLabel.text = person.title
+
         profileImage.setImageWithURL(
             NSURL(string: person.profileImageURL),
             placeholderImage: UIImage(named: "DefaultPerson"))
