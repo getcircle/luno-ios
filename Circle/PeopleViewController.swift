@@ -75,13 +75,11 @@ class PeopleViewController: UITableViewController, MGSwipeTableCellDelegate {
     // MARK: - Segues
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "showDetail" {
+        if segue.identifier == "showProfile" {
             if let indexPath = self.tableView.indexPathForSelectedRow() {
                 let person = self.people?[indexPath.row]
-                let controller = (segue.destinationViewController as UINavigationController).topViewController as ProfileViewController
+                let controller = segue.destinationViewController as ProfileViewController
                 controller.person = person
-                controller.navigationItem.leftBarButtonItem = self.tabBarController?.splitViewController?.displayModeButtonItem()
-                controller.navigationItem.leftItemsSupplementBackButton = true
             }
         }
     }
@@ -126,20 +124,7 @@ class PeopleViewController: UITableViewController, MGSwipeTableCellDelegate {
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if let person = self.people?[indexPath.row] {
-
-            if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
-                // Perform the segue only on the iPad
-                performSegueWithIdentifier("showDetail", sender: tableView)
-            }
-            else {
-                // For iPhone manually push the detail view
-                // This is required because of our custom setup of tab
-                // view controller as the master view controller
-
-                let profileVC = self.storyboard?.instantiateViewControllerWithIdentifier("ProfileViewController") as ProfileViewController
-                profileVC.person = person
-                self.navigationController?.pushViewController(profileVC, animated: true)
-            }
+            performSegueWithIdentifier("showProfile", sender: tableView)
         }
 
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
