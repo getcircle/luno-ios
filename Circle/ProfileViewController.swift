@@ -27,10 +27,12 @@ class ProfileViewController: UICollectionViewController, UICollectionViewDelegat
     
     override func viewWillAppear(animated: Bool) {
         navigationController?.navigationBar.makeTransparent()
+        super.viewWillAppear(animated)
     }
     
     override func viewWillDisappear(animated: Bool) {
-       navigationController?.navigationBar.makeOpaque()
+        navigationController?.navigationBar.makeOpaque()
+        super.viewWillDisappear(animated)
     }
 
     private func customizeCollectionView() {
