@@ -29,6 +29,14 @@ class PeopleViewController: UITableViewController, MGSwipeTableCellDelegate {
         loadInitialData()
     }
 
+    override func viewDidAppear(animated: Bool) {
+        // Check if user is logged in. If not, present auth view controller
+        let authViewController = AuthViewController(nibName: "AuthViewController", bundle: nil)
+        let navController = UINavigationController(rootViewController: authViewController)
+        tabBarController!.presentViewController(navController, animated: false, completion: nil)
+        super.viewDidAppear(animated)
+    }
+    
     private func customizeTableView() {
         // Customize table view
         tableView.registerNib(
