@@ -48,6 +48,10 @@ class Person : PFObject, PFSubclassing {
         return self.objectForKey("department") as String!
     }
     
+    var user:PFUser! {
+        return self.objectForKey("user") as PFUser!
+    }
+    
     var hasDirectReports:Bool!
     
     var hasManager: Bool {
@@ -86,5 +90,21 @@ class Person : PFObject, PFSubclassing {
                 }
             }
         }
+    }
+    
+    // Synchronous call to fetch Person object for currently logged in user
+    class func getLoggedInPerson() -> Person? {
+        if let pfUser = PFUser.currentUser() {
+            let parseQuery = Person.query() as PFQuery
+            parseQuery.cachePolicy = kPFCachePolicyCacheElseNetwork
+            parseQuery.includeKey("manager")
+            parseQuery.whereKey("user", equalTo:pfUser)
+            let people = parseQuery.findObjects() as [Person]
+            if people.count > 0 {
+                return people[0]
+            }
+        }
+        
+        return nil
     }
 }

@@ -106,7 +106,14 @@ class AuthViewController: UIViewController {
 
             self.hideLoadingState()
             if error == nil {
-                self.dismissViewControllerAnimated(true, completion: nil)
+                // Fetch and cache current person before dismissing
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), { () -> Void in
+                    Person.getLoggedInPerson()
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        self.dismissViewControllerAnimated(true, completion: nil)
+                    })
+                    return
+                })
             }
             else {
                 self.logInButton.addShakeAnimation()
