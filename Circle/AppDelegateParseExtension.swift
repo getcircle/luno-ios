@@ -24,6 +24,12 @@ extension AppDelegate {
         // Track app launches
         PFAnalytics.trackAppOpenedWithLaunchOptionsInBackground(launchOptions, block: nil)
         
+        
+        // Following are temporary functions added to reset or import new data
+        // Make sure these are commented before checking in code
+        // Log out user
+        // PFUser.logOut()
+        
         // Temp user creation step - Enable once when creating or importing data
         // Person.signUpInitialUsers()
     }

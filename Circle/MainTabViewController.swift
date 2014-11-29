@@ -9,12 +9,13 @@
 import UIKit
 import Parse
 
-class MainTabViewController: UITabBarController {
+class MainTabViewController: UITabBarController, UITabBarControllerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.delegate = self
         addSelectedImages()
         self.tabBar.tintColor = UIColor.tabBarTintColor()
     }
@@ -42,15 +43,27 @@ class MainTabViewController: UITabBarController {
         }
     }
     
-    // MARK - Tab bar delegate
+    // MARK - Tab bar controller delegate
+    
+    func tabBarController(tabBarController: UITabBarController, shouldSelectViewController viewController: UIViewController) -> Bool {
+        if viewController is UINavigationController {
+            if (viewController as UINavigationController).topViewController is ProfileViewController {
+                var profileVC = (viewController as UINavigationController).topViewController as ProfileViewController
+                profileVC.person = Person.getLoggedInPerson()
+            }
+        }
+        
+        return true
+    }
     
     func tabBarController(tabBarController: UITabBarController, didSelectViewController viewController: UIViewController) {
         checkUserAndPresentAuthViewController()
     }
     
+    // MARK - Authentication Check
+    
     private func checkUserAndPresentAuthViewController() {
         var currentUser = PFUser.currentUser()
-        println("User = \(currentUser)")
         if currentUser == nil {
             // Check if user is logged in. If not, present auth view controller
             let authViewController = AuthViewController(nibName: "AuthViewController", bundle: nil)
