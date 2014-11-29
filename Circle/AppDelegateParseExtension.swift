@@ -23,5 +23,8 @@ extension AppDelegate {
         
         // Track app launches
         PFAnalytics.trackAppOpenedWithLaunchOptionsInBackground(launchOptions, block: nil)
+        
+        // Temp user creation step - Enable once when creating or importing data
+        // Person.signUpInitialUsers()
     }
 }
