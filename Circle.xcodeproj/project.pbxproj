@@ -35,7 +35,6 @@
 		BF5FCA6E1A269A0300F511EF /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5FCA6D1A269A0300F511EF /* Message.swift */; };
 		BF5FCA711A269CF300F511EF /* MessageReceivedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5FCA6F1A269CF300F511EF /* MessageReceivedCollectionViewCell.swift */; };
 		BF5FCA721A269CF300F511EF /* MessageReceivedCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF5FCA701A269CF300F511EF /* MessageReceivedCollectionViewCell.xib */; };
-		BF5FCA741A269F4F00F511EF /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5FCA731A269F4F00F511EF /* UIImageViewExtension.swift */; };
 		BF5FCA791A26A57000F511EF /* NoMessagesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5FCA771A26A57000F511EF /* NoMessagesCollectionViewCell.swift */; };
 		BF5FCA7A1A26A57000F511EF /* NoMessagesCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF5FCA781A26A57000F511EF /* NoMessagesCollectionViewCell.xib */; };
 /* End PBXBuildFile section */
@@ -84,7 +83,6 @@
 		BF5FCA6D1A269A0300F511EF /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		BF5FCA6F1A269CF300F511EF /* MessageReceivedCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageReceivedCollectionViewCell.swift; sourceTree = "<group>"; };
 		BF5FCA701A269CF300F511EF /* MessageReceivedCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageReceivedCollectionViewCell.xib; sourceTree = "<group>"; };
-		BF5FCA731A269F4F00F511EF /* UIImageViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
 		BF5FCA771A26A57000F511EF /* NoMessagesCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoMessagesCollectionViewCell.swift; sourceTree = "<group>"; };
 		BF5FCA781A26A57000F511EF /* NoMessagesCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoMessagesCollectionViewCell.xib; sourceTree = "<group>"; };
 		CC982AC8BAF0AFF23DCD301A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -219,7 +217,6 @@
 				8F22CBE21A27AE9B0026376E /* UIImageViewExtension.swift */,
 				8F22CBF01A2844F50026376E /* UINavigationBarExtension.swift */,
 				8F0004BA1A241BDE0096477A /* UIColorExtension.swift */,
-				BF5FCA731A269F4F00F511EF /* UIImageViewExtension.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -428,7 +425,6 @@
 				8F22CB731A264A8A0026376E /* MainTabViewController.swift in Sources */,
 				8F22CBF51A2865030026376E /* ProfileDataSource.swift in Sources */,
 				8F22CB771A2661890026376E /* AppDelegateAppearanceExtension.swift in Sources */,
-				BF5FCA741A269F4F00F511EF /* UIImageViewExtension.swift in Sources */,
 				BF5FCA791A26A57000F511EF /* NoMessagesCollectionViewCell.swift in Sources */,
 				8F22CB751A26600D0026376E /* AppDelegateParseExtension.swift in Sources */,
 				BF5FCA6E1A269A0300F511EF /* Message.swift in Sources */,
