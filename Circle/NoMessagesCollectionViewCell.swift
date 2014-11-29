@@ -8,8 +8,13 @@
 
 import UIKit
 
+protocol NoMessagesCellDelegate {
+    func handleNewMessage(sender: AnyObject)
+}
+
 class NoMessagesCollectionViewCell: UICollectionViewCell {
 
+    var delegate: NoMessagesCellDelegate?
     @IBOutlet weak var newMessageButton: UIButton!
     
     override func awakeFromNib() {
@@ -19,7 +24,7 @@ class NoMessagesCollectionViewCell: UICollectionViewCell {
     }
 
     @IBAction func handleNewMessage(sender: AnyObject) {
-        
+        self.delegate?.handleNewMessage(self)
     }
     
     class func reuseIdentifier() -> String {

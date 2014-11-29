@@ -37,6 +37,7 @@
 		BF5FCA721A269CF300F511EF /* MessageReceivedCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF5FCA701A269CF300F511EF /* MessageReceivedCollectionViewCell.xib */; };
 		BF5FCA791A26A57000F511EF /* NoMessagesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5FCA771A26A57000F511EF /* NoMessagesCollectionViewCell.swift */; };
 		BF5FCA7A1A26A57000F511EF /* NoMessagesCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF5FCA781A26A57000F511EF /* NoMessagesCollectionViewCell.xib */; };
+		BF83A4771A2A57B3000F7A92 /* SelectContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF83A4761A2A57B3000F7A92 /* SelectContactViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +86,7 @@
 		BF5FCA701A269CF300F511EF /* MessageReceivedCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageReceivedCollectionViewCell.xib; sourceTree = "<group>"; };
 		BF5FCA771A26A57000F511EF /* NoMessagesCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoMessagesCollectionViewCell.swift; sourceTree = "<group>"; };
 		BF5FCA781A26A57000F511EF /* NoMessagesCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoMessagesCollectionViewCell.xib; sourceTree = "<group>"; };
+		BF83A4761A2A57B3000F7A92 /* SelectContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectContactViewController.swift; sourceTree = "<group>"; };
 		CC982AC8BAF0AFF23DCD301A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		FD94FE17CC5CD80FF96B24E5 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -187,6 +189,7 @@
 				8F00049C1A2419730096477A /* ProfileViewController.swift */,
 				8F22CB721A264A8A0026376E /* MainTabViewController.swift */,
 				BF5FCA6B1A2696D200F511EF /* MessagesViewController.swift */,
+				BF83A4761A2A57B3000F7A92 /* SelectContactViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -413,6 +416,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8F22CB791A266D3F0026376E /* Person.swift in Sources */,
+				BF83A4771A2A57B3000F7A92 /* SelectContactViewController.swift in Sources */,
 				8F22CBED1A283D3D0026376E /* SeparatorDecorationView.swift in Sources */,
 				8F0004BE1A24225A0096477A /* ContactTableViewCell.swift in Sources */,
 				8F22CBE01A27A8E60026376E /* ProfileHeaderCollectionReusableView.swift in Sources */,

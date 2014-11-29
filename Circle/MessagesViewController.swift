@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MessagesViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+class MessagesViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, NoMessagesCellDelegate {
     
     var messages: [Message]?
 
@@ -85,12 +85,18 @@ class MessagesViewController: UICollectionViewController, UICollectionViewDelega
                 NoMessagesCollectionViewCell.reuseIdentifier(),
                 forIndexPath: indexPath
             ) as NoMessagesCollectionViewCell
+            cell.delegate = self
             return cell
         }
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         return self.view.bounds.size
+    }
+    
+    func handleNewMessage(sender: AnyObject) {
+        let selectContactViewController = self.storyboard?.instantiateViewControllerWithIdentifier("selectContact") as UINavigationController
+        self.presentViewController(selectContactViewController, animated: true, completion: nil)
     }
     
 }
