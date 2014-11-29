@@ -12,6 +12,7 @@ class PeopleViewController: UITableViewController, MGSwipeTableCellDelegate {
 
     var profileViewController: ProfileViewController?
     var people: [Person]?
+    var dataLoadAttempted: Bool!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -25,16 +26,18 @@ class PeopleViewController: UITableViewController, MGSwipeTableCellDelegate {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view, typically from a nib.
+        dataLoadAttempted = false
         customizeTableView()
         loadInitialData()
     }
-
+    
     override func viewDidAppear(animated: Bool) {
-        // Check if user is logged in. If not, present auth view controller
-        let authViewController = AuthViewController(nibName: "AuthViewController", bundle: nil)
-        let navController = UINavigationController(rootViewController: authViewController)
-        tabBarController!.presentViewController(navController, animated: false, completion: nil)
         super.viewDidAppear(animated)
+        
+        if dataLoadAttempted == false {
+            // Checks if it has a user and loads data
+            loadInitialData()
+        }
     }
     
     private func customizeTableView() {
@@ -55,13 +58,16 @@ class PeopleViewController: UITableViewController, MGSwipeTableCellDelegate {
     }
 
     private func loadInitialData() {
-        let parseQuery = Person.query() as PFQuery
-        parseQuery.cachePolicy = kPFCachePolicyCacheElseNetwork
-        parseQuery.includeKey("manager")
-        parseQuery.findObjectsInBackgroundWithBlock { (objects: [AnyObject]!, error: NSError!) -> Void in
-            if error == nil {
-                self.people = objects as? [Person]
-                self.tableView.reloadData()
+        if let pfUser = PFUser.currentUser() {
+            dataLoadAttempted = true
+            let parseQuery = Person.query() as PFQuery
+            parseQuery.cachePolicy = kPFCachePolicyCacheElseNetwork
+            parseQuery.includeKey("manager")
+            parseQuery.findObjectsInBackgroundWithBlock { (objects: [AnyObject]!, error: NSError!) -> Void in
+                if error == nil {
+                    self.people = objects as? [Person]
+                    self.tableView.reloadData()
+                }
             }
         }
     }

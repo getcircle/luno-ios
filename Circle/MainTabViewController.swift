@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 class MainTabViewController: UITabBarController {
 
@@ -16,6 +17,11 @@ class MainTabViewController: UITabBarController {
         // Do any additional setup after loading the view.
         addSelectedImages()
         self.tabBar.tintColor = UIColor.tabBarTintColor()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        checkUserAndPresentAuthViewController()
     }
     
     private func addSelectedImages() {
@@ -33,6 +39,23 @@ class MainTabViewController: UITabBarController {
             default:
                 break
             }
+        }
+    }
+    
+    // MARK - Tab bar delegate
+    
+    func tabBarController(tabBarController: UITabBarController, didSelectViewController viewController: UIViewController) {
+        checkUserAndPresentAuthViewController()
+    }
+    
+    private func checkUserAndPresentAuthViewController() {
+        var currentUser = PFUser.currentUser()
+        println("User = \(currentUser)")
+        if currentUser == nil {
+            // Check if user is logged in. If not, present auth view controller
+            let authViewController = AuthViewController(nibName: "AuthViewController", bundle: nil)
+            let navController = UINavigationController(rootViewController: authViewController)
+            self.presentViewController(navController, animated: false, completion: nil)
         }
     }
 }
