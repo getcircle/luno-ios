@@ -14,13 +14,14 @@ class MessagesViewController: UICollectionViewController, UICollectionViewDelega
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.customize()
+        self.configureNavigation()
+        self.configureCollectionView()
         self.loadInitialData()
     }
     
-    // MARK: - Private Methods
+    // MARK: - Configuration
     
-    private func customize() {
+    private func configureCollectionView() {
         self.collectionView.registerNib(
             UINib(nibName: "MessageReceivedCollectionViewCell", bundle: nil),
             forCellWithReuseIdentifier: MessageReceivedCollectionViewCell.reuseIdentifier()
@@ -31,8 +32,14 @@ class MessagesViewController: UICollectionViewController, UICollectionViewDelega
         )
     }
     
+    private func configureNavigation() {
+        self.navigationItem.title = "Messages"
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Compose", style: .Done, target: self, action: "handleCompose:")
+    }
+    
     private func loadInitialData() {
         let parseQuery = Message.query() as PFQuery
+        parseQuery.includeKey("sender")
         parseQuery.findObjectsInBackgroundWithBlock { (objects: [AnyObject]!, error: NSError!) -> Void in
             if error == nil {
                 self.messages = objects as? [Message]
@@ -50,12 +57,7 @@ class MessagesViewController: UICollectionViewController, UICollectionViewDelega
         }
     }
 
-    // MARK: - Navigation
-
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    }
-
-    // MARK: UICollectionViewDataSource
+    // MARK: - UICollectionViewDataSource
 
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
@@ -91,10 +93,22 @@ class MessagesViewController: UICollectionViewController, UICollectionViewDelega
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        return self.view.bounds.size
+        if self.hasMessages() {
+            return CGSizeMake(self.collectionView.frame.width, 64.0)
+        } else {
+            return self.view.bounds.size
+        }
     }
     
+    // MARK: - Actions
+    
     func handleNewMessage(sender: AnyObject) {
+        let vc = SelectContactViewController(nibName: "SelectContactViewController", bundle: nil)
+        let nvc = UINavigationController(rootViewController: vc)
+        self.presentViewController(nvc, animated: true, completion: nil)
+    }
+    
+    func handleCompose(sender: AnyObject) {
         let vc = SelectContactViewController(nibName: "SelectContactViewController", bundle: nil)
         let nvc = UINavigationController(rootViewController: vc)
         self.presentViewController(nvc, animated: true, completion: nil)

@@ -31,4 +31,11 @@ class ConversationViewController: SLKTextViewController {
     private func configureNavigation() {
         self.navigationItem.title = self.recipient?.description
     }
+    
+    // MARK: - SLKTextViewController Overrides
+    
+    override func didPressRightButton(sender: AnyObject!) {
+        let message = MessageActions.sendMessage(self.recipient!, recipient: self.recipient!, contents: self.textView.text)
+        super.didPressRightButton(sender)
+    }
 }

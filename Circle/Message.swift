@@ -8,28 +8,28 @@
 
 class Message: PFObject, PFSubclassing {
     
-    var contents:String! {
+    var contents: String! {
         return self.objectForKey("contents") as String!
     }
     
     // this should be an NSLocalizedDate
-    var created:String! {
+    var created: String! {
         return self.objectForKey("created") as String!
     }
     
-    var ephemeral:Bool! {
+    var ephemeral: Bool! {
         return self.objectForKey("ephemeral") as Bool!
     }
     
-    var sender:Person! {
-        return self.objectForKey("from") as Person!
+    var sender: Person! {
+        return self.objectForKey("sender") as Person!
     }
     
-    var readBy:[String]! {
+    var readBy: [String]! {
         return self.objectForKey("readBy") as [String]!
     }
     
-    var recipients:[Person]! {
+    var recipients: [Person]! {
         return self.objectForKey("recipients") as [Person]!
     }
     
