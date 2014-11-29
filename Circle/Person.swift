@@ -6,8 +6,6 @@
 //  Copyright (c) 2014 RavCode. All rights reserved.
 //
 
-import Parse
-
 class Person : PFObject, PFSubclassing {
     
     var profileImageURL:String! {
