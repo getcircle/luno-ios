@@ -95,8 +95,9 @@ class MessagesViewController: UICollectionViewController, UICollectionViewDelega
     }
     
     func handleNewMessage(sender: AnyObject) {
-        let selectContactViewController = self.storyboard?.instantiateViewControllerWithIdentifier("selectContact") as UINavigationController
-        self.presentViewController(selectContactViewController, animated: true, completion: nil)
+        let vc = SelectContactViewController(nibName: "SelectContactViewController", bundle: nil)
+        let nvc = UINavigationController(rootViewController: vc)
+        self.presentViewController(nvc, animated: true, completion: nil)
     }
     
 }

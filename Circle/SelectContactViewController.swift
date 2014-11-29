@@ -17,6 +17,7 @@ class SelectContactViewController: UITableViewController, UISearchBarDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.configureNavigation()
         self.configureTableView()
         self.configureSearchBar()
         
@@ -36,6 +37,11 @@ class SelectContactViewController: UITableViewController, UISearchBarDelegate {
     }
     
     // MARK: - Configuration
+    
+    private func configureNavigation() {
+        self.navigationItem.title = "Select Contact"
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Cancel", style: .Done, target: self, action: "handleCancel:")
+    }
     
     private func configureTableView() {
         self.tableView.registerNib(UINib(nibName: "ContactTableViewCell", bundle: nil), forCellReuseIdentifier: ContactTableViewCell.classReuseIdentifier)
@@ -75,6 +81,22 @@ class SelectContactViewController: UITableViewController, UISearchBarDelegate {
         return cell
     }
     
+    // MARK: - UITableViewDelegate
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if let contact = self.visibleContacts?[indexPath.row] {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let messagesVC = storyboard.instantiateViewControllerWithIdentifier("messages") as MessagesViewController
+            let conversationVC = ConversationViewController.instance()
+            conversationVC.recipient = contact
+            let nvc = UINavigationController(rootViewController: conversationVC)
+            
+            // manually set the view controllers here so going back within the conversationVC will take you back to messages
+            nvc.setViewControllers([messagesVC, conversationVC], animated: false)
+            self.presentViewController(nvc, animated: true, completion: nil)
+        }
+    }
+    
     // MARK: - UISearchBarDelegate
     
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
@@ -91,9 +113,10 @@ class SelectContactViewController: UITableViewController, UISearchBarDelegate {
         self.tableView.reloadData()
     }
     
-    // MARK: - IBActions
+    // MARK: - Actions
     
-    @IBAction func handleCancel(sender: AnyObject) {
+    func handleCancel(sender: AnyObject) {
+        self.searchBar.resignFirstResponder()
         self.dismissViewControllerAnimated(true, completion: nil)
     }
 

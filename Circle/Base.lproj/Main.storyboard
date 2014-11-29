@@ -84,7 +84,7 @@
         <!--Messages-->
         <scene sceneID="4YA-2T-mTv">
             <objects>
-                <collectionViewController title="Messages" id="xDt-tP-uI8" customClass="MessagesViewController" customModule="Circle" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController storyboardIdentifier="messages" title="Messages" id="xDt-tP-uI8" customClass="MessagesViewController" customModule="Circle" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="qb8-J4-8C1">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -106,56 +106,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RRk-Uk-0d9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1434" y="-1255"/>
-        </scene>
-        <!--Select Contact-->
-        <scene sceneID="dXu-IT-Wd7">
-            <objects>
-                <tableViewController title="Select Contact" id="sUy-8q-cBs" customClass="SelectContactViewController" customModule="Circle" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="dZ3-o0-aA8">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" id="vB3-T9-Jhb">
-                            <rect key="frame" x="0.0" y="64" width="600" height="44"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <textInputTraits key="textInputTraits"/>
-                        </searchBar>
-                        <connections>
-                            <outlet property="dataSource" destination="sUy-8q-cBs" id="wow-Rl-hAf"/>
-                            <outlet property="delegate" destination="sUy-8q-cBs" id="1AR-R4-Kws"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Select Contact" id="e0k-Wp-YuI">
-                        <barButtonItem key="rightBarButtonItem" title="Cancel" id="9ik-0L-wAf">
-                            <connections>
-                                <action selector="handleCancel:" destination="sUy-8q-cBs" id="2ny-Kc-5iV"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="searchBar" destination="vB3-T9-Jhb" id="eEW-70-S2t"/>
-                    </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="kSo-Tj-ZCb" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2918" y="-1261"/>
-        </scene>
-        <!--Select Contact-->
-        <scene sceneID="qzr-Vc-FmQ">
-            <objects>
-                <navigationController storyboardIdentifier="selectContact" title="Select Contact" id="6M9-0d-WsO" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Aes-If-AOY">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="sUy-8q-cBs" kind="relationship" relationship="rootViewController" id="das-uP-6Uo"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="gJg-fb-bet" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2098" y="-1261"/>
         </scene>
         <!--You-->
         <scene sceneID="bTq-k8-4c9">
