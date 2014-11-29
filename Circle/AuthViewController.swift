@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 class AuthViewController: UIViewController {
 
@@ -38,6 +39,8 @@ class AuthViewController: UIViewController {
         }
     }
 
+    // MARK: Setup
+    
     private func setup() {
         emailField.addRoundCorners()
         passwordField.addRoundCorners()
@@ -56,8 +59,10 @@ class AuthViewController: UIViewController {
         passwordField.leftViewMode = .Always
     }
     
+    // MARK: Initial Animation
+    
     private func moveAppNameLabel() {
-        appNameYConstraint.constant = -60.0
+        appNameYConstraint.constant = -80.0
         appNameLabel.setNeedsUpdateConstraints()
         UIView.animateWithDuration(0.7, animations: { () -> Void in
             self.appNameLabel.layoutIfNeeded()
@@ -66,7 +71,7 @@ class AuthViewController: UIViewController {
             self.passwordField.layoutIfNeeded()
             self.logInButton.layoutIfNeeded()
         }, { (completed: Bool) -> Void in
-                self.showFieldsAndControls(true)
+            self.showFieldsAndControls(true)
         })
     }
     
@@ -91,11 +96,32 @@ class AuthViewController: UIViewController {
         })
     }
     
+    // MARK: IBActions
+
     @IBAction func logInButtonPressed(sender: AnyObject?) {
-        dismissViewControllerAnimated(true, completion: nil)
+        dismissKeyboard()
+        showLoadingState()
+        PFUser.logInWithUsernameInBackground(emailField.text, password: passwordField.text) {
+            (pfuser, error: NSError!) -> Void in
+
+            self.hideLoadingState()
+            if error == nil {
+                self.dismissViewControllerAnimated(true, completion: nil)
+            }
+            else {
+                self.logInButton.addShakeAnimation()
+                self.emailField.becomeFirstResponder()
+            }
+        }
     }
     
     @IBAction func handleGesture(gestureRecognizer: UIGestureRecognizer) {
+        dismissKeyboard()
+    }
+    
+    // MARK: Helpers
+
+    private func dismissKeyboard() {
         if emailField.isFirstResponder() {
             emailField.resignFirstResponder()
         }
@@ -103,5 +129,19 @@ class AuthViewController: UIViewController {
         if passwordField.isFirstResponder() {
             passwordField.resignFirstResponder()
         }
+    }
+    
+    // MARK: Loading State
+    
+    private func showLoadingState() {
+        emailField.enabled = false
+        passwordField.enabled = false
+        logInButton.enabled = false
+    }
+    
+    private func hideLoadingState() {
+        emailField.enabled = true
+        passwordField.enabled = true
+        logInButton.enabled = true
     }
 }

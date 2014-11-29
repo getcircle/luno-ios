@@ -40,7 +40,7 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <textField clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Work Email Address" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="x4p-Uh-3t5">
+                <textField clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="x4p-Uh-3t5">
                     <rect key="frame" x="20" y="303" width="560" height="35"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
@@ -59,7 +59,7 @@
                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" returnKeyType="go" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
                 </textField>
                 <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aie-sS-pXs">
-                    <rect key="frame" x="170" y="433" width="260" height="44"/>
+                    <rect key="frame" x="170" y="423" width="260" height="44"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="260" id="MGZ-XU-QqL"/>
@@ -70,6 +70,7 @@
                     <state key="normal" title="Log In">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <state key="disabled" title="Logging In..."/>
                     <connections>
                         <action selector="logInButtonPressed:" destination="-1" eventType="touchUpInside" id="3jQ-Pk-2XZ"/>
                     </connections>
@@ -79,7 +80,7 @@
             <constraints>
                 <constraint firstItem="7eh-3f-DhV" firstAttribute="leading" secondItem="ba3-xx-xRk" secondAttribute="leading" constant="20" symbolic="YES" id="0ah-93-zJK"/>
                 <constraint firstItem="faS-m0-daM" firstAttribute="top" secondItem="x4p-Uh-3t5" secondAttribute="bottom" constant="20" id="5BW-Rz-L5d"/>
-                <constraint firstItem="aie-sS-pXs" firstAttribute="top" secondItem="faS-m0-daM" secondAttribute="bottom" constant="40" id="5cl-h8-CV5"/>
+                <constraint firstItem="aie-sS-pXs" firstAttribute="top" secondItem="faS-m0-daM" secondAttribute="bottom" constant="30" id="5cl-h8-CV5"/>
                 <constraint firstAttribute="trailing" secondItem="aew-4r-Rd2" secondAttribute="trailing" constant="20" symbolic="YES" id="Ac7-U5-O2t"/>
                 <constraint firstAttribute="bottom" secondItem="aew-4r-Rd2" secondAttribute="bottom" constant="20" id="CwW-qB-F2K"/>
                 <constraint firstAttribute="trailing" secondItem="7eh-3f-DhV" secondAttribute="trailing" constant="20" symbolic="YES" id="MwH-ef-daQ"/>
