@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Parse
 
 // Swift doesn't support static variables yet.
 // This is the way it is recommended on the docs.
