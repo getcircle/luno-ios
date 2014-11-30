@@ -39,7 +39,7 @@ class ProfileCollectionViewLayout: UICollectionViewFlowLayout {
     
     override func layoutAttributesForElementsInRect(rect: CGRect) -> [AnyObject]? {
 
-        let contentOffset = self.collectionView!.contentOffset
+        let contentOffset = collectionView!.contentOffset
         var attributes = super.layoutAttributesForElementsInRect(rect) as [UICollectionViewLayoutAttributes]
         
         for attribute in attributes {
@@ -73,6 +73,6 @@ class ProfileCollectionViewLayout: UICollectionViewFlowLayout {
             }
         }
         
-        return self.addSeparatorsToCells(attributes)
+        return addSeparatorsToCells(attributes)
     }
 }

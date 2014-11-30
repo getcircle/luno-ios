@@ -26,16 +26,13 @@ class ProfileHeaderCollectionReusableView: UICollectionReusableView {
         // Initialization code
         let blurEffect = UIBlurEffect(style: .Dark)
         visualEffectView = UIVisualEffectView(effect: blurEffect)
+        visualEffectView.setTranslatesAutoresizingMaskIntoConstraints(false)
         visualEffectView.frame = backgroundImage.frame
         insertSubview(visualEffectView, aboveSubview: backgroundImage)
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
+        visualEffectView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
         profileImage.makeItCircular(true)
-        visualEffectView.frame = backgroundImage.frame
     }
-    
+
     func setPerson(person: Person!) {
         nameLabel.text = person.firstName + " " + person.lastName
         titleLabel.text = person.title
