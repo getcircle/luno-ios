@@ -10,6 +10,6 @@
 #import "MGSwipeTableCell.h"
 #import "MGSwipeButton.h"
 #import <Parse/Parse.h>
-#import "SLKTextViewController.h"
 #import "PureLayout.h"
+#import "SLKTextViewController.h"
 #import "UIView+Position.h"

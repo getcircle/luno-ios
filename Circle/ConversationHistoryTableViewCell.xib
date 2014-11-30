@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="MkQ-EC-tBz" customClass="ConversationHistoryTableViewCell" customModule="Circle" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MkQ-EC-tBz" id="MMZ-Th-RP8">
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Ravi" translatesAutoresizingMaskIntoConstraints="NO" id="Sxl-dH-Zst">
+                        <rect key="frame" x="9" y="11" width="44" height="45"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="44" id="KOo-j7-Ige"/>
+                            <constraint firstAttribute="width" constant="44" id="tYy-rQ-bQ6"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="KOo-j7-Ige"/>
+                            </mask>
+                        </variation>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sounds good!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ugm-OI-NVF">
+                        <rect key="frame" x="67" y="38" width="244" height="18"/>
+                        <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="13"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ravi Rani" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wnx-so-QlK">
+                        <rect key="frame" x="66" y="8.5" width="69" height="23.5"/>
+                        <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="11/30/14" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TQv-Wy-bJR">
+                        <rect key="frame" x="145" y="9" width="166" height="18"/>
+                        <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="13"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="TQv-Wy-bJR" firstAttribute="top" secondItem="MMZ-Th-RP8" secondAttribute="topMargin" constant="1" id="7SG-Hy-o0Q"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="Sxl-dH-Zst" secondAttribute="bottom" constant="-0.5" id="Aqc-Ht-dgq"/>
+                    <constraint firstItem="Sxl-dH-Zst" firstAttribute="top" secondItem="MMZ-Th-RP8" secondAttribute="topMargin" constant="3" id="TIi-R4-hJb"/>
+                    <constraint firstItem="TQv-Wy-bJR" firstAttribute="leading" secondItem="wnx-so-QlK" secondAttribute="trailing" constant="10" id="VMB-xb-gJg"/>
+                    <constraint firstItem="Ugm-OI-NVF" firstAttribute="top" secondItem="wnx-so-QlK" secondAttribute="bottom" constant="6" id="Vyr-pc-W7j"/>
+                    <constraint firstItem="wnx-so-QlK" firstAttribute="leading" secondItem="Sxl-dH-Zst" secondAttribute="trailing" constant="13" id="WWT-mm-RT4"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="Ugm-OI-NVF" secondAttribute="trailing" constant="1" id="XR7-n3-YbL"/>
+                    <constraint firstItem="wnx-so-QlK" firstAttribute="top" secondItem="MMZ-Th-RP8" secondAttribute="topMargin" constant="0.5" id="fHg-6Q-zog"/>
+                    <constraint firstItem="Ugm-OI-NVF" firstAttribute="leading" secondItem="Sxl-dH-Zst" secondAttribute="trailing" constant="14" id="gw3-hG-4Az"/>
+                    <constraint firstItem="Sxl-dH-Zst" firstAttribute="leading" secondItem="MMZ-Th-RP8" secondAttribute="leadingMargin" constant="1" id="hxe-BZ-nnL"/>
+                    <constraint firstItem="Sxl-dH-Zst" firstAttribute="top" secondItem="MMZ-Th-RP8" secondAttribute="topMargin" constant="3" id="vxg-ib-3cC"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="TQv-Wy-bJR" secondAttribute="trailing" constant="1" id="xYT-wa-8ye"/>
+                </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="vxg-ib-3cC"/>
+                    </mask>
+                </variation>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="lastMessageDate" destination="TQv-Wy-bJR" id="WLX-nW-YrO"/>
+                <outlet property="messageContents" destination="Ugm-OI-NVF" id="fj3-J8-19i"/>
+                <outlet property="profileImage" destination="Sxl-dH-Zst" id="aLD-rX-wYX"/>
+                <outlet property="recipientLabel" destination="wnx-so-QlK" id="yI5-oS-kMC"/>
+            </connections>
+            <point key="canvasLocation" x="535" y="610"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="Ravi" width="399" height="614"/>
+    </resources>
+</document>

@@ -1,5 +1,5 @@
 //
-//  ConversationHistoryCollectionViewCell.swift
+//  ConversationHistoryTableViewCell.swift
 //  Circle
 //
 //  Created by Michael Hahn on 11/26/14.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ConversationHistoryCollectionViewCell: UICollectionViewCell {
+class ConversationHistoryTableViewCell: UITableViewCell {
     
     var history: ConversationHistory? {
         didSet {

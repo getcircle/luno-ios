@@ -1,5 +1,5 @@
 //
-//  NoConversationsCollectionViewCell.swift
+//  NoConversationsView.swift
 //  Circle
 //
 //  Created by Michael Hahn on 11/26/14.
@@ -8,13 +8,13 @@
 
 import UIKit
 
-protocol NoConversationsCellDelegate {
+protocol NoConversationsViewDelegate {
     func handleNewMessage(sender: AnyObject)
 }
 
-class NoConversationsCollectionViewCell: UICollectionViewCell {
+class NoConversationsView: UIView {
 
-    var delegate: NoConversationsCellDelegate?
+    var delegate: NoConversationsViewDelegate?
     @IBOutlet weak var newMessageButton: UIButton!
     
     override func awakeFromNib() {
@@ -26,8 +26,5 @@ class NoConversationsCollectionViewCell: UICollectionViewCell {
     @IBAction func handleNewMessage(sender: AnyObject) {
         self.delegate?.handleNewMessage(self)
     }
-    
-    class func reuseIdentifier() -> String {
-        return "NoConversations"
-    }
+
 }

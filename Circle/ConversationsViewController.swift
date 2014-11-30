@@ -8,14 +8,18 @@
 
 import UIKit
 
-class ConversationsViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, NoConversationsCellDelegate, SelectContactDelegate {
+class ConversationsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, NoConversationsViewDelegate, SelectContactDelegate {
     
     var conversations: [ConversationHistory]?
+    var placeholder: NoConversationsView?
 
+    @IBOutlet weak var tableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.configurePlaceholder()
         self.configureNavigation()
-        self.configureCollectionView()
+        self.configureTableView()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -25,17 +29,34 @@ class ConversationsViewController: UICollectionViewController, UICollectionViewD
     
     // MARK: - Configuration
     
-    private func configureCollectionView() {
-        self.collectionView.registerNib(
-            UINib(nibName: "ConversationHistoryCollectionViewCell", bundle: nil),
-            forCellWithReuseIdentifier: ConversationHistoryCollectionViewCell.reuseIdentifier()
-        )
-        self.collectionView.registerNib(
-            UINib(nibName: "NoConversationsCollectionViewCell", bundle: nil),
-            forCellWithReuseIdentifier: NoConversationsCollectionViewCell.reuseIdentifier()
-        )
+    private func configurePlaceholder() {
+        self.placeholder = UINib(nibName: "NoConversationsView", bundle: nil).instantiateWithOwner(self, options: nil).first as? NoConversationsView
+        if let placeholder = self.placeholder {
+            self.view.addSubview(placeholder)
+            placeholder.delegate = self
+            placeholder.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
+        }
     }
     
+    private func configureTableView() {
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+        self.tableView.registerNib(
+            UINib(nibName: "ConversationHistoryTableViewCell", bundle: nil),
+            forCellReuseIdentifier: ConversationHistoryTableViewCell.reuseIdentifier()
+        )
+        self.tableView.separatorInset = UIEdgeInsetsMake(0.0, 64.0, 0.0, 0.0)
+        self.tableView.rowHeight = 64.0
+        self.addDummyFooterView()
+    }
+    
+    private func addDummyFooterView() {
+        // Add dummy footer view
+        let footerView = UIView(frame: CGRectMake(0.0, 0.0, self.tableView.frame.size.width, 10.0))
+        footerView.backgroundColor = UIColor.clearColor()
+        tableView.tableFooterView = footerView
+    }
+
     private func configureNavigation() {
         self.navigationItem.title = "Messages"
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Compose", style: .Done, target: self, action: "handleCompose:")
@@ -51,61 +72,39 @@ class ConversationsViewController: UICollectionViewController, UICollectionViewD
         parseQuery.findObjectsInBackgroundWithBlock { (objects: [AnyObject]!, error: NSError!) -> Void in
             if error == nil {
                 self.conversations = objects as? [ConversationHistory]
-                self.collectionView.reloadData()
+                if let conversations = self.conversations {
+                    if conversations.count > 0 {
+                        UIView.animateWithDuration(0.3, animations: { _ -> Void in
+                            self.placeholder?.alpha = 0
+                            return
+                        }, completion: { _ -> Void in
+                            self.placeholder?.removeFromSuperview()
+                            self.placeholder = nil
+                            return
+                        })
+                    }
+                }
+                self.tableView.reloadData()
             }
         }
     }
     
-    private func hasConversations() -> Bool {
-        let messageCount = self.conversations?.count ?? 0
-        if messageCount > 0 {
-            return true
-        } else {
-            return false
-        }
-    }
-
-    // MARK: - UICollectionViewDataSource
-
-    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    // MARK: - UITableViewDataSource
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
-
-    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if self.hasConversations() {
-            return self.conversations!.count
-        } else {
-            return 1
-        }
-    }
-
-    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        if self.hasConversations() {
-            let cell = self.collectionView.dequeueReusableCellWithReuseIdentifier(
-                ConversationHistoryCollectionViewCell.reuseIdentifier(),
-                forIndexPath: indexPath
-            ) as ConversationHistoryCollectionViewCell
-            
-            if let history: ConversationHistory = self.conversations?[indexPath.row] {
-                cell.history = history
-            }
-            return cell
-        } else {
-            let cell = self.collectionView.dequeueReusableCellWithReuseIdentifier(
-                NoConversationsCollectionViewCell.reuseIdentifier(),
-                forIndexPath: indexPath
-            ) as NoConversationsCollectionViewCell
-            cell.delegate = self
-            return cell
-        }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.conversations?.count ?? 0
     }
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        if self.hasConversations() {
-            return CGSizeMake(self.collectionView.frame.width, 64.0)
-        } else {
-            return self.view.bounds.size
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = self.tableView.dequeueReusableCellWithIdentifier(ConversationHistoryTableViewCell.reuseIdentifier()) as ConversationHistoryTableViewCell
+        if let history: ConversationHistory = self.conversations?[indexPath.row] {
+            cell.history = history
         }
+        return cell
     }
     
     // MARK: - Actions
