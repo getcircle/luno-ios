@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MessagesViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, NoMessagesCellDelegate {
+class MessagesViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, NoMessagesCellDelegate, SelectContactDelegate {
     
     var messages: [Message]?
 
@@ -103,13 +103,26 @@ class MessagesViewController: UICollectionViewController, UICollectionViewDelega
     // MARK: - Actions
     
     func handleNewMessage(sender: AnyObject) {
-        let vc = SelectContactViewController(nibName: "SelectContactViewController", bundle: nil)
-        let nvc = UINavigationController(rootViewController: vc)
-        self.presentViewController(nvc, animated: true, completion: nil)
+        self.displaySelectContact()
     }
     
     func handleCompose(sender: AnyObject) {
+        self.displaySelectContact()
+    }
+    
+    // MARK: - SelectContactDelegate
+    
+    func didSelectContact(person: Person) {
+        let vc = ConversationViewController.instance()
+        vc.recipient = person
+        self.navigationController?.pushViewController(vc, animated: false)
+    }
+    
+    // MARK: - Helpers
+    
+    private func displaySelectContact() {
         let vc = SelectContactViewController(nibName: "SelectContactViewController", bundle: nil)
+        vc.delegate = self
         let nvc = UINavigationController(rootViewController: vc)
         self.presentViewController(nvc, animated: true, completion: nil)
     }

@@ -8,8 +8,13 @@
 
 import UIKit
 
+protocol SelectContactDelegate {
+    func didSelectContact(person: Person)
+}
+
 class SelectContactViewController: UITableViewController, UISearchBarDelegate {
     
+    var delegate: SelectContactDelegate?
     var contacts: [Person]?
     var visibleContacts: [Person]?
 
@@ -85,16 +90,9 @@ class SelectContactViewController: UITableViewController, UISearchBarDelegate {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if let contact = self.visibleContacts?[indexPath.row] {
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let messagesVC = storyboard.instantiateViewControllerWithIdentifier("messages") as MessagesViewController
-            let conversationVC = ConversationViewController.instance()
-            conversationVC.recipient = contact
-            let nvc = UINavigationController(rootViewController: conversationVC)
-            
-            // manually set the view controllers here so going back within the conversationVC will take you back to messages
-            nvc.setViewControllers([messagesVC, conversationVC], animated: false)
-            self.presentViewController(nvc, animated: true, completion: nil)
+            self.delegate?.didSelectContact(contact)
         }
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     // MARK: - UISearchBarDelegate

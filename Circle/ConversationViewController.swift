@@ -12,6 +12,15 @@ class ConversationViewController: SLKTextViewController {
     
     var recipient: Person?
     
+    override init!(collectionViewLayout layout: UICollectionViewLayout!) {
+        super.init(collectionViewLayout: layout)
+        self.hidesBottomBarWhenPushed = true
+    }
+
+    required init(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configureNavigation()
