@@ -84,3 +84,9 @@
 #define COCOAPODS_VERSION_MINOR_SlackTextViewController_Additions 3
 #define COCOAPODS_VERSION_PATCH_SlackTextViewController_Additions 3
 
+// UIViewPlusPosition
+#define COCOAPODS_POD_AVAILABLE_UIViewPlusPosition
+#define COCOAPODS_VERSION_MAJOR_UIViewPlusPosition 0
+#define COCOAPODS_VERSION_MINOR_UIViewPlusPosition 0
+#define COCOAPODS_VERSION_PATCH_UIViewPlusPosition 1
+
