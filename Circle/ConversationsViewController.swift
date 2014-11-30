@@ -17,49 +17,49 @@ class ConversationsViewController: UIViewController, UITableViewDataSource, UITa
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.configurePlaceholder()
-        self.configureNavigation()
-        self.configureTableView()
+        configurePlaceholder()
+        configureNavigation()
+        configureTableView()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        self.loadData()
+        loadData()
     }
     
     // MARK: - Configuration
     
     private func configurePlaceholder() {
-        self.placeholder = UINib(nibName: "NoConversationsView", bundle: nil).instantiateWithOwner(self, options: nil).first as? NoConversationsView
-        if let placeholder = self.placeholder {
-            self.view.addSubview(placeholder)
-            placeholder.delegate = self
-            placeholder.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
+        placeholder = UINib(nibName: "NoConversationsView", bundle: nil).instantiateWithOwner(self, options: nil).first as? NoConversationsView
+        if let noConversationsView = placeholder {
+            view.addSubview(noConversationsView)
+            noConversationsView.delegate = self
+            noConversationsView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
         }
     }
     
     private func configureTableView() {
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
-        self.tableView.registerNib(
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.registerNib(
             UINib(nibName: "ConversationHistoryTableViewCell", bundle: nil),
             forCellReuseIdentifier: ConversationHistoryTableViewCell.reuseIdentifier()
         )
-        self.tableView.separatorInset = UIEdgeInsetsMake(0.0, 64.0, 0.0, 0.0)
-        self.tableView.rowHeight = 64.0
-        self.addDummyFooterView()
+        tableView.separatorInset = UIEdgeInsetsMake(0.0, 64.0, 0.0, 0.0)
+        tableView.rowHeight = 64.0
+        addDummyFooterView()
     }
     
     private func addDummyFooterView() {
         // Add dummy footer view
-        let footerView = UIView(frame: CGRectMake(0.0, 0.0, self.tableView.frame.size.width, 10.0))
+        let footerView = UIView(frame: CGRectMake(0.0, 0.0, tableView.frame.size.width, 10.0))
         footerView.backgroundColor = UIColor.clearColor()
         tableView.tableFooterView = footerView
     }
 
     private func configureNavigation() {
-        self.navigationItem.title = "Messages"
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Compose", style: .Done, target: self, action: "handleCompose:")
+        navigationItem.title = "Messages"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Compose", style: .Done, target: self, action: "handleCompose:")
     }
     
     private func loadData() {
@@ -96,12 +96,12 @@ class ConversationsViewController: UIViewController, UITableViewDataSource, UITa
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.conversations?.count ?? 0
+        return conversations?.count ?? 0
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = self.tableView.dequeueReusableCellWithIdentifier(ConversationHistoryTableViewCell.reuseIdentifier()) as ConversationHistoryTableViewCell
-        if let history: ConversationHistory = self.conversations?[indexPath.row] {
+        let cell = tableView.dequeueReusableCellWithIdentifier(ConversationHistoryTableViewCell.reuseIdentifier()) as ConversationHistoryTableViewCell
+        if let history: ConversationHistory = conversations?[indexPath.row] {
             cell.history = history
         }
         return cell
@@ -110,11 +110,11 @@ class ConversationsViewController: UIViewController, UITableViewDataSource, UITa
     // MARK: - Actions
     
     func handleNewMessage(sender: AnyObject) {
-        self.displaySelectContact()
+        displaySelectContact()
     }
     
     func handleCompose(sender: AnyObject) {
-        self.displaySelectContact()
+        displaySelectContact()
     }
     
     // MARK: - SelectContactDelegate
@@ -122,7 +122,7 @@ class ConversationsViewController: UIViewController, UITableViewDataSource, UITa
     func didSelectContact(person: Person) {
         let vc = ConversationViewController.instance()
         vc.recipient = person
-        self.navigationController?.pushViewController(vc, animated: false)
+        navigationController?.pushViewController(vc, animated: false)
     }
     
     // MARK: - Helpers
@@ -131,7 +131,7 @@ class ConversationsViewController: UIViewController, UITableViewDataSource, UITa
         let vc = SelectContactViewController(nibName: "SelectContactViewController", bundle: nil)
         vc.delegate = self
         let nvc = UINavigationController(rootViewController: vc)
-        self.presentViewController(nvc, animated: true, completion: nil)
+        presentViewController(nvc, animated: true, completion: nil)
     }
     
 }

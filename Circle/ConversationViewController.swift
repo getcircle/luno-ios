@@ -14,7 +14,7 @@ class ConversationViewController: SLKTextViewController {
     
     override init!(collectionViewLayout layout: UICollectionViewLayout!) {
         super.init(collectionViewLayout: layout)
-        self.hidesBottomBarWhenPushed = true
+        hidesBottomBarWhenPushed = true
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -23,8 +23,8 @@ class ConversationViewController: SLKTextViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.configureNavigation()
-        self.configureView()
+        configureNavigation()
+        configureView()
     }
     
     class func instance() -> ConversationViewController {
@@ -34,17 +34,17 @@ class ConversationViewController: SLKTextViewController {
     // MARK: - Configuration
     
     private func configureView() {
-        self.view.backgroundColor = UIColor.whiteColor()
+        view.backgroundColor = UIColor.whiteColor()
     }
     
     private func configureNavigation() {
-        self.navigationItem.title = self.recipient?.description
+        navigationItem.title = recipient?.description
     }
     
     // MARK: - SLKTextViewController Overrides
     
     override func didPressRightButton(sender: AnyObject!) {
-        let message = MessageActions.sendMessage(self.recipient!, contents: self.textView.text)
+        let message = MessageActions.sendMessage(recipient!, contents: textView.text)
         super.didPressRightButton(sender)
     }
 }
