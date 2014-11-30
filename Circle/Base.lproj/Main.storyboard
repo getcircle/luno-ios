@@ -45,7 +45,7 @@
             <objects>
                 <collectionViewController storyboardIdentifier="messages" title="Messages" id="xDt-tP-uI8" customClass="MessagesViewController" customModule="Circle" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="qb8-J4-8C1">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ZJA-vh-XcC" customClass="MessagesCollectionViewLayout" customModule="Circle" customModuleProvider="target">
@@ -64,7 +64,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RRk-Uk-0d9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1434" y="-1255"/>
+            <point key="canvasLocation" x="1574" y="-2135"/>
         </scene>
         <!--You-->
         <scene sceneID="bTq-k8-4c9">
@@ -81,14 +81,14 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QTS-vi-75p" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="672" y="-641"/>
+            <point key="canvasLocation" x="702" y="-569"/>
         </scene>
         <!--Messages-->
         <scene sceneID="tDb-8c-9iE">
             <objects>
                 <navigationController title="Messages" id="X03-ni-Aei" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Messages" image="Messages" id="cGc-Xg-vdU"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ddf-sJ-aqM">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="ddf-sJ-aqM">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -141,7 +141,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rux-fX-hf1" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1667" y="-1346"/>
+            <point key="canvasLocation" x="1574" y="-1346"/>
         </scene>
         <!--Profile-->
         <scene sceneID="uzJ-m3-vlO">
@@ -171,7 +171,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xls-Qj-HOy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1667" y="-641"/>
+            <point key="canvasLocation" x="1574" y="-569"/>
         </scene>
     </scenes>
     <resources>
@@ -180,6 +180,6 @@
         <image name="Profile" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="gkF-Dz-NZe"/>
+        <segue reference="J4w-MH-X1C"/>
     </inferredMetricsTieBreakers>
 </document>
