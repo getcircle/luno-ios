@@ -12,12 +12,19 @@ class ConversationHistoryCollectionViewCell: UICollectionViewCell {
     
     var history: ConversationHistory? {
         didSet {
-            self.profileImage.setImageWithPerson(self.history!.sender)
+            self.profileImage.setImageWithPerson(self.history!.recipient)
             self.messageContents.text = self.history!.message.contents
+            self.recipientLabel.text = self.history!.recipient.description
+            
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateStyle = .ShortStyle
+            self.lastMessageDate.text = dateFormatter.stringFromDate(self.history!.message.createdAt)
         }
     }
     
     @IBOutlet weak var profileImage: UIImageView!
+    @IBOutlet weak var recipientLabel: UILabel!
+    @IBOutlet weak var lastMessageDate: UILabel!
     @IBOutlet weak var messageContents: UILabel!
 
     override func awakeFromNib() {

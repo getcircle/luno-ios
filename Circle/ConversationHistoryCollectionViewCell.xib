@@ -25,7 +25,19 @@
                         </variation>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sounds good!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="heD-v2-z4y">
-                        <rect key="frame" x="68" y="8" width="244" height="47"/>
+                        <rect key="frame" x="68" y="37" width="244" height="18"/>
+                        <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="13"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ravi Rani" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="68C-mS-MZv">
+                        <rect key="frame" x="67" y="8" width="69" height="23.5"/>
+                        <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="11/30/14" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X4h-Rn-Yzy">
+                        <rect key="frame" x="146" y="8" width="166" height="18"/>
                         <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="13"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
@@ -34,18 +46,30 @@
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <constraints>
+                <constraint firstAttribute="trailing" secondItem="X4h-Rn-Yzy" secondAttribute="trailing" constant="8" id="220-35-1u1"/>
                 <constraint firstAttribute="bottom" secondItem="heD-v2-z4y" secondAttribute="bottom" constant="9" id="30n-bE-weo"/>
                 <constraint firstItem="K1K-rn-gcL" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="J5C-yf-tVi"/>
+                <constraint firstItem="heD-v2-z4y" firstAttribute="leading" secondItem="K1K-rn-gcL" secondAttribute="trailing" constant="14" id="JMI-Od-RY8"/>
+                <constraint firstItem="68C-mS-MZv" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="LoO-Zv-92I"/>
                 <constraint firstAttribute="bottom" secondItem="K1K-rn-gcL" secondAttribute="bottom" constant="9" id="P3s-OO-4c4"/>
+                <constraint firstItem="X4h-Rn-Yzy" firstAttribute="leading" secondItem="68C-mS-MZv" secondAttribute="trailing" constant="53" id="caa-h6-zdL"/>
                 <constraint firstAttribute="trailing" secondItem="heD-v2-z4y" secondAttribute="trailing" constant="8" id="crX-nG-1mp"/>
-                <constraint firstItem="heD-v2-z4y" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="dNh-mZ-HrN"/>
                 <constraint firstItem="K1K-rn-gcL" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="tCC-sz-NhU"/>
-                <constraint firstItem="heD-v2-z4y" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="68" id="ya3-RL-fLk"/>
+                <constraint firstItem="X4h-Rn-Yzy" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="tZX-a8-YmD"/>
+                <constraint firstItem="X4h-Rn-Yzy" firstAttribute="leading" secondItem="68C-mS-MZv" secondAttribute="trailing" constant="10" id="wG0-pb-nEM"/>
+                <constraint firstItem="68C-mS-MZv" firstAttribute="leading" secondItem="K1K-rn-gcL" secondAttribute="trailing" constant="13" id="xJW-YA-TT8"/>
             </constraints>
             <size key="customSize" width="320" height="63"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="caa-h6-zdL"/>
+                </mask>
+            </variation>
             <connections>
+                <outlet property="lastMessageDate" destination="X4h-Rn-Yzy" id="pzA-UN-Fht"/>
                 <outlet property="messageContents" destination="heD-v2-z4y" id="WzK-H9-ovU"/>
                 <outlet property="profileImage" destination="K1K-rn-gcL" id="Xfl-f8-tvf"/>
+                <outlet property="recipientLabel" destination="68C-mS-MZv" id="JtO-ZC-z51"/>
             </connections>
             <point key="canvasLocation" x="535" y="475"/>
         </collectionViewCell>
