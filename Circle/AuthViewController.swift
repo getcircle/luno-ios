@@ -9,6 +9,13 @@
 import UIKit
 import Parse
 
+// Swift doesn't support static variables yet.
+// This is the way it is recommended on the docs.
+// https://developer.apple.com/library/ios/documentation/swift/conceptual/Swift_Programming_Language/Properties.html
+struct LoggedInPersonHolder {
+    static var person: Person?
+}
+
 class AuthViewController: UIViewController {
 
     @IBOutlet weak var emailField: UITextField!
@@ -108,7 +115,7 @@ class AuthViewController: UIViewController {
             if error == nil {
                 // Fetch and cache current person before dismissing
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), { () -> Void in
-                    Person.getLoggedInPerson()
+                    AuthViewController.getLoggedInPerson()
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
                         self.dismissViewControllerAnimated(true, completion: nil)
                     })
@@ -150,5 +157,50 @@ class AuthViewController: UIViewController {
         emailField.enabled = true
         passwordField.enabled = true
         logInButton.enabled = true
+    }
+    
+    // MARK: Log out
+    
+    class func logOut() {
+        LoggedInPersonHolder.person = nil
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), { () -> Void in
+            PFUser.logOut()
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                AuthViewController.presentAuthViewController()
+            })
+            return
+        })
+    }
+    
+    class func presentAuthViewController() {
+        // Check if user is logged in. If not, present auth view controller
+        let authViewController = AuthViewController(nibName: "AuthViewController", bundle: nil)
+        let navController = UINavigationController(rootViewController: authViewController)
+        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        appDelegate.window!.rootViewController!.presentViewController(navController, animated: false, completion: nil)
+    }
+    
+    // Synchronous call to fetch Person object for currently logged in user
+    class func getLoggedInPerson() -> Person? {
+        if let pfUser = PFUser.currentUser() {
+            
+            // This additional caching is needed to prevent the
+            // "main thread long running operation" warning.
+            if let person = LoggedInPersonHolder.person {
+                return person
+            }
+            
+            let parseQuery = Person.query() as PFQuery
+            parseQuery.cachePolicy = kPFCachePolicyCacheElseNetwork
+            parseQuery.includeKey("manager")
+            parseQuery.whereKey("user", equalTo:pfUser)
+            let people = parseQuery.findObjects() as [Person]
+            if people.count > 0 {
+                LoggedInPersonHolder.person = people[0]
+                return people[0]
+            }
+        }
+        
+        return nil
     }
 }
