@@ -12,6 +12,7 @@ class PeopleViewController: UITableViewController, MGSwipeTableCellDelegate {
 
     var profileViewController: ProfileViewController?
     var people: [Person]?
+    var dataLoadAttempted: Bool!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -25,12 +26,24 @@ class PeopleViewController: UITableViewController, MGSwipeTableCellDelegate {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view, typically from a nib.
-        customizeTableView()
+        dataLoadAttempted = false
+        configTableView()
         loadInitialData()
     }
-
-    private func customizeTableView() {
-        // Customize table view
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if dataLoadAttempted == false {
+            // Checks if it has a user and loads data
+            loadInitialData()
+        }
+    }
+    
+    // MARK: - Configuration
+    
+    private func configTableView() {
+        // configure table view
         tableView.registerNib(
             UINib(nibName: "ContactTableViewCell", bundle: nil),
             forCellReuseIdentifier: ContactTableViewCell.classReuseIdentifier)
@@ -47,13 +60,16 @@ class PeopleViewController: UITableViewController, MGSwipeTableCellDelegate {
     }
 
     private func loadInitialData() {
-        let parseQuery = Person.query() as PFQuery
-        parseQuery.cachePolicy = kPFCachePolicyCacheElseNetwork
-        parseQuery.includeKey("manager")
-        parseQuery.findObjectsInBackgroundWithBlock { (objects: [AnyObject]!, error: NSError!) -> Void in
-            if error == nil {
-                self.people = objects as? [Person]
-                self.tableView.reloadData()
+        if let pfUser = PFUser.currentUser() {
+            dataLoadAttempted = true
+            let parseQuery = Person.query() as PFQuery
+            parseQuery.cachePolicy = kPFCachePolicyCacheElseNetwork
+            parseQuery.includeKey("manager")
+            parseQuery.findObjectsInBackgroundWithBlock { (objects: [AnyObject]!, error: NSError!) -> Void in
+                if error == nil {
+                    self.people = objects as? [Person]
+                    self.tableView.reloadData()
+                }
             }
         }
     }
@@ -61,13 +77,11 @@ class PeopleViewController: UITableViewController, MGSwipeTableCellDelegate {
     // MARK: - Segues
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "showDetail" {
+        if segue.identifier == "showProfile" {
             if let indexPath = self.tableView.indexPathForSelectedRow() {
                 let person = self.people?[indexPath.row]
-                let controller = (segue.destinationViewController as UINavigationController).topViewController as ProfileViewController
+                let controller = segue.destinationViewController as ProfileViewController
                 controller.person = person
-                controller.navigationItem.leftBarButtonItem = self.tabBarController?.splitViewController?.displayModeButtonItem()
-                controller.navigationItem.leftItemsSupplementBackButton = true
             }
         }
     }
@@ -112,20 +126,7 @@ class PeopleViewController: UITableViewController, MGSwipeTableCellDelegate {
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if let person = self.people?[indexPath.row] {
-
-            if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
-                // Perform the segue only on the iPad
-                performSegueWithIdentifier("showDetail", sender: tableView)
-            }
-            else {
-                // For iPhone manually push the detail view
-                // This is required because of our custom setup of tab
-                // view controller as the master view controller
-
-                let profileVC = self.storyboard?.instantiateViewControllerWithIdentifier("ProfileViewController") as ProfileViewController
-                profileVC.person = person
-                self.navigationController?.pushViewController(profileVC, animated: true)
-            }
+            performSegueWithIdentifier("showProfile", sender: tableView)
         }
 
         tableView.deselectRowAtIndexPath(indexPath, animated: true)

@@ -10,7 +10,11 @@ import UIKit
 
 class ProfileDataSource: NSObject, UICollectionViewDataSource {
 
-    var person: Person!
+    var person: Person! {
+        didSet {
+            fillData()
+        }
+    }
     var attributes: [String] = []
     let baseInfoKeySet = [
         "email",
@@ -34,13 +38,13 @@ class ProfileDataSource: NSObject, UICollectionViewDataSource {
     
     var dataSourceKeys = [AnyObject]()
     
-    required init(person: Person) {
-        super.init()
+    convenience init(person: Person) {
+        self.init()
         self.person = person
-        fillData()
     }
     
     private func fillData() {
+        dataSourceKeys.removeAll()
         dataSourceKeys.append(baseInfoKeySet)
         if person.hasManager {
             dataSourceKeys.append(managerInfoKeySet)

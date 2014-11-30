@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AuthViewController" customModule="Circle" customModuleProvider="target">
+            <connections>
+                <outlet property="appNameLabel" destination="7eh-3f-DhV" id="I1t-aw-slU"/>
+                <outlet property="appNameYConstraint" destination="r1U-Zo-1z7" id="3DH-oD-NWA"/>
+                <outlet property="emailField" destination="x4p-Uh-3t5" id="3Bc-Rw-btP"/>
+                <outlet property="logInButton" destination="aie-sS-pXs" id="zfO-wP-e3y"/>
+                <outlet property="passwordField" destination="faS-m0-daM" id="j6g-aP-P7L"/>
+                <outlet property="tagLineLabel" destination="pK5-tP-ZNS" id="hiX-b0-xSM"/>
+                <outlet property="view" destination="ba3-xx-xRk" id="XSY-D5-AkP"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="ba3-xx-xRk">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Copyright (c) 2014 RavCode. All rights reserved." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="aew-4r-Rd2" userLabel="Copyright (c) 2014 RavCode. All rights reserved.">
+                    <rect key="frame" x="20" y="563" width="560" height="17"/>
+                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="12"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Circle" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="7eh-3f-DhV" userLabel="AppName">
+                    <rect key="frame" x="20" y="170" width="560" height="63"/>
+                    <color key="backgroundColor" red="0.88235294119999996" green="0.15686274510000001" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="46"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" text="Enterprise contacts list. Private Messaging" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="pK5-tP-ZNS" userLabel="Tagline">
+                    <rect key="frame" x="148" y="233" width="304" height="22"/>
+                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textField clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="x4p-Uh-3t5">
+                    <rect key="frame" x="148" y="303" width="304" height="35"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="35" id="wqu-FP-Y81"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
+                    <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
+                </textField>
+                <textField clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="faS-m0-daM" userLabel="Password">
+                    <rect key="frame" x="148" y="358" width="304" height="35"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="35" id="GFh-hc-k2E"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
+                    <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" returnKeyType="go" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
+                </textField>
+                <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aie-sS-pXs">
+                    <rect key="frame" x="180" y="423" width="240" height="44"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="240" id="MGZ-XU-QqL"/>
+                        <constraint firstAttribute="height" constant="44" id="NJT-DL-vlX"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="20"/>
+                    <color key="tintColor" red="0.88235294119999996" green="0.15686274510000001" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
+                    <state key="normal" title="Log In">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="disabled" title="Logging In..."/>
+                    <connections>
+                        <action selector="logInButtonPressed:" destination="-1" eventType="touchUpInside" id="3jQ-Pk-2XZ"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="0.88235294119999996" green="0.15686274510000001" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="7eh-3f-DhV" firstAttribute="leading" secondItem="ba3-xx-xRk" secondAttribute="leading" constant="20" symbolic="YES" id="0ah-93-zJK"/>
+                <constraint firstItem="faS-m0-daM" firstAttribute="top" secondItem="x4p-Uh-3t5" secondAttribute="bottom" constant="20" id="5BW-Rz-L5d"/>
+                <constraint firstItem="aie-sS-pXs" firstAttribute="top" secondItem="faS-m0-daM" secondAttribute="bottom" constant="30" id="5cl-h8-CV5"/>
+                <constraint firstAttribute="centerX" secondItem="x4p-Uh-3t5" secondAttribute="centerX" id="8Ah-QW-Aiy"/>
+                <constraint firstAttribute="trailing" secondItem="aew-4r-Rd2" secondAttribute="trailing" constant="20" symbolic="YES" id="Ac7-U5-O2t"/>
+                <constraint firstAttribute="bottom" secondItem="aew-4r-Rd2" secondAttribute="bottom" constant="20" id="CwW-qB-F2K"/>
+                <constraint firstAttribute="trailing" secondItem="7eh-3f-DhV" secondAttribute="trailing" constant="20" symbolic="YES" id="MwH-ef-daQ"/>
+                <constraint firstItem="pK5-tP-ZNS" firstAttribute="top" secondItem="7eh-3f-DhV" secondAttribute="bottom" id="Rhe-sv-hBS"/>
+                <constraint firstAttribute="centerX" secondItem="faS-m0-daM" secondAttribute="centerX" id="Rnk-Iw-DVV"/>
+                <constraint firstItem="faS-m0-daM" firstAttribute="leading" secondItem="ba3-xx-xRk" secondAttribute="leading" priority="750" constant="20" symbolic="YES" id="aYE-gX-DcS"/>
+                <constraint firstAttribute="trailing" secondItem="pK5-tP-ZNS" secondAttribute="trailing" priority="750" constant="20" symbolic="YES" id="ayW-Ox-miN"/>
+                <constraint firstAttribute="trailing" secondItem="x4p-Uh-3t5" secondAttribute="trailing" priority="750" constant="20" symbolic="YES" id="bLq-0P-NFV"/>
+                <constraint firstItem="faS-m0-daM" firstAttribute="width" secondItem="pK5-tP-ZNS" secondAttribute="width" id="ceC-b5-hLN"/>
+                <constraint firstAttribute="centerX" secondItem="aie-sS-pXs" secondAttribute="centerX" id="jgc-Eu-pO9"/>
+                <constraint firstAttribute="trailing" secondItem="faS-m0-daM" secondAttribute="trailing" priority="750" constant="20" symbolic="YES" id="jog-P5-CPa"/>
+                <constraint firstItem="aew-4r-Rd2" firstAttribute="leading" secondItem="ba3-xx-xRk" secondAttribute="leading" constant="20" symbolic="YES" id="lI1-Il-CxF"/>
+                <constraint firstItem="x4p-Uh-3t5" firstAttribute="leading" secondItem="ba3-xx-xRk" secondAttribute="leading" priority="750" constant="20" symbolic="YES" id="nUH-zl-LJ4"/>
+                <constraint firstItem="pK5-tP-ZNS" firstAttribute="leading" secondItem="ba3-xx-xRk" secondAttribute="leading" priority="750" constant="20" symbolic="YES" id="qQN-Uz-Gqd"/>
+                <constraint firstItem="x4p-Uh-3t5" firstAttribute="top" secondItem="pK5-tP-ZNS" secondAttribute="top" constant="70" id="qZy-xN-RVi"/>
+                <constraint firstItem="7eh-3f-DhV" firstAttribute="centerY" secondItem="ba3-xx-xRk" secondAttribute="bottom" multiplier="1/3" constant="1" id="r1U-Zo-1z7"/>
+                <constraint firstAttribute="centerX" secondItem="7eh-3f-DhV" secondAttribute="centerX" id="v5g-9h-qkZ"/>
+                <constraint firstAttribute="centerX" secondItem="aew-4r-Rd2" secondAttribute="centerX" id="vza-xb-Gwf"/>
+                <constraint firstItem="x4p-Uh-3t5" firstAttribute="width" secondItem="pK5-tP-ZNS" secondAttribute="width" id="wrh-Yb-PqR"/>
+                <constraint firstAttribute="centerX" secondItem="pK5-tP-ZNS" secondAttribute="centerX" id="zeZ-UU-ar7"/>
+            </constraints>
+            <connections>
+                <outletCollection property="gestureRecognizers" destination="YoK-1K-HFw" appends="YES" id="E74-4a-osp"/>
+            </connections>
+            <point key="canvasLocation" x="548" y="455"/>
+        </view>
+        <tapGestureRecognizer id="YoK-1K-HFw">
+            <connections>
+                <action selector="handleGesture:" destination="-1" id="44r-Ck-amS"/>
+            </connections>
+        </tapGestureRecognizer>
+    </objects>
+</document>

@@ -23,5 +23,19 @@ extension AppDelegate {
         
         // Track app launches
         PFAnalytics.trackAppOpenedWithLaunchOptionsInBackground(launchOptions, block: nil)
+        
+        // Query and cache logged in person
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), { () -> Void in
+            AuthViewController.getLoggedInPerson()
+            return
+        })
+        
+        // Following are temporary functions added to reset or import new data
+        // Make sure these are commented before checking in code
+        // Log out user
+        // PFUser.logOut()
+        
+        // Temp user creation step - Enable once when creating or importing data
+        // Person.signUpInitialUsers()
     }
 }

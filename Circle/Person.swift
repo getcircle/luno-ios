@@ -48,6 +48,10 @@ class Person : PFObject, PFSubclassing {
         return self.objectForKey("department") as String!
     }
     
+    var user:PFUser! {
+        return self.objectForKey("user") as PFUser!
+    }
+    
     var hasDirectReports:Bool!
     
     var hasManager: Bool {
@@ -64,5 +68,27 @@ class Person : PFObject, PFSubclassing {
     
     class func parseClassName() -> String! {
         return "Person"
+    }
+    
+    class func signUpInitialUsers() {
+        let users = [
+            ["username": "ravi", "email": "ravirani@gmail.com", "pass": "abcd"],
+            ["username": "hahn", "email": "mwhahn@gmail.com", "pass": "abcd"],
+            ["username": "brent", "email": "brent@traut.com", "pass": "abcd"],
+        ]
+        
+        for user in users {
+            var pfuser = PFUser()
+            pfuser.username = user["username"]
+            pfuser.password = user["pass"]
+            pfuser.email = user["email"]
+            
+            pfuser.signUpInBackgroundWithBlock {
+                (succeeded: Bool!, error: NSError!) -> Void in
+                if error == nil {
+                    // Hooray! Let them use the app now.
+                }
+            }
+        }
     }
 }

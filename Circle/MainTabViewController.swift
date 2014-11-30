@@ -8,14 +8,20 @@
 
 import UIKit
 
-class MainTabViewController: UITabBarController {
+class MainTabViewController: UITabBarController, UITabBarControllerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.delegate = self
         addSelectedImages()
         self.tabBar.tintColor = UIColor.tabBarTintColor()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        checkUserAndPresentAuthViewController()
     }
     
     private func addSelectedImages() {
@@ -33,6 +39,35 @@ class MainTabViewController: UITabBarController {
             default:
                 break
             }
+        }
+    }
+    
+    // MARK - Tab bar controller delegate
+    
+    func tabBarController(tabBarController: UITabBarController, shouldSelectViewController viewController: UIViewController) -> Bool {
+        if viewController is UINavigationController {
+            if (viewController as UINavigationController).topViewController is ProfileViewController {
+                var profileVC = (viewController as UINavigationController).topViewController as ProfileViewController
+                profileVC.person = AuthViewController.getLoggedInPerson()
+                println(AuthViewController.getLoggedInPerson())
+                profileVC.showLogOutButton = true
+            }
+        }
+        
+        return true
+    }
+    
+    func tabBarController(tabBarController: UITabBarController, didSelectViewController viewController: UIViewController) {
+        checkUserAndPresentAuthViewController()
+    }
+    
+    // MARK - Authentication Check
+    
+    // Check if user is logged in. If not, present auth view controller
+    private func checkUserAndPresentAuthViewController() {
+        var currentUser = PFUser.currentUser()
+        if currentUser == nil {
+            AuthViewController.presentAuthViewController()
         }
     }
 }
