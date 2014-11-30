@@ -298,6 +298,8 @@
 				BFEDB13E1A2A82FE00250165 /* MessageActions.swift */,
 			);
 			name = "Model Actions";
+			sourceTree = "<group>";
+		};
 		8F22CBFC1A29C6F00026376E /* Utils */ = {
 			isa = PBXGroup;
 			children = (
