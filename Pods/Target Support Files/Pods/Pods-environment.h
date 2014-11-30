@@ -66,3 +66,15 @@
 #define COCOAPODS_VERSION_MINOR_Parse 5
 #define COCOAPODS_VERSION_PATCH_Parse 0
 
+// SlackTextViewController
+#define COCOAPODS_POD_AVAILABLE_SlackTextViewController
+#define COCOAPODS_VERSION_MAJOR_SlackTextViewController 1
+#define COCOAPODS_VERSION_MINOR_SlackTextViewController 3
+#define COCOAPODS_VERSION_PATCH_SlackTextViewController 3
+
+// SlackTextViewController/Additions
+#define COCOAPODS_POD_AVAILABLE_SlackTextViewController_Additions
+#define COCOAPODS_VERSION_MAJOR_SlackTextViewController_Additions 1
+#define COCOAPODS_VERSION_MINOR_SlackTextViewController_Additions 3
+#define COCOAPODS_VERSION_PATCH_SlackTextViewController_Additions 3
+

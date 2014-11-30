@@ -60,7 +60,6 @@ class ContactTableViewCell: MGSwipeTableCell {
     private func populateData() {
         name.text = person.firstName + " " + person.lastName
         title.text = person.title
-        profileImg.setImageWithURL(NSURL(string: person.profileImageURL),
-            placeholderImage: UIImage(named: "DefaultPerson"))
+        profileImg.setImageWithPerson(person)
     }
 }

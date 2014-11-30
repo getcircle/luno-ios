@@ -40,9 +40,6 @@ class ProfileCollectionViewLayout: UICollectionViewFlowLayout {
         let contentOffset = self.collectionView!.contentOffset
         var attributes = super.layoutAttributesForElementsInRect(rect) as [UICollectionViewLayoutAttributes]
         
-        var separatorViewYPositions = [CGFloat]()
-        var separatorViewIndexPaths = [NSIndexPath]()
-        
         for attribute in attributes {
             switch attribute.representedElementCategory {
             case .SupplementaryView:
@@ -60,27 +57,12 @@ class ProfileCollectionViewLayout: UICollectionViewFlowLayout {
                         ProfileCollectionViewLayout.profileHeaderHeight - contentOffset.y)
                     attribute.frame = frameToModify
                 }
-                
-            case .Cell:
-                // Add a separator decoration view at the end of a cell
-                separatorViewYPositions.append(attribute.frame.size.height + attribute.frame.origin.y)
-                separatorViewIndexPaths.append(NSIndexPath(forItem: attribute.indexPath.item + 1, inSection: attribute.indexPath.section))
-                
+
             default:
                 break
             }
         }
         
-        // Add separators
-        for index in 0..<separatorViewYPositions.count {
-            var decorationViewAttribute = UICollectionViewLayoutAttributes(
-                forDecorationViewOfKind: SeparatorDecorationView.kind,
-                withIndexPath: separatorViewIndexPaths[index]
-            )
-            decorationViewAttribute.frame = CGRectMake(0.0, separatorViewYPositions[index], self.collectionView!.frame.size.width, 0.5)
-            attributes.append(decorationViewAttribute)
-        }
-        
-        return attributes
+        return self.addSeparatorsToCells(attributes)
     }
 }
