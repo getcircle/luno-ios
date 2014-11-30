@@ -10,6 +10,13 @@ import UIKit
 
 class MessageReceivedCollectionViewCell: UICollectionViewCell {
     
+    var history: ConversationHistory? {
+        didSet {
+            self.profileImage.setImageWithPerson(self.history!.sender)
+            self.messageContents.text = self.history!.message.contents
+        }
+    }
+    
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var messageContents: UILabel!
 
@@ -18,11 +25,6 @@ class MessageReceivedCollectionViewCell: UICollectionViewCell {
         
         self.profileImage.layer.cornerRadius = self.profileImage.frame.size.width/2.0
         self.profileImage.layer.masksToBounds = true
-    }
-    
-    func setMessage(message: Message) {
-        self.profileImage.setImageWithPerson(message.sender)
-        self.messageContents.text = message.contents
     }
     
     class func reuseIdentifier() -> String {

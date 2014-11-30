@@ -48,6 +48,7 @@
 		BFEDB13F1A2A82FE00250165 /* MessageActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFEDB13E1A2A82FE00250165 /* MessageActions.swift */; };
 		BFEDB1411A2A87F500250165 /* MessagesCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFEDB1401A2A87F500250165 /* MessagesCollectionViewLayout.swift */; };
 		BFEDB1431A2A8CA700250165 /* UICollectionViewFlowLayoutExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFEDB1421A2A8CA700250165 /* UICollectionViewFlowLayoutExtension.swift */; };
+		BFF60DA91A2B7AA400014523 /* ConversationHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF60DA81A2B7AA400014523 /* ConversationHistory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,6 +108,7 @@
 		BFEDB13E1A2A82FE00250165 /* MessageActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageActions.swift; sourceTree = "<group>"; };
 		BFEDB1401A2A87F500250165 /* MessagesCollectionViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesCollectionViewLayout.swift; sourceTree = "<group>"; };
 		BFEDB1421A2A8CA700250165 /* UICollectionViewFlowLayoutExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICollectionViewFlowLayoutExtension.swift; sourceTree = "<group>"; };
+		BFF60DA81A2B7AA400014523 /* ConversationHistory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationHistory.swift; sourceTree = "<group>"; };
 		CC982AC8BAF0AFF23DCD301A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		FD94FE17CC5CD80FF96B24E5 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -253,6 +255,7 @@
 			children = (
 				8F22CB781A266D3F0026376E /* Person.swift */,
 				BF5FCA6D1A269A0300F511EF /* Message.swift */,
+				BFF60DA81A2B7AA400014523 /* ConversationHistory.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -475,6 +478,7 @@
 				8F0004BB1A241BDE0096477A /* UIColorExtension.swift in Sources */,
 				BFEDB13F1A2A82FE00250165 /* MessageActions.swift in Sources */,
 				8F00049B1A2419730096477A /* PeopleViewController.swift in Sources */,
+				BFF60DA91A2B7AA400014523 /* ConversationHistory.swift in Sources */,
 				BFEDB1411A2A87F500250165 /* MessagesCollectionViewLayout.swift in Sources */,
 				8F22CBF11A2844F50026376E /* UINavigationBarExtension.swift in Sources */,
 				BFEDB1431A2A8CA700250165 /* UICollectionViewFlowLayoutExtension.swift in Sources */,

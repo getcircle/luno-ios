@@ -10,13 +10,17 @@ import UIKit
 
 class MessagesViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, NoMessagesCellDelegate, SelectContactDelegate {
     
-    var messages: [Message]?
+    var messages: [ConversationHistory]?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configureNavigation()
         self.configureCollectionView()
-        self.loadInitialData()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.loadData()
     }
     
     // MARK: - Configuration
@@ -37,12 +41,16 @@ class MessagesViewController: UICollectionViewController, UICollectionViewDelega
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Compose", style: .Done, target: self, action: "handleCompose:")
     }
     
-    private func loadInitialData() {
-        let parseQuery = Message.query() as PFQuery
+    private func loadData() {
+        let parseQuery = ConversationHistory.query() as PFQuery
         parseQuery.includeKey("sender")
+        parseQuery.includeKey("recipient")
+        parseQuery.includeKey("message")
+        parseQuery.orderByDescending("createdAt")
+        parseQuery.whereKey("sender", equalTo: AuthViewController.getLoggedInPerson())
         parseQuery.findObjectsInBackgroundWithBlock { (objects: [AnyObject]!, error: NSError!) -> Void in
             if error == nil {
-                self.messages = objects as? [Message]
+                self.messages = objects as? [ConversationHistory]
                 self.collectionView.reloadData()
             }
         }
@@ -78,8 +86,8 @@ class MessagesViewController: UICollectionViewController, UICollectionViewDelega
                 forIndexPath: indexPath
             ) as MessageReceivedCollectionViewCell
             
-            if let message: Message = self.messages?[indexPath.row] {
-                cell.setMessage(message)
+            if let history: ConversationHistory = self.messages?[indexPath.row] {
+                cell.history = history
             }
             return cell
         } else {

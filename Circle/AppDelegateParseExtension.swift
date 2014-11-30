@@ -13,6 +13,7 @@ extension AppDelegate {
     func setupParse(launchOptions: [NSObject: AnyObject]?) {
 
         // Load custom subclasses
+        ConversationHistory.load()
         Message.load()
         Person.load()
 

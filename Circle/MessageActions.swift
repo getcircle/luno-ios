@@ -10,12 +10,16 @@ import Foundation
 
 class MessageActions {
     
-    class func sendMessage(sender: Person, recipient: Person, contents: String) -> Message {
+    class func sendMessage(recipient: Person, contents: String) -> Message {
         let message = Message()
         message["contents"] = contents
-        message["sender"] = sender
-        message["recipients"] = [recipient]
-        message.saveInBackgroundWithBlock(nil)
+        message["sender"] = AuthViewController.getLoggedInPerson()
+        message["recipient"] = recipient
+        message.saveInBackgroundWithBlock { (success: Bool, error: NSError!) -> Void in
+            if success {
+                ConversationHistory.recordMessage(message)
+            }
+        }
         return message
     }
     

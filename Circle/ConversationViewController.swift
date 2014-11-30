@@ -44,7 +44,7 @@ class ConversationViewController: SLKTextViewController {
     // MARK: - SLKTextViewController Overrides
     
     override func didPressRightButton(sender: AnyObject!) {
-        let message = MessageActions.sendMessage(self.recipient!, recipient: self.recipient!, contents: self.textView.text)
+        let message = MessageActions.sendMessage(self.recipient!, contents: self.textView.text)
         super.didPressRightButton(sender)
     }
 }
