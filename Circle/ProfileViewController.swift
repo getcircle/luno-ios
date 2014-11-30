@@ -69,7 +69,7 @@ class ProfileViewController: UICollectionViewController, UICollectionViewDelegat
             withReuseIdentifier: ProfileHeaderCollectionReusableView.classReuseIdentifier)
     }
     
-    // MARK: Layout delegate
+    // MARK: - Layout delegate
     
     // This has to be implemented as a delegate method because the layout can only
     // set it for all headers

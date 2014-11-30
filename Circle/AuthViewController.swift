@@ -28,7 +28,7 @@ class AuthViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        setup()
+        configView()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -45,9 +45,9 @@ class AuthViewController: UIViewController {
         }
     }
 
-    // MARK: Setup
+    // MARK: - Configuration
     
-    private func setup() {
+    private func configView() {
         emailField.addRoundCorners()
         passwordField.addRoundCorners()
         logInButton.addRoundCorners()
@@ -65,7 +65,7 @@ class AuthViewController: UIViewController {
         passwordField.leftViewMode = .Always
     }
     
-    // MARK: Initial Animation
+    // MARK: - Initial Animation
     
     private func moveAppNameLabel() {
         appNameYConstraint.constant = -80.0
@@ -102,7 +102,7 @@ class AuthViewController: UIViewController {
         })
     }
     
-    // MARK: IBActions
+    // MARK: - IBActions
 
     @IBAction func logInButtonPressed(sender: AnyObject?) {
         dismissKeyboard()
@@ -132,7 +132,7 @@ class AuthViewController: UIViewController {
         dismissKeyboard()
     }
     
-    // MARK: Helpers
+    // MARK: - Helpers
 
     private func dismissKeyboard() {
         if emailField.isFirstResponder() {
@@ -144,7 +144,7 @@ class AuthViewController: UIViewController {
         }
     }
     
-    // MARK: Loading State
+    // MARK: - Loading State
     
     private func showLoadingState() {
         emailField.enabled = false
@@ -158,7 +158,7 @@ class AuthViewController: UIViewController {
         logInButton.enabled = true
     }
     
-    // MARK: Log out
+    // MARK: - Log out
     
     class func logOut() {
         LoggedInPersonHolder.person = nil

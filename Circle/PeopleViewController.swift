@@ -27,7 +27,7 @@ class PeopleViewController: UITableViewController, MGSwipeTableCellDelegate {
 
         // Do any additional setup after loading the view, typically from a nib.
         dataLoadAttempted = false
-        customizeTableView()
+        configTableView()
         loadInitialData()
     }
     
@@ -40,8 +40,10 @@ class PeopleViewController: UITableViewController, MGSwipeTableCellDelegate {
         }
     }
     
-    private func customizeTableView() {
-        // Customize table view
+    // MARK: - Configuration
+    
+    private func configTableView() {
+        // configure table view
         tableView.registerNib(
             UINib(nibName: "ContactTableViewCell", bundle: nil),
             forCellReuseIdentifier: ContactTableViewCell.classReuseIdentifier)
