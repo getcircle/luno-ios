@@ -1,5 +1,5 @@
 //
-//  MessagesViewController.swift
+//  ConversationsViewController.swift
 //  Circle
 //
 //  Created by Michael Hahn on 11/26/14.
@@ -8,9 +8,9 @@
 
 import UIKit
 
-class MessagesViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, NoMessagesCellDelegate, SelectContactDelegate {
+class ConversationsViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, NoConversationsCellDelegate, SelectContactDelegate {
     
-    var messages: [ConversationHistory]?
+    var conversations: [ConversationHistory]?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,12 +27,12 @@ class MessagesViewController: UICollectionViewController, UICollectionViewDelega
     
     private func configureCollectionView() {
         self.collectionView.registerNib(
-            UINib(nibName: "MessageReceivedCollectionViewCell", bundle: nil),
-            forCellWithReuseIdentifier: MessageReceivedCollectionViewCell.reuseIdentifier()
+            UINib(nibName: "ConversationHistoryCollectionViewCell", bundle: nil),
+            forCellWithReuseIdentifier: ConversationHistoryCollectionViewCell.reuseIdentifier()
         )
         self.collectionView.registerNib(
-            UINib(nibName: "NoMessagesCollectionViewCell", bundle: nil),
-            forCellWithReuseIdentifier: NoMessagesCollectionViewCell.reuseIdentifier()
+            UINib(nibName: "NoConversationsCollectionViewCell", bundle: nil),
+            forCellWithReuseIdentifier: NoConversationsCollectionViewCell.reuseIdentifier()
         )
     }
     
@@ -50,14 +50,14 @@ class MessagesViewController: UICollectionViewController, UICollectionViewDelega
         parseQuery.whereKey("sender", equalTo: AuthViewController.getLoggedInPerson())
         parseQuery.findObjectsInBackgroundWithBlock { (objects: [AnyObject]!, error: NSError!) -> Void in
             if error == nil {
-                self.messages = objects as? [ConversationHistory]
+                self.conversations = objects as? [ConversationHistory]
                 self.collectionView.reloadData()
             }
         }
     }
     
-    private func hasMessages() -> Bool {
-        let messageCount = self.messages?.count ?? 0
+    private func hasConversations() -> Bool {
+        let messageCount = self.conversations?.count ?? 0
         if messageCount > 0 {
             return true
         } else {
@@ -72,36 +72,36 @@ class MessagesViewController: UICollectionViewController, UICollectionViewDelega
     }
 
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if self.hasMessages() {
-            return self.messages!.count
+        if self.hasConversations() {
+            return self.conversations!.count
         } else {
             return 1
         }
     }
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        if self.hasMessages() {
+        if self.hasConversations() {
             let cell = self.collectionView.dequeueReusableCellWithReuseIdentifier(
-                MessageReceivedCollectionViewCell.reuseIdentifier(),
+                ConversationHistoryCollectionViewCell.reuseIdentifier(),
                 forIndexPath: indexPath
-            ) as MessageReceivedCollectionViewCell
+            ) as ConversationHistoryCollectionViewCell
             
-            if let history: ConversationHistory = self.messages?[indexPath.row] {
+            if let history: ConversationHistory = self.conversations?[indexPath.row] {
                 cell.history = history
             }
             return cell
         } else {
             let cell = self.collectionView.dequeueReusableCellWithReuseIdentifier(
-                NoMessagesCollectionViewCell.reuseIdentifier(),
+                NoConversationsCollectionViewCell.reuseIdentifier(),
                 forIndexPath: indexPath
-            ) as NoMessagesCollectionViewCell
+            ) as NoConversationsCollectionViewCell
             cell.delegate = self
             return cell
         }
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        if self.hasMessages() {
+        if self.hasConversations() {
             return CGSizeMake(self.collectionView.frame.width, 64.0)
         } else {
             return self.view.bounds.size

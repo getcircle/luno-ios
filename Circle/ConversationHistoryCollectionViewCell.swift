@@ -1,5 +1,5 @@
 //
-//  MessageReceivedCollectionViewCell.swift
+//  ConversationHistoryCollectionViewCell.swift
 //  Circle
 //
 //  Created by Michael Hahn on 11/26/14.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MessageReceivedCollectionViewCell: UICollectionViewCell {
+class ConversationHistoryCollectionViewCell: UICollectionViewCell {
     
     var history: ConversationHistory? {
         didSet {
@@ -28,7 +28,7 @@ class MessageReceivedCollectionViewCell: UICollectionViewCell {
     }
     
     class func reuseIdentifier() -> String {
-        return "MessageReceived"
+        return "ConversationHistory"
     }
 
 }

@@ -36,12 +36,12 @@
 		8F22CBFE1A29C7120026376E /* GCDUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F22CBFD1A29C7120026376E /* GCDUtils.swift */; };
 		8FD041A21A2C03AA00FE28EF /* UIFontExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD041A11A2C03AA00FE28EF /* UIFontExtention.swift */; };
 		A73E1BB3914D1A036D2FAE47 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FD94FE17CC5CD80FF96B24E5 /* libPods.a */; };
-		BF5FCA6C1A2696D200F511EF /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5FCA6B1A2696D200F511EF /* MessagesViewController.swift */; };
+		BF5FCA6C1A2696D200F511EF /* ConversationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5FCA6B1A2696D200F511EF /* ConversationsViewController.swift */; };
 		BF5FCA6E1A269A0300F511EF /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5FCA6D1A269A0300F511EF /* Message.swift */; };
-		BF5FCA711A269CF300F511EF /* MessageReceivedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5FCA6F1A269CF300F511EF /* MessageReceivedCollectionViewCell.swift */; };
-		BF5FCA721A269CF300F511EF /* MessageReceivedCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF5FCA701A269CF300F511EF /* MessageReceivedCollectionViewCell.xib */; };
-		BF5FCA791A26A57000F511EF /* NoMessagesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5FCA771A26A57000F511EF /* NoMessagesCollectionViewCell.swift */; };
-		BF5FCA7A1A26A57000F511EF /* NoMessagesCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF5FCA781A26A57000F511EF /* NoMessagesCollectionViewCell.xib */; };
+		BF5FCA711A269CF300F511EF /* ConversationHistoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5FCA6F1A269CF300F511EF /* ConversationHistoryCollectionViewCell.swift */; };
+		BF5FCA721A269CF300F511EF /* ConversationHistoryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF5FCA701A269CF300F511EF /* ConversationHistoryCollectionViewCell.xib */; };
+		BF5FCA791A26A57000F511EF /* NoConversationsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5FCA771A26A57000F511EF /* NoConversationsCollectionViewCell.swift */; };
+		BF5FCA7A1A26A57000F511EF /* NoConversationsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF5FCA781A26A57000F511EF /* NoConversationsCollectionViewCell.xib */; };
 		BF83A4771A2A57B3000F7A92 /* SelectContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF83A4761A2A57B3000F7A92 /* SelectContactViewController.swift */; };
 		BF83A4791A2A6604000F7A92 /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF83A4781A2A6604000F7A92 /* ConversationViewController.swift */; };
 		BFEDB1381A2A6D6E00250165 /* SelectContactViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFEDB1371A2A6D6E00250165 /* SelectContactViewController.xib */; };
@@ -96,12 +96,12 @@
 		8F22CBFA1A29AF450026376E /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		8F22CBFD1A29C7120026376E /* GCDUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCDUtils.swift; sourceTree = "<group>"; };
 		8FD041A11A2C03AA00FE28EF /* UIFontExtention.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIFontExtention.swift; sourceTree = "<group>"; };
-		BF5FCA6B1A2696D200F511EF /* MessagesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
+		BF5FCA6B1A2696D200F511EF /* ConversationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationsViewController.swift; sourceTree = "<group>"; };
 		BF5FCA6D1A269A0300F511EF /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
-		BF5FCA6F1A269CF300F511EF /* MessageReceivedCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageReceivedCollectionViewCell.swift; sourceTree = "<group>"; };
-		BF5FCA701A269CF300F511EF /* MessageReceivedCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageReceivedCollectionViewCell.xib; sourceTree = "<group>"; };
-		BF5FCA771A26A57000F511EF /* NoMessagesCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoMessagesCollectionViewCell.swift; sourceTree = "<group>"; };
-		BF5FCA781A26A57000F511EF /* NoMessagesCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoMessagesCollectionViewCell.xib; sourceTree = "<group>"; };
+		BF5FCA6F1A269CF300F511EF /* ConversationHistoryCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationHistoryCollectionViewCell.swift; sourceTree = "<group>"; };
+		BF5FCA701A269CF300F511EF /* ConversationHistoryCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConversationHistoryCollectionViewCell.xib; sourceTree = "<group>"; };
+		BF5FCA771A26A57000F511EF /* NoConversationsCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoConversationsCollectionViewCell.swift; sourceTree = "<group>"; };
+		BF5FCA781A26A57000F511EF /* NoConversationsCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoConversationsCollectionViewCell.xib; sourceTree = "<group>"; };
 		BF83A4761A2A57B3000F7A92 /* SelectContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectContactViewController.swift; sourceTree = "<group>"; };
 		BF83A4781A2A6604000F7A92 /* ConversationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationViewController.swift; sourceTree = "<group>"; };
 		BFEDB1371A2A6D6E00250165 /* SelectContactViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectContactViewController.xib; sourceTree = "<group>"; };
@@ -210,7 +210,7 @@
 			children = (
 				8F22CBF61A29A8EB0026376E /* AuthViewController.swift */,
 				8F22CB721A264A8A0026376E /* MainTabViewController.swift */,
-				BF5FCA6B1A2696D200F511EF /* MessagesViewController.swift */,
+				BF5FCA6B1A2696D200F511EF /* ConversationsViewController.swift */,
 				8F00049A1A2419730096477A /* PeopleViewController.swift */,
 				8F00049C1A2419730096477A /* ProfileViewController.swift */,
 				BF83A4761A2A57B3000F7A92 /* SelectContactViewController.swift */,
@@ -227,10 +227,10 @@
 				8F22CBE61A27FDA70026376E /* ProfileAttributeCollectionViewCell.swift */,
 				8F22CBDE1A27A8E60026376E /* ProfileHeaderCollectionReusableView.swift */,
 				8F22CBEC1A283D3D0026376E /* SeparatorDecorationView.swift */,
-				BF5FCA6F1A269CF300F511EF /* MessageReceivedCollectionViewCell.swift */,
-				BF5FCA701A269CF300F511EF /* MessageReceivedCollectionViewCell.xib */,
-				BF5FCA771A26A57000F511EF /* NoMessagesCollectionViewCell.swift */,
-				BF5FCA781A26A57000F511EF /* NoMessagesCollectionViewCell.xib */,
+				BF5FCA6F1A269CF300F511EF /* ConversationHistoryCollectionViewCell.swift */,
+				BF5FCA701A269CF300F511EF /* ConversationHistoryCollectionViewCell.xib */,
+				BF5FCA771A26A57000F511EF /* NoConversationsCollectionViewCell.swift */,
+				BF5FCA781A26A57000F511EF /* NoConversationsCollectionViewCell.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -409,8 +409,8 @@
 				8F0004BF1A24225A0096477A /* ContactTableViewCell.xib in Resources */,
 				8F22CBE91A27FDA70026376E /* ProfileAttributeCollectionViewCell.xib in Resources */,
 				BFEDB1381A2A6D6E00250165 /* SelectContactViewController.xib in Resources */,
-				BF5FCA721A269CF300F511EF /* MessageReceivedCollectionViewCell.xib in Resources */,
-				BF5FCA7A1A26A57000F511EF /* NoMessagesCollectionViewCell.xib in Resources */,
+				BF5FCA721A269CF300F511EF /* ConversationHistoryCollectionViewCell.xib in Resources */,
+				BF5FCA7A1A26A57000F511EF /* NoConversationsCollectionViewCell.xib in Resources */,
 				8F0004A01A2419730096477A /* Main.storyboard in Resources */,
 				8F22CBF91A29A8EB0026376E /* AuthViewController.xib in Resources */,
 				8F0004A51A2419730096477A /* LaunchScreen.xib in Resources */,
@@ -487,12 +487,12 @@
 				8F22CB731A264A8A0026376E /* MainTabViewController.swift in Sources */,
 				8F22CBF51A2865030026376E /* ProfileDataSource.swift in Sources */,
 				8F22CB771A2661890026376E /* AppDelegateAppearanceExtension.swift in Sources */,
-				BF5FCA791A26A57000F511EF /* NoMessagesCollectionViewCell.swift in Sources */,
+				BF5FCA791A26A57000F511EF /* NoConversationsCollectionViewCell.swift in Sources */,
 				8F22CBFE1A29C7120026376E /* GCDUtils.swift in Sources */,
 				8F22CB751A26600D0026376E /* AppDelegateParseExtension.swift in Sources */,
 				BF5FCA6E1A269A0300F511EF /* Message.swift in Sources */,
-				BF5FCA6C1A2696D200F511EF /* MessagesViewController.swift in Sources */,
-				BF5FCA711A269CF300F511EF /* MessageReceivedCollectionViewCell.swift in Sources */,
+				BF5FCA6C1A2696D200F511EF /* ConversationsViewController.swift in Sources */,
+				BF5FCA711A269CF300F511EF /* ConversationHistoryCollectionViewCell.swift in Sources */,
 				8F00049D1A2419730096477A /* ProfileViewController.swift in Sources */,
 				BF83A4791A2A6604000F7A92 /* ConversationViewController.swift in Sources */,
 				8F22CBE81A27FDA70026376E /* ProfileAttributeCollectionViewCell.swift in Sources */,
