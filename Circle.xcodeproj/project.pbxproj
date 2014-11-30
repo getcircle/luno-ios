@@ -213,7 +213,6 @@
 				8F00049A1A2419730096477A /* PeopleViewController.swift */,
 				8F00049C1A2419730096477A /* ProfileViewController.swift */,
 				BF83A4761A2A57B3000F7A92 /* SelectContactViewController.swift */,
-				BFEDB1371A2A6D6E00250165 /* SelectContactViewController.xib */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -275,6 +274,7 @@
 				8F00049E1A2419730096477A /* Main.storyboard */,
 				8F22CBE71A27FDA70026376E /* ProfileAttributeCollectionViewCell.xib */,
 				8F22CBDF1A27A8E60026376E /* ProfileHeaderCollectionReusableView.xib */,
+				BFEDB1371A2A6D6E00250165 /* SelectContactViewController.xib */,
 			);
 			name = "Storyboards / XIBs";
 			sourceTree = "<group>";
