@@ -128,7 +128,7 @@ class Person : PFObject, PFSubclassing {
                 lines.removeAtIndex(0)
                 
                 for line in lines {
-                    let columnData = line.componentsSeparatedByString(",")
+                    let columnData = (line.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())).componentsSeparatedByString(",")
                     println(columnData)
 
                     // Populate person
@@ -151,28 +151,27 @@ class Person : PFObject, PFSubclassing {
                     pfuser.signUp()
                     
                     println("Created user \(person.email)")
-
                     // Relate user with person
                     person.setObject(pfuser, forKey: "user")
+                    person.setObject(NSNull(), forKey: "manager")
+                    person.save()
+
                     // Store reference to people
                     peopleObjectsByEmail[person.email] = person
                     println("Created person \(person.email)")
                 }
                 
-                println("Employee Manager Emails = \(employeeManagerEmails)")
-                
                 // Create manager relationships
                 for (employeeEmail, managerEmail) in employeeManagerEmails {
+                    println("\(managerEmail) \(employeeEmail)")
                     if let manager = peopleObjectsByEmail[managerEmail] {
+                        println("Found manager")
                         if let person = peopleObjectsByEmail[employeeEmail] {
                             person.setObject(manager, forKey: "manager")
+                            person.save()
+                            println("\(person) \(manager)")
                         }
                     }
-                }
-                
-                // Save all person objects now
-                for (email, personObject) in peopleObjectsByEmail {
-                    personObject.save()
                 }
             }
         })
