@@ -26,9 +26,7 @@ class ChatRoomHistoryTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-        self.profileImage.layer.cornerRadius = self.profileImage.frame.size.width/2.0
-        self.profileImage.layer.masksToBounds = true
+        self.profileImage.makeItCircular(false)
     }
     
     class func reuseIdentifier() -> String {
