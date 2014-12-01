@@ -164,6 +164,8 @@ class AuthViewController: UIViewController {
         LoggedInPersonHolder.person = nil
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), { () -> Void in
             PFUser.logOut()
+            // Clear caches after a user logs out
+            PFQuery.clearAllCachedResults();
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 AuthViewController.presentAuthViewController()
             })
