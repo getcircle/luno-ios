@@ -13,7 +13,7 @@ class ChatRoomsViewController: UIViewController, UITableViewDataSource, UITableV
     var chatRooms: [ChatRoom]?
     var placeholder: NoConversationsView?
 
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak private(set) var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
