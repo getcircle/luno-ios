@@ -10,13 +10,36 @@ import UIKit
 
 class ChatRoomViewController: SLKTextViewController {
     
-    var chatRoom: ChatRoom?
+    var chatRoom: ChatRoom? {
+        didSet {
+            navigationItem.title = chatRoom?.description
+        }
+    }
     var messages: [Message]?
+    
+    init(person: Person) {
+        super.init(collectionViewLayout: SpringFlowLayout())
+        configure()
+        
+        let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
+        activityIndicator.hidesWhenStopped = true
+        self.view.addSubview(activityIndicator)
+        activityIndicator.autoCenterInSuperview()
+        activityIndicator.startAnimating()
+        let members = [person, AuthViewController.getLoggedInPerson()!]
+        ChatRoom.getRoomWithBlock(members) { (room: ChatRoom, error: NSError?) -> Void in
+            activityIndicator.stopAnimating()
+            if error == nil {
+                self.chatRoom = room
+                self.loadData()
+            }
+        }
+    }
     
     init(chatRoom: ChatRoom) {
         self.chatRoom = chatRoom
         super.init(collectionViewLayout: SpringFlowLayout())
-        hidesBottomBarWhenPushed = true
+        configure()
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -25,8 +48,7 @@ class ChatRoomViewController: SLKTextViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureNavigation()
-        configureView()
+        configure()
         self.configureCollectionView()
     }
     
@@ -37,12 +59,9 @@ class ChatRoomViewController: SLKTextViewController {
 
     // MARK: - Configuration
     
-    private func configureView() {
+    private func configure() {
         view.backgroundColor = UIColor.whiteColor()
-    }
-    
-    private func configureNavigation() {
-        navigationItem.title = chatRoom?.description
+        hidesBottomBarWhenPushed = true
     }
     
     private func configureCollectionView() {

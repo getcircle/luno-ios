@@ -121,6 +121,11 @@ class ChatRoomsViewController: UIViewController, UITableViewDataSource, UITableV
     
     // MARK: - SelectContactDelegate
     
+    func didSelectContact(person: Person) {
+        let vc = ChatRoomViewController(person: person)
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
     func didSelectChatRoom(chatRoom: ChatRoom) {
         let vc = ChatRoomViewController(chatRoom: chatRoom)
         navigationController?.pushViewController(vc, animated: false)
