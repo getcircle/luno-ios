@@ -100,6 +100,15 @@ class ChatRoomsViewController: UIViewController, UITableViewDataSource, UITableV
         return cell
     }
     
+    // MARK: - UITableViewDelegate
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if let chatRoom = self.chatRooms?[indexPath.row] {
+            let vc = ChatRoomViewController(chatRoom: chatRoom)
+            navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
     // MARK: - Actions
     
     func handleNewMessage(sender: AnyObject) {

@@ -11,6 +11,7 @@ import UIKit
 class ChatRoomViewController: SLKTextViewController {
     
     var chatRoom: ChatRoom?
+    var messages: [Message]?
     
     init(chatRoom: ChatRoom) {
         self.chatRoom = chatRoom
@@ -26,6 +27,12 @@ class ChatRoomViewController: SLKTextViewController {
         super.viewDidLoad()
         configureNavigation()
         configureView()
+        self.configureCollectionView()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.loadData()
     }
 
     // MARK: - Configuration
@@ -38,10 +45,75 @@ class ChatRoomViewController: SLKTextViewController {
         navigationItem.title = chatRoom?.description
     }
     
+    private func configureCollectionView() {
+        collectionView.registerNib(
+            UINib(nibName: "MessageReceivedCollectionViewCell", bundle: nil),
+            forCellWithReuseIdentifier: MessageReceivedCollectionViewCell.classReuseIdentifier
+        )
+        collectionView.registerNib(
+            UINib(nibName: "MessageSentCollectionViewCell", bundle: nil),
+            forCellWithReuseIdentifier: MessageSentCollectionViewCell.classReuseIdentifier
+        )
+        let layout = collectionView.collectionViewLayout as UICollectionViewFlowLayout
+        layout.itemSize = CGSizeMake(self.view.frame.width, 64.0)
+    }
+    
+    private func loadData() {
+        if let room = chatRoom {
+            let parseQuery = Message.query()
+            parseQuery.whereKey("chatRoom", equalTo: room)
+            parseQuery.includeKey("sender")
+            parseQuery.orderByDescending("createdAt")
+            parseQuery.findObjectsInBackgroundWithBlock { (objects: [AnyObject]!, error: NSError!) -> Void in
+                if error == nil {
+                    self.messages = objects as? [Message]
+                    self.collectionView.reloadData()
+                }
+            }
+        }
+    }
+    
     // MARK: - SLKTextViewController Overrides
     
     override func didPressRightButton(sender: AnyObject!) {
         let message = MessageActions.sendMessage(chatRoom!, contents: textView.text)
+        messages?.insert(message, atIndex: 0)
         super.didPressRightButton(sender)
+        collectionView.reloadData()
     }
+    
+    // MARK: - UICollectionViewDataSource
+    
+    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.messages?.count ?? 0
+    }
+    
+    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let currentUser = AuthViewController.getLoggedInPerson()
+        let message = self.messages![indexPath.row]
+        
+        var cell: UICollectionViewCell?
+        if message.sender.objectId != currentUser?.objectId {
+            cell = collectionView.dequeueReusableCellWithReuseIdentifier(
+                MessageReceivedCollectionViewCell.classReuseIdentifier,
+                forIndexPath: indexPath
+            ) as? UICollectionViewCell
+            let received = cell as MessageReceivedCollectionViewCell
+            received.message = message
+        } else {
+            cell = collectionView.dequeueReusableCellWithReuseIdentifier(
+                MessageSentCollectionViewCell.classReuseIdentifier,
+                forIndexPath: indexPath
+            ) as? UICollectionViewCell
+            let sent = cell as MessageSentCollectionViewCell
+            sent.message = message
+        }
+        cell?.transform = self.collectionView.transform
+        return cell!
+    }
+    
 }
