@@ -17,7 +17,7 @@ class ChatRoomViewController: SLKTextViewController {
     }
     var messages: [Message]?
     
-    init(person: Person) {
+    init(person: Person, composeFocus: Bool) {
         super.init(collectionViewLayout: SpringFlowLayout())
         configure()
         
@@ -33,14 +33,22 @@ class ChatRoomViewController: SLKTextViewController {
                 self.chatRoom = room
                 self.loadData()
             }
+            
+            if composeFocus {
+                self.textView.becomeFirstResponder()
+            }
         }
     }
     
-    init(room: ChatRoom) {
+    init(room: ChatRoom, composeFocus: Bool) {
         super.init(collectionViewLayout: SpringFlowLayout())
         chatRoom = room
         configure()
         configureNavigation()
+        
+        if composeFocus {
+            textView.becomeFirstResponder()
+        }
     }
 
     required init(coder aDecoder: NSCoder) {
