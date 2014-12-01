@@ -96,6 +96,7 @@ class Person : PFObject, PFSubclassing {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), { () -> Void in
             var peopleObjectsByEmail = [String:Person]()
             var employeeManagerEmails = [String:String]()
+            var pfUsersByEmail = [String:PFUser]()
 
             // Query existing entries
             let parseQuery = Person.query() as PFQuery
@@ -104,6 +105,12 @@ class Person : PFObject, PFSubclassing {
             let existingObjects = parseQuery.findObjects() as [Person]
             for existingObject in existingObjects {
                 peopleObjectsByEmail[existingObject.email] = existingObject
+            }
+            
+            let pfUserQuery = PFUser.query()
+            let existingUsers = pfUserQuery.findObjects() as [PFUser]
+            for existingUser in existingUsers {
+                pfUsersByEmail[existingUser.email] = existingUser
             }
 
             let columns = [
@@ -132,7 +139,14 @@ class Person : PFObject, PFSubclassing {
                     println(columnData)
 
                     // Populate person
-                    var person = Person()
+                    var person: Person!
+                    if let existingPerson = peopleObjectsByEmail[columnData[find(columns, "email")!]] {
+                        person = existingPerson
+                    }
+                    else {
+                        person = Person()
+                    }
+
                     for index in 0..<columnData.count {
                         if index == (columnData.count - 1) {
                             // Last item is manager - Keep reference
@@ -143,16 +157,19 @@ class Person : PFObject, PFSubclassing {
                         }
                     }
                     
-                    // Create and save user
-                    var pfuser = PFUser()
-                    pfuser.username = person.firstName.lowercaseString
-                    pfuser.password = "abcd"
-                    pfuser.email = person.email
-                    pfuser.signUp()
+                    if pfUsersByEmail[person.email] == nil {
+                        // Create and save user
+                        var pfuser = PFUser()
+                        pfuser.username = person.firstName.lowercaseString
+                        pfuser.password = "abcd"
+                        pfuser.email = person.email
+                        pfuser.signUp()
+                        pfUsersByEmail[person.email] = pfuser
+                    }
                     
                     println("Created user \(person.email)")
                     // Relate user with person
-                    person.setObject(pfuser, forKey: "user")
+                    person.setObject(pfUsersByEmail[person.email], forKey: "user")
                     person.setObject(NSNull(), forKey: "manager")
                     person.save()
 
