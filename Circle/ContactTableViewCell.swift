@@ -13,6 +13,15 @@ class ContactTableViewCell: MGSwipeTableCell {
     @IBOutlet var profileImg: UIImageView!
     @IBOutlet var name: UILabel!
     @IBOutlet var title: UILabel!
+    var addQuickActions: Bool! {
+        didSet {
+            if addQuickActions == true && self.rightButtons.count == 0 {
+                addQuickActionButtons()
+                contentView.backgroundColor = UIColor.accessoryButtonBackgroundColor()
+            }
+        }
+    }
+    
     var person:Person! {
         didSet {
             populateData()
@@ -28,14 +37,9 @@ class ContactTableViewCell: MGSwipeTableCell {
 
         // Initialization code
         profileImg.makeItCircular(false)
-
-        // Add accessory buttons
-        addAccessoryButtons()
-        
-        contentView.backgroundColor = UIColor.accessoryButtonBackgroundColor()
     }
 
-    func addAccessoryButtons() {
+    func addQuickActionButtons() {
         let favoriteButton = MGSwipeButton(
             title: "",
             icon: UIImage(named: "Favorites"),

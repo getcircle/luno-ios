@@ -56,7 +56,7 @@ class PeopleViewController: UITableViewController, MGSwipeTableCellDelegate {
         if let pfUser = PFUser.currentUser() {
             dataLoadAttempted = true
             let parseQuery = Person.query() as PFQuery
-            parseQuery.cachePolicy = kPFCachePolicyCacheElseNetwork
+            parseQuery.cachePolicy = kPFCachePolicyCacheThenNetwork
             parseQuery.includeKey("manager")
             parseQuery.orderByAscending("firstName")
             parseQuery.whereKey("email", notEqualTo: PFUser.currentUser().email)
@@ -93,6 +93,7 @@ class PeopleViewController: UITableViewController, MGSwipeTableCellDelegate {
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(ContactTableViewCell.classReuseIdentifier, forIndexPath: indexPath) as ContactTableViewCell
+        cell.addQuickActions = true
 
         if let person = self.people?[indexPath.row] {
             cell.person = person
