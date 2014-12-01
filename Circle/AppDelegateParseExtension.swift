@@ -38,5 +38,8 @@ extension AppDelegate {
         
         // Temp user creation step - Enable once when creating or importing data
         // Person.signUpInitialUsers()
+        
+        // Import data and create Parse objects
+        // Person.importData()
     }
 }

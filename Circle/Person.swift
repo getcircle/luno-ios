@@ -91,4 +91,90 @@ class Person : PFObject, PFSubclassing {
             }
         }
     }
+    
+    class func importData() {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), { () -> Void in
+            var peopleObjectsByEmail = [String:Person]()
+            var employeeManagerEmails = [String:String]()
+
+            // Query existing entries
+            let parseQuery = Person.query() as PFQuery
+            parseQuery.cachePolicy = kPFCachePolicyNetworkOnly
+            parseQuery.includeKey("manager")
+            let existingObjects = parseQuery.findObjects() as [Person]
+            for existingObject in existingObjects {
+                peopleObjectsByEmail[existingObject.email] = existingObject
+            }
+
+            let columns = [
+                "firstName",
+                "lastName",
+                "email",
+                "profileImageURL",
+                "title",
+                "cell",
+                "location",
+                "country",
+                "department",
+                "manager",
+            ]
+            
+            let filePathName = "/Users/anju/Apps/Circle/Circle/CircleData.csv"
+            let fileManager = NSFileManager()
+            if fileManager.fileExistsAtPath(filePathName) {
+                let fileContents = NSString(contentsOfFile: filePathName, encoding: NSUTF8StringEncoding, error: nil)
+                var lines = fileContents?.componentsSeparatedByString("\n") as [String]
+                // Remove line 0 - with column names
+                lines.removeAtIndex(0)
+                
+                for line in lines {
+                    let columnData = line.componentsSeparatedByString(",")
+                    println(columnData)
+
+                    // Populate person
+                    var person = Person()
+                    for index in 0..<columnData.count {
+                        if index == (columnData.count - 1) {
+                            // Last item is manager - Keep reference
+                            employeeManagerEmails[person.email] = columnData[index]
+                        }
+                        else {
+                            person.setValue(columnData[index], forKey: columns[index])
+                        }
+                    }
+                    
+                    // Create and save user
+                    var pfuser = PFUser()
+                    pfuser.username = person.firstName.lowercaseString
+                    pfuser.password = "abcd"
+                    pfuser.email = person.email
+                    pfuser.signUp()
+                    
+                    println("Created user \(person.email)")
+
+                    // Relate user with person
+                    person.setObject(pfuser, forKey: "user")
+                    // Store reference to people
+                    peopleObjectsByEmail[person.email] = person
+                    println("Created person \(person.email)")
+                }
+                
+                println("Employee Manager Emails = \(employeeManagerEmails)")
+                
+                // Create manager relationships
+                for (employeeEmail, managerEmail) in employeeManagerEmails {
+                    if let manager = peopleObjectsByEmail[managerEmail] {
+                        if let person = peopleObjectsByEmail[employeeEmail] {
+                            person.setObject(manager, forKey: "manager")
+                        }
+                    }
+                }
+                
+                // Save all person objects now
+                for (email, personObject) in peopleObjectsByEmail {
+                    personObject.save()
+                }
+            }
+        })
+    }
 }
