@@ -104,7 +104,7 @@ class ChatRoomsViewController: UIViewController, UITableViewDataSource, UITableV
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if let chatRoom = self.chatRooms?[indexPath.row] {
-            let vc = ChatRoomViewController(chatRoom: chatRoom)
+            let vc = ChatRoomViewController(room: chatRoom)
             navigationController?.pushViewController(vc, animated: true)
         }
     }
@@ -127,7 +127,7 @@ class ChatRoomsViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func didSelectChatRoom(chatRoom: ChatRoom) {
-        let vc = ChatRoomViewController(chatRoom: chatRoom)
+        let vc = ChatRoomViewController(room: chatRoom)
         navigationController?.pushViewController(vc, animated: false)
     }
     

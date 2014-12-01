@@ -12,7 +12,7 @@ class ChatRoomViewController: SLKTextViewController {
     
     var chatRoom: ChatRoom? {
         didSet {
-            navigationItem.title = chatRoom?.description
+            configureNavigation()
         }
     }
     var messages: [Message]?
@@ -36,10 +36,11 @@ class ChatRoomViewController: SLKTextViewController {
         }
     }
     
-    init(chatRoom: ChatRoom) {
-        self.chatRoom = chatRoom
+    init(room: ChatRoom) {
         super.init(collectionViewLayout: SpringFlowLayout())
+        chatRoom = room
         configure()
+        configureNavigation()
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -62,6 +63,10 @@ class ChatRoomViewController: SLKTextViewController {
     private func configure() {
         view.backgroundColor = UIColor.whiteColor()
         hidesBottomBarWhenPushed = true
+    }
+    
+    private func configureNavigation() {
+        navigationItem.title = chatRoom?.description
     }
     
     private func configureCollectionView() {
