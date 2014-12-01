@@ -76,7 +76,8 @@ class SelectContactViewController: UITableViewController, UISearchBarDelegate {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(ContactTableViewCell.classReuseIdentifier) as ContactTableViewCell
-        
+        cell.addQuickActions = false
+
         if let contact = visibleContacts?[indexPath.row] {
             cell.person = contact
         }
