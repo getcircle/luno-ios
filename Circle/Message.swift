@@ -12,11 +12,6 @@ class Message: PFObject, PFSubclassing {
         return self.objectForKey("contents") as String!
     }
     
-    // this should be an NSLocalizedDate
-    var created: String! {
-        return self.objectForKey("created") as String!
-    }
-    
     var ephemeral: Bool! {
         return self.objectForKey("ephemeral") as Bool!
     }
@@ -25,12 +20,13 @@ class Message: PFObject, PFSubclassing {
         return self.objectForKey("sender") as Person!
     }
     
+    // TODO: possibly have an object like ReadReceipt which could contain Person and a Date of when it was read.
     var readBy: [String]! {
         return self.objectForKey("readBy") as [String]!
     }
     
-    var recipients: [Person]! {
-        return self.objectForKey("recipients") as [Person]!
+    var chatRoom: ChatRoom! {
+        return self.objectForKey("chatRoom") as ChatRoom
     }
     
     override class func load() {

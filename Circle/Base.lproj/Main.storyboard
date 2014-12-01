@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Lvt-AE-kqt">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Main Tab View Controller-->
@@ -40,32 +41,6 @@
             </objects>
             <point key="canvasLocation" x="702" y="-1346"/>
         </scene>
-        <!--Messages-->
-        <scene sceneID="4YA-2T-mTv">
-            <objects>
-                <collectionViewController storyboardIdentifier="messages" title="Messages" id="xDt-tP-uI8" customClass="MessagesViewController" customModule="Circle" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="qb8-J4-8C1">
-                        <rect key="frame" x="0.0" y="64" width="600" height="487"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ZJA-vh-XcC" customClass="MessagesCollectionViewLayout" customModule="Circle" customModuleProvider="target">
-                            <size key="itemSize" width="50" height="50"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        </collectionViewFlowLayout>
-                        <cells/>
-                        <connections>
-                            <outlet property="dataSource" destination="xDt-tP-uI8" id="kqG-Fd-Rvi"/>
-                            <outlet property="delegate" destination="xDt-tP-uI8" id="Bew-dK-00L"/>
-                        </connections>
-                    </collectionView>
-                    <navigationItem key="navigationItem" id="SKu-sV-lDE"/>
-                </collectionViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="RRk-Uk-0d9" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1574" y="-2135"/>
-        </scene>
         <!--You-->
         <scene sceneID="bTq-k8-4c9">
             <objects>
@@ -83,22 +58,56 @@
             </objects>
             <point key="canvasLocation" x="702" y="-569"/>
         </scene>
-        <!--Messages-->
+        <!--Chat Rooms-->
         <scene sceneID="tDb-8c-9iE">
             <objects>
-                <navigationController title="Messages" id="X03-ni-Aei" sceneMemberID="viewController">
+                <navigationController title="Chat Rooms" id="X03-ni-Aei" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Messages" image="Messages" id="cGc-Xg-vdU"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="ddf-sJ-aqM">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="xDt-tP-uI8" kind="relationship" relationship="rootViewController" id="v3K-gd-Oqb"/>
+                        <segue destination="5bJ-Qb-1gP" kind="relationship" relationship="rootViewController" id="SIb-V6-i3E"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e6R-h3-nZr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="734" y="-2135"/>
+        </scene>
+        <!--Chat Rooms-->
+        <scene sceneID="Fj8-tp-gNP">
+            <objects>
+                <viewController title="Chat Rooms" id="5bJ-Qb-1gP" customClass="ChatRoomsViewController" customModule="Circle" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="i5V-Fb-pvE"/>
+                        <viewControllerLayoutGuide type="bottom" id="K6h-SE-TzD"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="2ET-HM-RRx">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="W4B-LC-2je">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="W4B-LC-2je" firstAttribute="top" secondItem="i5V-Fb-pvE" secondAttribute="bottom" id="7Em-DU-1qj"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="W4B-LC-2je" secondAttribute="trailing" constant="-16" id="WoW-q9-m6G"/>
+                            <constraint firstItem="K6h-SE-TzD" firstAttribute="top" secondItem="W4B-LC-2je" secondAttribute="bottom" id="mYp-OM-wKp"/>
+                            <constraint firstItem="W4B-LC-2je" firstAttribute="leading" secondItem="2ET-HM-RRx" secondAttribute="leadingMargin" constant="-16" id="vHl-Nc-CmS"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="6Mo-KV-bfo"/>
+                    <connections>
+                        <outlet property="tableView" destination="W4B-LC-2je" id="65P-k7-hqg"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LJY-EL-G3d" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1458" y="-2135"/>
         </scene>
         <!--People List-->
         <scene sceneID="smW-Zh-WAh">

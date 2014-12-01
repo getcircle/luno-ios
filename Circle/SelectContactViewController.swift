@@ -9,7 +9,7 @@
 import UIKit
 
 protocol SelectContactDelegate {
-    func didSelectContact(person: Person)
+    func didSelectChatRoom(chatRoom: ChatRoom)
 }
 
 class SelectContactViewController: UITableViewController, UISearchBarDelegate {
@@ -22,11 +22,11 @@ class SelectContactViewController: UITableViewController, UISearchBarDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.configureNavigation()
-        self.configureTableView()
-        self.configureSearchBar()
+        configureNavigation()
+        configureTableView()
+        configureSearchBar()
         
-        self.loadContacts()
+        loadContacts()
     }
     
     private func loadContacts() {
@@ -34,7 +34,11 @@ class SelectContactViewController: UITableViewController, UISearchBarDelegate {
         parseQuery.cachePolicy = kPFCachePolicyCacheElseNetwork
         parseQuery.findObjectsInBackgroundWithBlock { (objects: [AnyObject]!, error: NSError!) -> Void in
             if error == nil {
-                self.contacts = objects as? [Person]
+                let currentUser = AuthViewController.getLoggedInPerson()
+                let contacts = objects as? [Person]
+                self.contacts = contacts?.filter { person in
+                    return currentUser?.objectId != person.objectId
+                }
                 self.visibleContacts = self.contacts
                 self.tableView.reloadData()
             }
@@ -45,25 +49,19 @@ class SelectContactViewController: UITableViewController, UISearchBarDelegate {
     
     private func configureNavigation() {
         self.navigationItem.title = "Select Contact"
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Cancel", style: .Done, target: self, action: "handleCancel:")
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Cancel", style: .Plain, target: self, action: "handleCancel:")
+        self.navigationController?.navigationBar.translucent = false
     }
     
     private func configureTableView() {
-        self.tableView.registerNib(UINib(nibName: "ContactTableViewCell", bundle: nil), forCellReuseIdentifier: ContactTableViewCell.classReuseIdentifier)
-        self.tableView.separatorInset = UIEdgeInsetsMake(0.0, 64.0, 0.0, 0.0)
-        self.tableView.rowHeight = 64.0
-        self.addDummyFooterView()
-    }
-    
-    private func addDummyFooterView() {
-        // Add dummy footer view
-        let footerView = UIView(frame: CGRectMake(0.0, 0.0, self.tableView.frame.size.width, 10.0))
-        footerView.backgroundColor = UIColor.clearColor()
-        tableView.tableFooterView = footerView
+        tableView.registerNib(UINib(nibName: "ContactTableViewCell", bundle: nil), forCellReuseIdentifier: ContactTableViewCell.classReuseIdentifier)
+        tableView.separatorInset = UIEdgeInsetsMake(0.0, 64.0, 0.0, 0.0)
+        tableView.rowHeight = 64.0
+        tableView.addDummyFooterView()
     }
     
     private func configureSearchBar() {
-        self.searchBar.delegate = self
+        searchBar.delegate = self
     }
 
     // MARK: - UITableViewDataSource
@@ -73,13 +71,13 @@ class SelectContactViewController: UITableViewController, UISearchBarDelegate {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.visibleContacts?.count ?? 0
+        return visibleContacts?.count ?? 0
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(ContactTableViewCell.classReuseIdentifier) as ContactTableViewCell
         
-        if let contact = self.visibleContacts?[indexPath.row] {
+        if let contact = visibleContacts?[indexPath.row] {
             cell.person = contact
         }
         
@@ -89,10 +87,20 @@ class SelectContactViewController: UITableViewController, UISearchBarDelegate {
     // MARK: - UITableViewDelegate
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if let contact = self.visibleContacts?[indexPath.row] {
-            self.delegate?.didSelectContact(contact)
+        if let contact = visibleContacts?[indexPath.row] {
+            let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
+            activityIndicator.hidesWhenStopped = true
+            self.view.addSubview(activityIndicator)
+            activityIndicator.autoCenterInSuperview()
+            activityIndicator.startAnimating()
+            let members = [contact, AuthViewController.getLoggedInPerson()!]
+            ChatRoom.getRoomWithBlock(members) { (room: ChatRoom, error: NSError?) -> Void in
+                self.delegate?.didSelectChatRoom(room)
+                activityIndicator.stopAnimating()
+                self.dismiss()
+                return
+            }
         }
-        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     // MARK: - UISearchBarDelegate
@@ -100,22 +108,28 @@ class SelectContactViewController: UITableViewController, UISearchBarDelegate {
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
         let query = searchText.lowercaseString
         if query == "" {
-            self.visibleContacts = self.contacts?
+            visibleContacts = contacts?
         } else {
-            if let contacts = self.contacts {
-                self.visibleContacts = contacts.filter { person in
+            if let people = contacts {
+                visibleContacts = people.filter { person in
                     return person.firstName.lowercaseString.hasPrefix(query) || person.lastName.lowercaseString.hasPrefix(query)
                 }
             }
         }
-        self.tableView.reloadData()
+        tableView.reloadData()
     }
     
     // MARK: - Actions
     
     func handleCancel(sender: AnyObject) {
-        self.searchBar.resignFirstResponder()
-        self.dismissViewControllerAnimated(true, completion: nil)
+        dismiss()
+    }
+    
+    // MARK: - Helpers
+    
+    func dismiss() {
+        searchBar.resignFirstResponder()
+        dismissViewControllerAnimated(true, completion: nil)
     }
 
 }
