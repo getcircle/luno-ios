@@ -9,7 +9,7 @@
 import UIKit
 
 protocol SelectContactDelegate {
-    func didSelectContact(person: Person)
+    func didSelectChatRoom(chatRoom: ChatRoom)
 }
 
 class SelectContactViewController: UITableViewController, UISearchBarDelegate {
@@ -91,9 +91,18 @@ class SelectContactViewController: UITableViewController, UISearchBarDelegate {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if let contact = visibleContacts?[indexPath.row] {
-            delegate?.didSelectContact(contact)
+            let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
+            activityIndicator.hidesWhenStopped = true
+            self.view.addSubview(activityIndicator)
+            activityIndicator.autoCenterInSuperview()
+            activityIndicator.startAnimating()
+            ChatRoom.getRoomWithBlock([contact, AuthViewController.getLoggedInPerson()!]) { (room: ChatRoom, error: NSError?) -> Void in
+                self.delegate?.didSelectChatRoom(room)
+                activityIndicator.stopAnimating()
+                self.dismissViewControllerAnimated(true, completion: nil)
+                return
+            }
         }
-        dismissViewControllerAnimated(true, completion: nil)
     }
     
     // MARK: - UISearchBarDelegate

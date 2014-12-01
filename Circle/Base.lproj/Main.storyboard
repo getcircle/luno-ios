@@ -58,10 +58,10 @@
             </objects>
             <point key="canvasLocation" x="702" y="-569"/>
         </scene>
-        <!--Conversations-->
+        <!--Chat Rooms-->
         <scene sceneID="tDb-8c-9iE">
             <objects>
-                <navigationController title="Conversations" id="X03-ni-Aei" sceneMemberID="viewController">
+                <navigationController title="Chat Rooms" id="X03-ni-Aei" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Messages" image="Messages" id="cGc-Xg-vdU"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="ddf-sJ-aqM">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -75,10 +75,10 @@
             </objects>
             <point key="canvasLocation" x="734" y="-2135"/>
         </scene>
-        <!--Conversations-->
+        <!--Chat Rooms-->
         <scene sceneID="Fj8-tp-gNP">
             <objects>
-                <viewController title="Conversations" id="5bJ-Qb-1gP" customClass="ConversationsViewController" customModule="Circle" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Chat Rooms" id="5bJ-Qb-1gP" customClass="ChatRoomsViewController" customModule="Circle" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="i5V-Fb-pvE"/>
                         <viewControllerLayoutGuide type="bottom" id="K6h-SE-TzD"/>

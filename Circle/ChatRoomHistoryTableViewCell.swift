@@ -1,5 +1,5 @@
 //
-//  ConversationHistoryTableViewCell.swift
+//  ChatRoomHistoryTableViewCell.swift
 //  Circle
 //
 //  Created by Michael Hahn on 11/26/14.
@@ -8,17 +8,17 @@
 
 import UIKit
 
-class ConversationHistoryTableViewCell: UITableViewCell {
+class ChatRoomHistoryTableViewCell: UITableViewCell {
     
-    var history: ConversationHistory? {
+    var chatRoom: ChatRoom? {
         didSet {
-            self.profileImage.setImageWithPerson(self.history!.recipient)
-            self.messageContents.text = self.history!.message.contents
-            self.recipientLabel.text = self.history!.recipient.description
+            self.profileImage.setImageWithProfileImageURL(chatRoom!.profileImageURL())
+            self.messageContents.text = self.chatRoom!.lastMessage.contents
+            self.recipientLabel.text = self.chatRoom!.description
             
             let dateFormatter = NSDateFormatter()
             dateFormatter.dateStyle = .ShortStyle
-            self.lastMessageDate.text = dateFormatter.stringFromDate(self.history!.message.createdAt)
+            self.lastMessageDate.text = dateFormatter.stringFromDate(self.chatRoom!.lastMessage.createdAt)
         }
     }
     

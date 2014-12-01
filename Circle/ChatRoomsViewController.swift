@@ -1,5 +1,5 @@
 //
-//  ConversationsViewController.swift
+//  ChatRoomsViewController.swift
 //  Circle
 //
 //  Created by Michael Hahn on 11/26/14.
@@ -8,9 +8,9 @@
 
 import UIKit
 
-class ConversationsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, NoConversationsViewDelegate, SelectContactDelegate {
+class ChatRoomsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, NoConversationsViewDelegate, SelectContactDelegate {
     
-    var conversations: [ConversationHistory]?
+    var chatRooms: [ChatRoom]?
     var placeholder: NoConversationsView?
 
     @IBOutlet weak var tableView: UITableView!
@@ -42,8 +42,8 @@ class ConversationsViewController: UIViewController, UITableViewDataSource, UITa
         tableView.delegate = self
         tableView.dataSource = self
         tableView.registerNib(
-            UINib(nibName: "ConversationHistoryTableViewCell", bundle: nil),
-            forCellReuseIdentifier: ConversationHistoryTableViewCell.reuseIdentifier()
+            UINib(nibName: "ChatRoomHistoryTableViewCell", bundle: nil),
+            forCellReuseIdentifier: ChatRoomHistoryTableViewCell.reuseIdentifier()
         )
         tableView.separatorInset = UIEdgeInsetsMake(0.0, 64.0, 0.0, 0.0)
         tableView.rowHeight = 64.0
@@ -63,16 +63,16 @@ class ConversationsViewController: UIViewController, UITableViewDataSource, UITa
     }
     
     private func loadData() {
-        let parseQuery = ConversationHistory.query() as PFQuery
-        parseQuery.includeKey("sender")
-        parseQuery.includeKey("recipient")
-        parseQuery.includeKey("message")
-        parseQuery.orderByDescending("createdAt")
-        parseQuery.whereKey("sender", equalTo: AuthViewController.getLoggedInPerson())
+        let parseQuery = ChatRoom.query() as PFQuery
+        parseQuery.includeKey("members")
+        parseQuery.includeKey("lastMessage")
+        parseQuery.orderByDescending("updatedAt")
+        parseQuery.whereKey("members", equalTo: AuthViewController.getLoggedInPerson())
+        parseQuery.whereKeyExists("lastMessage")
         parseQuery.findObjectsInBackgroundWithBlock { (objects: [AnyObject]!, error: NSError!) -> Void in
             if error == nil {
-                self.conversations = objects as? [ConversationHistory]
-                if let conversations = self.conversations {
+                self.chatRooms = objects as? [ChatRoom]
+                if let conversations = self.chatRooms {
                     if conversations.count > 0 {
                         UIView.animateWithDuration(0.3, animations: { _ -> Void in
                             self.placeholder?.alpha = 0
@@ -96,13 +96,13 @@ class ConversationsViewController: UIViewController, UITableViewDataSource, UITa
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return conversations?.count ?? 0
+        return chatRooms?.count ?? 0
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(ConversationHistoryTableViewCell.reuseIdentifier()) as ConversationHistoryTableViewCell
-        if let history: ConversationHistory = conversations?[indexPath.row] {
-            cell.history = history
+        let cell = tableView.dequeueReusableCellWithIdentifier(ChatRoomHistoryTableViewCell.reuseIdentifier()) as ChatRoomHistoryTableViewCell
+        if let chatRoom: ChatRoom = chatRooms?[indexPath.row] {
+            cell.chatRoom = chatRoom
         }
         return cell
     }
@@ -119,9 +119,8 @@ class ConversationsViewController: UIViewController, UITableViewDataSource, UITa
     
     // MARK: - SelectContactDelegate
     
-    func didSelectContact(person: Person) {
-        let vc = ConversationViewController.instance()
-        vc.recipient = person
+    func didSelectChatRoom(chatRoom: ChatRoom) {
+        let vc = ChatRoomViewController(chatRoom: chatRoom)
         navigationController?.pushViewController(vc, animated: false)
     }
     

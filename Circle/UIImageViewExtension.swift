@@ -27,5 +27,12 @@ extension UIImageView {
             placeholderImage: UIImage(named: "DefaultPerson")
         )
     }
+    
+    func setImageWithProfileImageURL(profileImageURL: String) {
+        self.setImageWithURL(
+            NSURL(string: profileImageURL),
+            placeholderImage: UIImage(named: "DefaultPerson")
+        )
+    }
 }
 

@@ -1,5 +1,5 @@
 //
-//  ConversationViewController.swift
+//  ChatRoomViewController.swift
 //  Circle
 //
 //  Created by Michael Hahn on 11/29/14.
@@ -8,12 +8,13 @@
 
 import UIKit
 
-class ConversationViewController: SLKTextViewController {
+class ChatRoomViewController: SLKTextViewController {
     
-    var recipient: Person?
+    var chatRoom: ChatRoom?
     
-    override init!(collectionViewLayout layout: UICollectionViewLayout!) {
-        super.init(collectionViewLayout: layout)
+    init(chatRoom: ChatRoom) {
+        self.chatRoom = chatRoom
+        super.init(collectionViewLayout: UICollectionViewFlowLayout())
         hidesBottomBarWhenPushed = true
     }
 
@@ -26,11 +27,7 @@ class ConversationViewController: SLKTextViewController {
         configureNavigation()
         configureView()
     }
-    
-    class func instance() -> ConversationViewController {
-        return ConversationViewController(collectionViewLayout: UICollectionViewFlowLayout())
-    }
-    
+
     // MARK: - Configuration
     
     private func configureView() {
@@ -38,13 +35,13 @@ class ConversationViewController: SLKTextViewController {
     }
     
     private func configureNavigation() {
-        navigationItem.title = recipient?.description
+        navigationItem.title = chatRoom?.description
     }
     
     // MARK: - SLKTextViewController Overrides
     
     override func didPressRightButton(sender: AnyObject!) {
-        let message = MessageActions.sendMessage(recipient!, contents: textView.text)
+        let message = MessageActions.sendMessage(chatRoom!, contents: textView.text)
         super.didPressRightButton(sender)
     }
 }

@@ -20,12 +20,13 @@ class Message: PFObject, PFSubclassing {
         return self.objectForKey("sender") as Person!
     }
     
+    // TODO: possibly have an object like ReadReceipt which could contain Person and a Date of when it was read.
     var readBy: [String]! {
         return self.objectForKey("readBy") as [String]!
     }
     
-    var recipient: Person! {
-        return self.objectForKey("recipient") as Person!
+    var chatRoom: ChatRoom! {
+        return self.objectForKey("chatRoom") as ChatRoom
     }
     
     override class func load() {
