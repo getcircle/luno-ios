@@ -45,7 +45,7 @@ class SelectContactViewController: UITableViewController, UISearchBarDelegate {
     
     private func configureNavigation() {
         self.navigationItem.title = "Select Contact"
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Cancel", style: .Done, target: self, action: "handleCancel:")
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Cancel", style: .Plain, target: self, action: "handleCancel:")
         self.navigationController?.navigationBar.translucent = false
     }
     

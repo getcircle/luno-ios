@@ -59,7 +59,7 @@ class ChatRoomsViewController: UIViewController, UITableViewDataSource, UITableV
 
     private func configureNavigation() {
         navigationItem.title = "Messages"
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Compose", style: .Done, target: self, action: "handleCompose:")
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Compose", style: .Plain, target: self, action: "handleCompose:")
     }
     
     private func loadData() {
