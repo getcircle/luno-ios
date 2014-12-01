@@ -96,10 +96,11 @@ class SelectContactViewController: UITableViewController, UISearchBarDelegate {
             self.view.addSubview(activityIndicator)
             activityIndicator.autoCenterInSuperview()
             activityIndicator.startAnimating()
-            ChatRoom.getRoomWithBlock([contact, AuthViewController.getLoggedInPerson()!]) { (room: ChatRoom, error: NSError?) -> Void in
+            let members = [contact, AuthViewController.getLoggedInPerson()!]
+            ChatRoom.getRoomWithBlock(members) { (room: ChatRoom, error: NSError?) -> Void in
                 self.delegate?.didSelectChatRoom(room)
                 activityIndicator.stopAnimating()
-                self.dismissViewControllerAnimated(true, completion: nil)
+                self.dismiss()
                 return
             }
         }
@@ -124,6 +125,12 @@ class SelectContactViewController: UITableViewController, UISearchBarDelegate {
     // MARK: - Actions
     
     func handleCancel(sender: AnyObject) {
+        dismiss()
+    }
+    
+    // MARK: - Helpers
+    
+    func dismiss() {
         searchBar.resignFirstResponder()
         dismissViewControllerAnimated(true, completion: nil)
     }
