@@ -10,8 +10,7 @@ import UIKit
 
 extension UIView {
     func addRoundCorners() {
-        layer.cornerRadius = 5.0
-        layer.masksToBounds = true
+        layer.cornerRadiusWithMaskToBounds(5.0)
     }
     
     func addShakeAnimation() {
