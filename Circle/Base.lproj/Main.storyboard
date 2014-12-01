@@ -9,7 +9,7 @@
             <objects>
                 <tabBarController id="Lvt-AE-kqt" customClass="MainTabViewController" customModule="Circle" customModuleProvider="target" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="Qji-CS-nJD">
+                    <tabBar key="tabBar" contentMode="scaleToFill" translucent="NO" id="Qji-CS-nJD">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -45,7 +45,7 @@
             <objects>
                 <collectionViewController storyboardIdentifier="messages" title="Messages" id="xDt-tP-uI8" customClass="MessagesViewController" customModule="Circle" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="qb8-J4-8C1">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ZJA-vh-XcC" customClass="MessagesCollectionViewLayout" customModule="Circle" customModuleProvider="target">
@@ -105,7 +105,7 @@
             <objects>
                 <tableViewController title="People List" clearsSelectionOnViewWillAppear="NO" id="7bK-jq-Zjz" customClass="PeopleViewController" customModule="Circle" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="r7i-6Z-zg0">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -146,9 +146,9 @@
         <!--Profile-->
         <scene sceneID="uzJ-m3-vlO">
             <objects>
-                <collectionViewController storyboardIdentifier="ProfileViewController" title="Profile" extendedLayoutIncludesOpaqueBars="YES" automaticallyAdjustsScrollViewInsets="NO" id="ofx-aS-lg0" customClass="ProfileViewController" customModule="Circle" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" id="qhj-eK-GxV">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                <collectionViewController storyboardIdentifier="ProfileViewController" title="Profile" automaticallyAdjustsScrollViewInsets="NO" id="ofx-aS-lg0" customClass="ProfileViewController" customModule="Circle" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="qhj-eK-GxV">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="calibratedRGB"/>
                         <collectionViewLayout key="collectionViewLayout" id="E9E-zg-oqb" customClass="ProfileCollectionViewLayout" customModule="Circle" customModuleProvider="target"/>
@@ -167,6 +167,7 @@
                             <outlet property="delegate" destination="ofx-aS-lg0" id="Cqc-oc-PjA"/>
                         </connections>
                     </collectionView>
+                    <extendedEdge key="edgesForExtendedLayout" top="YES"/>
                     <navigationItem key="navigationItem" id="BAe-1F-mQe"/>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xls-Qj-HOy" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -180,6 +181,6 @@
         <image name="Profile" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="J4w-MH-X1C"/>
+        <segue reference="gkF-Dz-NZe"/>
     </inferredMetricsTieBreakers>
 </document>

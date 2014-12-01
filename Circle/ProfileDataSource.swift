@@ -15,6 +15,8 @@ class ProfileDataSource: NSObject, UICollectionViewDataSource {
             fillData()
         }
     }
+    
+    private (set) var profileHeaderView: ProfileHeaderCollectionReusableView?
     var attributes: [String] = []
     let baseInfoKeySet = [
         "email",
@@ -88,6 +90,7 @@ class ProfileDataSource: NSObject, UICollectionViewDataSource {
                 supplementaryView.setPerson(person)
             }
             
+            profileHeaderView = supplementaryView
             return supplementaryView
     }
     

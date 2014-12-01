@@ -8,51 +8,51 @@
 
 class Person : PFObject, PFSubclassing {
     
-    var profileImageURL:String! {
+    var profileImageURL: String! {
         return self.objectForKey("profileImageURL") as String!
     }
 
-    var firstName:String! {
+    var firstName: String! {
         return self.objectForKey("firstName") as String!
     }
     
-    var lastName:String! {
+    var lastName: String! {
         return self.objectForKey("lastName") as String!
     }
 
-    var email:String! {
+    var email: String! {
         return self.objectForKey("email") as String!
     }
 
-    var title:String! {
+    var title: String! {
         return self.objectForKey("title") as String!
     }
 
-    var cell:String! {
+    var cell: String! {
         return self.objectForKey("cell") as String!
     }
 
-    var location:String! {
+    var location: String! {
         return self.objectForKey("location") as String!
     }
 
-    var country:String! {
+    var country: String! {
         return self.objectForKey("country") as String!
     }
     
-    var manager:Person! {
+    var manager: Person! {
         return self.objectForKey("manager") as Person!
     }
 
-    var department:String! {
+    var department: String! {
         return self.objectForKey("department") as String!
     }
     
-    var user:PFUser! {
+    var user: PFUser! {
         return self.objectForKey("user") as PFUser!
     }
     
-    var hasDirectReports:Bool!
+    var hasDirectReports: Bool!
     
     var hasManager: Bool {
         return manager != nil

@@ -66,6 +66,12 @@
 #define COCOAPODS_VERSION_MINOR_Parse 5
 #define COCOAPODS_VERSION_PATCH_Parse 0
 
+// PureLayout
+#define COCOAPODS_POD_AVAILABLE_PureLayout
+#define COCOAPODS_VERSION_MAJOR_PureLayout 2
+#define COCOAPODS_VERSION_MINOR_PureLayout 0
+#define COCOAPODS_VERSION_PATCH_PureLayout 3
+
 // SlackTextViewController
 #define COCOAPODS_POD_AVAILABLE_SlackTextViewController
 #define COCOAPODS_VERSION_MAJOR_SlackTextViewController 1
@@ -77,4 +83,10 @@
 #define COCOAPODS_VERSION_MAJOR_SlackTextViewController_Additions 1
 #define COCOAPODS_VERSION_MINOR_SlackTextViewController_Additions 3
 #define COCOAPODS_VERSION_PATCH_SlackTextViewController_Additions 3
+
+// UIViewPlusPosition
+#define COCOAPODS_POD_AVAILABLE_UIViewPlusPosition
+#define COCOAPODS_VERSION_MAJOR_UIViewPlusPosition 0
+#define COCOAPODS_VERSION_MINOR_UIViewPlusPosition 0
+#define COCOAPODS_VERSION_PATCH_UIViewPlusPosition 1
 

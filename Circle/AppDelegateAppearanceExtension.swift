@@ -15,6 +15,13 @@ extension AppDelegate {
         window!.tintColor = UIColor.appTintColor()
         UINavigationBar.appearance().tintColor = UIColor.navigationBarTintColor()
         UINavigationBar.appearance().barTintColor = UIColor.navigationBarBarTintColor()
-        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.navigationBarTitleColor()]
+
+        let navBarTitleAttributes = [
+            NSFontAttributeName: UIFont.navigationBarFont(),
+            NSForegroundColorAttributeName: UIColor.navigationBarTitleColor(),
+        ]
+        UINavigationBar.appearance().titleTextAttributes = navBarTitleAttributes
+        UIBarButtonItem.appearance().setTitleTextAttributes(navBarTitleAttributes, forState: .Normal)
+        UIBarButtonItem.appearance().setTitleTextAttributes(navBarTitleAttributes, forState: .Highlighted)
     }
 }

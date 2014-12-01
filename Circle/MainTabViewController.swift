@@ -49,7 +49,6 @@ class MainTabViewController: UITabBarController, UITabBarControllerDelegate {
             if (viewController as UINavigationController).topViewController is ProfileViewController {
                 var profileVC = (viewController as UINavigationController).topViewController as ProfileViewController
                 profileVC.person = AuthViewController.getLoggedInPerson()
-                println(AuthViewController.getLoggedInPerson())
                 profileVC.showLogOutButton = true
             }
         }

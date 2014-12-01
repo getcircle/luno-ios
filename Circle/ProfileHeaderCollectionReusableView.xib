@@ -28,6 +28,12 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ravi Rani" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zJL-k5-Ada" userLabel="NameNavLabel">
+                    <rect key="frame" x="20" y="164" width="280" height="30"/>
+                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="17"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Co-founder" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GGm-ME-NAZ" userLabel="TitleLabel">
                     <rect key="frame" x="10" y="166" width="300" height="20"/>
                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
@@ -39,12 +45,16 @@
                 <constraint firstItem="65x-XU-UUc" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" id="7FU-uk-nJx"/>
                 <constraint firstItem="GGm-ME-NAZ" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" constant="10" id="9Gx-ny-GHb"/>
                 <constraint firstItem="1Tu-Zx-9yR" firstAttribute="top" secondItem="kX0-a4-Q8w" secondAttribute="bottom" constant="12" id="BGX-Cf-EUZ"/>
+                <constraint firstItem="zJL-k5-Ada" firstAttribute="top" secondItem="kX0-a4-Q8w" secondAttribute="bottom" priority="750" constant="39" id="JG4-cb-RHZ"/>
+                <constraint firstAttribute="trailing" secondItem="zJL-k5-Ada" secondAttribute="trailing" constant="20" symbolic="YES" id="LPl-jQ-bUh"/>
                 <constraint firstItem="1Tu-Zx-9yR" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" constant="10" id="N0I-6W-CCw"/>
                 <constraint firstItem="GGm-ME-NAZ" firstAttribute="top" secondItem="1Tu-Zx-9yR" secondAttribute="bottom" constant="-2" id="Ohk-wO-3LS"/>
+                <constraint firstAttribute="bottom" secondItem="zJL-k5-Ada" secondAttribute="bottom" constant="6" id="YtX-yF-wlR"/>
                 <constraint firstItem="65x-XU-UUc" firstAttribute="top" secondItem="U6b-Vx-4bR" secondAttribute="top" id="bdw-jq-pCf"/>
                 <constraint firstAttribute="centerX" secondItem="kX0-a4-Q8w" secondAttribute="centerX" id="eCw-ga-vME"/>
                 <constraint firstAttribute="trailing" secondItem="1Tu-Zx-9yR" secondAttribute="trailing" constant="10" id="f7I-mY-EpH"/>
                 <constraint firstAttribute="trailing" secondItem="65x-XU-UUc" secondAttribute="trailing" id="iqq-Xz-0nC"/>
+                <constraint firstItem="zJL-k5-Ada" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" constant="20" symbolic="YES" id="puw-hV-yod"/>
                 <constraint firstAttribute="bottom" secondItem="65x-XU-UUc" secondAttribute="bottom" id="wdr-71-VNh"/>
                 <constraint firstAttribute="trailing" secondItem="GGm-ME-NAZ" secondAttribute="trailing" constant="10" id="xlc-ll-EfA"/>
                 <constraint firstAttribute="centerY" secondItem="kX0-a4-Q8w" secondAttribute="centerY" constant="15" id="yc1-Eg-fN9"/>
@@ -52,6 +62,7 @@
             <connections>
                 <outlet property="backgroundImage" destination="65x-XU-UUc" id="zYp-Qk-3vF"/>
                 <outlet property="nameLabel" destination="1Tu-Zx-9yR" id="dCN-I3-cEP"/>
+                <outlet property="nameNavLabel" destination="zJL-k5-Ada" id="fZN-PC-Fce"/>
                 <outlet property="profileImage" destination="kX0-a4-Q8w" id="m00-lp-0Do"/>
                 <outlet property="titleLabel" destination="GGm-ME-NAZ" id="FRS-1Y-xvS"/>
             </connections>
