@@ -15,10 +15,7 @@ class ChatRoomHistoryTableViewCell: UITableViewCell {
             self.profileImage.setImageWithProfileImageURL(chatRoom!.profileImageURL())
             self.messageContents.text = self.chatRoom!.lastMessage.contents
             self.recipientLabel.text = self.chatRoom!.description
-            
-            let dateFormatter = NSDateFormatter()
-            dateFormatter.dateStyle = .ShortStyle
-            self.lastMessageDate.text = dateFormatter.stringFromDate(self.chatRoom!.lastMessage.createdAt)
+            self.lastMessageDate.text = NSDateFormatter.shortStyleStringFromDate(self.chatRoom!.lastMessage.createdAt)
         }
     }
     
