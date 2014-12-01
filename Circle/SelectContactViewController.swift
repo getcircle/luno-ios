@@ -57,14 +57,7 @@ class SelectContactViewController: UITableViewController, UISearchBarDelegate {
         tableView.registerNib(UINib(nibName: "ContactTableViewCell", bundle: nil), forCellReuseIdentifier: ContactTableViewCell.classReuseIdentifier)
         tableView.separatorInset = UIEdgeInsetsMake(0.0, 64.0, 0.0, 0.0)
         tableView.rowHeight = 64.0
-        addDummyFooterView()
-    }
-    
-    private func addDummyFooterView() {
-        // Add dummy footer view
-        let footerView = UIView(frame: CGRectMake(0.0, 0.0, tableView.frame.size.width, 10.0))
-        footerView.backgroundColor = UIColor.clearColor()
-        tableView.tableFooterView = footerView
+        tableView.addDummyFooterView()
     }
     
     private func configureSearchBar() {

@@ -38,6 +38,7 @@
 		A73E1BB3914D1A036D2FAE47 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FD94FE17CC5CD80FF96B24E5 /* libPods.a */; };
 		BF041BB81A2C0BD70043EC72 /* ChatRoomsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF041BB71A2C0BD70043EC72 /* ChatRoomsViewController.swift */; };
 		BF041BBA1A2C119B0043EC72 /* NSDateFormatterExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF041BB91A2C119B0043EC72 /* NSDateFormatterExtension.swift */; };
+		BF59AA931A2C152F00C0CDB9 /* UITableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF59AA921A2C152F00C0CDB9 /* UITableViewExtension.swift */; };
 		BF5FCA6E1A269A0300F511EF /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5FCA6D1A269A0300F511EF /* Message.swift */; };
 		BF5FCA711A269CF300F511EF /* ChatRoomHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5FCA6F1A269CF300F511EF /* ChatRoomHistoryTableViewCell.swift */; };
 		BF5FCA721A269CF300F511EF /* ChatRoomHistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF5FCA701A269CF300F511EF /* ChatRoomHistoryTableViewCell.xib */; };
@@ -98,6 +99,7 @@
 		8FD041A11A2C03AA00FE28EF /* UIFontExtention.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIFontExtention.swift; sourceTree = "<group>"; };
 		BF041BB71A2C0BD70043EC72 /* ChatRoomsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatRoomsViewController.swift; sourceTree = "<group>"; };
 		BF041BB91A2C119B0043EC72 /* NSDateFormatterExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDateFormatterExtension.swift; sourceTree = "<group>"; };
+		BF59AA921A2C152F00C0CDB9 /* UITableViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewExtension.swift; sourceTree = "<group>"; };
 		BF5FCA6D1A269A0300F511EF /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		BF5FCA6F1A269CF300F511EF /* ChatRoomHistoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatRoomHistoryTableViewCell.swift; sourceTree = "<group>"; };
 		BF5FCA701A269CF300F511EF /* ChatRoomHistoryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatRoomHistoryTableViewCell.xib; sourceTree = "<group>"; };
@@ -244,6 +246,7 @@
 				8F22CBF01A2844F50026376E /* UINavigationBarExtension.swift */,
 				8F22CBFA1A29AF450026376E /* UIViewExtension.swift */,
 				BF041BB91A2C119B0043EC72 /* NSDateFormatterExtension.swift */,
+				BF59AA921A2C152F00C0CDB9 /* UITableViewExtension.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -480,6 +483,7 @@
 				BFEDB13F1A2A82FE00250165 /* MessageActions.swift in Sources */,
 				8F00049B1A2419730096477A /* PeopleViewController.swift in Sources */,
 				BF041BBA1A2C119B0043EC72 /* NSDateFormatterExtension.swift in Sources */,
+				BF59AA931A2C152F00C0CDB9 /* UITableViewExtension.swift in Sources */,
 				8F22CBF11A2844F50026376E /* UINavigationBarExtension.swift in Sources */,
 				BFEDB1431A2A8CA700250165 /* UICollectionViewFlowLayoutExtension.swift in Sources */,
 				8F22CBF81A29A8EB0026376E /* AuthViewController.swift in Sources */,
