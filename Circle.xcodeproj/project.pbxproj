@@ -221,9 +221,7 @@
 			children = (
 				8F0004BC1A24225A0096477A /* ContactTableViewCell.swift */,
 				BF5FCA6F1A269CF300F511EF /* ChatRoomHistoryTableViewCell.swift */,
-				BF5FCA701A269CF300F511EF /* ChatRoomHistoryTableViewCell.xib */,
 				BF5FCA771A26A57000F511EF /* NoConversationsView.swift */,
-				BF5FCA781A26A57000F511EF /* NoConversationsView.xib */,
 				8F22CBE61A27FDA70026376E /* ProfileAttributeCollectionViewCell.swift */,
 				8F22CBDE1A27A8E60026376E /* ProfileHeaderCollectionReusableView.swift */,
 				8F22CBEC1A283D3D0026376E /* SeparatorDecorationView.swift */,
@@ -268,9 +266,11 @@
 			isa = PBXGroup;
 			children = (
 				8F22CBF71A29A8EB0026376E /* AuthViewController.xib */,
+				BF5FCA701A269CF300F511EF /* ChatRoomHistoryTableViewCell.xib */,
 				8F0004BD1A24225A0096477A /* ContactTableViewCell.xib */,
 				8F0004A31A2419730096477A /* LaunchScreen.xib */,
 				8F00049E1A2419730096477A /* Main.storyboard */,
+				BF5FCA781A26A57000F511EF /* NoConversationsView.xib */,
 				8F22CBE71A27FDA70026376E /* ProfileAttributeCollectionViewCell.xib */,
 				8F22CBDF1A27A8E60026376E /* ProfileHeaderCollectionReusableView.xib */,
 				BFEDB1371A2A6D6E00250165 /* SelectContactViewController.xib */,
