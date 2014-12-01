@@ -75,6 +75,7 @@ class ChatRoomViewController: SLKTextViewController {
         )
         let layout = collectionView.collectionViewLayout as UICollectionViewFlowLayout
         layout.itemSize = CGSizeMake(self.view.frame.width, 64.0)
+        collectionView.alwaysBounceVertical = true
     }
     
     private func loadData() {
