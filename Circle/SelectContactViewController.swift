@@ -34,7 +34,11 @@ class SelectContactViewController: UITableViewController, UISearchBarDelegate {
         parseQuery.cachePolicy = kPFCachePolicyCacheElseNetwork
         parseQuery.findObjectsInBackgroundWithBlock { (objects: [AnyObject]!, error: NSError!) -> Void in
             if error == nil {
-                self.contacts = objects as? [Person]
+                let currentUser = AuthViewController.getLoggedInPerson()
+                let contacts = objects as? [Person]
+                self.contacts = contacts?.filter { person in
+                    return currentUser?.objectId != person.objectId
+                }
                 self.visibleContacts = self.contacts
                 self.tableView.reloadData()
             }
