@@ -31,6 +31,8 @@ class ContactTableViewCell: MGSwipeTableCell {
 
         // Add accessory buttons
         addAccessoryButtons()
+        
+        contentView.backgroundColor = UIColor.accessoryButtonBackgroundColor()
     }
 
     func addAccessoryButtons() {
