@@ -11,10 +11,12 @@ import UIKit
 class ProfileHeaderCollectionReusableView: UICollectionReusableView {
 
     @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var nameNavLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var backgroundImage: UIImageView!
-    var visualEffectView: UIVisualEffectView!
+
+    private var visualEffectView: UIVisualEffectView!
     
     class var classReuseIdentifier: String {
         return "ProfileHeaderView"
@@ -31,10 +33,12 @@ class ProfileHeaderCollectionReusableView: UICollectionReusableView {
         insertSubview(visualEffectView, aboveSubview: backgroundImage)
         visualEffectView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
         profileImage.makeItCircular(true)
+        nameNavLabel.alpha = 0.0
     }
-
+    
     func setPerson(person: Person!) {
         nameLabel.text = person.firstName + " " + person.lastName
+        nameNavLabel.text = nameLabel.text
         titleLabel.text = person.title
 
         profileImage.setImageWithURL(
