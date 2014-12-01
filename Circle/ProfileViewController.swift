@@ -80,5 +80,40 @@ class ProfileViewController: UICollectionViewController, UICollectionViewDelegat
         
         return CGSizeZero
     }
+    
+    // MARK: - Scroll view delegate
+    
+    override func scrollViewDidScroll(scrollView: UIScrollView) {
+        
+        if let profileHeaderView = dataSource.profileHeaderView {
+            let contentOffset = scrollView.contentOffset
+            let minOffsetToMakeChanges: CGFloat = 20.0
+            
+            // Do not change anything unless user scrolls up more than 20 points
+            if contentOffset.y > minOffsetToMakeChanges {
+                
+                // Scale down the image and reduce opacity
+                let profileImageFractionValue = 1.0 - (contentOffset.y - minOffsetToMakeChanges)/profileHeaderView.profileImage.frameY
+                profileHeaderView.profileImage.alpha = profileImageFractionValue
+                if profileImageFractionValue >= 0 {
+                    var transform = CGAffineTransformMakeScale(profileImageFractionValue, profileImageFractionValue)
+                    profileHeaderView.profileImage.transform = transform
+                }
+
+                // Reduce opacity of the name and title label at a faster pace
+                let titleLabelAlpha = 1.0 - contentOffset.y/(profileHeaderView.titleLabel.frameY - 40.0)
+                profileHeaderView.titleLabel.alpha = titleLabelAlpha
+                profileHeaderView.nameLabel.alpha = 1.0 - contentOffset.y/(profileHeaderView.nameLabel.frameY - 40.0)
+                profileHeaderView.nameNavLabel.alpha = titleLabelAlpha <= 0.0 ? profileHeaderView.nameNavLabel.alpha + 1/20 : 0.0
+            }
+            else {
+                profileHeaderView.nameLabel.alpha = 1.0
+                profileHeaderView.nameNavLabel.alpha = 0.0
+                profileHeaderView.titleLabel.alpha = 1.0
+                profileHeaderView.profileImage.alpha = 1.0
+                profileHeaderView.profileImage.transform = CGAffineTransformIdentity
+            }
+        }
+    }
 }
 
