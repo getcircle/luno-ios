@@ -15,7 +15,7 @@ class ChatRoomViewController: SLKTextViewController {
     
     init(chatRoom: ChatRoom) {
         self.chatRoom = chatRoom
-        super.init(collectionViewLayout: UICollectionViewFlowLayout())
+        super.init(collectionViewLayout: SpringFlowLayout())
         hidesBottomBarWhenPushed = true
     }
 
@@ -112,7 +112,6 @@ class ChatRoomViewController: SLKTextViewController {
             let sent = cell as MessageSentCollectionViewCell
             sent.message = message
         }
-        cell?.transform = self.collectionView.transform
         return cell!
     }
     

@@ -51,6 +51,7 @@
 		BFB791841A2C33610048E8FB /* MessageSentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB791821A2C33610048E8FB /* MessageSentCollectionViewCell.swift */; };
 		BFB791851A2C33610048E8FB /* MessageSentCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFB791831A2C33610048E8FB /* MessageSentCollectionViewCell.xib */; };
 		BFB791891A2C346A0048E8FB /* CALayerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB791881A2C346A0048E8FB /* CALayerExtension.swift */; };
+		BFB7918B1A2C3C860048E8FB /* SpringFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB7918A1A2C3C860048E8FB /* SpringFlowLayout.swift */; };
 		BFDD9A4C1A2BE7840076407D /* ChatRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDD9A4B1A2BE7840076407D /* ChatRoom.swift */; };
 		BFEDB1381A2A6D6E00250165 /* SelectContactViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFEDB1371A2A6D6E00250165 /* SelectContactViewController.xib */; };
 		BFEDB13F1A2A82FE00250165 /* MessageActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFEDB13E1A2A82FE00250165 /* MessageActions.swift */; };
@@ -117,6 +118,7 @@
 		BFB791821A2C33610048E8FB /* MessageSentCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageSentCollectionViewCell.swift; sourceTree = "<group>"; };
 		BFB791831A2C33610048E8FB /* MessageSentCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageSentCollectionViewCell.xib; sourceTree = "<group>"; };
 		BFB791881A2C346A0048E8FB /* CALayerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CALayerExtension.swift; sourceTree = "<group>"; };
+		BFB7918A1A2C3C860048E8FB /* SpringFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpringFlowLayout.swift; sourceTree = "<group>"; };
 		BFDD9A4B1A2BE7840076407D /* ChatRoom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatRoom.swift; sourceTree = "<group>"; };
 		BFEDB1371A2A6D6E00250165 /* SelectContactViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectContactViewController.xib; sourceTree = "<group>"; };
 		BFEDB13E1A2A82FE00250165 /* MessageActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageActions.swift; sourceTree = "<group>"; };
@@ -304,6 +306,7 @@
 			isa = PBXGroup;
 			children = (
 				8F22CBE41A27ED190026376E /* ProfileCollectionViewLayout.swift */,
+				BFB7918A1A2C3C860048E8FB /* SpringFlowLayout.swift */,
 			);
 			name = Layouts;
 			sourceTree = "<group>";
@@ -507,6 +510,7 @@
 				8F22CBF81A29A8EB0026376E /* AuthViewController.swift in Sources */,
 				8F22CBE31A27AE9B0026376E /* UIImageViewExtension.swift in Sources */,
 				8F22CB731A264A8A0026376E /* MainTabViewController.swift in Sources */,
+				BFB7918B1A2C3C860048E8FB /* SpringFlowLayout.swift in Sources */,
 				8F22CBF51A2865030026376E /* ProfileDataSource.swift in Sources */,
 				8F22CB771A2661890026376E /* AppDelegateAppearanceExtension.swift in Sources */,
 				BF5FCA791A26A57000F511EF /* NoConversationsView.swift in Sources */,
