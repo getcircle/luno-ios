@@ -16,6 +16,7 @@ class ChatRoomViewController: SLKTextViewController {
         }
     }
     var messages: [Message]?
+    var reloadMessagesTimer: NSTimer?
     
     init(person: Person, composeFocus: Bool) {
         super.init(collectionViewLayout: ChatRoomCollectionViewLayout())
@@ -65,12 +66,19 @@ class ChatRoomViewController: SLKTextViewController {
         super.viewWillAppear(animated)
         self.loadData()
     }
+    
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        reloadMessagesTimer?.invalidate()
+    }
 
     // MARK: - Configuration
     
     private func configure() {
         view.backgroundColor = UIColor.whiteColor()
         hidesBottomBarWhenPushed = true
+        reloadMessagesTimer = NSTimer(timeInterval: 5.0, target: self, selector: "loadData", userInfo: nil, repeats: true)
+        NSRunLoop.currentRunLoop().addTimer(reloadMessagesTimer!, forMode: "NSDefaultRunLoopMode")
     }
     
     private func configureNavigation() {
@@ -91,7 +99,7 @@ class ChatRoomViewController: SLKTextViewController {
         collectionView.alwaysBounceVertical = true
     }
     
-    private func loadData() {
+    func loadData() {
         if let room = chatRoom {
             let parseQuery = Message.query()
             parseQuery.whereKey("chatRoom", equalTo: room)

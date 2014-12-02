@@ -14,6 +14,7 @@ class ChatRoomsViewController: UIViewController, UITableViewDataSource, UITableV
     var placeholder: NoConversationsView?
 
     @IBOutlet weak private(set) var tableView: UITableView!
+    var reloadChatsTimer: NSTimer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +26,13 @@ class ChatRoomsViewController: UIViewController, UITableViewDataSource, UITableV
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         loadData()
+        reloadChatsTimer = NSTimer(timeInterval: 5.0, target: self, selector: "loadData", userInfo: nil, repeats: true)
+        NSRunLoop.currentRunLoop().addTimer(reloadChatsTimer!, forMode: "NSDefaultRunLoopMode")
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        reloadChatsTimer?.invalidate()
     }
     
     // MARK: - Configuration
@@ -55,7 +63,7 @@ class ChatRoomsViewController: UIViewController, UITableViewDataSource, UITableV
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Compose", style: .Plain, target: self, action: "handleCompose:")
     }
     
-    private func loadData() {
+    func loadData() {
         let parseQuery = ChatRoom.query() as PFQuery
         parseQuery.includeKey("members")
         parseQuery.includeKey("lastMessage")
