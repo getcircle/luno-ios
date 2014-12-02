@@ -49,4 +49,28 @@ extension UIColor {
     class func viewBackgroundColor() -> UIColor {
         return UIColor.whiteColor()
     }
+    
+    class func twitterColor() -> UIColor {
+        return UIColor(red: 85, green: 172, blue: 238)
+    }
+
+    class func facebookColor() -> UIColor {
+        return UIColor(red: 45, green: 68, blue: 134)
+    }
+
+    class func emailTintColor() -> UIColor {
+        return UIColor(red: 83, green: 83, blue: 83)
+    }
+    
+    class func phoneTintColor() -> UIColor {
+        return UIColor(red: 83, green: 83, blue: 83)
+    }
+    
+    class func linkedinColor() -> UIColor {
+        return UIColor(red: 45, green: 68, blue: 134)
+    }
+    
+    class func githubColor() -> UIColor {
+        return UIColor(red: 83, green: 83, blue: 83)
+    }
 }

@@ -49,6 +49,32 @@ class ProfileDataSource: NSObject, UICollectionViewDataSource {
         "linkedin": "LinkedIn",
         "github": "Github"
     ]
+    
+    var keyToImageDictionary: [String: [String: AnyObject]] = [
+        "twitter": [
+            "image": "Twitter",
+            "tintColor": UIColor.twitterColor(),
+        ],
+        "facebook": [
+            "image": "Facebook",
+            "tintColor": UIColor.facebookColor(),
+        ],
+        "linkedin": [
+            "image": "LinkedIn",
+            "tintColor": UIColor.linkedinColor(),
+        ],
+        "github": [
+            "image": "Twitter",
+            "tintColor": UIColor.githubColor(),
+        ],
+        "email": [
+            "image": "EmailCircle",
+            "tintColor": UIColor.emailTintColor(),
+        ],
+        "cell": [
+            "image": "Telephone",
+            "tintColor": UIColor.phoneTintColor(),
+        ],
     ]
     
     var dataSourceKeys = [AnyObject]()
@@ -85,6 +111,17 @@ class ProfileDataSource: NSObject, UICollectionViewDataSource {
             if let value: AnyObject = person.valueForKey(key) {
                 cell.nameLabel.text = keyToTitle[key]
                 cell.valueLabel.text = value.description
+                
+                if let imageDict: [String: AnyObject] = keyToImageDictionary[key] {
+                    cell.nameImageView.alpha = 1.0
+                    cell.valueLabelTrailingSpaceConstraint.constant = 60.0
+                    cell.nameImageView.image = UIImage(named: (imageDict["image"] as String!))?.imageWithRenderingMode(.AlwaysTemplate)
+                    cell.nameImageView.tintColor = imageDict["tintColor"] as UIColor!
+                }
+                else {
+                    cell.nameImageView.alpha = 0.0
+                    cell.valueLabelTrailingSpaceConstraint.constant = 15.0
+                }
             }
         }
         

@@ -10,9 +10,11 @@ import UIKit
 
 class ProfileAttributeCollectionViewCell: UICollectionViewCell {
 
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var valueLabel: UILabel!
-
+    @IBOutlet private(set) weak var nameLabel: UILabel!
+    @IBOutlet private(set) weak var valueLabel: UILabel!
+    @IBOutlet private(set) weak var nameImageView: UIImageView!
+    @IBOutlet weak var valueLabelTrailingSpaceConstraint: NSLayoutConstraint!
+    
     class var classReuseIdentifier: String {
         return "ProfileAttributeCell"
     }
