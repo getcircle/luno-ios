@@ -43,7 +43,12 @@ class ProfileDataSource: NSObject, UICollectionViewDataSource {
         "location": "City",
         "country": "Country",
         "manager": "Manager",
-        "department": "Department"
+        "department": "Department",
+        "twitter": "Twitter",
+        "facebook": "Facebook",
+        "linkedin": "LinkedIn",
+        "github": "Github"
+    ]
     ]
     
     var dataSourceKeys = [AnyObject]()
@@ -77,7 +82,7 @@ class ProfileDataSource: NSObject, UICollectionViewDataSource {
             forIndexPath: indexPath) as ProfileAttributeCollectionViewCell
         
         if let key = dataSourceKeys[indexPath.section][indexPath.item] as? String {
-            if let value: AnyObject = person.objectForKey(key) {
+            if let value: AnyObject = person.valueForKey(key) {
                 cell.nameLabel.text = keyToTitle[key]
                 cell.valueLabel.text = value.description
             }

@@ -52,6 +52,30 @@ class Person : PFObject, PFSubclassing {
         return self.objectForKey("user") as PFUser!
     }
     
+    var twitter: String! {
+        if let twitterUsername = self.objectForKey("twitter") as String! {
+            return twitterUsername
+        }
+    
+        return "@" + firstName.lowercaseString
+    }
+
+    var facebook: String! {
+        if let facebookUsername = self.objectForKey("facebook") as String! {
+            return facebookUsername
+        }
+        
+        return (firstName + lastName).lowercaseString
+    }
+
+    var linkedin: String! {
+        return self.objectForKey("linkedin") as String!
+    }
+
+    var github: String! {
+        return self.objectForKey("github") as String!
+    }
+
     var hasDirectReports: Bool!
     
     var hasManager: Bool {
