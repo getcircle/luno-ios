@@ -15,6 +15,7 @@ class MessageActions {
         message["contents"] = contents
         message["sender"] = AuthViewController.getLoggedInPerson()
         message["chatRoom"] = chatRoom
+        message["date"] = NSDate()
         message.saveInBackgroundWithBlock { (success: Bool, error: NSError!) -> Void in
             if success {
                 ChatRoom.recordMessage(message)

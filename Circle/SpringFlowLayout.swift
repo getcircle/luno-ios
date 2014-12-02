@@ -122,12 +122,7 @@ class SpringFlowLayout: UICollectionViewFlowLayout {
     }
     
     override func layoutAttributesForElementsInRect(rect: CGRect) -> [AnyObject]? {
-        let attributes = dynamicAnimator?.itemsInRect(rect) as [UICollectionViewLayoutAttributes]
-        // handle cell inversion from the SLKTextViewController
-        for attribute in attributes {
-            attribute.transform = collectionView!.transform
-        }
-        return attributes
+        return dynamicAnimator?.itemsInRect(rect)
     }
     
     override func layoutAttributesForItemAtIndexPath(indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes! {

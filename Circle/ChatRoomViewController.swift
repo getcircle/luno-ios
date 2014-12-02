@@ -18,7 +18,7 @@ class ChatRoomViewController: SLKTextViewController {
     var messages: [Message]?
     
     init(person: Person, composeFocus: Bool) {
-        super.init(collectionViewLayout: SpringFlowLayout())
+        super.init(collectionViewLayout: ChatRoomCollectionViewLayout())
         configure()
         
         let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
@@ -41,7 +41,7 @@ class ChatRoomViewController: SLKTextViewController {
     }
     
     init(room: ChatRoom, composeFocus: Bool) {
-        super.init(collectionViewLayout: SpringFlowLayout())
+        super.init(collectionViewLayout: ChatRoomCollectionViewLayout())
         chatRoom = room
         configure()
         configureNavigation()
@@ -96,13 +96,29 @@ class ChatRoomViewController: SLKTextViewController {
             let parseQuery = Message.query()
             parseQuery.whereKey("chatRoom", equalTo: room)
             parseQuery.includeKey("sender")
+            parseQuery.includeKey("readReceipts")
             parseQuery.orderByDescending("createdAt")
             parseQuery.findObjectsInBackgroundWithBlock { (objects: [AnyObject]!, error: NSError!) -> Void in
                 if error == nil {
                     self.messages = objects as? [Message]
                     self.collectionView.reloadData()
+                    // need to put this behind a timer
+                    self.markMessagesAsRead()
                 }
             }
+        }
+    }
+    
+    private func markMessagesAsRead() {
+        if let items = messages {
+            var readMessages = [Message]()
+            for message in items {
+                let alreadyRead = message.markAsRead()
+                if !alreadyRead {
+                    readMessages.append(message)
+                }
+            }
+            PFObject.saveAllInBackground(readMessages, block: nil)
         }
     }
     

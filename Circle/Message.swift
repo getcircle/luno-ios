@@ -8,8 +8,21 @@
 
 class Message: PFObject, PFSubclassing {
     
+    override class func load() {
+        self.registerSubclass()
+    }
+    
+    class func parseClassName() -> String! {
+        return "Message"
+    }
+    
     var contents: String! {
         return self.objectForKey("contents") as String!
+    }
+    
+    
+    var date: NSDate! {
+        return self.objectForKey("date") as NSDate!
     }
     
     var ephemeral: Bool! {
@@ -20,21 +33,40 @@ class Message: PFObject, PFSubclassing {
         return self.objectForKey("sender") as Person!
     }
     
-    // TODO: possibly have an object like ReadReceipt which could contain Person and a Date of when it was read.
-    var readBy: [String]! {
-        return self.objectForKey("readBy") as [String]!
+    var readReceipts: [ReadReceipt]! {
+        return self.objectForKey("readReceipts") as [ReadReceipt]!
     }
     
     var chatRoom: ChatRoom! {
-        return self.objectForKey("chatRoom") as ChatRoom
+        return self.objectForKey("chatRoom") as ChatRoom!
     }
     
-    override class func load() {
-        self.registerSubclass()
+    func currentUserHasRead() -> Bool {
+        var hasRead = false
+        if readReceipts != nil {
+            for receipt in readReceipts {
+                if receipt.person.objectId == AuthViewController.getLoggedInPerson()?.objectId {
+                    hasRead = true
+                    break
+                }
+            }
+        }
+        return hasRead
     }
     
-    class func parseClassName() -> String! {
-        return "Message"
+    func markAsRead() -> Bool {
+        let currentUser = AuthViewController.getLoggedInPerson()
+        let hasRead = currentUserHasRead()
+        var receipts = readReceipts ?? [ReadReceipt]()
+        if !hasRead {
+            let readReceipt = ReadReceipt()
+            readReceipt["person"] = AuthViewController.getLoggedInPerson()?
+            readReceipt["message"] = self
+            receipts.append(readReceipt)
+            
+            self["readReceipts"] = receipts
+        }
+        return hasRead
     }
    
 }
