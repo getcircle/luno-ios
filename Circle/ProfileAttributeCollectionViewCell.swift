@@ -18,4 +18,12 @@ class ProfileAttributeCollectionViewCell: UICollectionViewCell {
     class var classReuseIdentifier: String {
         return "ProfileAttributeCell"
     }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        // Collection view does some trickery and removes constraints from
+        // background views. So, we have to add it again in code
+        selectedBackgroundView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
+    }
 }
