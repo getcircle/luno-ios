@@ -24,6 +24,14 @@ class ProfileDataSource: NSObject, UICollectionViewDataSource {
         "location",
         "country"
     ]
+
+    let socialInfoKeySet = [
+        "twitter",
+        "facebook",
+        "linkedin",
+        "github"
+    ]
+    
     let managerInfoKeySet = [
         "manager",
         "department"
@@ -47,10 +55,12 @@ class ProfileDataSource: NSObject, UICollectionViewDataSource {
     
     private func fillData() {
         dataSourceKeys.removeAll()
-        dataSourceKeys.append(baseInfoKeySet)
-        if person.hasManager {
-            dataSourceKeys.append(managerInfoKeySet)
+        for dataSet in [baseInfoKeySet, socialInfoKeySet, managerInfoKeySet] {
+            dataSourceKeys.append(dataSet.filter({ self.person.valueForKey($0) != nil }))
         }
+        
+        // Remove any sets that did not have any elements with a non-nil value
+        dataSourceKeys = dataSourceKeys.filter({ $0.count != 0 })
     }
     
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
