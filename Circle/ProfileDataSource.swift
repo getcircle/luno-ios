@@ -15,9 +15,32 @@ class ProfileDataSource: NSObject, UICollectionViewDataSource {
             fillData()
         }
     }
+
+    enum CellType: String {
+        case Email = "email"
+        case CellPhone = "cell"
+        case Twitter = "twitter"
+        case Facebook = "facebook"
+        case LinkedIn = "linkedin"
+        case Github = "github"
+        case Manager = "manager"
+        case Other = "other"
+        
+        static let allValues = [Email, CellPhone, Twitter, Facebook, LinkedIn, Github, Manager]
+        static func typeByKey(key: String) -> CellType {
+            for value in self.allValues {
+                if value.rawValue == key {
+                    return value
+                }
+            }
+            
+            return .Other
+        }
+    }
     
     private (set) var profileHeaderView: ProfileHeaderCollectionReusableView?
-    var attributes: [String] = []
+    private var attributes: [String] = []
+
     let baseInfoKeySet = [
         "email",
         "cell",
@@ -50,7 +73,7 @@ class ProfileDataSource: NSObject, UICollectionViewDataSource {
         "github": "Github"
     ]
     
-    var keyToImageDictionary: [String: [String: AnyObject]] = [
+    let keyToImageDictionary: [String: [String: AnyObject]] = [
         "twitter": [
             "image": "Twitter",
             "tintColor": UIColor.twitterColor(),
@@ -77,7 +100,7 @@ class ProfileDataSource: NSObject, UICollectionViewDataSource {
         ],
     ]
     
-    var dataSourceKeys = [AnyObject]()
+    private var dataSourceKeys = [AnyObject]()
     
     convenience init(person: Person) {
         self.init()
@@ -94,6 +117,8 @@ class ProfileDataSource: NSObject, UICollectionViewDataSource {
         dataSourceKeys = dataSourceKeys.filter({ $0.count != 0 })
     }
     
+    // MARK: - Collection view data source
+    
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return dataSourceKeys.count
     }
@@ -108,6 +133,7 @@ class ProfileDataSource: NSObject, UICollectionViewDataSource {
             forIndexPath: indexPath) as ProfileAttributeCollectionViewCell
         
         if let key = dataSourceKeys[indexPath.section][indexPath.item] as? String {
+            println(key)
             if let value: AnyObject = person.valueForKey(key) {
                 cell.nameLabel.text = keyToTitle[key]
                 cell.valueLabel.text = value.description
@@ -144,6 +170,14 @@ class ProfileDataSource: NSObject, UICollectionViewDataSource {
             
             profileHeaderView = supplementaryView
             return supplementaryView
+    }
+    
+    func typeOfCell(indexPath: NSIndexPath) -> CellType {
+        if let key = dataSourceKeys[indexPath.section][indexPath.item] as? String {
+            return CellType.typeByKey(key)
+        }
+        
+        return .Other
     }
     
 }
