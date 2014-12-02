@@ -40,8 +40,8 @@ class Person : PFObject, PFSubclassing {
         return self.objectForKey("country") as String!
     }
     
-    var manager: Person! {
-        return self.objectForKey("manager") as Person!
+    var manager: Person? {
+        return self.objectForKey("manager") as Person?
     }
 
     var department: String! {
@@ -83,7 +83,7 @@ class Person : PFObject, PFSubclassing {
     }
     
     func description() -> String {
-        return firstName + " " + lastName
+        return self.isDataAvailable() ? (firstName + " " + lastName) : ""
     }
     
     override class func load() {
