@@ -10,10 +10,20 @@ import UIKit
 
 class ProfileAttributeCollectionViewCell: UICollectionViewCell {
 
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var valueLabel: UILabel!
-
+    @IBOutlet private(set) weak var nameLabel: UILabel!
+    @IBOutlet private(set) weak var valueLabel: UILabel!
+    @IBOutlet private(set) weak var nameImageView: UIImageView!
+    @IBOutlet weak var valueLabelTrailingSpaceConstraint: NSLayoutConstraint!
+    
     class var classReuseIdentifier: String {
         return "ProfileAttributeCell"
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        // Collection view does some trickery and removes constraints from
+        // background views. So, we have to add it again in code
+        selectedBackgroundView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
     }
 }

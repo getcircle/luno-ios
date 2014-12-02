@@ -15,15 +15,46 @@ class ProfileDataSource: NSObject, UICollectionViewDataSource {
             fillData()
         }
     }
+
+    enum CellType: String {
+        case Email = "email"
+        case CellPhone = "cell"
+        case Twitter = "twitter"
+        case Facebook = "facebook"
+        case LinkedIn = "linkedin"
+        case Github = "github"
+        case Manager = "manager"
+        case Other = "other"
+        
+        static let allValues = [Email, CellPhone, Twitter, Facebook, LinkedIn, Github, Manager]
+        static func typeByKey(key: String) -> CellType {
+            for value in self.allValues {
+                if value.rawValue == key {
+                    return value
+                }
+            }
+            
+            return .Other
+        }
+    }
     
     private (set) var profileHeaderView: ProfileHeaderCollectionReusableView?
-    var attributes: [String] = []
+    private var attributes: [String] = []
+
     let baseInfoKeySet = [
         "email",
         "cell",
         "location",
         "country"
     ]
+
+    let socialInfoKeySet = [
+        "twitter",
+        "facebook",
+        "linkedin",
+        "github"
+    ]
+    
     let managerInfoKeySet = [
         "manager",
         "department"
@@ -35,10 +66,41 @@ class ProfileDataSource: NSObject, UICollectionViewDataSource {
         "location": "City",
         "country": "Country",
         "manager": "Manager",
-        "department": "Department"
+        "department": "Department",
+        "twitter": "Twitter",
+        "facebook": "Facebook",
+        "linkedin": "LinkedIn",
+        "github": "Github"
     ]
     
-    var dataSourceKeys = [AnyObject]()
+    let keyToImageDictionary: [String: [String: AnyObject]] = [
+        "twitter": [
+            "image": "Twitter",
+            "tintColor": UIColor.twitterColor(),
+        ],
+        "facebook": [
+            "image": "Facebook",
+            "tintColor": UIColor.facebookColor(),
+        ],
+        "linkedin": [
+            "image": "LinkedIn",
+            "tintColor": UIColor.linkedinColor(),
+        ],
+        "github": [
+            "image": "Twitter",
+            "tintColor": UIColor.githubColor(),
+        ],
+        "email": [
+            "image": "EmailCircle",
+            "tintColor": UIColor.emailTintColor(),
+        ],
+        "cell": [
+            "image": "Telephone",
+            "tintColor": UIColor.phoneTintColor(),
+        ],
+    ]
+    
+    private var dataSourceKeys = [AnyObject]()
     
     convenience init(person: Person) {
         self.init()
@@ -47,11 +109,15 @@ class ProfileDataSource: NSObject, UICollectionViewDataSource {
     
     private func fillData() {
         dataSourceKeys.removeAll()
-        dataSourceKeys.append(baseInfoKeySet)
-        if person.hasManager {
-            dataSourceKeys.append(managerInfoKeySet)
+        for dataSet in [baseInfoKeySet, socialInfoKeySet, managerInfoKeySet] {
+            dataSourceKeys.append(dataSet.filter({ self.person.valueForKey($0) != nil }))
         }
+        
+        // Remove any sets that did not have any elements with a non-nil value
+        dataSourceKeys = dataSourceKeys.filter({ $0.count != 0 })
     }
+    
+    // MARK: - Collection view data source
     
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return dataSourceKeys.count
@@ -67,9 +133,20 @@ class ProfileDataSource: NSObject, UICollectionViewDataSource {
             forIndexPath: indexPath) as ProfileAttributeCollectionViewCell
         
         if let key = dataSourceKeys[indexPath.section][indexPath.item] as? String {
-            if let value: AnyObject = person.objectForKey(key) {
+            if let value: AnyObject = person.valueForKey(key) {
                 cell.nameLabel.text = keyToTitle[key]
                 cell.valueLabel.text = value.description
+                
+                if let imageDict: [String: AnyObject] = keyToImageDictionary[key] {
+                    cell.nameImageView.alpha = 1.0
+                    cell.valueLabelTrailingSpaceConstraint.constant = 60.0
+                    cell.nameImageView.image = UIImage(named: (imageDict["image"] as String!))?.imageWithRenderingMode(.AlwaysTemplate)
+                    cell.nameImageView.tintColor = imageDict["tintColor"] as UIColor!
+                }
+                else {
+                    cell.nameImageView.alpha = 0.0
+                    cell.valueLabelTrailingSpaceConstraint.constant = 15.0
+                }
             }
         }
         
@@ -92,6 +169,14 @@ class ProfileDataSource: NSObject, UICollectionViewDataSource {
             
             profileHeaderView = supplementaryView
             return supplementaryView
+    }
+    
+    func typeOfCell(indexPath: NSIndexPath) -> CellType {
+        if let key = dataSourceKeys[indexPath.section][indexPath.item] as? String {
+            return CellType.typeByKey(key)
+        }
+        
+        return .Other
     }
     
 }

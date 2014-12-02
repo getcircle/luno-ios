@@ -12,7 +12,14 @@ class ProfileViewController: UICollectionViewController, UICollectionViewDelegat
 
     var person: Person! {
         didSet {
-            dataSource.person = self.person
+            // Manager object may not be fully inflated
+            // Fetch and cache it in case user decides to go one step further in the chain
+            person.manager?.fetchInBackgroundWithBlock { (managerObject, error: NSError!) -> Void in
+                self.person.setObject(managerObject, forKey: "manager")
+                self.collectionView.reloadData()
+            }
+            
+            dataSource.person = person
             collectionView.reloadData()
         }
     }
@@ -23,16 +30,15 @@ class ProfileViewController: UICollectionViewController, UICollectionViewDelegat
             addLogOutButton()
         }
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
      
         // Do any additional setup after loading the view, typically from a nib.
         customizeCollectionView()
         
-        // Add data source
+        // Assert there is a person
         assert(person != nil, "Person object needs to be set before loading this view.")
-        dataSource.person = person
         collectionView.dataSource = dataSource
     }
     
@@ -67,6 +73,22 @@ class ProfileViewController: UICollectionViewController, UICollectionViewDelegat
             UINib(nibName: "ProfileHeaderCollectionReusableView", bundle: nil),
             forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
             withReuseIdentifier: ProfileHeaderCollectionReusableView.classReuseIdentifier)
+    }
+    
+    // MARK: Collection View delegate
+    
+    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        switch dataSource.typeOfCell(indexPath) {
+        case .Manager:
+            let profileVC = storyboard?.instantiateViewControllerWithIdentifier("ProfileViewController") as ProfileViewController
+            profileVC.person = person.manager
+            navigationController?.pushViewController(profileVC, animated: true)
+
+        default:
+            break
+        }
+        
+        collectionView.deselectItemAtIndexPath(indexPath, animated: true)
     }
     
     // MARK: - Layout delegate
