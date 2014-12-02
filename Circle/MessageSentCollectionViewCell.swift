@@ -22,7 +22,7 @@ class MessageSentCollectionViewCell: UICollectionViewCell {
         didSet {
             contentsLabel.text = message!.contents
             timeStampLabel.text = NSDateFormatter.shortStyleStringFromDate(message!.date)
-            readLabel.hidden = !message!.currentUserHasRead()
+            readLabel.hidden = !message!.hasBeenReadByAll()
         }
     }
     

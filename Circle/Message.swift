@@ -41,14 +41,18 @@ class Message: PFObject, PFSubclassing {
         return self.objectForKey("chatRoom") as ChatRoom!
     }
     
+    func hasBeenReadByAll() -> Bool {
+        // hack: we don't store a read receipt for the sender, so any read receipt means that the other user has read it, given 1-1 chat.
+        return readReceipts != nil && readReceipts.count > 0
+    }
+    
     func currentUserHasRead() -> Bool {
+        let currentUser = AuthViewController.getLoggedInPerson()
         var hasRead = false
         if readReceipts != nil {
-            for receipt in readReceipts {
-                if receipt.person.objectId == AuthViewController.getLoggedInPerson()?.objectId {
-                    hasRead = true
-                    break
-                }
+            // HACK: since we know that we only have 1-1 chat right now and we don't add a read receipt for the sender, if this isn't the sender and we have any readReceipts, then the user had read it.
+            if self.sender.objectId != currentUser?.objectId && readReceipts.count > 0 {
+                hasRead = true
             }
         }
         return hasRead
@@ -58,7 +62,7 @@ class Message: PFObject, PFSubclassing {
         let currentUser = AuthViewController.getLoggedInPerson()
         let hasRead = currentUserHasRead()
         var receipts = readReceipts ?? [ReadReceipt]()
-        if !hasRead {
+        if !hasRead && self.sender.objectId != currentUser?.objectId {
             let readReceipt = ReadReceipt()
             readReceipt["person"] = AuthViewController.getLoggedInPerson()?
             readReceipt["message"] = self
