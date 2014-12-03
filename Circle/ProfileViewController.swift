@@ -38,7 +38,7 @@ class ProfileViewController: UICollectionViewController, UICollectionViewDelegat
         customizeCollectionView()
         
         // Assert there is a person
-        assert(person != nil, "Person object needs to be set before loading this view.")
+        // assert(person != nil, "Person object needs to be set before loading this view.")
         collectionView.dataSource = dataSource
     }
     
