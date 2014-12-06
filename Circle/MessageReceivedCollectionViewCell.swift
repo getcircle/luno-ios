@@ -16,12 +16,16 @@ class MessageReceivedCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var contentsLabel: UILabel!
     @IBOutlet weak var profileImageView: UIImageView!
+    @IBOutlet weak var timeStampLabel: UILabel!
+    @IBOutlet weak var readLabel: UILabel!
 
     var message: Message? {
         didSet {
             contentsLabel.text = message?.contents
             profileImageView.setImageWithPerson(message?.sender)
             profileImageView.makeItCircular(false)
+            timeStampLabel.text = NSDateFormatter.shortStyleStringFromDate(message!.createdAt)
+            readLabel.hidden = !message!.currentUserHasRead()
         }
     }
     
@@ -29,6 +33,7 @@ class MessageReceivedCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         setTranslatesAutoresizingMaskIntoConstraints(false)
         contentsLabel.layer.cornerRadiusWithMaskToBounds(5.0)
+        readLabel.hidden = true
     }
 
 }

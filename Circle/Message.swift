@@ -8,8 +8,21 @@
 
 class Message: PFObject, PFSubclassing {
     
+    override class func load() {
+        self.registerSubclass()
+    }
+    
+    class func parseClassName() -> String! {
+        return "Message"
+    }
+    
     var contents: String! {
         return self.objectForKey("contents") as String!
+    }
+    
+    
+    var date: NSDate! {
+        return self.objectForKey("date") as NSDate!
     }
     
     var ephemeral: Bool! {
@@ -20,21 +33,44 @@ class Message: PFObject, PFSubclassing {
         return self.objectForKey("sender") as Person!
     }
     
-    // TODO: possibly have an object like ReadReceipt which could contain Person and a Date of when it was read.
-    var readBy: [String]! {
-        return self.objectForKey("readBy") as [String]!
+    var readReceipts: [ReadReceipt]! {
+        return self.objectForKey("readReceipts") as [ReadReceipt]!
     }
     
     var chatRoom: ChatRoom! {
-        return self.objectForKey("chatRoom") as ChatRoom
+        return self.objectForKey("chatRoom") as ChatRoom!
     }
     
-    override class func load() {
-        self.registerSubclass()
+    func hasBeenReadByAll() -> Bool {
+        // hack: we don't store a read receipt for the sender, so any read receipt means that the other user has read it, given 1-1 chat.
+        return readReceipts != nil && readReceipts.count > 0
     }
     
-    class func parseClassName() -> String! {
-        return "Message"
+    func currentUserHasRead() -> Bool {
+        let currentUser = AuthViewController.getLoggedInPerson()
+        var hasRead = false
+        if readReceipts != nil {
+            // HACK: since we know that we only have 1-1 chat right now and we don't add a read receipt for the sender, if this isn't the sender and we have any readReceipts, then the user had read it.
+            if self.sender.objectId != currentUser?.objectId && readReceipts.count > 0 {
+                hasRead = true
+            }
+        }
+        return hasRead
+    }
+    
+    func markAsRead() -> Bool {
+        let currentUser = AuthViewController.getLoggedInPerson()
+        let hasRead = currentUserHasRead()
+        var receipts = readReceipts ?? [ReadReceipt]()
+        if !hasRead && self.sender.objectId != currentUser?.objectId {
+            let readReceipt = ReadReceipt()
+            readReceipt["person"] = AuthViewController.getLoggedInPerson()?
+            readReceipt["message"] = self
+            receipts.append(readReceipt)
+            
+            self["readReceipts"] = receipts
+        }
+        return hasRead
     }
    
 }

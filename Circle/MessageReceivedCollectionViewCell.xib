@@ -12,13 +12,6 @@
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CMb-79-6c2">
-                        <rect key="frame" x="71" y="8" width="241" height="48"/>
-                        <color key="backgroundColor" red="0.93799321338383834" green="0.93799321338383834" blue="0.93799321338383834" alpha="1" colorSpace="calibratedRGB"/>
-                        <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="17"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bXD-17-qso">
                         <rect key="frame" x="14" y="10" width="44" height="44"/>
                         <constraints>
@@ -26,21 +19,67 @@
                             <constraint firstAttribute="width" constant="44" id="rnn-bZ-aSO"/>
                         </constraints>
                     </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Igy-I3-OaA">
+                        <rect key="frame" x="71" y="46" width="32" height="10"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="159" id="pmf-c4-Ira"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="13"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="pmf-c4-Ira"/>
+                            </mask>
+                        </variation>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Read" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u6b-xk-WKS">
+                        <rect key="frame" x="111" y="46" width="30" height="10"/>
+                        <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="13"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CMb-79-6c2">
+                        <rect key="frame" x="71" y="8" width="159" height="37"/>
+                        <color key="backgroundColor" red="0.94594381313131315" green="0.94594381313131315" blue="0.94594381313131315" alpha="0.73999999999999999" colorSpace="calibratedRGB"/>
+                        <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="17"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <constraints>
                 <constraint firstItem="bXD-17-qso" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="14" id="0eH-2Y-U7x"/>
+                <constraint firstItem="Igy-I3-OaA" firstAttribute="leading" secondItem="bXD-17-qso" secondAttribute="trailing" constant="13" id="54D-cx-eMp"/>
                 <constraint firstItem="CMb-79-6c2" firstAttribute="leading" secondItem="bXD-17-qso" secondAttribute="trailing" constant="13" id="7WQ-cy-xIE"/>
                 <constraint firstItem="CMb-79-6c2" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="7zH-Bm-7qe"/>
+                <constraint firstItem="u6b-xk-WKS" firstAttribute="top" secondItem="CMb-79-6c2" secondAttribute="bottom" constant="1" id="B4V-QB-csm"/>
+                <constraint firstAttribute="bottom" secondItem="Igy-I3-OaA" secondAttribute="bottom" constant="8" id="CR9-hv-Ybx"/>
                 <constraint firstItem="bXD-17-qso" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="EOT-P5-CkD"/>
-                <constraint firstAttribute="trailing" secondItem="CMb-79-6c2" secondAttribute="trailing" constant="8" id="VkX-cS-tWn"/>
-                <constraint firstAttribute="bottom" secondItem="CMb-79-6c2" secondAttribute="bottom" constant="8" id="mbh-S9-Lkz"/>
+                <constraint firstAttribute="bottom" secondItem="u6b-xk-WKS" secondAttribute="bottom" constant="8" id="FZ3-HI-Dvg"/>
+                <constraint firstItem="u6b-xk-WKS" firstAttribute="top" secondItem="CMb-79-6c2" secondAttribute="bottom" constant="-1" id="LZ0-UK-unj"/>
+                <constraint firstAttribute="bottom" secondItem="Igy-I3-OaA" secondAttribute="bottom" constant="8" id="RRS-at-0jf"/>
+                <constraint firstItem="u6b-xk-WKS" firstAttribute="leading" secondItem="Igy-I3-OaA" secondAttribute="trailing" constant="4" id="Rai-RZ-bBJ"/>
+                <constraint firstItem="u6b-xk-WKS" firstAttribute="leading" secondItem="Igy-I3-OaA" secondAttribute="trailing" constant="8" id="TwT-mC-8Pq"/>
+                <constraint firstItem="Igy-I3-OaA" firstAttribute="top" secondItem="CMb-79-6c2" secondAttribute="bottom" constant="1" id="XJN-MI-FSa"/>
+                <constraint firstItem="Igy-I3-OaA" firstAttribute="leading" secondItem="bXD-17-qso" secondAttribute="trailing" constant="13" id="Y9K-ub-wh2"/>
+                <constraint firstAttribute="bottom" secondItem="CMb-79-6c2" secondAttribute="bottom" constant="19" id="mbh-S9-Lkz"/>
+                <constraint firstAttribute="trailing" secondItem="CMb-79-6c2" secondAttribute="trailing" constant="90" id="usY-JX-Ko2"/>
             </constraints>
             <size key="customSize" width="346" height="50"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="54D-cx-eMp"/>
+                    <exclude reference="RRS-at-0jf"/>
+                    <exclude reference="LZ0-UK-unj"/>
+                    <exclude reference="Rai-RZ-bBJ"/>
+                </mask>
+            </variation>
             <connections>
                 <outlet property="contentsLabel" destination="CMb-79-6c2" id="c53-gE-BYv"/>
                 <outlet property="profileImageView" destination="bXD-17-qso" id="FOp-zP-MNd"/>
+                <outlet property="readLabel" destination="u6b-xk-WKS" id="NeY-qe-Adc"/>
+                <outlet property="timeStampLabel" destination="Igy-I3-OaA" id="TqI-QN-bH7"/>
             </connections>
             <point key="canvasLocation" x="644" y="482"/>
         </collectionViewCell>

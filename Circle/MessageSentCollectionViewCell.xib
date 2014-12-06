@@ -13,10 +13,24 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SoS-Mi-geB">
-                        <rect key="frame" x="8" y="8" width="304" height="48"/>
-                        <color key="backgroundColor" red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <rect key="frame" x="90" y="8" width="222" height="37"/>
+                        <color key="backgroundColor" red="0.94594381309999997" green="0.94594381309999997" blue="0.94594381309999997" alpha="0.73999999999999999" colorSpace="calibratedRGB"/>
                         <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="17"/>
-                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Read" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1TN-MW-HGl">
+                        <rect key="frame" x="282" y="46" width="30" height="18"/>
+                        <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="13"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mnk-dZ-NTr">
+                        <rect key="frame" x="38" y="46" width="237" height="18"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="237" id="GKr-eK-c7e"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="13"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
@@ -24,12 +38,24 @@
             </view>
             <constraints>
                 <constraint firstItem="SoS-Mi-geB" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="DzY-SY-fwk"/>
-                <constraint firstAttribute="bottom" secondItem="SoS-Mi-geB" secondAttribute="bottom" constant="8" id="JoL-v2-9VY"/>
-                <constraint firstItem="SoS-Mi-geB" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="SZu-NR-N0n"/>
+                <constraint firstItem="1TN-MW-HGl" firstAttribute="leading" secondItem="mnk-dZ-NTr" secondAttribute="trailing" constant="7" id="EA1-uf-Ha8"/>
+                <constraint firstItem="SoS-Mi-geB" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="90" id="Ick-DU-v8Z"/>
+                <constraint firstAttribute="trailing" secondItem="1TN-MW-HGl" secondAttribute="trailing" constant="8" id="Jcc-vg-94e"/>
+                <constraint firstAttribute="bottom" secondItem="SoS-Mi-geB" secondAttribute="bottom" constant="19" id="JoL-v2-9VY"/>
+                <constraint firstItem="1TN-MW-HGl" firstAttribute="top" secondItem="SoS-Mi-geB" secondAttribute="bottom" constant="1" id="X5F-Bx-JwV"/>
                 <constraint firstAttribute="trailing" secondItem="SoS-Mi-geB" secondAttribute="trailing" constant="8" id="b7C-PQ-xFU"/>
+                <constraint firstItem="1TN-MW-HGl" firstAttribute="leading" secondItem="mnk-dZ-NTr" secondAttribute="trailing" constant="7" id="mca-uN-tc0"/>
+                <constraint firstItem="mnk-dZ-NTr" firstAttribute="top" secondItem="SoS-Mi-geB" secondAttribute="bottom" constant="1" id="yM9-0x-I75"/>
             </constraints>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="mca-uN-tc0"/>
+                </mask>
+            </variation>
             <connections>
                 <outlet property="contentsLabel" destination="SoS-Mi-geB" id="XVl-OX-pQY"/>
+                <outlet property="readLabel" destination="1TN-MW-HGl" id="INK-b8-ChI"/>
+                <outlet property="timeStampLabel" destination="mnk-dZ-NTr" id="iTl-oG-ja2"/>
             </connections>
         </collectionViewCell>
     </objects>

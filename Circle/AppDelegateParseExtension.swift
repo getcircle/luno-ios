@@ -16,6 +16,7 @@ extension AppDelegate {
         ChatRoom.load()
         Message.load()
         Person.load()
+        ReadReceipt.load()
 
         // Setup keys and init Parse
         let applicationID = "6sLV1l2Pu7FMXa1rQCa8GIQ5B9xg3lbX8snFMLiB"
