@@ -54,6 +54,12 @@
 #define COCOAPODS_VERSION_MINOR_Bolts 1
 #define COCOAPODS_VERSION_PATCH_Bolts 3
 
+// DZNSegmentedControl
+#define COCOAPODS_POD_AVAILABLE_DZNSegmentedControl
+#define COCOAPODS_VERSION_MAJOR_DZNSegmentedControl 1
+#define COCOAPODS_VERSION_MINOR_DZNSegmentedControl 2
+#define COCOAPODS_VERSION_PATCH_DZNSegmentedControl 2
+
 // MGSwipeTableCell
 #define COCOAPODS_POD_AVAILABLE_MGSwipeTableCell
 #define COCOAPODS_VERSION_MAJOR_MGSwipeTableCell 1
