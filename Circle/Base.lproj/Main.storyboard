@@ -163,6 +163,9 @@
                                     <segment title="Favorites"/>
                                 </segments>
                                 <color key="tintColor" red="0.88235294119999996" green="0.15686274510000001" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="segmentedControlValueChanged:" destination="5pk-MV-KOj" eventType="valueChanged" id="X8o-nI-Rzm"/>
+                                </connections>
                             </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="ERH-Ff-xDK">
                                 <rect key="frame" x="0.0" y="33" width="600" height="454"/>

@@ -30,7 +30,7 @@ class PeopleViewController: UIViewController, MGSwipeTableCellDelegate {
         dataLoadAttempted = false
         configTableView()
         configureTopMenu()
-        loadInitialData()
+        loadData()
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -38,7 +38,7 @@ class PeopleViewController: UIViewController, MGSwipeTableCellDelegate {
 
         if dataLoadAttempted == false {
             // Checks if it has a user and loads data
-            loadInitialData()
+            loadData()
         }
     }
 
@@ -64,14 +64,31 @@ class PeopleViewController: UIViewController, MGSwipeTableCellDelegate {
         topMenuSegmentedControl.setTitleTextAttributes(attributes, forState: .Selected)
     }
 
-    private func loadInitialData() {
+    private func loadData() {
         if let pfUser = PFUser.currentUser() {
             dataLoadAttempted = true
+            let loggedInPerson = AuthViewController.getLoggedInPerson()!
             let parseQuery = Person.query() as PFQuery
-            parseQuery.cachePolicy = kPFCachePolicyCacheThenNetwork
+            parseQuery.cachePolicy = kPFCachePolicyCacheElseNetwork
             parseQuery.includeKey("manager")
             parseQuery.orderByAscending("firstName")
             parseQuery.whereKey("email", notEqualTo: PFUser.currentUser().email)
+
+            switch topMenuSegmentedControl.selectedSegmentIndex{
+            case 0:
+                // Direct Reports
+                parseQuery.whereKey("manager", equalTo: loggedInPerson)
+
+            case 1:
+                // Peers
+                if let manager = loggedInPerson.manager {
+                    parseQuery.whereKey("manager", equalTo: manager)
+                }
+
+            default:
+                break;
+            }
+
             parseQuery.findObjectsInBackgroundWithBlock { (objects: [AnyObject]!, error: NSError!) -> Void in
                 if error == nil {
                     self.people = objects as? [Person]
@@ -138,6 +155,12 @@ class PeopleViewController: UIViewController, MGSwipeTableCellDelegate {
         }
 
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
+
+    // MARK: - Segment Selection
+
+    @IBAction func segmentedControlValueChanged(sender: AnyObject!) {
+        loadData()
     }
 }
 
