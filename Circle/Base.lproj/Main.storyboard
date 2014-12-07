@@ -34,7 +34,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="7bK-jq-Zjz" kind="relationship" relationship="rootViewController" id="tsl-Nk-0bq"/>
+                        <segue destination="5pk-MV-KOj" kind="relationship" relationship="rootViewController" id="Ie1-n0-MMj"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8fS-aE-onr" sceneMemberID="firstResponder"/>
@@ -109,55 +109,12 @@
             </objects>
             <point key="canvasLocation" x="1458" y="-2135"/>
         </scene>
-        <!--People List-->
-        <scene sceneID="smW-Zh-WAh">
-            <objects>
-                <tableViewController title="People List" clearsSelectionOnViewWillAppear="NO" id="7bK-jq-Zjz" customClass="PeopleViewController" customModule="Circle" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="r7i-6Z-zg0">
-                        <rect key="frame" x="0.0" y="64" width="600" height="487"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="Arm-wq-HPj" style="IBUITableViewCellStyleDefault" id="WCw-Qf-5nD">
-                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WCw-Qf-5nD" id="37f-cq-3Eg">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Arm-wq-HPj">
-                                            <rect key="frame" x="15" y="0.0" width="290" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        </label>
-                                    </subviews>
-                                </tableViewCellContentView>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </tableViewCell>
-                        </prototypes>
-                        <sections/>
-                        <connections>
-                            <outlet property="dataSource" destination="7bK-jq-Zjz" id="Gho-Na-rnu"/>
-                            <outlet property="delegate" destination="7bK-jq-Zjz" id="RA6-mI-bju"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="People" id="Zdf-7t-Un8"/>
-                    <connections>
-                        <segue destination="ofx-aS-lg0" kind="show" identifier="showProfile" id="J4w-MH-X1C"/>
-                    </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Rux-fX-hf1" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1574" y="-1346"/>
-        </scene>
         <!--Profile-->
         <scene sceneID="uzJ-m3-vlO">
             <objects>
                 <collectionViewController storyboardIdentifier="ProfileViewController" title="Profile" automaticallyAdjustsScrollViewInsets="NO" id="ofx-aS-lg0" customClass="ProfileViewController" customModule="Circle" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="qhj-eK-GxV">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="calibratedRGB"/>
                         <collectionViewLayout key="collectionViewLayout" id="E9E-zg-oqb" customClass="ProfileCollectionViewLayout" customModule="Circle" customModuleProvider="target"/>
@@ -181,7 +138,79 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xls-Qj-HOy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1574" y="-569"/>
+            <point key="canvasLocation" x="1458" y="-569"/>
+        </scene>
+        <!--People-->
+        <scene sceneID="1cC-pz-10W">
+            <objects>
+                <viewController id="5pk-MV-KOj" customClass="PeopleViewController" customModule="Circle" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="2Xd-BM-V7N"/>
+                        <viewControllerLayoutGuide type="bottom" id="ByL-Z2-1rE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="nkn-aV-chR">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="YDK-Sc-1Ou">
+                                <rect key="frame" x="-3" y="0.0" width="606" height="33"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="32" id="6Uy-LT-u8K"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="Direct Reports"/>
+                                    <segment title="Peers"/>
+                                    <segment title="Favorites"/>
+                                </segments>
+                                <color key="tintColor" red="0.88235294119999996" green="0.15686274510000001" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </segmentedControl>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="ERH-Ff-xDK">
+                                <rect key="frame" x="0.0" y="33" width="600" height="454"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="Zbt-y4-ByZ">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Zbt-y4-ByZ" id="mlp-Rh-7fK">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="ofx-aS-lg0" kind="show" identifier="showProfile" id="ve3-5g-lZv"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="5pk-MV-KOj" id="mcm-QU-Lvs"/>
+                                    <outlet property="delegate" destination="5pk-MV-KOj" id="R8e-hs-XlD"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="ERH-Ff-xDK" secondAttribute="trailing" id="5hm-Ga-00V"/>
+                            <constraint firstItem="ByL-Z2-1rE" firstAttribute="top" secondItem="ERH-Ff-xDK" secondAttribute="bottom" id="9OU-tH-m49"/>
+                            <constraint firstItem="YDK-Sc-1Ou" firstAttribute="leading" secondItem="nkn-aV-chR" secondAttribute="leading" constant="-3" id="HXG-dJ-gdR"/>
+                            <constraint firstItem="ERH-Ff-xDK" firstAttribute="top" secondItem="2Xd-BM-V7N" secondAttribute="bottom" constant="35" id="YUS-sa-9bu"/>
+                            <constraint firstAttribute="trailing" secondItem="YDK-Sc-1Ou" secondAttribute="trailing" constant="-3" id="YWH-yN-jDW"/>
+                            <constraint firstItem="ERH-Ff-xDK" firstAttribute="top" secondItem="YDK-Sc-1Ou" secondAttribute="bottom" constant="1" id="b7r-4g-Qwv"/>
+                            <constraint firstItem="ERH-Ff-xDK" firstAttribute="leading" secondItem="nkn-aV-chR" secondAttribute="leading" id="s9S-NN-TCl"/>
+                            <constraint firstItem="YDK-Sc-1Ou" firstAttribute="top" secondItem="2Xd-BM-V7N" secondAttribute="bottom" id="xie-nN-z5x"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="YUS-sa-9bu"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <navigationItem key="navigationItem" title="People" id="Ixh-4e-tfU"/>
+                    <connections>
+                        <outlet property="tableView" destination="ERH-Ff-xDK" id="FlM-qa-IM9"/>
+                        <outlet property="topMenuSegmentedControl" destination="YDK-Sc-1Ou" id="1fK-73-hQt"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Fgd-WQ-XFM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1458" y="-1346"/>
         </scene>
     </scenes>
     <resources>
@@ -190,6 +219,6 @@
         <image name="Profile" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="gkF-Dz-NZe"/>
+        <segue reference="ve3-5g-lZv"/>
     </inferredMetricsTieBreakers>
 </document>
