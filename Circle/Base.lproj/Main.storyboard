@@ -152,23 +152,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="YDK-Sc-1Ou">
-                                <rect key="frame" x="-3" y="0.0" width="606" height="33"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fdb-qr-uVZ" userLabel="MenuContainer">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="40"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="32" id="6Uy-LT-u8K"/>
+                                    <constraint firstAttribute="height" constant="40" id="rMI-00-8kv"/>
                                 </constraints>
-                                <segments>
-                                    <segment title="Direct Reports"/>
-                                    <segment title="Peers"/>
-                                    <segment title="Favorites"/>
-                                </segments>
-                                <color key="tintColor" red="0.88235294119999996" green="0.15686274510000001" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <connections>
-                                    <action selector="segmentedControlValueChanged:" destination="5pk-MV-KOj" eventType="valueChanged" id="X8o-nI-Rzm"/>
-                                </connections>
-                            </segmentedControl>
+                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="ERH-Ff-xDK">
-                                <rect key="frame" x="0.0" y="33" width="600" height="454"/>
+                                <rect key="frame" x="0.0" y="41" width="600" height="446"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="Zbt-y4-ByZ">
@@ -190,25 +182,19 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="Fdb-qr-uVZ" firstAttribute="leading" secondItem="nkn-aV-chR" secondAttribute="leading" id="2ei-im-oOy"/>
                             <constraint firstAttribute="trailing" secondItem="ERH-Ff-xDK" secondAttribute="trailing" id="5hm-Ga-00V"/>
+                            <constraint firstAttribute="trailing" secondItem="Fdb-qr-uVZ" secondAttribute="trailing" id="8uG-o1-Feg"/>
                             <constraint firstItem="ByL-Z2-1rE" firstAttribute="top" secondItem="ERH-Ff-xDK" secondAttribute="bottom" id="9OU-tH-m49"/>
-                            <constraint firstItem="YDK-Sc-1Ou" firstAttribute="leading" secondItem="nkn-aV-chR" secondAttribute="leading" constant="-3" id="HXG-dJ-gdR"/>
-                            <constraint firstItem="ERH-Ff-xDK" firstAttribute="top" secondItem="2Xd-BM-V7N" secondAttribute="bottom" constant="35" id="YUS-sa-9bu"/>
-                            <constraint firstAttribute="trailing" secondItem="YDK-Sc-1Ou" secondAttribute="trailing" constant="-3" id="YWH-yN-jDW"/>
-                            <constraint firstItem="ERH-Ff-xDK" firstAttribute="top" secondItem="YDK-Sc-1Ou" secondAttribute="bottom" constant="1" id="b7r-4g-Qwv"/>
+                            <constraint firstItem="ERH-Ff-xDK" firstAttribute="top" secondItem="Fdb-qr-uVZ" secondAttribute="bottom" constant="1" id="Q0M-x3-512"/>
+                            <constraint firstItem="Fdb-qr-uVZ" firstAttribute="top" secondItem="2Xd-BM-V7N" secondAttribute="bottom" id="bWf-RW-6iT"/>
                             <constraint firstItem="ERH-Ff-xDK" firstAttribute="leading" secondItem="nkn-aV-chR" secondAttribute="leading" id="s9S-NN-TCl"/>
-                            <constraint firstItem="YDK-Sc-1Ou" firstAttribute="top" secondItem="2Xd-BM-V7N" secondAttribute="bottom" id="xie-nN-z5x"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="YUS-sa-9bu"/>
-                            </mask>
-                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="People" id="Ixh-4e-tfU"/>
                     <connections>
+                        <outlet property="menuContainer" destination="Fdb-qr-uVZ" id="fPf-TX-mSi"/>
                         <outlet property="tableView" destination="ERH-Ff-xDK" id="FlM-qa-IM9"/>
-                        <outlet property="topMenuSegmentedControl" destination="YDK-Sc-1Ou" id="1fK-73-hQt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fgd-WQ-XFM" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -13,3 +13,4 @@
 #import "PureLayout.h"
 #import "SLKTextViewController.h"
 #import "UIView+Position.h"
+#import "DZNSegmentedControl.h"

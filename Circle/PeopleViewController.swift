@@ -14,7 +14,8 @@ class PeopleViewController: UIViewController, MGSwipeTableCellDelegate {
     var people: [Person]?
     var dataLoadAttempted: Bool!
     @IBOutlet weak private(set) var tableView: UITableView!
-    @IBOutlet weak private(set) var topMenuSegmentedControl: UISegmentedControl!
+    @IBOutlet weak private(set) var menuContainer: UIView!
+    private var topMenuSegmentedControl: DZNSegmentedControl!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -51,17 +52,20 @@ class PeopleViewController: UIViewController, MGSwipeTableCellDelegate {
             forCellReuseIdentifier: ContactTableViewCell.classReuseIdentifier)
         tableView.separatorInset = UIEdgeInsetsMake(0.0, 64.0, 0.0, 0.0)
         tableView.rowHeight = 64.0
+        tableView.addDummyFooterView()
     }
 
     private func configureTopMenu() {
-        topMenuSegmentedControl.setTranslatesAutoresizingMaskIntoConstraints(false)
+        let items = ["Direct Reports", "Peers", "Favorites"]
+        topMenuSegmentedControl = DZNSegmentedControl(items: items)
+        topMenuSegmentedControl.showsCount = false
+        topMenuSegmentedControl.tintColor = UIColor.appTintColor()
+        topMenuSegmentedControl.height = menuContainer.frameHeight
+        topMenuSegmentedControl.addTarget(self, action: "segmentedControlValueChanged:", forControlEvents: .ValueChanged)
         topMenuSegmentedControl.selectedSegmentIndex = 0
-        let attributes = [
-            NSFontAttributeName: UIFont.segmentedControlTitleFont()
-        ]
-
-        topMenuSegmentedControl.setTitleTextAttributes(attributes, forState: .Normal)
-        topMenuSegmentedControl.setTitleTextAttributes(attributes, forState: .Selected)
+        topMenuSegmentedControl.font = UIFont.segmentedControlTitleFont()
+        menuContainer.addSubview(topMenuSegmentedControl)
+        topMenuSegmentedControl.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
     }
 
     private func loadData() {
