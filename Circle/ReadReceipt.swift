@@ -9,7 +9,7 @@
 class ReadReceipt: PFObject, PFSubclassing {
     
     override class func load() {
-        self.registerSubclass()
+        registerSubclass()
     }
     
     class func parseClassName() -> String! {
@@ -17,11 +17,11 @@ class ReadReceipt: PFObject, PFSubclassing {
     }
     
     var person: Person! {
-        return self.objectForKey("person") as Person!
+        return objectForKey("person") as Person!
     }
     
     var message: Message! {
-        return self.objectForKey("message") as Message!
+        return objectForKey("message") as Message!
     }
     
     
