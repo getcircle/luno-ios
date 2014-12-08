@@ -15,7 +15,7 @@ struct LoggedInPersonHolder {
     static var person: Person?
 }
 
-class AuthViewController: UIViewController {
+class AuthViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
@@ -203,5 +203,18 @@ class AuthViewController: UIViewController {
         }
         
         return nil
+    }
+    
+    // MARK: - UITextFieldDelegate
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        if textField == emailField && passwordField.text == "" {
+            passwordField.becomeFirstResponder()
+        }
+        else {
+            logInButtonPressed(textField)
+        }
+        
+        return true
     }
 }
