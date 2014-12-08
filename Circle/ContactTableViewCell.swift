@@ -15,7 +15,7 @@ class ContactTableViewCell: MGSwipeTableCell {
     @IBOutlet var title: UILabel!
     var addQuickActions: Bool! {
         didSet {
-            if addQuickActions == true && self.rightButtons.count == 0 {
+            if addQuickActions == true && rightButtons.count == 0 {
                 addQuickActionButtons()
                 contentView.backgroundColor = UIColor.accessoryButtonBackgroundColor()
             }
@@ -46,7 +46,7 @@ class ContactTableViewCell: MGSwipeTableCell {
             backgroundColor: UIColor.accessoryButtonBackgroundColor(),
             padding: 16)
 
-        self.leftButtons = [favoriteButton]
+        leftButtons = [favoriteButton]
 
         let emailButton = MGSwipeButton(
             title: "",
@@ -60,7 +60,7 @@ class ContactTableViewCell: MGSwipeTableCell {
             backgroundColor: UIColor.accessoryButtonBackgroundColor(),
             padding:20)
 
-        self.rightButtons = [messageButton, emailButton]
+        rightButtons = [messageButton, emailButton]
     }
 
     private func populateData() {

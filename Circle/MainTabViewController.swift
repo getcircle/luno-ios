@@ -14,9 +14,9 @@ class MainTabViewController: UITabBarController, UITabBarControllerDelegate {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.delegate = self
+        delegate = self
         addSelectedImages()
-        self.tabBar.tintColor = UIColor.tabBarTintColor()
+        tabBar.tintColor = UIColor.tabBarTintColor()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -25,10 +25,10 @@ class MainTabViewController: UITabBarController, UITabBarControllerDelegate {
     }
     
     private func addSelectedImages() {
-        let tabBarItemsCount = self.tabBar.items?.count
+        let tabBarItemsCount = tabBar.items?.count
         for index in 0..<tabBarItemsCount! {
         
-            let tabBarItem = self.tabBar.items?[index] as UITabBarItem
+            let tabBarItem = tabBar.items?[index] as UITabBarItem
             switch index {
             case 0:
                 tabBarItem.selectedImage = UIImage(named: "PeopleSelected")

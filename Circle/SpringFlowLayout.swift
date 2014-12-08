@@ -36,19 +36,19 @@ class SpringFlowLayout: UICollectionViewFlowLayout {
         
         let statusBarOrientation = UIApplication.sharedApplication().statusBarOrientation
         // reset layout on device rotation
-        if statusBarOrientation != self.interfaceOrientation {
-            self.dynamicAnimator?.removeAllBehaviors()
-            self.visibleIndexPathsSet = NSMutableSet()
+        if statusBarOrientation != interfaceOrientation {
+            dynamicAnimator?.removeAllBehaviors()
+            visibleIndexPathsSet = NSMutableSet()
         }
         
-        self.interfaceOrientation = statusBarOrientation
+        interfaceOrientation = statusBarOrientation
         // Overflow the actual rect slightly to avoid flickering
         let visibleRect = CGRectInset(collectionView!.bounds, -100, -100)
         let itemsInVisibleRect = super.layoutAttributesForElementsInRect(visibleRect) as [UICollectionViewLayoutAttributes]
         let itemsIndexPathsInVisibleRect = NSSet(array: itemsInVisibleRect.map { item in item.indexPath })
         
         // Step 1: Remove any behaviors that are no longer visible
-        let noLongerVisibleBehaviors = self.dynamicAnimator?.behaviors.filter { behavior in
+        let noLongerVisibleBehaviors = dynamicAnimator?.behaviors.filter { behavior in
             if let firstItem: AnyObject = behavior.items?.first {
                 return !itemsIndexPathsInVisibleRect.containsObject(firstItem.indexPath)
             }
@@ -158,7 +158,7 @@ class SpringFlowLayout: UICollectionViewFlowLayout {
                         center.y += min(delta, delta * scrollResistance)
                     }
                     attributes.center = center
-                    self.dynamicAnimator?.updateItemUsingCurrentState(attributes)
+                    dynamicAnimator?.updateItemUsingCurrentState(attributes)
                 } else {
                     let distanceFromTouch = getDistanceAsNumber(touchPoint.x, second: springBehavior.anchorPoint.x)
                     
@@ -171,7 +171,7 @@ class SpringFlowLayout: UICollectionViewFlowLayout {
                         center.x += min(delta, delta * scrollResistance)
                     }
                     attributes.center = center
-                    self.dynamicAnimator?.updateItemUsingCurrentState(attributes)
+                    dynamicAnimator?.updateItemUsingCurrentState(attributes)
                 }
             }
         }
@@ -183,7 +183,7 @@ class SpringFlowLayout: UICollectionViewFlowLayout {
         
         for item in updateItems as [UICollectionViewUpdateItem] {
             if item.updateAction == .Insert {
-                if (self.dynamicAnimator?.layoutAttributesForCellAtIndexPath(item.indexPathAfterUpdate) != nil) {
+                if (dynamicAnimator?.layoutAttributesForCellAtIndexPath(item.indexPathAfterUpdate) != nil) {
                     return
                 }
                 
@@ -193,7 +193,7 @@ class SpringFlowLayout: UICollectionViewFlowLayout {
                 springBehavior.length = 1.0
                 springBehavior.damping = 0.8
                 springBehavior.frequency = 1.0
-                self.dynamicAnimator?.addBehavior(springBehavior)
+                dynamicAnimator?.addBehavior(springBehavior)
             }
         }
     }

@@ -12,10 +12,10 @@ class ChatRoomHistoryTableViewCell: UITableViewCell {
     
     var chatRoom: ChatRoom? {
         didSet {
-            self.profileImage.setImageWithProfileImageURL(chatRoom!.profileImageURL())
-            self.messageContents.text = self.chatRoom!.lastMessage.contents
-            self.recipientLabel.text = self.chatRoom!.description
-            self.lastMessageDate.text = NSDateFormatter.shortStyleStringFromDate(self.chatRoom!.lastMessage.createdAt)
+            profileImage.setImageWithProfileImageURL(chatRoom!.profileImageURL())
+            messageContents.text = chatRoom!.lastMessage.contents
+            recipientLabel.text = chatRoom!.description
+            lastMessageDate.text = NSDateFormatter.shortStyleStringFromDate(chatRoom!.lastMessage.createdAt)
         }
     }
     
@@ -26,7 +26,7 @@ class ChatRoomHistoryTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.profileImage.makeItCircular(false)
+        profileImage.makeItCircular(false)
     }
     
     class func reuseIdentifier() -> String {

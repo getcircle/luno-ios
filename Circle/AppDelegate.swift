@@ -16,10 +16,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
         // Customize Appearance
-        self.customizeAppearance(application)
+        customizeAppearance(application)
         
         // Setup Parse
-        self.setupParse(launchOptions)
+        setupParse(launchOptions)
 
         return true
     }

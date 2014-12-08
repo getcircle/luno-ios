@@ -48,9 +48,9 @@ class SelectContactViewController: UITableViewController, UISearchBarDelegate {
     // MARK: - Configuration
     
     private func configureNavigation() {
-        self.navigationItem.title = "Select Contact"
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Cancel", style: .Plain, target: self, action: "handleCancel:")
-        self.navigationController?.navigationBar.translucent = false
+        navigationItem.title = "Select Contact"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Cancel", style: .Plain, target: self, action: "handleCancel:")
+        navigationController?.navigationBar.translucent = false
     }
     
     private func configureTableView() {
@@ -89,9 +89,9 @@ class SelectContactViewController: UITableViewController, UISearchBarDelegate {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if let contact = visibleContacts?[indexPath.row] {
-            self.delegate?.didSelectContact(contact)
+            delegate?.didSelectContact(contact)
         }
-        self.dismiss()
+        dismiss()
     }
     
     // MARK: - UISearchBarDelegate

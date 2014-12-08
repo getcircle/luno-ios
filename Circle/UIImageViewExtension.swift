@@ -21,14 +21,14 @@ extension UIImageView {
     }
 
     func setImageWithPerson(person: Person!) {
-        self.setImageWithURL(
+        setImageWithURL(
             NSURL(string: person.profileImageURL),
             placeholderImage: UIImage(named: "DefaultPerson")
         )
     }
     
     func setImageWithProfileImageURL(profileImageURL: String) {
-        self.setImageWithURL(
+        setImageWithURL(
             NSURL(string: profileImageURL),
             placeholderImage: UIImage(named: "DefaultPerson")
         )
