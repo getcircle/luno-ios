@@ -10,11 +10,13 @@ import UIKit
 
 class PeopleViewController: UIViewController, MGSwipeTableCellDelegate {
 
-    var profileViewController: ProfileViewController?
-    var people: [Person]?
-    var dataLoadAttempted: Bool!
-    @IBOutlet weak private(set) var tableView: UITableView!
     @IBOutlet weak private(set) var menuContainer: UIView!
+    @IBOutlet weak private(set) var tableView: UITableView!
+
+    var dataLoadAttempted: Bool!
+    var people: [Person]?
+    var profileViewController: ProfileViewController?
+
     private var topMenuSegmentedControl: DZNSegmentedControl!
 
     override func awakeFromNib() {
@@ -78,7 +80,7 @@ class PeopleViewController: UIViewController, MGSwipeTableCellDelegate {
             parseQuery.orderByAscending("firstName")
             parseQuery.whereKey("email", notEqualTo: PFUser.currentUser().email)
 
-            switch topMenuSegmentedControl.selectedSegmentIndex{
+            switch topMenuSegmentedControl.selectedSegmentIndex {
             case 0:
                 // Direct Reports
                 parseQuery.whereKey("manager", equalTo: loggedInPerson)
