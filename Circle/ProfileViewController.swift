@@ -16,11 +16,11 @@ class ProfileViewController: UICollectionViewController, UICollectionViewDelegat
             // Fetch and cache it in case user decides to go one step further in the chain
             person.manager?.fetchInBackgroundWithBlock { (managerObject, error: NSError!) -> Void in
                 self.person.setObject(managerObject, forKey: "manager")
-                self.collectionView?.reloadData()
+                self.collectionView.reloadData()
             }
             
             dataSource.person = person
-            collectionView?.reloadData()
+            collectionView.reloadData()
         }
     }
 
@@ -39,7 +39,7 @@ class ProfileViewController: UICollectionViewController, UICollectionViewDelegat
         
         // Assert there is a person
         // assert(person != nil, "Person object needs to be set before loading this view.")
-        collectionView?.dataSource = dataSource
+        collectionView.dataSource = dataSource
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -64,12 +64,12 @@ class ProfileViewController: UICollectionViewController, UICollectionViewDelegat
     }
 
     private func customizeCollectionView() {
-        collectionView?.backgroundColor = UIColor.viewBackgroundColor()
-        collectionView?.registerNib(
+        collectionView.backgroundColor = UIColor.viewBackgroundColor()
+        collectionView.registerNib(
             UINib(nibName: "ProfileAttributeCollectionViewCell", bundle: nil),
             forCellWithReuseIdentifier: ProfileAttributeCollectionViewCell.classReuseIdentifier)
 
-        collectionView?.registerNib(
+        collectionView.registerNib(
             UINib(nibName: "ProfileHeaderCollectionReusableView", bundle: nil),
             forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
             withReuseIdentifier: ProfileHeaderCollectionReusableView.classReuseIdentifier)
