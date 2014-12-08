@@ -9,51 +9,51 @@
 class Person : PFObject, PFSubclassing {
     
     var profileImageURL: String! {
-        return self.objectForKey("profileImageURL") as String!
+        return objectForKey("profileImageURL") as String!
     }
 
     var firstName: String! {
-        return self.objectForKey("firstName") as String!
+        return objectForKey("firstName") as String!
     }
     
     var lastName: String! {
-        return self.objectForKey("lastName") as String!
+        return objectForKey("lastName") as String!
     }
 
     var email: String! {
-        return self.objectForKey("email") as String!
+        return objectForKey("email") as String!
     }
 
     var title: String! {
-        return self.objectForKey("title") as String!
+        return objectForKey("title") as String!
     }
 
     var cell: String! {
-        return self.objectForKey("cell") as String!
+        return objectForKey("cell") as String!
     }
 
     var location: String! {
-        return self.objectForKey("location") as String!
+        return objectForKey("location") as String!
     }
 
     var country: String! {
-        return self.objectForKey("country") as String!
+        return objectForKey("country") as String!
     }
     
     var manager: Person? {
-        return self.objectForKey("manager") as Person?
+        return objectForKey("manager") as Person?
     }
 
     var department: String! {
-        return self.objectForKey("department") as String!
+        return objectForKey("department") as String!
     }
     
     var user: PFUser! {
-        return self.objectForKey("user") as PFUser!
+        return objectForKey("user") as PFUser!
     }
     
     var twitter: String! {
-        if let twitterUsername = self.objectForKey("twitter") as String! {
+        if let twitterUsername = objectForKey("twitter") as String! {
             return twitterUsername
         }
     
@@ -61,7 +61,7 @@ class Person : PFObject, PFSubclassing {
     }
 
     var facebook: String! {
-        if let facebookUsername = self.objectForKey("facebook") as String! {
+        if let facebookUsername = objectForKey("facebook") as String! {
             return facebookUsername
         }
         
@@ -69,11 +69,11 @@ class Person : PFObject, PFSubclassing {
     }
 
     var linkedin: String! {
-        return self.objectForKey("linkedin") as String!
+        return objectForKey("linkedin") as String!
     }
 
     var github: String! {
-        return self.objectForKey("github") as String!
+        return objectForKey("github") as String!
     }
 
     var hasDirectReports: Bool!
@@ -83,11 +83,11 @@ class Person : PFObject, PFSubclassing {
     }
     
     func description() -> String {
-        return self.isDataAvailable() ? (firstName + " " + lastName) : ""
+        return isDataAvailable() ? (firstName + " " + lastName) : ""
     }
     
     override class func load() {
-        self.registerSubclass()
+        registerSubclass()
     }
     
     class func parseClassName() -> String! {

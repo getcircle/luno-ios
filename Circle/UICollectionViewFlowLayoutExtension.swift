@@ -34,7 +34,7 @@ extension UICollectionViewFlowLayout {
                 forDecorationViewOfKind: SeparatorDecorationView.kind,
                 withIndexPath: separatorViewIndexPaths[index]
             )
-            decorationViewAttribute.frame = CGRectMake(0.0, separatorViewYPositions[index], self.collectionView!.frame.size.width, 0.5)
+            decorationViewAttribute.frame = CGRectMake(0.0, separatorViewYPositions[index], collectionView!.frame.size.width, 0.5)
             attributes.append(decorationViewAttribute)
         }
         return attributes

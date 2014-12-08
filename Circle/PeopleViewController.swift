@@ -17,8 +17,8 @@ class PeopleViewController: UITableViewController, MGSwipeTableCellDelegate {
     override func awakeFromNib() {
         super.awakeFromNib()
         if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
-            self.clearsSelectionOnViewWillAppear = false
-            self.preferredContentSize = CGSize(width: 320.0, height: 600.0)
+            clearsSelectionOnViewWillAppear = false
+            preferredContentSize = CGSize(width: 320.0, height: 600.0)
         }
     }
 
@@ -73,8 +73,8 @@ class PeopleViewController: UITableViewController, MGSwipeTableCellDelegate {
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showProfile" {
-            if let indexPath = self.tableView.indexPathForSelectedRow() {
-                let person = self.people?[indexPath.row]
+            if let indexPath = tableView.indexPathForSelectedRow() {
+                let person = people?[indexPath.row]
                 let controller = segue.destinationViewController as ProfileViewController
                 controller.person = person
             }
@@ -88,14 +88,14 @@ class PeopleViewController: UITableViewController, MGSwipeTableCellDelegate {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.people?.count ?? 0
+        return people?.count ?? 0
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(ContactTableViewCell.classReuseIdentifier, forIndexPath: indexPath) as ContactTableViewCell
         cell.addQuickActions = true
 
-        if let person = self.people?[indexPath.row] {
+        if let person = people?[indexPath.row] {
             cell.person = person
             cell.delegate = self
         }
@@ -121,7 +121,7 @@ class PeopleViewController: UITableViewController, MGSwipeTableCellDelegate {
     }
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if let person = self.people?[indexPath.row] {
+        if let person = people?[indexPath.row] {
             performSegueWithIdentifier("showProfile", sender: tableView)
         }
 

@@ -24,7 +24,7 @@ class ChatRoomViewController: SLKTextViewController {
         
         let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
         activityIndicator.hidesWhenStopped = true
-        self.view.addSubview(activityIndicator)
+        view.addSubview(activityIndicator)
         activityIndicator.autoCenterInSuperview()
         activityIndicator.startAnimating()
         let members = [person, AuthViewController.getLoggedInPerson()!]
@@ -59,12 +59,12 @@ class ChatRoomViewController: SLKTextViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
-        self.configureCollectionView()
+        configureCollectionView()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        self.loadData()
+        loadData()
     }
     
     override func viewDidDisappear(animated: Bool) {
@@ -95,7 +95,7 @@ class ChatRoomViewController: SLKTextViewController {
             forCellWithReuseIdentifier: MessageSentCollectionViewCell.classReuseIdentifier
         )
         let layout = collectionView.collectionViewLayout as UICollectionViewFlowLayout
-        layout.itemSize = CGSizeMake(self.view.frame.width, 64.0)
+        layout.itemSize = CGSizeMake(view.frame.width, 64.0)
         collectionView.alwaysBounceVertical = true
     }
     
@@ -146,12 +146,12 @@ class ChatRoomViewController: SLKTextViewController {
     }
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.messages?.count ?? 0
+        return messages?.count ?? 0
     }
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let currentUser = AuthViewController.getLoggedInPerson()
-        let message = self.messages![indexPath.row]
+        let message = messages![indexPath.row]
         
         var cell: UICollectionViewCell?
         if message.sender.objectId != currentUser?.objectId {

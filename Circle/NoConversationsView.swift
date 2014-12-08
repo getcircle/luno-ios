@@ -19,12 +19,10 @@ class NoConversationsView: UIView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.newMessageButton.layer.cornerRadius = 5
-        self.newMessageButton.layer.masksToBounds = true
+        newMessageButton.addRoundCorners()
     }
 
     @IBAction func handleNewMessage(sender: AnyObject) {
-        self.delegate?.handleNewMessage(self)
+        delegate?.handleNewMessage(self)
     }
-
 }

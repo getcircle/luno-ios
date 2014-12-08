@@ -9,15 +9,15 @@
 class ChatRoom: PFObject, PFSubclassing {
     
     var members: [Person]! {
-        return self.objectForKey("members") as [Person]
+        return objectForKey("members") as [Person]
     }
     
     var lastMessage: Message! {
-        return self.objectForKey("lastMessage") as Message
+        return objectForKey("lastMessage") as Message
     }
     
     override class func load() {
-        self.registerSubclass()
+        registerSubclass()
     }
     
     class func parseClassName() -> String! {

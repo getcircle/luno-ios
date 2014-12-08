@@ -60,7 +60,7 @@ class ChatRoomsViewController: UIViewController, UITableViewDataSource, UITableV
 
     private func configureNavigation() {
         navigationItem.title = "Messages"
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Compose", style: .Plain, target: self, action: "handleCompose:")
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Compose", style: .Plain, target: self, action: "handleCompose:")
     }
     
     func loadData() {
@@ -111,7 +111,7 @@ class ChatRoomsViewController: UIViewController, UITableViewDataSource, UITableV
     // MARK: - UITableViewDelegate
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if let chatRoom = self.chatRooms?[indexPath.row] {
+        if let chatRoom = chatRooms?[indexPath.row] {
             let vc = ChatRoomViewController(room: chatRoom, composeFocus: false)
             navigationController?.pushViewController(vc, animated: true)
         }

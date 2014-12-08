@@ -11,9 +11,9 @@ import UIKit
 extension UITableView {
     
     func addDummyFooterView() {
-        let footerView = UIView(frame: CGRectMake(0.0, 0.0, self.frame.size.width, 10.0))
+        let footerView = UIView(frame: CGRectMake(0.0, 0.0, frame.size.width, 10.0))
         footerView.backgroundColor = UIColor.clearColor()
-        self.tableFooterView = footerView
+        tableFooterView = footerView
     }
     
 }
