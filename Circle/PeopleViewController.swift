@@ -8,16 +8,20 @@
 
 import UIKit
 
-class PeopleViewController: UITableViewController, MGSwipeTableCellDelegate {
+class PeopleViewController: UIViewController, MGSwipeTableCellDelegate {
 
-    var profileViewController: ProfileViewController?
-    var people: [Person]?
+    @IBOutlet weak private(set) var menuContainer: UIView!
+    @IBOutlet weak private(set) var tableView: UITableView!
+
     var dataLoadAttempted: Bool!
+    var people: [Person]?
+    var profileViewController: ProfileViewController?
+
+    private var topMenuSegmentedControl: DZNSegmentedControl!
 
     override func awakeFromNib() {
         super.awakeFromNib()
         if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
-            clearsSelectionOnViewWillAppear = false
             preferredContentSize = CGSize(width: 320.0, height: 600.0)
         }
     }
@@ -28,20 +32,21 @@ class PeopleViewController: UITableViewController, MGSwipeTableCellDelegate {
         // Do any additional setup after loading the view, typically from a nib.
         dataLoadAttempted = false
         configTableView()
-        loadInitialData()
+        configureTopMenu()
+        loadData()
     }
-    
+
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        
+
         if dataLoadAttempted == false {
             // Checks if it has a user and loads data
-            loadInitialData()
+            loadData()
         }
     }
-    
+
     // MARK: - Configuration
-    
+
     private func configTableView() {
         // configure table view
         tableView.registerNib(
@@ -52,14 +57,44 @@ class PeopleViewController: UITableViewController, MGSwipeTableCellDelegate {
         tableView.addDummyFooterView()
     }
 
-    private func loadInitialData() {
+    private func configureTopMenu() {
+        let items = ["Direct Reports", "Peers", "Favorites"]
+        topMenuSegmentedControl = DZNSegmentedControl(items: items)
+        topMenuSegmentedControl.showsCount = false
+        topMenuSegmentedControl.tintColor = UIColor.appTintColor()
+        topMenuSegmentedControl.height = menuContainer.frameHeight
+        topMenuSegmentedControl.addTarget(self, action: "segmentedControlValueChanged:", forControlEvents: .ValueChanged)
+        topMenuSegmentedControl.selectedSegmentIndex = 0
+        topMenuSegmentedControl.font = UIFont.segmentedControlTitleFont()
+        menuContainer.addSubview(topMenuSegmentedControl)
+        topMenuSegmentedControl.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
+    }
+
+    private func loadData() {
         if let pfUser = PFUser.currentUser() {
             dataLoadAttempted = true
+            let loggedInPerson = AuthViewController.getLoggedInPerson()!
             let parseQuery = Person.query() as PFQuery
-            parseQuery.cachePolicy = kPFCachePolicyCacheThenNetwork
+            parseQuery.cachePolicy = kPFCachePolicyCacheElseNetwork
             parseQuery.includeKey("manager")
             parseQuery.orderByAscending("firstName")
             parseQuery.whereKey("email", notEqualTo: PFUser.currentUser().email)
+
+            switch topMenuSegmentedControl.selectedSegmentIndex {
+            case 0:
+                // Direct Reports
+                parseQuery.whereKey("manager", equalTo: loggedInPerson)
+
+            case 1:
+                // Peers
+                if let manager = loggedInPerson.manager {
+                    parseQuery.whereKey("manager", equalTo: manager)
+                }
+
+            default:
+                break;
+            }
+
             parseQuery.findObjectsInBackgroundWithBlock { (objects: [AnyObject]!, error: NSError!) -> Void in
                 if error == nil {
                     self.people = objects as? [Person]
@@ -83,15 +118,15 @@ class PeopleViewController: UITableViewController, MGSwipeTableCellDelegate {
 
     // MARK: - Table View Delegate
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return people?.count ?? 0
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(ContactTableViewCell.classReuseIdentifier, forIndexPath: indexPath) as ContactTableViewCell
         cell.addQuickActions = true
 
@@ -120,12 +155,18 @@ class PeopleViewController: UITableViewController, MGSwipeTableCellDelegate {
         return true
     }
 
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if let person = people?[indexPath.row] {
             performSegueWithIdentifier("showProfile", sender: tableView)
         }
 
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
+
+    // MARK: - Segment Selection
+
+    @IBAction func segmentedControlValueChanged(sender: AnyObject!) {
+        loadData()
     }
 }
 
