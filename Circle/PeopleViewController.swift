@@ -73,35 +73,36 @@ class PeopleViewController: UIViewController, MGSwipeTableCellDelegate {
     private func loadData() {
         if let pfUser = PFUser.currentUser() {
             dataLoadAttempted = true
-            let loggedInPerson = AuthViewController.getLoggedInPerson()!
-            let parseQuery = Person.query() as PFQuery
-            parseQuery.cachePolicy = kPFCachePolicyCacheElseNetwork
-            parseQuery.includeKey("manager")
-            parseQuery.orderByAscending("firstName")
-            parseQuery.whereKey("email", notEqualTo: PFUser.currentUser().email)
 
             switch topMenuSegmentedControl.selectedSegmentIndex {
             case 0:
                 // Direct Reports
-                parseQuery.whereKey("manager", equalTo: loggedInPerson)
+                AuthViewController.getLoggedInPerson()?.getDirectReports({ (objects, error: NSError!) -> Void in
+                    if error == nil {
+                        self.setPeople(objects)
+                    }
+                })
 
             case 1:
                 // Peers
-                if let manager = loggedInPerson.manager {
-                    parseQuery.whereKey("manager", equalTo: manager)
-                }
+                AuthViewController.getLoggedInPerson()?.getPeers({ (objects, error: NSError!) -> Void in
+                    if error == nil {
+                        self.setPeople(objects)
+                    }
+                })
 
+            case 2:
+                // Favorites
+                setPeople(Favorite.getFavorites())
             default:
                 break;
             }
-
-            parseQuery.findObjectsInBackgroundWithBlock { (objects: [AnyObject]!, error: NSError!) -> Void in
-                if error == nil {
-                    self.people = objects as? [Person]
-                    self.tableView.reloadData()
-                }
-            }
         }
+    }
+    
+    private func setPeople(objects: [AnyObject]!) {
+        people = objects as? [Person]
+        tableView.reloadData()
     }
 
     // MARK: - Segues
@@ -144,7 +145,15 @@ class PeopleViewController: UIViewController, MGSwipeTableCellDelegate {
         switch direction {
             case .LeftToRight:
                 // Left button tapped
-                println("Will mark favorite")
+                if cell.favoriteButton?.selected == true {
+                    Favorite.removeFavorite(cell.person)
+                    cell.favoriteButton?.selected = false
+                }
+                else {
+                    Favorite.markFavorite(cell.person)
+                    cell.favoriteButton?.selected = true
+                }
+
             case .RightToLeft:
                 // Right buttons tapped
                 println("Email = \(cell.person.email)")

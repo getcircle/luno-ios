@@ -191,6 +191,9 @@ class AuthViewController: UIViewController, UITextFieldDelegate {
                 return person
             }
             
+            // Fetch and cache favorites
+            Favorite.fetchAndCacheFavorites()
+            
             let parseQuery = Person.query() as PFQuery
             parseQuery.cachePolicy = kPFCachePolicyCacheElseNetwork
             parseQuery.includeKey("manager")

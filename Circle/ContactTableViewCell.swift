@@ -10,18 +10,12 @@ import UIKit
 
 class ContactTableViewCell: MGSwipeTableCell {
 
-    @IBOutlet var profileImg: UIImageView!
     @IBOutlet var name: UILabel!
+    @IBOutlet var profileImg: UIImageView!
     @IBOutlet var title: UILabel!
-    var addQuickActions: Bool! {
-        didSet {
-            if addQuickActions == true && rightButtons.count == 0 {
-                addQuickActionButtons()
-                contentView.backgroundColor = UIColor.accessoryButtonBackgroundColor()
-            }
-        }
-    }
     
+    var addQuickActions: Bool!
+    var favoriteButton: MGSwipeButton?
     var person:Person! {
         didSet {
             populateData()
@@ -42,10 +36,12 @@ class ContactTableViewCell: MGSwipeTableCell {
     func addQuickActionButtons() {
         let favoriteButton = MGSwipeButton(
             title: "",
-            icon: UIImage(named: "Favorites"),
+            icon: UIImage(named: "Favorite"),
             backgroundColor: UIColor.accessoryButtonBackgroundColor(),
             padding: 16)
+        favoriteButton.setImage(UIImage(named: "FavoriteFilled"), forState: .Selected)
 
+        self.favoriteButton = favoriteButton
         leftButtons = [favoriteButton]
 
         let emailButton = MGSwipeButton(
@@ -67,5 +63,10 @@ class ContactTableViewCell: MGSwipeTableCell {
         name.text = person.firstName + " " + person.lastName
         title.text = person.title
         profileImg.setImageWithPerson(person)
+        if addQuickActions == true {
+            addQuickActionButtons()
+            contentView.backgroundColor = UIColor.accessoryButtonBackgroundColor()
+        }
+        favoriteButton?.selected = Favorite.isFavoritePerson(person)
     }
 }
