@@ -64,7 +64,7 @@ class Favorite: PFObject, PFSubclassing {
     }
     
     class func getFavorites() -> [Person]? {
-        return (FavoritesHolder.favorites?.allObjects as [Person])
+        return FavoritesHolder.favorites?.allObjects as [Person]?
     }
     
     class func markFavorite(person: Person) {
@@ -102,8 +102,13 @@ class Favorite: PFObject, PFSubclassing {
             
             // Assume delete is going to be successful
             var favorites = NSMutableSet(set: FavoritesHolder.favorites!)
-            favorites.removeObject(person)
+            for favorite in favorites {
+                if favorite.objectId == person.objectId {
+                    favorites.removeObject(favorite)
+                }
+            }
+
             FavoritesHolder.favorites = favorites
-        }
+       }
     }
 }
