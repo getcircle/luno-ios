@@ -47,6 +47,8 @@ class PeopleViewController: UIViewController, MGSwipeTableCellDelegate {
             // Checks if it has a user and loads data
             loadData()
         }
+
+        updateFavoritesCountDisplay()
     }
 
     // MARK: - Configuration
@@ -164,6 +166,7 @@ class PeopleViewController: UIViewController, MGSwipeTableCellDelegate {
                     Favorite.markFavorite(cell.person)
                     cell.favoriteButton?.selected = true
                 }
+                updateFavoritesCountDisplay()
 
             case .RightToLeft:
                 // Right buttons tapped
@@ -187,6 +190,20 @@ class PeopleViewController: UIViewController, MGSwipeTableCellDelegate {
 
     @IBAction func segmentedControlValueChanged(sender: AnyObject!) {
         loadData()
+    }
+    
+    // MARK: Helpers
+
+    private func updateFavoritesCountDisplay() {
+        let numberOfFavorites = Favorite.getFavorites()?.count ?? 0
+        var title = "Favorites"
+        if numberOfFavorites > 0 {
+            title += " (" + String(numberOfFavorites) + ")"
+        }
+        topMenuSegmentedControl.setTitle(title, forSegmentAtIndex: UInt(TopMenuSegments.Favorites.rawValue))
+// TODO: Remove this hack for setting title twice to work with external componenent DZNSegmented..
+        topMenuSegmentedControl.setTitle(title, forSegmentAtIndex: UInt(TopMenuSegments.Favorites.rawValue))
+        return
     }
 }
 
