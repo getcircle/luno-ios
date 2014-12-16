@@ -18,6 +18,10 @@ class PeopleViewController: UIViewController, MGSwipeTableCellDelegate {
     var profileViewController: ProfileViewController?
 
     private var topMenuSegmentedControl: DZNSegmentedControl!
+    
+    private enum TopMenuSegments: Int {
+        case DirectReports = 0, Peers, Favorites
+    }
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -75,7 +79,7 @@ class PeopleViewController: UIViewController, MGSwipeTableCellDelegate {
             dataLoadAttempted = true
 
             switch topMenuSegmentedControl.selectedSegmentIndex {
-            case 0:
+            case TopMenuSegments.DirectReports.rawValue:
                 // Direct Reports
                 AuthViewController.getLoggedInPerson()?.getDirectReports({ (objects, error: NSError!) -> Void in
                     if error == nil {
@@ -83,7 +87,7 @@ class PeopleViewController: UIViewController, MGSwipeTableCellDelegate {
                     }
                 })
 
-            case 1:
+            case TopMenuSegments.Peers.rawValue:
                 // Peers
                 AuthViewController.getLoggedInPerson()?.getPeers({ (objects, error: NSError!) -> Void in
                     if error == nil {
@@ -91,7 +95,7 @@ class PeopleViewController: UIViewController, MGSwipeTableCellDelegate {
                     }
                 })
 
-            case 2:
+            case TopMenuSegments.Favorites.rawValue:
                 // Favorites
                 setPeople(Favorite.getFavorites())
             default:
@@ -148,6 +152,13 @@ class PeopleViewController: UIViewController, MGSwipeTableCellDelegate {
                 if cell.favoriteButton?.selected == true {
                     Favorite.removeFavorite(cell.person)
                     cell.favoriteButton?.selected = false
+                    if topMenuSegmentedControl.selectedSegmentIndex == TopMenuSegments.Favorites.rawValue {
+                        let indexPathOfDeleteCell = tableView.indexPathForCell(cell) as NSIndexPath!
+                        tableView.beginUpdates()
+                        loadData()
+                        tableView.deleteRowsAtIndexPaths([indexPathOfDeleteCell], withRowAnimation: .Right)
+                        tableView.endUpdates()
+                    }
                 }
                 else {
                     Favorite.markFavorite(cell.person)

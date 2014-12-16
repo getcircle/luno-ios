@@ -32,7 +32,7 @@ class Favorite: PFObject, PFSubclassing {
     
     class func fetchAndCacheFavorites() {
         let parseQuery = Favorite.query() as PFQuery
-        parseQuery.cachePolicy = kPFCachePolicyCacheElseNetwork
+        parseQuery.cachePolicy = kPFCachePolicyCacheThenNetwork
         parseQuery.includeKey("person")
         parseQuery.orderByAscending("createdAt")
         // Ideally we will use exact match in the query but Parse is weird.
