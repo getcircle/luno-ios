@@ -21,10 +21,41 @@ extension UIImageView {
     }
 
     func setImageWithPerson(person: Person!) {
-        setImageWithURL(
-            NSURL(string: person.profileImageURL),
-            placeholderImage: UIImage(named: "DefaultPerson")
-        )
+        let request = NSURLRequest(URL: NSURL(string: person.profileImageURL)!)
+        
+        if let cachedImage = UIImageView.sharedImageCache().cachedImageForRequest(request) {
+            self.image = cachedImage
+        }
+        else {
+            transform = CGAffineTransformMakeScale(0.0, 0.0)
+
+            setImageWithURLRequest(request,
+                placeholderImage: UIImage(named: "DefaultPerson"),
+                success: { (request, response, image) -> Void in
+                    self.image = image
+                    UIView.animateWithDuration(0.8,
+                        delay: 0.0,
+                        usingSpringWithDamping: 0.7,
+                        initialSpringVelocity: 0.9,
+                        options: UIViewAnimationOptions.CurveEaseInOut,
+                        animations: { () -> Void in
+                            self.transform = CGAffineTransformRotate(CGAffineTransformIdentity, 180.0/358.0)
+                            UIView.animateWithDuration(0.1,
+                                delay: 0.2,
+                                options: UIViewAnimationOptions.CurveEaseInOut,
+                                animations: { () -> Void in
+                                    self.transform = CGAffineTransformIdentity
+                                },
+                                completion: nil
+                            )
+                        },
+                        completion: nil
+                    )
+                    return
+                },
+                nil
+            )
+        }
     }
     
     func setImageWithProfileImageURL(profileImageURL: String) {
