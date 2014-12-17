@@ -18,6 +18,10 @@ class PeopleViewController: UIViewController, MGSwipeTableCellDelegate {
     var profileViewController: ProfileViewController?
 
     private var topMenuSegmentedControl: DZNSegmentedControl!
+    
+    private enum TopMenuSegments: Int {
+        case DirectReports = 0, Peers, Favorites
+    }
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -43,6 +47,8 @@ class PeopleViewController: UIViewController, MGSwipeTableCellDelegate {
             // Checks if it has a user and loads data
             loadData()
         }
+
+        updateFavoritesCountDisplay()
     }
 
     // MARK: - Configuration
@@ -73,35 +79,36 @@ class PeopleViewController: UIViewController, MGSwipeTableCellDelegate {
     private func loadData() {
         if let pfUser = PFUser.currentUser() {
             dataLoadAttempted = true
-            let loggedInPerson = AuthViewController.getLoggedInPerson()!
-            let parseQuery = Person.query() as PFQuery
-            parseQuery.cachePolicy = kPFCachePolicyCacheElseNetwork
-            parseQuery.includeKey("manager")
-            parseQuery.orderByAscending("firstName")
-            parseQuery.whereKey("email", notEqualTo: PFUser.currentUser().email)
 
             switch topMenuSegmentedControl.selectedSegmentIndex {
-            case 0:
+            case TopMenuSegments.DirectReports.rawValue:
                 // Direct Reports
-                parseQuery.whereKey("manager", equalTo: loggedInPerson)
+                AuthViewController.getLoggedInPerson()?.getDirectReports({ (objects, error: NSError!) -> Void in
+                    if error == nil {
+                        self.setPeople(objects)
+                    }
+                })
 
-            case 1:
+            case TopMenuSegments.Peers.rawValue:
                 // Peers
-                if let manager = loggedInPerson.manager {
-                    parseQuery.whereKey("manager", equalTo: manager)
-                }
+                AuthViewController.getLoggedInPerson()?.getPeers({ (objects, error: NSError!) -> Void in
+                    if error == nil {
+                        self.setPeople(objects)
+                    }
+                })
 
+            case TopMenuSegments.Favorites.rawValue:
+                // Favorites
+                setPeople(Favorite.getFavorites())
             default:
                 break;
             }
-
-            parseQuery.findObjectsInBackgroundWithBlock { (objects: [AnyObject]!, error: NSError!) -> Void in
-                if error == nil {
-                    self.people = objects as? [Person]
-                    self.tableView.reloadData()
-                }
-            }
         }
+    }
+    
+    private func setPeople(objects: [AnyObject]!) {
+        people = objects as? [Person]
+        tableView.reloadData()
     }
 
     // MARK: - Segues
@@ -144,7 +151,23 @@ class PeopleViewController: UIViewController, MGSwipeTableCellDelegate {
         switch direction {
             case .LeftToRight:
                 // Left button tapped
-                println("Will mark favorite")
+                if cell.favoriteButton?.selected == true {
+                    Favorite.removeFavorite(cell.person)
+                    cell.favoriteButton?.selected = false
+                    if topMenuSegmentedControl.selectedSegmentIndex == TopMenuSegments.Favorites.rawValue {
+                        let indexPathOfDeleteCell = tableView.indexPathForCell(cell) as NSIndexPath!
+                        tableView.beginUpdates()
+                        loadData()
+                        tableView.deleteRowsAtIndexPaths([indexPathOfDeleteCell], withRowAnimation: .Right)
+                        tableView.endUpdates()
+                    }
+                }
+                else {
+                    Favorite.markFavorite(cell.person)
+                    cell.favoriteButton?.selected = true
+                }
+                updateFavoritesCountDisplay()
+
             case .RightToLeft:
                 // Right buttons tapped
                 println("Email = \(cell.person.email)")
@@ -167,6 +190,20 @@ class PeopleViewController: UIViewController, MGSwipeTableCellDelegate {
 
     @IBAction func segmentedControlValueChanged(sender: AnyObject!) {
         loadData()
+    }
+    
+    // MARK: Helpers
+
+    private func updateFavoritesCountDisplay() {
+        let numberOfFavorites = Favorite.getFavorites()?.count ?? 0
+        var title = "Favorites"
+        if numberOfFavorites > 0 {
+            title += " (" + String(numberOfFavorites) + ")"
+        }
+        topMenuSegmentedControl.setTitle(title, forSegmentAtIndex: UInt(TopMenuSegments.Favorites.rawValue))
+// TODO: Remove this hack for setting title twice to work with external componenent DZNSegmented..
+        topMenuSegmentedControl.setTitle(title, forSegmentAtIndex: UInt(TopMenuSegments.Favorites.rawValue))
+        return
     }
 }
 

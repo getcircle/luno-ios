@@ -94,6 +94,36 @@ class Person : PFObject, PFSubclassing {
         return "Person"
     }
     
+    func getDirectReports(block: PFArrayResultBlock!) {
+        if let pfUser = PFUser.currentUser() {
+            let loggedInPerson = AuthViewController.getLoggedInPerson()!
+            let parseQuery = Person.query() as PFQuery
+            parseQuery.cachePolicy = kPFCachePolicyCacheElseNetwork
+            parseQuery.includeKey("manager")
+            parseQuery.orderByAscending("firstName")
+            parseQuery.whereKey("email", notEqualTo: email)
+            // Direct Reports
+            parseQuery.whereKey("manager", equalTo: loggedInPerson)
+            parseQuery.findObjectsInBackgroundWithBlock(block)
+        }
+    }
+    
+    func getPeers(block: PFArrayResultBlock!) {
+        if let pfUser = PFUser.currentUser() {
+            let loggedInPerson = AuthViewController.getLoggedInPerson()!
+            let parseQuery = Person.query() as PFQuery
+            parseQuery.cachePolicy = kPFCachePolicyCacheElseNetwork
+            parseQuery.includeKey("manager")
+            parseQuery.orderByAscending("firstName")
+            parseQuery.whereKey("email", notEqualTo: email)
+            // Peers
+            if let manager = loggedInPerson.manager {
+                parseQuery.whereKey("manager", equalTo: manager)
+            }
+            parseQuery.findObjectsInBackgroundWithBlock(block)
+        }
+    }
+    
     class func signUpInitialUsers() {
         let users = [
             ["username": "ravi", "email": "ravirani@gmail.com", "pass": "abcd"],
