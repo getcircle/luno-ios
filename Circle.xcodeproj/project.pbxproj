@@ -400,7 +400,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0610;
-				ORGANIZATIONNAME = RavCode;
+				ORGANIZATIONNAME = "RH Labs Inc.";
 				TargetAttributes = {
 					8F00048F1A2419730096477A = {
 						CreatedOnToolsVersion = 6.1;
