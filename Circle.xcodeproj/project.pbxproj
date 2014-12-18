@@ -36,6 +36,7 @@
 		8F22CBFE1A29C7120026376E /* GCDUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F22CBFD1A29C7120026376E /* GCDUtils.swift */; };
 		8F2B3D231A36D68B00F091A4 /* Favorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F2B3D221A36D68B00F091A4 /* Favorite.swift */; };
 		8FD041A21A2C03AA00FE28EF /* UIFontExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD041A11A2C03AA00FE28EF /* UIFontExtention.swift */; };
+		8FEE88471A411BA90011CE4A /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FEE88461A411BA90011CE4A /* UIViewControllerExtension.swift */; };
 		A73E1BB3914D1A036D2FAE47 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FD94FE17CC5CD80FF96B24E5 /* libPods.a */; };
 		BF041BB81A2C0BD70043EC72 /* ChatRoomsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF041BB71A2C0BD70043EC72 /* ChatRoomsViewController.swift */; };
 		BF041BBA1A2C119B0043EC72 /* NSDateFormatterExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF041BB91A2C119B0043EC72 /* NSDateFormatterExtension.swift */; };
@@ -107,6 +108,7 @@
 		8F22CBFD1A29C7120026376E /* GCDUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCDUtils.swift; sourceTree = "<group>"; };
 		8F2B3D221A36D68B00F091A4 /* Favorite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Favorite.swift; sourceTree = "<group>"; };
 		8FD041A11A2C03AA00FE28EF /* UIFontExtention.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIFontExtention.swift; sourceTree = "<group>"; };
+		8FEE88461A411BA90011CE4A /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		BF041BB71A2C0BD70043EC72 /* ChatRoomsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatRoomsViewController.swift; sourceTree = "<group>"; };
 		BF041BB91A2C119B0043EC72 /* NSDateFormatterExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDateFormatterExtension.swift; sourceTree = "<group>"; };
 		BF59AA921A2C152F00C0CDB9 /* UITableViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewExtension.swift; sourceTree = "<group>"; };
@@ -267,6 +269,7 @@
 				8F22CBE21A27AE9B0026376E /* UIImageViewExtension.swift */,
 				8F22CBF01A2844F50026376E /* UINavigationBarExtension.swift */,
 				BF59AA921A2C152F00C0CDB9 /* UITableViewExtension.swift */,
+				8FEE88461A411BA90011CE4A /* UIViewControllerExtension.swift */,
 				8F22CBFA1A29AF450026376E /* UIViewExtension.swift */,
 			);
 			name = Extensions;
@@ -533,6 +536,7 @@
 				BF83A4791A2A6604000F7A92 /* ChatRoomViewController.swift in Sources */,
 				BF7F2C631A2D989A008FDAE5 /* ChatRoomCollectionViewLayout.swift in Sources */,
 				BF041BB81A2C0BD70043EC72 /* ChatRoomsViewController.swift in Sources */,
+				8FEE88471A411BA90011CE4A /* UIViewControllerExtension.swift in Sources */,
 				BFB791841A2C33610048E8FB /* MessageSentCollectionViewCell.swift in Sources */,
 				8F22CBE81A27FDA70026376E /* ProfileAttributeCollectionViewCell.swift in Sources */,
 				BFB791891A2C346A0048E8FB /* CALayerExtension.swift in Sources */,

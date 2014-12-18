@@ -15,6 +15,7 @@ extension AppDelegate {
         window!.tintColor = UIColor.appTintColor()
         UINavigationBar.appearance().tintColor = UIColor.navigationBarTintColor()
         UINavigationBar.appearance().barTintColor = UIColor.navigationBarBarTintColor()
+        UINavigationBar.appearance().translucent = false
 
         let navBarTitleAttributes = [
             NSFontAttributeName: UIFont.navigationBarFont(),

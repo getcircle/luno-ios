@@ -6,9 +6,10 @@
 //  Copyright (c) 2014 RH Labs Inc. All rights reserved.
 //
 
+import MessageUI
 import UIKit
 
-class PeopleViewController: UIViewController, MGSwipeTableCellDelegate {
+class PeopleViewController: UIViewController, MGSwipeTableCellDelegate, MFMailComposeViewControllerDelegate {
 
     @IBOutlet weak private(set) var menuContainer: UIView!
     @IBOutlet weak private(set) var tableView: UITableView!
@@ -134,7 +135,10 @@ class PeopleViewController: UIViewController, MGSwipeTableCellDelegate {
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(ContactTableViewCell.classReuseIdentifier, forIndexPath: indexPath) as ContactTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier(
+            ContactTableViewCell.classReuseIdentifier,
+            forIndexPath: indexPath
+        ) as ContactTableViewCell
         cell.addQuickActions = true
 
         if let person = people?[indexPath.row] {
@@ -147,7 +151,12 @@ class PeopleViewController: UIViewController, MGSwipeTableCellDelegate {
 
     // MARK: - Swipe Cell Delegate
 
-    func swipeTableCell(cell: ContactTableViewCell!, tappedButtonAtIndex index: Int, direction: MGSwipeDirection, fromExpansion: Bool) -> Bool {
+    func swipeTableCell(
+        cell: ContactTableViewCell!,
+        tappedButtonAtIndex index: Int,
+        direction: MGSwipeDirection,
+        fromExpansion: Bool
+    ) -> Bool {
         switch direction {
             case .LeftToRight:
                 // Left button tapped
@@ -171,6 +180,7 @@ class PeopleViewController: UIViewController, MGSwipeTableCellDelegate {
             case .RightToLeft:
                 // Right buttons tapped
                 println("Email = \(cell.person.email)")
+                presentMailViewController([cell.person.email], subject: "Hey", messageBody: "")
             default:
                 break
         }
@@ -192,7 +202,7 @@ class PeopleViewController: UIViewController, MGSwipeTableCellDelegate {
         loadData()
     }
     
-    // MARK: Helpers
+    // MARK: - Helpers
 
     private func updateFavoritesCountDisplay() {
         let numberOfFavorites = Favorite.getFavorites()?.count ?? 0
@@ -205,5 +215,13 @@ class PeopleViewController: UIViewController, MGSwipeTableCellDelegate {
         topMenuSegmentedControl.setTitle(title, forSegmentAtIndex: UInt(TopMenuSegments.Favorites.rawValue))
         return
     }
+    
+    // MARK: - MFMail
+    func mailComposeController(
+        controller: MFMailComposeViewController!,
+        didFinishWithResult result: MFMailComposeResult,
+        error: NSError!
+    ) {
+            dismissViewControllerAnimated(true, completion: nil)
+    }
 }
-
