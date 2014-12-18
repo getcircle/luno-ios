@@ -6,9 +6,10 @@
 //  Copyright (c) 2014 RH Labs Inc. All rights reserved.
 //
 
+import MessageUI
 import UIKit
 
-class ProfileViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+class ProfileViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, MFMailComposeViewControllerDelegate {
 
     var person: Person! {
         didSet {
@@ -84,6 +85,9 @@ class ProfileViewController: UICollectionViewController, UICollectionViewDelegat
             profileVC.person = person.manager
             navigationController?.pushViewController(profileVC, animated: true)
 
+        case .Email:
+            presentMailViewController([person.email], subject: "Hey", messageBody: "")
+            
         default:
             break
         }
@@ -136,6 +140,16 @@ class ProfileViewController: UICollectionViewController, UICollectionViewDelegat
                 profileHeaderView.profileImage.transform = CGAffineTransformIdentity
             }
         }
+    }
+    
+    // MARK: - MFMailComposeViewControllerDelegate
+    
+    func mailComposeController(
+        controller: MFMailComposeViewController!,
+        didFinishWithResult result: MFMailComposeResult,
+        error: NSError!
+        ) {
+            dismissViewControllerAnimated(true, completion: nil)
     }
 }
 

@@ -216,7 +216,8 @@ class PeopleViewController: UIViewController, MGSwipeTableCellDelegate, MFMailCo
         return
     }
     
-    // MARK: - MFMail
+    // MARK: - MFMailComposeViewControllerDelegate
+
     func mailComposeController(
         controller: MFMailComposeViewController!,
         didFinishWithResult result: MFMailComposeResult,
