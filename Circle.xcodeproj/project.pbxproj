@@ -72,6 +72,19 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		8FEE88481A4370D90011CE4A /* Copy Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Copy Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		0E955F60570F60CAEDB21587 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		8F0004901A2419730096477A /* Circle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Circle.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -109,6 +122,7 @@
 		8F2B3D221A36D68B00F091A4 /* Favorite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Favorite.swift; sourceTree = "<group>"; };
 		8FD041A11A2C03AA00FE28EF /* UIFontExtention.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIFontExtention.swift; sourceTree = "<group>"; };
 		8FEE88461A411BA90011CE4A /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
+		8FEE88491A4371A80011CE4A /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = ../ThirdParty/Alamofire/Alamofire.xcodeproj; sourceTree = "<group>"; };
 		BF041BB71A2C0BD70043EC72 /* ChatRoomsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatRoomsViewController.swift; sourceTree = "<group>"; };
 		BF041BB91A2C119B0043EC72 /* NSDateFormatterExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDateFormatterExtension.swift; sourceTree = "<group>"; };
 		BF59AA921A2C152F00C0CDB9 /* UITableViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewExtension.swift; sourceTree = "<group>"; };
@@ -194,6 +208,7 @@
 				8F0004C31A25BA370096477A /* Models */,
 				8F0004C51A25BA650096477A /* Storyboards / XIBs */,
 				8F0004931A2419730096477A /* Supporting Files */,
+				8FEE88551A43725E0011CE4A /* ThirdParty */,
 				8F22CBFC1A29C6F00026376E /* Utils */,
 				8F0004C01A25B9FE0096477A /* ViewControllers */,
 				8F0004C11A25BA090096477A /* Views */,
@@ -339,6 +354,14 @@
 			name = Utils;
 			sourceTree = "<group>";
 		};
+		8FEE88551A43725E0011CE4A /* ThirdParty */ = {
+			isa = PBXGroup;
+			children = (
+				8FEE88491A4371A80011CE4A /* Alamofire.xcodeproj */,
+			);
+			name = ThirdParty;
+			sourceTree = "<group>";
+		};
 		BFEDB13B1A2A82D300250165 /* Model Actions */ = {
 			isa = PBXGroup;
 			children = (
@@ -368,6 +391,7 @@
 				8F00048D1A2419730096477A /* Frameworks */,
 				8F00048E1A2419730096477A /* Resources */,
 				3C394438B815062A6628C956 /* Copy Pods Resources */,
+				8FEE88481A4370D90011CE4A /* Copy Frameworks */,
 			);
 			buildRules = (
 			);

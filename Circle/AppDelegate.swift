@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -20,6 +21,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Setup Parse
         setupParse(launchOptions)
+        
+        // Test Alamofire
+//        Alamofire.request(.GET, "http://httpbin.org/get", parameters: ["foo": "bar"])
+//            .response { (request, response, data, error) in
+//                println(request)
+//                println(response)
+//                println(error)
+//        }
 
         return true
     }
