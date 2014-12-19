@@ -82,6 +82,15 @@
     return self;
 }
 
+-(void) dealloc
+{
+    for (UIView * button in _buttons) {
+        if ([button isKindOfClass:[UIButton class]]) {
+            [(UIButton *)button removeTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
+        }
+    }
+}
+
 -(void) resetButtons
 {
     int index = 0;
@@ -527,7 +536,6 @@ typedef struct MGSwipeAnimationData {
     
     //input overlay on the whole table
     UITableView * table = [self parentTable];
-    table.scrollEnabled = NO;
     _tableInputOverlay = [[MGSwipeTableInputOverlay alloc] initWithFrame:table.bounds];
     _tableInputOverlay.currentCell = self;
     [table addSubview:_tableInputOverlay];
@@ -555,8 +563,6 @@ typedef struct MGSwipeAnimationData {
         [self.contentView addSubview:_swipeContentView];
     }
     
-    UITableView * table = [self parentTable];
-    table.scrollEnabled = YES;
     [_tableInputOverlay removeFromSuperview];
     _tableInputOverlay = nil;
     
@@ -855,7 +861,7 @@ typedef struct MGSwipeAnimationData {
     _animationData.duration = _swipeOffset > 0 ? _leftSwipeSettings.animationDuration : _rightSwipeSettings.animationDuration;
     _animationData.start = 0;
     _displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(animationTick:)];
-    [_displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
+    [_displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
 }
 
 #pragma mark Gestures
