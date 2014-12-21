@@ -48,10 +48,12 @@
 		BF5FCA721A269CF300F511EF /* ChatRoomHistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF5FCA701A269CF300F511EF /* ChatRoomHistoryTableViewCell.xib */; };
 		BF5FCA791A26A57000F511EF /* NoConversationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5FCA771A26A57000F511EF /* NoConversationsView.swift */; };
 		BF5FCA7A1A26A57000F511EF /* NoConversationsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF5FCA781A26A57000F511EF /* NoConversationsView.xib */; };
+		BF7DF98F1A44E53200A4F924 /* ServiceTransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7DF98E1A44E53200A4F924 /* ServiceTransport.swift */; };
 		BF7F2C5D1A2D7FDC008FDAE5 /* ReadReceipt.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7F2C5C1A2D7FDC008FDAE5 /* ReadReceipt.swift */; };
 		BF7F2C631A2D989A008FDAE5 /* ChatRoomCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7F2C621A2D989A008FDAE5 /* ChatRoomCollectionViewLayout.swift */; };
 		BF83A4771A2A57B3000F7A92 /* SelectContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF83A4761A2A57B3000F7A92 /* SelectContactViewController.swift */; };
 		BF83A4791A2A6604000F7A92 /* ChatRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF83A4781A2A6604000F7A92 /* ChatRoomViewController.swift */; };
+		BF8FC3D91A44DA83007FD8BA /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8FC3D81A44DA83007FD8BA /* StringExtension.swift */; };
 		BFB791801A2C28E30048E8FB /* MessageReceivedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB7917E1A2C28E30048E8FB /* MessageReceivedCollectionViewCell.swift */; };
 		BFB791811A2C28E30048E8FB /* MessageReceivedCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFB7917F1A2C28E30048E8FB /* MessageReceivedCollectionViewCell.xib */; };
 		BFB791841A2C33610048E8FB /* MessageSentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB791821A2C33610048E8FB /* MessageSentCollectionViewCell.swift */; };
@@ -59,6 +61,8 @@
 		BFB791891A2C346A0048E8FB /* CALayerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB791881A2C346A0048E8FB /* CALayerExtension.swift */; };
 		BFB7918B1A2C3C860048E8FB /* SpringFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB7918A1A2C3C860048E8FB /* SpringFlowLayout.swift */; };
 		BFC6CF911A44C9F60081F45B /* ProtobufRegistry.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = BFC6CF891A44C9D40081F45B /* ProtobufRegistry.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BFC6CF9C1A44D2B90081F45B /* ServiceClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC6CF9B1A44D2B90081F45B /* ServiceClient.swift */; };
+		BFC6CFA21A44D4DE0081F45B /* ClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC6CFA11A44D4DE0081F45B /* ClientTests.swift */; };
 		BFDD9A4C1A2BE7840076407D /* ChatRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDD9A4B1A2BE7840076407D /* ChatRoom.swift */; };
 		BFEDB1381A2A6D6E00250165 /* SelectContactViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFEDB1371A2A6D6E00250165 /* SelectContactViewController.xib */; };
 		BFEDB13F1A2A82FE00250165 /* MessageActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFEDB13E1A2A82FE00250165 /* MessageActions.swift */; };
@@ -178,10 +182,12 @@
 		BF5FCA701A269CF300F511EF /* ChatRoomHistoryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatRoomHistoryTableViewCell.xib; sourceTree = "<group>"; };
 		BF5FCA771A26A57000F511EF /* NoConversationsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoConversationsView.swift; sourceTree = "<group>"; };
 		BF5FCA781A26A57000F511EF /* NoConversationsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoConversationsView.xib; sourceTree = "<group>"; };
+		BF7DF98E1A44E53200A4F924 /* ServiceTransport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceTransport.swift; sourceTree = "<group>"; };
 		BF7F2C5C1A2D7FDC008FDAE5 /* ReadReceipt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadReceipt.swift; sourceTree = "<group>"; };
 		BF7F2C621A2D989A008FDAE5 /* ChatRoomCollectionViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatRoomCollectionViewLayout.swift; sourceTree = "<group>"; };
 		BF83A4761A2A57B3000F7A92 /* SelectContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectContactViewController.swift; sourceTree = "<group>"; };
 		BF83A4781A2A6604000F7A92 /* ChatRoomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatRoomViewController.swift; sourceTree = "<group>"; };
+		BF8FC3D81A44DA83007FD8BA /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		BFB7917E1A2C28E30048E8FB /* MessageReceivedCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageReceivedCollectionViewCell.swift; sourceTree = "<group>"; };
 		BFB7917F1A2C28E30048E8FB /* MessageReceivedCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageReceivedCollectionViewCell.xib; sourceTree = "<group>"; };
 		BFB791821A2C33610048E8FB /* MessageSentCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageSentCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -189,6 +195,8 @@
 		BFB791881A2C346A0048E8FB /* CALayerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CALayerExtension.swift; sourceTree = "<group>"; };
 		BFB7918A1A2C3C860048E8FB /* SpringFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpringFlowLayout.swift; sourceTree = "<group>"; };
 		BFC6CF821A44C9D30081F45B /* ProtobufRegistry.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ProtobufRegistry.xcodeproj; path = ../../protobufs/swift/ProtobufRegistry/ProtobufRegistry.xcodeproj; sourceTree = "<group>"; };
+		BFC6CF9B1A44D2B90081F45B /* ServiceClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceClient.swift; sourceTree = "<group>"; };
+		BFC6CFA11A44D4DE0081F45B /* ClientTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientTests.swift; sourceTree = "<group>"; };
 		BFDD9A4B1A2BE7840076407D /* ChatRoom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatRoom.swift; sourceTree = "<group>"; };
 		BFEDB1371A2A6D6E00250165 /* SelectContactViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectContactViewController.xib; sourceTree = "<group>"; };
 		BFEDB13E1A2A82FE00250165 /* MessageActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageActions.swift; sourceTree = "<group>"; };
@@ -251,6 +259,7 @@
 				8FEE88491A4371A80011CE4A /* Alamofire.xcodeproj */,
 				BFC6CF821A44C9D30081F45B /* ProtobufRegistry.xcodeproj */,
 				8F0004951A2419730096477A /* AppDelegate.swift */,
+				BFC6CF9A1A44D2AB0081F45B /* SOA */,
 				8F0004C41A25BA510096477A /* Assets */,
 				8F22CBF31A2864CC0026376E /* DataSources */,
 				8F0004C21A25BA0F0096477A /* Extensions */,
@@ -279,6 +288,7 @@
 		8F0004AD1A2419730096477A /* CircleTests */ = {
 			isa = PBXGroup;
 			children = (
+				BFC6CFA01A44D4CA0081F45B /* SOA Tests */,
 				8F0004B01A2419730096477A /* CircleTests.swift */,
 				8F0004AE1A2419730096477A /* Supporting Files */,
 			);
@@ -337,6 +347,7 @@
 				BF59AA921A2C152F00C0CDB9 /* UITableViewExtension.swift */,
 				8FEE88461A411BA90011CE4A /* UIViewControllerExtension.swift */,
 				8F22CBFA1A29AF450026376E /* UIViewExtension.swift */,
+				BF8FC3D81A44DA83007FD8BA /* StringExtension.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -428,6 +439,23 @@
 				BFC6CF8B1A44C9D40081F45B /* ProtobufRegistryTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		BFC6CF9A1A44D2AB0081F45B /* SOA */ = {
+			isa = PBXGroup;
+			children = (
+				BFC6CF9B1A44D2B90081F45B /* ServiceClient.swift */,
+				BF7DF98E1A44E53200A4F924 /* ServiceTransport.swift */,
+			);
+			name = SOA;
+			sourceTree = "<group>";
+		};
+		BFC6CFA01A44D4CA0081F45B /* SOA Tests */ = {
+			isa = PBXGroup;
+			children = (
+				BFC6CFA11A44D4DE0081F45B /* ClientTests.swift */,
+			);
+			name = "SOA Tests";
 			sourceTree = "<group>";
 		};
 		BFEDB13B1A2A82D300250165 /* Model Actions */ = {
@@ -676,6 +704,7 @@
 				8F0004BE1A24225A0096477A /* ContactTableViewCell.swift in Sources */,
 				BFB791801A2C28E30048E8FB /* MessageReceivedCollectionViewCell.swift in Sources */,
 				8F22CBE01A27A8E60026376E /* ProfileHeaderCollectionReusableView.swift in Sources */,
+				BF8FC3D91A44DA83007FD8BA /* StringExtension.swift in Sources */,
 				8F0004961A2419730096477A /* AppDelegate.swift in Sources */,
 				8F22CBE51A27ED190026376E /* ProfileCollectionViewLayout.swift in Sources */,
 				8F22CBFB1A29AF450026376E /* UIViewExtension.swift in Sources */,
@@ -701,11 +730,13 @@
 				BF5FCA711A269CF300F511EF /* ChatRoomHistoryTableViewCell.swift in Sources */,
 				8F00049D1A2419730096477A /* ProfileViewController.swift in Sources */,
 				BF83A4791A2A6604000F7A92 /* ChatRoomViewController.swift in Sources */,
+				BF7DF98F1A44E53200A4F924 /* ServiceTransport.swift in Sources */,
 				BF7F2C631A2D989A008FDAE5 /* ChatRoomCollectionViewLayout.swift in Sources */,
 				BF041BB81A2C0BD70043EC72 /* ChatRoomsViewController.swift in Sources */,
 				8FEE88471A411BA90011CE4A /* UIViewControllerExtension.swift in Sources */,
 				BFB791841A2C33610048E8FB /* MessageSentCollectionViewCell.swift in Sources */,
 				8F22CBE81A27FDA70026376E /* ProfileAttributeCollectionViewCell.swift in Sources */,
+				BFC6CF9C1A44D2B90081F45B /* ServiceClient.swift in Sources */,
 				BFB791891A2C346A0048E8FB /* CALayerExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -714,6 +745,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFC6CFA21A44D4DE0081F45B /* ClientTests.swift in Sources */,
 				8F0004B11A2419730096477A /* CircleTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
