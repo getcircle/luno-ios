@@ -17,9 +17,12 @@ public class ServiceClient {
     let serviceName: String
     var transport: ServiceTransport
     
-    public init(serviceName: String) {
+    public var token: String?
+    
+    public init(serviceName: String, token: String?) {
         self.serviceName = serviceName
         self.transport = HttpsTransport()
+        self.token = token
     }
     
     public func callAction(
@@ -31,6 +34,9 @@ public class ServiceClient {
         let serviceRequest = ServiceRequest.builder()
         let control = Control.builder()
         control.service = serviceName
+        if let token = token {
+            control.token = token
+        }
         serviceRequest.control = control.build()
         
         let actionRequest = ActionRequest.builder()

@@ -42,6 +42,7 @@
 		A73E1BB3914D1A036D2FAE47 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FD94FE17CC5CD80FF96B24E5 /* libPods.a */; };
 		BF041BB81A2C0BD70043EC72 /* ChatRoomsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF041BB71A2C0BD70043EC72 /* ChatRoomsViewController.swift */; };
 		BF041BBA1A2C119B0043EC72 /* NSDateFormatterExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF041BB91A2C119B0043EC72 /* NSDateFormatterExtension.swift */; };
+		BF2CBFCE1A46DF4E00BE589D /* ProtobufRegistry.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = BF2CBFC91A46DF3300BE589D /* ProtobufRegistry.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BF59AA931A2C152F00C0CDB9 /* UITableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF59AA921A2C152F00C0CDB9 /* UITableViewExtension.swift */; };
 		BF5FCA6E1A269A0300F511EF /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5FCA6D1A269A0300F511EF /* Message.swift */; };
 		BF5FCA711A269CF300F511EF /* ChatRoomHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5FCA6F1A269CF300F511EF /* ChatRoomHistoryTableViewCell.swift */; };
@@ -97,19 +98,26 @@
 			remoteGlobalIDString = F8111E3219A95C8B0040E7D1;
 			remoteInfo = Alamofire;
 		};
-		BF7DFAC61A46BA0F00A4F924 /* PBXContainerItemProxy */ = {
+		BF2CBFC81A46DF3300BE589D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = BF7DFABF1A46BA0F00A4F924 /* ProtobufRegistry.xcodeproj */;
+			containerPortal = BF2CBFC21A46DF3300BE589D /* ProtobufRegistry.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = BFC6CEEF1A44B58B0081F45B;
 			remoteInfo = ProtobufRegistry;
 		};
-		BF7DFAC81A46BA0F00A4F924 /* PBXContainerItemProxy */ = {
+		BF2CBFCA1A46DF3300BE589D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = BF7DFABF1A46BA0F00A4F924 /* ProtobufRegistry.xcodeproj */;
+			containerPortal = BF2CBFC21A46DF3300BE589D /* ProtobufRegistry.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = BFC6CEFA1A44B58B0081F45B;
 			remoteInfo = ProtobufRegistryTests;
+		};
+		BF2CBFCC1A46DF4400BE589D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BF2CBFC21A46DF3300BE589D /* ProtobufRegistry.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = BFC6CEEE1A44B58B0081F45B;
+			remoteInfo = ProtobufRegistry;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -120,6 +128,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				BF2CBFCE1A46DF4E00BE589D /* ProtobufRegistry.framework in Copy Frameworks */,
 				8FEE88601A437DE40011CE4A /* Alamofire.framework in Copy Frameworks */,
 			);
 			name = "Copy Frameworks";
@@ -167,6 +176,7 @@
 		8FEE88491A4371A80011CE4A /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = ../ThirdParty/Alamofire/Alamofire.xcodeproj; sourceTree = "<group>"; };
 		BF041BB71A2C0BD70043EC72 /* ChatRoomsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatRoomsViewController.swift; sourceTree = "<group>"; };
 		BF041BB91A2C119B0043EC72 /* NSDateFormatterExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDateFormatterExtension.swift; sourceTree = "<group>"; };
+		BF2CBFC21A46DF3300BE589D /* ProtobufRegistry.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ProtobufRegistry.xcodeproj; path = "../../protobuf-registry/swift/ProtobufRegistry/ProtobufRegistry.xcodeproj"; sourceTree = "<group>"; };
 		BF59AA921A2C152F00C0CDB9 /* UITableViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewExtension.swift; sourceTree = "<group>"; };
 		BF5FCA6D1A269A0300F511EF /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		BF5FCA6F1A269CF300F511EF /* ChatRoomHistoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatRoomHistoryTableViewCell.swift; sourceTree = "<group>"; };
@@ -174,7 +184,6 @@
 		BF5FCA771A26A57000F511EF /* NoConversationsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoConversationsView.swift; sourceTree = "<group>"; };
 		BF5FCA781A26A57000F511EF /* NoConversationsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoConversationsView.xib; sourceTree = "<group>"; };
 		BF7DF98E1A44E53200A4F924 /* ServiceTransport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceTransport.swift; sourceTree = "<group>"; };
-		BF7DFABF1A46BA0F00A4F924 /* ProtobufRegistry.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ProtobufRegistry.xcodeproj; path = "../../protobuf-registry/swift/ProtobufRegistry/ProtobufRegistry.xcodeproj"; sourceTree = "<group>"; };
 		BF7F2C5C1A2D7FDC008FDAE5 /* ReadReceipt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadReceipt.swift; sourceTree = "<group>"; };
 		BF7F2C621A2D989A008FDAE5 /* ChatRoomCollectionViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatRoomCollectionViewLayout.swift; sourceTree = "<group>"; };
 		BF83A4761A2A57B3000F7A92 /* SelectContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectContactViewController.swift; sourceTree = "<group>"; };
@@ -247,7 +256,7 @@
 		8F0004921A2419730096477A /* Circle */ = {
 			isa = PBXGroup;
 			children = (
-				BF7DFABF1A46BA0F00A4F924 /* ProtobufRegistry.xcodeproj */,
+				BF2CBFC21A46DF3300BE589D /* ProtobufRegistry.xcodeproj */,
 				8FEE88491A4371A80011CE4A /* Alamofire.xcodeproj */,
 				8F0004951A2419730096477A /* AppDelegate.swift */,
 				BFC6CF9A1A44D2AB0081F45B /* SOA */,
@@ -423,11 +432,11 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		BF7DFAC01A46BA0F00A4F924 /* Products */ = {
+		BF2CBFC31A46DF3300BE589D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				BF7DFAC71A46BA0F00A4F924 /* ProtobufRegistry.framework */,
-				BF7DFAC91A46BA0F00A4F924 /* ProtobufRegistryTests.xctest */,
+				BF2CBFC91A46DF3300BE589D /* ProtobufRegistry.framework */,
+				BF2CBFCB1A46DF3300BE589D /* ProtobufRegistryTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -483,6 +492,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				BF2CBFCD1A46DF4400BE589D /* PBXTargetDependency */,
 				8FEE885F1A437DB90011CE4A /* PBXTargetDependency */,
 			);
 			name = Circle;
@@ -546,8 +556,8 @@
 					ProjectRef = 8FEE88491A4371A80011CE4A /* Alamofire.xcodeproj */;
 				},
 				{
-					ProductGroup = BF7DFAC01A46BA0F00A4F924 /* Products */;
-					ProjectRef = BF7DFABF1A46BA0F00A4F924 /* ProtobufRegistry.xcodeproj */;
+					ProductGroup = BF2CBFC31A46DF3300BE589D /* Products */;
+					ProjectRef = BF2CBFC21A46DF3300BE589D /* ProtobufRegistry.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -573,18 +583,18 @@
 			remoteRef = 8FEE885C1A437DB10011CE4A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		BF7DFAC71A46BA0F00A4F924 /* ProtobufRegistry.framework */ = {
+		BF2CBFC91A46DF3300BE589D /* ProtobufRegistry.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = ProtobufRegistry.framework;
-			remoteRef = BF7DFAC61A46BA0F00A4F924 /* PBXContainerItemProxy */;
+			remoteRef = BF2CBFC81A46DF3300BE589D /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		BF7DFAC91A46BA0F00A4F924 /* ProtobufRegistryTests.xctest */ = {
+		BF2CBFCB1A46DF3300BE589D /* ProtobufRegistryTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = ProtobufRegistryTests.xctest;
-			remoteRef = BF7DFAC81A46BA0F00A4F924 /* PBXContainerItemProxy */;
+			remoteRef = BF2CBFCA1A46DF3300BE589D /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -752,6 +762,11 @@
 			isa = PBXTargetDependency;
 			name = Alamofire;
 			targetProxy = 8FEE885E1A437DB90011CE4A /* PBXContainerItemProxy */;
+		};
+		BF2CBFCD1A46DF4400BE589D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ProtobufRegistry;
+			targetProxy = BF2CBFCC1A46DF4400BE589D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

@@ -54,15 +54,20 @@ struct ServiceHttpRequest: URLRequestConvertible {
     
     static let baseURLString = "http://127.0.0.1:8000"
     var data: NSData
+    var token: String?
     
-    init(data: NSData) {
+    init(data: NSData, token: String?) {
         self.data = data
+        self.token = token
     }
     
     var URLRequest: NSURLRequest {
         let URL = NSURL(string: ServiceHttpRequest.baseURLString)!
         let mutableURLRequest = NSMutableURLRequest(URL: URL)
         mutableURLRequest.setValue("application/x-protobuf", forHTTPHeaderField: "Content-Type")
+        if token != "" {
+            mutableURLRequest.setValue("Token \(token!)", forHTTPHeaderField: "Authorization")
+        }
         mutableURLRequest.HTTPMethod = Alamofire.Method.POST.rawValue
         mutableURLRequest.HTTPBody = data
         return mutableURLRequest
@@ -71,7 +76,7 @@ struct ServiceHttpRequest: URLRequestConvertible {
 
 class HttpsTransport: BaseTransport {
     override func processRequest(serviceRequest: ServiceRequest, serializedRequest: NSData, completionHandler: ServiceCompletionHandler) {
-        Alamofire.request(ServiceHttpRequest(data: serializedRequest))
+        Alamofire.request(ServiceHttpRequest(data: serializedRequest, token: serviceRequest.control.token))
             .responseProtobuf { (request, response, serviceResponse, actionResponse, error) -> Void in
                 completionHandler(request, response, serviceResponse, actionResponse, error)
         }
