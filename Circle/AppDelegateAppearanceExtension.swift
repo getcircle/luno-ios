@@ -12,6 +12,15 @@ extension AppDelegate {
     
     func customizeAppearance(application: UIApplication) {
         application.setStatusBarStyle(.LightContent, animated: false)
+        
+        if let appWindow = window {
+            appWindow.layer.cornerRadius = 6.0
+            appWindow.layer.masksToBounds = true
+            appWindow.layer.opaque = false
+            appWindow.layer.shouldRasterize = true
+            appWindow.layer.rasterizationScale = UIScreen.mainScreen().scale
+        }
+        
         window!.tintColor = UIColor.appTintColor()
         UINavigationBar.appearance().tintColor = UIColor.navigationBarTintColor()
         UINavigationBar.appearance().barTintColor = UIColor.navigationBarBarTintColor()
