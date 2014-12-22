@@ -59,9 +59,8 @@ Additionally, there is one generic attribute type, `ALAttribute`, which is effec
     - autoAlignViewsToAxis:
     - autoMatchViewsDimension:
     - autoSetViewsDimension:toSize:
-	- autoSetViewsDimensionsToSize:
-    - autoDistributeViewsAlongAxis:alignedTo:withFixedSpacing:(insetSpacing:)(matchedSizes:)
-    - autoDistributeViewsAlongAxis:alignedTo:withFixedSize:(insetSpacing:)
+    - autoDistributeViewsAlongAxis:withFixedSpacing:(insetSpacing:)(matchedSizes:)alignment:
+    - autoDistributeViewsAlongAxis:withFixedSize:(insetSpacing:)alignment:
 
 ### [`NSLayoutConstraint`](Source/NSLayoutConstraint%2BPureLayout.h)
 

@@ -1,6 +1,6 @@
 //
 //  ALView+PureLayout.m
-//  v2.0.4
+//  v2.0.3
 //  https://github.com/smileyborg/PureLayout
 //
 //  Copyright (c) 2012 Richard Turton
@@ -66,61 +66,36 @@
 #pragma mark Create Constraints Without Installing
 
 /**
- A global variable that stores a stack of arrays of constraints created without being immediately installed.
- When executing a constraints block passed into the +[autoCreateConstraintsWithoutInstalling:] method, a new
- mutable array is pushed onto this stack, and all constraints created with PureLayout in the block are added
- to this array. When the block finishes executing, the array is popped off this stack. Automatic constraint 
- installation is prevented if this stack contains at least 1 array.
- 
+ A global variable that is incremented when the constraints block passed in to the
+ +[autoCreateConstraintsWithoutInstalling:] method begins executing, and decremented when the block
+ finishes executing. As a result, this variable will be 0 when not inside a constraints block, and
+ greater than 0 when inside a constraints block.
  NOTE: Access to this variable is not synchronized (and should only be done on the main thread).
  */
-static NSMutableArray *_al_arraysOfCreatedConstraints = nil;
-
-/**
- Accessor for the global state that stores arrays of constraints created without being installed.
- */
-+ (NSMutableArray *)al_arraysOfCreatedConstraints
-{
-    if (!_al_arraysOfCreatedConstraints) {
-        _al_arraysOfCreatedConstraints = [NSMutableArray new];
-    }
-    return _al_arraysOfCreatedConstraints;
-}
-
-/**
- Accessor for the current mutable array of constraints created without being immediately installed.
- */
-+ (NSMutableArray *)al_currentArrayOfCreatedConstraints
-{
-    return [[self al_arraysOfCreatedConstraints] lastObject];
-}
+static NSUInteger _al_preventAutomaticConstraintInstallationCount = 0;
 
 /**
  Accessor for the global state that determines whether automatic constraint installation should be prevented.
  */
 + (BOOL)al_preventAutomaticConstraintInstallation
 {
-    return [[self al_arraysOfCreatedConstraints] count] > 0;
+    return _al_preventAutomaticConstraintInstallationCount > 0;
 }
 
 /** 
  Prevents constraints created in the given constraints block from being automatically installed (activated).
- The constraints created from calls to the PureLayout API in the block are returned in a single array.
+ The created constraints returned from each PureLayout API call must be stored, as they are not retained. 
  
  @param block A block of method calls to the PureLayout API that create constraints.
- @return An array of the constraints that were created from calls to the PureLayout API inside the block.
  */
-+ (NSArray *)autoCreateConstraintsWithoutInstalling:(ALConstraintsBlock)block
++ (void)autoCreateConstraintsWithoutInstalling:(ALConstraintsBlock)block
 {
     NSAssert(block, @"The constraints block cannot be nil.");
-    NSArray *createdConstraints = nil;
     if (block) {
-        [[self al_arraysOfCreatedConstraints] addObject:[NSMutableArray new]];
+        _al_preventAutomaticConstraintInstallationCount++;
         block();
-        createdConstraints = [self al_currentArrayOfCreatedConstraints];
-        [[self al_arraysOfCreatedConstraints] removeLastObject];
+        _al_preventAutomaticConstraintInstallationCount--;
     }
-    return createdConstraints;
 }
 
 
@@ -166,7 +141,7 @@ static NSMutableArray *_al_globalConstraintPriorities = nil;
  */
 + (BOOL)al_isExecutingPriorityConstraintsBlock
 {
-    return [[self al_globalConstraintPriorities] count] > 0;
+    return [[ALView al_globalConstraintPriorities] count] > 0;
 }
 
 /**
@@ -183,9 +158,9 @@ static NSMutableArray *_al_globalConstraintPriorities = nil;
 {
     NSAssert(block, @"The constraints block cannot be nil.");
     if (block) {
-        [[self al_globalConstraintPriorities] addObject:@(priority)];
+        [[ALView al_globalConstraintPriorities] addObject:@(priority)];
         block();
-        [[self al_globalConstraintPriorities] removeLastObject];
+        [[ALView al_globalConstraintPriorities] removeLastObject];
     }
 }
 
@@ -244,11 +219,11 @@ static NSMutableArray *_al_globalConstraintIdentifiers = nil;
     NSAssert(identifer, @"The identifier string cannot be nil.");
     if (block) {
         if (identifer) {
-            [[self al_globalConstraintIdentifiers] addObject:identifer];
+            [[ALView al_globalConstraintIdentifiers] addObject:identifer];
         }
         block();
         if (identifer) {
-            [[self al_globalConstraintIdentifiers] removeLastObject];
+            [[ALView al_globalConstraintIdentifiers] removeLastObject];
         }
     }
 }
@@ -990,9 +965,7 @@ static NSMutableArray *_al_globalConstraintIdentifiers = nil;
 - (void)al_addConstraint:(NSLayoutConstraint *)constraint
 {
     [ALView al_applyGlobalStateToConstraint:constraint];
-    if ([ALView al_preventAutomaticConstraintInstallation]) {
-        [[ALView al_currentArrayOfCreatedConstraints] addObject:constraint];
-    } else {
+    if (![ALView al_preventAutomaticConstraintInstallation]) {
         [self addConstraint:constraint];
     }
 }

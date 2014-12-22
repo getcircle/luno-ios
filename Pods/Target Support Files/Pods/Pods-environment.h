@@ -64,19 +64,19 @@
 #define COCOAPODS_POD_AVAILABLE_MGSwipeTableCell
 #define COCOAPODS_VERSION_MAJOR_MGSwipeTableCell 1
 #define COCOAPODS_VERSION_MINOR_MGSwipeTableCell 3
-#define COCOAPODS_VERSION_PATCH_MGSwipeTableCell 4
+#define COCOAPODS_VERSION_PATCH_MGSwipeTableCell 3
 
 // Parse
 #define COCOAPODS_POD_AVAILABLE_Parse
 #define COCOAPODS_VERSION_MAJOR_Parse 1
-#define COCOAPODS_VERSION_MINOR_Parse 6
+#define COCOAPODS_VERSION_MINOR_Parse 5
 #define COCOAPODS_VERSION_PATCH_Parse 0
 
 // PureLayout
 #define COCOAPODS_POD_AVAILABLE_PureLayout
 #define COCOAPODS_VERSION_MAJOR_PureLayout 2
 #define COCOAPODS_VERSION_MINOR_PureLayout 0
-#define COCOAPODS_VERSION_PATCH_PureLayout 4
+#define COCOAPODS_VERSION_PATCH_PureLayout 3
 
 // SlackTextViewController
 #define COCOAPODS_POD_AVAILABLE_SlackTextViewController
