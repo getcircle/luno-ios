@@ -28,17 +28,17 @@ class ChatRoomViewController: SLKTextViewController {
         activityIndicator.autoCenterInSuperview()
         activityIndicator.startAnimating()
         let members = [person, AuthViewController.getLoggedInPerson()!]
-        ChatRoom.getRoomWithBlock(members) { (room: ChatRoom, error: NSError?) -> Void in
-            activityIndicator.stopAnimating()
-            if error == nil {
-                self.chatRoom = room
-                self.loadData()
-            }
-            
-            if composeFocus {
-                self.textView.becomeFirstResponder()
-            }
-        }
+//        ChatRoom.getRoomWithBlock(members) { (room: ChatRoom, error: NSError?) -> Void in
+//            activityIndicator.stopAnimating()
+//            if error == nil {
+//                self.chatRoom = room
+//                self.loadData()
+//            }
+//            
+//            if composeFocus {
+//                self.textView.becomeFirstResponder()
+//            }
+//        }
     }
     
     init(room: ChatRoom, composeFocus: Bool) {
@@ -154,21 +154,21 @@ class ChatRoomViewController: SLKTextViewController {
         let message = messages![indexPath.row]
         
         var cell: UICollectionViewCell?
-        if message.sender.objectId != currentUser?.objectId {
-            cell = collectionView.dequeueReusableCellWithReuseIdentifier(
-                MessageReceivedCollectionViewCell.classReuseIdentifier,
-                forIndexPath: indexPath
-            ) as? UICollectionViewCell
-            let received = cell as MessageReceivedCollectionViewCell
-            received.message = message
-        } else {
-            cell = collectionView.dequeueReusableCellWithReuseIdentifier(
-                MessageSentCollectionViewCell.classReuseIdentifier,
-                forIndexPath: indexPath
-            ) as? UICollectionViewCell
-            let sent = cell as MessageSentCollectionViewCell
-            sent.message = message
-        }
+//        if message.sender.objectId != currentUser?.objectId {
+//            cell = collectionView.dequeueReusableCellWithReuseIdentifier(
+//                MessageReceivedCollectionViewCell.classReuseIdentifier,
+//                forIndexPath: indexPath
+//            ) as? UICollectionViewCell
+//            let received = cell as MessageReceivedCollectionViewCell
+//            received.message = message
+//        } else {
+//            cell = collectionView.dequeueReusableCellWithReuseIdentifier(
+//                MessageSentCollectionViewCell.classReuseIdentifier,
+//                forIndexPath: indexPath
+//            ) as? UICollectionViewCell
+//            let sent = cell as MessageSentCollectionViewCell
+//            sent.message = message
+//        }
         return cell!
     }
     

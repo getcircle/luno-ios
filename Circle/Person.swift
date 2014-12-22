@@ -117,9 +117,9 @@ class Person : PFObject, PFSubclassing {
             parseQuery.orderByAscending("firstName")
             parseQuery.whereKey("email", notEqualTo: email)
             // Peers
-            if let manager = loggedInPerson.manager {
-                parseQuery.whereKey("manager", equalTo: manager)
-            }
+//            if let manager = loggedInPerson.manager {
+//                parseQuery.whereKey("manager", equalTo: manager)
+//            }
             parseQuery.findObjectsInBackgroundWithBlock(block)
         }
     }

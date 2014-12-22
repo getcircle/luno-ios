@@ -36,9 +36,9 @@ class SelectContactViewController: UITableViewController, UISearchBarDelegate {
             if error == nil {
                 let currentUser = AuthViewController.getLoggedInPerson()
                 let contacts = objects as? [Person]
-                self.contacts = contacts?.filter { person in
-                    return currentUser?.objectId != person.objectId
-                }
+//                self.contacts = contacts?.filter { person in
+//                    return currentUser?.objectId != person.objectId
+//                }
                 self.visibleContacts = self.contacts
                 self.tableView.reloadData()
             }

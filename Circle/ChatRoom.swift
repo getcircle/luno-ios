@@ -62,9 +62,9 @@ class ChatRoom: PFObject, PFSubclassing {
         var descriptions = [String]()
         let currentUser = AuthViewController.getLoggedInPerson()
         for person in members {
-            if person.objectId != currentUser?.objectId {
-                descriptions.append(person.description)
-            }
+//            if person.objectId != currentUser?.objectId {
+//                descriptions.append(person.description)
+//            }
         }
         return ", ".join(descriptions)
     }
@@ -73,9 +73,9 @@ class ChatRoom: PFObject, PFSubclassing {
         var profileImageURLs = [String]()
         let currentUser = AuthViewController.getLoggedInPerson()
         for person in members {
-            if person.objectId != currentUser?.objectId {
-                profileImageURLs.append(person.profileImageURL)
-            }
+//            if person.objectId != currentUser?.objectId {
+//                profileImageURLs.append(person.profileImageURL)
+//            }
         }
         // In the future we may want to show a collage of the various users in the chat room. For now, just grab the first.
         return profileImageURLs[0]

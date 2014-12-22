@@ -7,13 +7,20 @@
 //
 
 import UIKit
+import Locksmith
+import ProtobufRegistry
 
 // Swift doesn't support static variables yet.
 // This is the way it is recommended on the docs.
 // https://developer.apple.com/library/ios/documentation/swift/conceptual/Swift_Programming_Language/Properties.html
 struct LoggedInPersonHolder {
     static var person: Person?
+    static var user: UserService.Containers.User?
 }
+
+private let LocksmithService = "LocksmithAuthTokenService"
+private let LocksmithAuthTokenKey = "LocksmithAuthToken"
+private let DefaultsUserKey = "DefaultsUserKey"
 
 class AuthViewController: UIViewController, UITextFieldDelegate {
 
@@ -107,25 +114,26 @@ class AuthViewController: UIViewController, UITextFieldDelegate {
     @IBAction func logInButtonPressed(sender: AnyObject?) {
         dismissKeyboard()
         showLoadingState()
-        PFUser.logInWithUsernameInBackground(emailField.text, password: passwordField.text) {
-            (pfuser, error: NSError!) -> Void in
-
-            self.hideLoadingState()
-            if error == nil {
-                // Fetch and cache current person before dismissing
-                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), { () -> Void in
-                    AuthViewController.getLoggedInPerson()
-                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                        self.dismissViewControllerAnimated(true, completion: nil)
-                    })
-                    return
-                })
-            }
-            else {
-                self.logInButton.addShakeAnimation()
-                self.emailField.becomeFirstResponder()
-            }
-        }
+        login()
+//        PFUser.logInWithUsernameInBackground(emailField.text, password: passwordField.text) {
+//            (pfuser, error: NSError!) -> Void in
+//
+//            self.hideLoadingState()
+//            if error == nil {
+//                // Fetch and cache current person before dismissing
+//                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), { () -> Void in
+//                    AuthViewController.getLoggedInPerson()
+//                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+//                        self.dismissViewControllerAnimated(true, completion: nil)
+//                    })
+//                    return
+//                })
+//            }
+//            else {
+//                self.logInButton.addShakeAnimation()
+//                self.emailField.becomeFirstResponder()
+//            }
+//        }
     }
     
     @IBAction func handleGesture(gestureRecognizer: UIGestureRecognizer) {
@@ -144,6 +152,33 @@ class AuthViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    private class func loadCachedUser() -> UserService.Containers.User? {
+        if let data = NSUserDefaults.standardUserDefaults().objectForKey(DefaultsUserKey) as? NSData {
+            return UserService.Containers.User.parseFromNSData(data)
+        }
+        return nil
+    }
+    
+    private func cacheUserData(user: UserService.Containers.User) {
+        NSUserDefaults.standardUserDefaults().setObject(user.getNSData(), forKey: DefaultsUserKey)
+    }
+    
+    private func cacheLoginData(token: String) {
+        if let user = LoggedInPersonHolder.user {
+            let error = Locksmith.updateData(
+                [token: "\(NSDate())"],
+                forKey: LocksmithAuthTokenKey,
+                inService: LocksmithService,
+                forUserAccount: user.id
+            )
+            if error != nil {
+                // XXX what is the correct way to report errors?
+                println("Error: \(error)")
+            }
+            cacheUserData(user)
+        }
+    }
+    
     // MARK: - Loading State
     
     private func showLoadingState() {
@@ -158,19 +193,39 @@ class AuthViewController: UIViewController, UITextFieldDelegate {
         logInButton.enabled = true
     }
     
+    // MARK: - Log in
+    
+    private func login() {
+        let request = UserService.Requests.AuthenticateUser(
+            UserService.AuthenticateUser.Request.AuthBackend.Internal,
+            emailField.text,
+            passwordField.text
+        )
+
+        let client = ServiceClient(serviceName: "user", token: nil)
+        client.callAction(request, completionHandler: {
+            (httpRequest, httpResponse, serviceResponse, actionResponse, error) -> Void in
+            
+            self.hideLoadingState()
+            let response = UserService.Responses.AuthenticateUser(actionResponse!)
+            if error != nil || !response.success {
+                self.logInButton.addShakeAnimation()
+                self.emailField.becomeFirstResponder()
+                return
+            }
+            
+            let result = response.result as UserService.AuthenticateUser.Response
+            LoggedInPersonHolder.user = result.user
+            self.cacheLoginData(result.token)
+            self.dismissViewControllerAnimated(true, completion: nil)
+        })
+    }
+    
     // MARK: - Log out
     
     class func logOut() {
-        LoggedInPersonHolder.person = nil
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), { () -> Void in
-            PFUser.logOut()
-            // Clear caches after a user logs out
-            PFQuery.clearAllCachedResults();
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                AuthViewController.presentAuthViewController()
-            })
-            return
-        })
+        LoggedInPersonHolder.user = nil
+        AuthViewController.presentAuthViewController()
     }
     
     class func presentAuthViewController() {
@@ -182,29 +237,14 @@ class AuthViewController: UIViewController, UITextFieldDelegate {
     }
     
     // Synchronous call to fetch Person object for currently logged in user
-    class func getLoggedInPerson() -> Person? {
-        if let pfUser = PFUser.currentUser() {
-            
-            // This additional caching is needed to prevent the
-            // "main thread long running operation" warning.
-            if let person = LoggedInPersonHolder.person {
-                return person
-            }
-            
-            // Fetch and cache favorites
-            Favorite.fetchAndCacheFavorites()
-            
-            let parseQuery = Person.query() as PFQuery
-            parseQuery.cachePolicy = kPFCachePolicyCacheElseNetwork
-            parseQuery.includeKey("manager")
-            parseQuery.whereKey("user", equalTo:pfUser)
-            let people = parseQuery.findObjects() as [Person]
-            if people.count > 0 {
-                LoggedInPersonHolder.person = people[0]
-                return people[0]
+    class func getLoggedInPerson() -> UserService.Containers.User? {
+        if let user = LoggedInPersonHolder.user {
+            return user
+        } else {
+            if let user = AuthViewController.loadCachedUser() {
+                return user
             }
         }
-        
         return nil
     }
     

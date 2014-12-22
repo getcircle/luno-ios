@@ -55,7 +55,7 @@ class ClientTests: XCTestCase {
             XCTAssertEqual(identity.first_name, "Michael", "Identity should have the correct first name")
             XCTAssertEqual(identity.last_name, "Hahn", "Identity should have the correct last name")
             XCTAssertEqual(identity.email, user.primary_email, "Identity should have the same email as the primary email address")
-            XCTAssertEqual(identity.type, Identity.Types.Internal, "Identity should be an internal identity")
+            XCTAssertEqual(identity.type, IdentityService.Containers.Identity.Types.Internal, "Identity should be an internal identity")
         }
         
         waitForExpectationsWithTimeout(TEST_TIMEOUT, handler: nil)

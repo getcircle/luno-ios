@@ -51,9 +51,9 @@ class Message: PFObject, PFSubclassing {
         var hasRead = false
         if readReceipts != nil {
             // HACK: since we know that we only have 1-1 chat right now and we don't add a read receipt for the sender, if this isn't the sender and we have any readReceipts, then the user had read it.
-            if sender.objectId != currentUser?.objectId && readReceipts.count > 0 {
-                hasRead = true
-            }
+//            if sender.objectId != currentUser?.objectId && readReceipts.count > 0 {
+//                hasRead = true
+//            }
         }
         return hasRead
     }
@@ -62,14 +62,14 @@ class Message: PFObject, PFSubclassing {
         let currentUser = AuthViewController.getLoggedInPerson()
         let hasRead = currentUserHasRead()
         var receipts = readReceipts ?? [ReadReceipt]()
-        if !hasRead && sender.objectId != currentUser?.objectId {
-            let readReceipt = ReadReceipt()
-            readReceipt["person"] = AuthViewController.getLoggedInPerson()?
-            readReceipt["message"] = self
-            receipts.append(readReceipt)
-            
-            self["readReceipts"] = receipts
-        }
+//        if !hasRead && sender.objectId != currentUser?.objectId {
+//            let readReceipt = ReadReceipt()
+//            readReceipt["person"] = AuthViewController.getLoggedInPerson()?
+//            readReceipt["message"] = self
+//            receipts.append(readReceipt)
+//            
+//            self["readReceipts"] = receipts
+//        }
         return hasRead
     }
    

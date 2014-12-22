@@ -83,20 +83,22 @@ class PeopleViewController: UIViewController, MGSwipeTableCellDelegate, MFMailCo
 
             switch topMenuSegmentedControl.selectedSegmentIndex {
             case TopMenuSegments.DirectReports.rawValue:
+                println("temp")
                 // Direct Reports
-                AuthViewController.getLoggedInPerson()?.getDirectReports({ (objects, error: NSError!) -> Void in
-                    if error == nil {
-                        self.setPeople(objects)
-                    }
-                })
+//                AuthViewController.getLoggedInPerson()?.getDirectReports({ (objects, error: NSError!) -> Void in
+//                    if error == nil {
+//                        self.setPeople(objects)
+//                    }
+//                })
 
             case TopMenuSegments.Peers.rawValue:
+                println("temp")
                 // Peers
-                AuthViewController.getLoggedInPerson()?.getPeers({ (objects, error: NSError!) -> Void in
-                    if error == nil {
-                        self.setPeople(objects)
-                    }
-                })
+//                AuthViewController.getLoggedInPerson()?.getPeers({ (objects, error: NSError!) -> Void in
+//                    if error == nil {
+//                        self.setPeople(objects)
+//                    }
+//                })
 
             case TopMenuSegments.Favorites.rawValue:
                 // Favorites

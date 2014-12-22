@@ -12,6 +12,17 @@ import ProtocolBuffers
 
 public typealias ServiceCompletionHandler = (NSURLRequest, NSHTTPURLResponse?, ServiceResponse?, ActionResponse?, NSError?) -> Void
 
+public protocol ServiceRequestConvertible {
+    var builder: GeneratedMessageBuilder { get }
+    var actionName: String { get }
+    var extensionField: ConcreateExtensionField { get }
+}
+
+public protocol ServiceResponseConvertible {
+    var success: Bool { get }
+    var result: GeneratedMessage { get }
+}
+
 public class ServiceClient {
     
     let serviceName: String
@@ -26,9 +37,22 @@ public class ServiceClient {
     }
     
     public func callAction(
+        request: ServiceRequestConvertible,
+        completionHandler: ServiceCompletionHandler
+    ) {
+        let message = request.builder.build()
+        callAction(
+            request.actionName,
+            extensionField: request.extensionField,
+            request: message,
+            completionHandler: completionHandler
+        )
+    }
+    
+    public func callAction(
         actionName: String,
         extensionField: ConcreateExtensionField,
-        request: GeneratedMessage,
+        request: AbstractMessage,
         completionHandler: ServiceCompletionHandler
     ) {
         let serviceRequest = ServiceRequest.builder()

@@ -1,3 +1,9 @@
 [submodule "ThirdParty/Alamofire"]
 	path = ThirdParty/Alamofire
 	url = https://github.com/Alamofire/Alamofire.git
+[submodule "ThirdParty/protobuf-registry"]
+	path = ThirdParty/protobuf-registry
+	url = git@github.com:getcircle/protobuf-registry.git
+[submodule "ThirdParty/Locksmith"]
+	path = ThirdParty/Locksmith
+	url = git@github.com:getcircle/Locksmith.git
