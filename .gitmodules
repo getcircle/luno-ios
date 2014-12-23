@@ -7,3 +7,6 @@
 [submodule "ThirdParty/Locksmith"]
 	path = ThirdParty/Locksmith
 	url = git@github.com:getcircle/Locksmith.git
+[submodule "ThirdParty/protobuf-swift"]
+	path = ThirdParty/protobuf-swift
+	url = git@github.com:mhahn/protobuf-swift.git

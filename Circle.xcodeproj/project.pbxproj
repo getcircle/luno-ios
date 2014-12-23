@@ -35,6 +35,7 @@
 		8F22CBF91A29A8EB0026376E /* AuthViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F22CBF71A29A8EB0026376E /* AuthViewController.xib */; };
 		8F22CBFB1A29AF450026376E /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F22CBFA1A29AF450026376E /* UIViewExtension.swift */; };
 		8F22CBFE1A29C7120026376E /* GCDUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F22CBFD1A29C7120026376E /* GCDUtils.swift */; };
+		8FA5B1C61A4A0D3800C8F3EA /* ProtocolBuffers.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 8FA5B1BD1A4A0D0A00C8F3EA /* ProtocolBuffers.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8FD041A21A2C03AA00FE28EF /* UIFontExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD041A11A2C03AA00FE28EF /* UIFontExtention.swift */; };
 		8FEE88471A411BA90011CE4A /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FEE88461A411BA90011CE4A /* UIViewControllerExtension.swift */; };
 		8FEE88601A437DE40011CE4A /* Alamofire.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 8FEE885B1A437DB10011CE4A /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -62,6 +63,41 @@
 			proxyType = 1;
 			remoteGlobalIDString = 8F00048F1A2419730096477A;
 			remoteInfo = Circle;
+		};
+		8FA5B1BC1A4A0D0A00C8F3EA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8FA5B1B21A4A0D0A00C8F3EA /* ProtocolBuffers.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3F85569919C71BCF003802F2;
+			remoteInfo = ProtocolBuffers;
+		};
+		8FA5B1BE1A4A0D0A00C8F3EA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8FA5B1B21A4A0D0A00C8F3EA /* ProtocolBuffers.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3F8556A419C71BCF003802F2;
+			remoteInfo = UnitTesting;
+		};
+		8FA5B1C01A4A0D0A00C8F3EA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8FA5B1B21A4A0D0A00C8F3EA /* ProtocolBuffers.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3F41061C1A1A667700742090;
+			remoteInfo = "ProtocolBuffers(OSX)";
+		};
+		8FA5B1C21A4A0D0A00C8F3EA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8FA5B1B21A4A0D0A00C8F3EA /* ProtocolBuffers.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3F4106261A1A667800742090;
+			remoteInfo = "UnitTesting(OSX)";
+		};
+		8FA5B1C41A4A0D2600C8F3EA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8FA5B1B21A4A0D0A00C8F3EA /* ProtocolBuffers.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 3F85569819C71BCF003802F2;
+			remoteInfo = ProtocolBuffers;
 		};
 		8FEE885A1A437DB10011CE4A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -135,6 +171,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				8FA5B1C61A4A0D3800C8F3EA /* ProtocolBuffers.framework in Copy Frameworks */,
 				BFFB1A041A4872F200CCFFC3 /* Locksmith.framework in Copy Frameworks */,
 				BFFB19B51A477B4200CCFFC3 /* ProtobufRegistry.framework in Copy Frameworks */,
 				8FEE88601A437DE40011CE4A /* Alamofire.framework in Copy Frameworks */,
@@ -178,6 +215,7 @@
 		8F22CBF71A29A8EB0026376E /* AuthViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AuthViewController.xib; sourceTree = "<group>"; };
 		8F22CBFA1A29AF450026376E /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		8F22CBFD1A29C7120026376E /* GCDUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCDUtils.swift; sourceTree = "<group>"; };
+		8FA5B1B21A4A0D0A00C8F3EA /* ProtocolBuffers.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ProtocolBuffers.xcodeproj; path = "ThirdParty/protobuf-swift/src/ProtocolBuffers/ProtocolBuffers.xcodeproj"; sourceTree = SOURCE_ROOT; };
 		8FD041A11A2C03AA00FE28EF /* UIFontExtention.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIFontExtention.swift; sourceTree = "<group>"; };
 		8FEE88461A411BA90011CE4A /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		8FEE88491A4371A80011CE4A /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = ../ThirdParty/Alamofire/Alamofire.xcodeproj; sourceTree = "<group>"; };
@@ -252,6 +290,7 @@
 			children = (
 				8FEE88491A4371A80011CE4A /* Alamofire.xcodeproj */,
 				BFFB19F91A4872E200CCFFC3 /* Locksmith.xcodeproj */,
+				8FA5B1B21A4A0D0A00C8F3EA /* ProtocolBuffers.xcodeproj */,
 				BFFB19A81A477B2600CCFFC3 /* ProtobufRegistry.xcodeproj */,
 				8F0004951A2419730096477A /* AppDelegate.swift */,
 				BF2CBFD21A473E7F00BE589D /* Services */,
@@ -396,6 +435,17 @@
 			name = Utils;
 			sourceTree = "<group>";
 		};
+		8FA5B1B31A4A0D0A00C8F3EA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8FA5B1BD1A4A0D0A00C8F3EA /* ProtocolBuffers.framework */,
+				8FA5B1BF1A4A0D0A00C8F3EA /* ProtocolBuffersTests.xctest */,
+				8FA5B1C11A4A0D0A00C8F3EA /* ProtocolBuffers.framework */,
+				8FA5B1C31A4A0D0A00C8F3EA /* UnitTesting(OSX).xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		8FEE88551A43725E0011CE4A /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
@@ -481,8 +531,9 @@
 			buildRules = (
 			);
 			dependencies = (
-				BFFB1A031A4872ED00CCFFC3 /* PBXTargetDependency */,
 				8FEE885F1A437DB90011CE4A /* PBXTargetDependency */,
+				BFFB1A031A4872ED00CCFFC3 /* PBXTargetDependency */,
+				8FA5B1C51A4A0D2600C8F3EA /* PBXTargetDependency */,
 				BFFB19B41A477B3900CCFFC3 /* PBXTargetDependency */,
 			);
 			name = Circle;
@@ -553,6 +604,10 @@
 					ProductGroup = BFFB19A91A477B2600CCFFC3 /* Products */;
 					ProjectRef = BFFB19A81A477B2600CCFFC3 /* ProtobufRegistry.xcodeproj */;
 				},
+				{
+					ProductGroup = 8FA5B1B31A4A0D0A00C8F3EA /* Products */;
+					ProjectRef = 8FA5B1B21A4A0D0A00C8F3EA /* ProtocolBuffers.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -563,6 +618,34 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		8FA5B1BD1A4A0D0A00C8F3EA /* ProtocolBuffers.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ProtocolBuffers.framework;
+			remoteRef = 8FA5B1BC1A4A0D0A00C8F3EA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		8FA5B1BF1A4A0D0A00C8F3EA /* ProtocolBuffersTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = ProtocolBuffersTests.xctest;
+			remoteRef = 8FA5B1BE1A4A0D0A00C8F3EA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		8FA5B1C11A4A0D0A00C8F3EA /* ProtocolBuffers.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ProtocolBuffers.framework;
+			remoteRef = 8FA5B1C01A4A0D0A00C8F3EA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		8FA5B1C31A4A0D0A00C8F3EA /* UnitTesting(OSX).xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "UnitTesting(OSX).xctest";
+			remoteRef = 8FA5B1C21A4A0D0A00C8F3EA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		8FEE885B1A437DB10011CE4A /* Alamofire.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -750,6 +833,11 @@
 			isa = PBXTargetDependency;
 			target = 8F00048F1A2419730096477A /* Circle */;
 			targetProxy = 8F0004AB1A2419730096477A /* PBXContainerItemProxy */;
+		};
+		8FA5B1C51A4A0D2600C8F3EA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ProtocolBuffers;
+			targetProxy = 8FA5B1C41A4A0D2600C8F3EA /* PBXContainerItemProxy */;
 		};
 		8FEE885F1A437DB90011CE4A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
