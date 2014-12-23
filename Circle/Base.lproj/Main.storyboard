@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Lvt-AE-kqt">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Main Tab View Controller-->
@@ -17,7 +16,6 @@
                     </tabBar>
                     <connections>
                         <segue destination="RMx-3f-FxP" kind="relationship" relationship="viewControllers" id="Azb-FQ-Z4Y"/>
-                        <segue destination="X03-ni-Aei" kind="relationship" relationship="viewControllers" id="EpL-75-hyC"/>
                         <segue destination="z9N-dc-Uzy" kind="relationship" relationship="viewControllers" id="0LU-Aw-zYp"/>
                     </connections>
                 </tabBarController>
@@ -57,57 +55,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QTS-vi-75p" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="702" y="-569"/>
-        </scene>
-        <!--Chat Rooms-->
-        <scene sceneID="tDb-8c-9iE">
-            <objects>
-                <navigationController title="Chat Rooms" id="X03-ni-Aei" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Messages" image="Messages" id="cGc-Xg-vdU"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="ddf-sJ-aqM">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="5bJ-Qb-1gP" kind="relationship" relationship="rootViewController" id="SIb-V6-i3E"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="e6R-h3-nZr" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="734" y="-2135"/>
-        </scene>
-        <!--Chat Rooms-->
-        <scene sceneID="Fj8-tp-gNP">
-            <objects>
-                <viewController title="Chat Rooms" id="5bJ-Qb-1gP" customClass="ChatRoomsViewController" customModule="Circle" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="i5V-Fb-pvE"/>
-                        <viewControllerLayoutGuide type="bottom" id="K6h-SE-TzD"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="2ET-HM-RRx">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="W4B-LC-2je">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </tableView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="W4B-LC-2je" firstAttribute="top" secondItem="i5V-Fb-pvE" secondAttribute="bottom" id="7Em-DU-1qj"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="W4B-LC-2je" secondAttribute="trailing" constant="-16" id="WoW-q9-m6G"/>
-                            <constraint firstItem="K6h-SE-TzD" firstAttribute="top" secondItem="W4B-LC-2je" secondAttribute="bottom" id="mYp-OM-wKp"/>
-                            <constraint firstItem="W4B-LC-2je" firstAttribute="leading" secondItem="2ET-HM-RRx" secondAttribute="leadingMargin" constant="-16" id="vHl-Nc-CmS"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="6Mo-KV-bfo"/>
-                    <connections>
-                        <outlet property="tableView" destination="W4B-LC-2je" id="65P-k7-hqg"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="LJY-EL-G3d" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1458" y="-2135"/>
         </scene>
         <!--Profile-->
         <scene sceneID="uzJ-m3-vlO">
@@ -203,7 +150,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Messages" width="32" height="32"/>
         <image name="People" width="32" height="32"/>
         <image name="Profile" width="32" height="32"/>
     </resources>
