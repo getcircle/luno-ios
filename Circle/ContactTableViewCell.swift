@@ -15,7 +15,6 @@ class ContactTableViewCell: MGSwipeTableCell {
     @IBOutlet var title: UILabel!
     
     var addQuickActions: Bool!
-    var favoriteButton: MGSwipeButton?
     var person:Person! {
         didSet {
             populateData()
@@ -34,16 +33,6 @@ class ContactTableViewCell: MGSwipeTableCell {
     }
 
     func addQuickActionButtons() {
-        let favoriteButton = MGSwipeButton(
-            title: "",
-            icon: UIImage(named: "Favorite"),
-            backgroundColor: UIColor.accessoryButtonBackgroundColor(),
-            padding: 16)
-        favoriteButton.setImage(UIImage(named: "FavoriteFilled"), forState: .Selected)
-
-        self.favoriteButton = favoriteButton
-        leftButtons = [favoriteButton]
-
         let emailButton = MGSwipeButton(
             title: "",
             icon: UIImage(named: "Email"),
@@ -67,6 +56,5 @@ class ContactTableViewCell: MGSwipeTableCell {
             addQuickActionButtons()
             contentView.backgroundColor = UIColor.accessoryButtonBackgroundColor()
         }
-        favoriteButton?.selected = Favorite.isFavoritePerson(person)
     }
 }

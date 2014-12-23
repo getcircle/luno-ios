@@ -21,7 +21,7 @@ class PeopleViewController: UIViewController, MGSwipeTableCellDelegate, MFMailCo
     private var topMenuSegmentedControl: DZNSegmentedControl!
     
     private enum TopMenuSegments: Int {
-        case DirectReports = 0, Peers, Favorites
+        case DirectReports = 0, Peers
     }
 
     override func awakeFromNib() {
@@ -49,7 +49,6 @@ class PeopleViewController: UIViewController, MGSwipeTableCellDelegate, MFMailCo
             loadData()
         }
 
-        updateFavoritesCountDisplay()
     }
 
     // MARK: - Configuration
@@ -65,7 +64,7 @@ class PeopleViewController: UIViewController, MGSwipeTableCellDelegate, MFMailCo
     }
 
     private func configureTopMenu() {
-        let items = ["Direct Reports", "Peers", "Favorites"]
+        let items = ["Direct Reports", "Peers"]
         topMenuSegmentedControl = DZNSegmentedControl(items: items)
         topMenuSegmentedControl.showsCount = false
         topMenuSegmentedControl.tintColor = UIColor.appTintColor()
@@ -100,9 +99,6 @@ class PeopleViewController: UIViewController, MGSwipeTableCellDelegate, MFMailCo
 //                    }
 //                })
 
-            case TopMenuSegments.Favorites.rawValue:
-                // Favorites
-                setPeople(Favorite.getFavorites())
             default:
                 break;
             }
@@ -160,25 +156,6 @@ class PeopleViewController: UIViewController, MGSwipeTableCellDelegate, MFMailCo
         fromExpansion: Bool
     ) -> Bool {
         switch direction {
-            case .LeftToRight:
-                // Left button tapped
-                if cell.favoriteButton?.selected == true {
-                    Favorite.removeFavorite(cell.person)
-                    cell.favoriteButton?.selected = false
-                    if topMenuSegmentedControl.selectedSegmentIndex == TopMenuSegments.Favorites.rawValue {
-                        let indexPathOfDeleteCell = tableView.indexPathForCell(cell) as NSIndexPath!
-                        tableView.beginUpdates()
-                        loadData()
-                        tableView.deleteRowsAtIndexPaths([indexPathOfDeleteCell], withRowAnimation: .Right)
-                        tableView.endUpdates()
-                    }
-                }
-                else {
-                    Favorite.markFavorite(cell.person)
-                    cell.favoriteButton?.selected = true
-                }
-                updateFavoritesCountDisplay()
-
             case .RightToLeft:
                 // Right buttons tapped
                 println("Email = \(cell.person.email)")
@@ -202,20 +179,6 @@ class PeopleViewController: UIViewController, MGSwipeTableCellDelegate, MFMailCo
 
     @IBAction func segmentedControlValueChanged(sender: AnyObject!) {
         loadData()
-    }
-    
-    // MARK: - Helpers
-
-    private func updateFavoritesCountDisplay() {
-        let numberOfFavorites = Favorite.getFavorites()?.count ?? 0
-        var title = "Favorites"
-        if numberOfFavorites > 0 {
-            title += " (" + String(numberOfFavorites) + ")"
-        }
-        topMenuSegmentedControl.setTitle(title, forSegmentAtIndex: UInt(TopMenuSegments.Favorites.rawValue))
-// TODO: Remove this hack for setting title twice to work with external componenent DZNSegmented..
-        topMenuSegmentedControl.setTitle(title, forSegmentAtIndex: UInt(TopMenuSegments.Favorites.rawValue))
-        return
     }
     
     // MARK: - MFMailComposeViewControllerDelegate
