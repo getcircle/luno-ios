@@ -31,6 +31,11 @@ class ProfileViewController: UICollectionViewController, UICollectionViewDelegat
             addLogOutButton()
         }
     }
+    var showCloseButton: Bool? {
+        didSet {
+            addCloseButton()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,6 +67,23 @@ class ProfileViewController: UICollectionViewController, UICollectionViewDelegat
     
     func logOutTapped(sender: AnyObject!) {
         AuthViewController.logOut()
+    }
+    
+    private func addCloseButton() {
+        if showCloseButton == true && navigationItem.leftBarButtonItem == nil {
+            let closeButton = UIBarButtonItem(
+                image: UIImage(named: "Down"),
+                style: .Plain,
+                target: self,
+                action: "closeButtonTapped:"
+            )
+
+            navigationItem.leftBarButtonItem = closeButton
+        }
+    }
+    
+    func closeButtonTapped(sender: AnyObject!) {
+        dismissViewControllerAnimated(true, completion: nil)
     }
 
     private func customizeCollectionView() {

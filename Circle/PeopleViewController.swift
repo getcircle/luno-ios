@@ -16,13 +16,8 @@ class PeopleViewController: UIViewController, MGSwipeTableCellDelegate, MFMailCo
 
     var dataLoadAttempted: Bool!
     var people: [Person]?
+    var loggedInPerson: Person?
     var profileViewController: ProfileViewController?
-
-    private var topMenuSegmentedControl: DZNSegmentedControl!
-    
-    private enum TopMenuSegments: Int {
-        case DirectReports = 0, Peers
-    }
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -37,7 +32,6 @@ class PeopleViewController: UIViewController, MGSwipeTableCellDelegate, MFMailCo
         // Do any additional setup after loading the view, typically from a nib.
         dataLoadAttempted = false
         configTableView()
-        configureTopMenu()
         loadData()
     }
 
@@ -63,19 +57,6 @@ class PeopleViewController: UIViewController, MGSwipeTableCellDelegate, MFMailCo
         tableView.addDummyFooterView()
     }
 
-    private func configureTopMenu() {
-        let items = ["Direct Reports", "Peers"]
-        topMenuSegmentedControl = DZNSegmentedControl(items: items)
-        topMenuSegmentedControl.showsCount = false
-        topMenuSegmentedControl.tintColor = UIColor.appTintColor()
-        topMenuSegmentedControl.height = menuContainer.frameHeight
-        topMenuSegmentedControl.addTarget(self, action: "segmentedControlValueChanged:", forControlEvents: .ValueChanged)
-        topMenuSegmentedControl.selectedSegmentIndex = 0
-        topMenuSegmentedControl.font = UIFont.segmentedControlTitleFont()
-        menuContainer.addSubview(topMenuSegmentedControl)
-        topMenuSegmentedControl.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
-    }
-
     private func loadData() {
         if let pfUser = PFUser.currentUser() {
             dataLoadAttempted = true
@@ -94,6 +75,10 @@ class PeopleViewController: UIViewController, MGSwipeTableCellDelegate, MFMailCo
     
     private func setPeople(objects: [AnyObject]!) {
         people = objects as? [Person]
+        let filteredList = people?.filter({ $0.email == PFUser.currentUser().email })
+        if filteredList?.count == 1 {
+            loggedInPerson = filteredList?[0]
+        }
         tableView.reloadData()
     }
 
@@ -105,6 +90,14 @@ class PeopleViewController: UIViewController, MGSwipeTableCellDelegate, MFMailCo
                 let person = people?[indexPath.row]
                 let controller = segue.destinationViewController as ProfileViewController
                 controller.person = person
+            }
+        }
+        else if segue.identifier == "showUserProfile" {
+            if let loggedInPersonObj = loggedInPerson {
+                let controller = segue.destinationViewController as UINavigationController
+                let profileVC = controller.topViewController as ProfileViewController
+                profileVC.showCloseButton = true
+                profileVC.person = loggedInPersonObj
             }
         }
     }

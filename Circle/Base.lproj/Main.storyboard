@@ -33,7 +33,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xls-Qj-HOy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1936" y="-1336"/>
+            <point key="canvasLocation" x="1860" y="-1336"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="I8F-MY-69s">
@@ -50,6 +50,22 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AkS-Ra-l6J" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="367" y="-1336"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="QG1-yh-ZXg">
+            <objects>
+                <navigationController id="0uJ-q7-vZu" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Pnm-Qt-Vmt">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="ofx-aS-lg0" kind="relationship" relationship="rootViewController" id="tgc-v1-g6X"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Lx0-BL-rDt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1860" y="-2060"/>
         </scene>
         <!--People-->
         <scene sceneID="1cC-pz-10W">
@@ -102,7 +118,14 @@
                             <constraint firstItem="ERH-Ff-xDK" firstAttribute="leading" secondItem="nkn-aV-chR" secondAttribute="leading" id="s9S-NN-TCl"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="People" id="Ixh-4e-tfU"/>
+                    <navigationItem key="navigationItem" title="People" id="Ixh-4e-tfU">
+                        <barButtonItem key="leftBarButtonItem" image="Profile" id="b45-Ub-svc">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <segue destination="0uJ-q7-vZu" kind="presentation" identifier="showUserProfile" id="CVt-jI-oaV"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="menuContainer" destination="Fdb-qr-uVZ" id="fPf-TX-mSi"/>
                         <outlet property="tableView" destination="ERH-Ff-xDK" id="FlM-qa-IM9"/>
@@ -113,4 +136,10 @@
             <point key="canvasLocation" x="1140" y="-1336"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Profile" width="32" height="32"/>
+    </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="tgc-v1-g6X"/>
+    </inferredMetricsTieBreakers>
 </document>
