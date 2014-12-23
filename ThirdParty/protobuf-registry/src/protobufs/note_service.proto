@@ -1,0 +1,16 @@
+package main.note_service;
+
+message NoteService {
+
+    // MARK: - Note Service Containers
+
+    message Containers {
+
+        message Note {
+            optional string id = 1;
+            optional string for_user_id = 2;
+            optional string user_id = 3;
+            optional string content = 4;
+        }
+    }
+}

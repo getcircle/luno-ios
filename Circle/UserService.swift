@@ -8,7 +8,6 @@
 
 import Foundation
 import ProtobufRegistry
-import ProtocolBuffers
 
 extension UserService {
     enum Requests: ServiceRequestConvertible {

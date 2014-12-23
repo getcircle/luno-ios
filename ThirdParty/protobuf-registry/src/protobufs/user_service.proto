@@ -1,0 +1,72 @@
+package main.user_service;
+
+import "protobufs/identity_service.proto";
+
+message UserService {
+
+    // MARK: - Containers
+
+    message Containers {
+
+        message User {
+            optional string id = 1;
+            optional string primary_email = 2;
+            optional bool is_admin = 3;
+            optional bool is_active = 4;
+
+            repeated main.identity_service.IdentityService.Containers.Identity identities = 5;
+        }
+
+    }
+
+    // MARK: - Actions
+
+    message CreateUser {
+        message Request {
+            optional string password = 1;
+            optional main.identity_service.IdentityService.Containers.Identity identity = 2;
+        }
+
+        message Response {
+            optional Containers.User user = 1;
+            repeated main.identity_service.IdentityService.Containers.Identity identities = 2;
+        }
+    }
+
+    message ValidUser {
+        message Request {
+            optional string user_id = 1;
+        }
+
+        message Response {
+            optional bool exists = 1;
+        }
+    }
+
+    message AuthenticateUser {
+
+        message Request {
+
+            enum AuthBackend {
+                INTERNAL = 0;
+            }
+
+            message Credentials {
+                optional string key = 1;
+                optional string secret = 2;
+            }
+
+            optional AuthBackend backend = 1;
+            optional Credentials credentials = 2;
+
+        }
+
+        message Response {
+            optional Containers.User user = 1;
+            optional bool authenticated = 2 [default = false];
+            optional string token = 3;
+        }
+
+    }
+
+}

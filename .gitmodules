@@ -4,3 +4,6 @@
 [submodule "ThirdParty/Locksmith"]
 	path = ThirdParty/Locksmith
 	url = git@github.com:getcircle/Locksmith.git
+[submodule "ThirdParty/protobuf-registry"]
+	path = ThirdParty/protobuf-registry
+	url = git@github.com:getcircle/protobuf-registry.git

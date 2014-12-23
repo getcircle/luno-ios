@@ -1,0 +1,130 @@
+package main.organization_service;
+
+message OrganizationService {
+
+    // MARK: - Containers
+
+    message Containers {
+
+        message Organization {
+            optional string id = 1;
+            optional string name = 2;
+        }
+
+        message Team {
+            optional string id = 1;
+            optional string name = 2;
+            optional string owner_id = 3;
+        }
+
+    }
+
+    // MARK: - Actions
+
+    message CreateOrganization {
+
+        message Request {
+            optional string domain = 1;
+            optional string name = 2;
+        }
+
+        message Response {
+            optional Containers.Organization organization = 1;
+        }
+
+    }
+
+    message UpdateOrganization {
+
+        message Request {
+            optional string domain = 1;
+            optional string name = 2;
+        }
+
+        message Response {
+            optional Containers.Organization organization = 1;
+        }
+
+    }
+
+    message CreateTeam {
+
+        message Request {
+            optional string organization_id = 1;
+            optional string name = 2;
+            optional string owner_id = 3;
+        }
+
+        message Response {
+            optional Containers.Team team = 1;
+        }
+
+    }
+
+    message UpdateTeam {
+
+        message Request {
+            optional Containers.Team team = 1;
+        }
+
+        message Response {
+            optional Containers.Team team = 1;
+        }
+
+    }
+
+    message DeleteTeam {
+
+        message Request {
+            optional string id = 1;
+        }
+
+        message Response {}
+
+    }
+
+    message AddTeamMember {
+
+        message Request {
+            optional string team_id = 1;
+            optional string user_id = 2;
+        }
+
+        message Response {}
+
+    }
+
+    message DeleteTeamMember {
+
+        message Request {
+            optional string team_id = 1;
+            optional string user_id = 2;
+        }
+
+        message Response {}
+
+    }
+
+    message AddTeamMembers {
+
+        message Request {
+            optional string team_id = 1;
+            repeated string user_ids = 2;
+        }
+
+        message Response {}
+
+    }
+
+    message DeleteTeamMembers {
+
+        message Request {
+            optional string team_id = 1;
+            optional string user_ids = 2;
+        }
+
+        message Response {}
+
+    }
+
+}
