@@ -33,5 +33,7 @@ extension AppDelegate {
         
         // Import data and create Parse objects
         // Person.importData()
+        
+        PFUser.logInWithUsername("kevin", password: "abcd")
     }
 }

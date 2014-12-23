@@ -80,28 +80,15 @@ class PeopleViewController: UIViewController, MGSwipeTableCellDelegate, MFMailCo
         if let pfUser = PFUser.currentUser() {
             dataLoadAttempted = true
 
-            switch topMenuSegmentedControl.selectedSegmentIndex {
-            case TopMenuSegments.DirectReports.rawValue:
-                println("temp")
-                // Direct Reports
-//                AuthViewController.getLoggedInPerson()?.getDirectReports({ (objects, error: NSError!) -> Void in
-//                    if error == nil {
-//                        self.setPeople(objects)
-//                    }
-//                })
-
-            case TopMenuSegments.Peers.rawValue:
-                println("temp")
-                // Peers
-//                AuthViewController.getLoggedInPerson()?.getPeers({ (objects, error: NSError!) -> Void in
-//                    if error == nil {
-//                        self.setPeople(objects)
-//                    }
-//                })
-
-            default:
-                break;
-            }
+            let parseQuery = Person.query() as PFQuery
+            parseQuery.cachePolicy = kPFCachePolicyCacheElseNetwork
+            parseQuery.includeKey("manager")
+            parseQuery.orderByAscending("firstName")
+            parseQuery.findObjectsInBackgroundWithBlock({ (objects, error: NSError!) -> Void in
+                if error == nil {
+                    self.setPeople(objects)
+                }
+            })
         }
     }
     
