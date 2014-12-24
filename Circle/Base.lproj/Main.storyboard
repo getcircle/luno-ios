@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xqF-2W-85W">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Profile-->
@@ -174,7 +175,7 @@
                                 </connections>
                             </collectionView>
                             <button alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9zy-By-0t8" userLabel="OverlayButton">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
+                                <rect key="frame" x="0.0" y="54" width="600" height="482"/>
                                 <state key="normal">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -185,15 +186,37 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="9zy-By-0t8" secondAttribute="trailing" id="BjS-PO-oa4"/>
+                            <constraint firstItem="FpX-4G-cZW" firstAttribute="top" secondItem="9zy-By-0t8" secondAttribute="top" constant="54" id="DXa-8Z-MvV"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="9zy-By-0t8" secondAttribute="trailing" id="Jdj-tk-keE"/>
+                            <constraint firstItem="9zy-By-0t8" firstAttribute="top" secondItem="iQd-um-0Yq" secondAttribute="bottom" id="NLW-Oc-Dhq"/>
+                            <constraint firstItem="rUn-MN-xeZ" firstAttribute="top" secondItem="9zy-By-0t8" secondAttribute="bottom" id="TIJ-f7-2kw"/>
                             <constraint firstAttribute="trailing" secondItem="FpX-4G-cZW" secondAttribute="trailing" id="UnW-tG-yPS"/>
                             <constraint firstItem="9zy-By-0t8" firstAttribute="top" secondItem="FpX-4G-cZW" secondAttribute="top" id="VBt-he-Fh2"/>
                             <constraint firstItem="FpX-4G-cZW" firstAttribute="top" secondItem="iQd-um-0Yq" secondAttribute="bottom" id="ZqN-rI-jCH"/>
                             <constraint firstItem="9zy-By-0t8" firstAttribute="leading" secondItem="FpX-4G-cZW" secondAttribute="leading" id="aFC-gH-Bhe"/>
                             <constraint firstItem="rUn-MN-xeZ" firstAttribute="top" secondItem="FpX-4G-cZW" secondAttribute="bottom" id="ihf-mG-9Li"/>
                             <constraint firstItem="9zy-By-0t8" firstAttribute="height" secondItem="FpX-4G-cZW" secondAttribute="height" id="kzb-JQ-X15"/>
+                            <constraint firstItem="9zy-By-0t8" firstAttribute="leading" secondItem="bGb-OZ-dC1" secondAttribute="leadingMargin" constant="-16" id="lV7-YJ-rD8"/>
                             <constraint firstItem="FpX-4G-cZW" firstAttribute="leading" secondItem="bGb-OZ-dC1" secondAttribute="leading" id="o2Z-d8-o7d"/>
+                            <constraint firstItem="rUn-MN-xeZ" firstAttribute="top" secondItem="9zy-By-0t8" secondAttribute="bottom" id="oSD-Dj-FE3"/>
+                            <constraint firstItem="9zy-By-0t8" firstAttribute="leading" secondItem="bGb-OZ-dC1" secondAttribute="leading" id="tBX-PI-WvI"/>
                             <constraint firstItem="9zy-By-0t8" firstAttribute="width" secondItem="FpX-4G-cZW" secondAttribute="width" id="ukf-kl-KmT"/>
+                            <constraint firstItem="9zy-By-0t8" firstAttribute="top" secondItem="iQd-um-0Yq" secondAttribute="bottom" constant="54" id="xYW-6x-5Zt"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Jdj-tk-keE"/>
+                                <exclude reference="NLW-Oc-Dhq"/>
+                                <exclude reference="VBt-he-Fh2"/>
+                                <exclude reference="aFC-gH-Bhe"/>
+                                <exclude reference="kzb-JQ-X15"/>
+                                <exclude reference="lV7-YJ-rD8"/>
+                                <exclude reference="ukf-kl-KmT"/>
+                                <exclude reference="DXa-8Z-MvV"/>
+                                <exclude reference="TIJ-f7-2kw"/>
+                            </mask>
+                        </variation>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" title="People" id="wys-4b-D4W">

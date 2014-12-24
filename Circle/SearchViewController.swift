@@ -115,6 +115,7 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         ) as SearchHeaderCollectionReusableView
         
         searchHeaderView = supplementaryView
+        searchHeaderView.searchTextField.delegate = self
         return supplementaryView
     }
 
@@ -142,6 +143,7 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
     // MARK: - TextField Delegate
     
     func textFieldDidBeginEditing(textField: UITextField) {
+        searchHeaderView.showCancelButton()
         onSearchTextFieldBeginFocus()
     }
     
@@ -171,6 +173,7 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
     
     @IBAction func overlayButtonTapped(sender: AnyObject!) {
         searchHeaderView.searchTextField.resignFirstResponder()
+        searchHeaderView.hideCancelButton()
     }
 
     // MARK: - Helpers
