@@ -54,7 +54,9 @@ class ProfileViewController: UICollectionViewController, UICollectionViewDelegat
     }
     
     override func viewWillDisappear(animated: Bool) {
-        navigationController?.navigationBar.makeOpaque()
+        if navigationController?.topViewController != self {
+            navigationController?.navigationBar.makeOpaque()
+        }
         super.viewWillDisappear(animated)
     }
     
@@ -90,12 +92,14 @@ class ProfileViewController: UICollectionViewController, UICollectionViewDelegat
         collectionView!.backgroundColor = UIColor.viewBackgroundColor()
         collectionView!.registerNib(
             UINib(nibName: "ProfileAttributeCollectionViewCell", bundle: nil),
-            forCellWithReuseIdentifier: ProfileAttributeCollectionViewCell.classReuseIdentifier)
+            forCellWithReuseIdentifier: ProfileAttributeCollectionViewCell.classReuseIdentifier
+        )
 
         collectionView!.registerNib(
             UINib(nibName: "ProfileHeaderCollectionReusableView", bundle: nil),
             forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
-            withReuseIdentifier: ProfileHeaderCollectionReusableView.classReuseIdentifier)
+            withReuseIdentifier: ProfileHeaderCollectionReusableView.classReuseIdentifier
+        )
     }
     
     // MARK: Collection View delegate
