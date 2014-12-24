@@ -10,55 +10,33 @@ import UIKit
 
 class SearchViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UITextFieldDelegate {
     
-    @IBOutlet weak private(set) var cancelButton: UIButton!
     @IBOutlet weak private(set) var collectionView: UICollectionView!
     @IBOutlet weak private(set) var overlayButton: UIButton!
-    @IBOutlet weak private(set) var searchTextFieldTrailingSpaceConstraint: NSLayoutConstraint!
-    @IBOutlet weak private(set) var searchTextField: UITextField!
+    
+    private var searchHeaderView: SearchHeaderCollectionReusableView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         customizeCollectionView()
-        customizeSearchTextField()
         customizeOverlayButton()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-    
     // MARK: - Configuration
-
-    private func customizeSearchTextField() {
-        var leftView = UIView(frame: CGRectMake(
-            10.0,
-            0.0,
-            36.0,
-            searchTextField.frameHeight
-        ))
-        leftView.backgroundColor = UIColor.clearColor()
-        var leftViewImage = UIImageView(image: UIImage(named: "Search"))
-        leftViewImage.contentMode = .ScaleAspectFit
-        leftViewImage.frame = CGRectMake(10.0, 9.0, 16.0, 16.0)
-        leftView.addSubview(leftViewImage)
-        
-        searchTextField.leftViewMode = .Always
-        searchTextField.leftView = leftView
-        
-        searchTextField.backgroundColor = UIColor.searchTextFieldBackground()
-        searchTextField.addRoundCorners()
-        searchTextField.superview?.backgroundColor = UIColor.viewBackgroundColor()
-    }
 
     private func customizeCollectionView() {
         collectionView!.backgroundColor = UIColor.viewBackgroundColor()
         collectionView!.registerNib(
             UINib(nibName: "SearchViewCardCollectionViewCell", bundle: nil),
-            forCellWithReuseIdentifier: SearchViewCardCollectionViewCell.classReuseIdentifier)
+            forCellWithReuseIdentifier: SearchViewCardCollectionViewCell.classReuseIdentifier
+        )
+        
+        collectionView!.registerNib(
+            UINib(nibName: "SearchHeaderCollectionReusableView", bundle: nil),
+            forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
+            withReuseIdentifier: SearchHeaderCollectionReusableView.classReuseIdentifier
+        )
     }
     
     private func customizeOverlayButton() {
@@ -66,8 +44,7 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         overlayButton.opaque = true
     }
     
-    
-    // MARK: - Collection view data source
+    // MARK: - Collection View Data Source
     
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
@@ -83,7 +60,7 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
             forIndexPath: indexPath) as SearchViewCardCollectionViewCell
 
         let finalFrame = cell.frame
-        cell.frameY = finalFrame.origin.y + 400.0
+        cell.frameY = finalFrame.origin.y + (view.frameHeight - finalFrame.origin.y)
         let delay = 0.2 * (Double(indexPath.row) + 1.0)
 
         UIView.animateWithDuration(
@@ -94,34 +71,44 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
             options: .CurveEaseInOut,
             animations: { () -> Void in
                 cell.frame = finalFrame
-            }, completion: nil
+            },
+            completion: nil
         )
 
         return cell
     }
+    
+    func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+        let supplementaryView = collectionView.dequeueReusableSupplementaryViewOfKind(
+            kind,
+            withReuseIdentifier: SearchHeaderCollectionReusableView.classReuseIdentifier,
+            forIndexPath: indexPath
+        ) as SearchHeaderCollectionReusableView
+        
+        searchHeaderView = supplementaryView
+        return supplementaryView
+    }
 
-    // MARK: Collection View delegate
+    // MARK: Collection View Delegate
     
     
-    // MARK: - Layout delegate
+    // MARK: - Flow Layout Delegate
 
-    func collectionView(collectionView: UICollectionView,
-        layout collectionViewLayout: UICollectionViewLayout,
-        insetForSectionAtIndex section: Int) -> UIEdgeInsets {
-        return UIEdgeInsetsMake(15.0, 0.0, 0.0, 0.0)
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
+        return UIEdgeInsetsMake((section == 0 ? 5.0 : 15.0), 0.0, 0.0, 0.0)
     }
     
-    func collectionView(collectionView: UICollectionView,
-        layout collectionViewLayout: UICollectionViewLayout,
-        sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-            
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         return CGSizeMake(collectionView.frameWidth, 90.0)
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        if section == 0 {
+            return CGSizeMake(view.frameWidth, SearchHeaderCollectionReusableView.height)
+        }
+
         return CGSizeZero
     }
-    
     
     // MARK: - TextField Delegate
     
@@ -139,52 +126,24 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         onSearchTextFieldRemoveFocus()
         return true
     }
-    
-    
+
     // MARK: - IBActions
     
     @IBAction func overlayButtonTapped(sender: AnyObject!) {
-        searchTextField.resignFirstResponder()
+        searchHeaderView.searchTextField.resignFirstResponder()
     }
-
-    @IBAction func cancelButtonTapped(sender: AnyObject!) {
-        searchTextField.resignFirstResponder()
-    }
-    
 
     // MARK: - Helpers
     
     private func onSearchTextFieldBeginFocus() {
-        searchTextFieldTrailingSpaceConstraint.constant = view.frameWidth - cancelButton.frameX + 10.0
-        searchTextField.setNeedsUpdateConstraints()
-        UIView.animateWithDuration(
-            0.2,
-            delay: 0.0,
-            usingSpringWithDamping: 0.7,
-            initialSpringVelocity: 0.8,
-            options: .CurveEaseInOut,
-            animations: { () -> Void in
-                self.overlayButton.alpha = 1.0
-                self.searchTextField.layoutIfNeeded()
-            },
-            completion: nil
-        )
+        UIView.animateWithDuration(0.3, animations: { () -> Void in
+            self.overlayButton.alpha = 1.0
+        })
     }
     
     private func onSearchTextFieldRemoveFocus() {
-        searchTextFieldTrailingSpaceConstraint.constant = 10.0
-        searchTextField.setNeedsUpdateConstraints()
-        UIView.animateWithDuration(
-            0.2,
-            delay: 0.0,
-            usingSpringWithDamping: 0.7,
-            initialSpringVelocity: 0.8,
-            options: .CurveEaseInOut,
-            animations: { () -> Void in
-                self.overlayButton.alpha = 0.0
-                self.searchTextField.layoutIfNeeded()
-            },
-            completion: nil
-        )
+        UIView.animateWithDuration(0.3, animations: { () -> Void in
+            self.overlayButton.alpha = 0.0
+        })
     }
 }
