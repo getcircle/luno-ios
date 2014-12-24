@@ -13,6 +13,8 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
     @IBOutlet weak private(set) var collectionView: UICollectionView!
     @IBOutlet weak private(set) var overlayButton: UIButton!
     
+    private var loggedInPerson: Person?
+    private var people: [Person]?
     private var searchHeaderView: SearchHeaderCollectionReusableView!
 
     override func viewDidLoad() {
@@ -21,6 +23,7 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         // Do any additional setup after loading the view.
         customizeCollectionView()
         customizeOverlayButton()
+        loadData()
     }
 
     // MARK: - Configuration
@@ -44,6 +47,32 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         overlayButton.opaque = true
     }
     
+    // MARK: - Load Data
+    
+    private func loadData() {
+        if let pfUser = PFUser.currentUser() {
+            
+            let parseQuery = Person.query() as PFQuery
+            parseQuery.cachePolicy = kPFCachePolicyCacheElseNetwork
+            parseQuery.includeKey("manager")
+            parseQuery.orderByAscending("firstName")
+            parseQuery.findObjectsInBackgroundWithBlock({ (objects, error: NSError!) -> Void in
+                if error == nil {
+                    self.setPeople(objects)
+                }
+            })
+        }
+    }
+    
+    private func setPeople(objects: [AnyObject]!) {
+        people = objects as? [Person]
+        let filteredList = people?.filter({ $0.email == PFUser.currentUser().email })
+        if filteredList?.count == 1 {
+            loggedInPerson = filteredList?[0]
+        }
+        collectionView.reloadData()
+    }
+    
     // MARK: - Collection View Data Source
     
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
@@ -51,7 +80,7 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 2
+        return people?.count > 0 ? 2 : 0
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
@@ -127,6 +156,17 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         return true
     }
 
+    // MARK: - Segues
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "showUserProfile" {
+            let controller = segue.destinationViewController as UINavigationController
+            let profileVC = controller.topViewController as ProfileViewController
+            profileVC.showCloseButton = true
+            profileVC.person = loggedInPerson
+        }
+    }
+    
     // MARK: - IBActions
     
     @IBAction func overlayButtonTapped(sender: AnyObject!) {

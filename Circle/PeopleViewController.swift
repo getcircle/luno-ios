@@ -17,7 +17,6 @@ class PeopleViewController: UIViewController, MGSwipeTableCellDelegate, MFMailCo
     var dataLoadAttempted: Bool!
     var people: [Person]?
     var loggedInPerson: Person?
-    var profileViewController: ProfileViewController?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -153,12 +152,6 @@ class PeopleViewController: UIViewController, MGSwipeTableCellDelegate, MFMailCo
         }
 
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-    }
-
-    // MARK: - Segment Selection
-
-    @IBAction func segmentedControlValueChanged(sender: AnyObject!) {
-        loadData()
     }
     
     // MARK: - MFMailComposeViewControllerDelegate
