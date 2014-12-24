@@ -47,7 +47,7 @@ extension UIColor {
     }
     
     class func viewBackgroundColor() -> UIColor {
-        return UIColor.whiteColor()
+        return UIColor(red: 245, green: 245, blue: 245)
     }
     
     class func twitterColor() -> UIColor {
@@ -72,5 +72,13 @@ extension UIColor {
     
     class func githubColor() -> UIColor {
         return UIColor(red: 83, green: 83, blue: 83)
+    }
+    
+    class func searchTextFieldBackground() -> UIColor {
+        return UIColor(red: 220, green: 220, blue: 220)
+    }
+    
+    class func searchOverlayButtonBackgroundColor() -> UIColor {
+        return UIColor.viewBackgroundColor()
     }
 }

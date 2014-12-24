@@ -38,6 +38,9 @@
 		8FD041A21A2C03AA00FE28EF /* UIFontExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD041A11A2C03AA00FE28EF /* UIFontExtention.swift */; };
 		8FEE88471A411BA90011CE4A /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FEE88461A411BA90011CE4A /* UIViewControllerExtension.swift */; };
 		8FEE88601A437DE40011CE4A /* Alamofire.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 8FEE885B1A437DB10011CE4A /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8FF297FD1A4A4DCA00306CFC /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF297FC1A4A4DCA00306CFC /* SearchViewController.swift */; };
+		8FF298031A4A4E3600306CFC /* SearchViewCardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF298011A4A4E3600306CFC /* SearchViewCardCollectionViewCell.swift */; };
+		8FF298041A4A4E3600306CFC /* SearchViewCardCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8FF298021A4A4E3600306CFC /* SearchViewCardCollectionViewCell.xib */; };
 		A73E1BB3914D1A036D2FAE47 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FD94FE17CC5CD80FF96B24E5 /* libPods.a */; };
 		BF041BBA1A2C119B0043EC72 /* NSDateFormatterExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF041BB91A2C119B0043EC72 /* NSDateFormatterExtension.swift */; };
 		BF24FCFD1A4A25F3003DF4C2 /* ProtobufRegistry.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = BF24FCF81A4A25E7003DF4C2 /* ProtobufRegistry.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -181,6 +184,9 @@
 		8FD041A11A2C03AA00FE28EF /* UIFontExtention.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIFontExtention.swift; sourceTree = "<group>"; };
 		8FEE88461A411BA90011CE4A /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		8FEE88491A4371A80011CE4A /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = ../ThirdParty/Alamofire/Alamofire.xcodeproj; sourceTree = "<group>"; };
+		8FF297FC1A4A4DCA00306CFC /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		8FF298011A4A4E3600306CFC /* SearchViewCardCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewCardCollectionViewCell.swift; sourceTree = "<group>"; };
+		8FF298021A4A4E3600306CFC /* SearchViewCardCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchViewCardCollectionViewCell.xib; sourceTree = "<group>"; };
 		BF041BB91A2C119B0043EC72 /* NSDateFormatterExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDateFormatterExtension.swift; sourceTree = "<group>"; };
 		BF24FCF21A4A25E6003DF4C2 /* ProtobufRegistry.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ProtobufRegistry.xcodeproj; path = "ThirdParty/protobuf-registry/swift/ProtobufRegistry/ProtobufRegistry.xcodeproj"; sourceTree = SOURCE_ROOT; };
 		BF2CBFD51A473E9100BE589D /* UserService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
@@ -305,6 +311,7 @@
 				8F22CB721A264A8A0026376E /* MainTabViewController.swift */,
 				8F00049A1A2419730096477A /* PeopleViewController.swift */,
 				8F00049C1A2419730096477A /* ProfileViewController.swift */,
+				8FF297FC1A4A4DCA00306CFC /* SearchViewController.swift */,
 				BF83A4761A2A57B3000F7A92 /* SelectContactViewController.swift */,
 			);
 			name = ViewControllers;
@@ -316,6 +323,7 @@
 				8F0004BC1A24225A0096477A /* ContactTableViewCell.swift */,
 				8F22CBE61A27FDA70026376E /* ProfileAttributeCollectionViewCell.swift */,
 				8F22CBDE1A27A8E60026376E /* ProfileHeaderCollectionReusableView.swift */,
+				8FF298011A4A4E3600306CFC /* SearchViewCardCollectionViewCell.swift */,
 				8F22CBEC1A283D3D0026376E /* SeparatorDecorationView.swift */,
 			);
 			name = Views;
@@ -366,6 +374,7 @@
 				8F00049E1A2419730096477A /* Main.storyboard */,
 				8F22CBE71A27FDA70026376E /* ProfileAttributeCollectionViewCell.xib */,
 				8F22CBDF1A27A8E60026376E /* ProfileHeaderCollectionReusableView.xib */,
+				8FF298021A4A4E3600306CFC /* SearchViewCardCollectionViewCell.xib */,
 				BFEDB1371A2A6D6E00250165 /* SelectContactViewController.xib */,
 			);
 			name = "Storyboards / XIBs";
@@ -612,6 +621,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8FF298041A4A4E3600306CFC /* SearchViewCardCollectionViewCell.xib in Resources */,
 				8F0004BF1A24225A0096477A /* ContactTableViewCell.xib in Resources */,
 				8F22CBE91A27FDA70026376E /* ProfileAttributeCollectionViewCell.xib in Resources */,
 				BFEDB1381A2A6D6E00250165 /* SelectContactViewController.xib in Resources */,
@@ -710,6 +720,7 @@
 				8F0004961A2419730096477A /* AppDelegate.swift in Sources */,
 				8F22CBE51A27ED190026376E /* ProfileCollectionViewLayout.swift in Sources */,
 				8F22CBFB1A29AF450026376E /* UIViewExtension.swift in Sources */,
+				8FF297FD1A4A4DCA00306CFC /* SearchViewController.swift in Sources */,
 				8F0004BB1A241BDE0096477A /* UIColorExtension.swift in Sources */,
 				8F00049B1A2419730096477A /* PeopleViewController.swift in Sources */,
 				BF041BBA1A2C119B0043EC72 /* NSDateFormatterExtension.swift in Sources */,
@@ -730,6 +741,7 @@
 				8FEE88471A411BA90011CE4A /* UIViewControllerExtension.swift in Sources */,
 				8F22CBE81A27FDA70026376E /* ProfileAttributeCollectionViewCell.swift in Sources */,
 				BFC6CF9C1A44D2B90081F45B /* ServiceClient.swift in Sources */,
+				8FF298031A4A4E3600306CFC /* SearchViewCardCollectionViewCell.swift in Sources */,
 				BFB791891A2C346A0048E8FB /* CALayerExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
