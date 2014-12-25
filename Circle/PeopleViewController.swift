@@ -9,14 +9,20 @@
 import MessageUI
 import UIKit
 
-class PeopleViewController: UIViewController, MGSwipeTableCellDelegate, MFMailComposeViewControllerDelegate {
+class PeopleViewController: UIViewController,
+                            MGSwipeTableCellDelegate,
+                            MFMailComposeViewControllerDelegate,
+                            UISearchBarDelegate,
+                            UISearchResultsUpdating {
 
     @IBOutlet weak private(set) var menuContainer: UIView!
     @IBOutlet weak private(set) var tableView: UITableView!
 
     var dataLoadAttempted: Bool!
-    var people: [Person]?
+    var filteredPeople: [Person]?
     var loggedInPerson: Person?
+    var people: [Person]?
+    var searchController: UISearchController!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -29,7 +35,9 @@ class PeopleViewController: UIViewController, MGSwipeTableCellDelegate, MFMailCo
         super.viewDidLoad()
 
         // Do any additional setup after loading the view, typically from a nib.
+        filteredPeople = []
         dataLoadAttempted = false
+        configureSearchDisplayController()
         configTableView()
         loadData()
     }
@@ -46,11 +54,23 @@ class PeopleViewController: UIViewController, MGSwipeTableCellDelegate, MFMailCo
 
     // MARK: - Configuration
 
+    private func configureSearchDisplayController() {
+        searchController = UISearchController(searchResultsController: nil)
+        searchController.searchResultsUpdater = self
+        searchController.searchBar.sizeToFit()
+        tableView.tableHeaderView = searchController.searchBar
+        
+        searchController.searchBar.delegate = self
+        searchController.hidesNavigationBarDuringPresentation = false
+        searchController.dimsBackgroundDuringPresentation = false
+    }
+    
     private func configTableView() {
         // configure table view
         tableView.registerNib(
             UINib(nibName: "ContactTableViewCell", bundle: nil),
-            forCellReuseIdentifier: ContactTableViewCell.classReuseIdentifier)
+            forCellReuseIdentifier: ContactTableViewCell.classReuseIdentifier
+        )
         tableView.separatorInset = UIEdgeInsetsMake(0.0, 64.0, 0.0, 0.0)
         tableView.rowHeight = 64.0
         tableView.addDummyFooterView()
@@ -108,6 +128,10 @@ class PeopleViewController: UIViewController, MGSwipeTableCellDelegate, MFMailCo
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if searchController.active {
+            return filteredPeople?.count ?? 0
+        }
+        
         return people?.count ?? 0
     }
 
@@ -118,7 +142,15 @@ class PeopleViewController: UIViewController, MGSwipeTableCellDelegate, MFMailCo
         ) as ContactTableViewCell
         cell.addQuickActions = true
 
-        if let person = people?[indexPath.row] {
+        var person: Person?
+        if searchController.active {
+            person = filteredPeople?[indexPath.row]
+        }
+        else {
+            person = people?[indexPath.row]
+        }
+        
+        if person != nil {
             cell.person = person
             cell.delegate = self
         }
@@ -132,8 +164,7 @@ class PeopleViewController: UIViewController, MGSwipeTableCellDelegate, MFMailCo
         cell: ContactTableViewCell!,
         tappedButtonAtIndex index: Int,
         direction: MGSwipeDirection,
-        fromExpansion: Bool
-    ) -> Bool {
+        fromExpansion: Bool) -> Bool {
         switch direction {
             case .RightToLeft:
                 // Right buttons tapped
@@ -156,11 +187,32 @@ class PeopleViewController: UIViewController, MGSwipeTableCellDelegate, MFMailCo
     
     // MARK: - MFMailComposeViewControllerDelegate
 
-    func mailComposeController(
-        controller: MFMailComposeViewController!,
-        didFinishWithResult result: MFMailComposeResult,
-        error: NSError!
-    ) {
+    func mailComposeController(controller: MFMailComposeViewController!, didFinishWithResult result: MFMailComposeResult, error: NSError!) {
             dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    // MARK: - UISearchResultsUpdating
+    
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
+        let searchString = searchController.searchBar.text
+        let trimmedString = searchString.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+        if trimmedString == "" {
+            filteredPeople = people
+        }
+        else {
+            filteredPeople = people?.filter({
+                let name: String = ($0 as Person).firstName + ($0 as Person).lastName
+                let range = name.rangeOfString(searchString, options: NSStringCompareOptions.CaseInsensitiveSearch|NSStringCompareOptions.LiteralSearch)
+                return !(range != nil ? range!.isEmpty : true)
+            })
+        }
+        
+        tableView.reloadData()
+    }
+    
+    // MARK: UISearchBarDelegate
+    
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
     }
 }

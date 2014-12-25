@@ -80,15 +80,8 @@
                         <rect key="frame" x="0.0" y="64" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fdb-qr-uVZ" userLabel="MenuContainer">
-                                <rect key="frame" x="0.0" y="20" width="600" height="40"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="rMI-00-8kv"/>
-                                </constraints>
-                            </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="ERH-Ff-xDK">
-                                <rect key="frame" x="0.0" y="61" width="600" height="539"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="ERH-Ff-xDK">
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="Zbt-y4-ByZ">
@@ -110,18 +103,14 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Fdb-qr-uVZ" firstAttribute="leading" secondItem="nkn-aV-chR" secondAttribute="leading" id="2ei-im-oOy"/>
+                            <constraint firstItem="ERH-Ff-xDK" firstAttribute="top" secondItem="2Xd-BM-V7N" secondAttribute="bottom" id="5h6-2J-wDf"/>
                             <constraint firstAttribute="trailing" secondItem="ERH-Ff-xDK" secondAttribute="trailing" id="5hm-Ga-00V"/>
-                            <constraint firstAttribute="trailing" secondItem="Fdb-qr-uVZ" secondAttribute="trailing" id="8uG-o1-Feg"/>
                             <constraint firstItem="ByL-Z2-1rE" firstAttribute="top" secondItem="ERH-Ff-xDK" secondAttribute="bottom" id="9OU-tH-m49"/>
-                            <constraint firstItem="ERH-Ff-xDK" firstAttribute="top" secondItem="Fdb-qr-uVZ" secondAttribute="bottom" constant="1" id="Q0M-x3-512"/>
-                            <constraint firstItem="Fdb-qr-uVZ" firstAttribute="top" secondItem="2Xd-BM-V7N" secondAttribute="bottom" id="bWf-RW-6iT"/>
                             <constraint firstItem="ERH-Ff-xDK" firstAttribute="leading" secondItem="nkn-aV-chR" secondAttribute="leading" id="s9S-NN-TCl"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="People" id="Ixh-4e-tfU"/>
                     <connections>
-                        <outlet property="menuContainer" destination="Fdb-qr-uVZ" id="fPf-TX-mSi"/>
                         <outlet property="tableView" destination="ERH-Ff-xDK" id="FlM-qa-IM9"/>
                     </connections>
                 </viewController>
