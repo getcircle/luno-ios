@@ -195,18 +195,61 @@ class PeopleViewController: UIViewController,
     
     func updateSearchResultsForSearchController(searchController: UISearchController) {
         let searchString = searchController.searchBar.text
-        let trimmedString = searchString.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+        let whitespaceCharacterSet = NSCharacterSet.whitespaceCharacterSet()
+        let trimmedString = searchString.stringByTrimmingCharactersInSet(whitespaceCharacterSet)
         if trimmedString == "" {
             filteredPeople = people
         }
         else {
-            filteredPeople = people?.filter({
-                let name: String = ($0 as Person).firstName + ($0 as Person).lastName
-                let range = name.rangeOfString(searchString, options: NSStringCompareOptions.CaseInsensitiveSearch|NSStringCompareOptions.LiteralSearch)
-                return !(range != nil ? range!.isEmpty : true)
-            })
+            
+            var andPredicates = [NSPredicate]()
+            var searchTerms = trimmedString.componentsSeparatedByString(" ")
+            
+            for searchTerm in searchTerms {
+                var searchTermPredicates = [NSPredicate]()
+                let trimmedSearchTerm = searchTerm.stringByTrimmingCharactersInSet(whitespaceCharacterSet)
+
+                // Match first name
+                var firstNamePredicate = NSComparisonPredicate(
+                    leftExpression: NSExpression(forKeyPath: "firstName"),
+                    rightExpression: NSExpression(forConstantValue: trimmedSearchTerm),
+                    modifier: .DirectPredicateModifier,
+                    type: .ContainsPredicateOperatorType,
+                    options: .CaseInsensitivePredicateOption
+                )
+                
+                // Match last name
+                var lastNamePredicate = NSComparisonPredicate(
+                    leftExpression: NSExpression(forKeyPath: "lastName"),
+                    rightExpression: NSExpression(forConstantValue: trimmedSearchTerm),
+                    modifier: .DirectPredicateModifier,
+                    type: .ContainsPredicateOperatorType,
+                    options: .CaseInsensitivePredicateOption
+                )
+
+                // Match title
+                var titlePredicate = NSComparisonPredicate(
+                    leftExpression: NSExpression(forKeyPath: "title"),
+                    rightExpression: NSExpression(forConstantValue: trimmedSearchTerm),
+                    modifier: .DirectPredicateModifier,
+                    type: .ContainsPredicateOperatorType,
+                    options: .CaseInsensitivePredicateOption
+                )
+                
+                andPredicates.append(
+                    NSCompoundPredicate.orPredicateWithSubpredicates([
+                        firstNamePredicate,
+                        lastNamePredicate,
+                        titlePredicate
+                    ])
+                )
+            }
+    
+            var allPeople = people
+            let finalPredicate = NSCompoundPredicate.andPredicateWithSubpredicates(andPredicates)
+            filteredPeople = allPeople?.filter{ finalPredicate.evaluateWithObject($0) }
         }
-        
+
         tableView.reloadData()
     }
     
