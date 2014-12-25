@@ -128,6 +128,9 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
 
     // MARK: Collection View Delegate
     
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        performSegueWithIdentifier("showListOfPeople", sender: collectionView.cellForItemAtIndexPath(indexPath))
+    }
     
     // MARK: - Flow Layout Delegate
 
@@ -173,6 +176,12 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
             let profileVC = controller.topViewController as ProfileViewController
             profileVC.showCloseButton = true
             profileVC.person = loggedInPerson
+        }
+        else if segue.identifier == "showListOfPeople" {
+            let controller = segue.destinationViewController as PeopleViewController
+            if sender is SearchViewCardCollectionViewCell {
+                controller.navigationItem.title = (sender as SearchViewCardCollectionViewCell).cardTitleLabel.text?.capitalizedString
+            }
         }
     }
     
