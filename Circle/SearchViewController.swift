@@ -88,6 +88,13 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
             SearchViewCardCollectionViewCell.classReuseIdentifier,
             forIndexPath: indexPath) as SearchViewCardCollectionViewCell
 
+        if let peopleGroup = people as [Person]? {
+            // TODO: - Remove hardcoded logic
+            cell.cardTitleLabel.text = indexPath.row == 0 ? "Direct Reports" : "Peers"
+            cell.cardTitleLabel.text = cell.cardTitleLabel.text?.uppercaseString
+            cell.setPeople(indexPath.row == 0 ? peopleGroup : peopleGroup.reverse())
+        }
+
         let finalFrame = cell.frame
         cell.frameY = finalFrame.origin.y + (view.frameHeight - finalFrame.origin.y)
         let delay = 0.2 * (Double(indexPath.row) + 1.0)
