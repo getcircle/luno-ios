@@ -34,8 +34,8 @@ class PeopleViewController: UITableViewController,
         // Do any additional setup after loading the view, typically from a nib.
         filteredPeople = []
         dataLoadAttempted = false
-        configureSearchDisplayController()
-        configTableView()
+        configureSearchController()
+        configureTableView()
         loadData()
     }
 
@@ -48,21 +48,21 @@ class PeopleViewController: UITableViewController,
         }
 
     }
-
+    
     // MARK: - Configuration
 
-    private func configureSearchDisplayController() {
+    private func configureSearchController() {
         searchController = UISearchController(searchResultsController: nil)
         searchController.searchResultsUpdater = self
-        searchController.searchBar.sizeToFit()
-        tableView.tableHeaderView = searchController.searchBar
-        
         searchController.searchBar.delegate = self
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.dimsBackgroundDuringPresentation = false
+        searchController.searchBar.sizeToFit()
+        tableView.tableHeaderView = searchController.searchBar
+        definesPresentationContext = true
     }
     
-    private func configTableView() {
+    private func configureTableView() {
         // configure table view
         tableView.registerNib(
             UINib(nibName: "ContactTableViewCell", bundle: nil),
@@ -125,7 +125,7 @@ class PeopleViewController: UITableViewController,
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if isSearchControllerActive() {
+        if searchController.active {
             return filteredPeople?.count ?? 0
         }
         
@@ -172,12 +172,6 @@ class PeopleViewController: UITableViewController,
         }
 
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        if isSearchControllerActive() {
-            // This should not be needed but there is a bug with definesPresentationContext being
-            // set to true in iOS 8 and so we have to manully dismiss and restore search controller
-            // when pushing or popping a view controller
-            searchController.dismissViewControllerAnimated(false, completion: nil)
-        }
     }
     
     // MARK: - MFMailComposeViewControllerDelegate
@@ -265,7 +259,7 @@ class PeopleViewController: UITableViewController,
     // the data source is for a search results view or regular table view
     private func getPersonAtIndexPath(indexPath: NSIndexPath!) -> Person? {
         var person: Person?
-        if isSearchControllerActive() {
+        if searchController.active {
             person = filteredPeople?[indexPath.row]
         }
         else {
@@ -273,11 +267,5 @@ class PeopleViewController: UITableViewController,
         }
         
         return person
-    }
-    
-    // The extra check is needed to ensure table view does not reload
-    // prematurely on dismissing the search controller.
-    private func isSearchControllerActive() -> Bool {
-        return searchController.active || (searchController.searchBar.text != nil && searchController.searchBar.text != "")
     }
 }

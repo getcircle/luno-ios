@@ -144,6 +144,7 @@
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="DXa-8Z-MvV"/>
                                 <exclude reference="Jdj-tk-keE"/>
                                 <exclude reference="NLW-Oc-Dhq"/>
                                 <exclude reference="VBt-he-Fh2"/>
@@ -151,7 +152,6 @@
                                 <exclude reference="kzb-JQ-X15"/>
                                 <exclude reference="lV7-YJ-rD8"/>
                                 <exclude reference="ukf-kl-KmT"/>
-                                <exclude reference="DXa-8Z-MvV"/>
                                 <exclude reference="TIJ-f7-2kw"/>
                             </mask>
                         </variation>
@@ -177,7 +177,7 @@
         <!--People-->
         <scene sceneID="Wsp-Yf-6aj">
             <objects>
-                <tableViewController title="People" id="oer-J4-8yh" customClass="PeopleViewController" customModule="Circle" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="People" extendedLayoutIncludesOpaqueBars="YES" id="oer-J4-8yh" customClass="PeopleViewController" customModule="Circle" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="vXw-79-Vwy">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
