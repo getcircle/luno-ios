@@ -49,13 +49,11 @@
 		BF2CBFD61A473E9100BE589D /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2CBFD51A473E9100BE589D /* UserService.swift */; };
 		BF59AA931A2C152F00C0CDB9 /* UITableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF59AA921A2C152F00C0CDB9 /* UITableViewExtension.swift */; };
 		BF7DF98F1A44E53200A4F924 /* ServiceTransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7DF98E1A44E53200A4F924 /* ServiceTransport.swift */; };
-		BF83A4771A2A57B3000F7A92 /* SelectContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF83A4761A2A57B3000F7A92 /* SelectContactViewController.swift */; };
 		BF8FC3D91A44DA83007FD8BA /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8FC3D81A44DA83007FD8BA /* StringExtension.swift */; };
 		BFB791891A2C346A0048E8FB /* CALayerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB791881A2C346A0048E8FB /* CALayerExtension.swift */; };
 		BFB7918B1A2C3C860048E8FB /* SpringFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB7918A1A2C3C860048E8FB /* SpringFlowLayout.swift */; };
 		BFC6CF9C1A44D2B90081F45B /* ServiceClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC6CF9B1A44D2B90081F45B /* ServiceClient.swift */; };
 		BFC6CFA21A44D4DE0081F45B /* ClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC6CFA11A44D4DE0081F45B /* ClientTests.swift */; };
-		BFEDB1381A2A6D6E00250165 /* SelectContactViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFEDB1371A2A6D6E00250165 /* SelectContactViewController.xib */; };
 		BFEDB1431A2A8CA700250165 /* UICollectionViewFlowLayoutExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFEDB1421A2A8CA700250165 /* UICollectionViewFlowLayoutExtension.swift */; };
 		BFFB1A041A4872F200CCFFC3 /* Locksmith.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = BFFB19FF1A4872E200CCFFC3 /* Locksmith.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
@@ -196,13 +194,11 @@
 		BF2CBFD51A473E9100BE589D /* UserService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		BF59AA921A2C152F00C0CDB9 /* UITableViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewExtension.swift; sourceTree = "<group>"; };
 		BF7DF98E1A44E53200A4F924 /* ServiceTransport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceTransport.swift; sourceTree = "<group>"; };
-		BF83A4761A2A57B3000F7A92 /* SelectContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectContactViewController.swift; sourceTree = "<group>"; };
 		BF8FC3D81A44DA83007FD8BA /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		BFB791881A2C346A0048E8FB /* CALayerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CALayerExtension.swift; sourceTree = "<group>"; };
 		BFB7918A1A2C3C860048E8FB /* SpringFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpringFlowLayout.swift; sourceTree = "<group>"; };
 		BFC6CF9B1A44D2B90081F45B /* ServiceClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceClient.swift; sourceTree = "<group>"; };
 		BFC6CFA11A44D4DE0081F45B /* ClientTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientTests.swift; sourceTree = "<group>"; };
-		BFEDB1371A2A6D6E00250165 /* SelectContactViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectContactViewController.xib; sourceTree = "<group>"; };
 		BFEDB1421A2A8CA700250165 /* UICollectionViewFlowLayoutExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICollectionViewFlowLayoutExtension.swift; sourceTree = "<group>"; };
 		BFFB19F91A4872E200CCFFC3 /* Locksmith.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Locksmith.xcodeproj; path = ThirdParty/Locksmith/Locksmith.xcodeproj; sourceTree = SOURCE_ROOT; };
 		CC982AC8BAF0AFF23DCD301A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -316,7 +312,6 @@
 				8F00049A1A2419730096477A /* PeopleViewController.swift */,
 				8F00049C1A2419730096477A /* ProfileViewController.swift */,
 				8FF297FC1A4A4DCA00306CFC /* SearchViewController.swift */,
-				BF83A4761A2A57B3000F7A92 /* SelectContactViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -381,7 +376,6 @@
 				8F22CBDF1A27A8E60026376E /* ProfileHeaderCollectionReusableView.xib */,
 				8FF298091A4B490E00306CFC /* SearchHeaderCollectionReusableView.xib */,
 				8FF298021A4A4E3600306CFC /* SearchViewCardCollectionViewCell.xib */,
-				BFEDB1371A2A6D6E00250165 /* SelectContactViewController.xib */,
 			);
 			name = "Storyboards / XIBs";
 			sourceTree = "<group>";
@@ -630,7 +624,6 @@
 				8FF298041A4A4E3600306CFC /* SearchViewCardCollectionViewCell.xib in Resources */,
 				8F0004BF1A24225A0096477A /* ContactTableViewCell.xib in Resources */,
 				8F22CBE91A27FDA70026376E /* ProfileAttributeCollectionViewCell.xib in Resources */,
-				BFEDB1381A2A6D6E00250165 /* SelectContactViewController.xib in Resources */,
 				8FF2980B1A4B490E00306CFC /* SearchHeaderCollectionReusableView.xib in Resources */,
 				8F0004A01A2419730096477A /* Main.storyboard in Resources */,
 				8F22CBF91A29A8EB0026376E /* AuthViewController.xib in Resources */,
@@ -719,7 +712,6 @@
 			files = (
 				8FD041A21A2C03AA00FE28EF /* UIFontExtention.swift in Sources */,
 				8F22CB791A266D3F0026376E /* Person.swift in Sources */,
-				BF83A4771A2A57B3000F7A92 /* SelectContactViewController.swift in Sources */,
 				8F22CBED1A283D3D0026376E /* SeparatorDecorationView.swift in Sources */,
 				8F0004BE1A24225A0096477A /* ContactTableViewCell.swift in Sources */,
 				8F22CBE01A27A8E60026376E /* ProfileHeaderCollectionReusableView.swift in Sources */,
