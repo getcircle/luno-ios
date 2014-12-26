@@ -68,56 +68,6 @@
             </objects>
             <point key="canvasLocation" x="1944" y="-2076"/>
         </scene>
-        <!--People-->
-        <scene sceneID="1cC-pz-10W">
-            <objects>
-                <viewController id="5pk-MV-KOj" customClass="PeopleViewController" customModule="Circle" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="2Xd-BM-V7N"/>
-                        <viewControllerLayoutGuide type="bottom" id="ByL-Z2-1rE"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="nkn-aV-chR">
-                        <rect key="frame" x="0.0" y="64" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="ERH-Ff-xDK">
-                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="Zbt-y4-ByZ">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Zbt-y4-ByZ" id="mlp-Rh-7fK">
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="ofx-aS-lg0" kind="show" identifier="showProfile" id="ve3-5g-lZv"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="5pk-MV-KOj" id="mcm-QU-Lvs"/>
-                                    <outlet property="delegate" destination="5pk-MV-KOj" id="R8e-hs-XlD"/>
-                                </connections>
-                            </tableView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="ERH-Ff-xDK" firstAttribute="top" secondItem="2Xd-BM-V7N" secondAttribute="bottom" id="5h6-2J-wDf"/>
-                            <constraint firstAttribute="trailing" secondItem="ERH-Ff-xDK" secondAttribute="trailing" id="5hm-Ga-00V"/>
-                            <constraint firstItem="ByL-Z2-1rE" firstAttribute="top" secondItem="ERH-Ff-xDK" secondAttribute="bottom" id="9OU-tH-m49"/>
-                            <constraint firstItem="ERH-Ff-xDK" firstAttribute="leading" secondItem="nkn-aV-chR" secondAttribute="leading" id="s9S-NN-TCl"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="People" id="Ixh-4e-tfU"/>
-                    <connections>
-                        <outlet property="tableView" destination="ERH-Ff-xDK" id="FlM-qa-IM9"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Fgd-WQ-XFM" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1944" y="-1336"/>
-        </scene>
         <!--Search-->
         <scene sceneID="HTA-V4-sgE">
             <objects>
@@ -149,7 +99,7 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <connections>
-                                            <segue destination="5pk-MV-KOj" kind="show" identifier="showListOfPeople" id="ua8-sI-tCa"/>
+                                            <segue destination="oer-J4-8yh" kind="show" identifier="showListOfPeople" id="vf6-pL-DhJ"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -224,11 +174,40 @@
             </objects>
             <point key="canvasLocation" x="1223" y="-1336"/>
         </scene>
+        <!--People-->
+        <scene sceneID="Wsp-Yf-6aj">
+            <objects>
+                <tableViewController title="People" id="oer-J4-8yh" customClass="PeopleViewController" customModule="Circle" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="vXw-79-Vwy">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="OfT-nh-gNn">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OfT-nh-gNn" id="xvX-a9-EqQ">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="ofx-aS-lg0" kind="show" identifier="showProfile" id="hHc-V2-gIb"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="oer-J4-8yh" id="HNr-lK-FzJ"/>
+                            <outlet property="delegate" destination="oer-J4-8yh" id="Oe2-CN-2lr"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DF0-2g-FS9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1944" y="-1336"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Profile" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ve3-5g-lZv"/>
+        <segue reference="hHc-V2-gIb"/>
     </inferredMetricsTieBreakers>
 </document>

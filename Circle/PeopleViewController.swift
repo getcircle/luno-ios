@@ -9,14 +9,11 @@
 import MessageUI
 import UIKit
 
-class PeopleViewController: UIViewController,
+class PeopleViewController: UITableViewController,
                             MGSwipeTableCellDelegate,
                             MFMailComposeViewControllerDelegate,
                             UISearchBarDelegate,
                             UISearchResultsUpdating {
-
-    @IBOutlet weak private(set) var menuContainer: UIView!
-    @IBOutlet weak private(set) var tableView: UITableView!
 
     var dataLoadAttempted: Bool!
     var filteredPeople: [Person]?
@@ -106,7 +103,7 @@ class PeopleViewController: UIViewController,
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showProfile" {
             if let indexPath = tableView.indexPathForSelectedRow() {
-                let person = people?[indexPath.row]
+                let person = getPersonAtIndexPath(indexPath)
                 let controller = segue.destinationViewController as ProfileViewController
                 controller.person = person
             }
@@ -123,34 +120,26 @@ class PeopleViewController: UIViewController,
 
     // MARK: - Table View Delegate
 
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
 
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if searchController.active {
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if isSearchControllerActive() {
             return filteredPeople?.count ?? 0
         }
         
         return people?.count ?? 0
     }
 
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(
             ContactTableViewCell.classReuseIdentifier,
             forIndexPath: indexPath
         ) as ContactTableViewCell
         cell.addQuickActions = true
-
-        var person: Person?
-        if searchController.active {
-            person = filteredPeople?[indexPath.row]
-        }
-        else {
-            person = people?[indexPath.row]
-        }
         
-        if person != nil {
+        if let person = getPersonAtIndexPath(indexPath) {
             cell.person = person
             cell.delegate = self
         }
@@ -177,12 +166,18 @@ class PeopleViewController: UIViewController,
         return true
     }
 
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if let person = people?[indexPath.row] {
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if let person = getPersonAtIndexPath(indexPath) {
             performSegueWithIdentifier("showProfile", sender: tableView)
         }
 
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        if isSearchControllerActive() {
+            // This should not be needed but there is a bug with definesPresentationContext being
+            // set to true in iOS 8 and so we have to manully dismiss and restore search controller
+            // when pushing or popping a view controller
+            searchController.dismissViewControllerAnimated(false, completion: nil)
+        }
     }
     
     // MARK: - MFMailComposeViewControllerDelegate
@@ -257,5 +252,32 @@ class PeopleViewController: UIViewController,
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
+    }
+    
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        updateSearchResultsForSearchController(searchController)
+        searchBar.resignFirstResponder()
+    }
+    
+    // MARK: Helpers
+    
+    // Function to fetch the correct person for a row regardless of whether
+    // the data source is for a search results view or regular table view
+    private func getPersonAtIndexPath(indexPath: NSIndexPath!) -> Person? {
+        var person: Person?
+        if isSearchControllerActive() {
+            person = filteredPeople?[indexPath.row]
+        }
+        else {
+            person = people?[indexPath.row]
+        }
+        
+        return person
+    }
+    
+    // The extra check is needed to ensure table view does not reload
+    // prematurely on dismissing the search controller.
+    private func isSearchControllerActive() -> Bool {
+        return searchController.active || (searchController.searchBar.text != nil && searchController.searchBar.text != "")
     }
 }
