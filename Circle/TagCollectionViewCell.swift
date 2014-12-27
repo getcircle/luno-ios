@@ -24,7 +24,6 @@ class TagCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         
         // Initialization code
-        tagLabel.addRoundCorners()
         tagLabel.layer.borderColor = UIColor.grayColor().CGColor
         tagLabel.layer.borderWidth = 1.0
         tagLabel.paddingEdgeInsets = UIEdgeInsetsMake(5.0, 10.0, 5.0, 10.0)

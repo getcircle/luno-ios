@@ -14,6 +14,7 @@ class TagSelectorCollectionViewController: UICollectionViewController {
 
     let tags = ["python", "mysql", "investing", "french", "ios", "swift", "business development", "private equity", "personal finance", "C", "C++", "product", "design"]
     var prototypeCell: TagCollectionViewCell!
+    var animatedCell = [NSIndexPath: Bool]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,6 +51,34 @@ class TagSelectorCollectionViewController: UICollectionViewController {
     
         // Configure the cell
         cell.tagLabel.text = tags[indexPath.row].capitalizedString
+        
+        if animatedCell[indexPath] == nil {
+            animatedCell[indexPath] = true
+            let originalFrame = cell.frame
+            var cellFrame = originalFrame
+            let collectionViewMidX = CGRectGetMidX(collectionView.frame)
+            if CGRectGetMinX(cellFrame) < collectionViewMidX {
+                // Animate from left
+                cellFrame.origin.x -= 20.0
+            }
+            else {
+                // Animate from right
+                cellFrame.origin.x += 20.0
+            }
+            cell.frame = cellFrame
+            cell.alpha = 0.0
+            
+            UIView.animateWithDuration(0.3,
+                delay: 0.02 * Double(indexPath.row),
+                options: .CurveEaseIn,
+                animations: { () -> Void in
+                    cell.frame = originalFrame
+                    cell.alpha = 0.8
+                },
+                completion: nil
+            )
+        }
+        
         return cell
     }
     
