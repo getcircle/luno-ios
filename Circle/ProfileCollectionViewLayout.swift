@@ -20,8 +20,10 @@ class ProfileCollectionViewLayout: UICollectionViewFlowLayout {
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        registerClass(SeparatorDecorationView.self,
-            forDecorationViewOfKind: SeparatorDecorationView.kind)
+        registerClass(
+            SeparatorDecorationView.self,
+            forDecorationViewOfKind: SeparatorDecorationView.kind
+        )
         
         sectionInset = UIEdgeInsetsMake(30.0, 0.0, 0.0, 0.0)
         minimumInteritemSpacing = 0.0
