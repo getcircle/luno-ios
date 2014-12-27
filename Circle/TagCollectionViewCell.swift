@@ -66,18 +66,19 @@ class TagCollectionViewCell: UICollectionViewCell {
     
     func selectCell(animated: Bool) {
         let duration = animated ? 0.2 : 0.0
-        
+
+        layer.zPosition = 10
         UIView.animateWithDuration(
             duration,
             animations: { () -> Void in
                 self.tagLabel.backgroundColor = UIColor.tagSelectedBackgroundColor()
                 self.tagLabel.textColor = UIColor.defaultLightTextColor()
-                self.tagLabel.transform = CGAffineTransformMakeScale(1.1, 1.1)
+                self.transform = CGAffineTransformMakeScale(1.2, 1.2)
                 self.tagLabel.layer.borderColor = UIColor.tagSelectedBorderColor().CGColor
             },
             completion: { (completed) -> Void in
                 UIView.animateWithDuration(duration, animations: { () -> Void in
-                    self.tagLabel.transform = CGAffineTransformIdentity
+                    self.transform = CGAffineTransformIdentity
                 })
             }
         )
@@ -107,6 +108,7 @@ class TagCollectionViewCell: UICollectionViewCell {
             return
         }
 
+        layer.zPosition = 0
         UIView.animateWithDuration(
             duration,
             animations: { () -> Void in
