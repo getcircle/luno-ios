@@ -31,6 +31,7 @@ class TagSelectorViewController: UIViewController,
     var filteredTags = [String]()
     var prototypeCell: TagCollectionViewCell!
     var searchController: UISearchController!
+    var selectedTags = NSMutableSet()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,14 +80,14 @@ class TagSelectorViewController: UIViewController,
         
         // Top
         view.layer.addSublayer(CALayer.gradientLayerWithFrame(
-            CGRectMake(0.0, searchControllerParentView.frameBottom, view.frameWidth, gradientHeight),
+            CGRectMake(10.0, searchControllerParentView.frameBottom, view.frameWidth - 20.0, gradientHeight),
             startColor: startColor,
             endColor: endColor
         ))
         
         // Bottom
         view.layer.addSublayer(CALayer.gradientLayerWithFrame(
-            CGRectMake(0.0, view.frameHeight - gradientHeight, view.frameWidth, gradientHeight),
+            CGRectMake(10.0, view.frameHeight - gradientHeight + 10.0, view.frameWidth - 20.0, gradientHeight),
             startColor: endColor,
             endColor: startColor
         ))
@@ -110,14 +111,19 @@ class TagSelectorViewController: UIViewController,
     
         // Configure the cell
         cell.tagLabel.text = filteredTags[indexPath.row].capitalizedString
-        
         if animatedCell[indexPath] == nil {
             animatedCell[indexPath] = true
             cell.animateForCollection(collectionView, atIndexPath: indexPath)
         }
         
+        // Manage Selection
         if cell.selected {
             cell.selectCell(false)
+        }
+        else if selectedTags.containsObject(filteredTags[indexPath.row]) {
+            cell.selectCell(false)
+            cell.selected = true
+            collectionView.selectItemAtIndexPath(indexPath, animated: false, scrollPosition: nil)
         }
         else {
             cell.unHighlightCell(false)
@@ -141,11 +147,13 @@ class TagSelectorViewController: UIViewController,
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let cell = collectionView.cellForItemAtIndexPath(indexPath) as TagCollectionViewCell
         cell.selectCell(true)
+        selectedTags.addObject(filteredTags[indexPath.row])
     }
     
     func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
         let cell = collectionView.cellForItemAtIndexPath(indexPath) as TagCollectionViewCell
         cell.unHighlightCell(true)
+        selectedTags.removeObject(filteredTags[indexPath.row])
     }
     
     // MARK: UICollectionViewDelegateFlowLayout

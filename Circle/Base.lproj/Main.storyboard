@@ -224,7 +224,7 @@
             </objects>
             <point key="canvasLocation" x="1944" y="-589"/>
         </scene>
-        <!--Select tags relavant to you:-->
+        <!--Select tags relavant to you-->
         <scene sceneID="vJ9-O0-IWA">
             <objects>
                 <viewController extendedLayoutIncludesOpaqueBars="YES" id="hhs-mV-ktp" customClass="TagSelectorViewController" customModule="Circle" customModuleProvider="target" sceneMemberID="viewController">
@@ -280,10 +280,15 @@
                             <constraint firstItem="ihF-P4-aaN" firstAttribute="leading" secondItem="cpk-sO-fI5" secondAttribute="leading" id="vkj-x3-XNG"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Select tags relavant to you:" id="lIQ-50-PEW">
+                    <navigationItem key="navigationItem" title="Select tags relavant to you" id="lIQ-50-PEW">
                         <barButtonItem key="leftBarButtonItem" image="Down" id="tgj-V4-HS7">
                             <connections>
                                 <action selector="close:" destination="hhs-mV-ktp" id="VV4-Pu-UQc"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Done" id="XA6-sJ-V0g">
+                            <connections>
+                                <action selector="close:" destination="hhs-mV-ktp" id="Mwc-lb-Bdg"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
