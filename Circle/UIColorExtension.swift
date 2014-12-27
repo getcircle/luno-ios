@@ -19,7 +19,15 @@ extension UIColor {
     }
     
     class func appTintColor() -> UIColor {
-        return UIColor(red: 225/255.0, green: 40/255.0, blue: 47/255.0, alpha: 1.0)
+        return UIColor(red: 225, green: 40, blue: 47)
+    }
+    
+    class func defaultLightTextColor() -> UIColor {
+        return UIColor.whiteColor()
+    }
+    
+    class func defaultDarkTextColor() -> UIColor {
+        return UIColor(red: 51, green: 51, blue: 51)
     }
     
     class func navigationBarBarTintColor() -> UIColor {
@@ -80,5 +88,21 @@ extension UIColor {
     
     class func searchOverlayButtonBackgroundColor() -> UIColor {
         return UIColor.viewBackgroundColor()
+    }
+    
+    class func tagNormalBackgroundColor() -> UIColor {
+        return UIColor.whiteColor()
+    }
+    
+    class func tagSelectedBackgroundColor() -> UIColor {
+        return UIColor.appTintColor()
+    }
+
+    class func tagNormalBorderColor() -> UIColor {
+        return UIColor(red: 220, green: 220, blue: 220)
+    }
+    
+    class func tagSelectedBorderColor() -> UIColor {
+        return UIColor.whiteColor()
     }
 }
