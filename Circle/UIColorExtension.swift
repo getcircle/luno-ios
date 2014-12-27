@@ -99,7 +99,7 @@ extension UIColor {
     }
 
     class func tagNormalBorderColor() -> UIColor {
-        return UIColor(red: 220, green: 220, blue: 220)
+        return UIColor(red: 180, green: 180, blue: 180)
     }
     
     class func tagSelectedBorderColor() -> UIColor {

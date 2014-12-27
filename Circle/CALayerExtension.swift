@@ -15,4 +15,10 @@ extension CALayer {
         masksToBounds = true
     }
     
+    class func gradientLayerWithFrame(frame: CGRect, startColor: CGColorRef, endColor: CGColorRef) -> CAGradientLayer {
+        var gradientLayer = CAGradientLayer()
+        gradientLayer.frame = frame
+        gradientLayer.colors = [startColor, endColor]
+        return gradientLayer
+    }
 }
