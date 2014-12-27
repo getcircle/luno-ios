@@ -52,7 +52,7 @@ class TagCollectionViewCell: UICollectionViewCell {
         alpha = 0.0
         
         UIView.animateWithDuration(0.2,
-            delay: 0.02 * Double(indexPath.row),
+            delay: 0.01 * Double(indexPath.row),
             options: .CurveEaseIn,
             animations: { () -> Void in
                 self.frame = originalFrame

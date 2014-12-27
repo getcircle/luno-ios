@@ -224,10 +224,10 @@
             </objects>
             <point key="canvasLocation" x="1944" y="-589"/>
         </scene>
-        <!--Tags-->
+        <!--Select tags relevant to you:-->
         <scene sceneID="A75-vc-9gy">
             <objects>
-                <collectionViewController id="OGF-T2-as5" customClass="TagSelectorCollectionViewController" customModule="Circle" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController extendedLayoutIncludesOpaqueBars="YES" id="OGF-T2-as5" customClass="TagSelectorCollectionViewController" customModule="Circle" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" id="ErQ-SD-QJr">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -254,7 +254,7 @@
                             <outlet property="delegate" destination="OGF-T2-as5" id="IoZ-eL-yGX"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" title="Tags" id="QS5-Il-Fg9">
+                    <navigationItem key="navigationItem" title="Select tags relevant to you:" id="QS5-Il-Fg9">
                         <barButtonItem key="leftBarButtonItem" image="Down" id="YSW-et-Rmn">
                             <connections>
                                 <action selector="close:" destination="OGF-T2-as5" id="urH-7q-dli"/>

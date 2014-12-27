@@ -14,7 +14,7 @@ class CenterAlignFlowLayout: UICollectionViewFlowLayout {
         super.init(coder: aDecoder)
         
         minimumInteritemSpacing = 10.0
-        sectionInset = UIEdgeInsetsMake(10.0, 10.0, 10.0, 10.0)
+        sectionInset = UIEdgeInsetsMake(54.0, 10.0, 10.0, 10.0)
         minimumLineSpacing = 10.0
     }
     

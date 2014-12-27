@@ -234,7 +234,7 @@ class PeopleViewController: UITableViewController,
                 )
             }
     
-            var allPeople = people
+            let allPeople = people
             let finalPredicate = NSCompoundPredicate.andPredicateWithSubpredicates(andPredicates)
             filteredPeople = allPeople?.filter{ finalPredicate.evaluateWithObject($0) }
         }
