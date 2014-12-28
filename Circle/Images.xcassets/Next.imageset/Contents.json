@@ -3,17 +3,17 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "MessagesSelected.png"
+      "filename" : "Next.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "MessagesSelected@2x.png"
+      "filename" : "Next@2x.png"
     },
     {
       "idiom" : "universal",
       "scale" : "3x",
-      "filename" : "MessagesSelected@3x.png"
+      "filename" : "Next@3x.png"
     }
   ],
   "info" : {
