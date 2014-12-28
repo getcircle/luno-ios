@@ -13,6 +13,7 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
     @IBOutlet weak private(set) var collectionView: UICollectionView!
     @IBOutlet weak private(set) var overlayButton: UIButton!
     
+    private var animatedRowIndexes = NSMutableIndexSet()
     private var loggedInPerson: Person?
     private var people: [Person]?
     private var searchHeaderView: SearchHeaderCollectionReusableView!
@@ -95,21 +96,26 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
             cell.setPeople(indexPath.row == 0 ? peopleGroup : peopleGroup.reverse())
         }
 
-        let finalFrame = cell.frame
-        cell.frameY = finalFrame.origin.y + (view.frameHeight - finalFrame.origin.y)
-        let delay = 0.2 * (Double(indexPath.row) + 1.0)
+        if animatedRowIndexes.containsIndex(indexPath.row) == false {
+            animatedRowIndexes.addIndex(indexPath.row)
+            let finalFrame = cell.frame
+            cell.frameY = finalFrame.origin.y + 40.0
+            let delay = 0.2 * (Double(indexPath.row) + 1.0)
+            cell.alpha = 0.0
 
-        UIView.animateWithDuration(
-            0.9,
-            delay: delay,
-            usingSpringWithDamping: 0.6,
-            initialSpringVelocity: 0.6,
-            options: .CurveEaseInOut,
-            animations: { () -> Void in
-                cell.frame = finalFrame
-            },
-            completion: nil
-        )
+            UIView.animateWithDuration(
+                0.3,
+                delay: delay,
+                usingSpringWithDamping: 0.6,
+                initialSpringVelocity: 0.6,
+                options: .CurveEaseInOut,
+                animations: { () -> Void in
+                    cell.frame = finalFrame
+                    cell.alpha = 1.0
+                },
+                completion: nil
+            )
+        }
 
         return cell
     }
@@ -139,7 +145,7 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        return CGSizeMake(collectionView.frameWidth, 90.0)
+        return CGSizeMake(collectionView.frameWidth, 100.0)
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
