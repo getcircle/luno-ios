@@ -1,5 +1,5 @@
 //
-//  SearchHeaderCollectionReusableView.swift
+//  SearchHeaderView.swift
 //  Circle
 //
 //  Created by Ravi Rani on 12/24/14.
@@ -8,15 +8,11 @@
 
 import UIKit
 
-class SearchHeaderCollectionReusableView: UICollectionReusableView {
+class SearchHeaderView: UIView {
 
     @IBOutlet weak private(set) var cancelButton: UIButton!
     @IBOutlet weak private(set) var searchTextField: UITextField!
     @IBOutlet weak private(set) var searchTextFieldTrailingSpaceConstraint: NSLayoutConstraint!
-    
-    class var classReuseIdentifier: String {
-        return "SearchHeaderView"
-    }
     
     class var height: CGFloat {
         return 54.0

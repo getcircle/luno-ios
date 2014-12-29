@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xqF-2W-85W">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Profile-->
@@ -80,8 +79,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5kQ-sW-5v8" userLabel="SearchContainer">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="54"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="54" id="WPV-ES-scS"/>
+                                </constraints>
+                            </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="FpX-4G-cZW">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
+                                <rect key="frame" x="0.0" y="54" width="600" height="482"/>
                                 <color key="backgroundColor" red="0.87058823529999996" green="0.87058823529999996" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ye1-bx-IXA">
                                     <size key="itemSize" width="50" height="50"/>
@@ -124,37 +130,18 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="5kQ-sW-5v8" firstAttribute="leading" secondItem="bGb-OZ-dC1" secondAttribute="leading" id="2lx-ER-7df"/>
+                            <constraint firstItem="FpX-4G-cZW" firstAttribute="top" secondItem="5kQ-sW-5v8" secondAttribute="bottom" id="8LU-VE-EVy"/>
                             <constraint firstAttribute="trailing" secondItem="9zy-By-0t8" secondAttribute="trailing" id="BjS-PO-oa4"/>
-                            <constraint firstItem="FpX-4G-cZW" firstAttribute="top" secondItem="9zy-By-0t8" secondAttribute="top" constant="54" id="DXa-8Z-MvV"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="9zy-By-0t8" secondAttribute="trailing" id="Jdj-tk-keE"/>
-                            <constraint firstItem="9zy-By-0t8" firstAttribute="top" secondItem="iQd-um-0Yq" secondAttribute="bottom" id="NLW-Oc-Dhq"/>
-                            <constraint firstItem="rUn-MN-xeZ" firstAttribute="top" secondItem="9zy-By-0t8" secondAttribute="bottom" id="TIJ-f7-2kw"/>
                             <constraint firstAttribute="trailing" secondItem="FpX-4G-cZW" secondAttribute="trailing" id="UnW-tG-yPS"/>
-                            <constraint firstItem="9zy-By-0t8" firstAttribute="top" secondItem="FpX-4G-cZW" secondAttribute="top" id="VBt-he-Fh2"/>
-                            <constraint firstItem="FpX-4G-cZW" firstAttribute="top" secondItem="iQd-um-0Yq" secondAttribute="bottom" id="ZqN-rI-jCH"/>
-                            <constraint firstItem="9zy-By-0t8" firstAttribute="leading" secondItem="FpX-4G-cZW" secondAttribute="leading" id="aFC-gH-Bhe"/>
+                            <constraint firstAttribute="trailing" secondItem="5kQ-sW-5v8" secondAttribute="trailing" id="cqS-IH-9aj"/>
                             <constraint firstItem="rUn-MN-xeZ" firstAttribute="top" secondItem="FpX-4G-cZW" secondAttribute="bottom" id="ihf-mG-9Li"/>
-                            <constraint firstItem="9zy-By-0t8" firstAttribute="height" secondItem="FpX-4G-cZW" secondAttribute="height" id="kzb-JQ-X15"/>
-                            <constraint firstItem="9zy-By-0t8" firstAttribute="leading" secondItem="bGb-OZ-dC1" secondAttribute="leadingMargin" constant="-16" id="lV7-YJ-rD8"/>
                             <constraint firstItem="FpX-4G-cZW" firstAttribute="leading" secondItem="bGb-OZ-dC1" secondAttribute="leading" id="o2Z-d8-o7d"/>
                             <constraint firstItem="rUn-MN-xeZ" firstAttribute="top" secondItem="9zy-By-0t8" secondAttribute="bottom" id="oSD-Dj-FE3"/>
                             <constraint firstItem="9zy-By-0t8" firstAttribute="leading" secondItem="bGb-OZ-dC1" secondAttribute="leading" id="tBX-PI-WvI"/>
-                            <constraint firstItem="9zy-By-0t8" firstAttribute="width" secondItem="FpX-4G-cZW" secondAttribute="width" id="ukf-kl-KmT"/>
                             <constraint firstItem="9zy-By-0t8" firstAttribute="top" secondItem="iQd-um-0Yq" secondAttribute="bottom" constant="54" id="xYW-6x-5Zt"/>
+                            <constraint firstItem="5kQ-sW-5v8" firstAttribute="top" secondItem="iQd-um-0Yq" secondAttribute="bottom" id="yl2-ha-hR9"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="DXa-8Z-MvV"/>
-                                <exclude reference="Jdj-tk-keE"/>
-                                <exclude reference="NLW-Oc-Dhq"/>
-                                <exclude reference="VBt-he-Fh2"/>
-                                <exclude reference="aFC-gH-Bhe"/>
-                                <exclude reference="kzb-JQ-X15"/>
-                                <exclude reference="lV7-YJ-rD8"/>
-                                <exclude reference="ukf-kl-KmT"/>
-                                <exclude reference="TIJ-f7-2kw"/>
-                            </mask>
-                        </variation>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" title="Circle" id="wys-4b-D4W">
@@ -173,6 +160,7 @@
                     <connections>
                         <outlet property="collectionView" destination="FpX-4G-cZW" id="47Q-HQ-Uri"/>
                         <outlet property="overlayButton" destination="9zy-By-0t8" id="C1t-gz-YCf"/>
+                        <outlet property="searchHeaderContainerView" destination="5kQ-sW-5v8" id="IPE-OO-odc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Vf-V8-GjI" userLabel="First Responder" sceneMemberID="firstResponder"/>

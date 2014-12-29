@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="U6b-Vx-4bR" customClass="CardHeaderCollectionReusableView" customModule="Circle" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nuZ-2b-MHg" userLabel="CardParentView">
+                    <rect key="frame" x="10" y="0.0" width="300" height="44"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="People" translatesAutoresizingMaskIntoConstraints="NO" id="tyz-Ai-K8s" userLabel="CardImageView">
+                            <rect key="frame" x="10" y="11" width="22" height="22"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="tyz-Ai-K8s" secondAttribute="height" multiplier="1:1" id="9Uz-4U-27L"/>
+                                <constraint firstAttribute="height" constant="22" id="LQ9-Wn-JUD"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DIRECT REPORTS" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hwM-UY-bVz" userLabel="CardTitle">
+                            <rect key="frame" x="42" y="12" width="115" height="20"/>
+                            <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
+                            <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bNr-0H-jel" userLabel="Separator">
+                            <rect key="frame" x="10" y="40" width="290" height="1"/>
+                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="udJ-Dd-FmF"/>
+                            </constraints>
+                        </view>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="All (5)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yAf-Md-PrH" userLabel="CardContentCount">
+                            <rect key="frame" x="240" y="6" width="39" height="32"/>
+                            <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="15"/>
+                            <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Next" translatesAutoresizingMaskIntoConstraints="NO" id="21Q-S6-C33" userLabel="NextIcon">
+                            <rect key="frame" x="284" y="17" width="11" height="11"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="21Q-S6-C33" secondAttribute="height" multiplier="1:1" id="TVL-PN-bE2"/>
+                                <constraint firstAttribute="width" constant="11" id="eXt-eM-cHc"/>
+                            </constraints>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="21Q-S6-C33" firstAttribute="leading" secondItem="yAf-Md-PrH" secondAttribute="trailing" constant="5" id="3xc-14-YcR"/>
+                        <constraint firstItem="yAf-Md-PrH" firstAttribute="top" secondItem="nuZ-2b-MHg" secondAttribute="top" constant="6" id="4Ly-V8-BOj"/>
+                        <constraint firstItem="bNr-0H-jel" firstAttribute="leading" secondItem="tyz-Ai-K8s" secondAttribute="leading" id="W3R-tr-BUV"/>
+                        <constraint firstAttribute="centerY" secondItem="hwM-UY-bVz" secondAttribute="centerY" id="bb1-vR-3ch"/>
+                        <constraint firstItem="tyz-Ai-K8s" firstAttribute="centerY" secondItem="hwM-UY-bVz" secondAttribute="centerY" id="gGX-g8-bHh"/>
+                        <constraint firstItem="bNr-0H-jel" firstAttribute="top" secondItem="hwM-UY-bVz" secondAttribute="bottom" constant="8" id="m1k-OP-dBn"/>
+                        <constraint firstAttribute="trailing" secondItem="bNr-0H-jel" secondAttribute="trailing" id="n9h-Hy-nkM"/>
+                        <constraint firstItem="yAf-Md-PrH" firstAttribute="centerY" secondItem="hwM-UY-bVz" secondAttribute="centerY" id="pU6-vJ-Qiv"/>
+                        <constraint firstItem="hwM-UY-bVz" firstAttribute="leading" secondItem="tyz-Ai-K8s" secondAttribute="trailing" constant="10" id="q9X-Qz-ANA"/>
+                        <constraint firstItem="tyz-Ai-K8s" firstAttribute="leading" secondItem="nuZ-2b-MHg" secondAttribute="leading" constant="10" id="r1V-gS-FP2"/>
+                        <constraint firstItem="21Q-S6-C33" firstAttribute="centerY" secondItem="hwM-UY-bVz" secondAttribute="centerY" id="y4T-Ph-OW7"/>
+                        <constraint firstAttribute="trailing" secondItem="21Q-S6-C33" secondAttribute="trailing" constant="5" id="y7P-1b-oeT"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="nuZ-2b-MHg" secondAttribute="trailing" constant="10" id="6FL-YA-0eF"/>
+                <constraint firstItem="nuZ-2b-MHg" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" constant="10" id="GFf-Ap-Oe8"/>
+                <constraint firstAttribute="bottom" secondItem="nuZ-2b-MHg" secondAttribute="bottom" id="aWW-F8-STO"/>
+                <constraint firstItem="nuZ-2b-MHg" firstAttribute="top" secondItem="U6b-Vx-4bR" secondAttribute="top" id="bTB-0o-Xe7"/>
+            </constraints>
+            <connections>
+                <outlet property="cardContentCountLabel" destination="yAf-Md-PrH" id="miD-0U-7XO"/>
+                <outlet property="cardImageView" destination="tyz-Ai-K8s" id="iTD-6C-Kqz"/>
+                <outlet property="cardParentView" destination="nuZ-2b-MHg" id="kpZ-4R-XZX"/>
+                <outlet property="cardTitleLabel" destination="hwM-UY-bVz" id="p1p-6u-Mvm"/>
+            </connections>
+            <point key="canvasLocation" x="-99" y="217"/>
+        </collectionReusableView>
+    </objects>
+    <resources>
+        <image name="Next" width="22" height="22"/>
+        <image name="People" width="32" height="32"/>
+    </resources>
+</document>
