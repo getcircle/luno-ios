@@ -14,7 +14,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nuZ-2b-MHg" userLabel="CardParentView">
                     <rect key="frame" x="10" y="0.0" width="300" height="44"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="People" translatesAutoresizingMaskIntoConstraints="NO" id="tyz-Ai-K8s" userLabel="CardImageView">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="People" translatesAutoresizingMaskIntoConstraints="NO" id="tyz-Ai-K8s" userLabel="CardImageView">
                             <rect key="frame" x="10" y="11" width="22" height="22"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="tyz-Ai-K8s" secondAttribute="height" multiplier="1:1" id="9Uz-4U-27L"/>
@@ -22,7 +22,7 @@
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DIRECT REPORTS" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hwM-UY-bVz" userLabel="CardTitle">
-                            <rect key="frame" x="42" y="12" width="115" height="20"/>
+                            <rect key="frame" x="37" y="12" width="115" height="20"/>
                             <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
                             <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
@@ -58,7 +58,7 @@
                         <constraint firstItem="bNr-0H-jel" firstAttribute="top" secondItem="hwM-UY-bVz" secondAttribute="bottom" constant="8" id="m1k-OP-dBn"/>
                         <constraint firstAttribute="trailing" secondItem="bNr-0H-jel" secondAttribute="trailing" id="n9h-Hy-nkM"/>
                         <constraint firstItem="yAf-Md-PrH" firstAttribute="centerY" secondItem="hwM-UY-bVz" secondAttribute="centerY" id="pU6-vJ-Qiv"/>
-                        <constraint firstItem="hwM-UY-bVz" firstAttribute="leading" secondItem="tyz-Ai-K8s" secondAttribute="trailing" constant="10" id="q9X-Qz-ANA"/>
+                        <constraint firstItem="hwM-UY-bVz" firstAttribute="leading" secondItem="tyz-Ai-K8s" secondAttribute="trailing" constant="5" id="q9X-Qz-ANA"/>
                         <constraint firstItem="tyz-Ai-K8s" firstAttribute="leading" secondItem="nuZ-2b-MHg" secondAttribute="leading" constant="10" id="r1V-gS-FP2"/>
                         <constraint firstItem="21Q-S6-C33" firstAttribute="centerY" secondItem="hwM-UY-bVz" secondAttribute="centerY" id="y4T-Ph-OW7"/>
                         <constraint firstAttribute="trailing" secondItem="21Q-S6-C33" secondAttribute="trailing" constant="5" id="y7P-1b-oeT"/>

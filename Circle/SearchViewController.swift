@@ -51,6 +51,10 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
             UINib(nibName: "ProfileImagesCollectionViewCell", bundle: nil),
             forCellWithReuseIdentifier: ProfileImagesCollectionViewCell.classReuseIdentifier
         )
+        collectionView!.registerNib(
+            UINib(nibName: "LocationsCollectionViewCell", bundle: nil),
+            forCellWithReuseIdentifier: LocationsCollectionViewCell.classReuseIdentifier
+        )
         
         collectionView!.registerNib(
             UINib(nibName: "CardHeaderCollectionReusableView", bundle: nil),
@@ -81,6 +85,16 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         }
     }
     
+    private func addLocationsData() {
+        var locationsCard = Card(cardType: .Locations, title: "Locations")
+        locationsCard.contentCount = 6
+        // Once we have the backend in place, these would be Location model objects
+        locationsCard.content.append(["name": "San Francisco, CA", "address": "155 5th Street, 7th Floor", "count": "375"])
+        locationsCard.content.append(["name": "Nashville, TN", "address": "Cummins Station", "count": "48"])
+        locationsCard.content.append(["name": "London, UK", "address": "344-354 Gray's Inn Road", "count": "18"])
+        data.append(locationsCard)
+    }
+    
     private func setPeople(objects: [AnyObject]!) {
         let people = objects as? [Person]
         let filteredList = people?.filter({ $0.email == PFUser.currentUser().email })
@@ -101,6 +115,9 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
             peersCard.contentCount = people?.count ?? 0
         }
         data.append(peersCard)
+        
+        // Calling it here because all this is fake and ideally this will all come from the server
+        addLocationsData()
         collectionView.reloadData()
     }
     
@@ -115,13 +132,13 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let card = data[indexPath.section]
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(
-            ProfileImagesCollectionViewCell.classReuseIdentifier,
-            forIndexPath: indexPath) as ProfileImagesCollectionViewCell
-
-        if let people = data[indexPath.section].content.first as? [Person] {
-            cell.setPeople(people)
-        }
+            card.contentClass.classReuseIdentifier,
+            forIndexPath: indexPath
+        ) as CircleCollectionViewCell
+        
+        cell.setData(card.content[indexPath.row])
         animate(cell, atIndexPath: indexPath)
         return cell
     }
@@ -133,7 +150,7 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
             forIndexPath: indexPath
         ) as CardHeaderCollectionReusableView
 
-        supplementaryView.cardTitleLabel.text = data[indexPath.section].title
+        supplementaryView.cardTitleLabel.text = data[indexPath.section].title.uppercaseString
         supplementaryView.cardImageView.image = UIImage(named: data[indexPath.section].imageSource)
         supplementaryView.cardContentCountLabel.text = "All " + String(data[indexPath.section].contentCount)
         return supplementaryView
@@ -147,14 +164,23 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
     
     // MARK: - Flow Layout Delegate
 
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
+        return 0.0
+    }
+
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
+        return 1.0
+    }
+    
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
-        return UIEdgeInsetsMake(0.0, 10.0, 20.0, 10.0)
+        return UIEdgeInsetsMake(1.0, 10.0, 25.0, 10.0)
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        let card = data[indexPath.section]
         var leftAndRightInsets = (collectionViewLayout as UICollectionViewFlowLayout).sectionInset.left
         leftAndRightInsets += (collectionViewLayout as UICollectionViewFlowLayout).sectionInset.right
-        return CGSizeMake(collectionView.frameWidth - 20.0, ProfileImagesCollectionViewCell.height)
+        return CGSizeMake(collectionView.frameWidth - 20.0, card.contentClass.height)
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
@@ -220,15 +246,16 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
     // MARK: - Helpers
 
     private func animate(cell: UICollectionViewCell, atIndexPath indexPath: NSIndexPath) {
-        if animatedRowIndexes.containsIndex(indexPath.row) == false {
+        let uniqueIndex = String(indexPath.section) + String(indexPath.row)
+        if animatedRowIndexes.containsIndex(uniqueIndex.toInt() ?? 0) == false {
             animatedRowIndexes.addIndex(indexPath.row)
             let finalFrame = cell.frame
             cell.frameY = finalFrame.origin.y + 40.0
-            let delay = 0.2 * (Double(indexPath.row) + 1.0)
+            let delay = 0.2 * (Double(indexPath.section) + 1.0)
             cell.alpha = 0.0
             
             UIView.animateWithDuration(
-                0.3,
+                0.5,
                 delay: delay,
                 usingSpringWithDamping: 0.6,
                 initialSpringVelocity: 0.6,

@@ -8,13 +8,13 @@
 
 import UIKit
 
-class ProfileImagesCollectionViewCell: UICollectionViewCell {
+class ProfileImagesCollectionViewCell: CircleCollectionViewCell {
 
-    class var classReuseIdentifier: String {
+    override class var classReuseIdentifier: String {
         return "ProfileImagesCollectionViewCell"
     }
     
-    class var height: CGFloat {
+    override class var height: CGFloat {
         return 50.0
     }
     
@@ -62,21 +62,23 @@ class ProfileImagesCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Load People
     
-    func setPeople(people: [Person]) {
-        let containerWidth = cardContentView.frameWidth
-        var counter = 0
-        
-        profileImageViews = profileImageViews.map({
-            ($0 as UIImageView).hidden = true
-            return $0
-        })
-        for person in people {
-            var personImage = profileImageViews[counter]
-            personImage.setImageWithPerson(person)
-            personImage.hidden = false
-            counter += 1
-            if ((containerWidth - personImage.frameRight - profileImageInterSpacing) < profileImageWidthHeight) || counter == 4 {
-                break
+    override func setData(data: AnyObject) {
+        if let people = data as? [Person] {
+            let containerWidth = cardContentView.frameWidth
+            var counter = 0
+            
+            profileImageViews = profileImageViews.map({
+                ($0 as UIImageView).hidden = true
+                return $0
+            })
+            for person in people {
+                var personImage = profileImageViews[counter]
+                personImage.setImageWithPerson(person)
+                personImage.hidden = false
+                counter += 1
+                if ((containerWidth - personImage.frameRight - profileImageInterSpacing) < profileImageWidthHeight) || counter == 4 {
+                    break
+                }
             }
         }
     }
