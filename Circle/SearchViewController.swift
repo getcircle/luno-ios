@@ -15,8 +15,9 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
     @IBOutlet weak private(set) var overlayButton: UIButton!
     
     private var animatedRowIndexes = NSMutableIndexSet()
-    private var loggedInPerson: Person?
     private var data = [Card]()
+    private var loggedInPerson: Person?
+    private var prototypeCellsHolder = [String: CircleCollectionViewCell]()
     private var searchHeaderView: SearchHeaderView!
 
     override func viewDidLoad() {
@@ -46,7 +47,6 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
     }
     
     private func configureCollectionView() {
-        collectionView!.backgroundColor = UIColor.viewBackgroundColor()
         collectionView!.registerNib(
             UINib(nibName: "ProfileImagesCollectionViewCell", bundle: nil),
             forCellWithReuseIdentifier: ProfileImagesCollectionViewCell.classReuseIdentifier
@@ -54,6 +54,10 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         collectionView!.registerNib(
             UINib(nibName: "LocationsCollectionViewCell", bundle: nil),
             forCellWithReuseIdentifier: LocationsCollectionViewCell.classReuseIdentifier
+        )
+        collectionView!.registerNib(
+            UINib(nibName: "TagCollectionViewCell", bundle: nil),
+            forCellWithReuseIdentifier: TagCollectionViewCell.classReuseIdentifier
         )
         
         collectionView!.registerNib(
@@ -85,7 +89,17 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         }
     }
     
-    private func addLocationsData() {
+    private func addAdditionalData() {
+        var tagsCard = Card(cardType: .Tags, title: "Tags")
+        tagsCard.contentCount = 30
+        tagsCard.content.append(["name": "Python"])
+        tagsCard.content.append(["name": "Startups"])
+        tagsCard.content.append(["name": "Investing"])
+        tagsCard.content.append(["name": "iOS"])
+        tagsCard.content.append(["name": "Software Development"])
+        tagsCard.content.append(["name": "Marketing"])
+        data.append(tagsCard)
+        
         var locationsCard = Card(cardType: .Locations, title: "Locations")
         locationsCard.contentCount = 6
         // Once we have the backend in place, these would be Location model objects
@@ -117,7 +131,7 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         data.append(peersCard)
         
         // Calling it here because all this is fake and ideally this will all come from the server
-        addLocationsData()
+        addAdditionalData()
         collectionView.reloadData()
     }
     
@@ -144,16 +158,28 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
     }
     
     func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
-        let supplementaryView = collectionView.dequeueReusableSupplementaryViewOfKind(
+        if kind == UICollectionElementKindSectionFooter {
+            let footerView = collectionView.dequeueReusableSupplementaryViewOfKind(
+                kind,
+                withReuseIdentifier: "SearchViewCardFooter",
+                forIndexPath: indexPath
+            ) as UICollectionReusableView
+            
+            footerView.backgroundColor = UIColor.viewBackgroundColor()
+            return footerView
+        }
+        
+        let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(
             kind,
             withReuseIdentifier: CardHeaderCollectionReusableView.classReuseIdentifier,
             forIndexPath: indexPath
         ) as CardHeaderCollectionReusableView
 
-        supplementaryView.cardTitleLabel.text = data[indexPath.section].title.uppercaseString
-        supplementaryView.cardImageView.image = UIImage(named: data[indexPath.section].imageSource)
-        supplementaryView.cardContentCountLabel.text = "All " + String(data[indexPath.section].contentCount)
-        return supplementaryView
+        animate(headerView, atIndexPath: indexPath)
+        headerView.cardTitleLabel.text = data[indexPath.section].title.uppercaseString
+        headerView.cardImageView.image = UIImage(named: data[indexPath.section].imageSource)
+        headerView.cardContentCountLabel.text = "All " + String(data[indexPath.section].contentCount)
+        return headerView
     }
 
     // MARK: Collection View Delegate
@@ -165,28 +191,60 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
     // MARK: - Flow Layout Delegate
 
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
-        return 0.0
+        let card = data[section]
+        return card.contentClass.interItemSpacing
     }
 
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
-        return 1.0
+        let card = data[section]
+        return card.contentClass.lineSpacing
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
-        return UIEdgeInsetsMake(1.0, 10.0, 25.0, 10.0)
+        let card = data[section]
+        return card.contentClass.sectionInset
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        
+        // Use default width and height methods if size calculation method of choice is Fixed
         let card = data[indexPath.section]
-        var leftAndRightInsets = (collectionViewLayout as UICollectionViewFlowLayout).sectionInset.left
-        leftAndRightInsets += (collectionViewLayout as UICollectionViewFlowLayout).sectionInset.right
-        return CGSizeMake(collectionView.frameWidth - 20.0, card.contentClass.height)
+        if card.contentClass.sizeCalculationMethod == SizeCalculation.Fixed {
+            var leftAndRightInsets = (collectionViewLayout as UICollectionViewFlowLayout).sectionInset.left
+            leftAndRightInsets += (collectionViewLayout as UICollectionViewFlowLayout).sectionInset.right
+            println("Fixed Size = \(CGSizeMake(card.contentClass.width - 20.0, card.contentClass.height))")
+            return CGSizeMake(card.contentClass.width - 20.0, card.contentClass.height)
+        }
+        else {
+
+            // Use a prototype cell if size calculation method of choice is Dynamic
+            // Instantiate a prototype cell and cache it for later use
+            if prototypeCellsHolder[card.title] == nil {
+                let cellNibViews = NSBundle.mainBundle().loadNibNamed(card.contentClassName, owner: self, options: nil)
+                prototypeCellsHolder[card.title] = cellNibViews.first as? CircleCollectionViewCell
+            }
+            
+            if let prototypeCell = prototypeCellsHolder[card.title] {
+                prototypeCell.setData(card.content[indexPath.row])
+                prototypeCell.setNeedsLayout()
+                prototypeCell.layoutIfNeeded()
+                println("Dynamic Size = \(prototypeCell.intrinsicContentSize())")
+                return prototypeCell.intrinsicContentSize()
+            }
+        }
+        
+        println("Should never come here")
+        return CGSizeZero
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         return CGSizeMake(view.frameWidth, CardHeaderCollectionReusableView.height)
     }
-    
+
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+        return CGSizeMake(view.frameWidth, 25.0)
+    }
+
     // MARK: - TextField Delegate
     
     func textFieldDidBeginEditing(textField: UITextField) {
@@ -245,14 +303,27 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
     
     // MARK: - Helpers
 
-    private func animate(cell: UICollectionViewCell, atIndexPath indexPath: NSIndexPath) {
-        let uniqueIndex = String(indexPath.section) + String(indexPath.row)
-        if animatedRowIndexes.containsIndex(uniqueIndex.toInt() ?? 0) == false {
-            animatedRowIndexes.addIndex(indexPath.row)
-            let finalFrame = cell.frame
-            cell.frameY = finalFrame.origin.y + 40.0
+    private func animate(view: UICollectionReusableView, atIndexPath indexPath: NSIndexPath) {
+        var uniqueIndex: String
+        
+        // Unique indexes make sure each item or supplementary view animates only once
+        if view is UICollectionViewCell {
+            uniqueIndex = String(indexPath.section) + String(indexPath.row)
+        }
+        else {
+            uniqueIndex = String((indexPath.section + 1) * 1000)
+        }
+        
+        let intIndex = uniqueIndex.toInt() ?? 0
+        if animatedRowIndexes.containsIndex(intIndex) == false {
+            animatedRowIndexes.addIndex(intIndex)
+            let finalFrame = view.frame
+            view.frameY = finalFrame.origin.y + 40.0
+            
+            // Delay is based on section index to ensure all components of one section
+            // animate in at the same time
             let delay = 0.2 * (Double(indexPath.section) + 1.0)
-            cell.alpha = 0.0
+            view.alpha = 0.0
             
             UIView.animateWithDuration(
                 0.5,
@@ -261,8 +332,8 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
                 initialSpringVelocity: 0.6,
                 options: .CurveEaseInOut,
                 animations: { () -> Void in
-                    cell.frame = finalFrame
-                    cell.alpha = 1.0
+                    view.frame = finalFrame
+                    view.alpha = 1.0
                 },
                 completion: nil
             )

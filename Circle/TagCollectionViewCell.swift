@@ -8,16 +8,32 @@
 
 import UIKit
 
-class TagCollectionViewCell: UICollectionViewCell {
+class TagCollectionViewCell: CircleCollectionViewCell {
 
     @IBOutlet weak private(set) var tagLabel: PaddedLabel!
 
-    class var classReuseIdentifier: String {
+    override class var classReuseIdentifier: String {
         return "TagCollectionViewCell"
     }
     
-    class var height: CGFloat {
+    override class var height: CGFloat {
         return 30.0
+    }
+    
+    override class var interItemSpacing: CGFloat {
+        return 10.0
+    }
+    
+    override class var lineSpacing: CGFloat {
+        return 10.0
+    }
+
+    override class var sectionInset: UIEdgeInsets {
+        return UIEdgeInsetsMake(10.0, 10.0, 10.0, 10.0)
+    }
+    
+    override class var sizeCalculationMethod: SizeCalculation {
+        return .Dynamic
     }
     
     override func awakeFromNib() {
@@ -32,6 +48,12 @@ class TagCollectionViewCell: UICollectionViewCell {
     
     override func intrinsicContentSize() -> CGSize {
         return tagLabel.intrinsicContentSize()
+    }
+
+    override func setData(data: AnyObject) {
+        if let tagsDictionary = data as? [String: String] {
+            tagLabel.text = tagsDictionary["name"]
+        }
     }
 
     // MARK: - Appearance Animation
