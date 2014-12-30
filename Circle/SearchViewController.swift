@@ -176,7 +176,7 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         ) as CardHeaderCollectionReusableView
 
         animate(headerView, atIndexPath: indexPath)
-        headerView.cardTitleLabel.text = data[indexPath.section].title.uppercaseString
+        headerView.cardTitleLabel.text = data[indexPath.section].title
         headerView.cardImageView.image = UIImage(named: data[indexPath.section].imageSource)
         headerView.cardContentCountLabel.text = "All " + String(data[indexPath.section].contentCount)
         return headerView

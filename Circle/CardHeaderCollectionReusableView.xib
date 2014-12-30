@@ -15,21 +15,21 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="People" translatesAutoresizingMaskIntoConstraints="NO" id="tyz-Ai-K8s" userLabel="CardImageView">
-                            <rect key="frame" x="10" y="11" width="22" height="22"/>
+                            <rect key="frame" x="10" y="14" width="18" height="18"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="tyz-Ai-K8s" secondAttribute="height" multiplier="1:1" id="9Uz-4U-27L"/>
-                                <constraint firstAttribute="height" constant="22" id="LQ9-Wn-JUD"/>
+                                <constraint firstAttribute="height" constant="18" id="LQ9-Wn-JUD"/>
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DIRECT REPORTS" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hwM-UY-bVz" userLabel="CardTitle">
-                            <rect key="frame" x="37" y="12" width="115" height="20"/>
-                            <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
+                            <rect key="frame" x="33" y="12" width="123" height="21"/>
+                            <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="15"/>
                             <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bNr-0H-jel" userLabel="Separator">
                             <rect key="frame" x="0.0" y="43" width="320" height="1"/>
-                            <color key="backgroundColor" red="0.87058823529411766" green="0.87058823529411766" blue="0.87058823529411766" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="backgroundColor" red="0.87058823529411766" green="0.87058823529411766" blue="0.87058823529411766" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="1" id="udJ-Dd-FmF"/>
                             </constraints>
