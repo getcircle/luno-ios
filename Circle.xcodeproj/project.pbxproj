@@ -41,6 +41,8 @@
 		8F65C4FE1A51222100C7F3E6 /* LocationsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F65C4FC1A51222100C7F3E6 /* LocationsCollectionViewCell.swift */; };
 		8F65C4FF1A51222100C7F3E6 /* LocationsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F65C4FD1A51222100C7F3E6 /* LocationsCollectionViewCell.xib */; };
 		8F65C5011A51462500C7F3E6 /* CircleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F65C5001A51462500C7F3E6 /* CircleCollectionViewCell.swift */; };
+		8F65C5071A52661700C7F3E6 /* TagsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F65C5051A52661700C7F3E6 /* TagsCollectionViewCell.swift */; };
+		8F65C5081A52661700C7F3E6 /* TagsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F65C5061A52661700C7F3E6 /* TagsCollectionViewCell.xib */; };
 		8FD041A21A2C03AA00FE28EF /* UIFontExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD041A11A2C03AA00FE28EF /* UIFontExtention.swift */; };
 		8FEE88471A411BA90011CE4A /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FEE88461A411BA90011CE4A /* UIViewControllerExtension.swift */; };
 		8FEE88601A437DE40011CE4A /* Alamofire.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 8FEE885B1A437DB10011CE4A /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -198,6 +200,8 @@
 		8F65C4FC1A51222100C7F3E6 /* LocationsCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationsCollectionViewCell.swift; sourceTree = "<group>"; };
 		8F65C4FD1A51222100C7F3E6 /* LocationsCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LocationsCollectionViewCell.xib; sourceTree = "<group>"; };
 		8F65C5001A51462500C7F3E6 /* CircleCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleCollectionViewCell.swift; sourceTree = "<group>"; };
+		8F65C5051A52661700C7F3E6 /* TagsCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagsCollectionViewCell.swift; sourceTree = "<group>"; };
+		8F65C5061A52661700C7F3E6 /* TagsCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TagsCollectionViewCell.xib; sourceTree = "<group>"; };
 		8FD041A11A2C03AA00FE28EF /* UIFontExtention.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIFontExtention.swift; sourceTree = "<group>"; };
 		8FEE88461A411BA90011CE4A /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		8FEE88491A4371A80011CE4A /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = ../ThirdParty/Alamofire/Alamofire.xcodeproj; sourceTree = "<group>"; };
@@ -353,6 +357,7 @@
 				8FF298081A4B490E00306CFC /* SearchHeaderView.swift */,
 				8F22CBEC1A283D3D0026376E /* SeparatorDecorationView.swift */,
 				8FF298451A4E050100306CFC /* TagCollectionViewCell.swift */,
+				8F65C5051A52661700C7F3E6 /* TagsCollectionViewCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -408,6 +413,7 @@
 				8FF298021A4A4E3600306CFC /* ProfileImagesCollectionViewCell.xib */,
 				8FF298091A4B490E00306CFC /* SearchHeaderView.xib */,
 				8FF298461A4E050100306CFC /* TagCollectionViewCell.xib */,
+				8F65C5061A52661700C7F3E6 /* TagsCollectionViewCell.xib */,
 			);
 			name = "Storyboards / XIBs";
 			sourceTree = "<group>";
@@ -669,6 +675,7 @@
 				8F0004A01A2419730096477A /* Main.storyboard in Resources */,
 				8F22CBF91A29A8EB0026376E /* AuthViewController.xib in Resources */,
 				8F0004A51A2419730096477A /* LaunchScreen.xib in Resources */,
+				8F65C5081A52661700C7F3E6 /* TagsCollectionViewCell.xib in Resources */,
 				8FF298481A4E050100306CFC /* TagCollectionViewCell.xib in Resources */,
 				8F22CBE11A27A8E60026376E /* ProfileHeaderCollectionReusableView.xib in Resources */,
 				8F0004A21A2419730096477A /* Images.xcassets in Resources */,
@@ -791,6 +798,7 @@
 				8FEE88471A411BA90011CE4A /* UIViewControllerExtension.swift in Sources */,
 				8F22CBE81A27FDA70026376E /* ProfileAttributeCollectionViewCell.swift in Sources */,
 				8F65C5011A51462500C7F3E6 /* CircleCollectionViewCell.swift in Sources */,
+				8F65C5071A52661700C7F3E6 /* TagsCollectionViewCell.swift in Sources */,
 				8F65C4F51A50F28E00C7F3E6 /* CardHeaderCollectionReusableView.swift in Sources */,
 				BFC6CF9C1A44D2B90081F45B /* ServiceClient.swift in Sources */,
 				8FF298031A4A4E3600306CFC /* ProfileImagesCollectionViewCell.swift in Sources */,

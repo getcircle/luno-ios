@@ -55,7 +55,7 @@ extension UIColor {
     }
     
     class func viewBackgroundColor() -> UIColor {
-        return UIColor(red: 245, green: 245, blue: 245)
+        return UIColor(red: 240, green: 240, blue: 240)
     }
     
     class func twitterColor() -> UIColor {

@@ -41,7 +41,7 @@ class Card {
                 return (ProfileImagesCollectionViewCell.self, "ProfileImagesCollectionViewCell")
             
             case .Tags:
-                return (TagCollectionViewCell.self, "TagCollectionViewCell")
+                return (TagsCollectionViewCell.self, "TagsCollectionViewCell")
 
             case .Locations:
                 return (LocationsCollectionViewCell.self, "LocationsCollectionViewCell")

@@ -45,7 +45,7 @@ class CircleCollectionViewCell: UICollectionViewCell {
     
     // Section inset for these cells
     class var sectionInset: UIEdgeInsets {
-        return UIEdgeInsetsZero
+        return UIEdgeInsetsMake(1.0, 10.0, 25.0, 10.0)
     }
 
     // If the size calculation method is set to Fixed, the

@@ -19,6 +19,9 @@
                             <state key="normal" title="Cancel">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <connections>
+                                <action selector="cancelButtonTapped:" destination="9dq-yb-JRI" eventType="touchUpInside" id="2WG-h0-BQG"/>
+                            </connections>
                         </button>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Search" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gI9-Cf-jLM">
                             <rect key="frame" x="10" y="10" width="580" height="34"/>
@@ -50,6 +53,7 @@
             <connections>
                 <outlet property="cancelButton" destination="k4l-QU-6Cu" id="agF-9l-sKE"/>
                 <outlet property="searchTextField" destination="gI9-Cf-jLM" id="I0f-hX-mTk"/>
+                <outlet property="searchTextFieldTrailingSpaceConstraint" destination="6hH-ep-f1h" id="RCx-CN-B8t"/>
             </connections>
         </view>
     </objects>

@@ -15,7 +15,7 @@ class LocationsCollectionViewCell: CircleCollectionViewCell {
     }
     
     override class var height: CGFloat {
-        return 44.0
+        return 48.0
     }
     
     @IBOutlet weak private(set) var addressLabel: UILabel!

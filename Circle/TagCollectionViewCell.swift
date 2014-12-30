@@ -20,18 +20,6 @@ class TagCollectionViewCell: CircleCollectionViewCell {
         return 30.0
     }
     
-    override class var interItemSpacing: CGFloat {
-        return 10.0
-    }
-    
-    override class var lineSpacing: CGFloat {
-        return 10.0
-    }
-
-    override class var sectionInset: UIEdgeInsets {
-        return UIEdgeInsetsMake(10.0, 10.0, 10.0, 10.0)
-    }
-    
     override class var sizeCalculationMethod: SizeCalculation {
         return .Dynamic
     }

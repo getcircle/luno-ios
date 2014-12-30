@@ -47,6 +47,7 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
     }
     
     private func configureCollectionView() {
+        collectionView!.backgroundColor = UIColor.viewBackgroundColor()
         collectionView!.registerNib(
             UINib(nibName: "ProfileImagesCollectionViewCell", bundle: nil),
             forCellWithReuseIdentifier: ProfileImagesCollectionViewCell.classReuseIdentifier
@@ -56,8 +57,8 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
             forCellWithReuseIdentifier: LocationsCollectionViewCell.classReuseIdentifier
         )
         collectionView!.registerNib(
-            UINib(nibName: "TagCollectionViewCell", bundle: nil),
-            forCellWithReuseIdentifier: TagCollectionViewCell.classReuseIdentifier
+            UINib(nibName: "TagsCollectionViewCell", bundle: nil),
+            forCellWithReuseIdentifier: TagsCollectionViewCell.classReuseIdentifier
         )
         
         collectionView!.registerNib(
@@ -92,14 +93,16 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
     private func addAdditionalData() {
         var tagsCard = Card(cardType: .Tags, title: "Tags")
         tagsCard.contentCount = 30
-        tagsCard.content.append(["name": "Python"])
-        tagsCard.content.append(["name": "Startups"])
-        tagsCard.content.append(["name": "Investing"])
-        tagsCard.content.append(["name": "iOS"])
-        tagsCard.content.append(["name": "Software Development"])
-        tagsCard.content.append(["name": "Marketing"])
+        var tags = [[String: String]]()
+        tags.append(["name": "Python"])
+        tags.append(["name": "Startups"])
+        tags.append(["name": "Investing"])
+        tags.append(["name": "iOS"])
+        tags.append(["name": "Software Development"])
+        tags.append(["name": "Marketing"])
+        tagsCard.content.append(tags)
         data.append(tagsCard)
-        
+
         var locationsCard = Card(cardType: .Locations, title: "Locations")
         locationsCard.contentCount = 6
         // Once we have the backend in place, these would be Location model objects
@@ -158,17 +161,6 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
     }
     
     func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
-        if kind == UICollectionElementKindSectionFooter {
-            let footerView = collectionView.dequeueReusableSupplementaryViewOfKind(
-                kind,
-                withReuseIdentifier: "SearchViewCardFooter",
-                forIndexPath: indexPath
-            ) as UICollectionReusableView
-            
-            footerView.backgroundColor = UIColor.viewBackgroundColor()
-            return footerView
-        }
-        
         let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(
             kind,
             withReuseIdentifier: CardHeaderCollectionReusableView.classReuseIdentifier,
@@ -212,7 +204,6 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         if card.contentClass.sizeCalculationMethod == SizeCalculation.Fixed {
             var leftAndRightInsets = (collectionViewLayout as UICollectionViewFlowLayout).sectionInset.left
             leftAndRightInsets += (collectionViewLayout as UICollectionViewFlowLayout).sectionInset.right
-            println("Fixed Size = \(CGSizeMake(card.contentClass.width - 20.0, card.contentClass.height))")
             return CGSizeMake(card.contentClass.width - 20.0, card.contentClass.height)
         }
         else {
@@ -228,21 +219,15 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
                 prototypeCell.setData(card.content[indexPath.row])
                 prototypeCell.setNeedsLayout()
                 prototypeCell.layoutIfNeeded()
-                println("Dynamic Size = \(prototypeCell.intrinsicContentSize())")
                 return prototypeCell.intrinsicContentSize()
             }
         }
         
-        println("Should never come here")
         return CGSizeZero
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         return CGSizeMake(view.frameWidth, CardHeaderCollectionReusableView.height)
-    }
-
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
-        return CGSizeMake(view.frameWidth, 25.0)
     }
 
     // MARK: - TextField Delegate
@@ -301,8 +286,6 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         })
     }
     
-    // MARK: - Helpers
-
     private func animate(view: UICollectionReusableView, atIndexPath indexPath: NSIndexPath) {
         var uniqueIndex: String
         
