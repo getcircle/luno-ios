@@ -1,5 +1,5 @@
 //
-//  LocationsCollectionViewCell.swift
+//  LocationCollectionViewCell.swift
 //  Circle
 //
 //  Created by Ravi Rani on 12/28/14.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LocationsCollectionViewCell: CircleCollectionViewCell {
+class LocationCollectionViewCell: CircleCollectionViewCell {
 
     override class var classReuseIdentifier: String {
         return "LocationCollectionViewCell"

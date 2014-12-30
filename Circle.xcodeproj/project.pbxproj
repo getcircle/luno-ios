@@ -38,8 +38,8 @@
 		8F65C4F51A50F28E00C7F3E6 /* CardHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F65C4F31A50F28E00C7F3E6 /* CardHeaderCollectionReusableView.swift */; };
 		8F65C4F61A50F28E00C7F3E6 /* CardHeaderCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F65C4F41A50F28E00C7F3E6 /* CardHeaderCollectionReusableView.xib */; };
 		8F65C4FB1A50F92500C7F3E6 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F65C4FA1A50F92500C7F3E6 /* Card.swift */; };
-		8F65C4FE1A51222100C7F3E6 /* LocationsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F65C4FC1A51222100C7F3E6 /* LocationsCollectionViewCell.swift */; };
-		8F65C4FF1A51222100C7F3E6 /* LocationsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F65C4FD1A51222100C7F3E6 /* LocationsCollectionViewCell.xib */; };
+		8F65C4FE1A51222100C7F3E6 /* LocationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F65C4FC1A51222100C7F3E6 /* LocationCollectionViewCell.swift */; };
+		8F65C4FF1A51222100C7F3E6 /* LocationCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F65C4FD1A51222100C7F3E6 /* LocationCollectionViewCell.xib */; };
 		8F65C5011A51462500C7F3E6 /* CircleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F65C5001A51462500C7F3E6 /* CircleCollectionViewCell.swift */; };
 		8F65C5071A52661700C7F3E6 /* TagsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F65C5051A52661700C7F3E6 /* TagsCollectionViewCell.swift */; };
 		8F65C5081A52661700C7F3E6 /* TagsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F65C5061A52661700C7F3E6 /* TagsCollectionViewCell.xib */; };
@@ -197,8 +197,8 @@
 		8F65C4F31A50F28E00C7F3E6 /* CardHeaderCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardHeaderCollectionReusableView.swift; sourceTree = "<group>"; };
 		8F65C4F41A50F28E00C7F3E6 /* CardHeaderCollectionReusableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CardHeaderCollectionReusableView.xib; sourceTree = "<group>"; };
 		8F65C4FA1A50F92500C7F3E6 /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
-		8F65C4FC1A51222100C7F3E6 /* LocationsCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationsCollectionViewCell.swift; sourceTree = "<group>"; };
-		8F65C4FD1A51222100C7F3E6 /* LocationsCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LocationsCollectionViewCell.xib; sourceTree = "<group>"; };
+		8F65C4FC1A51222100C7F3E6 /* LocationCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationCollectionViewCell.swift; sourceTree = "<group>"; };
+		8F65C4FD1A51222100C7F3E6 /* LocationCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LocationCollectionViewCell.xib; sourceTree = "<group>"; };
 		8F65C5001A51462500C7F3E6 /* CircleCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleCollectionViewCell.swift; sourceTree = "<group>"; };
 		8F65C5051A52661700C7F3E6 /* TagsCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagsCollectionViewCell.swift; sourceTree = "<group>"; };
 		8F65C5061A52661700C7F3E6 /* TagsCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TagsCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -346,11 +346,11 @@
 		8F0004C11A25BA090096477A /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				8FF298511A4E2B3300306CFC /* Common */,
 				8F65C4F31A50F28E00C7F3E6 /* CardHeaderCollectionReusableView.swift */,
 				8F65C5001A51462500C7F3E6 /* CircleCollectionViewCell.swift */,
+				8FF298511A4E2B3300306CFC /* Common */,
 				8F0004BC1A24225A0096477A /* ContactTableViewCell.swift */,
-				8F65C4FC1A51222100C7F3E6 /* LocationsCollectionViewCell.swift */,
+				8F65C4FC1A51222100C7F3E6 /* LocationCollectionViewCell.swift */,
 				8F22CBE61A27FDA70026376E /* ProfileAttributeCollectionViewCell.swift */,
 				8F22CBDE1A27A8E60026376E /* ProfileHeaderCollectionReusableView.swift */,
 				8FF298011A4A4E3600306CFC /* ProfileImagesCollectionViewCell.swift */,
@@ -406,7 +406,7 @@
 				8F65C4F41A50F28E00C7F3E6 /* CardHeaderCollectionReusableView.xib */,
 				8F0004BD1A24225A0096477A /* ContactTableViewCell.xib */,
 				8F0004A31A2419730096477A /* LaunchScreen.xib */,
-				8F65C4FD1A51222100C7F3E6 /* LocationsCollectionViewCell.xib */,
+				8F65C4FD1A51222100C7F3E6 /* LocationCollectionViewCell.xib */,
 				8F00049E1A2419730096477A /* Main.storyboard */,
 				8F22CBE71A27FDA70026376E /* ProfileAttributeCollectionViewCell.xib */,
 				8F22CBDF1A27A8E60026376E /* ProfileHeaderCollectionReusableView.xib */,
@@ -680,7 +680,7 @@
 				8F22CBE11A27A8E60026376E /* ProfileHeaderCollectionReusableView.xib in Resources */,
 				8F0004A21A2419730096477A /* Images.xcassets in Resources */,
 				8F65C4F61A50F28E00C7F3E6 /* CardHeaderCollectionReusableView.xib in Resources */,
-				8F65C4FF1A51222100C7F3E6 /* LocationsCollectionViewCell.xib in Resources */,
+				8F65C4FF1A51222100C7F3E6 /* LocationCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -782,7 +782,7 @@
 				BF2CBFD61A473E9100BE589D /* UserService.swift in Sources */,
 				8FF298471A4E050100306CFC /* TagCollectionViewCell.swift in Sources */,
 				8F22CBF11A2844F50026376E /* UINavigationBarExtension.swift in Sources */,
-				8F65C4FE1A51222100C7F3E6 /* LocationsCollectionViewCell.swift in Sources */,
+				8F65C4FE1A51222100C7F3E6 /* LocationCollectionViewCell.swift in Sources */,
 				BFEDB1431A2A8CA700250165 /* UICollectionViewFlowLayoutExtension.swift in Sources */,
 				8F22CBF81A29A8EB0026376E /* AuthViewController.swift in Sources */,
 				8FF298531A4E306600306CFC /* CenterAlignFlowLayout.swift in Sources */,

@@ -44,7 +44,7 @@ class Card {
                 return (TagsCollectionViewCell.self, "TagsCollectionViewCell")
 
             case .Locations:
-                return (LocationsCollectionViewCell.self, "LocationsCollectionViewCell")
+                return (LocationCollectionViewCell.self, "LocationCollectionViewCell")
             }
         }
     }

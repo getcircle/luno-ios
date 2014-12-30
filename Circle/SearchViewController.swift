@@ -53,8 +53,8 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
             forCellWithReuseIdentifier: ProfileImagesCollectionViewCell.classReuseIdentifier
         )
         collectionView!.registerNib(
-            UINib(nibName: "LocationsCollectionViewCell", bundle: nil),
-            forCellWithReuseIdentifier: LocationsCollectionViewCell.classReuseIdentifier
+            UINib(nibName: "LocationCollectionViewCell", bundle: nil),
+            forCellWithReuseIdentifier: LocationCollectionViewCell.classReuseIdentifier
         )
         collectionView!.registerNib(
             UINib(nibName: "TagsCollectionViewCell", bundle: nil),
