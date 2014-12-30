@@ -18,33 +18,40 @@ class Card {
     private(set) var type: CardType
     
     enum CardType: Int {
-        case People = 1
-        case Tags
+        case Birthdays = 1
         case Locations
+        case People
+        case Tags
         
         static func imageSourceByCardType(type: CardType) -> String {
             switch type {
+            case .Birthdays:
+                return "Cake"
+
+            case .Locations:
+                return "MapPin"
+                
             case .People:
                 return "People"
             
             case .Tags:
                 return "Tag"
-
-            case .Locations:
-                return "MapPin"
             }
         }
         
         static func classByCardType(type: CardType) -> (CircleCollectionViewCell.Type, className: String) {
             switch type {
+            case .Birthdays:
+                return (PersonCollectionViewCell.self, "PersonCollectionViewCell")
+
+            case .Locations:
+                return (LocationCollectionViewCell.self, "LocationCollectionViewCell")
+
             case .People:
                 return (ProfileImagesCollectionViewCell.self, "ProfileImagesCollectionViewCell")
             
             case .Tags:
                 return (TagsCollectionViewCell.self, "TagsCollectionViewCell")
-
-            case .Locations:
-                return (LocationCollectionViewCell.self, "LocationCollectionViewCell")
             }
         }
     }

@@ -25,7 +25,12 @@ class CardHeaderCollectionReusableView: UICollectionReusableView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        cardImageView.tintColor = UIColor.blackColor()
     }
     
+    func setCard(card: Card) {
+        cardTitleLabel.text = card.title
+        cardImageView.image = UIImage(named: card.imageSource)?.imageWithRenderingMode(.AlwaysTemplate)
+        cardContentCountLabel.text = "All " + String(card.contentCount)
+    }
 }

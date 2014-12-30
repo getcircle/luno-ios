@@ -10,9 +10,9 @@ import UIKit
 
 class ContactTableViewCell: MGSwipeTableCell {
 
-    @IBOutlet var name: UILabel!
-    @IBOutlet var profileImg: UIImageView!
-    @IBOutlet var title: UILabel!
+    @IBOutlet weak private(set) var name: UILabel!
+    @IBOutlet weak private(set) var profileImg: UIImageView!
+    @IBOutlet weak private(set) var title: UILabel!
     
     var addQuickActions: Bool!
     var person:Person! {

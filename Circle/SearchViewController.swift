@@ -49,12 +49,16 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
     private func configureCollectionView() {
         collectionView!.backgroundColor = UIColor.viewBackgroundColor()
         collectionView!.registerNib(
-            UINib(nibName: "ProfileImagesCollectionViewCell", bundle: nil),
-            forCellWithReuseIdentifier: ProfileImagesCollectionViewCell.classReuseIdentifier
-        )
-        collectionView!.registerNib(
             UINib(nibName: "LocationCollectionViewCell", bundle: nil),
             forCellWithReuseIdentifier: LocationCollectionViewCell.classReuseIdentifier
+        )
+        collectionView!.registerNib(
+            UINib(nibName: "PersonCollectionViewCell", bundle: nil),
+            forCellWithReuseIdentifier: PersonCollectionViewCell.classReuseIdentifier
+        )
+        collectionView!.registerNib(
+            UINib(nibName: "ProfileImagesCollectionViewCell", bundle: nil),
+            forCellWithReuseIdentifier: ProfileImagesCollectionViewCell.classReuseIdentifier
         )
         collectionView!.registerNib(
             UINib(nibName: "TagsCollectionViewCell", bundle: nil),
@@ -76,6 +80,9 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
     // MARK: - Load Data
 
     private func loadData() {
+        // THIS FUNCTION WILL BE REMOVED COMPLETELY AFTER THE BACKEND CHANGES
+        // SO IGNORE THE IMPLMENTATION
+
         if let pfUser = PFUser.currentUser() {
             
             let parseQuery = Person.query() as PFQuery
@@ -91,6 +98,9 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
     }
     
     private func addAdditionalData() {
+        // THIS FUNCTION WILL BE REMOVED COMPLETELY AFTER THE BACKEND CHANGES
+        // SO IGNORE THE IMPLMENTATION
+
         var tagsCard = Card(cardType: .Tags, title: "Tags")
         tagsCard.contentCount = 30
         var tags = [[String: String]]()
@@ -113,6 +123,9 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
     }
     
     private func setPeople(objects: [AnyObject]!) {
+        // THIS FUNCTION WILL BE REMOVED COMPLETELY AFTER THE BACKEND CHANGES
+        // SO IGNORE THE IMPLMENTATION
+        
         let people = objects as? [Person]
         let filteredList = people?.filter({ $0.email == PFUser.currentUser().email })
         if filteredList?.count == 1 {
@@ -135,6 +148,17 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         
         // Calling it here because all this is fake and ideally this will all come from the server
         addAdditionalData()
+        
+        let peopleList = people!.reverse()
+        let birthdaysCard = Card(cardType: .Birthdays, title: "Birthdays")
+        birthdaysCard.contentCount = 5
+        if peopleList.count >= 3 {
+            birthdaysCard.content.append(peopleList[0])
+            birthdaysCard.content.append(peopleList[1])
+            birthdaysCard.content.append(peopleList[2])
+        }
+        data.append(birthdaysCard)
+        
         collectionView.reloadData()
     }
     
@@ -168,9 +192,7 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         ) as CardHeaderCollectionReusableView
 
         animate(headerView, atIndexPath: indexPath)
-        headerView.cardTitleLabel.text = data[indexPath.section].title
-        headerView.cardImageView.image = UIImage(named: data[indexPath.section].imageSource)
-        headerView.cardContentCountLabel.text = "All " + String(data[indexPath.section].contentCount)
+        headerView.setCard(data[indexPath.section])
         return headerView
     }
 
