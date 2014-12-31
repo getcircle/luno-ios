@@ -7,8 +7,6 @@
 //
 
 #import "UIImageView+AFNetworking.h"
-#import "MGSwipeTableCell.h"
-#import "MGSwipeButton.h"
 #import <Parse/Parse.h>
 #import "PureLayout.h"
 #import "UIView+Position.h"
