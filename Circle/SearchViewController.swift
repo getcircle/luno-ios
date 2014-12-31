@@ -224,9 +224,9 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         // Use default width and height methods if size calculation method of choice is Fixed
         let card = data[indexPath.section]
         if card.contentClass.sizeCalculationMethod == SizeCalculation.Fixed {
-            var leftAndRightInsets = (collectionViewLayout as UICollectionViewFlowLayout).sectionInset.left
-            leftAndRightInsets += (collectionViewLayout as UICollectionViewFlowLayout).sectionInset.right
-            return CGSizeMake(card.contentClass.width - 20.0, card.contentClass.height)
+            var leftAndRightInsets = card.contentClass.sectionInset.left
+            leftAndRightInsets += card.contentClass.sectionInset.right
+            return CGSizeMake(card.contentClass.width - leftAndRightInsets, card.contentClass.height)
         }
         else {
 
@@ -343,6 +343,12 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
                 completion: nil
             )
         }
+    }
+    
+    // MARK: - Orientation change
 
+    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
+        collectionView.collectionViewLayout.invalidateLayout()
     }
 }

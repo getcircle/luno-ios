@@ -177,5 +177,12 @@ class ProfileViewController: UICollectionViewController, UICollectionViewDelegat
         ) {
             dismissViewControllerAnimated(true, completion: nil)
     }
+
+    // MARK: - Orientation change
+    
+    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
+        collectionViewLayout.invalidateLayout()
+    }
 }
 

@@ -31,7 +31,7 @@ class ProfileCollectionViewLayout: UICollectionViewFlowLayout {
     }
     
     override func prepareLayout() {
-        itemSize = CGSizeMake(collectionView!.bounds.width, cellHeight)
+        itemSize = CGSizeMake(collectionView!.bounds.width - sectionInset.left - sectionInset.right, cellHeight)
         headerReferenceSize = CGSizeMake(collectionView!.bounds.width, ProfileCollectionViewLayout.profileHeaderHeight)
     }
     

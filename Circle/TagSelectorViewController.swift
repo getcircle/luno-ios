@@ -27,11 +27,15 @@ class TagSelectorViewController: UIViewController,
     @IBOutlet weak private(set) var collectionView: UICollectionView!
     @IBOutlet weak private(set) var searchControllerParentView: UIView!
     
-    var animatedCell = [NSIndexPath: Bool]()
-    var filteredTags = [String]()
-    var prototypeCell: TagCollectionViewCell!
-    var searchController: UISearchController!
-    var selectedTags = NSMutableSet()
+    let gradientHeight: CGFloat = 60.0
+
+    private var animatedCell = [NSIndexPath: Bool]()
+    private var bottomLayer: CAGradientLayer!
+    private var filteredTags = [String]()
+    private var prototypeCell: TagCollectionViewCell!
+    private var searchController: UISearchController!
+    private var selectedTags = NSMutableSet()
+    private var topLayer: CAGradientLayer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,27 +74,29 @@ class TagSelectorViewController: UIViewController,
         searchController.searchBar.placeholder = "Filter tags"
         searchController.searchBar.sizeToFit()
         searchControllerParentView.addSubview(searchController.searchBar)
+        searchControllerParentView.backgroundColor = UIColor.redColor()
         definesPresentationContext = true
     }
     
     private func configureGradients() {
-        let gradientHeight: CGFloat = 60.0
         let startColor = UIColor.whiteColor().CGColor
         let endColor = UIColor(red: 255.0, green: 255.0, blue: 255.0, alpha: 0.0).CGColor
         
         // Top
-        view.layer.addSublayer(CALayer.gradientLayerWithFrame(
-            CGRectMake(10.0, searchControllerParentView.frameBottom, view.frameWidth - 20.0, gradientHeight),
+        topLayer = CALayer.gradientLayerWithFrame(
+            topGrientLayerFrame(),
             startColor: startColor,
             endColor: endColor
-        ))
+        )
+        view.layer.addSublayer(topLayer)
         
         // Bottom
-        view.layer.addSublayer(CALayer.gradientLayerWithFrame(
-            CGRectMake(10.0, view.frameHeight - gradientHeight + 10.0, view.frameWidth - 20.0, gradientHeight),
+        bottomLayer = CALayer.gradientLayerWithFrame(
+            bottomGradientLayerFrame(),
             startColor: endColor,
             endColor: startColor
-        ))
+        )
+        view.layer.addSublayer(bottomLayer)
     }
     
     // MARK: UICollectionViewDataSource
@@ -156,7 +162,7 @@ class TagSelectorViewController: UIViewController,
         selectedTags.removeObject(filteredTags[indexPath.row])
     }
     
-    // MARK: UICollectionViewDelegateFlowLayout
+    // MARK: - UICollectionViewDelegateFlowLayout
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         prototypeCell.tagLabel.text = filteredTags[indexPath.row].capitalizedString
@@ -211,7 +217,7 @@ class TagSelectorViewController: UIViewController,
         }
     }
     
-    // MARK: UISearchBarDelegate
+    // MARK: - UISearchBarDelegate
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
@@ -219,5 +225,15 @@ class TagSelectorViewController: UIViewController,
     
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
+    }
+
+    // MARK: - Helpers
+    
+    private func topGrientLayerFrame() -> CGRect {
+        return CGRectMake(10.0, searchControllerParentView.frameBottom, view.frameWidth - 20.0, gradientHeight)
+    }
+    
+    private func bottomGradientLayerFrame() -> CGRect {
+        return CGRectMake(10.0, view.frameHeight - gradientHeight + 10.0, view.frameWidth - 20.0, gradientHeight)
     }
 }
