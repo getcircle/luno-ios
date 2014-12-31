@@ -67,6 +67,73 @@
             </objects>
             <point key="canvasLocation" x="1944" y="-2076"/>
         </scene>
+        <!--People-->
+        <scene sceneID="MUU-Kj-5cV">
+            <objects>
+                <viewController title="People" extendedLayoutIncludesOpaqueBars="YES" id="sfD-c4-aFJ" customClass="PeopleViewController" customModule="Circle" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="GD7-Su-MnX"/>
+                        <viewControllerLayoutGuide type="bottom" id="90M-NW-Qsi"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="gAl-eb-P45">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hqq-xo-pLX" userLabel="SearchControllerContainerView">
+                                <rect key="frame" x="0.0" y="64" width="600" height="44"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="Jcp-94-Poo"/>
+                                </constraints>
+                            </view>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ip8-kc-O5j">
+                                <rect key="frame" x="0.0" y="108" width="600" height="492"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="SY1-X2-Ytp">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="s9W-PL-Lny">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <connections>
+                                            <segue destination="ofx-aS-lg0" kind="show" identifier="showProfile" id="vje-9W-y2T"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="sfD-c4-aFJ" id="1Ss-bK-lVW"/>
+                                    <outlet property="delegate" destination="sfD-c4-aFJ" id="a9t-kV-cdo"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ip8-kc-O5j" firstAttribute="leading" secondItem="gAl-eb-P45" secondAttribute="leading" id="KcF-Rx-IWn"/>
+                            <constraint firstItem="hqq-xo-pLX" firstAttribute="top" secondItem="GD7-Su-MnX" secondAttribute="bottom" id="R8N-ZQ-93e"/>
+                            <constraint firstItem="hqq-xo-pLX" firstAttribute="leading" secondItem="gAl-eb-P45" secondAttribute="leading" id="VJa-Rq-hte"/>
+                            <constraint firstAttribute="trailing" secondItem="ip8-kc-O5j" secondAttribute="trailing" id="XYm-xQ-rVF"/>
+                            <constraint firstAttribute="trailing" secondItem="hqq-xo-pLX" secondAttribute="trailing" id="gmt-YB-apB"/>
+                            <constraint firstItem="90M-NW-Qsi" firstAttribute="top" secondItem="ip8-kc-O5j" secondAttribute="bottom" id="ihG-gU-gVe"/>
+                            <constraint firstItem="ip8-kc-O5j" firstAttribute="top" secondItem="hqq-xo-pLX" secondAttribute="bottom" id="zjS-P2-Ifc"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="collectionView" destination="ip8-kc-O5j" id="Vco-6M-cs5"/>
+                        <outlet property="searchControllerContainerView" destination="hqq-xo-pLX" id="crO-MB-gEY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="f5R-TC-QAe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1944" y="-1336"/>
+        </scene>
         <!--Search-->
         <scene sceneID="HTA-V4-sgE">
             <objects>
@@ -105,12 +172,12 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <connections>
-                                            <segue destination="oer-J4-8yh" kind="show" identifier="showListOfPeople" id="vf6-pL-DhJ"/>
+                                            <segue destination="sfD-c4-aFJ" kind="show" identifier="showListOfPeople" id="EFc-pR-lLE"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
                                 <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SearchHeaderView" id="O59-vm-koB" userLabel="Header">
-                                    <rect key="frame" x="0.0" y="0.0" width="580" height="54"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="54"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </collectionReusableView>
                                 <connections>
@@ -166,35 +233,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Vf-V8-GjI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1223" y="-1336"/>
-        </scene>
-        <!--People-->
-        <scene sceneID="Wsp-Yf-6aj">
-            <objects>
-                <tableViewController title="People" extendedLayoutIncludesOpaqueBars="YES" id="oer-J4-8yh" customClass="PeopleViewController" customModule="Circle" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="vXw-79-Vwy">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="OfT-nh-gNn">
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OfT-nh-gNn" id="xvX-a9-EqQ">
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="ofx-aS-lg0" kind="show" identifier="showProfile" id="hHc-V2-gIb"/>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="oer-J4-8yh" id="HNr-lK-FzJ"/>
-                            <outlet property="delegate" destination="oer-J4-8yh" id="Oe2-CN-2lr"/>
-                        </connections>
-                    </tableView>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="DF0-2g-FS9" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1944" y="-1336"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="0UP-VA-fhX">
@@ -295,6 +333,6 @@
         <image name="Profile" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="hHc-V2-gIb"/>
+        <segue reference="vje-9W-y2T"/>
     </inferredMetricsTieBreakers>
 </document>

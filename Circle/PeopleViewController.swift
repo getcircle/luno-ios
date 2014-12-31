@@ -9,24 +9,19 @@
 import MessageUI
 import UIKit
 
-class PeopleViewController: UITableViewController,
-                            MGSwipeTableCellDelegate,
+class PeopleViewController: UIViewController,
                             MFMailComposeViewControllerDelegate,
                             UISearchBarDelegate,
                             UISearchResultsUpdating {
 
-    var dataLoadAttempted: Bool!
-    var filteredPeople: [Person]?
-    var loggedInPerson: Person?
-    var people: [Person]?
-    var searchController: UISearchController!
+    @IBOutlet weak private(set) var collectionView: UICollectionView!
+    @IBOutlet weak private(set) var searchControllerContainerView: UIView!
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
-            preferredContentSize = CGSize(width: 320.0, height: 600.0)
-        }
-    }
+    private var dataLoadAttempted: Bool!
+    private var filteredPeople: [Person]?
+    private var loggedInPerson: Person?
+    private var people: [Person]?
+    private var searchController: UISearchController!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +30,7 @@ class PeopleViewController: UITableViewController,
         filteredPeople = []
         dataLoadAttempted = false
         configureSearchController()
-        configureTableView()
+        configureCollectionView()
         loadData()
     }
 
@@ -46,7 +41,6 @@ class PeopleViewController: UITableViewController,
             // Checks if it has a user and loads data
             loadData()
         }
-
     }
     
     // MARK: - Configuration
@@ -58,20 +52,25 @@ class PeopleViewController: UITableViewController,
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.dimsBackgroundDuringPresentation = false
         searchController.searchBar.sizeToFit()
-        tableView.tableHeaderView = searchController.searchBar
+        searchControllerContainerView.addSubview(searchController.searchBar)
         definesPresentationContext = true
     }
     
-    private func configureTableView() {
-        // configure table view
-        tableView.registerNib(
-            UINib(nibName: "ContactTableViewCell", bundle: nil),
-            forCellReuseIdentifier: ContactTableViewCell.classReuseIdentifier
+    private func configureCollectionView() {
+        collectionView.backgroundColor = UIColor.viewBackgroundColor()
+        collectionView.registerNib(
+            UINib(nibName: "PersonCollectionViewCell", bundle: nil),
+            forCellWithReuseIdentifier: PersonCollectionViewCell.classReuseIdentifier
         )
-        tableView.separatorInset = UIEdgeInsetsMake(0.0, 64.0, 0.0, 0.0)
-        tableView.rowHeight = 64.0
-        tableView.addDummyFooterView()
+        
+        let collectionViewLayout = collectionView.collectionViewLayout as UICollectionViewFlowLayout
+        collectionViewLayout.itemSize = CGSizeMake(view.frameWidth, 64.0)
+        collectionViewLayout.sectionInset = UIEdgeInsetsZero
+        collectionViewLayout.minimumInteritemSpacing = 0.0
+        collectionViewLayout.minimumLineSpacing = 1.0
     }
+    
+    // MARK: - Load Data
 
     private func loadData() {
         if let pfUser = PFUser.currentUser() {
@@ -95,14 +94,14 @@ class PeopleViewController: UITableViewController,
         if filteredList?.count == 1 {
             loggedInPerson = filteredList?[0]
         }
-        tableView.reloadData()
+        collectionView.reloadData()
     }
 
     // MARK: - Segues
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showProfile" {
-            if let indexPath = tableView.indexPathForSelectedRow() {
+            if let indexPath = collectionView.indexPathsForSelectedItems()[0] as? NSIndexPath {
                 let person = getPersonAtIndexPath(indexPath)
                 let controller = segue.destinationViewController as ProfileViewController
                 controller.person = person
@@ -118,68 +117,41 @@ class PeopleViewController: UITableViewController,
         }
     }
 
-    // MARK: - Table View Delegate
-
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    // MARK: - Collection View Data Source
+    
+    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
     }
-
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if searchController.active {
             return filteredPeople?.count ?? 0
         }
         
         return people?.count ?? 0
     }
-
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(
-            ContactTableViewCell.classReuseIdentifier,
+    
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(
+            PersonCollectionViewCell.classReuseIdentifier,
             forIndexPath: indexPath
-        ) as ContactTableViewCell
-        cell.addQuickActions = true
-        
-        if let person = getPersonAtIndexPath(indexPath) {
-            cell.person = person
-            cell.delegate = self
-        }
+        ) as PersonCollectionViewCell
 
+        cell.sizeMode = .Medium
+        if let person = getPersonAtIndexPath(indexPath) {
+            cell.setData(person)
+            // TODO: Remove this hack
+            cell.subTextLabel.text = person.title
+        }
         return cell
     }
-
-    // MARK: - Swipe Cell Delegate
-
-    func swipeTableCell(
-        cell: ContactTableViewCell!,
-        tappedButtonAtIndex index: Int,
-        direction: MGSwipeDirection,
-        fromExpansion: Bool) -> Bool {
-        switch direction {
-            case .RightToLeft:
-                // Right buttons tapped
-                println("Email = \(cell.person.email)")
-                presentMailViewController([cell.person.email], subject: "Hey", messageBody: "")
-            default:
-                break
-        }
-
-        return true
-    }
-
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if let person = getPersonAtIndexPath(indexPath) {
-            performSegueWithIdentifier("showProfile", sender: tableView)
-        }
-
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
-    }
     
-    // MARK: - MFMailComposeViewControllerDelegate
-
-    func mailComposeController(controller: MFMailComposeViewController!, didFinishWithResult result: MFMailComposeResult, error: NSError!) {
-            dismissViewControllerAnimated(true, completion: nil)
-    }
+    // MARK: - Collection View Delegate
     
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        performSegueWithIdentifier("showProfile", sender: collectionView)
+    }
+
     // MARK: - UISearchResultsUpdating
     
     func updateSearchResultsForSearchController(searchController: UISearchController) {
@@ -239,7 +211,7 @@ class PeopleViewController: UITableViewController,
             filteredPeople = allPeople?.filter{ finalPredicate.evaluateWithObject($0) }
         }
 
-        tableView.reloadData()
+        collectionView.reloadData()
     }
     
     // MARK: UISearchBarDelegate

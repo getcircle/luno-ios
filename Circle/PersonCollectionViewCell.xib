@@ -51,7 +51,9 @@
             <size key="customSize" width="415" height="86"/>
             <connections>
                 <outlet property="nameLabel" destination="9nj-gl-dh0" id="XIg-BE-1mH"/>
+                <outlet property="nameLabelTopSpaceConstraint" destination="PwW-a2-cpz" id="QtQ-Un-Q3L"/>
                 <outlet property="profileImageView" destination="WaH-1I-lf2" id="9Ab-bU-SZe"/>
+                <outlet property="profileImageViewWidthConstraint" destination="bUi-IP-iXH" id="06q-0Y-wa1"/>
                 <outlet property="subTextLabel" destination="bkV-ww-aQf" id="hr8-SX-saP"/>
             </connections>
             <point key="canvasLocation" x="319.5" y="201"/>
