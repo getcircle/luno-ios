@@ -16,8 +16,6 @@
 		8F0004A51A2419730096477A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F0004A31A2419730096477A /* LaunchScreen.xib */; };
 		8F0004B11A2419730096477A /* CircleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0004B01A2419730096477A /* CircleTests.swift */; };
 		8F0004BB1A241BDE0096477A /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0004BA1A241BDE0096477A /* UIColorExtension.swift */; };
-		8F0004BE1A24225A0096477A /* ContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0004BC1A24225A0096477A /* ContactTableViewCell.swift */; };
-		8F0004BF1A24225A0096477A /* ContactTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F0004BD1A24225A0096477A /* ContactTableViewCell.xib */; };
 		8F22CB731A264A8A0026376E /* MainTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F22CB721A264A8A0026376E /* MainTabViewController.swift */; };
 		8F22CB751A26600D0026376E /* AppDelegateParseExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F22CB741A26600D0026376E /* AppDelegateParseExtension.swift */; };
 		8F22CB771A2661890026376E /* AppDelegateAppearanceExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F22CB761A2661890026376E /* AppDelegateAppearanceExtension.swift */; };
@@ -176,8 +174,6 @@
 		8F0004AF1A2419730096477A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8F0004B01A2419730096477A /* CircleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleTests.swift; sourceTree = "<group>"; };
 		8F0004BA1A241BDE0096477A /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
-		8F0004BC1A24225A0096477A /* ContactTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactTableViewCell.swift; sourceTree = "<group>"; };
-		8F0004BD1A24225A0096477A /* ContactTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactTableViewCell.xib; sourceTree = "<group>"; };
 		8F22CB721A264A8A0026376E /* MainTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabViewController.swift; sourceTree = "<group>"; };
 		8F22CB741A26600D0026376E /* AppDelegateParseExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegateParseExtension.swift; sourceTree = "<group>"; };
 		8F22CB761A2661890026376E /* AppDelegateAppearanceExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegateAppearanceExtension.swift; sourceTree = "<group>"; };
@@ -353,7 +349,6 @@
 				8F65C4F31A50F28E00C7F3E6 /* CardHeaderCollectionReusableView.swift */,
 				8F65C5001A51462500C7F3E6 /* CircleCollectionViewCell.swift */,
 				8FF298511A4E2B3300306CFC /* Common */,
-				8F0004BC1A24225A0096477A /* ContactTableViewCell.swift */,
 				8F65C4FC1A51222100C7F3E6 /* LocationCollectionViewCell.swift */,
 				8FCC95CB1A52828B00421E65 /* PersonCollectionViewCell.swift */,
 				8F22CBE61A27FDA70026376E /* ProfileAttributeCollectionViewCell.swift */,
@@ -409,7 +404,6 @@
 			children = (
 				8F22CBF71A29A8EB0026376E /* AuthViewController.xib */,
 				8F65C4F41A50F28E00C7F3E6 /* CardHeaderCollectionReusableView.xib */,
-				8F0004BD1A24225A0096477A /* ContactTableViewCell.xib */,
 				8F0004A31A2419730096477A /* LaunchScreen.xib */,
 				8F65C4FD1A51222100C7F3E6 /* LocationCollectionViewCell.xib */,
 				8F00049E1A2419730096477A /* Main.storyboard */,
@@ -675,7 +669,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8FF298041A4A4E3600306CFC /* ProfileImagesCollectionViewCell.xib in Resources */,
-				8F0004BF1A24225A0096477A /* ContactTableViewCell.xib in Resources */,
 				8F22CBE91A27FDA70026376E /* ProfileAttributeCollectionViewCell.xib in Resources */,
 				8FF2980B1A4B490E00306CFC /* SearchHeaderView.xib in Resources */,
 				8F0004A01A2419730096477A /* Main.storyboard in Resources */,
@@ -771,7 +764,6 @@
 				8FD041A21A2C03AA00FE28EF /* UIFontExtention.swift in Sources */,
 				8F22CB791A266D3F0026376E /* Person.swift in Sources */,
 				8F22CBED1A283D3D0026376E /* SeparatorDecorationView.swift in Sources */,
-				8F0004BE1A24225A0096477A /* ContactTableViewCell.swift in Sources */,
 				8F65C4FB1A50F92500C7F3E6 /* Card.swift in Sources */,
 				8F22CBE01A27A8E60026376E /* ProfileHeaderCollectionReusableView.swift in Sources */,
 				BF8FC3D91A44DA83007FD8BA /* StringExtension.swift in Sources */,
