@@ -14,7 +14,7 @@ class ProfileViewAnimator: NSObject, UIViewControllerAnimatedTransitioning {
     private var isDismissAnimation = false
     
     func transitionDuration(transitionContext: UIViewControllerContextTransitioning) -> NSTimeInterval {
-        return 0.3
+        return isDismissAnimation ? 0.2 : 0.4
     }
     
     func animateTransition(transitionContext: UIViewControllerContextTransitioning) {

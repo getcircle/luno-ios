@@ -114,7 +114,7 @@ class PeopleViewController: UIViewController,
             if let loggedInPersonObj = loggedInPerson {
                 let controller = segue.destinationViewController as UINavigationController
                 let profileVC = controller.topViewController as ProfileViewController
-                profileVC.showCloseButton = true
+                profileVC.showCloseOrBackButton = true
                 profileVC.person = loggedInPersonObj
             }
         }
@@ -153,6 +153,7 @@ class PeopleViewController: UIViewController,
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         var profileVC = storyboard?.instantiateViewControllerWithIdentifier("ProfileViewController") as ProfileViewController
+        profileVC.showCloseOrBackButton = true
         profileVC.person = getPersonAtIndexPath(indexPath)
 
         // Convert point to superview coordinates

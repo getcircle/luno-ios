@@ -276,7 +276,7 @@ class SearchViewController: UIViewController, UICollectionViewDataSource, UIColl
         if segue.identifier == "showUserProfile" {
             let controller = segue.destinationViewController as UINavigationController
             let profileVC = controller.topViewController as ProfileViewController
-            profileVC.showCloseButton = true
+            profileVC.showCloseOrBackButton = true
             profileVC.person = loggedInPerson
         }
 //        else if segue.identifier == "showListOfPeople" {

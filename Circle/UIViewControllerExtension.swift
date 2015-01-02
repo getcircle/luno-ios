@@ -19,6 +19,10 @@ extension UIViewController {
         return nil
     }
 
+    func isBeingPresentedModally() -> Bool {
+        return navigationController?.topViewController == self && navigationController?.viewControllers.count == 1
+    }
+    
     /**
      * Presents the standard compose mail view controller.
      *

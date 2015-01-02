@@ -33,9 +33,9 @@ class ProfileViewController: UICollectionViewController, UICollectionViewDelegat
             addLogOutButton()
         }
     }
-    var showCloseButton: Bool? {
+    var showCloseOrBackButton: Bool? {
         didSet {
-            addCloseButton()
+            addCloseOrBackButton()
         }
     }
     override var pushAnimator: UIViewControllerAnimatedTransitioning {
@@ -52,15 +52,26 @@ class ProfileViewController: UICollectionViewController, UICollectionViewDelegat
     }
     
     override func viewWillAppear(animated: Bool) {
-        navigationController?.navigationBar.makeTransparent()
         super.viewWillAppear(animated)
+        transitionCoordinator()?.animateAlongsideTransition({ (transitionContext) -> Void in
+            self.navigationController?.setNavigationBarHidden(true, animated: true)
+            return
+        }, completion: { (transitionContext) -> Void in
+                self.navigationController?.setNavigationBarHidden(false, animated: true)
+                self.navigationController?.navigationBar.makeTransparent()
+                return
+        })
     }
-    
+
     override func viewWillDisappear(animated: Bool) {
-        if navigationController?.topViewController != self {
-            navigationController?.navigationBar.makeOpaque()
-        }
         super.viewWillDisappear(animated)
+        transitionCoordinator()?.animateAlongsideTransition({ (transitionContext) -> Void in
+            self.navigationController?.setNavigationBarHidden(false, animated: true)
+            var toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey) as UIViewController!
+            toViewController.navigationController?.navigationBar.makeOpaque()
+
+            return
+        }, completion: nil)
     }
     
     private func addLogOutButton() {
@@ -74,21 +85,25 @@ class ProfileViewController: UICollectionViewController, UICollectionViewDelegat
         AuthViewController.logOut()
     }
     
-    private func addCloseButton() {
-        if showCloseButton == true && navigationItem.leftBarButtonItem == nil {
+    private func addCloseOrBackButton() {
+        if showCloseOrBackButton == true && navigationItem.leftBarButtonItem == nil {
             let closeButton = UIBarButtonItem(
-                image: UIImage(named: "Down"),
+                image: isBeingPresentedModally() ? UIImage(named: "Down") : UIImage(named: "Previous"),
                 style: .Plain,
                 target: self,
-                action: "closeButtonTapped:"
+                action: "closeOrBackButtonTapped:"
             )
-
             navigationItem.leftBarButtonItem = closeButton
         }
     }
     
-    func closeButtonTapped(sender: AnyObject!) {
-        dismissViewControllerAnimated(true, completion: nil)
+    func closeOrBackButtonTapped(sender: AnyObject!) {
+        if isBeingPresentedModally() {
+            dismissViewControllerAnimated(true, completion: nil)
+        }
+        else {
+            navigationController?.popViewControllerAnimated(true)
+        }
     }
 
     // MARK: - Configuration
