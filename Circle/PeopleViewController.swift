@@ -149,7 +149,13 @@ class PeopleViewController: UIViewController,
     // MARK: - Collection View Delegate
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        performSegueWithIdentifier("showProfile", sender: collectionView)
+        var profileVC = storyboard?.instantiateViewControllerWithIdentifier("ProfileViewController") as ProfileViewController
+        profileVC.person = getPersonAtIndexPath(indexPath)
+
+        // Convert point to superview coordinates
+        let cell = collectionView.cellForItemAtIndexPath(indexPath) as PersonCollectionViewCell
+        profileVC.animationSourceRect = cell.convertRect(cell.profileImageView.frame, toView: view)
+        navigationController?.pushViewController(profileVC, animated: true)
     }
 
     // MARK: - UISearchResultsUpdating

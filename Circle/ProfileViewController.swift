@@ -25,6 +25,8 @@ class ProfileViewController: UICollectionViewController, UICollectionViewDelegat
         }
     }
 
+    
+    var animationSourceRect: CGRect?
     private var dataSource = ProfileDataSource()
     var showLogOutButton: Bool? {
         didSet {
@@ -36,16 +38,17 @@ class ProfileViewController: UICollectionViewController, UICollectionViewDelegat
             addCloseButton()
         }
     }
+    override var pushAnimator: UIViewControllerAnimatedTransitioning {
+        return ProfileViewAnimator()
+    }
+
+    override var popAnimator: UIViewControllerAnimatedTransitioning {
+        return ProfileViewAnimator()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-     
-        // Do any additional setup after loading the view, typically from a nib.
-        customizeCollectionView()
-        
-        // Assert there is a person
-        // assert(person != nil, "Person object needs to be set before loading this view.")
-        collectionView!.dataSource = dataSource
+        configureCollectionView()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -88,7 +91,9 @@ class ProfileViewController: UICollectionViewController, UICollectionViewDelegat
         dismissViewControllerAnimated(true, completion: nil)
     }
 
-    private func customizeCollectionView() {
+    // MARK: - Configuration
+    
+    private func configureCollectionView() {
         collectionView!.backgroundColor = UIColor.viewBackgroundColor()
         collectionView!.registerNib(
             UINib(nibName: "ProfileAttributeCollectionViewCell", bundle: nil),
@@ -100,6 +105,8 @@ class ProfileViewController: UICollectionViewController, UICollectionViewDelegat
             forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
             withReuseIdentifier: ProfileHeaderCollectionReusableView.classReuseIdentifier
         )
+
+        collectionView!.dataSource = dataSource
     }
     
     // MARK: Collection View delegate

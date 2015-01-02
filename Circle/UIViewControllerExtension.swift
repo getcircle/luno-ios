@@ -11,6 +11,14 @@ import UIKit
 
 extension UIViewController {
     
+    var pushAnimator: UIViewControllerAnimatedTransitioning? {
+        return nil
+    }
+
+    var popAnimator: UIViewControllerAnimatedTransitioning? {
+        return nil
+    }
+
     /**
      * Presents the standard compose mail view controller.
      *

@@ -7,7 +7,7 @@
         <!--Profile-->
         <scene sceneID="uzJ-m3-vlO">
             <objects>
-                <collectionViewController storyboardIdentifier="ProfileViewController" title="Profile" automaticallyAdjustsScrollViewInsets="NO" id="ofx-aS-lg0" customClass="ProfileViewController" customModule="Circle" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController storyboardIdentifier="ProfileViewController" title="Profile" extendedLayoutIncludesOpaqueBars="YES" automaticallyAdjustsScrollViewInsets="NO" id="ofx-aS-lg0" customClass="ProfileViewController" customModule="Circle" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="qhj-eK-GxV">
                         <rect key="frame" x="0.0" y="64" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -44,10 +44,16 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
+                        <outlet property="delegate" destination="Xlk-yf-EC3" id="UVA-cY-efp"/>
                         <segue destination="PMD-gG-9c6" kind="relationship" relationship="rootViewController" id="9Xa-nm-gpU"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AkS-Ra-l6J" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="Xlk-yf-EC3" customClass="RootNavigationDelegate" customModule="Circle" customModuleProvider="target">
+                    <connections>
+                        <outlet property="navigationController" destination="xqF-2W-85W" id="FcR-dT-UVg"/>
+                    </connections>
+                </customObject>
             </objects>
             <point key="canvasLocation" x="505" y="-1336"/>
         </scene>
