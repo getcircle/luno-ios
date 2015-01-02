@@ -17,6 +17,8 @@ class PeopleViewController: UIViewController,
     @IBOutlet weak private(set) var collectionView: UICollectionView!
     @IBOutlet weak private(set) var searchControllerContainerView: UIView!
 
+    let rowHeight: CGFloat = 64.0
+    
     private var dataLoadAttempted: Bool!
     private var filteredPeople: [Person]?
     private var loggedInPerson: Person?
@@ -53,6 +55,7 @@ class PeopleViewController: UIViewController,
         searchController.dimsBackgroundDuringPresentation = false
         searchController.searchBar.sizeToFit()
         searchControllerContainerView.addSubview(searchController.searchBar)
+        searchController.searchBar.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
         definesPresentationContext = true
     }
     
@@ -64,7 +67,7 @@ class PeopleViewController: UIViewController,
         )
         
         let collectionViewLayout = collectionView.collectionViewLayout as UICollectionViewFlowLayout
-        collectionViewLayout.itemSize = CGSizeMake(view.frameWidth, 64.0)
+        collectionViewLayout.itemSize = CGSizeMake(view.frameWidth, rowHeight)
         collectionViewLayout.sectionInset = UIEdgeInsetsZero
         collectionViewLayout.minimumInteritemSpacing = 0.0
         collectionViewLayout.minimumLineSpacing = 1.0
@@ -245,5 +248,13 @@ class PeopleViewController: UIViewController,
         }
         
         return person
+    }
+    
+    // MARK: - Orientation change
+
+    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
+        (collectionView.collectionViewLayout as UICollectionViewFlowLayout).itemSize = CGSizeMake(size.width, rowHeight)
+        collectionView.collectionViewLayout.invalidateLayout()
     }
 }

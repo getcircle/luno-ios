@@ -16,8 +16,6 @@ class RootNavigationDelegate: NSObject, UINavigationControllerDelegate {
         animationControllerForOperation operation: UINavigationControllerOperation,
         fromViewController fromVC: UIViewController,
         toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-            println (navigationController.interactivePopGestureRecognizer.enabled)
-        
             switch operation {
             case .Push:
                 if let animator: UIViewControllerAnimatedTransitioning = toVC.pushAnimator {
