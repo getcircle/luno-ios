@@ -55,7 +55,6 @@ class PeopleViewController: UIViewController,
         searchController.dimsBackgroundDuringPresentation = false
         searchController.searchBar.sizeToFit()
         searchControllerContainerView.addSubview(searchController.searchBar)
-        searchController.searchBar.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
         definesPresentationContext = true
     }
     

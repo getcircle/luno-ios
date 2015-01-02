@@ -74,7 +74,6 @@ class TagSelectorViewController: UIViewController,
         searchController.searchBar.placeholder = "Filter tags"
         searchController.searchBar.sizeToFit()
         searchControllerParentView.addSubview(searchController.searchBar)
-        searchController.searchBar.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
         definesPresentationContext = true
     }
     
