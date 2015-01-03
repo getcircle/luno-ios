@@ -38,14 +38,7 @@ class ProfileViewController: UICollectionViewController, UICollectionViewDelegat
             addCloseOrBackButton()
         }
     }
-    override var pushAnimator: UIViewControllerAnimatedTransitioning {
-        return ProfileViewAnimator()
-    }
 
-    override var popAnimator: UIViewControllerAnimatedTransitioning {
-        return ProfileViewAnimator()
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCollectionView()

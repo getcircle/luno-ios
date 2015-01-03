@@ -44,16 +44,10 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <outlet property="delegate" destination="Xlk-yf-EC3" id="UVA-cY-efp"/>
                         <segue destination="PMD-gG-9c6" kind="relationship" relationship="rootViewController" id="9Xa-nm-gpU"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AkS-Ra-l6J" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <customObject id="Xlk-yf-EC3" customClass="RootNavigationDelegate" customModule="Circle" customModuleProvider="target">
-                    <connections>
-                        <outlet property="navigationController" destination="xqF-2W-85W" id="FcR-dT-UVg"/>
-                    </connections>
-                </customObject>
             </objects>
             <point key="canvasLocation" x="505" y="-1336"/>
         </scene>
@@ -339,6 +333,6 @@
         <image name="Profile" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="vje-9W-y2T"/>
+        <segue reference="tgc-v1-g6X"/>
     </inferredMetricsTieBreakers>
 </document>
