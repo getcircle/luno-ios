@@ -63,14 +63,24 @@ class ProfileViewController: UICollectionViewController, UICollectionViewDelegat
 
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        if !isBeingPresentedModally() {
-            transitionCoordinator()?.animateAlongsideTransition({ (transitionContext) -> Void in
-                self.navigationController?.setNavigationBarHidden(false, animated: true)
-                var toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey) as UIViewController!
-                toViewController.navigationController?.navigationBar.makeOpaque()
-
-                return
-            }, completion: nil)
+        
+        // Do not show the opaque bar again if:
+        // a. this view was presented modally
+        // b. this view is being dismissed vs disappearing because another view controller was added to the stack
+        // c. the view controller prior to this one was a ProfileViewController
+        if !isBeingPresentedModally() && isMovingFromParentViewController() {
+            if let totalViewControllers = navigationController?.viewControllers.count {
+                let parentController = navigationController?.viewControllers[(totalViewControllers - 1)] as? UIViewController
+                if !(parentController is ProfileViewController) {
+                    transitionCoordinator()?.animateAlongsideTransition({ (transitionContext) -> Void in
+                        self.navigationController?.setNavigationBarHidden(false, animated: true)
+                        var toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey) as UIViewController!
+                        toViewController.navigationController?.navigationBar.makeOpaque()
+                        
+                        return
+                    }, completion: nil)
+                }
+            }
         }
     }
     
