@@ -22,21 +22,30 @@ class ProfileViewAnimator: NSObject, UIViewControllerAnimatedTransitioning {
         var toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)
         var fromViewController = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey)
         
+        if toViewController is UINavigationController {
+            toViewController = (toViewController as UINavigationController).topViewController
+        }
+        
+        if fromViewController is UINavigationController {
+            fromViewController = (fromViewController as UINavigationController).topViewController
+        }
+        
         if toViewController is ProfileViewController {
             containerView.addSubview((toViewController as UIViewController!).view)
-            presentAnimation(toViewController as ProfileViewController, transitionContext: transitionContext)
+            doMaskAnimation(toViewController as ProfileViewController, transitionContext: transitionContext)
         }
         else {
             containerView.insertSubview((toViewController as UIViewController!).view, atIndex: 0)
             isDismissAnimation = true
-            presentAnimation(fromViewController as ProfileViewController, transitionContext: transitionContext)
+            doMaskAnimation(fromViewController as ProfileViewController, transitionContext: transitionContext)
         }
     }
     
-    private func presentAnimation(profileVC: ProfileViewController, transitionContext: UIViewControllerContextTransitioning) {
+    private func doMaskAnimation(profileVC: ProfileViewController, transitionContext: UIViewControllerContextTransitioning) {
         weakTransitionContext = transitionContext
         let sourceRect = profileVC.animationSourceRect? ?? CGRectMake(256.0, 20.0, 44.0, 44.0)
         let sourceCenter = sourceRect.center()
+        let duration = transitionDuration(transitionContext)
         
         // Initial circle for the mask layer
         let pathInitial = UIBezierPath(ovalInRect: sourceRect)
@@ -49,6 +58,8 @@ class ProfileViewAnimator: NSObject, UIViewControllerAnimatedTransitioning {
         // Mask Layer
         var maskLayer = CAShapeLayer()
         maskLayer.backgroundColor = UIColor.redColor().CGColor
+        maskLayer.borderColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.3).CGColor
+        maskLayer.borderWidth = 1.0
         maskLayer.path = isDismissAnimation ? pathInitial.CGPath : pathFinal.CGPath
         profileVC.view.layer.mask = maskLayer
 

@@ -9,7 +9,7 @@
 import MessageUI
 import UIKit
 
-class ProfileViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, MFMailComposeViewControllerDelegate {
+class ProfileViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, MFMailComposeViewControllerDelegate, UIViewControllerTransitioningDelegate {
 
     var person: Person! {
         didSet {
@@ -53,25 +53,32 @@ class ProfileViewController: UICollectionViewController, UICollectionViewDelegat
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        transitionCoordinator()?.animateAlongsideTransition({ (transitionContext) -> Void in
-            self.navigationController?.setNavigationBarHidden(true, animated: true)
-            return
-        }, completion: { (transitionContext) -> Void in
-                self.navigationController?.setNavigationBarHidden(false, animated: true)
-                self.navigationController?.navigationBar.makeTransparent()
+        if isBeingPresentedModally() {
+            navigationController?.navigationBar.makeTransparent()
+        }
+        else {
+            transitionCoordinator()?.animateAlongsideTransition({ (transitionContext) -> Void in
+                self.navigationController?.setNavigationBarHidden(true, animated: true)
                 return
-        })
+            }, completion: { (transitionContext) -> Void in
+                    self.navigationController?.setNavigationBarHidden(false, animated: false)
+                    self.navigationController?.navigationBar.makeTransparent()
+                    return
+            })
+        }
     }
 
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        transitionCoordinator()?.animateAlongsideTransition({ (transitionContext) -> Void in
-            self.navigationController?.setNavigationBarHidden(false, animated: true)
-            var toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey) as UIViewController!
-            toViewController.navigationController?.navigationBar.makeOpaque()
+        if !isBeingPresentedModally() {
+            transitionCoordinator()?.animateAlongsideTransition({ (transitionContext) -> Void in
+                self.navigationController?.setNavigationBarHidden(false, animated: true)
+                var toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey) as UIViewController!
+                toViewController.navigationController?.navigationBar.makeOpaque()
 
-            return
-        }, completion: nil)
+                return
+            }, completion: nil)
+        }
     }
     
     private func addLogOutButton() {
@@ -205,6 +212,16 @@ class ProfileViewController: UICollectionViewController, UICollectionViewDelegat
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
         collectionViewLayout.invalidateLayout()
+    }
+    
+    // MARK: - Transitioning Delegate
+    
+    func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return ProfileViewAnimator()
+    }
+    
+    func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return ProfileViewAnimator()
     }
 }
 
