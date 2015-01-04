@@ -1,5 +1,5 @@
 //
-//  ProfileAttributeCollectionViewCell.swift
+//  KeyValueCollectionViewCell.swift
 //  Circle
 //
 //  Created by Ravi Rani on 11/27/14.
@@ -8,15 +8,15 @@
 
 import UIKit
 
-class ProfileAttributeCollectionViewCell: UICollectionViewCell {
+class KeyValueCollectionViewCell: CircleCollectionViewCell {
 
+    @IBOutlet private(set) weak var nameImageView: UIImageView!
     @IBOutlet private(set) weak var nameLabel: UILabel!
     @IBOutlet private(set) weak var valueLabel: UILabel!
-    @IBOutlet private(set) weak var nameImageView: UIImageView!
-    @IBOutlet weak var valueLabelTrailingSpaceConstraint: NSLayoutConstraint!
+    @IBOutlet private(set) weak var valueLabelTrailingSpaceConstraint: NSLayoutConstraint!
     
-    class var classReuseIdentifier: String {
-        return "ProfileAttributeCell"
+    override class var classReuseIdentifier: String {
+        return "KeyValueCell"
     }
     
     override func awakeFromNib() {

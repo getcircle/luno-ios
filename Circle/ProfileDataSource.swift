@@ -129,8 +129,8 @@ class ProfileDataSource: NSObject, UICollectionViewDataSource {
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(
-            ProfileAttributeCollectionViewCell.classReuseIdentifier,
-            forIndexPath: indexPath) as ProfileAttributeCollectionViewCell
+            KeyValueCollectionViewCell.classReuseIdentifier,
+            forIndexPath: indexPath) as KeyValueCollectionViewCell
         
         if let key = dataSourceKeys[indexPath.section][indexPath.item] as? String {
             if let value: AnyObject = person.valueForKey(key) {

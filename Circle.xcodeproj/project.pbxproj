@@ -26,8 +26,8 @@
 		8F22CBE11A27A8E60026376E /* ProfileHeaderCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F22CBDF1A27A8E60026376E /* ProfileHeaderCollectionReusableView.xib */; };
 		8F22CBE31A27AE9B0026376E /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F22CBE21A27AE9B0026376E /* UIImageViewExtension.swift */; };
 		8F22CBE51A27ED190026376E /* ProfileCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F22CBE41A27ED190026376E /* ProfileCollectionViewLayout.swift */; };
-		8F22CBE81A27FDA70026376E /* ProfileAttributeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F22CBE61A27FDA70026376E /* ProfileAttributeCollectionViewCell.swift */; };
-		8F22CBE91A27FDA70026376E /* ProfileAttributeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F22CBE71A27FDA70026376E /* ProfileAttributeCollectionViewCell.xib */; };
+		8F22CBE81A27FDA70026376E /* KeyValueCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F22CBE61A27FDA70026376E /* KeyValueCollectionViewCell.swift */; };
+		8F22CBE91A27FDA70026376E /* KeyValueCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F22CBE71A27FDA70026376E /* KeyValueCollectionViewCell.xib */; };
 		8F22CBED1A283D3D0026376E /* SeparatorDecorationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F22CBEC1A283D3D0026376E /* SeparatorDecorationView.swift */; };
 		8F22CBF11A2844F50026376E /* UINavigationBarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F22CBF01A2844F50026376E /* UINavigationBarExtension.swift */; };
 		8F22CBF51A2865030026376E /* ProfileDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F22CBF41A2865030026376E /* ProfileDataSource.swift */; };
@@ -191,8 +191,8 @@
 		8F22CBDF1A27A8E60026376E /* ProfileHeaderCollectionReusableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileHeaderCollectionReusableView.xib; sourceTree = "<group>"; };
 		8F22CBE21A27AE9B0026376E /* UIImageViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
 		8F22CBE41A27ED190026376E /* ProfileCollectionViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileCollectionViewLayout.swift; sourceTree = "<group>"; };
-		8F22CBE61A27FDA70026376E /* ProfileAttributeCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileAttributeCollectionViewCell.swift; sourceTree = "<group>"; };
-		8F22CBE71A27FDA70026376E /* ProfileAttributeCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileAttributeCollectionViewCell.xib; sourceTree = "<group>"; };
+		8F22CBE61A27FDA70026376E /* KeyValueCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyValueCollectionViewCell.swift; sourceTree = "<group>"; };
+		8F22CBE71A27FDA70026376E /* KeyValueCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KeyValueCollectionViewCell.xib; sourceTree = "<group>"; };
 		8F22CBEC1A283D3D0026376E /* SeparatorDecorationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeparatorDecorationView.swift; sourceTree = "<group>"; };
 		8F22CBF01A2844F50026376E /* UINavigationBarExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UINavigationBarExtension.swift; sourceTree = "<group>"; };
 		8F22CBF41A2865030026376E /* ProfileDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileDataSource.swift; sourceTree = "<group>"; };
@@ -363,9 +363,9 @@
 				8F65C4F31A50F28E00C7F3E6 /* CardHeaderCollectionReusableView.swift */,
 				8F65C5001A51462500C7F3E6 /* CircleCollectionViewCell.swift */,
 				8FF298511A4E2B3300306CFC /* Common */,
+				8F22CBE61A27FDA70026376E /* KeyValueCollectionViewCell.swift */,
 				8F65C4FC1A51222100C7F3E6 /* LocationCollectionViewCell.swift */,
 				8FCC95CB1A52828B00421E65 /* PersonCollectionViewCell.swift */,
-				8F22CBE61A27FDA70026376E /* ProfileAttributeCollectionViewCell.swift */,
 				8F22CBDE1A27A8E60026376E /* ProfileHeaderCollectionReusableView.swift */,
 				8FF298011A4A4E3600306CFC /* ProfileImagesCollectionViewCell.swift */,
 				8FF298081A4B490E00306CFC /* SearchHeaderView.swift */,
@@ -419,11 +419,11 @@
 			children = (
 				8F22CBF71A29A8EB0026376E /* AuthViewController.xib */,
 				8F65C4F41A50F28E00C7F3E6 /* CardHeaderCollectionReusableView.xib */,
+				8F22CBE71A27FDA70026376E /* KeyValueCollectionViewCell.xib */,
 				8F0004A31A2419730096477A /* LaunchScreen.xib */,
 				8F65C4FD1A51222100C7F3E6 /* LocationCollectionViewCell.xib */,
 				8F00049E1A2419730096477A /* Main.storyboard */,
 				8FCC95CC1A52828B00421E65 /* PersonCollectionViewCell.xib */,
-				8F22CBE71A27FDA70026376E /* ProfileAttributeCollectionViewCell.xib */,
 				8F22CBDF1A27A8E60026376E /* ProfileHeaderCollectionReusableView.xib */,
 				8FF298021A4A4E3600306CFC /* ProfileImagesCollectionViewCell.xib */,
 				8FF298091A4B490E00306CFC /* SearchHeaderView.xib */,
@@ -703,7 +703,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8FF298041A4A4E3600306CFC /* ProfileImagesCollectionViewCell.xib in Resources */,
-				8F22CBE91A27FDA70026376E /* ProfileAttributeCollectionViewCell.xib in Resources */,
+				8F22CBE91A27FDA70026376E /* KeyValueCollectionViewCell.xib in Resources */,
 				8FF2980B1A4B490E00306CFC /* SearchHeaderView.xib in Resources */,
 				8F0004A01A2419730096477A /* Main.storyboard in Resources */,
 				8FCC95CE1A52828B00421E65 /* PersonCollectionViewCell.xib in Resources */,
@@ -835,7 +835,7 @@
 				8F00049D1A2419730096477A /* ProfileViewController.swift in Sources */,
 				BF7DF98F1A44E53200A4F924 /* ServiceTransport.swift in Sources */,
 				8FEE88471A411BA90011CE4A /* UIViewControllerExtension.swift in Sources */,
-				8F22CBE81A27FDA70026376E /* ProfileAttributeCollectionViewCell.swift in Sources */,
+				8F22CBE81A27FDA70026376E /* KeyValueCollectionViewCell.swift in Sources */,
 				8F65C5011A51462500C7F3E6 /* CircleCollectionViewCell.swift in Sources */,
 				8F02B1FC1A54A08000A1A307 /* RootNavigationDelegate.swift in Sources */,
 				8F65C5071A52661700C7F3E6 /* TagsCollectionViewCell.swift in Sources */,

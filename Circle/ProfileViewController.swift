@@ -121,8 +121,8 @@ class ProfileViewController: UICollectionViewController, UICollectionViewDelegat
     private func configureCollectionView() {
         collectionView!.backgroundColor = UIColor.viewBackgroundColor()
         collectionView!.registerNib(
-            UINib(nibName: "ProfileAttributeCollectionViewCell", bundle: nil),
-            forCellWithReuseIdentifier: ProfileAttributeCollectionViewCell.classReuseIdentifier
+            UINib(nibName: "KeyValueCollectionViewCell", bundle: nil),
+            forCellWithReuseIdentifier: KeyValueCollectionViewCell.classReuseIdentifier
         )
 
         collectionView!.registerNib(

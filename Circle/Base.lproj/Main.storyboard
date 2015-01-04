@@ -182,7 +182,7 @@
                                 </collectionReusableView>
                                 <connections>
                                     <outlet property="dataSource" destination="BIg-EN-QpW" id="MEB-5U-ieT"/>
-                                    <outlet property="delegate" destination="YDr-At-X3C" id="1RA-Ek-QVT"/>
+                                    <outlet property="delegate" destination="YDr-At-X3C" id="Dod-co-txx"/>
                                 </connections>
                             </collectionView>
                             <button alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9zy-By-0t8" userLabel="OverlayButton">
