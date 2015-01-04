@@ -26,7 +26,11 @@ class SearchViewController: UIViewController, UICollectionViewDelegate, UITextFi
         configureSearchHeaderView()
         configureCollectionView()
         configureOverlayButton()
-        (collectionView.dataSource as SearchLandingDataSource).loadData()
+        (collectionView.dataSource as SearchLandingDataSource).loadData { (error) -> Void in
+            if error == nil {
+                self.collectionView.reloadData()
+            }
+        }
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -50,7 +54,7 @@ class SearchViewController: UIViewController, UICollectionViewDelegate, UITextFi
     
     private func configureCollectionView() {
         collectionView!.backgroundColor = UIColor.viewBackgroundColor()
-        (collectionView.dataSource as SearchLandingDataSource).registerCardHeader()
+        (collectionView.dataSource as SearchLandingDataSource).registerDefaultCardHeader(collectionView)
         (collectionView.delegate as CardCollectionViewDelegate?)?.delegate = self
     }
     

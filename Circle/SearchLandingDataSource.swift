@@ -10,7 +10,7 @@ import Foundation
 
 class SearchLandingDataSource: CardDataSource {
     
-    override func loadData() {
+    override func loadData(completionHandler: (error: NSError?) -> Void) {
         // THIS FUNCTION WILL BE REMOVED COMPLETELY AFTER THE BACKEND CHANGES
         // SO IGNORE THE IMPLMENTATION
         
@@ -22,7 +22,7 @@ class SearchLandingDataSource: CardDataSource {
             parseQuery.orderByAscending("firstName")
             parseQuery.findObjectsInBackgroundWithBlock({ (objects, error: NSError!) -> Void in
                 if error == nil {
-                    self.setPeople(objects)
+                    self.setPeople(objects, completionHandler)
                 }
             })
         }
@@ -53,7 +53,7 @@ class SearchLandingDataSource: CardDataSource {
         appendCard(locationsCard)
     }
     
-    private func setPeople(objects: [AnyObject]!) {
+    private func setPeople(objects: [AnyObject]!, completionHandler: (error: NSError?) -> Void) {
         // THIS FUNCTION WILL BE REMOVED COMPLETELY AFTER THE BACKEND CHANGES
         // SO IGNORE THE IMPLMENTATION
         
@@ -89,7 +89,6 @@ class SearchLandingDataSource: CardDataSource {
             birthdaysCard.content.append(peopleList[2])
         }
         appendCard(birthdaysCard)
-        
-        collectionView.reloadData()
+        completionHandler(error: nil)
     }
 }

@@ -9,51 +9,94 @@
 import Foundation
 
 class CardDataSource: NSObject, UICollectionViewDataSource {
-
-    @IBOutlet private(set) var collectionView: UICollectionView!
     
     private var animatedRowIndexes = NSMutableIndexSet()
-    // This is set to private(set) because there is no way to do KVO
-    // on arrays but the superclass wants to know everytime a card is
-    // added or removed. This allows it to encapsulate common functions
-    // like registering a particular cell associated with the card, with the 
-    // collection view.
-    // Subclasses must use appendCard, resetCards, removeCard, 
-    // insertCardAtIndex, removeCardAtIndex to manage the data.
+    /**
+    Array for holding data cards. View controllers should access data via this array.
+    Each card represents a section and the content attribute of the card holds the row
+    data.
+    
+    This is readonly for everyone (clients and subclasses) because there 
+    is no way to do KVO on arrays but the superclass wants to know everytime a card is
+    added or removed. This allows it to encapsulate common functions
+    like registering a particular cell associated with the card, with the 
+    collection view.
+    
+    Subclasses must use appendCard, resetCards, removeCard, 
+    insertCardAtIndex, removeCardAtIndex to manage the data.
+    */
     private(set) var cards = [Card]()
+    
+    /**
+    Readonly flag indicating whether a header was registered with the collection view.
+    
+    This flag can be used by the layout or layout delegate objects to return appropriate sizes for supplementary views.
+    */
     private(set) var isHeaderRegistered = false
     private var registeredCellClasses = NSMutableSet()
     
-    func loadData() {
+    /**
+    This method should be called when the view controller is ready to request for data. This is typically
+    in viewWillAppear. The data source class is closely tied to the collection view, so it refreshes
+    the collection view on its own once it has the available data.
+
+    Each subclass must override this method. The default implementation does not do anything and it is not
+    expected to be called from the subclasses.
+    
+    :param: completionHandler Closure called when the data or status is available.
+    */
+    func loadData(completionHandler: (error: NSError?) -> Void) {
         fatalError("All subclasses need to override this")
     }
     
-    func registerCardHeader() {
-        collectionView!.registerNib(
+    /**
+    Registers the default card header supplementary view with the passed in collection view.
+    
+    :param: collectionView The collection view with which to register the supplementary view with.
+    */
+    func registerDefaultCardHeader(collectionView: UICollectionView) {
+        collectionView.registerNib(
             UINib(nibName: "CardHeaderCollectionReusableView", bundle: nil),
             forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
             withReuseIdentifier: CardHeaderCollectionReusableView.classReuseIdentifier
         )
         
+        registerCardHeader(collectionView)
+    }
+    
+    /**
+    Register supplementary views with the passed collection view. The default implementation simply sets the internal state.
+    This state can then be queried to determine whether to support headers or not from generic layout delegates.
+    
+    View controllers may choose to register supplementary views but then not actually display them by setting different
+    size attributes in the layout directly or via the layout delegate.
+    
+    Subclasses may override this method to register other custom headers and footers. If they do, the superclass 
+    implementation needs to be called as well.
+    
+    :param: collectionView The collection view with which to register the supplementary view with.
+    */
+    func registerCardHeader(collectionView: UICollectionView) {
         isHeaderRegistered = true
     }
     
     // MARK: - Collection View Data Source
     
-    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    final func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return cards.count
     }
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    final func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return cards[section].content.count
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    final func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let card = cards[indexPath.section]
+        registerReusableCell(collectionView, forCard: card)
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(
             card.contentClass.classReuseIdentifier,
             forIndexPath: indexPath
-            ) as CircleCollectionViewCell
+        ) as CircleCollectionViewCell
         
         cell.setData(card.content[indexPath.row])
         animate(cell, atIndexPath: indexPath)
@@ -65,7 +108,7 @@ class CardDataSource: NSObject, UICollectionViewDataSource {
             kind,
             withReuseIdentifier: CardHeaderCollectionReusableView.classReuseIdentifier,
             forIndexPath: indexPath
-            ) as CardHeaderCollectionReusableView
+        ) as CardHeaderCollectionReusableView
         
         animate(headerView, atIndexPath: indexPath)
         headerView.setCard(cards[indexPath.section])
@@ -113,7 +156,6 @@ class CardDataSource: NSObject, UICollectionViewDataSource {
     
     final func appendCard(card: Card) {
         cards.append(card)
-        registerReusableCellForCard(card)
     }
     
     final func removeCard(card: Card) {
@@ -124,7 +166,6 @@ class CardDataSource: NSObject, UICollectionViewDataSource {
     
     final func insertCard(card: Card, atIndex index: Int) {
         cards.insert(card, atIndex: index)
-        registerReusableCellForCard(card)
     }
     
     final func removeCardAtIndex(index: Int) {
@@ -137,7 +178,7 @@ class CardDataSource: NSObject, UICollectionViewDataSource {
     
     // MARK: - Cell Registration
     
-    private func registerReusableCellForCard(card: Card) {
+    private func registerReusableCell(collectionView: UICollectionView, forCard card: Card) {
         if !registeredCellClasses.containsObject(card.contentClassName) {
             collectionView.registerNib(
                 UINib(nibName: card.contentClassName, bundle: nil),
