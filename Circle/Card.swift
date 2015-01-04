@@ -23,6 +23,7 @@ class Card: Equatable {
     
     enum CardType: Int {
         case Birthdays = 1
+        case KeyValue
         case Locations
         case People
         case Tags
@@ -31,6 +32,9 @@ class Card: Equatable {
             switch type {
             case .Birthdays:
                 return "Cake"
+                
+            case .KeyValue:
+                return "Info"
 
             case .Locations:
                 return "MapPin"
@@ -47,6 +51,9 @@ class Card: Equatable {
             switch type {
             case .Birthdays:
                 return (PersonCollectionViewCell.self, "PersonCollectionViewCell")
+            
+            case .KeyValue:
+                return (KeyValueCollectionViewCell.self, "KeyValueCollectionViewCell")
 
             case .Locations:
                 return (LocationCollectionViewCell.self, "LocationCollectionViewCell")
