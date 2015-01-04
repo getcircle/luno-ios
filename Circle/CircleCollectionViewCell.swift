@@ -9,8 +9,8 @@
 import UIKit
 
 // Size calculation method
-enum SizeCalculation: Int {
-    case Fixed = 1
+enum SizeCalculation {
+    case Fixed
     case Dynamic
 }
 
