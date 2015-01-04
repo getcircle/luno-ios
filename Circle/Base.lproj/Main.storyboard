@@ -181,8 +181,8 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </collectionReusableView>
                                 <connections>
-                                    <outlet property="dataSource" destination="PMD-gG-9c6" id="Plw-37-4be"/>
-                                    <outlet property="delegate" destination="PMD-gG-9c6" id="BDq-8a-FxK"/>
+                                    <outlet property="dataSource" destination="BIg-EN-QpW" id="MEB-5U-ieT"/>
+                                    <outlet property="delegate" destination="YDr-At-X3C" id="1RA-Ek-QVT"/>
                                 </connections>
                             </collectionView>
                             <button alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9zy-By-0t8" userLabel="OverlayButton">
@@ -231,6 +231,12 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Vf-V8-GjI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="BIg-EN-QpW" customClass="SearchLandingDataSource" customModule="Circle" customModuleProvider="target">
+                    <connections>
+                        <outlet property="collectionView" destination="FpX-4G-cZW" id="bLd-wg-PYa"/>
+                    </connections>
+                </customObject>
+                <customObject id="YDr-At-X3C" customClass="CardCollectionViewDelegate" customModule="Circle" customModuleProvider="target"/>
             </objects>
             <point key="canvasLocation" x="1223" y="-1336"/>
         </scene>
