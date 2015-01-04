@@ -51,6 +51,7 @@ class SearchViewController: UIViewController, UICollectionViewDelegate, UITextFi
     private func configureCollectionView() {
         collectionView!.backgroundColor = UIColor.viewBackgroundColor()
         (collectionView.dataSource as SearchLandingDataSource).registerCardHeader()
+        (collectionView.delegate as CardCollectionViewDelegate?)?.delegate = self
     }
     
     private func configureOverlayButton() {
@@ -85,6 +86,13 @@ class SearchViewController: UIViewController, UICollectionViewDelegate, UITextFi
             profileVC.showCloseOrBackButton = true
             profileVC.person = loggedInPerson
         }
+    }
+    
+    
+    // MARK: - UICollectionViewDelegate
+    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        performSegueWithIdentifier("showListOfPeople", sender: collectionView)
     }
     
     // MARK: - IBActions

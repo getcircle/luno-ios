@@ -10,6 +10,7 @@ import Foundation
 
 class CardCollectionViewDelegate: NSObject, UICollectionViewDelegateFlowLayout {
 
+    weak var delegate: UICollectionViewDelegate?
     private var prototypeCellsHolder = [String: CircleCollectionViewCell]()
     
     // MARK: - Flow Layout Delegate
@@ -65,6 +66,12 @@ class CardCollectionViewDelegate: NSObject, UICollectionViewDelegateFlowLayout {
         }
 
         return CGSizeMake(collectionView.frameWidth, CardHeaderCollectionReusableView.height)
+    }
+    
+    // MARK: - UICollectionViewDelegate
+ 
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        delegate?.collectionView!(collectionView, didSelectItemAtIndexPath: indexPath)
     }
     
     // MARK: - Helpers
