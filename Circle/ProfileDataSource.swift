@@ -8,14 +8,9 @@
 
 import UIKit
 
-class ProfileDataSource: NSObject, UICollectionViewDataSource {
+class ProfileDataSource: CardDataSource {
 
-    var person: Person! {
-        didSet {
-            fillData()
-        }
-    }
-
+    var person: Person!
     enum CellType: String {
         case Email = "email"
         case CellPhone = "cell"
@@ -102,58 +97,44 @@ class ProfileDataSource: NSObject, UICollectionViewDataSource {
     
     private var dataSourceKeys = [AnyObject]()
     
-    convenience init(person: Person) {
-        self.init()
-        self.person = person
+    override func registerCardHeader(collectionView: UICollectionView) {
+        collectionView.registerNib(
+            UINib(nibName: "ProfileHeaderCollectionReusableView", bundle: nil),
+            forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
+            withReuseIdentifier: ProfileHeaderCollectionReusableView.classReuseIdentifier
+        )
+        
+        super.registerCardHeader(collectionView)
     }
-    
-    private func fillData() {
-        dataSourceKeys.removeAll()
+
+    override func loadData(completionHandler: (error: NSError?) -> Void) {
         for dataSet in [baseInfoKeySet, socialInfoKeySet, managerInfoKeySet] {
-            dataSourceKeys.append(dataSet.filter({ self.person.valueForKey($0) != nil }))
-        }
-        
-        // Remove any sets that did not have any elements with a non-nil value
-        dataSourceKeys = dataSourceKeys.filter({ $0.count != 0 })
-    }
-    
-    // MARK: - Collection view data source
-    
-    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        return dataSourceKeys.count
-    }
-    
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return dataSourceKeys[section].count
-    }
-    
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(
-            KeyValueCollectionViewCell.classReuseIdentifier,
-            forIndexPath: indexPath) as KeyValueCollectionViewCell
-        
-        if let key = dataSourceKeys[indexPath.section][indexPath.item] as? String {
-            if let value: AnyObject = person.valueForKey(key) {
-                cell.nameLabel.text = keyToTitle[key]
-                cell.valueLabel.text = value.description
-                
-                if let imageDict: [String: AnyObject] = keyToImageDictionary[key] {
-                    cell.nameImageView.alpha = 1.0
-                    cell.valueLabelTrailingSpaceConstraint.constant = 60.0
-                    cell.nameImageView.image = UIImage(named: (imageDict["image"] as String!))?.imageWithRenderingMode(.AlwaysTemplate)
-                    cell.nameImageView.tintColor = imageDict["tintColor"] as UIColor!
+            var keyValueCard = Card(cardType: .KeyValue, title: "Info")
+            for key in dataSet {
+                if let value: AnyObject = self.person.valueForKey(key) {
+                    var dataDict: [String: AnyObject!] = [
+                        "key": keyToTitle[key],
+                        "value": value.description
+                    ]
+                    
+                    if let imageDict: [String: AnyObject] = keyToImageDictionary[key] {
+                        dataDict["image"] = imageDict["image"] as String!
+                        dataDict["imageTintColor"] = imageDict["tintColor"] as UIColor!
+                    }
+                    
+                    keyValueCard.content.append(dataDict)
                 }
-                else {
-                    cell.nameImageView.alpha = 0.0
-                    cell.valueLabelTrailingSpaceConstraint.constant = 15.0
-                }
+            }
+            
+            if keyValueCard.content.count > 0 {
+                appendCard(keyValueCard)
             }
         }
         
-        return cell
+        completionHandler(error: nil)
     }
-    
-    func collectionView(collectionView: UICollectionView,
+
+    override func collectionView(collectionView: UICollectionView,
         viewForSupplementaryElementOfKind kind: String,
         atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
 

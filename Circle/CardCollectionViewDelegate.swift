@@ -8,7 +8,7 @@
 
 import Foundation
 
-class CardCollectionViewDelegate: NSObject, UICollectionViewDelegateFlowLayout {
+class CardCollectionViewDelegate: NSObject, UICollectionViewDelegateFlowLayout, UIScrollViewDelegate {
 
     weak var delegate: UICollectionViewDelegate?
     private var prototypeCellsHolder = [String: CircleCollectionViewCell]()
@@ -71,7 +71,13 @@ class CardCollectionViewDelegate: NSObject, UICollectionViewDelegateFlowLayout {
     // MARK: - UICollectionViewDelegate
  
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        delegate?.collectionView!(collectionView, didSelectItemAtIndexPath: indexPath)
+        delegate?.collectionView?(collectionView, didSelectItemAtIndexPath: indexPath)
+    }
+    
+    // MARK: - ScrollViewDelegate
+    
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        delegate?.scrollViewDidScroll?(scrollView)
     }
     
     // MARK: - Helpers

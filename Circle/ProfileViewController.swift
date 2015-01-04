@@ -9,7 +9,7 @@
 import MessageUI
 import UIKit
 
-class ProfileViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, MFMailComposeViewControllerDelegate, UIViewControllerTransitioningDelegate {
+class ProfileViewController: UICollectionViewController, UICollectionViewDelegate, MFMailComposeViewControllerDelegate {
 
     var person: Person! {
         didSet {
@@ -17,17 +17,13 @@ class ProfileViewController: UICollectionViewController, UICollectionViewDelegat
             // Fetch and cache it in case user decides to go one step further in the chain
             person.manager?.fetchInBackgroundWithBlock { (managerObject, error: NSError!) -> Void in
                 self.person.setObject(managerObject, forKey: "manager")
-                self.collectionView!.reloadData()
+//                 self.collectionView?.reloadData()
             }
-            
-            dataSource.person = person
-            collectionView!.reloadData()
         }
     }
 
     
     var animationSourceRect: CGRect?
-    private var dataSource = ProfileDataSource()
     var showLogOutButton: Bool? {
         didSet {
             addLogOutButton()
@@ -42,6 +38,11 @@ class ProfileViewController: UICollectionViewController, UICollectionViewDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCollectionView()
+        var dataSource = collectionView!.dataSource as ProfileDataSource
+        dataSource.person = person
+        dataSource.loadData { (error) -> Void in
+            self.collectionView!.reloadData()
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -120,24 +121,14 @@ class ProfileViewController: UICollectionViewController, UICollectionViewDelegat
     
     private func configureCollectionView() {
         collectionView!.backgroundColor = UIColor.viewBackgroundColor()
-        collectionView!.registerNib(
-            UINib(nibName: "KeyValueCollectionViewCell", bundle: nil),
-            forCellWithReuseIdentifier: KeyValueCollectionViewCell.classReuseIdentifier
-        )
-
-        collectionView!.registerNib(
-            UINib(nibName: "ProfileHeaderCollectionReusableView", bundle: nil),
-            forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
-            withReuseIdentifier: ProfileHeaderCollectionReusableView.classReuseIdentifier
-        )
-
-        collectionView!.dataSource = dataSource
+        (collectionView!.dataSource as ProfileDataSource).registerCardHeader(collectionView!)
+        (collectionView!.delegate as ProfileCollectionViewDelegate).delegate = self
     }
     
     // MARK: Collection View delegate
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        switch dataSource.typeOfCell(indexPath) {
+        switch (collectionView.dataSource as ProfileDataSource).typeOfCell(indexPath) {
         case .Manager:
             let profileVC = storyboard?.instantiateViewControllerWithIdentifier("ProfileViewController") as ProfileViewController
             profileVC.person = person.manager
@@ -152,24 +143,12 @@ class ProfileViewController: UICollectionViewController, UICollectionViewDelegat
         
         collectionView.deselectItemAtIndexPath(indexPath, animated: true)
     }
-    
-    // MARK: - Layout delegate
-    
-    // This has to be implemented as a delegate method because the layout can only
-    // set it for all headers
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        if section == 0 {
-            return CGSizeMake(collectionView.frame.size.width, ProfileCollectionViewLayout.profileHeaderHeight)
-        }
-        
-        return CGSizeZero
-    }
-    
+
     // MARK: - Scroll view delegate
     
     override func scrollViewDidScroll(scrollView: UIScrollView) {
         
-        if let profileHeaderView = dataSource.profileHeaderView {
+        if let profileHeaderView = (collectionView!.dataSource as ProfileDataSource).profileHeaderView {
             let contentOffset = scrollView.contentOffset
             let minOffsetToMakeChanges: CGFloat = 20.0
             
@@ -215,16 +194,6 @@ class ProfileViewController: UICollectionViewController, UICollectionViewDelegat
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
         collectionViewLayout.invalidateLayout()
-    }
-    
-    // MARK: - Transitioning Delegate
-    
-    func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return ProfileViewAnimator()
-    }
-    
-    func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return ProfileViewAnimator()
     }
 }
 

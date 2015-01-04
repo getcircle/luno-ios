@@ -25,13 +25,16 @@
                             </collectionViewCell>
                         </cells>
                         <connections>
-                            <outlet property="delegate" destination="ofx-aS-lg0" id="Cqc-oc-PjA"/>
+                            <outlet property="dataSource" destination="rWv-sk-FlT" id="MM4-Sb-FQP"/>
+                            <outlet property="delegate" destination="Whi-sw-FhG" id="vmX-IX-IuB"/>
                         </connections>
                     </collectionView>
                     <extendedEdge key="edgesForExtendedLayout" top="YES"/>
                     <navigationItem key="navigationItem" id="BAe-1F-mQe"/>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xls-Qj-HOy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="rWv-sk-FlT" customClass="ProfileDataSource" customModule="Circle" customModuleProvider="target"/>
+                <customObject id="Whi-sw-FhG" customClass="ProfileCollectionViewDelegate" customModule="Circle" customModuleProvider="target"/>
             </objects>
             <point key="canvasLocation" x="2656" y="-2076"/>
         </scene>
@@ -231,11 +234,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Vf-V8-GjI" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <customObject id="BIg-EN-QpW" customClass="SearchLandingDataSource" customModule="Circle" customModuleProvider="target">
-                    <connections>
-                        <outlet property="collectionView" destination="FpX-4G-cZW" id="bLd-wg-PYa"/>
-                    </connections>
-                </customObject>
+                <customObject id="BIg-EN-QpW" customClass="SearchLandingDataSource" customModule="Circle" customModuleProvider="target"/>
                 <customObject id="YDr-At-X3C" customClass="CardCollectionViewDelegate" customModule="Circle" customModuleProvider="target"/>
             </objects>
             <point key="canvasLocation" x="1223" y="-1336"/>

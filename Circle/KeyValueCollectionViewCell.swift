@@ -19,11 +19,33 @@ class KeyValueCollectionViewCell: CircleCollectionViewCell {
         return "KeyValueCell"
     }
     
+    override class var sectionInset: UIEdgeInsets {
+        return UIEdgeInsetsMake(0.0, 0.0, 25.0, 0.0)
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
         // Collection view does some trickery and removes constraints from
         // background views. So, we have to add it again in code
         selectedBackgroundView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
+    }
+
+    override func setData(data: AnyObject) {
+        if let keyValueDictionary = data as? [String: AnyObject] {
+            nameLabel.text = keyValueDictionary["key"] as String!
+            valueLabel.text = keyValueDictionary["value"] as String!
+            
+            if let imageSource = keyValueDictionary["image"] as String? {
+                nameImageView.alpha = 1.0
+                valueLabelTrailingSpaceConstraint.constant = 60.0
+                nameImageView.image = UIImage(named: imageSource)?.imageWithRenderingMode(.AlwaysTemplate)
+                nameImageView.tintColor = keyValueDictionary["imageTintColor"] as UIColor!
+            }
+            else {
+                nameImageView.alpha = 0.0
+                valueLabelTrailingSpaceConstraint.constant = 15.0
+            }
+        }
     }
 }
