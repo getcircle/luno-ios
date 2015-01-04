@@ -8,7 +8,11 @@
 
 import Foundation
 
-class Card {
+func ==(lhs: Card, rhs: Card) -> Bool {
+    return ObjectIdentifier(lhs) == ObjectIdentifier(rhs)
+}
+
+class Card: Equatable {
     var content: [AnyObject]
     var contentCount: Int
     private(set) var contentClass: CircleCollectionViewCell.Type
