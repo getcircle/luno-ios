@@ -94,9 +94,7 @@ class ProfileDataSource: CardDataSource {
             "tintColor": UIColor.phoneTintColor(),
         ],
     ]
-    
-    private var dataSourceKeys = [AnyObject]()
-    
+
     override func registerCardHeader(collectionView: UICollectionView) {
         collectionView.registerNib(
             UINib(nibName: "ProfileHeaderCollectionReusableView", bundle: nil),
@@ -113,7 +111,8 @@ class ProfileDataSource: CardDataSource {
             for key in dataSet {
                 if let value: AnyObject = self.person.valueForKey(key) {
                     var dataDict: [String: AnyObject!] = [
-                        "key": keyToTitle[key],
+                        "key": key,
+                        "name": keyToTitle[key],
                         "value": value.description
                     ]
                     
@@ -153,8 +152,9 @@ class ProfileDataSource: CardDataSource {
     }
     
     func typeOfCell(indexPath: NSIndexPath) -> CellType {
-        if let key = dataSourceKeys[indexPath.section][indexPath.item] as? String {
-            return CellType.typeByKey(key)
+        let card = cards[indexPath.section]
+        if let rowDataDictionary = card.content[indexPath.row] as? [String: AnyObject] {
+           return CellType.typeByKey(rowDataDictionary["key"] as String!)
         }
         
         return .Other

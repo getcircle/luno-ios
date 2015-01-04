@@ -33,7 +33,7 @@ class KeyValueCollectionViewCell: CircleCollectionViewCell {
 
     override func setData(data: AnyObject) {
         if let keyValueDictionary = data as? [String: AnyObject] {
-            nameLabel.text = keyValueDictionary["key"] as String!
+            nameLabel.text = keyValueDictionary["name"] as String!
             valueLabel.text = keyValueDictionary["value"] as String!
             
             if let imageSource = keyValueDictionary["image"] as String? {
