@@ -217,9 +217,6 @@
                     <navigationItem key="navigationItem" title="Circle" id="wys-4b-D4W">
                         <barButtonItem key="leftBarButtonItem" image="Profile" id="9ua-BY-eSp">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <connections>
-                                <segue destination="0uJ-q7-vZu" kind="presentation" identifier="showUserProfile" id="BUJ-5Q-uNX"/>
-                            </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Tags" id="88B-MV-YYm">
                             <connections>
@@ -231,6 +228,7 @@
                         <outlet property="collectionView" destination="FpX-4G-cZW" id="47Q-HQ-Uri"/>
                         <outlet property="overlayButton" destination="9zy-By-0t8" id="C1t-gz-YCf"/>
                         <outlet property="searchHeaderContainerView" destination="5kQ-sW-5v8" id="IPE-OO-odc"/>
+                        <segue destination="0uJ-q7-vZu" kind="presentation" identifier="showUserProfile" id="vby-rD-Koc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Vf-V8-GjI" userLabel="First Responder" sceneMemberID="firstResponder"/>
