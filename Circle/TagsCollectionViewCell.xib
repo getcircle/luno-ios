@@ -6,14 +6,23 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="TagsCollectionViewCell" customModule="Circle" customModuleProvider="target">
+        <collectionViewCell clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="TagsCollectionViewCell" customModule="Circle" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="532" height="261"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="532" height="261"/>
                 <subviews>
-                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="2ta-6e-z11">
-                        <rect key="frame" x="0.0" y="0.0" width="532" height="261"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tags" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5G2-L7-mjS">
+                        <rect key="frame" x="15" y="10" width="32" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="asw-Qr-uQR"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="15"/>
+                        <color key="textColor" red="0.14901960784313725" green="0.14901960784313725" blue="0.14901960784313725" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="2ta-6e-z11">
+                        <rect key="frame" x="0.0" y="31" width="532" height="230"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="gIt-KX-9j4">
                             <size key="itemSize" width="50" height="50"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -28,15 +37,20 @@
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="2ta-6e-z11" secondAttribute="trailing" id="Dhr-Ub-LNm"/>
-                <constraint firstItem="2ta-6e-z11" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="FMm-hs-L6a"/>
+                <constraint firstItem="2ta-6e-z11" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="31" id="FMm-hs-L6a"/>
                 <constraint firstAttribute="bottom" secondItem="2ta-6e-z11" secondAttribute="bottom" id="Shk-fr-elj"/>
+                <constraint firstItem="5G2-L7-mjS" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="g0e-J8-daQ"/>
+                <constraint firstItem="5G2-L7-mjS" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="15" id="hlI-f4-pVs"/>
                 <constraint firstItem="2ta-6e-z11" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="ySg-ur-Zjl"/>
             </constraints>
             <size key="customSize" width="532" height="261"/>
             <connections>
                 <outlet property="collectionView" destination="2ta-6e-z11" id="2Pf-py-CPT"/>
+                <outlet property="collectionViewTopSpaceConstraint" destination="FMm-hs-L6a" id="UVv-kE-Z2o"/>
+                <outlet property="tagsLabel" destination="5G2-L7-mjS" id="aTB-0b-QTW"/>
             </connections>
             <point key="canvasLocation" x="205" y="16.5"/>
         </collectionViewCell>

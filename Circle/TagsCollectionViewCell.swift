@@ -18,15 +18,35 @@ class TagsCollectionViewCell: CircleCollectionViewCell, UICollectionViewDataSour
         return 90.0
     }
     
+    override class var sizeCalculationMethod: SizeCalculation {
+        return .Dynamic
+    }
+
     @IBOutlet weak private(set) var collectionView: UICollectionView!
+    @IBOutlet weak private var collectionViewTopSpaceConstraint: NSLayoutConstraint!
+    @IBOutlet weak private var tagsLabel: UILabel!
+    
+    var prototypeCell: TagCollectionViewCell!
+    var showTagsLabel: Bool = false {
+        didSet {
+            if showTagsLabel {
+                tagsLabel.hidden = false
+                collectionViewTopSpaceConstraint.constant = 31.0
+            }
+            else {
+                tagsLabel.hidden = true
+                collectionViewTopSpaceConstraint.constant = 0.0
+            }
+        }
+    }
     
     private var tags = [[String: String]]()
-    var prototypeCell: TagCollectionViewCell!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
         // Initialization code
+        showTagsLabel = false
         configureCollectionView()
         configurePrototypeCell()
     }
@@ -100,5 +120,13 @@ class TagsCollectionViewCell: CircleCollectionViewCell, UICollectionViewDataSour
             tags = arrayOfTagsDictionary
             collectionView.reloadData()
         }
+    }
+    
+    // MARK: - Sizing
+    
+    override func intrinsicContentSize() -> CGSize {
+        let collectionViewLayout = collectionView.collectionViewLayout as UICollectionViewFlowLayout
+        let height = collectionViewLayout.collectionViewContentSize().height + collectionViewTopSpaceConstraint.constant
+        return CGSizeMake(CircleCollectionViewCell.width, height)
     }
 }

@@ -156,6 +156,16 @@ class ProfileDataSource: CardDataSource {
         
         completionHandler(error: nil)
     }
+    
+    // MARK: - Cell Configuration
+    
+    override func configureCell(cell: CircleCollectionViewCell, atIndexPath indexPath: NSIndexPath) {
+        if cell is TagsCollectionViewCell {
+            (cell as TagsCollectionViewCell).showTagsLabel = true
+        }
+    }
+    
+    // MARK: - UICollectionViewDataSource
 
     override func collectionView(collectionView: UICollectionView,
         viewForSupplementaryElementOfKind kind: String,
@@ -174,6 +184,8 @@ class ProfileDataSource: CardDataSource {
             profileHeaderView = supplementaryView
             return supplementaryView
     }
+    
+    // MARK: - Cell Type
     
     func typeOfCell(indexPath: NSIndexPath) -> CellType {
         let card = cards[indexPath.section]
