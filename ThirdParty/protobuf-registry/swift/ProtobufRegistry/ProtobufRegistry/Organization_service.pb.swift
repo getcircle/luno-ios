@@ -110,6 +110,15 @@ final public class OrganizationService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Organization : GeneratedMessage {
+          public subscript(key: String) -> Any? {
+                 switch key {
+                 case "id": return id
+                 case "name": return name
+                 case "domain": return domain
+                 default: return nil
+                 }
+          }
+
           public private(set) var hasId:Bool = false
           public private(set) var id:String = ""
 
@@ -380,6 +389,16 @@ final public class OrganizationService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Team : GeneratedMessage {
+          public subscript(key: String) -> Any? {
+                 switch key {
+                 case "id": return id
+                 case "name": return name
+                 case "owner_id": return owner_id
+                 case "organization_id": return organization_id
+                 default: return nil
+                 }
+          }
+
           public private(set) var hasId:Bool = false
           public private(set) var id:String = ""
 
@@ -728,6 +747,21 @@ final public class OrganizationService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Address : GeneratedMessage {
+          public subscript(key: String) -> Any? {
+                 switch key {
+                 case "id": return id
+                 case "organization_id": return organization_id
+                 case "name": return name
+                 case "address_1": return address_1
+                 case "address_2": return address_2
+                 case "city": return city
+                 case "region": return region
+                 case "postal_code": return postal_code
+                 case "country_code": return country_code
+                 default: return nil
+                 }
+          }
+
           public private(set) var hasId:Bool = false
           public private(set) var id:String = ""
 
@@ -1233,6 +1267,12 @@ final public class OrganizationService : GeneratedMessage {
 
       //Nested type declaration end
 
+      public subscript(key: String) -> Any? {
+             switch key {
+             default: return nil
+             }
+      }
+
       required public init() {
            super.init()
       }
@@ -1388,6 +1428,13 @@ final public class OrganizationService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Request : GeneratedMessage {
+          public subscript(key: String) -> Any? {
+                 switch key {
+                 case "organization": return organization
+                 default: return nil
+                 }
+          }
+
           public private(set) var hasOrganization:Bool = false
           public private(set) var organization:OrganizationService.Containers.Organization = OrganizationService.Containers.Organization()
           required public init() {
@@ -1597,6 +1644,13 @@ final public class OrganizationService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Response : GeneratedMessage {
+          public subscript(key: String) -> Any? {
+                 switch key {
+                 case "organization": return organization
+                 default: return nil
+                 }
+          }
+
           public private(set) var hasOrganization:Bool = false
           public private(set) var organization:OrganizationService.Containers.Organization = OrganizationService.Containers.Organization()
           required public init() {
@@ -1801,6 +1855,12 @@ final public class OrganizationService : GeneratedMessage {
 
       //Nested type declaration end
 
+      public subscript(key: String) -> Any? {
+             switch key {
+             default: return nil
+             }
+      }
+
       required public init() {
            super.init()
       }
@@ -1998,6 +2058,14 @@ final public class OrganizationService : GeneratedMessage {
           //OneOf declaration end
 
           private var storageLookupKey:OrganizationService.GetOrganization.Request.LookupKey =  OrganizationService.GetOrganization.Request.LookupKey.LookupKeyOneOfNotSet
+          public subscript(key: String) -> Any? {
+                 switch key {
+                 case "organization_id": return organization_id
+                 case "organization_domain": return organization_domain
+                 default: return nil
+                 }
+          }
+
           public private(set) var hasOrganizationId:Bool {
                 get {
                      if OrganizationService.GetOrganization.Request.LookupKey.getOrganizationId(storageLookupKey) == nil {
@@ -2258,6 +2326,13 @@ final public class OrganizationService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Response : GeneratedMessage {
+          public subscript(key: String) -> Any? {
+                 switch key {
+                 case "organization": return organization
+                 default: return nil
+                 }
+          }
+
           public private(set) var hasOrganization:Bool = false
           public private(set) var organization:OrganizationService.Containers.Organization = OrganizationService.Containers.Organization()
           required public init() {
@@ -2462,6 +2537,12 @@ final public class OrganizationService : GeneratedMessage {
 
       //Nested type declaration end
 
+      public subscript(key: String) -> Any? {
+             switch key {
+             default: return nil
+             }
+      }
+
       required public init() {
            super.init()
       }
@@ -2617,6 +2698,14 @@ final public class OrganizationService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Request : GeneratedMessage {
+          public subscript(key: String) -> Any? {
+                 switch key {
+                 case "team": return team
+                 case "child_of": return child_of
+                 default: return nil
+                 }
+          }
+
           public private(set) var hasTeam:Bool = false
           public private(set) var team:OrganizationService.Containers.Team = OrganizationService.Containers.Team()
           public private(set) var hasChildOf:Bool = false
@@ -2866,6 +2955,13 @@ final public class OrganizationService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Response : GeneratedMessage {
+          public subscript(key: String) -> Any? {
+                 switch key {
+                 case "team": return team
+                 default: return nil
+                 }
+          }
+
           public private(set) var hasTeam:Bool = false
           public private(set) var team:OrganizationService.Containers.Team = OrganizationService.Containers.Team()
           required public init() {
@@ -3070,6 +3166,12 @@ final public class OrganizationService : GeneratedMessage {
 
       //Nested type declaration end
 
+      public subscript(key: String) -> Any? {
+             switch key {
+             default: return nil
+             }
+      }
+
       required public init() {
            super.init()
       }
@@ -3225,6 +3327,13 @@ final public class OrganizationService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Request : GeneratedMessage {
+          public subscript(key: String) -> Any? {
+                 switch key {
+                 case "team_id": return team_id
+                 default: return nil
+                 }
+          }
+
           public private(set) var hasTeamId:Bool = false
           public private(set) var team_id:String = ""
 
@@ -3415,6 +3524,13 @@ final public class OrganizationService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Response : GeneratedMessage {
+          public subscript(key: String) -> Any? {
+                 switch key {
+                 case "team": return team
+                 default: return nil
+                 }
+          }
+
           public private(set) var hasTeam:Bool = false
           public private(set) var team:OrganizationService.Containers.Team = OrganizationService.Containers.Team()
           required public init() {
@@ -3619,6 +3735,12 @@ final public class OrganizationService : GeneratedMessage {
 
       //Nested type declaration end
 
+      public subscript(key: String) -> Any? {
+             switch key {
+             default: return nil
+             }
+      }
+
       required public init() {
            super.init()
       }
@@ -3774,6 +3896,13 @@ final public class OrganizationService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Request : GeneratedMessage {
+          public subscript(key: String) -> Any? {
+                 switch key {
+                 case "organization_id": return organization_id
+                 default: return nil
+                 }
+          }
+
           public private(set) var hasOrganizationId:Bool = false
           public private(set) var organization_id:String = ""
 
@@ -3964,6 +4093,12 @@ final public class OrganizationService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Response : GeneratedMessage {
+          public subscript(key: String) -> Any? {
+                 switch key {
+                 default: return nil
+                 }
+          }
+
           public private(set) var teams:Array<OrganizationService.Containers.Team>  = Array<OrganizationService.Containers.Team>()
           required public init() {
                super.init()
@@ -4146,6 +4281,12 @@ final public class OrganizationService : GeneratedMessage {
 
       //Nested type declaration end
 
+      public subscript(key: String) -> Any? {
+             switch key {
+             default: return nil
+             }
+      }
+
       required public init() {
            super.init()
       }
@@ -4301,6 +4442,13 @@ final public class OrganizationService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Request : GeneratedMessage {
+          public subscript(key: String) -> Any? {
+                 switch key {
+                 case "address": return address
+                 default: return nil
+                 }
+          }
+
           public private(set) var hasAddress:Bool = false
           public private(set) var address:OrganizationService.Containers.Address = OrganizationService.Containers.Address()
           required public init() {
@@ -4510,6 +4658,13 @@ final public class OrganizationService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Response : GeneratedMessage {
+          public subscript(key: String) -> Any? {
+                 switch key {
+                 case "address": return address
+                 default: return nil
+                 }
+          }
+
           public private(set) var hasAddress:Bool = false
           public private(set) var address:OrganizationService.Containers.Address = OrganizationService.Containers.Address()
           required public init() {
@@ -4714,6 +4869,12 @@ final public class OrganizationService : GeneratedMessage {
 
       //Nested type declaration end
 
+      public subscript(key: String) -> Any? {
+             switch key {
+             default: return nil
+             }
+      }
+
       required public init() {
            super.init()
       }
@@ -4869,6 +5030,13 @@ final public class OrganizationService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Request : GeneratedMessage {
+          public subscript(key: String) -> Any? {
+                 switch key {
+                 case "address_id": return address_id
+                 default: return nil
+                 }
+          }
+
           public private(set) var hasAddressId:Bool = false
           public private(set) var address_id:String = ""
 
@@ -5059,6 +5227,12 @@ final public class OrganizationService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Response : GeneratedMessage {
+          public subscript(key: String) -> Any? {
+                 switch key {
+                 default: return nil
+                 }
+          }
+
           required public init() {
                super.init()
           }
@@ -5203,6 +5377,12 @@ final public class OrganizationService : GeneratedMessage {
 
 
       //Nested type declaration end
+
+      public subscript(key: String) -> Any? {
+             switch key {
+             default: return nil
+             }
+      }
 
       required public init() {
            super.init()
@@ -5359,6 +5539,13 @@ final public class OrganizationService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Request : GeneratedMessage {
+          public subscript(key: String) -> Any? {
+                 switch key {
+                 case "address_id": return address_id
+                 default: return nil
+                 }
+          }
+
           public private(set) var hasAddressId:Bool = false
           public private(set) var address_id:String = ""
 
@@ -5549,6 +5736,13 @@ final public class OrganizationService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Response : GeneratedMessage {
+          public subscript(key: String) -> Any? {
+                 switch key {
+                 case "address": return address
+                 default: return nil
+                 }
+          }
+
           public private(set) var hasAddress:Bool = false
           public private(set) var address:OrganizationService.Containers.Address = OrganizationService.Containers.Address()
           required public init() {
@@ -5753,6 +5947,12 @@ final public class OrganizationService : GeneratedMessage {
 
       //Nested type declaration end
 
+      public subscript(key: String) -> Any? {
+             switch key {
+             default: return nil
+             }
+      }
+
       required public init() {
            super.init()
       }
@@ -5897,6 +6097,12 @@ final public class OrganizationService : GeneratedMessage {
 
 
   //Nested type declaration end
+
+  public subscript(key: String) -> Any? {
+         switch key {
+         default: return nil
+         }
+  }
 
   required public init() {
        super.init()

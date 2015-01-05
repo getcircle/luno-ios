@@ -70,6 +70,16 @@ final public class UserService : GeneratedMessage {
       //Nested type declaration start
 
         final public class User : GeneratedMessage {
+          public subscript(key: String) -> Any? {
+                 switch key {
+                 case "id": return id
+                 case "primary_email": return primary_email
+                 case "is_admin": return is_admin
+                 case "is_active": return is_active
+                 default: return nil
+                 }
+          }
+
           public private(set) var hasId:Bool = false
           public private(set) var id:String = ""
 
@@ -375,6 +385,12 @@ final public class UserService : GeneratedMessage {
 
       //Nested type declaration end
 
+      public subscript(key: String) -> Any? {
+             switch key {
+             default: return nil
+             }
+      }
+
       required public init() {
            super.init()
       }
@@ -530,6 +546,14 @@ final public class UserService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Request : GeneratedMessage {
+          public subscript(key: String) -> Any? {
+                 switch key {
+                 case "password": return password
+                 case "email": return email
+                 default: return nil
+                 }
+          }
+
           public private(set) var hasPassword:Bool = false
           public private(set) var password:String = ""
 
@@ -760,6 +784,13 @@ final public class UserService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Response : GeneratedMessage {
+          public subscript(key: String) -> Any? {
+                 switch key {
+                 case "user": return user
+                 default: return nil
+                 }
+          }
+
           public private(set) var hasUser:Bool = false
           public private(set) var user:UserService.Containers.User = UserService.Containers.User()
           required public init() {
@@ -964,6 +995,12 @@ final public class UserService : GeneratedMessage {
 
       //Nested type declaration end
 
+      public subscript(key: String) -> Any? {
+             switch key {
+             default: return nil
+             }
+      }
+
       required public init() {
            super.init()
       }
@@ -1119,6 +1156,13 @@ final public class UserService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Request : GeneratedMessage {
+          public subscript(key: String) -> Any? {
+                 switch key {
+                 case "user_id": return user_id
+                 default: return nil
+                 }
+          }
+
           public private(set) var hasUserId:Bool = false
           public private(set) var user_id:String = ""
 
@@ -1309,6 +1353,13 @@ final public class UserService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Response : GeneratedMessage {
+          public subscript(key: String) -> Any? {
+                 switch key {
+                 case "exists": return exists
+                 default: return nil
+                 }
+          }
+
           public private(set) var hasExists:Bool = false
           public private(set) var exists:Bool = false
 
@@ -1494,6 +1545,12 @@ final public class UserService : GeneratedMessage {
 
       //Nested type declaration end
 
+      public subscript(key: String) -> Any? {
+             switch key {
+             default: return nil
+             }
+      }
+
       required public init() {
            super.init()
       }
@@ -1654,6 +1711,14 @@ final public class UserService : GeneratedMessage {
           //Nested type declaration start
 
             final public class Credentials : GeneratedMessage {
+              public subscript(key: String) -> Any? {
+                     switch key {
+                     case "key": return key
+                     case "secret": return secret
+                     default: return nil
+                     }
+              }
+
               public private(set) var hasKey:Bool = false
               public private(set) var key:String = ""
 
@@ -1897,6 +1962,14 @@ final public class UserService : GeneratedMessage {
 
 
             //Enum type declaration end 
+
+          public subscript(key: String) -> Any? {
+                 switch key {
+                 case "backend": return self.backend
+                 case "credentials": return credentials
+                 default: return nil
+                 }
+          }
 
           public private(set) var backend:UserService.AuthenticateUser.Request.AuthBackend = UserService.AuthenticateUser.Request.AuthBackend.Internal
           public private(set) var hasBackend:Bool = false
@@ -2151,6 +2224,15 @@ final public class UserService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Response : GeneratedMessage {
+          public subscript(key: String) -> Any? {
+                 switch key {
+                 case "user": return user
+                 case "authenticated": return authenticated
+                 case "token": return token
+                 default: return nil
+                 }
+          }
+
           public private(set) var hasUser:Bool = false
           public private(set) var user:UserService.Containers.User = UserService.Containers.User()
           public private(set) var hasAuthenticated:Bool = false
@@ -2435,6 +2517,12 @@ final public class UserService : GeneratedMessage {
 
       //Nested type declaration end
 
+      public subscript(key: String) -> Any? {
+             switch key {
+             default: return nil
+             }
+      }
+
       required public init() {
            super.init()
       }
@@ -2579,6 +2667,12 @@ final public class UserService : GeneratedMessage {
 
 
   //Nested type declaration end
+
+  public subscript(key: String) -> Any? {
+         switch key {
+         default: return nil
+         }
+  }
 
   required public init() {
        super.init()

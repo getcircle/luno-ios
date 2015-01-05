@@ -112,6 +112,14 @@ public func == (lhs: ServiceResponse, rhs: ServiceResponse) -> Bool {
 }
 
 final public class Control : GeneratedMessage {
+  public subscript(key: String) -> Any? {
+         switch key {
+         case "token": return token
+         case "service": return service
+         default: return nil
+         }
+  }
+
   public private(set) var hasToken:Bool = false
   public private(set) var token:String = ""
 
@@ -337,6 +345,14 @@ final public class ControlBuilder : GeneratedMessageBuilder {
 }
 
 final public class ActionControl : GeneratedMessage {
+  public subscript(key: String) -> Any? {
+         switch key {
+         case "service": return service
+         case "action": return action
+         default: return nil
+         }
+  }
+
   public private(set) var hasService:Bool = false
   public private(set) var service:String = ""
 
@@ -565,6 +581,14 @@ final public class ActionControlBuilder : GeneratedMessageBuilder {
 }
 
 final public class ActionRequest : GeneratedMessage {
+  public subscript(key: String) -> Any? {
+         switch key {
+         case "control": return control
+         case "params": return params
+         default: return nil
+         }
+  }
+
   public private(set) var hasControl:Bool = false
   public private(set) var control:ActionControl = ActionControl()
   public private(set) var hasParams:Bool = false
@@ -836,6 +860,12 @@ final public class ActionRequestBuilder : GeneratedMessageBuilder {
 }
 
 final public class ActionRequestParams : ExtendableMessage {
+  public subscript(key: String) -> Any? {
+         switch key {
+         default: return nil
+         }
+  }
+
   required public init() {
        super.init()
   }
@@ -991,6 +1021,15 @@ final public class ActionResponseResult : ExtendableMessage {
   //Nested type declaration start
 
     final public class ErrorDetail : GeneratedMessage {
+      public subscript(key: String) -> Any? {
+             switch key {
+             case "error": return error
+             case "key": return key
+             case "detail": return detail
+             default: return nil
+             }
+      }
+
       public private(set) var hasError:Bool = false
       public private(set) var error:String = ""
 
@@ -1255,6 +1294,13 @@ final public class ActionResponseResult : ExtendableMessage {
 
 
   //Nested type declaration end
+
+  public subscript(key: String) -> Any? {
+         switch key {
+         case "success": return success
+         default: return nil
+         }
+  }
 
   public private(set) var hasSuccess:Bool = false
   public private(set) var success:Bool = false
@@ -1521,6 +1567,14 @@ final public class ActionResponseResultBuilder : ExtendableMessageBuilder {
 }
 
 final public class ActionResponse : GeneratedMessage {
+  public subscript(key: String) -> Any? {
+         switch key {
+         case "control": return control
+         case "result": return result
+         default: return nil
+         }
+  }
+
   public private(set) var hasControl:Bool = false
   public private(set) var control:ActionControl = ActionControl()
   public private(set) var hasResult:Bool = false
@@ -1792,6 +1846,13 @@ final public class ActionResponseBuilder : GeneratedMessageBuilder {
 }
 
 final public class ServiceRequest : GeneratedMessage {
+  public subscript(key: String) -> Any? {
+         switch key {
+         case "control": return control
+         default: return nil
+         }
+  }
+
   public private(set) var hasControl:Bool = false
   public private(set) var control:Control = Control()
   public private(set) var actions:Array<ActionRequest>  = Array<ActionRequest>()
@@ -2046,6 +2107,13 @@ final public class ServiceRequestBuilder : GeneratedMessageBuilder {
 }
 
 final public class ServiceResponse : GeneratedMessage {
+  public subscript(key: String) -> Any? {
+         switch key {
+         case "control": return control
+         default: return nil
+         }
+  }
+
   public private(set) var hasControl:Bool = false
   public private(set) var control:Control = Control()
   public private(set) var actions:Array<ActionResponse>  = Array<ActionResponse>()

@@ -112,6 +112,25 @@ final public class ProfileService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Profile : GeneratedMessage {
+          public subscript(key: String) -> Any? {
+                 switch key {
+                 case "id": return id
+                 case "organization_id": return organization_id
+                 case "user_id": return user_id
+                 case "address_id": return address_id
+                 case "title": return title
+                 case "first_name": return first_name
+                 case "last_name": return last_name
+                 case "cell_phone": return cell_phone
+                 case "work_phone": return work_phone
+                 case "image_url": return image_url
+                 case "location": return location
+                 case "email": return email
+                 case "team_id": return team_id
+                 default: return nil
+                 }
+          }
+
           public private(set) var hasId:Bool = false
           public private(set) var id:String = ""
 
@@ -782,6 +801,14 @@ final public class ProfileService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Tag : GeneratedMessage {
+          public subscript(key: String) -> Any? {
+                 switch key {
+                 case "id": return id
+                 case "name": return name
+                 default: return nil
+                 }
+          }
+
           public private(set) var hasId:Bool = false
           public private(set) var id:String = ""
 
@@ -1007,6 +1034,12 @@ final public class ProfileService : GeneratedMessage {
 
       //Nested type declaration end
 
+      public subscript(key: String) -> Any? {
+             switch key {
+             default: return nil
+             }
+      }
+
       required public init() {
            super.init()
       }
@@ -1162,6 +1195,13 @@ final public class ProfileService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Request : GeneratedMessage {
+          public subscript(key: String) -> Any? {
+                 switch key {
+                 case "profile": return profile
+                 default: return nil
+                 }
+          }
+
           public private(set) var hasProfile:Bool = false
           public private(set) var profile:ProfileService.Containers.Profile = ProfileService.Containers.Profile()
           required public init() {
@@ -1371,6 +1411,13 @@ final public class ProfileService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Response : GeneratedMessage {
+          public subscript(key: String) -> Any? {
+                 switch key {
+                 case "profile": return profile
+                 default: return nil
+                 }
+          }
+
           public private(set) var hasProfile:Bool = false
           public private(set) var profile:ProfileService.Containers.Profile = ProfileService.Containers.Profile()
           required public init() {
@@ -1575,6 +1622,12 @@ final public class ProfileService : GeneratedMessage {
 
       //Nested type declaration end
 
+      public subscript(key: String) -> Any? {
+             switch key {
+             default: return nil
+             }
+      }
+
       required public init() {
            super.init()
       }
@@ -1730,6 +1783,13 @@ final public class ProfileService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Request : GeneratedMessage {
+          public subscript(key: String) -> Any? {
+                 switch key {
+                 case "profile": return profile
+                 default: return nil
+                 }
+          }
+
           public private(set) var hasProfile:Bool = false
           public private(set) var profile:ProfileService.Containers.Profile = ProfileService.Containers.Profile()
           required public init() {
@@ -1939,6 +1999,13 @@ final public class ProfileService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Response : GeneratedMessage {
+          public subscript(key: String) -> Any? {
+                 switch key {
+                 case "profile": return profile
+                 default: return nil
+                 }
+          }
+
           public private(set) var hasProfile:Bool = false
           public private(set) var profile:ProfileService.Containers.Profile = ProfileService.Containers.Profile()
           required public init() {
@@ -2143,6 +2210,12 @@ final public class ProfileService : GeneratedMessage {
 
       //Nested type declaration end
 
+      public subscript(key: String) -> Any? {
+             switch key {
+             default: return nil
+             }
+      }
+
       required public init() {
            super.init()
       }
@@ -2340,6 +2413,14 @@ final public class ProfileService : GeneratedMessage {
           //OneOf declaration end
 
           private var storageLookupKey:ProfileService.GetProfile.Request.LookupKey =  ProfileService.GetProfile.Request.LookupKey.LookupKeyOneOfNotSet
+          public subscript(key: String) -> Any? {
+                 switch key {
+                 case "profile_id": return profile_id
+                 case "user_id": return user_id
+                 default: return nil
+                 }
+          }
+
           public private(set) var hasProfileId:Bool {
                 get {
                      if ProfileService.GetProfile.Request.LookupKey.getProfileId(storageLookupKey) == nil {
@@ -2600,6 +2681,13 @@ final public class ProfileService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Response : GeneratedMessage {
+          public subscript(key: String) -> Any? {
+                 switch key {
+                 case "profile": return profile
+                 default: return nil
+                 }
+          }
+
           public private(set) var hasProfile:Bool = false
           public private(set) var profile:ProfileService.Containers.Profile = ProfileService.Containers.Profile()
           required public init() {
@@ -2804,6 +2892,12 @@ final public class ProfileService : GeneratedMessage {
 
       //Nested type declaration end
 
+      public subscript(key: String) -> Any? {
+             switch key {
+             default: return nil
+             }
+      }
+
       required public init() {
            super.init()
       }
@@ -3001,6 +3095,14 @@ final public class ProfileService : GeneratedMessage {
           //OneOf declaration end
 
           private var storageLookupKey:ProfileService.GetExtendedProfile.Request.LookupKey =  ProfileService.GetExtendedProfile.Request.LookupKey.LookupKeyOneOfNotSet
+          public subscript(key: String) -> Any? {
+                 switch key {
+                 case "profile_id": return profile_id
+                 case "user_id": return user_id
+                 default: return nil
+                 }
+          }
+
           public private(set) var hasProfileId:Bool {
                 get {
                      if ProfileService.GetExtendedProfile.Request.LookupKey.getProfileId(storageLookupKey) == nil {
@@ -3261,6 +3363,17 @@ final public class ProfileService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Response : GeneratedMessage {
+          public subscript(key: String) -> Any? {
+                 switch key {
+                 case "profile": return profile
+                 case "address": return address
+                 case "manager": return manager
+                 case "team": return team
+                 case "note": return note
+                 default: return nil
+                 }
+          }
+
           public private(set) var hasProfile:Bool = false
           public private(set) var profile:ProfileService.Containers.Profile = ProfileService.Containers.Profile()
           public private(set) var hasAddress:Bool = false
@@ -3738,6 +3851,12 @@ final public class ProfileService : GeneratedMessage {
 
       //Nested type declaration end
 
+      public subscript(key: String) -> Any? {
+             switch key {
+             default: return nil
+             }
+      }
+
       required public init() {
            super.init()
       }
@@ -3893,6 +4012,13 @@ final public class ProfileService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Request : GeneratedMessage {
+          public subscript(key: String) -> Any? {
+                 switch key {
+                 case "organization_id": return organization_id
+                 default: return nil
+                 }
+          }
+
           public private(set) var hasOrganizationId:Bool = false
           public private(set) var organization_id:String = ""
 
@@ -4120,6 +4246,12 @@ final public class ProfileService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Response : GeneratedMessage {
+          public subscript(key: String) -> Any? {
+                 switch key {
+                 default: return nil
+                 }
+          }
+
           public private(set) var tags:Array<ProfileService.Containers.Tag>  = Array<ProfileService.Containers.Tag>()
           required public init() {
                super.init()
@@ -4301,6 +4433,12 @@ final public class ProfileService : GeneratedMessage {
 
 
       //Nested type declaration end
+
+      public subscript(key: String) -> Any? {
+             switch key {
+             default: return nil
+             }
+      }
 
       required public init() {
            super.init()
@@ -4499,6 +4637,14 @@ final public class ProfileService : GeneratedMessage {
           //OneOf declaration end
 
           private var storageLookupKey:ProfileService.GetTags.Request.LookupKey =  ProfileService.GetTags.Request.LookupKey.LookupKeyOneOfNotSet
+          public subscript(key: String) -> Any? {
+                 switch key {
+                 case "profile_id": return profile_id
+                 case "organization_id": return organization_id
+                 default: return nil
+                 }
+          }
+
           public private(set) var hasProfileId:Bool {
                 get {
                      if ProfileService.GetTags.Request.LookupKey.getProfileId(storageLookupKey) == nil {
@@ -4759,6 +4905,12 @@ final public class ProfileService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Response : GeneratedMessage {
+          public subscript(key: String) -> Any? {
+                 switch key {
+                 default: return nil
+                 }
+          }
+
           public private(set) var tags:Array<ProfileService.Containers.Tag>  = Array<ProfileService.Containers.Tag>()
           required public init() {
                super.init()
@@ -4941,6 +5093,12 @@ final public class ProfileService : GeneratedMessage {
 
       //Nested type declaration end
 
+      public subscript(key: String) -> Any? {
+             switch key {
+             default: return nil
+             }
+      }
+
       required public init() {
            super.init()
       }
@@ -5096,6 +5254,13 @@ final public class ProfileService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Request : GeneratedMessage {
+          public subscript(key: String) -> Any? {
+                 switch key {
+                 case "profile_id": return profile_id
+                 default: return nil
+                 }
+          }
+
           public private(set) var hasProfileId:Bool = false
           public private(set) var profile_id:String = ""
 
@@ -5324,6 +5489,12 @@ final public class ProfileService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Response : GeneratedMessage {
+          public subscript(key: String) -> Any? {
+                 switch key {
+                 default: return nil
+                 }
+          }
+
           required public init() {
                super.init()
           }
@@ -5468,6 +5639,12 @@ final public class ProfileService : GeneratedMessage {
 
 
       //Nested type declaration end
+
+      public subscript(key: String) -> Any? {
+             switch key {
+             default: return nil
+             }
+      }
 
       required public init() {
            super.init()
@@ -5656,6 +5833,13 @@ final public class ProfileService : GeneratedMessage {
           //OneOf declaration end
 
           private var storageLookupKey:ProfileService.GetProfiles.Request.LookupKey =  ProfileService.GetProfiles.Request.LookupKey.LookupKeyOneOfNotSet
+          public subscript(key: String) -> Any? {
+                 switch key {
+                 case "team_id": return team_id
+                 default: return nil
+                 }
+          }
+
           public private(set) var hasTeamId:Bool {
                 get {
                      if ProfileService.GetProfiles.Request.LookupKey.getTeamId(storageLookupKey) == nil {
@@ -5861,6 +6045,12 @@ final public class ProfileService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Response : GeneratedMessage {
+          public subscript(key: String) -> Any? {
+                 switch key {
+                 default: return nil
+                 }
+          }
+
           public private(set) var profiles:Array<ProfileService.Containers.Profile>  = Array<ProfileService.Containers.Profile>()
           required public init() {
                super.init()
@@ -6043,6 +6233,12 @@ final public class ProfileService : GeneratedMessage {
 
       //Nested type declaration end
 
+      public subscript(key: String) -> Any? {
+             switch key {
+             default: return nil
+             }
+      }
+
       required public init() {
            super.init()
       }
@@ -6187,6 +6383,12 @@ final public class ProfileService : GeneratedMessage {
 
 
   //Nested type declaration end
+
+  public subscript(key: String) -> Any? {
+         switch key {
+         default: return nil
+         }
+  }
 
   required public init() {
        super.init()

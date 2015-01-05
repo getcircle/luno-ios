@@ -46,6 +46,16 @@ final public class NoteService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Note : GeneratedMessage {
+          public subscript(key: String) -> Any? {
+                 switch key {
+                 case "id": return id
+                 case "for_user_id": return for_user_id
+                 case "user_id": return user_id
+                 case "content": return content
+                 default: return nil
+                 }
+          }
+
           public private(set) var hasId:Bool = false
           public private(set) var id:String = ""
 
@@ -351,6 +361,12 @@ final public class NoteService : GeneratedMessage {
 
       //Nested type declaration end
 
+      public subscript(key: String) -> Any? {
+             switch key {
+             default: return nil
+             }
+      }
+
       required public init() {
            super.init()
       }
@@ -495,6 +511,12 @@ final public class NoteService : GeneratedMessage {
 
 
   //Nested type declaration end
+
+  public subscript(key: String) -> Any? {
+         switch key {
+         default: return nil
+         }
+  }
 
   required public init() {
        super.init()

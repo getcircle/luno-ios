@@ -200,6 +200,12 @@ public func == (lhs: ProfileServiceResponses, rhs: ProfileServiceResponses) -> B
 }
 
 final public class UserServiceResponses : GeneratedMessage {
+  public subscript(key: String) -> Any? {
+         switch key {
+         default: return nil
+         }
+  }
+
   public class func create_user() -> ConcreateExtensionField {
        return UserServiceResponses_create_user
   }
@@ -351,6 +357,12 @@ final public class UserServiceResponsesBuilder : GeneratedMessageBuilder {
 }
 
 final public class OrganizationServiceResponses : GeneratedMessage {
+  public subscript(key: String) -> Any? {
+         switch key {
+         default: return nil
+         }
+  }
+
   public class func create_organization() -> ConcreateExtensionField {
        return OrganizationServiceResponses_create_organization
   }
@@ -517,6 +529,12 @@ final public class OrganizationServiceResponsesBuilder : GeneratedMessageBuilder
 }
 
 final public class ProfileServiceResponses : GeneratedMessage {
+  public subscript(key: String) -> Any? {
+         switch key {
+         default: return nil
+         }
+  }
+
   public class func create_profile() -> ConcreateExtensionField {
        return ProfileServiceResponses_create_profile
   }
