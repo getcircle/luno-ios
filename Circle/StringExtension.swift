@@ -30,5 +30,15 @@ extension String {
         }
         return camelCase
     }
+
+    // http://stackoverflow.com/questions/24092884/get-nth-character-of-a-string-in-swift-programming-language
+    subscript (i: Int) -> String {
+        return String(Array(self)[i])
+    }
     
+    subscript (r: Range<Int>) -> String {
+        var start = advance(startIndex, r.startIndex)
+        var end = advance(startIndex, r.endIndex)
+        return substringWithRange(Range(start: start, end: end))
+    }
 }
