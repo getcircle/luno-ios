@@ -25,6 +25,7 @@ class Card: Equatable {
         case Birthdays = 1
         case KeyValue
         case Locations
+        case Notes
         case People
         case Tags
         
@@ -38,7 +39,10 @@ class Card: Equatable {
 
             case .Locations:
                 return "MapPin"
-                
+
+            case .Notes:
+                return "Notepad"
+
             case .People:
                 return "People"
             
@@ -57,6 +61,9 @@ class Card: Equatable {
 
             case .Locations:
                 return (LocationCollectionViewCell.self, "LocationCollectionViewCell")
+
+            case .Notes:
+                return (NotesCollectionViewCell.self, "NotesCollectionViewCell")
 
             case .People:
                 return (ProfileImagesCollectionViewCell.self, "ProfileImagesCollectionViewCell")

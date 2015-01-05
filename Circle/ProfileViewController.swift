@@ -17,7 +17,7 @@ class ProfileViewController: UICollectionViewController, UICollectionViewDelegat
             // Fetch and cache it in case user decides to go one step further in the chain
             person.manager?.fetchInBackgroundWithBlock { (managerObject, error: NSError!) -> Void in
                 self.person.setObject(managerObject, forKey: "manager")
-//                 self.collectionView?.reloadData()
+                 self.collectionView?.reloadData()
             }
         }
     }
@@ -121,6 +121,7 @@ class ProfileViewController: UICollectionViewController, UICollectionViewDelegat
     
     private func configureCollectionView() {
         collectionView!.backgroundColor = UIColor.viewBackgroundColor()
+        collectionView!.keyboardDismissMode = .OnDrag
         (collectionView!.dataSource as ProfileDataSource).registerCardHeader(collectionView!)
         (collectionView!.delegate as ProfileCollectionViewDelegate).delegate = self
     }
