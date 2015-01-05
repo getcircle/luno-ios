@@ -19,10 +19,6 @@ class KeyValueCollectionViewCell: CircleCollectionViewCell {
         return "KeyValueCell"
     }
     
-    override class var sectionInset: UIEdgeInsets {
-        return UIEdgeInsetsMake(0.0, 0.0, 25.0, 0.0)
-    }
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         

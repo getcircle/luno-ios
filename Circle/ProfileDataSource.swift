@@ -106,6 +106,8 @@ class ProfileDataSource: CardDataSource {
     }
 
     override func loadData(completionHandler: (error: NSError?) -> Void) {
+        var defaultSectionInset = UIEdgeInsetsMake(0.0, 0.0, 25.0, 0.0)
+        
         for dataSet in [baseInfoKeySet, socialInfoKeySet, managerInfoKeySet] {
             var keyValueCard = Card(cardType: .KeyValue, title: "Info")
             for key in dataSet {
@@ -122,6 +124,7 @@ class ProfileDataSource: CardDataSource {
                     }
                     
                     keyValueCard.content.append(dataDict)
+                    keyValueCard.sectionInset = defaultSectionInset
                 }
             }
             
@@ -131,8 +134,8 @@ class ProfileDataSource: CardDataSource {
         }
         
         // Add Tags Card
-        var tags = Card(cardType: .Tags, title: "Tags")
-        tags.content.append([
+        var tagsCard = Card(cardType: .Tags, title: "Tags")
+        tagsCard.content.append([
             ["name": "Python"],
             ["name": "Hacker"],
             ["name": "Swift"],
@@ -142,11 +145,13 @@ class ProfileDataSource: CardDataSource {
             ["name": "Management"],
             ["name": "Influencer"],
         ])
-        appendCard(tags)
+        tagsCard.sectionInset = defaultSectionInset
+        appendCard(tagsCard)
         
         // Add Notes Card
         var notesCard = Card(cardType: .Notes, title: "Notes")
         notesCard.content.append(["text": "This is a long sample note which should be at least two lines. Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda."])
+        notesCard.sectionInset = UIEdgeInsetsMake(0.0, 0.0, 55.0, 0.0)
         appendCard(notesCard)
         
         completionHandler(error: nil)

@@ -18,6 +18,7 @@ class Card: Equatable {
     private(set) var contentClass: CircleCollectionViewCell.Type
     private(set) var contentClassName: String
     private(set) var imageSource: String
+    var sectionInset = UIEdgeInsetsMake(1.0, 10.0, 25.0, 10.0)
     private(set) var title: String
     private(set) var type: CardType
     

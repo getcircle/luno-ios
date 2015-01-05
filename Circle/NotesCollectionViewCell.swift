@@ -17,10 +17,6 @@ class NotesCollectionViewCell: CircleCollectionViewCell {
     override class var classReuseIdentifier: String {
         return "NotesCell"
     }
-
-    override class var sectionInset: UIEdgeInsets {
-        return UIEdgeInsetsMake(0.0, 0.0, 55.0, 00.0)
-    }
     
     override class var sizeCalculationMethod: SizeCalculation {
         return .Dynamic

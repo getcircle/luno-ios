@@ -27,7 +27,7 @@ class CardCollectionViewDelegate: NSObject, UICollectionViewDelegateFlowLayout, 
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
         let card = cardDataSource(collectionView).cards[section]
-        return card.contentClass.sectionInset
+        return card.sectionInset
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
@@ -35,8 +35,8 @@ class CardCollectionViewDelegate: NSObject, UICollectionViewDelegateFlowLayout, 
         // Use default width and height methods if size calculation method of choice is Fixed
         let card = cardDataSource(collectionView).cards[indexPath.section]
         if card.contentClass.sizeCalculationMethod == SizeCalculation.Fixed {
-            var leftAndRightInsets = card.contentClass.sectionInset.left
-            leftAndRightInsets += card.contentClass.sectionInset.right
+            var leftAndRightInsets = card.sectionInset.left
+            leftAndRightInsets += card.sectionInset.right
             return CGSizeMake(card.contentClass.width - leftAndRightInsets, card.contentClass.height)
         }
         else {

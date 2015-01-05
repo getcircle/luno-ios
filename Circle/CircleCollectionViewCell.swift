@@ -42,11 +42,6 @@ class CircleCollectionViewCell: UICollectionViewCell {
     class var lineSpacing: CGFloat {
         return 1.0
     }
-    
-    // Section inset for these cells
-    class var sectionInset: UIEdgeInsets {
-        return UIEdgeInsetsMake(1.0, 10.0, 25.0, 10.0)
-    }
 
     // If the size calculation method is set to Fixed, the
     // collection views call width and height class variables.
