@@ -9,12 +9,27 @@ message OrganizationService {
         message Organization {
             optional string id = 1;
             optional string name = 2;
+            optional string domain = 3;
         }
 
         message Team {
             optional string id = 1;
             optional string name = 2;
             optional string owner_id = 3;
+            optional string organization_id = 4;
+            repeated string path = 5;
+        }
+
+        message Address {
+            optional string id = 1;
+            optional string organization_id = 2;
+            optional string name = 3;
+            optional string address_1 = 4;
+            optional string address_2 = 5;
+            optional string city = 6;
+            optional string region = 7;
+            optional string postal_code = 8;
+            optional string country_code = 9;
         }
 
     }
@@ -24,8 +39,7 @@ message OrganizationService {
     message CreateOrganization {
 
         message Request {
-            optional string domain = 1;
-            optional string name = 2;
+            optional Containers.Organization organization = 1;
         }
 
         message Response {
@@ -34,11 +48,13 @@ message OrganizationService {
 
     }
 
-    message UpdateOrganization {
+    message GetOrganization {
 
         message Request {
-            optional string domain = 1;
-            optional string name = 2;
+            oneof lookup_key {
+                string organization_id = 1;
+                string organization_domain = 2;
+            }
         }
 
         message Response {
@@ -50,80 +66,69 @@ message OrganizationService {
     message CreateTeam {
 
         message Request {
+            optional Containers.Team team = 1;
+            optional string child_of = 2;
+        }
+
+        message Response {
+            optional Containers.Team team = 1;
+        }
+
+    }
+
+    message GetTeam {
+
+        message Request {
+            optional string team_id = 1;
+        }
+
+        message Response {
+            optional Containers.Team team = 1;
+        }
+    }
+
+    message GetTeams {
+
+        message Request {
             optional string organization_id = 1;
-            optional string name = 2;
-            optional string owner_id = 3;
         }
 
         message Response {
-            optional Containers.Team team = 1;
+            repeated Containers.Team teams = 1;
         }
-
     }
 
-    message UpdateTeam {
+    message CreateAddress {
 
         message Request {
-            optional Containers.Team team = 1;
+            optional Containers.Address address = 1;
         }
 
         message Response {
-            optional Containers.Team team = 1;
+            optional Containers.Address address = 1;
         }
 
     }
 
-    message DeleteTeam {
+    message DeleteAddress {
 
         message Request {
-            optional string id = 1;
+            optional string address_id = 1;
         }
 
         message Response {}
 
     }
 
-    message AddTeamMember {
+    message GetAddress {
 
         message Request {
-            optional string team_id = 1;
-            optional string user_id = 2;
+            optional string address_id = 1;
         }
 
-        message Response {}
-
-    }
-
-    message DeleteTeamMember {
-
-        message Request {
-            optional string team_id = 1;
-            optional string user_id = 2;
+        message Response {
+            optional Containers.Address address = 1;
         }
-
-        message Response {}
-
-    }
-
-    message AddTeamMembers {
-
-        message Request {
-            optional string team_id = 1;
-            repeated string user_ids = 2;
-        }
-
-        message Response {}
-
-    }
-
-    message DeleteTeamMembers {
-
-        message Request {
-            optional string team_id = 1;
-            optional string user_ids = 2;
-        }
-
-        message Response {}
 
     }
 

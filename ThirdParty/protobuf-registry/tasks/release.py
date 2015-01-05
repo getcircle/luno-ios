@@ -116,7 +116,7 @@ def _push_release_changes(release_version):
         print 'make sure you remember to explictily push the tag!'
 
 
-@task(default=True)
+@task()
 def release():
     with base_directory():
         release_version = _update_version()
