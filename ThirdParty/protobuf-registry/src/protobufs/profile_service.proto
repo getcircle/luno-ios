@@ -1,0 +1,149 @@
+package main.profile_service;
+
+import "protobufs/organization_service.proto";
+import "protobufs/note_service.proto";
+
+message ProfileService {
+
+    // MARK: - Containers
+
+    message Containers {
+
+        message Profile {
+            optional string id = 1;
+            optional string organization_id = 2;
+            optional string user_id = 3;
+            optional string address_id = 4;
+            optional string title = 5;
+            optional string first_name = 6;
+            optional string last_name = 7;
+            optional string cell_phone = 8;
+            optional string work_phone = 9;
+            optional string image_url = 10;
+            optional string location = 11;
+            optional string email = 12;
+            optional string team_id = 13;
+        }
+
+        message Tag {
+            optional string id = 1;
+            optional string name = 2;
+        }
+
+    }
+
+    // MARK: - Actions
+
+    message CreateProfile {
+
+        message Request {
+            optional Containers.Profile profile = 1;
+        }
+
+        message Response {
+            optional Containers.Profile profile = 1;
+        }
+
+    }
+
+    message UpdateProfile {
+
+        message Request {
+            optional Containers.Profile profile = 1;
+        }
+
+        message Response {
+            optional Containers.Profile profile = 1;
+        }
+
+    }
+
+    message GetProfile {
+
+        message Request {
+            oneof lookup_key {
+                string profile_id = 1;
+                string user_id = 2;
+            }
+        }
+
+        message Response {
+            optional Containers.Profile profile = 1;
+        }
+
+    }
+
+    message GetExtendedProfile {
+
+        message Request {
+            oneof lookup_key {
+                string profile_id = 1;
+                string user_id = 2;
+            }
+        }
+
+        message Response {
+            optional Containers.Profile profile = 1;
+            optional main.organization_service.OrganizationService.Containers.Address address = 2;
+            optional Containers.Profile manager = 3;
+            optional main.organization_service.OrganizationService.Containers.Team team = 4;
+            optional main.note_service.NoteService.Containers.Note note = 5;
+            repeated Containers.Tag tags = 6;
+        }
+
+    }
+
+    message CreateTags {
+
+        message Request {
+            repeated Containers.Tag tags = 1;
+            optional string organization_id = 2;
+        }
+
+        message Response {
+            repeated Containers.Tag tags = 1;
+        }
+
+    }
+
+    message GetTags {
+
+        message Request {
+            oneof lookup_key {
+                string profile_id = 1;
+                string organization_id = 2;
+            }
+        }
+
+        message Response {
+            repeated Containers.Tag tags = 1;
+        }
+
+    }
+
+    message AddTags {
+
+        message Request {
+            optional string profile_id = 1;
+            repeated string tag_ids = 2;
+        }
+
+        message Response {}
+
+    }
+
+    message GetProfiles {
+
+        message Request {
+            oneof lookup_key {
+                string team_id = 1;
+            }
+        }
+
+        message Response {
+            repeated Containers.Profile profiles = 1;
+        }
+
+    }
+
+}

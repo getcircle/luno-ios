@@ -1,6 +1,5 @@
 package main.user_service;
 
-import "protobufs/identity_service.proto";
 
 message UserService {
 
@@ -13,8 +12,6 @@ message UserService {
             optional string primary_email = 2;
             optional bool is_admin = 3;
             optional bool is_active = 4;
-
-            repeated main.identity_service.IdentityService.Containers.Identity identities = 5;
         }
 
     }
@@ -24,12 +21,11 @@ message UserService {
     message CreateUser {
         message Request {
             optional string password = 1;
-            optional main.identity_service.IdentityService.Containers.Identity identity = 2;
+            optional string email = 2;
         }
 
         message Response {
             optional Containers.User user = 1;
-            repeated main.identity_service.IdentityService.Containers.Identity identities = 2;
         }
     }
 

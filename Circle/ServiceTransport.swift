@@ -22,7 +22,10 @@ extension Request {
                 return (nil, nil)
             }
             
-            // TODO: Handle 0 bytes in data (network error)
+            if data!.length == 0 {
+                return (nil, nil)
+            }
+            
             let serviceResponse = ServiceResponse.parseFromNSData(data!, extensionRegistry: ResponseRegistryRoot.sharedInstance.extensionRegistry)
             return (serviceResponse, nil)
         }
@@ -52,7 +55,8 @@ class BaseTransport: ServiceTransport {
 
 struct ServiceHttpRequest: URLRequestConvertible {
     
-    static let baseURLString = "http://127.0.0.1:8000"
+    // TODO we should have a way to configure which endpoint we hit in some settings pane, similar to EB
+    static let baseURLString = "http://circleapp.elasticbeanstalk.com"
     var data: NSData
     var token: String?
     

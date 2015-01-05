@@ -48,14 +48,6 @@ class ClientTests: XCTestCase {
             
             XCTAssertTrue(actionExtension.token != "", "Token should have been returned for the user")
             XCTAssertEqual(user.primary_email, "mwhahn@gmail.com", "Should have the correct email address")
-            XCTAssertEqual(user.identities.count, 1, "Should have 1 identity associated with the user")
-            
-            let identity = user.identities[0]
-            XCTAssertEqual(identity.user_id, user.id, "Identity should have the same user_id")
-            XCTAssertEqual(identity.first_name, "Michael", "Identity should have the correct first name")
-            XCTAssertEqual(identity.last_name, "Hahn", "Identity should have the correct last name")
-            XCTAssertEqual(identity.email, user.primary_email, "Identity should have the same email as the primary email address")
-            XCTAssertEqual(identity.type, IdentityService.Containers.Identity.Types.Internal, "Identity should be an internal identity")
         }
         
         waitForExpectationsWithTimeout(TEST_TIMEOUT, handler: nil)

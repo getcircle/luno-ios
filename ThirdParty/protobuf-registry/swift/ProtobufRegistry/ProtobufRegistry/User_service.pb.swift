@@ -14,7 +14,6 @@ public struct UserServiceRoot {
   init() {
     extensionRegistry = ExtensionRegistry()
     registerAllExtensions(extensionRegistry)
-    IdentityServiceRoot.sharedInstance.registerAllExtensions(extensionRegistry)
   }
   public func registerAllExtensions(registry:ExtensionRegistry) {
   }
@@ -83,7 +82,6 @@ final public class UserService : GeneratedMessage {
           public private(set) var hasIsActive:Bool = false
           public private(set) var is_active:Bool = false
 
-          public private(set) var identities:Array<IdentityService.Containers.Identity>  = Array<IdentityService.Containers.Identity>()
           required public init() {
                super.init()
           }
@@ -102,9 +100,6 @@ final public class UserService : GeneratedMessage {
             }
             if hasIsActive {
               output.writeBool(4, value:is_active)
-            }
-            for oneElementidentities in identities {
-                output.writeMessage(5, value:oneElementidentities)
             }
             unknownFields.writeToCodedOutputStream(output)
           }
@@ -126,9 +121,6 @@ final public class UserService : GeneratedMessage {
             }
             if hasIsActive {
               size += WireFormat.computeBoolSize(4, value:is_active)
-            }
-            for oneElementidentities in identities {
-                size += WireFormat.computeMessageSize(5, value:oneElementidentities)
             }
             size += unknownFields.serializedSize()
             memoizedSerializedSize = size
@@ -183,13 +175,6 @@ final public class UserService : GeneratedMessage {
             if hasIsActive {
               output += "\(indent) is_active: \(is_active) \n"
             }
-            var identitiesElementIndex:Int = 0
-            for oneElementidentities in identities {
-                output += "\(indent) identities[\(identitiesElementIndex)] {\n"
-                oneElementidentities.writeDescriptionTo(&output, indent:"\(indent)  ")
-                output += "\(indent)}\n"
-                identitiesElementIndex++
-            }
             unknownFields.writeDescriptionTo(&output, indent:indent)
           }
           override public var hashValue:Int {
@@ -206,9 +191,6 @@ final public class UserService : GeneratedMessage {
                   }
                   if hasIsActive {
                      hashCode = (hashCode &* 31) &+ is_active.hashValue
-                  }
-                  for oneElementidentities in identities {
-                      hashCode = (hashCode &* 31) &+ oneElementidentities.hashValue
                   }
                   hashCode = (hashCode &* 31) &+  unknownFields.hashValue
                   return hashCode
@@ -316,18 +298,6 @@ final public class UserService : GeneratedMessage {
                builderResult.is_active = false
                return self
           }
-          public var identities:Array<IdentityService.Containers.Identity> {
-               get {
-                   return builderResult.identities
-               }
-               set (value) {
-                   builderResult.identities = value
-               }
-          }
-          public func clearIdentities() -> UserService.Containers.UserBuilder {
-            builderResult.identities.removeAll(keepCapacity: false)
-            return self
-          }
           override public var internalGetResult:GeneratedMessage {
                get {
                   return builderResult
@@ -364,9 +334,6 @@ final public class UserService : GeneratedMessage {
             if other.hasIsActive {
                  is_active = other.is_active
             }
-            if !other.identities.isEmpty  {
-               builderResult.identities += other.identities
-            }
             mergeUnknownFields(other.unknownFields)
             return self
           }
@@ -393,11 +360,6 @@ final public class UserService : GeneratedMessage {
 
               case 32 :
                 is_active = input.readBool()
-
-              case 42 :
-                var subBuilder = IdentityService.Containers.Identity.builder()
-                input.readMessage(subBuilder,extensionRegistry:extensionRegistry)
-                identities += [subBuilder.buildPartial()]
 
               default:
                 if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
@@ -571,8 +533,9 @@ final public class UserService : GeneratedMessage {
           public private(set) var hasPassword:Bool = false
           public private(set) var password:String = ""
 
-          public private(set) var hasIdentity:Bool = false
-          public private(set) var identity:IdentityService.Containers.Identity = IdentityService.Containers.Identity()
+          public private(set) var hasEmail:Bool = false
+          public private(set) var email:String = ""
+
           required public init() {
                super.init()
           }
@@ -583,8 +546,8 @@ final public class UserService : GeneratedMessage {
             if hasPassword {
               output.writeString(1, value:password)
             }
-            if hasIdentity {
-              output.writeMessage(2, value:identity)
+            if hasEmail {
+              output.writeString(2, value:email)
             }
             unknownFields.writeToCodedOutputStream(output)
           }
@@ -598,8 +561,8 @@ final public class UserService : GeneratedMessage {
             if hasPassword {
               size += WireFormat.computeStringSize(1, value:password)
             }
-            if hasIdentity {
-              size += WireFormat.computeMessageSize(2, value:identity)
+            if hasEmail {
+              size += WireFormat.computeStringSize(2, value:email)
             }
             size += unknownFields.serializedSize()
             memoizedSerializedSize = size
@@ -645,10 +608,8 @@ final public class UserService : GeneratedMessage {
             if hasPassword {
               output += "\(indent) password: \(password) \n"
             }
-            if hasIdentity {
-              output += "\(indent) identity {\n"
-              identity.writeDescriptionTo(&output, indent:"\(indent)  ")
-              output += "\(indent) }\n"
+            if hasEmail {
+              output += "\(indent) email: \(email) \n"
             }
             unknownFields.writeDescriptionTo(&output, indent:indent)
           }
@@ -658,8 +619,8 @@ final public class UserService : GeneratedMessage {
                   if hasPassword {
                      hashCode = (hashCode &* 31) &+ password.hashValue
                   }
-                  if hasIdentity {
-                    hashCode = (hashCode &* 31) &+ identity.hashValue
+                  if hasEmail {
+                     hashCode = (hashCode &* 31) &+ email.hashValue
                   }
                   hashCode = (hashCode &* 31) &+  unknownFields.hashValue
                   return hashCode
@@ -710,37 +671,24 @@ final public class UserService : GeneratedMessage {
                builderResult.password = ""
                return self
           }
-          public var hasIdentity:Bool {
+          public var hasEmail:Bool {
                get {
-                   return builderResult.hasIdentity
+                    return builderResult.hasEmail
                }
           }
-          public var identity:IdentityService.Containers.Identity {
+          public var email:String {
                get {
-                   return builderResult.identity
+                    return builderResult.email
                }
                set (value) {
-                   builderResult.hasIdentity = true
-                   builderResult.identity = value
+                   builderResult.hasEmail = true
+                   builderResult.email = value
                }
           }
-          public func setIdentityBuilder(builderForValue:IdentityService.Containers.IdentityBuilder) -> UserService.CreateUser.RequestBuilder {
-            identity = builderForValue.build()
-            return self
-          }
-          public func mergeIdentity(value:IdentityService.Containers.Identity) -> UserService.CreateUser.RequestBuilder {
-            if (builderResult.hasIdentity) {
-              builderResult.identity = IdentityService.Containers.Identity.builderWithPrototype(builderResult.identity).mergeFrom(value).buildPartial()
-            } else {
-              builderResult.identity = value
-            }
-            builderResult.hasIdentity = true
-            return self
-          }
-          public func clearIdentity() -> UserService.CreateUser.RequestBuilder {
-            builderResult.hasIdentity = false
-            builderResult.identity = IdentityService.Containers.Identity()
-            return self
+          public func clearEmail() -> UserService.CreateUser.RequestBuilder{
+               builderResult.hasEmail = false
+               builderResult.email = ""
+               return self
           }
           override public var internalGetResult:GeneratedMessage {
                get {
@@ -769,8 +717,8 @@ final public class UserService : GeneratedMessage {
             if other.hasPassword {
                  password = other.password
             }
-            if (other.hasIdentity) {
-                mergeIdentity(other.identity)
+            if other.hasEmail {
+                 email = other.email
             }
             mergeUnknownFields(other.unknownFields)
             return self
@@ -791,12 +739,7 @@ final public class UserService : GeneratedMessage {
                 password = input.readString()
 
               case 18 :
-                var subBuilder:IdentityService.Containers.IdentityBuilder = IdentityService.Containers.Identity.builder()
-                if hasIdentity {
-                  subBuilder.mergeFrom(identity)
-                }
-                input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
-                identity = subBuilder.buildPartial()
+                email = input.readString()
 
               default:
                 if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
@@ -819,7 +762,6 @@ final public class UserService : GeneratedMessage {
         final public class Response : GeneratedMessage {
           public private(set) var hasUser:Bool = false
           public private(set) var user:UserService.Containers.User = UserService.Containers.User()
-          public private(set) var identities:Array<IdentityService.Containers.Identity>  = Array<IdentityService.Containers.Identity>()
           required public init() {
                super.init()
           }
@@ -829,9 +771,6 @@ final public class UserService : GeneratedMessage {
           override public func writeToCodedOutputStream(output:CodedOutputStream) {
             if hasUser {
               output.writeMessage(1, value:user)
-            }
-            for oneElementidentities in identities {
-                output.writeMessage(2, value:oneElementidentities)
             }
             unknownFields.writeToCodedOutputStream(output)
           }
@@ -844,9 +783,6 @@ final public class UserService : GeneratedMessage {
             size = 0
             if hasUser {
               size += WireFormat.computeMessageSize(1, value:user)
-            }
-            for oneElementidentities in identities {
-                size += WireFormat.computeMessageSize(2, value:oneElementidentities)
             }
             size += unknownFields.serializedSize()
             memoizedSerializedSize = size
@@ -894,13 +830,6 @@ final public class UserService : GeneratedMessage {
               user.writeDescriptionTo(&output, indent:"\(indent)  ")
               output += "\(indent) }\n"
             }
-            var identitiesElementIndex:Int = 0
-            for oneElementidentities in identities {
-                output += "\(indent) identities[\(identitiesElementIndex)] {\n"
-                oneElementidentities.writeDescriptionTo(&output, indent:"\(indent)  ")
-                output += "\(indent)}\n"
-                identitiesElementIndex++
-            }
             unknownFields.writeDescriptionTo(&output, indent:indent)
           }
           override public var hashValue:Int {
@@ -908,9 +837,6 @@ final public class UserService : GeneratedMessage {
                   var hashCode:Int = 7
                   if hasUser {
                     hashCode = (hashCode &* 31) &+ user.hashValue
-                  }
-                  for oneElementidentities in identities {
-                      hashCode = (hashCode &* 31) &+ oneElementidentities.hashValue
                   }
                   hashCode = (hashCode &* 31) &+  unknownFields.hashValue
                   return hashCode
@@ -974,18 +900,6 @@ final public class UserService : GeneratedMessage {
             builderResult.user = UserService.Containers.User()
             return self
           }
-          public var identities:Array<IdentityService.Containers.Identity> {
-               get {
-                   return builderResult.identities
-               }
-               set (value) {
-                   builderResult.identities = value
-               }
-          }
-          public func clearIdentities() -> UserService.CreateUser.ResponseBuilder {
-            builderResult.identities.removeAll(keepCapacity: false)
-            return self
-          }
           override public var internalGetResult:GeneratedMessage {
                get {
                   return builderResult
@@ -1013,9 +927,6 @@ final public class UserService : GeneratedMessage {
             if (other.hasUser) {
                 mergeUser(other.user)
             }
-            if !other.identities.isEmpty  {
-               builderResult.identities += other.identities
-            }
             mergeUnknownFields(other.unknownFields)
             return self
           }
@@ -1038,11 +949,6 @@ final public class UserService : GeneratedMessage {
                 }
                 input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
                 user = subBuilder.buildPartial()
-
-              case 18 :
-                var subBuilder = IdentityService.Containers.Identity.builder()
-                input.readMessage(subBuilder,extensionRegistry:extensionRegistry)
-                identities += [subBuilder.buildPartial()]
 
               default:
                 if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {

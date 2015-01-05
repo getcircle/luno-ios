@@ -28,7 +28,7 @@
 		BFCE35891A4A23AE00D56AE2 /* UnknownFieldSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCE357B1A4A23AE00D56AE2 /* UnknownFieldSet.swift */; };
 		BFCE358A1A4A23AE00D56AE2 /* UnknownFieldSetBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCE357C1A4A23AE00D56AE2 /* UnknownFieldSetBuilder.swift */; };
 		BFCE358B1A4A23AE00D56AE2 /* WireFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCE357D1A4A23AE00D56AE2 /* WireFormat.swift */; };
-		BFFB19901A47696200CCFFC3 /* Identity_service.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFB198E1A47696200CCFFC3 /* Identity_service.pb.swift */; };
+		BFEED5DF1A5AF55F00C19A11 /* Profile_service.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFEED5DE1A5AF55F00C19A11 /* Profile_service.pb.swift */; };
 		BFFB19911A47696200CCFFC3 /* User_service.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFB198F1A47696200CCFFC3 /* User_service.pb.swift */; };
 		BFFB1A521A48FD9100CCFFC3 /* Organization_service.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFB1A511A48FD9100CCFFC3 /* Organization_service.pb.swift */; };
 /* End PBXBuildFile section */
@@ -68,7 +68,7 @@
 		BFCE357B1A4A23AE00D56AE2 /* UnknownFieldSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnknownFieldSet.swift; sourceTree = "<group>"; };
 		BFCE357C1A4A23AE00D56AE2 /* UnknownFieldSetBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnknownFieldSetBuilder.swift; sourceTree = "<group>"; };
 		BFCE357D1A4A23AE00D56AE2 /* WireFormat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WireFormat.swift; sourceTree = "<group>"; };
-		BFFB198E1A47696200CCFFC3 /* Identity_service.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Identity_service.pb.swift; sourceTree = "<group>"; };
+		BFEED5DE1A5AF55F00C19A11 /* Profile_service.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile_service.pb.swift; sourceTree = "<group>"; };
 		BFFB198F1A47696200CCFFC3 /* User_service.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User_service.pb.swift; sourceTree = "<group>"; };
 		BFFB1A511A48FD9100CCFFC3 /* Organization_service.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Organization_service.pb.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -113,9 +113,9 @@
 		BFC6CEF11A44B58B0081F45B /* ProtobufRegistry */ = {
 			isa = PBXGroup;
 			children = (
+				BFEED5DE1A5AF55F00C19A11 /* Profile_service.pb.swift */,
 				BFCE356F1A4A23AE00D56AE2 /* runtime-pb-swift */,
 				BFFB1A511A48FD9100CCFFC3 /* Organization_service.pb.swift */,
-				BFFB198E1A47696200CCFFC3 /* Identity_service.pb.swift */,
 				8F627BC91A48EB26002490D8 /* Note_service.pb.swift */,
 				BFC6CEF41A44B58B0081F45B /* ProtobufRegistry.h */,
 				BFC6CF661A44BE390081F45B /* Request_registry.pb.swift */,
@@ -283,6 +283,7 @@
 				BFCE35801A4A23AE00D56AE2 /* CodedOutputStream.swift in Sources */,
 				BFC6CF6F1A44BE390081F45B /* Request_registry.pb.swift in Sources */,
 				BFCE35871A4A23AE00D56AE2 /* RingBuffer.swift in Sources */,
+				BFEED5DF1A5AF55F00C19A11 /* Profile_service.pb.swift in Sources */,
 				BFCE357E1A4A23AE00D56AE2 /* AbstractMessage.swift in Sources */,
 				BFCE35831A4A23AE00D56AE2 /* ExtendableMessage.swift in Sources */,
 				BFCE35841A4A23AE00D56AE2 /* ExtensionRegistry.swift in Sources */,
@@ -294,7 +295,6 @@
 				BFCE358A1A4A23AE00D56AE2 /* UnknownFieldSetBuilder.swift in Sources */,
 				8F627BCA1A48EB26002490D8 /* Note_service.pb.swift in Sources */,
 				BFFB19911A47696200CCFFC3 /* User_service.pb.swift in Sources */,
-				BFFB19901A47696200CCFFC3 /* Identity_service.pb.swift in Sources */,
 				BFCE357F1A4A23AE00D56AE2 /* CodedInputStream.swift in Sources */,
 				BFCE35821A4A23AE00D56AE2 /* Descriptor.pb.swift in Sources */,
 				BFCE35881A4A23AE00D56AE2 /* SwiftDescriptor.pb.swift in Sources */,

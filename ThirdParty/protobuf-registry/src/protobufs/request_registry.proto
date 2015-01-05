@@ -2,21 +2,40 @@ package main.requests;
 
 import "service_protobufs/soa.proto";
 
-import "protobufs/identity_service.proto";
+import "protobufs/organization_service.proto";
+import "protobufs/profile_service.proto";
 import "protobufs/user_service.proto";
 
 message UserServiceRequests {
     extend soa.ActionRequestParams {
-        optional main.user_service.UserService.CreateUser.Request create_user = 101;
-        optional main.user_service.UserService.ValidUser.Request valid_user = 102;
-        optional main.user_service.UserService.AuthenticateUser.Request authenticate_user = 103;
+        optional main.user_service.UserService.CreateUser.Request create_user = 100;
+        optional main.user_service.UserService.ValidUser.Request valid_user = 101;
+        optional main.user_service.UserService.AuthenticateUser.Request authenticate_user = 102;
     }
 }
 
-message IdentityServiceRequests {
+message OrganizationServiceRequests {
     extend soa.ActionRequestParams {
-        optional main.identity_service.IdentityService.CreateIdentity.Request create_identity = 200;
-        optional main.identity_service.IdentityService.GetIdentity.Request get_identity = 201;
-        optional main.identity_service.IdentityService.GetIdentities.Request get_identities = 202;
+        optional main.organization_service.OrganizationService.CreateOrganization.Request create_organization = 200;
+        optional main.organization_service.OrganizationService.CreateTeam.Request create_team = 201;
+        optional main.organization_service.OrganizationService.CreateAddress.Request create_address = 202;
+        optional main.organization_service.OrganizationService.DeleteAddress.Request delete_address = 203;
+        optional main.organization_service.OrganizationService.GetAddress.Request get_address = 204;
+        optional main.organization_service.OrganizationService.GetTeam.Request get_team = 205;
+        optional main.organization_service.OrganizationService.GetOrganization.Request get_organization = 206;
+        optional main.organization_service.OrganizationService.GetTeams.Request get_teams = 207;
+    }
+}
+
+message ProfileServiceRequests {
+    extend soa.ActionRequestParams {
+        optional main.profile_service.ProfileService.CreateProfile.Request create_profile = 300;
+        optional main.profile_service.ProfileService.GetExtendedProfile.Request get_extended_profile = 301;
+        optional main.profile_service.ProfileService.GetProfile.Request get_profile = 302;
+        optional main.profile_service.ProfileService.CreateTags.Request create_tags = 303;
+        optional main.profile_service.ProfileService.GetTags.Request get_tags = 304;
+        optional main.profile_service.ProfileService.AddTags.Request add_tags = 305;
+        optional main.profile_service.ProfileService.UpdateProfile.Request update_profile = 306;
+        optional main.profile_service.ProfileService.GetProfiles.Request get_profiles = 307;
     }
 }

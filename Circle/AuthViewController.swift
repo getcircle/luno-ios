@@ -207,17 +207,22 @@ class AuthViewController: UIViewController, UITextFieldDelegate {
             (httpRequest, httpResponse, serviceResponse, actionResponse, error) -> Void in
             
             self.hideLoadingState()
-            let response = UserService.Responses.AuthenticateUser(actionResponse!)
-            if error != nil || !response.success {
-                self.logInButton.addShakeAnimation()
-                self.emailField.becomeFirstResponder()
-                return
+            if let actionResponse = actionResponse {
+                let response = UserService.Responses.AuthenticateUser(actionResponse)
+                if error != nil || !response.success {
+                    self.logInButton.addShakeAnimation()
+                    self.emailField.becomeFirstResponder()
+                    return
+                }
+                
+                let result = response.result as UserService.AuthenticateUser.Response
+                LoggedInPersonHolder.user = result.user
+                self.cacheLoginData(result.token)
+                self.dismissViewControllerAnimated(true, completion: nil)
+            } else {
+                // TODO display an error message
+                println("Error logging in user: \(error)")
             }
-            
-            let result = response.result as UserService.AuthenticateUser.Response
-            LoggedInPersonHolder.user = result.user
-            self.cacheLoginData(result.token)
-            self.dismissViewControllerAnimated(true, completion: nil)
         })
     }
     

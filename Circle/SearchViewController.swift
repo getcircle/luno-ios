@@ -35,6 +35,7 @@ class SearchViewController: UIViewController, UICollectionViewDelegate, UITextFi
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        checkUserAndPresentAuthViewController()
     }
 
     // MARK: - Configuration
@@ -126,4 +127,14 @@ class SearchViewController: UIViewController, UICollectionViewDelegate, UITextFi
         super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
         collectionView.collectionViewLayout.invalidateLayout()
     }
+    
+    // MARK: - Authentication
+    
+    private func checkUserAndPresentAuthViewController() {
+        var currentUser = AuthViewController.getLoggedInPerson()
+        if currentUser == nil {
+            AuthViewController.presentAuthViewController()
+        }
+    }
+    
 }
