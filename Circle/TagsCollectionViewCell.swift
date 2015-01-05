@@ -103,7 +103,13 @@ class TagsCollectionViewCell: CircleCollectionViewCell, UICollectionViewDataSour
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
-        return UIEdgeInsetsMake(10.0, 10.0, 10.0, 10.0)
+        if showTagsLabel {
+            // Algin tags with the label if the label is shown
+            return UIEdgeInsetsMake(10.0, tagsLabel.frameX, 10.0, tagsLabel.frameX)
+        }
+        else {
+            return UIEdgeInsetsMake(10.0, 10.0, 10.0, 10.0)
+        }
     }
 
     // MARK: - UICollectionViewDelegate
