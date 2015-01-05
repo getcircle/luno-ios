@@ -80,6 +80,23 @@ class CardDataSource: NSObject, UICollectionViewDataSource {
         isHeaderRegistered = true
     }
     
+    /**
+    Configure cell instances for display. The default implementation of this method is empty.
+    
+    This method is called from cellForItemAtIndexPath and from sizeForItemAtIndexPath if the size calculation
+    method is Dynamic. This is to make sure prototype cells and real cells are configured exactly the same.
+
+    Subclasses can override this method to further customize cells per instance. The customization should
+    be minimum and generally not include fixed layout changes. A good use case of cell configuration would be 
+    to hide/show a label within a cell depending on the use case.
+    
+    :param: cell Cell being configured.
+    :param: indexPath Indexpath of the cell.
+    */
+    func configureCell(cell: CircleCollectionViewCell, atIndexPath indexPath: NSIndexPath) {
+        // Default Implementation
+    }
+    
     // MARK: - Collection View Data Source
     
     final func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
@@ -99,6 +116,7 @@ class CardDataSource: NSObject, UICollectionViewDataSource {
         ) as CircleCollectionViewCell
         
         cell.setData(card.content[indexPath.row])
+        configureCell(cell, atIndexPath: indexPath)
         animate(cell, atIndexPath: indexPath)
         return cell
     }

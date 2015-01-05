@@ -33,10 +33,12 @@ class CardCollectionViewDelegate: NSObject, UICollectionViewDelegateFlowLayout, 
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         
         // Use default width and height methods if size calculation method of choice is Fixed
-        let card = cardDataSource(collectionView).cards[indexPath.section]
+        let dataSource = cardDataSource(collectionView)
+        let card = dataSource.cards[indexPath.section]
+        var leftAndRightInsets = card.sectionInset.left
+        leftAndRightInsets += card.sectionInset.right
+
         if card.contentClass.sizeCalculationMethod == SizeCalculation.Fixed {
-            var leftAndRightInsets = card.sectionInset.left
-            leftAndRightInsets += card.sectionInset.right
             return CGSizeMake(card.contentClass.width - leftAndRightInsets, card.contentClass.height)
         }
         else {
@@ -50,9 +52,11 @@ class CardCollectionViewDelegate: NSObject, UICollectionViewDelegateFlowLayout, 
             
             if let prototypeCell = prototypeCellsHolder[card.title] {
                 prototypeCell.setData(card.content[indexPath.row])
+                dataSource.configureCell(prototypeCell, atIndexPath: indexPath)
                 prototypeCell.setNeedsLayout()
                 prototypeCell.layoutIfNeeded()
-                return prototypeCell.intrinsicContentSize()
+                let intrinsicCellSize = prototypeCell.intrinsicContentSize()
+                return CGSizeMake(intrinsicCellSize.width - leftAndRightInsets, intrinsicCellSize.height)
             }
         }
         
