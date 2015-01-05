@@ -22,7 +22,10 @@ extension Request {
                 return (nil, nil)
             }
             
-            // TODO: Handle 0 bytes in data (network error)
+            if data!.length == 0 {
+                return (nil, nil)
+            }
+            
             let serviceResponse = ServiceResponse.parseFromNSData(data!, extensionRegistry: ResponseRegistryRoot.sharedInstance.extensionRegistry)
             return (serviceResponse, nil)
         }
