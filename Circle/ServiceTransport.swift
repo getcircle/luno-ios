@@ -55,7 +55,8 @@ class BaseTransport: ServiceTransport {
 
 struct ServiceHttpRequest: URLRequestConvertible {
     
-    static let baseURLString = "http://127.0.0.1:8000"
+    // TODO we should have a way to configure which endpoint we hit in some settings pane, similar to EB
+    static let baseURLString = "http://circleapp.elasticbeanstalk.com"
     var data: NSData
     var token: String?
     
