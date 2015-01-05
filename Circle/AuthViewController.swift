@@ -13,8 +13,7 @@ import ProtobufRegistry
 // Swift doesn't support static variables yet.
 // This is the way it is recommended on the docs.
 // https://developer.apple.com/library/ios/documentation/swift/conceptual/Swift_Programming_Language/Properties.html
-struct LoggedInPersonHolder {
-    static var person: Person?
+struct LoggedInUserHolder {
     static var user: UserService.Containers.User?
 }
 
@@ -164,7 +163,7 @@ class AuthViewController: UIViewController, UITextFieldDelegate {
     }
     
     private func cacheLoginData(token: String) {
-        if let user = LoggedInPersonHolder.user {
+        if let user = LoggedInUserHolder.user {
             let error = Locksmith.updateData(
                 [token: "\(NSDate())"],
                 forKey: LocksmithAuthTokenKey,
@@ -216,7 +215,7 @@ class AuthViewController: UIViewController, UITextFieldDelegate {
                 }
                 
                 let result = response.result as UserService.AuthenticateUser.Response
-                LoggedInPersonHolder.user = result.user
+                LoggedInUserHolder.user = result.user
                 self.cacheLoginData(result.token)
                 self.dismissViewControllerAnimated(true, completion: nil)
             } else {
@@ -229,7 +228,7 @@ class AuthViewController: UIViewController, UITextFieldDelegate {
     // MARK: - Log out
     
     class func logOut() {
-        LoggedInPersonHolder.user = nil
+        LoggedInUserHolder.user = nil
         AuthViewController.presentAuthViewController()
     }
     
@@ -243,7 +242,7 @@ class AuthViewController: UIViewController, UITextFieldDelegate {
     
     // Synchronous call to fetch Person object for currently logged in user
     class func getLoggedInPerson() -> UserService.Containers.User? {
-        if let user = LoggedInPersonHolder.user {
+        if let user = LoggedInUserHolder.user {
             return user
         } else {
             if let user = AuthViewController.loadCachedUser() {
