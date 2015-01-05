@@ -63,14 +63,14 @@ class SearchLandingDataSource: CardDataSource {
             // loggedInPerson = filteredList?[0]
         }
         
-        let directReportsCard = Card(cardType: .People, title: "Direct Reports")
+        let directReportsCard = Card(cardType: .Group, title: "Direct Reports")
         if people?.count > 0 {
             directReportsCard.content.append(people!)
             directReportsCard.contentCount = people?.count ?? 0
         }
         appendCard(directReportsCard)
         
-        let peersCard = Card(cardType: .People, title: "Peers")
+        let peersCard = Card(cardType: .Group, title: "Peers")
         if people?.count > 0 {
             peersCard.content.append(people!.reverse())
             peersCard.contentCount = people?.count ?? 0

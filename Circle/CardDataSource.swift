@@ -206,4 +206,34 @@ class CardDataSource: NSObject, UICollectionViewDataSource {
             registeredCellClasses.addObject(card.contentClassName)
         }
     }
+    
+    // MARK: - Data Accessors
+    
+    /**
+        Return the card at a particular section.
+    
+        :param: section Section index.
+    
+        :returns: Card object or nil.
+    */
+    func cardAtSection(section: Int) -> Card? {
+        return cards[section] ?? nil
+    }
+    
+    /**
+        Return the content object at a particular indexPath.
+        
+        :param: indexPath NSIndexPath.
+        
+        :returns: AnyObject content object or nil.
+    */
+    func contentAtIndexPath(indexPath: NSIndexPath) -> AnyObject? {
+        if let card = cards[indexPath.section] as Card? {
+            if let content: AnyObject = card.content[indexPath.row] as AnyObject? {
+                return content
+            }
+        }
+
+        return nil
+    }
 }

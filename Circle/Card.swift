@@ -24,6 +24,7 @@ class Card: Equatable {
     
     enum CardType: Int {
         case Birthdays = 1
+        case Group
         case KeyValue
         case Locations
         case Notes
@@ -34,7 +35,7 @@ class Card: Equatable {
             switch type {
             case .Birthdays:
                 return "Cake"
-                
+            
             case .KeyValue:
                 return "Info"
 
@@ -44,7 +45,7 @@ class Card: Equatable {
             case .Notes:
                 return "Notepad"
 
-            case .People:
+            case .Group, .People:
                 return "People"
             
             case .Tags:
@@ -54,7 +55,7 @@ class Card: Equatable {
         
         static func classByCardType(type: CardType) -> (CircleCollectionViewCell.Type, className: String) {
             switch type {
-            case .Birthdays:
+            case .People, .Birthdays:
                 return (PersonCollectionViewCell.self, "PersonCollectionViewCell")
             
             case .KeyValue:
@@ -66,7 +67,7 @@ class Card: Equatable {
             case .Notes:
                 return (NotesCollectionViewCell.self, "NotesCollectionViewCell")
 
-            case .People:
+            case .Group:
                 return (ProfileImagesCollectionViewCell.self, "ProfileImagesCollectionViewCell")
             
             case .Tags:

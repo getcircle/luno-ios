@@ -112,7 +112,6 @@
                                     </collectionViewCell>
                                 </cells>
                                 <connections>
-                                    <outlet property="dataSource" destination="sfD-c4-aFJ" id="1Ss-bK-lVW"/>
                                     <outlet property="delegate" destination="sfD-c4-aFJ" id="a9t-kV-cdo"/>
                                 </connections>
                             </collectionView>
@@ -336,6 +335,6 @@
         <image name="Profile" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="tgc-v1-g6X"/>
+        <segue reference="vje-9W-y2T"/>
     </inferredMetricsTieBreakers>
 </document>
