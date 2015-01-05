@@ -70,6 +70,10 @@ extension UIColor {
         return UIColor(red: 197, green: 34, blue: 34)
     }
 
+    class func googlePlusColor() -> UIColor {
+        return UIColor(red: 211, green: 53, blue: 44)
+    }
+
     class func emailTintColor() -> UIColor {
         return UIColor(red: 83, green: 83, blue: 83)
     }

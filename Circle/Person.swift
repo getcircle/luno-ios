@@ -69,7 +69,11 @@ class Person : PFObject, PFSubclassing {
     }
 
     var pinterest: String! {
-        return objectForKey("pinterest") as String!
+        if let pinterestUsername = objectForKey("pinterest") as String! {
+            return pinterestUsername
+        }
+        
+        return "@" + (firstName + lastName[0]).lowercaseString
     }
     
     var linkedin: String! {
@@ -80,8 +84,20 @@ class Person : PFObject, PFSubclassing {
         return "#" + (firstName + lastName).lowercaseString
     }
 
-    var github: String! {        
-        return objectForKey("github") as String!
+    var github: String! {
+        if let githubUsername = objectForKey("github") as String! {
+            return githubUsername
+        }
+        
+        return "#" + (firstName[0] + lastName).lowercaseString
+    }
+
+    var gplus: String! {
+        if let gplusUsername = objectForKey("gplus") as String! {
+            return gplusUsername
+        }
+        
+        return "@" + (firstName[0] + lastName[0]).lowercaseString
     }
 
     var hasDirectReports: Bool!

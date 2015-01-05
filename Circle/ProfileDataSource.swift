@@ -48,7 +48,8 @@ class ProfileDataSource: CardDataSource {
         "facebook",
         "pinterest",
         "linkedin",
-        "github"
+        "github",
+        "gplus"
     ]
     
     let managerInfoKeySet = [
@@ -67,7 +68,8 @@ class ProfileDataSource: CardDataSource {
         "facebook": "Facebook",
         "pinterest": "Pinterest",
         "linkedin": "LinkedIn",
-        "github": "Github"
+        "github": "Github",
+        "gplus": "Google+"
     ]
     
     let keyToImageDictionary: [String: [String: AnyObject]] = [
@@ -90,6 +92,10 @@ class ProfileDataSource: CardDataSource {
         "github": [
             "image": "Github",
             "tintColor": UIColor.githubColor(),
+        ],
+        "gplus": [
+            "image": "GooglePlus",
+            "tintColor": UIColor.googlePlusColor(),
         ],
         "email": [
             "image": "EmailCircle",
