@@ -34,7 +34,7 @@ class AuthViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        configView()
+        configureView()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -53,7 +53,7 @@ class AuthViewController: UIViewController, UITextFieldDelegate {
 
     // MARK: - Configuration
     
-    private func configView() {
+    private func configureView() {
         emailField.addRoundCorners()
         passwordField.addRoundCorners()
         logInButton.addRoundCorners()
