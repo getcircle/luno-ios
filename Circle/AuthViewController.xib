@@ -22,7 +22,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Copyright (c) 2014 RH Labs Inc. All rights reserved." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="aew-4r-Rd2" userLabel="Copyright (c) 2014 RH Labs Inc. All rights reserved.">
-                    <rect key="frame" x="20" y="563" width="560" height="17"/>
+                    <rect key="frame" x="20" y="563" width="560" height="16.5"/>
                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="12"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
@@ -39,8 +39,8 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <textField clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="x4p-Uh-3t5">
-                    <rect key="frame" x="219" y="303" width="163" height="35"/>
+                <textField clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="x4p-Uh-3t5">
+                    <rect key="frame" x="180" y="303" width="240" height="35"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="35" id="wqu-FP-Y81"/>
@@ -49,18 +49,6 @@
                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                     <connections>
                         <outlet property="delegate" destination="-1" id="ZRz-IN-IC8"/>
-                    </connections>
-                </textField>
-                <textField clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="faS-m0-daM" userLabel="Password">
-                    <rect key="frame" x="219" y="358" width="163" height="35"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="35" id="GFh-hc-k2E"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
-                    <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" returnKeyType="go" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
-                    <connections>
-                        <outlet property="delegate" destination="-1" id="Kit-Vk-Cm3"/>
                     </connections>
                 </textField>
                 <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aie-sS-pXs">
@@ -80,6 +68,18 @@
                         <action selector="logInButtonPressed:" destination="-1" eventType="touchUpInside" id="3jQ-Pk-2XZ"/>
                     </connections>
                 </button>
+                <textField clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="faS-m0-daM" userLabel="Password">
+                    <rect key="frame" x="180.5" y="358" width="240" height="35"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="35" id="GFh-hc-k2E"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
+                    <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" returnKeyType="go" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="Kit-Vk-Cm3"/>
+                    </connections>
+                </textField>
             </subviews>
             <color key="backgroundColor" red="0.88235294119999996" green="0.15686274510000001" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
@@ -96,6 +96,8 @@
                 <constraint firstAttribute="trailing" secondItem="pK5-tP-ZNS" secondAttribute="trailing" priority="750" constant="20" symbolic="YES" id="ayW-Ox-miN"/>
                 <constraint firstAttribute="trailing" secondItem="x4p-Uh-3t5" secondAttribute="trailing" priority="750" constant="20" symbolic="YES" id="bLq-0P-NFV"/>
                 <constraint firstItem="faS-m0-daM" firstAttribute="width" secondItem="pK5-tP-ZNS" secondAttribute="width" id="ceC-b5-hLN"/>
+                <constraint firstItem="faS-m0-daM" firstAttribute="width" secondItem="aie-sS-pXs" secondAttribute="width" id="fgA-K5-OBR"/>
+                <constraint firstItem="x4p-Uh-3t5" firstAttribute="width" secondItem="aie-sS-pXs" secondAttribute="width" id="iIw-pu-Y2v"/>
                 <constraint firstAttribute="centerX" secondItem="aie-sS-pXs" secondAttribute="centerX" id="jgc-Eu-pO9"/>
                 <constraint firstAttribute="trailing" secondItem="faS-m0-daM" secondAttribute="trailing" priority="750" constant="20" symbolic="YES" id="jog-P5-CPa"/>
                 <constraint firstItem="aew-4r-Rd2" firstAttribute="leading" secondItem="ba3-xx-xRk" secondAttribute="leading" constant="20" symbolic="YES" id="lI1-Il-CxF"/>
@@ -108,6 +110,12 @@
                 <constraint firstItem="x4p-Uh-3t5" firstAttribute="width" secondItem="pK5-tP-ZNS" secondAttribute="width" id="wrh-Yb-PqR"/>
                 <constraint firstAttribute="centerX" secondItem="pK5-tP-ZNS" secondAttribute="centerX" id="zeZ-UU-ar7"/>
             </constraints>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="wrh-Yb-PqR"/>
+                    <exclude reference="ceC-b5-hLN"/>
+                </mask>
+            </variation>
             <connections>
                 <outletCollection property="gestureRecognizers" destination="YoK-1K-HFw" appends="YES" id="E74-4a-osp"/>
             </connections>
