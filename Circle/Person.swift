@@ -68,11 +68,19 @@ class Person : PFObject, PFSubclassing {
         return (firstName + lastName).lowercaseString
     }
 
+    var pinterest: String! {
+        return objectForKey("pinterest") as String!
+    }
+    
     var linkedin: String! {
-        return objectForKey("linkedin") as String!
+        if let linkedinUsername = objectForKey("linkedin") as String! {
+            return linkedinUsername
+        }
+        
+        return "#" + (firstName + lastName).lowercaseString
     }
 
-    var github: String! {
+    var github: String! {        
         return objectForKey("github") as String!
     }
 

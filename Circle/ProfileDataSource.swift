@@ -46,6 +46,7 @@ class ProfileDataSource: CardDataSource {
     let socialInfoKeySet = [
         "twitter",
         "facebook",
+        "pinterest",
         "linkedin",
         "github"
     ]
@@ -64,6 +65,7 @@ class ProfileDataSource: CardDataSource {
         "department": "Department",
         "twitter": "Twitter",
         "facebook": "Facebook",
+        "pinterest": "Pinterest",
         "linkedin": "LinkedIn",
         "github": "Github"
     ]
@@ -77,12 +79,16 @@ class ProfileDataSource: CardDataSource {
             "image": "Facebook",
             "tintColor": UIColor.facebookColor(),
         ],
+        "pinterest": [
+            "image": "Pinterest",
+            "tintColor": UIColor.pinterestColor(),
+        ],
         "linkedin": [
             "image": "LinkedIn",
             "tintColor": UIColor.linkedinColor(),
         ],
         "github": [
-            "image": "Twitter",
+            "image": "Github",
             "tintColor": UIColor.githubColor(),
         ],
         "email": [

@@ -65,6 +65,10 @@ extension UIColor {
     class func facebookColor() -> UIColor {
         return UIColor(red: 45, green: 68, blue: 134)
     }
+    
+    class func pinterestColor() -> UIColor {
+        return UIColor(red: 197, green: 34, blue: 34)
+    }
 
     class func emailTintColor() -> UIColor {
         return UIColor(red: 83, green: 83, blue: 83)
