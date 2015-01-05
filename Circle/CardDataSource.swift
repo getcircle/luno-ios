@@ -152,7 +152,7 @@ class CardDataSource: NSObject, UICollectionViewDataSource {
             
             // Delay is based on section index to ensure all components of one section
             // animate in at the same time
-            let delay = 0.2 * (Double(indexPath.section) + 1.0)
+            let delay = 0.1 * (Double(indexPath.section) + 1.0)
             view.alpha = 0.0
             
             UIView.animateWithDuration(
