@@ -128,13 +128,4 @@ class SearchViewController: UIViewController, UICollectionViewDelegate, UITextFi
         collectionView.collectionViewLayout.invalidateLayout()
     }
     
-    // MARK: - Authentication
-    
-    private func checkUserAndPresentAuthViewController() {
-        var currentUser = AuthViewController.getLoggedInPerson()
-        if currentUser == nil {
-            AuthViewController.presentAuthViewController()
-        }
-    }
-    
 }

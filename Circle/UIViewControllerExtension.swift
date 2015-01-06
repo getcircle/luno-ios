@@ -59,4 +59,14 @@ extension UIViewController {
 //TODO: Show generic error
         }
     }
+    
+    
+    // MARK: - Authentication
+    
+    func checkUserAndPresentAuthViewController() {
+        var currentUser = AuthViewController.getLoggedInUser()
+        if currentUser == nil {
+            AuthViewController.presentAuthViewController()
+        }
+    }
 }

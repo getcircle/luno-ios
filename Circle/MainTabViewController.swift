@@ -48,7 +48,7 @@ class MainTabViewController: UITabBarController, UITabBarControllerDelegate {
         if viewController is UINavigationController {
             if (viewController as UINavigationController).topViewController is ProfileViewController {
                 var profileVC = (viewController as UINavigationController).topViewController as ProfileViewController
-//                profileVC.person = AuthViewController.getLoggedInPerson()
+//                profileVC.person = AuthViewController.getLoggedInUser()
                 profileVC.showLogOutButton = true
             }
         }
@@ -59,14 +59,5 @@ class MainTabViewController: UITabBarController, UITabBarControllerDelegate {
     func tabBarController(tabBarController: UITabBarController, didSelectViewController viewController: UIViewController) {
         checkUserAndPresentAuthViewController()
     }
-    
-    // MARK - Authentication Check
-    
-    // Check if user is logged in. If not, present auth view controller
-    private func checkUserAndPresentAuthViewController() {
-        var currentUser = AuthViewController.getLoggedInPerson()
-        if currentUser == nil {
-            AuthViewController.presentAuthViewController()
-        }
-    }
+
 }
