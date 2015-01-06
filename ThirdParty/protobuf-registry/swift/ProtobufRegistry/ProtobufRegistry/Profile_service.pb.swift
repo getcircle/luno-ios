@@ -127,6 +127,7 @@ final public class ProfileService : GeneratedMessage {
                  case "location": return location
                  case "email": return email
                  case "team_id": return team_id
+                 case "full_name": return full_name
                  default: return nil
                  }
           }
@@ -169,6 +170,9 @@ final public class ProfileService : GeneratedMessage {
 
           public private(set) var hasTeamId:Bool = false
           public private(set) var team_id:String = ""
+
+          public private(set) var hasFullName:Bool = false
+          public private(set) var full_name:String = ""
 
           required public init() {
                super.init()
@@ -215,6 +219,9 @@ final public class ProfileService : GeneratedMessage {
             }
             if hasTeamId {
               output.writeString(13, value:team_id)
+            }
+            if hasFullName {
+              output.writeString(14, value:full_name)
             }
             unknownFields.writeToCodedOutputStream(output)
           }
@@ -263,6 +270,9 @@ final public class ProfileService : GeneratedMessage {
             }
             if hasTeamId {
               size += WireFormat.computeStringSize(13, value:team_id)
+            }
+            if hasFullName {
+              size += WireFormat.computeStringSize(14, value:full_name)
             }
             size += unknownFields.serializedSize()
             memoizedSerializedSize = size
@@ -344,6 +354,9 @@ final public class ProfileService : GeneratedMessage {
             if hasTeamId {
               output += "\(indent) team_id: \(team_id) \n"
             }
+            if hasFullName {
+              output += "\(indent) full_name: \(full_name) \n"
+            }
             unknownFields.writeDescriptionTo(&output, indent:indent)
           }
           override public var hashValue:Int {
@@ -387,6 +400,9 @@ final public class ProfileService : GeneratedMessage {
                   }
                   if hasTeamId {
                      hashCode = (hashCode &* 31) &+ team_id.hashValue
+                  }
+                  if hasFullName {
+                     hashCode = (hashCode &* 31) &+ full_name.hashValue
                   }
                   hashCode = (hashCode &* 31) &+  unknownFields.hashValue
                   return hashCode
@@ -665,6 +681,25 @@ final public class ProfileService : GeneratedMessage {
                builderResult.team_id = ""
                return self
           }
+          public var hasFullName:Bool {
+               get {
+                    return builderResult.hasFullName
+               }
+          }
+          public var full_name:String {
+               get {
+                    return builderResult.full_name
+               }
+               set (value) {
+                   builderResult.hasFullName = true
+                   builderResult.full_name = value
+               }
+          }
+          public func clearFullName() -> ProfileService.Containers.ProfileBuilder{
+               builderResult.hasFullName = false
+               builderResult.full_name = ""
+               return self
+          }
           override public var internalGetResult:GeneratedMessage {
                get {
                   return builderResult
@@ -728,6 +763,9 @@ final public class ProfileService : GeneratedMessage {
             if other.hasTeamId {
                  team_id = other.team_id
             }
+            if other.hasFullName {
+                 full_name = other.full_name
+            }
             mergeUnknownFields(other.unknownFields)
             return self
           }
@@ -781,6 +819,9 @@ final public class ProfileService : GeneratedMessage {
 
               case 106 :
                 team_id = input.readString()
+
+              case 114 :
+                full_name = input.readString()
 
               default:
                 if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {

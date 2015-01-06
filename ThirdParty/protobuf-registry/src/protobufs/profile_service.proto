@@ -23,6 +23,7 @@ message ProfileService {
             optional string location = 11;
             optional string email = 12;
             optional string team_id = 13;
+            optional string full_name = 14;
         }
 
         message Tag {

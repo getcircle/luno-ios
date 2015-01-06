@@ -18,6 +18,7 @@ message OrganizationService {
             optional string owner_id = 3;
             optional string organization_id = 4;
             repeated string path = 5;
+            optional string department = 6;
         }
 
         message Address {

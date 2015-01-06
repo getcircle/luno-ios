@@ -395,6 +395,7 @@ final public class OrganizationService : GeneratedMessage {
                  case "name": return name
                  case "owner_id": return owner_id
                  case "organization_id": return organization_id
+                 case "department": return department
                  default: return nil
                  }
           }
@@ -410,6 +411,9 @@ final public class OrganizationService : GeneratedMessage {
 
           public private(set) var hasOrganizationId:Bool = false
           public private(set) var organization_id:String = ""
+
+          public private(set) var hasDepartment:Bool = false
+          public private(set) var department:String = ""
 
           public private(set) var path:Array<String> = Array<String>()
           required public init() {
@@ -435,6 +439,9 @@ final public class OrganizationService : GeneratedMessage {
               for oneValuepath in path {
                 output.writeString(5, value:oneValuepath)
               }
+            }
+            if hasDepartment {
+              output.writeString(6, value:department)
             }
             unknownFields.writeToCodedOutputStream(output)
           }
@@ -463,6 +470,9 @@ final public class OrganizationService : GeneratedMessage {
             }
             size += dataSizePath
             size += 1 * Int32(path.count)
+            if hasDepartment {
+              size += WireFormat.computeStringSize(6, value:department)
+            }
             size += unknownFields.serializedSize()
             memoizedSerializedSize = size
             return size
@@ -521,6 +531,9 @@ final public class OrganizationService : GeneratedMessage {
                 output += "\(indent) path[\(pathElementIndex)]: \(oneValuepath)\n"
                 pathElementIndex++
             }
+            if hasDepartment {
+              output += "\(indent) department: \(department) \n"
+            }
             unknownFields.writeDescriptionTo(&output, indent:indent)
           }
           override public var hashValue:Int {
@@ -540,6 +553,9 @@ final public class OrganizationService : GeneratedMessage {
                   }
                   for oneValuepath in path {
                       hashCode = (hashCode &* 31) &+ oneValuepath.hashValue
+                  }
+                  if hasDepartment {
+                     hashCode = (hashCode &* 31) &+ department.hashValue
                   }
                   hashCode = (hashCode &* 31) &+  unknownFields.hashValue
                   return hashCode
@@ -659,6 +675,25 @@ final public class OrganizationService : GeneratedMessage {
              builderResult.path.removeAll(keepCapacity: false)
              return self
           }
+          public var hasDepartment:Bool {
+               get {
+                    return builderResult.hasDepartment
+               }
+          }
+          public var department:String {
+               get {
+                    return builderResult.department
+               }
+               set (value) {
+                   builderResult.hasDepartment = true
+                   builderResult.department = value
+               }
+          }
+          public func clearDepartment() -> OrganizationService.Containers.TeamBuilder{
+               builderResult.hasDepartment = false
+               builderResult.department = ""
+               return self
+          }
           override public var internalGetResult:GeneratedMessage {
                get {
                   return builderResult
@@ -698,6 +733,9 @@ final public class OrganizationService : GeneratedMessage {
             if !other.path.isEmpty {
                 builderResult.path += other.path
             }
+            if other.hasDepartment {
+                 department = other.department
+            }
             mergeUnknownFields(other.unknownFields)
             return self
           }
@@ -727,6 +765,9 @@ final public class OrganizationService : GeneratedMessage {
 
               case 42 :
                 path += [input.readString()]
+
+              case 50 :
+                department = input.readString()
 
               default:
                 if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
