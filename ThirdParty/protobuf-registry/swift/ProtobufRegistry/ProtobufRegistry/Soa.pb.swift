@@ -112,7 +112,7 @@ public func == (lhs: ServiceResponse, rhs: ServiceResponse) -> Bool {
 }
 
 final public class Control : GeneratedMessage {
-  public subscript(key: String) -> Any? {
+  public subscript(key: String) -> AnyObject? {
          switch key {
          case "token": return token
          case "service": return service
@@ -345,7 +345,7 @@ final public class ControlBuilder : GeneratedMessageBuilder {
 }
 
 final public class ActionControl : GeneratedMessage {
-  public subscript(key: String) -> Any? {
+  public subscript(key: String) -> AnyObject? {
          switch key {
          case "service": return service
          case "action": return action
@@ -581,7 +581,7 @@ final public class ActionControlBuilder : GeneratedMessageBuilder {
 }
 
 final public class ActionRequest : GeneratedMessage {
-  public subscript(key: String) -> Any? {
+  public subscript(key: String) -> AnyObject? {
          switch key {
          case "control": return control
          case "params": return params
@@ -860,7 +860,7 @@ final public class ActionRequestBuilder : GeneratedMessageBuilder {
 }
 
 final public class ActionRequestParams : ExtendableMessage {
-  public subscript(key: String) -> Any? {
+  public subscript(key: String) -> AnyObject? {
          switch key {
          default: return nil
          }
@@ -1021,7 +1021,7 @@ final public class ActionResponseResult : ExtendableMessage {
   //Nested type declaration start
 
     final public class ErrorDetail : GeneratedMessage {
-      public subscript(key: String) -> Any? {
+      public subscript(key: String) -> AnyObject? {
              switch key {
              case "error": return error
              case "key": return key
@@ -1295,7 +1295,7 @@ final public class ActionResponseResult : ExtendableMessage {
 
   //Nested type declaration end
 
-  public subscript(key: String) -> Any? {
+  public subscript(key: String) -> AnyObject? {
          switch key {
          case "success": return success
          default: return nil
@@ -1567,7 +1567,7 @@ final public class ActionResponseResultBuilder : ExtendableMessageBuilder {
 }
 
 final public class ActionResponse : GeneratedMessage {
-  public subscript(key: String) -> Any? {
+  public subscript(key: String) -> AnyObject? {
          switch key {
          case "control": return control
          case "result": return result
@@ -1846,7 +1846,7 @@ final public class ActionResponseBuilder : GeneratedMessageBuilder {
 }
 
 final public class ServiceRequest : GeneratedMessage {
-  public subscript(key: String) -> Any? {
+  public subscript(key: String) -> AnyObject? {
          switch key {
          case "control": return control
          default: return nil
@@ -2107,7 +2107,7 @@ final public class ServiceRequestBuilder : GeneratedMessageBuilder {
 }
 
 final public class ServiceResponse : GeneratedMessage {
-  public subscript(key: String) -> Any? {
+  public subscript(key: String) -> AnyObject? {
          switch key {
          case "control": return control
          default: return nil

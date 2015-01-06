@@ -200,7 +200,7 @@ public func == (lhs: ProfileServiceRequests, rhs: ProfileServiceRequests) -> Boo
 }
 
 final public class UserServiceRequests : GeneratedMessage {
-  public subscript(key: String) -> Any? {
+  public subscript(key: String) -> AnyObject? {
          switch key {
          default: return nil
          }
@@ -357,7 +357,7 @@ final public class UserServiceRequestsBuilder : GeneratedMessageBuilder {
 }
 
 final public class OrganizationServiceRequests : GeneratedMessage {
-  public subscript(key: String) -> Any? {
+  public subscript(key: String) -> AnyObject? {
          switch key {
          default: return nil
          }
@@ -529,7 +529,7 @@ final public class OrganizationServiceRequestsBuilder : GeneratedMessageBuilder 
 }
 
 final public class ProfileServiceRequests : GeneratedMessage {
-  public subscript(key: String) -> Any? {
+  public subscript(key: String) -> AnyObject? {
          switch key {
          default: return nil
          }

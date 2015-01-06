@@ -200,7 +200,7 @@ public func == (lhs: ProfileServiceResponses, rhs: ProfileServiceResponses) -> B
 }
 
 final public class UserServiceResponses : GeneratedMessage {
-  public subscript(key: String) -> Any? {
+  public subscript(key: String) -> AnyObject? {
          switch key {
          default: return nil
          }
@@ -357,7 +357,7 @@ final public class UserServiceResponsesBuilder : GeneratedMessageBuilder {
 }
 
 final public class OrganizationServiceResponses : GeneratedMessage {
-  public subscript(key: String) -> Any? {
+  public subscript(key: String) -> AnyObject? {
          switch key {
          default: return nil
          }
@@ -529,7 +529,7 @@ final public class OrganizationServiceResponsesBuilder : GeneratedMessageBuilder
 }
 
 final public class ProfileServiceResponses : GeneratedMessage {
-  public subscript(key: String) -> Any? {
+  public subscript(key: String) -> AnyObject? {
          switch key {
          default: return nil
          }
