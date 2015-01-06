@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import Crashlytics
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -21,7 +22,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Setup Parse
         setupParse(launchOptions)
-        
+
+        // Setup Crashlytics
+        Crashlytics.startWithAPIKey("e4192b2c032ea5f8065aac4bde634b85760f8d49")
+
         // Test Alamofire
 //        Alamofire.request(.GET, "http://httpbin.org/get", parameters: ["foo": "bar"])
 //            .response { (request, response, data, error) in
