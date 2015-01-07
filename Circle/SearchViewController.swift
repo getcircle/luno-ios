@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ProtobufRegistry
 
 class SearchViewController: UIViewController, UICollectionViewDelegate, UITextFieldDelegate {
     
@@ -96,7 +97,23 @@ class SearchViewController: UIViewController, UICollectionViewDelegate, UITextFi
     // MARK: - UICollectionViewDelegate
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        performSegueWithIdentifier("showListOfPeople", sender: collectionView)
+        let dataSource = (collectionView.dataSource as CardDataSource)
+        let selectedCard = dataSource.cardAtSection(indexPath.section)!
+        
+        switch selectedCard.type {
+        
+        case .People, .Birthdays:
+            if let profile = dataSource.contentAtIndexPath(indexPath)? as? ProfileService.Containers.Profile {
+                var profileViewController = storyboard?.instantiateViewControllerWithIdentifier("ProfileViewController") as ProfileViewController
+                profileViewController.profile = profile
+                navigationController?.pushViewController(profileViewController, animated: true)
+            }
+            break
+            
+        default:
+            performSegueWithIdentifier("showListOfPeople", sender: collectionView)
+            
+        }
     }
     
     // MARK: - IBActions

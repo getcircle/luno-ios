@@ -47,13 +47,11 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, MFMailC
         }
         else {
             transitionCoordinator()?.animateAlongsideTransition({ (transitionContext) -> Void in
-                self.navigationController?.setNavigationBarHidden(true, animated: true)
-                return
-            }, completion: { (transitionContext) -> Void in
-                    self.navigationController?.setNavigationBarHidden(false, animated: false)
                     self.navigationController?.navigationBar.makeTransparent()
                     return
-            })
+                },
+                completion: nil
+            )
         }
     }
 

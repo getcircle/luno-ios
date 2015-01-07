@@ -217,7 +217,7 @@ class ProfileDataSource: CardDataSource {
                 self.populateData()
                 completionHandler(error: nil)
             }
-        }r
+        }
     }
     
     // MARK: - Populate Data

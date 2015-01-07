@@ -39,7 +39,7 @@
         <!--Profile-->
         <scene sceneID="r4c-8U-6OS">
             <objects>
-                <viewController title="Profile" extendedLayoutIncludesOpaqueBars="YES" automaticallyAdjustsScrollViewInsets="NO" id="sDD-Fq-JNF" customClass="ProfileViewController" customModule="Circle" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProfileViewController" title="Profile" extendedLayoutIncludesOpaqueBars="YES" automaticallyAdjustsScrollViewInsets="NO" id="sDD-Fq-JNF" customClass="ProfileViewController" customModule="Circle" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="HIs-vu-Ig9"/>
                         <viewControllerLayoutGuide type="bottom" id="5wd-Cd-7JM"/>
