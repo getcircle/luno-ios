@@ -29,6 +29,7 @@ class Card: Equatable {
         case Locations
         case Notes
         case People
+        case Placeholder
         case Tags
         
         static func imageSourceByCardType(type: CardType) -> String {
@@ -45,7 +46,7 @@ class Card: Equatable {
             case .Notes:
                 return "Notepad"
 
-            case .Group, .People:
+            case .Group, .People, .Placeholder:
                 return "People"
             
             case .Tags:
@@ -55,9 +56,12 @@ class Card: Equatable {
         
         static func classByCardType(type: CardType) -> (CircleCollectionViewCell.Type, className: String) {
             switch type {
-            case .People, .Birthdays:
+            case .Birthdays, .People:
                 return (ProfileCollectionViewCell.self, "ProfileCollectionViewCell")
             
+            case .Group:
+                return (ProfileImagesCollectionViewCell.self, "ProfileImagesCollectionViewCell")
+
             case .KeyValue:
                 return (KeyValueCollectionViewCell.self, "KeyValueCollectionViewCell")
 
@@ -67,9 +71,9 @@ class Card: Equatable {
             case .Notes:
                 return (NotesCollectionViewCell.self, "NotesCollectionViewCell")
 
-            case .Group:
-                return (ProfileImagesCollectionViewCell.self, "ProfileImagesCollectionViewCell")
-            
+            case .Placeholder:
+                return (CircleCollectionViewCell.self, "CircleCollectionViewCell")
+
             case .Tags:
                 return (TagsCollectionViewCell.self, "TagsCollectionViewCell")
             }
