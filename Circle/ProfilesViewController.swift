@@ -8,6 +8,7 @@
 
 import MessageUI
 import UIKit
+import ProtobufRegistry
 
 class ProfilesViewController: UIViewController,
                             MFMailComposeViewControllerDelegate,
@@ -70,11 +71,11 @@ class ProfilesViewController: UIViewController,
     // MARK: - Segues
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "showProfile" {
-            if let indexPath = collectionView.indexPathsForSelectedItems()[0] as? NSIndexPath {
-//                let person = dataSource.contentAtIndexPath(indexPath) as? Person
+        if segue.identifier == "showUserProfile" && sender is NSIndexPath {
+            if let profile = dataSource.contentAtIndexPath(sender as NSIndexPath)? as? ProfileService.Containers.Profile {
                 let controller = segue.destinationViewController as ProfileViewController
-//                controller.person = person
+                println(profile)
+                controller.profile = profile
             }
         }
     }
@@ -82,7 +83,7 @@ class ProfilesViewController: UIViewController,
     // MARK: - Collection View Delegate
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        performSegueWithIdentifier("showProfile", sender: collectionView)
+        performSegueWithIdentifier("showUserProfile", sender: indexPath)
     }
 
     // MARK: - UISearchResultsUpdating
