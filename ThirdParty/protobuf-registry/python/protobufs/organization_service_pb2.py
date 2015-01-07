@@ -18,7 +18,7 @@ _sym_db = _symbol_database.Default()
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='protobufs/organization_service.proto',
   package='main.organization_service',
-  serialized_pb=_b('\n$protobufs/organization_service.proto\x12\x19main.organization_service\"\xb2\r\n\x13OrganizationService\x1a\xe3\x02\n\nContainers\x1a\x38\n\x0cOrganization\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x0e\n\x06\x64omain\x18\x03 \x01(\t\x1am\n\x04Team\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x10\n\x08owner_id\x18\x03 \x01(\t\x12\x17\n\x0forganization_id\x18\x04 \x01(\t\x12\x0c\n\x04path\x18\x05 \x03(\t\x12\x12\n\ndepartment\x18\x06 \x01(\t\x1a\xab\x01\n\x07\x41\x64\x64ress\x12\n\n\x02id\x18\x01 \x01(\t\x12\x17\n\x0forganization_id\x18\x02 \x01(\t\x12\x0c\n\x04name\x18\x03 \x01(\t\x12\x11\n\taddress_1\x18\x04 \x01(\t\x12\x11\n\taddress_2\x18\x05 \x01(\t\x12\x0c\n\x04\x63ity\x18\x06 \x01(\t\x12\x0e\n\x06region\x18\x07 \x01(\t\x12\x13\n\x0bpostal_code\x18\x08 \x01(\t\x12\x14\n\x0c\x63ountry_code\x18\t \x01(\t\x1a\xe7\x01\n\x12\x43reateOrganization\x1ag\n\x07Request\x12\\\n\x0corganization\x18\x01 \x01(\x0b\x32\x46.main.organization_service.OrganizationService.Containers.Organization\x1ah\n\x08Response\x12\\\n\x0corganization\x18\x01 \x01(\x0b\x32\x46.main.organization_service.OrganizationService.Containers.Organization\x1a\xce\x01\n\x0fGetOrganization\x1aQ\n\x07Request\x12\x19\n\x0forganization_id\x18\x01 \x01(\tH\x00\x12\x1d\n\x13organization_domain\x18\x02 \x01(\tH\x00\x42\x0c\n\nlookup_key\x1ah\n\x08Response\x12\\\n\x0corganization\x18\x01 \x01(\x0b\x32\x46.main.organization_service.OrganizationService.Containers.Organization\x1a\xd1\x01\n\nCreateTeam\x1ai\n\x07Request\x12L\n\x04team\x18\x01 \x01(\x0b\x32>.main.organization_service.OrganizationService.Containers.Team\x12\x10\n\x08\x63hild_of\x18\x02 \x01(\t\x1aX\n\x08Response\x12L\n\x04team\x18\x01 \x01(\x0b\x32>.main.organization_service.OrganizationService.Containers.Team\x1a\x7f\n\x07GetTeam\x1a\x1a\n\x07Request\x12\x0f\n\x07team_id\x18\x01 \x01(\t\x1aX\n\x08Response\x12L\n\x04team\x18\x01 \x01(\x0b\x32>.main.organization_service.OrganizationService.Containers.Team\x1a\x89\x01\n\x08GetTeams\x1a\"\n\x07Request\x12\x17\n\x0forganization_id\x18\x01 \x01(\t\x1aY\n\x08Response\x12M\n\x05teams\x18\x01 \x03(\x0b\x32>.main.organization_service.OrganizationService.Containers.Team\x1a\xce\x01\n\rCreateAddress\x1a]\n\x07Request\x12R\n\x07\x61\x64\x64ress\x18\x01 \x01(\x0b\x32\x41.main.organization_service.OrganizationService.Containers.Address\x1a^\n\x08Response\x12R\n\x07\x61\x64\x64ress\x18\x01 \x01(\x0b\x32\x41.main.organization_service.OrganizationService.Containers.Address\x1a:\n\rDeleteAddress\x1a\x1d\n\x07Request\x12\x12\n\naddress_id\x18\x01 \x01(\t\x1a\n\n\x08Response\x1a\x8b\x01\n\nGetAddress\x1a\x1d\n\x07Request\x12\x12\n\naddress_id\x18\x01 \x01(\t\x1a^\n\x08Response\x12R\n\x07\x61\x64\x64ress\x18\x01 \x01(\x0b\x32\x41.main.organization_service.OrganizationService.Containers.Address')
+  serialized_pb=_b('\n$protobufs/organization_service.proto\x12\x19main.organization_service\"\xc9\x0e\n\x13OrganizationService\x1a\xe3\x02\n\nContainers\x1a\x38\n\x0cOrganization\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x0e\n\x06\x64omain\x18\x03 \x01(\t\x1am\n\x04Team\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x10\n\x08owner_id\x18\x03 \x01(\t\x12\x17\n\x0forganization_id\x18\x04 \x01(\t\x12\x0c\n\x04path\x18\x05 \x03(\t\x12\x12\n\ndepartment\x18\x06 \x01(\t\x1a\xab\x01\n\x07\x41\x64\x64ress\x12\n\n\x02id\x18\x01 \x01(\t\x12\x17\n\x0forganization_id\x18\x02 \x01(\t\x12\x0c\n\x04name\x18\x03 \x01(\t\x12\x11\n\taddress_1\x18\x04 \x01(\t\x12\x11\n\taddress_2\x18\x05 \x01(\t\x12\x0c\n\x04\x63ity\x18\x06 \x01(\t\x12\x0e\n\x06region\x18\x07 \x01(\t\x12\x13\n\x0bpostal_code\x18\x08 \x01(\t\x12\x14\n\x0c\x63ountry_code\x18\t \x01(\t\x1a\xe7\x01\n\x12\x43reateOrganization\x1ag\n\x07Request\x12\\\n\x0corganization\x18\x01 \x01(\x0b\x32\x46.main.organization_service.OrganizationService.Containers.Organization\x1ah\n\x08Response\x12\\\n\x0corganization\x18\x01 \x01(\x0b\x32\x46.main.organization_service.OrganizationService.Containers.Organization\x1a\xce\x01\n\x0fGetOrganization\x1aQ\n\x07Request\x12\x19\n\x0forganization_id\x18\x01 \x01(\tH\x00\x12\x1d\n\x13organization_domain\x18\x02 \x01(\tH\x00\x42\x0c\n\nlookup_key\x1ah\n\x08Response\x12\\\n\x0corganization\x18\x01 \x01(\x0b\x32\x46.main.organization_service.OrganizationService.Containers.Organization\x1a\xd1\x01\n\nCreateTeam\x1ai\n\x07Request\x12L\n\x04team\x18\x01 \x01(\x0b\x32>.main.organization_service.OrganizationService.Containers.Team\x12\x10\n\x08\x63hild_of\x18\x02 \x01(\t\x1aX\n\x08Response\x12L\n\x04team\x18\x01 \x01(\x0b\x32>.main.organization_service.OrganizationService.Containers.Team\x1a\x7f\n\x07GetTeam\x1a\x1a\n\x07Request\x12\x0f\n\x07team_id\x18\x01 \x01(\t\x1aX\n\x08Response\x12L\n\x04team\x18\x01 \x01(\x0b\x32>.main.organization_service.OrganizationService.Containers.Team\x1a\x89\x01\n\x08GetTeams\x1a\"\n\x07Request\x12\x17\n\x0forganization_id\x18\x01 \x01(\t\x1aY\n\x08Response\x12M\n\x05teams\x18\x01 \x03(\x0b\x32>.main.organization_service.OrganizationService.Containers.Team\x1a\xce\x01\n\rCreateAddress\x1a]\n\x07Request\x12R\n\x07\x61\x64\x64ress\x18\x01 \x01(\x0b\x32\x41.main.organization_service.OrganizationService.Containers.Address\x1a^\n\x08Response\x12R\n\x07\x61\x64\x64ress\x18\x01 \x01(\x0b\x32\x41.main.organization_service.OrganizationService.Containers.Address\x1a:\n\rDeleteAddress\x1a\x1d\n\x07Request\x12\x12\n\naddress_id\x18\x01 \x01(\t\x1a\n\n\x08Response\x1a\x8b\x01\n\nGetAddress\x1a\x1d\n\x07Request\x12\x12\n\naddress_id\x18\x01 \x01(\t\x1a^\n\x08Response\x12R\n\x07\x61\x64\x64ress\x18\x01 \x01(\x0b\x32\x41.main.organization_service.OrganizationService.Containers.Address\x1a\x94\x01\n\x0cGetAddresses\x1a\"\n\x07Request\x12\x17\n\x0forganization_id\x18\x01 \x01(\t\x1a`\n\x08Response\x12T\n\taddresses\x18\x01 \x03(\x0b\x32\x41.main.organization_service.OrganizationService.Containers.Address')
 )
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
@@ -889,6 +889,86 @@ _ORGANIZATIONSERVICE_GETADDRESS = _descriptor.Descriptor(
   serialized_end=1782,
 )
 
+_ORGANIZATIONSERVICE_GETADDRESSES_REQUEST = _descriptor.Descriptor(
+  name='Request',
+  full_name='main.organization_service.OrganizationService.GetAddresses.Request',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='organization_id', full_name='main.organization_service.OrganizationService.GetAddresses.Request.organization_id', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1246,
+  serialized_end=1280,
+)
+
+_ORGANIZATIONSERVICE_GETADDRESSES_RESPONSE = _descriptor.Descriptor(
+  name='Response',
+  full_name='main.organization_service.OrganizationService.GetAddresses.Response',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='addresses', full_name='main.organization_service.OrganizationService.GetAddresses.Response.addresses', index=0,
+      number=1, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1837,
+  serialized_end=1933,
+)
+
+_ORGANIZATIONSERVICE_GETADDRESSES = _descriptor.Descriptor(
+  name='GetAddresses',
+  full_name='main.organization_service.OrganizationService.GetAddresses',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+  ],
+  extensions=[
+  ],
+  nested_types=[_ORGANIZATIONSERVICE_GETADDRESSES_REQUEST, _ORGANIZATIONSERVICE_GETADDRESSES_RESPONSE, ],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1785,
+  serialized_end=1933,
+)
+
 _ORGANIZATIONSERVICE = _descriptor.Descriptor(
   name='OrganizationService',
   full_name='main.organization_service.OrganizationService',
@@ -899,7 +979,7 @@ _ORGANIZATIONSERVICE = _descriptor.Descriptor(
   ],
   extensions=[
   ],
-  nested_types=[_ORGANIZATIONSERVICE_CONTAINERS, _ORGANIZATIONSERVICE_CREATEORGANIZATION, _ORGANIZATIONSERVICE_GETORGANIZATION, _ORGANIZATIONSERVICE_CREATETEAM, _ORGANIZATIONSERVICE_GETTEAM, _ORGANIZATIONSERVICE_GETTEAMS, _ORGANIZATIONSERVICE_CREATEADDRESS, _ORGANIZATIONSERVICE_DELETEADDRESS, _ORGANIZATIONSERVICE_GETADDRESS, ],
+  nested_types=[_ORGANIZATIONSERVICE_CONTAINERS, _ORGANIZATIONSERVICE_CREATEORGANIZATION, _ORGANIZATIONSERVICE_GETORGANIZATION, _ORGANIZATIONSERVICE_CREATETEAM, _ORGANIZATIONSERVICE_GETTEAM, _ORGANIZATIONSERVICE_GETTEAMS, _ORGANIZATIONSERVICE_CREATEADDRESS, _ORGANIZATIONSERVICE_DELETEADDRESS, _ORGANIZATIONSERVICE_GETADDRESS, _ORGANIZATIONSERVICE_GETADDRESSES, ],
   enum_types=[
   ],
   options=None,
@@ -908,7 +988,7 @@ _ORGANIZATIONSERVICE = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=68,
-  serialized_end=1782,
+  serialized_end=1933,
 )
 
 _ORGANIZATIONSERVICE_CONTAINERS_ORGANIZATION.containing_type = _ORGANIZATIONSERVICE_CONTAINERS
@@ -955,6 +1035,10 @@ _ORGANIZATIONSERVICE_GETADDRESS_REQUEST.containing_type = _ORGANIZATIONSERVICE_G
 _ORGANIZATIONSERVICE_GETADDRESS_RESPONSE.fields_by_name['address'].message_type = _ORGANIZATIONSERVICE_CONTAINERS_ADDRESS
 _ORGANIZATIONSERVICE_GETADDRESS_RESPONSE.containing_type = _ORGANIZATIONSERVICE_GETADDRESS
 _ORGANIZATIONSERVICE_GETADDRESS.containing_type = _ORGANIZATIONSERVICE
+_ORGANIZATIONSERVICE_GETADDRESSES_REQUEST.containing_type = _ORGANIZATIONSERVICE_GETADDRESSES
+_ORGANIZATIONSERVICE_GETADDRESSES_RESPONSE.fields_by_name['addresses'].message_type = _ORGANIZATIONSERVICE_CONTAINERS_ADDRESS
+_ORGANIZATIONSERVICE_GETADDRESSES_RESPONSE.containing_type = _ORGANIZATIONSERVICE_GETADDRESSES
+_ORGANIZATIONSERVICE_GETADDRESSES.containing_type = _ORGANIZATIONSERVICE
 DESCRIPTOR.message_types_by_name['OrganizationService'] = _ORGANIZATIONSERVICE
 
 OrganizationService = _reflection.GeneratedProtocolMessageType('OrganizationService', (_message.Message,), dict(
@@ -1154,6 +1238,27 @@ OrganizationService = _reflection.GeneratedProtocolMessageType('OrganizationServ
     # @@protoc_insertion_point(class_scope:main.organization_service.OrganizationService.GetAddress)
     ))
   ,
+
+  GetAddresses = _reflection.GeneratedProtocolMessageType('GetAddresses', (_message.Message,), dict(
+
+    Request = _reflection.GeneratedProtocolMessageType('Request', (_message.Message,), dict(
+      DESCRIPTOR = _ORGANIZATIONSERVICE_GETADDRESSES_REQUEST,
+      __module__ = 'protobufs.organization_service_pb2'
+      # @@protoc_insertion_point(class_scope:main.organization_service.OrganizationService.GetAddresses.Request)
+      ))
+    ,
+
+    Response = _reflection.GeneratedProtocolMessageType('Response', (_message.Message,), dict(
+      DESCRIPTOR = _ORGANIZATIONSERVICE_GETADDRESSES_RESPONSE,
+      __module__ = 'protobufs.organization_service_pb2'
+      # @@protoc_insertion_point(class_scope:main.organization_service.OrganizationService.GetAddresses.Response)
+      ))
+    ,
+    DESCRIPTOR = _ORGANIZATIONSERVICE_GETADDRESSES,
+    __module__ = 'protobufs.organization_service_pb2'
+    # @@protoc_insertion_point(class_scope:main.organization_service.OrganizationService.GetAddresses)
+    ))
+  ,
   DESCRIPTOR = _ORGANIZATIONSERVICE,
   __module__ = 'protobufs.organization_service_pb2'
   # @@protoc_insertion_point(class_scope:main.organization_service.OrganizationService)
@@ -1187,6 +1292,9 @@ _sym_db.RegisterMessage(OrganizationService.DeleteAddress.Response)
 _sym_db.RegisterMessage(OrganizationService.GetAddress)
 _sym_db.RegisterMessage(OrganizationService.GetAddress.Request)
 _sym_db.RegisterMessage(OrganizationService.GetAddress.Response)
+_sym_db.RegisterMessage(OrganizationService.GetAddresses)
+_sym_db.RegisterMessage(OrganizationService.GetAddresses.Request)
+_sym_db.RegisterMessage(OrganizationService.GetAddresses.Response)
 
 
 # @@protoc_insertion_point(module_scope)

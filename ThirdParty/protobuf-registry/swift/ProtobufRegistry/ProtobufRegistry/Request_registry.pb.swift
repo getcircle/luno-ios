@@ -57,6 +57,11 @@ public var OrganizationServiceRequests_get_teams:ConcreateExtensionField {
        return RequestRegistryRoot.sharedInstance.OrganizationServiceRequests_get_teamsStatic
    }
 }
+public var OrganizationServiceRequests_get_addresses:ConcreateExtensionField {
+   get {
+       return RequestRegistryRoot.sharedInstance.OrganizationServiceRequests_get_addressesStatic
+   }
+}
 public var ProfileServiceRequests_create_profile:ConcreateExtensionField {
    get {
        return RequestRegistryRoot.sharedInstance.ProfileServiceRequests_create_profileStatic
@@ -115,6 +120,7 @@ public struct RequestRegistryRoot {
   var OrganizationServiceRequests_get_teamStatic:ConcreateExtensionField
   var OrganizationServiceRequests_get_organizationStatic:ConcreateExtensionField
   var OrganizationServiceRequests_get_teamsStatic:ConcreateExtensionField
+  var OrganizationServiceRequests_get_addressesStatic:ConcreateExtensionField
   var ProfileServiceRequests_create_profileStatic:ConcreateExtensionField
   var ProfileServiceRequests_get_extended_profileStatic:ConcreateExtensionField
   var ProfileServiceRequests_get_profileStatic:ConcreateExtensionField
@@ -137,6 +143,7 @@ public struct RequestRegistryRoot {
     OrganizationServiceRequests_get_teamStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionRequestParams.self, fieldNumber: 205, defaultValue:OrganizationService.GetTeam.Request(), messageOrGroupClass:OrganizationService.GetTeam.Request.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     OrganizationServiceRequests_get_organizationStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionRequestParams.self, fieldNumber: 206, defaultValue:OrganizationService.GetOrganization.Request(), messageOrGroupClass:OrganizationService.GetOrganization.Request.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     OrganizationServiceRequests_get_teamsStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionRequestParams.self, fieldNumber: 207, defaultValue:OrganizationService.GetTeams.Request(), messageOrGroupClass:OrganizationService.GetTeams.Request.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
+    OrganizationServiceRequests_get_addressesStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionRequestParams.self, fieldNumber: 208, defaultValue:OrganizationService.GetAddresses.Request(), messageOrGroupClass:OrganizationService.GetAddresses.Request.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     ProfileServiceRequests_create_profileStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionRequestParams.self, fieldNumber: 300, defaultValue:ProfileService.CreateProfile.Request(), messageOrGroupClass:ProfileService.CreateProfile.Request.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     ProfileServiceRequests_get_extended_profileStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionRequestParams.self, fieldNumber: 301, defaultValue:ProfileService.GetExtendedProfile.Request(), messageOrGroupClass:ProfileService.GetExtendedProfile.Request.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     ProfileServiceRequests_get_profileStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionRequestParams.self, fieldNumber: 302, defaultValue:ProfileService.GetProfile.Request(), messageOrGroupClass:ProfileService.GetProfile.Request.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
@@ -164,6 +171,7 @@ public struct RequestRegistryRoot {
     registry.addExtension(OrganizationServiceRequests_get_teamStatic)
     registry.addExtension(OrganizationServiceRequests_get_organizationStatic)
     registry.addExtension(OrganizationServiceRequests_get_teamsStatic)
+    registry.addExtension(OrganizationServiceRequests_get_addressesStatic)
     registry.addExtension(ProfileServiceRequests_create_profileStatic)
     registry.addExtension(ProfileServiceRequests_get_extended_profileStatic)
     registry.addExtension(ProfileServiceRequests_get_profileStatic)
@@ -386,6 +394,9 @@ final public class OrganizationServiceRequests : GeneratedMessage {
   }
   public class func get_teams() -> ConcreateExtensionField {
        return OrganizationServiceRequests_get_teams
+  }
+  public class func get_addresses() -> ConcreateExtensionField {
+       return OrganizationServiceRequests_get_addresses
   }
   required public init() {
        super.init()

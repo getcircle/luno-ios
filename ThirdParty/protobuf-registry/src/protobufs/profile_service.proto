@@ -138,6 +138,7 @@ message ProfileService {
         message Request {
             oneof lookup_key {
                 string team_id = 1;
+                string organization_id = 2;
             }
         }
 

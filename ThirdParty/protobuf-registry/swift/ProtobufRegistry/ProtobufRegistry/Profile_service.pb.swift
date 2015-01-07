@@ -5867,6 +5867,16 @@ final public class ProfileService : GeneratedMessage {
                       return nil
                  }
             }
+            case OrganizationId(String)
+
+            public static func getOrganizationId(value:LookupKey) ->String? {
+                 switch value {
+                 case .OrganizationId(let enumValue):
+                      return enumValue
+                 default:
+                      return nil
+                 }
+            }
           }
 
 
@@ -5877,6 +5887,7 @@ final public class ProfileService : GeneratedMessage {
           public subscript(key: String) -> AnyObject? {
                  switch key {
                  case "team_id": return team_id
+                 case "organization_id": return organization_id
                  default: return nil
                  }
           }
@@ -5899,6 +5910,24 @@ final public class ProfileService : GeneratedMessage {
                     storageLookupKey = ProfileService.GetProfiles.Request.LookupKey.TeamId(newvalue)
                }
           }
+          public private(set) var hasOrganizationId:Bool {
+                get {
+                     if ProfileService.GetProfiles.Request.LookupKey.getOrganizationId(storageLookupKey) == nil {
+                         return false
+                     }
+                     return true
+                }
+                set(newValue) {
+                }
+          }
+          public private(set) var organization_id:String!{
+               get {
+                    return ProfileService.GetProfiles.Request.LookupKey.getOrganizationId(storageLookupKey)
+               }
+               set (newvalue) {
+                    storageLookupKey = ProfileService.GetProfiles.Request.LookupKey.OrganizationId(newvalue)
+               }
+          }
           required public init() {
                super.init()
           }
@@ -5908,6 +5937,9 @@ final public class ProfileService : GeneratedMessage {
           override public func writeToCodedOutputStream(output:CodedOutputStream) {
             if hasTeamId {
               output.writeString(1, value:team_id)
+            }
+            if hasOrganizationId {
+              output.writeString(2, value:organization_id)
             }
             unknownFields.writeToCodedOutputStream(output)
           }
@@ -5920,6 +5952,9 @@ final public class ProfileService : GeneratedMessage {
             size = 0
             if hasTeamId {
               size += WireFormat.computeStringSize(1, value:team_id)
+            }
+            if hasOrganizationId {
+              size += WireFormat.computeStringSize(2, value:organization_id)
             }
             size += unknownFields.serializedSize()
             memoizedSerializedSize = size
@@ -5965,6 +6000,9 @@ final public class ProfileService : GeneratedMessage {
             if hasTeamId {
               output += "\(indent) team_id: \(team_id) \n"
             }
+            if hasOrganizationId {
+              output += "\(indent) organization_id: \(organization_id) \n"
+            }
             unknownFields.writeDescriptionTo(&output, indent:indent)
           }
           override public var hashValue:Int {
@@ -5972,6 +6010,9 @@ final public class ProfileService : GeneratedMessage {
                   var hashCode:Int = 7
                   if hasTeamId {
                      hashCode = (hashCode &* 31) &+ team_id.hashValue
+                  }
+                  if hasOrganizationId {
+                     hashCode = (hashCode &* 31) &+ organization_id.hashValue
                   }
                   hashCode = (hashCode &* 31) &+  unknownFields.hashValue
                   return hashCode
@@ -6022,6 +6063,25 @@ final public class ProfileService : GeneratedMessage {
                builderResult.team_id = ""
                return self
           }
+          public var hasOrganizationId:Bool {
+               get {
+                    return builderResult.hasOrganizationId
+               }
+          }
+          public var organization_id:String {
+               get {
+                    return builderResult.organization_id
+               }
+               set (value) {
+                   builderResult.hasOrganizationId = true
+                   builderResult.organization_id = value
+               }
+          }
+          public func clearOrganizationId() -> ProfileService.GetProfiles.RequestBuilder{
+               builderResult.hasOrganizationId = false
+               builderResult.organization_id = ""
+               return self
+          }
           override public var internalGetResult:GeneratedMessage {
                get {
                   return builderResult
@@ -6049,6 +6109,9 @@ final public class ProfileService : GeneratedMessage {
             if other.hasTeamId {
                  team_id = other.team_id
             }
+            if other.hasOrganizationId {
+                 organization_id = other.organization_id
+            }
             mergeUnknownFields(other.unknownFields)
             return self
           }
@@ -6066,6 +6129,9 @@ final public class ProfileService : GeneratedMessage {
 
               case 10 :
                 team_id = input.readString()
+
+              case 18 :
+                organization_id = input.readString()
 
               default:
                 if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {

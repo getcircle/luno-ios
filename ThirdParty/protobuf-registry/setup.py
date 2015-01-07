@@ -23,13 +23,6 @@ requirements = [
     'protobuf==2.6.1',
 ]
 
-setup_requirements = [
-    'nose>=1.0',
-    'coverage>=1.0',
-    'mock==1.0.1',
-    'django>=1.7.1',
-]
-
 setup(
     name='protobufs',
     package_dir={'': 'python'},
@@ -42,7 +35,6 @@ setup(
         "tests",
     ]),
     install_requires=requirements,
-    setup_requires=setup_requirements,
     dependency_links=[
         'git+ssh://git@github.com/getcircle/protobuf-soa.git#egg=protobuf-soa-0.1.1',
     ],

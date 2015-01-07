@@ -133,4 +133,16 @@ message OrganizationService {
 
     }
 
+    message GetAddresses {
+
+        message Request {
+            optional string organization_id = 1;
+        }
+
+        message Response {
+            repeated Containers.Address addresses = 1;
+        }
+
+    }
+
 }
