@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ProtobufRegistry
 
 class ProfileImagesCollectionViewCell: CircleCollectionViewCell {
 
@@ -63,7 +64,7 @@ class ProfileImagesCollectionViewCell: CircleCollectionViewCell {
     // MARK: - Load People
     
     override func setData(data: AnyObject) {
-        if let people = data as? [Person] {
+        if let profiles = data as? [ProfileService.Containers.Profile] {
             let containerWidth = cardContentView.frameWidth
             var counter = 0
             
@@ -71,12 +72,12 @@ class ProfileImagesCollectionViewCell: CircleCollectionViewCell {
                 ($0 as UIImageView).hidden = true
                 return $0
             })
-            for person in people {
-                var personImage = profileImageViews[counter]
-                personImage.setImageWithPerson(person)
-                personImage.hidden = false
+            for profile in profiles {
+                var profileImage = profileImageViews[counter]
+                profileImage.setImageWithProfile(profile)
+                profileImage.hidden = false
                 counter += 1
-                if ((containerWidth - personImage.frameRight - profileImageInterSpacing) < profileImageWidthHeight) || counter == 4 {
+                if ((containerWidth - profileImage.frameRight - profileImageInterSpacing) < profileImageWidthHeight) || counter == 4 {
                     break
                 }
             }

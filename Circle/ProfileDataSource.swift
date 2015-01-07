@@ -7,10 +7,47 @@
 //
 
 import UIKit
+import ProtobufRegistry
+
+struct ItemImage {
+    var name: String
+    var tint: UIColor
+    
+    init(name itemName: String, tint itemTint: UIColor) {
+        name = itemName
+        tint = itemTint
+    }
+}
+
+struct SectionItem {
+    var title: String
+    var image: ItemImage?
+    var container: String
+    var containerKey: String
+    
+    init(
+        title itemTitle: String,
+        container itemContainer: String,
+        containerKey itemContainerKey: String,
+        image itemImage: ItemImage?
+    ) {
+        title = itemTitle
+        container = itemContainer
+        containerKey = itemContainerKey
+        image = itemImage
+    }
+}
 
 class ProfileDataSource: CardDataSource {
 
-    var person: Person!
+    var profile: ProfileService.Containers.Profile! {
+        didSet {
+        }
+    }
+    var manager: ProfileService.Containers.Profile?
+    var team: OrganizationService.Containers.Team?
+    var address: OrganizationService.Containers.Address?
+    
     enum CellType: String {
         case Email = "email"
         case CellPhone = "cell"
@@ -35,77 +72,113 @@ class ProfileDataSource: CardDataSource {
     
     private (set) var profileHeaderView: ProfileHeaderCollectionReusableView?
     private var attributes: [String] = []
-
-    let baseInfoKeySet = [
-        "email",
-        "cell",
-        "location",
-        "country"
-    ]
-
-    let socialInfoKeySet = [
-        "twitter",
-        "facebook",
-        "pinterest",
-        "linkedin",
-        "github",
-        "gplus"
+    
+    let sections = [
+        
+        // Base Info Section
+        [
+            SectionItem(
+                title: "Email",
+                container: "profile",
+                containerKey: "email",
+                image: ItemImage(name: "EmailCircle", tint: UIColor.emailTintColor())
+            ),
+            SectionItem(
+                title: "Cell Phone",
+                container: "profile",
+                containerKey: "cell_phone",
+                image: ItemImage(name: "Telephone", tint: UIColor.phoneTintColor())
+            ),
+            SectionItem(
+                title: "City",
+                container: "address",
+                containerKey: "city",
+                image: nil
+            ),
+            SectionItem(
+                title: "Country",
+                container: "address",
+                containerKey: "country_code",
+                image: nil
+            )
+        ],
+        
+        // Manager Info Section
+        [
+            SectionItem(
+                title: "Manager",
+                container: "manager",
+                containerKey: "full_name",
+                image: nil
+            ),
+            SectionItem(
+                title: "Department",
+                container: "team",
+                containerKey: "department",
+                image: nil
+            )
+        ]
     ]
     
-    let managerInfoKeySet = [
-        "manager",
-        "department"
-    ]
-
-    let keyToTitle = [
-        "email": "Email",
-        "cell": "Cell Phone",
-        "location": "City",
-        "country": "Country",
-        "manager": "Manager",
-        "department": "Department",
-        "twitter": "Twitter",
-        "facebook": "Facebook",
-        "pinterest": "Pinterest",
-        "linkedin": "LinkedIn",
-        "github": "Github",
-        "gplus": "Google+"
-    ]
+    // TODO convert to SectionItem
+//    let socialInfoKeySet = [
+//        "twitter",
+//        "facebook",
+//        "pinterest",
+//        "linkedin",
+//        "github",
+//        "gplus"
+//    ]
     
-    let keyToImageDictionary: [String: [String: AnyObject]] = [
-        "twitter": [
-            "image": "Twitter",
-            "tintColor": UIColor.twitterColor(),
-        ],
-        "facebook": [
-            "image": "Facebook",
-            "tintColor": UIColor.facebookColor(),
-        ],
-        "pinterest": [
-            "image": "Pinterest",
-            "tintColor": UIColor.pinterestColor(),
-        ],
-        "linkedin": [
-            "image": "LinkedIn",
-            "tintColor": UIColor.linkedinColor(),
-        ],
-        "github": [
-            "image": "Github",
-            "tintColor": UIColor.githubColor(),
-        ],
-        "gplus": [
-            "image": "GooglePlus",
-            "tintColor": UIColor.googlePlusColor(),
-        ],
-        "email": [
-            "image": "EmailCircle",
-            "tintColor": UIColor.emailTintColor(),
-        ],
-        "cell": [
-            "image": "Telephone",
-            "tintColor": UIColor.phoneTintColor(),
-        ],
-    ]
+//    let keyToTitle = [
+//        "email": "Email",
+//        "cell_phone": "Cell Phone",
+//        "location": "City",
+//        "country": "Country",
+//        "manager": "Manager",
+//        "department": "Department",
+//        "twitter": "Twitter",
+//        "facebook": "Facebook",
+//        "pinterest": "Pinterest",
+//        "linkedin": "LinkedIn",
+//        "github": "Github",
+//        "gplus": "Google+"
+//    ]
+    
+//    let keyToImageDictionary: [String: [String: AnyObject]] = [
+//        "twitter": [
+//            "image": "Twitter",
+//            "tintColor": UIColor.twitterColor(),
+//        ],
+//        "facebook": [
+//            "image": "Facebook",
+//            "tintColor": UIColor.facebookColor(),
+//        ],
+//        "pinterest": [
+//            "image": "Pinterest",
+//            "tintColor": UIColor.pinterestColor(),
+//        ],
+//        "linkedin": [
+//            "image": "LinkedIn",
+//            "tintColor": UIColor.linkedinColor(),
+//        ],
+//        "github": [
+//            "image": "Github",
+//            "tintColor": UIColor.githubColor(),
+//        ],
+//        "gplus": [
+//            "image": "GooglePlus",
+//            "tintColor": UIColor.googlePlusColor(),
+//        ],
+//        "email": [
+//            "image": "EmailCircle",
+//            "tintColor": UIColor.emailTintColor(),
+//        ],
+//        "cell": [
+//            "image": "Telephone",
+//            "tintColor": UIColor.phoneTintColor(),
+//        ],
+//    ]
 
     override func registerCardHeader(collectionView: UICollectionView) {
         collectionView.registerNib(
@@ -118,28 +191,44 @@ class ProfileDataSource: CardDataSource {
     }
 
     override func loadData(completionHandler: (error: NSError?) -> Void) {
-        var defaultSectionInset = UIEdgeInsetsMake(0.0, 0.0, 25.0, 0.0)
-        
-        for dataSet in [baseInfoKeySet, socialInfoKeySet, managerInfoKeySet] {
-            var keyValueCard = Card(cardType: .KeyValue, title: "Info")
-            for key in dataSet {
-                if let value: AnyObject = self.person.valueForKey(key) {
-                    var dataDict: [String: AnyObject!] = [
-                        "key": key,
-                        "name": keyToTitle[key],
-                        "value": value.description
-                    ]
-                    
-                    if let imageDict: [String: AnyObject] = keyToImageDictionary[key] {
-                        dataDict["image"] = imageDict["image"] as String!
-                        dataDict["imageTintColor"] = imageDict["tintColor"] as UIColor!
-                    }
-                    
-                    keyValueCard.content.append(dataDict)
-                    keyValueCard.sectionInset = defaultSectionInset
+        populateData()
+        // Fetch the extended profile attributes
+        let request = ProfileService.Requests.GetExtendedProfile(profile.id)
+        let client = ServiceClient(serviceName: "profile")
+        client.callAction(request) {
+            (_, _, _, actionResponse, error) -> Void in
+            
+            if let actionResponse = actionResponse {
+                let response = ProfileService.Responses.GetExtendedProfile(actionResponse)
+                // TODO we shouldn't have to check both of these
+                if error != nil || !response.success {
+                    println("error fetching extended profile: \(error)")
+                    return
                 }
+                
+                let result = response.result as ProfileService.GetExtendedProfile.Response
+                self.manager = result.manager
+                self.team = result.team
+                self.address = result.address
+                self.populateData()
+                completionHandler(error: nil)
+            }
+        }
+    }
+    
+    // MARK: - Populate Data
+    
+    private func populateData() {
+        resetCards()
+        
+        var defaultSectionInset = UIEdgeInsetsMake(0.0, 0.0, 25.0, 0.0)
+        for section in sections {
+            var keyValueCard = Card(cardType: .KeyValue, title: "Info")
+            for item in section {
+                addItemToCard(item, card: keyValueCard)
             }
             
+            keyValueCard.sectionInset = defaultSectionInset
             if keyValueCard.content.count > 0 {
                 appendCard(keyValueCard)
             }
@@ -156,7 +245,7 @@ class ProfileDataSource: CardDataSource {
             ["name": "Apple Pay"],
             ["name": "Management"],
             ["name": "Influencer"],
-        ])
+            ])
         tagsCard.sectionInset = defaultSectionInset
         appendCard(tagsCard)
         
@@ -165,8 +254,37 @@ class ProfileDataSource: CardDataSource {
         notesCard.content.append(["text": "This is a long sample note which should be at least two lines. Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda."])
         notesCard.sectionInset = UIEdgeInsetsMake(0.0, 0.0, 55.0, 0.0)
         appendCard(notesCard)
+    }
+    
+    private func addItemToCard(item: SectionItem, card: Card) {
+        var value: AnyObject?
+        switch item.container {
+        case "profile":
+            value = profile[item.containerKey]
+        case "manager":
+            value = manager?[item.containerKey]
+        case "address":
+            value = address?[item.containerKey]
+        case "team":
+            value = team?[item.containerKey]
+        default:
+            value = nil
+        }
         
-        completionHandler(error: nil)
+        if let value: AnyObject = value {
+            var dataDict: [String: AnyObject!] = [
+                "key": item.containerKey,
+                "name": item.title,
+                "value": value
+            ]
+            
+            if let image = item.image {
+                dataDict["image"] = image.name
+                dataDict["imageTintColor"] = image.tint
+            }
+            
+            card.content.append(dataDict)
+        }
     }
     
     // MARK: - Cell Configuration
@@ -189,10 +307,9 @@ class ProfileDataSource: CardDataSource {
                 forIndexPath: indexPath
             ) as ProfileHeaderCollectionReusableView
             
-            if person != nil {
-                supplementaryView.setPerson(person)
+            if profile != nil {
+                supplementaryView.setProfile(profile)
             }
-            
             profileHeaderView = supplementaryView
             return supplementaryView
     }

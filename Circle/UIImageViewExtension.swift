@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ProtobufRegistry
 
 extension UIImageView {
 
@@ -19,16 +20,16 @@ extension UIImageView {
             layer.borderWidth = 1.0
         }
     }
-
-    func setImageWithPerson(person: Person!) {
-        let request = NSURLRequest(URL: NSURL(string: person.profileImageURL)!)
+    
+    func setImageWithProfile(profile: ProfileService.Containers.Profile) {
+        let request = NSURLRequest(URL: NSURL(string: profile.image_url)!)
         
         if let cachedImage = UIImageView.sharedImageCache().cachedImageForRequest(request) {
             self.image = cachedImage
         }
         else {
             transform = CGAffineTransformMakeScale(0.0, 0.0)
-
+            
             setImageWithURLRequest(request,
                 placeholderImage: UIImage(named: "DefaultPerson"),
                 success: { (request, response, image) -> Void in

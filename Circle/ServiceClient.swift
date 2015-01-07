@@ -29,6 +29,13 @@ public class ServiceClient {
     
     public var token: String?
     
+    convenience init(serviceName: String) {
+        self.init(
+            serviceName: serviceName,
+            token: AuthViewController.getLoggedInUserToken()
+        )
+    }
+    
     public init(serviceName: String, token: String?) {
         self.serviceName = serviceName
         self.transport = HttpsTransport()

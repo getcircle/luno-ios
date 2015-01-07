@@ -7,6 +7,5 @@
 //
 
 #import "UIImageView+AFNetworking.h"
-#import <Parse/Parse.h>
 #import "PureLayout.h"
 #import "UIView+Position.h"

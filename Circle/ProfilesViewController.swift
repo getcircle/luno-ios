@@ -1,5 +1,5 @@
 //
-//  PeopleViewController.swift
+//  ProfilesViewController.swift
 //  Circle
 //
 //  Created by Ravi Rani on 11/24/14.
@@ -9,7 +9,7 @@
 import MessageUI
 import UIKit
 
-class PeopleViewController: UIViewController,
+class ProfilesViewController: UIViewController,
                             MFMailComposeViewControllerDelegate,
                             UISearchBarDelegate,
                             UISearchResultsUpdating {
@@ -19,15 +19,15 @@ class PeopleViewController: UIViewController,
 
     let rowHeight: CGFloat = 64.0
     
-    var dataSource = PeopleDataSource()
-    private var filteredPeople: [Person]?
+    var dataSource = ProfilesDataSource()
+//    private var filteredPeople: [Person]?
     private var searchController: UISearchController!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view, typically from a nib.
-        filteredPeople = []
+//        filteredPeople = []
         configureSearchController()
         configureCollectionView()
     }
@@ -68,13 +68,13 @@ class PeopleViewController: UIViewController,
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showProfile" {
             if let indexPath = collectionView.indexPathsForSelectedItems()[0] as? NSIndexPath {
-                let person = dataSource.contentAtIndexPath(indexPath) as? Person
+//                let person = dataSource.contentAtIndexPath(indexPath) as? Person
                 let controller = segue.destinationViewController as ProfileViewController
-                controller.person = person
+//                controller.person = person
             }
         }
     }
-    
+   
     // MARK: - Collection View Delegate
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {

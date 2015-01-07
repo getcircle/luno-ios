@@ -15,11 +15,14 @@ import ProtobufRegistry
 // https://developer.apple.com/library/ios/documentation/swift/conceptual/Swift_Programming_Language/Properties.html
 struct LoggedInUserHolder {
     static var user: UserService.Containers.User?
+    static var profile: ProfileService.Containers.Profile?
+    static var token: String?
 }
 
 private let LocksmithService = "LocksmithAuthTokenService"
 private let LocksmithAuthTokenKey = "LocksmithAuthToken"
 private let DefaultsUserKey = "DefaultsUserKey"
+private let DefaultsProfileKey = "DefaultsProfileKey"
 
 class AuthViewController: UIViewController, UITextFieldDelegate {
 
@@ -114,25 +117,6 @@ class AuthViewController: UIViewController, UITextFieldDelegate {
         dismissKeyboard()
         showLoadingState()
         login()
-//        PFUser.logInWithUsernameInBackground(emailField.text, password: passwordField.text) {
-//            (pfuser, error: NSError!) -> Void in
-//
-//            self.hideLoadingState()
-//            if error == nil {
-//                // Fetch and cache current person before dismissing
-//                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), { () -> Void in
-//                    AuthViewController.getLoggedInPerson()
-//                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
-//                        self.dismissViewControllerAnimated(true, completion: nil)
-//                    })
-//                    return
-//                })
-//            }
-//            else {
-//                self.logInButton.addShakeAnimation()
-//                self.emailField.becomeFirstResponder()
-//            }
-//        }
     }
     
     @IBAction func handleGesture(gestureRecognizer: UIGestureRecognizer) {
@@ -158,24 +142,40 @@ class AuthViewController: UIViewController, UITextFieldDelegate {
         return nil
     }
     
+    private class func loadCachedProfile() -> ProfileService.Containers.Profile? {
+        if let data = NSUserDefaults.standardUserDefaults().objectForKey(DefaultsProfileKey) as? NSData {
+            return ProfileService.Containers.Profile.parseFromNSData(data)
+        }
+        return nil
+    }
+    
     private func cacheUserData(user: UserService.Containers.User) {
         NSUserDefaults.standardUserDefaults().setObject(user.getNSData(), forKey: DefaultsUserKey)
     }
     
-    private func cacheLoginData(token: String) {
-        if let user = LoggedInUserHolder.user {
-            let error = Locksmith.updateData(
-                [token: "\(NSDate())"],
-                forKey: LocksmithAuthTokenKey,
-                inService: LocksmithService,
-                forUserAccount: user.id
-            )
-            if error != nil {
-                // XXX what is the correct way to report errors?
-                println("Error: \(error)")
-            }
-            cacheUserData(user)
+    private func cacheProfileData(profile: ProfileService.Containers.Profile) {
+        NSUserDefaults.standardUserDefaults().setObject(profile.getNSData(), forKey: DefaultsProfileKey)
+    }
+    
+    private func cacheLoginData(token: String, user: UserService.Containers.User) {
+        // Cache locally
+        LoggedInUserHolder.token = token
+        LoggedInUserHolder.user = user
+        
+        // Cache token to keychain
+        let error = Locksmith.updateData(
+            [token: "\(NSDate())"],
+            forKey: LocksmithAuthTokenKey,
+            inService: LocksmithService,
+            forUserAccount: user.id
+        )
+        if error != nil {
+            // XXX what is the correct way to report errors?
+            println("Error: \(error)")
         }
+        
+        // Cache user data in user defaults
+        cacheUserData(user)
     }
     
     // MARK: - Loading State
@@ -202,8 +202,8 @@ class AuthViewController: UIViewController, UITextFieldDelegate {
         )
 
         let client = ServiceClient(serviceName: "user", token: nil)
-        client.callAction(request, completionHandler: {
-            (httpRequest, httpResponse, serviceResponse, actionResponse, error) -> Void in
+        client.callAction(request) {
+            (_, _, _, actionResponse, error) -> Void in
             
             self.hideLoadingState()
             if let actionResponse = actionResponse {
@@ -215,14 +215,35 @@ class AuthViewController: UIViewController, UITextFieldDelegate {
                 }
                 
                 let result = response.result as UserService.AuthenticateUser.Response
-                LoggedInUserHolder.user = result.user
-                self.cacheLoginData(result.token)
+                self.cacheLoginData(result.token, user: result.user)
+                self.fetchAndCacheUserProfile(result.user.id)
                 self.dismissViewControllerAnimated(true, completion: nil)
             } else {
                 // TODO display an error message
                 println("Error logging in user: \(error)")
             }
-        })
+        }
+    }
+    
+    private func fetchAndCacheUserProfile(userId: String) {
+        let client = ServiceClient(serviceName: "profile")
+        let request = ProfileService.Requests.GetProfileForUserId(userId)
+        client.callAction(request) {
+            (_, _, _, actionResponse, error) -> Void in
+            
+            // TODO how should we report action errors?
+            if let actionResponse = actionResponse {
+                let response = ProfileService.Responses.GetProfile(actionResponse)
+                // TODO maybe have "error" populated if response isn't success
+                if error != nil || !response.success {
+                    return
+                }
+                
+                let result = response.result as ProfileService.GetProfile.Response
+                LoggedInUserHolder.profile = result.profile
+                self.cacheProfileData(result.profile)
+            }
+        }
     }
     
     // MARK: - Log out
@@ -240,13 +261,37 @@ class AuthViewController: UIViewController, UITextFieldDelegate {
         appDelegate.window!.rootViewController!.presentViewController(navController, animated: false, completion: nil)
     }
     
-    // Synchronous call to fetch Person object for currently logged in user
-    class func getLoggedInPerson() -> UserService.Containers.User? {
+    // MARK: - Logged In User Helpers
+    
+    class func getLoggedInUser() -> UserService.Containers.User? {
         if let user = LoggedInUserHolder.user {
             return user
         } else {
-            if let user = AuthViewController.loadCachedUser() {
+            if let user = self.loadCachedUser() {
                 return user
+            }
+        }
+        return nil
+    }
+    
+    class func getLoggedInUserProfile() -> ProfileService.Containers.Profile? {
+        if let profile = LoggedInUserHolder.profile {
+            return profile
+        } else {
+            if let profile = self.loadCachedProfile() {
+                return profile
+            }
+        }
+        return nil
+    }
+    
+    class func getLoggedInUserToken() -> String? {
+        if let token = LoggedInUserHolder.token {
+            return token
+        } else {
+            if let user = self.getLoggedInUser() {
+                let (data, error) = Locksmith.loadData(forKey: LocksmithAuthTokenKey, inService: LocksmithService, forUserAccount: user.id)
+                return data?.allKeys[0] as? String
             }
         }
         return nil

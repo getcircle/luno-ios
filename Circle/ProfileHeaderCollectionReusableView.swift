@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ProtobufRegistry
 
 class ProfileHeaderCollectionReusableView: UICollectionReusableView {
 
@@ -36,17 +37,17 @@ class ProfileHeaderCollectionReusableView: UICollectionReusableView {
         nameNavLabel.alpha = 0.0
     }
     
-    func setPerson(person: Person!) {
-        nameLabel.text = person.firstName + " " + person.lastName
+    func setProfile(profile: ProfileService.Containers.Profile) {
+        nameLabel.text = profile.first_name + " " + profile.last_name
         nameNavLabel.text = nameLabel.text
-        titleLabel.text = person.title
+        titleLabel.text = profile.title
 
         profileImage.setImageWithURL(
-            NSURL(string: person.profileImageURL),
+            NSURL(string: profile.image_url),
             placeholderImage: UIImage(named: "DefaultPerson"))
 
         backgroundImage.setImageWithURL(
-            NSURL(string: person.profileImageURL),
+            NSURL(string: profile.image_url),
             placeholderImage: UIImage(named: "DefaultPerson"))
     }
 }

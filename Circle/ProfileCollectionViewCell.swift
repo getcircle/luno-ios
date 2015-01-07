@@ -1,5 +1,5 @@
 //
-//  PersonCollectionViewCell.swift
+//  ProfileCollectionViewCell.swift
 //  Circle
 //
 //  Created by Ravi Rani on 12/29/14.
@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import ProtobufRegistry
 
-class PersonCollectionViewCell: CircleCollectionViewCell {
+class ProfileCollectionViewCell: CircleCollectionViewCell {
 
     enum SizeMode {
         case Small
@@ -16,7 +17,7 @@ class PersonCollectionViewCell: CircleCollectionViewCell {
     }
     
     override class var classReuseIdentifier: String {
-        return "PersonCollectionViewCell"
+        return "ProfileCollectionViewCell"
     }
     
     // NOTE: Because height is a computed class variable, it cannot be modifed
@@ -49,10 +50,10 @@ class PersonCollectionViewCell: CircleCollectionViewCell {
     }
 
     override func setData(data: AnyObject) {
-        if let person = data as? Person {
-            nameLabel.text = person.firstName + " " + person.lastName
+        if let profile = data as? ProfileService.Containers.Profile {
+            nameLabel.text = profile.full_name
             subTextLabel.text = ["January 18th", "February 1st", "February 8th"][Int(arc4random()%3)]
-            profileImageView.setImageWithPerson(person)
+            profileImageView.setImageWithProfile(profile)
         }
     }
     

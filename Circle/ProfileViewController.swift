@@ -8,20 +8,11 @@
 
 import MessageUI
 import UIKit
+import ProtobufRegistry
 
 class ProfileViewController: UICollectionViewController, UICollectionViewDelegate, MFMailComposeViewControllerDelegate {
 
-    var person: Person! {
-        didSet {
-            // Manager object may not be fully inflated
-            // Fetch and cache it in case user decides to go one step further in the chain
-            person.manager?.fetchInBackgroundWithBlock { (managerObject, error: NSError!) -> Void in
-                self.person.setObject(managerObject, forKey: "manager")
-                 self.collectionView?.reloadData()
-            }
-        }
-    }
-
+    var profile: ProfileService.Containers.Profile!
     
     var animationSourceRect: CGRect?
     var showLogOutButton: Bool? {
@@ -39,7 +30,7 @@ class ProfileViewController: UICollectionViewController, UICollectionViewDelegat
         super.viewDidLoad()
         configureCollectionView()
         var dataSource = collectionView!.dataSource as ProfileDataSource
-        dataSource.person = person
+        dataSource.profile = profile
         dataSource.loadData { (error) -> Void in
             self.collectionView!.reloadData()
         }
@@ -129,14 +120,15 @@ class ProfileViewController: UICollectionViewController, UICollectionViewDelegat
     // MARK: Collection View delegate
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        switch (collectionView.dataSource as ProfileDataSource).typeOfCell(indexPath) {
+        let dataSource = collectionView.dataSource as ProfileDataSource
+        switch dataSource.typeOfCell(indexPath) {
         case .Manager:
             let profileVC = storyboard?.instantiateViewControllerWithIdentifier("ProfileViewController") as ProfileViewController
-            profileVC.person = person.manager
+            profileVC.profile = dataSource.manager
             navigationController?.pushViewController(profileVC, animated: true)
 
         case .Email:
-            presentMailViewController([person.email], subject: "Hey", messageBody: "")
+            presentMailViewController([profile.email], subject: "Hey", messageBody: "")
             
         default:
             break

@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		7899CA44139AE8B96BACC3EA /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FD94FE17CC5CD80FF96B24E5 /* libPods.a */; };
 		8F0004961A2419730096477A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0004951A2419730096477A /* AppDelegate.swift */; };
-		8F00049B1A2419730096477A /* PeopleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F00049A1A2419730096477A /* PeopleViewController.swift */; };
+		8F00049B1A2419730096477A /* ProfilesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F00049A1A2419730096477A /* ProfilesViewController.swift */; };
 		8F00049D1A2419730096477A /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F00049C1A2419730096477A /* ProfileViewController.swift */; };
 		8F0004A01A2419730096477A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F00049E1A2419730096477A /* Main.storyboard */; };
 		8F0004A21A2419730096477A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8F0004A11A2419730096477A /* Images.xcassets */; };
@@ -19,9 +19,7 @@
 		8F02B1F71A53DEF500A1A307 /* ProfileViewAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F02B1F61A53DEF500A1A307 /* ProfileViewAnimator.swift */; };
 		8F02B1FC1A54A08000A1A307 /* RootNavigationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F02B1FB1A54A08000A1A307 /* RootNavigationDelegate.swift */; };
 		8F22CB731A264A8A0026376E /* MainTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F22CB721A264A8A0026376E /* MainTabViewController.swift */; };
-		8F22CB751A26600D0026376E /* AppDelegateParseExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F22CB741A26600D0026376E /* AppDelegateParseExtension.swift */; };
 		8F22CB771A2661890026376E /* AppDelegateAppearanceExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F22CB761A2661890026376E /* AppDelegateAppearanceExtension.swift */; };
-		8F22CB791A266D3F0026376E /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F22CB781A266D3F0026376E /* Person.swift */; };
 		8F22CBE01A27A8E60026376E /* ProfileHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F22CBDE1A27A8E60026376E /* ProfileHeaderCollectionReusableView.swift */; };
 		8F22CBE11A27A8E60026376E /* ProfileHeaderCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F22CBDF1A27A8E60026376E /* ProfileHeaderCollectionReusableView.xib */; };
 		8F22CBE31A27AE9B0026376E /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F22CBE21A27AE9B0026376E /* UIImageViewExtension.swift */; };
@@ -35,7 +33,7 @@
 		8F22CBF91A29A8EB0026376E /* AuthViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F22CBF71A29A8EB0026376E /* AuthViewController.xib */; };
 		8F22CBFB1A29AF450026376E /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F22CBFA1A29AF450026376E /* UIViewExtension.swift */; };
 		8F22CBFE1A29C7120026376E /* GCDUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F22CBFD1A29C7120026376E /* GCDUtils.swift */; };
-		8F2D7DF01A5B2412001D36B0 /* PeopleDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F2D7DEF1A5B2412001D36B0 /* PeopleDataSource.swift */; };
+		8F2D7DF01A5B2412001D36B0 /* ProfilesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F2D7DEF1A5B2412001D36B0 /* ProfilesDataSource.swift */; };
 		8F3569141A560B2D003D42F9 /* CGRectExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3569131A560B2D003D42F9 /* CGRectExtension.swift */; };
 		8F4805C41A5B643F00273731 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F4805C31A5B643F00273731 /* Crashlytics.framework */; };
 		8F4805C81A5B64FA00273731 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F4805C31A5B643F00273731 /* Crashlytics.framework */; };
@@ -53,8 +51,8 @@
 		8FC7BB3B1A58A6E2005BDDDB /* CardDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC7BB3A1A58A6E2005BDDDB /* CardDataSource.swift */; };
 		8FC7BB401A58AF4C005BDDDB /* SearchLandingDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC7BB3F1A58AF4C005BDDDB /* SearchLandingDataSource.swift */; };
 		8FC7BB431A58B15B005BDDDB /* CardCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC7BB421A58B15B005BDDDB /* CardCollectionViewDelegate.swift */; };
-		8FCC95CD1A52828B00421E65 /* PersonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FCC95CB1A52828B00421E65 /* PersonCollectionViewCell.swift */; };
-		8FCC95CE1A52828B00421E65 /* PersonCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8FCC95CC1A52828B00421E65 /* PersonCollectionViewCell.xib */; };
+		8FCC95CD1A52828B00421E65 /* ProfileCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FCC95CB1A52828B00421E65 /* ProfileCollectionViewCell.swift */; };
+		8FCC95CE1A52828B00421E65 /* ProfileCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8FCC95CC1A52828B00421E65 /* ProfileCollectionViewCell.xib */; };
 		8FD041A21A2C03AA00FE28EF /* UIFontExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD041A11A2C03AA00FE28EF /* UIFontExtention.swift */; };
 		8FEE88471A411BA90011CE4A /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FEE88461A411BA90011CE4A /* UIViewControllerExtension.swift */; };
 		8FEE88601A437DE40011CE4A /* Alamofire.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 8FEE885B1A437DB10011CE4A /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -72,6 +70,7 @@
 		BF041BBA1A2C119B0043EC72 /* NSDateFormatterExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF041BB91A2C119B0043EC72 /* NSDateFormatterExtension.swift */; };
 		BF24FCFD1A4A25F3003DF4C2 /* ProtobufRegistry.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = BF24FCF81A4A25E7003DF4C2 /* ProtobufRegistry.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BF2CBFD61A473E9100BE589D /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2CBFD51A473E9100BE589D /* UserService.swift */; };
+		BF3F0F611A5B1C1100D4287E /* ProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3F0F601A5B1C1100D4287E /* ProfileService.swift */; };
 		BF59AA931A2C152F00C0CDB9 /* UITableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF59AA921A2C152F00C0CDB9 /* UITableViewExtension.swift */; };
 		BF7DF98F1A44E53200A4F924 /* ServiceTransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7DF98E1A44E53200A4F924 /* ServiceTransport.swift */; };
 		BF8FC3D91A44DA83007FD8BA /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8FC3D81A44DA83007FD8BA /* StringExtension.swift */; };
@@ -177,7 +176,7 @@
 		8F0004901A2419730096477A /* Circle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Circle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F0004941A2419730096477A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8F0004951A2419730096477A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		8F00049A1A2419730096477A /* PeopleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleViewController.swift; sourceTree = "<group>"; };
+		8F00049A1A2419730096477A /* ProfilesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilesViewController.swift; sourceTree = "<group>"; };
 		8F00049C1A2419730096477A /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		8F00049F1A2419730096477A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8F0004A11A2419730096477A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -189,9 +188,7 @@
 		8F02B1F61A53DEF500A1A307 /* ProfileViewAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewAnimator.swift; sourceTree = "<group>"; };
 		8F02B1FB1A54A08000A1A307 /* RootNavigationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootNavigationDelegate.swift; sourceTree = "<group>"; };
 		8F22CB721A264A8A0026376E /* MainTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabViewController.swift; sourceTree = "<group>"; };
-		8F22CB741A26600D0026376E /* AppDelegateParseExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegateParseExtension.swift; sourceTree = "<group>"; };
 		8F22CB761A2661890026376E /* AppDelegateAppearanceExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegateAppearanceExtension.swift; sourceTree = "<group>"; };
-		8F22CB781A266D3F0026376E /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		8F22CB7A1A268C040026376E /* Circle-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Circle-Bridging-Header.h"; sourceTree = "<group>"; };
 		8F22CBDE1A27A8E60026376E /* ProfileHeaderCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileHeaderCollectionReusableView.swift; sourceTree = "<group>"; };
 		8F22CBDF1A27A8E60026376E /* ProfileHeaderCollectionReusableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileHeaderCollectionReusableView.xib; sourceTree = "<group>"; };
@@ -206,7 +203,7 @@
 		8F22CBF71A29A8EB0026376E /* AuthViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AuthViewController.xib; sourceTree = "<group>"; };
 		8F22CBFA1A29AF450026376E /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		8F22CBFD1A29C7120026376E /* GCDUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCDUtils.swift; sourceTree = "<group>"; };
-		8F2D7DEF1A5B2412001D36B0 /* PeopleDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleDataSource.swift; sourceTree = "<group>"; };
+		8F2D7DEF1A5B2412001D36B0 /* ProfilesDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfilesDataSource.swift; sourceTree = "<group>"; };
 		8F3569131A560B2D003D42F9 /* CGRectExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGRectExtension.swift; sourceTree = "<group>"; };
 		8F4805C31A5B643F00273731 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		8F4E53741A59CB8300DC876B /* ProfileCollectionViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileCollectionViewDelegate.swift; sourceTree = "<group>"; };
@@ -223,8 +220,8 @@
 		8FC7BB3A1A58A6E2005BDDDB /* CardDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardDataSource.swift; sourceTree = "<group>"; };
 		8FC7BB3F1A58AF4C005BDDDB /* SearchLandingDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchLandingDataSource.swift; sourceTree = "<group>"; };
 		8FC7BB421A58B15B005BDDDB /* CardCollectionViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardCollectionViewDelegate.swift; sourceTree = "<group>"; };
-		8FCC95CB1A52828B00421E65 /* PersonCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonCollectionViewCell.swift; sourceTree = "<group>"; };
-		8FCC95CC1A52828B00421E65 /* PersonCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonCollectionViewCell.xib; sourceTree = "<group>"; };
+		8FCC95CB1A52828B00421E65 /* ProfileCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileCollectionViewCell.swift; sourceTree = "<group>"; };
+		8FCC95CC1A52828B00421E65 /* ProfileCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileCollectionViewCell.xib; sourceTree = "<group>"; };
 		8FD041A11A2C03AA00FE28EF /* UIFontExtention.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIFontExtention.swift; sourceTree = "<group>"; };
 		8FEE88461A411BA90011CE4A /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		8FEE88491A4371A80011CE4A /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = ../ThirdParty/Alamofire/Alamofire.xcodeproj; sourceTree = "<group>"; };
@@ -241,6 +238,7 @@
 		BF041BB91A2C119B0043EC72 /* NSDateFormatterExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDateFormatterExtension.swift; sourceTree = "<group>"; };
 		BF24FCF21A4A25E6003DF4C2 /* ProtobufRegistry.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ProtobufRegistry.xcodeproj; path = "ThirdParty/protobuf-registry/swift/ProtobufRegistry/ProtobufRegistry.xcodeproj"; sourceTree = SOURCE_ROOT; };
 		BF2CBFD51A473E9100BE589D /* UserService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		BF3F0F601A5B1C1100D4287E /* ProfileService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileService.swift; sourceTree = "<group>"; };
 		BF59AA921A2C152F00C0CDB9 /* UITableViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewExtension.swift; sourceTree = "<group>"; };
 		BF7DF98E1A44E53200A4F924 /* ServiceTransport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceTransport.swift; sourceTree = "<group>"; };
 		BF8FC3D81A44DA83007FD8BA /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
@@ -362,7 +360,7 @@
 			children = (
 				8F22CBF61A29A8EB0026376E /* AuthViewController.swift */,
 				8F22CB721A264A8A0026376E /* MainTabViewController.swift */,
-				8F00049A1A2419730096477A /* PeopleViewController.swift */,
+				8F00049A1A2419730096477A /* ProfilesViewController.swift */,
 				8F00049C1A2419730096477A /* ProfileViewController.swift */,
 				8FF297FC1A4A4DCA00306CFC /* SearchViewController.swift */,
 				8FF298431A4DF38E00306CFC /* TagSelectorViewController.swift */,
@@ -379,7 +377,7 @@
 				8F22CBE61A27FDA70026376E /* KeyValueCollectionViewCell.swift */,
 				8F65C4FC1A51222100C7F3E6 /* LocationCollectionViewCell.swift */,
 				8F4E53761A5A0D9E00DC876B /* NotesCollectionViewCell.swift */,
-				8FCC95CB1A52828B00421E65 /* PersonCollectionViewCell.swift */,
+				8FCC95CB1A52828B00421E65 /* ProfileCollectionViewCell.swift */,
 				8F22CBDE1A27A8E60026376E /* ProfileHeaderCollectionReusableView.swift */,
 				8FF298011A4A4E3600306CFC /* ProfileImagesCollectionViewCell.swift */,
 				8FF298081A4B490E00306CFC /* SearchHeaderView.swift */,
@@ -394,7 +392,6 @@
 			isa = PBXGroup;
 			children = (
 				8F22CB761A2661890026376E /* AppDelegateAppearanceExtension.swift */,
-				8F22CB741A26600D0026376E /* AppDelegateParseExtension.swift */,
 				BFB791881A2C346A0048E8FB /* CALayerExtension.swift */,
 				8F3569131A560B2D003D42F9 /* CGRectExtension.swift */,
 				BF041BB91A2C119B0043EC72 /* NSDateFormatterExtension.swift */,
@@ -415,7 +412,6 @@
 			isa = PBXGroup;
 			children = (
 				8F65C4FA1A50F92500C7F3E6 /* Card.swift */,
-				8F22CB781A266D3F0026376E /* Person.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -438,7 +434,7 @@
 				8F65C4FD1A51222100C7F3E6 /* LocationCollectionViewCell.xib */,
 				8F00049E1A2419730096477A /* Main.storyboard */,
 				8F4E53771A5A0D9E00DC876B /* NotesCollectionViewCell.xib */,
-				8FCC95CC1A52828B00421E65 /* PersonCollectionViewCell.xib */,
+				8FCC95CC1A52828B00421E65 /* ProfileCollectionViewCell.xib */,
 				8F22CBDF1A27A8E60026376E /* ProfileHeaderCollectionReusableView.xib */,
 				8FF298021A4A4E3600306CFC /* ProfileImagesCollectionViewCell.xib */,
 				8FF298091A4B490E00306CFC /* SearchHeaderView.xib */,
@@ -470,7 +466,7 @@
 			isa = PBXGroup;
 			children = (
 				8FC7BB3A1A58A6E2005BDDDB /* CardDataSource.swift */,
-				8F2D7DEF1A5B2412001D36B0 /* PeopleDataSource.swift */,
+				8F2D7DEF1A5B2412001D36B0 /* ProfilesDataSource.swift */,
 				8F22CBF41A2865030026376E /* ProfileDataSource.swift */,
 				8FC7BB3F1A58AF4C005BDDDB /* SearchLandingDataSource.swift */,
 			);
@@ -533,6 +529,7 @@
 			isa = PBXGroup;
 			children = (
 				BF2CBFD51A473E9100BE589D /* UserService.swift */,
+				BF3F0F601A5B1C1100D4287E /* ProfileService.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -725,7 +722,7 @@
 				8F22CBE91A27FDA70026376E /* KeyValueCollectionViewCell.xib in Resources */,
 				8FF2980B1A4B490E00306CFC /* SearchHeaderView.xib in Resources */,
 				8F0004A01A2419730096477A /* Main.storyboard in Resources */,
-				8FCC95CE1A52828B00421E65 /* PersonCollectionViewCell.xib in Resources */,
+				8FCC95CE1A52828B00421E65 /* ProfileCollectionViewCell.xib in Resources */,
 				8F22CBF91A29A8EB0026376E /* AuthViewController.xib in Resources */,
 				8F0004A51A2419730096477A /* LaunchScreen.xib in Resources */,
 				8F65C5081A52661700C7F3E6 /* TagsCollectionViewCell.xib in Resources */,
@@ -830,7 +827,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8FD041A21A2C03AA00FE28EF /* UIFontExtention.swift in Sources */,
-				8F22CB791A266D3F0026376E /* Person.swift in Sources */,
 				8FC7BB431A58B15B005BDDDB /* CardCollectionViewDelegate.swift in Sources */,
 				8F22CBED1A283D3D0026376E /* SeparatorDecorationView.swift in Sources */,
 				8F65C4FB1A50F92500C7F3E6 /* Card.swift in Sources */,
@@ -844,17 +840,17 @@
 				8F22CBFB1A29AF450026376E /* UIViewExtension.swift in Sources */,
 				8FF297FD1A4A4DCA00306CFC /* SearchViewController.swift in Sources */,
 				8F0004BB1A241BDE0096477A /* UIColorExtension.swift in Sources */,
-				8F00049B1A2419730096477A /* PeopleViewController.swift in Sources */,
+				8F00049B1A2419730096477A /* ProfilesViewController.swift in Sources */,
 				BF041BBA1A2C119B0043EC72 /* NSDateFormatterExtension.swift in Sources */,
 				8F3569141A560B2D003D42F9 /* CGRectExtension.swift in Sources */,
 				8FF2980A1A4B490E00306CFC /* SearchHeaderView.swift in Sources */,
-				8FCC95CD1A52828B00421E65 /* PersonCollectionViewCell.swift in Sources */,
+				8FCC95CD1A52828B00421E65 /* ProfileCollectionViewCell.swift in Sources */,
 				BF59AA931A2C152F00C0CDB9 /* UITableViewExtension.swift in Sources */,
 				BF2CBFD61A473E9100BE589D /* UserService.swift in Sources */,
 				8F4E53751A59CB8300DC876B /* ProfileCollectionViewDelegate.swift in Sources */,
 				8FF298471A4E050100306CFC /* TagCollectionViewCell.swift in Sources */,
 				8F22CBF11A2844F50026376E /* UINavigationBarExtension.swift in Sources */,
-				8F2D7DF01A5B2412001D36B0 /* PeopleDataSource.swift in Sources */,
+				8F2D7DF01A5B2412001D36B0 /* ProfilesDataSource.swift in Sources */,
 				8FC7BB3B1A58A6E2005BDDDB /* CardDataSource.swift in Sources */,
 				8F65C4FE1A51222100C7F3E6 /* LocationCollectionViewCell.swift in Sources */,
 				BFEDB1431A2A8CA700250165 /* UICollectionViewFlowLayoutExtension.swift in Sources */,
@@ -868,9 +864,9 @@
 				8F22CB771A2661890026376E /* AppDelegateAppearanceExtension.swift in Sources */,
 				8F22CBFE1A29C7120026376E /* GCDUtils.swift in Sources */,
 				8FC7BB401A58AF4C005BDDDB /* SearchLandingDataSource.swift in Sources */,
-				8F22CB751A26600D0026376E /* AppDelegateParseExtension.swift in Sources */,
 				8F00049D1A2419730096477A /* ProfileViewController.swift in Sources */,
 				BF7DF98F1A44E53200A4F924 /* ServiceTransport.swift in Sources */,
+				BF3F0F611A5B1C1100D4287E /* ProfileService.swift in Sources */,
 				8FEE88471A411BA90011CE4A /* UIViewControllerExtension.swift in Sources */,
 				8F22CBE81A27FDA70026376E /* KeyValueCollectionViewCell.swift in Sources */,
 				8F65C5011A51462500C7F3E6 /* CircleCollectionViewCell.swift in Sources */,

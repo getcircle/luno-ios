@@ -56,7 +56,7 @@ class Card: Equatable {
         static func classByCardType(type: CardType) -> (CircleCollectionViewCell.Type, className: String) {
             switch type {
             case .People, .Birthdays:
-                return (PersonCollectionViewCell.self, "PersonCollectionViewCell")
+                return (ProfileCollectionViewCell.self, "ProfileCollectionViewCell")
             
             case .KeyValue:
                 return (KeyValueCollectionViewCell.self, "KeyValueCollectionViewCell")

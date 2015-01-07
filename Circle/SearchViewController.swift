@@ -15,7 +15,6 @@ class SearchViewController: UIViewController, UICollectionViewDelegate, UITextFi
     @IBOutlet weak private(set) var overlayButton: UIButton!
     
     private var data = [Card]()
-    private var loggedInPerson: Person?
     private var searchHeaderView: SearchHeaderView!
 
     override func viewDidLoad() {
@@ -89,7 +88,7 @@ class SearchViewController: UIViewController, UICollectionViewDelegate, UITextFi
             let controller = segue.destinationViewController as UINavigationController
             let profileVC = controller.topViewController as ProfileViewController
             profileVC.showCloseOrBackButton = true
-            profileVC.person = loggedInPerson
+            profileVC.profile = AuthViewController.getLoggedInUserProfile()
         }
     }
     
