@@ -195,53 +195,29 @@ class AuthViewController: UIViewController, UITextFieldDelegate {
     // MARK: - Log in
     
     private func login() {
-        let request = UserService.Requests.AuthenticateUser(
+        UserService.Actions.authenticateUser(
             UserService.AuthenticateUser.Request.AuthBackend.Internal,
-            emailField.text,
-            passwordField.text
-        )
-
-        let client = ServiceClient(serviceName: "user", token: nil)
-        client.callAction(request) {
-            (_, _, _, actionResponse, error) -> Void in
-            
+            email: emailField.text,
+            password: passwordField.text
+        ) { (user, token, error) -> Void in
             self.hideLoadingState()
-            if let actionResponse = actionResponse {
-                let response = UserService.Responses.AuthenticateUser(actionResponse)
-                if error != nil || !response.success {
-                    self.logInButton.addShakeAnimation()
-                    self.emailField.becomeFirstResponder()
-                    return
-                }
-                
-                let result = response.result as UserService.AuthenticateUser.Response
-                self.cacheLoginData(result.token, user: result.user)
-                self.fetchAndCacheUserProfile(result.user.id)
-                self.dismissViewControllerAnimated(true, completion: nil)
-            } else {
-                // TODO display an error message
-                println("Error logging in user: \(error)")
+            if error != nil {
+                self.logInButton.addShakeAnimation()
+                self.emailField.becomeFirstResponder()
+                return
             }
+            
+            self.cacheLoginData(token!, user: user!)
+            self.fetchAndCacheUserProfile(user!.id)
+            self.dismissViewControllerAnimated(true, completion: nil)
         }
     }
     
     private func fetchAndCacheUserProfile(userId: String) {
-        let client = ServiceClient(serviceName: "profile")
-        let request = ProfileService.Requests.GetProfileForUserId(userId)
-        client.callAction(request) {
-            (_, _, _, actionResponse, error) -> Void in
-            
-            // TODO how should we report action errors?
-            if let actionResponse = actionResponse {
-                let response = ProfileService.Responses.GetProfile(actionResponse)
-                // TODO maybe have "error" populated if response isn't success
-                if error != nil || !response.success {
-                    return
-                }
-                
-                let result = response.result as ProfileService.GetProfile.Response
-                LoggedInUserHolder.profile = result.profile
-                self.cacheProfileData(result.profile)
+        ProfileService.Actions.getProfile(userId: userId) { (profile, error) -> Void in
+            if error == nil {
+                LoggedInUserHolder.profile = profile!
+                self.cacheProfileData(profile!)
             }
         }
     }

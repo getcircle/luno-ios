@@ -13,19 +13,11 @@ class SearchLandingDataSource: CardDataSource {
     
     override func loadData(completionHandler: (error: NSError?) -> Void) {
         if let currentProfile = AuthViewController.getLoggedInUserProfile() {
-            // TODO Refactor this to something like: ProfileService.Actions.GetProfiles(team_id) { (profiles, error) .. }
-            let request = ProfileService.Requests.GetProfiles(currentProfile.team_id)
-            let client = ServiceClient(serviceName: "profile")
-            client.callAction(request) { (_, _, _, actionResponse, error) -> Void in
-                if let actionResponse = actionResponse {
-                    let response = ProfileService.Responses.GetProfiles(actionResponse)
-                    if error != nil || !response.success {
-                        println("error fetching profiles")
-                        return
-                    }
-                    
-                    let result = response.result as ProfileService.GetProfiles.Response
-                    self.setProfiles(result.profiles, completionHandler: completionHandler)
+            ProfileService.Actions.getProfiles(currentProfile.team_id) { (profiles, error) -> Void in
+                if error == nil {
+                    self.setProfiles(profiles!, completionHandler: completionHandler)
+                } else {
+                    completionHandler(error: error)
                 }
             }
         }

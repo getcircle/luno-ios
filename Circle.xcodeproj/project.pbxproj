@@ -80,7 +80,6 @@
 		BFB791891A2C346A0048E8FB /* CALayerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB791881A2C346A0048E8FB /* CALayerExtension.swift */; };
 		BFB7918B1A2C3C860048E8FB /* SpringFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB7918A1A2C3C860048E8FB /* SpringFlowLayout.swift */; };
 		BFC6CF9C1A44D2B90081F45B /* ServiceClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC6CF9B1A44D2B90081F45B /* ServiceClient.swift */; };
-		BFC6CFA21A44D4DE0081F45B /* ClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC6CFA11A44D4DE0081F45B /* ClientTests.swift */; };
 		BFEDB1431A2A8CA700250165 /* UICollectionViewFlowLayoutExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFEDB1421A2A8CA700250165 /* UICollectionViewFlowLayoutExtension.swift */; };
 		BFFB1A041A4872F200CCFFC3 /* Locksmith.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = BFFB19FF1A4872E200CCFFC3 /* Locksmith.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
@@ -251,7 +250,6 @@
 		BFB791881A2C346A0048E8FB /* CALayerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CALayerExtension.swift; sourceTree = "<group>"; };
 		BFB7918A1A2C3C860048E8FB /* SpringFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpringFlowLayout.swift; sourceTree = "<group>"; };
 		BFC6CF9B1A44D2B90081F45B /* ServiceClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceClient.swift; sourceTree = "<group>"; };
-		BFC6CFA11A44D4DE0081F45B /* ClientTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientTests.swift; sourceTree = "<group>"; };
 		BFEDB1421A2A8CA700250165 /* UICollectionViewFlowLayoutExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICollectionViewFlowLayoutExtension.swift; sourceTree = "<group>"; };
 		BFFB19F91A4872E200CCFFC3 /* Locksmith.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Locksmith.xcodeproj; path = ThirdParty/Locksmith/Locksmith.xcodeproj; sourceTree = SOURCE_ROOT; };
 		CC982AC8BAF0AFF23DCD301A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -346,7 +344,6 @@
 		8F0004AD1A2419730096477A /* CircleTests */ = {
 			isa = PBXGroup;
 			children = (
-				BFC6CFA01A44D4CA0081F45B /* SOA Tests */,
 				8F0004B01A2419730096477A /* CircleTests.swift */,
 				8F0004AE1A2419730096477A /* Supporting Files */,
 			);
@@ -550,14 +547,6 @@
 				BF7DF98E1A44E53200A4F924 /* ServiceTransport.swift */,
 			);
 			name = SOA;
-			sourceTree = "<group>";
-		};
-		BFC6CFA01A44D4CA0081F45B /* SOA Tests */ = {
-			isa = PBXGroup;
-			children = (
-				BFC6CFA11A44D4DE0081F45B /* ClientTests.swift */,
-			);
-			name = "SOA Tests";
 			sourceTree = "<group>";
 		};
 		BFFB19FA1A4872E200CCFFC3 /* Products */ = {
@@ -895,7 +884,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BFC6CFA21A44D4DE0081F45B /* ClientTests.swift in Sources */,
 				8F0004B11A2419730096477A /* CircleTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

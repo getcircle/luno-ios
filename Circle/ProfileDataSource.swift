@@ -197,32 +197,18 @@ class ProfileDataSource: CardDataSource {
     }
 
     override func loadData(completionHandler: (error: NSError?) -> Void) {
-
         // Add placeholder card to load profile header instantly
         var placeholderCard = Card(cardType: .Placeholder, title: "Info")
         appendCard(placeholderCard)
-
-        // Fetch the extended profile attributes
-        let request = ProfileService.Requests.GetExtendedProfile(profile.id)
-        let client = ServiceClient(serviceName: "profile")
-        client.callAction(request) {
-            (_, _, _, actionResponse, error) -> Void in
-            
-            if let actionResponse = actionResponse {
-                let response = ProfileService.Responses.GetExtendedProfile(actionResponse)
-                // TODO we shouldn't have to check both of these
-                if error != nil || !response.success {
-                    println("error fetching extended profile: \(error)")
-                    return
-                }
-                
-                let result = response.result as ProfileService.GetExtendedProfile.Response
-                self.manager = result.manager
-                self.team = result.team
-                self.address = result.address
+        populateData()
+        ProfileService.Actions.getExtendedProfile(profile.id) { (profile, manager, team, address, error) -> Void in
+            if error == nil {
+                self.manager = manager
+                self.team = team
+                self.address = address
                 self.populateData()
-                completionHandler(error: nil)
             }
+            completionHandler(error: error)
         }
     }
     

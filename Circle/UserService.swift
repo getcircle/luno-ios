@@ -9,60 +9,30 @@
 import Foundation
 import ProtobufRegistry
 
+typealias AuthenticateUserCompletionHandler = (user: UserService.Containers.User?, token: String?, error: NSError?) -> Void
+
 extension UserService {
-    enum Requests: ServiceRequestConvertible {
-        case AuthenticateUser(
-            UserService.AuthenticateUser.Request.AuthBackend,
-            String,
-            String
-        )
-        
-        var builder: GeneratedMessageBuilder {
-            switch self {
-            case AuthenticateUser(let backend, let email, let password):
-                let requestBuilder = UserService.AuthenticateUser.Request.builder()
-                requestBuilder.backend = backend
-                
-                let credentials = requestBuilder.credentials.builder()
-                credentials.key = email
-                credentials.secret = password
-                requestBuilder.credentials = credentials.build()
-                return requestBuilder
-            }
-        }
-        
-        var actionName: String {
-            switch self {
-            case .AuthenticateUser:
-                return "authenticate_user"
-            }
-        }
-        
-        var extensionField: ConcreateExtensionField {
-            switch self {
-            case .AuthenticateUser:
-                return UserServiceRequests_authenticate_user
-            }
-        }
-    }
+    class Actions {
     
-    enum Responses: ServiceResponseConvertible {
-        
-        case AuthenticateUser(ActionResponse)
-        
-        var success: Bool {
-            switch self {
-            case .AuthenticateUser(let response):
-                return response.result.success
-            }
-        }
-        
-        var result: GeneratedMessage {
-            switch self {
-            case .AuthenticateUser(let response):
-                return response.result.getExtension(
-                    UserServiceResponses_authenticate_user
-                ) as GeneratedMessage
+        class func authenticateUser(
+            backend: UserService.AuthenticateUser.Request.AuthBackend,
+            email: String,
+            password: String,
+            completionHandler: AuthenticateUserCompletionHandler
+        ) {
+            let requestBuilder = UserService.AuthenticateUser.Request.builder()
+            requestBuilder.backend = backend
+            
+            let credentials = requestBuilder.credentials.builder()
+            credentials.key = email
+            credentials.secret = password
+            requestBuilder.credentials = credentials.build()
+
+            let client = ServiceClient(serviceName: "user")
+            client.callAction("authenticate_user", extensionField: UserServiceRequests_authenticate_user, requestBuilder: requestBuilder) {
+                (_, _, _, actionResponse, error) in
+                let response = actionResponse?.result.getExtension(UserServiceRequests_authenticate_user) as? UserService.AuthenticateUser.Response
+                completionHandler(user: response?.user, token: response?.token, error: error)
             }
         }
         
