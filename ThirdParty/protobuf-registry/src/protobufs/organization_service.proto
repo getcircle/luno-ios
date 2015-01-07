@@ -136,7 +136,9 @@ message OrganizationService {
     message GetAddresses {
 
         message Request {
-            optional string organization_id = 1;
+            oneof lookup_key {
+                string organization_id = 1;
+            }
         }
 
         message Response {

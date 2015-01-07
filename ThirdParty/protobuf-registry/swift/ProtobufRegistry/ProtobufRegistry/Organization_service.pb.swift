@@ -6157,6 +6157,38 @@ final public class OrganizationService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Request : GeneratedMessage {
+
+
+          //OneOf declaration start
+
+          public enum LookupKey {
+            case LookupKeyOneOfNotSet
+
+            public func checkOneOfIsSet() -> Bool {
+                 switch self {
+                 case .LookupKeyOneOfNotSet:
+                      return false
+                 default:
+                      return true
+                 }
+            }
+            case OrganizationId(String)
+
+            public static func getOrganizationId(value:LookupKey) ->String? {
+                 switch value {
+                 case .OrganizationId(let enumValue):
+                      return enumValue
+                 default:
+                      return nil
+                 }
+            }
+          }
+
+
+
+          //OneOf declaration end
+
+          private var storageLookupKey:OrganizationService.GetAddresses.Request.LookupKey =  OrganizationService.GetAddresses.Request.LookupKey.LookupKeyOneOfNotSet
           public subscript(key: String) -> AnyObject? {
                  switch key {
                  case "organization_id": return organization_id
@@ -6164,9 +6196,24 @@ final public class OrganizationService : GeneratedMessage {
                  }
           }
 
-          public private(set) var hasOrganizationId:Bool = false
-          public private(set) var organization_id:String = ""
-
+          public private(set) var hasOrganizationId:Bool {
+                get {
+                     if OrganizationService.GetAddresses.Request.LookupKey.getOrganizationId(storageLookupKey) == nil {
+                         return false
+                     }
+                     return true
+                }
+                set(newValue) {
+                }
+          }
+          public private(set) var organization_id:String!{
+               get {
+                    return OrganizationService.GetAddresses.Request.LookupKey.getOrganizationId(storageLookupKey)
+               }
+               set (newvalue) {
+                    storageLookupKey = OrganizationService.GetAddresses.Request.LookupKey.OrganizationId(newvalue)
+               }
+          }
           required public init() {
                super.init()
           }
