@@ -11,6 +11,7 @@ import ProtobufRegistry
 
 class SearchViewController: UIViewController, UICollectionViewDelegate, UITextFieldDelegate {
     
+    @IBOutlet weak private(set) var activityIndicatorView: UIActivityIndicatorView!
     @IBOutlet weak private(set) var collectionView: UICollectionView!
     @IBOutlet weak private(set) var searchHeaderContainerView: UIView!
     @IBOutlet weak private(set) var overlayButton: UIButton!
@@ -28,6 +29,7 @@ class SearchViewController: UIViewController, UICollectionViewDelegate, UITextFi
         configureOverlayButton()
         (collectionView.dataSource as SearchLandingDataSource).loadData { (error) -> Void in
             if error == nil {
+                self.activityIndicatorView.stopAnimating()
                 self.collectionView.reloadData()
             }
         }

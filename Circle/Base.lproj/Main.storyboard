@@ -119,8 +119,9 @@
                                     <constraint firstAttribute="height" constant="44" id="Jcp-94-Poo"/>
                                 </constraints>
                             </view>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ip8-kc-O5j">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ip8-kc-O5j">
                                 <rect key="frame" x="0.0" y="108" width="600" height="492"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="SY1-X2-Ytp">
                                     <size key="itemSize" width="50" height="50"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -145,19 +146,26 @@
                                     <outlet property="delegate" destination="sfD-c4-aFJ" id="a9t-kV-cdo"/>
                                 </connections>
                             </collectionView>
+                            <activityIndicatorView contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="AVd-zd-gf8">
+                                <rect key="frame" x="290" y="290" width="20" height="20"/>
+                                <color key="color" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="centerX" secondItem="AVd-zd-gf8" secondAttribute="centerX" id="AJY-UP-ZQy"/>
                             <constraint firstItem="ip8-kc-O5j" firstAttribute="leading" secondItem="gAl-eb-P45" secondAttribute="leading" id="KcF-Rx-IWn"/>
                             <constraint firstItem="hqq-xo-pLX" firstAttribute="top" secondItem="GD7-Su-MnX" secondAttribute="bottom" id="R8N-ZQ-93e"/>
                             <constraint firstItem="hqq-xo-pLX" firstAttribute="leading" secondItem="gAl-eb-P45" secondAttribute="leading" id="VJa-Rq-hte"/>
                             <constraint firstAttribute="trailing" secondItem="ip8-kc-O5j" secondAttribute="trailing" id="XYm-xQ-rVF"/>
                             <constraint firstAttribute="trailing" secondItem="hqq-xo-pLX" secondAttribute="trailing" id="gmt-YB-apB"/>
                             <constraint firstItem="90M-NW-Qsi" firstAttribute="top" secondItem="ip8-kc-O5j" secondAttribute="bottom" id="ihG-gU-gVe"/>
+                            <constraint firstAttribute="centerY" secondItem="AVd-zd-gf8" secondAttribute="centerY" id="lV8-xl-81E"/>
                             <constraint firstItem="ip8-kc-O5j" firstAttribute="top" secondItem="hqq-xo-pLX" secondAttribute="bottom" id="zjS-P2-Ifc"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="activityIndicatorView" destination="AVd-zd-gf8" id="w3r-J6-qv2"/>
                         <outlet property="collectionView" destination="ip8-kc-O5j" id="Vco-6M-cs5"/>
                         <outlet property="searchControllerContainerView" destination="hqq-xo-pLX" id="crO-MB-gEY"/>
                     </connections>
@@ -187,7 +195,7 @@
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="FpX-4G-cZW">
                                 <rect key="frame" x="0.0" y="54" width="600" height="482"/>
-                                <color key="backgroundColor" red="0.87058823529411766" green="0.87058823529411766" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ye1-bx-IXA">
                                     <size key="itemSize" width="50" height="50"/>
                                     <size key="headerReferenceSize" width="0.0" height="54"/>
@@ -226,10 +234,15 @@
                                     <action selector="overlayButtonTapped:" destination="PMD-gG-9c6" eventType="touchUpInside" id="HLg-s0-axk"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="heX-JS-q97">
+                                <rect key="frame" x="290" y="258" width="20" height="20"/>
+                                <color key="color" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="5kQ-sW-5v8" firstAttribute="leading" secondItem="bGb-OZ-dC1" secondAttribute="leading" id="2lx-ER-7df"/>
+                            <constraint firstAttribute="centerX" secondItem="heX-JS-q97" secondAttribute="centerX" id="3Lx-1I-rxa"/>
                             <constraint firstItem="FpX-4G-cZW" firstAttribute="top" secondItem="5kQ-sW-5v8" secondAttribute="bottom" id="8LU-VE-EVy"/>
                             <constraint firstAttribute="trailing" secondItem="9zy-By-0t8" secondAttribute="trailing" id="BjS-PO-oa4"/>
                             <constraint firstAttribute="trailing" secondItem="FpX-4G-cZW" secondAttribute="trailing" id="UnW-tG-yPS"/>
@@ -239,6 +252,7 @@
                             <constraint firstItem="rUn-MN-xeZ" firstAttribute="top" secondItem="9zy-By-0t8" secondAttribute="bottom" id="oSD-Dj-FE3"/>
                             <constraint firstItem="9zy-By-0t8" firstAttribute="leading" secondItem="bGb-OZ-dC1" secondAttribute="leading" id="tBX-PI-WvI"/>
                             <constraint firstItem="9zy-By-0t8" firstAttribute="top" secondItem="iQd-um-0Yq" secondAttribute="bottom" constant="54" id="xYW-6x-5Zt"/>
+                            <constraint firstAttribute="centerY" secondItem="heX-JS-q97" secondAttribute="centerY" id="y1z-Ih-Yc8"/>
                             <constraint firstItem="5kQ-sW-5v8" firstAttribute="top" secondItem="iQd-um-0Yq" secondAttribute="bottom" id="yl2-ha-hR9"/>
                         </constraints>
                     </view>
@@ -257,6 +271,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="activityIndicatorView" destination="heX-JS-q97" id="agu-HE-HiO"/>
                         <outlet property="collectionView" destination="FpX-4G-cZW" id="47Q-HQ-Uri"/>
                         <outlet property="overlayButton" destination="9zy-By-0t8" id="C1t-gz-YCf"/>
                         <outlet property="searchHeaderContainerView" destination="5kQ-sW-5v8" id="IPE-OO-odc"/>

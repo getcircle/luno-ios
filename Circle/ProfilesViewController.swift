@@ -14,6 +14,7 @@ class ProfilesViewController: UIViewController,
                             UISearchBarDelegate,
                             UISearchResultsUpdating {
 
+    @IBOutlet weak private(set) var activityIndicatorView: UIActivityIndicatorView!    
     @IBOutlet weak private(set) var collectionView: UICollectionView!
     @IBOutlet weak private(set) var searchControllerContainerView: UIView!
 
@@ -35,7 +36,10 @@ class ProfilesViewController: UIViewController,
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         dataSource.loadData { (error) -> Void in
-            self.collectionView.reloadData()
+            if error == nil {
+                self.activityIndicatorView.stopAnimating()
+                self.collectionView.reloadData()
+            }
         }
     }
     
