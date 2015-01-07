@@ -23,14 +23,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Setup Crashlytics
         Crashlytics.startWithAPIKey("e4192b2c032ea5f8065aac4bde634b85760f8d49")
 
-        // Test Alamofire
-//        Alamofire.request(.GET, "http://httpbin.org/get", parameters: ["foo": "bar"])
-//            .response { (request, response, data, error) in
-//                println(request)
-//                println(response)
-//                println(error)
-//        }
-
         return true
     }
 }

@@ -4,40 +4,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <scenes>
-        <!--Profile-->
-        <scene sceneID="uzJ-m3-vlO">
-            <objects>
-                <collectionViewController storyboardIdentifier="ProfileViewController" title="Profile" extendedLayoutIncludesOpaqueBars="YES" automaticallyAdjustsScrollViewInsets="NO" id="ofx-aS-lg0" customClass="ProfileViewController" customModule="Circle" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="qhj-eK-GxV">
-                        <rect key="frame" x="0.0" y="64" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="calibratedRGB"/>
-                        <collectionViewLayout key="collectionViewLayout" id="E9E-zg-oqb" customClass="ProfileCollectionViewLayout" customModule="Circle" customModuleProvider="target"/>
-                        <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="d8w-mX-bgd">
-                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </view>
-                            </collectionViewCell>
-                        </cells>
-                        <connections>
-                            <outlet property="dataSource" destination="rWv-sk-FlT" id="MM4-Sb-FQP"/>
-                            <outlet property="delegate" destination="Whi-sw-FhG" id="vmX-IX-IuB"/>
-                        </connections>
-                    </collectionView>
-                    <extendedEdge key="edgesForExtendedLayout" top="YES"/>
-                    <navigationItem key="navigationItem" id="BAe-1F-mQe"/>
-                </collectionViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Xls-Qj-HOy" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <customObject id="rWv-sk-FlT" customClass="ProfileDataSource" customModule="Circle" customModuleProvider="target"/>
-                <customObject id="Whi-sw-FhG" customClass="ProfileCollectionViewDelegate" customModule="Circle" customModuleProvider="target"/>
-            </objects>
-            <point key="canvasLocation" x="2656" y="-2076"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="I8F-MY-69s">
             <objects>
@@ -63,12 +29,76 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="ofx-aS-lg0" kind="relationship" relationship="rootViewController" id="tgc-v1-g6X"/>
+                        <segue destination="sDD-Fq-JNF" kind="relationship" relationship="rootViewController" id="IGB-bE-LeP"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lx0-BL-rDt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1944" y="-2076"/>
+        </scene>
+        <!--Profile-->
+        <scene sceneID="r4c-8U-6OS">
+            <objects>
+                <viewController title="Profile" extendedLayoutIncludesOpaqueBars="YES" automaticallyAdjustsScrollViewInsets="NO" id="sDD-Fq-JNF" customClass="ProfileViewController" customModule="Circle" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="HIs-vu-Ig9"/>
+                        <viewControllerLayoutGuide type="bottom" id="5wd-Cd-7JM"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="lSR-Vn-xRf">
+                        <rect key="frame" x="0.0" y="64" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="pzm-hP-Xfe">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="4SQ-DY-kLc" customClass="ProfileCollectionViewLayout" customModule="Circle" customModuleProvider="target">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="4GV-UQ-1Oa">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="MEa-0c-W8Y" id="GAO-08-7be"/>
+                                    <outlet property="delegate" destination="k6u-CD-BLX" id="FLt-DZ-mV5"/>
+                                </connections>
+                            </collectionView>
+                            <activityIndicatorView contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="SF9-Vj-n0q">
+                                <rect key="frame" x="290" y="290" width="20" height="20"/>
+                                <color key="color" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="pzm-hP-Xfe" secondAttribute="trailing" id="385-Pr-JWZ"/>
+                            <constraint firstItem="5wd-Cd-7JM" firstAttribute="top" secondItem="pzm-hP-Xfe" secondAttribute="bottom" id="CDY-CD-b3n"/>
+                            <constraint firstAttribute="centerX" secondItem="SF9-Vj-n0q" secondAttribute="centerX" id="TAA-UG-HPO"/>
+                            <constraint firstItem="pzm-hP-Xfe" firstAttribute="top" secondItem="HIs-vu-Ig9" secondAttribute="bottom" constant="-64" id="dDe-WX-NhM"/>
+                            <constraint firstAttribute="centerY" secondItem="SF9-Vj-n0q" secondAttribute="centerY" id="pCB-gS-iOF"/>
+                            <constraint firstItem="pzm-hP-Xfe" firstAttribute="leading" secondItem="lSR-Vn-xRf" secondAttribute="leading" id="rt9-kf-OCi"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="ZHp-IW-hpD"/>
+                    <connections>
+                        <outlet property="activityIndicatorView" destination="SF9-Vj-n0q" id="ys6-t1-Ovd"/>
+                        <outlet property="collectionView" destination="pzm-hP-Xfe" id="aCq-J9-IgJ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Lhs-7q-BnT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="MEa-0c-W8Y" customClass="ProfileDataSource" customModule="Circle" customModuleProvider="target"/>
+                <customObject id="k6u-CD-BLX" customClass="ProfileCollectionViewDelegate" customModule="Circle" customModuleProvider="target"/>
+            </objects>
+            <point key="canvasLocation" x="2658" y="-2076"/>
         </scene>
         <!--People-->
         <scene sceneID="MUU-Kj-5cV">
@@ -107,7 +137,7 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <connections>
-                                            <segue destination="ofx-aS-lg0" kind="show" identifier="showProfile" id="vje-9W-y2T"/>
+                                            <segue destination="sDD-Fq-JNF" kind="show" identifier="showUserProfile" id="MpT-9R-bDX"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -337,6 +367,6 @@
         <image name="Profile" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="vje-9W-y2T"/>
+        <segue reference="MpT-9R-bDX"/>
     </inferredMetricsTieBreakers>
 </document>

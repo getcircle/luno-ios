@@ -191,7 +191,11 @@ class ProfileDataSource: CardDataSource {
     }
 
     override func loadData(completionHandler: (error: NSError?) -> Void) {
-        populateData()
+
+        // Add placeholder card to load profile header instantly
+        var placeholderCard = Card(cardType: .Placeholder, title: "Info")
+        appendCard(placeholderCard)
+
         // Fetch the extended profile attributes
         let request = ProfileService.Requests.GetExtendedProfile(profile.id)
         let client = ServiceClient(serviceName: "profile")
@@ -213,7 +217,7 @@ class ProfileDataSource: CardDataSource {
                 self.populateData()
                 completionHandler(error: nil)
             }
-        }
+        }r
     }
     
     // MARK: - Populate Data
@@ -245,7 +249,7 @@ class ProfileDataSource: CardDataSource {
             ["name": "Apple Pay"],
             ["name": "Management"],
             ["name": "Influencer"],
-            ])
+        ])
         tagsCard.sectionInset = defaultSectionInset
         appendCard(tagsCard)
         

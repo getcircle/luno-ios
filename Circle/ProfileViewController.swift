@@ -10,8 +10,11 @@ import MessageUI
 import UIKit
 import ProtobufRegistry
 
-class ProfileViewController: UICollectionViewController, UICollectionViewDelegate, MFMailComposeViewControllerDelegate {
+class ProfileViewController: UIViewController, UICollectionViewDelegate, MFMailComposeViewControllerDelegate {
 
+    @IBOutlet weak private(set) var activityIndicatorView: UIActivityIndicatorView!
+    @IBOutlet weak private(set) var collectionView: UICollectionView!
+    
     var profile: ProfileService.Containers.Profile!
     
     var animationSourceRect: CGRect?
@@ -32,6 +35,7 @@ class ProfileViewController: UICollectionViewController, UICollectionViewDelegat
         var dataSource = collectionView!.dataSource as ProfileDataSource
         dataSource.profile = profile
         dataSource.loadData { (error) -> Void in
+            self.activityIndicatorView.stopAnimating()
             self.collectionView!.reloadData()
         }
     }
@@ -119,7 +123,7 @@ class ProfileViewController: UICollectionViewController, UICollectionViewDelegat
     
     // MARK: Collection View delegate
     
-    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let dataSource = collectionView.dataSource as ProfileDataSource
         switch dataSource.typeOfCell(indexPath) {
         case .Manager:
@@ -139,7 +143,7 @@ class ProfileViewController: UICollectionViewController, UICollectionViewDelegat
 
     // MARK: - Scroll view delegate
     
-    override func scrollViewDidScroll(scrollView: UIScrollView) {
+     func scrollViewDidScroll(scrollView: UIScrollView) {
         
         if let profileHeaderView = (collectionView!.dataSource as ProfileDataSource).profileHeaderView {
             let contentOffset = scrollView.contentOffset
@@ -186,7 +190,7 @@ class ProfileViewController: UICollectionViewController, UICollectionViewDelegat
     
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
-        collectionViewLayout.invalidateLayout()
+        collectionView.collectionViewLayout.invalidateLayout()
     }
 }
 
