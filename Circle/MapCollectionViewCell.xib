@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -13,17 +14,14 @@
                 <rect key="frame" x="0.0" y="0.0" width="542" height="171"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Jee-eM-0IH">
-                        <rect key="frame" x="0.0" y="0.0" width="542" height="171"/>
-                    </mapView>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EmS-IB-PAF">
-                        <rect key="frame" x="0.0" y="0.0" width="542" height="171"/>
-                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.45000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
+                    <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EmS-IB-PAF">
+                        <rect key="frame" x="0.0" y="136" width="542" height="35"/>
+                        <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" text="155 5th Street, San Francisco" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KLL-v4-dQI" userLabel="Location Label">
-                        <rect key="frame" x="20" y="73" width="247" height="25"/>
-                        <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="18"/>
-                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="155 5th Street, San Francisco" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KLL-v4-dQI" userLabel="Location Label">
+                        <rect key="frame" x="20" y="141" width="512" height="25"/>
+                        <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="18"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
@@ -31,19 +29,39 @@
             </view>
             <constraints>
                 <constraint firstAttribute="centerY" secondItem="KLL-v4-dQI" secondAttribute="centerY" id="0jl-qU-dRJ"/>
-                <constraint firstItem="Jee-eM-0IH" firstAttribute="top" secondItem="mpU-YJ-ohA" secondAttribute="top" id="65K-7z-62Y"/>
+                <constraint firstItem="EmS-IB-PAF" firstAttribute="top" secondItem="KLL-v4-dQI" secondAttribute="top" constant="-5" id="22v-Pz-XKa"/>
+                <constraint firstItem="EmS-IB-PAF" firstAttribute="leading" secondItem="mpU-YJ-ohA" secondAttribute="leading" id="92m-bU-AsF"/>
                 <constraint firstItem="KLL-v4-dQI" firstAttribute="leading" secondItem="mpU-YJ-ohA" secondAttribute="leading" constant="20" id="DHb-dd-k4E"/>
-                <constraint firstItem="EmS-IB-PAF" firstAttribute="top" secondItem="mpU-YJ-ohA" secondAttribute="top" id="Lcg-LN-eLh"/>
-                <constraint firstItem="Jee-eM-0IH" firstAttribute="leading" secondItem="mpU-YJ-ohA" secondAttribute="leading" id="UqE-4M-DjT"/>
+                <constraint firstItem="EmS-IB-PAF" firstAttribute="top" secondItem="mpU-YJ-ohA" secondAttribute="top" multiplier="0.5" constant="10" id="Lcg-LN-eLh"/>
+                <constraint firstAttribute="trailing" secondItem="KLL-v4-dQI" secondAttribute="trailing" constant="10" id="Tv3-jU-DvO"/>
+                <constraint firstAttribute="bottom" secondItem="EmS-IB-PAF" secondAttribute="bottom" id="WLK-bB-oX6"/>
                 <constraint firstItem="EmS-IB-PAF" firstAttribute="leading" secondItem="mpU-YJ-ohA" secondAttribute="leading" id="Y7O-1A-SB9"/>
-                <constraint firstAttribute="bottom" secondItem="Jee-eM-0IH" secondAttribute="bottom" id="ceM-bc-XvV"/>
+                <constraint firstAttribute="centerY" secondItem="EmS-IB-PAF" secondAttribute="centerY" multiplier="1:1.65" id="aeW-7z-BJF"/>
+                <constraint firstAttribute="trailing" secondItem="EmS-IB-PAF" secondAttribute="trailing" id="b7B-9L-GWL"/>
+                <constraint firstAttribute="bottom" secondItem="KLL-v4-dQI" secondAttribute="bottom" constant="5" id="btB-QF-mTz"/>
+                <constraint firstItem="EmS-IB-PAF" firstAttribute="top" relation="greaterThanOrEqual" secondItem="mpU-YJ-ohA" secondAttribute="top" constant="10" id="fjR-tt-SIi"/>
                 <constraint firstAttribute="bottom" secondItem="EmS-IB-PAF" secondAttribute="bottom" id="jX0-QE-PWa"/>
                 <constraint firstAttribute="trailing" secondItem="EmS-IB-PAF" secondAttribute="trailing" id="lPA-sR-aue"/>
-                <constraint firstAttribute="trailing" secondItem="Jee-eM-0IH" secondAttribute="trailing" id="pyf-pU-Pcd"/>
+                <constraint firstItem="EmS-IB-PAF" firstAttribute="leading" secondItem="mpU-YJ-ohA" secondAttribute="leading" id="nlL-ue-kCo"/>
+                <constraint firstAttribute="trailing" secondItem="EmS-IB-PAF" secondAttribute="trailing" id="pWv-9d-G5w"/>
             </constraints>
             <size key="customSize" width="542" height="171"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="92m-bU-AsF"/>
+                    <exclude reference="Lcg-LN-eLh"/>
+                    <exclude reference="Y7O-1A-SB9"/>
+                    <exclude reference="aeW-7z-BJF"/>
+                    <exclude reference="b7B-9L-GWL"/>
+                    <exclude reference="fjR-tt-SIi"/>
+                    <exclude reference="jX0-QE-PWa"/>
+                    <exclude reference="lPA-sR-aue"/>
+                    <exclude reference="0jl-qU-dRJ"/>
+                </mask>
+            </variation>
             <connections>
-                <outlet property="mapView" destination="Jee-eM-0IH" id="QcM-gt-Zmw"/>
+                <outlet property="addressLabel" destination="KLL-v4-dQI" id="uSf-hS-hpZ"/>
+                <outlet property="blurViewContainer" destination="EmS-IB-PAF" id="5Z5-KC-CoG"/>
             </connections>
             <point key="canvasLocation" x="422" y="349.5"/>
         </collectionViewCell>

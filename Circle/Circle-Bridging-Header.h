@@ -9,3 +9,4 @@
 #import "UIImageView+AFNetworking.h"
 #import "PureLayout.h"
 #import "UIView+Position.h"
+#import <Mapbox-iOS-SDK/Mapbox.h>
