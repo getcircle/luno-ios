@@ -12,6 +12,7 @@ import ProtobufRegistry
 
 class ProfilesViewController: UIViewController,
                             MFMailComposeViewControllerDelegate,
+                            UICollectionViewDelegate,
                             UISearchBarDelegate,
                             UISearchResultsUpdating {
 
@@ -60,12 +61,7 @@ class ProfilesViewController: UIViewController,
     private func configureCollectionView() {
         collectionView.backgroundColor = UIColor.viewBackgroundColor()
         collectionView.dataSource = dataSource
-        
-        let collectionViewLayout = collectionView.collectionViewLayout as UICollectionViewFlowLayout
-        collectionViewLayout.itemSize = CGSizeMake(view.frameWidth, rowHeight)
-        collectionViewLayout.sectionInset = UIEdgeInsetsZero
-        collectionViewLayout.minimumInteritemSpacing = 0.0
-        collectionViewLayout.minimumLineSpacing = 1.0
+        (collectionView.delegate as ProfilesCollectionViewDelegate).delegate = self
     }
 
     // MARK: - Segues
@@ -83,7 +79,9 @@ class ProfilesViewController: UIViewController,
     // MARK: - Collection View Delegate
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        performSegueWithIdentifier("showUserProfile", sender: indexPath)
+        if let profile = dataSource.contentAtIndexPath(indexPath)? as? ProfileService.Containers.Profile {
+            performSegueWithIdentifier("showUserProfile", sender: indexPath)
+        }
     }
 
     // MARK: - UISearchResultsUpdating

@@ -13,7 +13,20 @@ class ProfilesDataSource: CardDataSource {
 
     private var profiles = Array<ProfileService.Containers.Profile>()
     
+    // MARK: - Load Data
+    
     override func loadData(completionHandler: (error: NSError?) -> Void) {
+        // Only try to load data if it doesn't exist
+        if cards.count > 0 {
+            return
+        }
+
+        // Append a Map Card for example
+        var mapCard = Card(cardType: .Map, title: "Map")
+        mapCard.content.append(["dummy_content": "dummy_content"])
+        mapCard.sectionInset = UIEdgeInsetsZero
+        appendCard(mapCard)
+        
         if let currentProfile = AuthViewController.getLoggedInUserProfile() {
             let request = ProfileService.Requests.GetProfiles(currentProfile.team_id)
             let client = ServiceClient(serviceName: "profile")
@@ -36,6 +49,8 @@ class ProfilesDataSource: CardDataSource {
             }
         }
     }
+    
+    // MARK: - Cell Configuration
     
     override func configureCell(cell: CircleCollectionViewCell, atIndexPath indexPath: NSIndexPath) {
         if let profileCell = cell as? ProfileCollectionViewCell {

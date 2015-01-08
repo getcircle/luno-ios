@@ -120,7 +120,7 @@
                                 </constraints>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ip8-kc-O5j">
-                                <rect key="frame" x="0.0" y="108" width="600" height="492"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="SY1-X2-Ytp">
                                     <size key="itemSize" width="50" height="50"/>
@@ -143,7 +143,7 @@
                                     </collectionViewCell>
                                 </cells>
                                 <connections>
-                                    <outlet property="delegate" destination="sfD-c4-aFJ" id="a9t-kV-cdo"/>
+                                    <outlet property="delegate" destination="bX9-8U-C2p" id="DnL-pW-roN"/>
                                 </connections>
                             </collectionView>
                             <activityIndicatorView contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="AVd-zd-gf8">
@@ -161,7 +161,7 @@
                             <constraint firstAttribute="trailing" secondItem="hqq-xo-pLX" secondAttribute="trailing" id="gmt-YB-apB"/>
                             <constraint firstItem="90M-NW-Qsi" firstAttribute="top" secondItem="ip8-kc-O5j" secondAttribute="bottom" id="ihG-gU-gVe"/>
                             <constraint firstAttribute="centerY" secondItem="AVd-zd-gf8" secondAttribute="centerY" id="lV8-xl-81E"/>
-                            <constraint firstItem="ip8-kc-O5j" firstAttribute="top" secondItem="hqq-xo-pLX" secondAttribute="bottom" id="zjS-P2-Ifc"/>
+                            <constraint firstItem="ip8-kc-O5j" firstAttribute="top" secondItem="hqq-xo-pLX" secondAttribute="bottom" constant="-44" id="zjS-P2-Ifc"/>
                         </constraints>
                     </view>
                     <connections>
@@ -171,6 +171,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f5R-TC-QAe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="bX9-8U-C2p" customClass="ProfilesCollectionViewDelegate" customModule="Circle" customModuleProvider="target"/>
             </objects>
             <point key="canvasLocation" x="1944" y="-1336"/>
         </scene>

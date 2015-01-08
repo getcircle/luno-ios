@@ -86,7 +86,7 @@ class CardCollectionViewDelegate: NSObject, UICollectionViewDelegateFlowLayout, 
     
     // MARK: - Helpers
     
-    private func cardDataSource(collectionView: UICollectionView) -> CardDataSource {
+    func cardDataSource(collectionView: UICollectionView) -> CardDataSource {
         return (collectionView.dataSource as CardDataSource)
     }
 }

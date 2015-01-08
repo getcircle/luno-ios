@@ -72,7 +72,8 @@ class CardDataSource: NSObject, UICollectionViewDataSource {
     size attributes in the layout directly or via the layout delegate.
     
     Subclasses may override this method to register other custom headers and footers. If they do, the superclass 
-    implementation needs to be called as well.
+    implementation needs to be called as well. In addition to this, subclasses then need to provide the implmentation for
+    viewForSupplementaryElementOfKind method.
     
     :param: collectionView The collection view with which to register the supplementary view with.
     */
