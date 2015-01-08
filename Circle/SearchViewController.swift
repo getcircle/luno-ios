@@ -9,7 +9,7 @@
 import UIKit
 import ProtobufRegistry
 
-class SearchViewController: UIViewController, UICollectionViewDelegate, UITextFieldDelegate {
+class SearchViewController: UIViewController, UICollectionViewDelegate, UITextFieldDelegate, SearchHeaderViewDelegate {
     
     @IBOutlet weak private(set) var activityIndicatorView: UIActivityIndicatorView!
     @IBOutlet weak private(set) var collectionView: UICollectionView!
@@ -50,6 +50,7 @@ class SearchViewController: UIViewController, UICollectionViewDelegate, UITextFi
     private func configureSearchHeaderView() {
         if let nibViews = NSBundle.mainBundle().loadNibNamed("SearchHeaderView", owner: nil, options: nil) as? [UIView] {
             searchHeaderView = nibViews.first as SearchHeaderView
+            searchHeaderView.delegate = self
             searchHeaderView.searchTextField.delegate = self
             searchHeaderView.searchTextField.addTarget(self, action: "search", forControlEvents: .EditingChanged)
             searchHeaderContainerView.addSubview(searchHeaderView)
@@ -77,7 +78,9 @@ class SearchViewController: UIViewController, UICollectionViewDelegate, UITextFi
         collectionView.reloadData()
     }
     
-    func textFieldDidEndEditing(textField: UITextField) {
+    // MARK: - SearchHeaderViewDelegate
+    
+    func didCancel(sender: UIView) {
         collectionView.dataSource = landingDataSource
         queryDataSource.resetCards()
         collectionView.reloadData()

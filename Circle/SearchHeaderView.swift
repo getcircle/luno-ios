@@ -8,7 +8,13 @@
 
 import UIKit
 
+protocol SearchHeaderViewDelegate {
+    func didCancel(sender: UIView)
+}
+
 class SearchHeaderView: UIView {
+    
+    var delegate: SearchHeaderViewDelegate?
 
     @IBOutlet weak private(set) var cancelButton: UIButton!
     @IBOutlet weak private(set) var searchTextField: UITextField!
@@ -93,5 +99,6 @@ class SearchHeaderView: UIView {
         hideCancelButton()
         searchTextField.text = ""
         searchTextField.resignFirstResponder()
+        self.delegate?.didCancel(self)
     }
 }
