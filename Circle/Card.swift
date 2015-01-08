@@ -33,61 +33,87 @@ class Card: Equatable {
         case Placeholder
         case Tags
         
-        static func imageSourceByCardType(type: CardType) -> String {
-            switch type {
-            case .Birthdays:
-                return "Cake"
-            
-            case .KeyValue:
-                return "Info"
-
-            case .Locations, .Map:
-                return "MapPin"
-
-            case .Notes:
-                return "Notepad"
-
-            case .Group, .People, .Placeholder:
-                return "People"
-            
-            case .Tags:
-                return "Tag"
-            }
+        struct CardTypeInfo {
+            var imageName: String
+            var classType: CircleCollectionViewCell.Type
+            var className: String
         }
         
-        static func classByCardType(type: CardType) -> (CircleCollectionViewCell.Type, className: String) {
+        static func infoByCardType(type: CardType) -> CardTypeInfo {
             switch type {
-            case .Birthdays, .People:
-                return (ProfileCollectionViewCell.self, "ProfileCollectionViewCell")
-            
-            case .Group:
-                return (ProfileImagesCollectionViewCell.self, "ProfileImagesCollectionViewCell")
+                
+            case .Birthdays:
+                return CardTypeInfo(
+                    imageName: "Cake",
+                    classType: ProfileCollectionViewCell.self,
+                    className: "ProfileCollectionViewCell"
+                )
+                
+            case Group:
+                return CardTypeInfo(
+                    imageName: "People",
+                    classType: ProfileImagesCollectionViewCell.self,
+                    className: "ProfileImagesCollectionViewCell"
+                )
 
-            case .KeyValue:
-                return (KeyValueCollectionViewCell.self, "KeyValueCollectionViewCell")
+            case KeyValue:
+                return CardTypeInfo(
+                    imageName: "Info",
+                    classType: KeyValueCollectionViewCell.self,
+                    className: "KeyValueCollectionViewCell"
+                )
 
-            case .Locations:
-                return (LocationCollectionViewCell.self, "LocationCollectionViewCell")
+            case Locations:
+                return CardTypeInfo(
+                    imageName: "MapPin",
+                    classType: LocationCollectionViewCell.self,
+                    className: "LocationCollectionViewCell"
+                )
 
-            case .Map:
-                return (MapCollectionViewCell.self, "MapCollectionViewCell")
+            case Map:
+                return CardTypeInfo(
+                    imageName: "MapPin",
+                    classType: MapCollectionViewCell.self,
+                    className: "MapCollectionViewCell"
+                )
 
-            case .Notes:
-                return (NotesCollectionViewCell.self, "NotesCollectionViewCell")
+            case Notes:
+                return CardTypeInfo(
+                    imageName: "Notepad",
+                    classType: NotesCollectionViewCell.self,
+                    className: "NotesCollectionViewCell"
+                )
 
-            case .Placeholder:
-                return (CircleCollectionViewCell.self, "CircleCollectionViewCell")
+            case People:
+                return CardTypeInfo(
+                    imageName: "People",
+                    classType: ProfileCollectionViewCell.self,
+                    className: "ProfileCollectionViewCell"
+                )
 
-            case .Tags:
-                return (TagsCollectionViewCell.self, "TagsCollectionViewCell")
+            case Placeholder:
+                return CardTypeInfo(
+                    imageName: "Info",
+                    classType: CircleCollectionViewCell.self,
+                    className: "CircleCollectionViewCell"
+                )
+
+            case Tags:
+                return CardTypeInfo(
+                    imageName: "Tag",
+                    classType: TagsCollectionViewCell.self,
+                    className: "TagsCollectionViewCell"
+                )
             }
         }
     }
     
     required init(cardType: CardType, title withTitle: String) {
         type = cardType
-        imageSource = CardType.imageSourceByCardType(type)
-        (contentClass, contentClassName) = CardType.classByCardType(type)
+        let infoByCardType = CardType.infoByCardType(type)
+        imageSource = infoByCardType.imageName
+        contentClass = infoByCardType.classType
+        contentClassName = infoByCardType.className
         title = withTitle
         contentCount = 0
         content = []
