@@ -28,16 +28,16 @@ class SearchViewController: UIViewController, UICollectionViewDelegate, UITextFi
         configureView()
         configureSearchHeaderView()
         configureCollectionView()
+    }
+
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         (collectionView.dataSource as SearchLandingDataSource).loadData { (error) -> Void in
             if error == nil {
                 self.activityIndicatorView.stopAnimating()
                 self.collectionView.reloadData()
             }
         }
-    }
-
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
         checkUserAndPresentAuthViewController()
     }
 

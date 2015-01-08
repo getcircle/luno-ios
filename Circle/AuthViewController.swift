@@ -210,7 +210,6 @@ class AuthViewController: UIViewController, UITextFieldDelegate {
             self.cacheLoginData(token!, user: user!)
             self.fetchAndCacheUserProfile(user!.id)
             SearchCache.sharedInstance.repopulate()
-            self.dismissViewControllerAnimated(true, completion: nil)
         }
     }
     
@@ -219,6 +218,7 @@ class AuthViewController: UIViewController, UITextFieldDelegate {
             if error == nil {
                 LoggedInUserHolder.profile = profile!
                 self.cacheProfileData(profile!)
+                self.dismissViewControllerAnimated(true, completion: nil)
             }
         }
     }
