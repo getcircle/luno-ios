@@ -209,6 +209,7 @@ class AuthViewController: UIViewController, UITextFieldDelegate {
             
             self.cacheLoginData(token!, user: user!)
             self.fetchAndCacheUserProfile(user!.id)
+            SearchCache.sharedInstance.repopulate()
             self.dismissViewControllerAnimated(true, completion: nil)
         }
     }

@@ -14,10 +14,12 @@ class SearchViewController: UIViewController, UICollectionViewDelegate, UITextFi
     @IBOutlet weak private(set) var activityIndicatorView: UIActivityIndicatorView!
     @IBOutlet weak private(set) var collectionView: UICollectionView!
     @IBOutlet weak private(set) var searchHeaderContainerView: UIView!
-    @IBOutlet weak private(set) var overlayButton: UIButton!
     
     private var data = [Card]()
     private var searchHeaderView: SearchHeaderView!
+    
+    private var landingDataSource: SearchLandingDataSource!
+    private var queryDataSource: SearchQueryDataSource!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +28,6 @@ class SearchViewController: UIViewController, UICollectionViewDelegate, UITextFi
         configureView()
         configureSearchHeaderView()
         configureCollectionView()
-        configureOverlayButton()
         (collectionView.dataSource as SearchLandingDataSource).loadData { (error) -> Void in
             if error == nil {
                 self.activityIndicatorView.stopAnimating()
@@ -50,38 +51,50 @@ class SearchViewController: UIViewController, UICollectionViewDelegate, UITextFi
         if let nibViews = NSBundle.mainBundle().loadNibNamed("SearchHeaderView", owner: nil, options: nil) as? [UIView] {
             searchHeaderView = nibViews.first as SearchHeaderView
             searchHeaderView.searchTextField.delegate = self
+            searchHeaderView.searchTextField.addTarget(self, action: "search", forControlEvents: .EditingChanged)
             searchHeaderContainerView.addSubview(searchHeaderView)
             searchHeaderView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
         }
     }
     
     private func configureCollectionView() {
-        collectionView!.backgroundColor = UIColor.viewBackgroundColor()
-        (collectionView.dataSource as SearchLandingDataSource).registerDefaultCardHeader(collectionView)
+        collectionView.backgroundColor = UIColor.viewBackgroundColor()
         (collectionView.delegate as CardCollectionViewDelegate?)?.delegate = self
-    }
-    
-    private func configureOverlayButton() {
-        overlayButton.backgroundColor = UIColor.searchOverlayButtonBackgroundColor()
-        overlayButton.opaque = true
+        
+        landingDataSource = SearchLandingDataSource()
+        landingDataSource.registerDefaultCardHeader(collectionView)
+        collectionView.dataSource = landingDataSource
+        
+        queryDataSource = SearchQueryDataSource()
+        queryDataSource.registerDefaultCardHeader(collectionView)
     }
 
     // MARK: - TextField Delegate
     
     func textFieldDidBeginEditing(textField: UITextField) {
         searchHeaderView.showCancelButton()
-        onSearchTextFieldBeginFocus()
+        collectionView.dataSource = queryDataSource
+        collectionView.reloadData()
     }
     
     func textFieldDidEndEditing(textField: UITextField) {
-        overlayButtonTapped(textField)
-        onSearchTextFieldRemoveFocus()
+        collectionView.dataSource = landingDataSource
+        queryDataSource.resetCards()
+        collectionView.reloadData()
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        overlayButtonTapped(textField)
-        onSearchTextFieldRemoveFocus()
-        return true
+    // MARK: Search Targets
+    
+    func search() {
+        let query = searchHeaderView.searchTextField.text
+        if query == "" {
+            (collectionView.dataSource as SearchQueryDataSource).resetCards()
+            collectionView.reloadData()
+        } else {
+            (collectionView.dataSource as SearchQueryDataSource).filter(searchHeaderView.searchTextField.text) { (error) -> Void in
+                self.collectionView.reloadData()
+            }
+        }
     }
 
     // MARK: - Segues
@@ -94,7 +107,6 @@ class SearchViewController: UIViewController, UICollectionViewDelegate, UITextFi
             profileVC.profile = AuthViewController.getLoggedInUserProfile()
         }
     }
-    
     
     // MARK: - UICollectionViewDelegate
     
@@ -116,27 +128,6 @@ class SearchViewController: UIViewController, UICollectionViewDelegate, UITextFi
             performSegueWithIdentifier("showListOfPeople", sender: collectionView)
             
         }
-    }
-    
-    // MARK: - IBActions
-    
-    @IBAction func overlayButtonTapped(sender: AnyObject!) {
-        searchHeaderView.searchTextField.resignFirstResponder()
-        searchHeaderView.hideCancelButton()
-    }
-
-    // MARK: - Helpers
-    
-    private func onSearchTextFieldBeginFocus() {
-        UIView.animateWithDuration(0.3, animations: { () -> Void in
-            self.overlayButton.alpha = 1.0
-        })
-    }
-    
-    private func onSearchTextFieldRemoveFocus() {
-        UIView.animateWithDuration(0.3, animations: { () -> Void in
-            self.overlayButton.alpha = 0.0
-        })
     }
 
     // MARK: - Orientation change

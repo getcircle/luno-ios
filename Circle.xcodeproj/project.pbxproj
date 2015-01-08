@@ -70,6 +70,7 @@
 		8FF2984D1A4E29F400306CFC /* PaddedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF2984C1A4E29F400306CFC /* PaddedLabel.swift */; };
 		8FF298531A4E306600306CFC /* CenterAlignFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF298521A4E306600306CFC /* CenterAlignFlowLayout.swift */; };
 		A73E1BB3914D1A036D2FAE47 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FD94FE17CC5CD80FF96B24E5 /* libPods.a */; };
+		BF004C501A5CF91200AB8A6F /* OrganizationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF004C4F1A5CF91200AB8A6F /* OrganizationService.swift */; };
 		BF041BBA1A2C119B0043EC72 /* NSDateFormatterExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF041BB91A2C119B0043EC72 /* NSDateFormatterExtension.swift */; };
 		BF24FCFD1A4A25F3003DF4C2 /* ProtobufRegistry.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = BF24FCF81A4A25E7003DF4C2 /* ProtobufRegistry.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BF2CBFD61A473E9100BE589D /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2CBFD51A473E9100BE589D /* UserService.swift */; };
@@ -80,6 +81,9 @@
 		BFB791891A2C346A0048E8FB /* CALayerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB791881A2C346A0048E8FB /* CALayerExtension.swift */; };
 		BFB7918B1A2C3C860048E8FB /* SpringFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB7918A1A2C3C860048E8FB /* SpringFlowLayout.swift */; };
 		BFC6CF9C1A44D2B90081F45B /* ServiceClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC6CF9B1A44D2B90081F45B /* ServiceClient.swift */; };
+		BFE213C81A5EE63F0033E2F5 /* SearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE213C71A5EE63F0033E2F5 /* SearchService.swift */; };
+		BFE213CD1A5EF7E30033E2F5 /* AppDelegateSearchCacheExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE213CC1A5EF7E30033E2F5 /* AppDelegateSearchCacheExtension.swift */; };
+		BFE213CF1A5F0B1D0033E2F5 /* SearchQueryDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE213CE1A5F0B1D0033E2F5 /* SearchQueryDataSource.swift */; };
 		BFEDB1431A2A8CA700250165 /* UICollectionViewFlowLayoutExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFEDB1421A2A8CA700250165 /* UICollectionViewFlowLayoutExtension.swift */; };
 		BFFB1A041A4872F200CCFFC3 /* Locksmith.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = BFFB19FF1A4872E200CCFFC3 /* Locksmith.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
@@ -240,6 +244,7 @@
 		8FF298461A4E050100306CFC /* TagCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TagCollectionViewCell.xib; sourceTree = "<group>"; };
 		8FF2984C1A4E29F400306CFC /* PaddedLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaddedLabel.swift; sourceTree = "<group>"; };
 		8FF298521A4E306600306CFC /* CenterAlignFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CenterAlignFlowLayout.swift; sourceTree = "<group>"; };
+		BF004C4F1A5CF91200AB8A6F /* OrganizationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrganizationService.swift; sourceTree = "<group>"; };
 		BF041BB91A2C119B0043EC72 /* NSDateFormatterExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDateFormatterExtension.swift; sourceTree = "<group>"; };
 		BF24FCF21A4A25E6003DF4C2 /* ProtobufRegistry.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ProtobufRegistry.xcodeproj; path = "ThirdParty/protobuf-registry/swift/ProtobufRegistry/ProtobufRegistry.xcodeproj"; sourceTree = SOURCE_ROOT; };
 		BF2CBFD51A473E9100BE589D /* UserService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
@@ -250,6 +255,9 @@
 		BFB791881A2C346A0048E8FB /* CALayerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CALayerExtension.swift; sourceTree = "<group>"; };
 		BFB7918A1A2C3C860048E8FB /* SpringFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpringFlowLayout.swift; sourceTree = "<group>"; };
 		BFC6CF9B1A44D2B90081F45B /* ServiceClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceClient.swift; sourceTree = "<group>"; };
+		BFE213C71A5EE63F0033E2F5 /* SearchService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchService.swift; sourceTree = "<group>"; };
+		BFE213CC1A5EF7E30033E2F5 /* AppDelegateSearchCacheExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegateSearchCacheExtension.swift; sourceTree = "<group>"; };
+		BFE213CE1A5F0B1D0033E2F5 /* SearchQueryDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchQueryDataSource.swift; sourceTree = "<group>"; };
 		BFEDB1421A2A8CA700250165 /* UICollectionViewFlowLayoutExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICollectionViewFlowLayoutExtension.swift; sourceTree = "<group>"; };
 		BFFB19F91A4872E200CCFFC3 /* Locksmith.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Locksmith.xcodeproj; path = ThirdParty/Locksmith/Locksmith.xcodeproj; sourceTree = SOURCE_ROOT; };
 		CC982AC8BAF0AFF23DCD301A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -396,6 +404,7 @@
 			isa = PBXGroup;
 			children = (
 				8F22CB761A2661890026376E /* AppDelegateAppearanceExtension.swift */,
+				BFE213CC1A5EF7E30033E2F5 /* AppDelegateSearchCacheExtension.swift */,
 				BFB791881A2C346A0048E8FB /* CALayerExtension.swift */,
 				8F3569131A560B2D003D42F9 /* CGRectExtension.swift */,
 				BF041BB91A2C119B0043EC72 /* NSDateFormatterExtension.swift */,
@@ -474,6 +483,7 @@
 				8F22CBF41A2865030026376E /* ProfileDataSource.swift */,
 				8F2D7DEF1A5B2412001D36B0 /* ProfilesDataSource.swift */,
 				8FC7BB3F1A58AF4C005BDDDB /* SearchLandingDataSource.swift */,
+				BFE213CE1A5F0B1D0033E2F5 /* SearchQueryDataSource.swift */,
 			);
 			name = DataSources;
 			sourceTree = "<group>";
@@ -534,8 +544,10 @@
 		BF2CBFD21A473E7F00BE589D /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				BF2CBFD51A473E9100BE589D /* UserService.swift */,
+				BF004C4F1A5CF91200AB8A6F /* OrganizationService.swift */,
 				BF3F0F601A5B1C1100D4287E /* ProfileService.swift */,
+				BF2CBFD51A473E9100BE589D /* UserService.swift */,
+				BFE213C71A5EE63F0033E2F5 /* SearchService.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -837,6 +849,8 @@
 				8F22CBE51A27ED190026376E /* ProfileCollectionViewLayout.swift in Sources */,
 				8FF298441A4DF38E00306CFC /* TagSelectorViewController.swift in Sources */,
 				8F22CBFB1A29AF450026376E /* UIViewExtension.swift in Sources */,
+				BF004C501A5CF91200AB8A6F /* OrganizationService.swift in Sources */,
+				BFE213C81A5EE63F0033E2F5 /* SearchService.swift in Sources */,
 				8FF297FD1A4A4DCA00306CFC /* SearchViewController.swift in Sources */,
 				8F0004BB1A241BDE0096477A /* UIColorExtension.swift in Sources */,
 				8F00049B1A2419730096477A /* ProfilesViewController.swift in Sources */,
@@ -869,12 +883,14 @@
 				BF7DF98F1A44E53200A4F924 /* ServiceTransport.swift in Sources */,
 				BF3F0F611A5B1C1100D4287E /* ProfileService.swift in Sources */,
 				8FEE88471A411BA90011CE4A /* UIViewControllerExtension.swift in Sources */,
+				BFE213CD1A5EF7E30033E2F5 /* AppDelegateSearchCacheExtension.swift in Sources */,
 				8F22CBE81A27FDA70026376E /* KeyValueCollectionViewCell.swift in Sources */,
 				8F65C5011A51462500C7F3E6 /* CircleCollectionViewCell.swift in Sources */,
 				8F02B1FC1A54A08000A1A307 /* RootNavigationDelegate.swift in Sources */,
 				8F65C5071A52661700C7F3E6 /* TagsCollectionViewCell.swift in Sources */,
 				8F65C4F51A50F28E00C7F3E6 /* CardHeaderCollectionReusableView.swift in Sources */,
 				BFC6CF9C1A44D2B90081F45B /* ServiceClient.swift in Sources */,
+				BFE213CF1A5F0B1D0033E2F5 /* SearchQueryDataSource.swift in Sources */,
 				8FF298031A4A4E3600306CFC /* ProfileImagesCollectionViewCell.swift in Sources */,
 				BFB791891A2C346A0048E8FB /* CALayerExtension.swift in Sources */,
 			);

@@ -148,4 +148,30 @@ message ProfileService {
 
     }
 
+    message GetDirectReports {
+
+        message Request {
+            oneof lookup_key {
+                string profile_id = 1;
+                string user_id = 2;
+            }
+        }
+
+        message Response {
+            repeated Containers.Profile profiles = 1;
+        }
+
+    }
+
+    message GetPeers {
+
+        message Request {
+            optional string profile_id = 1;
+        }
+
+        message Response {
+            repeated Containers.Profile profiles = 2;
+        }
+    }
+
 }

@@ -12,12 +12,18 @@ message OrganizationService {
             optional string domain = 3;
         }
 
+        message PathPart {
+            optional string id = 1;
+            optional string name = 2;
+            optional string owner_id = 3;
+        }
+
         message Team {
             optional string id = 1;
             optional string name = 2;
             optional string owner_id = 3;
             optional string organization_id = 4;
-            repeated string path = 5;
+            repeated PathPart path = 5;
             optional string department = 6;
         }
 
@@ -92,6 +98,17 @@ message OrganizationService {
 
         message Request {
             optional string organization_id = 1;
+        }
+
+        message Response {
+            repeated Containers.Team teams = 1;
+        }
+    }
+
+    message GetTeamChildren {
+
+        message Request {
+            optional string team_id = 1;
         }
 
         message Response {

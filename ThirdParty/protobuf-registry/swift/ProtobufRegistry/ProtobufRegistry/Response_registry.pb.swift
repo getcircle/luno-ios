@@ -17,6 +17,11 @@ public var UserServiceResponses_authenticate_user:ConcreateExtensionField {
        return ResponseRegistryRoot.sharedInstance.UserServiceResponses_authenticate_userStatic
    }
 }
+public var UserServiceResponses_get_user:ConcreateExtensionField {
+   get {
+       return ResponseRegistryRoot.sharedInstance.UserServiceResponses_get_userStatic
+   }
+}
 public var OrganizationServiceResponses_create_organization:ConcreateExtensionField {
    get {
        return ResponseRegistryRoot.sharedInstance.OrganizationServiceResponses_create_organizationStatic
@@ -62,6 +67,11 @@ public var OrganizationServiceResponses_get_addresses:ConcreateExtensionField {
        return ResponseRegistryRoot.sharedInstance.OrganizationServiceResponses_get_addressesStatic
    }
 }
+public var OrganizationServiceResponses_get_team_children:ConcreateExtensionField {
+   get {
+       return ResponseRegistryRoot.sharedInstance.OrganizationServiceResponses_get_team_childrenStatic
+   }
+}
 public var ProfileServiceResponses_create_profile:ConcreateExtensionField {
    get {
        return ResponseRegistryRoot.sharedInstance.ProfileServiceResponses_create_profileStatic
@@ -102,6 +112,21 @@ public var ProfileServiceResponses_get_profiles:ConcreateExtensionField {
        return ResponseRegistryRoot.sharedInstance.ProfileServiceResponses_get_profilesStatic
    }
 }
+public var ProfileServiceResponses_get_direct_reports:ConcreateExtensionField {
+   get {
+       return ResponseRegistryRoot.sharedInstance.ProfileServiceResponses_get_direct_reportsStatic
+   }
+}
+public var ProfileServiceResponses_get_peers:ConcreateExtensionField {
+   get {
+       return ResponseRegistryRoot.sharedInstance.ProfileServiceResponses_get_peersStatic
+   }
+}
+public var SearchServiceResponses_search:ConcreateExtensionField {
+   get {
+       return ResponseRegistryRoot.sharedInstance.SearchServiceResponses_searchStatic
+   }
+}
 public struct ResponseRegistryRoot {
   public static var sharedInstance : ResponseRegistryRoot {
    struct Static {
@@ -112,6 +137,7 @@ public struct ResponseRegistryRoot {
   var UserServiceResponses_create_userStatic:ConcreateExtensionField
   var UserServiceResponses_valid_userStatic:ConcreateExtensionField
   var UserServiceResponses_authenticate_userStatic:ConcreateExtensionField
+  var UserServiceResponses_get_userStatic:ConcreateExtensionField
   var OrganizationServiceResponses_create_organizationStatic:ConcreateExtensionField
   var OrganizationServiceResponses_create_teamStatic:ConcreateExtensionField
   var OrganizationServiceResponses_create_addressStatic:ConcreateExtensionField
@@ -121,6 +147,7 @@ public struct ResponseRegistryRoot {
   var OrganizationServiceResponses_get_organizationStatic:ConcreateExtensionField
   var OrganizationServiceResponses_get_teamsStatic:ConcreateExtensionField
   var OrganizationServiceResponses_get_addressesStatic:ConcreateExtensionField
+  var OrganizationServiceResponses_get_team_childrenStatic:ConcreateExtensionField
   var ProfileServiceResponses_create_profileStatic:ConcreateExtensionField
   var ProfileServiceResponses_get_extended_profileStatic:ConcreateExtensionField
   var ProfileServiceResponses_get_profileStatic:ConcreateExtensionField
@@ -129,12 +156,16 @@ public struct ResponseRegistryRoot {
   var ProfileServiceResponses_add_tagsStatic:ConcreateExtensionField
   var ProfileServiceResponses_update_profileStatic:ConcreateExtensionField
   var ProfileServiceResponses_get_profilesStatic:ConcreateExtensionField
+  var ProfileServiceResponses_get_direct_reportsStatic:ConcreateExtensionField
+  var ProfileServiceResponses_get_peersStatic:ConcreateExtensionField
+  var SearchServiceResponses_searchStatic:ConcreateExtensionField
   public var extensionRegistry:ExtensionRegistry
 
   init() {
     UserServiceResponses_create_userStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 100, defaultValue:UserService.CreateUser.Response(), messageOrGroupClass:UserService.CreateUser.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     UserServiceResponses_valid_userStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 101, defaultValue:UserService.ValidUser.Response(), messageOrGroupClass:UserService.ValidUser.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     UserServiceResponses_authenticate_userStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 102, defaultValue:UserService.AuthenticateUser.Response(), messageOrGroupClass:UserService.AuthenticateUser.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
+    UserServiceResponses_get_userStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 103, defaultValue:UserService.GetUser.Response(), messageOrGroupClass:UserService.GetUser.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     OrganizationServiceResponses_create_organizationStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 200, defaultValue:OrganizationService.CreateOrganization.Response(), messageOrGroupClass:OrganizationService.CreateOrganization.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     OrganizationServiceResponses_create_teamStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 201, defaultValue:OrganizationService.CreateTeam.Response(), messageOrGroupClass:OrganizationService.CreateTeam.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     OrganizationServiceResponses_create_addressStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 202, defaultValue:OrganizationService.CreateAddress.Response(), messageOrGroupClass:OrganizationService.CreateAddress.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
@@ -144,6 +175,7 @@ public struct ResponseRegistryRoot {
     OrganizationServiceResponses_get_organizationStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 206, defaultValue:OrganizationService.GetOrganization.Response(), messageOrGroupClass:OrganizationService.GetOrganization.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     OrganizationServiceResponses_get_teamsStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 207, defaultValue:OrganizationService.GetTeams.Response(), messageOrGroupClass:OrganizationService.GetTeams.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     OrganizationServiceResponses_get_addressesStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 208, defaultValue:OrganizationService.GetAddresses.Response(), messageOrGroupClass:OrganizationService.GetAddresses.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
+    OrganizationServiceResponses_get_team_childrenStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 209, defaultValue:OrganizationService.GetTeamChildren.Response(), messageOrGroupClass:OrganizationService.GetTeamChildren.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     ProfileServiceResponses_create_profileStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 300, defaultValue:ProfileService.CreateProfile.Response(), messageOrGroupClass:ProfileService.CreateProfile.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     ProfileServiceResponses_get_extended_profileStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 301, defaultValue:ProfileService.GetExtendedProfile.Response(), messageOrGroupClass:ProfileService.GetExtendedProfile.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     ProfileServiceResponses_get_profileStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 302, defaultValue:ProfileService.GetProfile.Response(), messageOrGroupClass:ProfileService.GetProfile.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
@@ -152,17 +184,22 @@ public struct ResponseRegistryRoot {
     ProfileServiceResponses_add_tagsStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 305, defaultValue:ProfileService.AddTags.Response(), messageOrGroupClass:ProfileService.AddTags.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     ProfileServiceResponses_update_profileStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 306, defaultValue:ProfileService.UpdateProfile.Response(), messageOrGroupClass:ProfileService.UpdateProfile.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     ProfileServiceResponses_get_profilesStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 307, defaultValue:ProfileService.GetProfiles.Response(), messageOrGroupClass:ProfileService.GetProfiles.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
+    ProfileServiceResponses_get_direct_reportsStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 308, defaultValue:ProfileService.GetDirectReports.Response(), messageOrGroupClass:ProfileService.GetDirectReports.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
+    ProfileServiceResponses_get_peersStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 309, defaultValue:ProfileService.GetPeers.Response(), messageOrGroupClass:ProfileService.GetPeers.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
+    SearchServiceResponses_searchStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 400, defaultValue:SearchService.Search.Response(), messageOrGroupClass:SearchService.Search.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     extensionRegistry = ExtensionRegistry()
     registerAllExtensions(extensionRegistry)
     SoaRoot.sharedInstance.registerAllExtensions(extensionRegistry)
     OrganizationServiceRoot.sharedInstance.registerAllExtensions(extensionRegistry)
     ProfileServiceRoot.sharedInstance.registerAllExtensions(extensionRegistry)
+    SearchServiceRoot.sharedInstance.registerAllExtensions(extensionRegistry)
     UserServiceRoot.sharedInstance.registerAllExtensions(extensionRegistry)
   }
   public func registerAllExtensions(registry:ExtensionRegistry) {
     registry.addExtension(UserServiceResponses_create_userStatic)
     registry.addExtension(UserServiceResponses_valid_userStatic)
     registry.addExtension(UserServiceResponses_authenticate_userStatic)
+    registry.addExtension(UserServiceResponses_get_userStatic)
     registry.addExtension(OrganizationServiceResponses_create_organizationStatic)
     registry.addExtension(OrganizationServiceResponses_create_teamStatic)
     registry.addExtension(OrganizationServiceResponses_create_addressStatic)
@@ -172,6 +209,7 @@ public struct ResponseRegistryRoot {
     registry.addExtension(OrganizationServiceResponses_get_organizationStatic)
     registry.addExtension(OrganizationServiceResponses_get_teamsStatic)
     registry.addExtension(OrganizationServiceResponses_get_addressesStatic)
+    registry.addExtension(OrganizationServiceResponses_get_team_childrenStatic)
     registry.addExtension(ProfileServiceResponses_create_profileStatic)
     registry.addExtension(ProfileServiceResponses_get_extended_profileStatic)
     registry.addExtension(ProfileServiceResponses_get_profileStatic)
@@ -180,6 +218,9 @@ public struct ResponseRegistryRoot {
     registry.addExtension(ProfileServiceResponses_add_tagsStatic)
     registry.addExtension(ProfileServiceResponses_update_profileStatic)
     registry.addExtension(ProfileServiceResponses_get_profilesStatic)
+    registry.addExtension(ProfileServiceResponses_get_direct_reportsStatic)
+    registry.addExtension(ProfileServiceResponses_get_peersStatic)
+    registry.addExtension(SearchServiceResponses_searchStatic)
   }
 }
 
@@ -207,6 +248,14 @@ public func == (lhs: ProfileServiceResponses, rhs: ProfileServiceResponses) -> B
   return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
 }
 
+public func == (lhs: SearchServiceResponses, rhs: SearchServiceResponses) -> Bool {
+  if (lhs === rhs) {
+    return true
+  }
+  var fieldCheck:Bool = (lhs.hashValue == rhs.hashValue)
+  return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
+}
+
 final public class UserServiceResponses : GeneratedMessage {
   public subscript(key: String) -> AnyObject? {
          switch key {
@@ -222,6 +271,9 @@ final public class UserServiceResponses : GeneratedMessage {
   }
   public class func authenticate_user() -> ConcreateExtensionField {
        return UserServiceResponses_authenticate_user
+  }
+  public class func get_user() -> ConcreateExtensionField {
+       return UserServiceResponses_get_user
   }
   required public init() {
        super.init()
@@ -398,6 +450,9 @@ final public class OrganizationServiceResponses : GeneratedMessage {
   public class func get_addresses() -> ConcreateExtensionField {
        return OrganizationServiceResponses_get_addresses
   }
+  public class func get_team_children() -> ConcreateExtensionField {
+       return OrganizationServiceResponses_get_team_children
+  }
   required public init() {
        super.init()
   }
@@ -570,6 +625,12 @@ final public class ProfileServiceResponses : GeneratedMessage {
   public class func get_profiles() -> ConcreateExtensionField {
        return ProfileServiceResponses_get_profiles
   }
+  public class func get_direct_reports() -> ConcreateExtensionField {
+       return ProfileServiceResponses_get_direct_reports
+  }
+  public class func get_peers() -> ConcreateExtensionField {
+       return ProfileServiceResponses_get_peers
+  }
   required public init() {
        super.init()
   }
@@ -711,6 +772,157 @@ final public class ProfileServiceResponsesBuilder : GeneratedMessageBuilder {
   }
 }
 
+final public class SearchServiceResponses : GeneratedMessage {
+  public subscript(key: String) -> AnyObject? {
+         switch key {
+         default: return nil
+         }
+  }
+
+  public class func search() -> ConcreateExtensionField {
+       return SearchServiceResponses_search
+  }
+  required public init() {
+       super.init()
+  }
+  override public func isInitialized() -> Bool {
+   return true
+  }
+  override public func writeToCodedOutputStream(output:CodedOutputStream) {
+    unknownFields.writeToCodedOutputStream(output)
+  }
+  override public func serializedSize() -> Int32 {
+    var size:Int32 = memoizedSerializedSize
+    if size != -1 {
+     return size
+    }
+
+    size = 0
+    size += unknownFields.serializedSize()
+    memoizedSerializedSize = size
+    return size
+  }
+  public class func parseFromData(data:[Byte]) -> SearchServiceResponses {
+    return SearchServiceResponses.builder().mergeFromData(data).build()
+  }
+  public class func parseFromData(data:[Byte], extensionRegistry:ExtensionRegistry) -> SearchServiceResponses {
+    return SearchServiceResponses.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
+  }
+  public class func parseFromInputStream(input:NSInputStream) -> SearchServiceResponses {
+    return SearchServiceResponses.builder().mergeFromInputStream(input).build()
+  }
+  public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->SearchServiceResponses {
+    return SearchServiceResponses.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
+  }
+  public class func parseFromCodedInputStream(input:CodedInputStream) -> SearchServiceResponses {
+    return SearchServiceResponses.builder().mergeFromCodedInputStream(input).build()
+  }
+  public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> SearchServiceResponses {
+    return SearchServiceResponses.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
+  }
+  public class func builder() -> SearchServiceResponsesBuilder {
+    return SearchServiceResponses.classBuilder() as SearchServiceResponsesBuilder
+  }
+  public func builder() -> SearchServiceResponsesBuilder {
+    return classBuilder() as SearchServiceResponsesBuilder
+  }
+  public override class func classBuilder() -> MessageBuilder {
+    return SearchServiceResponsesBuilder()
+  }
+  public override func classBuilder() -> MessageBuilder {
+    return SearchServiceResponses.builder()
+  }
+  public func toBuilder() -> SearchServiceResponsesBuilder {
+    return SearchServiceResponses.builderWithPrototype(self)
+  }
+  public class func builderWithPrototype(prototype:SearchServiceResponses) -> SearchServiceResponsesBuilder {
+    return SearchServiceResponses.builder().mergeFrom(prototype)
+  }
+  override public func writeDescriptionTo(inout output:String, indent:String) {
+    unknownFields.writeDescriptionTo(&output, indent:indent)
+  }
+  override public var hashValue:Int {
+      get {
+          var hashCode:Int = 7
+          hashCode = (hashCode &* 31) &+  unknownFields.hashValue
+          return hashCode
+      }
+  }
+
+
+  //Meta information declaration start
+
+  override public class func className() -> String {
+      return "SearchServiceResponses"
+  }
+  override public func className() -> String {
+      return "SearchServiceResponses"
+  }
+  override public func classMetaType() -> GeneratedMessage.Type {
+      return SearchServiceResponses.self
+  }
+
+
+  //Meta information declaration end
+
+}
+
+final public class SearchServiceResponsesBuilder : GeneratedMessageBuilder {
+  private var builderResult:SearchServiceResponses
+
+  required override public init () {
+     builderResult = SearchServiceResponses()
+     super.init()
+  }
+  override public var internalGetResult:GeneratedMessage {
+       get {
+          return builderResult
+       }
+  }
+  public override func clear() -> SearchServiceResponsesBuilder {
+    builderResult = SearchServiceResponses()
+    return self
+  }
+  public override func clone() -> SearchServiceResponsesBuilder {
+    return SearchServiceResponses.builderWithPrototype(builderResult)
+  }
+  public override func build() -> SearchServiceResponses {
+       checkInitialized()
+       return buildPartial()
+  }
+  public func buildPartial() -> SearchServiceResponses {
+    var returnMe:SearchServiceResponses = builderResult
+    return returnMe
+  }
+  public func mergeFrom(other:SearchServiceResponses) -> SearchServiceResponsesBuilder {
+    if (other == SearchServiceResponses()) {
+     return self
+    }
+    mergeUnknownFields(other.unknownFields)
+    return self
+  }
+  public override func mergeFromCodedInputStream(input:CodedInputStream) ->SearchServiceResponsesBuilder {
+       return mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
+  }
+  public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> SearchServiceResponsesBuilder {
+    var unknownFieldsBuilder:UnknownFieldSetBuilder = UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
+    while (true) {
+      var tag = input.readTag()
+      switch tag {
+      case 0: 
+        self.unknownFields = unknownFieldsBuilder.build()
+        return self
+
+      default:
+        if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
+           unknownFields = unknownFieldsBuilder.build()
+           return self
+        }
+      }
+    }
+  }
+}
+
 //Class extensions: NSData
 
 
@@ -748,6 +960,18 @@ public extension ProfileServiceResponses {
         var bytes = [Byte](count: data.length, repeatedValue: 0)
         data.getBytes(&bytes)
         return ProfileServiceResponses.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
+    }
+}
+public extension SearchServiceResponses {
+    class func parseFromNSData(data:NSData) -> SearchServiceResponses {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return SearchServiceResponses.builder().mergeFromData(bytes).build()
+    }
+    class func parseFromNSData(data:NSData, extensionRegistry:ExtensionRegistry) -> SearchServiceResponses {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return SearchServiceResponses.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
     }
 }
 

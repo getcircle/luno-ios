@@ -18,6 +18,7 @@ typealias GetExtendedProfileCompletionHandler = (
     address: OrganizationService.Containers.Address?,
     error: NSError?
 ) -> Void
+typealias GetTagsCompletionHandler = (tags: Array<ProfileService.Containers.Tag>?, error: NSError?) -> Void
 
 extension ProfileService {
     class Actions {
@@ -43,9 +44,7 @@ extension ProfileService {
             self.getProfile(requestBuilder, completionHandler: completionHandler)
         }
         
-        class func getProfiles(teamId: String, completionHandler: GetProfilesCompletionHandler) {
-            let requestBuilder = ProfileService.GetProfiles.Request.builder()
-            requestBuilder.team_id = teamId
+        private class func getProfiles(requestBuilder: AbstractMessageBuilder, completionHandler: GetProfilesCompletionHandler) {
             let client = ServiceClient(serviceName: "profile")
             client.callAction("get_profiles", extensionField: ProfileServiceRequests_get_profiles, requestBuilder: requestBuilder) {
                 (_, _, _, actionResponse, error) -> Void in
@@ -54,11 +53,27 @@ extension ProfileService {
             }
         }
         
+        class func getProfiles(teamId: String, completionHandler: GetProfilesCompletionHandler) {
+            let requestBuilder = ProfileService.GetProfiles.Request.builder()
+            requestBuilder.team_id = teamId
+            self.getProfiles(requestBuilder, completionHandler: completionHandler)
+        }
+        
+        class func getProfiles(#organizationId: String, completionHandler: GetProfilesCompletionHandler) {
+            let requestBuilder = ProfileService.GetProfiles.Request.builder()
+            requestBuilder.organization_id = organizationId
+            self.getProfiles(requestBuilder, completionHandler: completionHandler)
+        }
+        
         class func getExtendedProfile(profileId: String, completionHandler: GetExtendedProfileCompletionHandler) {
             let requestBuilder = ProfileService.GetExtendedProfile.Request.builder()
             requestBuilder.profile_id = profileId
             let client = ServiceClient(serviceName: "profile")
-            client.callAction("get_extended_profile", extensionField: ProfileServiceRequests_get_extended_profile, requestBuilder: requestBuilder) { (_, _, _, actionResponse, error) -> Void in
+            client.callAction(
+                "get_extended_profile",
+                extensionField: ProfileServiceRequests_get_extended_profile,
+                requestBuilder: requestBuilder
+            ) { (_, _, _, actionResponse, error) -> Void in
                 let response = actionResponse?.result.getExtension(
                     ProfileServiceRequests_get_extended_profile
                 ) as? ProfileService.GetExtendedProfile.Response
@@ -69,6 +84,21 @@ extension ProfileService {
                     address: response?.address,
                     error: error
                 )
+            }
+        }
+        
+        class func getTags(organizationId: String, completionHandler: GetTagsCompletionHandler) {
+            let requestBuilder = ProfileService.GetTags.Request.builder()
+            requestBuilder.organization_id = organizationId
+            
+            let client = ServiceClient(serviceName: "profile")
+            client.callAction(
+                "get_tags",
+                extensionField: ProfileServiceRequests_get_tags,
+                requestBuilder: requestBuilder
+            ) { (_, _, _, actionResponse, error) -> Void in
+                let response = actionResponse?.result.getExtension(ProfileServiceRequests_get_tags) as? ProfileService.GetTags.Response
+                completionHandler(tags: response?.tags, error: error)
             }
         }
         

@@ -4,6 +4,7 @@ import "service_protobufs/soa.proto";
 
 import "protobufs/organization_service.proto";
 import "protobufs/profile_service.proto";
+import "protobufs/search_service.proto";
 import "protobufs/user_service.proto";
 
 message UserServiceRequests {
@@ -11,6 +12,7 @@ message UserServiceRequests {
         optional main.user_service.UserService.CreateUser.Request create_user = 100;
         optional main.user_service.UserService.ValidUser.Request valid_user = 101;
         optional main.user_service.UserService.AuthenticateUser.Request authenticate_user = 102;
+        optional main.user_service.UserService.GetUser.Request get_user = 103;
     }
 }
 
@@ -25,6 +27,7 @@ message OrganizationServiceRequests {
         optional main.organization_service.OrganizationService.GetOrganization.Request get_organization = 206;
         optional main.organization_service.OrganizationService.GetTeams.Request get_teams = 207;
         optional main.organization_service.OrganizationService.GetAddresses.Request get_addresses = 208;
+        optional main.organization_service.OrganizationService.GetTeamChildren.Request get_team_children = 209;
     }
 }
 
@@ -38,5 +41,13 @@ message ProfileServiceRequests {
         optional main.profile_service.ProfileService.AddTags.Request add_tags = 305;
         optional main.profile_service.ProfileService.UpdateProfile.Request update_profile = 306;
         optional main.profile_service.ProfileService.GetProfiles.Request get_profiles = 307;
+        optional main.profile_service.ProfileService.GetDirectReports.Request get_direct_reports = 308;
+        optional main.profile_service.ProfileService.GetPeers.Request get_peers = 309;
+    }
+}
+
+message SearchServiceRequests {
+    extend soa.ActionRequestParams {
+        optional main.search_service.SearchService.Search.Request search = 400;
     }
 }

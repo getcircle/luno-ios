@@ -222,19 +222,9 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </collectionReusableView>
                                 <connections>
-                                    <outlet property="dataSource" destination="BIg-EN-QpW" id="MEB-5U-ieT"/>
                                     <outlet property="delegate" destination="YDr-At-X3C" id="Dod-co-txx"/>
                                 </connections>
                             </collectionView>
-                            <button alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9zy-By-0t8" userLabel="OverlayButton">
-                                <rect key="frame" x="0.0" y="54" width="600" height="482"/>
-                                <state key="normal">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="overlayButtonTapped:" destination="PMD-gG-9c6" eventType="touchUpInside" id="HLg-s0-axk"/>
-                                </connections>
-                            </button>
                             <activityIndicatorView contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="heX-JS-q97">
                                 <rect key="frame" x="290" y="258" width="20" height="20"/>
                                 <color key="color" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -245,15 +235,11 @@
                             <constraint firstItem="5kQ-sW-5v8" firstAttribute="leading" secondItem="bGb-OZ-dC1" secondAttribute="leading" id="2lx-ER-7df"/>
                             <constraint firstAttribute="centerX" secondItem="heX-JS-q97" secondAttribute="centerX" id="3Lx-1I-rxa"/>
                             <constraint firstItem="FpX-4G-cZW" firstAttribute="top" secondItem="5kQ-sW-5v8" secondAttribute="bottom" id="8LU-VE-EVy"/>
-                            <constraint firstAttribute="trailing" secondItem="9zy-By-0t8" secondAttribute="trailing" id="BjS-PO-oa4"/>
+                            <constraint firstItem="heX-JS-q97" firstAttribute="centerY" secondItem="FpX-4G-cZW" secondAttribute="centerY" constant="-27" id="8jS-rg-G6N"/>
                             <constraint firstAttribute="trailing" secondItem="FpX-4G-cZW" secondAttribute="trailing" id="UnW-tG-yPS"/>
                             <constraint firstAttribute="trailing" secondItem="5kQ-sW-5v8" secondAttribute="trailing" id="cqS-IH-9aj"/>
                             <constraint firstItem="rUn-MN-xeZ" firstAttribute="top" secondItem="FpX-4G-cZW" secondAttribute="bottom" id="ihf-mG-9Li"/>
                             <constraint firstItem="FpX-4G-cZW" firstAttribute="leading" secondItem="bGb-OZ-dC1" secondAttribute="leading" id="o2Z-d8-o7d"/>
-                            <constraint firstItem="rUn-MN-xeZ" firstAttribute="top" secondItem="9zy-By-0t8" secondAttribute="bottom" id="oSD-Dj-FE3"/>
-                            <constraint firstItem="9zy-By-0t8" firstAttribute="leading" secondItem="bGb-OZ-dC1" secondAttribute="leading" id="tBX-PI-WvI"/>
-                            <constraint firstItem="9zy-By-0t8" firstAttribute="top" secondItem="iQd-um-0Yq" secondAttribute="bottom" constant="54" id="xYW-6x-5Zt"/>
-                            <constraint firstAttribute="centerY" secondItem="heX-JS-q97" secondAttribute="centerY" id="y1z-Ih-Yc8"/>
                             <constraint firstItem="5kQ-sW-5v8" firstAttribute="top" secondItem="iQd-um-0Yq" secondAttribute="bottom" id="yl2-ha-hR9"/>
                         </constraints>
                     </view>
@@ -274,12 +260,10 @@
                     <connections>
                         <outlet property="activityIndicatorView" destination="heX-JS-q97" id="agu-HE-HiO"/>
                         <outlet property="collectionView" destination="FpX-4G-cZW" id="47Q-HQ-Uri"/>
-                        <outlet property="overlayButton" destination="9zy-By-0t8" id="C1t-gz-YCf"/>
                         <outlet property="searchHeaderContainerView" destination="5kQ-sW-5v8" id="IPE-OO-odc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Vf-V8-GjI" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <customObject id="BIg-EN-QpW" customClass="SearchLandingDataSource" customModule="Circle" customModuleProvider="target"/>
                 <customObject id="YDr-At-X3C" customClass="CardCollectionViewDelegate" customModule="Circle" customModuleProvider="target"/>
             </objects>
             <point key="canvasLocation" x="1223" y="-1336"/>

@@ -93,6 +93,22 @@ public func == (lhs: ProfileService.GetProfiles, rhs: ProfileService.GetProfiles
   return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
 }
 
+public func == (lhs: ProfileService.GetDirectReports, rhs: ProfileService.GetDirectReports) -> Bool {
+  if (lhs === rhs) {
+    return true
+  }
+  var fieldCheck:Bool = (lhs.hashValue == rhs.hashValue)
+  return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
+}
+
+public func == (lhs: ProfileService.GetPeers, rhs: ProfileService.GetPeers) -> Bool {
+  if (lhs === rhs) {
+    return true
+  }
+  var fieldCheck:Bool = (lhs.hashValue == rhs.hashValue)
+  return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
+}
+
 public func == (lhs: ProfileService, rhs: ProfileService) -> Bool {
   if (lhs === rhs) {
     return true
@@ -6491,6 +6507,1211 @@ final public class ProfileService : GeneratedMessage {
 
   //Nested type declaration end
 
+
+
+  //Nested type declaration start
+
+    final public class GetDirectReports : GeneratedMessage {
+
+
+      //Nested type declaration start
+
+        final public class Request : GeneratedMessage {
+
+
+          //OneOf declaration start
+
+          public enum LookupKey {
+            case LookupKeyOneOfNotSet
+
+            public func checkOneOfIsSet() -> Bool {
+                 switch self {
+                 case .LookupKeyOneOfNotSet:
+                      return false
+                 default:
+                      return true
+                 }
+            }
+            case ProfileId(String)
+
+            public static func getProfileId(value:LookupKey) ->String? {
+                 switch value {
+                 case .ProfileId(let enumValue):
+                      return enumValue
+                 default:
+                      return nil
+                 }
+            }
+            case UserId(String)
+
+            public static func getUserId(value:LookupKey) ->String? {
+                 switch value {
+                 case .UserId(let enumValue):
+                      return enumValue
+                 default:
+                      return nil
+                 }
+            }
+          }
+
+
+
+          //OneOf declaration end
+
+          private var storageLookupKey:ProfileService.GetDirectReports.Request.LookupKey =  ProfileService.GetDirectReports.Request.LookupKey.LookupKeyOneOfNotSet
+          public subscript(key: String) -> AnyObject? {
+                 switch key {
+                 case "profile_id": return profile_id
+                 case "user_id": return user_id
+                 default: return nil
+                 }
+          }
+
+          public private(set) var hasProfileId:Bool {
+                get {
+                     if ProfileService.GetDirectReports.Request.LookupKey.getProfileId(storageLookupKey) == nil {
+                         return false
+                     }
+                     return true
+                }
+                set(newValue) {
+                }
+          }
+          public private(set) var profile_id:String!{
+               get {
+                    return ProfileService.GetDirectReports.Request.LookupKey.getProfileId(storageLookupKey)
+               }
+               set (newvalue) {
+                    storageLookupKey = ProfileService.GetDirectReports.Request.LookupKey.ProfileId(newvalue)
+               }
+          }
+          public private(set) var hasUserId:Bool {
+                get {
+                     if ProfileService.GetDirectReports.Request.LookupKey.getUserId(storageLookupKey) == nil {
+                         return false
+                     }
+                     return true
+                }
+                set(newValue) {
+                }
+          }
+          public private(set) var user_id:String!{
+               get {
+                    return ProfileService.GetDirectReports.Request.LookupKey.getUserId(storageLookupKey)
+               }
+               set (newvalue) {
+                    storageLookupKey = ProfileService.GetDirectReports.Request.LookupKey.UserId(newvalue)
+               }
+          }
+          required public init() {
+               super.init()
+          }
+          override public func isInitialized() -> Bool {
+           return true
+          }
+          override public func writeToCodedOutputStream(output:CodedOutputStream) {
+            if hasProfileId {
+              output.writeString(1, value:profile_id)
+            }
+            if hasUserId {
+              output.writeString(2, value:user_id)
+            }
+            unknownFields.writeToCodedOutputStream(output)
+          }
+          override public func serializedSize() -> Int32 {
+            var size:Int32 = memoizedSerializedSize
+            if size != -1 {
+             return size
+            }
+
+            size = 0
+            if hasProfileId {
+              size += WireFormat.computeStringSize(1, value:profile_id)
+            }
+            if hasUserId {
+              size += WireFormat.computeStringSize(2, value:user_id)
+            }
+            size += unknownFields.serializedSize()
+            memoizedSerializedSize = size
+            return size
+          }
+          public class func parseFromData(data:[Byte]) -> ProfileService.GetDirectReports.Request {
+            return ProfileService.GetDirectReports.Request.builder().mergeFromData(data).build()
+          }
+          public class func parseFromData(data:[Byte], extensionRegistry:ExtensionRegistry) -> ProfileService.GetDirectReports.Request {
+            return ProfileService.GetDirectReports.Request.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
+          }
+          public class func parseFromInputStream(input:NSInputStream) -> ProfileService.GetDirectReports.Request {
+            return ProfileService.GetDirectReports.Request.builder().mergeFromInputStream(input).build()
+          }
+          public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->ProfileService.GetDirectReports.Request {
+            return ProfileService.GetDirectReports.Request.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
+          }
+          public class func parseFromCodedInputStream(input:CodedInputStream) -> ProfileService.GetDirectReports.Request {
+            return ProfileService.GetDirectReports.Request.builder().mergeFromCodedInputStream(input).build()
+          }
+          public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.GetDirectReports.Request {
+            return ProfileService.GetDirectReports.Request.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
+          }
+          public class func builder() -> ProfileService.GetDirectReports.RequestBuilder {
+            return ProfileService.GetDirectReports.Request.classBuilder() as ProfileService.GetDirectReports.RequestBuilder
+          }
+          public func builder() -> ProfileService.GetDirectReports.RequestBuilder {
+            return classBuilder() as ProfileService.GetDirectReports.RequestBuilder
+          }
+          public override class func classBuilder() -> MessageBuilder {
+            return ProfileService.GetDirectReports.RequestBuilder()
+          }
+          public override func classBuilder() -> MessageBuilder {
+            return ProfileService.GetDirectReports.Request.builder()
+          }
+          public func toBuilder() -> ProfileService.GetDirectReports.RequestBuilder {
+            return ProfileService.GetDirectReports.Request.builderWithPrototype(self)
+          }
+          public class func builderWithPrototype(prototype:ProfileService.GetDirectReports.Request) -> ProfileService.GetDirectReports.RequestBuilder {
+            return ProfileService.GetDirectReports.Request.builder().mergeFrom(prototype)
+          }
+          override public func writeDescriptionTo(inout output:String, indent:String) {
+            if hasProfileId {
+              output += "\(indent) profile_id: \(profile_id) \n"
+            }
+            if hasUserId {
+              output += "\(indent) user_id: \(user_id) \n"
+            }
+            unknownFields.writeDescriptionTo(&output, indent:indent)
+          }
+          override public var hashValue:Int {
+              get {
+                  var hashCode:Int = 7
+                  if hasProfileId {
+                     hashCode = (hashCode &* 31) &+ profile_id.hashValue
+                  }
+                  if hasUserId {
+                     hashCode = (hashCode &* 31) &+ user_id.hashValue
+                  }
+                  hashCode = (hashCode &* 31) &+  unknownFields.hashValue
+                  return hashCode
+              }
+          }
+
+
+          //Meta information declaration start
+
+          override public class func className() -> String {
+              return "ProfileService.GetDirectReports.Request"
+          }
+          override public func className() -> String {
+              return "ProfileService.GetDirectReports.Request"
+          }
+          override public func classMetaType() -> GeneratedMessage.Type {
+              return ProfileService.GetDirectReports.Request.self
+          }
+
+
+          //Meta information declaration end
+
+        }
+
+        final public class RequestBuilder : GeneratedMessageBuilder {
+          private var builderResult:ProfileService.GetDirectReports.Request
+
+          required override public init () {
+             builderResult = ProfileService.GetDirectReports.Request()
+             super.init()
+          }
+          public var hasProfileId:Bool {
+               get {
+                    return builderResult.hasProfileId
+               }
+          }
+          public var profile_id:String {
+               get {
+                    return builderResult.profile_id
+               }
+               set (value) {
+                   builderResult.hasProfileId = true
+                   builderResult.profile_id = value
+               }
+          }
+          public func clearProfileId() -> ProfileService.GetDirectReports.RequestBuilder{
+               builderResult.hasProfileId = false
+               builderResult.profile_id = ""
+               return self
+          }
+          public var hasUserId:Bool {
+               get {
+                    return builderResult.hasUserId
+               }
+          }
+          public var user_id:String {
+               get {
+                    return builderResult.user_id
+               }
+               set (value) {
+                   builderResult.hasUserId = true
+                   builderResult.user_id = value
+               }
+          }
+          public func clearUserId() -> ProfileService.GetDirectReports.RequestBuilder{
+               builderResult.hasUserId = false
+               builderResult.user_id = ""
+               return self
+          }
+          override public var internalGetResult:GeneratedMessage {
+               get {
+                  return builderResult
+               }
+          }
+          public override func clear() -> ProfileService.GetDirectReports.RequestBuilder {
+            builderResult = ProfileService.GetDirectReports.Request()
+            return self
+          }
+          public override func clone() -> ProfileService.GetDirectReports.RequestBuilder {
+            return ProfileService.GetDirectReports.Request.builderWithPrototype(builderResult)
+          }
+          public override func build() -> ProfileService.GetDirectReports.Request {
+               checkInitialized()
+               return buildPartial()
+          }
+          public func buildPartial() -> ProfileService.GetDirectReports.Request {
+            var returnMe:ProfileService.GetDirectReports.Request = builderResult
+            return returnMe
+          }
+          public func mergeFrom(other:ProfileService.GetDirectReports.Request) -> ProfileService.GetDirectReports.RequestBuilder {
+            if (other == ProfileService.GetDirectReports.Request()) {
+             return self
+            }
+            if other.hasProfileId {
+                 profile_id = other.profile_id
+            }
+            if other.hasUserId {
+                 user_id = other.user_id
+            }
+            mergeUnknownFields(other.unknownFields)
+            return self
+          }
+          public override func mergeFromCodedInputStream(input:CodedInputStream) ->ProfileService.GetDirectReports.RequestBuilder {
+               return mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
+          }
+          public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.GetDirectReports.RequestBuilder {
+            var unknownFieldsBuilder:UnknownFieldSetBuilder = UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
+            while (true) {
+              var tag = input.readTag()
+              switch tag {
+              case 0: 
+                self.unknownFields = unknownFieldsBuilder.build()
+                return self
+
+              case 10 :
+                profile_id = input.readString()
+
+              case 18 :
+                user_id = input.readString()
+
+              default:
+                if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
+                   unknownFields = unknownFieldsBuilder.build()
+                   return self
+                }
+              }
+            }
+          }
+        }
+
+
+
+      //Nested type declaration end
+
+
+
+      //Nested type declaration start
+
+        final public class Response : GeneratedMessage {
+          public subscript(key: String) -> AnyObject? {
+                 switch key {
+                 default: return nil
+                 }
+          }
+
+          public private(set) var profiles:Array<ProfileService.Containers.Profile>  = Array<ProfileService.Containers.Profile>()
+          required public init() {
+               super.init()
+          }
+          override public func isInitialized() -> Bool {
+           return true
+          }
+          override public func writeToCodedOutputStream(output:CodedOutputStream) {
+            for oneElementprofiles in profiles {
+                output.writeMessage(1, value:oneElementprofiles)
+            }
+            unknownFields.writeToCodedOutputStream(output)
+          }
+          override public func serializedSize() -> Int32 {
+            var size:Int32 = memoizedSerializedSize
+            if size != -1 {
+             return size
+            }
+
+            size = 0
+            for oneElementprofiles in profiles {
+                size += WireFormat.computeMessageSize(1, value:oneElementprofiles)
+            }
+            size += unknownFields.serializedSize()
+            memoizedSerializedSize = size
+            return size
+          }
+          public class func parseFromData(data:[Byte]) -> ProfileService.GetDirectReports.Response {
+            return ProfileService.GetDirectReports.Response.builder().mergeFromData(data).build()
+          }
+          public class func parseFromData(data:[Byte], extensionRegistry:ExtensionRegistry) -> ProfileService.GetDirectReports.Response {
+            return ProfileService.GetDirectReports.Response.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
+          }
+          public class func parseFromInputStream(input:NSInputStream) -> ProfileService.GetDirectReports.Response {
+            return ProfileService.GetDirectReports.Response.builder().mergeFromInputStream(input).build()
+          }
+          public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->ProfileService.GetDirectReports.Response {
+            return ProfileService.GetDirectReports.Response.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
+          }
+          public class func parseFromCodedInputStream(input:CodedInputStream) -> ProfileService.GetDirectReports.Response {
+            return ProfileService.GetDirectReports.Response.builder().mergeFromCodedInputStream(input).build()
+          }
+          public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.GetDirectReports.Response {
+            return ProfileService.GetDirectReports.Response.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
+          }
+          public class func builder() -> ProfileService.GetDirectReports.ResponseBuilder {
+            return ProfileService.GetDirectReports.Response.classBuilder() as ProfileService.GetDirectReports.ResponseBuilder
+          }
+          public func builder() -> ProfileService.GetDirectReports.ResponseBuilder {
+            return classBuilder() as ProfileService.GetDirectReports.ResponseBuilder
+          }
+          public override class func classBuilder() -> MessageBuilder {
+            return ProfileService.GetDirectReports.ResponseBuilder()
+          }
+          public override func classBuilder() -> MessageBuilder {
+            return ProfileService.GetDirectReports.Response.builder()
+          }
+          public func toBuilder() -> ProfileService.GetDirectReports.ResponseBuilder {
+            return ProfileService.GetDirectReports.Response.builderWithPrototype(self)
+          }
+          public class func builderWithPrototype(prototype:ProfileService.GetDirectReports.Response) -> ProfileService.GetDirectReports.ResponseBuilder {
+            return ProfileService.GetDirectReports.Response.builder().mergeFrom(prototype)
+          }
+          override public func writeDescriptionTo(inout output:String, indent:String) {
+            var profilesElementIndex:Int = 0
+            for oneElementprofiles in profiles {
+                output += "\(indent) profiles[\(profilesElementIndex)] {\n"
+                oneElementprofiles.writeDescriptionTo(&output, indent:"\(indent)  ")
+                output += "\(indent)}\n"
+                profilesElementIndex++
+            }
+            unknownFields.writeDescriptionTo(&output, indent:indent)
+          }
+          override public var hashValue:Int {
+              get {
+                  var hashCode:Int = 7
+                  for oneElementprofiles in profiles {
+                      hashCode = (hashCode &* 31) &+ oneElementprofiles.hashValue
+                  }
+                  hashCode = (hashCode &* 31) &+  unknownFields.hashValue
+                  return hashCode
+              }
+          }
+
+
+          //Meta information declaration start
+
+          override public class func className() -> String {
+              return "ProfileService.GetDirectReports.Response"
+          }
+          override public func className() -> String {
+              return "ProfileService.GetDirectReports.Response"
+          }
+          override public func classMetaType() -> GeneratedMessage.Type {
+              return ProfileService.GetDirectReports.Response.self
+          }
+
+
+          //Meta information declaration end
+
+        }
+
+        final public class ResponseBuilder : GeneratedMessageBuilder {
+          private var builderResult:ProfileService.GetDirectReports.Response
+
+          required override public init () {
+             builderResult = ProfileService.GetDirectReports.Response()
+             super.init()
+          }
+          public var profiles:Array<ProfileService.Containers.Profile> {
+               get {
+                   return builderResult.profiles
+               }
+               set (value) {
+                   builderResult.profiles = value
+               }
+          }
+          public func clearProfiles() -> ProfileService.GetDirectReports.ResponseBuilder {
+            builderResult.profiles.removeAll(keepCapacity: false)
+            return self
+          }
+          override public var internalGetResult:GeneratedMessage {
+               get {
+                  return builderResult
+               }
+          }
+          public override func clear() -> ProfileService.GetDirectReports.ResponseBuilder {
+            builderResult = ProfileService.GetDirectReports.Response()
+            return self
+          }
+          public override func clone() -> ProfileService.GetDirectReports.ResponseBuilder {
+            return ProfileService.GetDirectReports.Response.builderWithPrototype(builderResult)
+          }
+          public override func build() -> ProfileService.GetDirectReports.Response {
+               checkInitialized()
+               return buildPartial()
+          }
+          public func buildPartial() -> ProfileService.GetDirectReports.Response {
+            var returnMe:ProfileService.GetDirectReports.Response = builderResult
+            return returnMe
+          }
+          public func mergeFrom(other:ProfileService.GetDirectReports.Response) -> ProfileService.GetDirectReports.ResponseBuilder {
+            if (other == ProfileService.GetDirectReports.Response()) {
+             return self
+            }
+            if !other.profiles.isEmpty  {
+               builderResult.profiles += other.profiles
+            }
+            mergeUnknownFields(other.unknownFields)
+            return self
+          }
+          public override func mergeFromCodedInputStream(input:CodedInputStream) ->ProfileService.GetDirectReports.ResponseBuilder {
+               return mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
+          }
+          public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.GetDirectReports.ResponseBuilder {
+            var unknownFieldsBuilder:UnknownFieldSetBuilder = UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
+            while (true) {
+              var tag = input.readTag()
+              switch tag {
+              case 0: 
+                self.unknownFields = unknownFieldsBuilder.build()
+                return self
+
+              case 10 :
+                var subBuilder = ProfileService.Containers.Profile.builder()
+                input.readMessage(subBuilder,extensionRegistry:extensionRegistry)
+                profiles += [subBuilder.buildPartial()]
+
+              default:
+                if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
+                   unknownFields = unknownFieldsBuilder.build()
+                   return self
+                }
+              }
+            }
+          }
+        }
+
+
+
+      //Nested type declaration end
+
+      public subscript(key: String) -> AnyObject? {
+             switch key {
+             default: return nil
+             }
+      }
+
+      required public init() {
+           super.init()
+      }
+      override public func isInitialized() -> Bool {
+       return true
+      }
+      override public func writeToCodedOutputStream(output:CodedOutputStream) {
+        unknownFields.writeToCodedOutputStream(output)
+      }
+      override public func serializedSize() -> Int32 {
+        var size:Int32 = memoizedSerializedSize
+        if size != -1 {
+         return size
+        }
+
+        size = 0
+        size += unknownFields.serializedSize()
+        memoizedSerializedSize = size
+        return size
+      }
+      public class func parseFromData(data:[Byte]) -> ProfileService.GetDirectReports {
+        return ProfileService.GetDirectReports.builder().mergeFromData(data).build()
+      }
+      public class func parseFromData(data:[Byte], extensionRegistry:ExtensionRegistry) -> ProfileService.GetDirectReports {
+        return ProfileService.GetDirectReports.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
+      }
+      public class func parseFromInputStream(input:NSInputStream) -> ProfileService.GetDirectReports {
+        return ProfileService.GetDirectReports.builder().mergeFromInputStream(input).build()
+      }
+      public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->ProfileService.GetDirectReports {
+        return ProfileService.GetDirectReports.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
+      }
+      public class func parseFromCodedInputStream(input:CodedInputStream) -> ProfileService.GetDirectReports {
+        return ProfileService.GetDirectReports.builder().mergeFromCodedInputStream(input).build()
+      }
+      public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.GetDirectReports {
+        return ProfileService.GetDirectReports.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
+      }
+      public class func builder() -> ProfileService.GetDirectReportsBuilder {
+        return ProfileService.GetDirectReports.classBuilder() as ProfileService.GetDirectReportsBuilder
+      }
+      public func builder() -> ProfileService.GetDirectReportsBuilder {
+        return classBuilder() as ProfileService.GetDirectReportsBuilder
+      }
+      public override class func classBuilder() -> MessageBuilder {
+        return ProfileService.GetDirectReportsBuilder()
+      }
+      public override func classBuilder() -> MessageBuilder {
+        return ProfileService.GetDirectReports.builder()
+      }
+      public func toBuilder() -> ProfileService.GetDirectReportsBuilder {
+        return ProfileService.GetDirectReports.builderWithPrototype(self)
+      }
+      public class func builderWithPrototype(prototype:ProfileService.GetDirectReports) -> ProfileService.GetDirectReportsBuilder {
+        return ProfileService.GetDirectReports.builder().mergeFrom(prototype)
+      }
+      override public func writeDescriptionTo(inout output:String, indent:String) {
+        unknownFields.writeDescriptionTo(&output, indent:indent)
+      }
+      override public var hashValue:Int {
+          get {
+              var hashCode:Int = 7
+              hashCode = (hashCode &* 31) &+  unknownFields.hashValue
+              return hashCode
+          }
+      }
+
+
+      //Meta information declaration start
+
+      override public class func className() -> String {
+          return "ProfileService.GetDirectReports"
+      }
+      override public func className() -> String {
+          return "ProfileService.GetDirectReports"
+      }
+      override public func classMetaType() -> GeneratedMessage.Type {
+          return ProfileService.GetDirectReports.self
+      }
+
+
+      //Meta information declaration end
+
+    }
+
+    final public class GetDirectReportsBuilder : GeneratedMessageBuilder {
+      private var builderResult:ProfileService.GetDirectReports
+
+      required override public init () {
+         builderResult = ProfileService.GetDirectReports()
+         super.init()
+      }
+      override public var internalGetResult:GeneratedMessage {
+           get {
+              return builderResult
+           }
+      }
+      public override func clear() -> ProfileService.GetDirectReportsBuilder {
+        builderResult = ProfileService.GetDirectReports()
+        return self
+      }
+      public override func clone() -> ProfileService.GetDirectReportsBuilder {
+        return ProfileService.GetDirectReports.builderWithPrototype(builderResult)
+      }
+      public override func build() -> ProfileService.GetDirectReports {
+           checkInitialized()
+           return buildPartial()
+      }
+      public func buildPartial() -> ProfileService.GetDirectReports {
+        var returnMe:ProfileService.GetDirectReports = builderResult
+        return returnMe
+      }
+      public func mergeFrom(other:ProfileService.GetDirectReports) -> ProfileService.GetDirectReportsBuilder {
+        if (other == ProfileService.GetDirectReports()) {
+         return self
+        }
+        mergeUnknownFields(other.unknownFields)
+        return self
+      }
+      public override func mergeFromCodedInputStream(input:CodedInputStream) ->ProfileService.GetDirectReportsBuilder {
+           return mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
+      }
+      public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.GetDirectReportsBuilder {
+        var unknownFieldsBuilder:UnknownFieldSetBuilder = UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
+        while (true) {
+          var tag = input.readTag()
+          switch tag {
+          case 0: 
+            self.unknownFields = unknownFieldsBuilder.build()
+            return self
+
+          default:
+            if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
+               unknownFields = unknownFieldsBuilder.build()
+               return self
+            }
+          }
+        }
+      }
+    }
+
+
+
+  //Nested type declaration end
+
+
+
+  //Nested type declaration start
+
+    final public class GetPeers : GeneratedMessage {
+
+
+      //Nested type declaration start
+
+        final public class Request : GeneratedMessage {
+          public subscript(key: String) -> AnyObject? {
+                 switch key {
+                 case "profile_id": return profile_id
+                 default: return nil
+                 }
+          }
+
+          public private(set) var hasProfileId:Bool = false
+          public private(set) var profile_id:String = ""
+
+          required public init() {
+               super.init()
+          }
+          override public func isInitialized() -> Bool {
+           return true
+          }
+          override public func writeToCodedOutputStream(output:CodedOutputStream) {
+            if hasProfileId {
+              output.writeString(1, value:profile_id)
+            }
+            unknownFields.writeToCodedOutputStream(output)
+          }
+          override public func serializedSize() -> Int32 {
+            var size:Int32 = memoizedSerializedSize
+            if size != -1 {
+             return size
+            }
+
+            size = 0
+            if hasProfileId {
+              size += WireFormat.computeStringSize(1, value:profile_id)
+            }
+            size += unknownFields.serializedSize()
+            memoizedSerializedSize = size
+            return size
+          }
+          public class func parseFromData(data:[Byte]) -> ProfileService.GetPeers.Request {
+            return ProfileService.GetPeers.Request.builder().mergeFromData(data).build()
+          }
+          public class func parseFromData(data:[Byte], extensionRegistry:ExtensionRegistry) -> ProfileService.GetPeers.Request {
+            return ProfileService.GetPeers.Request.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
+          }
+          public class func parseFromInputStream(input:NSInputStream) -> ProfileService.GetPeers.Request {
+            return ProfileService.GetPeers.Request.builder().mergeFromInputStream(input).build()
+          }
+          public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->ProfileService.GetPeers.Request {
+            return ProfileService.GetPeers.Request.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
+          }
+          public class func parseFromCodedInputStream(input:CodedInputStream) -> ProfileService.GetPeers.Request {
+            return ProfileService.GetPeers.Request.builder().mergeFromCodedInputStream(input).build()
+          }
+          public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.GetPeers.Request {
+            return ProfileService.GetPeers.Request.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
+          }
+          public class func builder() -> ProfileService.GetPeers.RequestBuilder {
+            return ProfileService.GetPeers.Request.classBuilder() as ProfileService.GetPeers.RequestBuilder
+          }
+          public func builder() -> ProfileService.GetPeers.RequestBuilder {
+            return classBuilder() as ProfileService.GetPeers.RequestBuilder
+          }
+          public override class func classBuilder() -> MessageBuilder {
+            return ProfileService.GetPeers.RequestBuilder()
+          }
+          public override func classBuilder() -> MessageBuilder {
+            return ProfileService.GetPeers.Request.builder()
+          }
+          public func toBuilder() -> ProfileService.GetPeers.RequestBuilder {
+            return ProfileService.GetPeers.Request.builderWithPrototype(self)
+          }
+          public class func builderWithPrototype(prototype:ProfileService.GetPeers.Request) -> ProfileService.GetPeers.RequestBuilder {
+            return ProfileService.GetPeers.Request.builder().mergeFrom(prototype)
+          }
+          override public func writeDescriptionTo(inout output:String, indent:String) {
+            if hasProfileId {
+              output += "\(indent) profile_id: \(profile_id) \n"
+            }
+            unknownFields.writeDescriptionTo(&output, indent:indent)
+          }
+          override public var hashValue:Int {
+              get {
+                  var hashCode:Int = 7
+                  if hasProfileId {
+                     hashCode = (hashCode &* 31) &+ profile_id.hashValue
+                  }
+                  hashCode = (hashCode &* 31) &+  unknownFields.hashValue
+                  return hashCode
+              }
+          }
+
+
+          //Meta information declaration start
+
+          override public class func className() -> String {
+              return "ProfileService.GetPeers.Request"
+          }
+          override public func className() -> String {
+              return "ProfileService.GetPeers.Request"
+          }
+          override public func classMetaType() -> GeneratedMessage.Type {
+              return ProfileService.GetPeers.Request.self
+          }
+
+
+          //Meta information declaration end
+
+        }
+
+        final public class RequestBuilder : GeneratedMessageBuilder {
+          private var builderResult:ProfileService.GetPeers.Request
+
+          required override public init () {
+             builderResult = ProfileService.GetPeers.Request()
+             super.init()
+          }
+          public var hasProfileId:Bool {
+               get {
+                    return builderResult.hasProfileId
+               }
+          }
+          public var profile_id:String {
+               get {
+                    return builderResult.profile_id
+               }
+               set (value) {
+                   builderResult.hasProfileId = true
+                   builderResult.profile_id = value
+               }
+          }
+          public func clearProfileId() -> ProfileService.GetPeers.RequestBuilder{
+               builderResult.hasProfileId = false
+               builderResult.profile_id = ""
+               return self
+          }
+          override public var internalGetResult:GeneratedMessage {
+               get {
+                  return builderResult
+               }
+          }
+          public override func clear() -> ProfileService.GetPeers.RequestBuilder {
+            builderResult = ProfileService.GetPeers.Request()
+            return self
+          }
+          public override func clone() -> ProfileService.GetPeers.RequestBuilder {
+            return ProfileService.GetPeers.Request.builderWithPrototype(builderResult)
+          }
+          public override func build() -> ProfileService.GetPeers.Request {
+               checkInitialized()
+               return buildPartial()
+          }
+          public func buildPartial() -> ProfileService.GetPeers.Request {
+            var returnMe:ProfileService.GetPeers.Request = builderResult
+            return returnMe
+          }
+          public func mergeFrom(other:ProfileService.GetPeers.Request) -> ProfileService.GetPeers.RequestBuilder {
+            if (other == ProfileService.GetPeers.Request()) {
+             return self
+            }
+            if other.hasProfileId {
+                 profile_id = other.profile_id
+            }
+            mergeUnknownFields(other.unknownFields)
+            return self
+          }
+          public override func mergeFromCodedInputStream(input:CodedInputStream) ->ProfileService.GetPeers.RequestBuilder {
+               return mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
+          }
+          public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.GetPeers.RequestBuilder {
+            var unknownFieldsBuilder:UnknownFieldSetBuilder = UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
+            while (true) {
+              var tag = input.readTag()
+              switch tag {
+              case 0: 
+                self.unknownFields = unknownFieldsBuilder.build()
+                return self
+
+              case 10 :
+                profile_id = input.readString()
+
+              default:
+                if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
+                   unknownFields = unknownFieldsBuilder.build()
+                   return self
+                }
+              }
+            }
+          }
+        }
+
+
+
+      //Nested type declaration end
+
+
+
+      //Nested type declaration start
+
+        final public class Response : GeneratedMessage {
+          public subscript(key: String) -> AnyObject? {
+                 switch key {
+                 default: return nil
+                 }
+          }
+
+          public private(set) var profiles:Array<ProfileService.Containers.Profile>  = Array<ProfileService.Containers.Profile>()
+          required public init() {
+               super.init()
+          }
+          override public func isInitialized() -> Bool {
+           return true
+          }
+          override public func writeToCodedOutputStream(output:CodedOutputStream) {
+            for oneElementprofiles in profiles {
+                output.writeMessage(2, value:oneElementprofiles)
+            }
+            unknownFields.writeToCodedOutputStream(output)
+          }
+          override public func serializedSize() -> Int32 {
+            var size:Int32 = memoizedSerializedSize
+            if size != -1 {
+             return size
+            }
+
+            size = 0
+            for oneElementprofiles in profiles {
+                size += WireFormat.computeMessageSize(2, value:oneElementprofiles)
+            }
+            size += unknownFields.serializedSize()
+            memoizedSerializedSize = size
+            return size
+          }
+          public class func parseFromData(data:[Byte]) -> ProfileService.GetPeers.Response {
+            return ProfileService.GetPeers.Response.builder().mergeFromData(data).build()
+          }
+          public class func parseFromData(data:[Byte], extensionRegistry:ExtensionRegistry) -> ProfileService.GetPeers.Response {
+            return ProfileService.GetPeers.Response.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
+          }
+          public class func parseFromInputStream(input:NSInputStream) -> ProfileService.GetPeers.Response {
+            return ProfileService.GetPeers.Response.builder().mergeFromInputStream(input).build()
+          }
+          public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->ProfileService.GetPeers.Response {
+            return ProfileService.GetPeers.Response.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
+          }
+          public class func parseFromCodedInputStream(input:CodedInputStream) -> ProfileService.GetPeers.Response {
+            return ProfileService.GetPeers.Response.builder().mergeFromCodedInputStream(input).build()
+          }
+          public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.GetPeers.Response {
+            return ProfileService.GetPeers.Response.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
+          }
+          public class func builder() -> ProfileService.GetPeers.ResponseBuilder {
+            return ProfileService.GetPeers.Response.classBuilder() as ProfileService.GetPeers.ResponseBuilder
+          }
+          public func builder() -> ProfileService.GetPeers.ResponseBuilder {
+            return classBuilder() as ProfileService.GetPeers.ResponseBuilder
+          }
+          public override class func classBuilder() -> MessageBuilder {
+            return ProfileService.GetPeers.ResponseBuilder()
+          }
+          public override func classBuilder() -> MessageBuilder {
+            return ProfileService.GetPeers.Response.builder()
+          }
+          public func toBuilder() -> ProfileService.GetPeers.ResponseBuilder {
+            return ProfileService.GetPeers.Response.builderWithPrototype(self)
+          }
+          public class func builderWithPrototype(prototype:ProfileService.GetPeers.Response) -> ProfileService.GetPeers.ResponseBuilder {
+            return ProfileService.GetPeers.Response.builder().mergeFrom(prototype)
+          }
+          override public func writeDescriptionTo(inout output:String, indent:String) {
+            var profilesElementIndex:Int = 0
+            for oneElementprofiles in profiles {
+                output += "\(indent) profiles[\(profilesElementIndex)] {\n"
+                oneElementprofiles.writeDescriptionTo(&output, indent:"\(indent)  ")
+                output += "\(indent)}\n"
+                profilesElementIndex++
+            }
+            unknownFields.writeDescriptionTo(&output, indent:indent)
+          }
+          override public var hashValue:Int {
+              get {
+                  var hashCode:Int = 7
+                  for oneElementprofiles in profiles {
+                      hashCode = (hashCode &* 31) &+ oneElementprofiles.hashValue
+                  }
+                  hashCode = (hashCode &* 31) &+  unknownFields.hashValue
+                  return hashCode
+              }
+          }
+
+
+          //Meta information declaration start
+
+          override public class func className() -> String {
+              return "ProfileService.GetPeers.Response"
+          }
+          override public func className() -> String {
+              return "ProfileService.GetPeers.Response"
+          }
+          override public func classMetaType() -> GeneratedMessage.Type {
+              return ProfileService.GetPeers.Response.self
+          }
+
+
+          //Meta information declaration end
+
+        }
+
+        final public class ResponseBuilder : GeneratedMessageBuilder {
+          private var builderResult:ProfileService.GetPeers.Response
+
+          required override public init () {
+             builderResult = ProfileService.GetPeers.Response()
+             super.init()
+          }
+          public var profiles:Array<ProfileService.Containers.Profile> {
+               get {
+                   return builderResult.profiles
+               }
+               set (value) {
+                   builderResult.profiles = value
+               }
+          }
+          public func clearProfiles() -> ProfileService.GetPeers.ResponseBuilder {
+            builderResult.profiles.removeAll(keepCapacity: false)
+            return self
+          }
+          override public var internalGetResult:GeneratedMessage {
+               get {
+                  return builderResult
+               }
+          }
+          public override func clear() -> ProfileService.GetPeers.ResponseBuilder {
+            builderResult = ProfileService.GetPeers.Response()
+            return self
+          }
+          public override func clone() -> ProfileService.GetPeers.ResponseBuilder {
+            return ProfileService.GetPeers.Response.builderWithPrototype(builderResult)
+          }
+          public override func build() -> ProfileService.GetPeers.Response {
+               checkInitialized()
+               return buildPartial()
+          }
+          public func buildPartial() -> ProfileService.GetPeers.Response {
+            var returnMe:ProfileService.GetPeers.Response = builderResult
+            return returnMe
+          }
+          public func mergeFrom(other:ProfileService.GetPeers.Response) -> ProfileService.GetPeers.ResponseBuilder {
+            if (other == ProfileService.GetPeers.Response()) {
+             return self
+            }
+            if !other.profiles.isEmpty  {
+               builderResult.profiles += other.profiles
+            }
+            mergeUnknownFields(other.unknownFields)
+            return self
+          }
+          public override func mergeFromCodedInputStream(input:CodedInputStream) ->ProfileService.GetPeers.ResponseBuilder {
+               return mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
+          }
+          public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.GetPeers.ResponseBuilder {
+            var unknownFieldsBuilder:UnknownFieldSetBuilder = UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
+            while (true) {
+              var tag = input.readTag()
+              switch tag {
+              case 0: 
+                self.unknownFields = unknownFieldsBuilder.build()
+                return self
+
+              case 18 :
+                var subBuilder = ProfileService.Containers.Profile.builder()
+                input.readMessage(subBuilder,extensionRegistry:extensionRegistry)
+                profiles += [subBuilder.buildPartial()]
+
+              default:
+                if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
+                   unknownFields = unknownFieldsBuilder.build()
+                   return self
+                }
+              }
+            }
+          }
+        }
+
+
+
+      //Nested type declaration end
+
+      public subscript(key: String) -> AnyObject? {
+             switch key {
+             default: return nil
+             }
+      }
+
+      required public init() {
+           super.init()
+      }
+      override public func isInitialized() -> Bool {
+       return true
+      }
+      override public func writeToCodedOutputStream(output:CodedOutputStream) {
+        unknownFields.writeToCodedOutputStream(output)
+      }
+      override public func serializedSize() -> Int32 {
+        var size:Int32 = memoizedSerializedSize
+        if size != -1 {
+         return size
+        }
+
+        size = 0
+        size += unknownFields.serializedSize()
+        memoizedSerializedSize = size
+        return size
+      }
+      public class func parseFromData(data:[Byte]) -> ProfileService.GetPeers {
+        return ProfileService.GetPeers.builder().mergeFromData(data).build()
+      }
+      public class func parseFromData(data:[Byte], extensionRegistry:ExtensionRegistry) -> ProfileService.GetPeers {
+        return ProfileService.GetPeers.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
+      }
+      public class func parseFromInputStream(input:NSInputStream) -> ProfileService.GetPeers {
+        return ProfileService.GetPeers.builder().mergeFromInputStream(input).build()
+      }
+      public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->ProfileService.GetPeers {
+        return ProfileService.GetPeers.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
+      }
+      public class func parseFromCodedInputStream(input:CodedInputStream) -> ProfileService.GetPeers {
+        return ProfileService.GetPeers.builder().mergeFromCodedInputStream(input).build()
+      }
+      public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.GetPeers {
+        return ProfileService.GetPeers.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
+      }
+      public class func builder() -> ProfileService.GetPeersBuilder {
+        return ProfileService.GetPeers.classBuilder() as ProfileService.GetPeersBuilder
+      }
+      public func builder() -> ProfileService.GetPeersBuilder {
+        return classBuilder() as ProfileService.GetPeersBuilder
+      }
+      public override class func classBuilder() -> MessageBuilder {
+        return ProfileService.GetPeersBuilder()
+      }
+      public override func classBuilder() -> MessageBuilder {
+        return ProfileService.GetPeers.builder()
+      }
+      public func toBuilder() -> ProfileService.GetPeersBuilder {
+        return ProfileService.GetPeers.builderWithPrototype(self)
+      }
+      public class func builderWithPrototype(prototype:ProfileService.GetPeers) -> ProfileService.GetPeersBuilder {
+        return ProfileService.GetPeers.builder().mergeFrom(prototype)
+      }
+      override public func writeDescriptionTo(inout output:String, indent:String) {
+        unknownFields.writeDescriptionTo(&output, indent:indent)
+      }
+      override public var hashValue:Int {
+          get {
+              var hashCode:Int = 7
+              hashCode = (hashCode &* 31) &+  unknownFields.hashValue
+              return hashCode
+          }
+      }
+
+
+      //Meta information declaration start
+
+      override public class func className() -> String {
+          return "ProfileService.GetPeers"
+      }
+      override public func className() -> String {
+          return "ProfileService.GetPeers"
+      }
+      override public func classMetaType() -> GeneratedMessage.Type {
+          return ProfileService.GetPeers.self
+      }
+
+
+      //Meta information declaration end
+
+    }
+
+    final public class GetPeersBuilder : GeneratedMessageBuilder {
+      private var builderResult:ProfileService.GetPeers
+
+      required override public init () {
+         builderResult = ProfileService.GetPeers()
+         super.init()
+      }
+      override public var internalGetResult:GeneratedMessage {
+           get {
+              return builderResult
+           }
+      }
+      public override func clear() -> ProfileService.GetPeersBuilder {
+        builderResult = ProfileService.GetPeers()
+        return self
+      }
+      public override func clone() -> ProfileService.GetPeersBuilder {
+        return ProfileService.GetPeers.builderWithPrototype(builderResult)
+      }
+      public override func build() -> ProfileService.GetPeers {
+           checkInitialized()
+           return buildPartial()
+      }
+      public func buildPartial() -> ProfileService.GetPeers {
+        var returnMe:ProfileService.GetPeers = builderResult
+        return returnMe
+      }
+      public func mergeFrom(other:ProfileService.GetPeers) -> ProfileService.GetPeersBuilder {
+        if (other == ProfileService.GetPeers()) {
+         return self
+        }
+        mergeUnknownFields(other.unknownFields)
+        return self
+      }
+      public override func mergeFromCodedInputStream(input:CodedInputStream) ->ProfileService.GetPeersBuilder {
+           return mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
+      }
+      public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.GetPeersBuilder {
+        var unknownFieldsBuilder:UnknownFieldSetBuilder = UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
+        while (true) {
+          var tag = input.readTag()
+          switch tag {
+          case 0: 
+            self.unknownFields = unknownFieldsBuilder.build()
+            return self
+
+          default:
+            if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
+               unknownFields = unknownFieldsBuilder.build()
+               return self
+            }
+          }
+        }
+      }
+    }
+
+
+
+  //Nested type declaration end
+
   public subscript(key: String) -> AnyObject? {
          switch key {
          default: return nil
@@ -6963,6 +8184,78 @@ public extension ProfileService.GetProfiles {
         var bytes = [Byte](count: data.length, repeatedValue: 0)
         data.getBytes(&bytes)
         return ProfileService.GetProfiles.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
+    }
+}
+public extension ProfileService.GetDirectReports.Request {
+    class func parseFromNSData(data:NSData) -> ProfileService.GetDirectReports.Request {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return ProfileService.GetDirectReports.Request.builder().mergeFromData(bytes).build()
+    }
+    class func parseFromNSData(data:NSData, extensionRegistry:ExtensionRegistry) -> ProfileService.GetDirectReports.Request {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return ProfileService.GetDirectReports.Request.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
+    }
+}
+public extension ProfileService.GetDirectReports.Response {
+    class func parseFromNSData(data:NSData) -> ProfileService.GetDirectReports.Response {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return ProfileService.GetDirectReports.Response.builder().mergeFromData(bytes).build()
+    }
+    class func parseFromNSData(data:NSData, extensionRegistry:ExtensionRegistry) -> ProfileService.GetDirectReports.Response {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return ProfileService.GetDirectReports.Response.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
+    }
+}
+public extension ProfileService.GetDirectReports {
+    class func parseFromNSData(data:NSData) -> ProfileService.GetDirectReports {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return ProfileService.GetDirectReports.builder().mergeFromData(bytes).build()
+    }
+    class func parseFromNSData(data:NSData, extensionRegistry:ExtensionRegistry) -> ProfileService.GetDirectReports {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return ProfileService.GetDirectReports.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
+    }
+}
+public extension ProfileService.GetPeers.Request {
+    class func parseFromNSData(data:NSData) -> ProfileService.GetPeers.Request {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return ProfileService.GetPeers.Request.builder().mergeFromData(bytes).build()
+    }
+    class func parseFromNSData(data:NSData, extensionRegistry:ExtensionRegistry) -> ProfileService.GetPeers.Request {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return ProfileService.GetPeers.Request.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
+    }
+}
+public extension ProfileService.GetPeers.Response {
+    class func parseFromNSData(data:NSData) -> ProfileService.GetPeers.Response {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return ProfileService.GetPeers.Response.builder().mergeFromData(bytes).build()
+    }
+    class func parseFromNSData(data:NSData, extensionRegistry:ExtensionRegistry) -> ProfileService.GetPeers.Response {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return ProfileService.GetPeers.Response.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
+    }
+}
+public extension ProfileService.GetPeers {
+    class func parseFromNSData(data:NSData) -> ProfileService.GetPeers {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return ProfileService.GetPeers.builder().mergeFromData(bytes).build()
+    }
+    class func parseFromNSData(data:NSData, extensionRegistry:ExtensionRegistry) -> ProfileService.GetPeers {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return ProfileService.GetPeers.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
     }
 }
 public extension ProfileService {

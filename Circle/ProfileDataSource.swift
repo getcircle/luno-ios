@@ -200,7 +200,6 @@ class ProfileDataSource: CardDataSource {
         // Add placeholder card to load profile header instantly
         var placeholderCard = Card(cardType: .Placeholder, title: "Info")
         appendCard(placeholderCard)
-        populateData()
         ProfileService.Actions.getExtendedProfile(profile.id) { (profile, manager, team, address, error) -> Void in
             if error == nil {
                 self.manager = manager

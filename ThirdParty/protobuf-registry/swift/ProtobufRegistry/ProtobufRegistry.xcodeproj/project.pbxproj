@@ -28,6 +28,7 @@
 		BFCE35891A4A23AE00D56AE2 /* UnknownFieldSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCE357B1A4A23AE00D56AE2 /* UnknownFieldSet.swift */; };
 		BFCE358A1A4A23AE00D56AE2 /* UnknownFieldSetBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCE357C1A4A23AE00D56AE2 /* UnknownFieldSetBuilder.swift */; };
 		BFCE358B1A4A23AE00D56AE2 /* WireFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCE357D1A4A23AE00D56AE2 /* WireFormat.swift */; };
+		BFDD6F041A5EE56800A648FC /* Search_service.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDD6F031A5EE56800A648FC /* Search_service.pb.swift */; };
 		BFEED5DF1A5AF55F00C19A11 /* Profile_service.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFEED5DE1A5AF55F00C19A11 /* Profile_service.pb.swift */; };
 		BFFB19911A47696200CCFFC3 /* User_service.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFB198F1A47696200CCFFC3 /* User_service.pb.swift */; };
 		BFFB1A521A48FD9100CCFFC3 /* Organization_service.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFB1A511A48FD9100CCFFC3 /* Organization_service.pb.swift */; };
@@ -68,6 +69,7 @@
 		BFCE357B1A4A23AE00D56AE2 /* UnknownFieldSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnknownFieldSet.swift; sourceTree = "<group>"; };
 		BFCE357C1A4A23AE00D56AE2 /* UnknownFieldSetBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnknownFieldSetBuilder.swift; sourceTree = "<group>"; };
 		BFCE357D1A4A23AE00D56AE2 /* WireFormat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WireFormat.swift; sourceTree = "<group>"; };
+		BFDD6F031A5EE56800A648FC /* Search_service.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Search_service.pb.swift; sourceTree = "<group>"; };
 		BFEED5DE1A5AF55F00C19A11 /* Profile_service.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile_service.pb.swift; sourceTree = "<group>"; };
 		BFFB198F1A47696200CCFFC3 /* User_service.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User_service.pb.swift; sourceTree = "<group>"; };
 		BFFB1A511A48FD9100CCFFC3 /* Organization_service.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Organization_service.pb.swift; sourceTree = "<group>"; };
@@ -113,6 +115,7 @@
 		BFC6CEF11A44B58B0081F45B /* ProtobufRegistry */ = {
 			isa = PBXGroup;
 			children = (
+				BFDD6F031A5EE56800A648FC /* Search_service.pb.swift */,
 				BFEED5DE1A5AF55F00C19A11 /* Profile_service.pb.swift */,
 				BFCE356F1A4A23AE00D56AE2 /* runtime-pb-swift */,
 				BFFB1A511A48FD9100CCFFC3 /* Organization_service.pb.swift */,
@@ -298,6 +301,7 @@
 				BFCE357F1A4A23AE00D56AE2 /* CodedInputStream.swift in Sources */,
 				BFCE35821A4A23AE00D56AE2 /* Descriptor.pb.swift in Sources */,
 				BFCE35881A4A23AE00D56AE2 /* SwiftDescriptor.pb.swift in Sources */,
+				BFDD6F041A5EE56800A648FC /* Search_service.pb.swift in Sources */,
 				BFCE35811A4A23AE00D56AE2 /* ConcreateExtensionField.swift in Sources */,
 				BFCE35891A4A23AE00D56AE2 /* UnknownFieldSet.swift in Sources */,
 				BFC6CF701A44BE390081F45B /* Response_registry.pb.swift in Sources */,

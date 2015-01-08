@@ -29,6 +29,18 @@ message UserService {
         }
     }
 
+    message GetUser {
+        message Request {
+            oneof lookup_key {
+                string email = 1;
+            }
+        }
+
+        message Response {
+            optional Containers.User user = 1;
+        }
+    }
+
     message ValidUser {
         message Request {
             optional string user_id = 1;

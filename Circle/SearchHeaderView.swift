@@ -90,6 +90,8 @@ class SearchHeaderView: UIView {
     // MARK: - IBActions
     
     @IBAction func cancelButtonTapped(sender: AnyObject!) {
+        hideCancelButton()
+        searchTextField.text = ""
         searchTextField.resignFirstResponder()
     }
 }
