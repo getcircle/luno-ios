@@ -16,9 +16,7 @@
 		8F0004A51A2419730096477A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F0004A31A2419730096477A /* LaunchScreen.xib */; };
 		8F0004B11A2419730096477A /* CircleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0004B01A2419730096477A /* CircleTests.swift */; };
 		8F0004BB1A241BDE0096477A /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0004BA1A241BDE0096477A /* UIColorExtension.swift */; };
-		8F02B1F71A53DEF500A1A307 /* ProfileViewAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F02B1F61A53DEF500A1A307 /* ProfileViewAnimator.swift */; };
 		8F02B1FC1A54A08000A1A307 /* RootNavigationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F02B1FB1A54A08000A1A307 /* RootNavigationDelegate.swift */; };
-		8F22CB731A264A8A0026376E /* MainTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F22CB721A264A8A0026376E /* MainTabViewController.swift */; };
 		8F22CB771A2661890026376E /* AppDelegateAppearanceExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F22CB761A2661890026376E /* AppDelegateAppearanceExtension.swift */; };
 		8F22CBE01A27A8E60026376E /* ProfileHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F22CBDE1A27A8E60026376E /* ProfileHeaderCollectionReusableView.swift */; };
 		8F22CBE11A27A8E60026376E /* ProfileHeaderCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F22CBDF1A27A8E60026376E /* ProfileHeaderCollectionReusableView.xib */; };
@@ -193,9 +191,7 @@
 		8F0004AF1A2419730096477A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8F0004B01A2419730096477A /* CircleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleTests.swift; sourceTree = "<group>"; };
 		8F0004BA1A241BDE0096477A /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
-		8F02B1F61A53DEF500A1A307 /* ProfileViewAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewAnimator.swift; sourceTree = "<group>"; };
 		8F02B1FB1A54A08000A1A307 /* RootNavigationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootNavigationDelegate.swift; sourceTree = "<group>"; };
-		8F22CB721A264A8A0026376E /* MainTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabViewController.swift; sourceTree = "<group>"; };
 		8F22CB761A2661890026376E /* AppDelegateAppearanceExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegateAppearanceExtension.swift; sourceTree = "<group>"; };
 		8F22CB7A1A268C040026376E /* Circle-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Circle-Bridging-Header.h"; sourceTree = "<group>"; };
 		8F22CBDE1A27A8E60026376E /* ProfileHeaderCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileHeaderCollectionReusableView.swift; sourceTree = "<group>"; };
@@ -375,7 +371,6 @@
 			children = (
 				8F22CBF61A29A8EB0026376E /* AuthViewController.swift */,
 				8F00049C1A2419730096477A /* DetailViewController.swift */,
-				8F22CB721A264A8A0026376E /* MainTabViewController.swift */,
 				8FD907F41A5F91020025A17B /* ProfileViewController.swift */,
 				8F00049A1A2419730096477A /* ProfilesViewController.swift */,
 				8FF297FC1A4A4DCA00306CFC /* SearchViewController.swift */,
@@ -466,7 +461,6 @@
 		8F02B1F21A53DEBB00A1A307 /* Animators */ = {
 			isa = PBXGroup;
 			children = (
-				8F02B1F61A53DEF500A1A307 /* ProfileViewAnimator.swift */,
 			);
 			name = Animators;
 			sourceTree = "<group>";
@@ -878,9 +872,7 @@
 				8F22CBF81A29A8EB0026376E /* AuthViewController.swift in Sources */,
 				8FF298531A4E306600306CFC /* CenterAlignFlowLayout.swift in Sources */,
 				8F22CBE31A27AE9B0026376E /* UIImageViewExtension.swift in Sources */,
-				8F02B1F71A53DEF500A1A307 /* ProfileViewAnimator.swift in Sources */,
 				8F4805ED1A5DFEE400273731 /* ProfilesCollectionViewDelegate.swift in Sources */,
-				8F22CB731A264A8A0026376E /* MainTabViewController.swift in Sources */,
 				BFB7918B1A2C3C860048E8FB /* SpringFlowLayout.swift in Sources */,
 				8F22CBF51A2865030026376E /* ProfileDataSource.swift in Sources */,
 				8F22CB771A2661890026376E /* AppDelegateAppearanceExtension.swift in Sources */,
