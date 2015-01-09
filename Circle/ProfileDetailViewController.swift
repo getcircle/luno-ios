@@ -1,5 +1,5 @@
 //
-//  ProfileViewController.swift
+//  ProfileDetailViewController.swift
 //  Circle
 //
 //  Created by Ravi Rani on 1/8/15.
@@ -9,12 +9,12 @@
 import UIKit
 import ProtobufRegistry
 
-class ProfileViewController: DetailViewController {
+class ProfileDetailViewController: DetailViewController {
 
     var profile: ProfileService.Containers.Profile!
 
     override func viewDidLoad() {
-        (dataSource as ProfileDataSource).profile = profile
+        (dataSource as ProfileDetailDataSource).profile = profile
         super.viewDidLoad()
     }
 
@@ -26,10 +26,10 @@ class ProfileViewController: DetailViewController {
     // MARK: Collection View delegate
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        let dataSource = collectionView.dataSource as ProfileDataSource
+        let dataSource = collectionView.dataSource as ProfileDetailDataSource
         switch dataSource.typeOfCell(indexPath) {
         case .Manager:
-            let profileVC = ProfileViewController()
+            let profileVC = ProfileDetailViewController()
             profileVC.profile = dataSource.manager
             navigationController?.pushViewController(profileVC, animated: true)
 
@@ -47,7 +47,7 @@ class ProfileViewController: DetailViewController {
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
         
-        if let profileHeaderView = (collectionView!.dataSource as ProfileDataSource).profileHeaderView {
+        if let profileHeaderView = (collectionView!.dataSource as ProfileDetailDataSource).profileHeaderView {
             let contentOffset = scrollView.contentOffset
             let minOffsetToMakeChanges: CGFloat = 20.0
             

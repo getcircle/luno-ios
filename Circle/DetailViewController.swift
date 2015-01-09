@@ -51,7 +51,7 @@ class DetailViewController: UIViewController, UICollectionViewDelegate, MFMailCo
         collectionView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
         
         // Data Source
-        dataSource = ProfileDataSource()
+        dataSource = ProfileDetailDataSource()
         collectionView.dataSource = dataSource
         // Delegate
         delegate = ProfileCollectionViewDelegate()

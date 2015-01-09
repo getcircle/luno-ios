@@ -12,34 +12,35 @@ import ProtobufRegistry
 class SearchLandingDataSource: CardDataSource {
     
     override func loadData(completionHandler: (error: NSError?) -> Void) {
+        addAdditionalData()
         completionHandler(error: nil)
     }
     
-//    private func addAdditionalData() {
-//        // THIS FUNCTION WILL BE REMOVED COMPLETELY AFTER THE BACKEND CHANGES
-//        // SO IGNORE THE IMPLMENTATION
-//        
-//        var tagsCard = Card(cardType: .Tags, title: "Tags")
-//        tagsCard.contentCount = 30
-//        var tags = [[String: String]]()
-//        tags.append(["name": "Python"])
-//        tags.append(["name": "Startups"])
-//        tags.append(["name": "Investing"])
-//        tags.append(["name": "iOS"])
-//        tags.append(["name": "Software Development"])
-//        tags.append(["name": "Marketing"])
-//        tagsCard.content.append(tags)
-//        appendCard(tagsCard)
-//        
-//        var locationsCard = Card(cardType: .Locations, title: "Locations")
-//        locationsCard.contentCount = 6
-//        // Once we have the backend in place, these would be Location model objects
-//        locationsCard.content.append(["name": "San Francisco, CA", "address": "155 5th Street, 7th Floor", "count": "375"])
-//        locationsCard.content.append(["name": "Nashville, TN", "address": "Cummins Station", "count": "48"])
-//        locationsCard.content.append(["name": "London, UK", "address": "344-354 Gray's Inn Road", "count": "18"])
-//        appendCard(locationsCard)
-//    }
-//    
+    private func addAdditionalData() {
+        // THIS FUNCTION WILL BE REMOVED COMPLETELY AFTER THE BACKEND CHANGES
+        // SO IGNORE THE IMPLMENTATION
+        
+        var tagsCard = Card(cardType: .Tags, title: "Tags")
+        tagsCard.contentCount = 30
+        var tags = [[String: String]]()
+        tags.append(["name": "Python"])
+        tags.append(["name": "Startups"])
+        tags.append(["name": "Investing"])
+        tags.append(["name": "iOS"])
+        tags.append(["name": "Software Development"])
+        tags.append(["name": "Marketing"])
+        tagsCard.content.append(tags)
+        appendCard(tagsCard)
+        
+        var locationsCard = Card(cardType: .Locations, title: "Locations")
+        locationsCard.contentCount = 6
+        // Once we have the backend in place, these would be Location model objects
+        locationsCard.content.append(["name": "San Francisco, CA", "address": "155 5th Street, 7th Floor", "count": "375"])
+        locationsCard.content.append(["name": "Nashville, TN", "address": "Cummins Station", "count": "48"])
+        locationsCard.content.append(["name": "London, UK", "address": "344-354 Gray's Inn Road", "count": "18"])
+        appendCard(locationsCard)
+    }
+//
 //    private func setProfiles(profiles: [ProfileService.Containers.Profile], completionHandler: (error: NSError?) -> Void) {
 //        // THIS FUNCTION WILL BE REMOVED COMPLETELY AFTER THE BACKEND CHANGES
 //        // SO IGNORE THE IMPLMENTATION

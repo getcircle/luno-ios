@@ -110,9 +110,9 @@ class SearchViewController: UIViewController, UICollectionViewDelegate, UITextFi
         
         case .People, .Birthdays:
             if let profile = dataSource.contentAtIndexPath(indexPath)? as? ProfileService.Containers.Profile {
-                var profileViewController = ProfileViewController()
-                profileViewController.profile = profile
-                navigationController?.pushViewController(profileViewController, animated: true)
+                var profileDetailViewController = ProfileDetailViewController()
+                profileDetailViewController.profile = profile
+                navigationController?.pushViewController(profileDetailViewController, animated: true)
             }
             break
             
@@ -132,7 +132,7 @@ class SearchViewController: UIViewController, UICollectionViewDelegate, UITextFi
     // MARK: - IBActions
     
     @IBAction func showLoggedInUserProfile(sender: AnyObject!) {
-//        let profileVC = ProfileViewController()
+//        let profileVC = ProfileDetailViewController()
 //        profileVC.showCloseOrBackButton = true
 //        profileVC.profile = AuthViewController.getLoggedInUserProfile()
 //        let navController = UINavigationController(rootViewController: profileVC)

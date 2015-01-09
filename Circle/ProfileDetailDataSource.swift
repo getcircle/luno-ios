@@ -1,5 +1,5 @@
 //
-//  ProfileDataSource.swift
+//  ProfileDetailDataSource.swift
 //  Circle
 //
 //  Created by Ravi Rani on 11/28/14.
@@ -38,7 +38,7 @@ struct SectionItem {
     }
 }
 
-class ProfileDataSource: CardDataSource {
+class ProfileDetailDataSource: CardDataSource {
 
     enum CellType: String {
         case Email = "email"
