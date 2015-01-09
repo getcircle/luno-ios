@@ -49,14 +49,7 @@ class DetailViewController: UIViewController, UICollectionViewDelegate, MFMailCo
         collectionView = UICollectionView(frame: view.frame, collectionViewLayout: layout)
         view.addSubview(collectionView)
         collectionView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
-        
-        // Data Source
-        dataSource = ProfileDetailDataSource()
-        collectionView.dataSource = dataSource
-        // Delegate
-        delegate = ProfileCollectionViewDelegate()
-        collectionView.delegate = delegate
-        
+
         // Activity View
         activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
         activityIndicatorView.setTranslatesAutoresizingMaskIntoConstraints(true)
@@ -156,7 +149,17 @@ class DetailViewController: UIViewController, UICollectionViewDelegate, MFMailCo
 
     // MARK: - Configuration
     
-    private func configureCollectionView() {
+    /**
+        Configures the collection view for the details - specifically sets the correct
+        background color, registers the header, sets the collection view delegate.
+    
+        Subclasses must override this to actually set the data source and the delegate. So, 
+        any custom implmentation should preceed the superclass function call.
+    */
+    func configureCollectionView() {
+        assert(dataSource != nil, { () -> String in
+            return "Data source must be set before calling this function"
+        }())
         collectionView!.backgroundColor = UIColor.viewBackgroundColor()
         collectionView!.keyboardDismissMode = .OnDrag
         (collectionView!.dataSource as CardDataSource).registerCardHeader(collectionView!)

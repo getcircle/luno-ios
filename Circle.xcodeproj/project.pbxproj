@@ -56,6 +56,7 @@
 		8FCC95CE1A52828B00421E65 /* ProfileCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8FCC95CC1A52828B00421E65 /* ProfileCollectionViewCell.xib */; };
 		8FD041A21A2C03AA00FE28EF /* UIFontExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD041A11A2C03AA00FE28EF /* UIFontExtention.swift */; };
 		8FD907F51A5F91020025A17B /* ProfileDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD907F41A5F91020025A17B /* ProfileDetailViewController.swift */; };
+		8FD907F71A6033310025A17B /* LocationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD907F61A6033310025A17B /* LocationDetailViewController.swift */; };
 		8FEB032B1A5F69020081BB65 /* LocationDetailDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FEB032A1A5F69020081BB65 /* LocationDetailDataSource.swift */; };
 		8FEE88471A411BA90011CE4A /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FEE88461A411BA90011CE4A /* UIViewControllerExtension.swift */; };
 		8FEE88601A437DE40011CE4A /* Alamofire.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 8FEE885B1A437DB10011CE4A /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -231,6 +232,7 @@
 		8FCC95CC1A52828B00421E65 /* ProfileCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileCollectionViewCell.xib; sourceTree = "<group>"; };
 		8FD041A11A2C03AA00FE28EF /* UIFontExtention.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIFontExtention.swift; sourceTree = "<group>"; };
 		8FD907F41A5F91020025A17B /* ProfileDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileDetailViewController.swift; sourceTree = "<group>"; };
+		8FD907F61A6033310025A17B /* LocationDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationDetailViewController.swift; sourceTree = "<group>"; };
 		8FEB032A1A5F69020081BB65 /* LocationDetailDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationDetailDataSource.swift; sourceTree = "<group>"; };
 		8FEE88461A411BA90011CE4A /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		8FEE88491A4371A80011CE4A /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = ../ThirdParty/Alamofire/Alamofire.xcodeproj; sourceTree = "<group>"; };
@@ -371,6 +373,7 @@
 			children = (
 				8F22CBF61A29A8EB0026376E /* AuthViewController.swift */,
 				8F00049C1A2419730096477A /* DetailViewController.swift */,
+				8FD907F61A6033310025A17B /* LocationDetailViewController.swift */,
 				8FD907F41A5F91020025A17B /* ProfileDetailViewController.swift */,
 				8F00049A1A2419730096477A /* ProfilesViewController.swift */,
 				8FF297FC1A4A4DCA00306CFC /* SearchViewController.swift */,
@@ -868,6 +871,7 @@
 				8F2D7DF01A5B2412001D36B0 /* ProfilesDataSource.swift in Sources */,
 				8FC7BB3B1A58A6E2005BDDDB /* CardDataSource.swift in Sources */,
 				8F65C4FE1A51222100C7F3E6 /* LocationCollectionViewCell.swift in Sources */,
+				8FD907F71A6033310025A17B /* LocationDetailViewController.swift in Sources */,
 				BFEDB1431A2A8CA700250165 /* UICollectionViewFlowLayoutExtension.swift in Sources */,
 				8F22CBF81A29A8EB0026376E /* AuthViewController.swift in Sources */,
 				8FF298531A4E306600306CFC /* CenterAlignFlowLayout.swift in Sources */,

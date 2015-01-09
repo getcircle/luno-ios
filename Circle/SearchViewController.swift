@@ -116,6 +116,10 @@ class SearchViewController: UIViewController, UICollectionViewDelegate, UITextFi
             }
             break
             
+        case .Locations:
+            var locationDetailViewController = LocationDetailViewController()
+            navigationController?.pushViewController(locationDetailViewController, animated: true)
+            
         default:
             performSegueWithIdentifier("showListOfPeople", sender: collectionView)
             

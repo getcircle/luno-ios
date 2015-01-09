@@ -23,7 +23,20 @@ class ProfileDetailViewController: DetailViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    // MARK: Collection View delegate
+    // MARK: - Configuration
+    override func configureCollectionView() {
+        // Data Source
+        dataSource = ProfileDetailDataSource()
+        collectionView.dataSource = dataSource
+
+        // Delegate
+        delegate = ProfileCollectionViewDelegate()
+        collectionView.delegate = delegate
+        
+        super.configureCollectionView()
+    }
+
+    // MARK: - Collection View delegate
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let dataSource = collectionView.dataSource as ProfileDetailDataSource
