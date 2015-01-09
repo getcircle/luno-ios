@@ -33,7 +33,7 @@ message ProfileService {
 
         message Stats {
             optional string id = 1;
-            optional int32 count = 2;
+            optional string count = 2;
         }
 
     }

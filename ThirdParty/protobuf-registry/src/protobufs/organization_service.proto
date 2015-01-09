@@ -37,7 +37,7 @@ message OrganizationService {
             optional string region = 7;
             optional string postal_code = 8;
             optional string country_code = 9;
-            optional int32 profile_count = 10;
+            optional string profile_count = 10;
         }
 
     }

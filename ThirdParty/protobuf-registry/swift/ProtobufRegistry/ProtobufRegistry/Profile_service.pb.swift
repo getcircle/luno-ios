@@ -1116,7 +1116,7 @@ final public class ProfileService : GeneratedMessage {
           public private(set) var id:String = ""
 
           public private(set) var hasCount:Bool = false
-          public private(set) var count:Int32 = Int32(0)
+          public private(set) var count:String = ""
 
           required public init() {
                super.init()
@@ -1129,7 +1129,7 @@ final public class ProfileService : GeneratedMessage {
               output.writeString(1, value:id)
             }
             if hasCount {
-              output.writeInt32(2, value:count)
+              output.writeString(2, value:count)
             }
             unknownFields.writeToCodedOutputStream(output)
           }
@@ -1144,7 +1144,7 @@ final public class ProfileService : GeneratedMessage {
               size += WireFormat.computeStringSize(1, value:id)
             }
             if hasCount {
-              size += WireFormat.computeInt32Size(2, value:count)
+              size += WireFormat.computeStringSize(2, value:count)
             }
             size += unknownFields.serializedSize()
             memoizedSerializedSize = size
@@ -1258,7 +1258,7 @@ final public class ProfileService : GeneratedMessage {
                     return builderResult.hasCount
                }
           }
-          public var count:Int32 {
+          public var count:String {
                get {
                     return builderResult.count
                }
@@ -1269,7 +1269,7 @@ final public class ProfileService : GeneratedMessage {
           }
           public func clearCount() -> ProfileService.Containers.StatsBuilder{
                builderResult.hasCount = false
-               builderResult.count = Int32(0)
+               builderResult.count = ""
                return self
           }
           override public var internalGetResult:GeneratedMessage {
@@ -1320,8 +1320,8 @@ final public class ProfileService : GeneratedMessage {
               case 10 :
                 id = input.readString()
 
-              case 16 :
-                count = input.readInt32()
+              case 18 :
+                count = input.readString()
 
               default:
                 if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
