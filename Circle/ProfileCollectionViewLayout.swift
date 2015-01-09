@@ -75,6 +75,6 @@ class ProfileCollectionViewLayout: UICollectionViewFlowLayout {
             }
         }
         
-        return addSeparatorsToCells(attributes)
+        return attributes
     }
 }
