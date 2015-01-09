@@ -44,6 +44,7 @@ message ProfileServiceResponses {
         optional main.profile_service.ProfileService.GetProfiles.Response get_profiles = 307;
         optional main.profile_service.ProfileService.GetDirectReports.Response get_direct_reports = 308;
         optional main.profile_service.ProfileService.GetPeers.Response get_peers = 309;
+        optional main.profile_service.ProfileService.GetProfileStats.Response get_profile_stats = 310;
     }
 }
 

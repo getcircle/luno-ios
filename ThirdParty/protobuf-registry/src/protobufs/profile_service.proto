@@ -31,6 +31,11 @@ message ProfileService {
             optional string name = 2;
         }
 
+        message Stats {
+            optional string id = 1;
+            optional int32 count = 2;
+        }
+
     }
 
     // MARK: - Actions
@@ -172,6 +177,18 @@ message ProfileService {
         message Response {
             repeated Containers.Profile profiles = 2;
         }
+    }
+
+    message GetProfileStats {
+
+        message Request {
+            repeated string address_ids = 1;
+        }
+
+        message Response {
+            repeated Containers.Stats stats = 1;
+        }
+
     }
 
 }

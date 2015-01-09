@@ -1093,6 +1093,7 @@ final public class OrganizationService : GeneratedMessage {
                  case "region": return region
                  case "postal_code": return postal_code
                  case "country_code": return country_code
+                 case "profile_count": return profile_count
                  default: return nil
                  }
           }
@@ -1123,6 +1124,9 @@ final public class OrganizationService : GeneratedMessage {
 
           public private(set) var hasCountryCode:Bool = false
           public private(set) var country_code:String = ""
+
+          public private(set) var hasProfileCount:Bool = false
+          public private(set) var profile_count:Int32 = Int32(0)
 
           required public init() {
                super.init()
@@ -1157,6 +1161,9 @@ final public class OrganizationService : GeneratedMessage {
             }
             if hasCountryCode {
               output.writeString(9, value:country_code)
+            }
+            if hasProfileCount {
+              output.writeInt32(10, value:profile_count)
             }
             unknownFields.writeToCodedOutputStream(output)
           }
@@ -1193,6 +1200,9 @@ final public class OrganizationService : GeneratedMessage {
             }
             if hasCountryCode {
               size += WireFormat.computeStringSize(9, value:country_code)
+            }
+            if hasProfileCount {
+              size += WireFormat.computeInt32Size(10, value:profile_count)
             }
             size += unknownFields.serializedSize()
             memoizedSerializedSize = size
@@ -1262,6 +1272,9 @@ final public class OrganizationService : GeneratedMessage {
             if hasCountryCode {
               output += "\(indent) country_code: \(country_code) \n"
             }
+            if hasProfileCount {
+              output += "\(indent) profile_count: \(profile_count) \n"
+            }
             unknownFields.writeDescriptionTo(&output, indent:indent)
           }
           override public var hashValue:Int {
@@ -1293,6 +1306,9 @@ final public class OrganizationService : GeneratedMessage {
                   }
                   if hasCountryCode {
                      hashCode = (hashCode &* 31) &+ country_code.hashValue
+                  }
+                  if hasProfileCount {
+                     hashCode = (hashCode &* 31) &+ profile_count.hashValue
                   }
                   hashCode = (hashCode &* 31) &+  unknownFields.hashValue
                   return hashCode
@@ -1495,6 +1511,25 @@ final public class OrganizationService : GeneratedMessage {
                builderResult.country_code = ""
                return self
           }
+          public var hasProfileCount:Bool {
+               get {
+                    return builderResult.hasProfileCount
+               }
+          }
+          public var profile_count:Int32 {
+               get {
+                    return builderResult.profile_count
+               }
+               set (value) {
+                   builderResult.hasProfileCount = true
+                   builderResult.profile_count = value
+               }
+          }
+          public func clearProfileCount() -> OrganizationService.Containers.AddressBuilder{
+               builderResult.hasProfileCount = false
+               builderResult.profile_count = Int32(0)
+               return self
+          }
           override public var internalGetResult:GeneratedMessage {
                get {
                   return builderResult
@@ -1546,6 +1581,9 @@ final public class OrganizationService : GeneratedMessage {
             if other.hasCountryCode {
                  country_code = other.country_code
             }
+            if other.hasProfileCount {
+                 profile_count = other.profile_count
+            }
             mergeUnknownFields(other.unknownFields)
             return self
           }
@@ -1587,6 +1625,9 @@ final public class OrganizationService : GeneratedMessage {
 
               case 74 :
                 country_code = input.readString()
+
+              case 80 :
+                profile_count = input.readInt32()
 
               default:
                 if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {

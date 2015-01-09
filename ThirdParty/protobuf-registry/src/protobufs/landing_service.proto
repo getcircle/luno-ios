@@ -1,5 +1,6 @@
 package main.landing_service;
 
+import "protobufs/organization_service.proto";
 import "protobufs/profile_service.proto";
 
 message LandingService {
@@ -8,9 +9,19 @@ message LandingService {
 
     message Containers {
 
+        // "Category" containers should contain: "title", "content", and
+        // "content_key" fields. The type for "content" can be specific to the
+        // Category
+
         message ProfileCategory {
             optional string title = 1;
             repeated main.profile_service.ProfileService.Containers.Profile content = 2;
+            optional string content_key = 3;
+        }
+
+        message AddressCategory {
+            optional string title = 1;
+            repeated main.organization_service.OrganizationService.Containers.Address content = 2;
             optional string content_key = 3;
         }
 
@@ -28,6 +39,7 @@ message LandingService {
 
         message Response {
             repeated Containers.ProfileCategory profile_categories = 1;
+            repeated Containers.AddressCategory address_categories = 2;
         }
 
     }

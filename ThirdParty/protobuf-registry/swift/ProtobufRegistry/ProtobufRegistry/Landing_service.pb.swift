@@ -14,6 +14,7 @@ public struct LandingServiceRoot {
   init() {
     extensionRegistry = ExtensionRegistry()
     registerAllExtensions(extensionRegistry)
+    OrganizationServiceRoot.sharedInstance.registerAllExtensions(extensionRegistry)
     ProfileServiceRoot.sharedInstance.registerAllExtensions(extensionRegistry)
   }
   public func registerAllExtensions(registry:ExtensionRegistry) {
@@ -305,6 +306,281 @@ final public class LandingService : GeneratedMessage {
 
               case 18 :
                 var subBuilder = ProfileService.Containers.Profile.builder()
+                input.readMessage(subBuilder,extensionRegistry:extensionRegistry)
+                content += [subBuilder.buildPartial()]
+
+              case 26 :
+                content_key = input.readString()
+
+              default:
+                if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
+                   unknownFields = unknownFieldsBuilder.build()
+                   return self
+                }
+              }
+            }
+          }
+        }
+
+
+
+      //Nested type declaration end
+
+
+
+      //Nested type declaration start
+
+        final public class AddressCategory : GeneratedMessage {
+          public subscript(key: String) -> AnyObject? {
+                 switch key {
+                 case "title": return title
+                 case "content_key": return content_key
+                 default: return nil
+                 }
+          }
+
+          public private(set) var hasTitle:Bool = false
+          public private(set) var title:String = ""
+
+          public private(set) var hasContentKey:Bool = false
+          public private(set) var content_key:String = ""
+
+          public private(set) var content:Array<OrganizationService.Containers.Address>  = Array<OrganizationService.Containers.Address>()
+          required public init() {
+               super.init()
+          }
+          override public func isInitialized() -> Bool {
+           return true
+          }
+          override public func writeToCodedOutputStream(output:CodedOutputStream) {
+            if hasTitle {
+              output.writeString(1, value:title)
+            }
+            for oneElementcontent in content {
+                output.writeMessage(2, value:oneElementcontent)
+            }
+            if hasContentKey {
+              output.writeString(3, value:content_key)
+            }
+            unknownFields.writeToCodedOutputStream(output)
+          }
+          override public func serializedSize() -> Int32 {
+            var size:Int32 = memoizedSerializedSize
+            if size != -1 {
+             return size
+            }
+
+            size = 0
+            if hasTitle {
+              size += WireFormat.computeStringSize(1, value:title)
+            }
+            for oneElementcontent in content {
+                size += WireFormat.computeMessageSize(2, value:oneElementcontent)
+            }
+            if hasContentKey {
+              size += WireFormat.computeStringSize(3, value:content_key)
+            }
+            size += unknownFields.serializedSize()
+            memoizedSerializedSize = size
+            return size
+          }
+          public class func parseFromData(data:[Byte]) -> LandingService.Containers.AddressCategory {
+            return LandingService.Containers.AddressCategory.builder().mergeFromData(data).build()
+          }
+          public class func parseFromData(data:[Byte], extensionRegistry:ExtensionRegistry) -> LandingService.Containers.AddressCategory {
+            return LandingService.Containers.AddressCategory.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
+          }
+          public class func parseFromInputStream(input:NSInputStream) -> LandingService.Containers.AddressCategory {
+            return LandingService.Containers.AddressCategory.builder().mergeFromInputStream(input).build()
+          }
+          public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->LandingService.Containers.AddressCategory {
+            return LandingService.Containers.AddressCategory.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
+          }
+          public class func parseFromCodedInputStream(input:CodedInputStream) -> LandingService.Containers.AddressCategory {
+            return LandingService.Containers.AddressCategory.builder().mergeFromCodedInputStream(input).build()
+          }
+          public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> LandingService.Containers.AddressCategory {
+            return LandingService.Containers.AddressCategory.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
+          }
+          public class func builder() -> LandingService.Containers.AddressCategoryBuilder {
+            return LandingService.Containers.AddressCategory.classBuilder() as LandingService.Containers.AddressCategoryBuilder
+          }
+          public func builder() -> LandingService.Containers.AddressCategoryBuilder {
+            return classBuilder() as LandingService.Containers.AddressCategoryBuilder
+          }
+          public override class func classBuilder() -> MessageBuilder {
+            return LandingService.Containers.AddressCategoryBuilder()
+          }
+          public override func classBuilder() -> MessageBuilder {
+            return LandingService.Containers.AddressCategory.builder()
+          }
+          public func toBuilder() -> LandingService.Containers.AddressCategoryBuilder {
+            return LandingService.Containers.AddressCategory.builderWithPrototype(self)
+          }
+          public class func builderWithPrototype(prototype:LandingService.Containers.AddressCategory) -> LandingService.Containers.AddressCategoryBuilder {
+            return LandingService.Containers.AddressCategory.builder().mergeFrom(prototype)
+          }
+          override public func writeDescriptionTo(inout output:String, indent:String) {
+            if hasTitle {
+              output += "\(indent) title: \(title) \n"
+            }
+            var contentElementIndex:Int = 0
+            for oneElementcontent in content {
+                output += "\(indent) content[\(contentElementIndex)] {\n"
+                oneElementcontent.writeDescriptionTo(&output, indent:"\(indent)  ")
+                output += "\(indent)}\n"
+                contentElementIndex++
+            }
+            if hasContentKey {
+              output += "\(indent) content_key: \(content_key) \n"
+            }
+            unknownFields.writeDescriptionTo(&output, indent:indent)
+          }
+          override public var hashValue:Int {
+              get {
+                  var hashCode:Int = 7
+                  if hasTitle {
+                     hashCode = (hashCode &* 31) &+ title.hashValue
+                  }
+                  for oneElementcontent in content {
+                      hashCode = (hashCode &* 31) &+ oneElementcontent.hashValue
+                  }
+                  if hasContentKey {
+                     hashCode = (hashCode &* 31) &+ content_key.hashValue
+                  }
+                  hashCode = (hashCode &* 31) &+  unknownFields.hashValue
+                  return hashCode
+              }
+          }
+
+
+          //Meta information declaration start
+
+          override public class func className() -> String {
+              return "LandingService.Containers.AddressCategory"
+          }
+          override public func className() -> String {
+              return "LandingService.Containers.AddressCategory"
+          }
+          override public func classMetaType() -> GeneratedMessage.Type {
+              return LandingService.Containers.AddressCategory.self
+          }
+
+
+          //Meta information declaration end
+
+        }
+
+        final public class AddressCategoryBuilder : GeneratedMessageBuilder {
+          private var builderResult:LandingService.Containers.AddressCategory
+
+          required override public init () {
+             builderResult = LandingService.Containers.AddressCategory()
+             super.init()
+          }
+          public var hasTitle:Bool {
+               get {
+                    return builderResult.hasTitle
+               }
+          }
+          public var title:String {
+               get {
+                    return builderResult.title
+               }
+               set (value) {
+                   builderResult.hasTitle = true
+                   builderResult.title = value
+               }
+          }
+          public func clearTitle() -> LandingService.Containers.AddressCategoryBuilder{
+               builderResult.hasTitle = false
+               builderResult.title = ""
+               return self
+          }
+          public var content:Array<OrganizationService.Containers.Address> {
+               get {
+                   return builderResult.content
+               }
+               set (value) {
+                   builderResult.content = value
+               }
+          }
+          public func clearContent() -> LandingService.Containers.AddressCategoryBuilder {
+            builderResult.content.removeAll(keepCapacity: false)
+            return self
+          }
+          public var hasContentKey:Bool {
+               get {
+                    return builderResult.hasContentKey
+               }
+          }
+          public var content_key:String {
+               get {
+                    return builderResult.content_key
+               }
+               set (value) {
+                   builderResult.hasContentKey = true
+                   builderResult.content_key = value
+               }
+          }
+          public func clearContentKey() -> LandingService.Containers.AddressCategoryBuilder{
+               builderResult.hasContentKey = false
+               builderResult.content_key = ""
+               return self
+          }
+          override public var internalGetResult:GeneratedMessage {
+               get {
+                  return builderResult
+               }
+          }
+          public override func clear() -> LandingService.Containers.AddressCategoryBuilder {
+            builderResult = LandingService.Containers.AddressCategory()
+            return self
+          }
+          public override func clone() -> LandingService.Containers.AddressCategoryBuilder {
+            return LandingService.Containers.AddressCategory.builderWithPrototype(builderResult)
+          }
+          public override func build() -> LandingService.Containers.AddressCategory {
+               checkInitialized()
+               return buildPartial()
+          }
+          public func buildPartial() -> LandingService.Containers.AddressCategory {
+            var returnMe:LandingService.Containers.AddressCategory = builderResult
+            return returnMe
+          }
+          public func mergeFrom(other:LandingService.Containers.AddressCategory) -> LandingService.Containers.AddressCategoryBuilder {
+            if (other == LandingService.Containers.AddressCategory()) {
+             return self
+            }
+            if other.hasTitle {
+                 title = other.title
+            }
+            if !other.content.isEmpty  {
+               builderResult.content += other.content
+            }
+            if other.hasContentKey {
+                 content_key = other.content_key
+            }
+            mergeUnknownFields(other.unknownFields)
+            return self
+          }
+          public override func mergeFromCodedInputStream(input:CodedInputStream) ->LandingService.Containers.AddressCategoryBuilder {
+               return mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
+          }
+          public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> LandingService.Containers.AddressCategoryBuilder {
+            var unknownFieldsBuilder:UnknownFieldSetBuilder = UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
+            while (true) {
+              var tag = input.readTag()
+              switch tag {
+              case 0: 
+                self.unknownFields = unknownFieldsBuilder.build()
+                return self
+
+              case 10 :
+                title = input.readString()
+
+              case 18 :
+                var subBuilder = OrganizationService.Containers.Address.builder()
                 input.readMessage(subBuilder,extensionRegistry:extensionRegistry)
                 content += [subBuilder.buildPartial()]
 
@@ -737,6 +1013,7 @@ final public class LandingService : GeneratedMessage {
           }
 
           public private(set) var profile_categories:Array<LandingService.Containers.ProfileCategory>  = Array<LandingService.Containers.ProfileCategory>()
+          public private(set) var address_categories:Array<LandingService.Containers.AddressCategory>  = Array<LandingService.Containers.AddressCategory>()
           required public init() {
                super.init()
           }
@@ -746,6 +1023,9 @@ final public class LandingService : GeneratedMessage {
           override public func writeToCodedOutputStream(output:CodedOutputStream) {
             for oneElementprofile_categories in profile_categories {
                 output.writeMessage(1, value:oneElementprofile_categories)
+            }
+            for oneElementaddress_categories in address_categories {
+                output.writeMessage(2, value:oneElementaddress_categories)
             }
             unknownFields.writeToCodedOutputStream(output)
           }
@@ -758,6 +1038,9 @@ final public class LandingService : GeneratedMessage {
             size = 0
             for oneElementprofile_categories in profile_categories {
                 size += WireFormat.computeMessageSize(1, value:oneElementprofile_categories)
+            }
+            for oneElementaddress_categories in address_categories {
+                size += WireFormat.computeMessageSize(2, value:oneElementaddress_categories)
             }
             size += unknownFields.serializedSize()
             memoizedSerializedSize = size
@@ -807,6 +1090,13 @@ final public class LandingService : GeneratedMessage {
                 output += "\(indent)}\n"
                 profile_categoriesElementIndex++
             }
+            var address_categoriesElementIndex:Int = 0
+            for oneElementaddress_categories in address_categories {
+                output += "\(indent) address_categories[\(address_categoriesElementIndex)] {\n"
+                oneElementaddress_categories.writeDescriptionTo(&output, indent:"\(indent)  ")
+                output += "\(indent)}\n"
+                address_categoriesElementIndex++
+            }
             unknownFields.writeDescriptionTo(&output, indent:indent)
           }
           override public var hashValue:Int {
@@ -814,6 +1104,9 @@ final public class LandingService : GeneratedMessage {
                   var hashCode:Int = 7
                   for oneElementprofile_categories in profile_categories {
                       hashCode = (hashCode &* 31) &+ oneElementprofile_categories.hashValue
+                  }
+                  for oneElementaddress_categories in address_categories {
+                      hashCode = (hashCode &* 31) &+ oneElementaddress_categories.hashValue
                   }
                   hashCode = (hashCode &* 31) &+  unknownFields.hashValue
                   return hashCode
@@ -857,6 +1150,18 @@ final public class LandingService : GeneratedMessage {
             builderResult.profile_categories.removeAll(keepCapacity: false)
             return self
           }
+          public var address_categories:Array<LandingService.Containers.AddressCategory> {
+               get {
+                   return builderResult.address_categories
+               }
+               set (value) {
+                   builderResult.address_categories = value
+               }
+          }
+          public func clearAddressCategories() -> LandingService.GetCategories.ResponseBuilder {
+            builderResult.address_categories.removeAll(keepCapacity: false)
+            return self
+          }
           override public var internalGetResult:GeneratedMessage {
                get {
                   return builderResult
@@ -884,6 +1189,9 @@ final public class LandingService : GeneratedMessage {
             if !other.profile_categories.isEmpty  {
                builderResult.profile_categories += other.profile_categories
             }
+            if !other.address_categories.isEmpty  {
+               builderResult.address_categories += other.address_categories
+            }
             mergeUnknownFields(other.unknownFields)
             return self
           }
@@ -903,6 +1211,11 @@ final public class LandingService : GeneratedMessage {
                 var subBuilder = LandingService.Containers.ProfileCategory.builder()
                 input.readMessage(subBuilder,extensionRegistry:extensionRegistry)
                 profile_categories += [subBuilder.buildPartial()]
+
+              case 18 :
+                var subBuilder = LandingService.Containers.AddressCategory.builder()
+                input.readMessage(subBuilder,extensionRegistry:extensionRegistry)
+                address_categories += [subBuilder.buildPartial()]
 
               default:
                 if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
@@ -1229,6 +1542,18 @@ public extension LandingService.Containers.ProfileCategory {
         var bytes = [Byte](count: data.length, repeatedValue: 0)
         data.getBytes(&bytes)
         return LandingService.Containers.ProfileCategory.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
+    }
+}
+public extension LandingService.Containers.AddressCategory {
+    class func parseFromNSData(data:NSData) -> LandingService.Containers.AddressCategory {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return LandingService.Containers.AddressCategory.builder().mergeFromData(bytes).build()
+    }
+    class func parseFromNSData(data:NSData, extensionRegistry:ExtensionRegistry) -> LandingService.Containers.AddressCategory {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return LandingService.Containers.AddressCategory.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
     }
 }
 public extension LandingService.Containers {

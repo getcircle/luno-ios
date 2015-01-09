@@ -122,6 +122,11 @@ public var ProfileServiceResponses_get_peers:ConcreateExtensionField {
        return ResponseRegistryRoot.sharedInstance.ProfileServiceResponses_get_peersStatic
    }
 }
+public var ProfileServiceResponses_get_profile_stats:ConcreateExtensionField {
+   get {
+       return ResponseRegistryRoot.sharedInstance.ProfileServiceResponses_get_profile_statsStatic
+   }
+}
 public var SearchServiceResponses_search:ConcreateExtensionField {
    get {
        return ResponseRegistryRoot.sharedInstance.SearchServiceResponses_searchStatic
@@ -163,6 +168,7 @@ public struct ResponseRegistryRoot {
   var ProfileServiceResponses_get_profilesStatic:ConcreateExtensionField
   var ProfileServiceResponses_get_direct_reportsStatic:ConcreateExtensionField
   var ProfileServiceResponses_get_peersStatic:ConcreateExtensionField
+  var ProfileServiceResponses_get_profile_statsStatic:ConcreateExtensionField
   var SearchServiceResponses_searchStatic:ConcreateExtensionField
   var LandingServiceResponses_get_categoriesStatic:ConcreateExtensionField
   public var extensionRegistry:ExtensionRegistry
@@ -192,6 +198,7 @@ public struct ResponseRegistryRoot {
     ProfileServiceResponses_get_profilesStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 307, defaultValue:ProfileService.GetProfiles.Response(), messageOrGroupClass:ProfileService.GetProfiles.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     ProfileServiceResponses_get_direct_reportsStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 308, defaultValue:ProfileService.GetDirectReports.Response(), messageOrGroupClass:ProfileService.GetDirectReports.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     ProfileServiceResponses_get_peersStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 309, defaultValue:ProfileService.GetPeers.Response(), messageOrGroupClass:ProfileService.GetPeers.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
+    ProfileServiceResponses_get_profile_statsStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 310, defaultValue:ProfileService.GetProfileStats.Response(), messageOrGroupClass:ProfileService.GetProfileStats.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     SearchServiceResponses_searchStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 400, defaultValue:SearchService.Search.Response(), messageOrGroupClass:SearchService.Search.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     LandingServiceResponses_get_categoriesStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 500, defaultValue:LandingService.GetCategories.Response(), messageOrGroupClass:LandingService.GetCategories.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     extensionRegistry = ExtensionRegistry()
@@ -228,6 +235,7 @@ public struct ResponseRegistryRoot {
     registry.addExtension(ProfileServiceResponses_get_profilesStatic)
     registry.addExtension(ProfileServiceResponses_get_direct_reportsStatic)
     registry.addExtension(ProfileServiceResponses_get_peersStatic)
+    registry.addExtension(ProfileServiceResponses_get_profile_statsStatic)
     registry.addExtension(SearchServiceResponses_searchStatic)
     registry.addExtension(LandingServiceResponses_get_categoriesStatic)
   }
@@ -647,6 +655,9 @@ final public class ProfileServiceResponses : GeneratedMessage {
   }
   public class func get_peers() -> ConcreateExtensionField {
        return ProfileServiceResponses_get_peers
+  }
+  public class func get_profile_stats() -> ConcreateExtensionField {
+       return ProfileServiceResponses_get_profile_stats
   }
   required public init() {
        super.init()
