@@ -11,6 +11,7 @@ import ProtobufRegistry
 
 typealias GetCategoriesCompletionHandler = (
     profileCategories: Array<LandingService.Containers.ProfileCategory>?,
+    addressCategories: Array<LandingService.Containers.AddressCategory>?,
     error: NSError?
 ) -> Void
 
@@ -29,7 +30,11 @@ extension LandingService {
                 let response = actionResponse?.result.getExtension(
                     LandingServiceRequests_get_categories
                 ) as? LandingService.GetCategories.Response
-                completionHandler(profileCategories: response?.profile_categories, error: nil)
+                completionHandler(
+                    profileCategories: response?.profile_categories,
+                    addressCategories: response?.address_categories,
+                    error: nil
+                )
             }
         }
         

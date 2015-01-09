@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ProtobufRegistry
 
 class LocationCollectionViewCell: CircleCollectionViewCell {
 
@@ -23,10 +24,10 @@ class LocationCollectionViewCell: CircleCollectionViewCell {
     @IBOutlet weak private(set) var numbrOfPeopleLabel: UILabel!
     
     override func setData(data: AnyObject) {
-        if let locationDictionary = data as? [String: String] {
-            locationNameLabel.text = locationDictionary["name"]
-            addressLabel.text = locationDictionary["address"]
-            numbrOfPeopleLabel.text = locationDictionary["count"]
+        if let address = data as? OrganizationService.Containers.Address {
+            locationNameLabel.text = "\(address.city), \(address.region)"
+            addressLabel.text = "\(address.address_1), \(address.address_2)"
+            numbrOfPeopleLabel.text = address.profile_count
         }
     }
 }

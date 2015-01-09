@@ -13,20 +13,28 @@ class SearchLandingDataSource: CardDataSource {
     
     private func parseProfileCategories(profileCategories: Array<LandingService.Containers.ProfileCategory>) {
         for category in profileCategories {
-            if category.content.count > 0 {
-                var categoryCard = Card(cardType: .Group, title: category.title)
-                categoryCard.content.append(category.content as [AnyObject])
-                categoryCard.contentCount = category.content.count
-                appendCard(categoryCard)
-            }
+            var categoryCard = Card(cardType: .Group, title: category.title)
+            categoryCard.content.append(category.content as [AnyObject])
+            categoryCard.contentCount = category.content.count
+            appendCard(categoryCard)
+        }
+    }
+    
+    private func parseAddressCategories(addressCategories: Array<LandingService.Containers.AddressCategory>) {
+        for category in addressCategories {
+            var categoryCard = Card(cardType: .Locations, title: category.title)
+            categoryCard.content.extend(category.content as [AnyObject])
+            categoryCard.contentCount = category.content.count
+            appendCard(categoryCard)
         }
     }
     
     override func loadData(completionHandler: (error: NSError?) -> Void) {
         if let currentProfile = AuthViewController.getLoggedInUserProfile() {
-            LandingService.Actions.getCategories(currentProfile.id) { (profileCategories, error) -> Void in
+            LandingService.Actions.getCategories(currentProfile.id) { (profileCategories, addressCategories, error) -> Void in
                 if error == nil {
                     self.parseProfileCategories(profileCategories!)
+                    self.parseAddressCategories(addressCategories!)
                     completionHandler(error: nil)
                 }
             }
