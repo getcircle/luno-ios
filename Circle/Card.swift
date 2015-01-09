@@ -27,7 +27,6 @@ class Card: Equatable {
         case Group
         case KeyValue
         case Locations
-        case Map
         case Notes
         case People
         case Placeholder
@@ -68,13 +67,6 @@ class Card: Equatable {
                     imageName: "MapPin",
                     classType: LocationCollectionViewCell.self,
                     className: "LocationCollectionViewCell"
-                )
-
-            case Map:
-                return CardTypeInfo(
-                    imageName: "MapPin",
-                    classType: MapCollectionViewCell.self,
-                    className: "MapCollectionViewCell"
                 )
 
             case Notes:

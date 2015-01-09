@@ -21,12 +21,6 @@ class ProfilesDataSource: CardDataSource {
             return
         }
 
-        // Append a Map Card for example
-        var mapCard = Card(cardType: .Map, title: "Map")
-        mapCard.content.append(["dummy_content": "dummy_content"])
-        mapCard.sectionInset = UIEdgeInsetsZero
-        appendCard(mapCard)
-        
         if let currentProfile = AuthViewController.getLoggedInUserProfile() {
             ProfileService.Actions.getProfiles(currentProfile.team_id) { (profiles, error) -> Void in
                 if error == nil {

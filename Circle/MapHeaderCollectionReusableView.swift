@@ -1,5 +1,5 @@
 //
-//  MapCollectionViewCell.swift
+//  MapHeaderCollectionReusableView.swift
 //  Circle
 //
 //  Created by Ravi Rani on 1/6/15.
@@ -9,17 +9,13 @@
 import UIKit
 import MapKit
 
-class MapCollectionViewCell: CircleCollectionViewCell {
+class MapHeaderCollectionReusableView: UICollectionReusableView {
 
     @IBOutlet weak private(set) var blurViewContainer: UIView!
     @IBOutlet weak private(set) var addressLabel: UILabel!
     
-    override class var classReuseIdentifier: String {
-        return "MapCollectionViewCell"
-    }
-    
-    override class var height: CGFloat {
-        return 200.0
+    class var classReuseIdentifier: String {
+        return "MapHeaderCollectionReusableView"
     }
     
     private var visualEffectView: UIVisualEffectView!
@@ -39,7 +35,7 @@ class MapCollectionViewCell: CircleCollectionViewCell {
         // Create a tile source from Mapbox
         let source = RMMapboxSource(mapID: "rrani.kmnghfmf")
         var mapboxView = RMMapView(
-            frame: contentView.frame,
+            frame: frame,
             andTilesource: source,
             centerCoordinate: coordinates,
             zoomLevel: 10.0,
@@ -48,8 +44,8 @@ class MapCollectionViewCell: CircleCollectionViewCell {
             backgroundImage: nil
         )
         mapboxView.setZoom(15.0, animated: true)
-        contentView.addSubview(mapboxView)
-        contentView.sendSubviewToBack(mapboxView)
+        addSubview(mapboxView)
+        sendSubviewToBack(mapboxView)
         mapboxView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
     }
     
@@ -61,10 +57,6 @@ class MapCollectionViewCell: CircleCollectionViewCell {
         blurViewContainer.addSubview(visualEffectView)
         visualEffectView.alpha = 0.8
         visualEffectView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
-        
-    }
-    
-    override func setData(data: AnyObject) {
         
     }
 }
