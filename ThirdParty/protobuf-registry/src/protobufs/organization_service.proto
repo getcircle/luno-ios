@@ -88,6 +88,8 @@ message OrganizationService {
 
         message Request {
             optional string team_id = 1;
+            optional string name = 2;
+            optional string organization_id = 3;
         }
 
         message Response {

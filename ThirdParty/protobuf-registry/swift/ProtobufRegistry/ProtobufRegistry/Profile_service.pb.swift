@@ -117,6 +117,14 @@ public func == (lhs: ProfileService.GetProfileStats, rhs: ProfileService.GetProf
   return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
 }
 
+public func == (lhs: ProfileService.GetUpcomingAnniversaries, rhs: ProfileService.GetUpcomingAnniversaries) -> Bool {
+  if (lhs === rhs) {
+    return true
+  }
+  var fieldCheck:Bool = (lhs.hashValue == rhs.hashValue)
+  return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
+}
+
 public func == (lhs: ProfileService, rhs: ProfileService) -> Bool {
   if (lhs === rhs) {
     return true
@@ -148,10 +156,11 @@ final public class ProfileService : GeneratedMessage {
                  case "cell_phone": return cell_phone
                  case "work_phone": return work_phone
                  case "image_url": return image_url
-                 case "location": return location
                  case "email": return email
                  case "team_id": return team_id
                  case "full_name": return full_name
+                 case "birth_date": return birth_date
+                 case "hire_date": return hire_date
                  default: return nil
                  }
           }
@@ -186,9 +195,6 @@ final public class ProfileService : GeneratedMessage {
           public private(set) var hasImageUrl:Bool = false
           public private(set) var image_url:String = ""
 
-          public private(set) var hasLocation:Bool = false
-          public private(set) var location:String = ""
-
           public private(set) var hasEmail:Bool = false
           public private(set) var email:String = ""
 
@@ -197,6 +203,12 @@ final public class ProfileService : GeneratedMessage {
 
           public private(set) var hasFullName:Bool = false
           public private(set) var full_name:String = ""
+
+          public private(set) var hasBirthDate:Bool = false
+          public private(set) var birth_date:String = ""
+
+          public private(set) var hasHireDate:Bool = false
+          public private(set) var hire_date:String = ""
 
           required public init() {
                super.init()
@@ -235,17 +247,20 @@ final public class ProfileService : GeneratedMessage {
             if hasImageUrl {
               output.writeString(10, value:image_url)
             }
-            if hasLocation {
-              output.writeString(11, value:location)
-            }
             if hasEmail {
-              output.writeString(12, value:email)
+              output.writeString(11, value:email)
             }
             if hasTeamId {
-              output.writeString(13, value:team_id)
+              output.writeString(12, value:team_id)
             }
             if hasFullName {
-              output.writeString(14, value:full_name)
+              output.writeString(13, value:full_name)
+            }
+            if hasBirthDate {
+              output.writeString(14, value:birth_date)
+            }
+            if hasHireDate {
+              output.writeString(15, value:hire_date)
             }
             unknownFields.writeToCodedOutputStream(output)
           }
@@ -286,17 +301,20 @@ final public class ProfileService : GeneratedMessage {
             if hasImageUrl {
               size += WireFormat.computeStringSize(10, value:image_url)
             }
-            if hasLocation {
-              size += WireFormat.computeStringSize(11, value:location)
-            }
             if hasEmail {
-              size += WireFormat.computeStringSize(12, value:email)
+              size += WireFormat.computeStringSize(11, value:email)
             }
             if hasTeamId {
-              size += WireFormat.computeStringSize(13, value:team_id)
+              size += WireFormat.computeStringSize(12, value:team_id)
             }
             if hasFullName {
-              size += WireFormat.computeStringSize(14, value:full_name)
+              size += WireFormat.computeStringSize(13, value:full_name)
+            }
+            if hasBirthDate {
+              size += WireFormat.computeStringSize(14, value:birth_date)
+            }
+            if hasHireDate {
+              size += WireFormat.computeStringSize(15, value:hire_date)
             }
             size += unknownFields.serializedSize()
             memoizedSerializedSize = size
@@ -369,9 +387,6 @@ final public class ProfileService : GeneratedMessage {
             if hasImageUrl {
               output += "\(indent) image_url: \(image_url) \n"
             }
-            if hasLocation {
-              output += "\(indent) location: \(location) \n"
-            }
             if hasEmail {
               output += "\(indent) email: \(email) \n"
             }
@@ -380,6 +395,12 @@ final public class ProfileService : GeneratedMessage {
             }
             if hasFullName {
               output += "\(indent) full_name: \(full_name) \n"
+            }
+            if hasBirthDate {
+              output += "\(indent) birth_date: \(birth_date) \n"
+            }
+            if hasHireDate {
+              output += "\(indent) hire_date: \(hire_date) \n"
             }
             unknownFields.writeDescriptionTo(&output, indent:indent)
           }
@@ -416,9 +437,6 @@ final public class ProfileService : GeneratedMessage {
                   if hasImageUrl {
                      hashCode = (hashCode &* 31) &+ image_url.hashValue
                   }
-                  if hasLocation {
-                     hashCode = (hashCode &* 31) &+ location.hashValue
-                  }
                   if hasEmail {
                      hashCode = (hashCode &* 31) &+ email.hashValue
                   }
@@ -427,6 +445,12 @@ final public class ProfileService : GeneratedMessage {
                   }
                   if hasFullName {
                      hashCode = (hashCode &* 31) &+ full_name.hashValue
+                  }
+                  if hasBirthDate {
+                     hashCode = (hashCode &* 31) &+ birth_date.hashValue
+                  }
+                  if hasHireDate {
+                     hashCode = (hashCode &* 31) &+ hire_date.hashValue
                   }
                   hashCode = (hashCode &* 31) &+  unknownFields.hashValue
                   return hashCode
@@ -648,25 +672,6 @@ final public class ProfileService : GeneratedMessage {
                builderResult.image_url = ""
                return self
           }
-          public var hasLocation:Bool {
-               get {
-                    return builderResult.hasLocation
-               }
-          }
-          public var location:String {
-               get {
-                    return builderResult.location
-               }
-               set (value) {
-                   builderResult.hasLocation = true
-                   builderResult.location = value
-               }
-          }
-          public func clearLocation() -> ProfileService.Containers.ProfileBuilder{
-               builderResult.hasLocation = false
-               builderResult.location = ""
-               return self
-          }
           public var hasEmail:Bool {
                get {
                     return builderResult.hasEmail
@@ -724,6 +729,44 @@ final public class ProfileService : GeneratedMessage {
                builderResult.full_name = ""
                return self
           }
+          public var hasBirthDate:Bool {
+               get {
+                    return builderResult.hasBirthDate
+               }
+          }
+          public var birth_date:String {
+               get {
+                    return builderResult.birth_date
+               }
+               set (value) {
+                   builderResult.hasBirthDate = true
+                   builderResult.birth_date = value
+               }
+          }
+          public func clearBirthDate() -> ProfileService.Containers.ProfileBuilder{
+               builderResult.hasBirthDate = false
+               builderResult.birth_date = ""
+               return self
+          }
+          public var hasHireDate:Bool {
+               get {
+                    return builderResult.hasHireDate
+               }
+          }
+          public var hire_date:String {
+               get {
+                    return builderResult.hire_date
+               }
+               set (value) {
+                   builderResult.hasHireDate = true
+                   builderResult.hire_date = value
+               }
+          }
+          public func clearHireDate() -> ProfileService.Containers.ProfileBuilder{
+               builderResult.hasHireDate = false
+               builderResult.hire_date = ""
+               return self
+          }
           override public var internalGetResult:GeneratedMessage {
                get {
                   return builderResult
@@ -778,9 +821,6 @@ final public class ProfileService : GeneratedMessage {
             if other.hasImageUrl {
                  image_url = other.image_url
             }
-            if other.hasLocation {
-                 location = other.location
-            }
             if other.hasEmail {
                  email = other.email
             }
@@ -789,6 +829,12 @@ final public class ProfileService : GeneratedMessage {
             }
             if other.hasFullName {
                  full_name = other.full_name
+            }
+            if other.hasBirthDate {
+                 birth_date = other.birth_date
+            }
+            if other.hasHireDate {
+                 hire_date = other.hire_date
             }
             mergeUnknownFields(other.unknownFields)
             return self
@@ -836,16 +882,19 @@ final public class ProfileService : GeneratedMessage {
                 image_url = input.readString()
 
               case 90 :
-                location = input.readString()
-
-              case 98 :
                 email = input.readString()
 
-              case 106 :
+              case 98 :
                 team_id = input.readString()
 
-              case 114 :
+              case 106 :
                 full_name = input.readString()
+
+              case 114 :
+                birth_date = input.readString()
+
+              case 122 :
+                hire_date = input.readString()
 
               default:
                 if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
@@ -8501,6 +8550,552 @@ final public class ProfileService : GeneratedMessage {
 
   //Nested type declaration end
 
+
+
+  //Nested type declaration start
+
+    final public class GetUpcomingAnniversaries : GeneratedMessage {
+
+
+      //Nested type declaration start
+
+        final public class Request : GeneratedMessage {
+          public subscript(key: String) -> AnyObject? {
+                 switch key {
+                 case "organization_id": return organization_id
+                 default: return nil
+                 }
+          }
+
+          public private(set) var hasOrganizationId:Bool = false
+          public private(set) var organization_id:String = ""
+
+          required public init() {
+               super.init()
+          }
+          override public func isInitialized() -> Bool {
+           return true
+          }
+          override public func writeToCodedOutputStream(output:CodedOutputStream) {
+            if hasOrganizationId {
+              output.writeString(1, value:organization_id)
+            }
+            unknownFields.writeToCodedOutputStream(output)
+          }
+          override public func serializedSize() -> Int32 {
+            var size:Int32 = memoizedSerializedSize
+            if size != -1 {
+             return size
+            }
+
+            size = 0
+            if hasOrganizationId {
+              size += WireFormat.computeStringSize(1, value:organization_id)
+            }
+            size += unknownFields.serializedSize()
+            memoizedSerializedSize = size
+            return size
+          }
+          public class func parseFromData(data:[Byte]) -> ProfileService.GetUpcomingAnniversaries.Request {
+            return ProfileService.GetUpcomingAnniversaries.Request.builder().mergeFromData(data).build()
+          }
+          public class func parseFromData(data:[Byte], extensionRegistry:ExtensionRegistry) -> ProfileService.GetUpcomingAnniversaries.Request {
+            return ProfileService.GetUpcomingAnniversaries.Request.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
+          }
+          public class func parseFromInputStream(input:NSInputStream) -> ProfileService.GetUpcomingAnniversaries.Request {
+            return ProfileService.GetUpcomingAnniversaries.Request.builder().mergeFromInputStream(input).build()
+          }
+          public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->ProfileService.GetUpcomingAnniversaries.Request {
+            return ProfileService.GetUpcomingAnniversaries.Request.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
+          }
+          public class func parseFromCodedInputStream(input:CodedInputStream) -> ProfileService.GetUpcomingAnniversaries.Request {
+            return ProfileService.GetUpcomingAnniversaries.Request.builder().mergeFromCodedInputStream(input).build()
+          }
+          public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.GetUpcomingAnniversaries.Request {
+            return ProfileService.GetUpcomingAnniversaries.Request.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
+          }
+          public class func builder() -> ProfileService.GetUpcomingAnniversaries.RequestBuilder {
+            return ProfileService.GetUpcomingAnniversaries.Request.classBuilder() as ProfileService.GetUpcomingAnniversaries.RequestBuilder
+          }
+          public func builder() -> ProfileService.GetUpcomingAnniversaries.RequestBuilder {
+            return classBuilder() as ProfileService.GetUpcomingAnniversaries.RequestBuilder
+          }
+          public override class func classBuilder() -> MessageBuilder {
+            return ProfileService.GetUpcomingAnniversaries.RequestBuilder()
+          }
+          public override func classBuilder() -> MessageBuilder {
+            return ProfileService.GetUpcomingAnniversaries.Request.builder()
+          }
+          public func toBuilder() -> ProfileService.GetUpcomingAnniversaries.RequestBuilder {
+            return ProfileService.GetUpcomingAnniversaries.Request.builderWithPrototype(self)
+          }
+          public class func builderWithPrototype(prototype:ProfileService.GetUpcomingAnniversaries.Request) -> ProfileService.GetUpcomingAnniversaries.RequestBuilder {
+            return ProfileService.GetUpcomingAnniversaries.Request.builder().mergeFrom(prototype)
+          }
+          override public func writeDescriptionTo(inout output:String, indent:String) {
+            if hasOrganizationId {
+              output += "\(indent) organization_id: \(organization_id) \n"
+            }
+            unknownFields.writeDescriptionTo(&output, indent:indent)
+          }
+          override public var hashValue:Int {
+              get {
+                  var hashCode:Int = 7
+                  if hasOrganizationId {
+                     hashCode = (hashCode &* 31) &+ organization_id.hashValue
+                  }
+                  hashCode = (hashCode &* 31) &+  unknownFields.hashValue
+                  return hashCode
+              }
+          }
+
+
+          //Meta information declaration start
+
+          override public class func className() -> String {
+              return "ProfileService.GetUpcomingAnniversaries.Request"
+          }
+          override public func className() -> String {
+              return "ProfileService.GetUpcomingAnniversaries.Request"
+          }
+          override public func classMetaType() -> GeneratedMessage.Type {
+              return ProfileService.GetUpcomingAnniversaries.Request.self
+          }
+
+
+          //Meta information declaration end
+
+        }
+
+        final public class RequestBuilder : GeneratedMessageBuilder {
+          private var builderResult:ProfileService.GetUpcomingAnniversaries.Request
+
+          required override public init () {
+             builderResult = ProfileService.GetUpcomingAnniversaries.Request()
+             super.init()
+          }
+          public var hasOrganizationId:Bool {
+               get {
+                    return builderResult.hasOrganizationId
+               }
+          }
+          public var organization_id:String {
+               get {
+                    return builderResult.organization_id
+               }
+               set (value) {
+                   builderResult.hasOrganizationId = true
+                   builderResult.organization_id = value
+               }
+          }
+          public func clearOrganizationId() -> ProfileService.GetUpcomingAnniversaries.RequestBuilder{
+               builderResult.hasOrganizationId = false
+               builderResult.organization_id = ""
+               return self
+          }
+          override public var internalGetResult:GeneratedMessage {
+               get {
+                  return builderResult
+               }
+          }
+          public override func clear() -> ProfileService.GetUpcomingAnniversaries.RequestBuilder {
+            builderResult = ProfileService.GetUpcomingAnniversaries.Request()
+            return self
+          }
+          public override func clone() -> ProfileService.GetUpcomingAnniversaries.RequestBuilder {
+            return ProfileService.GetUpcomingAnniversaries.Request.builderWithPrototype(builderResult)
+          }
+          public override func build() -> ProfileService.GetUpcomingAnniversaries.Request {
+               checkInitialized()
+               return buildPartial()
+          }
+          public func buildPartial() -> ProfileService.GetUpcomingAnniversaries.Request {
+            var returnMe:ProfileService.GetUpcomingAnniversaries.Request = builderResult
+            return returnMe
+          }
+          public func mergeFrom(other:ProfileService.GetUpcomingAnniversaries.Request) -> ProfileService.GetUpcomingAnniversaries.RequestBuilder {
+            if (other == ProfileService.GetUpcomingAnniversaries.Request()) {
+             return self
+            }
+            if other.hasOrganizationId {
+                 organization_id = other.organization_id
+            }
+            mergeUnknownFields(other.unknownFields)
+            return self
+          }
+          public override func mergeFromCodedInputStream(input:CodedInputStream) ->ProfileService.GetUpcomingAnniversaries.RequestBuilder {
+               return mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
+          }
+          public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.GetUpcomingAnniversaries.RequestBuilder {
+            var unknownFieldsBuilder:UnknownFieldSetBuilder = UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
+            while (true) {
+              var tag = input.readTag()
+              switch tag {
+              case 0: 
+                self.unknownFields = unknownFieldsBuilder.build()
+                return self
+
+              case 10 :
+                organization_id = input.readString()
+
+              default:
+                if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
+                   unknownFields = unknownFieldsBuilder.build()
+                   return self
+                }
+              }
+            }
+          }
+        }
+
+
+
+      //Nested type declaration end
+
+
+
+      //Nested type declaration start
+
+        final public class Response : GeneratedMessage {
+          public subscript(key: String) -> AnyObject? {
+                 switch key {
+                 default: return nil
+                 }
+          }
+
+          public private(set) var profiles:Array<ProfileService.Containers.Profile>  = Array<ProfileService.Containers.Profile>()
+          required public init() {
+               super.init()
+          }
+          override public func isInitialized() -> Bool {
+           return true
+          }
+          override public func writeToCodedOutputStream(output:CodedOutputStream) {
+            for oneElementprofiles in profiles {
+                output.writeMessage(1, value:oneElementprofiles)
+            }
+            unknownFields.writeToCodedOutputStream(output)
+          }
+          override public func serializedSize() -> Int32 {
+            var size:Int32 = memoizedSerializedSize
+            if size != -1 {
+             return size
+            }
+
+            size = 0
+            for oneElementprofiles in profiles {
+                size += WireFormat.computeMessageSize(1, value:oneElementprofiles)
+            }
+            size += unknownFields.serializedSize()
+            memoizedSerializedSize = size
+            return size
+          }
+          public class func parseFromData(data:[Byte]) -> ProfileService.GetUpcomingAnniversaries.Response {
+            return ProfileService.GetUpcomingAnniversaries.Response.builder().mergeFromData(data).build()
+          }
+          public class func parseFromData(data:[Byte], extensionRegistry:ExtensionRegistry) -> ProfileService.GetUpcomingAnniversaries.Response {
+            return ProfileService.GetUpcomingAnniversaries.Response.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
+          }
+          public class func parseFromInputStream(input:NSInputStream) -> ProfileService.GetUpcomingAnniversaries.Response {
+            return ProfileService.GetUpcomingAnniversaries.Response.builder().mergeFromInputStream(input).build()
+          }
+          public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->ProfileService.GetUpcomingAnniversaries.Response {
+            return ProfileService.GetUpcomingAnniversaries.Response.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
+          }
+          public class func parseFromCodedInputStream(input:CodedInputStream) -> ProfileService.GetUpcomingAnniversaries.Response {
+            return ProfileService.GetUpcomingAnniversaries.Response.builder().mergeFromCodedInputStream(input).build()
+          }
+          public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.GetUpcomingAnniversaries.Response {
+            return ProfileService.GetUpcomingAnniversaries.Response.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
+          }
+          public class func builder() -> ProfileService.GetUpcomingAnniversaries.ResponseBuilder {
+            return ProfileService.GetUpcomingAnniversaries.Response.classBuilder() as ProfileService.GetUpcomingAnniversaries.ResponseBuilder
+          }
+          public func builder() -> ProfileService.GetUpcomingAnniversaries.ResponseBuilder {
+            return classBuilder() as ProfileService.GetUpcomingAnniversaries.ResponseBuilder
+          }
+          public override class func classBuilder() -> MessageBuilder {
+            return ProfileService.GetUpcomingAnniversaries.ResponseBuilder()
+          }
+          public override func classBuilder() -> MessageBuilder {
+            return ProfileService.GetUpcomingAnniversaries.Response.builder()
+          }
+          public func toBuilder() -> ProfileService.GetUpcomingAnniversaries.ResponseBuilder {
+            return ProfileService.GetUpcomingAnniversaries.Response.builderWithPrototype(self)
+          }
+          public class func builderWithPrototype(prototype:ProfileService.GetUpcomingAnniversaries.Response) -> ProfileService.GetUpcomingAnniversaries.ResponseBuilder {
+            return ProfileService.GetUpcomingAnniversaries.Response.builder().mergeFrom(prototype)
+          }
+          override public func writeDescriptionTo(inout output:String, indent:String) {
+            var profilesElementIndex:Int = 0
+            for oneElementprofiles in profiles {
+                output += "\(indent) profiles[\(profilesElementIndex)] {\n"
+                oneElementprofiles.writeDescriptionTo(&output, indent:"\(indent)  ")
+                output += "\(indent)}\n"
+                profilesElementIndex++
+            }
+            unknownFields.writeDescriptionTo(&output, indent:indent)
+          }
+          override public var hashValue:Int {
+              get {
+                  var hashCode:Int = 7
+                  for oneElementprofiles in profiles {
+                      hashCode = (hashCode &* 31) &+ oneElementprofiles.hashValue
+                  }
+                  hashCode = (hashCode &* 31) &+  unknownFields.hashValue
+                  return hashCode
+              }
+          }
+
+
+          //Meta information declaration start
+
+          override public class func className() -> String {
+              return "ProfileService.GetUpcomingAnniversaries.Response"
+          }
+          override public func className() -> String {
+              return "ProfileService.GetUpcomingAnniversaries.Response"
+          }
+          override public func classMetaType() -> GeneratedMessage.Type {
+              return ProfileService.GetUpcomingAnniversaries.Response.self
+          }
+
+
+          //Meta information declaration end
+
+        }
+
+        final public class ResponseBuilder : GeneratedMessageBuilder {
+          private var builderResult:ProfileService.GetUpcomingAnniversaries.Response
+
+          required override public init () {
+             builderResult = ProfileService.GetUpcomingAnniversaries.Response()
+             super.init()
+          }
+          public var profiles:Array<ProfileService.Containers.Profile> {
+               get {
+                   return builderResult.profiles
+               }
+               set (value) {
+                   builderResult.profiles = value
+               }
+          }
+          public func clearProfiles() -> ProfileService.GetUpcomingAnniversaries.ResponseBuilder {
+            builderResult.profiles.removeAll(keepCapacity: false)
+            return self
+          }
+          override public var internalGetResult:GeneratedMessage {
+               get {
+                  return builderResult
+               }
+          }
+          public override func clear() -> ProfileService.GetUpcomingAnniversaries.ResponseBuilder {
+            builderResult = ProfileService.GetUpcomingAnniversaries.Response()
+            return self
+          }
+          public override func clone() -> ProfileService.GetUpcomingAnniversaries.ResponseBuilder {
+            return ProfileService.GetUpcomingAnniversaries.Response.builderWithPrototype(builderResult)
+          }
+          public override func build() -> ProfileService.GetUpcomingAnniversaries.Response {
+               checkInitialized()
+               return buildPartial()
+          }
+          public func buildPartial() -> ProfileService.GetUpcomingAnniversaries.Response {
+            var returnMe:ProfileService.GetUpcomingAnniversaries.Response = builderResult
+            return returnMe
+          }
+          public func mergeFrom(other:ProfileService.GetUpcomingAnniversaries.Response) -> ProfileService.GetUpcomingAnniversaries.ResponseBuilder {
+            if (other == ProfileService.GetUpcomingAnniversaries.Response()) {
+             return self
+            }
+            if !other.profiles.isEmpty  {
+               builderResult.profiles += other.profiles
+            }
+            mergeUnknownFields(other.unknownFields)
+            return self
+          }
+          public override func mergeFromCodedInputStream(input:CodedInputStream) ->ProfileService.GetUpcomingAnniversaries.ResponseBuilder {
+               return mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
+          }
+          public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.GetUpcomingAnniversaries.ResponseBuilder {
+            var unknownFieldsBuilder:UnknownFieldSetBuilder = UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
+            while (true) {
+              var tag = input.readTag()
+              switch tag {
+              case 0: 
+                self.unknownFields = unknownFieldsBuilder.build()
+                return self
+
+              case 10 :
+                var subBuilder = ProfileService.Containers.Profile.builder()
+                input.readMessage(subBuilder,extensionRegistry:extensionRegistry)
+                profiles += [subBuilder.buildPartial()]
+
+              default:
+                if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
+                   unknownFields = unknownFieldsBuilder.build()
+                   return self
+                }
+              }
+            }
+          }
+        }
+
+
+
+      //Nested type declaration end
+
+      public subscript(key: String) -> AnyObject? {
+             switch key {
+             default: return nil
+             }
+      }
+
+      required public init() {
+           super.init()
+      }
+      override public func isInitialized() -> Bool {
+       return true
+      }
+      override public func writeToCodedOutputStream(output:CodedOutputStream) {
+        unknownFields.writeToCodedOutputStream(output)
+      }
+      override public func serializedSize() -> Int32 {
+        var size:Int32 = memoizedSerializedSize
+        if size != -1 {
+         return size
+        }
+
+        size = 0
+        size += unknownFields.serializedSize()
+        memoizedSerializedSize = size
+        return size
+      }
+      public class func parseFromData(data:[Byte]) -> ProfileService.GetUpcomingAnniversaries {
+        return ProfileService.GetUpcomingAnniversaries.builder().mergeFromData(data).build()
+      }
+      public class func parseFromData(data:[Byte], extensionRegistry:ExtensionRegistry) -> ProfileService.GetUpcomingAnniversaries {
+        return ProfileService.GetUpcomingAnniversaries.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
+      }
+      public class func parseFromInputStream(input:NSInputStream) -> ProfileService.GetUpcomingAnniversaries {
+        return ProfileService.GetUpcomingAnniversaries.builder().mergeFromInputStream(input).build()
+      }
+      public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->ProfileService.GetUpcomingAnniversaries {
+        return ProfileService.GetUpcomingAnniversaries.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
+      }
+      public class func parseFromCodedInputStream(input:CodedInputStream) -> ProfileService.GetUpcomingAnniversaries {
+        return ProfileService.GetUpcomingAnniversaries.builder().mergeFromCodedInputStream(input).build()
+      }
+      public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.GetUpcomingAnniversaries {
+        return ProfileService.GetUpcomingAnniversaries.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
+      }
+      public class func builder() -> ProfileService.GetUpcomingAnniversariesBuilder {
+        return ProfileService.GetUpcomingAnniversaries.classBuilder() as ProfileService.GetUpcomingAnniversariesBuilder
+      }
+      public func builder() -> ProfileService.GetUpcomingAnniversariesBuilder {
+        return classBuilder() as ProfileService.GetUpcomingAnniversariesBuilder
+      }
+      public override class func classBuilder() -> MessageBuilder {
+        return ProfileService.GetUpcomingAnniversariesBuilder()
+      }
+      public override func classBuilder() -> MessageBuilder {
+        return ProfileService.GetUpcomingAnniversaries.builder()
+      }
+      public func toBuilder() -> ProfileService.GetUpcomingAnniversariesBuilder {
+        return ProfileService.GetUpcomingAnniversaries.builderWithPrototype(self)
+      }
+      public class func builderWithPrototype(prototype:ProfileService.GetUpcomingAnniversaries) -> ProfileService.GetUpcomingAnniversariesBuilder {
+        return ProfileService.GetUpcomingAnniversaries.builder().mergeFrom(prototype)
+      }
+      override public func writeDescriptionTo(inout output:String, indent:String) {
+        unknownFields.writeDescriptionTo(&output, indent:indent)
+      }
+      override public var hashValue:Int {
+          get {
+              var hashCode:Int = 7
+              hashCode = (hashCode &* 31) &+  unknownFields.hashValue
+              return hashCode
+          }
+      }
+
+
+      //Meta information declaration start
+
+      override public class func className() -> String {
+          return "ProfileService.GetUpcomingAnniversaries"
+      }
+      override public func className() -> String {
+          return "ProfileService.GetUpcomingAnniversaries"
+      }
+      override public func classMetaType() -> GeneratedMessage.Type {
+          return ProfileService.GetUpcomingAnniversaries.self
+      }
+
+
+      //Meta information declaration end
+
+    }
+
+    final public class GetUpcomingAnniversariesBuilder : GeneratedMessageBuilder {
+      private var builderResult:ProfileService.GetUpcomingAnniversaries
+
+      required override public init () {
+         builderResult = ProfileService.GetUpcomingAnniversaries()
+         super.init()
+      }
+      override public var internalGetResult:GeneratedMessage {
+           get {
+              return builderResult
+           }
+      }
+      public override func clear() -> ProfileService.GetUpcomingAnniversariesBuilder {
+        builderResult = ProfileService.GetUpcomingAnniversaries()
+        return self
+      }
+      public override func clone() -> ProfileService.GetUpcomingAnniversariesBuilder {
+        return ProfileService.GetUpcomingAnniversaries.builderWithPrototype(builderResult)
+      }
+      public override func build() -> ProfileService.GetUpcomingAnniversaries {
+           checkInitialized()
+           return buildPartial()
+      }
+      public func buildPartial() -> ProfileService.GetUpcomingAnniversaries {
+        var returnMe:ProfileService.GetUpcomingAnniversaries = builderResult
+        return returnMe
+      }
+      public func mergeFrom(other:ProfileService.GetUpcomingAnniversaries) -> ProfileService.GetUpcomingAnniversariesBuilder {
+        if (other == ProfileService.GetUpcomingAnniversaries()) {
+         return self
+        }
+        mergeUnknownFields(other.unknownFields)
+        return self
+      }
+      public override func mergeFromCodedInputStream(input:CodedInputStream) ->ProfileService.GetUpcomingAnniversariesBuilder {
+           return mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
+      }
+      public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.GetUpcomingAnniversariesBuilder {
+        var unknownFieldsBuilder:UnknownFieldSetBuilder = UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
+        while (true) {
+          var tag = input.readTag()
+          switch tag {
+          case 0: 
+            self.unknownFields = unknownFieldsBuilder.build()
+            return self
+
+          default:
+            if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
+               unknownFields = unknownFieldsBuilder.build()
+               return self
+            }
+          }
+        }
+      }
+    }
+
+
+
+  //Nested type declaration end
+
   public subscript(key: String) -> AnyObject? {
          switch key {
          default: return nil
@@ -9093,6 +9688,42 @@ public extension ProfileService.GetProfileStats {
         var bytes = [Byte](count: data.length, repeatedValue: 0)
         data.getBytes(&bytes)
         return ProfileService.GetProfileStats.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
+    }
+}
+public extension ProfileService.GetUpcomingAnniversaries.Request {
+    class func parseFromNSData(data:NSData) -> ProfileService.GetUpcomingAnniversaries.Request {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return ProfileService.GetUpcomingAnniversaries.Request.builder().mergeFromData(bytes).build()
+    }
+    class func parseFromNSData(data:NSData, extensionRegistry:ExtensionRegistry) -> ProfileService.GetUpcomingAnniversaries.Request {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return ProfileService.GetUpcomingAnniversaries.Request.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
+    }
+}
+public extension ProfileService.GetUpcomingAnniversaries.Response {
+    class func parseFromNSData(data:NSData) -> ProfileService.GetUpcomingAnniversaries.Response {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return ProfileService.GetUpcomingAnniversaries.Response.builder().mergeFromData(bytes).build()
+    }
+    class func parseFromNSData(data:NSData, extensionRegistry:ExtensionRegistry) -> ProfileService.GetUpcomingAnniversaries.Response {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return ProfileService.GetUpcomingAnniversaries.Response.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
+    }
+}
+public extension ProfileService.GetUpcomingAnniversaries {
+    class func parseFromNSData(data:NSData) -> ProfileService.GetUpcomingAnniversaries {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return ProfileService.GetUpcomingAnniversaries.builder().mergeFromData(bytes).build()
+    }
+    class func parseFromNSData(data:NSData, extensionRegistry:ExtensionRegistry) -> ProfileService.GetUpcomingAnniversaries {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return ProfileService.GetUpcomingAnniversaries.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
     }
 }
 public extension ProfileService {

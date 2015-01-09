@@ -45,6 +45,7 @@ message ProfileServiceRequests {
         optional main.profile_service.ProfileService.GetDirectReports.Request get_direct_reports = 308;
         optional main.profile_service.ProfileService.GetPeers.Request get_peers = 309;
         optional main.profile_service.ProfileService.GetProfileStats.Request get_profile_stats = 310;
+        optional main.profile_service.ProfileService.GetUpcomingAnniversaries.Request get_upcoming_anniversaries = 311;
     }
 }
 
