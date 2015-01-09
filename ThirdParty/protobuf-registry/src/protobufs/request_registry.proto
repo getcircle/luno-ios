@@ -2,6 +2,7 @@ package main.requests;
 
 import "service_protobufs/soa.proto";
 
+import "protobufs/landing_service.proto";
 import "protobufs/organization_service.proto";
 import "protobufs/profile_service.proto";
 import "protobufs/search_service.proto";
@@ -49,5 +50,11 @@ message ProfileServiceRequests {
 message SearchServiceRequests {
     extend soa.ActionRequestParams {
         optional main.search_service.SearchService.Search.Request search = 400;
+    }
+}
+
+message LandingServiceRequests {
+    extend soa.ActionRequestParams {
+        optional main.landing_service.LandingService.GetCategories.Request get_categories = 500;
     }
 }
