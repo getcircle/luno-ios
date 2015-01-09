@@ -43,10 +43,13 @@ class MapHeaderCollectionReusableView: UICollectionReusableView {
             minZoomLevel: 1.0,
             backgroundImage: nil
         )
-        mapboxView.setZoom(15.0, animated: true)
-        addSubview(mapboxView)
-        sendSubviewToBack(mapboxView)
-        mapboxView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
+        
+        if mapboxView != nil {
+            mapboxView.setZoom(15.0, animated: true)
+            addSubview(mapboxView)
+            sendSubviewToBack(mapboxView)
+            mapboxView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
+        }
     }
     
     private func configureBlurView() {
@@ -55,7 +58,6 @@ class MapHeaderCollectionReusableView: UICollectionReusableView {
         visualEffectView.setTranslatesAutoresizingMaskIntoConstraints(false)
         visualEffectView.frame = blurViewContainer.frame
         blurViewContainer.addSubview(visualEffectView)
-        visualEffectView.alpha = 0.8
         visualEffectView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
         
     }

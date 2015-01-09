@@ -160,10 +160,13 @@ class DetailViewController: UIViewController, UICollectionViewDelegate, MFMailCo
         assert(dataSource != nil, { () -> String in
             return "Data source must be set before calling this function"
         }())
-        collectionView!.backgroundColor = UIColor.viewBackgroundColor()
-        collectionView!.keyboardDismissMode = .OnDrag
-        (collectionView!.dataSource as CardDataSource).registerCardHeader(collectionView!)
-        (collectionView!.delegate as CardCollectionViewDelegate).delegate = self
+        collectionView.backgroundColor = UIColor.viewBackgroundColor()
+        collectionView.keyboardDismissMode = .OnDrag
+        collectionView.showsVerticalScrollIndicator = true
+        collectionView.bounces = true
+        collectionView.alwaysBounceVertical = true
+        (collectionView.dataSource as CardDataSource).registerCardHeader(collectionView!)
+        (collectionView.delegate as CardCollectionViewDelegate).delegate = self
     }
 
     // MARK: - MFMailComposeViewControllerDelegate

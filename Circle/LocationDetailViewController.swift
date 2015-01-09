@@ -7,20 +7,9 @@
 //
 
 import UIKit
+import ProtobufRegistry
 
 class LocationDetailViewController: DetailViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
 
     // MARK: - Configuration
 
@@ -34,5 +23,18 @@ class LocationDetailViewController: DetailViewController {
         collectionView.delegate = delegate
         
         super.configureCollectionView()
+    }
+    
+    // MARK: - Collection View delegate
+    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        if let profile = dataSource.contentAtIndexPath(indexPath)? as? ProfileService.Containers.Profile {
+            var profileVC = ProfileDetailViewController()
+            profileVC.profile = profile
+            println(profile)
+            navigationController?.pushViewController(profileVC, animated: true)
+        }
+
+        collectionView.deselectItemAtIndexPath(indexPath, animated: true)
     }
 }

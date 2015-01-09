@@ -12,22 +12,13 @@ import ProtobufRegistry
 class ProfileDetailViewController: DetailViewController {
 
     var profile: ProfileService.Containers.Profile!
-
-    override func viewDidLoad() {
-        (dataSource as ProfileDetailDataSource).profile = profile
-        super.viewDidLoad()
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     // MARK: - Configuration
     override func configureCollectionView() {
         // Data Source
         dataSource = ProfileDetailDataSource()
         collectionView.dataSource = dataSource
+        (dataSource as ProfileDetailDataSource).profile = profile
 
         // Delegate
         delegate = ProfileCollectionViewDelegate()
