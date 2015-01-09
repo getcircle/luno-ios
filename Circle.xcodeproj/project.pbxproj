@@ -79,6 +79,7 @@
 		BF2CBFD61A473E9100BE589D /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2CBFD51A473E9100BE589D /* UserService.swift */; };
 		BF3F0F611A5B1C1100D4287E /* ProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3F0F601A5B1C1100D4287E /* ProfileService.swift */; };
 		BF59AA931A2C152F00C0CDB9 /* UITableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF59AA921A2C152F00C0CDB9 /* UITableViewExtension.swift */; };
+		BF764DC41A5F6E8200D122F4 /* LandingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF764DC31A5F6E8200D122F4 /* LandingService.swift */; };
 		BF7DF98F1A44E53200A4F924 /* ServiceTransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7DF98E1A44E53200A4F924 /* ServiceTransport.swift */; };
 		BF8FC3D91A44DA83007FD8BA /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8FC3D81A44DA83007FD8BA /* StringExtension.swift */; };
 		BFB791891A2C346A0048E8FB /* CALayerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB791881A2C346A0048E8FB /* CALayerExtension.swift */; };
@@ -256,6 +257,7 @@
 		BF2CBFD51A473E9100BE589D /* UserService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		BF3F0F601A5B1C1100D4287E /* ProfileService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileService.swift; sourceTree = "<group>"; };
 		BF59AA921A2C152F00C0CDB9 /* UITableViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewExtension.swift; sourceTree = "<group>"; };
+		BF764DC31A5F6E8200D122F4 /* LandingService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandingService.swift; sourceTree = "<group>"; };
 		BF7DF98E1A44E53200A4F924 /* ServiceTransport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceTransport.swift; sourceTree = "<group>"; };
 		BF8FC3D81A44DA83007FD8BA /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		BFB791881A2C346A0048E8FB /* CALayerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CALayerExtension.swift; sourceTree = "<group>"; };
@@ -557,6 +559,7 @@
 				BF3F0F601A5B1C1100D4287E /* ProfileService.swift */,
 				BF2CBFD51A473E9100BE589D /* UserService.swift */,
 				BFE213C71A5EE63F0033E2F5 /* SearchService.swift */,
+				BF764DC31A5F6E8200D122F4 /* LandingService.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -856,6 +859,7 @@
 				8F4E53781A5A0D9E00DC876B /* NotesCollectionViewCell.swift in Sources */,
 				8F0004961A2419730096477A /* AppDelegate.swift in Sources */,
 				8F22CBE51A27ED190026376E /* ProfileCollectionViewLayout.swift in Sources */,
+				BF764DC41A5F6E8200D122F4 /* LandingService.swift in Sources */,
 				8FF298441A4DF38E00306CFC /* TagSelectorViewController.swift in Sources */,
 				8F22CBFB1A29AF450026376E /* UIViewExtension.swift in Sources */,
 				BF004C501A5CF91200AB8A6F /* OrganizationService.swift in Sources */,

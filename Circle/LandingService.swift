@@ -7,3 +7,31 @@
 //
 
 import Foundation
+import ProtobufRegistry
+
+typealias GetCategoriesCompletionHandler = (
+    profileCategories: Array<LandingService.Containers.ProfileCategory>?,
+    error: NSError?
+) -> Void
+
+extension LandingService {
+    class Actions {
+        
+        class func getCategories(profileId: String, completionHandler: GetCategoriesCompletionHandler) {
+            let requestBuilder = LandingService.GetCategories.Request.builder()
+            requestBuilder.profile_id = profileId
+            let client = ServiceClient(serviceName: "landing")
+            client.callAction(
+                "get_categories",
+                extensionField: LandingServiceRequests_get_categories,
+                requestBuilder: requestBuilder
+            ) { (_, _, _, actionResponse, error) -> Void in
+                let response = actionResponse?.result.getExtension(
+                    LandingServiceRequests_get_categories
+                ) as? LandingService.GetCategories.Response
+                completionHandler(profileCategories: response?.profile_categories, error: nil)
+            }
+        }
+        
+    }
+}

@@ -201,7 +201,7 @@ class AuthViewController: UIViewController, UITextFieldDelegate {
             password: passwordField.text
         ) { (user, token, error) -> Void in
             self.hideLoadingState()
-            if error != nil {
+            if error != nil || user == nil {
                 self.logInButton.addShakeAnimation()
                 self.emailField.becomeFirstResponder()
                 return

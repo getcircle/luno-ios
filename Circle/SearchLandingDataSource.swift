@@ -11,9 +11,26 @@ import ProtobufRegistry
 
 class SearchLandingDataSource: CardDataSource {
     
+    private func parseProfileCategories(profileCategories: Array<LandingService.Containers.ProfileCategory>) {
+        for category in profileCategories {
+            if category.content.count > 0 {
+                var categoryCard = Card(cardType: .Group, title: category.title)
+                categoryCard.content.append(category.content as [AnyObject])
+                categoryCard.contentCount = category.content.count
+                appendCard(categoryCard)
+            }
+        }
+    }
+    
     override func loadData(completionHandler: (error: NSError?) -> Void) {
-        addAdditionalData()
-        completionHandler(error: nil)
+        if let currentProfile = AuthViewController.getLoggedInUserProfile() {
+            LandingService.Actions.getCategories(currentProfile.id) { (profileCategories, error) -> Void in
+                if error == nil {
+                    self.parseProfileCategories(profileCategories!)
+                    completionHandler(error: nil)
+                }
+            }
+        }
     }
     
     private func addAdditionalData() {
