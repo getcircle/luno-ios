@@ -100,17 +100,6 @@ class SearchViewController: UIViewController, UICollectionViewDelegate, UITextFi
         }
     }
 
-    // MARK: - Segues
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "showUserProfile" {
-            let controller = segue.destinationViewController as UINavigationController
-            let profileVC = controller.topViewController as ProfileViewController
-            profileVC.showCloseOrBackButton = true
-            profileVC.profile = AuthViewController.getLoggedInUserProfile()
-        }
-    }
-    
     // MARK: - UICollectionViewDelegate
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
@@ -121,7 +110,7 @@ class SearchViewController: UIViewController, UICollectionViewDelegate, UITextFi
         
         case .People, .Birthdays:
             if let profile = dataSource.contentAtIndexPath(indexPath)? as? ProfileService.Containers.Profile {
-                var profileViewController = storyboard?.instantiateViewControllerWithIdentifier("ProfileViewController") as ProfileViewController
+                var profileViewController = ProfileViewController()
                 profileViewController.profile = profile
                 navigationController?.pushViewController(profileViewController, animated: true)
             }
@@ -138,6 +127,16 @@ class SearchViewController: UIViewController, UICollectionViewDelegate, UITextFi
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
         collectionView.collectionViewLayout.invalidateLayout()
+    }
+    
+    // MARK: - IBActions
+    
+    @IBAction func showLoggedInUserProfile(sender: AnyObject!) {
+//        let profileVC = ProfileViewController()
+//        profileVC.showCloseOrBackButton = true
+//        profileVC.profile = AuthViewController.getLoggedInUserProfile()
+//        let navController = UINavigationController(rootViewController: profileVC)
+//        UIApplication.sharedApplication(). ?.presentViewController(profileVC, animated: true, completion: nil)
     }
     
 }

@@ -10,7 +10,7 @@
 		7899CA44139AE8B96BACC3EA /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FD94FE17CC5CD80FF96B24E5 /* libPods.a */; };
 		8F0004961A2419730096477A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0004951A2419730096477A /* AppDelegate.swift */; };
 		8F00049B1A2419730096477A /* ProfilesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F00049A1A2419730096477A /* ProfilesViewController.swift */; };
-		8F00049D1A2419730096477A /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F00049C1A2419730096477A /* ProfileViewController.swift */; };
+		8F00049D1A2419730096477A /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F00049C1A2419730096477A /* DetailViewController.swift */; };
 		8F0004A01A2419730096477A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F00049E1A2419730096477A /* Main.storyboard */; };
 		8F0004A21A2419730096477A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8F0004A11A2419730096477A /* Images.xcassets */; };
 		8F0004A51A2419730096477A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F0004A31A2419730096477A /* LaunchScreen.xib */; };
@@ -57,6 +57,8 @@
 		8FCC95CD1A52828B00421E65 /* ProfileCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FCC95CB1A52828B00421E65 /* ProfileCollectionViewCell.swift */; };
 		8FCC95CE1A52828B00421E65 /* ProfileCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8FCC95CC1A52828B00421E65 /* ProfileCollectionViewCell.xib */; };
 		8FD041A21A2C03AA00FE28EF /* UIFontExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD041A11A2C03AA00FE28EF /* UIFontExtention.swift */; };
+		8FD907F51A5F91020025A17B /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD907F41A5F91020025A17B /* ProfileViewController.swift */; };
+		8FEB032B1A5F69020081BB65 /* LocationDetailDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FEB032A1A5F69020081BB65 /* LocationDetailDataSource.swift */; };
 		8FEE88471A411BA90011CE4A /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FEE88461A411BA90011CE4A /* UIViewControllerExtension.swift */; };
 		8FEE88601A437DE40011CE4A /* Alamofire.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 8FEE885B1A437DB10011CE4A /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8FF297FD1A4A4DCA00306CFC /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF297FC1A4A4DCA00306CFC /* SearchViewController.swift */; };
@@ -183,7 +185,7 @@
 		8F0004941A2419730096477A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8F0004951A2419730096477A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8F00049A1A2419730096477A /* ProfilesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilesViewController.swift; sourceTree = "<group>"; };
-		8F00049C1A2419730096477A /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		8F00049C1A2419730096477A /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		8F00049F1A2419730096477A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8F0004A11A2419730096477A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		8F0004A41A2419730096477A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -232,6 +234,8 @@
 		8FCC95CB1A52828B00421E65 /* ProfileCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileCollectionViewCell.swift; sourceTree = "<group>"; };
 		8FCC95CC1A52828B00421E65 /* ProfileCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileCollectionViewCell.xib; sourceTree = "<group>"; };
 		8FD041A11A2C03AA00FE28EF /* UIFontExtention.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIFontExtention.swift; sourceTree = "<group>"; };
+		8FD907F41A5F91020025A17B /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		8FEB032A1A5F69020081BB65 /* LocationDetailDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationDetailDataSource.swift; sourceTree = "<group>"; };
 		8FEE88461A411BA90011CE4A /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		8FEE88491A4371A80011CE4A /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = ../ThirdParty/Alamofire/Alamofire.xcodeproj; sourceTree = "<group>"; };
 		8FF297FC1A4A4DCA00306CFC /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -370,9 +374,10 @@
 			isa = PBXGroup;
 			children = (
 				8F22CBF61A29A8EB0026376E /* AuthViewController.swift */,
+				8F00049C1A2419730096477A /* DetailViewController.swift */,
 				8F22CB721A264A8A0026376E /* MainTabViewController.swift */,
+				8FD907F41A5F91020025A17B /* ProfileViewController.swift */,
 				8F00049A1A2419730096477A /* ProfilesViewController.swift */,
-				8F00049C1A2419730096477A /* ProfileViewController.swift */,
 				8FF297FC1A4A4DCA00306CFC /* SearchViewController.swift */,
 				8FF298431A4DF38E00306CFC /* TagSelectorViewController.swift */,
 			);
@@ -480,6 +485,7 @@
 			isa = PBXGroup;
 			children = (
 				8FC7BB3A1A58A6E2005BDDDB /* CardDataSource.swift */,
+				8FEB032A1A5F69020081BB65 /* LocationDetailDataSource.swift */,
 				8F22CBF41A2865030026376E /* ProfileDataSource.swift */,
 				8F2D7DEF1A5B2412001D36B0 /* ProfilesDataSource.swift */,
 				8FC7BB3F1A58AF4C005BDDDB /* SearchLandingDataSource.swift */,
@@ -855,6 +861,7 @@
 				8F0004BB1A241BDE0096477A /* UIColorExtension.swift in Sources */,
 				8F00049B1A2419730096477A /* ProfilesViewController.swift in Sources */,
 				BF041BBA1A2C119B0043EC72 /* NSDateFormatterExtension.swift in Sources */,
+				8FEB032B1A5F69020081BB65 /* LocationDetailDataSource.swift in Sources */,
 				8F3569141A560B2D003D42F9 /* CGRectExtension.swift in Sources */,
 				8FF2980A1A4B490E00306CFC /* SearchHeaderView.swift in Sources */,
 				8FCC95CD1A52828B00421E65 /* ProfileCollectionViewCell.swift in Sources */,
@@ -878,8 +885,9 @@
 				8F22CBF51A2865030026376E /* ProfileDataSource.swift in Sources */,
 				8F22CB771A2661890026376E /* AppDelegateAppearanceExtension.swift in Sources */,
 				8F22CBFE1A29C7120026376E /* GCDUtils.swift in Sources */,
+				8FD907F51A5F91020025A17B /* ProfileViewController.swift in Sources */,
 				8FC7BB401A58AF4C005BDDDB /* SearchLandingDataSource.swift in Sources */,
-				8F00049D1A2419730096477A /* ProfileViewController.swift in Sources */,
+				8F00049D1A2419730096477A /* DetailViewController.swift in Sources */,
 				BF7DF98F1A44E53200A4F924 /* ServiceTransport.swift in Sources */,
 				BF3F0F611A5B1C1100D4287E /* ProfileService.swift in Sources */,
 				8FEE88471A411BA90011CE4A /* UIViewControllerExtension.swift in Sources */,

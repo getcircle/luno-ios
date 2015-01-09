@@ -18,6 +18,18 @@ class ProfileCollectionViewLayout: UICollectionViewFlowLayout {
     let offsetToMakeProfileHeaderSticky: CGFloat = ProfileCollectionViewLayout.profileHeaderHeight - 64.0
     let cellHeight: CGFloat = 44.0
     
+    override init() {
+        super.init()
+        registerClass(
+            SeparatorDecorationView.self,
+            forDecorationViewOfKind: SeparatorDecorationView.kind
+        )
+        
+        sectionInset = UIEdgeInsetsMake(30.0, 0.0, 0.0, 0.0)
+        minimumInteritemSpacing = 0.0
+        minimumLineSpacing = 0.0
+    }
+    
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         registerClass(

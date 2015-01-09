@@ -64,23 +64,14 @@ class ProfilesViewController: UIViewController,
         (collectionView.delegate as ProfilesCollectionViewDelegate).delegate = self
     }
 
-    // MARK: - Segues
-
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "showUserProfile" && sender is NSIndexPath {
-            if let profile = dataSource.contentAtIndexPath(sender as NSIndexPath)? as? ProfileService.Containers.Profile {
-                let controller = segue.destinationViewController as ProfileViewController
-                println(profile)
-                controller.profile = profile
-            }
-        }
-    }
-   
     // MARK: - Collection View Delegate
-    
+
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         if let profile = dataSource.contentAtIndexPath(indexPath)? as? ProfileService.Containers.Profile {
-            performSegueWithIdentifier("showUserProfile", sender: indexPath)
+            
+            var profileVC = ProfileViewController()
+            profileVC.profile = profile
+            navigationController?.pushViewController(profileVC, animated: true)
         }
     }
 

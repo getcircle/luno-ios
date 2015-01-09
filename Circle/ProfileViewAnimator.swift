@@ -30,18 +30,18 @@ class ProfileViewAnimator: NSObject, UIViewControllerAnimatedTransitioning {
             fromViewController = (fromViewController as UINavigationController).topViewController
         }
         
-        if toViewController is ProfileViewController {
+        if toViewController is DetailViewController {
             containerView.addSubview((toViewController as UIViewController!).view)
-            doMaskAnimation(toViewController as ProfileViewController, transitionContext: transitionContext)
+            doMaskAnimation(toViewController as DetailViewController, transitionContext: transitionContext)
         }
         else {
             containerView.insertSubview((toViewController as UIViewController!).view, atIndex: 0)
             isDismissAnimation = true
-            doMaskAnimation(fromViewController as ProfileViewController, transitionContext: transitionContext)
+            doMaskAnimation(fromViewController as DetailViewController, transitionContext: transitionContext)
         }
     }
     
-    private func doMaskAnimation(profileVC: ProfileViewController, transitionContext: UIViewControllerContextTransitioning) {
+    private func doMaskAnimation(profileVC: DetailViewController, transitionContext: UIViewControllerContextTransitioning) {
         weakTransitionContext = transitionContext
         let sourceRect = profileVC.animationSourceRect? ?? CGRectMake(256.0, 20.0, 44.0, 44.0)
         let sourceCenter = sourceRect.center()

@@ -40,14 +40,6 @@ struct SectionItem {
 
 class ProfileDataSource: CardDataSource {
 
-    var profile: ProfileService.Containers.Profile! {
-        didSet {
-        }
-    }
-    var manager: ProfileService.Containers.Profile?
-    var team: OrganizationService.Containers.Team?
-    var address: OrganizationService.Containers.Address?
-    
     enum CellType: String {
         case Email = "email"
         case CellPhone = "cell"
@@ -70,9 +62,12 @@ class ProfileDataSource: CardDataSource {
         }
     }
     
-    private (set) var profileHeaderView: ProfileHeaderCollectionReusableView?
-    private var attributes: [String] = []
-    
+    var address: OrganizationService.Containers.Address?
+    var manager: ProfileService.Containers.Profile?
+    var profile: ProfileService.Containers.Profile!
+    private(set) var profileHeaderView: ProfileHeaderCollectionReusableView?
+    var team: OrganizationService.Containers.Team?
+
     let sections = [
         
         // Base Info Section
