@@ -46,6 +46,10 @@ class SearchLandingDataSource: CardDataSource {
     }
     
     override func loadData(completionHandler: (error: NSError?) -> Void) {
+        if cards.count > 0 {
+            return
+        }
+        
         if let currentProfile = AuthViewController.getLoggedInUserProfile() {
             LandingService.Actions.getCategories(currentProfile.id) { (profileCategories, addressCategories, error) -> Void in
                 if error == nil {

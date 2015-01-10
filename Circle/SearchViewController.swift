@@ -23,22 +23,21 @@ class SearchViewController: UIViewController, UICollectionViewDelegate, UITextFi
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
         configureView()
         configureSearchHeaderView()
         configureCollectionView()
+    }
+
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        checkUserAndPresentAuthViewController()
         (collectionView.dataSource as SearchLandingDataSource).loadData { (error) -> Void in
             if error == nil {
                 self.activityIndicatorView.stopAnimating()
                 self.collectionView.reloadData()
             }
         }
-    }
-
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        checkUserAndPresentAuthViewController()
     }
 
     // MARK: - Configuration

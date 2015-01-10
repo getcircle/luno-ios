@@ -209,13 +209,13 @@ class AuthViewController: UIViewController, UITextFieldDelegate {
             
             self.cacheLoginData(token!, user: user!)
             self.fetchAndCacheUserProfile(user!.id)
-            SearchCache.sharedInstance.repopulate()
         }
     }
     
     private func fetchAndCacheUserProfile(userId: String) {
         ProfileService.Actions.getProfile(userId: userId) { (profile, error) -> Void in
             if error == nil {
+                SearchCache.sharedInstance.repopulate()
                 LoggedInUserHolder.profile = profile!
                 self.cacheProfileData(profile!)
                 self.dismissViewControllerAnimated(true, completion: nil)
