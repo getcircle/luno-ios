@@ -13,8 +13,15 @@ class SearchLandingDataSource: CardDataSource {
     
     private func parseProfileCategories(profileCategories: Array<LandingService.Containers.ProfileCategory>) {
         for category in profileCategories {
-            var categoryCard = Card(cardType: .Group, title: category.title)
-            categoryCard.content.append(category.content as [AnyObject])
+            var cardType: Card.CardType
+            switch category.display_type {
+            case LandingService.Containers.DisplayType.Detail:
+                cardType = .People
+            default:
+                cardType = .Group
+            }
+            var categoryCard = Card(cardType: cardType, title: category.title)
+            categoryCard.addContent(content: category.content as [AnyObject])
             categoryCard.contentCount = category.content.count
             appendCard(categoryCard)
         }
@@ -23,7 +30,7 @@ class SearchLandingDataSource: CardDataSource {
     private func parseAddressCategories(addressCategories: Array<LandingService.Containers.AddressCategory>) {
         for category in addressCategories {
             var categoryCard = Card(cardType: .Locations, title: category.title)
-            categoryCard.content.extend(category.content as [AnyObject])
+            categoryCard.addContent(content: category.content as [AnyObject])
             categoryCard.contentCount = category.content.count
             appendCard(categoryCard)
         }

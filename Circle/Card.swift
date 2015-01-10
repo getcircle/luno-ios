@@ -110,4 +110,12 @@ class Card: Equatable {
         contentCount = 0
         content = []
     }
+    
+    func addContent(content withContent: [AnyObject]) {
+        switch type {
+        case .Group: content.append(withContent)
+        default: content.extend(withContent)
+        }
+    }
+    
 }
