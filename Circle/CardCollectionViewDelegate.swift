@@ -83,6 +83,10 @@ class CardCollectionViewDelegate: NSObject, UICollectionViewDelegateFlowLayout, 
     func scrollViewDidScroll(scrollView: UIScrollView) {
         delegate?.scrollViewDidScroll?(scrollView)
     }
+
+    func scrollViewWillBeginDecelerating(scrollView: UIScrollView) {
+        delegate?.scrollViewWillBeginDecelerating?(scrollView)
+    }
     
     // MARK: - Helpers
     

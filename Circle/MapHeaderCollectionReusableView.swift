@@ -11,13 +11,14 @@ import MapKit
 
 class MapHeaderCollectionReusableView: UICollectionReusableView {
 
-    @IBOutlet weak private(set) var blurViewContainer: UIView!
-    @IBOutlet weak private(set) var addressLabel: UILabel!
-    
     class var classReuseIdentifier: String {
         return "MapHeaderCollectionReusableView"
     }
     
+    @IBOutlet weak private(set) var addressLabel: UILabel!
+    @IBOutlet weak private(set) var addressContainerView: UIView!
+    
+    private(set) var mapboxView: RMMapView!
     private var visualEffectView: UIVisualEffectView!
 
     override func awakeFromNib() {
@@ -34,7 +35,7 @@ class MapHeaderCollectionReusableView: UICollectionReusableView {
         
         // Create a tile source from Mapbox
         let source = RMMapboxSource(mapID: "rrani.kmnghfmf")
-        var mapboxView = RMMapView(
+        mapboxView = RMMapView(
             frame: frame,
             andTilesource: source,
             centerCoordinate: coordinates,
@@ -56,8 +57,8 @@ class MapHeaderCollectionReusableView: UICollectionReusableView {
         let blurEffect = UIBlurEffect(style: .Dark)
         visualEffectView = UIVisualEffectView(effect: blurEffect)
         visualEffectView.setTranslatesAutoresizingMaskIntoConstraints(false)
-        visualEffectView.frame = blurViewContainer.frame
-        blurViewContainer.addSubview(visualEffectView)
+        visualEffectView.frame = addressContainerView.frame
+        addressContainerView.insertSubview(visualEffectView, belowSubview: addressLabel)
         visualEffectView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
         
     }

@@ -31,10 +31,42 @@ class LocationDetailViewController: DetailViewController {
         if let profile = dataSource.contentAtIndexPath(indexPath)? as? ProfileService.Containers.Profile {
             var profileVC = ProfileDetailViewController()
             profileVC.profile = profile
-            println(profile)
             navigationController?.pushViewController(profileVC, animated: true)
         }
 
         collectionView.deselectItemAtIndexPath(indexPath, animated: true)
+    }
+    
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        println(scrollView.contentOffset.y)
+    }
+    
+    func scrollViewWillBeginDecelerating(scrollView: UIScrollView) {
+        if scrollView.contentOffset.y <= -100.0 {
+            scrollView.setContentOffset(scrollView.contentOffset, animated: true)
+            presentFullScreenMapView(true)
+        }
+    }
+    
+    // MARK: - Present Map View
+    
+    private func presentFullScreenMapView(animated: Bool) {
+        var mapViewController = MapViewController()
+        if let headerView = (dataSource as LocationDetailDataSource).profileHeaderView {
+          
+            // Add initial and final positions for the map
+            mapViewController.initialMapViewRect = headerView.convertRect(headerView.mapboxView.frame, toView: view)
+            let finalRect = CGRect(
+                origin: CGPointZero,
+                size: CGSizeMake(view.frameWidth, ProfileCollectionViewLayout.profileHeaderHeight)
+            )
+            mapViewController.finalMapViewRect = finalRect
+            mapViewController.addressSnapshotView = headerView.addressContainerView.snapshotViewAfterScreenUpdates(false)
+        }
+        
+        mapViewController.modalPresentationStyle = .Custom
+        mapViewController.transitioningDelegate = mapViewController
+        mapViewController.modalPresentationCapturesStatusBarAppearance = true
+        presentViewController(mapViewController, animated: animated, completion: nil)
     }
 }
