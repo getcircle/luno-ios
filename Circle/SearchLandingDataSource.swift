@@ -21,10 +21,9 @@ class SearchLandingDataSource: CardDataSource {
                 cardType = .Group
             }
             
-            println(category.title)
-            
+            // Temp. change for screenshots
             if category.title == "Work Anniversaries" {
-                continue
+                cardType = .Anniversaries
             }
             else if category.title == "Birthdays" {
                 cardType = .Birthdays
@@ -74,14 +73,6 @@ class SearchLandingDataSource: CardDataSource {
         tags.append(["name": "Marketing"])
         tagsCard.content.append(tags)
         appendCard(tagsCard)
-        
-        var locationsCard = Card(cardType: .Locations, title: "Locations")
-        locationsCard.contentCount = 6
-        // Once we have the backend in place, these would be Location model objects
-        locationsCard.content.append(["name": "San Francisco, CA", "address": "155 5th Street, 7th Floor", "count": "375"])
-        locationsCard.content.append(["name": "Nashville, TN", "address": "Cummins Station", "count": "48"])
-        locationsCard.content.append(["name": "London, UK", "address": "344-354 Gray's Inn Road", "count": "18"])
-        appendCard(locationsCard)
     }
 //
 //    private func setProfiles(profiles: [ProfileService.Containers.Profile], completionHandler: (error: NSError?) -> Void) {
