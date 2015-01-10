@@ -79,21 +79,22 @@ class MapViewController: UIViewController, UIViewControllerTransitioningDelegate
         
         // Close Button
         closeButton = UIButton(forAutoLayout: ())
-        closeButton.setTitle("Close", forState: .Normal)
         closeButton.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.8)
-        closeButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-        closeButton.titleLabel?.font = UIFont(name: "Avenir-Roman", size: 16.0)
+        closeButton.setImage(UIImage(named: "Close")?.imageWithRenderingMode(.AlwaysTemplate), forState: .Normal)
+        closeButton.tintColor = UIColor.whiteColor()
+        closeButton.imageEdgeInsets = UIEdgeInsetsMake(10.0, 10.0, 10.0, 10.0)
+        closeButton.layer.cornerRadius = 4.0
         closeButton.addTarget(self, action: "close:", forControlEvents: .TouchUpInside)
         view.addSubview(closeButton)
         closeButton.autoPinEdgeToSuperviewEdge(.Left, withInset: 20.0)
         closeButton.autoPinEdgeToSuperviewEdge(.Top, withInset: 20.0)
-        closeButton.autoSetDimension(.Height, toSize: 30.0)
-        closeButton.autoSetDimension(.Width, toSize: 80.0)
+        closeButton.autoSetDimension(.Height, toSize: 35.0)
+        closeButton.autoSetDimension(.Width, toSize: 35.0)
         
         // Address View
         addressContainerView = UIView(frame: CGRectMake(0.0, 0.0, view.frameWidth, 35.0))
         addressSnapshotView?.setTranslatesAutoresizingMaskIntoConstraints(false)
-        addressContainerView.backgroundColor = UIColor.clearColor()
+        addressContainerView.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.8)
         view.addSubview(addressContainerView)
         addressContainerView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero, excludingEdge: .Top)
         addressContainerView.autoSetDimension(.Height, toSize: 35.0)
