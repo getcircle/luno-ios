@@ -60,6 +60,7 @@ final public class LandingService : GeneratedMessage {
                  switch key {
                  case "title": return title
                  case "content_key": return content_key
+                 case "display_type": return Int(self.display_type.rawValue)
                  default: return nil
                  }
           }
@@ -70,6 +71,8 @@ final public class LandingService : GeneratedMessage {
           public private(set) var hasContentKey:Bool = false
           public private(set) var content_key:String = ""
 
+          public private(set) var display_type:LandingService.Containers.DisplayType = LandingService.Containers.DisplayType.Group
+          public private(set) var hasDisplayType:Bool = false
           public private(set) var content:Array<ProfileService.Containers.Profile>  = Array<ProfileService.Containers.Profile>()
           required public init() {
                super.init()
@@ -86,6 +89,9 @@ final public class LandingService : GeneratedMessage {
             }
             if hasContentKey {
               output.writeString(3, value:content_key)
+            }
+            if hasDisplayType {
+              output.writeEnum(4, value:display_type.rawValue)
             }
             unknownFields.writeToCodedOutputStream(output)
           }
@@ -104,6 +110,9 @@ final public class LandingService : GeneratedMessage {
             }
             if hasContentKey {
               size += WireFormat.computeStringSize(3, value:content_key)
+            }
+            if (hasDisplayType) {
+              size += WireFormat.computeEnumSize(4, value:display_type.rawValue)
             }
             size += unknownFields.serializedSize()
             memoizedSerializedSize = size
@@ -159,6 +168,9 @@ final public class LandingService : GeneratedMessage {
             if hasContentKey {
               output += "\(indent) content_key: \(content_key) \n"
             }
+            if (hasDisplayType) {
+              output += "\(indent) display_type: \(display_type.rawValue)\n"
+            }
             unknownFields.writeDescriptionTo(&output, indent:indent)
           }
           override public var hashValue:Int {
@@ -172,6 +184,9 @@ final public class LandingService : GeneratedMessage {
                   }
                   if hasContentKey {
                      hashCode = (hashCode &* 31) &+ content_key.hashValue
+                  }
+                  if hasDisplayType {
+                     hashCode = (hashCode &* 31) &+ Int(display_type.rawValue)
                   }
                   hashCode = (hashCode &* 31) &+  unknownFields.hashValue
                   return hashCode
@@ -253,6 +268,25 @@ final public class LandingService : GeneratedMessage {
                builderResult.content_key = ""
                return self
           }
+            public var hasDisplayType:Bool{
+                get {
+                    return builderResult.hasDisplayType
+                }
+            }
+            public var display_type:LandingService.Containers.DisplayType {
+                get {
+                    return builderResult.display_type
+                }
+                set (value) {
+                    builderResult.hasDisplayType = true
+                    builderResult.display_type = value
+                }
+            }
+            public func clearDisplayType() -> LandingService.Containers.ProfileCategoryBuilder {
+               builderResult.hasDisplayType = false
+               builderResult.display_type = .Group
+               return self
+            }
           override public var internalGetResult:GeneratedMessage {
                get {
                   return builderResult
@@ -286,6 +320,9 @@ final public class LandingService : GeneratedMessage {
             if other.hasContentKey {
                  content_key = other.content_key
             }
+            if other.hasDisplayType {
+                 display_type = other.display_type
+            }
             mergeUnknownFields(other.unknownFields)
             return self
           }
@@ -312,6 +349,14 @@ final public class LandingService : GeneratedMessage {
               case 26 :
                 content_key = input.readString()
 
+              case 32 :
+                let valueIntdisplay_type = input.readEnum()
+                if let enumsdisplay_type = LandingService.Containers.DisplayType(rawValue:valueIntdisplay_type){
+                     display_type = enumsdisplay_type
+                } else {
+                     unknownFieldsBuilder.mergeVarintField(4, value:Int64(valueIntdisplay_type))
+                }
+
               default:
                 if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
                    unknownFields = unknownFieldsBuilder.build()
@@ -335,6 +380,7 @@ final public class LandingService : GeneratedMessage {
                  switch key {
                  case "title": return title
                  case "content_key": return content_key
+                 case "display_type": return Int(self.display_type.rawValue)
                  default: return nil
                  }
           }
@@ -345,6 +391,8 @@ final public class LandingService : GeneratedMessage {
           public private(set) var hasContentKey:Bool = false
           public private(set) var content_key:String = ""
 
+          public private(set) var display_type:LandingService.Containers.DisplayType = LandingService.Containers.DisplayType.Detail
+          public private(set) var hasDisplayType:Bool = false
           public private(set) var content:Array<OrganizationService.Containers.Address>  = Array<OrganizationService.Containers.Address>()
           required public init() {
                super.init()
@@ -361,6 +409,9 @@ final public class LandingService : GeneratedMessage {
             }
             if hasContentKey {
               output.writeString(3, value:content_key)
+            }
+            if hasDisplayType {
+              output.writeEnum(4, value:display_type.rawValue)
             }
             unknownFields.writeToCodedOutputStream(output)
           }
@@ -379,6 +430,9 @@ final public class LandingService : GeneratedMessage {
             }
             if hasContentKey {
               size += WireFormat.computeStringSize(3, value:content_key)
+            }
+            if (hasDisplayType) {
+              size += WireFormat.computeEnumSize(4, value:display_type.rawValue)
             }
             size += unknownFields.serializedSize()
             memoizedSerializedSize = size
@@ -434,6 +488,9 @@ final public class LandingService : GeneratedMessage {
             if hasContentKey {
               output += "\(indent) content_key: \(content_key) \n"
             }
+            if (hasDisplayType) {
+              output += "\(indent) display_type: \(display_type.rawValue)\n"
+            }
             unknownFields.writeDescriptionTo(&output, indent:indent)
           }
           override public var hashValue:Int {
@@ -447,6 +504,9 @@ final public class LandingService : GeneratedMessage {
                   }
                   if hasContentKey {
                      hashCode = (hashCode &* 31) &+ content_key.hashValue
+                  }
+                  if hasDisplayType {
+                     hashCode = (hashCode &* 31) &+ Int(display_type.rawValue)
                   }
                   hashCode = (hashCode &* 31) &+  unknownFields.hashValue
                   return hashCode
@@ -528,6 +588,25 @@ final public class LandingService : GeneratedMessage {
                builderResult.content_key = ""
                return self
           }
+            public var hasDisplayType:Bool{
+                get {
+                    return builderResult.hasDisplayType
+                }
+            }
+            public var display_type:LandingService.Containers.DisplayType {
+                get {
+                    return builderResult.display_type
+                }
+                set (value) {
+                    builderResult.hasDisplayType = true
+                    builderResult.display_type = value
+                }
+            }
+            public func clearDisplayType() -> LandingService.Containers.AddressCategoryBuilder {
+               builderResult.hasDisplayType = false
+               builderResult.display_type = .Detail
+               return self
+            }
           override public var internalGetResult:GeneratedMessage {
                get {
                   return builderResult
@@ -561,6 +640,9 @@ final public class LandingService : GeneratedMessage {
             if other.hasContentKey {
                  content_key = other.content_key
             }
+            if other.hasDisplayType {
+                 display_type = other.display_type
+            }
             mergeUnknownFields(other.unknownFields)
             return self
           }
@@ -587,6 +669,14 @@ final public class LandingService : GeneratedMessage {
               case 26 :
                 content_key = input.readString()
 
+              case 32 :
+                let valueIntdisplay_type = input.readEnum()
+                if let enumsdisplay_type = LandingService.Containers.DisplayType(rawValue:valueIntdisplay_type){
+                     display_type = enumsdisplay_type
+                } else {
+                     unknownFieldsBuilder.mergeVarintField(4, value:Int64(valueIntdisplay_type))
+                }
+
               default:
                 if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
                    unknownFields = unknownFieldsBuilder.build()
@@ -600,6 +690,26 @@ final public class LandingService : GeneratedMessage {
 
 
       //Nested type declaration end
+
+
+
+        //Enum type declaration start 
+
+        public enum DisplayType:Int32 {
+          case Group = 0
+          case Detail = 1
+
+          public static func IsValidValue(value:Int32) ->Bool {
+              if let check = DisplayType(rawValue:value) {
+                  return true
+              }
+              return false
+          }
+        }
+
+
+
+        //Enum type declaration end 
 
       public subscript(key: String) -> AnyObject? {
              switch key {

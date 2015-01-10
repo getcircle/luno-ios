@@ -20,12 +20,34 @@ import protobufs.profile_service_pb2
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='protobufs/landing_service.proto',
   package='main.landing_service',
-  serialized_pb=_b('\n\x1fprotobufs/landing_service.proto\x12\x14main.landing_service\x1a$protobufs/organization_service.proto\x1a\x1fprotobufs/profile_service.proto\"\xb4\x04\n\x0eLandingService\x1a\x99\x02\n\nContainers\x1a\x7f\n\x0fProfileCategory\x12\r\n\x05title\x18\x01 \x01(\t\x12H\n\x07\x63ontent\x18\x02 \x03(\x0b\x32\x37.main.profile_service.ProfileService.Containers.Profile\x12\x13\n\x0b\x63ontent_key\x18\x03 \x01(\t\x1a\x89\x01\n\x0f\x41\x64\x64ressCategory\x12\r\n\x05title\x18\x01 \x01(\t\x12R\n\x07\x63ontent\x18\x02 \x03(\x0b\x32\x41.main.organization_service.OrganizationService.Containers.Address\x12\x13\n\x0b\x63ontent_key\x18\x03 \x01(\t\x1a\x85\x02\n\rGetCategories\x1a-\n\x07Request\x12\x14\n\nprofile_id\x18\x01 \x01(\tH\x00\x42\x0c\n\nlookup_key\x1a\xc4\x01\n\x08Response\x12[\n\x12profile_categories\x18\x01 \x03(\x0b\x32?.main.landing_service.LandingService.Containers.ProfileCategory\x12[\n\x12\x61\x64\x64ress_categories\x18\x02 \x03(\x0b\x32?.main.landing_service.LandingService.Containers.AddressCategory')
+  serialized_pb=_b('\n\x1fprotobufs/landing_service.proto\x12\x14main.landing_service\x1a$protobufs/organization_service.proto\x1a\x1fprotobufs/profile_service.proto\"\x90\x06\n\x0eLandingService\x1a\xf5\x03\n\nContainers\x1a\xd9\x01\n\x0fProfileCategory\x12\r\n\x05title\x18\x01 \x01(\t\x12H\n\x07\x63ontent\x18\x02 \x03(\x0b\x32\x37.main.profile_service.ProfileService.Containers.Profile\x12\x13\n\x0b\x63ontent_key\x18\x03 \x01(\t\x12X\n\x0c\x64isplay_type\x18\x04 \x01(\x0e\x32;.main.landing_service.LandingService.Containers.DisplayType:\x05GROUP\x1a\xe4\x01\n\x0f\x41\x64\x64ressCategory\x12\r\n\x05title\x18\x01 \x01(\t\x12R\n\x07\x63ontent\x18\x02 \x03(\x0b\x32\x41.main.organization_service.OrganizationService.Containers.Address\x12\x13\n\x0b\x63ontent_key\x18\x03 \x01(\t\x12Y\n\x0c\x64isplay_type\x18\x04 \x01(\x0e\x32;.main.landing_service.LandingService.Containers.DisplayType:\x06\x44\x45TAIL\"$\n\x0b\x44isplayType\x12\t\n\x05GROUP\x10\x00\x12\n\n\x06\x44\x45TAIL\x10\x01\x1a\x85\x02\n\rGetCategories\x1a-\n\x07Request\x12\x14\n\nprofile_id\x18\x01 \x01(\tH\x00\x42\x0c\n\nlookup_key\x1a\xc4\x01\n\x08Response\x12[\n\x12profile_categories\x18\x01 \x03(\x0b\x32?.main.landing_service.LandingService.Containers.ProfileCategory\x12[\n\x12\x61\x64\x64ress_categories\x18\x02 \x03(\x0b\x32?.main.landing_service.LandingService.Containers.AddressCategory')
   ,
   dependencies=[protobufs.organization_service_pb2.DESCRIPTOR,protobufs.profile_service_pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 
+
+_LANDINGSERVICE_CONTAINERS_DISPLAYTYPE = _descriptor.EnumDescriptor(
+  name='DisplayType',
+  full_name='main.landing_service.LandingService.Containers.DisplayType',
+  filename=None,
+  file=DESCRIPTOR,
+  values=[
+    _descriptor.EnumValueDescriptor(
+      name='GROUP', index=0, number=0,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='DETAIL', index=1, number=1,
+      options=None,
+      type=None),
+  ],
+  containing_type=None,
+  options=None,
+  serialized_start=613,
+  serialized_end=649,
+)
+_sym_db.RegisterEnumDescriptor(_LANDINGSERVICE_CONTAINERS_DISPLAYTYPE)
 
 
 _LANDINGSERVICE_CONTAINERS_PROFILECATEGORY = _descriptor.Descriptor(
@@ -56,6 +78,13 @@ _LANDINGSERVICE_CONTAINERS_PROFILECATEGORY = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
+    _descriptor.FieldDescriptor(
+      name='display_type', full_name='main.landing_service.LandingService.Containers.ProfileCategory.display_type', index=3,
+      number=4, type=14, cpp_type=8, label=1,
+      has_default_value=True, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
   ],
   extensions=[
   ],
@@ -67,8 +96,8 @@ _LANDINGSERVICE_CONTAINERS_PROFILECATEGORY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=162,
-  serialized_end=289,
+  serialized_start=163,
+  serialized_end=380,
 )
 
 _LANDINGSERVICE_CONTAINERS_ADDRESSCATEGORY = _descriptor.Descriptor(
@@ -99,6 +128,13 @@ _LANDINGSERVICE_CONTAINERS_ADDRESSCATEGORY = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
+    _descriptor.FieldDescriptor(
+      name='display_type', full_name='main.landing_service.LandingService.Containers.AddressCategory.display_type', index=3,
+      number=4, type=14, cpp_type=8, label=1,
+      has_default_value=True, default_value=1,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
   ],
   extensions=[
   ],
@@ -110,8 +146,8 @@ _LANDINGSERVICE_CONTAINERS_ADDRESSCATEGORY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=292,
-  serialized_end=429,
+  serialized_start=383,
+  serialized_end=611,
 )
 
 _LANDINGSERVICE_CONTAINERS = _descriptor.Descriptor(
@@ -126,6 +162,7 @@ _LANDINGSERVICE_CONTAINERS = _descriptor.Descriptor(
   ],
   nested_types=[_LANDINGSERVICE_CONTAINERS_PROFILECATEGORY, _LANDINGSERVICE_CONTAINERS_ADDRESSCATEGORY, ],
   enum_types=[
+    _LANDINGSERVICE_CONTAINERS_DISPLAYTYPE,
   ],
   options=None,
   is_extendable=False,
@@ -133,7 +170,7 @@ _LANDINGSERVICE_CONTAINERS = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=148,
-  serialized_end=429,
+  serialized_end=649,
 )
 
 _LANDINGSERVICE_GETCATEGORIES_REQUEST = _descriptor.Descriptor(
@@ -164,8 +201,8 @@ _LANDINGSERVICE_GETCATEGORIES_REQUEST = _descriptor.Descriptor(
       name='lookup_key', full_name='main.landing_service.LandingService.GetCategories.Request.lookup_key',
       index=0, containing_type=None, fields=[]),
   ],
-  serialized_start=449,
-  serialized_end=494,
+  serialized_start=669,
+  serialized_end=714,
 )
 
 _LANDINGSERVICE_GETCATEGORIES_RESPONSE = _descriptor.Descriptor(
@@ -200,8 +237,8 @@ _LANDINGSERVICE_GETCATEGORIES_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=497,
-  serialized_end=693,
+  serialized_start=717,
+  serialized_end=913,
 )
 
 _LANDINGSERVICE_GETCATEGORIES = _descriptor.Descriptor(
@@ -222,8 +259,8 @@ _LANDINGSERVICE_GETCATEGORIES = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=432,
-  serialized_end=693,
+  serialized_start=652,
+  serialized_end=913,
 )
 
 _LANDINGSERVICE = _descriptor.Descriptor(
@@ -245,14 +282,17 @@ _LANDINGSERVICE = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=129,
-  serialized_end=693,
+  serialized_end=913,
 )
 
 _LANDINGSERVICE_CONTAINERS_PROFILECATEGORY.fields_by_name['content'].message_type = protobufs.profile_service_pb2._PROFILESERVICE_CONTAINERS_PROFILE
+_LANDINGSERVICE_CONTAINERS_PROFILECATEGORY.fields_by_name['display_type'].enum_type = _LANDINGSERVICE_CONTAINERS_DISPLAYTYPE
 _LANDINGSERVICE_CONTAINERS_PROFILECATEGORY.containing_type = _LANDINGSERVICE_CONTAINERS
 _LANDINGSERVICE_CONTAINERS_ADDRESSCATEGORY.fields_by_name['content'].message_type = protobufs.organization_service_pb2._ORGANIZATIONSERVICE_CONTAINERS_ADDRESS
+_LANDINGSERVICE_CONTAINERS_ADDRESSCATEGORY.fields_by_name['display_type'].enum_type = _LANDINGSERVICE_CONTAINERS_DISPLAYTYPE
 _LANDINGSERVICE_CONTAINERS_ADDRESSCATEGORY.containing_type = _LANDINGSERVICE_CONTAINERS
 _LANDINGSERVICE_CONTAINERS.containing_type = _LANDINGSERVICE
+_LANDINGSERVICE_CONTAINERS_DISPLAYTYPE.containing_type = _LANDINGSERVICE_CONTAINERS
 _LANDINGSERVICE_GETCATEGORIES_REQUEST.containing_type = _LANDINGSERVICE_GETCATEGORIES
 _LANDINGSERVICE_GETCATEGORIES_REQUEST.oneofs_by_name['lookup_key'].fields.append(
   _LANDINGSERVICE_GETCATEGORIES_REQUEST.fields_by_name['profile_id'])

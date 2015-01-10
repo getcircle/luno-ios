@@ -9,6 +9,11 @@ message LandingService {
 
     message Containers {
 
+        enum DisplayType {
+            GROUP = 0;
+            DETAIL = 1;
+        }
+
         // "Category" containers should contain: "title", "content", and
         // "content_key" fields. The type for "content" can be specific to the
         // Category
@@ -17,12 +22,14 @@ message LandingService {
             optional string title = 1;
             repeated main.profile_service.ProfileService.Containers.Profile content = 2;
             optional string content_key = 3;
+            optional DisplayType display_type = 4 [default = GROUP];
         }
 
         message AddressCategory {
             optional string title = 1;
             repeated main.organization_service.OrganizationService.Containers.Address content = 2;
             optional string content_key = 3;
+            optional DisplayType display_type = 4 [default = DETAIL];
         }
 
     }
