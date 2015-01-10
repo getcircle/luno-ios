@@ -18,14 +18,6 @@ class KeyValueCollectionViewCell: CircleCollectionViewCell {
     override class var classReuseIdentifier: String {
         return "KeyValueCell"
     }
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-        // Collection view does some trickery and removes constraints from
-        // background views. So, we have to add it again in code
-        selectedBackgroundView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
-    }
 
     override func setData(data: AnyObject) {
         if let keyValueDictionary = data as? [String: AnyObject] {

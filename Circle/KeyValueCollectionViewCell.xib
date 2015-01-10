@@ -36,20 +36,12 @@
                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="flG-z2-QoT" userLabel="SelectedView">
-                        <rect key="frame" x="0.0" y="0.0" width="639" height="44"/>
-                        <color key="backgroundColor" white="0.80723170230263153" alpha="0.51000000000000001" colorSpace="calibratedWhite"/>
-                    </view>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="flG-z2-QoT" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="E9X-d7-OH0"/>
-                <constraint firstItem="flG-z2-QoT" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="HuN-8c-ph7"/>
                 <constraint firstAttribute="centerY" secondItem="lAf-wh-yGN" secondAttribute="centerY" id="RRZ-ma-lRp"/>
-                <constraint firstAttribute="bottom" secondItem="flG-z2-QoT" secondAttribute="bottom" id="Tim-RO-ZWw"/>
-                <constraint firstAttribute="trailing" secondItem="flG-z2-QoT" secondAttribute="trailing" id="VO8-Ov-mdg"/>
                 <constraint firstItem="lAf-wh-yGN" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="15" id="Xor-qf-DPt"/>
                 <constraint firstAttribute="trailing" secondItem="6Ax-wo-sff" secondAttribute="trailing" constant="60" id="c3i-aL-zmh"/>
                 <constraint firstAttribute="centerY" secondItem="867-SJ-3vd" secondAttribute="centerY" id="crk-Fd-Raf"/>
@@ -61,7 +53,6 @@
             <connections>
                 <outlet property="nameImageView" destination="867-SJ-3vd" id="4iw-kj-P05"/>
                 <outlet property="nameLabel" destination="lAf-wh-yGN" id="4PV-aG-I92"/>
-                <outlet property="selectedBackgroundView" destination="flG-z2-QoT" id="Ct2-4m-O1H"/>
                 <outlet property="valueLabel" destination="6Ax-wo-sff" id="wy0-5B-o4d"/>
                 <outlet property="valueLabelTrailingSpaceConstraint" destination="c3i-aL-zmh" id="V0T-bE-bBS"/>
             </connections>

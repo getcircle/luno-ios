@@ -53,6 +53,18 @@ class CircleCollectionViewCell: UICollectionViewCell {
         return .Fixed
     }
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        selectedBackgroundView = UIView(forAutoLayout: ())
+        selectedBackgroundView.backgroundColor = UIColor(red: 206, green: 206, blue: 206).colorWithAlphaComponent(0.5)
+        selectedBackgroundView.opaque = true
+        contentView.bringSubviewToFront(selectedBackgroundView)
+        // Collection view does some trickery and removes constraints from
+        // background views. So, we have to add it again in code
+        selectedBackgroundView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
+    }
+    
     // Generic setData function..The cells receive content in this function
     // This function is expected to be overridden by every sub-class.
     // The sub-classes need to independently cast the received data in their appropriate

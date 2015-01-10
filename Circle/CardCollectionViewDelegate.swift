@@ -88,6 +88,7 @@ class CardCollectionViewDelegate: NSObject, UICollectionViewDelegateFlowLayout, 
  
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         delegate?.collectionView?(collectionView, didSelectItemAtIndexPath: indexPath)
+        collectionView.deselectItemAtIndexPath(indexPath, animated: true)
     }
     
     // MARK: - ScrollViewDelegate

@@ -20,6 +20,16 @@ class SearchLandingDataSource: CardDataSource {
             default:
                 cardType = .Group
             }
+            
+            println(category.title)
+            
+            if category.title == "Work Anniversaries" {
+                continue
+            }
+            else if category.title == "Birthdays" {
+                cardType = .Birthdays
+            }
+
             var categoryCard = Card(cardType: cardType, title: category.title)
             categoryCard.addContent(content: category.content as [AnyObject])
             categoryCard.contentCount = category.content.count
@@ -42,6 +52,7 @@ class SearchLandingDataSource: CardDataSource {
                 if error == nil {
                     self.parseProfileCategories(profileCategories!)
                     self.parseAddressCategories(addressCategories!)
+                    self.addAdditionalData()
                     completionHandler(error: nil)
                 }
             }
