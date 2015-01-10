@@ -25,17 +25,18 @@ class MapViewAnimator: NSObject, UIViewControllerAnimatedTransitioning {
             containerView.addSubview(toViewController.view)
 
             var locationViewController = (fromViewController as UINavigationController).topViewController as LocationDetailViewController
-            let scrollOffset = CGPointMake(0.0, -locationViewController.view.frameHeight)
             
             var mapViewController = toViewController as MapViewController
             mapViewController.mapboxView.frame = mapViewController.initialMapViewRect!
             mapViewController.closeButton.alpha = 0.0
             mapViewController.addressContainerView.frameY = mapViewController.mapboxView.frameBottom - mapViewController.addressContainerView.frameHeight
+            (locationViewController.dataSource as LocationDetailDataSource).profileHeaderView?.addressContainerView.hidden = true
             
+            let scrollOffset = CGPointMake(0.0, -locationViewController.view.frameHeight + mapViewController.addressContainerView.frameHeight)
             UIView.animateWithDuration(
                 transitionDuration(transitionContext),
                 animations: { () -> Void in
-                    mapViewController.mapboxView.frameHeight = UIScreen.mainScreen().bounds.size.height
+                    mapViewController.mapboxView.frameHeight = UIScreen.mainScreen().bounds.size.height - 35.0
                     mapViewController.closeButton.alpha = 1.0
                     mapViewController.addressContainerView.frameY = UIScreen.mainScreen().bounds.size.height - mapViewController.addressContainerView.frameHeight
                     locationViewController.collectionView.setContentOffset(scrollOffset, animated: true)
@@ -64,6 +65,7 @@ class MapViewAnimator: NSObject, UIViewControllerAnimatedTransitioning {
                 },
                 completion:{ (completed) -> Void in
                     transitionContext.completeTransition(true)
+                    (locationViewController.dataSource as LocationDetailDataSource).profileHeaderView?.addressContainerView.hidden = false
                 }
             )
         }

@@ -11,13 +11,16 @@ import ProtobufRegistry
 
 class LocationDetailViewController: DetailViewController {
 
+    private var offsetToTriggerFullScreenMapView: CGFloat = -100.0
+    private var overlayButtonHandlerAdded = false
+    
     // MARK: - Configuration
 
     override func configureCollectionView() {
         // Data Source
         dataSource = LocationDetailDataSource()
         collectionView.dataSource = dataSource
-        
+
         // Delegate
         delegate = ProfileCollectionViewDelegate()
         collectionView.delegate = delegate
@@ -37,14 +40,26 @@ class LocationDetailViewController: DetailViewController {
         collectionView.deselectItemAtIndexPath(indexPath, animated: true)
     }
     
-    func scrollViewDidScroll(scrollView: UIScrollView) {
-        println(scrollView.contentOffset.y)
-    }
-    
     func scrollViewWillBeginDecelerating(scrollView: UIScrollView) {
-        if scrollView.contentOffset.y <= -100.0 {
+        if scrollView.contentOffset.y <= offsetToTriggerFullScreenMapView {
             scrollView.setContentOffset(scrollView.contentOffset, animated: true)
             presentFullScreenMapView(true)
+        }
+    }
+    
+    func collectionView(collectionView: UICollectionView,
+        didEndDisplayingSupplementaryView view: UICollectionReusableView,
+        forElementOfKind elementKind: String,
+        atIndexPath indexPath: NSIndexPath) {
+        var customDataSource = (dataSource as LocationDetailDataSource)
+        if customDataSource.profileHeaderView != nil && !overlayButtonHandlerAdded {
+            customDataSource.profileHeaderView?.overlayButton.addTarget(
+                self,
+                action: "overlayButtonTapped:",
+                forControlEvents: .TouchUpInside
+            )
+
+            overlayButtonHandlerAdded = true
         }
     }
     
@@ -68,5 +83,9 @@ class LocationDetailViewController: DetailViewController {
         mapViewController.transitioningDelegate = mapViewController
         mapViewController.modalPresentationCapturesStatusBarAppearance = true
         presentViewController(mapViewController, animated: animated, completion: nil)
+    }
+    
+    func overlayButtonTapped(sender: AnyObject!) {
+        presentFullScreenMapView(true)
     }
 }

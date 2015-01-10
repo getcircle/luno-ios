@@ -17,6 +17,7 @@ class MapHeaderCollectionReusableView: UICollectionReusableView {
     
     @IBOutlet weak private(set) var addressLabel: UILabel!
     @IBOutlet weak private(set) var addressContainerView: UIView!
+    @IBOutlet weak private(set) var overlayButton: UIButton!
     
     private(set) var mapboxView: RMMapView!
     private var visualEffectView: UIVisualEffectView!

@@ -72,6 +72,18 @@ class CardCollectionViewDelegate: NSObject, UICollectionViewDelegateFlowLayout, 
         return CGSizeMake(collectionView.frameWidth, CardHeaderCollectionReusableView.height)
     }
     
+    func collectionView(collectionView: UICollectionView,
+        didEndDisplayingSupplementaryView view: UICollectionReusableView,
+        forElementOfKind elementKind: String,
+        atIndexPath indexPath: NSIndexPath) {
+        delegate?.collectionView?(
+            collectionView,
+            didEndDisplayingSupplementaryView: view,
+            forElementOfKind: elementKind,
+            atIndexPath: indexPath
+        )
+    }
+    
     // MARK: - UICollectionViewDelegate
  
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
