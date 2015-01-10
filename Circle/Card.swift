@@ -23,7 +23,8 @@ class Card: Equatable {
     private(set) var type: CardType
     
     enum CardType: Int {
-        case Birthdays = 1
+        case Anniversaries = 1
+        case Birthdays
         case Group
         case KeyValue
         case Locations
@@ -40,6 +41,13 @@ class Card: Equatable {
         
         static func infoByCardType(type: CardType) -> CardTypeInfo {
             switch type {
+            
+            case .Anniversaries:
+                return CardTypeInfo(
+                    imageName: "Jewel",
+                    classType: ProfileCollectionViewCell.self,
+                    className: "ProfileCollectionViewCell"
+                )
                 
             case .Birthdays:
                 return CardTypeInfo(
