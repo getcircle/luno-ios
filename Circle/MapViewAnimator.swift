@@ -27,16 +27,16 @@ class MapViewAnimator: NSObject, UIViewControllerAnimatedTransitioning {
             var locationViewController = (fromViewController as UINavigationController).topViewController as LocationDetailViewController
             
             var mapViewController = toViewController as MapViewController
-            mapViewController.mapboxView.frame = mapViewController.initialMapViewRect!
+            mapViewController.mapView.frame = mapViewController.initialMapViewRect!
             mapViewController.closeButton.alpha = 0.0
-            mapViewController.addressContainerView.frameY = mapViewController.mapboxView.frameBottom - mapViewController.addressContainerView.frameHeight
+            mapViewController.addressContainerView.frameY = mapViewController.mapView.frameBottom - mapViewController.addressContainerView.frameHeight
             (locationViewController.dataSource as LocationDetailDataSource).profileHeaderView?.addressContainerView.hidden = true
             
             let scrollOffset = CGPointMake(0.0, -locationViewController.view.frameHeight + mapViewController.addressContainerView.frameHeight)
             UIView.animateWithDuration(
                 transitionDuration(transitionContext),
                 animations: { () -> Void in
-                    mapViewController.mapboxView.frameHeight = UIScreen.mainScreen().bounds.size.height - 35.0
+                    mapViewController.mapView.frameHeight = UIScreen.mainScreen().bounds.size.height - 35.0
                     mapViewController.closeButton.alpha = 1.0
                     mapViewController.addressContainerView.frameY = UIScreen.mainScreen().bounds.size.height - mapViewController.addressContainerView.frameHeight
                     locationViewController.collectionView.setContentOffset(scrollOffset, animated: true)
@@ -51,14 +51,14 @@ class MapViewAnimator: NSObject, UIViewControllerAnimatedTransitioning {
             // dismiss animation
             var locationViewController = (toViewController as UINavigationController).topViewController as LocationDetailViewController
             var mapViewController = fromViewController as MapViewController
-            mapViewController.mapboxView.frameHeight = UIScreen.mainScreen().bounds.size.height
+            mapViewController.mapView.frameHeight = UIScreen.mainScreen().bounds.size.height
             mapViewController.closeButton.alpha = 1.0
-            mapViewController.addressContainerView.frameY = mapViewController.mapboxView.frameBottom - mapViewController.addressContainerView.frameHeight
+            mapViewController.addressContainerView.frameY = mapViewController.mapView.frameBottom - mapViewController.addressContainerView.frameHeight
             
             UIView.animateWithDuration(
                 transitionDuration(transitionContext),
                 animations: { () -> Void in
-                    mapViewController.mapboxView.frameHeight = mapViewController.finalMapViewRect!.size.height
+                    mapViewController.mapView.frameHeight = mapViewController.finalMapViewRect!.size.height
                     mapViewController.closeButton.alpha = 0.0
                     mapViewController.addressContainerView.frameY = mapViewController.finalMapViewRect!.size.height - mapViewController.addressContainerView.frameHeight
                     locationViewController.collectionView.setContentOffset(CGPointZero, animated: true)

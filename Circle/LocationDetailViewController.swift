@@ -70,7 +70,7 @@ class LocationDetailViewController: DetailViewController {
         if let headerView = (dataSource as LocationDetailDataSource).profileHeaderView {
           
             // Add initial and final positions for the map
-            mapViewController.initialMapViewRect = headerView.convertRect(headerView.mapboxView.frame, toView: view)
+            mapViewController.initialMapViewRect = headerView.convertRect(headerView.mapView.frame, toView: view)
             let finalRect = CGRect(
                 origin: CGPointZero,
                 size: CGSizeMake(view.frameWidth, ProfileCollectionViewLayout.profileHeaderHeight)

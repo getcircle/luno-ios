@@ -10,6 +10,9 @@
             <rect key="frame" x="0.0" y="0.0" width="542" height="180"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
+                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="DgL-oK-ji4">
+                    <rect key="frame" x="0.0" y="0.0" width="542" height="180"/>
+                </mapView>
                 <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EmS-IB-PAF" userLabel="ContainerView">
                     <rect key="frame" x="0.0" y="145" width="542" height="35"/>
                     <subviews>
@@ -36,17 +39,22 @@
                 </button>
             </subviews>
             <constraints>
+                <constraint firstAttribute="trailing" secondItem="DgL-oK-ji4" secondAttribute="trailing" id="40f-CL-F7N"/>
                 <constraint firstItem="ZUI-MC-IAz" firstAttribute="leading" secondItem="ef4-r2-bz1" secondAttribute="leading" id="4cD-VP-b9Z"/>
                 <constraint firstItem="ZUI-MC-IAz" firstAttribute="top" secondItem="ef4-r2-bz1" secondAttribute="top" id="5hL-0g-DdN"/>
                 <constraint firstAttribute="bottom" secondItem="EmS-IB-PAF" secondAttribute="bottom" id="FjJ-Bm-mCE"/>
+                <constraint firstItem="DgL-oK-ji4" firstAttribute="top" secondItem="ef4-r2-bz1" secondAttribute="top" id="LOx-EZ-Rxv"/>
                 <constraint firstAttribute="bottom" secondItem="ZUI-MC-IAz" secondAttribute="bottom" id="Pc0-YF-R6g"/>
                 <constraint firstAttribute="trailing" secondItem="ZUI-MC-IAz" secondAttribute="trailing" id="cNW-qb-550"/>
                 <constraint firstItem="EmS-IB-PAF" firstAttribute="leading" secondItem="ef4-r2-bz1" secondAttribute="leading" id="f3R-aO-K6x"/>
+                <constraint firstAttribute="bottom" secondItem="DgL-oK-ji4" secondAttribute="bottom" id="gQm-Xj-vO3"/>
+                <constraint firstItem="DgL-oK-ji4" firstAttribute="leading" secondItem="ef4-r2-bz1" secondAttribute="leading" id="lR8-O9-85J"/>
                 <constraint firstAttribute="trailing" secondItem="EmS-IB-PAF" secondAttribute="trailing" id="rIN-9K-Fui"/>
             </constraints>
             <connections>
                 <outlet property="addressContainerView" destination="EmS-IB-PAF" id="8i2-Jo-7Zu"/>
                 <outlet property="addressLabel" destination="KLL-v4-dQI" id="sWN-v9-Zmz"/>
+                <outlet property="mapView" destination="DgL-oK-ji4" id="3ng-xk-IxL"/>
                 <outlet property="overlayButton" destination="ZUI-MC-IAz" id="rie-Y1-BeH"/>
             </connections>
             <point key="canvasLocation" x="422" y="573"/>
