@@ -115,7 +115,9 @@ class SearchViewController: UIViewController, UICollectionViewDelegate, UITextFi
         case .Group:
             let viewController = storyboard?.instantiateViewControllerWithIdentifier("ProfilesViewController") as ProfilesViewController
             viewController.dataSource.setInitialData(selectedCard.content[0] as [AnyObject])
+            viewController.title = selectedCard.title
             navigationController?.pushViewController(viewController, animated: true)
+
         case .Locations:
             let viewController = LocationDetailViewController()
             navigationController?.pushViewController(viewController, animated: true)
