@@ -23,7 +23,9 @@ class LocationDetailDataSource: CardDataSource {
         }
         
         // Add a Placeholder card for the map view
-        appendCard(Card(cardType: .Placeholder, title: "Map Header"))
+        let placeholderMapCard = Card(cardType: .Placeholder, title: "Map Header")
+        // placeholderMapCard.sectionInset = UIEdgeInsetsZero
+        appendCard(placeholderMapCard)
         
         if let currentProfile = AuthViewController.getLoggedInUserProfile() {
             ProfileService.Actions.getProfiles(currentProfile.team_id) { (profiles, error) -> Void in
@@ -41,6 +43,14 @@ class LocationDetailDataSource: CardDataSource {
         }
     }
 
+    override func configureCell(cell: CircleCollectionViewCell, atIndexPath indexPath: NSIndexPath) {
+        if let profileCell = cell as? ProfileCollectionViewCell {
+            profileCell.sizeMode = .Medium
+            let profile = contentAtIndexPath(indexPath) as? ProfileService.Containers.Profile
+            profileCell.subTextLabel.text = profile?.title
+        }
+    }
+    
     // MARK: - Supplementary View
 
     override func registerCardHeader(collectionView: UICollectionView) {
