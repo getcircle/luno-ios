@@ -41,4 +41,10 @@ extension String {
         var end = advance(startIndex, r.endIndex)
         return substringWithRange(Range(start: start, end: end))
     }
+    
+    func toDate() -> NSDate? {
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "YYYY-MM-DD"
+        return dateFormatter.dateFromString(self)
+    }
 }

@@ -52,12 +52,33 @@ class ProfileCollectionViewCell: CircleCollectionViewCell {
     override func setData(data: AnyObject) {
         if let profile = data as? ProfileService.Containers.Profile {
             nameLabel.text = profile.full_name
-            subTextLabel.text = ["January 18th", "February 1st", "February 8th"][Int(arc4random()%3)]
+            var subtitle = profile.title
+            if let cardType = card?.type {
+                switch card!.type {
+                case .Birthdays:
+                    if let date = profile.birth_date.toDate() {
+                        let dateFormatter = NSDateFormatter()
+                        dateFormatter.dateFormat = "MMMM, d"
+                        subtitle = dateFormatter.stringFromDate(date)
+                    }
+                case .Anniversaries:
+                    if let years = yearsSinceHired(profile) {
+                        if years == 1 {
+                            subtitle = "\(years) year"
+                        } else {
+                            subtitle = "\(years) years"
+                        }
+                    }
+                default:
+                    subtitle = profile.title
+                }
+            }
+            subTextLabel.text = subtitle
             profileImageView.setImageWithProfile(profile)
         }
     }
     
-    // MODE: - Sizing functions based on mode
+    // MARK: - Sizing functions based on mode
     
     private func updateViewByMode() {
         switch sizeMode {
@@ -71,4 +92,28 @@ class ProfileCollectionViewCell: CircleCollectionViewCell {
             profileImageView.layer.cornerRadiusWithMaskToBounds(22.0)
         }
     }
+    
+    // MARK: - Helpers
+    private func yearsSinceHired(profile: ProfileService.Containers.Profile) -> Int? {
+        var years: Int?
+        if let hireDate = profile.hire_date.toDate() {
+            let calendar = NSCalendar(calendarIdentifier: NSGregorianCalendar)
+            
+            // calculate the upcoming anniversary to get the accurate number of years the anniversary represents
+            let nowComponents = calendar?.components(.YearCalendarUnit, fromDate: NSDate())
+            let upcomingAnniveraryComponents = calendar?.components(.DayCalendarUnit | .MonthCalendarUnit, fromDate: hireDate)
+            upcomingAnniveraryComponents?.year = nowComponents!.year
+            let upcomingAnniversary = calendar?.dateFromComponents(upcomingAnniveraryComponents!)
+            
+            let components = calendar?.components(
+                .YearCalendarUnit,
+                fromDate: hireDate,
+                toDate: upcomingAnniversary!,
+                options: .WrapComponents
+            )
+            years = components?.year
+        }
+        return years
+    }
+    
 }

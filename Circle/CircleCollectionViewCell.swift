@@ -15,6 +15,8 @@ enum SizeCalculation {
 }
 
 class CircleCollectionViewCell: UICollectionViewCell {
+    
+    var card: Card?
 
     // Reuse identifier for dequeuing and reusing cells
     class var classReuseIdentifier: String {

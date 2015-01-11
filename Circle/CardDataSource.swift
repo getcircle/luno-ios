@@ -121,6 +121,7 @@ class CardDataSource: NSObject, UICollectionViewDataSource {
             forIndexPath: indexPath
         ) as CircleCollectionViewCell
         
+        cell.card = card
         cell.setData(card.content[indexPath.row])
         configureCell(cell, atIndexPath: indexPath)
         animate(cell, atIndexPath: indexPath)
