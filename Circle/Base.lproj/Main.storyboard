@@ -23,7 +23,7 @@
         <!--People-->
         <scene sceneID="MUU-Kj-5cV">
             <objects>
-                <viewController title="People" extendedLayoutIncludesOpaqueBars="YES" id="sfD-c4-aFJ" customClass="ProfilesViewController" customModule="Circle" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProfilesViewController" title="People" extendedLayoutIncludesOpaqueBars="YES" id="sfD-c4-aFJ" customClass="ProfilesViewController" customModule="Circle" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="GD7-Su-MnX"/>
                         <viewControllerLayoutGuide type="bottom" id="90M-NW-Qsi"/>

@@ -106,22 +106,21 @@ class SearchViewController: UIViewController, UICollectionViewDelegate, UITextFi
         let selectedCard = dataSource.cardAtSection(indexPath.section)!
         
         switch selectedCard.type {
-        
         case .People, .Birthdays:
             if let profile = dataSource.contentAtIndexPath(indexPath)? as? ProfileService.Containers.Profile {
-                var profileDetailViewController = ProfileDetailViewController()
-                profileDetailViewController.profile = profile
-                navigationController?.pushViewController(profileDetailViewController, animated: true)
+                let viewController = ProfileDetailViewController()
+                viewController.profile = profile
+                navigationController?.pushViewController(viewController, animated: true)
             }
-            break
-            
+        case .Group:
+            let viewController = storyboard?.instantiateViewControllerWithIdentifier("ProfilesViewController") as ProfilesViewController
+            viewController.dataSource.setInitialData(selectedCard.content[0] as [AnyObject])
+            navigationController?.pushViewController(viewController, animated: true)
         case .Locations:
-            var locationDetailViewController = LocationDetailViewController()
-            navigationController?.pushViewController(locationDetailViewController, animated: true)
-            
+            let viewController = LocationDetailViewController()
+            navigationController?.pushViewController(viewController, animated: true)
         default:
             performSegueWithIdentifier("showListOfPeople", sender: collectionView)
-            
         }
     }
 
