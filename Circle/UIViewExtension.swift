@@ -22,4 +22,16 @@ extension UIView {
         animation.toValue = NSValue(CGPoint: CGPointMake(center.x + 20.0, center.y))
         layer.addAnimation(animation, forKey: "position")
     }
+    
+    func addBottomBorder() {
+        var borderView = UIView(forAutoLayout: ())
+        borderView.backgroundColor = UIColor.separatorViewColor()
+        if let parentView = superview {
+            parentView.addSubview(borderView)
+            borderView.autoPinEdge(.Left, toEdge: .Left, ofView: self)
+            borderView.autoPinEdge(.Bottom, toEdge: .Bottom, ofView: self, withOffset: 1.0)
+            borderView.autoMatchDimension(.Width, toDimension: .Width, ofView: self)
+            borderView.autoSetDimension(.Height, toSize: 0.5)
+        }
+    }
 }

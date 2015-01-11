@@ -189,7 +189,7 @@
         <!--Navigation Controller-->
         <scene sceneID="0UP-VA-fhX">
             <objects>
-                <navigationController id="Ydn-f2-Iux" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="TagSelectorNavigationController" id="Ydn-f2-Iux" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="PRv-7P-WzO">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -205,7 +205,7 @@
         <!--Select tags relavant to you-->
         <scene sceneID="vJ9-O0-IWA">
             <objects>
-                <viewController extendedLayoutIncludesOpaqueBars="YES" id="hhs-mV-ktp" customClass="TagSelectorViewController" customModule="Circle" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TagSelectorViewController" extendedLayoutIncludesOpaqueBars="YES" id="hhs-mV-ktp" customClass="TagSelectorViewController" customModule="Circle" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="s5f-9V-Nyg"/>
                         <viewControllerLayoutGuide type="bottom" id="Lij-zZ-CvO"/>
@@ -259,11 +259,6 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Select tags relavant to you" id="lIQ-50-PEW">
-                        <barButtonItem key="leftBarButtonItem" image="Down" id="tgj-V4-HS7">
-                            <connections>
-                                <action selector="close:" destination="hhs-mV-ktp" id="VV4-Pu-UQc"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Done" id="XA6-sJ-V0g">
                             <connections>
                                 <action selector="close:" destination="hhs-mV-ktp" id="Mwc-lb-Bdg"/>
@@ -281,7 +276,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Down" width="22" height="22"/>
         <image name="Profile" width="32" height="32"/>
     </resources>
 </document>
