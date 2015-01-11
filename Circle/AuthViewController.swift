@@ -19,6 +19,11 @@ struct LoggedInUserHolder {
     static var token: String?
 }
 
+struct AuthNotifications {
+    static let onLoginNotification = "com.ravcode.notification:onLoginNotification"
+    static let onLogoutNotification = "com.ravcode.notification:onLogoutNotification"
+}
+
 private let LocksmithService = "LocksmithAuthTokenService"
 private let LocksmithAuthTokenKey = "LocksmithAuthToken"
 private let DefaultsUserKey = "DefaultsUserKey"
@@ -218,6 +223,10 @@ class AuthViewController: UIViewController, UITextFieldDelegate {
                 SearchCache.sharedInstance.repopulate()
                 LoggedInUserHolder.profile = profile!
                 self.cacheProfileData(profile!)
+                NSNotificationCenter.defaultCenter().postNotificationName(
+                    AuthNotifications.onLoginNotification,
+                    object: nil
+                )
                 self.dismissViewControllerAnimated(true, completion: nil)
             }
         }
@@ -226,6 +235,10 @@ class AuthViewController: UIViewController, UITextFieldDelegate {
     // MARK: - Log out
     
     class func logOut() {
+        NSNotificationCenter.defaultCenter().postNotificationName(
+            AuthNotifications.onLogoutNotification,
+            object: nil
+        )
         LoggedInUserHolder.user = nil
         AuthViewController.presentAuthViewController()
     }
