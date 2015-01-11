@@ -178,7 +178,7 @@
                         <outlet property="activityIndicatorView" destination="heX-JS-q97" id="agu-HE-HiO"/>
                         <outlet property="collectionView" destination="FpX-4G-cZW" id="47Q-HQ-Uri"/>
                         <outlet property="searchHeaderContainerView" destination="5kQ-sW-5v8" id="IPE-OO-odc"/>
-                        <segue destination="Ydn-f2-Iux" kind="presentation" id="fl1-gb-Kbg"/>
+                        <segue destination="Ydn-f2-Iux" kind="presentation" identifier="showTags" id="fl1-gb-Kbg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Vf-V8-GjI" userLabel="First Responder" sceneMemberID="firstResponder"/>
