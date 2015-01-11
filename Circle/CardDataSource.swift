@@ -34,6 +34,7 @@ class CardDataSource: NSObject, UICollectionViewDataSource {
     */
     private(set) var isHeaderRegistered = false
     private var registeredCellClasses = NSMutableSet()
+    var cardHeaderDelegate: CardHeaderViewDelegate?
     
     /**
     This method should be called when the view controller is ready to request for data. This is typically
@@ -134,6 +135,9 @@ class CardDataSource: NSObject, UICollectionViewDataSource {
         ) as CardHeaderCollectionReusableView
         
         animate(headerView, atIndexPath: indexPath)
+        if let delegate = cardHeaderDelegate {
+            headerView.cardHeaderDelegate = delegate
+        }
         headerView.setCard(cards[indexPath.section])
         return headerView
     }

@@ -47,15 +47,29 @@
                                 <constraint firstAttribute="width" constant="11" id="eXt-eM-cHc"/>
                             </constraints>
                         </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8J8-VQ-rD1" userLabel="TriggerButton">
+                            <rect key="frame" x="-10" y="0.0" width="320" height="44"/>
+                            <connections>
+                                <action selector="cardHeaderTapped:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="spR-mO-Pd4"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
+                        <constraint firstAttribute="trailing" secondItem="8J8-VQ-rD1" secondAttribute="trailing" constant="-10" id="2Ah-zK-VFW"/>
                         <constraint firstItem="21Q-S6-C33" firstAttribute="leading" secondItem="yAf-Md-PrH" secondAttribute="trailing" constant="5" id="3xc-14-YcR"/>
                         <constraint firstItem="yAf-Md-PrH" firstAttribute="top" secondItem="nuZ-2b-MHg" secondAttribute="top" constant="6" id="4Ly-V8-BOj"/>
                         <constraint firstItem="bNr-0H-jel" firstAttribute="leading" secondItem="nuZ-2b-MHg" secondAttribute="leading" id="4UI-ka-kLo"/>
+                        <constraint firstItem="8J8-VQ-rD1" firstAttribute="top" secondItem="nuZ-2b-MHg" secondAttribute="top" id="64l-GZ-ocv"/>
+                        <constraint firstItem="8J8-VQ-rD1" firstAttribute="leading" secondItem="nuZ-2b-MHg" secondAttribute="leading" id="K43-hJ-KDk"/>
+                        <constraint firstAttribute="bottom" secondItem="8J8-VQ-rD1" secondAttribute="bottom" id="K6c-D5-dzd"/>
+                        <constraint firstItem="8J8-VQ-rD1" firstAttribute="top" secondItem="nuZ-2b-MHg" secondAttribute="top" id="OSn-0N-wjy"/>
+                        <constraint firstAttribute="bottom" secondItem="8J8-VQ-rD1" secondAttribute="bottom" id="Vzo-yE-hFu"/>
                         <constraint firstItem="bNr-0H-jel" firstAttribute="leading" secondItem="tyz-Ai-K8s" secondAttribute="leading" id="W3R-tr-BUV"/>
+                        <constraint firstItem="8J8-VQ-rD1" firstAttribute="leading" secondItem="nuZ-2b-MHg" secondAttribute="leading" constant="-10" id="aOj-F0-uni"/>
                         <constraint firstAttribute="centerY" secondItem="hwM-UY-bVz" secondAttribute="centerY" id="bb1-vR-3ch"/>
                         <constraint firstItem="tyz-Ai-K8s" firstAttribute="centerY" secondItem="hwM-UY-bVz" secondAttribute="centerY" id="gGX-g8-bHh"/>
+                        <constraint firstAttribute="trailing" secondItem="8J8-VQ-rD1" secondAttribute="trailing" id="gsn-vn-A0r"/>
                         <constraint firstAttribute="bottom" secondItem="bNr-0H-jel" secondAttribute="bottom" id="klu-mB-OuS"/>
                         <constraint firstItem="bNr-0H-jel" firstAttribute="top" secondItem="hwM-UY-bVz" secondAttribute="bottom" constant="8" id="m1k-OP-dBn"/>
                         <constraint firstAttribute="trailing" secondItem="bNr-0H-jel" secondAttribute="trailing" id="n9h-Hy-nkM"/>
@@ -67,6 +81,10 @@
                     </constraints>
                     <variation key="default">
                         <mask key="constraints">
+                            <exclude reference="64l-GZ-ocv"/>
+                            <exclude reference="K43-hJ-KDk"/>
+                            <exclude reference="K6c-D5-dzd"/>
+                            <exclude reference="gsn-vn-A0r"/>
                             <exclude reference="W3R-tr-BUV"/>
                             <exclude reference="m1k-OP-dBn"/>
                         </mask>
@@ -84,6 +102,7 @@
                 <outlet property="cardImageView" destination="tyz-Ai-K8s" id="iTD-6C-Kqz"/>
                 <outlet property="cardParentView" destination="nuZ-2b-MHg" id="kpZ-4R-XZX"/>
                 <outlet property="cardTitleLabel" destination="hwM-UY-bVz" id="p1p-6u-Mvm"/>
+                <outlet property="cardTriggerButton" destination="8J8-VQ-rD1" id="8Wa-Wm-NOn"/>
             </connections>
             <point key="canvasLocation" x="-99" y="217"/>
         </collectionReusableView>

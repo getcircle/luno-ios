@@ -113,4 +113,12 @@ extension UIColor {
     class func tagSelectedBorderColor() -> UIColor {
         return UIColor.whiteColor()
     }
+    
+    class func actionSheetControlsTintColor() -> UIColor {
+        return UIColor(red: 85, green: 85, blue: 94)
+    }
+    
+    class func controlHighlightedColor() -> UIColor {
+        return UIColor(red: 206, green: 206, blue: 206).colorWithAlphaComponent(0.5)
+    }
 }

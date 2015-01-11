@@ -39,6 +39,7 @@
 		8F4805E41A5DE4B800273731 /* MapHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4805E31A5DE4B800273731 /* MapHeaderCollectionReusableView.swift */; };
 		8F4805E91A5DE4CE00273731 /* MapHeaderCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F4805E81A5DE4CE00273731 /* MapHeaderCollectionReusableView.xib */; };
 		8F4805ED1A5DFEE400273731 /* ProfilesCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4805EC1A5DFEE400273731 /* ProfilesCollectionViewDelegate.swift */; };
+		8F4A98AC1A633BF6005AD63C /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4A98AB1A633BF6005AD63C /* UIImageExtension.swift */; };
 		8F4E53751A59CB8300DC876B /* ProfileCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4E53741A59CB8300DC876B /* ProfileCollectionViewDelegate.swift */; };
 		8F4E53781A5A0D9E00DC876B /* NotesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4E53761A5A0D9E00DC876B /* NotesCollectionViewCell.swift */; };
 		8F4E53791A5A0D9E00DC876B /* NotesCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F4E53771A5A0D9E00DC876B /* NotesCollectionViewCell.xib */; };
@@ -221,6 +222,7 @@
 		8F4805E31A5DE4B800273731 /* MapHeaderCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapHeaderCollectionReusableView.swift; sourceTree = "<group>"; };
 		8F4805E81A5DE4CE00273731 /* MapHeaderCollectionReusableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapHeaderCollectionReusableView.xib; sourceTree = "<group>"; };
 		8F4805EC1A5DFEE400273731 /* ProfilesCollectionViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfilesCollectionViewDelegate.swift; sourceTree = "<group>"; };
+		8F4A98AB1A633BF6005AD63C /* UIImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		8F4E53741A59CB8300DC876B /* ProfileCollectionViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileCollectionViewDelegate.swift; sourceTree = "<group>"; };
 		8F4E53761A5A0D9E00DC876B /* NotesCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotesCollectionViewCell.swift; sourceTree = "<group>"; };
 		8F4E53771A5A0D9E00DC876B /* NotesCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotesCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -429,6 +431,7 @@
 				BFEDB1421A2A8CA700250165 /* UICollectionViewFlowLayoutExtension.swift */,
 				8F0004BA1A241BDE0096477A /* UIColorExtension.swift */,
 				8FD041A11A2C03AA00FE28EF /* UIFontExtention.swift */,
+				8F4A98AB1A633BF6005AD63C /* UIImageExtension.swift */,
 				8F22CBE21A27AE9B0026376E /* UIImageViewExtension.swift */,
 				8F22CBF01A2844F50026376E /* UINavigationBarExtension.swift */,
 				BF59AA921A2C152F00C0CDB9 /* UITableViewExtension.swift */,
@@ -882,6 +885,7 @@
 				8F3569141A560B2D003D42F9 /* CGRectExtension.swift in Sources */,
 				8FF2980A1A4B490E00306CFC /* SearchHeaderView.swift in Sources */,
 				8F0E44871A61EE99008710E7 /* LocationAnnotation.swift in Sources */,
+				8F4A98AC1A633BF6005AD63C /* UIImageExtension.swift in Sources */,
 				8FCC95CD1A52828B00421E65 /* ProfileCollectionViewCell.swift in Sources */,
 				BF59AA931A2C152F00C0CDB9 /* UITableViewExtension.swift in Sources */,
 				BF2CBFD61A473E9100BE589D /* UserService.swift in Sources */,

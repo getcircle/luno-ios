@@ -9,16 +9,19 @@
 import UIKit
 import ProtobufRegistry
 
-class SearchViewController: UIViewController, UICollectionViewDelegate, UITextFieldDelegate, SearchHeaderViewDelegate {
+class SearchViewController: UIViewController,
+UICollectionViewDelegate,
+UITextFieldDelegate,
+SearchHeaderViewDelegate,
+CardHeaderViewDelegate {
     
     @IBOutlet weak private(set) var activityIndicatorView: UIActivityIndicatorView!
     @IBOutlet weak private(set) var collectionView: UICollectionView!
     @IBOutlet weak private(set) var searchHeaderContainerView: UIView!
     
     private var data = [Card]()
-    private var searchHeaderView: SearchHeaderView!
-    
     private var landingDataSource: SearchLandingDataSource!
+    private var searchHeaderView: SearchHeaderView!
     private var queryDataSource: SearchQueryDataSource!
 
     override func viewDidLoad() {
@@ -48,14 +51,14 @@ class SearchViewController: UIViewController, UICollectionViewDelegate, UITextFi
     }
 
     private func configureNavigationButtons() {
-        var infoButton = UIBarButtonItem(image: UIImage(named: "Info"), style: .Plain, target: self, action: "infoButtonTapped:")
-        var barButtonItems = [UIBarButtonItem]()
-        if navigationItem.rightBarButtonItem != nil {
-            barButtonItems.append(navigationItem.rightBarButtonItem!)
-        }
-        
-        barButtonItems.append(infoButton)
-        navigationItem.rightBarButtonItems = barButtonItems
+//        var infoButton = UIBarButtonItem(image: UIImage(named: "Info"), style: .Plain, target: self, action: "infoButtonTapped:")
+//        var barButtonItems = [UIBarButtonItem]()
+//        if navigationItem.rightBarButtonItem != nil {
+//            barButtonItems.append(navigationItem.rightBarButtonItem!)
+//        }
+//        
+//        barButtonItems.append(infoButton)
+//        navigationItem.rightBarButtonItems = barButtonItems
     }
     
     private func configureSearchHeaderView() {
@@ -75,10 +78,12 @@ class SearchViewController: UIViewController, UICollectionViewDelegate, UITextFi
         
         landingDataSource = SearchLandingDataSource()
         landingDataSource.registerDefaultCardHeader(collectionView)
+        landingDataSource.cardHeaderDelegate = self
         collectionView.dataSource = landingDataSource
         
         queryDataSource = SearchQueryDataSource()
         queryDataSource.registerDefaultCardHeader(collectionView)
+        queryDataSource.cardHeaderDelegate = self
     }
 
     // MARK: - TextField Delegate
@@ -135,6 +140,27 @@ class SearchViewController: UIViewController, UICollectionViewDelegate, UITextFi
             navigationController?.pushViewController(viewController, animated: true)
         default:
             performSegueWithIdentifier("showListOfPeople", sender: collectionView)
+        }
+    }
+    
+    // MARK: - Card Header View Delegate
+    
+    func cardHeaderTapped(card: Card!) {
+        let dataSource = (collectionView.dataSource as CardDataSource)
+        switch card.type {
+            case .Group, .People, .Birthdays, .Anniversaries:
+                let viewController = storyboard?.instantiateViewControllerWithIdentifier("ProfilesViewController") as ProfilesViewController
+                if card.type == .Group {
+                    viewController.dataSource.setInitialData(card.content[0] as [AnyObject])
+                }
+                else {
+                    viewController.dataSource.setInitialData(card.content)
+                }
+                viewController.title = card.title
+                navigationController?.pushViewController(viewController, animated: true)
+
+            default:
+                break
         }
     }
 

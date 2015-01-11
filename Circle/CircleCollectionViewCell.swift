@@ -57,7 +57,7 @@ class CircleCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         
         selectedBackgroundView = UIView(forAutoLayout: ())
-        selectedBackgroundView.backgroundColor = UIColor(red: 206, green: 206, blue: 206).colorWithAlphaComponent(0.5)
+        selectedBackgroundView.backgroundColor = UIColor.controlHighlightedColor()
         selectedBackgroundView.opaque = true
         contentView.bringSubviewToFront(selectedBackgroundView)
         // Collection view does some trickery and removes constraints from
