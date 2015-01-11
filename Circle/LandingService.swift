@@ -9,11 +9,7 @@
 import Foundation
 import ProtobufRegistry
 
-typealias GetCategoriesCompletionHandler = (
-    profileCategories: Array<LandingService.Containers.ProfileCategory>?,
-    addressCategories: Array<LandingService.Containers.AddressCategory>?,
-    error: NSError?
-) -> Void
+typealias GetCategoriesCompletionHandler = (categories: Array<LandingService.Containers.Category>?, error: NSError?) -> Void
 
 extension LandingService {
     class Actions {
@@ -31,8 +27,7 @@ extension LandingService {
                     LandingServiceRequests_get_categories
                 ) as? LandingService.GetCategories.Response
                 completionHandler(
-                    profileCategories: response?.profile_categories,
-                    addressCategories: response?.address_categories,
+                    categories: response?.categories,
                     error: nil
                 )
             }

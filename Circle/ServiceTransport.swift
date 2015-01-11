@@ -63,9 +63,9 @@ struct ServiceHttpRequest: URLRequestConvertible {
 // TODO we should have a way to configure which endpoint we hit in some settings pane, similar to EB
 //    static let baseURLString = "http://circleapp.elasticbeanstalk.com"
     
-    static let baseURLString = "http://staging-circleapp.elasticbeanstalk.com/"
+//    static let baseURLString = "http://staging-circleapp.elasticbeanstalk.com/"
     
-//    static let baseURLString = "http://localhost:8000/"
+    static let baseURLString = "http://localhost:8000/"
     
     var data: NSData
     var token: String?

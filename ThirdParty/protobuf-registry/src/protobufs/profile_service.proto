@@ -204,4 +204,28 @@ message ProfileService {
 
     }
 
+    message GetUpcomingBirthdays {
+
+        message Request {
+            optional string organization_id = 1;
+        }
+
+        message Response {
+            repeated Containers.Profile profiles = 1;
+        }
+
+    }
+
+    message GetRecentHires {
+
+        message Request {
+            optional string organization_id = 1;
+        }
+
+        message Response {
+            repeated Containers.Profile profiles = 1;
+        }
+
+    }
+
 }

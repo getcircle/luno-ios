@@ -46,6 +46,8 @@ message ProfileServiceRequests {
         optional main.profile_service.ProfileService.GetPeers.Request get_peers = 309;
         optional main.profile_service.ProfileService.GetProfileStats.Request get_profile_stats = 310;
         optional main.profile_service.ProfileService.GetUpcomingAnniversaries.Request get_upcoming_anniversaries = 311;
+        optional main.profile_service.ProfileService.GetUpcomingBirthdays.Request get_upcoming_birthdays = 312;
+        optional main.profile_service.ProfileService.GetRecentHires.Request get_recent_hires = 313;
     }
 }
 

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import ProtobufRegistry
 
 func ==(lhs: Card, rhs: Card) -> Bool {
     return ObjectIdentifier(lhs) == ObjectIdentifier(rhs)
@@ -108,15 +109,40 @@ class Card: Equatable {
         }
     }
     
-    required init(cardType: CardType, title withTitle: String) {
+    required init(
+        cardType: CardType,
+        title withTitle: String,
+        content withContent: [AnyObject]?,
+        contentCount withContentCount: Int?
+    ) {
         type = cardType
         let infoByCardType = CardType.infoByCardType(type)
         imageSource = infoByCardType.imageName
         contentClass = infoByCardType.classType
         contentClassName = infoByCardType.className
         title = withTitle
-        contentCount = 0
-        content = []
+        contentCount = withContentCount ?? 0
+        content = withContent ?? []
+    }
+    
+    convenience init(cardType: CardType, title withTitle: String) {
+        self.init(cardType: cardType, title: withTitle, content: nil, contentCount: nil)
+    }
+    
+    convenience init(category: LandingService.Containers.Category) {
+        var cardType: CardType
+        
+        switch category.type {
+        case .Anniversaries: cardType = .Anniversaries
+        case .Birthdays: cardType = .Birthdays
+        case .DirectReports: cardType = .Group
+        case .Locations: cardType = .Locations
+        case .Tags: cardType = .Tags
+        case .Peers: cardType = .People
+        default: cardType = .People
+        }
+        
+        self.init(cardType: cardType, title: category.title, content: nil, contentCount: category.total_count.toInt())
     }
     
     func addContent(content withContent: [AnyObject]) {

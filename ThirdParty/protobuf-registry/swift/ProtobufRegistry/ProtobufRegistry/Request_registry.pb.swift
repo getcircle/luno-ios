@@ -132,6 +132,16 @@ public var ProfileServiceRequests_get_upcoming_anniversaries:ConcreateExtensionF
        return RequestRegistryRoot.sharedInstance.ProfileServiceRequests_get_upcoming_anniversariesStatic
    }
 }
+public var ProfileServiceRequests_get_upcoming_birthdays:ConcreateExtensionField {
+   get {
+       return RequestRegistryRoot.sharedInstance.ProfileServiceRequests_get_upcoming_birthdaysStatic
+   }
+}
+public var ProfileServiceRequests_get_recent_hires:ConcreateExtensionField {
+   get {
+       return RequestRegistryRoot.sharedInstance.ProfileServiceRequests_get_recent_hiresStatic
+   }
+}
 public var SearchServiceRequests_search:ConcreateExtensionField {
    get {
        return RequestRegistryRoot.sharedInstance.SearchServiceRequests_searchStatic
@@ -175,6 +185,8 @@ public struct RequestRegistryRoot {
   var ProfileServiceRequests_get_peersStatic:ConcreateExtensionField
   var ProfileServiceRequests_get_profile_statsStatic:ConcreateExtensionField
   var ProfileServiceRequests_get_upcoming_anniversariesStatic:ConcreateExtensionField
+  var ProfileServiceRequests_get_upcoming_birthdaysStatic:ConcreateExtensionField
+  var ProfileServiceRequests_get_recent_hiresStatic:ConcreateExtensionField
   var SearchServiceRequests_searchStatic:ConcreateExtensionField
   var LandingServiceRequests_get_categoriesStatic:ConcreateExtensionField
   public var extensionRegistry:ExtensionRegistry
@@ -206,6 +218,8 @@ public struct RequestRegistryRoot {
     ProfileServiceRequests_get_peersStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionRequestParams.self, fieldNumber: 309, defaultValue:ProfileService.GetPeers.Request(), messageOrGroupClass:ProfileService.GetPeers.Request.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     ProfileServiceRequests_get_profile_statsStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionRequestParams.self, fieldNumber: 310, defaultValue:ProfileService.GetProfileStats.Request(), messageOrGroupClass:ProfileService.GetProfileStats.Request.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     ProfileServiceRequests_get_upcoming_anniversariesStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionRequestParams.self, fieldNumber: 311, defaultValue:ProfileService.GetUpcomingAnniversaries.Request(), messageOrGroupClass:ProfileService.GetUpcomingAnniversaries.Request.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
+    ProfileServiceRequests_get_upcoming_birthdaysStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionRequestParams.self, fieldNumber: 312, defaultValue:ProfileService.GetUpcomingBirthdays.Request(), messageOrGroupClass:ProfileService.GetUpcomingBirthdays.Request.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
+    ProfileServiceRequests_get_recent_hiresStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionRequestParams.self, fieldNumber: 313, defaultValue:ProfileService.GetRecentHires.Request(), messageOrGroupClass:ProfileService.GetRecentHires.Request.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     SearchServiceRequests_searchStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionRequestParams.self, fieldNumber: 400, defaultValue:SearchService.Search.Request(), messageOrGroupClass:SearchService.Search.Request.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     LandingServiceRequests_get_categoriesStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionRequestParams.self, fieldNumber: 500, defaultValue:LandingService.GetCategories.Request(), messageOrGroupClass:LandingService.GetCategories.Request.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     extensionRegistry = ExtensionRegistry()
@@ -244,6 +258,8 @@ public struct RequestRegistryRoot {
     registry.addExtension(ProfileServiceRequests_get_peersStatic)
     registry.addExtension(ProfileServiceRequests_get_profile_statsStatic)
     registry.addExtension(ProfileServiceRequests_get_upcoming_anniversariesStatic)
+    registry.addExtension(ProfileServiceRequests_get_upcoming_birthdaysStatic)
+    registry.addExtension(ProfileServiceRequests_get_recent_hiresStatic)
     registry.addExtension(SearchServiceRequests_searchStatic)
     registry.addExtension(LandingServiceRequests_get_categoriesStatic)
   }
@@ -669,6 +685,12 @@ final public class ProfileServiceRequests : GeneratedMessage {
   }
   public class func get_upcoming_anniversaries() -> ConcreateExtensionField {
        return ProfileServiceRequests_get_upcoming_anniversaries
+  }
+  public class func get_upcoming_birthdays() -> ConcreateExtensionField {
+       return ProfileServiceRequests_get_upcoming_birthdays
+  }
+  public class func get_recent_hires() -> ConcreateExtensionField {
+       return ProfileServiceRequests_get_recent_hires
   }
   required public init() {
        super.init()

@@ -9,27 +9,25 @@ message LandingService {
 
     message Containers {
 
-        enum DisplayType {
-            GROUP = 0;
-            DETAIL = 1;
-        }
+        message Category {
 
-        // "Category" containers should contain: "title", "content", and
-        // "content_key" fields. The type for "content" can be specific to the
-        // Category
+            enum CategoryType {
+                DIRECT_REPORTS = 1;
+                ANNIVERSARIES = 2;
+                BIRTHDAYS = 3;
+                LOCATIONS = 4;
+                TAGS = 5;
+                PEERS = 6;
+                NEW_HIRES = 7;
+            }
 
-        message ProfileCategory {
             optional string title = 1;
-            repeated main.profile_service.ProfileService.Containers.Profile content = 2;
-            optional string content_key = 3;
-            optional DisplayType display_type = 4 [default = GROUP];
-        }
+            optional string content_key = 2;
+            optional CategoryType type = 3;
+            optional string total_count = 4;
 
-        message AddressCategory {
-            optional string title = 1;
-            repeated main.organization_service.OrganizationService.Containers.Address content = 2;
-            optional string content_key = 3;
-            optional DisplayType display_type = 4 [default = DETAIL];
+            repeated main.profile_service.ProfileService.Containers.Profile profiles = 5;
+            repeated main.organization_service.OrganizationService.Containers.Address addresses = 6;
         }
 
     }
@@ -45,8 +43,7 @@ message LandingService {
         }
 
         message Response {
-            repeated Containers.ProfileCategory profile_categories = 1;
-            repeated Containers.AddressCategory address_categories = 2;
+            repeated Containers.Category categories = 1;
         }
 
     }
