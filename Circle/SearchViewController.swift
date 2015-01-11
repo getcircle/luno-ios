@@ -134,11 +134,11 @@ class SearchViewController: UIViewController, UICollectionViewDelegate, UITextFi
     // MARK: - IBActions
     
     @IBAction func showLoggedInUserProfile(sender: AnyObject!) {
-//        let profileVC = ProfileDetailViewController()
-//        profileVC.showCloseOrBackButton = true
-//        profileVC.profile = AuthViewController.getLoggedInUserProfile()
-//        let navController = UINavigationController(rootViewController: profileVC)
-//        UIApplication.sharedApplication(). ?.presentViewController(profileVC, animated: true, completion: nil)
+        let profileVC = ProfileDetailViewController()
+        profileVC.showCloseOrBackButton = true
+        profileVC.profile = AuthViewController.getLoggedInUserProfile()
+        let navController = UINavigationController(rootViewController: profileVC)
+        navigationController?.presentViewController(navController, animated: true, completion: nil)
     }
     
 }
