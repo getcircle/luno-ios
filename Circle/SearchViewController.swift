@@ -106,7 +106,7 @@ class SearchViewController: UIViewController, UICollectionViewDelegate, UITextFi
         let selectedCard = dataSource.cardAtSection(indexPath.section)!
         
         switch selectedCard.type {
-        case .People, .Birthdays:
+        case .People, .Birthdays, .Anniversaries:
             if let profile = dataSource.contentAtIndexPath(indexPath)? as? ProfileService.Containers.Profile {
                 let viewController = ProfileDetailViewController()
                 viewController.profile = profile
