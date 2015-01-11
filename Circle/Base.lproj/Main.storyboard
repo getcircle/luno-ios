@@ -20,10 +20,10 @@
             </objects>
             <point key="canvasLocation" x="505" y="-1336"/>
         </scene>
-        <!--People-->
+        <!--Profiles View Controller-->
         <scene sceneID="MUU-Kj-5cV">
             <objects>
-                <viewController storyboardIdentifier="ProfilesViewController" title="People" extendedLayoutIncludesOpaqueBars="YES" id="sfD-c4-aFJ" customClass="ProfilesViewController" customModule="Circle" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProfilesViewController" extendedLayoutIncludesOpaqueBars="YES" id="sfD-c4-aFJ" customClass="ProfilesViewController" customModule="Circle" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="GD7-Su-MnX"/>
                         <viewControllerLayoutGuide type="bottom" id="90M-NW-Qsi"/>
@@ -168,9 +168,9 @@
                                 <action selector="showLoggedInUserProfile:" destination="PMD-gG-9c6" id="6Y5-SX-mkk"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Tags" id="88B-MV-YYm">
+                        <barButtonItem key="rightBarButtonItem" title="Log Out" id="88B-MV-YYm" userLabel="LogOut">
                             <connections>
-                                <segue destination="Ydn-f2-Iux" kind="presentation" id="O4v-tA-zE1"/>
+                                <action selector="logoutButtonTapped:" destination="PMD-gG-9c6" id="23S-pW-Sm8"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -178,6 +178,7 @@
                         <outlet property="activityIndicatorView" destination="heX-JS-q97" id="agu-HE-HiO"/>
                         <outlet property="collectionView" destination="FpX-4G-cZW" id="47Q-HQ-Uri"/>
                         <outlet property="searchHeaderContainerView" destination="5kQ-sW-5v8" id="IPE-OO-odc"/>
+                        <segue destination="Ydn-f2-Iux" kind="presentation" id="fl1-gb-Kbg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Vf-V8-GjI" userLabel="First Responder" sceneMemberID="firstResponder"/>

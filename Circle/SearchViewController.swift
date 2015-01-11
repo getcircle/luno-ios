@@ -143,4 +143,9 @@ class SearchViewController: UIViewController, UICollectionViewDelegate, UITextFi
         navigationController?.presentViewController(navController, animated: true, completion: nil)
     }
     
+    @IBAction func logoutButtonTapped(sender: AnyObject!) {
+        (collectionView.dataSource as? CardDataSource)?.resetCards()
+        collectionView.reloadData()
+        AuthViewController.logOut()
+    }
 }
