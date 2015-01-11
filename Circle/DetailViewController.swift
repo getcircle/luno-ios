@@ -55,6 +55,7 @@ class DetailViewController: UIViewController, UICollectionViewDelegate, MFMailCo
         activityIndicatorView.setTranslatesAutoresizingMaskIntoConstraints(true)
         view.addSubview(activityIndicatorView)
         activityIndicatorView.autoCenterInSuperview()
+        activityIndicatorView.startAnimating()
     }
     
     var showLogOutButton: Bool? {
