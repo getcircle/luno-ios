@@ -135,10 +135,9 @@ class Card: Equatable {
         switch category.type {
         case .Anniversaries: cardType = .Anniversaries
         case .Birthdays: cardType = .Birthdays
-        case .DirectReports: cardType = .Group
+        case .DirectReports, .Peers: cardType = .Group
         case .Locations: cardType = .Locations
         case .Tags: cardType = .Tags
-        case .Peers: cardType = .People
         default: cardType = .People
         }
         
