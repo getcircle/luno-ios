@@ -58,7 +58,7 @@ class ProfileCollectionViewCell: CircleCollectionViewCell {
                 case .Birthdays:
                     if let date = profile.birth_date.toDate() {
                         let dateFormatter = NSDateFormatter()
-                        dateFormatter.dateFormat = "MMMM, d"
+                        dateFormatter.dateFormat = "MMMM d"
                         subtitle = dateFormatter.stringFromDate(date)
                     }
                 case .Anniversaries:
@@ -92,7 +92,7 @@ class ProfileCollectionViewCell: CircleCollectionViewCell {
         var subtitle = ""
         if let hireDate = profile.hire_date.toDate() {
             let dateFormatter = NSDateFormatter()
-            dateFormatter.dateFormat = "MMMM, d"
+            dateFormatter.dateFormat = "MMMM d"
             let calendar = NSCalendar(calendarIdentifier: NSGregorianCalendar)
             
             let dateString = dateFormatter.stringFromDate(hireDate)
