@@ -82,7 +82,7 @@ class SearchCache {
                 leftExpression: NSExpression(forVariable: "first_name"),
                 rightExpression: NSExpression(forConstantValue: trimmedSearchTerm),
                 modifier: .DirectPredicateModifier,
-                type: .ContainsPredicateOperatorType,
+                type: .BeginsWithPredicateOperatorType,
                 options: .CaseInsensitivePredicateOption
             )
             
@@ -91,7 +91,7 @@ class SearchCache {
                 leftExpression: NSExpression(forVariable: "last_name"),
                 rightExpression: NSExpression(forConstantValue: trimmedSearchTerm),
                 modifier: .DirectPredicateModifier,
-                type: .ContainsPredicateOperatorType,
+                type: .BeginsWithPredicateOperatorType,
                 options: .CaseInsensitivePredicateOption
             )
             
@@ -101,16 +101,26 @@ class SearchCache {
                 leftExpression: NSExpression(forVariable: "title"),
                 rightExpression: NSExpression(forConstantValue: trimmedSearchTerm),
                 modifier: .DirectPredicateModifier,
-                type: .ContainsPredicateOperatorType,
+                type: .BeginsWithPredicateOperatorType,
                 options: .CaseInsensitivePredicateOption
             )
-            
+
+            // Match full title
+            var fullTitlePredicate = NSComparisonPredicate(
+                leftExpression: NSExpression(forVariable: "title"),
+                rightExpression: NSExpression(forConstantValue: " ".join(searchTerms)),
+                modifier: .DirectPredicateModifier,
+                type: .BeginsWithPredicateOperatorType,
+                options: .CaseInsensitivePredicateOption
+            )
+
             andPredicates.append(
                 NSCompoundPredicate.orPredicateWithSubpredicates([
                     firstNamePredicate,
                     lastNamePredicate,
-                    titlePredicate
-                    ])
+                    titlePredicate,
+                    fullTitlePredicate
+                ])
             )
         }
         
