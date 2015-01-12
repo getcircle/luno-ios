@@ -62,13 +62,7 @@ class ProfileCollectionViewCell: CircleCollectionViewCell {
                         subtitle = dateFormatter.stringFromDate(date)
                     }
                 case .Anniversaries:
-                    if let years = yearsSinceHired(profile) {
-                        if years == 1 {
-                            subtitle = "\(years) year"
-                        } else {
-                            subtitle = "\(years) years"
-                        }
-                    }
+                    subtitle = getAnniversarySubtitle(profile)
                 default:
                     subtitle = profile.title
                 }
@@ -94,10 +88,14 @@ class ProfileCollectionViewCell: CircleCollectionViewCell {
     }
     
     // MARK: - Helpers
-    private func yearsSinceHired(profile: ProfileService.Containers.Profile) -> Int? {
-        var years: Int?
+    private func getAnniversarySubtitle(profile: ProfileService.Containers.Profile) -> String {
+        var subtitle = ""
         if let hireDate = profile.hire_date.toDate() {
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = "MMMM, d"
             let calendar = NSCalendar(calendarIdentifier: NSGregorianCalendar)
+            
+            let dateString = dateFormatter.stringFromDate(hireDate)
             
             // calculate the upcoming anniversary to get the accurate number of years the anniversary represents
             let nowComponents = calendar?.components(.YearCalendarUnit, fromDate: NSDate())
@@ -111,9 +109,15 @@ class ProfileCollectionViewCell: CircleCollectionViewCell {
                 toDate: upcomingAnniversary!,
                 options: .WrapComponents
             )
-            years = components?.year
+            if let years = components?.year {
+                if years == 1 {
+                    subtitle = "\(years) year - \(dateString)"
+                } else {
+                    subtitle = "\(years) year - \(dateString)"
+                }
+            }
         }
-        return years
+        return subtitle
     }
     
 }
