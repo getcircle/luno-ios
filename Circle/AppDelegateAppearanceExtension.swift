@@ -33,5 +33,16 @@ extension AppDelegate {
         UINavigationBar.appearance().titleTextAttributes = navBarTitleAttributes
         UIBarButtonItem.appearance().setTitleTextAttributes(navBarTitleAttributes, forState: .Normal)
         UIBarButtonItem.appearance().setTitleTextAttributes(navBarTitleAttributes, forState: .Highlighted)
+        UIBarButtonItem.appearance().setBackButtonTitlePositionAdjustment(
+            UIOffsetMake(0.0, -60.0),
+            forBarMetrics: .Default
+        )
+        var backButtonImage = UIImage(named: "PreviousFilled")!.imageWithRenderingMode(.AlwaysTemplate)
+        backButtonImage = backButtonImage.resizableImageWithCapInsets(UIEdgeInsetsMake(0.0, 32.0, 0.0, 0.0))
+        UIBarButtonItem.appearance().setBackButtonBackgroundImage(
+            backButtonImage,
+            forState: .Normal,
+            barMetrics: .Default
+        )
     }
 }
