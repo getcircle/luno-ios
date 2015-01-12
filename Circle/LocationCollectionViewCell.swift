@@ -26,7 +26,9 @@ class LocationCollectionViewCell: CircleCollectionViewCell {
     override func setData(data: AnyObject) {
         if let address = data as? OrganizationService.Containers.Address {
             locationNameLabel.text = "\(address.city), \(address.region)"
-            addressLabel.text = "\(address.address_1), \(address.address_2)"
+            // HACK: address_2 isn't filled in right now
+//            addressLabel.text = "\(address.address_1), \(address.address_2)"
+            addressLabel.text = "\(address.address_1)"
             numbrOfPeopleLabel.text = address.profile_count
         }
     }
