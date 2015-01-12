@@ -36,7 +36,7 @@ CardHeaderViewDelegate {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         checkUserAndPresentAuthViewController()
-        (collectionView.dataSource as SearchLandingDataSource).loadData { (error) -> Void in
+        (collectionView.dataSource as? SearchLandingDataSource)?.loadData { (error) -> Void in
             if error == nil {
                 self.activityIndicatorView.stopAnimating()
                 self.collectionView.reloadData()
