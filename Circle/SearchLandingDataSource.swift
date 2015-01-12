@@ -22,10 +22,14 @@ class SearchLandingDataSource: CardDataSource {
                     for category in categories ?? [] {
                         let categoryCard = Card(category: category)
                         if category.profiles.count > 0 {
-                            // HACK: limit the number of results in a card to 3 until we can get smarter about displaying them on the detail view
                             var profiles = category.profiles
-                            if profiles.count > 3 {
-                                profiles = Array(profiles[0..<3])
+                            switch category.type {
+                            case .Birthdays, .Anniversaries, .NewHires:
+                                // HACK: limit the number of results in a card to 3 until we can get smarter about displaying them on the detail view
+                                if profiles.count > 3 {
+                                    profiles = Array(profiles[0..<3])
+                                }
+                            default: break
                             }
                             categoryCard.addContent(content: profiles, allContent: category.profiles)
                         } else if category.addresses.count > 0 {
