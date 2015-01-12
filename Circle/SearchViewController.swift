@@ -178,7 +178,7 @@ CardHeaderViewDelegate {
     
     @IBAction func showLoggedInUserProfile(sender: AnyObject!) {
         let profileVC = ProfileDetailViewController()
-        profileVC.showCloseOrBackButton = true
+        profileVC.showCloseButton = true
         profileVC.profile = AuthViewController.getLoggedInUserProfile()
         let navController = UINavigationController(rootViewController: profileVC)
         navigationController?.presentViewController(navController, animated: true, completion: nil)

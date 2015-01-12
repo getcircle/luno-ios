@@ -63,9 +63,9 @@ class DetailViewController: UIViewController, UICollectionViewDelegate, MFMailCo
             addLogOutButton()
         }
     }
-    var showCloseOrBackButton: Bool? {
+    var showCloseButton: Bool? {
         didSet {
-            addCloseOrBackButton()
+            addCloseButton()
         }
     }
 
@@ -127,19 +127,19 @@ class DetailViewController: UIViewController, UICollectionViewDelegate, MFMailCo
         AuthViewController.logOut()
     }
     
-    private func addCloseOrBackButton() {
-        if showCloseOrBackButton == true && navigationItem.leftBarButtonItem == nil {
+    private func addCloseButton() {
+        if showCloseButton == true && navigationItem.leftBarButtonItem == nil {
             let closeButton = UIBarButtonItem(
-                image: isBeingPresentedModally() ? UIImage(named: "Down") : UIImage(named: "Previous"),
+                image: UIImage(named: "Down"),
                 style: .Plain,
                 target: self,
-                action: "closeOrBackButtonTapped:"
+                action: "closeButtonTapped:"
             )
             navigationItem.leftBarButtonItem = closeButton
         }
     }
     
-    func closeOrBackButtonTapped(sender: AnyObject!) {
+    func closeButtonTapped(sender: AnyObject!) {
         if isBeingPresentedModally() {
             dismissViewControllerAnimated(true, completion: nil)
         }
