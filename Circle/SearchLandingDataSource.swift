@@ -51,5 +51,9 @@ class SearchLandingDataSource: CardDataSource {
         tagsCard.content.append(tags)
         appendCard(tagsCard)
     }
+    
+    override func configureCell(cell: CircleCollectionViewCell, atIndexPath indexPath: NSIndexPath) {
+        cell.backgroundColor = UIColor.whiteColor()
+    }
 
 }

@@ -45,8 +45,13 @@ class SearchQueryDataSource: CardDataSource {
         if visibleProfiles.count > 0 {
             peopleCard.content.extend(visibleProfiles as [AnyObject])
             peopleCard.contentCount = visibleProfiles.count
+            peopleCard.sectionInset = UIEdgeInsetsZero
         }
         appendCard(peopleCard)
+    }
+    
+    override func configureCell(cell: CircleCollectionViewCell, atIndexPath indexPath: NSIndexPath) {
+        cell.backgroundColor = UIColor.clearColor()
     }
 
 }
