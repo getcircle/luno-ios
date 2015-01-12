@@ -25,6 +25,7 @@ class LocationDetailViewController: DetailViewController {
         delegate = ProfileCollectionViewDelegate()
         collectionView.delegate = delegate
         
+        layout.headerHeight = MapHeaderCollectionReusableView.height
         super.configureCollectionView()
     }
     
@@ -73,7 +74,7 @@ class LocationDetailViewController: DetailViewController {
             mapViewController.initialMapViewRect = headerView.convertRect(headerView.mapView.frame, toView: view)
             let finalRect = CGRect(
                 origin: CGPointZero,
-                size: CGSizeMake(view.frameWidth, ProfileCollectionViewLayout.profileHeaderHeight)
+                size: CGSizeMake(view.frameWidth, MapHeaderCollectionReusableView.height)
             )
             mapViewController.finalMapViewRect = finalRect
             mapViewController.addressSnapshotView = headerView.addressContainerView.snapshotViewAfterScreenUpdates(false)

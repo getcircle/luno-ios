@@ -9,10 +9,14 @@
 import UIKit
 import MapKit
 
-class MapHeaderCollectionReusableView: UICollectionReusableView, MKMapViewDelegate {
+class MapHeaderCollectionReusableView: CircleCollectionReusableView, MKMapViewDelegate {
 
-    class var classReuseIdentifier: String {
+    override class var classReuseIdentifier: String {
         return "MapHeaderCollectionReusableView"
+    }
+    
+    override class var height: CGFloat {
+        return 235.0
     }
     
     @IBOutlet weak private(set) var addressLabel: UILabel!

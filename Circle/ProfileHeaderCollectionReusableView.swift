@@ -9,7 +9,7 @@
 import UIKit
 import ProtobufRegistry
 
-class ProfileHeaderCollectionReusableView: UICollectionReusableView {
+class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
 
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var nameNavLabel: UILabel!
@@ -19,10 +19,14 @@ class ProfileHeaderCollectionReusableView: UICollectionReusableView {
 
     private var visualEffectView: UIVisualEffectView!
     
-    class var classReuseIdentifier: String {
+    override class var classReuseIdentifier: String {
         return "ProfileHeaderView"
     }
     
+    override class var height: CGFloat {
+        return 200.0
+    }
+
     override func awakeFromNib() {
         super.awakeFromNib()
 

@@ -24,6 +24,7 @@ class ProfileDetailViewController: DetailViewController {
         delegate = ProfileCollectionViewDelegate()
         collectionView.delegate = delegate
         
+        layout.headerHeight = ProfileHeaderCollectionReusableView.height
         super.configureCollectionView()
     }
 

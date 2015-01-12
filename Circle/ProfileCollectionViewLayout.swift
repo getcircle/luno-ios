@@ -10,12 +10,8 @@ import UIKit
 
 class ProfileCollectionViewLayout: UICollectionViewFlowLayout {
     
-    class var profileHeaderHeight: CGFloat {
-        return 200.0
-    }
-    
-    // 44.0 height of nav bar + 20.0 height of status bar
-    let offsetToMakeProfileHeaderSticky: CGFloat = ProfileCollectionViewLayout.profileHeaderHeight - 64.0
+    var headerHeight: CGFloat = 0.0
+    var offsetToMakeProfileHeaderSticky: CGFloat!
     let cellHeight: CGFloat = 44.0
     
     override init() {
@@ -43,8 +39,14 @@ class ProfileCollectionViewLayout: UICollectionViewFlowLayout {
     }
     
     override func prepareLayout() {
+        if headerHeight == 0.0 {
+            println("headerHeight should be set to greater than zero")
+        }
+
+        // 44.0 height of nav bar + 20.0 height of status bar
+        offsetToMakeProfileHeaderSticky = headerHeight - 64.0
         itemSize = CGSizeMake(collectionView!.bounds.width - sectionInset.left - sectionInset.right, cellHeight)
-        headerReferenceSize = CGSizeMake(collectionView!.bounds.width, ProfileCollectionViewLayout.profileHeaderHeight)
+        headerReferenceSize = CGSizeMake(collectionView!.bounds.width, headerHeight)
     }
     
     override func shouldInvalidateLayoutForBoundsChange(newBounds: CGRect) -> Bool {
@@ -69,8 +71,8 @@ class ProfileCollectionViewLayout: UICollectionViewFlowLayout {
                         var frameToModify = attribute.frame
                         frameToModify.origin.y = contentOffset.y
                         frameToModify.size.height = max(
-                            ProfileCollectionViewLayout.profileHeaderHeight,
-                            ProfileCollectionViewLayout.profileHeaderHeight - contentOffset.y)
+                            headerHeight,
+                            headerHeight - contentOffset.y)
                         attribute.frame = frameToModify
                     }
                     else {
