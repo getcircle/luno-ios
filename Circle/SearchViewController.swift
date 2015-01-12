@@ -121,7 +121,7 @@ CardHeaderViewDelegate {
         let selectedCard = dataSource.cardAtSection(indexPath.section)!
         
         switch selectedCard.type {
-        case .People, .Birthdays, .Anniversaries:
+        case .People, .Birthdays, .Anniversaries, .NewHires:
             if let profile = dataSource.contentAtIndexPath(indexPath)? as? ProfileService.Containers.Profile {
                 let viewController = ProfileDetailViewController()
                 viewController.profile = profile
@@ -147,7 +147,7 @@ CardHeaderViewDelegate {
     func cardHeaderTapped(card: Card!) {
         let dataSource = (collectionView.dataSource as CardDataSource)
         switch card.type {
-        case .Group, .People, .Birthdays, .Anniversaries:
+        case .Group, .People, .Birthdays, .Anniversaries, .NewHires:
             let viewController = storyboard?.instantiateViewControllerWithIdentifier("ProfilesViewController") as ProfilesViewController
             if card.type == .Group {
                 viewController.dataSource.setInitialData(card.content[0] as [AnyObject])
