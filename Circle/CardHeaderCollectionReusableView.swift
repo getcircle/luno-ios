@@ -46,7 +46,7 @@ class CardHeaderCollectionReusableView: UICollectionReusableView {
     func setCard(card: Card) {
         cardTitleLabel.text = card.title
         cardImageView.image = UIImage(named: card.imageSource)?.imageWithRenderingMode(.AlwaysTemplate)
-        cardContentCountLabel.text = "All " + String(card.contentCount)
+        cardContentCountLabel.text = card.contentCount == 1 ? "" : "All " + String(card.contentCount)
         currentCard = card
     }
     

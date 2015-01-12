@@ -24,7 +24,7 @@ class LocationDetailDataSource: CardDataSource {
         
         // Add a Placeholder card for the map view
         let placeholderMapCard = Card(cardType: .Placeholder, title: "Map Header")
-        // placeholderMapCard.sectionInset = UIEdgeInsetsZero
+        placeholderMapCard.sectionInset = UIEdgeInsetsZero
         appendCard(placeholderMapCard)
         
         if let currentProfile = AuthViewController.getLoggedInUserProfile() {
