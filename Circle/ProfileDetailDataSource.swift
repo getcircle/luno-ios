@@ -111,13 +111,13 @@ class ProfileDetailDataSource: CardDataSource {
                 container: "team",
                 containerKey: "name",
                 image: nil
-            ),
-            SectionItem(
-                title: "Department",
-                container: "team",
-                containerKey: "department",
-                image: nil
             )
+//            SectionItem(
+//                title: "Department",
+//                container: "team",
+//                containerKey: "department",
+//                image: nil
+//            )
         ]
     ]
     
