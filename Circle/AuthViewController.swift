@@ -220,13 +220,13 @@ class AuthViewController: UIViewController, UITextFieldDelegate {
     private func fetchAndCacheUserProfile(userId: String) {
         ProfileService.Actions.getProfile(userId: userId) { (profile, error) -> Void in
             if error == nil {
-                SearchCache.sharedInstance.repopulate()
                 LoggedInUserHolder.profile = profile!
                 self.cacheProfileData(profile!)
                 NSNotificationCenter.defaultCenter().postNotificationName(
                     AuthNotifications.onLoginNotification,
                     object: nil
                 )
+                SearchCache.sharedInstance.repopulate()
                 self.dismissViewControllerAnimated(true, completion: nil)
             }
         }
