@@ -138,6 +138,7 @@ CardHeaderViewDelegate {
         case .Locations:
             let viewController = LocationDetailViewController()
             navigationController?.pushViewController(viewController, animated: true)
+
         default:
             performSegueWithIdentifier("showListOfPeople", sender: collectionView)
         }
@@ -148,19 +149,23 @@ CardHeaderViewDelegate {
     func cardHeaderTapped(card: Card!) {
         let dataSource = (collectionView.dataSource as CardDataSource)
         switch card.type {
-            case .Group, .People, .Birthdays, .Anniversaries:
-                let viewController = storyboard?.instantiateViewControllerWithIdentifier("ProfilesViewController") as ProfilesViewController
-                if card.type == .Group {
-                    viewController.dataSource.setInitialData(card.content[0] as [AnyObject])
-                }
-                else {
-                    viewController.dataSource.setInitialData(card.content)
-                }
-                viewController.title = card.title
-                navigationController?.pushViewController(viewController, animated: true)
+        case .Group, .People, .Birthdays, .Anniversaries:
+            let viewController = storyboard?.instantiateViewControllerWithIdentifier("ProfilesViewController") as ProfilesViewController
+            if card.type == .Group {
+                viewController.dataSource.setInitialData(card.content[0] as [AnyObject])
+            }
+            else {
+                viewController.dataSource.setInitialData(card.content)
+            }
+            viewController.title = card.title
+            navigationController?.pushViewController(viewController, animated: true)
 
-            default:
-                break
+        case .Locations:
+            let viewController = LocationDetailViewController()
+            navigationController?.pushViewController(viewController, animated: true)
+            
+        default:
+            break
         }
     }
 
