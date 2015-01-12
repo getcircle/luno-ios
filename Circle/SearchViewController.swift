@@ -153,7 +153,7 @@ CardHeaderViewDelegate {
                 viewController.dataSource.setInitialData(card.content[0] as [AnyObject])
             }
             else {
-                viewController.dataSource.setInitialData(card.content)
+                viewController.dataSource.setInitialData(card.allContent)
             }
             viewController.title = card.title
             navigationController?.pushViewController(viewController, animated: true)

@@ -15,6 +15,7 @@ func ==(lhs: Card, rhs: Card) -> Bool {
 
 class Card: Equatable {
     var content: [AnyObject]
+    var allContent: [AnyObject]
     var contentCount: Int
     private(set) var contentClass: CircleCollectionViewCell.Type
     private(set) var contentClassName: String
@@ -113,7 +114,8 @@ class Card: Equatable {
         cardType: CardType,
         title withTitle: String,
         content withContent: [AnyObject]?,
-        contentCount withContentCount: Int?
+        contentCount withContentCount: Int?,
+        allContent withAllContent: [AnyObject]?
     ) {
         type = cardType
         let infoByCardType = CardType.infoByCardType(type)
@@ -123,10 +125,11 @@ class Card: Equatable {
         title = withTitle
         contentCount = withContentCount ?? 0
         content = withContent ?? []
+        allContent = withAllContent ?? []
     }
     
     convenience init(cardType: CardType, title withTitle: String) {
-        self.init(cardType: cardType, title: withTitle, content: nil, contentCount: nil)
+        self.init(cardType: cardType, title: withTitle, content: nil, contentCount: nil, allContent: nil)
     }
     
     convenience init(category: LandingService.Containers.Category) {
@@ -141,14 +144,24 @@ class Card: Equatable {
         default: cardType = .People
         }
         
-        self.init(cardType: cardType, title: category.title, content: nil, contentCount: category.total_count.toInt())
+        self.init(cardType: cardType, title: category.title, content: nil, contentCount: category.total_count.toInt(), allContent: nil)
     }
     
-    func addContent(content withContent: [AnyObject]) {
+    func addContent(content withContent: [AnyObject], allContent withAllContent: [AnyObject]?) {
         switch type {
         case .Group: content.append(withContent)
         default: content.extend(withContent)
         }
+        
+        if let withAllContent = withAllContent {
+            allContent = withAllContent
+        } else {
+            allContent.extend(withContent)
+        }
+    }
+    
+    func addContent(content withContent: [AnyObject]) {
+        self.addContent(content: withContent, allContent: nil)
     }
     
 }
