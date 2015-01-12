@@ -17,7 +17,7 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var backgroundImage: UIImageView!
 
-    private var visualEffectView: UIVisualEffectView!
+    private(set) var visualEffectView: UIVisualEffectView!
     
     override class var classReuseIdentifier: String {
         return "ProfileHeaderView"

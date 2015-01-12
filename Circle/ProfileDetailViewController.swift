@@ -74,10 +74,16 @@ class ProfileDetailViewController: DetailViewController {
                 profileHeaderView.nameNavLabel.alpha = titleLabelAlpha <= 0.0 ? profileHeaderView.nameNavLabel.alpha + 1/20 : 0.0
             }
             else {
-                profileHeaderView.nameLabel.alpha = 1.0
+                // Change alpha faster for profile image
+                let profileImageAlpha = max(0.0, 1.0 - -contentOffset.y/80.0)
+                
+                // Change it slower for everything else
+                let otherViewsAlpha = max(0.0, 1.0 - -contentOffset.y/120.0)
+                profileHeaderView.nameLabel.alpha = otherViewsAlpha
                 profileHeaderView.nameNavLabel.alpha = 0.0
-                profileHeaderView.titleLabel.alpha = 1.0
-                profileHeaderView.profileImage.alpha = 1.0
+                profileHeaderView.titleLabel.alpha = otherViewsAlpha
+                profileHeaderView.profileImage.alpha = profileImageAlpha
+                profileHeaderView.visualEffectView.alpha = otherViewsAlpha
                 profileHeaderView.profileImage.transform = CGAffineTransformIdentity
             }
         }
