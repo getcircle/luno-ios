@@ -82,6 +82,7 @@ CardHeaderViewDelegate {
         collectionView.dataSource = landingDataSource
         
         queryDataSource = SearchQueryDataSource()
+        queryDataSource.registerCardHeader(collectionView)
     }
 
     // MARK: - TextField Delegate

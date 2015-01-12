@@ -54,4 +54,25 @@ class SearchQueryDataSource: CardDataSource {
         cell.backgroundColor = UIColor.clearColor()
     }
 
+    override func registerCardHeader(collectionView: UICollectionView) {
+        collectionView.registerNib(
+            UINib(nibName: "SearchResultsCardHeaderCollectionReusableView", bundle: nil),
+            forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
+            withReuseIdentifier: SearchResultsCardHeaderCollectionReusableView.classReuseIdentifier
+        )
+        
+        super.registerCardHeader(collectionView)
+    }
+    
+    override func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+        let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(
+            kind,
+            withReuseIdentifier: SearchResultsCardHeaderCollectionReusableView.classReuseIdentifier,
+            forIndexPath: indexPath
+        ) as SearchResultsCardHeaderCollectionReusableView
+        
+        headerView.setCard(cards[indexPath.section])
+        headerView.backgroundColor = UIColor.clearColor()
+        return headerView
+    }
 }
