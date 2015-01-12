@@ -53,7 +53,9 @@
             </constraints>
             <connections>
                 <outlet property="addressContainerView" destination="EmS-IB-PAF" id="8i2-Jo-7Zu"/>
+                <outlet property="addressContainerViewHeightConstraint" destination="VnZ-Qz-kCa" id="ojA-YG-pMq"/>
                 <outlet property="addressLabel" destination="KLL-v4-dQI" id="sWN-v9-Zmz"/>
+                <outlet property="addressLabelCenterYConstraint" destination="wtk-h9-3ky" id="drr-DP-7P6"/>
                 <outlet property="mapView" destination="DgL-oK-ji4" id="3ng-xk-IxL"/>
                 <outlet property="overlayButton" destination="ZUI-MC-IAz" id="rie-Y1-BeH"/>
             </connections>

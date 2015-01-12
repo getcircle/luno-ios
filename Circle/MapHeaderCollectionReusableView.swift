@@ -20,16 +20,20 @@ class MapHeaderCollectionReusableView: CircleCollectionReusableView, MKMapViewDe
     }
     
     @IBOutlet weak private(set) var addressLabel: UILabel!
+    @IBOutlet weak private(set) var addressLabelCenterYConstraint: NSLayoutConstraint!
     @IBOutlet weak private(set) var addressContainerView: UIView!
+    @IBOutlet weak private(set) var addressContainerViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak private(set) var overlayButton: UIButton!
     @IBOutlet weak private(set) var mapView: MKMapView!
+    
+    var initialHeightForAddressContainer: CGFloat!
     
     private var visualEffectView: UIVisualEffectView!
 
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        
+        initialHeightForAddressContainer = addressContainerViewHeightConstraint.constant
         configureMapView()
         configureBlurView()
     }
