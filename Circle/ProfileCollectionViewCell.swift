@@ -63,6 +63,12 @@ class ProfileCollectionViewCell: CircleCollectionViewCell {
                     }
                 case .Anniversaries:
                     subtitle = getAnniversarySubtitle(profile)
+                case .NewHires:
+                    if let date = profile.hire_date.toDate() {
+                        let dateFormatter = NSDateFormatter()
+                        dateFormatter.dateStyle = .LongStyle
+                        subtitle = dateFormatter.stringFromDate(date)
+                    }
                 default:
                     subtitle = profile.title
                 }

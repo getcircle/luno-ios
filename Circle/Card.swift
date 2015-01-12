@@ -34,6 +34,7 @@ class Card: Equatable {
         case People
         case Placeholder
         case Tags
+        case NewHires
         
         struct CardTypeInfo {
             var imageName: String
@@ -92,6 +93,13 @@ class Card: Equatable {
                     classType: ProfileCollectionViewCell.self,
                     className: "ProfileCollectionViewCell"
                 )
+                
+            case NewHires:
+                return CardTypeInfo(
+                    imageName: "People",
+                    classType: ProfileCollectionViewCell.self,
+                    className: "ProfileCollectionViewCell"
+                )
 
             case Placeholder:
                 return CardTypeInfo(
@@ -138,6 +146,7 @@ class Card: Equatable {
         switch category.type {
         case .Anniversaries: cardType = .Anniversaries
         case .Birthdays: cardType = .Birthdays
+        case .NewHires: cardType = .NewHires
         case .DirectReports, .Peers: cardType = .Group
         case .Locations: cardType = .Locations
         case .Tags: cardType = .Tags
