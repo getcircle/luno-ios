@@ -69,4 +69,8 @@ extension UIViewController {
             AuthViewController.presentAuthViewController()
         }
     }
+    
+    func setStatusBarHidden(hidden: Bool) {
+        UIApplication.sharedApplication().setStatusBarHidden(hidden, withAnimation: .None)
+    }
 }

@@ -33,6 +33,11 @@ class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate {
         phoneNumberFormatter = NBAsYouTypeFormatter(regionCode: "US")
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        setStatusBarHidden(true)
+    }
+    
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         textField.becomeFirstResponder()

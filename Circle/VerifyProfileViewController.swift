@@ -35,6 +35,11 @@ UIImagePickerControllerDelegate {
         checkDataAndEnableNext()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        setStatusBarHidden(true)
+    }
+    
     // MARK: - Configuration
     
     private func configureView() {

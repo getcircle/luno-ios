@@ -35,6 +35,7 @@ CardHeaderViewDelegate {
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        setStatusBarHidden(false)
         checkUserAndPresentAuthViewController()
         (collectionView.dataSource as? SearchLandingDataSource)?.loadData { (error) -> Void in
             if error == nil {
@@ -49,7 +50,7 @@ CardHeaderViewDelegate {
     private func configureView() {
         view.backgroundColor = UIColor.viewBackgroundColor()
     }
-
+    
     private func configureNavigationButtons() {
         var infoButton = UIBarButtonItem(image: UIImage(named: "Info"), style: .Plain, target: self, action: "infoButtonTapped:")
         var barButtonItems = [UIBarButtonItem]()

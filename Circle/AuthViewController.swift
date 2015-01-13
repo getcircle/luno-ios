@@ -43,6 +43,7 @@ class AuthViewController: UIViewController, UITextFieldDelegate {
 
         // Do any additional setup after loading the view.
         configureView()
+        setStatusBarHidden(true)
     }
     
     override func viewWillAppear(animated: Bool) {
