@@ -204,18 +204,7 @@ class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate {
     }
     
     private func completeVerification() {
-        self.textField.removeFromSuperview()
-        self.actionButton.removeConstraints(self.actionButton.constraints())
-        self.actionButton.autoCenterInSuperview()
-        self.actionButton.autoSetDimension(.Width, toSize: 100.0)
-        self.actionButton.autoSetDimension(.Height, toSize: 50.0)
-        self.actionButton.setNeedsUpdateConstraints()
-        self.actionButton.removeTarget(self, action: "verifyButtonTapped:", forControlEvents: .TouchUpInside)
-        UIView.animateWithDuration(0.3, animations: { () -> Void in
-            self.actionButton.backgroundColor = UIColor.greenColor()
-            self.actionButton.setTitle("Verified!", forState: .Normal)
-            self.view.layoutIfNeeded()
-        })
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
 
 }
