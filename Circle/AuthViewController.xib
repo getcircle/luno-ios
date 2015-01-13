@@ -46,7 +46,7 @@
                         <constraint firstAttribute="height" constant="35" id="wqu-FP-Y81"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
-                    <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
+                    <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" keyboardAppearance="alert" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                     <connections>
                         <outlet property="delegate" destination="-1" id="ZRz-IN-IC8"/>
                     </connections>
@@ -75,7 +75,7 @@
                         <constraint firstAttribute="height" constant="35" id="GFh-hc-k2E"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
-                    <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" returnKeyType="go" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
+                    <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" keyboardAppearance="alert" returnKeyType="go" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
                     <connections>
                         <outlet property="delegate" destination="-1" id="Kit-Vk-Cm3"/>
                     </connections>
@@ -111,6 +111,7 @@
                 <constraint firstItem="x4p-Uh-3t5" firstAttribute="width" secondItem="pK5-tP-ZNS" secondAttribute="width" id="wrh-Yb-PqR"/>
                 <constraint firstAttribute="centerX" secondItem="pK5-tP-ZNS" secondAttribute="centerX" id="zeZ-UU-ar7"/>
             </constraints>
+            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
             <variation key="default">
                 <mask key="constraints">
                     <exclude reference="iIw-pu-Y2v"/>
