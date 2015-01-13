@@ -51,14 +51,14 @@ CardHeaderViewDelegate {
     }
 
     private func configureNavigationButtons() {
-//        var infoButton = UIBarButtonItem(image: UIImage(named: "Info"), style: .Plain, target: self, action: "infoButtonTapped:")
-//        var barButtonItems = [UIBarButtonItem]()
-//        if navigationItem.rightBarButtonItem != nil {
-//            barButtonItems.append(navigationItem.rightBarButtonItem!)
-//        }
-//        
-//        barButtonItems.append(infoButton)
-//        navigationItem.rightBarButtonItems = barButtonItems
+        var infoButton = UIBarButtonItem(image: UIImage(named: "Info"), style: .Plain, target: self, action: "infoButtonTapped:")
+        var barButtonItems = [UIBarButtonItem]()
+        if navigationItem.rightBarButtonItem != nil {
+            barButtonItems.append(navigationItem.rightBarButtonItem!)
+        }
+        
+        barButtonItems.append(infoButton)
+        navigationItem.rightBarButtonItems = barButtonItems
     }
     
     private func configureSearchHeaderView() {

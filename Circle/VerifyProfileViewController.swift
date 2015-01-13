@@ -9,14 +9,19 @@
 import UIKit
 import ProtobufRegistry
 
-class VerifyProfileViewController: UIViewController, UITextFieldDelegate {
+class VerifyProfileViewController: UIViewController,
+UITextFieldDelegate,
+UINavigationControllerDelegate,
+UIImagePickerControllerDelegate {
 
-    @IBOutlet weak private(set) var profileImageView: UIImageView!
     @IBOutlet weak private(set) var editImageButton: UIButton!
     @IBOutlet weak private(set) var firstNameField: UITextField!
     @IBOutlet weak private(set) var lastNameField: UITextField!
+    @IBOutlet weak private(set) var profileImageView: UIImageView!
     @IBOutlet weak private(set) var titleField: UITextField!
-    
+    @IBOutlet weak private(set) var titleLabel: UILabel!
+    @IBOutlet weak private(set) var verifyTextLabel: UILabel!
+
     private var addImageActionSheet: UIAlertController?
     private var nextButton: UIBarButtonItem!
     private var profile: ProfileService.Containers.Profile!
@@ -26,16 +31,18 @@ class VerifyProfileViewController: UIViewController, UITextFieldDelegate {
 
         // Do any additional setup after loading the view.
         configureView()
-        configureNavigationButtons()
         populateData()
     }
     
     // MARK: - Configuration
     
     private func configureView() {
-        profileImageView.makeItCircular(false)
-        editImageButton.layer.cornerRadiusWithMaskToBounds(profileImageView.frameWidth/2.0)
+        automaticallyAdjustsScrollViewInsets = false
+        edgesForExtendedLayout = .Top
+        extendedLayoutIncludesOpaqueBars = true
+        navigationController?.navigationBar.makeTransparent()
         
+        view.backgroundColor = UIColor.appTintColor()
         editImageButton.tintColor = UIColor.whiteColor()
         editImageButton.setImage(
             editImageButton.imageForState(.Normal)?.imageWithRenderingMode(.AlwaysTemplate),
@@ -46,14 +53,7 @@ class VerifyProfileViewController: UIViewController, UITextFieldDelegate {
         lastNameField.addBottomBorder()
         titleField.addBottomBorder()
     }
-    
-    private func configureNavigationButtons() {
-        title = "Welcome to Circle"
-        nextButton = UIBarButtonItem(title: "Next", style: .Plain, target: self, action: "nextButtonTapped:")
-        // nextButton.enabled = false
-        navigationItem.rightBarButtonItem = nextButton
-    }
-    
+
     // MARK: - Data Source
     
     private func populateData() {
@@ -62,7 +62,7 @@ class VerifyProfileViewController: UIViewController, UITextFieldDelegate {
         firstNameField.text = profile.first_name
         lastNameField.text = profile.last_name
         titleField.text = profile.title
-        profileImageView.setImageWithProfile(profile)
+        //profileImageView.setImageWithProfile(profile)
     }
     
     // MARK: - IBActions
@@ -108,30 +108,33 @@ class VerifyProfileViewController: UIViewController, UITextFieldDelegate {
     }
     
     func takeAPictureAction(action: UIAlertAction!) {
-//        dismissAddImageActionSheet(false)
-//        if UIImagePickerController.isSourceTypeAvailable(.Camera) {
-//            var pickerVC = UIImagePickerController(rootViewController: self)
-//            pickerVC.sourceType = .Camera
-//            pickerVC.cameraCaptureMode = .Photo
-//            if UIImagePickerController.isCameraDeviceAvailable(.Front) {
-//                pickerVC.cameraDevice = .Front
-//            }
-//            else {
-//                pickerVC.cameraDevice = .Rear
-//            }
-//            
-//            presentViewController(pickerVC, animated: true, completion: nil)
-//        }
+        dismissAddImageActionSheet(false)
+        if UIImagePickerController.isSourceTypeAvailable(.Camera) {
+            var pickerVC = UIImagePickerController()
+            pickerVC.sourceType = .Camera
+            pickerVC.cameraCaptureMode = .Photo
+            if UIImagePickerController.isCameraDeviceAvailable(.Front) {
+                pickerVC.cameraDevice = .Front
+            }
+            else {
+                pickerVC.cameraDevice = .Rear
+            }
+            
+            pickerVC.allowsEditing = true
+            pickerVC.delegate = self
+            presentViewController(pickerVC, animated: true, completion: nil)
+        }
     }
     
     func pickAPhotoAction(action: UIAlertAction!) {
-//        dismissAddImageActionSheet(false)
-//        if UIImagePickerController.isSourceTypeAvailable(.PhotoLibrary) {
-//            var pickerVC = UIImagePickerController(rootViewController: self)
-//            pickerVC.sourceType = .PhotoLibrary
-//            pickerVC.cameraCaptureMode = .Photo
-//            presentViewController(pickerVC, animated: true, completion: nil)
-//        }
+        dismissAddImageActionSheet(false)
+        if UIImagePickerController.isSourceTypeAvailable(.PhotoLibrary) {
+            var pickerVC = UIImagePickerController()
+            pickerVC.sourceType = .PhotoLibrary
+            pickerVC.allowsEditing = true
+            pickerVC.delegate = self
+            presentViewController(pickerVC, animated: true, completion: nil)
+        }
     }
     
     // MARK: - Helpers
@@ -142,5 +145,21 @@ class VerifyProfileViewController: UIViewController, UITextFieldDelegate {
                 self.addImageActionSheet = nil
             })
         }
+    }
+    
+    // MARK: - UIImagePickerDelegate
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
+        if let pickedImage = info[UIImagePickerControllerEditedImage] as? UIImage {
+            profileImageView.image = pickedImage
+        }
+        else {
+            profileImageView.image = info[UIImagePickerControllerOriginalImage] as? UIImage
+        }
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+        dismissViewControllerAnimated(true, completion: nil)
     }
 }
