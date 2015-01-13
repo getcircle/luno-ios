@@ -199,8 +199,8 @@ class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate {
     }
     
     private func completeVerification() {
-        var verifyProfileVC = VerifyProfileViewController(nibName: "VerifyProfileViewController", bundle: nil)
-        self.navigationController?.pushViewController(verifyProfileVC, animated: true)
+        let verifyProfileVC = VerifyProfileViewController(nibName: "VerifyProfileViewController", bundle: nil)
+        self.navigationController?.setViewControllers([verifyProfileVC], animated: true)
     }
 
 }

@@ -70,7 +70,7 @@ UIImagePickerControllerDelegate {
     @IBAction func nextButtonTapped(sender: AnyObject!) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let tagSelectorVC = storyboard.instantiateViewControllerWithIdentifier("TagSelectorViewController") as TagSelectorViewController
-        navigationController?.pushViewController(tagSelectorVC, animated: true)
+        navigationController?.setViewControllers([tagSelectorVC], animated: true)
     }
     
     @IBAction func editImageButtonTapped(sender: AnyObject!) {
