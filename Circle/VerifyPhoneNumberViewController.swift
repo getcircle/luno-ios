@@ -33,18 +33,21 @@ class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate {
     }
     
     // MARK: - Configuration
-    
+
     private func configureView() {
+        view.backgroundColor = UIColor.appTintColor()
         textField.delegate = self
+        textField.tintColor = UIColor.whiteColor()
         textField.autoSetDimension(.Height, toSize: 50.0)
         textField.addBottomBorder()
+        textField.textColor = UIColor.whiteColor()
         
         actionButton = UIButton.buttonWithType(.Custom) as UIButton
         actionButton.setTranslatesAutoresizingMaskIntoConstraints(false)
-        actionButton.backgroundColor = UIColor.appTintColor()
+        actionButton.backgroundColor = UIColor.whiteColor()
         actionButton.setTitle("Send Code", forState: .Normal)
         actionButton.titleLabel?.font = UIFont.lightFont()
-        actionButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        actionButton.setTitleColor(UIColor.appTintColor(), forState: .Normal)
         actionButton.setTitleColor(UIColor.searchTextFieldBackground(), forState: .Disabled)
         actionButton.addTarget(self, action: "actionButtonTapped:", forControlEvents: .TouchUpInside)
         view.addSubview(actionButton)
@@ -159,7 +162,8 @@ class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate {
             activityIndicator.removeFromSuperview()
             self.activityIndicatorView = nil
         } else {
-            activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .White)
+            activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
+            activityIndicatorView?.color = UIColor.appTintColor()
             activityIndicatorView!.setTranslatesAutoresizingMaskIntoConstraints(false)
             actionButton.setTitle("", forState: .Normal)
             actionButton.addSubview(activityIndicatorView!)
