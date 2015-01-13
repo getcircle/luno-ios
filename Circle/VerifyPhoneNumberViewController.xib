@@ -16,38 +16,64 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Verify Phone" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O4m-39-9E8">
+                    <rect key="frame" x="232" y="50" width="137" height="33"/>
+                    <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="24"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Verify your phone number for your team to contact you" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gv6-p4-A3b">
+                    <rect key="frame" x="20" y="143" width="560" height="25"/>
+                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="18"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Phone Number" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0i3-sJ-bdt" userLabel="Phone Number field">
-                    <rect key="frame" x="209" y="200" width="183" height="48"/>
+                    <rect key="frame" x="209" y="228" width="183" height="41"/>
                     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="183" id="s9m-Qo-nYq"/>
                     </constraints>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="35"/>
-                    <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
+                    <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="30"/>
+                    <textInputTraits key="textInputTraits" keyboardType="phonePad" keyboardAppearance="alert"/>
                 </textField>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r9c-Xa-sse">
-                    <rect key="frame" x="209" y="273" width="183" height="47"/>
+                    <rect key="frame" x="209" y="294" width="183" height="40"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="25"/>
-                    <state key="normal" title="Send Code">
-                        <color key="titleColor" red="0.88235294119999996" green="0.15686274510000001" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
-                    </state>
+                    <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="20"/>
+                    <color key="tintColor" red="0.88235294119999996" green="0.15686274510000001" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <state key="normal" title="Send Code"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="5"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                 </button>
             </subviews>
-            <color key="backgroundColor" red="0.88235294119999996" green="0.15686274510000001" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="0.88235294119999996" green="0.15686274510000001" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstAttribute="centerY" secondItem="r9c-Xa-sse" secondAttribute="centerY" constant="23" id="Aox-Jo-RMa"/>
                 <constraint firstAttribute="centerX" secondItem="r9c-Xa-sse" secondAttribute="centerX" id="BZF-z5-udL"/>
+                <constraint firstItem="gv6-p4-A3b" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="100" id="GcT-1c-Kdo"/>
+                <constraint firstItem="O4m-39-9E8" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="50" id="Jic-LZ-2hR"/>
                 <constraint firstItem="r9c-Xa-sse" firstAttribute="top" secondItem="0i3-sJ-bdt" secondAttribute="bottom" constant="25" id="ME9-wj-Iqc"/>
                 <constraint firstItem="0i3-sJ-bdt" firstAttribute="width" secondItem="r9c-Xa-sse" secondAttribute="width" id="Oil-hP-8Ya"/>
+                <constraint firstAttribute="trailing" secondItem="gv6-p4-A3b" secondAttribute="trailing" constant="20" id="QQ1-G5-FWj"/>
                 <constraint firstItem="0i3-sJ-bdt" firstAttribute="width" secondItem="r9c-Xa-sse" secondAttribute="width" id="YKr-vH-ArS"/>
+                <constraint firstItem="gv6-p4-A3b" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="Z8a-bG-4L4"/>
                 <constraint firstAttribute="centerX" secondItem="0i3-sJ-bdt" secondAttribute="centerX" id="bOw-hT-XT7"/>
+                <constraint firstItem="0i3-sJ-bdt" firstAttribute="top" secondItem="gv6-p4-A3b" secondAttribute="bottom" constant="60" id="faZ-KA-ZI4"/>
+                <constraint firstAttribute="centerX" secondItem="O4m-39-9E8" secondAttribute="centerX" id="osn-wQ-Ybd"/>
                 <constraint firstItem="0i3-sJ-bdt" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="200" id="uzo-sx-Obv"/>
+                <constraint firstItem="gv6-p4-A3b" firstAttribute="top" secondItem="O4m-39-9E8" secondAttribute="bottom" constant="60" id="xSY-70-zOm"/>
+                <constraint firstAttribute="centerX" secondItem="gv6-p4-A3b" secondAttribute="centerX" id="ynM-oh-lON"/>
             </constraints>
             <variation key="default">
                 <mask key="constraints">
+                    <exclude reference="GcT-1c-Kdo"/>
                     <exclude reference="Oil-hP-8Ya"/>
+                    <exclude reference="uzo-sx-Obv"/>
                     <exclude reference="Aox-Jo-RMa"/>
                 </mask>
             </variation>

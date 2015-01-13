@@ -107,6 +107,7 @@
                                 <constraint firstAttribute="width" constant="280" id="39w-lJ-F9s"/>
                                 <constraint firstAttribute="height" constant="44" id="uhS-ND-wwQ"/>
                             </constraints>
+                            <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="20"/>
                             <color key="tintColor" red="0.88235294119999996" green="0.15686274510000001" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <state key="normal" title="Next">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>

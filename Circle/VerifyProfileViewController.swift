@@ -32,6 +32,7 @@ UIImagePickerControllerDelegate {
         // Do any additional setup after loading the view.
         configureView()
         populateData()
+        checkDataAndEnableNext()
     }
     
     // MARK: - Configuration
