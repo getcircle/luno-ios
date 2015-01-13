@@ -20,14 +20,15 @@ class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var actionButton: UIButton!
     
     private var activityIndicatorView: UIActivityIndicatorView?
+    private var bypassChecks = !ServiceHttpRequest.isPointingToProduction()
     private var phoneNumberFormatter: NBAsYouTypeFormatter!
     private var currentInputType: CurrentInputType!
     private var codeDigits = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureView()
         
+        configureView()
         currentInputType = .PhoneNumber
         phoneNumberFormatter = NBAsYouTypeFormatter(regionCode: "US")
     }
@@ -107,6 +108,13 @@ class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate {
     
     func actionButtonTapped(sender: AnyObject!) {
         toggleLoadingState()
+        
+        if bypassChecks {
+            toggleLoadingState()
+            switchToConfirmation()
+            return
+        }
+
         let phoneNumber = textField.text
         if let user = AuthViewController.getLoggedInUser() {
             let userBuilder = user.toBuilder()
@@ -131,6 +139,12 @@ class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate {
     
     func verifyButtonTapped(sender: AnyObject!) {
         self.toggleLoadingState()
+        if bypassChecks {
+            toggleLoadingState()
+            completeVerification()
+            return
+        }
+        
         let code = textField.text
         if let user = AuthViewController.getLoggedInUser() {
             UserService.Actions.verifyVerificationCode(code, user: user) { (verified, error) -> Void in

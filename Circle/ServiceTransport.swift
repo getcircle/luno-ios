@@ -86,6 +86,10 @@ struct ServiceHttpRequest: URLRequestConvertible {
         mutableURLRequest.HTTPBody = data
         return mutableURLRequest
     }
+    
+    static func isPointingToProduction() -> Bool {
+        return ServiceHttpRequest.baseURLString.rangeOfString("staging") == nil
+    }
 }
 
 class HttpsTransport: BaseTransport {
