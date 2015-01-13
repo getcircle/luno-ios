@@ -6,6 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VerifyPhoneNumberViewController" customModule="Circle" customModuleProvider="target">
             <connections>
+                <outlet property="actionButton" destination="r9c-Xa-sse" id="I23-Jp-Gf3"/>
                 <outlet property="textField" destination="0i3-sJ-bdt" id="ueE-sx-Ybi"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -16,19 +17,40 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Phone Number" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0i3-sJ-bdt" userLabel="Phone Number field">
-                    <rect key="frame" x="209" y="288" width="183" height="24"/>
+                    <rect key="frame" x="209" y="200" width="183" height="48"/>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="183" id="s9m-Qo-nYq"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="17"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="35"/>
                     <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
                 </textField>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r9c-Xa-sse">
+                    <rect key="frame" x="209" y="273" width="183" height="47"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="25"/>
+                    <state key="normal" title="Send Code">
+                        <color key="titleColor" red="0.88235294119999996" green="0.15686274510000001" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                </button>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="0.88235294119999996" green="0.15686274510000001" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
+                <constraint firstAttribute="centerY" secondItem="r9c-Xa-sse" secondAttribute="centerY" constant="23" id="Aox-Jo-RMa"/>
+                <constraint firstAttribute="centerX" secondItem="r9c-Xa-sse" secondAttribute="centerX" id="BZF-z5-udL"/>
+                <constraint firstItem="r9c-Xa-sse" firstAttribute="top" secondItem="0i3-sJ-bdt" secondAttribute="bottom" constant="25" id="ME9-wj-Iqc"/>
+                <constraint firstItem="0i3-sJ-bdt" firstAttribute="width" secondItem="r9c-Xa-sse" secondAttribute="width" id="Oil-hP-8Ya"/>
+                <constraint firstItem="0i3-sJ-bdt" firstAttribute="width" secondItem="r9c-Xa-sse" secondAttribute="width" id="YKr-vH-ArS"/>
                 <constraint firstAttribute="centerX" secondItem="0i3-sJ-bdt" secondAttribute="centerX" id="bOw-hT-XT7"/>
-                <constraint firstAttribute="centerY" secondItem="0i3-sJ-bdt" secondAttribute="centerY" id="j1P-7L-ETo"/>
+                <constraint firstItem="0i3-sJ-bdt" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="200" id="uzo-sx-Obv"/>
             </constraints>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="Oil-hP-8Ya"/>
+                    <exclude reference="Aox-Jo-RMa"/>
+                </mask>
+            </variation>
         </view>
     </objects>
 </document>

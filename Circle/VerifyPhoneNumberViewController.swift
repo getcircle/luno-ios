@@ -17,8 +17,8 @@ class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBOutlet weak private(set) var textField: UITextField!
+    @IBOutlet weak var actionButton: UIButton!
     
-    private var actionButton: UIButton!
     private var activityIndicatorView: UIActivityIndicatorView?
     private var phoneNumberFormatter: NBAsYouTypeFormatter!
     private var currentInputType: CurrentInputType!
@@ -32,28 +32,24 @@ class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate {
         phoneNumberFormatter = NBAsYouTypeFormatter(regionCode: "US")
     }
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        textField.becomeFirstResponder()
+    }
+    
     // MARK: - Configuration
 
     private func configureView() {
+        navigationController?.navigationBar.makeTransparent()
+        
         view.backgroundColor = UIColor.appTintColor()
         textField.delegate = self
         textField.tintColor = UIColor.whiteColor()
         textField.autoSetDimension(.Height, toSize: 50.0)
         textField.addBottomBorder()
-        textField.textColor = UIColor.whiteColor()
         
-        actionButton = UIButton.buttonWithType(.Custom) as UIButton
-        actionButton.setTranslatesAutoresizingMaskIntoConstraints(false)
-        actionButton.backgroundColor = UIColor.whiteColor()
-        actionButton.setTitle("Send Code", forState: .Normal)
-        actionButton.titleLabel?.font = UIFont.lightFont()
-        actionButton.setTitleColor(UIColor.appTintColor(), forState: .Normal)
         actionButton.setTitleColor(UIColor.searchTextFieldBackground(), forState: .Disabled)
         actionButton.addTarget(self, action: "actionButtonTapped:", forControlEvents: .TouchUpInside)
-        view.addSubview(actionButton)
-        actionButton.autoPinEdge(.Top, toEdge: .Bottom, ofView: textField, withOffset: 15)
-        actionButton.autoMatchDimension(.Width, toDimension: .Width, ofView: textField)
-        actionButton.autoAlignAxisToSuperviewAxis(.Vertical)
         actionButton.enabled = false
     }
 
@@ -178,7 +174,6 @@ class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate {
         textField.text = ""
         textField.autoSetDimension(.Height, toSize: 50.0)
         textField.placeholder = "Code"
-        textField.autoCenterInSuperview()
         textField.autoSetDimension(.Width, toSize: 100.0)
         textField.setNeedsUpdateConstraints()
         
@@ -204,7 +199,8 @@ class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate {
     }
     
     private func completeVerification() {
-        self.dismissViewControllerAnimated(true, completion: nil)
+        var verifyProfileVC = VerifyProfileViewController(nibName: "VerifyProfileViewController", bundle: nil)
+        self.navigationController?.pushViewController(verifyProfileVC, animated: true)
     }
 
 }

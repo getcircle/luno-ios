@@ -192,10 +192,8 @@ CardHeaderViewDelegate {
     }
     
     @IBAction func infoButtonTapped(sender: AnyObject!) {
-//        var verifyProfileVC = VerifyProfileViewController(nibName: "VerifyProfileViewController", bundle: nil)
-//        var verifyProfileNavController = UINavigationController(rootViewController: verifyProfileVC)
-//        presentViewController(verifyProfileNavController, animated: true, completion: nil)
-        var verifyPhoneNumberVC = VerifyPhoneNumberViewController(nibName: "VerifyPhoneNumberViewController", bundle: nil)
-        presentViewController(verifyPhoneNumberVC, animated: true, completion: nil)
+        let verifyPhoneNumberVC = VerifyPhoneNumberViewController(nibName: "VerifyPhoneNumberViewController", bundle: nil)
+        let verifyPhoneNumberNavController = UINavigationController(rootViewController: verifyPhoneNumberVC)
+        presentViewController(verifyPhoneNumberNavController, animated: true, completion: nil)
     }
 }
