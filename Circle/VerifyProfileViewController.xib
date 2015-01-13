@@ -11,6 +11,7 @@
                 <outlet property="editImageButton" destination="FSt-IP-PnO" id="UJf-B0-6qg"/>
                 <outlet property="firstNameField" destination="toX-08-Qfz" id="pGa-Sb-Hej"/>
                 <outlet property="lastNameField" destination="aCj-6L-IsZ" id="P7H-Ow-KFv"/>
+                <outlet property="nextButton" destination="NIK-YA-0mi" id="IzG-6W-kuZ"/>
                 <outlet property="profileImageView" destination="Cwx-Iz-cj2" id="Cke-f6-ieg"/>
                 <outlet property="titleField" destination="431-jv-Ldz" id="sAd-Tn-w2O"/>
                 <outlet property="titleLabel" destination="wmn-tL-Rh8" id="fVZ-LQ-cki"/>
@@ -53,8 +54,7 @@
                             </constraints>
                             <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <inset key="imageEdgeInsets" minX="29" minY="29" maxX="29" maxY="29"/>
-                            <state key="normal" title="Edit">
+                            <state key="normal" image="CameraFilled">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
@@ -69,7 +69,10 @@
                             </constraints>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="17"/>
-                            <textInputTraits key="textInputTraits"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="words" keyboardType="alphabet" keyboardAppearance="alert" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
+                            <connections>
+                                <outlet property="delegate" destination="-1" id="ZI2-3m-N6u"/>
+                            </connections>
                         </textField>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Rani" placeholder="Last Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aCj-6L-IsZ" userLabel="LastNameTextField">
                             <rect key="frame" x="340" y="640" width="240" height="30"/>
@@ -79,7 +82,10 @@
                             </constraints>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="17"/>
-                            <textInputTraits key="textInputTraits"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="words" keyboardType="alphabet" keyboardAppearance="alert" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
+                            <connections>
+                                <outlet property="delegate" destination="-1" id="rSj-cN-2S8"/>
+                            </connections>
                         </textField>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Co-founder &amp; CEO" placeholder="Title" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="431-jv-Ldz" userLabel="TitleTextField">
                             <rect key="frame" x="20" y="690" width="560" height="30"/>
@@ -89,7 +95,10 @@
                             </constraints>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="17"/>
-                            <textInputTraits key="textInputTraits"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="yes" spellCheckingType="yes" keyboardType="numbersAndPunctuation" keyboardAppearance="alert" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                            <connections>
+                                <outlet property="delegate" destination="-1" id="3JU-hy-SPT"/>
+                            </connections>
                         </textField>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NIK-YA-0mi">
                             <rect key="frame" x="160" y="760" width="280" height="44"/>
@@ -153,11 +162,11 @@
                     </constraints>
                     <variation key="default">
                         <mask key="constraints">
+                            <exclude reference="7WI-kZ-yV8"/>
+                            <exclude reference="qQi-lp-Te4"/>
                             <exclude reference="9Hp-gD-N2n"/>
                             <exclude reference="NBd-DU-ttY"/>
                             <exclude reference="UM2-zN-WOe"/>
-                            <exclude reference="7WI-kZ-yV8"/>
-                            <exclude reference="qQi-lp-Te4"/>
                             <exclude reference="LUg-1f-ETo"/>
                             <exclude reference="dM5-ux-xxT"/>
                             <exclude reference="hIK-v0-Qtd"/>
@@ -177,4 +186,7 @@
             <point key="canvasLocation" x="390" y="824.5"/>
         </view>
     </objects>
+    <resources>
+        <image name="CameraFilled" width="32" height="32"/>
+    </resources>
 </document>

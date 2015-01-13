@@ -17,13 +17,13 @@ UIImagePickerControllerDelegate {
     @IBOutlet weak private(set) var editImageButton: UIButton!
     @IBOutlet weak private(set) var firstNameField: UITextField!
     @IBOutlet weak private(set) var lastNameField: UITextField!
+    @IBOutlet weak private(set) var nextButton: UIButton!
     @IBOutlet weak private(set) var profileImageView: UIImageView!
     @IBOutlet weak private(set) var titleField: UITextField!
     @IBOutlet weak private(set) var titleLabel: UILabel!
     @IBOutlet weak private(set) var verifyTextLabel: UILabel!
 
     private var addImageActionSheet: UIAlertController?
-    private var nextButton: UIBarButtonItem!
     private var profile: ProfileService.Containers.Profile!
 
     override func viewDidLoad() {
@@ -41,17 +41,21 @@ UIImagePickerControllerDelegate {
         edgesForExtendedLayout = .Top
         extendedLayoutIncludesOpaqueBars = true
         navigationController?.navigationBar.makeTransparent()
-        
         view.backgroundColor = UIColor.appTintColor()
+        
+        var tapGestureRecognizer = UITapGestureRecognizer(target: self, action: "viewTapped:")
+        view.addGestureRecognizer(tapGestureRecognizer)
+        
         editImageButton.tintColor = UIColor.whiteColor()
         editImageButton.setImage(
             editImageButton.imageForState(.Normal)?.imageWithRenderingMode(.AlwaysTemplate),
             forState: .Normal
         )
         
-        firstNameField.addBottomBorder()
-        lastNameField.addBottomBorder()
-        titleField.addBottomBorder()
+        [firstNameField, lastNameField, titleField].enumerateObjectsUsingBlock({object, index, stop in
+            (object as UITextField).addBottomBorder()
+            (object as UITextField).tintColor = UIColor.whiteColor()
+        })
     }
 
     // MARK: - Data Source
@@ -105,6 +109,7 @@ UIImagePickerControllerDelegate {
         actionSheet.addAction(cancelControl)
         addImageActionSheet = actionSheet
         presentViewController(actionSheet, animated: true, completion: nil)
+        dismissKeyboard()
     }
     
     func takeAPictureAction(action: UIAlertAction!) {
@@ -145,6 +150,7 @@ UIImagePickerControllerDelegate {
                 self.addImageActionSheet = nil
             })
         }
+        checkDataAndEnableNext()
     }
     
     // MARK: - UIImagePickerDelegate
@@ -157,9 +163,73 @@ UIImagePickerControllerDelegate {
             profileImageView.image = info[UIImagePickerControllerOriginalImage] as? UIImage
         }
         dismissViewControllerAnimated(true, completion: nil)
+        checkDataAndEnableNext()
     }
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    // MARK: - UITextFieldDelegate
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        let isTextFieldEmpty = textField.text.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) == ""
+        switch textField {
+        case firstNameField:
+            if !isTextFieldEmpty {
+                lastNameField.becomeFirstResponder()
+            }
+            
+        case lastNameField:
+            if !isTextFieldEmpty {
+                titleField.becomeFirstResponder()
+            }
+            
+        case titleField:
+            if !isTextFieldEmpty {
+                titleField.resignFirstResponder()
+                checkDataAndEnableNext()
+            }
+
+        default:
+            break
+        }
+        
+        checkDataAndEnableNext()
+        return true
+    }
+    
+    func textFieldDidEndEditing(textField: UITextField) {
+        checkDataAndEnableNext()
+    }
+    
+    // MARK: - Geature Recognizer
+    
+    func viewTapped(sender: AnyObject!) {
+        dismissKeyboard()
+    }
+    
+    // MARK: - Helpers
+    
+    private func checkDataAndEnableNext() {
+        var allTextFieldsFilled = true
+        allTextFields().enumerateObjectsUsingBlock({object, index, stop in
+            if allTextFieldsFilled {
+                allTextFieldsFilled = (object as UITextField).text.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) != ""
+            }
+        })
+        
+        nextButton.enabled = allTextFieldsFilled && profileImageView.image != nil
+    }
+    
+    private func dismissKeyboard() {
+        allTextFields().enumerateObjectsUsingBlock({object, index, stop -> Void in
+            (object as UITextField).resignFirstResponder()
+            return
+        })
+    }
+    
+    private func allTextFields() -> NSArray {
+        return [firstNameField, lastNameField, titleField]
     }
 }
