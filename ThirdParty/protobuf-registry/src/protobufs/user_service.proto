@@ -12,6 +12,7 @@ message UserService {
             optional string primary_email = 2;
             optional bool is_admin = 3;
             optional bool is_active = 4;
+            optional string phone_number = 5;
         }
 
     }
@@ -22,6 +23,17 @@ message UserService {
         message Request {
             optional string password = 1;
             optional string email = 2;
+        }
+
+        message Response {
+            optional Containers.User user = 1;
+        }
+    }
+
+    message UpdateUser {
+
+        message Request {
+            optional Containers.User user = 1;
         }
 
         message Response {
@@ -73,6 +85,31 @@ message UserService {
             optional Containers.User user = 1;
             optional bool authenticated = 2 [default = false];
             optional string token = 3;
+        }
+
+    }
+
+    message SendVerificationCode {
+
+        message Request {
+            optional string user_id = 1;
+        }
+
+        message Response {
+            optional string message_id = 1;
+        }
+
+    }
+
+    message VerifyVerificationCode {
+
+        message Request {
+            optional string user_id = 1;
+            optional string code = 2;
+        }
+
+        message Response {
+            optional bool verified = 1;
         }
 
     }

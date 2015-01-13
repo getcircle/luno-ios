@@ -22,6 +22,21 @@ public var UserServiceResponses_get_user:ConcreateExtensionField {
        return ResponseRegistryRoot.sharedInstance.UserServiceResponses_get_userStatic
    }
 }
+public var UserServiceResponses_send_verification_code:ConcreateExtensionField {
+   get {
+       return ResponseRegistryRoot.sharedInstance.UserServiceResponses_send_verification_codeStatic
+   }
+}
+public var UserServiceResponses_verify_verification_code:ConcreateExtensionField {
+   get {
+       return ResponseRegistryRoot.sharedInstance.UserServiceResponses_verify_verification_codeStatic
+   }
+}
+public var UserServiceResponses_update_user:ConcreateExtensionField {
+   get {
+       return ResponseRegistryRoot.sharedInstance.UserServiceResponses_update_userStatic
+   }
+}
 public var OrganizationServiceResponses_create_organization:ConcreateExtensionField {
    get {
        return ResponseRegistryRoot.sharedInstance.OrganizationServiceResponses_create_organizationStatic
@@ -163,6 +178,9 @@ public struct ResponseRegistryRoot {
   var UserServiceResponses_valid_userStatic:ConcreateExtensionField
   var UserServiceResponses_authenticate_userStatic:ConcreateExtensionField
   var UserServiceResponses_get_userStatic:ConcreateExtensionField
+  var UserServiceResponses_send_verification_codeStatic:ConcreateExtensionField
+  var UserServiceResponses_verify_verification_codeStatic:ConcreateExtensionField
+  var UserServiceResponses_update_userStatic:ConcreateExtensionField
   var OrganizationServiceResponses_create_organizationStatic:ConcreateExtensionField
   var OrganizationServiceResponses_create_teamStatic:ConcreateExtensionField
   var OrganizationServiceResponses_create_addressStatic:ConcreateExtensionField
@@ -196,6 +214,9 @@ public struct ResponseRegistryRoot {
     UserServiceResponses_valid_userStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 101, defaultValue:UserService.ValidUser.Response(), messageOrGroupClass:UserService.ValidUser.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     UserServiceResponses_authenticate_userStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 102, defaultValue:UserService.AuthenticateUser.Response(), messageOrGroupClass:UserService.AuthenticateUser.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     UserServiceResponses_get_userStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 103, defaultValue:UserService.GetUser.Response(), messageOrGroupClass:UserService.GetUser.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
+    UserServiceResponses_send_verification_codeStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 104, defaultValue:UserService.SendVerificationCode.Response(), messageOrGroupClass:UserService.SendVerificationCode.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
+    UserServiceResponses_verify_verification_codeStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 105, defaultValue:UserService.VerifyVerificationCode.Response(), messageOrGroupClass:UserService.VerifyVerificationCode.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
+    UserServiceResponses_update_userStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 106, defaultValue:UserService.UpdateUser.Response(), messageOrGroupClass:UserService.UpdateUser.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     OrganizationServiceResponses_create_organizationStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 200, defaultValue:OrganizationService.CreateOrganization.Response(), messageOrGroupClass:OrganizationService.CreateOrganization.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     OrganizationServiceResponses_create_teamStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 201, defaultValue:OrganizationService.CreateTeam.Response(), messageOrGroupClass:OrganizationService.CreateTeam.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     OrganizationServiceResponses_create_addressStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 202, defaultValue:OrganizationService.CreateAddress.Response(), messageOrGroupClass:OrganizationService.CreateAddress.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
@@ -236,6 +257,9 @@ public struct ResponseRegistryRoot {
     registry.addExtension(UserServiceResponses_valid_userStatic)
     registry.addExtension(UserServiceResponses_authenticate_userStatic)
     registry.addExtension(UserServiceResponses_get_userStatic)
+    registry.addExtension(UserServiceResponses_send_verification_codeStatic)
+    registry.addExtension(UserServiceResponses_verify_verification_codeStatic)
+    registry.addExtension(UserServiceResponses_update_userStatic)
     registry.addExtension(OrganizationServiceResponses_create_organizationStatic)
     registry.addExtension(OrganizationServiceResponses_create_teamStatic)
     registry.addExtension(OrganizationServiceResponses_create_addressStatic)
@@ -323,6 +347,15 @@ final public class UserServiceResponses : GeneratedMessage {
   }
   public class func get_user() -> ConcreateExtensionField {
        return UserServiceResponses_get_user
+  }
+  public class func send_verification_code() -> ConcreateExtensionField {
+       return UserServiceResponses_send_verification_code
+  }
+  public class func verify_verification_code() -> ConcreateExtensionField {
+       return UserServiceResponses_verify_verification_code
+  }
+  public class func update_user() -> ConcreateExtensionField {
+       return UserServiceResponses_update_user
   }
   required public init() {
        super.init()
@@ -437,9 +470,6 @@ final public class UserServiceResponsesBuilder : GeneratedMessageBuilder {
     return returnMe
   }
   public func mergeFrom(other:UserServiceResponses) -> UserServiceResponsesBuilder {
-    if (other == UserServiceResponses()) {
-     return self
-    }
     mergeUnknownFields(other.unknownFields)
     return self
   }
@@ -615,9 +645,6 @@ final public class OrganizationServiceResponsesBuilder : GeneratedMessageBuilder
     return returnMe
   }
   public func mergeFrom(other:OrganizationServiceResponses) -> OrganizationServiceResponsesBuilder {
-    if (other == OrganizationServiceResponses()) {
-     return self
-    }
     mergeUnknownFields(other.unknownFields)
     return self
   }
@@ -805,9 +832,6 @@ final public class ProfileServiceResponsesBuilder : GeneratedMessageBuilder {
     return returnMe
   }
   public func mergeFrom(other:ProfileServiceResponses) -> ProfileServiceResponsesBuilder {
-    if (other == ProfileServiceResponses()) {
-     return self
-    }
     mergeUnknownFields(other.unknownFields)
     return self
   }
@@ -956,9 +980,6 @@ final public class SearchServiceResponsesBuilder : GeneratedMessageBuilder {
     return returnMe
   }
   public func mergeFrom(other:SearchServiceResponses) -> SearchServiceResponsesBuilder {
-    if (other == SearchServiceResponses()) {
-     return self
-    }
     mergeUnknownFields(other.unknownFields)
     return self
   }
@@ -1107,9 +1128,6 @@ final public class LandingServiceResponsesBuilder : GeneratedMessageBuilder {
     return returnMe
   }
   public func mergeFrom(other:LandingServiceResponses) -> LandingServiceResponsesBuilder {
-    if (other == LandingServiceResponses()) {
-     return self
-    }
     mergeUnknownFields(other.unknownFields)
     return self
   }

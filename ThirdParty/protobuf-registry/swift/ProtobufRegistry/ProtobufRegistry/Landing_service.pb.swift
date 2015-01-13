@@ -397,9 +397,6 @@ final public class LandingService : GeneratedMessage {
             return returnMe
           }
           public func mergeFrom(other:LandingService.Containers.Category) -> LandingService.Containers.CategoryBuilder {
-            if (other == LandingService.Containers.Category()) {
-             return self
-            }
             if other.hasTitle {
                  title = other.title
             }
@@ -593,9 +590,6 @@ final public class LandingService : GeneratedMessage {
         return returnMe
       }
       public func mergeFrom(other:LandingService.Containers) -> LandingService.ContainersBuilder {
-        if (other == LandingService.Containers()) {
-         return self
-        }
         mergeUnknownFields(other.unknownFields)
         return self
       }
@@ -836,9 +830,6 @@ final public class LandingService : GeneratedMessage {
             return returnMe
           }
           public func mergeFrom(other:LandingService.GetCategories.Request) -> LandingService.GetCategories.RequestBuilder {
-            if (other == LandingService.GetCategories.Request()) {
-             return self
-            }
             if other.hasProfileId {
                  profile_id = other.profile_id
             }
@@ -1027,9 +1018,6 @@ final public class LandingService : GeneratedMessage {
             return returnMe
           }
           public func mergeFrom(other:LandingService.GetCategories.Response) -> LandingService.GetCategories.ResponseBuilder {
-            if (other == LandingService.GetCategories.Response()) {
-             return self
-            }
             if !other.categories.isEmpty  {
                builderResult.categories += other.categories
             }
@@ -1186,9 +1174,6 @@ final public class LandingService : GeneratedMessage {
         return returnMe
       }
       public func mergeFrom(other:LandingService.GetCategories) -> LandingService.GetCategoriesBuilder {
-        if (other == LandingService.GetCategories()) {
-         return self
-        }
         mergeUnknownFields(other.unknownFields)
         return self
       }
@@ -1337,9 +1322,6 @@ final public class LandingServiceBuilder : GeneratedMessageBuilder {
     return returnMe
   }
   public func mergeFrom(other:LandingService) -> LandingServiceBuilder {
-    if (other == LandingService()) {
-     return self
-    }
     mergeUnknownFields(other.unknownFields)
     return self
   }

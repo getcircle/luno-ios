@@ -304,9 +304,6 @@ final public class ControlBuilder : GeneratedMessageBuilder {
     return returnMe
   }
   public func mergeFrom(other:Control) -> ControlBuilder {
-    if (other == Control()) {
-     return self
-    }
     if other.hasToken {
          token = other.token
     }
@@ -540,9 +537,6 @@ final public class ActionControlBuilder : GeneratedMessageBuilder {
     return returnMe
   }
   public func mergeFrom(other:ActionControl) -> ActionControlBuilder {
-    if (other == ActionControl()) {
-     return self
-    }
     if other.hasService {
          service = other.service
     }
@@ -809,9 +803,6 @@ final public class ActionRequestBuilder : GeneratedMessageBuilder {
     return returnMe
   }
   public func mergeFrom(other:ActionRequest) -> ActionRequestBuilder {
-    if (other == ActionRequest()) {
-     return self
-    }
     if (other.hasControl) {
         mergeControl(other.control)
     }
@@ -986,9 +977,6 @@ final public class ActionRequestParamsBuilder : ExtendableMessageBuilder {
     return returnMe
   }
   public func mergeFrom(other:ActionRequestParams) -> ActionRequestParamsBuilder {
-    if (other == ActionRequestParams()) {
-     return self
-    }
     mergeExtensionFields(other)
     mergeUnknownFields(other.unknownFields)
     return self
@@ -1245,9 +1233,6 @@ final public class ActionResponseResult : ExtendableMessage {
         return returnMe
       }
       public func mergeFrom(other:ActionResponseResult.ErrorDetail) -> ActionResponseResult.ErrorDetailBuilder {
-        if (other == ActionResponseResult.ErrorDetail()) {
-         return self
-        }
         if other.hasError {
              error = other.error
         }
@@ -1517,9 +1502,6 @@ final public class ActionResponseResultBuilder : ExtendableMessageBuilder {
     return returnMe
   }
   public func mergeFrom(other:ActionResponseResult) -> ActionResponseResultBuilder {
-    if (other == ActionResponseResult()) {
-     return self
-    }
     if other.hasSuccess {
          success = other.success
     }
@@ -1795,9 +1777,6 @@ final public class ActionResponseBuilder : GeneratedMessageBuilder {
     return returnMe
   }
   public func mergeFrom(other:ActionResponse) -> ActionResponseBuilder {
-    if (other == ActionResponse()) {
-     return self
-    }
     if (other.hasControl) {
         mergeControl(other.control)
     }
@@ -2059,9 +2038,6 @@ final public class ServiceRequestBuilder : GeneratedMessageBuilder {
     return returnMe
   }
   public func mergeFrom(other:ServiceRequest) -> ServiceRequestBuilder {
-    if (other == ServiceRequest()) {
-     return self
-    }
     if (other.hasControl) {
         mergeControl(other.control)
     }
@@ -2320,9 +2296,6 @@ final public class ServiceResponseBuilder : GeneratedMessageBuilder {
     return returnMe
   }
   public func mergeFrom(other:ServiceResponse) -> ServiceResponseBuilder {
-    if (other == ServiceResponse()) {
-     return self
-    }
     if (other.hasControl) {
         mergeControl(other.control)
     }
