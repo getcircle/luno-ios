@@ -10,3 +10,4 @@
 #import "UIImageView+AFNetworking.h"
 #import "PureLayout.h"
 #import "UIView+Position.h"
+#import "NBAsYouTypeFormatter.h"

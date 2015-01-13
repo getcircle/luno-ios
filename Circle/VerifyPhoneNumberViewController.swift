@@ -9,23 +9,33 @@
 import UIKit
 import ProtobufRegistry
 
-class VerifyPhoneNumberViewController: UIViewController {
+class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate {
+    
+    enum CurrentInputType {
+        case PhoneNumber
+        case Code
+    }
     
     @IBOutlet weak private(set) var textField: UITextField!
     
     private var actionButton: UIButton!
-    private var resendButton: UIButton!
-    private var changePhoneNumber: UIButton!
     private var activityIndicatorView: UIActivityIndicatorView?
+    private var phoneNumberFormatter: NBAsYouTypeFormatter!
+    private var currentInputType: CurrentInputType!
+    private var codeDigits = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
+        
+        currentInputType = .PhoneNumber
+        phoneNumberFormatter = NBAsYouTypeFormatter(regionCode: "US")
     }
     
     // MARK: - Configuration
     
     private func configureView() {
+        textField.delegate = self
         textField.autoSetDimension(.Height, toSize: 50.0)
         textField.addBottomBorder()
         
@@ -33,45 +43,68 @@ class VerifyPhoneNumberViewController: UIViewController {
         actionButton.setTranslatesAutoresizingMaskIntoConstraints(false)
         actionButton.backgroundColor = UIColor.appTintColor()
         actionButton.setTitle("Send Code", forState: .Normal)
-        actionButton.titleLabel?.font = UIFont(name: "Avenir Light", size: 17.0)
+        actionButton.titleLabel?.font = UIFont.lightFont()
         actionButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        actionButton.setTitleColor(UIColor.searchTextFieldBackground(), forState: .Disabled)
         actionButton.addTarget(self, action: "actionButtonTapped:", forControlEvents: .TouchUpInside)
         view.addSubview(actionButton)
         actionButton.autoPinEdge(.Top, toEdge: .Bottom, ofView: textField, withOffset: 15)
         actionButton.autoMatchDimension(.Width, toDimension: .Width, ofView: textField)
         actionButton.autoAlignAxisToSuperviewAxis(.Vertical)
-        
-        resendButton = UIButton.buttonWithType(.Custom) as UIButton
-        resendButton.setTranslatesAutoresizingMaskIntoConstraints(false)
+        actionButton.enabled = false
+    }
+
+    // MARK: - UITextFieldDelegate
+    
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        switch currentInputType! {
+        case .PhoneNumber: handlePhoneNumberInput(string, range: range)
+        case .Code: handleVerificationCodeInput(string, range: range)
+        }
+        return false
     }
     
-    private func switchToConfirmation() {
-        textField.removeConstraints(textField.constraints())
-        textField.text = ""
-        textField.autoSetDimension(.Height, toSize: 50.0)
-        textField.placeholder = "Code"
-        textField.autoCenterInSuperview()
-        textField.autoSetDimension(.Width, toSize: 100.0)
-        textField.setNeedsUpdateConstraints()
-        
-        actionButton.setTitle("Verify", forState: .Normal)
-        actionButton.removeTarget(self, action: "actionButtonTapped:", forControlEvents: .TouchUpInside)
-        actionButton.addTarget(self, action: "verifyButtonTapped:", forControlEvents: .TouchUpInside)
-        
-        UIView.animateWithDuration(
-            0.3,
-            delay: 0,
-            usingSpringWithDamping: 0.7,
-            initialSpringVelocity: 0.8,
-            options: .CurveEaseInOut,
-            animations: { () -> Void in
-                self.view.layoutIfNeeded()
+    private func handlePhoneNumberInput(string: String, range: NSRange) {
+        if range.length > 0 {
+            textField.text = phoneNumberFormatter.removeLastDigit()
+        } else if let numericValue = string.toInt() {
+            if phoneNumberFormatter.getRememberedPosition() < 14 {
+                textField.text = phoneNumberFormatter.inputDigitAndRememberPosition(string)
             }
-        ) { (success) -> Void in
-            self.textField.becomeFirstResponder()
-            return
+        }
+        
+        if phoneNumberFormatter.getRememberedPosition() == 14 {
+            actionButton.enabled = true
+        } else {
+            actionButton.enabled = false
         }
     }
+    
+    private func handleVerificationCodeInput(string: String, range: NSRange) {
+        if range.length > 0 {
+            if codeDigits > 0 {
+                codeDigits -= range.length
+                textField.text = textField.text[0..<codeDigits]
+            } else {
+                textField.text = ""
+            }
+        } else if let numericValue = string.toInt() {
+            if codeDigits < 6 {
+                textField.text = textField.text + string
+                codeDigits += 1
+            }
+        } else {
+            textField.text = ""
+        }
+        
+        if codeDigits == 6 {
+            actionButton.enabled = true
+        } else {
+            actionButton.enabled = false
+        }
+    }
+
+    // MARK: - Targets
     
     func actionButtonTapped(sender: AnyObject!) {
         toggleLoadingState()
@@ -86,10 +119,12 @@ class VerifyPhoneNumberViewController: UIViewController {
                         self.switchToConfirmation()
                         if error != nil {
                             println("error sending code to user: \(error)")
+                            self.actionButton.addShakeAnimation()
                         }
                     }
                 } else {
                     println("error updating user: \(error)")
+                    self.actionButton.addShakeAnimation()
                 }
             }
         }
@@ -103,27 +138,20 @@ class VerifyPhoneNumberViewController: UIViewController {
                 if error == nil {
                     self.toggleLoadingState()
                     if verified! {
-                        self.textField.removeFromSuperview()
-                        self.actionButton.removeConstraints(self.actionButton.constraints())
-                        self.actionButton.autoCenterInSuperview()
-                        self.actionButton.autoSetDimension(.Width, toSize: 100.0)
-                        self.actionButton.autoSetDimension(.Height, toSize: 50.0)
-                        self.actionButton.setNeedsUpdateConstraints()
-                        self.actionButton.removeTarget(self, action: "verifyButtonTapped:", forControlEvents: .TouchUpInside)
-                        UIView.animateWithDuration(0.3, animations: { () -> Void in
-                            self.actionButton.backgroundColor = UIColor.greenColor()
-                            self.actionButton.setTitle("Verified!", forState: .Normal)
-                            self.view.layoutIfNeeded()
-                        })
+                        self.completeVerification()
                     } else {
                         println("user verification failed")
+                        self.actionButton.addShakeAnimation()
                     }
                 } else {
                     println("error verifying user")
+                    self.actionButton.addShakeAnimation()
                 }
             }
         }
     }
+    
+    // MARK: - Helpers
     
     private func toggleLoadingState() {
         if let activityIndicator = activityIndicatorView {
@@ -138,6 +166,52 @@ class VerifyPhoneNumberViewController: UIViewController {
             activityIndicatorView!.autoCenterInSuperview()
             activityIndicatorView!.startAnimating()
         }
+    }
+    
+    private func switchToConfirmation() {
+        currentInputType = .Code
+        textField.removeConstraints(textField.constraints())
+        textField.text = ""
+        textField.autoSetDimension(.Height, toSize: 50.0)
+        textField.placeholder = "Code"
+        textField.autoCenterInSuperview()
+        textField.autoSetDimension(.Width, toSize: 100.0)
+        textField.setNeedsUpdateConstraints()
+        
+        actionButton.enabled = false
+        actionButton.setTitle("Verify", forState: .Normal)
+        actionButton.removeTarget(self, action: "actionButtonTapped:", forControlEvents: .TouchUpInside)
+        actionButton.addTarget(self, action: "verifyButtonTapped:", forControlEvents: .TouchUpInside)
+        
+        UIView.animateWithDuration(
+            0.3,
+            delay: 0,
+            usingSpringWithDamping: 0.7,
+            initialSpringVelocity: 0.8,
+            options: .CurveEaseInOut,
+            animations: { () -> Void in
+                self.view.layoutIfNeeded()
+            }
+            ) { (success) -> Void in
+                self.textField.keyboardType = .NumberPad
+                self.textField.becomeFirstResponder()
+                return
+        }
+    }
+    
+    private func completeVerification() {
+        self.textField.removeFromSuperview()
+        self.actionButton.removeConstraints(self.actionButton.constraints())
+        self.actionButton.autoCenterInSuperview()
+        self.actionButton.autoSetDimension(.Width, toSize: 100.0)
+        self.actionButton.autoSetDimension(.Height, toSize: 50.0)
+        self.actionButton.setNeedsUpdateConstraints()
+        self.actionButton.removeTarget(self, action: "verifyButtonTapped:", forControlEvents: .TouchUpInside)
+        UIView.animateWithDuration(0.3, animations: { () -> Void in
+            self.actionButton.backgroundColor = UIColor.greenColor()
+            self.actionButton.setTitle("Verified!", forState: .Normal)
+            self.view.layoutIfNeeded()
+        })
     }
 
 }
