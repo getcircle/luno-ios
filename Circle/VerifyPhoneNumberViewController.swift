@@ -100,7 +100,7 @@ class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate {
             textField.text = ""
         }
         
-        if codeDigits >= 5 {
+        if codeDigits == 6 {
             actionButton.enabled = true
         } else {
             actionButton.enabled = false
