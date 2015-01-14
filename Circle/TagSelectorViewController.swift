@@ -39,7 +39,7 @@ SearchHeaderViewDelegate {
     
     private var animatedCell = [NSIndexPath: Bool]()
     private var bottomLayer: CAGradientLayer!
-    private var cachedItemSizes =  [NSIndexPath: CGSize]()
+    private var cachedItemSizes =  [String: CGSize]()
     private var filteredTags = [String]()
     private var prototypeCell: TagCollectionViewCell!
     private var searchHeaderView: SearchHeaderView!
@@ -240,14 +240,15 @@ SearchHeaderViewDelegate {
     // MARK: - UICollectionViewDelegateFlowLayout
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        if cachedItemSizes[indexPath] == nil {
-            prototypeCell.tagLabel.text = filteredTags[indexPath.row].capitalizedString
+        let tagText = filteredTags[indexPath.row].capitalizedString
+        if cachedItemSizes[tagText] == nil {
+            prototypeCell.tagLabel.text = tagText
             prototypeCell.setNeedsLayout()
             prototypeCell.layoutIfNeeded()
-            cachedItemSizes[indexPath] = prototypeCell.intrinsicContentSize()
+            cachedItemSizes[tagText] = prototypeCell.intrinsicContentSize()
         }
         
-        return cachedItemSizes[indexPath]!
+        return cachedItemSizes[tagText]!
     }
 
     // MARK: - IBActions
