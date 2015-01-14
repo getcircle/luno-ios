@@ -32,11 +32,13 @@ SearchHeaderViewDelegate {
     
     @IBOutlet weak private(set) var addTagButton: UIButton!
     @IBOutlet weak private(set) var addTagButtonHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak private(set) var bottomGradientView: UIView!
     @IBOutlet weak private(set) var collectionView: UICollectionView!
     @IBOutlet weak private(set) var doneButton: UIButton!
     @IBOutlet weak private(set) var searchControllerParentView: UIView!
     @IBOutlet weak private(set) var titleLabel: UILabel!
     @IBOutlet weak private(set) var titleTextLabel: UILabel!
+    @IBOutlet weak private(set) var topGradientView: UIView!
     
     var theme: Themes = .Regular
     
@@ -49,8 +51,6 @@ SearchHeaderViewDelegate {
     private var searchHeaderView: SearchHeaderView!
     private var selectedTags = NSMutableSet()
     private var topLayer: CAGradientLayer!
-
-    let gradientHeight: CGFloat = 60.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,7 +61,7 @@ SearchHeaderViewDelegate {
         configureSearchHeaderView()
         configurePrototypeCell()
         configureCollectionView()
-        // configureGradients()
+        configureGradients()
         configureAddTagButton()
         configureViewByTheme()
     }
@@ -101,6 +101,7 @@ SearchHeaderViewDelegate {
             searchHeaderView = nibViews.first as SearchHeaderView
             searchHeaderView.delegate = self
             searchHeaderView.searchTextField.clearButtonMode = .Always
+            searchHeaderView.searchTextField.returnKeyType = .Done
             searchHeaderView.searchTextField.delegate = self
             searchHeaderView.searchTextField.placeholder = NSLocalizedString("Filter tags", comment: "Placeholder text for filter tags input box")
             searchHeaderView.searchTextField.addTarget(self, action: "filter", forControlEvents: .EditingChanged)
@@ -124,8 +125,8 @@ SearchHeaderViewDelegate {
     }
     
     private func configureGradients() {
-        let startColor = UIColor.whiteColor().CGColor
-        let endColor = UIColor(red: 255.0, green: 255.0, blue: 255.0, alpha: 0.0).CGColor
+        let startColor = UIColor.appTintColor().CGColor
+        let endColor = UIColor.appTintColor().colorWithAlphaComponent(0.0).CGColor
         
         // Top
         topLayer = CALayer.gradientLayerWithFrame(
@@ -133,7 +134,7 @@ SearchHeaderViewDelegate {
             startColor: startColor,
             endColor: endColor
         )
-        view.layer.addSublayer(topLayer)
+        topGradientView.layer.addSublayer(topLayer)
         
         // Bottom
         bottomLayer = CALayer.gradientLayerWithFrame(
@@ -141,7 +142,7 @@ SearchHeaderViewDelegate {
             startColor: endColor,
             endColor: startColor
         )
-        view.layer.addSublayer(bottomLayer)
+        bottomGradientView.layer.addSublayer(bottomLayer)
     }
     
     private func configureAddTagButton() {
@@ -165,7 +166,7 @@ SearchHeaderViewDelegate {
             titleTextLabel.textColor = UIColor.whiteColor()
             titleTextLabel.backgroundColor = UIColor.appTintColor()
             doneButton.backgroundColor = UIColor.appTintColor()
-            addTagButton.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.9)
+            addTagButton.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(1.0)
             addTagButton.setTitleColor(UIColor.appTintColor(), forState: .Normal)
             addTagButton.tintColor = UIColor.appTintColor()
 
@@ -214,7 +215,7 @@ SearchHeaderViewDelegate {
             animatedCell[indexPath] = true
             cell.animateForCollection(collectionView, atIndexPath: indexPath)
         }
-        
+
         // Manage Selection
         if cell.selected {
             cell.selectCell(false)
@@ -341,14 +342,31 @@ SearchHeaderViewDelegate {
         return true
     }
     
+    func textFieldDidBeginEditing(textField: UITextField) {
+        topGradientView.hidden = true
+        bottomGradientView.hidden = true
+    }
+    
+    func textFieldDidEndEditing(textField: UITextField) {
+        topGradientView.hidden = false
+        bottomGradientView.hidden = false
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        dismissSearchField()
+        collectionView.reloadData()
+        hideAddTagButton()
+        return true
+    }
+    
     // MARK: - Helpers
     
     private func topGrientLayerFrame() -> CGRect {
-        return CGRectMake(10.0, searchControllerParentView.frameBottom, view.frameWidth - 20.0, gradientHeight)
+        return CGRectMake(10.0, 0.0, topGradientView.frameWidth - 20.0, 30.0)
     }
     
     private func bottomGradientLayerFrame() -> CGRect {
-        return CGRectMake(10.0, view.frameHeight - gradientHeight + 10.0, view.frameWidth - 20.0, gradientHeight)
+        return CGRectMake(10.0, 0.0, bottomGradientView.frameWidth - 20.0, 60.0)
     }
     
     private func dismissSearchField() {
