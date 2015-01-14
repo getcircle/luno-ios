@@ -72,7 +72,7 @@ UIImagePickerControllerDelegate {
         firstNameField.text = profile.first_name
         lastNameField.text = profile.last_name
         titleField.text = profile.title
-        profileImageView.setImageWithProfile(profile)
+        profileImageView.setImageWithProfileImageURL(profile.image_url)
     }
     
     // MARK: - IBActions

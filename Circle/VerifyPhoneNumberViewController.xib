@@ -24,7 +24,7 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Verify Phone" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O4m-39-9E8">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Verify Phone" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O4m-39-9E8" userLabel="TitleLabel">
                     <rect key="frame" x="232" y="50" width="137" height="33"/>
                     <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="24"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -133,12 +133,12 @@
             </constraints>
             <variation key="default">
                 <mask key="constraints">
+                    <exclude reference="tfZ-Vy-bQP"/>
                     <exclude reference="GcT-1c-Kdo"/>
                     <exclude reference="Oil-hP-8Ya"/>
                     <exclude reference="uzo-sx-Obv"/>
                     <exclude reference="Aox-Jo-RMa"/>
                     <exclude reference="Aze-Wr-7Bt"/>
-                    <exclude reference="tfZ-Vy-bQP"/>
                     <exclude reference="AND-wd-cRg"/>
                     <exclude reference="HN4-dD-Aj8"/>
                     <exclude reference="aj8-h0-OMU"/>
