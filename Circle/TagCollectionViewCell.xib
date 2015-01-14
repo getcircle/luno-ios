@@ -31,7 +31,7 @@
             </constraints>
             <size key="customSize" width="289" height="50"/>
             <connections>
-                <outlet property="tagLabel" destination="WdX-tT-OLl" id="VPT-2Q-1RV"/>
+                <outlet property="tagLabel" destination="WdX-tT-OLl" id="cjV-zZ-IM7"/>
             </connections>
             <point key="canvasLocation" x="710.5" y="440"/>
         </collectionViewCell>

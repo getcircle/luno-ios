@@ -39,6 +39,8 @@ class TagCollectionViewCell: CircleCollectionViewCell {
         tagLabel.textColor = UIColor.defaultDarkTextColor()
         tagLabel.layer.borderColor = UIColor.tagNormalBorderColor().CGColor
         tagLabel.layer.borderWidth = 1.0
+        layer.shouldRasterize = true;
+        layer.rasterizationScale = UIScreen.mainScreen().scale;
         tagLabel.paddingEdgeInsets = UIEdgeInsetsMake(5.0, 10.0, 5.0, 10.0)
     }
     
@@ -69,10 +71,8 @@ class TagCollectionViewCell: CircleCollectionViewCell {
         frame = cellFrame
         alpha = 0.0
         
-        println("Cell = \(cellFrame.origin.y) ScrollView = \(collectionView.contentOffset.y)")
-        
         UIView.animateWithDuration(0.2,
-            delay: 0.01 * Double(indexPath.row),
+            delay: 0.001 * Double(indexPath.row),
             options: .CurveEaseIn,
             animations: { () -> Void in
                 self.frame = originalFrame

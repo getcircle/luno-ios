@@ -51,9 +51,7 @@ SearchHeaderViewDelegate {
         super.viewDidLoad()
 
         // Configurations
-        filteredTags = TagSelectorViewController.tags
         setStatusBarHidden(true)
-        
         configureView()
         configureSearchHeaderView()
         configurePrototypeCell()
@@ -62,6 +60,12 @@ SearchHeaderViewDelegate {
         configureViewByTheme()
     }
 
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        filteredTags = TagSelectorViewController.tags
+        collectionView.reloadData()
+    }
+    
     // MARK: - Configuration
 
     private func configureView() {
@@ -77,21 +81,23 @@ SearchHeaderViewDelegate {
     }
     
     private func configureCollectionView() {
-        collectionView?.registerNib(
+        collectionView.registerNib(
             UINib(nibName: "TagCollectionViewCell", bundle: nil),
             forCellWithReuseIdentifier: TagCollectionViewCell.classReuseIdentifier
         )
+        collectionView.keyboardDismissMode = .OnDrag
+        collectionView.allowsMultipleSelection = true
         
-        collectionView?.allowsMultipleSelection = true
     }
 
     private func configureSearchHeaderView() {
         if let nibViews = NSBundle.mainBundle().loadNibNamed("SearchHeaderView", owner: nil, options: nil) as? [UIView] {
             searchHeaderView = nibViews.first as SearchHeaderView
             searchHeaderView.delegate = self
+            searchHeaderView.searchTextField.clearButtonMode = .WhileEditing
             searchHeaderView.searchTextField.delegate = self
             searchHeaderView.searchTextField.placeholder = NSLocalizedString("Filter tags", comment: "Placeholder text for filter tags input box")
-            searchHeaderView.searchTextField.addTarget(self, action: "search", forControlEvents: .EditingChanged)
+            searchHeaderView.searchTextField.addTarget(self, action: "filter", forControlEvents: .EditingChanged)
             searchControllerParentView.addSubview(searchHeaderView)
             searchHeaderView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
             
@@ -242,6 +248,7 @@ SearchHeaderViewDelegate {
     // MARK: - IBActions
     
     @IBAction func close(sender: AnyObject!) {
+        dismissSearchField()
         dismissViewControllerAnimated(true, completion: nil)
     }
     
@@ -253,51 +260,29 @@ SearchHeaderViewDelegate {
     
     // MARK: - SearchHeaderViewDelegate
     
-    func search() {
-        let dataChanged = filteredTags.count != TagSelectorViewController.tags.count
+    func filter() {
         let searchString = searchHeaderView.searchTextField.text
         let whitespaceCharacterSet = NSCharacterSet.whitespaceCharacterSet()
-        let trimmedString = searchString.stringByTrimmingCharactersInSet(whitespaceCharacterSet)
+        let trimmedString = searchString.stringByTrimmingCharactersInSet(whitespaceCharacterSet).lowercaseString
         if trimmedString == "" {
             filteredTags = TagSelectorViewController.tags
         }
         else {
-            
-            var andPredicates = [NSPredicate]()
-            var searchTerms = trimmedString.componentsSeparatedByString(" ")
-            for searchTerm in searchTerms {
-                var searchTermPredicates = [NSPredicate]()
-                let trimmedSearchTerm = searchTerm.stringByTrimmingCharactersInSet(whitespaceCharacterSet)
-                
-                // Match tag name
-                var tagNamePredicate = NSComparisonPredicate(
-                    leftExpression: NSExpression(forVariable: "tag"),
-                    rightExpression: NSExpression(forConstantValue: trimmedSearchTerm),
-                    modifier: .DirectPredicateModifier,
-                    type: .ContainsPredicateOperatorType,
-                    options: .CaseInsensitivePredicateOption
-                )
-
-                andPredicates.append(tagNamePredicate)
-            }
-            
-            let tags = TagSelectorViewController.tags
-            let finalPredicate = NSCompoundPredicate.andPredicateWithSubpredicates(andPredicates)
-            filteredTags = tags.filter{ finalPredicate.evaluateWithObject($0, substitutionVariables: ["tag": $0]) }
+            filteredTags = filteredTags.filter({ $0.lowercaseString.hasPrefix(trimmedString) })
         }
         
-        if dataChanged {
-            collectionView?.reloadData()
+        if filteredTags.count != TagSelectorViewController.tags.count || trimmedString == "" {
+            collectionView.reloadData()
         }
     }
     
-    // MARK: - TextField Delegate
-    
-    func textFieldDidBeginEditing(textField: UITextField) {
-        searchHeaderView.showCancelButton()
-        collectionView.reloadData()
-    }
+    // MARK: - UITextFieldDelegate
 
+    func textFieldShouldClear(textField: UITextField) -> Bool {
+        collectionView.reloadData()
+        return true
+    }
+    
     // MARK: - Helpers
     
     private func topGrientLayerFrame() -> CGRect {
@@ -306,5 +291,10 @@ SearchHeaderViewDelegate {
     
     private func bottomGradientLayerFrame() -> CGRect {
         return CGRectMake(10.0, view.frameHeight - gradientHeight + 10.0, view.frameWidth - 20.0, gradientHeight)
+    }
+    
+    private func dismissSearchField() {
+        searchHeaderView.searchTextField.text = ""
+        searchHeaderView.searchTextField.resignFirstResponder()
     }
 }
