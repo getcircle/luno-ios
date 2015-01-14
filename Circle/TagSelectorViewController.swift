@@ -274,7 +274,9 @@ SearchHeaderViewDelegate {
             filteredTags = TagSelectorViewController.tags
         }
         else {
-            filteredTags = filteredTags.filter({ $0.lowercaseString.hasPrefix(trimmedString) })
+            // We need to filter each time from the full set to handle backspace correctly.
+            // We used filteredTags to make things specific but that only make sense when adding characters.
+            filteredTags = TagSelectorViewController.tags.filter({ $0.lowercaseString.hasPrefix(trimmedString) })
         }
         
         if filteredTags.count != TagSelectorViewController.tags.count || trimmedString == "" {
