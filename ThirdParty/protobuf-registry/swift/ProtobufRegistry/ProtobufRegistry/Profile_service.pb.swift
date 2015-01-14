@@ -804,6 +804,9 @@ final public class ProfileService : GeneratedMessage {
             return returnMe
           }
           public func mergeFrom(other:ProfileService.Containers.Profile) -> ProfileService.Containers.ProfileBuilder {
+            if (other == ProfileService.Containers.Profile()) {
+             return self
+            }
             if other.hasId {
                  id = other.id
             }
@@ -1117,6 +1120,9 @@ final public class ProfileService : GeneratedMessage {
             return returnMe
           }
           public func mergeFrom(other:ProfileService.Containers.Tag) -> ProfileService.Containers.TagBuilder {
+            if (other == ProfileService.Containers.Tag()) {
+             return self
+            }
             if other.hasId {
                  id = other.id
             }
@@ -1352,6 +1358,9 @@ final public class ProfileService : GeneratedMessage {
             return returnMe
           }
           public func mergeFrom(other:ProfileService.Containers.Stats) -> ProfileService.Containers.StatsBuilder {
+            if (other == ProfileService.Containers.Stats()) {
+             return self
+            }
             if other.hasId {
                  id = other.id
             }
@@ -1512,6 +1521,9 @@ final public class ProfileService : GeneratedMessage {
         return returnMe
       }
       public func mergeFrom(other:ProfileService.Containers) -> ProfileService.ContainersBuilder {
+        if (other == ProfileService.Containers()) {
+         return self
+        }
         mergeUnknownFields(other.unknownFields)
         return self
       }
@@ -1719,6 +1731,9 @@ final public class ProfileService : GeneratedMessage {
             return returnMe
           }
           public func mergeFrom(other:ProfileService.CreateProfile.Request) -> ProfileService.CreateProfile.RequestBuilder {
+            if (other == ProfileService.CreateProfile.Request()) {
+             return self
+            }
             if (other.hasProfile) {
                 mergeProfile(other.profile)
             }
@@ -1932,6 +1947,9 @@ final public class ProfileService : GeneratedMessage {
             return returnMe
           }
           public func mergeFrom(other:ProfileService.CreateProfile.Response) -> ProfileService.CreateProfile.ResponseBuilder {
+            if (other == ProfileService.CreateProfile.Response()) {
+             return self
+            }
             if (other.hasProfile) {
                 mergeProfile(other.profile)
             }
@@ -2091,6 +2109,9 @@ final public class ProfileService : GeneratedMessage {
         return returnMe
       }
       public func mergeFrom(other:ProfileService.CreateProfile) -> ProfileService.CreateProfileBuilder {
+        if (other == ProfileService.CreateProfile()) {
+         return self
+        }
         mergeUnknownFields(other.unknownFields)
         return self
       }
@@ -2298,6 +2319,9 @@ final public class ProfileService : GeneratedMessage {
             return returnMe
           }
           public func mergeFrom(other:ProfileService.UpdateProfile.Request) -> ProfileService.UpdateProfile.RequestBuilder {
+            if (other == ProfileService.UpdateProfile.Request()) {
+             return self
+            }
             if (other.hasProfile) {
                 mergeProfile(other.profile)
             }
@@ -2511,6 +2535,9 @@ final public class ProfileService : GeneratedMessage {
             return returnMe
           }
           public func mergeFrom(other:ProfileService.UpdateProfile.Response) -> ProfileService.UpdateProfile.ResponseBuilder {
+            if (other == ProfileService.UpdateProfile.Response()) {
+             return self
+            }
             if (other.hasProfile) {
                 mergeProfile(other.profile)
             }
@@ -2670,6 +2697,9 @@ final public class ProfileService : GeneratedMessage {
         return returnMe
       }
       public func mergeFrom(other:ProfileService.UpdateProfile) -> ProfileService.UpdateProfileBuilder {
+        if (other == ProfileService.UpdateProfile()) {
+         return self
+        }
         mergeUnknownFields(other.unknownFields)
         return self
       }
@@ -2970,6 +3000,9 @@ final public class ProfileService : GeneratedMessage {
             return returnMe
           }
           public func mergeFrom(other:ProfileService.GetProfile.Request) -> ProfileService.GetProfile.RequestBuilder {
+            if (other == ProfileService.GetProfile.Request()) {
+             return self
+            }
             if other.hasProfileId {
                  profile_id = other.profile_id
             }
@@ -3184,6 +3217,9 @@ final public class ProfileService : GeneratedMessage {
             return returnMe
           }
           public func mergeFrom(other:ProfileService.GetProfile.Response) -> ProfileService.GetProfile.ResponseBuilder {
+            if (other == ProfileService.GetProfile.Response()) {
+             return self
+            }
             if (other.hasProfile) {
                 mergeProfile(other.profile)
             }
@@ -3343,6 +3379,9 @@ final public class ProfileService : GeneratedMessage {
         return returnMe
       }
       public func mergeFrom(other:ProfileService.GetProfile) -> ProfileService.GetProfileBuilder {
+        if (other == ProfileService.GetProfile()) {
+         return self
+        }
         mergeUnknownFields(other.unknownFields)
         return self
       }
@@ -3643,6 +3682,9 @@ final public class ProfileService : GeneratedMessage {
             return returnMe
           }
           public func mergeFrom(other:ProfileService.GetExtendedProfile.Request) -> ProfileService.GetExtendedProfile.RequestBuilder {
+            if (other == ProfileService.GetExtendedProfile.Request()) {
+             return self
+            }
             if other.hasProfileId {
                  profile_id = other.profile_id
             }
@@ -4082,6 +4124,9 @@ final public class ProfileService : GeneratedMessage {
             return returnMe
           }
           public func mergeFrom(other:ProfileService.GetExtendedProfile.Response) -> ProfileService.GetExtendedProfile.ResponseBuilder {
+            if (other == ProfileService.GetExtendedProfile.Response()) {
+             return self
+            }
             if (other.hasProfile) {
                 mergeProfile(other.profile)
             }
@@ -4293,6 +4338,9 @@ final public class ProfileService : GeneratedMessage {
         return returnMe
       }
       public func mergeFrom(other:ProfileService.GetExtendedProfile) -> ProfileService.GetExtendedProfileBuilder {
+        if (other == ProfileService.GetExtendedProfile()) {
+         return self
+        }
         mergeUnknownFields(other.unknownFields)
         return self
       }
@@ -4515,6 +4563,9 @@ final public class ProfileService : GeneratedMessage {
             return returnMe
           }
           public func mergeFrom(other:ProfileService.CreateTags.Request) -> ProfileService.CreateTags.RequestBuilder {
+            if (other == ProfileService.CreateTags.Request()) {
+             return self
+            }
             if !other.tags.isEmpty  {
                builderResult.tags += other.tags
             }
@@ -4711,6 +4762,9 @@ final public class ProfileService : GeneratedMessage {
             return returnMe
           }
           public func mergeFrom(other:ProfileService.CreateTags.Response) -> ProfileService.CreateTags.ResponseBuilder {
+            if (other == ProfileService.CreateTags.Response()) {
+             return self
+            }
             if !other.tags.isEmpty  {
                builderResult.tags += other.tags
             }
@@ -4867,6 +4921,9 @@ final public class ProfileService : GeneratedMessage {
         return returnMe
       }
       public func mergeFrom(other:ProfileService.CreateTags) -> ProfileService.CreateTagsBuilder {
+        if (other == ProfileService.CreateTags()) {
+         return self
+        }
         mergeUnknownFields(other.unknownFields)
         return self
       }
@@ -5167,6 +5224,9 @@ final public class ProfileService : GeneratedMessage {
             return returnMe
           }
           public func mergeFrom(other:ProfileService.GetTags.Request) -> ProfileService.GetTags.RequestBuilder {
+            if (other == ProfileService.GetTags.Request()) {
+             return self
+            }
             if other.hasProfileId {
                  profile_id = other.profile_id
             }
@@ -5361,6 +5421,9 @@ final public class ProfileService : GeneratedMessage {
             return returnMe
           }
           public func mergeFrom(other:ProfileService.GetTags.Response) -> ProfileService.GetTags.ResponseBuilder {
+            if (other == ProfileService.GetTags.Response()) {
+             return self
+            }
             if !other.tags.isEmpty  {
                builderResult.tags += other.tags
             }
@@ -5517,6 +5580,9 @@ final public class ProfileService : GeneratedMessage {
         return returnMe
       }
       public func mergeFrom(other:ProfileService.GetTags) -> ProfileService.GetTagsBuilder {
+        if (other == ProfileService.GetTags()) {
+         return self
+        }
         mergeUnknownFields(other.unknownFields)
         return self
       }
@@ -5742,6 +5808,9 @@ final public class ProfileService : GeneratedMessage {
             return returnMe
           }
           public func mergeFrom(other:ProfileService.AddTags.Request) -> ProfileService.AddTags.RequestBuilder {
+            if (other == ProfileService.AddTags.Request()) {
+             return self
+            }
             if other.hasProfileId {
                  profile_id = other.profile_id
             }
@@ -5907,6 +5976,9 @@ final public class ProfileService : GeneratedMessage {
             return returnMe
           }
           public func mergeFrom(other:ProfileService.AddTags.Response) -> ProfileService.AddTags.ResponseBuilder {
+            if (other == ProfileService.AddTags.Response()) {
+             return self
+            }
             mergeUnknownFields(other.unknownFields)
             return self
           }
@@ -6055,6 +6127,9 @@ final public class ProfileService : GeneratedMessage {
         return returnMe
       }
       public func mergeFrom(other:ProfileService.AddTags) -> ProfileService.AddTagsBuilder {
+        if (other == ProfileService.AddTags()) {
+         return self
+        }
         mergeUnknownFields(other.unknownFields)
         return self
       }
@@ -6355,6 +6430,9 @@ final public class ProfileService : GeneratedMessage {
             return returnMe
           }
           public func mergeFrom(other:ProfileService.GetProfiles.Request) -> ProfileService.GetProfiles.RequestBuilder {
+            if (other == ProfileService.GetProfiles.Request()) {
+             return self
+            }
             if other.hasTeamId {
                  team_id = other.team_id
             }
@@ -6549,6 +6627,9 @@ final public class ProfileService : GeneratedMessage {
             return returnMe
           }
           public func mergeFrom(other:ProfileService.GetProfiles.Response) -> ProfileService.GetProfiles.ResponseBuilder {
+            if (other == ProfileService.GetProfiles.Response()) {
+             return self
+            }
             if !other.profiles.isEmpty  {
                builderResult.profiles += other.profiles
             }
@@ -6705,6 +6786,9 @@ final public class ProfileService : GeneratedMessage {
         return returnMe
       }
       public func mergeFrom(other:ProfileService.GetProfiles) -> ProfileService.GetProfilesBuilder {
+        if (other == ProfileService.GetProfiles()) {
+         return self
+        }
         mergeUnknownFields(other.unknownFields)
         return self
       }
@@ -7005,6 +7089,9 @@ final public class ProfileService : GeneratedMessage {
             return returnMe
           }
           public func mergeFrom(other:ProfileService.GetDirectReports.Request) -> ProfileService.GetDirectReports.RequestBuilder {
+            if (other == ProfileService.GetDirectReports.Request()) {
+             return self
+            }
             if other.hasProfileId {
                  profile_id = other.profile_id
             }
@@ -7199,6 +7286,9 @@ final public class ProfileService : GeneratedMessage {
             return returnMe
           }
           public func mergeFrom(other:ProfileService.GetDirectReports.Response) -> ProfileService.GetDirectReports.ResponseBuilder {
+            if (other == ProfileService.GetDirectReports.Response()) {
+             return self
+            }
             if !other.profiles.isEmpty  {
                builderResult.profiles += other.profiles
             }
@@ -7355,6 +7445,9 @@ final public class ProfileService : GeneratedMessage {
         return returnMe
       }
       public func mergeFrom(other:ProfileService.GetDirectReports) -> ProfileService.GetDirectReportsBuilder {
+        if (other == ProfileService.GetDirectReports()) {
+         return self
+        }
         mergeUnknownFields(other.unknownFields)
         return self
       }
@@ -7548,6 +7641,9 @@ final public class ProfileService : GeneratedMessage {
             return returnMe
           }
           public func mergeFrom(other:ProfileService.GetPeers.Request) -> ProfileService.GetPeers.RequestBuilder {
+            if (other == ProfileService.GetPeers.Request()) {
+             return self
+            }
             if other.hasProfileId {
                  profile_id = other.profile_id
             }
@@ -7736,6 +7832,9 @@ final public class ProfileService : GeneratedMessage {
             return returnMe
           }
           public func mergeFrom(other:ProfileService.GetPeers.Response) -> ProfileService.GetPeers.ResponseBuilder {
+            if (other == ProfileService.GetPeers.Response()) {
+             return self
+            }
             if !other.profiles.isEmpty  {
                builderResult.profiles += other.profiles
             }
@@ -7892,6 +7991,9 @@ final public class ProfileService : GeneratedMessage {
         return returnMe
       }
       public func mergeFrom(other:ProfileService.GetPeers) -> ProfileService.GetPeersBuilder {
+        if (other == ProfileService.GetPeers()) {
+         return self
+        }
         mergeUnknownFields(other.unknownFields)
         return self
       }
@@ -8082,6 +8184,9 @@ final public class ProfileService : GeneratedMessage {
             return returnMe
           }
           public func mergeFrom(other:ProfileService.GetProfileStats.Request) -> ProfileService.GetProfileStats.RequestBuilder {
+            if (other == ProfileService.GetProfileStats.Request()) {
+             return self
+            }
             if !other.address_ids.isEmpty {
                 builderResult.address_ids += other.address_ids
             }
@@ -8270,6 +8375,9 @@ final public class ProfileService : GeneratedMessage {
             return returnMe
           }
           public func mergeFrom(other:ProfileService.GetProfileStats.Response) -> ProfileService.GetProfileStats.ResponseBuilder {
+            if (other == ProfileService.GetProfileStats.Response()) {
+             return self
+            }
             if !other.stats.isEmpty  {
                builderResult.stats += other.stats
             }
@@ -8426,6 +8534,9 @@ final public class ProfileService : GeneratedMessage {
         return returnMe
       }
       public func mergeFrom(other:ProfileService.GetProfileStats) -> ProfileService.GetProfileStatsBuilder {
+        if (other == ProfileService.GetProfileStats()) {
+         return self
+        }
         mergeUnknownFields(other.unknownFields)
         return self
       }
@@ -8619,6 +8730,9 @@ final public class ProfileService : GeneratedMessage {
             return returnMe
           }
           public func mergeFrom(other:ProfileService.GetUpcomingAnniversaries.Request) -> ProfileService.GetUpcomingAnniversaries.RequestBuilder {
+            if (other == ProfileService.GetUpcomingAnniversaries.Request()) {
+             return self
+            }
             if other.hasOrganizationId {
                  organization_id = other.organization_id
             }
@@ -8807,6 +8921,9 @@ final public class ProfileService : GeneratedMessage {
             return returnMe
           }
           public func mergeFrom(other:ProfileService.GetUpcomingAnniversaries.Response) -> ProfileService.GetUpcomingAnniversaries.ResponseBuilder {
+            if (other == ProfileService.GetUpcomingAnniversaries.Response()) {
+             return self
+            }
             if !other.profiles.isEmpty  {
                builderResult.profiles += other.profiles
             }
@@ -8963,6 +9080,9 @@ final public class ProfileService : GeneratedMessage {
         return returnMe
       }
       public func mergeFrom(other:ProfileService.GetUpcomingAnniversaries) -> ProfileService.GetUpcomingAnniversariesBuilder {
+        if (other == ProfileService.GetUpcomingAnniversaries()) {
+         return self
+        }
         mergeUnknownFields(other.unknownFields)
         return self
       }
@@ -9156,6 +9276,9 @@ final public class ProfileService : GeneratedMessage {
             return returnMe
           }
           public func mergeFrom(other:ProfileService.GetUpcomingBirthdays.Request) -> ProfileService.GetUpcomingBirthdays.RequestBuilder {
+            if (other == ProfileService.GetUpcomingBirthdays.Request()) {
+             return self
+            }
             if other.hasOrganizationId {
                  organization_id = other.organization_id
             }
@@ -9344,6 +9467,9 @@ final public class ProfileService : GeneratedMessage {
             return returnMe
           }
           public func mergeFrom(other:ProfileService.GetUpcomingBirthdays.Response) -> ProfileService.GetUpcomingBirthdays.ResponseBuilder {
+            if (other == ProfileService.GetUpcomingBirthdays.Response()) {
+             return self
+            }
             if !other.profiles.isEmpty  {
                builderResult.profiles += other.profiles
             }
@@ -9500,6 +9626,9 @@ final public class ProfileService : GeneratedMessage {
         return returnMe
       }
       public func mergeFrom(other:ProfileService.GetUpcomingBirthdays) -> ProfileService.GetUpcomingBirthdaysBuilder {
+        if (other == ProfileService.GetUpcomingBirthdays()) {
+         return self
+        }
         mergeUnknownFields(other.unknownFields)
         return self
       }
@@ -9693,6 +9822,9 @@ final public class ProfileService : GeneratedMessage {
             return returnMe
           }
           public func mergeFrom(other:ProfileService.GetRecentHires.Request) -> ProfileService.GetRecentHires.RequestBuilder {
+            if (other == ProfileService.GetRecentHires.Request()) {
+             return self
+            }
             if other.hasOrganizationId {
                  organization_id = other.organization_id
             }
@@ -9881,6 +10013,9 @@ final public class ProfileService : GeneratedMessage {
             return returnMe
           }
           public func mergeFrom(other:ProfileService.GetRecentHires.Response) -> ProfileService.GetRecentHires.ResponseBuilder {
+            if (other == ProfileService.GetRecentHires.Response()) {
+             return self
+            }
             if !other.profiles.isEmpty  {
                builderResult.profiles += other.profiles
             }
@@ -10037,6 +10172,9 @@ final public class ProfileService : GeneratedMessage {
         return returnMe
       }
       public func mergeFrom(other:ProfileService.GetRecentHires) -> ProfileService.GetRecentHiresBuilder {
+        if (other == ProfileService.GetRecentHires()) {
+         return self
+        }
         mergeUnknownFields(other.unknownFields)
         return self
       }
@@ -10185,6 +10323,9 @@ final public class ProfileServiceBuilder : GeneratedMessageBuilder {
     return returnMe
   }
   public func mergeFrom(other:ProfileService) -> ProfileServiceBuilder {
+    if (other == ProfileService()) {
+     return self
+    }
     mergeUnknownFields(other.unknownFields)
     return self
   }

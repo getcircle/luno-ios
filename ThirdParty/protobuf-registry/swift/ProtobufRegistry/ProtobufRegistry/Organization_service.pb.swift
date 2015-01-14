@@ -350,6 +350,9 @@ final public class OrganizationService : GeneratedMessage {
             return returnMe
           }
           public func mergeFrom(other:OrganizationService.Containers.Organization) -> OrganizationService.Containers.OrganizationBuilder {
+            if (other == OrganizationService.Containers.Organization()) {
+             return self
+            }
             if other.hasId {
                  id = other.id
             }
@@ -626,6 +629,9 @@ final public class OrganizationService : GeneratedMessage {
             return returnMe
           }
           public func mergeFrom(other:OrganizationService.Containers.PathPart) -> OrganizationService.Containers.PathPartBuilder {
+            if (other == OrganizationService.Containers.PathPart()) {
+             return self
+            }
             if other.hasId {
                  id = other.id
             }
@@ -1001,6 +1007,9 @@ final public class OrganizationService : GeneratedMessage {
             return returnMe
           }
           public func mergeFrom(other:OrganizationService.Containers.Team) -> OrganizationService.Containers.TeamBuilder {
+            if (other == OrganizationService.Containers.Team()) {
+             return self
+            }
             if other.hasId {
                  id = other.id
             }
@@ -1542,6 +1551,9 @@ final public class OrganizationService : GeneratedMessage {
             return returnMe
           }
           public func mergeFrom(other:OrganizationService.Containers.Address) -> OrganizationService.Containers.AddressBuilder {
+            if (other == OrganizationService.Containers.Address()) {
+             return self
+            }
             if other.hasId {
                  id = other.id
             }
@@ -1750,6 +1762,9 @@ final public class OrganizationService : GeneratedMessage {
         return returnMe
       }
       public func mergeFrom(other:OrganizationService.Containers) -> OrganizationService.ContainersBuilder {
+        if (other == OrganizationService.Containers()) {
+         return self
+        }
         mergeUnknownFields(other.unknownFields)
         return self
       }
@@ -1957,6 +1972,9 @@ final public class OrganizationService : GeneratedMessage {
             return returnMe
           }
           public func mergeFrom(other:OrganizationService.CreateOrganization.Request) -> OrganizationService.CreateOrganization.RequestBuilder {
+            if (other == OrganizationService.CreateOrganization.Request()) {
+             return self
+            }
             if (other.hasOrganization) {
                 mergeOrganization(other.organization)
             }
@@ -2170,6 +2188,9 @@ final public class OrganizationService : GeneratedMessage {
             return returnMe
           }
           public func mergeFrom(other:OrganizationService.CreateOrganization.Response) -> OrganizationService.CreateOrganization.ResponseBuilder {
+            if (other == OrganizationService.CreateOrganization.Response()) {
+             return self
+            }
             if (other.hasOrganization) {
                 mergeOrganization(other.organization)
             }
@@ -2329,6 +2350,9 @@ final public class OrganizationService : GeneratedMessage {
         return returnMe
       }
       public func mergeFrom(other:OrganizationService.CreateOrganization) -> OrganizationService.CreateOrganizationBuilder {
+        if (other == OrganizationService.CreateOrganization()) {
+         return self
+        }
         mergeUnknownFields(other.unknownFields)
         return self
       }
@@ -2629,6 +2653,9 @@ final public class OrganizationService : GeneratedMessage {
             return returnMe
           }
           public func mergeFrom(other:OrganizationService.GetOrganization.Request) -> OrganizationService.GetOrganization.RequestBuilder {
+            if (other == OrganizationService.GetOrganization.Request()) {
+             return self
+            }
             if other.hasOrganizationId {
                  organization_id = other.organization_id
             }
@@ -2843,6 +2870,9 @@ final public class OrganizationService : GeneratedMessage {
             return returnMe
           }
           public func mergeFrom(other:OrganizationService.GetOrganization.Response) -> OrganizationService.GetOrganization.ResponseBuilder {
+            if (other == OrganizationService.GetOrganization.Response()) {
+             return self
+            }
             if (other.hasOrganization) {
                 mergeOrganization(other.organization)
             }
@@ -3002,6 +3032,9 @@ final public class OrganizationService : GeneratedMessage {
         return returnMe
       }
       public func mergeFrom(other:OrganizationService.GetOrganization) -> OrganizationService.GetOrganizationBuilder {
+        if (other == OrganizationService.GetOrganization()) {
+         return self
+        }
         mergeUnknownFields(other.unknownFields)
         return self
       }
@@ -3244,6 +3277,9 @@ final public class OrganizationService : GeneratedMessage {
             return returnMe
           }
           public func mergeFrom(other:OrganizationService.CreateTeam.Request) -> OrganizationService.CreateTeam.RequestBuilder {
+            if (other == OrganizationService.CreateTeam.Request()) {
+             return self
+            }
             if (other.hasTeam) {
                 mergeTeam(other.team)
             }
@@ -3463,6 +3499,9 @@ final public class OrganizationService : GeneratedMessage {
             return returnMe
           }
           public func mergeFrom(other:OrganizationService.CreateTeam.Response) -> OrganizationService.CreateTeam.ResponseBuilder {
+            if (other == OrganizationService.CreateTeam.Response()) {
+             return self
+            }
             if (other.hasTeam) {
                 mergeTeam(other.team)
             }
@@ -3622,6 +3661,9 @@ final public class OrganizationService : GeneratedMessage {
         return returnMe
       }
       public func mergeFrom(other:OrganizationService.CreateTeam) -> OrganizationService.CreateTeamBuilder {
+        if (other == OrganizationService.CreateTeam()) {
+         return self
+        }
         mergeUnknownFields(other.unknownFields)
         return self
       }
@@ -3885,6 +3927,9 @@ final public class OrganizationService : GeneratedMessage {
             return returnMe
           }
           public func mergeFrom(other:OrganizationService.GetTeam.Request) -> OrganizationService.GetTeam.RequestBuilder {
+            if (other == OrganizationService.GetTeam.Request()) {
+             return self
+            }
             if other.hasTeamId {
                  team_id = other.team_id
             }
@@ -4105,6 +4150,9 @@ final public class OrganizationService : GeneratedMessage {
             return returnMe
           }
           public func mergeFrom(other:OrganizationService.GetTeam.Response) -> OrganizationService.GetTeam.ResponseBuilder {
+            if (other == OrganizationService.GetTeam.Response()) {
+             return self
+            }
             if (other.hasTeam) {
                 mergeTeam(other.team)
             }
@@ -4264,6 +4312,9 @@ final public class OrganizationService : GeneratedMessage {
         return returnMe
       }
       public func mergeFrom(other:OrganizationService.GetTeam) -> OrganizationService.GetTeamBuilder {
+        if (other == OrganizationService.GetTeam()) {
+         return self
+        }
         mergeUnknownFields(other.unknownFields)
         return self
       }
@@ -4457,6 +4508,9 @@ final public class OrganizationService : GeneratedMessage {
             return returnMe
           }
           public func mergeFrom(other:OrganizationService.GetTeams.Request) -> OrganizationService.GetTeams.RequestBuilder {
+            if (other == OrganizationService.GetTeams.Request()) {
+             return self
+            }
             if other.hasOrganizationId {
                  organization_id = other.organization_id
             }
@@ -4645,6 +4699,9 @@ final public class OrganizationService : GeneratedMessage {
             return returnMe
           }
           public func mergeFrom(other:OrganizationService.GetTeams.Response) -> OrganizationService.GetTeams.ResponseBuilder {
+            if (other == OrganizationService.GetTeams.Response()) {
+             return self
+            }
             if !other.teams.isEmpty  {
                builderResult.teams += other.teams
             }
@@ -4801,6 +4858,9 @@ final public class OrganizationService : GeneratedMessage {
         return returnMe
       }
       public func mergeFrom(other:OrganizationService.GetTeams) -> OrganizationService.GetTeamsBuilder {
+        if (other == OrganizationService.GetTeams()) {
+         return self
+        }
         mergeUnknownFields(other.unknownFields)
         return self
       }
@@ -4994,6 +5054,9 @@ final public class OrganizationService : GeneratedMessage {
             return returnMe
           }
           public func mergeFrom(other:OrganizationService.GetTeamChildren.Request) -> OrganizationService.GetTeamChildren.RequestBuilder {
+            if (other == OrganizationService.GetTeamChildren.Request()) {
+             return self
+            }
             if other.hasTeamId {
                  team_id = other.team_id
             }
@@ -5182,6 +5245,9 @@ final public class OrganizationService : GeneratedMessage {
             return returnMe
           }
           public func mergeFrom(other:OrganizationService.GetTeamChildren.Response) -> OrganizationService.GetTeamChildren.ResponseBuilder {
+            if (other == OrganizationService.GetTeamChildren.Response()) {
+             return self
+            }
             if !other.teams.isEmpty  {
                builderResult.teams += other.teams
             }
@@ -5338,6 +5404,9 @@ final public class OrganizationService : GeneratedMessage {
         return returnMe
       }
       public func mergeFrom(other:OrganizationService.GetTeamChildren) -> OrganizationService.GetTeamChildrenBuilder {
+        if (other == OrganizationService.GetTeamChildren()) {
+         return self
+        }
         mergeUnknownFields(other.unknownFields)
         return self
       }
@@ -5545,6 +5614,9 @@ final public class OrganizationService : GeneratedMessage {
             return returnMe
           }
           public func mergeFrom(other:OrganizationService.CreateAddress.Request) -> OrganizationService.CreateAddress.RequestBuilder {
+            if (other == OrganizationService.CreateAddress.Request()) {
+             return self
+            }
             if (other.hasAddress) {
                 mergeAddress(other.address)
             }
@@ -5758,6 +5830,9 @@ final public class OrganizationService : GeneratedMessage {
             return returnMe
           }
           public func mergeFrom(other:OrganizationService.CreateAddress.Response) -> OrganizationService.CreateAddress.ResponseBuilder {
+            if (other == OrganizationService.CreateAddress.Response()) {
+             return self
+            }
             if (other.hasAddress) {
                 mergeAddress(other.address)
             }
@@ -5917,6 +5992,9 @@ final public class OrganizationService : GeneratedMessage {
         return returnMe
       }
       public func mergeFrom(other:OrganizationService.CreateAddress) -> OrganizationService.CreateAddressBuilder {
+        if (other == OrganizationService.CreateAddress()) {
+         return self
+        }
         mergeUnknownFields(other.unknownFields)
         return self
       }
@@ -6110,6 +6188,9 @@ final public class OrganizationService : GeneratedMessage {
             return returnMe
           }
           public func mergeFrom(other:OrganizationService.DeleteAddress.Request) -> OrganizationService.DeleteAddress.RequestBuilder {
+            if (other == OrganizationService.DeleteAddress.Request()) {
+             return self
+            }
             if other.hasAddressId {
                  address_id = other.address_id
             }
@@ -6269,6 +6350,9 @@ final public class OrganizationService : GeneratedMessage {
             return returnMe
           }
           public func mergeFrom(other:OrganizationService.DeleteAddress.Response) -> OrganizationService.DeleteAddress.ResponseBuilder {
+            if (other == OrganizationService.DeleteAddress.Response()) {
+             return self
+            }
             mergeUnknownFields(other.unknownFields)
             return self
           }
@@ -6417,6 +6501,9 @@ final public class OrganizationService : GeneratedMessage {
         return returnMe
       }
       public func mergeFrom(other:OrganizationService.DeleteAddress) -> OrganizationService.DeleteAddressBuilder {
+        if (other == OrganizationService.DeleteAddress()) {
+         return self
+        }
         mergeUnknownFields(other.unknownFields)
         return self
       }
@@ -6680,6 +6767,9 @@ final public class OrganizationService : GeneratedMessage {
             return returnMe
           }
           public func mergeFrom(other:OrganizationService.GetAddress.Request) -> OrganizationService.GetAddress.RequestBuilder {
+            if (other == OrganizationService.GetAddress.Request()) {
+             return self
+            }
             if other.hasAddressId {
                  address_id = other.address_id
             }
@@ -6900,6 +6990,9 @@ final public class OrganizationService : GeneratedMessage {
             return returnMe
           }
           public func mergeFrom(other:OrganizationService.GetAddress.Response) -> OrganizationService.GetAddress.ResponseBuilder {
+            if (other == OrganizationService.GetAddress.Response()) {
+             return self
+            }
             if (other.hasAddress) {
                 mergeAddress(other.address)
             }
@@ -7059,6 +7152,9 @@ final public class OrganizationService : GeneratedMessage {
         return returnMe
       }
       public func mergeFrom(other:OrganizationService.GetAddress) -> OrganizationService.GetAddressBuilder {
+        if (other == OrganizationService.GetAddress()) {
+         return self
+        }
         mergeUnknownFields(other.unknownFields)
         return self
       }
@@ -7299,6 +7395,9 @@ final public class OrganizationService : GeneratedMessage {
             return returnMe
           }
           public func mergeFrom(other:OrganizationService.GetAddresses.Request) -> OrganizationService.GetAddresses.RequestBuilder {
+            if (other == OrganizationService.GetAddresses.Request()) {
+             return self
+            }
             if other.hasOrganizationId {
                  organization_id = other.organization_id
             }
@@ -7487,6 +7586,9 @@ final public class OrganizationService : GeneratedMessage {
             return returnMe
           }
           public func mergeFrom(other:OrganizationService.GetAddresses.Response) -> OrganizationService.GetAddresses.ResponseBuilder {
+            if (other == OrganizationService.GetAddresses.Response()) {
+             return self
+            }
             if !other.addresses.isEmpty  {
                builderResult.addresses += other.addresses
             }
@@ -7643,6 +7745,9 @@ final public class OrganizationService : GeneratedMessage {
         return returnMe
       }
       public func mergeFrom(other:OrganizationService.GetAddresses) -> OrganizationService.GetAddressesBuilder {
+        if (other == OrganizationService.GetAddresses()) {
+         return self
+        }
         mergeUnknownFields(other.unknownFields)
         return self
       }
@@ -7791,6 +7896,9 @@ final public class OrganizationServiceBuilder : GeneratedMessageBuilder {
     return returnMe
   }
   public func mergeFrom(other:OrganizationService) -> OrganizationServiceBuilder {
+    if (other == OrganizationService()) {
+     return self
+    }
     mergeUnknownFields(other.unknownFields)
     return self
   }

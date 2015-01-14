@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8F627BCA1A48EB26002490D8 /* Note_service.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F627BC91A48EB26002490D8 /* Note_service.pb.swift */; };
+		BF6E6A811A66EA36007EBAFF /* Media_service.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6E6A801A66EA36007EBAFF /* Media_service.pb.swift */; };
 		BF764DC21A5F56B400D122F4 /* Landing_service.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF764DC11A5F56B400D122F4 /* Landing_service.pb.swift */; };
 		BFC6CEF51A44B58B0081F45B /* ProtobufRegistry.h in Headers */ = {isa = PBXBuildFile; fileRef = BFC6CEF41A44B58B0081F45B /* ProtobufRegistry.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BFC6CEFB1A44B58B0081F45B /* ProtobufRegistry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFC6CEEF1A44B58B0081F45B /* ProtobufRegistry.framework */; };
@@ -47,6 +48,7 @@
 
 /* Begin PBXFileReference section */
 		8F627BC91A48EB26002490D8 /* Note_service.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Note_service.pb.swift; sourceTree = "<group>"; };
+		BF6E6A801A66EA36007EBAFF /* Media_service.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Media_service.pb.swift; sourceTree = "<group>"; };
 		BF764DC11A5F56B400D122F4 /* Landing_service.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Landing_service.pb.swift; sourceTree = "<group>"; };
 		BFC6CEEF1A44B58B0081F45B /* ProtobufRegistry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ProtobufRegistry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFC6CEF31A44B58B0081F45B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 		BFC6CEF11A44B58B0081F45B /* ProtobufRegistry */ = {
 			isa = PBXGroup;
 			children = (
+				BF6E6A801A66EA36007EBAFF /* Media_service.pb.swift */,
 				BF764DC11A5F56B400D122F4 /* Landing_service.pb.swift */,
 				BFDD6F031A5EE56800A648FC /* Search_service.pb.swift */,
 				BFEED5DE1A5AF55F00C19A11 /* Profile_service.pb.swift */,
@@ -287,6 +290,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BFCE35801A4A23AE00D56AE2 /* CodedOutputStream.swift in Sources */,
+				BF6E6A811A66EA36007EBAFF /* Media_service.pb.swift in Sources */,
 				BFC6CF6F1A44BE390081F45B /* Request_registry.pb.swift in Sources */,
 				BFCE35871A4A23AE00D56AE2 /* RingBuffer.swift in Sources */,
 				BFEED5DF1A5AF55F00C19A11 /* Profile_service.pb.swift in Sources */,

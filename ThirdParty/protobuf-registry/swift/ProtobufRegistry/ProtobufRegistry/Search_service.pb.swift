@@ -202,6 +202,9 @@ final public class SearchService : GeneratedMessage {
             return returnMe
           }
           public func mergeFrom(other:SearchService.Search.Request) -> SearchService.Search.RequestBuilder {
+            if (other == SearchService.Search.Request()) {
+             return self
+            }
             if other.hasQuery {
                  query = other.query
             }
@@ -448,6 +451,9 @@ final public class SearchService : GeneratedMessage {
             return returnMe
           }
           public func mergeFrom(other:SearchService.Search.Response) -> SearchService.Search.ResponseBuilder {
+            if (other == SearchService.Search.Response()) {
+             return self
+            }
             if !other.profiles.isEmpty  {
                builderResult.profiles += other.profiles
             }
@@ -620,6 +626,9 @@ final public class SearchService : GeneratedMessage {
         return returnMe
       }
       public func mergeFrom(other:SearchService.Search) -> SearchService.SearchBuilder {
+        if (other == SearchService.Search()) {
+         return self
+        }
         mergeUnknownFields(other.unknownFields)
         return self
       }
@@ -768,6 +777,9 @@ final public class SearchServiceBuilder : GeneratedMessageBuilder {
     return returnMe
   }
   public func mergeFrom(other:SearchService) -> SearchServiceBuilder {
+    if (other == SearchService()) {
+     return self
+    }
     mergeUnknownFields(other.unknownFields)
     return self
   }
