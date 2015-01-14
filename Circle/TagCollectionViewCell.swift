@@ -24,20 +24,20 @@ class TagCollectionViewCell: CircleCollectionViewCell {
         return .Dynamic
     }
     
-    var defaultTextColor: UIColor = UIColor.defaultDarkTextColor()
-    var defaultBackgroundColor: UIColor = UIColor.tagNormalBackgroundColor()
-    var defaultBorderColor: UIColor = UIColor.tagNormalBorderColor()
+    var defaultTextColor = UIColor.defaultDarkTextColor()
+    var defaultBackgroundColor = UIColor.tagNormalBackgroundColor()
+    var defaultBorderColor = UIColor.tagNormalBorderColor()
 
-    var highlightedTextColor: UIColor = UIColor.defaultLightTextColor()
-    var highlightedBackgroundColor: UIColor = UIColor.tagSelectedBackgroundColor()
-    var highlightedBorderColor: UIColor = UIColor.tagSelectedBorderColor()
+    var highlightedTextColor = UIColor.defaultLightTextColor()
+    var highlightedBackgroundColor = UIColor.tagSelectedBackgroundColor()
+    var highlightedBorderColor = UIColor.tagSelectedBorderColor()
 
     override func awakeFromNib() {
         super.awakeFromNib()
         
         // Initialization code
-        tagLabel.textColor = UIColor.defaultDarkTextColor()
-        tagLabel.layer.borderColor = UIColor.tagNormalBorderColor().CGColor
+        tagLabel.textColor = defaultTextColor
+        tagLabel.layer.borderColor = defaultBorderColor.CGColor
         tagLabel.layer.borderWidth = 1.0
         layer.shouldRasterize = true;
         layer.rasterizationScale = UIScreen.mainScreen().scale;
@@ -109,7 +109,7 @@ class TagCollectionViewCell: CircleCollectionViewCell {
     func highlightCell(animated: Bool) {
         let duration = animated ? 0.2 : 0.0
         
-        if self.tagLabel.backgroundColor == UIColor.tagSelectedBackgroundColor() {
+        if tagLabel.backgroundColor == highlightedBackgroundColor {
             return
         }
         
@@ -124,7 +124,7 @@ class TagCollectionViewCell: CircleCollectionViewCell {
     func unHighlightCell(animated: Bool) {
         let duration = animated ? 0.2 : 0.0
         
-        if self.tagLabel.backgroundColor == UIColor.tagNormalBackgroundColor() {
+        if tagLabel.backgroundColor == defaultBackgroundColor {
             return
         }
 
