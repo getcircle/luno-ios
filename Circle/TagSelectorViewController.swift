@@ -11,9 +11,14 @@ import UIKit
 let reuseIdentifier = "Cell"
 
 class TagSelectorViewController: UIViewController,
-                                 UISearchBarDelegate,
-                                 UISearchResultsUpdating  {
+UITextFieldDelegate,
+SearchHeaderViewDelegate {
 
+    enum Themes {
+        case Onboarding
+        case Regular
+    }
+    
     class var tags: [String] {
         return [
         "python", "mysql", "investing", "french", "ios", "swift", "business development", "private equity", "personal finance", "C", "C++", "product", "design",
@@ -25,30 +30,45 @@ class TagSelectorViewController: UIViewController,
         ]}
     
     @IBOutlet weak private(set) var collectionView: UICollectionView!
+    @IBOutlet weak private(set) var doneButton: UIButton!
     @IBOutlet weak private(set) var searchControllerParentView: UIView!
+    @IBOutlet weak private(set) var titleLabel: UILabel!
+    @IBOutlet weak private(set) var titleTextLabel: UILabel!
     
-    let gradientHeight: CGFloat = 60.0
-
+    var theme: Themes = .Regular
+    
     private var animatedCell = [NSIndexPath: Bool]()
     private var bottomLayer: CAGradientLayer!
     private var filteredTags = [String]()
     private var prototypeCell: TagCollectionViewCell!
-    private var searchController: UISearchController!
+    private var searchHeaderView: SearchHeaderView!
     private var selectedTags = NSMutableSet()
     private var topLayer: CAGradientLayer!
+
+    let gradientHeight: CGFloat = 60.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Configurations
         filteredTags = TagSelectorViewController.tags
-        configureSearchController()
+        setStatusBarHidden(true)
+        
+        configureView()
+        configureSearchHeaderView()
         configurePrototypeCell()
         configureCollectionView()
-        configureGradients()
+        // configureGradients()
+        configureViewByTheme()
     }
 
     // MARK: - Configuration
+
+    private func configureView() {
+        edgesForExtendedLayout = .Top
+        automaticallyAdjustsScrollViewInsets = false
+        extendedLayoutIncludesOpaqueBars = true
+    }
     
     private func configurePrototypeCell() {
         // Init prototype cell
@@ -64,17 +84,31 @@ class TagSelectorViewController: UIViewController,
         
         collectionView?.allowsMultipleSelection = true
     }
-    
-    private func configureSearchController() {
-        searchController = UISearchController(searchResultsController: nil)
-        searchController.searchResultsUpdater = self
-        searchController.searchBar.delegate = self
-        searchController.hidesNavigationBarDuringPresentation = false
-        searchController.dimsBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Filter tags"
-        searchController.searchBar.sizeToFit()
-        searchControllerParentView.addSubview(searchController.searchBar)
-        definesPresentationContext = true
+
+    private func configureSearchHeaderView() {
+        if let nibViews = NSBundle.mainBundle().loadNibNamed("SearchHeaderView", owner: nil, options: nil) as? [UIView] {
+            searchHeaderView = nibViews.first as SearchHeaderView
+            searchHeaderView.delegate = self
+            searchHeaderView.searchTextField.delegate = self
+            searchHeaderView.searchTextField.placeholder = NSLocalizedString("Filter tags", comment: "Placeholder text for filter tags input box")
+            searchHeaderView.searchTextField.addTarget(self, action: "search", forControlEvents: .EditingChanged)
+            searchControllerParentView.addSubview(searchHeaderView)
+            searchHeaderView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
+            
+            switch theme {
+            case .Onboarding:
+                searchHeaderView.containerBackgroundColor = UIColor.appTintColor()
+                searchHeaderView.searchFieldBackgroundColor = UIColor.appTintColor()
+                searchHeaderView.searchFieldTintColor = UIColor.whiteColor()
+                searchHeaderView.searchFieldTextColor = UIColor.whiteColor()
+                searchHeaderView.cancelButton.tintColor = UIColor.whiteColor()
+                searchHeaderView.searchTextField.keyboardAppearance = .Dark
+                searchHeaderView.updateView()
+                
+            case .Regular:
+                break
+            }
+        }
     }
     
     private func configureGradients() {
@@ -98,6 +132,40 @@ class TagSelectorViewController: UIViewController,
         view.layer.addSublayer(bottomLayer)
     }
     
+    private func configureViewByTheme() {
+        switch theme {
+        case .Onboarding:
+            view.backgroundColor = UIColor.appTintColor()
+            collectionView.backgroundColor = UIColor.appTintColor()
+            searchControllerParentView.backgroundColor = UIColor.appTintColor()
+            titleLabel.textColor = UIColor.whiteColor()
+            titleLabel.backgroundColor = UIColor.appTintColor()
+            titleTextLabel.textColor = UIColor.whiteColor()
+            titleTextLabel.backgroundColor = UIColor.appTintColor()
+            doneButton.backgroundColor = UIColor.appTintColor()
+
+        case .Regular:
+            break
+        }
+    }
+
+    private func configureCellByTheme(cell: TagCollectionViewCell) {
+        switch theme {
+        case .Onboarding:
+            cell.backgroundColor = UIColor.appTintColor()
+            cell.defaultTextColor = UIColor.whiteColor()
+            cell.defaultBackgroundColor = UIColor.appTintColor()
+            cell.defaultBorderColor = UIColor.whiteColor()
+            
+            cell.highlightedTextColor = UIColor.appTintColor()
+            cell.highlightedBackgroundColor = UIColor.whiteColor()
+            cell.highlightedBorderColor = UIColor.appTintColor()
+
+        case .Regular:
+            break
+        }
+    }
+    
     // MARK: UICollectionViewDataSource
 
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
@@ -116,6 +184,7 @@ class TagSelectorViewController: UIViewController,
     
         // Configure the cell
         cell.tagLabel.text = filteredTags[indexPath.row].capitalizedString
+        configureCellByTheme(cell)
         if animatedCell[indexPath] == nil {
             animatedCell[indexPath] = true
             cell.animateForCollection(collectionView, atIndexPath: indexPath)
@@ -176,11 +245,17 @@ class TagSelectorViewController: UIViewController,
         dismissViewControllerAnimated(true, completion: nil)
     }
     
-    // MARK: - UISearchResultsUpdating
+    // MARK: - SearchHeaderViewDelegate
+
+    func didCancel(sender: UIView) {
+        collectionView.reloadData()
+    }
     
-    func updateSearchResultsForSearchController(searchController: UISearchController) {
+    // MARK: - SearchHeaderViewDelegate
+    
+    func search() {
         let dataChanged = filteredTags.count != TagSelectorViewController.tags.count
-        let searchString = searchController.searchBar.text
+        let searchString = searchHeaderView.searchTextField.text
         let whitespaceCharacterSet = NSCharacterSet.whitespaceCharacterSet()
         let trimmedString = searchString.stringByTrimmingCharactersInSet(whitespaceCharacterSet)
         if trimmedString == "" {
@@ -216,14 +291,11 @@ class TagSelectorViewController: UIViewController,
         }
     }
     
-    // MARK: - UISearchBarDelegate
+    // MARK: - TextField Delegate
     
-    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-        searchBar.resignFirstResponder()
-    }
-    
-    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
-        searchBar.resignFirstResponder()
+    func textFieldDidBeginEditing(textField: UITextField) {
+        searchHeaderView.showCancelButton()
+        collectionView.reloadData()
     }
 
     // MARK: - Helpers

@@ -24,6 +24,14 @@ class TagCollectionViewCell: CircleCollectionViewCell {
         return .Dynamic
     }
     
+    var defaultTextColor: UIColor = UIColor.defaultDarkTextColor()
+    var defaultBackgroundColor: UIColor = UIColor.tagNormalBackgroundColor()
+    var defaultBorderColor: UIColor = UIColor.tagNormalBorderColor()
+
+    var highlightedTextColor: UIColor = UIColor.defaultLightTextColor()
+    var highlightedBackgroundColor: UIColor = UIColor.tagSelectedBackgroundColor()
+    var highlightedBorderColor: UIColor = UIColor.tagSelectedBorderColor()
+
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -61,6 +69,8 @@ class TagCollectionViewCell: CircleCollectionViewCell {
         frame = cellFrame
         alpha = 0.0
         
+        println("Cell = \(cellFrame.origin.y) ScrollView = \(collectionView.contentOffset.y)")
+        
         UIView.animateWithDuration(0.2,
             delay: 0.01 * Double(indexPath.row),
             options: .CurveEaseIn,
@@ -81,14 +91,12 @@ class TagCollectionViewCell: CircleCollectionViewCell {
         UIView.animateWithDuration(
             duration,
             animations: { () -> Void in
-                self.tagLabel.backgroundColor = UIColor.tagSelectedBackgroundColor()
-                self.tagLabel.textColor = UIColor.defaultLightTextColor()
+                self._selectCell()
                 if animated {
                     // Scaling animates even if the duration is set to 0. So, scale only
                     // when animated is set
                     self.transform = CGAffineTransformMakeScale(1.2, 1.2)
                 }
-                self.tagLabel.layer.borderColor = UIColor.tagSelectedBorderColor().CGColor
             },
             completion: { (completed) -> Void in
                 UIView.animateWithDuration(duration, animations: { () -> Void in
@@ -108,9 +116,7 @@ class TagCollectionViewCell: CircleCollectionViewCell {
         UIView.animateWithDuration(
             duration,
             animations: { () -> Void in
-                self.tagLabel.backgroundColor = UIColor.tagSelectedBackgroundColor()
-                self.tagLabel.textColor = UIColor.defaultLightTextColor()
-                self.tagLabel.layer.borderColor = UIColor.tagSelectedBorderColor().CGColor
+                self._selectCell()
             }
         )
     }
@@ -126,10 +132,18 @@ class TagCollectionViewCell: CircleCollectionViewCell {
         UIView.animateWithDuration(
             duration,
             animations: { () -> Void in
-                self.tagLabel.backgroundColor = UIColor.tagNormalBackgroundColor()
-                self.tagLabel.textColor = UIColor.defaultDarkTextColor()
-                self.tagLabel.layer.borderColor = UIColor.tagNormalBorderColor().CGColor
+                self.tagLabel.textColor = self.defaultTextColor
+                self.tagLabel.backgroundColor = self.defaultBackgroundColor
+                self.tagLabel.layer.borderColor = self.defaultBorderColor.CGColor
             }
         )
+    }
+    
+    // MARK: - Helpers
+    
+    private func _selectCell() {
+        tagLabel.textColor = highlightedTextColor
+        tagLabel.backgroundColor = highlightedBackgroundColor
+        tagLabel.layer.borderColor = highlightedBorderColor.CGColor
     }
 }

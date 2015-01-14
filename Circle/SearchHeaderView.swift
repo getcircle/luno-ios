@@ -14,11 +14,17 @@ protocol SearchHeaderViewDelegate {
 
 class SearchHeaderView: UIView {
     
-    var delegate: SearchHeaderViewDelegate?
-
     @IBOutlet weak private(set) var cancelButton: UIButton!
     @IBOutlet weak private(set) var searchTextField: UITextField!
     @IBOutlet weak private(set) var searchTextFieldTrailingSpaceConstraint: NSLayoutConstraint!
+    
+    var containerBackgroundColor = UIColor.viewBackgroundColor()
+    var delegate: SearchHeaderViewDelegate?
+    var searchFieldBackgroundColor = UIColor.searchTextFieldBackground()
+    var searchFieldTextColor = UIColor.defaultDarkTextColor()
+    var searchFieldTintColor = UIColor.appTintColor()
+
+    private var leftViewImageView: UIImageView!
     
     class var height: CGFloat {
         return 54.0
@@ -40,19 +46,26 @@ class SearchHeaderView: UIView {
             0.0,
             36.0,
             searchTextField.frameHeight
-            ))
+        ))
         leftView.backgroundColor = UIColor.clearColor()
-        var leftViewImage = UIImageView(image: UIImage(named: "Search"))
-        leftViewImage.contentMode = .ScaleAspectFit
-        leftViewImage.frame = CGRectMake(10.0, 9.0, 16.0, 16.0)
-        leftView.addSubview(leftViewImage)
+        leftViewImageView = UIImageView(image: UIImage(named: "Search")?.imageWithRenderingMode(.AlwaysTemplate))
+        leftViewImageView.contentMode = .ScaleAspectFit
+        leftViewImageView.frame = CGRectMake(10.0, 9.0, 16.0, 16.0)
+        leftView.addSubview(leftViewImageView)
         
         searchTextField.leftViewMode = .Always
         searchTextField.leftView = leftView
-        
-        searchTextField.backgroundColor = UIColor.searchTextFieldBackground()
         searchTextField.addRoundCorners()
-        searchTextField.superview?.backgroundColor = UIColor.viewBackgroundColor()
+        searchTextField.addBottomBorder()
+        updateView()
+    }
+    
+    func updateView() {
+        leftViewImageView.tintColor = searchFieldTextColor
+        searchTextField.backgroundColor = searchFieldBackgroundColor
+        searchTextField.textColor = searchFieldTextColor
+        searchTextField.tintColor = searchFieldTintColor
+        searchTextField.superview?.backgroundColor = containerBackgroundColor
     }
 
     // MARK: - CancelButtonState
