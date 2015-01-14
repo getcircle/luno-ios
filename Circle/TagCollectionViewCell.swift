@@ -17,7 +17,7 @@ class TagCollectionViewCell: CircleCollectionViewCell {
     }
     
     override class var height: CGFloat {
-        return 30.0
+        return 35.0
     }
     
     override class var sizeCalculationMethod: SizeCalculation {
@@ -45,7 +45,7 @@ class TagCollectionViewCell: CircleCollectionViewCell {
     }
     
     override func intrinsicContentSize() -> CGSize {
-        return tagLabel.intrinsicContentSize()
+        return CGSizeMake(tagLabel.intrinsicContentSize().width, 35.0)
     }
 
     override func setData(data: AnyObject) {

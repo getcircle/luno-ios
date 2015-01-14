@@ -8,6 +8,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TagSelectorViewController" customModule="Circle" customModuleProvider="target">
             <connections>
+                <outlet property="addTagButton" destination="92R-S9-7K0" id="paG-23-5Tg"/>
+                <outlet property="addTagButtonHeightConstraint" destination="MlO-H5-YRa" id="bZ7-Rj-7jy"/>
                 <outlet property="collectionView" destination="6Ft-oh-z30" id="kiW-Ht-7nb"/>
                 <outlet property="doneButton" destination="urb-BS-J6b" id="d9h-gu-Y1z"/>
                 <outlet property="searchControllerParentView" destination="4f2-zM-5Ik" id="2pu-v1-XCS"/>
@@ -41,7 +43,7 @@
                     </constraints>
                 </view>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="6Ft-oh-z30">
-                    <rect key="frame" x="0.0" y="212" width="600" height="388"/>
+                    <rect key="frame" x="0.0" y="247" width="600" height="353"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="eOu-Jf-uv8" customClass="CenterAlignFlowLayout" customModule="Circle" customModuleProvider="target">
                         <size key="itemSize" width="50" height="50"/>
@@ -65,7 +67,7 @@
                         <outlet property="delegate" destination="-1" id="eWG-Wi-Iw2"/>
                     </connections>
                 </collectionView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="urb-BS-J6b">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="urb-BS-J6b" userLabel="DoneButton">
                     <rect key="frame" x="536" y="45" width="44" height="44"/>
                     <color key="backgroundColor" red="0.88235294119999996" green="0.15686274510000001" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
@@ -79,29 +81,61 @@
                         <action selector="close:" destination="-1" eventType="touchUpInside" id="Mxz-l6-svP"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="92R-S9-7K0" userLabel="AddTagButton">
+                    <rect key="frame" x="20" y="202" width="560" height="35"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="35" id="MlO-H5-YRa"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
+                    <color key="tintColor" red="0.88235294119999996" green="0.15686274510000001" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="-2" maxX="10" maxY="0.0"/>
+                    <state key="normal" title="Add tag &quot;Something&quot;" image="Plus">
+                        <color key="titleColor" red="0.88235294119999996" green="0.15686274510000001" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="5"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="addTagButtedTapped:" destination="-1" eventType="touchUpInside" id="e8I-n9-whd"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="92R-S9-7K0" firstAttribute="top" secondItem="6Ft-oh-z30" secondAttribute="bottom" id="0ax-hW-ARB"/>
                 <constraint firstItem="C9I-6f-dRp" firstAttribute="leading" secondItem="EV5-Sl-Tyf" secondAttribute="leading" constant="20" id="2DK-vv-ANB"/>
+                <constraint firstAttribute="bottom" secondItem="6Ft-oh-z30" secondAttribute="bottom" id="2zo-zf-lUy"/>
                 <constraint firstItem="C9I-6f-dRp" firstAttribute="top" secondItem="eJA-IB-c6c" secondAttribute="bottom" constant="20" id="8uV-rt-009"/>
                 <constraint firstAttribute="trailing" secondItem="urb-BS-J6b" secondAttribute="trailing" constant="20" id="9M8-Db-pUF"/>
                 <constraint firstAttribute="centerX" secondItem="eJA-IB-c6c" secondAttribute="centerX" id="FnZ-NT-nHC"/>
                 <constraint firstItem="4f2-zM-5Ik" firstAttribute="leading" secondItem="EV5-Sl-Tyf" secondAttribute="leading" constant="10" id="HbR-PV-HCx"/>
                 <constraint firstAttribute="trailing" secondItem="4f2-zM-5Ik" secondAttribute="trailing" constant="10" id="J9Q-be-OHN"/>
+                <constraint firstAttribute="bottom" secondItem="92R-S9-7K0" secondAttribute="bottom" id="KlW-2o-QW9"/>
                 <constraint firstItem="6Ft-oh-z30" firstAttribute="leading" secondItem="EV5-Sl-Tyf" secondAttribute="leading" id="Kyx-aL-6Kj"/>
                 <constraint firstItem="4f2-zM-5Ik" firstAttribute="top" secondItem="eJA-IB-c6c" secondAttribute="bottom" constant="60" id="MJ3-bh-GOf"/>
                 <constraint firstItem="eJA-IB-c6c" firstAttribute="top" secondItem="4f2-zM-5Ik" secondAttribute="bottom" constant="-14" id="MOG-Xq-y6Y"/>
                 <constraint firstItem="eJA-IB-c6c" firstAttribute="top" secondItem="4f2-zM-5Ik" secondAttribute="bottom" constant="-14" id="Pfy-s7-Xdv"/>
+                <constraint firstAttribute="centerY" secondItem="92R-S9-7K0" secondAttribute="centerY" id="QKR-Sw-4nw"/>
                 <constraint firstAttribute="trailing" secondItem="eJA-IB-c6c" secondAttribute="trailing" constant="36" id="Sot-2a-y1J"/>
                 <constraint firstAttribute="bottom" secondItem="6Ft-oh-z30" secondAttribute="bottom" id="T0O-yC-NNx"/>
+                <constraint firstAttribute="centerX" secondItem="92R-S9-7K0" secondAttribute="centerX" id="Tp6-U1-p6V"/>
                 <constraint firstItem="eJA-IB-c6c" firstAttribute="leading" secondItem="EV5-Sl-Tyf" secondAttribute="leading" constant="36" id="X4R-IW-7wd"/>
                 <constraint firstItem="eJA-IB-c6c" firstAttribute="leading" secondItem="EV5-Sl-Tyf" secondAttribute="leadingMargin" constant="20" id="Yko-lk-LAH"/>
+                <constraint firstItem="92R-S9-7K0" firstAttribute="leading" secondItem="EV5-Sl-Tyf" secondAttribute="leading" constant="20" id="bhk-Ap-16t"/>
+                <constraint firstItem="92R-S9-7K0" firstAttribute="top" secondItem="4f2-zM-5Ik" secondAttribute="bottom" constant="10" id="c2c-Zy-2eA"/>
                 <constraint firstItem="6Ft-oh-z30" firstAttribute="top" secondItem="4f2-zM-5Ik" secondAttribute="bottom" constant="20" id="fw6-vx-TmP"/>
+                <constraint firstAttribute="trailing" secondItem="92R-S9-7K0" secondAttribute="trailing" constant="-1" id="gTw-XO-f2b"/>
+                <constraint firstItem="6Ft-oh-z30" firstAttribute="top" secondItem="92R-S9-7K0" secondAttribute="bottom" constant="10" id="haL-IC-ATw"/>
                 <constraint firstAttribute="trailing" secondItem="6Ft-oh-z30" secondAttribute="trailing" id="hkC-4O-zfz"/>
                 <constraint firstItem="eJA-IB-c6c" firstAttribute="top" secondItem="4f2-zM-5Ik" secondAttribute="bottom" constant="182" id="k5r-kC-d3z"/>
                 <constraint firstAttribute="trailing" secondItem="C9I-6f-dRp" secondAttribute="trailing" constant="20" id="mux-qL-ouf"/>
                 <constraint firstItem="eJA-IB-c6c" firstAttribute="top" secondItem="EV5-Sl-Tyf" secondAttribute="top" constant="50" id="pVY-eY-xcE"/>
                 <constraint firstItem="4f2-zM-5Ik" firstAttribute="top" secondItem="C9I-6f-dRp" secondAttribute="bottom" constant="20" id="suJ-ux-K4v"/>
+                <constraint firstAttribute="trailing" secondItem="92R-S9-7K0" secondAttribute="trailing" constant="20" id="uBc-BV-Llh"/>
+                <constraint firstItem="92R-S9-7K0" firstAttribute="leading" secondItem="EV5-Sl-Tyf" secondAttribute="leading" constant="-1" id="uqG-Wt-uaj"/>
                 <constraint firstAttribute="trailingMargin" secondItem="eJA-IB-c6c" secondAttribute="trailing" constant="20" id="yMt-k1-Dlu"/>
                 <constraint firstAttribute="centerX" secondItem="C9I-6f-dRp" secondAttribute="centerX" id="yzh-g5-xIk"/>
                 <constraint firstItem="eJA-IB-c6c" firstAttribute="centerY" secondItem="urb-BS-J6b" secondAttribute="centerY" id="zCq-6t-ASQ"/>
@@ -114,11 +148,19 @@
                     <exclude reference="X4R-IW-7wd"/>
                     <exclude reference="k5r-kC-d3z"/>
                     <exclude reference="MJ3-bh-GOf"/>
+                    <exclude reference="T0O-yC-NNx"/>
+                    <exclude reference="fw6-vx-TmP"/>
+                    <exclude reference="0ax-hW-ARB"/>
+                    <exclude reference="KlW-2o-QW9"/>
+                    <exclude reference="QKR-Sw-4nw"/>
+                    <exclude reference="gTw-XO-f2b"/>
+                    <exclude reference="uqG-Wt-uaj"/>
                 </mask>
             </variation>
         </view>
     </objects>
     <resources>
         <image name="CircleCheckFilled" width="24" height="24"/>
+        <image name="Plus" width="22" height="22"/>
     </resources>
 </document>

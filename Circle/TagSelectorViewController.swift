@@ -19,16 +19,19 @@ SearchHeaderViewDelegate {
         case Regular
     }
     
-    class var tags: [String] {
-        return [
-        "python", "mysql", "investing", "french", "ios", "swift", "business development", "private equity", "personal finance", "C", "C++", "product", "design",
-        "mobile applications", "photoshop", "product marketing", "spanish", "human resources", "management", "startups", "productivity", "customer experience", "communication", "c#", "postgres", "android",
-        "hadoop", "kafka", "big data", "mac os x", "API", "hiring", "recruiting", "objective-C", "java", "visual studio", "social media", "php", "html",
-        "javaScript", "html5", "css", "mongodb", "advertising", "heroku", "AWS", "fundraising", "ruby on rails", "coffeeScript", "bash scripting", "ops", "software development",
-        "ActionScript","C","C#","C++","Clojure","CoffeeScript","Common Lisp","CSS","Diff","Emacs Lisp","Erlang","Haskell","HTML","Java","JavaScript","Lua","Objective-C",
-        "Perl","PHP","Python","Ruby","Scala","Scheme","Shell","SQL","ABAP","Ada","Agda","AGS Script","Alloy","Ant Build System","ANTLR","ApacheConf","Apex","APL","AppleScript","Arc","Arduino","AsciiDoc","ASP","AspectJ","Assembly","ATS","Augeas","AutoHotkey","AutoIt","Awk","Batchfile","Befunge","Bison","BitBake","BlitzBasic","BlitzMax","Bluespec","Boo","Brainfuck","Brightscript","Bro","C-ObjDump","C2hs Haskell","Cap'n Proto","Ceylon","Chapel","ChucK","Cirru","Clean","CLIPS","CMake","COBOL","ColdFusion","ColdFusion CFC","Component Pascal","Cool","Coq","Cpp-ObjDump","Creole","Crystal","Cucumber","Cuda","Cycript","Cython","D","D-ObjDump","Darcs Patch","Dart","DM","Dockerfile","Dogescript","Dylan","E","Eagle","eC","Ecere Projects","ECL","edn","Eiffel","Elixir","Elm","EmberScript","F#","Factor","Fancy","Fantom","fish","FLUX","Forth","FORTRAN","Frege","G-code","Game Maker Language","GAMS","GAP","GAS","GDScript","Genshi","Gentoo Ebuild","Gentoo Eclass","Gettext Catalog","GLSL","Glyph","Gnuplot","Go","Golo","Gosu","Grace","Gradle","Grammatical Framework","Graph Modeling Language","Graphviz (DOT)","Groff","Groovy","Groovy Server Pages","Hack","Haml","Handlebars","Harbour","Haxe","HTML+Django","HTML+ERB","HTML+PHP","HTTP","Hy","IDL","Idris","IGOR Pro","Inform 7","INI","Inno Setup","Io","Ioke","IRC log","Isabelle","J","Jade","Jasmin","Java Server Pages","JSON","JSON5","JSONiq","JSONLD","Julia","Kit","Kotlin","KRL","LabVIEW","Lasso","Latte","Less","LFE","LilyPond","Liquid","Literate Agda","Literate CoffeeScript","Literate Haskell","LiveScript","LLVM","Logos","Logtalk","LOLCODE","LookML","LoomScript","LSL","M","Makefile","Mako","Markdown","Mask","Mathematica","Matlab","Maven POM","Max","MediaWiki","Mercury","MiniD","Mirah","Monkey","Moocode","MoonScript","MTML","mupad","Myghty","Nemerle","nesC","NetLogo","Nginx","Nimrod","Ninja","Nit","Nix","NSIS","Nu","NumPy","ObjDump","Objective-C++","Objective-J","OCaml","Omgrofl","ooc","Opa","Opal","OpenCL","OpenEdge ABL","OpenSCAD","Org","Ox","Oxygene","Oz","Pan","Papyrus","Parrot","Parrot Assembly","Parrot Internal Representation","Pascal","PAWN","Perl6","PigLatin","Pike","Pod","PogoScript","PostScript","PowerShell","Processing","Prolog","Propeller Spin","Protocol Buffer","Public Key","Puppet","Pure Data","PureBasic","PureScript","Python traceback","QMake","QML","R","Racket","Ragel in Ruby Host","RAML","Raw token data","RDoc","REALbasic","Rebol","Red","Redcode","reStructuredText","RHTML","RMarkdown","RobotFramework","Rouge","Rust","Sage","SAS","Sass","Scaml","Scilab","SCSS","Self","ShellSession","Shen","Slash","Slim","Smalltalk","Smarty","SourcePawn","SQF","Squirrel","Standard ML","Stata","STON","Stylus","SuperCollider","Swift","SystemVerilog","Tcl","Tcsh","Tea","TeX","Text","Textile","Thrift","TOML","Turing","Twig","TXL","TypeScript","Unified Parallel C","UnrealScript","Vala","VCL","Verilog","VHDL","VimL","Visual Basic","Volt","WebIDL","wisp","xBase","XC","XML","Xojo","XProc","XQuery","XS","XSLT","Xtend","YAML","Zephir","Zimpl",
-        ]}
+    struct TagsHolder {
+        static var tags = [
+            "python", "mysql", "investing", "french", "ios", "swift", "business development", "private equity", "personal finance", "C", "C++", "product", "design",
+            "mobile applications", "photoshop", "product marketing", "spanish", "human resources", "management", "startups", "productivity", "customer experience", "communication", "c#", "postgres", "android",
+            "hadoop", "kafka", "big data", "mac os x", "API", "hiring", "recruiting", "objective-C", "java", "visual studio", "social media", "php", "html",
+            "javaScript", "html5", "css", "mongodb", "advertising", "heroku", "AWS", "fundraising", "ruby on rails", "coffeeScript", "bash scripting", "ops", "software development",
+            "ActionScript","C","C#","C++","Clojure","CoffeeScript","Common Lisp","CSS","Diff","Emacs Lisp","Erlang","Haskell","HTML","Java","JavaScript","Lua","Objective-C",
+            "Perl","PHP","Python","Ruby","Scala","Scheme","Shell","SQL","ABAP","Ada","Agda","AGS Script","Alloy","Ant Build System","ANTLR","ApacheConf","Apex","APL","AppleScript","Arc","Arduino","AsciiDoc","ASP","AspectJ","Assembly","ATS","Augeas","AutoHotkey","AutoIt","Awk","Batchfile","Befunge","Bison","BitBake","BlitzBasic","BlitzMax","Bluespec","Boo","Brainfuck","Brightscript","Bro","C-ObjDump","C2hs Haskell","Cap'n Proto","Ceylon","Chapel","ChucK","Cirru","Clean","CLIPS","CMake","COBOL","ColdFusion","ColdFusion CFC","Component Pascal","Cool","Coq","Cpp-ObjDump","Creole","Crystal","Cucumber","Cuda","Cycript","Cython","D","D-ObjDump","Darcs Patch","Dart","DM","Dockerfile","Dogescript","Dylan","E","Eagle","eC","Ecere Projects","ECL","edn","Eiffel","Elixir","Elm","EmberScript","F#","Factor","Fancy","Fantom","fish","FLUX","Forth","FORTRAN","Frege","G-code","Game Maker Language","GAMS","GAP","GAS","GDScript","Genshi","Gentoo Ebuild","Gentoo Eclass","Gettext Catalog","GLSL","Glyph","Gnuplot","Go","Golo","Gosu","Grace","Gradle","Grammatical Framework","Graph Modeling Language","Graphviz (DOT)","Groff","Groovy","Groovy Server Pages","Hack","Haml","Handlebars","Harbour","Haxe","HTML+Django","HTML+ERB","HTML+PHP","HTTP","Hy","IDL","Idris","IGOR Pro","Inform 7","INI","Inno Setup","Io","Ioke","IRC log","Isabelle","J","Jade","Jasmin","Java Server Pages","JSON","JSON5","JSONiq","JSONLD","Julia","Kit","Kotlin","KRL","LabVIEW","Lasso","Latte","Less","LFE","LilyPond","Liquid","Literate Agda","Literate CoffeeScript","Literate Haskell","LiveScript","LLVM","Logos","Logtalk","LOLCODE","LookML","LoomScript","LSL","M","Makefile","Mako","Markdown","Mask","Mathematica","Matlab","Maven POM","Max","MediaWiki","Mercury","MiniD","Mirah","Monkey","Moocode","MoonScript","MTML","mupad","Myghty","Nemerle","nesC","NetLogo","Nginx","Nimrod","Ninja","Nit","Nix","NSIS","Nu","NumPy","ObjDump","Objective-C++","Objective-J","OCaml","Omgrofl","ooc","Opa","Opal","OpenCL","OpenEdge ABL","OpenSCAD","Org","Ox","Oxygene","Oz","Pan","Papyrus","Parrot","Parrot Assembly","Parrot Internal Representation","Pascal","PAWN","Perl6","PigLatin","Pike","Pod","PogoScript","PostScript","PowerShell","Processing","Prolog","Propeller Spin","Protocol Buffer","Public Key","Puppet","Pure Data","PureBasic","PureScript","Python traceback","QMake","QML","R","Racket","Ragel in Ruby Host","RAML","Raw token data","RDoc","REALbasic","Rebol","Red","Redcode","reStructuredText","RHTML","RMarkdown","RobotFramework","Rouge","Rust","Sage","SAS","Sass","Scaml","Scilab","SCSS","Self","ShellSession","Shen","Slash","Slim","Smalltalk","Smarty","SourcePawn","SQF","Squirrel","Standard ML","Stata","STON","Stylus","SuperCollider","Swift","SystemVerilog","Tcl","Tcsh","Tea","TeX","Text","Textile","Thrift","TOML","Turing","Twig","TXL","TypeScript","Unified Parallel C","UnrealScript","Vala","VCL","Verilog","VHDL","VimL","Visual Basic","Volt","WebIDL","wisp","xBase","XC","XML","Xojo","XProc","XQuery","XS","XSLT","Xtend","YAML","Zephir","Zimpl",
+            ]
+    }
     
+    @IBOutlet weak private(set) var addTagButton: UIButton!
+    @IBOutlet weak private(set) var addTagButtonHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak private(set) var collectionView: UICollectionView!
     @IBOutlet weak private(set) var doneButton: UIButton!
     @IBOutlet weak private(set) var searchControllerParentView: UIView!
@@ -37,6 +40,7 @@ SearchHeaderViewDelegate {
     
     var theme: Themes = .Regular
     
+    private var addTagButtonInitialHeight: CGFloat = 0.0
     private var animatedCell = [NSIndexPath: Bool]()
     private var bottomLayer: CAGradientLayer!
     private var cachedItemSizes =  [String: CGSize]()
@@ -58,12 +62,13 @@ SearchHeaderViewDelegate {
         configurePrototypeCell()
         configureCollectionView()
         // configureGradients()
+        configureAddTagButton()
         configureViewByTheme()
     }
 
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        filteredTags = TagSelectorViewController.tags
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        filteredTags = TagSelectorViewController.TagsHolder.tags
         collectionView.reloadData()
     }
     
@@ -95,7 +100,7 @@ SearchHeaderViewDelegate {
         if let nibViews = NSBundle.mainBundle().loadNibNamed("SearchHeaderView", owner: nil, options: nil) as? [UIView] {
             searchHeaderView = nibViews.first as SearchHeaderView
             searchHeaderView.delegate = self
-            searchHeaderView.searchTextField.clearButtonMode = .WhileEditing
+            searchHeaderView.searchTextField.clearButtonMode = .Always
             searchHeaderView.searchTextField.delegate = self
             searchHeaderView.searchTextField.placeholder = NSLocalizedString("Filter tags", comment: "Placeholder text for filter tags input box")
             searchHeaderView.searchTextField.addTarget(self, action: "filter", forControlEvents: .EditingChanged)
@@ -139,6 +144,16 @@ SearchHeaderViewDelegate {
         view.layer.addSublayer(bottomLayer)
     }
     
+    private func configureAddTagButton() {
+        addTagButtonInitialHeight = addTagButtonHeightConstraint.constant
+        addTagButton.setImage(
+            addTagButton.imageForState(.Normal)?.imageWithRenderingMode(.AlwaysTemplate),
+            forState: .Normal
+        )
+
+        hideAddTagButton()
+    }
+    
     private func configureViewByTheme() {
         switch theme {
         case .Onboarding:
@@ -150,6 +165,9 @@ SearchHeaderViewDelegate {
             titleTextLabel.textColor = UIColor.whiteColor()
             titleTextLabel.backgroundColor = UIColor.appTintColor()
             doneButton.backgroundColor = UIColor.appTintColor()
+            addTagButton.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.9)
+            addTagButton.setTitleColor(UIColor.appTintColor(), forState: .Normal)
+            addTagButton.tintColor = UIColor.appTintColor()
 
         case .Regular:
             break
@@ -258,6 +276,24 @@ SearchHeaderViewDelegate {
         dismissViewControllerAnimated(true, completion: nil)
     }
     
+    @IBAction func addTagButtedTapped(sender: AnyObject!) {
+        var tagName = searchHeaderView.searchTextField.text
+        tagName = tagName.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+        if tagName != "" {
+            // Add to source
+            TagSelectorViewController.TagsHolder.tags.append(tagName)
+            
+            // Add to selected
+            selectedTags.addObject(tagName)
+            
+            // Call filter again
+            filter()
+            
+            // Hide the button
+            hideAddTagButton()
+        }
+    }
+    
     // MARK: - SearchHeaderViewDelegate
 
     func didCancel(sender: UIView) {
@@ -271,15 +307,21 @@ SearchHeaderViewDelegate {
         let whitespaceCharacterSet = NSCharacterSet.whitespaceCharacterSet()
         let trimmedString = searchString.stringByTrimmingCharactersInSet(whitespaceCharacterSet).lowercaseString
         if trimmedString == "" {
-            filteredTags = TagSelectorViewController.tags
+            filteredTags = TagSelectorViewController.TagsHolder.tags
+            hideAddTagButton()
         }
         else {
             // We need to filter each time from the full set to handle backspace correctly.
             // We used filteredTags to make things specific but that only make sense when adding characters.
-            filteredTags = TagSelectorViewController.tags.filter({ $0.lowercaseString.hasPrefix(trimmedString) })
+            filteredTags = TagSelectorViewController.TagsHolder.tags.filter({ $0.lowercaseString.hasPrefix(trimmedString) })
+            addTagButton.setTitle(
+                NSString(format: NSLocalizedString("Add tag \"%@\"", comment: "Button title used when adding a tag with name %@"), trimmedString),
+                forState: .Normal
+            )
+            showAddTagButton()
         }
         
-        if filteredTags.count != TagSelectorViewController.tags.count || trimmedString == "" {
+        if filteredTags.count != TagSelectorViewController.TagsHolder.tags.count || trimmedString == "" {
             collectionView.reloadData()
         }
     }
@@ -288,6 +330,14 @@ SearchHeaderViewDelegate {
 
     func textFieldShouldClear(textField: UITextField) -> Bool {
         collectionView.reloadData()
+        
+        // If the user hits the clear button when there is no content, the intention most likely
+        // is to dismiss the view
+        if textField.text == "" {
+            dismissSearchField()
+        }
+        
+        hideAddTagButton()
         return true
     }
     
@@ -304,5 +354,17 @@ SearchHeaderViewDelegate {
     private func dismissSearchField() {
         searchHeaderView.searchTextField.text = ""
         searchHeaderView.searchTextField.resignFirstResponder()
+    }
+    
+    private func showAddTagButton() {
+        addTagButtonHeightConstraint.constant = addTagButtonInitialHeight
+        addTagButton.updateConstraints()
+        addTagButton.layoutIfNeeded()
+    }
+    
+    private func hideAddTagButton() {
+        addTagButtonHeightConstraint.constant = 0.0
+        addTagButton.updateConstraints()
+        addTagButton.layoutIfNeeded()
     }
 }
