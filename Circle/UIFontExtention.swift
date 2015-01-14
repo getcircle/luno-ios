@@ -19,6 +19,10 @@ extension UIFont {
     }
     
     class func lightFont() -> UIFont! {
-        return UIFont(name: "Avenir Light", size: 17.0)
+        return UIFont(name: "Avenir-Light", size: 17.0)
+    }
+    
+    class func lightFont(size: CGFloat) -> UIFont! {
+        return UIFont(name: "Avenir-Light", size: size)
     }
 }
