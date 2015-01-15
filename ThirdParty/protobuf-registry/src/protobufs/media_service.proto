@@ -13,6 +13,7 @@ message MediaService {
         message UploadInstructions {
             optional string upload_id = 1;
             optional string upload_url = 2;
+            optional string upload_key = 3;
         }
 
     }
@@ -23,7 +24,7 @@ message MediaService {
 
         message Request {
             optional MediaObject media_object = 1;
-            optional string key = 2;
+            optional string media_key = 2;
         }
 
         message Response {
@@ -36,8 +37,9 @@ message MediaService {
 
         message Request {
             optional MediaObject media_object = 1;
-            optional string key = 2;
-            optional string upload_id = 3;
+            optional string media_key = 2;
+            optional string upload_key = 3;
+            optional string upload_id = 4;
         }
 
         message Response {

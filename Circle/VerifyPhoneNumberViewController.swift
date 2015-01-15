@@ -166,7 +166,7 @@ class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate {
             return
         }
         
-        let code = phoneNumberField.text
+        let code = verificationCodeField.text
         if let user = AuthViewController.getLoggedInUser() {
             UserService.Actions.verifyVerificationCode(code, user: user) { (verified, error) -> Void in
                 if error == nil {

@@ -23,7 +23,7 @@ extension MediaService {
         ) {
             let requestBuilder = MediaService.StartImageUpload.Request.builder()
             requestBuilder.media_object = mediaObject
-            requestBuilder.key = key
+            requestBuilder.media_key = key
 
             let client = ServiceClient(serviceName: "media")
             client.callAction(
@@ -40,14 +40,16 @@ extension MediaService {
         
         class func completeImageUpload(
             mediaObject: MediaService.MediaObject,
-            key: String,
+            mediaKey: String,
             uploadId: String,
+            uploadKey: String,
             completionHandler: CompleteImageUploadCompletionHandler
         ) {
             let requestBuilder = MediaService.CompleteImageUpload.Request.builder()
             requestBuilder.media_object = mediaObject
-            requestBuilder.key = key
+            requestBuilder.media_key = mediaKey
             requestBuilder.upload_id = uploadId
+            requestBuilder.upload_key = uploadKey
             
             let client = ServiceClient(serviceName: "media")
             client.callAction(
@@ -70,7 +72,12 @@ extension MediaService {
                             println("progress \(totalBytesWritten): \(totalBytesExpectedToWrite)")
                         }
                         .response { (request, response, _, error) -> Void in
-                            Actions.completeImageUpload(.Profile, key: profileId, uploadId: instructions.upload_id) { (mediaURL, error) -> Void in
+                            Actions.completeImageUpload(
+                                .Profile,
+                                mediaKey: profileId,
+                                uploadId: instructions.upload_id,
+                                uploadKey: instructions.upload_key
+                            ) { (mediaURL, error) -> Void in
                                 completionHandler(mediaURL: mediaURL, error: error)
                             }
                         }
