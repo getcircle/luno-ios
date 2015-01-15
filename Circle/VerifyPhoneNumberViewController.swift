@@ -23,7 +23,8 @@ class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var verificationCodeFieldWidth: NSLayoutConstraint!
     
     private var activityIndicatorView: UIActivityIndicatorView?
-    private var bypassChecks = !ServiceHttpRequest.isPointingToProduction()
+//    private var bypassChecks = !ServiceHttpRequest.isPointingToProduction()
+    private var bypassChecks = true
     private var phoneNumberFormatter: NBAsYouTypeFormatter!
     private var codeDigits = 0
     private var transitionedToConfirmation = false

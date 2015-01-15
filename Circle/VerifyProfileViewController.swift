@@ -25,7 +25,17 @@ class VerifyProfileViewController:
     @IBOutlet weak private(set) var verifyTextLabel: UILabel!
 
     private var addImageActionSheet: UIAlertController?
-    private var profile: ProfileService.Containers.Profile!
+    private var profile: ProfileService.Containers.Profile! {
+        didSet {
+            // only set the staticProfile once
+            if staticProfile == nil {
+                let profileBuilder = profile.toBuilder()
+                staticProfile = profileBuilder.build()
+            }
+        }
+    }
+    // create a static copy to the profile we can compare with the "profile" object to detect changes
+    private var staticProfile: ProfileService.Containers.Profile?
     private var didUploadPhoto = false
 
     override func viewDidLoad() {
@@ -80,6 +90,10 @@ class VerifyProfileViewController:
     // MARK: - IBActions
     
     @IBAction func nextButtonTapped(sender: AnyObject!) {
+        for textField in [titleField, firstNameField, lastNameField] {
+            textField.resignFirstResponder()
+        }
+        
         let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
         activityIndicatorView.color = UIColor.appTintColor()
         activityIndicatorView.setTranslatesAutoresizingMaskIntoConstraints(false)
@@ -162,19 +176,35 @@ class VerifyProfileViewController:
     
     // MARK: - Helpers
     
+    private func isProfileDirty() -> Bool {
+        return staticProfile!.hashValue != profile.hashValue
+    }
+    
+    private func updateIfDirty(completion: () -> Void) {
+        if isProfileDirty() {
+            ProfileService.Actions.updateProfile(profile) { (profile, error) -> Void in
+                if let profile = profile {
+                    AuthViewController.updateUserProfile(profile)
+                }
+                completion()
+            }
+        } else {
+            completion()
+        }
+    }
+    
     private func handleImageUpload(completion: () -> Void) {
         if didUploadPhoto {
             MediaService.Actions.uploadProfileImage(profile.id, image: profileImageView.image!) { (mediaURL, error) -> Void in
                 if let mediaURL = mediaURL {
-                    let profileBuilder = self.profile.builder()
-                    profileBuilder.mergeFrom(self.profile)
+                    let profileBuilder = self.profile.toBuilder()
                     profileBuilder.image_url = mediaURL
                     AuthViewController.updateUserProfile(profileBuilder.build())
                     completion()
                 }
             }
         } else {
-            completion()
+            updateIfDirty(completion)
         }
     }
     
@@ -236,6 +266,20 @@ class VerifyProfileViewController:
     }
     
     func textFieldDidEndEditing(textField: UITextField) {
+        // update the profile fields
+        let text = textField.text
+        let builder = profile.toBuilder()
+        switch textField {
+        case firstNameField:
+            builder.first_name = text
+        case lastNameField:
+            builder.last_name = text
+        case titleField:
+            builder.title = text
+        default:
+            break
+        }
+        profile = builder.build()
         checkDataAndEnableNext()
     }
     

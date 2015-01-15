@@ -19,6 +19,7 @@ typealias GetExtendedProfileCompletionHandler = (
     error: NSError?
 ) -> Void
 typealias GetTagsCompletionHandler = (tags: Array<ProfileService.Containers.Tag>?, error: NSError?) -> Void
+typealias UpdateProfileCompletionHandler = (profile: ProfileService.Containers.Profile?, error: NSError?) -> Void
 
 extension ProfileService {
     class Actions {
@@ -99,6 +100,22 @@ extension ProfileService {
             ) { (_, _, _, actionResponse, error) -> Void in
                 let response = actionResponse?.result.getExtension(ProfileServiceRequests_get_tags) as? ProfileService.GetTags.Response
                 completionHandler(tags: response?.tags, error: error)
+            }
+        }
+        
+        class func updateProfile(profile: ProfileService.Containers.Profile, completionHandler: UpdateProfileCompletionHandler) {
+            let requestBuilder = ProfileService.UpdateProfile.Request.builder()
+            requestBuilder.profile = profile
+            
+            let client = ServiceClient(serviceName: "profile")
+            client.callAction(
+                "update_profile",
+                extensionField: ProfileServiceRequests_update_profile,
+                requestBuilder: requestBuilder) { (_, _, _, actionResponse, error) -> Void in
+                    let response = actionResponse?.result.getExtension(
+                        ProfileServiceRequests_update_profile
+                    ) as? ProfileService.UpdateProfile.Response
+                    completionHandler(profile: response?.profile, error: error)
             }
         }
         
