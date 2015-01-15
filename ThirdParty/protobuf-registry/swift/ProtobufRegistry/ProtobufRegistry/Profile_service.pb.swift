@@ -5566,7 +5566,7 @@ final public class ProfileService : GeneratedMessage {
           public private(set) var hasProfileId:Bool = false
           public private(set) var profile_id:String = ""
 
-          public private(set) var tag_ids:Array<String> = Array<String>()
+          public private(set) var tags:Array<ProfileService.Containers.Tag>  = Array<ProfileService.Containers.Tag>()
           required public init() {
                super.init()
           }
@@ -5577,10 +5577,8 @@ final public class ProfileService : GeneratedMessage {
             if hasProfileId {
               output.writeString(1, value:profile_id)
             }
-            if !tag_ids.isEmpty {
-              for oneValuetag_ids in tag_ids {
-                output.writeString(2, value:oneValuetag_ids)
-              }
+            for oneElementtags in tags {
+                output.writeMessage(2, value:oneElementtags)
             }
             unknownFields.writeToCodedOutputStream(output)
           }
@@ -5594,12 +5592,9 @@ final public class ProfileService : GeneratedMessage {
             if hasProfileId {
               size += WireFormat.computeStringSize(1, value:profile_id)
             }
-            var dataSizeTagIds:Int32 = 0
-            for oneValuetag_ids in tag_ids {
-                dataSizeTagIds += WireFormat.computeStringSizeNoTag(oneValuetag_ids)
+            for oneElementtags in tags {
+                size += WireFormat.computeMessageSize(2, value:oneElementtags)
             }
-            size += dataSizeTagIds
-            size += 1 * Int32(tag_ids.count)
             size += unknownFields.serializedSize()
             memoizedSerializedSize = size
             return size
@@ -5644,10 +5639,12 @@ final public class ProfileService : GeneratedMessage {
             if hasProfileId {
               output += "\(indent) profile_id: \(profile_id) \n"
             }
-            var tag_idsElementIndex:Int = 0
-            for oneValuetag_ids in tag_ids  {
-                output += "\(indent) tag_ids[\(tag_idsElementIndex)]: \(oneValuetag_ids)\n"
-                tag_idsElementIndex++
+            var tagsElementIndex:Int = 0
+            for oneElementtags in tags {
+                output += "\(indent) tags[\(tagsElementIndex)] {\n"
+                oneElementtags.writeDescriptionTo(&output, indent:"\(indent)  ")
+                output += "\(indent)}\n"
+                tagsElementIndex++
             }
             unknownFields.writeDescriptionTo(&output, indent:indent)
           }
@@ -5657,8 +5654,8 @@ final public class ProfileService : GeneratedMessage {
                   if hasProfileId {
                      hashCode = (hashCode &* 31) &+ profile_id.hashValue
                   }
-                  for oneValuetag_ids in tag_ids {
-                      hashCode = (hashCode &* 31) &+ oneValuetag_ids.hashValue
+                  for oneElementtags in tags {
+                      hashCode = (hashCode &* 31) &+ oneElementtags.hashValue
                   }
                   hashCode = (hashCode &* 31) &+  unknownFields.hashValue
                   return hashCode
@@ -5709,17 +5706,17 @@ final public class ProfileService : GeneratedMessage {
                builderResult.profile_id = ""
                return self
           }
-          public var tag_ids:Array<String> {
+          public var tags:Array<ProfileService.Containers.Tag> {
                get {
-                   return builderResult.tag_ids
+                   return builderResult.tags
                }
-               set (array) {
-                   builderResult.tag_ids = array
+               set (value) {
+                   builderResult.tags = value
                }
           }
-          public func clearTagIds() -> ProfileService.AddTags.RequestBuilder {
-             builderResult.tag_ids.removeAll(keepCapacity: false)
-             return self
+          public func clearTags() -> ProfileService.AddTags.RequestBuilder {
+            builderResult.tags.removeAll(keepCapacity: false)
+            return self
           }
           override public var internalGetResult:GeneratedMessage {
                get {
@@ -5745,8 +5742,8 @@ final public class ProfileService : GeneratedMessage {
             if other.hasProfileId {
                  profile_id = other.profile_id
             }
-            if !other.tag_ids.isEmpty {
-                builderResult.tag_ids += other.tag_ids
+            if !other.tags.isEmpty  {
+               builderResult.tags += other.tags
             }
             mergeUnknownFields(other.unknownFields)
             return self
@@ -5767,7 +5764,9 @@ final public class ProfileService : GeneratedMessage {
                 profile_id = input.readString()
 
               case 18 :
-                tag_ids += [input.readString()]
+                var subBuilder = ProfileService.Containers.Tag.builder()
+                input.readMessage(subBuilder,extensionRegistry:extensionRegistry)
+                tags += [subBuilder.buildPartial()]
 
               default:
                 if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {

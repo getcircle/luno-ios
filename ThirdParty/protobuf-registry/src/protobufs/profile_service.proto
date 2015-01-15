@@ -132,7 +132,7 @@ message ProfileService {
 
         message Request {
             optional string profile_id = 1;
-            repeated string tag_ids = 2;
+            repeated Containers.Tag tags = 2;
         }
 
         message Response {}
