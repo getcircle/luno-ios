@@ -29,6 +29,7 @@ private let LocksmithService = "LocksmithAuthTokenService"
 private let LocksmithAuthTokenKey = "LocksmithAuthToken"
 private let DefaultsUserKey = "DefaultsUserKey"
 private let DefaultsProfileKey = "DefaultsProfileKey"
+private let DefaultsLastLoggedInUserEmail = "DefaultsLastLoggedInUserEmail"
 
 class AuthViewController: UIViewController, UITextFieldDelegate {
 
@@ -73,12 +74,15 @@ class AuthViewController: UIViewController, UITextFieldDelegate {
         
         for textField in [emailField, passwordField] {
             textField.tintColor = UIColor.whiteColor()
-            textField.addRoundCorners()
             var textFieldLeftView = UIView(frame: CGRectMake(0.0, 0.0, 5.0, 30.0))
             textFieldLeftView.backgroundColor = UIColor.appTintColor()
             textFieldLeftView.opaque = true
             textField.leftView = textFieldLeftView
             textField.leftViewMode = .Always
+        }
+        
+        if let lastUsedEmail = NSUserDefaults.standardUserDefaults().objectForKey(DefaultsLastLoggedInUserEmail) as? String {
+            emailField.text = lastUsedEmail
         }
     }
     
@@ -120,7 +124,12 @@ class AuthViewController: UIViewController, UITextFieldDelegate {
             self.passwordField.alpha = 1.0
             self.passwordFieldBorderView.alpha = 1.0
         }, { (completed: Bool) -> Void in
-            self.emailField.becomeFirstResponder()
+            if self.emailField.text == "" {
+                self.emailField.becomeFirstResponder()
+            }
+            else {
+                self.passwordField.becomeFirstResponder()
+            }
             return
         })
     }
@@ -190,6 +199,9 @@ class AuthViewController: UIViewController, UITextFieldDelegate {
         
         // Cache user data in user defaults
         cacheUserData(user)
+        
+        // Cache email used
+        NSUserDefaults.standardUserDefaults().setObject(user.primary_email, forKey: DefaultsLastLoggedInUserEmail)
     }
     
     // MARK: - Loading State
@@ -243,11 +255,32 @@ class AuthViewController: UIViewController, UITextFieldDelegate {
     // MARK: - Log out
     
     class func logOut() {
+        // Clear keychain
+        if let user = LoggedInUserHolder.user {
+            Locksmith.deleteData(
+                forKey: LocksmithAuthTokenKey,
+                inService: LocksmithService,
+                forUserAccount: user.id
+            )
+        }
+        
+        // Remove local cached date
+        LoggedInUserHolder.profile = nil
+        LoggedInUserHolder.user = nil
+        LoggedInUserHolder.token = nil
+        SearchCache.sharedInstance.reset(self)
+        
+        // Remove persistent cached data
+        NSUserDefaults.standardUserDefaults().removeObjectForKey(DefaultsUserKey)
+        NSUserDefaults.standardUserDefaults().removeObjectForKey(DefaultsProfileKey)
+        
+        // Notify everyone
         NSNotificationCenter.defaultCenter().postNotificationName(
             AuthNotifications.onLogoutNotification,
             object: nil
         )
-        LoggedInUserHolder.user = nil
+        
+        // Present auth view
         AuthViewController.presentAuthViewController()
     }
     

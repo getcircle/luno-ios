@@ -63,7 +63,7 @@ class SearchCache {
     init() {
         repopulate()
     }
-    
+        
     // given the query, search the local objects we have cached
     func search(query: String) -> (SearchResults?, NSError?){
         var searchTerms = query.componentsSeparatedByString(" ")
@@ -166,5 +166,11 @@ class SearchCache {
         addresses: Array<OrganizationService.Containers.Address>?
     ) {
         
+    }
+    
+    func reset(sender: AnyObject!) {
+        profiles.removeAll(keepCapacity: false)
+        addresses.removeAll(keepCapacity: false)
+        teams.removeAll(keepCapacity: false)
     }
 }
