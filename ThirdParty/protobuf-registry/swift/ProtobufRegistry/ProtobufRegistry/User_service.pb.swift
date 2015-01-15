@@ -396,9 +396,6 @@ final public class UserService : GeneratedMessage {
             return returnMe
           }
           public func mergeFrom(other:UserService.Containers.User) -> UserService.Containers.UserBuilder {
-            if (other == UserService.Containers.User()) {
-             return self
-            }
             if other.hasId {
                  id = other.id
             }
@@ -577,9 +574,6 @@ final public class UserService : GeneratedMessage {
         return returnMe
       }
       public func mergeFrom(other:UserService.Containers) -> UserService.ContainersBuilder {
-        if (other == UserService.Containers()) {
-         return self
-        }
         mergeUnknownFields(other.unknownFields)
         return self
       }
@@ -808,9 +802,6 @@ final public class UserService : GeneratedMessage {
             return returnMe
           }
           public func mergeFrom(other:UserService.CreateUser.Request) -> UserService.CreateUser.RequestBuilder {
-            if (other == UserService.CreateUser.Request()) {
-             return self
-            }
             if other.hasPassword {
                  password = other.password
             }
@@ -1025,9 +1016,6 @@ final public class UserService : GeneratedMessage {
             return returnMe
           }
           public func mergeFrom(other:UserService.CreateUser.Response) -> UserService.CreateUser.ResponseBuilder {
-            if (other == UserService.CreateUser.Response()) {
-             return self
-            }
             if (other.hasUser) {
                 mergeUser(other.user)
             }
@@ -1187,9 +1175,6 @@ final public class UserService : GeneratedMessage {
         return returnMe
       }
       public func mergeFrom(other:UserService.CreateUser) -> UserService.CreateUserBuilder {
-        if (other == UserService.CreateUser()) {
-         return self
-        }
         mergeUnknownFields(other.unknownFields)
         return self
       }
@@ -1397,9 +1382,6 @@ final public class UserService : GeneratedMessage {
             return returnMe
           }
           public func mergeFrom(other:UserService.UpdateUser.Request) -> UserService.UpdateUser.RequestBuilder {
-            if (other == UserService.UpdateUser.Request()) {
-             return self
-            }
             if (other.hasUser) {
                 mergeUser(other.user)
             }
@@ -1613,9 +1595,6 @@ final public class UserService : GeneratedMessage {
             return returnMe
           }
           public func mergeFrom(other:UserService.UpdateUser.Response) -> UserService.UpdateUser.ResponseBuilder {
-            if (other == UserService.UpdateUser.Response()) {
-             return self
-            }
             if (other.hasUser) {
                 mergeUser(other.user)
             }
@@ -1775,9 +1754,6 @@ final public class UserService : GeneratedMessage {
         return returnMe
       }
       public func mergeFrom(other:UserService.UpdateUser) -> UserService.UpdateUserBuilder {
-        if (other == UserService.UpdateUser()) {
-         return self
-        }
         mergeUnknownFields(other.unknownFields)
         return self
       }
@@ -2018,9 +1994,6 @@ final public class UserService : GeneratedMessage {
             return returnMe
           }
           public func mergeFrom(other:UserService.GetUser.Request) -> UserService.GetUser.RequestBuilder {
-            if (other == UserService.GetUser.Request()) {
-             return self
-            }
             if other.hasEmail {
                  email = other.email
             }
@@ -2229,9 +2202,6 @@ final public class UserService : GeneratedMessage {
             return returnMe
           }
           public func mergeFrom(other:UserService.GetUser.Response) -> UserService.GetUser.ResponseBuilder {
-            if (other == UserService.GetUser.Response()) {
-             return self
-            }
             if (other.hasUser) {
                 mergeUser(other.user)
             }
@@ -2391,9 +2361,6 @@ final public class UserService : GeneratedMessage {
         return returnMe
       }
       public func mergeFrom(other:UserService.GetUser) -> UserService.GetUserBuilder {
-        if (other == UserService.GetUser()) {
-         return self
-        }
         mergeUnknownFields(other.unknownFields)
         return self
       }
@@ -2587,9 +2554,6 @@ final public class UserService : GeneratedMessage {
             return returnMe
           }
           public func mergeFrom(other:UserService.ValidUser.Request) -> UserService.ValidUser.RequestBuilder {
-            if (other == UserService.ValidUser.Request()) {
-             return self
-            }
             if other.hasUserId {
                  user_id = other.user_id
             }
@@ -2784,9 +2748,6 @@ final public class UserService : GeneratedMessage {
             return returnMe
           }
           public func mergeFrom(other:UserService.ValidUser.Response) -> UserService.ValidUser.ResponseBuilder {
-            if (other == UserService.ValidUser.Response()) {
-             return self
-            }
             if other.hasExists {
                  exists = other.exists
             }
@@ -2941,9 +2902,6 @@ final public class UserService : GeneratedMessage {
         return returnMe
       }
       public func mergeFrom(other:UserService.ValidUser) -> UserService.ValidUserBuilder {
-        if (other == UserService.ValidUser()) {
-         return self
-        }
         mergeUnknownFields(other.unknownFields)
         return self
       }
@@ -3177,9 +3135,6 @@ final public class UserService : GeneratedMessage {
                 return returnMe
               }
               public func mergeFrom(other:UserService.AuthenticateUser.Request.Credentials) -> UserService.AuthenticateUser.Request.CredentialsBuilder {
-                if (other == UserService.AuthenticateUser.Request.Credentials()) {
-                 return self
-                }
                 if other.hasKey {
                      key = other.key
                 }
@@ -3442,9 +3397,6 @@ final public class UserService : GeneratedMessage {
             return returnMe
           }
           public func mergeFrom(other:UserService.AuthenticateUser.Request) -> UserService.AuthenticateUser.RequestBuilder {
-            if (other == UserService.AuthenticateUser.Request()) {
-             return self
-            }
             if other.hasBackend {
                  backend = other.backend
             }
@@ -3739,9 +3691,6 @@ final public class UserService : GeneratedMessage {
             return returnMe
           }
           public func mergeFrom(other:UserService.AuthenticateUser.Response) -> UserService.AuthenticateUser.ResponseBuilder {
-            if (other == UserService.AuthenticateUser.Response()) {
-             return self
-            }
             if (other.hasUser) {
                 mergeUser(other.user)
             }
@@ -3913,9 +3862,6 @@ final public class UserService : GeneratedMessage {
         return returnMe
       }
       public func mergeFrom(other:UserService.AuthenticateUser) -> UserService.AuthenticateUserBuilder {
-        if (other == UserService.AuthenticateUser()) {
-         return self
-        }
         mergeUnknownFields(other.unknownFields)
         return self
       }
@@ -4109,9 +4055,6 @@ final public class UserService : GeneratedMessage {
             return returnMe
           }
           public func mergeFrom(other:UserService.SendVerificationCode.Request) -> UserService.SendVerificationCode.RequestBuilder {
-            if (other == UserService.SendVerificationCode.Request()) {
-             return self
-            }
             if other.hasUserId {
                  user_id = other.user_id
             }
@@ -4306,9 +4249,6 @@ final public class UserService : GeneratedMessage {
             return returnMe
           }
           public func mergeFrom(other:UserService.SendVerificationCode.Response) -> UserService.SendVerificationCode.ResponseBuilder {
-            if (other == UserService.SendVerificationCode.Response()) {
-             return self
-            }
             if other.hasMessageId {
                  message_id = other.message_id
             }
@@ -4463,9 +4403,6 @@ final public class UserService : GeneratedMessage {
         return returnMe
       }
       public func mergeFrom(other:UserService.SendVerificationCode) -> UserService.SendVerificationCodeBuilder {
-        if (other == UserService.SendVerificationCode()) {
-         return self
-        }
         mergeUnknownFields(other.unknownFields)
         return self
       }
@@ -4694,9 +4631,6 @@ final public class UserService : GeneratedMessage {
             return returnMe
           }
           public func mergeFrom(other:UserService.VerifyVerificationCode.Request) -> UserService.VerifyVerificationCode.RequestBuilder {
-            if (other == UserService.VerifyVerificationCode.Request()) {
-             return self
-            }
             if other.hasUserId {
                  user_id = other.user_id
             }
@@ -4897,9 +4831,6 @@ final public class UserService : GeneratedMessage {
             return returnMe
           }
           public func mergeFrom(other:UserService.VerifyVerificationCode.Response) -> UserService.VerifyVerificationCode.ResponseBuilder {
-            if (other == UserService.VerifyVerificationCode.Response()) {
-             return self
-            }
             if other.hasVerified {
                  verified = other.verified
             }
@@ -5054,9 +4985,6 @@ final public class UserService : GeneratedMessage {
         return returnMe
       }
       public func mergeFrom(other:UserService.VerifyVerificationCode) -> UserService.VerifyVerificationCodeBuilder {
-        if (other == UserService.VerifyVerificationCode()) {
-         return self
-        }
         mergeUnknownFields(other.unknownFields)
         return self
       }
@@ -5205,9 +5133,6 @@ final public class UserServiceBuilder : GeneratedMessageBuilder {
     return returnMe
   }
   public func mergeFrom(other:UserService) -> UserServiceBuilder {
-    if (other == UserService()) {
-     return self
-    }
     mergeUnknownFields(other.unknownFields)
     return self
   }

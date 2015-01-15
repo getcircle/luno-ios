@@ -251,9 +251,6 @@ final public class MediaService : GeneratedMessage {
             return returnMe
           }
           public func mergeFrom(other:MediaService.Containers.UploadInstructions) -> MediaService.Containers.UploadInstructionsBuilder {
-            if (other == MediaService.Containers.UploadInstructions()) {
-             return self
-            }
             if other.hasUploadId {
                  upload_id = other.upload_id
             }
@@ -414,9 +411,6 @@ final public class MediaService : GeneratedMessage {
         return returnMe
       }
       public func mergeFrom(other:MediaService.Containers) -> MediaService.ContainersBuilder {
-        if (other == MediaService.Containers()) {
-         return self
-        }
         mergeUnknownFields(other.unknownFields)
         return self
       }
@@ -644,9 +638,6 @@ final public class MediaService : GeneratedMessage {
             return returnMe
           }
           public func mergeFrom(other:MediaService.StartImageUpload.Request) -> MediaService.StartImageUpload.RequestBuilder {
-            if (other == MediaService.StartImageUpload.Request()) {
-             return self
-            }
             if other.hasMediaObject {
                  media_object = other.media_object
             }
@@ -866,9 +857,6 @@ final public class MediaService : GeneratedMessage {
             return returnMe
           }
           public func mergeFrom(other:MediaService.StartImageUpload.Response) -> MediaService.StartImageUpload.ResponseBuilder {
-            if (other == MediaService.StartImageUpload.Response()) {
-             return self
-            }
             if (other.hasUploadInstructions) {
                 mergeUploadInstructions(other.upload_instructions)
             }
@@ -1028,9 +1016,6 @@ final public class MediaService : GeneratedMessage {
         return returnMe
       }
       public func mergeFrom(other:MediaService.StartImageUpload) -> MediaService.StartImageUploadBuilder {
-        if (other == MediaService.StartImageUpload()) {
-         return self
-        }
         mergeUnknownFields(other.unknownFields)
         return self
       }
@@ -1293,9 +1278,6 @@ final public class MediaService : GeneratedMessage {
             return returnMe
           }
           public func mergeFrom(other:MediaService.CompleteImageUpload.Request) -> MediaService.CompleteImageUpload.RequestBuilder {
-            if (other == MediaService.CompleteImageUpload.Request()) {
-             return self
-            }
             if other.hasMediaObject {
                  media_object = other.media_object
             }
@@ -1507,9 +1489,6 @@ final public class MediaService : GeneratedMessage {
             return returnMe
           }
           public func mergeFrom(other:MediaService.CompleteImageUpload.Response) -> MediaService.CompleteImageUpload.ResponseBuilder {
-            if (other == MediaService.CompleteImageUpload.Response()) {
-             return self
-            }
             if other.hasMediaUrl {
                  media_url = other.media_url
             }
@@ -1664,9 +1643,6 @@ final public class MediaService : GeneratedMessage {
         return returnMe
       }
       public func mergeFrom(other:MediaService.CompleteImageUpload) -> MediaService.CompleteImageUploadBuilder {
-        if (other == MediaService.CompleteImageUpload()) {
-         return self
-        }
         mergeUnknownFields(other.unknownFields)
         return self
       }
@@ -1834,9 +1810,6 @@ final public class MediaServiceBuilder : GeneratedMessageBuilder {
     return returnMe
   }
   public func mergeFrom(other:MediaService) -> MediaServiceBuilder {
-    if (other == MediaService()) {
-     return self
-    }
     mergeUnknownFields(other.unknownFields)
     return self
   }

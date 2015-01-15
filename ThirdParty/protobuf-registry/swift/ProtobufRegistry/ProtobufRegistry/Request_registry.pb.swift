@@ -495,9 +495,6 @@ final public class UserServiceRequestsBuilder : GeneratedMessageBuilder {
     return returnMe
   }
   public func mergeFrom(other:UserServiceRequests) -> UserServiceRequestsBuilder {
-    if (other == UserServiceRequests()) {
-     return self
-    }
     mergeUnknownFields(other.unknownFields)
     return self
   }
@@ -673,9 +670,6 @@ final public class OrganizationServiceRequestsBuilder : GeneratedMessageBuilder 
     return returnMe
   }
   public func mergeFrom(other:OrganizationServiceRequests) -> OrganizationServiceRequestsBuilder {
-    if (other == OrganizationServiceRequests()) {
-     return self
-    }
     mergeUnknownFields(other.unknownFields)
     return self
   }
@@ -863,9 +857,6 @@ final public class ProfileServiceRequestsBuilder : GeneratedMessageBuilder {
     return returnMe
   }
   public func mergeFrom(other:ProfileServiceRequests) -> ProfileServiceRequestsBuilder {
-    if (other == ProfileServiceRequests()) {
-     return self
-    }
     mergeUnknownFields(other.unknownFields)
     return self
   }
@@ -1014,9 +1005,6 @@ final public class SearchServiceRequestsBuilder : GeneratedMessageBuilder {
     return returnMe
   }
   public func mergeFrom(other:SearchServiceRequests) -> SearchServiceRequestsBuilder {
-    if (other == SearchServiceRequests()) {
-     return self
-    }
     mergeUnknownFields(other.unknownFields)
     return self
   }
@@ -1165,9 +1153,6 @@ final public class LandingServiceRequestsBuilder : GeneratedMessageBuilder {
     return returnMe
   }
   public func mergeFrom(other:LandingServiceRequests) -> LandingServiceRequestsBuilder {
-    if (other == LandingServiceRequests()) {
-     return self
-    }
     mergeUnknownFields(other.unknownFields)
     return self
   }
@@ -1319,9 +1304,6 @@ final public class MediaServiceRequestsBuilder : GeneratedMessageBuilder {
     return returnMe
   }
   public func mergeFrom(other:MediaServiceRequests) -> MediaServiceRequestsBuilder {
-    if (other == MediaServiceRequests()) {
-     return self
-    }
     mergeUnknownFields(other.unknownFields)
     return self
   }

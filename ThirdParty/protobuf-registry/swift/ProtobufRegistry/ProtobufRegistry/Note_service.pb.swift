@@ -305,9 +305,6 @@ final public class NoteService : GeneratedMessage {
             return returnMe
           }
           public func mergeFrom(other:NoteService.Containers.Note) -> NoteService.Containers.NoteBuilder {
-            if (other == NoteService.Containers.Note()) {
-             return self
-            }
             if other.hasId {
                  id = other.id
             }
@@ -480,9 +477,6 @@ final public class NoteService : GeneratedMessage {
         return returnMe
       }
       public func mergeFrom(other:NoteService.Containers) -> NoteService.ContainersBuilder {
-        if (other == NoteService.Containers()) {
-         return self
-        }
         mergeUnknownFields(other.unknownFields)
         return self
       }
@@ -631,9 +625,6 @@ final public class NoteServiceBuilder : GeneratedMessageBuilder {
     return returnMe
   }
   public func mergeFrom(other:NoteService) -> NoteServiceBuilder {
-    if (other == NoteService()) {
-     return self
-    }
     mergeUnknownFields(other.unknownFields)
     return self
   }
