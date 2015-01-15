@@ -23,7 +23,7 @@ extension UIView {
         layer.addAnimation(animation, forKey: "position")
     }
     
-    func addBottomBorder() {
+    func addBottomBorder() -> UIView {
         var borderView = UIView(forAutoLayout: ())
         borderView.backgroundColor = UIColor.separatorViewColor()
         if let parentView = superview {
@@ -33,5 +33,7 @@ extension UIView {
             borderView.autoMatchDimension(.Width, toDimension: .Width, ofView: self)
             borderView.autoSetDimension(.Height, toSize: 0.5)
         }
+        
+        return borderView
     }
 }

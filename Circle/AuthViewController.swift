@@ -32,13 +32,16 @@ private let DefaultsProfileKey = "DefaultsProfileKey"
 
 class AuthViewController: UIViewController, UITextFieldDelegate {
 
-    @IBOutlet weak var emailField: UITextField!
-    @IBOutlet weak var passwordField: UITextField!
-    @IBOutlet weak var logInButton: UIButton!
     @IBOutlet weak var appNameLabel: UILabel!
+    @IBOutlet weak var appNameYConstraint: NSLayoutConstraint!
+    @IBOutlet weak var emailField: CircleTextField!
+    @IBOutlet weak var logInButton: UIButton!
+    @IBOutlet weak var passwordField: CircleTextField!
     @IBOutlet weak var tagLineLabel: UILabel!
     
-    @IBOutlet weak var appNameYConstraint: NSLayoutConstraint!
+    private var emailFieldBorderView: UIView!
+    private var passwordFieldBorderView: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -64,21 +67,19 @@ class AuthViewController: UIViewController, UITextFieldDelegate {
     // MARK: - Configuration
     
     private func configureView() {
-        emailField.addRoundCorners()
-        passwordField.addRoundCorners()
+        emailFieldBorderView = emailField.addBottomBorder()
+        passwordFieldBorderView = passwordField.addBottomBorder()
         logInButton.addRoundCorners()
         
-        let emailFieldLeftView = UIView(frame: CGRectMake(0.0, 0.0, 10.0, 30.0))
-        emailFieldLeftView.backgroundColor = UIColor.whiteColor()
-        emailFieldLeftView.opaque = true
-        emailField.leftView = emailFieldLeftView
-        emailField.leftViewMode = .Always
-        
-        let passwordFieldLeftView = UIView(frame: CGRectMake(0.0, 0.0, 10.0, 30.0))
-        passwordFieldLeftView.backgroundColor = UIColor.whiteColor()
-        passwordFieldLeftView.opaque = true
-        passwordField.leftView = passwordFieldLeftView
-        passwordField.leftViewMode = .Always
+        for textField in [emailField, passwordField] {
+            textField.tintColor = UIColor.whiteColor()
+            textField.addRoundCorners()
+            var textFieldLeftView = UIView(frame: CGRectMake(0.0, 0.0, 5.0, 30.0))
+            textFieldLeftView.backgroundColor = UIColor.appTintColor()
+            textFieldLeftView.opaque = true
+            textField.leftView = textFieldLeftView
+            textField.leftViewMode = .Always
+        }
     }
     
     // MARK: - Initial Animation
@@ -88,10 +89,12 @@ class AuthViewController: UIViewController, UITextFieldDelegate {
         appNameLabel.setNeedsUpdateConstraints()
         UIView.animateWithDuration(0.7, animations: { () -> Void in
             self.appNameLabel.layoutIfNeeded()
-            self.tagLineLabel.layoutIfNeeded()
             self.emailField.layoutIfNeeded()
-            self.passwordField.layoutIfNeeded()
+            self.emailFieldBorderView.alpha = 0.0
             self.logInButton.layoutIfNeeded()
+            self.passwordField.layoutIfNeeded()
+            self.passwordFieldBorderView.alpha = 0.0
+            self.tagLineLabel.layoutIfNeeded()
         }, { (completed: Bool) -> Void in
             self.showFieldsAndControls(true)
         })
@@ -101,8 +104,10 @@ class AuthViewController: UIViewController, UITextFieldDelegate {
         let duration = animated ? 0.3 : 0.0
         UIView.animateWithDuration(duration, animations: { () -> Void in
             self.emailField.alpha = 0.0
-            self.passwordField.alpha = 0.0
+            self.emailFieldBorderView.alpha = 0.0
             self.logInButton.alpha = 0.0
+            self.passwordField.alpha = 0.0
+            self.passwordFieldBorderView.alpha = 0.0
         })
     }
     
@@ -110,8 +115,10 @@ class AuthViewController: UIViewController, UITextFieldDelegate {
         let duration = animated ? 0.5 : 0.0
         UIView.animateWithDuration(duration, animations: { () -> Void in
             self.emailField.alpha = 1.0
-            self.passwordField.alpha = 1.0
+            self.emailFieldBorderView.alpha = 1.0
             self.logInButton.alpha = 1.0
+            self.passwordField.alpha = 1.0
+            self.passwordFieldBorderView.alpha = 1.0
         }, { (completed: Bool) -> Void in
             self.emailField.becomeFirstResponder()
             return

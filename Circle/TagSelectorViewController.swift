@@ -343,11 +343,7 @@ SearchHeaderViewDelegate {
             // We need to filter each time from the full set to handle backspace correctly.
             // We used filteredTags to make things specific but that only make sense when adding characters.
             filteredTags = TagsHolder.tagObjects.filter({ $0.name.lowercaseString.hasPrefix(trimmedString) })
-            addTagButton.setTitle(
-                NSString(format: NSLocalizedString("Add tag \"%@\"", comment: "Button title used when adding a tag with name %@"), trimmedString),
-                forState: .Normal
-            )
-            showAddTagButton()
+            showAddTagButton(trimmedString)
         }
         
         if filteredTags.count != TagsHolder.tags.count || trimmedString == "" {
@@ -402,7 +398,11 @@ SearchHeaderViewDelegate {
         searchHeaderView.searchTextField.resignFirstResponder()
     }
     
-    private func showAddTagButton() {
+    private func showAddTagButton(tagName: String) {
+        addTagButton.setTitle(
+            NSString(format: NSLocalizedString("Add tag \"%@\"", comment: "Button title used when adding a tag with name %@"), tagName),
+            forState: .Normal
+        )
         addTagButtonHeightConstraint.constant = addTagButtonInitialHeight
         addTagButton.updateConstraints()
         addTagButton.layoutIfNeeded()

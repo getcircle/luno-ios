@@ -53,6 +53,7 @@
 		8F65C5071A52661700C7F3E6 /* TagsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F65C5051A52661700C7F3E6 /* TagsCollectionViewCell.swift */; };
 		8F65C5081A52661700C7F3E6 /* TagsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F65C5061A52661700C7F3E6 /* TagsCollectionViewCell.xib */; };
 		8F682F411A65F9090066BDEE /* TagSelectorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F682F401A65F9090066BDEE /* TagSelectorViewController.xib */; };
+		8F682F521A67AF360066BDEE /* CircleTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F682F511A67AF360066BDEE /* CircleTextField.swift */; };
 		8F81713C1A62E07000CB7692 /* VerifyProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F81713A1A62E07000CB7692 /* VerifyProfileViewController.swift */; };
 		8F81713D1A62E07000CB7692 /* VerifyProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F81713B1A62E07000CB7692 /* VerifyProfileViewController.xib */; };
 		8FC7BB3B1A58A6E2005BDDDB /* CardDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC7BB3A1A58A6E2005BDDDB /* CardDataSource.swift */; };
@@ -243,6 +244,7 @@
 		8F65C5051A52661700C7F3E6 /* TagsCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagsCollectionViewCell.swift; sourceTree = "<group>"; };
 		8F65C5061A52661700C7F3E6 /* TagsCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TagsCollectionViewCell.xib; sourceTree = "<group>"; };
 		8F682F401A65F9090066BDEE /* TagSelectorViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TagSelectorViewController.xib; sourceTree = "<group>"; };
+		8F682F511A67AF360066BDEE /* CircleTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleTextField.swift; sourceTree = "<group>"; };
 		8F81713A1A62E07000CB7692 /* VerifyProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerifyProfileViewController.swift; sourceTree = "<group>"; };
 		8F81713B1A62E07000CB7692 /* VerifyProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VerifyProfileViewController.xib; sourceTree = "<group>"; };
 		8FC7BB3A1A58A6E2005BDDDB /* CardDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardDataSource.swift; sourceTree = "<group>"; };
@@ -570,6 +572,7 @@
 		8FF298511A4E2B3300306CFC /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				8F682F511A67AF360066BDEE /* CircleTextField.swift */,
 				8FF2984C1A4E29F400306CFC /* PaddedLabel.swift */,
 			);
 			name = Common;
@@ -921,6 +924,7 @@
 				8FF298471A4E050100306CFC /* TagCollectionViewCell.swift in Sources */,
 				8FD907F91A6070D70025A17B /* MapViewController.swift in Sources */,
 				8F22CBF11A2844F50026376E /* UINavigationBarExtension.swift in Sources */,
+				8F682F521A67AF360066BDEE /* CircleTextField.swift in Sources */,
 				8F81713C1A62E07000CB7692 /* VerifyProfileViewController.swift in Sources */,
 				8F2D7DF01A5B2412001D36B0 /* ProfilesDataSource.swift in Sources */,
 				8FC7BB3B1A58A6E2005BDDDB /* CardDataSource.swift in Sources */,

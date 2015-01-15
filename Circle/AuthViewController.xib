@@ -9,9 +9,9 @@
             <connections>
                 <outlet property="appNameLabel" destination="7eh-3f-DhV" id="I1t-aw-slU"/>
                 <outlet property="appNameYConstraint" destination="r1U-Zo-1z7" id="3DH-oD-NWA"/>
-                <outlet property="emailField" destination="x4p-Uh-3t5" id="3Bc-Rw-btP"/>
+                <outlet property="emailField" destination="x4p-Uh-3t5" id="jj4-he-uxx"/>
                 <outlet property="logInButton" destination="aie-sS-pXs" id="zfO-wP-e3y"/>
-                <outlet property="passwordField" destination="faS-m0-daM" id="j6g-aP-P7L"/>
+                <outlet property="passwordField" destination="faS-m0-daM" id="sFC-GE-qsU"/>
                 <outlet property="tagLineLabel" destination="pK5-tP-ZNS" id="hiX-b0-xSM"/>
                 <outlet property="view" destination="ba3-xx-xRk" id="XSY-D5-AkP"/>
             </connections>
@@ -39,12 +39,13 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <textField clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="x4p-Uh-3t5">
+                <textField clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="email@yourcompany.com" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="x4p-Uh-3t5" customClass="CircleTextField" customModule="Circle" customModuleProvider="target">
                     <rect key="frame" x="20" y="303" width="560" height="35"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="35" id="wqu-FP-Y81"/>
                     </constraints>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" keyboardAppearance="alert" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                     <connections>
@@ -52,13 +53,13 @@
                     </connections>
                 </textField>
                 <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aie-sS-pXs">
-                    <rect key="frame" x="180" y="423" width="240" height="44"/>
+                    <rect key="frame" x="180" y="433" width="240" height="44"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="240" id="MGZ-XU-QqL"/>
                         <constraint firstAttribute="height" constant="44" id="NJT-DL-vlX"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="20"/>
+                    <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="20"/>
                     <color key="tintColor" red="0.88235294119999996" green="0.15686274510000001" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
                     <state key="normal" title="Log In">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -68,12 +69,13 @@
                         <action selector="logInButtonPressed:" destination="-1" eventType="touchUpInside" id="3jQ-Pk-2XZ"/>
                     </connections>
                 </button>
-                <textField clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="faS-m0-daM" userLabel="Password">
+                <textField clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="password" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="faS-m0-daM" userLabel="Password" customClass="CircleTextField" customModule="Circle" customModuleProvider="target">
                     <rect key="frame" x="20" y="358" width="560" height="35"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="35" id="GFh-hc-k2E"/>
                     </constraints>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" keyboardAppearance="alert" returnKeyType="go" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
                     <connections>
@@ -85,7 +87,7 @@
             <constraints>
                 <constraint firstItem="7eh-3f-DhV" firstAttribute="leading" secondItem="ba3-xx-xRk" secondAttribute="leading" constant="20" symbolic="YES" id="0ah-93-zJK"/>
                 <constraint firstItem="faS-m0-daM" firstAttribute="top" secondItem="x4p-Uh-3t5" secondAttribute="bottom" constant="20" id="5BW-Rz-L5d"/>
-                <constraint firstItem="aie-sS-pXs" firstAttribute="top" secondItem="faS-m0-daM" secondAttribute="bottom" constant="30" id="5cl-h8-CV5"/>
+                <constraint firstItem="aie-sS-pXs" firstAttribute="top" secondItem="faS-m0-daM" secondAttribute="bottom" constant="40" id="5cl-h8-CV5"/>
                 <constraint firstAttribute="centerX" secondItem="x4p-Uh-3t5" secondAttribute="centerX" id="8Ah-QW-Aiy"/>
                 <constraint firstAttribute="trailing" secondItem="aew-4r-Rd2" secondAttribute="trailing" constant="20" symbolic="YES" id="Ac7-U5-O2t"/>
                 <constraint firstAttribute="bottom" secondItem="aew-4r-Rd2" secondAttribute="bottom" constant="20" id="CwW-qB-F2K"/>
