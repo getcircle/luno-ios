@@ -31,6 +31,9 @@ CardHeaderViewDelegate {
         configureNavigationButtons()
         configureSearchHeaderView()
         configureCollectionView()
+    
+        // Register Notifications
+        registerNotifications()
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -43,6 +46,8 @@ CardHeaderViewDelegate {
                 self.collectionView.reloadData()
             }
         }
+        
+        
     }
 
     // MARK: - Configuration
@@ -138,9 +143,21 @@ CardHeaderViewDelegate {
         case .Locations:
             let viewController = LocationDetailViewController()
             navigationController?.pushViewController(viewController, animated: true)
-
+            
         default:
             performSegueWithIdentifier("showListOfPeople", sender: collectionView)
+        }
+    }
+    
+    //MARK: - Tag Selected Notification
+    
+    func didSelectTag(notification: NSNotification) {
+        if let userInfo = notification.userInfo {
+            if let selectedTag = userInfo["tag"] as? ProfileService.Containers.Tag {
+                let viewController = TagDetailViewController()
+                (viewController.dataSource as TagDetailDataSource).selectedTag = selectedTag
+                navigationController?.pushViewController(viewController, animated: true)
+            }
         }
     }
     
@@ -196,5 +213,20 @@ CardHeaderViewDelegate {
         let verifyPhoneNumberVC = VerifyPhoneNumberViewController(nibName: "VerifyPhoneNumberViewController", bundle: nil)
         let onboardingNavigationController = UINavigationController(rootViewController: verifyPhoneNumberVC)
         presentViewController(onboardingNavigationController, animated: true, completion: nil)
+    }
+    
+    // MARK: - Notifications
+    
+    private func registerNotifications() {
+        NSNotificationCenter.defaultCenter().addObserver(
+            self,
+            selector: "didSelectTag:",
+            name: TagsCollectionViewCellNotifications.onTagSelectedNotification,
+            object: nil
+        )
+    }
+    
+    private func deregisterNotifications() {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
 }

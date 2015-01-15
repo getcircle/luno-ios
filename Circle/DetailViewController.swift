@@ -34,7 +34,7 @@ class DetailViewController: UIViewController, UICollectionViewDelegate, MFMailCo
         customInit()
     }
     
-    private func customInit() {
+    func customInit() {
         automaticallyAdjustsScrollViewInsets = false
         extendedLayoutIncludesOpaqueBars = true
     }

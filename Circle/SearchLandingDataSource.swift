@@ -50,14 +50,16 @@ class SearchLandingDataSource: CardDataSource {
         
         var tagsCard = Card(cardType: .Tags, title: "Tags")
         tagsCard.contentCount = 30
-        var tags = [[String: String]]()
-        tags.append(["name": "Python"])
-        tags.append(["name": "Startups"])
-        tags.append(["name": "Investing"])
-        tags.append(["name": "iOS"])
-        tags.append(["name": "Software Development"])
-        tags.append(["name": "Marketing"])
-        tagsCard.content.append(tags)
+        let tagsNames = ["Python", "Startups", "Investing", "iOS", "Software Development", "Marketing"]
+        var tagObjects = Array<ProfileService.Containers.Tag>()
+
+        for tagName in tagsNames {
+            var tagObject = ProfileService.Containers.Tag.builder()
+            tagObject.name = tagName
+            tagObjects.append(tagObject.build())
+        }
+
+        tagsCard.content.append(tagObjects)
         appendCard(tagsCard)
     }
     

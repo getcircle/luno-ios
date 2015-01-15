@@ -7,6 +7,11 @@
 //
 
 import UIKit
+import ProtobufRegistry
+
+struct TagsCollectionViewCellNotifications {
+    static let onTagSelectedNotification = "com.ravcode.notification:onTagSelectedNotification"
+}
 
 class TagsCollectionViewCell: CircleCollectionViewCell, UICollectionViewDataSource, UICollectionViewDelegate {
 
@@ -40,7 +45,8 @@ class TagsCollectionViewCell: CircleCollectionViewCell, UICollectionViewDataSour
         }
     }
     
-    private var tags = [[String: String]]()
+    var selectedTag: ProfileService.Containers.Tag?
+    private var tags = Array<ProfileService.Containers.Tag>()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -57,6 +63,7 @@ class TagsCollectionViewCell: CircleCollectionViewCell, UICollectionViewDataSour
         collectionView.backgroundColor = UIColor.whiteColor()
         collectionView.showsVerticalScrollIndicator = false
         collectionView.showsHorizontalScrollIndicator = false
+        collectionView.allowsSelection = true
         collectionView.bounces = false
         collectionView.registerNib(
             UINib(nibName: "TagCollectionViewCell", bundle: nil),
@@ -87,7 +94,7 @@ class TagsCollectionViewCell: CircleCollectionViewCell, UICollectionViewDataSour
             forIndexPath: indexPath
         ) as TagCollectionViewCell
         
-        cell.tagLabel.text = tag["name"]
+        cell.tagLabel.text = tag.name
         return cell
     }
     
@@ -96,7 +103,7 @@ class TagsCollectionViewCell: CircleCollectionViewCell, UICollectionViewDataSour
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         let tag = tags[indexPath.row]
 
-        prototypeCell.tagLabel.text = tag["name"]
+        prototypeCell.tagLabel.text = tag.name
         prototypeCell.setNeedsLayout()
         prototypeCell.layoutIfNeeded()
         return prototypeCell.intrinsicContentSize()
@@ -115,15 +122,25 @@ class TagsCollectionViewCell: CircleCollectionViewCell, UICollectionViewDataSour
     // MARK: - UICollectionViewDelegate
 
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        let tag = tags[indexPath.row]["name"]
-        println("SELECTED \(tag)")
+        let tag = tags[indexPath.row]
+        println("SELECTED \(tag.name)")
+        selectedTag = tag
+        NSNotificationCenter.defaultCenter().postNotificationName(
+            TagsCollectionViewCellNotifications.onTagSelectedNotification,
+            object: nil,
+            userInfo: ["tag": tag]
+        )
+    }
+    
+    func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
+        selectedTag = nil
     }
     
     // MARK: - Data Setter
     
     override func setData(data: AnyObject) {
-        if let arrayOfTagsDictionary = data as? [[String: String]] {
-            tags = arrayOfTagsDictionary
+        if let arrayOfTags = data as? [ProfileService.Containers.Tag] {
+            tags = arrayOfTags
             collectionView.reloadData()
         }
     }

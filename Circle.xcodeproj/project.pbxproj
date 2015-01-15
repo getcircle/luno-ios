@@ -54,6 +54,10 @@
 		8F65C5081A52661700C7F3E6 /* TagsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F65C5061A52661700C7F3E6 /* TagsCollectionViewCell.xib */; };
 		8F682F411A65F9090066BDEE /* TagSelectorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F682F401A65F9090066BDEE /* TagSelectorViewController.xib */; };
 		8F682F521A67AF360066BDEE /* CircleTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F682F511A67AF360066BDEE /* CircleTextField.swift */; };
+		8F74001D1A684F2400D96B60 /* TagHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F74001B1A684F2400D96B60 /* TagHeaderCollectionReusableView.swift */; };
+		8F74001E1A684F2400D96B60 /* TagHeaderCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F74001C1A684F2400D96B60 /* TagHeaderCollectionReusableView.xib */; };
+		8F7400231A6862BF00D96B60 /* TagDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7400221A6862BF00D96B60 /* TagDetailViewController.swift */; };
+		8F7400251A6863B000D96B60 /* TagDetailDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7400241A6863B000D96B60 /* TagDetailDataSource.swift */; };
 		8F81713C1A62E07000CB7692 /* VerifyProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F81713A1A62E07000CB7692 /* VerifyProfileViewController.swift */; };
 		8F81713D1A62E07000CB7692 /* VerifyProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F81713B1A62E07000CB7692 /* VerifyProfileViewController.xib */; };
 		8FC7BB3B1A58A6E2005BDDDB /* CardDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC7BB3A1A58A6E2005BDDDB /* CardDataSource.swift */; };
@@ -246,6 +250,10 @@
 		8F65C5061A52661700C7F3E6 /* TagsCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TagsCollectionViewCell.xib; sourceTree = "<group>"; };
 		8F682F401A65F9090066BDEE /* TagSelectorViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TagSelectorViewController.xib; sourceTree = "<group>"; };
 		8F682F511A67AF360066BDEE /* CircleTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleTextField.swift; sourceTree = "<group>"; };
+		8F74001B1A684F2400D96B60 /* TagHeaderCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagHeaderCollectionReusableView.swift; sourceTree = "<group>"; };
+		8F74001C1A684F2400D96B60 /* TagHeaderCollectionReusableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TagHeaderCollectionReusableView.xib; sourceTree = "<group>"; };
+		8F7400221A6862BF00D96B60 /* TagDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagDetailViewController.swift; sourceTree = "<group>"; };
+		8F7400241A6863B000D96B60 /* TagDetailDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagDetailDataSource.swift; sourceTree = "<group>"; };
 		8F81713A1A62E07000CB7692 /* VerifyProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerifyProfileViewController.swift; sourceTree = "<group>"; };
 		8F81713B1A62E07000CB7692 /* VerifyProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VerifyProfileViewController.xib; sourceTree = "<group>"; };
 		8FC7BB3A1A58A6E2005BDDDB /* CardDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardDataSource.swift; sourceTree = "<group>"; };
@@ -410,6 +418,7 @@
 				8FD907F41A5F91020025A17B /* ProfileDetailViewController.swift */,
 				8F00049A1A2419730096477A /* ProfilesViewController.swift */,
 				8FF297FC1A4A4DCA00306CFC /* SearchViewController.swift */,
+				8F7400221A6862BF00D96B60 /* TagDetailViewController.swift */,
 				8FF298431A4DF38E00306CFC /* TagSelectorViewController.swift */,
 				8F81713A1A62E07000CB7692 /* VerifyProfileViewController.swift */,
 				BF25722B1A6450F20052C3E3 /* VerifyPhoneNumberViewController.swift */,
@@ -435,8 +444,8 @@
 				8F22CBEC1A283D3D0026376E /* SeparatorDecorationView.swift */,
 				8FF298451A4E050100306CFC /* TagCollectionViewCell.swift */,
 				8F65C5051A52661700C7F3E6 /* TagsCollectionViewCell.swift */,
+				8F74001B1A684F2400D96B60 /* TagHeaderCollectionReusableView.swift */,
 				8FF2254A1A641B27001B2E32 /* SearchResultsCardHeaderCollectionReusableView.swift */,
-				8FF2254B1A641B27001B2E32 /* SearchResultsCardHeaderCollectionReusableView.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -495,11 +504,13 @@
 				8F22CBDF1A27A8E60026376E /* ProfileHeaderCollectionReusableView.xib */,
 				8FF298021A4A4E3600306CFC /* ProfileImagesCollectionViewCell.xib */,
 				8FF298091A4B490E00306CFC /* SearchHeaderView.xib */,
+				8FF2254B1A641B27001B2E32 /* SearchResultsCardHeaderCollectionReusableView.xib */,
 				8FF298461A4E050100306CFC /* TagCollectionViewCell.xib */,
 				8F65C5061A52661700C7F3E6 /* TagsCollectionViewCell.xib */,
+				8F74001C1A684F2400D96B60 /* TagHeaderCollectionReusableView.xib */,
+				8F682F401A65F9090066BDEE /* TagSelectorViewController.xib */,
 				8F81713B1A62E07000CB7692 /* VerifyProfileViewController.xib */,
 				BF25722C1A6450F20052C3E3 /* VerifyPhoneNumberViewController.xib */,
-				8F682F401A65F9090066BDEE /* TagSelectorViewController.xib */,
 			);
 			name = "Storyboards / XIBs";
 			sourceTree = "<group>";
@@ -531,6 +542,7 @@
 				8F2D7DEF1A5B2412001D36B0 /* ProfilesDataSource.swift */,
 				8FC7BB3F1A58AF4C005BDDDB /* SearchLandingDataSource.swift */,
 				BFE213CE1A5F0B1D0033E2F5 /* SearchQueryDataSource.swift */,
+				8F7400241A6863B000D96B60 /* TagDetailDataSource.swift */,
 			);
 			name = DataSources;
 			sourceTree = "<group>";
@@ -798,6 +810,7 @@
 				8F65C4F61A50F28E00C7F3E6 /* CardHeaderCollectionReusableView.xib in Resources */,
 				8F65C4FF1A51222100C7F3E6 /* LocationCollectionViewCell.xib in Resources */,
 				BF25722E1A6450F20052C3E3 /* VerifyPhoneNumberViewController.xib in Resources */,
+				8F74001E1A684F2400D96B60 /* TagHeaderCollectionReusableView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -896,6 +909,7 @@
 				8FC7BB431A58B15B005BDDDB /* CardCollectionViewDelegate.swift in Sources */,
 				8F22CBED1A283D3D0026376E /* SeparatorDecorationView.swift in Sources */,
 				8F65C4FB1A50F92500C7F3E6 /* Card.swift in Sources */,
+				8F74001D1A684F2400D96B60 /* TagHeaderCollectionReusableView.swift in Sources */,
 				8F22CBE01A27A8E60026376E /* ProfileHeaderCollectionReusableView.swift in Sources */,
 				BF8FC3D91A44DA83007FD8BA /* StringExtension.swift in Sources */,
 				8FF2984D1A4E29F400306CFC /* PaddedLabel.swift in Sources */,
@@ -922,6 +936,7 @@
 				8FCC95CD1A52828B00421E65 /* ProfileCollectionViewCell.swift in Sources */,
 				BF59AA931A2C152F00C0CDB9 /* UITableViewExtension.swift in Sources */,
 				BF2CBFD61A473E9100BE589D /* UserService.swift in Sources */,
+				8F7400251A6863B000D96B60 /* TagDetailDataSource.swift in Sources */,
 				8F4E53751A59CB8300DC876B /* ProfileCollectionViewDelegate.swift in Sources */,
 				8F4805E41A5DE4B800273731 /* MapHeaderCollectionReusableView.swift in Sources */,
 				8FF298471A4E050100306CFC /* TagCollectionViewCell.swift in Sources */,
@@ -945,6 +960,7 @@
 				8FD907F51A5F91020025A17B /* ProfileDetailViewController.swift in Sources */,
 				8FC7BB401A58AF4C005BDDDB /* SearchLandingDataSource.swift in Sources */,
 				8F00049D1A2419730096477A /* DetailViewController.swift in Sources */,
+				8F7400231A6862BF00D96B60 /* TagDetailViewController.swift in Sources */,
 				BF7DF98F1A44E53200A4F924 /* ServiceTransport.swift in Sources */,
 				BF3F0F611A5B1C1100D4287E /* ProfileService.swift in Sources */,
 				8FEE88471A411BA90011CE4A /* UIViewControllerExtension.swift in Sources */,
