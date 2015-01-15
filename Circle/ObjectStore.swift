@@ -92,6 +92,13 @@ class ObjectStore {
         }
     }
     
+    func reset(sender: AnyObject!) {
+        profiles.removeAll(keepCapacity: false)
+        addresses.removeAll(keepCapacity: false)
+        teams.removeAll(keepCapacity: false)
+        tags.removeAll(keepCapacity: false)
+    }
+    
     // MARK: - Helpers
     
     private func updateCache(inout cache: [String: GeneratedMessage], containers: Array<GeneratedMessage>) {

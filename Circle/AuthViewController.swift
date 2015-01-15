@@ -268,7 +268,7 @@ class AuthViewController: UIViewController, UITextFieldDelegate {
         LoggedInUserHolder.profile = nil
         LoggedInUserHolder.user = nil
         LoggedInUserHolder.token = nil
-        SearchCache.sharedInstance.reset(self)
+        ObjectStore.sharedInstance.reset(self)
         
         // Remove persistent cached data
         NSUserDefaults.standardUserDefaults().removeObjectForKey(DefaultsUserKey)

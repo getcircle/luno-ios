@@ -281,6 +281,7 @@ class TagSelectorViewController:
             let tag = tagBuilderObject.build()
             
             // Add to source
+            // TODO we need to be de-duping these tags
             tags.append(tag)
             newTags.addObject(tag.getNSData())
             // Add to selected

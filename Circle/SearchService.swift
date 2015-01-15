@@ -116,10 +116,5 @@ extension SearchService {
         
     }
     
-    func reset(sender: AnyObject!) {
-        profiles.removeAll(keepCapacity: false)
-        addresses.removeAll(keepCapacity: false)
-        teams.removeAll(keepCapacity: false)
-    }
 }
 
