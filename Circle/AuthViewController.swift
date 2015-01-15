@@ -22,6 +22,7 @@ struct LoggedInUserHolder {
 struct AuthNotifications {
     static let onLoginNotification = "com.ravcode.notification:onLoginNotification"
     static let onLogoutNotification = "com.ravcode.notification:onLogoutNotification"
+    static let onProfileChangedNotification = "com.ravcode.notification:onProfileChangedNotification"
 }
 
 private let LocksmithService = "LocksmithAuthTokenService"
@@ -159,7 +160,7 @@ class AuthViewController: UIViewController, UITextFieldDelegate {
         NSUserDefaults.standardUserDefaults().setObject(user.getNSData(), forKey: DefaultsUserKey)
     }
     
-    private func cacheProfileData(profile: ProfileService.Containers.Profile) {
+    private class func cacheProfileData(profile: ProfileService.Containers.Profile) {
         NSUserDefaults.standardUserDefaults().setObject(profile.getNSData(), forKey: DefaultsProfileKey)
     }
     
@@ -221,8 +222,7 @@ class AuthViewController: UIViewController, UITextFieldDelegate {
     private func fetchAndCacheUserProfile(userId: String) {
         ProfileService.Actions.getProfile(userId: userId) { (profile, error) -> Void in
             if error == nil {
-                LoggedInUserHolder.profile = profile!
-                self.cacheProfileData(profile!)
+                AuthViewController.updateUserProfile(profile!)
                 NSNotificationCenter.defaultCenter().postNotificationName(
                     AuthNotifications.onLoginNotification,
                     object: nil
@@ -286,6 +286,16 @@ class AuthViewController: UIViewController, UITextFieldDelegate {
             }
         }
         return nil
+    }
+    
+    
+    class func updateUserProfile(profile: ProfileService.Containers.Profile) {
+        LoggedInUserHolder.profile = profile
+        self.cacheProfileData(profile)
+        NSNotificationCenter.defaultCenter().postNotificationName(
+            AuthNotifications.onProfileChangedNotification,
+            object: profile
+        )
     }
     
     // MARK: - UITextFieldDelegate

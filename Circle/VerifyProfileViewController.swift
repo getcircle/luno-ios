@@ -9,10 +9,11 @@
 import UIKit
 import ProtobufRegistry
 
-class VerifyProfileViewController: UIViewController,
-UITextFieldDelegate,
-UINavigationControllerDelegate,
-UIImagePickerControllerDelegate {
+class VerifyProfileViewController:
+    UIViewController,
+    UITextFieldDelegate,
+    UINavigationControllerDelegate,
+    UIImagePickerControllerDelegate {
 
     @IBOutlet weak private(set) var editImageButton: UIButton!
     @IBOutlet weak private(set) var firstNameField: UITextField!
@@ -25,6 +26,7 @@ UIImagePickerControllerDelegate {
 
     private var addImageActionSheet: UIAlertController?
     private var profile: ProfileService.Containers.Profile!
+    private var didUploadPhoto = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,9 +80,19 @@ UIImagePickerControllerDelegate {
     // MARK: - IBActions
     
     @IBAction func nextButtonTapped(sender: AnyObject!) {
-        var tagSelectorVC = TagSelectorViewController(nibName: "TagSelectorViewController", bundle: nil)
-        tagSelectorVC.theme = .Onboarding
-        navigationController?.setViewControllers([tagSelectorVC], animated: true)
+        let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
+        activityIndicatorView.color = UIColor.appTintColor()
+        activityIndicatorView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        nextButton.setTitle("", forState: .Normal)
+        nextButton.addSubview(activityIndicatorView)
+        activityIndicatorView.autoCenterInSuperview()
+        activityIndicatorView.startAnimating()
+        handleImageUpload { () -> Void in
+            activityIndicatorView.stopAnimating()
+            let tagSelectorVC = TagSelectorViewController(nibName: "TagSelectorViewController", bundle: nil)
+            tagSelectorVC.theme = .Onboarding
+            self.navigationController?.setViewControllers([tagSelectorVC], animated: true)
+        }
     }
     
     @IBAction func editImageButtonTapped(sender: AnyObject!) {
@@ -150,6 +162,22 @@ UIImagePickerControllerDelegate {
     
     // MARK: - Helpers
     
+    private func handleImageUpload(completion: () -> Void) {
+        if didUploadPhoto {
+            MediaService.Actions.uploadProfileImage(profile.id, image: profileImageView.image!) { (mediaURL, error) -> Void in
+                if let mediaURL = mediaURL {
+                    let profileBuilder = self.profile.builder()
+                    profileBuilder.mergeFrom(self.profile)
+                    profileBuilder.image_url = mediaURL
+                    AuthViewController.updateUserProfile(profileBuilder.build())
+                    completion()
+                }
+            }
+        } else {
+            completion()
+        }
+    }
+    
     private func dismissAddImageActionSheet(animated: Bool) {
         if addImageActionSheet != nil {
             addImageActionSheet!.dismissViewControllerAnimated(animated, completion: {() -> Void in
@@ -164,12 +192,14 @@ UIImagePickerControllerDelegate {
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
         if let pickedImage = info[UIImagePickerControllerEditedImage] as? UIImage {
             profileImageView.image = pickedImage
+            didUploadPhoto = true
         }
         else {
+            // XXX when is this ever hit?
             profileImageView.image = info[UIImagePickerControllerOriginalImage] as? UIImage
         }
-        dismissViewControllerAnimated(true, completion: nil)
-        checkDataAndEnableNext()
+        self.dismissViewControllerAnimated(true, completion: nil)
+        self.checkDataAndEnableNext()
     }
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
