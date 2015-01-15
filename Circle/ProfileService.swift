@@ -115,6 +115,7 @@ extension ProfileService {
                     let response = actionResponse?.result.getExtension(
                         ProfileServiceRequests_update_profile
                     ) as? ProfileService.UpdateProfile.Response
+                    ObjectStore.sharedInstance.update(response?.profile)
                     completionHandler(profile: response?.profile, error: error)
             }
         }

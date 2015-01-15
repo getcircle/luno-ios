@@ -74,6 +74,24 @@ class ObjectStore {
         }
     }
     
+    func update(object: AnyObject?) {
+        if let profile = object as? ProfileService.Containers.Profile {
+            update(profiles: [profile], teams: nil, addresses: nil, tags: nil)
+        }
+        
+        if let team = object as? OrganizationService.Containers.Team {
+            update(profiles: nil, teams: [team], addresses: nil, tags: nil)
+        }
+        
+        if let address = object as? OrganizationService.Containers.Address {
+            update(profiles: nil, teams: nil, addresses: [address], tags: nil)
+        }
+        
+        if let tag =  object as? ProfileService.Containers.Tag {
+            update(profiles: nil, teams: nil, addresses: nil, tags: [tag])
+        }
+    }
+    
     // MARK: - Helpers
     
     private func updateCache(inout cache: [String: GeneratedMessage], containers: Array<GeneratedMessage>) {
