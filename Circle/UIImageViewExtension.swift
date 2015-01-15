@@ -31,7 +31,7 @@ extension UIImageView {
             transform = CGAffineTransformMakeScale(0.0, 0.0)
             
             setImageWithURLRequest(request,
-                placeholderImage: UIImage(named: "DefaultPerson"),
+                placeholderImage: UIImage.imageFromColor(UIColor.darkGrayColor(), withRect: bounds),
                 success: { (request, response, image) -> Void in
                     self.image = image
                     UIView.animateWithDuration(0.8,
@@ -62,7 +62,7 @@ extension UIImageView {
     func setImageWithProfileImageURL(profileImageURL: String) {
         setImageWithURL(
             NSURL(string: profileImageURL),
-            placeholderImage: UIImage(named: "DefaultPerson")
+            placeholderImage: UIImage.imageFromColor(UIColor.darkGrayColor(), withRect: bounds)
         )
     }
 }
