@@ -160,7 +160,7 @@ final public class ProfileService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Profile : GeneratedMessage {
-          public subscript(key: String) -> AnyObject? {
+          override public subscript (key: String) -> AnyObject? {
                  switch key {
                  case "id": return id
                  case "organization_id": return organization_id
@@ -928,7 +928,7 @@ final public class ProfileService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Tag : GeneratedMessage {
-          public subscript(key: String) -> AnyObject? {
+          override public subscript (key: String) -> AnyObject? {
                  switch key {
                  case "id": return id
                  case "name": return name
@@ -1163,7 +1163,7 @@ final public class ProfileService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Stats : GeneratedMessage {
-          public subscript(key: String) -> AnyObject? {
+          override public subscript (key: String) -> AnyObject? {
                  switch key {
                  case "id": return id
                  case "count": return count
@@ -1393,7 +1393,7 @@ final public class ProfileService : GeneratedMessage {
 
       //Nested type declaration end
 
-      public subscript(key: String) -> AnyObject? {
+      override public subscript (key: String) -> AnyObject? {
              switch key {
              default: return nil
              }
@@ -1551,7 +1551,7 @@ final public class ProfileService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Request : GeneratedMessage {
-          public subscript(key: String) -> AnyObject? {
+          override public subscript (key: String) -> AnyObject? {
                  switch key {
                  case "profile": return profile
                  default: return nil
@@ -1764,7 +1764,7 @@ final public class ProfileService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Response : GeneratedMessage {
-          public subscript(key: String) -> AnyObject? {
+          override public subscript (key: String) -> AnyObject? {
                  switch key {
                  case "profile": return profile
                  default: return nil
@@ -1972,7 +1972,7 @@ final public class ProfileService : GeneratedMessage {
 
       //Nested type declaration end
 
-      public subscript(key: String) -> AnyObject? {
+      override public subscript (key: String) -> AnyObject? {
              switch key {
              default: return nil
              }
@@ -2130,7 +2130,7 @@ final public class ProfileService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Request : GeneratedMessage {
-          public subscript(key: String) -> AnyObject? {
+          override public subscript (key: String) -> AnyObject? {
                  switch key {
                  case "profile": return profile
                  default: return nil
@@ -2343,7 +2343,7 @@ final public class ProfileService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Response : GeneratedMessage {
-          public subscript(key: String) -> AnyObject? {
+          override public subscript (key: String) -> AnyObject? {
                  switch key {
                  case "profile": return profile
                  default: return nil
@@ -2551,7 +2551,7 @@ final public class ProfileService : GeneratedMessage {
 
       //Nested type declaration end
 
-      public subscript(key: String) -> AnyObject? {
+      override public subscript (key: String) -> AnyObject? {
              switch key {
              default: return nil
              }
@@ -2751,7 +2751,7 @@ final public class ProfileService : GeneratedMessage {
           //OneOf declaration end
 
           private var storageLookupKey:ProfileService.GetProfile.Request.LookupKey =  ProfileService.GetProfile.Request.LookupKey.LookupKeyOneOfNotSet
-          public subscript(key: String) -> AnyObject? {
+          override public subscript (key: String) -> AnyObject? {
                  switch key {
                  case "profile_id": return profile_id
                  case "user_id": return user_id
@@ -3016,7 +3016,7 @@ final public class ProfileService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Response : GeneratedMessage {
-          public subscript(key: String) -> AnyObject? {
+          override public subscript (key: String) -> AnyObject? {
                  switch key {
                  case "profile": return profile
                  default: return nil
@@ -3224,7 +3224,7 @@ final public class ProfileService : GeneratedMessage {
 
       //Nested type declaration end
 
-      public subscript(key: String) -> AnyObject? {
+      override public subscript (key: String) -> AnyObject? {
              switch key {
              default: return nil
              }
@@ -3424,7 +3424,7 @@ final public class ProfileService : GeneratedMessage {
           //OneOf declaration end
 
           private var storageLookupKey:ProfileService.GetExtendedProfile.Request.LookupKey =  ProfileService.GetExtendedProfile.Request.LookupKey.LookupKeyOneOfNotSet
-          public subscript(key: String) -> AnyObject? {
+          override public subscript (key: String) -> AnyObject? {
                  switch key {
                  case "profile_id": return profile_id
                  case "user_id": return user_id
@@ -3689,7 +3689,7 @@ final public class ProfileService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Response : GeneratedMessage {
-          public subscript(key: String) -> AnyObject? {
+          override public subscript (key: String) -> AnyObject? {
                  switch key {
                  case "profile": return profile
                  case "address": return address
@@ -4174,7 +4174,7 @@ final public class ProfileService : GeneratedMessage {
 
       //Nested type declaration end
 
-      public subscript(key: String) -> AnyObject? {
+      override public subscript (key: String) -> AnyObject? {
              switch key {
              default: return nil
              }
@@ -4332,7 +4332,7 @@ final public class ProfileService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Request : GeneratedMessage {
-          public subscript(key: String) -> AnyObject? {
+          override public subscript (key: String) -> AnyObject? {
                  switch key {
                  case "organization_id": return organization_id
                  default: return nil
@@ -4563,7 +4563,7 @@ final public class ProfileService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Response : GeneratedMessage {
-          public subscript(key: String) -> AnyObject? {
+          override public subscript (key: String) -> AnyObject? {
                  switch key {
                  default: return nil
                  }
@@ -4748,7 +4748,7 @@ final public class ProfileService : GeneratedMessage {
 
       //Nested type declaration end
 
-      public subscript(key: String) -> AnyObject? {
+      override public subscript (key: String) -> AnyObject? {
              switch key {
              default: return nil
              }
@@ -4948,7 +4948,7 @@ final public class ProfileService : GeneratedMessage {
           //OneOf declaration end
 
           private var storageLookupKey:ProfileService.GetTags.Request.LookupKey =  ProfileService.GetTags.Request.LookupKey.LookupKeyOneOfNotSet
-          public subscript(key: String) -> AnyObject? {
+          override public subscript (key: String) -> AnyObject? {
                  switch key {
                  case "profile_id": return profile_id
                  case "organization_id": return organization_id
@@ -5213,7 +5213,7 @@ final public class ProfileService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Response : GeneratedMessage {
-          public subscript(key: String) -> AnyObject? {
+          override public subscript (key: String) -> AnyObject? {
                  switch key {
                  default: return nil
                  }
@@ -5398,7 +5398,7 @@ final public class ProfileService : GeneratedMessage {
 
       //Nested type declaration end
 
-      public subscript(key: String) -> AnyObject? {
+      override public subscript (key: String) -> AnyObject? {
              switch key {
              default: return nil
              }
@@ -5556,7 +5556,7 @@ final public class ProfileService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Request : GeneratedMessage {
-          public subscript(key: String) -> AnyObject? {
+          override public subscript (key: String) -> AnyObject? {
                  switch key {
                  case "profile_id": return profile_id
                  default: return nil
@@ -5787,7 +5787,7 @@ final public class ProfileService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Response : GeneratedMessage {
-          public subscript(key: String) -> AnyObject? {
+          override public subscript (key: String) -> AnyObject? {
                  switch key {
                  default: return nil
                  }
@@ -5935,7 +5935,7 @@ final public class ProfileService : GeneratedMessage {
 
       //Nested type declaration end
 
-      public subscript(key: String) -> AnyObject? {
+      override public subscript (key: String) -> AnyObject? {
              switch key {
              default: return nil
              }
@@ -6135,7 +6135,7 @@ final public class ProfileService : GeneratedMessage {
           //OneOf declaration end
 
           private var storageLookupKey:ProfileService.GetProfiles.Request.LookupKey =  ProfileService.GetProfiles.Request.LookupKey.LookupKeyOneOfNotSet
-          public subscript(key: String) -> AnyObject? {
+          override public subscript (key: String) -> AnyObject? {
                  switch key {
                  case "team_id": return team_id
                  case "organization_id": return organization_id
@@ -6400,7 +6400,7 @@ final public class ProfileService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Response : GeneratedMessage {
-          public subscript(key: String) -> AnyObject? {
+          override public subscript (key: String) -> AnyObject? {
                  switch key {
                  default: return nil
                  }
@@ -6585,7 +6585,7 @@ final public class ProfileService : GeneratedMessage {
 
       //Nested type declaration end
 
-      public subscript(key: String) -> AnyObject? {
+      override public subscript (key: String) -> AnyObject? {
              switch key {
              default: return nil
              }
@@ -6785,7 +6785,7 @@ final public class ProfileService : GeneratedMessage {
           //OneOf declaration end
 
           private var storageLookupKey:ProfileService.GetDirectReports.Request.LookupKey =  ProfileService.GetDirectReports.Request.LookupKey.LookupKeyOneOfNotSet
-          public subscript(key: String) -> AnyObject? {
+          override public subscript (key: String) -> AnyObject? {
                  switch key {
                  case "profile_id": return profile_id
                  case "user_id": return user_id
@@ -7050,7 +7050,7 @@ final public class ProfileService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Response : GeneratedMessage {
-          public subscript(key: String) -> AnyObject? {
+          override public subscript (key: String) -> AnyObject? {
                  switch key {
                  default: return nil
                  }
@@ -7235,7 +7235,7 @@ final public class ProfileService : GeneratedMessage {
 
       //Nested type declaration end
 
-      public subscript(key: String) -> AnyObject? {
+      override public subscript (key: String) -> AnyObject? {
              switch key {
              default: return nil
              }
@@ -7393,7 +7393,7 @@ final public class ProfileService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Request : GeneratedMessage {
-          public subscript(key: String) -> AnyObject? {
+          override public subscript (key: String) -> AnyObject? {
                  switch key {
                  case "profile_id": return profile_id
                  default: return nil
@@ -7587,7 +7587,7 @@ final public class ProfileService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Response : GeneratedMessage {
-          public subscript(key: String) -> AnyObject? {
+          override public subscript (key: String) -> AnyObject? {
                  switch key {
                  default: return nil
                  }
@@ -7772,7 +7772,7 @@ final public class ProfileService : GeneratedMessage {
 
       //Nested type declaration end
 
-      public subscript(key: String) -> AnyObject? {
+      override public subscript (key: String) -> AnyObject? {
              switch key {
              default: return nil
              }
@@ -7930,7 +7930,7 @@ final public class ProfileService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Request : GeneratedMessage {
-          public subscript(key: String) -> AnyObject? {
+          override public subscript (key: String) -> AnyObject? {
                  switch key {
                  default: return nil
                  }
@@ -8121,7 +8121,7 @@ final public class ProfileService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Response : GeneratedMessage {
-          public subscript(key: String) -> AnyObject? {
+          override public subscript (key: String) -> AnyObject? {
                  switch key {
                  default: return nil
                  }
@@ -8306,7 +8306,7 @@ final public class ProfileService : GeneratedMessage {
 
       //Nested type declaration end
 
-      public subscript(key: String) -> AnyObject? {
+      override public subscript (key: String) -> AnyObject? {
              switch key {
              default: return nil
              }
@@ -8464,7 +8464,7 @@ final public class ProfileService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Request : GeneratedMessage {
-          public subscript(key: String) -> AnyObject? {
+          override public subscript (key: String) -> AnyObject? {
                  switch key {
                  case "organization_id": return organization_id
                  default: return nil
@@ -8658,7 +8658,7 @@ final public class ProfileService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Response : GeneratedMessage {
-          public subscript(key: String) -> AnyObject? {
+          override public subscript (key: String) -> AnyObject? {
                  switch key {
                  default: return nil
                  }
@@ -8843,7 +8843,7 @@ final public class ProfileService : GeneratedMessage {
 
       //Nested type declaration end
 
-      public subscript(key: String) -> AnyObject? {
+      override public subscript (key: String) -> AnyObject? {
              switch key {
              default: return nil
              }
@@ -9001,7 +9001,7 @@ final public class ProfileService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Request : GeneratedMessage {
-          public subscript(key: String) -> AnyObject? {
+          override public subscript (key: String) -> AnyObject? {
                  switch key {
                  case "organization_id": return organization_id
                  default: return nil
@@ -9195,7 +9195,7 @@ final public class ProfileService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Response : GeneratedMessage {
-          public subscript(key: String) -> AnyObject? {
+          override public subscript (key: String) -> AnyObject? {
                  switch key {
                  default: return nil
                  }
@@ -9380,7 +9380,7 @@ final public class ProfileService : GeneratedMessage {
 
       //Nested type declaration end
 
-      public subscript(key: String) -> AnyObject? {
+      override public subscript (key: String) -> AnyObject? {
              switch key {
              default: return nil
              }
@@ -9538,7 +9538,7 @@ final public class ProfileService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Request : GeneratedMessage {
-          public subscript(key: String) -> AnyObject? {
+          override public subscript (key: String) -> AnyObject? {
                  switch key {
                  case "organization_id": return organization_id
                  default: return nil
@@ -9732,7 +9732,7 @@ final public class ProfileService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Response : GeneratedMessage {
-          public subscript(key: String) -> AnyObject? {
+          override public subscript (key: String) -> AnyObject? {
                  switch key {
                  default: return nil
                  }
@@ -9917,7 +9917,7 @@ final public class ProfileService : GeneratedMessage {
 
       //Nested type declaration end
 
-      public subscript(key: String) -> AnyObject? {
+      override public subscript (key: String) -> AnyObject? {
              switch key {
              default: return nil
              }
@@ -10065,7 +10065,7 @@ final public class ProfileService : GeneratedMessage {
 
   //Nested type declaration end
 
-  public subscript(key: String) -> AnyObject? {
+  override public subscript (key: String) -> AnyObject? {
          switch key {
          default: return nil
          }

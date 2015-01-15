@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Crashlytics.startWithAPIKey("e4192b2c032ea5f8065aac4bde634b85760f8d49")
 
         // Populate the Search Cache
-        loadCacheForUser()
+        loadStoreForUser()
 
         return true
     }

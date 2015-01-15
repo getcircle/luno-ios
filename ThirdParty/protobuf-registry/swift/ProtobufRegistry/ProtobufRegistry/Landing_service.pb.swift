@@ -81,7 +81,7 @@ final public class LandingService : GeneratedMessage {
 
             //Enum type declaration end 
 
-          public subscript(key: String) -> AnyObject? {
+          override public subscript (key: String) -> AnyObject? {
                  switch key {
                  case "title": return title
                  case "content_key": return content_key
@@ -471,7 +471,7 @@ final public class LandingService : GeneratedMessage {
 
       //Nested type declaration end
 
-      public subscript(key: String) -> AnyObject? {
+      override public subscript (key: String) -> AnyObject? {
              switch key {
              default: return nil
              }
@@ -661,7 +661,7 @@ final public class LandingService : GeneratedMessage {
           //OneOf declaration end
 
           private var storageLookupKey:LandingService.GetCategories.Request.LookupKey =  LandingService.GetCategories.Request.LookupKey.LookupKeyOneOfNotSet
-          public subscript(key: String) -> AnyObject? {
+          override public subscript (key: String) -> AnyObject? {
                  switch key {
                  case "profile_id": return profile_id
                  default: return nil
@@ -870,7 +870,7 @@ final public class LandingService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Response : GeneratedMessage {
-          public subscript(key: String) -> AnyObject? {
+          override public subscript (key: String) -> AnyObject? {
                  switch key {
                  default: return nil
                  }
@@ -1055,7 +1055,7 @@ final public class LandingService : GeneratedMessage {
 
       //Nested type declaration end
 
-      public subscript(key: String) -> AnyObject? {
+      override public subscript (key: String) -> AnyObject? {
              switch key {
              default: return nil
              }
@@ -1203,7 +1203,7 @@ final public class LandingService : GeneratedMessage {
 
   //Nested type declaration end
 
-  public subscript(key: String) -> AnyObject? {
+  override public subscript (key: String) -> AnyObject? {
          switch key {
          default: return nil
          }

@@ -46,7 +46,7 @@ final public class NoteService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Note : GeneratedMessage {
-          public subscript(key: String) -> AnyObject? {
+          override public subscript (key: String) -> AnyObject? {
                  switch key {
                  case "id": return id
                  case "for_user_id": return for_user_id
@@ -358,7 +358,7 @@ final public class NoteService : GeneratedMessage {
 
       //Nested type declaration end
 
-      public subscript(key: String) -> AnyObject? {
+      override public subscript (key: String) -> AnyObject? {
              switch key {
              default: return nil
              }
@@ -506,7 +506,7 @@ final public class NoteService : GeneratedMessage {
 
   //Nested type declaration end
 
-  public subscript(key: String) -> AnyObject? {
+  override public subscript (key: String) -> AnyObject? {
          switch key {
          default: return nil
          }

@@ -48,7 +48,7 @@ final public class SearchService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Request : GeneratedMessage {
-          public subscript(key: String) -> AnyObject? {
+          override public subscript (key: String) -> AnyObject? {
                  switch key {
                  case "query": return query
                  default: return nil
@@ -242,7 +242,7 @@ final public class SearchService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Response : GeneratedMessage {
-          public subscript(key: String) -> AnyObject? {
+          override public subscript (key: String) -> AnyObject? {
                  switch key {
                  default: return nil
                  }
@@ -501,7 +501,7 @@ final public class SearchService : GeneratedMessage {
 
       //Nested type declaration end
 
-      public subscript(key: String) -> AnyObject? {
+      override public subscript (key: String) -> AnyObject? {
              switch key {
              default: return nil
              }
@@ -649,7 +649,7 @@ final public class SearchService : GeneratedMessage {
 
   //Nested type declaration end
 
-  public subscript(key: String) -> AnyObject? {
+  override public subscript (key: String) -> AnyObject? {
          switch key {
          default: return nil
          }

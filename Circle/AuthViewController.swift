@@ -246,7 +246,7 @@ class AuthViewController: UIViewController, UITextFieldDelegate {
                     AuthNotifications.onLoginNotification,
                     object: nil
                 )
-                SearchCache.sharedInstance.repopulate()
+                ObjectStore.sharedInstance.repopulate()
                 self.dismissViewControllerAnimated(true, completion: nil)
             }
         }

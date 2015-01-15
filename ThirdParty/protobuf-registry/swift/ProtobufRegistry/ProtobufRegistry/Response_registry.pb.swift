@@ -355,7 +355,7 @@ public func == (lhs: MediaServiceResponses, rhs: MediaServiceResponses) -> Bool 
 }
 
 final public class UserServiceResponses : GeneratedMessage {
-  public subscript(key: String) -> AnyObject? {
+  override public subscript (key: String) -> AnyObject? {
          switch key {
          default: return nil
          }
@@ -521,7 +521,7 @@ final public class UserServiceResponsesBuilder : GeneratedMessageBuilder {
 }
 
 final public class OrganizationServiceResponses : GeneratedMessage {
-  public subscript(key: String) -> AnyObject? {
+  override public subscript (key: String) -> AnyObject? {
          switch key {
          default: return nil
          }
@@ -696,7 +696,7 @@ final public class OrganizationServiceResponsesBuilder : GeneratedMessageBuilder
 }
 
 final public class ProfileServiceResponses : GeneratedMessage {
-  public subscript(key: String) -> AnyObject? {
+  override public subscript (key: String) -> AnyObject? {
          switch key {
          default: return nil
          }
@@ -883,7 +883,7 @@ final public class ProfileServiceResponsesBuilder : GeneratedMessageBuilder {
 }
 
 final public class SearchServiceResponses : GeneratedMessage {
-  public subscript(key: String) -> AnyObject? {
+  override public subscript (key: String) -> AnyObject? {
          switch key {
          default: return nil
          }
@@ -1031,7 +1031,7 @@ final public class SearchServiceResponsesBuilder : GeneratedMessageBuilder {
 }
 
 final public class LandingServiceResponses : GeneratedMessage {
-  public subscript(key: String) -> AnyObject? {
+  override public subscript (key: String) -> AnyObject? {
          switch key {
          default: return nil
          }
@@ -1179,7 +1179,7 @@ final public class LandingServiceResponsesBuilder : GeneratedMessageBuilder {
 }
 
 final public class MediaServiceResponses : GeneratedMessage {
-  public subscript(key: String) -> AnyObject? {
+  override public subscript (key: String) -> AnyObject? {
          switch key {
          default: return nil
          }

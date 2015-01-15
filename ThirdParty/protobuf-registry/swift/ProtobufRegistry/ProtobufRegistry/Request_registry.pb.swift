@@ -355,7 +355,7 @@ public func == (lhs: MediaServiceRequests, rhs: MediaServiceRequests) -> Bool {
 }
 
 final public class UserServiceRequests : GeneratedMessage {
-  public subscript(key: String) -> AnyObject? {
+  override public subscript (key: String) -> AnyObject? {
          switch key {
          default: return nil
          }
@@ -521,7 +521,7 @@ final public class UserServiceRequestsBuilder : GeneratedMessageBuilder {
 }
 
 final public class OrganizationServiceRequests : GeneratedMessage {
-  public subscript(key: String) -> AnyObject? {
+  override public subscript (key: String) -> AnyObject? {
          switch key {
          default: return nil
          }
@@ -696,7 +696,7 @@ final public class OrganizationServiceRequestsBuilder : GeneratedMessageBuilder 
 }
 
 final public class ProfileServiceRequests : GeneratedMessage {
-  public subscript(key: String) -> AnyObject? {
+  override public subscript (key: String) -> AnyObject? {
          switch key {
          default: return nil
          }
@@ -883,7 +883,7 @@ final public class ProfileServiceRequestsBuilder : GeneratedMessageBuilder {
 }
 
 final public class SearchServiceRequests : GeneratedMessage {
-  public subscript(key: String) -> AnyObject? {
+  override public subscript (key: String) -> AnyObject? {
          switch key {
          default: return nil
          }
@@ -1031,7 +1031,7 @@ final public class SearchServiceRequestsBuilder : GeneratedMessageBuilder {
 }
 
 final public class LandingServiceRequests : GeneratedMessage {
-  public subscript(key: String) -> AnyObject? {
+  override public subscript (key: String) -> AnyObject? {
          switch key {
          default: return nil
          }
@@ -1179,7 +1179,7 @@ final public class LandingServiceRequestsBuilder : GeneratedMessageBuilder {
 }
 
 final public class MediaServiceRequests : GeneratedMessage {
-  public subscript(key: String) -> AnyObject? {
+  override public subscript (key: String) -> AnyObject? {
          switch key {
          default: return nil
          }

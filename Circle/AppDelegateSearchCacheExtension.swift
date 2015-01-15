@@ -10,8 +10,8 @@ import UIKit
 
 extension AppDelegate {
     
-    func loadCacheForUser() {
-        SearchCache.sharedInstance.repopulate()
+    func loadStoreForUser() {
+        ObjectStore.sharedInstance.repopulate()
     }
     
 }
