@@ -162,8 +162,17 @@ class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate {
     func verifyCodeButtonTapped(sender: AnyObject!) {
         self.toggleLoadingState(verifyCodeButton)
         if bypassChecks {
-            toggleLoadingState(verifyCodeButton)
-            completeVerification()
+            if let user = AuthViewController.getLoggedInUser() {
+                let builder = user.toBuilder()
+                builder.phone_number_verified = true
+                UserService.Actions.updateUser(builder.build()) { (user, error) -> Void in
+                    if let user = user {
+                        AuthViewController.updateUser(user)
+                    }
+                    self.toggleLoadingState(self.verifyCodeButton)
+                    self.verificationComplete()
+                }
+            }
             return
         }
         
@@ -173,7 +182,7 @@ class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate {
                 if error == nil {
                     self.toggleLoadingState(self.verifyCodeButton)
                     if verified! {
-                        self.completeVerification()
+                        self.verificationComplete()
                     } else {
                         println("user verification failed")
                         self.verifyCodeButton.addShakeAnimation()
@@ -315,9 +324,9 @@ class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    private func completeVerification() {
+    private func verificationComplete() {
         let verifyProfileVC = VerifyProfileViewController(nibName: "VerifyProfileViewController", bundle: nil)
-        self.navigationController?.setViewControllers([verifyProfileVC], animated: true)
+        navigationController?.setViewControllers([verifyProfileVC], animated: true)
     }
 
 }

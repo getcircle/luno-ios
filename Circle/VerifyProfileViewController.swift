@@ -103,9 +103,7 @@ class VerifyProfileViewController:
         activityIndicatorView.startAnimating()
         handleImageUpload { () -> Void in
             activityIndicatorView.stopAnimating()
-            let tagSelectorVC = TagSelectorViewController(nibName: "TagSelectorViewController", bundle: nil)
-            tagSelectorVC.theme = .Onboarding
-            self.navigationController?.setViewControllers([tagSelectorVC], animated: true)
+            self.verificationComplete()
         }
     }
     
@@ -311,5 +309,11 @@ class VerifyProfileViewController:
     
     private func allTextFields() -> NSArray {
         return [firstNameField, lastNameField, titleField]
+    }
+    
+    private func verificationComplete() {
+        let tagSelectorVC = TagSelectorViewController(nibName: "TagSelectorViewController", bundle: nil)
+        tagSelectorVC.theme = .Onboarding
+        navigationController?.setViewControllers([tagSelectorVC], animated: true)
     }
 }

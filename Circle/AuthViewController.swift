@@ -23,6 +23,7 @@ struct AuthNotifications {
     static let onLoginNotification = "com.ravcode.notification:onLoginNotification"
     static let onLogoutNotification = "com.ravcode.notification:onLogoutNotification"
     static let onProfileChangedNotification = "com.ravcode.notification:onProfileChangedNotification"
+    static let onUserChangedNotification = "com.ravcode.notifcation:onUserChangedNotification"
 }
 
 private let LocksmithService = "LocksmithAuthTokenService"
@@ -172,7 +173,7 @@ class AuthViewController: UIViewController, UITextFieldDelegate {
         return nil
     }
     
-    private func cacheUserData(user: UserService.Containers.User) {
+    private class func cacheUserData(user: UserService.Containers.User) {
         NSUserDefaults.standardUserDefaults().setObject(user.getNSData(), forKey: DefaultsUserKey)
     }
     
@@ -198,7 +199,7 @@ class AuthViewController: UIViewController, UITextFieldDelegate {
         }
         
         // Cache user data in user defaults
-        cacheUserData(user)
+        self.dynamicType.cacheUserData(user)
         
         // Cache email used
         NSUserDefaults.standardUserDefaults().setObject(user.primary_email, forKey: DefaultsLastLoggedInUserEmail)
@@ -234,21 +235,28 @@ class AuthViewController: UIViewController, UITextFieldDelegate {
             }
             
             self.cacheLoginData(token!, user: user!)
-            self.fetchAndCacheUserProfile(user!.id)
-        }
-    }
-    
-    private func fetchAndCacheUserProfile(userId: String) {
-        ProfileService.Actions.getProfile(userId: userId) { (profile, error) -> Void in
-            if error == nil {
-                AuthViewController.updateUserProfile(profile!)
+            self.fetchAndCacheUserProfile(user!.id) {
+                ObjectStore.sharedInstance.repopulate()
                 NSNotificationCenter.defaultCenter().postNotificationName(
                     AuthNotifications.onLoginNotification,
                     object: nil
                 )
-                ObjectStore.sharedInstance.repopulate()
-                self.dismissViewControllerAnimated(true, completion: nil)
+                if self.dynamicType.checkUser({ () -> Void in
+                    let verifyPhoneNumberVC = VerifyPhoneNumberViewController(nibName: "VerifyPhoneNumberViewController", bundle: nil)
+                    self.navigationController?.setViewControllers([verifyPhoneNumberVC], animated: true)
+                }) {
+                    self.dismissViewControllerAnimated(true, completion: nil)
+                }
             }
+        }
+    }
+    
+    private func fetchAndCacheUserProfile(userId: String, completion: () -> Void) {
+        ProfileService.Actions.getProfile(userId: userId) { (profile, error) -> Void in
+            if error == nil {
+                self.dynamicType.updateUserProfile(profile!)
+            }
+            completion()
         }
     }
     
@@ -281,7 +289,7 @@ class AuthViewController: UIViewController, UITextFieldDelegate {
         )
         
         // Present auth view
-        AuthViewController.presentAuthViewController()
+        presentAuthViewController()
     }
     
     class func presentAuthViewController() {
@@ -290,6 +298,13 @@ class AuthViewController: UIViewController, UITextFieldDelegate {
         let navController = UINavigationController(rootViewController: authViewController)
         let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
         appDelegate.window!.rootViewController!.presentViewController(navController, animated: false, completion: nil)
+    }
+    
+    class func presentOnboarding() {
+        let verifyPhoneNumberVC = VerifyPhoneNumberViewController(nibName: "VerifyPhoneNumberViewController", bundle: nil)
+        let onboardingNavigationController = UINavigationController(rootViewController: verifyPhoneNumberVC)
+        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        appDelegate.window!.rootViewController!.presentViewController(onboardingNavigationController, animated: true, completion: nil)
     }
     
     // MARK: - Logged In User Helpers
@@ -336,6 +351,35 @@ class AuthViewController: UIViewController, UITextFieldDelegate {
             AuthNotifications.onProfileChangedNotification,
             object: profile
         )
+    }
+    
+    class func updateUser(user: UserService.Containers.User) {
+        LoggedInUserHolder.user = user
+        self.cacheUserData(user)
+        NSNotificationCenter.defaultCenter().postNotificationName(
+            AuthNotifications.onUserChangedNotification,
+            object: user
+        )
+    }
+    
+    // MARK: - Authentication Helpers
+    
+    class func checkUser(#unverifiedPhoneHandler: (() -> Void)?) -> Bool {
+        var currentUser = getLoggedInUser()
+        if let user = currentUser {
+            if !user.phone_number_verified {
+                if let handler = unverifiedPhoneHandler {
+                    handler()
+                } else {
+                    presentOnboarding()
+                }
+                return false
+            }
+        } else {
+            presentAuthViewController()
+            return false
+        }
+        return true
     }
     
     // MARK: - UITextFieldDelegate
