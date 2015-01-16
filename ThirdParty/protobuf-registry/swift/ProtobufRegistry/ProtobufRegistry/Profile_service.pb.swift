@@ -177,6 +177,7 @@ final public class ProfileService : GeneratedMessage {
                  case "full_name": return full_name
                  case "birth_date": return birth_date
                  case "hire_date": return hire_date
+                 case "verified": return verified
                  default: return nil
                  }
           }
@@ -225,6 +226,9 @@ final public class ProfileService : GeneratedMessage {
 
           public private(set) var hasHireDate:Bool = false
           public private(set) var hire_date:String = ""
+
+          public private(set) var hasVerified:Bool = false
+          public private(set) var verified:Bool = false
 
           required public init() {
                super.init()
@@ -277,6 +281,9 @@ final public class ProfileService : GeneratedMessage {
             }
             if hasHireDate {
               output.writeString(15, value:hire_date)
+            }
+            if hasVerified {
+              output.writeBool(16, value:verified)
             }
             unknownFields.writeToCodedOutputStream(output)
           }
@@ -331,6 +338,9 @@ final public class ProfileService : GeneratedMessage {
             }
             if hasHireDate {
               size += WireFormat.computeStringSize(15, value:hire_date)
+            }
+            if hasVerified {
+              size += WireFormat.computeBoolSize(16, value:verified)
             }
             size += unknownFields.serializedSize()
             memoizedSerializedSize = size
@@ -418,6 +428,9 @@ final public class ProfileService : GeneratedMessage {
             if hasHireDate {
               output += "\(indent) hire_date: \(hire_date) \n"
             }
+            if hasVerified {
+              output += "\(indent) verified: \(verified) \n"
+            }
             unknownFields.writeDescriptionTo(&output, indent:indent)
           }
           override public var hashValue:Int {
@@ -467,6 +480,9 @@ final public class ProfileService : GeneratedMessage {
                   }
                   if hasHireDate {
                      hashCode = (hashCode &* 31) &+ hire_date.hashValue
+                  }
+                  if hasVerified {
+                     hashCode = (hashCode &* 31) &+ verified.hashValue
                   }
                   hashCode = (hashCode &* 31) &+  unknownFields.hashValue
                   return hashCode
@@ -783,6 +799,25 @@ final public class ProfileService : GeneratedMessage {
                builderResult.hire_date = ""
                return self
           }
+          public var hasVerified:Bool {
+               get {
+                    return builderResult.hasVerified
+               }
+          }
+          public var verified:Bool {
+               get {
+                    return builderResult.verified
+               }
+               set (value) {
+                   builderResult.hasVerified = true
+                   builderResult.verified = value
+               }
+          }
+          public func clearVerified() -> ProfileService.Containers.ProfileBuilder{
+               builderResult.hasVerified = false
+               builderResult.verified = false
+               return self
+          }
           override public var internalGetResult:GeneratedMessage {
                get {
                   return builderResult
@@ -849,6 +884,9 @@ final public class ProfileService : GeneratedMessage {
             if other.hasHireDate {
                  hire_date = other.hire_date
             }
+            if other.hasVerified {
+                 verified = other.verified
+            }
             mergeUnknownFields(other.unknownFields)
             return self
           }
@@ -908,6 +946,9 @@ final public class ProfileService : GeneratedMessage {
 
               case 122 :
                 hire_date = input.readString()
+
+              case 128 :
+                verified = input.readBool()
 
               default:
                 if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
