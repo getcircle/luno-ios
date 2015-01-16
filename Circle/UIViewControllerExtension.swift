@@ -70,7 +70,8 @@ extension UIViewController {
         }
     }
     
-    func setStatusBarHidden(hidden: Bool) {
-        UIApplication.sharedApplication().setStatusBarHidden(hidden, withAnimation: .Fade)
+    func setStatusBarHidden(hidden: Bool, animated: Bool? = true) {
+        var withAnimation: UIStatusBarAnimation = animated != nil ? (animated! ? .Fade : .None) : .Fade
+        UIApplication.sharedApplication().setStatusBarHidden(hidden, withAnimation: withAnimation)
     }
 }

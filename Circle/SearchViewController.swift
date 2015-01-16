@@ -38,6 +38,7 @@ CardHeaderViewDelegate {
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        // Animate hiding for every time thereafter
         setStatusBarHidden(false)
         checkUserAndPresentAuthViewController()
         (collectionView.dataSource as? SearchLandingDataSource)?.loadData { (error) -> Void in
@@ -54,6 +55,8 @@ CardHeaderViewDelegate {
 
     private func configureView() {
         view.backgroundColor = UIColor.viewBackgroundColor()
+        // Hide without animation in viewDidLoad
+        setStatusBarHidden(false, animated: false)
     }
     
     private func configureNavigationButtons() {
