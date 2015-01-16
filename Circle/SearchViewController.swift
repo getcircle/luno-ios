@@ -28,7 +28,6 @@ CardHeaderViewDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         configureView()
-        configureNavigationButtons()
         configureSearchHeaderView()
         configureCollectionView()
     
@@ -57,17 +56,13 @@ CardHeaderViewDelegate {
         view.backgroundColor = UIColor.viewBackgroundColor()
         // Hide without animation in viewDidLoad
         setStatusBarHidden(false, animated: false)
-    }
-    
-    private func configureNavigationButtons() {
-        var infoButton = UIBarButtonItem(image: UIImage(named: "Info"), style: .Plain, target: self, action: "infoButtonTapped:")
-        var barButtonItems = [UIBarButtonItem]()
-        if navigationItem.rightBarButtonItem != nil {
-            barButtonItems.append(navigationItem.rightBarButtonItem!)
+        // TODO add some check here for whether or not we're on production
+        if let leftBarButton = navigationItem.leftBarButtonItem {
+            if let leftBarView = leftBarButton.valueForKey("view") as? UIView {
+                let longPressGesture = UILongPressGestureRecognizer(target: self, action: "profileLongPressHandler:")
+                leftBarView.addGestureRecognizer(longPressGesture)
+            }
         }
-        
-        barButtonItems.append(infoButton)
-        navigationItem.rightBarButtonItems = barButtonItems
     }
     
     private func configureSearchHeaderView() {
@@ -212,7 +207,7 @@ CardHeaderViewDelegate {
         AuthViewController.logOut()
     }
     
-    @IBAction func infoButtonTapped(sender: AnyObject!) {
+    @IBAction func profileLongPressHandler(sender: AnyObject!) {
         let verifyPhoneNumberVC = VerifyPhoneNumberViewController(nibName: "VerifyPhoneNumberViewController", bundle: nil)
         let onboardingNavigationController = UINavigationController(rootViewController: verifyPhoneNumberVC)
         presentViewController(onboardingNavigationController, animated: true, completion: nil)
