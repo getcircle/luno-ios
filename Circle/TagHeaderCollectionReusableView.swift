@@ -19,6 +19,9 @@ class TagHeaderCollectionReusableView: CircleCollectionReusableView {
     }
     
     @IBOutlet weak private(set) var tagNameLabel: PaddedLabel!
+    @IBOutlet weak private(set) var tagNameLabelCenterYConstraint: NSLayoutConstraint!
+    
+    private(set) var tagLabelInitialFontSize: CGFloat!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -27,6 +30,7 @@ class TagHeaderCollectionReusableView: CircleCollectionReusableView {
         tagNameLabel.paddingEdgeInsets = UIEdgeInsetsMake(5.0, 10.0, 5.0, 10.0)
         tagNameLabel.layer.borderColor = UIColor.whiteColor().CGColor
         tagNameLabel.layer.borderWidth = 0.5
+        tagLabelInitialFontSize = tagNameLabel.font.pointSize
         
         var gradientView = addGradientView()
         let startColor = UIColor.blackColor().colorWithAlphaComponent(0.5).CGColor

@@ -45,45 +45,45 @@ class TagDetailViewController: DetailViewController {
     }
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
-//        if let profileHeaderView = (collectionView!.dataSource as LocationDetailDataSource).profileHeaderView {
-//            let contentOffset = scrollView.contentOffset
-//            
-//            // Todo: need to understand how this changes with orientation
-//            let statusBarHeight: CGFloat = 20.0
-//            let navBarHeight: CGFloat = navigationController!.navigationBar.frameHeight
-//            let navBarStatusBarHeight: CGFloat = navBarHeight + statusBarHeight
-//            let heightToCoverNavBar: CGFloat = navBarStatusBarHeight - profileHeaderView.initialHeightForAddressContainer
-//            let pointAtWhichFinalHeightShouldBeInPlace: CGFloat = MapHeaderCollectionReusableView.height - navBarStatusBarHeight
-//            let pointAtWhichHeightShouldStartIncreasing: CGFloat = pointAtWhichFinalHeightShouldBeInPlace - heightToCoverNavBar
-//            
-//            // We want the address label centered in the nav rather than nav bar + status bar
-//            let finalCenterYConstant: CGFloat = navBarHeight/2.0 - navBarStatusBarHeight/2.0
-//            let heightAtWhichCenterYShouldStartChanging: CGFloat = navBarStatusBarHeight + finalCenterYConstant
-//            
-//            if contentOffset.y > pointAtWhichHeightShouldStartIncreasing {
-//                // Update height for address container
-//                var newHeight: CGFloat = profileHeaderView.initialHeightForAddressContainer
-//                newHeight += min(heightToCoverNavBar, contentOffset.y - pointAtWhichHeightShouldStartIncreasing)
-//                profileHeaderView.addressContainerViewHeightConstraint.constant = newHeight
-//                
-//                // Update center Y for addressLabel
-//                var newCenterYConstant: CGFloat = 0.0
-//                if newHeight >= heightAtWhichCenterYShouldStartChanging {
-//                    newCenterYConstant = max(finalCenterYConstant, heightAtWhichCenterYShouldStartChanging - newHeight)
-//                }
-//                
-//                profileHeaderView.addressLabelCenterYConstraint.constant = newCenterYConstant
-//            }
-//            else {
-//                profileHeaderView.addressContainerViewHeightConstraint.constant = profileHeaderView.initialHeightForAddressContainer
-//                profileHeaderView.addressLabelCenterYConstraint.constant = 0.0
-//            }
-//            
-//            // Update constraints and request layout
-//            profileHeaderView.addressContainerView.setNeedsUpdateConstraints()
-//            profileHeaderView.addressContainerView.layoutIfNeeded()
-//            profileHeaderView.addressLabel.setNeedsUpdateConstraints()
-//            profileHeaderView.addressLabel.layoutIfNeeded()
-//        }
+        if let profileHeaderView = (collectionView!.dataSource as TagDetailDataSource).profileHeaderView {
+            let contentOffset = scrollView.contentOffset
+            
+            // Todo: need to understand how this changes with orientation
+            let statusBarHeight: CGFloat = 20.0
+            let navBarHeight: CGFloat = navigationController!.navigationBar.frameHeight
+            let navBarStatusBarHeight: CGFloat = navBarHeight + statusBarHeight
+            let initialYConstrainValue: CGFloat = 0.0
+            let finalYConstraintValue: CGFloat = profileHeaderView.frameHeight/2.0 - navBarHeight/2.0
+            let distanceToMove: CGFloat = finalYConstraintValue - initialYConstrainValue
+            let pointAtWhichFinalHeightShouldBeInPlace: CGFloat = TagHeaderCollectionReusableView.height - navBarStatusBarHeight
+            let pointAtWhichHeightShouldStartIncreasing: CGFloat = pointAtWhichFinalHeightShouldBeInPlace - distanceToMove
+            
+            // Y Constraint has to be modified only after a certain point
+            if contentOffset.y > pointAtWhichHeightShouldStartIncreasing {
+                var newY: CGFloat = initialYConstrainValue
+                newY += max(-finalYConstraintValue, -contentOffset.y + pointAtWhichHeightShouldStartIncreasing)
+                profileHeaderView.tagNameLabelCenterYConstraint.constant = newY
+            }
+            else {
+                profileHeaderView.tagNameLabelCenterYConstraint.constant = 0.0
+            }
+            
+            let minFontSize: CGFloat = 15.0
+            let maxFontSize: CGFloat = profileHeaderView.tagLabelInitialFontSize
+            let pointAtWhichSizeShouldStartChanging: CGFloat = 20.0
+
+            // Size needs to be modified much sooner
+            if contentOffset.y > pointAtWhichSizeShouldStartChanging {
+                var size = max(minFontSize, maxFontSize - ((contentOffset.y - pointAtWhichSizeShouldStartChanging) / (maxFontSize - minFontSize)))
+                profileHeaderView.tagNameLabel.font = UIFont(name: profileHeaderView.tagNameLabel.font.familyName, size: size)
+            }
+            else {
+                profileHeaderView.tagNameLabel.font = UIFont(name: profileHeaderView.tagNameLabel.font.familyName, size: maxFontSize)
+            }
+            
+            // Update constraints and request layout
+            profileHeaderView.tagNameLabel.setNeedsUpdateConstraints()
+            profileHeaderView.tagNameLabel.layoutIfNeeded()
+        }
     }
 }

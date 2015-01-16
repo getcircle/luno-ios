@@ -7,11 +7,11 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionReusableView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="U6b-Vx-4bR" customClass="TagHeaderCollectionReusableView" customModule="Circle" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="621" height="196"/>
+            <rect key="frame" x="0.0" y="0.0" width="621" height="200"/>
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SOFTWARE DEVELOPMENT" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="6Fk-g8-nvu" customClass="PaddedLabel" customModule="Circle" customModuleProvider="target">
-                    <rect key="frame" x="182" y="84" width="257" height="28"/>
+                    <rect key="frame" x="182" y="86" width="257" height="28"/>
                     <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="20"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
@@ -24,6 +24,7 @@
             </constraints>
             <connections>
                 <outlet property="tagNameLabel" destination="6Fk-g8-nvu" id="Yj6-el-nQf"/>
+                <outlet property="tagNameLabelCenterYConstraint" destination="hUq-mf-knD" id="WJb-Cl-JLW"/>
             </connections>
             <point key="canvasLocation" x="503.5" y="278"/>
         </collectionReusableView>
