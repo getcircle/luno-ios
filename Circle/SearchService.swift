@@ -28,10 +28,10 @@ extension SearchService {
             return NSCharacterSet.whitespaceCharacterSet()
         }
         
-        class func search(query: String, completionHandler: SearchCompletionHandler) {
+        class func search(query: String, completionHandler: SearchCompletionHandler?) {
             // Query the cache
             var (cache, error) = search(query)
-            completionHandler(profiles: cache?.profiles, teams: cache?.teams, addresses: cache?.addresses)
+            completionHandler?(profiles: cache?.profiles, teams: cache?.teams, addresses: cache?.addresses)
             
             // Send a search request to the servers
 //            let requestBuilder = SearchService.Search.Request.builder()

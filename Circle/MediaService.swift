@@ -19,7 +19,7 @@ extension MediaService {
         class func startImageUpload(
             mediaObject: MediaService.MediaObject,
             key: String,
-            completionHandler: StartImageUploadCompletionHandler
+            completionHandler: StartImageUploadCompletionHandler?
         ) {
             let requestBuilder = MediaService.StartImageUpload.Request.builder()
             requestBuilder.media_object = mediaObject
@@ -34,7 +34,7 @@ extension MediaService {
                 let response = actionResponse?.result.getExtension(
                     MediaServiceRequests_start_image_upload
                 ) as? MediaService.StartImageUpload.Response
-                completionHandler(instructions: response?.upload_instructions, error: error)
+                completionHandler?(instructions: response?.upload_instructions, error: error)
             }
         }
         
@@ -43,7 +43,7 @@ extension MediaService {
             mediaKey: String,
             uploadId: String,
             uploadKey: String,
-            completionHandler: CompleteImageUploadCompletionHandler
+            completionHandler: CompleteImageUploadCompletionHandler?
         ) {
             let requestBuilder = MediaService.CompleteImageUpload.Request.builder()
             requestBuilder.media_object = mediaObject
@@ -60,11 +60,11 @@ extension MediaService {
                 let response = actionResponse?.result.getExtension(
                     MediaServiceRequests_complete_image_upload
                 ) as? MediaService.CompleteImageUpload.Response
-                completionHandler(mediaURL: response?.media_url, error: error)
+                completionHandler?(mediaURL: response?.media_url, error: error)
             }
         }
         
-        class func uploadProfileImage(profileId: String, image: UIImage, completionHandler: CompleteImageUploadCompletionHandler) {
+        class func uploadProfileImage(profileId: String, image: UIImage, completionHandler: CompleteImageUploadCompletionHandler?) {
             Actions.startImageUpload(.Profile, key: profileId) { (instructions, error) -> Void in
                 if let instructions = instructions {
                     Alamofire.upload(.PUT, instructions.upload_url, UIImagePNGRepresentation(image))
@@ -78,7 +78,8 @@ extension MediaService {
                                 uploadId: instructions.upload_id,
                                 uploadKey: instructions.upload_key
                             ) { (mediaURL, error) -> Void in
-                                completionHandler(mediaURL: mediaURL, error: error)
+                                completionHandler?(mediaURL: mediaURL, error: error)
+                                return
                             }
                         }
                 } else {

@@ -14,7 +14,7 @@ typealias GetCategoriesCompletionHandler = (categories: Array<LandingService.Con
 extension LandingService {
     class Actions {
         
-        class func getCategories(profileId: String, completionHandler: GetCategoriesCompletionHandler) {
+        class func getCategories(profileId: String, completionHandler: GetCategoriesCompletionHandler?) {
             let requestBuilder = LandingService.GetCategories.Request.builder()
             requestBuilder.profile_id = profileId
             let client = ServiceClient(serviceName: "landing")
@@ -26,7 +26,7 @@ extension LandingService {
                 let response = actionResponse?.result.getExtension(
                     LandingServiceRequests_get_categories
                 ) as? LandingService.GetCategories.Response
-                completionHandler(
+                completionHandler?(
                     categories: response?.categories,
                     error: nil
                 )

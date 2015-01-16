@@ -15,7 +15,7 @@ typealias GetTeamsCompletionHandler = (teams: Array<OrganizationService.Containe
 extension OrganizationService {
     class Actions {
         
-        class func getAddresses(organizationId: String, completionHandler: GetAddressesCompletionHandler) {
+        class func getAddresses(organizationId: String, completionHandler: GetAddressesCompletionHandler?) {
             let requestBuilder = OrganizationService.GetAddresses.Request.builder()
             requestBuilder.organization_id = organizationId
             
@@ -28,11 +28,11 @@ extension OrganizationService {
                 let response = actionResponse?.result.getExtension(
                     OrganizationServiceRequests_get_addresses
                 ) as? OrganizationService.GetAddresses.Response
-                completionHandler(addresses: response?.addresses, error: error)
+                completionHandler?(addresses: response?.addresses, error: error)
             }
         }
         
-        class func getTeams(organizationId: String, completionHandler: GetTeamsCompletionHandler) {
+        class func getTeams(organizationId: String, completionHandler: GetTeamsCompletionHandler?) {
             let requestBuilder = OrganizationService.GetTeams.Request.builder()
             requestBuilder.organization_id = organizationId
             
@@ -45,7 +45,7 @@ extension OrganizationService {
                 let response = actionResponse?.result.getExtension(
                     OrganizationServiceRequests_get_teams
                 ) as? OrganizationService.GetTeams.Response
-                completionHandler(teams: response?.teams, error: error)
+                completionHandler?(teams: response?.teams, error: error)
             }
         }
     }
