@@ -13,6 +13,7 @@ message UserService {
             optional bool is_admin = 3;
             optional bool is_active = 4;
             optional string phone_number = 5;
+            optional bool phone_number_verified = 6;
         }
 
     }

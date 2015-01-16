@@ -109,6 +109,7 @@ final public class UserService : GeneratedMessage {
                  case "is_admin": return is_admin
                  case "is_active": return is_active
                  case "phone_number": return phone_number
+                 case "phone_number_verified": return phone_number_verified
                  default: return nil
                  }
           }
@@ -127,6 +128,9 @@ final public class UserService : GeneratedMessage {
 
           public private(set) var hasPhoneNumber:Bool = false
           public private(set) var phone_number:String = ""
+
+          public private(set) var hasPhoneNumberVerified:Bool = false
+          public private(set) var phone_number_verified:Bool = false
 
           required public init() {
                super.init()
@@ -149,6 +153,9 @@ final public class UserService : GeneratedMessage {
             }
             if hasPhoneNumber {
               output.writeString(5, value:phone_number)
+            }
+            if hasPhoneNumberVerified {
+              output.writeBool(6, value:phone_number_verified)
             }
             unknownFields.writeToCodedOutputStream(output)
           }
@@ -173,6 +180,9 @@ final public class UserService : GeneratedMessage {
             }
             if hasPhoneNumber {
               size += WireFormat.computeStringSize(5, value:phone_number)
+            }
+            if hasPhoneNumberVerified {
+              size += WireFormat.computeBoolSize(6, value:phone_number_verified)
             }
             size += unknownFields.serializedSize()
             memoizedSerializedSize = size
@@ -230,6 +240,9 @@ final public class UserService : GeneratedMessage {
             if hasPhoneNumber {
               output += "\(indent) phone_number: \(phone_number) \n"
             }
+            if hasPhoneNumberVerified {
+              output += "\(indent) phone_number_verified: \(phone_number_verified) \n"
+            }
             unknownFields.writeDescriptionTo(&output, indent:indent)
           }
           override public var hashValue:Int {
@@ -249,6 +262,9 @@ final public class UserService : GeneratedMessage {
                   }
                   if hasPhoneNumber {
                      hashCode = (hashCode &* 31) &+ phone_number.hashValue
+                  }
+                  if hasPhoneNumberVerified {
+                     hashCode = (hashCode &* 31) &+ phone_number_verified.hashValue
                   }
                   hashCode = (hashCode &* 31) &+  unknownFields.hashValue
                   return hashCode
@@ -375,6 +391,25 @@ final public class UserService : GeneratedMessage {
                builderResult.phone_number = ""
                return self
           }
+          public var hasPhoneNumberVerified:Bool {
+               get {
+                    return builderResult.hasPhoneNumberVerified
+               }
+          }
+          public var phone_number_verified:Bool {
+               get {
+                    return builderResult.phone_number_verified
+               }
+               set (value) {
+                   builderResult.hasPhoneNumberVerified = true
+                   builderResult.phone_number_verified = value
+               }
+          }
+          public func clearPhoneNumberVerified() -> UserService.Containers.UserBuilder{
+               builderResult.hasPhoneNumberVerified = false
+               builderResult.phone_number_verified = false
+               return self
+          }
           override public var internalGetResult:GeneratedMessage {
                get {
                   return builderResult
@@ -411,6 +446,9 @@ final public class UserService : GeneratedMessage {
             if other.hasPhoneNumber {
                  phone_number = other.phone_number
             }
+            if other.hasPhoneNumberVerified {
+                 phone_number_verified = other.phone_number_verified
+            }
             mergeUnknownFields(other.unknownFields)
             return self
           }
@@ -440,6 +478,9 @@ final public class UserService : GeneratedMessage {
 
               case 42 :
                 phone_number = input.readString()
+
+              case 48 :
+                phone_number_verified = input.readBool()
 
               default:
                 if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
