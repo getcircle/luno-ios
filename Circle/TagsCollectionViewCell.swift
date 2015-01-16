@@ -55,6 +55,7 @@ class TagsCollectionViewCell: CircleCollectionViewCell, UICollectionViewDataSour
         showTagsLabel = false
         configureCollectionView()
         configurePrototypeCell()
+        selectedBackgroundView = nil
     }
 
     // MARK: - Configuration
@@ -129,6 +130,7 @@ class TagsCollectionViewCell: CircleCollectionViewCell, UICollectionViewDataSour
             object: nil,
             userInfo: ["tag": tag]
         )
+        collectionView.deselectItemAtIndexPath(indexPath, animated: true)
     }
     
     func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {

@@ -42,6 +42,7 @@ class TagCollectionViewCell: CircleCollectionViewCell {
         layer.shouldRasterize = true;
         layer.rasterizationScale = UIScreen.mainScreen().scale;
         tagLabel.paddingEdgeInsets = UIEdgeInsetsMake(5.0, 10.0, 5.0, 10.0)
+        bringSubviewToFront(selectedBackgroundView)
     }
     
     override func intrinsicContentSize() -> CGSize {
