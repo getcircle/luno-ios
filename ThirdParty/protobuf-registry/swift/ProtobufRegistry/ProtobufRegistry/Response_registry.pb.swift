@@ -157,6 +157,11 @@ public var ProfileServiceResponses_get_recent_hires:ConcreateExtensionField {
        return ResponseRegistryRoot.sharedInstance.ProfileServiceResponses_get_recent_hiresStatic
    }
 }
+public var ProfileServiceResponses_get_trending_tags:ConcreateExtensionField {
+   get {
+       return ResponseRegistryRoot.sharedInstance.ProfileServiceResponses_get_trending_tagsStatic
+   }
+}
 public var SearchServiceResponses_search:ConcreateExtensionField {
    get {
        return ResponseRegistryRoot.sharedInstance.SearchServiceResponses_searchStatic
@@ -215,6 +220,7 @@ public struct ResponseRegistryRoot {
   var ProfileServiceResponses_get_upcoming_anniversariesStatic:ConcreateExtensionField
   var ProfileServiceResponses_get_upcoming_birthdaysStatic:ConcreateExtensionField
   var ProfileServiceResponses_get_recent_hiresStatic:ConcreateExtensionField
+  var ProfileServiceResponses_get_trending_tagsStatic:ConcreateExtensionField
   var SearchServiceResponses_searchStatic:ConcreateExtensionField
   var LandingServiceResponses_get_categoriesStatic:ConcreateExtensionField
   var MediaServiceResponses_start_image_uploadStatic:ConcreateExtensionField
@@ -253,6 +259,7 @@ public struct ResponseRegistryRoot {
     ProfileServiceResponses_get_upcoming_anniversariesStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 311, defaultValue:ProfileService.GetUpcomingAnniversaries.Response(), messageOrGroupClass:ProfileService.GetUpcomingAnniversaries.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     ProfileServiceResponses_get_upcoming_birthdaysStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 312, defaultValue:ProfileService.GetUpcomingBirthdays.Response(), messageOrGroupClass:ProfileService.GetUpcomingBirthdays.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     ProfileServiceResponses_get_recent_hiresStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 313, defaultValue:ProfileService.GetRecentHires.Response(), messageOrGroupClass:ProfileService.GetRecentHires.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
+    ProfileServiceResponses_get_trending_tagsStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 314, defaultValue:ProfileService.GetTrendingTags.Response(), messageOrGroupClass:ProfileService.GetTrendingTags.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     SearchServiceResponses_searchStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 400, defaultValue:SearchService.Search.Response(), messageOrGroupClass:SearchService.Search.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     LandingServiceResponses_get_categoriesStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 500, defaultValue:LandingService.GetCategories.Response(), messageOrGroupClass:LandingService.GetCategories.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     MediaServiceResponses_start_image_uploadStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 600, defaultValue:MediaService.StartImageUpload.Response(), messageOrGroupClass:MediaService.StartImageUpload.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
@@ -299,6 +306,7 @@ public struct ResponseRegistryRoot {
     registry.addExtension(ProfileServiceResponses_get_upcoming_anniversariesStatic)
     registry.addExtension(ProfileServiceResponses_get_upcoming_birthdaysStatic)
     registry.addExtension(ProfileServiceResponses_get_recent_hiresStatic)
+    registry.addExtension(ProfileServiceResponses_get_trending_tagsStatic)
     registry.addExtension(SearchServiceResponses_searchStatic)
     registry.addExtension(LandingServiceResponses_get_categoriesStatic)
     registry.addExtension(MediaServiceResponses_start_image_uploadStatic)
@@ -743,6 +751,9 @@ final public class ProfileServiceResponses : GeneratedMessage {
   }
   public class func get_recent_hires() -> ConcreateExtensionField {
        return ProfileServiceResponses_get_recent_hires
+  }
+  public class func get_trending_tags() -> ConcreateExtensionField {
+       return ProfileServiceResponses_get_trending_tags
   }
   required public init() {
        super.init()

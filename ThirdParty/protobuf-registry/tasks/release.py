@@ -62,7 +62,7 @@ def _update_version():
 
 def _commit_release_changes(release_version):
     print 'committing release changes...'
-    result = subprocess.check_call(['git', 'add', INIT_FILE])
+    result = subprocess.check_call(['git', 'add', '.'])
     if result:
         raise ReleaseException(
             'failed to stage release changes: %s' % (result,),

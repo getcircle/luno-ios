@@ -52,6 +52,7 @@ message ProfileServiceRequests {
         optional main.profile_service.ProfileService.GetUpcomingAnniversaries.Request get_upcoming_anniversaries = 311;
         optional main.profile_service.ProfileService.GetUpcomingBirthdays.Request get_upcoming_birthdays = 312;
         optional main.profile_service.ProfileService.GetRecentHires.Request get_recent_hires = 313;
+        optional main.profile_service.ProfileService.GetTrendingTags.Request get_trending_tags = 314;
     }
 }
 
