@@ -104,6 +104,7 @@ final public class LandingService : GeneratedMessage {
 
           public private(set) var profiles:Array<ProfileService.Containers.Profile>  = Array<ProfileService.Containers.Profile>()
           public private(set) var addresses:Array<OrganizationService.Containers.Address>  = Array<OrganizationService.Containers.Address>()
+          public private(set) var tags:Array<ProfileService.Containers.Tag>  = Array<ProfileService.Containers.Tag>()
           required public init() {
                super.init()
           }
@@ -128,6 +129,9 @@ final public class LandingService : GeneratedMessage {
             }
             for oneElementaddresses in addresses {
                 output.writeMessage(6, value:oneElementaddresses)
+            }
+            for oneElementtags in tags {
+                output.writeMessage(7, value:oneElementtags)
             }
             unknownFields.writeToCodedOutputStream(output)
           }
@@ -155,6 +159,9 @@ final public class LandingService : GeneratedMessage {
             }
             for oneElementaddresses in addresses {
                 size += WireFormat.computeMessageSize(6, value:oneElementaddresses)
+            }
+            for oneElementtags in tags {
+                size += WireFormat.computeMessageSize(7, value:oneElementtags)
             }
             size += unknownFields.serializedSize()
             memoizedSerializedSize = size
@@ -223,6 +230,13 @@ final public class LandingService : GeneratedMessage {
                 output += "\(indent)}\n"
                 addressesElementIndex++
             }
+            var tagsElementIndex:Int = 0
+            for oneElementtags in tags {
+                output += "\(indent) tags[\(tagsElementIndex)] {\n"
+                oneElementtags.writeDescriptionTo(&output, indent:"\(indent)  ")
+                output += "\(indent)}\n"
+                tagsElementIndex++
+            }
             unknownFields.writeDescriptionTo(&output, indent:indent)
           }
           override public var hashValue:Int {
@@ -245,6 +259,9 @@ final public class LandingService : GeneratedMessage {
                   }
                   for oneElementaddresses in addresses {
                       hashCode = (hashCode &* 31) &+ oneElementaddresses.hashValue
+                  }
+                  for oneElementtags in tags {
+                      hashCode = (hashCode &* 31) &+ oneElementtags.hashValue
                   }
                   hashCode = (hashCode &* 31) &+  unknownFields.hashValue
                   return hashCode
@@ -376,6 +393,18 @@ final public class LandingService : GeneratedMessage {
             builderResult.addresses.removeAll(keepCapacity: false)
             return self
           }
+          public var tags:Array<ProfileService.Containers.Tag> {
+               get {
+                   return builderResult.tags
+               }
+               set (value) {
+                   builderResult.tags = value
+               }
+          }
+          public func clearTags() -> LandingService.Containers.CategoryBuilder {
+            builderResult.tags.removeAll(keepCapacity: false)
+            return self
+          }
           override public var internalGetResult:GeneratedMessage {
                get {
                   return builderResult
@@ -414,6 +443,9 @@ final public class LandingService : GeneratedMessage {
             }
             if !other.addresses.isEmpty  {
                builderResult.addresses += other.addresses
+            }
+            if !other.tags.isEmpty  {
+               builderResult.tags += other.tags
             }
             mergeUnknownFields(other.unknownFields)
             return self
@@ -456,6 +488,11 @@ final public class LandingService : GeneratedMessage {
                 var subBuilder = OrganizationService.Containers.Address.builder()
                 input.readMessage(subBuilder,extensionRegistry:extensionRegistry)
                 addresses += [subBuilder.buildPartial()]
+
+              case 58 :
+                var subBuilder = ProfileService.Containers.Tag.builder()
+                input.readMessage(subBuilder,extensionRegistry:extensionRegistry)
+                tags += [subBuilder.buildPartial()]
 
               default:
                 if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {

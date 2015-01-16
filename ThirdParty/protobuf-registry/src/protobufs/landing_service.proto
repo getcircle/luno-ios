@@ -28,6 +28,7 @@ message LandingService {
 
             repeated main.profile_service.ProfileService.Containers.Profile profiles = 5;
             repeated main.organization_service.OrganizationService.Containers.Address addresses = 6;
+            repeated main.profile_service.ProfileService.Containers.Tag tags = 7;
         }
 
     }
