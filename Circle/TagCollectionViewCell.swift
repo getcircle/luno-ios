@@ -146,5 +146,8 @@ class TagCollectionViewCell: CircleCollectionViewCell {
         tagLabel.textColor = highlightedTextColor
         tagLabel.backgroundColor = highlightedBackgroundColor
         tagLabel.layer.borderColor = highlightedBorderColor.CGColor
+        
+        // If the call gets here, it implies we are using custom selection
+        selectedBackgroundView = nil
     }
 }
