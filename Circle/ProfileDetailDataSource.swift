@@ -9,7 +9,7 @@
 import UIKit
 import ProtobufRegistry
 
-struct ItemImage {
+class ItemImage {
     var name: String
     var tint: UIColor
     
@@ -19,7 +19,7 @@ struct ItemImage {
     }
 }
 
-struct SectionItem {
+class SectionItem {
     var title: String
     var image: ItemImage?
     var container: String
@@ -35,6 +35,18 @@ struct SectionItem {
         container = itemContainer
         containerKey = itemContainerKey
         image = itemImage
+    }
+}
+
+class Section {
+    var title: String
+    var items: [SectionItem]
+    var cardType: Card.CardType
+    
+    init(title sectionTitle: String, items sectionItems: [SectionItem], cardType sectionCardType: Card.CardType) {
+        title = sectionTitle
+        items = sectionItems
+        cardType = sectionCardType
     }
 }
 
@@ -61,65 +73,16 @@ class ProfileDetailDataSource: CardDataSource {
             return .Other
         }
     }
-    
-    var address: OrganizationService.Containers.Address?
+
     var manager: ProfileService.Containers.Profile?
     var profile: ProfileService.Containers.Profile!
-    private(set) var profileHeaderView: ProfileHeaderCollectionReusableView?
-    var team: OrganizationService.Containers.Team?
+    
+    private var address: OrganizationService.Containers.Address?
+    private var tags: Array<ProfileService.Containers.Tag>?
+    private var team: OrganizationService.Containers.Team?
 
-    let sections = [
-        
-        // Base Info Section
-        [
-            SectionItem(
-                title: "Email",
-                container: "profile",
-                containerKey: "email",
-                image: ItemImage(name: "EmailCircle", tint: UIColor.emailTintColor())
-            ),
-            SectionItem(
-                title: "Cell Phone",
-                container: "profile",
-                containerKey: "cell_phone",
-                image: ItemImage(name: "Telephone", tint: UIColor.phoneTintColor())
-            ),
-            SectionItem(
-                title: "City",
-                container: "address",
-                containerKey: "city",
-                image: nil
-            ),
-            SectionItem(
-                title: "Country",
-                container: "address",
-                containerKey: "country_code",
-                image: nil
-            )
-        ],
-        
-        // Manager Info Section
-        [
-            SectionItem(
-                title: "Manager",
-                container: "manager",
-                containerKey: "full_name",
-                image: nil
-            ),
-            SectionItem(
-                title: "Team",
-                container: "team",
-                containerKey: "name",
-                image: nil
-            )
-//            SectionItem(
-//                title: "Department",
-//                container: "team",
-//                containerKey: "department",
-//                image: nil
-//            )
-        ]
-    ]
+    private(set) var profileHeaderView: ProfileHeaderCollectionReusableView?
+    private var sections = [Section]()
     
     // TODO convert to SectionItem
 //    let socialInfoKeySet = [
@@ -188,6 +151,8 @@ class ProfileDetailDataSource: CardDataSource {
             withReuseIdentifier: ProfileHeaderCollectionReusableView.classReuseIdentifier
         )
         
+        // TODO should have some like "onLoad" function we can plug into
+        configureSections()
         super.registerCardHeader(collectionView)
     }
 
@@ -195,15 +160,91 @@ class ProfileDetailDataSource: CardDataSource {
         // Add placeholder card to load profile header instantly
         var placeholderCard = Card(cardType: .Placeholder, title: "Info")
         appendCard(placeholderCard)
-        ProfileService.Actions.getExtendedProfile(profile.id) { (profile, manager, team, address, error) -> Void in
+        ProfileService.Actions.getExtendedProfile(profile.id) {
+            (profile, manager, team, address, tags, error) -> Void in
             if error == nil {
                 self.manager = manager
                 self.team = team
                 self.address = address
+                self.tags = tags
                 self.populateData()
             }
             completionHandler(error: error)
         }
+    }
+    
+    // MARK: - Configuration
+    
+    private func configureSections() {
+        sections.append(getBasicInfoSection())
+        sections.append(getManagerInfoSection())
+        sections.append(getTagsSection())
+    }
+    
+    private func getBasicInfoSection() -> Section {
+        let sectionItems = [
+            SectionItem(
+                title: "Email",
+                container: "profile",
+                containerKey: "email",
+                image: ItemImage(name: "EmailCircle", tint: UIColor.emailTintColor())
+            ),
+            SectionItem(
+                title: "Cell Phone",
+                container: "profile",
+                containerKey: "cell_phone",
+                image: ItemImage(name: "Telephone", tint: UIColor.phoneTintColor())
+            ),
+            SectionItem(
+                title: "City",
+                container: "address",
+                containerKey: "city",
+                image: nil
+            ),
+            SectionItem(
+                title: "Country",
+                container: "address",
+                containerKey: "country_code",
+                image: nil
+            )
+        ]
+        return Section(title: "Info", items: sectionItems, cardType: .KeyValue)
+    }
+    
+    private func getManagerInfoSection() -> Section {
+        let sectionItems = [
+            SectionItem(
+                title: "Manager",
+                container: "manager",
+                containerKey: "full_name",
+                image: nil
+            ),
+            SectionItem(
+                title: "Team",
+                container: "team",
+                containerKey: "name",
+                image: nil
+            )
+            //            SectionItem(
+            //                title: "Department",
+            //                container: "team",
+            //                containerKey: "department",
+            //                image: nil
+            //            )
+        ]
+        return Section(title: "Manager Info", items: sectionItems, cardType: .KeyValue)
+    }
+    
+    private func getTagsSection() -> Section {
+        let sectionItems = [
+            SectionItem(
+                title: "Tags",
+                container: "tags",
+                containerKey: "name",
+                image: nil
+            )
+        ]
+        return Section(title: "Tags", items: sectionItems, cardType: .Tags)
     }
     
     // MARK: - Populate Data
@@ -213,31 +254,16 @@ class ProfileDetailDataSource: CardDataSource {
         
         var defaultSectionInset = UIEdgeInsetsMake(0.0, 0.0, 25.0, 0.0)
         for section in sections {
-            var keyValueCard = Card(cardType: .KeyValue, title: "Info")
-            for item in section {
-                addItemToCard(item, card: keyValueCard)
+            let sectionCard = Card(cardType: section.cardType, title: section.title)
+            for item in section.items {
+                addItemToCard(item, card: sectionCard)
             }
             
-            keyValueCard.sectionInset = defaultSectionInset
-            if keyValueCard.content.count > 0 {
-                appendCard(keyValueCard)
+            sectionCard.sectionInset = defaultSectionInset
+            if sectionCard.content.count > 0 {
+                appendCard(sectionCard)
             }
         }
-        
-        // Add Tags Card
-        var tagsCard = Card(cardType: .Tags, title: "Tags")
-        tagsCard.content.append([
-            ["name": "Python"],
-            ["name": "Hacker"],
-            ["name": "Swift"],
-            ["name": "Investing"],
-            ["name": "Startups"],
-            ["name": "Apple Pay"],
-            ["name": "Management"],
-            ["name": "Influencer"],
-        ])
-        tagsCard.sectionInset = defaultSectionInset
-        appendCard(tagsCard)
         
         // Add Notes Card
         var notesCard = Card(cardType: .Notes, title: "Notes")
@@ -247,6 +273,14 @@ class ProfileDetailDataSource: CardDataSource {
     }
     
     private func addItemToCard(item: SectionItem, card: Card) {
+        switch card.type {
+        case .KeyValue: addKeyValueItemToCard(item, card: card)
+        case .Tags: addTagsItemToCard(item, card: card)
+        default: break
+        }
+    }
+    
+    private func addKeyValueItemToCard(item: SectionItem, card: Card) {
         var value: AnyObject?
         switch item.container {
         case "profile":
@@ -274,6 +308,12 @@ class ProfileDetailDataSource: CardDataSource {
             }
             
             card.content.append(dataDict)
+        }
+    }
+    
+    private func addTagsItemToCard(item: SectionItem, card: Card) {
+        if let tags = tags {
+            card.content.append(tags as [AnyObject])
         }
     }
     

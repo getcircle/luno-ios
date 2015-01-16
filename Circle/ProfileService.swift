@@ -16,6 +16,7 @@ typealias GetExtendedProfileCompletionHandler = (
     manager: ProfileService.Containers.Profile?,
     team: OrganizationService.Containers.Team?,
     address: OrganizationService.Containers.Address?,
+    tags: Array<ProfileService.Containers.Tag>?,
     error: NSError?
 ) -> Void
 typealias GetTagsCompletionHandler = (tags: Array<ProfileService.Containers.Tag>?, error: NSError?) -> Void
@@ -84,6 +85,7 @@ extension ProfileService {
                     manager: response?.manager,
                     team: response?.team,
                     address: response?.address,
+                    tags: response?.tags,
                     error: error
                 )
             }
