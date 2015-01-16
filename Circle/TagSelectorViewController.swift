@@ -375,13 +375,15 @@ class TagSelectorViewController:
     }
     
     private func showAddTagButton(tagName: String) {
-        addTagButton.setTitle(
-            NSString(format: NSLocalizedString("Add tag \"%@\"", comment: "Button title used when adding a tag with name %@"), tagName),
-            forState: .Normal
-        )
-        addTagButtonHeightConstraint.constant = addTagButtonInitialHeight
-        addTagButton.updateConstraints()
-        addTagButton.layoutIfNeeded()
+        hideAddTagButton()
+        return
+//        addTagButton.setTitle(
+//            NSString(format: NSLocalizedString("Add tag \"%@\"", comment: "Button title used when adding a tag with name %@"), tagName),
+//            forState: .Normal
+//        )
+//        addTagButtonHeightConstraint.constant = addTagButtonInitialHeight
+//        addTagButton.updateConstraints()
+//        addTagButton.layoutIfNeeded()
     }
     
     private func hideAddTagButton() {
