@@ -64,7 +64,7 @@ extension UIViewController {
     // MARK: - Authentication
     
     func checkUserAndPresentAuthViewController() {
-        AuthViewController.checkUser(nil)
+        AuthViewController.checkUser(unverifiedPhoneHandler: nil, unverifiedProfileHandler: nil)
     }
     
     func setStatusBarHidden(hidden: Bool, animated: Bool? = true) {

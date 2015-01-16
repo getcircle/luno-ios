@@ -178,15 +178,13 @@ class VerifyProfileViewController:
         return staticProfile!.hashValue != profile.hashValue
     }
     
-    private func updateIfDirty(completion: () -> Void) {
-        if isProfileDirty() {
-            ProfileService.Actions.updateProfile(profile) { (profile, error) -> Void in
-                if let profile = profile {
-                    AuthViewController.updateUserProfile(profile)
-                }
-                completion()
+    private func updateProfile(completion: () -> Void) {
+        let builder = profile.toBuilder()
+        builder.verified = true
+        ProfileService.Actions.updateProfile(builder.build()) { (profile, error) -> Void in
+            if let profile = profile {
+                AuthViewController.updateUserProfile(profile)
             }
-        } else {
             completion()
         }
     }
@@ -197,12 +195,11 @@ class VerifyProfileViewController:
                 if let mediaURL = mediaURL {
                     let profileBuilder = self.profile.toBuilder()
                     profileBuilder.image_url = mediaURL
-                    AuthViewController.updateUserProfile(profileBuilder.build())
-                    completion()
+                    self.updateProfile(completion)
                 }
             }
         } else {
-            updateIfDirty(completion)
+            updateProfile(completion)
         }
     }
     

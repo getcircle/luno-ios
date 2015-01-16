@@ -241,10 +241,10 @@ class AuthViewController: UIViewController, UITextFieldDelegate {
                     AuthNotifications.onLoginNotification,
                     object: nil
                 )
-                if self.dynamicType.checkUser({ () -> Void in
+                if self.dynamicType.checkUser(unverifiedPhoneHandler: { () -> Void in
                     let verifyPhoneNumberVC = VerifyPhoneNumberViewController(nibName: "VerifyPhoneNumberViewController", bundle: nil)
                     self.navigationController?.setViewControllers([verifyPhoneNumberVC], animated: true)
-                }) {
+                }, unverifiedProfileHandler: nil) {
                     self.dismissViewControllerAnimated(true, completion: nil)
                 }
             }
@@ -292,19 +292,26 @@ class AuthViewController: UIViewController, UITextFieldDelegate {
         presentAuthViewController()
     }
     
-    class func presentAuthViewController() {
-        // Check if user is logged in. If not, present auth view controller
-        let authViewController = AuthViewController(nibName: "AuthViewController", bundle: nil)
-        let navController = UINavigationController(rootViewController: authViewController)
+    private class func presentViewControllerWithNavigationController(vc: UIViewController) {
+        let navController = UINavigationController(rootViewController: vc)
         let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
         appDelegate.window!.rootViewController!.presentViewController(navController, animated: false, completion: nil)
     }
     
-    class func presentOnboarding() {
+    class func presentAuthViewController() {
+        // Check if user is logged in. If not, present auth view controller
+        let authViewController = AuthViewController(nibName: "AuthViewController", bundle: nil)
+        self.presentViewControllerWithNavigationController(authViewController)
+    }
+    
+    class func presentPhoneVerification() {
         let verifyPhoneNumberVC = VerifyPhoneNumberViewController(nibName: "VerifyPhoneNumberViewController", bundle: nil)
-        let onboardingNavigationController = UINavigationController(rootViewController: verifyPhoneNumberVC)
-        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
-        appDelegate.window!.rootViewController!.presentViewController(onboardingNavigationController, animated: true, completion: nil)
+        self.presentViewControllerWithNavigationController(verifyPhoneNumberVC)
+    }
+    
+    class func presentProfileVerification() {
+        let verifyProfileVC = VerifyProfileViewController(nibName: "VerifyProfileViewController", bundle: nil)
+        self.presentViewControllerWithNavigationController(verifyProfileVC)
     }
     
     // MARK: - Logged In User Helpers
@@ -364,16 +371,25 @@ class AuthViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: - Authentication Helpers
     
-    class func checkUser(#unverifiedPhoneHandler: (() -> Void)?) -> Bool {
-        var currentUser = getLoggedInUser()
-        if let user = currentUser {
+    class func checkUser(#unverifiedPhoneHandler: (() -> Void)?, unverifiedProfileHandler: (() -> Void)?) -> Bool {
+        if let user = getLoggedInUser() {
             if !user.phone_number_verified {
                 if let handler = unverifiedPhoneHandler {
                     handler()
                 } else {
-                    presentOnboarding()
+                    presentPhoneVerification()
                 }
                 return false
+            }
+            
+            if let profile = getLoggedInUserProfile() {
+                if !profile.verified {
+                    if let handler = unverifiedPhoneHandler {
+                        handler()
+                    } else {
+                        presentProfileVerification()
+                    }
+                }
             }
         } else {
             presentAuthViewController()
