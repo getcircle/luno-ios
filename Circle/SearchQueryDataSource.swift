@@ -40,14 +40,21 @@ class SearchQueryDataSource: CardDataSource {
         resetCards()
         
         // TODO these should be sorted by relevancy
-        // TODO we should be displaying why this card is visible. if you search "ke" and tamara shows up, its confusing at first, then you realize its becuase of "marKEting"
-        let peopleCard = Card(cardType: .People, title: "People")
         if visibleProfiles.count > 0 {
+            let peopleCard = Card(cardType: .People, title: "People")
             peopleCard.content.extend(visibleProfiles as [AnyObject])
             peopleCard.contentCount = visibleProfiles.count
             peopleCard.sectionInset = UIEdgeInsetsZero
+            appendCard(peopleCard)
         }
-        appendCard(peopleCard)
+        
+        if visibleTeams.count > 0 {
+            let teamsCard = Card(cardType: .Team, title: "Teams")
+            teamsCard.content.extend(visibleTeams as [AnyObject])
+            teamsCard.contentCount = visibleTeams.count
+            teamsCard.sectionInset = UIEdgeInsetsZero
+            appendCard(teamsCard)
+        }
     }
     
     override func configureCell(cell: CircleCollectionViewCell, atIndexPath indexPath: NSIndexPath) {

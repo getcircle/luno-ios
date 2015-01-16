@@ -52,13 +52,14 @@ extension SearchService {
             var searchTerms = query.componentsSeparatedByString(" ")
             let results = SearchResults()
             results.profiles = filterProfiles(searchTerms)
+            results.teams = filterTeams(searchTerms)
             return (results, nil)
         }
         
         private class func filterProfiles(searchTerms: [String]) -> Array<ProfileService.Containers.Profile> {
             var andPredicates = [NSPredicate]()
             for searchTerm in searchTerms {
-                let trimmedSearchTerm = searchTerm.stringByTrimmingCharactersInSet(whitespaceCharacterSet)
+                let trimmedSearchTerm = trim(searchTerm)
                 
                 // Match first name
                 var firstNamePredicate = NSComparisonPredicate(
@@ -112,6 +113,37 @@ extension SearchService {
                 $0,
                 substitutionVariables: ["first_name": $0.first_name, "last_name": $0.last_name, "title": $0.title]
                 )}
+        }
+        
+        private class func filterTeams(searchTerms: [String]) -> Array<OrganizationService.Containers.Team> {
+            var andPredicats = [NSPredicate]()
+            for searchTerm in searchTerms {
+                let trimmedSearchTerm = trim(searchTerm)
+                
+                var containsPredicate = NSComparisonPredicate(
+                    leftExpression: NSExpression(forVariable: "name"),
+                    rightExpression: NSExpression(forConstantValue: trimmedSearchTerm),
+                    modifier: .DirectPredicateModifier,
+                    type: .ContainsPredicateOperatorType,
+                    options: .CaseInsensitivePredicateOption
+                )
+                
+                andPredicats.append(
+                    NSCompoundPredicate.orPredicateWithSubpredicates([
+                        containsPredicate
+                    ])
+                )
+            }
+            
+            let finalPredicate = NSCompoundPredicate.andPredicateWithSubpredicates(andPredicats)
+            return ObjectStore.sharedInstance.teams.values.array.filter { finalPredicate.evaluateWithObject(
+                $0,
+                substitutionVariables: ["name": $0.name]
+            )}
+        }
+        
+        private class func trim(string: String) -> String {
+            return string.stringByTrimmingCharactersInSet(whitespaceCharacterSet)
         }
         
     }

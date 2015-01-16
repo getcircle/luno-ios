@@ -30,11 +30,12 @@ class Card: Equatable {
         case Group
         case KeyValue
         case Locations
+        case NewHires
         case Notes
         case People
         case Placeholder
         case Tags
-        case NewHires
+        case Team
         
         struct CardTypeInfo {
             var imageName: String
@@ -113,6 +114,13 @@ class Card: Equatable {
                     imageName: "Tag",
                     classType: TagsCollectionViewCell.self,
                     className: "TagsCollectionViewCell"
+                )
+                
+            case Team:
+                return CardTypeInfo(
+                    imageName: "People",
+                    classType: TeamCollectionViewCell.self,
+                    className: "TeamCollectionViewCell"
                 )
             }
         }
