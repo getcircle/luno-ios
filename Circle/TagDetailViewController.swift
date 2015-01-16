@@ -50,7 +50,7 @@ class TagDetailViewController: DetailViewController {
             
             // Todo: need to understand how this changes with orientation
             let statusBarHeight: CGFloat = 20.0
-            let navBarHeight: CGFloat = navigationController!.navigationBar.frameHeight
+            let navBarHeight: CGFloat = navigationController?.navigationBar.frameHeight ?? 44.0
             let navBarStatusBarHeight: CGFloat = navBarHeight + statusBarHeight
             let initialYConstrainValue: CGFloat = 0.0
             let finalYConstraintValue: CGFloat = profileHeaderView.frameHeight/2.0 - navBarHeight/2.0
