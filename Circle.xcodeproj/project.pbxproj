@@ -58,6 +58,7 @@
 		8F74001E1A684F2400D96B60 /* TagHeaderCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F74001C1A684F2400D96B60 /* TagHeaderCollectionReusableView.xib */; };
 		8F7400231A6862BF00D96B60 /* TagDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7400221A6862BF00D96B60 /* TagDetailViewController.swift */; };
 		8F7400251A6863B000D96B60 /* TagDetailDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7400241A6863B000D96B60 /* TagDetailDataSource.swift */; };
+		8F74002A1A68878800D96B60 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7400291A68878800D96B60 /* GradientView.swift */; };
 		8F81713C1A62E07000CB7692 /* VerifyProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F81713A1A62E07000CB7692 /* VerifyProfileViewController.swift */; };
 		8F81713D1A62E07000CB7692 /* VerifyProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F81713B1A62E07000CB7692 /* VerifyProfileViewController.xib */; };
 		8FC7BB3B1A58A6E2005BDDDB /* CardDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC7BB3A1A58A6E2005BDDDB /* CardDataSource.swift */; };
@@ -254,6 +255,7 @@
 		8F74001C1A684F2400D96B60 /* TagHeaderCollectionReusableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TagHeaderCollectionReusableView.xib; sourceTree = "<group>"; };
 		8F7400221A6862BF00D96B60 /* TagDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagDetailViewController.swift; sourceTree = "<group>"; };
 		8F7400241A6863B000D96B60 /* TagDetailDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagDetailDataSource.swift; sourceTree = "<group>"; };
+		8F7400291A68878800D96B60 /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		8F81713A1A62E07000CB7692 /* VerifyProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerifyProfileViewController.swift; sourceTree = "<group>"; };
 		8F81713B1A62E07000CB7692 /* VerifyProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VerifyProfileViewController.xib; sourceTree = "<group>"; };
 		8FC7BB3A1A58A6E2005BDDDB /* CardDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardDataSource.swift; sourceTree = "<group>"; };
@@ -587,6 +589,7 @@
 			isa = PBXGroup;
 			children = (
 				8F682F511A67AF360066BDEE /* CircleTextField.swift */,
+				8F7400291A68878800D96B60 /* GradientView.swift */,
 				8FF2984C1A4E29F400306CFC /* PaddedLabel.swift */,
 			);
 			name = Common;
@@ -942,6 +945,7 @@
 				8FF298471A4E050100306CFC /* TagCollectionViewCell.swift in Sources */,
 				8FD907F91A6070D70025A17B /* MapViewController.swift in Sources */,
 				8F22CBF11A2844F50026376E /* UINavigationBarExtension.swift in Sources */,
+				8F74002A1A68878800D96B60 /* GradientView.swift in Sources */,
 				8F682F521A67AF360066BDEE /* CircleTextField.swift in Sources */,
 				8F81713C1A62E07000CB7692 /* VerifyProfileViewController.swift in Sources */,
 				8F2D7DF01A5B2412001D36B0 /* ProfilesDataSource.swift in Sources */,

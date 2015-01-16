@@ -123,7 +123,6 @@ class TagsCollectionViewCell: CircleCollectionViewCell, UICollectionViewDataSour
 
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let tag = tags[indexPath.row]
-        println("SELECTED \(tag.name)")
         selectedTag = tag
         NSNotificationCenter.defaultCenter().postNotificationName(
             TagsCollectionViewCellNotifications.onTagSelectedNotification,

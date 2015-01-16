@@ -36,4 +36,14 @@ extension UIView {
         
         return borderView
     }
+    
+    func addGradientView() -> UIView {
+        var gradientView = GradientView(forAutoLayout: ())
+        gradientView.backgroundColor = UIColor.clearColor()
+        addSubview(gradientView)
+        sendSubviewToBack(gradientView)
+        gradientView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
+        
+        return gradientView
+    }
 }
