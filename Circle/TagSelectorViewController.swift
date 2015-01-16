@@ -39,10 +39,9 @@ class TagSelectorViewController:
     private var cachedItemSizes =  [String: CGSize]()
     private var tags = Array<ProfileService.Containers.Tag>()
     private var filteredTags = Array<ProfileService.Containers.Tag>()
-    private var newTags = NSMutableSet()
+    private var selectedTags = Dictionary<Int, ProfileService.Containers.Tag>()
     private var prototypeCell: TagCollectionViewCell!
     private var searchHeaderView: SearchHeaderView!
-    private var selectedTags = NSMutableSet()
     private var topLayer: CAGradientLayer!
     
     override func viewDidLoad() {
@@ -209,17 +208,16 @@ class TagSelectorViewController:
             animatedCell[indexPath] = true
             cell.animateForCollection(collectionView, atIndexPath: indexPath)
         }
-
+        
         // Manage Selection
+        let tag = filteredTags[indexPath.row]
         if cell.selected {
             cell.selectCell(false)
-        }
-        else if selectedTags.containsObject(filteredTags[indexPath.row].name) {
+        } else if let selectedTag = selectedTags[tag.hashValue] {
             cell.selectCell(false)
             cell.selected = true
             collectionView.selectItemAtIndexPath(indexPath, animated: false, scrollPosition: nil)
-        }
-        else {
+        } else {
             cell.unHighlightCell(false)
         }
         
@@ -241,13 +239,15 @@ class TagSelectorViewController:
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let cell = collectionView.cellForItemAtIndexPath(indexPath) as TagCollectionViewCell
         cell.selectCell(true)
-        selectedTags.addObject(filteredTags[indexPath.row].name)
+        let tag = filteredTags[indexPath.row]
+        selectedTags[tag.hashValue] = tag
     }
     
     func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
         let cell = collectionView.cellForItemAtIndexPath(indexPath) as TagCollectionViewCell
         cell.unHighlightCell(true)
-        selectedTags.removeObject(filteredTags[indexPath.row].name)
+        let tag = filteredTags[indexPath.row]
+        selectedTags[tag.hashValue] = nil
     }
     
     // MARK: - UICollectionViewDelegateFlowLayout
@@ -267,6 +267,12 @@ class TagSelectorViewController:
     // MARK: - IBActions
     
     @IBAction func close(sender: AnyObject!) {
+        // fire and forget
+        if let profile = AuthViewController.getLoggedInUserProfile() {
+            if selectedTags.count > 0 {
+                ProfileService.Actions.addTags(profile.id, tags: selectedTags.values.array, completionHandler: nil)
+            }
+        }
         dismissSearchField()
         dismissViewControllerAnimated(true, completion: nil)
     }
@@ -283,9 +289,7 @@ class TagSelectorViewController:
             // Add to source
             // TODO we need to be de-duping these tags
             tags.append(tag)
-            newTags.addObject(tag.getNSData())
-            // Add to selected
-            selectedTags.addObject(tagName)
+            selectedTags[tag.hashValue] = tag
             
             // Call filter again
             filter()
