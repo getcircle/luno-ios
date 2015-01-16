@@ -30,8 +30,7 @@ class TagDetailDataSource: CardDataSource {
         appendCard(placeholderTagCard)
         
         if let currentProfile = AuthViewController.getLoggedInUserProfile() {
-            // Update these to be fetched by tags
-            ProfileService.Actions.getProfiles(currentProfile.team_id) { (profiles, error) -> Void in
+            ProfileService.Actions.getProfiles(tagId: selectedTag!.id) { (profiles, error) -> Void in
                 if error == nil {
                     self.profiles.extend(profiles!)
                     let peopleCard = Card(cardType: .People, title: "Direct Reports")
