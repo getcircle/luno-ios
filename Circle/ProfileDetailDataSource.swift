@@ -84,66 +84,6 @@ class ProfileDetailDataSource: CardDataSource {
     private(set) var profileHeaderView: ProfileHeaderCollectionReusableView?
     private var sections = [Section]()
     
-    // TODO convert to SectionItem
-//    let socialInfoKeySet = [
-//        "twitter",
-//        "facebook",
-//        "pinterest",
-//        "linkedin",
-//        "github",
-//        "gplus"
-//    ]
-    
-//    let keyToTitle = [
-//        "email": "Email",
-//        "cell_phone": "Cell Phone",
-//        "location": "City",
-//        "country": "Country",
-//        "manager": "Manager",
-//        "department": "Department",
-//        "twitter": "Twitter",
-//        "facebook": "Facebook",
-//        "pinterest": "Pinterest",
-//        "linkedin": "LinkedIn",
-//        "github": "Github",
-//        "gplus": "Google+"
-//    ]
-    
-//    let keyToImageDictionary: [String: [String: AnyObject]] = [
-//        "twitter": [
-//            "image": "Twitter",
-//            "tintColor": UIColor.twitterColor(),
-//        ],
-//        "facebook": [
-//            "image": "Facebook",
-//            "tintColor": UIColor.facebookColor(),
-//        ],
-//        "pinterest": [
-//            "image": "Pinterest",
-//            "tintColor": UIColor.pinterestColor(),
-//        ],
-//        "linkedin": [
-//            "image": "LinkedIn",
-//            "tintColor": UIColor.linkedinColor(),
-//        ],
-//        "github": [
-//            "image": "Github",
-//            "tintColor": UIColor.githubColor(),
-//        ],
-//        "gplus": [
-//            "image": "GooglePlus",
-//            "tintColor": UIColor.googlePlusColor(),
-//        ],
-//        "email": [
-//            "image": "EmailCircle",
-//            "tintColor": UIColor.emailTintColor(),
-//        ],
-//        "cell": [
-//            "image": "Telephone",
-//            "tintColor": UIColor.phoneTintColor(),
-//        ],
-//    ]
-
     override func registerCardHeader(collectionView: UICollectionView) {
         collectionView.registerNib(
             UINib(nibName: "ProfileHeaderCollectionReusableView", bundle: nil),
