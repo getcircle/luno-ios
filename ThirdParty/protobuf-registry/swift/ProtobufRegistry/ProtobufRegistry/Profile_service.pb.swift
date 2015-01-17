@@ -141,7 +141,7 @@ public func == (lhs: ProfileService.GetRecentHires, rhs: ProfileService.GetRecen
   return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
 }
 
-public func == (lhs: ProfileService.GetTrendingTags, rhs: ProfileService.GetTrendingTags) -> Bool {
+public func == (lhs: ProfileService.GetActiveTags, rhs: ProfileService.GetActiveTags) -> Bool {
   if (lhs === rhs) {
     return true
   }
@@ -10184,7 +10184,7 @@ final public class ProfileService : GeneratedMessage {
 
   //Nested type declaration start
 
-    final public class GetTrendingTags : GeneratedMessage {
+    final public class GetActiveTags : GeneratedMessage {
 
 
       //Nested type declaration start
@@ -10226,41 +10226,41 @@ final public class ProfileService : GeneratedMessage {
             memoizedSerializedSize = size
             return size
           }
-          public class func parseFromData(data:[Byte]) -> ProfileService.GetTrendingTags.Request {
-            return ProfileService.GetTrendingTags.Request.builder().mergeFromData(data).build()
+          public class func parseFromData(data:[Byte]) -> ProfileService.GetActiveTags.Request {
+            return ProfileService.GetActiveTags.Request.builder().mergeFromData(data).build()
           }
-          public class func parseFromData(data:[Byte], extensionRegistry:ExtensionRegistry) -> ProfileService.GetTrendingTags.Request {
-            return ProfileService.GetTrendingTags.Request.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
+          public class func parseFromData(data:[Byte], extensionRegistry:ExtensionRegistry) -> ProfileService.GetActiveTags.Request {
+            return ProfileService.GetActiveTags.Request.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
           }
-          public class func parseFromInputStream(input:NSInputStream) -> ProfileService.GetTrendingTags.Request {
-            return ProfileService.GetTrendingTags.Request.builder().mergeFromInputStream(input).build()
+          public class func parseFromInputStream(input:NSInputStream) -> ProfileService.GetActiveTags.Request {
+            return ProfileService.GetActiveTags.Request.builder().mergeFromInputStream(input).build()
           }
-          public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->ProfileService.GetTrendingTags.Request {
-            return ProfileService.GetTrendingTags.Request.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
+          public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->ProfileService.GetActiveTags.Request {
+            return ProfileService.GetActiveTags.Request.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
           }
-          public class func parseFromCodedInputStream(input:CodedInputStream) -> ProfileService.GetTrendingTags.Request {
-            return ProfileService.GetTrendingTags.Request.builder().mergeFromCodedInputStream(input).build()
+          public class func parseFromCodedInputStream(input:CodedInputStream) -> ProfileService.GetActiveTags.Request {
+            return ProfileService.GetActiveTags.Request.builder().mergeFromCodedInputStream(input).build()
           }
-          public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.GetTrendingTags.Request {
-            return ProfileService.GetTrendingTags.Request.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
+          public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.GetActiveTags.Request {
+            return ProfileService.GetActiveTags.Request.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
           }
-          public class func builder() -> ProfileService.GetTrendingTags.RequestBuilder {
-            return ProfileService.GetTrendingTags.Request.classBuilder() as ProfileService.GetTrendingTags.RequestBuilder
+          public class func builder() -> ProfileService.GetActiveTags.RequestBuilder {
+            return ProfileService.GetActiveTags.Request.classBuilder() as ProfileService.GetActiveTags.RequestBuilder
           }
-          public func builder() -> ProfileService.GetTrendingTags.RequestBuilder {
-            return classBuilder() as ProfileService.GetTrendingTags.RequestBuilder
+          public func builder() -> ProfileService.GetActiveTags.RequestBuilder {
+            return classBuilder() as ProfileService.GetActiveTags.RequestBuilder
           }
           public override class func classBuilder() -> MessageBuilder {
-            return ProfileService.GetTrendingTags.RequestBuilder()
+            return ProfileService.GetActiveTags.RequestBuilder()
           }
           public override func classBuilder() -> MessageBuilder {
-            return ProfileService.GetTrendingTags.Request.builder()
+            return ProfileService.GetActiveTags.Request.builder()
           }
-          public func toBuilder() -> ProfileService.GetTrendingTags.RequestBuilder {
-            return ProfileService.GetTrendingTags.Request.builderWithPrototype(self)
+          public func toBuilder() -> ProfileService.GetActiveTags.RequestBuilder {
+            return ProfileService.GetActiveTags.Request.builderWithPrototype(self)
           }
-          public class func builderWithPrototype(prototype:ProfileService.GetTrendingTags.Request) -> ProfileService.GetTrendingTags.RequestBuilder {
-            return ProfileService.GetTrendingTags.Request.builder().mergeFrom(prototype)
+          public class func builderWithPrototype(prototype:ProfileService.GetActiveTags.Request) -> ProfileService.GetActiveTags.RequestBuilder {
+            return ProfileService.GetActiveTags.Request.builder().mergeFrom(prototype)
           }
           override public func writeDescriptionTo(inout output:String, indent:String) {
             if hasOrganizationId {
@@ -10283,13 +10283,13 @@ final public class ProfileService : GeneratedMessage {
           //Meta information declaration start
 
           override public class func className() -> String {
-              return "ProfileService.GetTrendingTags.Request"
+              return "ProfileService.GetActiveTags.Request"
           }
           override public func className() -> String {
-              return "ProfileService.GetTrendingTags.Request"
+              return "ProfileService.GetActiveTags.Request"
           }
           override public func classMetaType() -> GeneratedMessage.Type {
-              return ProfileService.GetTrendingTags.Request.self
+              return ProfileService.GetActiveTags.Request.self
           }
 
 
@@ -10298,10 +10298,10 @@ final public class ProfileService : GeneratedMessage {
         }
 
         final public class RequestBuilder : GeneratedMessageBuilder {
-          private var builderResult:ProfileService.GetTrendingTags.Request
+          private var builderResult:ProfileService.GetActiveTags.Request
 
           required override public init () {
-             builderResult = ProfileService.GetTrendingTags.Request()
+             builderResult = ProfileService.GetActiveTags.Request()
              super.init()
           }
           public var hasOrganizationId:Bool {
@@ -10318,7 +10318,7 @@ final public class ProfileService : GeneratedMessage {
                    builderResult.organization_id = value
                }
           }
-          public func clearOrganizationId() -> ProfileService.GetTrendingTags.RequestBuilder{
+          public func clearOrganizationId() -> ProfileService.GetActiveTags.RequestBuilder{
                builderResult.hasOrganizationId = false
                builderResult.organization_id = ""
                return self
@@ -10328,32 +10328,32 @@ final public class ProfileService : GeneratedMessage {
                   return builderResult
                }
           }
-          public override func clear() -> ProfileService.GetTrendingTags.RequestBuilder {
-            builderResult = ProfileService.GetTrendingTags.Request()
+          public override func clear() -> ProfileService.GetActiveTags.RequestBuilder {
+            builderResult = ProfileService.GetActiveTags.Request()
             return self
           }
-          public override func clone() -> ProfileService.GetTrendingTags.RequestBuilder {
-            return ProfileService.GetTrendingTags.Request.builderWithPrototype(builderResult)
+          public override func clone() -> ProfileService.GetActiveTags.RequestBuilder {
+            return ProfileService.GetActiveTags.Request.builderWithPrototype(builderResult)
           }
-          public override func build() -> ProfileService.GetTrendingTags.Request {
+          public override func build() -> ProfileService.GetActiveTags.Request {
                checkInitialized()
                return buildPartial()
           }
-          public func buildPartial() -> ProfileService.GetTrendingTags.Request {
-            var returnMe:ProfileService.GetTrendingTags.Request = builderResult
+          public func buildPartial() -> ProfileService.GetActiveTags.Request {
+            var returnMe:ProfileService.GetActiveTags.Request = builderResult
             return returnMe
           }
-          public func mergeFrom(other:ProfileService.GetTrendingTags.Request) -> ProfileService.GetTrendingTags.RequestBuilder {
+          public func mergeFrom(other:ProfileService.GetActiveTags.Request) -> ProfileService.GetActiveTags.RequestBuilder {
             if other.hasOrganizationId {
                  organization_id = other.organization_id
             }
             mergeUnknownFields(other.unknownFields)
             return self
           }
-          public override func mergeFromCodedInputStream(input:CodedInputStream) ->ProfileService.GetTrendingTags.RequestBuilder {
+          public override func mergeFromCodedInputStream(input:CodedInputStream) ->ProfileService.GetActiveTags.RequestBuilder {
                return mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
           }
-          public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.GetTrendingTags.RequestBuilder {
+          public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.GetActiveTags.RequestBuilder {
             var unknownFieldsBuilder:UnknownFieldSetBuilder = UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
             while (true) {
               var tag = input.readTag()
@@ -10417,41 +10417,41 @@ final public class ProfileService : GeneratedMessage {
             memoizedSerializedSize = size
             return size
           }
-          public class func parseFromData(data:[Byte]) -> ProfileService.GetTrendingTags.Response {
-            return ProfileService.GetTrendingTags.Response.builder().mergeFromData(data).build()
+          public class func parseFromData(data:[Byte]) -> ProfileService.GetActiveTags.Response {
+            return ProfileService.GetActiveTags.Response.builder().mergeFromData(data).build()
           }
-          public class func parseFromData(data:[Byte], extensionRegistry:ExtensionRegistry) -> ProfileService.GetTrendingTags.Response {
-            return ProfileService.GetTrendingTags.Response.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
+          public class func parseFromData(data:[Byte], extensionRegistry:ExtensionRegistry) -> ProfileService.GetActiveTags.Response {
+            return ProfileService.GetActiveTags.Response.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
           }
-          public class func parseFromInputStream(input:NSInputStream) -> ProfileService.GetTrendingTags.Response {
-            return ProfileService.GetTrendingTags.Response.builder().mergeFromInputStream(input).build()
+          public class func parseFromInputStream(input:NSInputStream) -> ProfileService.GetActiveTags.Response {
+            return ProfileService.GetActiveTags.Response.builder().mergeFromInputStream(input).build()
           }
-          public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->ProfileService.GetTrendingTags.Response {
-            return ProfileService.GetTrendingTags.Response.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
+          public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->ProfileService.GetActiveTags.Response {
+            return ProfileService.GetActiveTags.Response.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
           }
-          public class func parseFromCodedInputStream(input:CodedInputStream) -> ProfileService.GetTrendingTags.Response {
-            return ProfileService.GetTrendingTags.Response.builder().mergeFromCodedInputStream(input).build()
+          public class func parseFromCodedInputStream(input:CodedInputStream) -> ProfileService.GetActiveTags.Response {
+            return ProfileService.GetActiveTags.Response.builder().mergeFromCodedInputStream(input).build()
           }
-          public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.GetTrendingTags.Response {
-            return ProfileService.GetTrendingTags.Response.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
+          public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.GetActiveTags.Response {
+            return ProfileService.GetActiveTags.Response.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
           }
-          public class func builder() -> ProfileService.GetTrendingTags.ResponseBuilder {
-            return ProfileService.GetTrendingTags.Response.classBuilder() as ProfileService.GetTrendingTags.ResponseBuilder
+          public class func builder() -> ProfileService.GetActiveTags.ResponseBuilder {
+            return ProfileService.GetActiveTags.Response.classBuilder() as ProfileService.GetActiveTags.ResponseBuilder
           }
-          public func builder() -> ProfileService.GetTrendingTags.ResponseBuilder {
-            return classBuilder() as ProfileService.GetTrendingTags.ResponseBuilder
+          public func builder() -> ProfileService.GetActiveTags.ResponseBuilder {
+            return classBuilder() as ProfileService.GetActiveTags.ResponseBuilder
           }
           public override class func classBuilder() -> MessageBuilder {
-            return ProfileService.GetTrendingTags.ResponseBuilder()
+            return ProfileService.GetActiveTags.ResponseBuilder()
           }
           public override func classBuilder() -> MessageBuilder {
-            return ProfileService.GetTrendingTags.Response.builder()
+            return ProfileService.GetActiveTags.Response.builder()
           }
-          public func toBuilder() -> ProfileService.GetTrendingTags.ResponseBuilder {
-            return ProfileService.GetTrendingTags.Response.builderWithPrototype(self)
+          public func toBuilder() -> ProfileService.GetActiveTags.ResponseBuilder {
+            return ProfileService.GetActiveTags.Response.builderWithPrototype(self)
           }
-          public class func builderWithPrototype(prototype:ProfileService.GetTrendingTags.Response) -> ProfileService.GetTrendingTags.ResponseBuilder {
-            return ProfileService.GetTrendingTags.Response.builder().mergeFrom(prototype)
+          public class func builderWithPrototype(prototype:ProfileService.GetActiveTags.Response) -> ProfileService.GetActiveTags.ResponseBuilder {
+            return ProfileService.GetActiveTags.Response.builder().mergeFrom(prototype)
           }
           override public func writeDescriptionTo(inout output:String, indent:String) {
             var tagsElementIndex:Int = 0
@@ -10478,13 +10478,13 @@ final public class ProfileService : GeneratedMessage {
           //Meta information declaration start
 
           override public class func className() -> String {
-              return "ProfileService.GetTrendingTags.Response"
+              return "ProfileService.GetActiveTags.Response"
           }
           override public func className() -> String {
-              return "ProfileService.GetTrendingTags.Response"
+              return "ProfileService.GetActiveTags.Response"
           }
           override public func classMetaType() -> GeneratedMessage.Type {
-              return ProfileService.GetTrendingTags.Response.self
+              return ProfileService.GetActiveTags.Response.self
           }
 
 
@@ -10493,10 +10493,10 @@ final public class ProfileService : GeneratedMessage {
         }
 
         final public class ResponseBuilder : GeneratedMessageBuilder {
-          private var builderResult:ProfileService.GetTrendingTags.Response
+          private var builderResult:ProfileService.GetActiveTags.Response
 
           required override public init () {
-             builderResult = ProfileService.GetTrendingTags.Response()
+             builderResult = ProfileService.GetActiveTags.Response()
              super.init()
           }
           public var tags:Array<ProfileService.Containers.Tag> {
@@ -10507,7 +10507,7 @@ final public class ProfileService : GeneratedMessage {
                    builderResult.tags = value
                }
           }
-          public func clearTags() -> ProfileService.GetTrendingTags.ResponseBuilder {
+          public func clearTags() -> ProfileService.GetActiveTags.ResponseBuilder {
             builderResult.tags.removeAll(keepCapacity: false)
             return self
           }
@@ -10516,32 +10516,32 @@ final public class ProfileService : GeneratedMessage {
                   return builderResult
                }
           }
-          public override func clear() -> ProfileService.GetTrendingTags.ResponseBuilder {
-            builderResult = ProfileService.GetTrendingTags.Response()
+          public override func clear() -> ProfileService.GetActiveTags.ResponseBuilder {
+            builderResult = ProfileService.GetActiveTags.Response()
             return self
           }
-          public override func clone() -> ProfileService.GetTrendingTags.ResponseBuilder {
-            return ProfileService.GetTrendingTags.Response.builderWithPrototype(builderResult)
+          public override func clone() -> ProfileService.GetActiveTags.ResponseBuilder {
+            return ProfileService.GetActiveTags.Response.builderWithPrototype(builderResult)
           }
-          public override func build() -> ProfileService.GetTrendingTags.Response {
+          public override func build() -> ProfileService.GetActiveTags.Response {
                checkInitialized()
                return buildPartial()
           }
-          public func buildPartial() -> ProfileService.GetTrendingTags.Response {
-            var returnMe:ProfileService.GetTrendingTags.Response = builderResult
+          public func buildPartial() -> ProfileService.GetActiveTags.Response {
+            var returnMe:ProfileService.GetActiveTags.Response = builderResult
             return returnMe
           }
-          public func mergeFrom(other:ProfileService.GetTrendingTags.Response) -> ProfileService.GetTrendingTags.ResponseBuilder {
+          public func mergeFrom(other:ProfileService.GetActiveTags.Response) -> ProfileService.GetActiveTags.ResponseBuilder {
             if !other.tags.isEmpty  {
                builderResult.tags += other.tags
             }
             mergeUnknownFields(other.unknownFields)
             return self
           }
-          public override func mergeFromCodedInputStream(input:CodedInputStream) ->ProfileService.GetTrendingTags.ResponseBuilder {
+          public override func mergeFromCodedInputStream(input:CodedInputStream) ->ProfileService.GetActiveTags.ResponseBuilder {
                return mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
           }
-          public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.GetTrendingTags.ResponseBuilder {
+          public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.GetActiveTags.ResponseBuilder {
             var unknownFieldsBuilder:UnknownFieldSetBuilder = UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
             while (true) {
               var tag = input.readTag()
@@ -10595,41 +10595,41 @@ final public class ProfileService : GeneratedMessage {
         memoizedSerializedSize = size
         return size
       }
-      public class func parseFromData(data:[Byte]) -> ProfileService.GetTrendingTags {
-        return ProfileService.GetTrendingTags.builder().mergeFromData(data).build()
+      public class func parseFromData(data:[Byte]) -> ProfileService.GetActiveTags {
+        return ProfileService.GetActiveTags.builder().mergeFromData(data).build()
       }
-      public class func parseFromData(data:[Byte], extensionRegistry:ExtensionRegistry) -> ProfileService.GetTrendingTags {
-        return ProfileService.GetTrendingTags.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
+      public class func parseFromData(data:[Byte], extensionRegistry:ExtensionRegistry) -> ProfileService.GetActiveTags {
+        return ProfileService.GetActiveTags.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
       }
-      public class func parseFromInputStream(input:NSInputStream) -> ProfileService.GetTrendingTags {
-        return ProfileService.GetTrendingTags.builder().mergeFromInputStream(input).build()
+      public class func parseFromInputStream(input:NSInputStream) -> ProfileService.GetActiveTags {
+        return ProfileService.GetActiveTags.builder().mergeFromInputStream(input).build()
       }
-      public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->ProfileService.GetTrendingTags {
-        return ProfileService.GetTrendingTags.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
+      public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->ProfileService.GetActiveTags {
+        return ProfileService.GetActiveTags.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
       }
-      public class func parseFromCodedInputStream(input:CodedInputStream) -> ProfileService.GetTrendingTags {
-        return ProfileService.GetTrendingTags.builder().mergeFromCodedInputStream(input).build()
+      public class func parseFromCodedInputStream(input:CodedInputStream) -> ProfileService.GetActiveTags {
+        return ProfileService.GetActiveTags.builder().mergeFromCodedInputStream(input).build()
       }
-      public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.GetTrendingTags {
-        return ProfileService.GetTrendingTags.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
+      public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.GetActiveTags {
+        return ProfileService.GetActiveTags.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
       }
-      public class func builder() -> ProfileService.GetTrendingTagsBuilder {
-        return ProfileService.GetTrendingTags.classBuilder() as ProfileService.GetTrendingTagsBuilder
+      public class func builder() -> ProfileService.GetActiveTagsBuilder {
+        return ProfileService.GetActiveTags.classBuilder() as ProfileService.GetActiveTagsBuilder
       }
-      public func builder() -> ProfileService.GetTrendingTagsBuilder {
-        return classBuilder() as ProfileService.GetTrendingTagsBuilder
+      public func builder() -> ProfileService.GetActiveTagsBuilder {
+        return classBuilder() as ProfileService.GetActiveTagsBuilder
       }
       public override class func classBuilder() -> MessageBuilder {
-        return ProfileService.GetTrendingTagsBuilder()
+        return ProfileService.GetActiveTagsBuilder()
       }
       public override func classBuilder() -> MessageBuilder {
-        return ProfileService.GetTrendingTags.builder()
+        return ProfileService.GetActiveTags.builder()
       }
-      public func toBuilder() -> ProfileService.GetTrendingTagsBuilder {
-        return ProfileService.GetTrendingTags.builderWithPrototype(self)
+      public func toBuilder() -> ProfileService.GetActiveTagsBuilder {
+        return ProfileService.GetActiveTags.builderWithPrototype(self)
       }
-      public class func builderWithPrototype(prototype:ProfileService.GetTrendingTags) -> ProfileService.GetTrendingTagsBuilder {
-        return ProfileService.GetTrendingTags.builder().mergeFrom(prototype)
+      public class func builderWithPrototype(prototype:ProfileService.GetActiveTags) -> ProfileService.GetActiveTagsBuilder {
+        return ProfileService.GetActiveTags.builder().mergeFrom(prototype)
       }
       override public func writeDescriptionTo(inout output:String, indent:String) {
         unknownFields.writeDescriptionTo(&output, indent:indent)
@@ -10646,13 +10646,13 @@ final public class ProfileService : GeneratedMessage {
       //Meta information declaration start
 
       override public class func className() -> String {
-          return "ProfileService.GetTrendingTags"
+          return "ProfileService.GetActiveTags"
       }
       override public func className() -> String {
-          return "ProfileService.GetTrendingTags"
+          return "ProfileService.GetActiveTags"
       }
       override public func classMetaType() -> GeneratedMessage.Type {
-          return ProfileService.GetTrendingTags.self
+          return ProfileService.GetActiveTags.self
       }
 
 
@@ -10660,11 +10660,11 @@ final public class ProfileService : GeneratedMessage {
 
     }
 
-    final public class GetTrendingTagsBuilder : GeneratedMessageBuilder {
-      private var builderResult:ProfileService.GetTrendingTags
+    final public class GetActiveTagsBuilder : GeneratedMessageBuilder {
+      private var builderResult:ProfileService.GetActiveTags
 
       required override public init () {
-         builderResult = ProfileService.GetTrendingTags()
+         builderResult = ProfileService.GetActiveTags()
          super.init()
       }
       override public var internalGetResult:GeneratedMessage {
@@ -10672,29 +10672,29 @@ final public class ProfileService : GeneratedMessage {
               return builderResult
            }
       }
-      public override func clear() -> ProfileService.GetTrendingTagsBuilder {
-        builderResult = ProfileService.GetTrendingTags()
+      public override func clear() -> ProfileService.GetActiveTagsBuilder {
+        builderResult = ProfileService.GetActiveTags()
         return self
       }
-      public override func clone() -> ProfileService.GetTrendingTagsBuilder {
-        return ProfileService.GetTrendingTags.builderWithPrototype(builderResult)
+      public override func clone() -> ProfileService.GetActiveTagsBuilder {
+        return ProfileService.GetActiveTags.builderWithPrototype(builderResult)
       }
-      public override func build() -> ProfileService.GetTrendingTags {
+      public override func build() -> ProfileService.GetActiveTags {
            checkInitialized()
            return buildPartial()
       }
-      public func buildPartial() -> ProfileService.GetTrendingTags {
-        var returnMe:ProfileService.GetTrendingTags = builderResult
+      public func buildPartial() -> ProfileService.GetActiveTags {
+        var returnMe:ProfileService.GetActiveTags = builderResult
         return returnMe
       }
-      public func mergeFrom(other:ProfileService.GetTrendingTags) -> ProfileService.GetTrendingTagsBuilder {
+      public func mergeFrom(other:ProfileService.GetActiveTags) -> ProfileService.GetActiveTagsBuilder {
         mergeUnknownFields(other.unknownFields)
         return self
       }
-      public override func mergeFromCodedInputStream(input:CodedInputStream) ->ProfileService.GetTrendingTagsBuilder {
+      public override func mergeFromCodedInputStream(input:CodedInputStream) ->ProfileService.GetActiveTagsBuilder {
            return mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
       }
-      public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.GetTrendingTagsBuilder {
+      public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.GetActiveTagsBuilder {
         var unknownFieldsBuilder:UnknownFieldSetBuilder = UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
         while (true) {
           var tag = input.readTag()
@@ -11416,40 +11416,40 @@ public extension ProfileService.GetRecentHires {
         return ProfileService.GetRecentHires.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
     }
 }
-public extension ProfileService.GetTrendingTags.Request {
-    class func parseFromNSData(data:NSData) -> ProfileService.GetTrendingTags.Request {
+public extension ProfileService.GetActiveTags.Request {
+    class func parseFromNSData(data:NSData) -> ProfileService.GetActiveTags.Request {
         var bytes = [Byte](count: data.length, repeatedValue: 0)
         data.getBytes(&bytes)
-        return ProfileService.GetTrendingTags.Request.builder().mergeFromData(bytes).build()
+        return ProfileService.GetActiveTags.Request.builder().mergeFromData(bytes).build()
     }
-    class func parseFromNSData(data:NSData, extensionRegistry:ExtensionRegistry) -> ProfileService.GetTrendingTags.Request {
+    class func parseFromNSData(data:NSData, extensionRegistry:ExtensionRegistry) -> ProfileService.GetActiveTags.Request {
         var bytes = [Byte](count: data.length, repeatedValue: 0)
         data.getBytes(&bytes)
-        return ProfileService.GetTrendingTags.Request.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
-    }
-}
-public extension ProfileService.GetTrendingTags.Response {
-    class func parseFromNSData(data:NSData) -> ProfileService.GetTrendingTags.Response {
-        var bytes = [Byte](count: data.length, repeatedValue: 0)
-        data.getBytes(&bytes)
-        return ProfileService.GetTrendingTags.Response.builder().mergeFromData(bytes).build()
-    }
-    class func parseFromNSData(data:NSData, extensionRegistry:ExtensionRegistry) -> ProfileService.GetTrendingTags.Response {
-        var bytes = [Byte](count: data.length, repeatedValue: 0)
-        data.getBytes(&bytes)
-        return ProfileService.GetTrendingTags.Response.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
+        return ProfileService.GetActiveTags.Request.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
     }
 }
-public extension ProfileService.GetTrendingTags {
-    class func parseFromNSData(data:NSData) -> ProfileService.GetTrendingTags {
+public extension ProfileService.GetActiveTags.Response {
+    class func parseFromNSData(data:NSData) -> ProfileService.GetActiveTags.Response {
         var bytes = [Byte](count: data.length, repeatedValue: 0)
         data.getBytes(&bytes)
-        return ProfileService.GetTrendingTags.builder().mergeFromData(bytes).build()
+        return ProfileService.GetActiveTags.Response.builder().mergeFromData(bytes).build()
     }
-    class func parseFromNSData(data:NSData, extensionRegistry:ExtensionRegistry) -> ProfileService.GetTrendingTags {
+    class func parseFromNSData(data:NSData, extensionRegistry:ExtensionRegistry) -> ProfileService.GetActiveTags.Response {
         var bytes = [Byte](count: data.length, repeatedValue: 0)
         data.getBytes(&bytes)
-        return ProfileService.GetTrendingTags.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
+        return ProfileService.GetActiveTags.Response.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
+    }
+}
+public extension ProfileService.GetActiveTags {
+    class func parseFromNSData(data:NSData) -> ProfileService.GetActiveTags {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return ProfileService.GetActiveTags.builder().mergeFromData(bytes).build()
+    }
+    class func parseFromNSData(data:NSData, extensionRegistry:ExtensionRegistry) -> ProfileService.GetActiveTags {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return ProfileService.GetActiveTags.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
     }
 }
 public extension ProfileService {

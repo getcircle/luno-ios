@@ -230,7 +230,7 @@ message ProfileService {
 
     }
 
-    message GetTrendingTags {
+    message GetActiveTags {
 
         message Request {
             optional string organization_id = 1;
