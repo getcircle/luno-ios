@@ -16,7 +16,7 @@ class CenterAlignFlowLayout: UICollectionViewFlowLayout {
         
         minimumInteritemSpacing = 10.0
         sectionInset = UIEdgeInsetsMake(10.0, 10.0, 50.0, 10.0)
-        minimumLineSpacing = 10.0
+        minimumLineSpacing = 14.0
     }
     
     override func layoutAttributesForElementsInRect(rect: CGRect) -> [AnyObject]? {
