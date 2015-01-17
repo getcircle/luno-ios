@@ -164,6 +164,7 @@ class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate {
         if bypassChecks {
             if let user = AuthViewController.getLoggedInUser() {
                 let builder = user.toBuilder()
+                builder.phone_number = phoneNumberField.text
                 builder.phone_number_verified = true
                 UserService.Actions.updateUser(builder.build()) { (user, error) -> Void in
                     if let user = user {
