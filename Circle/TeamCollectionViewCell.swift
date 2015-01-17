@@ -18,7 +18,7 @@ class TeamCollectionViewCell: CircleCollectionViewCell {
     }
     
     override class var height: CGFloat {
-        return 48.0
+        return 40.0
     }
     
     override func setData(data: AnyObject) {

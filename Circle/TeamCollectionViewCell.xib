@@ -14,21 +14,33 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ew1-Zf-36K">
-                        <rect key="frame" x="8" y="13" width="359" height="21"/>
+                        <rect key="frame" x="15" y="13" width="345" height="21"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="359" id="6tl-zD-dNn"/>
                         </constraints>
                         <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="15"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="6tl-zD-dNn"/>
+                            </mask>
+                        </variation>
                     </label>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <constraints>
-                <constraint firstAttribute="centerY" secondItem="ew1-Zf-36K" secondAttribute="centerY" constant="0.5" id="iMs-Lg-vws"/>
+                <constraint firstItem="ew1-Zf-36K" firstAttribute="leading" secondItem="qPz-ht-XJZ" secondAttribute="leading" constant="15" id="cnH-Vc-nx7"/>
+                <constraint firstAttribute="trailing" secondItem="ew1-Zf-36K" secondAttribute="trailing" constant="15" id="iDg-fD-y5t"/>
+                <constraint firstAttribute="centerY" secondItem="ew1-Zf-36K" secondAttribute="centerY" id="iMs-Lg-vws"/>
                 <constraint firstAttribute="centerX" secondItem="ew1-Zf-36K" secondAttribute="centerX" id="qex-00-5fW"/>
             </constraints>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="qex-00-5fW"/>
+                </mask>
+            </variation>
             <connections>
                 <outlet property="teamNameLabel" destination="ew1-Zf-36K" id="Bzl-kb-l91"/>
             </connections>

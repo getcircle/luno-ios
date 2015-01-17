@@ -44,21 +44,22 @@ class SearchQueryDataSource: CardDataSource {
     
     private func updateVisibleCards() {
         resetCards()
+        let sectionInset = UIEdgeInsetsMake(0.0, 0.0, 20.0, 0.0)
         
         // TODO these should be sorted by relevancy
         if visibleProfiles.count > 0 {
             let peopleCard = Card(cardType: .People, title: "People")
             peopleCard.content.extend(visibleProfiles as [AnyObject])
             peopleCard.contentCount = visibleProfiles.count
-            peopleCard.sectionInset = UIEdgeInsetsZero
+            peopleCard.sectionInset = sectionInset
             appendCard(peopleCard)
         }
-        
+
         if visibleTeams.count > 0 {
             let teamsCard = Card(cardType: .Team, title: "Teams")
             teamsCard.content.extend(visibleTeams as [AnyObject])
             teamsCard.contentCount = visibleTeams.count
-            teamsCard.sectionInset = UIEdgeInsetsZero
+            teamsCard.sectionInset = sectionInset
             appendCard(teamsCard)
         }
         
@@ -66,7 +67,7 @@ class SearchQueryDataSource: CardDataSource {
             let tagsCard = Card(cardType: .Tags, title: "Tags")
             tagsCard.content.append(visibleTags as [AnyObject])
             tagsCard.contentCount = visibleTags.count
-            tagsCard.sectionInset = UIEdgeInsetsZero
+            tagsCard.sectionInset = sectionInset
             appendCard(tagsCard)
         }
     }

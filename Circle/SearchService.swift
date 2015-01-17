@@ -102,7 +102,7 @@ extension SearchService {
                         lastNamePredicate,
                         titlePredicate,
                         fullTitlePredicate
-                        ])
+                    ])
                 )
             }
             
@@ -118,17 +118,17 @@ extension SearchService {
             for searchTerm in searchTerms {
                 let trimmedSearchTerm = trim(searchTerm)
                 
-                var containsPredicate = NSComparisonPredicate(
+                var beginsWithPredicate = NSComparisonPredicate(
                     leftExpression: NSExpression(forVariable: "name"),
                     rightExpression: NSExpression(forConstantValue: trimmedSearchTerm),
                     modifier: .DirectPredicateModifier,
-                    type: .ContainsPredicateOperatorType,
+                    type: .BeginsWithPredicateOperatorType,
                     options: .CaseInsensitivePredicateOption
                 )
                 
                 andPredicates.append(
                     NSCompoundPredicate.orPredicateWithSubpredicates([
-                        containsPredicate
+                        beginsWithPredicate
                     ])
                 )
             }
