@@ -145,6 +145,13 @@ CardHeaderViewDelegate {
             let viewController = LocationDetailViewController()
             navigationController?.pushViewController(viewController, animated: true)
             
+        case .Team:
+            if let selectedTeam = dataSource.contentAtIndexPath(indexPath)? as? OrganizationService.Containers.Team {
+                let viewController = TeamDetailViewController()
+                (viewController.dataSource as TeamDetailDataSource).selectedTeam = selectedTeam
+                navigationController?.pushViewController(viewController, animated: true)
+            }
+            
         default:
             performSegueWithIdentifier("showListOfPeople", sender: collectionView)
         }

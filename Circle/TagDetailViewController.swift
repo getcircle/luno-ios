@@ -15,7 +15,9 @@ class TagDetailViewController: DetailViewController {
     
     override func customInit() {
         super.customInit()
+
         dataSource = TagDetailDataSource()
+        delegate = ProfileCollectionViewDelegate()
     }
     
     // MARK: - Configuration
@@ -25,7 +27,6 @@ class TagDetailViewController: DetailViewController {
         collectionView.dataSource = dataSource
         
         // Delegate
-        delegate = ProfileCollectionViewDelegate()
         collectionView.delegate = delegate
         
         layout.headerHeight = TagHeaderCollectionReusableView.height

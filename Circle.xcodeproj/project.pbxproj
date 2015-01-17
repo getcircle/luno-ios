@@ -17,6 +17,8 @@
 		8F0004B11A2419730096477A /* CircleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0004B01A2419730096477A /* CircleTests.swift */; };
 		8F0004BB1A241BDE0096477A /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0004BA1A241BDE0096477A /* UIColorExtension.swift */; };
 		8F02B1FC1A54A08000A1A307 /* RootNavigationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F02B1FB1A54A08000A1A307 /* RootNavigationDelegate.swift */; };
+		8F085A851A6B0C1E00F8139B /* TeamDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F085A841A6B0C1E00F8139B /* TeamDetailViewController.swift */; };
+		8F085A8A1A6B0CB300F8139B /* TeamDetailDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F085A891A6B0CB300F8139B /* TeamDetailDataSource.swift */; };
 		8F0E44871A61EE99008710E7 /* LocationAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0E44861A61EE99008710E7 /* LocationAnnotation.swift */; };
 		8F22CB771A2661890026376E /* AppDelegateAppearanceExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F22CB761A2661890026376E /* AppDelegateAppearanceExtension.swift */; };
 		8F22CBE01A27A8E60026376E /* ProfileHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F22CBDE1A27A8E60026376E /* ProfileHeaderCollectionReusableView.swift */; };
@@ -219,6 +221,8 @@
 		8F0004B01A2419730096477A /* CircleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleTests.swift; sourceTree = "<group>"; };
 		8F0004BA1A241BDE0096477A /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		8F02B1FB1A54A08000A1A307 /* RootNavigationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootNavigationDelegate.swift; sourceTree = "<group>"; };
+		8F085A841A6B0C1E00F8139B /* TeamDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamDetailViewController.swift; sourceTree = "<group>"; };
+		8F085A891A6B0CB300F8139B /* TeamDetailDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamDetailDataSource.swift; sourceTree = "<group>"; };
 		8F0E44861A61EE99008710E7 /* LocationAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationAnnotation.swift; sourceTree = "<group>"; };
 		8F22CB761A2661890026376E /* AppDelegateAppearanceExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegateAppearanceExtension.swift; sourceTree = "<group>"; };
 		8F22CB7A1A268C040026376E /* Circle-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Circle-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -432,6 +436,7 @@
 				8FF297FC1A4A4DCA00306CFC /* SearchViewController.swift */,
 				8F7400221A6862BF00D96B60 /* TagDetailViewController.swift */,
 				8FF298431A4DF38E00306CFC /* TagSelectorViewController.swift */,
+				8F085A841A6B0C1E00F8139B /* TeamDetailViewController.swift */,
 				8F81713A1A62E07000CB7692 /* VerifyProfileViewController.swift */,
 				BF25722B1A6450F20052C3E3 /* VerifyPhoneNumberViewController.swift */,
 			);
@@ -559,6 +564,7 @@
 				8FC7BB3F1A58AF4C005BDDDB /* SearchLandingDataSource.swift */,
 				BFE213CE1A5F0B1D0033E2F5 /* SearchQueryDataSource.swift */,
 				8F7400241A6863B000D96B60 /* TagDetailDataSource.swift */,
+				8F085A891A6B0CB300F8139B /* TeamDetailDataSource.swift */,
 			);
 			name = DataSources;
 			sourceTree = "<group>";
@@ -947,6 +953,7 @@
 				8F00049B1A2419730096477A /* ProfilesViewController.swift in Sources */,
 				BF041BBA1A2C119B0043EC72 /* NSDateFormatterExtension.swift in Sources */,
 				8FEB032B1A5F69020081BB65 /* LocationDetailDataSource.swift in Sources */,
+				8F085A8A1A6B0CB300F8139B /* TeamDetailDataSource.swift in Sources */,
 				8F3569141A560B2D003D42F9 /* CGRectExtension.swift in Sources */,
 				8FF2980A1A4B490E00306CFC /* SearchHeaderView.swift in Sources */,
 				BF093F0F1A672F8900BA60BD /* MediaService.swift in Sources */,
@@ -985,6 +992,7 @@
 				8F00049D1A2419730096477A /* DetailViewController.swift in Sources */,
 				8F7400231A6862BF00D96B60 /* TagDetailViewController.swift in Sources */,
 				BF7DF98F1A44E53200A4F924 /* ServiceTransport.swift in Sources */,
+				8F085A851A6B0C1E00F8139B /* TeamDetailViewController.swift in Sources */,
 				BF3F0F611A5B1C1100D4287E /* ProfileService.swift in Sources */,
 				8FEE88471A411BA90011CE4A /* UIViewControllerExtension.swift in Sources */,
 				BFE213CD1A5EF7E30033E2F5 /* AppDelegateSearchCacheExtension.swift in Sources */,

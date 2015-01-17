@@ -1,20 +1,20 @@
 //
-//  TagDetailDataSource.swift
+//  TeamDetailDataSource.swift
 //  Circle
 //
-//  Created by Ravi Rani on 1/15/15.
+//  Created by Ravi Rani on 1/17/15.
 //  Copyright (c) 2015 RH Labs Inc. All rights reserved.
 //
 
 import UIKit
 import ProtobufRegistry
 
-class TagDetailDataSource: CardDataSource {
-    
-    var selectedTag: ProfileService.Containers.Tag!
+class TeamDetailDataSource: CardDataSource {
+    var selectedTeam: OrganizationService.Containers.Team!
     
     private var profiles = Array<ProfileService.Containers.Profile>()
-    private(set) var profileHeaderView: TagHeaderCollectionReusableView?
+    private var ownerProfile: ProfileService.Containers.Profile!
+    private(set) var profileHeaderView: TagHeaderCollectionReusableView!
     
     // MARK: - Load Data
     
@@ -30,15 +30,37 @@ class TagDetailDataSource: CardDataSource {
         appendCard(placeholderTagCard)
         
         if let currentProfile = AuthViewController.getLoggedInUserProfile() {
-            ProfileService.Actions.getProfiles(tagId: selectedTag!.id) { (profiles, error) -> Void in
+            ProfileService.Actions.getProfiles(selectedTeam!.id) { (profiles, error) -> Void in
                 if error == nil {
-                    self.profiles.extend(profiles!)
-                    let peopleCard = Card(cardType: .People, title: "People by Tag")
-                    peopleCard.content.extend(profiles! as [AnyObject])
-                    peopleCard.sectionInset = UIEdgeInsetsZero
-                    self.appendCard(peopleCard)
+                    // Add Owner Card
+                    var allProfilesExceptOwner = profiles?.filter({ (profile) -> Bool in
+                        if profile.user_id == self.selectedTeam.owner_id {
+                            self.ownerProfile = profile
+                            return false
+                        }
+                        
+                        return true
+                    })
+                    
+                    if let owner = self.ownerProfile {
+                        let ownerCard = Card(cardType: .People, title: "Team Lead")
+                        ownerCard.content.append(self.ownerProfile)
+                        ownerCard.sectionInset = UIEdgeInsetsMake(0.0, 0.0, 25.0, 0.0)
+                        self.appendCard(ownerCard)
+                    }
+                    
+                    // Add Members Card
+                    if allProfilesExceptOwner?.count > 0 {
+                        self.profiles.extend(allProfilesExceptOwner!)
+                        let membersCard = Card(cardType: .People, title: "Team Members")
+                        membersCard.content.extend(allProfilesExceptOwner! as [AnyObject])
+                        membersCard.sectionInset = UIEdgeInsetsMake(0.0, 0.0, 20.0, 0.0)
+                        self.appendCard(membersCard)
+                    }
+                    
                     completionHandler(error: nil)
-                } else {
+                }
+                else {
                     completionHandler(error: error)
                 }
             }
@@ -46,6 +68,8 @@ class TagDetailDataSource: CardDataSource {
     }
     
     override func configureCell(cell: CircleCollectionViewCell, atIndexPath indexPath: NSIndexPath) {
+        super.configureCell(cell, atIndexPath: indexPath)
+        
         if let profileCell = cell as? ProfileCollectionViewCell {
             profileCell.sizeMode = .Medium
         }
@@ -73,8 +97,9 @@ class TagDetailDataSource: CardDataSource {
                 kind,
                 withReuseIdentifier: TagHeaderCollectionReusableView.classReuseIdentifier,
                 forIndexPath: indexPath
-            ) as TagHeaderCollectionReusableView
-            supplementaryView.tagNameLabel.attributedText = NSAttributedString(string: selectedTag.name.uppercaseString, attributes: [NSKernAttributeName: 2.0])
+                ) as TagHeaderCollectionReusableView
+            supplementaryView.tagNameLabel.attributedText = NSAttributedString(string: selectedTeam.name.uppercaseString, attributes: [NSKernAttributeName: 2.0])
+            supplementaryView.tagNameLabel.layer.borderWidth = 0.0
             
             profileHeaderView = supplementaryView
             return supplementaryView

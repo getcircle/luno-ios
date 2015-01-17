@@ -22,16 +22,24 @@ class ProfileDetailViewController: DetailViewController {
         super.viewDidDisappear(animated)
         unregisterNotifications()
     }
+
+    // MARK: - Initialization
+    
+    override func customInit() {
+        super.customInit()
+        
+        dataSource = ProfileDetailDataSource()
+        delegate = ProfileCollectionViewDelegate()
+    }
     
     // MARK: - Configuration
+
     override func configureCollectionView() {
         // Data Source
-        dataSource = ProfileDetailDataSource()
         collectionView.dataSource = dataSource
         (dataSource as ProfileDetailDataSource).profile = profile
 
         // Delegate
-        delegate = ProfileCollectionViewDelegate()
         collectionView.delegate = delegate
         
         layout.headerHeight = ProfileHeaderCollectionReusableView.height
