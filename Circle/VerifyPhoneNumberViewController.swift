@@ -211,8 +211,10 @@ class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate {
         toggleLoadingState(button)
         
         if bypassChecks {
-            toggleLoadingState(button)
-            completionHandler(nil)
+            delay(0.3) { () -> () in
+                self.toggleLoadingState(button)
+                completionHandler(nil)
+            }
             return
         }
         
@@ -246,7 +248,14 @@ class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate {
             self.activityIndicatorView = nil
         } else {
             activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
-            activityIndicatorView?.color = UIColor.appTintColor()
+            var tintColor: UIColor
+            switch button {
+            case resendCodeButton:
+                tintColor = UIColor.whiteColor()
+            default:
+                tintColor = UIColor.appTintColor()
+            }
+            activityIndicatorView?.color = tintColor
             activityIndicatorView!.setTranslatesAutoresizingMaskIntoConstraints(false)
             
             toggleLoadingStateTextHolder = button.titleLabel?.text
