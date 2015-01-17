@@ -9,11 +9,7 @@
 import Foundation
 import ProtobufRegistry
 
-typealias SearchCompletionHandler = (
-    profiles: Array<ProfileService.Containers.Profile>?,
-    teams: Array<OrganizationService.Containers.Team>?,
-    addresses: Array<OrganizationService.Containers.Address>?
-) -> Void
+typealias SearchCompletionHandler = (result: SearchService.Actions.SearchResults?, error: NSError?) -> Void
 
 extension SearchService {
     class Actions {
@@ -22,6 +18,7 @@ extension SearchService {
             var profiles: Array<ProfileService.Containers.Profile>?
             var teams: Array<OrganizationService.Containers.Team>?
             var addresses: Array<OrganizationService.Containers.Address>?
+            var tags: Array<ProfileService.Containers.Tag>?
         }
         
         private class var whitespaceCharacterSet: NSCharacterSet {
@@ -30,8 +27,8 @@ extension SearchService {
         
         class func search(query: String, completionHandler: SearchCompletionHandler?) {
             // Query the cache
-            var (cache, error) = search(query)
-            completionHandler?(profiles: cache?.profiles, teams: cache?.teams, addresses: cache?.addresses)
+            var (result, error) = search(query)
+            completionHandler?(result: result, error: error)
             
             // Send a search request to the servers
 //            let requestBuilder = SearchService.Search.Request.builder()
@@ -53,6 +50,7 @@ extension SearchService {
             let results = SearchResults()
             results.profiles = filterProfiles(searchTerms)
             results.teams = filterTeams(searchTerms)
+            results.tags = filterTags(searchTerms)
             return (results, nil)
         }
         
@@ -112,11 +110,11 @@ extension SearchService {
             return ObjectStore.sharedInstance.profiles.values.array.filter { finalPredicate.evaluateWithObject(
                 $0,
                 substitutionVariables: ["first_name": $0.first_name, "last_name": $0.last_name, "title": $0.title]
-                )}
+            )}
         }
         
         private class func filterTeams(searchTerms: [String]) -> Array<OrganizationService.Containers.Team> {
-            var andPredicats = [NSPredicate]()
+            var andPredicates = [NSPredicate]()
             for searchTerm in searchTerms {
                 let trimmedSearchTerm = trim(searchTerm)
                 
@@ -128,18 +126,44 @@ extension SearchService {
                     options: .CaseInsensitivePredicateOption
                 )
                 
-                andPredicats.append(
+                andPredicates.append(
                     NSCompoundPredicate.orPredicateWithSubpredicates([
                         containsPredicate
                     ])
                 )
             }
             
-            let finalPredicate = NSCompoundPredicate.andPredicateWithSubpredicates(andPredicats)
+            let finalPredicate = NSCompoundPredicate.andPredicateWithSubpredicates(andPredicates)
             return ObjectStore.sharedInstance.teams.values.array.filter { finalPredicate.evaluateWithObject(
                 $0,
                 substitutionVariables: ["name": $0.name]
             )}
+        }
+        
+        private class func filterTags(searchTerms: [String]) -> Array<ProfileService.Containers.Tag> {
+            var andPredicates = [NSPredicate]()
+            for searchTerm in searchTerms {
+                let trimmedSearchTerm = trim(searchTerm)
+                
+                var beginsWithPredicate = NSComparisonPredicate(
+                    leftExpression: NSExpression(forVariable: "name"),
+                    rightExpression: NSExpression(forConstantValue: searchTerm),
+                    modifier: .DirectPredicateModifier,
+                    type: .BeginsWithPredicateOperatorType,
+                    options: .CaseInsensitivePredicateOption
+                )
+                
+                andPredicates.append(
+                    NSCompoundPredicate.orPredicateWithSubpredicates([
+                        beginsWithPredicate
+                    ])
+                )
+            }
+            
+            let finalPredicate = NSCompoundPredicate.andPredicateWithSubpredicates(andPredicates)
+            return ObjectStore.sharedInstance.tags.values.array.filter {
+                return finalPredicate.evaluateWithObject($0, substitutionVariables: ["name": $0.name])
+            }
         }
         
         private class func trim(string: String) -> String {

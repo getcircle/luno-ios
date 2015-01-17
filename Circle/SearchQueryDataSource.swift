@@ -16,23 +16,29 @@ class SearchQueryDataSource: CardDataSource {
     private var visibleProfiles = Array<ProfileService.Containers.Profile>()
     private var visibleTeams = Array<OrganizationService.Containers.Team>()
     private var visibleAddresses = Array<OrganizationService.Containers.Address>()
+    private var visibleTags = Array<ProfileService.Containers.Tag>()
     
     override func loadData(completionHandler: (error: NSError?) -> Void) {
     }
     
     func filter(string: String, completionHandler: (error: NSError?) -> Void) {
-        SearchService.Actions.search(string, completionHandler: { (profiles, teams, addresses) -> Void in
-            if let profiles = profiles {
-                self.visibleProfiles = profiles
+        SearchService.Actions.search(string, completionHandler: { (results, error) -> Void in
+            if let results = results {
+                if let profiles = results.profiles {
+                    self.visibleProfiles = profiles
+                }
+                if let teams = results.teams {
+                    self.visibleTeams = teams
+                }
+                if let addresses = results.addresses {
+                    self.visibleAddresses = addresses
+                }
+                if let tags = results.tags {
+                    self.visibleTags = tags
+                }
+                self.updateVisibleCards()
             }
-            if let teams = teams {
-                self.visibleTeams = teams
-            }
-            if let addresses = addresses {
-                self.visibleAddresses = addresses
-            }
-            self.updateVisibleCards()
-            completionHandler(error: nil)
+            completionHandler(error: error)
         })
     }
     
@@ -54,6 +60,14 @@ class SearchQueryDataSource: CardDataSource {
             teamsCard.contentCount = visibleTeams.count
             teamsCard.sectionInset = UIEdgeInsetsZero
             appendCard(teamsCard)
+        }
+        
+        if visibleTags.count > 0 {
+            let tagsCard = Card(cardType: .Tags, title: "Tags")
+            tagsCard.content.append(visibleTags as [AnyObject])
+            tagsCard.contentCount = visibleTags.count
+            tagsCard.sectionInset = UIEdgeInsetsZero
+            appendCard(tagsCard)
         }
     }
     

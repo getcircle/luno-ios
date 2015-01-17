@@ -45,6 +45,14 @@ class TagsCollectionViewCell: CircleCollectionViewCell, UICollectionViewDataSour
         }
     }
     
+    // pass backgroundColor changes to the collectionView
+    override var backgroundColor: UIColor? {
+        didSet {
+            super.backgroundColor = backgroundColor
+            collectionView?.backgroundColor = backgroundColor
+        }
+    }
+    
     var selectedTag: ProfileService.Containers.Tag?
     private var tags = Array<ProfileService.Containers.Tag>()
     
