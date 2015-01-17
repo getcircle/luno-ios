@@ -11,16 +11,21 @@ import ProtobufRegistry
 
 class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate {
     
+    enum ActiveField {
+        case PhoneNumber
+        case Code
+    }
+    
     @IBOutlet weak var instructionsLabel: UILabel!
     @IBOutlet weak private(set) var phoneNumberField: UITextField!
-    @IBOutlet weak private(set) var sendCodeButton: UIButton!
+    @IBOutlet weak private(set) var actionButton: UIButton!
     @IBOutlet weak private(set) var verificationCodeField: UITextField!
     @IBOutlet weak private(set) var resendCodeButton: UIButton!
-    @IBOutlet weak private(set) var verifyCodeButton: UIButton!
     @IBOutlet weak var phoneNumberFieldVerticalSpacing: NSLayoutConstraint!
     @IBOutlet weak var phoneNumberFieldWidth: NSLayoutConstraint!
     @IBOutlet weak var verificationCodeFieldVerticalSpacing: NSLayoutConstraint!
     @IBOutlet weak var verificationCodeFieldWidth: NSLayoutConstraint!
+    @IBOutlet weak var actionButtonWidth: NSLayoutConstraint!
     
     private var activityIndicatorView: UIActivityIndicatorView?
 //    private var bypassChecks = !ServiceHttpRequest.isPointingToProduction()
@@ -32,6 +37,8 @@ class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate {
     private var verificationCodeFieldPreviousVerticalSpacing: CGFloat = 0.0
     private var phoneNumberFieldShrinkFactor: CGFloat = 0.85
     private var toggleLoadingStateTextHolder: String?
+    private var activeField = ActiveField.PhoneNumber
+    private var verificationCodeFieldBottomBorder: UIView?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,17 +68,14 @@ class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate {
         verificationCodeField.delegate = self
         verificationCodeField.tintColor = UIColor.whiteColor()
         phoneNumberField.addBottomBorder()
-        verificationCodeField.addBottomBorder()
 
-        sendCodeButton.setTitleColor(UIColor.searchTextFieldBackground(), forState: .Disabled)
-        sendCodeButton.enabled = false
-        verifyCodeButton.enabled = false
+        actionButton.setTitleColor(UIColor.searchTextFieldBackground(), forState: .Disabled)
+        actionButton.enabled = false
         resendCodeButton.enabled = false
     }
     
     private func configureTargets() {
-        sendCodeButton.addTarget(self, action: "sendCodeButtonTapped:", forControlEvents: .TouchUpInside)
-        verifyCodeButton.addTarget(self, action: "verifyCodeButtonTapped:", forControlEvents: .TouchUpInside)
+        actionButton.addTarget(self, action: "actionButtonTapped:", forControlEvents: .TouchUpInside)
         resendCodeButton.addTarget(self, action: "resendCodeButtonTapped:", forControlEvents: .TouchUpInside)
     }
 
@@ -107,9 +111,9 @@ class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate {
         }
         
         if phoneNumberFormatter.getRememberedPosition() == 14 {
-            sendCodeButton.enabled = true
+            actionButton.enabled = true
         } else {
-            sendCodeButton.enabled = false
+            actionButton.enabled = false
         }
     }
     
@@ -131,22 +135,18 @@ class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate {
         }
         
         if codeDigits == 6 {
-            verifyCodeButton.enabled = true
+            actionButton.enabled = true
         } else {
-            verifyCodeButton.enabled = false
+            actionButton.enabled = false
         }
     }
 
     // MARK: - Targets
     
-    func sendCodeButtonTapped(sender: AnyObject!) {
-        triggerSendingVerificationCode(sendCodeButton) { (error) -> Void in
-            if error == nil {
-                self.switchToConfirmation()
-            } else {
-                println("error: \(error)")
-                self.sendCodeButton.addShakeAnimation()
-            }
+    func actionButtonTapped(sender: AnyObject!) {
+        switch activeField {
+        case .PhoneNumber: handlePhoneNumberSubmit(sender)
+        case .Code: handleVerificationCodeSubmit(sender)
         }
     }
     
@@ -159,8 +159,19 @@ class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    func verifyCodeButtonTapped(sender: AnyObject!) {
-        self.toggleLoadingState(verifyCodeButton)
+    func handlePhoneNumberSubmit(sender: AnyObject!) {
+        triggerSendingVerificationCode(actionButton) { (error) -> Void in
+            if error == nil {
+                self.switchToConfirmation()
+            } else {
+                println("error: \(error)")
+                self.actionButton.addShakeAnimation()
+            }
+        }
+    }
+    
+    func handleVerificationCodeSubmit(sender: AnyObject!) {
+        self.toggleLoadingState(actionButton)
         if bypassChecks {
             if let user = AuthViewController.getLoggedInUser() {
                 let builder = user.toBuilder()
@@ -170,7 +181,7 @@ class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate {
                     if let user = user {
                         AuthViewController.updateUser(user)
                     }
-                    self.toggleLoadingState(self.verifyCodeButton)
+                    self.toggleLoadingState(self.actionButton)
                     self.verificationComplete()
                 }
             }
@@ -181,16 +192,16 @@ class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate {
         if let user = AuthViewController.getLoggedInUser() {
             UserService.Actions.verifyVerificationCode(code, user: user) { (verified, error) -> Void in
                 if error == nil {
-                    self.toggleLoadingState(self.verifyCodeButton)
+                    self.toggleLoadingState(self.actionButton)
                     if verified! {
                         self.verificationComplete()
                     } else {
                         println("user verification failed")
-                        self.verifyCodeButton.addShakeAnimation()
+                        self.actionButton.addShakeAnimation()
                     }
                 } else {
                     println("error verifying user")
-                    self.verifyCodeButton.addShakeAnimation()
+                    self.actionButton.addShakeAnimation()
                 }
             }
         }
@@ -247,6 +258,17 @@ class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate {
     }
     
     private func switchToConfirmation() {
+        activeField = .Code
+        
+        UIView.animateWithDuration(0, animations: { () -> Void in
+            // add the border here since we remove it if we transition back to editing
+            self.verificationCodeFieldBottomBorder = self.verificationCodeField.addBottomBorder()
+        }) { (_) -> Void in
+            self.mainSwitchToConfirmationAnimation()
+        }
+    }
+    
+    private func mainSwitchToConfirmationAnimation() {
         phoneNumberFieldPreviousVerticalSpacing = phoneNumberFieldVerticalSpacing.constant
         phoneNumberFieldVerticalSpacing.constant = 15
         phoneNumberField.font = phoneNumberField.font.fontWithSize(
@@ -261,34 +283,38 @@ class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate {
         verificationCodeField.setNeedsDisplay()
         verificationCodeFieldWidth.constant = 100
         verificationCodeField.font = UIFont.lightFont(30.0)
+        
         verificationCodeField.setNeedsUpdateConstraints()
         
-        UIView.transitionWithView(instructionsLabel, duration: 0.3, options: .TransitionCrossDissolve, animations: { () -> Void in
+        actionButtonWidth.constant = verificationCodeFieldWidth.constant
+        actionButton.setTitle("Verify", forState: .Normal)
+        actionButton.setNeedsUpdateConstraints()
+        
+        UIView.transitionWithView(instructionsLabel, duration: 0.1, options: .TransitionCrossDissolve, animations: { () -> Void in
             self.instructionsLabel.text = "You should be getting a text shortly."
-        }, completion: nil)
+            }, completion: nil)
         
         UIView.animateWithDuration(
             0.4,
             delay: 0,
-            usingSpringWithDamping: 0.8,
-            initialSpringVelocity: 0.9,
+            usingSpringWithDamping: 0.5,
+            initialSpringVelocity: 0.8,
             options: .CurveEaseInOut,
             animations: { () -> Void in
                 self.view.layoutIfNeeded()
-                self.sendCodeButton.alpha = 0
-                self.sendCodeButton.enabled = false
+                self.actionButton.enabled = false
                 self.resendCodeButton.alpha = 1
                 self.resendCodeButton.enabled = true
-                self.verifyCodeButton.alpha = 1
             }
-        ) { (success) -> Void in
-            self.verificationCodeField.becomeFirstResponder()
-            self.transitionedToConfirmation = true
-            return
+            ) { (_) -> Void in
+                self.verificationCodeField.becomeFirstResponder()
+                self.transitionedToConfirmation = true
+                return
         }
     }
     
     private func transitionToEditPhoneNumber() {
+        activeField = .PhoneNumber
         phoneNumberFieldVerticalSpacing.constant = phoneNumberFieldPreviousVerticalSpacing
         phoneNumberField.setNeedsUpdateConstraints()
         
@@ -303,24 +329,27 @@ class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate {
         verificationCodeField.text = ""
         codeDigits = 0
         
-        UIView.transitionWithView(instructionsLabel, duration: 0.3, options: .TransitionCrossDissolve, animations: { () -> Void in
+        actionButtonWidth.constant = phoneNumberFieldWidth.constant
+        actionButton.setTitle("Send Code", forState: .Normal)
+        actionButton.setNeedsUpdateConstraints()
+        
+        UIView.transitionWithView(instructionsLabel, duration: 0.1, options: .TransitionCrossDissolve, animations: { () -> Void in
             self.instructionsLabel.text = "Verify your phone number for your team to contact you."
         }, completion: nil)
         
         UIView.animateWithDuration(
             0.4,
             delay: 0,
-            usingSpringWithDamping: 0.8,
-            initialSpringVelocity: 0.9, options: .CurveEaseInOut,
+            usingSpringWithDamping: 0.5,
+            initialSpringVelocity: 0.8, options: .CurveEaseInOut,
             animations: { () -> Void in
+                self.verificationCodeFieldBottomBorder?.removeFromSuperview()
                 self.view.layoutIfNeeded()
-                self.sendCodeButton.alpha = 1
-                self.sendCodeButton.enabled = true
+                self.actionButton.enabled = true
                 self.resendCodeButton.alpha = 0
                 self.resendCodeButton.enabled = false
-                self.verifyCodeButton.alpha = 0
             }
-        ) { (success) -> Void in
+        ) { (_) -> Void in
             self.transitionedToConfirmation = false
         }
     }
