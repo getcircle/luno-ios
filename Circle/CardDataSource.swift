@@ -50,7 +50,7 @@ class CardDataSource: NSObject, UICollectionViewDataSource {
         fatalError("All subclasses need to override this")
     }
     
-    func setInitialData(content: [AnyObject]) {
+    func setInitialData(content: [AnyObject], ofType: Card.CardType? = .People) {
         fatalError("All subclasses need to override this")
     }
     

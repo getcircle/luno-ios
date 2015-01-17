@@ -137,7 +137,7 @@ CardHeaderViewDelegate {
             }
         case .Group:
             let viewController = storyboard?.instantiateViewControllerWithIdentifier("ProfilesViewController") as ProfilesViewController
-            viewController.dataSource.setInitialData(selectedCard.content[0] as [AnyObject])
+            viewController.dataSource.setInitialData(selectedCard.content[0] as [AnyObject], ofType: nil)
             viewController.title = selectedCard.title
             navigationController?.pushViewController(viewController, animated: true)
 
@@ -177,10 +177,10 @@ CardHeaderViewDelegate {
         case .Group, .People, .Birthdays, .Anniversaries, .NewHires:
             let viewController = storyboard?.instantiateViewControllerWithIdentifier("ProfilesViewController") as ProfilesViewController
             if card.type == .Group {
-                viewController.dataSource.setInitialData(card.content[0] as [AnyObject])
+                viewController.dataSource.setInitialData(card.content[0] as [AnyObject], ofType: nil)
             }
             else {
-                viewController.dataSource.setInitialData(card.allContent)
+                viewController.dataSource.setInitialData(card.allContent, ofType: card.type)
             }
             viewController.title = card.title
             navigationController?.pushViewController(viewController, animated: true)

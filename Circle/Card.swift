@@ -181,4 +181,7 @@ class Card: Equatable {
         self.addContent(content: withContent, allContent: nil)
     }
     
+    func hasProfileCells() -> Bool {
+        return self.contentClass is ProfileCollectionViewCell.Type
+    }
 }

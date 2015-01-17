@@ -15,7 +15,7 @@ class ProfilesCollectionViewDelegate: CardCollectionViewDelegate {
     }
 
     override func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        if cardDataSource(collectionView).cardAtSection(indexPath.section)!.type == Card.CardType.People {
+        if cardDataSource(collectionView).cardAtSection(indexPath.section)!.hasProfileCells() {
             return CGSizeMake(ProfileCollectionViewCell.width, 64.0)
         }
         

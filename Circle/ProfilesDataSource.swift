@@ -15,8 +15,9 @@ class ProfilesDataSource: CardDataSource {
     
     // MARK: - Set Initial Data
     
-    override func setInitialData(content: [AnyObject]) {
-        let profilesCard = Card(cardType: .People, title: "")
+    override func setInitialData(content: [AnyObject], ofType: Card.CardType?) {
+        let cardType = ofType != nil ? ofType : .People
+        let profilesCard = Card(cardType: cardType!, title: "")
         profilesCard.content.extend(content)
         appendCard(profilesCard)
     }
@@ -31,8 +32,6 @@ class ProfilesDataSource: CardDataSource {
     override func configureCell(cell: CircleCollectionViewCell, atIndexPath indexPath: NSIndexPath) {
         if let profileCell = cell as? ProfileCollectionViewCell {
             profileCell.sizeMode = .Medium
-            let profile = contentAtIndexPath(indexPath) as? ProfileService.Containers.Profile
-            profileCell.subTextLabel.text = profile?.title
         }
     }
 }
