@@ -12,8 +12,11 @@ class CircleAlertViewController: UIViewController, UIViewControllerTransitioning
 
     @IBOutlet weak private(set) var actionButton: UIButton!
     @IBOutlet weak private(set) var parentContainerView: UIView!
+    @IBOutlet weak private(set) var parentContainerViewCenterYConstraint: NSLayoutConstraint!
     @IBOutlet weak private(set) var textLabel: UILabel!
     @IBOutlet weak private(set) var titleLabel: UILabel!
+    
+    private(set) var visualEffectView: UIVisualEffectView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +33,7 @@ class CircleAlertViewController: UIViewController, UIViewControllerTransitioning
         view.addGestureRecognizer(tapGestureRecognizer)
         
         let blurEffect = UIBlurEffect(style: .Dark)
-        var visualEffectView = UIVisualEffectView(effect: blurEffect)
+        visualEffectView = UIVisualEffectView(effect: blurEffect)
         visualEffectView.setTranslatesAutoresizingMaskIntoConstraints(false)
         view.addSubview(visualEffectView)
         view.sendSubviewToBack(visualEffectView)

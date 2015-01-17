@@ -25,8 +25,11 @@ class CircleAlertViewAnimator: NSObject, UIViewControllerAnimatedTransitioning {
             toViewController.view.frame = fromViewController.view.frame
 
             let alertViewController = toViewController as CircleAlertViewController
-            alertViewController.parentContainerView.frameBottom = 0.0
-            
+            alertViewController.parentContainerViewCenterYConstraint.constant = (alertViewController.view.frameHeight / 2.0 + alertViewController.parentContainerView.frameHeight / 2.0)
+            alertViewController.parentContainerView.setNeedsUpdateConstraints()
+            alertViewController.parentContainerView.layoutIfNeeded()
+            alertViewController.visualEffectView.alpha = 0.0
+
             UIView.animateWithDuration(
                 transitionDuration(transitionContext),
                 delay: 0.0,
@@ -34,7 +37,10 @@ class CircleAlertViewAnimator: NSObject, UIViewControllerAnimatedTransitioning {
                 initialSpringVelocity: 0.8,
                 options: .CurveEaseInOut,
                 animations: { () -> Void in
-                    alertViewController.parentContainerView.center = alertViewController.view.center
+                    alertViewController.parentContainerViewCenterYConstraint.constant = 0.0
+                    alertViewController.parentContainerView.setNeedsUpdateConstraints()
+                    alertViewController.parentContainerView.layoutIfNeeded()
+                    alertViewController.visualEffectView.alpha = 1.0
                 },
                 completion:{ (completed) -> Void in
                     transitionContext.completeTransition(true)
@@ -53,7 +59,10 @@ class CircleAlertViewAnimator: NSObject, UIViewControllerAnimatedTransitioning {
                 initialSpringVelocity: 0.8,
                 options: .CurveEaseInOut,
                 animations: { () -> Void in
-                    alertViewController.parentContainerView.frameY = alertViewController.view.frameHeight
+                    alertViewController.parentContainerViewCenterYConstraint.constant = -(alertViewController.view.frameHeight / 2.0 + alertViewController.parentContainerView.frameHeight / 2.0)
+                    alertViewController.parentContainerView.setNeedsUpdateConstraints()
+                    alertViewController.parentContainerView.layoutIfNeeded()
+                    alertViewController.visualEffectView.alpha = 0.0
                 },
                 completion:{ (completed) -> Void in
                     transitionContext.completeTransition(true)

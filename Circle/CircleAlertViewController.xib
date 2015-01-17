@@ -8,6 +8,7 @@
             <connections>
                 <outlet property="actionButton" destination="nnT-t7-C3w" id="yLg-2A-XAu"/>
                 <outlet property="parentContainerView" destination="VqV-LP-yIv" id="a92-BZ-fHh"/>
+                <outlet property="parentContainerViewCenterYConstraint" destination="xw1-Ig-7pw" id="6GM-lG-DZO"/>
                 <outlet property="textLabel" destination="tMH-SS-ae1" id="9QM-Lx-Rc9"/>
                 <outlet property="titleLabel" destination="6qO-QD-Wsi" id="FWp-Nz-fsG"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -82,18 +83,10 @@
             <color key="backgroundColor" red="0.88235294119999996" green="0.15686274510000001" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="VqV-LP-yIv" secondAttribute="trailing" constant="15" id="Qjg-pq-4XP"/>
-                <constraint firstAttribute="trailing" secondItem="VqV-LP-yIv" secondAttribute="trailing" constant="15" id="VMc-8A-wOe"/>
                 <constraint firstAttribute="centerX" secondItem="VqV-LP-yIv" secondAttribute="centerX" id="eNU-4E-o0d"/>
-                <constraint firstItem="VqV-LP-yIv" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="fv7-WZ-ZhS"/>
                 <constraint firstAttribute="centerY" secondItem="VqV-LP-yIv" secondAttribute="centerY" id="xw1-Ig-7pw"/>
                 <constraint firstItem="VqV-LP-yIv" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="ygU-Hk-KOs"/>
             </constraints>
-            <variation key="default">
-                <mask key="constraints">
-                    <exclude reference="VMc-8A-wOe"/>
-                    <exclude reference="fv7-WZ-ZhS"/>
-                </mask>
-            </variation>
         </view>
     </objects>
 </document>
