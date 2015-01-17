@@ -166,7 +166,7 @@ class Card: Equatable {
     
     func addContent(content withContent: [AnyObject], allContent withAllContent: [AnyObject]?) {
         switch type {
-        case .Group: content.append(withContent)
+        case .Group, .Tags: content.append(withContent)
         default: content.extend(withContent)
         }
         

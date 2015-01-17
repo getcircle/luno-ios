@@ -34,33 +34,15 @@ class SearchLandingDataSource: CardDataSource {
                             categoryCard.addContent(content: profiles, allContent: category.profiles)
                         } else if category.addresses.count > 0 {
                             categoryCard.addContent(content: category.addresses)
+                        } else if category.tags.count > 0 {
+                            categoryCard.addContent(content: category.tags)
                         }
                         self.appendCard(categoryCard)
                     }
-                    self.addAdditionalData()
                     completionHandler(error: nil)
                 }
             }
         }
-    }
-    
-    private func addAdditionalData() {
-        // THIS FUNCTION WILL BE REMOVED COMPLETELY AFTER THE BACKEND CHANGES
-        // SO IGNORE THE IMPLMENTATION
-        
-        var tagsCard = Card(cardType: .Tags, title: "Tags")
-        tagsCard.contentCount = 30
-        let tagsNames = ["Python", "Startups", "Investing", "iOS", "Software Development", "Marketing"]
-        var tagObjects = Array<ProfileService.Containers.Tag>()
-
-        for tagName in tagsNames {
-            var tagObject = ProfileService.Containers.Tag.builder()
-            tagObject.name = tagName
-            tagObjects.append(tagObject.build())
-        }
-
-        tagsCard.content.append(tagObjects)
-        appendCard(tagsCard)
     }
     
     override func configureCell(cell: CircleCollectionViewCell, atIndexPath indexPath: NSIndexPath) {
