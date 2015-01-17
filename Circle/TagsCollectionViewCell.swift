@@ -107,7 +107,8 @@ class TagsCollectionViewCell: CircleCollectionViewCell, UICollectionViewDataSour
         prototypeCell.tagLabel.text = tag.name
         prototypeCell.setNeedsLayout()
         prototypeCell.layoutIfNeeded()
-        return prototypeCell.intrinsicContentSize()
+        let intrinsicSize = prototypeCell.intrinsicContentSize()
+        return CGSizeMake(intrinsicSize.width, 28.0)
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
