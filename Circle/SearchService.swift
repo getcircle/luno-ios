@@ -161,7 +161,7 @@ extension SearchService {
             }
             
             let finalPredicate = NSCompoundPredicate.andPredicateWithSubpredicates(andPredicates)
-            return ObjectStore.sharedInstance.tags.values.array.filter {
+            return ObjectStore.sharedInstance.activeTags.values.array.filter {
                 return finalPredicate.evaluateWithObject($0, substitutionVariables: ["name": $0.name])
             }
         }

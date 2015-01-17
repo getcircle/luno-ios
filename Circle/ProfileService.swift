@@ -112,6 +112,22 @@ extension ProfileService {
             }
         }
         
+        class func getActiveTags(organizationId: String, completionHandler: GetTagsCompletionHandler?) {
+            let requestBuilder = ProfileService.GetActiveTags.Request.builder()
+            requestBuilder.organization_id = organizationId
+            
+            let client = ServiceClient(serviceName: "profile")
+            client.callAction(
+                "get_active_tags",
+                extensionField: ProfileServiceRequests_get_active_tags,
+                requestBuilder: requestBuilder) { (_, _, _, actionResponse, error) -> Void in
+                    let response = actionResponse?.result.getExtension(
+                        ProfileServiceRequests_get_active_tags
+                    ) as? ProfileService.GetActiveTags.Response
+                    completionHandler?(tags: response?.tags, error: error)
+            }
+        }
+        
         class func updateProfile(profile: ProfileService.Containers.Profile, completionHandler: UpdateProfileCompletionHandler?) {
             let requestBuilder = ProfileService.UpdateProfile.Request.builder()
             requestBuilder.profile = profile
@@ -124,7 +140,7 @@ extension ProfileService {
                     let response = actionResponse?.result.getExtension(
                         ProfileServiceRequests_update_profile
                     ) as? ProfileService.UpdateProfile.Response
-                    ObjectStore.sharedInstance.update(response?.profile)
+                    ObjectStore.sharedInstance.update(response?.profile, type: .Profile)
                     completionHandler?(profile: response?.profile, error: error)
             }
         }
