@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol CircleAlertViewDelegate {
+    func alertActionButtonPressed(sender: AnyObject!)
+}
+
 class CircleAlertViewController: UIViewController, UIViewControllerTransitioningDelegate {
 
     @IBOutlet weak private(set) var actionButton: UIButton!
@@ -15,6 +19,8 @@ class CircleAlertViewController: UIViewController, UIViewControllerTransitioning
     @IBOutlet weak private(set) var parentContainerViewCenterYConstraint: NSLayoutConstraint!
     @IBOutlet weak private(set) var textLabel: UILabel!
     @IBOutlet weak private(set) var titleLabel: UILabel!
+    
+    var circleAlertViewDelegate: CircleAlertViewDelegate?
     
     private(set) var visualEffectView: UIVisualEffectView!
     
@@ -53,6 +59,7 @@ class CircleAlertViewController: UIViewController, UIViewControllerTransitioning
     // MARK: - IBActions
     
     @IBAction func viewTapped(sender: AnyObject!) {
+        circleAlertViewDelegate?.alertActionButtonPressed(sender)
         dismissViewControllerAnimated(true, completion: nil)
     }
 }

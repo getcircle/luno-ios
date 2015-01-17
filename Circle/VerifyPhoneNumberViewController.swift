@@ -9,7 +9,7 @@
 import UIKit
 import ProtobufRegistry
 
-class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate {
+class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate, CircleAlertViewDelegate {
     
     enum ActiveField {
         case PhoneNumber
@@ -57,9 +57,6 @@ class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate {
         super.viewDidAppear(animated)
         if !welcomeAlertPresented {
             presentWelcomeAlert()
-        }
-        else {
-            phoneNumberField.becomeFirstResponder()
         }
     }
     
@@ -380,7 +377,16 @@ class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate {
         let alertViewController = CircleAlertViewController(nibName: "CircleAlertViewController", bundle: nil)
         alertViewController.modalPresentationStyle = .Custom
         alertViewController.transitioningDelegate = alertViewController
+        alertViewController.circleAlertViewDelegate = self
         presentViewController(alertViewController, animated: true, completion: nil)
         welcomeAlertPresented = true
     }
+
+    // MARK: - CircleAlertViewDelegate
+    
+    func alertActionButtonPressed(sender: AnyObject!) {
+        phoneNumberField.becomeFirstResponder()
+    }
+    
+    
 }
