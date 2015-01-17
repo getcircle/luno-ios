@@ -23,7 +23,7 @@ class SearchResultsCardHeaderCollectionReusableView: CircleCollectionReusableVie
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        cardTitleLabel.addBottomBorder()
+        cardTitleLabel.addBottomBorder(offset: 5.0)
     }
     
     func setCard(card: Card) {
