@@ -93,6 +93,7 @@ class TagSelectorViewController:
         if let nibViews = NSBundle.mainBundle().loadNibNamed("SearchHeaderView", owner: nil, options: nil) as? [UIView] {
             searchHeaderView = nibViews.first as SearchHeaderView
             searchHeaderView.delegate = self
+            searchHeaderView.searchTextField.addBottomBorder()
             searchHeaderView.searchTextField.clearButtonMode = .Always
             searchHeaderView.searchTextField.returnKeyType = .Done
             searchHeaderView.searchTextField.delegate = self

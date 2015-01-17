@@ -104,6 +104,8 @@ class TagsCollectionViewCell: CircleCollectionViewCell, UICollectionViewDataSour
         ) as TagCollectionViewCell
         
         cell.tagLabel.text = tag.name
+        cell.tagLabel.backgroundColor = collectionView.backgroundColor
+        cell.backgroundColor = collectionView.backgroundColor
         return cell
     }
     

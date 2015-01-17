@@ -56,7 +56,6 @@ class SearchHeaderView: UIView {
         searchTextField.leftViewMode = .Always
         searchTextField.leftView = leftView
         searchTextField.addRoundCorners()
-        searchTextField.addBottomBorder()
         updateView()
     }
     
