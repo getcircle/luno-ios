@@ -23,13 +23,13 @@ extension UIView {
         layer.addAnimation(animation, forKey: "position")
     }
     
-    func addBottomBorder() -> UIView {
+    func addBottomBorder(offset withOffset: CGFloat? = 1.0) -> UIView {
         var borderView = UIView(forAutoLayout: ())
         borderView.backgroundColor = UIColor.separatorViewColor()
         if let parentView = superview {
             parentView.addSubview(borderView)
             borderView.autoPinEdge(.Left, toEdge: .Left, ofView: self)
-            borderView.autoPinEdge(.Bottom, toEdge: .Bottom, ofView: self, withOffset: 1.0)
+            borderView.autoPinEdge(.Bottom, toEdge: .Bottom, ofView: self, withOffset: withOffset ?? 1.0)
             borderView.autoMatchDimension(.Width, toDimension: .Width, ofView: self)
             borderView.autoSetDimension(.Height, toSize: 0.5)
         }
