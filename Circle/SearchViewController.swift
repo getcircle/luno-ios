@@ -30,13 +30,12 @@ CardHeaderViewDelegate {
         configureView()
         configureSearchHeaderView()
         configureCollectionView()
-    
-        // Register Notifications
-        registerNotifications()
     }
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        registerNotifications()
+        
         // Animate hiding for every time thereafter
         setStatusBarHidden(false)
         checkUserAndPresentAuthViewController()
@@ -46,8 +45,11 @@ CardHeaderViewDelegate {
                 self.collectionView.reloadData()
             }
         }
-        
-        
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        unregisterNotifications()
     }
 
     // MARK: - Configuration
@@ -224,7 +226,7 @@ CardHeaderViewDelegate {
         )
     }
     
-    private func deregisterNotifications() {
+    private func unregisterNotifications() {
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
 }

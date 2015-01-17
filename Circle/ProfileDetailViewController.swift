@@ -13,6 +13,16 @@ class ProfileDetailViewController: DetailViewController {
 
     var profile: ProfileService.Containers.Profile!
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        registerNotifications()
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        unregisterNotifications()
+    }
+    
     // MARK: - Configuration
     override func configureCollectionView() {
         // Data Source
@@ -85,6 +95,31 @@ class ProfileDetailViewController: DetailViewController {
                 profileHeaderView.profileImage.alpha = profileImageAlpha
                 profileHeaderView.visualEffectView.alpha = otherViewsAlpha
                 profileHeaderView.profileImage.transform = CGAffineTransformIdentity
+            }
+        }
+    }
+    
+    // MARK: - Notifications
+    
+    private func registerNotifications() {
+        NSNotificationCenter.defaultCenter().addObserver(
+            self,
+            selector: "didSelectTag:",
+            name: TagsCollectionViewCellNotifications.onTagSelectedNotification,
+            object: nil
+        )
+    }
+    
+    private func unregisterNotifications() {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
+    func didSelectTag(notification: NSNotification) {
+        if let userInfo = notification.userInfo {
+            if let selectedTag = userInfo["tag"] as? ProfileService.Containers.Tag {
+                let viewController = TagDetailViewController()
+                (viewController.dataSource as TagDetailDataSource).selectedTag = selectedTag
+                navigationController?.pushViewController(viewController, animated: true)
             }
         }
     }
