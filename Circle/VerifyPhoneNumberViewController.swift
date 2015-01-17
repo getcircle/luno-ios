@@ -16,29 +16,30 @@ class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate {
         case Code
     }
     
+    @IBOutlet weak private(set) var actionButton: UIButton!
+    @IBOutlet weak var actionButtonWidth: NSLayoutConstraint!
     @IBOutlet weak var instructionsLabel: UILabel!
     @IBOutlet weak private(set) var phoneNumberField: UITextField!
-    @IBOutlet weak private(set) var actionButton: UIButton!
-    @IBOutlet weak private(set) var verificationCodeField: UITextField!
-    @IBOutlet weak private(set) var resendCodeButton: UIButton!
     @IBOutlet weak var phoneNumberFieldVerticalSpacing: NSLayoutConstraint!
     @IBOutlet weak var phoneNumberFieldWidth: NSLayoutConstraint!
+    @IBOutlet weak private(set) var resendCodeButton: UIButton!
+    @IBOutlet weak private(set) var verificationCodeField: UITextField!
     @IBOutlet weak var verificationCodeFieldVerticalSpacing: NSLayoutConstraint!
     @IBOutlet weak var verificationCodeFieldWidth: NSLayoutConstraint!
-    @IBOutlet weak var actionButtonWidth: NSLayoutConstraint!
     
+    private var activeField = ActiveField.PhoneNumber
     private var activityIndicatorView: UIActivityIndicatorView?
 //    private var bypassChecks = !ServiceHttpRequest.isPointingToProduction()
     private var bypassChecks = true
-    private var phoneNumberFormatter: NBAsYouTypeFormatter!
     private var codeDigits = 0
-    private var transitionedToConfirmation = false
     private var phoneNumberFieldPreviousVerticalSpacing: CGFloat = 0.0
-    private var verificationCodeFieldPreviousVerticalSpacing: CGFloat = 0.0
+    private var phoneNumberFormatter: NBAsYouTypeFormatter!
     private var phoneNumberFieldShrinkFactor: CGFloat = 0.85
     private var toggleLoadingStateTextHolder: String?
-    private var activeField = ActiveField.PhoneNumber
+    private var transitionedToConfirmation = false
     private var verificationCodeFieldBottomBorder: UIView?
+    private var verificationCodeFieldPreviousVerticalSpacing: CGFloat = 0.0
+    private var welcomeAlertPresented = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,7 +55,12 @@ class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        phoneNumberField.becomeFirstResponder()
+        if !welcomeAlertPresented {
+            presentWelcomeAlert()
+        }
+        else {
+            phoneNumberField.becomeFirstResponder()
+        }
     }
     
     // MARK: - Configuration
@@ -367,5 +373,14 @@ class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate {
         let verifyProfileVC = VerifyProfileViewController(nibName: "VerifyProfileViewController", bundle: nil)
         navigationController?.setViewControllers([verifyProfileVC], animated: true)
     }
-
+    
+    // MARK: - Welcome Alert
+    
+    private func presentWelcomeAlert() {
+        let alertViewController = CircleAlertViewController(nibName: "CircleAlertViewController", bundle: nil)
+        alertViewController.modalPresentationStyle = .Custom
+        alertViewController.transitioningDelegate = alertViewController
+        presentViewController(alertViewController, animated: true, completion: nil)
+        welcomeAlertPresented = true
+    }
 }

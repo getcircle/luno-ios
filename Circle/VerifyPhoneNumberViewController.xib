@@ -121,6 +121,7 @@
             </constraints>
             <variation key="default">
                 <mask key="constraints">
+                    <exclude reference="tfZ-Vy-bQP"/>
                     <exclude reference="GcT-1c-Kdo"/>
                     <exclude reference="Oil-hP-8Ya"/>
                     <exclude reference="uzo-sx-Obv"/>
@@ -128,7 +129,6 @@
                     <exclude reference="Aze-Wr-7Bt"/>
                     <exclude reference="WtH-yo-6H7"/>
                     <exclude reference="xY8-Ee-ltb"/>
-                    <exclude reference="tfZ-Vy-bQP"/>
                     <exclude reference="Zgj-eR-jvt"/>
                 </mask>
             </variation>

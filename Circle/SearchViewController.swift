@@ -213,7 +213,7 @@ CardHeaderViewDelegate {
     @IBAction func profileLongPressHandler(sender: AnyObject!) {
         let verifyPhoneNumberVC = VerifyPhoneNumberViewController(nibName: "VerifyPhoneNumberViewController", bundle: nil)
         let onboardingNavigationController = UINavigationController(rootViewController: verifyPhoneNumberVC)
-        presentViewController(onboardingNavigationController, animated: true, completion: nil)
+        navigationController?.presentViewController(onboardingNavigationController, animated: true, completion: nil)
     }
     
     // MARK: - Notifications
