@@ -12,13 +12,18 @@ import ProtobufRegistry
 typealias SearchCompletionHandler = (result: SearchService.Actions.SearchResults?, error: NSError?) -> Void
 
 extension SearchService {
+
     class Actions {
-        
+
         class SearchResults {
             var profiles: Array<ProfileService.Containers.Profile>?
             var teams: Array<OrganizationService.Containers.Team>?
             var addresses: Array<OrganizationService.Containers.Address>?
             var tags: Array<ProfileService.Containers.Tag>?
+
+            class var maxResultsPerCategory: Int {
+                return 5
+            }
         }
         
         private class var whitespaceCharacterSet: NSCharacterSet {
@@ -48,9 +53,13 @@ extension SearchService {
         private class func search(query: String) -> (SearchResults?, NSError?){
             var searchTerms = query.componentsSeparatedByString(" ")
             let results = SearchResults()
-            results.profiles = filterProfiles(searchTerms)
-            results.teams = filterTeams(searchTerms)
-            results.tags = filterTags(searchTerms)
+            let matchedProfiles = filterProfiles(searchTerms)
+            let matchedTeams = filterTeams(searchTerms)
+            let matchedTags = filterTags(searchTerms)
+            
+            results.profiles = Array(matchedProfiles[0..<min(SearchResults.maxResultsPerCategory, matchedProfiles.count)])
+            results.teams = Array(matchedTeams[0..<min(SearchResults.maxResultsPerCategory, matchedTeams.count)])
+            results.tags = Array(matchedTags[0..<min(SearchResults.maxResultsPerCategory, matchedTags.count)])
             return (results, nil)
         }
         
@@ -114,10 +123,22 @@ extension SearchService {
         }
         
         private class func filterTeams(searchTerms: [String]) -> Array<OrganizationService.Containers.Team> {
-            var andPredicates = [NSPredicate]()
+            var orPredicates = [NSPredicate]()
+
+            // Match full name
+            var fullTeamNameMatchPredicate = NSComparisonPredicate(
+                leftExpression: NSExpression(forVariable: "name"),
+                rightExpression: NSExpression(forConstantValue: " ".join(searchTerms)),
+                modifier: .DirectPredicateModifier,
+                type: .BeginsWithPredicateOperatorType,
+                options: .CaseInsensitivePredicateOption
+            )
+            orPredicates.append(fullTeamNameMatchPredicate)
+            
             for searchTerm in searchTerms {
                 let trimmedSearchTerm = trim(searchTerm)
                 
+                // Match begins with for each word
                 var beginsWithPredicate = NSComparisonPredicate(
                     leftExpression: NSExpression(forVariable: "name"),
                     rightExpression: NSExpression(forConstantValue: trimmedSearchTerm),
@@ -126,17 +147,23 @@ extension SearchService {
                     options: .CaseInsensitivePredicateOption
                 )
                 
-                andPredicates.append(
-                    NSCompoundPredicate.orPredicateWithSubpredicates([
-                        beginsWithPredicate
-                    ])
+                orPredicates.append(beginsWithPredicate)
+                
+                // Match each component of team name
+                var fullTeamNameComponentMatchPredicate = NSComparisonPredicate(
+                    leftExpression: NSExpression(forVariable: "team_name_components"),
+                    rightExpression: NSExpression(forConstantValue: trimmedSearchTerm),
+                    modifier: .AnyPredicateModifier,
+                    type: .BeginsWithPredicateOperatorType,
+                    options: .CaseInsensitivePredicateOption
                 )
+                orPredicates.append(fullTeamNameComponentMatchPredicate)
             }
-            
-            let finalPredicate = NSCompoundPredicate.andPredicateWithSubpredicates(andPredicates)
+
+            let finalPredicate = NSCompoundPredicate.orPredicateWithSubpredicates(orPredicates)
             return ObjectStore.sharedInstance.teams.values.array.filter { finalPredicate.evaluateWithObject(
                 $0,
-                substitutionVariables: ["name": $0.name]
+                substitutionVariables: ["name": $0.name, "team_name_components": $0.name.componentsSeparatedByString(" ")]
             )}
         }
         
