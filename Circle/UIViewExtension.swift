@@ -46,4 +46,14 @@ extension UIView {
         
         return gradientView
     }
+    
+    func addVisualEffectView(style: UIBlurEffectStyle) -> UIVisualEffectView {
+        let blurEffect = UIBlurEffect(style: style)
+        var visualEffectView = UIVisualEffectView(effect: blurEffect)
+        visualEffectView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        addSubview(visualEffectView)
+        sendSubviewToBack(visualEffectView)
+        visualEffectView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
+        return visualEffectView
+    }
 }

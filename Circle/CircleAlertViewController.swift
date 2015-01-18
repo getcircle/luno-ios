@@ -37,13 +37,7 @@ class CircleAlertViewController: UIViewController, UIViewControllerTransitioning
         view.backgroundColor = UIColor.clearColor()
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: "viewTapped:")
         view.addGestureRecognizer(tapGestureRecognizer)
-        
-        let blurEffect = UIBlurEffect(style: .Dark)
-        visualEffectView = UIVisualEffectView(effect: blurEffect)
-        visualEffectView.setTranslatesAutoresizingMaskIntoConstraints(false)
-        view.addSubview(visualEffectView)
-        view.sendSubviewToBack(visualEffectView)
-        visualEffectView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
+        visualEffectView = view.addVisualEffectView(.Dark)
     }
     
     // MARK: - UIViewControllerTransitioningDelegate

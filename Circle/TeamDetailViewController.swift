@@ -29,7 +29,7 @@ class TeamDetailViewController: DetailViewController {
         // Delegate
         collectionView.delegate = delegate
         
-        layout.headerHeight = TagHeaderCollectionReusableView.height
+        layout.headerHeight = TeamHeaderCollectionReusableView.height
         super.configureCollectionView()
     }
     
@@ -56,7 +56,7 @@ class TeamDetailViewController: DetailViewController {
 //            let initialYConstrainValue: CGFloat = 0.0
 //            let finalYConstraintValue: CGFloat = profileHeaderView.frameHeight/2.0 - navBarHeight/2.0
 //            let distanceToMove: CGFloat = finalYConstraintValue - initialYConstrainValue
-//            let pointAtWhichFinalHeightShouldBeInPlace: CGFloat = TagHeaderCollectionReusableView.height - navBarStatusBarHeight
+//            let pointAtWhichFinalHeightShouldBeInPlace: CGFloat = TeamHeaderCollectionReusableView.height - navBarStatusBarHeight
 //            let pointAtWhichHeightShouldStartIncreasing: CGFloat = pointAtWhichFinalHeightShouldBeInPlace - distanceToMove
 //            
 //            // Y Constraint has to be modified only after a certain point

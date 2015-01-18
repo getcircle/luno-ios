@@ -14,7 +14,7 @@ class TeamDetailDataSource: CardDataSource {
     
     private var profiles = Array<ProfileService.Containers.Profile>()
     private var ownerProfile: ProfileService.Containers.Profile!
-    private(set) var profileHeaderView: TagHeaderCollectionReusableView!
+    private(set) var profileHeaderView: TeamHeaderCollectionReusableView!
     
     // MARK: - Load Data
     
@@ -24,10 +24,10 @@ class TeamDetailDataSource: CardDataSource {
             return
         }
         
-        // Add a placeholder card for tag view
-        let placeholderTagCard = Card(cardType: .Placeholder, title: "Tag Header")
-        placeholderTagCard.sectionInset = UIEdgeInsetsZero
-        appendCard(placeholderTagCard)
+        // Add a placeholder card for header view
+        let placeholderHeaderCard = Card(cardType: .Placeholder, title: "Team Header")
+        placeholderHeaderCard.sectionInset = UIEdgeInsetsZero
+        appendCard(placeholderHeaderCard)
         
         if let currentProfile = AuthViewController.getLoggedInUserProfile() {
             ProfileService.Actions.getProfiles(selectedTeam!.id) { (profiles, error) -> Void in
@@ -79,9 +79,9 @@ class TeamDetailDataSource: CardDataSource {
     
     override func registerCardHeader(collectionView: UICollectionView) {
         collectionView.registerNib(
-            UINib(nibName: "TagHeaderCollectionReusableView", bundle: nil),
+            UINib(nibName: "TeamHeaderCollectionReusableView", bundle: nil),
             forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
-            withReuseIdentifier: TagHeaderCollectionReusableView.classReuseIdentifier
+            withReuseIdentifier: TeamHeaderCollectionReusableView.classReuseIdentifier
         )
         
         super.registerCardHeader(collectionView)
@@ -95,12 +95,11 @@ class TeamDetailDataSource: CardDataSource {
             
             let supplementaryView = collectionView.dequeueReusableSupplementaryViewOfKind(
                 kind,
-                withReuseIdentifier: TagHeaderCollectionReusableView.classReuseIdentifier,
+                withReuseIdentifier: TeamHeaderCollectionReusableView.classReuseIdentifier,
                 forIndexPath: indexPath
-                ) as TagHeaderCollectionReusableView
-            supplementaryView.tagNameLabel.attributedText = NSAttributedString(string: selectedTeam.name.uppercaseString, attributes: [NSKernAttributeName: 2.0])
-            supplementaryView.tagNameLabel.layer.borderWidth = 0.0
+            ) as TeamHeaderCollectionReusableView
             
+            supplementaryView.setData(selectedTeam)
             profileHeaderView = supplementaryView
             return supplementaryView
     }
