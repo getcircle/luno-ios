@@ -121,4 +121,17 @@ extension UIColor {
     class func controlHighlightedColor() -> UIColor {
         return UIColor(red: 206, green: 206, blue: 206).colorWithAlphaComponent(0.5)
     }
+    
+    class func teamHeaderBackgroundColor() -> UIColor {
+        let palette = [
+            UIColor(red: 30, green: 146, blue: 57),
+            UIColor(red: 14, green: 99, blue: 177),
+            UIColor(red: 109, green: 109, blue: 109),
+            UIColor(red: 213, green: 102, blue: 19),
+            UIColor(red: 119, green: 65, blue: 133),
+            UIColor(red: 179, green: 44, blue: 40),
+        ]
+        
+        return palette[Int(arc4random()) % Int(palette.count)]
+    }
 }

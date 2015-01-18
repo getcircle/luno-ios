@@ -41,7 +41,6 @@ class TeamHeaderCollectionReusableView: CircleCollectionReusableView {
             departmentNameLabel.hidden = true
         }
         
-        let randomColors = [UIColor.appTintColor(), UIColor.greenColor(), UIColor.blueColor(), UIColor.orangeColor(), UIColor.grayColor(), UIColor.yellowColor()]
-        backgroundColor = randomColors[Int(arc4random()) % Int(randomColors.count)]
+        backgroundColor = UIColor.teamHeaderBackgroundColor()
     }
 }
