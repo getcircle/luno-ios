@@ -1085,6 +1085,8 @@ final public class OrganizationService : GeneratedMessage {
                  case "postal_code": return postal_code
                  case "country_code": return country_code
                  case "profile_count": return profile_count
+                 case "latitude": return latitude
+                 case "longitude": return longitude
                  default: return nil
                  }
           }
@@ -1118,6 +1120,12 @@ final public class OrganizationService : GeneratedMessage {
 
           public private(set) var hasProfileCount:Bool = false
           public private(set) var profile_count:String = ""
+
+          public private(set) var hasLatitude:Bool = false
+          public private(set) var latitude:String = ""
+
+          public private(set) var hasLongitude:Bool = false
+          public private(set) var longitude:String = ""
 
           required public init() {
                super.init()
@@ -1155,6 +1163,12 @@ final public class OrganizationService : GeneratedMessage {
             }
             if hasProfileCount {
               output.writeString(10, value:profile_count)
+            }
+            if hasLatitude {
+              output.writeString(11, value:latitude)
+            }
+            if hasLongitude {
+              output.writeString(12, value:longitude)
             }
             unknownFields.writeToCodedOutputStream(output)
           }
@@ -1194,6 +1208,12 @@ final public class OrganizationService : GeneratedMessage {
             }
             if hasProfileCount {
               size += WireFormat.computeStringSize(10, value:profile_count)
+            }
+            if hasLatitude {
+              size += WireFormat.computeStringSize(11, value:latitude)
+            }
+            if hasLongitude {
+              size += WireFormat.computeStringSize(12, value:longitude)
             }
             size += unknownFields.serializedSize()
             memoizedSerializedSize = size
@@ -1266,6 +1286,12 @@ final public class OrganizationService : GeneratedMessage {
             if hasProfileCount {
               output += "\(indent) profile_count: \(profile_count) \n"
             }
+            if hasLatitude {
+              output += "\(indent) latitude: \(latitude) \n"
+            }
+            if hasLongitude {
+              output += "\(indent) longitude: \(longitude) \n"
+            }
             unknownFields.writeDescriptionTo(&output, indent:indent)
           }
           override public var hashValue:Int {
@@ -1300,6 +1326,12 @@ final public class OrganizationService : GeneratedMessage {
                   }
                   if hasProfileCount {
                      hashCode = (hashCode &* 31) &+ profile_count.hashValue
+                  }
+                  if hasLatitude {
+                     hashCode = (hashCode &* 31) &+ latitude.hashValue
+                  }
+                  if hasLongitude {
+                     hashCode = (hashCode &* 31) &+ longitude.hashValue
                   }
                   hashCode = (hashCode &* 31) &+  unknownFields.hashValue
                   return hashCode
@@ -1521,6 +1553,44 @@ final public class OrganizationService : GeneratedMessage {
                builderResult.profile_count = ""
                return self
           }
+          public var hasLatitude:Bool {
+               get {
+                    return builderResult.hasLatitude
+               }
+          }
+          public var latitude:String {
+               get {
+                    return builderResult.latitude
+               }
+               set (value) {
+                   builderResult.hasLatitude = true
+                   builderResult.latitude = value
+               }
+          }
+          public func clearLatitude() -> OrganizationService.Containers.AddressBuilder{
+               builderResult.hasLatitude = false
+               builderResult.latitude = ""
+               return self
+          }
+          public var hasLongitude:Bool {
+               get {
+                    return builderResult.hasLongitude
+               }
+          }
+          public var longitude:String {
+               get {
+                    return builderResult.longitude
+               }
+               set (value) {
+                   builderResult.hasLongitude = true
+                   builderResult.longitude = value
+               }
+          }
+          public func clearLongitude() -> OrganizationService.Containers.AddressBuilder{
+               builderResult.hasLongitude = false
+               builderResult.longitude = ""
+               return self
+          }
           override public var internalGetResult:GeneratedMessage {
                get {
                   return builderResult
@@ -1572,6 +1642,12 @@ final public class OrganizationService : GeneratedMessage {
             if other.hasProfileCount {
                  profile_count = other.profile_count
             }
+            if other.hasLatitude {
+                 latitude = other.latitude
+            }
+            if other.hasLongitude {
+                 longitude = other.longitude
+            }
             mergeUnknownFields(other.unknownFields)
             return self
           }
@@ -1616,6 +1692,12 @@ final public class OrganizationService : GeneratedMessage {
 
               case 82 :
                 profile_count = input.readString()
+
+              case 90 :
+                latitude = input.readString()
+
+              case 98 :
+                longitude = input.readString()
 
               default:
                 if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {

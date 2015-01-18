@@ -38,6 +38,8 @@ message OrganizationService {
             optional string postal_code = 8;
             optional string country_code = 9;
             optional string profile_count = 10;
+            optional string latitude = 11;
+            optional string longitude = 12;
         }
 
     }
