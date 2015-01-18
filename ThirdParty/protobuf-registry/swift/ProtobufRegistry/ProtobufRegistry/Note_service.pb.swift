@@ -27,6 +27,22 @@ public func == (lhs: NoteService.Containers, rhs: NoteService.Containers) -> Boo
   return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
 }
 
+public func == (lhs: NoteService.CreateNote, rhs: NoteService.CreateNote) -> Bool {
+  if (lhs === rhs) {
+    return true
+  }
+  var fieldCheck:Bool = (lhs.hashValue == rhs.hashValue)
+  return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
+}
+
+public func == (lhs: NoteService.GetNotes, rhs: NoteService.GetNotes) -> Bool {
+  if (lhs === rhs) {
+    return true
+  }
+  var fieldCheck:Bool = (lhs.hashValue == rhs.hashValue)
+  return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
+}
+
 public func == (lhs: NoteService, rhs: NoteService) -> Bool {
   if (lhs === rhs) {
     return true
@@ -49,9 +65,11 @@ final public class NoteService : GeneratedMessage {
           override public subscript (key: String) -> AnyObject? {
                  switch key {
                  case "id": return id
-                 case "for_user_id": return for_user_id
-                 case "user_id": return user_id
+                 case "for_profile_id": return for_profile_id
+                 case "owner_profile_id": return owner_profile_id
                  case "content": return content
+                 case "created": return created
+                 case "updated": return updated
                  default: return nil
                  }
           }
@@ -59,14 +77,20 @@ final public class NoteService : GeneratedMessage {
           public private(set) var hasId:Bool = false
           public private(set) var id:String = ""
 
-          public private(set) var hasForUserId:Bool = false
-          public private(set) var for_user_id:String = ""
+          public private(set) var hasForProfileId:Bool = false
+          public private(set) var for_profile_id:String = ""
 
-          public private(set) var hasUserId:Bool = false
-          public private(set) var user_id:String = ""
+          public private(set) var hasOwnerProfileId:Bool = false
+          public private(set) var owner_profile_id:String = ""
 
           public private(set) var hasContent:Bool = false
           public private(set) var content:String = ""
+
+          public private(set) var hasCreated:Bool = false
+          public private(set) var created:String = ""
+
+          public private(set) var hasUpdated:Bool = false
+          public private(set) var updated:String = ""
 
           required public init() {
                super.init()
@@ -78,14 +102,20 @@ final public class NoteService : GeneratedMessage {
             if hasId {
               output.writeString(1, value:id)
             }
-            if hasForUserId {
-              output.writeString(2, value:for_user_id)
+            if hasForProfileId {
+              output.writeString(2, value:for_profile_id)
             }
-            if hasUserId {
-              output.writeString(3, value:user_id)
+            if hasOwnerProfileId {
+              output.writeString(3, value:owner_profile_id)
             }
             if hasContent {
               output.writeString(4, value:content)
+            }
+            if hasCreated {
+              output.writeString(5, value:created)
+            }
+            if hasUpdated {
+              output.writeString(6, value:updated)
             }
             unknownFields.writeToCodedOutputStream(output)
           }
@@ -99,14 +129,20 @@ final public class NoteService : GeneratedMessage {
             if hasId {
               size += WireFormat.computeStringSize(1, value:id)
             }
-            if hasForUserId {
-              size += WireFormat.computeStringSize(2, value:for_user_id)
+            if hasForProfileId {
+              size += WireFormat.computeStringSize(2, value:for_profile_id)
             }
-            if hasUserId {
-              size += WireFormat.computeStringSize(3, value:user_id)
+            if hasOwnerProfileId {
+              size += WireFormat.computeStringSize(3, value:owner_profile_id)
             }
             if hasContent {
               size += WireFormat.computeStringSize(4, value:content)
+            }
+            if hasCreated {
+              size += WireFormat.computeStringSize(5, value:created)
+            }
+            if hasUpdated {
+              size += WireFormat.computeStringSize(6, value:updated)
             }
             size += unknownFields.serializedSize()
             memoizedSerializedSize = size
@@ -152,14 +188,20 @@ final public class NoteService : GeneratedMessage {
             if hasId {
               output += "\(indent) id: \(id) \n"
             }
-            if hasForUserId {
-              output += "\(indent) for_user_id: \(for_user_id) \n"
+            if hasForProfileId {
+              output += "\(indent) for_profile_id: \(for_profile_id) \n"
             }
-            if hasUserId {
-              output += "\(indent) user_id: \(user_id) \n"
+            if hasOwnerProfileId {
+              output += "\(indent) owner_profile_id: \(owner_profile_id) \n"
             }
             if hasContent {
               output += "\(indent) content: \(content) \n"
+            }
+            if hasCreated {
+              output += "\(indent) created: \(created) \n"
+            }
+            if hasUpdated {
+              output += "\(indent) updated: \(updated) \n"
             }
             unknownFields.writeDescriptionTo(&output, indent:indent)
           }
@@ -169,14 +211,20 @@ final public class NoteService : GeneratedMessage {
                   if hasId {
                      hashCode = (hashCode &* 31) &+ id.hashValue
                   }
-                  if hasForUserId {
-                     hashCode = (hashCode &* 31) &+ for_user_id.hashValue
+                  if hasForProfileId {
+                     hashCode = (hashCode &* 31) &+ for_profile_id.hashValue
                   }
-                  if hasUserId {
-                     hashCode = (hashCode &* 31) &+ user_id.hashValue
+                  if hasOwnerProfileId {
+                     hashCode = (hashCode &* 31) &+ owner_profile_id.hashValue
                   }
                   if hasContent {
                      hashCode = (hashCode &* 31) &+ content.hashValue
+                  }
+                  if hasCreated {
+                     hashCode = (hashCode &* 31) &+ created.hashValue
+                  }
+                  if hasUpdated {
+                     hashCode = (hashCode &* 31) &+ updated.hashValue
                   }
                   hashCode = (hashCode &* 31) &+  unknownFields.hashValue
                   return hashCode
@@ -227,42 +275,42 @@ final public class NoteService : GeneratedMessage {
                builderResult.id = ""
                return self
           }
-          public var hasForUserId:Bool {
+          public var hasForProfileId:Bool {
                get {
-                    return builderResult.hasForUserId
+                    return builderResult.hasForProfileId
                }
           }
-          public var for_user_id:String {
+          public var for_profile_id:String {
                get {
-                    return builderResult.for_user_id
+                    return builderResult.for_profile_id
                }
                set (value) {
-                   builderResult.hasForUserId = true
-                   builderResult.for_user_id = value
+                   builderResult.hasForProfileId = true
+                   builderResult.for_profile_id = value
                }
           }
-          public func clearForUserId() -> NoteService.Containers.NoteBuilder{
-               builderResult.hasForUserId = false
-               builderResult.for_user_id = ""
+          public func clearForProfileId() -> NoteService.Containers.NoteBuilder{
+               builderResult.hasForProfileId = false
+               builderResult.for_profile_id = ""
                return self
           }
-          public var hasUserId:Bool {
+          public var hasOwnerProfileId:Bool {
                get {
-                    return builderResult.hasUserId
+                    return builderResult.hasOwnerProfileId
                }
           }
-          public var user_id:String {
+          public var owner_profile_id:String {
                get {
-                    return builderResult.user_id
+                    return builderResult.owner_profile_id
                }
                set (value) {
-                   builderResult.hasUserId = true
-                   builderResult.user_id = value
+                   builderResult.hasOwnerProfileId = true
+                   builderResult.owner_profile_id = value
                }
           }
-          public func clearUserId() -> NoteService.Containers.NoteBuilder{
-               builderResult.hasUserId = false
-               builderResult.user_id = ""
+          public func clearOwnerProfileId() -> NoteService.Containers.NoteBuilder{
+               builderResult.hasOwnerProfileId = false
+               builderResult.owner_profile_id = ""
                return self
           }
           public var hasContent:Bool {
@@ -282,6 +330,44 @@ final public class NoteService : GeneratedMessage {
           public func clearContent() -> NoteService.Containers.NoteBuilder{
                builderResult.hasContent = false
                builderResult.content = ""
+               return self
+          }
+          public var hasCreated:Bool {
+               get {
+                    return builderResult.hasCreated
+               }
+          }
+          public var created:String {
+               get {
+                    return builderResult.created
+               }
+               set (value) {
+                   builderResult.hasCreated = true
+                   builderResult.created = value
+               }
+          }
+          public func clearCreated() -> NoteService.Containers.NoteBuilder{
+               builderResult.hasCreated = false
+               builderResult.created = ""
+               return self
+          }
+          public var hasUpdated:Bool {
+               get {
+                    return builderResult.hasUpdated
+               }
+          }
+          public var updated:String {
+               get {
+                    return builderResult.updated
+               }
+               set (value) {
+                   builderResult.hasUpdated = true
+                   builderResult.updated = value
+               }
+          }
+          public func clearUpdated() -> NoteService.Containers.NoteBuilder{
+               builderResult.hasUpdated = false
+               builderResult.updated = ""
                return self
           }
           override public var internalGetResult:GeneratedMessage {
@@ -308,14 +394,20 @@ final public class NoteService : GeneratedMessage {
             if other.hasId {
                  id = other.id
             }
-            if other.hasForUserId {
-                 for_user_id = other.for_user_id
+            if other.hasForProfileId {
+                 for_profile_id = other.for_profile_id
             }
-            if other.hasUserId {
-                 user_id = other.user_id
+            if other.hasOwnerProfileId {
+                 owner_profile_id = other.owner_profile_id
             }
             if other.hasContent {
                  content = other.content
+            }
+            if other.hasCreated {
+                 created = other.created
+            }
+            if other.hasUpdated {
+                 updated = other.updated
             }
             mergeUnknownFields(other.unknownFields)
             return self
@@ -336,13 +428,19 @@ final public class NoteService : GeneratedMessage {
                 id = input.readString()
 
               case 18 :
-                for_user_id = input.readString()
+                for_profile_id = input.readString()
 
               case 26 :
-                user_id = input.readString()
+                owner_profile_id = input.readString()
 
               case 34 :
                 content = input.readString()
+
+              case 42 :
+                created = input.readString()
+
+              case 50 :
+                updated = input.readString()
 
               default:
                 if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
@@ -484,6 +582,1163 @@ final public class NoteService : GeneratedMessage {
            return mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
       }
       public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> NoteService.ContainersBuilder {
+        var unknownFieldsBuilder:UnknownFieldSetBuilder = UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
+        while (true) {
+          var tag = input.readTag()
+          switch tag {
+          case 0: 
+            self.unknownFields = unknownFieldsBuilder.build()
+            return self
+
+          default:
+            if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
+               unknownFields = unknownFieldsBuilder.build()
+               return self
+            }
+          }
+        }
+      }
+    }
+
+
+
+  //Nested type declaration end
+
+
+
+  //Nested type declaration start
+
+    final public class CreateNote : GeneratedMessage {
+
+
+      //Nested type declaration start
+
+        final public class Request : GeneratedMessage {
+          override public subscript (key: String) -> AnyObject? {
+                 switch key {
+                 case "note": return note
+                 default: return nil
+                 }
+          }
+
+          public private(set) var hasNote:Bool = false
+          public private(set) var note:NoteService.Containers.Note = NoteService.Containers.Note()
+          required public init() {
+               super.init()
+          }
+          override public func isInitialized() -> Bool {
+           return true
+          }
+          override public func writeToCodedOutputStream(output:CodedOutputStream) {
+            if hasNote {
+              output.writeMessage(1, value:note)
+            }
+            unknownFields.writeToCodedOutputStream(output)
+          }
+          override public func serializedSize() -> Int32 {
+            var size:Int32 = memoizedSerializedSize
+            if size != -1 {
+             return size
+            }
+
+            size = 0
+            if hasNote {
+              size += WireFormat.computeMessageSize(1, value:note)
+            }
+            size += unknownFields.serializedSize()
+            memoizedSerializedSize = size
+            return size
+          }
+          public class func parseFromData(data:[Byte]) -> NoteService.CreateNote.Request {
+            return NoteService.CreateNote.Request.builder().mergeFromData(data).build()
+          }
+          public class func parseFromData(data:[Byte], extensionRegistry:ExtensionRegistry) -> NoteService.CreateNote.Request {
+            return NoteService.CreateNote.Request.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
+          }
+          public class func parseFromInputStream(input:NSInputStream) -> NoteService.CreateNote.Request {
+            return NoteService.CreateNote.Request.builder().mergeFromInputStream(input).build()
+          }
+          public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->NoteService.CreateNote.Request {
+            return NoteService.CreateNote.Request.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
+          }
+          public class func parseFromCodedInputStream(input:CodedInputStream) -> NoteService.CreateNote.Request {
+            return NoteService.CreateNote.Request.builder().mergeFromCodedInputStream(input).build()
+          }
+          public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> NoteService.CreateNote.Request {
+            return NoteService.CreateNote.Request.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
+          }
+          public class func builder() -> NoteService.CreateNote.RequestBuilder {
+            return NoteService.CreateNote.Request.classBuilder() as NoteService.CreateNote.RequestBuilder
+          }
+          public func builder() -> NoteService.CreateNote.RequestBuilder {
+            return classBuilder() as NoteService.CreateNote.RequestBuilder
+          }
+          public override class func classBuilder() -> MessageBuilder {
+            return NoteService.CreateNote.RequestBuilder()
+          }
+          public override func classBuilder() -> MessageBuilder {
+            return NoteService.CreateNote.Request.builder()
+          }
+          public func toBuilder() -> NoteService.CreateNote.RequestBuilder {
+            return NoteService.CreateNote.Request.builderWithPrototype(self)
+          }
+          public class func builderWithPrototype(prototype:NoteService.CreateNote.Request) -> NoteService.CreateNote.RequestBuilder {
+            return NoteService.CreateNote.Request.builder().mergeFrom(prototype)
+          }
+          override public func writeDescriptionTo(inout output:String, indent:String) {
+            if hasNote {
+              output += "\(indent) note {\n"
+              note.writeDescriptionTo(&output, indent:"\(indent)  ")
+              output += "\(indent) }\n"
+            }
+            unknownFields.writeDescriptionTo(&output, indent:indent)
+          }
+          override public var hashValue:Int {
+              get {
+                  var hashCode:Int = 7
+                  if hasNote {
+                    hashCode = (hashCode &* 31) &+ note.hashValue
+                  }
+                  hashCode = (hashCode &* 31) &+  unknownFields.hashValue
+                  return hashCode
+              }
+          }
+
+
+          //Meta information declaration start
+
+          override public class func className() -> String {
+              return "NoteService.CreateNote.Request"
+          }
+          override public func className() -> String {
+              return "NoteService.CreateNote.Request"
+          }
+          override public func classMetaType() -> GeneratedMessage.Type {
+              return NoteService.CreateNote.Request.self
+          }
+
+
+          //Meta information declaration end
+
+        }
+
+        final public class RequestBuilder : GeneratedMessageBuilder {
+          private var builderResult:NoteService.CreateNote.Request
+
+          required override public init () {
+             builderResult = NoteService.CreateNote.Request()
+             super.init()
+          }
+          public var hasNote:Bool {
+               get {
+                   return builderResult.hasNote
+               }
+          }
+          public var note:NoteService.Containers.Note {
+               get {
+                   return builderResult.note
+               }
+               set (value) {
+                   builderResult.hasNote = true
+                   builderResult.note = value
+               }
+          }
+          public func setNoteBuilder(builderForValue:NoteService.Containers.NoteBuilder) -> NoteService.CreateNote.RequestBuilder {
+            note = builderForValue.build()
+            return self
+          }
+          public func mergeNote(value:NoteService.Containers.Note) -> NoteService.CreateNote.RequestBuilder {
+            if (builderResult.hasNote) {
+              builderResult.note = NoteService.Containers.Note.builderWithPrototype(builderResult.note).mergeFrom(value).buildPartial()
+            } else {
+              builderResult.note = value
+            }
+            builderResult.hasNote = true
+            return self
+          }
+          public func clearNote() -> NoteService.CreateNote.RequestBuilder {
+            builderResult.hasNote = false
+            builderResult.note = NoteService.Containers.Note()
+            return self
+          }
+          override public var internalGetResult:GeneratedMessage {
+               get {
+                  return builderResult
+               }
+          }
+          public override func clear() -> NoteService.CreateNote.RequestBuilder {
+            builderResult = NoteService.CreateNote.Request()
+            return self
+          }
+          public override func clone() -> NoteService.CreateNote.RequestBuilder {
+            return NoteService.CreateNote.Request.builderWithPrototype(builderResult)
+          }
+          public override func build() -> NoteService.CreateNote.Request {
+               checkInitialized()
+               return buildPartial()
+          }
+          public func buildPartial() -> NoteService.CreateNote.Request {
+            var returnMe:NoteService.CreateNote.Request = builderResult
+            return returnMe
+          }
+          public func mergeFrom(other:NoteService.CreateNote.Request) -> NoteService.CreateNote.RequestBuilder {
+            if (other.hasNote) {
+                mergeNote(other.note)
+            }
+            mergeUnknownFields(other.unknownFields)
+            return self
+          }
+          public override func mergeFromCodedInputStream(input:CodedInputStream) ->NoteService.CreateNote.RequestBuilder {
+               return mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
+          }
+          public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> NoteService.CreateNote.RequestBuilder {
+            var unknownFieldsBuilder:UnknownFieldSetBuilder = UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
+            while (true) {
+              var tag = input.readTag()
+              switch tag {
+              case 0: 
+                self.unknownFields = unknownFieldsBuilder.build()
+                return self
+
+              case 10 :
+                var subBuilder:NoteService.Containers.NoteBuilder = NoteService.Containers.Note.builder()
+                if hasNote {
+                  subBuilder.mergeFrom(note)
+                }
+                input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
+                note = subBuilder.buildPartial()
+
+              default:
+                if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
+                   unknownFields = unknownFieldsBuilder.build()
+                   return self
+                }
+              }
+            }
+          }
+        }
+
+
+
+      //Nested type declaration end
+
+
+
+      //Nested type declaration start
+
+        final public class Response : GeneratedMessage {
+          override public subscript (key: String) -> AnyObject? {
+                 switch key {
+                 case "note": return note
+                 default: return nil
+                 }
+          }
+
+          public private(set) var hasNote:Bool = false
+          public private(set) var note:NoteService.Containers.Note = NoteService.Containers.Note()
+          required public init() {
+               super.init()
+          }
+          override public func isInitialized() -> Bool {
+           return true
+          }
+          override public func writeToCodedOutputStream(output:CodedOutputStream) {
+            if hasNote {
+              output.writeMessage(1, value:note)
+            }
+            unknownFields.writeToCodedOutputStream(output)
+          }
+          override public func serializedSize() -> Int32 {
+            var size:Int32 = memoizedSerializedSize
+            if size != -1 {
+             return size
+            }
+
+            size = 0
+            if hasNote {
+              size += WireFormat.computeMessageSize(1, value:note)
+            }
+            size += unknownFields.serializedSize()
+            memoizedSerializedSize = size
+            return size
+          }
+          public class func parseFromData(data:[Byte]) -> NoteService.CreateNote.Response {
+            return NoteService.CreateNote.Response.builder().mergeFromData(data).build()
+          }
+          public class func parseFromData(data:[Byte], extensionRegistry:ExtensionRegistry) -> NoteService.CreateNote.Response {
+            return NoteService.CreateNote.Response.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
+          }
+          public class func parseFromInputStream(input:NSInputStream) -> NoteService.CreateNote.Response {
+            return NoteService.CreateNote.Response.builder().mergeFromInputStream(input).build()
+          }
+          public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->NoteService.CreateNote.Response {
+            return NoteService.CreateNote.Response.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
+          }
+          public class func parseFromCodedInputStream(input:CodedInputStream) -> NoteService.CreateNote.Response {
+            return NoteService.CreateNote.Response.builder().mergeFromCodedInputStream(input).build()
+          }
+          public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> NoteService.CreateNote.Response {
+            return NoteService.CreateNote.Response.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
+          }
+          public class func builder() -> NoteService.CreateNote.ResponseBuilder {
+            return NoteService.CreateNote.Response.classBuilder() as NoteService.CreateNote.ResponseBuilder
+          }
+          public func builder() -> NoteService.CreateNote.ResponseBuilder {
+            return classBuilder() as NoteService.CreateNote.ResponseBuilder
+          }
+          public override class func classBuilder() -> MessageBuilder {
+            return NoteService.CreateNote.ResponseBuilder()
+          }
+          public override func classBuilder() -> MessageBuilder {
+            return NoteService.CreateNote.Response.builder()
+          }
+          public func toBuilder() -> NoteService.CreateNote.ResponseBuilder {
+            return NoteService.CreateNote.Response.builderWithPrototype(self)
+          }
+          public class func builderWithPrototype(prototype:NoteService.CreateNote.Response) -> NoteService.CreateNote.ResponseBuilder {
+            return NoteService.CreateNote.Response.builder().mergeFrom(prototype)
+          }
+          override public func writeDescriptionTo(inout output:String, indent:String) {
+            if hasNote {
+              output += "\(indent) note {\n"
+              note.writeDescriptionTo(&output, indent:"\(indent)  ")
+              output += "\(indent) }\n"
+            }
+            unknownFields.writeDescriptionTo(&output, indent:indent)
+          }
+          override public var hashValue:Int {
+              get {
+                  var hashCode:Int = 7
+                  if hasNote {
+                    hashCode = (hashCode &* 31) &+ note.hashValue
+                  }
+                  hashCode = (hashCode &* 31) &+  unknownFields.hashValue
+                  return hashCode
+              }
+          }
+
+
+          //Meta information declaration start
+
+          override public class func className() -> String {
+              return "NoteService.CreateNote.Response"
+          }
+          override public func className() -> String {
+              return "NoteService.CreateNote.Response"
+          }
+          override public func classMetaType() -> GeneratedMessage.Type {
+              return NoteService.CreateNote.Response.self
+          }
+
+
+          //Meta information declaration end
+
+        }
+
+        final public class ResponseBuilder : GeneratedMessageBuilder {
+          private var builderResult:NoteService.CreateNote.Response
+
+          required override public init () {
+             builderResult = NoteService.CreateNote.Response()
+             super.init()
+          }
+          public var hasNote:Bool {
+               get {
+                   return builderResult.hasNote
+               }
+          }
+          public var note:NoteService.Containers.Note {
+               get {
+                   return builderResult.note
+               }
+               set (value) {
+                   builderResult.hasNote = true
+                   builderResult.note = value
+               }
+          }
+          public func setNoteBuilder(builderForValue:NoteService.Containers.NoteBuilder) -> NoteService.CreateNote.ResponseBuilder {
+            note = builderForValue.build()
+            return self
+          }
+          public func mergeNote(value:NoteService.Containers.Note) -> NoteService.CreateNote.ResponseBuilder {
+            if (builderResult.hasNote) {
+              builderResult.note = NoteService.Containers.Note.builderWithPrototype(builderResult.note).mergeFrom(value).buildPartial()
+            } else {
+              builderResult.note = value
+            }
+            builderResult.hasNote = true
+            return self
+          }
+          public func clearNote() -> NoteService.CreateNote.ResponseBuilder {
+            builderResult.hasNote = false
+            builderResult.note = NoteService.Containers.Note()
+            return self
+          }
+          override public var internalGetResult:GeneratedMessage {
+               get {
+                  return builderResult
+               }
+          }
+          public override func clear() -> NoteService.CreateNote.ResponseBuilder {
+            builderResult = NoteService.CreateNote.Response()
+            return self
+          }
+          public override func clone() -> NoteService.CreateNote.ResponseBuilder {
+            return NoteService.CreateNote.Response.builderWithPrototype(builderResult)
+          }
+          public override func build() -> NoteService.CreateNote.Response {
+               checkInitialized()
+               return buildPartial()
+          }
+          public func buildPartial() -> NoteService.CreateNote.Response {
+            var returnMe:NoteService.CreateNote.Response = builderResult
+            return returnMe
+          }
+          public func mergeFrom(other:NoteService.CreateNote.Response) -> NoteService.CreateNote.ResponseBuilder {
+            if (other.hasNote) {
+                mergeNote(other.note)
+            }
+            mergeUnknownFields(other.unknownFields)
+            return self
+          }
+          public override func mergeFromCodedInputStream(input:CodedInputStream) ->NoteService.CreateNote.ResponseBuilder {
+               return mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
+          }
+          public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> NoteService.CreateNote.ResponseBuilder {
+            var unknownFieldsBuilder:UnknownFieldSetBuilder = UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
+            while (true) {
+              var tag = input.readTag()
+              switch tag {
+              case 0: 
+                self.unknownFields = unknownFieldsBuilder.build()
+                return self
+
+              case 10 :
+                var subBuilder:NoteService.Containers.NoteBuilder = NoteService.Containers.Note.builder()
+                if hasNote {
+                  subBuilder.mergeFrom(note)
+                }
+                input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
+                note = subBuilder.buildPartial()
+
+              default:
+                if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
+                   unknownFields = unknownFieldsBuilder.build()
+                   return self
+                }
+              }
+            }
+          }
+        }
+
+
+
+      //Nested type declaration end
+
+      override public subscript (key: String) -> AnyObject? {
+             switch key {
+             default: return nil
+             }
+      }
+
+      required public init() {
+           super.init()
+      }
+      override public func isInitialized() -> Bool {
+       return true
+      }
+      override public func writeToCodedOutputStream(output:CodedOutputStream) {
+        unknownFields.writeToCodedOutputStream(output)
+      }
+      override public func serializedSize() -> Int32 {
+        var size:Int32 = memoizedSerializedSize
+        if size != -1 {
+         return size
+        }
+
+        size = 0
+        size += unknownFields.serializedSize()
+        memoizedSerializedSize = size
+        return size
+      }
+      public class func parseFromData(data:[Byte]) -> NoteService.CreateNote {
+        return NoteService.CreateNote.builder().mergeFromData(data).build()
+      }
+      public class func parseFromData(data:[Byte], extensionRegistry:ExtensionRegistry) -> NoteService.CreateNote {
+        return NoteService.CreateNote.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
+      }
+      public class func parseFromInputStream(input:NSInputStream) -> NoteService.CreateNote {
+        return NoteService.CreateNote.builder().mergeFromInputStream(input).build()
+      }
+      public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->NoteService.CreateNote {
+        return NoteService.CreateNote.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
+      }
+      public class func parseFromCodedInputStream(input:CodedInputStream) -> NoteService.CreateNote {
+        return NoteService.CreateNote.builder().mergeFromCodedInputStream(input).build()
+      }
+      public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> NoteService.CreateNote {
+        return NoteService.CreateNote.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
+      }
+      public class func builder() -> NoteService.CreateNoteBuilder {
+        return NoteService.CreateNote.classBuilder() as NoteService.CreateNoteBuilder
+      }
+      public func builder() -> NoteService.CreateNoteBuilder {
+        return classBuilder() as NoteService.CreateNoteBuilder
+      }
+      public override class func classBuilder() -> MessageBuilder {
+        return NoteService.CreateNoteBuilder()
+      }
+      public override func classBuilder() -> MessageBuilder {
+        return NoteService.CreateNote.builder()
+      }
+      public func toBuilder() -> NoteService.CreateNoteBuilder {
+        return NoteService.CreateNote.builderWithPrototype(self)
+      }
+      public class func builderWithPrototype(prototype:NoteService.CreateNote) -> NoteService.CreateNoteBuilder {
+        return NoteService.CreateNote.builder().mergeFrom(prototype)
+      }
+      override public func writeDescriptionTo(inout output:String, indent:String) {
+        unknownFields.writeDescriptionTo(&output, indent:indent)
+      }
+      override public var hashValue:Int {
+          get {
+              var hashCode:Int = 7
+              hashCode = (hashCode &* 31) &+  unknownFields.hashValue
+              return hashCode
+          }
+      }
+
+
+      //Meta information declaration start
+
+      override public class func className() -> String {
+          return "NoteService.CreateNote"
+      }
+      override public func className() -> String {
+          return "NoteService.CreateNote"
+      }
+      override public func classMetaType() -> GeneratedMessage.Type {
+          return NoteService.CreateNote.self
+      }
+
+
+      //Meta information declaration end
+
+    }
+
+    final public class CreateNoteBuilder : GeneratedMessageBuilder {
+      private var builderResult:NoteService.CreateNote
+
+      required override public init () {
+         builderResult = NoteService.CreateNote()
+         super.init()
+      }
+      override public var internalGetResult:GeneratedMessage {
+           get {
+              return builderResult
+           }
+      }
+      public override func clear() -> NoteService.CreateNoteBuilder {
+        builderResult = NoteService.CreateNote()
+        return self
+      }
+      public override func clone() -> NoteService.CreateNoteBuilder {
+        return NoteService.CreateNote.builderWithPrototype(builderResult)
+      }
+      public override func build() -> NoteService.CreateNote {
+           checkInitialized()
+           return buildPartial()
+      }
+      public func buildPartial() -> NoteService.CreateNote {
+        var returnMe:NoteService.CreateNote = builderResult
+        return returnMe
+      }
+      public func mergeFrom(other:NoteService.CreateNote) -> NoteService.CreateNoteBuilder {
+        mergeUnknownFields(other.unknownFields)
+        return self
+      }
+      public override func mergeFromCodedInputStream(input:CodedInputStream) ->NoteService.CreateNoteBuilder {
+           return mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
+      }
+      public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> NoteService.CreateNoteBuilder {
+        var unknownFieldsBuilder:UnknownFieldSetBuilder = UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
+        while (true) {
+          var tag = input.readTag()
+          switch tag {
+          case 0: 
+            self.unknownFields = unknownFieldsBuilder.build()
+            return self
+
+          default:
+            if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
+               unknownFields = unknownFieldsBuilder.build()
+               return self
+            }
+          }
+        }
+      }
+    }
+
+
+
+  //Nested type declaration end
+
+
+
+  //Nested type declaration start
+
+    final public class GetNotes : GeneratedMessage {
+
+
+      //Nested type declaration start
+
+        final public class Request : GeneratedMessage {
+          override public subscript (key: String) -> AnyObject? {
+                 switch key {
+                 case "owner_profile_id": return owner_profile_id
+                 case "for_profile_id": return for_profile_id
+                 default: return nil
+                 }
+          }
+
+          public private(set) var hasOwnerProfileId:Bool = false
+          public private(set) var owner_profile_id:String = ""
+
+          public private(set) var hasForProfileId:Bool = false
+          public private(set) var for_profile_id:String = ""
+
+          required public init() {
+               super.init()
+          }
+          override public func isInitialized() -> Bool {
+           return true
+          }
+          override public func writeToCodedOutputStream(output:CodedOutputStream) {
+            if hasOwnerProfileId {
+              output.writeString(1, value:owner_profile_id)
+            }
+            if hasForProfileId {
+              output.writeString(2, value:for_profile_id)
+            }
+            unknownFields.writeToCodedOutputStream(output)
+          }
+          override public func serializedSize() -> Int32 {
+            var size:Int32 = memoizedSerializedSize
+            if size != -1 {
+             return size
+            }
+
+            size = 0
+            if hasOwnerProfileId {
+              size += WireFormat.computeStringSize(1, value:owner_profile_id)
+            }
+            if hasForProfileId {
+              size += WireFormat.computeStringSize(2, value:for_profile_id)
+            }
+            size += unknownFields.serializedSize()
+            memoizedSerializedSize = size
+            return size
+          }
+          public class func parseFromData(data:[Byte]) -> NoteService.GetNotes.Request {
+            return NoteService.GetNotes.Request.builder().mergeFromData(data).build()
+          }
+          public class func parseFromData(data:[Byte], extensionRegistry:ExtensionRegistry) -> NoteService.GetNotes.Request {
+            return NoteService.GetNotes.Request.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
+          }
+          public class func parseFromInputStream(input:NSInputStream) -> NoteService.GetNotes.Request {
+            return NoteService.GetNotes.Request.builder().mergeFromInputStream(input).build()
+          }
+          public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->NoteService.GetNotes.Request {
+            return NoteService.GetNotes.Request.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
+          }
+          public class func parseFromCodedInputStream(input:CodedInputStream) -> NoteService.GetNotes.Request {
+            return NoteService.GetNotes.Request.builder().mergeFromCodedInputStream(input).build()
+          }
+          public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> NoteService.GetNotes.Request {
+            return NoteService.GetNotes.Request.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
+          }
+          public class func builder() -> NoteService.GetNotes.RequestBuilder {
+            return NoteService.GetNotes.Request.classBuilder() as NoteService.GetNotes.RequestBuilder
+          }
+          public func builder() -> NoteService.GetNotes.RequestBuilder {
+            return classBuilder() as NoteService.GetNotes.RequestBuilder
+          }
+          public override class func classBuilder() -> MessageBuilder {
+            return NoteService.GetNotes.RequestBuilder()
+          }
+          public override func classBuilder() -> MessageBuilder {
+            return NoteService.GetNotes.Request.builder()
+          }
+          public func toBuilder() -> NoteService.GetNotes.RequestBuilder {
+            return NoteService.GetNotes.Request.builderWithPrototype(self)
+          }
+          public class func builderWithPrototype(prototype:NoteService.GetNotes.Request) -> NoteService.GetNotes.RequestBuilder {
+            return NoteService.GetNotes.Request.builder().mergeFrom(prototype)
+          }
+          override public func writeDescriptionTo(inout output:String, indent:String) {
+            if hasOwnerProfileId {
+              output += "\(indent) owner_profile_id: \(owner_profile_id) \n"
+            }
+            if hasForProfileId {
+              output += "\(indent) for_profile_id: \(for_profile_id) \n"
+            }
+            unknownFields.writeDescriptionTo(&output, indent:indent)
+          }
+          override public var hashValue:Int {
+              get {
+                  var hashCode:Int = 7
+                  if hasOwnerProfileId {
+                     hashCode = (hashCode &* 31) &+ owner_profile_id.hashValue
+                  }
+                  if hasForProfileId {
+                     hashCode = (hashCode &* 31) &+ for_profile_id.hashValue
+                  }
+                  hashCode = (hashCode &* 31) &+  unknownFields.hashValue
+                  return hashCode
+              }
+          }
+
+
+          //Meta information declaration start
+
+          override public class func className() -> String {
+              return "NoteService.GetNotes.Request"
+          }
+          override public func className() -> String {
+              return "NoteService.GetNotes.Request"
+          }
+          override public func classMetaType() -> GeneratedMessage.Type {
+              return NoteService.GetNotes.Request.self
+          }
+
+
+          //Meta information declaration end
+
+        }
+
+        final public class RequestBuilder : GeneratedMessageBuilder {
+          private var builderResult:NoteService.GetNotes.Request
+
+          required override public init () {
+             builderResult = NoteService.GetNotes.Request()
+             super.init()
+          }
+          public var hasOwnerProfileId:Bool {
+               get {
+                    return builderResult.hasOwnerProfileId
+               }
+          }
+          public var owner_profile_id:String {
+               get {
+                    return builderResult.owner_profile_id
+               }
+               set (value) {
+                   builderResult.hasOwnerProfileId = true
+                   builderResult.owner_profile_id = value
+               }
+          }
+          public func clearOwnerProfileId() -> NoteService.GetNotes.RequestBuilder{
+               builderResult.hasOwnerProfileId = false
+               builderResult.owner_profile_id = ""
+               return self
+          }
+          public var hasForProfileId:Bool {
+               get {
+                    return builderResult.hasForProfileId
+               }
+          }
+          public var for_profile_id:String {
+               get {
+                    return builderResult.for_profile_id
+               }
+               set (value) {
+                   builderResult.hasForProfileId = true
+                   builderResult.for_profile_id = value
+               }
+          }
+          public func clearForProfileId() -> NoteService.GetNotes.RequestBuilder{
+               builderResult.hasForProfileId = false
+               builderResult.for_profile_id = ""
+               return self
+          }
+          override public var internalGetResult:GeneratedMessage {
+               get {
+                  return builderResult
+               }
+          }
+          public override func clear() -> NoteService.GetNotes.RequestBuilder {
+            builderResult = NoteService.GetNotes.Request()
+            return self
+          }
+          public override func clone() -> NoteService.GetNotes.RequestBuilder {
+            return NoteService.GetNotes.Request.builderWithPrototype(builderResult)
+          }
+          public override func build() -> NoteService.GetNotes.Request {
+               checkInitialized()
+               return buildPartial()
+          }
+          public func buildPartial() -> NoteService.GetNotes.Request {
+            var returnMe:NoteService.GetNotes.Request = builderResult
+            return returnMe
+          }
+          public func mergeFrom(other:NoteService.GetNotes.Request) -> NoteService.GetNotes.RequestBuilder {
+            if other.hasOwnerProfileId {
+                 owner_profile_id = other.owner_profile_id
+            }
+            if other.hasForProfileId {
+                 for_profile_id = other.for_profile_id
+            }
+            mergeUnknownFields(other.unknownFields)
+            return self
+          }
+          public override func mergeFromCodedInputStream(input:CodedInputStream) ->NoteService.GetNotes.RequestBuilder {
+               return mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
+          }
+          public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> NoteService.GetNotes.RequestBuilder {
+            var unknownFieldsBuilder:UnknownFieldSetBuilder = UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
+            while (true) {
+              var tag = input.readTag()
+              switch tag {
+              case 0: 
+                self.unknownFields = unknownFieldsBuilder.build()
+                return self
+
+              case 10 :
+                owner_profile_id = input.readString()
+
+              case 18 :
+                for_profile_id = input.readString()
+
+              default:
+                if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
+                   unknownFields = unknownFieldsBuilder.build()
+                   return self
+                }
+              }
+            }
+          }
+        }
+
+
+
+      //Nested type declaration end
+
+
+
+      //Nested type declaration start
+
+        final public class Response : GeneratedMessage {
+          override public subscript (key: String) -> AnyObject? {
+                 switch key {
+                 default: return nil
+                 }
+          }
+
+          public private(set) var notes:Array<NoteService.Containers.Note>  = Array<NoteService.Containers.Note>()
+          required public init() {
+               super.init()
+          }
+          override public func isInitialized() -> Bool {
+           return true
+          }
+          override public func writeToCodedOutputStream(output:CodedOutputStream) {
+            for oneElementnotes in notes {
+                output.writeMessage(1, value:oneElementnotes)
+            }
+            unknownFields.writeToCodedOutputStream(output)
+          }
+          override public func serializedSize() -> Int32 {
+            var size:Int32 = memoizedSerializedSize
+            if size != -1 {
+             return size
+            }
+
+            size = 0
+            for oneElementnotes in notes {
+                size += WireFormat.computeMessageSize(1, value:oneElementnotes)
+            }
+            size += unknownFields.serializedSize()
+            memoizedSerializedSize = size
+            return size
+          }
+          public class func parseFromData(data:[Byte]) -> NoteService.GetNotes.Response {
+            return NoteService.GetNotes.Response.builder().mergeFromData(data).build()
+          }
+          public class func parseFromData(data:[Byte], extensionRegistry:ExtensionRegistry) -> NoteService.GetNotes.Response {
+            return NoteService.GetNotes.Response.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
+          }
+          public class func parseFromInputStream(input:NSInputStream) -> NoteService.GetNotes.Response {
+            return NoteService.GetNotes.Response.builder().mergeFromInputStream(input).build()
+          }
+          public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->NoteService.GetNotes.Response {
+            return NoteService.GetNotes.Response.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
+          }
+          public class func parseFromCodedInputStream(input:CodedInputStream) -> NoteService.GetNotes.Response {
+            return NoteService.GetNotes.Response.builder().mergeFromCodedInputStream(input).build()
+          }
+          public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> NoteService.GetNotes.Response {
+            return NoteService.GetNotes.Response.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
+          }
+          public class func builder() -> NoteService.GetNotes.ResponseBuilder {
+            return NoteService.GetNotes.Response.classBuilder() as NoteService.GetNotes.ResponseBuilder
+          }
+          public func builder() -> NoteService.GetNotes.ResponseBuilder {
+            return classBuilder() as NoteService.GetNotes.ResponseBuilder
+          }
+          public override class func classBuilder() -> MessageBuilder {
+            return NoteService.GetNotes.ResponseBuilder()
+          }
+          public override func classBuilder() -> MessageBuilder {
+            return NoteService.GetNotes.Response.builder()
+          }
+          public func toBuilder() -> NoteService.GetNotes.ResponseBuilder {
+            return NoteService.GetNotes.Response.builderWithPrototype(self)
+          }
+          public class func builderWithPrototype(prototype:NoteService.GetNotes.Response) -> NoteService.GetNotes.ResponseBuilder {
+            return NoteService.GetNotes.Response.builder().mergeFrom(prototype)
+          }
+          override public func writeDescriptionTo(inout output:String, indent:String) {
+            var notesElementIndex:Int = 0
+            for oneElementnotes in notes {
+                output += "\(indent) notes[\(notesElementIndex)] {\n"
+                oneElementnotes.writeDescriptionTo(&output, indent:"\(indent)  ")
+                output += "\(indent)}\n"
+                notesElementIndex++
+            }
+            unknownFields.writeDescriptionTo(&output, indent:indent)
+          }
+          override public var hashValue:Int {
+              get {
+                  var hashCode:Int = 7
+                  for oneElementnotes in notes {
+                      hashCode = (hashCode &* 31) &+ oneElementnotes.hashValue
+                  }
+                  hashCode = (hashCode &* 31) &+  unknownFields.hashValue
+                  return hashCode
+              }
+          }
+
+
+          //Meta information declaration start
+
+          override public class func className() -> String {
+              return "NoteService.GetNotes.Response"
+          }
+          override public func className() -> String {
+              return "NoteService.GetNotes.Response"
+          }
+          override public func classMetaType() -> GeneratedMessage.Type {
+              return NoteService.GetNotes.Response.self
+          }
+
+
+          //Meta information declaration end
+
+        }
+
+        final public class ResponseBuilder : GeneratedMessageBuilder {
+          private var builderResult:NoteService.GetNotes.Response
+
+          required override public init () {
+             builderResult = NoteService.GetNotes.Response()
+             super.init()
+          }
+          public var notes:Array<NoteService.Containers.Note> {
+               get {
+                   return builderResult.notes
+               }
+               set (value) {
+                   builderResult.notes = value
+               }
+          }
+          public func clearNotes() -> NoteService.GetNotes.ResponseBuilder {
+            builderResult.notes.removeAll(keepCapacity: false)
+            return self
+          }
+          override public var internalGetResult:GeneratedMessage {
+               get {
+                  return builderResult
+               }
+          }
+          public override func clear() -> NoteService.GetNotes.ResponseBuilder {
+            builderResult = NoteService.GetNotes.Response()
+            return self
+          }
+          public override func clone() -> NoteService.GetNotes.ResponseBuilder {
+            return NoteService.GetNotes.Response.builderWithPrototype(builderResult)
+          }
+          public override func build() -> NoteService.GetNotes.Response {
+               checkInitialized()
+               return buildPartial()
+          }
+          public func buildPartial() -> NoteService.GetNotes.Response {
+            var returnMe:NoteService.GetNotes.Response = builderResult
+            return returnMe
+          }
+          public func mergeFrom(other:NoteService.GetNotes.Response) -> NoteService.GetNotes.ResponseBuilder {
+            if !other.notes.isEmpty  {
+               builderResult.notes += other.notes
+            }
+            mergeUnknownFields(other.unknownFields)
+            return self
+          }
+          public override func mergeFromCodedInputStream(input:CodedInputStream) ->NoteService.GetNotes.ResponseBuilder {
+               return mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
+          }
+          public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> NoteService.GetNotes.ResponseBuilder {
+            var unknownFieldsBuilder:UnknownFieldSetBuilder = UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
+            while (true) {
+              var tag = input.readTag()
+              switch tag {
+              case 0: 
+                self.unknownFields = unknownFieldsBuilder.build()
+                return self
+
+              case 10 :
+                var subBuilder = NoteService.Containers.Note.builder()
+                input.readMessage(subBuilder,extensionRegistry:extensionRegistry)
+                notes += [subBuilder.buildPartial()]
+
+              default:
+                if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
+                   unknownFields = unknownFieldsBuilder.build()
+                   return self
+                }
+              }
+            }
+          }
+        }
+
+
+
+      //Nested type declaration end
+
+      override public subscript (key: String) -> AnyObject? {
+             switch key {
+             default: return nil
+             }
+      }
+
+      required public init() {
+           super.init()
+      }
+      override public func isInitialized() -> Bool {
+       return true
+      }
+      override public func writeToCodedOutputStream(output:CodedOutputStream) {
+        unknownFields.writeToCodedOutputStream(output)
+      }
+      override public func serializedSize() -> Int32 {
+        var size:Int32 = memoizedSerializedSize
+        if size != -1 {
+         return size
+        }
+
+        size = 0
+        size += unknownFields.serializedSize()
+        memoizedSerializedSize = size
+        return size
+      }
+      public class func parseFromData(data:[Byte]) -> NoteService.GetNotes {
+        return NoteService.GetNotes.builder().mergeFromData(data).build()
+      }
+      public class func parseFromData(data:[Byte], extensionRegistry:ExtensionRegistry) -> NoteService.GetNotes {
+        return NoteService.GetNotes.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
+      }
+      public class func parseFromInputStream(input:NSInputStream) -> NoteService.GetNotes {
+        return NoteService.GetNotes.builder().mergeFromInputStream(input).build()
+      }
+      public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->NoteService.GetNotes {
+        return NoteService.GetNotes.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
+      }
+      public class func parseFromCodedInputStream(input:CodedInputStream) -> NoteService.GetNotes {
+        return NoteService.GetNotes.builder().mergeFromCodedInputStream(input).build()
+      }
+      public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> NoteService.GetNotes {
+        return NoteService.GetNotes.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
+      }
+      public class func builder() -> NoteService.GetNotesBuilder {
+        return NoteService.GetNotes.classBuilder() as NoteService.GetNotesBuilder
+      }
+      public func builder() -> NoteService.GetNotesBuilder {
+        return classBuilder() as NoteService.GetNotesBuilder
+      }
+      public override class func classBuilder() -> MessageBuilder {
+        return NoteService.GetNotesBuilder()
+      }
+      public override func classBuilder() -> MessageBuilder {
+        return NoteService.GetNotes.builder()
+      }
+      public func toBuilder() -> NoteService.GetNotesBuilder {
+        return NoteService.GetNotes.builderWithPrototype(self)
+      }
+      public class func builderWithPrototype(prototype:NoteService.GetNotes) -> NoteService.GetNotesBuilder {
+        return NoteService.GetNotes.builder().mergeFrom(prototype)
+      }
+      override public func writeDescriptionTo(inout output:String, indent:String) {
+        unknownFields.writeDescriptionTo(&output, indent:indent)
+      }
+      override public var hashValue:Int {
+          get {
+              var hashCode:Int = 7
+              hashCode = (hashCode &* 31) &+  unknownFields.hashValue
+              return hashCode
+          }
+      }
+
+
+      //Meta information declaration start
+
+      override public class func className() -> String {
+          return "NoteService.GetNotes"
+      }
+      override public func className() -> String {
+          return "NoteService.GetNotes"
+      }
+      override public func classMetaType() -> GeneratedMessage.Type {
+          return NoteService.GetNotes.self
+      }
+
+
+      //Meta information declaration end
+
+    }
+
+    final public class GetNotesBuilder : GeneratedMessageBuilder {
+      private var builderResult:NoteService.GetNotes
+
+      required override public init () {
+         builderResult = NoteService.GetNotes()
+         super.init()
+      }
+      override public var internalGetResult:GeneratedMessage {
+           get {
+              return builderResult
+           }
+      }
+      public override func clear() -> NoteService.GetNotesBuilder {
+        builderResult = NoteService.GetNotes()
+        return self
+      }
+      public override func clone() -> NoteService.GetNotesBuilder {
+        return NoteService.GetNotes.builderWithPrototype(builderResult)
+      }
+      public override func build() -> NoteService.GetNotes {
+           checkInitialized()
+           return buildPartial()
+      }
+      public func buildPartial() -> NoteService.GetNotes {
+        var returnMe:NoteService.GetNotes = builderResult
+        return returnMe
+      }
+      public func mergeFrom(other:NoteService.GetNotes) -> NoteService.GetNotesBuilder {
+        mergeUnknownFields(other.unknownFields)
+        return self
+      }
+      public override func mergeFromCodedInputStream(input:CodedInputStream) ->NoteService.GetNotesBuilder {
+           return mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
+      }
+      public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> NoteService.GetNotesBuilder {
         var unknownFieldsBuilder:UnknownFieldSetBuilder = UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
         while (true) {
           var tag = input.readTag()
@@ -675,6 +1930,78 @@ public extension NoteService.Containers {
         var bytes = [Byte](count: data.length, repeatedValue: 0)
         data.getBytes(&bytes)
         return NoteService.Containers.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
+    }
+}
+public extension NoteService.CreateNote.Request {
+    class func parseFromNSData(data:NSData) -> NoteService.CreateNote.Request {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return NoteService.CreateNote.Request.builder().mergeFromData(bytes).build()
+    }
+    class func parseFromNSData(data:NSData, extensionRegistry:ExtensionRegistry) -> NoteService.CreateNote.Request {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return NoteService.CreateNote.Request.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
+    }
+}
+public extension NoteService.CreateNote.Response {
+    class func parseFromNSData(data:NSData) -> NoteService.CreateNote.Response {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return NoteService.CreateNote.Response.builder().mergeFromData(bytes).build()
+    }
+    class func parseFromNSData(data:NSData, extensionRegistry:ExtensionRegistry) -> NoteService.CreateNote.Response {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return NoteService.CreateNote.Response.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
+    }
+}
+public extension NoteService.CreateNote {
+    class func parseFromNSData(data:NSData) -> NoteService.CreateNote {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return NoteService.CreateNote.builder().mergeFromData(bytes).build()
+    }
+    class func parseFromNSData(data:NSData, extensionRegistry:ExtensionRegistry) -> NoteService.CreateNote {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return NoteService.CreateNote.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
+    }
+}
+public extension NoteService.GetNotes.Request {
+    class func parseFromNSData(data:NSData) -> NoteService.GetNotes.Request {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return NoteService.GetNotes.Request.builder().mergeFromData(bytes).build()
+    }
+    class func parseFromNSData(data:NSData, extensionRegistry:ExtensionRegistry) -> NoteService.GetNotes.Request {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return NoteService.GetNotes.Request.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
+    }
+}
+public extension NoteService.GetNotes.Response {
+    class func parseFromNSData(data:NSData) -> NoteService.GetNotes.Response {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return NoteService.GetNotes.Response.builder().mergeFromData(bytes).build()
+    }
+    class func parseFromNSData(data:NSData, extensionRegistry:ExtensionRegistry) -> NoteService.GetNotes.Response {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return NoteService.GetNotes.Response.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
+    }
+}
+public extension NoteService.GetNotes {
+    class func parseFromNSData(data:NSData) -> NoteService.GetNotes {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return NoteService.GetNotes.builder().mergeFromData(bytes).build()
+    }
+    class func parseFromNSData(data:NSData, extensionRegistry:ExtensionRegistry) -> NoteService.GetNotes {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return NoteService.GetNotes.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
     }
 }
 public extension NoteService {

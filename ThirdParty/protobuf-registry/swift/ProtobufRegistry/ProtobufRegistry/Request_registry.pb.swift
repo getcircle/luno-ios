@@ -182,6 +182,16 @@ public var MediaServiceRequests_complete_image_upload:ConcreateExtensionField {
        return RequestRegistryRoot.sharedInstance.MediaServiceRequests_complete_image_uploadStatic
    }
 }
+public var NoteServiceRequests_create_note:ConcreateExtensionField {
+   get {
+       return RequestRegistryRoot.sharedInstance.NoteServiceRequests_create_noteStatic
+   }
+}
+public var NoteServiceRequests_get_notes:ConcreateExtensionField {
+   get {
+       return RequestRegistryRoot.sharedInstance.NoteServiceRequests_get_notesStatic
+   }
+}
 public struct RequestRegistryRoot {
   public static var sharedInstance : RequestRegistryRoot {
    struct Static {
@@ -225,6 +235,8 @@ public struct RequestRegistryRoot {
   var LandingServiceRequests_get_categoriesStatic:ConcreateExtensionField
   var MediaServiceRequests_start_image_uploadStatic:ConcreateExtensionField
   var MediaServiceRequests_complete_image_uploadStatic:ConcreateExtensionField
+  var NoteServiceRequests_create_noteStatic:ConcreateExtensionField
+  var NoteServiceRequests_get_notesStatic:ConcreateExtensionField
   public var extensionRegistry:ExtensionRegistry
 
   init() {
@@ -264,11 +276,14 @@ public struct RequestRegistryRoot {
     LandingServiceRequests_get_categoriesStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionRequestParams.self, fieldNumber: 500, defaultValue:LandingService.GetCategories.Request(), messageOrGroupClass:LandingService.GetCategories.Request.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     MediaServiceRequests_start_image_uploadStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionRequestParams.self, fieldNumber: 600, defaultValue:MediaService.StartImageUpload.Request(), messageOrGroupClass:MediaService.StartImageUpload.Request.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     MediaServiceRequests_complete_image_uploadStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionRequestParams.self, fieldNumber: 601, defaultValue:MediaService.CompleteImageUpload.Request(), messageOrGroupClass:MediaService.CompleteImageUpload.Request.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
+    NoteServiceRequests_create_noteStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionRequestParams.self, fieldNumber: 700, defaultValue:NoteService.CreateNote.Request(), messageOrGroupClass:NoteService.CreateNote.Request.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
+    NoteServiceRequests_get_notesStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionRequestParams.self, fieldNumber: 701, defaultValue:NoteService.GetNotes.Request(), messageOrGroupClass:NoteService.GetNotes.Request.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     extensionRegistry = ExtensionRegistry()
     registerAllExtensions(extensionRegistry)
     SoaRoot.sharedInstance.registerAllExtensions(extensionRegistry)
     LandingServiceRoot.sharedInstance.registerAllExtensions(extensionRegistry)
     MediaServiceRoot.sharedInstance.registerAllExtensions(extensionRegistry)
+    NoteServiceRoot.sharedInstance.registerAllExtensions(extensionRegistry)
     OrganizationServiceRoot.sharedInstance.registerAllExtensions(extensionRegistry)
     ProfileServiceRoot.sharedInstance.registerAllExtensions(extensionRegistry)
     SearchServiceRoot.sharedInstance.registerAllExtensions(extensionRegistry)
@@ -311,6 +326,8 @@ public struct RequestRegistryRoot {
     registry.addExtension(LandingServiceRequests_get_categoriesStatic)
     registry.addExtension(MediaServiceRequests_start_image_uploadStatic)
     registry.addExtension(MediaServiceRequests_complete_image_uploadStatic)
+    registry.addExtension(NoteServiceRequests_create_noteStatic)
+    registry.addExtension(NoteServiceRequests_get_notesStatic)
   }
 }
 
@@ -355,6 +372,14 @@ public func == (lhs: LandingServiceRequests, rhs: LandingServiceRequests) -> Boo
 }
 
 public func == (lhs: MediaServiceRequests, rhs: MediaServiceRequests) -> Bool {
+  if (lhs === rhs) {
+    return true
+  }
+  var fieldCheck:Bool = (lhs.hashValue == rhs.hashValue)
+  return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
+}
+
+public func == (lhs: NoteServiceRequests, rhs: NoteServiceRequests) -> Bool {
   if (lhs === rhs) {
     return true
   }
@@ -1340,6 +1365,157 @@ final public class MediaServiceRequestsBuilder : GeneratedMessageBuilder {
   }
 }
 
+final public class NoteServiceRequests : GeneratedMessage {
+  override public subscript (key: String) -> AnyObject? {
+         switch key {
+         default: return nil
+         }
+  }
+
+  public class func create_note() -> ConcreateExtensionField {
+       return NoteServiceRequests_create_note
+  }
+  public class func get_notes() -> ConcreateExtensionField {
+       return NoteServiceRequests_get_notes
+  }
+  required public init() {
+       super.init()
+  }
+  override public func isInitialized() -> Bool {
+   return true
+  }
+  override public func writeToCodedOutputStream(output:CodedOutputStream) {
+    unknownFields.writeToCodedOutputStream(output)
+  }
+  override public func serializedSize() -> Int32 {
+    var size:Int32 = memoizedSerializedSize
+    if size != -1 {
+     return size
+    }
+
+    size = 0
+    size += unknownFields.serializedSize()
+    memoizedSerializedSize = size
+    return size
+  }
+  public class func parseFromData(data:[Byte]) -> NoteServiceRequests {
+    return NoteServiceRequests.builder().mergeFromData(data).build()
+  }
+  public class func parseFromData(data:[Byte], extensionRegistry:ExtensionRegistry) -> NoteServiceRequests {
+    return NoteServiceRequests.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
+  }
+  public class func parseFromInputStream(input:NSInputStream) -> NoteServiceRequests {
+    return NoteServiceRequests.builder().mergeFromInputStream(input).build()
+  }
+  public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->NoteServiceRequests {
+    return NoteServiceRequests.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
+  }
+  public class func parseFromCodedInputStream(input:CodedInputStream) -> NoteServiceRequests {
+    return NoteServiceRequests.builder().mergeFromCodedInputStream(input).build()
+  }
+  public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> NoteServiceRequests {
+    return NoteServiceRequests.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
+  }
+  public class func builder() -> NoteServiceRequestsBuilder {
+    return NoteServiceRequests.classBuilder() as NoteServiceRequestsBuilder
+  }
+  public func builder() -> NoteServiceRequestsBuilder {
+    return classBuilder() as NoteServiceRequestsBuilder
+  }
+  public override class func classBuilder() -> MessageBuilder {
+    return NoteServiceRequestsBuilder()
+  }
+  public override func classBuilder() -> MessageBuilder {
+    return NoteServiceRequests.builder()
+  }
+  public func toBuilder() -> NoteServiceRequestsBuilder {
+    return NoteServiceRequests.builderWithPrototype(self)
+  }
+  public class func builderWithPrototype(prototype:NoteServiceRequests) -> NoteServiceRequestsBuilder {
+    return NoteServiceRequests.builder().mergeFrom(prototype)
+  }
+  override public func writeDescriptionTo(inout output:String, indent:String) {
+    unknownFields.writeDescriptionTo(&output, indent:indent)
+  }
+  override public var hashValue:Int {
+      get {
+          var hashCode:Int = 7
+          hashCode = (hashCode &* 31) &+  unknownFields.hashValue
+          return hashCode
+      }
+  }
+
+
+  //Meta information declaration start
+
+  override public class func className() -> String {
+      return "NoteServiceRequests"
+  }
+  override public func className() -> String {
+      return "NoteServiceRequests"
+  }
+  override public func classMetaType() -> GeneratedMessage.Type {
+      return NoteServiceRequests.self
+  }
+
+
+  //Meta information declaration end
+
+}
+
+final public class NoteServiceRequestsBuilder : GeneratedMessageBuilder {
+  private var builderResult:NoteServiceRequests
+
+  required override public init () {
+     builderResult = NoteServiceRequests()
+     super.init()
+  }
+  override public var internalGetResult:GeneratedMessage {
+       get {
+          return builderResult
+       }
+  }
+  public override func clear() -> NoteServiceRequestsBuilder {
+    builderResult = NoteServiceRequests()
+    return self
+  }
+  public override func clone() -> NoteServiceRequestsBuilder {
+    return NoteServiceRequests.builderWithPrototype(builderResult)
+  }
+  public override func build() -> NoteServiceRequests {
+       checkInitialized()
+       return buildPartial()
+  }
+  public func buildPartial() -> NoteServiceRequests {
+    var returnMe:NoteServiceRequests = builderResult
+    return returnMe
+  }
+  public func mergeFrom(other:NoteServiceRequests) -> NoteServiceRequestsBuilder {
+    mergeUnknownFields(other.unknownFields)
+    return self
+  }
+  public override func mergeFromCodedInputStream(input:CodedInputStream) ->NoteServiceRequestsBuilder {
+       return mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
+  }
+  public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> NoteServiceRequestsBuilder {
+    var unknownFieldsBuilder:UnknownFieldSetBuilder = UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
+    while (true) {
+      var tag = input.readTag()
+      switch tag {
+      case 0: 
+        self.unknownFields = unknownFieldsBuilder.build()
+        return self
+
+      default:
+        if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
+           unknownFields = unknownFieldsBuilder.build()
+           return self
+        }
+      }
+    }
+  }
+}
+
 //Class extensions: NSData
 
 
@@ -1413,6 +1589,18 @@ public extension MediaServiceRequests {
         var bytes = [Byte](count: data.length, repeatedValue: 0)
         data.getBytes(&bytes)
         return MediaServiceRequests.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
+    }
+}
+public extension NoteServiceRequests {
+    class func parseFromNSData(data:NSData) -> NoteServiceRequests {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return NoteServiceRequests.builder().mergeFromData(bytes).build()
+    }
+    class func parseFromNSData(data:NSData, extensionRegistry:ExtensionRegistry) -> NoteServiceRequests {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return NoteServiceRequests.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
     }
 }
 

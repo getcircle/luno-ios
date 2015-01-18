@@ -18,7 +18,7 @@ _sym_db = _symbol_database.Default()
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='protobufs/note_service.proto',
   package='main.note_service',
-  serialized_pb=_b('\n\x1cprotobufs/note_service.proto\x12\x11main.note_service\"f\n\x0bNoteService\x1aW\n\nContainers\x1aI\n\x04Note\x12\n\n\x02id\x18\x01 \x01(\t\x12\x13\n\x0b\x66or_user_id\x18\x02 \x01(\t\x12\x0f\n\x07user_id\x18\x03 \x01(\t\x12\x0f\n\x07\x63ontent\x18\x04 \x01(\t')
+  serialized_pb=_b('\n\x1cprotobufs/note_service.proto\x12\x11main.note_service\"\xcc\x03\n\x0bNoteService\x1a\x85\x01\n\nContainers\x1aw\n\x04Note\x12\n\n\x02id\x18\x01 \x01(\t\x12\x16\n\x0e\x66or_profile_id\x18\x02 \x01(\t\x12\x18\n\x10owner_profile_id\x18\x03 \x01(\t\x12\x0f\n\x07\x63ontent\x18\x04 \x01(\t\x12\x0f\n\x07\x63reated\x18\x05 \x01(\t\x12\x0f\n\x07updated\x18\x06 \x01(\t\x1a\x9f\x01\n\nCreateNote\x1aG\n\x07Request\x12<\n\x04note\x18\x01 \x01(\x0b\x32..main.note_service.NoteService.Containers.Note\x1aH\n\x08Response\x12<\n\x04note\x18\x01 \x01(\x0b\x32..main.note_service.NoteService.Containers.Note\x1a\x92\x01\n\x08GetNotes\x1a;\n\x07Request\x12\x18\n\x10owner_profile_id\x18\x01 \x01(\t\x12\x16\n\x0e\x66or_profile_id\x18\x02 \x01(\t\x1aI\n\x08Response\x12=\n\x05notes\x18\x01 \x03(\x0b\x32..main.note_service.NoteService.Containers.Note')
 )
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
@@ -40,14 +40,14 @@ _NOTESERVICE_CONTAINERS_NOTE = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='for_user_id', full_name='main.note_service.NoteService.Containers.Note.for_user_id', index=1,
+      name='for_profile_id', full_name='main.note_service.NoteService.Containers.Note.for_profile_id', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='user_id', full_name='main.note_service.NoteService.Containers.Note.user_id', index=2,
+      name='owner_profile_id', full_name='main.note_service.NoteService.Containers.Note.owner_profile_id', index=2,
       number=3, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
@@ -56,6 +56,20 @@ _NOTESERVICE_CONTAINERS_NOTE = _descriptor.Descriptor(
     _descriptor.FieldDescriptor(
       name='content', full_name='main.note_service.NoteService.Containers.Note.content', index=3,
       number=4, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='created', full_name='main.note_service.NoteService.Containers.Note.created', index=4,
+      number=5, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='updated', full_name='main.note_service.NoteService.Containers.Note.updated', index=5,
+      number=6, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -71,8 +85,8 @@ _NOTESERVICE_CONTAINERS_NOTE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=80,
-  serialized_end=153,
+  serialized_start=82,
+  serialized_end=201,
 )
 
 _NOTESERVICE_CONTAINERS = _descriptor.Descriptor(
@@ -93,8 +107,175 @@ _NOTESERVICE_CONTAINERS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=66,
-  serialized_end=153,
+  serialized_start=68,
+  serialized_end=201,
+)
+
+_NOTESERVICE_CREATENOTE_REQUEST = _descriptor.Descriptor(
+  name='Request',
+  full_name='main.note_service.NoteService.CreateNote.Request',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='note', full_name='main.note_service.NoteService.CreateNote.Request.note', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=218,
+  serialized_end=289,
+)
+
+_NOTESERVICE_CREATENOTE_RESPONSE = _descriptor.Descriptor(
+  name='Response',
+  full_name='main.note_service.NoteService.CreateNote.Response',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='note', full_name='main.note_service.NoteService.CreateNote.Response.note', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=291,
+  serialized_end=363,
+)
+
+_NOTESERVICE_CREATENOTE = _descriptor.Descriptor(
+  name='CreateNote',
+  full_name='main.note_service.NoteService.CreateNote',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+  ],
+  extensions=[
+  ],
+  nested_types=[_NOTESERVICE_CREATENOTE_REQUEST, _NOTESERVICE_CREATENOTE_RESPONSE, ],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=204,
+  serialized_end=363,
+)
+
+_NOTESERVICE_GETNOTES_REQUEST = _descriptor.Descriptor(
+  name='Request',
+  full_name='main.note_service.NoteService.GetNotes.Request',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='owner_profile_id', full_name='main.note_service.NoteService.GetNotes.Request.owner_profile_id', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='for_profile_id', full_name='main.note_service.NoteService.GetNotes.Request.for_profile_id', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=378,
+  serialized_end=437,
+)
+
+_NOTESERVICE_GETNOTES_RESPONSE = _descriptor.Descriptor(
+  name='Response',
+  full_name='main.note_service.NoteService.GetNotes.Response',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='notes', full_name='main.note_service.NoteService.GetNotes.Response.notes', index=0,
+      number=1, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=439,
+  serialized_end=512,
+)
+
+_NOTESERVICE_GETNOTES = _descriptor.Descriptor(
+  name='GetNotes',
+  full_name='main.note_service.NoteService.GetNotes',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+  ],
+  extensions=[
+  ],
+  nested_types=[_NOTESERVICE_GETNOTES_REQUEST, _NOTESERVICE_GETNOTES_RESPONSE, ],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=366,
+  serialized_end=512,
 )
 
 _NOTESERVICE = _descriptor.Descriptor(
@@ -107,7 +288,7 @@ _NOTESERVICE = _descriptor.Descriptor(
   ],
   extensions=[
   ],
-  nested_types=[_NOTESERVICE_CONTAINERS, ],
+  nested_types=[_NOTESERVICE_CONTAINERS, _NOTESERVICE_CREATENOTE, _NOTESERVICE_GETNOTES, ],
   enum_types=[
   ],
   options=None,
@@ -115,12 +296,21 @@ _NOTESERVICE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=51,
-  serialized_end=153,
+  serialized_start=52,
+  serialized_end=512,
 )
 
 _NOTESERVICE_CONTAINERS_NOTE.containing_type = _NOTESERVICE_CONTAINERS
 _NOTESERVICE_CONTAINERS.containing_type = _NOTESERVICE
+_NOTESERVICE_CREATENOTE_REQUEST.fields_by_name['note'].message_type = _NOTESERVICE_CONTAINERS_NOTE
+_NOTESERVICE_CREATENOTE_REQUEST.containing_type = _NOTESERVICE_CREATENOTE
+_NOTESERVICE_CREATENOTE_RESPONSE.fields_by_name['note'].message_type = _NOTESERVICE_CONTAINERS_NOTE
+_NOTESERVICE_CREATENOTE_RESPONSE.containing_type = _NOTESERVICE_CREATENOTE
+_NOTESERVICE_CREATENOTE.containing_type = _NOTESERVICE
+_NOTESERVICE_GETNOTES_REQUEST.containing_type = _NOTESERVICE_GETNOTES
+_NOTESERVICE_GETNOTES_RESPONSE.fields_by_name['notes'].message_type = _NOTESERVICE_CONTAINERS_NOTE
+_NOTESERVICE_GETNOTES_RESPONSE.containing_type = _NOTESERVICE_GETNOTES
+_NOTESERVICE_GETNOTES.containing_type = _NOTESERVICE
 DESCRIPTOR.message_types_by_name['NoteService'] = _NOTESERVICE
 
 NoteService = _reflection.GeneratedProtocolMessageType('NoteService', (_message.Message,), dict(
@@ -138,6 +328,48 @@ NoteService = _reflection.GeneratedProtocolMessageType('NoteService', (_message.
     # @@protoc_insertion_point(class_scope:main.note_service.NoteService.Containers)
     ))
   ,
+
+  CreateNote = _reflection.GeneratedProtocolMessageType('CreateNote', (_message.Message,), dict(
+
+    Request = _reflection.GeneratedProtocolMessageType('Request', (_message.Message,), dict(
+      DESCRIPTOR = _NOTESERVICE_CREATENOTE_REQUEST,
+      __module__ = 'protobufs.note_service_pb2'
+      # @@protoc_insertion_point(class_scope:main.note_service.NoteService.CreateNote.Request)
+      ))
+    ,
+
+    Response = _reflection.GeneratedProtocolMessageType('Response', (_message.Message,), dict(
+      DESCRIPTOR = _NOTESERVICE_CREATENOTE_RESPONSE,
+      __module__ = 'protobufs.note_service_pb2'
+      # @@protoc_insertion_point(class_scope:main.note_service.NoteService.CreateNote.Response)
+      ))
+    ,
+    DESCRIPTOR = _NOTESERVICE_CREATENOTE,
+    __module__ = 'protobufs.note_service_pb2'
+    # @@protoc_insertion_point(class_scope:main.note_service.NoteService.CreateNote)
+    ))
+  ,
+
+  GetNotes = _reflection.GeneratedProtocolMessageType('GetNotes', (_message.Message,), dict(
+
+    Request = _reflection.GeneratedProtocolMessageType('Request', (_message.Message,), dict(
+      DESCRIPTOR = _NOTESERVICE_GETNOTES_REQUEST,
+      __module__ = 'protobufs.note_service_pb2'
+      # @@protoc_insertion_point(class_scope:main.note_service.NoteService.GetNotes.Request)
+      ))
+    ,
+
+    Response = _reflection.GeneratedProtocolMessageType('Response', (_message.Message,), dict(
+      DESCRIPTOR = _NOTESERVICE_GETNOTES_RESPONSE,
+      __module__ = 'protobufs.note_service_pb2'
+      # @@protoc_insertion_point(class_scope:main.note_service.NoteService.GetNotes.Response)
+      ))
+    ,
+    DESCRIPTOR = _NOTESERVICE_GETNOTES,
+    __module__ = 'protobufs.note_service_pb2'
+    # @@protoc_insertion_point(class_scope:main.note_service.NoteService.GetNotes)
+    ))
+  ,
   DESCRIPTOR = _NOTESERVICE,
   __module__ = 'protobufs.note_service_pb2'
   # @@protoc_insertion_point(class_scope:main.note_service.NoteService)
@@ -145,6 +377,12 @@ NoteService = _reflection.GeneratedProtocolMessageType('NoteService', (_message.
 _sym_db.RegisterMessage(NoteService)
 _sym_db.RegisterMessage(NoteService.Containers)
 _sym_db.RegisterMessage(NoteService.Containers.Note)
+_sym_db.RegisterMessage(NoteService.CreateNote)
+_sym_db.RegisterMessage(NoteService.CreateNote.Request)
+_sym_db.RegisterMessage(NoteService.CreateNote.Response)
+_sym_db.RegisterMessage(NoteService.GetNotes)
+_sym_db.RegisterMessage(NoteService.GetNotes.Request)
+_sym_db.RegisterMessage(NoteService.GetNotes.Response)
 
 
 # @@protoc_insertion_point(module_scope)

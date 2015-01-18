@@ -4,6 +4,7 @@ import "service_protobufs/soa.proto";
 
 import "protobufs/landing_service.proto";
 import "protobufs/media_service.proto";
+import "protobufs/note_service.proto";
 import "protobufs/organization_service.proto";
 import "protobufs/profile_service.proto";
 import "protobufs/search_service.proto";
@@ -72,5 +73,12 @@ message MediaServiceResponses {
     extend soa.ActionResponseResult {
         optional main.media_service.MediaService.StartImageUpload.Response start_image_upload = 600;
         optional main.media_service.MediaService.CompleteImageUpload.Response complete_image_upload = 601;
+    }
+}
+
+message NoteServiceResponses {
+    extend soa.ActionResponseResult {
+        optional main.note_service.NoteService.CreateNote.Response create_note = 700;
+        optional main.note_service.NoteService.GetNotes.Response get_notes = 701;
     }
 }

@@ -182,6 +182,16 @@ public var MediaServiceResponses_complete_image_upload:ConcreateExtensionField {
        return ResponseRegistryRoot.sharedInstance.MediaServiceResponses_complete_image_uploadStatic
    }
 }
+public var NoteServiceResponses_create_note:ConcreateExtensionField {
+   get {
+       return ResponseRegistryRoot.sharedInstance.NoteServiceResponses_create_noteStatic
+   }
+}
+public var NoteServiceResponses_get_notes:ConcreateExtensionField {
+   get {
+       return ResponseRegistryRoot.sharedInstance.NoteServiceResponses_get_notesStatic
+   }
+}
 public struct ResponseRegistryRoot {
   public static var sharedInstance : ResponseRegistryRoot {
    struct Static {
@@ -225,6 +235,8 @@ public struct ResponseRegistryRoot {
   var LandingServiceResponses_get_categoriesStatic:ConcreateExtensionField
   var MediaServiceResponses_start_image_uploadStatic:ConcreateExtensionField
   var MediaServiceResponses_complete_image_uploadStatic:ConcreateExtensionField
+  var NoteServiceResponses_create_noteStatic:ConcreateExtensionField
+  var NoteServiceResponses_get_notesStatic:ConcreateExtensionField
   public var extensionRegistry:ExtensionRegistry
 
   init() {
@@ -264,11 +276,14 @@ public struct ResponseRegistryRoot {
     LandingServiceResponses_get_categoriesStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 500, defaultValue:LandingService.GetCategories.Response(), messageOrGroupClass:LandingService.GetCategories.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     MediaServiceResponses_start_image_uploadStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 600, defaultValue:MediaService.StartImageUpload.Response(), messageOrGroupClass:MediaService.StartImageUpload.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     MediaServiceResponses_complete_image_uploadStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 601, defaultValue:MediaService.CompleteImageUpload.Response(), messageOrGroupClass:MediaService.CompleteImageUpload.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
+    NoteServiceResponses_create_noteStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 700, defaultValue:NoteService.CreateNote.Response(), messageOrGroupClass:NoteService.CreateNote.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
+    NoteServiceResponses_get_notesStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 701, defaultValue:NoteService.GetNotes.Response(), messageOrGroupClass:NoteService.GetNotes.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     extensionRegistry = ExtensionRegistry()
     registerAllExtensions(extensionRegistry)
     SoaRoot.sharedInstance.registerAllExtensions(extensionRegistry)
     LandingServiceRoot.sharedInstance.registerAllExtensions(extensionRegistry)
     MediaServiceRoot.sharedInstance.registerAllExtensions(extensionRegistry)
+    NoteServiceRoot.sharedInstance.registerAllExtensions(extensionRegistry)
     OrganizationServiceRoot.sharedInstance.registerAllExtensions(extensionRegistry)
     ProfileServiceRoot.sharedInstance.registerAllExtensions(extensionRegistry)
     SearchServiceRoot.sharedInstance.registerAllExtensions(extensionRegistry)
@@ -311,6 +326,8 @@ public struct ResponseRegistryRoot {
     registry.addExtension(LandingServiceResponses_get_categoriesStatic)
     registry.addExtension(MediaServiceResponses_start_image_uploadStatic)
     registry.addExtension(MediaServiceResponses_complete_image_uploadStatic)
+    registry.addExtension(NoteServiceResponses_create_noteStatic)
+    registry.addExtension(NoteServiceResponses_get_notesStatic)
   }
 }
 
@@ -355,6 +372,14 @@ public func == (lhs: LandingServiceResponses, rhs: LandingServiceResponses) -> B
 }
 
 public func == (lhs: MediaServiceResponses, rhs: MediaServiceResponses) -> Bool {
+  if (lhs === rhs) {
+    return true
+  }
+  var fieldCheck:Bool = (lhs.hashValue == rhs.hashValue)
+  return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
+}
+
+public func == (lhs: NoteServiceResponses, rhs: NoteServiceResponses) -> Bool {
   if (lhs === rhs) {
     return true
   }
@@ -1340,6 +1365,157 @@ final public class MediaServiceResponsesBuilder : GeneratedMessageBuilder {
   }
 }
 
+final public class NoteServiceResponses : GeneratedMessage {
+  override public subscript (key: String) -> AnyObject? {
+         switch key {
+         default: return nil
+         }
+  }
+
+  public class func create_note() -> ConcreateExtensionField {
+       return NoteServiceResponses_create_note
+  }
+  public class func get_notes() -> ConcreateExtensionField {
+       return NoteServiceResponses_get_notes
+  }
+  required public init() {
+       super.init()
+  }
+  override public func isInitialized() -> Bool {
+   return true
+  }
+  override public func writeToCodedOutputStream(output:CodedOutputStream) {
+    unknownFields.writeToCodedOutputStream(output)
+  }
+  override public func serializedSize() -> Int32 {
+    var size:Int32 = memoizedSerializedSize
+    if size != -1 {
+     return size
+    }
+
+    size = 0
+    size += unknownFields.serializedSize()
+    memoizedSerializedSize = size
+    return size
+  }
+  public class func parseFromData(data:[Byte]) -> NoteServiceResponses {
+    return NoteServiceResponses.builder().mergeFromData(data).build()
+  }
+  public class func parseFromData(data:[Byte], extensionRegistry:ExtensionRegistry) -> NoteServiceResponses {
+    return NoteServiceResponses.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
+  }
+  public class func parseFromInputStream(input:NSInputStream) -> NoteServiceResponses {
+    return NoteServiceResponses.builder().mergeFromInputStream(input).build()
+  }
+  public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->NoteServiceResponses {
+    return NoteServiceResponses.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
+  }
+  public class func parseFromCodedInputStream(input:CodedInputStream) -> NoteServiceResponses {
+    return NoteServiceResponses.builder().mergeFromCodedInputStream(input).build()
+  }
+  public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> NoteServiceResponses {
+    return NoteServiceResponses.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
+  }
+  public class func builder() -> NoteServiceResponsesBuilder {
+    return NoteServiceResponses.classBuilder() as NoteServiceResponsesBuilder
+  }
+  public func builder() -> NoteServiceResponsesBuilder {
+    return classBuilder() as NoteServiceResponsesBuilder
+  }
+  public override class func classBuilder() -> MessageBuilder {
+    return NoteServiceResponsesBuilder()
+  }
+  public override func classBuilder() -> MessageBuilder {
+    return NoteServiceResponses.builder()
+  }
+  public func toBuilder() -> NoteServiceResponsesBuilder {
+    return NoteServiceResponses.builderWithPrototype(self)
+  }
+  public class func builderWithPrototype(prototype:NoteServiceResponses) -> NoteServiceResponsesBuilder {
+    return NoteServiceResponses.builder().mergeFrom(prototype)
+  }
+  override public func writeDescriptionTo(inout output:String, indent:String) {
+    unknownFields.writeDescriptionTo(&output, indent:indent)
+  }
+  override public var hashValue:Int {
+      get {
+          var hashCode:Int = 7
+          hashCode = (hashCode &* 31) &+  unknownFields.hashValue
+          return hashCode
+      }
+  }
+
+
+  //Meta information declaration start
+
+  override public class func className() -> String {
+      return "NoteServiceResponses"
+  }
+  override public func className() -> String {
+      return "NoteServiceResponses"
+  }
+  override public func classMetaType() -> GeneratedMessage.Type {
+      return NoteServiceResponses.self
+  }
+
+
+  //Meta information declaration end
+
+}
+
+final public class NoteServiceResponsesBuilder : GeneratedMessageBuilder {
+  private var builderResult:NoteServiceResponses
+
+  required override public init () {
+     builderResult = NoteServiceResponses()
+     super.init()
+  }
+  override public var internalGetResult:GeneratedMessage {
+       get {
+          return builderResult
+       }
+  }
+  public override func clear() -> NoteServiceResponsesBuilder {
+    builderResult = NoteServiceResponses()
+    return self
+  }
+  public override func clone() -> NoteServiceResponsesBuilder {
+    return NoteServiceResponses.builderWithPrototype(builderResult)
+  }
+  public override func build() -> NoteServiceResponses {
+       checkInitialized()
+       return buildPartial()
+  }
+  public func buildPartial() -> NoteServiceResponses {
+    var returnMe:NoteServiceResponses = builderResult
+    return returnMe
+  }
+  public func mergeFrom(other:NoteServiceResponses) -> NoteServiceResponsesBuilder {
+    mergeUnknownFields(other.unknownFields)
+    return self
+  }
+  public override func mergeFromCodedInputStream(input:CodedInputStream) ->NoteServiceResponsesBuilder {
+       return mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
+  }
+  public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> NoteServiceResponsesBuilder {
+    var unknownFieldsBuilder:UnknownFieldSetBuilder = UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
+    while (true) {
+      var tag = input.readTag()
+      switch tag {
+      case 0: 
+        self.unknownFields = unknownFieldsBuilder.build()
+        return self
+
+      default:
+        if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
+           unknownFields = unknownFieldsBuilder.build()
+           return self
+        }
+      }
+    }
+  }
+}
+
 //Class extensions: NSData
 
 
@@ -1413,6 +1589,18 @@ public extension MediaServiceResponses {
         var bytes = [Byte](count: data.length, repeatedValue: 0)
         data.getBytes(&bytes)
         return MediaServiceResponses.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
+    }
+}
+public extension NoteServiceResponses {
+    class func parseFromNSData(data:NSData) -> NoteServiceResponses {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return NoteServiceResponses.builder().mergeFromData(bytes).build()
+    }
+    class func parseFromNSData(data:NSData, extensionRegistry:ExtensionRegistry) -> NoteServiceResponses {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return NoteServiceResponses.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
     }
 }
 
