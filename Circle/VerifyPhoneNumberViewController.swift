@@ -348,7 +348,8 @@ class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate, Ci
             0.4,
             delay: 0,
             usingSpringWithDamping: 0.5,
-            initialSpringVelocity: 0.8, options: .CurveEaseInOut,
+            initialSpringVelocity: 0.8,
+            options: .CurveEaseInOut,
             animations: { () -> Void in
                 self.verificationCodeFieldBottomBorder?.removeFromSuperview()
                 self.view.layoutIfNeeded()

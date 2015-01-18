@@ -33,7 +33,7 @@ class CircleAlertViewAnimator: NSObject, UIViewControllerAnimatedTransitioning {
             UIView.animateWithDuration(
                 transitionDuration(transitionContext),
                 delay: 0.0,
-                usingSpringWithDamping: 0.8,
+                usingSpringWithDamping: 0.5,
                 initialSpringVelocity: 0.8,
                 options: .CurveEaseInOut,
                 animations: { () -> Void in
