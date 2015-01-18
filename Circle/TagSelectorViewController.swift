@@ -99,6 +99,7 @@ class TagSelectorViewController:
             searchHeaderView.searchTextField.delegate = self
             searchHeaderView.searchTextField.placeholder = NSLocalizedString("Filter tags", comment: "Placeholder text for filter tags input box")
             searchHeaderView.searchTextField.addTarget(self, action: "filter", forControlEvents: .EditingChanged)
+            searchHeaderView.searchTextFieldHeightConstraint.constant = searchControllerParentView.frameHeight
             searchControllerParentView.addSubview(searchHeaderView)
             searchHeaderView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
             

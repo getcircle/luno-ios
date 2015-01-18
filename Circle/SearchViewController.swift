@@ -80,6 +80,7 @@ CardHeaderViewDelegate {
     
     private func configureCollectionView() {
         collectionView.keyboardDismissMode = .OnDrag
+        collectionView.contentInset = UIEdgeInsetsMake(20.0, 0.0, 0.0, 0.0)
         collectionView.backgroundColor = UIColor.viewBackgroundColor()
         (collectionView.delegate as CardCollectionViewDelegate?)?.delegate = self
         

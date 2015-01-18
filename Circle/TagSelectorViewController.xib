@@ -44,7 +44,7 @@
                         <constraint firstAttribute="height" constant="44" id="Q2m-eq-IOh"/>
                     </constraints>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="92R-S9-7K0" userLabel="AddTagButton">
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="92R-S9-7K0" userLabel="AddTagButton">
                     <rect key="frame" x="20" y="202" width="560" height="35"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="35" id="MlO-H5-YRa"/>

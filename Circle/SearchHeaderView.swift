@@ -16,6 +16,7 @@ class SearchHeaderView: UIView {
     
     @IBOutlet weak private(set) var cancelButton: UIButton!
     @IBOutlet weak private(set) var searchTextField: UITextField!
+    @IBOutlet weak private(set) var searchTextFieldHeightConstraint: NSLayoutConstraint!    
     @IBOutlet weak private(set) var searchTextFieldTrailingSpaceConstraint: NSLayoutConstraint!
     
     var containerBackgroundColor = UIColor.viewBackgroundColor()
@@ -27,7 +28,7 @@ class SearchHeaderView: UIView {
     private var leftViewImageView: UIImageView!
     
     class var height: CGFloat {
-        return 54.0
+        return 50.0
     }
     
     override func awakeFromNib() {
@@ -50,12 +51,16 @@ class SearchHeaderView: UIView {
         leftView.backgroundColor = UIColor.clearColor()
         leftViewImageView = UIImageView(image: UIImage(named: "Search")?.imageWithRenderingMode(.AlwaysTemplate))
         leftViewImageView.contentMode = .ScaleAspectFit
-        leftViewImageView.frame = CGRectMake(10.0, 9.0, 16.0, 16.0)
+        leftViewImageView.frame = CGRectMake(10.0, (searchTextField.frameHeight - 16.0)/2.0, 16.0, 16.0)
         leftView.addSubview(leftViewImageView)
         
         searchTextField.leftViewMode = .Always
         searchTextField.leftView = leftView
-        searchTextField.addRoundCorners()
+        searchTextField.clearButtonMode = .WhileEditing
+        
+        searchFieldBackgroundColor = UIColor.whiteColor()
+        containerBackgroundColor = UIColor.whiteColor()
+        searchFieldTintColor = UIColor.appTintColor()
         updateView()
     }
     
@@ -86,7 +91,7 @@ class SearchHeaderView: UIView {
     }
     
     func hideCancelButton() {
-        searchTextFieldTrailingSpaceConstraint.constant = 10.0
+        searchTextFieldTrailingSpaceConstraint.constant = 0.0
         searchTextField.setNeedsUpdateConstraints()
         UIView.animateWithDuration(
             0.2,
