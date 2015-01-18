@@ -7,6 +7,7 @@
 //  Copyright (c) 2014 RH Labs Inc. All rights reserved.
 //
 
+#import "AFNetworking.h"
 #import "UIImageView+AFNetworking.h"
 #import "PureLayout.h"
 #import "UIView+Position.h"

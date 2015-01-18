@@ -21,8 +21,15 @@ extension UIImageView {
         }
     }
     
+    private func updateAcceptableContentTypes() {
+        let serializer = AFImageResponseSerializer()
+        serializer.acceptableContentTypes = serializer.acceptableContentTypes.setByAddingObject("image/jpg")
+        imageResponseSerializer = serializer
+    }
+    
     func setImageWithProfile(profile: ProfileService.Containers.Profile) {
         let request = NSURLRequest(URL: NSURL(string: profile.image_url)!)
+        updateAcceptableContentTypes()
         
         if let cachedImage = UIImageView.sharedImageCache().cachedImageForRequest(request) {
             self.image = cachedImage
@@ -54,12 +61,15 @@ extension UIImageView {
                     )
                     return
                 },
-                nil
+                failure: { (request, response, error) -> Void in
+                    println("failed to fetch image for profile: \(profile) error: \(error)")
+                }
             )
         }
     }
     
     func setImageWithProfileImageURL(profileImageURL: String) {
+        updateAcceptableContentTypes()
         setImageWithURL(
             NSURL(string: profileImageURL),
             placeholderImage: UIImage.imageFromColor(UIColor.darkGrayColor(), withRect: bounds)
