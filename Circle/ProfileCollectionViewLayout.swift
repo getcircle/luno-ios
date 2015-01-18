@@ -62,10 +62,7 @@ class ProfileCollectionViewLayout: UICollectionViewFlowLayout {
             switch attribute.representedElementCategory {
             case .SupplementaryView:
                 
-                if attribute.indexPath.section != 0 {
-                    attribute.hidden = true
-                }
-                else if attribute.representedElementKind == UICollectionElementKindSectionHeader {
+                if attribute.representedElementKind == UICollectionElementKindSectionHeader && attribute.indexPath.section == 0 {
                     if contentOffset.y <= 0 {
                         // Stretch the header when scrolling down
                         var frameToModify = attribute.frame

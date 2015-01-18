@@ -11,9 +11,9 @@
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PEOPLE" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yq5-ns-Jqm">
-                    <rect key="frame" x="10" y="13" width="300" height="25"/>
+                    <rect key="frame" x="10" y="15" width="300" height="21"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="25" id="nRa-hE-lJp"/>
+                        <constraint firstAttribute="height" constant="21" id="nRa-hE-lJp"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="14"/>
                     <color key="textColor" red="0.15056315064430237" green="0.15055865049362183" blue="0.15056121349334717" alpha="1" colorSpace="calibratedRGB"/>
@@ -21,18 +21,10 @@
                 </label>
             </subviews>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="yq5-ns-Jqm" secondAttribute="bottom" constant="1" id="D8V-Xb-W2K"/>
-                <constraint firstItem="yq5-ns-Jqm" firstAttribute="top" secondItem="U6b-Vx-4bR" secondAttribute="top" constant="1" id="El0-OW-Thl"/>
                 <constraint firstItem="yq5-ns-Jqm" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" constant="10" id="fgU-Y3-E7I"/>
-                <constraint firstAttribute="centerY" secondItem="yq5-ns-Jqm" secondAttribute="centerY" id="ht6-0C-Qgx"/>
                 <constraint firstAttribute="trailing" secondItem="yq5-ns-Jqm" secondAttribute="trailing" constant="10" id="sm4-jq-IxT"/>
+                <constraint firstItem="yq5-ns-Jqm" firstAttribute="top" secondItem="U6b-Vx-4bR" secondAttribute="top" constant="15" id="vZz-ef-5za"/>
             </constraints>
-            <variation key="default">
-                <mask key="constraints">
-                    <exclude reference="D8V-Xb-W2K"/>
-                    <exclude reference="El0-OW-Thl"/>
-                </mask>
-            </variation>
             <connections>
                 <outlet property="cardTitleLabel" destination="yq5-ns-Jqm" id="G53-4Q-hfu"/>
             </connections>

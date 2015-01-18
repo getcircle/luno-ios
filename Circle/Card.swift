@@ -36,6 +36,7 @@ class Card: Equatable {
         case Placeholder
         case Tags
         case Team
+        case TeamsGrid
         
         struct CardTypeInfo {
             var imageName: String
@@ -121,6 +122,13 @@ class Card: Equatable {
                     imageName: "People",
                     classType: TeamCollectionViewCell.self,
                     className: "TeamCollectionViewCell"
+                )
+            
+            case TeamsGrid:
+                return CardTypeInfo(
+                    imageName: "People",
+                    classType: TeamsCollectionViewCell.self,
+                    className: "TeamsCollectionViewCell"
                 )
             }
         }

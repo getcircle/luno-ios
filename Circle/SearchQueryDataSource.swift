@@ -93,6 +93,7 @@ class SearchQueryDataSource: CardDataSource {
             forIndexPath: indexPath
         ) as SearchResultsCardHeaderCollectionReusableView
         
+        headerView.addBottomBorder = true
         headerView.setCard(cards[indexPath.section])
         headerView.backgroundColor = UIColor.clearColor()
         return headerView

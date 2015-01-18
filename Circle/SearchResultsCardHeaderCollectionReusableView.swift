@@ -12,6 +12,18 @@ class SearchResultsCardHeaderCollectionReusableView: CircleCollectionReusableVie
 
     @IBOutlet weak private(set) var cardTitleLabel: UILabel!
     
+    private var bottomBorder: UIView?
+    
+    var addBottomBorder: Bool? {
+        didSet {
+            if let addBorder = addBottomBorder {
+                if bottomBorder == nil {
+                    bottomBorder = cardTitleLabel.addBottomBorder(offset: 8.0)
+                }
+            }
+        }
+    }
+    
     override class var classReuseIdentifier: String {
         return "SearchResultsCardHeaderView"
     }
@@ -22,8 +34,8 @@ class SearchResultsCardHeaderCollectionReusableView: CircleCollectionReusableVie
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
         // Initialization code
-        cardTitleLabel.addBottomBorder(offset: 5.0)
     }
     
     func setCard(card: Card) {

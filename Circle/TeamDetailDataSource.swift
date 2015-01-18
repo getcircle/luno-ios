@@ -52,12 +52,48 @@ class TeamDetailDataSource: CardDataSource {
                     // Add Members Card
                     if allProfilesExceptOwner?.count > 0 {
                         self.profiles.extend(allProfilesExceptOwner!)
-                        let membersCard = Card(cardType: .People, title: "Team Members")
+                        let membersCardTitle = NSLocalizedString(
+                            "Members",
+                            comment: "Title for list of team members"
+                        ).uppercaseStringWithLocale(NSLocale.currentLocale())
+                        let membersCard = Card(cardType: .People, title: membersCardTitle)
                         membersCard.content.extend(allProfilesExceptOwner! as [AnyObject])
-                        membersCard.sectionInset = UIEdgeInsetsMake(0.0, 0.0, 20.0, 0.0)
+                        membersCard.sectionInset = UIEdgeInsetsMake(0.0, 0.0, 25.0, 0.0)
                         self.appendCard(membersCard)
                     }
                     
+                    // Add Teams Card
+                    
+                    var teamsCard = Card(cardType: .TeamsGrid, title: "Sub teams")
+                    var teamObjects = Array<OrganizationService.Containers.Team>()
+
+                    var team1Object = OrganizationService.Containers.Team.builder()
+                    team1Object.name = "Consumer Growth & User Acquistion"
+                    teamObjects.append(team1Object.build())
+
+                    var team2Object = OrganizationService.Containers.Team.builder()
+                    team2Object.name = "Organizer Growth"
+                    teamObjects.append(team2Object.build())
+
+                    var team3Object = OrganizationService.Containers.Team.builder()
+                    team3Object.name = "Native"
+                    teamObjects.append(team3Object.build())
+
+                    var team4Object = OrganizationService.Containers.Team.builder()
+                    team4Object.name = "Discovery"
+                    teamObjects.append(team4Object.build())
+                    
+                    var team5Object = OrganizationService.Containers.Team.builder()
+                    team5Object.name = "Infrastructure"
+                    teamObjects.append(team5Object.build())
+                    
+                    var team6Object = OrganizationService.Containers.Team.builder()
+                    team6Object.name = "Architecture"
+                    teamObjects.append(team6Object.build())
+
+                    teamsCard.content.append(teamObjects)
+                    teamsCard.sectionInset = UIEdgeInsetsMake(0.0, 0.0, 25.0, 0.0)
+                    self.appendCard(teamsCard)
                     completionHandler(error: nil)
                 }
                 else {
@@ -67,11 +103,16 @@ class TeamDetailDataSource: CardDataSource {
         }
     }
     
+    // MARK: - Cell Configuration
+    
     override func configureCell(cell: CircleCollectionViewCell, atIndexPath indexPath: NSIndexPath) {
         super.configureCell(cell, atIndexPath: indexPath)
         
         if let profileCell = cell as? ProfileCollectionViewCell {
             profileCell.sizeMode = .Medium
+        }
+        else if cell is TeamsCollectionViewCell {
+            (cell as TeamsCollectionViewCell).showTeamsLabel = true
         }
     }
     
@@ -84,6 +125,12 @@ class TeamDetailDataSource: CardDataSource {
             withReuseIdentifier: TeamHeaderCollectionReusableView.classReuseIdentifier
         )
         
+        collectionView.registerNib(
+            UINib(nibName: "SearchResultsCardHeaderCollectionReusableView", bundle: nil),
+            forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
+            withReuseIdentifier: SearchResultsCardHeaderCollectionReusableView.classReuseIdentifier
+        )
+
         super.registerCardHeader(collectionView)
     }
     
@@ -92,15 +139,27 @@ class TeamDetailDataSource: CardDataSource {
     override func collectionView(collectionView: UICollectionView,
         viewForSupplementaryElementOfKind kind: String,
         atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+        
+            println("Section = \(indexPath)")
+            if indexPath.section == 0 {
+                let supplementaryView = collectionView.dequeueReusableSupplementaryViewOfKind(
+                    kind,
+                    withReuseIdentifier: TeamHeaderCollectionReusableView.classReuseIdentifier,
+                    forIndexPath: indexPath
+                ) as TeamHeaderCollectionReusableView
+                
+                supplementaryView.setData(selectedTeam)
+                profileHeaderView = supplementaryView
+                return supplementaryView
+            }
             
             let supplementaryView = collectionView.dequeueReusableSupplementaryViewOfKind(
                 kind,
-                withReuseIdentifier: TeamHeaderCollectionReusableView.classReuseIdentifier,
+                withReuseIdentifier: SearchResultsCardHeaderCollectionReusableView.classReuseIdentifier,
                 forIndexPath: indexPath
-            ) as TeamHeaderCollectionReusableView
-            
-            supplementaryView.setData(selectedTeam)
-            profileHeaderView = supplementaryView
+            ) as SearchResultsCardHeaderCollectionReusableView
+            supplementaryView.setCard(cards[indexPath.section])
+            supplementaryView.backgroundColor = UIColor.clearColor()
             return supplementaryView
     }
 }
