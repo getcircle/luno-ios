@@ -23,7 +23,7 @@ extension UIImageView {
     
     private func updateAcceptableContentTypes() {
         let serializer = AFImageResponseSerializer()
-        serializer.acceptableContentTypes = serializer.acceptableContentTypes.setByAddingObject("image/jpg")
+        serializer.acceptableContentTypes = serializer.acceptableContentTypes.setByAddingObjectsFromArray(["image/jpg", "image/pjpeg"])
         imageResponseSerializer = serializer
     }
     
