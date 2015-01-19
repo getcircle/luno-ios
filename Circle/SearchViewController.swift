@@ -117,6 +117,12 @@ CardHeaderViewDelegate {
     
     private func configureLoggedInUserProfileImageView() {
         loggedInUserProfileImageView.makeItCircular(false)
+        loadUserProfileImage()
+    }
+    
+    // MARK: - Load data
+    
+    private func loadUserProfileImage() {
         if let userProfile = AuthViewController.getLoggedInUserProfile() {
             loggedInUserProfileImageView.setImageWithProfile(userProfile)
         }
@@ -264,10 +270,23 @@ CardHeaderViewDelegate {
             name: TagsCollectionViewCellNotifications.onTagSelectedNotification,
             object: nil
         )
+        
+        NSNotificationCenter.defaultCenter().addObserver(
+            self,
+            selector: "userLoggedIn:",
+            name: AuthNotifications.onLoginNotification,
+            object: nil
+        )
     }
     
     private func unregisterNotifications() {
         NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
+    // MARK: - User Logged in Notification
+    
+    func userLoggedIn(notification: NSNotification!) {
+        loadUserProfileImage()
     }
     
     // MARK: - Helpers
