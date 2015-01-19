@@ -140,7 +140,6 @@ class TeamDetailDataSource: CardDataSource {
         viewForSupplementaryElementOfKind kind: String,
         atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
         
-            println("Section = \(indexPath)")
             if indexPath.section == 0 {
                 let supplementaryView = collectionView.dequeueReusableSupplementaryViewOfKind(
                     kind,

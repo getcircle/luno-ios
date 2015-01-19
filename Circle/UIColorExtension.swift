@@ -134,6 +134,6 @@ extension UIColor {
             UIColor(red: 44, green: 25, blue: 49)
         ]
         
-        return palette[Int(arc4random()) % Int(palette.count)]
+        return palette[Int(arc4random_uniform(UInt32(palette.count)))]
     }
 }
