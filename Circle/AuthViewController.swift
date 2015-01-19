@@ -68,6 +68,7 @@ class AuthViewController: UIViewController, UITextFieldDelegate {
     // MARK: - Configuration
     
     private func configureView() {
+        view.backgroundColor = UIColor.appTintColor()
         emailFieldBorderView = emailField.addBottomBorder()
         passwordFieldBorderView = passwordField.addBottomBorder()
         logInButton.addRoundCorners()
