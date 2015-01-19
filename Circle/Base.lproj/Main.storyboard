@@ -270,7 +270,14 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" id="wys-4b-D4W"/>
+                    <navigationItem key="navigationItem" title="Circle" id="wys-4b-D4W">
+                        <barButtonItem key="leftBarButtonItem" image="Profile" id="x67-df-pWT" userLabel="ProfileButton"/>
+                        <barButtonItem key="rightBarButtonItem" title="Log out" id="C1m-WO-plW">
+                            <connections>
+                                <action selector="logoutButtonTapped:" destination="PMD-gG-9c6" id="ekL-rB-e3l"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="activityIndicatorView" destination="heX-JS-q97" id="agu-HE-HiO"/>
                         <outlet property="addNoteQuickAction" destination="rEL-h3-usb" id="5yl-66-sWY"/>
@@ -289,12 +296,13 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Vf-V8-GjI" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <customObject id="YDr-At-X3C" customClass="CardCollectionViewDelegate" customModule="Circle" customModuleProvider="target"/>
             </objects>
-            <point key="canvasLocation" x="1223" y="-1336"/>
+            <point key="canvasLocation" x="1187" y="-1336"/>
         </scene>
     </scenes>
     <resources>
         <image name="Alarms" width="22" height="22"/>
         <image name="EB" width="175" height="175"/>
         <image name="New" width="22" height="22"/>
+        <image name="Profile" width="32" height="32"/>
     </resources>
 </document>
