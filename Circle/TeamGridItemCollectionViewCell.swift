@@ -29,7 +29,6 @@ class TeamGridItemCollectionViewCell: CircleCollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         teamBackgroundImageView.backgroundColor = UIColor.teamHeaderBackgroundColor()
-        teamBackgroundImageView.bringSubviewToFront(teamBackgroundImageView.addVisualEffectView(.Dark))
         teamBackgroundImageView.makeItCircular(false)
     }
 }

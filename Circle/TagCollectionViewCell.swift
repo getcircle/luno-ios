@@ -39,8 +39,8 @@ class TagCollectionViewCell: CircleCollectionViewCell {
         tagLabel.textColor = defaultTextColor
         tagLabel.layer.borderColor = defaultBorderColor.CGColor
         tagLabel.layer.borderWidth = 1.0
-        layer.shouldRasterize = true;
-        layer.rasterizationScale = UIScreen.mainScreen().scale;
+        layer.shouldRasterize = true
+        layer.rasterizationScale = UIScreen.mainScreen().scale
         tagLabel.paddingEdgeInsets = UIEdgeInsetsMake(5.0, 10.0, 5.0, 10.0)
         bringSubviewToFront(selectedBackgroundView)
     }

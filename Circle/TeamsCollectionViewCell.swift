@@ -54,6 +54,8 @@ class TeamsCollectionViewCell: CircleCollectionViewCell, UICollectionViewDataSou
         showTeamsLabel = false
         configureCollectionView()
         selectedBackgroundView = nil
+        layer.shouldRasterize = true
+        layer.rasterizationScale = UIScreen.mainScreen().scale
     }
     
     // MARK: - Configuration

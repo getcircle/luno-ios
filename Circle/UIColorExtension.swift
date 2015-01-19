@@ -124,12 +124,12 @@ extension UIColor {
     
     class func teamHeaderBackgroundColor() -> UIColor {
         let palette = [
-            UIColor(red: 30, green: 146, blue: 57),
-            UIColor(red: 14, green: 99, blue: 177),
-            UIColor(red: 109, green: 109, blue: 109),
-            UIColor(red: 213, green: 102, blue: 19),
-            UIColor(red: 119, green: 65, blue: 133),
-            UIColor(red: 179, green: 44, blue: 40),
+            UIColor(red: 17, green: 36, blue: 65),
+            UIColor(red: 65, green: 20, blue: 20),
+            UIColor(red: 70, green: 33, blue: 18),
+            UIColor(red: 37, green: 37, blue: 37),
+            UIColor(red: 20, green: 50, blue: 21),
+            UIColor(red: 44, green: 25, blue: 49)
         ]
         
         return palette[Int(arc4random()) % Int(palette.count)]

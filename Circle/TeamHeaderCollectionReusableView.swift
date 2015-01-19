@@ -23,13 +23,6 @@ class TeamHeaderCollectionReusableView: CircleCollectionReusableView {
     @IBOutlet weak private(set) var departmentNameLabel: UILabel!
     @IBOutlet weak private(set) var teamNameLabelCenterYConstraint: NSLayoutConstraint!
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-
-        // Initialization code
-        addVisualEffectView(.Dark)
-    }
-    
     func setData(team: OrganizationService.Containers.Team) {
         teamNameLabel.attributedText = NSAttributedString(string: team.name.uppercaseString, attributes: [NSKernAttributeName: 2.0])
         teamNameLabel.layer.borderWidth = 0.0
