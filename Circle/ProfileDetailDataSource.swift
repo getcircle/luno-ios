@@ -42,11 +42,18 @@ class Section {
     var title: String
     var items: [SectionItem]
     var cardType: Card.CardType
+    var cardHeaderSize: CGSize
     
-    init(title sectionTitle: String, items sectionItems: [SectionItem], cardType sectionCardType: Card.CardType) {
+    init(
+        title sectionTitle: String,
+        items sectionItems: [SectionItem],
+        cardType sectionCardType: Card.CardType,
+        cardHeaderSize sectionCardHeaderSize: CGSize = CGSizeZero
+    ) {
         title = sectionTitle
         items = sectionItems
         cardType = sectionCardType
+        cardHeaderSize = sectionCardHeaderSize
     }
 }
 
@@ -89,6 +96,11 @@ class ProfileDetailDataSource: CardDataSource {
             UINib(nibName: "ProfileHeaderCollectionReusableView", bundle: nil),
             forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
             withReuseIdentifier: ProfileHeaderCollectionReusableView.classReuseIdentifier
+        )
+        collectionView.registerNib(
+            UINib(nibName: "NotesCardHeaderCollectionReusableView", bundle: nil),
+            forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
+            withReuseIdentifier: NotesCardHeaderCollectionReusableView.classReuseIdentifier
         )
         
         // TODO should have some like "onLoad" function we can plug into
@@ -200,14 +212,23 @@ class ProfileDetailDataSource: CardDataSource {
             }
             
             sectionCard.sectionInset = defaultSectionInset
+            sectionCard.headerSize = section.cardHeaderSize
             if sectionCard.content.count > 0 {
                 appendCard(sectionCard)
             }
         }
         
-        // Add Notes Card
-        var notesCard = Card(cardType: .Notes, title: "Notes")
-        notesCard.content.append(["text": "This is a long sample note which should be at least two lines. Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda."])
+        let noteBuilder = NoteService.Containers.Note.builder()
+        noteBuilder.for_profile_id = profile.id
+        if let currentProfile = AuthViewController.getLoggedInUserProfile() {
+            noteBuilder.owner_profile_id = currentProfile.id
+        }
+        noteBuilder.content = "some note about the current profile"
+        noteBuilder.created = "3 seconds ago"
+        
+        let notesCard = Card(cardType: .Notes, title: "Notes")
+        notesCard.content.append(noteBuilder.build())
+        notesCard.headerSize = CGSizeMake(375.0, 45.0)
         notesCard.sectionInset = UIEdgeInsetsMake(0.0, 0.0, 55.0, 0.0)
         appendCard(notesCard)
     }
@@ -267,10 +288,13 @@ class ProfileDetailDataSource: CardDataSource {
     
     // MARK: - UICollectionViewDataSource
 
-    override func collectionView(collectionView: UICollectionView,
+    override func collectionView(
+        collectionView: UICollectionView,
         viewForSupplementaryElementOfKind kind: String,
-        atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
-
+        atIndexPath indexPath: NSIndexPath
+    ) -> UICollectionReusableView {
+        
+        if indexPath.section == 0 {
             let supplementaryView = collectionView.dequeueReusableSupplementaryViewOfKind(
                 kind,
                 withReuseIdentifier: ProfileHeaderCollectionReusableView.classReuseIdentifier,
@@ -282,6 +306,15 @@ class ProfileDetailDataSource: CardDataSource {
             }
             profileHeaderView = supplementaryView
             return supplementaryView
+        }
+        
+        // Display notes card header
+        let supplementaryView = collectionView.dequeueReusableSupplementaryViewOfKind(
+            kind,
+            withReuseIdentifier: NotesCardHeaderCollectionReusableView.classReuseIdentifier,
+            forIndexPath: indexPath
+            ) as NotesCardHeaderCollectionReusableView
+        return supplementaryView
     }
     
     // MARK: - Cell Type

@@ -17,6 +17,7 @@ class Card: Equatable {
     var content: [AnyObject]
     var allContent: [AnyObject]
     var contentCount: Int
+    var headerSize = CGSizeZero
     private(set) var contentClass: CircleCollectionViewCell.Type
     private(set) var contentClassName: String
     private(set) var imageSource: String

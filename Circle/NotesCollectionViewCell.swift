@@ -7,12 +7,12 @@
 //
 
 import UIKit
+import ProtobufRegistry
 
 class NotesCollectionViewCell: CircleCollectionViewCell {
-
-    @IBOutlet private(set) weak var notesLabel: UILabel!
-    @IBOutlet private(set) weak var notesTextView: UITextView!
-    @IBOutlet private(set) weak var timestampLabel: UILabel!
+    
+    @IBOutlet weak var noteSummaryLabel: UILabel!
+    @IBOutlet weak var noteTimestampLabel: UILabel!
     
     override class var classReuseIdentifier: String {
         return "NotesCell"
@@ -23,14 +23,15 @@ class NotesCollectionViewCell: CircleCollectionViewCell {
     }
 
     override func intrinsicContentSize() -> CGSize {
-        let intrinsicSize = notesTextView.intrinsicContentSize()
-        let height = intrinsicSize.height + notesTextView.frameY + 10.0
+        let intrinsicSize = noteSummaryLabel.intrinsicContentSize()
+        let height = intrinsicSize.height + noteSummaryLabel.frameY + 10.0 + noteTimestampLabel.frameY
         return CGSizeMake(NotesCollectionViewCell.width, height)
     }
     
     override func setData(data: AnyObject) {
-        if let notesDictionary = data as? [String: String] {
-            notesTextView.text = notesDictionary["text"]
+        if let note = data as? NoteService.Containers.Note {
+            noteSummaryLabel.text = note.content
+            noteTimestampLabel.text = note.created
         }
     }
 }

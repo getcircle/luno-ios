@@ -15,6 +15,10 @@ class ProfileCollectionViewDelegate: CardCollectionViewDelegate {
             return CGSizeMake(collectionView.frame.size.width, (collectionView.collectionViewLayout as ProfileCollectionViewLayout).headerHeight)
         }
         
+        if let card = cardDataSource(collectionView).cardAtSection(section) {
+            return card.headerSize
+        }
+        
         return CGSizeZero
     }
     
