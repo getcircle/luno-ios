@@ -44,5 +44,7 @@ extension AppDelegate {
             forState: .Normal,
             barMetrics: .Default
         )
+        
+        UIButton.appearance().tintColor = UIColor.appTintColor()
     }
 }
