@@ -3744,7 +3744,6 @@ final public class ProfileService : GeneratedMessage {
                  case "address": return address
                  case "manager": return manager
                  case "team": return team
-                 case "note": return note
                  default: return nil
                  }
           }
@@ -3757,8 +3756,7 @@ final public class ProfileService : GeneratedMessage {
           public private(set) var manager:ProfileService.Containers.Profile = ProfileService.Containers.Profile()
           public private(set) var hasTeam:Bool = false
           public private(set) var team:OrganizationService.Containers.Team = OrganizationService.Containers.Team()
-          public private(set) var hasNote:Bool = false
-          public private(set) var note:NoteService.Containers.Note = NoteService.Containers.Note()
+          public private(set) var notes:Array<NoteService.Containers.Note>  = Array<NoteService.Containers.Note>()
           public private(set) var tags:Array<ProfileService.Containers.Tag>  = Array<ProfileService.Containers.Tag>()
           required public init() {
                super.init()
@@ -3779,8 +3777,8 @@ final public class ProfileService : GeneratedMessage {
             if hasTeam {
               output.writeMessage(4, value:team)
             }
-            if hasNote {
-              output.writeMessage(5, value:note)
+            for oneElementnotes in notes {
+                output.writeMessage(5, value:oneElementnotes)
             }
             for oneElementtags in tags {
                 output.writeMessage(6, value:oneElementtags)
@@ -3806,8 +3804,8 @@ final public class ProfileService : GeneratedMessage {
             if hasTeam {
               size += WireFormat.computeMessageSize(4, value:team)
             }
-            if hasNote {
-              size += WireFormat.computeMessageSize(5, value:note)
+            for oneElementnotes in notes {
+                size += WireFormat.computeMessageSize(5, value:oneElementnotes)
             }
             for oneElementtags in tags {
                 size += WireFormat.computeMessageSize(6, value:oneElementtags)
@@ -3873,10 +3871,12 @@ final public class ProfileService : GeneratedMessage {
               team.writeDescriptionTo(&output, indent:"\(indent)  ")
               output += "\(indent) }\n"
             }
-            if hasNote {
-              output += "\(indent) note {\n"
-              note.writeDescriptionTo(&output, indent:"\(indent)  ")
-              output += "\(indent) }\n"
+            var notesElementIndex:Int = 0
+            for oneElementnotes in notes {
+                output += "\(indent) notes[\(notesElementIndex)] {\n"
+                oneElementnotes.writeDescriptionTo(&output, indent:"\(indent)  ")
+                output += "\(indent)}\n"
+                notesElementIndex++
             }
             var tagsElementIndex:Int = 0
             for oneElementtags in tags {
@@ -3902,8 +3902,8 @@ final public class ProfileService : GeneratedMessage {
                   if hasTeam {
                     hashCode = (hashCode &* 31) &+ team.hashValue
                   }
-                  if hasNote {
-                    hashCode = (hashCode &* 31) &+ note.hashValue
+                  for oneElementnotes in notes {
+                      hashCode = (hashCode &* 31) &+ oneElementnotes.hashValue
                   }
                   for oneElementtags in tags {
                       hashCode = (hashCode &* 31) &+ oneElementtags.hashValue
@@ -4066,36 +4066,16 @@ final public class ProfileService : GeneratedMessage {
             builderResult.team = OrganizationService.Containers.Team()
             return self
           }
-          public var hasNote:Bool {
+          public var notes:Array<NoteService.Containers.Note> {
                get {
-                   return builderResult.hasNote
-               }
-          }
-          public var note:NoteService.Containers.Note {
-               get {
-                   return builderResult.note
+                   return builderResult.notes
                }
                set (value) {
-                   builderResult.hasNote = true
-                   builderResult.note = value
+                   builderResult.notes = value
                }
           }
-          public func setNoteBuilder(builderForValue:NoteService.Containers.NoteBuilder) -> ProfileService.GetExtendedProfile.ResponseBuilder {
-            note = builderForValue.build()
-            return self
-          }
-          public func mergeNote(value:NoteService.Containers.Note) -> ProfileService.GetExtendedProfile.ResponseBuilder {
-            if (builderResult.hasNote) {
-              builderResult.note = NoteService.Containers.Note.builderWithPrototype(builderResult.note).mergeFrom(value).buildPartial()
-            } else {
-              builderResult.note = value
-            }
-            builderResult.hasNote = true
-            return self
-          }
-          public func clearNote() -> ProfileService.GetExtendedProfile.ResponseBuilder {
-            builderResult.hasNote = false
-            builderResult.note = NoteService.Containers.Note()
+          public func clearNotes() -> ProfileService.GetExtendedProfile.ResponseBuilder {
+            builderResult.notes.removeAll(keepCapacity: false)
             return self
           }
           public var tags:Array<ProfileService.Containers.Tag> {
@@ -4143,8 +4123,8 @@ final public class ProfileService : GeneratedMessage {
             if (other.hasTeam) {
                 mergeTeam(other.team)
             }
-            if (other.hasNote) {
-                mergeNote(other.note)
+            if !other.notes.isEmpty  {
+               builderResult.notes += other.notes
             }
             if !other.tags.isEmpty  {
                builderResult.tags += other.tags
@@ -4197,12 +4177,9 @@ final public class ProfileService : GeneratedMessage {
                 team = subBuilder.buildPartial()
 
               case 42 :
-                var subBuilder:NoteService.Containers.NoteBuilder = NoteService.Containers.Note.builder()
-                if hasNote {
-                  subBuilder.mergeFrom(note)
-                }
-                input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
-                note = subBuilder.buildPartial()
+                var subBuilder = NoteService.Containers.Note.builder()
+                input.readMessage(subBuilder,extensionRegistry:extensionRegistry)
+                notes += [subBuilder.buildPartial()]
 
               case 50 :
                 var subBuilder = ProfileService.Containers.Tag.builder()

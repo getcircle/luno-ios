@@ -95,7 +95,7 @@ message ProfileService {
             optional main.organization_service.OrganizationService.Containers.Address address = 2;
             optional Containers.Profile manager = 3;
             optional main.organization_service.OrganizationService.Containers.Team team = 4;
-            optional main.note_service.NoteService.Containers.Note note = 5;
+            repeated main.note_service.NoteService.Containers.Note notes = 5;
             repeated Containers.Tag tags = 6;
         }
 
