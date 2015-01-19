@@ -261,6 +261,18 @@ CardHeaderViewDelegate {
         navigationController?.presentViewController(onboardingNavigationController, animated: true, completion: nil)
     }
     
+    @IBAction func messageButtonTapped(sender: AnyObject!) {
+        searchHeaderView.searchTextField.becomeFirstResponder()
+    }
+    
+    @IBAction func emailButtonTapped(sender: AnyObject!) {
+        searchHeaderView.searchTextField.becomeFirstResponder()
+    }
+
+    @IBAction func phoneButtonTapped(sender: AnyObject!) {
+        searchHeaderView.searchTextField.becomeFirstResponder()
+    }
+    
     // MARK: - Notifications
     
     private func registerNotifications() {

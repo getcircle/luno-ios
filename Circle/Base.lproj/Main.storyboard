@@ -150,14 +150,14 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sEy-gh-6JI" userLabel="QuickActionsView">
                                 <rect key="frame" x="10" y="382" width="580" height="50"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rEL-h3-usb" userLabel="AddNote">
-                                        <rect key="frame" x="215" y="0.0" width="50" height="50"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rEL-h3-usb" userLabel="Message">
+                                        <rect key="frame" x="205" y="0.0" width="50" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="44" id="9By-AB-Ftr"/>
                                             <constraint firstAttribute="width" secondItem="rEL-h3-usb" secondAttribute="height" multiplier="1:1" id="GxS-9b-oOh"/>
                                         </constraints>
                                         <color key="tintColor" red="0.88235294119999996" green="0.15686274510000001" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" image="New">
+                                        <state key="normal" image="Messages">
                                             <color key="titleColor" red="0.88235294119999996" green="0.15686274510000001" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -166,16 +166,19 @@
                                                 <exclude reference="9By-AB-Ftr"/>
                                             </mask>
                                         </variation>
+                                        <connections>
+                                            <action selector="messageButtonTapped:" destination="PMD-gG-9c6" eventType="touchUpInside" id="QW3-Sb-mHM"/>
+                                        </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9V7-7b-ddz" userLabel="AddReminder">
-                                        <rect key="frame" x="315" y="0.0" width="50" height="50"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9V7-7b-ddz" userLabel="Email">
+                                        <rect key="frame" x="325" y="0.0" width="50" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="9V7-7b-ddz" secondAttribute="height" multiplier="1:1" id="Atf-yj-npR"/>
                                             <constraint firstAttribute="width" secondItem="9V7-7b-ddz" secondAttribute="height" multiplier="1:1" id="s81-XB-B0U"/>
                                             <constraint firstAttribute="width" constant="44" id="xNw-ld-YTB"/>
                                         </constraints>
                                         <color key="tintColor" red="0.88235294119999996" green="0.15686274510000001" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" image="Alarms">
+                                        <state key="normal" image="Email">
                                             <color key="titleColor" red="0.88235294119999996" green="0.15686274510000001" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -185,18 +188,54 @@
                                                 <exclude reference="xNw-ld-YTB"/>
                                             </mask>
                                         </variation>
+                                        <connections>
+                                            <action selector="emailButtonTapped:" destination="PMD-gG-9c6" eventType="touchUpInside" id="8sc-zs-0lg"/>
+                                        </connections>
+                                    </button>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B8r-FV-8wB" userLabel="Phone">
+                                        <rect key="frame" x="345" y="0.0" width="50" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="44" id="F47-fH-f6Z"/>
+                                            <constraint firstAttribute="width" secondItem="B8r-FV-8wB" secondAttribute="height" multiplier="1:1" id="KsV-VD-W0P"/>
+                                            <constraint firstAttribute="width" secondItem="B8r-FV-8wB" secondAttribute="height" multiplier="1:1" id="Zj7-wk-kdt"/>
+                                            <constraint firstAttribute="width" secondItem="B8r-FV-8wB" secondAttribute="height" multiplier="1:1" id="hcO-8Y-f9z"/>
+                                        </constraints>
+                                        <color key="tintColor" red="0.88235294119999996" green="0.15686274510000001" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" image="Telephone">
+                                            <color key="titleColor" red="0.88235294119999996" green="0.15686274510000001" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="F47-fH-f6Z"/>
+                                                <exclude reference="KsV-VD-W0P"/>
+                                                <exclude reference="Zj7-wk-kdt"/>
+                                            </mask>
+                                        </variation>
+                                        <connections>
+                                            <action selector="phoneButtonTapped:" destination="PMD-gG-9c6" eventType="touchUpInside" id="L1x-i5-RIO"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="centerY" secondItem="rEL-h3-usb" secondAttribute="centerY" id="4hL-HD-OIE"/>
+                                    <constraint firstAttribute="height" secondItem="B8r-FV-8wB" secondAttribute="height" id="ESE-WC-tOi"/>
+                                    <constraint firstAttribute="centerX" secondItem="B8r-FV-8wB" secondAttribute="centerX" constant="-80" id="HVC-cA-N5Q"/>
                                     <constraint firstAttribute="bottom" secondItem="rEL-h3-usb" secondAttribute="bottom" id="JSi-ro-tSc"/>
                                     <constraint firstAttribute="centerY" secondItem="9V7-7b-ddz" secondAttribute="centerY" id="MVf-f5-GtV"/>
-                                    <constraint firstAttribute="centerX" secondItem="rEL-h3-usb" secondAttribute="centerX" constant="50" id="NRR-vY-1Qr"/>
-                                    <constraint firstAttribute="centerX" secondItem="9V7-7b-ddz" secondAttribute="centerX" constant="-50" id="i2N-Mk-Gpp"/>
+                                    <constraint firstAttribute="centerX" secondItem="rEL-h3-usb" secondAttribute="centerX" constant="60" id="NRR-vY-1Qr"/>
+                                    <constraint firstItem="B8r-FV-8wB" firstAttribute="width" secondItem="B8r-FV-8wB" secondAttribute="height" multiplier="1:1" id="Pvk-oQ-SNA"/>
+                                    <constraint firstAttribute="centerY" secondItem="B8r-FV-8wB" secondAttribute="centerY" id="bgt-ap-zeJ"/>
+                                    <constraint firstAttribute="centerX" secondItem="9V7-7b-ddz" secondAttribute="centerX" constant="-60" id="i2N-Mk-Gpp"/>
                                     <constraint firstAttribute="height" constant="50" id="j64-AZ-6Ou"/>
                                     <constraint firstItem="9V7-7b-ddz" firstAttribute="height" secondItem="sEy-gh-6JI" secondAttribute="height" id="s5U-9l-SD7"/>
                                     <constraint firstItem="rEL-h3-usb" firstAttribute="top" secondItem="sEy-gh-6JI" secondAttribute="top" id="wxD-mA-1m8"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="Pvk-oQ-SNA"/>
+                                    </mask>
+                                </variation>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="EB" translatesAutoresizingMaskIntoConstraints="NO" id="xag-QA-Fdl" userLabel="CompanyLogo">
                                 <rect key="frame" x="238" y="97" width="125" height="125"/>
@@ -300,9 +339,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Alarms" width="22" height="22"/>
         <image name="EB" width="175" height="175"/>
-        <image name="New" width="22" height="22"/>
+        <image name="Email" width="32" height="32"/>
+        <image name="Messages" width="32" height="32"/>
         <image name="Profile" width="32" height="32"/>
+        <image name="Telephone" width="22" height="22"/>
     </resources>
 </document>
