@@ -20,6 +20,8 @@ CardHeaderViewDelegate {
     @IBOutlet weak private(set) var addReminderQuickAction: UIButton!
     @IBOutlet weak private(set) var collectionView: UICollectionView!
     @IBOutlet weak private(set) var companyLogoImageView: UIImageView!
+    @IBOutlet weak private(set) var loggedInUserProfileImageView: UIImageView!
+    @IBOutlet weak private(set) var loggedInUserProfileButtonContainer: UIView!
     @IBOutlet weak private(set) var searchHeaderContainerView: UIView!
     @IBOutlet weak private(set) var searchHeaderContainerViewLeftConstraint: NSLayoutConstraint!
     @IBOutlet weak private(set) var searchHeaderContainerViewRightConstraint: NSLayoutConstraint!
@@ -39,12 +41,15 @@ CardHeaderViewDelegate {
         configureCollectionView()
         configureQuickActionsView()
         configureCompanyLogoImageView()
+        configureLoggedInUserProfileImageView()
+        moveSearchFieldToCenter()
     }
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         registerNotifications()
 
+        navigationController?.setNavigationBarHidden(true, animated: true)
         navigationController!.navigationBar.makeTransparent()
         checkUserAndPresentAuthViewController()
         (collectionView.dataSource as? SearchLandingDataSource)?.loadData { (error) -> Void in
@@ -57,6 +62,7 @@ CardHeaderViewDelegate {
     
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: true)
         unregisterNotifications()
     }
 
@@ -111,6 +117,13 @@ CardHeaderViewDelegate {
     
     private func configureCompanyLogoImageView() {
         companyLogoImageView.addRoundCorners()
+    }
+    
+    private func configureLoggedInUserProfileImageView() {
+        loggedInUserProfileImageView.makeItCircular(false)
+        if let userProfile = AuthViewController.getLoggedInUserProfile() {
+            loggedInUserProfileImageView.setImageWithProfile(userProfile)
+        }
     }
     
     // MARK: - TextField Delegate
@@ -277,6 +290,7 @@ CardHeaderViewDelegate {
                 self.view.layoutIfNeeded()
                 self.quickActionsView.alpha = 0.0
                 self.companyLogoImageView.alpha = 0.0
+                self.loggedInUserProfileButtonContainer.alpha = 0.0
             })
         }
     }
@@ -292,6 +306,7 @@ CardHeaderViewDelegate {
                 self.view.layoutIfNeeded()
                 self.quickActionsView.alpha = 1.0
                 self.companyLogoImageView.alpha = 1.0
+                self.loggedInUserProfileButtonContainer.alpha = 1.0
             })
         }
     }

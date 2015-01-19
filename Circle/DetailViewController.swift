@@ -100,20 +100,20 @@ class DetailViewController: UIViewController, UICollectionViewDelegate, MFMailCo
         // a. this view was presented modally
         // b. this view is being dismissed vs disappearing because another view controller was added to the stack
         // c. the view controller prior to this one was a DetailViewController
-        if !isBeingPresentedModally() && isMovingFromParentViewController() {
-            if let totalViewControllers = navigationController?.viewControllers.count {
-                let parentController = navigationController?.viewControllers[(totalViewControllers - 1)] as? UIViewController
-                if !(parentController is DetailViewController) {
-                    transitionCoordinator()?.animateAlongsideTransition({ (transitionContext) -> Void in
-                        self.navigationController?.setNavigationBarHidden(false, animated: true)
-                        var toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey) as UIViewController!
-                        toViewController.navigationController?.navigationBar.makeOpaque()
-                        
-                        return
-                    }, completion: nil)
-                }
-            }
-        }
+//        if !isBeingPresentedModally() && isMovingFromParentViewController() {
+//            if let totalViewControllers = navigationController?.viewControllers.count {
+//                let parentController = navigationController?.viewControllers[(totalViewControllers - 1)] as? UIViewController
+//                if !(parentController is DetailViewController) {
+//                    transitionCoordinator()?.animateAlongsideTransition({ (transitionContext) -> Void in
+//                        self.navigationController?.setNavigationBarHidden(false, animated: true)
+//                        var toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey) as UIViewController!
+//                        toViewController.navigationController?.navigationBar.makeOpaque()
+//                        
+//                        return
+//                    }, completion: nil)
+//                }
+//            }
+//        }
     }
     
     private func addLogOutButton() {
