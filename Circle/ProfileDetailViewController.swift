@@ -116,6 +116,12 @@ class ProfileDetailViewController: DetailViewController {
             name: TagsCollectionViewCellNotifications.onTagSelectedNotification,
             object: nil
         )
+        NSNotificationCenter.defaultCenter().addObserver(
+            self,
+            selector: "addNote:",
+            name: NotesCardHeaderCollectionReusableViewNotifications.onAddNoteNotification,
+            object: nil
+        )
     }
     
     private func unregisterNotifications() {
@@ -131,4 +137,14 @@ class ProfileDetailViewController: DetailViewController {
             }
         }
     }
+    
+    // MARK: - NotesCardHeaderViewDelegate
+    
+    func addNote(sender: AnyObject!) {
+        let newNoteViewController = NewNoteViewController(nibName: "NewNoteViewController", bundle: nil)
+        newNoteViewController.profile = profile
+        let navController = UINavigationController(rootViewController: newNoteViewController)
+        navigationController?.presentViewController(navController, animated: true, completion: nil)
+    }
+    
 }

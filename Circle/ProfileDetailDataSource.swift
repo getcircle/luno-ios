@@ -43,6 +43,7 @@ class Section {
     var items: [SectionItem]
     var cardType: Card.CardType
     var cardHeaderSize: CGSize
+    var hasAction = false
     
     init(
         title sectionTitle: String,
@@ -87,6 +88,7 @@ class ProfileDetailDataSource: CardDataSource {
     private var address: OrganizationService.Containers.Address?
     private var tags: Array<ProfileService.Containers.Tag>?
     private var team: OrganizationService.Containers.Team?
+    private var notes: Array<NoteService.Containers.Note>?
 
     private(set) var profileHeaderView: ProfileHeaderCollectionReusableView?
     private var sections = [Section]()
@@ -113,12 +115,13 @@ class ProfileDetailDataSource: CardDataSource {
         var placeholderCard = Card(cardType: .Placeholder, title: "Info")
         appendCard(placeholderCard)
         ProfileService.Actions.getExtendedProfile(profile.id) {
-            (profile, manager, team, address, tags, error) -> Void in
+            (profile, manager, team, address, tags, notes, error) -> Void in
             if error == nil {
                 self.manager = manager
                 self.team = team
                 self.address = address
                 self.tags = tags
+                self.notes = notes
                 self.populateData()
             }
             completionHandler(error: error)
@@ -131,6 +134,7 @@ class ProfileDetailDataSource: CardDataSource {
         sections.append(getBasicInfoSection())
         sections.append(getManagerInfoSection())
         sections.append(getTagsSection())
+        sections.append(getNotesSection())
     }
     
     private func getBasicInfoSection() -> Section {
@@ -199,6 +203,18 @@ class ProfileDetailDataSource: CardDataSource {
         return Section(title: "Tags", items: sectionItems, cardType: .Tags)
     }
     
+    private func getNotesSection() -> Section {
+        let sectionItems = [
+            // XXX we shouldn't have to pass in "containerKey" here
+            SectionItem(title: "Notes", container: "notes", containerKey: "content", image: nil)
+        ]
+        // TODO find a better place to put this
+        let headerSize = CGSizeMake(375, 45.0)
+        let section = Section(title: "Notes", items: sectionItems, cardType: .Notes, cardHeaderSize: headerSize)
+        section.hasAction = true
+        return section
+    }
+    
     // MARK: - Populate Data
     
     private func populateData() {
@@ -213,30 +229,17 @@ class ProfileDetailDataSource: CardDataSource {
             
             sectionCard.sectionInset = defaultSectionInset
             sectionCard.headerSize = section.cardHeaderSize
-            if sectionCard.content.count > 0 {
+            if sectionCard.content.count > 0 || section.hasAction {
                 appendCard(sectionCard)
             }
         }
-        
-        let noteBuilder = NoteService.Containers.Note.builder()
-        noteBuilder.for_profile_id = profile.id
-        if let currentProfile = AuthViewController.getLoggedInUserProfile() {
-            noteBuilder.owner_profile_id = currentProfile.id
-        }
-        noteBuilder.content = "some note about the current profile"
-        noteBuilder.created = "3 seconds ago"
-        
-        let notesCard = Card(cardType: .Notes, title: "Notes")
-        notesCard.content.append(noteBuilder.build())
-        notesCard.headerSize = CGSizeMake(375.0, 45.0)
-        notesCard.sectionInset = UIEdgeInsetsMake(0.0, 0.0, 55.0, 0.0)
-        appendCard(notesCard)
     }
     
     private func addItemToCard(item: SectionItem, card: Card) {
         switch card.type {
         case .KeyValue: addKeyValueItemToCard(item, card: card)
         case .Tags: addTagsItemToCard(item, card: card)
+        case .Notes: addNotesItemToCard(item, card: card)
         default: break
         }
     }
@@ -278,6 +281,12 @@ class ProfileDetailDataSource: CardDataSource {
         }
     }
     
+    private func addNotesItemToCard(item: SectionItem, card: Card) {
+        if let notes = notes {
+            card.content.extend(notes as [AnyObject])
+        }
+    }
+    
     // MARK: - Cell Configuration
     
     override func configureCell(cell: CircleCollectionViewCell, atIndexPath indexPath: NSIndexPath) {
@@ -313,7 +322,7 @@ class ProfileDetailDataSource: CardDataSource {
             kind,
             withReuseIdentifier: NotesCardHeaderCollectionReusableView.classReuseIdentifier,
             forIndexPath: indexPath
-            ) as NotesCardHeaderCollectionReusableView
+        ) as NotesCardHeaderCollectionReusableView
         return supplementaryView
     }
     

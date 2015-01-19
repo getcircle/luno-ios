@@ -8,6 +8,10 @@
 
 import UIKit
 
+struct NotesCardHeaderCollectionReusableViewNotifications {
+    static let onAddNoteNotification = "com.ravcode.notification:onAddNoteNotification"
+}
+
 class NotesCardHeaderCollectionReusableView: CircleCollectionReusableView {
     
     override class var classReuseIdentifier: String {
@@ -15,7 +19,10 @@ class NotesCardHeaderCollectionReusableView: CircleCollectionReusableView {
     }
 
     @IBAction func handleAddNote(sender: AnyObject) {
-        println("add new note")
+        NSNotificationCenter.defaultCenter().postNotificationName(
+            NotesCardHeaderCollectionReusableViewNotifications.onAddNoteNotification,
+            object: nil
+        )
     }
     
 }

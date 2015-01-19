@@ -112,6 +112,9 @@
 		BF7DF98F1A44E53200A4F924 /* ServiceTransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7DF98E1A44E53200A4F924 /* ServiceTransport.swift */; };
 		BF8DAC731A6CB03F000860DD /* NotesCardHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8DAC721A6CB03F000860DD /* NotesCardHeaderCollectionReusableView.swift */; };
 		BF8DAC781A6CB05B000860DD /* NotesCardHeaderCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF8DAC771A6CB05B000860DD /* NotesCardHeaderCollectionReusableView.xib */; };
+		BF8DAC881A6D7EB1000860DD /* NewNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8DAC861A6D7EB1000860DD /* NewNoteViewController.swift */; };
+		BF8DAC891A6D7EB1000860DD /* NewNoteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF8DAC871A6D7EB1000860DD /* NewNoteViewController.xib */; };
+		BF8DAC901A6D904D000860DD /* NoteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8DAC8F1A6D904D000860DD /* NoteService.swift */; };
 		BF8FC3D91A44DA83007FD8BA /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8FC3D81A44DA83007FD8BA /* StringExtension.swift */; };
 		BF9D72121A68492C002CDC66 /* ObjectStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9D72111A68492C002CDC66 /* ObjectStore.swift */; };
 		BF9D721F1A687462002CDC66 /* TeamCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9D721E1A687462002CDC66 /* TeamCollectionViewCell.swift */; };
@@ -324,6 +327,9 @@
 		BF7DF98E1A44E53200A4F924 /* ServiceTransport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceTransport.swift; sourceTree = "<group>"; };
 		BF8DAC721A6CB03F000860DD /* NotesCardHeaderCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotesCardHeaderCollectionReusableView.swift; sourceTree = "<group>"; };
 		BF8DAC771A6CB05B000860DD /* NotesCardHeaderCollectionReusableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotesCardHeaderCollectionReusableView.xib; sourceTree = "<group>"; };
+		BF8DAC861A6D7EB1000860DD /* NewNoteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewNoteViewController.swift; sourceTree = "<group>"; };
+		BF8DAC871A6D7EB1000860DD /* NewNoteViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewNoteViewController.xib; sourceTree = "<group>"; };
+		BF8DAC8F1A6D904D000860DD /* NoteService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteService.swift; sourceTree = "<group>"; };
 		BF8FC3D81A44DA83007FD8BA /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		BF9D72111A68492C002CDC66 /* ObjectStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectStore.swift; sourceTree = "<group>"; };
 		BF9D721E1A687462002CDC66 /* TeamCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -449,6 +455,7 @@
 				8F00049C1A2419730096477A /* DetailViewController.swift */,
 				8FD907F61A6033310025A17B /* LocationDetailViewController.swift */,
 				8FD907F81A6070D70025A17B /* MapViewController.swift */,
+				BF8DAC861A6D7EB1000860DD /* NewNoteViewController.swift */,
 				BF8DAC721A6CB03F000860DD /* NotesCardHeaderCollectionReusableView.swift */,
 				8FD907F41A5F91020025A17B /* ProfileDetailViewController.swift */,
 				8F00049A1A2419730096477A /* ProfilesViewController.swift */,
@@ -540,6 +547,7 @@
 				8F65C4FD1A51222100C7F3E6 /* LocationCollectionViewCell.xib */,
 				8F00049E1A2419730096477A /* Main.storyboard */,
 				8F4805E81A5DE4CE00273731 /* MapHeaderCollectionReusableView.xib */,
+				BF8DAC871A6D7EB1000860DD /* NewNoteViewController.xib */,
 				BF8DAC771A6CB05B000860DD /* NotesCardHeaderCollectionReusableView.xib */,
 				8F4E53771A5A0D9E00DC876B /* NotesCollectionViewCell.xib */,
 				8FCC95CC1A52828B00421E65 /* ProfileCollectionViewCell.xib */,
@@ -655,13 +663,14 @@
 		BF2CBFD21A473E7F00BE589D /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				BF004C4F1A5CF91200AB8A6F /* OrganizationService.swift */,
-				BF3F0F601A5B1C1100D4287E /* ProfileService.swift */,
-				BF2CBFD51A473E9100BE589D /* UserService.swift */,
-				BFE213C71A5EE63F0033E2F5 /* SearchService.swift */,
 				BF764DC31A5F6E8200D122F4 /* LandingService.swift */,
 				BF093F0E1A672F8900BA60BD /* MediaService.swift */,
+				BF8DAC8F1A6D904D000860DD /* NoteService.swift */,
 				BF9D72111A68492C002CDC66 /* ObjectStore.swift */,
+				BF004C4F1A5CF91200AB8A6F /* OrganizationService.swift */,
+				BF3F0F601A5B1C1100D4287E /* ProfileService.swift */,
+				BFE213C71A5EE63F0033E2F5 /* SearchService.swift */,
+				BF2CBFD51A473E9100BE589D /* UserService.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -853,6 +862,7 @@
 				8FCC95CE1A52828B00421E65 /* ProfileCollectionViewCell.xib in Resources */,
 				8F81713D1A62E07000CB7692 /* VerifyProfileViewController.xib in Resources */,
 				8F22CBF91A29A8EB0026376E /* AuthViewController.xib in Resources */,
+				BF8DAC891A6D7EB1000860DD /* NewNoteViewController.xib in Resources */,
 				8F4805E91A5DE4CE00273731 /* MapHeaderCollectionReusableView.xib in Resources */,
 				8F0004A51A2419730096477A /* LaunchScreen.xib in Resources */,
 				8FF2254D1A641B27001B2E32 /* SearchResultsCardHeaderCollectionReusableView.xib in Resources */,
@@ -1027,6 +1037,7 @@
 				8F7400231A6862BF00D96B60 /* TagDetailViewController.swift in Sources */,
 				BF7DF98F1A44E53200A4F924 /* ServiceTransport.swift in Sources */,
 				8F085A851A6B0C1E00F8139B /* TeamDetailViewController.swift in Sources */,
+				BF8DAC881A6D7EB1000860DD /* NewNoteViewController.swift in Sources */,
 				BF3F0F611A5B1C1100D4287E /* ProfileService.swift in Sources */,
 				8FEE88471A411BA90011CE4A /* UIViewControllerExtension.swift in Sources */,
 				8F085A8D1A6B5B4900F8139B /* TeamHeaderCollectionReusableView.swift in Sources */,
@@ -1039,6 +1050,7 @@
 				8F085A951A6C191400F8139B /* TeamGridItemCollectionViewCell.swift in Sources */,
 				8F65C5071A52661700C7F3E6 /* TagsCollectionViewCell.swift in Sources */,
 				8F65C4F51A50F28E00C7F3E6 /* CardHeaderCollectionReusableView.swift in Sources */,
+				BF8DAC901A6D904D000860DD /* NoteService.swift in Sources */,
 				BFC6CF9C1A44D2B90081F45B /* ServiceClient.swift in Sources */,
 				8F74003F1A6A442900D96B60 /* CircleAlertViewAnimator.swift in Sources */,
 				8FF2254C1A641B27001B2E32 /* SearchResultsCardHeaderCollectionReusableView.swift in Sources */,
