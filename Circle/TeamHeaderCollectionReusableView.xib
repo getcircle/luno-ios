@@ -11,13 +11,13 @@
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MOBILE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="Qcf-Ue-C3U" userLabel="TeamName" customClass="PaddedLabel" customModule="Circle" customModuleProvider="target">
-                    <rect key="frame" x="270" y="85" width="75" height="28"/>
+                    <rect key="frame" x="10" y="85" width="595" height="28"/>
                     <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="20"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Engineering" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="FAX-Nl-1qW" userLabel="DepartmentName" customClass="PaddedLabel" customModule="Circle" customModuleProvider="target">
-                    <rect key="frame" x="267" y="118" width="82" height="21"/>
+                    <rect key="frame" x="10" y="118" width="595" height="21"/>
                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="15"/>
                     <color key="textColor" white="1" alpha="0.70000000000000007" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
@@ -27,8 +27,12 @@
             <constraints>
                 <constraint firstAttribute="centerX" secondItem="FAX-Nl-1qW" secondAttribute="centerX" id="GX9-hK-eNO"/>
                 <constraint firstAttribute="centerY" secondItem="Qcf-Ue-C3U" secondAttribute="centerY" constant="14" id="IjQ-2c-zWO"/>
+                <constraint firstItem="FAX-Nl-1qW" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" constant="10" id="Pzl-8V-en8"/>
                 <constraint firstAttribute="centerX" secondItem="Qcf-Ue-C3U" secondAttribute="centerX" id="efW-nQ-c8O"/>
+                <constraint firstAttribute="trailing" secondItem="Qcf-Ue-C3U" secondAttribute="trailing" constant="10" id="g7z-sk-L4C"/>
+                <constraint firstItem="Qcf-Ue-C3U" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" constant="10" id="itx-PM-vRz"/>
                 <constraint firstItem="FAX-Nl-1qW" firstAttribute="top" secondItem="Qcf-Ue-C3U" secondAttribute="bottom" constant="5" id="nRp-AY-EcI"/>
+                <constraint firstAttribute="trailing" secondItem="FAX-Nl-1qW" secondAttribute="trailing" constant="10" id="orz-n1-UEG"/>
             </constraints>
             <connections>
                 <outlet property="departmentNameLabel" destination="FAX-Nl-1qW" id="mdG-Gh-7Hn"/>
