@@ -7,6 +7,9 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NewNoteViewController" customModule="Circle" customModuleProvider="target">
             <connections>
                 <outlet property="noteTextView" destination="JtI-Ry-VHf" id="yHM-HC-hKk"/>
+                <outlet property="profileImageView" destination="0yZ-3W-8HK" id="Nxb-YZ-r9k"/>
+                <outlet property="profileNameLabel" destination="M1s-aD-wZf" id="uun-WK-sfu"/>
+                <outlet property="profileTitleLabel" destination="ScM-fC-OJb" id="9qg-Bv-PMg"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -16,20 +19,50 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JtI-Ry-VHf" userLabel="noteTextView">
-                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <rect key="frame" x="15" y="70" width="570" height="515"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="15"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Ravi" translatesAutoresizingMaskIntoConstraints="NO" id="0yZ-3W-8HK">
+                    <rect key="frame" x="16" y="8" width="50" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="keb-pL-L5C"/>
+                        <constraint firstAttribute="width" constant="50" id="pEK-nY-RBf"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ravi Rani" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M1s-aD-wZf">
+                    <rect key="frame" x="86" y="8" width="499" height="28"/>
+                    <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="20"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Co-Founder &amp; CEO" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ScM-fC-OJb">
+                    <rect key="frame" x="86" y="41" width="499" height="21"/>
+                    <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="15"/>
+                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="JtI-Ry-VHf" secondAttribute="trailing" id="3oC-nz-MGo"/>
-                <constraint firstItem="JtI-Ry-VHf" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="G44-3A-h01"/>
-                <constraint firstItem="JtI-Ry-VHf" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="dIy-yU-vjA"/>
-                <constraint firstAttribute="bottom" secondItem="JtI-Ry-VHf" secondAttribute="bottom" id="pmv-Af-3Kk"/>
+                <constraint firstAttribute="trailing" secondItem="JtI-Ry-VHf" secondAttribute="trailing" constant="15" id="3oC-nz-MGo"/>
+                <constraint firstAttribute="trailing" secondItem="M1s-aD-wZf" secondAttribute="trailing" constant="15" id="9cQ-rU-JOb"/>
+                <constraint firstItem="JtI-Ry-VHf" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="70" id="G44-3A-h01"/>
+                <constraint firstItem="M1s-aD-wZf" firstAttribute="leading" secondItem="0yZ-3W-8HK" secondAttribute="trailing" constant="20" id="LJj-ex-Q85"/>
+                <constraint firstItem="M1s-aD-wZf" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="8" id="XWO-Tc-6pe"/>
+                <constraint firstItem="0yZ-3W-8HK" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="bVL-p3-C9y"/>
+                <constraint firstItem="JtI-Ry-VHf" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="dIy-yU-vjA"/>
+                <constraint firstItem="ScM-fC-OJb" firstAttribute="top" secondItem="M1s-aD-wZf" secondAttribute="bottom" constant="5" id="m8Q-Ce-Ocv"/>
+                <constraint firstAttribute="bottom" secondItem="JtI-Ry-VHf" secondAttribute="bottom" constant="15" id="pmv-Af-3Kk"/>
+                <constraint firstItem="ScM-fC-OJb" firstAttribute="width" secondItem="M1s-aD-wZf" secondAttribute="width" id="pvV-X0-Qg3"/>
+                <constraint firstItem="ScM-fC-OJb" firstAttribute="leading" secondItem="0yZ-3W-8HK" secondAttribute="trailing" constant="20" id="quT-L6-RSA"/>
+                <constraint firstItem="0yZ-3W-8HK" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="8" id="ueE-sg-HC7"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
         </view>
     </objects>
+    <resources>
+        <image name="Ravi" width="399" height="614"/>
+    </resources>
 </document>

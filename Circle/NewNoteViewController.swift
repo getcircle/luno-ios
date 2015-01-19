@@ -19,6 +19,9 @@ class NewNoteViewController: UIViewController, UIViewControllerTransitioningDele
     var profile: ProfileService.Containers.Profile?
 
     @IBOutlet weak var noteTextView: UITextView!
+    @IBOutlet weak var profileImageView: UIImageView!
+    @IBOutlet weak var profileNameLabel: UILabel!
+    @IBOutlet weak var profileTitleLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +32,15 @@ class NewNoteViewController: UIViewController, UIViewControllerTransitioningDele
         configureNavigationItems()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        if let profile = profile {
+            profileImageView.setImageWithProfile(profile)
+            profileNameLabel.text = profile.full_name
+            profileTitleLabel.text = profile.title
+        }
+    }
+    
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         noteTextView.becomeFirstResponder()
@@ -37,9 +49,9 @@ class NewNoteViewController: UIViewController, UIViewControllerTransitioningDele
     // MARK: - Configuration
     
     private func configureView() {
-        view.backgroundColor = UIColor.clearColor()
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: "viewTapped:")
-        view.addGestureRecognizer(tapGestureRecognizer)
+        profileImageView.makeItCircular(false)
+        noteTextView.addTopBorder(offset: nil)
+        noteTextView.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
     }
     
     private func configureNavigationBar() {

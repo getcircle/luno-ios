@@ -47,6 +47,20 @@ extension UIView {
         return borderView
     }
     
+    func addTopBorder(offset withOffset: CGFloat? = 1.0) -> UIView {
+        var borderView = UIView(forAutoLayout: ())
+        borderView.backgroundColor = UIColor.separatorViewColor()
+        if let parentView = superview {
+            parentView.addSubview(borderView)
+            borderView.autoPinEdge(.Left, toEdge: .Left, ofView: self)
+            borderView.autoPinEdge(.Top, toEdge: .Top, ofView: self, withOffset: withOffset ?? 1.0)
+            borderView.autoMatchDimension(.Width, toDimension: .Width, ofView: self)
+            borderView.autoSetDimension(.Height, toSize: 0.5)
+        }
+        
+        return borderView
+    }
+    
     func addGradientView() -> UIView {
         var gradientView = GradientView(forAutoLayout: ())
         gradientView.backgroundColor = UIColor.clearColor()
