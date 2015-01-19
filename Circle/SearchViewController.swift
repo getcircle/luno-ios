@@ -16,8 +16,16 @@ SearchHeaderViewDelegate,
 CardHeaderViewDelegate {
     
     @IBOutlet weak private(set) var activityIndicatorView: UIActivityIndicatorView!
+    @IBOutlet weak private(set) var addNoteQuickAction: UIButton!
+    @IBOutlet weak private(set) var addReminderQuickAction: UIButton!
     @IBOutlet weak private(set) var collectionView: UICollectionView!
+    @IBOutlet weak private(set) var companyLogoImageView: UIImageView!
     @IBOutlet weak private(set) var searchHeaderContainerView: UIView!
+    @IBOutlet weak private(set) var searchHeaderContainerViewLeftConstraint: NSLayoutConstraint!
+    @IBOutlet weak private(set) var searchHeaderContainerViewRightConstraint: NSLayoutConstraint!
+    @IBOutlet weak private(set) var searchHeaderContainerViewTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak private(set) var quickActionsView: UIView!
+    
     
     private var data = [Card]()
     private var landingDataSource: SearchLandingDataSource!
@@ -30,11 +38,16 @@ CardHeaderViewDelegate {
         configureView()
         configureSearchHeaderView()
         configureCollectionView()
+        configureQuickActionsView()
+        configureCompanyLogoImageView()
     }
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         registerNotifications()
+
+        navigationController?.navigationBar.makeTransparent()
+        navigationController?.navigationBar.barTintColor = UIColor.appTintColor()
         
         // Animate hiding for every time thereafter
         setStatusBarHidden(false)
@@ -71,6 +84,7 @@ CardHeaderViewDelegate {
         if let nibViews = NSBundle.mainBundle().loadNibNamed("SearchHeaderView", owner: nil, options: nil) as? [UIView] {
             searchHeaderView = nibViews.first as SearchHeaderView
             searchHeaderView.delegate = self
+            searchHeaderView.searchTextField.placeholder = "Search people, teams, tags, etc."
             searchHeaderView.searchTextField.delegate = self
             searchHeaderView.searchTextField.addTarget(self, action: "search", forControlEvents: .EditingChanged)
             searchHeaderContainerView.addSubview(searchHeaderView)
@@ -93,20 +107,38 @@ CardHeaderViewDelegate {
         queryDataSource.registerCardHeader(collectionView)
     }
 
+    private func configureQuickActionsView() {
+        addNoteQuickAction.setImage(addNoteQuickAction.imageForState(.Normal)?.imageWithRenderingMode(.AlwaysTemplate), forState: .Normal)
+        addReminderQuickAction.setImage(addReminderQuickAction.imageForState(.Normal)?.imageWithRenderingMode(.AlwaysTemplate), forState: .Normal)
+        addNoteQuickAction.makeItCircular(true)
+        addNoteQuickAction.layer.borderColor = UIColor.appTintColor().CGColor
+        addReminderQuickAction.makeItCircular(true)
+        addReminderQuickAction.layer.borderColor = UIColor.appTintColor().CGColor
+    }
+    
+    private func configureCompanyLogoImageView() {
+        companyLogoImageView.addRoundCorners()
+    }
+    
     // MARK: - TextField Delegate
     
     func textFieldDidBeginEditing(textField: UITextField) {
         searchHeaderView.showCancelButton()
         collectionView.dataSource = queryDataSource
         collectionView.reloadData()
+        moveSearchFieldToTop()
     }
-    
+
+    func textFieldDidEndEditing(textField: UITextField) {
+        moveSearchFieldToCenter()
+    }
     // MARK: - SearchHeaderViewDelegate
     
     func didCancel(sender: UIView) {
         collectionView.dataSource = landingDataSource
         queryDataSource.resetCards()
         collectionView.reloadData()
+        moveSearchFieldToCenter()
     }
     
     // MARK: Search Targets
@@ -237,5 +269,37 @@ CardHeaderViewDelegate {
     
     private func unregisterNotifications() {
         NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
+    // MARK: - Helpers
+    
+    private func moveSearchFieldToTop() {
+        if navigationController?.topViewController == self {
+            searchHeaderContainerViewLeftConstraint.constant = 0.0
+            searchHeaderContainerViewRightConstraint.constant = 0.0
+            searchHeaderContainerViewTopConstraint.constant = 0.0
+            searchHeaderView.setNeedsUpdateConstraints()
+            
+            UIView.animateWithDuration(0.3, animations: { () -> Void in
+                self.view.layoutIfNeeded()
+                self.quickActionsView.alpha = 0.0
+                self.companyLogoImageView.alpha = 0.0
+            })
+        }
+    }
+    
+    private func moveSearchFieldToCenter() {
+        if navigationController?.topViewController == self {
+            searchHeaderContainerViewLeftConstraint.constant = 10.0
+            searchHeaderContainerViewRightConstraint.constant = 10.0
+            searchHeaderContainerViewTopConstraint.constant = self.view.frameHeight / 2.0 - 40.0
+            searchHeaderView.setNeedsUpdateConstraints()
+
+            UIView.animateWithDuration(0.3, animations: { () -> Void in
+                self.view.layoutIfNeeded()
+                self.quickActionsView.alpha = 1.0
+                self.companyLogoImageView.alpha = 1.0
+            })
+        }
     }
 }
