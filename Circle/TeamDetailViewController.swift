@@ -50,7 +50,7 @@ class TeamDetailViewController: DetailViewController {
 //            let contentOffset = scrollView.contentOffset
 //            
 //            // Todo: need to understand how this changes with orientation
-//            let statusBarHeight: CGFloat = 20.0
+//            let statusBarHeight: CGFloat = 0.0
 //            let navBarHeight: CGFloat = navigationController?.navigationBar.frameHeight ?? 44.0
 //            let navBarStatusBarHeight: CGFloat = navBarHeight + statusBarHeight
 //            let initialYConstrainValue: CGFloat = 0.0

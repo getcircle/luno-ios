@@ -11,8 +11,8 @@ import UIKit
 extension AppDelegate {
     
     func customizeAppearance(application: UIApplication) {
-        application.setStatusBarStyle(.LightContent, animated: false)
-        
+        UIApplication.sharedApplication().setStatusBarHidden(true, withAnimation: .None)
+
         if let appWindow = window {
             appWindow.layer.cornerRadius = 6.0
             appWindow.layer.masksToBounds = true

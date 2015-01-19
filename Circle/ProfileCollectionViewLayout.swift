@@ -44,7 +44,7 @@ class ProfileCollectionViewLayout: UICollectionViewFlowLayout {
         }
 
         // 44.0 height of nav bar + 20.0 height of status bar
-        offsetToMakeProfileHeaderSticky = headerHeight - 64.0
+        offsetToMakeProfileHeaderSticky = headerHeight - 44.0
         itemSize = CGSizeMake(collectionView!.bounds.width - sectionInset.left - sectionInset.right, cellHeight)
         headerReferenceSize = CGSizeMake(collectionView!.bounds.width, headerHeight)
     }

@@ -48,11 +48,6 @@ class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate, Ci
         phoneNumberFormatter = NBAsYouTypeFormatter(regionCode: "US")
     }
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        setStatusBarHidden(true)
-    }
-    
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         if !welcomeAlertPresented {

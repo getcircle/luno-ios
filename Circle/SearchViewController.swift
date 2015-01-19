@@ -26,7 +26,6 @@ CardHeaderViewDelegate {
     @IBOutlet weak private(set) var searchHeaderContainerViewTopConstraint: NSLayoutConstraint!
     @IBOutlet weak private(set) var quickActionsView: UIView!
     
-    
     private var data = [Card]()
     private var landingDataSource: SearchLandingDataSource!
     private var searchHeaderView: SearchHeaderView!
@@ -46,11 +45,7 @@ CardHeaderViewDelegate {
         super.viewWillAppear(animated)
         registerNotifications()
 
-        navigationController?.navigationBar.makeTransparent()
-        navigationController?.navigationBar.barTintColor = UIColor.appTintColor()
-        
-        // Animate hiding for every time thereafter
-        setStatusBarHidden(false)
+        navigationController!.navigationBar.makeTransparent()
         checkUserAndPresentAuthViewController()
         (collectionView.dataSource as? SearchLandingDataSource)?.loadData { (error) -> Void in
             if error == nil {
@@ -69,8 +64,6 @@ CardHeaderViewDelegate {
 
     private func configureView() {
         view.backgroundColor = UIColor.viewBackgroundColor()
-        // Hide without animation in viewDidLoad
-        setStatusBarHidden(false, animated: false)
         // TODO add some check here for whether or not we're on production
         if let leftBarButton = navigationItem.leftBarButtonItem {
             if let leftBarView = leftBarButton.valueForKey("view") as? UIView {

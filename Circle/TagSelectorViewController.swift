@@ -49,7 +49,6 @@ class TagSelectorViewController:
         tags = ObjectStore.sharedInstance.tags.values.array
         
         // Configurations
-        setStatusBarHidden(true)
         configureView()
         configureSearchHeaderView()
         configurePrototypeCell()
