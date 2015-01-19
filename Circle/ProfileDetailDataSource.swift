@@ -337,4 +337,10 @@ class ProfileDetailDataSource: CardDataSource {
         return .Other
     }
     
+    func addNote(note: NoteService.Containers.Note) {
+        if let card = cardAtSection(3) {
+            card.content.insert(note, atIndex: 0)
+        }
+    }
+    
 }

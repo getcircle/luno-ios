@@ -9,8 +9,13 @@
 import UIKit
 import ProtobufRegistry
 
+protocol NewNoteViewControllerDelegate {
+    func didAddNote(note: NoteService.Containers.Note)
+}
+
 class NewNoteViewController: UIViewController, UIViewControllerTransitioningDelegate {
     
+    var delegate: NewNoteViewControllerDelegate?
     var profile: ProfileService.Containers.Profile?
 
     @IBOutlet weak var noteTextView: UITextView!
@@ -71,7 +76,9 @@ class NewNoteViewController: UIViewController, UIViewControllerTransitioningDele
         noteBuilder.owner_profile_id = currentProfile.id
         noteBuilder.content = noteTextView.text
         NoteService.Actions.createNote(noteBuilder.build()) { (note, error) -> Void in
-            println("note: \(note) error: \(error)")
+            if let note = note {
+                self.delegate?.didAddNote(note)
+            }
             self.dismiss()
         }
     }

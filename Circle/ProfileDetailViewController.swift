@@ -9,7 +9,7 @@
 import UIKit
 import ProtobufRegistry
 
-class ProfileDetailViewController: DetailViewController {
+class ProfileDetailViewController: DetailViewController, NewNoteViewControllerDelegate {
 
     var profile: ProfileService.Containers.Profile!
     
@@ -143,8 +143,18 @@ class ProfileDetailViewController: DetailViewController {
     func addNote(sender: AnyObject!) {
         let newNoteViewController = NewNoteViewController(nibName: "NewNoteViewController", bundle: nil)
         newNoteViewController.profile = profile
+        newNoteViewController.delegate = self
         let navController = UINavigationController(rootViewController: newNoteViewController)
         navigationController?.presentViewController(navController, animated: true, completion: nil)
+    }
+    
+    // MARK: - NewNoteViewControllerDelegate
+    
+    func didAddNote(note: NoteService.Containers.Note) {
+        if let dataSource = collectionView.dataSource as? ProfileDetailDataSource {
+            dataSource.addNote(note)
+            collectionView.reloadData()
+        }
     }
     
 }
