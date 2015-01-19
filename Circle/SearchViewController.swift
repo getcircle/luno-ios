@@ -71,12 +71,8 @@ CardHeaderViewDelegate {
     private func configureView() {
         view.backgroundColor = UIColor.viewBackgroundColor()
         // TODO add some check here for whether or not we're on production
-        if let leftBarButton = navigationItem.leftBarButtonItem {
-            if let leftBarView = leftBarButton.valueForKey("view") as? UIView {
-                let longPressGesture = UILongPressGestureRecognizer(target: self, action: "profileLongPressHandler:")
-                leftBarView.addGestureRecognizer(longPressGesture)
-            }
-        }
+        let longPressGesture = UILongPressGestureRecognizer(target: self, action: "profileLongPressHandler:")
+        loggedInUserProfileButtonContainer.addGestureRecognizer(longPressGesture)
     }
     
     private func configureSearchHeaderView() {
@@ -135,9 +131,6 @@ CardHeaderViewDelegate {
         moveSearchFieldToTop()
     }
 
-    func textFieldDidEndEditing(textField: UITextField) {
-        moveSearchFieldToCenter()
-    }
     // MARK: - SearchHeaderViewDelegate
     
     func didCancel(sender: UIView) {
