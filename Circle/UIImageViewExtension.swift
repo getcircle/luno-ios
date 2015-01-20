@@ -52,7 +52,7 @@ extension UIImageView {
                     return
                 },
                 failure: { (request, response, error) -> Void in
-                    println("failed to fetch image for profile: \(profile) error: \(error)")
+                    println("failed to fetch image for profile: \(profile.full_name) - \(profile.image_url) error: \(error.localizedDescription)")
                 }
             )
         }
