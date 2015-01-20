@@ -19,6 +19,13 @@ CardHeaderViewDelegate {
     @IBOutlet weak private(set) var addNoteQuickAction: UIButton!
     @IBOutlet weak private(set) var addReminderQuickAction: UIButton!
     @IBOutlet weak private(set) var collectionView: UICollectionView!
+    @IBOutlet weak private(set) var collectionViewOverlay: UIView!
+    @IBOutlet weak private(set) var collectionViewTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak private(set) var collectionViewLeftConstraint: NSLayoutConstraint!
+    @IBOutlet weak private(set) var collectionViewRightConstraint: NSLayoutConstraint!
+    @IBOutlet weak private(set) var companyNameLabel: UILabel!
+    @IBOutlet weak private(set) var companyProfileImageView: UIImageView!
+    @IBOutlet weak private(set) var companyProfileButtonContainer: UIView!
     @IBOutlet weak private(set) var companyLogoImageView: UIImageView!
     @IBOutlet weak private(set) var loggedInUserProfileImageView: UIImageView!
     @IBOutlet weak private(set) var loggedInUserProfileButtonContainer: UIView!
@@ -28,6 +35,7 @@ CardHeaderViewDelegate {
     @IBOutlet weak private(set) var searchHeaderContainerViewTopConstraint: NSLayoutConstraint!
     @IBOutlet weak private(set) var quickActionsView: UIView!
     
+    private var collectionViewTopConstraintInitialValue: CGFloat!
     private var data = [Card]()
     private var landingDataSource: SearchLandingDataSource!
     private var searchHeaderView: SearchHeaderView!
@@ -36,12 +44,15 @@ CardHeaderViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        collectionViewTopConstraintInitialValue = collectionViewTopConstraint.constant
         configureView()
         configureSearchHeaderView()
         configureCollectionView()
+        configureCollectionViewOverlay()
         configureQuickActionsView()
         configureCompanyLogoImageView()
         configureLoggedInUserProfileImageView()
+        configureNavigationActionButtons()
         moveSearchFieldToCenter()
     }
 
@@ -97,6 +108,14 @@ CardHeaderViewDelegate {
         queryDataSource = SearchQueryDataSource()
         queryDataSource.registerCardHeader(collectionView)
     }
+    
+    private func configureCollectionViewOverlay() {
+        var tapGesture = UITapGestureRecognizer(target: self, action: "bringUpCollectionView:")
+        collectionViewOverlay.addGestureRecognizer(tapGesture)
+        
+        var panGesture = UIPanGestureRecognizer(target: self, action: "overlayViewPanned:")
+        collectionViewOverlay.addGestureRecognizer(panGesture)
+    }
 
     private func configureQuickActionsView() {
         addNoteQuickAction.setImage(addNoteQuickAction.imageForState(.Normal)?.imageWithRenderingMode(.AlwaysTemplate), forState: .Normal)
@@ -109,11 +128,49 @@ CardHeaderViewDelegate {
     
     private func configureCompanyLogoImageView() {
         companyLogoImageView.addRoundCorners()
+        companyProfileImageView.makeItCircular(false)
     }
     
     private func configureLoggedInUserProfileImageView() {
         loggedInUserProfileImageView.makeItCircular(false)
         loadUserProfileImage()
+    }
+    
+    private func configureNavigationActionButtons() {
+        var leftView = UIView(frame: CGRectMake(0.0, 0.0, 30.0, 30.0))
+        leftView.makeItCircular(false)
+        
+        var leftProfileImageView = UIImageView(frame: CGRectMake(0.0, 0.0, 30.0, 30.0))
+        leftProfileImageView.makeItCircular(false)
+        if let userProfile = AuthViewController.getLoggedInUserProfile() {
+            leftProfileImageView.setImageWithProfile(userProfile)
+        }
+        leftView.addSubview(leftProfileImageView)
+        
+        var leftButton = UIButton(frame: leftView.frame)
+        leftButton.backgroundColor = UIColor.clearColor()
+        leftButton.addTarget(self, action: "showLoggedInUserProfile:", forControlEvents: .TouchUpInside)
+        leftView.addSubview(leftButton)
+        
+        let leftBarButtonItem = UIBarButtonItem(customView: leftView)
+        navigationItem.leftBarButtonItem = leftBarButtonItem
+        
+        // Right Nav Button
+        var rightView = UIView(frame: CGRectMake(0.0, 0.0, 30.0, 30.0))
+        rightView.makeItCircular(false)
+        
+        var rightProfileImageView = UIImageView(frame: CGRectMake(0.0, 0.0, 30.0, 30.0))
+        rightProfileImageView.makeItCircular(false)
+        rightProfileImageView.image = UIImage(named: "EB")
+        rightView.addSubview(rightProfileImageView)
+        
+        var rightButton = UIButton(frame: rightView.frame)
+        rightButton.backgroundColor = UIColor.clearColor()
+        rightButton.addTarget(self, action: "showLoggedInUserProfile:", forControlEvents: .TouchUpInside)
+        rightView.addSubview(rightButton)
+        
+        let rightBarButtonItem = UIBarButtonItem(customView: rightView)
+        navigationItem.rightBarButtonItem = rightBarButtonItem
     }
     
     // MARK: - Load data
@@ -301,16 +358,9 @@ CardHeaderViewDelegate {
     
     private func moveSearchFieldToTop() {
         if navigationController?.topViewController == self {
-            searchHeaderContainerViewLeftConstraint.constant = 0.0
-            searchHeaderContainerViewRightConstraint.constant = 0.0
-            searchHeaderContainerViewTopConstraint.constant = 0.0
-            searchHeaderView.setNeedsUpdateConstraints()
-            
+            bringUpCollectionView(searchHeaderView.searchTextField)
             UIView.animateWithDuration(0.3, animations: { () -> Void in
-                self.view.layoutIfNeeded()
-                self.quickActionsView.alpha = 0.0
-                self.companyLogoImageView.alpha = 0.0
-                self.loggedInUserProfileButtonContainer.alpha = 0.0
+                self.collectionView.alpha = 0.0
             })
         }
     }
@@ -319,15 +369,89 @@ CardHeaderViewDelegate {
         if navigationController?.topViewController == self {
             searchHeaderContainerViewLeftConstraint.constant = 10.0
             searchHeaderContainerViewRightConstraint.constant = 10.0
-            searchHeaderContainerViewTopConstraint.constant = self.view.frameHeight / 2.0 - 40.0
-            searchHeaderView.setNeedsUpdateConstraints()
+            searchHeaderContainerViewTopConstraint.constant = 0.0
+            searchHeaderContainerView.setNeedsUpdateConstraints()
 
+            collectionViewTopConstraint.constant = collectionViewTopConstraintInitialValue
+            collectionViewLeftConstraint.constant = 0.0
+            collectionViewRightConstraint.constant = 0.0
+            collectionView.setNeedsUpdateConstraints()
+            
             UIView.animateWithDuration(0.3, animations: { () -> Void in
                 self.view.layoutIfNeeded()
                 self.quickActionsView.alpha = 1.0
                 self.companyLogoImageView.alpha = 1.0
                 self.loggedInUserProfileButtonContainer.alpha = 1.0
+                self.companyProfileButtonContainer.alpha = 1.0
+                self.collectionView.alpha = 1.0
+                self.collectionViewOverlay.alpha = 1.0
+                self.collectionView.transform = CGAffineTransformMakeScale(0.95, 0.95)
+                self.companyNameLabel.alpha = 1.0
             })
+        }
+    }
+    
+    func bringUpCollectionView(sender: AnyObject) {
+        if navigationController?.topViewController == self {
+            searchHeaderContainerViewLeftConstraint.constant = 0.0
+            searchHeaderContainerViewRightConstraint.constant = 0.0
+            searchHeaderContainerViewTopConstraint.constant = view.frameHeight / 2.0 -
+                searchHeaderContainerView.frameHeight / 2.0 -
+                (navigationController!.navigationBarHidden ? 0.0 : navigationController!.navigationBar.frameHeight)
+            searchHeaderView.setNeedsUpdateConstraints()
+
+            collectionViewTopConstraint.constant = 0.0
+            collectionViewLeftConstraint.constant = 0.0
+            collectionViewRightConstraint.constant = 0.0
+            collectionView.setNeedsUpdateConstraints()
+            
+            UIView.animateWithDuration(0.3, animations: { () -> Void in
+                self.view.layoutIfNeeded()
+                self.quickActionsView.alpha = 0.0
+                self.companyLogoImageView.alpha = 0.0
+                self.loggedInUserProfileButtonContainer.alpha = 0.0
+                self.companyProfileButtonContainer.alpha = 0.0
+                self.collectionViewOverlay.alpha = 0.0
+                self.collectionView.transform = CGAffineTransformIdentity
+                self.companyNameLabel.alpha = 0.0
+            })
+        }
+    }
+    
+    func overlayViewPanned(recognizer: UIPanGestureRecognizer) {
+        var translationInView = -recognizer.translationInView(view).y
+        switch recognizer.state {
+        case .Changed:
+            if translationInView >= 0.0 {
+                collectionViewTopConstraint.constant = max(0.0, collectionViewTopConstraintInitialValue - translationInView)
+                collectionViewLeftConstraint.constant = 0.0
+                collectionViewRightConstraint.constant = 0.0
+                collectionView.setNeedsUpdateConstraints()
+                
+                searchHeaderContainerViewTopConstraint.constant = min(translationInView, view.frameHeight / 2.0 -
+                    searchHeaderContainerView.frameHeight / 2.0 - navigationBarHeight())
+                searchHeaderContainerView.setNeedsUpdateConstraints()
+                view.layoutIfNeeded()
+                
+                var fastAlphaFactor = 1 - min(translationInView/30.0, 1.0)
+                var slowAlphaFactor = 1 - min(translationInView/100.0, 1.0)
+                quickActionsView.alpha = slowAlphaFactor
+                companyLogoImageView.alpha = slowAlphaFactor
+                companyNameLabel.alpha = slowAlphaFactor
+            }
+
+        case .Ended:
+            if translationInView >= 0.0 {
+                let hasMovedPastCenter = translationInView >= 90.0
+                if (recognizer.velocityInView(view).y >= 5.0 && hasMovedPastCenter) || hasMovedPastCenter {
+                    bringUpCollectionView(recognizer)
+                } else {
+                    moveSearchFieldToCenter()
+                }
+            }
+        
+        default:
+            moveSearchFieldToCenter()
         }
     }
 }

@@ -71,4 +71,12 @@ extension UIViewController {
         var withAnimation: UIStatusBarAnimation = animated != nil ? (animated! ? .Fade : .None) : .Fade
         UIApplication.sharedApplication().setStatusBarHidden(hidden, withAnimation: withAnimation)
     }
+    
+    func navigationBarHeight() -> CGFloat {
+        if let navBarHidden = navigationController?.navigationBarHidden {
+            return (navBarHidden ? 0.0 : (navigationController?.navigationBar.frameHeight ?? 0.0))
+        }
+        
+        return 0.0
+    }
 }
