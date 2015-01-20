@@ -19,7 +19,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JtI-Ry-VHf" userLabel="noteTextView">
-                    <rect key="frame" x="15" y="70" width="570" height="515"/>
+                    <rect key="frame" x="15" y="70" width="570" height="485"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="15"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -43,18 +43,47 @@
                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FXY-DB-x6G" userLabel="deleteButton">
+                    <rect key="frame" x="15" y="563" width="22" height="22"/>
+                    <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    <state key="normal" image="Trash"/>
+                    <connections>
+                        <action selector="deleteButtonTapped:" destination="-1" eventType="touchUpInside" id="0T0-uu-eyo"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LCI-0E-1h1" userLabel="newButton">
+                    <rect key="frame" x="563" y="563" width="22" height="22"/>
+                    <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    <state key="normal" image="New"/>
+                    <connections>
+                        <action selector="newButtonTapped:" destination="-1" eventType="touchUpInside" id="TQf-I8-4ao"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RRw-Vy-7nl" userLabel="titleOverlayButton">
+                    <rect key="frame" x="0.0" y="-7" width="600" height="69"/>
+                    <state key="normal">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="titleOverlayButtonTapped:" destination="-1" eventType="touchUpInside" id="rig-GI-v7G"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="JtI-Ry-VHf" secondAttribute="trailing" constant="15" id="3oC-nz-MGo"/>
                 <constraint firstAttribute="trailing" secondItem="M1s-aD-wZf" secondAttribute="trailing" constant="15" id="9cQ-rU-JOb"/>
+                <constraint firstAttribute="bottom" secondItem="LCI-0E-1h1" secondAttribute="bottom" constant="15" id="EZP-8R-PDP"/>
                 <constraint firstItem="JtI-Ry-VHf" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="70" id="G44-3A-h01"/>
                 <constraint firstItem="M1s-aD-wZf" firstAttribute="leading" secondItem="0yZ-3W-8HK" secondAttribute="trailing" constant="20" id="LJj-ex-Q85"/>
                 <constraint firstItem="M1s-aD-wZf" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="8" id="XWO-Tc-6pe"/>
+                <constraint firstAttribute="bottom" secondItem="FXY-DB-x6G" secondAttribute="bottom" constant="15" id="ayn-Iw-3ke"/>
                 <constraint firstItem="0yZ-3W-8HK" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="bVL-p3-C9y"/>
                 <constraint firstItem="JtI-Ry-VHf" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="dIy-yU-vjA"/>
+                <constraint firstAttribute="trailing" secondItem="LCI-0E-1h1" secondAttribute="trailing" constant="15" id="hFB-yO-W6A"/>
+                <constraint firstItem="FXY-DB-x6G" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="j8B-qt-tcI"/>
                 <constraint firstItem="ScM-fC-OJb" firstAttribute="top" secondItem="M1s-aD-wZf" secondAttribute="bottom" constant="5" id="m8Q-Ce-Ocv"/>
-                <constraint firstAttribute="bottom" secondItem="JtI-Ry-VHf" secondAttribute="bottom" constant="15" id="pmv-Af-3Kk"/>
+                <constraint firstAttribute="bottom" secondItem="JtI-Ry-VHf" secondAttribute="bottom" constant="45" id="pmv-Af-3Kk"/>
                 <constraint firstItem="ScM-fC-OJb" firstAttribute="width" secondItem="M1s-aD-wZf" secondAttribute="width" id="pvV-X0-Qg3"/>
                 <constraint firstItem="ScM-fC-OJb" firstAttribute="leading" secondItem="0yZ-3W-8HK" secondAttribute="trailing" constant="20" id="quT-L6-RSA"/>
                 <constraint firstItem="0yZ-3W-8HK" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="8" id="ueE-sg-HC7"/>
@@ -63,6 +92,8 @@
         </view>
     </objects>
     <resources>
+        <image name="New" width="22" height="22"/>
         <image name="Ravi" width="399" height="614"/>
+        <image name="Trash" width="22" height="22"/>
     </resources>
 </document>

@@ -13,6 +13,8 @@ class ProfileDetailViewController: DetailViewController, NewNoteViewControllerDe
 
     var profile: ProfileService.Containers.Profile!
     
+    private var swipeGestureRecognizer: UISwipeGestureRecognizer?
+    
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         registerNotifications()
@@ -43,27 +45,51 @@ class ProfileDetailViewController: DetailViewController, NewNoteViewControllerDe
         collectionView.delegate = delegate
         
         layout.headerHeight = ProfileHeaderCollectionReusableView.height
+        
+        // Gestures
+        swipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: "handleSwipeGesture:")
+        swipeGestureRecognizer?.direction = .Left
+        collectionView.addGestureRecognizer(swipeGestureRecognizer!)
+        
         super.configureCollectionView()
     }
 
-    // MARK: - Collection View delegate
+    // MARK: - UICollectionViewDelegate
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let dataSource = collectionView.dataSource as ProfileDetailDataSource
+        if let card = dataSource.cardAtSection(indexPath.section) {
+            switch card.type {
+            case .KeyValue:
+                handleKeyValueCardSelection(dataSource, indexPath: indexPath)
+            case .Notes:
+                handleNotesCardSelection(card, indexPath: indexPath)
+            default:
+                break
+            }
+        }
+        collectionView.deselectItemAtIndexPath(indexPath, animated: true)
+    }
+    
+    private func handleKeyValueCardSelection(dataSource: ProfileDetailDataSource, indexPath: NSIndexPath) {
         switch dataSource.typeOfCell(indexPath) {
         case .Manager:
             let profileVC = ProfileDetailViewController()
             profileVC.profile = dataSource.manager
             navigationController?.pushViewController(profileVC, animated: true)
-
+            
         case .Email:
             presentMailViewController([profile.email], subject: "Hey", messageBody: "")
-
+            
         default:
             break
         }
-        
-        collectionView.deselectItemAtIndexPath(indexPath, animated: true)
+    }
+    
+    private func handleNotesCardSelection(card: Card, indexPath: NSIndexPath) {
+        if let note = card.content[indexPath.row] as? NoteService.Containers.Note {
+            presentNoteView(note)
+        }
     }
     
     // MARK: - Scroll view delegate
@@ -141,11 +167,7 @@ class ProfileDetailViewController: DetailViewController, NewNoteViewControllerDe
     // MARK: - NotesCardHeaderViewDelegate
     
     func addNote(sender: AnyObject!) {
-        let newNoteViewController = NewNoteViewController(nibName: "NewNoteViewController", bundle: nil)
-        newNoteViewController.profile = profile
-        newNoteViewController.delegate = self
-        let navController = UINavigationController(rootViewController: newNoteViewController)
-        navigationController?.presentViewController(navController, animated: true, completion: nil)
+        presentNoteView(nil)
     }
     
     // MARK: - NewNoteViewControllerDelegate
@@ -155,6 +177,30 @@ class ProfileDetailViewController: DetailViewController, NewNoteViewControllerDe
             dataSource.addNote(note)
             collectionView.reloadData()
         }
+    }
+    
+    func didDeleteNote(note: NoteService.Containers.Note) {
+        if let dataSource = collectionView.dataSource as? ProfileDetailDataSource {
+            dataSource.removeNote(note)
+            collectionView.reloadData()
+        }
+    }
+    
+    // MARK: - Helpers
+    
+    private func presentNoteView(note: NoteService.Containers.Note?) {
+        let newNoteViewController = NewNoteViewController(nibName: "NewNoteViewController", bundle: nil)
+        newNoteViewController.profile = profile
+        newNoteViewController.delegate = self
+        newNoteViewController.note = note
+        let navController = UINavigationController(rootViewController: newNoteViewController)
+        navigationController?.presentViewController(navController, animated: true, completion: nil)
+    }
+    
+    // MARK: - Gesture recognizers
+    
+    func handleSwipeGesture(sender: UISwipeGestureRecognizer) {
+        println("swiping: \(sender)")
     }
     
 }

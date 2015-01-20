@@ -338,8 +338,20 @@ class ProfileDetailDataSource: CardDataSource {
     }
     
     func addNote(note: NoteService.Containers.Note) {
+        // TODO this should be an enum or at least a constant
         if let card = cardAtSection(3) {
             card.content.insert(note, atIndex: 0)
+        }
+    }
+    
+    func removeNote(note: NoteService.Containers.Note) {
+        if let card = cardAtSection(3) {
+            card.content = card.content.filter {
+                if let item = $0 as? NoteService.Containers.Note {
+                    return item.id != note.id
+                }
+                return true
+            }
         }
     }
     
