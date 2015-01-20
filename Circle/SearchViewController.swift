@@ -21,14 +21,7 @@ CardHeaderViewDelegate {
     @IBOutlet weak private(set) var collectionView: UICollectionView!
     @IBOutlet weak private(set) var collectionViewOverlay: UIView!
     @IBOutlet weak private(set) var collectionViewTopConstraint: NSLayoutConstraint!
-    @IBOutlet weak private(set) var collectionViewLeftConstraint: NSLayoutConstraint!
-    @IBOutlet weak private(set) var collectionViewRightConstraint: NSLayoutConstraint!
     @IBOutlet weak private(set) var companyNameLabel: UILabel!
-    @IBOutlet weak private(set) var companyProfileImageView: UIImageView!
-    @IBOutlet weak private(set) var companyProfileButtonContainer: UIView!
-    @IBOutlet weak private(set) var companyLogoImageView: UIImageView!
-    @IBOutlet weak private(set) var loggedInUserProfileImageView: UIImageView!
-    @IBOutlet weak private(set) var loggedInUserProfileButtonContainer: UIView!
     @IBOutlet weak private(set) var searchHeaderContainerView: UIView!
     @IBOutlet weak private(set) var searchHeaderContainerViewLeftConstraint: NSLayoutConstraint!
     @IBOutlet weak private(set) var searchHeaderContainerViewRightConstraint: NSLayoutConstraint!
@@ -36,8 +29,10 @@ CardHeaderViewDelegate {
     @IBOutlet weak private(set) var quickActionsView: UIView!
     
     private var collectionViewTopConstraintInitialValue: CGFloat!
+    private var companyProfileImageView: UIImageView!
     private var data = [Card]()
     private var landingDataSource: SearchLandingDataSource!
+    private var loggedInUserProfileImageView: UIImageView!
     private var searchHeaderView: SearchHeaderView!
     private var queryDataSource: SearchQueryDataSource!
 
@@ -50,8 +45,6 @@ CardHeaderViewDelegate {
         configureCollectionView()
         configureCollectionViewOverlay()
         configureQuickActionsView()
-        configureCompanyLogoImageView()
-        configureLoggedInUserProfileImageView()
         configureNavigationActionButtons()
         moveSearchFieldToCenter()
     }
@@ -77,9 +70,6 @@ CardHeaderViewDelegate {
 
     private func configureView() {
         view.backgroundColor = UIColor.viewBackgroundColor()
-        // TODO add some check here for whether or not we're on production
-        let longPressGesture = UILongPressGestureRecognizer(target: self, action: "profileLongPressHandler:")
-        loggedInUserProfileButtonContainer.addGestureRecognizer(longPressGesture)
     }
     
     private func configureSearchHeaderView() {
@@ -125,31 +115,23 @@ CardHeaderViewDelegate {
         addReminderQuickAction.makeItCircular(true)
         addReminderQuickAction.layer.borderColor = UIColor.appTintColor().CGColor
     }
-    
-    private func configureCompanyLogoImageView() {
-        companyLogoImageView.addRoundCorners()
-        companyProfileImageView.makeItCircular(false)
-    }
-    
-    private func configureLoggedInUserProfileImageView() {
-        loggedInUserProfileImageView.makeItCircular(false)
-        loadUserProfileImage()
-    }
-    
+
     private func configureNavigationActionButtons() {
         var leftView = UIView(frame: CGRectMake(0.0, 0.0, 30.0, 30.0))
         leftView.makeItCircular(false)
         
-        var leftProfileImageView = UIImageView(frame: CGRectMake(0.0, 0.0, 30.0, 30.0))
-        leftProfileImageView.makeItCircular(false)
-        if let userProfile = AuthViewController.getLoggedInUserProfile() {
-            leftProfileImageView.setImageWithProfile(userProfile)
-        }
-        leftView.addSubview(leftProfileImageView)
+        loggedInUserProfileImageView = UIImageView(frame: CGRectMake(0.0, 0.0, 30.0, 30.0))
+        loggedInUserProfileImageView.makeItCircular(false)
+        loadUserProfileImage()
+        leftView.addSubview(loggedInUserProfileImageView)
         
         var leftButton = UIButton(frame: leftView.frame)
         leftButton.backgroundColor = UIColor.clearColor()
         leftButton.addTarget(self, action: "showLoggedInUserProfile:", forControlEvents: .TouchUpInside)
+
+        // TODO add some check here for whether or not we're on production
+        let longPressGesture = UILongPressGestureRecognizer(target: self, action: "profileLongPressHandler:")
+        leftButton.addGestureRecognizer(longPressGesture)
         leftView.addSubview(leftButton)
         
         let leftBarButtonItem = UIBarButtonItem(customView: leftView)
@@ -159,10 +141,12 @@ CardHeaderViewDelegate {
         var rightView = UIView(frame: CGRectMake(0.0, 0.0, 30.0, 30.0))
         rightView.makeItCircular(false)
         
-        var rightProfileImageView = UIImageView(frame: CGRectMake(0.0, 0.0, 30.0, 30.0))
-        rightProfileImageView.makeItCircular(false)
-        rightProfileImageView.image = UIImage(named: "EB")
-        rightView.addSubview(rightProfileImageView)
+        companyProfileImageView = UIImageView(frame: CGRectMake(0.0, 0.0, 30.0, 30.0))
+        companyProfileImageView.makeItCircular(false)
+        
+        // Get this from the server
+        companyProfileImageView.image = UIImage(named: "EB")
+        rightView.addSubview(companyProfileImageView)
         
         var rightButton = UIButton(frame: rightView.frame)
         rightButton.backgroundColor = UIColor.clearColor()
@@ -373,16 +357,11 @@ CardHeaderViewDelegate {
             searchHeaderContainerView.setNeedsUpdateConstraints()
 
             collectionViewTopConstraint.constant = collectionViewTopConstraintInitialValue
-            collectionViewLeftConstraint.constant = 0.0
-            collectionViewRightConstraint.constant = 0.0
             collectionView.setNeedsUpdateConstraints()
             
             UIView.animateWithDuration(0.3, animations: { () -> Void in
                 self.view.layoutIfNeeded()
                 self.quickActionsView.alpha = 1.0
-                self.companyLogoImageView.alpha = 1.0
-                self.loggedInUserProfileButtonContainer.alpha = 1.0
-                self.companyProfileButtonContainer.alpha = 1.0
                 self.collectionView.alpha = 1.0
                 self.collectionViewOverlay.alpha = 1.0
                 self.collectionView.transform = CGAffineTransformMakeScale(0.95, 0.95)
@@ -401,16 +380,11 @@ CardHeaderViewDelegate {
             searchHeaderView.setNeedsUpdateConstraints()
 
             collectionViewTopConstraint.constant = 0.0
-            collectionViewLeftConstraint.constant = 0.0
-            collectionViewRightConstraint.constant = 0.0
             collectionView.setNeedsUpdateConstraints()
             
             UIView.animateWithDuration(0.3, animations: { () -> Void in
                 self.view.layoutIfNeeded()
                 self.quickActionsView.alpha = 0.0
-                self.companyLogoImageView.alpha = 0.0
-                self.loggedInUserProfileButtonContainer.alpha = 0.0
-                self.companyProfileButtonContainer.alpha = 0.0
                 self.collectionViewOverlay.alpha = 0.0
                 self.collectionView.transform = CGAffineTransformIdentity
                 self.companyNameLabel.alpha = 0.0
@@ -424,8 +398,6 @@ CardHeaderViewDelegate {
         case .Changed:
             if translationInView >= 0.0 {
                 collectionViewTopConstraint.constant = max(0.0, collectionViewTopConstraintInitialValue - translationInView)
-                collectionViewLeftConstraint.constant = 0.0
-                collectionViewRightConstraint.constant = 0.0
                 collectionView.setNeedsUpdateConstraints()
                 
                 searchHeaderContainerViewTopConstraint.constant = min(translationInView, view.frameHeight / 2.0 -
@@ -433,11 +405,9 @@ CardHeaderViewDelegate {
                 searchHeaderContainerView.setNeedsUpdateConstraints()
                 view.layoutIfNeeded()
                 
-                var fastAlphaFactor = 1 - min(translationInView/30.0, 1.0)
-                var slowAlphaFactor = 1 - min(translationInView/100.0, 1.0)
-                quickActionsView.alpha = slowAlphaFactor
-                companyLogoImageView.alpha = slowAlphaFactor
-                companyNameLabel.alpha = slowAlphaFactor
+                var alphaFactor = 1 - min(translationInView/100.0, 1.0)
+                quickActionsView.alpha = alphaFactor
+                companyNameLabel.alpha = alphaFactor
             }
 
         case .Ended:
