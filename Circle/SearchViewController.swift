@@ -48,9 +48,6 @@ CardHeaderViewDelegate {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         registerNotifications()
-
-        navigationController?.setNavigationBarHidden(true, animated: true)
-        navigationController!.navigationBar.makeTransparent()
         checkUserAndPresentAuthViewController()
         (collectionView.dataSource as? SearchLandingDataSource)?.loadData { (error) -> Void in
             if error == nil {
@@ -62,7 +59,6 @@ CardHeaderViewDelegate {
     
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
-        navigationController?.setNavigationBarHidden(false, animated: true)
         unregisterNotifications()
     }
 
