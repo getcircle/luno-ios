@@ -34,6 +34,7 @@ CardHeaderViewDelegate {
     private var landingDataSource: SearchLandingDataSource!
     private var loggedInUserProfileImageView: UIImageView!
     private var searchHeaderView: SearchHeaderView!
+    private var shadowAdded = false
     private var queryDataSource: SearchQueryDataSource!
 
     override func viewDidLoad() {
@@ -59,8 +60,10 @@ CardHeaderViewDelegate {
                 self.collectionView.reloadData()
             }
         }
+        
+        addShadowToSearchField()
     }
-    
+
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
         unregisterNotifications()
@@ -71,7 +74,7 @@ CardHeaderViewDelegate {
     private func configureView() {
         view.backgroundColor = UIColor.viewBackgroundColor()
     }
-    
+
     private func configureSearchHeaderView() {
         if let nibViews = NSBundle.mainBundle().loadNibNamed("SearchHeaderView", owner: nil, options: nil) as? [UIView] {
             searchHeaderView = nibViews.first as SearchHeaderView
@@ -83,7 +86,18 @@ CardHeaderViewDelegate {
             searchHeaderView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
         }
     }
-    
+
+    private func addShadowToSearchField() {
+        if !shadowAdded {
+            searchHeaderView.layer.shadowPath = UIBezierPath(rect: searchHeaderView.bounds).CGPath
+            searchHeaderView.layer.shadowOpacity = 0.1
+            searchHeaderView.layer.shadowOffset = CGSizeMake(2.0, 1.0)
+            searchHeaderView.layer.shouldRasterize = true
+            searchHeaderView.layer.rasterizationScale = UIScreen.mainScreen().scale
+            shadowAdded = true
+        }
+    }
+
     private func configureCollectionView() {
         collectionView.keyboardDismissMode = .OnDrag
         collectionView.contentInset = UIEdgeInsetsMake(20.0, 0.0, 0.0, 0.0)
@@ -145,7 +159,7 @@ CardHeaderViewDelegate {
         companyProfileImageView.makeItCircular(false)
         
         // Get this from the server
-        companyProfileImageView.image = UIImage(named: "EB")
+        companyProfileImageView.image = UIImage(named: "MI")
         rightView.addSubview(companyProfileImageView)
         
         var rightButton = UIButton(frame: rightView.frame)

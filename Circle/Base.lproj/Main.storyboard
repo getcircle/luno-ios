@@ -241,7 +241,7 @@
                                     <constraint firstItem="rEL-h3-usb" firstAttribute="top" secondItem="sEy-gh-6JI" secondAttribute="top" id="wxD-mA-1m8"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Eventbrite" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LHa-xJ-wcY" userLabel="CompanyNameLabel">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mobile Iron" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LHa-xJ-wcY" userLabel="CompanyNameLabel">
                                 <rect key="frame" x="10" y="135" width="580" height="50"/>
                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="36"/>
                                 <color key="textColor" red="0.15056315064430237" green="0.15055865049362183" blue="0.15056121349334717" alpha="1" colorSpace="calibratedRGB"/>
@@ -277,7 +277,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Circle" id="wys-4b-D4W"/>
+                    <navigationItem key="navigationItem" title="circle" id="wys-4b-D4W"/>
                     <connections>
                         <outlet property="activityIndicatorView" destination="heX-JS-q97" id="agu-HE-HiO"/>
                         <outlet property="addNoteQuickAction" destination="rEL-h3-usb" id="5yl-66-sWY"/>
