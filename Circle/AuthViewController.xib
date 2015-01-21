@@ -2,13 +2,11 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AuthViewController" customModule="Circle" customModuleProvider="target">
             <connections>
                 <outlet property="appNameLabel" destination="7eh-3f-DhV" id="I1t-aw-slU"/>
-                <outlet property="appNameYConstraint" destination="r1U-Zo-1z7" id="3DH-oD-NWA"/>
                 <outlet property="emailField" destination="x4p-Uh-3t5" id="jj4-he-uxx"/>
                 <outlet property="logInButton" destination="aie-sS-pXs" id="zfO-wP-e3y"/>
                 <outlet property="passwordField" destination="faS-m0-daM" id="sFC-GE-qsU"/>
@@ -27,8 +25,8 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Circle" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="7eh-3f-DhV" userLabel="AppName">
-                    <rect key="frame" x="20" y="170" width="560" height="63"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="circle" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="7eh-3f-DhV" userLabel="AppName">
+                    <rect key="frame" x="20" y="239" width="560" height="63"/>
                     <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="46"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
@@ -39,7 +37,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <textField clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="email@yourcompany.com" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="x4p-Uh-3t5" customClass="CircleTextField" customModule="Circle" customModuleProvider="target">
-                    <rect key="frame" x="20" y="303" width="560" height="35"/>
+                    <rect key="frame" x="20" y="372" width="560" height="35"/>
                     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="35" id="wqu-FP-Y81"/>
@@ -52,7 +50,7 @@
                     </connections>
                 </textField>
                 <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aie-sS-pXs">
-                    <rect key="frame" x="180" y="433" width="240" height="44"/>
+                    <rect key="frame" x="180" y="502" width="240" height="44"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="240" id="MGZ-XU-QqL"/>
@@ -69,7 +67,7 @@
                     </connections>
                 </button>
                 <textField clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="password" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="faS-m0-daM" userLabel="Password" customClass="CircleTextField" customModule="Circle" customModuleProvider="target">
-                    <rect key="frame" x="20" y="358" width="560" height="35"/>
+                    <rect key="frame" x="20" y="427" width="560" height="35"/>
                     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="35" id="GFh-hc-k2E"/>
@@ -93,36 +91,20 @@
                 <constraint firstAttribute="trailing" secondItem="7eh-3f-DhV" secondAttribute="trailing" constant="20" symbolic="YES" id="MwH-ef-daQ"/>
                 <constraint firstItem="pK5-tP-ZNS" firstAttribute="top" secondItem="7eh-3f-DhV" secondAttribute="bottom" id="Rhe-sv-hBS"/>
                 <constraint firstAttribute="centerX" secondItem="faS-m0-daM" secondAttribute="centerX" id="Rnk-Iw-DVV"/>
-                <constraint firstItem="faS-m0-daM" firstAttribute="leading" secondItem="ba3-xx-xRk" secondAttribute="leading" priority="750" constant="20" symbolic="YES" id="aYE-gX-DcS"/>
+                <constraint firstAttribute="centerY" secondItem="7eh-3f-DhV" secondAttribute="centerY" constant="30" id="Txn-xi-eRN"/>
                 <constraint firstAttribute="trailing" secondItem="pK5-tP-ZNS" secondAttribute="trailing" priority="750" constant="20" symbolic="YES" id="ayW-Ox-miN"/>
                 <constraint firstAttribute="trailing" secondItem="x4p-Uh-3t5" secondAttribute="trailing" priority="750" constant="20" symbolic="YES" id="bLq-0P-NFV"/>
-                <constraint firstItem="faS-m0-daM" firstAttribute="width" secondItem="pK5-tP-ZNS" secondAttribute="width" id="ceC-b5-hLN"/>
-                <constraint firstItem="faS-m0-daM" firstAttribute="width" secondItem="aie-sS-pXs" secondAttribute="width" id="fgA-K5-OBR"/>
                 <constraint firstItem="faS-m0-daM" firstAttribute="width" secondItem="x4p-Uh-3t5" secondAttribute="width" id="hF5-6d-M0J"/>
-                <constraint firstItem="x4p-Uh-3t5" firstAttribute="width" secondItem="aie-sS-pXs" secondAttribute="width" id="iIw-pu-Y2v"/>
                 <constraint firstAttribute="centerX" secondItem="aie-sS-pXs" secondAttribute="centerX" id="jgc-Eu-pO9"/>
-                <constraint firstAttribute="trailing" secondItem="faS-m0-daM" secondAttribute="trailing" priority="750" constant="20" symbolic="YES" id="jog-P5-CPa"/>
                 <constraint firstItem="aew-4r-Rd2" firstAttribute="leading" secondItem="ba3-xx-xRk" secondAttribute="leading" constant="20" symbolic="YES" id="lI1-Il-CxF"/>
                 <constraint firstItem="x4p-Uh-3t5" firstAttribute="leading" secondItem="ba3-xx-xRk" secondAttribute="leading" priority="750" constant="20" symbolic="YES" id="nUH-zl-LJ4"/>
                 <constraint firstItem="pK5-tP-ZNS" firstAttribute="leading" secondItem="ba3-xx-xRk" secondAttribute="leading" priority="750" constant="20" symbolic="YES" id="qQN-Uz-Gqd"/>
                 <constraint firstItem="x4p-Uh-3t5" firstAttribute="top" secondItem="pK5-tP-ZNS" secondAttribute="top" constant="70" id="qZy-xN-RVi"/>
-                <constraint firstItem="7eh-3f-DhV" firstAttribute="centerY" secondItem="ba3-xx-xRk" secondAttribute="bottom" multiplier="1/3" constant="1" id="r1U-Zo-1z7"/>
                 <constraint firstAttribute="centerX" secondItem="7eh-3f-DhV" secondAttribute="centerX" id="v5g-9h-qkZ"/>
                 <constraint firstAttribute="centerX" secondItem="aew-4r-Rd2" secondAttribute="centerX" id="vza-xb-Gwf"/>
-                <constraint firstItem="x4p-Uh-3t5" firstAttribute="width" secondItem="pK5-tP-ZNS" secondAttribute="width" id="wrh-Yb-PqR"/>
                 <constraint firstAttribute="centerX" secondItem="pK5-tP-ZNS" secondAttribute="centerX" id="zeZ-UU-ar7"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
-            <variation key="default">
-                <mask key="constraints">
-                    <exclude reference="iIw-pu-Y2v"/>
-                    <exclude reference="wrh-Yb-PqR"/>
-                    <exclude reference="aYE-gX-DcS"/>
-                    <exclude reference="ceC-b5-hLN"/>
-                    <exclude reference="fgA-K5-OBR"/>
-                    <exclude reference="jog-P5-CPa"/>
-                </mask>
-            </variation>
             <connections>
                 <outletCollection property="gestureRecognizers" destination="YoK-1K-HFw" appends="YES" id="E74-4a-osp"/>
             </connections>
