@@ -7,7 +7,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NewNoteViewController" customModule="Circle" customModuleProvider="target">
             <connections>
                 <outlet property="noteTextView" destination="JtI-Ry-VHf" id="yHM-HC-hKk"/>
-                <outlet property="profileImageView" destination="0yZ-3W-8HK" id="Nxb-YZ-r9k"/>
+                <outlet property="profileImageView" destination="0yZ-3W-8HK" id="G3u-Ve-P0v"/>
                 <outlet property="profileNameLabel" destination="M1s-aD-wZf" id="uun-WK-sfu"/>
                 <outlet property="profileTitleLabel" destination="ScM-fC-OJb" id="9qg-Bv-PMg"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -24,7 +24,7 @@
                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="15"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Ravi" translatesAutoresizingMaskIntoConstraints="NO" id="0yZ-3W-8HK">
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Ravi" translatesAutoresizingMaskIntoConstraints="NO" id="0yZ-3W-8HK" customClass="CircleImageView" customModule="Circle" customModuleProvider="target">
                     <rect key="frame" x="16" y="8" width="50" height="50"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="keb-pL-L5C"/>

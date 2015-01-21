@@ -44,7 +44,7 @@ CardHeaderViewDelegate {
     private var data = [Card]()
     private var firstLoad = false
     private var landingDataSource: SearchLandingDataSource!
-    private var loggedInUserProfileImageView: UIImageView!
+    private var loggedInUserProfileImageView: CircleImageView!
     private var searchHeaderView: SearchHeaderView!
     private var shadowAdded = false
     private var queryDataSource: SearchQueryDataSource!
@@ -71,7 +71,6 @@ CardHeaderViewDelegate {
         super.viewWillAppear(animated)
 
         registerNotifications()
-        checkUserAndPresentAuthViewController()
         if firstLoad {
             moveSearchFieldToCenter()
             addShadowToSearchField()
@@ -86,6 +85,11 @@ CardHeaderViewDelegate {
                 }
             }
         }
+    }
+
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        checkUserAndPresentAuthViewController()
     }
 
     override func viewDidDisappear(animated: Bool) {
@@ -164,7 +168,7 @@ CardHeaderViewDelegate {
         var leftView = UIView(frame: CGRectMake(0.0, 0.0, 30.0, 30.0))
         leftView.makeItCircular(false)
         
-        loggedInUserProfileImageView = UIImageView(frame: CGRectMake(0.0, 0.0, 30.0, 30.0))
+        loggedInUserProfileImageView = CircleImageView(frame: CGRectMake(0.0, 0.0, 30.0, 30.0))
         loggedInUserProfileImageView.makeItCircular(false)
         loadUserProfileImage()
         leftView.addSubview(loggedInUserProfileImageView)

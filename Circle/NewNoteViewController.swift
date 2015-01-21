@@ -21,7 +21,7 @@ class NewNoteViewController: UIViewController, UIViewControllerTransitioningDele
     var profile: ProfileService.Containers.Profile?
 
     @IBOutlet weak var noteTextView: UITextView!
-    @IBOutlet weak var profileImageView: UIImageView!
+    @IBOutlet weak var profileImageView: CircleImageView!
     @IBOutlet weak var profileNameLabel: UILabel!
     @IBOutlet weak var profileTitleLabel: UILabel!
     

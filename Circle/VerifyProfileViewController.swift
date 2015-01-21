@@ -19,7 +19,7 @@ class VerifyProfileViewController:
     @IBOutlet weak private(set) var firstNameField: UITextField!
     @IBOutlet weak private(set) var lastNameField: UITextField!
     @IBOutlet weak private(set) var nextButton: UIButton!
-    @IBOutlet weak private(set) var profileImageView: UIImageView!
+    @IBOutlet weak private(set) var profileImageView: CircleImageView!
     @IBOutlet weak private(set) var titleField: UITextField!
     @IBOutlet weak private(set) var titleLabel: UILabel!
     @IBOutlet weak private(set) var verifyTextLabel: UILabel!

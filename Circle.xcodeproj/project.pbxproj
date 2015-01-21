@@ -27,6 +27,7 @@
 		8F085A961A6C191400F8139B /* TeamGridItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F085A941A6C191400F8139B /* TeamGridItemCollectionViewCell.xib */; };
 		8F085A981A6C4B0D00F8139B /* TeamDetailCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F085A971A6C4B0D00F8139B /* TeamDetailCollectionViewDelegate.swift */; };
 		8F0E44871A61EE99008710E7 /* LocationAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0E44861A61EE99008710E7 /* LocationAnnotation.swift */; };
+		8F2234B21A6F7A7500C39E39 /* CircleImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F2234B11A6F7A7500C39E39 /* CircleImageView.swift */; };
 		8F22CB771A2661890026376E /* AppDelegateAppearanceExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F22CB761A2661890026376E /* AppDelegateAppearanceExtension.swift */; };
 		8F22CBE01A27A8E60026376E /* ProfileHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F22CBDE1A27A8E60026376E /* ProfileHeaderCollectionReusableView.swift */; };
 		8F22CBE11A27A8E60026376E /* ProfileHeaderCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F22CBDF1A27A8E60026376E /* ProfileHeaderCollectionReusableView.xib */; };
@@ -243,6 +244,7 @@
 		8F085A941A6C191400F8139B /* TeamGridItemCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TeamGridItemCollectionViewCell.xib; sourceTree = "<group>"; };
 		8F085A971A6C4B0D00F8139B /* TeamDetailCollectionViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamDetailCollectionViewDelegate.swift; sourceTree = "<group>"; };
 		8F0E44861A61EE99008710E7 /* LocationAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationAnnotation.swift; sourceTree = "<group>"; };
+		8F2234B11A6F7A7500C39E39 /* CircleImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleImageView.swift; sourceTree = "<group>"; };
 		8F22CB761A2661890026376E /* AppDelegateAppearanceExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegateAppearanceExtension.swift; sourceTree = "<group>"; };
 		8F22CB7A1A268C040026376E /* Circle-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Circle-Bridging-Header.h"; sourceTree = "<group>"; };
 		8F22CBDE1A27A8E60026376E /* ProfileHeaderCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileHeaderCollectionReusableView.swift; sourceTree = "<group>"; };
@@ -644,6 +646,7 @@
 			isa = PBXGroup;
 			children = (
 				8F7400371A6A3FF700D96B60 /* CircleAlertViewController.swift */,
+				8F2234B11A6F7A7500C39E39 /* CircleImageView.swift */,
 				8F682F511A67AF360066BDEE /* CircleTextField.swift */,
 				8F7400291A68878800D96B60 /* GradientView.swift */,
 				8FF2984C1A4E29F400306CFC /* PaddedLabel.swift */,
@@ -1026,6 +1029,7 @@
 				8FF298531A4E306600306CFC /* CenterAlignFlowLayout.swift in Sources */,
 				BF8DAC731A6CB03F000860DD /* NotesCardHeaderCollectionReusableView.swift in Sources */,
 				8F22CBE31A27AE9B0026376E /* UIImageViewExtension.swift in Sources */,
+				8F2234B21A6F7A7500C39E39 /* CircleImageView.swift in Sources */,
 				8F4805ED1A5DFEE400273731 /* ProfilesCollectionViewDelegate.swift in Sources */,
 				BFB7918B1A2C3C860048E8FB /* SpringFlowLayout.swift in Sources */,
 				8F22CBF51A2865030026376E /* ProfileDetailDataSource.swift in Sources */,

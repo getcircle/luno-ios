@@ -30,7 +30,7 @@ class ProfileCollectionViewCell: CircleCollectionViewCell {
     
     @IBOutlet weak private(set) var nameLabel: UILabel!
     @IBOutlet weak private(set) var nameLabelTopSpaceConstraint: NSLayoutConstraint!
-    @IBOutlet weak private(set) var profileImageView: UIImageView!
+    @IBOutlet weak private(set) var profileImageView: CircleImageView!
     @IBOutlet weak private(set) var profileImageViewWidthConstraint: NSLayoutConstraint!
     @IBOutlet weak private(set) var subTextLabel: UILabel!
     
@@ -41,7 +41,6 @@ class ProfileCollectionViewCell: CircleCollectionViewCell {
                 updateViewByMode()
             }
         }
-    
     }
 
     override func awakeFromNib() {

@@ -136,4 +136,18 @@ extension UIColor {
         
         return palette[Int(arc4random_uniform(UInt32(palette.count)))]
     }
+    
+    class func profileImageBackgroundColor(randomNumber withRandomNumber: Int? = 0) -> UIColor {
+        let palette = [
+            UIColor(red: 30, green: 146, blue: 57),
+            UIColor(red: 14, green: 99, blue: 177),
+            UIColor(red: 109, green: 109, blue: 109),
+            UIColor(red: 213, green: 102, blue: 19),
+            UIColor(red: 119, green: 65, blue: 133),
+            UIColor(red: 179, green: 44, blue: 40),
+        ]
+
+        var randomNumber = withRandomNumber != nil && withRandomNumber != 0 ? withRandomNumber : palette.count
+        return palette[Int(arc4random_uniform(UInt32(randomNumber!)))]
+    }
 }

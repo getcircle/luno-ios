@@ -25,30 +25,22 @@ class ProfileImagesCollectionViewCell: CircleCollectionViewCell {
     private let profileImageWidthHeight: CGFloat = 30.0
     private let profileImageInterSpacing: CGFloat = 20.0
 
-    private var profileImageViews = [UIImageView]()
+    private var profileImageViews = [CircleImageView]()
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
         // Initialization code
-        configureCardParentView()
         configureContentView()
     }
 
     // MARK: - Configuration
     
-    private func configureCardParentView() {
-//        cardParentView.layer.borderWidth = 1.0
-//        cardParentView.layer.borderColor = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 0.3).CGColor
-//        cardParentView.layer.cornerRadius = 4.0
-//        cardParentView.layer.masksToBounds = true
-    }
-
     private func configureContentView() {
         let containerWidth = cardContentView.frameWidth
         var currentX: CGFloat = 0.0
         for i in 0...numberOfProfileImageViews {
-            var profileImage = UIImageView(frame: CGRectMake(currentX, 0.0, profileImageWidthHeight, profileImageWidthHeight))
+            var profileImage = CircleImageView(frame: CGRectMake(currentX, 0.0, profileImageWidthHeight, profileImageWidthHeight))
             cardContentView.addSubview(profileImage)
             profileImage.contentMode = .ScaleAspectFill
             profileImage.hidden = true
@@ -69,7 +61,7 @@ class ProfileImagesCollectionViewCell: CircleCollectionViewCell {
             var counter = 0
             
             profileImageViews = profileImageViews.map({
-                ($0 as UIImageView).hidden = true
+                ($0 as CircleImageView).hidden = true
                 return $0
             })
             for profile in profiles {

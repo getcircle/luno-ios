@@ -15,7 +15,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
                     <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kX0-a4-Q8w" userLabel="ProfileImageView">
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kX0-a4-Q8w" userLabel="ProfileImageView" customClass="CircleImageView" customModule="Circle" customModuleProvider="target">
                     <rect key="frame" x="120" y="45" width="80" height="80"/>
                     <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
@@ -65,7 +65,7 @@
                 <outlet property="backgroundImage" destination="65x-XU-UUc" id="zYp-Qk-3vF"/>
                 <outlet property="nameLabel" destination="1Tu-Zx-9yR" id="dCN-I3-cEP"/>
                 <outlet property="nameNavLabel" destination="zJL-k5-Ada" id="fZN-PC-Fce"/>
-                <outlet property="profileImage" destination="kX0-a4-Q8w" id="m00-lp-0Do"/>
+                <outlet property="profileImage" destination="kX0-a4-Q8w" id="idA-m8-Iy4"/>
                 <outlet property="titleLabel" destination="GGm-ME-NAZ" id="FRS-1Y-xvS"/>
             </connections>
             <point key="canvasLocation" x="315" y="436"/>

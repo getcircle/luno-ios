@@ -31,9 +31,9 @@ extension String {
         return camelCase
     }
 
-    subscript(integerIndex: Int) -> Character {
+    subscript(integerIndex: Int) -> String {
         let index = advance(startIndex, integerIndex)
-        return self[index]
+        return String(self[index])
     }
     
     subscript(integerRange: Range<Int>) -> String {

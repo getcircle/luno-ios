@@ -14,7 +14,7 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var nameNavLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var profileImage: UIImageView!
+    @IBOutlet weak var profileImage: CircleImageView!
     @IBOutlet weak var backgroundImage: UIImageView!
 
     private(set) var visualEffectView: UIVisualEffectView!
@@ -45,13 +45,9 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
         nameLabel.text = profile.first_name + " " + profile.last_name
         nameNavLabel.text = nameLabel.text
         titleLabel.text = profile.title
-
-        profileImage.setImageWithURL(
-            NSURL(string: profile.image_url),
-            placeholderImage: UIImage(named: "DefaultPerson"))
-
+        profileImage.setImageWithProfile(profile)
         backgroundImage.setImageWithURL(
-            NSURL(string: profile.image_url),
-            placeholderImage: UIImage(named: "DefaultPerson"))
+            NSURL(string: profile.image_url)
+        )
     }
 }

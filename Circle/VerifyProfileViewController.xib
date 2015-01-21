@@ -12,7 +12,7 @@
                 <outlet property="firstNameField" destination="toX-08-Qfz" id="pGa-Sb-Hej"/>
                 <outlet property="lastNameField" destination="aCj-6L-IsZ" id="P7H-Ow-KFv"/>
                 <outlet property="nextButton" destination="NIK-YA-0mi" id="IzG-6W-kuZ"/>
-                <outlet property="profileImageView" destination="Cwx-Iz-cj2" id="Cke-f6-ieg"/>
+                <outlet property="profileImageView" destination="Cwx-Iz-cj2" id="Jol-oq-Z7P"/>
                 <outlet property="titleField" destination="431-jv-Ldz" id="sAd-Tn-w2O"/>
                 <outlet property="titleLabel" destination="wmn-tL-Rh8" id="fVZ-LQ-cki"/>
                 <outlet property="verifyTextLabel" destination="aOO-ob-RG8" id="FeK-hV-ntt"/>
@@ -39,7 +39,7 @@
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Cwx-Iz-cj2" userLabel="ProfileImageView">
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Cwx-Iz-cj2" userLabel="ProfileImageView" customClass="CircleImageView" customModule="Circle" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
