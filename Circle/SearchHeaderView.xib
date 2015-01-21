@@ -14,7 +14,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k4l-QU-6Cu">
-                            <rect key="frame" x="531" y="8" width="49" height="34"/>
+                            <rect key="frame" x="531" y="0.0" width="49" height="50"/>
                             <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
                             <color key="tintColor" red="0.88235294119999996" green="0.15686274510000001" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <state key="normal" title="Cancel">
@@ -40,6 +40,7 @@
                         <constraint firstAttribute="bottom" secondItem="gI9-Cf-jLM" secondAttribute="bottom" id="DAG-4j-DcD"/>
                         <constraint firstAttribute="trailing" secondItem="gI9-Cf-jLM" secondAttribute="trailing" id="dXR-xJ-pzV"/>
                         <constraint firstAttribute="centerY" secondItem="k4l-QU-6Cu" secondAttribute="centerY" id="gqt-4g-6nS"/>
+                        <constraint firstItem="k4l-QU-6Cu" firstAttribute="height" secondItem="Jif-sc-Wzd" secondAttribute="height" id="qTG-Ok-XEl"/>
                         <constraint firstAttribute="trailing" secondItem="k4l-QU-6Cu" secondAttribute="trailing" constant="20" id="zlE-Ym-FIS"/>
                     </constraints>
                 </view>
