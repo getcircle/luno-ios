@@ -7,25 +7,48 @@
 //
 
 import UIKit
+import MessageUI
 import ProtobufRegistry
 
 class SearchViewController: UIViewController,
 UICollectionViewDelegate,
 UITextFieldDelegate,
+MFMailComposeViewControllerDelegate,
+MFMessageComposeViewControllerDelegate,
 SearchHeaderViewDelegate,
 CardHeaderViewDelegate {
     
-    struct Placeholders {
-        static let Default = NSLocalizedString("Search people, teams, tags, etc.",
-            comment: "Placeholder text for search field used to search people, teams and tags.")
-        static let Email = NSLocalizedString("Who do you want to email",
-            comment: "Placeholder for search field used search for the person user intends to email")
-        static let Phone = NSLocalizedString("Who do you want to call",
-            comment: "Placeholder for search field used search for the person user intends to call")
-        static let Message = NSLocalizedString("Who do you want to message",
-            comment: "Placeholder for search field used search for the person user intends to send a message")
+    enum QuickAction {
+        case None
+        case Email
+        case Message
+        case Phone
+        case Slack
+        
+        static func placeholderByQuickAction(quickAction: QuickAction) -> String {
+            switch quickAction {
+            case .None:
+                return NSLocalizedString("Search people, teams, tags, etc.",
+                    comment: "Placeholder text for search field used to search people, teams and tags.")
+                
+            case .Email:
+                return NSLocalizedString("Who do you want to email",
+                    comment: "Placeholder for search field used search for the person user intends to email")
+                
+            case .Message:
+                return NSLocalizedString("Who do you want to message",
+                    comment: "Placeholder for search field used search for the person user intends to send a message")
+            case .Phone:
+                return NSLocalizedString("Who do you want to call",
+                    comment: "Placeholder for search field used search for the person user intends to call")
+                
+            case .Slack:
+                return NSLocalizedString("Who do you want to message",
+                    comment: "Placeholder for search field used search for the person user intends to send a message")
+            }
+        }
     }
-    
+
     @IBOutlet weak private(set) var activityIndicatorView: UIActivityIndicatorView!
     @IBOutlet weak private(set) var addNoteQuickAction: UIButton!
     @IBOutlet weak private(set) var addReminderQuickAction: UIButton!
@@ -46,6 +69,11 @@ CardHeaderViewDelegate {
     private var landingDataSource: SearchLandingDataSource!
     private var loggedInUserProfileImageView: CircleImageView!
     private var searchHeaderView: SearchHeaderView!
+    private var selectedAction: QuickAction = .None {
+        didSet {
+            searchHeaderView.searchTextField.placeholder = QuickAction.placeholderByQuickAction(selectedAction)
+        }
+    }
     private var shadowAdded = false
     private var queryDataSource: SearchQueryDataSource!
 
@@ -107,12 +135,12 @@ CardHeaderViewDelegate {
         if let nibViews = NSBundle.mainBundle().loadNibNamed("SearchHeaderView", owner: nil, options: nil) as? [UIView] {
             searchHeaderView = nibViews.first as SearchHeaderView
             searchHeaderView.delegate = self
-            searchHeaderView.searchTextField.placeholder = Placeholders.Default
             searchHeaderView.searchTextField.delegate = self
             searchHeaderView.searchTextField.addTarget(self, action: "search", forControlEvents: .EditingChanged)
             searchHeaderContainerView.addSubview(searchHeaderView)
             searchHeaderView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
             searchHeaderView.layer.cornerRadius = 10.0
+            selectedAction = .None
         }
     }
 
@@ -225,7 +253,7 @@ CardHeaderViewDelegate {
     // MARK: - SearchHeaderViewDelegate
     
     func didCancel(sender: UIView) {
-        searchHeaderView.searchTextField.placeholder = Placeholders.Default
+        selectedAction = .None
         collectionView.dataSource = landingDataSource
         queryDataSource.resetCards()
         collectionView.reloadData()
@@ -252,32 +280,40 @@ CardHeaderViewDelegate {
         let dataSource = (collectionView.dataSource as CardDataSource)
         let selectedCard = dataSource.cardAtSection(indexPath.section)!
         
-        switch selectedCard.type {
-        case .People, .Birthdays, .Anniversaries, .NewHires:
+        // Handle quick actions - this assumes quick actions will be on profiles only
+        if dataSource is SearchQueryDataSource && selectedAction != .None {
             if let profile = dataSource.contentAtIndexPath(indexPath)? as? ProfileService.Containers.Profile {
-                let viewController = ProfileDetailViewController()
-                viewController.profile = profile
-                navigationController?.pushViewController(viewController, animated: true)
+                performQuickAction(profile)
             }
-        case .Group:
-            let viewController = storyboard?.instantiateViewControllerWithIdentifier("ProfilesViewController") as ProfilesViewController
-            viewController.dataSource.setInitialData(selectedCard.content[0] as [AnyObject], ofType: nil)
-            viewController.title = selectedCard.title
-            navigationController?.pushViewController(viewController, animated: true)
+        }
+        else {
+            switch selectedCard.type {
+            case .People, .Birthdays, .Anniversaries, .NewHires:
+                if let profile = dataSource.contentAtIndexPath(indexPath)? as? ProfileService.Containers.Profile {
+                    let viewController = ProfileDetailViewController()
+                    viewController.profile = profile
+                    navigationController?.pushViewController(viewController, animated: true)
+                }
+            case .Group:
+                let viewController = storyboard?.instantiateViewControllerWithIdentifier("ProfilesViewController") as ProfilesViewController
+                viewController.dataSource.setInitialData(selectedCard.content[0] as [AnyObject], ofType: nil)
+                viewController.title = selectedCard.title
+                navigationController?.pushViewController(viewController, animated: true)
 
-        case .Locations:
-            let viewController = LocationDetailViewController()
-            navigationController?.pushViewController(viewController, animated: true)
-            
-        case .Team:
-            if let selectedTeam = dataSource.contentAtIndexPath(indexPath)? as? OrganizationService.Containers.Team {
-                let viewController = TeamDetailViewController()
-                (viewController.dataSource as TeamDetailDataSource).selectedTeam = selectedTeam
+            case .Locations:
+                let viewController = LocationDetailViewController()
                 navigationController?.pushViewController(viewController, animated: true)
+                
+            case .Team:
+                if let selectedTeam = dataSource.contentAtIndexPath(indexPath)? as? OrganizationService.Containers.Team {
+                    let viewController = TeamDetailViewController()
+                    (viewController.dataSource as TeamDetailDataSource).selectedTeam = selectedTeam
+                    navigationController?.pushViewController(viewController, animated: true)
+                }
+                
+            default:
+                performSegueWithIdentifier("showListOfPeople", sender: collectionView)
             }
-            
-        default:
-            performSegueWithIdentifier("showListOfPeople", sender: collectionView)
         }
     }
     
@@ -357,16 +393,17 @@ CardHeaderViewDelegate {
     }
     
     @IBAction func messageButtonTapped(sender: AnyObject!) {
-        searchHeaderView.searchTextField.placeholder = Placeholders.Message
+        selectedAction = .Message
         searchHeaderView.searchTextField.becomeFirstResponder()
     }
     
     @IBAction func emailButtonTapped(sender: AnyObject!) {
-        searchHeaderView.searchTextField.placeholder = Placeholders.Email
+        selectedAction = .Email
         searchHeaderView.searchTextField.becomeFirstResponder()
     }
 
     @IBAction func phoneButtonTapped(sender: AnyObject!) {
+        selectedAction = .Phone
         searchHeaderView.searchTextField.becomeFirstResponder()
     }
     
@@ -473,6 +510,37 @@ CardHeaderViewDelegate {
         }
     }
     
+    // MARK: - Quick Actions
+    
+    private func performQuickAction(profile: ProfileService.Containers.Profile) -> Bool {
+        switch selectedAction {
+        case .Email:
+            presentMailViewController([profile.email], subject: "Hey", messageBody: "", completionHandler: {() -> Void in
+                self.resetQuickAction()
+            })
+            return true
+
+        case .Message:
+            var recipient = profile.cell_phone ?? profile.email
+            presentMessageViewController([recipient], subject: "Hey", messageBody: "", completionHandler: {() -> Void in
+                self.resetQuickAction()
+            })
+            return true
+
+        default:
+            break
+        }
+        
+        return false
+    }
+    
+    private func resetQuickAction() {
+        selectedAction = .None
+        searchHeaderView.cancelButtonTapped(self)
+    }
+    
+    // MARK: - Gesture Recognizers
+    
     func overlayViewPanned(recognizer: UIPanGestureRecognizer) {
         var translationInView = -recognizer.translationInView(view).y
         switch recognizer.state {
@@ -508,5 +576,17 @@ CardHeaderViewDelegate {
         default:
             moveSearchFieldToCenter()
         }
+    }
+
+    // MARK: - MFMailComposeViewControllerDelegate
+    
+    func mailComposeController(controller: MFMailComposeViewController!, didFinishWithResult result: MFMailComposeResult, error: NSError!) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    // MARK: MFMessageComposeViewControllerDelegate
+    
+    func messageComposeViewController(controller: MFMessageComposeViewController!, didFinishWithResult result: MessageComposeResult) {
+        dismissViewControllerAnimated(true, completion: nil)
     }
 }

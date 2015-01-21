@@ -79,7 +79,7 @@ class ProfileDetailViewController: DetailViewController, NewNoteViewControllerDe
             navigationController?.pushViewController(profileVC, animated: true)
             
         case .Email:
-            presentMailViewController([profile.email], subject: "Hey", messageBody: "")
+            presentMailViewController([profile.email], subject: "Hey", messageBody: "", completionHandler: nil)
             
         default:
             break
@@ -178,7 +178,7 @@ class ProfileDetailViewController: DetailViewController, NewNoteViewControllerDe
             collectionView.reloadData()
         }
     }
-    
+
     func didDeleteNote(note: NoteService.Containers.Note) {
         if let dataSource = collectionView.dataSource as? ProfileDetailDataSource {
             dataSource.removeNote(note)

@@ -23,43 +23,96 @@ extension UIViewController {
         return navigationController?.topViewController == self && navigationController?.viewControllers.count == 1
     }
     
-    /**
-     * Presents the standard compose mail view controller.
-     *
-     * The calling controller is made the delegate for the mail view controller.
-     * NOTE: It is the responsibility of the delegate to dismiss this vc.
-     */
-    func presentMailViewController(toRecipients: [AnyObject]?, subject: String?, messageBody: String?) {
+    // MARK: - Share functionality
 
-        if MFMailComposeViewController.canSendMail() {
+    /**
+    * Presents the standard compose mail view controller.
+    *
+    * The calling controller is made the delegate for the mail view controller.
+    * NOTE: It is the responsibility of the delegate to dismiss this VC.
+    */
+    func presentMailViewController(toRecipients: [AnyObject]?, subject: String?, messageBody: String?,
+        completionHandler: (() -> Void)?) {
             
-            var mailVC = MFMailComposeViewController()
+            if MFMailComposeViewController.canSendMail() {
+                
+                var mailVC = MFMailComposeViewController()
+                if toRecipients?.count > 0 {
+                    mailVC.setToRecipients(toRecipients)
+                }
+                
+                if let subjectString = subject {
+                    mailVC.setSubject(subject)
+                }
+                
+                var message: String = messageBody ?? ""
+                message += "\n\n\nSent using Circle app"
+                mailVC.setMessageBody(message, isHTML: false)
+                
+                if let composeDelegate = self as? MFMailComposeViewControllerDelegate {
+                    mailVC.mailComposeDelegate = composeDelegate
+                }
+                
+                mailVC.navigationBar.tintColor = UIColor.navigationBarTintColor()
+                presentViewController(mailVC, animated: true, completion: { () -> Void in
+                    UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: false)
+                    if let handler = completionHandler {
+                        handler()
+                    }
+                })
+            }
+            else {
+                //TODO: Show generic error
+            }
+    }
+
+    /**
+    * Presents the standard compose message view controller.
+    *
+    * The calling controller is made the delegate for the message view controller.
+    * NOTE: It is the responsibility of the delegate to dismiss this VC.
+    */
+    func presentMessageViewController(toRecipients: [AnyObject]?, subject: String?, messageBody: String?,
+        completionHandler: (() -> Void)?) {
+            
+        if MFMessageComposeViewController.canSendText() {
+            
+            var messageVC = MFMessageComposeViewController()
+
+            // Recipients
             if toRecipients?.count > 0 {
-                mailVC.setToRecipients(toRecipients)
+                messageVC.recipients = toRecipients
             }
             
-            if let subjectString = subject {
-                mailVC.setSubject(subject)
+            // Subject
+            if MFMessageComposeViewController.canSendSubject() {
+                if let subjectString = subject {
+                    messageVC.subject = subjectString
+                }
             }
-      
+            
+            // Body
             var message: String = messageBody ?? ""
             message += "\n\n\nSent using Circle app"
-            mailVC.setMessageBody(message, isHTML: false)
+            messageVC.body = messageBody
             
-            if let composeDelegate = self as? MFMailComposeViewControllerDelegate {
-                mailVC.mailComposeDelegate = composeDelegate
+            // Delegate
+            if let composeDelegate = self as? MFMessageComposeViewControllerDelegate {
+                messageVC.messageComposeDelegate = composeDelegate
             }
             
-            mailVC.navigationBar.tintColor = UIColor.navigationBarTintColor()
-            presentViewController(mailVC, animated: true, completion: { () -> Void in
+            messageVC.navigationBar.tintColor = UIColor.navigationBarTintColor()
+            presentViewController(messageVC, animated: true, completion: { () -> Void in
                 UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: false)
+                if let handler = completionHandler {
+                    handler()
+                }
             })
         }
         else {
-//TODO: Show generic error
+            //TODO: Show generic error
         }
     }
-    
     
     // MARK: - Authentication
     
