@@ -581,12 +581,12 @@ CardHeaderViewDelegate {
     // MARK: - MFMailComposeViewControllerDelegate
     
     func mailComposeController(controller: MFMailComposeViewController!, didFinishWithResult result: MFMailComposeResult, error: NSError!) {
-        dismissViewControllerAnimated(true, completion: nil)
+        controller.dismissViewControllerAnimated(true, completion: nil)
     }
     
     // MARK: MFMessageComposeViewControllerDelegate
     
     func messageComposeViewController(controller: MFMessageComposeViewController!, didFinishWithResult result: MessageComposeResult) {
-        dismissViewControllerAnimated(true, completion: nil)
+        controller.dismissViewControllerAnimated(true, completion: nil)
     }
 }
