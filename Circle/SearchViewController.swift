@@ -15,6 +15,17 @@ UITextFieldDelegate,
 SearchHeaderViewDelegate,
 CardHeaderViewDelegate {
     
+    struct Placeholders {
+        static let Default = NSLocalizedString("Search people, teams, tags, etc.",
+            comment: "Placeholder text for search field used to search people, teams and tags.")
+        static let Email = NSLocalizedString("Who do you want to email",
+            comment: "Placeholder for search field used search for the person user intends to email")
+        static let Phone = NSLocalizedString("Who do you want to call",
+            comment: "Placeholder for search field used search for the person user intends to call")
+        static let Message = NSLocalizedString("Who do you want to message",
+            comment: "Placeholder for search field used search for the person user intends to send a message")
+    }
+    
     @IBOutlet weak private(set) var activityIndicatorView: UIActivityIndicatorView!
     @IBOutlet weak private(set) var addNoteQuickAction: UIButton!
     @IBOutlet weak private(set) var addReminderQuickAction: UIButton!
@@ -79,7 +90,7 @@ CardHeaderViewDelegate {
         if let nibViews = NSBundle.mainBundle().loadNibNamed("SearchHeaderView", owner: nil, options: nil) as? [UIView] {
             searchHeaderView = nibViews.first as SearchHeaderView
             searchHeaderView.delegate = self
-            searchHeaderView.searchTextField.placeholder = "Search people, teams, tags, etc."
+            searchHeaderView.searchTextField.placeholder = Placeholders.Default
             searchHeaderView.searchTextField.delegate = self
             searchHeaderView.searchTextField.addTarget(self, action: "search", forControlEvents: .EditingChanged)
             searchHeaderContainerView.addSubview(searchHeaderView)
@@ -191,6 +202,7 @@ CardHeaderViewDelegate {
     // MARK: - SearchHeaderViewDelegate
     
     func didCancel(sender: UIView) {
+        searchHeaderView.searchTextField.placeholder = Placeholders.Default
         collectionView.dataSource = landingDataSource
         queryDataSource.resetCards()
         collectionView.reloadData()
@@ -313,10 +325,12 @@ CardHeaderViewDelegate {
     }
     
     @IBAction func messageButtonTapped(sender: AnyObject!) {
+        searchHeaderView.searchTextField.placeholder = Placeholders.Message
         searchHeaderView.searchTextField.becomeFirstResponder()
     }
     
     @IBAction func emailButtonTapped(sender: AnyObject!) {
+        searchHeaderView.searchTextField.placeholder = Placeholders.Email
         searchHeaderView.searchTextField.becomeFirstResponder()
     }
 
@@ -357,9 +371,17 @@ CardHeaderViewDelegate {
     private func moveSearchFieldToTop() {
         if navigationController?.topViewController == self {
             bringUpCollectionView(searchHeaderView.searchTextField)
-            UIView.animateWithDuration(0.3, animations: { () -> Void in
-                self.collectionView.alpha = 0.0
-            })
+            UIView.animateWithDuration(
+                0.3,
+                delay: 0.0,
+                options: .CurveEaseInOut,
+                animations: { () -> Void in
+                    self.collectionView.alpha = 0.0
+                },
+                completion: { (completed) -> Void in
+                    self.collectionView.alpha = 1.0
+                }
+            )
         }
     }
     
