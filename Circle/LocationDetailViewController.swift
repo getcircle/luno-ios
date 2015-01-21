@@ -11,7 +11,7 @@ import ProtobufRegistry
 
 class LocationDetailViewController: DetailViewController {
 
-    private var offsetToTriggerFullScreenMapView: CGFloat = -100.0
+    private let offsetToTriggerFullScreenMapView: CGFloat = -100.0
     private var overlayButtonHandlerAdded = false
     
     // MARK: - Configuration
@@ -70,7 +70,7 @@ class LocationDetailViewController: DetailViewController {
             
             // Todo: need to understand how this changes with orientation
             let statusBarHeight: CGFloat = 0.0
-            let navBarHeight: CGFloat = navigationController!.navigationBar.frameHeight
+            let navBarHeight: CGFloat = navigationBarHeight()
             let navBarStatusBarHeight: CGFloat = navBarHeight + statusBarHeight
             let heightToCoverNavBar: CGFloat = navBarStatusBarHeight - profileHeaderView.initialHeightForAddressContainer
             let pointAtWhichFinalHeightShouldBeInPlace: CGFloat = MapHeaderCollectionReusableView.height - navBarStatusBarHeight

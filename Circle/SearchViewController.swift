@@ -48,8 +48,11 @@ CardHeaderViewDelegate {
     private var shadowAdded = false
     private var queryDataSource: SearchQueryDataSource!
 
+    private let offsetToTriggerMovingCollectionViewDown: CGFloat = -120.0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         // Do any additional setup after loading the view.
         collectionViewTopConstraintInitialValue = collectionViewTopConstraint.constant
         configureView()
@@ -58,21 +61,23 @@ CardHeaderViewDelegate {
         configureCollectionViewOverlay()
         configureQuickActionsView()
         configureNavigationActionButtons()
-        moveSearchFieldToCenter()
     }
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+
+        addShadowToSearchField()
         registerNotifications()
         checkUserAndPresentAuthViewController()
-        (collectionView.dataSource as? SearchLandingDataSource)?.loadData { (error) -> Void in
-            if error == nil {
-                self.activityIndicatorView.stopAnimating()
-                self.collectionView.reloadData()
+        if let currentDataSource = (collectionView.dataSource as? SearchLandingDataSource) {
+            moveSearchFieldToCenter()
+            currentDataSource.loadData { (error) -> Void in
+                if error == nil {
+                    self.activityIndicatorView.stopAnimating()
+                    self.collectionView.reloadData()
+                }
             }
         }
-        
-        addShadowToSearchField()
     }
 
     override func viewDidDisappear(animated: Bool) {
@@ -295,6 +300,15 @@ CardHeaderViewDelegate {
         }
     }
 
+    // MARK: - ScrollViewDelegate
+
+    func scrollViewWillBeginDecelerating(scrollView: UIScrollView) {
+        if scrollView.contentOffset.y <= offsetToTriggerMovingCollectionViewDown {
+            scrollView.setContentOffset(scrollView.contentOffset, animated: true)
+            moveSearchFieldToCenter()
+        }
+    }
+    
     // MARK: - Orientation change
 
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
@@ -395,14 +409,24 @@ CardHeaderViewDelegate {
             collectionViewTopConstraint.constant = collectionViewTopConstraintInitialValue
             collectionView.setNeedsUpdateConstraints()
             
-            UIView.animateWithDuration(0.3, animations: { () -> Void in
-                self.view.layoutIfNeeded()
-                self.quickActionsView.alpha = 1.0
-                self.collectionView.alpha = 1.0
-                self.collectionViewOverlay.alpha = 1.0
-                self.collectionView.transform = CGAffineTransformMakeScale(0.95, 0.95)
-                self.companyNameLabel.alpha = 1.0
-            })
+            UIView.animateWithDuration(
+                0.5,
+                delay: 0.0,
+                usingSpringWithDamping: 0.6,
+                initialSpringVelocity: 0.5,
+                options: .CurveEaseInOut,
+                animations: { () -> Void in
+                    self.view.layoutIfNeeded()
+                    self.quickActionsView.alpha = 1.0
+                    self.collectionView.alpha = 1.0
+                    self.collectionViewOverlay.alpha = 1.0
+                    self.collectionView.transform = CGAffineTransformMakeScale(0.95, 0.95)
+                    self.companyNameLabel.alpha = 1.0
+                },
+                completion: { (completed) -> Void in
+                    self.collectionView.setContentOffset(CGPointMake(0.0, -25.0), animated: false)
+                }
+            )
         }
     }
     
