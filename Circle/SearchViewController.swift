@@ -42,6 +42,7 @@ CardHeaderViewDelegate {
     private var collectionViewTopConstraintInitialValue: CGFloat!
     private var companyProfileImageView: UIImageView!
     private var data = [Card]()
+    private var firstLoad = false
     private var landingDataSource: SearchLandingDataSource!
     private var loggedInUserProfileImageView: UIImageView!
     private var searchHeaderView: SearchHeaderView!
@@ -49,11 +50,13 @@ CardHeaderViewDelegate {
     private var queryDataSource: SearchQueryDataSource!
 
     private let offsetToTriggerMovingCollectionViewDown: CGFloat = -120.0
+    private let shadowOpacity: Float = 0.2
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+        firstLoad = true
         collectionViewTopConstraintInitialValue = collectionViewTopConstraint.constant
         configureView()
         configureSearchHeaderView()
@@ -66,11 +69,15 @@ CardHeaderViewDelegate {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
 
-        addShadowToSearchField()
         registerNotifications()
         checkUserAndPresentAuthViewController()
-        if let currentDataSource = (collectionView.dataSource as? SearchLandingDataSource) {
+        if firstLoad {
             moveSearchFieldToCenter()
+            addShadowToSearchField()
+            firstLoad = false
+        }
+
+        if let currentDataSource = (collectionView.dataSource as? SearchLandingDataSource) {
             currentDataSource.loadData { (error) -> Void in
                 if error == nil {
                     self.activityIndicatorView.stopAnimating()
@@ -105,9 +112,14 @@ CardHeaderViewDelegate {
 
     private func addShadowToSearchField() {
         if !shadowAdded {
-            searchHeaderView.layer.shadowPath = UIBezierPath(rect: searchHeaderView.bounds).CGPath
-            searchHeaderView.layer.shadowOpacity = 0.1
-            searchHeaderView.layer.shadowOffset = CGSizeMake(2.0, 1.0)
+            var path = UIBezierPath()
+            path.moveToPoint(CGPointMake(-0.1, 5.0))
+            path.addLineToPoint(CGPointMake(-0.1, searchHeaderView.frameHeight - 0.9))
+            path.addLineToPoint(CGPointMake(searchHeaderView.frameWidth + 0.1, searchHeaderView.frameHeight - 0.9))
+            path.addLineToPoint(CGPointMake(searchHeaderView.frameWidth + 0.1, 5.0))
+            searchHeaderView.layer.shadowPath = path.CGPath
+            searchHeaderView.layer.shadowOpacity = 0.0
+            searchHeaderView.layer.shadowOffset = CGSizeMake(1.0, 0.5)
             searchHeaderView.layer.shouldRasterize = true
             searchHeaderView.layer.rasterizationScale = UIScreen.mainScreen().scale
             shadowAdded = true
@@ -424,6 +436,7 @@ CardHeaderViewDelegate {
                     self.companyNameLabel.alpha = 1.0
                 },
                 completion: { (completed) -> Void in
+                    self.searchHeaderView.layer.shadowOpacity = self.shadowOpacity
                     self.collectionView.setContentOffset(CGPointMake(0.0, -25.0), animated: false)
                 }
             )
@@ -448,6 +461,7 @@ CardHeaderViewDelegate {
                 self.collectionViewOverlay.alpha = 0.0
                 self.collectionView.transform = CGAffineTransformIdentity
                 self.companyNameLabel.alpha = 0.0
+                self.searchHeaderView.layer.shadowOpacity = 0.0
             })
         }
     }
