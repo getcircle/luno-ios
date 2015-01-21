@@ -51,6 +51,7 @@ CardHeaderViewDelegate {
 
     private let offsetToTriggerMovingCollectionViewDown: CGFloat = -120.0
     private let shadowOpacity: Float = 0.2
+    private let collectionViewScaleValue: CGFloat = 0.9
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -107,6 +108,7 @@ CardHeaderViewDelegate {
             searchHeaderView.searchTextField.addTarget(self, action: "search", forControlEvents: .EditingChanged)
             searchHeaderContainerView.addSubview(searchHeaderView)
             searchHeaderView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
+            searchHeaderView.layer.cornerRadius = 10.0
         }
     }
 
@@ -432,8 +434,9 @@ CardHeaderViewDelegate {
                     self.quickActionsView.alpha = 1.0
                     self.collectionView.alpha = 1.0
                     self.collectionViewOverlay.alpha = 1.0
-                    self.collectionView.transform = CGAffineTransformMakeScale(0.95, 0.95)
+                    self.collectionView.transform = CGAffineTransformMakeScale(self.collectionViewScaleValue, self.collectionViewScaleValue)
                     self.companyNameLabel.alpha = 1.0
+                    self.searchHeaderView.layer.shadowOpacity = self.shadowOpacity
                 },
                 completion: { (completed) -> Void in
                     self.searchHeaderView.layer.shadowOpacity = self.shadowOpacity
@@ -471,6 +474,10 @@ CardHeaderViewDelegate {
         switch recognizer.state {
         case .Changed:
             if translationInView >= 0.0 {
+                let distanceToReachFullScale = view.frameHeight / 2.0
+                let scaleDelta = 1 - collectionViewScaleValue
+                let scaleFactor = collectionViewScaleValue + ((translationInView / distanceToReachFullScale) * scaleDelta)
+                collectionView.transform = CGAffineTransformMakeScale(scaleFactor, scaleFactor)
                 collectionViewTopConstraint.constant = max(0.0, collectionViewTopConstraintInitialValue - translationInView)
                 collectionView.setNeedsUpdateConstraints()
                 
