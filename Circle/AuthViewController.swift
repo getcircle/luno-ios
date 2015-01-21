@@ -90,7 +90,7 @@ class AuthViewController: UIViewController, UITextFieldDelegate {
     // MARK: - Initial Animation
     
     private func moveAppNameLabel() {
-        appNameYConstraint.constant = -80.0
+        appNameYConstraint.constant = 200.0
         appNameLabel.setNeedsUpdateConstraints()
         UIView.animateWithDuration(0.7, animations: { () -> Void in
             self.appNameLabel.layoutIfNeeded()

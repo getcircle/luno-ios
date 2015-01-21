@@ -7,6 +7,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AuthViewController" customModule="Circle" customModuleProvider="target">
             <connections>
                 <outlet property="appNameLabel" destination="7eh-3f-DhV" id="I1t-aw-slU"/>
+                <outlet property="appNameYConstraint" destination="Txn-xi-eRN" id="lVR-n5-JET"/>
                 <outlet property="emailField" destination="x4p-Uh-3t5" id="jj4-he-uxx"/>
                 <outlet property="logInButton" destination="aie-sS-pXs" id="zfO-wP-e3y"/>
                 <outlet property="passwordField" destination="faS-m0-daM" id="sFC-GE-qsU"/>
