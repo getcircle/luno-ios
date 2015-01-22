@@ -77,6 +77,8 @@ class Section {
     }
 }
 
+let emptyHeaderReuseIdentifier = "emptyHeaderReuseIdentifier"
+
 class ProfileDetailDataSource: CardDataSource {
 
     var manager: ProfileService.Containers.Profile?
@@ -96,10 +98,10 @@ class ProfileDetailDataSource: CardDataSource {
     }
     
     override func registerCardHeader(collectionView: UICollectionView) {
-        collectionView.registerNib(
-            UINib(nibName: "ProfileHeaderCollectionReusableView", bundle: nil),
+        collectionView.registerClass(
+            UICollectionReusableView.self,
             forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
-            withReuseIdentifier: ProfileHeaderCollectionReusableView.classReuseIdentifier
+            withReuseIdentifier: emptyHeaderReuseIdentifier
         )
         collectionView.registerNib(
             UINib(nibName: "NotesCardHeaderCollectionReusableView", bundle: nil),
@@ -322,14 +324,9 @@ class ProfileDetailDataSource: CardDataSource {
         if indexPath.section == 0 {
             let supplementaryView = collectionView.dequeueReusableSupplementaryViewOfKind(
                 kind,
-                withReuseIdentifier: ProfileHeaderCollectionReusableView.classReuseIdentifier,
+                withReuseIdentifier: emptyHeaderReuseIdentifier,
                 forIndexPath: indexPath
-            ) as ProfileHeaderCollectionReusableView
-            
-            if profile != nil {
-                supplementaryView.setProfile(profile)
-            }
-            profileHeaderView = supplementaryView
+            ) as UICollectionReusableView
             return supplementaryView
         }
         
