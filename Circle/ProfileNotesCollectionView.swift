@@ -1,5 +1,5 @@
 //
-//  ProfileInfoCollectionView.swift
+//  ProfileNotesCollectionView.swift
 //  Circle
 //
 //  Created by Michael Hahn on 1/21/15.
@@ -9,7 +9,7 @@
 import UIKit
 import ProtobufRegistry
 
-class ProfileInfoCollectionView: UICollectionView, UICollectionViewDelegate {
+class ProfileNotesCollectionView: UICollectionView {
     
     private var layout: StickyHeaderCollectionViewLayout?
     private var profile: ProfileService.Containers.Profile?
@@ -26,7 +26,6 @@ class ProfileInfoCollectionView: UICollectionView, UICollectionViewDelegate {
         profileInfoDataSource = ProfileDetailDataSource(profile: AuthViewController.getLoggedInUserProfile()!)
         profileInfoDataSource?.registerCardHeader(self)
         profileInfoDelegate = StickyHeaderCollectionViewDelegate()
-        profileInfoDelegate?.delegate = self
         backgroundColor = UIColor.viewBackgroundColor()
         dataSource = profileInfoDataSource
         delegate = profileInfoDelegate
@@ -36,9 +35,5 @@ class ProfileInfoCollectionView: UICollectionView, UICollectionViewDelegate {
             self.reloadData()
         }
     }
-    
-    func scrollViewDidScroll(scrollView: UIScrollView) {
-        // TODO implement externalScroll delegate
-    }
-    
+
 }

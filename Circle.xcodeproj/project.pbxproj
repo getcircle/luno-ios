@@ -126,6 +126,9 @@
 		BF3F0F611A5B1C1100D4287E /* ProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3F0F601A5B1C1100D4287E /* ProfileService.swift */; };
 		BF59AA931A2C152F00C0CDB9 /* UITableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF59AA921A2C152F00C0CDB9 /* UITableViewExtension.swift */; };
 		BF764DC41A5F6E8200D122F4 /* LandingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF764DC31A5F6E8200D122F4 /* LandingService.swift */; };
+		BF7B238B1A70842500137BCB /* ProfileNotesCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7B238A1A70842500137BCB /* ProfileNotesCollectionView.swift */; };
+		BF7B23901A70894100137BCB /* ProfileDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7B238F1A70894100137BCB /* ProfileDetailsViewController.swift */; };
+		BF7B23981A7092F900137BCB /* ProfileUnderlyingCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7B23971A7092F900137BCB /* ProfileUnderlyingCollectionView.swift */; };
 		BF7DF98F1A44E53200A4F924 /* ServiceTransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7DF98E1A44E53200A4F924 /* ServiceTransport.swift */; };
 		BF8DAC731A6CB03F000860DD /* NotesCardHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8DAC721A6CB03F000860DD /* NotesCardHeaderCollectionReusableView.swift */; };
 		BF8DAC781A6CB05B000860DD /* NotesCardHeaderCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF8DAC771A6CB05B000860DD /* NotesCardHeaderCollectionReusableView.xib */; };
@@ -358,6 +361,9 @@
 		BF3F0F601A5B1C1100D4287E /* ProfileService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileService.swift; sourceTree = "<group>"; };
 		BF59AA921A2C152F00C0CDB9 /* UITableViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewExtension.swift; sourceTree = "<group>"; };
 		BF764DC31A5F6E8200D122F4 /* LandingService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandingService.swift; sourceTree = "<group>"; };
+		BF7B238A1A70842500137BCB /* ProfileNotesCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileNotesCollectionView.swift; sourceTree = "<group>"; };
+		BF7B238F1A70894100137BCB /* ProfileDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileDetailsViewController.swift; sourceTree = "<group>"; };
+		BF7B23971A7092F900137BCB /* ProfileUnderlyingCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileUnderlyingCollectionView.swift; sourceTree = "<group>"; };
 		BF7DF98E1A44E53200A4F924 /* ServiceTransport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceTransport.swift; sourceTree = "<group>"; };
 		BF8DAC721A6CB03F000860DD /* NotesCardHeaderCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotesCardHeaderCollectionReusableView.swift; sourceTree = "<group>"; };
 		BF8DAC771A6CB05B000860DD /* NotesCardHeaderCollectionReusableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotesCardHeaderCollectionReusableView.xib; sourceTree = "<group>"; };
@@ -502,6 +508,7 @@
 				8F823E4A1A729E1B0006264B /* TeamsOverviewViewController.swift */,
 				BF25722B1A6450F20052C3E3 /* VerifyPhoneNumberViewController.swift */,
 				8F81713A1A62E07000CB7692 /* VerifyProfileViewController.swift */,
+				BF7B238F1A70894100137BCB /* ProfileDetailsViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -533,6 +540,8 @@
 				8F085A8B1A6B5B4900F8139B /* TeamHeaderCollectionReusableView.swift */,
 				8FF2254A1A641B27001B2E32 /* SearchResultsCardHeaderCollectionReusableView.swift */,
 				BF2D86161A707A86002C3D64 /* ProfileInfoCollectionView.swift */,
+				BF7B238A1A70842500137BCB /* ProfileNotesCollectionView.swift */,
+				BF7B23971A7092F900137BCB /* ProfileUnderlyingCollectionView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -1034,6 +1043,7 @@
 				8F22CBE01A27A8E60026376E /* ProfileHeaderCollectionReusableView.swift in Sources */,
 				8F306B8D1A7416E00024EB03 /* LocationsOverviewViewController.swift in Sources */,
 				BF8FC3D91A44DA83007FD8BA /* StringExtension.swift in Sources */,
+				BF7B23981A7092F900137BCB /* ProfileUnderlyingCollectionView.swift in Sources */,
 				8FF2984D1A4E29F400306CFC /* PaddedLabel.swift in Sources */,
 				8F4E53781A5A0D9E00DC876B /* NotesCollectionViewCell.swift in Sources */,
 				8F085A911A6C175C00F8139B /* TeamsCollectionViewCell.swift in Sources */,
@@ -1066,6 +1076,7 @@
 				8F4A98B31A6350B9005AD63C /* CircleCollectionReusableView.swift in Sources */,
 				8F0E44871A61EE99008710E7 /* LocationAnnotation.swift in Sources */,
 				8F4A98AC1A633BF6005AD63C /* UIImageExtension.swift in Sources */,
+				BF7B238B1A70842500137BCB /* ProfileNotesCollectionView.swift in Sources */,
 				BF9D721F1A687462002CDC66 /* TeamCollectionViewCell.swift in Sources */,
 				8FCC95CD1A52828B00421E65 /* ProfileCollectionViewCell.swift in Sources */,
 				BF59AA931A2C152F00C0CDB9 /* UITableViewExtension.swift in Sources */,
@@ -1087,6 +1098,7 @@
 				8FD907F71A6033310025A17B /* LocationDetailViewController.swift in Sources */,
 				BFEDB1431A2A8CA700250165 /* UICollectionViewFlowLayoutExtension.swift in Sources */,
 				8F22CBF81A29A8EB0026376E /* AuthViewController.swift in Sources */,
+				BF7B23901A70894100137BCB /* ProfileDetailsViewController.swift in Sources */,
 				8FF298531A4E306600306CFC /* CenterAlignFlowLayout.swift in Sources */,
 				BF8DAC731A6CB03F000860DD /* NotesCardHeaderCollectionReusableView.swift in Sources */,
 				8F22CBE31A27AE9B0026376E /* UIImageViewExtension.swift in Sources */,
