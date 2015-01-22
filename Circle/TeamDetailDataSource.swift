@@ -66,7 +66,8 @@ class TeamDetailDataSource: CardDataSource {
                     // TODO: we should support sending multiple actions with a single service request.
                     OrganizationService.Actions.getTeamChildren(self.selectedTeam!.id) { (teams, error) -> Void in
                         if let teams = teams {
-                            var teamsCard = Card(cardType: .TeamsGrid, title: "Sub Teams")
+                            // TODO we need to fix this
+                            var teamsCard = Card(cardType: .TeamsGrid, title: "")
                             teamsCard.content.append(teams)
                             teamsCard.sectionInset = UIEdgeInsetsMake(0.0, 0.0, 25.0, 0.0)
                             self.appendCard(teamsCard)
