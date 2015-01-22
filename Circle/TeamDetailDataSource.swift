@@ -62,39 +62,17 @@ class TeamDetailDataSource: CardDataSource {
                         self.appendCard(membersCard)
                     }
                     
-                    // Add Teams Card
-                    
-                    var teamsCard = Card(cardType: .TeamsGrid, title: "Sub teams")
-                    var teamObjects = Array<OrganizationService.Containers.Team>()
-
-                    var team1Object = OrganizationService.Containers.Team.builder()
-                    team1Object.name = "Consumer Growth & User Acquistion"
-                    teamObjects.append(team1Object.build())
-
-                    var team2Object = OrganizationService.Containers.Team.builder()
-                    team2Object.name = "Organizer Growth"
-                    teamObjects.append(team2Object.build())
-
-                    var team3Object = OrganizationService.Containers.Team.builder()
-                    team3Object.name = "Native"
-                    teamObjects.append(team3Object.build())
-
-                    var team4Object = OrganizationService.Containers.Team.builder()
-                    team4Object.name = "Discovery"
-                    teamObjects.append(team4Object.build())
-                    
-                    var team5Object = OrganizationService.Containers.Team.builder()
-                    team5Object.name = "Infrastructure"
-                    teamObjects.append(team5Object.build())
-                    
-                    var team6Object = OrganizationService.Containers.Team.builder()
-                    team6Object.name = "Architecture"
-                    teamObjects.append(team6Object.build())
-
-                    teamsCard.content.append(teamObjects)
-                    teamsCard.sectionInset = UIEdgeInsetsMake(0.0, 0.0, 25.0, 0.0)
-                    self.appendCard(teamsCard)
-                    completionHandler(error: nil)
+                    // Fetch subteams
+                    // TODO: we should support sending multiple actions with a single service request.
+                    OrganizationService.Actions.getTeamChildren(self.selectedTeam!.id) { (teams, error) -> Void in
+                        if let teams = teams {
+                            var teamsCard = Card(cardType: .TeamsGrid, title: "Sub Teams")
+                            teamsCard.content.append(teams)
+                            teamsCard.sectionInset = UIEdgeInsetsMake(0.0, 0.0, 25.0, 0.0)
+                            self.appendCard(teamsCard)
+                        }
+                        completionHandler(error: error)
+                    }
                 }
                 else {
                     completionHandler(error: error)
