@@ -74,6 +74,10 @@
 		8F74003F1A6A442900D96B60 /* CircleAlertViewAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F74003E1A6A442900D96B60 /* CircleAlertViewAnimator.swift */; };
 		8F81713C1A62E07000CB7692 /* VerifyProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F81713A1A62E07000CB7692 /* VerifyProfileViewController.swift */; };
 		8F81713D1A62E07000CB7692 /* VerifyProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F81713B1A62E07000CB7692 /* VerifyProfileViewController.xib */; };
+		8F823E381A706B790006264B /* OrganizationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F823E371A706B790006264B /* OrganizationDetailViewController.swift */; };
+		8F823E3A1A706BB20006264B /* OrganizationDetailDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F823E391A706BB20006264B /* OrganizationDetailDataSource.swift */; };
+		8F823E431A714B5D0006264B /* OrganizationHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F823E411A714B5D0006264B /* OrganizationHeaderCollectionReusableView.swift */; };
+		8F823E441A714B5D0006264B /* OrganizationHeaderCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F823E421A714B5D0006264B /* OrganizationHeaderCollectionReusableView.xib */; };
 		8FC7BB3B1A58A6E2005BDDDB /* CardDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC7BB3A1A58A6E2005BDDDB /* CardDataSource.swift */; };
 		8FC7BB401A58AF4C005BDDDB /* SearchLandingDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC7BB3F1A58AF4C005BDDDB /* SearchLandingDataSource.swift */; };
 		8FC7BB431A58B15B005BDDDB /* CardCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC7BB421A58B15B005BDDDB /* CardCollectionViewDelegate.swift */; };
@@ -291,6 +295,10 @@
 		8F74003E1A6A442900D96B60 /* CircleAlertViewAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleAlertViewAnimator.swift; sourceTree = "<group>"; };
 		8F81713A1A62E07000CB7692 /* VerifyProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerifyProfileViewController.swift; sourceTree = "<group>"; };
 		8F81713B1A62E07000CB7692 /* VerifyProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VerifyProfileViewController.xib; sourceTree = "<group>"; };
+		8F823E371A706B790006264B /* OrganizationDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrganizationDetailViewController.swift; sourceTree = "<group>"; };
+		8F823E391A706BB20006264B /* OrganizationDetailDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrganizationDetailDataSource.swift; sourceTree = "<group>"; };
+		8F823E411A714B5D0006264B /* OrganizationHeaderCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrganizationHeaderCollectionReusableView.swift; sourceTree = "<group>"; };
+		8F823E421A714B5D0006264B /* OrganizationHeaderCollectionReusableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrganizationHeaderCollectionReusableView.xib; sourceTree = "<group>"; };
 		8FC7BB3A1A58A6E2005BDDDB /* CardDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardDataSource.swift; sourceTree = "<group>"; };
 		8FC7BB3F1A58AF4C005BDDDB /* SearchLandingDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchLandingDataSource.swift; sourceTree = "<group>"; };
 		8FC7BB421A58B15B005BDDDB /* CardCollectionViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardCollectionViewDelegate.swift; sourceTree = "<group>"; };
@@ -459,6 +467,7 @@
 				8FD907F81A6070D70025A17B /* MapViewController.swift */,
 				BF8DAC861A6D7EB1000860DD /* NewNoteViewController.swift */,
 				BF8DAC721A6CB03F000860DD /* NotesCardHeaderCollectionReusableView.swift */,
+				8F823E371A706B790006264B /* OrganizationDetailViewController.swift */,
 				8FD907F41A5F91020025A17B /* ProfileDetailViewController.swift */,
 				8F00049A1A2419730096477A /* ProfilesViewController.swift */,
 				8FF297FC1A4A4DCA00306CFC /* SearchViewController.swift */,
@@ -482,6 +491,7 @@
 				8F65C4FC1A51222100C7F3E6 /* LocationCollectionViewCell.swift */,
 				8F4805E31A5DE4B800273731 /* MapHeaderCollectionReusableView.swift */,
 				8F4E53761A5A0D9E00DC876B /* NotesCollectionViewCell.swift */,
+				8F823E411A714B5D0006264B /* OrganizationHeaderCollectionReusableView.swift */,
 				8FCC95CB1A52828B00421E65 /* ProfileCollectionViewCell.swift */,
 				8F22CBDE1A27A8E60026376E /* ProfileHeaderCollectionReusableView.swift */,
 				8FF298011A4A4E3600306CFC /* ProfileImagesCollectionViewCell.swift */,
@@ -552,6 +562,7 @@
 				BF8DAC871A6D7EB1000860DD /* NewNoteViewController.xib */,
 				BF8DAC771A6CB05B000860DD /* NotesCardHeaderCollectionReusableView.xib */,
 				8F4E53771A5A0D9E00DC876B /* NotesCollectionViewCell.xib */,
+				8F823E421A714B5D0006264B /* OrganizationHeaderCollectionReusableView.xib */,
 				8FCC95CC1A52828B00421E65 /* ProfileCollectionViewCell.xib */,
 				8F22CBDF1A27A8E60026376E /* ProfileHeaderCollectionReusableView.xib */,
 				8FF298021A4A4E3600306CFC /* ProfileImagesCollectionViewCell.xib */,
@@ -595,6 +606,7 @@
 			children = (
 				8FC7BB3A1A58A6E2005BDDDB /* CardDataSource.swift */,
 				8FEB032A1A5F69020081BB65 /* LocationDetailDataSource.swift */,
+				8F823E391A706BB20006264B /* OrganizationDetailDataSource.swift */,
 				8F22CBF41A2865030026376E /* ProfileDetailDataSource.swift */,
 				8F2D7DEF1A5B2412001D36B0 /* ProfilesDataSource.swift */,
 				8FC7BB3F1A58AF4C005BDDDB /* SearchLandingDataSource.swift */,
@@ -875,6 +887,7 @@
 				BF9D72211A687562002CDC66 /* TeamCollectionViewCell.xib in Resources */,
 				8FF298481A4E050100306CFC /* TagCollectionViewCell.xib in Resources */,
 				8F22CBE11A27A8E60026376E /* ProfileHeaderCollectionReusableView.xib in Resources */,
+				8F823E441A714B5D0006264B /* OrganizationHeaderCollectionReusableView.xib in Resources */,
 				BF8DAC781A6CB05B000860DD /* NotesCardHeaderCollectionReusableView.xib in Resources */,
 				8F0004A21A2419730096477A /* Images.xcassets in Resources */,
 				8F65C4F61A50F28E00C7F3E6 /* CardHeaderCollectionReusableView.xib in Resources */,
@@ -986,7 +999,9 @@
 				8F4E53781A5A0D9E00DC876B /* NotesCollectionViewCell.swift in Sources */,
 				8F085A911A6C175C00F8139B /* TeamsCollectionViewCell.swift in Sources */,
 				8F0004961A2419730096477A /* AppDelegate.swift in Sources */,
+				8F823E431A714B5D0006264B /* OrganizationHeaderCollectionReusableView.swift in Sources */,
 				8F22CBE51A27ED190026376E /* ProfileCollectionViewLayout.swift in Sources */,
+				8F823E381A706B790006264B /* OrganizationDetailViewController.swift in Sources */,
 				BF764DC41A5F6E8200D122F4 /* LandingService.swift in Sources */,
 				BF25722D1A6450F20052C3E3 /* VerifyPhoneNumberViewController.swift in Sources */,
 				8FF298441A4DF38E00306CFC /* TagSelectorViewController.swift in Sources */,
@@ -995,6 +1010,7 @@
 				BF004C501A5CF91200AB8A6F /* OrganizationService.swift in Sources */,
 				BFE213C81A5EE63F0033E2F5 /* SearchService.swift in Sources */,
 				8FF297FD1A4A4DCA00306CFC /* SearchViewController.swift in Sources */,
+				8F823E3A1A706BB20006264B /* OrganizationDetailDataSource.swift in Sources */,
 				8F0004BB1A241BDE0096477A /* UIColorExtension.swift in Sources */,
 				8F00049B1A2419730096477A /* ProfilesViewController.swift in Sources */,
 				BF041BBA1A2C119B0043EC72 /* NSDateFormatterExtension.swift in Sources */,

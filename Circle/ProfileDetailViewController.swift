@@ -14,16 +14,6 @@ class ProfileDetailViewController: DetailViewController, NewNoteViewControllerDe
     var profile: ProfileService.Containers.Profile!
     
     private var swipeGestureRecognizer: UISwipeGestureRecognizer?
-    
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        registerNotifications()
-    }
-    
-    override func viewDidDisappear(animated: Bool) {
-        super.viewDidDisappear(animated)
-        unregisterNotifications()
-    }
 
     // MARK: - Initialization
     
@@ -135,7 +125,7 @@ class ProfileDetailViewController: DetailViewController, NewNoteViewControllerDe
     
     // MARK: - Notifications
     
-    private func registerNotifications() {
+    override func registerNotifications() {
         NSNotificationCenter.defaultCenter().addObserver(
             self,
             selector: "didSelectTag:",
@@ -149,11 +139,7 @@ class ProfileDetailViewController: DetailViewController, NewNoteViewControllerDe
             object: nil
         )
     }
-    
-    private func unregisterNotifications() {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
-    }
-    
+
     func didSelectTag(notification: NSNotification) {
         if let userInfo = notification.userInfo {
             if let selectedTag = userInfo["tag"] as? ProfileService.Containers.Tag {

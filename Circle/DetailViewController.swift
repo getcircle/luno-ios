@@ -80,6 +80,7 @@ class DetailViewController: UIViewController, UICollectionViewDelegate, MFMailCo
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        registerNotifications()
         if isBeingPresentedModally() {
             navigationController?.navigationBar.makeTransparent()
         }
@@ -93,6 +94,11 @@ class DetailViewController: UIViewController, UICollectionViewDelegate, MFMailCo
         }
     }
 
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        registerNotifications()
+    }
+    
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         
@@ -114,6 +120,11 @@ class DetailViewController: UIViewController, UICollectionViewDelegate, MFMailCo
                 }
             }
         }
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        unregisterNotifications()        
     }
     
     private func addLogOutButton() {
@@ -185,6 +196,15 @@ class DetailViewController: UIViewController, UICollectionViewDelegate, MFMailCo
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
         collectionView.collectionViewLayout.invalidateLayout()
+    }
+    
+    // MARK: - Notifications
+    
+    func registerNotifications() {
+    }
+    
+    func unregisterNotifications() {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
 }
 

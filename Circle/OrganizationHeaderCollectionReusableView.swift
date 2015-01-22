@@ -1,22 +1,21 @@
 //
-//  ProfileHeaderCollectionReusableView.swift
+//  OrganizationHeaderCollectionReusableView.swift
 //  Circle
 //
-//  Created by Ravi Rani on 11/27/14.
-//  Copyright (c) 2014 RH Labs Inc. All rights reserved.
+//  Created by Ravi Rani on 1/22/15.
+//  Copyright (c) 2015 RH Labs Inc. All rights reserved.
 //
 
 import UIKit
 import ProtobufRegistry
 
-class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
-
+class OrganizationHeaderCollectionReusableView: CircleCollectionReusableView {
+    
     @IBOutlet weak var backgroundImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var nameNavLabel: UILabel!
-    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var profileImage: CircleImageView!
-
+    
     private(set) var visualEffectView: UIVisualEffectView!
     
     override class var classReuseIdentifier: String {
@@ -26,10 +25,10 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
     override class var height: CGFloat {
         return 200.0
     }
-
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-
+        
         // Initialization code
         let blurEffect = UIBlurEffect(style: .Dark)
         visualEffectView = UIVisualEffectView(effect: blurEffect)
@@ -41,13 +40,12 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
         nameNavLabel.alpha = 0.0
     }
     
-    func setProfile(profile: ProfileService.Containers.Profile) {
-        nameLabel.text = profile.first_name + " " + profile.last_name
+    func setOrganization(organization: OrganizationService.Containers.Organization) {
+        nameLabel.text = organization.name
         nameNavLabel.text = nameLabel.text
-        titleLabel.text = profile.title
-        profileImage.setImageWithProfile(profile)
-        backgroundImage.setImageWithURL(
-            NSURL(string: profile.image_url)
-        )
+//        profileImage.setImageWithProfile(profile)
+//        backgroundImage.setImageWithURL(
+//            NSURL(string: profile.image_url)
+//        )
     }
 }
