@@ -122,6 +122,7 @@
 		BF25722D1A6450F20052C3E3 /* VerifyPhoneNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF25722B1A6450F20052C3E3 /* VerifyPhoneNumberViewController.swift */; };
 		BF25722E1A6450F20052C3E3 /* VerifyPhoneNumberViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF25722C1A6450F20052C3E3 /* VerifyPhoneNumberViewController.xib */; };
 		BF2CBFD61A473E9100BE589D /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2CBFD51A473E9100BE589D /* UserService.swift */; };
+		BF2D86171A707A86002C3D64 /* ProfileInfoCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2D86161A707A86002C3D64 /* ProfileInfoCollectionView.swift */; };
 		BF3F0F611A5B1C1100D4287E /* ProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3F0F601A5B1C1100D4287E /* ProfileService.swift */; };
 		BF59AA931A2C152F00C0CDB9 /* UITableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF59AA921A2C152F00C0CDB9 /* UITableViewExtension.swift */; };
 		BF764DC41A5F6E8200D122F4 /* LandingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF764DC31A5F6E8200D122F4 /* LandingService.swift */; };
@@ -353,6 +354,7 @@
 		BF25722B1A6450F20052C3E3 /* VerifyPhoneNumberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerifyPhoneNumberViewController.swift; sourceTree = "<group>"; };
 		BF25722C1A6450F20052C3E3 /* VerifyPhoneNumberViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VerifyPhoneNumberViewController.xib; sourceTree = "<group>"; };
 		BF2CBFD51A473E9100BE589D /* UserService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		BF2D86161A707A86002C3D64 /* ProfileInfoCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileInfoCollectionView.swift; sourceTree = "<group>"; };
 		BF3F0F601A5B1C1100D4287E /* ProfileService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileService.swift; sourceTree = "<group>"; };
 		BF59AA921A2C152F00C0CDB9 /* UITableViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewExtension.swift; sourceTree = "<group>"; };
 		BF764DC31A5F6E8200D122F4 /* LandingService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandingService.swift; sourceTree = "<group>"; };
@@ -530,6 +532,7 @@
 				8F085A931A6C191400F8139B /* TeamGridItemCollectionViewCell.swift */,
 				8F085A8B1A6B5B4900F8139B /* TeamHeaderCollectionReusableView.swift */,
 				8FF2254A1A641B27001B2E32 /* SearchResultsCardHeaderCollectionReusableView.swift */,
+				BF2D86161A707A86002C3D64 /* ProfileInfoCollectionView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -1045,6 +1048,7 @@
 				BF764DC41A5F6E8200D122F4 /* LandingService.swift in Sources */,
 				BF25722D1A6450F20052C3E3 /* VerifyPhoneNumberViewController.swift in Sources */,
 				8FF298441A4DF38E00306CFC /* TagSelectorViewController.swift in Sources */,
+				BF2D86171A707A86002C3D64 /* ProfileInfoCollectionView.swift in Sources */,
 				8F085A981A6C4B0D00F8139B /* TeamDetailCollectionViewDelegate.swift in Sources */,
 				8F22CBFB1A29AF450026376E /* UIViewExtension.swift in Sources */,
 				BF004C501A5CF91200AB8A6F /* OrganizationService.swift in Sources */,

@@ -90,6 +90,11 @@ class ProfileDetailDataSource: CardDataSource {
     private(set) var profileHeaderView: ProfileHeaderCollectionReusableView?
     private var sections = [Section]()
     
+    convenience init(profile withProfile: ProfileService.Containers.Profile) {
+        self.init()
+        profile = withProfile
+    }
+    
     override func registerCardHeader(collectionView: UICollectionView) {
         collectionView.registerNib(
             UINib(nibName: "ProfileHeaderCollectionReusableView", bundle: nil),
