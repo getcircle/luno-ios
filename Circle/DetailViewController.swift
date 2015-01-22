@@ -17,7 +17,7 @@ class DetailViewController: UIViewController, UICollectionViewDelegate, MFMailCo
     private(set) var collectionView: UICollectionView!
     var dataSource: CardDataSource!
     var delegate: ProfileCollectionViewDelegate!
-    var layout: ProfileCollectionViewLayout!
+    var layout: StickyHeaderCollectionViewLayout!
     
     override init() {
         super.init()
@@ -45,7 +45,7 @@ class DetailViewController: UIViewController, UICollectionViewDelegate, MFMailCo
         view = rootView
         
         // Collection View
-        layout = ProfileCollectionViewLayout()
+        layout = StickyHeaderCollectionViewLayout()
         collectionView = UICollectionView(frame: view.frame, collectionViewLayout: layout)
         view.addSubview(collectionView)
         collectionView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)

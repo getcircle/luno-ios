@@ -12,7 +12,7 @@ class ProfileCollectionViewDelegate: CardCollectionViewDelegate {
 
     override func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         if section == 0 {
-            return CGSizeMake(collectionView.frame.size.width, (collectionView.collectionViewLayout as ProfileCollectionViewLayout).headerHeight)
+            return CGSizeMake(collectionView.frame.size.width, (collectionView.collectionViewLayout as StickyHeaderCollectionViewLayout).headerHeight)
         }
         
         if let card = cardDataSource(collectionView).cardAtSection(section) {

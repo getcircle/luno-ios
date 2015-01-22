@@ -1,5 +1,5 @@
 //
-//  ProfileCollectionViewLayout.swift
+//  StickyHeaderCollectionViewLayout.swift
 //  Circle
 //
 //  Created by Ravi Rani on 11/27/14.
@@ -8,31 +8,25 @@
 
 import UIKit
 
-class ProfileCollectionViewLayout: UICollectionViewFlowLayout {
+class StickyHeaderCollectionViewLayout: UICollectionViewFlowLayout {
     
     var headerHeight: CGFloat = 0.0
-    var offsetToMakeProfileHeaderSticky: CGFloat!
-    let cellHeight: CGFloat = 44.0
+    
+    private var offsetToMakeHeaderSticky: CGFloat = 0.0
+    private var cellHeight: CGFloat = 44.0
     
     override init() {
         super.init()
-        registerClass(
-            SeparatorDecorationView.self,
-            forDecorationViewOfKind: SeparatorDecorationView.kind
-        )
-        
-        sectionInset = UIEdgeInsetsMake(30.0, 0.0, 0.0, 0.0)
-        minimumInteritemSpacing = 0.0
-        minimumLineSpacing = 0.0
+        customInit()
     }
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        registerClass(
-            SeparatorDecorationView.self,
-            forDecorationViewOfKind: SeparatorDecorationView.kind
-        )
-        
+        customInit()
+    }
+    
+    private func customInit() {
+        registerClass(SeparatorDecorationView.self, forDecorationViewOfKind: SeparatorDecorationView.kind)
         sectionInset = UIEdgeInsetsMake(30.0, 0.0, 0.0, 0.0)
         minimumInteritemSpacing = 0.0
         minimumLineSpacing = 0.0
@@ -43,8 +37,8 @@ class ProfileCollectionViewLayout: UICollectionViewFlowLayout {
             println("headerHeight should be set to greater than zero")
         }
 
-        // 44.0 height of nav bar + 20.0 height of status bar
-        offsetToMakeProfileHeaderSticky = headerHeight - 44.0
+        // 44.0 height of nav bar
+        offsetToMakeHeaderSticky = headerHeight - 44.0
         itemSize = CGSizeMake(collectionView!.bounds.width - sectionInset.left - sectionInset.right, cellHeight)
         headerReferenceSize = CGSizeMake(collectionView!.bounds.width, headerHeight)
     }
@@ -89,7 +83,7 @@ class ProfileCollectionViewLayout: UICollectionViewFlowLayout {
                     else {
                         // Pin supplementary view to the top after it reaches nav bar height
                         var frameToModify = attribute.frame
-                        frameToModify.origin.y = max(0.0, contentOffset.y - offsetToMakeProfileHeaderSticky)
+                        frameToModify.origin.y = max(0.0, contentOffset.y - offsetToMakeHeaderSticky)
                         attribute.frame = frameToModify
                         attribute.zIndex = 100
                     }
