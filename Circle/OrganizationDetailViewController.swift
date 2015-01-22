@@ -99,7 +99,7 @@ class OrganizationDetailViewController: DetailViewController, CardHeaderViewDele
             let viewController = LocationDetailViewController()
             navigationController?.pushViewController(viewController, animated: true)
             
-        case .Team:
+        case .TeamsGrid:
             if let selectedTeam = dataSource.contentAtIndexPath(indexPath)? as? OrganizationService.Containers.Team {
                 let viewController = TeamDetailViewController()
                 (viewController.dataSource as TeamDetailDataSource).selectedTeam = selectedTeam
@@ -129,7 +129,8 @@ class OrganizationDetailViewController: DetailViewController, CardHeaderViewDele
         let dataSource = (collectionView.dataSource as CardDataSource)
         switch card.type {
         case .Group, .People, .Birthdays, .Anniversaries, .NewHires:
-            let viewController = storyboard?.instantiateViewControllerWithIdentifier("ProfilesViewController") as ProfilesViewController
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let viewController = storyboard.instantiateViewControllerWithIdentifier("ProfilesViewController") as ProfilesViewController
             if card.type == .Group {
                 viewController.dataSource.setInitialData(card.content[0] as [AnyObject], ofType: nil)
             }

@@ -161,13 +161,24 @@ class Card: Equatable {
         var cardType: CardType
         
         switch category.type {
-        case .Anniversaries: cardType = .Anniversaries
-        case .Birthdays: cardType = .Birthdays
-        case .NewHires: cardType = .NewHires
-        case .DirectReports, .Peers: cardType = .Group
-        case .Locations: cardType = .Locations
-        case .Tags: cardType = .Tags
-        default: cardType = .People
+        case .Anniversaries:
+            cardType = .Anniversaries
+        case .Birthdays:
+            cardType = .Birthdays
+        case .NewHires:
+            cardType = .NewHires
+        case .DirectReports, .Peers:
+            cardType = .Group
+        case .Locations: cardType =
+            .Locations
+        case .Tags:
+            cardType = .Tags
+        case .Executives:
+            cardType = .People
+        case .Departments:
+            cardType = .TeamsGrid
+        default:
+            cardType = .People
         }
         
         self.init(cardType: cardType, title: category.title, content: nil, contentCount: category.total_count.toInt(), allContent: nil)
@@ -175,7 +186,7 @@ class Card: Equatable {
     
     func addContent(content withContent: [AnyObject], allContent withAllContent: [AnyObject]?) {
         switch type {
-        case .Group, .Tags: content.append(withContent)
+        case .Group, .Tags, .TeamsGrid: content.append(withContent)
         default: content.extend(withContent)
         }
         

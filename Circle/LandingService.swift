@@ -10,6 +10,7 @@ import Foundation
 import ProtobufRegistry
 
 typealias GetCategoriesCompletionHandler = (categories: Array<LandingService.Containers.Category>?, error: NSError?) -> Void
+typealias GetOrganizationCategoriesCompletionHandler = (categories: Array<LandingService.Containers.Category>?, error: NSError?) -> Void
 
 extension LandingService {
     class Actions {
@@ -28,8 +29,24 @@ extension LandingService {
                 ) as? LandingService.GetCategories.Response
                 completionHandler?(
                     categories: response?.categories,
-                    error: nil
+                    error: error
                 )
+            }
+        }
+        
+        class func getOrganizationCategories(organizationId: String, completionHandler: GetOrganizationCategoriesCompletionHandler?) {
+            let requestBuilder = LandingService.GetOrganizationCategories.Request.builder()
+            requestBuilder.organization_id = organizationId
+            let client = ServiceClient(serviceName: "landing")
+            client.callAction(
+                "get_organization_categories",
+                extensionField: LandingServiceRequests_get_organization_categories,
+                requestBuilder: requestBuilder
+            ) { (_, _, _, actionResponse, error) -> Void in
+                let response = actionResponse?.result.getExtension(
+                    LandingServiceRequests_get_organization_categories
+                ) as? LandingService.GetOrganizationCategories.Response
+                completionHandler?(categories: response?.categories, error: error)
             }
         }
         

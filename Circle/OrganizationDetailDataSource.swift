@@ -26,14 +26,14 @@ class OrganizationDetailDataSource: CardDataSource {
         appendCard(placeholderCard)
         
         if let currentProfile = AuthViewController.getLoggedInUserProfile() {
-            LandingService.Actions.getCategories(currentProfile.id) { (categories, error) -> Void in
+            LandingService.Actions.getOrganizationCategories(currentProfile.organization_id) { (categories, error) -> Void in
                 if error == nil {
                     for category in categories ?? [] {
                         let categoryCard = Card(category: category)
                         if category.profiles.count > 0 {
                             var profiles = category.profiles
                             switch category.type {
-                            case .Birthdays, .Anniversaries, .NewHires:
+                            case .Birthdays, .Anniversaries, .NewHires, .Executives:
                                 // HACK: limit the number of results in a card to 3 until we can get smarter about displaying them on the detail view
                                 if profiles.count > 3 {
                                     profiles = Array(profiles[0..<3])
@@ -41,11 +41,12 @@ class OrganizationDetailDataSource: CardDataSource {
                             default: break
                             }
                             categoryCard.addContent(content: profiles, allContent: category.profiles)
-                            continue
                         } else if category.addresses.count > 0 {
                             categoryCard.addContent(content: category.addresses)
                         } else if category.tags.count > 0 {
                             categoryCard.addContent(content: category.tags)
+                        } else if category.teams.count > 0 {
+                            categoryCard.addContent(content: category.teams)
                         }
                         
                         categoryCard.headerSize = CGSizeMake(CircleCollectionViewCell.width, CardHeaderCollectionReusableView.height)

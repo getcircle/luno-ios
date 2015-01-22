@@ -34,11 +34,10 @@ class SearchLandingDataSource: CardDataSource {
                             }
                             categoryCard.addContent(content: profiles, allContent: category.profiles)
                         } else if category.addresses.count > 0 {
-                            categoryCard.addContent(content: category.addresses)
+                            // don't display locations on the search landing page
                             continue
                         } else if category.tags.count > 0 {
                             categoryCard.addContent(content: category.tags)
-                            continue
                         }
                         self.appendCard(categoryCard)
                     }
