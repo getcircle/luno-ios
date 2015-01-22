@@ -219,14 +219,12 @@ CardHeaderViewDelegate {
         
         companyProfileImageView = UIImageView(frame: CGRectMake(0.0, 0.0, 30.0, 30.0))
         companyProfileImageView.makeItCircular(false)
-        
-        // Get this from the server
-        companyProfileImageView.image = UIImage(named: "MI")
+        loadOrganizationInfo()
         rightView.addSubview(companyProfileImageView)
         
         var rightButton = UIButton(frame: rightView.frame)
         rightButton.backgroundColor = UIColor.clearColor()
-        rightButton.addTarget(self, action: "showLoggedInUserProfile:", forControlEvents: .TouchUpInside)
+        rightButton.addTarget(self, action: "showOrganizationProfile:", forControlEvents: .TouchUpInside)
         rightView.addSubview(rightButton)
         
         let rightBarButtonItem = UIBarButtonItem(customView: rightView)
@@ -239,6 +237,12 @@ CardHeaderViewDelegate {
         if let userProfile = AuthViewController.getLoggedInUserProfile() {
             loggedInUserProfileImageView.setImageWithProfile(userProfile)
         }
+    }
+    
+    private func loadOrganizationInfo() {
+        // Get this from the server
+        companyNameLabel.text = "Eventbrite"
+        companyProfileImageView.image = UIImage(named: "EB")
     }
     
     // MARK: - TextField Delegate
@@ -379,7 +383,20 @@ CardHeaderViewDelegate {
         let navController = UINavigationController(rootViewController: profileVC)
         navigationController?.presentViewController(navController, animated: true, completion: nil)
     }
-    
+
+    @IBAction func showOrganizationProfile(sender: AnyObject!) {
+        if let loggedInUserProfile = AuthViewController.getLoggedInUserProfile() {
+            let orgVC = OrganizationDetailViewController()
+            (orgVC.dataSource as OrganizationDetailDataSource).selectedOrgId = loggedInUserProfile.organization_id
+            orgVC.showCloseButton = true
+            let navController = UINavigationController(rootViewController: orgVC)
+            navigationController?.presentViewController(navController, animated: true, completion: nil)
+        }
+        else {
+            // TODO Show error
+        }
+    }
+
     @IBAction func logoutButtonTapped(sender: AnyObject!) {
         (collectionView.dataSource as? CardDataSource)?.resetCards()
         collectionView.reloadData()
