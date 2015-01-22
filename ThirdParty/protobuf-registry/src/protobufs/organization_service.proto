@@ -18,6 +18,7 @@ message OrganizationService {
             optional string owner_id = 3;
         }
 
+        // XXX owner_id needs to be switched to profile_id
         message Team {
             optional string id = 1;
             optional string name = 2;
@@ -121,6 +122,18 @@ message OrganizationService {
         }
     }
 
+    message GetTopLevelTeam {
+
+        message Request {
+            optional string organization_id = 1;
+        }
+
+        message Response {
+            optional Containers.Team team = 1;
+        }
+
+    }
+
     message CreateAddress {
 
         message Request {
@@ -159,6 +172,7 @@ message OrganizationService {
 
     message GetAddresses {
 
+        // XXX we shouldn't use "oneof" anymore
         message Request {
             oneof lookup_key {
                 string organization_id = 1;

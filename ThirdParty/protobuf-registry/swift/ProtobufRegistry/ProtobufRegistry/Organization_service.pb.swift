@@ -75,6 +75,14 @@ public func == (lhs: OrganizationService.GetTeamChildren, rhs: OrganizationServi
   return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
 }
 
+public func == (lhs: OrganizationService.GetTopLevelTeam, rhs: OrganizationService.GetTopLevelTeam) -> Bool {
+  if (lhs === rhs) {
+    return true
+  }
+  var fieldCheck:Bool = (lhs.hashValue == rhs.hashValue)
+  return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
+}
+
 public func == (lhs: OrganizationService.CreateAddress, rhs: OrganizationService.CreateAddress) -> Bool {
   if (lhs === rhs) {
     return true
@@ -5453,6 +5461,566 @@ final public class OrganizationService : GeneratedMessage {
 
   //Nested type declaration start
 
+    final public class GetTopLevelTeam : GeneratedMessage {
+
+
+      //Nested type declaration start
+
+        final public class Request : GeneratedMessage {
+          override public subscript (key: String) -> AnyObject? {
+                 switch key {
+                 case "organization_id": return organization_id
+                 default: return nil
+                 }
+          }
+
+          public private(set) var hasOrganizationId:Bool = false
+          public private(set) var organization_id:String = ""
+
+          required public init() {
+               super.init()
+          }
+          override public func isInitialized() -> Bool {
+           return true
+          }
+          override public func writeToCodedOutputStream(output:CodedOutputStream) {
+            if hasOrganizationId {
+              output.writeString(1, value:organization_id)
+            }
+            unknownFields.writeToCodedOutputStream(output)
+          }
+          override public func serializedSize() -> Int32 {
+            var size:Int32 = memoizedSerializedSize
+            if size != -1 {
+             return size
+            }
+
+            size = 0
+            if hasOrganizationId {
+              size += WireFormat.computeStringSize(1, value:organization_id)
+            }
+            size += unknownFields.serializedSize()
+            memoizedSerializedSize = size
+            return size
+          }
+          public class func parseFromData(data:[Byte]) -> OrganizationService.GetTopLevelTeam.Request {
+            return OrganizationService.GetTopLevelTeam.Request.builder().mergeFromData(data).build()
+          }
+          public class func parseFromData(data:[Byte], extensionRegistry:ExtensionRegistry) -> OrganizationService.GetTopLevelTeam.Request {
+            return OrganizationService.GetTopLevelTeam.Request.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
+          }
+          public class func parseFromInputStream(input:NSInputStream) -> OrganizationService.GetTopLevelTeam.Request {
+            return OrganizationService.GetTopLevelTeam.Request.builder().mergeFromInputStream(input).build()
+          }
+          public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->OrganizationService.GetTopLevelTeam.Request {
+            return OrganizationService.GetTopLevelTeam.Request.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
+          }
+          public class func parseFromCodedInputStream(input:CodedInputStream) -> OrganizationService.GetTopLevelTeam.Request {
+            return OrganizationService.GetTopLevelTeam.Request.builder().mergeFromCodedInputStream(input).build()
+          }
+          public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> OrganizationService.GetTopLevelTeam.Request {
+            return OrganizationService.GetTopLevelTeam.Request.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
+          }
+          public class func builder() -> OrganizationService.GetTopLevelTeam.RequestBuilder {
+            return OrganizationService.GetTopLevelTeam.Request.classBuilder() as OrganizationService.GetTopLevelTeam.RequestBuilder
+          }
+          public func builder() -> OrganizationService.GetTopLevelTeam.RequestBuilder {
+            return classBuilder() as OrganizationService.GetTopLevelTeam.RequestBuilder
+          }
+          public override class func classBuilder() -> MessageBuilder {
+            return OrganizationService.GetTopLevelTeam.RequestBuilder()
+          }
+          public override func classBuilder() -> MessageBuilder {
+            return OrganizationService.GetTopLevelTeam.Request.builder()
+          }
+          public func toBuilder() -> OrganizationService.GetTopLevelTeam.RequestBuilder {
+            return OrganizationService.GetTopLevelTeam.Request.builderWithPrototype(self)
+          }
+          public class func builderWithPrototype(prototype:OrganizationService.GetTopLevelTeam.Request) -> OrganizationService.GetTopLevelTeam.RequestBuilder {
+            return OrganizationService.GetTopLevelTeam.Request.builder().mergeFrom(prototype)
+          }
+          override public func writeDescriptionTo(inout output:String, indent:String) {
+            if hasOrganizationId {
+              output += "\(indent) organization_id: \(organization_id) \n"
+            }
+            unknownFields.writeDescriptionTo(&output, indent:indent)
+          }
+          override public var hashValue:Int {
+              get {
+                  var hashCode:Int = 7
+                  if hasOrganizationId {
+                     hashCode = (hashCode &* 31) &+ organization_id.hashValue
+                  }
+                  hashCode = (hashCode &* 31) &+  unknownFields.hashValue
+                  return hashCode
+              }
+          }
+
+
+          //Meta information declaration start
+
+          override public class func className() -> String {
+              return "OrganizationService.GetTopLevelTeam.Request"
+          }
+          override public func className() -> String {
+              return "OrganizationService.GetTopLevelTeam.Request"
+          }
+          override public func classMetaType() -> GeneratedMessage.Type {
+              return OrganizationService.GetTopLevelTeam.Request.self
+          }
+
+
+          //Meta information declaration end
+
+        }
+
+        final public class RequestBuilder : GeneratedMessageBuilder {
+          private var builderResult:OrganizationService.GetTopLevelTeam.Request
+
+          required override public init () {
+             builderResult = OrganizationService.GetTopLevelTeam.Request()
+             super.init()
+          }
+          public var hasOrganizationId:Bool {
+               get {
+                    return builderResult.hasOrganizationId
+               }
+          }
+          public var organization_id:String {
+               get {
+                    return builderResult.organization_id
+               }
+               set (value) {
+                   builderResult.hasOrganizationId = true
+                   builderResult.organization_id = value
+               }
+          }
+          public func clearOrganizationId() -> OrganizationService.GetTopLevelTeam.RequestBuilder{
+               builderResult.hasOrganizationId = false
+               builderResult.organization_id = ""
+               return self
+          }
+          override public var internalGetResult:GeneratedMessage {
+               get {
+                  return builderResult
+               }
+          }
+          public override func clear() -> OrganizationService.GetTopLevelTeam.RequestBuilder {
+            builderResult = OrganizationService.GetTopLevelTeam.Request()
+            return self
+          }
+          public override func clone() -> OrganizationService.GetTopLevelTeam.RequestBuilder {
+            return OrganizationService.GetTopLevelTeam.Request.builderWithPrototype(builderResult)
+          }
+          public override func build() -> OrganizationService.GetTopLevelTeam.Request {
+               checkInitialized()
+               return buildPartial()
+          }
+          public func buildPartial() -> OrganizationService.GetTopLevelTeam.Request {
+            var returnMe:OrganizationService.GetTopLevelTeam.Request = builderResult
+            return returnMe
+          }
+          public func mergeFrom(other:OrganizationService.GetTopLevelTeam.Request) -> OrganizationService.GetTopLevelTeam.RequestBuilder {
+            if other.hasOrganizationId {
+                 organization_id = other.organization_id
+            }
+            mergeUnknownFields(other.unknownFields)
+            return self
+          }
+          public override func mergeFromCodedInputStream(input:CodedInputStream) ->OrganizationService.GetTopLevelTeam.RequestBuilder {
+               return mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
+          }
+          public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> OrganizationService.GetTopLevelTeam.RequestBuilder {
+            var unknownFieldsBuilder:UnknownFieldSetBuilder = UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
+            while (true) {
+              var tag = input.readTag()
+              switch tag {
+              case 0: 
+                self.unknownFields = unknownFieldsBuilder.build()
+                return self
+
+              case 10 :
+                organization_id = input.readString()
+
+              default:
+                if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
+                   unknownFields = unknownFieldsBuilder.build()
+                   return self
+                }
+              }
+            }
+          }
+        }
+
+
+
+      //Nested type declaration end
+
+
+
+      //Nested type declaration start
+
+        final public class Response : GeneratedMessage {
+          override public subscript (key: String) -> AnyObject? {
+                 switch key {
+                 case "team": return team
+                 default: return nil
+                 }
+          }
+
+          public private(set) var hasTeam:Bool = false
+          public private(set) var team:OrganizationService.Containers.Team = OrganizationService.Containers.Team()
+          required public init() {
+               super.init()
+          }
+          override public func isInitialized() -> Bool {
+           return true
+          }
+          override public func writeToCodedOutputStream(output:CodedOutputStream) {
+            if hasTeam {
+              output.writeMessage(1, value:team)
+            }
+            unknownFields.writeToCodedOutputStream(output)
+          }
+          override public func serializedSize() -> Int32 {
+            var size:Int32 = memoizedSerializedSize
+            if size != -1 {
+             return size
+            }
+
+            size = 0
+            if hasTeam {
+              size += WireFormat.computeMessageSize(1, value:team)
+            }
+            size += unknownFields.serializedSize()
+            memoizedSerializedSize = size
+            return size
+          }
+          public class func parseFromData(data:[Byte]) -> OrganizationService.GetTopLevelTeam.Response {
+            return OrganizationService.GetTopLevelTeam.Response.builder().mergeFromData(data).build()
+          }
+          public class func parseFromData(data:[Byte], extensionRegistry:ExtensionRegistry) -> OrganizationService.GetTopLevelTeam.Response {
+            return OrganizationService.GetTopLevelTeam.Response.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
+          }
+          public class func parseFromInputStream(input:NSInputStream) -> OrganizationService.GetTopLevelTeam.Response {
+            return OrganizationService.GetTopLevelTeam.Response.builder().mergeFromInputStream(input).build()
+          }
+          public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->OrganizationService.GetTopLevelTeam.Response {
+            return OrganizationService.GetTopLevelTeam.Response.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
+          }
+          public class func parseFromCodedInputStream(input:CodedInputStream) -> OrganizationService.GetTopLevelTeam.Response {
+            return OrganizationService.GetTopLevelTeam.Response.builder().mergeFromCodedInputStream(input).build()
+          }
+          public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> OrganizationService.GetTopLevelTeam.Response {
+            return OrganizationService.GetTopLevelTeam.Response.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
+          }
+          public class func builder() -> OrganizationService.GetTopLevelTeam.ResponseBuilder {
+            return OrganizationService.GetTopLevelTeam.Response.classBuilder() as OrganizationService.GetTopLevelTeam.ResponseBuilder
+          }
+          public func builder() -> OrganizationService.GetTopLevelTeam.ResponseBuilder {
+            return classBuilder() as OrganizationService.GetTopLevelTeam.ResponseBuilder
+          }
+          public override class func classBuilder() -> MessageBuilder {
+            return OrganizationService.GetTopLevelTeam.ResponseBuilder()
+          }
+          public override func classBuilder() -> MessageBuilder {
+            return OrganizationService.GetTopLevelTeam.Response.builder()
+          }
+          public func toBuilder() -> OrganizationService.GetTopLevelTeam.ResponseBuilder {
+            return OrganizationService.GetTopLevelTeam.Response.builderWithPrototype(self)
+          }
+          public class func builderWithPrototype(prototype:OrganizationService.GetTopLevelTeam.Response) -> OrganizationService.GetTopLevelTeam.ResponseBuilder {
+            return OrganizationService.GetTopLevelTeam.Response.builder().mergeFrom(prototype)
+          }
+          override public func writeDescriptionTo(inout output:String, indent:String) {
+            if hasTeam {
+              output += "\(indent) team {\n"
+              team.writeDescriptionTo(&output, indent:"\(indent)  ")
+              output += "\(indent) }\n"
+            }
+            unknownFields.writeDescriptionTo(&output, indent:indent)
+          }
+          override public var hashValue:Int {
+              get {
+                  var hashCode:Int = 7
+                  if hasTeam {
+                    hashCode = (hashCode &* 31) &+ team.hashValue
+                  }
+                  hashCode = (hashCode &* 31) &+  unknownFields.hashValue
+                  return hashCode
+              }
+          }
+
+
+          //Meta information declaration start
+
+          override public class func className() -> String {
+              return "OrganizationService.GetTopLevelTeam.Response"
+          }
+          override public func className() -> String {
+              return "OrganizationService.GetTopLevelTeam.Response"
+          }
+          override public func classMetaType() -> GeneratedMessage.Type {
+              return OrganizationService.GetTopLevelTeam.Response.self
+          }
+
+
+          //Meta information declaration end
+
+        }
+
+        final public class ResponseBuilder : GeneratedMessageBuilder {
+          private var builderResult:OrganizationService.GetTopLevelTeam.Response
+
+          required override public init () {
+             builderResult = OrganizationService.GetTopLevelTeam.Response()
+             super.init()
+          }
+          public var hasTeam:Bool {
+               get {
+                   return builderResult.hasTeam
+               }
+          }
+          public var team:OrganizationService.Containers.Team {
+               get {
+                   return builderResult.team
+               }
+               set (value) {
+                   builderResult.hasTeam = true
+                   builderResult.team = value
+               }
+          }
+          public func setTeamBuilder(builderForValue:OrganizationService.Containers.TeamBuilder) -> OrganizationService.GetTopLevelTeam.ResponseBuilder {
+            team = builderForValue.build()
+            return self
+          }
+          public func mergeTeam(value:OrganizationService.Containers.Team) -> OrganizationService.GetTopLevelTeam.ResponseBuilder {
+            if (builderResult.hasTeam) {
+              builderResult.team = OrganizationService.Containers.Team.builderWithPrototype(builderResult.team).mergeFrom(value).buildPartial()
+            } else {
+              builderResult.team = value
+            }
+            builderResult.hasTeam = true
+            return self
+          }
+          public func clearTeam() -> OrganizationService.GetTopLevelTeam.ResponseBuilder {
+            builderResult.hasTeam = false
+            builderResult.team = OrganizationService.Containers.Team()
+            return self
+          }
+          override public var internalGetResult:GeneratedMessage {
+               get {
+                  return builderResult
+               }
+          }
+          public override func clear() -> OrganizationService.GetTopLevelTeam.ResponseBuilder {
+            builderResult = OrganizationService.GetTopLevelTeam.Response()
+            return self
+          }
+          public override func clone() -> OrganizationService.GetTopLevelTeam.ResponseBuilder {
+            return OrganizationService.GetTopLevelTeam.Response.builderWithPrototype(builderResult)
+          }
+          public override func build() -> OrganizationService.GetTopLevelTeam.Response {
+               checkInitialized()
+               return buildPartial()
+          }
+          public func buildPartial() -> OrganizationService.GetTopLevelTeam.Response {
+            var returnMe:OrganizationService.GetTopLevelTeam.Response = builderResult
+            return returnMe
+          }
+          public func mergeFrom(other:OrganizationService.GetTopLevelTeam.Response) -> OrganizationService.GetTopLevelTeam.ResponseBuilder {
+            if (other.hasTeam) {
+                mergeTeam(other.team)
+            }
+            mergeUnknownFields(other.unknownFields)
+            return self
+          }
+          public override func mergeFromCodedInputStream(input:CodedInputStream) ->OrganizationService.GetTopLevelTeam.ResponseBuilder {
+               return mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
+          }
+          public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> OrganizationService.GetTopLevelTeam.ResponseBuilder {
+            var unknownFieldsBuilder:UnknownFieldSetBuilder = UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
+            while (true) {
+              var tag = input.readTag()
+              switch tag {
+              case 0: 
+                self.unknownFields = unknownFieldsBuilder.build()
+                return self
+
+              case 10 :
+                var subBuilder:OrganizationService.Containers.TeamBuilder = OrganizationService.Containers.Team.builder()
+                if hasTeam {
+                  subBuilder.mergeFrom(team)
+                }
+                input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
+                team = subBuilder.buildPartial()
+
+              default:
+                if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
+                   unknownFields = unknownFieldsBuilder.build()
+                   return self
+                }
+              }
+            }
+          }
+        }
+
+
+
+      //Nested type declaration end
+
+      override public subscript (key: String) -> AnyObject? {
+             switch key {
+             default: return nil
+             }
+      }
+
+      required public init() {
+           super.init()
+      }
+      override public func isInitialized() -> Bool {
+       return true
+      }
+      override public func writeToCodedOutputStream(output:CodedOutputStream) {
+        unknownFields.writeToCodedOutputStream(output)
+      }
+      override public func serializedSize() -> Int32 {
+        var size:Int32 = memoizedSerializedSize
+        if size != -1 {
+         return size
+        }
+
+        size = 0
+        size += unknownFields.serializedSize()
+        memoizedSerializedSize = size
+        return size
+      }
+      public class func parseFromData(data:[Byte]) -> OrganizationService.GetTopLevelTeam {
+        return OrganizationService.GetTopLevelTeam.builder().mergeFromData(data).build()
+      }
+      public class func parseFromData(data:[Byte], extensionRegistry:ExtensionRegistry) -> OrganizationService.GetTopLevelTeam {
+        return OrganizationService.GetTopLevelTeam.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
+      }
+      public class func parseFromInputStream(input:NSInputStream) -> OrganizationService.GetTopLevelTeam {
+        return OrganizationService.GetTopLevelTeam.builder().mergeFromInputStream(input).build()
+      }
+      public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->OrganizationService.GetTopLevelTeam {
+        return OrganizationService.GetTopLevelTeam.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
+      }
+      public class func parseFromCodedInputStream(input:CodedInputStream) -> OrganizationService.GetTopLevelTeam {
+        return OrganizationService.GetTopLevelTeam.builder().mergeFromCodedInputStream(input).build()
+      }
+      public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> OrganizationService.GetTopLevelTeam {
+        return OrganizationService.GetTopLevelTeam.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
+      }
+      public class func builder() -> OrganizationService.GetTopLevelTeamBuilder {
+        return OrganizationService.GetTopLevelTeam.classBuilder() as OrganizationService.GetTopLevelTeamBuilder
+      }
+      public func builder() -> OrganizationService.GetTopLevelTeamBuilder {
+        return classBuilder() as OrganizationService.GetTopLevelTeamBuilder
+      }
+      public override class func classBuilder() -> MessageBuilder {
+        return OrganizationService.GetTopLevelTeamBuilder()
+      }
+      public override func classBuilder() -> MessageBuilder {
+        return OrganizationService.GetTopLevelTeam.builder()
+      }
+      public func toBuilder() -> OrganizationService.GetTopLevelTeamBuilder {
+        return OrganizationService.GetTopLevelTeam.builderWithPrototype(self)
+      }
+      public class func builderWithPrototype(prototype:OrganizationService.GetTopLevelTeam) -> OrganizationService.GetTopLevelTeamBuilder {
+        return OrganizationService.GetTopLevelTeam.builder().mergeFrom(prototype)
+      }
+      override public func writeDescriptionTo(inout output:String, indent:String) {
+        unknownFields.writeDescriptionTo(&output, indent:indent)
+      }
+      override public var hashValue:Int {
+          get {
+              var hashCode:Int = 7
+              hashCode = (hashCode &* 31) &+  unknownFields.hashValue
+              return hashCode
+          }
+      }
+
+
+      //Meta information declaration start
+
+      override public class func className() -> String {
+          return "OrganizationService.GetTopLevelTeam"
+      }
+      override public func className() -> String {
+          return "OrganizationService.GetTopLevelTeam"
+      }
+      override public func classMetaType() -> GeneratedMessage.Type {
+          return OrganizationService.GetTopLevelTeam.self
+      }
+
+
+      //Meta information declaration end
+
+    }
+
+    final public class GetTopLevelTeamBuilder : GeneratedMessageBuilder {
+      private var builderResult:OrganizationService.GetTopLevelTeam
+
+      required override public init () {
+         builderResult = OrganizationService.GetTopLevelTeam()
+         super.init()
+      }
+      override public var internalGetResult:GeneratedMessage {
+           get {
+              return builderResult
+           }
+      }
+      public override func clear() -> OrganizationService.GetTopLevelTeamBuilder {
+        builderResult = OrganizationService.GetTopLevelTeam()
+        return self
+      }
+      public override func clone() -> OrganizationService.GetTopLevelTeamBuilder {
+        return OrganizationService.GetTopLevelTeam.builderWithPrototype(builderResult)
+      }
+      public override func build() -> OrganizationService.GetTopLevelTeam {
+           checkInitialized()
+           return buildPartial()
+      }
+      public func buildPartial() -> OrganizationService.GetTopLevelTeam {
+        var returnMe:OrganizationService.GetTopLevelTeam = builderResult
+        return returnMe
+      }
+      public func mergeFrom(other:OrganizationService.GetTopLevelTeam) -> OrganizationService.GetTopLevelTeamBuilder {
+        mergeUnknownFields(other.unknownFields)
+        return self
+      }
+      public override func mergeFromCodedInputStream(input:CodedInputStream) ->OrganizationService.GetTopLevelTeamBuilder {
+           return mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
+      }
+      public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> OrganizationService.GetTopLevelTeamBuilder {
+        var unknownFieldsBuilder:UnknownFieldSetBuilder = UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
+        while (true) {
+          var tag = input.readTag()
+          switch tag {
+          case 0: 
+            self.unknownFields = unknownFieldsBuilder.build()
+            return self
+
+          default:
+            if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
+               unknownFields = unknownFieldsBuilder.build()
+               return self
+            }
+          }
+        }
+      }
+    }
+
+
+
+  //Nested type declaration end
+
+
+
+  //Nested type declaration start
+
     final public class CreateAddress : GeneratedMessage {
 
 
@@ -8175,6 +8743,42 @@ public extension OrganizationService.GetTeamChildren {
         var bytes = [Byte](count: data.length, repeatedValue: 0)
         data.getBytes(&bytes)
         return OrganizationService.GetTeamChildren.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
+    }
+}
+public extension OrganizationService.GetTopLevelTeam.Request {
+    class func parseFromNSData(data:NSData) -> OrganizationService.GetTopLevelTeam.Request {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return OrganizationService.GetTopLevelTeam.Request.builder().mergeFromData(bytes).build()
+    }
+    class func parseFromNSData(data:NSData, extensionRegistry:ExtensionRegistry) -> OrganizationService.GetTopLevelTeam.Request {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return OrganizationService.GetTopLevelTeam.Request.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
+    }
+}
+public extension OrganizationService.GetTopLevelTeam.Response {
+    class func parseFromNSData(data:NSData) -> OrganizationService.GetTopLevelTeam.Response {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return OrganizationService.GetTopLevelTeam.Response.builder().mergeFromData(bytes).build()
+    }
+    class func parseFromNSData(data:NSData, extensionRegistry:ExtensionRegistry) -> OrganizationService.GetTopLevelTeam.Response {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return OrganizationService.GetTopLevelTeam.Response.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
+    }
+}
+public extension OrganizationService.GetTopLevelTeam {
+    class func parseFromNSData(data:NSData) -> OrganizationService.GetTopLevelTeam {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return OrganizationService.GetTopLevelTeam.builder().mergeFromData(bytes).build()
+    }
+    class func parseFromNSData(data:NSData, extensionRegistry:ExtensionRegistry) -> OrganizationService.GetTopLevelTeam {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return OrganizationService.GetTopLevelTeam.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
     }
 }
 public extension OrganizationService.CreateAddress.Request {

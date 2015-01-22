@@ -34,6 +34,7 @@ message OrganizationServiceResponses {
         optional main.organization_service.OrganizationService.GetTeams.Response get_teams = 207;
         optional main.organization_service.OrganizationService.GetAddresses.Response get_addresses = 208;
         optional main.organization_service.OrganizationService.GetTeamChildren.Response get_team_children = 209;
+        optional main.organization_service.OrganizationService.GetTopLevelTeam.Response get_top_level_team = 210;
     }
 }
 
@@ -66,6 +67,7 @@ message SearchServiceResponses {
 message LandingServiceResponses {
     extend soa.ActionResponseResult {
         optional main.landing_service.LandingService.GetCategories.Response get_categories = 500;
+        optional main.landing_service.LandingService.GetOrganizationCategories.Response get_organization_categories = 501;
     }
 }
 
