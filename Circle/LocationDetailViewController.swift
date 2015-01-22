@@ -20,7 +20,7 @@ class LocationDetailViewController: DetailViewController {
         super.customInit()
         
         dataSource = LocationDetailDataSource()
-        delegate = ProfileCollectionViewDelegate()
+        delegate = StickyHeaderCollectionViewDelegate()
     }
     
     // MARK: - Configuration

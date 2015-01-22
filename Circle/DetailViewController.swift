@@ -16,7 +16,7 @@ class DetailViewController: UIViewController, UICollectionViewDelegate, MFMailCo
     var animationSourceRect: CGRect?
     private(set) var collectionView: UICollectionView!
     var dataSource: CardDataSource!
-    var delegate: ProfileCollectionViewDelegate!
+    var delegate: StickyHeaderCollectionViewDelegate!
     var layout: StickyHeaderCollectionViewLayout!
     
     override init() {

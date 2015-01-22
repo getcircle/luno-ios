@@ -57,7 +57,7 @@
 		8F4805ED1A5DFEE400273731 /* ProfilesCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4805EC1A5DFEE400273731 /* ProfilesCollectionViewDelegate.swift */; };
 		8F4A98AC1A633BF6005AD63C /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4A98AB1A633BF6005AD63C /* UIImageExtension.swift */; };
 		8F4A98B31A6350B9005AD63C /* CircleCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4A98B21A6350B9005AD63C /* CircleCollectionReusableView.swift */; };
-		8F4E53751A59CB8300DC876B /* ProfileCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4E53741A59CB8300DC876B /* ProfileCollectionViewDelegate.swift */; };
+		8F4E53751A59CB8300DC876B /* StickyHeaderCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4E53741A59CB8300DC876B /* StickyHeaderCollectionViewDelegate.swift */; };
 		8F4E53781A5A0D9E00DC876B /* NotesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4E53761A5A0D9E00DC876B /* NotesCollectionViewCell.swift */; };
 		8F4E53791A5A0D9E00DC876B /* NotesCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F4E53771A5A0D9E00DC876B /* NotesCollectionViewCell.xib */; };
 		8F65C4F51A50F28E00C7F3E6 /* CardHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F65C4F31A50F28E00C7F3E6 /* CardHeaderCollectionReusableView.swift */; };
@@ -289,7 +289,7 @@
 		8F4805EC1A5DFEE400273731 /* ProfilesCollectionViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfilesCollectionViewDelegate.swift; sourceTree = "<group>"; };
 		8F4A98AB1A633BF6005AD63C /* UIImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		8F4A98B21A6350B9005AD63C /* CircleCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleCollectionReusableView.swift; sourceTree = "<group>"; };
-		8F4E53741A59CB8300DC876B /* ProfileCollectionViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileCollectionViewDelegate.swift; sourceTree = "<group>"; };
+		8F4E53741A59CB8300DC876B /* StickyHeaderCollectionViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StickyHeaderCollectionViewDelegate.swift; sourceTree = "<group>"; };
 		8F4E53761A5A0D9E00DC876B /* NotesCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotesCollectionViewCell.swift; sourceTree = "<group>"; };
 		8F4E53771A5A0D9E00DC876B /* NotesCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotesCollectionViewCell.xib; sourceTree = "<group>"; };
 		8F65C4F31A50F28E00C7F3E6 /* CardHeaderCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardHeaderCollectionReusableView.swift; sourceTree = "<group>"; };
@@ -663,7 +663,6 @@
 				8FC7BB421A58B15B005BDDDB /* CardCollectionViewDelegate.swift */,
 				8FC4C3BE1A7420EF00884D9D /* LocationsOverviewCollectionViewDelegate.swift */,
 				8F823E481A71CF380006264B /* OrganizationDetailCollectionViewDelegate.swift */,
-				8F4E53741A59CB8300DC876B /* ProfileCollectionViewDelegate.swift */,
 				8F4805EC1A5DFEE400273731 /* ProfilesCollectionViewDelegate.swift */,
 				8F085A971A6C4B0D00F8139B /* TeamDetailCollectionViewDelegate.swift */,
 			);
@@ -1069,7 +1068,7 @@
 				8F823E491A71CF380006264B /* OrganizationDetailCollectionViewDelegate.swift in Sources */,
 				BF2CBFD61A473E9100BE589D /* UserService.swift in Sources */,
 				8F7400251A6863B000D96B60 /* TagDetailDataSource.swift in Sources */,
-				8F4E53751A59CB8300DC876B /* ProfileCollectionViewDelegate.swift in Sources */,
+				8F4E53751A59CB8300DC876B /* StickyHeaderCollectionViewDelegate.swift in Sources */,
 				8F4805E41A5DE4B800273731 /* MapHeaderCollectionReusableView.swift in Sources */,
 				8FF298471A4E050100306CFC /* TagCollectionViewCell.swift in Sources */,
 				8FD907F91A6070D70025A17B /* MapViewController.swift in Sources */,

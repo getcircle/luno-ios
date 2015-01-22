@@ -17,7 +17,7 @@ class TagDetailViewController: DetailViewController {
         super.customInit()
 
         dataSource = TagDetailDataSource()
-        delegate = ProfileCollectionViewDelegate()
+        delegate = StickyHeaderCollectionViewDelegate()
     }
     
     // MARK: - Configuration

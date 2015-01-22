@@ -1,5 +1,5 @@
 //
-//  ProfileCollectionViewDelegate.swift
+//  StickyHeaderCollectionViewDelegate.swift
 //  Circle
 //
 //  Created by Ravi Rani on 1/4/15.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-class ProfileCollectionViewDelegate: CardCollectionViewDelegate {
+class StickyHeaderCollectionViewDelegate: CardCollectionViewDelegate {
 
     override func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         if section == 0 {

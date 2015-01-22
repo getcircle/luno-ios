@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TeamDetailCollectionViewDelegate: ProfileCollectionViewDelegate {
+class TeamDetailCollectionViewDelegate: StickyHeaderCollectionViewDelegate {
 
     override func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         if section == 2 {

@@ -21,7 +21,7 @@ class ProfileDetailViewController: DetailViewController, NewNoteViewControllerDe
         super.customInit()
         
         dataSource = ProfileDetailDataSource()
-        delegate = ProfileCollectionViewDelegate()
+        delegate = StickyHeaderCollectionViewDelegate()
     }
     
     // MARK: - Configuration
