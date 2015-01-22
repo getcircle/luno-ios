@@ -20,12 +20,6 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Copyright (c) 2014 RH Labs Inc. All rights reserved." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="aew-4r-Rd2" userLabel="Copyright (c) 2014 RH Labs Inc. All rights reserved.">
-                    <rect key="frame" x="20" y="563" width="560" height="17"/>
-                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="12"/>
-                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="circle" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="7eh-3f-DhV" userLabel="AppName">
                     <rect key="frame" x="20" y="239" width="560" height="63"/>
                     <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="46"/>
@@ -87,8 +81,6 @@
                 <constraint firstItem="faS-m0-daM" firstAttribute="top" secondItem="x4p-Uh-3t5" secondAttribute="bottom" constant="20" id="5BW-Rz-L5d"/>
                 <constraint firstItem="aie-sS-pXs" firstAttribute="top" secondItem="faS-m0-daM" secondAttribute="bottom" constant="40" id="5cl-h8-CV5"/>
                 <constraint firstAttribute="centerX" secondItem="x4p-Uh-3t5" secondAttribute="centerX" id="8Ah-QW-Aiy"/>
-                <constraint firstAttribute="trailing" secondItem="aew-4r-Rd2" secondAttribute="trailing" constant="20" symbolic="YES" id="Ac7-U5-O2t"/>
-                <constraint firstAttribute="bottom" secondItem="aew-4r-Rd2" secondAttribute="bottom" constant="20" id="CwW-qB-F2K"/>
                 <constraint firstAttribute="trailing" secondItem="7eh-3f-DhV" secondAttribute="trailing" constant="20" symbolic="YES" id="MwH-ef-daQ"/>
                 <constraint firstItem="pK5-tP-ZNS" firstAttribute="top" secondItem="7eh-3f-DhV" secondAttribute="bottom" id="Rhe-sv-hBS"/>
                 <constraint firstAttribute="centerX" secondItem="faS-m0-daM" secondAttribute="centerX" id="Rnk-Iw-DVV"/>
@@ -97,12 +89,10 @@
                 <constraint firstAttribute="trailing" secondItem="x4p-Uh-3t5" secondAttribute="trailing" priority="750" constant="20" symbolic="YES" id="bLq-0P-NFV"/>
                 <constraint firstItem="faS-m0-daM" firstAttribute="width" secondItem="x4p-Uh-3t5" secondAttribute="width" id="hF5-6d-M0J"/>
                 <constraint firstAttribute="centerX" secondItem="aie-sS-pXs" secondAttribute="centerX" id="jgc-Eu-pO9"/>
-                <constraint firstItem="aew-4r-Rd2" firstAttribute="leading" secondItem="ba3-xx-xRk" secondAttribute="leading" constant="20" symbolic="YES" id="lI1-Il-CxF"/>
                 <constraint firstItem="x4p-Uh-3t5" firstAttribute="leading" secondItem="ba3-xx-xRk" secondAttribute="leading" priority="750" constant="20" symbolic="YES" id="nUH-zl-LJ4"/>
                 <constraint firstItem="pK5-tP-ZNS" firstAttribute="leading" secondItem="ba3-xx-xRk" secondAttribute="leading" priority="750" constant="20" symbolic="YES" id="qQN-Uz-Gqd"/>
                 <constraint firstItem="x4p-Uh-3t5" firstAttribute="top" secondItem="pK5-tP-ZNS" secondAttribute="top" constant="70" id="qZy-xN-RVi"/>
                 <constraint firstAttribute="centerX" secondItem="7eh-3f-DhV" secondAttribute="centerX" id="v5g-9h-qkZ"/>
-                <constraint firstAttribute="centerX" secondItem="aew-4r-Rd2" secondAttribute="centerX" id="vza-xb-Gwf"/>
                 <constraint firstAttribute="centerX" secondItem="pK5-tP-ZNS" secondAttribute="centerX" id="zeZ-UU-ar7"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
