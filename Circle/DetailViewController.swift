@@ -80,7 +80,6 @@ class DetailViewController: UIViewController, UICollectionViewDelegate, MFMailCo
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        registerNotifications()
         if isBeingPresentedModally() {
             navigationController?.navigationBar.makeTransparent()
         }

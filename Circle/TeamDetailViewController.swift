@@ -45,6 +45,27 @@ class TeamDetailViewController: DetailViewController {
         collectionView.deselectItemAtIndexPath(indexPath, animated: true)
     }
     
+    // MARK: - Notifications
+    
+    override func registerNotifications() {
+        NSNotificationCenter.defaultCenter().addObserver(
+            self,
+            selector: "didSelectTeam:",
+            name: TeamsCollectionViewCellNotifications.onTeamSelectedNotification,
+            object: nil
+        )
+    }
+    
+    func didSelectTeam(notification: NSNotification!) {
+        if let userInfo = notification.userInfo {
+            if let selectedTeam = userInfo["team"] as? OrganizationService.Containers.Team {
+                let viewController = TeamDetailViewController()
+                (viewController.dataSource as TeamDetailDataSource).selectedTeam = selectedTeam
+                navigationController?.pushViewController(viewController, animated: true)
+            }
+        }
+    }
+    
 //    func scrollViewDidScroll(scrollView: UIScrollView) {
 //        if let profileHeaderView = (collectionView!.dataSource as TagDetailDataSource).profileHeaderView {
 //            let contentOffset = scrollView.contentOffset
