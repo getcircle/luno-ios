@@ -51,6 +51,7 @@ class ProfileDetailsViewController: UIViewController {
         var previous: UIView?
         for detailView in detailViews {
             overlayContainerView.addSubview(detailView)
+            detailView.backgroundColor = UIColor.clearColor()
             // Views should be aligned left to right
             if previous == nil {
                 detailView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero, excludingEdge: .Right)

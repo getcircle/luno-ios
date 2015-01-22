@@ -327,6 +327,7 @@ class ProfileDetailDataSource: CardDataSource {
                 withReuseIdentifier: emptyHeaderReuseIdentifier,
                 forIndexPath: indexPath
             ) as UICollectionReusableView
+            supplementaryView.backgroundColor = UIColor.clearColor()
             return supplementaryView
         }
         
