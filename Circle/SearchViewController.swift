@@ -379,10 +379,15 @@ CardHeaderViewDelegate {
     // MARK: - IBActions
     
     @IBAction func showLoggedInUserProfile(sender: AnyObject!) {
-        let profileVC = ProfileDetailViewController()
-        profileVC.showCloseButton = true
-        profileVC.profile = AuthViewController.getLoggedInUserProfile()
-        let navController = UINavigationController(rootViewController: profileVC)
+        let profile = AuthViewController.getLoggedInUserProfile()!
+        let detailsVC = ProfileDetailsViewController(
+            detailViews: [
+                ProfileInfoCollectionView(profile: profile),
+                ProfileInfoCollectionView(profile: profile)
+            ],
+            underlyingScrollView: ProfileUnderlyingCollectionView(profile: profile)
+        )
+        let navController = UINavigationController(rootViewController: detailsVC)
         navigationController?.presentViewController(navController, animated: true, completion: nil)
     }
 

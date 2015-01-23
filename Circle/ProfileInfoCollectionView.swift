@@ -9,7 +9,7 @@
 import UIKit
 import ProtobufRegistry
 
-class ProfileInfoCollectionView: UICollectionView, UICollectionViewDelegate {
+class ProfileInfoCollectionView: OverlaidCollectionView {
     
     private var layout: StickyHeaderCollectionViewLayout?
     private var profile: ProfileService.Containers.Profile?
@@ -26,7 +26,6 @@ class ProfileInfoCollectionView: UICollectionView, UICollectionViewDelegate {
         profileInfoDataSource = ProfileDetailDataSource(profile: AuthViewController.getLoggedInUserProfile()!)
         profileInfoDataSource?.registerCardHeader(self)
         profileInfoDelegate = StickyHeaderCollectionViewDelegate()
-        profileInfoDelegate?.delegate = self
         backgroundColor = UIColor.viewBackgroundColor()
         dataSource = profileInfoDataSource
         delegate = profileInfoDelegate
@@ -35,10 +34,6 @@ class ProfileInfoCollectionView: UICollectionView, UICollectionViewDelegate {
         profileInfoDataSource?.loadData { (error) -> Void in
             self.reloadData()
         }
-    }
-    
-    func scrollViewDidScroll(scrollView: UIScrollView) {
-        // TODO implement externalScroll delegate
     }
     
 }

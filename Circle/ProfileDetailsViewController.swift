@@ -8,7 +8,10 @@
 
 import UIKit
 
-class ProfileDetailsViewController: UIViewController {
+class ProfileDetailsViewController: UIViewController, OverlaidCollectionViewDelegate, UIScrollViewDelegate {
+    
+    // Segmented Control Helpers
+    private var currentIndex = 0
     
     // Underlying Views
     private var underlyingScrollView: UIScrollView!
@@ -17,9 +20,9 @@ class ProfileDetailsViewController: UIViewController {
     private var overlayScrollView: UIScrollView!
     private var overlayContainerView: UIView!
     
-    var detailViews = [UICollectionView]()
+    var detailViews = [OverlaidCollectionView]()
     
-    convenience init(detailViews withDetailViews: [UICollectionView], underlyingScrollView withUnderlyingScrollView: UIScrollView) {
+    convenience init(detailViews withDetailViews: [OverlaidCollectionView], underlyingScrollView withUnderlyingScrollView: UIScrollView) {
         self.init()
         detailViews = withDetailViews
         underlyingScrollView = withUnderlyingScrollView
@@ -27,6 +30,8 @@ class ProfileDetailsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        extendedLayoutIncludesOpaqueBars = true
+        automaticallyAdjustsScrollViewInsets = false
         configureUnderlyingViews()
         configureOverlayViews()
     }
@@ -40,7 +45,7 @@ class ProfileDetailsViewController: UIViewController {
             transitionCoordinator()?.animateAlongsideTransition({ (transitionContext) -> Void in
                 self.navigationController?.navigationBar.makeTransparent()
                 return
-                },
+            },
                 completion: nil
             )
         }
@@ -48,6 +53,7 @@ class ProfileDetailsViewController: UIViewController {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        underlyingScrollView.contentSize = detailViews[0].contentSize
         overlayScrollView.contentSize = overlayContainerView.frame.size
     }
     
@@ -76,8 +82,7 @@ class ProfileDetailsViewController: UIViewController {
     
     private func configureUnderlyingViews() {
         view.addSubview(underlyingScrollView)
-        underlyingScrollView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero, excludingEdge: .Top)
-        underlyingScrollView.autoPinEdgeToSuperviewEdge(.Top, withInset: -44)
+        underlyingScrollView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
     }
     
     private func configureOverlayViews() {
@@ -100,6 +105,7 @@ class ProfileDetailsViewController: UIViewController {
             }
             detailView.autoSetDimension(.Width, toSize: view.frame.width)
             detailView.alwaysBounceVertical = true
+            detailView.externalScrollDelegate = self
             previous = detailView
         }
         
@@ -107,6 +113,7 @@ class ProfileDetailsViewController: UIViewController {
         overlayScrollView.pagingEnabled = true
         overlayScrollView.alwaysBounceVertical = false
         overlayScrollView.showsHorizontalScrollIndicator = false
+        overlayScrollView.delegate = self
         
         // Attach the overlayContainerView to the overlayScrollView
         overlayScrollView.addSubview(overlayContainerView)
@@ -115,6 +122,34 @@ class ProfileDetailsViewController: UIViewController {
         // Attach the overlayScrollView to the main view
         view.addSubview(overlayScrollView)
         overlayScrollView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
+    }
+    
+    // MARK: - OverlaidCollectionViewDelegate
+    
+    func overlaidCollectionViewDidChangeContentOffset(collectionView: UICollectionView, offset: CGFloat) {
+        underlyingScrollView.contentOffset = CGPointMake(0, collectionView.contentOffset.y)
+    }
+    
+    // MARK: - UIScrollViewDelegate
+    
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        println("container scrollview: \(scrollView.contentOffset)")
+        
+    }
+    
+    func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if !decelerate {
+            scrollingEnded(scrollView)
+        }
+    }
+    
+    func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+        scrollingEnded(scrollView)
+    }
+
+    private func scrollingEnded(scrollView: UIScrollView) {
+        currentIndex = Int(scrollView.contentOffset.x) / Int(view.frame.width)
+        underlyingScrollView.contentSize = detailViews[currentIndex].contentSize
     }
 
 }

@@ -28,5 +28,6 @@ class StickyHeaderCollectionViewDelegate: CardCollectionViewDelegate {
         }
         
         return super.collectionView(collectionView, layout: collectionViewLayout, sizeForItemAtIndexPath: indexPath)
-    }    
+    }
+    
 }

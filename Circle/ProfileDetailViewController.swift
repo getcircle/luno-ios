@@ -90,7 +90,7 @@ class ProfileDetailViewController: DetailViewController, NewNoteViewControllerDe
     // MARK: - Scroll view delegate
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
-        
+
         if let profileHeaderView = (collectionView!.dataSource as ProfileDetailDataSource).profileHeaderView {
             let contentOffset = scrollView.contentOffset
             let minOffsetToMakeChanges: CGFloat = 20.0
@@ -126,6 +126,7 @@ class ProfileDetailViewController: DetailViewController, NewNoteViewControllerDe
                 profileHeaderView.profileImage.transform = CGAffineTransformIdentity
             }
         }
+
     }
     
     // MARK: - Notifications

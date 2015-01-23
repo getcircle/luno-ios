@@ -8,7 +8,7 @@
 
 import UIKit
 
-class StickyHeaderCollectionViewLayout: UICollectionViewFlowLayout {
+class StickyHeaderCollectionViewLayout: UICollectionViewFlowLayout, UICollectionViewDelegate {
     
     var headerHeight: CGFloat = 0.0
     
@@ -84,6 +84,8 @@ class StickyHeaderCollectionViewLayout: UICollectionViewFlowLayout {
                         // Pin supplementary view to the top after it reaches nav bar height
                         var frameToModify = attribute.frame
                         frameToModify.origin.y = max(0.0, contentOffset.y - offsetToMakeHeaderSticky)
+                        println("collectionView: \(collectionView)")
+                        println("offset: \(contentOffset.y - offsetToMakeHeaderSticky)")
                         attribute.frame = frameToModify
                         attribute.zIndex = 100
                     }
@@ -96,4 +98,5 @@ class StickyHeaderCollectionViewLayout: UICollectionViewFlowLayout {
         
         return attributes
     }
+    
 }
