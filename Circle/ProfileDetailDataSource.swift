@@ -19,22 +19,41 @@ class ItemImage {
     }
 }
 
+enum ContentType: Int {
+    case CellPhone = 1
+    case City
+    case Country
+    case Email
+    case Facebook
+    case Github
+    case LinkedIn
+    case Manager
+    case Notes
+    case Other
+    case Tags
+    case Team
+    case Twitter
+}
+
 class SectionItem {
     var title: String
     var image: ItemImage?
     var container: String
     var containerKey: String
+    var contentType: ContentType!
     
     init(
         title itemTitle: String,
         container itemContainer: String,
         containerKey itemContainerKey: String,
+        contentType type: ContentType,
         image itemImage: ItemImage?
     ) {
         title = itemTitle
         container = itemContainer
         containerKey = itemContainerKey
         image = itemImage
+        contentType = type
     }
 }
 
@@ -60,35 +79,13 @@ class Section {
 
 class ProfileDetailDataSource: CardDataSource {
 
-    enum CellType: String {
-        case Email = "email"
-        case CellPhone = "cell"
-        case Twitter = "twitter"
-        case Facebook = "facebook"
-        case LinkedIn = "linkedin"
-        case Github = "github"
-        case Manager = "manager"
-        case Other = "other"
-        
-        static let allValues = [Email, CellPhone, Twitter, Facebook, LinkedIn, Github, Manager]
-        static func typeByKey(key: String) -> CellType {
-            for value in self.allValues {
-                if value.rawValue == key {
-                    return value
-                }
-            }
-            
-            return .Other
-        }
-    }
-
     var manager: ProfileService.Containers.Profile?
     var profile: ProfileService.Containers.Profile!
     
-    private var address: OrganizationService.Containers.Address?
-    private var tags: Array<ProfileService.Containers.Tag>?
-    private var team: OrganizationService.Containers.Team?
-    private var notes: Array<NoteService.Containers.Note>?
+    private(set) var address: OrganizationService.Containers.Address?
+    private(set) var tags: Array<ProfileService.Containers.Tag>?
+    private(set) var team: OrganizationService.Containers.Team?
+    private(set) var notes: Array<NoteService.Containers.Note>?
 
     private(set) var profileHeaderView: ProfileHeaderCollectionReusableView?
     private var sections = [Section]()
@@ -143,24 +140,28 @@ class ProfileDetailDataSource: CardDataSource {
                 title: "Email",
                 container: "profile",
                 containerKey: "email",
+                contentType: .Email,
                 image: ItemImage(name: "EmailCircle", tint: UIColor.emailTintColor())
             ),
             SectionItem(
                 title: "Cell Phone",
                 container: "profile",
                 containerKey: "cell_phone",
+                contentType: .CellPhone,
                 image: ItemImage(name: "Telephone", tint: UIColor.phoneTintColor())
             ),
             SectionItem(
                 title: "City",
                 container: "address",
                 containerKey: "city",
+                contentType: .City,
                 image: nil
             ),
             SectionItem(
                 title: "Country",
                 container: "address",
                 containerKey: "country_code",
+                contentType: .Country,
                 image: nil
             )
         ]
@@ -173,12 +174,14 @@ class ProfileDetailDataSource: CardDataSource {
                 title: "Manager",
                 container: "manager",
                 containerKey: "full_name",
+                contentType: .Manager,
                 image: nil
             ),
             SectionItem(
                 title: "Team",
                 container: "team",
                 containerKey: "name",
+                contentType: .Team,
                 image: nil
             )
             //            SectionItem(
@@ -197,6 +200,7 @@ class ProfileDetailDataSource: CardDataSource {
                 title: "Tags",
                 container: "tags",
                 containerKey: "name",
+                contentType: .Tags,
                 image: nil
             )
         ]
@@ -206,7 +210,13 @@ class ProfileDetailDataSource: CardDataSource {
     private func getNotesSection() -> Section {
         let sectionItems = [
             // XXX we shouldn't have to pass in "containerKey" here
-            SectionItem(title: "Notes", container: "notes", containerKey: "content", image: nil)
+            SectionItem(
+                title: "Notes",
+                container: "notes",
+                containerKey: "content",
+                contentType: .Notes,
+                image: nil
+            )
         ]
         // TODO find a better place to put this
         let headerSize = CGSizeMake(375, 45.0)
@@ -263,7 +273,8 @@ class ProfileDetailDataSource: CardDataSource {
             var dataDict: [String: AnyObject!] = [
                 "key": item.containerKey,
                 "name": item.title,
-                "value": value
+                "value": value,
+                "type": item.contentType.rawValue
             ]
             
             if let image = item.image {
@@ -328,10 +339,10 @@ class ProfileDetailDataSource: CardDataSource {
     
     // MARK: - Cell Type
     
-    func typeOfCell(indexPath: NSIndexPath) -> CellType {
+    func typeOfCell(indexPath: NSIndexPath) -> ContentType {
         let card = cards[indexPath.section]
         if let rowDataDictionary = card.content[indexPath.row] as? [String: AnyObject] {
-           return CellType.typeByKey(rowDataDictionary["key"] as String!)
+           return ContentType(rawValue: (rowDataDictionary["type"] as Int!))!
         }
         
         return .Other

@@ -63,14 +63,19 @@ class ProfileDetailViewController: DetailViewController, NewNoteViewControllerDe
     
     private func handleKeyValueCardSelection(dataSource: ProfileDetailDataSource, indexPath: NSIndexPath) {
         switch dataSource.typeOfCell(indexPath) {
+        case .Email:
+            presentMailViewController([profile.email], subject: "Hey", messageBody: "", completionHandler: nil)
+
         case .Manager:
             let profileVC = ProfileDetailViewController()
             profileVC.profile = dataSource.manager
             navigationController?.pushViewController(profileVC, animated: true)
-            
-        case .Email:
-            presentMailViewController([profile.email], subject: "Hey", messageBody: "", completionHandler: nil)
-            
+
+        case .Team:
+            let teamVC = TeamDetailViewController()
+            (teamVC.dataSource as TeamDetailDataSource).selectedTeam = dataSource.team!
+            navigationController?.pushViewController(teamVC, animated: true)
+
         default:
             break
         }
