@@ -46,7 +46,13 @@ class CardHeaderCollectionReusableView: CircleCollectionReusableView {
     func setCard(card: Card) {
         cardTitleLabel.text = card.title
         cardImageView.image = UIImage(named: card.imageSource)?.imageWithRenderingMode(.AlwaysTemplate)
-        cardContentCountLabel.text = card.contentCount == 1 ? "" : "All " + String(card.contentCount)
+        if card.showContentCount {
+            cardContentCountLabel.text = card.contentCount == 1 ? "" : "All " + String(card.contentCount)
+        }
+        else {
+            cardContentCountLabel.text = ""
+        }
+
         currentCard = card
     }
     

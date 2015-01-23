@@ -33,11 +33,9 @@ class OrganizationDetailDataSource: CardDataSource {
                         if category.profiles.count > 0 {
                             var profiles = category.profiles
                             switch category.type {
-                            case .Birthdays, .Anniversaries, .NewHires, .Executives:
-                                // HACK: limit the number of results in a card to 3 until we can get smarter about displaying them on the detail view
-                                if profiles.count > 3 {
-                                    profiles = Array(profiles[0..<3])
-                                }
+                            case .Executives:
+                                categoryCard.showContentCount = false
+
                             default: break
                             }
                             categoryCard.addContent(content: profiles, allContent: category.profiles)

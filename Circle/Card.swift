@@ -14,10 +14,13 @@ func ==(lhs: Card, rhs: Card) -> Bool {
 }
 
 class Card: Equatable {
-    var content: [AnyObject]
+
     var allContent: [AnyObject]
+    var content: [AnyObject]
     var contentCount: Int
     var headerSize = CGSizeZero
+    var showContentCount = true
+    
     private(set) var contentClass: CircleCollectionViewCell.Type
     private(set) var contentClassName: String
     private(set) var imageSource: String
