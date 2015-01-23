@@ -8,32 +8,40 @@
 
 import UIKit
 
-class ProfileDetailsViewController: UIViewController, OverlaidCollectionViewDelegate, UIScrollViewDelegate {
+class ProfileDetailsViewController: UIViewController, UnderlyingCollectionViewDelegate, UIScrollViewDelegate {
     
     // Segmented Control Helpers
     private var currentIndex = 0
     
-    // Underlying Views
+    // Overlay view
+    private var overlaidCollectionView: UICollectionView!
+    
+    // Underlying views
     private var underlyingScrollView: UIScrollView!
+    private var underlyingContainerView: UIView!
     
-    // Overlay views
-    private var overlayScrollView: UIScrollView!
-    private var overlayContainerView: UIView!
+    var detailViews = [UnderlyingCollectionView]()
     
-    var detailViews = [OverlaidCollectionView]()
-    
-    convenience init(detailViews withDetailViews: [OverlaidCollectionView], underlyingScrollView withUnderlyingScrollView: UIScrollView) {
+    convenience init(
+        detailViews withDetailViews: [UnderlyingCollectionView],
+        overlaidCollectionView withOverlaidCollectionView: UICollectionView
+    ) {
         self.init()
         detailViews = withDetailViews
-        underlyingScrollView = withUnderlyingScrollView
+        overlaidCollectionView = withOverlaidCollectionView
+    }
+    
+    override func loadView() {
+        view = UIView(frame: UIScreen.mainScreen().bounds)
+        view.backgroundColor = UIColor.viewBackgroundColor()
+        configureUnderlyingViews()
+        configureOverlayView()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         extendedLayoutIncludesOpaqueBars = true
         automaticallyAdjustsScrollViewInsets = false
-        configureUnderlyingViews()
-        configureOverlayViews()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -53,8 +61,8 @@ class ProfileDetailsViewController: UIViewController, OverlaidCollectionViewDele
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        underlyingScrollView.contentSize = detailViews[0].contentSize
-        overlayScrollView.contentSize = overlayContainerView.frame.size
+        overlaidCollectionView.contentSize = detailViews[0].contentSize
+        underlyingScrollView.contentSize = underlyingContainerView.frame.size
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -80,22 +88,21 @@ class ProfileDetailsViewController: UIViewController, OverlaidCollectionViewDele
         }
     }
     
-    private func configureUnderlyingViews() {
-        view.addSubview(underlyingScrollView)
-        underlyingScrollView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
+    private func configureOverlayView() {
+        view.addSubview(overlaidCollectionView)
+        overlaidCollectionView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
     }
     
-    private func configureOverlayViews() {
-        overlayContainerView = UIView.newAutoLayoutView()
+    private func configureUnderlyingViews() {
+        underlyingContainerView = UIView.newAutoLayoutView()
         // Get the container size. Should account for the width of all the detailViews as well as the height of the navigation bar. We don't want the overlay view to scroll vertically, so we need to ensure its vertical content size matches the visible screen. This allows the collection views to take over vertically.
         let containerSize = CGSizeMake(CGFloat(detailViews.count ?? 1) * view.frame.width, view.frame.height)
-        overlayContainerView.autoSetDimensionsToSize(containerSize)
+        underlyingContainerView.autoSetDimensionsToSize(containerSize)
         
         // Attach the detailViews to the overlayContainerView
         var previous: UIView?
         for detailView in detailViews {
-            overlayContainerView.addSubview(detailView)
-            detailView.backgroundColor = UIColor.clearColor()
+            underlyingContainerView.addSubview(detailView)
             // Views should be aligned left to right
             if previous == nil {
                 detailView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero, excludingEdge: .Right)
@@ -104,37 +111,35 @@ class ProfileDetailsViewController: UIViewController, OverlaidCollectionViewDele
                 detailView.autoPinEdge(.Left, toEdge: .Right, ofView: previous!)
             }
             detailView.autoSetDimension(.Width, toSize: view.frame.width)
-            detailView.alwaysBounceVertical = true
             detailView.externalScrollDelegate = self
             previous = detailView
         }
         
-        overlayScrollView = UIScrollView.newAutoLayoutView()
-        overlayScrollView.pagingEnabled = true
-        overlayScrollView.alwaysBounceVertical = false
-        overlayScrollView.showsHorizontalScrollIndicator = false
-        overlayScrollView.delegate = self
+        underlyingScrollView = UIScrollView.newAutoLayoutView()
+        underlyingScrollView.pagingEnabled = true
+        underlyingScrollView.alwaysBounceVertical = false
+        underlyingScrollView.showsHorizontalScrollIndicator = false
+        underlyingScrollView.delegate = self
         
         // Attach the overlayContainerView to the overlayScrollView
-        overlayScrollView.addSubview(overlayContainerView)
-        overlayContainerView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
+        underlyingScrollView.addSubview(underlyingContainerView)
+        underlyingContainerView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
         
         // Attach the overlayScrollView to the main view
-        view.addSubview(overlayScrollView)
-        overlayScrollView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
+        view.addSubview(underlyingScrollView)
+        underlyingScrollView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
     }
     
-    // MARK: - OverlaidCollectionViewDelegate
+    // MARK: - UnderlyingCollectionViewDelegate
     
-    func overlaidCollectionViewDidChangeContentOffset(collectionView: UICollectionView, offset: CGFloat) {
-        underlyingScrollView.contentOffset = CGPointMake(0, collectionView.contentOffset.y)
+    func underlyingCollectionViewDidChangeContentOffset(collectionView: UICollectionView, offset: CGFloat) {
+        overlaidCollectionView.contentOffset = CGPointMake(0, collectionView.contentOffset.y)
     }
     
     // MARK: - UIScrollViewDelegate
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
         println("container scrollview: \(scrollView.contentOffset)")
-        
     }
     
     func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
@@ -149,7 +154,7 @@ class ProfileDetailsViewController: UIViewController, OverlaidCollectionViewDele
 
     private func scrollingEnded(scrollView: UIScrollView) {
         currentIndex = Int(scrollView.contentOffset.x) / Int(view.frame.width)
-        underlyingScrollView.contentSize = detailViews[currentIndex].contentSize
+        overlaidCollectionView.contentSize = detailViews[currentIndex].contentSize
     }
 
 }

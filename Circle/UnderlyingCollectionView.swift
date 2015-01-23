@@ -1,5 +1,5 @@
 //
-//  OverlaidCollectionView.swift
+//  UnderlyingCollectionView.swift
 //  Circle
 //
 //  Created by Michael Hahn on 1/22/15.
@@ -8,13 +8,13 @@
 
 import UIKit
 
-@objc protocol OverlaidCollectionViewDelegate {
-    optional func overlaidCollectionViewDidBeginScrolling(collectionView: UICollectionView)
-    optional func overlaidCollectionViewDidChangeContentOffset(collectionView: UICollectionView, offset: CGFloat)
-    optional func overlaidCollectionViewDidEndScrolling(collectionView: UICollectionView)
+@objc protocol UnderlyingCollectionViewDelegate {
+    optional func underlyingCollectionViewDidBeginScrolling(collectionView: UICollectionView)
+    optional func underlyingCollectionViewDidChangeContentOffset(collectionView: UICollectionView, offset: CGFloat)
+    optional func underlyingCollectionViewDidEndScrolling(collectionView: UICollectionView)
 }
 
-class OverlaidCollectionView: UICollectionView, UICollectionViewDelegate {
+class UnderlyingCollectionView: UICollectionView, UICollectionViewDelegate {
     
     override var delegate: UICollectionViewDelegate? {
         didSet {
@@ -23,7 +23,7 @@ class OverlaidCollectionView: UICollectionView, UICollectionViewDelegate {
             }
         }
     }
-    var externalScrollDelegate: OverlaidCollectionViewDelegate?
+    var externalScrollDelegate: UnderlyingCollectionViewDelegate?
     
     // Delegate helper variables
     private var scrolling = false
@@ -34,10 +34,10 @@ class OverlaidCollectionView: UICollectionView, UICollectionViewDelegate {
         let offset = scrollView.contentOffset.y
         
         if !scrolling {
-            externalScrollDelegate?.overlaidCollectionViewDidBeginScrolling?(self)
+            externalScrollDelegate?.underlyingCollectionViewDidBeginScrolling?(self)
             scrolling = true
         } else {
-            externalScrollDelegate?.overlaidCollectionViewDidChangeContentOffset?(self, offset: offset)
+            externalScrollDelegate?.underlyingCollectionViewDidChangeContentOffset?(self, offset: offset)
         }
     }
     
@@ -52,7 +52,7 @@ class OverlaidCollectionView: UICollectionView, UICollectionViewDelegate {
     }
     
     private func scrollingEnded() {
-        externalScrollDelegate?.overlaidCollectionViewDidEndScrolling?(self)
+        externalScrollDelegate?.underlyingCollectionViewDidEndScrolling?(self)
         scrolling = false
     }
     

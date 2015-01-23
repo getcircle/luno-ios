@@ -8,7 +8,7 @@
 
 import UIKit
 
-class OrganizationDetailCollectionViewDelegate: ProfileCollectionViewDelegate {
+class OrganizationDetailCollectionViewDelegate: StickyHeaderCollectionViewDelegate {
 
     override func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         let itemSize = super.collectionView(collectionView, layout: collectionViewLayout, sizeForItemAtIndexPath: indexPath)

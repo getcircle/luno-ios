@@ -385,7 +385,7 @@ CardHeaderViewDelegate {
                 ProfileInfoCollectionView(profile: profile),
                 ProfileInfoCollectionView(profile: profile)
             ],
-            underlyingScrollView: ProfileUnderlyingCollectionView(profile: profile)
+            overlaidCollectionView: ProfileOverlaidCollectionView(profile: profile)
         )
         let navController = UINavigationController(rootViewController: detailsVC)
         navigationController?.presentViewController(navController, animated: true, completion: nil)

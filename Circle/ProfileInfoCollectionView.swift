@@ -9,7 +9,7 @@
 import UIKit
 import ProtobufRegistry
 
-class ProfileInfoCollectionView: OverlaidCollectionView {
+class ProfileInfoCollectionView: UnderlyingCollectionView {
     
     private var layout: StickyHeaderCollectionViewLayout?
     private var profile: ProfileService.Containers.Profile?
@@ -22,13 +22,14 @@ class ProfileInfoCollectionView: OverlaidCollectionView {
         setTranslatesAutoresizingMaskIntoConstraints(false)
         
         layout = stickyLayout
-        layout?.headerHeight = 200.0
+        layout?.headerHeight = ProfileHeaderCollectionReusableView.height
         profileInfoDataSource = ProfileDetailDataSource(profile: AuthViewController.getLoggedInUserProfile()!)
         profileInfoDataSource?.registerCardHeader(self)
         profileInfoDelegate = StickyHeaderCollectionViewDelegate()
         backgroundColor = UIColor.viewBackgroundColor()
         dataSource = profileInfoDataSource
         delegate = profileInfoDelegate
+        alwaysBounceVertical = true
         
         // XXX we should consider making this a public function so the view controller can instantiate an activity indicator and then call load data, clearing activity indicator when the content has loaded
         profileInfoDataSource?.loadData { (error) -> Void in
