@@ -133,28 +133,14 @@ class ProfileDetailViewController: DetailViewController, NewNoteViewControllerDe
     override func registerNotifications() {
         NSNotificationCenter.defaultCenter().addObserver(
             self,
-            selector: "didSelectTag:",
-            name: TagsCollectionViewCellNotifications.onTagSelectedNotification,
-            object: nil
-        )
-        NSNotificationCenter.defaultCenter().addObserver(
-            self,
             selector: "addNote:",
             name: NotesCardHeaderCollectionReusableViewNotifications.onAddNoteNotification,
             object: nil
         )
+        
+        super.registerNotifications()
     }
 
-    func didSelectTag(notification: NSNotification) {
-        if let userInfo = notification.userInfo {
-            if let selectedTag = userInfo["tag"] as? ProfileService.Containers.Tag {
-                let viewController = TagDetailViewController()
-                (viewController.dataSource as TagDetailDataSource).selectedTag = selectedTag
-                navigationController?.pushViewController(viewController, animated: true)
-            }
-        }
-    }
-    
     // MARK: - NotesCardHeaderViewDelegate
     
     func addNote(sender: AnyObject!) {

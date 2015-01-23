@@ -199,11 +199,52 @@ class DetailViewController: UIViewController, UICollectionViewDelegate, MFMailCo
     
     // MARK: - Notifications
     
+    /**
+        Registers for notifications for generic events needed by all detail view controllers.
+    
+        The default handlers are also provided in this class. However subclasses can override
+        the handlers and add any other custom functionality as needed.
+    */
     func registerNotifications() {
+        NSNotificationCenter.defaultCenter().addObserver(
+            self,
+            selector: "didSelectTag:",
+            name: TagsCollectionViewCellNotifications.onTagSelectedNotification,
+            object: nil
+        )
+        
+        NSNotificationCenter.defaultCenter().addObserver(
+            self,
+            selector: "didSelectTeam:",
+            name: TeamsCollectionViewCellNotifications.onTeamSelectedNotification,
+            object: nil
+        )
     }
     
     func unregisterNotifications() {
         NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
+    // MARK: - Notification Handlers
+    
+    func didSelectTag(notification: NSNotification) {
+        if let userInfo = notification.userInfo {
+            if let selectedTag = userInfo["tag"] as? ProfileService.Containers.Tag {
+                let viewController = TagDetailViewController()
+                (viewController.dataSource as TagDetailDataSource).selectedTag = selectedTag
+                navigationController?.pushViewController(viewController, animated: true)
+            }
+        }
+    }
+
+    func didSelectTeam(notification: NSNotification!) {
+        if let userInfo = notification.userInfo {
+            if let selectedTeam = userInfo["team"] as? OrganizationService.Containers.Team {
+                let viewController = TeamDetailViewController()
+                (viewController.dataSource as TeamDetailDataSource).selectedTeam = selectedTeam
+                navigationController?.pushViewController(viewController, animated: true)
+            }
+        }
     }
 }
 

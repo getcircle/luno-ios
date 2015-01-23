@@ -111,18 +111,6 @@ class OrganizationDetailViewController: DetailViewController, CardHeaderViewDele
         }
     }
     
-    //MARK: - Tag Selected Notification
-    
-    func didSelectTag(notification: NSNotification) {
-        if let userInfo = notification.userInfo {
-            if let selectedTag = userInfo["tag"] as? ProfileService.Containers.Tag {
-                let viewController = TagDetailViewController()
-                (viewController.dataSource as TagDetailDataSource).selectedTag = selectedTag
-                navigationController?.pushViewController(viewController, animated: true)
-            }
-        }
-    }
-    
     // MARK: - Card Header View Delegate
     
     func cardHeaderTapped(card: Card!) {
@@ -147,16 +135,5 @@ class OrganizationDetailViewController: DetailViewController, CardHeaderViewDele
         default:
             break
         }
-    }
-    
-    // MARK: - Notifications
-    
-    override func registerNotifications() {
-        NSNotificationCenter.defaultCenter().addObserver(
-            self,
-            selector: "didSelectTag:",
-            name: TagsCollectionViewCellNotifications.onTagSelectedNotification,
-            object: nil
-        )
     }
 }
