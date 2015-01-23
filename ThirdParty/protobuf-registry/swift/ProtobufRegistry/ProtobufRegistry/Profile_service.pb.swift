@@ -6119,121 +6119,28 @@ final public class ProfileService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Request : GeneratedMessage {
-
-
-          //OneOf declaration start
-
-          public enum LookupKey {
-            case LookupKeyOneOfNotSet
-
-            public func checkOneOfIsSet() -> Bool {
-                 switch self {
-                 case .LookupKeyOneOfNotSet:
-                      return false
-                 default:
-                      return true
-                 }
-            }
-            case TeamId(String)
-
-            public static func getTeamId(value:LookupKey) ->String? {
-                 switch value {
-                 case .TeamId(let enumValue):
-                      return enumValue
-                 default:
-                      return nil
-                 }
-            }
-            case OrganizationId(String)
-
-            public static func getOrganizationId(value:LookupKey) ->String? {
-                 switch value {
-                 case .OrganizationId(let enumValue):
-                      return enumValue
-                 default:
-                      return nil
-                 }
-            }
-            case TagId(String)
-
-            public static func getTagId(value:LookupKey) ->String? {
-                 switch value {
-                 case .TagId(let enumValue):
-                      return enumValue
-                 default:
-                      return nil
-                 }
-            }
-          }
-
-
-
-          //OneOf declaration end
-
-          private var storageLookupKey:ProfileService.GetProfiles.Request.LookupKey =  ProfileService.GetProfiles.Request.LookupKey.LookupKeyOneOfNotSet
           override public subscript (key: String) -> AnyObject? {
                  switch key {
                  case "team_id": return team_id
                  case "organization_id": return organization_id
                  case "tag_id": return tag_id
+                 case "address_id": return address_id
                  default: return nil
                  }
           }
 
-          public private(set) var hasTeamId:Bool {
-                get {
-                     if ProfileService.GetProfiles.Request.LookupKey.getTeamId(storageLookupKey) == nil {
-                         return false
-                     }
-                     return true
-                }
-                set(newValue) {
-                }
-          }
-          public private(set) var team_id:String!{
-               get {
-                    return ProfileService.GetProfiles.Request.LookupKey.getTeamId(storageLookupKey)
-               }
-               set (newvalue) {
-                    storageLookupKey = ProfileService.GetProfiles.Request.LookupKey.TeamId(newvalue)
-               }
-          }
-          public private(set) var hasOrganizationId:Bool {
-                get {
-                     if ProfileService.GetProfiles.Request.LookupKey.getOrganizationId(storageLookupKey) == nil {
-                         return false
-                     }
-                     return true
-                }
-                set(newValue) {
-                }
-          }
-          public private(set) var organization_id:String!{
-               get {
-                    return ProfileService.GetProfiles.Request.LookupKey.getOrganizationId(storageLookupKey)
-               }
-               set (newvalue) {
-                    storageLookupKey = ProfileService.GetProfiles.Request.LookupKey.OrganizationId(newvalue)
-               }
-          }
-          public private(set) var hasTagId:Bool {
-                get {
-                     if ProfileService.GetProfiles.Request.LookupKey.getTagId(storageLookupKey) == nil {
-                         return false
-                     }
-                     return true
-                }
-                set(newValue) {
-                }
-          }
-          public private(set) var tag_id:String!{
-               get {
-                    return ProfileService.GetProfiles.Request.LookupKey.getTagId(storageLookupKey)
-               }
-               set (newvalue) {
-                    storageLookupKey = ProfileService.GetProfiles.Request.LookupKey.TagId(newvalue)
-               }
-          }
+          public private(set) var hasTeamId:Bool = false
+          public private(set) var team_id:String = ""
+
+          public private(set) var hasOrganizationId:Bool = false
+          public private(set) var organization_id:String = ""
+
+          public private(set) var hasTagId:Bool = false
+          public private(set) var tag_id:String = ""
+
+          public private(set) var hasAddressId:Bool = false
+          public private(set) var address_id:String = ""
+
           required public init() {
                super.init()
           }
@@ -6249,6 +6156,9 @@ final public class ProfileService : GeneratedMessage {
             }
             if hasTagId {
               output.writeString(3, value:tag_id)
+            }
+            if hasAddressId {
+              output.writeString(4, value:address_id)
             }
             unknownFields.writeToCodedOutputStream(output)
           }
@@ -6267,6 +6177,9 @@ final public class ProfileService : GeneratedMessage {
             }
             if hasTagId {
               size += WireFormat.computeStringSize(3, value:tag_id)
+            }
+            if hasAddressId {
+              size += WireFormat.computeStringSize(4, value:address_id)
             }
             size += unknownFields.serializedSize()
             memoizedSerializedSize = size
@@ -6318,6 +6231,9 @@ final public class ProfileService : GeneratedMessage {
             if hasTagId {
               output += "\(indent) tag_id: \(tag_id) \n"
             }
+            if hasAddressId {
+              output += "\(indent) address_id: \(address_id) \n"
+            }
             unknownFields.writeDescriptionTo(&output, indent:indent)
           }
           override public var hashValue:Int {
@@ -6331,6 +6247,9 @@ final public class ProfileService : GeneratedMessage {
                   }
                   if hasTagId {
                      hashCode = (hashCode &* 31) &+ tag_id.hashValue
+                  }
+                  if hasAddressId {
+                     hashCode = (hashCode &* 31) &+ address_id.hashValue
                   }
                   hashCode = (hashCode &* 31) &+  unknownFields.hashValue
                   return hashCode
@@ -6419,6 +6338,25 @@ final public class ProfileService : GeneratedMessage {
                builderResult.tag_id = ""
                return self
           }
+          public var hasAddressId:Bool {
+               get {
+                    return builderResult.hasAddressId
+               }
+          }
+          public var address_id:String {
+               get {
+                    return builderResult.address_id
+               }
+               set (value) {
+                   builderResult.hasAddressId = true
+                   builderResult.address_id = value
+               }
+          }
+          public func clearAddressId() -> ProfileService.GetProfiles.RequestBuilder{
+               builderResult.hasAddressId = false
+               builderResult.address_id = ""
+               return self
+          }
           override public var internalGetResult:GeneratedMessage {
                get {
                   return builderResult
@@ -6449,6 +6387,9 @@ final public class ProfileService : GeneratedMessage {
             if other.hasTagId {
                  tag_id = other.tag_id
             }
+            if other.hasAddressId {
+                 address_id = other.address_id
+            }
             mergeUnknownFields(other.unknownFields)
             return self
           }
@@ -6472,6 +6413,9 @@ final public class ProfileService : GeneratedMessage {
 
               case 26 :
                 tag_id = input.readString()
+
+              case 34 :
+                address_id = input.readString()
 
               default:
                 if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
