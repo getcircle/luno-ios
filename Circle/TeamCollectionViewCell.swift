@@ -26,5 +26,4 @@ class TeamCollectionViewCell: CircleCollectionViewCell {
             teamNameLabel.text = team.name
         }
     }
-
 }

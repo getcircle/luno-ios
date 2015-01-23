@@ -98,7 +98,7 @@ class OrganizationDetailViewController: DetailViewController, CardHeaderViewDele
         case .Locations:
             let viewController = LocationDetailViewController()
             navigationController?.pushViewController(viewController, animated: true)
-            
+
         case .TeamsGrid:
             if let selectedTeam = dataSource.contentAtIndexPath(indexPath)? as? OrganizationService.Containers.Team {
                 let viewController = TeamDetailViewController()
@@ -131,7 +131,13 @@ class OrganizationDetailViewController: DetailViewController, CardHeaderViewDele
         case .Locations:
             let viewController = LocationDetailViewController()
             navigationController?.pushViewController(viewController, animated: true)
-            
+        
+        case .TeamsGrid:
+            let viewController = TeamsOverviewViewController(nibName: "TeamsOverviewViewController", bundle: nil) 
+            viewController.dataSource.setInitialData(card.allContent, ofType: nil)
+            viewController.title = card.title
+            navigationController?.pushViewController(viewController, animated: true)
+
         default:
             break
         }

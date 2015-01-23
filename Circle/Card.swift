@@ -124,8 +124,8 @@ class Card: Equatable {
             case Team:
                 return CardTypeInfo(
                     imageName: "People",
-                    classType: TeamCollectionViewCell.self,
-                    className: "TeamCollectionViewCell"
+                    classType: TeamGridItemCollectionViewCell.self,
+                    className: "TeamGridItemCollectionViewCell"
                 )
             
             case TeamsGrid:

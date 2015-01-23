@@ -88,16 +88,15 @@ class TeamsCollectionViewCell: CircleCollectionViewCell, UICollectionViewDataSou
             TeamGridItemCollectionViewCell.classReuseIdentifier,
             forIndexPath: indexPath
         ) as TeamGridItemCollectionViewCell
-        
-        cell.teamLabel.text = team.name
-        cell.teamNameLetterLabel.text = team.name[0]
+
+        cell.setData(team)
         return cell
     }
     
     // MARK: - UICollectionViewDelegateFlowLayout
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        return CGSizeMake(TeamGridItemCollectionViewCell.width, TeamGridItemCollectionViewCell.height)
+        return CGSizeMake(TeamGridItemCollectionViewCell.width - 20.0, TeamGridItemCollectionViewCell.height)
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {

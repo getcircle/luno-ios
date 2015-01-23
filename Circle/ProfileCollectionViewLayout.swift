@@ -90,7 +90,6 @@ class ProfileCollectionViewLayout: UICollectionViewFlowLayout {
                         // Pin supplementary view to the top after it reaches nav bar height
                         var frameToModify = attribute.frame
                         frameToModify.origin.y = max(0.0, contentOffset.y - offsetToMakeProfileHeaderSticky)
-                        println("Y = \(contentOffset.y) \(offsetToMakeProfileHeaderSticky) \(contentOffset.y - offsetToMakeProfileHeaderSticky)")
                         attribute.frame = frameToModify
                         attribute.zIndex = 100
                     }
