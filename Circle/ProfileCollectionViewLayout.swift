@@ -58,6 +58,20 @@ class ProfileCollectionViewLayout: UICollectionViewFlowLayout {
         let contentOffset = collectionView!.contentOffset
         var attributes = super.layoutAttributesForElementsInRect(rect) as [UICollectionViewLayoutAttributes]
         
+        var isHeaderMissing = true
+        for attribute in attributes {
+            if attribute.representedElementCategory == .SupplementaryView && attribute.representedElementKind == UICollectionElementKindSectionHeader && attribute.indexPath.section == 0 {
+                isHeaderMissing = false
+            }
+        }
+        
+        if isHeaderMissing {
+            attributes.append(super.layoutAttributesForSupplementaryViewOfKind(
+                UICollectionElementKindSectionHeader,
+                atIndexPath: NSIndexPath(forItem: 0, inSection: 0)
+            ))
+        }
+        
         for attribute in attributes {
             switch attribute.representedElementCategory {
             case .SupplementaryView:
@@ -76,6 +90,7 @@ class ProfileCollectionViewLayout: UICollectionViewFlowLayout {
                         // Pin supplementary view to the top after it reaches nav bar height
                         var frameToModify = attribute.frame
                         frameToModify.origin.y = max(0.0, contentOffset.y - offsetToMakeProfileHeaderSticky)
+                        println("Y = \(contentOffset.y) \(offsetToMakeProfileHeaderSticky) \(contentOffset.y - offsetToMakeProfileHeaderSticky)")
                         attribute.frame = frameToModify
                         attribute.zIndex = 100
                     }
