@@ -105,7 +105,7 @@ class DetailViewController: UIViewController, UICollectionViewDelegate, MFMailCo
         // a. this view was presented modally
         // b. this view is being dismissed vs disappearing because another view controller was added to the stack
         // c. the view controller prior to this one was a DetailViewController
-        if !isBeingPresentedModally() && isMovingFromParentViewController() {
+        if isMovingFromParentViewController() || (navigationController?.viewControllers.first is DetailViewController) {
             if let totalViewControllers = navigationController?.viewControllers.count {
                 let parentController = navigationController?.viewControllers[(totalViewControllers - 1)] as? UIViewController
                 if !(parentController is DetailViewController) {

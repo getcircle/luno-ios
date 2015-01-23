@@ -78,6 +78,7 @@
 		8F823E3A1A706BB20006264B /* OrganizationDetailDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F823E391A706BB20006264B /* OrganizationDetailDataSource.swift */; };
 		8F823E431A714B5D0006264B /* OrganizationHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F823E411A714B5D0006264B /* OrganizationHeaderCollectionReusableView.swift */; };
 		8F823E441A714B5D0006264B /* OrganizationHeaderCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F823E421A714B5D0006264B /* OrganizationHeaderCollectionReusableView.xib */; };
+		8F823E491A71CF380006264B /* OrganizationDetailCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F823E481A71CF380006264B /* OrganizationDetailCollectionViewDelegate.swift */; };
 		8FC7BB3B1A58A6E2005BDDDB /* CardDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC7BB3A1A58A6E2005BDDDB /* CardDataSource.swift */; };
 		8FC7BB401A58AF4C005BDDDB /* SearchLandingDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC7BB3F1A58AF4C005BDDDB /* SearchLandingDataSource.swift */; };
 		8FC7BB431A58B15B005BDDDB /* CardCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC7BB421A58B15B005BDDDB /* CardCollectionViewDelegate.swift */; };
@@ -299,6 +300,7 @@
 		8F823E391A706BB20006264B /* OrganizationDetailDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrganizationDetailDataSource.swift; sourceTree = "<group>"; };
 		8F823E411A714B5D0006264B /* OrganizationHeaderCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrganizationHeaderCollectionReusableView.swift; sourceTree = "<group>"; };
 		8F823E421A714B5D0006264B /* OrganizationHeaderCollectionReusableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrganizationHeaderCollectionReusableView.xib; sourceTree = "<group>"; };
+		8F823E481A71CF380006264B /* OrganizationDetailCollectionViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrganizationDetailCollectionViewDelegate.swift; sourceTree = "<group>"; };
 		8FC7BB3A1A58A6E2005BDDDB /* CardDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardDataSource.swift; sourceTree = "<group>"; };
 		8FC7BB3F1A58AF4C005BDDDB /* SearchLandingDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchLandingDataSource.swift; sourceTree = "<group>"; };
 		8FC7BB421A58B15B005BDDDB /* CardCollectionViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardCollectionViewDelegate.swift; sourceTree = "<group>"; };
@@ -630,6 +632,7 @@
 			isa = PBXGroup;
 			children = (
 				8FC7BB421A58B15B005BDDDB /* CardCollectionViewDelegate.swift */,
+				8F823E481A71CF380006264B /* OrganizationDetailCollectionViewDelegate.swift */,
 				8F4E53741A59CB8300DC876B /* ProfileCollectionViewDelegate.swift */,
 				8F4805EC1A5DFEE400273731 /* ProfilesCollectionViewDelegate.swift */,
 				8F085A971A6C4B0D00F8139B /* TeamDetailCollectionViewDelegate.swift */,
@@ -1025,6 +1028,7 @@
 				BF9D721F1A687462002CDC66 /* TeamCollectionViewCell.swift in Sources */,
 				8FCC95CD1A52828B00421E65 /* ProfileCollectionViewCell.swift in Sources */,
 				BF59AA931A2C152F00C0CDB9 /* UITableViewExtension.swift in Sources */,
+				8F823E491A71CF380006264B /* OrganizationDetailCollectionViewDelegate.swift in Sources */,
 				BF2CBFD61A473E9100BE589D /* UserService.swift in Sources */,
 				8F7400251A6863B000D96B60 /* TagDetailDataSource.swift in Sources */,
 				8F4E53751A59CB8300DC876B /* ProfileCollectionViewDelegate.swift in Sources */,
