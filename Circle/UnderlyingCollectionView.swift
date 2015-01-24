@@ -31,12 +31,14 @@ class UnderlyingCollectionView: UICollectionView, UICollectionViewDelegate {
     // MARK: - UIScrollViewDelegate
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
-        let offset = scrollView.contentOffset.y
+        var offset = scrollView.contentOffset.y
         
         if !scrolling {
             externalScrollDelegate?.underlyingCollectionViewDidBeginScrolling?(self)
             scrolling = true
-        } else {
+        }
+        
+        if scrolling {
             externalScrollDelegate?.underlyingCollectionViewDidChangeContentOffset?(self, offset: offset)
         }
     }

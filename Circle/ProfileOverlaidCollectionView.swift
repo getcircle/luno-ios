@@ -13,10 +13,12 @@ class ProfileOverlaidCollectionViewDataSource: CardDataSource {
     
     var profileHeaderView: ProfileHeaderCollectionReusableView?
     private var profile: ProfileService.Containers.Profile?
+    private var sections: [String]?
     
-    convenience init(profile withProfile: ProfileService.Containers.Profile) {
+    convenience init(profile withProfile: ProfileService.Containers.Profile, sections withSections: [String]?) {
         self.init()
         profile = withProfile
+        sections = withSections
     }
     
     override func registerCardHeader(collectionView: UICollectionView) {
@@ -48,7 +50,14 @@ class ProfileOverlaidCollectionViewDataSource: CardDataSource {
             if profile != nil {
                 supplementaryView.setProfile(profile!)
             }
+            profileHeaderView?.userInteractionEnabled = true
+            if let subviews = profileHeaderView?.subviews as? [UIView] {
+                for view in subviews {
+                    view.userInteractionEnabled = true
+                }
+            }
             profileHeaderView = supplementaryView
+            profileHeaderView?.sections = sections
             return supplementaryView
         }
         return super.collectionView(collectionView, viewForSupplementaryElementOfKind: kind, atIndexPath: indexPath)
@@ -71,7 +80,7 @@ class ProfileOverlaidCollectionView: UICollectionView, UICollectionViewDelegate 
     private var collectionViewDataSource: ProfileOverlaidCollectionViewDataSource?
     private var collectionViewDelegate: StickyHeaderCollectionViewDelegate?
     
-    convenience init(profile: ProfileService.Containers.Profile?) {
+    convenience init(profile: ProfileService.Containers.Profile?, sections: [String]?) {
         let stickyLayout = StickyHeaderCollectionViewLayout()
         self.init(frame: CGRectZero, collectionViewLayout: stickyLayout)
         setTranslatesAutoresizingMaskIntoConstraints(false)
@@ -80,7 +89,10 @@ class ProfileOverlaidCollectionView: UICollectionView, UICollectionViewDelegate 
         layout?.headerHeight = ProfileHeaderCollectionReusableView.height
         // height of section indicator + height of navbar
         layout?.stickySectionHeight = 84.0
-        collectionViewDataSource = ProfileOverlaidCollectionViewDataSource(profile: AuthViewController.getLoggedInUserProfile()!)
+        collectionViewDataSource = ProfileOverlaidCollectionViewDataSource(
+            profile: AuthViewController.getLoggedInUserProfile()!,
+            sections: sections
+        )
         collectionViewDataSource?.registerCardHeader(self)
         collectionViewDelegate = StickyHeaderCollectionViewDelegate()
         backgroundColor = UIColor.clearColor()

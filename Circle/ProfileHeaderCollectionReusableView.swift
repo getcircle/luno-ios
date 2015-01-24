@@ -16,6 +16,17 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
     @IBOutlet weak var nameNavLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var profileImage: CircleImageView!
+    @IBOutlet weak var sectionsView: UIView!
+    private var sectionIndicatorView: UIView?
+    private var sectionIndicatorLeftOffset: NSLayoutConstraint?
+    
+    var sections: [String]? {
+        didSet {
+            if sections != nil {
+                configureSegmentedControl(sections: sections!)
+            }
+        }
+    }
 
     private(set) var visualEffectView: UIVisualEffectView!
     
@@ -39,6 +50,7 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
         visualEffectView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
         profileImage.makeItCircular(true)
         nameNavLabel.alpha = 0.0
+        sectionsView.backgroundColor = UIColor.viewBackgroundColor()
     }
     
     func setProfile(profile: ProfileService.Containers.Profile) {
@@ -50,4 +62,49 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
             NSURL(string: profile.image_url)
         )
     }
+    
+    private func configureSegmentedControl(sections withSections: [String]) {
+        // Setup the segment buttons
+        let buttonSegmentOffset: CGFloat = 0.5
+        let buttonSegmentHeight: CGFloat = 40.0
+        let width: CGFloat = (frame.width - (CGFloat(withSections.count - 1) * buttonSegmentOffset)) / CGFloat(withSections.count)
+        let buttonSize = CGSizeMake(width, buttonSegmentHeight)
+        
+        var previousButton: UIButton?
+        for section in withSections {
+            let button = UIButton.buttonWithType(.System) as UIButton
+            button.setTitle(section, forState: .Normal)
+            button.tintColor = UIColor.appTintColor()
+            button.addTarget(self, action: "segmentButtonPressed:", forControlEvents: .TouchUpInside)
+            button.autoSetDimensionsToSize(buttonSize)
+            button.titleLabel?.font = UIFont.segmentedControlTitleFont()
+            button.backgroundColor = UIColor.whiteColor()
+            sectionsView.addSubview(button)
+            if let previous = previousButton {
+                button.autoPinEdge(.Left, toEdge: .Right, ofView: previous, withOffset: buttonSegmentOffset)
+            } else {
+                button.autoPinEdge(.Left, toEdge: .Left, ofView: sectionsView)
+            }
+            button.autoPinEdge(.Top, toEdge: .Top, ofView: sectionsView)
+            previousButton = button
+        }
+        
+        // Setup the section indicator view
+        sectionIndicatorView = UIView.newAutoLayoutView()
+        sectionsView.addSubview(sectionIndicatorView!)
+        
+        sectionIndicatorView?.backgroundColor = UIColor.appTintColor()
+        sectionIndicatorView?.autoSetDimensionsToSize(CGSizeMake(buttonSize.width, 5.0))
+        sectionIndicatorView?.autoPinEdge(.Bottom, toEdge: .Bottom, ofView: sectionsView)
+        sectionIndicatorLeftOffset = sectionIndicatorView?.autoPinEdge(.Left, toEdge: .Left, ofView: sectionsView)
+    }
+    
+    func segmentButtonPressed(sender: AnyObject!) {
+        println("segment button pressed")
+    }
+    
+    func updateSectionIndicatorView(contentOffset: CGPoint) {
+        sectionIndicatorLeftOffset?.constant = contentOffset.x / CGFloat(sections!.count)
+    }
+    
 }

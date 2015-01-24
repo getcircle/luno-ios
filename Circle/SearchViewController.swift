@@ -385,7 +385,9 @@ CardHeaderViewDelegate {
                 ProfileInfoCollectionView(profile: profile),
                 ProfileInfoCollectionView(profile: profile)
             ],
-            overlaidCollectionView: ProfileOverlaidCollectionView(profile: profile)
+            overlaidCollectionView: ProfileOverlaidCollectionView(profile: profile, sections: ["Info", "Notes"]),
+            showLogOutButton: true,
+            showCloseButton: true
         )
         let navController = UINavigationController(rootViewController: detailsVC)
         navigationController?.presentViewController(navController, animated: true, completion: nil)

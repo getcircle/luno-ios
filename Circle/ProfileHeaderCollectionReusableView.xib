@@ -42,7 +42,7 @@
                     <color key="textColor" red="0.78431372549019607" green="0.78431372549019607" blue="0.78431372549019607" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <view alpha="0.89999999999999991" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4NY-Ue-zhf">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4NY-Ue-zhf">
                     <rect key="frame" x="0.0" y="200" width="320" height="40"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
@@ -80,6 +80,7 @@
                 <outlet property="nameLabel" destination="1Tu-Zx-9yR" id="dCN-I3-cEP"/>
                 <outlet property="nameNavLabel" destination="zJL-k5-Ada" id="fZN-PC-Fce"/>
                 <outlet property="profileImage" destination="kX0-a4-Q8w" id="idA-m8-Iy4"/>
+                <outlet property="sectionsView" destination="4NY-Ue-zhf" id="NH8-Ga-N14"/>
                 <outlet property="titleLabel" destination="GGm-ME-NAZ" id="FRS-1Y-xvS"/>
             </connections>
             <point key="canvasLocation" x="315" y="436"/>

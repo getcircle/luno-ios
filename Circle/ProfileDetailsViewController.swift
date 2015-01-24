@@ -24,11 +24,20 @@ class ProfileDetailsViewController: UIViewController, UnderlyingCollectionViewDe
     
     convenience init(
         detailViews withDetailViews: [UnderlyingCollectionView],
-        overlaidCollectionView withOverlaidCollectionView: UICollectionView
+        overlaidCollectionView withOverlaidCollectionView: UICollectionView,
+        showLogOutButton: Bool,
+        showCloseButton: Bool
     ) {
         self.init()
         detailViews = withDetailViews
         overlaidCollectionView = withOverlaidCollectionView
+        if showLogOutButton {
+            addLogOutButton()
+        }
+        
+        if showCloseButton {
+            addCloseButton()
+        }
     }
     
     override func loadView() {
@@ -133,13 +142,41 @@ class ProfileDetailsViewController: UIViewController, UnderlyingCollectionViewDe
     // MARK: - UnderlyingCollectionViewDelegate
     
     func underlyingCollectionViewDidChangeContentOffset(collectionView: UICollectionView, offset: CGFloat) {
-        overlaidCollectionView.contentOffset = CGPointMake(0, collectionView.contentOffset.y)
+        // Only update the overlaidCollectionView if the content offset changed for the current underlying view
+        if collectionView == detailViews[currentIndex] {
+            overlaidCollectionView.contentOffset = CGPointMake(0, collectionView.contentOffset.y)
+        }
+    }
+    
+    func underlyingCollectionViewDidEndScrolling(collectionView: UICollectionView) {
+        // Update the content offset of the other detail views to match the current one.
+        // We will only alter the content offset if it is greater than the stickySectionHeight.
+        var offset = collectionView.contentOffset.y
+        if let layout = overlaidCollectionView.collectionViewLayout as? StickyHeaderCollectionViewLayout {
+            println("offset \(collectionView.contentOffset.y) - sectionHeight: \(layout.stickySectionHeight)")
+            let maxOffset = (layout.headerHeight - layout.stickySectionHeight)
+            if collectionView.contentOffset.y > maxOffset {
+                offset = maxOffset
+            }
+            for (index, detailView) in enumerate(detailViews) {
+                if index != currentIndex {
+                    detailView.contentOffset = CGPointMake(0, offset)
+                }
+            }
+        }
     }
     
     // MARK: - UIScrollViewDelegate
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
-        println("container scrollview: \(scrollView.contentOffset)")
+        if scrollView.contentOffset.x > view.frame.width {
+            navigationController?.interactivePopGestureRecognizer.enabled = false
+        } else {
+            navigationController?.interactivePopGestureRecognizer.enabled = true
+        }
+        if let headerView = profileHeaderView() {
+            headerView.updateSectionIndicatorView(scrollView.contentOffset)
+        }
     }
     
     func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
@@ -154,7 +191,44 @@ class ProfileDetailsViewController: UIViewController, UnderlyingCollectionViewDe
 
     private func scrollingEnded(scrollView: UIScrollView) {
         currentIndex = Int(scrollView.contentOffset.x) / Int(view.frame.width)
-        overlaidCollectionView.contentSize = detailViews[currentIndex].contentSize
+    }
+    
+    // MARK: - Helpers
+    
+    private func addLogOutButton() {
+        if navigationItem.rightBarButtonItem == nil {
+            let logOutButton = UIBarButtonItem(title: "Log Out", style: .Plain, target: self, action: "logOutTapped:")
+            navigationItem.rightBarButtonItem = logOutButton
+        }
+    }
+    
+    func logOutTapped(sender: AnyObject!) {
+        AuthViewController.logOut()
+    }
+    
+    private func addCloseButton() {
+        if navigationItem.leftBarButtonItem == nil {
+            let closeButton = UIBarButtonItem(
+                image: UIImage(named: "Down"),
+                style: .Plain,
+                target: self,
+                action: "closeButtonTapped:"
+            )
+            navigationItem.leftBarButtonItem = closeButton
+        }
+    }
+    
+    func closeButtonTapped(sender: AnyObject!) {
+        if isBeingPresentedModally() {
+            dismissViewControllerAnimated(true, completion: nil)
+        }
+        else {
+            navigationController?.popViewControllerAnimated(true)
+        }
+    }
+    
+    private func profileHeaderView() -> ProfileHeaderCollectionReusableView? {
+        return (overlaidCollectionView.dataSource as? ProfileOverlaidCollectionViewDataSource)?.profileHeaderView
     }
 
 }
