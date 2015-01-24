@@ -2,12 +2,14 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LocationsOverviewViewController" customModule="Circle" customModuleProvider="target">
             <connections>
                 <outlet property="activityIndicatorView" destination="ICD-Qu-bO9" id="sgk-t6-Sjc"/>
                 <outlet property="collectionView" destination="WUC-H6-Puw" id="tmD-0X-DNe"/>
+                <outlet property="mapHeaderCollectionView" destination="NZ1-pQ-atm" id="lnQ-W1-Oc7"/>
                 <outlet property="view" destination="MNj-hs-B9A" id="3ap-Ox-snX"/>
             </connections>
         </placeholder>
@@ -16,8 +18,29 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="WUC-H6-Puw">
-                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="NZ1-pQ-atm" userLabel="HeaderCollectionView">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="300"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="250" id="Ge8-Wn-WuG"/>
+                    </constraints>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="fwz-Eg-G6s">
+                        <size key="itemSize" width="50" height="50"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="Ge8-Wn-WuG"/>
+                        </mask>
+                    </variation>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="Ech-cj-Rwj"/>
+                        <outlet property="delegate" destination="-1" id="n5G-AC-ol6"/>
+                    </connections>
+                </collectionView>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="WUC-H6-Puw" userLabel="LocationsCollectionView">
+                    <rect key="frame" x="0.0" y="300" width="600" height="300"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="aYe-Dk-EbR">
                         <size key="itemSize" width="50" height="50"/>
                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -26,7 +49,7 @@
                     </collectionViewFlowLayout>
                 </collectionView>
                 <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="ICD-Qu-bO9">
-                    <rect key="frame" x="290" y="290" width="20" height="20"/>
+                    <rect key="frame" x="290" y="440" width="20" height="20"/>
                     <color key="color" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 </activityIndicatorView>
             </subviews>
@@ -34,12 +57,22 @@
             <constraints>
                 <constraint firstItem="ICD-Qu-bO9" firstAttribute="centerY" secondItem="WUC-H6-Puw" secondAttribute="centerY" id="5cJ-MX-Njy"/>
                 <constraint firstItem="WUC-H6-Puw" firstAttribute="leading" secondItem="MNj-hs-B9A" secondAttribute="leading" id="7yX-Cz-Oq3"/>
+                <constraint firstAttribute="trailing" secondItem="NZ1-pQ-atm" secondAttribute="trailing" id="BD0-iy-UOZ"/>
                 <constraint firstAttribute="bottom" secondItem="WUC-H6-Puw" secondAttribute="bottom" id="Czs-gY-dhY"/>
                 <constraint firstItem="ICD-Qu-bO9" firstAttribute="centerX" secondItem="WUC-H6-Puw" secondAttribute="centerX" id="GkX-i0-9dW"/>
                 <constraint firstAttribute="trailing" secondItem="WUC-H6-Puw" secondAttribute="trailing" id="IqM-h0-nhi"/>
                 <constraint firstItem="WUC-H6-Puw" firstAttribute="top" secondItem="MNj-hs-B9A" secondAttribute="top" id="Jua-0P-CpU"/>
+                <constraint firstItem="NZ1-pQ-atm" firstAttribute="top" secondItem="MNj-hs-B9A" secondAttribute="top" id="Kln-XC-b05"/>
+                <constraint firstItem="NZ1-pQ-atm" firstAttribute="leading" secondItem="MNj-hs-B9A" secondAttribute="leading" id="e1W-ya-kYh"/>
+                <constraint firstItem="WUC-H6-Puw" firstAttribute="top" secondItem="NZ1-pQ-atm" secondAttribute="bottom" id="juC-5u-xV4"/>
+                <constraint firstAttribute="bottom" secondItem="NZ1-pQ-atm" secondAttribute="bottom" multiplier="1:0.5" constant="1" id="lmd-21-06W"/>
             </constraints>
-            <point key="canvasLocation" x="60" y="-85"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="Jua-0P-CpU"/>
+                </mask>
+            </variation>
+            <point key="canvasLocation" x="56" y="-304"/>
         </view>
     </objects>
 </document>

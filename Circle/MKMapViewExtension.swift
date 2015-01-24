@@ -88,6 +88,6 @@ extension MKMapView {
         }
         
         zoomRect = mapRectThatFits(zoomRect)
-        setVisibleMapRect(zoomRect, edgePadding: UIEdgeInsetsMake(20.0, 20.0, 20.0, 20.0), animated: true)
+        setVisibleMapRect(zoomRect, edgePadding: UIEdgeInsetsZero, animated: true)
     }
 }

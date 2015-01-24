@@ -33,27 +33,15 @@ class MapHeaderCollectionReusableView: CircleCollectionReusableView, MKMapViewDe
             overlayButton.hidden = allowInteraction
         }
     }
-    
-    private var visualEffectView: UIVisualEffectView!
 
     override func awakeFromNib() {
         super.awakeFromNib()
 
         // Initialization code
         initialHeightForAddressContainer = addressContainerViewHeightConstraint.constant
-        configureBlurView()
         mapView.delegate = self
     }
 
-    private func configureBlurView() {
-        let blurEffect = UIBlurEffect(style: .Dark)
-        visualEffectView = UIVisualEffectView(effect: blurEffect)
-        visualEffectView.setTranslatesAutoresizingMaskIntoConstraints(false)
-        visualEffectView.frame = addressContainerView.frame
-        addressContainerView.insertSubview(visualEffectView, belowSubview: addressLabel)
-        visualEffectView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
-    }
-    
     // MARK: - MKMapViewDelegate
     
     func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
@@ -90,18 +78,19 @@ class MapHeaderCollectionReusableView: CircleCollectionReusableView, MKMapViewDe
             addressString = location.city + ", " + location.country_code
         }
         
-        
-        addressLabel.text = addressString
-        mapView.annotateAndSetRegion(
-            MapHeaderCollectionReusableView.annotationTitleForLocation(location),
-            latitude: location.latitude,
-            longitude: location.longitude
-        )
+        if addressString != addressLabel.text {
+            // Remove existing annotations
+            mapView.removeAnnotations(mapView.annotations)
+            addressLabel.text = addressString
+            mapView.annotateAndSetRegion(
+                MapHeaderCollectionReusableView.annotationTitleForLocation(location),
+                latitude: location.latitude,
+                longitude: location.longitude
+            )
+        }
     }
     
     func setData(#locations: [OrganizationService.Containers.Address]) {
-        var coordinates = [CLLocationCoordinate2D]()
-
         // Remove existing annotations
         mapView.removeAnnotations(mapView.annotations)
         
@@ -113,9 +102,7 @@ class MapHeaderCollectionReusableView: CircleCollectionReusableView, MKMapViewDe
                 longitude: location.longitude
             )
         }
-        
-        // Set zoom
-        mapView.zoomMapToIncludeAllAnnotations()
+        mapView.showAnnotations(mapView.annotations, animated: true)
         
         // Set address label
         if locations.count == 1 {
