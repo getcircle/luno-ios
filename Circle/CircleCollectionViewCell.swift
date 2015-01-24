@@ -58,6 +58,11 @@ class CircleCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        // Rasterize layers
+        layer.shouldRasterize = true
+        layer.rasterizationScale = UIScreen.mainScreen().scale
+        
+        // Setup background view
         selectedBackgroundView = UIView(forAutoLayout: ())
         selectedBackgroundView.backgroundColor = UIColor.controlHighlightedColor()
         selectedBackgroundView.opaque = true

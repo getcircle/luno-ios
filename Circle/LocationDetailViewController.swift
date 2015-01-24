@@ -13,16 +13,20 @@ class LocationDetailViewController: DetailViewController {
 
     private let offsetToTriggerFullScreenMapView: CGFloat = -100.0
     private var overlayButtonHandlerAdded = false
+
+    // MARK: - Initialization
+    
+    override func customInit() {
+        super.customInit()
+        
+        dataSource = LocationDetailDataSource()
+        delegate = ProfileCollectionViewDelegate()
+    }
     
     // MARK: - Configuration
 
     override func configureCollectionView() {
-        // Data Source
-        dataSource = LocationDetailDataSource()
         collectionView.dataSource = dataSource
-
-        // Delegate
-        delegate = ProfileCollectionViewDelegate()
         collectionView.delegate = delegate
         
         layout.headerHeight = MapHeaderCollectionReusableView.height
@@ -121,6 +125,7 @@ class LocationDetailViewController: DetailViewController {
             )
             mapViewController.finalMapViewRect = finalRect
             mapViewController.addressSnapshotView = headerView.addressContainerView.snapshotViewAfterScreenUpdates(false)
+            mapViewController.selectedLocation = (dataSource as LocationDetailDataSource).selectedLocation
         }
         
         mapViewController.modalPresentationStyle = .Custom

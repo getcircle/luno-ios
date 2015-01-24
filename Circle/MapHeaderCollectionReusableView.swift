@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import ProtobufRegistry
 
 class MapHeaderCollectionReusableView: CircleCollectionReusableView, MKMapViewDelegate {
 
@@ -32,38 +33,13 @@ class MapHeaderCollectionReusableView: CircleCollectionReusableView, MKMapViewDe
 
     override func awakeFromNib() {
         super.awakeFromNib()
+
         // Initialization code
         initialHeightForAddressContainer = addressContainerViewHeightConstraint.constant
-        configureMapView()
         configureBlurView()
-    }
-    
-    private func configureMapView() {
-        // Lat/Long coordinates
-        let coordinates = CLLocationCoordinate2DMake(37.782, -122.4055)
-        let span = MKCoordinateSpanMake(0.002, 0.002)
-        let mapRegion = MKCoordinateRegionMake(coordinates, span)
-        mapView.setRegion(mapRegion, animated: true)
         mapView.delegate = self
-        
-        mapView.addAnnotation(LocationAnnotation(
-            coordinate: coordinates,
-            title: "San Francisco Office"
-        ))
-        
-        let coordinates1 = CLLocationCoordinate2DMake(36.155034, -86.782300)
-        mapView.addAnnotation(LocationAnnotation(
-            coordinate: coordinates1,
-            title: "Nashville Office"
-        ))
-        
-        let coordinates2 = CLLocationCoordinate2DMake(51.529881, -0.120071)
-        mapView.addAnnotation(LocationAnnotation(
-            coordinate: coordinates2,
-            title: "London Office"
-        ))        
     }
-    
+
     private func configureBlurView() {
         let blurEffect = UIBlurEffect(style: .Dark)
         visualEffectView = UIVisualEffectView(effect: blurEffect)
@@ -91,5 +67,32 @@ class MapHeaderCollectionReusableView: CircleCollectionReusableView, MKMapViewDe
         }
         
         return pinAnnotationView
+    }
+    
+    // MARK: - Set data
+    
+    func setData(address: OrganizationService.Containers.Address) {
+        var addressString = ""
+        if address.hasAddress1 {
+            addressString = address.address_1 + " "
+        }
+
+        if address.hasAddress2 {
+            addressString += address.address_2
+        }
+        
+        if addressString == "" {
+            addressString = address.city + ", " + address.country_code
+        }
+        
+        
+        let annotationTitle = NSString(
+            format: NSLocalizedString("%@ Office",
+                comment: "Title of map annotation indicating the name of the office at a location. E.g., San Francisco Office"),
+            address.city
+        )
+
+        addressLabel.text = addressString
+        mapView.annotateAndSetRegion(annotationTitle, latitude: address.latitude, longitude: address.longitude)
     }
 }

@@ -8,12 +8,14 @@
 
 import UIKit
 import MapKit
+import ProtobufRegistry
 
 class MapViewController: UIViewController, UIViewControllerTransitioningDelegate, MKMapViewDelegate {
 
     var addressSnapshotView: UIView?
     var finalMapViewRect: CGRect?
     var initialMapViewRect: CGRect?
+    var selectedLocation: OrganizationService.Containers.Address!
 
     private(set) var addressContainerView: UIView!
     private(set) var closeButton: UIButton!
@@ -47,6 +49,18 @@ class MapViewController: UIViewController, UIViewControllerTransitioningDelegate
             addressView.setTranslatesAutoresizingMaskIntoConstraints(false)
             addressView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
         }
+     
+        let annotationTitle = NSString(
+            format: NSLocalizedString("%@ Office",
+                comment: "Title of map annotation indicating the name of the office at a location. E.g., San Francisco Office"),
+            selectedLocation.city
+        )
+        
+        mapView.annotateAndSetRegion(
+            annotationTitle,
+            latitude: selectedLocation.latitude,
+            longitude: selectedLocation.longitude
+        )
     }
 
     override func loadView() {
@@ -60,26 +74,7 @@ class MapViewController: UIViewController, UIViewControllerTransitioningDelegate
         view.addSubview(mapView)
         view.sendSubviewToBack(mapView)
         mapView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
-        let coordinates = CLLocationCoordinate2DMake(37.782, -122.4055)
-        let span = MKCoordinateSpanMake(0.002, 0.002)
-        let mapRegion = MKCoordinateRegionMake(coordinates, span)
-        mapView.setRegion(mapRegion, animated: true)
-        mapView.addAnnotation(LocationAnnotation(
-            coordinate: coordinates,
-            title: "San Francisco Office"
-        ))
-        
-        let coordinates1 = CLLocationCoordinate2DMake(36.155034, -86.782300)
-        mapView.addAnnotation(LocationAnnotation(
-            coordinate: coordinates1,
-            title: "Nashville Office"
-        ))
-        
-        let coordinates2 = CLLocationCoordinate2DMake(51.529881, -0.120071)
-        mapView.addAnnotation(LocationAnnotation(
-            coordinate: coordinates2,
-            title: "London Office"
-        ))
+        mapView.delegate = self
         
         // Close Button
         closeButton = UIButton(forAutoLayout: ())
@@ -110,6 +105,8 @@ class MapViewController: UIViewController, UIViewControllerTransitioningDelegate
         var panGestureRecognizer = UIPanGestureRecognizer(target: self, action: "close:")
         addressContainerView.addGestureRecognizer(panGestureRecognizer)
     }
+
+    // MARK: - Animators
     
     func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return MapViewAnimator()

@@ -305,8 +305,11 @@ CardHeaderViewDelegate {
                 navigationController?.pushViewController(viewController, animated: true)
 
             case .Locations:
-                let viewController = LocationDetailViewController()
-                navigationController?.pushViewController(viewController, animated: true)
+                if let locationAddress = dataSource.contentAtIndexPath(indexPath)? as? OrganizationService.Containers.Address {
+                    let viewController = LocationDetailViewController()
+                    (viewController.dataSource as LocationDetailDataSource).selectedLocation = locationAddress
+                    navigationController?.pushViewController(viewController, animated: true)
+                }
                 
             case .Team:
                 if let selectedTeam = dataSource.contentAtIndexPath(indexPath)? as? OrganizationService.Containers.Team {
@@ -350,8 +353,7 @@ CardHeaderViewDelegate {
             navigationController?.pushViewController(viewController, animated: true)
 
         case .Locations:
-            let viewController = LocationDetailViewController()
-            navigationController?.pushViewController(viewController, animated: true)
+            break
             
         default:
             break

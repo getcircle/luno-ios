@@ -11,6 +11,8 @@ import ProtobufRegistry
 
 class LocationDetailDataSource: CardDataSource {
     
+    var selectedLocation: OrganizationService.Containers.Address!
+
     private var profiles = Array<ProfileService.Containers.Profile>()
     private(set) var profileHeaderView: MapHeaderCollectionReusableView?
     
@@ -28,8 +30,8 @@ class LocationDetailDataSource: CardDataSource {
         appendCard(placeholderMapCard)
         
         if let currentProfile = AuthViewController.getLoggedInUserProfile() {
-            ProfileService.Actions.getProfiles(currentProfile.team_id) { (profiles, error) -> Void in
-                if error == nil {
+            ProfileService.Actions.getProfiles(addressId: selectedLocation.id) { (profiles, error) -> Void in
+                if error == nil && profiles != nil {
                     self.profiles.extend(profiles!)
                     let peopleCard = Card(cardType: .People, title: "Direct Reports")
                     peopleCard.content.extend(profiles! as [AnyObject])
@@ -73,9 +75,9 @@ class LocationDetailDataSource: CardDataSource {
                 kind,
                 withReuseIdentifier: MapHeaderCollectionReusableView.classReuseIdentifier,
                 forIndexPath: indexPath
-                ) as MapHeaderCollectionReusableView
+            ) as MapHeaderCollectionReusableView
             
-
+            supplementaryView.setData(selectedLocation)
             profileHeaderView = supplementaryView
             return supplementaryView
     }

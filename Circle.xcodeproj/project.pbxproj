@@ -26,6 +26,7 @@
 		8F085A951A6C191400F8139B /* TeamGridItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F085A931A6C191400F8139B /* TeamGridItemCollectionViewCell.swift */; };
 		8F085A961A6C191400F8139B /* TeamGridItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F085A941A6C191400F8139B /* TeamGridItemCollectionViewCell.xib */; };
 		8F085A981A6C4B0D00F8139B /* TeamDetailCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F085A971A6C4B0D00F8139B /* TeamDetailCollectionViewDelegate.swift */; };
+		8F0B96371A73288600C601A6 /* MKMapViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0B96361A73288600C601A6 /* MKMapViewExtension.swift */; };
 		8F0E44871A61EE99008710E7 /* LocationAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0E44861A61EE99008710E7 /* LocationAnnotation.swift */; };
 		8F2234B21A6F7A7500C39E39 /* CircleImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F2234B11A6F7A7500C39E39 /* CircleImageView.swift */; };
 		8F22CB771A2661890026376E /* AppDelegateAppearanceExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F22CB761A2661890026376E /* AppDelegateAppearanceExtension.swift */; };
@@ -251,6 +252,7 @@
 		8F085A931A6C191400F8139B /* TeamGridItemCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamGridItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		8F085A941A6C191400F8139B /* TeamGridItemCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TeamGridItemCollectionViewCell.xib; sourceTree = "<group>"; };
 		8F085A971A6C4B0D00F8139B /* TeamDetailCollectionViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamDetailCollectionViewDelegate.swift; sourceTree = "<group>"; };
+		8F0B96361A73288600C601A6 /* MKMapViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKMapViewExtension.swift; sourceTree = "<group>"; };
 		8F0E44861A61EE99008710E7 /* LocationAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationAnnotation.swift; sourceTree = "<group>"; };
 		8F2234B11A6F7A7500C39E39 /* CircleImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleImageView.swift; sourceTree = "<group>"; };
 		8F22CB761A2661890026376E /* AppDelegateAppearanceExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegateAppearanceExtension.swift; sourceTree = "<group>"; };
@@ -525,6 +527,7 @@
 				BFE213CC1A5EF7E30033E2F5 /* AppDelegateSearchCacheExtension.swift */,
 				BFB791881A2C346A0048E8FB /* CALayerExtension.swift */,
 				8F3569131A560B2D003D42F9 /* CGRectExtension.swift */,
+				8F0B96361A73288600C601A6 /* MKMapViewExtension.swift */,
 				BF041BB91A2C119B0043EC72 /* NSDateFormatterExtension.swift */,
 				BF8FC3D81A44DA83007FD8BA /* StringExtension.swift */,
 				BFEDB1421A2A8CA700250165 /* UICollectionViewFlowLayoutExtension.swift */,
@@ -1013,6 +1016,7 @@
 				8F085A911A6C175C00F8139B /* TeamsCollectionViewCell.swift in Sources */,
 				8F0004961A2419730096477A /* AppDelegate.swift in Sources */,
 				8F823E4C1A729E1B0006264B /* TeamsOverviewViewController.swift in Sources */,
+				8F0B96371A73288600C601A6 /* MKMapViewExtension.swift in Sources */,
 				8F823E431A714B5D0006264B /* OrganizationHeaderCollectionReusableView.swift in Sources */,
 				8F22CBE51A27ED190026376E /* ProfileCollectionViewLayout.swift in Sources */,
 				8F823E381A706B790006264B /* OrganizationDetailViewController.swift in Sources */,
