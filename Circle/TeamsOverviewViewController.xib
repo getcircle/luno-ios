@@ -39,6 +39,7 @@
                 <constraint firstAttribute="trailing" secondItem="HaF-FS-ShZ" secondAttribute="trailing" id="cHe-bY-wtm"/>
                 <constraint firstItem="QL5-Nh-wWA" firstAttribute="centerY" secondItem="HaF-FS-ShZ" secondAttribute="centerY" id="s2n-pn-jHY"/>
             </constraints>
+            <point key="canvasLocation" x="-22" y="-95"/>
         </view>
     </objects>
 </document>

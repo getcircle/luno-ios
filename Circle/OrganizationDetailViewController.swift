@@ -132,7 +132,10 @@ class OrganizationDetailViewController: DetailViewController, CardHeaderViewDele
             navigationController?.pushViewController(viewController, animated: true)
             
         case .Locations:
-            break
+            let viewController = LocationsOverviewViewController(nibName: "LocationsOverviewViewController", bundle: nil)
+            viewController.dataSource.setInitialData(card.allContent, ofType: nil)
+            viewController.title = card.title
+            navigationController?.pushViewController(viewController, animated: true)
         
         case .TeamsGrid:
             let viewController = TeamsOverviewViewController(nibName: "TeamsOverviewViewController", bundle: nil) 

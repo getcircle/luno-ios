@@ -14,6 +14,10 @@ class CircleCollectionReusableView: UICollectionReusableView {
         return "CircleCollectionReusableView"
     }
     
+    class var width: CGFloat {
+        return UIScreen.mainScreen().bounds.width
+    }
+    
     class var height: CGFloat {
         return 44.0
     }

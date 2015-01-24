@@ -10,6 +10,7 @@ import UIKit
 import ProtobufRegistry
 
 class TeamsOverviewDataSource: CardDataSource {
+    
     private var teams = Array<OrganizationService.Containers.Team>()
     
     // MARK: - Set Initial Data
@@ -23,6 +24,7 @@ class TeamsOverviewDataSource: CardDataSource {
     }
     
     // MARK: - Load Data
+
     override func loadData(completionHandler: (error: NSError?) -> Void) {
         completionHandler(error: nil)
     }
