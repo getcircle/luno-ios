@@ -98,7 +98,7 @@ class ProfileOverlaidCollectionView: UICollectionView, UICollectionViewDelegate 
         backgroundColor = UIColor.clearColor()
         dataSource = collectionViewDataSource
         delegate = collectionViewDelegate
-        userInteractionEnabled = false
+        userInteractionEnabled = true
         
         // XXX we should consider making this a public function so the view controller can instantiate an activity indicator and then call load data, clearing activity indicator when the content has loaded
         collectionViewDataSource?.loadData { (error) -> Void in
@@ -144,4 +144,21 @@ class ProfileOverlaidCollectionView: UICollectionView, UICollectionViewDelegate 
         }
     }
 
+    // MARK: - Handle Touch Events
+    
+    override func hitTest(point: CGPoint, withEvent event: UIEvent?) -> UIView? {
+        
+        // Check if the touch happened in the header view
+        // The header view internally overrides and ensures only touches on uicontrol
+        // are asked to be captured.
+        if let headerView = collectionViewDataSource?.profileHeaderView {
+            let pointRelativeToHeaderView = headerView.convertPoint(point, fromView: self)
+            if headerView.pointInside(pointRelativeToHeaderView, withEvent: event) {
+                return headerView.tappedButtonInSegmentedControl
+            }
+        }
+
+        // Pass touch events to other sub-views
+        return nil
+    }
 }

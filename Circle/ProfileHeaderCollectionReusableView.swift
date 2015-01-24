@@ -17,8 +17,6 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var profileImage: CircleImageView!
     @IBOutlet weak var sectionsView: UIView!
-    private var sectionIndicatorView: UIView?
-    private var sectionIndicatorLeftOffset: NSLayoutConstraint?
     
     var sections: [String]? {
         didSet {
@@ -27,8 +25,12 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
             }
         }
     }
-
+    var tappedButtonInSegmentedControl: UIButton?
     private(set) var visualEffectView: UIVisualEffectView!
+
+    private var sectionIndicatorView: UIView?
+    private var sectionIndicatorLeftOffset: NSLayoutConstraint?
+    private var segmentedControlButtons = [UIButton]()
     
     override class var classReuseIdentifier: String {
         return "ProfileHeaderView"
@@ -87,6 +89,7 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
             }
             button.autoPinEdge(.Top, toEdge: .Top, ofView: sectionsView)
             previousButton = button
+            segmentedControlButtons.append(button)
         }
         
         // Setup the section indicator view
@@ -106,5 +109,19 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
     func updateSectionIndicatorView(contentOffset: CGPoint) {
         sectionIndicatorLeftOffset?.constant = contentOffset.x / CGFloat(sections!.count)
     }
-    
+
+    override func pointInside(point: CGPoint, withEvent event: UIEvent?) -> Bool {
+
+        // Check if the touch happened on any of the segmented control buttons
+        // If not, let the super view handle the touch event
+        for button in segmentedControlButtons {
+            let pointRelativeToButton = button.convertPoint(point, fromView: self)
+            if button.pointInside(pointRelativeToButton, withEvent: event) {
+                tappedButtonInSegmentedControl = button
+                return true
+            }
+        }
+        
+        return false
+    }
 }

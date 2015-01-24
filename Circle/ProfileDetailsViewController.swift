@@ -230,5 +230,4 @@ class ProfileDetailsViewController: UIViewController, UnderlyingCollectionViewDe
     private func profileHeaderView() -> ProfileHeaderCollectionReusableView? {
         return (overlaidCollectionView.dataSource as? ProfileOverlaidCollectionViewDataSource)?.profileHeaderView
     }
-
 }
