@@ -12,6 +12,7 @@ import ProtobufRegistry
 typealias CreateNoteCompletionHandler = (note: NoteService.Containers.Note?, error: NSError?) -> Void
 typealias DeleteNoteCompletionHandler = (error: NSError?) -> Void
 typealias UpdateNoteCompletionHandler = (note: NoteService.Containers.Note?, error: NSError?) -> Void
+typealias GetNotesCompletionHandler = (notes: Array<NoteService.Containers.Note>?, error: NSError?) -> Void
 
 extension NoteService {
     class Actions {
@@ -40,6 +41,22 @@ extension NoteService {
         class func updateNote(note: NoteService.Containers.Note, completionHandler: UpdateNoteCompletionHandler?) {
             println("TODO update the note")
             completionHandler?(note: note, error: nil)
+        }
+        
+        class func getNotes(forProfileId: String, completionHandler: GetNotesCompletionHandler?) {
+            let requestBuilder = NoteService.GetNotes.Request.builder()
+            requestBuilder.for_profile_id = forProfileId
+            requestBuilder.owner_profile_id = AuthViewController.getLoggedInUserProfile()!.id
+            let client = ServiceClient(serviceName: "note")
+            client.callAction(
+                "get_notes",
+                extensionField: NoteServiceRequests_get_notes,
+                requestBuilder: requestBuilder) { (_, _, _, actionResponse, error) -> Void in
+                    let response = actionResponse?.result.getExtension(
+                        NoteServiceRequests_get_notes
+                    ) as? NoteService.GetNotes.Response
+                    completionHandler?(notes: response?.notes, error: error)
+            }
         }
         
     }

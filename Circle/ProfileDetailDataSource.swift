@@ -28,7 +28,6 @@ enum ContentType: Int {
     case Github
     case LinkedIn
     case Manager
-    case Notes
     case Other
     case Tags
     case Team
@@ -77,9 +76,7 @@ class Section {
     }
 }
 
-let emptyHeaderReuseIdentifier = "emptyHeaderReuseIdentifier"
-
-class ProfileDetailDataSource: CardDataSource {
+class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
 
     var manager: ProfileService.Containers.Profile?
     var profile: ProfileService.Containers.Profile!
@@ -87,7 +84,6 @@ class ProfileDetailDataSource: CardDataSource {
     private(set) var address: OrganizationService.Containers.Address?
     private(set) var tags: Array<ProfileService.Containers.Tag>?
     private(set) var team: OrganizationService.Containers.Team?
-    private(set) var notes: Array<NoteService.Containers.Note>?
 
     private(set) var profileHeaderView: ProfileHeaderCollectionReusableView?
     private var sections = [Section]()
@@ -98,17 +94,6 @@ class ProfileDetailDataSource: CardDataSource {
     }
     
     override func registerCardHeader(collectionView: UICollectionView) {
-        collectionView.registerClass(
-            UICollectionReusableView.self,
-            forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
-            withReuseIdentifier: emptyHeaderReuseIdentifier
-        )
-        collectionView.registerNib(
-            UINib(nibName: "NotesCardHeaderCollectionReusableView", bundle: nil),
-            forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
-            withReuseIdentifier: NotesCardHeaderCollectionReusableView.classReuseIdentifier
-        )
-        
         // TODO should have some like "onLoad" function we can plug into
         configureSections()
         super.registerCardHeader(collectionView)
@@ -119,13 +104,12 @@ class ProfileDetailDataSource: CardDataSource {
         var placeholderCard = Card(cardType: .Placeholder, title: "Info")
         appendCard(placeholderCard)
         ProfileService.Actions.getExtendedProfile(profile.id) {
-            (profile, manager, team, address, tags, notes, error) -> Void in
+            (profile, manager, team, address, tags, _, error) -> Void in
             if error == nil {
                 self.manager = manager
                 self.team = team
                 self.address = address
                 self.tags = tags
-                self.notes = notes
                 self.populateData()
             }
             completionHandler(error: error)
@@ -138,7 +122,6 @@ class ProfileDetailDataSource: CardDataSource {
         sections.append(getBasicInfoSection())
         sections.append(getManagerInfoSection())
         sections.append(getTagsSection())
-        sections.append(getNotesSection())
     }
     
     private func getBasicInfoSection() -> Section {
@@ -214,24 +197,6 @@ class ProfileDetailDataSource: CardDataSource {
         return Section(title: "Tags", items: sectionItems, cardType: .Tags)
     }
     
-    private func getNotesSection() -> Section {
-        let sectionItems = [
-            // XXX we shouldn't have to pass in "containerKey" here
-            SectionItem(
-                title: "Notes",
-                container: "notes",
-                containerKey: "content",
-                contentType: .Notes,
-                image: nil
-            )
-        ]
-        // TODO find a better place to put this
-        let headerSize = CGSizeMake(375, 45.0)
-        let section = Section(title: "Notes", items: sectionItems, cardType: .Notes, cardHeaderSize: headerSize)
-        section.hasAction = true
-        return section
-    }
-    
     // MARK: - Populate Data
     
     private func populateData() {
@@ -256,7 +221,6 @@ class ProfileDetailDataSource: CardDataSource {
         switch card.type {
         case .KeyValue: addKeyValueItemToCard(item, card: card)
         case .Tags: addTagsItemToCard(item, card: card)
-        case .Notes: addNotesItemToCard(item, card: card)
         default: break
         }
     }
@@ -299,45 +263,12 @@ class ProfileDetailDataSource: CardDataSource {
         }
     }
     
-    private func addNotesItemToCard(item: SectionItem, card: Card) {
-        if let notes = notes {
-            card.addContent(content: notes as [AnyObject])
-        }
-    }
-    
     // MARK: - Cell Configuration
     
     override func configureCell(cell: CircleCollectionViewCell, atIndexPath indexPath: NSIndexPath) {
         if cell is TagsCollectionViewCell {
             (cell as TagsCollectionViewCell).showTagsLabel = true
         }
-    }
-    
-    // MARK: - UICollectionViewDataSource
-
-    override func collectionView(
-        collectionView: UICollectionView,
-        viewForSupplementaryElementOfKind kind: String,
-        atIndexPath indexPath: NSIndexPath
-    ) -> UICollectionReusableView {
-        
-        if indexPath.section == 0 {
-            let supplementaryView = collectionView.dequeueReusableSupplementaryViewOfKind(
-                kind,
-                withReuseIdentifier: emptyHeaderReuseIdentifier,
-                forIndexPath: indexPath
-            ) as UICollectionReusableView
-            supplementaryView.backgroundColor = UIColor.clearColor()
-            return supplementaryView
-        }
-        
-        // Display notes card header
-        let supplementaryView = collectionView.dequeueReusableSupplementaryViewOfKind(
-            kind,
-            withReuseIdentifier: NotesCardHeaderCollectionReusableView.classReuseIdentifier,
-            forIndexPath: indexPath
-        ) as NotesCardHeaderCollectionReusableView
-        return supplementaryView
     }
     
     // MARK: - Cell Type
@@ -349,24 +280,6 @@ class ProfileDetailDataSource: CardDataSource {
         }
         
         return .Other
-    }
-    
-    func addNote(note: NoteService.Containers.Note) {
-        // TODO this should be an enum or at least a constant
-//        if let card = cardAtSection(3) {
-//            card.content.insert(note, atIndex: 0)
-//        }
-    }
-    
-    func removeNote(note: NoteService.Containers.Note) {
-//        if let card = cardAtSection(3) {
-//            card.content = card.content.filter {
-//                if let item = $0 as? NoteService.Containers.Note {
-//                    return item.id != note.id
-//                }
-//                return true
-//            }
-//        }
     }
     
 }

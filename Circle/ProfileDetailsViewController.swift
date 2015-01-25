@@ -110,7 +110,6 @@ class ProfileDetailsViewController:
         // We will only alter the content offset if it is greater than the stickySectionHeight.
         var offset = collectionView.contentOffset.y
         if let layout = overlaidCollectionView.collectionViewLayout as? StickyHeaderCollectionViewLayout {
-            println("offset \(collectionView.contentOffset.y) - sectionHeight: \(layout.stickySectionHeight)")
             let maxOffset = (layout.headerHeight - layout.stickySectionHeight)
             if collectionView.contentOffset.y > maxOffset {
                 offset = maxOffset
@@ -124,15 +123,18 @@ class ProfileDetailsViewController:
     }
     
     func underlyingCollectionViewDidSelectItemAtIndexPath(collectionView: UICollectionView, indexPath: NSIndexPath) {
-        let dataSource = collectionView.dataSource as ProfileDetailDataSource
-        if let card = dataSource.cardAtSection(indexPath.section) {
-            switch card.type {
-            case .KeyValue:
-                handleKeyValueCardSelection(dataSource, indexPath: indexPath)
-            case .Notes:
-                handleNotesCardSelection(card, indexPath: indexPath)
-            default:
-                break
+        if let dataSource = collectionView.dataSource as? CardDataSource {
+            if let card = dataSource.cardAtSection(indexPath.section) {
+                if let dataSource = collectionView.dataSource as? ProfileDetailDataSource {
+                    switch card.type {
+                    case .KeyValue:
+                        handleKeyValueCardSelection(dataSource, indexPath: indexPath)
+                    default:
+                        break
+                    }
+                } else if let dataSource = collectionView.dataSource as? ProfileNotesDataSource {
+                    handleNotesCardSelection(card, indexPath: indexPath)
+                }
             }
         }
         collectionView.deselectItemAtIndexPath(indexPath, animated: true)
@@ -159,7 +161,7 @@ class ProfileDetailsViewController:
     
     private func handleNotesCardSelection(card: Card, indexPath: NSIndexPath) {
         if let note = card.content[indexPath.row] as? NoteService.Containers.Note {
-            //            presentNoteView(note)
+            presentNoteView(note)
         }
     }
     
@@ -202,21 +204,21 @@ class ProfileDetailsViewController:
     
     // MARK: - Notifications
     
-//    override func registerNotifications() {
-//        NSNotificationCenter.defaultCenter().addObserver(
-//            self,
-//            selector: "addNote:",
-//            name: NotesCardHeaderCollectionReusableViewNotifications.onAddNoteNotification,
-//            object: nil
-//        )
-//        super.registerNotifications()
-//    }
-//    
-//    // MARK: - NotesCardHeaderViewDelegate
-//    
-//    func addNote(sender: AnyObject!) {
-//        presentNoteView(nil)
-//    }
+    override func registerNotifications() {
+        NSNotificationCenter.defaultCenter().addObserver(
+            self,
+            selector: "addNote:",
+            name: NotesCardHeaderCollectionReusableViewNotifications.onAddNoteNotification,
+            object: nil
+        )
+        super.registerNotifications()
+    }
+    
+    // MARK: - NotesCardHeaderViewDelegate
+    
+    func addNote(sender: AnyObject!) {
+        presentNoteView(nil)
+    }
     
     // MARK: - NewNoteViewControllerDelegate
     
@@ -236,14 +238,14 @@ class ProfileDetailsViewController:
     
     // MARK: - Helpers
     
-//    private func presentNoteView(note: NoteService.Containers.Note?) {
-//        let newNoteViewController = NewNoteViewController(nibName: "NewNoteViewController", bundle: nil)
-//        newNoteViewController.profile = profile
+    private func presentNoteView(note: NoteService.Containers.Note?) {
+        let newNoteViewController = NewNoteViewController(nibName: "NewNoteViewController", bundle: nil)
+        newNoteViewController.profile = profile
 //        newNoteViewController.delegate = self
-//        newNoteViewController.note = note
-//        let navController = UINavigationController(rootViewController: newNoteViewController)
-//        navigationController?.presentViewController(navController, animated: true, completion: nil)
-//    }
+        newNoteViewController.note = note
+        let navController = UINavigationController(rootViewController: newNoteViewController)
+        navigationController?.presentViewController(navController, animated: true, completion: nil)
+    }
     
     private func addLogOutButton() {
         if navigationItem.rightBarButtonItem == nil {
@@ -271,7 +273,7 @@ class ProfileDetailsViewController:
             profile: profile,
             detailViews: [
                 ProfileInfoCollectionView(profile: profile),
-                ProfileInfoCollectionView(profile: profile)
+                ProfileNotesCollectionView(profile: profile)
             ],
             overlaidCollectionView: ProfileOverlaidCollectionView(profile: profile, sections: ["Info", "Notes"]
             ),

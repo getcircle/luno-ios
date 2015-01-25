@@ -9,7 +9,7 @@
 import UIKit
 import ProtobufRegistry
 
-class ProfileDetailViewController: DetailViewController, NewNoteViewControllerDelegate {
+class ProfileDetailViewController: DetailViewController {
 
     var profile: ProfileService.Containers.Profile!
     
@@ -36,11 +36,6 @@ class ProfileDetailViewController: DetailViewController, NewNoteViewControllerDe
         
         layout.headerHeight = ProfileHeaderCollectionReusableView.height
         
-        // Gestures
-        swipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: "handleSwipeGesture:")
-        swipeGestureRecognizer?.direction = .Left
-        collectionView.addGestureRecognizer(swipeGestureRecognizer!)
-        
         super.configureCollectionView()
     }
 
@@ -52,8 +47,6 @@ class ProfileDetailViewController: DetailViewController, NewNoteViewControllerDe
             switch card.type {
             case .KeyValue:
                 handleKeyValueCardSelection(dataSource, indexPath: indexPath)
-            case .Notes:
-                handleNotesCardSelection(card, indexPath: indexPath)
             default:
                 break
             }
@@ -78,12 +71,6 @@ class ProfileDetailViewController: DetailViewController, NewNoteViewControllerDe
 
         default:
             break
-        }
-    }
-    
-    private func handleNotesCardSelection(card: Card, indexPath: NSIndexPath) {
-        if let note = card.content[indexPath.row] as? NoteService.Containers.Note {
-            presentNoteView(note)
         }
     }
     
@@ -127,58 +114,6 @@ class ProfileDetailViewController: DetailViewController, NewNoteViewControllerDe
             }
         }
 
-    }
-    
-    // MARK: - Notifications
-    
-    override func registerNotifications() {
-        NSNotificationCenter.defaultCenter().addObserver(
-            self,
-            selector: "addNote:",
-            name: NotesCardHeaderCollectionReusableViewNotifications.onAddNoteNotification,
-            object: nil
-        )
-        
-        super.registerNotifications()
-    }
-
-    // MARK: - NotesCardHeaderViewDelegate
-    
-    func addNote(sender: AnyObject!) {
-        presentNoteView(nil)
-    }
-    
-    // MARK: - NewNoteViewControllerDelegate
-    
-    func didAddNote(note: NoteService.Containers.Note) {
-        if let dataSource = collectionView.dataSource as? ProfileDetailDataSource {
-            dataSource.addNote(note)
-            collectionView.reloadData()
-        }
-    }
-
-    func didDeleteNote(note: NoteService.Containers.Note) {
-        if let dataSource = collectionView.dataSource as? ProfileDetailDataSource {
-            dataSource.removeNote(note)
-            collectionView.reloadData()
-        }
-    }
-    
-    // MARK: - Helpers
-    
-    private func presentNoteView(note: NoteService.Containers.Note?) {
-        let newNoteViewController = NewNoteViewController(nibName: "NewNoteViewController", bundle: nil)
-        newNoteViewController.profile = profile
-        newNoteViewController.delegate = self
-        newNoteViewController.note = note
-        let navController = UINavigationController(rootViewController: newNoteViewController)
-        navigationController?.presentViewController(navController, animated: true, completion: nil)
-    }
-    
-    // MARK: - Gesture recognizers
-    
-    func handleSwipeGesture(sender: UISwipeGestureRecognizer) {
-        println("swiping: \(sender)")
     }
     
 }

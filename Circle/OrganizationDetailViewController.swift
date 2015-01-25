@@ -17,7 +17,7 @@ class OrganizationDetailViewController: DetailViewController, CardHeaderViewDele
         super.customInit()
 
         dataSource = OrganizationDetailDataSource()
-        delegate = StickyHeaderCollectionViewDelegate()
+        delegate = OrganizationDetailCollectionViewDelegate()
     }
     
     // MARK: - Configuration
