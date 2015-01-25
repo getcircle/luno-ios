@@ -121,6 +121,7 @@
 		BF24FCFD1A4A25F3003DF4C2 /* ProtobufRegistry.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = BF24FCF81A4A25E7003DF4C2 /* ProtobufRegistry.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BF25722D1A6450F20052C3E3 /* VerifyPhoneNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF25722B1A6450F20052C3E3 /* VerifyPhoneNumberViewController.swift */; };
 		BF25722E1A6450F20052C3E3 /* VerifyPhoneNumberViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF25722C1A6450F20052C3E3 /* VerifyPhoneNumberViewController.xib */; };
+		BF27CC631A747B2100E683C7 /* BaseDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF27CC621A747B2100E683C7 /* BaseDetailViewController.swift */; };
 		BF2CBFD61A473E9100BE589D /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2CBFD51A473E9100BE589D /* UserService.swift */; };
 		BF2D86171A707A86002C3D64 /* ProfileInfoCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2D86161A707A86002C3D64 /* ProfileInfoCollectionView.swift */; };
 		BF3F0F611A5B1C1100D4287E /* ProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3F0F601A5B1C1100D4287E /* ProfileService.swift */; };
@@ -357,6 +358,7 @@
 		BF24FCF21A4A25E6003DF4C2 /* ProtobufRegistry.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ProtobufRegistry.xcodeproj; path = "ThirdParty/protobuf-registry/swift/ProtobufRegistry/ProtobufRegistry.xcodeproj"; sourceTree = SOURCE_ROOT; };
 		BF25722B1A6450F20052C3E3 /* VerifyPhoneNumberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerifyPhoneNumberViewController.swift; sourceTree = "<group>"; };
 		BF25722C1A6450F20052C3E3 /* VerifyPhoneNumberViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VerifyPhoneNumberViewController.xib; sourceTree = "<group>"; };
+		BF27CC621A747B2100E683C7 /* BaseDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseDetailViewController.swift; sourceTree = "<group>"; };
 		BF2CBFD51A473E9100BE589D /* UserService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		BF2D86161A707A86002C3D64 /* ProfileInfoCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileInfoCollectionView.swift; sourceTree = "<group>"; };
 		BF3F0F601A5B1C1100D4287E /* ProfileService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileService.swift; sourceTree = "<group>"; };
@@ -511,6 +513,7 @@
 				BF25722B1A6450F20052C3E3 /* VerifyPhoneNumberViewController.swift */,
 				8F81713A1A62E07000CB7692 /* VerifyProfileViewController.swift */,
 				BF7B238F1A70894100137BCB /* ProfileDetailsViewController.swift */,
+				BF27CC621A747B2100E683C7 /* BaseDetailViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -1041,6 +1044,7 @@
 			files = (
 				8FD041A21A2C03AA00FE28EF /* UIFontExtention.swift in Sources */,
 				8FC7BB431A58B15B005BDDDB /* CardCollectionViewDelegate.swift in Sources */,
+				BF27CC631A747B2100E683C7 /* BaseDetailViewController.swift in Sources */,
 				8F22CBED1A283D3D0026376E /* SeparatorDecorationView.swift in Sources */,
 				8F65C4FB1A50F92500C7F3E6 /* Card.swift in Sources */,
 				8F74001D1A684F2400D96B60 /* TagHeaderCollectionReusableView.swift in Sources */,

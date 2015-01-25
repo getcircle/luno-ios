@@ -11,7 +11,7 @@ import UIKit
 import ProtobufRegistry
 
 class ProfileDetailsViewController:
-        BaseViewController,
+        BaseDetailViewController,
         UnderlyingCollectionViewDelegate,
         UIScrollViewDelegate,
         MFMailComposeViewControllerDelegate
@@ -38,16 +38,12 @@ class ProfileDetailsViewController:
         showLogOutButton: Bool,
         showCloseButton: Bool
     ) {
-        self.init()
+        self.init(showCloseButton: showCloseButton)
         profile = withProfile
         detailViews = withDetailViews
         overlaidCollectionView = withOverlaidCollectionView
         if showLogOutButton {
             addLogOutButton()
-        }
-        
-        if showCloseButton {
-            addCloseButton()
         }
     }
     
@@ -56,50 +52,6 @@ class ProfileDetailsViewController:
         view.backgroundColor = UIColor.viewBackgroundColor()
         configureUnderlyingViews()
         configureOverlayView()
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        if isBeingPresentedModally() {
-            navigationController?.navigationBar.makeTransparent()
-        }
-        else {
-            transitionCoordinator()?.animateAlongsideTransition({ (transitionContext) -> Void in
-                self.navigationController?.navigationBar.makeTransparent()
-                return
-            },
-                completion: nil
-            )
-        }
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        overlaidCollectionView.contentSize = detailViews[0].contentSize
-        underlyingScrollView.contentSize = underlyingContainerView.frame.size
-    }
-    
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        // Do not show the opaque bar again if:
-        // a. this view was presented modally
-        // b. this view is being dismissed vs disappearing because another view controller was added to the stack
-        // c. the view controller prior to this one was a DetailViewController
-        if !isBeingPresentedModally() && isMovingFromParentViewController() {
-            if let totalViewControllers = navigationController?.viewControllers.count {
-                let parentController = navigationController?.viewControllers[(totalViewControllers - 1)] as? UIViewController
-                if !(parentController is ProfileDetailsViewController) {
-                    transitionCoordinator()?.animateAlongsideTransition({ (transitionContext) -> Void in
-                        self.navigationController?.setNavigationBarHidden(false, animated: true)
-                        var toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey) as UIViewController!
-                        toViewController.navigationController?.navigationBar.makeOpaque()
-                        
-                        return
-                    }, completion: nil)
-                }
-            }
-        }
     }
     
     private func configureOverlayView() {
@@ -306,28 +258,7 @@ class ProfileDetailsViewController:
     func logOutTapped(sender: AnyObject!) {
         AuthViewController.logOut()
     }
-    
-    private func addCloseButton() {
-        if navigationItem.leftBarButtonItem == nil {
-            let closeButton = UIBarButtonItem(
-                image: UIImage(named: "Down"),
-                style: .Plain,
-                target: self,
-                action: "closeButtonTapped:"
-            )
-            navigationItem.leftBarButtonItem = closeButton
-        }
-    }
-    
-    func closeButtonTapped(sender: AnyObject!) {
-        if isBeingPresentedModally() {
-            dismissViewControllerAnimated(true, completion: nil)
-        }
-        else {
-            navigationController?.popViewControllerAnimated(true)
-        }
-    }
-    
+
     private func profileHeaderView() -> ProfileHeaderCollectionReusableView? {
         return (overlaidCollectionView.dataSource as? ProfileOverlaidCollectionViewDataSource)?.profileHeaderView
     }

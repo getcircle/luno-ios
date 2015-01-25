@@ -396,9 +396,8 @@ CardHeaderViewDelegate {
 
     @IBAction func showOrganizationProfile(sender: AnyObject!) {
         if let loggedInUserProfile = AuthViewController.getLoggedInUserProfile() {
-            let orgVC = OrganizationDetailViewController()
+            let orgVC = OrganizationDetailViewController(showCloseButton: true)
             (orgVC.dataSource as OrganizationDetailDataSource).selectedOrgId = loggedInUserProfile.organization_id
-            orgVC.showCloseButton = true
             let navController = UINavigationController(rootViewController: orgVC)
             navigationController?.presentViewController(navController, animated: true, completion: nil)
         }
