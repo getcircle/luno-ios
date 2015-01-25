@@ -12,6 +12,7 @@ import UIKit
     optional func underlyingCollectionViewDidBeginScrolling(collectionView: UICollectionView)
     optional func underlyingCollectionViewDidChangeContentOffset(collectionView: UICollectionView, offset: CGFloat)
     optional func underlyingCollectionViewDidEndScrolling(collectionView: UICollectionView)
+    optional func underlyingCollectionViewDidSelectItemAtIndexPath(collectionView: UICollectionView, indexPath: NSIndexPath)
 }
 
 class UnderlyingCollectionView: UICollectionView, UICollectionViewDelegate {
@@ -58,4 +59,10 @@ class UnderlyingCollectionView: UICollectionView, UICollectionViewDelegate {
         scrolling = false
     }
     
+    
+    // MARK: - UICollectionViewDelegate
+    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        externalScrollDelegate?.underlyingCollectionViewDidSelectItemAtIndexPath?(collectionView, indexPath: indexPath)
+    }
 }

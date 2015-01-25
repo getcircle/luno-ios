@@ -123,36 +123,7 @@ class ProfileDetailsViewController:
         }
     }
     
-    // MARK: - UIScrollViewDelegate
-    
-    func scrollViewDidScroll(scrollView: UIScrollView) {
-        if scrollView.contentOffset.x > view.frame.width {
-            navigationController?.interactivePopGestureRecognizer.enabled = false
-        } else {
-            navigationController?.interactivePopGestureRecognizer.enabled = true
-        }
-        if let headerView = profileHeaderView() {
-            headerView.updateSectionIndicatorView(scrollView.contentOffset)
-        }
-    }
-    
-    func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        if !decelerate {
-            scrollingEnded(scrollView)
-        }
-    }
-    
-    func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
-        scrollingEnded(scrollView)
-    }
-
-    private func scrollingEnded(scrollView: UIScrollView) {
-        currentIndex = Int(scrollView.contentOffset.x) / Int(view.frame.width)
-    }
-    
-    // MARK: - UICollectionViewDelegate
-    
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    func underlyingCollectionViewDidSelectItemAtIndexPath(collectionView: UICollectionView, indexPath: NSIndexPath) {
         let dataSource = collectionView.dataSource as ProfileDetailDataSource
         if let card = dataSource.cardAtSection(indexPath.section) {
             switch card.type {
@@ -189,10 +160,37 @@ class ProfileDetailsViewController:
     
     private func handleNotesCardSelection(card: Card, indexPath: NSIndexPath) {
         if let note = card.content[indexPath.row] as? NoteService.Containers.Note {
-//            presentNoteView(note)
+            //            presentNoteView(note)
         }
     }
     
+    // MARK: - UIScrollViewDelegate
+    
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        if scrollView.contentOffset.x > view.frame.width {
+            navigationController?.interactivePopGestureRecognizer.enabled = false
+        } else {
+            navigationController?.interactivePopGestureRecognizer.enabled = true
+        }
+        if let headerView = profileHeaderView() {
+            headerView.updateSectionIndicatorView(scrollView.contentOffset)
+        }
+    }
+    
+    func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if !decelerate {
+            scrollingEnded(scrollView)
+        }
+    }
+    
+    func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+        scrollingEnded(scrollView)
+    }
+
+    private func scrollingEnded(scrollView: UIScrollView) {
+        currentIndex = Int(scrollView.contentOffset.x) / Int(view.frame.width)
+    }
+
     // MARK: - MFMailComposeViewControllerDelegate
     
     func mailComposeController(
