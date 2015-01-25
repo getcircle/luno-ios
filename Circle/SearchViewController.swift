@@ -381,6 +381,7 @@ CardHeaderViewDelegate {
     @IBAction func showLoggedInUserProfile(sender: AnyObject!) {
         let profile = AuthViewController.getLoggedInUserProfile()!
         let detailsVC = ProfileDetailsViewController(
+            profile: profile,
             detailViews: [
                 ProfileInfoCollectionView(profile: profile),
                 ProfileInfoCollectionView(profile: profile)

@@ -10,20 +10,13 @@ import MessageUI
 import UIKit
 import ProtobufRegistry
 
-class DetailViewController: UIViewController, UICollectionViewDelegate, MFMailComposeViewControllerDelegate {
-
-    private(set) var activityIndicatorView: UIActivityIndicatorView!
-    var animationSourceRect: CGRect?
-    private(set) var collectionView: UICollectionView!
-    var dataSource: CardDataSource!
-    var delegate: StickyHeaderCollectionViewDelegate!
-    var layout: StickyHeaderCollectionViewLayout!
+class BaseViewController: UIViewController {
     
     override init() {
         super.init()
         customInit()
     }
-
+    
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         customInit()
@@ -38,6 +31,17 @@ class DetailViewController: UIViewController, UICollectionViewDelegate, MFMailCo
         automaticallyAdjustsScrollViewInsets = false
         extendedLayoutIncludesOpaqueBars = true
     }
+    
+}
+
+class DetailViewController: BaseViewController, UICollectionViewDelegate {
+
+    private(set) var activityIndicatorView: UIActivityIndicatorView!
+    var animationSourceRect: CGRect?
+    private(set) var collectionView: UICollectionView!
+    var dataSource: CardDataSource!
+    var delegate: StickyHeaderCollectionViewDelegate!
+    var layout: StickyHeaderCollectionViewLayout!
     
     override func loadView() {
         var rootView = UIView(frame: UIScreen.mainScreen().bounds)
@@ -178,16 +182,6 @@ class DetailViewController: UIViewController, UICollectionViewDelegate, MFMailCo
         collectionView.alwaysBounceVertical = true
         (collectionView.dataSource as CardDataSource).registerCardHeader(collectionView!)
         (collectionView.delegate as CardCollectionViewDelegate).delegate = self
-    }
-
-    // MARK: - MFMailComposeViewControllerDelegate
-    
-    func mailComposeController(
-        controller: MFMailComposeViewController!,
-        didFinishWithResult result: MFMailComposeResult,
-        error: NSError!
-        ) {
-            dismissViewControllerAnimated(true, completion: nil)
     }
 
     // MARK: - Orientation change

@@ -6,9 +6,16 @@
 //  Copyright (c) 2015 RH Labs Inc. All rights reserved.
 //
 
+import MessageUI
 import UIKit
+import ProtobufRegistry
 
-class ProfileDetailsViewController: UIViewController, UnderlyingCollectionViewDelegate, UIScrollViewDelegate {
+class ProfileDetailsViewController:
+        BaseViewController,
+        UnderlyingCollectionViewDelegate,
+        UIScrollViewDelegate,
+        MFMailComposeViewControllerDelegate
+    {
     
     // Segmented Control Helpers
     private var currentIndex = 0
@@ -20,15 +27,19 @@ class ProfileDetailsViewController: UIViewController, UnderlyingCollectionViewDe
     private var underlyingScrollView: UIScrollView!
     private var underlyingContainerView: UIView!
     
+    // Public variables
     var detailViews = [UnderlyingCollectionView]()
+    var profile: ProfileService.Containers.Profile!
     
     convenience init(
+        profile withProfile: ProfileService.Containers.Profile,
         detailViews withDetailViews: [UnderlyingCollectionView],
         overlaidCollectionView withOverlaidCollectionView: UICollectionView,
         showLogOutButton: Bool,
         showCloseButton: Bool
     ) {
         self.init()
+        profile = withProfile
         detailViews = withDetailViews
         overlaidCollectionView = withOverlaidCollectionView
         if showLogOutButton {
@@ -45,12 +56,6 @@ class ProfileDetailsViewController: UIViewController, UnderlyingCollectionViewDe
         view.backgroundColor = UIColor.viewBackgroundColor()
         configureUnderlyingViews()
         configureOverlayView()
-    }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        extendedLayoutIncludesOpaqueBars = true
-        automaticallyAdjustsScrollViewInsets = false
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -193,7 +198,103 @@ class ProfileDetailsViewController: UIViewController, UnderlyingCollectionViewDe
         currentIndex = Int(scrollView.contentOffset.x) / Int(view.frame.width)
     }
     
+    // MARK: - UICollectionViewDelegate
+    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        let dataSource = collectionView.dataSource as ProfileDetailDataSource
+        if let card = dataSource.cardAtSection(indexPath.section) {
+            switch card.type {
+            case .KeyValue:
+                handleKeyValueCardSelection(dataSource, indexPath: indexPath)
+            case .Notes:
+                handleNotesCardSelection(card, indexPath: indexPath)
+            default:
+                break
+            }
+        }
+        collectionView.deselectItemAtIndexPath(indexPath, animated: true)
+    }
+    
+    private func handleKeyValueCardSelection(dataSource: ProfileDetailDataSource, indexPath: NSIndexPath) {
+        switch dataSource.typeOfCell(indexPath) {
+        case .Email:
+            presentMailViewController([profile.email], subject: "Hey", messageBody: "", completionHandler: nil)
+            
+        case .Manager:
+            let profileVC = ProfileDetailViewController()
+            profileVC.profile = dataSource.manager
+            navigationController?.pushViewController(profileVC, animated: true)
+            
+        case .Team:
+            let teamVC = TeamDetailViewController()
+            (teamVC.dataSource as TeamDetailDataSource).selectedTeam = dataSource.team!
+            navigationController?.pushViewController(teamVC, animated: true)
+            
+        default:
+            break
+        }
+    }
+    
+    private func handleNotesCardSelection(card: Card, indexPath: NSIndexPath) {
+        if let note = card.content[indexPath.row] as? NoteService.Containers.Note {
+//            presentNoteView(note)
+        }
+    }
+    
+    // MARK: - MFMailComposeViewControllerDelegate
+    
+    func mailComposeController(
+        controller: MFMailComposeViewController!,
+        didFinishWithResult result: MFMailComposeResult,
+        error: NSError!
+        ) {
+            dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    // MARK: - Notifications
+    
+//    override func registerNotifications() {
+//        NSNotificationCenter.defaultCenter().addObserver(
+//            self,
+//            selector: "addNote:",
+//            name: NotesCardHeaderCollectionReusableViewNotifications.onAddNoteNotification,
+//            object: nil
+//        )
+//        super.registerNotifications()
+//    }
+//    
+//    // MARK: - NotesCardHeaderViewDelegate
+//    
+//    func addNote(sender: AnyObject!) {
+//        presentNoteView(nil)
+//    }
+    
+    // MARK: - NewNoteViewControllerDelegate
+    
+//    func didAddNote(note: NoteService.Containers.Note) {
+//        if let dataSource = collectionView.dataSource as? ProfileDetailDataSource {
+//            dataSource.addNote(note)
+//            collectionView.reloadData()
+//        }
+//    }
+//    
+//    func didDeleteNote(note: NoteService.Containers.Note) {
+//        if let dataSource = collectionView.dataSource as? ProfileDetailDataSource {
+//            dataSource.removeNote(note)
+//            collectionView.reloadData()
+//        }
+//    }
+    
     // MARK: - Helpers
+    
+//    private func presentNoteView(note: NoteService.Containers.Note?) {
+//        let newNoteViewController = NewNoteViewController(nibName: "NewNoteViewController", bundle: nil)
+//        newNoteViewController.profile = profile
+//        newNoteViewController.delegate = self
+//        newNoteViewController.note = note
+//        let navController = UINavigationController(rootViewController: newNoteViewController)
+//        navigationController?.presentViewController(navController, animated: true, completion: nil)
+//    }
     
     private func addLogOutButton() {
         if navigationItem.rightBarButtonItem == nil {
