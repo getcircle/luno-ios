@@ -263,7 +263,6 @@ class Card: Equatable {
 
         allContent = content
         maxVisibleItems = withMaxVisibleItems
-        println("Add Content")
     }
     
     func addContent(content withContent: [AnyObject]) {
@@ -275,7 +274,17 @@ class Card: Equatable {
     }
     
     func isContentAllContent() -> Bool {
-        return allContent.count == content.count && content.count > 0
+        switch cardContentType {
+        case .Flat:
+            return allContent.count == content.count && content.count > 0
+            
+        case .Aggregate:
+            if content.count > 0 {
+                return allContent[0].count == content[0].count && content[0].count > 0
+            }
+        }
+        
+        return false
     }
     
     func addDefaultFooter() {

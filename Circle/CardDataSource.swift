@@ -150,7 +150,7 @@ class CardDataSource: NSObject, UICollectionViewDataSource {
             if let delegate = cardFooterDelegate {
                 footerView.cardFooterDelegate = delegate
             }
-
+            
             footerView.card = card
             return footerView
         }
@@ -165,7 +165,7 @@ class CardDataSource: NSObject, UICollectionViewDataSource {
             if let delegate = cardHeaderDelegate {
                 headerView.cardHeaderDelegate = delegate
             }
-            headerView.setCard(cards[indexPath.section])
+            headerView.setCard(card)
             return headerView
         }
     }
