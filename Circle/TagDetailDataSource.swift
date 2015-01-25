@@ -34,7 +34,7 @@ class TagDetailDataSource: CardDataSource {
                 if error == nil {
                     self.profiles.extend(profiles!)
                     let peopleCard = Card(cardType: .People, title: "People by Tag")
-                    peopleCard.content.extend(profiles! as [AnyObject])
+                    peopleCard.addContent(content: profiles! as [AnyObject])
                     peopleCard.sectionInset = UIEdgeInsetsZero
                     self.appendCard(peopleCard)
                     completionHandler(error: nil)

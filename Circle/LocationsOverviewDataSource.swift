@@ -18,7 +18,7 @@ class LocationsOverviewDataSource: CardDataSource {
     override func setInitialData(content: [AnyObject], ofType: Card.CardType?) {
         let cardType = ofType != nil ? ofType : .Locations
         let locationsCard = Card(cardType: cardType!, title: "")
-        locationsCard.content.extend(content)
+        locationsCard.addContent(content: content)
         locationsCard.sectionInset = UIEdgeInsetsZero        
         locations.extend(content as Array<OrganizationService.Containers.Address>)
         appendCard(locationsCard)

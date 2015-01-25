@@ -282,19 +282,19 @@ class ProfileDetailDataSource: CardDataSource {
                 dataDict["imageTintColor"] = image.tint
             }
             
-            card.content.append(dataDict)
+            card.addContent(content: [dataDict])
         }
     }
     
     private func addTagsItemToCard(item: SectionItem, card: Card) {
         if let tags = tags {
-            card.content.append(tags as [AnyObject])
+            card.addContent(content: tags as [AnyObject])
         }
     }
     
     private func addNotesItemToCard(item: SectionItem, card: Card) {
         if let notes = notes {
-            card.content.extend(notes as [AnyObject])
+            card.addContent(content: notes as [AnyObject])
         }
     }
     
@@ -350,20 +350,20 @@ class ProfileDetailDataSource: CardDataSource {
     
     func addNote(note: NoteService.Containers.Note) {
         // TODO this should be an enum or at least a constant
-        if let card = cardAtSection(3) {
-            card.content.insert(note, atIndex: 0)
-        }
+//        if let card = cardAtSection(3) {
+//            card.content.insert(note, atIndex: 0)
+//        }
     }
     
     func removeNote(note: NoteService.Containers.Note) {
-        if let card = cardAtSection(3) {
-            card.content = card.content.filter {
-                if let item = $0 as? NoteService.Containers.Note {
-                    return item.id != note.id
-                }
-                return true
-            }
-        }
+//        if let card = cardAtSection(3) {
+//            card.content = card.content.filter {
+//                if let item = $0 as? NoteService.Containers.Note {
+//                    return item.id != note.id
+//                }
+//                return true
+//            }
+//        }
     }
     
 }

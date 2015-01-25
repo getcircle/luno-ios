@@ -24,20 +24,20 @@ class SearchLandingDataSource: CardDataSource {
                         let categoryCard = Card(category: category)
                         if category.profiles.count > 0 {
                             var profiles = category.profiles
+                            var maxVisibleItems = 0
                             switch category.type {
                             case .Birthdays, .Anniversaries, .NewHires:
                                 // HACK: limit the number of results in a card to 3 until we can get smarter about displaying them on the detail view
-                                if profiles.count > 3 {
-                                    profiles = Array(profiles[0..<3])
-                                }
+                                maxVisibleItems = 3
                             default: break
                             }
-                            categoryCard.addContent(content: profiles, allContent: category.profiles)
+                            categoryCard.addContent(content: profiles, maxVisibleItems: maxVisibleItems)
                         } else if category.addresses.count > 0 {
                             // don't display locations on the search landing page
                             continue
                         } else if category.tags.count > 0 {
-                            categoryCard.addContent(content: category.tags)
+                            categoryCard.addContent(content: category.tags, maxVisibleItems: 10)
+                            categoryCard.addDefaultFooter()
                         }
                         self.appendCard(categoryCard)
                     }

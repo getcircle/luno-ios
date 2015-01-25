@@ -18,7 +18,7 @@ class TeamsOverviewDataSource: CardDataSource {
     override func setInitialData(content: [AnyObject], ofType: Card.CardType?) {
         let cardType = ofType != nil ? ofType : .Team
         let teamsCard = Card(cardType: cardType!, title: "")
-        teamsCard.content.extend(content)
+        teamsCard.addContent(content: content)
         teamsCard.sectionInset = UIEdgeInsetsMake(10.0, 10.0, 10.0, 10.0)
         appendCard(teamsCard)
     }

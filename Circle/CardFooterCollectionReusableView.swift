@@ -27,12 +27,8 @@ class CardFooterCollectionReusableView: CircleCollectionReusableView {
     var card: Card!
     var cardFooterDelegate: CardFooterViewDelegate?
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-    
-    private func configureFooterButton() {
+    override func prepareForReuse() {
+        super.prepareForReuse()
         setButtonTitle()
     }
     
@@ -42,7 +38,8 @@ class CardFooterCollectionReusableView: CircleCollectionReusableView {
     }
     
     private func setButtonTitle() {
-        if card.isContentAllContent() {
+        UIView.setAnimationsEnabled(false)
+        if card != nil && card.isContentAllContent() {
             footerButton.setTitle(
                 NSLocalizedString("Show less", comment: "Button to show more content"),
                 forState: .Normal
@@ -54,5 +51,6 @@ class CardFooterCollectionReusableView: CircleCollectionReusableView {
                 forState: .Normal
             )
         }
+        UIView.setAnimationsEnabled(true)
     }
 }

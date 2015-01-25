@@ -34,7 +34,7 @@ class LocationDetailDataSource: CardDataSource {
                 if error == nil && profiles != nil {
                     self.profiles.extend(profiles!)
                     let peopleCard = Card(cardType: .People, title: "Direct Reports")
-                    peopleCard.content.extend(profiles! as [AnyObject])
+                    peopleCard.addContent(content: profiles! as [AnyObject])
                     peopleCard.sectionInset = UIEdgeInsetsZero
                     self.appendCard(peopleCard)
                     completionHandler(error: nil)

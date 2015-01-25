@@ -153,10 +153,10 @@ class OrganizationDetailViewController: DetailViewController, CardHeaderViewDele
     
     func cardFooterTapped(card: Card!) {
         if card.isContentAllContent() {
-            card.content = Array(card.allContent[0..<3])
+            card.setContentToVisibleItems()
         }
         else {
-            card.content = card.allContent
+            card.setContentToAllContent()
         }
         collectionView.reloadSections(NSIndexSet(index: card.cardIndex))
     }

@@ -49,7 +49,7 @@ class SearchQueryDataSource: CardDataSource {
         // TODO these should be sorted by relevancy
         if visibleProfiles.count > 0 {
             let peopleCard = Card(cardType: .People, title: "People")
-            peopleCard.content.extend(visibleProfiles as [AnyObject])
+            peopleCard.addContent(content: visibleProfiles as [AnyObject])
             peopleCard.contentCount = visibleProfiles.count
             peopleCard.sectionInset = sectionInset
             appendCard(peopleCard)
@@ -57,7 +57,7 @@ class SearchQueryDataSource: CardDataSource {
 
         if visibleTeams.count > 0 {
             let teamsCard = Card(cardType: .Team, title: "Teams")
-            teamsCard.content.extend(visibleTeams as [AnyObject])
+            teamsCard.addContent(content: visibleTeams as [AnyObject])
             teamsCard.contentCount = visibleTeams.count
             teamsCard.sectionInset = sectionInset
             appendCard(teamsCard)
@@ -65,7 +65,7 @@ class SearchQueryDataSource: CardDataSource {
         
         if visibleTags.count > 0 {
             let tagsCard = Card(cardType: .Tags, title: "Tags")
-            tagsCard.content.append(visibleTags as [AnyObject])
+            tagsCard.addContent(content: visibleTags as [AnyObject])
             tagsCard.contentCount = visibleTags.count
             tagsCard.sectionInset = sectionInset
             appendCard(tagsCard)

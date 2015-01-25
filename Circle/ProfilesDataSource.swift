@@ -18,7 +18,7 @@ class ProfilesDataSource: CardDataSource {
     override func setInitialData(content: [AnyObject], ofType: Card.CardType?) {
         let cardType = ofType != nil ? ofType : .People
         let profilesCard = Card(cardType: cardType!, title: "")
-        profilesCard.content.extend(content)
+        profilesCard.addContent(content: content)
         appendCard(profilesCard)
     }
     

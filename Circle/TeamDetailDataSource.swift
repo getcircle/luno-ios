@@ -44,7 +44,7 @@ class TeamDetailDataSource: CardDataSource {
                     
                     if let owner = self.ownerProfile {
                         let ownerCard = Card(cardType: .People, title: "Team Lead")
-                        ownerCard.content.append(self.ownerProfile)
+                        ownerCard.addContent(content: [self.ownerProfile])
                         ownerCard.sectionInset = UIEdgeInsetsMake(0.0, 0.0, 25.0, 0.0)
                         self.appendCard(ownerCard)
                     }
@@ -57,7 +57,7 @@ class TeamDetailDataSource: CardDataSource {
                             comment: "Title for list of team members"
                         ).uppercaseStringWithLocale(NSLocale.currentLocale())
                         let membersCard = Card(cardType: .People, title: membersCardTitle)
-                        membersCard.content.extend(allProfilesExceptOwner! as [AnyObject])
+                        membersCard.addContent(content: allProfilesExceptOwner! as [AnyObject])
                         membersCard.sectionInset = UIEdgeInsetsMake(0.0, 0.0, 25.0, 0.0)
                         self.appendCard(membersCard)
                     }
@@ -68,7 +68,7 @@ class TeamDetailDataSource: CardDataSource {
                         if let teams = teams {
                             // TODO we need to fix this
                             var teamsCard = Card(cardType: .TeamsGrid, title: "")
-                            teamsCard.content.append(teams)
+                            teamsCard.addContent(content: teams)
                             teamsCard.sectionInset = UIEdgeInsetsMake(0.0, 0.0, 25.0, 0.0)
                             self.appendCard(teamsCard)
                         }

@@ -38,12 +38,13 @@ class OrganizationDetailDataSource: CardDataSource {
 
                             default: break
                             }
-                            categoryCard.addContent(content: Array(profiles[0..<3]), allContent: category.profiles)
+                            categoryCard.addContent(content: profiles, maxVisibleItems: 3)
                             categoryCard.addDefaultFooter()
                         } else if category.addresses.count > 0 {
                             categoryCard.addContent(content: category.addresses)
                         } else if category.tags.count > 0 {
-                            categoryCard.addContent(content: category.tags)
+                            categoryCard.addContent(content: category.tags, maxVisibleItems: 10)
+                            categoryCard.addDefaultFooter()
                         } else if category.teams.count > 0 {
                             categoryCard.addContent(content: category.teams)
                         }
