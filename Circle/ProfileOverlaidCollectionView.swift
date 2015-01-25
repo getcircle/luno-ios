@@ -90,7 +90,7 @@ class ProfileOverlaidCollectionView: UICollectionView, UICollectionViewDelegate 
         // height of section indicator + height of navbar
         layout?.stickySectionHeight = 84.0
         collectionViewDataSource = ProfileOverlaidCollectionViewDataSource(
-            profile: AuthViewController.getLoggedInUserProfile()!,
+            profile: profile!,
             sections: sections
         )
         collectionViewDataSource?.registerCardHeader(self)

@@ -294,9 +294,8 @@ CardHeaderViewDelegate {
             switch selectedCard.type {
             case .People, .Birthdays, .Anniversaries, .NewHires:
                 if let profile = dataSource.contentAtIndexPath(indexPath)? as? ProfileService.Containers.Profile {
-                    let viewController = ProfileDetailViewController()
-                    viewController.profile = profile
-                    navigationController?.pushViewController(viewController, animated: true)
+                    let profileVC = ProfileDetailsViewController.forProfile(profile)
+                    navigationController?.pushViewController(profileVC, animated: true)
                 }
             case .Group:
                 let viewController = storyboard?.instantiateViewControllerWithIdentifier("ProfilesViewController") as ProfilesViewController
@@ -380,17 +379,12 @@ CardHeaderViewDelegate {
     
     @IBAction func showLoggedInUserProfile(sender: AnyObject!) {
         let profile = AuthViewController.getLoggedInUserProfile()!
-        let detailsVC = ProfileDetailsViewController(
-            profile: profile,
-            detailViews: [
-                ProfileInfoCollectionView(profile: profile),
-                ProfileInfoCollectionView(profile: profile)
-            ],
-            overlaidCollectionView: ProfileOverlaidCollectionView(profile: profile, sections: ["Info", "Notes"]),
+        let profileViewController = ProfileDetailsViewController.forProfile(
+            profile,
             showLogOutButton: true,
             showCloseButton: true
         )
-        let navController = UINavigationController(rootViewController: detailsVC)
+        let navController = UINavigationController(rootViewController: profileViewController)
         navigationController?.presentViewController(navController, animated: true, completion: nil)
     }
 

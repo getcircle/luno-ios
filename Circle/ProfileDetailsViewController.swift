@@ -35,8 +35,8 @@ class ProfileDetailsViewController:
         profile withProfile: ProfileService.Containers.Profile,
         detailViews withDetailViews: [UnderlyingCollectionView],
         overlaidCollectionView withOverlaidCollectionView: UICollectionView,
-        showLogOutButton: Bool,
-        showCloseButton: Bool
+        showLogOutButton: Bool = false,
+        showCloseButton: Bool = false
     ) {
         self.init(showCloseButton: showCloseButton)
         profile = withProfile
@@ -144,8 +144,7 @@ class ProfileDetailsViewController:
             presentMailViewController([profile.email], subject: "Hey", messageBody: "", completionHandler: nil)
             
         case .Manager:
-            let profileVC = ProfileDetailViewController()
-            profileVC.profile = dataSource.manager
+            let profileVC = ProfileDetailsViewController.forProfile(dataSource.manager!)
             navigationController?.pushViewController(profileVC, animated: true)
             
         case .Team:
@@ -260,4 +259,25 @@ class ProfileDetailsViewController:
     private func profileHeaderView() -> ProfileHeaderCollectionReusableView? {
         return (overlaidCollectionView.dataSource as? ProfileOverlaidCollectionViewDataSource)?.profileHeaderView
     }
+    
+    // Class Methods
+    
+    class func forProfile(
+        profile: ProfileService.Containers.Profile,
+        showLogOutButton: Bool = false,
+        showCloseButton: Bool = false
+    ) -> ProfileDetailsViewController {
+        return ProfileDetailsViewController(
+            profile: profile,
+            detailViews: [
+                ProfileInfoCollectionView(profile: profile),
+                ProfileInfoCollectionView(profile: profile)
+            ],
+            overlaidCollectionView: ProfileOverlaidCollectionView(profile: profile, sections: ["Info", "Notes"]
+            ),
+            showLogOutButton: showLogOutButton,
+            showCloseButton: showCloseButton
+        )
+    }
+    
 }

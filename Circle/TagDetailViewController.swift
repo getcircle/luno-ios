@@ -37,8 +37,7 @@ class TagDetailViewController: DetailViewController {
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         if let profile = dataSource.contentAtIndexPath(indexPath)? as? ProfileService.Containers.Profile {
-            var profileVC = ProfileDetailViewController()
-            profileVC.profile = profile
+            let profileVC = ProfileDetailsViewController.forProfile(profile)
             navigationController?.pushViewController(profileVC, animated: true)
         }
         

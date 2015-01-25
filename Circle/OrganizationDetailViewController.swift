@@ -86,9 +86,8 @@ class OrganizationDetailViewController: DetailViewController, CardHeaderViewDele
         switch selectedCard.type {
         case .People, .Birthdays, .Anniversaries, .NewHires:
             if let profile = dataSource.contentAtIndexPath(indexPath)? as? ProfileService.Containers.Profile {
-                let viewController = ProfileDetailViewController()
-                viewController.profile = profile
-                navigationController?.pushViewController(viewController, animated: true)
+                let profileVC = ProfileDetailsViewController.forProfile(profile)
+                navigationController?.pushViewController(profileVC, animated: true)
             }
         case .Group:
             let viewController = storyboard?.instantiateViewControllerWithIdentifier("ProfilesViewController") as ProfilesViewController

@@ -23,7 +23,7 @@ class ProfileInfoCollectionView: UnderlyingCollectionView {
         
         layout = stickyLayout
         layout?.headerHeight = ProfileHeaderCollectionReusableView.height
-        profileInfoDataSource = ProfileDetailDataSource(profile: AuthViewController.getLoggedInUserProfile()!)
+        profileInfoDataSource = ProfileDetailDataSource(profile: profile!)
         profileInfoDataSource?.registerCardHeader(self)
         profileInfoDelegate = StickyHeaderCollectionViewDelegate()
         backgroundColor = UIColor.viewBackgroundColor()
