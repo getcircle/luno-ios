@@ -61,12 +61,7 @@ class DetailViewController: BaseViewController, UICollectionViewDelegate {
         activityIndicatorView.autoCenterInSuperview()
         activityIndicatorView.startAnimating()
     }
-    
-    var showLogOutButton: Bool? {
-        didSet {
-            addLogOutButton()
-        }
-    }
+
     var showCloseButton: Bool? {
         didSet {
             addCloseButton()
@@ -128,17 +123,6 @@ class DetailViewController: BaseViewController, UICollectionViewDelegate {
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
         unregisterNotifications()        
-    }
-    
-    private func addLogOutButton() {
-        if showLogOutButton == true && navigationItem.rightBarButtonItem == nil {
-            let logOutButton = UIBarButtonItem(title: "Log Out", style: .Plain, target: self, action: "logOutTapped:")
-            navigationItem.rightBarButtonItem = logOutButton
-        }
-    }
-    
-    func logOutTapped(sender: AnyObject!) {
-        AuthViewController.logOut()
     }
     
     private func addCloseButton() {
