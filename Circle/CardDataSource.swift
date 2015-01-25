@@ -37,6 +37,13 @@ class CardDataSource: NSObject, UICollectionViewDataSource {
     var cardHeaderDelegate: CardHeaderViewDelegate?
     
     /**
+    Footer view delegate.
+    */
+    var cardFooterDelegate: CardFooterViewDelegate?
+    private(set) var isFooterRegistered = false
+    private var registeredFooterClasses = NSMutableSet()
+
+    /**
     This method should be called when the view controller is ready to request for data. This is typically
     in viewWillAppear. The data source class is closely tied to the collection view, so it refreshes
     the collection view on its own once it has the available data.
@@ -129,18 +136,38 @@ class CardDataSource: NSObject, UICollectionViewDataSource {
     }
     
     func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
-        let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(
-            kind,
-            withReuseIdentifier: CardHeaderCollectionReusableView.classReuseIdentifier,
-            forIndexPath: indexPath
-        ) as CardHeaderCollectionReusableView
+        let card = cards[indexPath.section]
         
-        animate(headerView, atIndexPath: indexPath)
-        if let delegate = cardHeaderDelegate {
-            headerView.cardHeaderDelegate = delegate
+        if kind == UICollectionElementKindSectionFooter && card.addFooter {
+            registerReusableFooter(collectionView, forCard: card)
+            let footerView = collectionView.dequeueReusableSupplementaryViewOfKind(
+                kind,
+                withReuseIdentifier: card.footerClass!.classReuseIdentifier,
+                forIndexPath: indexPath
+            ) as CardFooterCollectionReusableView
+            
+            animate(footerView, atIndexPath: indexPath)
+            if let delegate = cardFooterDelegate {
+                footerView.cardFooterDelegate = delegate
+            }
+
+            footerView.card = card
+            return footerView
         }
-        headerView.setCard(cards[indexPath.section])
-        return headerView
+        else {
+            let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(
+                kind,
+                withReuseIdentifier: CardHeaderCollectionReusableView.classReuseIdentifier,
+                forIndexPath: indexPath
+            ) as CardHeaderCollectionReusableView
+            
+            animate(headerView, atIndexPath: indexPath)
+            if let delegate = cardHeaderDelegate {
+                headerView.cardHeaderDelegate = delegate
+            }
+            headerView.setCard(cards[indexPath.section])
+            return headerView
+        }
     }
     
     private func animate(view: UICollectionReusableView, atIndexPath indexPath: NSIndexPath) {
@@ -184,6 +211,7 @@ class CardDataSource: NSObject, UICollectionViewDataSource {
     // MARK: - Cards management
     
     final func appendCard(card: Card) {
+        card.cardIndex = cards.count
         cards.append(card)
     }
     
@@ -194,6 +222,7 @@ class CardDataSource: NSObject, UICollectionViewDataSource {
     }
     
     final func insertCard(card: Card, atIndex index: Int) {
+        card.cardIndex = index
         cards.insert(card, atIndex: index)
     }
     
@@ -217,7 +246,23 @@ class CardDataSource: NSObject, UICollectionViewDataSource {
             registeredCellClasses.addObject(card.contentClassName)
         }
     }
+
+    // MARK: - Footer Registration
     
+    private func registerReusableFooter(collectionView: UICollectionView, forCard card: Card) {
+        if card.addFooter {
+            if !registeredFooterClasses.containsObject(card.footerClassName!) {
+                collectionView.registerNib(
+                    UINib(nibName: card.footerClassName!, bundle: nil),
+                    forSupplementaryViewOfKind: UICollectionElementKindSectionFooter,
+                    withReuseIdentifier: card.footerClass!.classReuseIdentifier
+                )
+                
+                registeredFooterClasses.addObject(card.footerClassName!)
+            }
+        }
+    }
+
     // MARK: - Data Accessors
     
     /**

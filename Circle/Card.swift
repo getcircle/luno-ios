@@ -16,15 +16,21 @@ func ==(lhs: Card, rhs: Card) -> Bool {
 class Card: Equatable {
 
     var allContent: [AnyObject]
+    var cardIndex = 0
     var content: [AnyObject]
     var contentCount: Int
     var headerSize = CGSizeZero
+    var sectionInset = UIEdgeInsetsMake(1.0, 10.0, 25.0, 10.0)
     var showContentCount = true
     
+    private(set) var addFooter = false
     private(set) var contentClass: CircleCollectionViewCell.Type
     private(set) var contentClassName: String
+    private(set) var footerClass: CircleCollectionReusableView.Type?
+    // Yup, this is ugly but swift makes us do this
+    private(set) var footerClassName: String?
+    private(set) var footerSize = CGSizeZero
     private(set) var imageSource: String
-    var sectionInset = UIEdgeInsetsMake(1.0, 10.0, 25.0, 10.0)
     private(set) var title: String
     private(set) var type: CardType
     
@@ -143,7 +149,8 @@ class Card: Equatable {
         title withTitle: String,
         content withContent: [AnyObject]?,
         contentCount withContentCount: Int?,
-        allContent withAllContent: [AnyObject]?
+        allContent withAllContent: [AnyObject]?,
+        addDefaultFooter withFooter: Bool?
     ) {
         type = cardType
         let infoByCardType = CardType.infoByCardType(type)
@@ -154,13 +161,26 @@ class Card: Equatable {
         contentCount = withContentCount ?? 0
         content = withContent ?? []
         allContent = withAllContent ?? []
+        
+        if let addADefaultFooter = withFooter {
+            if addADefaultFooter {
+                addDefaultFooter()
+            }
+        }
     }
     
-    convenience init(cardType: CardType, title withTitle: String) {
-        self.init(cardType: cardType, title: withTitle, content: nil, contentCount: nil, allContent: nil)
+    convenience init(cardType: CardType, title withTitle: String, addDefaultFooter: Bool? = false) {
+        self.init(
+            cardType: cardType,
+            title: withTitle,
+            content: nil,
+            contentCount: nil,
+            allContent: nil,
+            addDefaultFooter: addDefaultFooter ?? false
+        )
     }
     
-    convenience init(category: LandingService.Containers.Category) {
+    convenience init(category: LandingService.Containers.Category, addDefaultFooter: Bool? = false) {
         var cardType: CardType
         
         switch category.type {
@@ -184,7 +204,14 @@ class Card: Equatable {
             cardType = .People
         }
         
-        self.init(cardType: cardType, title: category.title, content: nil, contentCount: category.total_count.toInt(), allContent: nil)
+        self.init(
+            cardType: cardType,
+            title: category.title,
+            content: nil,
+            contentCount: category.total_count.toInt(),
+            allContent: nil,
+            addDefaultFooter: addDefaultFooter ?? false
+        )
     }
     
     func addContent(content withContent: [AnyObject], allContent withAllContent: [AnyObject]?) {
@@ -206,5 +233,36 @@ class Card: Equatable {
     
     func hasProfileCells() -> Bool {
         return self.contentClass is ProfileCollectionViewCell.Type
+    }
+    
+    func isContentAllContent() -> Bool {
+        return allContent.count == content.count && content.count > 0
+    }
+    
+    func addDefaultFooter() {
+        addFooter(
+            footerClass: CardFooterCollectionReusableView.self,
+            footerClassName: "CardFooterCollectionReusableView"
+        )
+    }
+    
+    func addFooter(
+        footerClass withFooterClass: CircleCollectionReusableView.Type,
+        footerClassName withFooterClassName: String
+    ) {
+        addFooter = true
+        footerClass = withFooterClass
+        footerClassName = withFooterClassName
+        footerSize = CGSizeMake(
+            withFooterClass.width - sectionInset.left - sectionInset.right,
+            withFooterClass.height + sectionInset.bottom
+        )
+        
+        sectionInset = UIEdgeInsetsMake(
+            sectionInset.top,
+            sectionInset.left,
+            1.0,
+            sectionInset.right
+        )
     }
 }

@@ -38,7 +38,8 @@ class OrganizationDetailDataSource: CardDataSource {
 
                             default: break
                             }
-                            categoryCard.addContent(content: profiles, allContent: category.profiles)
+                            categoryCard.addContent(content: Array(profiles[0..<3]), allContent: category.profiles)
+                            categoryCard.addDefaultFooter()
                         } else if category.addresses.count > 0 {
                             categoryCard.addContent(content: category.addresses)
                         } else if category.tags.count > 0 {
@@ -73,7 +74,7 @@ class OrganizationDetailDataSource: CardDataSource {
         viewForSupplementaryElementOfKind kind: String,
         atIndexPath indexPath: NSIndexPath
     ) -> UICollectionReusableView {
-        if indexPath.section == 0 {
+        if indexPath.section == 0 && kind == UICollectionElementKindSectionHeader {
             let supplementaryView = collectionView.dequeueReusableSupplementaryViewOfKind(
                 kind,
                 withReuseIdentifier: OrganizationHeaderCollectionReusableView.classReuseIdentifier,

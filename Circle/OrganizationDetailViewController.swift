@@ -9,7 +9,7 @@
 import UIKit
 import ProtobufRegistry
 
-class OrganizationDetailViewController: DetailViewController, CardHeaderViewDelegate {
+class OrganizationDetailViewController: DetailViewController, CardHeaderViewDelegate, CardFooterViewDelegate {
 
     // MARK: - Initialization
     
@@ -27,6 +27,7 @@ class OrganizationDetailViewController: DetailViewController, CardHeaderViewDele
         collectionView.dataSource = dataSource
         dataSource.registerDefaultCardHeader(collectionView)
         dataSource.cardHeaderDelegate = self
+        dataSource.cardFooterDelegate = self
         
         // Delegate
         collectionView.delegate = delegate
@@ -146,5 +147,17 @@ class OrganizationDetailViewController: DetailViewController, CardHeaderViewDele
         default:
             break
         }
+    }
+    
+    // MARK: - Card Footer View Delegate
+    
+    func cardFooterTapped(card: Card!) {
+        if card.isContentAllContent() {
+            card.content = Array(card.allContent[0..<3])
+        }
+        else {
+            card.content = card.allContent
+        }
+        collectionView.reloadSections(NSIndexSet(index: card.cardIndex))
     }
 }

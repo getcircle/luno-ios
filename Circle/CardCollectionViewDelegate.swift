@@ -72,6 +72,17 @@ class CardCollectionViewDelegate: NSObject, UICollectionViewDelegateFlowLayout, 
         return CGSizeMake(collectionView.frameWidth, CardHeaderCollectionReusableView.height)
     }
     
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+        
+        if let card = cardDataSource(collectionView).cardAtSection(section) {
+            if card.addFooter {
+                return card.footerSize
+            }
+        }
+        
+        return CGSizeZero
+    }
+    
     func collectionView(collectionView: UICollectionView,
         didEndDisplayingSupplementaryView view: UICollectionReusableView,
         forElementOfKind elementKind: String,
