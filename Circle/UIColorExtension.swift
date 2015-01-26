@@ -9,7 +9,11 @@
 import UIKit
 
 extension UIColor {
-    
+
+    struct TeamColorsHolder {
+        static var colors = [String: UIColor]()
+    }
+
     convenience init(red: Int, green: Int, blue: Int) {
         let newRed   = CGFloat(Double(red) / 255.0)
         let newGreen = CGFloat(Double(green) / 255.0)
@@ -124,17 +128,24 @@ extension UIColor {
         return UIColor(red: 206, green: 206, blue: 206).colorWithAlphaComponent(0.5)
     }
     
-    class func teamHeaderBackgroundColor() -> UIColor {
-        let palette = [
-            UIColor(red: 17, green: 36, blue: 65),
-            UIColor(red: 65, green: 20, blue: 20),
-            UIColor(red: 70, green: 33, blue: 18),
-            UIColor(red: 37, green: 37, blue: 37),
-            UIColor(red: 20, green: 50, blue: 21),
-            UIColor(red: 44, green: 25, blue: 49)
-        ]
+    class func teamHeaderBackgroundColor(teamId: String) -> UIColor {
+        if let color = TeamColorsHolder.colors[teamId] {
+            return color
+        }
+        else {
+            let palette = [
+                UIColor(red: 17, green: 36, blue: 65),
+                UIColor(red: 65, green: 20, blue: 20),
+                UIColor(red: 70, green: 33, blue: 18),
+                UIColor(red: 37, green: 37, blue: 37),
+                UIColor(red: 20, green: 50, blue: 21),
+                UIColor(red: 44, green: 25, blue: 49)
+            ]
         
-        return palette[Int(arc4random_uniform(UInt32(palette.count)))]
+            let color = palette[Int(arc4random_uniform(UInt32(palette.count)))]
+            TeamColorsHolder.colors[teamId] = color
+            return color
+        }
     }
     
     class func profileImageBackgroundColor(randomNumber withRandomNumber: Int? = 0) -> UIColor {

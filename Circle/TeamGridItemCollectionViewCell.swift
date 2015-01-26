@@ -37,12 +37,12 @@ class TeamGridItemCollectionViewCell: CircleCollectionViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        teamBackgroundImageView.backgroundColor = UIColor.teamHeaderBackgroundColor()
         teamBackgroundImageView.makeItCircular(false)
     }
 
     override func setData(data: AnyObject) {
         if let team = data as? OrganizationService.Containers.Team {
+            teamBackgroundImageView.backgroundColor = UIColor.teamHeaderBackgroundColor(team.id)
             teamLabel.text = team.name
             teamNameLetterLabel.text = team.name[0]
         }

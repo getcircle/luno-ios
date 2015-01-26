@@ -11,10 +11,6 @@ import ProtobufRegistry
 
 class TeamHeaderCollectionReusableView: CircleCollectionReusableView {
 
-    struct TeamColorsHolder {
-        static var colors = [String: UIColor]()
-    }
-    
     override class var classReuseIdentifier: String {
         return "TeamHeaderCollectionReusableView"
     }
@@ -53,14 +49,7 @@ class TeamHeaderCollectionReusableView: CircleCollectionReusableView {
             teamNameLabel.layoutIfNeeded()
             teamNameLabelCenterYConstraintInitialValue =  0.0
         }
-        
-        if let color = TeamColorsHolder.colors[team.id] {
-            backgroundColor = color
-        }
-        else {
-            let color = UIColor.teamHeaderBackgroundColor()
-            TeamColorsHolder.colors[team.id] = color
-            backgroundColor = color
-        }
+
+        backgroundColor = UIColor.teamHeaderBackgroundColor(team.id)
     }
 }
