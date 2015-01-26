@@ -117,6 +117,8 @@
 		BF004C501A5CF91200AB8A6F /* OrganizationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF004C4F1A5CF91200AB8A6F /* OrganizationService.swift */; };
 		BF041BBA1A2C119B0043EC72 /* NSDateFormatterExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF041BB91A2C119B0043EC72 /* NSDateFormatterExtension.swift */; };
 		BF093F0F1A672F8900BA60BD /* MediaService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF093F0E1A672F8900BA60BD /* MediaService.swift */; };
+		BF1DB6591A76FA31006F2B7D /* AddNoteCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1DB6571A76FA31006F2B7D /* AddNoteCollectionViewCell.swift */; };
+		BF1DB65A1A76FA31006F2B7D /* AddNoteCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF1DB6581A76FA31006F2B7D /* AddNoteCollectionViewCell.xib */; };
 		BF1FA6B61A71D0120044936D /* UnderlyingCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1FA6B51A71D0120044936D /* UnderlyingCollectionView.swift */; };
 		BF24FCFD1A4A25F3003DF4C2 /* ProtobufRegistry.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = BF24FCF81A4A25E7003DF4C2 /* ProtobufRegistry.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BF25722D1A6450F20052C3E3 /* VerifyPhoneNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF25722B1A6450F20052C3E3 /* VerifyPhoneNumberViewController.swift */; };
@@ -355,6 +357,8 @@
 		BF004C4F1A5CF91200AB8A6F /* OrganizationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrganizationService.swift; sourceTree = "<group>"; };
 		BF041BB91A2C119B0043EC72 /* NSDateFormatterExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDateFormatterExtension.swift; sourceTree = "<group>"; };
 		BF093F0E1A672F8900BA60BD /* MediaService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaService.swift; sourceTree = "<group>"; };
+		BF1DB6571A76FA31006F2B7D /* AddNoteCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNoteCollectionViewCell.swift; sourceTree = "<group>"; };
+		BF1DB6581A76FA31006F2B7D /* AddNoteCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddNoteCollectionViewCell.xib; sourceTree = "<group>"; };
 		BF1FA6B51A71D0120044936D /* UnderlyingCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnderlyingCollectionView.swift; sourceTree = "<group>"; };
 		BF24FCF21A4A25E6003DF4C2 /* ProtobufRegistry.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ProtobufRegistry.xcodeproj; path = "ThirdParty/protobuf-registry/swift/ProtobufRegistry/ProtobufRegistry.xcodeproj"; sourceTree = SOURCE_ROOT; };
 		BF25722B1A6450F20052C3E3 /* VerifyPhoneNumberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerifyPhoneNumberViewController.swift; sourceTree = "<group>"; };
@@ -523,8 +527,9 @@
 		8F0004C11A25BA090096477A /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				8F65C4F31A50F28E00C7F3E6 /* CardHeaderCollectionReusableView.swift */,
+				BF1DB6571A76FA31006F2B7D /* AddNoteCollectionViewCell.swift */,
 				8F08A9F71A748F5200B93149 /* CardFooterCollectionReusableView.swift */,
+				8F65C4F31A50F28E00C7F3E6 /* CardHeaderCollectionReusableView.swift */,
 				8F4A98B21A6350B9005AD63C /* CircleCollectionReusableView.swift */,
 				8F65C5001A51462500C7F3E6 /* CircleCollectionViewCell.swift */,
 				8FF298511A4E2B3300306CFC /* Common */,
@@ -596,9 +601,10 @@
 		8F0004C51A25BA650096477A /* Storyboards / XIBs */ = {
 			isa = PBXGroup;
 			children = (
+				BF1DB6581A76FA31006F2B7D /* AddNoteCollectionViewCell.xib */,
 				8F22CBF71A29A8EB0026376E /* AuthViewController.xib */,
-				8F65C4F41A50F28E00C7F3E6 /* CardHeaderCollectionReusableView.xib */,
 				8F08A9F81A748F5200B93149 /* CardFooterCollectionReusableView.xib */,
+				8F65C4F41A50F28E00C7F3E6 /* CardHeaderCollectionReusableView.xib */,
 				8F7400381A6A3FF700D96B60 /* CircleAlertViewController.xib */,
 				8F22CBE71A27FDA70026376E /* KeyValueCollectionViewCell.xib */,
 				8F0004A31A2419730096477A /* LaunchScreen.xib */,
@@ -940,6 +946,7 @@
 				8F085A921A6C175C00F8139B /* TeamsCollectionViewCell.xib in Resources */,
 				8F65C5081A52661700C7F3E6 /* TagsCollectionViewCell.xib in Resources */,
 				8F4E53791A5A0D9E00DC876B /* NotesCollectionViewCell.xib in Resources */,
+				BF1DB65A1A76FA31006F2B7D /* AddNoteCollectionViewCell.xib in Resources */,
 				BF9D72211A687562002CDC66 /* TeamCollectionViewCell.xib in Resources */,
 				8FF298481A4E050100306CFC /* TagCollectionViewCell.xib in Resources */,
 				8F22CBE11A27A8E60026376E /* ProfileHeaderCollectionReusableView.xib in Resources */,
@@ -1118,6 +1125,7 @@
 				BF1FA6B61A71D0120044936D /* UnderlyingCollectionView.swift in Sources */,
 				BFBC44011A7212FA007202E7 /* ProfileOverlaidCollectionView.swift in Sources */,
 				8F22CBF51A2865030026376E /* ProfileDetailDataSource.swift in Sources */,
+				BF1DB6591A76FA31006F2B7D /* AddNoteCollectionViewCell.swift in Sources */,
 				8F22CB771A2661890026376E /* AppDelegateAppearanceExtension.swift in Sources */,
 				8F22CBFE1A29C7120026376E /* GCDUtils.swift in Sources */,
 				8FD907F51A5F91020025A17B /* ProfileDetailViewController.swift in Sources */,

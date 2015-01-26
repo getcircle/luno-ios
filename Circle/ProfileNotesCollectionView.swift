@@ -31,20 +31,14 @@ class ProfileNotesDataSource: UnderlyingCollectionViewDataSource {
     }
     
     override func loadData(completionHandler: (error: NSError?) -> Void) {
-        // Add placeholder card to load the header instantly
-        let placeholderCard = Card(cardType: .Placeholder, title: "Info")
+        // Add placeholder card to load profile header instantly
+        var placeholderCard = Card(cardType: .Placeholder, title: "Info")
         appendCard(placeholderCard)
         NoteService.Actions.getNotes(profile.id) { (notes, error) -> Void in
-            for (var i = 0; i < 20; i++) {
-                let note = NoteService.Containers.Note.builder()
-                note.content = "test \(i)"
-                note.created = "\(i) seconds ago"
-                self.notes.append(note.build())
+            if let notes = notes {
+                self.notes = notes
                 self.populateData()
             }
-//            if let notes = notes {
-//                self.notes = notes
-//            }
             completionHandler(error: error)
         }
     }
@@ -52,10 +46,32 @@ class ProfileNotesDataSource: UnderlyingCollectionViewDataSource {
     private func populateData() {
         resetCards()
         
+        // Add add note card
+        let addNotesCard = Card(
+            cardType: .AddNote,
+            title: "Add Note",
+            content: ["placeholder"],
+            contentCount: 1,
+            addDefaultFooter: false
+        )
+        addNotesCard.sectionInset = UIEdgeInsetsMake(0.0, 0.0, 25.0, 0.0)
+        appendCard(addNotesCard)
+        
+        // Add notes card
         let card = Card(cardType: .Notes, title: "Notes")
         card.addContent(content: notes as [AnyObject])
         card.sectionInset = UIEdgeInsetsMake(0.0, 0.0, 25.0, 0.0)
         appendCard(card)
+    }
+    
+    func addNote(note: NoteService.Containers.Note) {
+        notes.insert(note, atIndex: 0)
+        populateData()
+    }
+    
+    func removeNote(note: NoteService.Containers.Note) {
+        notes = notes.filter { $0.id != note.id }
+        populateData()
     }
 
 }
@@ -80,6 +96,7 @@ class ProfileNotesCollectionView: UnderlyingCollectionView {
         backgroundColor = UIColor.viewBackgroundColor()
         dataSource = profileNotesDataSource
         delegate = profileNotesDelegate
+        alwaysBounceVertical = true
         
         // XXX we should consider making this a public function so the view controller can instantiate an activity indicator and then call load data, clearing activity indicator when the content has loaded
         profileNotesDataSource?.loadData { (error) -> Void in

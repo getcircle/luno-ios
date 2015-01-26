@@ -14,6 +14,7 @@ class ProfileDetailsViewController:
         BaseDetailViewController,
         UnderlyingCollectionViewDelegate,
         UIScrollViewDelegate,
+        NewNoteViewControllerDelegate,
         MFMailComposeViewControllerDelegate
     {
     
@@ -160,9 +161,14 @@ class ProfileDetailsViewController:
     }
     
     private func handleNotesCardSelection(card: Card, indexPath: NSIndexPath) {
-        if let note = card.content[indexPath.row] as? NoteService.Containers.Note {
-            presentNoteView(note)
+        var note: NoteService.Containers.Note?
+        switch card.type {
+        case .Notes:
+            note = card.content[indexPath.row] as? NoteService.Containers.Note
+        default:
+            break
         }
+        presentNoteView(note)
     }
     
     // MARK: - UIScrollViewDelegate
@@ -222,26 +228,28 @@ class ProfileDetailsViewController:
     
     // MARK: - NewNoteViewControllerDelegate
     
-//    func didAddNote(note: NoteService.Containers.Note) {
-//        if let dataSource = collectionView.dataSource as? ProfileDetailDataSource {
-//            dataSource.addNote(note)
-//            collectionView.reloadData()
-//        }
-//    }
-//    
-//    func didDeleteNote(note: NoteService.Containers.Note) {
-//        if let dataSource = collectionView.dataSource as? ProfileDetailDataSource {
-//            dataSource.removeNote(note)
-//            collectionView.reloadData()
-//        }
-//    }
+    func didAddNote(note: NoteService.Containers.Note) {
+        let notesCollectionView = detailViews[1]
+        if let dataSource = notesCollectionView.dataSource as? ProfileNotesDataSource {
+            dataSource.addNote(note)
+            notesCollectionView.reloadData()
+        }
+    }
+    
+    func didDeleteNote(note: NoteService.Containers.Note) {
+        let notesCollectionView = detailViews[1]
+        if let dataSource = notesCollectionView.dataSource as? ProfileNotesDataSource {
+            dataSource.removeNote(note)
+            notesCollectionView.reloadData()
+        }
+    }
     
     // MARK: - Helpers
     
     private func presentNoteView(note: NoteService.Containers.Note?) {
         let newNoteViewController = NewNoteViewController(nibName: "NewNoteViewController", bundle: nil)
         newNoteViewController.profile = profile
-//        newNoteViewController.delegate = self
+        newNoteViewController.delegate = self
         newNoteViewController.note = note
         let navController = UINavigationController(rootViewController: newNoteViewController)
         navigationController?.presentViewController(navController, animated: true, completion: nil)
