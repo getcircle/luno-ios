@@ -139,7 +139,7 @@ class OrganizationDetailViewController: DetailViewController, CardHeaderViewDele
         
         case .TeamsGrid:
             let viewController = TeamsOverviewViewController(nibName: "TeamsOverviewViewController", bundle: nil) 
-            viewController.dataSource.setInitialData(card.allContent, ofType: nil)
+            viewController.dataSource.setInitialData(card.content[0] as [AnyObject], ofType: nil)
             viewController.title = card.title
             navigationController?.pushViewController(viewController, animated: true)
 
