@@ -24,12 +24,16 @@ class CardFooterCollectionReusableView: CircleCollectionReusableView {
         return 40.0
     }
     
-    var card: Card!
+    var card: Card? {
+        didSet {
+            setButtonTitle()
+        }
+    }
     var cardFooterDelegate: CardFooterViewDelegate?
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        setButtonTitle()
+        card = nil
     }
     
     @IBAction func footerButtonTapped(sender: AnyObject!) {
@@ -39,7 +43,7 @@ class CardFooterCollectionReusableView: CircleCollectionReusableView {
     
     private func setButtonTitle() {
         UIView.setAnimationsEnabled(false)
-        if card != nil && card.isContentAllContent() {
+        if card != nil && (card?.isContentAllContent() ?? false) {
             footerButton.setTitle(
                 NSLocalizedString("Show less", comment: "Button to show more content"),
                 forState: .Normal
