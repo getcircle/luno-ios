@@ -15,7 +15,8 @@ class ProfileDetailsViewController:
         UnderlyingCollectionViewDelegate,
         UIScrollViewDelegate,
         NewNoteViewControllerDelegate,
-        MFMailComposeViewControllerDelegate
+        MFMailComposeViewControllerDelegate,
+        ProfileDetailSegmentedControlDelegate
     {
     
     // Segmented Control Helpers
@@ -43,6 +44,7 @@ class ProfileDetailsViewController:
         profile = withProfile
         detailViews = withDetailViews
         overlaidCollectionView = withOverlaidCollectionView
+        (overlaidCollectionView.dataSource as ProfileOverlaidCollectionViewDataSource).profileHeaderViewDelegate = self
         if showLogOutButton {
             addLogOutButton()
         }
@@ -312,4 +314,9 @@ class ProfileDetailsViewController:
         )
     }
     
+    // MARK: - ProfileDetailSegmentedControlDelegate
+    
+    func onButtonTouchUpInsideAtIndex(index: Int) {
+        underlyingScrollView.setContentOffset(CGPointMake(view.frame.width * CGFloat(index), underlyingScrollView.contentOffset.y), animated: true)
+    }
 }

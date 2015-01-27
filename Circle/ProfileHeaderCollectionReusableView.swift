@@ -9,6 +9,10 @@
 import UIKit
 import ProtobufRegistry
 
+protocol ProfileDetailSegmentedControlDelegate {
+    func onButtonTouchUpInsideAtIndex(index: Int)
+}
+
 class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
 
     @IBOutlet weak var backgroundImage: UIImageView!
@@ -18,6 +22,7 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
     @IBOutlet weak var profileImage: CircleImageView!
     @IBOutlet weak var sectionsView: UIView!
     
+    var profileSegmentedControlDelegate: ProfileDetailSegmentedControlDelegate?
     var sections: [ProfileDetailView]? {
         didSet {
             if sections != nil {
@@ -26,8 +31,9 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
         }
     }
     var tappedButtonInSegmentedControl: UIButton?
+    var tappedButtonInSegmentedControlIndex: Int?
     private(set) var visualEffectView: UIVisualEffectView!
-
+    
     private var sectionIndicatorView: UIView?
     private var sectionIndicatorLeftOffset: NSLayoutConstraint?
     private var segmentedControlButtons = [UIButton]()
@@ -110,7 +116,9 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
     }
     
     func segmentButtonPressed(sender: AnyObject!) {
-        println("segment button pressed")
+        if let tappedButtonIndex = tappedButtonInSegmentedControlIndex {
+            profileSegmentedControlDelegate?.onButtonTouchUpInsideAtIndex(tappedButtonIndex)
+        }
     }
     
     func updateSectionIndicatorView(contentOffset: CGPoint) {
@@ -121,10 +129,11 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
 
         // Check if the touch happened on any of the segmented control buttons
         // If not, let the super view handle the touch event
-        for button in segmentedControlButtons {
+        for (index, button) in enumerate(segmentedControlButtons) {
             let pointRelativeToButton = button.convertPoint(point, fromView: self)
             if button.pointInside(pointRelativeToButton, withEvent: event) {
                 tappedButtonInSegmentedControl = button
+                tappedButtonInSegmentedControlIndex = index
                 return true
             }
         }

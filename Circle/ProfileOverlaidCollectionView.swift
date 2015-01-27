@@ -17,6 +17,7 @@ struct ProfileDetailView {
 class ProfileOverlaidCollectionViewDataSource: CardDataSource {
 
     var profileHeaderView: ProfileHeaderCollectionReusableView?
+    var profileHeaderViewDelegate: ProfileDetailSegmentedControlDelegate?
     private var profile: ProfileService.Containers.Profile?
     private var sections: [ProfileDetailView]?
     
@@ -52,17 +53,16 @@ class ProfileOverlaidCollectionViewDataSource: CardDataSource {
                 withReuseIdentifier: ProfileHeaderCollectionReusableView.classReuseIdentifier,
                 forIndexPath: indexPath
             ) as ProfileHeaderCollectionReusableView
+            
             if profile != nil {
                 supplementaryView.setProfile(profile!)
             }
-            profileHeaderView?.userInteractionEnabled = true
-            if let subviews = profileHeaderView?.subviews as? [UIView] {
-                for view in subviews {
-                    view.userInteractionEnabled = true
-                }
-            }
+            
             profileHeaderView = supplementaryView
             profileHeaderView?.sections = sections
+            if let delegate = profileHeaderViewDelegate {
+                profileHeaderView?.profileSegmentedControlDelegate = delegate
+            }
             return supplementaryView
         }
         return super.collectionView(collectionView, viewForSupplementaryElementOfKind: kind, atIndexPath: indexPath)
