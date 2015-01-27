@@ -79,6 +79,8 @@ class ProfileDetailsViewController:
             }
             detailView.autoSetDimension(.Width, toSize: view.frame.width)
             detailView.externalScrollDelegate = self
+            detailView.layer.borderWidth = 0.0
+            detailView.layer.borderColor = UIColor.detailViewBorderColor().CGColor
             previous = detailView
         }
         
@@ -179,6 +181,14 @@ class ProfileDetailsViewController:
         } else {
             navigationController?.interactivePopGestureRecognizer.enabled = true
         }
+        
+        // Calculate new index based on direction and add border width
+        var newIndex: Int = currentIndex
+        newIndex +=  (scrollView.contentOffset.x > (view.frame.width * CGFloat(currentIndex)) ? 1 : -1)
+        if newIndex >= 0 && detailViews.count > newIndex {
+            detailViews[newIndex].layer.borderWidth = 0.5
+        }
+
         if let headerView = profileHeaderView() {
             headerView.updateSectionIndicatorView(scrollView.contentOffset)
         }
@@ -196,6 +206,13 @@ class ProfileDetailsViewController:
 
     private func scrollingEnded(scrollView: UIScrollView) {
         currentIndex = Int(scrollView.contentOffset.x) / Int(view.frame.width)
+        hideAllBorders()
+    }
+    
+    // MARK: - Helpers
+    
+    private func hideAllBorders() {
+        detailViews.map { ($0 as UIView).layer.borderWidth = 0.0 }
     }
 
     // MARK: - MFMailComposeViewControllerDelegate

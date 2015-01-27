@@ -161,4 +161,8 @@ extension UIColor {
         var randomNumber = withRandomNumber != nil && withRandomNumber != 0 ? withRandomNumber : palette.count
         return palette[Int(arc4random_uniform(UInt32(randomNumber!)))]
     }
+    
+    class func detailViewBorderColor() -> UIColor {
+        return UIColor.blackColor().colorWithAlphaComponent(0.8)
+    }
 }
