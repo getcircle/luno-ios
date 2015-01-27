@@ -300,7 +300,12 @@ class ProfileDetailsViewController:
                 ProfileInfoCollectionView(profile: profile),
                 ProfileNotesCollectionView(profile: profile)
             ],
-            overlaidCollectionView: ProfileOverlaidCollectionView(profile: profile, sections: ["Info", "Notes"]
+            overlaidCollectionView: ProfileOverlaidCollectionView(
+                profile: profile,
+                sections: [
+                    ProfileDetailView(title: NSLocalizedString("Info", comment: "Title of the Info section"), image: "Info"),
+                    ProfileDetailView(title: NSLocalizedString("Notes", comment: "Title of the Notes section"), image: "Notepad")
+                ]
             ),
             showLogOutButton: showLogOutButton,
             showCloseButton: showCloseButton

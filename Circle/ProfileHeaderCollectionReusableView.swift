@@ -18,7 +18,7 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
     @IBOutlet weak var profileImage: CircleImageView!
     @IBOutlet weak var sectionsView: UIView!
     
-    var sections: [String]? {
+    var sections: [ProfileDetailView]? {
         didSet {
             if sections != nil {
                 configureSegmentedControl(sections: sections!)
@@ -65,17 +65,24 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
         )
     }
     
-    private func configureSegmentedControl(sections withSections: [String]) {
+    private func configureSegmentedControl(sections withSections: [ProfileDetailView]) {
         // Setup the segment buttons
         let buttonSegmentOffset: CGFloat = 0.5
-        let buttonSegmentHeight: CGFloat = 40.0
+        let buttonSegmentHeight: CGFloat = 39.0
         let width: CGFloat = (frame.width - (CGFloat(withSections.count - 1) * buttonSegmentOffset)) / CGFloat(withSections.count)
         let buttonSize = CGSizeMake(width, buttonSegmentHeight)
         
         var previousButton: UIButton?
         for section in withSections {
             let button = UIButton.buttonWithType(.System) as UIButton
-            button.setTitle(section, forState: .Normal)
+            button.setTitle(section.title, forState: .Normal)
+//          This is still needed but commenting it out until we have better icons
+//            if let imageSrc = section.image {
+//                if imageSrc != "" {
+//                    button.setImage(UIImage(named: imageSrc), forState: .Normal)
+//                    button.imageEdgeInsets = UIEdgeInsetsMake(5.0, 5.0, 5.0, 5.0)
+//                }
+//            }
             button.tintColor = UIColor.appTintColor()
             button.addTarget(self, action: "segmentButtonPressed:", forControlEvents: .TouchUpInside)
             button.autoSetDimensionsToSize(buttonSize)
@@ -97,7 +104,7 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
         sectionsView.addSubview(sectionIndicatorView!)
         
         sectionIndicatorView?.backgroundColor = UIColor.appTintColor()
-        sectionIndicatorView?.autoSetDimensionsToSize(CGSizeMake(buttonSize.width, 5.0))
+        sectionIndicatorView?.autoSetDimensionsToSize(CGSizeMake(buttonSize.width, 1.0))
         sectionIndicatorView?.autoPinEdge(.Bottom, toEdge: .Bottom, ofView: sectionsView)
         sectionIndicatorLeftOffset = sectionIndicatorView?.autoPinEdge(.Left, toEdge: .Left, ofView: sectionsView)
     }

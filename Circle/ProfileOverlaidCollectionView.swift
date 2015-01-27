@@ -9,13 +9,18 @@
 import UIKit
 import ProtobufRegistry
 
+struct ProfileDetailView {
+    var title: String
+    var image: String?
+}
+
 class ProfileOverlaidCollectionViewDataSource: CardDataSource {
-    
+
     var profileHeaderView: ProfileHeaderCollectionReusableView?
     private var profile: ProfileService.Containers.Profile?
-    private var sections: [String]?
+    private var sections: [ProfileDetailView]?
     
-    convenience init(profile withProfile: ProfileService.Containers.Profile, sections withSections: [String]?) {
+    convenience init(profile withProfile: ProfileService.Containers.Profile, sections withSections: [ProfileDetailView]?) {
         self.init()
         profile = withProfile
         sections = withSections
@@ -80,7 +85,7 @@ class ProfileOverlaidCollectionView: UICollectionView, UICollectionViewDelegate 
     private var collectionViewDataSource: ProfileOverlaidCollectionViewDataSource?
     private var collectionViewDelegate: StickyHeaderCollectionViewDelegate?
     
-    convenience init(profile: ProfileService.Containers.Profile?, sections: [String]?) {
+    convenience init(profile: ProfileService.Containers.Profile?, sections: [ProfileDetailView]?) {
         let stickyLayout = StickyHeaderCollectionViewLayout()
         self.init(frame: CGRectZero, collectionViewLayout: stickyLayout)
         setTranslatesAutoresizingMaskIntoConstraints(false)
