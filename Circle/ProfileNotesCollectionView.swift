@@ -37,8 +37,8 @@ class ProfileNotesDataSource: UnderlyingCollectionViewDataSource {
         NoteService.Actions.getNotes(profile.id) { (notes, error) -> Void in
             if let notes = notes {
                 self.notes = notes
-                self.populateData()
             }
+            self.populateData()
             completionHandler(error: error)
         }
     }
@@ -57,11 +57,13 @@ class ProfileNotesDataSource: UnderlyingCollectionViewDataSource {
         addNotesCard.sectionInset = UIEdgeInsetsMake(0.0, 0.0, 25.0, 0.0)
         appendCard(addNotesCard)
         
-        // Add notes card
-        let card = Card(cardType: .Notes, title: "Notes")
-        card.addContent(content: notes as [AnyObject])
-        card.sectionInset = UIEdgeInsetsMake(0.0, 0.0, 25.0, 0.0)
-        appendCard(card)
+        if notes.count > 0 {
+            // Add notes card
+            let card = Card(cardType: .Notes, title: "Notes")
+            card.addContent(content: notes as [AnyObject])
+            card.sectionInset = UIEdgeInsetsMake(0.0, 0.0, 25.0, 0.0)
+            appendCard(card)
+        }
     }
     
     func addNote(note: NoteService.Containers.Note) {
