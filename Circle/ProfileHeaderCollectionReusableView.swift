@@ -35,8 +35,11 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
     private(set) var visualEffectView: UIVisualEffectView!
     
     private var sectionIndicatorView: UIView?
-    private var sectionIndicatorLeftOffset: NSLayoutConstraint?
+    private var sectionIndicatorLeftOffsetConstraint: NSLayoutConstraint?
+    private var sectionIndicatorWidthConstraint: NSLayoutConstraint?
+    private var sectionIndicatorViewIsAnimating = false
     private var segmentedControlButtons = [UIButton]()
+    private var buttonSize = CGSizeZero
     
     override class var classReuseIdentifier: String {
         return "ProfileHeaderView"
@@ -76,7 +79,7 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
         let buttonSegmentOffset: CGFloat = 0.5
         let buttonSegmentHeight: CGFloat = 39.0
         let width: CGFloat = (frame.width - (CGFloat(withSections.count - 1) * buttonSegmentOffset)) / CGFloat(withSections.count)
-        let buttonSize = CGSizeMake(width, buttonSegmentHeight)
+        buttonSize = CGSizeMake(width, buttonSegmentHeight)
         
         var previousButton: UIButton?
         for section in withSections {
@@ -110,9 +113,10 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
         sectionsView.addSubview(sectionIndicatorView!)
         
         sectionIndicatorView?.backgroundColor = UIColor.appTintColor()
-        sectionIndicatorView?.autoSetDimensionsToSize(CGSizeMake(buttonSize.width, 1.0))
+        sectionIndicatorView?.autoSetDimension(.Height, toSize: 3.0)
+        sectionIndicatorWidthConstraint = sectionIndicatorView?.autoSetDimension(.Width, toSize: buttonSize.width)
         sectionIndicatorView?.autoPinEdge(.Bottom, toEdge: .Bottom, ofView: sectionsView)
-        sectionIndicatorLeftOffset = sectionIndicatorView?.autoPinEdge(.Left, toEdge: .Left, ofView: sectionsView)
+        sectionIndicatorLeftOffsetConstraint = sectionIndicatorView?.autoPinEdge(.Left, toEdge: .Left, ofView: sectionsView)
     }
     
     func segmentButtonPressed(sender: AnyObject!) {
@@ -121,8 +125,42 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
         }
     }
     
+    func beginMovingSectionIndicatorView(contentOffset: CGPoint) {
+        sectionIndicatorViewIsAnimating = true
+        sectionIndicatorWidthConstraint?.constant = 50
+        animateSectionIndicator()
+    }
+    
     func updateSectionIndicatorView(contentOffset: CGPoint) {
-        sectionIndicatorLeftOffset?.constant = contentOffset.x / CGFloat(sections!.count)
+        // We aren't animating the width of the sectionIndicator if someone taps on the segmented controls
+        var animationOffset = buttonSize.width / 2
+        if !sectionIndicatorViewIsAnimating {
+            animationOffset = 0.0
+        }
+        sectionIndicatorLeftOffsetConstraint?.constant = (contentOffset.x / CGFloat(sections!.count)) + animationOffset
+        animateSectionIndicator()
+    }
+    
+    func finishMovingSelectionIndicatorView(contentOffset: CGPoint) {
+        sectionIndicatorWidthConstraint?.constant = buttonSize.width
+        sectionIndicatorLeftOffsetConstraint?.constant = contentOffset.x / CGFloat(sections!.count)
+        animateSectionIndicator()
+        sectionIndicatorViewIsAnimating = false
+    }
+    
+    private func animateSectionIndicator() {
+        UIView.animateWithDuration(
+            0.3,
+            delay: 0,
+            usingSpringWithDamping: 0.8,
+            initialSpringVelocity: 0.8,
+            options: .CurveEaseInOut,
+            animations: { () -> Void in
+                self.sectionIndicatorView?.superview?.layoutIfNeeded()
+                return
+            },
+            completion: nil
+        )
     }
 
     override func pointInside(point: CGPoint, withEvent event: UIEvent?) -> Bool {

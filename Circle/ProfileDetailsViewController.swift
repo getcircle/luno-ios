@@ -177,6 +177,12 @@ class ProfileDetailsViewController:
     
     // MARK: - UIScrollViewDelegate
     
+    func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+        if let headerView = profileHeaderView() {
+            headerView.beginMovingSectionIndicatorView(scrollView.contentOffset)
+        }
+    }
+    
     func scrollViewDidScroll(scrollView: UIScrollView) {
         if scrollView.contentOffset.x > view.frame.width {
             navigationController?.interactivePopGestureRecognizer.enabled = false
@@ -209,6 +215,9 @@ class ProfileDetailsViewController:
     private func scrollingEnded(scrollView: UIScrollView) {
         currentIndex = Int(scrollView.contentOffset.x) / Int(view.frame.width)
         hideAllBorders()
+        if let headerView = profileHeaderView() {
+            headerView.finishMovingSelectionIndicatorView(scrollView.contentOffset)
+        }
     }
     
     // MARK: - Helpers
