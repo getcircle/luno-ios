@@ -184,7 +184,7 @@ class ProfileDetailsViewController:
     }
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
-        if scrollView.contentOffset.x > view.frame.width {
+        if scrollView.contentOffset.x >= view.frame.width {
             navigationController?.interactivePopGestureRecognizer.enabled = false
         } else {
             navigationController?.interactivePopGestureRecognizer.enabled = true
