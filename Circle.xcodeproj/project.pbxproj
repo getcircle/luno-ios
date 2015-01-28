@@ -94,7 +94,6 @@
 		8FCC95CD1A52828B00421E65 /* ProfileCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FCC95CB1A52828B00421E65 /* ProfileCollectionViewCell.swift */; };
 		8FCC95CE1A52828B00421E65 /* ProfileCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8FCC95CC1A52828B00421E65 /* ProfileCollectionViewCell.xib */; };
 		8FD041A21A2C03AA00FE28EF /* UIFontExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD041A11A2C03AA00FE28EF /* UIFontExtention.swift */; };
-		8FD907F51A5F91020025A17B /* ProfileDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD907F41A5F91020025A17B /* ProfileDetailViewController.swift */; };
 		8FD907F71A6033310025A17B /* LocationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD907F61A6033310025A17B /* LocationDetailViewController.swift */; };
 		8FD907F91A6070D70025A17B /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD907F81A6070D70025A17B /* MapViewController.swift */; };
 		8FD907FB1A6072360025A17B /* MapViewAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD907FA1A6072360025A17B /* MapViewAnimator.swift */; };
@@ -140,8 +139,6 @@
 		BF8DAC901A6D904D000860DD /* NoteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8DAC8F1A6D904D000860DD /* NoteService.swift */; };
 		BF8FC3D91A44DA83007FD8BA /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8FC3D81A44DA83007FD8BA /* StringExtension.swift */; };
 		BF9D72121A68492C002CDC66 /* ObjectStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9D72111A68492C002CDC66 /* ObjectStore.swift */; };
-		BF9D721F1A687462002CDC66 /* TeamCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9D721E1A687462002CDC66 /* TeamCollectionViewCell.swift */; };
-		BF9D72211A687562002CDC66 /* TeamCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF9D72201A687562002CDC66 /* TeamCollectionViewCell.xib */; };
 		BFA5E4861A72C942008826F0 /* StickyHeaderCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA5E4851A72C942008826F0 /* StickyHeaderCollectionViewDelegate.swift */; };
 		BFB791891A2C346A0048E8FB /* CALayerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB791881A2C346A0048E8FB /* CALayerExtension.swift */; };
 		BFB7918B1A2C3C860048E8FB /* SpringFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB7918A1A2C3C860048E8FB /* SpringFlowLayout.swift */; };
@@ -335,7 +332,6 @@
 		8FCC95CB1A52828B00421E65 /* ProfileCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileCollectionViewCell.swift; sourceTree = "<group>"; };
 		8FCC95CC1A52828B00421E65 /* ProfileCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileCollectionViewCell.xib; sourceTree = "<group>"; };
 		8FD041A11A2C03AA00FE28EF /* UIFontExtention.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIFontExtention.swift; sourceTree = "<group>"; };
-		8FD907F41A5F91020025A17B /* ProfileDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileDetailViewController.swift; sourceTree = "<group>"; };
 		8FD907F61A6033310025A17B /* LocationDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationDetailViewController.swift; sourceTree = "<group>"; };
 		8FD907F81A6070D70025A17B /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		8FD907FA1A6072360025A17B /* MapViewAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewAnimator.swift; sourceTree = "<group>"; };
@@ -380,8 +376,6 @@
 		BF8DAC8F1A6D904D000860DD /* NoteService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteService.swift; sourceTree = "<group>"; };
 		BF8FC3D81A44DA83007FD8BA /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		BF9D72111A68492C002CDC66 /* ObjectStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectStore.swift; sourceTree = "<group>"; };
-		BF9D721E1A687462002CDC66 /* TeamCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamCollectionViewCell.swift; sourceTree = "<group>"; };
-		BF9D72201A687562002CDC66 /* TeamCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TeamCollectionViewCell.xib; sourceTree = "<group>"; };
 		BFA5E4851A72C942008826F0 /* StickyHeaderCollectionViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StickyHeaderCollectionViewDelegate.swift; sourceTree = "<group>"; };
 		BFB791881A2C346A0048E8FB /* CALayerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CALayerExtension.swift; sourceTree = "<group>"; };
 		BFB7918A1A2C3C860048E8FB /* SpringFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpringFlowLayout.swift; sourceTree = "<group>"; };
@@ -509,7 +503,6 @@
 				BF8DAC861A6D7EB1000860DD /* NewNoteViewController.swift */,
 				BF8DAC721A6CB03F000860DD /* NotesCardHeaderCollectionReusableView.swift */,
 				8F823E371A706B790006264B /* OrganizationDetailViewController.swift */,
-				8FD907F41A5F91020025A17B /* ProfileDetailViewController.swift */,
 				8F00049A1A2419730096477A /* ProfilesViewController.swift */,
 				8FF297FC1A4A4DCA00306CFC /* SearchViewController.swift */,
 				8F7400221A6862BF00D96B60 /* TagDetailViewController.swift */,
@@ -550,7 +543,6 @@
 				8FF298451A4E050100306CFC /* TagCollectionViewCell.swift */,
 				8F74001B1A684F2400D96B60 /* TagHeaderCollectionReusableView.swift */,
 				8F65C5051A52661700C7F3E6 /* TagsCollectionViewCell.swift */,
-				BF9D721E1A687462002CDC66 /* TeamCollectionViewCell.swift */,
 				8F085A931A6C191400F8139B /* TeamGridItemCollectionViewCell.swift */,
 				8F085A8B1A6B5B4900F8139B /* TeamHeaderCollectionReusableView.swift */,
 				8F085A8F1A6C175C00F8139B /* TeamsCollectionViewCell.swift */,
@@ -625,7 +617,6 @@
 				8F74001C1A684F2400D96B60 /* TagHeaderCollectionReusableView.xib */,
 				8F65C5061A52661700C7F3E6 /* TagsCollectionViewCell.xib */,
 				8F682F401A65F9090066BDEE /* TagSelectorViewController.xib */,
-				BF9D72201A687562002CDC66 /* TeamCollectionViewCell.xib */,
 				8F085A941A6C191400F8139B /* TeamGridItemCollectionViewCell.xib */,
 				8F085A8C1A6B5B4900F8139B /* TeamHeaderCollectionReusableView.xib */,
 				8F085A901A6C175C00F8139B /* TeamsCollectionViewCell.xib */,
@@ -947,7 +938,6 @@
 				8F65C5081A52661700C7F3E6 /* TagsCollectionViewCell.xib in Resources */,
 				8F4E53791A5A0D9E00DC876B /* NotesCollectionViewCell.xib in Resources */,
 				BF1DB65A1A76FA31006F2B7D /* AddNoteCollectionViewCell.xib in Resources */,
-				BF9D72211A687562002CDC66 /* TeamCollectionViewCell.xib in Resources */,
 				8FF298481A4E050100306CFC /* TagCollectionViewCell.xib in Resources */,
 				8F22CBE11A27A8E60026376E /* ProfileHeaderCollectionReusableView.xib in Resources */,
 				8F823E441A714B5D0006264B /* OrganizationHeaderCollectionReusableView.xib in Resources */,
@@ -1094,7 +1084,6 @@
 				8F0E44871A61EE99008710E7 /* LocationAnnotation.swift in Sources */,
 				8F4A98AC1A633BF6005AD63C /* UIImageExtension.swift in Sources */,
 				BF7B238B1A70842500137BCB /* ProfileNotesCollectionView.swift in Sources */,
-				BF9D721F1A687462002CDC66 /* TeamCollectionViewCell.swift in Sources */,
 				8FCC95CD1A52828B00421E65 /* ProfileCollectionViewCell.swift in Sources */,
 				BF59AA931A2C152F00C0CDB9 /* UITableViewExtension.swift in Sources */,
 				8F823E491A71CF380006264B /* OrganizationDetailCollectionViewDelegate.swift in Sources */,
@@ -1128,7 +1117,6 @@
 				BF1DB6591A76FA31006F2B7D /* AddNoteCollectionViewCell.swift in Sources */,
 				8F22CB771A2661890026376E /* AppDelegateAppearanceExtension.swift in Sources */,
 				8F22CBFE1A29C7120026376E /* GCDUtils.swift in Sources */,
-				8FD907F51A5F91020025A17B /* ProfileDetailViewController.swift in Sources */,
 				8FC7BB401A58AF4C005BDDDB /* SearchLandingDataSource.swift in Sources */,
 				8F00049D1A2419730096477A /* DetailViewController.swift in Sources */,
 				8F7400231A6862BF00D96B60 /* TagDetailViewController.swift in Sources */,
