@@ -165,4 +165,8 @@ extension UIColor {
     class func detailViewBorderColor() -> UIColor {
         return UIColor.blackColor().colorWithAlphaComponent(0.8)
     }
+    
+    class func actionButtonTintColor() -> UIColor {
+        return UIColor(red: 0, green: 128, blue: 189)
+    }
 }

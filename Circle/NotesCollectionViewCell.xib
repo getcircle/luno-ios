@@ -7,47 +7,56 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="NotesCell" id="gTV-IL-0wX" customClass="NotesCollectionViewCell" customModule="Circle" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="406" height="50"/>
+            <rect key="frame" x="0.0" y="0.0" width="406" height="48"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="406" height="50"/>
+                <rect key="frame" x="0.0" y="0.0" width="406" height="48"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First line of note" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9W5-DB-Exf" userLabel="noteSummaryLabel">
-                        <rect key="frame" x="8" y="8" width="390" height="22"/>
-                        <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="16"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <rect key="frame" x="15" y="3" width="376" height="22"/>
+                        <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
+                        <color key="textColor" red="0.15056315064430237" green="0.15055865049362183" blue="0.15056121349334717" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3 minutes ago" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pmi-x1-LR3" userLabel="noteTimestampLabel">
-                        <rect key="frame" x="8" y="30" width="390" height="21"/>
-                        <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="15"/>
+                        <rect key="frame" x="15" y="25" width="88" height="20"/>
+                        <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="14"/>
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5U9-lX-izr" userLabel="SeparatorView">
+                        <rect key="frame" x="15" y="47" width="391" height="1"/>
+                        <color key="backgroundColor" red="0.92636114358901978" green="0.92633336782455444" blue="0.92634910345077515" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="jVw-oV-YZp"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="pmi-x1-LR3" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="8JY-Xj-LHS"/>
+                <constraint firstItem="5U9-lX-izr" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="15" id="701-jR-ofL"/>
                 <constraint firstItem="pmi-x1-LR3" firstAttribute="top" secondItem="9W5-DB-Exf" secondAttribute="bottom" id="9bD-ul-htE"/>
-                <constraint firstAttribute="trailing" secondItem="9W5-DB-Exf" secondAttribute="trailing" constant="8" id="Pya-ad-90X"/>
-                <constraint firstItem="9W5-DB-Exf" firstAttribute="width" secondItem="pmi-x1-LR3" secondAttribute="width" constant="348" id="SQ6-z7-7Bt"/>
-                <constraint firstAttribute="trailing" secondItem="pmi-x1-LR3" secondAttribute="trailing" constant="8" id="TZx-zq-fL1"/>
-                <constraint firstItem="9W5-DB-Exf" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="dVP-Sy-Qvn"/>
-                <constraint firstItem="9W5-DB-Exf" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="tX4-ub-1P6"/>
+                <constraint firstItem="pmi-x1-LR3" firstAttribute="leading" secondItem="9W5-DB-Exf" secondAttribute="leading" id="FIT-Dp-xlU"/>
+                <constraint firstItem="pmi-x1-LR3" firstAttribute="leading" secondItem="5U9-lX-izr" secondAttribute="leading" constant="15" id="G9D-6T-eNC"/>
+                <constraint firstAttribute="trailing" secondItem="9W5-DB-Exf" secondAttribute="trailing" constant="15" id="Pya-ad-90X"/>
+                <constraint firstAttribute="trailing" secondItem="5U9-lX-izr" secondAttribute="trailing" id="d9I-Pc-hUQ"/>
+                <constraint firstItem="9W5-DB-Exf" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="15" id="dVP-Sy-Qvn"/>
+                <constraint firstItem="9W5-DB-Exf" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="3" id="tX4-ub-1P6"/>
+                <constraint firstAttribute="bottom" secondItem="5U9-lX-izr" secondAttribute="bottom" id="zem-Sf-rqm"/>
             </constraints>
-            <size key="customSize" width="406" height="260"/>
+            <size key="customSize" width="406" height="356"/>
             <variation key="default">
                 <mask key="constraints">
-                    <exclude reference="SQ6-z7-7Bt"/>
+                    <exclude reference="G9D-6T-eNC"/>
                 </mask>
             </variation>
             <connections>
                 <outlet property="noteSummaryLabel" destination="9W5-DB-Exf" id="6Wa-Xc-ADv"/>
                 <outlet property="noteTimestampLabel" destination="pmi-x1-LR3" id="Lf8-Ds-OIm"/>
             </connections>
-            <point key="canvasLocation" x="279" y="251"/>
+            <point key="canvasLocation" x="279" y="299"/>
         </collectionViewCell>
     </objects>
 </document>

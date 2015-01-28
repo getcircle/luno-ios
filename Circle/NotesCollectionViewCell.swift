@@ -18,8 +18,20 @@ class NotesCollectionViewCell: CircleCollectionViewCell {
         return "NotesCell"
     }
     
+    override class var height: CGFloat {
+        return 48.0
+    }
+    
+    override class var lineSpacing: CGFloat {
+        return 0.0
+    }
+    
     override class var sizeCalculationMethod: SizeCalculation {
-        return .Dynamic
+        return .Fixed
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
     }
 
     override func intrinsicContentSize() -> CGSize {
@@ -31,7 +43,9 @@ class NotesCollectionViewCell: CircleCollectionViewCell {
     override func setData(data: AnyObject) {
         if let note = data as? NoteService.Containers.Note {
             noteSummaryLabel.text = note.content
-            noteTimestampLabel.text = note.created
+            if let gmtDate = NSDateFormatter.dateFromTimestampString(note.created) {
+                noteTimestampLabel.text = NSDateFormatter.localizedRelativeDateString(gmtDate)
+            }
         }
     }
 }

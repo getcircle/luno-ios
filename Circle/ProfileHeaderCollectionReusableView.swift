@@ -113,7 +113,7 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
         sectionsView.addSubview(sectionIndicatorView!)
         
         sectionIndicatorView?.backgroundColor = UIColor.appTintColor()
-        sectionIndicatorView?.autoSetDimension(.Height, toSize: 3.0)
+        sectionIndicatorView?.autoSetDimension(.Height, toSize: 1.5)
         sectionIndicatorWidthConstraint = sectionIndicatorView?.autoSetDimension(.Width, toSize: buttonSize.width)
         sectionIndicatorView?.autoPinEdge(.Bottom, toEdge: .Bottom, ofView: sectionsView)
         sectionIndicatorLeftOffsetConstraint = sectionIndicatorView?.autoPinEdge(.Left, toEdge: .Left, ofView: sectionsView)

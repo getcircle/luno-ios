@@ -17,9 +17,54 @@ extension NSDateFormatter {
         return Static.instance
     }
     
+    class var sharedTimestampFormatter: NSDateFormatter {
+        struct Static {
+            static var timestampConverterFormatter: NSDateFormatter {
+                var dateFormatter = NSDateFormatter()
+                dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSZZZZZ"
+                dateFormatter.timeZone = NSTimeZone(forSecondsFromGMT: 0)
+                return dateFormatter
+            }
+        }
+        
+        return Static.timestampConverterFormatter
+    }
+
+    class var sharedRelativeDateFormatter: NSDateFormatter {
+        struct Static {
+            static var relativeDateFormatter: NSDateFormatter {
+                var dateFormatter = NSDateFormatter()
+                dateFormatter.locale = NSLocale.currentLocale()
+                dateFormatter.timeZone = NSTimeZone.localTimeZone()
+                return dateFormatter
+            }
+        }
+        
+        return Static.relativeDateFormatter
+    }
+    
     class func shortStyleStringFromDate(date: NSDate) -> String {
         self.sharedInstance.dateStyle = .ShortStyle
         return self.sharedInstance.stringFromDate(date)
     }
+    
+    class func dateFromTimestampString(timestamp: String) -> NSDate? {
+        let dateFormatter = NSDateFormatter.sharedTimestampFormatter
+        return dateFormatter.dateFromString(timestamp)
+    }
+    
+    class func localizedRelativeDateString(date: NSDate) -> String {
+        let dateFormatter = NSDateFormatter.sharedRelativeDateFormatter
+        if NSCalendar.currentCalendar().isDateInToday(date) {
+            dateFormatter.timeStyle = .ShortStyle
+            dateFormatter.dateStyle = .NoStyle
+        }
+        else {
+            dateFormatter.doesRelativeDateFormatting = true
+            dateFormatter.timeStyle = .NoStyle
+            dateFormatter.dateStyle = .ShortStyle
+        }
 
+        return dateFormatter.stringFromDate(date)
+    }
 }
