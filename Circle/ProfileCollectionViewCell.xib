@@ -14,13 +14,13 @@
                 <rect key="frame" x="0.0" y="0.0" width="415" height="44"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CEO" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bkV-ww-aQf" userLabel="Title">
-                        <rect key="frame" x="50" y="24" width="355" height="20"/>
+                        <rect key="frame" x="50" y="24" width="350" height="20"/>
                         <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="14"/>
                         <color key="textColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="John Appleseed" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9nj-gl-dh0" userLabel="Name">
-                        <rect key="frame" x="50" y="5" width="355" height="21"/>
+                        <rect key="frame" x="50" y="5" width="350" height="21"/>
                         <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="15"/>
                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
@@ -41,7 +41,7 @@
                 <constraint firstItem="bkV-ww-aQf" firstAttribute="leading" secondItem="9nj-gl-dh0" secondAttribute="leading" id="IDj-BR-Asz"/>
                 <constraint firstItem="9nj-gl-dh0" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="5" id="PwW-a2-cpz"/>
                 <constraint firstItem="WaH-1I-lf2" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="SMf-Cz-AoV"/>
-                <constraint firstAttribute="trailing" secondItem="9nj-gl-dh0" secondAttribute="trailing" constant="10" id="Wbj-mA-mTg"/>
+                <constraint firstAttribute="trailing" secondItem="9nj-gl-dh0" secondAttribute="trailing" constant="15" id="Wbj-mA-mTg"/>
                 <constraint firstAttribute="centerY" secondItem="WaH-1I-lf2" secondAttribute="centerY" id="ZZ7-Fu-qz3"/>
                 <constraint firstItem="9nj-gl-dh0" firstAttribute="leading" secondItem="WaH-1I-lf2" secondAttribute="trailing" constant="10" id="lu8-eB-H0J"/>
                 <constraint firstItem="bkV-ww-aQf" firstAttribute="width" secondItem="9nj-gl-dh0" secondAttribute="width" id="qZz-5q-AA8"/>

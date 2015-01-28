@@ -137,7 +137,8 @@ class ProfileDetailsViewController:
                     default:
                         break
                     }
-                } else if let dataSource = collectionView.dataSource as? ProfileNotesDataSource {
+                }
+                else if let dataSource = collectionView.dataSource as? ProfileNotesDataSource {
                     handleNotesCardSelection(card, indexPath: indexPath)
                 }
             }
@@ -172,6 +173,7 @@ class ProfileDetailsViewController:
         default:
             break
         }
+        
         presentNoteView(note)
     }
     
@@ -219,12 +221,6 @@ class ProfileDetailsViewController:
             headerView.finishMovingSelectionIndicatorView(scrollView.contentOffset)
         }
     }
-    
-    // MARK: - Helpers
-    
-    private func hideAllBorders() {
-        detailViews.map { ($0 as UIView).layer.borderWidth = 0.0 }
-    }
 
     // MARK: - MFMailComposeViewControllerDelegate
     
@@ -261,6 +257,7 @@ class ProfileDetailsViewController:
         if let dataSource = notesCollectionView.dataSource as? ProfileNotesDataSource {
             dataSource.addNote(note)
             notesCollectionView.reloadData()
+            resetContentOffsetForDetailViews()
         }
     }
     
@@ -296,6 +293,14 @@ class ProfileDetailsViewController:
 
     private func profileHeaderView() -> ProfileHeaderCollectionReusableView? {
         return (overlaidCollectionView.dataSource as? ProfileOverlaidCollectionViewDataSource)?.profileHeaderView
+    }
+    
+    private func hideAllBorders() {
+        detailViews.map { ($0 as UIView).layer.borderWidth = 0.0 }
+    }
+    
+    private func resetContentOffsetForDetailViews() {
+        detailViews.map({ $0.setContentOffset(CGPointZero, animated: false) })
     }
     
     // Class Methods

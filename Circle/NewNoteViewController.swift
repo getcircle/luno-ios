@@ -63,9 +63,12 @@ class NewNoteViewController: UIViewController, UIViewControllerTransitioningDele
     
     private func configureNavigationBar() {
         if let note = note {
-            navigationItem.title = note.created
-        } else {
-            navigationItem.title = "NEW NOTE"
+            if let gmtDate = NSDateFormatter.dateFromTimestampString(note.created) {
+                navigationItem.title = NSDateFormatter.localizedRelativeDateString(gmtDate)
+            }
+        }
+        else {
+            navigationItem.title = NSLocalizedString("New Note", comment: "Title of the new note window")
         }
     }
     
