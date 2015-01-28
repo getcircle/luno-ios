@@ -80,4 +80,17 @@ extension UIView {
         visualEffectView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
         return visualEffectView
     }
+    
+    func addActivityIndicator() -> UIActivityIndicatorView {
+        var activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
+        activityIndicatorView.color = UIColor.activityIndicatorViewColor()
+        activityIndicatorView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        activityIndicatorView.hidesWhenStopped = true
+        activityIndicatorView.startAnimating()
+        addSubview(activityIndicatorView)
+        bringSubviewToFront(activityIndicatorView)
+        activityIndicatorView.autoCenterInSuperview()
+
+        return activityIndicatorView
+    }
 }

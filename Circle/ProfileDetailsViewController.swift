@@ -57,6 +57,16 @@ class ProfileDetailsViewController:
         configureOverlayView()
     }
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        // When data is cached, it is possible to have it loaded before we even have the chance to
+        // register for notifications
+        updateNotesTitle(nil)
+    }
+    
+    // MARK: - Configurations
+
     private func configureOverlayView() {
         view.addSubview(overlaidCollectionView)
         overlaidCollectionView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
@@ -241,7 +251,7 @@ class ProfileDetailsViewController:
             name: NotesCardHeaderCollectionReusableViewNotifications.onAddNoteNotification,
             object: nil
         )
-        
+
         NSNotificationCenter.defaultCenter().addObserver(
             self,
             selector: "updateNotesTitle:",

@@ -31,8 +31,9 @@ class ProfileInfoCollectionView: UnderlyingCollectionView {
         delegate = profileInfoDelegate
         alwaysBounceVertical = true
         
-        // XXX we should consider making this a public function so the view controller can instantiate an activity indicator and then call load data, clearing activity indicator when the content has loaded
+        let activityIndicatorView = addActivityIndicator()
         profileInfoDataSource?.loadData { (error) -> Void in
+            activityIndicatorView.stopAnimating()            
             self.reloadData()
         }
     }

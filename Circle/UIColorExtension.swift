@@ -169,4 +169,8 @@ extension UIColor {
     class func actionButtonTintColor() -> UIColor {
         return UIColor(red: 0, green: 128, blue: 189)
     }
+    
+    class func activityIndicatorViewColor() -> UIColor {
+        return UIColor(red: 51, green: 51, blue: 51)
+    }
 }
