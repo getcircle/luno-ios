@@ -48,6 +48,7 @@ class AuthViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        configureAppNameLabel()
         configureView()
     }
     
@@ -66,6 +67,10 @@ class AuthViewController: UIViewController, UITextFieldDelegate {
     }
 
     // MARK: - Configuration
+
+    private func configureAppNameLabel() {
+        appNameLabel.text = NSBundle.appName()
+    }
     
     private func configureView() {
         view.backgroundColor = UIColor.appTintColor()

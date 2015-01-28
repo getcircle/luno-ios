@@ -129,6 +129,7 @@ CardHeaderViewDelegate {
 
     private func configureView() {
         view.backgroundColor = UIColor.viewBackgroundColor()
+        title = NSBundle.appName()
     }
 
     private func configureSearchHeaderView() {

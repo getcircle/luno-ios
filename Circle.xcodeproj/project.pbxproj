@@ -50,6 +50,7 @@
 		8F306B8E1A7416E00024EB03 /* LocationsOverviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F306B8C1A7416E00024EB03 /* LocationsOverviewViewController.xib */; };
 		8F306B931A74171C0024EB03 /* LocationsOverviewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F306B921A74171C0024EB03 /* LocationsOverviewDataSource.swift */; };
 		8F3569141A560B2D003D42F9 /* CGRectExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3569131A560B2D003D42F9 /* CGRectExtension.swift */; };
+		8F3F7AF91A799806002CD365 /* NSBundleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3F7AF81A799806002CD365 /* NSBundleExtension.swift */; };
 		8F4805C41A5B643F00273731 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F4805C31A5B643F00273731 /* Crashlytics.framework */; };
 		8F4805C81A5B64FA00273731 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F4805C31A5B643F00273731 /* Crashlytics.framework */; };
 		8F4805E41A5DE4B800273731 /* MapHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4805E31A5DE4B800273731 /* MapHeaderCollectionReusableView.swift */; };
@@ -289,6 +290,7 @@
 		8F306B8C1A7416E00024EB03 /* LocationsOverviewViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LocationsOverviewViewController.xib; sourceTree = "<group>"; };
 		8F306B921A74171C0024EB03 /* LocationsOverviewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationsOverviewDataSource.swift; sourceTree = "<group>"; };
 		8F3569131A560B2D003D42F9 /* CGRectExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGRectExtension.swift; sourceTree = "<group>"; };
+		8F3F7AF81A799806002CD365 /* NSBundleExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSBundleExtension.swift; sourceTree = "<group>"; };
 		8F4805C31A5B643F00273731 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		8F4805E31A5DE4B800273731 /* MapHeaderCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapHeaderCollectionReusableView.swift; sourceTree = "<group>"; };
 		8F4805E81A5DE4CE00273731 /* MapHeaderCollectionReusableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapHeaderCollectionReusableView.xib; sourceTree = "<group>"; };
@@ -558,6 +560,7 @@
 				BFB791881A2C346A0048E8FB /* CALayerExtension.swift */,
 				8F3569131A560B2D003D42F9 /* CGRectExtension.swift */,
 				8F0B96361A73288600C601A6 /* MKMapViewExtension.swift */,
+				8F3F7AF81A799806002CD365 /* NSBundleExtension.swift */,
 				BF041BB91A2C119B0043EC72 /* NSDateFormatterExtension.swift */,
 				BF8FC3D81A44DA83007FD8BA /* StringExtension.swift */,
 				BFEDB1421A2A8CA700250165 /* UICollectionViewFlowLayoutExtension.swift */,
@@ -1124,6 +1127,7 @@
 				8F085A851A6B0C1E00F8139B /* TeamDetailViewController.swift in Sources */,
 				BF8DAC881A6D7EB1000860DD /* NewNoteViewController.swift in Sources */,
 				8F823E4F1A72A0850006264B /* TeamsOverviewDataSource.swift in Sources */,
+				8F3F7AF91A799806002CD365 /* NSBundleExtension.swift in Sources */,
 				BF3F0F611A5B1C1100D4287E /* ProfileService.swift in Sources */,
 				8FEE88471A411BA90011CE4A /* UIViewControllerExtension.swift in Sources */,
 				8F085A8D1A6B5B4900F8139B /* TeamHeaderCollectionReusableView.swift in Sources */,
