@@ -10,6 +10,12 @@ import Foundation
 
 class CardDataSource: NSObject, UICollectionViewDataSource {
     
+    enum TypeOfView {
+        case Cell
+        case Footer
+        case Header
+    }
+    
     private var animatedRowIndexes = NSMutableIndexSet()
     /**
     Array for holding data cards. View controllers should access data via this array.
@@ -131,7 +137,7 @@ class CardDataSource: NSObject, UICollectionViewDataSource {
         cell.card = card
         cell.setData(card.content[indexPath.row])
         configureCell(cell, atIndexPath: indexPath)
-        animate(cell, atIndexPath: indexPath)
+        animate(cell, ofType: .Cell, atIndexPath: indexPath)
         return cell
     }
     
@@ -146,7 +152,7 @@ class CardDataSource: NSObject, UICollectionViewDataSource {
                 forIndexPath: indexPath
             ) as CardFooterCollectionReusableView
             
-            animate(footerView, atIndexPath: indexPath)
+            animate(footerView, ofType: .Footer, atIndexPath: indexPath)
             if let delegate = cardFooterDelegate {
                 footerView.cardFooterDelegate = delegate
             }
@@ -161,7 +167,7 @@ class CardDataSource: NSObject, UICollectionViewDataSource {
                 forIndexPath: indexPath
             ) as CardHeaderCollectionReusableView
             
-            animate(headerView, atIndexPath: indexPath)
+            animate(headerView, ofType: .Header, atIndexPath: indexPath)
             if let delegate = cardHeaderDelegate {
                 headerView.cardHeaderDelegate = delegate
             }
@@ -170,15 +176,20 @@ class CardDataSource: NSObject, UICollectionViewDataSource {
         }
     }
     
-    private func animate(view: UICollectionReusableView, atIndexPath indexPath: NSIndexPath) {
+    private func animate(view: UICollectionReusableView, ofType typeOfView: TypeOfView, atIndexPath indexPath: NSIndexPath) {
         var uniqueIndex: String
         
         // Unique indexes make sure each item or supplementary view animates only once
-        if view is UICollectionViewCell {
+        switch typeOfView {
+        case .Cell:
             uniqueIndex = String(indexPath.section) + String(indexPath.row)
-        }
-        else {
+            
+        case .Footer:
+            uniqueIndex = String((indexPath.section + 1) * 2000)
+            
+        case .Header:
             uniqueIndex = String((indexPath.section + 1) * 1000)
+            
         }
         
         let intIndex = uniqueIndex.toInt() ?? 0
