@@ -306,6 +306,6 @@ class VerifyProfileViewController:
     private func verificationComplete() {
         let tagSelectorVC = TagSelectorViewController(nibName: "TagSelectorViewController", bundle: nil)
         tagSelectorVC.theme = .Onboarding
-        navigationController?.setViewControllers([tagSelectorVC], animated: true)
+        navigationController?.pushViewController(tagSelectorVC, animated: true)
     }
 }
