@@ -74,6 +74,9 @@ class SearchQueryDataSource: CardDataSource {
     
     override func configureCell(cell: CircleCollectionViewCell, atIndexPath indexPath: NSIndexPath) {
         cell.backgroundColor = UIColor.clearColor()
+        if cell is TeamGridItemCollectionViewCell {
+            (cell as TeamGridItemCollectionViewCell).sizeMode = .Compact
+        }
     }
 
     override func registerCardHeader(collectionView: UICollectionView) {

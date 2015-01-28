@@ -94,7 +94,7 @@ class TeamsCollectionViewCell: CircleCollectionViewCell, UICollectionViewDataSou
     // MARK: - UICollectionViewDelegateFlowLayout
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        return CGSizeMake(TeamGridItemCollectionViewCell.width - 20.0, TeamGridItemCollectionViewCell.height)
+        return TeamGridItemCollectionViewCell.sizeByMode(.Compact)
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
