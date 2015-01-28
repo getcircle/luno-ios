@@ -10,8 +10,37 @@ import UIKit
 
 class AddNoteCollectionViewCell: CircleCollectionViewCell {
     
+    @IBOutlet weak private(set) var addNoteButton: UIButton!
+    @IBOutlet weak private(set) var addNoteLabel: UILabel!
+    
     override class var classReuseIdentifier: String {
         return "AddNoteCell"
+    }
+    
+    override class var height: CGFloat {
+        return 70.0
+    }
+    
+    override class var lineSpacing: CGFloat {
+        return 0.0
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        configureAddNoteButton()
+        backgroundView = nil
+    }
+    
+    // MARK: - Configuration
+    
+    private func configureAddNoteButton() {
+        addNoteButton.tintColor = UIColor.actionButtonTintColor()
+        addNoteButton.setTitleColor(UIColor.actionButtonTintColor(), forState: .Normal)
+        addNoteButton.setImage(
+            addNoteButton.imageForState(.Normal)!.imageWithRenderingMode(.AlwaysTemplate),
+            forState: .Normal
+        )
     }
     
     override func setData(data: AnyObject) {}
