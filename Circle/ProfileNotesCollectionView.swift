@@ -11,11 +11,15 @@ import ProtobufRegistry
 
 private let NoteCellReuseIdentifier = "NotesCellReuseIdentifier"
 
+struct ProfileNotesNotifications {
+    static let onNotesChanged = "com.ravcode.notification:onNotesChanged"
+}
+
 // TODO should potentially just take notes as an init variable so we can use the getExtendedProfile call
 class ProfileNotesDataSource: UnderlyingCollectionViewDataSource {
     
     var profile: ProfileService.Containers.Profile!
-    private var notes = Array<NoteService.Containers.Note>()
+    private(set) var notes = Array<NoteService.Containers.Note>()
     
     convenience init(profile withProfile: ProfileService.Containers.Profile) {
         self.init()
@@ -37,6 +41,11 @@ class ProfileNotesDataSource: UnderlyingCollectionViewDataSource {
         NoteService.Actions.getNotes(profile.id) { (notes, error) -> Void in
             if let notes = notes {
                 self.notes = notes
+                NSNotificationCenter.defaultCenter().postNotificationName(
+                    ProfileNotesNotifications.onNotesChanged,
+                    object: nil,
+                    userInfo: nil
+                )
             }
             self.populateData()
             completionHandler(error: error)
@@ -75,7 +84,6 @@ class ProfileNotesDataSource: UnderlyingCollectionViewDataSource {
         notes = notes.filter { $0.id != note.id }
         populateData()
     }
-
 }
 
 class ProfileNotesCollectionView: UnderlyingCollectionView {

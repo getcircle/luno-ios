@@ -241,6 +241,13 @@ class ProfileDetailsViewController:
             name: NotesCardHeaderCollectionReusableViewNotifications.onAddNoteNotification,
             object: nil
         )
+        
+        NSNotificationCenter.defaultCenter().addObserver(
+            self,
+            selector: "updateNotesTitle:",
+            name: ProfileNotesNotifications.onNotesChanged,
+            object: nil
+        )
         super.registerNotifications()
     }
     
@@ -257,6 +264,7 @@ class ProfileDetailsViewController:
         if let dataSource = notesCollectionView.dataSource as? ProfileNotesDataSource {
             dataSource.addNote(note)
             notesCollectionView.reloadData()
+            updateNotesTitle(nil)
             resetContentOffsetForDetailViews()
         }
     }
@@ -265,7 +273,26 @@ class ProfileDetailsViewController:
         let notesCollectionView = detailViews[1]
         if let dataSource = notesCollectionView.dataSource as? ProfileNotesDataSource {
             dataSource.removeNote(note)
+            updateNotesTitle(nil)
             notesCollectionView.reloadData()
+        }
+    }
+    
+    func updateNotesTitle(sender: AnyObject?) {
+        let notesCollectionView = detailViews[1]
+        if let dataSource = notesCollectionView.dataSource as? ProfileNotesDataSource {
+            if dataSource.notes.count == 0 {
+                profileHeaderView()?.updateTitle(
+                    NSLocalizedString("Notes", comment: "Title of the Notes section"),
+                    forSegmentAtIndex: 1
+                )
+            }
+            else {
+                profileHeaderView()?.updateTitle(
+                    NSString(format: NSLocalizedString("Notes (%d)", comment: "Title of the Notes section with # of notes. E.g., Notes (5)"), dataSource.notes.count),
+                    forSegmentAtIndex: 1
+                )
+            }
         }
     }
     

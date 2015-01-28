@@ -74,6 +74,8 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
         )
     }
     
+    // MARK: - Segmented Control
+
     private func configureSegmentedControl(sections withSections: [ProfileDetailView]) {
         // Setup the segment buttons
         let buttonSegmentOffset: CGFloat = 0.5
@@ -122,6 +124,12 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
     func segmentButtonPressed(sender: AnyObject!) {
         if let tappedButtonIndex = tappedButtonInSegmentedControlIndex {
             profileSegmentedControlDelegate?.onButtonTouchUpInsideAtIndex(tappedButtonIndex)
+        }
+    }
+    
+    func updateTitle(title: String, forSegmentAtIndex index: Int) {
+        if segmentedControlButtons.count > index {
+            segmentedControlButtons[index].setTitle(title, forState: .Normal)
         }
     }
     

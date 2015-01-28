@@ -29,7 +29,7 @@ class AddNoteCollectionViewCell: CircleCollectionViewCell {
         super.awakeFromNib()
         
         configureAddNoteButton()
-        backgroundView = nil
+        selectedBackgroundView = nil
     }
     
     // MARK: - Configuration
@@ -41,6 +41,7 @@ class AddNoteCollectionViewCell: CircleCollectionViewCell {
             addNoteButton.imageForState(.Normal)!.imageWithRenderingMode(.AlwaysTemplate),
             forState: .Normal
         )
+        addNoteButton.userInteractionEnabled = false
     }
     
     override func setData(data: AnyObject) {}
