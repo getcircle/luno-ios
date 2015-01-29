@@ -91,15 +91,24 @@ class NewNoteViewController: UIViewController, UIViewControllerTransitioningDele
     
     private func configureDeleteAlertController() {
         deleteAlertController = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
-        let deleteAction = UIAlertAction(title: "Delete", style: .Destructive) { (action) -> Void in
-            NoteService.Actions.deleteNote(self.note!, completionHandler: { (error) -> Void in
-                if error == nil {
-                    self.delegate?.didDeleteNote(self.note!)
-                    self.dismiss()
+        let deleteAction = UIAlertAction(
+                title: NSLocalizedString("Delete", comment: "Generic button title for deleting an item"),
+                style: .Destructive
+            ) { (action) -> Void in
+                NoteService.Actions.deleteNote(self.note!, completionHandler: { (error) -> Void in
+                    if error == nil {
+                        self.delegate?.didDeleteNote(self.note!)
+                        self.dismiss()
+                    }
                 }
-            })
+            )
         }
-        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+        
+        let cancelAction = UIAlertAction(
+            title: NSLocalizedString("Cancel", comment: "Generic button title for cancelling an operation"),
+            style: .Cancel,
+            handler: nil
+        )
         deleteAlertController.addAction(deleteAction)
         deleteAlertController.addAction(cancelAction)
     }
@@ -107,7 +116,7 @@ class NewNoteViewController: UIViewController, UIViewControllerTransitioningDele
     // MARK: - IBActions
     
     @IBAction func closeButtonTapped(sender: AnyObject!) {
-        self.dismiss()
+        dismiss()
     }
     
     @IBAction func doneButtonTapped(sender: AnyObject!) {
@@ -133,7 +142,15 @@ class NewNoteViewController: UIViewController, UIViewControllerTransitioningDele
         let newNoteViewController = NewNoteViewController(nibName: "NewNoteViewController", bundle: nil)
         newNoteViewController.profile = profile
         newNoteViewController.delegate = delegate
-        navigationController?.setViewControllers([newNoteViewController], animated: false)
+        var viewControllers = navigationController!.viewControllers
+        if isBeingPresentedModally() {
+            viewControllers = [newNoteViewController]
+        }
+        else {
+            viewControllers[viewControllers.count - 1] = newNoteViewController
+        }
+        
+        navigationController?.setViewControllers(viewControllers, animated: false)        
     }
     
     // MARK: - UITextViewDelegate

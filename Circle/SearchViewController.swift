@@ -16,7 +16,8 @@ UITextFieldDelegate,
 MFMailComposeViewControllerDelegate,
 MFMessageComposeViewControllerDelegate,
 SearchHeaderViewDelegate,
-CardHeaderViewDelegate {
+CardHeaderViewDelegate,
+NewNoteViewControllerDelegate {
     
     enum QuickAction {
         case None
@@ -340,6 +341,7 @@ CardHeaderViewDelegate {
                 if let selectedNote = dataSource.contentAtIndexPath(indexPath)? as? NoteService.Containers.Note {
                     let viewController = NewNoteViewController(nibName: "NewNoteViewController", bundle: nil)
                     viewController.profile = AuthViewController.getLoggedInUserProfile()
+                    viewController.delegate = self
                     viewController.note = selectedNote
                     navigationController?.pushViewController(viewController, animated: true)
                 }
@@ -645,4 +647,15 @@ CardHeaderViewDelegate {
     func messageComposeViewController(controller: MFMessageComposeViewController!, didFinishWithResult result: MessageComposeResult) {
         controller.dismissViewControllerAnimated(true, completion: nil)
     }
+    
+    // MARK: - NewNoteViewControllerDelegate
+    
+    func didAddNote(note: NoteService.Containers.Note) {
+        loadData()
+    }
+    
+    func didDeleteNote(note: NoteService.Containers.Note) {
+        loadData()
+    }
+    
 }
