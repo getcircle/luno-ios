@@ -103,8 +103,9 @@ CardHeaderViewDelegate {
             moveSearchFieldToCenter()
             addShadowToSearchField()
             firstLoad = false
-            loadData()
         }
+
+        loadData()
     }
 
     override func viewDidAppear(animated: Bool) {

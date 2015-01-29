@@ -278,6 +278,12 @@ class Card: Equatable {
         self.addContent(content: withContent, maxVisibleItems: 0)
     }
     
+    func resetContent() {
+        content = []
+        allContent = []
+        contentCount = 0
+    }
+    
     func hasProfileCells() -> Bool {
         return self.contentClass is ProfileCollectionViewCell.Type
     }

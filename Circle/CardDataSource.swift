@@ -236,7 +236,7 @@ class CardDataSource: NSObject, UICollectionViewDataSource {
         card.cardIndex = index
         cards.insert(card, atIndex: index)
     }
-    
+
     final func removeCardAtIndex(index: Int) {
         cards.removeAtIndex(index)
     }
