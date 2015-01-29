@@ -83,3 +83,5 @@ DerivedData
 # Pods/
 
 python/service_protobufs/
+
+src/service_protobufs/

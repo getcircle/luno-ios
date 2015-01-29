@@ -69,7 +69,7 @@ final public class NoteService : GeneratedMessage {
                  case "owner_profile_id": return owner_profile_id
                  case "content": return content
                  case "created": return created
-                 case "updated": return updated
+                 case "changed": return changed
                  default: return nil
                  }
           }
@@ -89,8 +89,8 @@ final public class NoteService : GeneratedMessage {
           public private(set) var hasCreated:Bool = false
           public private(set) var created:String = ""
 
-          public private(set) var hasUpdated:Bool = false
-          public private(set) var updated:String = ""
+          public private(set) var hasChanged:Bool = false
+          public private(set) var changed:String = ""
 
           required public init() {
                super.init()
@@ -114,8 +114,8 @@ final public class NoteService : GeneratedMessage {
             if hasCreated {
               output.writeString(5, value:created)
             }
-            if hasUpdated {
-              output.writeString(6, value:updated)
+            if hasChanged {
+              output.writeString(6, value:changed)
             }
             unknownFields.writeToCodedOutputStream(output)
           }
@@ -141,8 +141,8 @@ final public class NoteService : GeneratedMessage {
             if hasCreated {
               size += WireFormat.computeStringSize(5, value:created)
             }
-            if hasUpdated {
-              size += WireFormat.computeStringSize(6, value:updated)
+            if hasChanged {
+              size += WireFormat.computeStringSize(6, value:changed)
             }
             size += unknownFields.serializedSize()
             memoizedSerializedSize = size
@@ -200,8 +200,8 @@ final public class NoteService : GeneratedMessage {
             if hasCreated {
               output += "\(indent) created: \(created) \n"
             }
-            if hasUpdated {
-              output += "\(indent) updated: \(updated) \n"
+            if hasChanged {
+              output += "\(indent) changed: \(changed) \n"
             }
             unknownFields.writeDescriptionTo(&output, indent:indent)
           }
@@ -223,8 +223,8 @@ final public class NoteService : GeneratedMessage {
                   if hasCreated {
                      hashCode = (hashCode &* 31) &+ created.hashValue
                   }
-                  if hasUpdated {
-                     hashCode = (hashCode &* 31) &+ updated.hashValue
+                  if hasChanged {
+                     hashCode = (hashCode &* 31) &+ changed.hashValue
                   }
                   hashCode = (hashCode &* 31) &+  unknownFields.hashValue
                   return hashCode
@@ -351,23 +351,23 @@ final public class NoteService : GeneratedMessage {
                builderResult.created = ""
                return self
           }
-          public var hasUpdated:Bool {
+          public var hasChanged:Bool {
                get {
-                    return builderResult.hasUpdated
+                    return builderResult.hasChanged
                }
           }
-          public var updated:String {
+          public var changed:String {
                get {
-                    return builderResult.updated
+                    return builderResult.changed
                }
                set (value) {
-                   builderResult.hasUpdated = true
-                   builderResult.updated = value
+                   builderResult.hasChanged = true
+                   builderResult.changed = value
                }
           }
-          public func clearUpdated() -> NoteService.Containers.NoteBuilder{
-               builderResult.hasUpdated = false
-               builderResult.updated = ""
+          public func clearChanged() -> NoteService.Containers.NoteBuilder{
+               builderResult.hasChanged = false
+               builderResult.changed = ""
                return self
           }
           override public var internalGetResult:GeneratedMessage {
@@ -406,8 +406,8 @@ final public class NoteService : GeneratedMessage {
             if other.hasCreated {
                  created = other.created
             }
-            if other.hasUpdated {
-                 updated = other.updated
+            if other.hasChanged {
+                 changed = other.changed
             }
             mergeUnknownFields(other.unknownFields)
             return self
@@ -440,7 +440,7 @@ final public class NoteService : GeneratedMessage {
                 created = input.readString()
 
               case 50 :
-                updated = input.readString()
+                changed = input.readString()
 
               default:
                 if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {

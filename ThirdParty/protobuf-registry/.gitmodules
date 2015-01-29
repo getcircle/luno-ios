@@ -1,6 +1,0 @@
-[submodule "src/service_protobufs"]
-	path = src/service_protobufs
-	url = git@github.com:getcircle/protobuf-soa.git
-[submodule "swift/ProtobufRegistry/ThirdParty/protobuf-swift"]
-	path = swift/ProtobufRegistry/ThirdParty/protobuf-swift
-	url = git@github.com:mhahn/protobuf-swift.git

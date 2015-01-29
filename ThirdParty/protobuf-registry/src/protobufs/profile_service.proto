@@ -147,6 +147,7 @@ message ProfileService {
             optional string organization_id = 2;
             optional string tag_id = 3;
             optional string address_id = 4;
+            repeated string ids = 5;
         }
 
         message Response {

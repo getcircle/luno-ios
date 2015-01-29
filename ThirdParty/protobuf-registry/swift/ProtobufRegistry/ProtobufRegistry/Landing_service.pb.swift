@@ -14,6 +14,7 @@ public struct LandingServiceRoot {
   init() {
     extensionRegistry = ExtensionRegistry()
     registerAllExtensions(extensionRegistry)
+    NoteServiceRoot.sharedInstance.registerAllExtensions(extensionRegistry)
     OrganizationServiceRoot.sharedInstance.registerAllExtensions(extensionRegistry)
     ProfileServiceRoot.sharedInstance.registerAllExtensions(extensionRegistry)
   }
@@ -79,6 +80,7 @@ final public class LandingService : GeneratedMessage {
               case Departments = 8
               case Executives = 9
               case Organization = 10
+              case Notes = 11
 
               public static func IsValidValue(value:Int32) ->Bool {
                   if let check = CategoryType(rawValue:value) {
@@ -117,6 +119,7 @@ final public class LandingService : GeneratedMessage {
           public private(set) var addresses:Array<OrganizationService.Containers.Address>  = Array<OrganizationService.Containers.Address>()
           public private(set) var tags:Array<ProfileService.Containers.Tag>  = Array<ProfileService.Containers.Tag>()
           public private(set) var teams:Array<OrganizationService.Containers.Team>  = Array<OrganizationService.Containers.Team>()
+          public private(set) var notes:Array<NoteService.Containers.Note>  = Array<NoteService.Containers.Note>()
           required public init() {
                super.init()
           }
@@ -147,6 +150,9 @@ final public class LandingService : GeneratedMessage {
             }
             for oneElementteams in teams {
                 output.writeMessage(8, value:oneElementteams)
+            }
+            for oneElementnotes in notes {
+                output.writeMessage(9, value:oneElementnotes)
             }
             unknownFields.writeToCodedOutputStream(output)
           }
@@ -180,6 +186,9 @@ final public class LandingService : GeneratedMessage {
             }
             for oneElementteams in teams {
                 size += WireFormat.computeMessageSize(8, value:oneElementteams)
+            }
+            for oneElementnotes in notes {
+                size += WireFormat.computeMessageSize(9, value:oneElementnotes)
             }
             size += unknownFields.serializedSize()
             memoizedSerializedSize = size
@@ -262,6 +271,13 @@ final public class LandingService : GeneratedMessage {
                 output += "\(indent)}\n"
                 teamsElementIndex++
             }
+            var notesElementIndex:Int = 0
+            for oneElementnotes in notes {
+                output += "\(indent) notes[\(notesElementIndex)] {\n"
+                oneElementnotes.writeDescriptionTo(&output, indent:"\(indent)  ")
+                output += "\(indent)}\n"
+                notesElementIndex++
+            }
             unknownFields.writeDescriptionTo(&output, indent:indent)
           }
           override public var hashValue:Int {
@@ -290,6 +306,9 @@ final public class LandingService : GeneratedMessage {
                   }
                   for oneElementteams in teams {
                       hashCode = (hashCode &* 31) &+ oneElementteams.hashValue
+                  }
+                  for oneElementnotes in notes {
+                      hashCode = (hashCode &* 31) &+ oneElementnotes.hashValue
                   }
                   hashCode = (hashCode &* 31) &+  unknownFields.hashValue
                   return hashCode
@@ -445,6 +464,18 @@ final public class LandingService : GeneratedMessage {
             builderResult.teams.removeAll(keepCapacity: false)
             return self
           }
+          public var notes:Array<NoteService.Containers.Note> {
+               get {
+                   return builderResult.notes
+               }
+               set (value) {
+                   builderResult.notes = value
+               }
+          }
+          public func clearNotes() -> LandingService.Containers.CategoryBuilder {
+            builderResult.notes.removeAll(keepCapacity: false)
+            return self
+          }
           override public var internalGetResult:GeneratedMessage {
                get {
                   return builderResult
@@ -489,6 +520,9 @@ final public class LandingService : GeneratedMessage {
             }
             if !other.teams.isEmpty  {
                builderResult.teams += other.teams
+            }
+            if !other.notes.isEmpty  {
+               builderResult.notes += other.notes
             }
             mergeUnknownFields(other.unknownFields)
             return self
@@ -541,6 +575,11 @@ final public class LandingService : GeneratedMessage {
                 var subBuilder = OrganizationService.Containers.Team.builder()
                 input.readMessage(subBuilder,extensionRegistry:extensionRegistry)
                 teams += [subBuilder.buildPartial()]
+
+              case 74 :
+                var subBuilder = NoteService.Containers.Note.builder()
+                input.readMessage(subBuilder,extensionRegistry:extensionRegistry)
+                notes += [subBuilder.buildPartial()]
 
               default:
                 if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {

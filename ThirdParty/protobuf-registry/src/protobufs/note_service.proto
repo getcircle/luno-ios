@@ -12,7 +12,7 @@ message NoteService {
             optional string owner_profile_id = 3;
             optional string content = 4;
             optional string created = 5;
-            optional string updated = 6;
+            optional string changed = 6;
         }
     }
 

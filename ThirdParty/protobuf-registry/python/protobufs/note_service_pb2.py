@@ -18,7 +18,7 @@ _sym_db = _symbol_database.Default()
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='protobufs/note_service.proto',
   package='main.note_service',
-  serialized_pb=_b('\n\x1cprotobufs/note_service.proto\x12\x11main.note_service\"\xcc\x03\n\x0bNoteService\x1a\x85\x01\n\nContainers\x1aw\n\x04Note\x12\n\n\x02id\x18\x01 \x01(\t\x12\x16\n\x0e\x66or_profile_id\x18\x02 \x01(\t\x12\x18\n\x10owner_profile_id\x18\x03 \x01(\t\x12\x0f\n\x07\x63ontent\x18\x04 \x01(\t\x12\x0f\n\x07\x63reated\x18\x05 \x01(\t\x12\x0f\n\x07updated\x18\x06 \x01(\t\x1a\x9f\x01\n\nCreateNote\x1aG\n\x07Request\x12<\n\x04note\x18\x01 \x01(\x0b\x32..main.note_service.NoteService.Containers.Note\x1aH\n\x08Response\x12<\n\x04note\x18\x01 \x01(\x0b\x32..main.note_service.NoteService.Containers.Note\x1a\x92\x01\n\x08GetNotes\x1a;\n\x07Request\x12\x18\n\x10owner_profile_id\x18\x01 \x01(\t\x12\x16\n\x0e\x66or_profile_id\x18\x02 \x01(\t\x1aI\n\x08Response\x12=\n\x05notes\x18\x01 \x03(\x0b\x32..main.note_service.NoteService.Containers.Note')
+  serialized_pb=_b('\n\x1cprotobufs/note_service.proto\x12\x11main.note_service\"\xcc\x03\n\x0bNoteService\x1a\x85\x01\n\nContainers\x1aw\n\x04Note\x12\n\n\x02id\x18\x01 \x01(\t\x12\x16\n\x0e\x66or_profile_id\x18\x02 \x01(\t\x12\x18\n\x10owner_profile_id\x18\x03 \x01(\t\x12\x0f\n\x07\x63ontent\x18\x04 \x01(\t\x12\x0f\n\x07\x63reated\x18\x05 \x01(\t\x12\x0f\n\x07\x63hanged\x18\x06 \x01(\t\x1a\x9f\x01\n\nCreateNote\x1aG\n\x07Request\x12<\n\x04note\x18\x01 \x01(\x0b\x32..main.note_service.NoteService.Containers.Note\x1aH\n\x08Response\x12<\n\x04note\x18\x01 \x01(\x0b\x32..main.note_service.NoteService.Containers.Note\x1a\x92\x01\n\x08GetNotes\x1a;\n\x07Request\x12\x18\n\x10owner_profile_id\x18\x01 \x01(\t\x12\x16\n\x0e\x66or_profile_id\x18\x02 \x01(\t\x1aI\n\x08Response\x12=\n\x05notes\x18\x01 \x03(\x0b\x32..main.note_service.NoteService.Containers.Note')
 )
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
@@ -68,7 +68,7 @@ _NOTESERVICE_CONTAINERS_NOTE = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='updated', full_name='main.note_service.NoteService.Containers.Note.updated', index=5,
+      name='changed', full_name='main.note_service.NoteService.Containers.Note.changed', index=5,
       number=6, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,

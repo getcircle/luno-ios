@@ -6141,6 +6141,7 @@ final public class ProfileService : GeneratedMessage {
           public private(set) var hasAddressId:Bool = false
           public private(set) var address_id:String = ""
 
+          public private(set) var ids:Array<String> = Array<String>()
           required public init() {
                super.init()
           }
@@ -6159,6 +6160,11 @@ final public class ProfileService : GeneratedMessage {
             }
             if hasAddressId {
               output.writeString(4, value:address_id)
+            }
+            if !ids.isEmpty {
+              for oneValueids in ids {
+                output.writeString(5, value:oneValueids)
+              }
             }
             unknownFields.writeToCodedOutputStream(output)
           }
@@ -6181,6 +6187,12 @@ final public class ProfileService : GeneratedMessage {
             if hasAddressId {
               size += WireFormat.computeStringSize(4, value:address_id)
             }
+            var dataSizeIds:Int32 = 0
+            for oneValueids in ids {
+                dataSizeIds += WireFormat.computeStringSizeNoTag(oneValueids)
+            }
+            size += dataSizeIds
+            size += 1 * Int32(ids.count)
             size += unknownFields.serializedSize()
             memoizedSerializedSize = size
             return size
@@ -6234,6 +6246,11 @@ final public class ProfileService : GeneratedMessage {
             if hasAddressId {
               output += "\(indent) address_id: \(address_id) \n"
             }
+            var idsElementIndex:Int = 0
+            for oneValueids in ids  {
+                output += "\(indent) ids[\(idsElementIndex)]: \(oneValueids)\n"
+                idsElementIndex++
+            }
             unknownFields.writeDescriptionTo(&output, indent:indent)
           }
           override public var hashValue:Int {
@@ -6250,6 +6267,9 @@ final public class ProfileService : GeneratedMessage {
                   }
                   if hasAddressId {
                      hashCode = (hashCode &* 31) &+ address_id.hashValue
+                  }
+                  for oneValueids in ids {
+                      hashCode = (hashCode &* 31) &+ oneValueids.hashValue
                   }
                   hashCode = (hashCode &* 31) &+  unknownFields.hashValue
                   return hashCode
@@ -6357,6 +6377,18 @@ final public class ProfileService : GeneratedMessage {
                builderResult.address_id = ""
                return self
           }
+          public var ids:Array<String> {
+               get {
+                   return builderResult.ids
+               }
+               set (array) {
+                   builderResult.ids = array
+               }
+          }
+          public func clearIds() -> ProfileService.GetProfiles.RequestBuilder {
+             builderResult.ids.removeAll(keepCapacity: false)
+             return self
+          }
           override public var internalGetResult:GeneratedMessage {
                get {
                   return builderResult
@@ -6390,6 +6422,9 @@ final public class ProfileService : GeneratedMessage {
             if other.hasAddressId {
                  address_id = other.address_id
             }
+            if !other.ids.isEmpty {
+                builderResult.ids += other.ids
+            }
             mergeUnknownFields(other.unknownFields)
             return self
           }
@@ -6416,6 +6451,9 @@ final public class ProfileService : GeneratedMessage {
 
               case 34 :
                 address_id = input.readString()
+
+              case 42 :
+                ids += [input.readString()]
 
               default:
                 if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
