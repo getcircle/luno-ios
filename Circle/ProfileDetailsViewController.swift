@@ -323,9 +323,16 @@ class ProfileDetailsViewController:
             navigationItem.rightBarButtonItem = logOutButton
         }
     }
-    
+
     func logOutTapped(sender: AnyObject!) {
-        AuthViewController.logOut()
+        if isBeingPresentedModally() {
+            dismissViewControllerAnimated(false, completion: { () -> Void in
+                AuthViewController.logOut()
+            })
+        }
+        else {
+            AuthViewController.logOut()
+        }
     }
 
     private func profileHeaderView() -> ProfileHeaderCollectionReusableView? {
