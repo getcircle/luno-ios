@@ -73,13 +73,16 @@ class NewNoteViewController: UIViewController, UIViewControllerTransitioningDele
     }
     
     private func configureNavigationItems() {
-        let closeButton = UIBarButtonItem(
-            image: UIImage(named: "Down"),
-            style: .Plain,
-            target: self,
-            action: "closeButtonTapped:"
-        )
-        navigationItem.leftBarButtonItem = closeButton
+        if isBeingPresentedModally() {
+            let closeButton = UIBarButtonItem(
+                image: UIImage(named: "Down"),
+                style: .Plain,
+                target: self,
+                action: "closeButtonTapped:"
+            )
+
+            navigationItem.leftBarButtonItem = closeButton
+        }
         
         if note == nil {
             addDoneButton()
@@ -145,7 +148,12 @@ class NewNoteViewController: UIViewController, UIViewControllerTransitioningDele
     
     private func dismiss() {
         noteTextView.resignFirstResponder()
-        dismissViewControllerAnimated(true, completion: nil)
+        if isBeingPresentedModally() {
+            dismissViewControllerAnimated(true, completion: nil)
+        }
+        else {
+            navigationController?.popViewControllerAnimated(true)
+        }
     }
     
     private func addDoneButton() {

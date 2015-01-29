@@ -334,6 +334,15 @@ CardHeaderViewDelegate {
                     (viewController.dataSource as TeamDetailDataSource).selectedTeam = selectedTeam
                     navigationController?.pushViewController(viewController, animated: true)
                 }
+            
+            case .Notes:
+                // TODO: Replace with real profile object
+                if let selectedNote = dataSource.contentAtIndexPath(indexPath)? as? NoteService.Containers.Note {
+                    let viewController = NewNoteViewController(nibName: "NewNoteViewController", bundle: nil)
+                    viewController.profile = AuthViewController.getLoggedInUserProfile()
+                    viewController.note = selectedNote
+                    navigationController?.pushViewController(viewController, animated: true)
+                }
                 
             default:
                 performSegueWithIdentifier("showListOfPeople", sender: collectionView)
@@ -372,6 +381,12 @@ CardHeaderViewDelegate {
         case .Locations:
             break
             
+        case .Notes:
+            let viewController = NotesOverviewViewController(nibName: "NotesOverviewViewController", bundle: nil)
+            viewController.dataSource.setInitialData(card.allContent as [AnyObject], ofType: nil)
+            viewController.title = card.title
+            navigationController?.pushViewController(viewController, animated: true)
+
         default:
             break
         }
