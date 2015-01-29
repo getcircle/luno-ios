@@ -103,15 +103,7 @@ CardHeaderViewDelegate {
             moveSearchFieldToCenter()
             addShadowToSearchField()
             firstLoad = false
-        }
-
-        if let currentDataSource = (collectionView.dataSource as? SearchLandingDataSource) {
-            currentDataSource.loadData { (error) -> Void in
-                if error == nil {
-                    self.activityIndicatorView.stopAnimating()
-                    self.collectionView.reloadData()
-                }
-            }
+            loadData()
         }
     }
 
@@ -122,6 +114,17 @@ CardHeaderViewDelegate {
 
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
+        
+        // We need to remove observer only from some notifications
+        // specifically the ones that modify the view hierarchy
+        NSNotificationCenter.defaultCenter().removeObserver(
+            self,
+            name: TagsCollectionViewCellNotifications.onTagSelectedNotification,
+            object: nil
+        )
+    }
+    
+    deinit {
         unregisterNotifications()
     }
 
@@ -142,6 +145,19 @@ CardHeaderViewDelegate {
             searchHeaderView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
             searchHeaderView.layer.cornerRadius = 10.0
             selectedAction = .None
+        }
+    }
+    
+    // MARK: - Load Data
+    
+    private func loadData() {
+        if let currentDataSource = (collectionView.dataSource as? SearchLandingDataSource) {
+            currentDataSource.loadData { (error) -> Void in
+                if error == nil {
+                    self.activityIndicatorView.stopAnimating()
+                    self.collectionView.reloadData()
+                }
+            }
         }
     }
 
@@ -199,8 +215,8 @@ CardHeaderViewDelegate {
         
         loggedInUserProfileImageView = CircleImageView(frame: CGRectMake(0.0, 0.0, 30.0, 30.0))
         loggedInUserProfileImageView.makeItCircular(false)
-        loadUserProfileImage()
         leftView.addSubview(loggedInUserProfileImageView)
+        loadUserProfileImage()
         
         var leftButton = UIButton(frame: leftView.frame)
         leftButton.backgroundColor = UIColor.clearColor()
@@ -400,12 +416,6 @@ CardHeaderViewDelegate {
             // TODO Show error
         }
     }
-
-    @IBAction func logoutButtonTapped(sender: AnyObject!) {
-        (collectionView.dataSource as? CardDataSource)?.resetCards()
-        collectionView.reloadData()
-        AuthViewController.logOut()
-    }
     
     @IBAction func profileLongPressHandler(sender: AnyObject!) {
         let verifyPhoneNumberVC = VerifyPhoneNumberViewController(nibName: "VerifyPhoneNumberViewController", bundle: nil)
@@ -431,6 +441,12 @@ CardHeaderViewDelegate {
     // MARK: - Notifications
     
     private func registerNotifications() {
+        // Always make sure we register only once
+        // Usually this is not needed because the calls are ensured to be balanced
+        // but in this case, we deregister from some in viewDidDisappear and some in deinit
+        // Thereafter every viewWillAppear calls for registeration. So, we need to ensure
+        // we don't register more than once.
+        unregisterNotifications()
         NSNotificationCenter.defaultCenter().addObserver(
             self,
             selector: "didSelectTag:",
@@ -453,7 +469,10 @@ CardHeaderViewDelegate {
     // MARK: - User Logged in Notification
     
     func userLoggedIn(notification: NSNotification!) {
+        (collectionView.dataSource as? CardDataSource)?.resetCards()
+        collectionView.reloadData()
         loadUserProfileImage()
+        loadData()
     }
     
     // MARK: - Helpers

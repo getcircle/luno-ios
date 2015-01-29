@@ -242,7 +242,7 @@ class CardDataSource: NSObject, UICollectionViewDataSource {
     }
     
     final func resetCards() {
-        cards.removeAll(keepCapacity: false)
+        cards.removeAll(keepCapacity: true)
     }
     
     // MARK: - Cell Registration

@@ -12,8 +12,8 @@ import ProtobufRegistry
 class SearchLandingDataSource: CardDataSource {
     
     override func loadData(completionHandler: (error: NSError?) -> Void) {
-        completionHandler(error: nil)
         if cards.count > 0 {
+            completionHandler(error: nil)
             return
         }
         

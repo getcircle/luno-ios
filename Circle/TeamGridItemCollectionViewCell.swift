@@ -48,7 +48,7 @@ class TeamGridItemCollectionViewCell: CircleCollectionViewCell {
     }
 
     override func intrinsicContentSize() -> CGSize {
-        return TeamGridItemCollectionViewCell.sizeByMode(sizeMode)
+        return self.dynamicType.sizeByMode(sizeMode)
     }
     
     override func setData(data: AnyObject) {
