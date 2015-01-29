@@ -25,7 +25,9 @@ class SearchLandingDataSource: CardDataSource {
                 if error == nil {
                     for category in categories ?? [] {
                         let categoryCard = Card(category: category)
-                        if category.profiles.count > 0 {
+                        if category.notes.count > 0 {
+                            categoryCard.addContent(content: category.notes, maxVisibleItems: 5)
+                        } else if category.profiles.count > 0 {
                             var profiles = category.profiles
                             var maxVisibleItems = 0
                             switch category.type {
