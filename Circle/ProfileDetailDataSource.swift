@@ -232,6 +232,12 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
             value = profile[item.containerKey]
         case "manager":
             value = manager?[item.containerKey]
+            // Handle CEO where manager doesn't exist
+            if let stringValue = value as? String {
+                if stringValue == "" {
+                    value = nil
+                }
+            }
         case "address":
             value = address?[item.containerKey]
         case "team":
