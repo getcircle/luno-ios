@@ -226,7 +226,7 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
     }
     
     private func addKeyValueItemToCard(item: SectionItem, card: Card) {
-        var value: AnyObject?
+        var value: Any?
         switch item.container {
         case "profile":
             value = profile[item.containerKey]
@@ -246,8 +246,8 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
             value = nil
         }
         
-        if let value: AnyObject = value {
-            var dataDict: [String: AnyObject!] = [
+        if let value = value as? String {
+            var dataDict: [String: AnyObject] = [
                 "key": item.containerKey,
                 "name": item.title,
                 "value": value,

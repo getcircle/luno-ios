@@ -62,7 +62,7 @@ final public class MediaService : GeneratedMessage {
       //Nested type declaration start
 
         final public class UploadInstructions : GeneratedMessage {
-          override public subscript (key: String) -> AnyObject? {
+          override public subscript (key: String) -> Any? {
                  switch key {
                  case "upload_id": return upload_id
                  case "upload_url": return upload_url
@@ -333,7 +333,7 @@ final public class MediaService : GeneratedMessage {
 
       //Nested type declaration end
 
-      override public subscript (key: String) -> AnyObject? {
+      override public subscript (key: String) -> Any? {
              switch key {
              default: return nil
              }
@@ -491,7 +491,7 @@ final public class MediaService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Request : GeneratedMessage {
-          override public subscript (key: String) -> AnyObject? {
+          override public subscript (key: String) -> Any? {
                  switch key {
                  case "media_object": return Int(self.media_object.rawValue)
                  case "media_key": return media_key
@@ -730,7 +730,7 @@ final public class MediaService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Response : GeneratedMessage {
-          override public subscript (key: String) -> AnyObject? {
+          override public subscript (key: String) -> Any? {
                  switch key {
                  case "upload_instructions": return upload_instructions
                  default: return nil
@@ -938,7 +938,7 @@ final public class MediaService : GeneratedMessage {
 
       //Nested type declaration end
 
-      override public subscript (key: String) -> AnyObject? {
+      override public subscript (key: String) -> Any? {
              switch key {
              default: return nil
              }
@@ -1096,7 +1096,7 @@ final public class MediaService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Request : GeneratedMessage {
-          override public subscript (key: String) -> AnyObject? {
+          override public subscript (key: String) -> Any? {
                  switch key {
                  case "media_object": return Int(self.media_object.rawValue)
                  case "media_key": return media_key
@@ -1417,7 +1417,7 @@ final public class MediaService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Response : GeneratedMessage {
-          override public subscript (key: String) -> AnyObject? {
+          override public subscript (key: String) -> Any? {
                  switch key {
                  case "media_url": return media_url
                  default: return nil
@@ -1606,7 +1606,7 @@ final public class MediaService : GeneratedMessage {
 
       //Nested type declaration end
 
-      override public subscript (key: String) -> AnyObject? {
+      override public subscript (key: String) -> Any? {
              switch key {
              default: return nil
              }
@@ -1773,7 +1773,7 @@ final public class MediaService : GeneratedMessage {
 
     //Enum type declaration end 
 
-  override public subscript (key: String) -> AnyObject? {
+  override public subscript (key: String) -> Any? {
          switch key {
          default: return nil
          }

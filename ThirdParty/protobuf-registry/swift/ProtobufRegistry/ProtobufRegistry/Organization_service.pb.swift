@@ -134,7 +134,7 @@ final public class OrganizationService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Organization : GeneratedMessage {
-          override public subscript (key: String) -> AnyObject? {
+          override public subscript (key: String) -> Any? {
                  switch key {
                  case "id": return id
                  case "name": return name
@@ -410,7 +410,7 @@ final public class OrganizationService : GeneratedMessage {
       //Nested type declaration start
 
         final public class PathPart : GeneratedMessage {
-          override public subscript (key: String) -> AnyObject? {
+          override public subscript (key: String) -> Any? {
                  switch key {
                  case "id": return id
                  case "name": return name
@@ -686,7 +686,7 @@ final public class OrganizationService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Team : GeneratedMessage {
-          override public subscript (key: String) -> AnyObject? {
+          override public subscript (key: String) -> Any? {
                  switch key {
                  case "id": return id
                  case "name": return name
@@ -1081,7 +1081,7 @@ final public class OrganizationService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Address : GeneratedMessage {
-          override public subscript (key: String) -> AnyObject? {
+          override public subscript (key: String) -> Any? {
                  switch key {
                  case "id": return id
                  case "organization_id": return organization_id
@@ -1721,7 +1721,7 @@ final public class OrganizationService : GeneratedMessage {
 
       //Nested type declaration end
 
-      override public subscript (key: String) -> AnyObject? {
+      override public subscript (key: String) -> Any? {
              switch key {
              default: return nil
              }
@@ -1879,7 +1879,7 @@ final public class OrganizationService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Request : GeneratedMessage {
-          override public subscript (key: String) -> AnyObject? {
+          override public subscript (key: String) -> Any? {
                  switch key {
                  case "organization": return organization
                  default: return nil
@@ -2092,7 +2092,7 @@ final public class OrganizationService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Response : GeneratedMessage {
-          override public subscript (key: String) -> AnyObject? {
+          override public subscript (key: String) -> Any? {
                  switch key {
                  case "organization": return organization
                  default: return nil
@@ -2300,7 +2300,7 @@ final public class OrganizationService : GeneratedMessage {
 
       //Nested type declaration end
 
-      override public subscript (key: String) -> AnyObject? {
+      override public subscript (key: String) -> Any? {
              switch key {
              default: return nil
              }
@@ -2500,7 +2500,7 @@ final public class OrganizationService : GeneratedMessage {
           //OneOf declaration end
 
           private var storageLookupKey:OrganizationService.GetOrganization.Request.LookupKey =  OrganizationService.GetOrganization.Request.LookupKey.LookupKeyOneOfNotSet
-          override public subscript (key: String) -> AnyObject? {
+          override public subscript (key: String) -> Any? {
                  switch key {
                  case "organization_id": return organization_id
                  case "organization_domain": return organization_domain
@@ -2765,7 +2765,7 @@ final public class OrganizationService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Response : GeneratedMessage {
-          override public subscript (key: String) -> AnyObject? {
+          override public subscript (key: String) -> Any? {
                  switch key {
                  case "organization": return organization
                  default: return nil
@@ -2973,7 +2973,7 @@ final public class OrganizationService : GeneratedMessage {
 
       //Nested type declaration end
 
-      override public subscript (key: String) -> AnyObject? {
+      override public subscript (key: String) -> Any? {
              switch key {
              default: return nil
              }
@@ -3131,7 +3131,7 @@ final public class OrganizationService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Request : GeneratedMessage {
-          override public subscript (key: String) -> AnyObject? {
+          override public subscript (key: String) -> Any? {
                  switch key {
                  case "team": return team
                  case "child_of": return child_of
@@ -3385,7 +3385,7 @@ final public class OrganizationService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Response : GeneratedMessage {
-          override public subscript (key: String) -> AnyObject? {
+          override public subscript (key: String) -> Any? {
                  switch key {
                  case "team": return team
                  default: return nil
@@ -3593,7 +3593,7 @@ final public class OrganizationService : GeneratedMessage {
 
       //Nested type declaration end
 
-      override public subscript (key: String) -> AnyObject? {
+      override public subscript (key: String) -> Any? {
              switch key {
              default: return nil
              }
@@ -3751,7 +3751,7 @@ final public class OrganizationService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Request : GeneratedMessage {
-          override public subscript (key: String) -> AnyObject? {
+          override public subscript (key: String) -> Any? {
                  switch key {
                  case "team_id": return team_id
                  case "name": return name
@@ -4027,7 +4027,7 @@ final public class OrganizationService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Response : GeneratedMessage {
-          override public subscript (key: String) -> AnyObject? {
+          override public subscript (key: String) -> Any? {
                  switch key {
                  case "team": return team
                  default: return nil
@@ -4235,7 +4235,7 @@ final public class OrganizationService : GeneratedMessage {
 
       //Nested type declaration end
 
-      override public subscript (key: String) -> AnyObject? {
+      override public subscript (key: String) -> Any? {
              switch key {
              default: return nil
              }
@@ -4393,7 +4393,7 @@ final public class OrganizationService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Request : GeneratedMessage {
-          override public subscript (key: String) -> AnyObject? {
+          override public subscript (key: String) -> Any? {
                  switch key {
                  case "organization_id": return organization_id
                  default: return nil
@@ -4587,7 +4587,7 @@ final public class OrganizationService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Response : GeneratedMessage {
-          override public subscript (key: String) -> AnyObject? {
+          override public subscript (key: String) -> Any? {
                  switch key {
                  default: return nil
                  }
@@ -4772,7 +4772,7 @@ final public class OrganizationService : GeneratedMessage {
 
       //Nested type declaration end
 
-      override public subscript (key: String) -> AnyObject? {
+      override public subscript (key: String) -> Any? {
              switch key {
              default: return nil
              }
@@ -4930,7 +4930,7 @@ final public class OrganizationService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Request : GeneratedMessage {
-          override public subscript (key: String) -> AnyObject? {
+          override public subscript (key: String) -> Any? {
                  switch key {
                  case "team_id": return team_id
                  default: return nil
@@ -5124,7 +5124,7 @@ final public class OrganizationService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Response : GeneratedMessage {
-          override public subscript (key: String) -> AnyObject? {
+          override public subscript (key: String) -> Any? {
                  switch key {
                  default: return nil
                  }
@@ -5309,7 +5309,7 @@ final public class OrganizationService : GeneratedMessage {
 
       //Nested type declaration end
 
-      override public subscript (key: String) -> AnyObject? {
+      override public subscript (key: String) -> Any? {
              switch key {
              default: return nil
              }
@@ -5467,7 +5467,7 @@ final public class OrganizationService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Request : GeneratedMessage {
-          override public subscript (key: String) -> AnyObject? {
+          override public subscript (key: String) -> Any? {
                  switch key {
                  case "organization_id": return organization_id
                  default: return nil
@@ -5661,7 +5661,7 @@ final public class OrganizationService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Response : GeneratedMessage {
-          override public subscript (key: String) -> AnyObject? {
+          override public subscript (key: String) -> Any? {
                  switch key {
                  case "team": return team
                  default: return nil
@@ -5869,7 +5869,7 @@ final public class OrganizationService : GeneratedMessage {
 
       //Nested type declaration end
 
-      override public subscript (key: String) -> AnyObject? {
+      override public subscript (key: String) -> Any? {
              switch key {
              default: return nil
              }
@@ -6027,7 +6027,7 @@ final public class OrganizationService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Request : GeneratedMessage {
-          override public subscript (key: String) -> AnyObject? {
+          override public subscript (key: String) -> Any? {
                  switch key {
                  case "address": return address
                  default: return nil
@@ -6240,7 +6240,7 @@ final public class OrganizationService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Response : GeneratedMessage {
-          override public subscript (key: String) -> AnyObject? {
+          override public subscript (key: String) -> Any? {
                  switch key {
                  case "address": return address
                  default: return nil
@@ -6448,7 +6448,7 @@ final public class OrganizationService : GeneratedMessage {
 
       //Nested type declaration end
 
-      override public subscript (key: String) -> AnyObject? {
+      override public subscript (key: String) -> Any? {
              switch key {
              default: return nil
              }
@@ -6606,7 +6606,7 @@ final public class OrganizationService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Request : GeneratedMessage {
-          override public subscript (key: String) -> AnyObject? {
+          override public subscript (key: String) -> Any? {
                  switch key {
                  case "address_id": return address_id
                  default: return nil
@@ -6800,7 +6800,7 @@ final public class OrganizationService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Response : GeneratedMessage {
-          override public subscript (key: String) -> AnyObject? {
+          override public subscript (key: String) -> Any? {
                  switch key {
                  default: return nil
                  }
@@ -6948,7 +6948,7 @@ final public class OrganizationService : GeneratedMessage {
 
       //Nested type declaration end
 
-      override public subscript (key: String) -> AnyObject? {
+      override public subscript (key: String) -> Any? {
              switch key {
              default: return nil
              }
@@ -7106,7 +7106,7 @@ final public class OrganizationService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Request : GeneratedMessage {
-          override public subscript (key: String) -> AnyObject? {
+          override public subscript (key: String) -> Any? {
                  switch key {
                  case "address_id": return address_id
                  case "name": return name
@@ -7382,7 +7382,7 @@ final public class OrganizationService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Response : GeneratedMessage {
-          override public subscript (key: String) -> AnyObject? {
+          override public subscript (key: String) -> Any? {
                  switch key {
                  case "address": return address
                  default: return nil
@@ -7590,7 +7590,7 @@ final public class OrganizationService : GeneratedMessage {
 
       //Nested type declaration end
 
-      override public subscript (key: String) -> AnyObject? {
+      override public subscript (key: String) -> Any? {
              switch key {
              default: return nil
              }
@@ -7780,7 +7780,7 @@ final public class OrganizationService : GeneratedMessage {
           //OneOf declaration end
 
           private var storageLookupKey:OrganizationService.GetAddresses.Request.LookupKey =  OrganizationService.GetAddresses.Request.LookupKey.LookupKeyOneOfNotSet
-          override public subscript (key: String) -> AnyObject? {
+          override public subscript (key: String) -> Any? {
                  switch key {
                  case "organization_id": return organization_id
                  default: return nil
@@ -7989,7 +7989,7 @@ final public class OrganizationService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Response : GeneratedMessage {
-          override public subscript (key: String) -> AnyObject? {
+          override public subscript (key: String) -> Any? {
                  switch key {
                  default: return nil
                  }
@@ -8174,7 +8174,7 @@ final public class OrganizationService : GeneratedMessage {
 
       //Nested type declaration end
 
-      override public subscript (key: String) -> AnyObject? {
+      override public subscript (key: String) -> Any? {
              switch key {
              default: return nil
              }
@@ -8322,7 +8322,7 @@ final public class OrganizationService : GeneratedMessage {
 
   //Nested type declaration end
 
-  override public subscript (key: String) -> AnyObject? {
+  override public subscript (key: String) -> Any? {
          switch key {
          default: return nil
          }

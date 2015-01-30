@@ -420,7 +420,7 @@ public func == (lhs: NoteServiceRequests, rhs: NoteServiceRequests) -> Bool {
 }
 
 final public class UserServiceRequests : GeneratedMessage {
-  override public subscript (key: String) -> AnyObject? {
+  override public subscript (key: String) -> Any? {
          switch key {
          default: return nil
          }
@@ -586,7 +586,7 @@ final public class UserServiceRequestsBuilder : GeneratedMessageBuilder {
 }
 
 final public class OrganizationServiceRequests : GeneratedMessage {
-  override public subscript (key: String) -> AnyObject? {
+  override public subscript (key: String) -> Any? {
          switch key {
          default: return nil
          }
@@ -764,7 +764,7 @@ final public class OrganizationServiceRequestsBuilder : GeneratedMessageBuilder 
 }
 
 final public class ProfileServiceRequests : GeneratedMessage {
-  override public subscript (key: String) -> AnyObject? {
+  override public subscript (key: String) -> Any? {
          switch key {
          default: return nil
          }
@@ -954,7 +954,7 @@ final public class ProfileServiceRequestsBuilder : GeneratedMessageBuilder {
 }
 
 final public class SearchServiceRequests : GeneratedMessage {
-  override public subscript (key: String) -> AnyObject? {
+  override public subscript (key: String) -> Any? {
          switch key {
          default: return nil
          }
@@ -1102,7 +1102,7 @@ final public class SearchServiceRequestsBuilder : GeneratedMessageBuilder {
 }
 
 final public class LandingServiceRequests : GeneratedMessage {
-  override public subscript (key: String) -> AnyObject? {
+  override public subscript (key: String) -> Any? {
          switch key {
          default: return nil
          }
@@ -1253,7 +1253,7 @@ final public class LandingServiceRequestsBuilder : GeneratedMessageBuilder {
 }
 
 final public class MediaServiceRequests : GeneratedMessage {
-  override public subscript (key: String) -> AnyObject? {
+  override public subscript (key: String) -> Any? {
          switch key {
          default: return nil
          }
@@ -1404,7 +1404,7 @@ final public class MediaServiceRequestsBuilder : GeneratedMessageBuilder {
 }
 
 final public class NoteServiceRequests : GeneratedMessage {
-  override public subscript (key: String) -> AnyObject? {
+  override public subscript (key: String) -> Any? {
          switch key {
          default: return nil
          }

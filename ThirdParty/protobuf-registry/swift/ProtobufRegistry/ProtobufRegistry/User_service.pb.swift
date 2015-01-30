@@ -102,7 +102,7 @@ final public class UserService : GeneratedMessage {
       //Nested type declaration start
 
         final public class User : GeneratedMessage {
-          override public subscript (key: String) -> AnyObject? {
+          override public subscript (key: String) -> Any? {
                  switch key {
                  case "id": return id
                  case "primary_email": return primary_email
@@ -496,7 +496,7 @@ final public class UserService : GeneratedMessage {
 
       //Nested type declaration end
 
-      override public subscript (key: String) -> AnyObject? {
+      override public subscript (key: String) -> Any? {
              switch key {
              default: return nil
              }
@@ -654,7 +654,7 @@ final public class UserService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Request : GeneratedMessage {
-          override public subscript (key: String) -> AnyObject? {
+          override public subscript (key: String) -> Any? {
                  switch key {
                  case "password": return password
                  case "email": return email
@@ -889,7 +889,7 @@ final public class UserService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Response : GeneratedMessage {
-          override public subscript (key: String) -> AnyObject? {
+          override public subscript (key: String) -> Any? {
                  switch key {
                  case "user": return user
                  default: return nil
@@ -1097,7 +1097,7 @@ final public class UserService : GeneratedMessage {
 
       //Nested type declaration end
 
-      override public subscript (key: String) -> AnyObject? {
+      override public subscript (key: String) -> Any? {
              switch key {
              default: return nil
              }
@@ -1255,7 +1255,7 @@ final public class UserService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Request : GeneratedMessage {
-          override public subscript (key: String) -> AnyObject? {
+          override public subscript (key: String) -> Any? {
                  switch key {
                  case "user": return user
                  default: return nil
@@ -1468,7 +1468,7 @@ final public class UserService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Response : GeneratedMessage {
-          override public subscript (key: String) -> AnyObject? {
+          override public subscript (key: String) -> Any? {
                  switch key {
                  case "user": return user
                  default: return nil
@@ -1676,7 +1676,7 @@ final public class UserService : GeneratedMessage {
 
       //Nested type declaration end
 
-      override public subscript (key: String) -> AnyObject? {
+      override public subscript (key: String) -> Any? {
              switch key {
              default: return nil
              }
@@ -1866,7 +1866,7 @@ final public class UserService : GeneratedMessage {
           //OneOf declaration end
 
           private var storageLookupKey:UserService.GetUser.Request.LookupKey =  UserService.GetUser.Request.LookupKey.LookupKeyOneOfNotSet
-          override public subscript (key: String) -> AnyObject? {
+          override public subscript (key: String) -> Any? {
                  switch key {
                  case "email": return email
                  default: return nil
@@ -2075,7 +2075,7 @@ final public class UserService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Response : GeneratedMessage {
-          override public subscript (key: String) -> AnyObject? {
+          override public subscript (key: String) -> Any? {
                  switch key {
                  case "user": return user
                  default: return nil
@@ -2283,7 +2283,7 @@ final public class UserService : GeneratedMessage {
 
       //Nested type declaration end
 
-      override public subscript (key: String) -> AnyObject? {
+      override public subscript (key: String) -> Any? {
              switch key {
              default: return nil
              }
@@ -2441,7 +2441,7 @@ final public class UserService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Request : GeneratedMessage {
-          override public subscript (key: String) -> AnyObject? {
+          override public subscript (key: String) -> Any? {
                  switch key {
                  case "user_id": return user_id
                  default: return nil
@@ -2635,7 +2635,7 @@ final public class UserService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Response : GeneratedMessage {
-          override public subscript (key: String) -> AnyObject? {
+          override public subscript (key: String) -> Any? {
                  switch key {
                  case "exists": return exists
                  default: return nil
@@ -2824,7 +2824,7 @@ final public class UserService : GeneratedMessage {
 
       //Nested type declaration end
 
-      override public subscript (key: String) -> AnyObject? {
+      override public subscript (key: String) -> Any? {
              switch key {
              default: return nil
              }
@@ -2987,7 +2987,7 @@ final public class UserService : GeneratedMessage {
           //Nested type declaration start
 
             final public class Credentials : GeneratedMessage {
-              override public subscript (key: String) -> AnyObject? {
+              override public subscript (key: String) -> Any? {
                      switch key {
                      case "key": return key
                      case "secret": return secret
@@ -3236,7 +3236,7 @@ final public class UserService : GeneratedMessage {
 
             //Enum type declaration end 
 
-          override public subscript (key: String) -> AnyObject? {
+          override public subscript (key: String) -> Any? {
                  switch key {
                  case "backend": return Int(self.backend.rawValue)
                  case "credentials": return credentials
@@ -3494,7 +3494,7 @@ final public class UserService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Response : GeneratedMessage {
-          override public subscript (key: String) -> AnyObject? {
+          override public subscript (key: String) -> Any? {
                  switch key {
                  case "user": return user
                  case "authenticated": return authenticated
@@ -3784,7 +3784,7 @@ final public class UserService : GeneratedMessage {
 
       //Nested type declaration end
 
-      override public subscript (key: String) -> AnyObject? {
+      override public subscript (key: String) -> Any? {
              switch key {
              default: return nil
              }
@@ -3942,7 +3942,7 @@ final public class UserService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Request : GeneratedMessage {
-          override public subscript (key: String) -> AnyObject? {
+          override public subscript (key: String) -> Any? {
                  switch key {
                  case "user_id": return user_id
                  default: return nil
@@ -4136,7 +4136,7 @@ final public class UserService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Response : GeneratedMessage {
-          override public subscript (key: String) -> AnyObject? {
+          override public subscript (key: String) -> Any? {
                  switch key {
                  case "message_id": return message_id
                  default: return nil
@@ -4325,7 +4325,7 @@ final public class UserService : GeneratedMessage {
 
       //Nested type declaration end
 
-      override public subscript (key: String) -> AnyObject? {
+      override public subscript (key: String) -> Any? {
              switch key {
              default: return nil
              }
@@ -4483,7 +4483,7 @@ final public class UserService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Request : GeneratedMessage {
-          override public subscript (key: String) -> AnyObject? {
+          override public subscript (key: String) -> Any? {
                  switch key {
                  case "user_id": return user_id
                  case "code": return code
@@ -4718,7 +4718,7 @@ final public class UserService : GeneratedMessage {
       //Nested type declaration start
 
         final public class Response : GeneratedMessage {
-          override public subscript (key: String) -> AnyObject? {
+          override public subscript (key: String) -> Any? {
                  switch key {
                  case "verified": return verified
                  default: return nil
@@ -4907,7 +4907,7 @@ final public class UserService : GeneratedMessage {
 
       //Nested type declaration end
 
-      override public subscript (key: String) -> AnyObject? {
+      override public subscript (key: String) -> Any? {
              switch key {
              default: return nil
              }
@@ -5055,7 +5055,7 @@ final public class UserService : GeneratedMessage {
 
   //Nested type declaration end
 
-  override public subscript (key: String) -> AnyObject? {
+  override public subscript (key: String) -> Any? {
          switch key {
          default: return nil
          }

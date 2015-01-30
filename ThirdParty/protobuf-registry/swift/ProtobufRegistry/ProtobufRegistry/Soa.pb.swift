@@ -29,6 +29,19 @@ public func == (lhs: Control, rhs: Control) -> Bool {
   return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
 }
 
+public func == (lhs: Paginator, rhs: Paginator) -> Bool {
+  if (lhs === rhs) {
+    return true
+  }
+  var fieldCheck:Bool = (lhs.hashValue == rhs.hashValue)
+  fieldCheck = fieldCheck && (lhs.hasNextPage == rhs.hasNextPage) && (!lhs.hasNextPage || lhs.next_page == rhs.next_page)
+  fieldCheck = fieldCheck && (lhs.hasPreviousPage == rhs.hasPreviousPage) && (!lhs.hasPreviousPage || lhs.previous_page == rhs.previous_page)
+  fieldCheck = fieldCheck && (lhs.hasCount == rhs.hasCount) && (!lhs.hasCount || lhs.count == rhs.count)
+  fieldCheck = fieldCheck && (lhs.hasPageSize == rhs.hasPageSize) && (!lhs.hasPageSize || lhs.page_size == rhs.page_size)
+  fieldCheck = fieldCheck && (lhs.hasPage == rhs.hasPage) && (!lhs.hasPage || lhs.page == rhs.page)
+  return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
+}
+
 public func == (lhs: ActionControl, rhs: ActionControl) -> Bool {
   if (lhs === rhs) {
     return true
@@ -36,6 +49,7 @@ public func == (lhs: ActionControl, rhs: ActionControl) -> Bool {
   var fieldCheck:Bool = (lhs.hashValue == rhs.hashValue)
   fieldCheck = fieldCheck && (lhs.hasService == rhs.hasService) && (!lhs.hasService || lhs.service == rhs.service)
   fieldCheck = fieldCheck && (lhs.hasAction == rhs.hasAction) && (!lhs.hasAction || lhs.action == rhs.action)
+  fieldCheck = fieldCheck && (lhs.hasPaginator == rhs.hasPaginator) && (!lhs.hasPaginator || lhs.paginator == rhs.paginator)
   return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
 }
 
@@ -112,7 +126,7 @@ public func == (lhs: ServiceResponse, rhs: ServiceResponse) -> Bool {
 }
 
 final public class Control : GeneratedMessage {
-  override public subscript (key: String) -> AnyObject? {
+  override public subscript (key: String) -> Any? {
          switch key {
          case "token": return token
          case "service": return service
@@ -130,9 +144,6 @@ final public class Control : GeneratedMessage {
        super.init()
   }
   override public func isInitialized() -> Bool {
-    if !hasService {
-      return false
-    }
    return true
   }
   override public func writeToCodedOutputStream(output:CodedOutputStream) {
@@ -341,11 +352,362 @@ final public class ControlBuilder : GeneratedMessageBuilder {
   }
 }
 
+final public class Paginator : GeneratedMessage {
+  override public subscript (key: String) -> Any? {
+         switch key {
+         case "next_page": return next_page
+         case "previous_page": return previous_page
+         case "count": return count
+         case "page_size": return page_size
+         case "page": return page
+         default: return nil
+         }
+  }
+
+  public private(set) var hasNextPage:Bool = false
+  public private(set) var next_page:String = ""
+
+  public private(set) var hasPreviousPage:Bool = false
+  public private(set) var previous_page:String = ""
+
+  public private(set) var hasCount:Bool = false
+  public private(set) var count:String = ""
+
+  public private(set) var hasPageSize:Bool = false
+  public private(set) var page_size:String = ""
+
+  public private(set) var hasPage:Bool = false
+  public private(set) var page:String = ""
+
+  required public init() {
+       super.init()
+  }
+  override public func isInitialized() -> Bool {
+   return true
+  }
+  override public func writeToCodedOutputStream(output:CodedOutputStream) {
+    if hasNextPage {
+      output.writeString(1, value:next_page)
+    }
+    if hasPreviousPage {
+      output.writeString(2, value:previous_page)
+    }
+    if hasCount {
+      output.writeString(3, value:count)
+    }
+    if hasPageSize {
+      output.writeString(4, value:page_size)
+    }
+    if hasPage {
+      output.writeString(5, value:page)
+    }
+    unknownFields.writeToCodedOutputStream(output)
+  }
+  override public func serializedSize() -> Int32 {
+    var size:Int32 = memoizedSerializedSize
+    if size != -1 {
+     return size
+    }
+
+    size = 0
+    if hasNextPage {
+      size += WireFormat.computeStringSize(1, value:next_page)
+    }
+    if hasPreviousPage {
+      size += WireFormat.computeStringSize(2, value:previous_page)
+    }
+    if hasCount {
+      size += WireFormat.computeStringSize(3, value:count)
+    }
+    if hasPageSize {
+      size += WireFormat.computeStringSize(4, value:page_size)
+    }
+    if hasPage {
+      size += WireFormat.computeStringSize(5, value:page)
+    }
+    size += unknownFields.serializedSize()
+    memoizedSerializedSize = size
+    return size
+  }
+  public class func parseFromData(data:[Byte]) -> Paginator {
+    return Paginator.builder().mergeFromData(data).build()
+  }
+  public class func parseFromData(data:[Byte], extensionRegistry:ExtensionRegistry) -> Paginator {
+    return Paginator.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
+  }
+  public class func parseFromInputStream(input:NSInputStream) -> Paginator {
+    return Paginator.builder().mergeFromInputStream(input).build()
+  }
+  public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->Paginator {
+    return Paginator.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
+  }
+  public class func parseFromCodedInputStream(input:CodedInputStream) -> Paginator {
+    return Paginator.builder().mergeFromCodedInputStream(input).build()
+  }
+  public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> Paginator {
+    return Paginator.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
+  }
+  public class func builder() -> PaginatorBuilder {
+    return Paginator.classBuilder() as PaginatorBuilder
+  }
+  public func builder() -> PaginatorBuilder {
+    return classBuilder() as PaginatorBuilder
+  }
+  public override class func classBuilder() -> MessageBuilder {
+    return PaginatorBuilder()
+  }
+  public override func classBuilder() -> MessageBuilder {
+    return Paginator.builder()
+  }
+  public func toBuilder() -> PaginatorBuilder {
+    return Paginator.builderWithPrototype(self)
+  }
+  public class func builderWithPrototype(prototype:Paginator) -> PaginatorBuilder {
+    return Paginator.builder().mergeFrom(prototype)
+  }
+  override public func writeDescriptionTo(inout output:String, indent:String) {
+    if hasNextPage {
+      output += "\(indent) next_page: \(next_page) \n"
+    }
+    if hasPreviousPage {
+      output += "\(indent) previous_page: \(previous_page) \n"
+    }
+    if hasCount {
+      output += "\(indent) count: \(count) \n"
+    }
+    if hasPageSize {
+      output += "\(indent) page_size: \(page_size) \n"
+    }
+    if hasPage {
+      output += "\(indent) page: \(page) \n"
+    }
+    unknownFields.writeDescriptionTo(&output, indent:indent)
+  }
+  override public var hashValue:Int {
+      get {
+          var hashCode:Int = 7
+          if hasNextPage {
+             hashCode = (hashCode &* 31) &+ next_page.hashValue
+          }
+          if hasPreviousPage {
+             hashCode = (hashCode &* 31) &+ previous_page.hashValue
+          }
+          if hasCount {
+             hashCode = (hashCode &* 31) &+ count.hashValue
+          }
+          if hasPageSize {
+             hashCode = (hashCode &* 31) &+ page_size.hashValue
+          }
+          if hasPage {
+             hashCode = (hashCode &* 31) &+ page.hashValue
+          }
+          hashCode = (hashCode &* 31) &+  unknownFields.hashValue
+          return hashCode
+      }
+  }
+
+
+  //Meta information declaration start
+
+  override public class func className() -> String {
+      return "Paginator"
+  }
+  override public func className() -> String {
+      return "Paginator"
+  }
+  override public func classMetaType() -> GeneratedMessage.Type {
+      return Paginator.self
+  }
+
+
+  //Meta information declaration end
+
+}
+
+final public class PaginatorBuilder : GeneratedMessageBuilder {
+  private var builderResult:Paginator
+
+  required override public init () {
+     builderResult = Paginator()
+     super.init()
+  }
+  public var hasNextPage:Bool {
+       get {
+            return builderResult.hasNextPage
+       }
+  }
+  public var next_page:String {
+       get {
+            return builderResult.next_page
+       }
+       set (value) {
+           builderResult.hasNextPage = true
+           builderResult.next_page = value
+       }
+  }
+  public func clearNextPage() -> PaginatorBuilder{
+       builderResult.hasNextPage = false
+       builderResult.next_page = ""
+       return self
+  }
+  public var hasPreviousPage:Bool {
+       get {
+            return builderResult.hasPreviousPage
+       }
+  }
+  public var previous_page:String {
+       get {
+            return builderResult.previous_page
+       }
+       set (value) {
+           builderResult.hasPreviousPage = true
+           builderResult.previous_page = value
+       }
+  }
+  public func clearPreviousPage() -> PaginatorBuilder{
+       builderResult.hasPreviousPage = false
+       builderResult.previous_page = ""
+       return self
+  }
+  public var hasCount:Bool {
+       get {
+            return builderResult.hasCount
+       }
+  }
+  public var count:String {
+       get {
+            return builderResult.count
+       }
+       set (value) {
+           builderResult.hasCount = true
+           builderResult.count = value
+       }
+  }
+  public func clearCount() -> PaginatorBuilder{
+       builderResult.hasCount = false
+       builderResult.count = ""
+       return self
+  }
+  public var hasPageSize:Bool {
+       get {
+            return builderResult.hasPageSize
+       }
+  }
+  public var page_size:String {
+       get {
+            return builderResult.page_size
+       }
+       set (value) {
+           builderResult.hasPageSize = true
+           builderResult.page_size = value
+       }
+  }
+  public func clearPageSize() -> PaginatorBuilder{
+       builderResult.hasPageSize = false
+       builderResult.page_size = ""
+       return self
+  }
+  public var hasPage:Bool {
+       get {
+            return builderResult.hasPage
+       }
+  }
+  public var page:String {
+       get {
+            return builderResult.page
+       }
+       set (value) {
+           builderResult.hasPage = true
+           builderResult.page = value
+       }
+  }
+  public func clearPage() -> PaginatorBuilder{
+       builderResult.hasPage = false
+       builderResult.page = ""
+       return self
+  }
+  override public var internalGetResult:GeneratedMessage {
+       get {
+          return builderResult
+       }
+  }
+  public override func clear() -> PaginatorBuilder {
+    builderResult = Paginator()
+    return self
+  }
+  public override func clone() -> PaginatorBuilder {
+    return Paginator.builderWithPrototype(builderResult)
+  }
+  public override func build() -> Paginator {
+       checkInitialized()
+       return buildPartial()
+  }
+  public func buildPartial() -> Paginator {
+    var returnMe:Paginator = builderResult
+    return returnMe
+  }
+  public func mergeFrom(other:Paginator) -> PaginatorBuilder {
+    if other.hasNextPage {
+         next_page = other.next_page
+    }
+    if other.hasPreviousPage {
+         previous_page = other.previous_page
+    }
+    if other.hasCount {
+         count = other.count
+    }
+    if other.hasPageSize {
+         page_size = other.page_size
+    }
+    if other.hasPage {
+         page = other.page
+    }
+    mergeUnknownFields(other.unknownFields)
+    return self
+  }
+  public override func mergeFromCodedInputStream(input:CodedInputStream) ->PaginatorBuilder {
+       return mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
+  }
+  public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> PaginatorBuilder {
+    var unknownFieldsBuilder:UnknownFieldSetBuilder = UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
+    while (true) {
+      var tag = input.readTag()
+      switch tag {
+      case 0: 
+        self.unknownFields = unknownFieldsBuilder.build()
+        return self
+
+      case 10 :
+        next_page = input.readString()
+
+      case 18 :
+        previous_page = input.readString()
+
+      case 26 :
+        count = input.readString()
+
+      case 34 :
+        page_size = input.readString()
+
+      case 42 :
+        page = input.readString()
+
+      default:
+        if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
+           unknownFields = unknownFieldsBuilder.build()
+           return self
+        }
+      }
+    }
+  }
+}
+
 final public class ActionControl : GeneratedMessage {
-  override public subscript (key: String) -> AnyObject? {
+  override public subscript (key: String) -> Any? {
          switch key {
          case "service": return service
          case "action": return action
+         case "paginator": return paginator
          default: return nil
          }
   }
@@ -356,16 +718,12 @@ final public class ActionControl : GeneratedMessage {
   public private(set) var hasAction:Bool = false
   public private(set) var action:String = ""
 
+  public private(set) var hasPaginator:Bool = false
+  public private(set) var paginator:Paginator = Paginator()
   required public init() {
        super.init()
   }
   override public func isInitialized() -> Bool {
-    if !hasService {
-      return false
-    }
-    if !hasAction {
-      return false
-    }
    return true
   }
   override public func writeToCodedOutputStream(output:CodedOutputStream) {
@@ -374,6 +732,9 @@ final public class ActionControl : GeneratedMessage {
     }
     if hasAction {
       output.writeString(2, value:action)
+    }
+    if hasPaginator {
+      output.writeMessage(3, value:paginator)
     }
     unknownFields.writeToCodedOutputStream(output)
   }
@@ -389,6 +750,9 @@ final public class ActionControl : GeneratedMessage {
     }
     if hasAction {
       size += WireFormat.computeStringSize(2, value:action)
+    }
+    if hasPaginator {
+      size += WireFormat.computeMessageSize(3, value:paginator)
     }
     size += unknownFields.serializedSize()
     memoizedSerializedSize = size
@@ -437,6 +801,11 @@ final public class ActionControl : GeneratedMessage {
     if hasAction {
       output += "\(indent) action: \(action) \n"
     }
+    if hasPaginator {
+      output += "\(indent) paginator {\n"
+      paginator.writeDescriptionTo(&output, indent:"\(indent)  ")
+      output += "\(indent) }\n"
+    }
     unknownFields.writeDescriptionTo(&output, indent:indent)
   }
   override public var hashValue:Int {
@@ -447,6 +816,9 @@ final public class ActionControl : GeneratedMessage {
           }
           if hasAction {
              hashCode = (hashCode &* 31) &+ action.hashValue
+          }
+          if hasPaginator {
+            hashCode = (hashCode &* 31) &+ paginator.hashValue
           }
           hashCode = (hashCode &* 31) &+  unknownFields.hashValue
           return hashCode
@@ -516,6 +888,38 @@ final public class ActionControlBuilder : GeneratedMessageBuilder {
        builderResult.action = ""
        return self
   }
+  public var hasPaginator:Bool {
+       get {
+           return builderResult.hasPaginator
+       }
+  }
+  public var paginator:Paginator {
+       get {
+           return builderResult.paginator
+       }
+       set (value) {
+           builderResult.hasPaginator = true
+           builderResult.paginator = value
+       }
+  }
+  public func setPaginatorBuilder(builderForValue:PaginatorBuilder) -> ActionControlBuilder {
+    paginator = builderForValue.build()
+    return self
+  }
+  public func mergePaginator(value:Paginator) -> ActionControlBuilder {
+    if (builderResult.hasPaginator) {
+      builderResult.paginator = Paginator.builderWithPrototype(builderResult.paginator).mergeFrom(value).buildPartial()
+    } else {
+      builderResult.paginator = value
+    }
+    builderResult.hasPaginator = true
+    return self
+  }
+  public func clearPaginator() -> ActionControlBuilder {
+    builderResult.hasPaginator = false
+    builderResult.paginator = Paginator()
+    return self
+  }
   override public var internalGetResult:GeneratedMessage {
        get {
           return builderResult
@@ -543,6 +947,9 @@ final public class ActionControlBuilder : GeneratedMessageBuilder {
     if other.hasAction {
          action = other.action
     }
+    if (other.hasPaginator) {
+        mergePaginator(other.paginator)
+    }
     mergeUnknownFields(other.unknownFields)
     return self
   }
@@ -564,6 +971,14 @@ final public class ActionControlBuilder : GeneratedMessageBuilder {
       case 18 :
         action = input.readString()
 
+      case 26 :
+        var subBuilder:PaginatorBuilder = Paginator.builder()
+        if hasPaginator {
+          subBuilder.mergeFrom(paginator)
+        }
+        input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
+        paginator = subBuilder.buildPartial()
+
       default:
         if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
            unknownFields = unknownFieldsBuilder.build()
@@ -575,7 +990,7 @@ final public class ActionControlBuilder : GeneratedMessageBuilder {
 }
 
 final public class ActionRequest : GeneratedMessage {
-  override public subscript (key: String) -> AnyObject? {
+  override public subscript (key: String) -> Any? {
          switch key {
          case "control": return control
          case "params": return params
@@ -591,12 +1006,6 @@ final public class ActionRequest : GeneratedMessage {
        super.init()
   }
   override public func isInitialized() -> Bool {
-    if !hasControl {
-      return false
-    }
-    if !control.isInitialized() {
-      return false
-    }
     if hasParams {
      if !params.isInitialized() {
        return false
@@ -851,7 +1260,7 @@ final public class ActionRequestBuilder : GeneratedMessageBuilder {
 }
 
 final public class ActionRequestParams : ExtendableMessage {
-  override public subscript (key: String) -> AnyObject? {
+  override public subscript (key: String) -> Any? {
          switch key {
          default: return nil
          }
@@ -1009,7 +1418,7 @@ final public class ActionResponseResult : ExtendableMessage {
   //Nested type declaration start
 
     final public class ErrorDetail : GeneratedMessage {
-      override public subscript (key: String) -> AnyObject? {
+      override public subscript (key: String) -> Any? {
              switch key {
              case "error": return error
              case "key": return key
@@ -1280,7 +1689,7 @@ final public class ActionResponseResult : ExtendableMessage {
 
   //Nested type declaration end
 
-  override public subscript (key: String) -> AnyObject? {
+  override public subscript (key: String) -> Any? {
          switch key {
          case "success": return success
          default: return nil
@@ -1549,7 +1958,7 @@ final public class ActionResponseResultBuilder : ExtendableMessageBuilder {
 }
 
 final public class ActionResponse : GeneratedMessage {
-  override public subscript (key: String) -> AnyObject? {
+  override public subscript (key: String) -> Any? {
          switch key {
          case "control": return control
          case "result": return result
@@ -1565,12 +1974,6 @@ final public class ActionResponse : GeneratedMessage {
        super.init()
   }
   override public func isInitialized() -> Bool {
-    if !hasControl {
-      return false
-    }
-    if !control.isInitialized() {
-      return false
-    }
     if hasResult {
      if !result.isInitialized() {
        return false
@@ -1825,7 +2228,7 @@ final public class ActionResponseBuilder : GeneratedMessageBuilder {
 }
 
 final public class ServiceRequest : GeneratedMessage {
-  override public subscript (key: String) -> AnyObject? {
+  override public subscript (key: String) -> Any? {
          switch key {
          case "control": return control
          default: return nil
@@ -1839,12 +2242,6 @@ final public class ServiceRequest : GeneratedMessage {
        super.init()
   }
   override public func isInitialized() -> Bool {
-    if !hasControl {
-      return false
-    }
-    if !control.isInitialized() {
-      return false
-    }
     var isInitactions:Bool = true
     for oneElementactions in actions {
         if (!oneElementactions.isInitialized()) {
@@ -2083,7 +2480,7 @@ final public class ServiceRequestBuilder : GeneratedMessageBuilder {
 }
 
 final public class ServiceResponse : GeneratedMessage {
-  override public subscript (key: String) -> AnyObject? {
+  override public subscript (key: String) -> Any? {
          switch key {
          case "control": return control
          default: return nil
@@ -2097,12 +2494,6 @@ final public class ServiceResponse : GeneratedMessage {
        super.init()
   }
   override public func isInitialized() -> Bool {
-    if !hasControl {
-      return false
-    }
-    if !control.isInitialized() {
-      return false
-    }
     var isInitactions:Bool = true
     for oneElementactions in actions {
         if (!oneElementactions.isInitialized()) {
@@ -2353,6 +2744,18 @@ public extension Control {
         var bytes = [Byte](count: data.length, repeatedValue: 0)
         data.getBytes(&bytes)
         return Control.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
+    }
+}
+public extension Paginator {
+    class func parseFromNSData(data:NSData) -> Paginator {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return Paginator.builder().mergeFromData(bytes).build()
+    }
+    class func parseFromNSData(data:NSData, extensionRegistry:ExtensionRegistry) -> Paginator {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return Paginator.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
     }
 }
 public extension ActionControl {
