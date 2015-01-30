@@ -41,4 +41,24 @@ message NoteService {
         }
     }
 
+    message DeleteNote {
+
+        message Request {
+            optional Containers.Note note = 1;
+        }
+
+        message Response {}
+    }
+
+    message UpdateNote {
+
+        message Request {
+            optional Containers.Note note = 1;
+        }
+
+        message Response {
+            optional Containers.Note note = 1;
+        }
+    }
+
 }

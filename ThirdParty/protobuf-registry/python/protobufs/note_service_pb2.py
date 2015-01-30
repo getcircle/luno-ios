@@ -18,7 +18,7 @@ _sym_db = _symbol_database.Default()
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='protobufs/note_service.proto',
   package='main.note_service',
-  serialized_pb=_b('\n\x1cprotobufs/note_service.proto\x12\x11main.note_service\"\xcc\x03\n\x0bNoteService\x1a\x85\x01\n\nContainers\x1aw\n\x04Note\x12\n\n\x02id\x18\x01 \x01(\t\x12\x16\n\x0e\x66or_profile_id\x18\x02 \x01(\t\x12\x18\n\x10owner_profile_id\x18\x03 \x01(\t\x12\x0f\n\x07\x63ontent\x18\x04 \x01(\t\x12\x0f\n\x07\x63reated\x18\x05 \x01(\t\x12\x0f\n\x07\x63hanged\x18\x06 \x01(\t\x1a\x9f\x01\n\nCreateNote\x1aG\n\x07Request\x12<\n\x04note\x18\x01 \x01(\x0b\x32..main.note_service.NoteService.Containers.Note\x1aH\n\x08Response\x12<\n\x04note\x18\x01 \x01(\x0b\x32..main.note_service.NoteService.Containers.Note\x1a\x92\x01\n\x08GetNotes\x1a;\n\x07Request\x12\x18\n\x10owner_profile_id\x18\x01 \x01(\t\x12\x16\n\x0e\x66or_profile_id\x18\x02 \x01(\t\x1aI\n\x08Response\x12=\n\x05notes\x18\x01 \x03(\x0b\x32..main.note_service.NoteService.Containers.Note')
+  serialized_pb=_b('\n\x1cprotobufs/note_service.proto\x12\x11main.note_service\"\xd1\x05\n\x0bNoteService\x1a\x85\x01\n\nContainers\x1aw\n\x04Note\x12\n\n\x02id\x18\x01 \x01(\t\x12\x16\n\x0e\x66or_profile_id\x18\x02 \x01(\t\x12\x18\n\x10owner_profile_id\x18\x03 \x01(\t\x12\x0f\n\x07\x63ontent\x18\x04 \x01(\t\x12\x0f\n\x07\x63reated\x18\x05 \x01(\t\x12\x0f\n\x07\x63hanged\x18\x06 \x01(\t\x1a\x9f\x01\n\nCreateNote\x1aG\n\x07Request\x12<\n\x04note\x18\x01 \x01(\x0b\x32..main.note_service.NoteService.Containers.Note\x1aH\n\x08Response\x12<\n\x04note\x18\x01 \x01(\x0b\x32..main.note_service.NoteService.Containers.Note\x1a\x92\x01\n\x08GetNotes\x1a;\n\x07Request\x12\x18\n\x10owner_profile_id\x18\x01 \x01(\t\x12\x16\n\x0e\x66or_profile_id\x18\x02 \x01(\t\x1aI\n\x08Response\x12=\n\x05notes\x18\x01 \x03(\x0b\x32..main.note_service.NoteService.Containers.Note\x1a\x61\n\nDeleteNote\x1aG\n\x07Request\x12<\n\x04note\x18\x01 \x01(\x0b\x32..main.note_service.NoteService.Containers.Note\x1a\n\n\x08Response\x1a\x9f\x01\n\nUpdateNote\x1aG\n\x07Request\x12<\n\x04note\x18\x01 \x01(\x0b\x32..main.note_service.NoteService.Containers.Note\x1aH\n\x08Response\x12<\n\x04note\x18\x01 \x01(\x0b\x32..main.note_service.NoteService.Containers.Note')
 )
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
@@ -278,6 +278,159 @@ _NOTESERVICE_GETNOTES = _descriptor.Descriptor(
   serialized_end=512,
 )
 
+_NOTESERVICE_DELETENOTE_REQUEST = _descriptor.Descriptor(
+  name='Request',
+  full_name='main.note_service.NoteService.DeleteNote.Request',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='note', full_name='main.note_service.NoteService.DeleteNote.Request.note', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=218,
+  serialized_end=289,
+)
+
+_NOTESERVICE_DELETENOTE_RESPONSE = _descriptor.Descriptor(
+  name='Response',
+  full_name='main.note_service.NoteService.DeleteNote.Response',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=291,
+  serialized_end=301,
+)
+
+_NOTESERVICE_DELETENOTE = _descriptor.Descriptor(
+  name='DeleteNote',
+  full_name='main.note_service.NoteService.DeleteNote',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+  ],
+  extensions=[
+  ],
+  nested_types=[_NOTESERVICE_DELETENOTE_REQUEST, _NOTESERVICE_DELETENOTE_RESPONSE, ],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=514,
+  serialized_end=611,
+)
+
+_NOTESERVICE_UPDATENOTE_REQUEST = _descriptor.Descriptor(
+  name='Request',
+  full_name='main.note_service.NoteService.UpdateNote.Request',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='note', full_name='main.note_service.NoteService.UpdateNote.Request.note', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=218,
+  serialized_end=289,
+)
+
+_NOTESERVICE_UPDATENOTE_RESPONSE = _descriptor.Descriptor(
+  name='Response',
+  full_name='main.note_service.NoteService.UpdateNote.Response',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='note', full_name='main.note_service.NoteService.UpdateNote.Response.note', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=291,
+  serialized_end=363,
+)
+
+_NOTESERVICE_UPDATENOTE = _descriptor.Descriptor(
+  name='UpdateNote',
+  full_name='main.note_service.NoteService.UpdateNote',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+  ],
+  extensions=[
+  ],
+  nested_types=[_NOTESERVICE_UPDATENOTE_REQUEST, _NOTESERVICE_UPDATENOTE_RESPONSE, ],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=614,
+  serialized_end=773,
+)
+
 _NOTESERVICE = _descriptor.Descriptor(
   name='NoteService',
   full_name='main.note_service.NoteService',
@@ -288,7 +441,7 @@ _NOTESERVICE = _descriptor.Descriptor(
   ],
   extensions=[
   ],
-  nested_types=[_NOTESERVICE_CONTAINERS, _NOTESERVICE_CREATENOTE, _NOTESERVICE_GETNOTES, ],
+  nested_types=[_NOTESERVICE_CONTAINERS, _NOTESERVICE_CREATENOTE, _NOTESERVICE_GETNOTES, _NOTESERVICE_DELETENOTE, _NOTESERVICE_UPDATENOTE, ],
   enum_types=[
   ],
   options=None,
@@ -297,7 +450,7 @@ _NOTESERVICE = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=52,
-  serialized_end=512,
+  serialized_end=773,
 )
 
 _NOTESERVICE_CONTAINERS_NOTE.containing_type = _NOTESERVICE_CONTAINERS
@@ -311,6 +464,15 @@ _NOTESERVICE_GETNOTES_REQUEST.containing_type = _NOTESERVICE_GETNOTES
 _NOTESERVICE_GETNOTES_RESPONSE.fields_by_name['notes'].message_type = _NOTESERVICE_CONTAINERS_NOTE
 _NOTESERVICE_GETNOTES_RESPONSE.containing_type = _NOTESERVICE_GETNOTES
 _NOTESERVICE_GETNOTES.containing_type = _NOTESERVICE
+_NOTESERVICE_DELETENOTE_REQUEST.fields_by_name['note'].message_type = _NOTESERVICE_CONTAINERS_NOTE
+_NOTESERVICE_DELETENOTE_REQUEST.containing_type = _NOTESERVICE_DELETENOTE
+_NOTESERVICE_DELETENOTE_RESPONSE.containing_type = _NOTESERVICE_DELETENOTE
+_NOTESERVICE_DELETENOTE.containing_type = _NOTESERVICE
+_NOTESERVICE_UPDATENOTE_REQUEST.fields_by_name['note'].message_type = _NOTESERVICE_CONTAINERS_NOTE
+_NOTESERVICE_UPDATENOTE_REQUEST.containing_type = _NOTESERVICE_UPDATENOTE
+_NOTESERVICE_UPDATENOTE_RESPONSE.fields_by_name['note'].message_type = _NOTESERVICE_CONTAINERS_NOTE
+_NOTESERVICE_UPDATENOTE_RESPONSE.containing_type = _NOTESERVICE_UPDATENOTE
+_NOTESERVICE_UPDATENOTE.containing_type = _NOTESERVICE
 DESCRIPTOR.message_types_by_name['NoteService'] = _NOTESERVICE
 
 NoteService = _reflection.GeneratedProtocolMessageType('NoteService', (_message.Message,), dict(
@@ -370,6 +532,48 @@ NoteService = _reflection.GeneratedProtocolMessageType('NoteService', (_message.
     # @@protoc_insertion_point(class_scope:main.note_service.NoteService.GetNotes)
     ))
   ,
+
+  DeleteNote = _reflection.GeneratedProtocolMessageType('DeleteNote', (_message.Message,), dict(
+
+    Request = _reflection.GeneratedProtocolMessageType('Request', (_message.Message,), dict(
+      DESCRIPTOR = _NOTESERVICE_DELETENOTE_REQUEST,
+      __module__ = 'protobufs.note_service_pb2'
+      # @@protoc_insertion_point(class_scope:main.note_service.NoteService.DeleteNote.Request)
+      ))
+    ,
+
+    Response = _reflection.GeneratedProtocolMessageType('Response', (_message.Message,), dict(
+      DESCRIPTOR = _NOTESERVICE_DELETENOTE_RESPONSE,
+      __module__ = 'protobufs.note_service_pb2'
+      # @@protoc_insertion_point(class_scope:main.note_service.NoteService.DeleteNote.Response)
+      ))
+    ,
+    DESCRIPTOR = _NOTESERVICE_DELETENOTE,
+    __module__ = 'protobufs.note_service_pb2'
+    # @@protoc_insertion_point(class_scope:main.note_service.NoteService.DeleteNote)
+    ))
+  ,
+
+  UpdateNote = _reflection.GeneratedProtocolMessageType('UpdateNote', (_message.Message,), dict(
+
+    Request = _reflection.GeneratedProtocolMessageType('Request', (_message.Message,), dict(
+      DESCRIPTOR = _NOTESERVICE_UPDATENOTE_REQUEST,
+      __module__ = 'protobufs.note_service_pb2'
+      # @@protoc_insertion_point(class_scope:main.note_service.NoteService.UpdateNote.Request)
+      ))
+    ,
+
+    Response = _reflection.GeneratedProtocolMessageType('Response', (_message.Message,), dict(
+      DESCRIPTOR = _NOTESERVICE_UPDATENOTE_RESPONSE,
+      __module__ = 'protobufs.note_service_pb2'
+      # @@protoc_insertion_point(class_scope:main.note_service.NoteService.UpdateNote.Response)
+      ))
+    ,
+    DESCRIPTOR = _NOTESERVICE_UPDATENOTE,
+    __module__ = 'protobufs.note_service_pb2'
+    # @@protoc_insertion_point(class_scope:main.note_service.NoteService.UpdateNote)
+    ))
+  ,
   DESCRIPTOR = _NOTESERVICE,
   __module__ = 'protobufs.note_service_pb2'
   # @@protoc_insertion_point(class_scope:main.note_service.NoteService)
@@ -383,6 +587,12 @@ _sym_db.RegisterMessage(NoteService.CreateNote.Response)
 _sym_db.RegisterMessage(NoteService.GetNotes)
 _sym_db.RegisterMessage(NoteService.GetNotes.Request)
 _sym_db.RegisterMessage(NoteService.GetNotes.Response)
+_sym_db.RegisterMessage(NoteService.DeleteNote)
+_sym_db.RegisterMessage(NoteService.DeleteNote.Request)
+_sym_db.RegisterMessage(NoteService.DeleteNote.Response)
+_sym_db.RegisterMessage(NoteService.UpdateNote)
+_sym_db.RegisterMessage(NoteService.UpdateNote.Request)
+_sym_db.RegisterMessage(NoteService.UpdateNote.Response)
 
 
 # @@protoc_insertion_point(module_scope)

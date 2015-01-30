@@ -202,6 +202,16 @@ public var NoteServiceResponses_get_notes:ConcreateExtensionField {
        return ResponseRegistryRoot.sharedInstance.NoteServiceResponses_get_notesStatic
    }
 }
+public var NoteServiceResponses_delete_note:ConcreateExtensionField {
+   get {
+       return ResponseRegistryRoot.sharedInstance.NoteServiceResponses_delete_noteStatic
+   }
+}
+public var NoteServiceResponses_update_note:ConcreateExtensionField {
+   get {
+       return ResponseRegistryRoot.sharedInstance.NoteServiceResponses_update_noteStatic
+   }
+}
 public struct ResponseRegistryRoot {
   public static var sharedInstance : ResponseRegistryRoot {
    struct Static {
@@ -249,6 +259,8 @@ public struct ResponseRegistryRoot {
   var MediaServiceResponses_complete_image_uploadStatic:ConcreateExtensionField
   var NoteServiceResponses_create_noteStatic:ConcreateExtensionField
   var NoteServiceResponses_get_notesStatic:ConcreateExtensionField
+  var NoteServiceResponses_delete_noteStatic:ConcreateExtensionField
+  var NoteServiceResponses_update_noteStatic:ConcreateExtensionField
   public var extensionRegistry:ExtensionRegistry
 
   init() {
@@ -292,6 +304,8 @@ public struct ResponseRegistryRoot {
     MediaServiceResponses_complete_image_uploadStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 601, defaultValue:MediaService.CompleteImageUpload.Response(), messageOrGroupClass:MediaService.CompleteImageUpload.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     NoteServiceResponses_create_noteStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 700, defaultValue:NoteService.CreateNote.Response(), messageOrGroupClass:NoteService.CreateNote.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     NoteServiceResponses_get_notesStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 701, defaultValue:NoteService.GetNotes.Response(), messageOrGroupClass:NoteService.GetNotes.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
+    NoteServiceResponses_delete_noteStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 702, defaultValue:NoteService.DeleteNote.Response(), messageOrGroupClass:NoteService.DeleteNote.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
+    NoteServiceResponses_update_noteStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 703, defaultValue:NoteService.UpdateNote.Response(), messageOrGroupClass:NoteService.UpdateNote.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     extensionRegistry = ExtensionRegistry()
     registerAllExtensions(extensionRegistry)
     SoaRoot.sharedInstance.registerAllExtensions(extensionRegistry)
@@ -344,6 +358,8 @@ public struct ResponseRegistryRoot {
     registry.addExtension(MediaServiceResponses_complete_image_uploadStatic)
     registry.addExtension(NoteServiceResponses_create_noteStatic)
     registry.addExtension(NoteServiceResponses_get_notesStatic)
+    registry.addExtension(NoteServiceResponses_delete_noteStatic)
+    registry.addExtension(NoteServiceResponses_update_noteStatic)
   }
 }
 
@@ -1399,6 +1415,12 @@ final public class NoteServiceResponses : GeneratedMessage {
   }
   public class func get_notes() -> ConcreateExtensionField {
        return NoteServiceResponses_get_notes
+  }
+  public class func delete_note() -> ConcreateExtensionField {
+       return NoteServiceResponses_delete_note
+  }
+  public class func update_note() -> ConcreateExtensionField {
+       return NoteServiceResponses_update_note
   }
   required public init() {
        super.init()

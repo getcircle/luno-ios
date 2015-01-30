@@ -82,5 +82,7 @@ message NoteServiceRequests {
     extend soa.ActionRequestParams {
         optional main.note_service.NoteService.CreateNote.Request create_note = 700;
         optional main.note_service.NoteService.GetNotes.Request get_notes = 701;
+        optional main.note_service.NoteService.DeleteNote.Request delete_note = 702;
+        optional main.note_service.NoteService.UpdateNote.Request update_note = 703;
     }
 }
