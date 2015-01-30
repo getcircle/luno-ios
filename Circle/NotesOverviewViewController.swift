@@ -9,7 +9,7 @@
 import UIKit
 import ProtobufRegistry
 
-class NotesOverviewViewController: UIViewController, UICollectionViewDelegate {
+class NotesOverviewViewController: UIViewController, UICollectionViewDelegate, NewNoteViewControllerDelegate {
 
     @IBOutlet weak private(set) var activityIndicatorView: UIActivityIndicatorView!
     @IBOutlet weak private(set) var collectionView: UICollectionView!
@@ -26,12 +26,7 @@ class NotesOverviewViewController: UIViewController, UICollectionViewDelegate {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        dataSource.loadData { (error) -> Void in
-            if error == nil {
-                self.activityIndicatorView.stopAnimating()
-                self.collectionView.reloadData()
-            }
-        }
+        loadData()
     }
     
     // MARK: - Configuration
@@ -45,15 +40,31 @@ class NotesOverviewViewController: UIViewController, UICollectionViewDelegate {
         collectionView.alwaysBounceVertical = true
     }
     
+    // MARK: - Load Data
+    
+    private func loadData() {
+        dataSource.loadData { (error) -> Void in
+            if error == nil {
+                self.activityIndicatorView.stopAnimating()
+                self.collectionView.reloadData()
+            }
+        }
+    }
+    
     // MARK: - Collection View Delegate
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        // TODO: Replace with real profile object
+        let selectedCard = dataSource.cardAtSection(indexPath.section)!        
         if let selectedNote = dataSource.contentAtIndexPath(indexPath)? as? NoteService.Containers.Note {
-            let viewController = NewNoteViewController(nibName: "NewNoteViewController", bundle: nil)
-            viewController.profile = AuthViewController.getLoggedInUserProfile()
-            viewController.note = selectedNote
-            navigationController?.pushViewController(viewController, animated: true)
+            if let profiles = selectedCard.metaData as? [ProfileService.Containers.Profile] {
+                if let selectedProfile = profiles[indexPath.row] as ProfileService.Containers.Profile? {
+                    let viewController = NewNoteViewController(nibName: "NewNoteViewController", bundle: nil)
+                    viewController.profile = selectedProfile
+                    viewController.delegate = self
+                    viewController.note = selectedNote
+                    navigationController?.pushViewController(viewController, animated: true)
+                }
+            }
         }
     }
     
@@ -64,4 +75,16 @@ class NotesOverviewViewController: UIViewController, UICollectionViewDelegate {
     //        (collectionView.collectionViewLayout as UICollectionViewFlowLayout).itemSize = CGSizeMake(size.width, rowHeight)
     //        collectionView.collectionViewLayout.invalidateLayout()
     //    }
+    
+    // MARK: - NewNoteViewControllerDelegate
+    
+    func didAddNote(note: NoteService.Containers.Note) {
+        dataSource.addNote(note)
+        loadData()
+    }
+    
+    func didDeleteNote(note: NoteService.Containers.Note) {
+        dataSource.removeNote(note)
+        loadData()
+    }
 }

@@ -20,6 +20,7 @@ class SearchLandingDataSource: CardDataSource {
                         let categoryCard = Card(category: category)
                         if category.notes.count > 0 {
                             categoryCard.addContent(content: category.notes, maxVisibleItems: 5)
+                            categoryCard.metaData = category.profiles
                         } else if category.profiles.count > 0 {
                             var profiles = category.profiles
                             var maxVisibleItems = 0
@@ -47,5 +48,4 @@ class SearchLandingDataSource: CardDataSource {
     override func configureCell(cell: CircleCollectionViewCell, atIndexPath indexPath: NSIndexPath) {
         cell.backgroundColor = UIColor.whiteColor()
     }
-
 }

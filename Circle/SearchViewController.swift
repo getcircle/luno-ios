@@ -337,13 +337,16 @@ NewNoteViewControllerDelegate {
                 }
             
             case .Notes:
-                // TODO: Replace with real profile object
                 if let selectedNote = dataSource.contentAtIndexPath(indexPath)? as? NoteService.Containers.Note {
-                    let viewController = NewNoteViewController(nibName: "NewNoteViewController", bundle: nil)
-                    viewController.profile = AuthViewController.getLoggedInUserProfile()
-                    viewController.delegate = self
-                    viewController.note = selectedNote
-                    navigationController?.pushViewController(viewController, animated: true)
+                    if let profiles = selectedCard.metaData as? [ProfileService.Containers.Profile] {
+                        if let selectedProfile = profiles[indexPath.row] as ProfileService.Containers.Profile? {
+                            let viewController = NewNoteViewController(nibName: "NewNoteViewController", bundle: nil)
+                            viewController.profile = selectedProfile
+                            viewController.delegate = self
+                            viewController.note = selectedNote
+                            navigationController?.pushViewController(viewController, animated: true)
+                        }
+                    }
                 }
                 
             default:
@@ -385,7 +388,7 @@ NewNoteViewControllerDelegate {
             
         case .Notes:
             let viewController = NotesOverviewViewController(nibName: "NotesOverviewViewController", bundle: nil)
-            viewController.dataSource.setInitialData(card.allContent as [AnyObject], ofType: nil)
+            viewController.dataSource.setInitialData(content: card.allContent as [AnyObject], ofType: nil, withMetaData: card.metaData)
             viewController.title = card.title
             navigationController?.pushViewController(viewController, animated: true)
 

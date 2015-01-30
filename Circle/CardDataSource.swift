@@ -67,6 +67,10 @@ class CardDataSource: NSObject, UICollectionViewDataSource {
         fatalError("All subclasses need to override this")
     }
     
+    func setInitialData(#content: [AnyObject], ofType: Card.CardType? = .People, withMetaData metaData:[AnyObject]? = nil) {
+        fatalError("All subclasses need to override this")
+    }
+    
     /**
     Registers the default card header supplementary view with the passed in collection view.
     
