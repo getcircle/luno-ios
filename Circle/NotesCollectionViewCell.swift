@@ -11,10 +11,8 @@ import ProtobufRegistry
 
 class NotesCollectionViewCell: CircleCollectionViewCell {
     
-    @IBOutlet weak var noteOnProfileImageView: CircleImageView!
     @IBOutlet weak var noteOnProfileName: UILabel!
     @IBOutlet weak var noteSummaryLabel: UILabel!
-    @IBOutlet weak var noteSummaryLabelLeftConstraint: NSLayoutConstraint!
     @IBOutlet weak var noteTimestampLabel: UILabel!
     @IBOutlet weak var noteTimestampLabelTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var separatorView: UIView!
@@ -42,13 +40,7 @@ class NotesCollectionViewCell: CircleCollectionViewCell {
             }
         }
     }
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-        noteOnProfileImageView.makeItCircular(false)
-    }
-    
+
     override func intrinsicContentSize() -> CGSize {
         if showUserProfile {
             return CGSizeMake(self.dynamicType.width, 70.0)
@@ -67,16 +59,19 @@ class NotesCollectionViewCell: CircleCollectionViewCell {
     }
     
     func setProfile(profile: ProfileService.Containers.Profile) {
-        noteOnProfileName.text = NSString(format: NSLocalizedString("Note on %@",
-            comment: "Title for note on a specific person. E.g., Note on Michael"),
-            profile.first_name)
-        noteOnProfileImageView.setImageWithProfile(profile)
+        if profile == AuthViewController.getLoggedInUserProfile() {
+            noteOnProfileName.text = NSLocalizedString("Your note", comment: "Text indicating that the note is user's private note")
+        }
+        else {
+            noteOnProfileName.text = NSString(format: NSLocalizedString("Note on %@",
+                comment: "Title for note on a specific person. E.g., Note on Michael"),
+                (profile.first_name + " " + profile.last_name[0] + "."))
+        }
     }
     
     private func adjustConstraintsAsPerProfileVisibility() {
         if !showUserProfile {
             noteTimestampLabelTopConstraint.constant = -(noteTimestampLabel.frameY - noteOnProfileName.frameY)
-            noteSummaryLabelLeftConstraint.constant = (noteOnProfileImageView.frameRight - noteSummaryLabel.frameX)
 
             noteSummaryLabel.setNeedsUpdateConstraints()
             noteTimestampLabel.setNeedsUpdateConstraints()
@@ -84,7 +79,6 @@ class NotesCollectionViewCell: CircleCollectionViewCell {
             noteSummaryLabel.layoutIfNeeded()
             noteTimestampLabel.layoutIfNeeded()
             separatorView.layoutIfNeeded()
-            noteOnProfileImageView.hidden = true
             noteOnProfileName.hidden = true
         }
         else {
