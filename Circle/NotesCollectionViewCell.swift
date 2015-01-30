@@ -11,8 +11,13 @@ import ProtobufRegistry
 
 class NotesCollectionViewCell: CircleCollectionViewCell {
     
+    @IBOutlet weak var noteOnProfileImageView: CircleImageView!
+    @IBOutlet weak var noteOnProfileName: UILabel!
     @IBOutlet weak var noteSummaryLabel: UILabel!
+    @IBOutlet weak var noteSummaryLabelLeftConstraint: NSLayoutConstraint!
     @IBOutlet weak var noteTimestampLabel: UILabel!
+    @IBOutlet weak var noteTimestampLabelTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var separatorView: UIView!
     
     override class var classReuseIdentifier: String {
         return "NotesCell"
@@ -27,17 +32,29 @@ class NotesCollectionViewCell: CircleCollectionViewCell {
     }
     
     override class var sizeCalculationMethod: SizeCalculation {
-        return .Fixed
+        return .Dynamic
+    }
+
+    var showUserProfile: Bool = true {
+        didSet {
+            if oldValue != showUserProfile {
+                adjustConstraintsAsPerProfileVisibility()
+            }
+        }
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        noteOnProfileImageView.makeItCircular(false)
     }
-
+    
     override func intrinsicContentSize() -> CGSize {
-        let intrinsicSize = noteSummaryLabel.intrinsicContentSize()
-        let height = intrinsicSize.height + noteSummaryLabel.frameY + 10.0 + noteTimestampLabel.frameY
-        return CGSizeMake(NotesCollectionViewCell.width, height)
+        if showUserProfile {
+            return CGSizeMake(self.dynamicType.width, 70.0)
+        }
+        
+        return CGSizeMake(self.dynamicType.width, self.dynamicType.height)
     }
     
     override func setData(data: AnyObject) {
@@ -46,6 +63,32 @@ class NotesCollectionViewCell: CircleCollectionViewCell {
             if let gmtDate = NSDateFormatter.dateFromTimestampString(note.changed) {
                 noteTimestampLabel.text = NSDateFormatter.localizedRelativeDateString(gmtDate)
             }
+        }
+    }
+    
+    func setProfile(profile: ProfileService.Containers.Profile) {
+        noteOnProfileName.text = NSString(format: NSLocalizedString("Note on %@",
+            comment: "Title for note on a specific person. E.g., Note on Michael"),
+            profile.first_name)
+        noteOnProfileImageView.setImageWithProfile(profile)
+    }
+    
+    private func adjustConstraintsAsPerProfileVisibility() {
+        if !showUserProfile {
+            noteTimestampLabelTopConstraint.constant = -(noteTimestampLabel.frameY - noteOnProfileName.frameY)
+            noteSummaryLabelLeftConstraint.constant = (noteOnProfileImageView.frameRight - noteSummaryLabel.frameX)
+
+            noteSummaryLabel.setNeedsUpdateConstraints()
+            noteTimestampLabel.setNeedsUpdateConstraints()
+            separatorView.setNeedsUpdateConstraints()
+            noteSummaryLabel.layoutIfNeeded()
+            noteTimestampLabel.layoutIfNeeded()
+            separatorView.layoutIfNeeded()
+            noteOnProfileImageView.hidden = true
+            noteOnProfileName.hidden = true
+        }
+        else {
+            // this is the default, so no action is needed
         }
     }
 }

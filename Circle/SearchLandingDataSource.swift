@@ -10,6 +10,8 @@ import Foundation
 import ProtobufRegistry
 
 class SearchLandingDataSource: CardDataSource {
+    
+    private var profilesAssociatedWithNotes = Array<ProfileService.Containers.Profile>()
 
     override func loadData(completionHandler: (error: NSError?) -> Void) {
         if let currentProfile = AuthViewController.getLoggedInUserProfile() {
@@ -21,6 +23,7 @@ class SearchLandingDataSource: CardDataSource {
                         if category.notes.count > 0 {
                             categoryCard.addContent(content: category.notes, maxVisibleItems: 5)
                             categoryCard.metaData = category.profiles
+                            self.profilesAssociatedWithNotes.extend(category.profiles)
                         } else if category.profiles.count > 0 {
                             var profiles = category.profiles
                             var maxVisibleItems = 0
@@ -47,5 +50,9 @@ class SearchLandingDataSource: CardDataSource {
     
     override func configureCell(cell: CircleCollectionViewCell, atIndexPath indexPath: NSIndexPath) {
         cell.backgroundColor = UIColor.whiteColor()
+        
+        if cell is NotesCollectionViewCell && profilesAssociatedWithNotes.count > 0 {
+            (cell as NotesCollectionViewCell).setProfile(profilesAssociatedWithNotes[indexPath.row])
+        }
     }
 }

@@ -52,6 +52,12 @@ class ProfileNotesDataSource: UnderlyingCollectionViewDataSource {
         }
     }
     
+    override func configureCell(cell: CircleCollectionViewCell, atIndexPath indexPath: NSIndexPath) {
+        if cell is NotesCollectionViewCell {
+            (cell as NotesCollectionViewCell).showUserProfile = false
+        }
+    }
+    
     private func populateData() {
         resetCards()
         

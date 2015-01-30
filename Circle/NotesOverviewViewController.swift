@@ -17,6 +17,8 @@ class NotesOverviewViewController: UIViewController, UICollectionViewDelegate, N
     private(set) var dataSource = NotesOverviewDataSource()
     private(set) var delegate = CardCollectionViewDelegate()
     
+    private var profileForSelectedNote: ProfileService.Containers.Profile?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -62,6 +64,7 @@ class NotesOverviewViewController: UIViewController, UICollectionViewDelegate, N
                     viewController.profile = selectedProfile
                     viewController.delegate = self
                     viewController.note = selectedNote
+                    profileForSelectedNote = selectedProfile
                     navigationController?.pushViewController(viewController, animated: true)
                 }
             }
@@ -79,12 +82,16 @@ class NotesOverviewViewController: UIViewController, UICollectionViewDelegate, N
     // MARK: - NewNoteViewControllerDelegate
     
     func didAddNote(note: NoteService.Containers.Note) {
-        dataSource.addNote(note)
-        loadData()
+        if let profile = profileForSelectedNote {
+            dataSource.addNote(note, forProfile: profile)
+            loadData()
+        }
     }
     
     func didDeleteNote(note: NoteService.Containers.Note) {
-        dataSource.removeNote(note)
-        loadData()
+        if let profile = profileForSelectedNote {
+            dataSource.removeNote(note, forProfile: profile)
+            loadData()
+        }
     }
 }

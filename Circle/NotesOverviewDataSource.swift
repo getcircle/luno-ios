@@ -12,6 +12,7 @@ import ProtobufRegistry
 class NotesOverviewDataSource: CardDataSource {
     
     private(set) var notes = Array<NoteService.Containers.Note>()
+    private var profiles = Array<ProfileService.Containers.Profile>()
     
     // MARK: - Set Initial Data
     
@@ -21,6 +22,7 @@ class NotesOverviewDataSource: CardDataSource {
         notes = content as Array<NoteService.Containers.Note>
         notesCard.addContent(content: notes)
         notesCard.metaData = metaData
+        profiles = metaData as Array<ProfileService.Containers.Profile>
         notesCard.sectionInset = UIEdgeInsetsMake(20.0, 0.0, 30.0, 0.0)
         appendCard(notesCard)
     }
@@ -31,11 +33,21 @@ class NotesOverviewDataSource: CardDataSource {
         completionHandler(error: nil)
     }
     
-    func addNote(note: NoteService.Containers.Note) {
+    func addNote(note: NoteService.Containers.Note, forProfile profile: ProfileService.Containers.Profile) {
         notes.insert(note, atIndex: 0)
+        profiles.insert(profile, atIndex: 0)
     }
     
-    func removeNote(note: NoteService.Containers.Note) {
+    func removeNote(note: NoteService.Containers.Note, forProfile profile: ProfileService.Containers.Profile) {
         notes = notes.filter { $0.id != note.id }
+        profiles = profiles.filter { $0.id != profile.id }
+    }
+    
+    // MARK: - Cell Configuration
+    
+    override func configureCell(cell: CircleCollectionViewCell, atIndexPath indexPath: NSIndexPath) {
+        if cell is NotesCollectionViewCell {
+            (cell as NotesCollectionViewCell).setProfile(profiles[indexPath.row])
+        }
     }
 }
