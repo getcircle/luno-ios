@@ -238,6 +238,8 @@ class Card: Equatable {
             cardType = .Birthdays
         case .NewHires:
             cardType = .NewHires
+        case .Notes:
+            cardType = .Notes
         case .DirectReports, .Peers:
             cardType = .Group
         case .Locations: cardType =

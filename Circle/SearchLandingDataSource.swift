@@ -11,18 +11,11 @@ import ProtobufRegistry
 
 class SearchLandingDataSource: CardDataSource {
 
-    private var notesCard: Card?
-
     override func loadData(completionHandler: (error: NSError?) -> Void) {
-        if cards.count > 0 {
-            loadNotes(completionHandler)
-            completionHandler(error: nil)
-            return
-        }
-        
         if let currentProfile = AuthViewController.getLoggedInUserProfile() {
             LandingService.Actions.getCategories(currentProfile.id) { (categories, error) -> Void in
                 if error == nil {
+                    self.resetCards()
                     for category in categories ?? [] {
                         let categoryCard = Card(category: category)
                         if category.notes.count > 0 {
@@ -46,29 +39,6 @@ class SearchLandingDataSource: CardDataSource {
                         self.appendCard(categoryCard)
                     }
                     completionHandler(error: nil)
-                }
-            }
-            
-            loadNotes(completionHandler)
-        }
-    }
-
-    private func loadNotes(completionHandler: (error: NSError?) -> Void) {
-        if let currentProfile = AuthViewController.getLoggedInUserProfile() {
-            NoteService.Actions.getNotes(currentProfile.id) { (notes, error) -> Void in
-                if let notes = notes {
-                    if self.notesCard == nil {
-                        self.notesCard = Card(cardType: .Notes, title: "Notes", addDefaultFooter: false)
-                        self.insertCard(self.notesCard!, atIndex: 0)
-                    }
-                    else {
-                        self.notesCard!.resetContent()
-                    }
-                    
-                    self.notesCard!.addContent(content: notes, maxVisibleItems: 3)
-                    self.notesCard!.contentCount = notes.count
-
-                    completionHandler(error: error)
                 }
             }
         }
