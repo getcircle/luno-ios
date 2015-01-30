@@ -43,7 +43,7 @@ class NotesCollectionViewCell: CircleCollectionViewCell {
     override func setData(data: AnyObject) {
         if let note = data as? NoteService.Containers.Note {
             noteSummaryLabel.text = note.content
-            if let gmtDate = NSDateFormatter.dateFromTimestampString(note.created) {
+            if let gmtDate = NSDateFormatter.dateFromTimestampString(note.changed) {
                 noteTimestampLabel.text = NSDateFormatter.localizedRelativeDateString(gmtDate)
             }
         }

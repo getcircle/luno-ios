@@ -114,5 +114,4 @@ class ProfileNotesCollectionView: UnderlyingCollectionView {
             self.reloadData()
         }
     }
-
 }

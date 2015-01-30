@@ -63,7 +63,7 @@ class NewNoteViewController: UIViewController, UIViewControllerTransitioningDele
     
     private func configureNavigationBar() {
         if let note = note {
-            if let gmtDate = NSDateFormatter.dateFromTimestampString(note.created) {
+            if let gmtDate = NSDateFormatter.dateFromTimestampString(note.changed) {
                 navigationItem.title = NSDateFormatter.localizedRelativeDateString(gmtDate)
             }
         }
