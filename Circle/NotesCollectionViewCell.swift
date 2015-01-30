@@ -59,13 +59,15 @@ class NotesCollectionViewCell: CircleCollectionViewCell {
     }
     
     func setProfile(profile: ProfileService.Containers.Profile) {
-        if profile == AuthViewController.getLoggedInUserProfile() {
-            noteOnProfileName.text = NSLocalizedString("Your note", comment: "Text indicating that the note is user's private note")
-        }
-        else {
-            noteOnProfileName.text = NSString(format: NSLocalizedString("Note on %@",
-                comment: "Title for note on a specific person. E.g., Note on Michael"),
-                (profile.first_name + " " + profile.last_name[0] + "."))
+        if let loggedInUserProfile = AuthViewController.getLoggedInUserProfile() {
+            if profile.id == loggedInUserProfile.id {
+                noteOnProfileName.text = NSLocalizedString("Your note", comment: "Text indicating that the note is user's private note")
+            }
+            else {
+                noteOnProfileName.text = NSString(format: NSLocalizedString("Note on %@",
+                    comment: "Title for note on a specific person. E.g., Note on Michael"),
+                    (profile.first_name + " " + profile.last_name[0] + "."))
+            }
         }
     }
     

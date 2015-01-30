@@ -24,6 +24,7 @@ class NotesOverviewViewController: UIViewController, UICollectionViewDelegate, N
         
         // Do any additional setup after loading the view, typically from a nib.
         configureCollectionView()
+        configureNavigationButtons()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -40,6 +41,16 @@ class NotesOverviewViewController: UIViewController, UICollectionViewDelegate, N
         (collectionView.delegate as CardCollectionViewDelegate).delegate = self
         collectionView.bounces = true
         collectionView.alwaysBounceVertical = true
+    }
+    
+    private func configureNavigationButtons() {
+        let addBarButtonItem = UIBarButtonItem(
+            image: UIImage(named: "Add"),
+            style: .Plain, 
+            target: self, 
+            action: "addNewNoteButtonTapped:"
+        )
+        navigationItem.rightBarButtonItem = addBarButtonItem
     }
     
     // MARK: - Load Data
@@ -61,10 +72,10 @@ class NotesOverviewViewController: UIViewController, UICollectionViewDelegate, N
             if let profiles = selectedCard.metaData as? [ProfileService.Containers.Profile] {
                 if let selectedProfile = profiles[indexPath.row] as ProfileService.Containers.Profile? {
                     let viewController = NewNoteViewController(nibName: "NewNoteViewController", bundle: nil)
+                    profileForSelectedNote = selectedProfile
                     viewController.profile = selectedProfile
                     viewController.delegate = self
                     viewController.note = selectedNote
-                    profileForSelectedNote = selectedProfile
                     navigationController?.pushViewController(viewController, animated: true)
                 }
             }
@@ -93,5 +104,18 @@ class NotesOverviewViewController: UIViewController, UICollectionViewDelegate, N
             dataSource.removeNote(note, forProfile: profile)
             loadData()
         }
+    }
+    
+    // MARK: IBActions
+    
+    @IBAction func addNewNoteButtonTapped(sender: AnyObject!) {
+
+        // By default allow users to add notes for their own profile
+        let loggedInUserProfile = AuthViewController.getLoggedInUserProfile()
+        let viewController = NewNoteViewController(nibName: "NewNoteViewController", bundle: nil)
+        viewController.profile = loggedInUserProfile
+        viewController.delegate = self
+        profileForSelectedNote = loggedInUserProfile
+        navigationController?.pushViewController(viewController, animated: true)
     }
 }

@@ -17,19 +17,20 @@ class NotesOverviewDataSource: CardDataSource {
     // MARK: - Set Initial Data
     
     override func setInitialData(#content: [AnyObject], ofType: Card.CardType? = .People, withMetaData metaData:[AnyObject]? = nil) {
-        let cardType = ofType != nil ? ofType : .Notes
-        let notesCard = Card(cardType: cardType!, title: "")
         notes = content as Array<NoteService.Containers.Note>
-        notesCard.addContent(content: notes)
-        notesCard.metaData = metaData
         profiles = metaData as Array<ProfileService.Containers.Profile>
-        notesCard.sectionInset = UIEdgeInsetsMake(20.0, 0.0, 30.0, 0.0)
-        appendCard(notesCard)
     }
     
     // MARK: - Load Data
     
     override func loadData(completionHandler: (error: NSError?) -> Void) {
+        resetCards()
+
+        let notesCard = Card(cardType: .Notes, title: "Notes")
+        notesCard.addContent(content: notes)
+        notesCard.metaData = profiles
+        notesCard.sectionInset = UIEdgeInsetsMake(20.0, 0.0, 30.0, 0.0)
+        appendCard(notesCard)
         completionHandler(error: nil)
     }
     
@@ -39,8 +40,13 @@ class NotesOverviewDataSource: CardDataSource {
     }
     
     func removeNote(note: NoteService.Containers.Note, forProfile profile: ProfileService.Containers.Profile) {
-        notes = notes.filter { $0.id != note.id }
-        profiles = profiles.filter { $0.id != profile.id }
+        for (index, note) in enumerate(notes) {
+            if note.id == notes[index].id {
+                notes.removeAtIndex(index)
+                profiles.removeAtIndex(index)
+                break
+            }
+        }
     }
     
     // MARK: - Cell Configuration
