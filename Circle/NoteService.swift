@@ -34,13 +34,31 @@ extension NoteService {
         }
         
         class func deleteNote(note: NoteService.Containers.Note, completionHandler: DeleteNoteCompletionHandler?) {
-            println("TODO delete the note")
-            completionHandler?(error: nil)
+            let requestBuilder = NoteService.DeleteNote.Request.builder()
+            requestBuilder.note = note
+            let client = ServiceClient(serviceName: "note")
+            client.callAction(
+                "delete_note",
+                extensionField: NoteServiceRequests_delete_note,
+                requestBuilder: requestBuilder) { (_, _, _, actionResponse, error) -> Void in
+                    completionHandler?(error: error)
+                    return
+            }
         }
         
         class func updateNote(note: NoteService.Containers.Note, completionHandler: UpdateNoteCompletionHandler?) {
-            println("TODO update the note")
-            completionHandler?(note: note, error: nil)
+            let requestBuilder = NoteService.UpdateNote.Request.builder()
+            requestBuilder.note = note
+            let client = ServiceClient(serviceName: "note")
+            client.callAction(
+                "update_note",
+                extensionField: NoteServiceRequests_update_note,
+                requestBuilder: requestBuilder) { (_, _, _, actionResponse, error) -> Void in
+                    let response = actionResponse?.result.getExtension(
+                        NoteServiceRequests_update_note
+                    ) as? NoteService.UpdateNote.Response
+                    completionHandler?(note: response?.note, error: error)
+            }
         }
         
         class func getNotes(forProfileId: String, completionHandler: GetNotesCompletionHandler?) {
