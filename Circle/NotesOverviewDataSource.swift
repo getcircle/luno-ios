@@ -39,9 +39,9 @@ class NotesOverviewDataSource: CardDataSource {
         profiles.insert(profile, atIndex: 0)
     }
     
-    func removeNote(note: NoteService.Containers.Note, forProfile profile: ProfileService.Containers.Profile) {
+    func removeNote(noteToBeDeleted: NoteService.Containers.Note, forProfile profile: ProfileService.Containers.Profile) {
         for (index, note) in enumerate(notes) {
-            if note.id == notes[index].id {
+            if noteToBeDeleted.id == notes[index].id {
                 notes.removeAtIndex(index)
                 profiles.removeAtIndex(index)
                 break
