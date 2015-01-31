@@ -96,6 +96,10 @@ extension UIColor {
         return UIColor(red: 83, green: 83, blue: 83)
     }
     
+    class func keyValueNextImageTintColor() -> UIColor {
+        return UIColor(red: 150, green: 150, blue: 150)
+    }
+    
     class func searchTextFieldBackground() -> UIColor {
         return UIColor(red: 220, green: 220, blue: 220)
     }

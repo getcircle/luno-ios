@@ -12,21 +12,26 @@ import ProtobufRegistry
 class ItemImage {
     var name: String
     var tint: UIColor
+    var size: CGSize?
     
-    init(name itemName: String, tint itemTint: UIColor) {
+    class var genericNextImage: ItemImage {
+        return ItemImage(name: "Next", tint: UIColor.keyValueNextImageTintColor(), size: CGSizeMake(15.0, 15.0))
+    }
+    
+    init(name itemName: String, tint itemTint: UIColor, size imageSize: CGSize? = nil) {
         name = itemName
         tint = itemTint
+        size = imageSize
     }
 }
 
 enum ContentType: Int {
     case CellPhone = 1
-    case City
-    case Country
     case Email
     case Facebook
     case Github
     case LinkedIn
+    case Location
     case Manager
     case Other
     case Tags
@@ -78,10 +83,10 @@ class Section {
 
 class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
 
-    var manager: ProfileService.Containers.Profile?
     var profile: ProfileService.Containers.Profile!
     
     private(set) var address: OrganizationService.Containers.Address?
+    private(set) var manager: ProfileService.Containers.Profile?
     private(set) var tags: Array<ProfileService.Containers.Tag>?
     private(set) var team: OrganizationService.Containers.Team?
 
@@ -141,19 +146,12 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
                 image: ItemImage(name: "Telephone", tint: UIColor.phoneTintColor())
             ),
             SectionItem(
-                title: "City",
+                title: "Location",
                 container: "address",
                 containerKey: "city",
-                contentType: .City,
-                image: nil
+                contentType: .Location,
+                image: ItemImage.genericNextImage
             ),
-            SectionItem(
-                title: "Country",
-                container: "address",
-                containerKey: "country_code",
-                contentType: .Country,
-                image: nil
-            )
         ]
         return Section(title: "Info", items: sectionItems, cardType: .KeyValue)
     }
@@ -165,21 +163,15 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
                 container: "manager",
                 containerKey: "full_name",
                 contentType: .Manager,
-                image: nil
+                image: ItemImage.genericNextImage
             ),
             SectionItem(
                 title: "Team",
                 container: "team",
                 containerKey: "name",
                 contentType: .Team,
-                image: nil
+                image: ItemImage.genericNextImage
             )
-            //            SectionItem(
-            //                title: "Department",
-            //                container: "team",
-            //                containerKey: "department",
-            //                image: nil
-            //            )
         ]
         return Section(title: "Manager Info", items: sectionItems, cardType: .KeyValue)
     }
@@ -257,6 +249,9 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
             if let image = item.image {
                 dataDict["image"] = image.name
                 dataDict["imageTintColor"] = image.tint
+                if let imageSize = image.size {
+                    dataDict["imageSize"] = NSValue(CGSize: imageSize)
+                }
             }
             
             card.addContent(content: [dataDict])

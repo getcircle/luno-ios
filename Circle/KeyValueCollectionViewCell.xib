@@ -7,7 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="KeyValueCell" id="gTV-IL-0wX" customClass="KeyValueCollectionViewCell" customModule="Circle" customModuleProvider="target">
+        <collectionViewCell clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="KeyValueCell" id="gTV-IL-0wX" customClass="KeyValueCollectionViewCell" customModule="circle" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="639" height="44"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -52,6 +52,7 @@
             <size key="customSize" width="684" height="50"/>
             <connections>
                 <outlet property="nameImageView" destination="867-SJ-3vd" id="4iw-kj-P05"/>
+                <outlet property="nameImageViewWidthConstraint" destination="8IL-ey-Ssg" id="leF-mN-jF8"/>
                 <outlet property="nameLabel" destination="lAf-wh-yGN" id="4PV-aG-I92"/>
                 <outlet property="valueLabel" destination="6Ax-wo-sff" id="wy0-5B-o4d"/>
                 <outlet property="valueLabelTrailingSpaceConstraint" destination="c3i-aL-zmh" id="V0T-bE-bBS"/>

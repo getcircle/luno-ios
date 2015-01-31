@@ -11,12 +11,22 @@ import UIKit
 class KeyValueCollectionViewCell: CircleCollectionViewCell {
 
     @IBOutlet private(set) weak var nameImageView: UIImageView!
+    @IBOutlet private(set) weak var nameImageViewWidthConstraint: NSLayoutConstraint!
     @IBOutlet private(set) weak var nameLabel: UILabel!
     @IBOutlet private(set) weak var valueLabel: UILabel!
     @IBOutlet private(set) weak var valueLabelTrailingSpaceConstraint: NSLayoutConstraint!
     
+    private var nameImageViewWidthConstraintInitialValue: CGFloat!
+    
     override class var classReuseIdentifier: String {
         return "KeyValueCell"
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        // Record initial constraint values
+        nameImageViewWidthConstraintInitialValue = nameImageViewWidthConstraint.constant
     }
 
     override func setData(data: AnyObject) {
@@ -29,6 +39,15 @@ class KeyValueCollectionViewCell: CircleCollectionViewCell {
                 valueLabelTrailingSpaceConstraint.constant = 60.0
                 nameImageView.image = UIImage(named: imageSource)?.imageWithRenderingMode(.AlwaysTemplate)
                 nameImageView.tintColor = keyValueDictionary["imageTintColor"] as UIColor!
+                if let imageSizeValue = keyValueDictionary["imageSize"] as NSValue? {
+                    nameImageViewWidthConstraint.constant = imageSizeValue.CGSizeValue().width
+                }
+                else {
+                    nameImageViewWidthConstraint.constant = nameImageViewWidthConstraintInitialValue
+                }
+                
+                nameImageView.setNeedsUpdateConstraints()
+                nameImageView.layoutIfNeeded()
             }
             else {
                 nameImageView.alpha = 0.0

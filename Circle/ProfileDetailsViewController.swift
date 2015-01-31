@@ -160,6 +160,11 @@ class ProfileDetailsViewController:
         switch dataSource.typeOfCell(indexPath) {
         case .Email:
             presentMailViewController([profile.email], subject: "Hey", messageBody: "", completionHandler: nil)
+        
+        case .Location:
+            let locationDetailVC = LocationDetailViewController()
+            (locationDetailVC.dataSource as LocationDetailDataSource).selectedLocation = dataSource.address
+            navigationController?.pushViewController(locationDetailVC, animated: true)
             
         case .Manager:
             let profileVC = ProfileDetailsViewController.forProfile(dataSource.manager!)
