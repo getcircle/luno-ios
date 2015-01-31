@@ -37,6 +37,22 @@ public class ServiceClient {
         requestBuilder: AbstractMessageBuilder,
         completionHandler: ServiceCompletionHandler
     ) {
+        callAction(
+            actionName,
+            extensionField: extensionField,
+            requestBuilder: requestBuilder,
+            paginatorBuilder: nil,
+            completionHandler: completionHandler
+        )
+    }
+    
+    public func callAction(
+        actionName: String,
+        extensionField: ConcreateExtensionField,
+        requestBuilder: AbstractMessageBuilder,
+        paginatorBuilder: PaginatorBuilder?,
+        completionHandler: ServiceCompletionHandler
+    ) {
         let serviceRequest = ServiceRequest.builder()
         let control = Control.builder()
         control.service = serviceName
@@ -47,8 +63,13 @@ public class ServiceClient {
         
         let actionRequest = ActionRequest.builder()
         let actionControl = ActionControl.builder()
+        var paginatorBuilder = paginatorBuilder
+        if paginatorBuilder == nil {
+            paginatorBuilder = Paginator.builder()
+        }
         actionControl.service = serviceName
         actionControl.action = actionName
+        actionControl.paginator = paginatorBuilder!.build()
         actionRequest.control = actionControl.build()
         
         let actionRequestParams = ActionRequestParams.builder()
