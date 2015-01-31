@@ -143,7 +143,7 @@
                                 </connections>
                             </collectionView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EKn-hP-LBq" userLabel="CollectionViewOverlayView">
-                                <rect key="frame" x="0.0" y="545" width="600" height="55"/>
+                                <rect key="frame" x="0.0" y="425" width="600" height="175"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="120" id="lQ9-pf-nDB"/>
                                 </constraints>
@@ -266,14 +266,16 @@
                             <constraint firstItem="rUn-MN-xeZ" firstAttribute="top" secondItem="EKn-hP-LBq" secondAttribute="bottom" id="dYw-P8-7oL"/>
                             <constraint firstAttribute="trailing" secondItem="sEy-gh-6JI" secondAttribute="trailing" constant="10" id="eZo-3Q-TfD"/>
                             <constraint firstItem="rUn-MN-xeZ" firstAttribute="top" secondItem="FpX-4G-cZW" secondAttribute="bottom" id="ihf-mG-9Li"/>
-                            <constraint firstItem="FpX-4G-cZW" firstAttribute="top" secondItem="EKn-hP-LBq" secondAttribute="top" id="n0q-Gf-xdF"/>
+                            <constraint firstItem="FpX-4G-cZW" firstAttribute="top" secondItem="EKn-hP-LBq" secondAttribute="top" constant="150" id="n0q-Gf-xdF"/>
                             <constraint firstItem="FpX-4G-cZW" firstAttribute="leading" secondItem="bGb-OZ-dC1" secondAttribute="leading" id="o2Z-d8-o7d"/>
+                            <constraint firstItem="EKn-hP-LBq" firstAttribute="top" secondItem="sEy-gh-6JI" secondAttribute="bottom" constant="10" id="ria-HR-cmi"/>
                             <constraint firstItem="5kQ-sW-5v8" firstAttribute="top" secondItem="LHa-xJ-wcY" secondAttribute="bottom" constant="90" id="u3M-zF-YK2"/>
                             <constraint firstAttribute="trailing" secondItem="LHa-xJ-wcY" secondAttribute="trailing" constant="10" id="ur3-q2-5NS"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="LRj-Fc-nmM"/>
+                                <exclude reference="n0q-Gf-xdF"/>
                             </mask>
                         </variation>
                     </view>
