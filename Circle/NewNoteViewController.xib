@@ -5,9 +5,10 @@
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NewNoteViewController" customModule="Circle" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NewNoteViewController" customModule="circle" customModuleProvider="target">
             <connections>
                 <outlet property="noteTextView" destination="JtI-Ry-VHf" id="yHM-HC-hKk"/>
+                <outlet property="noteTextViewTopConstraint" destination="BOx-2I-L7i" id="h5h-es-2uA"/>
                 <outlet property="profileImageView" destination="0yZ-3W-8HK" id="G3u-Ve-P0v"/>
                 <outlet property="profileNameLabel" destination="M1s-aD-wZf" id="uun-WK-sfu"/>
                 <outlet property="profileTitleLabel" destination="ScM-fC-OJb" id="9qg-Bv-PMg"/>
@@ -19,13 +20,7 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JtI-Ry-VHf" userLabel="NoteTextView">
-                    <rect key="frame" x="15" y="69" width="570" height="486"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="15"/>
-                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                </textView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Ravi" translatesAutoresizingMaskIntoConstraints="NO" id="0yZ-3W-8HK" userLabel="ProfileImageView" customClass="CircleImageView" customModule="Circle" customModuleProvider="target">
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Ravi" translatesAutoresizingMaskIntoConstraints="NO" id="0yZ-3W-8HK" userLabel="ProfileImageView" customClass="CircleImageView" customModule="circle" customModuleProvider="target">
                     <rect key="frame" x="15" y="10" width="44" height="44"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="0yZ-3W-8HK" secondAttribute="height" multiplier="1:1" id="FSg-Mx-kFL"/>
@@ -52,7 +47,11 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FXY-DB-x6G" userLabel="DeleteButton">
-                    <rect key="frame" x="15" y="563" width="22" height="22"/>
+                    <rect key="frame" x="0.0" y="550" width="50" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="FXY-DB-x6G" secondAttribute="height" multiplier="1:1" id="hpy-jg-wh1"/>
+                        <constraint firstAttribute="width" constant="50" id="xkx-0E-dHg"/>
+                    </constraints>
                     <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     <state key="normal" image="Trash"/>
                     <connections>
@@ -60,7 +59,11 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LCI-0E-1h1" userLabel="NewButton">
-                    <rect key="frame" x="563" y="563" width="22" height="22"/>
+                    <rect key="frame" x="540" y="540" width="60" height="60"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="LCI-0E-1h1" secondAttribute="height" multiplier="1:1" id="TFe-2h-scc"/>
+                        <constraint firstAttribute="width" constant="60" id="X5g-gs-lrS"/>
+                    </constraints>
                     <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     <state key="normal" image="New"/>
                     <connections>
@@ -76,39 +79,37 @@
                         <action selector="titleOverlayButtonTapped:" destination="-1" eventType="touchUpInside" id="rig-GI-v7G"/>
                     </connections>
                 </button>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JtI-Ry-VHf" userLabel="NoteTextView">
+                    <rect key="frame" x="15" y="69" width="570" height="486"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="15"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="JtI-Ry-VHf" secondAttribute="trailing" constant="15" id="3oC-nz-MGo"/>
                 <constraint firstAttribute="trailing" secondItem="M1s-aD-wZf" secondAttribute="trailing" constant="15" id="9cQ-rU-JOb"/>
                 <constraint firstItem="JtI-Ry-VHf" firstAttribute="top" secondItem="0yZ-3W-8HK" secondAttribute="bottom" constant="15" id="BOx-2I-L7i"/>
-                <constraint firstAttribute="bottom" secondItem="LCI-0E-1h1" secondAttribute="bottom" constant="15" id="EZP-8R-PDP"/>
-                <constraint firstItem="JtI-Ry-VHf" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="70" id="G44-3A-h01"/>
+                <constraint firstAttribute="bottom" secondItem="LCI-0E-1h1" secondAttribute="bottom" id="EZP-8R-PDP"/>
                 <constraint firstItem="M1s-aD-wZf" firstAttribute="leading" secondItem="0yZ-3W-8HK" secondAttribute="trailing" constant="10" id="LJj-ex-Q85"/>
                 <constraint firstItem="M1s-aD-wZf" firstAttribute="leading" secondItem="ScM-fC-OJb" secondAttribute="leading" id="UKZ-DT-WfT"/>
                 <constraint firstAttribute="trailing" secondItem="RRw-Vy-7nl" secondAttribute="trailing" id="WFu-l4-v0U"/>
                 <constraint firstItem="M1s-aD-wZf" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="12" id="XWO-Tc-6pe"/>
-                <constraint firstAttribute="bottom" secondItem="FXY-DB-x6G" secondAttribute="bottom" constant="15" id="ayn-Iw-3ke"/>
+                <constraint firstAttribute="bottom" secondItem="FXY-DB-x6G" secondAttribute="bottom" id="ayn-Iw-3ke"/>
                 <constraint firstItem="0yZ-3W-8HK" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="bVL-p3-C9y"/>
                 <constraint firstItem="JtI-Ry-VHf" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="dIy-yU-vjA"/>
                 <constraint firstItem="0yZ-3W-8HK" firstAttribute="bottom" secondItem="RRw-Vy-7nl" secondAttribute="bottom" id="gPh-d3-tDT"/>
                 <constraint firstItem="RRw-Vy-7nl" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="gZe-pt-Zq2"/>
-                <constraint firstAttribute="trailing" secondItem="LCI-0E-1h1" secondAttribute="trailing" constant="15" id="hFB-yO-W6A"/>
-                <constraint firstItem="FXY-DB-x6G" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="j8B-qt-tcI"/>
+                <constraint firstAttribute="trailing" secondItem="LCI-0E-1h1" secondAttribute="trailing" id="hFB-yO-W6A"/>
+                <constraint firstItem="FXY-DB-x6G" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="j8B-qt-tcI"/>
                 <constraint firstItem="ScM-fC-OJb" firstAttribute="top" secondItem="M1s-aD-wZf" secondAttribute="bottom" constant="-2" id="m8Q-Ce-Ocv"/>
                 <constraint firstItem="RRw-Vy-7nl" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="mbq-e2-fag"/>
                 <constraint firstAttribute="bottom" secondItem="JtI-Ry-VHf" secondAttribute="bottom" constant="45" id="pmv-Af-3Kk"/>
                 <constraint firstItem="ScM-fC-OJb" firstAttribute="width" secondItem="M1s-aD-wZf" secondAttribute="width" id="pvV-X0-Qg3"/>
-                <constraint firstItem="ScM-fC-OJb" firstAttribute="leading" secondItem="0yZ-3W-8HK" secondAttribute="trailing" constant="20" id="quT-L6-RSA"/>
                 <constraint firstItem="0yZ-3W-8HK" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="10" id="ueE-sg-HC7"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
-            <variation key="default">
-                <mask key="constraints">
-                    <exclude reference="G44-3A-h01"/>
-                    <exclude reference="quT-L6-RSA"/>
-                </mask>
-            </variation>
         </view>
     </objects>
     <resources>

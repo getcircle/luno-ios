@@ -23,7 +23,7 @@ class SearchLandingDataSource: CardDataSource {
                         if category.notes.count > 0 {
                             categoryCard.addContent(content: category.notes, maxVisibleItems: 5)
                             categoryCard.metaData = category.profiles
-                            self.profilesAssociatedWithNotes.extend(category.profiles)
+                            self.profilesAssociatedWithNotes = category.profiles
                         } else if category.profiles.count > 0 {
                             var profiles = category.profiles
                             var maxVisibleItems = 0
