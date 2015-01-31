@@ -9,15 +9,17 @@
 import UIKit
 import ProtobufRegistry
 
-class NotesOverviewViewController: UIViewController, UICollectionViewDelegate, NewNoteViewControllerDelegate {
+class NotesOverviewViewController: UIViewController, UICollectionViewDelegate, NewNoteViewControllerDelegate, SearchHeaderViewDelegate {
 
     @IBOutlet weak private(set) var activityIndicatorView: UIActivityIndicatorView!
     @IBOutlet weak private(set) var collectionView: UICollectionView!
+    @IBOutlet weak private(set) var searchContainerView: UIView!
     
     private(set) var dataSource = NotesOverviewDataSource()
     private(set) var delegate = CardCollectionViewDelegate()
     
     private var profileForSelectedNote: ProfileService.Containers.Profile?
+    private var searchHeaderView: SearchHeaderView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +27,7 @@ class NotesOverviewViewController: UIViewController, UICollectionViewDelegate, N
         // Do any additional setup after loading the view, typically from a nib.
         configureCollectionView()
         configureNavigationButtons()
+        configureSearchHeaderView()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -34,12 +37,17 @@ class NotesOverviewViewController: UIViewController, UICollectionViewDelegate, N
     
     // MARK: - Configuration
     
+    private func configureView() {
+        view.backgroundColor = UIColor.viewBackgroundColor()
+    }
+    
     private func configureCollectionView() {
         collectionView.backgroundColor = UIColor.viewBackgroundColor()
         collectionView.dataSource = dataSource
         collectionView.delegate = delegate
         (collectionView.delegate as CardCollectionViewDelegate).delegate = self
         collectionView.bounces = true
+        collectionView.keyboardDismissMode = .OnDrag
         collectionView.alwaysBounceVertical = true
     }
     
@@ -51,6 +59,19 @@ class NotesOverviewViewController: UIViewController, UICollectionViewDelegate, N
             action: "addNewNoteButtonTapped:"
         )
         navigationItem.rightBarButtonItem = addBarButtonItem
+    }
+
+    private func configureSearchHeaderView() {
+        if let nibViews = NSBundle.mainBundle().loadNibNamed("SearchHeaderView", owner: nil, options: nil) as? [UIView] {
+            searchHeaderView = nibViews.first as SearchHeaderView
+            searchHeaderView.delegate = self
+            searchHeaderView.searchTextField.placeholder = NSLocalizedString("Filter notes",
+                comment: "Placeholder for text field used for filtering notes")
+            searchHeaderView.searchTextField.addTarget(self, action: "filterNotes:", forControlEvents: .EditingChanged)
+            searchContainerView.addSubview(searchHeaderView)
+            searchHeaderView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
+            searchHeaderView.layer.cornerRadius = 10.0
+        }
     }
     
     // MARK: - Load Data
@@ -69,14 +90,17 @@ class NotesOverviewViewController: UIViewController, UICollectionViewDelegate, N
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let selectedCard = dataSource.cardAtSection(indexPath.section)!        
         if let selectedNote = dataSource.contentAtIndexPath(indexPath)? as? NoteService.Containers.Note {
-            if let profiles = selectedCard.metaData as? [ProfileService.Containers.Profile] {
-                if let selectedProfile = profiles[indexPath.row] as ProfileService.Containers.Profile? {
+            if let profiles = selectedCard.metaData as? [String: ProfileService.Containers.Profile] {
+                if let selectedProfile = profiles[selectedNote.for_profile_id] as ProfileService.Containers.Profile? {
                     let viewController = NewNoteViewController(nibName: "NewNoteViewController", bundle: nil)
                     profileForSelectedNote = selectedProfile
                     viewController.profile = selectedProfile
                     viewController.delegate = self
                     viewController.note = selectedNote
                     navigationController?.pushViewController(viewController, animated: true)
+                    if searchHeaderView.searchTextField.text.trimWhitespace() == "" {
+                        searchHeaderView.searchTextField.resignFirstResponder()
+                    }
                 }
             }
         }
@@ -95,6 +119,7 @@ class NotesOverviewViewController: UIViewController, UICollectionViewDelegate, N
     func didAddNote(note: NoteService.Containers.Note) {
         if let profile = profileForSelectedNote {
             dataSource.addNote(note, forProfile: profile)
+            filterNotes(nil)
             loadData()
         }
     }
@@ -102,6 +127,7 @@ class NotesOverviewViewController: UIViewController, UICollectionViewDelegate, N
     func didDeleteNote(note: NoteService.Containers.Note) {
         if let profile = profileForSelectedNote {
             dataSource.removeNote(note, forProfile: profile)
+            filterNotes(nil)
             loadData()
         }
     }
@@ -117,5 +143,21 @@ class NotesOverviewViewController: UIViewController, UICollectionViewDelegate, N
         viewController.delegate = self
         profileForSelectedNote = loggedInUserProfile
         navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    // MARK: - SearchHeaderViewDelegate
+    
+    func didCancel(sender: UIView) {
+        dataSource.filterNotes("")
+        loadData()
+    }
+    
+    func filterNotes(sender: AnyObject?) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), { () -> Void in
+            self.dataSource.filterNotes(self.searchHeaderView.searchTextField.text)
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                self.loadData()
+            })
+        })
     }
 }

@@ -4,10 +4,11 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NotesOverviewViewController" customModule="Circle" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NotesOverviewViewController" customModule="circle" customModuleProvider="target">
             <connections>
                 <outlet property="activityIndicatorView" destination="ClE-qD-M3h" id="wzu-c9-gaO"/>
                 <outlet property="collectionView" destination="vFq-Uw-rSd" id="vtF-VN-R32"/>
+                <outlet property="searchContainerView" destination="Esb-eX-Z6Q" id="Ius-v7-RlJ"/>
                 <outlet property="view" destination="E12-bl-CWu" id="7Zj-vi-PNT"/>
             </connections>
         </placeholder>
@@ -16,8 +17,19 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="ClE-qD-M3h">
+                    <rect key="frame" x="290" y="312" width="20" height="20"/>
+                    <color key="color" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </activityIndicatorView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Esb-eX-Z6Q" userLabel="SearchContainerView">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="uF8-sO-vkA"/>
+                    </constraints>
+                </view>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="vFq-Uw-rSd">
-                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <rect key="frame" x="0.0" y="44" width="600" height="556"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="FCS-jf-ued">
                         <size key="itemSize" width="50" height="50"/>
                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -25,20 +37,29 @@
                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                     </collectionViewFlowLayout>
                 </collectionView>
-                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="ClE-qD-M3h">
-                    <rect key="frame" x="290" y="290" width="20" height="20"/>
-                    <color key="color" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                </activityIndicatorView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="vFq-Uw-rSd" secondAttribute="trailing" id="C6i-HI-TF9"/>
                 <constraint firstItem="ClE-qD-M3h" firstAttribute="centerX" secondItem="vFq-Uw-rSd" secondAttribute="centerX" id="CBd-kr-cNf"/>
                 <constraint firstItem="vFq-Uw-rSd" firstAttribute="top" secondItem="E12-bl-CWu" secondAttribute="top" id="DsP-KX-IDH"/>
+                <constraint firstItem="vFq-Uw-rSd" firstAttribute="top" secondItem="Esb-eX-Z6Q" secondAttribute="bottom" constant="1" id="F3M-xW-51B"/>
                 <constraint firstItem="vFq-Uw-rSd" firstAttribute="leading" secondItem="E12-bl-CWu" secondAttribute="leading" id="JUZ-uY-u3W"/>
+                <constraint firstItem="Esb-eX-Z6Q" firstAttribute="top" secondItem="vFq-Uw-rSd" secondAttribute="top" id="Ji3-vP-AKy"/>
+                <constraint firstItem="vFq-Uw-rSd" firstAttribute="top" secondItem="Esb-eX-Z6Q" secondAttribute="bottom" id="OIK-fg-dIe"/>
+                <constraint firstItem="Esb-eX-Z6Q" firstAttribute="top" secondItem="E12-bl-CWu" secondAttribute="top" id="TBe-ub-J4I"/>
+                <constraint firstItem="Esb-eX-Z6Q" firstAttribute="leading" secondItem="E12-bl-CWu" secondAttribute="leading" id="aFh-hU-Dqb"/>
                 <constraint firstItem="ClE-qD-M3h" firstAttribute="centerY" secondItem="vFq-Uw-rSd" secondAttribute="centerY" id="cFd-Ko-H03"/>
+                <constraint firstAttribute="trailing" secondItem="Esb-eX-Z6Q" secondAttribute="trailing" id="nic-9R-QVL"/>
                 <constraint firstAttribute="bottom" secondItem="vFq-Uw-rSd" secondAttribute="bottom" id="v8I-Ij-NG1"/>
             </constraints>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="DsP-KX-IDH"/>
+                    <exclude reference="F3M-xW-51B"/>
+                    <exclude reference="Ji3-vP-AKy"/>
+                </mask>
+            </variation>
             <point key="canvasLocation" x="-22" y="-95"/>
         </view>
     </objects>

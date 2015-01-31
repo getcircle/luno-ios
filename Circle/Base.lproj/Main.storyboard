@@ -24,7 +24,7 @@
         <!--Profiles View Controller-->
         <scene sceneID="MUU-Kj-5cV">
             <objects>
-                <viewController storyboardIdentifier="ProfilesViewController" extendedLayoutIncludesOpaqueBars="YES" id="sfD-c4-aFJ" customClass="ProfilesViewController" customModule="Circle" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProfilesViewController" extendedLayoutIncludesOpaqueBars="YES" id="sfD-c4-aFJ" customClass="ProfilesViewController" customModule="circle" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="GD7-Su-MnX"/>
                         <viewControllerLayoutGuide type="bottom" id="90M-NW-Qsi"/>
@@ -89,14 +89,14 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f5R-TC-QAe" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <customObject id="bX9-8U-C2p" customClass="ProfilesCollectionViewDelegate" customModule="Circle" customModuleProvider="target"/>
+                <customObject id="bX9-8U-C2p" customClass="ProfilesCollectionViewDelegate" customModule="circle" customModuleProvider="target"/>
             </objects>
             <point key="canvasLocation" x="1944" y="-1336"/>
         </scene>
         <!--Search-->
         <scene sceneID="HTA-V4-sgE">
             <objects>
-                <viewController title="Search" extendedLayoutIncludesOpaqueBars="YES" id="PMD-gG-9c6" customClass="SearchViewController" customModule="Circle" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Search" extendedLayoutIncludesOpaqueBars="YES" id="PMD-gG-9c6" customClass="SearchViewController" customModule="circle" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="iQd-um-0Yq"/>
                         <viewControllerLayoutGuide type="bottom" id="rUn-MN-xeZ"/>
@@ -294,7 +294,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Vf-V8-GjI" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <customObject id="YDr-At-X3C" customClass="CardCollectionViewDelegate" customModule="Circle" customModuleProvider="target"/>
+                <customObject id="YDr-At-X3C" customClass="CardCollectionViewDelegate" customModule="circle" customModuleProvider="target"/>
             </objects>
             <point key="canvasLocation" x="1187" y="-1336"/>
         </scene>
