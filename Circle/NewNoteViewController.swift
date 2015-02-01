@@ -14,7 +14,7 @@ protocol NewNoteViewControllerDelegate {
     func didDeleteNote(note: NoteService.Containers.Note)
 }
 
-class NewNoteViewController: UIViewController, UIViewControllerTransitioningDelegate, UITextViewDelegate {
+class NewNoteViewController: UIViewController, UIViewControllerTransitioningDelegate, UITextViewDelegate, NSLayoutManagerDelegate {
     
     var delegate: NewNoteViewControllerDelegate?
     var note: NoteService.Containers.Note?
@@ -22,21 +22,28 @@ class NewNoteViewController: UIViewController, UIViewControllerTransitioningDele
 
     @IBOutlet weak var noteTextView: UITextView!
     @IBOutlet weak var noteTextViewTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var noteTextViewBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var profileImageView: CircleImageView!
     @IBOutlet weak var profileNameLabel: UILabel!
     @IBOutlet weak var profileTitleLabel: UILabel!
     
     private var deleteAlertController: UIAlertController!
     private var noteTopBorder: UIView!
+    private var noteTextViewBottomConstraintInitialValue: CGFloat!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        registerNotifications()
         configureView()
         configureNavigationBar()
         configureNavigationItems()
         configureDeleteAlertController()
+    }
+    
+    deinit {
+        unregisterNotifications()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -68,15 +75,22 @@ class NewNoteViewController: UIViewController, UIViewControllerTransitioningDele
         noteTopBorder = noteTextView.addTopBorder(offset: nil)
         noteTextView.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
         noteTextView.delegate = self
+        noteTextView.layoutManager.delegate = self
         if let note = note {
             noteTextView.text = note.content
         }
+        
+        noteTextViewBottomConstraintInitialValue = noteTextViewBottomConstraint.constant
     }
     
     private func configureNavigationBar() {
         if let note = note {
             if let gmtDate = NSDateFormatter.dateFromTimestampString(note.changed) {
-                navigationItem.title = NSDateFormatter.localizedRelativeDateString(gmtDate)
+                navigationItem.title = NSDateFormatter.stringFromDateWithStyles(
+                    gmtDate,
+                    dateStyle: .MediumStyle,
+                    timeStyle: .ShortStyle
+                )
             }
         }
         else {
@@ -223,4 +237,46 @@ class NewNoteViewController: UIViewController, UIViewControllerTransitioningDele
         }
     }
     
+    // MARK: - NSLayoutManagerDelegate
+    
+    func layoutManager(layoutManager: NSLayoutManager, lineSpacingAfterGlyphAtIndex glyphIndex: Int, withProposedLineFragmentRect rect: CGRect) -> CGFloat {
+        return 4.0
+    }
+    
+    // MARK: - Notifications
+    
+    func registerNotifications() {
+        NSNotificationCenter.defaultCenter().addObserver(
+            self, 
+            selector: "keyboardWasShown:",
+            name: UIKeyboardDidShowNotification, 
+            object: nil
+        )
+
+        NSNotificationCenter.defaultCenter().addObserver(
+            self, 
+            selector: "keyboardWillBeHidden:",
+            name: UIKeyboardWillHideNotification, 
+            object: nil
+        )
+    }
+    
+    func unregisterNotifications() {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
+    func keyboardWasShown(notification: NSNotification) {
+        let userInfo = notification.userInfo
+        if let keyboardSizeValue: NSValue = userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue {
+            noteTextViewBottomConstraint.constant = keyboardSizeValue.CGRectValue().size.height
+            noteTextView.setNeedsUpdateConstraints()
+            noteTextView.layoutIfNeeded()
+        }
+    }
+    
+    func keyboardWillBeHidden(notification: NSNotification) {
+        noteTextViewBottomConstraint.constant = noteTextViewBottomConstraintInitialValue
+        noteTextView.setNeedsUpdateConstraints()
+        noteTextView.layoutIfNeeded()
+    }
 }

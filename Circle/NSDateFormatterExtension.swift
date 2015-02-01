@@ -43,6 +43,16 @@ extension NSDateFormatter {
         return Static.relativeDateFormatter
     }
     
+    class func stringFromDateWithStyles(
+        date: NSDate,
+        dateStyle: NSDateFormatterStyle,
+        timeStyle: NSDateFormatterStyle
+    ) -> String {
+        self.sharedInstance.dateStyle = dateStyle
+        self.sharedInstance.timeStyle = timeStyle
+        return self.sharedInstance.stringFromDate(date)
+    }
+    
     class func shortStyleStringFromDate(date: NSDate) -> String {
         self.sharedInstance.dateStyle = .ShortStyle
         return self.sharedInstance.stringFromDate(date)
