@@ -56,6 +56,7 @@ class BaseDetailViewController: UIViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         registerNotifications()
+        navigationController?.navigationBar.makeTransparent()
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -68,7 +69,7 @@ class BaseDetailViewController: UIViewController {
         if isMovingFromParentViewController() || (navigationController?.viewControllers.first is DetailViewController) {
             if let totalViewControllers = navigationController?.viewControllers.count {
                 let parentController = navigationController?.viewControllers[(totalViewControllers - 1)] as? UIViewController
-                if !(parentController is DetailViewController) {
+                if !(parentController is BaseDetailViewController) {
                     transitionCoordinator()?.animateAlongsideTransition({ (transitionContext) -> Void in
                         self.navigationController?.setNavigationBarHidden(false, animated: true)
                         var toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey) as UIViewController!
