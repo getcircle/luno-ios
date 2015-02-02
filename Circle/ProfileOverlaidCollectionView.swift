@@ -129,8 +129,10 @@ class ProfileOverlaidCollectionView: UICollectionView, UICollectionViewDelegate 
                 
                 // Reduce opacity of the name and title label at a faster pace
                 let titleLabelAlpha = 1.0 - contentOffset.y/(profileHeaderView.titleLabel.frameY - 40.0)
+                let nameLabelAlpha = 1.0 - contentOffset.y/(profileHeaderView.nameLabel.frameY - 40.0)
                 profileHeaderView.titleLabel.alpha = titleLabelAlpha
-                profileHeaderView.nameLabel.alpha = 1.0 - contentOffset.y/(profileHeaderView.nameLabel.frameY - 40.0)
+                profileHeaderView.verifiedProfileButton.alpha = nameLabelAlpha
+                profileHeaderView.nameLabel.alpha = nameLabelAlpha
                 profileHeaderView.nameNavLabel.alpha = titleLabelAlpha <= 0.0 ? profileHeaderView.nameNavLabel.alpha + 1/20 : 0.0
             }
             else {
@@ -140,6 +142,7 @@ class ProfileOverlaidCollectionView: UICollectionView, UICollectionViewDelegate 
                 // Change it slower for everything else
                 let otherViewsAlpha = max(0.0, 1.0 - -contentOffset.y/120.0)
                 profileHeaderView.nameLabel.alpha = otherViewsAlpha
+                profileHeaderView.verifiedProfileButton.alpha = otherViewsAlpha
                 profileHeaderView.nameNavLabel.alpha = 0.0
                 profileHeaderView.titleLabel.alpha = otherViewsAlpha
                 profileHeaderView.profileImage.alpha = profileImageAlpha

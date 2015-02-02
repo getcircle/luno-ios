@@ -21,6 +21,7 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var profileImage: CircleImageView!
     @IBOutlet weak var sectionsView: UIView!
+    @IBOutlet weak var verifiedProfileButton: UIButton!
     
     var profileSegmentedControlDelegate: ProfileDetailSegmentedControlDelegate?
     var sections: [ProfileDetailView]? {
@@ -72,6 +73,7 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
         backgroundImage.setImageWithURL(
             NSURL(string: profile.image_url)
         )
+        verifiedProfileButton.hidden = !profile.verified
     }
     
     // MARK: - Segmented Control
