@@ -60,20 +60,48 @@ class BaseTransport: ServiceTransport {
 
 struct ServiceHttpRequest: URLRequestConvertible {
     
-    static let baseURLString = "http://staging.services.otterbots.net/"
-//    static let baseURLString = "http://localhost:8000/"
+    enum Environment {
+        case Local
+        case Staging
+        case Production
+        
+        var scheme: String {
+            return "http"
+        }
+        
+        var host: String {
+            switch self {
+            case .Local: return "localhost"
+            case .Staging: return "staging.services.otterbots.net"
+            case .Production: return "prod.services.otterbots.net"
+            }
+        }
+        
+        var serviceEndpoint: NSURL {
+            var url = "\(scheme)://\(host)"
+            switch self {
+            case .Local:
+                url = "\(url):8000"
+            default:
+                break
+            }
+            return NSURL(string: url)!
+        }
+    }
+    
+//    static let environemnt = Environment.Staging
+    static let environment = Environment.Local
     
     var data: NSData
     var token: String?
     
-    init(data: NSData, token: String?) {
-        self.data = data
-        self.token = token
+    init(data withData: NSData, token withToken: String?) {
+        data = withData
+        token = withToken
     }
     
     var URLRequest: NSURLRequest {
-        let URL = NSURL(string: ServiceHttpRequest.baseURLString)!
-        let mutableURLRequest = NSMutableURLRequest(URL: URL)
+        let mutableURLRequest = NSMutableURLRequest(URL: ServiceHttpRequest.environment.serviceEndpoint)
         mutableURLRequest.setValue("application/x-protobuf", forHTTPHeaderField: "Content-Type")
         if token != "" {
             mutableURLRequest.setValue("Token \(token!)", forHTTPHeaderField: "Authorization")
@@ -81,10 +109,6 @@ struct ServiceHttpRequest: URLRequestConvertible {
         mutableURLRequest.HTTPMethod = Alamofire.Method.POST.rawValue
         mutableURLRequest.HTTPBody = data
         return mutableURLRequest
-    }
-    
-    static func isPointingToProduction() -> Bool {
-        return ServiceHttpRequest.baseURLString.rangeOfString("staging") == nil
     }
 }
 

@@ -152,6 +152,8 @@
 		BFE213CD1A5EF7E30033E2F5 /* AppDelegateSearchCacheExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE213CC1A5EF7E30033E2F5 /* AppDelegateSearchCacheExtension.swift */; };
 		BFE213CF1A5F0B1D0033E2F5 /* SearchQueryDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE213CE1A5F0B1D0033E2F5 /* SearchQueryDataSource.swift */; };
 		BFEDB1431A2A8CA700250165 /* UICollectionViewFlowLayoutExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFEDB1421A2A8CA700250165 /* UICollectionViewFlowLayoutExtension.swift */; };
+		BFF5E6F51A814C2C00827757 /* SocialConnectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF5E6F31A814C2C00827757 /* SocialConnectViewController.swift */; };
+		BFF5E6FB1A817B9600827757 /* SocialConnectViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFF5E6FA1A817B9600827757 /* SocialConnectViewController.xib */; };
 		BFFB1A041A4872F200CCFFC3 /* Locksmith.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = BFFB19FF1A4872E200CCFFC3 /* Locksmith.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
@@ -393,6 +395,8 @@
 		BFE213CC1A5EF7E30033E2F5 /* AppDelegateSearchCacheExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegateSearchCacheExtension.swift; sourceTree = "<group>"; };
 		BFE213CE1A5F0B1D0033E2F5 /* SearchQueryDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchQueryDataSource.swift; sourceTree = "<group>"; };
 		BFEDB1421A2A8CA700250165 /* UICollectionViewFlowLayoutExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICollectionViewFlowLayoutExtension.swift; sourceTree = "<group>"; };
+		BFF5E6F31A814C2C00827757 /* SocialConnectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialConnectViewController.swift; sourceTree = "<group>"; };
+		BFF5E6FA1A817B9600827757 /* SocialConnectViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SocialConnectViewController.xib; sourceTree = "<group>"; };
 		BFFB19F91A4872E200CCFFC3 /* Locksmith.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Locksmith.xcodeproj; path = ThirdParty/Locksmith/Locksmith.xcodeproj; sourceTree = SOURCE_ROOT; };
 		CC982AC8BAF0AFF23DCD301A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		FD94FE17CC5CD80FF96B24E5 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -516,6 +520,7 @@
 				BF7B238F1A70894100137BCB /* ProfileDetailsViewController.swift */,
 				8F00049A1A2419730096477A /* ProfilesViewController.swift */,
 				8FF297FC1A4A4DCA00306CFC /* SearchViewController.swift */,
+				BFF5E6F31A814C2C00827757 /* SocialConnectViewController.swift */,
 				8F7400221A6862BF00D96B60 /* TagDetailViewController.swift */,
 				8FF298431A4DF38E00306CFC /* TagSelectorViewController.swift */,
 				8F085A841A6B0C1E00F8139B /* TeamDetailViewController.swift */,
@@ -624,6 +629,7 @@
 				8FF298021A4A4E3600306CFC /* ProfileImagesCollectionViewCell.xib */,
 				8FF298091A4B490E00306CFC /* SearchHeaderView.xib */,
 				8FF2254B1A641B27001B2E32 /* SearchResultsCardHeaderCollectionReusableView.xib */,
+				BFF5E6FA1A817B9600827757 /* SocialConnectViewController.xib */,
 				8FF298461A4E050100306CFC /* TagCollectionViewCell.xib */,
 				8F74001C1A684F2400D96B60 /* TagHeaderCollectionReusableView.xib */,
 				8F65C5061A52661700C7F3E6 /* TagsCollectionViewCell.xib */,
@@ -942,6 +948,7 @@
 				8F22CBF91A29A8EB0026376E /* AuthViewController.xib in Resources */,
 				8F823E4D1A729E1B0006264B /* TeamsOverviewViewController.xib in Resources */,
 				BF8DAC891A6D7EB1000860DD /* NewNoteViewController.xib in Resources */,
+				BFF5E6FB1A817B9600827757 /* SocialConnectViewController.xib in Resources */,
 				8F4805E91A5DE4CE00273731 /* MapHeaderCollectionReusableView.xib in Resources */,
 				8F306B8E1A7416E00024EB03 /* LocationsOverviewViewController.xib in Resources */,
 				8F809F881A79DD6900029A47 /* NotesOverviewViewController.xib in Resources */,
@@ -1156,6 +1163,7 @@
 				BF8DAC901A6D904D000860DD /* NoteService.swift in Sources */,
 				BFC6CF9C1A44D2B90081F45B /* ServiceClient.swift in Sources */,
 				8F74003F1A6A442900D96B60 /* CircleAlertViewAnimator.swift in Sources */,
+				BFF5E6F51A814C2C00827757 /* SocialConnectViewController.swift in Sources */,
 				8FF2254C1A641B27001B2E32 /* SearchResultsCardHeaderCollectionReusableView.swift in Sources */,
 				8F306B931A74171C0024EB03 /* LocationsOverviewDataSource.swift in Sources */,
 				BFE213CF1A5F0B1D0033E2F5 /* SearchQueryDataSource.swift in Sources */,

@@ -29,8 +29,7 @@ class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate, Ci
     
     private var activeField = ActiveField.PhoneNumber
     private var activityIndicatorView: UIActivityIndicatorView?
-//    private var bypassChecks = !ServiceHttpRequest.isPointingToProduction()
-    private var bypassChecks = true
+    private var bypassChecks = ServiceHttpRequest.environment != .Production
     private var codeDigits = 0
     private var phoneNumberFieldPreviousVerticalSpacing: CGFloat = 0.0
     private var phoneNumberFormatter: NBAsYouTypeFormatter!

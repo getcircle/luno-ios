@@ -516,7 +516,7 @@ final public class UserService : GeneratedMessage {
 
       //Nested type declaration start
 
-        final public class Oauth2Details : GeneratedMessage {
+        final public class OAuth2Details : GeneratedMessage {
           override public subscript (key: String) -> Any? {
                  switch key {
                  case "code": return code
@@ -640,7 +640,7 @@ final public class UserService : GeneratedMessage {
 
         }
 
-        final public class Oauth2DetailsBuilder : GeneratedMessageBuilder {
+        final public class OAuth2DetailsBuilder : GeneratedMessageBuilder {
           private var builderResult:UserService.Containers.OAuth2Details
 
           required override public init () {
