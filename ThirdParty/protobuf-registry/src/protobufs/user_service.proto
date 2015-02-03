@@ -3,6 +3,11 @@ package main.user_service;
 
 message UserService {
 
+    enum Provider {
+        INTERNAL = 0;
+        LINKEDIN = 1;
+    }
+
     // MARK: - Containers
 
     message Containers {
@@ -14,6 +19,22 @@ message UserService {
             optional bool is_active = 4;
             optional string phone_number = 5;
             optional bool phone_number_verified = 6;
+        }
+
+        message OAuth2Details {
+            optional string code = 1;
+            optional string state = 2;
+        }
+
+        message Identity {
+            optional string id = 1;
+            optional Provider provider = 2;
+            optional string full_name = 3;
+            optional string email = 4;
+            optional string access_token = 5;
+            optional string expires_at = 6;
+            optional string provider_uid = 7;
+            optional string user_id = 8;
         }
 
     }
@@ -111,6 +132,32 @@ message UserService {
 
         message Response {
             optional bool verified = 1;
+        }
+
+    }
+
+    message GetAuthorizationInstructions {
+
+        message Request {
+            optional Provider provider = 1;
+        }
+
+        message Response {
+            optional string authorization_url = 2;
+        }
+
+    }
+
+    message CompleteAuthorization {
+
+        message Request {
+            optional Provider provider = 1;
+            optional Containers.OAuth2Details oauth2_details = 2;
+        }
+
+        message Response {
+            optional Containers.User user = 1;
+            optional Containers.Identity identity = 2;
         }
 
     }

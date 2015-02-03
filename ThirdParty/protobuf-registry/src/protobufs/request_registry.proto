@@ -19,6 +19,8 @@ message UserServiceRequests {
         optional main.user_service.UserService.SendVerificationCode.Request send_verification_code = 104;
         optional main.user_service.UserService.VerifyVerificationCode.Request verify_verification_code = 105;
         optional main.user_service.UserService.UpdateUser.Request update_user = 106;
+        optional main.user_service.UserService.GetAuthorizationInstructions.Request get_authorization_instructions = 107;
+        optional main.user_service.UserService.CompleteAuthorization.Request complete_authorization = 108;
     }
 }
 
