@@ -45,19 +45,22 @@ class SectionItem {
     var container: String
     var containerKey: String
     var contentType: ContentType!
+    var defaultValue: Any?
     
     init(
         title itemTitle: String,
         container itemContainer: String,
         containerKey itemContainerKey: String,
         contentType type: ContentType,
-        image itemImage: ItemImage?
+        image itemImage: ItemImage?,
+        defaultValue itemDefaultValue: Any? = nil
     ) {
         title = itemTitle
         container = itemContainer
         containerKey = itemContainerKey
         image = itemImage
         contentType = type
+        defaultValue = itemDefaultValue
     }
 }
 
@@ -124,9 +127,24 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
     // MARK: - Configuration
     
     private func configureSections() {
+        sections.append(getSocialConnectSection())
         sections.append(getBasicInfoSection())
         sections.append(getManagerInfoSection())
         sections.append(getTagsSection())
+    }
+    
+    private func getSocialConnectSection() -> Section {
+        let sectionItems = [
+            SectionItem(
+                title: " ",
+                container: "social",
+                containerKey: "profile",
+                contentType: .LinkedIn,
+                image: ItemImage(name: "LinkedIn", tint: UIColor.linkedinColor()),
+                defaultValue: "Connect with LinkedIn"
+            )
+        ]
+        return Section(title: "Social", items: sectionItems, cardType: .KeyValue)
     }
     
     private func getBasicInfoSection() -> Section {
@@ -218,7 +236,7 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
     }
     
     private func addKeyValueItemToCard(item: SectionItem, card: Card) {
-        var value: Any?
+        var value: Any? = item.defaultValue
         switch item.container {
         case "profile":
             value = profile[item.containerKey]
@@ -235,7 +253,7 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
         case "team":
             value = team?[item.containerKey]
         default:
-            value = nil
+            break
         }
         
         if let value = value as? String {

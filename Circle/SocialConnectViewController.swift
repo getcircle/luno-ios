@@ -12,24 +12,30 @@ import WebKit
 
 class SocialConnectViewController: UIViewController, WKNavigationDelegate {
     
-    @IBOutlet weak var infoLabel: UILabel!
-    @IBOutlet weak var socialIconImageView: UIImageView!
-    
+    var activityIndicator: UIActivityIndicatorView!
     var webView: WKWebView!
     var provider: UserService.Provider?
+    
+    convenience init(provider withProvider: UserService.Provider) {
+        self.init()
+        provider = withProvider
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
         configureWebView()
-        configureProvider()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        loadWebView()
     }
     
     // MARK: - Configuration
     
     private func configureView() {
         view.backgroundColor = UIColor.appTintColor()
-        infoLabel.textColor = UIColor.whiteColor()
+        activityIndicator = view.addActivityIndicator(color: UIColor.whiteColor())
     }
     
     private func configureWebView() {
@@ -41,7 +47,7 @@ class SocialConnectViewController: UIViewController, WKNavigationDelegate {
         webView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
     }
     
-    private func configureProvider() {
+    private func loadWebView() {
         UserService.Actions.getAuthorizationInstructions(provider!) { (authorizationURL, error) -> Void in
             if let authorizationURL = authorizationURL {
                 let url = NSURL(string: authorizationURL)

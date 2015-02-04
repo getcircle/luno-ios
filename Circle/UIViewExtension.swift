@@ -81,9 +81,9 @@ extension UIView {
         return visualEffectView
     }
     
-    func addActivityIndicator() -> UIActivityIndicatorView {
+    func addActivityIndicator(color: UIColor = UIColor.activityIndicatorViewColor()) -> UIActivityIndicatorView {
         var activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
-        activityIndicatorView.color = UIColor.activityIndicatorViewColor()
+        activityIndicatorView.color = color
         activityIndicatorView.setTranslatesAutoresizingMaskIntoConstraints(false)
         activityIndicatorView.hidesWhenStopped = true
         activityIndicatorView.startAnimating()

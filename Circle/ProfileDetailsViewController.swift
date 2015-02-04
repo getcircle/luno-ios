@@ -174,6 +174,10 @@ class ProfileDetailsViewController:
             let teamVC = TeamDetailViewController()
             (teamVC.dataSource as TeamDetailDataSource).selectedTeam = dataSource.team!
             navigationController?.pushViewController(teamVC, animated: true)
+        
+        case .LinkedIn:
+            let socialConnectVC = SocialConnectViewController(provider: .Linkedin)
+            navigationController?.presentViewController(socialConnectVC, animated: true, completion:nil)
             
         default:
             break
