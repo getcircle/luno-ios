@@ -1,5 +1,5 @@
 //
-//  TagDetailDataSource.swift
+//  SkillDetailDataSource.swift
 //  Circle
 //
 //  Created by Ravi Rani on 1/15/15.
@@ -9,12 +9,12 @@
 import UIKit
 import ProtobufRegistry
 
-class TagDetailDataSource: CardDataSource {
+class SkillDetailDataSource: CardDataSource {
     
-    var selectedTag: ProfileService.Containers.Tag!
+    var selectedSkill: ProfileService.Containers.Skill!
     
     private var profiles = Array<ProfileService.Containers.Profile>()
-    private(set) var profileHeaderView: TagHeaderCollectionReusableView?
+    private(set) var profileHeaderView: SkillHeaderCollectionReusableView?
     
     // MARK: - Load Data
     
@@ -24,16 +24,16 @@ class TagDetailDataSource: CardDataSource {
             return
         }
         
-        // Add a placeholder card for tag view
-        let placeholderTagCard = Card(cardType: .Placeholder, title: "Tag Header")
-        placeholderTagCard.sectionInset = UIEdgeInsetsZero
-        appendCard(placeholderTagCard)
+        // Add a placeholder card for skill view
+        let placeholderSkillCard = Card(cardType: .Placeholder, title: "Skill Header")
+        placeholderSkillCard.sectionInset = UIEdgeInsetsZero
+        appendCard(placeholderSkillCard)
         
         if let currentProfile = AuthViewController.getLoggedInUserProfile() {
-            ProfileService.Actions.getProfiles(tagId: selectedTag!.id) { (profiles, error) -> Void in
+            ProfileService.Actions.getProfiles(skillId: selectedSkill!.id) { (profiles, error) -> Void in
                 if error == nil {
                     self.profiles.extend(profiles!)
-                    let peopleCard = Card(cardType: .People, title: "People by Tag")
+                    let peopleCard = Card(cardType: .People, title: "People by Skill")
                     peopleCard.addContent(content: profiles! as [AnyObject])
                     peopleCard.sectionInset = UIEdgeInsetsZero
                     self.appendCard(peopleCard)
@@ -55,9 +55,9 @@ class TagDetailDataSource: CardDataSource {
     
     override func registerCardHeader(collectionView: UICollectionView) {
         collectionView.registerNib(
-            UINib(nibName: "TagHeaderCollectionReusableView", bundle: nil),
+            UINib(nibName: "SkillHeaderCollectionReusableView", bundle: nil),
             forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
-            withReuseIdentifier: TagHeaderCollectionReusableView.classReuseIdentifier
+            withReuseIdentifier: SkillHeaderCollectionReusableView.classReuseIdentifier
         )
         
         super.registerCardHeader(collectionView)
@@ -71,10 +71,10 @@ class TagDetailDataSource: CardDataSource {
             
             let supplementaryView = collectionView.dequeueReusableSupplementaryViewOfKind(
                 kind,
-                withReuseIdentifier: TagHeaderCollectionReusableView.classReuseIdentifier,
+                withReuseIdentifier: SkillHeaderCollectionReusableView.classReuseIdentifier,
                 forIndexPath: indexPath
-            ) as TagHeaderCollectionReusableView
-            supplementaryView.tagNameLabel.attributedText = NSAttributedString(string: selectedTag.name.uppercaseString, attributes: [NSKernAttributeName: 2.0])
+            ) as SkillHeaderCollectionReusableView
+            supplementaryView.skillNameLabel.attributedText = NSAttributedString(string: selectedSkill.name.uppercaseString, attributes: [NSKernAttributeName: 2.0])
             
             profileHeaderView = supplementaryView
             return supplementaryView

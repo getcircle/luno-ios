@@ -16,7 +16,7 @@ class SearchQueryDataSource: CardDataSource {
     private var visibleProfiles = Array<ProfileService.Containers.Profile>()
     private var visibleTeams = Array<OrganizationService.Containers.Team>()
     private var visibleAddresses = Array<OrganizationService.Containers.Address>()
-    private var visibleTags = Array<ProfileService.Containers.Tag>()
+    private var visibleSkills = Array<ProfileService.Containers.Skill>()
     
     override func loadData(completionHandler: (error: NSError?) -> Void) {
     }
@@ -33,8 +33,8 @@ class SearchQueryDataSource: CardDataSource {
                 if let addresses = results.addresses {
                     self.visibleAddresses = addresses
                 }
-                if let tags = results.tags {
-                    self.visibleTags = tags
+                if let skills = results.skills {
+                    self.visibleSkills = skills
                 }
                 self.updateVisibleCards()
             }
@@ -63,12 +63,12 @@ class SearchQueryDataSource: CardDataSource {
             appendCard(teamsCard)
         }
         
-        if visibleTags.count > 0 {
-            let tagsCard = Card(cardType: .Tags, title: "Tags")
-            tagsCard.addContent(content: visibleTags as [AnyObject])
-            tagsCard.contentCount = visibleTags.count
-            tagsCard.sectionInset = sectionInset
-            appendCard(tagsCard)
+        if visibleSkills.count > 0 {
+            let skillsCard = Card(cardType: .Skills, title: "Skills")
+            skillsCard.addContent(content: visibleSkills as [AnyObject])
+            skillsCard.contentCount = visibleSkills.count
+            skillsCard.sectionInset = sectionInset
+            appendCard(skillsCard)
         }
     }
     

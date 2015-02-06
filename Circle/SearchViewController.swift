@@ -29,8 +29,8 @@ NewNoteViewControllerDelegate {
         static func placeholderByQuickAction(quickAction: QuickAction) -> String {
             switch quickAction {
             case .None:
-                return NSLocalizedString("Search people, teams, tags, etc.",
-                    comment: "Placeholder text for search field used to search people, teams and tags.")
+                return NSLocalizedString("Search people, teams, skills, etc.",
+                    comment: "Placeholder text for search field used to search people, teams and skills.")
                 
             case .Email:
                 return NSLocalizedString("Who do you want to email",
@@ -121,7 +121,7 @@ NewNoteViewControllerDelegate {
         // specifically the ones that modify the view hierarchy
         NSNotificationCenter.defaultCenter().removeObserver(
             self,
-            name: TagsCollectionViewCellNotifications.onTagSelectedNotification,
+            name: SkillsCollectionViewCellNotifications.onSkillSelectedNotification,
             object: nil
         )
     }
@@ -355,13 +355,13 @@ NewNoteViewControllerDelegate {
         }
     }
     
-    //MARK: - Tag Selected Notification
+    //MARK: - Skill Selected Notification
     
-    func didSelectTag(notification: NSNotification) {
+    func didSelectSkill(notification: NSNotification) {
         if let userInfo = notification.userInfo {
-            if let selectedTag = userInfo["tag"] as? ProfileService.Containers.Tag {
-                let viewController = TagDetailViewController()
-                (viewController.dataSource as TagDetailDataSource).selectedTag = selectedTag
+            if let selectedSkill = userInfo["skill"] as? ProfileService.Containers.Skill {
+                let viewController = SkillDetailViewController()
+                (viewController.dataSource as SkillDetailDataSource).selectedSkill = selectedSkill
                 navigationController?.pushViewController(viewController, animated: true)
             }
         }
@@ -470,8 +470,8 @@ NewNoteViewControllerDelegate {
         unregisterNotifications()
         NSNotificationCenter.defaultCenter().addObserver(
             self,
-            selector: "didSelectTag:",
-            name: TagsCollectionViewCellNotifications.onTagSelectedNotification,
+            selector: "didSelectSkill:",
+            name: SkillsCollectionViewCellNotifications.onSkillSelectedNotification,
             object: nil
         )
         

@@ -6,7 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionReusableView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="U6b-Vx-4bR" customClass="TagHeaderCollectionReusableView" customModule="Circle" customModuleProvider="target">
+        <collectionReusableView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="U6b-Vx-4bR" customClass="SkillHeaderCollectionReusableView" customModule="Circle" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="621" height="200"/>
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
@@ -23,8 +23,8 @@
                 <constraint firstAttribute="centerX" secondItem="6Fk-g8-nvu" secondAttribute="centerX" id="iwZ-54-gh3"/>
             </constraints>
             <connections>
-                <outlet property="tagNameLabel" destination="6Fk-g8-nvu" id="Yj6-el-nQf"/>
-                <outlet property="tagNameLabelCenterYConstraint" destination="hUq-mf-knD" id="WJb-Cl-JLW"/>
+                <outlet property="skillNameLabel" destination="6Fk-g8-nvu" id="Yj6-el-nQf"/>
+                <outlet property="skillNameLabelCenterYConstraint" destination="hUq-mf-knD" id="WJb-Cl-JLW"/>
             </connections>
             <point key="canvasLocation" x="503.5" y="278"/>
         </collectionReusableView>

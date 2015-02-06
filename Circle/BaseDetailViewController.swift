@@ -119,8 +119,8 @@ class BaseDetailViewController: UIViewController {
     func registerNotifications() {
         NSNotificationCenter.defaultCenter().addObserver(
             self,
-            selector: "didSelectTag:",
-            name: TagsCollectionViewCellNotifications.onTagSelectedNotification,
+            selector: "didSelectSkill:",
+            name: SkillsCollectionViewCellNotifications.onSkillSelectedNotification,
             object: nil
         )
         
@@ -138,11 +138,11 @@ class BaseDetailViewController: UIViewController {
     
     // MARK: - Notification Handlers
     
-    func didSelectTag(notification: NSNotification) {
+    func didSelectSkill(notification: NSNotification) {
         if let userInfo = notification.userInfo {
-            if let selectedTag = userInfo["tag"] as? ProfileService.Containers.Tag {
-                let viewController = TagDetailViewController()
-                (viewController.dataSource as TagDetailDataSource).selectedTag = selectedTag
+            if let selectedSkill = userInfo["skill"] as? ProfileService.Containers.Skill {
+                let viewController = SkillDetailViewController()
+                (viewController.dataSource as SkillDetailDataSource).selectedSkill = selectedSkill
                 navigationController?.pushViewController(viewController, animated: true)
             }
         }

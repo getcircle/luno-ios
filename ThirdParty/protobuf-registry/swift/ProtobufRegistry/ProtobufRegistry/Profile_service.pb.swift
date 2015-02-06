@@ -61,7 +61,7 @@ public func == (lhs: ProfileService.GetExtendedProfile, rhs: ProfileService.GetE
   return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
 }
 
-public func == (lhs: ProfileService.CreateTags, rhs: ProfileService.CreateTags) -> Bool {
+public func == (lhs: ProfileService.CreateSkills, rhs: ProfileService.CreateSkills) -> Bool {
   if (lhs === rhs) {
     return true
   }
@@ -69,7 +69,7 @@ public func == (lhs: ProfileService.CreateTags, rhs: ProfileService.CreateTags) 
   return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
 }
 
-public func == (lhs: ProfileService.GetTags, rhs: ProfileService.GetTags) -> Bool {
+public func == (lhs: ProfileService.GetSkills, rhs: ProfileService.GetSkills) -> Bool {
   if (lhs === rhs) {
     return true
   }
@@ -77,7 +77,7 @@ public func == (lhs: ProfileService.GetTags, rhs: ProfileService.GetTags) -> Boo
   return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
 }
 
-public func == (lhs: ProfileService.AddTags, rhs: ProfileService.AddTags) -> Bool {
+public func == (lhs: ProfileService.AddSkills, rhs: ProfileService.AddSkills) -> Bool {
   if (lhs === rhs) {
     return true
   }
@@ -141,7 +141,7 @@ public func == (lhs: ProfileService.GetRecentHires, rhs: ProfileService.GetRecen
   return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
 }
 
-public func == (lhs: ProfileService.GetActiveTags, rhs: ProfileService.GetActiveTags) -> Bool {
+public func == (lhs: ProfileService.GetActiveSkills, rhs: ProfileService.GetActiveSkills) -> Bool {
   if (lhs === rhs) {
     return true
   }
@@ -976,7 +976,7 @@ final public class ProfileService : GeneratedMessage {
 
       //Nested type declaration start
 
-        final public class Tag : GeneratedMessage {
+        final public class Skill : GeneratedMessage {
           override public subscript (key: String) -> Any? {
                  switch key {
                  case "id": return id
@@ -1023,41 +1023,41 @@ final public class ProfileService : GeneratedMessage {
             memoizedSerializedSize = size
             return size
           }
-          public class func parseFromData(data:[Byte]) -> ProfileService.Containers.Tag {
-            return ProfileService.Containers.Tag.builder().mergeFromData(data).build()
+          public class func parseFromData(data:[Byte]) -> ProfileService.Containers.Skill {
+            return ProfileService.Containers.Skill.builder().mergeFromData(data).build()
           }
-          public class func parseFromData(data:[Byte], extensionRegistry:ExtensionRegistry) -> ProfileService.Containers.Tag {
-            return ProfileService.Containers.Tag.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
+          public class func parseFromData(data:[Byte], extensionRegistry:ExtensionRegistry) -> ProfileService.Containers.Skill {
+            return ProfileService.Containers.Skill.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
           }
-          public class func parseFromInputStream(input:NSInputStream) -> ProfileService.Containers.Tag {
-            return ProfileService.Containers.Tag.builder().mergeFromInputStream(input).build()
+          public class func parseFromInputStream(input:NSInputStream) -> ProfileService.Containers.Skill {
+            return ProfileService.Containers.Skill.builder().mergeFromInputStream(input).build()
           }
-          public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->ProfileService.Containers.Tag {
-            return ProfileService.Containers.Tag.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
+          public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->ProfileService.Containers.Skill {
+            return ProfileService.Containers.Skill.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
           }
-          public class func parseFromCodedInputStream(input:CodedInputStream) -> ProfileService.Containers.Tag {
-            return ProfileService.Containers.Tag.builder().mergeFromCodedInputStream(input).build()
+          public class func parseFromCodedInputStream(input:CodedInputStream) -> ProfileService.Containers.Skill {
+            return ProfileService.Containers.Skill.builder().mergeFromCodedInputStream(input).build()
           }
-          public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.Containers.Tag {
-            return ProfileService.Containers.Tag.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
+          public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.Containers.Skill {
+            return ProfileService.Containers.Skill.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
           }
-          public class func builder() -> ProfileService.Containers.TagBuilder {
-            return ProfileService.Containers.Tag.classBuilder() as ProfileService.Containers.TagBuilder
+          public class func builder() -> ProfileService.Containers.SkillBuilder {
+            return ProfileService.Containers.Skill.classBuilder() as ProfileService.Containers.SkillBuilder
           }
-          public func builder() -> ProfileService.Containers.TagBuilder {
-            return classBuilder() as ProfileService.Containers.TagBuilder
+          public func builder() -> ProfileService.Containers.SkillBuilder {
+            return classBuilder() as ProfileService.Containers.SkillBuilder
           }
           public override class func classBuilder() -> MessageBuilder {
-            return ProfileService.Containers.TagBuilder()
+            return ProfileService.Containers.SkillBuilder()
           }
           public override func classBuilder() -> MessageBuilder {
-            return ProfileService.Containers.Tag.builder()
+            return ProfileService.Containers.Skill.builder()
           }
-          public func toBuilder() -> ProfileService.Containers.TagBuilder {
-            return ProfileService.Containers.Tag.builderWithPrototype(self)
+          public func toBuilder() -> ProfileService.Containers.SkillBuilder {
+            return ProfileService.Containers.Skill.builderWithPrototype(self)
           }
-          public class func builderWithPrototype(prototype:ProfileService.Containers.Tag) -> ProfileService.Containers.TagBuilder {
-            return ProfileService.Containers.Tag.builder().mergeFrom(prototype)
+          public class func builderWithPrototype(prototype:ProfileService.Containers.Skill) -> ProfileService.Containers.SkillBuilder {
+            return ProfileService.Containers.Skill.builder().mergeFrom(prototype)
           }
           override public func writeDescriptionTo(inout output:String, indent:String) {
             if hasId {
@@ -1086,13 +1086,13 @@ final public class ProfileService : GeneratedMessage {
           //Meta information declaration start
 
           override public class func className() -> String {
-              return "ProfileService.Containers.Tag"
+              return "ProfileService.Containers.Skill"
           }
           override public func className() -> String {
-              return "ProfileService.Containers.Tag"
+              return "ProfileService.Containers.Skill"
           }
           override public func classMetaType() -> GeneratedMessage.Type {
-              return ProfileService.Containers.Tag.self
+              return ProfileService.Containers.Skill.self
           }
 
 
@@ -1100,11 +1100,11 @@ final public class ProfileService : GeneratedMessage {
 
         }
 
-        final public class TagBuilder : GeneratedMessageBuilder {
-          private var builderResult:ProfileService.Containers.Tag
+        final public class SkillBuilder : GeneratedMessageBuilder {
+          private var builderResult:ProfileService.Containers.Skill
 
           required override public init () {
-             builderResult = ProfileService.Containers.Tag()
+             builderResult = ProfileService.Containers.Skill()
              super.init()
           }
           public var hasId:Bool {
@@ -1121,7 +1121,7 @@ final public class ProfileService : GeneratedMessage {
                    builderResult.id = value
                }
           }
-          public func clearId() -> ProfileService.Containers.TagBuilder{
+          public func clearId() -> ProfileService.Containers.SkillBuilder{
                builderResult.hasId = false
                builderResult.id = ""
                return self
@@ -1140,7 +1140,7 @@ final public class ProfileService : GeneratedMessage {
                    builderResult.name = value
                }
           }
-          public func clearName() -> ProfileService.Containers.TagBuilder{
+          public func clearName() -> ProfileService.Containers.SkillBuilder{
                builderResult.hasName = false
                builderResult.name = ""
                return self
@@ -1150,22 +1150,22 @@ final public class ProfileService : GeneratedMessage {
                   return builderResult
                }
           }
-          public override func clear() -> ProfileService.Containers.TagBuilder {
-            builderResult = ProfileService.Containers.Tag()
+          public override func clear() -> ProfileService.Containers.SkillBuilder {
+            builderResult = ProfileService.Containers.Skill()
             return self
           }
-          public override func clone() -> ProfileService.Containers.TagBuilder {
-            return ProfileService.Containers.Tag.builderWithPrototype(builderResult)
+          public override func clone() -> ProfileService.Containers.SkillBuilder {
+            return ProfileService.Containers.Skill.builderWithPrototype(builderResult)
           }
-          public override func build() -> ProfileService.Containers.Tag {
+          public override func build() -> ProfileService.Containers.Skill {
                checkInitialized()
                return buildPartial()
           }
-          public func buildPartial() -> ProfileService.Containers.Tag {
-            var returnMe:ProfileService.Containers.Tag = builderResult
+          public func buildPartial() -> ProfileService.Containers.Skill {
+            var returnMe:ProfileService.Containers.Skill = builderResult
             return returnMe
           }
-          public func mergeFrom(other:ProfileService.Containers.Tag) -> ProfileService.Containers.TagBuilder {
+          public func mergeFrom(other:ProfileService.Containers.Skill) -> ProfileService.Containers.SkillBuilder {
             if other.hasId {
                  id = other.id
             }
@@ -1175,10 +1175,10 @@ final public class ProfileService : GeneratedMessage {
             mergeUnknownFields(other.unknownFields)
             return self
           }
-          public override func mergeFromCodedInputStream(input:CodedInputStream) ->ProfileService.Containers.TagBuilder {
+          public override func mergeFromCodedInputStream(input:CodedInputStream) ->ProfileService.Containers.SkillBuilder {
                return mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
           }
-          public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.Containers.TagBuilder {
+          public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.Containers.SkillBuilder {
             var unknownFieldsBuilder:UnknownFieldSetBuilder = UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
             while (true) {
               var tag = input.readTag()
@@ -3757,7 +3757,7 @@ final public class ProfileService : GeneratedMessage {
           public private(set) var hasTeam:Bool = false
           public private(set) var team:OrganizationService.Containers.Team = OrganizationService.Containers.Team()
           public private(set) var notes:Array<NoteService.Containers.Note>  = Array<NoteService.Containers.Note>()
-          public private(set) var tags:Array<ProfileService.Containers.Tag>  = Array<ProfileService.Containers.Tag>()
+          public private(set) var skills:Array<ProfileService.Containers.Skill>  = Array<ProfileService.Containers.Skill>()
           required public init() {
                super.init()
           }
@@ -3780,8 +3780,8 @@ final public class ProfileService : GeneratedMessage {
             for oneElementnotes in notes {
                 output.writeMessage(5, value:oneElementnotes)
             }
-            for oneElementtags in tags {
-                output.writeMessage(6, value:oneElementtags)
+            for oneElementskills in skills {
+                output.writeMessage(6, value:oneElementskills)
             }
             unknownFields.writeToCodedOutputStream(output)
           }
@@ -3807,8 +3807,8 @@ final public class ProfileService : GeneratedMessage {
             for oneElementnotes in notes {
                 size += WireFormat.computeMessageSize(5, value:oneElementnotes)
             }
-            for oneElementtags in tags {
-                size += WireFormat.computeMessageSize(6, value:oneElementtags)
+            for oneElementskills in skills {
+                size += WireFormat.computeMessageSize(6, value:oneElementskills)
             }
             size += unknownFields.serializedSize()
             memoizedSerializedSize = size
@@ -3878,12 +3878,12 @@ final public class ProfileService : GeneratedMessage {
                 output += "\(indent)}\n"
                 notesElementIndex++
             }
-            var tagsElementIndex:Int = 0
-            for oneElementtags in tags {
-                output += "\(indent) tags[\(tagsElementIndex)] {\n"
-                oneElementtags.writeDescriptionTo(&output, indent:"\(indent)  ")
+            var skillsElementIndex:Int = 0
+            for oneElementskills in skills {
+                output += "\(indent) skills[\(skillsElementIndex)] {\n"
+                oneElementskills.writeDescriptionTo(&output, indent:"\(indent)  ")
                 output += "\(indent)}\n"
-                tagsElementIndex++
+                skillsElementIndex++
             }
             unknownFields.writeDescriptionTo(&output, indent:indent)
           }
@@ -3905,8 +3905,8 @@ final public class ProfileService : GeneratedMessage {
                   for oneElementnotes in notes {
                       hashCode = (hashCode &* 31) &+ oneElementnotes.hashValue
                   }
-                  for oneElementtags in tags {
-                      hashCode = (hashCode &* 31) &+ oneElementtags.hashValue
+                  for oneElementskills in skills {
+                      hashCode = (hashCode &* 31) &+ oneElementskills.hashValue
                   }
                   hashCode = (hashCode &* 31) &+  unknownFields.hashValue
                   return hashCode
@@ -4078,16 +4078,16 @@ final public class ProfileService : GeneratedMessage {
             builderResult.notes.removeAll(keepCapacity: false)
             return self
           }
-          public var tags:Array<ProfileService.Containers.Tag> {
+          public var skills:Array<ProfileService.Containers.Skill> {
                get {
-                   return builderResult.tags
+                   return builderResult.skills
                }
                set (value) {
-                   builderResult.tags = value
+                   builderResult.skills = value
                }
           }
-          public func clearTags() -> ProfileService.GetExtendedProfile.ResponseBuilder {
-            builderResult.tags.removeAll(keepCapacity: false)
+          public func clearSkills() -> ProfileService.GetExtendedProfile.ResponseBuilder {
+            builderResult.skills.removeAll(keepCapacity: false)
             return self
           }
           override public var internalGetResult:GeneratedMessage {
@@ -4126,8 +4126,8 @@ final public class ProfileService : GeneratedMessage {
             if !other.notes.isEmpty  {
                builderResult.notes += other.notes
             }
-            if !other.tags.isEmpty  {
-               builderResult.tags += other.tags
+            if !other.skills.isEmpty  {
+               builderResult.skills += other.skills
             }
             mergeUnknownFields(other.unknownFields)
             return self
@@ -4182,9 +4182,9 @@ final public class ProfileService : GeneratedMessage {
                 notes += [subBuilder.buildPartial()]
 
               case 50 :
-                var subBuilder = ProfileService.Containers.Tag.builder()
+                var subBuilder = ProfileService.Containers.Skill.builder()
                 input.readMessage(subBuilder,extensionRegistry:extensionRegistry)
-                tags += [subBuilder.buildPartial()]
+                skills += [subBuilder.buildPartial()]
 
               default:
                 if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
@@ -4352,7 +4352,7 @@ final public class ProfileService : GeneratedMessage {
 
   //Nested type declaration start
 
-    final public class CreateTags : GeneratedMessage {
+    final public class CreateSkills : GeneratedMessage {
 
 
       //Nested type declaration start
@@ -4368,7 +4368,7 @@ final public class ProfileService : GeneratedMessage {
           public private(set) var hasOrganizationId:Bool = false
           public private(set) var organization_id:String = ""
 
-          public private(set) var tags:Array<ProfileService.Containers.Tag>  = Array<ProfileService.Containers.Tag>()
+          public private(set) var skills:Array<ProfileService.Containers.Skill>  = Array<ProfileService.Containers.Skill>()
           required public init() {
                super.init()
           }
@@ -4376,8 +4376,8 @@ final public class ProfileService : GeneratedMessage {
            return true
           }
           override public func writeToCodedOutputStream(output:CodedOutputStream) {
-            for oneElementtags in tags {
-                output.writeMessage(1, value:oneElementtags)
+            for oneElementskills in skills {
+                output.writeMessage(1, value:oneElementskills)
             }
             if hasOrganizationId {
               output.writeString(2, value:organization_id)
@@ -4391,8 +4391,8 @@ final public class ProfileService : GeneratedMessage {
             }
 
             size = 0
-            for oneElementtags in tags {
-                size += WireFormat.computeMessageSize(1, value:oneElementtags)
+            for oneElementskills in skills {
+                size += WireFormat.computeMessageSize(1, value:oneElementskills)
             }
             if hasOrganizationId {
               size += WireFormat.computeStringSize(2, value:organization_id)
@@ -4401,49 +4401,49 @@ final public class ProfileService : GeneratedMessage {
             memoizedSerializedSize = size
             return size
           }
-          public class func parseFromData(data:[Byte]) -> ProfileService.CreateTags.Request {
-            return ProfileService.CreateTags.Request.builder().mergeFromData(data).build()
+          public class func parseFromData(data:[Byte]) -> ProfileService.CreateSkills.Request {
+            return ProfileService.CreateSkills.Request.builder().mergeFromData(data).build()
           }
-          public class func parseFromData(data:[Byte], extensionRegistry:ExtensionRegistry) -> ProfileService.CreateTags.Request {
-            return ProfileService.CreateTags.Request.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
+          public class func parseFromData(data:[Byte], extensionRegistry:ExtensionRegistry) -> ProfileService.CreateSkills.Request {
+            return ProfileService.CreateSkills.Request.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
           }
-          public class func parseFromInputStream(input:NSInputStream) -> ProfileService.CreateTags.Request {
-            return ProfileService.CreateTags.Request.builder().mergeFromInputStream(input).build()
+          public class func parseFromInputStream(input:NSInputStream) -> ProfileService.CreateSkills.Request {
+            return ProfileService.CreateSkills.Request.builder().mergeFromInputStream(input).build()
           }
-          public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->ProfileService.CreateTags.Request {
-            return ProfileService.CreateTags.Request.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
+          public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->ProfileService.CreateSkills.Request {
+            return ProfileService.CreateSkills.Request.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
           }
-          public class func parseFromCodedInputStream(input:CodedInputStream) -> ProfileService.CreateTags.Request {
-            return ProfileService.CreateTags.Request.builder().mergeFromCodedInputStream(input).build()
+          public class func parseFromCodedInputStream(input:CodedInputStream) -> ProfileService.CreateSkills.Request {
+            return ProfileService.CreateSkills.Request.builder().mergeFromCodedInputStream(input).build()
           }
-          public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.CreateTags.Request {
-            return ProfileService.CreateTags.Request.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
+          public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.CreateSkills.Request {
+            return ProfileService.CreateSkills.Request.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
           }
-          public class func builder() -> ProfileService.CreateTags.RequestBuilder {
-            return ProfileService.CreateTags.Request.classBuilder() as ProfileService.CreateTags.RequestBuilder
+          public class func builder() -> ProfileService.CreateSkills.RequestBuilder {
+            return ProfileService.CreateSkills.Request.classBuilder() as ProfileService.CreateSkills.RequestBuilder
           }
-          public func builder() -> ProfileService.CreateTags.RequestBuilder {
-            return classBuilder() as ProfileService.CreateTags.RequestBuilder
+          public func builder() -> ProfileService.CreateSkills.RequestBuilder {
+            return classBuilder() as ProfileService.CreateSkills.RequestBuilder
           }
           public override class func classBuilder() -> MessageBuilder {
-            return ProfileService.CreateTags.RequestBuilder()
+            return ProfileService.CreateSkills.RequestBuilder()
           }
           public override func classBuilder() -> MessageBuilder {
-            return ProfileService.CreateTags.Request.builder()
+            return ProfileService.CreateSkills.Request.builder()
           }
-          public func toBuilder() -> ProfileService.CreateTags.RequestBuilder {
-            return ProfileService.CreateTags.Request.builderWithPrototype(self)
+          public func toBuilder() -> ProfileService.CreateSkills.RequestBuilder {
+            return ProfileService.CreateSkills.Request.builderWithPrototype(self)
           }
-          public class func builderWithPrototype(prototype:ProfileService.CreateTags.Request) -> ProfileService.CreateTags.RequestBuilder {
-            return ProfileService.CreateTags.Request.builder().mergeFrom(prototype)
+          public class func builderWithPrototype(prototype:ProfileService.CreateSkills.Request) -> ProfileService.CreateSkills.RequestBuilder {
+            return ProfileService.CreateSkills.Request.builder().mergeFrom(prototype)
           }
           override public func writeDescriptionTo(inout output:String, indent:String) {
-            var tagsElementIndex:Int = 0
-            for oneElementtags in tags {
-                output += "\(indent) tags[\(tagsElementIndex)] {\n"
-                oneElementtags.writeDescriptionTo(&output, indent:"\(indent)  ")
+            var skillsElementIndex:Int = 0
+            for oneElementskills in skills {
+                output += "\(indent) skills[\(skillsElementIndex)] {\n"
+                oneElementskills.writeDescriptionTo(&output, indent:"\(indent)  ")
                 output += "\(indent)}\n"
-                tagsElementIndex++
+                skillsElementIndex++
             }
             if hasOrganizationId {
               output += "\(indent) organization_id: \(organization_id) \n"
@@ -4453,8 +4453,8 @@ final public class ProfileService : GeneratedMessage {
           override public var hashValue:Int {
               get {
                   var hashCode:Int = 7
-                  for oneElementtags in tags {
-                      hashCode = (hashCode &* 31) &+ oneElementtags.hashValue
+                  for oneElementskills in skills {
+                      hashCode = (hashCode &* 31) &+ oneElementskills.hashValue
                   }
                   if hasOrganizationId {
                      hashCode = (hashCode &* 31) &+ organization_id.hashValue
@@ -4468,13 +4468,13 @@ final public class ProfileService : GeneratedMessage {
           //Meta information declaration start
 
           override public class func className() -> String {
-              return "ProfileService.CreateTags.Request"
+              return "ProfileService.CreateSkills.Request"
           }
           override public func className() -> String {
-              return "ProfileService.CreateTags.Request"
+              return "ProfileService.CreateSkills.Request"
           }
           override public func classMetaType() -> GeneratedMessage.Type {
-              return ProfileService.CreateTags.Request.self
+              return ProfileService.CreateSkills.Request.self
           }
 
 
@@ -4483,22 +4483,22 @@ final public class ProfileService : GeneratedMessage {
         }
 
         final public class RequestBuilder : GeneratedMessageBuilder {
-          private var builderResult:ProfileService.CreateTags.Request
+          private var builderResult:ProfileService.CreateSkills.Request
 
           required override public init () {
-             builderResult = ProfileService.CreateTags.Request()
+             builderResult = ProfileService.CreateSkills.Request()
              super.init()
           }
-          public var tags:Array<ProfileService.Containers.Tag> {
+          public var skills:Array<ProfileService.Containers.Skill> {
                get {
-                   return builderResult.tags
+                   return builderResult.skills
                }
                set (value) {
-                   builderResult.tags = value
+                   builderResult.skills = value
                }
           }
-          public func clearTags() -> ProfileService.CreateTags.RequestBuilder {
-            builderResult.tags.removeAll(keepCapacity: false)
+          public func clearSkills() -> ProfileService.CreateSkills.RequestBuilder {
+            builderResult.skills.removeAll(keepCapacity: false)
             return self
           }
           public var hasOrganizationId:Bool {
@@ -4515,7 +4515,7 @@ final public class ProfileService : GeneratedMessage {
                    builderResult.organization_id = value
                }
           }
-          public func clearOrganizationId() -> ProfileService.CreateTags.RequestBuilder{
+          public func clearOrganizationId() -> ProfileService.CreateSkills.RequestBuilder{
                builderResult.hasOrganizationId = false
                builderResult.organization_id = ""
                return self
@@ -4525,24 +4525,24 @@ final public class ProfileService : GeneratedMessage {
                   return builderResult
                }
           }
-          public override func clear() -> ProfileService.CreateTags.RequestBuilder {
-            builderResult = ProfileService.CreateTags.Request()
+          public override func clear() -> ProfileService.CreateSkills.RequestBuilder {
+            builderResult = ProfileService.CreateSkills.Request()
             return self
           }
-          public override func clone() -> ProfileService.CreateTags.RequestBuilder {
-            return ProfileService.CreateTags.Request.builderWithPrototype(builderResult)
+          public override func clone() -> ProfileService.CreateSkills.RequestBuilder {
+            return ProfileService.CreateSkills.Request.builderWithPrototype(builderResult)
           }
-          public override func build() -> ProfileService.CreateTags.Request {
+          public override func build() -> ProfileService.CreateSkills.Request {
                checkInitialized()
                return buildPartial()
           }
-          public func buildPartial() -> ProfileService.CreateTags.Request {
-            var returnMe:ProfileService.CreateTags.Request = builderResult
+          public func buildPartial() -> ProfileService.CreateSkills.Request {
+            var returnMe:ProfileService.CreateSkills.Request = builderResult
             return returnMe
           }
-          public func mergeFrom(other:ProfileService.CreateTags.Request) -> ProfileService.CreateTags.RequestBuilder {
-            if !other.tags.isEmpty  {
-               builderResult.tags += other.tags
+          public func mergeFrom(other:ProfileService.CreateSkills.Request) -> ProfileService.CreateSkills.RequestBuilder {
+            if !other.skills.isEmpty  {
+               builderResult.skills += other.skills
             }
             if other.hasOrganizationId {
                  organization_id = other.organization_id
@@ -4550,10 +4550,10 @@ final public class ProfileService : GeneratedMessage {
             mergeUnknownFields(other.unknownFields)
             return self
           }
-          public override func mergeFromCodedInputStream(input:CodedInputStream) ->ProfileService.CreateTags.RequestBuilder {
+          public override func mergeFromCodedInputStream(input:CodedInputStream) ->ProfileService.CreateSkills.RequestBuilder {
                return mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
           }
-          public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.CreateTags.RequestBuilder {
+          public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.CreateSkills.RequestBuilder {
             var unknownFieldsBuilder:UnknownFieldSetBuilder = UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
             while (true) {
               var tag = input.readTag()
@@ -4563,9 +4563,9 @@ final public class ProfileService : GeneratedMessage {
                 return self
 
               case 10 :
-                var subBuilder = ProfileService.Containers.Tag.builder()
+                var subBuilder = ProfileService.Containers.Skill.builder()
                 input.readMessage(subBuilder,extensionRegistry:extensionRegistry)
-                tags += [subBuilder.buildPartial()]
+                skills += [subBuilder.buildPartial()]
 
               case 18 :
                 organization_id = input.readString()
@@ -4595,7 +4595,7 @@ final public class ProfileService : GeneratedMessage {
                  }
           }
 
-          public private(set) var tags:Array<ProfileService.Containers.Tag>  = Array<ProfileService.Containers.Tag>()
+          public private(set) var skills:Array<ProfileService.Containers.Skill>  = Array<ProfileService.Containers.Skill>()
           required public init() {
                super.init()
           }
@@ -4603,8 +4603,8 @@ final public class ProfileService : GeneratedMessage {
            return true
           }
           override public func writeToCodedOutputStream(output:CodedOutputStream) {
-            for oneElementtags in tags {
-                output.writeMessage(1, value:oneElementtags)
+            for oneElementskills in skills {
+                output.writeMessage(1, value:oneElementskills)
             }
             unknownFields.writeToCodedOutputStream(output)
           }
@@ -4615,64 +4615,64 @@ final public class ProfileService : GeneratedMessage {
             }
 
             size = 0
-            for oneElementtags in tags {
-                size += WireFormat.computeMessageSize(1, value:oneElementtags)
+            for oneElementskills in skills {
+                size += WireFormat.computeMessageSize(1, value:oneElementskills)
             }
             size += unknownFields.serializedSize()
             memoizedSerializedSize = size
             return size
           }
-          public class func parseFromData(data:[Byte]) -> ProfileService.CreateTags.Response {
-            return ProfileService.CreateTags.Response.builder().mergeFromData(data).build()
+          public class func parseFromData(data:[Byte]) -> ProfileService.CreateSkills.Response {
+            return ProfileService.CreateSkills.Response.builder().mergeFromData(data).build()
           }
-          public class func parseFromData(data:[Byte], extensionRegistry:ExtensionRegistry) -> ProfileService.CreateTags.Response {
-            return ProfileService.CreateTags.Response.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
+          public class func parseFromData(data:[Byte], extensionRegistry:ExtensionRegistry) -> ProfileService.CreateSkills.Response {
+            return ProfileService.CreateSkills.Response.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
           }
-          public class func parseFromInputStream(input:NSInputStream) -> ProfileService.CreateTags.Response {
-            return ProfileService.CreateTags.Response.builder().mergeFromInputStream(input).build()
+          public class func parseFromInputStream(input:NSInputStream) -> ProfileService.CreateSkills.Response {
+            return ProfileService.CreateSkills.Response.builder().mergeFromInputStream(input).build()
           }
-          public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->ProfileService.CreateTags.Response {
-            return ProfileService.CreateTags.Response.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
+          public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->ProfileService.CreateSkills.Response {
+            return ProfileService.CreateSkills.Response.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
           }
-          public class func parseFromCodedInputStream(input:CodedInputStream) -> ProfileService.CreateTags.Response {
-            return ProfileService.CreateTags.Response.builder().mergeFromCodedInputStream(input).build()
+          public class func parseFromCodedInputStream(input:CodedInputStream) -> ProfileService.CreateSkills.Response {
+            return ProfileService.CreateSkills.Response.builder().mergeFromCodedInputStream(input).build()
           }
-          public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.CreateTags.Response {
-            return ProfileService.CreateTags.Response.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
+          public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.CreateSkills.Response {
+            return ProfileService.CreateSkills.Response.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
           }
-          public class func builder() -> ProfileService.CreateTags.ResponseBuilder {
-            return ProfileService.CreateTags.Response.classBuilder() as ProfileService.CreateTags.ResponseBuilder
+          public class func builder() -> ProfileService.CreateSkills.ResponseBuilder {
+            return ProfileService.CreateSkills.Response.classBuilder() as ProfileService.CreateSkills.ResponseBuilder
           }
-          public func builder() -> ProfileService.CreateTags.ResponseBuilder {
-            return classBuilder() as ProfileService.CreateTags.ResponseBuilder
+          public func builder() -> ProfileService.CreateSkills.ResponseBuilder {
+            return classBuilder() as ProfileService.CreateSkills.ResponseBuilder
           }
           public override class func classBuilder() -> MessageBuilder {
-            return ProfileService.CreateTags.ResponseBuilder()
+            return ProfileService.CreateSkills.ResponseBuilder()
           }
           public override func classBuilder() -> MessageBuilder {
-            return ProfileService.CreateTags.Response.builder()
+            return ProfileService.CreateSkills.Response.builder()
           }
-          public func toBuilder() -> ProfileService.CreateTags.ResponseBuilder {
-            return ProfileService.CreateTags.Response.builderWithPrototype(self)
+          public func toBuilder() -> ProfileService.CreateSkills.ResponseBuilder {
+            return ProfileService.CreateSkills.Response.builderWithPrototype(self)
           }
-          public class func builderWithPrototype(prototype:ProfileService.CreateTags.Response) -> ProfileService.CreateTags.ResponseBuilder {
-            return ProfileService.CreateTags.Response.builder().mergeFrom(prototype)
+          public class func builderWithPrototype(prototype:ProfileService.CreateSkills.Response) -> ProfileService.CreateSkills.ResponseBuilder {
+            return ProfileService.CreateSkills.Response.builder().mergeFrom(prototype)
           }
           override public func writeDescriptionTo(inout output:String, indent:String) {
-            var tagsElementIndex:Int = 0
-            for oneElementtags in tags {
-                output += "\(indent) tags[\(tagsElementIndex)] {\n"
-                oneElementtags.writeDescriptionTo(&output, indent:"\(indent)  ")
+            var skillsElementIndex:Int = 0
+            for oneElementskills in skills {
+                output += "\(indent) skills[\(skillsElementIndex)] {\n"
+                oneElementskills.writeDescriptionTo(&output, indent:"\(indent)  ")
                 output += "\(indent)}\n"
-                tagsElementIndex++
+                skillsElementIndex++
             }
             unknownFields.writeDescriptionTo(&output, indent:indent)
           }
           override public var hashValue:Int {
               get {
                   var hashCode:Int = 7
-                  for oneElementtags in tags {
-                      hashCode = (hashCode &* 31) &+ oneElementtags.hashValue
+                  for oneElementskills in skills {
+                      hashCode = (hashCode &* 31) &+ oneElementskills.hashValue
                   }
                   hashCode = (hashCode &* 31) &+  unknownFields.hashValue
                   return hashCode
@@ -4683,13 +4683,13 @@ final public class ProfileService : GeneratedMessage {
           //Meta information declaration start
 
           override public class func className() -> String {
-              return "ProfileService.CreateTags.Response"
+              return "ProfileService.CreateSkills.Response"
           }
           override public func className() -> String {
-              return "ProfileService.CreateTags.Response"
+              return "ProfileService.CreateSkills.Response"
           }
           override public func classMetaType() -> GeneratedMessage.Type {
-              return ProfileService.CreateTags.Response.self
+              return ProfileService.CreateSkills.Response.self
           }
 
 
@@ -4698,22 +4698,22 @@ final public class ProfileService : GeneratedMessage {
         }
 
         final public class ResponseBuilder : GeneratedMessageBuilder {
-          private var builderResult:ProfileService.CreateTags.Response
+          private var builderResult:ProfileService.CreateSkills.Response
 
           required override public init () {
-             builderResult = ProfileService.CreateTags.Response()
+             builderResult = ProfileService.CreateSkills.Response()
              super.init()
           }
-          public var tags:Array<ProfileService.Containers.Tag> {
+          public var skills:Array<ProfileService.Containers.Skill> {
                get {
-                   return builderResult.tags
+                   return builderResult.skills
                }
                set (value) {
-                   builderResult.tags = value
+                   builderResult.skills = value
                }
           }
-          public func clearTags() -> ProfileService.CreateTags.ResponseBuilder {
-            builderResult.tags.removeAll(keepCapacity: false)
+          public func clearSkills() -> ProfileService.CreateSkills.ResponseBuilder {
+            builderResult.skills.removeAll(keepCapacity: false)
             return self
           }
           override public var internalGetResult:GeneratedMessage {
@@ -4721,32 +4721,32 @@ final public class ProfileService : GeneratedMessage {
                   return builderResult
                }
           }
-          public override func clear() -> ProfileService.CreateTags.ResponseBuilder {
-            builderResult = ProfileService.CreateTags.Response()
+          public override func clear() -> ProfileService.CreateSkills.ResponseBuilder {
+            builderResult = ProfileService.CreateSkills.Response()
             return self
           }
-          public override func clone() -> ProfileService.CreateTags.ResponseBuilder {
-            return ProfileService.CreateTags.Response.builderWithPrototype(builderResult)
+          public override func clone() -> ProfileService.CreateSkills.ResponseBuilder {
+            return ProfileService.CreateSkills.Response.builderWithPrototype(builderResult)
           }
-          public override func build() -> ProfileService.CreateTags.Response {
+          public override func build() -> ProfileService.CreateSkills.Response {
                checkInitialized()
                return buildPartial()
           }
-          public func buildPartial() -> ProfileService.CreateTags.Response {
-            var returnMe:ProfileService.CreateTags.Response = builderResult
+          public func buildPartial() -> ProfileService.CreateSkills.Response {
+            var returnMe:ProfileService.CreateSkills.Response = builderResult
             return returnMe
           }
-          public func mergeFrom(other:ProfileService.CreateTags.Response) -> ProfileService.CreateTags.ResponseBuilder {
-            if !other.tags.isEmpty  {
-               builderResult.tags += other.tags
+          public func mergeFrom(other:ProfileService.CreateSkills.Response) -> ProfileService.CreateSkills.ResponseBuilder {
+            if !other.skills.isEmpty  {
+               builderResult.skills += other.skills
             }
             mergeUnknownFields(other.unknownFields)
             return self
           }
-          public override func mergeFromCodedInputStream(input:CodedInputStream) ->ProfileService.CreateTags.ResponseBuilder {
+          public override func mergeFromCodedInputStream(input:CodedInputStream) ->ProfileService.CreateSkills.ResponseBuilder {
                return mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
           }
-          public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.CreateTags.ResponseBuilder {
+          public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.CreateSkills.ResponseBuilder {
             var unknownFieldsBuilder:UnknownFieldSetBuilder = UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
             while (true) {
               var tag = input.readTag()
@@ -4756,9 +4756,9 @@ final public class ProfileService : GeneratedMessage {
                 return self
 
               case 10 :
-                var subBuilder = ProfileService.Containers.Tag.builder()
+                var subBuilder = ProfileService.Containers.Skill.builder()
                 input.readMessage(subBuilder,extensionRegistry:extensionRegistry)
-                tags += [subBuilder.buildPartial()]
+                skills += [subBuilder.buildPartial()]
 
               default:
                 if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
@@ -4800,41 +4800,41 @@ final public class ProfileService : GeneratedMessage {
         memoizedSerializedSize = size
         return size
       }
-      public class func parseFromData(data:[Byte]) -> ProfileService.CreateTags {
-        return ProfileService.CreateTags.builder().mergeFromData(data).build()
+      public class func parseFromData(data:[Byte]) -> ProfileService.CreateSkills {
+        return ProfileService.CreateSkills.builder().mergeFromData(data).build()
       }
-      public class func parseFromData(data:[Byte], extensionRegistry:ExtensionRegistry) -> ProfileService.CreateTags {
-        return ProfileService.CreateTags.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
+      public class func parseFromData(data:[Byte], extensionRegistry:ExtensionRegistry) -> ProfileService.CreateSkills {
+        return ProfileService.CreateSkills.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
       }
-      public class func parseFromInputStream(input:NSInputStream) -> ProfileService.CreateTags {
-        return ProfileService.CreateTags.builder().mergeFromInputStream(input).build()
+      public class func parseFromInputStream(input:NSInputStream) -> ProfileService.CreateSkills {
+        return ProfileService.CreateSkills.builder().mergeFromInputStream(input).build()
       }
-      public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->ProfileService.CreateTags {
-        return ProfileService.CreateTags.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
+      public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->ProfileService.CreateSkills {
+        return ProfileService.CreateSkills.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
       }
-      public class func parseFromCodedInputStream(input:CodedInputStream) -> ProfileService.CreateTags {
-        return ProfileService.CreateTags.builder().mergeFromCodedInputStream(input).build()
+      public class func parseFromCodedInputStream(input:CodedInputStream) -> ProfileService.CreateSkills {
+        return ProfileService.CreateSkills.builder().mergeFromCodedInputStream(input).build()
       }
-      public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.CreateTags {
-        return ProfileService.CreateTags.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
+      public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.CreateSkills {
+        return ProfileService.CreateSkills.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
       }
-      public class func builder() -> ProfileService.CreateTagsBuilder {
-        return ProfileService.CreateTags.classBuilder() as ProfileService.CreateTagsBuilder
+      public class func builder() -> ProfileService.CreateSkillsBuilder {
+        return ProfileService.CreateSkills.classBuilder() as ProfileService.CreateSkillsBuilder
       }
-      public func builder() -> ProfileService.CreateTagsBuilder {
-        return classBuilder() as ProfileService.CreateTagsBuilder
+      public func builder() -> ProfileService.CreateSkillsBuilder {
+        return classBuilder() as ProfileService.CreateSkillsBuilder
       }
       public override class func classBuilder() -> MessageBuilder {
-        return ProfileService.CreateTagsBuilder()
+        return ProfileService.CreateSkillsBuilder()
       }
       public override func classBuilder() -> MessageBuilder {
-        return ProfileService.CreateTags.builder()
+        return ProfileService.CreateSkills.builder()
       }
-      public func toBuilder() -> ProfileService.CreateTagsBuilder {
-        return ProfileService.CreateTags.builderWithPrototype(self)
+      public func toBuilder() -> ProfileService.CreateSkillsBuilder {
+        return ProfileService.CreateSkills.builderWithPrototype(self)
       }
-      public class func builderWithPrototype(prototype:ProfileService.CreateTags) -> ProfileService.CreateTagsBuilder {
-        return ProfileService.CreateTags.builder().mergeFrom(prototype)
+      public class func builderWithPrototype(prototype:ProfileService.CreateSkills) -> ProfileService.CreateSkillsBuilder {
+        return ProfileService.CreateSkills.builder().mergeFrom(prototype)
       }
       override public func writeDescriptionTo(inout output:String, indent:String) {
         unknownFields.writeDescriptionTo(&output, indent:indent)
@@ -4851,13 +4851,13 @@ final public class ProfileService : GeneratedMessage {
       //Meta information declaration start
 
       override public class func className() -> String {
-          return "ProfileService.CreateTags"
+          return "ProfileService.CreateSkills"
       }
       override public func className() -> String {
-          return "ProfileService.CreateTags"
+          return "ProfileService.CreateSkills"
       }
       override public func classMetaType() -> GeneratedMessage.Type {
-          return ProfileService.CreateTags.self
+          return ProfileService.CreateSkills.self
       }
 
 
@@ -4865,11 +4865,11 @@ final public class ProfileService : GeneratedMessage {
 
     }
 
-    final public class CreateTagsBuilder : GeneratedMessageBuilder {
-      private var builderResult:ProfileService.CreateTags
+    final public class CreateSkillsBuilder : GeneratedMessageBuilder {
+      private var builderResult:ProfileService.CreateSkills
 
       required override public init () {
-         builderResult = ProfileService.CreateTags()
+         builderResult = ProfileService.CreateSkills()
          super.init()
       }
       override public var internalGetResult:GeneratedMessage {
@@ -4877,29 +4877,29 @@ final public class ProfileService : GeneratedMessage {
               return builderResult
            }
       }
-      public override func clear() -> ProfileService.CreateTagsBuilder {
-        builderResult = ProfileService.CreateTags()
+      public override func clear() -> ProfileService.CreateSkillsBuilder {
+        builderResult = ProfileService.CreateSkills()
         return self
       }
-      public override func clone() -> ProfileService.CreateTagsBuilder {
-        return ProfileService.CreateTags.builderWithPrototype(builderResult)
+      public override func clone() -> ProfileService.CreateSkillsBuilder {
+        return ProfileService.CreateSkills.builderWithPrototype(builderResult)
       }
-      public override func build() -> ProfileService.CreateTags {
+      public override func build() -> ProfileService.CreateSkills {
            checkInitialized()
            return buildPartial()
       }
-      public func buildPartial() -> ProfileService.CreateTags {
-        var returnMe:ProfileService.CreateTags = builderResult
+      public func buildPartial() -> ProfileService.CreateSkills {
+        var returnMe:ProfileService.CreateSkills = builderResult
         return returnMe
       }
-      public func mergeFrom(other:ProfileService.CreateTags) -> ProfileService.CreateTagsBuilder {
+      public func mergeFrom(other:ProfileService.CreateSkills) -> ProfileService.CreateSkillsBuilder {
         mergeUnknownFields(other.unknownFields)
         return self
       }
-      public override func mergeFromCodedInputStream(input:CodedInputStream) ->ProfileService.CreateTagsBuilder {
+      public override func mergeFromCodedInputStream(input:CodedInputStream) ->ProfileService.CreateSkillsBuilder {
            return mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
       }
-      public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.CreateTagsBuilder {
+      public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.CreateSkillsBuilder {
         var unknownFieldsBuilder:UnknownFieldSetBuilder = UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
         while (true) {
           var tag = input.readTag()
@@ -4926,7 +4926,7 @@ final public class ProfileService : GeneratedMessage {
 
   //Nested type declaration start
 
-    final public class GetTags : GeneratedMessage {
+    final public class GetSkills : GeneratedMessage {
 
 
       //Nested type declaration start
@@ -4973,7 +4973,7 @@ final public class ProfileService : GeneratedMessage {
 
           //OneOf declaration end
 
-          private var storageLookupKey:ProfileService.GetTags.Request.LookupKey =  ProfileService.GetTags.Request.LookupKey.LookupKeyOneOfNotSet
+          private var storageLookupKey:ProfileService.GetSkills.Request.LookupKey =  ProfileService.GetSkills.Request.LookupKey.LookupKeyOneOfNotSet
           override public subscript (key: String) -> Any? {
                  switch key {
                  case "profile_id": return profile_id
@@ -4984,7 +4984,7 @@ final public class ProfileService : GeneratedMessage {
 
           public private(set) var hasProfileId:Bool {
                 get {
-                     if ProfileService.GetTags.Request.LookupKey.getProfileId(storageLookupKey) == nil {
+                     if ProfileService.GetSkills.Request.LookupKey.getProfileId(storageLookupKey) == nil {
                          return false
                      }
                      return true
@@ -4994,15 +4994,15 @@ final public class ProfileService : GeneratedMessage {
           }
           public private(set) var profile_id:String!{
                get {
-                    return ProfileService.GetTags.Request.LookupKey.getProfileId(storageLookupKey)
+                    return ProfileService.GetSkills.Request.LookupKey.getProfileId(storageLookupKey)
                }
                set (newvalue) {
-                    storageLookupKey = ProfileService.GetTags.Request.LookupKey.ProfileId(newvalue)
+                    storageLookupKey = ProfileService.GetSkills.Request.LookupKey.ProfileId(newvalue)
                }
           }
           public private(set) var hasOrganizationId:Bool {
                 get {
-                     if ProfileService.GetTags.Request.LookupKey.getOrganizationId(storageLookupKey) == nil {
+                     if ProfileService.GetSkills.Request.LookupKey.getOrganizationId(storageLookupKey) == nil {
                          return false
                      }
                      return true
@@ -5012,10 +5012,10 @@ final public class ProfileService : GeneratedMessage {
           }
           public private(set) var organization_id:String!{
                get {
-                    return ProfileService.GetTags.Request.LookupKey.getOrganizationId(storageLookupKey)
+                    return ProfileService.GetSkills.Request.LookupKey.getOrganizationId(storageLookupKey)
                }
                set (newvalue) {
-                    storageLookupKey = ProfileService.GetTags.Request.LookupKey.OrganizationId(newvalue)
+                    storageLookupKey = ProfileService.GetSkills.Request.LookupKey.OrganizationId(newvalue)
                }
           }
           required public init() {
@@ -5050,41 +5050,41 @@ final public class ProfileService : GeneratedMessage {
             memoizedSerializedSize = size
             return size
           }
-          public class func parseFromData(data:[Byte]) -> ProfileService.GetTags.Request {
-            return ProfileService.GetTags.Request.builder().mergeFromData(data).build()
+          public class func parseFromData(data:[Byte]) -> ProfileService.GetSkills.Request {
+            return ProfileService.GetSkills.Request.builder().mergeFromData(data).build()
           }
-          public class func parseFromData(data:[Byte], extensionRegistry:ExtensionRegistry) -> ProfileService.GetTags.Request {
-            return ProfileService.GetTags.Request.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
+          public class func parseFromData(data:[Byte], extensionRegistry:ExtensionRegistry) -> ProfileService.GetSkills.Request {
+            return ProfileService.GetSkills.Request.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
           }
-          public class func parseFromInputStream(input:NSInputStream) -> ProfileService.GetTags.Request {
-            return ProfileService.GetTags.Request.builder().mergeFromInputStream(input).build()
+          public class func parseFromInputStream(input:NSInputStream) -> ProfileService.GetSkills.Request {
+            return ProfileService.GetSkills.Request.builder().mergeFromInputStream(input).build()
           }
-          public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->ProfileService.GetTags.Request {
-            return ProfileService.GetTags.Request.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
+          public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->ProfileService.GetSkills.Request {
+            return ProfileService.GetSkills.Request.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
           }
-          public class func parseFromCodedInputStream(input:CodedInputStream) -> ProfileService.GetTags.Request {
-            return ProfileService.GetTags.Request.builder().mergeFromCodedInputStream(input).build()
+          public class func parseFromCodedInputStream(input:CodedInputStream) -> ProfileService.GetSkills.Request {
+            return ProfileService.GetSkills.Request.builder().mergeFromCodedInputStream(input).build()
           }
-          public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.GetTags.Request {
-            return ProfileService.GetTags.Request.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
+          public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.GetSkills.Request {
+            return ProfileService.GetSkills.Request.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
           }
-          public class func builder() -> ProfileService.GetTags.RequestBuilder {
-            return ProfileService.GetTags.Request.classBuilder() as ProfileService.GetTags.RequestBuilder
+          public class func builder() -> ProfileService.GetSkills.RequestBuilder {
+            return ProfileService.GetSkills.Request.classBuilder() as ProfileService.GetSkills.RequestBuilder
           }
-          public func builder() -> ProfileService.GetTags.RequestBuilder {
-            return classBuilder() as ProfileService.GetTags.RequestBuilder
+          public func builder() -> ProfileService.GetSkills.RequestBuilder {
+            return classBuilder() as ProfileService.GetSkills.RequestBuilder
           }
           public override class func classBuilder() -> MessageBuilder {
-            return ProfileService.GetTags.RequestBuilder()
+            return ProfileService.GetSkills.RequestBuilder()
           }
           public override func classBuilder() -> MessageBuilder {
-            return ProfileService.GetTags.Request.builder()
+            return ProfileService.GetSkills.Request.builder()
           }
-          public func toBuilder() -> ProfileService.GetTags.RequestBuilder {
-            return ProfileService.GetTags.Request.builderWithPrototype(self)
+          public func toBuilder() -> ProfileService.GetSkills.RequestBuilder {
+            return ProfileService.GetSkills.Request.builderWithPrototype(self)
           }
-          public class func builderWithPrototype(prototype:ProfileService.GetTags.Request) -> ProfileService.GetTags.RequestBuilder {
-            return ProfileService.GetTags.Request.builder().mergeFrom(prototype)
+          public class func builderWithPrototype(prototype:ProfileService.GetSkills.Request) -> ProfileService.GetSkills.RequestBuilder {
+            return ProfileService.GetSkills.Request.builder().mergeFrom(prototype)
           }
           override public func writeDescriptionTo(inout output:String, indent:String) {
             if hasProfileId {
@@ -5113,13 +5113,13 @@ final public class ProfileService : GeneratedMessage {
           //Meta information declaration start
 
           override public class func className() -> String {
-              return "ProfileService.GetTags.Request"
+              return "ProfileService.GetSkills.Request"
           }
           override public func className() -> String {
-              return "ProfileService.GetTags.Request"
+              return "ProfileService.GetSkills.Request"
           }
           override public func classMetaType() -> GeneratedMessage.Type {
-              return ProfileService.GetTags.Request.self
+              return ProfileService.GetSkills.Request.self
           }
 
 
@@ -5128,10 +5128,10 @@ final public class ProfileService : GeneratedMessage {
         }
 
         final public class RequestBuilder : GeneratedMessageBuilder {
-          private var builderResult:ProfileService.GetTags.Request
+          private var builderResult:ProfileService.GetSkills.Request
 
           required override public init () {
-             builderResult = ProfileService.GetTags.Request()
+             builderResult = ProfileService.GetSkills.Request()
              super.init()
           }
           public var hasProfileId:Bool {
@@ -5148,7 +5148,7 @@ final public class ProfileService : GeneratedMessage {
                    builderResult.profile_id = value
                }
           }
-          public func clearProfileId() -> ProfileService.GetTags.RequestBuilder{
+          public func clearProfileId() -> ProfileService.GetSkills.RequestBuilder{
                builderResult.hasProfileId = false
                builderResult.profile_id = ""
                return self
@@ -5167,7 +5167,7 @@ final public class ProfileService : GeneratedMessage {
                    builderResult.organization_id = value
                }
           }
-          public func clearOrganizationId() -> ProfileService.GetTags.RequestBuilder{
+          public func clearOrganizationId() -> ProfileService.GetSkills.RequestBuilder{
                builderResult.hasOrganizationId = false
                builderResult.organization_id = ""
                return self
@@ -5177,22 +5177,22 @@ final public class ProfileService : GeneratedMessage {
                   return builderResult
                }
           }
-          public override func clear() -> ProfileService.GetTags.RequestBuilder {
-            builderResult = ProfileService.GetTags.Request()
+          public override func clear() -> ProfileService.GetSkills.RequestBuilder {
+            builderResult = ProfileService.GetSkills.Request()
             return self
           }
-          public override func clone() -> ProfileService.GetTags.RequestBuilder {
-            return ProfileService.GetTags.Request.builderWithPrototype(builderResult)
+          public override func clone() -> ProfileService.GetSkills.RequestBuilder {
+            return ProfileService.GetSkills.Request.builderWithPrototype(builderResult)
           }
-          public override func build() -> ProfileService.GetTags.Request {
+          public override func build() -> ProfileService.GetSkills.Request {
                checkInitialized()
                return buildPartial()
           }
-          public func buildPartial() -> ProfileService.GetTags.Request {
-            var returnMe:ProfileService.GetTags.Request = builderResult
+          public func buildPartial() -> ProfileService.GetSkills.Request {
+            var returnMe:ProfileService.GetSkills.Request = builderResult
             return returnMe
           }
-          public func mergeFrom(other:ProfileService.GetTags.Request) -> ProfileService.GetTags.RequestBuilder {
+          public func mergeFrom(other:ProfileService.GetSkills.Request) -> ProfileService.GetSkills.RequestBuilder {
             if other.hasProfileId {
                  profile_id = other.profile_id
             }
@@ -5202,10 +5202,10 @@ final public class ProfileService : GeneratedMessage {
             mergeUnknownFields(other.unknownFields)
             return self
           }
-          public override func mergeFromCodedInputStream(input:CodedInputStream) ->ProfileService.GetTags.RequestBuilder {
+          public override func mergeFromCodedInputStream(input:CodedInputStream) ->ProfileService.GetSkills.RequestBuilder {
                return mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
           }
-          public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.GetTags.RequestBuilder {
+          public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.GetSkills.RequestBuilder {
             var unknownFieldsBuilder:UnknownFieldSetBuilder = UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
             while (true) {
               var tag = input.readTag()
@@ -5245,7 +5245,7 @@ final public class ProfileService : GeneratedMessage {
                  }
           }
 
-          public private(set) var tags:Array<ProfileService.Containers.Tag>  = Array<ProfileService.Containers.Tag>()
+          public private(set) var skills:Array<ProfileService.Containers.Skill>  = Array<ProfileService.Containers.Skill>()
           required public init() {
                super.init()
           }
@@ -5253,8 +5253,8 @@ final public class ProfileService : GeneratedMessage {
            return true
           }
           override public func writeToCodedOutputStream(output:CodedOutputStream) {
-            for oneElementtags in tags {
-                output.writeMessage(1, value:oneElementtags)
+            for oneElementskills in skills {
+                output.writeMessage(1, value:oneElementskills)
             }
             unknownFields.writeToCodedOutputStream(output)
           }
@@ -5265,64 +5265,64 @@ final public class ProfileService : GeneratedMessage {
             }
 
             size = 0
-            for oneElementtags in tags {
-                size += WireFormat.computeMessageSize(1, value:oneElementtags)
+            for oneElementskills in skills {
+                size += WireFormat.computeMessageSize(1, value:oneElementskills)
             }
             size += unknownFields.serializedSize()
             memoizedSerializedSize = size
             return size
           }
-          public class func parseFromData(data:[Byte]) -> ProfileService.GetTags.Response {
-            return ProfileService.GetTags.Response.builder().mergeFromData(data).build()
+          public class func parseFromData(data:[Byte]) -> ProfileService.GetSkills.Response {
+            return ProfileService.GetSkills.Response.builder().mergeFromData(data).build()
           }
-          public class func parseFromData(data:[Byte], extensionRegistry:ExtensionRegistry) -> ProfileService.GetTags.Response {
-            return ProfileService.GetTags.Response.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
+          public class func parseFromData(data:[Byte], extensionRegistry:ExtensionRegistry) -> ProfileService.GetSkills.Response {
+            return ProfileService.GetSkills.Response.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
           }
-          public class func parseFromInputStream(input:NSInputStream) -> ProfileService.GetTags.Response {
-            return ProfileService.GetTags.Response.builder().mergeFromInputStream(input).build()
+          public class func parseFromInputStream(input:NSInputStream) -> ProfileService.GetSkills.Response {
+            return ProfileService.GetSkills.Response.builder().mergeFromInputStream(input).build()
           }
-          public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->ProfileService.GetTags.Response {
-            return ProfileService.GetTags.Response.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
+          public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->ProfileService.GetSkills.Response {
+            return ProfileService.GetSkills.Response.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
           }
-          public class func parseFromCodedInputStream(input:CodedInputStream) -> ProfileService.GetTags.Response {
-            return ProfileService.GetTags.Response.builder().mergeFromCodedInputStream(input).build()
+          public class func parseFromCodedInputStream(input:CodedInputStream) -> ProfileService.GetSkills.Response {
+            return ProfileService.GetSkills.Response.builder().mergeFromCodedInputStream(input).build()
           }
-          public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.GetTags.Response {
-            return ProfileService.GetTags.Response.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
+          public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.GetSkills.Response {
+            return ProfileService.GetSkills.Response.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
           }
-          public class func builder() -> ProfileService.GetTags.ResponseBuilder {
-            return ProfileService.GetTags.Response.classBuilder() as ProfileService.GetTags.ResponseBuilder
+          public class func builder() -> ProfileService.GetSkills.ResponseBuilder {
+            return ProfileService.GetSkills.Response.classBuilder() as ProfileService.GetSkills.ResponseBuilder
           }
-          public func builder() -> ProfileService.GetTags.ResponseBuilder {
-            return classBuilder() as ProfileService.GetTags.ResponseBuilder
+          public func builder() -> ProfileService.GetSkills.ResponseBuilder {
+            return classBuilder() as ProfileService.GetSkills.ResponseBuilder
           }
           public override class func classBuilder() -> MessageBuilder {
-            return ProfileService.GetTags.ResponseBuilder()
+            return ProfileService.GetSkills.ResponseBuilder()
           }
           public override func classBuilder() -> MessageBuilder {
-            return ProfileService.GetTags.Response.builder()
+            return ProfileService.GetSkills.Response.builder()
           }
-          public func toBuilder() -> ProfileService.GetTags.ResponseBuilder {
-            return ProfileService.GetTags.Response.builderWithPrototype(self)
+          public func toBuilder() -> ProfileService.GetSkills.ResponseBuilder {
+            return ProfileService.GetSkills.Response.builderWithPrototype(self)
           }
-          public class func builderWithPrototype(prototype:ProfileService.GetTags.Response) -> ProfileService.GetTags.ResponseBuilder {
-            return ProfileService.GetTags.Response.builder().mergeFrom(prototype)
+          public class func builderWithPrototype(prototype:ProfileService.GetSkills.Response) -> ProfileService.GetSkills.ResponseBuilder {
+            return ProfileService.GetSkills.Response.builder().mergeFrom(prototype)
           }
           override public func writeDescriptionTo(inout output:String, indent:String) {
-            var tagsElementIndex:Int = 0
-            for oneElementtags in tags {
-                output += "\(indent) tags[\(tagsElementIndex)] {\n"
-                oneElementtags.writeDescriptionTo(&output, indent:"\(indent)  ")
+            var skillsElementIndex:Int = 0
+            for oneElementskills in skills {
+                output += "\(indent) skills[\(skillsElementIndex)] {\n"
+                oneElementskills.writeDescriptionTo(&output, indent:"\(indent)  ")
                 output += "\(indent)}\n"
-                tagsElementIndex++
+                skillsElementIndex++
             }
             unknownFields.writeDescriptionTo(&output, indent:indent)
           }
           override public var hashValue:Int {
               get {
                   var hashCode:Int = 7
-                  for oneElementtags in tags {
-                      hashCode = (hashCode &* 31) &+ oneElementtags.hashValue
+                  for oneElementskills in skills {
+                      hashCode = (hashCode &* 31) &+ oneElementskills.hashValue
                   }
                   hashCode = (hashCode &* 31) &+  unknownFields.hashValue
                   return hashCode
@@ -5333,13 +5333,13 @@ final public class ProfileService : GeneratedMessage {
           //Meta information declaration start
 
           override public class func className() -> String {
-              return "ProfileService.GetTags.Response"
+              return "ProfileService.GetSkills.Response"
           }
           override public func className() -> String {
-              return "ProfileService.GetTags.Response"
+              return "ProfileService.GetSkills.Response"
           }
           override public func classMetaType() -> GeneratedMessage.Type {
-              return ProfileService.GetTags.Response.self
+              return ProfileService.GetSkills.Response.self
           }
 
 
@@ -5348,22 +5348,22 @@ final public class ProfileService : GeneratedMessage {
         }
 
         final public class ResponseBuilder : GeneratedMessageBuilder {
-          private var builderResult:ProfileService.GetTags.Response
+          private var builderResult:ProfileService.GetSkills.Response
 
           required override public init () {
-             builderResult = ProfileService.GetTags.Response()
+             builderResult = ProfileService.GetSkills.Response()
              super.init()
           }
-          public var tags:Array<ProfileService.Containers.Tag> {
+          public var skills:Array<ProfileService.Containers.Skill> {
                get {
-                   return builderResult.tags
+                   return builderResult.skills
                }
                set (value) {
-                   builderResult.tags = value
+                   builderResult.skills = value
                }
           }
-          public func clearTags() -> ProfileService.GetTags.ResponseBuilder {
-            builderResult.tags.removeAll(keepCapacity: false)
+          public func clearSkills() -> ProfileService.GetSkills.ResponseBuilder {
+            builderResult.skills.removeAll(keepCapacity: false)
             return self
           }
           override public var internalGetResult:GeneratedMessage {
@@ -5371,32 +5371,32 @@ final public class ProfileService : GeneratedMessage {
                   return builderResult
                }
           }
-          public override func clear() -> ProfileService.GetTags.ResponseBuilder {
-            builderResult = ProfileService.GetTags.Response()
+          public override func clear() -> ProfileService.GetSkills.ResponseBuilder {
+            builderResult = ProfileService.GetSkills.Response()
             return self
           }
-          public override func clone() -> ProfileService.GetTags.ResponseBuilder {
-            return ProfileService.GetTags.Response.builderWithPrototype(builderResult)
+          public override func clone() -> ProfileService.GetSkills.ResponseBuilder {
+            return ProfileService.GetSkills.Response.builderWithPrototype(builderResult)
           }
-          public override func build() -> ProfileService.GetTags.Response {
+          public override func build() -> ProfileService.GetSkills.Response {
                checkInitialized()
                return buildPartial()
           }
-          public func buildPartial() -> ProfileService.GetTags.Response {
-            var returnMe:ProfileService.GetTags.Response = builderResult
+          public func buildPartial() -> ProfileService.GetSkills.Response {
+            var returnMe:ProfileService.GetSkills.Response = builderResult
             return returnMe
           }
-          public func mergeFrom(other:ProfileService.GetTags.Response) -> ProfileService.GetTags.ResponseBuilder {
-            if !other.tags.isEmpty  {
-               builderResult.tags += other.tags
+          public func mergeFrom(other:ProfileService.GetSkills.Response) -> ProfileService.GetSkills.ResponseBuilder {
+            if !other.skills.isEmpty  {
+               builderResult.skills += other.skills
             }
             mergeUnknownFields(other.unknownFields)
             return self
           }
-          public override func mergeFromCodedInputStream(input:CodedInputStream) ->ProfileService.GetTags.ResponseBuilder {
+          public override func mergeFromCodedInputStream(input:CodedInputStream) ->ProfileService.GetSkills.ResponseBuilder {
                return mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
           }
-          public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.GetTags.ResponseBuilder {
+          public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.GetSkills.ResponseBuilder {
             var unknownFieldsBuilder:UnknownFieldSetBuilder = UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
             while (true) {
               var tag = input.readTag()
@@ -5406,9 +5406,9 @@ final public class ProfileService : GeneratedMessage {
                 return self
 
               case 10 :
-                var subBuilder = ProfileService.Containers.Tag.builder()
+                var subBuilder = ProfileService.Containers.Skill.builder()
                 input.readMessage(subBuilder,extensionRegistry:extensionRegistry)
-                tags += [subBuilder.buildPartial()]
+                skills += [subBuilder.buildPartial()]
 
               default:
                 if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
@@ -5450,41 +5450,41 @@ final public class ProfileService : GeneratedMessage {
         memoizedSerializedSize = size
         return size
       }
-      public class func parseFromData(data:[Byte]) -> ProfileService.GetTags {
-        return ProfileService.GetTags.builder().mergeFromData(data).build()
+      public class func parseFromData(data:[Byte]) -> ProfileService.GetSkills {
+        return ProfileService.GetSkills.builder().mergeFromData(data).build()
       }
-      public class func parseFromData(data:[Byte], extensionRegistry:ExtensionRegistry) -> ProfileService.GetTags {
-        return ProfileService.GetTags.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
+      public class func parseFromData(data:[Byte], extensionRegistry:ExtensionRegistry) -> ProfileService.GetSkills {
+        return ProfileService.GetSkills.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
       }
-      public class func parseFromInputStream(input:NSInputStream) -> ProfileService.GetTags {
-        return ProfileService.GetTags.builder().mergeFromInputStream(input).build()
+      public class func parseFromInputStream(input:NSInputStream) -> ProfileService.GetSkills {
+        return ProfileService.GetSkills.builder().mergeFromInputStream(input).build()
       }
-      public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->ProfileService.GetTags {
-        return ProfileService.GetTags.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
+      public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->ProfileService.GetSkills {
+        return ProfileService.GetSkills.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
       }
-      public class func parseFromCodedInputStream(input:CodedInputStream) -> ProfileService.GetTags {
-        return ProfileService.GetTags.builder().mergeFromCodedInputStream(input).build()
+      public class func parseFromCodedInputStream(input:CodedInputStream) -> ProfileService.GetSkills {
+        return ProfileService.GetSkills.builder().mergeFromCodedInputStream(input).build()
       }
-      public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.GetTags {
-        return ProfileService.GetTags.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
+      public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.GetSkills {
+        return ProfileService.GetSkills.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
       }
-      public class func builder() -> ProfileService.GetTagsBuilder {
-        return ProfileService.GetTags.classBuilder() as ProfileService.GetTagsBuilder
+      public class func builder() -> ProfileService.GetSkillsBuilder {
+        return ProfileService.GetSkills.classBuilder() as ProfileService.GetSkillsBuilder
       }
-      public func builder() -> ProfileService.GetTagsBuilder {
-        return classBuilder() as ProfileService.GetTagsBuilder
+      public func builder() -> ProfileService.GetSkillsBuilder {
+        return classBuilder() as ProfileService.GetSkillsBuilder
       }
       public override class func classBuilder() -> MessageBuilder {
-        return ProfileService.GetTagsBuilder()
+        return ProfileService.GetSkillsBuilder()
       }
       public override func classBuilder() -> MessageBuilder {
-        return ProfileService.GetTags.builder()
+        return ProfileService.GetSkills.builder()
       }
-      public func toBuilder() -> ProfileService.GetTagsBuilder {
-        return ProfileService.GetTags.builderWithPrototype(self)
+      public func toBuilder() -> ProfileService.GetSkillsBuilder {
+        return ProfileService.GetSkills.builderWithPrototype(self)
       }
-      public class func builderWithPrototype(prototype:ProfileService.GetTags) -> ProfileService.GetTagsBuilder {
-        return ProfileService.GetTags.builder().mergeFrom(prototype)
+      public class func builderWithPrototype(prototype:ProfileService.GetSkills) -> ProfileService.GetSkillsBuilder {
+        return ProfileService.GetSkills.builder().mergeFrom(prototype)
       }
       override public func writeDescriptionTo(inout output:String, indent:String) {
         unknownFields.writeDescriptionTo(&output, indent:indent)
@@ -5501,13 +5501,13 @@ final public class ProfileService : GeneratedMessage {
       //Meta information declaration start
 
       override public class func className() -> String {
-          return "ProfileService.GetTags"
+          return "ProfileService.GetSkills"
       }
       override public func className() -> String {
-          return "ProfileService.GetTags"
+          return "ProfileService.GetSkills"
       }
       override public func classMetaType() -> GeneratedMessage.Type {
-          return ProfileService.GetTags.self
+          return ProfileService.GetSkills.self
       }
 
 
@@ -5515,11 +5515,11 @@ final public class ProfileService : GeneratedMessage {
 
     }
 
-    final public class GetTagsBuilder : GeneratedMessageBuilder {
-      private var builderResult:ProfileService.GetTags
+    final public class GetSkillsBuilder : GeneratedMessageBuilder {
+      private var builderResult:ProfileService.GetSkills
 
       required override public init () {
-         builderResult = ProfileService.GetTags()
+         builderResult = ProfileService.GetSkills()
          super.init()
       }
       override public var internalGetResult:GeneratedMessage {
@@ -5527,29 +5527,29 @@ final public class ProfileService : GeneratedMessage {
               return builderResult
            }
       }
-      public override func clear() -> ProfileService.GetTagsBuilder {
-        builderResult = ProfileService.GetTags()
+      public override func clear() -> ProfileService.GetSkillsBuilder {
+        builderResult = ProfileService.GetSkills()
         return self
       }
-      public override func clone() -> ProfileService.GetTagsBuilder {
-        return ProfileService.GetTags.builderWithPrototype(builderResult)
+      public override func clone() -> ProfileService.GetSkillsBuilder {
+        return ProfileService.GetSkills.builderWithPrototype(builderResult)
       }
-      public override func build() -> ProfileService.GetTags {
+      public override func build() -> ProfileService.GetSkills {
            checkInitialized()
            return buildPartial()
       }
-      public func buildPartial() -> ProfileService.GetTags {
-        var returnMe:ProfileService.GetTags = builderResult
+      public func buildPartial() -> ProfileService.GetSkills {
+        var returnMe:ProfileService.GetSkills = builderResult
         return returnMe
       }
-      public func mergeFrom(other:ProfileService.GetTags) -> ProfileService.GetTagsBuilder {
+      public func mergeFrom(other:ProfileService.GetSkills) -> ProfileService.GetSkillsBuilder {
         mergeUnknownFields(other.unknownFields)
         return self
       }
-      public override func mergeFromCodedInputStream(input:CodedInputStream) ->ProfileService.GetTagsBuilder {
+      public override func mergeFromCodedInputStream(input:CodedInputStream) ->ProfileService.GetSkillsBuilder {
            return mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
       }
-      public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.GetTagsBuilder {
+      public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.GetSkillsBuilder {
         var unknownFieldsBuilder:UnknownFieldSetBuilder = UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
         while (true) {
           var tag = input.readTag()
@@ -5576,7 +5576,7 @@ final public class ProfileService : GeneratedMessage {
 
   //Nested type declaration start
 
-    final public class AddTags : GeneratedMessage {
+    final public class AddSkills : GeneratedMessage {
 
 
       //Nested type declaration start
@@ -5592,7 +5592,7 @@ final public class ProfileService : GeneratedMessage {
           public private(set) var hasProfileId:Bool = false
           public private(set) var profile_id:String = ""
 
-          public private(set) var tags:Array<ProfileService.Containers.Tag>  = Array<ProfileService.Containers.Tag>()
+          public private(set) var skills:Array<ProfileService.Containers.Skill>  = Array<ProfileService.Containers.Skill>()
           required public init() {
                super.init()
           }
@@ -5603,8 +5603,8 @@ final public class ProfileService : GeneratedMessage {
             if hasProfileId {
               output.writeString(1, value:profile_id)
             }
-            for oneElementtags in tags {
-                output.writeMessage(2, value:oneElementtags)
+            for oneElementskills in skills {
+                output.writeMessage(2, value:oneElementskills)
             }
             unknownFields.writeToCodedOutputStream(output)
           }
@@ -5618,59 +5618,59 @@ final public class ProfileService : GeneratedMessage {
             if hasProfileId {
               size += WireFormat.computeStringSize(1, value:profile_id)
             }
-            for oneElementtags in tags {
-                size += WireFormat.computeMessageSize(2, value:oneElementtags)
+            for oneElementskills in skills {
+                size += WireFormat.computeMessageSize(2, value:oneElementskills)
             }
             size += unknownFields.serializedSize()
             memoizedSerializedSize = size
             return size
           }
-          public class func parseFromData(data:[Byte]) -> ProfileService.AddTags.Request {
-            return ProfileService.AddTags.Request.builder().mergeFromData(data).build()
+          public class func parseFromData(data:[Byte]) -> ProfileService.AddSkills.Request {
+            return ProfileService.AddSkills.Request.builder().mergeFromData(data).build()
           }
-          public class func parseFromData(data:[Byte], extensionRegistry:ExtensionRegistry) -> ProfileService.AddTags.Request {
-            return ProfileService.AddTags.Request.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
+          public class func parseFromData(data:[Byte], extensionRegistry:ExtensionRegistry) -> ProfileService.AddSkills.Request {
+            return ProfileService.AddSkills.Request.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
           }
-          public class func parseFromInputStream(input:NSInputStream) -> ProfileService.AddTags.Request {
-            return ProfileService.AddTags.Request.builder().mergeFromInputStream(input).build()
+          public class func parseFromInputStream(input:NSInputStream) -> ProfileService.AddSkills.Request {
+            return ProfileService.AddSkills.Request.builder().mergeFromInputStream(input).build()
           }
-          public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->ProfileService.AddTags.Request {
-            return ProfileService.AddTags.Request.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
+          public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->ProfileService.AddSkills.Request {
+            return ProfileService.AddSkills.Request.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
           }
-          public class func parseFromCodedInputStream(input:CodedInputStream) -> ProfileService.AddTags.Request {
-            return ProfileService.AddTags.Request.builder().mergeFromCodedInputStream(input).build()
+          public class func parseFromCodedInputStream(input:CodedInputStream) -> ProfileService.AddSkills.Request {
+            return ProfileService.AddSkills.Request.builder().mergeFromCodedInputStream(input).build()
           }
-          public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.AddTags.Request {
-            return ProfileService.AddTags.Request.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
+          public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.AddSkills.Request {
+            return ProfileService.AddSkills.Request.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
           }
-          public class func builder() -> ProfileService.AddTags.RequestBuilder {
-            return ProfileService.AddTags.Request.classBuilder() as ProfileService.AddTags.RequestBuilder
+          public class func builder() -> ProfileService.AddSkills.RequestBuilder {
+            return ProfileService.AddSkills.Request.classBuilder() as ProfileService.AddSkills.RequestBuilder
           }
-          public func builder() -> ProfileService.AddTags.RequestBuilder {
-            return classBuilder() as ProfileService.AddTags.RequestBuilder
+          public func builder() -> ProfileService.AddSkills.RequestBuilder {
+            return classBuilder() as ProfileService.AddSkills.RequestBuilder
           }
           public override class func classBuilder() -> MessageBuilder {
-            return ProfileService.AddTags.RequestBuilder()
+            return ProfileService.AddSkills.RequestBuilder()
           }
           public override func classBuilder() -> MessageBuilder {
-            return ProfileService.AddTags.Request.builder()
+            return ProfileService.AddSkills.Request.builder()
           }
-          public func toBuilder() -> ProfileService.AddTags.RequestBuilder {
-            return ProfileService.AddTags.Request.builderWithPrototype(self)
+          public func toBuilder() -> ProfileService.AddSkills.RequestBuilder {
+            return ProfileService.AddSkills.Request.builderWithPrototype(self)
           }
-          public class func builderWithPrototype(prototype:ProfileService.AddTags.Request) -> ProfileService.AddTags.RequestBuilder {
-            return ProfileService.AddTags.Request.builder().mergeFrom(prototype)
+          public class func builderWithPrototype(prototype:ProfileService.AddSkills.Request) -> ProfileService.AddSkills.RequestBuilder {
+            return ProfileService.AddSkills.Request.builder().mergeFrom(prototype)
           }
           override public func writeDescriptionTo(inout output:String, indent:String) {
             if hasProfileId {
               output += "\(indent) profile_id: \(profile_id) \n"
             }
-            var tagsElementIndex:Int = 0
-            for oneElementtags in tags {
-                output += "\(indent) tags[\(tagsElementIndex)] {\n"
-                oneElementtags.writeDescriptionTo(&output, indent:"\(indent)  ")
+            var skillsElementIndex:Int = 0
+            for oneElementskills in skills {
+                output += "\(indent) skills[\(skillsElementIndex)] {\n"
+                oneElementskills.writeDescriptionTo(&output, indent:"\(indent)  ")
                 output += "\(indent)}\n"
-                tagsElementIndex++
+                skillsElementIndex++
             }
             unknownFields.writeDescriptionTo(&output, indent:indent)
           }
@@ -5680,8 +5680,8 @@ final public class ProfileService : GeneratedMessage {
                   if hasProfileId {
                      hashCode = (hashCode &* 31) &+ profile_id.hashValue
                   }
-                  for oneElementtags in tags {
-                      hashCode = (hashCode &* 31) &+ oneElementtags.hashValue
+                  for oneElementskills in skills {
+                      hashCode = (hashCode &* 31) &+ oneElementskills.hashValue
                   }
                   hashCode = (hashCode &* 31) &+  unknownFields.hashValue
                   return hashCode
@@ -5692,13 +5692,13 @@ final public class ProfileService : GeneratedMessage {
           //Meta information declaration start
 
           override public class func className() -> String {
-              return "ProfileService.AddTags.Request"
+              return "ProfileService.AddSkills.Request"
           }
           override public func className() -> String {
-              return "ProfileService.AddTags.Request"
+              return "ProfileService.AddSkills.Request"
           }
           override public func classMetaType() -> GeneratedMessage.Type {
-              return ProfileService.AddTags.Request.self
+              return ProfileService.AddSkills.Request.self
           }
 
 
@@ -5707,10 +5707,10 @@ final public class ProfileService : GeneratedMessage {
         }
 
         final public class RequestBuilder : GeneratedMessageBuilder {
-          private var builderResult:ProfileService.AddTags.Request
+          private var builderResult:ProfileService.AddSkills.Request
 
           required override public init () {
-             builderResult = ProfileService.AddTags.Request()
+             builderResult = ProfileService.AddSkills.Request()
              super.init()
           }
           public var hasProfileId:Bool {
@@ -5727,21 +5727,21 @@ final public class ProfileService : GeneratedMessage {
                    builderResult.profile_id = value
                }
           }
-          public func clearProfileId() -> ProfileService.AddTags.RequestBuilder{
+          public func clearProfileId() -> ProfileService.AddSkills.RequestBuilder{
                builderResult.hasProfileId = false
                builderResult.profile_id = ""
                return self
           }
-          public var tags:Array<ProfileService.Containers.Tag> {
+          public var skills:Array<ProfileService.Containers.Skill> {
                get {
-                   return builderResult.tags
+                   return builderResult.skills
                }
                set (value) {
-                   builderResult.tags = value
+                   builderResult.skills = value
                }
           }
-          public func clearTags() -> ProfileService.AddTags.RequestBuilder {
-            builderResult.tags.removeAll(keepCapacity: false)
+          public func clearSkills() -> ProfileService.AddSkills.RequestBuilder {
+            builderResult.skills.removeAll(keepCapacity: false)
             return self
           }
           override public var internalGetResult:GeneratedMessage {
@@ -5749,35 +5749,35 @@ final public class ProfileService : GeneratedMessage {
                   return builderResult
                }
           }
-          public override func clear() -> ProfileService.AddTags.RequestBuilder {
-            builderResult = ProfileService.AddTags.Request()
+          public override func clear() -> ProfileService.AddSkills.RequestBuilder {
+            builderResult = ProfileService.AddSkills.Request()
             return self
           }
-          public override func clone() -> ProfileService.AddTags.RequestBuilder {
-            return ProfileService.AddTags.Request.builderWithPrototype(builderResult)
+          public override func clone() -> ProfileService.AddSkills.RequestBuilder {
+            return ProfileService.AddSkills.Request.builderWithPrototype(builderResult)
           }
-          public override func build() -> ProfileService.AddTags.Request {
+          public override func build() -> ProfileService.AddSkills.Request {
                checkInitialized()
                return buildPartial()
           }
-          public func buildPartial() -> ProfileService.AddTags.Request {
-            var returnMe:ProfileService.AddTags.Request = builderResult
+          public func buildPartial() -> ProfileService.AddSkills.Request {
+            var returnMe:ProfileService.AddSkills.Request = builderResult
             return returnMe
           }
-          public func mergeFrom(other:ProfileService.AddTags.Request) -> ProfileService.AddTags.RequestBuilder {
+          public func mergeFrom(other:ProfileService.AddSkills.Request) -> ProfileService.AddSkills.RequestBuilder {
             if other.hasProfileId {
                  profile_id = other.profile_id
             }
-            if !other.tags.isEmpty  {
-               builderResult.tags += other.tags
+            if !other.skills.isEmpty  {
+               builderResult.skills += other.skills
             }
             mergeUnknownFields(other.unknownFields)
             return self
           }
-          public override func mergeFromCodedInputStream(input:CodedInputStream) ->ProfileService.AddTags.RequestBuilder {
+          public override func mergeFromCodedInputStream(input:CodedInputStream) ->ProfileService.AddSkills.RequestBuilder {
                return mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
           }
-          public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.AddTags.RequestBuilder {
+          public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.AddSkills.RequestBuilder {
             var unknownFieldsBuilder:UnknownFieldSetBuilder = UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
             while (true) {
               var tag = input.readTag()
@@ -5790,9 +5790,9 @@ final public class ProfileService : GeneratedMessage {
                 profile_id = input.readString()
 
               case 18 :
-                var subBuilder = ProfileService.Containers.Tag.builder()
+                var subBuilder = ProfileService.Containers.Skill.builder()
                 input.readMessage(subBuilder,extensionRegistry:extensionRegistry)
-                tags += [subBuilder.buildPartial()]
+                skills += [subBuilder.buildPartial()]
 
               default:
                 if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
@@ -5839,41 +5839,41 @@ final public class ProfileService : GeneratedMessage {
             memoizedSerializedSize = size
             return size
           }
-          public class func parseFromData(data:[Byte]) -> ProfileService.AddTags.Response {
-            return ProfileService.AddTags.Response.builder().mergeFromData(data).build()
+          public class func parseFromData(data:[Byte]) -> ProfileService.AddSkills.Response {
+            return ProfileService.AddSkills.Response.builder().mergeFromData(data).build()
           }
-          public class func parseFromData(data:[Byte], extensionRegistry:ExtensionRegistry) -> ProfileService.AddTags.Response {
-            return ProfileService.AddTags.Response.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
+          public class func parseFromData(data:[Byte], extensionRegistry:ExtensionRegistry) -> ProfileService.AddSkills.Response {
+            return ProfileService.AddSkills.Response.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
           }
-          public class func parseFromInputStream(input:NSInputStream) -> ProfileService.AddTags.Response {
-            return ProfileService.AddTags.Response.builder().mergeFromInputStream(input).build()
+          public class func parseFromInputStream(input:NSInputStream) -> ProfileService.AddSkills.Response {
+            return ProfileService.AddSkills.Response.builder().mergeFromInputStream(input).build()
           }
-          public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->ProfileService.AddTags.Response {
-            return ProfileService.AddTags.Response.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
+          public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->ProfileService.AddSkills.Response {
+            return ProfileService.AddSkills.Response.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
           }
-          public class func parseFromCodedInputStream(input:CodedInputStream) -> ProfileService.AddTags.Response {
-            return ProfileService.AddTags.Response.builder().mergeFromCodedInputStream(input).build()
+          public class func parseFromCodedInputStream(input:CodedInputStream) -> ProfileService.AddSkills.Response {
+            return ProfileService.AddSkills.Response.builder().mergeFromCodedInputStream(input).build()
           }
-          public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.AddTags.Response {
-            return ProfileService.AddTags.Response.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
+          public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.AddSkills.Response {
+            return ProfileService.AddSkills.Response.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
           }
-          public class func builder() -> ProfileService.AddTags.ResponseBuilder {
-            return ProfileService.AddTags.Response.classBuilder() as ProfileService.AddTags.ResponseBuilder
+          public class func builder() -> ProfileService.AddSkills.ResponseBuilder {
+            return ProfileService.AddSkills.Response.classBuilder() as ProfileService.AddSkills.ResponseBuilder
           }
-          public func builder() -> ProfileService.AddTags.ResponseBuilder {
-            return classBuilder() as ProfileService.AddTags.ResponseBuilder
+          public func builder() -> ProfileService.AddSkills.ResponseBuilder {
+            return classBuilder() as ProfileService.AddSkills.ResponseBuilder
           }
           public override class func classBuilder() -> MessageBuilder {
-            return ProfileService.AddTags.ResponseBuilder()
+            return ProfileService.AddSkills.ResponseBuilder()
           }
           public override func classBuilder() -> MessageBuilder {
-            return ProfileService.AddTags.Response.builder()
+            return ProfileService.AddSkills.Response.builder()
           }
-          public func toBuilder() -> ProfileService.AddTags.ResponseBuilder {
-            return ProfileService.AddTags.Response.builderWithPrototype(self)
+          public func toBuilder() -> ProfileService.AddSkills.ResponseBuilder {
+            return ProfileService.AddSkills.Response.builderWithPrototype(self)
           }
-          public class func builderWithPrototype(prototype:ProfileService.AddTags.Response) -> ProfileService.AddTags.ResponseBuilder {
-            return ProfileService.AddTags.Response.builder().mergeFrom(prototype)
+          public class func builderWithPrototype(prototype:ProfileService.AddSkills.Response) -> ProfileService.AddSkills.ResponseBuilder {
+            return ProfileService.AddSkills.Response.builder().mergeFrom(prototype)
           }
           override public func writeDescriptionTo(inout output:String, indent:String) {
             unknownFields.writeDescriptionTo(&output, indent:indent)
@@ -5890,13 +5890,13 @@ final public class ProfileService : GeneratedMessage {
           //Meta information declaration start
 
           override public class func className() -> String {
-              return "ProfileService.AddTags.Response"
+              return "ProfileService.AddSkills.Response"
           }
           override public func className() -> String {
-              return "ProfileService.AddTags.Response"
+              return "ProfileService.AddSkills.Response"
           }
           override public func classMetaType() -> GeneratedMessage.Type {
-              return ProfileService.AddTags.Response.self
+              return ProfileService.AddSkills.Response.self
           }
 
 
@@ -5905,10 +5905,10 @@ final public class ProfileService : GeneratedMessage {
         }
 
         final public class ResponseBuilder : GeneratedMessageBuilder {
-          private var builderResult:ProfileService.AddTags.Response
+          private var builderResult:ProfileService.AddSkills.Response
 
           required override public init () {
-             builderResult = ProfileService.AddTags.Response()
+             builderResult = ProfileService.AddSkills.Response()
              super.init()
           }
           override public var internalGetResult:GeneratedMessage {
@@ -5916,29 +5916,29 @@ final public class ProfileService : GeneratedMessage {
                   return builderResult
                }
           }
-          public override func clear() -> ProfileService.AddTags.ResponseBuilder {
-            builderResult = ProfileService.AddTags.Response()
+          public override func clear() -> ProfileService.AddSkills.ResponseBuilder {
+            builderResult = ProfileService.AddSkills.Response()
             return self
           }
-          public override func clone() -> ProfileService.AddTags.ResponseBuilder {
-            return ProfileService.AddTags.Response.builderWithPrototype(builderResult)
+          public override func clone() -> ProfileService.AddSkills.ResponseBuilder {
+            return ProfileService.AddSkills.Response.builderWithPrototype(builderResult)
           }
-          public override func build() -> ProfileService.AddTags.Response {
+          public override func build() -> ProfileService.AddSkills.Response {
                checkInitialized()
                return buildPartial()
           }
-          public func buildPartial() -> ProfileService.AddTags.Response {
-            var returnMe:ProfileService.AddTags.Response = builderResult
+          public func buildPartial() -> ProfileService.AddSkills.Response {
+            var returnMe:ProfileService.AddSkills.Response = builderResult
             return returnMe
           }
-          public func mergeFrom(other:ProfileService.AddTags.Response) -> ProfileService.AddTags.ResponseBuilder {
+          public func mergeFrom(other:ProfileService.AddSkills.Response) -> ProfileService.AddSkills.ResponseBuilder {
             mergeUnknownFields(other.unknownFields)
             return self
           }
-          public override func mergeFromCodedInputStream(input:CodedInputStream) ->ProfileService.AddTags.ResponseBuilder {
+          public override func mergeFromCodedInputStream(input:CodedInputStream) ->ProfileService.AddSkills.ResponseBuilder {
                return mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
           }
-          public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.AddTags.ResponseBuilder {
+          public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.AddSkills.ResponseBuilder {
             var unknownFieldsBuilder:UnknownFieldSetBuilder = UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
             while (true) {
               var tag = input.readTag()
@@ -5987,41 +5987,41 @@ final public class ProfileService : GeneratedMessage {
         memoizedSerializedSize = size
         return size
       }
-      public class func parseFromData(data:[Byte]) -> ProfileService.AddTags {
-        return ProfileService.AddTags.builder().mergeFromData(data).build()
+      public class func parseFromData(data:[Byte]) -> ProfileService.AddSkills {
+        return ProfileService.AddSkills.builder().mergeFromData(data).build()
       }
-      public class func parseFromData(data:[Byte], extensionRegistry:ExtensionRegistry) -> ProfileService.AddTags {
-        return ProfileService.AddTags.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
+      public class func parseFromData(data:[Byte], extensionRegistry:ExtensionRegistry) -> ProfileService.AddSkills {
+        return ProfileService.AddSkills.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
       }
-      public class func parseFromInputStream(input:NSInputStream) -> ProfileService.AddTags {
-        return ProfileService.AddTags.builder().mergeFromInputStream(input).build()
+      public class func parseFromInputStream(input:NSInputStream) -> ProfileService.AddSkills {
+        return ProfileService.AddSkills.builder().mergeFromInputStream(input).build()
       }
-      public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->ProfileService.AddTags {
-        return ProfileService.AddTags.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
+      public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->ProfileService.AddSkills {
+        return ProfileService.AddSkills.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
       }
-      public class func parseFromCodedInputStream(input:CodedInputStream) -> ProfileService.AddTags {
-        return ProfileService.AddTags.builder().mergeFromCodedInputStream(input).build()
+      public class func parseFromCodedInputStream(input:CodedInputStream) -> ProfileService.AddSkills {
+        return ProfileService.AddSkills.builder().mergeFromCodedInputStream(input).build()
       }
-      public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.AddTags {
-        return ProfileService.AddTags.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
+      public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.AddSkills {
+        return ProfileService.AddSkills.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
       }
-      public class func builder() -> ProfileService.AddTagsBuilder {
-        return ProfileService.AddTags.classBuilder() as ProfileService.AddTagsBuilder
+      public class func builder() -> ProfileService.AddSkillsBuilder {
+        return ProfileService.AddSkills.classBuilder() as ProfileService.AddSkillsBuilder
       }
-      public func builder() -> ProfileService.AddTagsBuilder {
-        return classBuilder() as ProfileService.AddTagsBuilder
+      public func builder() -> ProfileService.AddSkillsBuilder {
+        return classBuilder() as ProfileService.AddSkillsBuilder
       }
       public override class func classBuilder() -> MessageBuilder {
-        return ProfileService.AddTagsBuilder()
+        return ProfileService.AddSkillsBuilder()
       }
       public override func classBuilder() -> MessageBuilder {
-        return ProfileService.AddTags.builder()
+        return ProfileService.AddSkills.builder()
       }
-      public func toBuilder() -> ProfileService.AddTagsBuilder {
-        return ProfileService.AddTags.builderWithPrototype(self)
+      public func toBuilder() -> ProfileService.AddSkillsBuilder {
+        return ProfileService.AddSkills.builderWithPrototype(self)
       }
-      public class func builderWithPrototype(prototype:ProfileService.AddTags) -> ProfileService.AddTagsBuilder {
-        return ProfileService.AddTags.builder().mergeFrom(prototype)
+      public class func builderWithPrototype(prototype:ProfileService.AddSkills) -> ProfileService.AddSkillsBuilder {
+        return ProfileService.AddSkills.builder().mergeFrom(prototype)
       }
       override public func writeDescriptionTo(inout output:String, indent:String) {
         unknownFields.writeDescriptionTo(&output, indent:indent)
@@ -6038,13 +6038,13 @@ final public class ProfileService : GeneratedMessage {
       //Meta information declaration start
 
       override public class func className() -> String {
-          return "ProfileService.AddTags"
+          return "ProfileService.AddSkills"
       }
       override public func className() -> String {
-          return "ProfileService.AddTags"
+          return "ProfileService.AddSkills"
       }
       override public func classMetaType() -> GeneratedMessage.Type {
-          return ProfileService.AddTags.self
+          return ProfileService.AddSkills.self
       }
 
 
@@ -6052,11 +6052,11 @@ final public class ProfileService : GeneratedMessage {
 
     }
 
-    final public class AddTagsBuilder : GeneratedMessageBuilder {
-      private var builderResult:ProfileService.AddTags
+    final public class AddSkillsBuilder : GeneratedMessageBuilder {
+      private var builderResult:ProfileService.AddSkills
 
       required override public init () {
-         builderResult = ProfileService.AddTags()
+         builderResult = ProfileService.AddSkills()
          super.init()
       }
       override public var internalGetResult:GeneratedMessage {
@@ -6064,29 +6064,29 @@ final public class ProfileService : GeneratedMessage {
               return builderResult
            }
       }
-      public override func clear() -> ProfileService.AddTagsBuilder {
-        builderResult = ProfileService.AddTags()
+      public override func clear() -> ProfileService.AddSkillsBuilder {
+        builderResult = ProfileService.AddSkills()
         return self
       }
-      public override func clone() -> ProfileService.AddTagsBuilder {
-        return ProfileService.AddTags.builderWithPrototype(builderResult)
+      public override func clone() -> ProfileService.AddSkillsBuilder {
+        return ProfileService.AddSkills.builderWithPrototype(builderResult)
       }
-      public override func build() -> ProfileService.AddTags {
+      public override func build() -> ProfileService.AddSkills {
            checkInitialized()
            return buildPartial()
       }
-      public func buildPartial() -> ProfileService.AddTags {
-        var returnMe:ProfileService.AddTags = builderResult
+      public func buildPartial() -> ProfileService.AddSkills {
+        var returnMe:ProfileService.AddSkills = builderResult
         return returnMe
       }
-      public func mergeFrom(other:ProfileService.AddTags) -> ProfileService.AddTagsBuilder {
+      public func mergeFrom(other:ProfileService.AddSkills) -> ProfileService.AddSkillsBuilder {
         mergeUnknownFields(other.unknownFields)
         return self
       }
-      public override func mergeFromCodedInputStream(input:CodedInputStream) ->ProfileService.AddTagsBuilder {
+      public override func mergeFromCodedInputStream(input:CodedInputStream) ->ProfileService.AddSkillsBuilder {
            return mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
       }
-      public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.AddTagsBuilder {
+      public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.AddSkillsBuilder {
         var unknownFieldsBuilder:UnknownFieldSetBuilder = UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
         while (true) {
           var tag = input.readTag()
@@ -6123,7 +6123,7 @@ final public class ProfileService : GeneratedMessage {
                  switch key {
                  case "team_id": return team_id
                  case "organization_id": return organization_id
-                 case "tag_id": return tag_id
+                 case "skill_id": return skill_id
                  case "address_id": return address_id
                  default: return nil
                  }
@@ -6135,8 +6135,8 @@ final public class ProfileService : GeneratedMessage {
           public private(set) var hasOrganizationId:Bool = false
           public private(set) var organization_id:String = ""
 
-          public private(set) var hasTagId:Bool = false
-          public private(set) var tag_id:String = ""
+          public private(set) var hasSkillId:Bool = false
+          public private(set) var skill_id:String = ""
 
           public private(set) var hasAddressId:Bool = false
           public private(set) var address_id:String = ""
@@ -6155,8 +6155,8 @@ final public class ProfileService : GeneratedMessage {
             if hasOrganizationId {
               output.writeString(2, value:organization_id)
             }
-            if hasTagId {
-              output.writeString(3, value:tag_id)
+            if hasSkillId {
+              output.writeString(3, value:skill_id)
             }
             if hasAddressId {
               output.writeString(4, value:address_id)
@@ -6181,8 +6181,8 @@ final public class ProfileService : GeneratedMessage {
             if hasOrganizationId {
               size += WireFormat.computeStringSize(2, value:organization_id)
             }
-            if hasTagId {
-              size += WireFormat.computeStringSize(3, value:tag_id)
+            if hasSkillId {
+              size += WireFormat.computeStringSize(3, value:skill_id)
             }
             if hasAddressId {
               size += WireFormat.computeStringSize(4, value:address_id)
@@ -6240,8 +6240,8 @@ final public class ProfileService : GeneratedMessage {
             if hasOrganizationId {
               output += "\(indent) organization_id: \(organization_id) \n"
             }
-            if hasTagId {
-              output += "\(indent) tag_id: \(tag_id) \n"
+            if hasSkillId {
+              output += "\(indent) skill_id: \(skill_id) \n"
             }
             if hasAddressId {
               output += "\(indent) address_id: \(address_id) \n"
@@ -6262,8 +6262,8 @@ final public class ProfileService : GeneratedMessage {
                   if hasOrganizationId {
                      hashCode = (hashCode &* 31) &+ organization_id.hashValue
                   }
-                  if hasTagId {
-                     hashCode = (hashCode &* 31) &+ tag_id.hashValue
+                  if hasSkillId {
+                     hashCode = (hashCode &* 31) &+ skill_id.hashValue
                   }
                   if hasAddressId {
                      hashCode = (hashCode &* 31) &+ address_id.hashValue
@@ -6339,23 +6339,23 @@ final public class ProfileService : GeneratedMessage {
                builderResult.organization_id = ""
                return self
           }
-          public var hasTagId:Bool {
+          public var hasSkillId:Bool {
                get {
-                    return builderResult.hasTagId
+                    return builderResult.hasSkillId
                }
           }
-          public var tag_id:String {
+          public var skill_id:String {
                get {
-                    return builderResult.tag_id
+                    return builderResult.skill_id
                }
                set (value) {
-                   builderResult.hasTagId = true
-                   builderResult.tag_id = value
+                   builderResult.hasSkillId = true
+                   builderResult.skill_id = value
                }
           }
-          public func clearTagId() -> ProfileService.GetProfiles.RequestBuilder{
-               builderResult.hasTagId = false
-               builderResult.tag_id = ""
+          public func clearSkillId() -> ProfileService.GetProfiles.RequestBuilder{
+               builderResult.hasSkillId = false
+               builderResult.skill_id = ""
                return self
           }
           public var hasAddressId:Bool {
@@ -6416,8 +6416,8 @@ final public class ProfileService : GeneratedMessage {
             if other.hasOrganizationId {
                  organization_id = other.organization_id
             }
-            if other.hasTagId {
-                 tag_id = other.tag_id
+            if other.hasSkillId {
+                 skill_id = other.skill_id
             }
             if other.hasAddressId {
                  address_id = other.address_id
@@ -6447,7 +6447,7 @@ final public class ProfileService : GeneratedMessage {
                 organization_id = input.readString()
 
               case 26 :
-                tag_id = input.readString()
+                skill_id = input.readString()
 
               case 34 :
                 address_id = input.readString()
@@ -10143,7 +10143,7 @@ final public class ProfileService : GeneratedMessage {
 
   //Nested type declaration start
 
-    final public class GetActiveTags : GeneratedMessage {
+    final public class GetActiveSkills : GeneratedMessage {
 
 
       //Nested type declaration start
@@ -10185,41 +10185,41 @@ final public class ProfileService : GeneratedMessage {
             memoizedSerializedSize = size
             return size
           }
-          public class func parseFromData(data:[Byte]) -> ProfileService.GetActiveTags.Request {
-            return ProfileService.GetActiveTags.Request.builder().mergeFromData(data).build()
+          public class func parseFromData(data:[Byte]) -> ProfileService.GetActiveSkills.Request {
+            return ProfileService.GetActiveSkills.Request.builder().mergeFromData(data).build()
           }
-          public class func parseFromData(data:[Byte], extensionRegistry:ExtensionRegistry) -> ProfileService.GetActiveTags.Request {
-            return ProfileService.GetActiveTags.Request.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
+          public class func parseFromData(data:[Byte], extensionRegistry:ExtensionRegistry) -> ProfileService.GetActiveSkills.Request {
+            return ProfileService.GetActiveSkills.Request.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
           }
-          public class func parseFromInputStream(input:NSInputStream) -> ProfileService.GetActiveTags.Request {
-            return ProfileService.GetActiveTags.Request.builder().mergeFromInputStream(input).build()
+          public class func parseFromInputStream(input:NSInputStream) -> ProfileService.GetActiveSkills.Request {
+            return ProfileService.GetActiveSkills.Request.builder().mergeFromInputStream(input).build()
           }
-          public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->ProfileService.GetActiveTags.Request {
-            return ProfileService.GetActiveTags.Request.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
+          public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->ProfileService.GetActiveSkills.Request {
+            return ProfileService.GetActiveSkills.Request.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
           }
-          public class func parseFromCodedInputStream(input:CodedInputStream) -> ProfileService.GetActiveTags.Request {
-            return ProfileService.GetActiveTags.Request.builder().mergeFromCodedInputStream(input).build()
+          public class func parseFromCodedInputStream(input:CodedInputStream) -> ProfileService.GetActiveSkills.Request {
+            return ProfileService.GetActiveSkills.Request.builder().mergeFromCodedInputStream(input).build()
           }
-          public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.GetActiveTags.Request {
-            return ProfileService.GetActiveTags.Request.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
+          public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.GetActiveSkills.Request {
+            return ProfileService.GetActiveSkills.Request.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
           }
-          public class func builder() -> ProfileService.GetActiveTags.RequestBuilder {
-            return ProfileService.GetActiveTags.Request.classBuilder() as ProfileService.GetActiveTags.RequestBuilder
+          public class func builder() -> ProfileService.GetActiveSkills.RequestBuilder {
+            return ProfileService.GetActiveSkills.Request.classBuilder() as ProfileService.GetActiveSkills.RequestBuilder
           }
-          public func builder() -> ProfileService.GetActiveTags.RequestBuilder {
-            return classBuilder() as ProfileService.GetActiveTags.RequestBuilder
+          public func builder() -> ProfileService.GetActiveSkills.RequestBuilder {
+            return classBuilder() as ProfileService.GetActiveSkills.RequestBuilder
           }
           public override class func classBuilder() -> MessageBuilder {
-            return ProfileService.GetActiveTags.RequestBuilder()
+            return ProfileService.GetActiveSkills.RequestBuilder()
           }
           public override func classBuilder() -> MessageBuilder {
-            return ProfileService.GetActiveTags.Request.builder()
+            return ProfileService.GetActiveSkills.Request.builder()
           }
-          public func toBuilder() -> ProfileService.GetActiveTags.RequestBuilder {
-            return ProfileService.GetActiveTags.Request.builderWithPrototype(self)
+          public func toBuilder() -> ProfileService.GetActiveSkills.RequestBuilder {
+            return ProfileService.GetActiveSkills.Request.builderWithPrototype(self)
           }
-          public class func builderWithPrototype(prototype:ProfileService.GetActiveTags.Request) -> ProfileService.GetActiveTags.RequestBuilder {
-            return ProfileService.GetActiveTags.Request.builder().mergeFrom(prototype)
+          public class func builderWithPrototype(prototype:ProfileService.GetActiveSkills.Request) -> ProfileService.GetActiveSkills.RequestBuilder {
+            return ProfileService.GetActiveSkills.Request.builder().mergeFrom(prototype)
           }
           override public func writeDescriptionTo(inout output:String, indent:String) {
             if hasOrganizationId {
@@ -10242,13 +10242,13 @@ final public class ProfileService : GeneratedMessage {
           //Meta information declaration start
 
           override public class func className() -> String {
-              return "ProfileService.GetActiveTags.Request"
+              return "ProfileService.GetActiveSkills.Request"
           }
           override public func className() -> String {
-              return "ProfileService.GetActiveTags.Request"
+              return "ProfileService.GetActiveSkills.Request"
           }
           override public func classMetaType() -> GeneratedMessage.Type {
-              return ProfileService.GetActiveTags.Request.self
+              return ProfileService.GetActiveSkills.Request.self
           }
 
 
@@ -10257,10 +10257,10 @@ final public class ProfileService : GeneratedMessage {
         }
 
         final public class RequestBuilder : GeneratedMessageBuilder {
-          private var builderResult:ProfileService.GetActiveTags.Request
+          private var builderResult:ProfileService.GetActiveSkills.Request
 
           required override public init () {
-             builderResult = ProfileService.GetActiveTags.Request()
+             builderResult = ProfileService.GetActiveSkills.Request()
              super.init()
           }
           public var hasOrganizationId:Bool {
@@ -10277,7 +10277,7 @@ final public class ProfileService : GeneratedMessage {
                    builderResult.organization_id = value
                }
           }
-          public func clearOrganizationId() -> ProfileService.GetActiveTags.RequestBuilder{
+          public func clearOrganizationId() -> ProfileService.GetActiveSkills.RequestBuilder{
                builderResult.hasOrganizationId = false
                builderResult.organization_id = ""
                return self
@@ -10287,32 +10287,32 @@ final public class ProfileService : GeneratedMessage {
                   return builderResult
                }
           }
-          public override func clear() -> ProfileService.GetActiveTags.RequestBuilder {
-            builderResult = ProfileService.GetActiveTags.Request()
+          public override func clear() -> ProfileService.GetActiveSkills.RequestBuilder {
+            builderResult = ProfileService.GetActiveSkills.Request()
             return self
           }
-          public override func clone() -> ProfileService.GetActiveTags.RequestBuilder {
-            return ProfileService.GetActiveTags.Request.builderWithPrototype(builderResult)
+          public override func clone() -> ProfileService.GetActiveSkills.RequestBuilder {
+            return ProfileService.GetActiveSkills.Request.builderWithPrototype(builderResult)
           }
-          public override func build() -> ProfileService.GetActiveTags.Request {
+          public override func build() -> ProfileService.GetActiveSkills.Request {
                checkInitialized()
                return buildPartial()
           }
-          public func buildPartial() -> ProfileService.GetActiveTags.Request {
-            var returnMe:ProfileService.GetActiveTags.Request = builderResult
+          public func buildPartial() -> ProfileService.GetActiveSkills.Request {
+            var returnMe:ProfileService.GetActiveSkills.Request = builderResult
             return returnMe
           }
-          public func mergeFrom(other:ProfileService.GetActiveTags.Request) -> ProfileService.GetActiveTags.RequestBuilder {
+          public func mergeFrom(other:ProfileService.GetActiveSkills.Request) -> ProfileService.GetActiveSkills.RequestBuilder {
             if other.hasOrganizationId {
                  organization_id = other.organization_id
             }
             mergeUnknownFields(other.unknownFields)
             return self
           }
-          public override func mergeFromCodedInputStream(input:CodedInputStream) ->ProfileService.GetActiveTags.RequestBuilder {
+          public override func mergeFromCodedInputStream(input:CodedInputStream) ->ProfileService.GetActiveSkills.RequestBuilder {
                return mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
           }
-          public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.GetActiveTags.RequestBuilder {
+          public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.GetActiveSkills.RequestBuilder {
             var unknownFieldsBuilder:UnknownFieldSetBuilder = UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
             while (true) {
               var tag = input.readTag()
@@ -10349,7 +10349,7 @@ final public class ProfileService : GeneratedMessage {
                  }
           }
 
-          public private(set) var tags:Array<ProfileService.Containers.Tag>  = Array<ProfileService.Containers.Tag>()
+          public private(set) var skills:Array<ProfileService.Containers.Skill>  = Array<ProfileService.Containers.Skill>()
           required public init() {
                super.init()
           }
@@ -10357,8 +10357,8 @@ final public class ProfileService : GeneratedMessage {
            return true
           }
           override public func writeToCodedOutputStream(output:CodedOutputStream) {
-            for oneElementtags in tags {
-                output.writeMessage(1, value:oneElementtags)
+            for oneElementskills in skills {
+                output.writeMessage(1, value:oneElementskills)
             }
             unknownFields.writeToCodedOutputStream(output)
           }
@@ -10369,64 +10369,64 @@ final public class ProfileService : GeneratedMessage {
             }
 
             size = 0
-            for oneElementtags in tags {
-                size += WireFormat.computeMessageSize(1, value:oneElementtags)
+            for oneElementskills in skills {
+                size += WireFormat.computeMessageSize(1, value:oneElementskills)
             }
             size += unknownFields.serializedSize()
             memoizedSerializedSize = size
             return size
           }
-          public class func parseFromData(data:[Byte]) -> ProfileService.GetActiveTags.Response {
-            return ProfileService.GetActiveTags.Response.builder().mergeFromData(data).build()
+          public class func parseFromData(data:[Byte]) -> ProfileService.GetActiveSkills.Response {
+            return ProfileService.GetActiveSkills.Response.builder().mergeFromData(data).build()
           }
-          public class func parseFromData(data:[Byte], extensionRegistry:ExtensionRegistry) -> ProfileService.GetActiveTags.Response {
-            return ProfileService.GetActiveTags.Response.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
+          public class func parseFromData(data:[Byte], extensionRegistry:ExtensionRegistry) -> ProfileService.GetActiveSkills.Response {
+            return ProfileService.GetActiveSkills.Response.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
           }
-          public class func parseFromInputStream(input:NSInputStream) -> ProfileService.GetActiveTags.Response {
-            return ProfileService.GetActiveTags.Response.builder().mergeFromInputStream(input).build()
+          public class func parseFromInputStream(input:NSInputStream) -> ProfileService.GetActiveSkills.Response {
+            return ProfileService.GetActiveSkills.Response.builder().mergeFromInputStream(input).build()
           }
-          public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->ProfileService.GetActiveTags.Response {
-            return ProfileService.GetActiveTags.Response.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
+          public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->ProfileService.GetActiveSkills.Response {
+            return ProfileService.GetActiveSkills.Response.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
           }
-          public class func parseFromCodedInputStream(input:CodedInputStream) -> ProfileService.GetActiveTags.Response {
-            return ProfileService.GetActiveTags.Response.builder().mergeFromCodedInputStream(input).build()
+          public class func parseFromCodedInputStream(input:CodedInputStream) -> ProfileService.GetActiveSkills.Response {
+            return ProfileService.GetActiveSkills.Response.builder().mergeFromCodedInputStream(input).build()
           }
-          public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.GetActiveTags.Response {
-            return ProfileService.GetActiveTags.Response.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
+          public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.GetActiveSkills.Response {
+            return ProfileService.GetActiveSkills.Response.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
           }
-          public class func builder() -> ProfileService.GetActiveTags.ResponseBuilder {
-            return ProfileService.GetActiveTags.Response.classBuilder() as ProfileService.GetActiveTags.ResponseBuilder
+          public class func builder() -> ProfileService.GetActiveSkills.ResponseBuilder {
+            return ProfileService.GetActiveSkills.Response.classBuilder() as ProfileService.GetActiveSkills.ResponseBuilder
           }
-          public func builder() -> ProfileService.GetActiveTags.ResponseBuilder {
-            return classBuilder() as ProfileService.GetActiveTags.ResponseBuilder
+          public func builder() -> ProfileService.GetActiveSkills.ResponseBuilder {
+            return classBuilder() as ProfileService.GetActiveSkills.ResponseBuilder
           }
           public override class func classBuilder() -> MessageBuilder {
-            return ProfileService.GetActiveTags.ResponseBuilder()
+            return ProfileService.GetActiveSkills.ResponseBuilder()
           }
           public override func classBuilder() -> MessageBuilder {
-            return ProfileService.GetActiveTags.Response.builder()
+            return ProfileService.GetActiveSkills.Response.builder()
           }
-          public func toBuilder() -> ProfileService.GetActiveTags.ResponseBuilder {
-            return ProfileService.GetActiveTags.Response.builderWithPrototype(self)
+          public func toBuilder() -> ProfileService.GetActiveSkills.ResponseBuilder {
+            return ProfileService.GetActiveSkills.Response.builderWithPrototype(self)
           }
-          public class func builderWithPrototype(prototype:ProfileService.GetActiveTags.Response) -> ProfileService.GetActiveTags.ResponseBuilder {
-            return ProfileService.GetActiveTags.Response.builder().mergeFrom(prototype)
+          public class func builderWithPrototype(prototype:ProfileService.GetActiveSkills.Response) -> ProfileService.GetActiveSkills.ResponseBuilder {
+            return ProfileService.GetActiveSkills.Response.builder().mergeFrom(prototype)
           }
           override public func writeDescriptionTo(inout output:String, indent:String) {
-            var tagsElementIndex:Int = 0
-            for oneElementtags in tags {
-                output += "\(indent) tags[\(tagsElementIndex)] {\n"
-                oneElementtags.writeDescriptionTo(&output, indent:"\(indent)  ")
+            var skillsElementIndex:Int = 0
+            for oneElementskills in skills {
+                output += "\(indent) skills[\(skillsElementIndex)] {\n"
+                oneElementskills.writeDescriptionTo(&output, indent:"\(indent)  ")
                 output += "\(indent)}\n"
-                tagsElementIndex++
+                skillsElementIndex++
             }
             unknownFields.writeDescriptionTo(&output, indent:indent)
           }
           override public var hashValue:Int {
               get {
                   var hashCode:Int = 7
-                  for oneElementtags in tags {
-                      hashCode = (hashCode &* 31) &+ oneElementtags.hashValue
+                  for oneElementskills in skills {
+                      hashCode = (hashCode &* 31) &+ oneElementskills.hashValue
                   }
                   hashCode = (hashCode &* 31) &+  unknownFields.hashValue
                   return hashCode
@@ -10437,13 +10437,13 @@ final public class ProfileService : GeneratedMessage {
           //Meta information declaration start
 
           override public class func className() -> String {
-              return "ProfileService.GetActiveTags.Response"
+              return "ProfileService.GetActiveSkills.Response"
           }
           override public func className() -> String {
-              return "ProfileService.GetActiveTags.Response"
+              return "ProfileService.GetActiveSkills.Response"
           }
           override public func classMetaType() -> GeneratedMessage.Type {
-              return ProfileService.GetActiveTags.Response.self
+              return ProfileService.GetActiveSkills.Response.self
           }
 
 
@@ -10452,22 +10452,22 @@ final public class ProfileService : GeneratedMessage {
         }
 
         final public class ResponseBuilder : GeneratedMessageBuilder {
-          private var builderResult:ProfileService.GetActiveTags.Response
+          private var builderResult:ProfileService.GetActiveSkills.Response
 
           required override public init () {
-             builderResult = ProfileService.GetActiveTags.Response()
+             builderResult = ProfileService.GetActiveSkills.Response()
              super.init()
           }
-          public var tags:Array<ProfileService.Containers.Tag> {
+          public var skills:Array<ProfileService.Containers.Skill> {
                get {
-                   return builderResult.tags
+                   return builderResult.skills
                }
                set (value) {
-                   builderResult.tags = value
+                   builderResult.skills = value
                }
           }
-          public func clearTags() -> ProfileService.GetActiveTags.ResponseBuilder {
-            builderResult.tags.removeAll(keepCapacity: false)
+          public func clearSkills() -> ProfileService.GetActiveSkills.ResponseBuilder {
+            builderResult.skills.removeAll(keepCapacity: false)
             return self
           }
           override public var internalGetResult:GeneratedMessage {
@@ -10475,32 +10475,32 @@ final public class ProfileService : GeneratedMessage {
                   return builderResult
                }
           }
-          public override func clear() -> ProfileService.GetActiveTags.ResponseBuilder {
-            builderResult = ProfileService.GetActiveTags.Response()
+          public override func clear() -> ProfileService.GetActiveSkills.ResponseBuilder {
+            builderResult = ProfileService.GetActiveSkills.Response()
             return self
           }
-          public override func clone() -> ProfileService.GetActiveTags.ResponseBuilder {
-            return ProfileService.GetActiveTags.Response.builderWithPrototype(builderResult)
+          public override func clone() -> ProfileService.GetActiveSkills.ResponseBuilder {
+            return ProfileService.GetActiveSkills.Response.builderWithPrototype(builderResult)
           }
-          public override func build() -> ProfileService.GetActiveTags.Response {
+          public override func build() -> ProfileService.GetActiveSkills.Response {
                checkInitialized()
                return buildPartial()
           }
-          public func buildPartial() -> ProfileService.GetActiveTags.Response {
-            var returnMe:ProfileService.GetActiveTags.Response = builderResult
+          public func buildPartial() -> ProfileService.GetActiveSkills.Response {
+            var returnMe:ProfileService.GetActiveSkills.Response = builderResult
             return returnMe
           }
-          public func mergeFrom(other:ProfileService.GetActiveTags.Response) -> ProfileService.GetActiveTags.ResponseBuilder {
-            if !other.tags.isEmpty  {
-               builderResult.tags += other.tags
+          public func mergeFrom(other:ProfileService.GetActiveSkills.Response) -> ProfileService.GetActiveSkills.ResponseBuilder {
+            if !other.skills.isEmpty  {
+               builderResult.skills += other.skills
             }
             mergeUnknownFields(other.unknownFields)
             return self
           }
-          public override func mergeFromCodedInputStream(input:CodedInputStream) ->ProfileService.GetActiveTags.ResponseBuilder {
+          public override func mergeFromCodedInputStream(input:CodedInputStream) ->ProfileService.GetActiveSkills.ResponseBuilder {
                return mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
           }
-          public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.GetActiveTags.ResponseBuilder {
+          public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.GetActiveSkills.ResponseBuilder {
             var unknownFieldsBuilder:UnknownFieldSetBuilder = UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
             while (true) {
               var tag = input.readTag()
@@ -10510,9 +10510,9 @@ final public class ProfileService : GeneratedMessage {
                 return self
 
               case 10 :
-                var subBuilder = ProfileService.Containers.Tag.builder()
+                var subBuilder = ProfileService.Containers.Skill.builder()
                 input.readMessage(subBuilder,extensionRegistry:extensionRegistry)
-                tags += [subBuilder.buildPartial()]
+                skills += [subBuilder.buildPartial()]
 
               default:
                 if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
@@ -10554,41 +10554,41 @@ final public class ProfileService : GeneratedMessage {
         memoizedSerializedSize = size
         return size
       }
-      public class func parseFromData(data:[Byte]) -> ProfileService.GetActiveTags {
-        return ProfileService.GetActiveTags.builder().mergeFromData(data).build()
+      public class func parseFromData(data:[Byte]) -> ProfileService.GetActiveSkills {
+        return ProfileService.GetActiveSkills.builder().mergeFromData(data).build()
       }
-      public class func parseFromData(data:[Byte], extensionRegistry:ExtensionRegistry) -> ProfileService.GetActiveTags {
-        return ProfileService.GetActiveTags.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
+      public class func parseFromData(data:[Byte], extensionRegistry:ExtensionRegistry) -> ProfileService.GetActiveSkills {
+        return ProfileService.GetActiveSkills.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
       }
-      public class func parseFromInputStream(input:NSInputStream) -> ProfileService.GetActiveTags {
-        return ProfileService.GetActiveTags.builder().mergeFromInputStream(input).build()
+      public class func parseFromInputStream(input:NSInputStream) -> ProfileService.GetActiveSkills {
+        return ProfileService.GetActiveSkills.builder().mergeFromInputStream(input).build()
       }
-      public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->ProfileService.GetActiveTags {
-        return ProfileService.GetActiveTags.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
+      public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->ProfileService.GetActiveSkills {
+        return ProfileService.GetActiveSkills.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
       }
-      public class func parseFromCodedInputStream(input:CodedInputStream) -> ProfileService.GetActiveTags {
-        return ProfileService.GetActiveTags.builder().mergeFromCodedInputStream(input).build()
+      public class func parseFromCodedInputStream(input:CodedInputStream) -> ProfileService.GetActiveSkills {
+        return ProfileService.GetActiveSkills.builder().mergeFromCodedInputStream(input).build()
       }
-      public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.GetActiveTags {
-        return ProfileService.GetActiveTags.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
+      public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.GetActiveSkills {
+        return ProfileService.GetActiveSkills.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
       }
-      public class func builder() -> ProfileService.GetActiveTagsBuilder {
-        return ProfileService.GetActiveTags.classBuilder() as ProfileService.GetActiveTagsBuilder
+      public class func builder() -> ProfileService.GetActiveSkillsBuilder {
+        return ProfileService.GetActiveSkills.classBuilder() as ProfileService.GetActiveSkillsBuilder
       }
-      public func builder() -> ProfileService.GetActiveTagsBuilder {
-        return classBuilder() as ProfileService.GetActiveTagsBuilder
+      public func builder() -> ProfileService.GetActiveSkillsBuilder {
+        return classBuilder() as ProfileService.GetActiveSkillsBuilder
       }
       public override class func classBuilder() -> MessageBuilder {
-        return ProfileService.GetActiveTagsBuilder()
+        return ProfileService.GetActiveSkillsBuilder()
       }
       public override func classBuilder() -> MessageBuilder {
-        return ProfileService.GetActiveTags.builder()
+        return ProfileService.GetActiveSkills.builder()
       }
-      public func toBuilder() -> ProfileService.GetActiveTagsBuilder {
-        return ProfileService.GetActiveTags.builderWithPrototype(self)
+      public func toBuilder() -> ProfileService.GetActiveSkillsBuilder {
+        return ProfileService.GetActiveSkills.builderWithPrototype(self)
       }
-      public class func builderWithPrototype(prototype:ProfileService.GetActiveTags) -> ProfileService.GetActiveTagsBuilder {
-        return ProfileService.GetActiveTags.builder().mergeFrom(prototype)
+      public class func builderWithPrototype(prototype:ProfileService.GetActiveSkills) -> ProfileService.GetActiveSkillsBuilder {
+        return ProfileService.GetActiveSkills.builder().mergeFrom(prototype)
       }
       override public func writeDescriptionTo(inout output:String, indent:String) {
         unknownFields.writeDescriptionTo(&output, indent:indent)
@@ -10605,13 +10605,13 @@ final public class ProfileService : GeneratedMessage {
       //Meta information declaration start
 
       override public class func className() -> String {
-          return "ProfileService.GetActiveTags"
+          return "ProfileService.GetActiveSkills"
       }
       override public func className() -> String {
-          return "ProfileService.GetActiveTags"
+          return "ProfileService.GetActiveSkills"
       }
       override public func classMetaType() -> GeneratedMessage.Type {
-          return ProfileService.GetActiveTags.self
+          return ProfileService.GetActiveSkills.self
       }
 
 
@@ -10619,11 +10619,11 @@ final public class ProfileService : GeneratedMessage {
 
     }
 
-    final public class GetActiveTagsBuilder : GeneratedMessageBuilder {
-      private var builderResult:ProfileService.GetActiveTags
+    final public class GetActiveSkillsBuilder : GeneratedMessageBuilder {
+      private var builderResult:ProfileService.GetActiveSkills
 
       required override public init () {
-         builderResult = ProfileService.GetActiveTags()
+         builderResult = ProfileService.GetActiveSkills()
          super.init()
       }
       override public var internalGetResult:GeneratedMessage {
@@ -10631,29 +10631,29 @@ final public class ProfileService : GeneratedMessage {
               return builderResult
            }
       }
-      public override func clear() -> ProfileService.GetActiveTagsBuilder {
-        builderResult = ProfileService.GetActiveTags()
+      public override func clear() -> ProfileService.GetActiveSkillsBuilder {
+        builderResult = ProfileService.GetActiveSkills()
         return self
       }
-      public override func clone() -> ProfileService.GetActiveTagsBuilder {
-        return ProfileService.GetActiveTags.builderWithPrototype(builderResult)
+      public override func clone() -> ProfileService.GetActiveSkillsBuilder {
+        return ProfileService.GetActiveSkills.builderWithPrototype(builderResult)
       }
-      public override func build() -> ProfileService.GetActiveTags {
+      public override func build() -> ProfileService.GetActiveSkills {
            checkInitialized()
            return buildPartial()
       }
-      public func buildPartial() -> ProfileService.GetActiveTags {
-        var returnMe:ProfileService.GetActiveTags = builderResult
+      public func buildPartial() -> ProfileService.GetActiveSkills {
+        var returnMe:ProfileService.GetActiveSkills = builderResult
         return returnMe
       }
-      public func mergeFrom(other:ProfileService.GetActiveTags) -> ProfileService.GetActiveTagsBuilder {
+      public func mergeFrom(other:ProfileService.GetActiveSkills) -> ProfileService.GetActiveSkillsBuilder {
         mergeUnknownFields(other.unknownFields)
         return self
       }
-      public override func mergeFromCodedInputStream(input:CodedInputStream) ->ProfileService.GetActiveTagsBuilder {
+      public override func mergeFromCodedInputStream(input:CodedInputStream) ->ProfileService.GetActiveSkillsBuilder {
            return mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
       }
-      public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.GetActiveTagsBuilder {
+      public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.GetActiveSkillsBuilder {
         var unknownFieldsBuilder:UnknownFieldSetBuilder = UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
         while (true) {
           var tag = input.readTag()
@@ -10835,16 +10835,16 @@ public extension ProfileService.Containers.Profile {
         return ProfileService.Containers.Profile.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
     }
 }
-public extension ProfileService.Containers.Tag {
-    class func parseFromNSData(data:NSData) -> ProfileService.Containers.Tag {
+public extension ProfileService.Containers.Skill {
+    class func parseFromNSData(data:NSData) -> ProfileService.Containers.Skill {
         var bytes = [Byte](count: data.length, repeatedValue: 0)
         data.getBytes(&bytes)
-        return ProfileService.Containers.Tag.builder().mergeFromData(bytes).build()
+        return ProfileService.Containers.Skill.builder().mergeFromData(bytes).build()
     }
-    class func parseFromNSData(data:NSData, extensionRegistry:ExtensionRegistry) -> ProfileService.Containers.Tag {
+    class func parseFromNSData(data:NSData, extensionRegistry:ExtensionRegistry) -> ProfileService.Containers.Skill {
         var bytes = [Byte](count: data.length, repeatedValue: 0)
         data.getBytes(&bytes)
-        return ProfileService.Containers.Tag.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
+        return ProfileService.Containers.Skill.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
     }
 }
 public extension ProfileService.Containers.Stats {
@@ -11015,112 +11015,112 @@ public extension ProfileService.GetExtendedProfile {
         return ProfileService.GetExtendedProfile.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
     }
 }
-public extension ProfileService.CreateTags.Request {
-    class func parseFromNSData(data:NSData) -> ProfileService.CreateTags.Request {
+public extension ProfileService.CreateSkills.Request {
+    class func parseFromNSData(data:NSData) -> ProfileService.CreateSkills.Request {
         var bytes = [Byte](count: data.length, repeatedValue: 0)
         data.getBytes(&bytes)
-        return ProfileService.CreateTags.Request.builder().mergeFromData(bytes).build()
+        return ProfileService.CreateSkills.Request.builder().mergeFromData(bytes).build()
     }
-    class func parseFromNSData(data:NSData, extensionRegistry:ExtensionRegistry) -> ProfileService.CreateTags.Request {
+    class func parseFromNSData(data:NSData, extensionRegistry:ExtensionRegistry) -> ProfileService.CreateSkills.Request {
         var bytes = [Byte](count: data.length, repeatedValue: 0)
         data.getBytes(&bytes)
-        return ProfileService.CreateTags.Request.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
-    }
-}
-public extension ProfileService.CreateTags.Response {
-    class func parseFromNSData(data:NSData) -> ProfileService.CreateTags.Response {
-        var bytes = [Byte](count: data.length, repeatedValue: 0)
-        data.getBytes(&bytes)
-        return ProfileService.CreateTags.Response.builder().mergeFromData(bytes).build()
-    }
-    class func parseFromNSData(data:NSData, extensionRegistry:ExtensionRegistry) -> ProfileService.CreateTags.Response {
-        var bytes = [Byte](count: data.length, repeatedValue: 0)
-        data.getBytes(&bytes)
-        return ProfileService.CreateTags.Response.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
+        return ProfileService.CreateSkills.Request.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
     }
 }
-public extension ProfileService.CreateTags {
-    class func parseFromNSData(data:NSData) -> ProfileService.CreateTags {
+public extension ProfileService.CreateSkills.Response {
+    class func parseFromNSData(data:NSData) -> ProfileService.CreateSkills.Response {
         var bytes = [Byte](count: data.length, repeatedValue: 0)
         data.getBytes(&bytes)
-        return ProfileService.CreateTags.builder().mergeFromData(bytes).build()
+        return ProfileService.CreateSkills.Response.builder().mergeFromData(bytes).build()
     }
-    class func parseFromNSData(data:NSData, extensionRegistry:ExtensionRegistry) -> ProfileService.CreateTags {
+    class func parseFromNSData(data:NSData, extensionRegistry:ExtensionRegistry) -> ProfileService.CreateSkills.Response {
         var bytes = [Byte](count: data.length, repeatedValue: 0)
         data.getBytes(&bytes)
-        return ProfileService.CreateTags.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
-    }
-}
-public extension ProfileService.GetTags.Request {
-    class func parseFromNSData(data:NSData) -> ProfileService.GetTags.Request {
-        var bytes = [Byte](count: data.length, repeatedValue: 0)
-        data.getBytes(&bytes)
-        return ProfileService.GetTags.Request.builder().mergeFromData(bytes).build()
-    }
-    class func parseFromNSData(data:NSData, extensionRegistry:ExtensionRegistry) -> ProfileService.GetTags.Request {
-        var bytes = [Byte](count: data.length, repeatedValue: 0)
-        data.getBytes(&bytes)
-        return ProfileService.GetTags.Request.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
+        return ProfileService.CreateSkills.Response.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
     }
 }
-public extension ProfileService.GetTags.Response {
-    class func parseFromNSData(data:NSData) -> ProfileService.GetTags.Response {
+public extension ProfileService.CreateSkills {
+    class func parseFromNSData(data:NSData) -> ProfileService.CreateSkills {
         var bytes = [Byte](count: data.length, repeatedValue: 0)
         data.getBytes(&bytes)
-        return ProfileService.GetTags.Response.builder().mergeFromData(bytes).build()
+        return ProfileService.CreateSkills.builder().mergeFromData(bytes).build()
     }
-    class func parseFromNSData(data:NSData, extensionRegistry:ExtensionRegistry) -> ProfileService.GetTags.Response {
+    class func parseFromNSData(data:NSData, extensionRegistry:ExtensionRegistry) -> ProfileService.CreateSkills {
         var bytes = [Byte](count: data.length, repeatedValue: 0)
         data.getBytes(&bytes)
-        return ProfileService.GetTags.Response.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
-    }
-}
-public extension ProfileService.GetTags {
-    class func parseFromNSData(data:NSData) -> ProfileService.GetTags {
-        var bytes = [Byte](count: data.length, repeatedValue: 0)
-        data.getBytes(&bytes)
-        return ProfileService.GetTags.builder().mergeFromData(bytes).build()
-    }
-    class func parseFromNSData(data:NSData, extensionRegistry:ExtensionRegistry) -> ProfileService.GetTags {
-        var bytes = [Byte](count: data.length, repeatedValue: 0)
-        data.getBytes(&bytes)
-        return ProfileService.GetTags.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
+        return ProfileService.CreateSkills.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
     }
 }
-public extension ProfileService.AddTags.Request {
-    class func parseFromNSData(data:NSData) -> ProfileService.AddTags.Request {
+public extension ProfileService.GetSkills.Request {
+    class func parseFromNSData(data:NSData) -> ProfileService.GetSkills.Request {
         var bytes = [Byte](count: data.length, repeatedValue: 0)
         data.getBytes(&bytes)
-        return ProfileService.AddTags.Request.builder().mergeFromData(bytes).build()
+        return ProfileService.GetSkills.Request.builder().mergeFromData(bytes).build()
     }
-    class func parseFromNSData(data:NSData, extensionRegistry:ExtensionRegistry) -> ProfileService.AddTags.Request {
+    class func parseFromNSData(data:NSData, extensionRegistry:ExtensionRegistry) -> ProfileService.GetSkills.Request {
         var bytes = [Byte](count: data.length, repeatedValue: 0)
         data.getBytes(&bytes)
-        return ProfileService.AddTags.Request.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
-    }
-}
-public extension ProfileService.AddTags.Response {
-    class func parseFromNSData(data:NSData) -> ProfileService.AddTags.Response {
-        var bytes = [Byte](count: data.length, repeatedValue: 0)
-        data.getBytes(&bytes)
-        return ProfileService.AddTags.Response.builder().mergeFromData(bytes).build()
-    }
-    class func parseFromNSData(data:NSData, extensionRegistry:ExtensionRegistry) -> ProfileService.AddTags.Response {
-        var bytes = [Byte](count: data.length, repeatedValue: 0)
-        data.getBytes(&bytes)
-        return ProfileService.AddTags.Response.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
+        return ProfileService.GetSkills.Request.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
     }
 }
-public extension ProfileService.AddTags {
-    class func parseFromNSData(data:NSData) -> ProfileService.AddTags {
+public extension ProfileService.GetSkills.Response {
+    class func parseFromNSData(data:NSData) -> ProfileService.GetSkills.Response {
         var bytes = [Byte](count: data.length, repeatedValue: 0)
         data.getBytes(&bytes)
-        return ProfileService.AddTags.builder().mergeFromData(bytes).build()
+        return ProfileService.GetSkills.Response.builder().mergeFromData(bytes).build()
     }
-    class func parseFromNSData(data:NSData, extensionRegistry:ExtensionRegistry) -> ProfileService.AddTags {
+    class func parseFromNSData(data:NSData, extensionRegistry:ExtensionRegistry) -> ProfileService.GetSkills.Response {
         var bytes = [Byte](count: data.length, repeatedValue: 0)
         data.getBytes(&bytes)
-        return ProfileService.AddTags.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
+        return ProfileService.GetSkills.Response.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
+    }
+}
+public extension ProfileService.GetSkills {
+    class func parseFromNSData(data:NSData) -> ProfileService.GetSkills {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return ProfileService.GetSkills.builder().mergeFromData(bytes).build()
+    }
+    class func parseFromNSData(data:NSData, extensionRegistry:ExtensionRegistry) -> ProfileService.GetSkills {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return ProfileService.GetSkills.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
+    }
+}
+public extension ProfileService.AddSkills.Request {
+    class func parseFromNSData(data:NSData) -> ProfileService.AddSkills.Request {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return ProfileService.AddSkills.Request.builder().mergeFromData(bytes).build()
+    }
+    class func parseFromNSData(data:NSData, extensionRegistry:ExtensionRegistry) -> ProfileService.AddSkills.Request {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return ProfileService.AddSkills.Request.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
+    }
+}
+public extension ProfileService.AddSkills.Response {
+    class func parseFromNSData(data:NSData) -> ProfileService.AddSkills.Response {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return ProfileService.AddSkills.Response.builder().mergeFromData(bytes).build()
+    }
+    class func parseFromNSData(data:NSData, extensionRegistry:ExtensionRegistry) -> ProfileService.AddSkills.Response {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return ProfileService.AddSkills.Response.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
+    }
+}
+public extension ProfileService.AddSkills {
+    class func parseFromNSData(data:NSData) -> ProfileService.AddSkills {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return ProfileService.AddSkills.builder().mergeFromData(bytes).build()
+    }
+    class func parseFromNSData(data:NSData, extensionRegistry:ExtensionRegistry) -> ProfileService.AddSkills {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return ProfileService.AddSkills.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
     }
 }
 public extension ProfileService.GetProfiles.Request {
@@ -11375,40 +11375,40 @@ public extension ProfileService.GetRecentHires {
         return ProfileService.GetRecentHires.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
     }
 }
-public extension ProfileService.GetActiveTags.Request {
-    class func parseFromNSData(data:NSData) -> ProfileService.GetActiveTags.Request {
+public extension ProfileService.GetActiveSkills.Request {
+    class func parseFromNSData(data:NSData) -> ProfileService.GetActiveSkills.Request {
         var bytes = [Byte](count: data.length, repeatedValue: 0)
         data.getBytes(&bytes)
-        return ProfileService.GetActiveTags.Request.builder().mergeFromData(bytes).build()
+        return ProfileService.GetActiveSkills.Request.builder().mergeFromData(bytes).build()
     }
-    class func parseFromNSData(data:NSData, extensionRegistry:ExtensionRegistry) -> ProfileService.GetActiveTags.Request {
+    class func parseFromNSData(data:NSData, extensionRegistry:ExtensionRegistry) -> ProfileService.GetActiveSkills.Request {
         var bytes = [Byte](count: data.length, repeatedValue: 0)
         data.getBytes(&bytes)
-        return ProfileService.GetActiveTags.Request.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
-    }
-}
-public extension ProfileService.GetActiveTags.Response {
-    class func parseFromNSData(data:NSData) -> ProfileService.GetActiveTags.Response {
-        var bytes = [Byte](count: data.length, repeatedValue: 0)
-        data.getBytes(&bytes)
-        return ProfileService.GetActiveTags.Response.builder().mergeFromData(bytes).build()
-    }
-    class func parseFromNSData(data:NSData, extensionRegistry:ExtensionRegistry) -> ProfileService.GetActiveTags.Response {
-        var bytes = [Byte](count: data.length, repeatedValue: 0)
-        data.getBytes(&bytes)
-        return ProfileService.GetActiveTags.Response.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
+        return ProfileService.GetActiveSkills.Request.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
     }
 }
-public extension ProfileService.GetActiveTags {
-    class func parseFromNSData(data:NSData) -> ProfileService.GetActiveTags {
+public extension ProfileService.GetActiveSkills.Response {
+    class func parseFromNSData(data:NSData) -> ProfileService.GetActiveSkills.Response {
         var bytes = [Byte](count: data.length, repeatedValue: 0)
         data.getBytes(&bytes)
-        return ProfileService.GetActiveTags.builder().mergeFromData(bytes).build()
+        return ProfileService.GetActiveSkills.Response.builder().mergeFromData(bytes).build()
     }
-    class func parseFromNSData(data:NSData, extensionRegistry:ExtensionRegistry) -> ProfileService.GetActiveTags {
+    class func parseFromNSData(data:NSData, extensionRegistry:ExtensionRegistry) -> ProfileService.GetActiveSkills.Response {
         var bytes = [Byte](count: data.length, repeatedValue: 0)
         data.getBytes(&bytes)
-        return ProfileService.GetActiveTags.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
+        return ProfileService.GetActiveSkills.Response.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
+    }
+}
+public extension ProfileService.GetActiveSkills {
+    class func parseFromNSData(data:NSData) -> ProfileService.GetActiveSkills {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return ProfileService.GetActiveSkills.builder().mergeFromData(bytes).build()
+    }
+    class func parseFromNSData(data:NSData, extensionRegistry:ExtensionRegistry) -> ProfileService.GetActiveSkills {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return ProfileService.GetActiveSkills.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
     }
 }
 public extension ProfileService {

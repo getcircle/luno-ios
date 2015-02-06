@@ -28,7 +28,7 @@ message ProfileService {
             optional bool verified = 16;
         }
 
-        message Tag {
+        message Skill {
             optional string id = 1;
             optional string name = 2;
         }
@@ -96,25 +96,25 @@ message ProfileService {
             optional Containers.Profile manager = 3;
             optional main.organization_service.OrganizationService.Containers.Team team = 4;
             repeated main.note_service.NoteService.Containers.Note notes = 5;
-            repeated Containers.Tag tags = 6;
+            repeated Containers.Skill skills = 6;
         }
 
     }
 
-    message CreateTags {
+    message CreateSkills {
 
         message Request {
-            repeated Containers.Tag tags = 1;
+            repeated Containers.Skill skills = 1;
             optional string organization_id = 2;
         }
 
         message Response {
-            repeated Containers.Tag tags = 1;
+            repeated Containers.Skill skills = 1;
         }
 
     }
 
-    message GetTags {
+    message GetSkills {
 
         message Request {
             oneof lookup_key {
@@ -124,16 +124,16 @@ message ProfileService {
         }
 
         message Response {
-            repeated Containers.Tag tags = 1;
+            repeated Containers.Skill skills = 1;
         }
 
     }
 
-    message AddTags {
+    message AddSkills {
 
         message Request {
             optional string profile_id = 1;
-            repeated Containers.Tag tags = 2;
+            repeated Containers.Skill skills = 2;
         }
 
         message Response {}
@@ -145,7 +145,7 @@ message ProfileService {
         message Request {
             optional string team_id = 1;
             optional string organization_id = 2;
-            optional string tag_id = 3;
+            optional string skill_id = 3;
             optional string address_id = 4;
             repeated string ids = 5;
         }
@@ -230,14 +230,14 @@ message ProfileService {
 
     }
 
-    message GetActiveTags {
+    message GetActiveSkills {
 
         message Request {
             optional string organization_id = 1;
         }
 
         message Response {
-            repeated Containers.Tag tags = 1;
+            repeated Containers.Skill skills = 1;
         }
 
     }

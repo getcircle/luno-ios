@@ -74,7 +74,7 @@ final public class LandingService : GeneratedMessage {
               case Anniversaries = 2
               case Birthdays = 3
               case Locations = 4
-              case Tags = 5
+              case Skills = 5
               case Peers = 6
               case NewHires = 7
               case Departments = 8
@@ -117,7 +117,7 @@ final public class LandingService : GeneratedMessage {
 
           public private(set) var profiles:Array<ProfileService.Containers.Profile>  = Array<ProfileService.Containers.Profile>()
           public private(set) var addresses:Array<OrganizationService.Containers.Address>  = Array<OrganizationService.Containers.Address>()
-          public private(set) var tags:Array<ProfileService.Containers.Tag>  = Array<ProfileService.Containers.Tag>()
+          public private(set) var skills:Array<ProfileService.Containers.Skill>  = Array<ProfileService.Containers.Skill>()
           public private(set) var teams:Array<OrganizationService.Containers.Team>  = Array<OrganizationService.Containers.Team>()
           public private(set) var notes:Array<NoteService.Containers.Note>  = Array<NoteService.Containers.Note>()
           required public init() {
@@ -145,8 +145,8 @@ final public class LandingService : GeneratedMessage {
             for oneElementaddresses in addresses {
                 output.writeMessage(6, value:oneElementaddresses)
             }
-            for oneElementtags in tags {
-                output.writeMessage(7, value:oneElementtags)
+            for oneElementskills in skills {
+                output.writeMessage(7, value:oneElementskills)
             }
             for oneElementteams in teams {
                 output.writeMessage(8, value:oneElementteams)
@@ -181,8 +181,8 @@ final public class LandingService : GeneratedMessage {
             for oneElementaddresses in addresses {
                 size += WireFormat.computeMessageSize(6, value:oneElementaddresses)
             }
-            for oneElementtags in tags {
-                size += WireFormat.computeMessageSize(7, value:oneElementtags)
+            for oneElementskills in skills {
+                size += WireFormat.computeMessageSize(7, value:oneElementskills)
             }
             for oneElementteams in teams {
                 size += WireFormat.computeMessageSize(8, value:oneElementteams)
@@ -257,12 +257,12 @@ final public class LandingService : GeneratedMessage {
                 output += "\(indent)}\n"
                 addressesElementIndex++
             }
-            var tagsElementIndex:Int = 0
-            for oneElementtags in tags {
-                output += "\(indent) tags[\(tagsElementIndex)] {\n"
-                oneElementtags.writeDescriptionTo(&output, indent:"\(indent)  ")
+            var skillsElementIndex:Int = 0
+            for oneElementskills in skills {
+                output += "\(indent) skills[\(skillsElementIndex)] {\n"
+                oneElementskills.writeDescriptionTo(&output, indent:"\(indent)  ")
                 output += "\(indent)}\n"
-                tagsElementIndex++
+                skillsElementIndex++
             }
             var teamsElementIndex:Int = 0
             for oneElementteams in teams {
@@ -301,8 +301,8 @@ final public class LandingService : GeneratedMessage {
                   for oneElementaddresses in addresses {
                       hashCode = (hashCode &* 31) &+ oneElementaddresses.hashValue
                   }
-                  for oneElementtags in tags {
-                      hashCode = (hashCode &* 31) &+ oneElementtags.hashValue
+                  for oneElementskills in skills {
+                      hashCode = (hashCode &* 31) &+ oneElementskills.hashValue
                   }
                   for oneElementteams in teams {
                       hashCode = (hashCode &* 31) &+ oneElementteams.hashValue
@@ -440,16 +440,16 @@ final public class LandingService : GeneratedMessage {
             builderResult.addresses.removeAll(keepCapacity: false)
             return self
           }
-          public var tags:Array<ProfileService.Containers.Tag> {
+          public var skills:Array<ProfileService.Containers.Skill> {
                get {
-                   return builderResult.tags
+                   return builderResult.skills
                }
                set (value) {
-                   builderResult.tags = value
+                   builderResult.skills = value
                }
           }
-          public func clearTags() -> LandingService.Containers.CategoryBuilder {
-            builderResult.tags.removeAll(keepCapacity: false)
+          public func clearSkills() -> LandingService.Containers.CategoryBuilder {
+            builderResult.skills.removeAll(keepCapacity: false)
             return self
           }
           public var teams:Array<OrganizationService.Containers.Team> {
@@ -515,8 +515,8 @@ final public class LandingService : GeneratedMessage {
             if !other.addresses.isEmpty  {
                builderResult.addresses += other.addresses
             }
-            if !other.tags.isEmpty  {
-               builderResult.tags += other.tags
+            if !other.skills.isEmpty  {
+               builderResult.skills += other.skills
             }
             if !other.teams.isEmpty  {
                builderResult.teams += other.teams
@@ -567,9 +567,9 @@ final public class LandingService : GeneratedMessage {
                 addresses += [subBuilder.buildPartial()]
 
               case 58 :
-                var subBuilder = ProfileService.Containers.Tag.builder()
+                var subBuilder = ProfileService.Containers.Skill.builder()
                 input.readMessage(subBuilder,extensionRegistry:extensionRegistry)
-                tags += [subBuilder.buildPartial()]
+                skills += [subBuilder.buildPartial()]
 
               case 66 :
                 var subBuilder = OrganizationService.Containers.Team.builder()

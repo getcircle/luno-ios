@@ -108,19 +108,19 @@ extension UIColor {
         return UIColor.viewBackgroundColor()
     }
     
-    class func tagNormalBackgroundColor() -> UIColor {
+    class func skillNormalBackgroundColor() -> UIColor {
         return UIColor.whiteColor()
     }
     
-    class func tagSelectedBackgroundColor() -> UIColor {
+    class func skillSelectedBackgroundColor() -> UIColor {
         return UIColor.appTintColor()
     }
 
-    class func tagNormalBorderColor() -> UIColor {
+    class func skillNormalBorderColor() -> UIColor {
         return UIColor(red: 180, green: 180, blue: 180)
     }
     
-    class func tagSelectedBorderColor() -> UIColor {
+    class func skillSelectedBorderColor() -> UIColor {
         return UIColor.whiteColor()
     }
     

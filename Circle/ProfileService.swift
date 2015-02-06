@@ -16,13 +16,13 @@ typealias GetExtendedProfileCompletionHandler = (
     manager: ProfileService.Containers.Profile?,
     team: OrganizationService.Containers.Team?,
     address: OrganizationService.Containers.Address?,
-    tags: Array<ProfileService.Containers.Tag>?,
+    skills: Array<ProfileService.Containers.Skill>?,
     notes: Array<NoteService.Containers.Note>?,
     error: NSError?
 ) -> Void
-typealias GetTagsCompletionHandler = (tags: Array<ProfileService.Containers.Tag>?, error: NSError?) -> Void
+typealias GetSkillsCompletionHandler = (skills: Array<ProfileService.Containers.Skill>?, error: NSError?) -> Void
 typealias UpdateProfileCompletionHandler = (profile: ProfileService.Containers.Profile?, error: NSError?) -> Void
-typealias AddTagsCompletionHandler = (error: NSError?) -> Void
+typealias AddSkillsCompletionHandler = (error: NSError?) -> Void
 
 extension ProfileService {
     class Actions {
@@ -69,9 +69,9 @@ extension ProfileService {
             self.getProfiles(requestBuilder, completionHandler: completionHandler)
         }
         
-        class func getProfiles(#tagId: String, completionHandler: GetProfilesCompletionHandler?) {
+        class func getProfiles(#skillId: String, completionHandler: GetProfilesCompletionHandler?) {
             let requestBuilder = ProfileService.GetProfiles.Request.builder()
-            requestBuilder.tag_id = tagId
+            requestBuilder.skill_id = skillId
             self.getProfiles(requestBuilder, completionHandler: completionHandler)
         }
         
@@ -98,41 +98,41 @@ extension ProfileService {
                     manager: response?.manager,
                     team: response?.team,
                     address: response?.address,
-                    tags: response?.tags,
+                    skills: response?.skills,
                     notes: response?.notes,
                     error: error
                 )
             }
         }
         
-        class func getTags(organizationId: String, completionHandler: GetTagsCompletionHandler?) {
-            let requestBuilder = ProfileService.GetTags.Request.builder()
+        class func getSkills(organizationId: String, completionHandler: GetSkillsCompletionHandler?) {
+            let requestBuilder = ProfileService.GetSkills.Request.builder()
             requestBuilder.organization_id = organizationId
             
             let client = ServiceClient(serviceName: "profile")
             client.callAction(
-                "get_tags",
-                extensionField: ProfileServiceRequests_get_tags,
+                "get_skills",
+                extensionField: ProfileServiceRequests_get_skills,
                 requestBuilder: requestBuilder
             ) { (_, _, _, actionResponse, error) -> Void in
-                let response = actionResponse?.result.getExtension(ProfileServiceRequests_get_tags) as? ProfileService.GetTags.Response
-                completionHandler?(tags: response?.tags, error: error)
+                let response = actionResponse?.result.getExtension(ProfileServiceRequests_get_skills) as? ProfileService.GetSkills.Response
+                completionHandler?(skills: response?.skills, error: error)
             }
         }
         
-        class func getActiveTags(organizationId: String, completionHandler: GetTagsCompletionHandler?) {
-            let requestBuilder = ProfileService.GetActiveTags.Request.builder()
+        class func getActiveSkills(organizationId: String, completionHandler: GetSkillsCompletionHandler?) {
+            let requestBuilder = ProfileService.GetActiveSkills.Request.builder()
             requestBuilder.organization_id = organizationId
             
             let client = ServiceClient(serviceName: "profile")
             client.callAction(
-                "get_active_tags",
-                extensionField: ProfileServiceRequests_get_active_tags,
+                "get_active_skills",
+                extensionField: ProfileServiceRequests_get_active_skills,
                 requestBuilder: requestBuilder) { (_, _, _, actionResponse, error) -> Void in
                     let response = actionResponse?.result.getExtension(
-                        ProfileServiceRequests_get_active_tags
-                    ) as? ProfileService.GetActiveTags.Response
-                    completionHandler?(tags: response?.tags, error: error)
+                        ProfileServiceRequests_get_active_skills
+                    ) as? ProfileService.GetActiveSkills.Response
+                    completionHandler?(skills: response?.skills, error: error)
             }
         }
         
@@ -153,17 +153,17 @@ extension ProfileService {
             }
         }
         
-        class func addTags(profileId: String, tags: Array<ProfileService.Containers.Tag>, completionHandler: AddTagsCompletionHandler?) {
-            let requestBuilder = ProfileService.AddTags.Request.builder()
+        class func addSkills(profileId: String, skills: Array<ProfileService.Containers.Skill>, completionHandler: AddSkillsCompletionHandler?) {
+            let requestBuilder = ProfileService.AddSkills.Request.builder()
             requestBuilder.profile_id = profileId
-            requestBuilder.tags = tags
+            requestBuilder.skills = skills
             
             let client = ServiceClient(serviceName: "profile")
             client.callAction(
-                "add_tags",
-                extensionField: ProfileServiceRequests_add_tags,
+                "add_skills",
+                extensionField: ProfileServiceRequests_add_skills,
                 requestBuilder: requestBuilder) { (_, _, _, actionResponse, error) -> Void in
-                    let response = actionResponse?.result.getExtension(ProfileServiceRequests_add_tags) as? ProfileService.AddTags.Response
+                    let response = actionResponse?.result.getExtension(ProfileServiceRequests_add_skills) as? ProfileService.AddSkills.Response
                     completionHandler?(error: error)
             }
         }

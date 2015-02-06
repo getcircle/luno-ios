@@ -1,5 +1,5 @@
 //
-//  TagDetailViewController.swift
+//  SkillDetailViewController.swift
 //  Circle
 //
 //  Created by Ravi Rani on 1/15/15.
@@ -9,14 +9,14 @@
 import UIKit
 import ProtobufRegistry
 
-class TagDetailViewController: DetailViewController {
+class SkillDetailViewController: DetailViewController {
 
     // MARK: - Initialization
     
     override func customInit() {
         super.customInit()
 
-        dataSource = TagDetailDataSource()
+        dataSource = SkillDetailDataSource()
         delegate = StickyHeaderCollectionViewDelegate()
     }
     
@@ -29,7 +29,7 @@ class TagDetailViewController: DetailViewController {
         // Delegate
         collectionView.delegate = delegate
         
-        layout.headerHeight = TagHeaderCollectionReusableView.height
+        layout.headerHeight = SkillHeaderCollectionReusableView.height
         super.configureCollectionView()
     }
     
@@ -47,7 +47,7 @@ class TagDetailViewController: DetailViewController {
     // MARK: - Scroll view delegate
 
     func scrollViewDidScroll(scrollView: UIScrollView) {
-        if let profileHeaderView = (collectionView!.dataSource as TagDetailDataSource).profileHeaderView {
+        if let profileHeaderView = (collectionView!.dataSource as SkillDetailDataSource).profileHeaderView {
             let contentOffset = scrollView.contentOffset
             
             // Todo: need to understand how this changes with orientation
@@ -59,35 +59,35 @@ class TagDetailViewController: DetailViewController {
             // Initial y value is added because for center y constraints this represents additional distance it needs
             // to move down
             let distanceToMove: CGFloat = finalYConstraintValue + initialYConstrainValue
-            let pointAtWhichFinalHeightShouldBeInPlace: CGFloat = TagHeaderCollectionReusableView.height - navBarStatusBarHeight
+            let pointAtWhichFinalHeightShouldBeInPlace: CGFloat = SkillHeaderCollectionReusableView.height - navBarStatusBarHeight
             let pointAtWhichHeightShouldStartIncreasing: CGFloat = pointAtWhichFinalHeightShouldBeInPlace - distanceToMove
             
             // Y Constraint has to be modified only after a certain point
             if contentOffset.y > pointAtWhichHeightShouldStartIncreasing {
                 var newY: CGFloat = initialYConstrainValue
                 newY += max(-distanceToMove, -contentOffset.y + pointAtWhichHeightShouldStartIncreasing)
-                profileHeaderView.tagNameLabelCenterYConstraint.constant = newY
+                profileHeaderView.skillNameLabelCenterYConstraint.constant = newY
             }
             else {
-                profileHeaderView.tagNameLabelCenterYConstraint.constant = initialYConstrainValue
+                profileHeaderView.skillNameLabelCenterYConstraint.constant = initialYConstrainValue
             }
             
             let minFontSize: CGFloat = 15.0
-            let maxFontSize: CGFloat = profileHeaderView.tagLabelInitialFontSize
+            let maxFontSize: CGFloat = profileHeaderView.skillLabelInitialFontSize
             let pointAtWhichSizeShouldStartChanging: CGFloat = 20.0
 
             // Size needs to be modified much sooner
             if contentOffset.y > pointAtWhichSizeShouldStartChanging {
                 var size = max(minFontSize, maxFontSize - ((contentOffset.y - pointAtWhichSizeShouldStartChanging) / (maxFontSize - minFontSize)))
-                profileHeaderView.tagNameLabel.font = UIFont(name: profileHeaderView.tagNameLabel.font.familyName, size: size)
+                profileHeaderView.skillNameLabel.font = UIFont(name: profileHeaderView.skillNameLabel.font.familyName, size: size)
             }
             else {
-                profileHeaderView.tagNameLabel.font = UIFont(name: profileHeaderView.tagNameLabel.font.familyName, size: maxFontSize)
+                profileHeaderView.skillNameLabel.font = UIFont(name: profileHeaderView.skillNameLabel.font.familyName, size: maxFontSize)
             }
             
             // Update constraints and request layout
-            profileHeaderView.tagNameLabel.setNeedsUpdateConstraints()
-            profileHeaderView.tagNameLabel.layoutIfNeeded()
+            profileHeaderView.skillNameLabel.setNeedsUpdateConstraints()
+            profileHeaderView.skillNameLabel.layoutIfNeeded()
         }
     }
 }

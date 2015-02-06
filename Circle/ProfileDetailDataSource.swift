@@ -34,7 +34,7 @@ enum ContentType: Int {
     case Location
     case Manager
     case Other
-    case Tags
+    case Skills
     case Team
     case Twitter
 }
@@ -90,7 +90,7 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
     
     private(set) var address: OrganizationService.Containers.Address?
     private(set) var manager: ProfileService.Containers.Profile?
-    private(set) var tags: Array<ProfileService.Containers.Tag>?
+    private(set) var skills: Array<ProfileService.Containers.Skill>?
     private(set) var team: OrganizationService.Containers.Team?
 
     private(set) var profileHeaderView: ProfileHeaderCollectionReusableView?
@@ -112,12 +112,12 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
         var placeholderCard = Card(cardType: .Placeholder, title: "Info")
         appendCard(placeholderCard)
         ProfileService.Actions.getExtendedProfile(profile.id) {
-            (profile, manager, team, address, tags, _, error) -> Void in
+            (profile, manager, team, address, skills, _, error) -> Void in
             if error == nil {
                 self.manager = manager
                 self.team = team
                 self.address = address
-                self.tags = tags
+                self.skills = skills
                 self.populateData()
             }
             completionHandler(error: error)
@@ -130,7 +130,7 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
         sections.append(getSocialConnectSection())
         sections.append(getBasicInfoSection())
         sections.append(getManagerInfoSection())
-        sections.append(getTagsSection())
+        sections.append(getSkillsSection())
     }
     
     private func getSocialConnectSection() -> Section {
@@ -194,17 +194,17 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
         return Section(title: "Manager Info", items: sectionItems, cardType: .KeyValue)
     }
     
-    private func getTagsSection() -> Section {
+    private func getSkillsSection() -> Section {
         let sectionItems = [
             SectionItem(
-                title: "Tags",
-                container: "tags",
+                title: "Skills",
+                container: "skills",
                 containerKey: "name",
-                contentType: .Tags,
+                contentType: .Skills,
                 image: nil
             )
         ]
-        return Section(title: "Tags", items: sectionItems, cardType: .Tags)
+        return Section(title: "Skills", items: sectionItems, cardType: .Skills)
     }
     
     // MARK: - Populate Data
@@ -230,7 +230,7 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
     private func addItemToCard(item: SectionItem, card: Card) {
         switch card.type {
         case .KeyValue: addKeyValueItemToCard(item, card: card)
-        case .Tags: addTagsItemToCard(item, card: card)
+        case .Skills: addSkillsItemToCard(item, card: card)
         default: break
         }
     }
@@ -276,17 +276,17 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
         }
     }
     
-    private func addTagsItemToCard(item: SectionItem, card: Card) {
-        if let tags = tags {
-            card.addContent(content: tags as [AnyObject])
+    private func addSkillsItemToCard(item: SectionItem, card: Card) {
+        if let skills = skills {
+            card.addContent(content: skills as [AnyObject])
         }
     }
     
     // MARK: - Cell Configuration
     
     override func configureCell(cell: CircleCollectionViewCell, atIndexPath indexPath: NSIndexPath) {
-        if cell is TagsCollectionViewCell {
-            (cell as TagsCollectionViewCell).showTagsLabel = true
+        if cell is SkillsCollectionViewCell {
+            (cell as SkillsCollectionViewCell).showSkillsLabel = true
         }
     }
     

@@ -117,19 +117,19 @@ public var ProfileServiceResponses_get_profile:ConcreateExtensionField {
        return ResponseRegistryRoot.sharedInstance.ProfileServiceResponses_get_profileStatic
    }
 }
-public var ProfileServiceResponses_create_tags:ConcreateExtensionField {
+public var ProfileServiceResponses_create_skills:ConcreateExtensionField {
    get {
-       return ResponseRegistryRoot.sharedInstance.ProfileServiceResponses_create_tagsStatic
+       return ResponseRegistryRoot.sharedInstance.ProfileServiceResponses_create_skillsStatic
    }
 }
-public var ProfileServiceResponses_get_tags:ConcreateExtensionField {
+public var ProfileServiceResponses_get_skills:ConcreateExtensionField {
    get {
-       return ResponseRegistryRoot.sharedInstance.ProfileServiceResponses_get_tagsStatic
+       return ResponseRegistryRoot.sharedInstance.ProfileServiceResponses_get_skillsStatic
    }
 }
-public var ProfileServiceResponses_add_tags:ConcreateExtensionField {
+public var ProfileServiceResponses_add_skills:ConcreateExtensionField {
    get {
-       return ResponseRegistryRoot.sharedInstance.ProfileServiceResponses_add_tagsStatic
+       return ResponseRegistryRoot.sharedInstance.ProfileServiceResponses_add_skillsStatic
    }
 }
 public var ProfileServiceResponses_update_profile:ConcreateExtensionField {
@@ -172,9 +172,9 @@ public var ProfileServiceResponses_get_recent_hires:ConcreateExtensionField {
        return ResponseRegistryRoot.sharedInstance.ProfileServiceResponses_get_recent_hiresStatic
    }
 }
-public var ProfileServiceResponses_get_active_tags:ConcreateExtensionField {
+public var ProfileServiceResponses_get_active_skills:ConcreateExtensionField {
    get {
-       return ResponseRegistryRoot.sharedInstance.ProfileServiceResponses_get_active_tagsStatic
+       return ResponseRegistryRoot.sharedInstance.ProfileServiceResponses_get_active_skillsStatic
    }
 }
 public var SearchServiceResponses_search:ConcreateExtensionField {
@@ -252,9 +252,9 @@ public struct ResponseRegistryRoot {
   var ProfileServiceResponses_create_profileStatic:ConcreateExtensionField
   var ProfileServiceResponses_get_extended_profileStatic:ConcreateExtensionField
   var ProfileServiceResponses_get_profileStatic:ConcreateExtensionField
-  var ProfileServiceResponses_create_tagsStatic:ConcreateExtensionField
-  var ProfileServiceResponses_get_tagsStatic:ConcreateExtensionField
-  var ProfileServiceResponses_add_tagsStatic:ConcreateExtensionField
+  var ProfileServiceResponses_create_skillsStatic:ConcreateExtensionField
+  var ProfileServiceResponses_get_skillsStatic:ConcreateExtensionField
+  var ProfileServiceResponses_add_skillsStatic:ConcreateExtensionField
   var ProfileServiceResponses_update_profileStatic:ConcreateExtensionField
   var ProfileServiceResponses_get_profilesStatic:ConcreateExtensionField
   var ProfileServiceResponses_get_direct_reportsStatic:ConcreateExtensionField
@@ -263,7 +263,7 @@ public struct ResponseRegistryRoot {
   var ProfileServiceResponses_get_upcoming_anniversariesStatic:ConcreateExtensionField
   var ProfileServiceResponses_get_upcoming_birthdaysStatic:ConcreateExtensionField
   var ProfileServiceResponses_get_recent_hiresStatic:ConcreateExtensionField
-  var ProfileServiceResponses_get_active_tagsStatic:ConcreateExtensionField
+  var ProfileServiceResponses_get_active_skillsStatic:ConcreateExtensionField
   var SearchServiceResponses_searchStatic:ConcreateExtensionField
   var LandingServiceResponses_get_categoriesStatic:ConcreateExtensionField
   var LandingServiceResponses_get_organization_categoriesStatic:ConcreateExtensionField
@@ -299,9 +299,9 @@ public struct ResponseRegistryRoot {
     ProfileServiceResponses_create_profileStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 300, defaultValue:ProfileService.CreateProfile.Response(), messageOrGroupClass:ProfileService.CreateProfile.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     ProfileServiceResponses_get_extended_profileStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 301, defaultValue:ProfileService.GetExtendedProfile.Response(), messageOrGroupClass:ProfileService.GetExtendedProfile.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     ProfileServiceResponses_get_profileStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 302, defaultValue:ProfileService.GetProfile.Response(), messageOrGroupClass:ProfileService.GetProfile.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
-    ProfileServiceResponses_create_tagsStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 303, defaultValue:ProfileService.CreateTags.Response(), messageOrGroupClass:ProfileService.CreateTags.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
-    ProfileServiceResponses_get_tagsStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 304, defaultValue:ProfileService.GetTags.Response(), messageOrGroupClass:ProfileService.GetTags.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
-    ProfileServiceResponses_add_tagsStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 305, defaultValue:ProfileService.AddTags.Response(), messageOrGroupClass:ProfileService.AddTags.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
+    ProfileServiceResponses_create_skillsStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 303, defaultValue:ProfileService.CreateSkills.Response(), messageOrGroupClass:ProfileService.CreateSkills.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
+    ProfileServiceResponses_get_skillsStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 304, defaultValue:ProfileService.GetSkills.Response(), messageOrGroupClass:ProfileService.GetSkills.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
+    ProfileServiceResponses_add_skillsStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 305, defaultValue:ProfileService.AddSkills.Response(), messageOrGroupClass:ProfileService.AddSkills.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     ProfileServiceResponses_update_profileStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 306, defaultValue:ProfileService.UpdateProfile.Response(), messageOrGroupClass:ProfileService.UpdateProfile.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     ProfileServiceResponses_get_profilesStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 307, defaultValue:ProfileService.GetProfiles.Response(), messageOrGroupClass:ProfileService.GetProfiles.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     ProfileServiceResponses_get_direct_reportsStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 308, defaultValue:ProfileService.GetDirectReports.Response(), messageOrGroupClass:ProfileService.GetDirectReports.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
@@ -310,7 +310,7 @@ public struct ResponseRegistryRoot {
     ProfileServiceResponses_get_upcoming_anniversariesStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 311, defaultValue:ProfileService.GetUpcomingAnniversaries.Response(), messageOrGroupClass:ProfileService.GetUpcomingAnniversaries.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     ProfileServiceResponses_get_upcoming_birthdaysStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 312, defaultValue:ProfileService.GetUpcomingBirthdays.Response(), messageOrGroupClass:ProfileService.GetUpcomingBirthdays.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     ProfileServiceResponses_get_recent_hiresStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 313, defaultValue:ProfileService.GetRecentHires.Response(), messageOrGroupClass:ProfileService.GetRecentHires.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
-    ProfileServiceResponses_get_active_tagsStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 314, defaultValue:ProfileService.GetActiveTags.Response(), messageOrGroupClass:ProfileService.GetActiveTags.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
+    ProfileServiceResponses_get_active_skillsStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 314, defaultValue:ProfileService.GetActiveSkills.Response(), messageOrGroupClass:ProfileService.GetActiveSkills.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     SearchServiceResponses_searchStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 400, defaultValue:SearchService.Search.Response(), messageOrGroupClass:SearchService.Search.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     LandingServiceResponses_get_categoriesStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 500, defaultValue:LandingService.GetCategories.Response(), messageOrGroupClass:LandingService.GetCategories.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     LandingServiceResponses_get_organization_categoriesStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 501, defaultValue:LandingService.GetOrganizationCategories.Response(), messageOrGroupClass:LandingService.GetOrganizationCategories.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
@@ -355,9 +355,9 @@ public struct ResponseRegistryRoot {
     registry.addExtension(ProfileServiceResponses_create_profileStatic)
     registry.addExtension(ProfileServiceResponses_get_extended_profileStatic)
     registry.addExtension(ProfileServiceResponses_get_profileStatic)
-    registry.addExtension(ProfileServiceResponses_create_tagsStatic)
-    registry.addExtension(ProfileServiceResponses_get_tagsStatic)
-    registry.addExtension(ProfileServiceResponses_add_tagsStatic)
+    registry.addExtension(ProfileServiceResponses_create_skillsStatic)
+    registry.addExtension(ProfileServiceResponses_get_skillsStatic)
+    registry.addExtension(ProfileServiceResponses_add_skillsStatic)
     registry.addExtension(ProfileServiceResponses_update_profileStatic)
     registry.addExtension(ProfileServiceResponses_get_profilesStatic)
     registry.addExtension(ProfileServiceResponses_get_direct_reportsStatic)
@@ -366,7 +366,7 @@ public struct ResponseRegistryRoot {
     registry.addExtension(ProfileServiceResponses_get_upcoming_anniversariesStatic)
     registry.addExtension(ProfileServiceResponses_get_upcoming_birthdaysStatic)
     registry.addExtension(ProfileServiceResponses_get_recent_hiresStatic)
-    registry.addExtension(ProfileServiceResponses_get_active_tagsStatic)
+    registry.addExtension(ProfileServiceResponses_get_active_skillsStatic)
     registry.addExtension(SearchServiceResponses_searchStatic)
     registry.addExtension(LandingServiceResponses_get_categoriesStatic)
     registry.addExtension(LandingServiceResponses_get_organization_categoriesStatic)
@@ -801,14 +801,14 @@ final public class ProfileServiceResponses : GeneratedMessage {
   public class func get_profile() -> ConcreateExtensionField {
        return ProfileServiceResponses_get_profile
   }
-  public class func create_tags() -> ConcreateExtensionField {
-       return ProfileServiceResponses_create_tags
+  public class func create_skills() -> ConcreateExtensionField {
+       return ProfileServiceResponses_create_skills
   }
-  public class func get_tags() -> ConcreateExtensionField {
-       return ProfileServiceResponses_get_tags
+  public class func get_skills() -> ConcreateExtensionField {
+       return ProfileServiceResponses_get_skills
   }
-  public class func add_tags() -> ConcreateExtensionField {
-       return ProfileServiceResponses_add_tags
+  public class func add_skills() -> ConcreateExtensionField {
+       return ProfileServiceResponses_add_skills
   }
   public class func update_profile() -> ConcreateExtensionField {
        return ProfileServiceResponses_update_profile
@@ -834,8 +834,8 @@ final public class ProfileServiceResponses : GeneratedMessage {
   public class func get_recent_hires() -> ConcreateExtensionField {
        return ProfileServiceResponses_get_recent_hires
   }
-  public class func get_active_tags() -> ConcreateExtensionField {
-       return ProfileServiceResponses_get_active_tags
+  public class func get_active_skills() -> ConcreateExtensionField {
+       return ProfileServiceResponses_get_active_skills
   }
   required public init() {
        super.init()

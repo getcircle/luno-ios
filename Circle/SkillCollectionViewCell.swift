@@ -1,5 +1,5 @@
 //
-//  TagCollectionViewCell.swift
+//  SkillCollectionViewCell.swift
 //  Circle
 //
 //  Created by Ravi Rani on 12/26/14.
@@ -8,12 +8,12 @@
 
 import UIKit
 
-class TagCollectionViewCell: CircleCollectionViewCell {
+class SkillCollectionViewCell: CircleCollectionViewCell {
 
-    @IBOutlet weak private(set) var tagLabel: PaddedLabel!
+    @IBOutlet weak private(set) var skillLabel: PaddedLabel!
 
     override class var classReuseIdentifier: String {
-        return "TagCollectionViewCell"
+        return "SkillCollectionViewCell"
     }
     
     override class var height: CGFloat {
@@ -25,31 +25,31 @@ class TagCollectionViewCell: CircleCollectionViewCell {
     }
     
     var defaultTextColor = UIColor.defaultDarkTextColor()
-    var defaultBackgroundColor = UIColor.tagNormalBackgroundColor()
-    var defaultBorderColor = UIColor.tagNormalBorderColor()
+    var defaultBackgroundColor = UIColor.skillNormalBackgroundColor()
+    var defaultBorderColor = UIColor.skillNormalBorderColor()
 
     var highlightedTextColor = UIColor.defaultLightTextColor()
-    var highlightedBackgroundColor = UIColor.tagSelectedBackgroundColor()
-    var highlightedBorderColor = UIColor.tagSelectedBorderColor()
+    var highlightedBackgroundColor = UIColor.skillSelectedBackgroundColor()
+    var highlightedBorderColor = UIColor.skillSelectedBorderColor()
 
     override func awakeFromNib() {
         super.awakeFromNib()
         
         // Initialization code
-        tagLabel.textColor = defaultTextColor
-        tagLabel.layer.borderColor = defaultBorderColor.CGColor
-        tagLabel.layer.borderWidth = 1.0
-        tagLabel.paddingEdgeInsets = UIEdgeInsetsMake(5.0, 10.0, 5.0, 10.0)
+        skillLabel.textColor = defaultTextColor
+        skillLabel.layer.borderColor = defaultBorderColor.CGColor
+        skillLabel.layer.borderWidth = 1.0
+        skillLabel.paddingEdgeInsets = UIEdgeInsetsMake(5.0, 10.0, 5.0, 10.0)
         bringSubviewToFront(selectedBackgroundView)
     }
     
     override func intrinsicContentSize() -> CGSize {
-        return CGSizeMake(tagLabel.intrinsicContentSize().width, 35.0)
+        return CGSizeMake(skillLabel.intrinsicContentSize().width, 35.0)
     }
 
     override func setData(data: AnyObject) {
-        if let tagsDictionary = data as? [String: String] {
-            tagLabel.text = tagsDictionary["name"]
+        if let skillsDictionary = data as? [String: String] {
+            skillLabel.text = skillsDictionary["name"]
         }
     }
 
@@ -108,7 +108,7 @@ class TagCollectionViewCell: CircleCollectionViewCell {
     func highlightCell(animated: Bool) {
         let duration = animated ? 0.2 : 0.0
         
-        if tagLabel.backgroundColor == highlightedBackgroundColor {
+        if skillLabel.backgroundColor == highlightedBackgroundColor {
             return
         }
         
@@ -123,7 +123,7 @@ class TagCollectionViewCell: CircleCollectionViewCell {
     func unHighlightCell(animated: Bool) {
         let duration = animated ? 0.2 : 0.0
         
-        if tagLabel.backgroundColor == defaultBackgroundColor {
+        if skillLabel.backgroundColor == defaultBackgroundColor {
             return
         }
 
@@ -131,9 +131,9 @@ class TagCollectionViewCell: CircleCollectionViewCell {
         UIView.animateWithDuration(
             duration,
             animations: { () -> Void in
-                self.tagLabel.textColor = self.defaultTextColor
-                self.tagLabel.backgroundColor = self.defaultBackgroundColor
-                self.tagLabel.layer.borderColor = self.defaultBorderColor.CGColor
+                self.skillLabel.textColor = self.defaultTextColor
+                self.skillLabel.backgroundColor = self.defaultBackgroundColor
+                self.skillLabel.layer.borderColor = self.defaultBorderColor.CGColor
             }
         )
     }
@@ -141,9 +141,9 @@ class TagCollectionViewCell: CircleCollectionViewCell {
     // MARK: - Helpers
     
     private func _selectCell() {
-        tagLabel.textColor = highlightedTextColor
-        tagLabel.backgroundColor = highlightedBackgroundColor
-        tagLabel.layer.borderColor = highlightedBorderColor.CGColor
+        skillLabel.textColor = highlightedTextColor
+        skillLabel.backgroundColor = highlightedBackgroundColor
+        skillLabel.layer.borderColor = highlightedBorderColor.CGColor
         
         // If the call gets here, it implies we are using custom selection
         selectedBackgroundView = nil

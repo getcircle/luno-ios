@@ -99,7 +99,7 @@ class TeamsCollectionViewCell: CircleCollectionViewCell, UICollectionViewDataSou
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
         if showTeamsLabel {
-            // Algin tags with the label if the label is shown
+            // Algin skills with the label if the label is shown
             return UIEdgeInsetsMake(10.0, teamsLabel.frameX, 10.0, teamsLabel.frameX)
         }
         else {

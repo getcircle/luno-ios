@@ -45,9 +45,9 @@ message ProfileServiceRequests {
         optional main.profile_service.ProfileService.CreateProfile.Request create_profile = 300;
         optional main.profile_service.ProfileService.GetExtendedProfile.Request get_extended_profile = 301;
         optional main.profile_service.ProfileService.GetProfile.Request get_profile = 302;
-        optional main.profile_service.ProfileService.CreateTags.Request create_tags = 303;
-        optional main.profile_service.ProfileService.GetTags.Request get_tags = 304;
-        optional main.profile_service.ProfileService.AddTags.Request add_tags = 305;
+        optional main.profile_service.ProfileService.CreateSkills.Request create_skills = 303;
+        optional main.profile_service.ProfileService.GetSkills.Request get_skills = 304;
+        optional main.profile_service.ProfileService.AddSkills.Request add_skills = 305;
         optional main.profile_service.ProfileService.UpdateProfile.Request update_profile = 306;
         optional main.profile_service.ProfileService.GetProfiles.Request get_profiles = 307;
         optional main.profile_service.ProfileService.GetDirectReports.Request get_direct_reports = 308;
@@ -56,7 +56,7 @@ message ProfileServiceRequests {
         optional main.profile_service.ProfileService.GetUpcomingAnniversaries.Request get_upcoming_anniversaries = 311;
         optional main.profile_service.ProfileService.GetUpcomingBirthdays.Request get_upcoming_birthdays = 312;
         optional main.profile_service.ProfileService.GetRecentHires.Request get_recent_hires = 313;
-        optional main.profile_service.ProfileService.GetActiveTags.Request get_active_tags = 314;
+        optional main.profile_service.ProfileService.GetActiveSkills.Request get_active_skills = 314;
     }
 }
 

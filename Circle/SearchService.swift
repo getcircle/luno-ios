@@ -19,7 +19,7 @@ extension SearchService {
             var profiles: Array<ProfileService.Containers.Profile>?
             var teams: Array<OrganizationService.Containers.Team>?
             var addresses: Array<OrganizationService.Containers.Address>?
-            var tags: Array<ProfileService.Containers.Tag>?
+            var skills: Array<ProfileService.Containers.Skill>?
 
             class var maxResultsPerCategory: Int {
                 return 5
@@ -55,11 +55,11 @@ extension SearchService {
             let results = SearchResults()
             let matchedProfiles = filterProfiles(searchTerms)
             let matchedTeams = filterTeams(searchTerms)
-            let matchedTags = filterTags(searchTerms)
+            let matchedSkills = filterSkills(searchTerms)
             
             results.profiles = Array(matchedProfiles[0..<min(SearchResults.maxResultsPerCategory, matchedProfiles.count)])
             results.teams = Array(matchedTeams[0..<min(SearchResults.maxResultsPerCategory, matchedTeams.count)])
-            results.tags = Array(matchedTags[0..<min(SearchResults.maxResultsPerCategory, matchedTags.count)])
+            results.skills = Array(matchedSkills[0..<min(SearchResults.maxResultsPerCategory, matchedSkills.count)])
             return (results, nil)
         }
         
@@ -167,7 +167,7 @@ extension SearchService {
             )}
         }
         
-        private class func filterTags(searchTerms: [String]) -> Array<ProfileService.Containers.Tag> {
+        private class func filterSkills(searchTerms: [String]) -> Array<ProfileService.Containers.Skill> {
             var andPredicates = [NSPredicate]()
             for searchTerm in searchTerms {
                 let trimmedSearchTerm = trim(searchTerm)
@@ -188,7 +188,7 @@ extension SearchService {
             }
             
             let finalPredicate = NSCompoundPredicate.andPredicateWithSubpredicates(andPredicates)
-            return ObjectStore.sharedInstance.activeTags.values.array.filter {
+            return ObjectStore.sharedInstance.activeSkills.values.array.filter {
                 return finalPredicate.evaluateWithObject($0, substitutionVariables: ["name": $0.name])
             }
         }

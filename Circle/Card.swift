@@ -73,7 +73,7 @@ class Card: Equatable {
         case Notes
         case People
         case Placeholder
-        case Tags
+        case Skills
         case Team
         case TeamsGrid
         
@@ -167,11 +167,11 @@ class Card: Equatable {
                     contentType: .Flat
                 )
 
-            case Tags:
+            case Skills:
                 return CardTypeInfo(
                     imageName: "Tag",
-                    classType: TagsCollectionViewCell.self,
-                    className: "TagsCollectionViewCell",
+                    classType: SkillsCollectionViewCell.self,
+                    className: "SkillsCollectionViewCell",
                     contentType: .Aggregate
                 )
                 
@@ -245,8 +245,8 @@ class Card: Equatable {
             cardType = .Group
         case .Locations: cardType =
             .Locations
-        case .Tags:
-            cardType = .Tags
+        case .Skills:
+            cardType = .Skills
         case .Executives:
             cardType = .People
         case .Departments:

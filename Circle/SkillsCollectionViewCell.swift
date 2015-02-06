@@ -1,5 +1,5 @@
 //
-//  TagsCollectionViewCell.swift
+//  SkillsCollectionViewCell.swift
 //  Circle
 //
 //  Created by Ravi Rani on 12/29/14.
@@ -9,14 +9,14 @@
 import UIKit
 import ProtobufRegistry
 
-struct TagsCollectionViewCellNotifications {
-    static let onTagSelectedNotification = "com.ravcode.notification:onTagSelectedNotification"
+struct SkillsCollectionViewCellNotifications {
+    static let onSkillSelectedNotification = "com.ravcode.notification:onSkillSelectedNotification"
 }
 
-class TagsCollectionViewCell: CircleCollectionViewCell, UICollectionViewDataSource, UICollectionViewDelegate {
+class SkillsCollectionViewCell: CircleCollectionViewCell, UICollectionViewDataSource, UICollectionViewDelegate {
 
     override class var classReuseIdentifier: String {
-        return "TagsCollectionViewCell"
+        return "SkillsCollectionViewCell"
     }
 
     override class var height: CGFloat {
@@ -29,17 +29,17 @@ class TagsCollectionViewCell: CircleCollectionViewCell, UICollectionViewDataSour
 
     @IBOutlet weak private(set) var collectionView: UICollectionView!
     @IBOutlet weak private var collectionViewTopSpaceConstraint: NSLayoutConstraint!
-    @IBOutlet weak private var tagsLabel: UILabel!
+    @IBOutlet weak private var skillsLabel: UILabel!
     
-    var prototypeCell: TagCollectionViewCell!
-    var showTagsLabel: Bool = false {
+    var prototypeCell: SkillCollectionViewCell!
+    var showSkillsLabel: Bool = false {
         didSet {
-            if showTagsLabel {
-                tagsLabel.hidden = false
+            if showSkillsLabel {
+                skillsLabel.hidden = false
                 collectionViewTopSpaceConstraint.constant = 31.0
             }
             else {
-                tagsLabel.hidden = true
+                skillsLabel.hidden = true
                 collectionViewTopSpaceConstraint.constant = 0.0
             }
         }
@@ -53,14 +53,14 @@ class TagsCollectionViewCell: CircleCollectionViewCell, UICollectionViewDataSour
         }
     }
     
-    var selectedTag: ProfileService.Containers.Tag?
-    private var tags = Array<ProfileService.Containers.Tag>()
+    var selectedSkill: ProfileService.Containers.Skill?
+    private var skills = Array<ProfileService.Containers.Skill>()
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
         // Initialization code
-        showTagsLabel = false
+        showSkillsLabel = false
         configureCollectionView()
         configurePrototypeCell()
         selectedBackgroundView = nil
@@ -75,15 +75,15 @@ class TagsCollectionViewCell: CircleCollectionViewCell, UICollectionViewDataSour
         collectionView.allowsSelection = true
         collectionView.bounces = false
         collectionView.registerNib(
-            UINib(nibName: "TagCollectionViewCell", bundle: nil),
-            forCellWithReuseIdentifier: TagCollectionViewCell.classReuseIdentifier
+            UINib(nibName: "SkillCollectionViewCell", bundle: nil),
+            forCellWithReuseIdentifier: SkillCollectionViewCell.classReuseIdentifier
         )
     }
     
     private func configurePrototypeCell() {
         // Init prototype cell
-        let cellNibViews = NSBundle.mainBundle().loadNibNamed("TagCollectionViewCell", owner: self, options: nil)
-        prototypeCell = cellNibViews.first as TagCollectionViewCell
+        let cellNibViews = NSBundle.mainBundle().loadNibNamed("SkillCollectionViewCell", owner: self, options: nil)
+        prototypeCell = cellNibViews.first as SkillCollectionViewCell
     }
     
     // MARK: - UICollectionViewDataSource
@@ -93,18 +93,18 @@ class TagsCollectionViewCell: CircleCollectionViewCell, UICollectionViewDataSour
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return tags.count
+        return skills.count
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let tag = tags[indexPath.row]
+        let skill = skills[indexPath.row]
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(
-            TagCollectionViewCell.classReuseIdentifier,
+            SkillCollectionViewCell.classReuseIdentifier,
             forIndexPath: indexPath
-        ) as TagCollectionViewCell
+        ) as SkillCollectionViewCell
         
-        cell.tagLabel.text = tag.name
-        cell.tagLabel.backgroundColor = collectionView.backgroundColor
+        cell.skillLabel.text = skill.name
+        cell.skillLabel.backgroundColor = collectionView.backgroundColor
         cell.backgroundColor = collectionView.backgroundColor
         return cell
     }
@@ -112,9 +112,9 @@ class TagsCollectionViewCell: CircleCollectionViewCell, UICollectionViewDataSour
     // MARK: - UICollectionViewDelegateFlowLayout
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        let tag = tags[indexPath.row]
+        let skill = skills[indexPath.row]
 
-        prototypeCell.tagLabel.text = tag.name
+        prototypeCell.skillLabel.text = skill.name
         prototypeCell.setNeedsLayout()
         prototypeCell.layoutIfNeeded()
         let intrinsicSize = prototypeCell.intrinsicContentSize()
@@ -122,9 +122,9 @@ class TagsCollectionViewCell: CircleCollectionViewCell, UICollectionViewDataSour
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
-        if showTagsLabel {
-            // Algin tags with the label if the label is shown
-            return UIEdgeInsetsMake(10.0, tagsLabel.frameX, 10.0, tagsLabel.frameX)
+        if showSkillsLabel {
+            // Algin skills with the label if the label is shown
+            return UIEdgeInsetsMake(10.0, skillsLabel.frameX, 10.0, skillsLabel.frameX)
         }
         else {
             return UIEdgeInsetsMake(10.0, 10.0, 10.0, 10.0)
@@ -134,25 +134,25 @@ class TagsCollectionViewCell: CircleCollectionViewCell, UICollectionViewDataSour
     // MARK: - UICollectionViewDelegate
 
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        let tag = tags[indexPath.row]
-        selectedTag = tag
+        let skill = skills[indexPath.row]
+        selectedSkill = skill
         NSNotificationCenter.defaultCenter().postNotificationName(
-            TagsCollectionViewCellNotifications.onTagSelectedNotification,
+            SkillsCollectionViewCellNotifications.onSkillSelectedNotification,
             object: nil,
-            userInfo: ["tag": tag]
+            userInfo: ["skill": skill]
         )
         collectionView.deselectItemAtIndexPath(indexPath, animated: true)
     }
     
     func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
-        selectedTag = nil
+        selectedSkill = nil
     }
     
     // MARK: - Data Setter
     
     override func setData(data: AnyObject) {
-        if let arrayOfTags = data as? [ProfileService.Containers.Tag] {
-            tags = arrayOfTags
+        if let arrayOfSkills = data as? [ProfileService.Containers.Skill] {
+            skills = arrayOfSkills
             collectionView.reloadData()
         }
     }
