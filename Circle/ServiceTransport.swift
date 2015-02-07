@@ -89,8 +89,8 @@ struct ServiceHttpRequest: URLRequestConvertible {
         }
     }
     
-//    static let environemnt = Environment.Staging
-    static let environment = Environment.Local
+    static let environment = Environment.Staging
+//    static let environment = Environment.Local
     
     var data: NSData
     var token: String?
