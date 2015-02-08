@@ -102,6 +102,9 @@
 		8FD907F91A6070D70025A17B /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD907F81A6070D70025A17B /* MapViewController.swift */; };
 		8FD907FB1A6072360025A17B /* MapViewAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD907FA1A6072360025A17B /* MapViewAnimator.swift */; };
 		8FEB032B1A5F69020081BB65 /* LocationDetailDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FEB032A1A5F69020081BB65 /* LocationDetailDataSource.swift */; };
+		8FEE3D961A8309A400B17569 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FEE3D951A8309A400B17569 /* EditProfileViewController.swift */; };
+		8FEE3D9B1A84172800B17569 /* FormBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FEE3D9A1A84172800B17569 /* FormBuilder.swift */; };
+		8FEE3D9D1A85B97E00B17569 /* EditProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8FEE3D9C1A85B97E00B17569 /* EditProfileViewController.xib */; };
 		8FEE88471A411BA90011CE4A /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FEE88461A411BA90011CE4A /* UIViewControllerExtension.swift */; };
 		8FEE88601A437DE40011CE4A /* Alamofire.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 8FEE885B1A437DB10011CE4A /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8FF2254C1A641B27001B2E32 /* SearchResultsCardHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF2254A1A641B27001B2E32 /* SearchResultsCardHeaderCollectionReusableView.swift */; };
@@ -345,6 +348,9 @@
 		8FD907F81A6070D70025A17B /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		8FD907FA1A6072360025A17B /* MapViewAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewAnimator.swift; sourceTree = "<group>"; };
 		8FEB032A1A5F69020081BB65 /* LocationDetailDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationDetailDataSource.swift; sourceTree = "<group>"; };
+		8FEE3D951A8309A400B17569 /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
+		8FEE3D9A1A84172800B17569 /* FormBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormBuilder.swift; sourceTree = "<group>"; };
+		8FEE3D9C1A85B97E00B17569 /* EditProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditProfileViewController.xib; sourceTree = "<group>"; };
 		8FEE88461A411BA90011CE4A /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		8FEE88491A4371A80011CE4A /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = ../ThirdParty/Alamofire/Alamofire.xcodeproj; sourceTree = "<group>"; };
 		8FF2254A1A641B27001B2E32 /* SearchResultsCardHeaderCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultsCardHeaderCollectionReusableView.swift; sourceTree = "<group>"; };
@@ -508,6 +514,7 @@
 				8F22CBF61A29A8EB0026376E /* AuthViewController.swift */,
 				BF27CC621A747B2100E683C7 /* BaseDetailViewController.swift */,
 				8F00049C1A2419730096477A /* DetailViewController.swift */,
+				8FEE3D951A8309A400B17569 /* EditProfileViewController.swift */,
 				8FD907F61A6033310025A17B /* LocationDetailViewController.swift */,
 				8F306B8B1A7416E00024EB03 /* LocationsOverviewViewController.swift */,
 				8FD907F81A6070D70025A17B /* MapViewController.swift */,
@@ -611,6 +618,7 @@
 				8F08A9F81A748F5200B93149 /* CardFooterCollectionReusableView.xib */,
 				8F65C4F41A50F28E00C7F3E6 /* CardHeaderCollectionReusableView.xib */,
 				8F7400381A6A3FF700D96B60 /* CircleAlertViewController.xib */,
+				8FEE3D9C1A85B97E00B17569 /* EditProfileViewController.xib */,
 				8F22CBE71A27FDA70026376E /* KeyValueCollectionViewCell.xib */,
 				8F0004A31A2419730096477A /* LaunchScreen.xib */,
 				8F65C4FD1A51222100C7F3E6 /* LocationCollectionViewCell.xib */,
@@ -683,6 +691,7 @@
 		8F22CBFC1A29C6F00026376E /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				8FEE3D9A1A84172800B17569 /* FormBuilder.swift */,
 				8F22CBFD1A29C7120026376E /* GCDUtils.swift */,
 				8F02B1FB1A54A08000A1A307 /* RootNavigationDelegate.swift */,
 			);
@@ -937,6 +946,7 @@
 				8F085A961A6C191400F8139B /* TeamGridItemCollectionViewCell.xib in Resources */,
 				8F085A8E1A6B5B4900F8139B /* TeamHeaderCollectionReusableView.xib in Resources */,
 				8F682F411A65F9090066BDEE /* SkillSelectorViewController.xib in Resources */,
+				8FEE3D9D1A85B97E00B17569 /* EditProfileViewController.xib in Resources */,
 				8F22CBE91A27FDA70026376E /* KeyValueCollectionViewCell.xib in Resources */,
 				8FF2980B1A4B490E00306CFC /* SearchHeaderView.xib in Resources */,
 				8F0004A01A2419730096477A /* Main.storyboard in Resources */,
@@ -1131,6 +1141,7 @@
 				BFB7918B1A2C3C860048E8FB /* SpringFlowLayout.swift in Sources */,
 				BF1FA6B61A71D0120044936D /* UnderlyingCollectionView.swift in Sources */,
 				BFBC44011A7212FA007202E7 /* ProfileOverlaidCollectionView.swift in Sources */,
+				8FEE3D9B1A84172800B17569 /* FormBuilder.swift in Sources */,
 				8F22CBF51A2865030026376E /* ProfileDetailDataSource.swift in Sources */,
 				BF1DB6591A76FA31006F2B7D /* AddNoteCollectionViewCell.swift in Sources */,
 				8F22CB771A2661890026376E /* AppDelegateAppearanceExtension.swift in Sources */,
@@ -1138,6 +1149,7 @@
 				8FC7BB401A58AF4C005BDDDB /* SearchLandingDataSource.swift in Sources */,
 				8F00049D1A2419730096477A /* DetailViewController.swift in Sources */,
 				8F7400231A6862BF00D96B60 /* SkillDetailViewController.swift in Sources */,
+				8FEE3D961A8309A400B17569 /* EditProfileViewController.swift in Sources */,
 				BF7DF98F1A44E53200A4F924 /* ServiceTransport.swift in Sources */,
 				8F085A851A6B0C1E00F8139B /* TeamDetailViewController.swift in Sources */,
 				BF8DAC881A6D7EB1000860DD /* NewNoteViewController.swift in Sources */,

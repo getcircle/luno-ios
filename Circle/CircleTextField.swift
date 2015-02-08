@@ -10,6 +10,8 @@ import UIKit
 
 class CircleTextField: UITextField {
 
+    var placeholderColor: UIColor?
+    
     /*
     // Only override drawRect: if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
@@ -19,14 +21,13 @@ class CircleTextField: UITextField {
     */
 
     override func drawPlaceholderInRect(rect: CGRect) {
-
-        var placeholderColor = UIColor.whiteColor().colorWithAlphaComponent(0.85)
+        var defaultPlaceholderColor = UIColor.whiteColor().colorWithAlphaComponent(0.85)
         var updatedRect = CGRectInset(rect, 0, (rect.size.height - font.lineHeight) / 2.0)
         placeholder?.drawInRect(
             updatedRect,
             withAttributes: [
                 NSFontAttributeName: font,
-                NSForegroundColorAttributeName: placeholderColor
+                NSForegroundColorAttributeName: (placeholderColor ?? defaultPlaceholderColor)
             ]
         )
     }

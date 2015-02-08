@@ -57,6 +57,12 @@ class ProfileDetailsViewController:
         configureOverlayView()
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        configureNavigationButtons()
+    }
+    
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
@@ -66,6 +72,25 @@ class ProfileDetailsViewController:
     }
     
     // MARK: - Configurations
+    
+    private func configureNavigationButtons() {
+        if profile.id == AuthViewController.getLoggedInUserProfile()!.id {
+            let editButtonItem = UIBarButtonItem(
+                image: UIImage(named: "Pencil"),
+                style: .Plain,
+                target: self,
+                action: "editProfileButtonTapped:"
+            )
+            
+            var rightBarButtonItems = [UIBarButtonItem]()
+            if navigationItem.rightBarButtonItem != nil {
+                rightBarButtonItems.append(navigationItem.rightBarButtonItem!)
+            }
+
+            rightBarButtonItems.append(editButtonItem)
+            navigationItem.rightBarButtonItems = rightBarButtonItems
+        }
+    }
 
     private func configureOverlayView() {
         view.addSubview(overlaidCollectionView)
@@ -385,5 +410,13 @@ class ProfileDetailsViewController:
     
     func onButtonTouchUpInsideAtIndex(index: Int) {
         underlyingScrollView.setContentOffset(CGPointMake(view.frame.width * CGFloat(index), underlyingScrollView.contentOffset.y), animated: true)
+    }
+    
+    // MARK: - IBActions
+    
+    @IBAction func editProfileButtonTapped(sender: AnyObject!) {
+        let editProfileVC = EditProfileViewController(nibName: "EditProfileViewController", bundle: nil)
+        editProfileVC.profile = profile
+        navigationController?.pushViewController(editProfileVC, animated: true)
     }
 }
