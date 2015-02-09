@@ -54,16 +54,9 @@ NewNoteViewControllerDelegate {
     @IBOutlet weak private(set) var addNoteQuickAction: UIButton!
     @IBOutlet weak private(set) var addReminderQuickAction: UIButton!
     @IBOutlet weak private(set) var collectionView: UICollectionView!
-    @IBOutlet weak private(set) var collectionViewOverlay: UIView!
-    @IBOutlet weak private(set) var collectionViewTopConstraint: NSLayoutConstraint!
     @IBOutlet weak private(set) var companyNameLabel: UILabel!
     @IBOutlet weak private(set) var searchHeaderContainerView: UIView!
-    @IBOutlet weak private(set) var searchHeaderContainerViewLeftConstraint: NSLayoutConstraint!
-    @IBOutlet weak private(set) var searchHeaderContainerViewRightConstraint: NSLayoutConstraint!
-    @IBOutlet weak private(set) var searchHeaderContainerViewTopConstraint: NSLayoutConstraint!
-    @IBOutlet weak private(set) var quickActionsView: UIView!
     
-    private var collectionViewTopConstraintInitialValue: CGFloat!
     private var companyProfileImageView: UIImageView!
     private var data = [Card]()
     private var firstLoad = false
@@ -87,12 +80,9 @@ NewNoteViewControllerDelegate {
         
         // Do any additional setup after loading the view.
         firstLoad = true
-        collectionViewTopConstraintInitialValue = collectionViewTopConstraint.constant
         configureView()
         configureSearchHeaderView()
         configureCollectionView()
-        configureCollectionViewOverlay()
-        configureQuickActionsView()
         configureNavigationActionButtons()
     }
 
@@ -100,12 +90,6 @@ NewNoteViewControllerDelegate {
         super.viewWillAppear(animated)
 
         registerNotifications()
-        if firstLoad {
-            moveSearchFieldToCenter()
-            addShadowToSearchField()
-            firstLoad = false
-        }
-
         loadData()
     }
 
@@ -144,6 +128,7 @@ NewNoteViewControllerDelegate {
             searchHeaderView.searchTextField.delegate = self
             searchHeaderView.searchTextField.addTarget(self, action: "search", forControlEvents: .EditingChanged)
             searchHeaderContainerView.addSubview(searchHeaderView)
+            searchHeaderContainerView.addBottomBorder()
             searchHeaderView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
             searchHeaderView.layer.cornerRadius = 10.0
             selectedAction = .None
@@ -192,23 +177,6 @@ NewNoteViewControllerDelegate {
         
         queryDataSource = SearchQueryDataSource()
         queryDataSource.registerCardHeader(collectionView)
-    }
-    
-    private func configureCollectionViewOverlay() {
-        var tapGesture = UITapGestureRecognizer(target: self, action: "bringUpCollectionView:")
-        collectionViewOverlay.addGestureRecognizer(tapGesture)
-        
-        var panGesture = UIPanGestureRecognizer(target: self, action: "overlayViewPanned:")
-        collectionViewOverlay.addGestureRecognizer(panGesture)
-    }
-
-    private func configureQuickActionsView() {
-        addNoteQuickAction.setImage(addNoteQuickAction.imageForState(.Normal)?.imageWithRenderingMode(.AlwaysTemplate), forState: .Normal)
-        addReminderQuickAction.setImage(addReminderQuickAction.imageForState(.Normal)?.imageWithRenderingMode(.AlwaysTemplate), forState: .Normal)
-        addNoteQuickAction.makeItCircular(true)
-        addNoteQuickAction.layer.borderColor = UIColor.appTintColor().CGColor
-        addReminderQuickAction.makeItCircular(true)
-        addReminderQuickAction.layer.borderColor = UIColor.appTintColor().CGColor
     }
 
     private func configureNavigationActionButtons() {
@@ -260,7 +228,6 @@ NewNoteViewControllerDelegate {
     
     private func loadOrganizationInfo() {
         // Get this from the server
-        companyNameLabel.text = "Eventbrite"
         companyProfileImageView.image = UIImage(named: "EB")
     }
     
@@ -270,7 +237,6 @@ NewNoteViewControllerDelegate {
         searchHeaderView.showCancelButton()
         collectionView.dataSource = queryDataSource
         collectionView.reloadData()
-        moveSearchFieldToTop()
     }
 
     // MARK: - SearchHeaderViewDelegate
@@ -280,7 +246,6 @@ NewNoteViewControllerDelegate {
         collectionView.dataSource = landingDataSource
         queryDataSource.resetCards()
         collectionView.reloadData()
-        moveSearchFieldToCenter()
     }
     
     // MARK: Search Targets
@@ -396,15 +361,6 @@ NewNoteViewControllerDelegate {
             break
         }
     }
-
-    // MARK: - ScrollViewDelegate
-
-    func scrollViewWillBeginDecelerating(scrollView: UIScrollView) {
-        if scrollView.contentOffset.y <= offsetToTriggerMovingCollectionViewDown {
-            scrollView.setContentOffset(scrollView.contentOffset, animated: true)
-            moveSearchFieldToCenter()
-        }
-    }
     
     // MARK: - Orientation change
 
@@ -496,81 +452,6 @@ NewNoteViewControllerDelegate {
         loadData()
     }
     
-    // MARK: - Helpers
-    
-    private func moveSearchFieldToTop() {
-        if navigationController?.topViewController == self {
-            bringUpCollectionView(searchHeaderView.searchTextField)
-            UIView.animateWithDuration(
-                0.3,
-                delay: 0.0,
-                options: .CurveEaseInOut,
-                animations: { () -> Void in
-                    self.collectionView.alpha = 0.0
-                },
-                completion: { (completed) -> Void in
-                    self.collectionView.alpha = 1.0
-                }
-            )
-        }
-    }
-    
-    private func moveSearchFieldToCenter() {
-        if navigationController?.topViewController == self {
-            searchHeaderContainerViewLeftConstraint.constant = 10.0
-            searchHeaderContainerViewRightConstraint.constant = 10.0
-            searchHeaderContainerViewTopConstraint.constant = 0.0
-            searchHeaderContainerView.setNeedsUpdateConstraints()
-
-            collectionViewTopConstraint.constant = collectionViewTopConstraintInitialValue
-            collectionView.setNeedsUpdateConstraints()
-            
-            UIView.animateWithDuration(
-                0.5,
-                delay: 0.0,
-                usingSpringWithDamping: 0.6,
-                initialSpringVelocity: 0.5,
-                options: .CurveEaseInOut,
-                animations: { () -> Void in
-                    self.view.layoutIfNeeded()
-                    self.quickActionsView.alpha = 1.0
-                    self.collectionView.alpha = 1.0
-                    self.collectionViewOverlay.alpha = 1.0
-                    self.collectionView.transform = CGAffineTransformMakeScale(self.collectionViewScaleValue, self.collectionViewScaleValue)
-                    self.companyNameLabel.alpha = 1.0
-                    self.searchHeaderView.layer.shadowOpacity = self.shadowOpacity
-                },
-                completion: { (completed) -> Void in
-                    self.searchHeaderView.layer.shadowOpacity = self.shadowOpacity
-                    self.collectionView.setContentOffset(CGPointMake(0.0, -25.0), animated: false)
-                }
-            )
-        }
-    }
-    
-    func bringUpCollectionView(sender: AnyObject) {
-        if navigationController?.topViewController == self {
-            searchHeaderContainerViewLeftConstraint.constant = 0.0
-            searchHeaderContainerViewRightConstraint.constant = 0.0
-            searchHeaderContainerViewTopConstraint.constant = view.frameHeight / 2.0 -
-                searchHeaderContainerView.frameHeight / 2.0 -
-                (navigationController!.navigationBarHidden ? 0.0 : navigationController!.navigationBar.frameHeight)
-            searchHeaderView.setNeedsUpdateConstraints()
-
-            collectionViewTopConstraint.constant = 0.0
-            collectionView.setNeedsUpdateConstraints()
-            
-            UIView.animateWithDuration(0.3, animations: { () -> Void in
-                self.view.layoutIfNeeded()
-                self.quickActionsView.alpha = 0.0
-                self.collectionViewOverlay.alpha = 0.0
-                self.collectionView.transform = CGAffineTransformIdentity
-                self.companyNameLabel.alpha = 0.0
-                self.searchHeaderView.layer.shadowOpacity = 0.0
-            })
-        }
-    }
-    
     // MARK: - Quick Actions
     
     private func performQuickAction(profile: ProfileService.Containers.Profile) -> Bool {
@@ -600,45 +481,6 @@ NewNoteViewControllerDelegate {
         searchHeaderView.cancelButtonTapped(self)
     }
     
-    // MARK: - Gesture Recognizers
-    
-    func overlayViewPanned(recognizer: UIPanGestureRecognizer) {
-        var translationInView = -recognizer.translationInView(view).y
-        switch recognizer.state {
-        case .Changed:
-            if translationInView >= 0.0 {
-                let distanceToReachFullScale = view.frameHeight / 2.0
-                let scaleDelta = 1 - collectionViewScaleValue
-                let scaleFactor = collectionViewScaleValue + ((translationInView / distanceToReachFullScale) * scaleDelta)
-                collectionView.transform = CGAffineTransformMakeScale(scaleFactor, scaleFactor)
-                collectionViewTopConstraint.constant = max(0.0, collectionViewTopConstraintInitialValue - translationInView)
-                collectionView.setNeedsUpdateConstraints()
-                
-                searchHeaderContainerViewTopConstraint.constant = min(translationInView, view.frameHeight / 2.0 -
-                    searchHeaderContainerView.frameHeight / 2.0 - navigationBarHeight())
-                searchHeaderContainerView.setNeedsUpdateConstraints()
-                view.layoutIfNeeded()
-                
-                var alphaFactor = 1 - min(translationInView/100.0, 1.0)
-                quickActionsView.alpha = alphaFactor
-                companyNameLabel.alpha = alphaFactor
-            }
-
-        case .Ended:
-            if translationInView >= 0.0 {
-                let hasMovedPastCenter = translationInView >= 90.0
-                if (recognizer.velocityInView(view).y >= 5.0 && hasMovedPastCenter) || hasMovedPastCenter {
-                    bringUpCollectionView(recognizer)
-                } else {
-                    moveSearchFieldToCenter()
-                }
-            }
-        
-        default:
-            moveSearchFieldToCenter()
-        }
-    }
-
     // MARK: - MFMailComposeViewControllerDelegate
     
     func mailComposeController(controller: MFMailComposeViewController!, didFinishWithResult result: MFMailComposeResult, error: NSError!) {
