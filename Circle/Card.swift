@@ -74,6 +74,7 @@ class Card: Equatable {
         case People
         case Placeholder
         case Skills
+        case SocialConnectCTAs
         case Team
         case TeamsGrid
         
@@ -143,7 +144,7 @@ class Card: Equatable {
                     contentType: .Flat
                 )
 
-            case People:
+            case .People:
                 return CardTypeInfo(
                     imageName: "People",
                     classType: ProfileCollectionViewCell.self,
@@ -151,7 +152,7 @@ class Card: Equatable {
                     contentType: .Flat
                 )
                 
-            case NewHires:
+            case .NewHires:
                 return CardTypeInfo(
                     imageName: "People",
                     classType: ProfileCollectionViewCell.self,
@@ -159,7 +160,7 @@ class Card: Equatable {
                     contentType: .Flat
                 )
 
-            case Placeholder:
+            case .Placeholder:
                 return CardTypeInfo(
                     imageName: "Info",
                     classType: CircleCollectionViewCell.self,
@@ -167,15 +168,23 @@ class Card: Equatable {
                     contentType: .Flat
                 )
 
-            case Skills:
+            case .Skills:
                 return CardTypeInfo(
                     imageName: "Tag",
                     classType: SkillsCollectionViewCell.self,
                     className: "SkillsCollectionViewCell",
                     contentType: .Aggregate
                 )
+            
+            case .SocialConnectCTAs:
+                return CardTypeInfo(
+                    imageName: "Info",
+                    classType: SocialConnectCollectionViewCell.self,
+                    className: "SocialConnectCollectionViewCell",
+                    contentType: .Flat
+                )
                 
-            case Team:
+            case .Team:
                 return CardTypeInfo(
                     imageName: "People",
                     classType: TeamGridItemCollectionViewCell.self,
@@ -183,7 +192,7 @@ class Card: Equatable {
                     contentType: .Flat
                 )
             
-            case TeamsGrid:
+            case .TeamsGrid:
                 return CardTypeInfo(
                     imageName: "People",
                     classType: TeamsCollectionViewCell.self,

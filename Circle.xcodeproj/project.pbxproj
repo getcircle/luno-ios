@@ -91,6 +91,8 @@
 		8F823E4C1A729E1B0006264B /* TeamsOverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F823E4A1A729E1B0006264B /* TeamsOverviewViewController.swift */; };
 		8F823E4D1A729E1B0006264B /* TeamsOverviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F823E4B1A729E1B0006264B /* TeamsOverviewViewController.xib */; };
 		8F823E4F1A72A0850006264B /* TeamsOverviewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F823E4E1A72A0850006264B /* TeamsOverviewDataSource.swift */; };
+		8F9F60AF1A88738100FCAA25 /* SocialConnectCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9F60AD1A88738100FCAA25 /* SocialConnectCollectionViewCell.swift */; };
+		8F9F60B01A88738100FCAA25 /* SocialConnectCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F9F60AE1A88738100FCAA25 /* SocialConnectCollectionViewCell.xib */; };
 		8FC4C3BF1A7420EF00884D9D /* LocationsOverviewCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC4C3BE1A7420EF00884D9D /* LocationsOverviewCollectionViewDelegate.swift */; };
 		8FC7BB3B1A58A6E2005BDDDB /* CardDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC7BB3A1A58A6E2005BDDDB /* CardDataSource.swift */; };
 		8FC7BB401A58AF4C005BDDDB /* SearchLandingDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC7BB3F1A58AF4C005BDDDB /* SearchLandingDataSource.swift */; };
@@ -337,6 +339,8 @@
 		8F823E4A1A729E1B0006264B /* TeamsOverviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamsOverviewViewController.swift; sourceTree = "<group>"; };
 		8F823E4B1A729E1B0006264B /* TeamsOverviewViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TeamsOverviewViewController.xib; sourceTree = "<group>"; };
 		8F823E4E1A72A0850006264B /* TeamsOverviewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamsOverviewDataSource.swift; sourceTree = "<group>"; };
+		8F9F60AD1A88738100FCAA25 /* SocialConnectCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialConnectCollectionViewCell.swift; sourceTree = "<group>"; };
+		8F9F60AE1A88738100FCAA25 /* SocialConnectCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SocialConnectCollectionViewCell.xib; sourceTree = "<group>"; };
 		8FC4C3BE1A7420EF00884D9D /* LocationsOverviewCollectionViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationsOverviewCollectionViewDelegate.swift; sourceTree = "<group>"; };
 		8FC7BB3A1A58A6E2005BDDDB /* CardDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardDataSource.swift; sourceTree = "<group>"; };
 		8FC7BB3F1A58AF4C005BDDDB /* SearchLandingDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchLandingDataSource.swift; sourceTree = "<group>"; };
@@ -562,6 +566,7 @@
 				8FF298451A4E050100306CFC /* SkillCollectionViewCell.swift */,
 				8F74001B1A684F2400D96B60 /* SkillHeaderCollectionReusableView.swift */,
 				8F65C5051A52661700C7F3E6 /* SkillsCollectionViewCell.swift */,
+				8F9F60AD1A88738100FCAA25 /* SocialConnectCollectionViewCell.swift */,
 				8F085A931A6C191400F8139B /* TeamGridItemCollectionViewCell.swift */,
 				8F085A8B1A6B5B4900F8139B /* TeamHeaderCollectionReusableView.swift */,
 				8F085A8F1A6C175C00F8139B /* TeamsCollectionViewCell.swift */,
@@ -639,6 +644,7 @@
 				8F74001C1A684F2400D96B60 /* SkillHeaderCollectionReusableView.xib */,
 				8F65C5061A52661700C7F3E6 /* SkillsCollectionViewCell.xib */,
 				8F682F401A65F9090066BDEE /* SkillSelectorViewController.xib */,
+				8F9F60AE1A88738100FCAA25 /* SocialConnectCollectionViewCell.xib */,
 				8F085A941A6C191400F8139B /* TeamGridItemCollectionViewCell.xib */,
 				8F085A8C1A6B5B4900F8139B /* TeamHeaderCollectionReusableView.xib */,
 				8F085A901A6C175C00F8139B /* TeamsCollectionViewCell.xib */,
@@ -953,6 +959,7 @@
 				8FCC95CE1A52828B00421E65 /* ProfileCollectionViewCell.xib in Resources */,
 				8F81713D1A62E07000CB7692 /* VerifyProfileViewController.xib in Resources */,
 				8F22CBF91A29A8EB0026376E /* AuthViewController.xib in Resources */,
+				8F9F60B01A88738100FCAA25 /* SocialConnectCollectionViewCell.xib in Resources */,
 				8F823E4D1A729E1B0006264B /* TeamsOverviewViewController.xib in Resources */,
 				BF8DAC891A6D7EB1000860DD /* NewNoteViewController.xib in Resources */,
 				8F4805E91A5DE4CE00273731 /* MapHeaderCollectionReusableView.xib in Resources */,
@@ -1072,6 +1079,7 @@
 				8FC7BB431A58B15B005BDDDB /* CardCollectionViewDelegate.swift in Sources */,
 				BF27CC631A747B2100E683C7 /* BaseDetailViewController.swift in Sources */,
 				8F22CBED1A283D3D0026376E /* SeparatorDecorationView.swift in Sources */,
+				8F9F60AF1A88738100FCAA25 /* SocialConnectCollectionViewCell.swift in Sources */,
 				8F65C4FB1A50F92500C7F3E6 /* Card.swift in Sources */,
 				8F74001D1A684F2400D96B60 /* SkillHeaderCollectionReusableView.swift in Sources */,
 				8F22CBE01A27A8E60026376E /* ProfileHeaderCollectionReusableView.swift in Sources */,

@@ -61,6 +61,7 @@ class SocialConnectViewController: UIViewController, WKNavigationDelegate {
     
     func webView(webView: WKWebView, didReceiveServerRedirectForProvisionalNavigation navigation: WKNavigation!) {
         if let redirectURL = webView.URL {
+            println(redirectURL)
             if redirectURL.host == ServiceHttpRequest.environment.host && (redirectURL.path!.hasSuffix("success") || redirectURL.path!.hasSuffix("error")) {
                 if redirectURL.path!.hasSuffix("success") {
                     println("successfully connected to linkedin")

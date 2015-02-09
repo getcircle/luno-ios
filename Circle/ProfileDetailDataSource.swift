@@ -31,6 +31,7 @@ enum ContentType: Int {
     case Facebook
     case Github
     case LinkedIn
+    case LinkedInConnect
     case Location
     case Manager
     case Other
@@ -127,24 +128,29 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
     // MARK: - Configuration
     
     private func configureSections() {
-        sections.append(getSocialConnectSection())
+        if let socialConnectSection = getSocialConnectSection() {
+            sections.append(socialConnectSection)
+        }
         sections.append(getBasicInfoSection())
         sections.append(getManagerInfoSection())
         sections.append(getSkillsSection())
     }
     
-    private func getSocialConnectSection() -> Section {
-        let sectionItems = [
-            SectionItem(
-                title: " ",
-                container: "social",
-                containerKey: "profile",
-                contentType: .LinkedIn,
-                image: ItemImage(name: "LinkedIn", tint: UIColor.linkedinColor()),
-                defaultValue: "Connect with LinkedIn"
-            )
-        ]
-        return Section(title: "Social", items: sectionItems, cardType: .KeyValue)
+    private func getSocialConnectSection() -> Section? {
+        if profile.id == AuthViewController.getLoggedInUserProfile()!.id {
+            let sectionItems = [
+                SectionItem(
+                    title: NSLocalizedString("Connect with LinkedIn", comment: "Button title for connect with LinkedIn button"),
+                    container: "social",
+                    containerKey: "profile",
+                    contentType: .LinkedInConnect,
+                    image: ItemImage(name: "LinkedIn", tint: UIColor.linkedinColor())
+                )
+            ]
+            return Section(title: "Social", items: sectionItems, cardType: .SocialConnectCTAs)
+        }
+        
+        return nil
     }
     
     private func getBasicInfoSection() -> Section {
@@ -212,7 +218,7 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
     private func populateData() {
         resetCards()
         
-        var defaultSectionInset = UIEdgeInsetsMake(0.0, 0.0, 25.0, 0.0)
+        var defaultSectionInset = UIEdgeInsetsMake(12.0, 0.0, 12.0, 0.0)
         for section in sections {
             let sectionCard = Card(cardType: section.cardType, title: section.title)
             for item in section.items {
@@ -229,8 +235,12 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
     
     private func addItemToCard(item: SectionItem, card: Card) {
         switch card.type {
-        case .KeyValue: addKeyValueItemToCard(item, card: card)
-        case .Skills: addSkillsItemToCard(item, card: card)
+        case .KeyValue:
+            addKeyValueItemToCard(item, card: card)
+        case .Skills:
+            addSkillsItemToCard(item, card: card)
+        case .SocialConnectCTAs:
+            addSocialConnectItemToCard(item, card: card)
         default: break
         }
     }
@@ -280,6 +290,16 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
         if let skills = skills {
             card.addContent(content: skills as [AnyObject])
         }
+    }
+    
+    private func addSocialConnectItemToCard(item: SectionItem, card: Card) {
+        var dataDict: [String: AnyObject] = [
+            "key": item.containerKey,
+            "title": item.title,
+            "type": item.contentType.rawValue
+        ]
+
+        card.addContent(content: [dataDict])
     }
     
     // MARK: - Cell Configuration

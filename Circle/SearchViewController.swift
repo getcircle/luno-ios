@@ -128,7 +128,7 @@ NewNoteViewControllerDelegate {
             searchHeaderView.searchTextField.delegate = self
             searchHeaderView.searchTextField.addTarget(self, action: "search", forControlEvents: .EditingChanged)
             searchHeaderContainerView.addSubview(searchHeaderView)
-            searchHeaderContainerView.addBottomBorder()
+            searchHeaderContainerView.addBottomBorder(offset: 0.0)
             searchHeaderView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
             searchHeaderView.layer.cornerRadius = 10.0
             selectedAction = .None

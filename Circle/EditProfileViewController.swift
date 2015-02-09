@@ -57,7 +57,7 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
         // Title
         var formSections = [
             FormBuilder.Section(
-                title: NSLocalizedString("Name:", comment: "Title of the section listing name, title, and short bio"),
+                title: NSLocalizedString("About:", comment: "Title of the section listing name, title, and short bio"),
                 items: [
                 FormBuilder.SectionItem(
                     placeholder: NSLocalizedString("First Name", comment: "Placeholder for textfield that accepts user's first name"),

@@ -200,10 +200,6 @@ class ProfileDetailsViewController:
             (teamVC.dataSource as TeamDetailDataSource).selectedTeam = dataSource.team!
             navigationController?.pushViewController(teamVC, animated: true)
         
-        case .LinkedIn:
-            let socialConnectVC = SocialConnectViewController(provider: .Linkedin)
-            navigationController?.presentViewController(socialConnectVC, animated: true, completion:nil)
-            
         default:
             break
         }
@@ -292,6 +288,13 @@ class ProfileDetailsViewController:
             name: ProfileNotesNotifications.onNotesChanged,
             object: nil
         )
+        
+        NSNotificationCenter.defaultCenter().addObserver(self,
+            selector: "socialConnectCTATapped:", 
+            name: SocialConnectCollectionViewCellNotifications.onCTATappedNotification, 
+            object: nil
+        )
+        
         super.registerNotifications()
     }
     
@@ -322,6 +325,8 @@ class ProfileDetailsViewController:
         }
     }
     
+    // MARK: - Notification handlers
+    
     func updateNotesTitle(sender: AnyObject?) {
         let notesCollectionView = detailViews[1]
         if let dataSource = notesCollectionView.dataSource as? ProfileNotesDataSource {
@@ -336,6 +341,23 @@ class ProfileDetailsViewController:
                     NSString(format: NSLocalizedString("Notes (%d)", comment: "Title of the Notes section with # of notes. E.g., Notes (5)"), dataSource.notes.count),
                     forSegmentAtIndex: 1
                 )
+            }
+        }
+    }
+    
+    func socialConnectCTATapped(notification: NSNotification) {
+        if let userInfo = notification.userInfo {
+            if let typeOfCTA = userInfo["type"] as? Int {
+                if let contentType = ContentType(rawValue: typeOfCTA) {
+                    switch contentType {
+                    case .LinkedInConnect:
+                        let socialConnectVC = SocialConnectViewController(provider: .Linkedin)
+                        navigationController?.presentViewController(socialConnectVC, animated: true, completion:nil)
+
+                    default:
+                        break
+                    }
+                }
             }
         }
     }
