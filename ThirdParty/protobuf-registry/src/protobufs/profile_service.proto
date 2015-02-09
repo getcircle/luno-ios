@@ -26,6 +26,12 @@ message ProfileService {
             optional string birth_date = 14;
             optional string hire_date = 15;
             optional bool verified = 16;
+            repeated ProfileItem items = 17;
+        }
+
+        message ProfileItem {
+            optional string key = 1;
+            optional string value = 2;
         }
 
         message Skill {
@@ -69,10 +75,8 @@ message ProfileService {
     message GetProfile {
 
         message Request {
-            oneof lookup_key {
-                string profile_id = 1;
-                string user_id = 2;
-            }
+            optional string profile_id = 1;
+            optional string user_id = 2;
         }
 
         message Response {
@@ -84,10 +88,8 @@ message ProfileService {
     message GetExtendedProfile {
 
         message Request {
-            oneof lookup_key {
-                string profile_id = 1;
-                string user_id = 2;
-            }
+            optional string profile_id = 1;
+            optional string user_id = 2;
         }
 
         message Response {
@@ -117,10 +119,8 @@ message ProfileService {
     message GetSkills {
 
         message Request {
-            oneof lookup_key {
-                string profile_id = 1;
-                string organization_id = 2;
-            }
+            optional string profile_id = 1;
+            optional string organization_id = 2;
         }
 
         message Response {
@@ -159,10 +159,8 @@ message ProfileService {
     message GetDirectReports {
 
         message Request {
-            oneof lookup_key {
-                string profile_id = 1;
-                string user_id = 2;
-            }
+            optional string profile_id = 1;
+            optional string user_id = 2;
         }
 
         message Response {
