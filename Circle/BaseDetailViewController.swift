@@ -38,6 +38,11 @@ class BaseDetailViewController: UIViewController {
         extendedLayoutIncludesOpaqueBars = true
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        edgesForExtendedLayout = .Top
+    }
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         if isBeingPresentedModally() {
@@ -71,7 +76,6 @@ class BaseDetailViewController: UIViewController {
                 let parentController = navigationController?.viewControllers[(totalViewControllers - 1)] as? UIViewController
                 if !(parentController is BaseDetailViewController) {
                     transitionCoordinator()?.animateAlongsideTransition({ (transitionContext) -> Void in
-                        self.navigationController?.setNavigationBarHidden(false, animated: true)
                         var toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey) as UIViewController!
                         toViewController.navigationController?.navigationBar.makeOpaque()
                         

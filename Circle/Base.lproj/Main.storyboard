@@ -8,7 +8,7 @@
         <scene sceneID="I8F-MY-69s">
             <objects>
                 <navigationController navigationBarHidden="YES" id="xqF-2W-85W" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Home" image="Home" selectedImage="HomeFilled" id="xJk-VL-UwP"/>
+                    <tabBarItem key="tabBarItem" title="Home" image="Home" id="xJk-VL-UwP"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="qSr-Lg-0YX">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -42,7 +42,7 @@
         <!--Profiles View Controller-->
         <scene sceneID="MUU-Kj-5cV">
             <objects>
-                <viewController storyboardIdentifier="ProfilesViewController" extendedLayoutIncludesOpaqueBars="YES" id="sfD-c4-aFJ" customClass="ProfilesViewController" customModule="circle" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProfilesViewController" extendedLayoutIncludesOpaqueBars="YES" hidesBottomBarWhenPushed="YES" id="sfD-c4-aFJ" customClass="ProfilesViewController" customModule="circle" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="GD7-Su-MnX"/>
                         <viewControllerLayoutGuide type="bottom" id="90M-NW-Qsi"/>
@@ -52,14 +52,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hqq-xo-pLX" userLabel="SearchControllerContainerView">
-                                <rect key="frame" x="0.0" y="64" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="20" width="600" height="44"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="Jcp-94-Poo"/>
                                 </constraints>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ip8-kc-O5j">
-                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                                <rect key="frame" x="0.0" y="20" width="600" height="531"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="SY1-X2-Ytp">
                                     <size key="itemSize" width="50" height="50"/>
@@ -200,6 +200,5 @@
     </scenes>
     <resources>
         <image name="Home" width="32" height="32"/>
-        <image name="HomeFilled" width="32" height="32"/>
     </resources>
 </document>

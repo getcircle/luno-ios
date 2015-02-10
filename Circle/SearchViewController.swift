@@ -88,13 +88,21 @@ NewNoteViewControllerDelegate {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
 
+        navigationController?.setNavigationBarHidden(true, animated: false)
         registerNotifications()
         loadData()
     }
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        
+        navigationController?.setNavigationBarHidden(true, animated: false)
         checkUserAndPresentAuthViewController()
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: true)
     }
 
     override func viewDidDisappear(animated: Bool) {
@@ -238,18 +246,21 @@ NewNoteViewControllerDelegate {
             case .People, .Birthdays, .Anniversaries, .NewHires:
                 if let profile = dataSource.contentAtIndexPath(indexPath)? as? ProfileService.Containers.Profile {
                     let profileVC = ProfileDetailsViewController.forProfile(profile)
+                    profileVC.hidesBottomBarWhenPushed = true
                     navigationController?.pushViewController(profileVC, animated: true)
                 }
             case .Group:
                 let viewController = storyboard?.instantiateViewControllerWithIdentifier("ProfilesViewController") as ProfilesViewController
                 viewController.dataSource.setInitialData(selectedCard.content[0] as [AnyObject], ofType: nil)
                 viewController.title = selectedCard.title
+                viewController.hidesBottomBarWhenPushed = true
                 navigationController?.pushViewController(viewController, animated: true)
 
             case .Locations:
                 if let locationAddress = dataSource.contentAtIndexPath(indexPath)? as? OrganizationService.Containers.Address {
                     let viewController = LocationDetailViewController()
                     (viewController.dataSource as LocationDetailDataSource).selectedLocation = locationAddress
+                    viewController.hidesBottomBarWhenPushed = true
                     navigationController?.pushViewController(viewController, animated: true)
                 }
                 
@@ -257,6 +268,7 @@ NewNoteViewControllerDelegate {
                 if let selectedTeam = dataSource.contentAtIndexPath(indexPath)? as? OrganizationService.Containers.Team {
                     let viewController = TeamDetailViewController()
                     (viewController.dataSource as TeamDetailDataSource).selectedTeam = selectedTeam
+                    viewController.hidesBottomBarWhenPushed = true
                     navigationController?.pushViewController(viewController, animated: true)
                 }
             
@@ -268,13 +280,14 @@ NewNoteViewControllerDelegate {
                             viewController.profile = selectedProfile
                             viewController.delegate = self
                             viewController.note = selectedNote
+                            viewController.hidesBottomBarWhenPushed = true
                             navigationController?.pushViewController(viewController, animated: true)
                         }
                     }
                 }
                 
             default:
-                performSegueWithIdentifier("showListOfPeople", sender: collectionView)
+                break
             }
         }
     }
@@ -286,6 +299,7 @@ NewNoteViewControllerDelegate {
             if let selectedSkill = userInfo["skill"] as? ProfileService.Containers.Skill {
                 let viewController = SkillDetailViewController()
                 (viewController.dataSource as SkillDetailDataSource).selectedSkill = selectedSkill
+                viewController.hidesBottomBarWhenPushed = true
                 navigationController?.pushViewController(viewController, animated: true)
             }
         }
@@ -305,6 +319,7 @@ NewNoteViewControllerDelegate {
                 viewController.dataSource.setInitialData(card.allContent, ofType: card.type)
             }
             viewController.title = card.title
+            viewController.hidesBottomBarWhenPushed = true
             navigationController?.pushViewController(viewController, animated: true)
 
         case .Locations:
@@ -314,6 +329,7 @@ NewNoteViewControllerDelegate {
             let viewController = NotesOverviewViewController(nibName: "NotesOverviewViewController", bundle: nil)
             viewController.dataSource.setInitialData(content: card.allContent as [AnyObject], ofType: nil, withMetaData: card.metaData)
             viewController.title = card.title
+            viewController.hidesBottomBarWhenPushed = true
             navigationController?.pushViewController(viewController, animated: true)
 
         default:
