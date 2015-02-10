@@ -49,7 +49,7 @@ extension UIColor {
     }
     
     class func tabBarTintColor() -> UIColor {
-        return UIColor.whiteColor()
+        return UIColor(red: 0, green: 201, blue: 255)
     }
     
     class func tabBarBarTintColor() -> UIColor {

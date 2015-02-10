@@ -32,7 +32,7 @@ class MainTabBarViewController: UITabBarController {
             let navController = UINavigationController(rootViewController: orgVC)
             // Images for the organization tab
             let orgTabImage = UIImage(named: "Building")?.imageWithRenderingMode(.AlwaysTemplate)
-            let orgTabImageSelected = UIImage(named: "BuildingFilled")?.imageWithRenderingMode(.AlwaysTemplate)
+            let orgTabImageSelected = UIImage(named: "Building")?.imageWithRenderingMode(.AlwaysTemplate)
             navController.tabBarItem = UITabBarItem(title: "Eventbrite", image: orgTabImage, selectedImage: orgTabImageSelected)
             tabBarViewControllers.append(navController)
             
@@ -44,7 +44,7 @@ class MainTabBarViewController: UITabBarController {
             
             let profileNavController = UINavigationController(rootViewController: profileViewController)
             let profileTabImage = UIImage(named: "Profile")?.imageWithRenderingMode(.AlwaysTemplate)
-            let profileTabImageSelected = UIImage(named: "ProfileFilled")?.imageWithRenderingMode(.AlwaysTemplate)
+            let profileTabImageSelected = UIImage(named: "Profile")?.imageWithRenderingMode(.AlwaysTemplate)
             profileNavController.tabBarItem = UITabBarItem(
                 title: "You",
                 image: profileTabImage,
@@ -55,7 +55,7 @@ class MainTabBarViewController: UITabBarController {
         
         setViewControllers(tabBarViewControllers, animated: true)
         (tabBar.items!.first! as UITabBarItem).image = UIImage(named: "Home")?.imageWithRenderingMode(.AlwaysTemplate)
-        (tabBar.items!.first! as UITabBarItem).selectedImage = UIImage(named: "HomeFilled")?.imageWithRenderingMode(.AlwaysTemplate)
+        (tabBar.items!.first! as UITabBarItem).selectedImage = UIImage(named: "Home")?.imageWithRenderingMode(.AlwaysTemplate)
     }
     
 
