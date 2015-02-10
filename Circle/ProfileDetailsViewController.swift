@@ -22,6 +22,8 @@ class ProfileDetailsViewController:
     // Segmented Control Helpers
     private var currentIndex = 0
     
+    private var firstLoad = true
+    
     // Overlay view
     private var overlaidCollectionView: UICollectionView!
     
@@ -63,6 +65,17 @@ class ProfileDetailsViewController:
         configureNavigationButtons()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // Get the container size. Should account for the width of all the detailViews as well as the height of the navigation bar. We don't want the overlay view to scroll vertically, so we need to ensure its vertical content size matches the visible screen. This allows the collection views to take over vertically.
+        if firstLoad {
+            let containerSize = CGSizeMake(CGFloat(detailViews.count ?? 1) * view.frame.width, view.frame.height)
+            underlyingContainerView.autoSetDimensionsToSize(containerSize)
+            firstLoad = false
+        }
+    }
+    
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
@@ -99,9 +112,6 @@ class ProfileDetailsViewController:
     
     private func configureUnderlyingViews() {
         underlyingContainerView = UIView.newAutoLayoutView()
-        // Get the container size. Should account for the width of all the detailViews as well as the height of the navigation bar. We don't want the overlay view to scroll vertically, so we need to ensure its vertical content size matches the visible screen. This allows the collection views to take over vertically.
-        let containerSize = CGSizeMake(CGFloat(detailViews.count ?? 1) * view.frame.width, view.frame.height)
-        underlyingContainerView.autoSetDimensionsToSize(containerSize)
         
         // Attach the detailViews to the overlayContainerView
         var previous: UIView?
@@ -189,15 +199,18 @@ class ProfileDetailsViewController:
         case .Location:
             let locationDetailVC = LocationDetailViewController()
             (locationDetailVC.dataSource as LocationDetailDataSource).selectedLocation = dataSource.address
+            locationDetailVC.hidesBottomBarWhenPushed = true
             navigationController?.pushViewController(locationDetailVC, animated: true)
             
         case .Manager:
             let profileVC = ProfileDetailsViewController.forProfile(dataSource.manager!)
+            profileVC.hidesBottomBarWhenPushed = true
             navigationController?.pushViewController(profileVC, animated: true)
             
         case .Team:
             let teamVC = TeamDetailViewController()
             (teamVC.dataSource as TeamDetailDataSource).selectedTeam = dataSource.team!
+            teamVC.hidesBottomBarWhenPushed = true
             navigationController?.pushViewController(teamVC, animated: true)
         
         default:
@@ -432,6 +445,12 @@ class ProfileDetailsViewController:
     
     func onButtonTouchUpInsideAtIndex(index: Int) {
         underlyingScrollView.setContentOffset(CGPointMake(view.frame.width * CGFloat(index), underlyingScrollView.contentOffset.y), animated: true)
+        // We need to delay calling the method that updates the internal state
+        // to ensure the animations have been completed
+        // 0.3 is the standard animation speed on iOS at this time
+        delay(0.3, { () -> () in
+            self.scrollingEnded(self.underlyingScrollView)
+        })
     }
     
     // MARK: - IBActions
@@ -439,6 +458,7 @@ class ProfileDetailsViewController:
     @IBAction func editProfileButtonTapped(sender: AnyObject!) {
         let editProfileVC = EditProfileViewController(nibName: "EditProfileViewController", bundle: nil)
         editProfileVC.profile = profile
+        editProfileVC.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(editProfileVC, animated: true)
     }
 }
