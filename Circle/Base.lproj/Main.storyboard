@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xqF-2W-85W">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="gsH-2F-RFu">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <scenes>
-        <!--Navigation Controller-->
+        <!--Home-->
         <scene sceneID="I8F-MY-69s">
             <objects>
-                <navigationController id="xqF-2W-85W" sceneMemberID="viewController">
+                <navigationController navigationBarHidden="YES" id="xqF-2W-85W" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Home" image="Home" selectedImage="HomeFilled" id="xJk-VL-UwP"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="qSr-Lg-0YX">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -19,6 +20,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AkS-Ra-l6J" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="505" y="-1336"/>
+        </scene>
+        <!--Main Tab Bar View Controller-->
+        <scene sceneID="JZH-40-WeO">
+            <objects>
+                <tabBarController id="gsH-2F-RFu" customClass="MainTabBarViewController" customModule="circle" customModuleProvider="target" sceneMemberID="viewController">
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="cob-ID-EDf">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="xqF-2W-85W" kind="relationship" relationship="viewControllers" id="Udf-Me-3yx"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3BQ-hJ-ScH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-371" y="-1336"/>
         </scene>
         <!--Profiles View Controller-->
         <scene sceneID="MUU-Kj-5cV">
@@ -101,17 +120,17 @@
                         <viewControllerLayoutGuide type="bottom" id="rUn-MN-xeZ"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="bGb-OZ-dC1">
-                        <rect key="frame" x="0.0" y="64" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5kQ-sW-5v8" userLabel="SearchContainer">
-                                <rect key="frame" x="0.0" y="64" width="600" height="50"/>
+                                <rect key="frame" x="0.0" y="20" width="600" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="WPV-ES-scS"/>
                                 </constraints>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="FpX-4G-cZW">
-                                <rect key="frame" x="0.0" y="114" width="600" height="486"/>
+                                <rect key="frame" x="0.0" y="70" width="600" height="481"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ye1-bx-IXA">
                                     <size key="itemSize" width="50" height="50"/>
@@ -142,7 +161,7 @@
                                 </connections>
                             </collectionView>
                             <activityIndicatorView contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="heX-JS-q97">
-                                <rect key="frame" x="290" y="347" width="20" height="20"/>
+                                <rect key="frame" x="290" y="301" width="20" height="20"/>
                                 <color key="color" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </activityIndicatorView>
                         </subviews>
@@ -165,6 +184,7 @@
                             </mask>
                         </variation>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout" top="YES"/>
                     <navigationItem key="navigationItem" title="circle" id="wys-4b-D4W"/>
                     <connections>
                         <outlet property="activityIndicatorView" destination="heX-JS-q97" id="agu-HE-HiO"/>
@@ -178,4 +198,8 @@
             <point key="canvasLocation" x="1187" y="-1336"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Home" width="32" height="32"/>
+        <image name="HomeFilled" width="32" height="32"/>
+    </resources>
 </document>

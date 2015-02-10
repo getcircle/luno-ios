@@ -83,7 +83,6 @@ NewNoteViewControllerDelegate {
         configureView()
         configureSearchHeaderView()
         configureCollectionView()
-        configureNavigationActionButtons()
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -118,7 +117,6 @@ NewNoteViewControllerDelegate {
 
     private func configureView() {
         view.backgroundColor = UIColor.viewBackgroundColor()
-        title = NSBundle.appName()
     }
 
     private func configureSearchHeaderView() {
@@ -177,45 +175,6 @@ NewNoteViewControllerDelegate {
         
         queryDataSource = SearchQueryDataSource()
         queryDataSource.registerCardHeader(collectionView)
-    }
-
-    private func configureNavigationActionButtons() {
-        var leftView = UIView(frame: CGRectMake(0.0, 0.0, 30.0, 30.0))
-        leftView.makeItCircular(false)
-        
-        loggedInUserProfileImageView = CircleImageView(frame: CGRectMake(0.0, 0.0, 30.0, 30.0))
-        loggedInUserProfileImageView.makeItCircular(false)
-        leftView.addSubview(loggedInUserProfileImageView)
-        loadUserProfileImage()
-        
-        var leftButton = UIButton(frame: leftView.frame)
-        leftButton.backgroundColor = UIColor.clearColor()
-        leftButton.addTarget(self, action: "showLoggedInUserProfile:", forControlEvents: .TouchUpInside)
-
-        // TODO add some check here for whether or not we're on production
-        let longPressGesture = UILongPressGestureRecognizer(target: self, action: "profileLongPressHandler:")
-        leftButton.addGestureRecognizer(longPressGesture)
-        leftView.addSubview(leftButton)
-        
-        let leftBarButtonItem = UIBarButtonItem(customView: leftView)
-        navigationItem.leftBarButtonItem = leftBarButtonItem
-        
-        // Right Nav Button
-        var rightView = UIView(frame: CGRectMake(0.0, 0.0, 30.0, 30.0))
-        rightView.makeItCircular(false)
-        
-        companyProfileImageView = UIImageView(frame: CGRectMake(0.0, 0.0, 30.0, 30.0))
-        companyProfileImageView.makeItCircular(false)
-        loadOrganizationInfo()
-        rightView.addSubview(companyProfileImageView)
-        
-        var rightButton = UIButton(frame: rightView.frame)
-        rightButton.backgroundColor = UIColor.clearColor()
-        rightButton.addTarget(self, action: "showOrganizationProfile:", forControlEvents: .TouchUpInside)
-        rightView.addSubview(rightButton)
-        
-        let rightBarButtonItem = UIBarButtonItem(customView: rightView)
-        navigationItem.rightBarButtonItem = rightBarButtonItem
     }
     
     // MARK: - Load data
