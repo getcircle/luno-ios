@@ -20,9 +20,11 @@ class NewNoteViewController: UIViewController, UIViewControllerTransitioningDele
     var note: NoteService.Containers.Note?
     var profile: ProfileService.Containers.Profile?
 
+    @IBOutlet weak var deleteNoteButton: UIButton!
     @IBOutlet weak var noteTextView: UITextView!
     @IBOutlet weak var noteTextViewTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var noteTextViewBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var newNoteButton: UIButton!
     @IBOutlet weak var profileImageView: CircleImageView!
     @IBOutlet weak var profileNameLabel: UILabel!
     @IBOutlet weak var profileTitleLabel: UILabel!
@@ -79,6 +81,12 @@ class NewNoteViewController: UIViewController, UIViewControllerTransitioningDele
         if let note = note {
             noteTextView.text = note.content
         }
+        else {
+            noteTextView.text = ""
+            deleteNoteButton.removeFromSuperview()
+            newNoteButton.removeFromSuperview()
+        }
+        
         
         noteTextViewBottomConstraintInitialValue = noteTextViewBottomConstraint.constant
     }

@@ -8,7 +8,9 @@
         <scene sceneID="I8F-MY-69s">
             <objects>
                 <navigationController navigationBarHidden="YES" id="xqF-2W-85W" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Home" image="Home" id="xJk-VL-UwP"/>
+                    <tabBarItem key="tabBarItem" title="Home" image="Home" id="xJk-VL-UwP">
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
+                    </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="qSr-Lg-0YX">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
