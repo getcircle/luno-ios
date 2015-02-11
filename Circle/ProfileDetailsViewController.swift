@@ -6,7 +6,6 @@
 //  Copyright (c) 2015 RH Labs Inc. All rights reserved.
 //
 
-import MessageUI
 import UIKit
 import ProtobufRegistry
 
@@ -15,7 +14,6 @@ class ProfileDetailsViewController:
         UnderlyingCollectionViewDelegate,
         UIScrollViewDelegate,
         NewNoteViewControllerDelegate,
-        MFMailComposeViewControllerDelegate,
         ProfileDetailSegmentedControlDelegate
     {
     
@@ -274,16 +272,6 @@ class ProfileDetailsViewController:
             headerView.finishMovingSelectionIndicatorView(scrollView.contentOffset)
         }
     }
-
-    // MARK: - MFMailComposeViewControllerDelegate
-    
-    func mailComposeController(
-        controller: MFMailComposeViewController!,
-        didFinishWithResult result: MFMailComposeResult,
-        error: NSError!
-        ) {
-            dismissViewControllerAnimated(true, completion: nil)
-    }
     
     // MARK: - Notifications
     
@@ -303,8 +291,14 @@ class ProfileDetailsViewController:
         )
         
         NSNotificationCenter.defaultCenter().addObserver(self,
-            selector: "socialConnectCTATapped:", 
-            name: SocialConnectCollectionViewCellNotifications.onCTATappedNotification, 
+            selector: "socialConnectCTATapped:",
+            name: SocialConnectCollectionViewCellNotifications.onCTATappedNotification,
+            object: nil
+        )
+
+        NSNotificationCenter.defaultCenter().addObserver(self,
+            selector: "quickActionButtonTapped:",
+            name: UIViewController.QuickActionNotifications.QuickActionSelected,
             object: nil
         )
         
@@ -367,6 +361,36 @@ class ProfileDetailsViewController:
                         let socialConnectVC = SocialConnectViewController(provider: .Linkedin)
                         navigationController?.presentViewController(socialConnectVC, animated: true, completion:nil)
 
+                    default:
+                        break
+                    }
+                }
+            }
+        }
+    }
+    
+    func quickActionButtonTapped(notification: NSNotification) {
+        if let userInfo = notification.userInfo {
+            if let quickAction = userInfo["quickAction"] as? Int {
+                if let quickActionType = QuickAction(rawValue: quickAction) {
+                    switch quickActionType {
+                    case .Email:
+                        presentMailViewController(
+                            [profile.email],
+                            subject: "Hey",
+                            messageBody: "",
+                            completionHandler: nil
+                        )
+                        
+                    case .Message:
+                        var recipient = profile.cell_phone ?? profile.email
+                        presentMessageViewController(
+                            [recipient],
+                            subject: "Hey",
+                            messageBody: "",
+                            completionHandler: nil
+                        )
+                        
                     default:
                         break
                     }

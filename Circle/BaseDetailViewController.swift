@@ -7,10 +7,13 @@
 //
 
 import UIKit
+import MessageUI
 import ProtobufRegistry
 
-class BaseDetailViewController: UIViewController {
-    
+class BaseDetailViewController: UIViewController,
+MFMailComposeViewControllerDelegate,
+MFMessageComposeViewControllerDelegate {
+
     convenience init(showCloseButton: Bool) {
         self.init()
         if showCloseButton {
@@ -161,5 +164,20 @@ class BaseDetailViewController: UIViewController {
             }
         }
     }
+
+    // MARK: - MFMailComposeViewControllerDelegate
     
+    func mailComposeController(
+        controller: MFMailComposeViewController!,
+        didFinishWithResult result: MFMailComposeResult,
+        error: NSError!
+        ) {
+            dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    // MARK: MFMessageComposeViewControllerDelegate
+    
+    func messageComposeViewController(controller: MFMessageComposeViewController!, didFinishWithResult result: MessageComposeResult) {
+        controller.dismissViewControllerAnimated(true, completion: nil)
+    }
 }

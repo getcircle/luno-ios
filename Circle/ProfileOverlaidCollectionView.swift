@@ -130,10 +130,12 @@ class ProfileOverlaidCollectionView: UICollectionView, UICollectionViewDelegate 
                 // Reduce opacity of the name and title label at a faster pace
                 let titleLabelAlpha = 1.0 - contentOffset.y/(profileHeaderView.titleLabel.frameY - 40.0)
                 let nameLabelAlpha = 1.0 - contentOffset.y/(profileHeaderView.nameLabel.frameY - 40.0)
+                let quickActionsAlpha = 1.0 - contentOffset.y/(profileHeaderView.quickActionsView.frameY - 40.0)
                 profileHeaderView.titleLabel.alpha = titleLabelAlpha
                 profileHeaderView.verifiedProfileButton.alpha = nameLabelAlpha
                 profileHeaderView.nameLabel.alpha = nameLabelAlpha
-                profileHeaderView.nameNavLabel.alpha = titleLabelAlpha <= 0.0 ? profileHeaderView.nameNavLabel.alpha + 1/20 : 0.0
+                profileHeaderView.quickActionsView.alpha = quickActionsAlpha
+                profileHeaderView.nameNavLabel.alpha = quickActionsAlpha <= 0.0 ? profileHeaderView.nameNavLabel.alpha + 1/20 : 0.0
             }
             else {
                 // Change alpha faster for profile image
@@ -147,6 +149,7 @@ class ProfileOverlaidCollectionView: UICollectionView, UICollectionViewDelegate 
                 profileHeaderView.titleLabel.alpha = otherViewsAlpha
                 profileHeaderView.profileImage.alpha = profileImageAlpha
                 profileHeaderView.visualEffectView.alpha = otherViewsAlpha
+                profileHeaderView.quickActionsView.alpha = otherViewsAlpha
                 profileHeaderView.profileImage.transform = CGAffineTransformIdentity
             }
         }
@@ -162,7 +165,7 @@ class ProfileOverlaidCollectionView: UICollectionView, UICollectionViewDelegate 
         if let headerView = collectionViewDataSource?.profileHeaderView {
             let pointRelativeToHeaderView = headerView.convertPoint(point, fromView: self)
             if headerView.pointInside(pointRelativeToHeaderView, withEvent: event) {
-                return headerView.tappedButtonInSegmentedControl
+                return headerView.tappedButton
             }
         }
 

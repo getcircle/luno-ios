@@ -9,8 +9,43 @@
 import MessageUI
 import UIKit
 
-extension UIViewController {
+enum QuickAction: Int {
+    case None
+    case Email
+    case Message
+    case Phone
+    case Slack
     
+    static func placeholderByQuickAction(quickAction: QuickAction) -> String {
+        switch quickAction {
+        case .None:
+            return NSLocalizedString("Search people, teams, skills, etc.",
+                comment: "Placeholder text for search field used to search people, teams and skills.")
+            
+        case .Email:
+            return NSLocalizedString("Who do you want to email",
+                comment: "Placeholder for search field used search for the person user intends to email")
+            
+        case .Message:
+            return NSLocalizedString("Who do you want to message",
+                comment: "Placeholder for search field used search for the person user intends to send a message")
+        case .Phone:
+            return NSLocalizedString("Who do you want to call",
+                comment: "Placeholder for search field used search for the person user intends to call")
+            
+        case .Slack:
+            return NSLocalizedString("Who do you want to message",
+                comment: "Placeholder for search field used search for the person user intends to send a message")
+        }
+    }
+}
+
+extension UIViewController {
+
+    struct QuickActionNotifications {
+        static let QuickActionSelected = "com.ravcode.notification:QuickActionSelected"
+    }
+
     var pushAnimator: UIViewControllerAnimatedTransitioning? {
         return nil
     }

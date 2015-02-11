@@ -94,6 +94,7 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
     private(set) var skills: Array<ProfileService.Containers.Skill>?
     private(set) var team: OrganizationService.Containers.Team?
 
+    private var hasSocialConnectCTAs = false
     private(set) var profileHeaderView: ProfileHeaderCollectionReusableView?
     private var sections = [Section]()
     
@@ -129,7 +130,11 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
     
     private func configureSections() {
         if let socialConnectSection = getSocialConnectSection() {
+            hasSocialConnectCTAs = true
             sections.append(socialConnectSection)
+        }
+        else {
+            hasSocialConnectCTAs = false
         }
         sections.append(getBasicInfoSection())
         sections.append(getManagerInfoSection())
@@ -160,14 +165,14 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
                 container: "profile",
                 containerKey: "email",
                 contentType: .Email,
-                image: ItemImage(name: "EmailCircle", tint: UIColor.emailTintColor())
+                image: nil
             ),
             SectionItem(
                 title: "Cell Phone",
                 container: "profile",
                 containerKey: "cell_phone",
                 contentType: .CellPhone,
-                image: ItemImage(name: "Telephone", tint: UIColor.phoneTintColor())
+                image: nil
             ),
             SectionItem(
                 title: "Location",
@@ -218,7 +223,12 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
     private func populateData() {
         resetCards()
         
+        // Add top margin only when there is a social connect button added
+        // to the profile
         var defaultSectionInset = UIEdgeInsetsMake(12.0, 0.0, 12.0, 0.0)
+        if !hasSocialConnectCTAs {
+            defaultSectionInset = UIEdgeInsetsMake(0.0, 0.0, 25.0, 0.0)
+        }
         for section in sections {
             let sectionCard = Card(cardType: section.cardType, title: section.title)
             for item in section.items {

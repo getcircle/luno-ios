@@ -16,11 +16,15 @@ protocol ProfileDetailSegmentedControlDelegate {
 class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
 
     @IBOutlet weak var backgroundImage: UIImageView!
+    @IBOutlet weak var emailQuickActionButton: UIButton!
+    @IBOutlet weak var messageQuickActionButton: UIButton!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var nameNavLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var phoneQuickActionButton: UIButton!
     @IBOutlet weak var profileImage: CircleImageView!
     @IBOutlet weak var sectionsView: UIView!
+    @IBOutlet weak var quickActionsView: UIView!
     @IBOutlet weak var verifiedProfileButton: UIButton!
     
     var profileSegmentedControlDelegate: ProfileDetailSegmentedControlDelegate?
@@ -31,8 +35,8 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
             }
         }
     }
-    var tappedButtonInSegmentedControl: UIButton?
-    var tappedButtonInSegmentedControlIndex: Int?
+    var tappedButton: UIButton?
+    var tappedButtonIndex: Int?
     private(set) var visualEffectView: UIVisualEffectView!
     
     private var sectionIndicatorView: UIView?
@@ -47,7 +51,7 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
     }
     
     override class var height: CGFloat {
-        return 240.0
+        return 300.0
     }
 
     override func awakeFromNib() {
@@ -63,6 +67,15 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
         profileImage.makeItCircular(true)
         nameNavLabel.alpha = 0.0
         sectionsView.backgroundColor = UIColor.viewBackgroundColor()
+        for button in [emailQuickActionButton, messageQuickActionButton, phoneQuickActionButton] {
+            button.setImage(
+                button.imageForState(.Normal)?.imageWithRenderingMode(.AlwaysTemplate),
+                forState: .Normal
+            )
+            button.tintColor = UIColor.whiteColor()
+            button.makeItCircular(true)
+            button.layer.borderColor = UIColor.whiteColor().CGColor
+        }
     }
     
     func setProfile(profile: ProfileService.Containers.Profile) {
@@ -89,13 +102,6 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
         for section in withSections {
             let button = UIButton.buttonWithType(.System) as UIButton
             button.setTitle(section.title, forState: .Normal)
-//          This is still needed but commenting it out until we have better icons
-//            if let imageSrc = section.image {
-//                if imageSrc != "" {
-//                    button.setImage(UIImage(named: imageSrc), forState: .Normal)
-//                    button.imageEdgeInsets = UIEdgeInsetsMake(5.0, 5.0, 5.0, 5.0)
-//                }
-//            }
             button.tintColor = UIColor.appTintColor()
             button.addTarget(self, action: "segmentButtonPressed:", forControlEvents: .TouchUpInside)
             button.autoSetDimensionsToSize(buttonSize)
@@ -124,7 +130,7 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
     }
     
     func segmentButtonPressed(sender: AnyObject!) {
-        if let tappedButtonIndex = tappedButtonInSegmentedControlIndex {
+        if let tappedButtonIndex = tappedButtonIndex {
             profileSegmentedControlDelegate?.onButtonTouchUpInsideAtIndex(tappedButtonIndex)
         }
     }
@@ -180,12 +186,48 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
         for (index, button) in enumerate(segmentedControlButtons) {
             let pointRelativeToButton = button.convertPoint(point, fromView: self)
             if button.pointInside(pointRelativeToButton, withEvent: event) {
-                tappedButtonInSegmentedControl = button
-                tappedButtonInSegmentedControlIndex = index
+                tappedButton = button
+                tappedButtonIndex = index
+                return true
+            }
+        }
+        
+        for button in [emailQuickActionButton, phoneQuickActionButton, messageQuickActionButton] {
+            let pointRelativeToButton = button.convertPoint(point, fromView: self)
+            if button.pointInside(pointRelativeToButton, withEvent: event) {
+                tappedButton = button
                 return true
             }
         }
         
         return false
+    }
+    
+    // MARK: - IBActions
+    
+    @IBAction func quickActionTapped(sender: UIButton) {
+        var selectedQuickAction = QuickAction.None
+        switch sender {
+        case emailQuickActionButton:
+            selectedQuickAction = .Email
+            break
+    
+        case messageQuickActionButton:
+            selectedQuickAction = .Message
+            break
+    
+        case phoneQuickActionButton:
+            selectedQuickAction = .Phone
+            break
+
+        default:
+            break
+        }
+        
+        NSNotificationCenter.defaultCenter().postNotificationName(
+            UIViewController.QuickActionNotifications.QuickActionSelected,
+            object: nil,
+            userInfo: ["quickAction": selectedQuickAction.rawValue]
+        )
     }
 }
