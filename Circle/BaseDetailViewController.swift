@@ -150,6 +150,7 @@ MFMessageComposeViewControllerDelegate {
             if let selectedSkill = userInfo["skill"] as? ProfileService.Containers.Skill {
                 let viewController = SkillDetailViewController()
                 (viewController.dataSource as SkillDetailDataSource).selectedSkill = selectedSkill
+                viewController.hidesBottomBarWhenPushed = true
                 navigationController?.pushViewController(viewController, animated: true)
             }
         }
@@ -160,6 +161,7 @@ MFMessageComposeViewControllerDelegate {
             if let selectedTeam = userInfo["team"] as? OrganizationService.Containers.Team {
                 let viewController = TeamDetailViewController()
                 (viewController.dataSource as TeamDetailDataSource).selectedTeam = selectedTeam
+                viewController.hidesBottomBarWhenPushed = true
                 navigationController?.pushViewController(viewController, animated: true)
             }
         }
