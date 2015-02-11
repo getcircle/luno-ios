@@ -150,6 +150,8 @@
 		BF8FC3D91A44DA83007FD8BA /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8FC3D81A44DA83007FD8BA /* StringExtension.swift */; };
 		BF9D72121A68492C002CDC66 /* ObjectStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9D72111A68492C002CDC66 /* ObjectStore.swift */; };
 		BFA5E4861A72C942008826F0 /* StickyHeaderCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA5E4851A72C942008826F0 /* StickyHeaderCollectionViewDelegate.swift */; };
+		BFAE43551A8B05010085AB2B /* HomelessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAE43531A8B05010085AB2B /* HomelessViewController.swift */; };
+		BFAE43561A8B05010085AB2B /* HomelessViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFAE43541A8B05010085AB2B /* HomelessViewController.xib */; };
 		BFB791891A2C346A0048E8FB /* CALayerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB791881A2C346A0048E8FB /* CALayerExtension.swift */; };
 		BFB7918B1A2C3C860048E8FB /* SpringFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB7918A1A2C3C860048E8FB /* SpringFlowLayout.swift */; };
 		BFBC44011A7212FA007202E7 /* ProfileOverlaidCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBC44001A7212FA007202E7 /* ProfileOverlaidCollectionView.swift */; };
@@ -398,6 +400,8 @@
 		BF8FC3D81A44DA83007FD8BA /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		BF9D72111A68492C002CDC66 /* ObjectStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectStore.swift; sourceTree = "<group>"; };
 		BFA5E4851A72C942008826F0 /* StickyHeaderCollectionViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StickyHeaderCollectionViewDelegate.swift; sourceTree = "<group>"; };
+		BFAE43531A8B05010085AB2B /* HomelessViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomelessViewController.swift; sourceTree = "<group>"; };
+		BFAE43541A8B05010085AB2B /* HomelessViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomelessViewController.xib; sourceTree = "<group>"; };
 		BFB791881A2C346A0048E8FB /* CALayerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CALayerExtension.swift; sourceTree = "<group>"; };
 		BFB7918A1A2C3C860048E8FB /* SpringFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpringFlowLayout.swift; sourceTree = "<group>"; };
 		BFBC44001A7212FA007202E7 /* ProfileOverlaidCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileOverlaidCollectionView.swift; sourceTree = "<group>"; };
@@ -521,6 +525,7 @@
 				BF27CC621A747B2100E683C7 /* BaseDetailViewController.swift */,
 				8F00049C1A2419730096477A /* DetailViewController.swift */,
 				8FEE3D951A8309A400B17569 /* EditProfileViewController.swift */,
+				BFAE43531A8B05010085AB2B /* HomelessViewController.swift */,
 				8FD907F61A6033310025A17B /* LocationDetailViewController.swift */,
 				8F306B8B1A7416E00024EB03 /* LocationsOverviewViewController.swift */,
 				8F9F60B71A896CE400FCAA25 /* MainTabBarViewController.swift */,
@@ -627,6 +632,7 @@
 				8F65C4F41A50F28E00C7F3E6 /* CardHeaderCollectionReusableView.xib */,
 				8F7400381A6A3FF700D96B60 /* CircleAlertViewController.xib */,
 				8FEE3D9C1A85B97E00B17569 /* EditProfileViewController.xib */,
+				BFAE43541A8B05010085AB2B /* HomelessViewController.xib */,
 				8F22CBE71A27FDA70026376E /* KeyValueCollectionViewCell.xib */,
 				8F0004A31A2419730096477A /* LaunchScreen.xib */,
 				8F65C4FD1A51222100C7F3E6 /* LocationCollectionViewCell.xib */,
@@ -974,6 +980,7 @@
 				8F65C5081A52661700C7F3E6 /* SkillsCollectionViewCell.xib in Resources */,
 				8F4E53791A5A0D9E00DC876B /* NotesCollectionViewCell.xib in Resources */,
 				BF1DB65A1A76FA31006F2B7D /* AddNoteCollectionViewCell.xib in Resources */,
+				BFAE43561A8B05010085AB2B /* HomelessViewController.xib in Resources */,
 				8FF298481A4E050100306CFC /* SkillCollectionViewCell.xib in Resources */,
 				8F22CBE11A27A8E60026376E /* ProfileHeaderCollectionReusableView.xib in Resources */,
 				8F823E441A714B5D0006264B /* OrganizationHeaderCollectionReusableView.xib in Resources */,
@@ -1180,6 +1187,7 @@
 				8F085A951A6C191400F8139B /* TeamGridItemCollectionViewCell.swift in Sources */,
 				8F65C5071A52661700C7F3E6 /* SkillsCollectionViewCell.swift in Sources */,
 				8F65C4F51A50F28E00C7F3E6 /* CardHeaderCollectionReusableView.swift in Sources */,
+				BFAE43551A8B05010085AB2B /* HomelessViewController.swift in Sources */,
 				BF8DAC901A6D904D000860DD /* NoteService.swift in Sources */,
 				BFC6CF9C1A44D2B90081F45B /* ServiceClient.swift in Sources */,
 				8F74003F1A6A442900D96B60 /* CircleAlertViewAnimator.swift in Sources */,

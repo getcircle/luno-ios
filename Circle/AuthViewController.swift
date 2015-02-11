@@ -198,13 +198,18 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
         showLoadingState()
         UserService.Actions.authenticateUser(backend, credentials: credentials) { (user, token, error) -> Void in
             self.hideLoadingState()
-            if error != nil || user == nil {
+            if error != nil {
                 self.googleSignInButton.addShakeAnimation()
                 return
             }
             
             self.cacheLoginData(token!, user: user!)
-            self.fetchAndCacheUserProfile(user!.id) {
+            self.fetchAndCacheUserProfile(user!.id) { (error) in
+                if error != nil {
+                    self.dynamicType.presentHomelessViewController()
+                    return
+                }
+                
                 ObjectStore.sharedInstance.repopulate()
                 NSNotificationCenter.defaultCenter().postNotificationName(
                     AuthNotifications.onLoginNotification,
@@ -220,12 +225,13 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
         }
     }
     
-    private func fetchAndCacheUserProfile(userId: String, completion: () -> Void) {
+    private func fetchAndCacheUserProfile(userId: String, completion: (error: NSError?) -> Void) {
+        // XXX handle profile doesn't exist
         ProfileService.Actions.getProfile(userId: userId) { (profile, error) -> Void in
-            if error == nil {
-                self.dynamicType.updateUserProfile(profile!)
+            if let profile = profile {
+                self.dynamicType.updateUserProfile(profile)
             }
-            completion()
+            completion(error: error)
         }
     }
     
@@ -281,6 +287,11 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
     class func presentProfileVerification() {
         let verifyProfileVC = VerifyProfileViewController(nibName: "VerifyProfileViewController", bundle: nil)
         self.presentViewControllerWithNavigationController(verifyProfileVC)
+    }
+    
+    class func presentHomelessViewController() {
+        let homelessVC = HomelessViewController(nibName: "HomelessViewController", bundle: nil)
+        self.presentViewControllerWithNavigationController(homelessVC)
     }
     
     // MARK: - Logged In User Helpers
@@ -342,6 +353,11 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
     
     class func checkUser(#unverifiedPhoneHandler: (() -> Void)?, unverifiedProfileHandler: (() -> Void)?) -> Bool {
         if let user = getLoggedInUser() {
+            if getLoggedInUserProfile() == nil {
+                self.presentHomelessViewController()
+                return false
+            }
+            
             if !user.phone_number_verified {
                 if let handler = unverifiedPhoneHandler {
                     handler()
