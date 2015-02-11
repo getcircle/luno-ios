@@ -12,7 +12,7 @@ class StickyHeaderCollectionViewLayout: UICollectionViewFlowLayout, UICollection
     
     var headerHeight: CGFloat = 0.0
     // height of the navbar
-    var stickySectionHeight: CGFloat = 44.0
+    var stickySectionHeight: CGFloat = 44.0 + 20.0
     
     private var offsetToMakeHeaderSticky: CGFloat = 0.0
     private var cellHeight: CGFloat = 44.0

@@ -92,8 +92,8 @@ class ProfileOverlaidCollectionView: UICollectionView, UICollectionViewDelegate 
         
         layout = stickyLayout
         layout?.headerHeight = ProfileHeaderCollectionReusableView.height
-        // height of section indicator + height of navbar
-        layout?.stickySectionHeight = 84.0
+        // height of section indicator + status bar + navbar
+        layout?.stickySectionHeight = 40.0 + 20.0 + 44.0
         collectionViewDataSource = ProfileOverlaidCollectionViewDataSource(
             profile: profile!,
             sections: sections

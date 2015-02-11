@@ -132,4 +132,13 @@ extension UIViewController {
         
         return 0.0
     }
+    
+    func currentStatusBarHeight() -> CGFloat {
+        if !UIApplication.sharedApplication().statusBarHidden {
+            let statusBarFrame = view.window?.convertRect(UIApplication.sharedApplication().statusBarFrame, toView:view)
+            return statusBarFrame?.size.height ?? 0.0
+        }
+        
+        return 0.0
+    }
 }
