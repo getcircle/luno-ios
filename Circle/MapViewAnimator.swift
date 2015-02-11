@@ -20,11 +20,13 @@ class MapViewAnimator: NSObject, UIViewControllerAnimatedTransitioning {
         var fromViewController = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey) as UIViewController!
         var toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey) as UIViewController!
         
+        println(fromViewController)
+        println(toViewController)
         if toViewController is MapViewController {
             // present animation
             containerView.addSubview(toViewController.view)
 
-            var locationViewController = (fromViewController as UINavigationController).topViewController as LocationDetailViewController
+            var locationViewController = ((fromViewController as MainTabBarViewController).selectedViewController as UINavigationController).topViewController as LocationDetailViewController
             
             var mapViewController = toViewController as MapViewController
             mapViewController.mapView.frame = mapViewController.initialMapViewRect!
@@ -49,7 +51,7 @@ class MapViewAnimator: NSObject, UIViewControllerAnimatedTransitioning {
         else if fromViewController is MapViewController {
 
             // dismiss animation
-            var locationViewController = (toViewController as UINavigationController).topViewController as LocationDetailViewController
+            var locationViewController = ((toViewController as MainTabBarViewController).selectedViewController as UINavigationController).topViewController as LocationDetailViewController
             var mapViewController = fromViewController as MapViewController
             mapViewController.mapView.frameHeight = UIScreen.mainScreen().bounds.size.height
             mapViewController.closeButton.alpha = 1.0
