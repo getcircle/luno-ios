@@ -7,7 +7,7 @@
         <!--Home-->
         <scene sceneID="I8F-MY-69s">
             <objects>
-                <navigationController navigationBarHidden="YES" id="xqF-2W-85W" sceneMemberID="viewController">
+                <navigationController id="xqF-2W-85W" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Home" image="Home" id="xJk-VL-UwP">
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
                     </tabBarItem>
