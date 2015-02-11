@@ -51,8 +51,6 @@ NewNoteViewControllerDelegate {
     }
 
     @IBOutlet weak private(set) var activityIndicatorView: UIActivityIndicatorView!
-    @IBOutlet weak private(set) var addNoteQuickAction: UIButton!
-    @IBOutlet weak private(set) var addReminderQuickAction: UIButton!
     @IBOutlet weak private(set) var collectionView: UICollectionView!
     @IBOutlet weak private(set) var companyNameLabel: UILabel!
     @IBOutlet weak private(set) var searchHeaderContainerView: UIView!
@@ -61,7 +59,6 @@ NewNoteViewControllerDelegate {
     private var data = [Card]()
     private var firstLoad = false
     private var landingDataSource: SearchLandingDataSource!
-    private var loggedInUserProfileImageView: CircleImageView!
     private var searchHeaderView: SearchHeaderView!
     private var selectedAction: QuickAction = .None {
         didSet {
@@ -70,10 +67,6 @@ NewNoteViewControllerDelegate {
     }
     private var shadowAdded = false
     private var queryDataSource: SearchQueryDataSource!
-
-    private let offsetToTriggerMovingCollectionViewDown: CGFloat = -120.0
-    private let shadowOpacity: Float = 0.2
-    private let collectionViewScaleValue: CGFloat = 0.9
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -185,13 +178,7 @@ NewNoteViewControllerDelegate {
     }
     
     // MARK: - Load data
-    
-    private func loadUserProfileImage() {
-        if let userProfile = AuthViewController.getLoggedInUserProfile() {
-            loggedInUserProfileImageView.setImageWithProfile(userProfile)
-        }
-    }
-    
+
     private func loadOrganizationInfo() {
         // Get this from the server
         companyProfileImageView.image = UIImage(named: "EB")
@@ -422,7 +409,6 @@ NewNoteViewControllerDelegate {
     func userLoggedIn(notification: NSNotification!) {
         (collectionView.dataSource as? CardDataSource)?.resetCards()
         collectionView.reloadData()
-        loadUserProfileImage()
         loadData()
     }
     
