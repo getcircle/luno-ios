@@ -10,6 +10,8 @@ import Foundation
 import Alamofire
 import ProtobufRegistry
 
+let ServiceErrorDomain = "co.circlehq.circle.services"
+
 protocol ServiceTransport {
     func sendRequest(serviceRequest: ServiceRequest, completionHandler: ServiceCompletionHandler);
     func processRequest(serviceRequest: ServiceRequest, serializedRequest: NSData, completionHandler: ServiceCompletionHandler);
@@ -40,7 +42,19 @@ extension Request {
         return response(serializer: Request.ServiceResponseSerializer(), completionHandler: { (request, response, serviceResponse, error) in
             let serviceResponse = serviceResponse as? ServiceResponse
             let actionResponse = serviceResponse?.actions[0]
-            completionHandler(request, response, serviceResponse, actionResponse, error)
+            var serviceError = error
+            if serviceError == nil {
+                if let result = actionResponse?.result {
+                    if !result.success {
+                        let userInfo = [
+                            "errors": result.errors,
+                            "error_details": result.error_details,
+                        ]
+                        serviceError = NSError(domain: ServiceErrorDomain, code: -1, userInfo: userInfo)
+                    }
+                }
+            }
+            completionHandler(request, response, serviceResponse, actionResponse, serviceError)
         })
     }
 }
