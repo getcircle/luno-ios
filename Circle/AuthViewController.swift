@@ -206,7 +206,8 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
             self.cacheLoginData(token!, user: user!)
             self.fetchAndCacheUserProfile(user!.id) { (error) in
                 if error != nil {
-                    self.dynamicType.presentHomelessViewController()
+                    let homelessVC = HomelessViewController(nibName: "HomelessViewController", bundle: nil)
+                    self.navigationController?.setViewControllers([homelessVC], animated: true)
                     return
                 }
                 
