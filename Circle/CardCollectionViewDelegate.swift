@@ -104,6 +104,10 @@ class CardCollectionViewDelegate: NSObject, UICollectionViewDelegateFlowLayout, 
     
     // MARK: - ScrollViewDelegate
     
+    func scrollViewDidScrollToTop(scrollView: UIScrollView) {
+        delegate?.scrollViewDidScrollToTop?(scrollView)
+    }
+    
     func scrollViewDidScroll(scrollView: UIScrollView) {
         delegate?.scrollViewDidScroll?(scrollView)
     }

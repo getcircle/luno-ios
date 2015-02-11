@@ -88,7 +88,7 @@ NewNoteViewControllerDelegate {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
 
-        //navigationController?.setNavigationBarHidden(true, animated: false)
+        navigationController?.setNavigationBarHidden(true, animated: false)
         registerNotifications()
         loadData()
     }
@@ -96,13 +96,13 @@ NewNoteViewControllerDelegate {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        //navigationController?.setNavigationBarHidden(true, animated: false)
+        navigationController?.setNavigationBarHidden(true, animated: false)
         checkUserAndPresentAuthViewController()
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        //navigationController?.setNavigationBarHidden(false, animated: true)
+        navigationController?.setNavigationBarHidden(false, animated: true)
     }
 
     override func viewDidDisappear(animated: Bool) {
@@ -124,7 +124,6 @@ NewNoteViewControllerDelegate {
     // MARK: - Configuration
 
     private func configureView() {
-        view.backgroundColor = UIColor.viewBackgroundColor()
     }
 
     private func configureSearchHeaderView() {

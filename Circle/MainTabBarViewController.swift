@@ -24,18 +24,37 @@ class MainTabBarViewController: UITabBarController {
     
     private func configureTabBar() {
     
-        var tabBarViewControllers = viewControllers ?? [UIViewController]()
+        var tabBarViewControllers = [UIViewController]()
         
+        // Home Tab
+        let searchViewController = self.storyboard?.instantiateViewControllerWithIdentifier("SearchViewController") as SearchViewController
+        let searchNavigationController = UINavigationController(rootViewController: searchViewController)
+        let homeTabImage = UIImage(named: "Home")?.imageWithRenderingMode(.AlwaysTemplate)
+        searchNavigationController.tabBarItem = UITabBarItem(
+            title: "Home",
+            image: homeTabImage,
+            selectedImage: homeTabImage
+        )
+        tabBarViewControllers.append(searchNavigationController)
+
+
         if let loggedInUserProfile = AuthViewController.getLoggedInUserProfile() {
+            
+            // Organization Tab
             let orgVC = OrganizationDetailViewController()
             (orgVC.dataSource as OrganizationDetailDataSource).selectedOrgId = loggedInUserProfile.organization_id
             let navController = UINavigationController(rootViewController: orgVC)
             // Images for the organization tab
             let orgTabImage = UIImage(named: "Building")?.imageWithRenderingMode(.AlwaysTemplate)
-            let orgTabImageSelected = UIImage(named: "Building")?.imageWithRenderingMode(.AlwaysTemplate)
-            navController.tabBarItem = UITabBarItem(title: "Eventbrite", image: orgTabImage, selectedImage: orgTabImageSelected)
+            navController.tabBarItem = UITabBarItem(
+                title: "Eventbrite",
+                image: orgTabImage,
+                selectedImage: orgTabImage
+            )
             tabBarViewControllers.append(navController)
             
+            
+            // Profile Tab
             let profileViewController = ProfileDetailsViewController.forProfile(
                 loggedInUserProfile,
                 showLogOutButton: false,
@@ -44,18 +63,15 @@ class MainTabBarViewController: UITabBarController {
             
             let profileNavController = UINavigationController(rootViewController: profileViewController)
             let profileTabImage = UIImage(named: "Profile")?.imageWithRenderingMode(.AlwaysTemplate)
-            let profileTabImageSelected = UIImage(named: "Profile")?.imageWithRenderingMode(.AlwaysTemplate)
             profileNavController.tabBarItem = UITabBarItem(
                 title: "You",
                 image: profileTabImage,
-                selectedImage: profileTabImageSelected
+                selectedImage: profileTabImage
             )
             tabBarViewControllers.append(profileNavController)
         }
         
         setViewControllers(tabBarViewControllers, animated: true)
-        (tabBar.items!.first! as UITabBarItem).image = UIImage(named: "Home")?.imageWithRenderingMode(.AlwaysTemplate)
-        (tabBar.items!.first! as UITabBarItem).selectedImage = UIImage(named: "Home")?.imageWithRenderingMode(.AlwaysTemplate)
     }
     
 
