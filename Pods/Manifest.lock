@@ -20,20 +20,23 @@ PODS:
   - AFNetworking/UIKit (2.5.0):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - google-plus-ios-sdk (1.7.1)
   - libPhoneNumber-iOS (0.7.5)
   - PureLayout (2.0.3)
   - UIViewPlusPosition (0.0.1)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.5)
+  - google-plus-ios-sdk (~> 1.7)
   - libPhoneNumber-iOS (~> 0.7)
   - PureLayout (~> 2.0)
   - UIViewPlusPosition (~> 0.0)
 
 SPEC CHECKSUMS:
   AFNetworking: 0f54cb5d16ce38c1b76948faffb8d5fb705021c7
+  google-plus-ios-sdk: bb7b918c2ee0d5f5e389c4fddc06d71995481f67
   libPhoneNumber-iOS: 16b9556d7fdf4819eabeb7b7356fea3373fa47f9
   PureLayout: 9658675ed95dabfcdf5154c0771ec9ed0980b370
   UIViewPlusPosition: 247cbd6fd1802c3052b61f50e7c79f328255805b
 
-COCOAPODS: 0.35.0
+COCOAPODS: 0.36.0.beta.2

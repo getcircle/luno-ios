@@ -32,17 +32,15 @@ private let DefaultsUserKey = "DefaultsUserKey"
 private let DefaultsProfileKey = "DefaultsProfileKey"
 private let DefaultsLastLoggedInUserEmail = "DefaultsLastLoggedInUserEmail"
 
-class AuthViewController: UIViewController, UITextFieldDelegate {
+private let GoogleClientID = "1077014421904-pes3pbf96obmp75kb00qouoiqf18u78h.apps.googleusercontent.com"
+private let GoogleServerClientID = "1077014421904-1a697ks3qvtt6975qfqhmed8529en8s2.apps.googleusercontent.com"
+
+class AuthViewController: UIViewController, GPPSignInDelegate {
 
     @IBOutlet weak var appNameLabel: UILabel!
     @IBOutlet weak var appNameYConstraint: NSLayoutConstraint!
-    @IBOutlet weak var emailField: CircleTextField!
-    @IBOutlet weak var logInButton: UIButton!
-    @IBOutlet weak var passwordField: CircleTextField!
     @IBOutlet weak var tagLineLabel: UILabel!
-    
-    private var emailFieldBorderView: UIView!
-    private var passwordFieldBorderView: UIView!
+    @IBOutlet weak var googleSignInButton: GPPSignInButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,6 +48,7 @@ class AuthViewController: UIViewController, UITextFieldDelegate {
         // Do any additional setup after loading the view.
         configureAppNameLabel()
         configureView()
+        configureGoogleAuthentication()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -74,21 +73,32 @@ class AuthViewController: UIViewController, UITextFieldDelegate {
     
     private func configureView() {
         view.backgroundColor = UIColor.appTintColor()
-        emailFieldBorderView = emailField.addBottomBorder()
-        passwordFieldBorderView = passwordField.addBottomBorder()
-        logInButton.addRoundCorners()
+    }
+    
+    private func configureGoogleAuthentication() {
+        let googleSignIn = GPPSignIn.sharedInstance()
+        googleSignIn.shouldFetchGoogleUserID = true
+        googleSignIn.shouldFetchGoogleUserEmail = true
+        googleSignIn.clientID = GoogleClientID
+        googleSignIn.homeServerClientID = GoogleServerClientID
+        googleSignIn.scopes = [kGTLAuthScopePlusLogin, kGTLAuthScopePlusUserinfoEmail, kGTLAuthScopePlusUserinfoProfile]
+        googleSignIn.delegate = self
         
-        for textField in [emailField, passwordField] {
-            textField.tintColor = UIColor.whiteColor()
-            var textFieldLeftView = UIView(frame: CGRectMake(0.0, 0.0, 5.0, 30.0))
-            textFieldLeftView.backgroundColor = UIColor.appTintColor()
-            textFieldLeftView.opaque = true
-            textField.leftView = textFieldLeftView
-            textField.leftViewMode = .Always
-        }
-        
-        if let lastUsedEmail = NSUserDefaults.standardUserDefaults().objectForKey(DefaultsLastLoggedInUserEmail) as? String {
-            emailField.text = lastUsedEmail
+        googleSignInButton.colorScheme = kGPPSignInButtonColorSchemeLight
+        googleSignInButton.style = kGPPSignInButtonStyleWide
+    }
+    
+    // MARK: - GPPSignInDelegate
+    
+    func finishedWithAuth(auth: GTMOAuth2Authentication!, error: NSError!) {
+        println("auth: \(auth), error: \(error)")
+        if error == nil {
+            let credentials = UserService.AuthenticateUser.Request.Credentials.builder()
+            if let code = GPPSignIn.sharedInstance().homeServerAuthorizationCode? {
+                credentials.key = code
+            }
+            credentials.secret = GPPSignIn.sharedInstance().idToken
+            login(.Google, credentials: credentials.build())
         }
     }
     
@@ -99,11 +109,8 @@ class AuthViewController: UIViewController, UITextFieldDelegate {
         appNameLabel.setNeedsUpdateConstraints()
         UIView.animateWithDuration(0.7, animations: { () -> Void in
             self.appNameLabel.layoutIfNeeded()
-            self.emailField.layoutIfNeeded()
-            self.emailFieldBorderView.alpha = 0.0
-            self.logInButton.layoutIfNeeded()
-            self.passwordField.layoutIfNeeded()
-            self.passwordFieldBorderView.alpha = 0.0
+            self.googleSignInButton.alpha = 0.0
+            self.googleSignInButton.layoutIfNeeded()
             self.tagLineLabel.layoutIfNeeded()
         }, { (completed: Bool) -> Void in
             self.showFieldsAndControls(true)
@@ -113,56 +120,18 @@ class AuthViewController: UIViewController, UITextFieldDelegate {
     private func hideFieldsAndControls(animated: Bool) {
         let duration = animated ? 0.3 : 0.0
         UIView.animateWithDuration(duration, animations: { () -> Void in
-            self.emailField.alpha = 0.0
-            self.emailFieldBorderView.alpha = 0.0
-            self.logInButton.alpha = 0.0
-            self.passwordField.alpha = 0.0
-            self.passwordFieldBorderView.alpha = 0.0
+            self.googleSignInButton.alpha = 0.0
         })
     }
     
     private func showFieldsAndControls(animated: Bool) {
         let duration = animated ? 0.5 : 0.0
         UIView.animateWithDuration(duration, animations: { () -> Void in
-            self.emailField.alpha = 1.0
-            self.emailFieldBorderView.alpha = 1.0
-            self.logInButton.alpha = 1.0
-            self.passwordField.alpha = 1.0
-            self.passwordFieldBorderView.alpha = 1.0
-        }, { (completed: Bool) -> Void in
-            if self.emailField.text == "" {
-                self.emailField.becomeFirstResponder()
-            }
-            else {
-                self.passwordField.becomeFirstResponder()
-            }
-            return
+            self.googleSignInButton.alpha = 1.0
         })
     }
     
-    // MARK: - IBActions
-
-    @IBAction func logInButtonPressed(sender: AnyObject?) {
-        dismissKeyboard()
-        showLoadingState()
-        login()
-    }
-    
-    @IBAction func handleGesture(gestureRecognizer: UIGestureRecognizer) {
-        dismissKeyboard()
-    }
-    
     // MARK: - Helpers
-
-    private func dismissKeyboard() {
-        if emailField.isFirstResponder() {
-            emailField.resignFirstResponder()
-        }
-        
-        if passwordField.isFirstResponder() {
-            passwordField.resignFirstResponder()
-        }
-    }
     
     private class func loadCachedUser() -> UserService.Containers.User? {
         if let data = NSUserDefaults.standardUserDefaults().objectForKey(DefaultsUserKey) as? NSData {
@@ -213,29 +182,24 @@ class AuthViewController: UIViewController, UITextFieldDelegate {
     // MARK: - Loading State
     
     private func showLoadingState() {
-        emailField.enabled = false
-        passwordField.enabled = false
-        logInButton.enabled = false
+        googleSignInButton.enabled = false
     }
     
     private func hideLoadingState() {
-        emailField.enabled = true
-        passwordField.enabled = true
-        logInButton.enabled = true
+        googleSignInButton.enabled = true
     }
     
     // MARK: - Log in
     
-    private func login() {
-        UserService.Actions.authenticateUser(
-            UserService.AuthenticateUser.Request.AuthBackend.Internal,
-            email: emailField.text,
-            password: passwordField.text
-        ) { (user, token, error) -> Void in
+    private func login(
+        backend: UserService.AuthenticateUser.Request.AuthBackend,
+        credentials: UserService.AuthenticateUser.Request.Credentials
+    ) {
+        showLoadingState()
+        UserService.Actions.authenticateUser(backend, credentials: credentials) { (user, token, error) -> Void in
             self.hideLoadingState()
             if error != nil || user == nil {
-                self.logInButton.addShakeAnimation()
-                self.emailField.becomeFirstResponder()
+                self.googleSignInButton.addShakeAnimation()
                 return
             }
             
@@ -402,17 +366,5 @@ class AuthViewController: UIViewController, UITextFieldDelegate {
         }
         return true
     }
-    
-    // MARK: - UITextFieldDelegate
-    
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        if textField == emailField && passwordField.text == "" {
-            passwordField.becomeFirstResponder()
-        }
-        else {
-            logInButtonPressed(textField)
-        }
-        
-        return true
-    }
+
 }

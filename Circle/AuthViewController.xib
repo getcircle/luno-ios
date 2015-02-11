@@ -4,13 +4,11 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AuthViewController" customModule="Circle" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AuthViewController" customModule="circle" customModuleProvider="target">
             <connections>
                 <outlet property="appNameLabel" destination="7eh-3f-DhV" id="I1t-aw-slU"/>
                 <outlet property="appNameYConstraint" destination="Txn-xi-eRN" id="lVR-n5-JET"/>
-                <outlet property="emailField" destination="x4p-Uh-3t5" id="jj4-he-uxx"/>
-                <outlet property="logInButton" destination="aie-sS-pXs" id="zfO-wP-e3y"/>
-                <outlet property="passwordField" destination="faS-m0-daM" id="sFC-GE-qsU"/>
+                <outlet property="googleSignInButton" destination="cBC-Rj-jaa" id="Uiw-LZ-OjN"/>
                 <outlet property="tagLineLabel" destination="pK5-tP-ZNS" id="hiX-b0-xSM"/>
                 <outlet property="view" destination="ba3-xx-xRk" id="XSY-D5-AkP"/>
             </connections>
@@ -26,85 +24,62 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="pK5-tP-ZNS" userLabel="Tagline">
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" text="Know the people you work with" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="pK5-tP-ZNS" userLabel="Tagline">
+                    <rect key="frame" x="186" y="302" width="229" height="22"/>
                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <textField clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="email@yourcompany.com" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="x4p-Uh-3t5" customClass="CircleTextField" customModule="Circle" customModuleProvider="target">
-                    <rect key="frame" x="20" y="372" width="560" height="35"/>
-                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cBC-Rj-jaa" customClass="GPPSignInButton">
+                    <rect key="frame" x="285" y="424" width="30" height="34"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="35" id="wqu-FP-Y81"/>
+                        <constraint firstAttribute="width" constant="240" id="TIY-Mo-cJz"/>
+                        <constraint firstAttribute="height" constant="80" id="YVs-e4-v5k"/>
+                        <constraint firstAttribute="height" constant="60" id="blW-ZV-wAK"/>
+                        <constraint firstAttribute="width" constant="520" id="kGS-5B-R1E"/>
                     </constraints>
-                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
-                    <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" keyboardAppearance="alert" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
-                    <connections>
-                        <outlet property="delegate" destination="-1" id="ZRz-IN-IC8"/>
-                    </connections>
-                </textField>
-                <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aie-sS-pXs">
-                    <rect key="frame" x="180" y="502" width="240" height="44"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="240" id="MGZ-XU-QqL"/>
-                        <constraint firstAttribute="height" constant="44" id="NJT-DL-vlX"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="20"/>
-                    <color key="tintColor" red="0.88235294119999996" green="0.15686274510000001" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
-                    <state key="normal" title="Log In">
+                    <state key="normal">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
-                    <state key="disabled" title="Logging In..."/>
-                    <connections>
-                        <action selector="logInButtonPressed:" destination="-1" eventType="touchUpInside" id="3jQ-Pk-2XZ"/>
-                    </connections>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="TIY-Mo-cJz"/>
+                            <exclude reference="YVs-e4-v5k"/>
+                            <exclude reference="blW-ZV-wAK"/>
+                            <exclude reference="kGS-5B-R1E"/>
+                        </mask>
+                    </variation>
                 </button>
-                <textField clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="password" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="faS-m0-daM" userLabel="Password" customClass="CircleTextField" customModule="Circle" customModuleProvider="target">
-                    <rect key="frame" x="20" y="427" width="560" height="35"/>
-                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="35" id="GFh-hc-k2E"/>
-                    </constraints>
-                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
-                    <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" keyboardAppearance="alert" returnKeyType="go" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
-                    <connections>
-                        <outlet property="delegate" destination="-1" id="Kit-Vk-Cm3"/>
-                    </connections>
-                </textField>
             </subviews>
             <color key="backgroundColor" red="0.88235294119999996" green="0.15686274510000001" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="7eh-3f-DhV" firstAttribute="leading" secondItem="ba3-xx-xRk" secondAttribute="leading" constant="20" symbolic="YES" id="0ah-93-zJK"/>
-                <constraint firstItem="faS-m0-daM" firstAttribute="top" secondItem="x4p-Uh-3t5" secondAttribute="bottom" constant="20" id="5BW-Rz-L5d"/>
-                <constraint firstItem="aie-sS-pXs" firstAttribute="top" secondItem="faS-m0-daM" secondAttribute="bottom" constant="40" id="5cl-h8-CV5"/>
-                <constraint firstAttribute="centerX" secondItem="x4p-Uh-3t5" secondAttribute="centerX" id="8Ah-QW-Aiy"/>
+                <constraint firstItem="cBC-Rj-jaa" firstAttribute="centerX" secondItem="pK5-tP-ZNS" secondAttribute="centerX" constant="5.5" id="4Cs-nh-zUB"/>
+                <constraint firstItem="cBC-Rj-jaa" firstAttribute="centerX" secondItem="pK5-tP-ZNS" secondAttribute="centerX" id="FJj-dJ-X35"/>
                 <constraint firstAttribute="trailing" secondItem="7eh-3f-DhV" secondAttribute="trailing" constant="20" symbolic="YES" id="MwH-ef-daQ"/>
+                <constraint firstAttribute="trailing" secondItem="cBC-Rj-jaa" secondAttribute="trailing" constant="40" id="OFh-q2-wjP"/>
                 <constraint firstItem="pK5-tP-ZNS" firstAttribute="top" secondItem="7eh-3f-DhV" secondAttribute="bottom" id="Rhe-sv-hBS"/>
-                <constraint firstAttribute="centerX" secondItem="faS-m0-daM" secondAttribute="centerX" id="Rnk-Iw-DVV"/>
+                <constraint firstItem="cBC-Rj-jaa" firstAttribute="top" secondItem="pK5-tP-ZNS" secondAttribute="bottom" constant="100" id="S1K-Sr-GJ0"/>
                 <constraint firstAttribute="centerY" secondItem="7eh-3f-DhV" secondAttribute="centerY" constant="30" id="Txn-xi-eRN"/>
                 <constraint firstAttribute="trailing" secondItem="pK5-tP-ZNS" secondAttribute="trailing" priority="750" constant="20" symbolic="YES" id="ayW-Ox-miN"/>
-                <constraint firstAttribute="trailing" secondItem="x4p-Uh-3t5" secondAttribute="trailing" priority="750" constant="20" symbolic="YES" id="bLq-0P-NFV"/>
-                <constraint firstItem="faS-m0-daM" firstAttribute="width" secondItem="x4p-Uh-3t5" secondAttribute="width" id="hF5-6d-M0J"/>
-                <constraint firstAttribute="centerX" secondItem="aie-sS-pXs" secondAttribute="centerX" id="jgc-Eu-pO9"/>
-                <constraint firstItem="x4p-Uh-3t5" firstAttribute="leading" secondItem="ba3-xx-xRk" secondAttribute="leading" priority="750" constant="20" symbolic="YES" id="nUH-zl-LJ4"/>
                 <constraint firstItem="pK5-tP-ZNS" firstAttribute="leading" secondItem="ba3-xx-xRk" secondAttribute="leading" priority="750" constant="20" symbolic="YES" id="qQN-Uz-Gqd"/>
-                <constraint firstItem="x4p-Uh-3t5" firstAttribute="top" secondItem="pK5-tP-ZNS" secondAttribute="top" constant="70" id="qZy-xN-RVi"/>
                 <constraint firstAttribute="centerX" secondItem="7eh-3f-DhV" secondAttribute="centerX" id="v5g-9h-qkZ"/>
+                <constraint firstItem="cBC-Rj-jaa" firstAttribute="leading" secondItem="ba3-xx-xRk" secondAttribute="leading" constant="40" id="zJt-qD-miZ"/>
                 <constraint firstAttribute="centerX" secondItem="pK5-tP-ZNS" secondAttribute="centerX" id="zeZ-UU-ar7"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="4Cs-nh-zUB"/>
+                    <exclude reference="OFh-q2-wjP"/>
+                    <exclude reference="zJt-qD-miZ"/>
+                </mask>
+            </variation>
             <connections>
                 <outletCollection property="gestureRecognizers" destination="YoK-1K-HFw" appends="YES" id="E74-4a-osp"/>
             </connections>
             <point key="canvasLocation" x="548" y="455"/>
         </view>
-        <tapGestureRecognizer id="YoK-1K-HFw">
-            <connections>
-                <action selector="handleGesture:" destination="-1" id="44r-Ck-amS"/>
-            </connections>
-        </tapGestureRecognizer>
+        <tapGestureRecognizer id="YoK-1K-HFw"/>
     </objects>
 </document>

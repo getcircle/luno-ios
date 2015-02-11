@@ -42,6 +42,10 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 Unspecified.
 
 
+## google-plus-ios-sdk
+
+Copyright 2013 Google Inc.
+
 ## libPhoneNumber-iOS
 
                                  Apache License

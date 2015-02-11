@@ -751,6 +751,241 @@ final public class UserService : GeneratedMessage {
 
       //Nested type declaration start
 
+        final public class OAuthSDKDetails : GeneratedMessage {
+          override public subscript (key: String) -> Any? {
+                 switch key {
+                 case "code": return code
+                 case "id_token": return id_token
+                 default: return nil
+                 }
+          }
+
+          public private(set) var hasCode:Bool = false
+          public private(set) var code:String = ""
+
+          public private(set) var hasIdToken:Bool = false
+          public private(set) var id_token:String = ""
+
+          required public init() {
+               super.init()
+          }
+          override public func isInitialized() -> Bool {
+           return true
+          }
+          override public func writeToCodedOutputStream(output:CodedOutputStream) {
+            if hasCode {
+              output.writeString(1, value:code)
+            }
+            if hasIdToken {
+              output.writeString(2, value:id_token)
+            }
+            unknownFields.writeToCodedOutputStream(output)
+          }
+          override public func serializedSize() -> Int32 {
+            var size:Int32 = memoizedSerializedSize
+            if size != -1 {
+             return size
+            }
+
+            size = 0
+            if hasCode {
+              size += WireFormat.computeStringSize(1, value:code)
+            }
+            if hasIdToken {
+              size += WireFormat.computeStringSize(2, value:id_token)
+            }
+            size += unknownFields.serializedSize()
+            memoizedSerializedSize = size
+            return size
+          }
+          public class func parseFromData(data:[Byte]) -> UserService.Containers.OAuthSDKDetails {
+            return UserService.Containers.OAuthSDKDetails.builder().mergeFromData(data).build()
+          }
+          public class func parseFromData(data:[Byte], extensionRegistry:ExtensionRegistry) -> UserService.Containers.OAuthSDKDetails {
+            return UserService.Containers.OAuthSDKDetails.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
+          }
+          public class func parseFromInputStream(input:NSInputStream) -> UserService.Containers.OAuthSDKDetails {
+            return UserService.Containers.OAuthSDKDetails.builder().mergeFromInputStream(input).build()
+          }
+          public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->UserService.Containers.OAuthSDKDetails {
+            return UserService.Containers.OAuthSDKDetails.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
+          }
+          public class func parseFromCodedInputStream(input:CodedInputStream) -> UserService.Containers.OAuthSDKDetails {
+            return UserService.Containers.OAuthSDKDetails.builder().mergeFromCodedInputStream(input).build()
+          }
+          public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> UserService.Containers.OAuthSDKDetails {
+            return UserService.Containers.OAuthSDKDetails.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
+          }
+          public class func builder() -> UserService.Containers.OAuthSDKDetailsBuilder {
+            return UserService.Containers.OAuthSDKDetails.classBuilder() as UserService.Containers.OAuthSDKDetailsBuilder
+          }
+          public func builder() -> UserService.Containers.OAuthSDKDetailsBuilder {
+            return classBuilder() as UserService.Containers.OAuthSDKDetailsBuilder
+          }
+          public override class func classBuilder() -> MessageBuilder {
+            return UserService.Containers.OAuthSDKDetailsBuilder()
+          }
+          public override func classBuilder() -> MessageBuilder {
+            return UserService.Containers.OAuthSDKDetails.builder()
+          }
+          public func toBuilder() -> UserService.Containers.OAuthSDKDetailsBuilder {
+            return UserService.Containers.OAuthSDKDetails.builderWithPrototype(self)
+          }
+          public class func builderWithPrototype(prototype:UserService.Containers.OAuthSDKDetails) -> UserService.Containers.OAuthSDKDetailsBuilder {
+            return UserService.Containers.OAuthSDKDetails.builder().mergeFrom(prototype)
+          }
+          override public func writeDescriptionTo(inout output:String, indent:String) {
+            if hasCode {
+              output += "\(indent) code: \(code) \n"
+            }
+            if hasIdToken {
+              output += "\(indent) id_token: \(id_token) \n"
+            }
+            unknownFields.writeDescriptionTo(&output, indent:indent)
+          }
+          override public var hashValue:Int {
+              get {
+                  var hashCode:Int = 7
+                  if hasCode {
+                     hashCode = (hashCode &* 31) &+ code.hashValue
+                  }
+                  if hasIdToken {
+                     hashCode = (hashCode &* 31) &+ id_token.hashValue
+                  }
+                  hashCode = (hashCode &* 31) &+  unknownFields.hashValue
+                  return hashCode
+              }
+          }
+
+
+          //Meta information declaration start
+
+          override public class func className() -> String {
+              return "UserService.Containers.OAuthSDKDetails"
+          }
+          override public func className() -> String {
+              return "UserService.Containers.OAuthSDKDetails"
+          }
+          override public func classMetaType() -> GeneratedMessage.Type {
+              return UserService.Containers.OAuthSDKDetails.self
+          }
+
+
+          //Meta information declaration end
+
+        }
+
+        final public class OAuthSDKDetailsBuilder : GeneratedMessageBuilder {
+          private var builderResult:UserService.Containers.OAuthSDKDetails
+
+          required override public init () {
+             builderResult = UserService.Containers.OAuthSDKDetails()
+             super.init()
+          }
+          public var hasCode:Bool {
+               get {
+                    return builderResult.hasCode
+               }
+          }
+          public var code:String {
+               get {
+                    return builderResult.code
+               }
+               set (value) {
+                   builderResult.hasCode = true
+                   builderResult.code = value
+               }
+          }
+          public func clearCode() -> UserService.Containers.OAuthSDKDetailsBuilder{
+               builderResult.hasCode = false
+               builderResult.code = ""
+               return self
+          }
+          public var hasIdToken:Bool {
+               get {
+                    return builderResult.hasIdToken
+               }
+          }
+          public var id_token:String {
+               get {
+                    return builderResult.id_token
+               }
+               set (value) {
+                   builderResult.hasIdToken = true
+                   builderResult.id_token = value
+               }
+          }
+          public func clearIdToken() -> UserService.Containers.OAuthSDKDetailsBuilder{
+               builderResult.hasIdToken = false
+               builderResult.id_token = ""
+               return self
+          }
+          override public var internalGetResult:GeneratedMessage {
+               get {
+                  return builderResult
+               }
+          }
+          public override func clear() -> UserService.Containers.OAuthSDKDetailsBuilder {
+            builderResult = UserService.Containers.OAuthSDKDetails()
+            return self
+          }
+          public override func clone() -> UserService.Containers.OAuthSDKDetailsBuilder {
+            return UserService.Containers.OAuthSDKDetails.builderWithPrototype(builderResult)
+          }
+          public override func build() -> UserService.Containers.OAuthSDKDetails {
+               checkInitialized()
+               return buildPartial()
+          }
+          public func buildPartial() -> UserService.Containers.OAuthSDKDetails {
+            var returnMe:UserService.Containers.OAuthSDKDetails = builderResult
+            return returnMe
+          }
+          public func mergeFrom(other:UserService.Containers.OAuthSDKDetails) -> UserService.Containers.OAuthSDKDetailsBuilder {
+            if other.hasCode {
+                 code = other.code
+            }
+            if other.hasIdToken {
+                 id_token = other.id_token
+            }
+            mergeUnknownFields(other.unknownFields)
+            return self
+          }
+          public override func mergeFromCodedInputStream(input:CodedInputStream) ->UserService.Containers.OAuthSDKDetailsBuilder {
+               return mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
+          }
+          public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> UserService.Containers.OAuthSDKDetailsBuilder {
+            var unknownFieldsBuilder:UnknownFieldSetBuilder = UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
+            while (true) {
+              var tag = input.readTag()
+              switch tag {
+              case 0: 
+                self.unknownFields = unknownFieldsBuilder.build()
+                return self
+
+              case 10 :
+                code = input.readString()
+
+              case 18 :
+                id_token = input.readString()
+
+              default:
+                if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
+                   unknownFields = unknownFieldsBuilder.build()
+                   return self
+                }
+              }
+            }
+          }
+        }
+
+
+
+      //Nested type declaration end
+
+
+
+      //Nested type declaration start
+
         final public class Identity : GeneratedMessage {
           override public subscript (key: String) -> Any? {
                  switch key {
@@ -3959,6 +4194,7 @@ final public class UserService : GeneratedMessage {
 
             public enum AuthBackend:Int32 {
               case Internal = 0
+              case Google = 1
 
               public static func IsValidValue(value:Int32) ->Bool {
                   if let check = AuthBackend(rawValue:value) {
@@ -6350,6 +6586,7 @@ final public class UserService : GeneratedMessage {
                  switch key {
                  case "provider": return Int(self.provider.rawValue)
                  case "oauth2_details": return oauth2_details
+                 case "oauth_sdk_details": return oauth_sdk_details
                  default: return nil
                  }
           }
@@ -6358,6 +6595,8 @@ final public class UserService : GeneratedMessage {
           public private(set) var hasProvider:Bool = false
           public private(set) var hasOauth2Details:Bool = false
           public private(set) var oauth2_details:UserService.Containers.OAuth2Details = UserService.Containers.OAuth2Details()
+          public private(set) var hasOauthSdkDetails:Bool = false
+          public private(set) var oauth_sdk_details:UserService.Containers.OAuthSDKDetails = UserService.Containers.OAuthSDKDetails()
           required public init() {
                super.init()
           }
@@ -6370,6 +6609,9 @@ final public class UserService : GeneratedMessage {
             }
             if hasOauth2Details {
               output.writeMessage(2, value:oauth2_details)
+            }
+            if hasOauthSdkDetails {
+              output.writeMessage(3, value:oauth_sdk_details)
             }
             unknownFields.writeToCodedOutputStream(output)
           }
@@ -6385,6 +6627,9 @@ final public class UserService : GeneratedMessage {
             }
             if hasOauth2Details {
               size += WireFormat.computeMessageSize(2, value:oauth2_details)
+            }
+            if hasOauthSdkDetails {
+              size += WireFormat.computeMessageSize(3, value:oauth_sdk_details)
             }
             size += unknownFields.serializedSize()
             memoizedSerializedSize = size
@@ -6435,6 +6680,11 @@ final public class UserService : GeneratedMessage {
               oauth2_details.writeDescriptionTo(&output, indent:"\(indent)  ")
               output += "\(indent) }\n"
             }
+            if hasOauthSdkDetails {
+              output += "\(indent) oauth_sdk_details {\n"
+              oauth_sdk_details.writeDescriptionTo(&output, indent:"\(indent)  ")
+              output += "\(indent) }\n"
+            }
             unknownFields.writeDescriptionTo(&output, indent:indent)
           }
           override public var hashValue:Int {
@@ -6445,6 +6695,9 @@ final public class UserService : GeneratedMessage {
                   }
                   if hasOauth2Details {
                     hashCode = (hashCode &* 31) &+ oauth2_details.hashValue
+                  }
+                  if hasOauthSdkDetails {
+                    hashCode = (hashCode &* 31) &+ oauth_sdk_details.hashValue
                   }
                   hashCode = (hashCode &* 31) &+  unknownFields.hashValue
                   return hashCode
@@ -6527,6 +6780,38 @@ final public class UserService : GeneratedMessage {
             builderResult.oauth2_details = UserService.Containers.OAuth2Details()
             return self
           }
+          public var hasOauthSdkDetails:Bool {
+               get {
+                   return builderResult.hasOauthSdkDetails
+               }
+          }
+          public var oauth_sdk_details:UserService.Containers.OAuthSDKDetails {
+               get {
+                   return builderResult.oauth_sdk_details
+               }
+               set (value) {
+                   builderResult.hasOauthSdkDetails = true
+                   builderResult.oauth_sdk_details = value
+               }
+          }
+          public func setOauthSdkDetailsBuilder(builderForValue:UserService.Containers.OAuthSDKDetailsBuilder) -> UserService.CompleteAuthorization.RequestBuilder {
+            oauth_sdk_details = builderForValue.build()
+            return self
+          }
+          public func mergeOauthSdkDetails(value:UserService.Containers.OAuthSDKDetails) -> UserService.CompleteAuthorization.RequestBuilder {
+            if (builderResult.hasOauthSdkDetails) {
+              builderResult.oauth_sdk_details = UserService.Containers.OAuthSDKDetails.builderWithPrototype(builderResult.oauth_sdk_details).mergeFrom(value).buildPartial()
+            } else {
+              builderResult.oauth_sdk_details = value
+            }
+            builderResult.hasOauthSdkDetails = true
+            return self
+          }
+          public func clearOauthSdkDetails() -> UserService.CompleteAuthorization.RequestBuilder {
+            builderResult.hasOauthSdkDetails = false
+            builderResult.oauth_sdk_details = UserService.Containers.OAuthSDKDetails()
+            return self
+          }
           override public var internalGetResult:GeneratedMessage {
                get {
                   return builderResult
@@ -6553,6 +6838,9 @@ final public class UserService : GeneratedMessage {
             }
             if (other.hasOauth2Details) {
                 mergeOauth2Details(other.oauth2_details)
+            }
+            if (other.hasOauthSdkDetails) {
+                mergeOauthSdkDetails(other.oauth_sdk_details)
             }
             mergeUnknownFields(other.unknownFields)
             return self
@@ -6584,6 +6872,14 @@ final public class UserService : GeneratedMessage {
                 }
                 input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
                 oauth2_details = subBuilder.buildPartial()
+
+              case 26 :
+                var subBuilder:UserService.Containers.OAuthSDKDetailsBuilder = UserService.Containers.OAuthSDKDetails.builder()
+                if hasOauthSdkDetails {
+                  subBuilder.mergeFrom(oauth_sdk_details)
+                }
+                input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
+                oauth_sdk_details = subBuilder.buildPartial()
 
               default:
                 if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
@@ -7027,6 +7323,7 @@ final public class UserService : GeneratedMessage {
     public enum Provider:Int32 {
       case Internal = 0
       case Linkedin = 1
+      case Google = 2
 
       public static func IsValidValue(value:Int32) ->Bool {
           if let check = Provider(rawValue:value) {
@@ -7209,6 +7506,18 @@ public extension UserService.Containers.OAuth2Details {
         var bytes = [Byte](count: data.length, repeatedValue: 0)
         data.getBytes(&bytes)
         return UserService.Containers.OAuth2Details.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
+    }
+}
+public extension UserService.Containers.OAuthSDKDetails {
+    class func parseFromNSData(data:NSData) -> UserService.Containers.OAuthSDKDetails {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return UserService.Containers.OAuthSDKDetails.builder().mergeFromData(bytes).build()
+    }
+    class func parseFromNSData(data:NSData, extensionRegistry:ExtensionRegistry) -> UserService.Containers.OAuthSDKDetails {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return UserService.Containers.OAuthSDKDetails.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
     }
 }
 public extension UserService.Containers.Identity {

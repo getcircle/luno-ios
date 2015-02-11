@@ -21,18 +21,12 @@ extension UserService {
     
         class func authenticateUser(
             backend: UserService.AuthenticateUser.Request.AuthBackend,
-            email: String,
-            password: String,
+            credentials: UserService.AuthenticateUser.Request.Credentials,
             completionHandler: AuthenticateUserCompletionHandler?
         ) {
             let requestBuilder = UserService.AuthenticateUser.Request.builder()
             requestBuilder.backend = backend
-            
-            let credentials = requestBuilder.credentials.builder()
-            credentials.key = email
-            credentials.secret = password
-            requestBuilder.credentials = credentials.build()
-
+            requestBuilder.credentials = credentials
             let client = ServiceClient(serviceName: "user")
             client.callAction("authenticate_user", extensionField: UserServiceRequests_authenticate_user, requestBuilder: requestBuilder) {
                 (_, _, _, actionResponse, error) in
@@ -106,11 +100,21 @@ extension UserService {
             }
         }
         
-        class func completeAuthorization(provider: UserService.Provider, oauth2Details: UserService.Containers.OAuth2Details, completionHandler: CompleteAuthorizationCompletionHandler?) {
+        class func completeAuthorization(
+            provider: UserService.Provider,
+            oAuth2Details: UserService.Containers.OAuth2Details?,
+            oAuthSDKDetails: UserService.Containers.OAuthSDKDetails?,
+            completionHandler: CompleteAuthorizationCompletionHandler?
+        ) {
             let requestBuilder = UserService.CompleteAuthorization.Request.builder()
             requestBuilder.provider = provider
-            requestBuilder.oauth2_details = oauth2Details
-            
+            if let oAuth2Details = oAuth2Details {
+                requestBuilder.oauth2_details = oAuth2Details
+            }
+            if let oAuthSDKDetails = oAuthSDKDetails {
+                requestBuilder.oauth_sdk_details = oAuthSDKDetails
+            }
+
             let client = ServiceClient(serviceName: "user")
             client.callAction(
                 "complete_authorization",
