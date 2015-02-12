@@ -154,6 +154,7 @@
 		BFAE43561A8B05010085AB2B /* HomelessViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFAE43541A8B05010085AB2B /* HomelessViewController.xib */; };
 		BFB791891A2C346A0048E8FB /* CALayerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB791881A2C346A0048E8FB /* CALayerExtension.swift */; };
 		BFB7918B1A2C3C860048E8FB /* SpringFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB7918A1A2C3C860048E8FB /* SpringFlowLayout.swift */; };
+		BFB83F131A8D2D80000223C0 /* Mixpanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB83F121A8D2D80000223C0 /* Mixpanel.swift */; };
 		BFBC44011A7212FA007202E7 /* ProfileOverlaidCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBC44001A7212FA007202E7 /* ProfileOverlaidCollectionView.swift */; };
 		BFC6CF9C1A44D2B90081F45B /* ServiceClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC6CF9B1A44D2B90081F45B /* ServiceClient.swift */; };
 		BFE213C81A5EE63F0033E2F5 /* SearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE213C71A5EE63F0033E2F5 /* SearchService.swift */; };
@@ -404,6 +405,7 @@
 		BFAE43541A8B05010085AB2B /* HomelessViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomelessViewController.xib; sourceTree = "<group>"; };
 		BFB791881A2C346A0048E8FB /* CALayerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CALayerExtension.swift; sourceTree = "<group>"; };
 		BFB7918A1A2C3C860048E8FB /* SpringFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpringFlowLayout.swift; sourceTree = "<group>"; };
+		BFB83F121A8D2D80000223C0 /* Mixpanel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mixpanel.swift; sourceTree = "<group>"; };
 		BFBC44001A7212FA007202E7 /* ProfileOverlaidCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileOverlaidCollectionView.swift; sourceTree = "<group>"; };
 		BFC6CF9B1A44D2B90081F45B /* ServiceClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceClient.swift; sourceTree = "<group>"; };
 		BFE213C71A5EE63F0033E2F5 /* SearchService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchService.swift; sourceTree = "<group>"; };
@@ -473,6 +475,7 @@
 				BFFB19F91A4872E200CCFFC3 /* Locksmith.xcodeproj */,
 				BF24FCF21A4A25E6003DF4C2 /* ProtobufRegistry.xcodeproj */,
 				8F0004951A2419730096477A /* AppDelegate.swift */,
+				BFB83F0E1A8D2D6F000223C0 /* Analytics */,
 				8F02B1F21A53DEBB00A1A307 /* Animators */,
 				8F0004C41A25BA510096477A /* Assets */,
 				8F22CBF31A2864CC0026376E /* DataSources */,
@@ -778,6 +781,14 @@
 				BF2CBFD51A473E9100BE589D /* UserService.swift */,
 			);
 			name = Services;
+			sourceTree = "<group>";
+		};
+		BFB83F0E1A8D2D6F000223C0 /* Analytics */ = {
+			isa = PBXGroup;
+			children = (
+				BFB83F121A8D2D80000223C0 /* Mixpanel.swift */,
+			);
+			name = Analytics;
 			sourceTree = "<group>";
 		};
 		BFC6CF9A1A44D2AB0081F45B /* SOA */ = {
@@ -1180,6 +1191,7 @@
 				BFE213CD1A5EF7E30033E2F5 /* AppDelegateSearchCacheExtension.swift in Sources */,
 				8F22CBE81A27FDA70026376E /* KeyValueCollectionViewCell.swift in Sources */,
 				BF9D72121A68492C002CDC66 /* ObjectStore.swift in Sources */,
+				BFB83F131A8D2D80000223C0 /* Mixpanel.swift in Sources */,
 				BFA5E4861A72C942008826F0 /* StickyHeaderCollectionViewDelegate.swift in Sources */,
 				8F65C5011A51462500C7F3E6 /* CircleCollectionViewCell.swift in Sources */,
 				8FD907FB1A6072360025A17B /* MapViewAnimator.swift in Sources */,
@@ -1342,6 +1354,10 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Circle",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
 				);
 				INFOPLIST_FILE = Circle/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

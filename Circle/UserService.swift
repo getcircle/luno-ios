@@ -9,7 +9,7 @@
 import Foundation
 import ProtobufRegistry
 
-typealias AuthenticateUserCompletionHandler = (user: UserService.Containers.User?, token: String?, error: NSError?) -> Void
+typealias AuthenticateUserCompletionHandler = (user: UserService.Containers.User?, token: String?, newUser: Bool?, error: NSError?) -> Void
 typealias UpdateUserCompletionHandler = (user: UserService.Containers.User?, error: NSError?) -> Void
 typealias SendVerificationCodeCompletionHandler = (error: NSError?) -> Void
 typealias VerifyVerificationCodeCompletionHandler = (verified: Bool?, error: NSError?) -> Void
@@ -31,7 +31,7 @@ extension UserService {
             client.callAction("authenticate_user", extensionField: UserServiceRequests_authenticate_user, requestBuilder: requestBuilder) {
                 (_, _, _, actionResponse, error) in
                 let response = actionResponse?.result.getExtension(UserServiceRequests_authenticate_user) as? UserService.AuthenticateUser.Response
-                completionHandler?(user: response?.user, token: response?.token, error: error)
+                completionHandler?(user: response?.user, token: response?.token, newUser: response?.new_user, error: error)
             }
         }
         

@@ -1,6 +1,5 @@
 package main.user_service;
 
-
 message UserService {
 
     enum Provider {
@@ -112,8 +111,9 @@ message UserService {
 
         message Response {
             optional Containers.User user = 1;
-            optional bool authenticated = 2 [default = false];
+            optional bool authenticated = 2;
             optional string token = 3;
+            optional bool new_user = 4;
         }
 
     }
@@ -166,6 +166,19 @@ message UserService {
         message Response {
             optional Containers.User user = 1;
             optional Containers.Identity identity = 2;
+            optional bool new_user = 3;
+        }
+
+    }
+
+    message GetIdentities {
+
+        message Request {
+            optional string user_id = 1;
+        }
+
+        message Response {
+            repeated Containers.Identity identities = 1;
         }
 
     }

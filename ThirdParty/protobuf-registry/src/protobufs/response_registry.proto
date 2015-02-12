@@ -21,6 +21,7 @@ message UserServiceResponses {
         optional main.user_service.UserService.UpdateUser.Response update_user = 106;
         optional main.user_service.UserService.GetAuthorizationInstructions.Response get_authorization_instructions = 107;
         optional main.user_service.UserService.CompleteAuthorization.Response complete_authorization = 108;
+        optional main.user_service.UserService.GetIdentities.Response get_identities = 109;
     }
 }
 

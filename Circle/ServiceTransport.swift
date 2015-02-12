@@ -101,10 +101,18 @@ struct ServiceHttpRequest: URLRequestConvertible {
             }
             return NSURL(string: url)!
         }
+        
+        var name: String {
+            switch self {
+            case .Local: return "local"
+            case .Staging: return "staging"
+            case .Production: return "production"
+            }
+        }
     }
     
-    static let environment = Environment.Staging
-//    static let environment = Environment.Local
+//    static let environment = Environment.Staging
+    static let environment = Environment.Local
     
     var data: NSData
     var token: String?

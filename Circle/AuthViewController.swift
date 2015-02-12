@@ -86,12 +86,13 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
         
         googleSignInButton.colorScheme = kGPPSignInButtonColorSchemeLight
         googleSignInButton.style = kGPPSignInButtonStyleWide
+        
+        googleSignInButton.addTarget(self, action: "startingGoogleAuthentication:", forControlEvents: .TouchUpInside)
     }
     
     // MARK: - GPPSignInDelegate
     
     func finishedWithAuth(auth: GTMOAuth2Authentication!, error: NSError!) {
-        println("auth: \(auth), error: \(error)")
         if error == nil {
             let credentials = UserService.AuthenticateUser.Request.Credentials.builder()
             if let code = GPPSignIn.sharedInstance().homeServerAuthorizationCode? {
@@ -129,6 +130,12 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
         UIView.animateWithDuration(duration, animations: { () -> Void in
             self.googleSignInButton.alpha = 1.0
         })
+    }
+    
+    // MARK: - Targets
+    
+    func startingGoogleAuthentication(sender: AnyObject!) {
+        showLoadingState()
     }
     
     // MARK: - Helpers
@@ -195,14 +202,16 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
         backend: UserService.AuthenticateUser.Request.AuthBackend,
         credentials: UserService.AuthenticateUser.Request.Credentials
     ) {
-        showLoadingState()
-        UserService.Actions.authenticateUser(backend, credentials: credentials) { (user, token, error) -> Void in
+        UserService.Actions.authenticateUser(backend, credentials: credentials) { (user, token, newUser, error) -> Void in
             self.hideLoadingState()
             if error != nil {
                 self.googleSignInButton.addShakeAnimation()
                 return
             }
-            
+
+            Mixpanel.identifyUser(user!, newUser: newUser!)
+            Mixpanel.registerSuperPropertiesForUser(user!)
+            self.trackSignupLogin(backend, newUser: newUser!)
             self.cacheLoginData(token!, user: user!)
             self.fetchAndCacheUserProfile(user!.id) { (error) in
                 if error != nil {
@@ -223,6 +232,15 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
                     self.dismissViewControllerAnimated(true, completion: nil)
                 }
             }
+        }
+    }
+    
+    private func trackSignupLogin(backend: UserService.AuthenticateUser.Request.AuthBackend, newUser: Bool) {
+        let properties = ["backend": String(backend.rawValue)]
+        if newUser {
+            Mixpanel.sharedInstance().track(UserSignupTrackingKey, properties: properties)
+        } else {
+            Mixpanel.sharedInstance().track(UserLoginTrackingKey, properties: properties)
         }
     }
     

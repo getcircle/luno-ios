@@ -20,8 +20,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Customize Appearance
         customizeAppearance(application)
 
-        // Setup Crashlytics
+        // Setup Third Party Services
         Crashlytics.startWithAPIKey("e4192b2c032ea5f8065aac4bde634b85760f8d49")
+        Mixpanel.setup()
 
         // Populate the Search Cache
         loadStoreForUser()
@@ -31,6 +32,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
         return GPPURLHandler.handleURL(url, sourceApplication: sourceApplication, annotation: annotation)
+    }
+    
+    func applicationDidBecomeActive(application: UIApplication) {
+        Mixpanel.trackSessionStart()
+    }
+    
+    func applicationDidEnterBackground(application: UIApplication) {
+        Mixpanel.trackSessionEnd()
     }
     
 }
