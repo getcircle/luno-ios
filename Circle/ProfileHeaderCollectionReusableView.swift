@@ -39,12 +39,13 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
     var tappedButtonIndex: Int?
     private(set) var visualEffectView: UIVisualEffectView!
     
+    private var buttonSize = CGSizeZero
+    private var profile: ProfileService.Containers.Profile?
     private var sectionIndicatorView: UIView?
     private var sectionIndicatorLeftOffsetConstraint: NSLayoutConstraint?
     private var sectionIndicatorWidthConstraint: NSLayoutConstraint?
     private var sectionIndicatorViewIsAnimating = false
     private var segmentedControlButtons = [UIButton]()
-    private var buttonSize = CGSizeZero
     
     override class var classReuseIdentifier: String {
         return "ProfileHeaderView"
@@ -78,15 +79,16 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
         }
     }
     
-    func setProfile(profile: ProfileService.Containers.Profile) {
-        nameLabel.text = profile.first_name + " " + profile.last_name
+    func setProfile(userProfile: ProfileService.Containers.Profile) {
+        profile = userProfile
+        nameLabel.text = userProfile.first_name + " " + userProfile.last_name
         nameNavLabel.text = nameLabel.text
-        titleLabel.text = profile.title
-        profileImage.setImageWithProfile(profile)
+        titleLabel.text = userProfile.title
+        profileImage.setImageWithProfile(userProfile)
         backgroundImage.setImageWithURL(
-            NSURL(string: profile.image_url)
+            NSURL(string: userProfile.image_url)
         )
-        verifiedProfileButton.hidden = !profile.verified
+        verifiedProfileButton.hidden = !userProfile.verified
     }
     
     // MARK: - Segmented Control
@@ -207,6 +209,8 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
     
     @IBAction func quickActionTapped(sender: UIButton) {
         var selectedQuickAction = QuickAction.None
+        var userInfo = [String: AnyObject]()
+        
         switch sender {
         case emailQuickActionButton:
             selectedQuickAction = .Email
@@ -218,16 +222,23 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
     
         case phoneQuickActionButton:
             selectedQuickAction = .Phone
+            if let cellPhone = profile?.cell_phone  {
+                userInfo["additionalData"] = cellPhone
+            }
+            else if let workPhone = profile?.work_phone {
+                userInfo["additionalData"] = workPhone
+            }
             break
 
         default:
             break
         }
         
+        userInfo["quickAction"] = selectedQuickAction.rawValue
         NSNotificationCenter.defaultCenter().postNotificationName(
             UIViewController.QuickActionNotifications.QuickActionSelected,
             object: nil,
-            userInfo: ["quickAction": selectedQuickAction.rawValue]
+            userInfo: userInfo
         )
     }
 }

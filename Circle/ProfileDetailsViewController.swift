@@ -191,8 +191,11 @@ class ProfileDetailsViewController:
     
     private func handleKeyValueCardSelection(dataSource: ProfileDetailDataSource, indexPath: NSIndexPath) {
         switch dataSource.typeOfCell(indexPath) {
+        case .CellPhone:
+            performQuickAction(.Phone, additionalData: profile.cell_phone)
+
         case .Email:
-            presentMailViewController([profile.email], subject: "Hey", messageBody: "", completionHandler: nil)
+            performQuickAction(.Email)
         
         case .Location:
             let locationDetailVC = LocationDetailViewController()
@@ -204,13 +207,16 @@ class ProfileDetailsViewController:
             let profileVC = ProfileDetailsViewController.forProfile(dataSource.manager!)
             profileVC.hidesBottomBarWhenPushed = true
             navigationController?.pushViewController(profileVC, animated: true)
-            
+
         case .Team:
             let teamVC = TeamDetailViewController()
             (teamVC.dataSource as TeamDetailDataSource).selectedTeam = dataSource.team!
             teamVC.hidesBottomBarWhenPushed = true
             navigationController?.pushViewController(teamVC, animated: true)
-        
+
+        case .WorkPhone:
+            performQuickAction(.Phone, additionalData: profile.work_phone)
+
         default:
             break
         }
@@ -373,29 +379,47 @@ class ProfileDetailsViewController:
         if let userInfo = notification.userInfo {
             if let quickAction = userInfo["quickAction"] as? Int {
                 if let quickActionType = QuickAction(rawValue: quickAction) {
-                    switch quickActionType {
-                    case .Email:
-                        presentMailViewController(
-                            [profile.email],
-                            subject: "Hey",
-                            messageBody: "",
-                            completionHandler: nil
-                        )
-                        
-                    case .Message:
-                        var recipient = profile.cell_phone ?? profile.email
-                        presentMessageViewController(
-                            [recipient],
-                            subject: "Hey",
-                            messageBody: "",
-                            completionHandler: nil
-                        )
-                        
-                    default:
-                        break
+                    var additionalData: AnyObject?
+                    if quickActionType == .Phone {
+                        if let phoneNumber = userInfo["additionalData"] as? String {
+                            additionalData = phoneNumber
+                        }
                     }
+                    
+                    performQuickAction(quickActionType, additionalData: additionalData)
                 }
             }
+        }
+    }
+    
+    private func performQuickAction(quickAction: QuickAction, additionalData: AnyObject? = nil) {
+        switch quickAction {
+        case .Email:
+            presentMailViewController(
+                [profile.email],
+                subject: "Hey",
+                messageBody: "",
+                completionHandler: nil
+            )
+            
+        case .Message:
+            var recipient = profile.cell_phone ?? profile.email
+            presentMessageViewController(
+                [recipient],
+                subject: "Hey",
+                messageBody: "",
+                completionHandler: nil
+            )
+            
+        case .Phone:
+            if let number = additionalData as? String {
+                if let phoneURL = NSURL(string: NSString(format: "tel://%@", number.removePhoneNumberFormatting())) {
+                    UIApplication.sharedApplication().openURL(phoneURL)
+                }
+            }
+            
+        default:
+            break
         }
     }
     

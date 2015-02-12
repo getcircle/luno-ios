@@ -52,4 +52,21 @@ extension String {
     func trimWhitespace() -> String {
         return self.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
     }
+    
+    /**
+        Removes spaces, brances, hypens from a phone number string.
+        Although this function can be called for all strings, the recommended use case is to call
+        it on a formatted phone number.
+    
+        There is currently no validation that the final string is a valid phone number.
+    
+        :returns:
+    */
+    func removePhoneNumberFormatting() -> String {
+        var phoneNumber = self.stringByReplacingOccurrencesOfString(" ", withString: "", options: .LiteralSearch, range: nil)
+        phoneNumber = phoneNumber.stringByReplacingOccurrencesOfString("(", withString: "", options: .LiteralSearch, range: nil)
+        phoneNumber = phoneNumber.stringByReplacingOccurrencesOfString(")", withString: "", options: .LiteralSearch, range: nil)
+        phoneNumber = phoneNumber.stringByReplacingOccurrencesOfString("-", withString: "", options: .LiteralSearch, range: nil)
+        return phoneNumber
+    }
 }

@@ -38,6 +38,7 @@ enum ContentType: Int {
     case Skills
     case Team
     case Twitter
+    case WorkPhone
 }
 
 class SectionItem {
@@ -330,5 +331,4 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
         
         return .Other
     }
-    
 }
