@@ -155,6 +155,7 @@
 		BFB791891A2C346A0048E8FB /* CALayerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB791881A2C346A0048E8FB /* CALayerExtension.swift */; };
 		BFB7918B1A2C3C860048E8FB /* SpringFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB7918A1A2C3C860048E8FB /* SpringFlowLayout.swift */; };
 		BFB83F131A8D2D80000223C0 /* Mixpanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB83F121A8D2D80000223C0 /* Mixpanel.swift */; };
+		BFB83F171A8D63B7000223C0 /* Tracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB83F161A8D63B7000223C0 /* Tracker.swift */; };
 		BFBC44011A7212FA007202E7 /* ProfileOverlaidCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBC44001A7212FA007202E7 /* ProfileOverlaidCollectionView.swift */; };
 		BFC6CF9C1A44D2B90081F45B /* ServiceClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC6CF9B1A44D2B90081F45B /* ServiceClient.swift */; };
 		BFE213C81A5EE63F0033E2F5 /* SearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE213C71A5EE63F0033E2F5 /* SearchService.swift */; };
@@ -406,6 +407,7 @@
 		BFB791881A2C346A0048E8FB /* CALayerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CALayerExtension.swift; sourceTree = "<group>"; };
 		BFB7918A1A2C3C860048E8FB /* SpringFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpringFlowLayout.swift; sourceTree = "<group>"; };
 		BFB83F121A8D2D80000223C0 /* Mixpanel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mixpanel.swift; sourceTree = "<group>"; };
+		BFB83F161A8D63B7000223C0 /* Tracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tracker.swift; sourceTree = "<group>"; };
 		BFBC44001A7212FA007202E7 /* ProfileOverlaidCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileOverlaidCollectionView.swift; sourceTree = "<group>"; };
 		BFC6CF9B1A44D2B90081F45B /* ServiceClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceClient.swift; sourceTree = "<group>"; };
 		BFE213C71A5EE63F0033E2F5 /* SearchService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchService.swift; sourceTree = "<group>"; };
@@ -787,6 +789,7 @@
 			isa = PBXGroup;
 			children = (
 				BFB83F121A8D2D80000223C0 /* Mixpanel.swift */,
+				BFB83F161A8D63B7000223C0 /* Tracker.swift */,
 			);
 			name = Analytics;
 			sourceTree = "<group>";
@@ -1174,6 +1177,7 @@
 				8FEE3D9B1A84172800B17569 /* FormBuilder.swift in Sources */,
 				8F22CBF51A2865030026376E /* ProfileDetailDataSource.swift in Sources */,
 				BF1DB6591A76FA31006F2B7D /* AddNoteCollectionViewCell.swift in Sources */,
+				BFB83F171A8D63B7000223C0 /* Tracker.swift in Sources */,
 				8F22CB771A2661890026376E /* AppDelegateAppearanceExtension.swift in Sources */,
 				8F22CBFE1A29C7120026376E /* GCDUtils.swift in Sources */,
 				8FC7BB401A58AF4C005BDDDB /* SearchLandingDataSource.swift in Sources */,

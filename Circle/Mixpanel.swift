@@ -9,10 +9,6 @@
 import Foundation
 import ProtobufRegistry
 
-let UserSessionTrackingKey = "User Session"
-let UserLoginTrackingKey = "User Login"
-let UserSignupTrackingKey = "User Signup"
-
 extension Mixpanel {
     
     class func setup() {
@@ -27,14 +23,6 @@ extension Mixpanel {
         if let profile = AuthViewController.getLoggedInUserProfile() {
             registerSuperPropertiesForProfile(profile)
         }
-    }
-    
-    class func trackSessionStart() {
-        Mixpanel.sharedInstance().timeEvent(UserSessionTrackingKey)
-    }
-    
-    class func trackSessionEnd() {
-        Mixpanel.sharedInstance().track(UserSessionTrackingKey)
     }
     
     class func registerSuperPropertiesForUser(user: UserService.Containers.User) {

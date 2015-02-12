@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MainTabBarViewController: UITabBarController {
+class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +23,7 @@ class MainTabBarViewController: UITabBarController {
     }
 
     private func configureTabBar() {
-    
+        delegate = self
         var tabBarViewControllers = [UIViewController]()
         
         // Home Tab
@@ -127,5 +127,55 @@ class MainTabBarViewController: UITabBarController {
     
     private func unregisterNotifications() {
         NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
+    // MARK: - UITabBarControllerDelegate
+    
+    func tabBarController(tabBarController: UITabBarController, shouldSelectViewController viewController: UIViewController) -> Bool {
+        let sourceViewController = getActiveViewController(selectedViewController)
+        let destinationViewController = getActiveViewController(viewController)
+        
+        if sourceViewController == nil || destinationViewController == nil {
+            assert(false, "Invalid source \(sourceViewController) or destination \(destinationViewController) view controller.")
+            return true
+        }
+
+        var source: TrackerSources
+        if sourceViewController! is SearchViewController {
+            source = .MainTabHome
+        } else if sourceViewController! is ProfileDetailsViewController {
+            source = .MainTabProfile
+        } else if sourceViewController! is OrganizationDetailViewController {
+            source = .MainTabOrganization
+        } else {
+            assert(false, "Unhandled TabBar Source View Controller")
+            source = .MainTabUnknown
+        }
+        
+        var destination: TrackerSources
+        if destinationViewController! is SearchViewController {
+            destination = .MainTabHome
+        } else if destinationViewController! is ProfileDetailsViewController {
+            destination = .MainTabProfile
+        } else if destinationViewController! is OrganizationDetailViewController {
+            destination = .MainTabOrganization
+        } else {
+            assert(false, "Unhandled TabBar Destination View Controller")
+            destination = .MainTabUnknown
+        }
+        
+        let properties = ["source_vc": source.name, "destination_vc": destination.name]
+        Tracker.sharedInstance.track(MainTabSelectedTrackingKey, properties: properties)
+        return true
+    }
+    
+    private func getActiveViewController(viewController: UIViewController?) -> UIViewController? {
+        var activeViewController: UIViewController?
+        if let navigationController = viewController as? UINavigationController {
+            activeViewController = navigationController.topViewController
+        } else {
+            activeViewController = selectedViewController
+        }
+        return activeViewController
     }
 }

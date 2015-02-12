@@ -35,11 +35,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationDidBecomeActive(application: UIApplication) {
-        Mixpanel.trackSessionStart()
+        Tracker.sharedInstance.trackSessionStart()
     }
     
     func applicationDidEnterBackground(application: UIApplication) {
-        Mixpanel.trackSessionEnd()
+        Tracker.sharedInstance.trackSessionEnd()
     }
     
 }
