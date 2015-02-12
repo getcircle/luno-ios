@@ -31,6 +31,10 @@ class SocialConnectViewController: UIViewController, WKNavigationDelegate {
         loadWebView()
     }
     
+    override func viewWillDisappear(animated: Bool) {
+        webView.removeObserver(self, forKeyPath: "loading")
+    }
+    
     // MARK: - Configuration
     
     private func configureView() {
@@ -59,18 +63,18 @@ class SocialConnectViewController: UIViewController, WKNavigationDelegate {
     
     // MARK: - WKNavigationDelegate
     
-    func webView(webView: WKWebView, didReceiveServerRedirectForProvisionalNavigation navigation: WKNavigation!) {
-        if let redirectURL = webView.URL {
-            println(redirectURL)
-            if redirectURL.host == ServiceHttpRequest.environment.host && (redirectURL.path!.hasSuffix("success") || redirectURL.path!.hasSuffix("error")) {
-                if redirectURL.path!.hasSuffix("success") {
-                    println("successfully connected to linkedin")
-                } else {
-                    println("error connecting to linkedin: \(redirectURL.path!)")
-                }
-                webView.removeObserver(self, forKeyPath: "loading")
-                self.dismissViewControllerAnimated(true, completion: nil)
+    func webView(webView: WKWebView, decidePolicyForNavigationAction navigationAction: WKNavigationAction, decisionHandler: (WKNavigationActionPolicy) -> Void) {
+        let url = navigationAction.request.URL
+        if url.host == ServiceHttpRequest.environment.host && (url.path!.hasSuffix("success") || url.path!.hasSuffix("error")) {
+            if url.path!.hasSuffix("success") {
+                println("successfully connected to linkedin")
+            } else {
+                println("error connecting to linkedin: \(url)")
             }
+            decisionHandler(.Cancel)
+            self.dismissViewControllerAnimated(true, completion: nil)
+        } else {
+            decisionHandler(.Allow)
         }
     }
     
