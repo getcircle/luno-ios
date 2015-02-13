@@ -53,7 +53,6 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
             )
             tabBarViewControllers.append(navController)
             
-            
             // Profile Tab
             let profileViewController = ProfileDetailsViewController.forProfile(
                 loggedInUserProfile,
@@ -132,14 +131,20 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
     // MARK: - UITabBarControllerDelegate
     
     func tabBarController(tabBarController: UITabBarController, shouldSelectViewController viewController: UIViewController) -> Bool {
+        trackTabSelected(viewController)
+        return true
+    }
+    
+    // MARK: - Helpers
+    
+    private func trackTabSelected(viewController: UIViewController) {
         let sourceViewController = getActiveViewController(selectedViewController)
         let destinationViewController = getActiveViewController(viewController)
         
         if sourceViewController == nil || destinationViewController == nil {
             assert(false, "Invalid source \(sourceViewController) or destination \(destinationViewController) view controller.")
-            return true
         }
-
+        
         var source: TrackerSources
         if sourceViewController! is SearchViewController {
             source = .MainTabHome
@@ -165,8 +170,7 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
         }
         
         let properties = ["source_vc": source.name, "destination_vc": destination.name]
-        Tracker.sharedInstance.track(MainTabSelectedTrackingKey, properties: properties)
-        return true
+        Tracker.sharedInstance.track(TrackingEvent.MainTabSelected, properties: properties)
     }
     
     private func getActiveViewController(viewController: UIViewController?) -> UIViewController? {

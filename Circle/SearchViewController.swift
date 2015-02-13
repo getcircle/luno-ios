@@ -247,6 +247,15 @@ NewNoteViewControllerDelegate {
         }
     }
     
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        Tracker.sharedInstance.trackMajorScrollEvents(
+            TrackingEvent.HomeViewScrolled,
+            scrollView: scrollView,
+            direction: .Vertical,
+            properties: nil
+        )
+    }
+    
     //MARK: - Skill Selected Notification
     
     func didSelectSkill(notification: NSNotification) {
