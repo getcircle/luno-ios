@@ -17,7 +17,7 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
         configureTabBar()
         registerNotifications()
     }
-    
+
     deinit {
         unregisterNotifications()
     }
@@ -25,7 +25,7 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
     private func configureTabBar() {
         delegate = self
         var tabBarViewControllers = [UIViewController]()
-        
+
         // Home Tab
         let searchViewController = self.storyboard?.instantiateViewControllerWithIdentifier("SearchViewController") as SearchViewController
         let searchNavigationController = UINavigationController(rootViewController: searchViewController)
@@ -37,48 +37,15 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
         )
         tabBarViewControllers.append(searchNavigationController)
 
-
-        if let loggedInUserProfile = AuthViewController.getLoggedInUserProfile() {
-            
-            // Organization Tab
-            let orgVC = OrganizationDetailViewController()
-            (orgVC.dataSource as OrganizationDetailDataSource).selectedOrgId = loggedInUserProfile.organization_id
-            let navController = UINavigationController(rootViewController: orgVC)
-            // Images for the organization tab
-            let orgTabImage = UIImage(named: "Building")?.imageWithRenderingMode(.AlwaysTemplate)
-            navController.tabBarItem = UITabBarItem(
-                title: "",
-                image: orgTabImage,
-                selectedImage: orgTabImage
-            )
-            tabBarViewControllers.append(navController)
-            
-            // Profile Tab
-            let profileViewController = ProfileDetailsViewController.forProfile(
-                loggedInUserProfile,
-                showLogOutButton: false,
-                showCloseButton: false
-            )
-            
-            let profileNavController = UINavigationController(rootViewController: profileViewController)
-            let profileTabImage = UIImage(named: "Profile")?.imageWithRenderingMode(.AlwaysTemplate)
-            profileNavController.tabBarItem = UITabBarItem(
-                title: "",
-                image: profileTabImage,
-                selectedImage: profileTabImage
-            )
-            tabBarViewControllers.append(profileNavController)
-        }
-        
         setViewControllers(tabBarViewControllers, animated: true)
         addTabsForAuthenticatedUser()
     }
-    
+
     func addTabsForAuthenticatedUser() {
         var tabBarViewControllers = viewControllers ?? [UIViewController]()
-        
+
         if let loggedInUserProfile = AuthViewController.getLoggedInUserProfile() {
-            
+
             if tabBarViewControllers.count == 1 {
                 // Organization Tab
                 let orgVC = OrganizationDetailViewController()
@@ -91,14 +58,15 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
                     selectedImage: orgTabImage
                 )
                 tabBarViewControllers.append(navController)
-                
+
                 // Profile Tab
                 let profileViewController = ProfileDetailsViewController.forProfile(
                     loggedInUserProfile,
                     showLogOutButton: false,
-                    showCloseButton: false
+                    showCloseButton: false,
+                    showSettingsButton: true
                 )
-                
+
                 let profileNavController = UINavigationController(rootViewController: profileViewController)
                 let profileTabImage = UIImage(named: "Profile")?.imageWithRenderingMode(.AlwaysTemplate)
                 profileNavController.tabBarItem = UITabBarItem(
@@ -107,44 +75,44 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
                     selectedImage: profileTabImage
                 )
                 tabBarViewControllers.append(profileNavController)
-                
+
                 setViewControllers(tabBarViewControllers, animated: true)
             }
         }
     }
-    
+
     // MARK: - Notifications
-    
+
     private func registerNotifications() {
         NSNotificationCenter.defaultCenter().addObserver(
-            self, 
-            selector: "addTabsForAuthenticatedUser", 
-            name: AuthNotifications.onLoginNotification, 
+            self,
+            selector: "addTabsForAuthenticatedUser",
+            name: AuthNotifications.onLoginNotification,
             object: nil
         )
     }
-    
+
     private func unregisterNotifications() {
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
-    
+
     // MARK: - UITabBarControllerDelegate
-    
+
     func tabBarController(tabBarController: UITabBarController, shouldSelectViewController viewController: UIViewController) -> Bool {
         trackTabSelected(viewController)
         return true
     }
-    
+
     // MARK: - Helpers
-    
+
     private func trackTabSelected(viewController: UIViewController) {
         let sourceViewController = getActiveViewController(selectedViewController)
         let destinationViewController = getActiveViewController(viewController)
-        
+
         if sourceViewController == nil || destinationViewController == nil {
             assert(false, "Invalid source \(sourceViewController) or destination \(destinationViewController) view controller.")
         }
-        
+
         var source: TrackerSources
         if sourceViewController! is SearchViewController {
             source = .MainTabHome
@@ -156,7 +124,7 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
             assert(false, "Unhandled TabBar Source View Controller")
             source = .MainTabUnknown
         }
-        
+
         var destination: TrackerSources
         if destinationViewController! is SearchViewController {
             destination = .MainTabHome
@@ -168,11 +136,11 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
             assert(false, "Unhandled TabBar Destination View Controller")
             destination = .MainTabUnknown
         }
-        
+
         let properties = ["source_vc": source.name, "destination_vc": destination.name]
         Tracker.sharedInstance.track(TrackingEvent.MainTabSelected, properties: properties)
     }
-    
+
     private func getActiveViewController(viewController: UIViewController?) -> UIViewController? {
         var activeViewController: UIViewController?
         if let navigationController = viewController as? UINavigationController {

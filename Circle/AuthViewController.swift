@@ -265,6 +265,7 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
                 forUserAccount: user.id
             )
         }
+        GPPSignIn.sharedInstance().signOut()
         
         // Remove local cached date
         LoggedInUserHolder.profile = nil

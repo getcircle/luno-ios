@@ -38,7 +38,8 @@ class ProfileDetailsViewController:
         detailViews withDetailViews: [UnderlyingCollectionView],
         overlaidCollectionView withOverlaidCollectionView: UICollectionView,
         showLogOutButton: Bool = false,
-        showCloseButton: Bool = false
+        showCloseButton: Bool = false,
+        showSettingsButton: Bool = false
     ) {
         self.init(showCloseButton: showCloseButton)
         profile = withProfile
@@ -47,6 +48,10 @@ class ProfileDetailsViewController:
         (overlaidCollectionView.dataSource as ProfileOverlaidCollectionViewDataSource).profileHeaderViewDelegate = self
         if showLogOutButton {
             addLogOutButton()
+        }
+        
+        if showSettingsButton {
+            addSettingsButton()
         }
     }
     
@@ -440,15 +445,16 @@ class ProfileDetailsViewController:
             navigationItem.rightBarButtonItem = logOutButton
         }
     }
-
-    func logOutTapped(sender: AnyObject!) {
-        if isBeingPresentedModally() {
-            dismissViewControllerAnimated(false, completion: { () -> Void in
-                AuthViewController.logOut()
-            })
-        }
-        else {
-            AuthViewController.logOut()
+    
+    private func addSettingsButton() {
+        if navigationItem.leftBarButtonItem == nil {
+            let settingsButton = UIBarButtonItem(
+                image: UIImage(named: "Cog"), 
+                style: .Plain, 
+                target: self, 
+                action: "settingsButtonTapped:"
+            )
+            navigationItem.leftBarButtonItem = settingsButton
         }
     }
 
@@ -469,7 +475,8 @@ class ProfileDetailsViewController:
     class func forProfile(
         profile: ProfileService.Containers.Profile,
         showLogOutButton: Bool = false,
-        showCloseButton: Bool = false
+        showCloseButton: Bool = false,
+        showSettingsButton: Bool = false
     ) -> ProfileDetailsViewController {
         return ProfileDetailsViewController(
             profile: profile,
@@ -485,7 +492,8 @@ class ProfileDetailsViewController:
                 ]
             ),
             showLogOutButton: showLogOutButton,
-            showCloseButton: showCloseButton
+            showCloseButton: showCloseButton,
+            showSettingsButton: showSettingsButton
         )
     }
     
@@ -508,5 +516,22 @@ class ProfileDetailsViewController:
         editProfileVC.profile = profile
         editProfileVC.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(editProfileVC, animated: true)
+    }
+    
+    @IBAction func logOutTapped(sender: AnyObject!) {
+        if isBeingPresentedModally() {
+            dismissViewControllerAnimated(false, completion: { () -> Void in
+                AuthViewController.logOut()
+            })
+        }
+        else {
+            AuthViewController.logOut()
+        }
+    }
+
+    @IBAction func settingsButtonTapped(sender: AnyObject!) {
+        let settingsViewController = SettingsViewController(nibName: "SettingsViewController", bundle: nil)
+        let settingsNavController = UINavigationController(rootViewController: settingsViewController)
+        presentViewController(settingsNavController, animated: true, completion: nil)
     }
 }

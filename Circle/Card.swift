@@ -73,6 +73,7 @@ class Card: Equatable {
         case Notes
         case People
         case Placeholder
+        case Settings
         case Skills
         case SocialConnectCTAs
         case Team
@@ -168,6 +169,14 @@ class Card: Equatable {
                     contentType: .Flat
                 )
 
+            case .Settings:
+                return CardTypeInfo(
+                    imageName: "Cog", 
+                    classType: SettingsCollectionViewCell.self, 
+                    className: "SettingsCollectionViewCell", 
+                    contentType: .Flat
+                )
+                
             case .Skills:
                 return CardTypeInfo(
                     imageName: "Tag",
