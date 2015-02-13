@@ -42,7 +42,7 @@ class OrganizationDetailViewController: DetailViewController, CardHeaderViewDele
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
         Tracker.sharedInstance.trackMajorScrollEvents(
-            TrackingEvent.OrganizationViewScrolled,
+            TrackingEvent.OrganizationViewScrolled.rawValue,
             scrollView: scrollView,
             direction: .Vertical,
             properties: nil

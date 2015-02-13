@@ -138,7 +138,7 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
         }
 
         let properties = ["source_vc": source.name, "destination_vc": destination.name]
-        Tracker.sharedInstance.track(TrackingEvent.MainTabSelected, properties: properties)
+        Tracker.sharedInstance.track(.MainTabSelected, properties: properties)
     }
 
     private func getActiveViewController(viewController: UIViewController?) -> UIViewController? {

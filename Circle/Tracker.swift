@@ -8,16 +8,14 @@
 
 import Foundation
 
-struct TrackingEvent {
-
-    static let UserSession = "User Session"
-    static let UserLogin = "User Login"
-    static let UserSignup = "User Signup"
-
-    static let MainTabSelected = "Main Tab Selected"
-
-    static let HomeViewScrolled = "Home View Scrolled"
-    static let OrganizationViewScrolled = "Organization View Scrolled"
+enum TrackingEvent: String {
+    case UserSession = "User Session"
+    case UserLogin = "User Login"
+    case UserSignup = "User Signup"
+    case MainTabSelected = "Main Tab Selected"
+    case HomeViewScrolled = "Home View Scrolled"
+    case OrganizationViewScrolled = "Organization View Scrolled"
+    case CardHeaderTapped = "Card Header Tapped"
 }
 
 enum TrackerSources {
@@ -25,6 +23,7 @@ enum TrackerSources {
     case MainTabOrganization
     case MainTabProfile
     case MainTabUnknown
+    case HomeView
     
     var name: String {
         switch self {
@@ -32,6 +31,7 @@ enum TrackerSources {
         case .MainTabProfile: return "MainTab:Profile:ProfileDetailsViewController"
         case .MainTabOrganization: return "MainTab:Organization:OrganizationDetailViewController"
         case .MainTabUnknown: return "MainTab:Unknown"
+        case .HomeView: return "HomeView:SearchViewController"
         }
     }
 }
@@ -53,11 +53,11 @@ class Tracker {
     }
     
     func trackSessionStart() {
-        Mixpanel.sharedInstance().timeEvent(TrackingEvent.UserSession)
+        Mixpanel.sharedInstance().timeEvent(TrackingEvent.UserSession.rawValue)
     }
     
     func trackSessionEnd() {
-        Mixpanel.sharedInstance().track(TrackingEvent.UserSession)
+        Mixpanel.sharedInstance().track(TrackingEvent.UserSession.rawValue)
     }
     
     func track(event: String, properties: [String: AnyObject]?) {
@@ -66,6 +66,14 @@ class Tracker {
     
     func track(event: String) {
         Mixpanel.sharedInstance().track(event)
+    }
+    
+    func track(event: TrackingEvent) {
+        track(event.rawValue)
+    }
+    
+    func track(event: TrackingEvent, properties: [String: AnyObject]?) {
+        Mixpanel.sharedInstance().track(event.rawValue, properties: properties)
     }
     
     func trackMajorScrollEvents(

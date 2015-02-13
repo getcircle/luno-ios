@@ -238,9 +238,9 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
     private func trackSignupLogin(backend: UserService.AuthenticateUser.Request.AuthBackend, newUser: Bool) {
         let properties = ["backend": String(backend.rawValue)]
         if newUser {
-            Mixpanel.sharedInstance().track(TrackingEvent.UserSignup, properties: properties)
+            Tracker.sharedInstance.track(.UserSignup, properties: properties)
         } else {
-            Mixpanel.sharedInstance().track(TrackingEvent.UserLogin, properties: properties)
+            Tracker.sharedInstance.track(.UserLogin, properties: properties)
         }
     }
     

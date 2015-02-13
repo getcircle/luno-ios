@@ -249,7 +249,7 @@ NewNoteViewControllerDelegate {
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
         Tracker.sharedInstance.trackMajorScrollEvents(
-            TrackingEvent.HomeViewScrolled,
+            TrackingEvent.HomeViewScrolled.rawValue,
             scrollView: scrollView,
             direction: .Vertical,
             properties: nil
@@ -272,6 +272,7 @@ NewNoteViewControllerDelegate {
     // MARK: - Card Header View Delegate
     
     func cardHeaderTapped(card: Card!) {
+        trackCardHeaderTapped(card)
         let dataSource = (collectionView.dataSource as CardDataSource)
         switch card.type {
         case .Group, .People, .Birthdays, .Anniversaries, .NewHires:
@@ -439,5 +440,16 @@ NewNoteViewControllerDelegate {
     
     func didDeleteNote(note: NoteService.Containers.Note) {
         loadData()
+    }
+    
+    // MARK: - Helpers
+    
+    private func trackCardHeaderTapped(card: Card) {
+        let properties = [
+            "card_type": card.type.rawValue,
+            "source_vc": TrackerSources.HomeView.name,
+            "card_title": card.title,
+        ]
+        Tracker.sharedInstance.track(.CardHeaderTapped, properties: properties)
     }
 }

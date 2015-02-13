@@ -62,22 +62,22 @@ class Card: Equatable {
         case Aggregate
     }
     
-    enum CardType: Int {
-        case AddNote = 1
-        case Anniversaries
-        case Birthdays
-        case Group
-        case KeyValue
-        case Locations
-        case NewHires
-        case Notes
-        case People
-        case Placeholder
-        case Settings
-        case Skills
-        case SocialConnectCTAs
-        case Team
-        case TeamsGrid
+    enum CardType: String {
+        case AddNote = "AddNote"
+        case Anniversaries = "Anniversaries"
+        case Birthdays = "Birthdays"
+        case Group = "Group"
+        case KeyValue = "KeyValue"
+        case Locations = "Locations"
+        case NewHires = "NewHires"
+        case Notes = "Notes"
+        case People = "People"
+        case Placeholder = "Placeholder"
+        case Settings = "Settings"
+        case Skills = "Skills"
+        case SocialConnectCTAs = "SocialConnectCTAs"
+        case Team = "Team"
+        case TeamsGrid = "TeamsGrid"
         
         struct CardTypeInfo {
             var imageName: String
