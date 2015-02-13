@@ -25,4 +25,8 @@ extension UIFont {
     class func lightFont(size: CGFloat) -> UIFont! {
         return UIFont(name: "Avenir-Light", size: size)
     }
+    
+    class func appSettingsCardHeader() -> UIFont {
+        return UIFont(name: "Avenir-Roman", size: 12.0)!
+    }
 }

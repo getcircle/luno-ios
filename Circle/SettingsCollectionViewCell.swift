@@ -12,6 +12,9 @@ class SettingsCollectionViewCell: CircleCollectionViewCell {
 
     @IBOutlet weak private(set) var itemLabel: UILabel!
     
+    private(set) var initialFontSize: CGFloat!
+    private(set) var defaultSelectionBackgroundView: UIView!
+    
     override class var classReuseIdentifier: String {
         return "SettingsCollectionViewCell"
     }
@@ -24,6 +27,8 @@ class SettingsCollectionViewCell: CircleCollectionViewCell {
         super.awakeFromNib()
         
         // Initialization code
+        initialFontSize = itemLabel.font.pointSize
+        defaultSelectionBackgroundView = selectedBackgroundView
     }
     
     override func setData(data: AnyObject) {

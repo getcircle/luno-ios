@@ -38,6 +38,7 @@ class SettingsViewController: UIViewController, UICollectionViewDelegate {
             }
         }
 
+        dataSource.registerCardHeader(collectionView)
         collectionView.dataSource = dataSource
         collectionViewDelegate.delegate = self
         collectionView.delegate = collectionViewDelegate
@@ -71,6 +72,11 @@ class SettingsViewController: UIViewController, UICollectionViewDelegate {
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         collectionView.deselectItemAtIndexPath(indexPath, animated: true)
-        logoutButtonTapped(collectionView)
+        switch dataSource.typeOfCell(indexPath) {
+        case .LogOut:
+            logoutButtonTapped(collectionView)
+        default:
+            break
+        }
     }
 }

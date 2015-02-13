@@ -65,7 +65,8 @@ class CardCollectionViewDelegate: NSObject, UICollectionViewDelegateFlowLayout, 
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         
-        if !cardDataSource(collectionView).isHeaderRegistered {
+        let card = cardDataSource(collectionView).cardAtSection(section)
+        if !cardDataSource(collectionView).isHeaderRegistered || card?.title == "" {
             return CGSizeZero
         }
 

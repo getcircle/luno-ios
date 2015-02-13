@@ -17,4 +17,20 @@ extension NSBundle {
         
         return "circle"
     }
+    
+    class func appVersion() -> String {
+        if let bundleVersion: String = NSBundle.mainBundle().infoDictionary?["CFBundleShortVersionString"] as? String {
+            return bundleVersion
+        }
+        
+        return "version"
+    }
+    
+    class func appBuild() -> String {
+        if let bundleBuild: String = NSBundle.mainBundle().infoDictionary?["CFBundleVersion"] as? String {
+            return bundleBuild
+        }
+        
+        return "build"
+    }
 }
