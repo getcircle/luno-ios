@@ -18,6 +18,7 @@ class SettingsDataSource: CardDataSource {
         case LegalPrivacy
         case LegalTermsOfService
         case LogOut
+        case SecurityPasscodeAndTouchID
         case Other
         case Version
     }
@@ -33,13 +34,9 @@ class SettingsDataSource: CardDataSource {
         securityCard.sectionInset = UIEdgeInsetsMake(0.0, 0.0, 10.0, 0.0)
         securityCard.addContent(content: [
             [
-                "text": NSLocalizedString("Set a passcode", comment: "Title of button used to set a passcode"),
-                "type": SettingsCellType.ContactEmail.rawValue
+                "text": NSLocalizedString("Passcode & Touch ID", comment: "Title of button used to set a passcode and enable Touch ID"),
+                "type": SettingsCellType.SecurityPasscodeAndTouchID.rawValue
             ],
-            [
-                "text": NSLocalizedString("Enable Touch ID", comment: "Title of button to enable Touch ID"),
-                "type": SettingsCellType.ContactPhone.rawValue
-            ]
         ])
         appendCard(securityCard)
 
@@ -165,7 +162,10 @@ class SettingsDataSource: CardDataSource {
             
             case .LogOut:
                 textAlignment = .Center
-                
+            
+            case .SecurityPasscodeAndTouchID:
+                hideNextIcon = false
+
             case .LegalAttributions, .LegalPrivacy, .LegalTermsOfService:
                 hideNextIcon = false
                 

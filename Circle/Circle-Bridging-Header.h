@@ -10,6 +10,7 @@
 #import "AFNetworking.h"
 #import <GooglePlus/GooglePlus.h>
 #import <GoogleOpenSource/GoogleOpenSource.h>
+#import <VENTouchLock/VENTouchLock.h>
 #import "UIImageView+AFNetworking.h"
 #import "PureLayout.h"
 #import "UIView+Position.h"

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SplashViewController" customModule="circle" customModuleProvider="target">
+            <connections>
+                <outlet property="passcodeButton" destination="k2U-e3-nEz" id="x3b-lg-RL8"/>
+                <outlet property="passcodeButtonLabel" destination="WNg-w1-Jto" id="d6g-7v-KKs"/>
+                <outlet property="passcodeButtonXConstraint" destination="sg9-VM-xDb" id="ZB2-7J-Tru"/>
+                <outlet property="signInToDifferentAccountButton" destination="ho0-CV-YUf" id="nNR-fb-edv"/>
+                <outlet property="touchIDButton" destination="q7L-Aa-tCd" id="09U-se-7Jp"/>
+                <outlet property="touchIDButtonLabel" destination="qgZ-5J-cBV" id="5i4-Zx-VDi"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gBW-df-eRN">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="64"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="64" id="aAO-ru-GzX"/>
+                    </constraints>
+                    <items>
+                        <navigationItem title="Unlock circle" id="obV-Nn-wlb"/>
+                    </items>
+                </navigationBar>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q7L-Aa-tCd" userLabel="TouchIDButton">
+                    <rect key="frame" x="175" y="275" width="50" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="q7L-Aa-tCd" secondAttribute="height" id="WKd-3T-R5b"/>
+                        <constraint firstAttribute="width" constant="50" id="ujf-fq-sd4"/>
+                    </constraints>
+                    <state key="normal" image="TouchID">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="touchIDButtonTapped" destination="-1" eventType="touchUpInside" id="CIQ-GW-nDl"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k2U-e3-nEz" userLabel="PasscodeButton">
+                    <rect key="frame" x="375" y="275" width="50" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="k2U-e3-nEz" secondAttribute="height" multiplier="1:1" id="Vt7-2X-lcj"/>
+                        <constraint firstAttribute="width" constant="50" id="rXj-ix-2CB"/>
+                    </constraints>
+                    <state key="normal" image="More">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="passcodeButtonTapped" destination="-1" eventType="touchUpInside" id="SwQ-RB-QvQ"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ho0-CV-YUf">
+                    <rect key="frame" x="203" y="517" width="195" height="33"/>
+                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="15"/>
+                    <state key="normal" title="Sign in as a different account">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="signIntoDifferentAccountButtonTapped:" destination="-1" eventType="touchUpInside" id="Dwn-dc-EeM"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Touch ID" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qgZ-5J-cBV" userLabel="TouchIDLabel">
+                    <rect key="frame" x="155" y="335" width="90" height="21"/>
+                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="15"/>
+                    <color key="textColor" red="0.15056315064430237" green="0.15055865049362183" blue="0.15056121349334717" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Passcode" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WNg-w1-Jto" userLabel="PasscodeLabel">
+                    <rect key="frame" x="355" y="335" width="90" height="21"/>
+                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="15"/>
+                    <color key="textColor" red="0.1505631506" green="0.1505586505" blue="0.15056121350000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose an option to unlock circle" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="30Y-2v-Fpa">
+                    <rect key="frame" x="172" y="140" width="256" height="24"/>
+                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <constraints>
+                <constraint firstItem="qgZ-5J-cBV" firstAttribute="top" secondItem="q7L-Aa-tCd" secondAttribute="bottom" constant="10" id="5us-83-qpC"/>
+                <constraint firstAttribute="centerX" secondItem="ho0-CV-YUf" secondAttribute="centerX" id="9T3-V9-ei5"/>
+                <constraint firstAttribute="centerY" secondItem="30Y-2v-Fpa" secondAttribute="centerY" constant="141.5" id="F8a-Zd-I9e"/>
+                <constraint firstItem="k2U-e3-nEz" firstAttribute="leading" secondItem="WNg-w1-Jto" secondAttribute="leading" constant="20" id="Jxk-ag-46M"/>
+                <constraint firstItem="k2U-e3-nEz" firstAttribute="trailing" secondItem="WNg-w1-Jto" secondAttribute="trailing" constant="-20" id="UAb-d4-YFQ"/>
+                <constraint firstAttribute="bottom" secondItem="ho0-CV-YUf" secondAttribute="bottom" constant="50" id="UBN-wo-RgF"/>
+                <constraint firstAttribute="centerY" secondItem="k2U-e3-nEz" secondAttribute="centerY" id="W8s-YK-GtQ"/>
+                <constraint firstAttribute="trailing" secondItem="gBW-df-eRN" secondAttribute="trailing" id="XLb-sp-CcW"/>
+                <constraint firstItem="gBW-df-eRN" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="ZBK-Ul-AI6"/>
+                <constraint firstAttribute="centerY" secondItem="q7L-Aa-tCd" secondAttribute="centerY" id="ZDt-9e-LtU"/>
+                <constraint firstAttribute="centerX" secondItem="q7L-Aa-tCd" secondAttribute="centerX" constant="100" id="Zh0-Rq-Oja"/>
+                <constraint firstItem="WNg-w1-Jto" firstAttribute="top" secondItem="k2U-e3-nEz" secondAttribute="bottom" constant="10" id="Zr6-8W-QWU"/>
+                <constraint firstAttribute="centerX" secondItem="30Y-2v-Fpa" secondAttribute="centerX" id="aYw-Wm-ICd"/>
+                <constraint firstItem="qgZ-5J-cBV" firstAttribute="trailing" secondItem="q7L-Aa-tCd" secondAttribute="trailing" constant="20" id="fbr-wH-Dev"/>
+                <constraint firstItem="30Y-2v-Fpa" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="140" id="gzD-Zs-8iw"/>
+                <constraint firstAttribute="centerX" secondItem="k2U-e3-nEz" secondAttribute="centerX" constant="-100" id="sg9-VM-xDb"/>
+                <constraint firstItem="qgZ-5J-cBV" firstAttribute="leading" secondItem="q7L-Aa-tCd" secondAttribute="leading" constant="-20" id="wYr-Bm-QqH"/>
+                <constraint firstItem="gBW-df-eRN" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="yaN-8Y-4TE"/>
+            </constraints>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="F8a-Zd-I9e"/>
+                </mask>
+            </variation>
+        </view>
+    </objects>
+    <resources>
+        <image name="More" width="22" height="22"/>
+        <image name="TouchID" width="22" height="22"/>
+    </resources>
+</document>

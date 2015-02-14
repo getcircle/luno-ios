@@ -26,6 +26,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Populate the Search Cache
         loadStoreForUser()
 
+        // Initialize splash view with passcode & touch ID
+        AuthViewController.initializeSplashViewWithPasscodeAndTouchID()
+
         return true
     }
     
@@ -40,6 +43,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidEnterBackground(application: UIApplication) {
         Tracker.sharedInstance.trackSessionEnd()
     }
-    
 }
 

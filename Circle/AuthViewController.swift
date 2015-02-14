@@ -27,6 +27,7 @@ struct AuthNotifications {
     static let onUserChangedNotification = "com.ravcode.notifcation:onUserChangedNotification"
 }
 
+private let AuthPasscode = "AuthPasscode"
 private let LocksmithService = "LocksmithAuthTokenService"
 private let LocksmithAuthTokenKey = "LocksmithAuthToken"
 private let DefaultsUserKey = "DefaultsUserKey"
@@ -446,5 +447,16 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
             Tracker.sharedInstance.track(.UserLogin, properties: properties)
         }
     }
-
+    
+    // MARK: - Passcode & Touch ID
+    
+    class func initializeSplashViewWithPasscodeAndTouchID() {
+        VENTouchLock.sharedInstance().setKeychainService(
+            LocksmithService, 
+            keychainAccount: AuthPasscode, 
+            touchIDReason: NSLocalizedString("Touch to unlock circle", comment: "Help text for touch ID alert"),
+            passcodeAttemptLimit: 10, 
+            splashViewControllerClass: SplashViewController.self
+        )
+    }
 }

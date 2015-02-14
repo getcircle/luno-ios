@@ -75,6 +75,14 @@ class SettingsViewController: UIViewController, UICollectionViewDelegate {
         switch dataSource.typeOfCell(indexPath) {
         case .LogOut:
             logoutButtonTapped(collectionView)
+
+        case .SecurityPasscodeAndTouchID:
+            let passcodeTouchIDViewController = PasscodeTouchIDViewController(
+                nibName: "PasscodeTouchIDViewController", 
+                bundle: nil
+            )
+            navigationController?.pushViewController(passcodeTouchIDViewController, animated: true)
+            
         default:
             break
         }
