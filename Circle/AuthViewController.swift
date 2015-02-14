@@ -16,6 +16,7 @@ import ProtobufRegistry
 struct LoggedInUserHolder {
     static var user: UserService.Containers.User?
     static var profile: ProfileService.Containers.Profile?
+    static var organization: OrganizationService.Containers.Organization?
     static var token: String?
 }
 
@@ -31,6 +32,7 @@ private let LocksmithAuthTokenKey = "LocksmithAuthToken"
 private let DefaultsUserKey = "DefaultsUserKey"
 private let DefaultsProfileKey = "DefaultsProfileKey"
 private let DefaultsLastLoggedInUserEmail = "DefaultsLastLoggedInUserEmail"
+private let DefaultsOrganizationKey = "DefaultsOrganizationKey"
 
 private let GoogleClientID = "1077014421904-pes3pbf96obmp75kb00qouoiqf18u78h.apps.googleusercontent.com"
 private let GoogleServerClientID = "1077014421904-1a697ks3qvtt6975qfqhmed8529en8s2.apps.googleusercontent.com"
@@ -155,12 +157,23 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
         return nil
     }
     
+    private class func loadCachedOrganization() -> OrganizationService.Containers.Organization? {
+        if let data = NSUserDefaults.standardUserDefaults().objectForKey(DefaultsOrganizationKey) as? NSData {
+            return OrganizationService.Containers.Organization.parseFromNSData(data)
+        }
+        return nil
+    }
+    
     private class func cacheUserData(user: UserService.Containers.User) {
         NSUserDefaults.standardUserDefaults().setObject(user.getNSData(), forKey: DefaultsUserKey)
     }
     
     private class func cacheProfileData(profile: ProfileService.Containers.Profile) {
         NSUserDefaults.standardUserDefaults().setObject(profile.getNSData(), forKey: DefaultsProfileKey)
+    }
+    
+    private class func cacheOrganizationData(organization: OrganizationService.Containers.Organization) {
+        NSUserDefaults.standardUserDefaults().setObject(organization.getNSData(), forKey: DefaultsOrganizationKey)
     }
     
     private func cacheLoginData(token: String, user: UserService.Containers.User) {
@@ -241,6 +254,17 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
         ProfileService.Actions.getProfile(userId: userId) { (profile, error) -> Void in
             if let profile = profile {
                 self.dynamicType.updateUserProfile(profile)
+                self.fetchAndCacheUserOrganization(profile.organization_id, completion: completion)
+            } else {
+                completion(error: error)
+            }
+        }
+    }
+    
+    private func fetchAndCacheUserOrganization(organizationId: String, completion: (error: NSError?) -> Void) {
+        OrganizationService.Actions.getOrganization(organizationId) { (organization, error) -> Void in
+            if let organization = organization {
+                self.dynamicType.updateOrganization(organization)
             }
             completion(error: error)
         }
@@ -263,11 +287,13 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
         LoggedInUserHolder.profile = nil
         LoggedInUserHolder.user = nil
         LoggedInUserHolder.token = nil
+        LoggedInUserHolder.organization = nil
         ObjectStore.sharedInstance.reset(self)
         
         // Remove persistent cached data
         NSUserDefaults.standardUserDefaults().removeObjectForKey(DefaultsUserKey)
         NSUserDefaults.standardUserDefaults().removeObjectForKey(DefaultsProfileKey)
+        NSUserDefaults.standardUserDefaults().removeObjectForKey(DefaultsOrganizationKey)
         
         // Notify everyone
         NSNotificationCenter.defaultCenter().postNotificationName(
@@ -330,6 +356,17 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
         return nil
     }
     
+    class func getLoggedInUserOrganization() -> OrganizationService.Containers.Organization? {
+        if let organization = LoggedInUserHolder.organization {
+            return organization
+        } else {
+            if let organization = self.loadCachedOrganization() {
+                return organization
+            }
+        }
+        return nil
+    }
+    
     class func getLoggedInUserToken() -> String? {
         if let token = LoggedInUserHolder.token {
             return token
@@ -341,7 +378,6 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
         }
         return nil
     }
-    
     
     class func updateUserProfile(profile: ProfileService.Containers.Profile) {
         LoggedInUserHolder.profile = profile
@@ -359,6 +395,11 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
             AuthNotifications.onUserChangedNotification,
             object: user
         )
+    }
+    
+    class func updateOrganization(organization: OrganizationService.Containers.Organization) {
+        LoggedInUserHolder.organization = organization
+        self.cacheOrganizationData(organization)
     }
     
     // MARK: - Authentication Helpers

@@ -12,6 +12,7 @@ import ProtobufRegistry
 typealias GetAddressesCompletionHandler = (addresses: Array<OrganizationService.Containers.Address>?, error: NSError?) -> Void
 typealias GetTeamsCompletionHandler = (teams: Array<OrganizationService.Containers.Team>?, error: NSError?) -> Void
 typealias GetTeamChildrenCompletionHandler = (teams: Array<OrganizationService.Containers.Team>?, error: NSError?) -> Void
+typealias GetOrganizationCompletionHandler = (organization: OrganizationService.Containers.Organization?, error: NSError?) -> Void
 
 extension OrganizationService {
     class Actions {
@@ -63,6 +64,22 @@ extension OrganizationService {
                         OrganizationServiceRequests_get_team_children
                     ) as? OrganizationService.GetTeamChildren.Response
                     completionHandler?(teams: response?.teams, error: error)
+            }
+        }
+        
+        class func getOrganization(organizationId: String, completionHandler: GetOrganizationCompletionHandler?) {
+            let requestBuilder = OrganizationService.GetOrganization.Request.builder()
+            requestBuilder.organization_id = organizationId
+            
+            let client = ServiceClient(serviceName: "organization")
+            client.callAction(
+                "get_organization",
+                extensionField: OrganizationServiceRequests_get_organization,
+                requestBuilder: requestBuilder) { (_, _, _, actionResponse, error) -> Void in
+                    let response = actionResponse?.result.getExtension(
+                        OrganizationServiceRequests_get_organization
+                    ) as? OrganizationService.GetOrganization.Response
+                    completionHandler?(organization: response?.organization, error: error)
             }
         }
     }

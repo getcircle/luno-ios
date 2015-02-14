@@ -52,8 +52,9 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
                 (orgVC.dataSource as OrganizationDetailDataSource).selectedOrgId = loggedInUserProfile.organization_id
                 let navController = UINavigationController(rootViewController: orgVC)
                 let orgTabImage = UIImage(named: "Building")?.imageWithRenderingMode(.AlwaysTemplate)
+                let organization = AuthViewController.getLoggedInUserOrganization()!
                 navController.tabBarItem = UITabBarItem(
-                    title: "Eventbrite",
+                    title: organization.name,
                     image: orgTabImage,
                     selectedImage: orgTabImage
                 )

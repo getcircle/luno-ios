@@ -62,10 +62,8 @@ message OrganizationService {
     message GetOrganization {
 
         message Request {
-            oneof lookup_key {
-                string organization_id = 1;
-                string organization_domain = 2;
-            }
+            optional string organization_id = 1;
+            optional string organization_domain = 2;
         }
 
         message Response {
