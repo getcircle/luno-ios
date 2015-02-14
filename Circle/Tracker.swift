@@ -22,14 +22,16 @@ class TrackerProperty {
     }
     
     enum OverviewType: String {
-        case Profiles = "Profiles"
+        case Notes = "Notes"
         case Offices = "Offices"
+        case Profiles = "Profiles"
         case Teams = "Teams"
     }
     
     enum DetailType: String {
-        case Profile = "Profile"
+        case Note = "Note"
         case Office = "Office"
+        case Profile = "Profile"
         case Team = "Team"
     }
     

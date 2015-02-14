@@ -189,6 +189,12 @@ NewNoteViewControllerDelegate {
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let dataSource = (collectionView.dataSource as CardDataSource)
         let selectedCard = dataSource.cardAtSection(indexPath.section)!
+        var properties = [
+            TrackerProperty.withKeyString("card_type").withString(selectedCard.type.rawValue),
+            TrackerProperty.withKeyString("card_title").withString(selectedCard.title),
+            TrackerProperty.withKey(.Source).withSource(.Organization),
+            TrackerProperty.withKey(.ActiveViewController).withString(self.dynamicType.description())
+        ]
         
         // Handle quick actions - this assumes quick actions will be on profiles only
         if dataSource is SearchQueryDataSource && selectedAction != .None {
@@ -202,6 +208,9 @@ NewNoteViewControllerDelegate {
                 if let profile = dataSource.contentAtIndexPath(indexPath)? as? ProfileService.Containers.Profile {
                     let profileVC = ProfileDetailsViewController.forProfile(profile)
                     profileVC.hidesBottomBarWhenPushed = true
+                    properties.append(TrackerProperty.withKey(.Destination).withSource(.Detail))
+                    properties.append(TrackerProperty.withKey(.DetailType).withDetailType(.Profile))
+                    Tracker.sharedInstance.track(.DetailItemTapped, properties: properties)
                     navigationController?.pushViewController(profileVC, animated: true)
                 }
             case .Group:
@@ -209,6 +218,9 @@ NewNoteViewControllerDelegate {
                 viewController.dataSource.setInitialData(selectedCard.content[0] as [AnyObject], ofType: nil)
                 viewController.title = selectedCard.title
                 viewController.hidesBottomBarWhenPushed = true
+                properties.append(TrackerProperty.withKey(.Destination).withSource(.Overview))
+                properties.append(TrackerProperty.withKey(.OverviewType).withOverviewType(.Profiles))
+                Tracker.sharedInstance.track(.DetailItemTapped, properties: properties)
                 navigationController?.pushViewController(viewController, animated: true)
 
             case .Locations:
@@ -216,6 +228,9 @@ NewNoteViewControllerDelegate {
                     let viewController = LocationDetailViewController()
                     (viewController.dataSource as LocationDetailDataSource).selectedLocation = locationAddress
                     viewController.hidesBottomBarWhenPushed = true
+                    properties.append(TrackerProperty.withKey(.Destination).withSource(.Detail))
+                    properties.append(TrackerProperty.withKey(.DetailType).withDetailType(.Office))
+                    Tracker.sharedInstance.track(.DetailItemTapped, properties: properties)
                     navigationController?.pushViewController(viewController, animated: true)
                 }
                 
@@ -224,6 +239,9 @@ NewNoteViewControllerDelegate {
                     let viewController = TeamDetailViewController()
                     (viewController.dataSource as TeamDetailDataSource).selectedTeam = selectedTeam
                     viewController.hidesBottomBarWhenPushed = true
+                    properties.append(TrackerProperty.withKey(.Destination).withSource(.Detail))
+                    properties.append(TrackerProperty.withKey(.DetailType).withDetailType(.Team))
+                    Tracker.sharedInstance.track(.DetailItemTapped, properties: properties)
                     navigationController?.pushViewController(viewController, animated: true)
                 }
             
@@ -236,6 +254,9 @@ NewNoteViewControllerDelegate {
                             viewController.delegate = self
                             viewController.note = selectedNote
                             viewController.hidesBottomBarWhenPushed = true
+                            properties.append(TrackerProperty.withKey(.Destination).withSource(.Detail))
+                            properties.append(TrackerProperty.withKey(.DetailType).withDetailType(.Note))
+                            Tracker.sharedInstance.track(.DetailItemTapped, properties: properties)
                             navigationController?.pushViewController(viewController, animated: true)
                         }
                     }
