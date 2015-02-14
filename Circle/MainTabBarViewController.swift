@@ -31,7 +31,7 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
         let searchNavigationController = UINavigationController(rootViewController: searchViewController)
         let homeTabImage = UIImage(named: "Home")?.imageWithRenderingMode(.AlwaysTemplate)
         searchNavigationController.tabBarItem = UITabBarItem(
-            title: "",
+            title: "Home",
             image: homeTabImage,
             selectedImage: homeTabImage
         )
@@ -53,7 +53,7 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
                 let navController = UINavigationController(rootViewController: orgVC)
                 let orgTabImage = UIImage(named: "Building")?.imageWithRenderingMode(.AlwaysTemplate)
                 navController.tabBarItem = UITabBarItem(
-                    title: "",
+                    title: "Eventbrite",
                     image: orgTabImage,
                     selectedImage: orgTabImage
                 )
@@ -70,7 +70,7 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
                 let profileNavController = UINavigationController(rootViewController: profileViewController)
                 let profileTabImage = UIImage(named: "Profile")?.imageWithRenderingMode(.AlwaysTemplate)
                 profileNavController.tabBarItem = UITabBarItem(
-                    title: "",
+                    title: "You",
                     image: profileTabImage,
                     selectedImage: profileTabImage
                 )
