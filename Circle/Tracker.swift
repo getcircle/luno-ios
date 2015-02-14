@@ -8,40 +8,86 @@
 
 import Foundation
 
-enum TrackingEvent: String {
-    case UserSession = "User Session"
-    case UserLogin = "User Login"
-    case UserSignup = "User Signup"
-    case MainTabSelected = "Main Tab Selected"
-    case HomeViewScrolled = "Home View Scrolled"
-    case OrganizationViewScrolled = "Organization View Scrolled"
-    case CardHeaderTapped = "Card Header Tapped"
-}
+let TrackingPrefix = "c_"
 
-enum TrackerSources {
-    case MainTabHome
-    case MainTabOrganization
-    case MainTabProfile
-    case MainTabUnknown
-    case HomeView
+class TrackerProperty {
     
-    var name: String {
-        switch self {
-        case .MainTabHome: return "MainTab:Home:SearchViewController"
-        case .MainTabProfile: return "MainTab:Profile:ProfileDetailsViewController"
-        case .MainTabOrganization: return "MainTab:Organization:OrganizationDetailViewController"
-        case .MainTabUnknown: return "MainTab:Unknown"
-        case .HomeView: return "HomeView:SearchViewController"
-        }
+    enum Key: String {
+        case SourceViewController = "source_vc"
+        case DestinationViewController = "destination_vc"
+        case DestinationProfileID = "destination_profile_id"
+        case ActiveViewController = "active_vc"
+        case OverviewType = "overview_type"
+        case DetailType = "detail_type"
     }
-}
-
-enum TrackScrollDirection {
-    case Vertical
-    case Horizontal
+    
+    private var internalKey: String?
+    
+    var key: String {
+        return addPrefix(internalKey!)
+    }
+    var value: AnyObject?
+    
+    init(key: String?, value withValue: AnyObject?) {
+        internalKey = key
+        value = withValue
+    }
+    
+    func withValue(withValue: AnyObject) -> TrackerProperty {
+        value = withValue
+        return self
+    }
+    
+    func withSource(source: Tracker.Source) -> TrackerProperty {
+        value = source.rawValue
+        return self
+    }
+    
+    func withString(withValue: String) -> TrackerProperty {
+        value = withValue
+        return self
+    }
+    
+    class func withKey(key: Key) -> TrackerProperty {
+        return TrackerProperty(key: key.rawValue, value: nil)
+    }
+    
+    class func withKeyString(key: String) -> TrackerProperty {
+        return TrackerProperty(key: key, value: nil)
+    }
+    
+    private func addPrefix(value: String) -> String {
+        return "\(TrackingPrefix)\(value)"
+    }
+    
 }
 
 class Tracker {
+    
+    enum Event: String {
+        case UserSession = "User Session"
+        case UserLogin = "User Login"
+        case UserSignup = "User Signup"
+        case TabSelected = "Tab Selected"
+        case ViewScrolled = "View Scrolled"
+        case CardHeaderTapped = "Card Header Tapped"
+        case DetailItemTapped = "Detail Item Tapped"
+    }
+    
+    enum Source: String {
+        case Home = "Home"
+        case Organization = "Organization"
+        case UserProfile = "User Profile"
+        case Profile = "Profile"
+        case Overview = "Overview"
+        case Detail = "Detail"
+        case Unknown = "Unknown"
+    }
+    
+    enum ScrollDirection {
+        case Vertical
+        case Horizontal
+    }
     
     private var majorScrollEvents = [String: CGFloat]()
     
@@ -53,34 +99,26 @@ class Tracker {
     }
     
     func trackSessionStart() {
-        Mixpanel.sharedInstance().timeEvent(TrackingEvent.UserSession.rawValue)
+        Mixpanel.sharedInstance().timeEvent(Event.UserSession.rawValue)
     }
     
     func trackSessionEnd() {
-        Mixpanel.sharedInstance().track(TrackingEvent.UserSession.rawValue)
+        Mixpanel.sharedInstance().track(Event.UserSession.rawValue)
     }
     
-    func track(event: String, properties: [String: AnyObject]?) {
-        Mixpanel.sharedInstance().track(event, properties: properties)
+    func track(event: Event) {
+        Mixpanel.sharedInstance().track(event.rawValue)
     }
     
-    func track(event: String) {
-        Mixpanel.sharedInstance().track(event)
-    }
-    
-    func track(event: TrackingEvent) {
-        track(event.rawValue)
-    }
-    
-    func track(event: TrackingEvent, properties: [String: AnyObject]?) {
-        Mixpanel.sharedInstance().track(event.rawValue, properties: properties)
+    func track(event: Event, properties withProperties: [TrackerProperty]?) {
+        Mixpanel.sharedInstance().track(event.rawValue, properties: trackerPropertiesAsDict(withProperties))
     }
     
     func trackMajorScrollEvents(
-        event: String,
+        event: Event,
         scrollView: UIScrollView,
-        direction: TrackScrollDirection,
-        properties withProperties: [String: AnyObject]?
+        direction: ScrollDirection,
+        properties withProperties: [TrackerProperty]?
     ) {
         var scrollPercent: CGFloat
         switch direction {
@@ -90,20 +128,30 @@ class Tracker {
             scrollPercent = scrollView.contentOffset.x / (scrollView.contentSize.width - scrollView.frameWidth) * 100
         }
         if floor(scrollPercent % 25) <= 1 {
-            if let lastTracked = majorScrollEvents[event] {
+            if let lastTracked = majorScrollEvents[event.rawValue] {
                 if abs(lastTracked - scrollPercent) < 25 {
                     return
                 }
             }
             
-            majorScrollEvents[event] = scrollPercent
+            majorScrollEvents[event.rawValue] = scrollPercent
             var properties = [String: AnyObject]()
             if withProperties != nil {
-                properties = withProperties!
+                properties = trackerPropertiesAsDict(withProperties)
             }
-            properties["scroll_percent"] = floor(scrollPercent)
-            track(event, properties: properties)
+            properties["\(TrackingPrefix)scroll_percent"] = floor(scrollPercent)
+            Mixpanel.sharedInstance().track(event.rawValue, properties: properties)
         }
+    }
+    
+    private func trackerPropertiesAsDict(properties: [TrackerProperty]?) -> [String: AnyObject] {
+        var output = [String: AnyObject]()
+        if let properties = properties {
+            for property in properties {
+                output[property.key] = property.value
+            }
+        }
+        return output
     }
     
 }

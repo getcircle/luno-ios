@@ -41,13 +41,16 @@ class OrganizationDetailViewController: DetailViewController, CardHeaderViewDele
     // MARK: - Scroll view delegate
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
+        let properties = [
+            TrackerProperty.withKey(.ActiveViewController).withString(self.dynamicType.description()),
+            TrackerProperty.withKey(.SourceViewController).withSource(.Organization)
+        ]
         Tracker.sharedInstance.trackMajorScrollEvents(
-            TrackingEvent.OrganizationViewScrolled.rawValue,
+            .ViewScrolled,
             scrollView: scrollView,
             direction: .Vertical,
-            properties: nil
+            properties: properties
         )
-        
         if let profileHeaderView = (collectionView!.dataSource as OrganizationDetailDataSource).profileHeaderView {
             let contentOffset = scrollView.contentOffset
             let minOffsetToMakeChanges: CGFloat = 20.0

@@ -68,7 +68,7 @@ class ProfilesViewController: UIViewController,
 
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         if let profile = dataSource.contentAtIndexPath(indexPath)? as? ProfileService.Containers.Profile {
-            
+            trackViewProfile(profile)
             let profileVC = ProfileDetailsViewController.forProfile(profile)
             navigationController?.pushViewController(profileVC, animated: true)
         }
@@ -162,6 +162,18 @@ class ProfilesViewController: UIViewController,
 //        
 //        return person
 //    }
+    
+    private func trackViewProfile(profile: ProfileService.Containers.Profile) {
+        var properties = [
+            TrackerProperty.withKey(.DestinationProfileID).withString(profile.id),
+            TrackerProperty.withKey(.SourceViewController).withSource(.Overview),
+            TrackerProperty.withKey(.ActiveViewController).withString(self.dynamicType.description())
+        ]
+        if let title = self.title {
+            properties.append(TrackerProperty.withKey(.OverviewType).withString(title))
+        }
+        Tracker.sharedInstance.track(.DetailItemTapped, properties: properties)
+    }
     
     // MARK: - Orientation change
 

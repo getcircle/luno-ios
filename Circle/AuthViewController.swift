@@ -236,7 +236,7 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
     }
     
     private func trackSignupLogin(backend: UserService.AuthenticateUser.Request.AuthBackend, newUser: Bool) {
-        let properties = ["backend": String(backend.rawValue)]
+        let properties = [TrackerProperty.withKeyString("auth_backend").withValue(Int(backend.rawValue))]
         if newUser {
             Tracker.sharedInstance.track(.UserSignup, properties: properties)
         } else {

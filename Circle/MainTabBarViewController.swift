@@ -113,32 +113,35 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
             assert(false, "Invalid source \(sourceViewController) or destination \(destinationViewController) view controller.")
         }
 
-        var source: TrackerSources
+        var source: Tracker.Source
         if sourceViewController! is SearchViewController {
-            source = .MainTabHome
+            source = .Home
         } else if sourceViewController! is ProfileDetailsViewController {
-            source = .MainTabProfile
+            source = .UserProfile
         } else if sourceViewController! is OrganizationDetailViewController {
-            source = .MainTabOrganization
+            source = .Organization
         } else {
             assert(false, "Unhandled TabBar Source View Controller")
-            source = .MainTabUnknown
+            source = .Unknown
         }
 
-        var destination: TrackerSources
+        var destination: Tracker.Source
         if destinationViewController! is SearchViewController {
-            destination = .MainTabHome
+            destination = .Home
         } else if destinationViewController! is ProfileDetailsViewController {
-            destination = .MainTabProfile
+            destination = .UserProfile
         } else if destinationViewController! is OrganizationDetailViewController {
-            destination = .MainTabOrganization
+            destination = .Organization
         } else {
             assert(false, "Unhandled TabBar Destination View Controller")
-            destination = .MainTabUnknown
+            destination = .Unknown
         }
 
-        let properties = ["source_vc": source.name, "destination_vc": destination.name]
-        Tracker.sharedInstance.track(.MainTabSelected, properties: properties)
+        let properties = [
+            TrackerProperty.withKey(.SourceViewController).withSource(source),
+            TrackerProperty.withKey(.DestinationViewController).withSource(destination)
+        ]
+        Tracker.sharedInstance.track(.TabSelected, properties: properties)
     }
 
     private func getActiveViewController(viewController: UIViewController?) -> UIViewController? {

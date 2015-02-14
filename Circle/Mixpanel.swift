@@ -14,7 +14,7 @@ extension Mixpanel {
     class func setup() {
         Mixpanel.sharedInstanceWithToken("3086517890dd4df6da6e25ef8873d4e5")
         Mixpanel.sharedInstance().registerSuperPropertiesOnce([
-            "environemnt": ServiceHttpRequest.environment.name
+            "\(TrackingPrefix)environemnt": ServiceHttpRequest.environment.name
         ])
         if let user = AuthViewController.getLoggedInUser() {
             identifyUser(user, newUser: false)
@@ -26,13 +26,13 @@ extension Mixpanel {
     }
     
     class func registerSuperPropertiesForUser(user: UserService.Containers.User) {
-        Mixpanel.sharedInstance().registerSuperPropertiesOnce(["user_id": user.id])
+        Mixpanel.sharedInstance().registerSuperPropertiesOnce(["\(TrackingPrefix)user_id": user.id])
     }
     
     class func registerSuperPropertiesForProfile(profile: ProfileService.Containers.Profile) {
         Mixpanel.sharedInstance().registerSuperPropertiesOnce([
-            "profile_id": profile.id,
-            "organization_id": profile.organization_id,
+            "\(TrackingPrefix)profile_id": profile.id,
+            "\(TrackingPrefix)organization_id": profile.organization_id,
         ])
     }
     
