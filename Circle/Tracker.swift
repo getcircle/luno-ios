@@ -13,12 +13,24 @@ let TrackingPrefix = "c_"
 class TrackerProperty {
     
     enum Key: String {
-        case SourceViewController = "source_vc"
-        case DestinationViewController = "destination_vc"
+        case Source = "source"
+        case Destination = "destination"
         case DestinationProfileID = "destination_profile_id"
         case ActiveViewController = "active_vc"
         case OverviewType = "overview_type"
         case DetailType = "detail_type"
+    }
+    
+    enum OverviewType: String {
+        case Profiles = "Profiles"
+        case Offices = "Offices"
+        case Teams = "Teams"
+    }
+    
+    enum DetailType: String {
+        case Profile = "Profile"
+        case Office = "Office"
+        case Team = "Team"
     }
     
     private var internalKey: String?
@@ -45,6 +57,16 @@ class TrackerProperty {
     
     func withString(withValue: String) -> TrackerProperty {
         value = withValue
+        return self
+    }
+    
+    func withOverviewType(withValue: OverviewType) -> TrackerProperty {
+        value = withValue.rawValue
+        return self
+    }
+    
+    func withDetailType(withValue: DetailType) -> TrackerProperty {
+        value = withValue.rawValue
         return self
     }
     

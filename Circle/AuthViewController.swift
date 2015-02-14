@@ -235,15 +235,6 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
         }
     }
     
-    private func trackSignupLogin(backend: UserService.AuthenticateUser.Request.AuthBackend, newUser: Bool) {
-        let properties = [TrackerProperty.withKeyString("auth_backend").withValue(Int(backend.rawValue))]
-        if newUser {
-            Tracker.sharedInstance.track(.UserSignup, properties: properties)
-        } else {
-            Tracker.sharedInstance.track(.UserLogin, properties: properties)
-        }
-    }
-    
     private func fetchAndCacheUserProfile(userId: String, completion: (error: NSError?) -> Void) {
         // XXX handle profile doesn't exist
         ProfileService.Actions.getProfile(userId: userId) { (profile, error) -> Void in
@@ -401,6 +392,17 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
             return false
         }
         return true
+    }
+    
+    // MARK: - Tracking
+    
+    private func trackSignupLogin(backend: UserService.AuthenticateUser.Request.AuthBackend, newUser: Bool) {
+        let properties = [TrackerProperty.withKeyString("auth_backend").withValue(Int(backend.rawValue))]
+        if newUser {
+            Tracker.sharedInstance.track(.UserSignup, properties: properties)
+        } else {
+            Tracker.sharedInstance.track(.UserLogin, properties: properties)
+        }
     }
 
 }

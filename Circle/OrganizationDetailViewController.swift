@@ -43,7 +43,7 @@ class OrganizationDetailViewController: DetailViewController, CardHeaderViewDele
     func scrollViewDidScroll(scrollView: UIScrollView) {
         let properties = [
             TrackerProperty.withKey(.ActiveViewController).withString(self.dynamicType.description()),
-            TrackerProperty.withKey(.SourceViewController).withSource(.Organization)
+            TrackerProperty.withKey(.Source).withSource(.Organization)
         ]
         Tracker.sharedInstance.trackMajorScrollEvents(
             .ViewScrolled,
@@ -91,12 +91,21 @@ class OrganizationDetailViewController: DetailViewController, CardHeaderViewDele
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let dataSource = (collectionView.dataSource as CardDataSource)
         let selectedCard = dataSource.cardAtSection(indexPath.section)!
+        var properties = [
+            TrackerProperty.withKeyString("card_type").withString(selectedCard.type.rawValue),
+            TrackerProperty.withKeyString("card_title").withString(selectedCard.title),
+            TrackerProperty.withKey(.Source).withSource(.Organization),
+            TrackerProperty.withKey(.ActiveViewController).withString(self.dynamicType.description())
+        ]
         
         switch selectedCard.type {
         case .People, .Birthdays, .Anniversaries, .NewHires:
             if let profile = dataSource.contentAtIndexPath(indexPath)? as? ProfileService.Containers.Profile {
                 let profileVC = ProfileDetailsViewController.forProfile(profile)
                 profileVC.hidesBottomBarWhenPushed = true
+                properties.append(TrackerProperty.withKey(.Destination).withSource(.Detail))
+                properties.append(TrackerProperty.withKey(.DetailType).withDetailType(.Profile))
+                Tracker.sharedInstance.track(.DetailItemTapped, properties: properties)
                 navigationController?.pushViewController(profileVC, animated: true)
             }
         case .Group:
@@ -104,6 +113,9 @@ class OrganizationDetailViewController: DetailViewController, CardHeaderViewDele
             viewController.dataSource.setInitialData(selectedCard.content[0] as [AnyObject], ofType: nil)
             viewController.title = selectedCard.title
             viewController.hidesBottomBarWhenPushed = true
+            properties.append(TrackerProperty.withKey(.Destination).withSource(.Overview))
+            properties.append(TrackerProperty.withKey(.OverviewType).withOverviewType(.Profiles))
+            Tracker.sharedInstance.track(.DetailItemTapped, properties: properties)
             navigationController?.pushViewController(viewController, animated: true)
             
         case .Locations:
@@ -111,6 +123,9 @@ class OrganizationDetailViewController: DetailViewController, CardHeaderViewDele
                 let viewController = LocationDetailViewController()
                 (viewController.dataSource as LocationDetailDataSource).selectedLocation = locationAddress
                 viewController.hidesBottomBarWhenPushed = true
+                properties.append(TrackerProperty.withKey(.Destination).withSource(.Detail))
+                properties.append(TrackerProperty.withKey(.DetailType).withDetailType(.Office))
+                Tracker.sharedInstance.track(.DetailItemTapped, properties: properties)
                 navigationController?.pushViewController(viewController, animated: true)
             }
 
@@ -119,6 +134,9 @@ class OrganizationDetailViewController: DetailViewController, CardHeaderViewDele
                 let viewController = TeamDetailViewController()
                 (viewController.dataSource as TeamDetailDataSource).selectedTeam = selectedTeam
                 viewController.hidesBottomBarWhenPushed = true
+                properties.append(TrackerProperty.withKey(.Destination).withSource(.Detail))
+                properties.append(TrackerProperty.withKey(.DetailType).withDetailType(.Team))
+                Tracker.sharedInstance.track(.DetailItemTapped, properties: properties)
                 navigationController?.pushViewController(viewController, animated: true)
             }
             
@@ -143,6 +161,7 @@ class OrganizationDetailViewController: DetailViewController, CardHeaderViewDele
             }
             viewController.title = card.title
             viewController.hidesBottomBarWhenPushed = true
+            trackCardHeaderTapped(card, overviewType: .Profiles)
             navigationController?.pushViewController(viewController, animated: true)
             
         case .Locations:
@@ -150,6 +169,7 @@ class OrganizationDetailViewController: DetailViewController, CardHeaderViewDele
             viewController.dataSource.setInitialData(card.allContent, ofType: nil)
             viewController.title = card.title
             viewController.hidesBottomBarWhenPushed = true
+            trackCardHeaderTapped(card, overviewType: .Offices)
             navigationController?.pushViewController(viewController, animated: true)
         
         case .TeamsGrid:
@@ -157,6 +177,7 @@ class OrganizationDetailViewController: DetailViewController, CardHeaderViewDele
             viewController.dataSource.setInitialData(card.content[0] as [AnyObject], ofType: nil)
             viewController.title = card.title
             viewController.hidesBottomBarWhenPushed = true
+            trackCardHeaderTapped(card, overviewType: .Teams)
             navigationController?.pushViewController(viewController, animated: true)
 
         default:
@@ -175,4 +196,19 @@ class OrganizationDetailViewController: DetailViewController, CardHeaderViewDele
         }
         collectionView.reloadSections(NSIndexSet(index: card.cardIndex))
     }
+    
+    // MARK: - Tracking
+
+    func trackCardHeaderTapped(card: Card, overviewType: TrackerProperty.OverviewType) {
+        let properties = [
+            TrackerProperty.withKeyString("card_type").withString(card.type.rawValue),
+            TrackerProperty.withKey(.Source).withSource(.Organization),
+            TrackerProperty.withKey(.Destination).withSource(.Overview),
+            TrackerProperty.withKey(.OverviewType).withOverviewType(overviewType),
+            TrackerProperty.withKeyString("card_title").withString(card.title),
+            TrackerProperty.withKey(.ActiveViewController).withString(self.dynamicType.description())
+        ]
+        Tracker.sharedInstance.track(.CardHeaderTapped, properties: properties)
+    }
+    
 }

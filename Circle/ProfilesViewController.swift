@@ -163,11 +163,15 @@ class ProfilesViewController: UIViewController,
 //        return person
 //    }
     
+    // MARK: - Tracking
+    
     private func trackViewProfile(profile: ProfileService.Containers.Profile) {
         var properties = [
             TrackerProperty.withKey(.DestinationProfileID).withString(profile.id),
-            TrackerProperty.withKey(.SourceViewController).withSource(.Overview),
-            TrackerProperty.withKey(.ActiveViewController).withString(self.dynamicType.description())
+            TrackerProperty.withKey(.Source).withSource(.Overview),
+            TrackerProperty.withKey(.Destination).withSource(.Detail),
+            TrackerProperty.withKey(.ActiveViewController).withString(self.dynamicType.description()),
+            TrackerProperty.withKey(.DetailType).withString("Profiles")
         ]
         if let title = self.title {
             properties.append(TrackerProperty.withKey(.OverviewType).withString(title))

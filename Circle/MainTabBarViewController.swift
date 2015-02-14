@@ -103,7 +103,7 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
         return true
     }
 
-    // MARK: - Helpers
+    // MARK: - Tracking
 
     private func trackTabSelected(viewController: UIViewController) {
         let sourceViewController = getActiveViewController(selectedViewController)
@@ -138,8 +138,9 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
         }
 
         let properties = [
-            TrackerProperty.withKey(.SourceViewController).withSource(source),
-            TrackerProperty.withKey(.DestinationViewController).withSource(destination)
+            TrackerProperty.withKey(.Source).withSource(source),
+            TrackerProperty.withKey(.Destination).withSource(destination),
+            TrackerProperty.withKey(.ActiveViewController).withString(sourceViewController!.description)
         ]
         Tracker.sharedInstance.track(.TabSelected, properties: properties)
     }

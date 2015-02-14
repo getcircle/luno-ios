@@ -250,7 +250,7 @@ NewNoteViewControllerDelegate {
     func scrollViewDidScroll(scrollView: UIScrollView) {
         let properties = [
             TrackerProperty.withKey(.ActiveViewController).withString(self.dynamicType.description()),
-            TrackerProperty.withKey(.SourceViewController).withSource(.Home)
+            TrackerProperty.withKey(.Source).withSource(.Home)
         ]
         Tracker.sharedInstance.trackMajorScrollEvents(
             .ViewScrolled,
@@ -446,12 +446,14 @@ NewNoteViewControllerDelegate {
         loadData()
     }
     
-    // MARK: - Helpers
+    // MARK: - Tracking
     
     private func trackCardHeaderTapped(card: Card) {
         let properties = [
             TrackerProperty.withKeyString("card_type").withString(card.type.rawValue),
-            TrackerProperty.withKey(.SourceViewController).withSource(.Home),
+            TrackerProperty.withKey(.Source).withSource(.Home),
+            TrackerProperty.withKey(.Destination).withSource(.Overview),
+            TrackerProperty.withKey(.OverviewType).withString(card.title),
             TrackerProperty.withKeyString("card_title").withString(card.title),
             TrackerProperty.withKey(.ActiveViewController).withString(self.dynamicType.description())
         ]
