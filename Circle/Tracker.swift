@@ -16,8 +16,10 @@ class TrackerProperty {
         case Source = "source"
         case Destination = "destination"
         case ActiveViewController = "active_vc"
-        case OverviewType = "overview_type"
-        case DetailType = "detail_type"
+        case SourceOverviewType = "source_overview_type"
+        case SourceDetailType = "source_detail_type"
+        case DestinationOverviewType = "destination_overview_type"
+        case DestinationDetailType = "destination_detail_type"
     }
     
     enum OverviewType: String {
@@ -101,13 +103,18 @@ class Tracker {
         case ViewScrolled = "View Scrolled"
         case CardHeaderTapped = "Card Header Tapped"
         case DetailItemTapped = "Detail Item Tapped"
+        case NewNote = "New Note"
+        case SaveNote = "Save Note"
+        case DeleteNote = "Delete Note"
+        case UpdateNote = "Update Note"
+        case DismissNote = "Dismiss Note"
+        case ViewNote = "View Note"
     }
     
     enum Source: String {
         case Home = "Home"
         case Organization = "Organization"
         case UserProfile = "User Profile"
-        case Profile = "Profile"
         case Overview = "Overview"
         case Detail = "Detail"
         case Unknown = "Unknown"

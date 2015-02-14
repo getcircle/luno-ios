@@ -97,6 +97,7 @@ class NotesOverviewViewController: UIViewController, UICollectionViewDelegate, N
                     viewController.profile = selectedProfile
                     viewController.delegate = self
                     viewController.note = selectedNote
+                    trackViewNoteAction(selectedNote)
                     navigationController?.pushViewController(viewController, animated: true)
                     if searchHeaderView.searchTextField.text.trimWhitespace() == "" {
                         searchHeaderView.searchTextField.resignFirstResponder()
@@ -142,6 +143,7 @@ class NotesOverviewViewController: UIViewController, UICollectionViewDelegate, N
         viewController.profile = loggedInUserProfile
         viewController.delegate = self
         profileForSelectedNote = loggedInUserProfile
+        trackNewNoteAction()
         navigationController?.pushViewController(viewController, animated: true)
     }
     
@@ -159,5 +161,41 @@ class NotesOverviewViewController: UIViewController, UICollectionViewDelegate, N
                 self.loadData()
             })
         })
+    }
+    
+    // MARK: - Tracking
+    
+    private func trackNewNoteAction() {
+        let properties = getTrackingProperties(nil)
+        Tracker.sharedInstance.track(.NewNote, properties: properties)
+    }
+    
+    private func trackViewNoteAction(note: NoteService.Containers.Note) {
+        let properties = getTrackingProperties(note)
+        Tracker.sharedInstance.track(.ViewNote, properties: properties)
+    }
+    
+    private func getTrackingProperties(note: NoteService.Containers.Note?) -> [TrackerProperty] {
+        var properties = [
+            TrackerProperty.withKey(.Source).withSource(.Overview),
+            TrackerProperty.withKey(.SourceOverviewType).withOverviewType(.Notes),
+            TrackerProperty.withKey(.ActiveViewController).withString(self.dynamicType.description()),
+            TrackerProperty.withKey(.Destination).withSource(.Detail),
+            TrackerProperty.withKey(.DestinationDetailType).withDetailType(.Note)
+        ]
+        if let note = note {
+            properties.append(TrackerProperty.withDestinationId("note_id").withString(note.id))
+            properties.append(TrackerProperty.withKeyString("personal_note").withValue(isPersonalNote(note.for_profile_id)))
+        } else {
+            properties.append(TrackerProperty.withKeyString("personal_note").withValue(true))
+        }
+        return properties
+    }
+    
+    private func isPersonalNote(forProfileId: String) -> Bool {
+        if forProfileId == AuthViewController.getLoggedInUserProfile()!.id {
+            return true
+        }
+        return false
     }
 }

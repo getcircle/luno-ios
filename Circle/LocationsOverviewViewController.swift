@@ -111,9 +111,9 @@ class LocationsOverviewViewController: UIViewController, UICollectionViewDataSou
     func trackLocationSelected(location: OrganizationService.Containers.Address) {
         let properties = [
             TrackerProperty.withKey(.Source).withSource(.Overview),
-            TrackerProperty.withKey(.OverviewType).withOverviewType(.Offices),
+            TrackerProperty.withKey(.SourceOverviewType).withOverviewType(.Offices),
             TrackerProperty.withKey(.Destination).withSource(.Detail),
-            TrackerProperty.withKey(.DetailType).withDetailType(.Office),
+            TrackerProperty.withKey(.DestinationDetailType).withDetailType(.Office),
             TrackerProperty.withKey(.ActiveViewController).withString(self.dynamicType.description()),
             TrackerProperty.withDestinationId("location_id").withString(location.id)
         ]

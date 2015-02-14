@@ -104,7 +104,7 @@ class OrganizationDetailViewController: DetailViewController, CardHeaderViewDele
                 let profileVC = ProfileDetailsViewController.forProfile(profile)
                 profileVC.hidesBottomBarWhenPushed = true
                 properties.append(TrackerProperty.withKey(.Destination).withSource(.Detail))
-                properties.append(TrackerProperty.withKey(.DetailType).withDetailType(.Profile))
+                properties.append(TrackerProperty.withKey(.DestinationDetailType).withDetailType(.Profile))
                 Tracker.sharedInstance.track(.DetailItemTapped, properties: properties)
                 navigationController?.pushViewController(profileVC, animated: true)
             }
@@ -114,7 +114,7 @@ class OrganizationDetailViewController: DetailViewController, CardHeaderViewDele
             viewController.title = selectedCard.title
             viewController.hidesBottomBarWhenPushed = true
             properties.append(TrackerProperty.withKey(.Destination).withSource(.Overview))
-            properties.append(TrackerProperty.withKey(.OverviewType).withOverviewType(.Profiles))
+            properties.append(TrackerProperty.withKey(.DestinationOverviewType).withOverviewType(.Profiles))
             Tracker.sharedInstance.track(.DetailItemTapped, properties: properties)
             navigationController?.pushViewController(viewController, animated: true)
             
@@ -124,7 +124,7 @@ class OrganizationDetailViewController: DetailViewController, CardHeaderViewDele
                 (viewController.dataSource as LocationDetailDataSource).selectedLocation = locationAddress
                 viewController.hidesBottomBarWhenPushed = true
                 properties.append(TrackerProperty.withKey(.Destination).withSource(.Detail))
-                properties.append(TrackerProperty.withKey(.DetailType).withDetailType(.Office))
+                properties.append(TrackerProperty.withKey(.DestinationDetailType).withDetailType(.Office))
                 Tracker.sharedInstance.track(.DetailItemTapped, properties: properties)
                 navigationController?.pushViewController(viewController, animated: true)
             }
@@ -135,7 +135,7 @@ class OrganizationDetailViewController: DetailViewController, CardHeaderViewDele
                 (viewController.dataSource as TeamDetailDataSource).selectedTeam = selectedTeam
                 viewController.hidesBottomBarWhenPushed = true
                 properties.append(TrackerProperty.withKey(.Destination).withSource(.Detail))
-                properties.append(TrackerProperty.withKey(.DetailType).withDetailType(.Team))
+                properties.append(TrackerProperty.withKey(.DestinationDetailType).withDetailType(.Team))
                 Tracker.sharedInstance.track(.DetailItemTapped, properties: properties)
                 navigationController?.pushViewController(viewController, animated: true)
             }
@@ -215,7 +215,7 @@ class OrganizationDetailViewController: DetailViewController, CardHeaderViewDele
             TrackerProperty.withKeyString("card_type").withString(card.type.rawValue),
             TrackerProperty.withKey(.Source).withSource(.Organization),
             TrackerProperty.withKey(.Destination).withSource(.Overview),
-            TrackerProperty.withKey(.OverviewType).withOverviewType(overviewType),
+            TrackerProperty.withKey(.DestinationOverviewType).withOverviewType(overviewType),
             TrackerProperty.withKeyString("card_title").withString(card.title),
             TrackerProperty.withKey(.ActiveViewController).withString(self.dynamicType.description())
         ]
@@ -227,7 +227,7 @@ class OrganizationDetailViewController: DetailViewController, CardHeaderViewDele
             TrackerProperty.withKey(.ActiveViewController).withString(self.dynamicType.description()),
             TrackerProperty.withKey(.Source).withSource(.Organization),
             TrackerProperty.withKey(.Destination).withSource(.Detail),
-            TrackerProperty.withKey(.DetailType).withDetailType(.Skill),
+            TrackerProperty.withKey(.DestinationDetailType).withDetailType(.Skill),
             TrackerProperty.withDestinationId("skill_id").withString(skill.id)
         ]
         Tracker.sharedInstance.track(.DetailItemTapped, properties: properties)

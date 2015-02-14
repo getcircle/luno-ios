@@ -236,6 +236,11 @@ class ProfileDetailsViewController:
             break
         }
         
+        if note == nil {
+            trackNewNoteAction()
+        } else {
+            trackViewNoteAction(note!)
+        }
         presentNoteView(note)
     }
     
@@ -289,13 +294,6 @@ class ProfileDetailsViewController:
     override func registerNotifications() {
         NSNotificationCenter.defaultCenter().addObserver(
             self,
-            selector: "addNote:",
-            name: NotesCardHeaderCollectionReusableViewNotifications.onAddNoteNotification,
-            object: nil
-        )
-
-        NSNotificationCenter.defaultCenter().addObserver(
-            self,
             selector: "updateNotesTitle:",
             name: ProfileNotesNotifications.onNotesChanged,
             object: nil
@@ -314,12 +312,6 @@ class ProfileDetailsViewController:
         )
         
         super.registerNotifications()
-    }
-    
-    // MARK: - NotesCardHeaderViewDelegate
-    
-    func addNote(sender: AnyObject!) {
-        presentNoteView(nil)
     }
     
     // MARK: - NewNoteViewControllerDelegate
@@ -470,6 +462,15 @@ class ProfileDetailsViewController:
         detailViews.map({ $0.setContentOffset(CGPointZero, animated: false) })
     }
     
+    private func isPersonalNote() -> Bool {
+        if let profile = profile {
+            if profile.id == AuthViewController.getLoggedInUserProfile()!.id {
+                return true
+            }
+        }
+        return false
+    }
+    
     // Class Methods
     
     class func forProfile(
@@ -534,4 +535,33 @@ class ProfileDetailsViewController:
         let settingsNavController = UINavigationController(rootViewController: settingsViewController)
         presentViewController(settingsNavController, animated: true, completion: nil)
     }
+    
+    // MARK: - Tracking
+    
+    private func trackNewNoteAction() {
+        let properties = getTrackingProperties(nil)
+        Tracker.sharedInstance.track(.NewNote, properties: properties)
+    }
+    
+    private func trackViewNoteAction(note: NoteService.Containers.Note) {
+        let properties = getTrackingProperties(note)
+        Tracker.sharedInstance.track(.ViewNote, properties: properties)
+    }
+    
+    private func getTrackingProperties(note: NoteService.Containers.Note?) -> [TrackerProperty] {
+        var properties = [
+            TrackerProperty.withKey(.ActiveViewController).withString(self.dynamicType.description()),
+            TrackerProperty.withDestinationId("profile_id").withString(profile.id),
+            TrackerProperty.withKey(.Source).withSource(.Detail),
+            TrackerProperty.withKey(.SourceDetailType).withDetailType(.Profile),
+            TrackerProperty.withKey(.Destination).withSource(.Detail),
+            TrackerProperty.withKey(.DestinationDetailType).withDetailType(.Note),
+            TrackerProperty.withKeyString("personal_note").withValue(isPersonalNote())
+        ]
+        if let note = note {
+            properties.append(TrackerProperty.withDestinationId("note_id").withString(note.id))
+        }
+        return properties
+    }
+
 }

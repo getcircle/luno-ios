@@ -51,7 +51,7 @@ class NewNoteViewController: UIViewController, UIViewControllerTransitioningDele
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         if let profile = profile {
-            if profile.id == AuthViewController.getLoggedInUserProfile()!.id {
+            if isPersonalNote() {
                 noteTextViewTopConstraint.constant = -profileImageView.frameHeight
                 noteTextView.setNeedsUpdateConstraints()
                 noteTextView.layoutIfNeeded()
@@ -131,6 +131,7 @@ class NewNoteViewController: UIViewController, UIViewControllerTransitioningDele
             ) { (action) -> Void in
                 NoteService.Actions.deleteNote(self.note!, completionHandler: { (error) -> Void in
                     if error == nil {
+                        self.trackDeleteNoteAction(self.note!)
                         self.delegate?.didDeleteNote(self.note!)
                         self.dismiss()
                     }
@@ -150,6 +151,7 @@ class NewNoteViewController: UIViewController, UIViewControllerTransitioningDele
     // MARK: - IBActions
     
     @IBAction func closeButtonTapped(sender: AnyObject!) {
+        trackDismissNote()
         dismiss()
     }
     
@@ -172,6 +174,7 @@ class NewNoteViewController: UIViewController, UIViewControllerTransitioningDele
     }
     
     @IBAction func newButtonTapped(sender: AnyObject) {
+        trackNewNoteAction()
         noteTextView.resignFirstResponder()
         let newNoteViewController = NewNoteViewController(nibName: "NewNoteViewController", bundle: nil)
         newNoteViewController.profile = profile
@@ -227,6 +230,7 @@ class NewNoteViewController: UIViewController, UIViewControllerTransitioningDele
         noteBuilder.content = noteTextView.text
         NoteService.Actions.createNote(noteBuilder.build()) { (note, error) -> Void in
             if let note = note {
+                self.trackSaveNoteAction(note)
                 self.delegate?.didAddNote(note)
             }
             self.dismiss()
@@ -238,11 +242,21 @@ class NewNoteViewController: UIViewController, UIViewControllerTransitioningDele
         noteBuilder.content = noteTextView.text
         NoteService.Actions.updateNote(noteBuilder.build()) { (note, error) -> Void in
             if let note = note {
+                self.trackUpdateNoteAction(note)
                 self.delegate?.didDeleteNote(self.note!)
                 self.delegate?.didAddNote(note)
             }
             self.dismiss()
         }
+    }
+    
+    private func isPersonalNote() -> Bool {
+        if let profile = profile {
+            if profile.id == AuthViewController.getLoggedInUserProfile()!.id {
+                return true
+            }
+        }
+        return false
     }
     
     // MARK: - NSLayoutManagerDelegate
@@ -286,5 +300,55 @@ class NewNoteViewController: UIViewController, UIViewControllerTransitioningDele
         noteTextViewBottomConstraint.constant = noteTextViewBottomConstraintInitialValue
         noteTextView.setNeedsUpdateConstraints()
         noteTextView.layoutIfNeeded()
+    }
+    
+    // MARK: - Tracking
+    
+    private func trackNewNoteAction() {
+        var properties = [
+            TrackerProperty.withKeyString("personal_note").withValue(isPersonalNote()),
+            TrackerProperty.withKey(.Source).withSource(.Detail),
+            TrackerProperty.withKey(.SourceDetailType).withDetailType(.Note)
+        ]
+        if let profile = profile {
+            properties.append(TrackerProperty.withDestinationId("profile_id").withString(profile.id))
+        }
+        Tracker.sharedInstance.track(.NewNote, properties: properties)
+    }
+    
+    private func trackSaveNoteAction(note: NoteService.Containers.Note) {
+        let properties = propertiesForNoteTracking(note)
+        Tracker.sharedInstance.track(.SaveNote, properties: properties)
+    }
+    
+    private func trackDeleteNoteAction(note: NoteService.Containers.Note) {
+        let properties = propertiesForNoteTracking(note)
+        Tracker.sharedInstance.track(.DeleteNote, properties: properties)
+    }
+    
+    private func trackUpdateNoteAction(note: NoteService.Containers.Note) {
+        let properties = propertiesForNoteTracking(note)
+        Tracker.sharedInstance.track(.UpdateNote, properties: properties)
+    }
+    
+    private func trackDismissNote() {
+        let properties = [
+            TrackerProperty.withKeyString("personal_note").withValue(isPersonalNote()),
+            TrackerProperty.withKey(.Source).withSource(.Detail),
+            TrackerProperty.withKey(.SourceDetailType).withDetailType(.Note),
+            TrackerProperty.withKeyString("has_been_saved").withValue(note != nil)
+        ]
+        Tracker.sharedInstance.track(.DismissNote, properties: properties)
+    }
+    
+    private func propertiesForNoteTracking(note: NoteService.Containers.Note) -> [TrackerProperty] {
+        var properties = [
+            TrackerProperty.withKeyString("note_id").withString(note.id),
+            TrackerProperty.withKeyString("personal_note").withValue(isPersonalNote()),
+        ]
+        if let profile = profile {
+            properties.append(TrackerProperty.withKeyString("for_profile_id").withString(profile.id))
+        }
+        return properties
     }
 }

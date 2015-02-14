@@ -170,11 +170,11 @@ class ProfilesViewController: UIViewController,
             TrackerProperty.withDestinationId("profile_id").withString(profile.id),
             TrackerProperty.withKey(.Source).withSource(.Overview),
             TrackerProperty.withKey(.Destination).withSource(.Detail),
-            TrackerProperty.withKey(.ActiveViewController).withString(self.dynamicType.description()),
-            TrackerProperty.withKey(.DetailType).withString("Profiles")
+            TrackerProperty.withKey(.DestinationDetailType).withDetailType(.Profile),
+            TrackerProperty.withKey(.ActiveViewController).withString(self.dynamicType.description())
         ]
         if let title = self.title {
-            properties.append(TrackerProperty.withKey(.OverviewType).withString(title))
+            properties.append(TrackerProperty.withKey(.SourceOverviewType).withString(title))
         }
         Tracker.sharedInstance.track(.DetailItemTapped, properties: properties)
     }
