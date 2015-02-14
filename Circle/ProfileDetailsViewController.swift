@@ -90,22 +90,22 @@ class ProfileDetailsViewController:
     // MARK: - Configurations
     
     private func configureNavigationButtons() {
-        if profile.id == AuthViewController.getLoggedInUserProfile()!.id {
-            let editButtonItem = UIBarButtonItem(
-                image: UIImage(named: "Pencil"),
-                style: .Plain,
-                target: self,
-                action: "editProfileButtonTapped:"
-            )
-            
-            var rightBarButtonItems = [UIBarButtonItem]()
-            if navigationItem.rightBarButtonItem != nil {
-                rightBarButtonItems.append(navigationItem.rightBarButtonItem!)
-            }
-
-            rightBarButtonItems.append(editButtonItem)
-            navigationItem.rightBarButtonItems = rightBarButtonItems
-        }
+//        if profile.id == AuthViewController.getLoggedInUserProfile()!.id {
+//            let editButtonItem = UIBarButtonItem(
+//                image: UIImage(named: "Pencil"),
+//                style: .Plain,
+//                target: self,
+//                action: "editProfileButtonTapped:"
+//            )
+//            
+//            var rightBarButtonItems = [UIBarButtonItem]()
+//            if navigationItem.rightBarButtonItem != nil {
+//                rightBarButtonItems.append(navigationItem.rightBarButtonItem!)
+//            }
+//
+//            rightBarButtonItems.append(editButtonItem)
+//            navigationItem.rightBarButtonItems = rightBarButtonItems
+//        }
     }
 
     private func configureOverlayView() {

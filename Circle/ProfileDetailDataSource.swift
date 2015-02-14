@@ -143,18 +143,18 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
     }
     
     private func getSocialConnectSection() -> Section? {
-        if profile.id == AuthViewController.getLoggedInUserProfile()!.id {
-            let sectionItems = [
-                SectionItem(
-                    title: NSLocalizedString("Connect with LinkedIn", comment: "Button title for connect with LinkedIn button"),
-                    container: "social",
-                    containerKey: "profile",
-                    contentType: .LinkedInConnect,
-                    image: ItemImage(name: "LinkedIn", tint: UIColor.linkedinColor())
-                )
-            ]
-            return Section(title: "Social", items: sectionItems, cardType: .SocialConnectCTAs)
-        }
+//        if profile.id == AuthViewController.getLoggedInUserProfile()!.id {
+//            let sectionItems = [
+//                SectionItem(
+//                    title: NSLocalizedString("Connect with LinkedIn", comment: "Button title for connect with LinkedIn button"),
+//                    container: "social",
+//                    containerKey: "profile",
+//                    contentType: .LinkedInConnect,
+//                    image: ItemImage(name: "LinkedIn", tint: UIColor.linkedinColor())
+//                )
+//            ]
+//            return Section(title: "Social", items: sectionItems, cardType: .SocialConnectCTAs)
+//        }
         
         return nil
     }
