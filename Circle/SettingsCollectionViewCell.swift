@@ -11,6 +11,7 @@ import UIKit
 class SettingsCollectionViewCell: CircleCollectionViewCell {
 
     @IBOutlet weak private(set) var itemLabel: UILabel!
+    @IBOutlet weak private(set) var pushesNewViewImage: UIImageView!
     
     private(set) var initialFontSize: CGFloat!
     private(set) var defaultSelectionBackgroundView: UIView!
@@ -29,6 +30,8 @@ class SettingsCollectionViewCell: CircleCollectionViewCell {
         // Initialization code
         initialFontSize = itemLabel.font.pointSize
         defaultSelectionBackgroundView = selectedBackgroundView
+        pushesNewViewImage.image = pushesNewViewImage.image?.imageWithRenderingMode(.AlwaysTemplate)
+        pushesNewViewImage.tintColor = UIColor.keyValueNextImageTintColor()
     }
     
     override func setData(data: AnyObject) {
