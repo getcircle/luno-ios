@@ -62,7 +62,7 @@ class LocationsOverviewViewController: UIViewController, UICollectionViewDataSou
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         if let location = dataSource.contentAtIndexPath(indexPath)? as? OrganizationService.Containers.Address {
-            
+            trackLocationSelected(location)
             var locationDetailVC = LocationDetailViewController()
             (locationDetailVC.dataSource as LocationDetailDataSource).selectedLocation = location
             navigationController?.pushViewController(locationDetailVC, animated: true)
@@ -96,7 +96,7 @@ class LocationsOverviewViewController: UIViewController, UICollectionViewDataSou
         return supplementaryView
     }
     
-    // MARK - UICollectionViewDelegate
+    // MARK: - UICollectionViewDelegate
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         
@@ -104,5 +104,19 @@ class LocationsOverviewViewController: UIViewController, UICollectionViewDataSou
             mapHeaderCollectionView.frameWidth,
             mapHeaderCollectionView.frameHeight - navigationBarHeight()
         )
+    }
+    
+    // MARK: - Tracking
+    
+    func trackLocationSelected(location: OrganizationService.Containers.Address) {
+        let properties = [
+            TrackerProperty.withKey(.Source).withSource(.Overview),
+            TrackerProperty.withKey(.OverviewType).withOverviewType(.Offices),
+            TrackerProperty.withKey(.Destination).withSource(.Detail),
+            TrackerProperty.withKey(.DetailType).withDetailType(.Office),
+            TrackerProperty.withKey(.ActiveViewController).withString(self.dynamicType.description()),
+            TrackerProperty.withKeyString("location_id").withString(location.id)
+        ]
+        Tracker.sharedInstance.track(.DetailItemTapped, properties: properties)
     }
 }
