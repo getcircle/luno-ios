@@ -197,6 +197,17 @@ class OrganizationDetailViewController: DetailViewController, CardHeaderViewDele
         collectionView.reloadSections(NSIndexSet(index: card.cardIndex))
     }
     
+    // MARK: - Notification Handlers
+    
+    override func didSelectSkill(notification: NSNotification) {
+        super.didSelectSkill(notification)
+        if let userInfo = notification.userInfo {
+            if let selectedSkill = userInfo["skill"] as? ProfileService.Containers.Skill {
+                trackSkillSelected(selectedSkill)
+            }
+        }
+    }
+    
     // MARK: - Tracking
 
     func trackCardHeaderTapped(card: Card, overviewType: TrackerProperty.OverviewType) {
@@ -209,6 +220,17 @@ class OrganizationDetailViewController: DetailViewController, CardHeaderViewDele
             TrackerProperty.withKey(.ActiveViewController).withString(self.dynamicType.description())
         ]
         Tracker.sharedInstance.track(.CardHeaderTapped, properties: properties)
+    }
+    
+    private func trackSkillSelected(skill: ProfileService.Containers.Skill) {
+        let properties = [
+            TrackerProperty.withKey(.ActiveViewController).withString(self.dynamicType.description()),
+            TrackerProperty.withKey(.Source).withSource(.Organization),
+            TrackerProperty.withKey(.Destination).withSource(.Detail),
+            TrackerProperty.withKey(.DetailType).withDetailType(.Skill),
+            TrackerProperty.withDestinationId("skill_id").withString(skill.id)
+        ]
+        Tracker.sharedInstance.track(.DetailItemTapped, properties: properties)
     }
     
 }

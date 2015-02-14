@@ -289,6 +289,7 @@ NewNoteViewControllerDelegate {
     func didSelectSkill(notification: NSNotification) {
         if let userInfo = notification.userInfo {
             if let selectedSkill = userInfo["skill"] as? ProfileService.Containers.Skill {
+                trackSkillSelected(selectedSkill)
                 let viewController = SkillDetailViewController()
                 (viewController.dataSource as SkillDetailDataSource).selectedSkill = selectedSkill
                 viewController.hidesBottomBarWhenPushed = true
@@ -482,5 +483,16 @@ NewNoteViewControllerDelegate {
             TrackerProperty.withKey(.ActiveViewController).withString(self.dynamicType.description())
         ]
         Tracker.sharedInstance.track(.CardHeaderTapped, properties: properties)
+    }
+    
+    private func trackSkillSelected(skill: ProfileService.Containers.Skill) {
+        let properties = [
+            TrackerProperty.withKey(.ActiveViewController).withString(self.dynamicType.description()),
+            TrackerProperty.withKey(.Source).withSource(.Home),
+            TrackerProperty.withKey(.Destination).withSource(.Detail),
+            TrackerProperty.withKey(.DetailType).withDetailType(.Skill),
+            TrackerProperty.withDestinationId("skill_id").withString(skill.id)
+        ]
+        Tracker.sharedInstance.track(.DetailItemTapped, properties: properties)
     }
 }

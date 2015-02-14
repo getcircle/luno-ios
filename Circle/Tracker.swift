@@ -25,6 +25,7 @@ class TrackerProperty {
         case Offices = "Offices"
         case Profiles = "Profiles"
         case Teams = "Teams"
+        case Skills = "Skills"
     }
     
     enum DetailType: String {
@@ -32,6 +33,7 @@ class TrackerProperty {
         case Office = "Office"
         case Profile = "Profile"
         case Team = "Team"
+        case Skill = "Skill"
     }
     
     private var internalKey: String?
