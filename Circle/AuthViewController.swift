@@ -80,6 +80,7 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
         googleSignIn.shouldFetchGoogleUserID = true
         googleSignIn.shouldFetchGoogleUserEmail = true
         googleSignIn.clientID = GoogleClientID
+        googleSignIn.attemptSSO = true
         googleSignIn.homeServerClientID = GoogleServerClientID
         googleSignIn.scopes = [kGTLAuthScopePlusLogin, kGTLAuthScopePlusUserinfoEmail, kGTLAuthScopePlusUserinfoProfile]
         googleSignIn.delegate = self
