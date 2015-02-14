@@ -167,7 +167,7 @@ class ProfilesViewController: UIViewController,
     
     private func trackViewProfile(profile: ProfileService.Containers.Profile) {
         var properties = [
-            TrackerProperty.withKey(.DestinationProfileID).withString(profile.id),
+            TrackerProperty.withDestinationId("profile_id").withString(profile.id),
             TrackerProperty.withKey(.Source).withSource(.Overview),
             TrackerProperty.withKey(.Destination).withSource(.Detail),
             TrackerProperty.withKey(.ActiveViewController).withString(self.dynamicType.description()),

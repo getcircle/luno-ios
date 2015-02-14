@@ -115,7 +115,7 @@ class LocationsOverviewViewController: UIViewController, UICollectionViewDataSou
             TrackerProperty.withKey(.Destination).withSource(.Detail),
             TrackerProperty.withKey(.DetailType).withDetailType(.Office),
             TrackerProperty.withKey(.ActiveViewController).withString(self.dynamicType.description()),
-            TrackerProperty.withKeyString("destination_location_id").withString(location.id)
+            TrackerProperty.withDestinationId("location_id").withString(location.id)
         ]
         Tracker.sharedInstance.track(.DetailItemTapped, properties: properties)
     }

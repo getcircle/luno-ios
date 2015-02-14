@@ -15,7 +15,6 @@ class TrackerProperty {
     enum Key: String {
         case Source = "source"
         case Destination = "destination"
-        case DestinationProfileID = "destination_profile_id"
         case ActiveViewController = "active_vc"
         case OverviewType = "overview_type"
         case DetailType = "detail_type"
@@ -78,6 +77,10 @@ class TrackerProperty {
     
     class func withKeyString(key: String) -> TrackerProperty {
         return TrackerProperty(key: key, value: nil)
+    }
+    
+    class func withDestinationId(key: String) -> TrackerProperty {
+        return TrackerProperty(key: "destination_\(key)", value: nil)
     }
     
     private func addPrefix(value: String) -> String {

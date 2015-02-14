@@ -210,6 +210,7 @@ NewNoteViewControllerDelegate {
                     profileVC.hidesBottomBarWhenPushed = true
                     properties.append(TrackerProperty.withKey(.Destination).withSource(.Detail))
                     properties.append(TrackerProperty.withKey(.DetailType).withDetailType(.Profile))
+                    properties.append(TrackerProperty.withDestinationId("profile_id").withString(profile.id))
                     Tracker.sharedInstance.track(.DetailItemTapped, properties: properties)
                     navigationController?.pushViewController(profileVC, animated: true)
                 }
@@ -230,6 +231,7 @@ NewNoteViewControllerDelegate {
                     viewController.hidesBottomBarWhenPushed = true
                     properties.append(TrackerProperty.withKey(.Destination).withSource(.Detail))
                     properties.append(TrackerProperty.withKey(.DetailType).withDetailType(.Office))
+                    properties.append(TrackerProperty.withDestinationId("location_id").withString(locationAddress.id))
                     Tracker.sharedInstance.track(.DetailItemTapped, properties: properties)
                     navigationController?.pushViewController(viewController, animated: true)
                 }
@@ -241,6 +243,7 @@ NewNoteViewControllerDelegate {
                     viewController.hidesBottomBarWhenPushed = true
                     properties.append(TrackerProperty.withKey(.Destination).withSource(.Detail))
                     properties.append(TrackerProperty.withKey(.DetailType).withDetailType(.Team))
+                    properties.append(TrackerProperty.withDestinationId("team_id").withString(selectedTeam.id))
                     Tracker.sharedInstance.track(.DetailItemTapped, properties: properties)
                     navigationController?.pushViewController(viewController, animated: true)
                 }
