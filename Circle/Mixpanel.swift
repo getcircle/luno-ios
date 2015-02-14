@@ -30,10 +30,12 @@ extension Mixpanel {
     }
     
     class func registerSuperPropertiesForProfile(profile: ProfileService.Containers.Profile) {
-        Mixpanel.sharedInstance().registerSuperPropertiesOnce([
+        let mixpanel = Mixpanel.sharedInstance()
+        mixpanel.registerSuperPropertiesOnce([
             "\(TrackingPrefix)profile_id": profile.id,
             "\(TrackingPrefix)organization_id": profile.organization_id,
         ])
+        mixpanel.people.set(["profile_id": profile.id, "organization_id": profile.organization_id])
     }
     
     class func identifyUser(user: UserService.Containers.User, newUser: Bool) {
@@ -44,6 +46,7 @@ extension Mixpanel {
         } else {
             mixpanel.identify(user.id)
         }
+        mixpanel.people.set(["user_id": user.id])
     }
     
 }
