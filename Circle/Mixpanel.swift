@@ -35,7 +35,11 @@ extension Mixpanel {
             "\(TrackingPrefix)profile_id": profile.id,
             "\(TrackingPrefix)organization_id": profile.organization_id,
         ])
-        mixpanel.people.set(["profile_id": profile.id, "organization_id": profile.organization_id])
+        mixpanel.people.set([
+            "profile_id": profile.id,
+            "organization_id": profile.organization_id,
+            "title": profile.title
+        ])
     }
     
     class func identifyUser(user: UserService.Containers.User, newUser: Bool) {
