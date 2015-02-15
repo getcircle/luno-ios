@@ -10,7 +10,7 @@ import UIKit
 
 class SeparatorDecorationView: UICollectionReusableView {
     
-    class var kind: String {
+    class var classReuseIdentifier: String {
         return "SeparatorDecorationView"
     }
     

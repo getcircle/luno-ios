@@ -78,6 +78,9 @@
 		8F7400391A6A3FF700D96B60 /* CircleAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7400371A6A3FF700D96B60 /* CircleAlertViewController.swift */; };
 		8F74003A1A6A3FF700D96B60 /* CircleAlertViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F7400381A6A3FF700D96B60 /* CircleAlertViewController.xib */; };
 		8F74003F1A6A442900D96B60 /* CircleAlertViewAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F74003E1A6A442900D96B60 /* CircleAlertViewAnimator.swift */; };
+		8F7795041A909AFC00BEF6EA /* SkillsOverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7795021A909AFC00BEF6EA /* SkillsOverviewViewController.swift */; };
+		8F7795051A909AFC00BEF6EA /* SkillsOverviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F7795031A909AFC00BEF6EA /* SkillsOverviewViewController.xib */; };
+		8F77950A1A910E8700BEF6EA /* SkillsOverviewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7795091A910E8700BEF6EA /* SkillsOverviewDataSource.swift */; };
 		8F7E2DC61A8FC00000B8548D /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7E2DC41A8FC00000B8548D /* SplashViewController.swift */; };
 		8F7E2DC71A8FC00000B8548D /* SplashViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F7E2DC51A8FC00000B8548D /* SplashViewController.xib */; };
 		8F7E2DCD1A8FDBB600B8548D /* PasscodeTouchIDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7E2DCB1A8FDBB500B8548D /* PasscodeTouchIDViewController.swift */; };
@@ -340,6 +343,9 @@
 		8F7400371A6A3FF700D96B60 /* CircleAlertViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleAlertViewController.swift; sourceTree = "<group>"; };
 		8F7400381A6A3FF700D96B60 /* CircleAlertViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CircleAlertViewController.xib; sourceTree = "<group>"; };
 		8F74003E1A6A442900D96B60 /* CircleAlertViewAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleAlertViewAnimator.swift; sourceTree = "<group>"; };
+		8F7795021A909AFC00BEF6EA /* SkillsOverviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkillsOverviewViewController.swift; sourceTree = "<group>"; };
+		8F7795031A909AFC00BEF6EA /* SkillsOverviewViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SkillsOverviewViewController.xib; sourceTree = "<group>"; };
+		8F7795091A910E8700BEF6EA /* SkillsOverviewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkillsOverviewDataSource.swift; sourceTree = "<group>"; };
 		8F7E2DC41A8FC00000B8548D /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		8F7E2DC51A8FC00000B8548D /* SplashViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SplashViewController.xib; sourceTree = "<group>"; };
 		8F7E2DCB1A8FDBB500B8548D /* PasscodeTouchIDViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasscodeTouchIDViewController.swift; sourceTree = "<group>"; };
@@ -564,6 +570,7 @@
 				8F9F60CA1A8C439E00FCAA25 /* SettingsViewController.swift */,
 				8F7400221A6862BF00D96B60 /* SkillDetailViewController.swift */,
 				8FF298431A4DF38E00306CFC /* SkillSelectorViewController.swift */,
+				8F7795021A909AFC00BEF6EA /* SkillsOverviewViewController.swift */,
 				8F7E2DC41A8FC00000B8548D /* SplashViewController.swift */,
 				BFF5E6F31A814C2C00827757 /* SocialConnectViewController.swift */,
 				8F085A841A6B0C1E00F8139B /* TeamDetailViewController.swift */,
@@ -683,6 +690,7 @@
 				8F74001C1A684F2400D96B60 /* SkillHeaderCollectionReusableView.xib */,
 				8F65C5061A52661700C7F3E6 /* SkillsCollectionViewCell.xib */,
 				8F682F401A65F9090066BDEE /* SkillSelectorViewController.xib */,
+				8F7795031A909AFC00BEF6EA /* SkillsOverviewViewController.xib */,
 				8F7E2DC51A8FC00000B8548D /* SplashViewController.xib */,
 				8F9F60AE1A88738100FCAA25 /* SocialConnectCollectionViewCell.xib */,
 				8F085A941A6C191400F8139B /* TeamGridItemCollectionViewCell.xib */,
@@ -728,6 +736,7 @@
 				BFE213CE1A5F0B1D0033E2F5 /* SearchQueryDataSource.swift */,
 				8F9F60D11A8C46C100FCAA25 /* SettingsDataSource.swift */,
 				8F7400241A6863B000D96B60 /* SkillDetailDataSource.swift */,
+				8F7795091A910E8700BEF6EA /* SkillsOverviewDataSource.swift */,
 				8F085A891A6B0CB300F8139B /* TeamDetailDataSource.swift */,
 				8F823E4E1A72A0850006264B /* TeamsOverviewDataSource.swift */,
 				BF27CC931A7569B700E683C7 /* UnderlyingCollectionViewDataSource.swift */,
@@ -1007,6 +1016,7 @@
 				8FF2980B1A4B490E00306CFC /* SearchHeaderView.xib in Resources */,
 				8F0004A01A2419730096477A /* Main.storyboard in Resources */,
 				8FCC95CE1A52828B00421E65 /* ProfileCollectionViewCell.xib in Resources */,
+				8F7795051A909AFC00BEF6EA /* SkillsOverviewViewController.xib in Resources */,
 				8F81713D1A62E07000CB7692 /* VerifyProfileViewController.xib in Resources */,
 				8F22CBF91A29A8EB0026376E /* AuthViewController.xib in Resources */,
 				8F9F60B01A88738100FCAA25 /* SocialConnectCollectionViewCell.xib in Resources */,
@@ -1142,6 +1152,7 @@
 				BF8FC3D91A44DA83007FD8BA /* StringExtension.swift in Sources */,
 				8FF2984D1A4E29F400306CFC /* PaddedLabel.swift in Sources */,
 				8F4E53781A5A0D9E00DC876B /* NotesCollectionViewCell.swift in Sources */,
+				8F77950A1A910E8700BEF6EA /* SkillsOverviewDataSource.swift in Sources */,
 				8F085A911A6C175C00F8139B /* TeamsCollectionViewCell.swift in Sources */,
 				8F0004961A2419730096477A /* AppDelegate.swift in Sources */,
 				8F823E4C1A729E1B0006264B /* TeamsOverviewViewController.swift in Sources */,
@@ -1243,6 +1254,7 @@
 				BFC6CF9C1A44D2B90081F45B /* ServiceClient.swift in Sources */,
 				8F74003F1A6A442900D96B60 /* CircleAlertViewAnimator.swift in Sources */,
 				BFF5E6F51A814C2C00827757 /* SocialConnectViewController.swift in Sources */,
+				8F7795041A909AFC00BEF6EA /* SkillsOverviewViewController.swift in Sources */,
 				8FF2254C1A641B27001B2E32 /* SearchResultsCardHeaderCollectionReusableView.swift in Sources */,
 				8F306B931A74171C0024EB03 /* LocationsOverviewDataSource.swift in Sources */,
 				BFE213CF1A5F0B1D0033E2F5 /* SearchQueryDataSource.swift in Sources */,

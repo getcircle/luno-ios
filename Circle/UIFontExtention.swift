@@ -29,4 +29,8 @@ extension UIFont {
     class func appSettingsCardHeader() -> UIFont {
         return UIFont(name: "Avenir-Roman", size: 12.0)!
     }
+    
+    class func appSkillsOverviewSectionHeader() -> UIFont {
+        return UIFont(name: "Avenir-Medium", size: 15.0)!
+    }
 }

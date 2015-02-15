@@ -29,7 +29,7 @@ class SearchResultsCardHeaderCollectionReusableView: CircleCollectionReusableVie
     }
     
     override class var height: CGFloat {
-        return 30.0
+        return 36.0
     }
     
     override func awakeFromNib() {

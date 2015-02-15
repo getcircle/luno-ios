@@ -31,7 +31,7 @@ extension UICollectionViewFlowLayout {
         // Add separators
         for index in 0..<separatorViewYPositions.count {
             var decorationViewAttribute = UICollectionViewLayoutAttributes(
-                forDecorationViewOfKind: SeparatorDecorationView.kind,
+                forDecorationViewOfKind: SeparatorDecorationView.classReuseIdentifier,
                 withIndexPath: separatorViewIndexPaths[index]
             )
             decorationViewAttribute.frame = CGRectMake(0.0, separatorViewYPositions[index], collectionView!.frame.size.width, 0.5)

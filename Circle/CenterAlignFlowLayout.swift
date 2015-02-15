@@ -10,7 +10,6 @@ import UIKit
 
 class CenterAlignFlowLayout: UICollectionViewFlowLayout {
 
-    private var cachedItemFrames = [NSIndexPath: CGRect]()
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
@@ -25,17 +24,12 @@ class CenterAlignFlowLayout: UICollectionViewFlowLayout {
         // Collect item attributes by row
         var itemAttributesByRow = [CGFloat: [UICollectionViewLayoutAttributes]]()
         for itemAttributes in currentAttributes {
-//            if let finalFrame = cachedItemFrames[itemAttributes.indexPath] {
-//                itemAttributes.frame = finalFrame
-//            }
-//            else {
-                let centerY = CGRectGetMidY(itemAttributes.frame)
-                if itemAttributesByRow[centerY] == nil {
-                    itemAttributesByRow[centerY] = [UICollectionViewLayoutAttributes]()
-                }
-                
-                itemAttributesByRow[centerY]!.append(itemAttributes)
-//            }
+            let centerY = CGRectGetMidY(itemAttributes.frame)
+            if itemAttributesByRow[centerY] == nil {
+                itemAttributesByRow[centerY] = [UICollectionViewLayoutAttributes]()
+            }
+            
+            itemAttributesByRow[centerY]!.append(itemAttributes)
         }
         
         // Update frames to center them
@@ -60,7 +54,6 @@ class CenterAlignFlowLayout: UICollectionViewFlowLayout {
                 }
                 
                 itemAttributes.frame = itemFrame
-                cachedItemFrames[itemAttributes.indexPath] = itemFrame
                 previousFrame = itemAttributes.frame
             }
         }

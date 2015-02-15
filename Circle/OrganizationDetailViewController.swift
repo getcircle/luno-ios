@@ -171,6 +171,13 @@ class OrganizationDetailViewController: DetailViewController, CardHeaderViewDele
             viewController.hidesBottomBarWhenPushed = true
             trackCardHeaderTapped(card, overviewType: .Offices)
             navigationController?.pushViewController(viewController, animated: true)
+            
+        case .Skills:
+            let skillsOverviewViewController = SkillsOverviewViewController(nibName: "SkillsOverviewViewController", bundle: nil)
+            skillsOverviewViewController.dataSource.setInitialData(content: card.allContent[0] as [AnyObject])
+            skillsOverviewViewController.title = card.title
+            skillsOverviewViewController.hidesBottomBarWhenPushed = true
+            navigationController?.pushViewController(skillsOverviewViewController, animated: true)
         
         case .TeamsGrid:
             let viewController = TeamsOverviewViewController(nibName: "TeamsOverviewViewController", bundle: nil) 

@@ -28,7 +28,7 @@ class StickyHeaderCollectionViewLayout: UICollectionViewFlowLayout, UICollection
     }
     
     private func customInit() {
-        registerClass(SeparatorDecorationView.self, forDecorationViewOfKind: SeparatorDecorationView.kind)
+        registerClass(SeparatorDecorationView.self, forDecorationViewOfKind: SeparatorDecorationView.classReuseIdentifier)
         sectionInset = UIEdgeInsetsMake(30.0, 0.0, 0.0, 0.0)
         minimumInteritemSpacing = 0.0
         minimumLineSpacing = 0.0

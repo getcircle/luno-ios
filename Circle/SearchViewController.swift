@@ -319,6 +319,13 @@ NewNoteViewControllerDelegate {
         case .Locations:
             break
             
+        case .Skills:
+            let skillsOverviewViewController = SkillsOverviewViewController(nibName: "SkillsOverviewViewController", bundle: nil)
+            skillsOverviewViewController.dataSource.setInitialData(content: card.allContent[0] as [AnyObject])
+            skillsOverviewViewController.title = card.title
+            skillsOverviewViewController.hidesBottomBarWhenPushed = true
+            navigationController?.pushViewController(skillsOverviewViewController, animated: true)
+            
         case .Notes:
             let viewController = NotesOverviewViewController(nibName: "NotesOverviewViewController", bundle: nil)
             viewController.dataSource.setInitialData(content: card.allContent as [AnyObject], ofType: nil, withMetaData: card.metaData)
