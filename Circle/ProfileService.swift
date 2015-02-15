@@ -19,6 +19,7 @@ typealias GetExtendedProfileCompletionHandler = (
     skills: Array<ProfileService.Containers.Skill>?,
     notes: Array<NoteService.Containers.Note>?,
     identities: Array<UserService.Containers.Identity>?,
+    resume: ResumeService.Containers.Resume?,
     error: NSError?
 ) -> Void
 typealias GetSkillsCompletionHandler = (skills: Array<ProfileService.Containers.Skill>?, error: NSError?) -> Void
@@ -102,6 +103,7 @@ extension ProfileService {
                     skills: response?.skills,
                     notes: response?.notes,
                     identities: response?.identities,
+                    resume: response?.resume,
                     error: error
                 )
             }

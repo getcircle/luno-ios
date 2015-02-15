@@ -27,6 +27,7 @@ class ItemImage {
 
 enum ContentType: Int {
     case CellPhone = 1
+    case Education
     case Email
     case Facebook
     case Github
@@ -95,6 +96,7 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
     private(set) var skills: Array<ProfileService.Containers.Skill>?
     private(set) var team: OrganizationService.Containers.Team?
     private(set) var identities: Array<UserService.Containers.Identity>?
+    private(set) var resume: ResumeService.Containers.Resume?
 
     private var hasSocialConnectCTAs = false
     private(set) var profileHeaderView: ProfileHeaderCollectionReusableView?
@@ -116,13 +118,14 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
         var placeholderCard = Card(cardType: .Placeholder, title: "Info")
         appendCard(placeholderCard)
         ProfileService.Actions.getExtendedProfile(profile.id) {
-            (profile, manager, team, address, skills, _, identities, error) -> Void in
+            (profile, manager, team, address, skills, _, identities, resume, error) -> Void in
             if error == nil {
                 self.manager = manager
                 self.team = team
                 self.address = address
                 self.skills = skills
                 self.identities = identities
+                self.resume = resume
                 self.populateData()
             }
             completionHandler(error: error)
@@ -135,6 +138,7 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
         sections.append(getBasicInfoSection())
         sections.append(getManagerInfoSection())
         sections.append(getSkillsSection())
+        sections.append(getEducationSection())
     }
     
     private func getSocialConnectSection() -> Section? {
@@ -223,6 +227,19 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
         return Section(title: "Skills", items: sectionItems, cardType: .Skills)
     }
     
+    private func getEducationSection() -> Section {
+        let sectionItems = [
+            SectionItem(
+                title: "Education",
+                container: "education",
+                containerKey: "name",
+                contentType: .Education,
+                image: nil
+            )
+        ]
+        return Section(title: "Education", items: sectionItems, cardType: .Education)
+    }
+    
     // MARK: - Populate Data
     
     private func populateData() {
@@ -263,6 +280,8 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
             addSkillsItemToCard(item, card: card)
         case .SocialConnectCTAs:
             addSocialConnectItemToCard(item, card: card)
+        case .Education:
+            addEducationItemToCard(item, card: card)
         default: break
         }
     }
@@ -322,6 +341,12 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
         ]
 
         card.addContent(content: [dataDict])
+    }
+    
+    private func addEducationItemToCard(item: SectionItem, card: Card) {
+        if let resume = resume {
+            card.addContent(content: resume.educations as [AnyObject])
+        }
     }
     
     // MARK: - Cell Configuration

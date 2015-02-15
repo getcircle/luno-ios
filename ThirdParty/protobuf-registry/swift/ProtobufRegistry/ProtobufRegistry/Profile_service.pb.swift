@@ -16,6 +16,7 @@ public struct ProfileServiceRoot {
     registerAllExtensions(extensionRegistry)
     OrganizationServiceRoot.sharedInstance.registerAllExtensions(extensionRegistry)
     NoteServiceRoot.sharedInstance.registerAllExtensions(extensionRegistry)
+    ResumeServiceRoot.sharedInstance.registerAllExtensions(extensionRegistry)
     UserServiceRoot.sharedInstance.registerAllExtensions(extensionRegistry)
   }
   public func registerAllExtensions(registry:ExtensionRegistry) {
@@ -3873,6 +3874,7 @@ final public class ProfileService : GeneratedMessage {
                  case "address": return address
                  case "manager": return manager
                  case "team": return team
+                 case "resume": return resume
                  default: return nil
                  }
           }
@@ -3885,6 +3887,8 @@ final public class ProfileService : GeneratedMessage {
           public private(set) var manager:ProfileService.Containers.Profile = ProfileService.Containers.Profile()
           public private(set) var hasTeam:Bool = false
           public private(set) var team:OrganizationService.Containers.Team = OrganizationService.Containers.Team()
+          public private(set) var hasResume:Bool = false
+          public private(set) var resume:ResumeService.Containers.Resume = ResumeService.Containers.Resume()
           public private(set) var notes:Array<NoteService.Containers.Note>  = Array<NoteService.Containers.Note>()
           public private(set) var skills:Array<ProfileService.Containers.Skill>  = Array<ProfileService.Containers.Skill>()
           public private(set) var identities:Array<UserService.Containers.Identity>  = Array<UserService.Containers.Identity>()
@@ -3920,6 +3924,9 @@ final public class ProfileService : GeneratedMessage {
             for oneElementdirect_reports in direct_reports {
                 output.writeMessage(8, value:oneElementdirect_reports)
             }
+            if hasResume {
+              output.writeMessage(9, value:resume)
+            }
             unknownFields.writeToCodedOutputStream(output)
           }
           override public func serializedSize() -> Int32 {
@@ -3952,6 +3959,9 @@ final public class ProfileService : GeneratedMessage {
             }
             for oneElementdirect_reports in direct_reports {
                 size += WireFormat.computeMessageSize(8, value:oneElementdirect_reports)
+            }
+            if hasResume {
+              size += WireFormat.computeMessageSize(9, value:resume)
             }
             size += unknownFields.serializedSize()
             memoizedSerializedSize = size
@@ -4042,6 +4052,11 @@ final public class ProfileService : GeneratedMessage {
                 output += "\(indent)}\n"
                 direct_reportsElementIndex++
             }
+            if hasResume {
+              output += "\(indent) resume {\n"
+              resume.writeDescriptionTo(&output, indent:"\(indent)  ")
+              output += "\(indent) }\n"
+            }
             unknownFields.writeDescriptionTo(&output, indent:indent)
           }
           override public var hashValue:Int {
@@ -4070,6 +4085,9 @@ final public class ProfileService : GeneratedMessage {
                   }
                   for oneElementdirect_reports in direct_reports {
                       hashCode = (hashCode &* 31) &+ oneElementdirect_reports.hashValue
+                  }
+                  if hasResume {
+                    hashCode = (hashCode &* 31) &+ resume.hashValue
                   }
                   hashCode = (hashCode &* 31) &+  unknownFields.hashValue
                   return hashCode
@@ -4277,6 +4295,38 @@ final public class ProfileService : GeneratedMessage {
             builderResult.direct_reports.removeAll(keepCapacity: false)
             return self
           }
+          public var hasResume:Bool {
+               get {
+                   return builderResult.hasResume
+               }
+          }
+          public var resume:ResumeService.Containers.Resume {
+               get {
+                   return builderResult.resume
+               }
+               set (value) {
+                   builderResult.hasResume = true
+                   builderResult.resume = value
+               }
+          }
+          public func setResumeBuilder(builderForValue:ResumeService.Containers.ResumeBuilder) -> ProfileService.GetExtendedProfile.ResponseBuilder {
+            resume = builderForValue.build()
+            return self
+          }
+          public func mergeResume(value:ResumeService.Containers.Resume) -> ProfileService.GetExtendedProfile.ResponseBuilder {
+            if (builderResult.hasResume) {
+              builderResult.resume = ResumeService.Containers.Resume.builderWithPrototype(builderResult.resume).mergeFrom(value).buildPartial()
+            } else {
+              builderResult.resume = value
+            }
+            builderResult.hasResume = true
+            return self
+          }
+          public func clearResume() -> ProfileService.GetExtendedProfile.ResponseBuilder {
+            builderResult.hasResume = false
+            builderResult.resume = ResumeService.Containers.Resume()
+            return self
+          }
           override public var internalGetResult:GeneratedMessage {
                get {
                   return builderResult
@@ -4321,6 +4371,9 @@ final public class ProfileService : GeneratedMessage {
             }
             if !other.direct_reports.isEmpty  {
                builderResult.direct_reports += other.direct_reports
+            }
+            if (other.hasResume) {
+                mergeResume(other.resume)
             }
             mergeUnknownFields(other.unknownFields)
             return self
@@ -4388,6 +4441,14 @@ final public class ProfileService : GeneratedMessage {
                 var subBuilder = ProfileService.Containers.Profile.builder()
                 input.readMessage(subBuilder,extensionRegistry:extensionRegistry)
                 direct_reports += [subBuilder.buildPartial()]
+
+              case 74 :
+                var subBuilder:ResumeService.Containers.ResumeBuilder = ResumeService.Containers.Resume.builder()
+                if hasResume {
+                  subBuilder.mergeFrom(resume)
+                }
+                input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
+                resume = subBuilder.buildPartial()
 
               default:
                 if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {

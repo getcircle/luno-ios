@@ -1005,6 +1005,7 @@ final public class UserService : GeneratedMessage {
                  case "expires_at": return expires_at
                  case "provider_uid": return provider_uid
                  case "user_id": return user_id
+                 case "refresh_token": return refresh_token
                  default: return nil
                  }
           }
@@ -1031,6 +1032,9 @@ final public class UserService : GeneratedMessage {
 
           public private(set) var hasUserId:Bool = false
           public private(set) var user_id:String = ""
+
+          public private(set) var hasRefreshToken:Bool = false
+          public private(set) var refresh_token:String = ""
 
           required public init() {
                super.init()
@@ -1062,6 +1066,9 @@ final public class UserService : GeneratedMessage {
             }
             if hasUserId {
               output.writeString(8, value:user_id)
+            }
+            if hasRefreshToken {
+              output.writeString(9, value:refresh_token)
             }
             unknownFields.writeToCodedOutputStream(output)
           }
@@ -1095,6 +1102,9 @@ final public class UserService : GeneratedMessage {
             }
             if hasUserId {
               size += WireFormat.computeStringSize(8, value:user_id)
+            }
+            if hasRefreshToken {
+              size += WireFormat.computeStringSize(9, value:refresh_token)
             }
             size += unknownFields.serializedSize()
             memoizedSerializedSize = size
@@ -1161,6 +1171,9 @@ final public class UserService : GeneratedMessage {
             if hasUserId {
               output += "\(indent) user_id: \(user_id) \n"
             }
+            if hasRefreshToken {
+              output += "\(indent) refresh_token: \(refresh_token) \n"
+            }
             unknownFields.writeDescriptionTo(&output, indent:indent)
           }
           override public var hashValue:Int {
@@ -1189,6 +1202,9 @@ final public class UserService : GeneratedMessage {
                   }
                   if hasUserId {
                      hashCode = (hashCode &* 31) &+ user_id.hashValue
+                  }
+                  if hasRefreshToken {
+                     hashCode = (hashCode &* 31) &+ refresh_token.hashValue
                   }
                   hashCode = (hashCode &* 31) &+  unknownFields.hashValue
                   return hashCode
@@ -1372,6 +1388,25 @@ final public class UserService : GeneratedMessage {
                builderResult.user_id = ""
                return self
           }
+          public var hasRefreshToken:Bool {
+               get {
+                    return builderResult.hasRefreshToken
+               }
+          }
+          public var refresh_token:String {
+               get {
+                    return builderResult.refresh_token
+               }
+               set (value) {
+                   builderResult.hasRefreshToken = true
+                   builderResult.refresh_token = value
+               }
+          }
+          public func clearRefreshToken() -> UserService.Containers.IdentityBuilder{
+               builderResult.hasRefreshToken = false
+               builderResult.refresh_token = ""
+               return self
+          }
           override public var internalGetResult:GeneratedMessage {
                get {
                   return builderResult
@@ -1417,6 +1452,9 @@ final public class UserService : GeneratedMessage {
             if other.hasUserId {
                  user_id = other.user_id
             }
+            if other.hasRefreshToken {
+                 refresh_token = other.refresh_token
+            }
             mergeUnknownFields(other.unknownFields)
             return self
           }
@@ -1460,6 +1498,9 @@ final public class UserService : GeneratedMessage {
 
               case 66 :
                 user_id = input.readString()
+
+              case 74 :
+                refresh_token = input.readString()
 
               default:
                 if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {

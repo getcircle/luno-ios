@@ -2,6 +2,7 @@ package main.profile_service;
 
 import "protobufs/organization_service.proto";
 import "protobufs/note_service.proto";
+import "protobufs/resume_service.proto";
 import "protobufs/user_service.proto";
 
 message ProfileService {
@@ -102,6 +103,7 @@ message ProfileService {
             repeated Containers.Skill skills = 6;
             repeated main.user_service.UserService.Containers.Identity identities = 7;
             repeated Containers.Profile direct_reports = 8;
+            optional main.resume_service.ResumeService.Containers.Resume resume = 9;
         }
 
     }

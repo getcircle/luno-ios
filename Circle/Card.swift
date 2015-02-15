@@ -66,6 +66,7 @@ class Card: Equatable {
         case AddNote = "AddNote"
         case Anniversaries = "Anniversaries"
         case Birthdays = "Birthdays"
+        case Education = "Education"
         case Group = "Group"
         case KeyValue = "KeyValue"
         case Locations = "Locations"
@@ -110,6 +111,14 @@ class Card: Equatable {
                     imageName: "Cake",
                     classType: ProfileCollectionViewCell.self,
                     className: "ProfileCollectionViewCell",
+                    contentType: .Flat
+                )
+                
+            case .Education:
+                return CardTypeInfo(
+                    imageName: "NotePad",
+                    classType: EducationCollectionViewCell.self,
+                    className: "EducationCollectionViewCell",
                     contentType: .Flat
                 )
                 
