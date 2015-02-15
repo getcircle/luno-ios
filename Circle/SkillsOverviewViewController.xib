@@ -7,6 +7,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SkillsOverviewViewController" customModule="circle" customModuleProvider="target">
             <connections>
                 <outlet property="collectionView" destination="ObK-dq-hUC" id="9Sz-x6-a1O"/>
+                <outlet property="searchContainerView" destination="BNp-2Y-iWR" id="GVj-aF-IVb"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -15,8 +16,15 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BNp-2Y-iWR" userLabel="SearchContainerView">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="S0G-Oh-MQU"/>
+                    </constraints>
+                </view>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="ObK-dq-hUC">
-                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <rect key="frame" x="0.0" y="45" width="600" height="555"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="1" minimumInteritemSpacing="10" id="QwH-0G-Rha">
                         <size key="itemSize" width="50" height="50"/>
                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -30,11 +38,20 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstAttribute="trailing" secondItem="BNp-2Y-iWR" secondAttribute="trailing" id="2gC-E1-KqI"/>
                 <constraint firstAttribute="bottom" secondItem="ObK-dq-hUC" secondAttribute="bottom" id="Ct6-SM-duf"/>
+                <constraint firstItem="BNp-2Y-iWR" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="KVO-72-QMi"/>
                 <constraint firstAttribute="trailing" secondItem="ObK-dq-hUC" secondAttribute="trailing" id="M82-Ip-dp8"/>
+                <constraint firstItem="BNp-2Y-iWR" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="gpW-di-ab1"/>
+                <constraint firstItem="ObK-dq-hUC" firstAttribute="top" secondItem="BNp-2Y-iWR" secondAttribute="bottom" constant="1" id="vaF-VS-UgS"/>
                 <constraint firstItem="ObK-dq-hUC" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="z5U-2n-n3P"/>
                 <constraint firstItem="ObK-dq-hUC" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="zdI-Gw-Cmj"/>
             </constraints>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="z5U-2n-n3P"/>
+                </mask>
+            </variation>
             <point key="canvasLocation" x="-98" y="115"/>
         </view>
     </objects>

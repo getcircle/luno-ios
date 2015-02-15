@@ -89,7 +89,7 @@ class SkillsOverviewDataSource: NSObject, UICollectionViewDataSource {
     
     // MARK: - Filter
     
-    func filterNotes(term: String) {
+    func filterData(term: String) {
         if term.trimWhitespace() == "" {
             filteredSkills = sortAlphabeticallyAndArrangeInSections(skills)
             return
@@ -99,7 +99,7 @@ class SkillsOverviewDataSource: NSObject, UICollectionViewDataSource {
         let filterTerms = trimmedTerm.componentsSeparatedByString(" ")
         var orPredicates = [NSPredicate]()
 
-        // Full/exact profile name match
+        // Full/exact skill name match
         let fullSkillNameMatch = NSComparisonPredicate(
             leftExpression: NSExpression(forVariable: "content"),
             rightExpression: NSExpression(forConstantValue: trimmedTerm),
@@ -134,7 +134,7 @@ class SkillsOverviewDataSource: NSObject, UICollectionViewDataSource {
             orPredicates.append(componentMatchPredicate)
         }
         
-        // Apply predicates to notes
+        // Apply predicates
         
         let finalPredicate = NSCompoundPredicate.orPredicateWithSubpredicates(orPredicates)
         let filteredSkillsData = skills.filter {
@@ -158,19 +158,25 @@ class SkillsOverviewDataSource: NSObject, UICollectionViewDataSource {
         let sortedSkills = skillsArray.sorted { $0.name.localizedCaseInsensitiveCompare($1.name) == NSComparisonResult.OrderedAscending }
         
         var skillsArrangedByFirstLetter = Array<Array<ProfileService.Containers.Skill>>()
-        var previousLetter = sortedSkills[0].name[0].uppercaseString
-        var skillsPerLetter = Array<ProfileService.Containers.Skill>()
-        for skill in sortedSkills {
-            
-            if previousLetter != skill.name[0].uppercaseString {
-                skillsArrangedByFirstLetter.append(skillsPerLetter)
-                skillsPerLetter.removeAll(keepCapacity: true)
+        
+        if sortedSkills.count > 0 {
+            var previousLetter = sortedSkills[0].name[0].uppercaseString
+            var skillsPerLetter = Array<ProfileService.Containers.Skill>()
+            for skill in sortedSkills {
+                
+                if previousLetter != skill.name[0].uppercaseString {
+                    skillsArrangedByFirstLetter.append(skillsPerLetter)
+                    skillsPerLetter.removeAll(keepCapacity: true)
+                }
+                
+                skillsPerLetter.append(skill)
+                previousLetter = skill.name[0].uppercaseString
             }
             
-            skillsPerLetter.append(skill)
-            previousLetter = skill.name[0].uppercaseString
+            if skillsPerLetter.count > 0 {
+                skillsArrangedByFirstLetter.append(skillsPerLetter)
+            }
         }
-        
         return skillsArrangedByFirstLetter
     }
 }

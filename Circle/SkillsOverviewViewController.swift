@@ -9,14 +9,16 @@
 import UIKit
 import ProtobufRegistry
 
-class SkillsOverviewViewController: UIViewController, UICollectionViewDelegateFlowLayout {
+class SkillsOverviewViewController: UIViewController, UICollectionViewDelegateFlowLayout, SearchHeaderViewDelegate {
 
     @IBOutlet weak private(set) var collectionView: UICollectionView!
-    
+    @IBOutlet weak private(set) var searchContainerView: UIView!
+
     private(set) var dataSource = SkillsOverviewDataSource()
     
-    private var prototypeCell: SkillCollectionViewCell!
     private var cachedItemSizes = [String: CGSize]()
+    private var prototypeCell: SkillCollectionViewCell!
+    private var searchHeaderView: SearchHeaderView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +27,7 @@ class SkillsOverviewViewController: UIViewController, UICollectionViewDelegateFl
         configureView()
         configureCollectionView()
         configurePrototypeCell()
+        configureSearchHeaderView()
     }
 
     // MARK: - Configuration
@@ -64,6 +67,19 @@ class SkillsOverviewViewController: UIViewController, UICollectionViewDelegateFl
         collectionView.keyboardDismissMode = .OnDrag
         collectionView.allowsMultipleSelection = false
         collectionView.dataSource = dataSource
+    }
+    
+    private func configureSearchHeaderView() {
+        if let nibViews = NSBundle.mainBundle().loadNibNamed("SearchHeaderView", owner: nil, options: nil) as? [UIView] {
+            searchHeaderView = nibViews.first as SearchHeaderView
+            searchHeaderView.delegate = self
+            searchHeaderView.searchTextField.placeholder = NSLocalizedString("Filter skills",
+                comment: "Placeholder for text field used for filtering skills by name")
+            searchHeaderView.searchTextField.addTarget(self, action: "filterData:", forControlEvents: .EditingChanged)
+            searchContainerView.addSubview(searchHeaderView)
+            searchHeaderView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
+            searchHeaderView.layer.cornerRadius = 10.0
+        }
     }
     
     // MARK: - UICollectionViewDelegate
@@ -115,5 +131,21 @@ class SkillsOverviewViewController: UIViewController, UICollectionViewDelegateFl
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
         return 10.0
+    }
+    
+    // MARK: - SearchHeaderViewDelegate
+    
+    func didCancel(sender: UIView) {
+        dataSource.filterData("")
+        collectionView.reloadData()
+    }
+    
+    func filterData(sender: AnyObject?) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), { () -> Void in
+            self.dataSource.filterData(self.searchHeaderView.searchTextField.text)
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                self.collectionView.reloadData()
+            })
+        })
     }
 }
