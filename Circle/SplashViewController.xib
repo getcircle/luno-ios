@@ -40,7 +40,7 @@
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
-                        <action selector="touchIDButtonTapped" destination="-1" eventType="touchUpInside" id="CIQ-GW-nDl"/>
+                        <action selector="touchIDButtonTapped:" destination="-1" eventType="touchUpInside" id="TNE-Zm-UXb"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k2U-e3-nEz" userLabel="PasscodeButton">
@@ -53,7 +53,7 @@
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
-                        <action selector="passcodeButtonTapped" destination="-1" eventType="touchUpInside" id="SwQ-RB-QvQ"/>
+                        <action selector="passcodeButtonTapped:" destination="-1" eventType="touchUpInside" id="rGG-sk-aVK"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ho0-CV-YUf">
@@ -63,7 +63,7 @@
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
-                        <action selector="signIntoDifferentAccountButtonTapped:" destination="-1" eventType="touchUpInside" id="Dwn-dc-EeM"/>
+                        <action selector="signIntoDifferentAccountButtonTapped:" destination="-1" eventType="touchUpInside" id="buy-VV-OBg"/>
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Touch ID" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qgZ-5J-cBV" userLabel="TouchIDLabel">
