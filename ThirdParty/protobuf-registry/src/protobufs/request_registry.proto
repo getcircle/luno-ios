@@ -7,6 +7,7 @@ import "protobufs/media_service.proto";
 import "protobufs/note_service.proto";
 import "protobufs/organization_service.proto";
 import "protobufs/profile_service.proto";
+import "protobufs/resume_service.proto";
 import "protobufs/search_service.proto";
 import "protobufs/user_service.proto";
 
@@ -87,5 +88,15 @@ message NoteServiceRequests {
         optional main.note_service.NoteService.GetNotes.Request get_notes = 701;
         optional main.note_service.NoteService.DeleteNote.Request delete_note = 702;
         optional main.note_service.NoteService.UpdateNote.Request update_note = 703;
+    }
+}
+
+message ResumeServiceRequests {
+    extend soa.ActionRequestParams {
+        optional main.resume_service.ResumeService.BulkCreateEducation.Request bulk_create_educations = 800;
+        optional main.resume_service.ResumeService.BulkCreatePositions.Request bulk_create_positions = 801;
+        optional main.resume_service.ResumeService.CreateCompany.Request create_company = 802;
+        optional main.resume_service.ResumeService.GetResume.Request get_resume = 803;
+        optional main.resume_service.ResumeService.BulkCreateCompanies.Request bulk_create_companies = 804;
     }
 }

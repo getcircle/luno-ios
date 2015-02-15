@@ -94,6 +94,7 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
     private(set) var manager: ProfileService.Containers.Profile?
     private(set) var skills: Array<ProfileService.Containers.Skill>?
     private(set) var team: OrganizationService.Containers.Team?
+    private(set) var identities: Array<UserService.Containers.Identity>?
 
     private var hasSocialConnectCTAs = false
     private(set) var profileHeaderView: ProfileHeaderCollectionReusableView?
@@ -115,12 +116,13 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
         var placeholderCard = Card(cardType: .Placeholder, title: "Info")
         appendCard(placeholderCard)
         ProfileService.Actions.getExtendedProfile(profile.id) {
-            (profile, manager, team, address, skills, _, error) -> Void in
+            (profile, manager, team, address, skills, _, identities, error) -> Void in
             if error == nil {
                 self.manager = manager
                 self.team = team
                 self.address = address
                 self.skills = skills
+                self.identities = identities
                 self.populateData()
             }
             completionHandler(error: error)
@@ -130,32 +132,34 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
     // MARK: - Configuration
     
     private func configureSections() {
-        if let socialConnectSection = getSocialConnectSection() {
-            hasSocialConnectCTAs = true
-            sections.append(socialConnectSection)
-        }
-        else {
-            hasSocialConnectCTAs = false
-        }
         sections.append(getBasicInfoSection())
         sections.append(getManagerInfoSection())
         sections.append(getSkillsSection())
     }
     
     private func getSocialConnectSection() -> Section? {
-//        if profile.id == AuthViewController.getLoggedInUserProfile()!.id {
-//            let sectionItems = [
-//                SectionItem(
-//                    title: NSLocalizedString("Connect with LinkedIn", comment: "Button title for connect with LinkedIn button"),
-//                    container: "social",
-//                    containerKey: "profile",
-//                    contentType: .LinkedInConnect,
-//                    image: ItemImage(name: "LinkedIn", tint: UIColor.linkedinColor())
-//                )
-//            ]
-//            return Section(title: "Social", items: sectionItems, cardType: .SocialConnectCTAs)
-//        }
-        
+        if profile.id == AuthViewController.getLoggedInUserProfile()!.id {
+            if let identities = identities {
+                var hasLinkedInIdentity = false
+                for identity in identities {
+                    if identity.provider == UserService.Provider.Linkedin {
+                        hasLinkedInIdentity = true
+                    }
+                }
+                if !hasLinkedInIdentity {
+                    let sectionItems = [
+                        SectionItem(
+                            title: NSLocalizedString("Connect with LinkedIn", comment: "Button title for connect with LinkedIn button"),
+                            container: "social",
+                            containerKey: "profile",
+                            contentType: .LinkedInConnect,
+                            image: ItemImage(name: "LinkedIn", tint: UIColor.linkedinColor())
+                        )
+                    ]
+                    return Section(title: "Social", items: sectionItems, cardType: .SocialConnectCTAs)
+                }
+            }
+        }
         return nil
     }
     
@@ -223,6 +227,13 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
     
     private func populateData() {
         resetCards()
+        if let socialConnectSection = getSocialConnectSection() {
+            hasSocialConnectCTAs = true
+            sections.insert(socialConnectSection, atIndex: 0)
+        }
+        else {
+            hasSocialConnectCTAs = false
+        }
         
         // Add top margin only when there is a social connect button added
         // to the profile

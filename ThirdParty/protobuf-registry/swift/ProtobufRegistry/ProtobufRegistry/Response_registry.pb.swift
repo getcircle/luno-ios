@@ -227,6 +227,31 @@ public var NoteServiceResponses_update_note:ConcreateExtensionField {
        return ResponseRegistryRoot.sharedInstance.NoteServiceResponses_update_noteStatic
    }
 }
+public var ResumeServiceResponses_bulk_create_educations:ConcreateExtensionField {
+   get {
+       return ResponseRegistryRoot.sharedInstance.ResumeServiceResponses_bulk_create_educationsStatic
+   }
+}
+public var ResumeServiceResponses_bulk_create_positions:ConcreateExtensionField {
+   get {
+       return ResponseRegistryRoot.sharedInstance.ResumeServiceResponses_bulk_create_positionsStatic
+   }
+}
+public var ResumeServiceResponses_create_company:ConcreateExtensionField {
+   get {
+       return ResponseRegistryRoot.sharedInstance.ResumeServiceResponses_create_companyStatic
+   }
+}
+public var ResumeServiceResponses_get_resume:ConcreateExtensionField {
+   get {
+       return ResponseRegistryRoot.sharedInstance.ResumeServiceResponses_get_resumeStatic
+   }
+}
+public var ResumeServiceResponses_bulk_create_companies:ConcreateExtensionField {
+   get {
+       return ResponseRegistryRoot.sharedInstance.ResumeServiceResponses_bulk_create_companiesStatic
+   }
+}
 public struct ResponseRegistryRoot {
   public static var sharedInstance : ResponseRegistryRoot {
    struct Static {
@@ -279,6 +304,11 @@ public struct ResponseRegistryRoot {
   var NoteServiceResponses_get_notesStatic:ConcreateExtensionField
   var NoteServiceResponses_delete_noteStatic:ConcreateExtensionField
   var NoteServiceResponses_update_noteStatic:ConcreateExtensionField
+  var ResumeServiceResponses_bulk_create_educationsStatic:ConcreateExtensionField
+  var ResumeServiceResponses_bulk_create_positionsStatic:ConcreateExtensionField
+  var ResumeServiceResponses_create_companyStatic:ConcreateExtensionField
+  var ResumeServiceResponses_get_resumeStatic:ConcreateExtensionField
+  var ResumeServiceResponses_bulk_create_companiesStatic:ConcreateExtensionField
   public var extensionRegistry:ExtensionRegistry
 
   init() {
@@ -327,6 +357,11 @@ public struct ResponseRegistryRoot {
     NoteServiceResponses_get_notesStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 701, defaultValue:NoteService.GetNotes.Response(), messageOrGroupClass:NoteService.GetNotes.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     NoteServiceResponses_delete_noteStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 702, defaultValue:NoteService.DeleteNote.Response(), messageOrGroupClass:NoteService.DeleteNote.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     NoteServiceResponses_update_noteStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 703, defaultValue:NoteService.UpdateNote.Response(), messageOrGroupClass:NoteService.UpdateNote.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
+    ResumeServiceResponses_bulk_create_educationsStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 800, defaultValue:ResumeService.BulkCreateEducation.Response(), messageOrGroupClass:ResumeService.BulkCreateEducation.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
+    ResumeServiceResponses_bulk_create_positionsStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 801, defaultValue:ResumeService.BulkCreatePositions.Response(), messageOrGroupClass:ResumeService.BulkCreatePositions.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
+    ResumeServiceResponses_create_companyStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 802, defaultValue:ResumeService.CreateCompany.Response(), messageOrGroupClass:ResumeService.CreateCompany.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
+    ResumeServiceResponses_get_resumeStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 803, defaultValue:ResumeService.GetResume.Response(), messageOrGroupClass:ResumeService.GetResume.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
+    ResumeServiceResponses_bulk_create_companiesStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 804, defaultValue:ResumeService.BulkCreateCompanies.Response(), messageOrGroupClass:ResumeService.BulkCreateCompanies.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     extensionRegistry = ExtensionRegistry()
     registerAllExtensions(extensionRegistry)
     SoaRoot.sharedInstance.registerAllExtensions(extensionRegistry)
@@ -335,6 +370,7 @@ public struct ResponseRegistryRoot {
     NoteServiceRoot.sharedInstance.registerAllExtensions(extensionRegistry)
     OrganizationServiceRoot.sharedInstance.registerAllExtensions(extensionRegistry)
     ProfileServiceRoot.sharedInstance.registerAllExtensions(extensionRegistry)
+    ResumeServiceRoot.sharedInstance.registerAllExtensions(extensionRegistry)
     SearchServiceRoot.sharedInstance.registerAllExtensions(extensionRegistry)
     UserServiceRoot.sharedInstance.registerAllExtensions(extensionRegistry)
   }
@@ -384,6 +420,11 @@ public struct ResponseRegistryRoot {
     registry.addExtension(NoteServiceResponses_get_notesStatic)
     registry.addExtension(NoteServiceResponses_delete_noteStatic)
     registry.addExtension(NoteServiceResponses_update_noteStatic)
+    registry.addExtension(ResumeServiceResponses_bulk_create_educationsStatic)
+    registry.addExtension(ResumeServiceResponses_bulk_create_positionsStatic)
+    registry.addExtension(ResumeServiceResponses_create_companyStatic)
+    registry.addExtension(ResumeServiceResponses_get_resumeStatic)
+    registry.addExtension(ResumeServiceResponses_bulk_create_companiesStatic)
   }
 }
 
@@ -436,6 +477,14 @@ public func == (lhs: MediaServiceResponses, rhs: MediaServiceResponses) -> Bool 
 }
 
 public func == (lhs: NoteServiceResponses, rhs: NoteServiceResponses) -> Bool {
+  if (lhs === rhs) {
+    return true
+  }
+  var fieldCheck:Bool = (lhs.hashValue == rhs.hashValue)
+  return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
+}
+
+public func == (lhs: ResumeServiceResponses, rhs: ResumeServiceResponses) -> Bool {
   if (lhs === rhs) {
     return true
   }
@@ -1593,6 +1642,166 @@ final public class NoteServiceResponsesBuilder : GeneratedMessageBuilder {
   }
 }
 
+final public class ResumeServiceResponses : GeneratedMessage {
+  override public subscript (key: String) -> Any? {
+         switch key {
+         default: return nil
+         }
+  }
+
+  public class func bulk_create_educations() -> ConcreateExtensionField {
+       return ResumeServiceResponses_bulk_create_educations
+  }
+  public class func bulk_create_positions() -> ConcreateExtensionField {
+       return ResumeServiceResponses_bulk_create_positions
+  }
+  public class func create_company() -> ConcreateExtensionField {
+       return ResumeServiceResponses_create_company
+  }
+  public class func get_resume() -> ConcreateExtensionField {
+       return ResumeServiceResponses_get_resume
+  }
+  public class func bulk_create_companies() -> ConcreateExtensionField {
+       return ResumeServiceResponses_bulk_create_companies
+  }
+  required public init() {
+       super.init()
+  }
+  override public func isInitialized() -> Bool {
+   return true
+  }
+  override public func writeToCodedOutputStream(output:CodedOutputStream) {
+    unknownFields.writeToCodedOutputStream(output)
+  }
+  override public func serializedSize() -> Int32 {
+    var size:Int32 = memoizedSerializedSize
+    if size != -1 {
+     return size
+    }
+
+    size = 0
+    size += unknownFields.serializedSize()
+    memoizedSerializedSize = size
+    return size
+  }
+  public class func parseFromData(data:[Byte]) -> ResumeServiceResponses {
+    return ResumeServiceResponses.builder().mergeFromData(data).build()
+  }
+  public class func parseFromData(data:[Byte], extensionRegistry:ExtensionRegistry) -> ResumeServiceResponses {
+    return ResumeServiceResponses.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
+  }
+  public class func parseFromInputStream(input:NSInputStream) -> ResumeServiceResponses {
+    return ResumeServiceResponses.builder().mergeFromInputStream(input).build()
+  }
+  public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->ResumeServiceResponses {
+    return ResumeServiceResponses.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
+  }
+  public class func parseFromCodedInputStream(input:CodedInputStream) -> ResumeServiceResponses {
+    return ResumeServiceResponses.builder().mergeFromCodedInputStream(input).build()
+  }
+  public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ResumeServiceResponses {
+    return ResumeServiceResponses.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
+  }
+  public class func builder() -> ResumeServiceResponsesBuilder {
+    return ResumeServiceResponses.classBuilder() as ResumeServiceResponsesBuilder
+  }
+  public func builder() -> ResumeServiceResponsesBuilder {
+    return classBuilder() as ResumeServiceResponsesBuilder
+  }
+  public override class func classBuilder() -> MessageBuilder {
+    return ResumeServiceResponsesBuilder()
+  }
+  public override func classBuilder() -> MessageBuilder {
+    return ResumeServiceResponses.builder()
+  }
+  public func toBuilder() -> ResumeServiceResponsesBuilder {
+    return ResumeServiceResponses.builderWithPrototype(self)
+  }
+  public class func builderWithPrototype(prototype:ResumeServiceResponses) -> ResumeServiceResponsesBuilder {
+    return ResumeServiceResponses.builder().mergeFrom(prototype)
+  }
+  override public func writeDescriptionTo(inout output:String, indent:String) {
+    unknownFields.writeDescriptionTo(&output, indent:indent)
+  }
+  override public var hashValue:Int {
+      get {
+          var hashCode:Int = 7
+          hashCode = (hashCode &* 31) &+  unknownFields.hashValue
+          return hashCode
+      }
+  }
+
+
+  //Meta information declaration start
+
+  override public class func className() -> String {
+      return "ResumeServiceResponses"
+  }
+  override public func className() -> String {
+      return "ResumeServiceResponses"
+  }
+  override public func classMetaType() -> GeneratedMessage.Type {
+      return ResumeServiceResponses.self
+  }
+
+
+  //Meta information declaration end
+
+}
+
+final public class ResumeServiceResponsesBuilder : GeneratedMessageBuilder {
+  private var builderResult:ResumeServiceResponses
+
+  required override public init () {
+     builderResult = ResumeServiceResponses()
+     super.init()
+  }
+  override public var internalGetResult:GeneratedMessage {
+       get {
+          return builderResult
+       }
+  }
+  public override func clear() -> ResumeServiceResponsesBuilder {
+    builderResult = ResumeServiceResponses()
+    return self
+  }
+  public override func clone() -> ResumeServiceResponsesBuilder {
+    return ResumeServiceResponses.builderWithPrototype(builderResult)
+  }
+  public override func build() -> ResumeServiceResponses {
+       checkInitialized()
+       return buildPartial()
+  }
+  public func buildPartial() -> ResumeServiceResponses {
+    var returnMe:ResumeServiceResponses = builderResult
+    return returnMe
+  }
+  public func mergeFrom(other:ResumeServiceResponses) -> ResumeServiceResponsesBuilder {
+    mergeUnknownFields(other.unknownFields)
+    return self
+  }
+  public override func mergeFromCodedInputStream(input:CodedInputStream) ->ResumeServiceResponsesBuilder {
+       return mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
+  }
+  public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ResumeServiceResponsesBuilder {
+    var unknownFieldsBuilder:UnknownFieldSetBuilder = UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
+    while (true) {
+      var tag = input.readTag()
+      switch tag {
+      case 0: 
+        self.unknownFields = unknownFieldsBuilder.build()
+        return self
+
+      default:
+        if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
+           unknownFields = unknownFieldsBuilder.build()
+           return self
+        }
+      }
+    }
+  }
+}
+
 //Class extensions: NSData
 
 
@@ -1678,6 +1887,18 @@ public extension NoteServiceResponses {
         var bytes = [Byte](count: data.length, repeatedValue: 0)
         data.getBytes(&bytes)
         return NoteServiceResponses.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
+    }
+}
+public extension ResumeServiceResponses {
+    class func parseFromNSData(data:NSData) -> ResumeServiceResponses {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return ResumeServiceResponses.builder().mergeFromData(bytes).build()
+    }
+    class func parseFromNSData(data:NSData, extensionRegistry:ExtensionRegistry) -> ResumeServiceResponses {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return ResumeServiceResponses.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
     }
 }
 

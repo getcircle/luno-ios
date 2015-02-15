@@ -10,6 +10,7 @@
 		8F627BCA1A48EB26002490D8 /* Note_service.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F627BC91A48EB26002490D8 /* Note_service.pb.swift */; };
 		BF6E6A811A66EA36007EBAFF /* Media_service.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6E6A801A66EA36007EBAFF /* Media_service.pb.swift */; };
 		BF764DC21A5F56B400D122F4 /* Landing_service.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF764DC11A5F56B400D122F4 /* Landing_service.pb.swift */; };
+		BF87B9CD1A912BF800224555 /* Resume_service.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF87B9CC1A912BF800224555 /* Resume_service.pb.swift */; };
 		BFC6CEF51A44B58B0081F45B /* ProtobufRegistry.h in Headers */ = {isa = PBXBuildFile; fileRef = BFC6CEF41A44B58B0081F45B /* ProtobufRegistry.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BFC6CEFB1A44B58B0081F45B /* ProtobufRegistry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFC6CEEF1A44B58B0081F45B /* ProtobufRegistry.framework */; };
 		BFC6CF021A44B58B0081F45B /* ProtobufRegistryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC6CF011A44B58B0081F45B /* ProtobufRegistryTests.swift */; };
@@ -50,6 +51,7 @@
 		8F627BC91A48EB26002490D8 /* Note_service.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Note_service.pb.swift; sourceTree = "<group>"; };
 		BF6E6A801A66EA36007EBAFF /* Media_service.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Media_service.pb.swift; sourceTree = "<group>"; };
 		BF764DC11A5F56B400D122F4 /* Landing_service.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Landing_service.pb.swift; sourceTree = "<group>"; };
+		BF87B9CC1A912BF800224555 /* Resume_service.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resume_service.pb.swift; sourceTree = "<group>"; };
 		BFC6CEEF1A44B58B0081F45B /* ProtobufRegistry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ProtobufRegistry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFC6CEF31A44B58B0081F45B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BFC6CEF41A44B58B0081F45B /* ProtobufRegistry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProtobufRegistry.h; sourceTree = "<group>"; };
@@ -119,16 +121,17 @@
 		BFC6CEF11A44B58B0081F45B /* ProtobufRegistry */ = {
 			isa = PBXGroup;
 			children = (
-				BF6E6A801A66EA36007EBAFF /* Media_service.pb.swift */,
 				BF764DC11A5F56B400D122F4 /* Landing_service.pb.swift */,
-				BFDD6F031A5EE56800A648FC /* Search_service.pb.swift */,
-				BFEED5DE1A5AF55F00C19A11 /* Profile_service.pb.swift */,
-				BFCE356F1A4A23AE00D56AE2 /* runtime-pb-swift */,
-				BFFB1A511A48FD9100CCFFC3 /* Organization_service.pb.swift */,
+				BF6E6A801A66EA36007EBAFF /* Media_service.pb.swift */,
 				8F627BC91A48EB26002490D8 /* Note_service.pb.swift */,
+				BFFB1A511A48FD9100CCFFC3 /* Organization_service.pb.swift */,
+				BFEED5DE1A5AF55F00C19A11 /* Profile_service.pb.swift */,
 				BFC6CEF41A44B58B0081F45B /* ProtobufRegistry.h */,
 				BFC6CF661A44BE390081F45B /* Request_registry.pb.swift */,
 				BFC6CF671A44BE390081F45B /* Response_registry.pb.swift */,
+				BF87B9CC1A912BF800224555 /* Resume_service.pb.swift */,
+				BFCE356F1A4A23AE00D56AE2 /* runtime-pb-swift */,
+				BFDD6F031A5EE56800A648FC /* Search_service.pb.swift */,
 				BFC6CF681A44BE390081F45B /* Soa.pb.swift */,
 				BFC6CEF21A44B58B0081F45B /* Supporting Files */,
 				BFFB198F1A47696200CCFFC3 /* User_service.pb.swift */,
@@ -309,6 +312,7 @@
 				BFCE35821A4A23AE00D56AE2 /* Descriptor.pb.swift in Sources */,
 				BFCE35881A4A23AE00D56AE2 /* SwiftDescriptor.pb.swift in Sources */,
 				BFDD6F041A5EE56800A648FC /* Search_service.pb.swift in Sources */,
+				BF87B9CD1A912BF800224555 /* Resume_service.pb.swift in Sources */,
 				BFCE35811A4A23AE00D56AE2 /* ConcreateExtensionField.swift in Sources */,
 				BF764DC21A5F56B400D122F4 /* Landing_service.pb.swift in Sources */,
 				BFCE35891A4A23AE00D56AE2 /* UnknownFieldSet.swift in Sources */,
