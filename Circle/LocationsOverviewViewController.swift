@@ -110,11 +110,11 @@ class LocationsOverviewViewController: UIViewController, UICollectionViewDataSou
     
     func trackLocationSelected(location: OrganizationService.Containers.Address) {
         let properties = [
+            TrackerProperty.withKey(.ActiveViewController).withString(self.dynamicType.description()),
             TrackerProperty.withKey(.Source).withSource(.Overview),
             TrackerProperty.withKey(.SourceOverviewType).withOverviewType(.Offices),
             TrackerProperty.withKey(.Destination).withSource(.Detail),
             TrackerProperty.withKey(.DestinationDetailType).withDetailType(.Office),
-            TrackerProperty.withKey(.ActiveViewController).withString(self.dynamicType.description()),
             TrackerProperty.withDestinationId("location_id").withString(location.id)
         ]
         Tracker.sharedInstance.track(.DetailItemTapped, properties: properties)

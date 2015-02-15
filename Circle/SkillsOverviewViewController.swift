@@ -86,6 +86,7 @@ class SkillsOverviewViewController: UIViewController, UICollectionViewDelegateFl
 
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         if let selectedSkill = dataSource.skill(collectionView: collectionView, atIndexPath: indexPath) {
+            trackSkillSelected(selectedSkill)
             let viewController = SkillDetailViewController()
             (viewController.dataSource as SkillDetailDataSource).selectedSkill = selectedSkill
             navigationController?.pushViewController(viewController, animated: true)
@@ -147,5 +148,19 @@ class SkillsOverviewViewController: UIViewController, UICollectionViewDelegateFl
                 self.collectionView.reloadData()
             })
         })
+    }
+    
+    // MARK: - Tracking
+    
+    private func trackSkillSelected(skill: ProfileService.Containers.Skill) {
+        let properties = [
+            TrackerProperty.withKey(.ActiveViewController).withString(self.dynamicType.description()),
+            TrackerProperty.withKey(.Source).withSource(.Overview),
+            TrackerProperty.withKey(.SourceOverviewType).withOverviewType(.Skills),
+            TrackerProperty.withKey(.Destination).withSource(.Detail),
+            TrackerProperty.withKey(.DestinationDetailType).withDetailType(.Skill),
+            TrackerProperty.withDestinationId("skill_id").withString(skill.id)
+        ]
+        Tracker.sharedInstance.track(.DetailItemTapped, properties: properties)
     }
 }
