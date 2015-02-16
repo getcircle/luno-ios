@@ -22,7 +22,7 @@ extension SearchService {
             var skills: Array<ProfileService.Containers.Skill>?
 
             class var maxResultsPerCategory: Int {
-                return 5
+                return 3
             }
         }
         
