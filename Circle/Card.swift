@@ -74,6 +74,7 @@ class Card: Equatable {
         case Notes = "Notes"
         case People = "People"
         case Placeholder = "Placeholder"
+        case Position = "Position"
         case Settings = "Settings"
         case Skills = "Skills"
         case SocialConnectCTAs = "SocialConnectCTAs"
@@ -116,7 +117,7 @@ class Card: Equatable {
                 
             case .Education:
                 return CardTypeInfo(
-                    imageName: "NotePad",
+                    imageName: "GraduateCap",
                     classType: EducationCollectionViewCell.self,
                     className: "EducationCollectionViewCell",
                     contentType: .Flat
@@ -175,6 +176,14 @@ class Card: Equatable {
                     imageName: "Info",
                     classType: CircleCollectionViewCell.self,
                     className: "CircleCollectionViewCell",
+                    contentType: .Flat
+                )
+                
+            case .Position:
+                return CardTypeInfo(
+                    imageName: "Satchel",
+                    classType: PositionCollectionViewCell.self,
+                    className: "PositionCollectionViewCell",
                     contentType: .Flat
                 )
 

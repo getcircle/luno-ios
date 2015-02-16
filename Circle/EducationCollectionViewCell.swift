@@ -14,22 +14,18 @@ class EducationCollectionViewCell: CircleCollectionViewCell {
     @IBOutlet weak var schoolNameLabel: UILabel!
     @IBOutlet weak var degreeAndFieldOfStudyLabel: UILabel!
     @IBOutlet weak var durationLabel: UILabel!
-    @IBOutlet weak var notesLabel: UILabel!
-    @IBOutlet weak var activitiesLabel: UILabel!
     @IBOutlet weak var schoolNameLabelTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var degreeAndFieldOfStudyLabelTopConstraint: NSLayoutConstraint!
-    @IBOutlet weak var notesLabelTopConstraint: NSLayoutConstraint!
-    @IBOutlet weak var activitiesLabelTopConstraint: NSLayoutConstraint!
-    @IBOutlet weak var activitiesLabelBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var durationLabelTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var durationLabelBottomConstraint: NSLayoutConstraint!
     
     override class var sizeCalculationMethod: SizeCalculation {
         return .Dynamic
     }
     
     override func intrinsicContentSize() -> CGSize {
-        println(super.intrinsicContentSize())
         var height = CGFloat()
-        for label in [schoolNameLabel, degreeAndFieldOfStudyLabel, durationLabel, notesLabel, activitiesLabel] {
+        for label in [schoolNameLabel, degreeAndFieldOfStudyLabel, durationLabel] {
             height += label.intrinsicContentSize().height
             if label.text != "" {
                 switch label {
@@ -37,11 +33,9 @@ class EducationCollectionViewCell: CircleCollectionViewCell {
                     height += schoolNameLabelTopConstraint.constant
                 case degreeAndFieldOfStudyLabel:
                     height += degreeAndFieldOfStudyLabelTopConstraint.constant
-                case notesLabel:
-                    height += notesLabelTopConstraint.constant
-                case activitiesLabel:
-                    height += activitiesLabelTopConstraint.constant
-                    height += activitiesLabelBottomConstraint.constant
+                case durationLabel:
+                    height += durationLabelTopConstraint.constant
+                    height += durationLabelBottomConstraint.constant
                 default:
                     break
                 }
@@ -55,8 +49,6 @@ class EducationCollectionViewCell: CircleCollectionViewCell {
             schoolNameLabel.text = education.school_name
             degreeAndFieldOfStudyLabel.text = getFormattedDegreeAndFieldOfStudy(education)
             durationLabel.text = getFormattedDurationLabel(education)
-            notesLabel.text = education.notes
-            activitiesLabel.text = education.activities
         }
     }
     
@@ -85,7 +77,7 @@ class EducationCollectionViewCell: CircleCollectionViewCell {
         if education.end_date.year != 0 {
             var endDate = "\(education.end_date.year)"
             if label != "" {
-                endDate = "-\(endDate)"
+                endDate = " - \(endDate)"
             }
             label += endDate
         }

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="U6b-Vx-4bR" customClass="ProfileSectionHeaderCollectionReusableView" customModule="circle" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MapPin" translatesAutoresizingMaskIntoConstraints="NO" id="Mlc-55-U3h">
+                    <rect key="frame" x="8" y="17" width="18" height="18"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="18" id="mDf-kH-ay7"/>
+                        <constraint firstAttribute="width" constant="18" id="mmd-c0-FcW"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="PEOPLE" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="538-Iu-4CO">
+                    <rect key="frame" x="31" y="16" width="274" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="dH1-j7-bXX"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
+                    <color key="textColor" red="0.1505631506" green="0.1505586505" blue="0.15056121350000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <constraints>
+                <constraint firstItem="Mlc-55-U3h" firstAttribute="centerY" secondItem="538-Iu-4CO" secondAttribute="centerY" id="C5p-wV-7gb"/>
+                <constraint firstItem="538-Iu-4CO" firstAttribute="leading" secondItem="Mlc-55-U3h" secondAttribute="trailing" constant="5" id="Da9-Mc-gIH"/>
+                <constraint firstItem="Mlc-55-U3h" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" constant="8" id="G84-Hr-T7p"/>
+                <constraint firstAttribute="trailing" secondItem="538-Iu-4CO" secondAttribute="trailing" constant="15" id="Yrh-9L-iAe"/>
+                <constraint firstAttribute="centerY" secondItem="Mlc-55-U3h" secondAttribute="centerY" constant="-1" id="nMX-7m-osy"/>
+                <constraint firstAttribute="centerY" secondItem="538-Iu-4CO" secondAttribute="centerY" id="tYh-ef-dpj"/>
+            </constraints>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="tYh-ef-dpj"/>
+                </mask>
+            </variation>
+            <connections>
+                <outlet property="cardImageView" destination="Mlc-55-U3h" id="773-Ro-zWr"/>
+                <outlet property="cardTitleLabel" destination="538-Iu-4CO" id="3mV-jS-vRw"/>
+            </connections>
+        </collectionReusableView>
+    </objects>
+    <resources>
+        <image name="MapPin" width="22" height="22"/>
+    </resources>
+</document>

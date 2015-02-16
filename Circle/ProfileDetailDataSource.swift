@@ -36,6 +36,7 @@ enum ContentType: Int {
     case Location
     case Manager
     case Other
+    case Position
     case Skills
     case Team
     case Twitter
@@ -110,6 +111,11 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
     override func registerCardHeader(collectionView: UICollectionView) {
         // TODO should have some like "onLoad" function we can plug into
         configureSections()
+        collectionView.registerNib(
+            UINib(nibName: "ProfileSectionHeaderCollectionReusableView", bundle: nil),
+            forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
+            withReuseIdentifier: ProfileSectionHeaderCollectionReusableView.classReuseIdentifier
+        )
         super.registerCardHeader(collectionView)
     }
 
@@ -138,6 +144,7 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
         sections.append(getBasicInfoSection())
         sections.append(getManagerInfoSection())
         sections.append(getSkillsSection())
+        sections.append(getWorkExperienceSection())
         sections.append(getEducationSection())
     }
     
@@ -237,7 +244,20 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
                 image: nil
             )
         ]
-        return Section(title: "Education", items: sectionItems, cardType: .Education)
+        return Section(title: "Education", items: sectionItems, cardType: .Education, cardHeaderSize: CGSizeMake(CircleCollectionViewCell.width, CardHeaderCollectionReusableView.height))
+    }
+    
+    private func getWorkExperienceSection() -> Section {
+        let sectionItems = [
+            SectionItem(
+                title: "Experience",
+                container: "position",
+                containerKey: "title",
+                contentType: .Position,
+                image: nil
+            )
+        ]
+        return Section(title: "Experience", items: sectionItems, cardType: .Position, cardHeaderSize: CGSizeMake(CircleCollectionViewCell.width, CardHeaderCollectionReusableView.height))
     }
     
     // MARK: - Populate Data
@@ -282,6 +302,8 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
             addSocialConnectItemToCard(item, card: card)
         case .Education:
             addEducationItemToCard(item, card: card)
+        case .Position:
+            addPositionItemToCard(item, card: card)
         default: break
         }
     }
@@ -349,6 +371,12 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
         }
     }
     
+    private func addPositionItemToCard(item: SectionItem, card: Card) {
+        if let resume = resume {
+            card.addContent(content: resume.positions as [AnyObject])
+        }
+    }
+    
     // MARK: - Cell Configuration
     
     override func configureCell(cell: CircleCollectionViewCell, atIndexPath indexPath: NSIndexPath) {
@@ -366,5 +394,17 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
         }
         
         return .Other
+    }
+    
+    override func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+        let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(
+            kind,
+            withReuseIdentifier: ProfileSectionHeaderCollectionReusableView.classReuseIdentifier,
+            forIndexPath: indexPath
+        ) as ProfileSectionHeaderCollectionReusableView
+        
+        headerView.setCard(cards[indexPath.section])
+        headerView.backgroundColor = UIColor.clearColor()
+        return headerView
     }
 }
