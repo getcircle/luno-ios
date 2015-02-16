@@ -83,8 +83,6 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
     
     private func configureGoogleAuthentication() {
         let googleSignIn = GPPSignIn.sharedInstance()
-        googleSignIn.shouldFetchGoogleUserID = true
-        googleSignIn.shouldFetchGoogleUserEmail = true
         googleSignIn.clientID = GoogleClientID
         googleSignIn.attemptSSO = true
         googleSignIn.homeServerClientID = GoogleServerClientID
