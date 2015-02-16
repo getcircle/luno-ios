@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ProtobufRegistry
 
 class SettingsViewController: UIViewController, UICollectionViewDelegate {
 
@@ -22,6 +23,16 @@ class SettingsViewController: UIViewController, UICollectionViewDelegate {
         configureView()
         configureCollectionView()
         configureNavigationBar()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        registerNotifications()
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        unregisterNotifications()
     }
     
     // MARK: - Configuration
@@ -85,6 +96,46 @@ class SettingsViewController: UIViewController, UICollectionViewDelegate {
             
         default:
             break
+        }
+    }
+    
+    // MARK: - Notifications
+    
+    private func registerNotifications() {
+        NSNotificationCenter.defaultCenter().addObserver(
+            self,
+            selector: "didToggleProvider:",
+            name: ToggleSocialConnectionCollectionViewCellNotifications.onProviderToggled,
+            object: nil
+        )
+    }
+    
+    private func unregisterNotifications() {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
+    func didToggleProvider(notification: NSNotification) {
+        if let userInfo = notification.userInfo {
+            if let enable = userInfo["enable"] as? Bool {
+                if let identity = userInfo["identity"] as? UserService.Containers.Identity {
+                    switch identity.provider {
+                    case .Google:
+                        if !enable {
+                            GPPSignIn.sharedInstance().disconnect()
+                            dismissViewControllerAnimated(true) { () -> Void in
+                                AuthViewController.logOut()
+                            }
+                        }
+                    case .Linkedin:
+                        if enable {
+                            let socialConnectVC = SocialConnectViewController(provider: .Linkedin)
+                            presentViewController(socialConnectVC, animated: true, completion: nil)
+                        }
+                    default:
+                        break
+                    }
+                }
+            }
         }
     }
 }

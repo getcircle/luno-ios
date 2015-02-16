@@ -15,6 +15,7 @@ typealias SendVerificationCodeCompletionHandler = (error: NSError?) -> Void
 typealias VerifyVerificationCodeCompletionHandler = (verified: Bool?, error: NSError?) -> Void
 typealias GetAuthorizationInstructionsCompletionHandler = (authorizationURL: String?, error: NSError?) -> Void
 typealias CompleteAuthorizationCompletionHandler = (user: UserService.Containers.User?, identity: UserService.Containers.Identity?, error: NSError?) -> Void
+typealias GetIdentitiesCompletionHandler = (identities: Array<UserService.Containers.Identity>?, error: NSError?) -> Void
 
 extension UserService {
     class Actions {
@@ -124,6 +125,22 @@ extension UserService {
                         UserServiceRequests_complete_authorization
                     ) as? UserService.CompleteAuthorization.Response
                     completionHandler?(user: response?.user, identity: response?.identity, error: error)
+            }
+        }
+        
+        class func getIdentities(userId: String, completionHandler: GetIdentitiesCompletionHandler?) {
+            let requestBuilder = UserService.GetIdentities.Request.builder()
+            requestBuilder.user_id = userId
+            
+            let client = ServiceClient(serviceName: "user")
+            client.callAction(
+                "get_identities",
+                extensionField: UserServiceRequests_get_identities,
+                requestBuilder: requestBuilder) { (_, _, _, actionResponse, error) -> Void in
+                    let response = actionResponse?.result.getExtension(
+                        UserServiceRequests_get_identities
+                    ) as? UserService.GetIdentities.Response
+                    completionHandler?(identities: response?.identities, error: error)
             }
         }
         

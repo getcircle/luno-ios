@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ProtobufRegistry
 
 class SettingsDataSource: CardDataSource {
 
@@ -14,6 +15,7 @@ class SettingsDataSource: CardDataSource {
         case AccountEmail
         case ContactEmail
         case ContactPhone
+        case GoogleDisconnect
         case LegalAttributions
         case LegalPrivacy
         case LegalTermsOfService
@@ -81,7 +83,19 @@ class SettingsDataSource: CardDataSource {
             ],
         ])
         appendCard(legalCard)
-
+        
+        // Social card
+        if let identities = AuthViewController.getLoggedInUserIdentities() {
+            var socialCard = Card(
+                cardType: .SocialToggle,
+                title: "Social",
+                addDefaultFooter: false
+            )
+            socialCard.sectionInset = UIEdgeInsetsZero
+            socialCard.addContent(content: identities as [AnyObject])
+            appendCard(socialCard)
+        }
+        
         // Account card
         var accountCard = Card(
             cardType: .KeyValue,
@@ -211,4 +225,5 @@ class SettingsDataSource: CardDataSource {
         headerView.backgroundColor = UIColor.clearColor()
         return headerView
     }
+    
 }

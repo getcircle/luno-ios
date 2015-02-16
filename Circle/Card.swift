@@ -78,6 +78,7 @@ class Card: Equatable {
         case Settings = "Settings"
         case Skills = "Skills"
         case SocialConnectCTAs = "SocialConnectCTAs"
+        case SocialToggle = "SocialToggle"
         case Team = "Team"
         case TeamsGrid = "TeamsGrid"
         case TextValue = "TextValue"
@@ -209,6 +210,14 @@ class Card: Equatable {
                     imageName: "Info",
                     classType: SocialConnectCollectionViewCell.self,
                     className: "SocialConnectCollectionViewCell",
+                    contentType: .Flat
+                )
+                
+            case .SocialToggle:
+                return CardTypeInfo(
+                    imageName: "Info",
+                    classType: ToggleSocialConnectionCollectionViewCell.self,
+                    className: "ToggleSocialConnectionCollectionViewCell",
                     contentType: .Flat
                 )
                 

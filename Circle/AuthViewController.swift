@@ -17,6 +17,7 @@ struct LoggedInUserHolder {
     static var user: UserService.Containers.User?
     static var profile: ProfileService.Containers.Profile?
     static var organization: OrganizationService.Containers.Organization?
+    static var identities: Array<UserService.Containers.Identity>?
     static var token: String?
 }
 
@@ -34,6 +35,7 @@ private let DefaultsUserKey = "DefaultsUserKey"
 private let DefaultsProfileKey = "DefaultsProfileKey"
 private let DefaultsLastLoggedInUserEmail = "DefaultsLastLoggedInUserEmail"
 private let DefaultsOrganizationKey = "DefaultsOrganizationKey"
+private let DefaultsIdentitiesKey = "DefaultsIdentitiesKey"
 
 private let GoogleClientID = "1077014421904-pes3pbf96obmp75kb00qouoiqf18u78h.apps.googleusercontent.com"
 private let GoogleServerClientID = "1077014421904-1a697ks3qvtt6975qfqhmed8529en8s2.apps.googleusercontent.com"
@@ -52,6 +54,7 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
         configureAppNameLabel()
         configureView()
         configureGoogleAuthentication()
+        GPPSignIn.sharedInstance().trySilentAuthentication()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -85,9 +88,8 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
         googleSignIn.clientID = GoogleClientID
         googleSignIn.attemptSSO = true
         googleSignIn.homeServerClientID = GoogleServerClientID
-        googleSignIn.scopes = [kGTLAuthScopePlusLogin, kGTLAuthScopePlusUserinfoEmail, kGTLAuthScopePlusUserinfoProfile]
+        googleSignIn.scopes = [kGTLAuthScopePlusLogin, kGTLAuthScopePlusUserinfoEmail, kGTLAuthScopePlusUserinfoProfile, kGTLAuthScopePlusMe]
         googleSignIn.delegate = self
-        
         googleSignInButton.colorScheme = kGPPSignInButtonColorSchemeLight
         googleSignInButton.style = kGPPSignInButtonStyleWide
         
@@ -104,6 +106,9 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
             }
             credentials.secret = GPPSignIn.sharedInstance().idToken
             login(.Google, credentials: credentials.build())
+        } else {
+            hideLoadingState()
+            googleSignInButton.addShakeAnimation()
         }
     }
     
@@ -165,6 +170,17 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
         return nil
     }
     
+    private class func loadCachedIdentities() -> Array<UserService.Containers.Identity>? {
+        if let data = NSUserDefaults.standardUserDefaults().objectForKey(DefaultsIdentitiesKey) as? [NSData] {
+            var identities = Array<UserService.Containers.Identity>()
+            for object in data {
+                identities.append(UserService.Containers.Identity.parseFromNSData(object))
+            }
+            return identities
+        }
+        return nil
+    }
+    
     private class func cacheUserData(user: UserService.Containers.User) {
         NSUserDefaults.standardUserDefaults().setObject(user.getNSData(), forKey: DefaultsUserKey)
     }
@@ -175,6 +191,17 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
     
     private class func cacheOrganizationData(organization: OrganizationService.Containers.Organization) {
         NSUserDefaults.standardUserDefaults().setObject(organization.getNSData(), forKey: DefaultsOrganizationKey)
+    }
+    
+    private class func cacheUserIdentities(identities: Array<UserService.Containers.Identity>) {
+        var cleanIdentities = [NSData]()
+        for identity in identities {
+            let builder = identity.toBuilder()
+            builder.clearAccessToken()
+            builder.clearRefreshToken()
+            cleanIdentities.append(builder.build().getNSData())
+        }
+        NSUserDefaults.standardUserDefaults().setObject(cleanIdentities, forKey: DefaultsIdentitiesKey)
     }
     
     private func cacheLoginData(token: String, user: UserService.Containers.User) {
@@ -255,20 +282,32 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
         ProfileService.Actions.getProfile(userId: userId) { (profile, error) -> Void in
             if let profile = profile {
                 self.dynamicType.updateUserProfile(profile)
-                self.fetchAndCacheUserOrganization(profile.organization_id, completion: completion)
+                self.fetchAndCacheUserOrganization(profile.organization_id, userId: profile.user_id, completion: completion)
             } else {
                 completion(error: error)
             }
         }
     }
     
-    private func fetchAndCacheUserOrganization(organizationId: String, completion: (error: NSError?) -> Void) {
+    private func fetchAndCacheUserOrganization(organizationId: String, userId: String, completion: (error: NSError?) -> Void) {
         OrganizationService.Actions.getOrganization(organizationId) { (organization, error) -> Void in
             if let organization = organization {
                 self.dynamicType.updateOrganization(organization)
+                self.fetchAndCacheUserIdentities(userId, completion: completion)
+            } else {
+                completion(error: error)
+            }
+        }
+    }
+    
+    private func fetchAndCacheUserIdentities(userId: String, completion: (error: NSError?) -> Void) {
+        UserService.Actions.getIdentities(userId) { (identities, error) -> Void in
+            if let identities = identities {
+                self.dynamicType.updateIdentities(identities)
             }
             completion(error: error)
         }
+
     }
     
     // MARK: - Log out
@@ -380,9 +419,20 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
         return nil
     }
     
+    class func getLoggedInUserIdentities() -> Array<UserService.Containers.Identity>? {
+        if let identities = LoggedInUserHolder.identities {
+            return identities
+        } else {
+            if let identities = self.loadCachedIdentities() {
+                return identities
+            }
+        }
+        return nil
+    }
+    
     class func updateUserProfile(profile: ProfileService.Containers.Profile) {
         LoggedInUserHolder.profile = profile
-        self.cacheProfileData(profile)
+        cacheProfileData(profile)
         NSNotificationCenter.defaultCenter().postNotificationName(
             AuthNotifications.onProfileChangedNotification,
             object: profile
@@ -391,7 +441,7 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
     
     class func updateUser(user: UserService.Containers.User) {
         LoggedInUserHolder.user = user
-        self.cacheUserData(user)
+        cacheUserData(user)
         NSNotificationCenter.defaultCenter().postNotificationName(
             AuthNotifications.onUserChangedNotification,
             object: user
@@ -400,7 +450,12 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
     
     class func updateOrganization(organization: OrganizationService.Containers.Organization) {
         LoggedInUserHolder.organization = organization
-        self.cacheOrganizationData(organization)
+        cacheOrganizationData(organization)
+    }
+    
+    class func updateIdentities(identities: Array<UserService.Containers.Identity>)  {
+        LoggedInUserHolder.identities = identities
+        cacheUserIdentities(identities)
     }
     
     // MARK: - Authentication Helpers
