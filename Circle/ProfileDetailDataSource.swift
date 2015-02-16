@@ -26,7 +26,8 @@ class ItemImage {
 }
 
 enum ContentType: Int {
-    case CellPhone = 1
+    case About = 1
+    case CellPhone
     case Education
     case Email
     case Facebook
@@ -141,6 +142,7 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
     // MARK: - Configuration
     
     private func configureSections() {
+        sections.append(getAboutSection())
         sections.append(getBasicInfoSection())
         sections.append(getManagerInfoSection())
         sections.append(getSkillsSection())
@@ -172,6 +174,19 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
             }
         }
         return nil
+    }
+    
+    private func getAboutSection() -> Section {
+        let sectionItems = [
+            SectionItem(
+                title: "About",
+                container: "profile",
+                containerKey: "about",
+                contentType: .About,
+                image: nil
+            )
+        ]
+        return Section(title: "About", items: sectionItems, cardType: .TextValue)
     }
     
     private func getBasicInfoSection() -> Section {
@@ -294,6 +309,8 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
     
     private func addItemToCard(item: SectionItem, card: Card) {
         switch card.type {
+        case .TextValue:
+            addAboutItemToCard(item, card: card)
         case .KeyValue:
             addKeyValueItemToCard(item, card: card)
         case .Skills:
@@ -374,6 +391,12 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
     private func addPositionItemToCard(item: SectionItem, card: Card) {
         if let resume = resume {
             card.addContent(content: resume.positions as [AnyObject])
+        }
+    }
+    
+    private func addAboutItemToCard(item: SectionItem, card: Card) {
+        if profile.hasAbout {
+            card.addContent(content: [profile.about] as [AnyObject])
         }
     }
     

@@ -80,6 +80,7 @@ class Card: Equatable {
         case SocialConnectCTAs = "SocialConnectCTAs"
         case Team = "Team"
         case TeamsGrid = "TeamsGrid"
+        case TextValue = "TextValue"
         
         struct CardTypeInfo {
             var imageName: String
@@ -225,6 +226,14 @@ class Card: Equatable {
                     classType: TeamsCollectionViewCell.self,
                     className: "TeamsCollectionViewCell",
                     contentType: .Aggregate
+                )
+                
+            case .TextValue:
+                return CardTypeInfo(
+                    imageName: "Info",
+                    classType: TextValueCollectionViewCell.self,
+                    className: "TextValueCollectionViewCell",
+                    contentType: .Flat
                 )
             }
         }

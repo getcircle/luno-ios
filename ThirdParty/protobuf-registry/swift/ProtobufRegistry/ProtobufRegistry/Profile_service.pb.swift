@@ -188,6 +188,7 @@ final public class ProfileService : GeneratedMessage {
                  case "birth_date": return birth_date
                  case "hire_date": return hire_date
                  case "verified": return verified
+                 case "about": return about
                  default: return nil
                  }
           }
@@ -239,6 +240,9 @@ final public class ProfileService : GeneratedMessage {
 
           public private(set) var hasVerified:Bool = false
           public private(set) var verified:Bool = false
+
+          public private(set) var hasAbout:Bool = false
+          public private(set) var about:String = ""
 
           public private(set) var items:Array<ProfileService.Containers.ProfileItem>  = Array<ProfileService.Containers.ProfileItem>()
           required public init() {
@@ -299,6 +303,9 @@ final public class ProfileService : GeneratedMessage {
             for oneElementitems in items {
                 output.writeMessage(17, value:oneElementitems)
             }
+            if hasAbout {
+              output.writeString(18, value:about)
+            }
             unknownFields.writeToCodedOutputStream(output)
           }
           override public func serializedSize() -> Int32 {
@@ -358,6 +365,9 @@ final public class ProfileService : GeneratedMessage {
             }
             for oneElementitems in items {
                 size += WireFormat.computeMessageSize(17, value:oneElementitems)
+            }
+            if hasAbout {
+              size += WireFormat.computeStringSize(18, value:about)
             }
             size += unknownFields.serializedSize()
             memoizedSerializedSize = size
@@ -455,6 +465,9 @@ final public class ProfileService : GeneratedMessage {
                 output += "\(indent)}\n"
                 itemsElementIndex++
             }
+            if hasAbout {
+              output += "\(indent) about: \(about) \n"
+            }
             unknownFields.writeDescriptionTo(&output, indent:indent)
           }
           override public var hashValue:Int {
@@ -510,6 +523,9 @@ final public class ProfileService : GeneratedMessage {
                   }
                   for oneElementitems in items {
                       hashCode = (hashCode &* 31) &+ oneElementitems.hashValue
+                  }
+                  if hasAbout {
+                     hashCode = (hashCode &* 31) &+ about.hashValue
                   }
                   hashCode = (hashCode &* 31) &+  unknownFields.hashValue
                   return hashCode
@@ -857,6 +873,25 @@ final public class ProfileService : GeneratedMessage {
             builderResult.items.removeAll(keepCapacity: false)
             return self
           }
+          public var hasAbout:Bool {
+               get {
+                    return builderResult.hasAbout
+               }
+          }
+          public var about:String {
+               get {
+                    return builderResult.about
+               }
+               set (value) {
+                   builderResult.hasAbout = true
+                   builderResult.about = value
+               }
+          }
+          public func clearAbout() -> ProfileService.Containers.ProfileBuilder{
+               builderResult.hasAbout = false
+               builderResult.about = ""
+               return self
+          }
           override public var internalGetResult:GeneratedMessage {
                get {
                   return builderResult
@@ -929,6 +964,9 @@ final public class ProfileService : GeneratedMessage {
             if !other.items.isEmpty  {
                builderResult.items += other.items
             }
+            if other.hasAbout {
+                 about = other.about
+            }
             mergeUnknownFields(other.unknownFields)
             return self
           }
@@ -996,6 +1034,9 @@ final public class ProfileService : GeneratedMessage {
                 var subBuilder = ProfileService.Containers.ProfileItem.builder()
                 input.readMessage(subBuilder,extensionRegistry:extensionRegistry)
                 items += [subBuilder.buildPartial()]
+
+              case 146 :
+                about = input.readString()
 
               default:
                 if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {

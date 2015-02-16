@@ -29,6 +29,7 @@ message ProfileService {
             optional string hire_date = 15;
             optional bool verified = 16;
             repeated ProfileItem items = 17;
+            optional string about = 18;
         }
 
         message ProfileItem {
