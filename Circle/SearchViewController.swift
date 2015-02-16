@@ -158,6 +158,7 @@ NewNoteViewControllerDelegate {
     func textFieldDidBeginEditing(textField: UITextField) {
         searchHeaderView.showCancelButton()
         collectionView.dataSource = queryDataSource
+        collectionView.contentInset = UIEdgeInsetsZero
         collectionView.reloadData()
     }
 
@@ -166,6 +167,7 @@ NewNoteViewControllerDelegate {
     func didCancel(sender: UIView) {
         selectedAction = .None
         collectionView.dataSource = landingDataSource
+        collectionView.contentInset = UIEdgeInsetsMake(20.0, 0.0, 0.0, 0.0)
         queryDataSource.resetCards()
         collectionView.reloadData()
     }

@@ -44,7 +44,7 @@ class SearchQueryDataSource: CardDataSource {
     
     private func updateVisibleCards() {
         resetCards()
-        let sectionInset = UIEdgeInsetsMake(0.0, 0.0, 20.0, 0.0)
+        let sectionInset = UIEdgeInsetsMake(0.0, 0.0, 10.0, 0.0)
         
         // TODO these should be sorted by relevancy
         if visibleProfiles.count > 0 {
