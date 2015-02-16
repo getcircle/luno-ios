@@ -24,6 +24,10 @@ extension SearchService {
             class var maxResultsPerCategory: Int {
                 return 3
             }
+            
+            class var maxSuggestionsPerCategory: Int {
+                return 6
+            }
         }
         
         private class var whitespaceCharacterSet: NSCharacterSet {
@@ -50,9 +54,22 @@ extension SearchService {
         // MARK: - Helpers
         
         // given the query, search the local objects we have cached
-        private class func search(query: String) -> (SearchResults?, NSError?){
-            var searchTerms = query.componentsSeparatedByString(" ")
+        private class func search(query: String) -> (SearchResults?, NSError?) {
+            
             let results = SearchResults()
+            
+            // Show recent profile visits as suggestions if string is empty
+            if query.trimWhitespace() == "" {
+                if let recentProfileIDs = CircleCache.sharedInstance.objectForKey(CircleCache.Keys.RecentProfileVisits) as? [String] {
+                    let matchedProfiles = filterProfiles(profileIDs: recentProfileIDs)
+                    results.profiles = Array(matchedProfiles[0..<min(SearchResults.maxSuggestionsPerCategory, matchedProfiles.count)])
+                    results.teams = Array<OrganizationService.Containers.Team>()
+                    results.skills = Array<ProfileService.Containers.Skill>()
+                    return (results, nil)
+                }
+            }
+            
+            var searchTerms = query.componentsSeparatedByString(" ")
             let matchedProfiles = filterProfiles(searchTerms)
             let matchedTeams = filterTeams(searchTerms)
             let matchedSkills = filterSkills(searchTerms)
@@ -61,6 +78,18 @@ extension SearchService {
             results.teams = Array(matchedTeams[0..<min(SearchResults.maxResultsPerCategory, matchedTeams.count)])
             results.skills = Array(matchedSkills[0..<min(SearchResults.maxResultsPerCategory, matchedSkills.count)])
             return (results, nil)
+        }
+        
+        private class func filterProfiles(#profileIDs: [String]) -> Array<ProfileService.Containers.Profile> {
+            var matchedProfiles = Array<ProfileService.Containers.Profile>()
+            
+            for profileID in profileIDs {
+                if let profile = ObjectStore.sharedInstance.profiles[profileID] {
+                    matchedProfiles.append(profile)
+                }
+            }
+            
+            return matchedProfiles
         }
         
         private class func filterProfiles(searchTerms: [String]) -> Array<ProfileService.Containers.Profile> {

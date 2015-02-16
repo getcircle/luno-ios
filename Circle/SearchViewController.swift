@@ -160,6 +160,7 @@ NewNoteViewControllerDelegate {
         collectionView.dataSource = queryDataSource
         collectionView.contentInset = UIEdgeInsetsZero
         collectionView.reloadData()
+        search()
     }
 
     // MARK: - SearchHeaderViewDelegate
@@ -176,13 +177,8 @@ NewNoteViewControllerDelegate {
     
     func search() {
         let query = searchHeaderView.searchTextField.text
-        if query == "" {
-            (collectionView.dataSource as SearchQueryDataSource).resetCards()
-            collectionView.reloadData()
-        } else {
-            (collectionView.dataSource as SearchQueryDataSource).filter(searchHeaderView.searchTextField.text) { (error) -> Void in
-                self.collectionView.reloadData()
-            }
+        (collectionView.dataSource as SearchQueryDataSource).filter(searchHeaderView.searchTextField.text) { (error) -> Void in
+            self.collectionView.reloadData()
         }
     }
 

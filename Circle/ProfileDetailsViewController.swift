@@ -66,6 +66,7 @@ class ProfileDetailsViewController:
         super.viewDidLoad()
         
         configureNavigationButtons()
+        CircleCache.recordProfileVisit(profile)
     }
     
     override func viewWillAppear(animated: Bool) {

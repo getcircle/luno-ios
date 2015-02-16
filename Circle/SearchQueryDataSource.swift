@@ -13,6 +13,7 @@ class SearchQueryDataSource: CardDataSource {
     
     private let whitespaceCharacterSet = NSCharacterSet.whitespaceCharacterSet()
     
+    private var searchTerm = ""
     private var visibleProfiles = Array<ProfileService.Containers.Profile>()
     private var visibleTeams = Array<OrganizationService.Containers.Team>()
     private var visibleAddresses = Array<OrganizationService.Containers.Address>()
@@ -22,6 +23,7 @@ class SearchQueryDataSource: CardDataSource {
     }
     
     func filter(string: String, completionHandler: (error: NSError?) -> Void) {
+        searchTerm = string
         SearchService.Actions.search(string, completionHandler: { (results, error) -> Void in
             if let results = results {
                 if let profiles = results.profiles {
@@ -48,7 +50,12 @@ class SearchQueryDataSource: CardDataSource {
         
         // TODO these should be sorted by relevancy
         if visibleProfiles.count > 0 {
-            let peopleCard = Card(cardType: .People, title: "People")
+            
+            // Don't show title if there is no search string implying those
+            // are straight up suggestions without any search term
+            
+            let profilesCardTitle = searchTerm.trimWhitespace() == "" ? "Recent" : "People"
+            let peopleCard = Card(cardType: .People, title: profilesCardTitle)
             peopleCard.addContent(content: visibleProfiles as [AnyObject])
             peopleCard.contentCount = visibleProfiles.count
             peopleCard.sectionInset = sectionInset

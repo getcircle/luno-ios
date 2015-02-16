@@ -81,6 +81,7 @@
 		8F7795041A909AFC00BEF6EA /* SkillsOverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7795021A909AFC00BEF6EA /* SkillsOverviewViewController.swift */; };
 		8F7795051A909AFC00BEF6EA /* SkillsOverviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F7795031A909AFC00BEF6EA /* SkillsOverviewViewController.xib */; };
 		8F77950A1A910E8700BEF6EA /* SkillsOverviewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7795091A910E8700BEF6EA /* SkillsOverviewDataSource.swift */; };
+		8F77950C1A917FB400BEF6EA /* CircleCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F77950B1A917FB400BEF6EA /* CircleCache.swift */; };
 		8F7E2DC61A8FC00000B8548D /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7E2DC41A8FC00000B8548D /* SplashViewController.swift */; };
 		8F7E2DC71A8FC00000B8548D /* SplashViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F7E2DC51A8FC00000B8548D /* SplashViewController.xib */; };
 		8F7E2DCD1A8FDBB600B8548D /* PasscodeTouchIDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7E2DCB1A8FDBB500B8548D /* PasscodeTouchIDViewController.swift */; };
@@ -352,6 +353,7 @@
 		8F7795021A909AFC00BEF6EA /* SkillsOverviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkillsOverviewViewController.swift; sourceTree = "<group>"; };
 		8F7795031A909AFC00BEF6EA /* SkillsOverviewViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SkillsOverviewViewController.xib; sourceTree = "<group>"; };
 		8F7795091A910E8700BEF6EA /* SkillsOverviewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkillsOverviewDataSource.swift; sourceTree = "<group>"; };
+		8F77950B1A917FB400BEF6EA /* CircleCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleCache.swift; sourceTree = "<group>"; };
 		8F7E2DC41A8FC00000B8548D /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		8F7E2DC51A8FC00000B8548D /* SplashViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SplashViewController.xib; sourceTree = "<group>"; };
 		8F7E2DCB1A8FDBB500B8548D /* PasscodeTouchIDViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasscodeTouchIDViewController.swift; sourceTree = "<group>"; };
@@ -768,6 +770,7 @@
 				8FEE3D9A1A84172800B17569 /* FormBuilder.swift */,
 				8F22CBFD1A29C7120026376E /* GCDUtils.swift */,
 				8F02B1FB1A54A08000A1A307 /* RootNavigationDelegate.swift */,
+				8F77950B1A917FB400BEF6EA /* CircleCache.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -1255,6 +1258,7 @@
 				BF7DF98F1A44E53200A4F924 /* ServiceTransport.swift in Sources */,
 				8F085A851A6B0C1E00F8139B /* TeamDetailViewController.swift in Sources */,
 				BF8DAC881A6D7EB1000860DD /* NewNoteViewController.swift in Sources */,
+				8F77950C1A917FB400BEF6EA /* CircleCache.swift in Sources */,
 				8F7E2DCD1A8FDBB600B8548D /* PasscodeTouchIDViewController.swift in Sources */,
 				8F823E4F1A72A0850006264B /* TeamsOverviewDataSource.swift in Sources */,
 				8F3F7AF91A799806002CD365 /* NSBundleExtension.swift in Sources */,
