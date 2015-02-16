@@ -457,6 +457,15 @@ NewNoteViewControllerDelegate {
             })
             return true
 
+        case .Note:
+            let viewController = NewNoteViewController(nibName: "NewNoteViewController", bundle: nil)
+            viewController.profile = profile
+            let noteNavigationController = UINavigationController(rootViewController: viewController)
+            presentViewController(noteNavigationController, animated: true, completion: { () -> Void in
+                self.resetQuickAction()
+            })
+            return true
+            
         case .Phone:
             if let recipient = profile.cell_phone as String? {
                 if let phoneURL = NSURL(string: NSString(format: "tel://%@", recipient.removePhoneNumberFormatting())) {

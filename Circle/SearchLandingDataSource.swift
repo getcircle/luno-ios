@@ -22,7 +22,7 @@ class SearchLandingDataSource: CardDataSource {
                     // Add quick actions to the top
                     let quickActionsCard = Card(cardType: .QuickActions, title: "", addDefaultFooter: false)
                     quickActionsCard.addContent(content: [["placeholder": true]], maxVisibleItems: 0)
-                    quickActionsCard.sectionInset = UIEdgeInsetsMake(25.0, 10.0, 25.0, 10.0)
+                    quickActionsCard.sectionInset = UIEdgeInsetsMake(15.0, 10.0, 25.0, 10.0)
                     self.appendCard(quickActionsCard)
 
                     for category in categories ?? [] {
