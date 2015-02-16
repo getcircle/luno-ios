@@ -308,7 +308,7 @@ class ProfileDetailsViewController:
 
         NSNotificationCenter.defaultCenter().addObserver(self,
             selector: "quickActionButtonTapped:",
-            name: UIViewController.QuickActionNotifications.QuickActionSelected,
+            name: QuickActionNotifications.onQuickActionSelected,
             object: nil
         )
         
@@ -375,11 +375,11 @@ class ProfileDetailsViewController:
     
     func quickActionButtonTapped(notification: NSNotification) {
         if let userInfo = notification.userInfo {
-            if let quickAction = userInfo["quickAction"] as? Int {
+            if let quickAction = userInfo[QuickActionNotifications.QuickActionTypeUserInfoKey] as? Int {
                 if let quickActionType = QuickAction(rawValue: quickAction) {
                     var additionalData: AnyObject?
                     if quickActionType == .Phone {
-                        if let phoneNumber = userInfo["additionalData"] as? String {
+                        if let phoneNumber = userInfo[QuickActionNotifications.AdditionalDataUserInfoKey] as? String {
                             additionalData = phoneNumber
                         }
                     }

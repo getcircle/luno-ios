@@ -185,4 +185,8 @@ extension UIColor {
     class func activityIndicatorViewColor() -> UIColor {
         return UIColor(red: 51, green: 51, blue: 51)
     }
+    
+    class func appQuickActionsDarkTintColor() -> UIColor {
+        return UIColor(red: 102, green: 102, blue: 102)
+    }
 }

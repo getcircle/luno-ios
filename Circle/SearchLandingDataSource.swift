@@ -18,6 +18,13 @@ class SearchLandingDataSource: CardDataSource {
             LandingService.Actions.getCategories(currentProfile.id) { (categories, error) -> Void in
                 if error == nil {
                     self.resetCards()
+                    
+                    // Add quick actions to the top
+                    let quickActionsCard = Card(cardType: .QuickActions, title: "", addDefaultFooter: false)
+                    quickActionsCard.addContent(content: [["placeholder": true]], maxVisibleItems: 0)
+                    quickActionsCard.sectionInset = UIEdgeInsetsMake(25.0, 10.0, 25.0, 10.0)
+                    self.appendCard(quickActionsCard)
+
                     for category in categories ?? [] {
                         let categoryCard = Card(category: category)
                         if category.notes.count > 0 {

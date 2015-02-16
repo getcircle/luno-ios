@@ -13,6 +13,7 @@ enum QuickAction: Int {
     case None
     case Email
     case Message
+    case Note
     case Phone
     case Slack
     
@@ -29,6 +30,11 @@ enum QuickAction: Int {
         case .Message:
             return NSLocalizedString("Who do you want to message",
                 comment: "Placeholder for search field used search for the person user intends to send a message")
+
+        case .Note:
+            return NSLocalizedString("Who do you want to take a note on",
+                comment: "Placeholder for search field used search for the person user intends to take a note about")
+
         case .Phone:
             return NSLocalizedString("Who do you want to call",
                 comment: "Placeholder for search field used search for the person user intends to call")
@@ -40,11 +46,21 @@ enum QuickAction: Int {
     }
 }
 
-extension UIViewController {
+struct QuickActionNotifications {
+    // Started indicates taps where the receipient or the info needed to do the quick action
+    // is still to be gathered
+    static let onQuickActionStarted = "com.ravcode.notification:QuickActionStarted"
+    
+    // Selected should be used when the receipient info is available and is expected
+    // in the user info dictionary
+    static let onQuickActionSelected = "com.ravcode.notification:QuickActionSelected"
+    
+    // UserInfo Keys
+    static let QuickActionTypeUserInfoKey = "quickAction"
+    static let AdditionalDataUserInfoKey = "additionalData"
+}
 
-    struct QuickActionNotifications {
-        static let QuickActionSelected = "com.ravcode.notification:QuickActionSelected"
-    }
+extension UIViewController {
 
     var pushAnimator: UIViewControllerAnimatedTransitioning? {
         return nil

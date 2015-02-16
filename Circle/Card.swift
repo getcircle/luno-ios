@@ -32,7 +32,7 @@ class Card: Equatable {
         }
     }
     var showContentCount = true
-    
+
     private(set) var allContent = [AnyObject]()
     private(set) var addFooter = false
     private(set) var content = [AnyObject]()
@@ -56,12 +56,12 @@ class Card: Equatable {
     }
     private(set) var title: String
     private(set) var type: CardType
-    
+
     enum CardContentType {
         case Flat
         case Aggregate
     }
-    
+
     enum CardType: String {
         case AddNote = "AddNote"
         case Anniversaries = "Anniversaries"
@@ -79,20 +79,21 @@ class Card: Equatable {
         case Skills = "Skills"
         case SocialConnectCTAs = "SocialConnectCTAs"
         case SocialToggle = "SocialToggle"
+        case QuickActions = "QuickActions"
         case Team = "Team"
         case TeamsGrid = "TeamsGrid"
         case TextValue = "TextValue"
-        
+
         struct CardTypeInfo {
             var imageName: String
             var classType: CircleCollectionViewCell.Type
             var className: String
             var contentType: CardContentType
         }
-        
+
         static func infoByCardType(type: CardType) -> CardTypeInfo {
             switch type {
-                
+
             case .AddNote:
                 return CardTypeInfo(
                     imageName: "Plus",
@@ -100,7 +101,7 @@ class Card: Equatable {
                     className: "AddNoteCollectionViewCell",
                     contentType: .Flat
                 )
-            
+
             case .Anniversaries:
                 return CardTypeInfo(
                     imageName: "Jewel",
@@ -108,7 +109,7 @@ class Card: Equatable {
                     className: "ProfileCollectionViewCell",
                     contentType: .Flat
                 )
-                
+
             case .Birthdays:
                 return CardTypeInfo(
                     imageName: "Cake",
@@ -116,7 +117,7 @@ class Card: Equatable {
                     className: "ProfileCollectionViewCell",
                     contentType: .Flat
                 )
-                
+
             case .Education:
                 return CardTypeInfo(
                     imageName: "GraduateCap",
@@ -124,7 +125,7 @@ class Card: Equatable {
                     className: "EducationCollectionViewCell",
                     contentType: .Flat
                 )
-                
+
             case Group:
                 return CardTypeInfo(
                     imageName: "People",
@@ -164,7 +165,7 @@ class Card: Equatable {
                     className: "ProfileCollectionViewCell",
                     contentType: .Flat
                 )
-                
+
             case .NewHires:
                 return CardTypeInfo(
                     imageName: "People",
@@ -180,7 +181,7 @@ class Card: Equatable {
                     className: "CircleCollectionViewCell",
                     contentType: .Flat
                 )
-                
+
             case .Position:
                 return CardTypeInfo(
                     imageName: "Satchel",
@@ -191,12 +192,12 @@ class Card: Equatable {
 
             case .Settings:
                 return CardTypeInfo(
-                    imageName: "Cog", 
-                    classType: SettingsCollectionViewCell.self, 
-                    className: "SettingsCollectionViewCell", 
+                    imageName: "Cog",
+                    classType: SettingsCollectionViewCell.self,
+                    className: "SettingsCollectionViewCell",
                     contentType: .Flat
                 )
-                
+
             case .Skills:
                 return CardTypeInfo(
                     imageName: "Tag",
@@ -204,7 +205,7 @@ class Card: Equatable {
                     className: "SkillsCollectionViewCell",
                     contentType: .Aggregate
                 )
-            
+
             case .SocialConnectCTAs:
                 return CardTypeInfo(
                     imageName: "Info",
@@ -212,7 +213,7 @@ class Card: Equatable {
                     className: "SocialConnectCollectionViewCell",
                     contentType: .Flat
                 )
-                
+
             case .SocialToggle:
                 return CardTypeInfo(
                     imageName: "Info",
@@ -220,7 +221,15 @@ class Card: Equatable {
                     className: "ToggleSocialConnectionCollectionViewCell",
                     contentType: .Flat
                 )
-                
+
+            case .QuickActions:
+                return CardTypeInfo(
+                    imageName: "Info",
+                    classType: QuickActionsCollectionViewCell.self,
+                    className: "QuickActionsCollectionViewCell",
+                    contentType: .Flat
+                )
+
             case .Team:
                 return CardTypeInfo(
                     imageName: "People",
@@ -228,7 +237,7 @@ class Card: Equatable {
                     className: "TeamGridItemCollectionViewCell",
                     contentType: .Flat
                 )
-            
+
             case .TeamsGrid:
                 return CardTypeInfo(
                     imageName: "People",
@@ -236,7 +245,7 @@ class Card: Equatable {
                     className: "TeamsCollectionViewCell",
                     contentType: .Aggregate
                 )
-                
+
             case .TextValue:
                 return CardTypeInfo(
                     imageName: "Info",
@@ -247,7 +256,7 @@ class Card: Equatable {
             }
         }
     }
-    
+
     required init(
         cardType: CardType,
         title withTitle: String,
@@ -265,14 +274,14 @@ class Card: Equatable {
         contentCount = withContentCount ?? 0
         content = withContent ?? []
         allContent = content
-        
+
         if let addADefaultFooter = withFooter {
             if addADefaultFooter {
                 addDefaultFooter()
             }
         }
     }
-    
+
     convenience init(cardType: CardType, title withTitle: String, addDefaultFooter: Bool? = false) {
         self.init(
             cardType: cardType,
@@ -282,10 +291,10 @@ class Card: Equatable {
             addDefaultFooter: addDefaultFooter ?? false
         )
     }
-    
+
     convenience init(category: LandingService.Containers.Category, addDefaultFooter: Bool? = false) {
         var cardType: CardType
-        
+
         switch category.type {
         case .Anniversaries:
             cardType = .Anniversaries
@@ -297,8 +306,8 @@ class Card: Equatable {
             cardType = .Notes
         case .DirectReports, .Peers:
             cardType = .Group
-        case .Locations: cardType =
-            .Locations
+        case .Locations:
+            cardType = .Locations
         case .Skills:
             cardType = .Skills
         case .Executives:
@@ -308,7 +317,7 @@ class Card: Equatable {
         default:
             cardType = .People
         }
-        
+
         self.init(
             cardType: cardType,
             title: category.title,
@@ -317,12 +326,12 @@ class Card: Equatable {
             addDefaultFooter: addDefaultFooter ?? false
         )
     }
-    
+
     func addContent(content withContent: [AnyObject], maxVisibleItems withMaxVisibleItems: Int) {
         switch cardContentType {
         case .Aggregate:
             content.append(withContent)
-            
+
         default:
             content.extend(withContent)
         }
@@ -330,42 +339,42 @@ class Card: Equatable {
         allContent = content
         maxVisibleItems = withMaxVisibleItems
     }
-    
+
     func addContent(content withContent: [AnyObject]) {
         self.addContent(content: withContent, maxVisibleItems: 0)
     }
-    
+
     func resetContent() {
         content = []
         allContent = []
         contentCount = 0
     }
-    
+
     func hasProfileCells() -> Bool {
         return self.contentClass is ProfileCollectionViewCell.Type
     }
-    
+
     func isContentAllContent() -> Bool {
         switch cardContentType {
         case .Flat:
             return allContent.count == content.count && content.count > 0
-            
+
         case .Aggregate:
             if content.count > 0 {
                 return allContent[0].count == content[0].count && content[0].count > 0
             }
         }
-        
+
         return false
     }
-    
+
     func addDefaultFooter() {
         addFooter(
             footerClass: CardFooterCollectionReusableView.self,
             footerClassName: "CardFooterCollectionReusableView"
         )
     }
-    
+
     func addFooter(
         footerClass withFooterClass: CircleCollectionReusableView.Type,
         footerClassName withFooterClassName: String
@@ -377,7 +386,7 @@ class Card: Equatable {
             withFooterClass.width - sectionInset.left - sectionInset.right,
             withFooterClass.height + sectionInset.bottom
         )
-        
+
         sectionInset = UIEdgeInsetsMake(
             sectionInset.top,
             sectionInset.left,
@@ -385,10 +394,10 @@ class Card: Equatable {
             sectionInset.right
         )
     }
-    
+
     func setContentToVisibleItems() {
         if maxVisibleItems > 0 {
-            
+
             if cardContentType == .Flat && content.count > maxVisibleItems {
                 content = Array(content[0..<maxVisibleItems])
             }
@@ -397,7 +406,7 @@ class Card: Equatable {
             }
         }
     }
-    
+
     func setContentToAllContent() {
         content = allContent
     }

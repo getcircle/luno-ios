@@ -223,10 +223,10 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
         case phoneQuickActionButton:
             selectedQuickAction = .Phone
             if let cellPhone = profile?.cell_phone  {
-                userInfo["additionalData"] = cellPhone
+                userInfo[QuickActionNotifications.AdditionalDataUserInfoKey] = cellPhone
             }
             else if let workPhone = profile?.work_phone {
-                userInfo["additionalData"] = workPhone
+                userInfo[QuickActionNotifications.AdditionalDataUserInfoKey] = workPhone
             }
             break
 
@@ -234,9 +234,9 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
             break
         }
         
-        userInfo["quickAction"] = selectedQuickAction.rawValue
+        userInfo[QuickActionNotifications.QuickActionTypeUserInfoKey] = selectedQuickAction.rawValue
         NSNotificationCenter.defaultCenter().postNotificationName(
-            UIViewController.QuickActionNotifications.QuickActionSelected,
+            QuickActionNotifications.onQuickActionSelected,
             object: nil,
             userInfo: userInfo
         )

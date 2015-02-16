@@ -133,7 +133,6 @@ NewNoteViewControllerDelegate {
 
     private func configureCollectionView() {
         collectionView.keyboardDismissMode = .OnDrag
-        collectionView.contentInset = UIEdgeInsetsMake(20.0, 0.0, 0.0, 0.0)
         collectionView.backgroundColor = UIColor.viewBackgroundColor()
         (collectionView.delegate as CardCollectionViewDelegate?)?.delegate = self
         
@@ -158,7 +157,6 @@ NewNoteViewControllerDelegate {
     func textFieldDidBeginEditing(textField: UITextField) {
         searchHeaderView.showCancelButton()
         collectionView.dataSource = queryDataSource
-        collectionView.contentInset = UIEdgeInsetsZero
         collectionView.reloadData()
         search()
     }
@@ -168,7 +166,6 @@ NewNoteViewControllerDelegate {
     func didCancel(sender: UIView) {
         selectedAction = .None
         collectionView.dataSource = landingDataSource
-        collectionView.contentInset = UIEdgeInsetsMake(20.0, 0.0, 0.0, 0.0)
         queryDataSource.resetCards()
         collectionView.reloadData()
     }
@@ -411,18 +408,36 @@ NewNoteViewControllerDelegate {
             name: AuthNotifications.onLoginNotification,
             object: nil
         )
+        
+        NSNotificationCenter.defaultCenter().addObserver(
+            self,
+            selector: "quickActionSelected:",
+            name: QuickActionNotifications.onQuickActionStarted,
+            object: nil
+        )
     }
     
     private func unregisterNotifications() {
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
-    // MARK: - User Logged in Notification
+    // MARK: - Notification Handlers
     
     func userLoggedIn(notification: NSNotification!) {
         (collectionView.dataSource as? CardDataSource)?.resetCards()
         collectionView.reloadData()
         loadData()
+    }
+    
+    func quickActionSelected(notification: NSNotification) {
+        if let userInfo = notification.userInfo {
+            if let quickAction = userInfo[QuickActionNotifications.QuickActionTypeUserInfoKey] as? Int {
+                if let quickActionType = QuickAction(rawValue: quickAction) {
+                    selectedAction = quickActionType
+                    searchHeaderView.searchTextField.becomeFirstResponder()
+                }
+            }
+        }
     }
     
     // MARK: - Quick Actions
@@ -440,6 +455,14 @@ NewNoteViewControllerDelegate {
             presentMessageViewController([recipient], subject: "Hey", messageBody: "", completionHandler: {() -> Void in
                 self.resetQuickAction()
             })
+            return true
+
+        case .Phone:
+            if let recipient = profile.cell_phone as String? {
+                if let phoneURL = NSURL(string: NSString(format: "tel://%@", recipient.removePhoneNumberFormatting())) {
+                    UIApplication.sharedApplication().openURL(phoneURL)
+                }
+            }
             return true
 
         default:
