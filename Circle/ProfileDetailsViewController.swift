@@ -445,13 +445,17 @@ class ProfileDetailsViewController:
     
     private func addSettingsButton() {
         if navigationItem.leftBarButtonItem == nil {
-            let settingsButton = UIBarButtonItem(
-                image: UIImage(named: "Cog"), 
-                style: .Plain, 
-                target: self, 
-                action: "settingsButtonTapped:"
-            )
-            navigationItem.leftBarButtonItem = settingsButton
+            var settingsButton = UIButton.buttonWithType(.Custom) as UIButton
+            settingsButton.frame = CGRectMake(0.0, 0.0, 44.0, 44.0)
+            settingsButton.setImage(UIImage(named: "Cog")?.imageWithRenderingMode(.AlwaysTemplate), forState: .Normal)
+            settingsButton.tintColor = UIColor.navigationBarTintColor()
+            settingsButton.addTarget(self, action: "settingsButtonTapped:", forControlEvents: .TouchUpInside)
+            
+            let settingsBarButton = UIBarButtonItem(customView: settingsButton)
+            navigationItem.leftBarButtonItem = settingsBarButton
+
+            let longPressGesture = UILongPressGestureRecognizer(target: self, action: "profileLongPressHandler:")
+            settingsButton.addGestureRecognizer(longPressGesture)
         }
     }
 
@@ -539,6 +543,12 @@ class ProfileDetailsViewController:
         let settingsViewController = SettingsViewController(nibName: "SettingsViewController", bundle: nil)
         let settingsNavController = UINavigationController(rootViewController: settingsViewController)
         presentViewController(settingsNavController, animated: true, completion: nil)
+    }
+    
+    @IBAction func profileLongPressHandler(sender: AnyObject!) {
+        let verifyPhoneNumberVC = VerifyPhoneNumberViewController(nibName: "VerifyPhoneNumberViewController", bundle: nil)
+        let onboardingNavigationController = UINavigationController(rootViewController: verifyPhoneNumberVC)
+        navigationController?.presentViewController(onboardingNavigationController, animated: true, completion: nil)
     }
     
     // MARK: - Tracking

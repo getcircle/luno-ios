@@ -369,13 +369,7 @@ NewNoteViewControllerDelegate {
             // TODO Show error
         }
     }
-    
-    @IBAction func profileLongPressHandler(sender: AnyObject!) {
-        let verifyPhoneNumberVC = VerifyPhoneNumberViewController(nibName: "VerifyPhoneNumberViewController", bundle: nil)
-        let onboardingNavigationController = UINavigationController(rootViewController: verifyPhoneNumberVC)
-        navigationController?.presentViewController(onboardingNavigationController, animated: true, completion: nil)
-    }
-    
+        
     @IBAction func messageButtonTapped(sender: AnyObject!) {
         selectedAction = .Message
         searchHeaderView.searchTextField.becomeFirstResponder()
