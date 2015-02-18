@@ -22,6 +22,10 @@ class KeyValueCollectionViewCell: CircleCollectionViewCell {
         return "KeyValueCell"
     }
     
+    override class var height: CGFloat {
+        return 50.0
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         

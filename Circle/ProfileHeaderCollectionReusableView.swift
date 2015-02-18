@@ -52,7 +52,7 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
     }
     
     override class var height: CGFloat {
-        return 241.0
+        return 300.0
     }
 
     override func awakeFromNib() {
