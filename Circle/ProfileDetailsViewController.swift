@@ -66,7 +66,11 @@ class ProfileDetailsViewController:
         super.viewDidLoad()
         
         configureNavigationButtons()
-        CircleCache.recordProfileVisit(profile)
+        if let loggedInUserProfile = AuthViewController.getLoggedInUserProfile() {
+            if profile.id != loggedInUserProfile.id {
+                CircleCache.recordProfileVisit(profile)
+            }
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
