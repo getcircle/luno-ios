@@ -19,4 +19,8 @@ extension UIImage {
         UIGraphicsEndImageContext()
         return image
     }
+    
+    func templateImage() -> UIImage {
+        return imageWithRenderingMode(.AlwaysTemplate)
+    }
 }

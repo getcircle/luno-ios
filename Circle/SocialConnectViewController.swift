@@ -10,6 +10,7 @@ import ProtobufRegistry
 import UIKit
 import WebKit
 
+
 class SocialConnectViewController: UIViewController, WKNavigationDelegate {
     
     var activityIndicator: UIActivityIndicatorView!
@@ -28,10 +29,12 @@ class SocialConnectViewController: UIViewController, WKNavigationDelegate {
     }
     
     override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         loadWebView()
     }
     
     override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
         webView.removeObserver(self, forKeyPath: "loading")
     }
     
@@ -48,7 +51,8 @@ class SocialConnectViewController: UIViewController, WKNavigationDelegate {
         webView.alpha = 0.0
         webView.addObserver(self, forKeyPath: "loading", options: .New, context: nil)
         view.addSubview(webView)
-        webView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
+        webView.autoPinToTopLayoutGuideOfViewController(self, withInset: 0.0)
+        webView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero, excludingEdge: .Top)
     }
     
     private func loadWebView() {
