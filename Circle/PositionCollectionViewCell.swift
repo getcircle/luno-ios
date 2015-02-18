@@ -19,6 +19,9 @@ class PositionCollectionViewCell: CircleCollectionViewCell {
     @IBOutlet weak var durationLabelTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var durationLabelBottomConstraint: NSLayoutConstraint!
     
+    override class var classReuseIdentifier: String {
+        return "PositionCollectionViewCell"
+    }
     
     override class var sizeCalculationMethod: SizeCalculation {
         return .Dynamic
