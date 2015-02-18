@@ -362,6 +362,7 @@
 		8F77950B1A917FB400BEF6EA /* CircleCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleCache.swift; sourceTree = "<group>"; };
 		8F7795131A92769E00BEF6EA /* QuickActionsCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickActionsCollectionViewCell.swift; sourceTree = "<group>"; };
 		8F7795141A92769E00BEF6EA /* QuickActionsCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuickActionsCollectionViewCell.xib; sourceTree = "<group>"; };
+		8F78E7031A9537EF001FEE98 /* circle.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = circle.entitlements; sourceTree = "<group>"; };
 		8F7E2DC41A8FC00000B8548D /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		8F7E2DC51A8FC00000B8548D /* SplashViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SplashViewController.xib; sourceTree = "<group>"; };
 		8F7E2DCB1A8FDBB500B8548D /* PasscodeTouchIDViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasscodeTouchIDViewController.swift; sourceTree = "<group>"; };
@@ -523,6 +524,7 @@
 		8F0004921A2419730096477A /* Circle */ = {
 			isa = PBXGroup;
 			children = (
+				8F78E7031A9537EF001FEE98 /* circle.entitlements */,
 				8FEE88491A4371A80011CE4A /* Alamofire.xcodeproj */,
 				BFFB19F91A4872E200CCFFC3 /* Locksmith.xcodeproj */,
 				BF24FCF21A4A25E6003DF4C2 /* ProtobufRegistry.xcodeproj */,
@@ -955,6 +957,11 @@
 					8F00048F1A2419730096477A = {
 						CreatedOnToolsVersion = 6.1;
 						DevelopmentTeam = QCBR7VGPK8;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 					8F0004A91A2419730096477A = {
 						CreatedOnToolsVersion = 6.1;
@@ -1453,6 +1460,7 @@
 			baseConfigurationReference = CC982AC8BAF0AFF23DCD301A /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Circle/circle.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1476,6 +1484,7 @@
 			baseConfigurationReference = 0E955F60570F60CAEDB21587 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Circle/circle.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
