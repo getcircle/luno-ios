@@ -59,12 +59,6 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
         super.awakeFromNib()
 
         // Initialization code
-        let blurEffect = UIBlurEffect(style: .Dark)
-        visualEffectView = UIVisualEffectView(effect: blurEffect)
-        visualEffectView.setTranslatesAutoresizingMaskIntoConstraints(false)
-        visualEffectView.frame = backgroundImage.frame
-        insertSubview(visualEffectView, aboveSubview: backgroundImage)
-        visualEffectView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
         profileImage.makeItCircular(true)
         nameNavLabel.alpha = 0.0
         sectionsView.backgroundColor = UIColor.viewBackgroundColor()
@@ -85,9 +79,28 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
         nameNavLabel.text = nameLabel.text
         titleLabel.text = userProfile.title
         profileImage.setImageWithProfile(userProfile)
-        backgroundImage.setImageWithURL(
-            NSURL(string: userProfile.image_url)
-        )
+        
+        if let imageURL = NSURL(string: userProfile.image_url) {
+            let urlImageRequest = NSURLRequest(URL: imageURL)
+            backgroundImage.setImageWithURLRequest(
+                urlImageRequest,
+                placeholderImage: UIImage.imageFromColor(UIColor.darkGrayColor(), withRect: bounds),
+                success: { (request, response, image) -> Void in
+                    if self.backgroundImage.image != image {
+                        self.backgroundImage.image = image
+                        
+                        let blurEffect = UIBlurEffect(style: .Dark)
+                        self.visualEffectView = UIVisualEffectView(effect: blurEffect)
+                        self.visualEffectView.setTranslatesAutoresizingMaskIntoConstraints(false)
+                        self.visualEffectView.frame = self.backgroundImage.frame
+                        self.insertSubview(self.visualEffectView, aboveSubview: self.backgroundImage)
+                        self.visualEffectView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)                        
+                    }
+                },
+                failure: nil
+            )
+        }
+        
         verifiedProfileButton.hidden = !userProfile.verified
     }
     
