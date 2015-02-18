@@ -33,14 +33,14 @@
                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <view alpha="0.0" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dsv-fI-d8d" userLabel="Spacer1">
+                    <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dsv-fI-d8d" userLabel="Spacer1">
                         <rect key="frame" x="59" y="10" width="38" height="44"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="31" id="7eO-QE-VXa"/>
                         </constraints>
                     </view>
-                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o81-Au-qrS" userLabel="Email">
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o81-Au-qrS" userLabel="Email">
                         <rect key="frame" x="97" y="10" width="44" height="44"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="44" id="5TY-B9-Jn4"/>
@@ -54,13 +54,13 @@
                             <action selector="sendEmailButtonTapped:" destination="gTV-IL-0wX" eventType="touchUpInside" id="122-32-2Ob"/>
                         </connections>
                     </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="EMAIL" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wWK-Df-Vbt" userLabel="EmailLabel">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EMAIL" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wWK-Df-Vbt" userLabel="EmailLabel">
                         <rect key="frame" x="97" y="59" width="44" height="16"/>
                         <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="11"/>
                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <view alpha="0.0" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RsW-fx-561" userLabel="Spacer2">
+                    <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RsW-fx-561" userLabel="Spacer2">
                         <rect key="frame" x="141" y="10" width="38" height="44"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -72,7 +72,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VHJ-sx-L1j" userLabel="Note">
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VHJ-sx-L1j" userLabel="Note">
                         <rect key="frame" x="179" y="10" width="44" height="44"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="VHJ-sx-L1j" secondAttribute="height" multiplier="1:1" id="fOX-ZN-GDU"/>
@@ -86,7 +86,7 @@
                             <action selector="addNoteButtonTapped:" destination="gTV-IL-0wX" eventType="touchUpInside" id="QPM-Vw-GnE"/>
                         </connections>
                     </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="NOTE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qus-Kn-fTQ" userLabel="NoteLabel">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NOTE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qus-Kn-fTQ" userLabel="NoteLabel">
                         <rect key="frame" x="179" y="59" width="44" height="16"/>
                         <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="11"/>
                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -118,7 +118,7 @@
                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <view alpha="0.0" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xAb-7Y-dne" userLabel="Spacer3">
+                    <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xAb-7Y-dne" userLabel="Spacer3">
                         <rect key="frame" x="223" y="10" width="38" height="44"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -140,29 +140,30 @@
                 <constraint firstItem="gK8-NX-Gmv" firstAttribute="leading" secondItem="iWp-Cn-4AF" secondAttribute="leading" id="4Jo-aF-bo0"/>
                 <constraint firstItem="Qus-Kn-fTQ" firstAttribute="trailing" secondItem="VHJ-sx-L1j" secondAttribute="trailing" id="6Mv-iE-j9v"/>
                 <constraint firstItem="Kq5-3k-b21" firstAttribute="trailing" secondItem="mlA-nq-PTK" secondAttribute="trailing" id="77Y-ou-Fkb"/>
-                <constraint firstItem="xAb-7Y-dne" firstAttribute="leading" relation="lessThanOrEqual" secondItem="VHJ-sx-L1j" secondAttribute="trailing" id="BU8-f5-DzL"/>
+                <constraint firstItem="xAb-7Y-dne" firstAttribute="leading" secondItem="VHJ-sx-L1j" secondAttribute="trailing" id="BU8-f5-DzL"/>
                 <constraint firstItem="Qus-Kn-fTQ" firstAttribute="top" secondItem="mlA-nq-PTK" secondAttribute="top" id="BUo-gD-C4q"/>
                 <constraint firstItem="mlA-nq-PTK" firstAttribute="top" secondItem="iWp-Cn-4AF" secondAttribute="top" id="Bav-V0-Yzg"/>
                 <constraint firstItem="dsv-fI-d8d" firstAttribute="top" secondItem="RsW-fx-561" secondAttribute="top" id="DWd-eO-Ai6"/>
                 <constraint firstItem="o81-Au-qrS" firstAttribute="centerY" secondItem="Kq5-3k-b21" secondAttribute="centerY" id="HVG-A7-pHM"/>
                 <constraint firstItem="gK8-NX-Gmv" firstAttribute="top" secondItem="Kq5-3k-b21" secondAttribute="top" id="JIY-Ij-4GV"/>
+                <constraint firstItem="wWK-Df-Vbt" firstAttribute="leading" secondItem="o81-Au-qrS" secondAttribute="leading" id="Jpm-Qj-Z2l"/>
                 <constraint firstItem="Kq5-3k-b21" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="15" id="Lo1-4a-4ua"/>
-                <constraint firstItem="dsv-fI-d8d" firstAttribute="leading" secondItem="Kq5-3k-b21" secondAttribute="trailing" id="M2g-Vg-dvk"/>
+                <constraint firstItem="dsv-fI-d8d" firstAttribute="leading" relation="lessThanOrEqual" secondItem="Kq5-3k-b21" secondAttribute="trailing" id="M2g-Vg-dvk"/>
                 <constraint firstItem="mlA-nq-PTK" firstAttribute="top" secondItem="Kq5-3k-b21" secondAttribute="bottom" constant="5" id="Mvn-c1-dte"/>
-                <constraint firstItem="VHJ-sx-L1j" firstAttribute="leading" relation="lessThanOrEqual" secondItem="RsW-fx-561" secondAttribute="trailing" priority="999" id="Nyi-rK-Ztn"/>
+                <constraint firstItem="VHJ-sx-L1j" firstAttribute="leading" secondItem="RsW-fx-561" secondAttribute="trailing" id="Nyi-rK-Ztn"/>
+                <constraint firstItem="o81-Au-qrS" firstAttribute="leading" relation="lessThanOrEqual" secondItem="dsv-fI-d8d" secondAttribute="trailing" id="TJI-rN-UqV"/>
                 <constraint firstItem="dsv-fI-d8d" firstAttribute="top" secondItem="Kq5-3k-b21" secondAttribute="top" id="UPs-QI-DCx"/>
                 <constraint firstItem="dsv-fI-d8d" firstAttribute="top" secondItem="xAb-7Y-dne" secondAttribute="top" id="V6l-BB-Wd1"/>
                 <constraint firstItem="gK8-NX-Gmv" firstAttribute="trailing" secondItem="iWp-Cn-4AF" secondAttribute="trailing" id="V6t-fK-aww"/>
+                <constraint firstItem="wWK-Df-Vbt" firstAttribute="leading" secondItem="mlA-nq-PTK" secondAttribute="trailing" priority="750" constant="38" id="VGI-sM-OIB"/>
                 <constraint firstItem="dsv-fI-d8d" firstAttribute="width" secondItem="RsW-fx-561" secondAttribute="width" id="W3c-c3-77Y"/>
-                <constraint firstItem="o81-Au-qrS" firstAttribute="leading" secondItem="wWK-Df-Vbt" secondAttribute="leading" id="XQS-hj-DZt"/>
                 <constraint firstItem="gK8-NX-Gmv" firstAttribute="leading" secondItem="xAb-7Y-dne" secondAttribute="trailing" id="fEP-BU-lKl"/>
-                <constraint firstItem="RsW-fx-561" firstAttribute="leading" relation="lessThanOrEqual" secondItem="o81-Au-qrS" secondAttribute="trailing" priority="999" id="gHR-X8-VrW"/>
+                <constraint firstItem="RsW-fx-561" firstAttribute="leading" secondItem="o81-Au-qrS" secondAttribute="trailing" id="gHR-X8-VrW"/>
                 <constraint firstItem="Kq5-3k-b21" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="iJJ-rS-E1I"/>
                 <constraint firstItem="dsv-fI-d8d" firstAttribute="bottom" secondItem="RsW-fx-561" secondAttribute="bottom" id="inM-5C-7oi"/>
                 <constraint firstItem="Kq5-3k-b21" firstAttribute="centerY" secondItem="VHJ-sx-L1j" secondAttribute="centerY" id="nwS-Jv-reG"/>
                 <constraint firstAttribute="trailing" secondItem="gK8-NX-Gmv" secondAttribute="trailing" constant="15" id="qaJ-aL-ZgS"/>
                 <constraint firstItem="Kq5-3k-b21" firstAttribute="leading" secondItem="mlA-nq-PTK" secondAttribute="leading" id="sI1-zL-Jjx"/>
-                <constraint firstItem="o81-Au-qrS" firstAttribute="leading" relation="lessThanOrEqual" secondItem="dsv-fI-d8d" secondAttribute="trailing" id="uMK-EY-VQS"/>
                 <constraint firstItem="wWK-Df-Vbt" firstAttribute="top" secondItem="mlA-nq-PTK" secondAttribute="top" id="uUK-cW-xvy"/>
                 <constraint firstItem="o81-Au-qrS" firstAttribute="trailing" secondItem="wWK-Df-Vbt" secondAttribute="trailing" id="uhb-oG-Dat"/>
                 <constraint firstItem="dsv-fI-d8d" firstAttribute="bottom" secondItem="xAb-7Y-dne" secondAttribute="bottom" id="xKe-G3-LzM"/>
