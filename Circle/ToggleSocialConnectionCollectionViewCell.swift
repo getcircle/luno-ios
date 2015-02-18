@@ -30,10 +30,10 @@ class ToggleSocialConnectionCollectionViewCell: CircleCollectionViewCell {
             self.identity = identity
             switch identity.provider {
             case .Google:
-                providerIconImageView.image = UIImage(named: "GooglePlus")
+                providerIconImageView.image = UIImage(named: "GooglePlus")?.templateImage()
                 providerIconImageView.tintColor = UIColor.googlePlusColor()
             case .Linkedin:
-                providerIconImageView.image = UIImage(named: "LinkedIn")
+                providerIconImageView.image = UIImage(named: "LinkedIn")?.templateImage()
                 providerIconImageView.tintColor = UIColor.linkedinColor()
             default:
                 providerIconImageView.hidden = true
