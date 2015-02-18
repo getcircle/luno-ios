@@ -86,7 +86,7 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
         googleSignIn.clientID = GoogleClientID
         googleSignIn.attemptSSO = true
         googleSignIn.homeServerClientID = GoogleServerClientID
-        googleSignIn.scopes = [kGTLAuthScopePlusLogin, kGTLAuthScopePlusUserinfoEmail, kGTLAuthScopePlusUserinfoProfile, kGTLAuthScopePlusMe]
+        googleSignIn.scopes = ["https://www.googleapis.com/auth/plus.login", "https://www.googleapis.com/auth/plus.profile.emails.read"]
         googleSignIn.delegate = self
         googleSignInButton.colorScheme = kGPPSignInButtonColorSchemeLight
         googleSignInButton.style = kGPPSignInButtonStyleWide
