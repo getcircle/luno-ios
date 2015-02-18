@@ -59,12 +59,15 @@ MFMessageComposeViewControllerDelegate {
                 completion: nil
             )
         }
+        
+        navigationItem.title = ""
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         registerNotifications()
         navigationController?.navigationBar.makeTransparent()
+        navigationItem.title = ""
     }
     
     override func viewWillDisappear(animated: Bool) {
