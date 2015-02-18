@@ -47,6 +47,11 @@ class VerifyProfileViewController:
         checkDataAndEnableNext()
     }
 
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        checkDataAndEnableNext()
+    }
+
     // MARK: - Configuration
     
     private func configureView() {
@@ -98,6 +103,7 @@ class VerifyProfileViewController:
         activityIndicatorView.startAnimating()
         handleImageUpload { () -> Void in
             activityIndicatorView.stopAnimating()
+            activityIndicatorView.removeFromSuperview()
             self.verificationComplete()
         }
     }
@@ -290,6 +296,7 @@ class VerifyProfileViewController:
         })
         
         nextButton.enabled = allTextFieldsFilled && profileImageView.image != nil
+        nextButton.setTitle("Next", forState: .Normal)
     }
     
     private func dismissKeyboard() {
