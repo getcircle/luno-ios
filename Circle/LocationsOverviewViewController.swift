@@ -22,6 +22,7 @@ class LocationsOverviewViewController: UIViewController, UICollectionViewDataSou
         super.viewDidLoad()
         
         // Do any additional setup after loading the view, typically from a nib.
+        edgesForExtendedLayout = .None
         configureCollectionView()
         configureMapHeaderCollectionView()
     }
@@ -102,7 +103,7 @@ class LocationsOverviewViewController: UIViewController, UICollectionViewDataSou
         
         return CGSizeMake(
             mapHeaderCollectionView.frameWidth,
-            mapHeaderCollectionView.frameHeight - navigationBarHeight()
+            mapHeaderCollectionView.frameHeight
         )
     }
     
