@@ -66,6 +66,7 @@ class ProfileDetailsViewController:
         super.viewDidLoad()
         
         configureNavigationButtons()
+        registerFullLifecycleNotifications()
         if let loggedInUserProfile = AuthViewController.getLoggedInUserProfile() {
             if profile.id != loggedInUserProfile.id {
                 CircleCache.recordProfileVisit(profile)
@@ -304,19 +305,52 @@ class ProfileDetailsViewController:
             object: nil
         )
         
-        NSNotificationCenter.defaultCenter().addObserver(self,
+        NSNotificationCenter.defaultCenter().addObserver(
+            self,
             selector: "socialConnectCTATapped:",
             name: SocialConnectCollectionViewCellNotifications.onCTATappedNotification,
             object: nil
         )
 
-        NSNotificationCenter.defaultCenter().addObserver(self,
+        NSNotificationCenter.defaultCenter().addObserver(
+            self,
             selector: "quickActionButtonTapped:",
             name: QuickActionNotifications.onQuickActionSelected,
             object: nil
         )
         
         super.registerNotifications()
+    }
+    
+    private func registerFullLifecycleNotifications() {
+        // Do not un-register this notification in viewDidDisappear
+        NSNotificationCenter.defaultCenter().addObserver(
+            self,
+            selector: "socialServiceConnectNotification:",
+            name: SocialConnectNotifications.onServiceConnectedNotification,
+            object: nil
+        )
+    }
+    
+    override func unregisterNotifications() {
+        NSNotificationCenter.defaultCenter().removeObserver(
+            self,
+            name: ProfileNotesNotifications.onNotesChanged,
+            object: nil
+        )
+        
+        NSNotificationCenter.defaultCenter().removeObserver(
+            self,
+            name: SocialConnectCollectionViewCellNotifications.onCTATappedNotification,
+            object: nil
+        )
+        
+        NSNotificationCenter.defaultCenter().removeObserver(self,
+            name: QuickActionNotifications.onQuickActionSelected,
+            object: nil
+        )
+
+        super.unregisterNotifications()
     }
     
     // MARK: - NewNoteViewControllerDelegate
@@ -391,6 +425,15 @@ class ProfileDetailsViewController:
                     performQuickAction(quickActionType, additionalData: additionalData)
                 }
             }
+        }
+    }
+    
+    func socialServiceConnectNotification(notification: NSNotification) {
+        let profileInfoCollectionView = detailViews[0]
+        if let dataSource = profileInfoCollectionView.dataSource as? ProfileDetailDataSource {
+            dataSource.loadData({ (error) -> Void in
+                profileInfoCollectionView.reloadData()
+            })
         }
     }
     

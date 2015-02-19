@@ -36,6 +36,11 @@ MFMessageComposeViewControllerDelegate {
         customInit()
     }
     
+    deinit {
+        // Last attempt to ensure self has been removed correctly from all notifications
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
     func customInit() {
         automaticallyAdjustsScrollViewInsets = false
         extendedLayoutIncludesOpaqueBars = true
@@ -121,10 +126,12 @@ MFMessageComposeViewControllerDelegate {
     // MARK: - Notifications
     
     /**
-    Registers for notifications for generic events needed by all detail view controllers.
-    
-    The default handlers are also provided in this class. However subclasses can override
-    the handlers and add any other custom functionality as needed.
+        Registers for notifications for generic events needed by all detail view controllers.
+        
+        The default handlers are also provided in this class. However subclasses can override
+        the handlers and add any other custom functionality as needed.
+        
+        When overriding, subclasses should call the super class function as well.
     */
     func registerNotifications() {
         NSNotificationCenter.defaultCenter().addObserver(
@@ -142,8 +149,26 @@ MFMessageComposeViewControllerDelegate {
         )
     }
     
+    /**
+        Removes observer from generic notifications needed by all detail view controllers.
+        
+        Subclasses should override this function if they have also overridden registerNotifications and
+        remove observer for custom notifications.
+        
+        When overriding, subclasses should call the super class function as well.
+    */
     func unregisterNotifications() {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NSNotificationCenter.defaultCenter().removeObserver(
+            self,
+            name: SkillsCollectionViewCellNotifications.onSkillSelectedNotification,
+            object: nil
+        )
+        
+        NSNotificationCenter.defaultCenter().removeObserver(
+            self,
+            name: TeamsCollectionViewCellNotifications.onTeamSelectedNotification,
+            object: nil
+        )
     }
     
     // MARK: - Notification Handlers

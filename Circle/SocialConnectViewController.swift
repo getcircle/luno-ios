@@ -10,6 +10,11 @@ import ProtobufRegistry
 import UIKit
 import WebKit
 
+struct SocialConnectNotifications {
+    
+    static let onServiceConnectedNotification = "com.ravcode.notification:onSocialServiceConnectedNotification"
+    static let serviceProviderUserInfoKey = "provider"
+}
 
 class SocialConnectViewController: UIViewController, WKNavigationDelegate {
     
@@ -72,6 +77,14 @@ class SocialConnectViewController: UIViewController, WKNavigationDelegate {
         if url.host == ServiceHttpRequest.environment.host && (url.path!.hasSuffix("success") || url.path!.hasSuffix("error")) {
             if url.path!.hasSuffix("success") {
                 println("successfully connected to linkedin")
+                
+                NSNotificationCenter.defaultCenter().postNotificationName(
+                    SocialConnectNotifications.onServiceConnectedNotification, 
+                    object: nil, 
+                    userInfo: [
+                        SocialConnectNotifications.serviceProviderUserInfoKey: NSNumber(int: provider?.rawValue ?? 0)
+                    ]
+                )
             } else {
                 println("error connecting to linkedin: \(url)")
             }
