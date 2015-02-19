@@ -289,18 +289,16 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
         
         // Add top margin only when there is a social connect button added
         // to the profile
-        var defaultSectionInset = UIEdgeInsetsMake(12.0, 0.0, 12.0, 0.0)
-        if !hasSocialConnectCTAs {
-            defaultSectionInset = UIEdgeInsetsMake(0.0, 0.0, 25.0, 0.0)
-        }
+        var defaultSectionInset = UIEdgeInsetsMake(1.0, 0.0, 0.0, 0.0)
         for section in sections {
             let sectionCard = Card(cardType: section.cardType, title: section.title)
+            sectionCard.sectionInset = defaultSectionInset
+            sectionCard.headerSize = section.cardHeaderSize
+
             for item in section.items {
                 addItemToCard(item, card: sectionCard)
             }
             
-            sectionCard.sectionInset = defaultSectionInset
-            sectionCard.headerSize = section.cardHeaderSize
             if sectionCard.content.count > 0 || section.hasAction {
                 appendCard(sectionCard)
             }
@@ -368,10 +366,10 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
     
     private func addSkillsItemToCard(item: SectionItem, card: Card) {
         if let skills = skills {
-            card.addContent(content: skills as [AnyObject], maxVisibleItems: 6)
-//            if skills.count > 6 {
-//                card.addDefaultFooter()
-//            }
+            card.addContent(content: skills as [AnyObject], maxVisibleItems: 10)
+            if skills.count > 10 {
+                card.addDefaultFooter()
+            }
         }
     }
     
@@ -387,19 +385,19 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
     
     private func addEducationItemToCard(item: SectionItem, card: Card) {
         if let resume = resume {
-            card.addContent(content: resume.educations as [AnyObject], maxVisibleItems: 3)
-//            if resume.educations.count > 3 {
-//                card.addDefaultFooter()
-//            }
+            card.addContent(content: resume.educations as [AnyObject], maxVisibleItems: 1)
+            if resume.educations.count > 1 {
+                card.addDefaultFooter()
+            }
         }
     }
     
     private func addPositionItemToCard(item: SectionItem, card: Card) {
         if let resume = resume {
-            card.addContent(content: resume.positions as [AnyObject], maxVisibleItems: 3)
-//            if resume.positions.count > 3 {
-//                card.addDefaultFooter()
-//            }
+            card.addContent(content: resume.positions as [AnyObject], maxVisibleItems: 2)
+            if resume.positions.count > 2 {
+                card.addDefaultFooter()
+            }
         }
     }
     
@@ -431,7 +429,9 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
     override func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
         
         if kind == UICollectionElementKindSectionFooter {
-            return addDefaultFooterView(collectionView, atIndexPath: indexPath)
+            var footerView = addDefaultFooterView(collectionView, atIndexPath: indexPath)
+            footerView.backgroundColor = UIColor.whiteColor()
+            return footerView
         }
         else {
             let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(
