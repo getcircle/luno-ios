@@ -23,7 +23,7 @@ class KeyValueCollectionViewCell: CircleCollectionViewCell {
     }
     
     override class var height: CGFloat {
-        return 50.0
+        return 60.0
     }
     
     override func awakeFromNib() {
@@ -31,16 +31,18 @@ class KeyValueCollectionViewCell: CircleCollectionViewCell {
         
         // Record initial constraint values
         nameImageViewWidthConstraintInitialValue = nameImageViewWidthConstraint.constant
+        nameLabel.font = UIFont(name: "Avenir-Roman", size: 12.0)
+        valueLabel.textAlignment = .Right
     }
 
     override func setData(data: AnyObject) {
         if let keyValueDictionary = data as? [String: AnyObject] {
-            nameLabel.text = keyValueDictionary["name"] as String!
+            nameLabel.text = (keyValueDictionary["name"] as String!).uppercaseString
             valueLabel.text = keyValueDictionary["value"] as String!
             
             if let imageSource = keyValueDictionary["image"] as String? {
                 nameImageView.alpha = 1.0
-                valueLabelTrailingSpaceConstraint.constant = 60.0
+                valueLabelTrailingSpaceConstraint.constant = 40.0
                 nameImageView.image = UIImage(named: imageSource)?.imageWithRenderingMode(.AlwaysTemplate)
                 nameImageView.tintColor = keyValueDictionary["imageTintColor"] as UIColor!
                 if let imageSizeValue = keyValueDictionary["imageSize"] as NSValue? {
@@ -55,7 +57,7 @@ class KeyValueCollectionViewCell: CircleCollectionViewCell {
             }
             else {
                 nameImageView.alpha = 0.0
-                valueLabelTrailingSpaceConstraint.constant = 15.0
+                // valueLabelTrailingSpaceConstraint.constant = 15.0
             }
         }
     }
