@@ -21,6 +21,11 @@ class ProfileSectionHeaderCollectionReusableView: CircleCollectionReusableView {
         return 36.0
     }
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        cardTitleLabel.font = UIFont.appAttributeTitleLabelFont()
+    }
+    
     func setCard(card: Card) {
         cardTitleLabel.text = card.title.uppercaseStringWithLocale(NSLocale.currentLocale())
         cardImageView.image = UIImage(named: card.imageSource)

@@ -36,6 +36,11 @@ class CardFooterCollectionReusableView: CircleCollectionReusableView {
         card = nil
     }
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        footerButton.tintColor = UIColor.darkGrayColor()
+    }
+    
     @IBAction func footerButtonTapped(sender: AnyObject!) {
         cardFooterDelegate?.cardFooterTapped(card)
         setButtonTitle()
@@ -44,16 +49,10 @@ class CardFooterCollectionReusableView: CircleCollectionReusableView {
     private func setButtonTitle() {
         UIView.setAnimationsEnabled(false)
         if card != nil && (card?.isContentAllContent() ?? false) {
-            footerButton.setTitle(
-                NSLocalizedString("Show less", comment: "Button to show more content"),
-                forState: .Normal
-            )
+            footerButton.setImage(UIImage(named: "Up")?.templateImage(), forState: .Normal)
         }
         else {
-            footerButton.setTitle(
-                NSLocalizedString("Show more", comment: "Button to hide some content"),
-                forState: .Normal
-            )
+            footerButton.setImage(UIImage(named: "Down")?.templateImage(), forState: .Normal)
         }
         UIView.setAnimationsEnabled(true)
     }

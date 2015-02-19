@@ -9,12 +9,12 @@
 import UIKit
 import ProtobufRegistry
 
-class ProfileInfoCollectionView: UnderlyingCollectionView {
+class ProfileInfoCollectionView: UnderlyingCollectionView, CardFooterViewDelegate {
     
     private var layout: StickyHeaderCollectionViewLayout?
     private var profile: ProfileService.Containers.Profile?
-    private var profileInfoDataSource: ProfileDetailDataSource?
-    private var profileInfoDelegate: StickyHeaderCollectionViewDelegate?
+    private var profileInfoDataSource: ProfileDetailDataSource!
+    private var profileInfoDelegate: StickyHeaderCollectionViewDelegate!
     
     convenience init(profile: ProfileService.Containers.Profile?) {
         let stickyLayout = StickyHeaderCollectionViewLayout()
@@ -24,7 +24,8 @@ class ProfileInfoCollectionView: UnderlyingCollectionView {
         layout = stickyLayout
         layout?.headerHeight = ProfileHeaderCollectionReusableView.height
         profileInfoDataSource = ProfileDetailDataSource(profile: profile!)
-        profileInfoDataSource?.registerCardHeader(self)
+        profileInfoDataSource.registerCardHeader(self)
+        profileInfoDataSource.cardFooterDelegate = self
         profileInfoDelegate = StickyHeaderCollectionViewDelegate()
         backgroundColor = UIColor.viewBackgroundColor()
         dataSource = profileInfoDataSource
@@ -38,4 +39,10 @@ class ProfileInfoCollectionView: UnderlyingCollectionView {
         }
     }
     
+    // MARK: - Card Footer View Delegate
+    
+    func cardFooterTapped(card: Card!) {
+        card.toggleShowingFullContent()
+        reloadSections(NSIndexSet(index: card.cardIndex))
+    }
 }

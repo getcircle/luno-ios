@@ -63,6 +63,7 @@ class SkillsCollectionViewCell: CircleCollectionViewCell, UICollectionViewDataSo
         showSkillsLabel = false
         configureCollectionView()
         configurePrototypeCell()
+        configureSkillsLabel()
         selectedBackgroundView = nil
     }
 
@@ -84,6 +85,11 @@ class SkillsCollectionViewCell: CircleCollectionViewCell, UICollectionViewDataSo
         // Init prototype cell
         let cellNibViews = NSBundle.mainBundle().loadNibNamed("SkillCollectionViewCell", owner: self, options: nil)
         prototypeCell = cellNibViews.first as SkillCollectionViewCell
+    }
+    
+    private func configureSkillsLabel() {
+        skillsLabel.font = UIFont.appAttributeTitleLabelFont()
+        skillsLabel.text = skillsLabel.text?.uppercaseString
     }
     
     // MARK: - UICollectionViewDataSource

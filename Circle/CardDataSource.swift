@@ -149,20 +149,7 @@ class CardDataSource: NSObject, UICollectionViewDataSource {
         let card = cards[indexPath.section]
         
         if kind == UICollectionElementKindSectionFooter && card.addFooter {
-            registerReusableFooter(collectionView, forCard: card)
-            let footerView = collectionView.dequeueReusableSupplementaryViewOfKind(
-                kind,
-                withReuseIdentifier: card.footerClass!.classReuseIdentifier,
-                forIndexPath: indexPath
-            ) as CardFooterCollectionReusableView
-            
-            animate(footerView, ofType: .Footer, atIndexPath: indexPath)
-            if let delegate = cardFooterDelegate {
-                footerView.cardFooterDelegate = delegate
-            }
-            
-            footerView.card = card
-            return footerView
+            return addDefaultFooterView(collectionView, atIndexPath: indexPath)
         }
         else {
             let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(
@@ -178,6 +165,24 @@ class CardDataSource: NSObject, UICollectionViewDataSource {
             headerView.setCard(card)
             return headerView
         }
+    }
+    
+    final func addDefaultFooterView(collectionView: UICollectionView, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+        let card = cards[indexPath.section]
+        registerReusableFooter(collectionView, forCard: card)
+        let footerView = collectionView.dequeueReusableSupplementaryViewOfKind(
+            UICollectionElementKindSectionFooter,
+            withReuseIdentifier: card.footerClass!.classReuseIdentifier,
+            forIndexPath: indexPath
+        ) as CardFooterCollectionReusableView
+        
+        animate(footerView, ofType: .Footer, atIndexPath: indexPath)
+        if let delegate = cardFooterDelegate {
+            footerView.cardFooterDelegate = delegate
+        }
+        
+        footerView.card = card
+        return footerView
     }
     
     private func animate(view: UICollectionReusableView, ofType typeOfView: TypeOfView, atIndexPath indexPath: NSIndexPath) {

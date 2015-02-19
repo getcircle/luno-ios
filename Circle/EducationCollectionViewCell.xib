@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -14,21 +14,21 @@
                 <rect key="frame" x="0.0" y="0.0" width="375" height="81"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="University of California, Berkeley" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hha-bZ-WbK">
-                        <rect key="frame" x="8" y="8" width="241" height="22"/>
-                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="16"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <rect key="frame" x="15" y="8" width="237" height="22"/>
+                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="16"/>
+                        <color key="textColor" red="0.15056315064430237" green="0.15055865049362183" blue="0.15056121349334717" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="B.A., Economics" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j01-9K-Y2h">
-                        <rect key="frame" x="8" y="32" width="110" height="21"/>
-                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="15"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <rect key="frame" x="15" y="32" width="109" height="21"/>
+                        <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="15"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2008 - 2010" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DQM-dK-UMk">
-                        <rect key="frame" x="8" y="55" width="82" height="21"/>
-                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="15"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <rect key="frame" x="15" y="55" width="81" height="21"/>
+                        <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="15"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
@@ -45,11 +45,13 @@
                 <constraint firstItem="j01-9K-Y2h" firstAttribute="width" secondItem="hha-bZ-WbK" secondAttribute="height" multiplier="91:12" id="GmM-sp-QHU"/>
                 <constraint firstAttribute="bottom" secondItem="DQM-dK-UMk" secondAttribute="bottom" constant="5" id="HAP-2Q-H56"/>
                 <constraint firstItem="hha-bZ-WbK" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="I8h-lH-8e1"/>
-                <constraint firstItem="hha-bZ-WbK" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="J0Q-IR-IKF"/>
+                <constraint firstItem="hha-bZ-WbK" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="15" id="J0Q-IR-IKF"/>
                 <constraint firstItem="DQM-dK-UMk" firstAttribute="leading" secondItem="hha-bZ-WbK" secondAttribute="trailing" constant="2" id="KKq-T4-G8j"/>
                 <constraint firstAttribute="trailing" secondItem="hha-bZ-WbK" secondAttribute="trailing" constant="8" id="KmJ-mW-jfJ"/>
                 <constraint firstItem="DQM-dK-UMk" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="TAa-Dn-nZV"/>
+                <constraint firstItem="DQM-dK-UMk" firstAttribute="leading" secondItem="hha-bZ-WbK" secondAttribute="leading" id="WSJ-BJ-FLW"/>
                 <constraint firstItem="DQM-dK-UMk" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="XIT-r3-zeE"/>
+                <constraint firstItem="hha-bZ-WbK" firstAttribute="leading" secondItem="j01-9K-Y2h" secondAttribute="leading" id="YjT-rT-O30"/>
                 <constraint firstItem="j01-9K-Y2h" firstAttribute="width" secondItem="hha-bZ-WbK" secondAttribute="width" id="a8f-rM-4Iq"/>
                 <constraint firstItem="j01-9K-Y2h" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="cyb-Hz-kc4"/>
                 <constraint firstItem="j01-9K-Y2h" firstAttribute="top" secondItem="hha-bZ-WbK" secondAttribute="bottom" constant="2" id="evq-ZP-D7W"/>
@@ -62,6 +64,7 @@
             <variation key="default">
                 <mask key="constraints">
                     <exclude reference="KmJ-mW-jfJ"/>
+                    <exclude reference="1VK-UM-tD3"/>
                     <exclude reference="CMJ-oj-4ov"/>
                     <exclude reference="E9X-d2-2Sl"/>
                     <exclude reference="GmM-sp-QHU"/>
@@ -72,6 +75,7 @@
                     <exclude reference="DgZ-NE-RiI"/>
                     <exclude reference="KKq-T4-G8j"/>
                     <exclude reference="TAa-Dn-nZV"/>
+                    <exclude reference="XIT-r3-zeE"/>
                     <exclude reference="jQF-g9-aOW"/>
                     <exclude reference="nGa-z4-cfJ"/>
                     <exclude reference="vpk-Wv-Ez6"/>

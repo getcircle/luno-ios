@@ -32,7 +32,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ravi Rani" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zJL-k5-Ada" userLabel="NameNavLabel">
-                    <rect key="frame" x="20" y="230" width="280" height="24"/>
+                    <rect key="frame" x="20" y="226" width="280" height="24"/>
                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="17"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
@@ -153,7 +153,7 @@
                 <constraint firstAttribute="bottom" secondItem="65x-XU-UUc" secondAttribute="bottom" constant="40" id="A9H-5y-pLm"/>
                 <constraint firstItem="1Tu-Zx-9yR" firstAttribute="top" secondItem="kX0-a4-Q8w" secondAttribute="bottom" constant="12" id="BGX-Cf-EUZ"/>
                 <constraint firstAttribute="trailing" secondItem="Ex4-Yg-UxE" secondAttribute="trailing" id="BVc-Oe-86h"/>
-                <constraint firstItem="65x-XU-UUc" firstAttribute="bottom" secondItem="zJL-k5-Ada" secondAttribute="bottom" constant="6" id="Dhm-fP-NdC"/>
+                <constraint firstItem="65x-XU-UUc" firstAttribute="bottom" secondItem="zJL-k5-Ada" secondAttribute="bottom" constant="10" id="Dhm-fP-NdC"/>
                 <constraint firstItem="65x-XU-UUc" firstAttribute="centerY" secondItem="kX0-a4-Q8w" secondAttribute="centerY" constant="15" id="GaX-uR-DOq"/>
                 <constraint firstItem="zJL-k5-Ada" firstAttribute="top" relation="greaterThanOrEqual" secondItem="kX0-a4-Q8w" secondAttribute="bottom" priority="750" constant="39" id="JG4-cb-RHZ"/>
                 <constraint firstAttribute="trailing" secondItem="zJL-k5-Ada" secondAttribute="trailing" constant="20" symbolic="YES" id="LPl-jQ-bUh"/>

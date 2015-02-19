@@ -195,12 +195,7 @@ class OrganizationDetailViewController: DetailViewController, CardHeaderViewDele
     // MARK: - Card Footer View Delegate
     
     func cardFooterTapped(card: Card!) {
-        if card.isContentAllContent() {
-            card.setContentToVisibleItems()
-        }
-        else {
-            card.setContentToAllContent()
-        }
+        card.toggleShowingFullContent()
         collectionView.reloadSections(NSIndexSet(index: card.cardIndex))
     }
     

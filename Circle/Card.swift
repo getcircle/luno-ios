@@ -410,4 +410,13 @@ class Card: Equatable {
     func setContentToAllContent() {
         content = allContent
     }
+
+    func toggleShowingFullContent() {
+        if isContentAllContent() {
+            setContentToVisibleItems()
+        }
+        else {
+            setContentToAllContent()
+        }
+    }
 }

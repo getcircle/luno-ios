@@ -33,4 +33,8 @@ extension UIFont {
     class func appSkillsOverviewSectionHeader() -> UIFont {
         return UIFont(name: "Avenir-Medium", size: 15.0)!
     }
+    
+    class func appAttributeTitleLabelFont() -> UIFont {
+        return UIFont(name: "Avenir-Roman", size: 13.0)!
+    }
 }

@@ -621,5 +621,4 @@ class ProfileDetailsViewController:
         }
         return properties
     }
-
 }

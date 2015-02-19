@@ -368,7 +368,10 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
     
     private func addSkillsItemToCard(item: SectionItem, card: Card) {
         if let skills = skills {
-            card.addContent(content: skills as [AnyObject])
+            card.addContent(content: skills as [AnyObject], maxVisibleItems: 6)
+//            if skills.count > 6 {
+//                card.addDefaultFooter()
+//            }
         }
     }
     
@@ -384,13 +387,19 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
     
     private func addEducationItemToCard(item: SectionItem, card: Card) {
         if let resume = resume {
-            card.addContent(content: resume.educations as [AnyObject])
+            card.addContent(content: resume.educations as [AnyObject], maxVisibleItems: 3)
+//            if resume.educations.count > 3 {
+//                card.addDefaultFooter()
+//            }
         }
     }
     
     private func addPositionItemToCard(item: SectionItem, card: Card) {
         if let resume = resume {
-            card.addContent(content: resume.positions as [AnyObject])
+            card.addContent(content: resume.positions as [AnyObject], maxVisibleItems: 3)
+//            if resume.positions.count > 3 {
+//                card.addDefaultFooter()
+//            }
         }
     }
     
@@ -420,14 +429,20 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
     }
     
     override func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
-        let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(
-            kind,
-            withReuseIdentifier: ProfileSectionHeaderCollectionReusableView.classReuseIdentifier,
-            forIndexPath: indexPath
-        ) as ProfileSectionHeaderCollectionReusableView
         
-        headerView.setCard(cards[indexPath.section])
-        headerView.backgroundColor = UIColor.clearColor()
-        return headerView
+        if kind == UICollectionElementKindSectionFooter {
+            return addDefaultFooterView(collectionView, atIndexPath: indexPath)
+        }
+        else {
+            let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(
+                kind,
+                withReuseIdentifier: ProfileSectionHeaderCollectionReusableView.classReuseIdentifier,
+                forIndexPath: indexPath
+            ) as ProfileSectionHeaderCollectionReusableView
+            
+            headerView.setCard(cards[indexPath.section])
+            headerView.backgroundColor = UIColor.clearColor()
+            return headerView
+        }
     }
 }
