@@ -16,15 +16,11 @@ protocol ProfileDetailSegmentedControlDelegate {
 class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
 
     @IBOutlet weak private(set) var backgroundImage: UIImageView!
-    @IBOutlet weak private(set) var emailQuickActionButton: UIButton!
-    @IBOutlet weak private(set) var messageQuickActionButton: UIButton!
     @IBOutlet weak private(set) var nameLabel: UILabel!
     @IBOutlet weak private(set) var nameNavLabel: UILabel!
     @IBOutlet weak private(set) var titleLabel: UILabel!
-    @IBOutlet weak private(set) var phoneQuickActionButton: UIButton!
     @IBOutlet weak private(set) var profileImage: CircleImageView!
     @IBOutlet weak private(set) var sectionsView: UIView!
-    @IBOutlet weak private(set) var quickActionsView: UIView!
     @IBOutlet weak private(set) var verifiedProfileButton: UIButton!
     
     var profileSegmentedControlDelegate: ProfileDetailSegmentedControlDelegate?
@@ -61,15 +57,6 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
         // Initialization code
         profileImage.makeItCircular(true, borderColor: UIColor.whiteColor())
         nameNavLabel.alpha = 0.0
-        // sectionsView.backgroundColor = UIColor.viewBackgroundColor()
-        for button in [emailQuickActionButton, messageQuickActionButton, phoneQuickActionButton] {
-            button.setImage(
-                button.imageForState(.Normal)?.imageWithRenderingMode(.AlwaysTemplate),
-                forState: .Normal
-            )
-            button.tintColor = UIColor.whiteColor()
-            button.makeItCircular(true, borderColor: UIColor.whiteColor())
-        }
     }
     
     func setProfile(userProfile: ProfileService.Containers.Profile) {
@@ -208,52 +195,7 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
                 return true
             }
         }
-        
-        for button in [emailQuickActionButton, phoneQuickActionButton, messageQuickActionButton] {
-            let pointRelativeToButton = button.convertPoint(point, fromView: self)
-            if button.pointInside(pointRelativeToButton, withEvent: event) {
-                tappedButton = button
-                return true
-            }
-        }
-        
-        return false
-    }
-    
-    // MARK: - IBActions
-    
-    @IBAction func quickActionTapped(sender: UIButton) {
-        var selectedQuickAction = QuickAction.None
-        var userInfo = [String: AnyObject]()
-        
-        switch sender {
-        case emailQuickActionButton:
-            selectedQuickAction = .Email
-            break
-    
-        case messageQuickActionButton:
-            selectedQuickAction = .Message
-            break
-    
-        case phoneQuickActionButton:
-            selectedQuickAction = .Phone
-            if let cellPhone = profile?.cell_phone  {
-                userInfo[QuickActionNotifications.AdditionalDataUserInfoKey] = cellPhone
-            }
-            else if let workPhone = profile?.work_phone {
-                userInfo[QuickActionNotifications.AdditionalDataUserInfoKey] = workPhone
-            }
-            break
 
-        default:
-            break
-        }
-        
-        userInfo[QuickActionNotifications.QuickActionTypeUserInfoKey] = selectedQuickAction.rawValue
-        NSNotificationCenter.defaultCenter().postNotificationName(
-            QuickActionNotifications.onQuickActionSelected,
-            object: nil,
-            userInfo: userInfo
-        )
+        return false
     }
 }
