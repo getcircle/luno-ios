@@ -95,31 +95,19 @@ class SettingsDataSource: CardDataSource {
             socialCard.addContent(content: identities as [AnyObject])
             appendCard(socialCard)
         }
-        
-        // Account card
-        var accountCard = Card(
-            cardType: .KeyValue,
-            title: "Account",
-            addDefaultFooter: false
-        )
-        accountCard.sectionInset = UIEdgeInsetsZero
-        accountCard.addContent(content: [
-            [
-                "name": NSLocalizedString("Email", comment: "Key for email section"),
-                "value": AuthViewController.getLoggedInUser()!.primary_email,
-                "type": SettingsCellType.AccountEmail.rawValue
-            ]
-        ])
-        appendCard(accountCard)
 
-        // Logout card
+        // Account card
         var logoutCard = Card(
             cardType: .Settings, 
-            title: "",
+            title: "Account",
             addDefaultFooter: false
         )
         logoutCard.sectionInset = UIEdgeInsetsMake(1.0, 0.0, 10.0, 0.0)
         logoutCard.addContent(content: [
+            [
+                "text": AuthViewController.getLoggedInUser()!.primary_email,
+                "type": SettingsCellType.AccountEmail.rawValue
+            ],
             [
                 "text": NSLocalizedString("Sign out", comment: "Title of sign out button"),
                 "type": SettingsCellType.LogOut.rawValue
