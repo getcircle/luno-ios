@@ -73,7 +73,7 @@ class NewNoteViewController: UIViewController, UIViewControllerTransitioningDele
     // MARK: - Configuration
     
     private func configureView() {
-        profileImageView.makeItCircular(false)
+        profileImageView.makeItCircular()
         noteTopBorder = noteTextView.addTopBorder(offset: nil)
         noteTextView.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
         noteTextView.delegate = self

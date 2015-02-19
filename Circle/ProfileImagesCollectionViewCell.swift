@@ -47,7 +47,7 @@ class ProfileImagesCollectionViewCell: CircleCollectionViewCell {
             profileImage.autoPinEdgeToSuperviewEdge(.Top)
             profileImage.autoSetDimensionsToSize(CGSizeMake(profileImageWidthHeight, profileImageWidthHeight))
             profileImage.autoPinEdgeToSuperviewEdge(.Leading, withInset: currentX)
-            profileImage.makeItCircular(false)
+            profileImage.makeItCircular()
             currentX += profileImageWidthHeight + profileImageInterSpacing
             profileImageViews.append(profileImage)
         }

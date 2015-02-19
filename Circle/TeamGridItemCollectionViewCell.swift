@@ -44,7 +44,7 @@ class TeamGridItemCollectionViewCell: CircleCollectionViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        teamBackgroundImageView.makeItCircular(false)
+        teamBackgroundImageView.makeItCircular()
     }
 
     override func intrinsicContentSize() -> CGSize {

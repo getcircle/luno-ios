@@ -13,6 +13,7 @@ extension CALayer {
     func cornerRadiusWithMaskToBounds(radius: CGFloat) {
         cornerRadius = radius
         masksToBounds = true
+        contentsScale = UIScreen.mainScreen().scale
     }
     
     class func gradientLayerWithFrame(frame: CGRect, startColor: CGColorRef, endColor: CGColorRef) -> CAGradientLayer {

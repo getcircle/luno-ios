@@ -81,10 +81,8 @@ class SplashViewController: VENTouchLockSplashViewController {
             touchIDButtonLabel.alpha = 1.0
         }
 
-        touchIDButton.makeItCircular(true)
-        touchIDButton.layer.borderColor = UIColor.appTintColor().CGColor
-        passcodeButton.makeItCircular(true)
-        passcodeButton.layer.borderColor = UIColor.appTintColor().CGColor
+        touchIDButton.makeItCircular(true, borderColor: UIColor.appTintColor())
+        passcodeButton.makeItCircular(true, borderColor: UIColor.appTintColor())
     }
     
     // MARK: - IBActions

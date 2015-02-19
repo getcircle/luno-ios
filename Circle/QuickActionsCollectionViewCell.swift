@@ -35,13 +35,12 @@ class QuickActionsCollectionViewCell: CircleCollectionViewCell {
     
     private func configureButtons() {
         for button in [addNoteButton, sendEmailButton, sendTextButton, callButton] {
-            button.makeItCircular(true)
+            button.makeItCircular(true, borderColor: UIColor.appQuickActionsDarkTintColor())
             button.setImage(
                 button.imageForState(.Normal)?.imageWithRenderingMode(.AlwaysTemplate),
                 forState: .Normal
             )
             button.imageEdgeInsets = UIEdgeInsetsMake(10.0, 10.0, 10.0, 10.0)
-            button.layer.borderColor = UIColor.appQuickActionsDarkTintColor().CGColor
         }
     }
     

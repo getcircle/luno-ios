@@ -10,13 +10,17 @@ import UIKit
 
 extension UIView {
     // It is assumed that the view would be 1:1 aspect ratio
-    func makeItCircular(addBorder: Bool) {
+    func makeItCircular(addBorder: Bool, borderColor: UIColor? = UIColor.profileImageBorderColor()) {
         layer.cornerRadiusWithMaskToBounds(bounds.size.width/2.0)
         
         if addBorder {
-            layer.borderColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.3).CGColor
+            layer.borderColor = borderColor?.CGColor ?? UIColor.profileImageBorderColor().CGColor
             layer.borderWidth = 1.0
         }
+    }
+    
+    func makeItCircular() {
+        makeItCircular(false)
     }
     
     func addRoundCorners() {

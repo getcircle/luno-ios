@@ -59,7 +59,7 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
         super.awakeFromNib()
 
         // Initialization code
-        profileImage.makeItCircular(true)
+        profileImage.makeItCircular(true, borderColor: UIColor.whiteColor())
         nameNavLabel.alpha = 0.0
         sectionsView.backgroundColor = UIColor.viewBackgroundColor()
         for button in [emailQuickActionButton, messageQuickActionButton, phoneQuickActionButton] {
@@ -68,8 +68,7 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
                 forState: .Normal
             )
             button.tintColor = UIColor.whiteColor()
-            button.makeItCircular(true)
-            button.layer.borderColor = UIColor.whiteColor().CGColor
+            button.makeItCircular(true, borderColor: UIColor.whiteColor())
         }
     }
     

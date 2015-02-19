@@ -45,7 +45,7 @@ class ProfileCollectionViewCell: CircleCollectionViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        profileImageView.makeItCircular(false)
+        profileImageView.makeItCircular()
     }
 
     override func setData(data: AnyObject) {
