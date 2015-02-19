@@ -224,14 +224,14 @@ NewNoteViewControllerDelegate {
                 Tracker.sharedInstance.track(.DetailItemTapped, properties: properties)
                 navigationController?.pushViewController(viewController, animated: true)
 
-            case .Locations:
-                if let locationAddress = dataSource.contentAtIndexPath(indexPath)? as? OrganizationService.Containers.Address {
-                    let viewController = LocationDetailViewController()
-                    (viewController.dataSource as LocationDetailDataSource).selectedLocation = locationAddress
+            case .Offices:
+                if let officeAddress = dataSource.contentAtIndexPath(indexPath)? as? OrganizationService.Containers.Address {
+                    let viewController = OfficeDetailViewController()
+                    (viewController.dataSource as OfficeDetailDataSource).selectedOffice = officeAddress
                     viewController.hidesBottomBarWhenPushed = true
                     properties.append(TrackerProperty.withKey(.Destination).withSource(.Detail))
                     properties.append(TrackerProperty.withKey(.DestinationDetailType).withDetailType(.Office))
-                    properties.append(TrackerProperty.withDestinationId("location_id").withString(locationAddress.id))
+                    properties.append(TrackerProperty.withDestinationId("office_id").withString(officeAddress.id))
                     Tracker.sharedInstance.track(.DetailItemTapped, properties: properties)
                     navigationController?.pushViewController(viewController, animated: true)
                 }
@@ -316,7 +316,7 @@ NewNoteViewControllerDelegate {
             viewController.hidesBottomBarWhenPushed = true
             navigationController?.pushViewController(viewController, animated: true)
 
-        case .Locations:
+        case .Offices:
             break
             
         case .Skills:

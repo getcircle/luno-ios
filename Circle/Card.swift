@@ -69,7 +69,7 @@ class Card: Equatable {
         case Education = "Education"
         case Group = "Group"
         case KeyValue = "KeyValue"
-        case Locations = "Locations"
+        case Offices = "Offices"
         case NewHires = "NewHires"
         case Notes = "Notes"
         case People = "People"
@@ -142,11 +142,11 @@ class Card: Equatable {
                     contentType: .Flat
                 )
 
-            case Locations:
+            case Offices:
                 return CardTypeInfo(
                     imageName: "MapPin",
-                    classType: LocationCollectionViewCell.self,
-                    className: "LocationCollectionViewCell",
+                    classType: OfficeCollectionViewCell.self,
+                    className: "OfficeCollectionViewCell",
                     contentType: .Flat
                 )
 
@@ -307,7 +307,7 @@ class Card: Equatable {
         case .DirectReports, .Peers:
             cardType = .Group
         case .Locations:
-            cardType = .Locations
+            cardType = .Offices
         case .Skills:
             cardType = .Skills
         case .Executives:

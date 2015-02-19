@@ -208,11 +208,11 @@ class ProfileDetailsViewController:
         case .Email:
             performQuickAction(.Email)
         
-        case .Location:
-            let locationDetailVC = LocationDetailViewController()
-            (locationDetailVC.dataSource as LocationDetailDataSource).selectedLocation = dataSource.address
-            locationDetailVC.hidesBottomBarWhenPushed = true
-            navigationController?.pushViewController(locationDetailVC, animated: true)
+        case .Office:
+            let officeDetailVC = OfficeDetailViewController()
+            (officeDetailVC.dataSource as OfficeDetailDataSource).selectedOffice = dataSource.address
+            officeDetailVC.hidesBottomBarWhenPushed = true
+            navigationController?.pushViewController(officeDetailVC, animated: true)
             
         case .Manager:
             let profileVC = ProfileDetailsViewController.forProfile(dataSource.manager!)

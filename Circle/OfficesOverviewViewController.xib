@@ -5,7 +5,7 @@
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LocationsOverviewViewController" customModule="circle" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="OfficesOverviewViewController" customModule="circle" customModuleProvider="target">
             <connections>
                 <outlet property="activityIndicatorView" destination="ICD-Qu-bO9" id="sgk-t6-Sjc"/>
                 <outlet property="collectionView" destination="WUC-H6-Puw" id="tmD-0X-DNe"/>
@@ -39,7 +39,7 @@
                         <outlet property="delegate" destination="-1" id="n5G-AC-ol6"/>
                     </connections>
                 </collectionView>
-                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="WUC-H6-Puw" userLabel="LocationsCollectionView">
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="WUC-H6-Puw" userLabel="OfficesCollectionView">
                     <rect key="frame" x="0.0" y="300" width="600" height="300"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="aYe-Dk-EbR">
                         <size key="itemSize" width="50" height="50"/>

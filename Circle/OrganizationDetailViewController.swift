@@ -118,10 +118,10 @@ class OrganizationDetailViewController: DetailViewController, CardHeaderViewDele
             Tracker.sharedInstance.track(.DetailItemTapped, properties: properties)
             navigationController?.pushViewController(viewController, animated: true)
             
-        case .Locations:
-            if let locationAddress = dataSource.contentAtIndexPath(indexPath)? as? OrganizationService.Containers.Address {
-                let viewController = LocationDetailViewController()
-                (viewController.dataSource as LocationDetailDataSource).selectedLocation = locationAddress
+        case .Offices:
+            if let officeAddress = dataSource.contentAtIndexPath(indexPath)? as? OrganizationService.Containers.Address {
+                let viewController = OfficeDetailViewController()
+                (viewController.dataSource as OfficeDetailDataSource).selectedOffice = officeAddress
                 viewController.hidesBottomBarWhenPushed = true
                 properties.append(TrackerProperty.withKey(.Destination).withSource(.Detail))
                 properties.append(TrackerProperty.withKey(.DestinationDetailType).withDetailType(.Office))
@@ -164,8 +164,8 @@ class OrganizationDetailViewController: DetailViewController, CardHeaderViewDele
             trackCardHeaderTapped(card, overviewType: .Profiles)
             navigationController?.pushViewController(viewController, animated: true)
             
-        case .Locations:
-            let viewController = LocationsOverviewViewController(nibName: "LocationsOverviewViewController", bundle: nil)
+        case .Offices:
+            let viewController = OfficesOverviewViewController(nibName: "OfficesOverviewViewController", bundle: nil)
             viewController.dataSource.setInitialData(card.allContent, ofType: nil)
             viewController.title = card.title
             viewController.hidesBottomBarWhenPushed = true

@@ -1,5 +1,5 @@
 //
-//  LocationDetailViewController.swift
+//  OfficeDetailViewController.swift
 //  Circle
 //
 //  Created by Ravi Rani on 1/9/15.
@@ -9,7 +9,7 @@
 import UIKit
 import ProtobufRegistry
 
-class LocationDetailViewController: DetailViewController {
+class OfficeDetailViewController: DetailViewController {
 
     private let offsetToTriggerFullScreenMapView: CGFloat = -100.0
     private var overlayButtonHandlerAdded = false
@@ -19,7 +19,7 @@ class LocationDetailViewController: DetailViewController {
     override func customInit() {
         super.customInit()
         
-        dataSource = LocationDetailDataSource()
+        dataSource = OfficeDetailDataSource()
         delegate = StickyHeaderCollectionViewDelegate()
     }
     
@@ -55,7 +55,7 @@ class LocationDetailViewController: DetailViewController {
         didEndDisplayingSupplementaryView view: UICollectionReusableView,
         forElementOfKind elementKind: String,
         atIndexPath indexPath: NSIndexPath) {
-        var customDataSource = (dataSource as LocationDetailDataSource)
+        var customDataSource = (dataSource as OfficeDetailDataSource)
         if customDataSource.profileHeaderView != nil && !overlayButtonHandlerAdded {
             customDataSource.profileHeaderView?.overlayButton.addTarget(
                 self,
@@ -68,7 +68,7 @@ class LocationDetailViewController: DetailViewController {
     }
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
-        if let profileHeaderView = (collectionView!.dataSource as LocationDetailDataSource).profileHeaderView {
+        if let profileHeaderView = (collectionView!.dataSource as OfficeDetailDataSource).profileHeaderView {
             let contentOffset = scrollView.contentOffset
             
             // Todo: need to understand how this changes with orientation
@@ -114,7 +114,7 @@ class LocationDetailViewController: DetailViewController {
     
     private func presentFullScreenMapView(animated: Bool) {
         var mapViewController = MapViewController()
-        if let headerView = (dataSource as LocationDetailDataSource).profileHeaderView {
+        if let headerView = (dataSource as OfficeDetailDataSource).profileHeaderView {
           
             // Add initial and final positions for the map
             mapViewController.initialMapViewRect = headerView.convertRect(headerView.mapView.frame, toView: view)
@@ -124,7 +124,7 @@ class LocationDetailViewController: DetailViewController {
             )
             mapViewController.finalMapViewRect = finalRect
             mapViewController.addressSnapshotView = headerView.addressContainerView.snapshotViewAfterScreenUpdates(false)
-            mapViewController.selectedLocation = (dataSource as LocationDetailDataSource).selectedLocation
+            mapViewController.selectedOffice = (dataSource as OfficeDetailDataSource).selectedOffice
         }
         
         mapViewController.modalPresentationStyle = .Custom

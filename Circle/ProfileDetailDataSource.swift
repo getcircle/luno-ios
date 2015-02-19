@@ -34,7 +34,7 @@ enum ContentType: Int {
     case Github
     case LinkedIn
     case LinkedInConnect
-    case Location
+    case Office
     case Manager
     case Other
     case Position
@@ -206,10 +206,10 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
                 image: nil
             ),
             SectionItem(
-                title: "Location",
+                title: "Office",
                 container: "address",
                 containerKey: "city",
-                contentType: .Location,
+                contentType: .Office,
                 image: ItemImage.genericNextImage
             ),
         ]

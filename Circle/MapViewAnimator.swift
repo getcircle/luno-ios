@@ -26,22 +26,22 @@ class MapViewAnimator: NSObject, UIViewControllerAnimatedTransitioning {
             // present animation
             containerView.addSubview(toViewController.view)
 
-            var locationViewController = ((fromViewController as MainTabBarViewController).selectedViewController as UINavigationController).topViewController as LocationDetailViewController
+            var officeViewController = ((fromViewController as MainTabBarViewController).selectedViewController as UINavigationController).topViewController as OfficeDetailViewController
             
             var mapViewController = toViewController as MapViewController
             mapViewController.mapView.frame = mapViewController.initialMapViewRect!
             mapViewController.closeButton.alpha = 0.0
             mapViewController.addressContainerView.frameY = mapViewController.mapView.frameBottom - mapViewController.addressContainerView.frameHeight
-            (locationViewController.dataSource as LocationDetailDataSource).profileHeaderView?.addressContainerView.hidden = true
+            (officeViewController.dataSource as OfficeDetailDataSource).profileHeaderView?.addressContainerView.hidden = true
             
-            let scrollOffset = CGPointMake(0.0, -locationViewController.view.frameHeight + mapViewController.addressContainerView.frameHeight)
+            let scrollOffset = CGPointMake(0.0, -officeViewController.view.frameHeight + mapViewController.addressContainerView.frameHeight)
             UIView.animateWithDuration(
                 transitionDuration(transitionContext),
                 animations: { () -> Void in
                     mapViewController.mapView.frameHeight = UIScreen.mainScreen().bounds.size.height - 35.0
                     mapViewController.closeButton.alpha = 1.0
                     mapViewController.addressContainerView.frameY = UIScreen.mainScreen().bounds.size.height - mapViewController.addressContainerView.frameHeight
-                    locationViewController.collectionView.setContentOffset(scrollOffset, animated: true)
+                    officeViewController.collectionView.setContentOffset(scrollOffset, animated: true)
                 },
                 completion:{ (completed) -> Void in
                     transitionContext.completeTransition(true)
@@ -51,7 +51,7 @@ class MapViewAnimator: NSObject, UIViewControllerAnimatedTransitioning {
         else if fromViewController is MapViewController {
 
             // dismiss animation
-            var locationViewController = ((toViewController as MainTabBarViewController).selectedViewController as UINavigationController).topViewController as LocationDetailViewController
+            var officeViewController = ((toViewController as MainTabBarViewController).selectedViewController as UINavigationController).topViewController as OfficeDetailViewController
             var mapViewController = fromViewController as MapViewController
             mapViewController.mapView.frameHeight = UIScreen.mainScreen().bounds.size.height
             mapViewController.closeButton.alpha = 1.0
@@ -63,11 +63,11 @@ class MapViewAnimator: NSObject, UIViewControllerAnimatedTransitioning {
                     mapViewController.mapView.frameHeight = mapViewController.finalMapViewRect!.size.height
                     mapViewController.closeButton.alpha = 0.0
                     mapViewController.addressContainerView.frameY = mapViewController.finalMapViewRect!.size.height - mapViewController.addressContainerView.frameHeight
-                    locationViewController.collectionView.setContentOffset(CGPointZero, animated: true)
+                    officeViewController.collectionView.setContentOffset(CGPointZero, animated: true)
                 },
                 completion:{ (completed) -> Void in
                     transitionContext.completeTransition(true)
-                    (locationViewController.dataSource as LocationDetailDataSource).profileHeaderView?.addressContainerView.hidden = false
+                    (officeViewController.dataSource as OfficeDetailDataSource).profileHeaderView?.addressContainerView.hidden = false
                 }
             )
         }

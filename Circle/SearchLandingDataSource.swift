@@ -42,7 +42,7 @@ class SearchLandingDataSource: CardDataSource {
                             }
                             categoryCard.addContent(content: profiles, maxVisibleItems: maxVisibleItems)
                         } else if category.addresses.count > 0 {
-                            // don't display locations on the search landing page
+                            // don't display offices on the search landing page
                             continue
                         } else if category.skills.count > 0 {
                             categoryCard.addContent(content: category.skills, maxVisibleItems: 10)

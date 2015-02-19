@@ -1,5 +1,5 @@
 //
-//  LocationsOverviewDataSource.swift
+//  OfficesOverviewDataSource.swift
 //  Circle
 //
 //  Created by Ravi Rani on 1/24/15.
@@ -9,19 +9,19 @@
 import UIKit
 import ProtobufRegistry
 
-class LocationsOverviewDataSource: CardDataSource {
+class OfficesOverviewDataSource: CardDataSource {
 
-    private(set) var locations = Array<OrganizationService.Containers.Address>()
+    private(set) var offices = Array<OrganizationService.Containers.Address>()
     
     // MARK: - Set Initial Data
     
     override func setInitialData(content: [AnyObject], ofType: Card.CardType?) {
-        let cardType = ofType != nil ? ofType : .Locations
-        let locationsCard = Card(cardType: cardType!, title: "")
-        locationsCard.addContent(content: content)
-        locationsCard.sectionInset = UIEdgeInsetsZero        
-        locations.extend(content as Array<OrganizationService.Containers.Address>)
-        appendCard(locationsCard)
+        let cardType = ofType != nil ? ofType : .Offices
+        let officesCard = Card(cardType: cardType!, title: "")
+        officesCard.addContent(content: content)
+        officesCard.sectionInset = UIEdgeInsetsZero        
+        offices.extend(content as Array<OrganizationService.Containers.Address>)
+        appendCard(officesCard)
     }
     
     // MARK: - Load Data

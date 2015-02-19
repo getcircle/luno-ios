@@ -1,5 +1,5 @@
 //
-//  LocationsOverviewViewController.swift
+//  OfficesOverviewViewController.swift
 //  Circle
 //
 //  Created by Ravi Rani on 1/24/15.
@@ -9,14 +9,14 @@
 import UIKit
 import ProtobufRegistry
 
-class LocationsOverviewViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+class OfficesOverviewViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
 
     @IBOutlet weak private(set) var activityIndicatorView: UIActivityIndicatorView!
     @IBOutlet weak private(set) var collectionView: UICollectionView!
     @IBOutlet weak private(set) var mapHeaderCollectionView: UICollectionView!
     
-    private(set) var dataSource = LocationsOverviewDataSource()
-    private(set) var delegate = LocationsOverviewCollectionViewDelegate()
+    private(set) var dataSource = OfficesOverviewDataSource()
+    private(set) var delegate = OfficesOverviewCollectionViewDelegate()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,11 +62,11 @@ class LocationsOverviewViewController: UIViewController, UICollectionViewDataSou
     // MARK: - Collection View Delegate
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        if let location = dataSource.contentAtIndexPath(indexPath)? as? OrganizationService.Containers.Address {
-            trackLocationSelected(location)
-            var locationDetailVC = LocationDetailViewController()
-            (locationDetailVC.dataSource as LocationDetailDataSource).selectedLocation = location
-            navigationController?.pushViewController(locationDetailVC, animated: true)
+        if let office = dataSource.contentAtIndexPath(indexPath)? as? OrganizationService.Containers.Address {
+            trackOfficeSelected(office)
+            var officeDetailVC = OfficeDetailViewController()
+            (officeDetailVC.dataSource as OfficeDetailDataSource).selectedOffice = office
+            navigationController?.pushViewController(officeDetailVC, animated: true)
         }
     }
     
@@ -92,7 +92,7 @@ class LocationsOverviewViewController: UIViewController, UICollectionViewDataSou
             forIndexPath: indexPath
         ) as MapHeaderCollectionReusableView
         
-        supplementaryView.setData(locations: dataSource.locations)
+        supplementaryView.setData(offices: dataSource.offices)
         supplementaryView.allowInteraction = true
         return supplementaryView
     }
@@ -109,14 +109,14 @@ class LocationsOverviewViewController: UIViewController, UICollectionViewDataSou
     
     // MARK: - Tracking
     
-    func trackLocationSelected(location: OrganizationService.Containers.Address) {
+    func trackOfficeSelected(office: OrganizationService.Containers.Address) {
         let properties = [
             TrackerProperty.withKey(.ActiveViewController).withString(self.dynamicType.description()),
             TrackerProperty.withKey(.Source).withSource(.Overview),
             TrackerProperty.withKey(.SourceOverviewType).withOverviewType(.Offices),
             TrackerProperty.withKey(.Destination).withSource(.Detail),
             TrackerProperty.withKey(.DestinationDetailType).withDetailType(.Office),
-            TrackerProperty.withDestinationId("location_id").withString(location.id)
+            TrackerProperty.withDestinationId("office_id").withString(office.id)
         ]
         Tracker.sharedInstance.track(.DetailItemTapped, properties: properties)
     }

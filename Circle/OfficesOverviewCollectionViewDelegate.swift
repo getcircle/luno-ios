@@ -1,5 +1,5 @@
 //
-//  LocationsOverviewCollectionViewDelegate.swift
+//  OfficesOverviewCollectionViewDelegate.swift
 //  Circle
 //
 //  Created by Ravi Rani on 1/24/15.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LocationsOverviewCollectionViewDelegate: CardCollectionViewDelegate {
+class OfficesOverviewCollectionViewDelegate: CardCollectionViewDelegate {
 
     override func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         if let card = cardDataSource(collectionView).cardAtSection(section) {

@@ -1,5 +1,5 @@
 //
-//  LocationDetailDataSource.swift
+//  OfficeDetailDataSource.swift
 //  Circle
 //
 //  Created by Ravi Rani on 1/8/15.
@@ -9,9 +9,9 @@
 import UIKit
 import ProtobufRegistry
 
-class LocationDetailDataSource: CardDataSource {
+class OfficeDetailDataSource: CardDataSource {
     
-    var selectedLocation: OrganizationService.Containers.Address!
+    var selectedOffice: OrganizationService.Containers.Address!
 
     private var profiles = Array<ProfileService.Containers.Profile>()
     private(set) var profileHeaderView: MapHeaderCollectionReusableView?
@@ -30,7 +30,7 @@ class LocationDetailDataSource: CardDataSource {
         appendCard(placeholderMapCard)
         
         if let currentProfile = AuthViewController.getLoggedInUserProfile() {
-            ProfileService.Actions.getProfiles(addressId: selectedLocation.id) { (profiles, error) -> Void in
+            ProfileService.Actions.getProfiles(addressId: selectedOffice.id) { (profiles, error) -> Void in
                 if error == nil && profiles != nil {
                     self.profiles.extend(profiles!)
                     let peopleCard = Card(cardType: .People, title: "Direct Reports")
@@ -77,7 +77,7 @@ class LocationDetailDataSource: CardDataSource {
                 forIndexPath: indexPath
             ) as MapHeaderCollectionReusableView
             
-            supplementaryView.setData(selectedLocation)
+            supplementaryView.setData(selectedOffice)
             profileHeaderView = supplementaryView
             return supplementaryView
     }
