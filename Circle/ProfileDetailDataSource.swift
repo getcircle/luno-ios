@@ -74,7 +74,6 @@ class Section {
     var items: [SectionItem]
     var cardType: Card.CardType
     var cardHeaderSize: CGSize
-    var hasAction = false
     
     init(
         title sectionTitle: String,
@@ -299,7 +298,7 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
                 addItemToCard(item, card: sectionCard)
             }
             
-            if sectionCard.content.count > 0 || section.hasAction {
+            if sectionCard.content.count > 0 {
                 appendCard(sectionCard)
             }
         }
@@ -366,9 +365,11 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
     
     private func addSkillsItemToCard(item: SectionItem, card: Card) {
         if let skills = skills {
-            card.addContent(content: skills as [AnyObject], maxVisibleItems: 10)
-            if skills.count > 10 {
-                card.addDefaultFooter()
+            if skills.count > 0 {
+                card.addContent(content: skills as [AnyObject], maxVisibleItems: 10)
+                if skills.count > 10 {
+                    card.addDefaultFooter()
+                }
             }
         }
     }
