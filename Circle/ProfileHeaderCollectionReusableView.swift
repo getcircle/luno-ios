@@ -15,17 +15,17 @@ protocol ProfileDetailSegmentedControlDelegate {
 
 class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
 
-    @IBOutlet weak var backgroundImage: UIImageView!
-    @IBOutlet weak var emailQuickActionButton: UIButton!
-    @IBOutlet weak var messageQuickActionButton: UIButton!
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var nameNavLabel: UILabel!
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var phoneQuickActionButton: UIButton!
-    @IBOutlet weak var profileImage: CircleImageView!
-    @IBOutlet weak var sectionsView: UIView!
-    @IBOutlet weak var quickActionsView: UIView!
-    @IBOutlet weak var verifiedProfileButton: UIButton!
+    @IBOutlet weak private(set) var backgroundImage: UIImageView!
+    @IBOutlet weak private(set) var emailQuickActionButton: UIButton!
+    @IBOutlet weak private(set) var messageQuickActionButton: UIButton!
+    @IBOutlet weak private(set) var nameLabel: UILabel!
+    @IBOutlet weak private(set) var nameNavLabel: UILabel!
+    @IBOutlet weak private(set) var titleLabel: UILabel!
+    @IBOutlet weak private(set) var phoneQuickActionButton: UIButton!
+    @IBOutlet weak private(set) var profileImage: CircleImageView!
+    @IBOutlet weak private(set) var sectionsView: UIView!
+    @IBOutlet weak private(set) var quickActionsView: UIView!
+    @IBOutlet weak private(set) var verifiedProfileButton: UIButton!
     
     var profileSegmentedControlDelegate: ProfileDetailSegmentedControlDelegate?
     var sections: [ProfileDetailView]? {
@@ -37,7 +37,7 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
     }
     var tappedButton: UIButton?
     var tappedButtonIndex: Int?
-    private(set) var visualEffectView: UIVisualEffectView!
+    private(set) var visualEffectView: UIVisualEffectView?
     
     private var buttonSize = CGSizeZero
     private var profile: ProfileService.Containers.Profile?
@@ -52,7 +52,7 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
     }
     
     override class var height: CGFloat {
-        return 300.0
+        return 270.0
     }
 
     override func awakeFromNib() {
@@ -61,7 +61,7 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
         // Initialization code
         profileImage.makeItCircular(true, borderColor: UIColor.whiteColor())
         nameNavLabel.alpha = 0.0
-        sectionsView.backgroundColor = UIColor.viewBackgroundColor()
+        // sectionsView.backgroundColor = UIColor.viewBackgroundColor()
         for button in [emailQuickActionButton, messageQuickActionButton, phoneQuickActionButton] {
             button.setImage(
                 button.imageForState(.Normal)?.imageWithRenderingMode(.AlwaysTemplate),
@@ -90,10 +90,10 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
                         
                         let blurEffect = UIBlurEffect(style: .Dark)
                         self.visualEffectView = UIVisualEffectView(effect: blurEffect)
-                        self.visualEffectView.setTranslatesAutoresizingMaskIntoConstraints(false)
-                        self.visualEffectView.frame = self.backgroundImage.frame
-                        self.insertSubview(self.visualEffectView, aboveSubview: self.backgroundImage)
-                        self.visualEffectView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)                        
+                        self.visualEffectView!.setTranslatesAutoresizingMaskIntoConstraints(false)
+                        self.visualEffectView!.frame = self.backgroundImage.frame
+                        self.insertSubview(self.visualEffectView!, aboveSubview: self.backgroundImage)
+                        self.visualEffectView!.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
                     }
                 },
                 failure: nil
@@ -108,19 +108,22 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
     private func configureSegmentedControl(sections withSections: [ProfileDetailView]) {
         // Setup the segment buttons
         let buttonSegmentOffset: CGFloat = 0.5
-        let buttonSegmentHeight: CGFloat = 39.0
+        let buttonSegmentHeight: CGFloat = 34.0
         let width: CGFloat = (frame.width - (CGFloat(withSections.count - 1) * buttonSegmentOffset)) / CGFloat(withSections.count)
         buttonSize = CGSizeMake(width, buttonSegmentHeight)
         
         var previousButton: UIButton?
         for section in withSections {
             let button = UIButton.buttonWithType(.System) as UIButton
-            button.setTitle(section.title, forState: .Normal)
-            button.tintColor = UIColor.appTintColor()
-            button.addTarget(self, action: "segmentButtonPressed:", forControlEvents: .TouchUpInside)
+            button.setTitle(section.title.uppercaseString, forState: .Normal)
+            button.tintColor = UIColor.whiteColor()
+            button.addTarget(
+                self,
+                action: "segmentButtonPressed:", 
+                forControlEvents: .TouchUpInside
+            )
             button.autoSetDimensionsToSize(buttonSize)
             button.titleLabel?.font = UIFont.segmentedControlTitleFont()
-            button.backgroundColor = UIColor.whiteColor()
             sectionsView.addSubview(button)
             if let previous = previousButton {
                 button.autoPinEdge(.Left, toEdge: .Right, ofView: previous, withOffset: buttonSegmentOffset)
@@ -136,7 +139,7 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
         sectionIndicatorView = UIView.newAutoLayoutView()
         sectionsView.addSubview(sectionIndicatorView!)
         
-        sectionIndicatorView?.backgroundColor = UIColor.appTintColor()
+        sectionIndicatorView?.backgroundColor = UIColor.tabBarTintColor()
         sectionIndicatorView?.autoSetDimension(.Height, toSize: 1.5)
         sectionIndicatorWidthConstraint = sectionIndicatorView?.autoSetDimension(.Width, toSize: buttonSize.width)
         sectionIndicatorView?.autoPinEdge(.Bottom, toEdge: .Bottom, ofView: sectionsView)
@@ -151,7 +154,7 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
     
     func updateTitle(title: String, forSegmentAtIndex index: Int) {
         if segmentedControlButtons.count > index {
-            segmentedControlButtons[index].setTitle(title, forState: .Normal)
+            segmentedControlButtons[index].setTitle(title.uppercaseString, forState: .Normal)
         }
     }
     

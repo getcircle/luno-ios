@@ -93,7 +93,7 @@ class ProfileOverlaidCollectionView: UICollectionView, UICollectionViewDelegate 
         layout = stickyLayout
         layout?.headerHeight = ProfileHeaderCollectionReusableView.height
         // height of section indicator + status bar + navbar
-        layout?.stickySectionHeight = 40.0 + 20.0 + 44.0
+        layout?.stickySectionHeight = 35.0 + 20.0 + 44.0
         collectionViewDataSource = ProfileOverlaidCollectionViewDataSource(
             profile: profile!,
             sections: sections
@@ -134,7 +134,6 @@ class ProfileOverlaidCollectionView: UICollectionView, UICollectionViewDelegate 
                 profileHeaderView.titleLabel.alpha = titleLabelAlpha
                 profileHeaderView.verifiedProfileButton.alpha = nameLabelAlpha
                 profileHeaderView.nameLabel.alpha = nameLabelAlpha
-                profileHeaderView.quickActionsView.alpha = quickActionsAlpha
                 profileHeaderView.nameNavLabel.alpha = quickActionsAlpha <= 0.0 ? profileHeaderView.nameNavLabel.alpha + 1/20 : 0.0
             }
             else {
@@ -148,8 +147,8 @@ class ProfileOverlaidCollectionView: UICollectionView, UICollectionViewDelegate 
                 profileHeaderView.nameNavLabel.alpha = 0.0
                 profileHeaderView.titleLabel.alpha = otherViewsAlpha
                 profileHeaderView.profileImage.alpha = profileImageAlpha
-                profileHeaderView.visualEffectView.alpha = otherViewsAlpha
-                profileHeaderView.quickActionsView.alpha = otherViewsAlpha
+                profileHeaderView.visualEffectView?.alpha = otherViewsAlpha
+                profileHeaderView.sectionsView.alpha = otherViewsAlpha
                 profileHeaderView.profileImage.transform = CGAffineTransformIdentity
             }
         }
