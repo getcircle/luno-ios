@@ -14,8 +14,8 @@ extension UIFont {
         return UIFont(name: "Avenir-Roman", size: 17.0)
     }
     
-    class func segmentedControlTitleFont() -> UIFont! {
-        return UIFont(name: "Avenir-Roman", size: 14.0)
+    class func appSegmentedControlTitleFont() -> UIFont! {
+        return UIFont(name: "Avenir-Medium", size: 13.0)
     }
     
     class func lightFont() -> UIFont! {

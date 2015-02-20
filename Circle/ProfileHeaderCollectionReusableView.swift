@@ -35,13 +35,20 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
     var tappedButtonIndex: Int?
     private(set) var visualEffectView: UIVisualEffectView?
     
-    private var buttonSize = CGSizeZero
+    private var buttonContainerWidth: CGFloat = 0.0
     private var profile: ProfileService.Containers.Profile?
     private var sectionIndicatorView: UIView?
     private var sectionIndicatorLeftOffsetConstraint: NSLayoutConstraint?
     private var sectionIndicatorWidthConstraint: NSLayoutConstraint?
     private var sectionIndicatorViewIsAnimating = false
     private var segmentedControlButtons = [UIButton]()
+    
+    private let buttonAttributes = [
+        NSKernAttributeName: NSNumber(double: 2.0),
+        NSForegroundColorAttributeName: UIColor.appSegmentedControlTitleNormalColor(),
+        NSFontAttributeName: UIFont.appSegmentedControlTitleFont()
+    ]
+
     
     override class var classReuseIdentifier: String {
         return "ProfileHeaderView"
@@ -58,7 +65,7 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
         profileImage.makeItCircular(true, borderColor: UIColor.whiteColor())
         nameNavLabel.alpha = 0.0
     }
-    
+
     func setProfile(userProfile: ProfileService.Containers.Profile) {
         profile = userProfile
         nameLabel.text = userProfile.first_name + " " + userProfile.last_name
@@ -97,28 +104,42 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
         let buttonSegmentOffset: CGFloat = 0.5
         let buttonSegmentHeight: CGFloat = 34.0
         let width: CGFloat = (frame.width - (CGFloat(withSections.count - 1) * buttonSegmentOffset)) / CGFloat(withSections.count)
-        buttonSize = CGSizeMake(width, buttonSegmentHeight)
+        buttonContainerWidth = width
+        let buttonContainerSize = CGSizeMake(width, sectionsView.frameHeight)
         
-        var previousButton: UIButton?
+        var previousButtonContainer: UIView?
         for section in withSections {
-            let button = UIButton.buttonWithType(.System) as UIButton
-            button.setTitle(section.title.uppercaseString, forState: .Normal)
-            button.tintColor = UIColor.whiteColor()
+            let buttonContainerView = UIView(forAutoLayout: ())
+            buttonContainerView.backgroundColor = UIColor.clearColor()
+            buttonContainerView.opaque = true
+            sectionsView.addSubview(buttonContainerView)
+            buttonContainerView.autoSetDimensionsToSize(buttonContainerSize)
+
+            let button = UIButton.buttonWithType(.Custom) as UIButton
+            button.setTitleColor(UIColor.appSegmentedControlTitleNormalColor(), forState: .Normal)
+            button.setTitleColor(UIColor.appSegmentedControlTitleSelectedColor(), forState: .Selected)
+            button.tintColor = UIColor.appSegmentedControlTitleNormalColor()
+            button.setAttributedTitle(
+                NSAttributedString(string: section.title.uppercaseString, attributes: buttonAttributes), 
+                forState: .Normal
+            )
+            
             button.addTarget(
                 self,
                 action: "segmentButtonPressed:", 
                 forControlEvents: .TouchUpInside
             )
-            button.autoSetDimensionsToSize(buttonSize)
-            button.titleLabel?.font = UIFont.segmentedControlTitleFont()
-            sectionsView.addSubview(button)
-            if let previous = previousButton {
-                button.autoPinEdge(.Left, toEdge: .Right, ofView: previous, withOffset: buttonSegmentOffset)
+            
+            buttonContainerView.addSubview(button)
+            button.autoCenterInSuperview()
+            
+            if let previous = previousButtonContainer {
+                buttonContainerView.autoPinEdge(.Left, toEdge: .Right, ofView: previous, withOffset: buttonSegmentOffset)
             } else {
-                button.autoPinEdge(.Left, toEdge: .Left, ofView: sectionsView)
+                buttonContainerView.autoPinEdge(.Left, toEdge: .Left, ofView: sectionsView)
             }
-            button.autoPinEdge(.Top, toEdge: .Top, ofView: sectionsView)
-            previousButton = button
+            buttonContainerView.autoPinEdge(.Top, toEdge: .Top, ofView: sectionsView)
+            previousButtonContainer = buttonContainerView
             segmentedControlButtons.append(button)
         }
         
@@ -126,11 +147,12 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
         sectionIndicatorView = UIView.newAutoLayoutView()
         sectionsView.addSubview(sectionIndicatorView!)
         
+        selectButtonAtIndex(0)
         sectionIndicatorView?.backgroundColor = UIColor.tabBarTintColor()
         sectionIndicatorView?.autoSetDimension(.Height, toSize: 1.5)
-        sectionIndicatorWidthConstraint = sectionIndicatorView?.autoSetDimension(.Width, toSize: buttonSize.width)
-        sectionIndicatorView?.autoPinEdge(.Bottom, toEdge: .Bottom, ofView: sectionsView)
-        sectionIndicatorLeftOffsetConstraint = sectionIndicatorView?.autoPinEdge(.Left, toEdge: .Left, ofView: sectionsView)
+        sectionIndicatorView?.autoPinEdgeToSuperviewEdge(.Bottom, withInset: 5.0)
+        sectionIndicatorWidthConstraint = sectionIndicatorView?.autoSetDimension(.Width, toSize: segmentedControlButtons[0].frameWidth)
+        sectionIndicatorLeftOffsetConstraint = sectionIndicatorView?.autoPinEdgeToSuperviewEdge(.Left, withInset: segmentedControlButtons[0].frameX)
     }
     
     func segmentButtonPressed(sender: AnyObject!) {
@@ -141,19 +163,23 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
     
     func updateTitle(title: String, forSegmentAtIndex index: Int) {
         if segmentedControlButtons.count > index {
-            segmentedControlButtons[index].setTitle(title.uppercaseString, forState: .Normal)
+            segmentedControlButtons[index].setAttributedTitle(
+                NSAttributedString(
+                    string: title.uppercaseString, 
+                    attributes: buttonAttributes
+                ),
+                forState: .Normal
+            )
         }
     }
     
     func beginMovingSectionIndicatorView(contentOffset: CGPoint) {
         sectionIndicatorViewIsAnimating = true
-        sectionIndicatorWidthConstraint?.constant = 50
-        animateSectionIndicator()
     }
     
     func updateSectionIndicatorView(contentOffset: CGPoint) {
         // We aren't animating the width of the sectionIndicator if someone taps on the segmented controls
-        var animationOffset = buttonSize.width / 2
+        var animationOffset = segmentedControlButtons[selectedButtonIndex()].frameWidth / 2
         if !sectionIndicatorViewIsAnimating {
             animationOffset = 0.0
         }
@@ -162,8 +188,12 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
     }
     
     func finishMovingSelectionIndicatorView(contentOffset: CGPoint) {
-        sectionIndicatorWidthConstraint?.constant = buttonSize.width
-        sectionIndicatorLeftOffsetConstraint?.constant = contentOffset.x / CGFloat(sections!.count)
+        let buttonIndexToBeSelected = Int(contentOffset.x/frameWidth)
+        if buttonIndexToBeSelected < segmentedControlButtons.count {
+            sectionIndicatorWidthConstraint?.constant = segmentedControlButtons[buttonIndexToBeSelected].frameWidth
+            sectionIndicatorLeftOffsetConstraint?.constant = contentOffset.x / CGFloat(sections!.count) + segmentedControlButtons[buttonIndexToBeSelected].frameX
+            selectButtonAtIndex(buttonIndexToBeSelected)
+        }
         animateSectionIndicator()
         sectionIndicatorViewIsAnimating = false
     }
@@ -197,5 +227,25 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
         }
 
         return false
+    }
+    
+    private func selectButtonAtIndex(index: Int) {
+        if index < segmentedControlButtons.count {
+            for button in segmentedControlButtons {
+                button.selected = false
+            }
+
+            segmentedControlButtons[index].selected = true
+        }
+    }
+    
+    private func selectedButtonIndex() -> Int {
+        for (index, button) in enumerate(segmentedControlButtons) {
+            if button.selected == true {
+                return index
+            }
+        }
+        
+        return 0
     }
 }

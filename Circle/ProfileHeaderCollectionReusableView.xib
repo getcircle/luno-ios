@@ -43,7 +43,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4NY-Ue-zhf" userLabel="SegmentedControlView">
-                    <rect key="frame" x="0.0" y="245" width="320" height="35"/>
+                    <rect key="frame" x="0.0" y="230" width="320" height="35"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="35" id="HK9-TE-Fkf"/>
@@ -78,7 +78,7 @@
                 <constraint firstAttribute="centerX" secondItem="kX0-a4-Q8w" secondAttribute="centerX" id="eCw-ga-vME"/>
                 <constraint firstItem="1Tu-Zx-9yR" firstAttribute="centerY" secondItem="xmj-MC-afc" secondAttribute="centerY" id="im7-pz-jDa"/>
                 <constraint firstAttribute="trailing" secondItem="65x-XU-UUc" secondAttribute="trailing" id="iqq-Xz-0nC"/>
-                <constraint firstAttribute="bottom" secondItem="4NY-Ue-zhf" secondAttribute="bottom" id="mLD-KC-Qxo"/>
+                <constraint firstAttribute="bottom" secondItem="4NY-Ue-zhf" secondAttribute="bottom" constant="15" id="mLD-KC-Qxo"/>
                 <constraint firstItem="zJL-k5-Ada" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" constant="20" symbolic="YES" id="puw-hV-yod"/>
                 <constraint firstItem="4NY-Ue-zhf" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" id="qJJ-0K-49w"/>
                 <constraint firstItem="xmj-MC-afc" firstAttribute="leading" secondItem="1Tu-Zx-9yR" secondAttribute="trailing" constant="6" id="xPc-Ml-eOy"/>
@@ -93,7 +93,7 @@
                 <outlet property="titleLabel" destination="GGm-ME-NAZ" id="FRS-1Y-xvS"/>
                 <outlet property="verifiedProfileButton" destination="xmj-MC-afc" id="JX3-5E-uLr"/>
             </connections>
-            <point key="canvasLocation" x="-132" y="312"/>
+            <point key="canvasLocation" x="-676" y="284"/>
         </collectionReusableView>
     </objects>
     <resources>
