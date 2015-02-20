@@ -142,7 +142,7 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
     // MARK: - Configuration
     
     private func configureSections() {
-        // sections.append(getQuickActionsSection())
+        sections.append(getQuickActionsSection())
         sections.append(getAboutSection())
         sections.append(getBasicInfoSection())
         sections.append(getManagerInfoSection())

@@ -74,18 +74,11 @@ NewNoteViewControllerDelegate {
 
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
-        
-        // We need to remove observer only from some notifications
-        // specifically the ones that modify the view hierarchy
-        NSNotificationCenter.defaultCenter().removeObserver(
-            self,
-            name: SkillsCollectionViewCellNotifications.onSkillSelectedNotification,
-            object: nil
-        )
+        unregisterNotifications(false)
     }
     
     deinit {
-        unregisterNotifications()
+        unregisterNotifications(true)
     }
 
     // MARK: - Configuration
@@ -393,7 +386,7 @@ NewNoteViewControllerDelegate {
         // but in this case, we deregister from some in viewDidDisappear and some in deinit
         // Thereafter every viewWillAppear calls for registeration. So, we need to ensure
         // we don't register more than once.
-        unregisterNotifications()
+        unregisterNotifications(true)
         NSNotificationCenter.defaultCenter().addObserver(
             self,
             selector: "didSelectSkill:",
@@ -416,8 +409,26 @@ NewNoteViewControllerDelegate {
         )
     }
     
-    private func unregisterNotifications() {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+    private func unregisterNotifications(removeAll: Bool) {
+        if removeAll {
+            NSNotificationCenter.defaultCenter().removeObserver(self)
+        }
+        else {
+            // We need to remove observer only from some notifications
+            // specifically the ones that modify the view hierarchy
+            NSNotificationCenter.defaultCenter().removeObserver(
+                self,
+                name: SkillsCollectionViewCellNotifications.onSkillSelectedNotification,
+                object: nil
+            )
+
+            NSNotificationCenter.defaultCenter().removeObserver(
+                self,
+                name: QuickActionNotifications.onQuickActionStarted,
+                object: nil
+            )
+
+        }
     }
     
     // MARK: - Notification Handlers
