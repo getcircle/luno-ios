@@ -59,7 +59,7 @@ class PositionCollectionViewCell: CircleCollectionViewCell {
     // MARK: - Formatting
     
     private func getFormattedDurationLabel(position: ResumeService.Containers.Position) -> String {
-        return "\(position.start_date.year) - \(position.end_date.year)"
+        return ResumeService.Utils.formatPositionApproximateDate(position)
     }
 
 }

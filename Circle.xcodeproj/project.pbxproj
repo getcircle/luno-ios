@@ -172,6 +172,7 @@
 		BFB83F131A8D2D80000223C0 /* Mixpanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB83F121A8D2D80000223C0 /* Mixpanel.swift */; };
 		BFB83F171A8D63B7000223C0 /* Tracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB83F161A8D63B7000223C0 /* Tracker.swift */; };
 		BFBC44011A7212FA007202E7 /* ProfileOverlaidCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBC44001A7212FA007202E7 /* ProfileOverlaidCollectionView.swift */; };
+		BFC05DD31A97B32800F246EA /* ResumeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC05DD21A97B32800F246EA /* ResumeService.swift */; };
 		BFC6CF9C1A44D2B90081F45B /* ServiceClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC6CF9B1A44D2B90081F45B /* ServiceClient.swift */; };
 		BFCFDB041A915249009A5FD4 /* EducationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCFDB021A915249009A5FD4 /* EducationCollectionViewCell.swift */; };
 		BFCFDB051A915249009A5FD4 /* EducationCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFCFDB031A915249009A5FD4 /* EducationCollectionViewCell.xib */; };
@@ -450,6 +451,7 @@
 		BFB83F121A8D2D80000223C0 /* Mixpanel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mixpanel.swift; sourceTree = "<group>"; };
 		BFB83F161A8D63B7000223C0 /* Tracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tracker.swift; sourceTree = "<group>"; };
 		BFBC44001A7212FA007202E7 /* ProfileOverlaidCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileOverlaidCollectionView.swift; sourceTree = "<group>"; };
+		BFC05DD21A97B32800F246EA /* ResumeService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResumeService.swift; sourceTree = "<group>"; };
 		BFC6CF9B1A44D2B90081F45B /* ServiceClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceClient.swift; sourceTree = "<group>"; };
 		BFCFDB021A915249009A5FD4 /* EducationCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EducationCollectionViewCell.swift; sourceTree = "<group>"; };
 		BFCFDB031A915249009A5FD4 /* EducationCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EducationCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -858,6 +860,7 @@
 				BF3F0F601A5B1C1100D4287E /* ProfileService.swift */,
 				BFE213C71A5EE63F0033E2F5 /* SearchService.swift */,
 				BF2CBFD51A473E9100BE589D /* UserService.swift */,
+				BFC05DD21A97B32800F246EA /* ResumeService.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -1214,6 +1217,7 @@
 				BFCFDB111A9165A9009A5FD4 /* PositionCollectionViewCell.swift in Sources */,
 				8F08A9F91A748F5200B93149 /* CardFooterCollectionReusableView.swift in Sources */,
 				8F823E431A714B5D0006264B /* OrganizationHeaderCollectionReusableView.swift in Sources */,
+				BFC05DD31A97B32800F246EA /* ResumeService.swift in Sources */,
 				8F823E381A706B790006264B /* OrganizationDetailViewController.swift in Sources */,
 				8F22CBE51A27ED190026376E /* StickyHeaderCollectionViewLayout.swift in Sources */,
 				BF764DC41A5F6E8200D122F4 /* LandingService.swift in Sources */,
