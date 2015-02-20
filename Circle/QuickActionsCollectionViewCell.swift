@@ -11,9 +11,18 @@ import UIKit
 class QuickActionsCollectionViewCell: CircleCollectionViewCell {
 
     @IBOutlet weak private(set) var addNoteButton: UIButton!
+    @IBOutlet weak private(set) var addNoteButtonLabel: UILabel!
     @IBOutlet weak private(set) var callButton: UIButton!
+    @IBOutlet weak private(set) var callButtonLabel: UILabel!
+    @IBOutlet weak private(set) var firstButtonTopConstraint: NSLayoutConstraint!
     @IBOutlet weak private(set) var sendEmailButton: UIButton!
+    @IBOutlet weak private(set) var sendEmailButtonLabel: UILabel!
     @IBOutlet weak private(set) var sendTextButton: UIButton!
+    @IBOutlet weak private(set) var sendTextButtonLabel: UILabel!
+    
+    private var actionButtons = [UIButton]()
+    private var actionButtonLabels = [UILabel]()
+    private var firstButtonTopConstraintInitialValue: CGFloat = 0.0
     
     override class var classReuseIdentifier: String {
         return "QuickActionsCollectionViewCell"
@@ -27,6 +36,9 @@ class QuickActionsCollectionViewCell: CircleCollectionViewCell {
         super.awakeFromNib()
 
         // Initialization code
+        actionButtons = [addNoteButton, callButton, sendEmailButton, sendTextButton]
+        actionButtonLabels = [addNoteButtonLabel, callButtonLabel, sendEmailButtonLabel, sendTextButtonLabel]
+        firstButtonTopConstraintInitialValue = firstButtonTopConstraint.constant
         configureButtons()
         selectedBackgroundView = nil
     }
@@ -34,7 +46,7 @@ class QuickActionsCollectionViewCell: CircleCollectionViewCell {
     // MARK: - Configuration
     
     private func configureButtons() {
-        for button in [addNoteButton, sendEmailButton, sendTextButton, callButton] {
+        for button in actionButtons {
             button.makeItCircular(true, borderColor: UIColor.appQuickActionsDarkTintColor())
             button.setImage(
                 button.imageForState(.Normal)?.imageWithRenderingMode(.AlwaysTemplate),
@@ -48,6 +60,46 @@ class QuickActionsCollectionViewCell: CircleCollectionViewCell {
     
     override func setData(data: AnyObject) {
         
+    }
+    
+    // MARK: Hide, Show Borders
+    
+    func hideBorders() {
+        for button in actionButtons {
+            button.layer.borderColor = backgroundColor?.CGColor
+        }
+    }
+    
+    func addBorders() {
+        for button in actionButtons {
+            button.layer.borderColor = UIColor.appQuickActionsDarkTintColor().CGColor
+        }
+    }
+
+    // MARK: Hide, Show Labels
+    
+    func hideLabels() {
+        for buttonLabel in actionButtonLabels {
+            buttonLabel.alpha = 0.0
+        }
+        
+        setTopConstaintToValue((frameHeight - addNoteButton.frameHeight) / 2)
+    }
+    
+    func showLabels() {
+        for buttonLabel in actionButtonLabels {
+            buttonLabel.alpha = 1.0
+        }
+        
+        setTopConstaintToValue(firstButtonTopConstraintInitialValue)
+    }
+    
+    private func setTopConstaintToValue(value: CGFloat) {
+        firstButtonTopConstraint.constant = value
+        for button in actionButtons {
+            button.setNeedsUpdateConstraints()
+            button.layoutIfNeeded()
+        }
     }
     
     // MARK: - IBActions

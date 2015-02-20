@@ -41,6 +41,7 @@ enum ContentType: Int {
     case Skills
     case Team
     case Twitter
+    case QuickActions
     case WorkPhone
 }
 
@@ -141,6 +142,7 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
     // MARK: - Configuration
     
     private func configureSections() {
+        // sections.append(getQuickActionsSection())
         sections.append(getAboutSection())
         sections.append(getBasicInfoSection())
         sections.append(getManagerInfoSection())
@@ -173,6 +175,19 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
             }
         }
         return nil
+    }
+    
+    private func getQuickActionsSection() -> Section {
+        let sectionItems = [
+            SectionItem(
+                title: "Quick Actions",
+                container: "",
+                containerKey: "",
+                contentType: .QuickActions,
+                image: nil
+            )
+        ]
+        return Section(title: "Quick Actions", items: sectionItems, cardType: .QuickActions)
     }
     
     private func getAboutSection() -> Section {
@@ -318,6 +333,8 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
             addEducationItemToCard(item, card: card)
         case .Position:
             addPositionItemToCard(item, card: card)
+        case .QuickActions:
+            addQuickActionsItemToCard(item, card: card)
         default: break
         }
     }
@@ -402,6 +419,10 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
         }
     }
     
+    private func addQuickActionsItemToCard(item: SectionItem, card: Card) {
+        card.addContent(content: [["placeholder": true]], maxVisibleItems: 0)
+    }
+    
     private func addAboutItemToCard(item: SectionItem, card: Card) {
         if profile.hasAbout {
             card.addContent(content: [profile.about] as [AnyObject])
@@ -413,6 +434,12 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
     override func configureCell(cell: CircleCollectionViewCell, atIndexPath indexPath: NSIndexPath) {
         if cell is SkillsCollectionViewCell {
             (cell as SkillsCollectionViewCell).showSkillsLabel = true
+        }
+        else if cell is QuickActionsCollectionViewCell {
+            let quickActionsCell = cell as QuickActionsCollectionViewCell
+            quickActionsCell.backgroundColor = UIColor.whiteColor()
+            quickActionsCell.hideLabels()
+            quickActionsCell.hideBorders()
         }
     }
     

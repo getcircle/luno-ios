@@ -172,9 +172,14 @@
             <size key="customSize" width="451" height="50"/>
             <connections>
                 <outlet property="addNoteButton" destination="VHJ-sx-L1j" id="3Vy-n9-AjB"/>
+                <outlet property="addNoteButtonLabel" destination="Qus-Kn-fTQ" id="NpE-bf-snX"/>
                 <outlet property="callButton" destination="gK8-NX-Gmv" id="zzx-tu-cif"/>
+                <outlet property="callButtonLabel" destination="iWp-Cn-4AF" id="EfM-S9-OCo"/>
+                <outlet property="firstButtonTopConstraint" destination="iJJ-rS-E1I" id="haL-VD-A5W"/>
                 <outlet property="sendEmailButton" destination="o81-Au-qrS" id="XPN-4m-gyc"/>
+                <outlet property="sendEmailButtonLabel" destination="wWK-Df-Vbt" id="Y4f-ZO-U8e"/>
                 <outlet property="sendTextButton" destination="Kq5-3k-b21" id="knr-CK-kmn"/>
+                <outlet property="sendTextButtonLabel" destination="mlA-nq-PTK" id="b4i-hn-QsG"/>
             </connections>
             <point key="canvasLocation" x="-210.5" y="-155"/>
         </collectionViewCell>
