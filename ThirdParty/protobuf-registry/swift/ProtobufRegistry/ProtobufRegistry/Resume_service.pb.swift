@@ -1199,6 +1199,7 @@ final public class ResumeService : GeneratedMessage {
                  case "summary": return summary
                  case "company": return company
                  case "user_id": return user_id
+                 case "is_current": return is_current
                  default: return nil
                  }
           }
@@ -1220,6 +1221,9 @@ final public class ResumeService : GeneratedMessage {
           public private(set) var company:ResumeService.Containers.Company = ResumeService.Containers.Company()
           public private(set) var hasUserId:Bool = false
           public private(set) var user_id:String = ""
+
+          public private(set) var hasIsCurrent:Bool = false
+          public private(set) var is_current:Bool = false
 
           required public init() {
                super.init()
@@ -1248,6 +1252,9 @@ final public class ResumeService : GeneratedMessage {
             }
             if hasUserId {
               output.writeString(7, value:user_id)
+            }
+            if hasIsCurrent {
+              output.writeBool(8, value:is_current)
             }
             unknownFields.writeToCodedOutputStream(output)
           }
@@ -1278,6 +1285,9 @@ final public class ResumeService : GeneratedMessage {
             }
             if hasUserId {
               size += WireFormat.computeStringSize(7, value:user_id)
+            }
+            if hasIsCurrent {
+              size += WireFormat.computeBoolSize(8, value:is_current)
             }
             size += unknownFields.serializedSize()
             memoizedSerializedSize = size
@@ -1347,6 +1357,9 @@ final public class ResumeService : GeneratedMessage {
             if hasUserId {
               output += "\(indent) user_id: \(user_id) \n"
             }
+            if hasIsCurrent {
+              output += "\(indent) is_current: \(is_current) \n"
+            }
             unknownFields.writeDescriptionTo(&output, indent:indent)
           }
           override public var hashValue:Int {
@@ -1372,6 +1385,9 @@ final public class ResumeService : GeneratedMessage {
                   }
                   if hasUserId {
                      hashCode = (hashCode &* 31) &+ user_id.hashValue
+                  }
+                  if hasIsCurrent {
+                     hashCode = (hashCode &* 31) &+ is_current.hashValue
                   }
                   hashCode = (hashCode &* 31) &+  unknownFields.hashValue
                   return hashCode
@@ -1575,6 +1591,25 @@ final public class ResumeService : GeneratedMessage {
                builderResult.user_id = ""
                return self
           }
+          public var hasIsCurrent:Bool {
+               get {
+                    return builderResult.hasIsCurrent
+               }
+          }
+          public var is_current:Bool {
+               get {
+                    return builderResult.is_current
+               }
+               set (value) {
+                   builderResult.hasIsCurrent = true
+                   builderResult.is_current = value
+               }
+          }
+          public func clearIsCurrent() -> ResumeService.Containers.PositionBuilder{
+               builderResult.hasIsCurrent = false
+               builderResult.is_current = false
+               return self
+          }
           override public var internalGetResult:GeneratedMessage {
                get {
                   return builderResult
@@ -1616,6 +1651,9 @@ final public class ResumeService : GeneratedMessage {
             }
             if other.hasUserId {
                  user_id = other.user_id
+            }
+            if other.hasIsCurrent {
+                 is_current = other.is_current
             }
             mergeUnknownFields(other.unknownFields)
             return self
@@ -1667,6 +1705,9 @@ final public class ResumeService : GeneratedMessage {
 
               case 58 :
                 user_id = input.readString()
+
+              case 64 :
+                is_current = input.readBool()
 
               default:
                 if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {

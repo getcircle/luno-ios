@@ -38,6 +38,7 @@ message ResumeService {
             optional string summary = 5;
             optional Company company = 6;
             optional string user_id = 7;
+            optional bool is_current = 8;
         }
 
         message Company {
