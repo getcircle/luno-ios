@@ -48,6 +48,7 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
         NSForegroundColorAttributeName: UIColor.appSegmentedControlTitleNormalColor(),
         NSFontAttributeName: UIFont.appSegmentedControlTitleFont()
     ]
+    private let sectionIndicatorBeginningWidth: CGFloat = 30.0
 
     
     override class var classReuseIdentifier: String {
@@ -102,7 +103,6 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
     private func configureSegmentedControl(sections withSections: [ProfileDetailView]) {
         // Setup the segment buttons
         let buttonSegmentOffset: CGFloat = 0.5
-        let buttonSegmentHeight: CGFloat = 34.0
         let width: CGFloat = (frame.width - (CGFloat(withSections.count - 1) * buttonSegmentOffset)) / CGFloat(withSections.count)
         buttonContainerWidth = width
         let buttonContainerSize = CGSizeMake(width, sectionsView.frameHeight)
@@ -175,13 +175,17 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
     
     func beginMovingSectionIndicatorView(contentOffset: CGPoint) {
         sectionIndicatorViewIsAnimating = true
+        sectionIndicatorWidthConstraint?.constant = sectionIndicatorBeginningWidth
+        animateSectionIndicator()
     }
     
     func updateSectionIndicatorView(contentOffset: CGPoint) {
+
         // We aren't animating the width of the sectionIndicator if someone taps on the segmented controls
-        var animationOffset = segmentedControlButtons[selectedButtonIndex()].frameWidth / 2
+        let currentSelectedButton = segmentedControlButtons[selectedButtonIndex()]
+        var animationOffset = (currentSelectedButton.frameWidth / 2) + currentSelectedButton.frameX - (sectionIndicatorBeginningWidth / 2.0)
         if !sectionIndicatorViewIsAnimating {
-            animationOffset = 0.0
+            animationOffset = currentSelectedButton.frameX
         }
         sectionIndicatorLeftOffsetConstraint?.constant = (contentOffset.x / CGFloat(sections!.count)) + animationOffset
         animateSectionIndicator()
