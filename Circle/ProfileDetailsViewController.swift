@@ -315,7 +315,7 @@ class ProfileDetailsViewController:
         NSNotificationCenter.defaultCenter().addObserver(
             self,
             selector: "quickActionButtonTapped:",
-            name: QuickActionNotifications.onQuickActionSelected,
+            name: QuickActionNotifications.onQuickActionStarted,
             object: nil
         )
         
@@ -415,14 +415,7 @@ class ProfileDetailsViewController:
         if let userInfo = notification.userInfo {
             if let quickAction = userInfo[QuickActionNotifications.QuickActionTypeUserInfoKey] as? Int {
                 if let quickActionType = QuickAction(rawValue: quickAction) {
-                    var additionalData: AnyObject?
-                    if quickActionType == .Phone {
-                        if let phoneNumber = userInfo[QuickActionNotifications.AdditionalDataUserInfoKey] as? String {
-                            additionalData = phoneNumber
-                        }
-                    }
-                    
-                    performQuickAction(quickActionType, additionalData: additionalData)
+                    performQuickAction(quickActionType)
                 }
             }
         }
@@ -457,7 +450,7 @@ class ProfileDetailsViewController:
             )
             
         case .Phone:
-            if let number = additionalData as? String {
+            if let number = profile.cell_phone as String? {
                 if let phoneURL = NSURL(string: NSString(format: "tel://%@", number.removePhoneNumberFormatting())) {
                     UIApplication.sharedApplication().openURL(phoneURL)
                 }

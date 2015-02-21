@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ProtobufRegistry
 
 class QuickActionsCollectionViewCell: CircleCollectionViewCell {
 
@@ -23,13 +24,14 @@ class QuickActionsCollectionViewCell: CircleCollectionViewCell {
     private var actionButtons = [UIButton]()
     private var actionButtonLabels = [UILabel]()
     private var firstButtonTopConstraintInitialValue: CGFloat = 0.0
+    private var profile: ProfileService.Containers.Profile?
     
     override class var classReuseIdentifier: String {
         return "QuickActionsCollectionViewCell"
     }
     
     override class var height: CGFloat {
-        return 78.0
+        return 90.0
     }
     
     override func awakeFromNib() {
@@ -59,7 +61,11 @@ class QuickActionsCollectionViewCell: CircleCollectionViewCell {
     // MARK: - Data
     
     override func setData(data: AnyObject) {
-        
+        if let dataDictionary = data as? [String: ProfileService.Containers.Profile] {
+            if let userProfile = dataDictionary["profile"] as ProfileService.Containers.Profile? {
+                profile = userProfile
+            }
+        }
     }
     
     // MARK: Hide, Show Borders
@@ -123,12 +129,14 @@ class QuickActionsCollectionViewCell: CircleCollectionViewCell {
     // MARK: - Helpers
     
     private func triggerNotificationForQuickAction(quickAction: QuickAction) {
+        var userInfo = [
+            QuickActionNotifications.QuickActionTypeUserInfoKey: quickAction.rawValue
+        ]
+
         NSNotificationCenter.defaultCenter().postNotificationName(
             QuickActionNotifications.onQuickActionStarted,
             object: nil, 
-            userInfo: [
-                QuickActionNotifications.QuickActionTypeUserInfoKey: quickAction.rawValue
-            ]
+            userInfo: userInfo
         )
     }
 }

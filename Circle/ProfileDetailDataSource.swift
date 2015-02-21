@@ -420,7 +420,7 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
     }
     
     private func addQuickActionsItemToCard(item: SectionItem, card: Card) {
-        card.addContent(content: [["placeholder": true]], maxVisibleItems: 0)
+        card.addContent(content: [["profile": profile]], maxVisibleItems: 0)
     }
     
     private func addAboutItemToCard(item: SectionItem, card: Card) {
