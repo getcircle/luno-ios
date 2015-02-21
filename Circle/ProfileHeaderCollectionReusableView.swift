@@ -66,6 +66,16 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
         profileImage.makeItCircular(true, borderColor: UIColor.whiteColor())
         nameNavLabel.alpha = 0.0
     }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        if sectionIndicatorView?.frameWidth == 0.0 {
+            sectionIndicatorLeftOffsetConstraint?.constant = segmentedControlButtons[selectedButtonIndex()].frameX
+            sectionIndicatorWidthConstraint?.constant = segmentedControlButtons[selectedButtonIndex()].frameWidth
+            animateSectionIndicator()
+        }
+    }
 
     func setProfile(userProfile: ProfileService.Containers.Profile) {
         profile = userProfile
