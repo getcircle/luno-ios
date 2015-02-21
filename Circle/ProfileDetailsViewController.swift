@@ -346,7 +346,7 @@ class ProfileDetailsViewController:
         )
         
         NSNotificationCenter.defaultCenter().removeObserver(self,
-            name: QuickActionNotifications.onQuickActionSelected,
+            name: QuickActionNotifications.onQuickActionStarted,
             object: nil
         )
 
