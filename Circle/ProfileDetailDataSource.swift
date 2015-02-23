@@ -34,8 +34,9 @@ enum ContentType: Int {
     case Github
     case LinkedIn
     case LinkedInConnect
-    case Office
     case Manager
+    case Office
+    case OfficeTeam
     case Other
     case Position
     case Skills
@@ -146,6 +147,7 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
         sections.append(getAboutSection())
         sections.append(getBasicInfoSection())
         sections.append(getManagerInfoSection())
+        sections.append(getOfficeTeamSection())
         sections.append(getSkillsSection())
         sections.append(getWorkExperienceSection())
         sections.append(getEducationSection())
@@ -250,6 +252,19 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
         return Section(title: "Manager Info", items: sectionItems, cardType: .KeyValue)
     }
     
+    private func getOfficeTeamSection() -> Section {
+        let sectionItems = [
+            SectionItem(
+                title: "Office & Team",
+                container: "",
+                containerKey: "",
+                contentType: .OfficeTeam,
+                image: ItemImage.genericNextImage
+            )
+        ]
+        return Section(title: "Office & Team", items: sectionItems, cardType: .OfficeTeam)
+    }
+    
     private func getSkillsSection() -> Section {
         let sectionItems = [
             SectionItem(
@@ -321,20 +336,22 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
     
     private func addItemToCard(item: SectionItem, card: Card) {
         switch card.type {
-        case .TextValue:
-            addAboutItemToCard(item, card: card)
-        case .KeyValue:
-            addKeyValueItemToCard(item, card: card)
-        case .Skills:
-            addSkillsItemToCard(item, card: card)
-        case .SocialConnectCTAs:
-            addSocialConnectItemToCard(item, card: card)
         case .Education:
             addEducationItemToCard(item, card: card)
+        case .KeyValue:
+            addKeyValueItemToCard(item, card: card)
+        case .OfficeTeam:
+            addOfficeTeamItemToCard(item, card: card)
         case .Position:
             addPositionItemToCard(item, card: card)
         case .QuickActions:
             addQuickActionsItemToCard(item, card: card)
+        case .Skills:
+            addSkillsItemToCard(item, card: card)
+        case .SocialConnectCTAs:
+            addSocialConnectItemToCard(item, card: card)
+        case .TextValue:
+            addAboutItemToCard(item, card: card)
         default: break
         }
     }
@@ -417,6 +434,23 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
                 card.addDefaultFooter()
             }
         }
+    }
+    
+    private func addOfficeTeamItemToCard(item: SectionItem, card: Card) {
+        var content = [String: AnyObject]()
+        if let team = team {
+            content["team"] = team
+        }
+
+        if let office = address {
+            content["office"] = office
+        }
+
+        if let manager = manager {
+            content["manager"] = manager
+        }
+        
+        card.addContent(content: [content])
     }
     
     private func addQuickActionsItemToCard(item: SectionItem, card: Card) {

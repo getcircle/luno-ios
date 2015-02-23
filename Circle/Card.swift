@@ -70,6 +70,7 @@ class Card: Equatable {
         case Group = "Group"
         case KeyValue = "KeyValue"
         case Offices = "Offices"
+        case OfficeTeam = "Office & Team"
         case NewHires = "NewHires"
         case Notes = "Notes"
         case People = "People"
@@ -94,7 +95,7 @@ class Card: Equatable {
         static func infoByCardType(type: CardType) -> CardTypeInfo {
             switch type {
 
-            case .AddNote:
+            case AddNote:
                 return CardTypeInfo(
                     imageName: "Plus",
                     classType: AddNoteCollectionViewCell.self,
@@ -102,7 +103,7 @@ class Card: Equatable {
                     contentType: .Flat
                 )
 
-            case .Anniversaries:
+            case Anniversaries:
                 return CardTypeInfo(
                     imageName: "Jewel",
                     classType: ProfileCollectionViewCell.self,
@@ -110,7 +111,7 @@ class Card: Equatable {
                     contentType: .Flat
                 )
 
-            case .Birthdays:
+            case Birthdays:
                 return CardTypeInfo(
                     imageName: "Cake",
                     classType: ProfileCollectionViewCell.self,
@@ -118,7 +119,7 @@ class Card: Equatable {
                     contentType: .Flat
                 )
 
-            case .Education:
+            case Education:
                 return CardTypeInfo(
                     imageName: "GraduateCap",
                     classType: EducationCollectionViewCell.self,
@@ -150,6 +151,14 @@ class Card: Equatable {
                     contentType: .Flat
                 )
 
+            case OfficeTeam:
+                return CardTypeInfo(
+                    imageName: "Satchel",
+                    classType: OfficeTeamManagerCollectionViewCell.self,
+                    className: "OfficeTeamManagerCollectionViewCell",
+                    contentType: .Flat
+                )
+                
             case Notes:
                 return CardTypeInfo(
                     imageName: "Notepad",
@@ -158,7 +167,7 @@ class Card: Equatable {
                     contentType: .Flat
                 )
 
-            case .People:
+            case People:
                 return CardTypeInfo(
                     imageName: "People",
                     classType: ProfileCollectionViewCell.self,
@@ -166,7 +175,7 @@ class Card: Equatable {
                     contentType: .Flat
                 )
 
-            case .NewHires:
+            case NewHires:
                 return CardTypeInfo(
                     imageName: "People",
                     classType: ProfileCollectionViewCell.self,
@@ -174,7 +183,7 @@ class Card: Equatable {
                     contentType: .Flat
                 )
 
-            case .Placeholder:
+            case Placeholder:
                 return CardTypeInfo(
                     imageName: "Info",
                     classType: CircleCollectionViewCell.self,
@@ -182,7 +191,7 @@ class Card: Equatable {
                     contentType: .Flat
                 )
 
-            case .Position:
+            case Position:
                 return CardTypeInfo(
                     imageName: "Satchel",
                     classType: PositionCollectionViewCell.self,
@@ -190,7 +199,7 @@ class Card: Equatable {
                     contentType: .Flat
                 )
 
-            case .Settings:
+            case Settings:
                 return CardTypeInfo(
                     imageName: "Cog",
                     classType: SettingsCollectionViewCell.self,
@@ -198,7 +207,7 @@ class Card: Equatable {
                     contentType: .Flat
                 )
 
-            case .Skills:
+            case Skills:
                 return CardTypeInfo(
                     imageName: "Tag",
                     classType: SkillsCollectionViewCell.self,
@@ -206,7 +215,7 @@ class Card: Equatable {
                     contentType: .Aggregate
                 )
 
-            case .SocialConnectCTAs:
+            case SocialConnectCTAs:
                 return CardTypeInfo(
                     imageName: "Info",
                     classType: SocialConnectCollectionViewCell.self,
@@ -214,7 +223,7 @@ class Card: Equatable {
                     contentType: .Flat
                 )
 
-            case .SocialToggle:
+            case SocialToggle:
                 return CardTypeInfo(
                     imageName: "Info",
                     classType: ToggleSocialConnectionCollectionViewCell.self,
@@ -222,7 +231,7 @@ class Card: Equatable {
                     contentType: .Flat
                 )
 
-            case .QuickActions:
+            case QuickActions:
                 return CardTypeInfo(
                     imageName: "Info",
                     classType: QuickActionsCollectionViewCell.self,
@@ -230,7 +239,7 @@ class Card: Equatable {
                     contentType: .Flat
                 )
 
-            case .Team:
+            case Team:
                 return CardTypeInfo(
                     imageName: "People",
                     classType: TeamGridItemCollectionViewCell.self,
@@ -238,7 +247,7 @@ class Card: Equatable {
                     contentType: .Flat
                 )
 
-            case .TeamsGrid:
+            case TeamsGrid:
                 return CardTypeInfo(
                     imageName: "People",
                     classType: TeamsCollectionViewCell.self,
@@ -246,7 +255,7 @@ class Card: Equatable {
                     contentType: .Aggregate
                 )
 
-            case .TextValue:
+            case TextValue:
                 return CardTypeInfo(
                     imageName: "Info",
                     classType: TextValueCollectionViewCell.self,
