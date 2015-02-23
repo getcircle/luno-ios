@@ -16,6 +16,7 @@ class CardDataSource: NSObject, UICollectionViewDataSource {
         case Header
     }
     
+    var animateContent = true
     private var animatedRowIndexes = NSMutableIndexSet()
     /**
     Array for holding data cards. View controllers should access data via this array.
@@ -186,6 +187,11 @@ class CardDataSource: NSObject, UICollectionViewDataSource {
     }
     
     private func animate(view: UICollectionReusableView, ofType typeOfView: TypeOfView, atIndexPath indexPath: NSIndexPath) {
+        if !animateContent {
+            return
+        }
+        
+        
         var uniqueIndex: String
         
         // Unique indexes make sure each item or supplementary view animates only once

@@ -108,6 +108,7 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
     convenience init(profile withProfile: ProfileService.Containers.Profile) {
         self.init()
         profile = withProfile
+        animateContent = false
     }
     
     override func registerCardHeader(collectionView: UICollectionView) {
