@@ -28,22 +28,8 @@ class SkillsCollectionViewCell: CircleCollectionViewCell, UICollectionViewDataSo
     }
 
     @IBOutlet weak private(set) var collectionView: UICollectionView!
-    @IBOutlet weak private var collectionViewTopSpaceConstraint: NSLayoutConstraint!
-    @IBOutlet weak private var skillsLabel: UILabel!
     
     var prototypeCell: SkillCollectionViewCell!
-    var showSkillsLabel: Bool = false {
-        didSet {
-            if showSkillsLabel {
-                skillsLabel.hidden = false
-                collectionViewTopSpaceConstraint.constant = 31.0
-            }
-            else {
-                skillsLabel.hidden = true
-                collectionViewTopSpaceConstraint.constant = 0.0
-            }
-        }
-    }
     
     // pass backgroundColor changes to the collectionView
     override var backgroundColor: UIColor? {
@@ -60,10 +46,8 @@ class SkillsCollectionViewCell: CircleCollectionViewCell, UICollectionViewDataSo
         super.awakeFromNib()
         
         // Initialization code
-        showSkillsLabel = false
         configureCollectionView()
         configurePrototypeCell()
-        configureSkillsLabel()
         selectedBackgroundView = nil
     }
 
@@ -86,12 +70,7 @@ class SkillsCollectionViewCell: CircleCollectionViewCell, UICollectionViewDataSo
         let cellNibViews = NSBundle.mainBundle().loadNibNamed("SkillCollectionViewCell", owner: self, options: nil)
         prototypeCell = cellNibViews.first as SkillCollectionViewCell
     }
-    
-    private func configureSkillsLabel() {
-        skillsLabel.font = UIFont.appAttributeTitleLabelFont()
-        skillsLabel.text = skillsLabel.text?.uppercaseString
-    }
-    
+
     // MARK: - UICollectionViewDataSource
     
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
@@ -128,13 +107,7 @@ class SkillsCollectionViewCell: CircleCollectionViewCell, UICollectionViewDataSo
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
-        if showSkillsLabel {
-            // Algin skills with the label if the label is shown
-            return UIEdgeInsetsMake(10.0, skillsLabel.frameX, 10.0, skillsLabel.frameX)
-        }
-        else {
-            return UIEdgeInsetsMake(10.0, 10.0, 10.0, 10.0)
-        }
+        return UIEdgeInsetsMake(10.0, 10.0, 10.0, 10.0)
     }
 
     // MARK: - UICollectionViewDelegate
@@ -167,7 +140,7 @@ class SkillsCollectionViewCell: CircleCollectionViewCell, UICollectionViewDataSo
     
     override func intrinsicContentSize() -> CGSize {
         let collectionViewLayout = collectionView.collectionViewLayout as UICollectionViewFlowLayout
-        let height = collectionViewLayout.collectionViewContentSize().height + collectionViewTopSpaceConstraint.constant
+        let height = collectionViewLayout.collectionViewContentSize().height
         return CGSizeMake(CircleCollectionViewCell.width, height)
     }
 }

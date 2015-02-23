@@ -145,8 +145,6 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
     private func configureSections() {
         sections.append(getQuickActionsSection())
         sections.append(getAboutSection())
-        sections.append(getBasicInfoSection())
-        sections.append(getManagerInfoSection())
         sections.append(getOfficeTeamSection())
         sections.append(getSkillsSection())
         sections.append(getWorkExperienceSection())
@@ -262,7 +260,7 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
                 image: ItemImage.genericNextImage
             )
         ]
-        return Section(title: "Office & Team", items: sectionItems, cardType: .OfficeTeam)
+        return Section(title: "Office & Team", items: sectionItems, cardType: .OfficeTeam, cardHeaderSize: CGSizeMake(CircleCollectionViewCell.width, CardHeaderCollectionReusableView.height))
     }
     
     private func getSkillsSection() -> Section {
@@ -275,7 +273,7 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
                 image: nil
             )
         ]
-        return Section(title: "Skills", items: sectionItems, cardType: .Skills)
+        return Section(title: "Skills", items: sectionItems, cardType: .Skills, cardHeaderSize: CGSizeMake(CircleCollectionViewCell.width, CardHeaderCollectionReusableView.height))
     }
     
     private func getEducationSection() -> Section {
@@ -318,7 +316,7 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
         
         // Add top margin only when there is a social connect button added
         // to the profile
-        var defaultSectionInset = UIEdgeInsetsMake(1.0, 0.0, 0.0, 0.0)
+        var defaultSectionInset = UIEdgeInsetsMake(0.0, 0.0, 1.0, 0.0)
         for section in sections {
             let sectionCard = Card(cardType: section.cardType, title: section.title)
             sectionCard.sectionInset = defaultSectionInset
@@ -466,10 +464,7 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
     // MARK: - Cell Configuration
     
     override func configureCell(cell: CircleCollectionViewCell, atIndexPath indexPath: NSIndexPath) {
-        if cell is SkillsCollectionViewCell {
-            (cell as SkillsCollectionViewCell).showSkillsLabel = true
-        }
-        else if cell is QuickActionsCollectionViewCell {
+        if cell is QuickActionsCollectionViewCell {
             let quickActionsCell = cell as QuickActionsCollectionViewCell
             quickActionsCell.backgroundColor = UIColor.whiteColor()
             quickActionsCell.hideLabels()
@@ -503,7 +498,7 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
             ) as ProfileSectionHeaderCollectionReusableView
             
             headerView.setCard(cards[indexPath.section])
-            headerView.backgroundColor = UIColor.clearColor()
+            headerView.backgroundColor = UIColor.whiteColor()
             return headerView
         }
     }

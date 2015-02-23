@@ -39,6 +39,7 @@ class CardFooterCollectionReusableView: CircleCollectionReusableView {
     override func awakeFromNib() {
         super.awakeFromNib()
         footerButton.tintColor = UIColor.darkGrayColor()
+        footerButton.addBottomBorder(offset: 1.0)
     }
     
     @IBAction func footerButtonTapped(sender: AnyObject!) {

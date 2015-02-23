@@ -11,7 +11,6 @@ import UIKit
 class ProfileSectionHeaderCollectionReusableView: CircleCollectionReusableView {
 
     @IBOutlet weak var cardTitleLabel: UILabel!
-    @IBOutlet weak var cardImageView: UIImageView!
     
     override class var classReuseIdentifier: String {
         return "ProfileSectionHeaderView"
@@ -28,7 +27,5 @@ class ProfileSectionHeaderCollectionReusableView: CircleCollectionReusableView {
     
     func setCard(card: Card) {
         cardTitleLabel.text = card.title.uppercaseStringWithLocale(NSLocale.currentLocale())
-        cardImageView.image = UIImage(named: card.imageSource)
     }
-    
 }
