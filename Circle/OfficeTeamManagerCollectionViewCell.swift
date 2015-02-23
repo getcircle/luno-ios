@@ -11,22 +11,22 @@ import ProtobufRegistry
 
 class OfficeTeamManagerCollectionViewCell: CircleCollectionViewCell {
 
+    @IBOutlet weak private(set) var managerImageView: CircleImageView!
+    @IBOutlet weak private(set) var managerLabel: UILabel!
+    @IBOutlet weak private(set) var managerButton: UIButton!
+
     @IBOutlet weak private(set) var officeImageView: CircleImageView!
     @IBOutlet weak private(set) var officeLabel: UILabel!
-    @IBOutlet weak private(set) var officeSecondayLabel: UILabel!
     @IBOutlet weak private(set) var officeButton: UIButton!
 
+    @IBOutlet weak private(set) var spacer1: UIView!
+    @IBOutlet weak private(set) var spacer2: UIView!
+    
     @IBOutlet weak private(set) var teamImageView: CircleImageView!
     @IBOutlet weak private(set) var teamLabel: UILabel!
     @IBOutlet weak private(set) var teamNameLetterLabel: UILabel!
-    @IBOutlet weak private(set) var teamSecondayLabel: UILabel!
     @IBOutlet weak private(set) var teamButton: UIButton!
 
-    @IBOutlet weak private(set) var managerImageView: CircleImageView!
-    @IBOutlet weak private(set) var managerLabel: UILabel!
-    @IBOutlet weak private(set) var managerSecondayLabel: UILabel!
-    @IBOutlet weak private(set) var managerButton: UIButton!
-    
     override class var classReuseIdentifier: String {
         return "OfficeTeamManagerCollectionViewCell"
     }
@@ -40,6 +40,7 @@ class OfficeTeamManagerCollectionViewCell: CircleCollectionViewCell {
         
         // Initialization code
         configureImageViews()
+        configureSpacerViews()
     }
     
     // MARK: - Configuration
@@ -47,6 +48,12 @@ class OfficeTeamManagerCollectionViewCell: CircleCollectionViewCell {
     func configureImageViews() {
         for imageView in [officeImageView, teamImageView, managerImageView] {
             imageView.makeItCircular()
+        }
+    }
+    
+    func configureSpacerViews() {
+        for spacer in [spacer1, spacer2] {
+            spacer.backgroundColor = UIColor.viewBackgroundColor()
         }
     }
     
@@ -63,14 +70,16 @@ class OfficeTeamManagerCollectionViewCell: CircleCollectionViewCell {
             if let manager = dataDictionary["manager"] as? ProfileService.Containers.Profile {
                 managerImageView.setImageWithProfile(manager)
                 managerLabel.text = manager.first_name + " " + manager.last_name[0] + "."
-                managerSecondayLabel.text = NSLocalizedString("Manager", comment: "Title for manager name")
+                showManagerInfo()
+            }
+            else {
+                hideManagerInfo()
             }
             
             if let office = dataDictionary["office"] as? OrganizationService.Containers.Address {
                 // TODO: Make this come from the backend
                 officeImageView.image = UIImage(named: "SF")
                 officeLabel.text = office.name
-                officeSecondayLabel.text = "633 Members"
             }
         }
     }
@@ -78,15 +87,18 @@ class OfficeTeamManagerCollectionViewCell: CircleCollectionViewCell {
     // MARK: - Hide/Show Manager
     
     func hideManagerInfo() {
-        for view in [managerImageView, managerLabel, managerSecondayLabel, managerButton] {
+        for view in [managerImageView, managerLabel, managerButton] {
             view.alpha = 0.0
         }
+        
+        spacer2.alpha = 0.0
     }
     
     func showManagerInfo() {
-        for view in [managerImageView, managerLabel, managerSecondayLabel, managerButton] {
+        for view in [managerImageView, managerLabel, managerButton] {
             view.alpha = 1.0
         }
+        
+        spacer2.alpha = 1.0
     }
-    
 }
