@@ -68,9 +68,14 @@ class OfficeTeamManagerCollectionViewCell: CircleCollectionViewCell {
             }
             
             if let manager = dataDictionary["manager"] as? ProfileService.Containers.Profile {
-                managerImageView.setImageWithProfile(manager)
-                managerLabel.text = manager.first_name + " " + manager.last_name[0] + "."
-                showManagerInfo()
+                if manager.hasFirstName {
+                    managerImageView.setImageWithProfile(manager)
+                    managerLabel.text = manager.first_name + " " + manager.last_name[0] + "."
+                    showManagerInfo()
+                }
+                else {
+                    hideManagerInfo()
+                }
             }
             else {
                 hideManagerInfo()

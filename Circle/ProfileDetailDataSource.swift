@@ -146,8 +146,8 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
     private func configureSections() {
         sections.append(getQuickActionsSection())
         sections.append(getAboutSection())
-        sections.append(getOfficeTeamSection())
         sections.append(getSkillsSection())
+        sections.append(getOfficeTeamSection())
         sections.append(getWorkExperienceSection())
         sections.append(getEducationSection())
     }
