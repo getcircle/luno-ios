@@ -32,6 +32,7 @@ class KeyValueCollectionViewCell: CircleCollectionViewCell {
         // Record initial constraint values
         nameImageViewWidthConstraintInitialValue = nameImageViewWidthConstraint.constant
         nameLabel.font = UIFont.appAttributeTitleLabelFont()
+        nameLabel.textColor = UIColor.appAttributeTitleLabelColor()
         valueLabel.textAlignment = .Right
     }
 

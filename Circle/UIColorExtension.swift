@@ -201,4 +201,8 @@ extension UIColor {
     class func appSegmentedControlTitleSelectedColor() -> UIColor {
         return UIColor.whiteColor()
     }
+    
+    class func appAttributeTitleLabelColor() -> UIColor {
+        return UIColor(red: 119, green: 119, blue: 119)
+    }
 }

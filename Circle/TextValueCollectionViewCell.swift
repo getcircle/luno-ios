@@ -31,7 +31,9 @@ class TextValueCollectionViewCell: CircleCollectionViewCell {
     
     override func setData(data: AnyObject) {
         if let value = data as? String {
-            textLabel.text = value
+            if value != "" {
+                textLabel.text = value
+            }
         }
     }
 

@@ -22,7 +22,9 @@ class ProfileSectionHeaderCollectionReusableView: CircleCollectionReusableView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+
         cardTitleLabel.font = UIFont.appAttributeTitleLabelFont()
+        cardTitleLabel.textColor = UIColor.appAttributeTitleLabelColor()
     }
     
     func setCard(card: Card) {

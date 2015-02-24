@@ -499,6 +499,10 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
         if profile.hasAbout {
             card.addContent(content: [profile.about] as [AnyObject])
         }
+        else {
+            // TODO: Remove after testing UI
+            card.addContent(content: [""] as [AnyObject])
+        }
     }
     
     // MARK: - Cell Configuration
