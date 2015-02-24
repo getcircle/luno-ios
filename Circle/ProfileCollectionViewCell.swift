@@ -56,17 +56,14 @@ class ProfileCollectionViewCell: CircleCollectionViewCell {
                 switch card!.type {
                 case .Birthdays:
                     if let date = profile.birth_date.toDate() {
-                        let dateFormatter = NSDateFormatter()
-                        dateFormatter.dateFormat = "MMMM d"
-                        subtitle = dateFormatter.stringFromDate(date)
+                        subtitle = NSDateFormatter.sharedBirthdayFormatter.stringFromDate(date)
                     }
                 case .Anniversaries:
                     subtitle = getAnniversarySubtitle(profile)
+
                 case .NewHires:
                     if let date = profile.hire_date.toDate() {
-                        let dateFormatter = NSDateFormatter()
-                        dateFormatter.dateStyle = .LongStyle
-                        subtitle = dateFormatter.stringFromDate(date)
+                        subtitle = NSDateFormatter.stringFromDateWithStyles(date, dateStyle: .LongStyle, timeStyle: .NoStyle)
                     }
                 default:
                     subtitle = profile.title
@@ -96,8 +93,7 @@ class ProfileCollectionViewCell: CircleCollectionViewCell {
     private func getAnniversarySubtitle(profile: ProfileService.Containers.Profile) -> String {
         var subtitle = ""
         if let hireDate = profile.hire_date.toDate() {
-            let dateFormatter = NSDateFormatter()
-            dateFormatter.dateFormat = "MMMM d"
+            let dateFormatter = NSDateFormatter.sharedAnniversaryFormatter
             let calendar = NSCalendar(calendarIdentifier: NSGregorianCalendar)
             
             let dateString = dateFormatter.stringFromDate(hireDate)
@@ -118,7 +114,7 @@ class ProfileCollectionViewCell: CircleCollectionViewCell {
                 if years == 1 {
                     subtitle = "\(years) year - \(dateString)"
                 } else {
-                    subtitle = "\(years) year - \(dateString)"
+                    subtitle = "\(years) years - \(dateString)"
                 }
             }
         }

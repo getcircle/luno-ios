@@ -27,11 +27,13 @@ class ItemImage {
 
 enum ContentType: Int {
     case About = 1
+    case Birthday
     case CellPhone
     case Education
     case Email
     case Facebook
     case Github
+    case HireDate
     case LinkedIn
     case LinkedInConnect
     case Manager
@@ -39,6 +41,7 @@ enum ContentType: Int {
     case OfficeTeam
     case Other
     case Position
+    case SeatingInfo
     case Skills
     case Team
     case Twitter
@@ -150,6 +153,7 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
     private func configureSections() {
         sections.append(getQuickActionsSection())
         sections.append(getAboutSection())
+        sections.append(getBasicInfoSection())
         sections.append(getSkillsSection())
         sections.append(getOfficeTeamSection())
         sections.append(getWorkExperienceSection())
@@ -211,26 +215,26 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
     private func getBasicInfoSection() -> Section {
         let sectionItems = [
             SectionItem(
-                title: "Email",
+                title: "Hire Date",
                 container: "profile",
-                containerKey: "email",
-                contentType: .Email,
+                containerKey: "hire_date",
+                contentType: .HireDate,
                 image: nil
             ),
             SectionItem(
-                title: "Cell Phone",
+                title: "Birthday",
                 container: "profile",
-                containerKey: "cell_phone",
-                contentType: .CellPhone,
+                containerKey: "birth_date",
+                contentType: .Birthday,
                 image: nil
             ),
             SectionItem(
-                title: "Office",
-                container: "address",
-                containerKey: "city",
-                contentType: .Office,
-                image: ItemImage.genericNextImage
-            ),
+                title: "Seating Info",
+                container: "profile",
+                containerKey: "seating_info",
+                contentType: .SeatingInfo,
+                image: nil
+            )
         ]
         return Section(title: "Info", items: sectionItems, cardType: .KeyValue)
     }
@@ -363,7 +367,38 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
         var value: Any? = item.defaultValue
         switch item.container {
         case "profile":
-            value = profile[item.containerKey]
+            switch item.containerKey {
+            case "hire_date":
+                if profile.hasHireDate {
+                    value = NSDateFormatter.sharedAnniversaryFormatter.stringFromDate(profile.hire_date.toDate()!)
+                }
+                else {
+                    return
+                }
+
+            case "birth_date":
+                if profile.hasBirthDate {
+                    value = NSDateFormatter.sharedBirthdayFormatter.stringFromDate(profile.birth_date.toDate()!)
+                }
+                else {
+                    return
+                }
+                
+            case "seating_info":
+                let sampleInfo = [
+                    "Floor 1",
+                    "Green 4",
+                    "Red 15",
+                    "R123",
+                    "Floor 5",
+                    "Floor 10"
+                ]
+                value = sampleInfo[Int(arc4random_uniform(UInt32(sampleInfo.count)))]
+                
+            default:
+                value = profile[item.containerKey]
+            }
+            
         case "manager":
             value = manager?[item.containerKey]
             // Handle CEO where manager doesn't exist

@@ -67,6 +67,15 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
         profileImage.makeItCircular(true, borderColor: UIColor.whiteColor())
         nameNavLabel.alpha = 0.0
         titleNavLabel.alpha = 0.0
+        configureVerifiedProfileButton()
+    }
+    
+    // MARK: - Configuration
+    
+    private func configureVerifiedProfileButton() {
+        verifiedProfileButton.convertToTemplateImageForState(.Normal)
+        verifiedProfileButton.tintColor = UIColor.whiteColor()
+        verifiedProfileButton.makeItCircular()
     }
     
     override func layoutSubviews() {

@@ -103,6 +103,7 @@
 		8F823E4F1A72A0850006264B /* TeamsOverviewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F823E4E1A72A0850006264B /* TeamsOverviewDataSource.swift */; };
 		8F834F851A9909AC007B7095 /* OfficeTeamManagerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F834F831A9909AC007B7095 /* OfficeTeamManagerCollectionViewCell.swift */; };
 		8F834F861A9909AC007B7095 /* OfficeTeamManagerCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F834F841A9909AC007B7095 /* OfficeTeamManagerCollectionViewCell.xib */; };
+		8F834F8B1A9C1814007B7095 /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F834F8A1A9C1813007B7095 /* UIButtonExtension.swift */; };
 		8F9F60AF1A88738100FCAA25 /* SocialConnectCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9F60AD1A88738100FCAA25 /* SocialConnectCollectionViewCell.swift */; };
 		8F9F60B01A88738100FCAA25 /* SocialConnectCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F9F60AE1A88738100FCAA25 /* SocialConnectCollectionViewCell.xib */; };
 		8F9F60B81A896CE400FCAA25 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9F60B71A896CE400FCAA25 /* MainTabBarViewController.swift */; };
@@ -385,6 +386,7 @@
 		8F823E4E1A72A0850006264B /* TeamsOverviewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamsOverviewDataSource.swift; sourceTree = "<group>"; };
 		8F834F831A9909AC007B7095 /* OfficeTeamManagerCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OfficeTeamManagerCollectionViewCell.swift; sourceTree = "<group>"; };
 		8F834F841A9909AC007B7095 /* OfficeTeamManagerCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OfficeTeamManagerCollectionViewCell.xib; sourceTree = "<group>"; };
+		8F834F8A1A9C1813007B7095 /* UIButtonExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
 		8F9F60AD1A88738100FCAA25 /* SocialConnectCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialConnectCollectionViewCell.swift; sourceTree = "<group>"; };
 		8F9F60AE1A88738100FCAA25 /* SocialConnectCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SocialConnectCollectionViewCell.xib; sourceTree = "<group>"; };
 		8F9F60B71A896CE400FCAA25 /* MainTabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
@@ -671,6 +673,7 @@
 				8F3F7AF81A799806002CD365 /* NSBundleExtension.swift */,
 				BF041BB91A2C119B0043EC72 /* NSDateFormatterExtension.swift */,
 				BF8FC3D81A44DA83007FD8BA /* StringExtension.swift */,
+				8F834F8A1A9C1813007B7095 /* UIButtonExtension.swift */,
 				BFEDB1421A2A8CA700250165 /* UICollectionViewFlowLayoutExtension.swift */,
 				8F0004BA1A241BDE0096477A /* UIColorExtension.swift */,
 				8FD041A11A2C03AA00FE28EF /* UIFontExtention.swift */,
@@ -1279,6 +1282,7 @@
 				8F9F60D51A8C481F00FCAA25 /* SettingsCollectionViewCell.swift in Sources */,
 				BFCFDB211A91951A009A5FD4 /* TextValueCollectionViewCell.swift in Sources */,
 				8FF298531A4E306600306CFC /* CenterAlignFlowLayout.swift in Sources */,
+				8F834F8B1A9C1814007B7095 /* UIButtonExtension.swift in Sources */,
 				8F834F851A9909AC007B7095 /* OfficeTeamManagerCollectionViewCell.swift in Sources */,
 				BF8DAC731A6CB03F000860DD /* NotesCardHeaderCollectionReusableView.swift in Sources */,
 				8F22CBE31A27AE9B0026376E /* UIImageViewExtension.swift in Sources */,

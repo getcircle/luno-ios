@@ -20,7 +20,7 @@ extension NSDateFormatter {
     class var sharedTimestampFormatter: NSDateFormatter {
         struct Static {
             static var timestampConverterFormatter: NSDateFormatter {
-                var dateFormatter = NSDateFormatter()
+                let dateFormatter = NSDateFormatter()
                 dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSZZZZZ"
                 dateFormatter.timeZone = NSTimeZone(forSecondsFromGMT: 0)
                 return dateFormatter
@@ -30,10 +30,36 @@ extension NSDateFormatter {
         return Static.timestampConverterFormatter
     }
 
+    class var sharedBirthdayFormatter: NSDateFormatter {
+        struct Static {
+            static var birthdayFormatter: NSDateFormatter {
+                let dateFormatter = NSDateFormatter()
+                dateFormatter.dateFormat = "MMMM d"
+                dateFormatter.locale = NSLocale.currentLocale()
+                return dateFormatter
+            }
+        }
+        
+        return Static.birthdayFormatter
+    }
+
+    class var sharedAnniversaryFormatter: NSDateFormatter {
+        struct Static {
+            static var anniversaryFormatter: NSDateFormatter {
+                let dateFormatter = NSDateFormatter()
+                dateFormatter.dateFormat = "MMMM YYYY"
+                dateFormatter.locale = NSLocale.currentLocale()
+                return dateFormatter
+            }
+        }
+        
+        return Static.anniversaryFormatter
+    }
+    
     class var sharedRelativeDateFormatter: NSDateFormatter {
         struct Static {
             static var relativeDateFormatter: NSDateFormatter {
-                var dateFormatter = NSDateFormatter()
+                let dateFormatter = NSDateFormatter()
                 dateFormatter.locale = NSLocale.currentLocale()
                 dateFormatter.timeZone = NSTimeZone.localTimeZone()
                 return dateFormatter
