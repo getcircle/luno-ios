@@ -9,6 +9,12 @@
 import UIKit
 import ProtobufRegistry
 
+struct OfficeTeamManagerNotifications {
+    static let onManagerTappedNotification = "com.ravcode.notification:onManagerTappedNotification"
+    static let onOfficeTappedNotification = "com.ravcode.notification:onOfficeTappedNotification"
+    static let onTeamTappedNotification = "com.ravcode.notification:onTeamTappedNotification"
+}
+
 class OfficeTeamManagerCollectionViewCell: CircleCollectionViewCell {
 
     @IBOutlet weak private(set) var managerImageView: CircleImageView!
@@ -41,22 +47,32 @@ class OfficeTeamManagerCollectionViewCell: CircleCollectionViewCell {
         // Initialization code
         configureImageViews()
         configureSpacerViews()
+        configureButtons()
     }
     
     // MARK: - Configuration
     
-    func configureImageViews() {
+    private func configureImageViews() {
         for imageView in [officeImageView, teamImageView, managerImageView] {
             imageView.makeItCircular()
         }
     }
     
-    func configureSpacerViews() {
+    private func configureSpacerViews() {
         for spacer in [spacer1, spacer2] {
             spacer.backgroundColor = UIColor.viewBackgroundColor()
         }
     }
     
+    private func configureButtons() {
+        for button in [officeButton, teamButton, managerButton] {
+            button.setImage(
+                UIImage.imageFromColor(UIColor.controlHighlightedColor() , withRect: button.bounds),
+                forState: .Highlighted
+            )
+        }
+    }
+
     // MARK: - Set Data
     
     override func setData(data: AnyObject) {
@@ -91,7 +107,7 @@ class OfficeTeamManagerCollectionViewCell: CircleCollectionViewCell {
     
     // MARK: - Hide/Show Manager
     
-    func hideManagerInfo() {
+    private func hideManagerInfo() {
         for view in [managerImageView, managerLabel, managerButton] {
             view.alpha = 0.0
         }
@@ -99,11 +115,34 @@ class OfficeTeamManagerCollectionViewCell: CircleCollectionViewCell {
         spacer2.alpha = 0.0
     }
     
-    func showManagerInfo() {
+    private func showManagerInfo() {
         for view in [managerImageView, managerLabel, managerButton] {
             view.alpha = 1.0
         }
         
         spacer2.alpha = 1.0
+    }
+    
+    // MARK: - IBActions
+
+    @IBAction func onManagerButtonTapped(sender: AnyObject!) {
+        NSNotificationCenter.defaultCenter().postNotificationName(
+            OfficeTeamManagerNotifications.onManagerTappedNotification, 
+            object: nil
+        )
+    }
+
+    @IBAction func onOfficeButtonTapped(sender: AnyObject!) {
+        NSNotificationCenter.defaultCenter().postNotificationName(
+            OfficeTeamManagerNotifications.onOfficeTappedNotification,
+            object: nil
+        )
+    }
+
+    @IBAction func onTeamButtonTapped(sender: AnyObject!) {
+        NSNotificationCenter.defaultCenter().postNotificationName(
+            OfficeTeamManagerNotifications.onTeamTappedNotification,
+            object: nil
+        )
     }
 }

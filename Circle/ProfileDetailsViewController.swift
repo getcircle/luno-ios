@@ -207,23 +207,6 @@ class ProfileDetailsViewController:
 
         case .Email:
             performQuickAction(.Email)
-        
-        case .Office:
-            let officeDetailVC = OfficeDetailViewController()
-            (officeDetailVC.dataSource as OfficeDetailDataSource).selectedOffice = dataSource.address
-            officeDetailVC.hidesBottomBarWhenPushed = true
-            navigationController?.pushViewController(officeDetailVC, animated: true)
-            
-        case .Manager:
-            let profileVC = ProfileDetailsViewController.forProfile(dataSource.manager!)
-            profileVC.hidesBottomBarWhenPushed = true
-            navigationController?.pushViewController(profileVC, animated: true)
-
-        case .Team:
-            let teamVC = TeamDetailViewController()
-            (teamVC.dataSource as TeamDetailDataSource).selectedTeam = dataSource.team!
-            teamVC.hidesBottomBarWhenPushed = true
-            navigationController?.pushViewController(teamVC, animated: true)
 
         case .WorkPhone:
             performQuickAction(.Phone, additionalData: profile.work_phone)
@@ -311,11 +294,32 @@ class ProfileDetailsViewController:
             name: SocialConnectCollectionViewCellNotifications.onCTATappedNotification,
             object: nil
         )
-
+        
         NSNotificationCenter.defaultCenter().addObserver(
             self,
             selector: "quickActionButtonTapped:",
             name: QuickActionNotifications.onQuickActionStarted,
+            object: nil
+        )
+
+        NSNotificationCenter.defaultCenter().addObserver(
+            self,
+            selector: "onManagerTapped:",
+            name: OfficeTeamManagerNotifications.onManagerTappedNotification,
+            object: nil
+        )
+        
+        NSNotificationCenter.defaultCenter().addObserver(
+            self,
+            selector: "onOfficeTapped:",
+            name: OfficeTeamManagerNotifications.onOfficeTappedNotification,
+            object: nil
+        )
+        
+        NSNotificationCenter.defaultCenter().addObserver(
+            self,
+            selector: "onTeamTapped:",
+            name: OfficeTeamManagerNotifications.onTeamTappedNotification,
             object: nil
         )
         
@@ -347,6 +351,24 @@ class ProfileDetailsViewController:
         
         NSNotificationCenter.defaultCenter().removeObserver(self,
             name: QuickActionNotifications.onQuickActionStarted,
+            object: nil
+        )
+        
+        NSNotificationCenter.defaultCenter().removeObserver(
+            self,
+            name: OfficeTeamManagerNotifications.onManagerTappedNotification,
+            object: nil
+        )
+        
+        NSNotificationCenter.defaultCenter().removeObserver(
+            self,
+            name: OfficeTeamManagerNotifications.onOfficeTappedNotification,
+            object: nil
+        )
+        
+        NSNotificationCenter.defaultCenter().removeObserver(
+            self,
+            name: OfficeTeamManagerNotifications.onTeamTappedNotification,
             object: nil
         )
 
@@ -458,6 +480,35 @@ class ProfileDetailsViewController:
             
         default:
             break
+        }
+    }
+    
+    func onManagerTapped(notification: NSNotification) {
+        let profileInfoCollectionView = detailViews[0]
+        if let dataSource = profileInfoCollectionView.dataSource as? ProfileDetailDataSource {
+            let profileVC = ProfileDetailsViewController.forProfile(dataSource.manager!)
+            profileVC.hidesBottomBarWhenPushed = true
+            navigationController?.pushViewController(profileVC, animated: true)
+        }
+    }
+    
+    func onOfficeTapped(notification: NSNotification) {
+        let profileInfoCollectionView = detailViews[0]
+        if let dataSource = profileInfoCollectionView.dataSource as? ProfileDetailDataSource {
+            let officeDetailVC = OfficeDetailViewController()
+            (officeDetailVC.dataSource as OfficeDetailDataSource).selectedOffice = dataSource.address
+            officeDetailVC.hidesBottomBarWhenPushed = true
+            navigationController?.pushViewController(officeDetailVC, animated: true)
+        }
+    }
+    
+    func onTeamTapped(notification: NSNotification) {
+        let profileInfoCollectionView = detailViews[0]
+        if let dataSource = profileInfoCollectionView.dataSource as? ProfileDetailDataSource {
+            let teamVC = TeamDetailViewController()
+            (teamVC.dataSource as TeamDetailDataSource).selectedTeam = dataSource.team!
+            teamVC.hidesBottomBarWhenPushed = true
+            navigationController?.pushViewController(teamVC, animated: true)
         }
     }
     

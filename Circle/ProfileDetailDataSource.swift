@@ -104,6 +104,10 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
     private var hasSocialConnectCTAs = false
     private(set) var profileHeaderView: ProfileHeaderCollectionReusableView?
     private var sections = [Section]()
+
+    private let numberOfEducationItemsVisibleInitially = 1
+    private let numberOfExperienceItemsVisibleInitially = 2
+    private let numberOfSkillItemsVisibleInitially = 6
     
     convenience init(profile withProfile: ProfileService.Containers.Profile) {
         self.init()
@@ -399,8 +403,8 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
     private func addSkillsItemToCard(item: SectionItem, card: Card) {
         if let skills = skills {
             if skills.count > 0 {
-                card.addContent(content: skills as [AnyObject], maxVisibleItems: 10)
-                if skills.count > 10 {
+                card.addContent(content: skills as [AnyObject], maxVisibleItems: numberOfSkillItemsVisibleInitially)
+                if skills.count > numberOfSkillItemsVisibleInitially {
                     card.addDefaultFooter()
                 }
             }
@@ -419,8 +423,8 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
     
     private func addEducationItemToCard(item: SectionItem, card: Card) {
         if let resume = resume {
-            card.addContent(content: resume.educations as [AnyObject], maxVisibleItems: 1)
-            if resume.educations.count > 1 {
+            card.addContent(content: resume.educations as [AnyObject], maxVisibleItems: numberOfEducationItemsVisibleInitially)
+            if resume.educations.count > numberOfEducationItemsVisibleInitially {
                 card.addDefaultFooter()
             }
         }
@@ -428,8 +432,8 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
     
     private func addPositionItemToCard(item: SectionItem, card: Card) {
         if let resume = resume {
-            card.addContent(content: resume.positions as [AnyObject], maxVisibleItems: 2)
-            if resume.positions.count > 2 {
+            card.addContent(content: resume.positions as [AnyObject], maxVisibleItems: numberOfExperienceItemsVisibleInitially)
+            if resume.positions.count > numberOfExperienceItemsVisibleInitially {
                 card.addDefaultFooter()
             }
         }
