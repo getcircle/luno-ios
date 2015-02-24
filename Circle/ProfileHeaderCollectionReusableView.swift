@@ -19,6 +19,7 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
     @IBOutlet weak private(set) var nameLabel: UILabel!
     @IBOutlet weak private(set) var nameNavLabel: UILabel!
     @IBOutlet weak private(set) var titleLabel: UILabel!
+    @IBOutlet weak private(set) var titleNavLabel: UILabel!
     @IBOutlet weak private(set) var profileImage: CircleImageView!
     @IBOutlet weak private(set) var sectionsView: UIView!
     @IBOutlet weak private(set) var verifiedProfileButton: UIButton!
@@ -65,6 +66,7 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
         // Initialization code
         profileImage.makeItCircular(true, borderColor: UIColor.whiteColor())
         nameNavLabel.alpha = 0.0
+        titleNavLabel.alpha = 0.0
     }
     
     override func layoutSubviews() {
@@ -82,6 +84,7 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
         nameLabel.text = userProfile.first_name + " " + userProfile.last_name
         nameNavLabel.text = nameLabel.text
         titleLabel.text = userProfile.title
+        titleNavLabel.text = titleLabel.text
         profileImage.setImageWithProfile(userProfile)
         
         if let imageURL = NSURL(string: userProfile.image_url) {

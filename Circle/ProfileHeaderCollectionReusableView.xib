@@ -30,12 +30,6 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ravi Rani" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zJL-k5-Ada" userLabel="NameNavLabel">
-                    <rect key="frame" x="20" y="211" width="280" height="24"/>
-                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="17"/>
-                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Co-founder" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GGm-ME-NAZ" userLabel="TitleLabel">
                     <rect key="frame" x="10" y="184" width="300" height="20"/>
                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
@@ -59,15 +53,32 @@
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ravi Rani" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zJL-k5-Ada" userLabel="NameNavLabel">
+                    <rect key="frame" x="20" y="238" width="280" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="LGc-Hs-MLq"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="18"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Co-founder" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Raz-vM-IgD" userLabel="TitleNavLabel">
+                    <rect key="frame" x="20" y="258" width="280" height="16"/>
+                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
+                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="4NY-Ue-zhf" secondAttribute="trailing" id="2u1-2N-e1H"/>
+                <constraint firstItem="Raz-vM-IgD" firstAttribute="trailing" secondItem="zJL-k5-Ada" secondAttribute="trailing" id="6V4-GG-xG8"/>
                 <constraint firstItem="65x-XU-UUc" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" id="7FU-uk-nJx"/>
                 <constraint firstItem="GGm-ME-NAZ" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" constant="10" id="9Gx-ny-GHb"/>
                 <constraint firstAttribute="bottom" secondItem="65x-XU-UUc" secondAttribute="bottom" id="A9H-5y-pLm"/>
                 <constraint firstItem="1Tu-Zx-9yR" firstAttribute="top" secondItem="kX0-a4-Q8w" secondAttribute="bottom" constant="12" id="BGX-Cf-EUZ"/>
-                <constraint firstItem="65x-XU-UUc" firstAttribute="bottom" secondItem="zJL-k5-Ada" secondAttribute="bottom" constant="45" id="Dhm-fP-NdC"/>
+                <constraint firstItem="65x-XU-UUc" firstAttribute="bottom" secondItem="zJL-k5-Ada" secondAttribute="bottom" constant="22" id="Dhm-fP-NdC"/>
                 <constraint firstItem="65x-XU-UUc" firstAttribute="centerY" secondItem="kX0-a4-Q8w" secondAttribute="centerY" constant="45" id="GaX-uR-DOq"/>
+                <constraint firstAttribute="bottom" secondItem="Raz-vM-IgD" secondAttribute="bottom" constant="6" id="I1e-o1-BGq"/>
                 <constraint firstItem="zJL-k5-Ada" firstAttribute="top" relation="greaterThanOrEqual" secondItem="kX0-a4-Q8w" secondAttribute="bottom" priority="750" constant="39" id="JG4-cb-RHZ"/>
                 <constraint firstAttribute="trailing" secondItem="zJL-k5-Ada" secondAttribute="trailing" constant="20" symbolic="YES" id="LPl-jQ-bUh"/>
                 <constraint firstItem="GGm-ME-NAZ" firstAttribute="top" secondItem="1Tu-Zx-9yR" secondAttribute="bottom" constant="-2" id="Ohk-wO-3LS"/>
@@ -78,12 +89,19 @@
                 <constraint firstAttribute="centerX" secondItem="kX0-a4-Q8w" secondAttribute="centerX" id="eCw-ga-vME"/>
                 <constraint firstItem="1Tu-Zx-9yR" firstAttribute="centerY" secondItem="xmj-MC-afc" secondAttribute="centerY" id="im7-pz-jDa"/>
                 <constraint firstAttribute="trailing" secondItem="65x-XU-UUc" secondAttribute="trailing" id="iqq-Xz-0nC"/>
+                <constraint firstItem="Raz-vM-IgD" firstAttribute="top" secondItem="zJL-k5-Ada" secondAttribute="bottom" id="lGl-9r-cZW"/>
                 <constraint firstAttribute="bottom" secondItem="4NY-Ue-zhf" secondAttribute="bottom" constant="15" id="mLD-KC-Qxo"/>
                 <constraint firstItem="zJL-k5-Ada" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" constant="20" symbolic="YES" id="puw-hV-yod"/>
                 <constraint firstItem="4NY-Ue-zhf" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" id="qJJ-0K-49w"/>
+                <constraint firstItem="Raz-vM-IgD" firstAttribute="leading" secondItem="zJL-k5-Ada" secondAttribute="leading" id="ufF-6n-AmD"/>
                 <constraint firstItem="xmj-MC-afc" firstAttribute="leading" secondItem="1Tu-Zx-9yR" secondAttribute="trailing" constant="6" id="xPc-Ml-eOy"/>
                 <constraint firstAttribute="trailing" secondItem="GGm-ME-NAZ" secondAttribute="trailing" constant="10" id="xlc-ll-EfA"/>
             </constraints>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="JG4-cb-RHZ"/>
+                </mask>
+            </variation>
             <connections>
                 <outlet property="backgroundImage" destination="65x-XU-UUc" id="zYp-Qk-3vF"/>
                 <outlet property="nameLabel" destination="1Tu-Zx-9yR" id="dCN-I3-cEP"/>
@@ -91,9 +109,10 @@
                 <outlet property="profileImage" destination="kX0-a4-Q8w" id="idA-m8-Iy4"/>
                 <outlet property="sectionsView" destination="4NY-Ue-zhf" id="NH8-Ga-N14"/>
                 <outlet property="titleLabel" destination="GGm-ME-NAZ" id="FRS-1Y-xvS"/>
+                <outlet property="titleNavLabel" destination="Raz-vM-IgD" id="4tA-Yx-E8u"/>
                 <outlet property="verifiedProfileButton" destination="xmj-MC-afc" id="JX3-5E-uLr"/>
             </connections>
-            <point key="canvasLocation" x="-676" y="284"/>
+            <point key="canvasLocation" x="-945" y="221"/>
         </collectionReusableView>
     </objects>
     <resources>

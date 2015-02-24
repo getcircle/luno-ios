@@ -93,7 +93,7 @@ class ProfileOverlaidCollectionView: UICollectionView, UICollectionViewDelegate 
         layout = stickyLayout
         layout?.headerHeight = ProfileHeaderCollectionReusableView.height
         // height of section indicator + status bar + navbar
-        layout?.stickySectionHeight = 35.0 + 20.0 + 44.0
+        layout?.stickySectionHeight = 20.0 + 44.0
         collectionViewDataSource = ProfileOverlaidCollectionViewDataSource(
             profile: profile!,
             sections: sections
@@ -130,10 +130,13 @@ class ProfileOverlaidCollectionView: UICollectionView, UICollectionViewDelegate 
                 // Reduce opacity of the name and title label at a faster pace
                 let titleLabelAlpha = 1.0 - contentOffset.y/(profileHeaderView.titleLabel.frameY - 40.0)
                 let nameLabelAlpha = 1.0 - contentOffset.y/(profileHeaderView.nameLabel.frameY - 40.0)
+                let sectionsAlpha = 1.0 - contentOffset.y/(profileHeaderView.sectionsView.frameY - 40.0)
                 profileHeaderView.titleLabel.alpha = titleLabelAlpha
                 profileHeaderView.verifiedProfileButton.alpha = nameLabelAlpha
                 profileHeaderView.nameLabel.alpha = nameLabelAlpha
-                profileHeaderView.nameNavLabel.alpha = titleLabelAlpha <= 0.0 ? profileHeaderView.nameNavLabel.alpha + 1/20 : 0.0
+                profileHeaderView.nameNavLabel.alpha = sectionsAlpha <= 0.0 ? profileHeaderView.nameNavLabel.alpha + 1/20 : 0.0
+                profileHeaderView.titleNavLabel.alpha = sectionsAlpha <= 0.0 ? profileHeaderView.titleNavLabel.alpha + 1/20 : 0.0
+                profileHeaderView.sectionsView.alpha = sectionsAlpha
             }
             else {
                 // Change alpha faster for profile image
@@ -144,6 +147,7 @@ class ProfileOverlaidCollectionView: UICollectionView, UICollectionViewDelegate 
                 profileHeaderView.nameLabel.alpha = otherViewsAlpha
                 profileHeaderView.verifiedProfileButton.alpha = otherViewsAlpha
                 profileHeaderView.nameNavLabel.alpha = 0.0
+                profileHeaderView.titleNavLabel.alpha = 0.0
                 profileHeaderView.titleLabel.alpha = otherViewsAlpha
                 profileHeaderView.profileImage.alpha = profileImageAlpha
                 profileHeaderView.visualEffectView?.alpha = otherViewsAlpha
