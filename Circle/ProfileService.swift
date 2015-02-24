@@ -71,9 +71,10 @@ extension ProfileService {
             self.getProfiles(requestBuilder, completionHandler: completionHandler)
         }
         
-        class func getProfiles(#skillId: String, completionHandler: GetProfilesCompletionHandler?) {
+        class func getProfiles(#skillId: String, organizationId: String, completionHandler: GetProfilesCompletionHandler?) {
             let requestBuilder = ProfileService.GetProfiles.Request.builder()
             requestBuilder.skill_id = skillId
+            requestBuilder.organization_id = organizationId
             self.getProfiles(requestBuilder, completionHandler: completionHandler)
         }
         
