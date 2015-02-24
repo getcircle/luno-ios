@@ -482,7 +482,7 @@ class ProfileDetailsViewController:
     private func addSettingsButton() {
         if navigationItem.leftBarButtonItem == nil {
             var settingsButton = UIButton.buttonWithType(.Custom) as UIButton
-            settingsButton.frame = CGRectMake(0.0, 0.0, 44.0, 44.0)
+            settingsButton.frame = CGRectMake(0.0, 0.0, 22.0, 22.0)
             settingsButton.setImage(UIImage(named: "Cog")?.imageWithRenderingMode(.AlwaysTemplate), forState: .Normal)
             settingsButton.tintColor = UIColor.navigationBarTintColor()
             settingsButton.addTarget(self, action: "settingsButtonTapped:", forControlEvents: .TouchUpInside)
