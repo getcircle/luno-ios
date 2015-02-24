@@ -80,14 +80,14 @@ struct ServiceHttpRequest: URLRequestConvertible {
         case Production
         
         var scheme: String {
-            return "http"
+            return "https"
         }
         
         var host: String {
             switch self {
             case .Local: return "localhost"
-            case .Staging: return "staging.services.otterbots.net"
-            case .Production: return "prod.services.otterbots.net"
+            case .Staging: return "api.circlehq.co"
+            case .Production: return "api.circlehq.co"
             }
         }
         
