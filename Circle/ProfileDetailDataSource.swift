@@ -172,7 +172,7 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
                 if !hasLinkedInIdentity {
                     let sectionItems = [
                         SectionItem(
-                            title: NSLocalizedString("Connect with LinkedIn", comment: "Button title for connect with LinkedIn button"),
+                            title: NSLocalizedString("Connect with LinkedIn", comment: "Button title for connect with LinkedIn button").uppercaseStringWithLocale(NSLocale.currentLocale()),
                             container: "social",
                             containerKey: "profile",
                             contentType: .LinkedInConnect,
@@ -317,7 +317,7 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
         resetCards()
         if let socialConnectSection = getSocialConnectSection() {
             hasSocialConnectCTAs = true
-            sections.insert(socialConnectSection, atIndex: 0)
+            sections.insert(socialConnectSection, atIndex: 1)
         }
         else {
             hasSocialConnectCTAs = false

@@ -21,7 +21,7 @@ class SocialConnectCollectionViewCell: CircleCollectionViewCell {
     }
     
     override class var height: CGFloat {
-        return 50.0
+        return 70.0
     }
     
     private var CTAContentType: ContentType?
@@ -36,7 +36,6 @@ class SocialConnectCollectionViewCell: CircleCollectionViewCell {
         super.awakeFromNib()
         
         // Initialization code
-        socialConnectCTA.addRoundCorners()
         selectedBackgroundView = nil
     }
     
