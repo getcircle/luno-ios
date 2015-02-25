@@ -93,7 +93,7 @@ extension UIColor {
     }
     
     class func linkedinColor() -> UIColor {
-        return UIColor(red: 45, green: 68, blue: 134)
+        return UIColor(red: 30, green: 136, blue: 190)
     }
     
     class func linkedinConnectCTABackgroundColor() -> UIColor {

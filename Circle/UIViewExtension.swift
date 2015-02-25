@@ -23,8 +23,9 @@ extension UIView {
         makeItCircular(false)
     }
     
-    func addRoundCorners() {
-        layer.cornerRadiusWithMaskToBounds(5.0)
+    func addRoundCorners(radius: CGFloat? = 5.0) {
+        let cornerRadius = radius ?? 5.0
+        layer.cornerRadiusWithMaskToBounds(cornerRadius)
     }
     
     func addShakeAnimation() {

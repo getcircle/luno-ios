@@ -36,12 +36,23 @@ class SocialConnectCollectionViewCell: CircleCollectionViewCell {
         super.awakeFromNib()
         
         // Initialization code
+        socialConnectCTA.addRoundCorners(radius: 2.0)
         selectedBackgroundView = nil
     }
     
     override func setData(data: AnyObject) {
         if let keyValueDictionary = data as? [String: AnyObject] {
-            socialConnectCTA.setTitle(keyValueDictionary["title"] as String!, forState: .Normal)
+            socialConnectCTA.setAttributedTitle(
+                NSAttributedString(
+                    string: keyValueDictionary["title"] as String!,
+                    attributes: [
+                        NSKernAttributeName: NSNumber(double: 2.0),
+                        NSForegroundColorAttributeName: UIColor.whiteColor(),
+                        NSFontAttributeName: socialConnectCTA.titleLabel!.font
+                    ]
+                ),
+                forState: .Normal
+            )
             
             if let typeOfCTA = keyValueDictionary["type"] as? Int {
                 CTAContentType = ContentType(rawValue: typeOfCTA)
