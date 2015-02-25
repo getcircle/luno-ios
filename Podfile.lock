@@ -20,6 +20,7 @@ PODS:
   - AFNetworking/UIKit (2.5.0):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - AMScrollingNavbar (1.3.2)
   - google-plus-ios-sdk (1.7.1)
   - libPhoneNumber-iOS (0.7.5)
   - Mixpanel (2.7.2):
@@ -33,6 +34,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (~> 2.5)
+  - AMScrollingNavbar
   - google-plus-ios-sdk (~> 1.7)
   - libPhoneNumber-iOS (~> 0.7)
   - Mixpanel (~> 2.7)
@@ -42,6 +44,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: 0f54cb5d16ce38c1b76948faffb8d5fb705021c7
+  AMScrollingNavbar: d17101ccb4871c4b9304cc51357ca1b8d2ed7ca8
   google-plus-ios-sdk: bb7b918c2ee0d5f5e389c4fddc06d71995481f67
   libPhoneNumber-iOS: 16b9556d7fdf4819eabeb7b7356fea3373fa47f9
   Mixpanel: def38b9e600f101686b8d647e05660a72c089c65

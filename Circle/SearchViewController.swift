@@ -21,8 +21,8 @@ NewNoteViewControllerDelegate {
 
     @IBOutlet weak private(set) var activityIndicatorView: UIActivityIndicatorView!
     @IBOutlet weak private(set) var collectionView: UICollectionView!
-    @IBOutlet weak private(set) var companyNameLabel: UILabel!
     @IBOutlet weak private(set) var searchHeaderContainerView: UIView!
+    @IBOutlet weak private(set) var searchHeaderContinerViewTopConstraint: NSLayoutConstraint!
     
     private var data = [Card]()
     private var firstLoad = false
@@ -44,31 +44,23 @@ NewNoteViewControllerDelegate {
         configureView()
         configureSearchHeaderView()
         configureCollectionView()
+        followScrollView(collectionView, usingTopConstraint: searchHeaderContinerViewTopConstraint)
     }
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-
-        //navigationController?.setNavigationBarHidden(true, animated: false)
         registerNotifications()
         loadData()
     }
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        
-        if navigationController?.navigationBarHidden == false {
-            navigationController?.setNavigationBarHidden(true, animated: true)
-        }
         checkUserAndPresentAuthViewController()
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        
-        if navigationController?.topViewController != self {
-            navigationController?.setNavigationBarHidden(false, animated: true)
-        }
+        showNavBarAnimated(false)
     }
 
     override func viewDidDisappear(animated: Bool) {
@@ -83,6 +75,7 @@ NewNoteViewControllerDelegate {
     // MARK: - Configuration
 
     private func configureView() {
+        view.backgroundColor = UIColor.viewBackgroundColor()
     }
 
     private func configureSearchHeaderView() {

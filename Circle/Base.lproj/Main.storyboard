@@ -182,6 +182,7 @@
                         <outlet property="activityIndicatorView" destination="heX-JS-q97" id="agu-HE-HiO"/>
                         <outlet property="collectionView" destination="FpX-4G-cZW" id="47Q-HQ-Uri"/>
                         <outlet property="searchHeaderContainerView" destination="5kQ-sW-5v8" id="IPE-OO-odc"/>
+                        <outlet property="searchHeaderContinerViewTopConstraint" destination="3h5-Ga-KBe" id="RQm-cp-2FF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Vf-V8-GjI" userLabel="First Responder" sceneMemberID="firstResponder"/>
