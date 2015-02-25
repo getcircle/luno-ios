@@ -153,9 +153,9 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
     private func configureSections() {
         sections.append(getQuickActionsSection())
         sections.append(getAboutSection())
-        sections.append(getBasicInfoSection())
         sections.append(getSkillsSection())
         sections.append(getOfficeTeamSection())
+        sections.append(getBasicInfoSection())
         sections.append(getWorkExperienceSection())
         sections.append(getEducationSection())
     }
@@ -215,6 +215,13 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
     private func getBasicInfoSection() -> Section {
         let sectionItems = [
             SectionItem(
+                title: "Seating Info",
+                container: "profile",
+                containerKey: "seating_info",
+                contentType: .SeatingInfo,
+                image: nil
+            ),
+            SectionItem(
                 title: "Hire Date",
                 container: "profile",
                 containerKey: "hire_date",
@@ -226,13 +233,6 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
                 container: "profile",
                 containerKey: "birth_date",
                 contentType: .Birthday,
-                image: nil
-            ),
-            SectionItem(
-                title: "Seating Info",
-                container: "profile",
-                containerKey: "seating_info",
-                contentType: .SeatingInfo,
                 image: nil
             )
         ]
