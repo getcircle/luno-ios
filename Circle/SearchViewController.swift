@@ -24,7 +24,6 @@ NewNoteViewControllerDelegate {
     @IBOutlet weak private(set) var companyNameLabel: UILabel!
     @IBOutlet weak private(set) var searchHeaderContainerView: UIView!
     
-    private var companyProfileImageView: UIImageView!
     private var data = [Card]()
     private var firstLoad = false
     private var landingDataSource: SearchLandingDataSource!
@@ -142,14 +141,7 @@ NewNoteViewControllerDelegate {
         queryDataSource = SearchQueryDataSource()
         queryDataSource.registerCardHeader(collectionView)
     }
-    
-    // MARK: - Load data
 
-    private func loadOrganizationInfo() {
-        // Get this from the server
-        companyProfileImageView.image = UIImage(named: "EB")
-    }
-    
     // MARK: - TextField Delegate
     
     func textFieldDidBeginEditing(textField: UITextField) {
@@ -339,30 +331,7 @@ NewNoteViewControllerDelegate {
     }
     
     // MARK: - IBActions
-    
-    @IBAction func showLoggedInUserProfile(sender: AnyObject!) {
-        let profile = AuthViewController.getLoggedInUserProfile()!
-        let profileViewController = ProfileDetailsViewController.forProfile(
-            profile,
-            showLogOutButton: true,
-            showCloseButton: true
-        )
-        let navController = UINavigationController(rootViewController: profileViewController)
-        navigationController?.presentViewController(navController, animated: true, completion: nil)
-    }
 
-    @IBAction func showOrganizationProfile(sender: AnyObject!) {
-        if let loggedInUserProfile = AuthViewController.getLoggedInUserProfile() {
-            let orgVC = OrganizationDetailViewController(showCloseButton: true)
-            (orgVC.dataSource as OrganizationDetailDataSource).selectedOrgId = loggedInUserProfile.organization_id
-            let navController = UINavigationController(rootViewController: orgVC)
-            navigationController?.presentViewController(navController, animated: true, completion: nil)
-        }
-        else {
-            // TODO Show error
-        }
-    }
-        
     @IBAction func messageButtonTapped(sender: AnyObject!) {
         selectedAction = .Message
         searchHeaderView.searchTextField.becomeFirstResponder()

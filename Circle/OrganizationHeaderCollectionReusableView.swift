@@ -38,14 +38,14 @@ class OrganizationHeaderCollectionReusableView: CircleCollectionReusableView {
         visualEffectView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
         profileImage.makeItCircular(true)
         nameNavLabel.alpha = 0.0
+        backgroundImage.backgroundColor = UIColor.whiteColor()
+        profileImage.backgroundColor = UIColor.whiteColor()
     }
     
     func setOrganization(organization: OrganizationService.Containers.Organization) {
         nameLabel.text = organization.name
         nameNavLabel.text = nameLabel.text
-//        profileImage.setImageWithProfile(profile)
-//        backgroundImage.setImageWithURL(
-//            NSURL(string: profile.image_url)
-//        )
+        profileImage.image = UIImage(named: organization.name)
+        backgroundImage.image = UIImage(named: organization.name)
     }
 }

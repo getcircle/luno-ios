@@ -49,7 +49,6 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
             if tabBarViewControllers.count == 1 {
                 // Organization Tab
                 let orgVC = OrganizationDetailViewController()
-                (orgVC.dataSource as OrganizationDetailDataSource).selectedOrgId = loggedInUserProfile.organization_id
                 let navController = UINavigationController(rootViewController: orgVC)
                 let orgTabImage = UIImage(named: "Building")?.imageWithRenderingMode(.AlwaysTemplate)
                 let organization = AuthViewController.getLoggedInUserOrganization()!

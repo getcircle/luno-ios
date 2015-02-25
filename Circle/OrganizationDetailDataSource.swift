@@ -11,9 +11,6 @@ import ProtobufRegistry
 
 class OrganizationDetailDataSource: CardDataSource {
 
-    var selectedOrgId: String!
-    var selectedOrg: OrganizationService.Containers.Organization!
-
     private(set) var profileHeaderView: OrganizationHeaderCollectionReusableView?
 
     override func loadData(completionHandler: (error: NSError?) -> Void) {
@@ -81,8 +78,11 @@ class OrganizationDetailDataSource: CardDataSource {
                 forIndexPath: indexPath
             ) as OrganizationHeaderCollectionReusableView
             
-            // profileHeaderView?.titleLabel = selectedOrg.name
             profileHeaderView = supplementaryView
+            // You can only view the organization associated with the current logged in user
+            if let currentOrganization = AuthViewController.getLoggedInUserOrganization() {
+                supplementaryView.setOrganization(currentOrganization)
+            }
             return supplementaryView
         }
         else {
