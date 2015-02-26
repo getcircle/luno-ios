@@ -32,10 +32,10 @@ class SkillDetailDataSource: CardDataSource {
         if let currentProfile = AuthViewController.getLoggedInUserProfile() {
             let profile = AuthViewController.getLoggedInUserProfile()!
             ProfileService.Actions.getProfiles(skillId: selectedSkill!.id, organizationId: profile.organization_id) { (profiles, error) -> Void in
-                if error == nil {
-                    self.profiles.extend(profiles!)
+                if let profiles = profiles {
+                    self.profiles.extend(profiles)
                     let peopleCard = Card(cardType: .People, title: "People by Skill")
-                    peopleCard.addContent(content: profiles! as [AnyObject])
+                    peopleCard.addContent(content: profiles as [AnyObject])
                     peopleCard.sectionInset = UIEdgeInsetsZero
                     self.appendCard(peopleCard)
                     completionHandler(error: nil)
