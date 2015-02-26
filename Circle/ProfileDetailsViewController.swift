@@ -478,6 +478,13 @@ class ProfileDetailsViewController:
                 }
             }
             
+        case .Info, .Note:
+            let contactInfoViewController = ContactInfoViewController()
+            contactInfoViewController.profile = profile
+            contactInfoViewController.modalPresentationStyle = .Custom
+            contactInfoViewController.transitioningDelegate = contactInfoViewController
+            presentViewController(contactInfoViewController, animated: true, completion: nil)
+            
         default:
             break
         }

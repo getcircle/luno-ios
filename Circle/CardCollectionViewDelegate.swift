@@ -39,7 +39,7 @@ class CardCollectionViewDelegate: NSObject, UICollectionViewDelegateFlowLayout, 
         leftAndRightInsets += card.sectionInset.right
 
         if card.contentClass.sizeCalculationMethod == SizeCalculation.Fixed {
-            return CGSizeMake(card.contentClass.width - leftAndRightInsets, card.contentClass.height)
+            return CGSizeMake(collectionView.frameWidth - leftAndRightInsets, card.contentClass.height)
         }
         else {
             

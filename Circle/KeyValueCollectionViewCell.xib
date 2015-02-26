@@ -13,8 +13,8 @@
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="639" height="44"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ravirani@gmail.com" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Ax-wo-sff" userLabel="ValueLabel">
-                        <rect key="frame" x="125" y="11" width="474" height="22"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="ravirani@gmail.com" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Ax-wo-sff" userLabel="ValueLabel">
+                        <rect key="frame" x="64" y="11" width="560" height="22"/>
                         <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
@@ -28,10 +28,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lAf-wh-yGN" userLabel="NameLabel">
-                        <rect key="frame" x="15" y="11" width="100" height="21"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="100" id="xLR-mb-3PM"/>
-                        </constraints>
+                        <rect key="frame" x="15" y="11" width="39" height="21"/>
                         <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="15"/>
                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
@@ -43,7 +40,7 @@
             <constraints>
                 <constraint firstAttribute="centerY" secondItem="lAf-wh-yGN" secondAttribute="centerY" id="RRZ-ma-lRp"/>
                 <constraint firstItem="lAf-wh-yGN" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="15" id="Xor-qf-DPt"/>
-                <constraint firstAttribute="trailing" secondItem="6Ax-wo-sff" secondAttribute="trailing" constant="40" id="c3i-aL-zmh"/>
+                <constraint firstAttribute="trailing" secondItem="6Ax-wo-sff" secondAttribute="trailing" constant="15" id="c3i-aL-zmh"/>
                 <constraint firstAttribute="centerY" secondItem="867-SJ-3vd" secondAttribute="centerY" id="crk-Fd-Raf"/>
                 <constraint firstItem="6Ax-wo-sff" firstAttribute="leading" secondItem="lAf-wh-yGN" secondAttribute="trailing" constant="10" id="iba-i5-ao6"/>
                 <constraint firstAttribute="centerY" secondItem="6Ax-wo-sff" secondAttribute="centerY" id="n0J-iO-lS4"/>

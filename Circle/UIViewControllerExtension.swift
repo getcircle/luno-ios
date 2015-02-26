@@ -12,6 +12,7 @@ import UIKit
 enum QuickAction: Int {
     case None
     case Email
+    case Info
     case Message
     case Note
     case Phone
@@ -24,24 +25,28 @@ enum QuickAction: Int {
                 comment: "Placeholder text for search field used to search people, teams and skills.")
             
         case .Email:
-            return NSLocalizedString("Who do you want to email",
-                comment: "Placeholder for search field used search for the person user intends to email")
+            return NSLocalizedString("Who do you want to email?",
+                comment: "Placeholder for search field used to search for the person user intends to email")
+        
+        case .Info:
+            return NSLocalizedString("Who do you want contact info on?",
+                comment: "Placeholder for search field used to search for the person user intends to email")
             
         case .Message:
-            return NSLocalizedString("Who do you want to message",
-                comment: "Placeholder for search field used search for the person user intends to send a message")
+            return NSLocalizedString("Who do you want to message?",
+                comment: "Placeholder for search field used to search for the person user intends to send a message")
 
         case .Note:
-            return NSLocalizedString("Who do you want to take a note on",
-                comment: "Placeholder for search field used search for the person user intends to take a note about")
+            return NSLocalizedString("Who do you want to take a note on?",
+                comment: "Placeholder for search field used to search for the person user intends to take a note about")
 
         case .Phone:
-            return NSLocalizedString("Who do you want to call",
-                comment: "Placeholder for search field used search for the person user intends to call")
+            return NSLocalizedString("Who do you want to call?",
+                comment: "Placeholder for search field used to search for the person user intends to call")
             
         case .Slack:
-            return NSLocalizedString("Who do you want to message",
-                comment: "Placeholder for search field used search for the person user intends to send a message")
+            return NSLocalizedString("Who do you want to message?",
+                comment: "Placeholder for search field used to search for the person user intends to send a message")
         }
     }
 }

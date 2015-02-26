@@ -20,8 +20,6 @@ class MapViewAnimator: NSObject, UIViewControllerAnimatedTransitioning {
         var fromViewController = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey) as UIViewController!
         var toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey) as UIViewController!
         
-        println(fromViewController)
-        println(toViewController)
         if toViewController is MapViewController {
             // present animation
             containerView.addSubview(toViewController.view)

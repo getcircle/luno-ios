@@ -95,6 +95,7 @@ class Section {
 
 class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
 
+    var onlyShowContactInfo = false
     var profile: ProfileService.Containers.Profile!
     
     private(set) var address: OrganizationService.Containers.Address?
@@ -130,34 +131,46 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
     }
 
     override func loadData(completionHandler: (error: NSError?) -> Void) {
-        // Add placeholder card to load profile header instantly
-        var placeholderCard = Card(cardType: .Placeholder, title: "Info")
-        appendCard(placeholderCard)
-        ProfileService.Actions.getExtendedProfile(profile.id) {
-            (profile, manager, team, address, skills, _, identities, resume, error) -> Void in
-            if error == nil {
-                self.manager = manager
-                self.team = team
-                self.address = address
-                self.skills = skills
-                self.identities = identities
-                self.resume = resume
-                self.populateData()
+        if onlyShowContactInfo == true {
+            configureSections()
+            populateData()
+            completionHandler(error: nil)
+        }
+        else {
+            // Add placeholder card to load profile header instantly
+            var placeholderCard = Card(cardType: .Placeholder, title: "Info")
+            appendCard(placeholderCard)
+            ProfileService.Actions.getExtendedProfile(profile.id) {
+                (profile, manager, team, address, skills, _, identities, resume, error) -> Void in
+                if error == nil {
+                    self.manager = manager
+                    self.team = team
+                    self.address = address
+                    self.skills = skills
+                    self.identities = identities
+                    self.resume = resume
+                    self.populateData()
+                }
+                completionHandler(error: error)
             }
-            completionHandler(error: error)
         }
     }
     
     // MARK: - Configuration
     
     private func configureSections() {
-        sections.append(getQuickActionsSection())
-        sections.append(getAboutSection())
-        sections.append(getSkillsSection())
-        sections.append(getOfficeTeamSection())
-        sections.append(getBasicInfoSection())
-        sections.append(getWorkExperienceSection())
-        sections.append(getEducationSection())
+        if onlyShowContactInfo == true {
+            sections.append(getContactInfoSection())
+        }
+        else {
+            sections.append(getQuickActionsSection())
+            sections.append(getAboutSection())
+            sections.append(getSkillsSection())
+            sections.append(getOfficeTeamSection())
+            sections.append(getBasicInfoSection())
+            sections.append(getWorkExperienceSection())
+            sections.append(getEducationSection())
+        }
     }
     
     private func getSocialConnectSection() -> Section? {
@@ -233,6 +246,33 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
                 container: "profile",
                 containerKey: "birth_date",
                 contentType: .Birthday,
+                image: nil
+            )
+        ]
+        return Section(title: "Info", items: sectionItems, cardType: .KeyValue)
+    }
+    
+    private func getContactInfoSection() -> Section {
+        let sectionItems = [
+            SectionItem(
+                title: "Email",
+                container: "profile",
+                containerKey: "email",
+                contentType: .Email,
+                image: nil
+            ),
+            SectionItem(
+                title: "Cell Phone",
+                container: "profile",
+                containerKey: "cell_phone",
+                contentType: .CellPhone,
+                image: nil
+            ),
+            SectionItem(
+                title: "Work Phone",
+                container: "profile",
+                containerKey: "work_phone",
+                contentType: .WorkPhone,
                 image: nil
             )
         ]

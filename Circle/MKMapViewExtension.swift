@@ -65,9 +65,6 @@ extension MKMapView {
         spanLat = abs(maxLat - minLat)
         spanLong = abs(maxLong - minLong)
         
-        
-        println("Span = \(spanLat) \(spanLong)")
-
         let coordinates = CLLocationCoordinate2DMake(centerLat, centerLong)
         let span = MKCoordinateSpanMake(spanLat + spanCorrection, spanLong + spanCorrection)
         let mapRegion = MKCoordinateRegionMake(coordinates, span)
