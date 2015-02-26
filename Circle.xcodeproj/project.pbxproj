@@ -76,7 +76,6 @@
 		8F7400251A6863B000D96B60 /* SkillDetailDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7400241A6863B000D96B60 /* SkillDetailDataSource.swift */; };
 		8F74002A1A68878800D96B60 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7400291A68878800D96B60 /* GradientView.swift */; };
 		8F7400391A6A3FF700D96B60 /* CircleAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7400371A6A3FF700D96B60 /* CircleAlertViewController.swift */; };
-		8F74003A1A6A3FF700D96B60 /* CircleAlertViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F7400381A6A3FF700D96B60 /* CircleAlertViewController.xib */; };
 		8F74003F1A6A442900D96B60 /* CircleAlertViewAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F74003E1A6A442900D96B60 /* CircleAlertViewAnimator.swift */; };
 		8F7795041A909AFC00BEF6EA /* SkillsOverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7795021A909AFC00BEF6EA /* SkillsOverviewViewController.swift */; };
 		8F7795051A909AFC00BEF6EA /* SkillsOverviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F7795031A909AFC00BEF6EA /* SkillsOverviewViewController.xib */; };
@@ -358,7 +357,6 @@
 		8F7400241A6863B000D96B60 /* SkillDetailDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkillDetailDataSource.swift; sourceTree = "<group>"; };
 		8F7400291A68878800D96B60 /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		8F7400371A6A3FF700D96B60 /* CircleAlertViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleAlertViewController.swift; sourceTree = "<group>"; };
-		8F7400381A6A3FF700D96B60 /* CircleAlertViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CircleAlertViewController.xib; sourceTree = "<group>"; };
 		8F74003E1A6A442900D96B60 /* CircleAlertViewAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleAlertViewAnimator.swift; sourceTree = "<group>"; };
 		8F7795021A909AFC00BEF6EA /* SkillsOverviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkillsOverviewViewController.swift; sourceTree = "<group>"; };
 		8F7795031A909AFC00BEF6EA /* SkillsOverviewViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SkillsOverviewViewController.xib; sourceTree = "<group>"; };
@@ -711,7 +709,6 @@
 				8F22CBF71A29A8EB0026376E /* AuthViewController.xib */,
 				8F08A9F81A748F5200B93149 /* CardFooterCollectionReusableView.xib */,
 				8F65C4F41A50F28E00C7F3E6 /* CardHeaderCollectionReusableView.xib */,
-				8F7400381A6A3FF700D96B60 /* CircleAlertViewController.xib */,
 				8FEE3D9C1A85B97E00B17569 /* EditProfileViewController.xib */,
 				BFCFDB031A915249009A5FD4 /* EducationCollectionViewCell.xib */,
 				BFAE43541A8B05010085AB2B /* HomelessViewController.xib */,
@@ -1065,7 +1062,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8FF298041A4A4E3600306CFC /* ProfileImagesCollectionViewCell.xib in Resources */,
-				8F74003A1A6A3FF700D96B60 /* CircleAlertViewController.xib in Resources */,
 				8F085A961A6C191400F8139B /* TeamGridItemCollectionViewCell.xib in Resources */,
 				8F834F861A9909AC007B7095 /* OfficeTeamManagerCollectionViewCell.xib in Resources */,
 				8F085A8E1A6B5B4900F8139B /* TeamHeaderCollectionReusableView.xib in Resources */,

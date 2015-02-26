@@ -369,7 +369,7 @@ class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate, Ci
     // MARK: - Welcome Alert
     
     private func presentWelcomeAlert() {
-        let alertViewController = CircleAlertViewController(nibName: "CircleAlertViewController", bundle: nil)
+        let alertViewController = CircleAlertViewController()
         alertViewController.modalPresentationStyle = .Custom
         alertViewController.transitioningDelegate = alertViewController
         alertViewController.circleAlertViewDelegate = self

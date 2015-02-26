@@ -37,4 +37,17 @@ extension UIFont {
     class func appAttributeTitleLabelFont() -> UIFont {
         return UIFont(name: "Avenir-Roman", size: 13.0)!
     }
+    
+    class func appOnboardingModalTitle() -> UIFont {
+        return UIFont(name: "Avenir-Medium", size: 20.0)!
+    }
+
+    class func appOnboardingModalText() -> UIFont {
+        return UIFont(name: "Avenir-Roman", size: 16.0)!
+    }
+    
+    class func appOnboardingModalCTA() -> UIFont {
+        return UIFont(name: "Avenir-Light", size: 20.0)!
+    }
+
 }

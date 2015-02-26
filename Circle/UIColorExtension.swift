@@ -33,7 +33,7 @@ extension UIColor {
     }
     
     class func defaultDarkTextColor() -> UIColor {
-        return UIColor(red: 51, green: 51, blue: 51)
+        return UIColor(red: 38, green: 38, blue: 38)
     }
     
     class func navigationBarBarTintColor() -> UIColor {
