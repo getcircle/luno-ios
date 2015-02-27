@@ -7,9 +7,10 @@
 //
 
 import UIKit
+import MessageUI
 import ProtobufRegistry
 
-class ContactInfoViewController: CircleAlertViewController {
+class ContactInfoViewController: CircleAlertViewController, UICollectionViewDelegate, MFMailComposeViewControllerDelegate {
     
     var profile: ProfileService.Containers.Profile!
 
@@ -23,11 +24,6 @@ class ContactInfoViewController: CircleAlertViewController {
 
         // Do any additional setup after loading the view.
         assert(profile != nil, "Profile should be set when presenting this view controller")
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     override func configureModalParentView() {
@@ -61,7 +57,7 @@ class ContactInfoViewController: CircleAlertViewController {
         )
         collectionView.setTranslatesAutoresizingMaskIntoConstraints(false)
         collectionView.opaque = true
-        collectionView.backgroundColor = UIColor.whiteColor()
+        collectionView.backgroundColor = UIColor.viewBackgroundColor()
         parentContainerView.addSubview(collectionView)
         collectionViewDataSource.onlyShowContactInfo = true
         collectionViewDataSource.animateContent = false
@@ -71,27 +67,43 @@ class ContactInfoViewController: CircleAlertViewController {
         collectionViewDataSource.loadData { (error) -> Void in
             self.collectionView.reloadData()
         }
-        
-        if let presentingVC = presentingViewController {
-            if presentingVC is UICollectionViewDelegate {
-                collectionViewDelegate.delegate = (presentingVC as UICollectionViewDelegate)
-            }
-        }
+        collectionViewDelegate.delegate = self
         collectionView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero, excludingEdge: .Top)
         collectionView.autoPinEdge(.Top, toEdge: .Bottom, ofView: titleLabel)
+        collectionView.autoSetDimension(.Height, toSize: collectionViewDataSource.heightOfContactInfoSection())
+    }
+    
+    // MARK: - UICollectionViewDelegate
+    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        switch collectionViewDataSource.typeOfCell(indexPath) {
+        case .Email:
+            presentMailViewController(
+            [profile.email],
+            subject: "Hey",
+            messageBody: "",
+            completionHandler: nil
+        )
         
-        // TODO: - Request exact height and set that as the constraint
-        collectionView.autoSetDimension(.Height, toSize: 180.0)
+        case .CellPhone:
+            if let number = profile.cell_phone as String? {
+                if let phoneURL = NSURL(string: NSString(format: "tel://%@", number.removePhoneNumberFormatting())) {
+                    UIApplication.sharedApplication().openURL(phoneURL)
+                }
+            }
+            
+        default:
+            break
+        }
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    // MARK: - MFMailComposeViewControllerDelegate
+    
+    func mailComposeController(
+        controller: MFMailComposeViewController!,
+        didFinishWithResult result: MFMailComposeResult,
+        error: NSError!
+        ) {
+            dismissViewControllerAnimated(true, completion: nil)
     }
-    */
-
 }

@@ -279,6 +279,20 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
         return Section(title: "Info", items: sectionItems, cardType: .KeyValue)
     }
     
+    func heightOfContactInfoSection() -> CGFloat {
+        var height: CGFloat = 0.0
+        let contactsSection = getContactInfoSection()
+        for item in contactsSection.items {
+            if let value = getValueForItem(item) as? String {
+                if value != "" {
+                    height += KeyValueCollectionViewCell.height
+                }
+            }
+        }
+
+        return height
+    }
+    
     private func getManagerInfoSection() -> Section {
         let sectionItems = [
             SectionItem(
@@ -403,7 +417,7 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
         }
     }
     
-    private func addKeyValueItemToCard(item: SectionItem, card: Card) {
+    private func getValueForItem(item: SectionItem) -> Any? {
         var value: Any? = item.defaultValue
         switch item.container {
         case "profile":
@@ -413,15 +427,15 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
                     value = NSDateFormatter.sharedAnniversaryFormatter.stringFromDate(profile.hire_date.toDate()!)
                 }
                 else {
-                    return
+                    return nil
                 }
-
+                
             case "birth_date":
                 if profile.hasBirthDate {
                     value = NSDateFormatter.sharedBirthdayFormatter.stringFromDate(profile.birth_date.toDate()!)
                 }
                 else {
-                    return
+                    return nil
                 }
                 
             case "seating_info":
@@ -454,24 +468,31 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
         default:
             break
         }
-        
+
+        return value
+    }
+    
+    private func addKeyValueItemToCard(item: SectionItem, card: Card) {
+        var value = getValueForItem(item)
         if let value = value as? String {
-            var dataDict: [String: AnyObject] = [
-                "key": item.containerKey,
-                "name": item.title,
-                "value": value,
-                "type": item.contentType.rawValue
-            ]
-            
-            if let image = item.image {
-                dataDict["image"] = image.name
-                dataDict["imageTintColor"] = image.tint
-                if let imageSize = image.size {
-                    dataDict["imageSize"] = NSValue(CGSize: imageSize)
+            if value != "" {
+                var dataDict: [String: AnyObject] = [
+                    "key": item.containerKey,
+                    "name": item.title,
+                    "value": value,
+                    "type": item.contentType.rawValue
+                ]
+                
+                if let image = item.image {
+                    dataDict["image"] = image.name
+                    dataDict["imageTintColor"] = image.tint
+                    if let imageSize = image.size {
+                        dataDict["imageSize"] = NSValue(CGSize: imageSize)
+                    }
                 }
+
+                card.addContent(content: [dataDict])
             }
-            
-            card.addContent(content: [dataDict])
         }
     }
     

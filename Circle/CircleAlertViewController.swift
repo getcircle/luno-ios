@@ -20,9 +20,12 @@ class CircleAlertViewController: UIViewController, UIViewControllerTransitioning
     private var textLabel: UILabel!
     private var titleLabel: UILabel!
     
+    var addCancelButton = false
+    var cancelButton: UIButton?
     var circleAlertViewDelegate: CircleAlertViewDelegate?
+    var shouldBlurBackground = true
     
-    private(set) var visualEffectView: UIVisualEffectView!
+    private(set) var visualEffectView: UIView!
     
     final override func loadView() {
         var rootView = UIView(frame: UIScreen.mainScreen().bounds)
@@ -36,8 +39,8 @@ class CircleAlertViewController: UIViewController, UIViewControllerTransitioning
         parentContainerView.addRoundCorners(radius: 5.0)
         parentContainerView.autoAlignAxisToSuperviewAxis(.Vertical)
         parentContainerViewCenterYConstraint = parentContainerView.autoAlignAxisToSuperviewAxis(.Horizontal)
-        parentContainerView.autoPinEdgeToSuperviewEdge(.Left, withInset: 15.0)
-        parentContainerView.autoPinEdgeToSuperviewEdge(.Right, withInset: 15.0)
+        parentContainerView.autoPinEdgeToSuperviewEdge(.Left, withInset: 10.0)
+        parentContainerView.autoPinEdgeToSuperviewEdge(.Right, withInset: 10.0)
     }
     
     override func viewDidLoad() {
@@ -46,15 +49,41 @@ class CircleAlertViewController: UIViewController, UIViewControllerTransitioning
         // Do any additional setup after loading the view.
         configureView()
         configureModalParentView()
+        configureCancelButton()
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        if let cancelButton = cancelButton {
+            cancelButton.alpha = 0.0
+        }
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if let cancelButton = cancelButton {
+            cancelButton.alpha = 1.0
+        }
     }
 
     // MARK: - Configuration
     
     private func configureView() {
         view.backgroundColor = UIColor.clearColor()
+        if shouldBlurBackground {
+            visualEffectView = view.addVisualEffectView(.Dark) as UIView
+        }
+        else {
+            visualEffectView = UIView(forAutoLayout: ())
+            visualEffectView.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.8)
+            view.insertSubview(visualEffectView, belowSubview: parentContainerView)
+            visualEffectView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
+        }
+        
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: "viewTapped:")
-        view.addGestureRecognizer(tapGestureRecognizer)
-        visualEffectView = view.addVisualEffectView(.Dark)
+        visualEffectView.addGestureRecognizer(tapGestureRecognizer)
     }
     
     func configureModalParentView() {
@@ -108,6 +137,31 @@ class CircleAlertViewController: UIViewController, UIViewControllerTransitioning
         actionButton.autoPinEdgeToSuperviewEdge(.Bottom, withInset: 20.0)
         actionButton.autoPinEdge(.Top, toEdge: .Bottom, ofView: textLabel, withOffset: 30.0)
         actionButton.autoAlignAxisToSuperviewAxis(.Vertical)
+    }
+    
+    private func configureCancelButton() {
+        if !addCancelButton {
+            return
+        }
+
+        cancelButton = UIButton(forAutoLayout: ())
+        if let cancelButton = cancelButton {
+            cancelButton.setImage(UIImage(named: "Close"), forState: .Normal)
+            cancelButton.convertToTemplateImageForState(.Normal)
+            cancelButton.tintColor = UIColor.whiteColor()
+            cancelButton.showsTouchWhenHighlighted = true
+            cancelButton.imageEdgeInsets = UIEdgeInsetsMake(10.0, 10.0, 10.0, 10.0)
+            cancelButton.addTarget(self, action: "viewTapped:", forControlEvents: .TouchUpInside)
+            view.addSubview(cancelButton)
+            view.bringSubviewToFront(cancelButton)
+
+            cancelButton.autoAlignAxisToSuperviewAxis(.Vertical)
+            cancelButton.autoSetDimensionsToSize(CGSizeMake(36.0, 36.0))
+            cancelButton.autoPinEdgeToSuperviewEdge(.Bottom, withInset: 10.0)
+            cancelButton.addRoundCorners(radius: 18.0)
+            cancelButton.layer.borderColor = UIColor.whiteColor().CGColor
+            cancelButton.layer.borderWidth = 1.0
+        }
     }
     
     // MARK: - UIViewControllerTransitioningDelegate
