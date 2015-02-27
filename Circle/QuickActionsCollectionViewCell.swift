@@ -11,20 +11,32 @@ import ProtobufRegistry
 
 class QuickActionsCollectionViewCell: CircleCollectionViewCell {
 
-    @IBOutlet weak private(set) var addNoteButton: UIButton!
-    @IBOutlet weak private(set) var addNoteButtonLabel: UILabel!
-    @IBOutlet weak private(set) var callButton: UIButton!
-    @IBOutlet weak private(set) var callButtonLabel: UILabel!
+    @IBOutlet weak private(set) var firstButton: UIButton!
+    @IBOutlet weak private(set) var firstButtonLabel: UILabel!
     @IBOutlet weak private(set) var firstButtonTopConstraint: NSLayoutConstraint!
-    @IBOutlet weak private(set) var sendEmailButton: UIButton!
-    @IBOutlet weak private(set) var sendEmailButtonLabel: UILabel!
-    @IBOutlet weak private(set) var sendTextButton: UIButton!
-    @IBOutlet weak private(set) var sendTextButtonLabel: UILabel!
+    @IBOutlet weak private(set) var fourthButton: UIButton!
+    @IBOutlet weak private(set) var fourthButtonLabel: UILabel!
+    @IBOutlet weak private(set) var secondButton: UIButton!
+    @IBOutlet weak private(set) var secondButtonLabel: UILabel!
+    @IBOutlet weak private(set) var thirdButton: UIButton!
+    @IBOutlet weak private(set) var thirdButtonLabel: UILabel!
     
     private var actionButtons = [UIButton]()
     private var actionButtonLabels = [UILabel]()
+    private let defaultQuickActions: [QuickAction] = [.Message, .Email, .Note, .Phone]
     private var firstButtonTopConstraintInitialValue: CGFloat = 0.0
     private var profile: ProfileService.Containers.Profile?
+    
+    /**
+        Quick actions that need to be shown. Only the first four are added to the UI.
+    
+    */
+    var quickActions: [QuickAction] = [QuickAction]() {
+        didSet {
+            configureButtons()
+        }
+    }
+    
     
     override class var classReuseIdentifier: String {
         return "QuickActionsCollectionViewCell"
@@ -38,9 +50,10 @@ class QuickActionsCollectionViewCell: CircleCollectionViewCell {
         super.awakeFromNib()
 
         // Initialization code
-        actionButtons = [addNoteButton, callButton, sendEmailButton, sendTextButton]
-        actionButtonLabels = [addNoteButtonLabel, callButtonLabel, sendEmailButtonLabel, sendTextButtonLabel]
+        actionButtons = [firstButton, secondButton, thirdButton, fourthButton]
+        actionButtonLabels = [firstButtonLabel, secondButtonLabel, thirdButtonLabel, fourthButtonLabel]
         firstButtonTopConstraintInitialValue = firstButtonTopConstraint.constant
+        println("coming here")
         configureButtons()
         selectedBackgroundView = nil
     }
@@ -48,13 +61,23 @@ class QuickActionsCollectionViewCell: CircleCollectionViewCell {
     // MARK: - Configuration
     
     private func configureButtons() {
-        for button in actionButtons {
-            button.makeItCircular(true, borderColor: UIColor.appQuickActionsDarkTintColor())
-            button.setImage(
-                button.imageForState(.Normal)?.imageWithRenderingMode(.AlwaysTemplate),
-                forState: .Normal
-            )
-            button.imageEdgeInsets = UIEdgeInsetsMake(10.0, 10.0, 10.0, 10.0)
+        println("configureButtons")
+        let quickActionsToAdd = quickActions.count > 0 ? quickActions : defaultQuickActions
+        for (index, button) in enumerate(actionButtons) {
+            if index < quickActionsToAdd.count {
+                let metaInfo = QuickAction.metaInfoForQuickAction(quickActionsToAdd[index])
+                button.setImage(UIImage(named: metaInfo.imageSource), forState: .Normal)
+                actionButtonLabels[index].text = metaInfo.actionLabel.localizedUppercaseString()
+                button.makeItCircular(true, borderColor: UIColor.appQuickActionsDarkTintColor())
+                button.convertToTemplateImageForState(.Normal)
+                button.imageEdgeInsets = UIEdgeInsetsMake(10.0, 10.0, 10.0, 10.0)
+                button.alpha = 1.0
+                button.tag = index
+                button.addTarget(self, action: "quickActionTapped:", forControlEvents: .TouchUpInside)
+            }
+            else {
+                button.alpha = 0.0
+            }
         }
     }
     
@@ -89,7 +112,7 @@ class QuickActionsCollectionViewCell: CircleCollectionViewCell {
             buttonLabel.alpha = 0.0
         }
         
-        setTopConstaintToValue((frameHeight - addNoteButton.frameHeight) / 2)
+        setTopConstaintToValue((frameHeight - thirdButton.frameHeight) / 2)
     }
     
     func showLabels() {
@@ -110,20 +133,10 @@ class QuickActionsCollectionViewCell: CircleCollectionViewCell {
     
     // MARK: - IBActions
     
-    @IBAction func addNoteButtonTapped(sender: AnyObject!) {
-        triggerNotificationForQuickAction(.Note)
-    }
-
-    @IBAction func sendEmailButtonTapped(sender: AnyObject!) {
-        triggerNotificationForQuickAction(.Email)
-    }
-
-    @IBAction func sendTextButtonTapped(sender: AnyObject!) {
-        triggerNotificationForQuickAction(.Message)
-    }
-
-    @IBAction func callButtonTapped(sender: AnyObject!) {
-        triggerNotificationForQuickAction(.Phone)
+    @IBAction func quickActionTapped(sender: UIButton!) {
+        if let quickAction = quickActionAtIndex(sender.tag) {
+            triggerNotificationForQuickAction(quickAction)
+        }
     }
 
     // MARK: - Helpers
@@ -138,5 +151,14 @@ class QuickActionsCollectionViewCell: CircleCollectionViewCell {
             object: nil, 
             userInfo: userInfo
         )
+    }
+    
+    private func quickActionAtIndex(index: Int) -> QuickAction? {
+        let possibleQuickActions = quickActions.count > 0 ? quickActions : defaultQuickActions
+        if index < possibleQuickActions.count {
+            return possibleQuickActions[index]
+        }
+        
+        return nil
     }
 }

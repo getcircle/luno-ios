@@ -18,35 +18,62 @@ enum QuickAction: Int {
     case Phone
     case Slack
     
-    static func placeholderByQuickAction(quickAction: QuickAction) -> String {
+    struct MetaInfo {
+        var actionLabel: String
+        var imageSource: String
+        var placeholder: String
+    }
+    
+    static func metaInfoForQuickAction(quickAction: QuickAction) -> MetaInfo {
         switch quickAction {
         case .None:
-            return NSLocalizedString("Search people, teams, skills, etc.",
-                comment: "Placeholder text for search field used to search people, teams and skills.")
-            
+            return MetaInfo(
+                actionLabel: AppStrings.QuickActionNoneLabel,
+                imageSource: "", 
+                placeholder: AppStrings.QuickActionNonePlaceholder
+            )
+
         case .Email:
-            return NSLocalizedString("Who do you want to email?",
-                comment: "Placeholder for search field used to search for the person user intends to email")
+            return MetaInfo(
+                actionLabel: AppStrings.QuickActionEmailLabel,
+                imageSource: "Email",
+                placeholder: AppStrings.QuickActionEmailPlaceholder
+            )
         
         case .Info:
-            return NSLocalizedString("Who do you want contact info on?",
-                comment: "Placeholder for search field used to search for the person user intends to email")
+            return MetaInfo(
+                actionLabel: AppStrings.QuickActionInfoLabel,
+                imageSource: "Info",
+                placeholder: AppStrings.QuickActionInfoPlaceholder
+            )
             
         case .Message:
-            return NSLocalizedString("Who do you want to message?",
-                comment: "Placeholder for search field used to search for the person user intends to send a message")
+            return MetaInfo(
+                actionLabel: AppStrings.QuickActionMessageLabel,
+                imageSource: "Messages",
+                placeholder: AppStrings.QuickActionMessagePlaceholder
+            )
 
         case .Note:
-            return NSLocalizedString("Who do you want to take a note on?",
-                comment: "Placeholder for search field used to search for the person user intends to take a note about")
+            return MetaInfo(
+                actionLabel: AppStrings.QuickActionNoteLabel,
+                imageSource: "Notepad",
+                placeholder: AppStrings.QuickActionNotePlaceholder
+            )
 
         case .Phone:
-            return NSLocalizedString("Who do you want to call?",
-                comment: "Placeholder for search field used to search for the person user intends to call")
+            return MetaInfo(
+                actionLabel: AppStrings.QuickActionCallLabel,
+                imageSource: "Telephone",
+                placeholder: AppStrings.QuickActionCallPlaceholder
+            )
             
         case .Slack:
-            return NSLocalizedString("Who do you want to message?",
-                comment: "Placeholder for search field used to search for the person user intends to send a message")
+            return MetaInfo(
+                actionLabel: AppStrings.QuickActionSlackLabel,
+                imageSource: "Info",
+                placeholder: AppStrings.QuickActionSlackPlaceholder
+            )
         }
     }
 }

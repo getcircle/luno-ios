@@ -13,7 +13,7 @@
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="320" height="90"/>
                 <subviews>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kq5-3k-b21" userLabel="Message">
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kq5-3k-b21" userLabel="FirstButton">
                         <rect key="frame" x="15" y="15" width="44" height="44"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="Kq5-3k-b21" secondAttribute="height" multiplier="1:1" id="jbh-E8-WJw"/>
@@ -23,11 +23,8 @@
                         <state key="normal" image="Messages">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
-                        <connections>
-                            <action selector="sendTextButtonTapped:" destination="gTV-IL-0wX" eventType="touchUpInside" id="PvU-cU-pbn"/>
-                        </connections>
                     </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TEXT" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mlA-nq-PTK" userLabel="MessageLabel">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TEXT" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mlA-nq-PTK" userLabel="FirstButtonLabel">
                         <rect key="frame" x="15" y="64" width="44" height="16"/>
                         <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="11"/>
                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -40,7 +37,7 @@
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="31" id="7eO-QE-VXa"/>
                         </constraints>
                     </view>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o81-Au-qrS" userLabel="Email">
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o81-Au-qrS" userLabel="SecondButton">
                         <rect key="frame" x="97" y="15" width="44" height="44"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="44" id="5TY-B9-Jn4"/>
@@ -50,11 +47,8 @@
                         <state key="normal" image="Email">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
-                        <connections>
-                            <action selector="sendEmailButtonTapped:" destination="gTV-IL-0wX" eventType="touchUpInside" id="122-32-2Ob"/>
-                        </connections>
                     </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EMAIL" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wWK-Df-Vbt" userLabel="EmailLabel">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EMAIL" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wWK-Df-Vbt" userLabel="SecondButtonLabel">
                         <rect key="frame" x="97" y="64" width="44" height="16"/>
                         <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="11"/>
                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -72,7 +66,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VHJ-sx-L1j" userLabel="Note">
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VHJ-sx-L1j" userLabel="ThirdButton">
                         <rect key="frame" x="179" y="15" width="44" height="44"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="VHJ-sx-L1j" secondAttribute="height" multiplier="1:1" id="fOX-ZN-GDU"/>
@@ -82,17 +76,14 @@
                         <state key="normal" image="Notepad">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
-                        <connections>
-                            <action selector="addNoteButtonTapped:" destination="gTV-IL-0wX" eventType="touchUpInside" id="QPM-Vw-GnE"/>
-                        </connections>
                     </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NOTE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qus-Kn-fTQ" userLabel="NoteLabel">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NOTE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qus-Kn-fTQ" userLabel="ThirdButtonLabel">
                         <rect key="frame" x="179" y="64" width="44" height="16"/>
                         <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="11"/>
                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gK8-NX-Gmv" userLabel="Phone">
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gK8-NX-Gmv" userLabel="FourthButton">
                         <rect key="frame" x="261" y="15" width="44" height="44"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="gK8-NX-Gmv" secondAttribute="height" multiplier="1:1" id="FMg-1Q-mQc"/>
@@ -108,11 +99,8 @@
                                 <exclude reference="Nja-Hz-iha"/>
                             </mask>
                         </variation>
-                        <connections>
-                            <action selector="callButtonTapped:" destination="gTV-IL-0wX" eventType="touchUpInside" id="P3X-Ej-jxU"/>
-                        </connections>
                     </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CALL" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iWp-Cn-4AF" userLabel="PhoneLabel">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CALL" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iWp-Cn-4AF" userLabel="FourthButtonLabel">
                         <rect key="frame" x="261" y="64" width="44" height="16"/>
                         <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="11"/>
                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -171,15 +159,15 @@
             </constraints>
             <size key="customSize" width="451" height="50"/>
             <connections>
-                <outlet property="addNoteButton" destination="VHJ-sx-L1j" id="3Vy-n9-AjB"/>
-                <outlet property="addNoteButtonLabel" destination="Qus-Kn-fTQ" id="NpE-bf-snX"/>
-                <outlet property="callButton" destination="gK8-NX-Gmv" id="zzx-tu-cif"/>
-                <outlet property="callButtonLabel" destination="iWp-Cn-4AF" id="EfM-S9-OCo"/>
+                <outlet property="firstButton" destination="Kq5-3k-b21" id="knr-CK-kmn"/>
+                <outlet property="firstButtonLabel" destination="mlA-nq-PTK" id="b4i-hn-QsG"/>
                 <outlet property="firstButtonTopConstraint" destination="iJJ-rS-E1I" id="haL-VD-A5W"/>
-                <outlet property="sendEmailButton" destination="o81-Au-qrS" id="XPN-4m-gyc"/>
-                <outlet property="sendEmailButtonLabel" destination="wWK-Df-Vbt" id="Y4f-ZO-U8e"/>
-                <outlet property="sendTextButton" destination="Kq5-3k-b21" id="knr-CK-kmn"/>
-                <outlet property="sendTextButtonLabel" destination="mlA-nq-PTK" id="b4i-hn-QsG"/>
+                <outlet property="fourthButton" destination="gK8-NX-Gmv" id="zzx-tu-cif"/>
+                <outlet property="fourthButtonLabel" destination="iWp-Cn-4AF" id="EfM-S9-OCo"/>
+                <outlet property="secondButton" destination="o81-Au-qrS" id="XPN-4m-gyc"/>
+                <outlet property="secondButtonLabel" destination="wWK-Df-Vbt" id="Y4f-ZO-U8e"/>
+                <outlet property="thirdButton" destination="VHJ-sx-L1j" id="3Vy-n9-AjB"/>
+                <outlet property="thirdButtonLabel" destination="Qus-Kn-fTQ" id="NpE-bf-snX"/>
             </connections>
             <point key="canvasLocation" x="-210.5" y="-155"/>
         </collectionViewCell>

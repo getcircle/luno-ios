@@ -69,4 +69,8 @@ extension String {
         phoneNumber = phoneNumber.stringByReplacingOccurrencesOfString("-", withString: "", options: .LiteralSearch, range: nil)
         return phoneNumber
     }
+    
+    func localizedUppercaseString() -> String {
+        return uppercaseStringWithLocale(NSLocale.currentLocale())
+    }
 }

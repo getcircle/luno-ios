@@ -30,7 +30,7 @@ NewNoteViewControllerDelegate {
     private var searchHeaderView: SearchHeaderView!
     private var selectedAction: QuickAction = .None {
         didSet {
-            searchHeaderView.searchTextField.placeholder = QuickAction.placeholderByQuickAction(selectedAction)
+            searchHeaderView.searchTextField.placeholder = QuickAction.metaInfoForQuickAction(selectedAction).placeholder
         }
     }
     private var shadowAdded = false
