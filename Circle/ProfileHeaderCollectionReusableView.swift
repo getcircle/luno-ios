@@ -108,9 +108,14 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
                         let blurEffect = UIBlurEffect(style: .Dark)
                         self.visualEffectView = UIVisualEffectView(effect: blurEffect)
                         self.visualEffectView!.setTranslatesAutoresizingMaskIntoConstraints(false)
-                        self.visualEffectView!.frame = self.backgroundImage.frame
                         self.insertSubview(self.visualEffectView!, aboveSubview: self.backgroundImage)
-                        self.visualEffectView!.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
+                        self.visualEffectView!.autoSetDimensionsToSize(UIScreen.mainScreen().bounds.size)
+                        self.visualEffectView?.userInteractionEnabled = false
+                        var tempView = UIView(forAutoLayout: ())
+                        tempView.opaque = true
+                        tempView.backgroundColor = UIColor.clearColor()
+                        self.insertSubview(tempView, aboveSubview: self.visualEffectView!)
+                        tempView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
                     }
                 },
                 failure: nil
