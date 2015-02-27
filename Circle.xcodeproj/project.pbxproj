@@ -105,6 +105,7 @@
 		8F834F8B1A9C1814007B7095 /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F834F8A1A9C1813007B7095 /* UIButtonExtension.swift */; };
 		8F834F971A9E9F21007B7095 /* ContactInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F834F951A9E9F21007B7095 /* ContactInfoViewController.swift */; };
 		8F834F981A9E9F21007B7095 /* ContactInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F834F961A9E9F21007B7095 /* ContactInfoViewController.xib */; };
+		8F834FA01A9FFC2F007B7095 /* AppStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F834F9F1A9FFC2F007B7095 /* AppStrings.swift */; };
 		8F9F60AF1A88738100FCAA25 /* SocialConnectCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9F60AD1A88738100FCAA25 /* SocialConnectCollectionViewCell.swift */; };
 		8F9F60B01A88738100FCAA25 /* SocialConnectCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F9F60AE1A88738100FCAA25 /* SocialConnectCollectionViewCell.xib */; };
 		8F9F60B81A896CE400FCAA25 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9F60B71A896CE400FCAA25 /* MainTabBarViewController.swift */; };
@@ -389,6 +390,7 @@
 		8F834F8A1A9C1813007B7095 /* UIButtonExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
 		8F834F951A9E9F21007B7095 /* ContactInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactInfoViewController.swift; sourceTree = "<group>"; };
 		8F834F961A9E9F21007B7095 /* ContactInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactInfoViewController.xib; sourceTree = "<group>"; };
+		8F834F9F1A9FFC2F007B7095 /* AppStrings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppStrings.swift; sourceTree = "<group>"; };
 		8F9F60AD1A88738100FCAA25 /* SocialConnectCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialConnectCollectionViewCell.swift; sourceTree = "<group>"; };
 		8F9F60AE1A88738100FCAA25 /* SocialConnectCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SocialConnectCollectionViewCell.xib; sourceTree = "<group>"; };
 		8F9F60B71A896CE400FCAA25 /* MainTabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
@@ -564,6 +566,7 @@
 			children = (
 				8F22CB7A1A268C040026376E /* Circle-Bridging-Header.h */,
 				8F0004941A2419730096477A /* Info.plist */,
+				8F834F9F1A9FFC2F007B7095 /* AppStrings.swift */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -1219,6 +1222,7 @@
 				8F22CBE01A27A8E60026376E /* ProfileHeaderCollectionReusableView.swift in Sources */,
 				8F306B8D1A7416E00024EB03 /* OfficesOverviewViewController.swift in Sources */,
 				BF8FC3D91A44DA83007FD8BA /* StringExtension.swift in Sources */,
+				8F834FA01A9FFC2F007B7095 /* AppStrings.swift in Sources */,
 				8FF2984D1A4E29F400306CFC /* PaddedLabel.swift in Sources */,
 				8F4E53781A5A0D9E00DC876B /* NotesCollectionViewCell.swift in Sources */,
 				8F77950A1A910E8700BEF6EA /* SkillsOverviewDataSource.swift in Sources */,
