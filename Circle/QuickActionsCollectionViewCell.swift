@@ -53,7 +53,6 @@ class QuickActionsCollectionViewCell: CircleCollectionViewCell {
         actionButtons = [firstButton, secondButton, thirdButton, fourthButton]
         actionButtonLabels = [firstButtonLabel, secondButtonLabel, thirdButtonLabel, fourthButtonLabel]
         firstButtonTopConstraintInitialValue = firstButtonTopConstraint.constant
-        println("coming here")
         configureButtons()
         selectedBackgroundView = nil
     }
@@ -61,7 +60,6 @@ class QuickActionsCollectionViewCell: CircleCollectionViewCell {
     // MARK: - Configuration
     
     private func configureButtons() {
-        println("configureButtons")
         let quickActionsToAdd = quickActions.count > 0 ? quickActions : defaultQuickActions
         for (index, button) in enumerate(actionButtons) {
             if index < quickActionsToAdd.count {

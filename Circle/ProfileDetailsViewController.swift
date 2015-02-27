@@ -478,7 +478,7 @@ class ProfileDetailsViewController:
                 }
             }
             
-        case .Info, .Note:
+        case .MoreInfo:
             let contactInfoViewController = ContactInfoViewController()
             contactInfoViewController.profile = profile
             contactInfoViewController.shouldBlurBackground = false

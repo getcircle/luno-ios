@@ -12,8 +12,8 @@ import UIKit
 enum QuickAction: Int {
     case None
     case Email
-    case Info
     case Message
+    case MoreInfo
     case Note
     case Phone
     case Slack
@@ -39,13 +39,6 @@ enum QuickAction: Int {
                 imageSource: "Email",
                 placeholder: AppStrings.QuickActionEmailPlaceholder
             )
-        
-        case .Info:
-            return MetaInfo(
-                actionLabel: AppStrings.QuickActionInfoLabel,
-                imageSource: "Info",
-                placeholder: AppStrings.QuickActionInfoPlaceholder
-            )
             
         case .Message:
             return MetaInfo(
@@ -54,6 +47,13 @@ enum QuickAction: Int {
                 placeholder: AppStrings.QuickActionMessagePlaceholder
             )
 
+        case .MoreInfo:
+            return MetaInfo(
+                actionLabel: AppStrings.QuickActionInfoLabel,
+                imageSource: "More",
+                placeholder: AppStrings.QuickActionInfoPlaceholder
+            )
+        
         case .Note:
             return MetaInfo(
                 actionLabel: AppStrings.QuickActionNoteLabel,
