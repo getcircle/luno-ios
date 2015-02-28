@@ -27,6 +27,7 @@ NewNoteViewControllerDelegate {
     private var data = [Card]()
     private var firstLoad = false
     private var landingDataSource: SearchLandingDataSource!
+    private var launchScreenView: UIView?
     private var searchHeaderView: SearchHeaderView!
     private var selectedAction: QuickAction = .None {
         didSet {
@@ -42,6 +43,7 @@ NewNoteViewControllerDelegate {
         // Do any additional setup after loading the view.
         firstLoad = true
         configureView()
+        configureLaunchScreenView()
         configureSearchHeaderView()
         configureCollectionView()
         followScrollView(collectionView, usingTopConstraint: searchHeaderContinerViewTopConstraint)
@@ -55,7 +57,9 @@ NewNoteViewControllerDelegate {
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        checkUserAndPresentAuthViewController()
+        if checkUserAndPresentAuthViewController() {
+            hideAndRemoveLaunchView()
+        }
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -78,6 +82,16 @@ NewNoteViewControllerDelegate {
         view.backgroundColor = UIColor.viewBackgroundColor()
     }
 
+    private func configureLaunchScreenView() {
+        let nibViews = NSBundle.mainBundle().loadNibNamed("LaunchScreen", owner: nil, options: nil)
+        launchScreenView = nibViews.first as? UIView
+        if let launchView = launchScreenView {
+            tabBarController?.view.addSubview(launchView)
+            tabBarController?.view.bringSubviewToFront(launchView)
+            launchView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
+        }
+    }
+    
     private func configureSearchHeaderView() {
         if let nibViews = NSBundle.mainBundle().loadNibNamed("SearchHeaderView", owner: nil, options: nil) as? [UIView] {
             searchHeaderView = nibViews.first as SearchHeaderView
@@ -89,6 +103,24 @@ NewNoteViewControllerDelegate {
             searchHeaderView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
             searchHeaderView.layer.cornerRadius = 10.0
             selectedAction = .None
+        }
+    }
+    
+    // MARK: - Launch View
+    
+    private func hideAndRemoveLaunchView() {
+        if let launchView = launchScreenView {
+            UIView.animateWithDuration(
+                0.3,
+                animations: { () -> Void in
+                    launchView.alpha = 0.0
+                    return
+                },
+                completion: { (completed) -> Void in
+                    launchView.removeFromSuperview()
+                    self.launchScreenView = nil
+                }
+            )
         }
     }
     
@@ -396,6 +428,7 @@ NewNoteViewControllerDelegate {
     // MARK: - Notification Handlers
     
     func userLoggedIn(notification: NSNotification!) {
+        hideAndRemoveLaunchView()
         (collectionView.dataSource as? CardDataSource)?.resetCards()
         collectionView.reloadData()
         loadData()
