@@ -2,6 +2,7 @@ package main.responses;
 
 import "service_protobufs/soa.proto";
 
+import "protobufs/appreciation_service.proto";
 import "protobufs/landing_service.proto";
 import "protobufs/media_service.proto";
 import "protobufs/note_service.proto";
@@ -23,6 +24,7 @@ message UserServiceResponses {
         optional main.user_service.UserService.GetAuthorizationInstructions.Response get_authorization_instructions = 107;
         optional main.user_service.UserService.CompleteAuthorization.Response complete_authorization = 108;
         optional main.user_service.UserService.GetIdentities.Response get_identities = 109;
+        optional main.user_service.UserService.BulkCreateUsers.Response bulk_create_users = 110;
     }
 }
 
@@ -59,6 +61,8 @@ message ProfileServiceResponses {
         optional main.profile_service.ProfileService.GetUpcomingBirthdays.Response get_upcoming_birthdays = 312;
         optional main.profile_service.ProfileService.GetRecentHires.Response get_recent_hires = 313;
         optional main.profile_service.ProfileService.GetActiveSkills.Response get_active_skills = 314;
+        optional main.profile_service.ProfileService.BulkCreateProfiles.Request bulk_create_profiles = 315;
+        optional main.profile_service.ProfileService.BulkUpdateProfiles.Request bulk_update_profiles = 316;
     }
 }
 
@@ -98,5 +102,14 @@ message ResumeServiceResponses {
         optional main.resume_service.ResumeService.CreateCompany.Response create_company = 802;
         optional main.resume_service.ResumeService.GetResume.Response get_resume = 803;
         optional main.resume_service.ResumeService.BulkCreateCompanies.Response bulk_create_companies = 804;
+    }
+}
+
+message AppreciationServiceResponses {
+    extend soa.ActionResponseResult {
+        optional main.appreciation_service.AppreciationService.CreateAppreciation.Response create_appreciation = 900;
+        optional main.appreciation_service.AppreciationService.GetAppreciation.Response get_appreciation = 901;
+        optional main.appreciation_service.AppreciationService.DeleteAppreciation.Response delete_appreciation = 902;
+        optional main.appreciation_service.AppreciationService.UpdateAppreciation.Response update_appreciation = 903;
     }
 }

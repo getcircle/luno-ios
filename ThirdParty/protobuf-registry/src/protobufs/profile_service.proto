@@ -63,6 +63,26 @@ message ProfileService {
 
     }
 
+    message BulkCreateProfiles {
+        message Request {
+            repeated Containers.Profile profiles = 1;
+        }
+
+        message Response {
+            repeated Containers.Profile profiles = 1;
+        }
+    }
+
+    message BulkUpdateProfiles {
+        message Request {
+            repeated Containers.Profile profiles = 1;
+        }
+
+        message Response {
+            repeated Containers.Profile profiles = 1;
+        }
+    }
+
     message UpdateProfile {
 
         message Request {

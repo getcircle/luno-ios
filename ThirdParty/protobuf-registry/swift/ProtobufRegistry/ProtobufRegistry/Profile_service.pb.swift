@@ -39,6 +39,22 @@ public func == (lhs: ProfileService.CreateProfile, rhs: ProfileService.CreatePro
   return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
 }
 
+public func == (lhs: ProfileService.BulkCreateProfiles, rhs: ProfileService.BulkCreateProfiles) -> Bool {
+  if (lhs === rhs) {
+    return true
+  }
+  var fieldCheck:Bool = (lhs.hashValue == rhs.hashValue)
+  return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
+}
+
+public func == (lhs: ProfileService.BulkUpdateProfiles, rhs: ProfileService.BulkUpdateProfiles) -> Bool {
+  if (lhs === rhs) {
+    return true
+  }
+  var fieldCheck:Bool = (lhs.hashValue == rhs.hashValue)
+  return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
+}
+
 public func == (lhs: ProfileService.UpdateProfile, rhs: ProfileService.UpdateProfile) -> Bool {
   if (lhs === rhs) {
     return true
@@ -2462,6 +2478,1072 @@ final public class ProfileService : GeneratedMessage {
            return mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
       }
       public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.CreateProfileBuilder {
+        var unknownFieldsBuilder:UnknownFieldSetBuilder = UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
+        while (true) {
+          var tag = input.readTag()
+          switch tag {
+          case 0: 
+            self.unknownFields = unknownFieldsBuilder.build()
+            return self
+
+          default:
+            if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
+               unknownFields = unknownFieldsBuilder.build()
+               return self
+            }
+          }
+        }
+      }
+    }
+
+
+
+  //Nested type declaration end
+
+
+
+  //Nested type declaration start
+
+    final public class BulkCreateProfiles : GeneratedMessage {
+
+
+      //Nested type declaration start
+
+        final public class Request : GeneratedMessage {
+          override public subscript (key: String) -> Any? {
+                 switch key {
+                 default: return nil
+                 }
+          }
+
+          public private(set) var profiles:Array<ProfileService.Containers.Profile>  = Array<ProfileService.Containers.Profile>()
+          required public init() {
+               super.init()
+          }
+          override public func isInitialized() -> Bool {
+           return true
+          }
+          override public func writeToCodedOutputStream(output:CodedOutputStream) {
+            for oneElementprofiles in profiles {
+                output.writeMessage(1, value:oneElementprofiles)
+            }
+            unknownFields.writeToCodedOutputStream(output)
+          }
+          override public func serializedSize() -> Int32 {
+            var size:Int32 = memoizedSerializedSize
+            if size != -1 {
+             return size
+            }
+
+            size = 0
+            for oneElementprofiles in profiles {
+                size += WireFormat.computeMessageSize(1, value:oneElementprofiles)
+            }
+            size += unknownFields.serializedSize()
+            memoizedSerializedSize = size
+            return size
+          }
+          public class func parseFromData(data:[Byte]) -> ProfileService.BulkCreateProfiles.Request {
+            return ProfileService.BulkCreateProfiles.Request.builder().mergeFromData(data).build()
+          }
+          public class func parseFromData(data:[Byte], extensionRegistry:ExtensionRegistry) -> ProfileService.BulkCreateProfiles.Request {
+            return ProfileService.BulkCreateProfiles.Request.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
+          }
+          public class func parseFromInputStream(input:NSInputStream) -> ProfileService.BulkCreateProfiles.Request {
+            return ProfileService.BulkCreateProfiles.Request.builder().mergeFromInputStream(input).build()
+          }
+          public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->ProfileService.BulkCreateProfiles.Request {
+            return ProfileService.BulkCreateProfiles.Request.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
+          }
+          public class func parseFromCodedInputStream(input:CodedInputStream) -> ProfileService.BulkCreateProfiles.Request {
+            return ProfileService.BulkCreateProfiles.Request.builder().mergeFromCodedInputStream(input).build()
+          }
+          public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.BulkCreateProfiles.Request {
+            return ProfileService.BulkCreateProfiles.Request.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
+          }
+          public class func builder() -> ProfileService.BulkCreateProfiles.RequestBuilder {
+            return ProfileService.BulkCreateProfiles.Request.classBuilder() as ProfileService.BulkCreateProfiles.RequestBuilder
+          }
+          public func builder() -> ProfileService.BulkCreateProfiles.RequestBuilder {
+            return classBuilder() as ProfileService.BulkCreateProfiles.RequestBuilder
+          }
+          public override class func classBuilder() -> MessageBuilder {
+            return ProfileService.BulkCreateProfiles.RequestBuilder()
+          }
+          public override func classBuilder() -> MessageBuilder {
+            return ProfileService.BulkCreateProfiles.Request.builder()
+          }
+          public func toBuilder() -> ProfileService.BulkCreateProfiles.RequestBuilder {
+            return ProfileService.BulkCreateProfiles.Request.builderWithPrototype(self)
+          }
+          public class func builderWithPrototype(prototype:ProfileService.BulkCreateProfiles.Request) -> ProfileService.BulkCreateProfiles.RequestBuilder {
+            return ProfileService.BulkCreateProfiles.Request.builder().mergeFrom(prototype)
+          }
+          override public func writeDescriptionTo(inout output:String, indent:String) {
+            var profilesElementIndex:Int = 0
+            for oneElementprofiles in profiles {
+                output += "\(indent) profiles[\(profilesElementIndex)] {\n"
+                oneElementprofiles.writeDescriptionTo(&output, indent:"\(indent)  ")
+                output += "\(indent)}\n"
+                profilesElementIndex++
+            }
+            unknownFields.writeDescriptionTo(&output, indent:indent)
+          }
+          override public var hashValue:Int {
+              get {
+                  var hashCode:Int = 7
+                  for oneElementprofiles in profiles {
+                      hashCode = (hashCode &* 31) &+ oneElementprofiles.hashValue
+                  }
+                  hashCode = (hashCode &* 31) &+  unknownFields.hashValue
+                  return hashCode
+              }
+          }
+
+
+          //Meta information declaration start
+
+          override public class func className() -> String {
+              return "ProfileService.BulkCreateProfiles.Request"
+          }
+          override public func className() -> String {
+              return "ProfileService.BulkCreateProfiles.Request"
+          }
+          override public func classMetaType() -> GeneratedMessage.Type {
+              return ProfileService.BulkCreateProfiles.Request.self
+          }
+
+
+          //Meta information declaration end
+
+        }
+
+        final public class RequestBuilder : GeneratedMessageBuilder {
+          private var builderResult:ProfileService.BulkCreateProfiles.Request
+
+          required override public init () {
+             builderResult = ProfileService.BulkCreateProfiles.Request()
+             super.init()
+          }
+          public var profiles:Array<ProfileService.Containers.Profile> {
+               get {
+                   return builderResult.profiles
+               }
+               set (value) {
+                   builderResult.profiles = value
+               }
+          }
+          public func clearProfiles() -> ProfileService.BulkCreateProfiles.RequestBuilder {
+            builderResult.profiles.removeAll(keepCapacity: false)
+            return self
+          }
+          override public var internalGetResult:GeneratedMessage {
+               get {
+                  return builderResult
+               }
+          }
+          public override func clear() -> ProfileService.BulkCreateProfiles.RequestBuilder {
+            builderResult = ProfileService.BulkCreateProfiles.Request()
+            return self
+          }
+          public override func clone() -> ProfileService.BulkCreateProfiles.RequestBuilder {
+            return ProfileService.BulkCreateProfiles.Request.builderWithPrototype(builderResult)
+          }
+          public override func build() -> ProfileService.BulkCreateProfiles.Request {
+               checkInitialized()
+               return buildPartial()
+          }
+          public func buildPartial() -> ProfileService.BulkCreateProfiles.Request {
+            var returnMe:ProfileService.BulkCreateProfiles.Request = builderResult
+            return returnMe
+          }
+          public func mergeFrom(other:ProfileService.BulkCreateProfiles.Request) -> ProfileService.BulkCreateProfiles.RequestBuilder {
+            if !other.profiles.isEmpty  {
+               builderResult.profiles += other.profiles
+            }
+            mergeUnknownFields(other.unknownFields)
+            return self
+          }
+          public override func mergeFromCodedInputStream(input:CodedInputStream) ->ProfileService.BulkCreateProfiles.RequestBuilder {
+               return mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
+          }
+          public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.BulkCreateProfiles.RequestBuilder {
+            var unknownFieldsBuilder:UnknownFieldSetBuilder = UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
+            while (true) {
+              var tag = input.readTag()
+              switch tag {
+              case 0: 
+                self.unknownFields = unknownFieldsBuilder.build()
+                return self
+
+              case 10 :
+                var subBuilder = ProfileService.Containers.Profile.builder()
+                input.readMessage(subBuilder,extensionRegistry:extensionRegistry)
+                profiles += [subBuilder.buildPartial()]
+
+              default:
+                if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
+                   unknownFields = unknownFieldsBuilder.build()
+                   return self
+                }
+              }
+            }
+          }
+        }
+
+
+
+      //Nested type declaration end
+
+
+
+      //Nested type declaration start
+
+        final public class Response : GeneratedMessage {
+          override public subscript (key: String) -> Any? {
+                 switch key {
+                 default: return nil
+                 }
+          }
+
+          public private(set) var profiles:Array<ProfileService.Containers.Profile>  = Array<ProfileService.Containers.Profile>()
+          required public init() {
+               super.init()
+          }
+          override public func isInitialized() -> Bool {
+           return true
+          }
+          override public func writeToCodedOutputStream(output:CodedOutputStream) {
+            for oneElementprofiles in profiles {
+                output.writeMessage(1, value:oneElementprofiles)
+            }
+            unknownFields.writeToCodedOutputStream(output)
+          }
+          override public func serializedSize() -> Int32 {
+            var size:Int32 = memoizedSerializedSize
+            if size != -1 {
+             return size
+            }
+
+            size = 0
+            for oneElementprofiles in profiles {
+                size += WireFormat.computeMessageSize(1, value:oneElementprofiles)
+            }
+            size += unknownFields.serializedSize()
+            memoizedSerializedSize = size
+            return size
+          }
+          public class func parseFromData(data:[Byte]) -> ProfileService.BulkCreateProfiles.Response {
+            return ProfileService.BulkCreateProfiles.Response.builder().mergeFromData(data).build()
+          }
+          public class func parseFromData(data:[Byte], extensionRegistry:ExtensionRegistry) -> ProfileService.BulkCreateProfiles.Response {
+            return ProfileService.BulkCreateProfiles.Response.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
+          }
+          public class func parseFromInputStream(input:NSInputStream) -> ProfileService.BulkCreateProfiles.Response {
+            return ProfileService.BulkCreateProfiles.Response.builder().mergeFromInputStream(input).build()
+          }
+          public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->ProfileService.BulkCreateProfiles.Response {
+            return ProfileService.BulkCreateProfiles.Response.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
+          }
+          public class func parseFromCodedInputStream(input:CodedInputStream) -> ProfileService.BulkCreateProfiles.Response {
+            return ProfileService.BulkCreateProfiles.Response.builder().mergeFromCodedInputStream(input).build()
+          }
+          public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.BulkCreateProfiles.Response {
+            return ProfileService.BulkCreateProfiles.Response.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
+          }
+          public class func builder() -> ProfileService.BulkCreateProfiles.ResponseBuilder {
+            return ProfileService.BulkCreateProfiles.Response.classBuilder() as ProfileService.BulkCreateProfiles.ResponseBuilder
+          }
+          public func builder() -> ProfileService.BulkCreateProfiles.ResponseBuilder {
+            return classBuilder() as ProfileService.BulkCreateProfiles.ResponseBuilder
+          }
+          public override class func classBuilder() -> MessageBuilder {
+            return ProfileService.BulkCreateProfiles.ResponseBuilder()
+          }
+          public override func classBuilder() -> MessageBuilder {
+            return ProfileService.BulkCreateProfiles.Response.builder()
+          }
+          public func toBuilder() -> ProfileService.BulkCreateProfiles.ResponseBuilder {
+            return ProfileService.BulkCreateProfiles.Response.builderWithPrototype(self)
+          }
+          public class func builderWithPrototype(prototype:ProfileService.BulkCreateProfiles.Response) -> ProfileService.BulkCreateProfiles.ResponseBuilder {
+            return ProfileService.BulkCreateProfiles.Response.builder().mergeFrom(prototype)
+          }
+          override public func writeDescriptionTo(inout output:String, indent:String) {
+            var profilesElementIndex:Int = 0
+            for oneElementprofiles in profiles {
+                output += "\(indent) profiles[\(profilesElementIndex)] {\n"
+                oneElementprofiles.writeDescriptionTo(&output, indent:"\(indent)  ")
+                output += "\(indent)}\n"
+                profilesElementIndex++
+            }
+            unknownFields.writeDescriptionTo(&output, indent:indent)
+          }
+          override public var hashValue:Int {
+              get {
+                  var hashCode:Int = 7
+                  for oneElementprofiles in profiles {
+                      hashCode = (hashCode &* 31) &+ oneElementprofiles.hashValue
+                  }
+                  hashCode = (hashCode &* 31) &+  unknownFields.hashValue
+                  return hashCode
+              }
+          }
+
+
+          //Meta information declaration start
+
+          override public class func className() -> String {
+              return "ProfileService.BulkCreateProfiles.Response"
+          }
+          override public func className() -> String {
+              return "ProfileService.BulkCreateProfiles.Response"
+          }
+          override public func classMetaType() -> GeneratedMessage.Type {
+              return ProfileService.BulkCreateProfiles.Response.self
+          }
+
+
+          //Meta information declaration end
+
+        }
+
+        final public class ResponseBuilder : GeneratedMessageBuilder {
+          private var builderResult:ProfileService.BulkCreateProfiles.Response
+
+          required override public init () {
+             builderResult = ProfileService.BulkCreateProfiles.Response()
+             super.init()
+          }
+          public var profiles:Array<ProfileService.Containers.Profile> {
+               get {
+                   return builderResult.profiles
+               }
+               set (value) {
+                   builderResult.profiles = value
+               }
+          }
+          public func clearProfiles() -> ProfileService.BulkCreateProfiles.ResponseBuilder {
+            builderResult.profiles.removeAll(keepCapacity: false)
+            return self
+          }
+          override public var internalGetResult:GeneratedMessage {
+               get {
+                  return builderResult
+               }
+          }
+          public override func clear() -> ProfileService.BulkCreateProfiles.ResponseBuilder {
+            builderResult = ProfileService.BulkCreateProfiles.Response()
+            return self
+          }
+          public override func clone() -> ProfileService.BulkCreateProfiles.ResponseBuilder {
+            return ProfileService.BulkCreateProfiles.Response.builderWithPrototype(builderResult)
+          }
+          public override func build() -> ProfileService.BulkCreateProfiles.Response {
+               checkInitialized()
+               return buildPartial()
+          }
+          public func buildPartial() -> ProfileService.BulkCreateProfiles.Response {
+            var returnMe:ProfileService.BulkCreateProfiles.Response = builderResult
+            return returnMe
+          }
+          public func mergeFrom(other:ProfileService.BulkCreateProfiles.Response) -> ProfileService.BulkCreateProfiles.ResponseBuilder {
+            if !other.profiles.isEmpty  {
+               builderResult.profiles += other.profiles
+            }
+            mergeUnknownFields(other.unknownFields)
+            return self
+          }
+          public override func mergeFromCodedInputStream(input:CodedInputStream) ->ProfileService.BulkCreateProfiles.ResponseBuilder {
+               return mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
+          }
+          public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.BulkCreateProfiles.ResponseBuilder {
+            var unknownFieldsBuilder:UnknownFieldSetBuilder = UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
+            while (true) {
+              var tag = input.readTag()
+              switch tag {
+              case 0: 
+                self.unknownFields = unknownFieldsBuilder.build()
+                return self
+
+              case 10 :
+                var subBuilder = ProfileService.Containers.Profile.builder()
+                input.readMessage(subBuilder,extensionRegistry:extensionRegistry)
+                profiles += [subBuilder.buildPartial()]
+
+              default:
+                if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
+                   unknownFields = unknownFieldsBuilder.build()
+                   return self
+                }
+              }
+            }
+          }
+        }
+
+
+
+      //Nested type declaration end
+
+      override public subscript (key: String) -> Any? {
+             switch key {
+             default: return nil
+             }
+      }
+
+      required public init() {
+           super.init()
+      }
+      override public func isInitialized() -> Bool {
+       return true
+      }
+      override public func writeToCodedOutputStream(output:CodedOutputStream) {
+        unknownFields.writeToCodedOutputStream(output)
+      }
+      override public func serializedSize() -> Int32 {
+        var size:Int32 = memoizedSerializedSize
+        if size != -1 {
+         return size
+        }
+
+        size = 0
+        size += unknownFields.serializedSize()
+        memoizedSerializedSize = size
+        return size
+      }
+      public class func parseFromData(data:[Byte]) -> ProfileService.BulkCreateProfiles {
+        return ProfileService.BulkCreateProfiles.builder().mergeFromData(data).build()
+      }
+      public class func parseFromData(data:[Byte], extensionRegistry:ExtensionRegistry) -> ProfileService.BulkCreateProfiles {
+        return ProfileService.BulkCreateProfiles.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
+      }
+      public class func parseFromInputStream(input:NSInputStream) -> ProfileService.BulkCreateProfiles {
+        return ProfileService.BulkCreateProfiles.builder().mergeFromInputStream(input).build()
+      }
+      public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->ProfileService.BulkCreateProfiles {
+        return ProfileService.BulkCreateProfiles.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
+      }
+      public class func parseFromCodedInputStream(input:CodedInputStream) -> ProfileService.BulkCreateProfiles {
+        return ProfileService.BulkCreateProfiles.builder().mergeFromCodedInputStream(input).build()
+      }
+      public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.BulkCreateProfiles {
+        return ProfileService.BulkCreateProfiles.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
+      }
+      public class func builder() -> ProfileService.BulkCreateProfilesBuilder {
+        return ProfileService.BulkCreateProfiles.classBuilder() as ProfileService.BulkCreateProfilesBuilder
+      }
+      public func builder() -> ProfileService.BulkCreateProfilesBuilder {
+        return classBuilder() as ProfileService.BulkCreateProfilesBuilder
+      }
+      public override class func classBuilder() -> MessageBuilder {
+        return ProfileService.BulkCreateProfilesBuilder()
+      }
+      public override func classBuilder() -> MessageBuilder {
+        return ProfileService.BulkCreateProfiles.builder()
+      }
+      public func toBuilder() -> ProfileService.BulkCreateProfilesBuilder {
+        return ProfileService.BulkCreateProfiles.builderWithPrototype(self)
+      }
+      public class func builderWithPrototype(prototype:ProfileService.BulkCreateProfiles) -> ProfileService.BulkCreateProfilesBuilder {
+        return ProfileService.BulkCreateProfiles.builder().mergeFrom(prototype)
+      }
+      override public func writeDescriptionTo(inout output:String, indent:String) {
+        unknownFields.writeDescriptionTo(&output, indent:indent)
+      }
+      override public var hashValue:Int {
+          get {
+              var hashCode:Int = 7
+              hashCode = (hashCode &* 31) &+  unknownFields.hashValue
+              return hashCode
+          }
+      }
+
+
+      //Meta information declaration start
+
+      override public class func className() -> String {
+          return "ProfileService.BulkCreateProfiles"
+      }
+      override public func className() -> String {
+          return "ProfileService.BulkCreateProfiles"
+      }
+      override public func classMetaType() -> GeneratedMessage.Type {
+          return ProfileService.BulkCreateProfiles.self
+      }
+
+
+      //Meta information declaration end
+
+    }
+
+    final public class BulkCreateProfilesBuilder : GeneratedMessageBuilder {
+      private var builderResult:ProfileService.BulkCreateProfiles
+
+      required override public init () {
+         builderResult = ProfileService.BulkCreateProfiles()
+         super.init()
+      }
+      override public var internalGetResult:GeneratedMessage {
+           get {
+              return builderResult
+           }
+      }
+      public override func clear() -> ProfileService.BulkCreateProfilesBuilder {
+        builderResult = ProfileService.BulkCreateProfiles()
+        return self
+      }
+      public override func clone() -> ProfileService.BulkCreateProfilesBuilder {
+        return ProfileService.BulkCreateProfiles.builderWithPrototype(builderResult)
+      }
+      public override func build() -> ProfileService.BulkCreateProfiles {
+           checkInitialized()
+           return buildPartial()
+      }
+      public func buildPartial() -> ProfileService.BulkCreateProfiles {
+        var returnMe:ProfileService.BulkCreateProfiles = builderResult
+        return returnMe
+      }
+      public func mergeFrom(other:ProfileService.BulkCreateProfiles) -> ProfileService.BulkCreateProfilesBuilder {
+        mergeUnknownFields(other.unknownFields)
+        return self
+      }
+      public override func mergeFromCodedInputStream(input:CodedInputStream) ->ProfileService.BulkCreateProfilesBuilder {
+           return mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
+      }
+      public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.BulkCreateProfilesBuilder {
+        var unknownFieldsBuilder:UnknownFieldSetBuilder = UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
+        while (true) {
+          var tag = input.readTag()
+          switch tag {
+          case 0: 
+            self.unknownFields = unknownFieldsBuilder.build()
+            return self
+
+          default:
+            if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
+               unknownFields = unknownFieldsBuilder.build()
+               return self
+            }
+          }
+        }
+      }
+    }
+
+
+
+  //Nested type declaration end
+
+
+
+  //Nested type declaration start
+
+    final public class BulkUpdateProfiles : GeneratedMessage {
+
+
+      //Nested type declaration start
+
+        final public class Request : GeneratedMessage {
+          override public subscript (key: String) -> Any? {
+                 switch key {
+                 default: return nil
+                 }
+          }
+
+          public private(set) var profiles:Array<ProfileService.Containers.Profile>  = Array<ProfileService.Containers.Profile>()
+          required public init() {
+               super.init()
+          }
+          override public func isInitialized() -> Bool {
+           return true
+          }
+          override public func writeToCodedOutputStream(output:CodedOutputStream) {
+            for oneElementprofiles in profiles {
+                output.writeMessage(1, value:oneElementprofiles)
+            }
+            unknownFields.writeToCodedOutputStream(output)
+          }
+          override public func serializedSize() -> Int32 {
+            var size:Int32 = memoizedSerializedSize
+            if size != -1 {
+             return size
+            }
+
+            size = 0
+            for oneElementprofiles in profiles {
+                size += WireFormat.computeMessageSize(1, value:oneElementprofiles)
+            }
+            size += unknownFields.serializedSize()
+            memoizedSerializedSize = size
+            return size
+          }
+          public class func parseFromData(data:[Byte]) -> ProfileService.BulkUpdateProfiles.Request {
+            return ProfileService.BulkUpdateProfiles.Request.builder().mergeFromData(data).build()
+          }
+          public class func parseFromData(data:[Byte], extensionRegistry:ExtensionRegistry) -> ProfileService.BulkUpdateProfiles.Request {
+            return ProfileService.BulkUpdateProfiles.Request.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
+          }
+          public class func parseFromInputStream(input:NSInputStream) -> ProfileService.BulkUpdateProfiles.Request {
+            return ProfileService.BulkUpdateProfiles.Request.builder().mergeFromInputStream(input).build()
+          }
+          public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->ProfileService.BulkUpdateProfiles.Request {
+            return ProfileService.BulkUpdateProfiles.Request.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
+          }
+          public class func parseFromCodedInputStream(input:CodedInputStream) -> ProfileService.BulkUpdateProfiles.Request {
+            return ProfileService.BulkUpdateProfiles.Request.builder().mergeFromCodedInputStream(input).build()
+          }
+          public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.BulkUpdateProfiles.Request {
+            return ProfileService.BulkUpdateProfiles.Request.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
+          }
+          public class func builder() -> ProfileService.BulkUpdateProfiles.RequestBuilder {
+            return ProfileService.BulkUpdateProfiles.Request.classBuilder() as ProfileService.BulkUpdateProfiles.RequestBuilder
+          }
+          public func builder() -> ProfileService.BulkUpdateProfiles.RequestBuilder {
+            return classBuilder() as ProfileService.BulkUpdateProfiles.RequestBuilder
+          }
+          public override class func classBuilder() -> MessageBuilder {
+            return ProfileService.BulkUpdateProfiles.RequestBuilder()
+          }
+          public override func classBuilder() -> MessageBuilder {
+            return ProfileService.BulkUpdateProfiles.Request.builder()
+          }
+          public func toBuilder() -> ProfileService.BulkUpdateProfiles.RequestBuilder {
+            return ProfileService.BulkUpdateProfiles.Request.builderWithPrototype(self)
+          }
+          public class func builderWithPrototype(prototype:ProfileService.BulkUpdateProfiles.Request) -> ProfileService.BulkUpdateProfiles.RequestBuilder {
+            return ProfileService.BulkUpdateProfiles.Request.builder().mergeFrom(prototype)
+          }
+          override public func writeDescriptionTo(inout output:String, indent:String) {
+            var profilesElementIndex:Int = 0
+            for oneElementprofiles in profiles {
+                output += "\(indent) profiles[\(profilesElementIndex)] {\n"
+                oneElementprofiles.writeDescriptionTo(&output, indent:"\(indent)  ")
+                output += "\(indent)}\n"
+                profilesElementIndex++
+            }
+            unknownFields.writeDescriptionTo(&output, indent:indent)
+          }
+          override public var hashValue:Int {
+              get {
+                  var hashCode:Int = 7
+                  for oneElementprofiles in profiles {
+                      hashCode = (hashCode &* 31) &+ oneElementprofiles.hashValue
+                  }
+                  hashCode = (hashCode &* 31) &+  unknownFields.hashValue
+                  return hashCode
+              }
+          }
+
+
+          //Meta information declaration start
+
+          override public class func className() -> String {
+              return "ProfileService.BulkUpdateProfiles.Request"
+          }
+          override public func className() -> String {
+              return "ProfileService.BulkUpdateProfiles.Request"
+          }
+          override public func classMetaType() -> GeneratedMessage.Type {
+              return ProfileService.BulkUpdateProfiles.Request.self
+          }
+
+
+          //Meta information declaration end
+
+        }
+
+        final public class RequestBuilder : GeneratedMessageBuilder {
+          private var builderResult:ProfileService.BulkUpdateProfiles.Request
+
+          required override public init () {
+             builderResult = ProfileService.BulkUpdateProfiles.Request()
+             super.init()
+          }
+          public var profiles:Array<ProfileService.Containers.Profile> {
+               get {
+                   return builderResult.profiles
+               }
+               set (value) {
+                   builderResult.profiles = value
+               }
+          }
+          public func clearProfiles() -> ProfileService.BulkUpdateProfiles.RequestBuilder {
+            builderResult.profiles.removeAll(keepCapacity: false)
+            return self
+          }
+          override public var internalGetResult:GeneratedMessage {
+               get {
+                  return builderResult
+               }
+          }
+          public override func clear() -> ProfileService.BulkUpdateProfiles.RequestBuilder {
+            builderResult = ProfileService.BulkUpdateProfiles.Request()
+            return self
+          }
+          public override func clone() -> ProfileService.BulkUpdateProfiles.RequestBuilder {
+            return ProfileService.BulkUpdateProfiles.Request.builderWithPrototype(builderResult)
+          }
+          public override func build() -> ProfileService.BulkUpdateProfiles.Request {
+               checkInitialized()
+               return buildPartial()
+          }
+          public func buildPartial() -> ProfileService.BulkUpdateProfiles.Request {
+            var returnMe:ProfileService.BulkUpdateProfiles.Request = builderResult
+            return returnMe
+          }
+          public func mergeFrom(other:ProfileService.BulkUpdateProfiles.Request) -> ProfileService.BulkUpdateProfiles.RequestBuilder {
+            if !other.profiles.isEmpty  {
+               builderResult.profiles += other.profiles
+            }
+            mergeUnknownFields(other.unknownFields)
+            return self
+          }
+          public override func mergeFromCodedInputStream(input:CodedInputStream) ->ProfileService.BulkUpdateProfiles.RequestBuilder {
+               return mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
+          }
+          public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.BulkUpdateProfiles.RequestBuilder {
+            var unknownFieldsBuilder:UnknownFieldSetBuilder = UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
+            while (true) {
+              var tag = input.readTag()
+              switch tag {
+              case 0: 
+                self.unknownFields = unknownFieldsBuilder.build()
+                return self
+
+              case 10 :
+                var subBuilder = ProfileService.Containers.Profile.builder()
+                input.readMessage(subBuilder,extensionRegistry:extensionRegistry)
+                profiles += [subBuilder.buildPartial()]
+
+              default:
+                if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
+                   unknownFields = unknownFieldsBuilder.build()
+                   return self
+                }
+              }
+            }
+          }
+        }
+
+
+
+      //Nested type declaration end
+
+
+
+      //Nested type declaration start
+
+        final public class Response : GeneratedMessage {
+          override public subscript (key: String) -> Any? {
+                 switch key {
+                 default: return nil
+                 }
+          }
+
+          public private(set) var profiles:Array<ProfileService.Containers.Profile>  = Array<ProfileService.Containers.Profile>()
+          required public init() {
+               super.init()
+          }
+          override public func isInitialized() -> Bool {
+           return true
+          }
+          override public func writeToCodedOutputStream(output:CodedOutputStream) {
+            for oneElementprofiles in profiles {
+                output.writeMessage(1, value:oneElementprofiles)
+            }
+            unknownFields.writeToCodedOutputStream(output)
+          }
+          override public func serializedSize() -> Int32 {
+            var size:Int32 = memoizedSerializedSize
+            if size != -1 {
+             return size
+            }
+
+            size = 0
+            for oneElementprofiles in profiles {
+                size += WireFormat.computeMessageSize(1, value:oneElementprofiles)
+            }
+            size += unknownFields.serializedSize()
+            memoizedSerializedSize = size
+            return size
+          }
+          public class func parseFromData(data:[Byte]) -> ProfileService.BulkUpdateProfiles.Response {
+            return ProfileService.BulkUpdateProfiles.Response.builder().mergeFromData(data).build()
+          }
+          public class func parseFromData(data:[Byte], extensionRegistry:ExtensionRegistry) -> ProfileService.BulkUpdateProfiles.Response {
+            return ProfileService.BulkUpdateProfiles.Response.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
+          }
+          public class func parseFromInputStream(input:NSInputStream) -> ProfileService.BulkUpdateProfiles.Response {
+            return ProfileService.BulkUpdateProfiles.Response.builder().mergeFromInputStream(input).build()
+          }
+          public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->ProfileService.BulkUpdateProfiles.Response {
+            return ProfileService.BulkUpdateProfiles.Response.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
+          }
+          public class func parseFromCodedInputStream(input:CodedInputStream) -> ProfileService.BulkUpdateProfiles.Response {
+            return ProfileService.BulkUpdateProfiles.Response.builder().mergeFromCodedInputStream(input).build()
+          }
+          public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.BulkUpdateProfiles.Response {
+            return ProfileService.BulkUpdateProfiles.Response.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
+          }
+          public class func builder() -> ProfileService.BulkUpdateProfiles.ResponseBuilder {
+            return ProfileService.BulkUpdateProfiles.Response.classBuilder() as ProfileService.BulkUpdateProfiles.ResponseBuilder
+          }
+          public func builder() -> ProfileService.BulkUpdateProfiles.ResponseBuilder {
+            return classBuilder() as ProfileService.BulkUpdateProfiles.ResponseBuilder
+          }
+          public override class func classBuilder() -> MessageBuilder {
+            return ProfileService.BulkUpdateProfiles.ResponseBuilder()
+          }
+          public override func classBuilder() -> MessageBuilder {
+            return ProfileService.BulkUpdateProfiles.Response.builder()
+          }
+          public func toBuilder() -> ProfileService.BulkUpdateProfiles.ResponseBuilder {
+            return ProfileService.BulkUpdateProfiles.Response.builderWithPrototype(self)
+          }
+          public class func builderWithPrototype(prototype:ProfileService.BulkUpdateProfiles.Response) -> ProfileService.BulkUpdateProfiles.ResponseBuilder {
+            return ProfileService.BulkUpdateProfiles.Response.builder().mergeFrom(prototype)
+          }
+          override public func writeDescriptionTo(inout output:String, indent:String) {
+            var profilesElementIndex:Int = 0
+            for oneElementprofiles in profiles {
+                output += "\(indent) profiles[\(profilesElementIndex)] {\n"
+                oneElementprofiles.writeDescriptionTo(&output, indent:"\(indent)  ")
+                output += "\(indent)}\n"
+                profilesElementIndex++
+            }
+            unknownFields.writeDescriptionTo(&output, indent:indent)
+          }
+          override public var hashValue:Int {
+              get {
+                  var hashCode:Int = 7
+                  for oneElementprofiles in profiles {
+                      hashCode = (hashCode &* 31) &+ oneElementprofiles.hashValue
+                  }
+                  hashCode = (hashCode &* 31) &+  unknownFields.hashValue
+                  return hashCode
+              }
+          }
+
+
+          //Meta information declaration start
+
+          override public class func className() -> String {
+              return "ProfileService.BulkUpdateProfiles.Response"
+          }
+          override public func className() -> String {
+              return "ProfileService.BulkUpdateProfiles.Response"
+          }
+          override public func classMetaType() -> GeneratedMessage.Type {
+              return ProfileService.BulkUpdateProfiles.Response.self
+          }
+
+
+          //Meta information declaration end
+
+        }
+
+        final public class ResponseBuilder : GeneratedMessageBuilder {
+          private var builderResult:ProfileService.BulkUpdateProfiles.Response
+
+          required override public init () {
+             builderResult = ProfileService.BulkUpdateProfiles.Response()
+             super.init()
+          }
+          public var profiles:Array<ProfileService.Containers.Profile> {
+               get {
+                   return builderResult.profiles
+               }
+               set (value) {
+                   builderResult.profiles = value
+               }
+          }
+          public func clearProfiles() -> ProfileService.BulkUpdateProfiles.ResponseBuilder {
+            builderResult.profiles.removeAll(keepCapacity: false)
+            return self
+          }
+          override public var internalGetResult:GeneratedMessage {
+               get {
+                  return builderResult
+               }
+          }
+          public override func clear() -> ProfileService.BulkUpdateProfiles.ResponseBuilder {
+            builderResult = ProfileService.BulkUpdateProfiles.Response()
+            return self
+          }
+          public override func clone() -> ProfileService.BulkUpdateProfiles.ResponseBuilder {
+            return ProfileService.BulkUpdateProfiles.Response.builderWithPrototype(builderResult)
+          }
+          public override func build() -> ProfileService.BulkUpdateProfiles.Response {
+               checkInitialized()
+               return buildPartial()
+          }
+          public func buildPartial() -> ProfileService.BulkUpdateProfiles.Response {
+            var returnMe:ProfileService.BulkUpdateProfiles.Response = builderResult
+            return returnMe
+          }
+          public func mergeFrom(other:ProfileService.BulkUpdateProfiles.Response) -> ProfileService.BulkUpdateProfiles.ResponseBuilder {
+            if !other.profiles.isEmpty  {
+               builderResult.profiles += other.profiles
+            }
+            mergeUnknownFields(other.unknownFields)
+            return self
+          }
+          public override func mergeFromCodedInputStream(input:CodedInputStream) ->ProfileService.BulkUpdateProfiles.ResponseBuilder {
+               return mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
+          }
+          public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.BulkUpdateProfiles.ResponseBuilder {
+            var unknownFieldsBuilder:UnknownFieldSetBuilder = UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
+            while (true) {
+              var tag = input.readTag()
+              switch tag {
+              case 0: 
+                self.unknownFields = unknownFieldsBuilder.build()
+                return self
+
+              case 10 :
+                var subBuilder = ProfileService.Containers.Profile.builder()
+                input.readMessage(subBuilder,extensionRegistry:extensionRegistry)
+                profiles += [subBuilder.buildPartial()]
+
+              default:
+                if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
+                   unknownFields = unknownFieldsBuilder.build()
+                   return self
+                }
+              }
+            }
+          }
+        }
+
+
+
+      //Nested type declaration end
+
+      override public subscript (key: String) -> Any? {
+             switch key {
+             default: return nil
+             }
+      }
+
+      required public init() {
+           super.init()
+      }
+      override public func isInitialized() -> Bool {
+       return true
+      }
+      override public func writeToCodedOutputStream(output:CodedOutputStream) {
+        unknownFields.writeToCodedOutputStream(output)
+      }
+      override public func serializedSize() -> Int32 {
+        var size:Int32 = memoizedSerializedSize
+        if size != -1 {
+         return size
+        }
+
+        size = 0
+        size += unknownFields.serializedSize()
+        memoizedSerializedSize = size
+        return size
+      }
+      public class func parseFromData(data:[Byte]) -> ProfileService.BulkUpdateProfiles {
+        return ProfileService.BulkUpdateProfiles.builder().mergeFromData(data).build()
+      }
+      public class func parseFromData(data:[Byte], extensionRegistry:ExtensionRegistry) -> ProfileService.BulkUpdateProfiles {
+        return ProfileService.BulkUpdateProfiles.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
+      }
+      public class func parseFromInputStream(input:NSInputStream) -> ProfileService.BulkUpdateProfiles {
+        return ProfileService.BulkUpdateProfiles.builder().mergeFromInputStream(input).build()
+      }
+      public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->ProfileService.BulkUpdateProfiles {
+        return ProfileService.BulkUpdateProfiles.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
+      }
+      public class func parseFromCodedInputStream(input:CodedInputStream) -> ProfileService.BulkUpdateProfiles {
+        return ProfileService.BulkUpdateProfiles.builder().mergeFromCodedInputStream(input).build()
+      }
+      public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.BulkUpdateProfiles {
+        return ProfileService.BulkUpdateProfiles.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
+      }
+      public class func builder() -> ProfileService.BulkUpdateProfilesBuilder {
+        return ProfileService.BulkUpdateProfiles.classBuilder() as ProfileService.BulkUpdateProfilesBuilder
+      }
+      public func builder() -> ProfileService.BulkUpdateProfilesBuilder {
+        return classBuilder() as ProfileService.BulkUpdateProfilesBuilder
+      }
+      public override class func classBuilder() -> MessageBuilder {
+        return ProfileService.BulkUpdateProfilesBuilder()
+      }
+      public override func classBuilder() -> MessageBuilder {
+        return ProfileService.BulkUpdateProfiles.builder()
+      }
+      public func toBuilder() -> ProfileService.BulkUpdateProfilesBuilder {
+        return ProfileService.BulkUpdateProfiles.builderWithPrototype(self)
+      }
+      public class func builderWithPrototype(prototype:ProfileService.BulkUpdateProfiles) -> ProfileService.BulkUpdateProfilesBuilder {
+        return ProfileService.BulkUpdateProfiles.builder().mergeFrom(prototype)
+      }
+      override public func writeDescriptionTo(inout output:String, indent:String) {
+        unknownFields.writeDescriptionTo(&output, indent:indent)
+      }
+      override public var hashValue:Int {
+          get {
+              var hashCode:Int = 7
+              hashCode = (hashCode &* 31) &+  unknownFields.hashValue
+              return hashCode
+          }
+      }
+
+
+      //Meta information declaration start
+
+      override public class func className() -> String {
+          return "ProfileService.BulkUpdateProfiles"
+      }
+      override public func className() -> String {
+          return "ProfileService.BulkUpdateProfiles"
+      }
+      override public func classMetaType() -> GeneratedMessage.Type {
+          return ProfileService.BulkUpdateProfiles.self
+      }
+
+
+      //Meta information declaration end
+
+    }
+
+    final public class BulkUpdateProfilesBuilder : GeneratedMessageBuilder {
+      private var builderResult:ProfileService.BulkUpdateProfiles
+
+      required override public init () {
+         builderResult = ProfileService.BulkUpdateProfiles()
+         super.init()
+      }
+      override public var internalGetResult:GeneratedMessage {
+           get {
+              return builderResult
+           }
+      }
+      public override func clear() -> ProfileService.BulkUpdateProfilesBuilder {
+        builderResult = ProfileService.BulkUpdateProfiles()
+        return self
+      }
+      public override func clone() -> ProfileService.BulkUpdateProfilesBuilder {
+        return ProfileService.BulkUpdateProfiles.builderWithPrototype(builderResult)
+      }
+      public override func build() -> ProfileService.BulkUpdateProfiles {
+           checkInitialized()
+           return buildPartial()
+      }
+      public func buildPartial() -> ProfileService.BulkUpdateProfiles {
+        var returnMe:ProfileService.BulkUpdateProfiles = builderResult
+        return returnMe
+      }
+      public func mergeFrom(other:ProfileService.BulkUpdateProfiles) -> ProfileService.BulkUpdateProfilesBuilder {
+        mergeUnknownFields(other.unknownFields)
+        return self
+      }
+      public override func mergeFromCodedInputStream(input:CodedInputStream) ->ProfileService.BulkUpdateProfilesBuilder {
+           return mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
+      }
+      public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.BulkUpdateProfilesBuilder {
         var unknownFieldsBuilder:UnknownFieldSetBuilder = UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
         while (true) {
           var tag = input.readTag()
@@ -11078,6 +12160,78 @@ public extension ProfileService.CreateProfile {
         var bytes = [Byte](count: data.length, repeatedValue: 0)
         data.getBytes(&bytes)
         return ProfileService.CreateProfile.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
+    }
+}
+public extension ProfileService.BulkCreateProfiles.Request {
+    class func parseFromNSData(data:NSData) -> ProfileService.BulkCreateProfiles.Request {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return ProfileService.BulkCreateProfiles.Request.builder().mergeFromData(bytes).build()
+    }
+    class func parseFromNSData(data:NSData, extensionRegistry:ExtensionRegistry) -> ProfileService.BulkCreateProfiles.Request {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return ProfileService.BulkCreateProfiles.Request.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
+    }
+}
+public extension ProfileService.BulkCreateProfiles.Response {
+    class func parseFromNSData(data:NSData) -> ProfileService.BulkCreateProfiles.Response {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return ProfileService.BulkCreateProfiles.Response.builder().mergeFromData(bytes).build()
+    }
+    class func parseFromNSData(data:NSData, extensionRegistry:ExtensionRegistry) -> ProfileService.BulkCreateProfiles.Response {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return ProfileService.BulkCreateProfiles.Response.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
+    }
+}
+public extension ProfileService.BulkCreateProfiles {
+    class func parseFromNSData(data:NSData) -> ProfileService.BulkCreateProfiles {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return ProfileService.BulkCreateProfiles.builder().mergeFromData(bytes).build()
+    }
+    class func parseFromNSData(data:NSData, extensionRegistry:ExtensionRegistry) -> ProfileService.BulkCreateProfiles {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return ProfileService.BulkCreateProfiles.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
+    }
+}
+public extension ProfileService.BulkUpdateProfiles.Request {
+    class func parseFromNSData(data:NSData) -> ProfileService.BulkUpdateProfiles.Request {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return ProfileService.BulkUpdateProfiles.Request.builder().mergeFromData(bytes).build()
+    }
+    class func parseFromNSData(data:NSData, extensionRegistry:ExtensionRegistry) -> ProfileService.BulkUpdateProfiles.Request {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return ProfileService.BulkUpdateProfiles.Request.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
+    }
+}
+public extension ProfileService.BulkUpdateProfiles.Response {
+    class func parseFromNSData(data:NSData) -> ProfileService.BulkUpdateProfiles.Response {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return ProfileService.BulkUpdateProfiles.Response.builder().mergeFromData(bytes).build()
+    }
+    class func parseFromNSData(data:NSData, extensionRegistry:ExtensionRegistry) -> ProfileService.BulkUpdateProfiles.Response {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return ProfileService.BulkUpdateProfiles.Response.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
+    }
+}
+public extension ProfileService.BulkUpdateProfiles {
+    class func parseFromNSData(data:NSData) -> ProfileService.BulkUpdateProfiles {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return ProfileService.BulkUpdateProfiles.builder().mergeFromData(bytes).build()
+    }
+    class func parseFromNSData(data:NSData, extensionRegistry:ExtensionRegistry) -> ProfileService.BulkUpdateProfiles {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return ProfileService.BulkUpdateProfiles.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
     }
 }
 public extension ProfileService.UpdateProfile.Request {

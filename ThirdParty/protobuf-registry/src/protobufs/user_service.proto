@@ -19,6 +19,7 @@ message UserService {
             optional bool is_active = 4;
             optional string phone_number = 5;
             optional bool phone_number_verified = 6;
+            optional string password = 7;
         }
 
         message OAuth2Details {
@@ -58,8 +59,17 @@ message UserService {
         }
     }
 
-    message UpdateUser {
+    message BulkCreateUsers {
+        message Request {
+            repeated Containers.User users = 1;
+        }
 
+        message Response {
+            repeated Containers.User users = 1;
+        }
+    }
+
+    message UpdateUser {
         message Request {
             optional Containers.User user = 1;
         }

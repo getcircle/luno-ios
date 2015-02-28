@@ -1,0 +1,63 @@
+package main.appreciation_service;
+
+message AppreciationService {
+
+    // MARK: - Appreciation Service Containers
+
+    message Containers {
+
+        message Appreciation {
+            optional string id = 1;
+            optional string destination_profile_id = 2;
+            optional string source_profile_id = 3;
+            optional string content = 4;
+            optional string created = 5;
+            optional string changed = 6;
+        }
+    }
+
+    // MARK: - Actions
+
+    message CreateAppreciation {
+
+        message Request {
+            optional Containers.Appreciation appreciation = 1;
+        }
+
+        message Response {
+            optional Containers.Appreciation appreciation = 1;
+        }
+    }
+
+    message GetAppreciation {
+
+        message Request {
+            optional string destination_profile_id = 1;
+        }
+
+        message Response {
+            repeated Containers.Appreciation appreciation = 1;
+        }
+    }
+
+    message DeleteAppreciation {
+
+        message Request {
+            optional Containers.Appreciation appreciation = 1;
+        }
+
+        message Response {}
+    }
+
+    message UpdateAppreciation {
+
+        message Request {
+            optional Containers.Appreciation appreciation = 1;
+        }
+
+        message Response {
+            optional Containers.Appreciation appreciation = 1;
+        }
+    }
+
+}
