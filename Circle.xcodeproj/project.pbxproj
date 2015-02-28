@@ -564,9 +564,9 @@
 		8F0004931A2419730096477A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				8F834F9F1A9FFC2F007B7095 /* AppStrings.swift */,
 				8F22CB7A1A268C040026376E /* Circle-Bridging-Header.h */,
 				8F0004941A2419730096477A /* Info.plist */,
-				8F834F9F1A9FFC2F007B7095 /* AppStrings.swift */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -637,6 +637,7 @@
 				8F65C4FC1A51222100C7F3E6 /* OfficeCollectionViewCell.swift */,
 				8F4805E31A5DE4B800273731 /* MapHeaderCollectionReusableView.swift */,
 				8F4E53761A5A0D9E00DC876B /* NotesCollectionViewCell.swift */,
+				8F834F831A9909AC007B7095 /* OfficeTeamManagerCollectionViewCell.swift */,
 				8F823E411A714B5D0006264B /* OrganizationHeaderCollectionReusableView.swift */,
 				BFCFDB0F1A9165A9009A5FD4 /* PositionCollectionViewCell.swift */,
 				8FCC95CB1A52828B00421E65 /* ProfileCollectionViewCell.swift */,
@@ -650,7 +651,6 @@
 				8FF2254A1A641B27001B2E32 /* SearchResultsCardHeaderCollectionReusableView.swift */,
 				8F22CBEC1A283D3D0026376E /* SeparatorDecorationView.swift */,
 				8F9F60D31A8C481F00FCAA25 /* SettingsCollectionViewCell.swift */,
-				8F9F60D41A8C481F00FCAA25 /* SettingsCollectionViewCell.xib */,
 				8FF298451A4E050100306CFC /* SkillCollectionViewCell.swift */,
 				8F74001B1A684F2400D96B60 /* SkillHeaderCollectionReusableView.swift */,
 				8F65C5051A52661700C7F3E6 /* SkillsCollectionViewCell.swift */,
@@ -661,9 +661,6 @@
 				BFCFDB1F1A91951A009A5FD4 /* TextValueCollectionViewCell.swift */,
 				BFCFDB291A92759A009A5FD4 /* ToggleSocialConnectionCollectionViewCell.swift */,
 				8F7795131A92769E00BEF6EA /* QuickActionsCollectionViewCell.swift */,
-				8F7795141A92769E00BEF6EA /* QuickActionsCollectionViewCell.xib */,
-				8F834F831A9909AC007B7095 /* OfficeTeamManagerCollectionViewCell.swift */,
-				8F834F841A9909AC007B7095 /* OfficeTeamManagerCollectionViewCell.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -731,6 +728,7 @@
 				BF8DAC771A6CB05B000860DD /* NotesCardHeaderCollectionReusableView.xib */,
 				8F4E53771A5A0D9E00DC876B /* NotesCollectionViewCell.xib */,
 				8F809F861A79DD6900029A47 /* NotesOverviewViewController.xib */,
+				8F834F841A9909AC007B7095 /* OfficeTeamManagerCollectionViewCell.xib */,
 				8F823E421A714B5D0006264B /* OrganizationHeaderCollectionReusableView.xib */,
 				8F7E2DCC1A8FDBB500B8548D /* PasscodeTouchIDViewController.xib */,
 				BFCFDB101A9165A9009A5FD4 /* PositionCollectionViewCell.xib */,
@@ -738,8 +736,10 @@
 				8F22CBDF1A27A8E60026376E /* ProfileHeaderCollectionReusableView.xib */,
 				8FF298021A4A4E3600306CFC /* ProfileImagesCollectionViewCell.xib */,
 				BFCFDB191A917944009A5FD4 /* ProfileSectionHeaderCollectionReusableView.xib */,
+				8F7795141A92769E00BEF6EA /* QuickActionsCollectionViewCell.xib */,
 				8FF298091A4B490E00306CFC /* SearchHeaderView.xib */,
 				8FF2254B1A641B27001B2E32 /* SearchResultsCardHeaderCollectionReusableView.xib */,
+				8F9F60D41A8C481F00FCAA25 /* SettingsCollectionViewCell.xib */,
 				8F9F60CB1A8C439E00FCAA25 /* SettingsViewController.xib */,
 				8FF298461A4E050100306CFC /* SkillCollectionViewCell.xib */,
 				8F74001C1A684F2400D96B60 /* SkillHeaderCollectionReusableView.xib */,
