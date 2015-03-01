@@ -169,6 +169,7 @@
 		BF8DAC901A6D904D000860DD /* NoteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8DAC8F1A6D904D000860DD /* NoteService.swift */; };
 		BF8FC3D91A44DA83007FD8BA /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8FC3D81A44DA83007FD8BA /* StringExtension.swift */; };
 		BF9D72121A68492C002CDC66 /* ObjectStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9D72111A68492C002CDC66 /* ObjectStore.swift */; };
+		BFA1187F1AA2738E0073B13A /* AppreciationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA1187E1AA2738E0073B13A /* AppreciationService.swift */; };
 		BFA5E4861A72C942008826F0 /* StickyHeaderCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA5E4851A72C942008826F0 /* StickyHeaderCollectionViewDelegate.swift */; };
 		BFAE43551A8B05010085AB2B /* HomelessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAE43531A8B05010085AB2B /* HomelessViewController.swift */; };
 		BFAE43561A8B05010085AB2B /* HomelessViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFAE43541A8B05010085AB2B /* HomelessViewController.xib */; };
@@ -453,6 +454,7 @@
 		BF8DAC8F1A6D904D000860DD /* NoteService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteService.swift; sourceTree = "<group>"; };
 		BF8FC3D81A44DA83007FD8BA /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		BF9D72111A68492C002CDC66 /* ObjectStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectStore.swift; sourceTree = "<group>"; };
+		BFA1187E1AA2738E0073B13A /* AppreciationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppreciationService.swift; sourceTree = "<group>"; };
 		BFA5E4851A72C942008826F0 /* StickyHeaderCollectionViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StickyHeaderCollectionViewDelegate.swift; sourceTree = "<group>"; };
 		BFAE43531A8B05010085AB2B /* HomelessViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomelessViewController.swift; sourceTree = "<group>"; };
 		BFAE43541A8B05010085AB2B /* HomelessViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomelessViewController.xib; sourceTree = "<group>"; };
@@ -867,15 +869,16 @@
 		BF2CBFD21A473E7F00BE589D /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				BFA1187E1AA2738E0073B13A /* AppreciationService.swift */,
 				BF764DC31A5F6E8200D122F4 /* LandingService.swift */,
 				BF093F0E1A672F8900BA60BD /* MediaService.swift */,
 				BF8DAC8F1A6D904D000860DD /* NoteService.swift */,
 				BF9D72111A68492C002CDC66 /* ObjectStore.swift */,
 				BF004C4F1A5CF91200AB8A6F /* OrganizationService.swift */,
 				BF3F0F601A5B1C1100D4287E /* ProfileService.swift */,
+				BFC05DD21A97B32800F246EA /* ResumeService.swift */,
 				BFE213C71A5EE63F0033E2F5 /* SearchService.swift */,
 				BF2CBFD51A473E9100BE589D /* UserService.swift */,
-				BFC05DD21A97B32800F246EA /* ResumeService.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -1333,6 +1336,7 @@
 				8F65C5071A52661700C7F3E6 /* SkillsCollectionViewCell.swift in Sources */,
 				8F65C4F51A50F28E00C7F3E6 /* CardHeaderCollectionReusableView.swift in Sources */,
 				BFAE43551A8B05010085AB2B /* HomelessViewController.swift in Sources */,
+				BFA1187F1AA2738E0073B13A /* AppreciationService.swift in Sources */,
 				BF8DAC901A6D904D000860DD /* NoteService.swift in Sources */,
 				BFC6CF9C1A44D2B90081F45B /* ServiceClient.swift in Sources */,
 				8F74003F1A6A442900D96B60 /* CircleAlertViewAnimator.swift in Sources */,
