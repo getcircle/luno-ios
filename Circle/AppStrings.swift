@@ -28,4 +28,7 @@ struct AppStrings {
     static let ProfileInfoTabTitle = NSLocalizedString("Info", comment: "Title of the Info section")
     static let ProfileNotesTabTitle = NSLocalizedString("Notes", comment: "Title of the Notes section")
     static let ProfileAppreciationTabTitle = NSLocalizedString("Appreciation", comment: "Title of the Appreciation section")
+    
+    static let CardTitlePeople = NSLocalizedString("People", comment: "Title of the card showing people")
+    static let CardTitleOfficeTeam = NSLocalizedString("Office Teams", comment: "Title of the card showing teams in a office")
 }

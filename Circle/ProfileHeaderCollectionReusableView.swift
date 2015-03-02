@@ -64,7 +64,7 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
         super.awakeFromNib()
 
         // Initialization code
-        profileImage.makeItCircular(true, borderColor: UIColor.whiteColor())
+        profileImage.makeItCircular()
         nameNavLabel.alpha = 0.0
         titleNavLabel.alpha = 0.0
         configureVerifiedProfileButton()
@@ -104,18 +104,7 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
                 success: { (request, response, image) -> Void in
                     if self.backgroundImage.image != image {
                         self.backgroundImage.image = image
-                        
-                        let blurEffect = UIBlurEffect(style: .Dark)
-                        self.visualEffectView = UIVisualEffectView(effect: blurEffect)
-                        self.visualEffectView!.setTranslatesAutoresizingMaskIntoConstraints(false)
-                        self.insertSubview(self.visualEffectView!, aboveSubview: self.backgroundImage)
-                        self.visualEffectView!.autoSetDimensionsToSize(UIScreen.mainScreen().bounds.size)
-                        self.visualEffectView?.userInteractionEnabled = false
-                        var tempView = UIView(forAutoLayout: ())
-                        tempView.opaque = true
-                        tempView.backgroundColor = UIColor.clearColor()
-                        self.insertSubview(tempView, aboveSubview: self.visualEffectView!)
-                        tempView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
+                        self.addBlurEffect()
                     }
                 },
                 failure: nil
@@ -124,7 +113,23 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
         
         verifiedProfileButton.hidden = !userProfile.verified
     }
-    
+
+    func setOffice(office: OrganizationService.Containers.Address) {
+        
+        let officeName = office.hasName ? office.name : office.city
+        let officeStateAndCountry = (office.hasRegion ? office.region : "") + ", " + office.country_code
+        nameLabel.text = officeName
+        nameNavLabel.text = officeName
+        titleLabel.text = officeStateAndCountry
+        titleNavLabel.text = officeStateAndCountry
+
+        // TODO: - Remove hardcoded image
+        profileImage.image = UIImage(named: "SF")
+        backgroundImage.image = UIImage(named: "SF")
+        addBlurEffect()
+        verifiedProfileButton.hidden = true
+    }
+
     // MARK: - Segmented Control
 
     private func configureSegmentedControl(sections withSections: [ProfileDetailView]) {
@@ -278,5 +283,61 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
         }
         
         return 0
+    }
+    
+    // MARK: - Helpers
+    
+    private func addBlurEffect() {
+        if visualEffectView == nil {
+            let blurEffect = UIBlurEffect(style: .Dark)
+            visualEffectView = UIVisualEffectView(effect: blurEffect)
+            visualEffectView!.setTranslatesAutoresizingMaskIntoConstraints(false)
+            insertSubview(visualEffectView!, aboveSubview: backgroundImage)
+            visualEffectView!.autoSetDimensionsToSize(UIScreen.mainScreen().bounds.size)
+            visualEffectView?.userInteractionEnabled = false
+        }
+    }
+    
+    func adjustViewForScrollContentOffset(contentOffset: CGPoint) {
+        let minOffsetToMakeChanges: CGFloat = 20.0
+        
+        // Do not change anything unless user scrolls up more than 20 points
+        if contentOffset.y > minOffsetToMakeChanges {
+            
+            // Scale down the image and reduce opacity
+            let profileImageFractionValue = 1.0 - (contentOffset.y - minOffsetToMakeChanges)/profileImage.frameY
+            profileImage.alpha = profileImageFractionValue
+            if profileImageFractionValue >= 0 {
+                var transform = CGAffineTransformMakeScale(profileImageFractionValue, profileImageFractionValue)
+                profileImage.transform = transform
+            }
+            
+            // Reduce opacity of the name and title label at a faster pace
+            let titleLabelAlpha = 1.0 - contentOffset.y/(titleLabel.frameY - 40.0)
+            let nameLabelAlpha = 1.0 - contentOffset.y/(nameLabel.frameY - 40.0)
+            let sectionsAlpha = 1.0 - contentOffset.y/(sectionsView.frameY - 40.0)
+            titleLabel.alpha = titleLabelAlpha
+            verifiedProfileButton.alpha = nameLabelAlpha
+            nameLabel.alpha = nameLabelAlpha
+            nameNavLabel.alpha = sectionsAlpha <= 0.0 ? nameNavLabel.alpha + 1/20 : 0.0
+            titleNavLabel.alpha = sectionsAlpha <= 0.0 ? titleNavLabel.alpha + 1/20 : 0.0
+            sectionsView.alpha = sectionsAlpha
+        }
+        else {
+            // Change alpha faster for profile image
+            let profileImageAlpha = max(0.0, 1.0 - -contentOffset.y/80.0)
+            
+            // Change it slower for everything else
+            let otherViewsAlpha = max(0.0, 1.0 - -contentOffset.y/120.0)
+            nameLabel.alpha = otherViewsAlpha
+            verifiedProfileButton.alpha = otherViewsAlpha
+            nameNavLabel.alpha = 0.0
+            titleNavLabel.alpha = 0.0
+            titleLabel.alpha = otherViewsAlpha
+            profileImage.alpha = profileImageAlpha
+            visualEffectView?.alpha = otherViewsAlpha
+            sectionsView.alpha = otherViewsAlpha
+            profileImage.transform = CGAffineTransformIdentity
+        }
     }
 }

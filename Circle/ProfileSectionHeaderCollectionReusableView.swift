@@ -15,11 +15,7 @@ class ProfileSectionHeaderCollectionReusableView: CircleCollectionReusableView {
     override class var classReuseIdentifier: String {
         return "ProfileSectionHeaderView"
     }
-    
-    override class var height: CGFloat {
-        return 36.0
-    }
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
 

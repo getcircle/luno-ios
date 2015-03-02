@@ -29,111 +29,38 @@ class OfficeDetailViewController: DetailViewController {
         collectionView.dataSource = dataSource
         collectionView.delegate = delegate
         
-        layout.headerHeight = MapHeaderCollectionReusableView.height
+        layout.headerHeight = ProfileHeaderCollectionReusableView.height
         super.configureCollectionView()
     }
     
     // MARK: - Collection View delegate
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        if let profile = dataSource.contentAtIndexPath(indexPath)? as? ProfileService.Containers.Profile {
-            let profileVC = ProfileDetailsViewController.forProfile(profile)
-            navigationController?.pushViewController(profileVC, animated: true)
-        }
-
-        collectionView.deselectItemAtIndexPath(indexPath, animated: true)
-    }
-    
-    func scrollViewWillBeginDecelerating(scrollView: UIScrollView) {
-        if scrollView.contentOffset.y <= offsetToTriggerFullScreenMapView {
-            scrollView.setContentOffset(scrollView.contentOffset, animated: true)
-            presentFullScreenMapView(true)
-        }
-    }
-    
-    func collectionView(collectionView: UICollectionView,
-        didEndDisplayingSupplementaryView view: UICollectionReusableView,
-        forElementOfKind elementKind: String,
-        atIndexPath indexPath: NSIndexPath) {
-        var customDataSource = (dataSource as OfficeDetailDataSource)
-        if customDataSource.profileHeaderView != nil && !overlayButtonHandlerAdded {
-            customDataSource.profileHeaderView?.overlayButton.addTarget(
-                self,
-                action: "overlayButtonTapped:",
-                forControlEvents: .TouchUpInside
-            )
-
-            overlayButtonHandlerAdded = true
-        }
-    }
-    
-    func scrollViewDidScroll(scrollView: UIScrollView) {
-        if let profileHeaderView = (collectionView!.dataSource as OfficeDetailDataSource).profileHeaderView {
-            let contentOffset = scrollView.contentOffset
-            
-            // Todo: need to understand how this changes with orientation
-            let statusBarHeight: CGFloat = currentStatusBarHeight()
-            let navBarHeight: CGFloat = navigationBarHeight()
-            let navBarStatusBarHeight: CGFloat = navBarHeight + statusBarHeight
-            let heightToCoverNavBar: CGFloat = navBarStatusBarHeight - profileHeaderView.initialHeightForAddressContainer
-            let pointAtWhichFinalHeightShouldBeInPlace: CGFloat = MapHeaderCollectionReusableView.height - navBarStatusBarHeight
-            let pointAtWhichHeightShouldStartIncreasing: CGFloat = pointAtWhichFinalHeightShouldBeInPlace - heightToCoverNavBar
-            
-            // We want the address label centered in the nav rather than nav bar + status bar
-            let finalCenterYConstant: CGFloat = navBarHeight/2.0 - navBarStatusBarHeight/2.0
-            let heightAtWhichCenterYShouldStartChanging: CGFloat = navBarStatusBarHeight + finalCenterYConstant
-            
-            if contentOffset.y > pointAtWhichHeightShouldStartIncreasing {
-                // Update height for address container
-                var newHeight: CGFloat = profileHeaderView.initialHeightForAddressContainer
-                newHeight += min(heightToCoverNavBar, contentOffset.y - pointAtWhichHeightShouldStartIncreasing)
-                profileHeaderView.addressContainerViewHeightConstraint.constant = newHeight
-                
-                // Update center Y for addressLabel
-                var newCenterYConstant: CGFloat = 0.0
-                if newHeight >= heightAtWhichCenterYShouldStartChanging {
-                    newCenterYConstant = max(finalCenterYConstant, heightAtWhichCenterYShouldStartChanging - newHeight)
+        let officeDetailDataSource = dataSource as OfficeDetailDataSource
+        if let card = dataSource.cardAtSection(indexPath.section) {
+            switch card.type {
+            case .KeyValue:
+                switch officeDetailDataSource.typeOfContent(indexPath) {
+                case .PeopleCount:
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    let viewController = storyboard.instantiateViewControllerWithIdentifier("ProfilesViewController") as ProfilesViewController
+                    viewController.dataSource.setInitialData(officeDetailDataSource.profiles, ofType: nil)
+                    viewController.title = "People @ " + officeDetailDataSource.selectedOffice.city
+                    navigationController?.pushViewController(viewController, animated: true)
+                    
+                default:
+                    break
                 }
                 
-                profileHeaderView.addressLabelCenterYConstraint.constant = newCenterYConstant
+            default:
+                break
             }
-            else {
-                profileHeaderView.addressContainerViewHeightConstraint.constant = profileHeaderView.initialHeightForAddressContainer
-                profileHeaderView.addressLabelCenterYConstraint.constant = 0.0
-            }
+        }
+    }
 
-            // Update constraints and request layout
-            profileHeaderView.addressContainerView.setNeedsUpdateConstraints()
-            profileHeaderView.addressContainerView.layoutIfNeeded()
-            profileHeaderView.addressLabel.setNeedsUpdateConstraints()
-            profileHeaderView.addressLabel.layoutIfNeeded()
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        if let profileHeaderView = (dataSource as OfficeDetailDataSource).profileHeaderView as? ProfileHeaderCollectionReusableView {
+            profileHeaderView.adjustViewForScrollContentOffset(scrollView.contentOffset)
         }
-    }
-    
-    // MARK: - Present Map View
-    
-    private func presentFullScreenMapView(animated: Bool) {
-        var mapViewController = MapViewController()
-        if let headerView = (dataSource as OfficeDetailDataSource).profileHeaderView {
-          
-            // Add initial and final positions for the map
-            mapViewController.initialMapViewRect = headerView.convertRect(headerView.mapView.frame, toView: view)
-            let finalRect = CGRect(
-                origin: CGPointZero,
-                size: CGSizeMake(view.frameWidth, MapHeaderCollectionReusableView.height)
-            )
-            mapViewController.finalMapViewRect = finalRect
-            mapViewController.addressSnapshotView = headerView.addressContainerView.snapshotViewAfterScreenUpdates(false)
-            mapViewController.selectedOffice = (dataSource as OfficeDetailDataSource).selectedOffice
-        }
-        
-        mapViewController.modalPresentationStyle = .Custom
-        mapViewController.transitioningDelegate = mapViewController
-        mapViewController.modalPresentationCapturesStatusBarAppearance = true
-        presentViewController(mapViewController, animated: animated, completion: nil)
-    }
-    
-    func overlayButtonTapped(sender: AnyObject!) {
-        presentFullScreenMapView(true)
     }
 }

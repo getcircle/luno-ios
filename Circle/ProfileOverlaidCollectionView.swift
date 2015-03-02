@@ -113,47 +113,7 @@ class ProfileOverlaidCollectionView: UICollectionView, UICollectionViewDelegate 
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
         if let profileHeaderView = collectionViewDataSource?.profileHeaderView {
-            let contentOffset = scrollView.contentOffset
-            let minOffsetToMakeChanges: CGFloat = 20.0
-            
-            // Do not change anything unless user scrolls up more than 20 points
-            if contentOffset.y > minOffsetToMakeChanges {
-                
-                // Scale down the image and reduce opacity
-                let profileImageFractionValue = 1.0 - (contentOffset.y - minOffsetToMakeChanges)/profileHeaderView.profileImage.frameY
-                profileHeaderView.profileImage.alpha = profileImageFractionValue
-                if profileImageFractionValue >= 0 {
-                    var transform = CGAffineTransformMakeScale(profileImageFractionValue, profileImageFractionValue)
-                    profileHeaderView.profileImage.transform = transform
-                }
-                
-                // Reduce opacity of the name and title label at a faster pace
-                let titleLabelAlpha = 1.0 - contentOffset.y/(profileHeaderView.titleLabel.frameY - 40.0)
-                let nameLabelAlpha = 1.0 - contentOffset.y/(profileHeaderView.nameLabel.frameY - 40.0)
-                let sectionsAlpha = 1.0 - contentOffset.y/(profileHeaderView.sectionsView.frameY - 40.0)
-                profileHeaderView.titleLabel.alpha = titleLabelAlpha
-                profileHeaderView.verifiedProfileButton.alpha = nameLabelAlpha
-                profileHeaderView.nameLabel.alpha = nameLabelAlpha
-                profileHeaderView.nameNavLabel.alpha = sectionsAlpha <= 0.0 ? profileHeaderView.nameNavLabel.alpha + 1/20 : 0.0
-                profileHeaderView.titleNavLabel.alpha = sectionsAlpha <= 0.0 ? profileHeaderView.titleNavLabel.alpha + 1/20 : 0.0
-                profileHeaderView.sectionsView.alpha = sectionsAlpha
-            }
-            else {
-                // Change alpha faster for profile image
-                let profileImageAlpha = max(0.0, 1.0 - -contentOffset.y/80.0)
-                
-                // Change it slower for everything else
-                let otherViewsAlpha = max(0.0, 1.0 - -contentOffset.y/120.0)
-                profileHeaderView.nameLabel.alpha = otherViewsAlpha
-                profileHeaderView.verifiedProfileButton.alpha = otherViewsAlpha
-                profileHeaderView.nameNavLabel.alpha = 0.0
-                profileHeaderView.titleNavLabel.alpha = 0.0
-                profileHeaderView.titleLabel.alpha = otherViewsAlpha
-                profileHeaderView.profileImage.alpha = profileImageAlpha
-                profileHeaderView.visualEffectView?.alpha = otherViewsAlpha
-                profileHeaderView.sectionsView.alpha = otherViewsAlpha
-                profileHeaderView.profileImage.transform = CGAffineTransformIdentity
-            }
+            profileHeaderView.adjustViewForScrollContentOffset(scrollView.contentOffset)
         }
     }
 

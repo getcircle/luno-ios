@@ -30,7 +30,9 @@ class MapViewAnimator: NSObject, UIViewControllerAnimatedTransitioning {
             mapViewController.mapView.frame = mapViewController.initialMapViewRect!
             mapViewController.closeButton.alpha = 0.0
             mapViewController.addressContainerView.frameY = mapViewController.mapView.frameBottom - mapViewController.addressContainerView.frameHeight
-            (officeViewController.dataSource as OfficeDetailDataSource).profileHeaderView?.addressContainerView.hidden = true
+            if let headerView = (officeViewController.dataSource as OfficeDetailDataSource).profileHeaderView as? MapHeaderCollectionReusableView {
+                headerView.addressContainerView.hidden = true
+            }
             
             let scrollOffset = CGPointMake(0.0, -officeViewController.view.frameHeight + mapViewController.addressContainerView.frameHeight)
             UIView.animateWithDuration(
@@ -65,7 +67,9 @@ class MapViewAnimator: NSObject, UIViewControllerAnimatedTransitioning {
                 },
                 completion:{ (completed) -> Void in
                     transitionContext.completeTransition(true)
-                    (officeViewController.dataSource as OfficeDetailDataSource).profileHeaderView?.addressContainerView.hidden = false
+                    if let headerView = (officeViewController.dataSource as OfficeDetailDataSource).profileHeaderView as? MapHeaderCollectionReusableView {
+                        headerView.addressContainerView.hidden = false
+                    }
                 }
             )
         }

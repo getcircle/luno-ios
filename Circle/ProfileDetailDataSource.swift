@@ -9,90 +9,6 @@
 import UIKit
 import ProtobufRegistry
 
-class ItemImage {
-    var name: String
-    var tint: UIColor
-    var size: CGSize?
-    
-    class var genericNextImage: ItemImage {
-        return ItemImage(name: "Next", tint: UIColor.keyValueNextImageTintColor(), size: CGSizeMake(15.0, 15.0))
-    }
-    
-    init(name itemName: String, tint itemTint: UIColor, size imageSize: CGSize? = nil) {
-        name = itemName
-        tint = itemTint
-        size = imageSize
-    }
-}
-
-enum ContentType: Int {
-    case About = 1
-    case Birthday
-    case CellPhone
-    case Education
-    case Email
-    case Facebook
-    case Github
-    case HireDate
-    case LinkedIn
-    case LinkedInConnect
-    case Manager
-    case Office
-    case OfficeTeam
-    case Other
-    case Position
-    case SeatingInfo
-    case Skills
-    case Team
-    case Twitter
-    case QuickActions
-    case WorkPhone
-}
-
-class SectionItem {
-    var title: String
-    var image: ItemImage?
-    var container: String
-    var containerKey: String
-    var contentType: ContentType!
-    var defaultValue: Any?
-    
-    init(
-        title itemTitle: String,
-        container itemContainer: String,
-        containerKey itemContainerKey: String,
-        contentType type: ContentType,
-        image itemImage: ItemImage?,
-        defaultValue itemDefaultValue: Any? = nil
-    ) {
-        title = itemTitle
-        container = itemContainer
-        containerKey = itemContainerKey
-        image = itemImage
-        contentType = type
-        defaultValue = itemDefaultValue
-    }
-}
-
-class Section {
-    var title: String
-    var items: [SectionItem]
-    var cardType: Card.CardType
-    var cardHeaderSize: CGSize
-    
-    init(
-        title sectionTitle: String,
-        items sectionItems: [SectionItem],
-        cardType sectionCardType: Card.CardType,
-        cardHeaderSize sectionCardHeaderSize: CGSize = CGSizeZero
-    ) {
-        title = sectionTitle
-        items = sectionItems
-        cardType = sectionCardType
-        cardHeaderSize = sectionCardHeaderSize
-    }
-}
-
 class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
 
     var onlyShowContactInfo = false
@@ -618,7 +534,6 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
             ) as ProfileSectionHeaderCollectionReusableView
             
             headerView.setCard(cards[indexPath.section])
-            headerView.backgroundColor = UIColor.whiteColor()
             return headerView
         }
     }
