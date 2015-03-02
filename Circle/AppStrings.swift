@@ -24,4 +24,8 @@ struct AppStrings {
     static let QuickActionNotePlaceholder = NSLocalizedString("Who do you want to take a note on?", comment: "Placeholder for search field used to search for the person user intends to take a note about")
     static let QuickActionCallPlaceholder = NSLocalizedString("Who do you want to call?", comment: "Placeholder for search field used to search for the person user intends to call")
     static let QuickActionSlackPlaceholder = NSLocalizedString("Who do you want to message?", comment: "Placeholder for search field used to search for the person user intends to send a message")
+    
+    static let ProfileInfoTabTitle = NSLocalizedString("Info", comment: "Title of the Info section")
+    static let ProfileNotesTabTitle = NSLocalizedString("Notes", comment: "Title of the Notes section")
+    static let ProfileAppreciationTabTitle = NSLocalizedString("Appreciation", comment: "Title of the Appreciation section")
 }

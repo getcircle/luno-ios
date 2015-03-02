@@ -118,6 +118,9 @@
 		8FC7BB3B1A58A6E2005BDDDB /* CardDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC7BB3A1A58A6E2005BDDDB /* CardDataSource.swift */; };
 		8FC7BB401A58AF4C005BDDDB /* SearchLandingDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC7BB3F1A58AF4C005BDDDB /* SearchLandingDataSource.swift */; };
 		8FC7BB431A58B15B005BDDDB /* CardCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC7BB421A58B15B005BDDDB /* CardCollectionViewDelegate.swift */; };
+		8FCC31291AA2859E0093F00A /* AppreciationCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FCC31281AA2859E0093F00A /* AppreciationCollectionView.swift */; };
+		8FCC312C1AA28AC10093F00A /* AppreciationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FCC312A1AA28AC10093F00A /* AppreciationCollectionViewCell.swift */; };
+		8FCC312D1AA28AC10093F00A /* AppreciationCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8FCC312B1AA28AC10093F00A /* AppreciationCollectionViewCell.xib */; };
 		8FCC95CD1A52828B00421E65 /* ProfileCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FCC95CB1A52828B00421E65 /* ProfileCollectionViewCell.swift */; };
 		8FCC95CE1A52828B00421E65 /* ProfileCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8FCC95CC1A52828B00421E65 /* ProfileCollectionViewCell.xib */; };
 		8FD041A21A2C03AA00FE28EF /* UIFontExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD041A11A2C03AA00FE28EF /* UIFontExtention.swift */; };
@@ -404,6 +407,9 @@
 		8FC7BB3A1A58A6E2005BDDDB /* CardDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardDataSource.swift; sourceTree = "<group>"; };
 		8FC7BB3F1A58AF4C005BDDDB /* SearchLandingDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchLandingDataSource.swift; sourceTree = "<group>"; };
 		8FC7BB421A58B15B005BDDDB /* CardCollectionViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardCollectionViewDelegate.swift; sourceTree = "<group>"; };
+		8FCC31281AA2859E0093F00A /* AppreciationCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppreciationCollectionView.swift; sourceTree = "<group>"; };
+		8FCC312A1AA28AC10093F00A /* AppreciationCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppreciationCollectionViewCell.swift; sourceTree = "<group>"; };
+		8FCC312B1AA28AC10093F00A /* AppreciationCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AppreciationCollectionViewCell.xib; sourceTree = "<group>"; };
 		8FCC95CB1A52828B00421E65 /* ProfileCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileCollectionViewCell.swift; sourceTree = "<group>"; };
 		8FCC95CC1A52828B00421E65 /* ProfileCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileCollectionViewCell.xib; sourceTree = "<group>"; };
 		8FD041A11A2C03AA00FE28EF /* UIFontExtention.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIFontExtention.swift; sourceTree = "<group>"; };
@@ -599,13 +605,13 @@
 				8F00049C1A2419730096477A /* DetailViewController.swift */,
 				8FEE3D951A8309A400B17569 /* EditProfileViewController.swift */,
 				BFAE43531A8B05010085AB2B /* HomelessViewController.swift */,
-				8FD907F61A6033310025A17B /* OfficeDetailViewController.swift */,
-				8F306B8B1A7416E00024EB03 /* OfficesOverviewViewController.swift */,
 				8F9F60B71A896CE400FCAA25 /* MainTabBarViewController.swift */,
 				8FD907F81A6070D70025A17B /* MapViewController.swift */,
 				BF8DAC861A6D7EB1000860DD /* NewNoteViewController.swift */,
 				BF8DAC721A6CB03F000860DD /* NotesCardHeaderCollectionReusableView.swift */,
 				8F809F851A79DD6900029A47 /* NotesOverviewViewController.swift */,
+				8FD907F61A6033310025A17B /* OfficeDetailViewController.swift */,
+				8F306B8B1A7416E00024EB03 /* OfficesOverviewViewController.swift */,
 				8F823E371A706B790006264B /* OrganizationDetailViewController.swift */,
 				8F7E2DCB1A8FDBB500B8548D /* PasscodeTouchIDViewController.swift */,
 				BF7B238F1A70894100137BCB /* ProfileDetailsViewController.swift */,
@@ -615,8 +621,8 @@
 				8F7400221A6862BF00D96B60 /* SkillDetailViewController.swift */,
 				8FF298431A4DF38E00306CFC /* SkillSelectorViewController.swift */,
 				8F7795021A909AFC00BEF6EA /* SkillsOverviewViewController.swift */,
-				8F7E2DC41A8FC00000B8548D /* SplashViewController.swift */,
 				BFF5E6F31A814C2C00827757 /* SocialConnectViewController.swift */,
+				8F7E2DC41A8FC00000B8548D /* SplashViewController.swift */,
 				8F085A841A6B0C1E00F8139B /* TeamDetailViewController.swift */,
 				8F823E4A1A729E1B0006264B /* TeamsOverviewViewController.swift */,
 				BF25722B1A6450F20052C3E3 /* VerifyPhoneNumberViewController.swift */,
@@ -629,6 +635,8 @@
 			isa = PBXGroup;
 			children = (
 				BF1DB6571A76FA31006F2B7D /* AddNoteCollectionViewCell.swift */,
+				8FCC31281AA2859E0093F00A /* AppreciationCollectionView.swift */,
+				8FCC312A1AA28AC10093F00A /* AppreciationCollectionViewCell.swift */,
 				8F08A9F71A748F5200B93149 /* CardFooterCollectionReusableView.swift */,
 				8F65C4F31A50F28E00C7F3E6 /* CardHeaderCollectionReusableView.swift */,
 				8F4A98B21A6350B9005AD63C /* CircleCollectionReusableView.swift */,
@@ -636,9 +644,9 @@
 				8FF298511A4E2B3300306CFC /* Common */,
 				BFCFDB021A915249009A5FD4 /* EducationCollectionViewCell.swift */,
 				8F22CBE61A27FDA70026376E /* KeyValueCollectionViewCell.swift */,
-				8F65C4FC1A51222100C7F3E6 /* OfficeCollectionViewCell.swift */,
 				8F4805E31A5DE4B800273731 /* MapHeaderCollectionReusableView.swift */,
 				8F4E53761A5A0D9E00DC876B /* NotesCollectionViewCell.swift */,
+				8F65C4FC1A51222100C7F3E6 /* OfficeCollectionViewCell.swift */,
 				8F834F831A9909AC007B7095 /* OfficeTeamManagerCollectionViewCell.swift */,
 				8F823E411A714B5D0006264B /* OrganizationHeaderCollectionReusableView.swift */,
 				BFCFDB0F1A9165A9009A5FD4 /* PositionCollectionViewCell.swift */,
@@ -649,6 +657,7 @@
 				BF7B238A1A70842500137BCB /* ProfileNotesCollectionView.swift */,
 				BFBC44001A7212FA007202E7 /* ProfileOverlaidCollectionView.swift */,
 				BFCFDB181A917944009A5FD4 /* ProfileSectionHeaderCollectionReusableView.swift */,
+				8F7795131A92769E00BEF6EA /* QuickActionsCollectionViewCell.swift */,
 				8FF298081A4B490E00306CFC /* SearchHeaderView.swift */,
 				8FF2254A1A641B27001B2E32 /* SearchResultsCardHeaderCollectionReusableView.swift */,
 				8F22CBEC1A283D3D0026376E /* SeparatorDecorationView.swift */,
@@ -662,7 +671,6 @@
 				8F085A8F1A6C175C00F8139B /* TeamsCollectionViewCell.swift */,
 				BFCFDB1F1A91951A009A5FD4 /* TextValueCollectionViewCell.swift */,
 				BFCFDB291A92759A009A5FD4 /* ToggleSocialConnectionCollectionViewCell.swift */,
-				8F7795131A92769E00BEF6EA /* QuickActionsCollectionViewCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -713,6 +721,7 @@
 			isa = PBXGroup;
 			children = (
 				BF1DB6581A76FA31006F2B7D /* AddNoteCollectionViewCell.xib */,
+				8FCC312B1AA28AC10093F00A /* AppreciationCollectionViewCell.xib */,
 				8F22CBF71A29A8EB0026376E /* AuthViewController.xib */,
 				8F08A9F81A748F5200B93149 /* CardFooterCollectionReusableView.xib */,
 				8F65C4F41A50F28E00C7F3E6 /* CardHeaderCollectionReusableView.xib */,
@@ -785,9 +794,9 @@
 			isa = PBXGroup;
 			children = (
 				8FC7BB3A1A58A6E2005BDDDB /* CardDataSource.swift */,
+				8F809F8C1A79DE1A00029A47 /* NotesOverviewDataSource.swift */,
 				8FEB032A1A5F69020081BB65 /* OfficeDetailDataSource.swift */,
 				8F306B921A74171C0024EB03 /* OfficesOverviewDataSource.swift */,
-				8F809F8C1A79DE1A00029A47 /* NotesOverviewDataSource.swift */,
 				8F823E391A706BB20006264B /* OrganizationDetailDataSource.swift */,
 				8F22CBF41A2865030026376E /* ProfileDetailDataSource.swift */,
 				8F2D7DEF1A5B2412001D36B0 /* ProfilesDataSource.swift */,
@@ -1102,6 +1111,7 @@
 				8F7795161A92769E00BEF6EA /* QuickActionsCollectionViewCell.xib in Resources */,
 				8FF2254D1A641B27001B2E32 /* SearchResultsCardHeaderCollectionReusableView.xib in Resources */,
 				8F085A921A6C175C00F8139B /* TeamsCollectionViewCell.xib in Resources */,
+				8FCC312D1AA28AC10093F00A /* AppreciationCollectionViewCell.xib in Resources */,
 				8F65C5081A52661700C7F3E6 /* SkillsCollectionViewCell.xib in Resources */,
 				8F4E53791A5A0D9E00DC876B /* NotesCollectionViewCell.xib in Resources */,
 				BF1DB65A1A76FA31006F2B7D /* AddNoteCollectionViewCell.xib in Resources */,
@@ -1243,6 +1253,7 @@
 				BF764DC41A5F6E8200D122F4 /* LandingService.swift in Sources */,
 				BF25722D1A6450F20052C3E3 /* VerifyPhoneNumberViewController.swift in Sources */,
 				8FF298441A4DF38E00306CFC /* SkillSelectorViewController.swift in Sources */,
+				8FCC312C1AA28AC10093F00A /* AppreciationCollectionViewCell.swift in Sources */,
 				BF2D86171A707A86002C3D64 /* ProfileInfoCollectionView.swift in Sources */,
 				8F085A981A6C4B0D00F8139B /* TeamDetailCollectionViewDelegate.swift in Sources */,
 				8F22CBFB1A29AF450026376E /* UIViewExtension.swift in Sources */,
@@ -1290,6 +1301,7 @@
 				BF7B23901A70894100137BCB /* ProfileDetailsViewController.swift in Sources */,
 				8F9F60B81A896CE400FCAA25 /* MainTabBarViewController.swift in Sources */,
 				8F9F60D51A8C481F00FCAA25 /* SettingsCollectionViewCell.swift in Sources */,
+				8FCC31291AA2859E0093F00A /* AppreciationCollectionView.swift in Sources */,
 				BFCFDB211A91951A009A5FD4 /* TextValueCollectionViewCell.swift in Sources */,
 				8FF298531A4E306600306CFC /* CenterAlignFlowLayout.swift in Sources */,
 				8F834F8B1A9C1814007B7095 /* UIButtonExtension.swift in Sources */,
