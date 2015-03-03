@@ -63,14 +63,21 @@ class OfficeDetailDataSource: CardDataSource {
                     keyValueCard.sectionInset = sectionInset
                     self.appendCard(keyValueCard)
 
-                    // People
-                    let peopleCard = Card(cardType: .People, title: "Direct Reports")
-                    peopleCard.addContent(content: profiles! as [AnyObject])
-                    peopleCard.sectionInset = sectionInset
-                    peopleCard.headerSize = sectionHeaderSize
-                    self.appendCard(peopleCard)
-                    completionHandler(error: nil)
+                    // Teams
+                    var teams = Array<OrganizationService.Containers.Team>()
+                    for i in 0..<4 {
+                        var team = OrganizationService.Containers.Team.builder()
+                        team.name = "Product Development"
+                        teams.append(team.build())
+                    }
                     
+                    let teamsCard = Card(cardType: .TeamsGrid, title: AppStrings.CardTitleOfficeTeam)
+                    teamsCard.addContent(content: teams as [AnyObject])
+                    teamsCard.sectionInset = sectionInset
+                    teamsCard.headerSize = sectionHeaderSize
+                    self.appendCard(teamsCard)
+
+                    completionHandler(error: nil)
                 } else {
                     completionHandler(error: error)
                 }
