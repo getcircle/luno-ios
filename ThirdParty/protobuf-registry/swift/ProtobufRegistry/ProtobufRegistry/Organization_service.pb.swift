@@ -115,6 +115,46 @@ public func == (lhs: OrganizationService.GetAddresses, rhs: OrganizationService.
   return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
 }
 
+public func == (lhs: OrganizationService.CreateLocation, rhs: OrganizationService.CreateLocation) -> Bool {
+  if (lhs === rhs) {
+    return true
+  }
+  var fieldCheck:Bool = (lhs.hashValue == rhs.hashValue)
+  return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
+}
+
+public func == (lhs: OrganizationService.UpdateLocation, rhs: OrganizationService.UpdateLocation) -> Bool {
+  if (lhs === rhs) {
+    return true
+  }
+  var fieldCheck:Bool = (lhs.hashValue == rhs.hashValue)
+  return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
+}
+
+public func == (lhs: OrganizationService.GetExtendedLocation, rhs: OrganizationService.GetExtendedLocation) -> Bool {
+  if (lhs === rhs) {
+    return true
+  }
+  var fieldCheck:Bool = (lhs.hashValue == rhs.hashValue)
+  return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
+}
+
+public func == (lhs: OrganizationService.GetLocation, rhs: OrganizationService.GetLocation) -> Bool {
+  if (lhs === rhs) {
+    return true
+  }
+  var fieldCheck:Bool = (lhs.hashValue == rhs.hashValue)
+  return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
+}
+
+public func == (lhs: OrganizationService.GetLocations, rhs: OrganizationService.GetLocations) -> Bool {
+  if (lhs === rhs) {
+    return true
+  }
+  var fieldCheck:Bool = (lhs.hashValue == rhs.hashValue)
+  return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
+}
+
 public func == (lhs: OrganizationService, rhs: OrganizationService) -> Bool {
   if (lhs === rhs) {
     return true
@@ -1706,6 +1746,364 @@ final public class OrganizationService : GeneratedMessage {
 
               case 98 :
                 longitude = input.readString()
+
+              default:
+                if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
+                   unknownFields = unknownFieldsBuilder.build()
+                   return self
+                }
+              }
+            }
+          }
+        }
+
+
+
+      //Nested type declaration end
+
+
+
+      //Nested type declaration start
+
+        final public class Location : GeneratedMessage {
+          override public subscript (key: String) -> Any? {
+                 switch key {
+                 case "id": return id
+                 case "name": return name
+                 case "address_id": return address_id
+                 case "organization_id": return organization_id
+                 case "profile_count": return profile_count
+                 default: return nil
+                 }
+          }
+
+          public private(set) var hasId:Bool = false
+          public private(set) var id:String = ""
+
+          public private(set) var hasName:Bool = false
+          public private(set) var name:String = ""
+
+          public private(set) var hasAddressId:Bool = false
+          public private(set) var address_id:String = ""
+
+          public private(set) var hasOrganizationId:Bool = false
+          public private(set) var organization_id:String = ""
+
+          public private(set) var hasProfileCount:Bool = false
+          public private(set) var profile_count:UInt32 = UInt32(0)
+
+          required public init() {
+               super.init()
+          }
+          override public func isInitialized() -> Bool {
+           return true
+          }
+          override public func writeToCodedOutputStream(output:CodedOutputStream) {
+            if hasId {
+              output.writeString(1, value:id)
+            }
+            if hasName {
+              output.writeString(2, value:name)
+            }
+            if hasAddressId {
+              output.writeString(3, value:address_id)
+            }
+            if hasOrganizationId {
+              output.writeString(4, value:organization_id)
+            }
+            if hasProfileCount {
+              output.writeUInt32(5, value:profile_count)
+            }
+            unknownFields.writeToCodedOutputStream(output)
+          }
+          override public func serializedSize() -> Int32 {
+            var size:Int32 = memoizedSerializedSize
+            if size != -1 {
+             return size
+            }
+
+            size = 0
+            if hasId {
+              size += WireFormat.computeStringSize(1, value:id)
+            }
+            if hasName {
+              size += WireFormat.computeStringSize(2, value:name)
+            }
+            if hasAddressId {
+              size += WireFormat.computeStringSize(3, value:address_id)
+            }
+            if hasOrganizationId {
+              size += WireFormat.computeStringSize(4, value:organization_id)
+            }
+            if hasProfileCount {
+              size += WireFormat.computeUInt32Size(5, value:profile_count)
+            }
+            size += unknownFields.serializedSize()
+            memoizedSerializedSize = size
+            return size
+          }
+          public class func parseFromData(data:[Byte]) -> OrganizationService.Containers.Location {
+            return OrganizationService.Containers.Location.builder().mergeFromData(data).build()
+          }
+          public class func parseFromData(data:[Byte], extensionRegistry:ExtensionRegistry) -> OrganizationService.Containers.Location {
+            return OrganizationService.Containers.Location.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
+          }
+          public class func parseFromInputStream(input:NSInputStream) -> OrganizationService.Containers.Location {
+            return OrganizationService.Containers.Location.builder().mergeFromInputStream(input).build()
+          }
+          public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->OrganizationService.Containers.Location {
+            return OrganizationService.Containers.Location.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
+          }
+          public class func parseFromCodedInputStream(input:CodedInputStream) -> OrganizationService.Containers.Location {
+            return OrganizationService.Containers.Location.builder().mergeFromCodedInputStream(input).build()
+          }
+          public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> OrganizationService.Containers.Location {
+            return OrganizationService.Containers.Location.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
+          }
+          public class func builder() -> OrganizationService.Containers.LocationBuilder {
+            return OrganizationService.Containers.Location.classBuilder() as OrganizationService.Containers.LocationBuilder
+          }
+          public func builder() -> OrganizationService.Containers.LocationBuilder {
+            return classBuilder() as OrganizationService.Containers.LocationBuilder
+          }
+          public override class func classBuilder() -> MessageBuilder {
+            return OrganizationService.Containers.LocationBuilder()
+          }
+          public override func classBuilder() -> MessageBuilder {
+            return OrganizationService.Containers.Location.builder()
+          }
+          public func toBuilder() -> OrganizationService.Containers.LocationBuilder {
+            return OrganizationService.Containers.Location.builderWithPrototype(self)
+          }
+          public class func builderWithPrototype(prototype:OrganizationService.Containers.Location) -> OrganizationService.Containers.LocationBuilder {
+            return OrganizationService.Containers.Location.builder().mergeFrom(prototype)
+          }
+          override public func writeDescriptionTo(inout output:String, indent:String) {
+            if hasId {
+              output += "\(indent) id: \(id) \n"
+            }
+            if hasName {
+              output += "\(indent) name: \(name) \n"
+            }
+            if hasAddressId {
+              output += "\(indent) address_id: \(address_id) \n"
+            }
+            if hasOrganizationId {
+              output += "\(indent) organization_id: \(organization_id) \n"
+            }
+            if hasProfileCount {
+              output += "\(indent) profile_count: \(profile_count) \n"
+            }
+            unknownFields.writeDescriptionTo(&output, indent:indent)
+          }
+          override public var hashValue:Int {
+              get {
+                  var hashCode:Int = 7
+                  if hasId {
+                     hashCode = (hashCode &* 31) &+ id.hashValue
+                  }
+                  if hasName {
+                     hashCode = (hashCode &* 31) &+ name.hashValue
+                  }
+                  if hasAddressId {
+                     hashCode = (hashCode &* 31) &+ address_id.hashValue
+                  }
+                  if hasOrganizationId {
+                     hashCode = (hashCode &* 31) &+ organization_id.hashValue
+                  }
+                  if hasProfileCount {
+                     hashCode = (hashCode &* 31) &+ profile_count.hashValue
+                  }
+                  hashCode = (hashCode &* 31) &+  unknownFields.hashValue
+                  return hashCode
+              }
+          }
+
+
+          //Meta information declaration start
+
+          override public class func className() -> String {
+              return "OrganizationService.Containers.Location"
+          }
+          override public func className() -> String {
+              return "OrganizationService.Containers.Location"
+          }
+          override public func classMetaType() -> GeneratedMessage.Type {
+              return OrganizationService.Containers.Location.self
+          }
+
+
+          //Meta information declaration end
+
+        }
+
+        final public class LocationBuilder : GeneratedMessageBuilder {
+          private var builderResult:OrganizationService.Containers.Location
+
+          required override public init () {
+             builderResult = OrganizationService.Containers.Location()
+             super.init()
+          }
+          public var hasId:Bool {
+               get {
+                    return builderResult.hasId
+               }
+          }
+          public var id:String {
+               get {
+                    return builderResult.id
+               }
+               set (value) {
+                   builderResult.hasId = true
+                   builderResult.id = value
+               }
+          }
+          public func clearId() -> OrganizationService.Containers.LocationBuilder{
+               builderResult.hasId = false
+               builderResult.id = ""
+               return self
+          }
+          public var hasName:Bool {
+               get {
+                    return builderResult.hasName
+               }
+          }
+          public var name:String {
+               get {
+                    return builderResult.name
+               }
+               set (value) {
+                   builderResult.hasName = true
+                   builderResult.name = value
+               }
+          }
+          public func clearName() -> OrganizationService.Containers.LocationBuilder{
+               builderResult.hasName = false
+               builderResult.name = ""
+               return self
+          }
+          public var hasAddressId:Bool {
+               get {
+                    return builderResult.hasAddressId
+               }
+          }
+          public var address_id:String {
+               get {
+                    return builderResult.address_id
+               }
+               set (value) {
+                   builderResult.hasAddressId = true
+                   builderResult.address_id = value
+               }
+          }
+          public func clearAddressId() -> OrganizationService.Containers.LocationBuilder{
+               builderResult.hasAddressId = false
+               builderResult.address_id = ""
+               return self
+          }
+          public var hasOrganizationId:Bool {
+               get {
+                    return builderResult.hasOrganizationId
+               }
+          }
+          public var organization_id:String {
+               get {
+                    return builderResult.organization_id
+               }
+               set (value) {
+                   builderResult.hasOrganizationId = true
+                   builderResult.organization_id = value
+               }
+          }
+          public func clearOrganizationId() -> OrganizationService.Containers.LocationBuilder{
+               builderResult.hasOrganizationId = false
+               builderResult.organization_id = ""
+               return self
+          }
+          public var hasProfileCount:Bool {
+               get {
+                    return builderResult.hasProfileCount
+               }
+          }
+          public var profile_count:UInt32 {
+               get {
+                    return builderResult.profile_count
+               }
+               set (value) {
+                   builderResult.hasProfileCount = true
+                   builderResult.profile_count = value
+               }
+          }
+          public func clearProfileCount() -> OrganizationService.Containers.LocationBuilder{
+               builderResult.hasProfileCount = false
+               builderResult.profile_count = UInt32(0)
+               return self
+          }
+          override public var internalGetResult:GeneratedMessage {
+               get {
+                  return builderResult
+               }
+          }
+          public override func clear() -> OrganizationService.Containers.LocationBuilder {
+            builderResult = OrganizationService.Containers.Location()
+            return self
+          }
+          public override func clone() -> OrganizationService.Containers.LocationBuilder {
+            return OrganizationService.Containers.Location.builderWithPrototype(builderResult)
+          }
+          public override func build() -> OrganizationService.Containers.Location {
+               checkInitialized()
+               return buildPartial()
+          }
+          public func buildPartial() -> OrganizationService.Containers.Location {
+            var returnMe:OrganizationService.Containers.Location = builderResult
+            return returnMe
+          }
+          public func mergeFrom(other:OrganizationService.Containers.Location) -> OrganizationService.Containers.LocationBuilder {
+            if other.hasId {
+                 id = other.id
+            }
+            if other.hasName {
+                 name = other.name
+            }
+            if other.hasAddressId {
+                 address_id = other.address_id
+            }
+            if other.hasOrganizationId {
+                 organization_id = other.organization_id
+            }
+            if other.hasProfileCount {
+                 profile_count = other.profile_count
+            }
+            mergeUnknownFields(other.unknownFields)
+            return self
+          }
+          public override func mergeFromCodedInputStream(input:CodedInputStream) ->OrganizationService.Containers.LocationBuilder {
+               return mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
+          }
+          public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> OrganizationService.Containers.LocationBuilder {
+            var unknownFieldsBuilder:UnknownFieldSetBuilder = UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
+            while (true) {
+              var tag = input.readTag()
+              switch tag {
+              case 0: 
+                self.unknownFields = unknownFieldsBuilder.build()
+                return self
+
+              case 10 :
+                id = input.readString()
+
+              case 18 :
+                name = input.readString()
+
+              case 26 :
+                address_id = input.readString()
+
+              case 34 :
+                organization_id = input.readString()
+
+              case 40 :
+                profile_count = input.readUInt32()
 
               default:
                 if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
@@ -8250,6 +8648,3041 @@ final public class OrganizationService : GeneratedMessage {
 
   //Nested type declaration end
 
+
+
+  //Nested type declaration start
+
+    final public class CreateLocation : GeneratedMessage {
+
+
+      //Nested type declaration start
+
+        final public class Request : GeneratedMessage {
+          override public subscript (key: String) -> Any? {
+                 switch key {
+                 case "location": return location
+                 default: return nil
+                 }
+          }
+
+          public private(set) var hasLocation:Bool = false
+          public private(set) var location:OrganizationService.Containers.Location = OrganizationService.Containers.Location()
+          required public init() {
+               super.init()
+          }
+          override public func isInitialized() -> Bool {
+           return true
+          }
+          override public func writeToCodedOutputStream(output:CodedOutputStream) {
+            if hasLocation {
+              output.writeMessage(1, value:location)
+            }
+            unknownFields.writeToCodedOutputStream(output)
+          }
+          override public func serializedSize() -> Int32 {
+            var size:Int32 = memoizedSerializedSize
+            if size != -1 {
+             return size
+            }
+
+            size = 0
+            if hasLocation {
+              size += WireFormat.computeMessageSize(1, value:location)
+            }
+            size += unknownFields.serializedSize()
+            memoizedSerializedSize = size
+            return size
+          }
+          public class func parseFromData(data:[Byte]) -> OrganizationService.CreateLocation.Request {
+            return OrganizationService.CreateLocation.Request.builder().mergeFromData(data).build()
+          }
+          public class func parseFromData(data:[Byte], extensionRegistry:ExtensionRegistry) -> OrganizationService.CreateLocation.Request {
+            return OrganizationService.CreateLocation.Request.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
+          }
+          public class func parseFromInputStream(input:NSInputStream) -> OrganizationService.CreateLocation.Request {
+            return OrganizationService.CreateLocation.Request.builder().mergeFromInputStream(input).build()
+          }
+          public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->OrganizationService.CreateLocation.Request {
+            return OrganizationService.CreateLocation.Request.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
+          }
+          public class func parseFromCodedInputStream(input:CodedInputStream) -> OrganizationService.CreateLocation.Request {
+            return OrganizationService.CreateLocation.Request.builder().mergeFromCodedInputStream(input).build()
+          }
+          public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> OrganizationService.CreateLocation.Request {
+            return OrganizationService.CreateLocation.Request.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
+          }
+          public class func builder() -> OrganizationService.CreateLocation.RequestBuilder {
+            return OrganizationService.CreateLocation.Request.classBuilder() as OrganizationService.CreateLocation.RequestBuilder
+          }
+          public func builder() -> OrganizationService.CreateLocation.RequestBuilder {
+            return classBuilder() as OrganizationService.CreateLocation.RequestBuilder
+          }
+          public override class func classBuilder() -> MessageBuilder {
+            return OrganizationService.CreateLocation.RequestBuilder()
+          }
+          public override func classBuilder() -> MessageBuilder {
+            return OrganizationService.CreateLocation.Request.builder()
+          }
+          public func toBuilder() -> OrganizationService.CreateLocation.RequestBuilder {
+            return OrganizationService.CreateLocation.Request.builderWithPrototype(self)
+          }
+          public class func builderWithPrototype(prototype:OrganizationService.CreateLocation.Request) -> OrganizationService.CreateLocation.RequestBuilder {
+            return OrganizationService.CreateLocation.Request.builder().mergeFrom(prototype)
+          }
+          override public func writeDescriptionTo(inout output:String, indent:String) {
+            if hasLocation {
+              output += "\(indent) location {\n"
+              location.writeDescriptionTo(&output, indent:"\(indent)  ")
+              output += "\(indent) }\n"
+            }
+            unknownFields.writeDescriptionTo(&output, indent:indent)
+          }
+          override public var hashValue:Int {
+              get {
+                  var hashCode:Int = 7
+                  if hasLocation {
+                    hashCode = (hashCode &* 31) &+ location.hashValue
+                  }
+                  hashCode = (hashCode &* 31) &+  unknownFields.hashValue
+                  return hashCode
+              }
+          }
+
+
+          //Meta information declaration start
+
+          override public class func className() -> String {
+              return "OrganizationService.CreateLocation.Request"
+          }
+          override public func className() -> String {
+              return "OrganizationService.CreateLocation.Request"
+          }
+          override public func classMetaType() -> GeneratedMessage.Type {
+              return OrganizationService.CreateLocation.Request.self
+          }
+
+
+          //Meta information declaration end
+
+        }
+
+        final public class RequestBuilder : GeneratedMessageBuilder {
+          private var builderResult:OrganizationService.CreateLocation.Request
+
+          required override public init () {
+             builderResult = OrganizationService.CreateLocation.Request()
+             super.init()
+          }
+          public var hasLocation:Bool {
+               get {
+                   return builderResult.hasLocation
+               }
+          }
+          public var location:OrganizationService.Containers.Location {
+               get {
+                   return builderResult.location
+               }
+               set (value) {
+                   builderResult.hasLocation = true
+                   builderResult.location = value
+               }
+          }
+          public func setLocationBuilder(builderForValue:OrganizationService.Containers.LocationBuilder) -> OrganizationService.CreateLocation.RequestBuilder {
+            location = builderForValue.build()
+            return self
+          }
+          public func mergeLocation(value:OrganizationService.Containers.Location) -> OrganizationService.CreateLocation.RequestBuilder {
+            if (builderResult.hasLocation) {
+              builderResult.location = OrganizationService.Containers.Location.builderWithPrototype(builderResult.location).mergeFrom(value).buildPartial()
+            } else {
+              builderResult.location = value
+            }
+            builderResult.hasLocation = true
+            return self
+          }
+          public func clearLocation() -> OrganizationService.CreateLocation.RequestBuilder {
+            builderResult.hasLocation = false
+            builderResult.location = OrganizationService.Containers.Location()
+            return self
+          }
+          override public var internalGetResult:GeneratedMessage {
+               get {
+                  return builderResult
+               }
+          }
+          public override func clear() -> OrganizationService.CreateLocation.RequestBuilder {
+            builderResult = OrganizationService.CreateLocation.Request()
+            return self
+          }
+          public override func clone() -> OrganizationService.CreateLocation.RequestBuilder {
+            return OrganizationService.CreateLocation.Request.builderWithPrototype(builderResult)
+          }
+          public override func build() -> OrganizationService.CreateLocation.Request {
+               checkInitialized()
+               return buildPartial()
+          }
+          public func buildPartial() -> OrganizationService.CreateLocation.Request {
+            var returnMe:OrganizationService.CreateLocation.Request = builderResult
+            return returnMe
+          }
+          public func mergeFrom(other:OrganizationService.CreateLocation.Request) -> OrganizationService.CreateLocation.RequestBuilder {
+            if (other.hasLocation) {
+                mergeLocation(other.location)
+            }
+            mergeUnknownFields(other.unknownFields)
+            return self
+          }
+          public override func mergeFromCodedInputStream(input:CodedInputStream) ->OrganizationService.CreateLocation.RequestBuilder {
+               return mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
+          }
+          public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> OrganizationService.CreateLocation.RequestBuilder {
+            var unknownFieldsBuilder:UnknownFieldSetBuilder = UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
+            while (true) {
+              var tag = input.readTag()
+              switch tag {
+              case 0: 
+                self.unknownFields = unknownFieldsBuilder.build()
+                return self
+
+              case 10 :
+                var subBuilder:OrganizationService.Containers.LocationBuilder = OrganizationService.Containers.Location.builder()
+                if hasLocation {
+                  subBuilder.mergeFrom(location)
+                }
+                input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
+                location = subBuilder.buildPartial()
+
+              default:
+                if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
+                   unknownFields = unknownFieldsBuilder.build()
+                   return self
+                }
+              }
+            }
+          }
+        }
+
+
+
+      //Nested type declaration end
+
+
+
+      //Nested type declaration start
+
+        final public class Response : GeneratedMessage {
+          override public subscript (key: String) -> Any? {
+                 switch key {
+                 case "location": return location
+                 default: return nil
+                 }
+          }
+
+          public private(set) var hasLocation:Bool = false
+          public private(set) var location:OrganizationService.Containers.Location = OrganizationService.Containers.Location()
+          required public init() {
+               super.init()
+          }
+          override public func isInitialized() -> Bool {
+           return true
+          }
+          override public func writeToCodedOutputStream(output:CodedOutputStream) {
+            if hasLocation {
+              output.writeMessage(1, value:location)
+            }
+            unknownFields.writeToCodedOutputStream(output)
+          }
+          override public func serializedSize() -> Int32 {
+            var size:Int32 = memoizedSerializedSize
+            if size != -1 {
+             return size
+            }
+
+            size = 0
+            if hasLocation {
+              size += WireFormat.computeMessageSize(1, value:location)
+            }
+            size += unknownFields.serializedSize()
+            memoizedSerializedSize = size
+            return size
+          }
+          public class func parseFromData(data:[Byte]) -> OrganizationService.CreateLocation.Response {
+            return OrganizationService.CreateLocation.Response.builder().mergeFromData(data).build()
+          }
+          public class func parseFromData(data:[Byte], extensionRegistry:ExtensionRegistry) -> OrganizationService.CreateLocation.Response {
+            return OrganizationService.CreateLocation.Response.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
+          }
+          public class func parseFromInputStream(input:NSInputStream) -> OrganizationService.CreateLocation.Response {
+            return OrganizationService.CreateLocation.Response.builder().mergeFromInputStream(input).build()
+          }
+          public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->OrganizationService.CreateLocation.Response {
+            return OrganizationService.CreateLocation.Response.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
+          }
+          public class func parseFromCodedInputStream(input:CodedInputStream) -> OrganizationService.CreateLocation.Response {
+            return OrganizationService.CreateLocation.Response.builder().mergeFromCodedInputStream(input).build()
+          }
+          public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> OrganizationService.CreateLocation.Response {
+            return OrganizationService.CreateLocation.Response.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
+          }
+          public class func builder() -> OrganizationService.CreateLocation.ResponseBuilder {
+            return OrganizationService.CreateLocation.Response.classBuilder() as OrganizationService.CreateLocation.ResponseBuilder
+          }
+          public func builder() -> OrganizationService.CreateLocation.ResponseBuilder {
+            return classBuilder() as OrganizationService.CreateLocation.ResponseBuilder
+          }
+          public override class func classBuilder() -> MessageBuilder {
+            return OrganizationService.CreateLocation.ResponseBuilder()
+          }
+          public override func classBuilder() -> MessageBuilder {
+            return OrganizationService.CreateLocation.Response.builder()
+          }
+          public func toBuilder() -> OrganizationService.CreateLocation.ResponseBuilder {
+            return OrganizationService.CreateLocation.Response.builderWithPrototype(self)
+          }
+          public class func builderWithPrototype(prototype:OrganizationService.CreateLocation.Response) -> OrganizationService.CreateLocation.ResponseBuilder {
+            return OrganizationService.CreateLocation.Response.builder().mergeFrom(prototype)
+          }
+          override public func writeDescriptionTo(inout output:String, indent:String) {
+            if hasLocation {
+              output += "\(indent) location {\n"
+              location.writeDescriptionTo(&output, indent:"\(indent)  ")
+              output += "\(indent) }\n"
+            }
+            unknownFields.writeDescriptionTo(&output, indent:indent)
+          }
+          override public var hashValue:Int {
+              get {
+                  var hashCode:Int = 7
+                  if hasLocation {
+                    hashCode = (hashCode &* 31) &+ location.hashValue
+                  }
+                  hashCode = (hashCode &* 31) &+  unknownFields.hashValue
+                  return hashCode
+              }
+          }
+
+
+          //Meta information declaration start
+
+          override public class func className() -> String {
+              return "OrganizationService.CreateLocation.Response"
+          }
+          override public func className() -> String {
+              return "OrganizationService.CreateLocation.Response"
+          }
+          override public func classMetaType() -> GeneratedMessage.Type {
+              return OrganizationService.CreateLocation.Response.self
+          }
+
+
+          //Meta information declaration end
+
+        }
+
+        final public class ResponseBuilder : GeneratedMessageBuilder {
+          private var builderResult:OrganizationService.CreateLocation.Response
+
+          required override public init () {
+             builderResult = OrganizationService.CreateLocation.Response()
+             super.init()
+          }
+          public var hasLocation:Bool {
+               get {
+                   return builderResult.hasLocation
+               }
+          }
+          public var location:OrganizationService.Containers.Location {
+               get {
+                   return builderResult.location
+               }
+               set (value) {
+                   builderResult.hasLocation = true
+                   builderResult.location = value
+               }
+          }
+          public func setLocationBuilder(builderForValue:OrganizationService.Containers.LocationBuilder) -> OrganizationService.CreateLocation.ResponseBuilder {
+            location = builderForValue.build()
+            return self
+          }
+          public func mergeLocation(value:OrganizationService.Containers.Location) -> OrganizationService.CreateLocation.ResponseBuilder {
+            if (builderResult.hasLocation) {
+              builderResult.location = OrganizationService.Containers.Location.builderWithPrototype(builderResult.location).mergeFrom(value).buildPartial()
+            } else {
+              builderResult.location = value
+            }
+            builderResult.hasLocation = true
+            return self
+          }
+          public func clearLocation() -> OrganizationService.CreateLocation.ResponseBuilder {
+            builderResult.hasLocation = false
+            builderResult.location = OrganizationService.Containers.Location()
+            return self
+          }
+          override public var internalGetResult:GeneratedMessage {
+               get {
+                  return builderResult
+               }
+          }
+          public override func clear() -> OrganizationService.CreateLocation.ResponseBuilder {
+            builderResult = OrganizationService.CreateLocation.Response()
+            return self
+          }
+          public override func clone() -> OrganizationService.CreateLocation.ResponseBuilder {
+            return OrganizationService.CreateLocation.Response.builderWithPrototype(builderResult)
+          }
+          public override func build() -> OrganizationService.CreateLocation.Response {
+               checkInitialized()
+               return buildPartial()
+          }
+          public func buildPartial() -> OrganizationService.CreateLocation.Response {
+            var returnMe:OrganizationService.CreateLocation.Response = builderResult
+            return returnMe
+          }
+          public func mergeFrom(other:OrganizationService.CreateLocation.Response) -> OrganizationService.CreateLocation.ResponseBuilder {
+            if (other.hasLocation) {
+                mergeLocation(other.location)
+            }
+            mergeUnknownFields(other.unknownFields)
+            return self
+          }
+          public override func mergeFromCodedInputStream(input:CodedInputStream) ->OrganizationService.CreateLocation.ResponseBuilder {
+               return mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
+          }
+          public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> OrganizationService.CreateLocation.ResponseBuilder {
+            var unknownFieldsBuilder:UnknownFieldSetBuilder = UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
+            while (true) {
+              var tag = input.readTag()
+              switch tag {
+              case 0: 
+                self.unknownFields = unknownFieldsBuilder.build()
+                return self
+
+              case 10 :
+                var subBuilder:OrganizationService.Containers.LocationBuilder = OrganizationService.Containers.Location.builder()
+                if hasLocation {
+                  subBuilder.mergeFrom(location)
+                }
+                input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
+                location = subBuilder.buildPartial()
+
+              default:
+                if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
+                   unknownFields = unknownFieldsBuilder.build()
+                   return self
+                }
+              }
+            }
+          }
+        }
+
+
+
+      //Nested type declaration end
+
+      override public subscript (key: String) -> Any? {
+             switch key {
+             default: return nil
+             }
+      }
+
+      required public init() {
+           super.init()
+      }
+      override public func isInitialized() -> Bool {
+       return true
+      }
+      override public func writeToCodedOutputStream(output:CodedOutputStream) {
+        unknownFields.writeToCodedOutputStream(output)
+      }
+      override public func serializedSize() -> Int32 {
+        var size:Int32 = memoizedSerializedSize
+        if size != -1 {
+         return size
+        }
+
+        size = 0
+        size += unknownFields.serializedSize()
+        memoizedSerializedSize = size
+        return size
+      }
+      public class func parseFromData(data:[Byte]) -> OrganizationService.CreateLocation {
+        return OrganizationService.CreateLocation.builder().mergeFromData(data).build()
+      }
+      public class func parseFromData(data:[Byte], extensionRegistry:ExtensionRegistry) -> OrganizationService.CreateLocation {
+        return OrganizationService.CreateLocation.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
+      }
+      public class func parseFromInputStream(input:NSInputStream) -> OrganizationService.CreateLocation {
+        return OrganizationService.CreateLocation.builder().mergeFromInputStream(input).build()
+      }
+      public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->OrganizationService.CreateLocation {
+        return OrganizationService.CreateLocation.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
+      }
+      public class func parseFromCodedInputStream(input:CodedInputStream) -> OrganizationService.CreateLocation {
+        return OrganizationService.CreateLocation.builder().mergeFromCodedInputStream(input).build()
+      }
+      public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> OrganizationService.CreateLocation {
+        return OrganizationService.CreateLocation.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
+      }
+      public class func builder() -> OrganizationService.CreateLocationBuilder {
+        return OrganizationService.CreateLocation.classBuilder() as OrganizationService.CreateLocationBuilder
+      }
+      public func builder() -> OrganizationService.CreateLocationBuilder {
+        return classBuilder() as OrganizationService.CreateLocationBuilder
+      }
+      public override class func classBuilder() -> MessageBuilder {
+        return OrganizationService.CreateLocationBuilder()
+      }
+      public override func classBuilder() -> MessageBuilder {
+        return OrganizationService.CreateLocation.builder()
+      }
+      public func toBuilder() -> OrganizationService.CreateLocationBuilder {
+        return OrganizationService.CreateLocation.builderWithPrototype(self)
+      }
+      public class func builderWithPrototype(prototype:OrganizationService.CreateLocation) -> OrganizationService.CreateLocationBuilder {
+        return OrganizationService.CreateLocation.builder().mergeFrom(prototype)
+      }
+      override public func writeDescriptionTo(inout output:String, indent:String) {
+        unknownFields.writeDescriptionTo(&output, indent:indent)
+      }
+      override public var hashValue:Int {
+          get {
+              var hashCode:Int = 7
+              hashCode = (hashCode &* 31) &+  unknownFields.hashValue
+              return hashCode
+          }
+      }
+
+
+      //Meta information declaration start
+
+      override public class func className() -> String {
+          return "OrganizationService.CreateLocation"
+      }
+      override public func className() -> String {
+          return "OrganizationService.CreateLocation"
+      }
+      override public func classMetaType() -> GeneratedMessage.Type {
+          return OrganizationService.CreateLocation.self
+      }
+
+
+      //Meta information declaration end
+
+    }
+
+    final public class CreateLocationBuilder : GeneratedMessageBuilder {
+      private var builderResult:OrganizationService.CreateLocation
+
+      required override public init () {
+         builderResult = OrganizationService.CreateLocation()
+         super.init()
+      }
+      override public var internalGetResult:GeneratedMessage {
+           get {
+              return builderResult
+           }
+      }
+      public override func clear() -> OrganizationService.CreateLocationBuilder {
+        builderResult = OrganizationService.CreateLocation()
+        return self
+      }
+      public override func clone() -> OrganizationService.CreateLocationBuilder {
+        return OrganizationService.CreateLocation.builderWithPrototype(builderResult)
+      }
+      public override func build() -> OrganizationService.CreateLocation {
+           checkInitialized()
+           return buildPartial()
+      }
+      public func buildPartial() -> OrganizationService.CreateLocation {
+        var returnMe:OrganizationService.CreateLocation = builderResult
+        return returnMe
+      }
+      public func mergeFrom(other:OrganizationService.CreateLocation) -> OrganizationService.CreateLocationBuilder {
+        mergeUnknownFields(other.unknownFields)
+        return self
+      }
+      public override func mergeFromCodedInputStream(input:CodedInputStream) ->OrganizationService.CreateLocationBuilder {
+           return mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
+      }
+      public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> OrganizationService.CreateLocationBuilder {
+        var unknownFieldsBuilder:UnknownFieldSetBuilder = UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
+        while (true) {
+          var tag = input.readTag()
+          switch tag {
+          case 0: 
+            self.unknownFields = unknownFieldsBuilder.build()
+            return self
+
+          default:
+            if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
+               unknownFields = unknownFieldsBuilder.build()
+               return self
+            }
+          }
+        }
+      }
+    }
+
+
+
+  //Nested type declaration end
+
+
+
+  //Nested type declaration start
+
+    final public class UpdateLocation : GeneratedMessage {
+
+
+      //Nested type declaration start
+
+        final public class Request : GeneratedMessage {
+          override public subscript (key: String) -> Any? {
+                 switch key {
+                 case "location": return location
+                 default: return nil
+                 }
+          }
+
+          public private(set) var hasLocation:Bool = false
+          public private(set) var location:OrganizationService.Containers.Location = OrganizationService.Containers.Location()
+          required public init() {
+               super.init()
+          }
+          override public func isInitialized() -> Bool {
+           return true
+          }
+          override public func writeToCodedOutputStream(output:CodedOutputStream) {
+            if hasLocation {
+              output.writeMessage(1, value:location)
+            }
+            unknownFields.writeToCodedOutputStream(output)
+          }
+          override public func serializedSize() -> Int32 {
+            var size:Int32 = memoizedSerializedSize
+            if size != -1 {
+             return size
+            }
+
+            size = 0
+            if hasLocation {
+              size += WireFormat.computeMessageSize(1, value:location)
+            }
+            size += unknownFields.serializedSize()
+            memoizedSerializedSize = size
+            return size
+          }
+          public class func parseFromData(data:[Byte]) -> OrganizationService.UpdateLocation.Request {
+            return OrganizationService.UpdateLocation.Request.builder().mergeFromData(data).build()
+          }
+          public class func parseFromData(data:[Byte], extensionRegistry:ExtensionRegistry) -> OrganizationService.UpdateLocation.Request {
+            return OrganizationService.UpdateLocation.Request.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
+          }
+          public class func parseFromInputStream(input:NSInputStream) -> OrganizationService.UpdateLocation.Request {
+            return OrganizationService.UpdateLocation.Request.builder().mergeFromInputStream(input).build()
+          }
+          public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->OrganizationService.UpdateLocation.Request {
+            return OrganizationService.UpdateLocation.Request.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
+          }
+          public class func parseFromCodedInputStream(input:CodedInputStream) -> OrganizationService.UpdateLocation.Request {
+            return OrganizationService.UpdateLocation.Request.builder().mergeFromCodedInputStream(input).build()
+          }
+          public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> OrganizationService.UpdateLocation.Request {
+            return OrganizationService.UpdateLocation.Request.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
+          }
+          public class func builder() -> OrganizationService.UpdateLocation.RequestBuilder {
+            return OrganizationService.UpdateLocation.Request.classBuilder() as OrganizationService.UpdateLocation.RequestBuilder
+          }
+          public func builder() -> OrganizationService.UpdateLocation.RequestBuilder {
+            return classBuilder() as OrganizationService.UpdateLocation.RequestBuilder
+          }
+          public override class func classBuilder() -> MessageBuilder {
+            return OrganizationService.UpdateLocation.RequestBuilder()
+          }
+          public override func classBuilder() -> MessageBuilder {
+            return OrganizationService.UpdateLocation.Request.builder()
+          }
+          public func toBuilder() -> OrganizationService.UpdateLocation.RequestBuilder {
+            return OrganizationService.UpdateLocation.Request.builderWithPrototype(self)
+          }
+          public class func builderWithPrototype(prototype:OrganizationService.UpdateLocation.Request) -> OrganizationService.UpdateLocation.RequestBuilder {
+            return OrganizationService.UpdateLocation.Request.builder().mergeFrom(prototype)
+          }
+          override public func writeDescriptionTo(inout output:String, indent:String) {
+            if hasLocation {
+              output += "\(indent) location {\n"
+              location.writeDescriptionTo(&output, indent:"\(indent)  ")
+              output += "\(indent) }\n"
+            }
+            unknownFields.writeDescriptionTo(&output, indent:indent)
+          }
+          override public var hashValue:Int {
+              get {
+                  var hashCode:Int = 7
+                  if hasLocation {
+                    hashCode = (hashCode &* 31) &+ location.hashValue
+                  }
+                  hashCode = (hashCode &* 31) &+  unknownFields.hashValue
+                  return hashCode
+              }
+          }
+
+
+          //Meta information declaration start
+
+          override public class func className() -> String {
+              return "OrganizationService.UpdateLocation.Request"
+          }
+          override public func className() -> String {
+              return "OrganizationService.UpdateLocation.Request"
+          }
+          override public func classMetaType() -> GeneratedMessage.Type {
+              return OrganizationService.UpdateLocation.Request.self
+          }
+
+
+          //Meta information declaration end
+
+        }
+
+        final public class RequestBuilder : GeneratedMessageBuilder {
+          private var builderResult:OrganizationService.UpdateLocation.Request
+
+          required override public init () {
+             builderResult = OrganizationService.UpdateLocation.Request()
+             super.init()
+          }
+          public var hasLocation:Bool {
+               get {
+                   return builderResult.hasLocation
+               }
+          }
+          public var location:OrganizationService.Containers.Location {
+               get {
+                   return builderResult.location
+               }
+               set (value) {
+                   builderResult.hasLocation = true
+                   builderResult.location = value
+               }
+          }
+          public func setLocationBuilder(builderForValue:OrganizationService.Containers.LocationBuilder) -> OrganizationService.UpdateLocation.RequestBuilder {
+            location = builderForValue.build()
+            return self
+          }
+          public func mergeLocation(value:OrganizationService.Containers.Location) -> OrganizationService.UpdateLocation.RequestBuilder {
+            if (builderResult.hasLocation) {
+              builderResult.location = OrganizationService.Containers.Location.builderWithPrototype(builderResult.location).mergeFrom(value).buildPartial()
+            } else {
+              builderResult.location = value
+            }
+            builderResult.hasLocation = true
+            return self
+          }
+          public func clearLocation() -> OrganizationService.UpdateLocation.RequestBuilder {
+            builderResult.hasLocation = false
+            builderResult.location = OrganizationService.Containers.Location()
+            return self
+          }
+          override public var internalGetResult:GeneratedMessage {
+               get {
+                  return builderResult
+               }
+          }
+          public override func clear() -> OrganizationService.UpdateLocation.RequestBuilder {
+            builderResult = OrganizationService.UpdateLocation.Request()
+            return self
+          }
+          public override func clone() -> OrganizationService.UpdateLocation.RequestBuilder {
+            return OrganizationService.UpdateLocation.Request.builderWithPrototype(builderResult)
+          }
+          public override func build() -> OrganizationService.UpdateLocation.Request {
+               checkInitialized()
+               return buildPartial()
+          }
+          public func buildPartial() -> OrganizationService.UpdateLocation.Request {
+            var returnMe:OrganizationService.UpdateLocation.Request = builderResult
+            return returnMe
+          }
+          public func mergeFrom(other:OrganizationService.UpdateLocation.Request) -> OrganizationService.UpdateLocation.RequestBuilder {
+            if (other.hasLocation) {
+                mergeLocation(other.location)
+            }
+            mergeUnknownFields(other.unknownFields)
+            return self
+          }
+          public override func mergeFromCodedInputStream(input:CodedInputStream) ->OrganizationService.UpdateLocation.RequestBuilder {
+               return mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
+          }
+          public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> OrganizationService.UpdateLocation.RequestBuilder {
+            var unknownFieldsBuilder:UnknownFieldSetBuilder = UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
+            while (true) {
+              var tag = input.readTag()
+              switch tag {
+              case 0: 
+                self.unknownFields = unknownFieldsBuilder.build()
+                return self
+
+              case 10 :
+                var subBuilder:OrganizationService.Containers.LocationBuilder = OrganizationService.Containers.Location.builder()
+                if hasLocation {
+                  subBuilder.mergeFrom(location)
+                }
+                input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
+                location = subBuilder.buildPartial()
+
+              default:
+                if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
+                   unknownFields = unknownFieldsBuilder.build()
+                   return self
+                }
+              }
+            }
+          }
+        }
+
+
+
+      //Nested type declaration end
+
+
+
+      //Nested type declaration start
+
+        final public class Response : GeneratedMessage {
+          override public subscript (key: String) -> Any? {
+                 switch key {
+                 case "location": return location
+                 default: return nil
+                 }
+          }
+
+          public private(set) var hasLocation:Bool = false
+          public private(set) var location:OrganizationService.Containers.Location = OrganizationService.Containers.Location()
+          required public init() {
+               super.init()
+          }
+          override public func isInitialized() -> Bool {
+           return true
+          }
+          override public func writeToCodedOutputStream(output:CodedOutputStream) {
+            if hasLocation {
+              output.writeMessage(1, value:location)
+            }
+            unknownFields.writeToCodedOutputStream(output)
+          }
+          override public func serializedSize() -> Int32 {
+            var size:Int32 = memoizedSerializedSize
+            if size != -1 {
+             return size
+            }
+
+            size = 0
+            if hasLocation {
+              size += WireFormat.computeMessageSize(1, value:location)
+            }
+            size += unknownFields.serializedSize()
+            memoizedSerializedSize = size
+            return size
+          }
+          public class func parseFromData(data:[Byte]) -> OrganizationService.UpdateLocation.Response {
+            return OrganizationService.UpdateLocation.Response.builder().mergeFromData(data).build()
+          }
+          public class func parseFromData(data:[Byte], extensionRegistry:ExtensionRegistry) -> OrganizationService.UpdateLocation.Response {
+            return OrganizationService.UpdateLocation.Response.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
+          }
+          public class func parseFromInputStream(input:NSInputStream) -> OrganizationService.UpdateLocation.Response {
+            return OrganizationService.UpdateLocation.Response.builder().mergeFromInputStream(input).build()
+          }
+          public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->OrganizationService.UpdateLocation.Response {
+            return OrganizationService.UpdateLocation.Response.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
+          }
+          public class func parseFromCodedInputStream(input:CodedInputStream) -> OrganizationService.UpdateLocation.Response {
+            return OrganizationService.UpdateLocation.Response.builder().mergeFromCodedInputStream(input).build()
+          }
+          public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> OrganizationService.UpdateLocation.Response {
+            return OrganizationService.UpdateLocation.Response.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
+          }
+          public class func builder() -> OrganizationService.UpdateLocation.ResponseBuilder {
+            return OrganizationService.UpdateLocation.Response.classBuilder() as OrganizationService.UpdateLocation.ResponseBuilder
+          }
+          public func builder() -> OrganizationService.UpdateLocation.ResponseBuilder {
+            return classBuilder() as OrganizationService.UpdateLocation.ResponseBuilder
+          }
+          public override class func classBuilder() -> MessageBuilder {
+            return OrganizationService.UpdateLocation.ResponseBuilder()
+          }
+          public override func classBuilder() -> MessageBuilder {
+            return OrganizationService.UpdateLocation.Response.builder()
+          }
+          public func toBuilder() -> OrganizationService.UpdateLocation.ResponseBuilder {
+            return OrganizationService.UpdateLocation.Response.builderWithPrototype(self)
+          }
+          public class func builderWithPrototype(prototype:OrganizationService.UpdateLocation.Response) -> OrganizationService.UpdateLocation.ResponseBuilder {
+            return OrganizationService.UpdateLocation.Response.builder().mergeFrom(prototype)
+          }
+          override public func writeDescriptionTo(inout output:String, indent:String) {
+            if hasLocation {
+              output += "\(indent) location {\n"
+              location.writeDescriptionTo(&output, indent:"\(indent)  ")
+              output += "\(indent) }\n"
+            }
+            unknownFields.writeDescriptionTo(&output, indent:indent)
+          }
+          override public var hashValue:Int {
+              get {
+                  var hashCode:Int = 7
+                  if hasLocation {
+                    hashCode = (hashCode &* 31) &+ location.hashValue
+                  }
+                  hashCode = (hashCode &* 31) &+  unknownFields.hashValue
+                  return hashCode
+              }
+          }
+
+
+          //Meta information declaration start
+
+          override public class func className() -> String {
+              return "OrganizationService.UpdateLocation.Response"
+          }
+          override public func className() -> String {
+              return "OrganizationService.UpdateLocation.Response"
+          }
+          override public func classMetaType() -> GeneratedMessage.Type {
+              return OrganizationService.UpdateLocation.Response.self
+          }
+
+
+          //Meta information declaration end
+
+        }
+
+        final public class ResponseBuilder : GeneratedMessageBuilder {
+          private var builderResult:OrganizationService.UpdateLocation.Response
+
+          required override public init () {
+             builderResult = OrganizationService.UpdateLocation.Response()
+             super.init()
+          }
+          public var hasLocation:Bool {
+               get {
+                   return builderResult.hasLocation
+               }
+          }
+          public var location:OrganizationService.Containers.Location {
+               get {
+                   return builderResult.location
+               }
+               set (value) {
+                   builderResult.hasLocation = true
+                   builderResult.location = value
+               }
+          }
+          public func setLocationBuilder(builderForValue:OrganizationService.Containers.LocationBuilder) -> OrganizationService.UpdateLocation.ResponseBuilder {
+            location = builderForValue.build()
+            return self
+          }
+          public func mergeLocation(value:OrganizationService.Containers.Location) -> OrganizationService.UpdateLocation.ResponseBuilder {
+            if (builderResult.hasLocation) {
+              builderResult.location = OrganizationService.Containers.Location.builderWithPrototype(builderResult.location).mergeFrom(value).buildPartial()
+            } else {
+              builderResult.location = value
+            }
+            builderResult.hasLocation = true
+            return self
+          }
+          public func clearLocation() -> OrganizationService.UpdateLocation.ResponseBuilder {
+            builderResult.hasLocation = false
+            builderResult.location = OrganizationService.Containers.Location()
+            return self
+          }
+          override public var internalGetResult:GeneratedMessage {
+               get {
+                  return builderResult
+               }
+          }
+          public override func clear() -> OrganizationService.UpdateLocation.ResponseBuilder {
+            builderResult = OrganizationService.UpdateLocation.Response()
+            return self
+          }
+          public override func clone() -> OrganizationService.UpdateLocation.ResponseBuilder {
+            return OrganizationService.UpdateLocation.Response.builderWithPrototype(builderResult)
+          }
+          public override func build() -> OrganizationService.UpdateLocation.Response {
+               checkInitialized()
+               return buildPartial()
+          }
+          public func buildPartial() -> OrganizationService.UpdateLocation.Response {
+            var returnMe:OrganizationService.UpdateLocation.Response = builderResult
+            return returnMe
+          }
+          public func mergeFrom(other:OrganizationService.UpdateLocation.Response) -> OrganizationService.UpdateLocation.ResponseBuilder {
+            if (other.hasLocation) {
+                mergeLocation(other.location)
+            }
+            mergeUnknownFields(other.unknownFields)
+            return self
+          }
+          public override func mergeFromCodedInputStream(input:CodedInputStream) ->OrganizationService.UpdateLocation.ResponseBuilder {
+               return mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
+          }
+          public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> OrganizationService.UpdateLocation.ResponseBuilder {
+            var unknownFieldsBuilder:UnknownFieldSetBuilder = UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
+            while (true) {
+              var tag = input.readTag()
+              switch tag {
+              case 0: 
+                self.unknownFields = unknownFieldsBuilder.build()
+                return self
+
+              case 10 :
+                var subBuilder:OrganizationService.Containers.LocationBuilder = OrganizationService.Containers.Location.builder()
+                if hasLocation {
+                  subBuilder.mergeFrom(location)
+                }
+                input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
+                location = subBuilder.buildPartial()
+
+              default:
+                if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
+                   unknownFields = unknownFieldsBuilder.build()
+                   return self
+                }
+              }
+            }
+          }
+        }
+
+
+
+      //Nested type declaration end
+
+      override public subscript (key: String) -> Any? {
+             switch key {
+             default: return nil
+             }
+      }
+
+      required public init() {
+           super.init()
+      }
+      override public func isInitialized() -> Bool {
+       return true
+      }
+      override public func writeToCodedOutputStream(output:CodedOutputStream) {
+        unknownFields.writeToCodedOutputStream(output)
+      }
+      override public func serializedSize() -> Int32 {
+        var size:Int32 = memoizedSerializedSize
+        if size != -1 {
+         return size
+        }
+
+        size = 0
+        size += unknownFields.serializedSize()
+        memoizedSerializedSize = size
+        return size
+      }
+      public class func parseFromData(data:[Byte]) -> OrganizationService.UpdateLocation {
+        return OrganizationService.UpdateLocation.builder().mergeFromData(data).build()
+      }
+      public class func parseFromData(data:[Byte], extensionRegistry:ExtensionRegistry) -> OrganizationService.UpdateLocation {
+        return OrganizationService.UpdateLocation.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
+      }
+      public class func parseFromInputStream(input:NSInputStream) -> OrganizationService.UpdateLocation {
+        return OrganizationService.UpdateLocation.builder().mergeFromInputStream(input).build()
+      }
+      public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->OrganizationService.UpdateLocation {
+        return OrganizationService.UpdateLocation.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
+      }
+      public class func parseFromCodedInputStream(input:CodedInputStream) -> OrganizationService.UpdateLocation {
+        return OrganizationService.UpdateLocation.builder().mergeFromCodedInputStream(input).build()
+      }
+      public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> OrganizationService.UpdateLocation {
+        return OrganizationService.UpdateLocation.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
+      }
+      public class func builder() -> OrganizationService.UpdateLocationBuilder {
+        return OrganizationService.UpdateLocation.classBuilder() as OrganizationService.UpdateLocationBuilder
+      }
+      public func builder() -> OrganizationService.UpdateLocationBuilder {
+        return classBuilder() as OrganizationService.UpdateLocationBuilder
+      }
+      public override class func classBuilder() -> MessageBuilder {
+        return OrganizationService.UpdateLocationBuilder()
+      }
+      public override func classBuilder() -> MessageBuilder {
+        return OrganizationService.UpdateLocation.builder()
+      }
+      public func toBuilder() -> OrganizationService.UpdateLocationBuilder {
+        return OrganizationService.UpdateLocation.builderWithPrototype(self)
+      }
+      public class func builderWithPrototype(prototype:OrganizationService.UpdateLocation) -> OrganizationService.UpdateLocationBuilder {
+        return OrganizationService.UpdateLocation.builder().mergeFrom(prototype)
+      }
+      override public func writeDescriptionTo(inout output:String, indent:String) {
+        unknownFields.writeDescriptionTo(&output, indent:indent)
+      }
+      override public var hashValue:Int {
+          get {
+              var hashCode:Int = 7
+              hashCode = (hashCode &* 31) &+  unknownFields.hashValue
+              return hashCode
+          }
+      }
+
+
+      //Meta information declaration start
+
+      override public class func className() -> String {
+          return "OrganizationService.UpdateLocation"
+      }
+      override public func className() -> String {
+          return "OrganizationService.UpdateLocation"
+      }
+      override public func classMetaType() -> GeneratedMessage.Type {
+          return OrganizationService.UpdateLocation.self
+      }
+
+
+      //Meta information declaration end
+
+    }
+
+    final public class UpdateLocationBuilder : GeneratedMessageBuilder {
+      private var builderResult:OrganizationService.UpdateLocation
+
+      required override public init () {
+         builderResult = OrganizationService.UpdateLocation()
+         super.init()
+      }
+      override public var internalGetResult:GeneratedMessage {
+           get {
+              return builderResult
+           }
+      }
+      public override func clear() -> OrganizationService.UpdateLocationBuilder {
+        builderResult = OrganizationService.UpdateLocation()
+        return self
+      }
+      public override func clone() -> OrganizationService.UpdateLocationBuilder {
+        return OrganizationService.UpdateLocation.builderWithPrototype(builderResult)
+      }
+      public override func build() -> OrganizationService.UpdateLocation {
+           checkInitialized()
+           return buildPartial()
+      }
+      public func buildPartial() -> OrganizationService.UpdateLocation {
+        var returnMe:OrganizationService.UpdateLocation = builderResult
+        return returnMe
+      }
+      public func mergeFrom(other:OrganizationService.UpdateLocation) -> OrganizationService.UpdateLocationBuilder {
+        mergeUnknownFields(other.unknownFields)
+        return self
+      }
+      public override func mergeFromCodedInputStream(input:CodedInputStream) ->OrganizationService.UpdateLocationBuilder {
+           return mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
+      }
+      public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> OrganizationService.UpdateLocationBuilder {
+        var unknownFieldsBuilder:UnknownFieldSetBuilder = UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
+        while (true) {
+          var tag = input.readTag()
+          switch tag {
+          case 0: 
+            self.unknownFields = unknownFieldsBuilder.build()
+            return self
+
+          default:
+            if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
+               unknownFields = unknownFieldsBuilder.build()
+               return self
+            }
+          }
+        }
+      }
+    }
+
+
+
+  //Nested type declaration end
+
+
+
+  //Nested type declaration start
+
+    final public class GetExtendedLocation : GeneratedMessage {
+
+
+      //Nested type declaration start
+
+        final public class Request : GeneratedMessage {
+          override public subscript (key: String) -> Any? {
+                 switch key {
+                 case "location_id": return location_id
+                 default: return nil
+                 }
+          }
+
+          public private(set) var hasLocationId:Bool = false
+          public private(set) var location_id:String = ""
+
+          required public init() {
+               super.init()
+          }
+          override public func isInitialized() -> Bool {
+           return true
+          }
+          override public func writeToCodedOutputStream(output:CodedOutputStream) {
+            if hasLocationId {
+              output.writeString(1, value:location_id)
+            }
+            unknownFields.writeToCodedOutputStream(output)
+          }
+          override public func serializedSize() -> Int32 {
+            var size:Int32 = memoizedSerializedSize
+            if size != -1 {
+             return size
+            }
+
+            size = 0
+            if hasLocationId {
+              size += WireFormat.computeStringSize(1, value:location_id)
+            }
+            size += unknownFields.serializedSize()
+            memoizedSerializedSize = size
+            return size
+          }
+          public class func parseFromData(data:[Byte]) -> OrganizationService.GetExtendedLocation.Request {
+            return OrganizationService.GetExtendedLocation.Request.builder().mergeFromData(data).build()
+          }
+          public class func parseFromData(data:[Byte], extensionRegistry:ExtensionRegistry) -> OrganizationService.GetExtendedLocation.Request {
+            return OrganizationService.GetExtendedLocation.Request.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
+          }
+          public class func parseFromInputStream(input:NSInputStream) -> OrganizationService.GetExtendedLocation.Request {
+            return OrganizationService.GetExtendedLocation.Request.builder().mergeFromInputStream(input).build()
+          }
+          public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->OrganizationService.GetExtendedLocation.Request {
+            return OrganizationService.GetExtendedLocation.Request.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
+          }
+          public class func parseFromCodedInputStream(input:CodedInputStream) -> OrganizationService.GetExtendedLocation.Request {
+            return OrganizationService.GetExtendedLocation.Request.builder().mergeFromCodedInputStream(input).build()
+          }
+          public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> OrganizationService.GetExtendedLocation.Request {
+            return OrganizationService.GetExtendedLocation.Request.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
+          }
+          public class func builder() -> OrganizationService.GetExtendedLocation.RequestBuilder {
+            return OrganizationService.GetExtendedLocation.Request.classBuilder() as OrganizationService.GetExtendedLocation.RequestBuilder
+          }
+          public func builder() -> OrganizationService.GetExtendedLocation.RequestBuilder {
+            return classBuilder() as OrganizationService.GetExtendedLocation.RequestBuilder
+          }
+          public override class func classBuilder() -> MessageBuilder {
+            return OrganizationService.GetExtendedLocation.RequestBuilder()
+          }
+          public override func classBuilder() -> MessageBuilder {
+            return OrganizationService.GetExtendedLocation.Request.builder()
+          }
+          public func toBuilder() -> OrganizationService.GetExtendedLocation.RequestBuilder {
+            return OrganizationService.GetExtendedLocation.Request.builderWithPrototype(self)
+          }
+          public class func builderWithPrototype(prototype:OrganizationService.GetExtendedLocation.Request) -> OrganizationService.GetExtendedLocation.RequestBuilder {
+            return OrganizationService.GetExtendedLocation.Request.builder().mergeFrom(prototype)
+          }
+          override public func writeDescriptionTo(inout output:String, indent:String) {
+            if hasLocationId {
+              output += "\(indent) location_id: \(location_id) \n"
+            }
+            unknownFields.writeDescriptionTo(&output, indent:indent)
+          }
+          override public var hashValue:Int {
+              get {
+                  var hashCode:Int = 7
+                  if hasLocationId {
+                     hashCode = (hashCode &* 31) &+ location_id.hashValue
+                  }
+                  hashCode = (hashCode &* 31) &+  unknownFields.hashValue
+                  return hashCode
+              }
+          }
+
+
+          //Meta information declaration start
+
+          override public class func className() -> String {
+              return "OrganizationService.GetExtendedLocation.Request"
+          }
+          override public func className() -> String {
+              return "OrganizationService.GetExtendedLocation.Request"
+          }
+          override public func classMetaType() -> GeneratedMessage.Type {
+              return OrganizationService.GetExtendedLocation.Request.self
+          }
+
+
+          //Meta information declaration end
+
+        }
+
+        final public class RequestBuilder : GeneratedMessageBuilder {
+          private var builderResult:OrganizationService.GetExtendedLocation.Request
+
+          required override public init () {
+             builderResult = OrganizationService.GetExtendedLocation.Request()
+             super.init()
+          }
+          public var hasLocationId:Bool {
+               get {
+                    return builderResult.hasLocationId
+               }
+          }
+          public var location_id:String {
+               get {
+                    return builderResult.location_id
+               }
+               set (value) {
+                   builderResult.hasLocationId = true
+                   builderResult.location_id = value
+               }
+          }
+          public func clearLocationId() -> OrganizationService.GetExtendedLocation.RequestBuilder{
+               builderResult.hasLocationId = false
+               builderResult.location_id = ""
+               return self
+          }
+          override public var internalGetResult:GeneratedMessage {
+               get {
+                  return builderResult
+               }
+          }
+          public override func clear() -> OrganizationService.GetExtendedLocation.RequestBuilder {
+            builderResult = OrganizationService.GetExtendedLocation.Request()
+            return self
+          }
+          public override func clone() -> OrganizationService.GetExtendedLocation.RequestBuilder {
+            return OrganizationService.GetExtendedLocation.Request.builderWithPrototype(builderResult)
+          }
+          public override func build() -> OrganizationService.GetExtendedLocation.Request {
+               checkInitialized()
+               return buildPartial()
+          }
+          public func buildPartial() -> OrganizationService.GetExtendedLocation.Request {
+            var returnMe:OrganizationService.GetExtendedLocation.Request = builderResult
+            return returnMe
+          }
+          public func mergeFrom(other:OrganizationService.GetExtendedLocation.Request) -> OrganizationService.GetExtendedLocation.RequestBuilder {
+            if other.hasLocationId {
+                 location_id = other.location_id
+            }
+            mergeUnknownFields(other.unknownFields)
+            return self
+          }
+          public override func mergeFromCodedInputStream(input:CodedInputStream) ->OrganizationService.GetExtendedLocation.RequestBuilder {
+               return mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
+          }
+          public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> OrganizationService.GetExtendedLocation.RequestBuilder {
+            var unknownFieldsBuilder:UnknownFieldSetBuilder = UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
+            while (true) {
+              var tag = input.readTag()
+              switch tag {
+              case 0: 
+                self.unknownFields = unknownFieldsBuilder.build()
+                return self
+
+              case 10 :
+                location_id = input.readString()
+
+              default:
+                if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
+                   unknownFields = unknownFieldsBuilder.build()
+                   return self
+                }
+              }
+            }
+          }
+        }
+
+
+
+      //Nested type declaration end
+
+
+
+      //Nested type declaration start
+
+        final public class Response : GeneratedMessage {
+          override public subscript (key: String) -> Any? {
+                 switch key {
+                 case "location": return location
+                 case "address": return address
+                 case "member_profiles_payload": return member_profiles_payload
+                 default: return nil
+                 }
+          }
+
+          public private(set) var hasLocation:Bool = false
+          public private(set) var location:OrganizationService.Containers.Location = OrganizationService.Containers.Location()
+          public private(set) var hasAddress:Bool = false
+          public private(set) var address:OrganizationService.Containers.Address = OrganizationService.Containers.Address()
+          public private(set) var hasMemberProfilesPayload:Bool = false
+          public private(set) var member_profiles_payload:String = ""
+
+          public private(set) var teams:Array<OrganizationService.Containers.Team>  = Array<OrganizationService.Containers.Team>()
+          required public init() {
+               super.init()
+          }
+          override public func isInitialized() -> Bool {
+           return true
+          }
+          override public func writeToCodedOutputStream(output:CodedOutputStream) {
+            if hasLocation {
+              output.writeMessage(1, value:location)
+            }
+            if hasAddress {
+              output.writeMessage(2, value:address)
+            }
+            if hasMemberProfilesPayload {
+              output.writeString(3, value:member_profiles_payload)
+            }
+            for oneElementteams in teams {
+                output.writeMessage(4, value:oneElementteams)
+            }
+            unknownFields.writeToCodedOutputStream(output)
+          }
+          override public func serializedSize() -> Int32 {
+            var size:Int32 = memoizedSerializedSize
+            if size != -1 {
+             return size
+            }
+
+            size = 0
+            if hasLocation {
+              size += WireFormat.computeMessageSize(1, value:location)
+            }
+            if hasAddress {
+              size += WireFormat.computeMessageSize(2, value:address)
+            }
+            if hasMemberProfilesPayload {
+              size += WireFormat.computeStringSize(3, value:member_profiles_payload)
+            }
+            for oneElementteams in teams {
+                size += WireFormat.computeMessageSize(4, value:oneElementteams)
+            }
+            size += unknownFields.serializedSize()
+            memoizedSerializedSize = size
+            return size
+          }
+          public class func parseFromData(data:[Byte]) -> OrganizationService.GetExtendedLocation.Response {
+            return OrganizationService.GetExtendedLocation.Response.builder().mergeFromData(data).build()
+          }
+          public class func parseFromData(data:[Byte], extensionRegistry:ExtensionRegistry) -> OrganizationService.GetExtendedLocation.Response {
+            return OrganizationService.GetExtendedLocation.Response.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
+          }
+          public class func parseFromInputStream(input:NSInputStream) -> OrganizationService.GetExtendedLocation.Response {
+            return OrganizationService.GetExtendedLocation.Response.builder().mergeFromInputStream(input).build()
+          }
+          public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->OrganizationService.GetExtendedLocation.Response {
+            return OrganizationService.GetExtendedLocation.Response.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
+          }
+          public class func parseFromCodedInputStream(input:CodedInputStream) -> OrganizationService.GetExtendedLocation.Response {
+            return OrganizationService.GetExtendedLocation.Response.builder().mergeFromCodedInputStream(input).build()
+          }
+          public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> OrganizationService.GetExtendedLocation.Response {
+            return OrganizationService.GetExtendedLocation.Response.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
+          }
+          public class func builder() -> OrganizationService.GetExtendedLocation.ResponseBuilder {
+            return OrganizationService.GetExtendedLocation.Response.classBuilder() as OrganizationService.GetExtendedLocation.ResponseBuilder
+          }
+          public func builder() -> OrganizationService.GetExtendedLocation.ResponseBuilder {
+            return classBuilder() as OrganizationService.GetExtendedLocation.ResponseBuilder
+          }
+          public override class func classBuilder() -> MessageBuilder {
+            return OrganizationService.GetExtendedLocation.ResponseBuilder()
+          }
+          public override func classBuilder() -> MessageBuilder {
+            return OrganizationService.GetExtendedLocation.Response.builder()
+          }
+          public func toBuilder() -> OrganizationService.GetExtendedLocation.ResponseBuilder {
+            return OrganizationService.GetExtendedLocation.Response.builderWithPrototype(self)
+          }
+          public class func builderWithPrototype(prototype:OrganizationService.GetExtendedLocation.Response) -> OrganizationService.GetExtendedLocation.ResponseBuilder {
+            return OrganizationService.GetExtendedLocation.Response.builder().mergeFrom(prototype)
+          }
+          override public func writeDescriptionTo(inout output:String, indent:String) {
+            if hasLocation {
+              output += "\(indent) location {\n"
+              location.writeDescriptionTo(&output, indent:"\(indent)  ")
+              output += "\(indent) }\n"
+            }
+            if hasAddress {
+              output += "\(indent) address {\n"
+              address.writeDescriptionTo(&output, indent:"\(indent)  ")
+              output += "\(indent) }\n"
+            }
+            if hasMemberProfilesPayload {
+              output += "\(indent) member_profiles_payload: \(member_profiles_payload) \n"
+            }
+            var teamsElementIndex:Int = 0
+            for oneElementteams in teams {
+                output += "\(indent) teams[\(teamsElementIndex)] {\n"
+                oneElementteams.writeDescriptionTo(&output, indent:"\(indent)  ")
+                output += "\(indent)}\n"
+                teamsElementIndex++
+            }
+            unknownFields.writeDescriptionTo(&output, indent:indent)
+          }
+          override public var hashValue:Int {
+              get {
+                  var hashCode:Int = 7
+                  if hasLocation {
+                    hashCode = (hashCode &* 31) &+ location.hashValue
+                  }
+                  if hasAddress {
+                    hashCode = (hashCode &* 31) &+ address.hashValue
+                  }
+                  if hasMemberProfilesPayload {
+                     hashCode = (hashCode &* 31) &+ member_profiles_payload.hashValue
+                  }
+                  for oneElementteams in teams {
+                      hashCode = (hashCode &* 31) &+ oneElementteams.hashValue
+                  }
+                  hashCode = (hashCode &* 31) &+  unknownFields.hashValue
+                  return hashCode
+              }
+          }
+
+
+          //Meta information declaration start
+
+          override public class func className() -> String {
+              return "OrganizationService.GetExtendedLocation.Response"
+          }
+          override public func className() -> String {
+              return "OrganizationService.GetExtendedLocation.Response"
+          }
+          override public func classMetaType() -> GeneratedMessage.Type {
+              return OrganizationService.GetExtendedLocation.Response.self
+          }
+
+
+          //Meta information declaration end
+
+        }
+
+        final public class ResponseBuilder : GeneratedMessageBuilder {
+          private var builderResult:OrganizationService.GetExtendedLocation.Response
+
+          required override public init () {
+             builderResult = OrganizationService.GetExtendedLocation.Response()
+             super.init()
+          }
+          public var hasLocation:Bool {
+               get {
+                   return builderResult.hasLocation
+               }
+          }
+          public var location:OrganizationService.Containers.Location {
+               get {
+                   return builderResult.location
+               }
+               set (value) {
+                   builderResult.hasLocation = true
+                   builderResult.location = value
+               }
+          }
+          public func setLocationBuilder(builderForValue:OrganizationService.Containers.LocationBuilder) -> OrganizationService.GetExtendedLocation.ResponseBuilder {
+            location = builderForValue.build()
+            return self
+          }
+          public func mergeLocation(value:OrganizationService.Containers.Location) -> OrganizationService.GetExtendedLocation.ResponseBuilder {
+            if (builderResult.hasLocation) {
+              builderResult.location = OrganizationService.Containers.Location.builderWithPrototype(builderResult.location).mergeFrom(value).buildPartial()
+            } else {
+              builderResult.location = value
+            }
+            builderResult.hasLocation = true
+            return self
+          }
+          public func clearLocation() -> OrganizationService.GetExtendedLocation.ResponseBuilder {
+            builderResult.hasLocation = false
+            builderResult.location = OrganizationService.Containers.Location()
+            return self
+          }
+          public var hasAddress:Bool {
+               get {
+                   return builderResult.hasAddress
+               }
+          }
+          public var address:OrganizationService.Containers.Address {
+               get {
+                   return builderResult.address
+               }
+               set (value) {
+                   builderResult.hasAddress = true
+                   builderResult.address = value
+               }
+          }
+          public func setAddressBuilder(builderForValue:OrganizationService.Containers.AddressBuilder) -> OrganizationService.GetExtendedLocation.ResponseBuilder {
+            address = builderForValue.build()
+            return self
+          }
+          public func mergeAddress(value:OrganizationService.Containers.Address) -> OrganizationService.GetExtendedLocation.ResponseBuilder {
+            if (builderResult.hasAddress) {
+              builderResult.address = OrganizationService.Containers.Address.builderWithPrototype(builderResult.address).mergeFrom(value).buildPartial()
+            } else {
+              builderResult.address = value
+            }
+            builderResult.hasAddress = true
+            return self
+          }
+          public func clearAddress() -> OrganizationService.GetExtendedLocation.ResponseBuilder {
+            builderResult.hasAddress = false
+            builderResult.address = OrganizationService.Containers.Address()
+            return self
+          }
+          public var hasMemberProfilesPayload:Bool {
+               get {
+                    return builderResult.hasMemberProfilesPayload
+               }
+          }
+          public var member_profiles_payload:String {
+               get {
+                    return builderResult.member_profiles_payload
+               }
+               set (value) {
+                   builderResult.hasMemberProfilesPayload = true
+                   builderResult.member_profiles_payload = value
+               }
+          }
+          public func clearMemberProfilesPayload() -> OrganizationService.GetExtendedLocation.ResponseBuilder{
+               builderResult.hasMemberProfilesPayload = false
+               builderResult.member_profiles_payload = ""
+               return self
+          }
+          public var teams:Array<OrganizationService.Containers.Team> {
+               get {
+                   return builderResult.teams
+               }
+               set (value) {
+                   builderResult.teams = value
+               }
+          }
+          public func clearTeams() -> OrganizationService.GetExtendedLocation.ResponseBuilder {
+            builderResult.teams.removeAll(keepCapacity: false)
+            return self
+          }
+          override public var internalGetResult:GeneratedMessage {
+               get {
+                  return builderResult
+               }
+          }
+          public override func clear() -> OrganizationService.GetExtendedLocation.ResponseBuilder {
+            builderResult = OrganizationService.GetExtendedLocation.Response()
+            return self
+          }
+          public override func clone() -> OrganizationService.GetExtendedLocation.ResponseBuilder {
+            return OrganizationService.GetExtendedLocation.Response.builderWithPrototype(builderResult)
+          }
+          public override func build() -> OrganizationService.GetExtendedLocation.Response {
+               checkInitialized()
+               return buildPartial()
+          }
+          public func buildPartial() -> OrganizationService.GetExtendedLocation.Response {
+            var returnMe:OrganizationService.GetExtendedLocation.Response = builderResult
+            return returnMe
+          }
+          public func mergeFrom(other:OrganizationService.GetExtendedLocation.Response) -> OrganizationService.GetExtendedLocation.ResponseBuilder {
+            if (other.hasLocation) {
+                mergeLocation(other.location)
+            }
+            if (other.hasAddress) {
+                mergeAddress(other.address)
+            }
+            if other.hasMemberProfilesPayload {
+                 member_profiles_payload = other.member_profiles_payload
+            }
+            if !other.teams.isEmpty  {
+               builderResult.teams += other.teams
+            }
+            mergeUnknownFields(other.unknownFields)
+            return self
+          }
+          public override func mergeFromCodedInputStream(input:CodedInputStream) ->OrganizationService.GetExtendedLocation.ResponseBuilder {
+               return mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
+          }
+          public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> OrganizationService.GetExtendedLocation.ResponseBuilder {
+            var unknownFieldsBuilder:UnknownFieldSetBuilder = UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
+            while (true) {
+              var tag = input.readTag()
+              switch tag {
+              case 0: 
+                self.unknownFields = unknownFieldsBuilder.build()
+                return self
+
+              case 10 :
+                var subBuilder:OrganizationService.Containers.LocationBuilder = OrganizationService.Containers.Location.builder()
+                if hasLocation {
+                  subBuilder.mergeFrom(location)
+                }
+                input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
+                location = subBuilder.buildPartial()
+
+              case 18 :
+                var subBuilder:OrganizationService.Containers.AddressBuilder = OrganizationService.Containers.Address.builder()
+                if hasAddress {
+                  subBuilder.mergeFrom(address)
+                }
+                input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
+                address = subBuilder.buildPartial()
+
+              case 26 :
+                member_profiles_payload = input.readString()
+
+              case 34 :
+                var subBuilder = OrganizationService.Containers.Team.builder()
+                input.readMessage(subBuilder,extensionRegistry:extensionRegistry)
+                teams += [subBuilder.buildPartial()]
+
+              default:
+                if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
+                   unknownFields = unknownFieldsBuilder.build()
+                   return self
+                }
+              }
+            }
+          }
+        }
+
+
+
+      //Nested type declaration end
+
+      override public subscript (key: String) -> Any? {
+             switch key {
+             default: return nil
+             }
+      }
+
+      required public init() {
+           super.init()
+      }
+      override public func isInitialized() -> Bool {
+       return true
+      }
+      override public func writeToCodedOutputStream(output:CodedOutputStream) {
+        unknownFields.writeToCodedOutputStream(output)
+      }
+      override public func serializedSize() -> Int32 {
+        var size:Int32 = memoizedSerializedSize
+        if size != -1 {
+         return size
+        }
+
+        size = 0
+        size += unknownFields.serializedSize()
+        memoizedSerializedSize = size
+        return size
+      }
+      public class func parseFromData(data:[Byte]) -> OrganizationService.GetExtendedLocation {
+        return OrganizationService.GetExtendedLocation.builder().mergeFromData(data).build()
+      }
+      public class func parseFromData(data:[Byte], extensionRegistry:ExtensionRegistry) -> OrganizationService.GetExtendedLocation {
+        return OrganizationService.GetExtendedLocation.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
+      }
+      public class func parseFromInputStream(input:NSInputStream) -> OrganizationService.GetExtendedLocation {
+        return OrganizationService.GetExtendedLocation.builder().mergeFromInputStream(input).build()
+      }
+      public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->OrganizationService.GetExtendedLocation {
+        return OrganizationService.GetExtendedLocation.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
+      }
+      public class func parseFromCodedInputStream(input:CodedInputStream) -> OrganizationService.GetExtendedLocation {
+        return OrganizationService.GetExtendedLocation.builder().mergeFromCodedInputStream(input).build()
+      }
+      public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> OrganizationService.GetExtendedLocation {
+        return OrganizationService.GetExtendedLocation.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
+      }
+      public class func builder() -> OrganizationService.GetExtendedLocationBuilder {
+        return OrganizationService.GetExtendedLocation.classBuilder() as OrganizationService.GetExtendedLocationBuilder
+      }
+      public func builder() -> OrganizationService.GetExtendedLocationBuilder {
+        return classBuilder() as OrganizationService.GetExtendedLocationBuilder
+      }
+      public override class func classBuilder() -> MessageBuilder {
+        return OrganizationService.GetExtendedLocationBuilder()
+      }
+      public override func classBuilder() -> MessageBuilder {
+        return OrganizationService.GetExtendedLocation.builder()
+      }
+      public func toBuilder() -> OrganizationService.GetExtendedLocationBuilder {
+        return OrganizationService.GetExtendedLocation.builderWithPrototype(self)
+      }
+      public class func builderWithPrototype(prototype:OrganizationService.GetExtendedLocation) -> OrganizationService.GetExtendedLocationBuilder {
+        return OrganizationService.GetExtendedLocation.builder().mergeFrom(prototype)
+      }
+      override public func writeDescriptionTo(inout output:String, indent:String) {
+        unknownFields.writeDescriptionTo(&output, indent:indent)
+      }
+      override public var hashValue:Int {
+          get {
+              var hashCode:Int = 7
+              hashCode = (hashCode &* 31) &+  unknownFields.hashValue
+              return hashCode
+          }
+      }
+
+
+      //Meta information declaration start
+
+      override public class func className() -> String {
+          return "OrganizationService.GetExtendedLocation"
+      }
+      override public func className() -> String {
+          return "OrganizationService.GetExtendedLocation"
+      }
+      override public func classMetaType() -> GeneratedMessage.Type {
+          return OrganizationService.GetExtendedLocation.self
+      }
+
+
+      //Meta information declaration end
+
+    }
+
+    final public class GetExtendedLocationBuilder : GeneratedMessageBuilder {
+      private var builderResult:OrganizationService.GetExtendedLocation
+
+      required override public init () {
+         builderResult = OrganizationService.GetExtendedLocation()
+         super.init()
+      }
+      override public var internalGetResult:GeneratedMessage {
+           get {
+              return builderResult
+           }
+      }
+      public override func clear() -> OrganizationService.GetExtendedLocationBuilder {
+        builderResult = OrganizationService.GetExtendedLocation()
+        return self
+      }
+      public override func clone() -> OrganizationService.GetExtendedLocationBuilder {
+        return OrganizationService.GetExtendedLocation.builderWithPrototype(builderResult)
+      }
+      public override func build() -> OrganizationService.GetExtendedLocation {
+           checkInitialized()
+           return buildPartial()
+      }
+      public func buildPartial() -> OrganizationService.GetExtendedLocation {
+        var returnMe:OrganizationService.GetExtendedLocation = builderResult
+        return returnMe
+      }
+      public func mergeFrom(other:OrganizationService.GetExtendedLocation) -> OrganizationService.GetExtendedLocationBuilder {
+        mergeUnknownFields(other.unknownFields)
+        return self
+      }
+      public override func mergeFromCodedInputStream(input:CodedInputStream) ->OrganizationService.GetExtendedLocationBuilder {
+           return mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
+      }
+      public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> OrganizationService.GetExtendedLocationBuilder {
+        var unknownFieldsBuilder:UnknownFieldSetBuilder = UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
+        while (true) {
+          var tag = input.readTag()
+          switch tag {
+          case 0: 
+            self.unknownFields = unknownFieldsBuilder.build()
+            return self
+
+          default:
+            if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
+               unknownFields = unknownFieldsBuilder.build()
+               return self
+            }
+          }
+        }
+      }
+    }
+
+
+
+  //Nested type declaration end
+
+
+
+  //Nested type declaration start
+
+    final public class GetLocation : GeneratedMessage {
+
+
+      //Nested type declaration start
+
+        final public class Request : GeneratedMessage {
+          override public subscript (key: String) -> Any? {
+                 switch key {
+                 case "location_id": return location_id
+                 case "name": return name
+                 case "organization_id": return organization_id
+                 default: return nil
+                 }
+          }
+
+          public private(set) var hasLocationId:Bool = false
+          public private(set) var location_id:String = ""
+
+          public private(set) var hasName:Bool = false
+          public private(set) var name:String = ""
+
+          public private(set) var hasOrganizationId:Bool = false
+          public private(set) var organization_id:String = ""
+
+          required public init() {
+               super.init()
+          }
+          override public func isInitialized() -> Bool {
+           return true
+          }
+          override public func writeToCodedOutputStream(output:CodedOutputStream) {
+            if hasLocationId {
+              output.writeString(1, value:location_id)
+            }
+            if hasName {
+              output.writeString(2, value:name)
+            }
+            if hasOrganizationId {
+              output.writeString(3, value:organization_id)
+            }
+            unknownFields.writeToCodedOutputStream(output)
+          }
+          override public func serializedSize() -> Int32 {
+            var size:Int32 = memoizedSerializedSize
+            if size != -1 {
+             return size
+            }
+
+            size = 0
+            if hasLocationId {
+              size += WireFormat.computeStringSize(1, value:location_id)
+            }
+            if hasName {
+              size += WireFormat.computeStringSize(2, value:name)
+            }
+            if hasOrganizationId {
+              size += WireFormat.computeStringSize(3, value:organization_id)
+            }
+            size += unknownFields.serializedSize()
+            memoizedSerializedSize = size
+            return size
+          }
+          public class func parseFromData(data:[Byte]) -> OrganizationService.GetLocation.Request {
+            return OrganizationService.GetLocation.Request.builder().mergeFromData(data).build()
+          }
+          public class func parseFromData(data:[Byte], extensionRegistry:ExtensionRegistry) -> OrganizationService.GetLocation.Request {
+            return OrganizationService.GetLocation.Request.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
+          }
+          public class func parseFromInputStream(input:NSInputStream) -> OrganizationService.GetLocation.Request {
+            return OrganizationService.GetLocation.Request.builder().mergeFromInputStream(input).build()
+          }
+          public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->OrganizationService.GetLocation.Request {
+            return OrganizationService.GetLocation.Request.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
+          }
+          public class func parseFromCodedInputStream(input:CodedInputStream) -> OrganizationService.GetLocation.Request {
+            return OrganizationService.GetLocation.Request.builder().mergeFromCodedInputStream(input).build()
+          }
+          public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> OrganizationService.GetLocation.Request {
+            return OrganizationService.GetLocation.Request.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
+          }
+          public class func builder() -> OrganizationService.GetLocation.RequestBuilder {
+            return OrganizationService.GetLocation.Request.classBuilder() as OrganizationService.GetLocation.RequestBuilder
+          }
+          public func builder() -> OrganizationService.GetLocation.RequestBuilder {
+            return classBuilder() as OrganizationService.GetLocation.RequestBuilder
+          }
+          public override class func classBuilder() -> MessageBuilder {
+            return OrganizationService.GetLocation.RequestBuilder()
+          }
+          public override func classBuilder() -> MessageBuilder {
+            return OrganizationService.GetLocation.Request.builder()
+          }
+          public func toBuilder() -> OrganizationService.GetLocation.RequestBuilder {
+            return OrganizationService.GetLocation.Request.builderWithPrototype(self)
+          }
+          public class func builderWithPrototype(prototype:OrganizationService.GetLocation.Request) -> OrganizationService.GetLocation.RequestBuilder {
+            return OrganizationService.GetLocation.Request.builder().mergeFrom(prototype)
+          }
+          override public func writeDescriptionTo(inout output:String, indent:String) {
+            if hasLocationId {
+              output += "\(indent) location_id: \(location_id) \n"
+            }
+            if hasName {
+              output += "\(indent) name: \(name) \n"
+            }
+            if hasOrganizationId {
+              output += "\(indent) organization_id: \(organization_id) \n"
+            }
+            unknownFields.writeDescriptionTo(&output, indent:indent)
+          }
+          override public var hashValue:Int {
+              get {
+                  var hashCode:Int = 7
+                  if hasLocationId {
+                     hashCode = (hashCode &* 31) &+ location_id.hashValue
+                  }
+                  if hasName {
+                     hashCode = (hashCode &* 31) &+ name.hashValue
+                  }
+                  if hasOrganizationId {
+                     hashCode = (hashCode &* 31) &+ organization_id.hashValue
+                  }
+                  hashCode = (hashCode &* 31) &+  unknownFields.hashValue
+                  return hashCode
+              }
+          }
+
+
+          //Meta information declaration start
+
+          override public class func className() -> String {
+              return "OrganizationService.GetLocation.Request"
+          }
+          override public func className() -> String {
+              return "OrganizationService.GetLocation.Request"
+          }
+          override public func classMetaType() -> GeneratedMessage.Type {
+              return OrganizationService.GetLocation.Request.self
+          }
+
+
+          //Meta information declaration end
+
+        }
+
+        final public class RequestBuilder : GeneratedMessageBuilder {
+          private var builderResult:OrganizationService.GetLocation.Request
+
+          required override public init () {
+             builderResult = OrganizationService.GetLocation.Request()
+             super.init()
+          }
+          public var hasLocationId:Bool {
+               get {
+                    return builderResult.hasLocationId
+               }
+          }
+          public var location_id:String {
+               get {
+                    return builderResult.location_id
+               }
+               set (value) {
+                   builderResult.hasLocationId = true
+                   builderResult.location_id = value
+               }
+          }
+          public func clearLocationId() -> OrganizationService.GetLocation.RequestBuilder{
+               builderResult.hasLocationId = false
+               builderResult.location_id = ""
+               return self
+          }
+          public var hasName:Bool {
+               get {
+                    return builderResult.hasName
+               }
+          }
+          public var name:String {
+               get {
+                    return builderResult.name
+               }
+               set (value) {
+                   builderResult.hasName = true
+                   builderResult.name = value
+               }
+          }
+          public func clearName() -> OrganizationService.GetLocation.RequestBuilder{
+               builderResult.hasName = false
+               builderResult.name = ""
+               return self
+          }
+          public var hasOrganizationId:Bool {
+               get {
+                    return builderResult.hasOrganizationId
+               }
+          }
+          public var organization_id:String {
+               get {
+                    return builderResult.organization_id
+               }
+               set (value) {
+                   builderResult.hasOrganizationId = true
+                   builderResult.organization_id = value
+               }
+          }
+          public func clearOrganizationId() -> OrganizationService.GetLocation.RequestBuilder{
+               builderResult.hasOrganizationId = false
+               builderResult.organization_id = ""
+               return self
+          }
+          override public var internalGetResult:GeneratedMessage {
+               get {
+                  return builderResult
+               }
+          }
+          public override func clear() -> OrganizationService.GetLocation.RequestBuilder {
+            builderResult = OrganizationService.GetLocation.Request()
+            return self
+          }
+          public override func clone() -> OrganizationService.GetLocation.RequestBuilder {
+            return OrganizationService.GetLocation.Request.builderWithPrototype(builderResult)
+          }
+          public override func build() -> OrganizationService.GetLocation.Request {
+               checkInitialized()
+               return buildPartial()
+          }
+          public func buildPartial() -> OrganizationService.GetLocation.Request {
+            var returnMe:OrganizationService.GetLocation.Request = builderResult
+            return returnMe
+          }
+          public func mergeFrom(other:OrganizationService.GetLocation.Request) -> OrganizationService.GetLocation.RequestBuilder {
+            if other.hasLocationId {
+                 location_id = other.location_id
+            }
+            if other.hasName {
+                 name = other.name
+            }
+            if other.hasOrganizationId {
+                 organization_id = other.organization_id
+            }
+            mergeUnknownFields(other.unknownFields)
+            return self
+          }
+          public override func mergeFromCodedInputStream(input:CodedInputStream) ->OrganizationService.GetLocation.RequestBuilder {
+               return mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
+          }
+          public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> OrganizationService.GetLocation.RequestBuilder {
+            var unknownFieldsBuilder:UnknownFieldSetBuilder = UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
+            while (true) {
+              var tag = input.readTag()
+              switch tag {
+              case 0: 
+                self.unknownFields = unknownFieldsBuilder.build()
+                return self
+
+              case 10 :
+                location_id = input.readString()
+
+              case 18 :
+                name = input.readString()
+
+              case 26 :
+                organization_id = input.readString()
+
+              default:
+                if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
+                   unknownFields = unknownFieldsBuilder.build()
+                   return self
+                }
+              }
+            }
+          }
+        }
+
+
+
+      //Nested type declaration end
+
+
+
+      //Nested type declaration start
+
+        final public class Response : GeneratedMessage {
+          override public subscript (key: String) -> Any? {
+                 switch key {
+                 case "location": return location
+                 default: return nil
+                 }
+          }
+
+          public private(set) var hasLocation:Bool = false
+          public private(set) var location:OrganizationService.Containers.Location = OrganizationService.Containers.Location()
+          required public init() {
+               super.init()
+          }
+          override public func isInitialized() -> Bool {
+           return true
+          }
+          override public func writeToCodedOutputStream(output:CodedOutputStream) {
+            if hasLocation {
+              output.writeMessage(1, value:location)
+            }
+            unknownFields.writeToCodedOutputStream(output)
+          }
+          override public func serializedSize() -> Int32 {
+            var size:Int32 = memoizedSerializedSize
+            if size != -1 {
+             return size
+            }
+
+            size = 0
+            if hasLocation {
+              size += WireFormat.computeMessageSize(1, value:location)
+            }
+            size += unknownFields.serializedSize()
+            memoizedSerializedSize = size
+            return size
+          }
+          public class func parseFromData(data:[Byte]) -> OrganizationService.GetLocation.Response {
+            return OrganizationService.GetLocation.Response.builder().mergeFromData(data).build()
+          }
+          public class func parseFromData(data:[Byte], extensionRegistry:ExtensionRegistry) -> OrganizationService.GetLocation.Response {
+            return OrganizationService.GetLocation.Response.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
+          }
+          public class func parseFromInputStream(input:NSInputStream) -> OrganizationService.GetLocation.Response {
+            return OrganizationService.GetLocation.Response.builder().mergeFromInputStream(input).build()
+          }
+          public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->OrganizationService.GetLocation.Response {
+            return OrganizationService.GetLocation.Response.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
+          }
+          public class func parseFromCodedInputStream(input:CodedInputStream) -> OrganizationService.GetLocation.Response {
+            return OrganizationService.GetLocation.Response.builder().mergeFromCodedInputStream(input).build()
+          }
+          public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> OrganizationService.GetLocation.Response {
+            return OrganizationService.GetLocation.Response.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
+          }
+          public class func builder() -> OrganizationService.GetLocation.ResponseBuilder {
+            return OrganizationService.GetLocation.Response.classBuilder() as OrganizationService.GetLocation.ResponseBuilder
+          }
+          public func builder() -> OrganizationService.GetLocation.ResponseBuilder {
+            return classBuilder() as OrganizationService.GetLocation.ResponseBuilder
+          }
+          public override class func classBuilder() -> MessageBuilder {
+            return OrganizationService.GetLocation.ResponseBuilder()
+          }
+          public override func classBuilder() -> MessageBuilder {
+            return OrganizationService.GetLocation.Response.builder()
+          }
+          public func toBuilder() -> OrganizationService.GetLocation.ResponseBuilder {
+            return OrganizationService.GetLocation.Response.builderWithPrototype(self)
+          }
+          public class func builderWithPrototype(prototype:OrganizationService.GetLocation.Response) -> OrganizationService.GetLocation.ResponseBuilder {
+            return OrganizationService.GetLocation.Response.builder().mergeFrom(prototype)
+          }
+          override public func writeDescriptionTo(inout output:String, indent:String) {
+            if hasLocation {
+              output += "\(indent) location {\n"
+              location.writeDescriptionTo(&output, indent:"\(indent)  ")
+              output += "\(indent) }\n"
+            }
+            unknownFields.writeDescriptionTo(&output, indent:indent)
+          }
+          override public var hashValue:Int {
+              get {
+                  var hashCode:Int = 7
+                  if hasLocation {
+                    hashCode = (hashCode &* 31) &+ location.hashValue
+                  }
+                  hashCode = (hashCode &* 31) &+  unknownFields.hashValue
+                  return hashCode
+              }
+          }
+
+
+          //Meta information declaration start
+
+          override public class func className() -> String {
+              return "OrganizationService.GetLocation.Response"
+          }
+          override public func className() -> String {
+              return "OrganizationService.GetLocation.Response"
+          }
+          override public func classMetaType() -> GeneratedMessage.Type {
+              return OrganizationService.GetLocation.Response.self
+          }
+
+
+          //Meta information declaration end
+
+        }
+
+        final public class ResponseBuilder : GeneratedMessageBuilder {
+          private var builderResult:OrganizationService.GetLocation.Response
+
+          required override public init () {
+             builderResult = OrganizationService.GetLocation.Response()
+             super.init()
+          }
+          public var hasLocation:Bool {
+               get {
+                   return builderResult.hasLocation
+               }
+          }
+          public var location:OrganizationService.Containers.Location {
+               get {
+                   return builderResult.location
+               }
+               set (value) {
+                   builderResult.hasLocation = true
+                   builderResult.location = value
+               }
+          }
+          public func setLocationBuilder(builderForValue:OrganizationService.Containers.LocationBuilder) -> OrganizationService.GetLocation.ResponseBuilder {
+            location = builderForValue.build()
+            return self
+          }
+          public func mergeLocation(value:OrganizationService.Containers.Location) -> OrganizationService.GetLocation.ResponseBuilder {
+            if (builderResult.hasLocation) {
+              builderResult.location = OrganizationService.Containers.Location.builderWithPrototype(builderResult.location).mergeFrom(value).buildPartial()
+            } else {
+              builderResult.location = value
+            }
+            builderResult.hasLocation = true
+            return self
+          }
+          public func clearLocation() -> OrganizationService.GetLocation.ResponseBuilder {
+            builderResult.hasLocation = false
+            builderResult.location = OrganizationService.Containers.Location()
+            return self
+          }
+          override public var internalGetResult:GeneratedMessage {
+               get {
+                  return builderResult
+               }
+          }
+          public override func clear() -> OrganizationService.GetLocation.ResponseBuilder {
+            builderResult = OrganizationService.GetLocation.Response()
+            return self
+          }
+          public override func clone() -> OrganizationService.GetLocation.ResponseBuilder {
+            return OrganizationService.GetLocation.Response.builderWithPrototype(builderResult)
+          }
+          public override func build() -> OrganizationService.GetLocation.Response {
+               checkInitialized()
+               return buildPartial()
+          }
+          public func buildPartial() -> OrganizationService.GetLocation.Response {
+            var returnMe:OrganizationService.GetLocation.Response = builderResult
+            return returnMe
+          }
+          public func mergeFrom(other:OrganizationService.GetLocation.Response) -> OrganizationService.GetLocation.ResponseBuilder {
+            if (other.hasLocation) {
+                mergeLocation(other.location)
+            }
+            mergeUnknownFields(other.unknownFields)
+            return self
+          }
+          public override func mergeFromCodedInputStream(input:CodedInputStream) ->OrganizationService.GetLocation.ResponseBuilder {
+               return mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
+          }
+          public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> OrganizationService.GetLocation.ResponseBuilder {
+            var unknownFieldsBuilder:UnknownFieldSetBuilder = UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
+            while (true) {
+              var tag = input.readTag()
+              switch tag {
+              case 0: 
+                self.unknownFields = unknownFieldsBuilder.build()
+                return self
+
+              case 10 :
+                var subBuilder:OrganizationService.Containers.LocationBuilder = OrganizationService.Containers.Location.builder()
+                if hasLocation {
+                  subBuilder.mergeFrom(location)
+                }
+                input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
+                location = subBuilder.buildPartial()
+
+              default:
+                if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
+                   unknownFields = unknownFieldsBuilder.build()
+                   return self
+                }
+              }
+            }
+          }
+        }
+
+
+
+      //Nested type declaration end
+
+      override public subscript (key: String) -> Any? {
+             switch key {
+             default: return nil
+             }
+      }
+
+      required public init() {
+           super.init()
+      }
+      override public func isInitialized() -> Bool {
+       return true
+      }
+      override public func writeToCodedOutputStream(output:CodedOutputStream) {
+        unknownFields.writeToCodedOutputStream(output)
+      }
+      override public func serializedSize() -> Int32 {
+        var size:Int32 = memoizedSerializedSize
+        if size != -1 {
+         return size
+        }
+
+        size = 0
+        size += unknownFields.serializedSize()
+        memoizedSerializedSize = size
+        return size
+      }
+      public class func parseFromData(data:[Byte]) -> OrganizationService.GetLocation {
+        return OrganizationService.GetLocation.builder().mergeFromData(data).build()
+      }
+      public class func parseFromData(data:[Byte], extensionRegistry:ExtensionRegistry) -> OrganizationService.GetLocation {
+        return OrganizationService.GetLocation.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
+      }
+      public class func parseFromInputStream(input:NSInputStream) -> OrganizationService.GetLocation {
+        return OrganizationService.GetLocation.builder().mergeFromInputStream(input).build()
+      }
+      public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->OrganizationService.GetLocation {
+        return OrganizationService.GetLocation.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
+      }
+      public class func parseFromCodedInputStream(input:CodedInputStream) -> OrganizationService.GetLocation {
+        return OrganizationService.GetLocation.builder().mergeFromCodedInputStream(input).build()
+      }
+      public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> OrganizationService.GetLocation {
+        return OrganizationService.GetLocation.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
+      }
+      public class func builder() -> OrganizationService.GetLocationBuilder {
+        return OrganizationService.GetLocation.classBuilder() as OrganizationService.GetLocationBuilder
+      }
+      public func builder() -> OrganizationService.GetLocationBuilder {
+        return classBuilder() as OrganizationService.GetLocationBuilder
+      }
+      public override class func classBuilder() -> MessageBuilder {
+        return OrganizationService.GetLocationBuilder()
+      }
+      public override func classBuilder() -> MessageBuilder {
+        return OrganizationService.GetLocation.builder()
+      }
+      public func toBuilder() -> OrganizationService.GetLocationBuilder {
+        return OrganizationService.GetLocation.builderWithPrototype(self)
+      }
+      public class func builderWithPrototype(prototype:OrganizationService.GetLocation) -> OrganizationService.GetLocationBuilder {
+        return OrganizationService.GetLocation.builder().mergeFrom(prototype)
+      }
+      override public func writeDescriptionTo(inout output:String, indent:String) {
+        unknownFields.writeDescriptionTo(&output, indent:indent)
+      }
+      override public var hashValue:Int {
+          get {
+              var hashCode:Int = 7
+              hashCode = (hashCode &* 31) &+  unknownFields.hashValue
+              return hashCode
+          }
+      }
+
+
+      //Meta information declaration start
+
+      override public class func className() -> String {
+          return "OrganizationService.GetLocation"
+      }
+      override public func className() -> String {
+          return "OrganizationService.GetLocation"
+      }
+      override public func classMetaType() -> GeneratedMessage.Type {
+          return OrganizationService.GetLocation.self
+      }
+
+
+      //Meta information declaration end
+
+    }
+
+    final public class GetLocationBuilder : GeneratedMessageBuilder {
+      private var builderResult:OrganizationService.GetLocation
+
+      required override public init () {
+         builderResult = OrganizationService.GetLocation()
+         super.init()
+      }
+      override public var internalGetResult:GeneratedMessage {
+           get {
+              return builderResult
+           }
+      }
+      public override func clear() -> OrganizationService.GetLocationBuilder {
+        builderResult = OrganizationService.GetLocation()
+        return self
+      }
+      public override func clone() -> OrganizationService.GetLocationBuilder {
+        return OrganizationService.GetLocation.builderWithPrototype(builderResult)
+      }
+      public override func build() -> OrganizationService.GetLocation {
+           checkInitialized()
+           return buildPartial()
+      }
+      public func buildPartial() -> OrganizationService.GetLocation {
+        var returnMe:OrganizationService.GetLocation = builderResult
+        return returnMe
+      }
+      public func mergeFrom(other:OrganizationService.GetLocation) -> OrganizationService.GetLocationBuilder {
+        mergeUnknownFields(other.unknownFields)
+        return self
+      }
+      public override func mergeFromCodedInputStream(input:CodedInputStream) ->OrganizationService.GetLocationBuilder {
+           return mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
+      }
+      public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> OrganizationService.GetLocationBuilder {
+        var unknownFieldsBuilder:UnknownFieldSetBuilder = UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
+        while (true) {
+          var tag = input.readTag()
+          switch tag {
+          case 0: 
+            self.unknownFields = unknownFieldsBuilder.build()
+            return self
+
+          default:
+            if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
+               unknownFields = unknownFieldsBuilder.build()
+               return self
+            }
+          }
+        }
+      }
+    }
+
+
+
+  //Nested type declaration end
+
+
+
+  //Nested type declaration start
+
+    final public class GetLocations : GeneratedMessage {
+
+
+      //Nested type declaration start
+
+        final public class Request : GeneratedMessage {
+          override public subscript (key: String) -> Any? {
+                 switch key {
+                 case "organization_id": return organization_id
+                 default: return nil
+                 }
+          }
+
+          public private(set) var hasOrganizationId:Bool = false
+          public private(set) var organization_id:String = ""
+
+          required public init() {
+               super.init()
+          }
+          override public func isInitialized() -> Bool {
+           return true
+          }
+          override public func writeToCodedOutputStream(output:CodedOutputStream) {
+            if hasOrganizationId {
+              output.writeString(1, value:organization_id)
+            }
+            unknownFields.writeToCodedOutputStream(output)
+          }
+          override public func serializedSize() -> Int32 {
+            var size:Int32 = memoizedSerializedSize
+            if size != -1 {
+             return size
+            }
+
+            size = 0
+            if hasOrganizationId {
+              size += WireFormat.computeStringSize(1, value:organization_id)
+            }
+            size += unknownFields.serializedSize()
+            memoizedSerializedSize = size
+            return size
+          }
+          public class func parseFromData(data:[Byte]) -> OrganizationService.GetLocations.Request {
+            return OrganizationService.GetLocations.Request.builder().mergeFromData(data).build()
+          }
+          public class func parseFromData(data:[Byte], extensionRegistry:ExtensionRegistry) -> OrganizationService.GetLocations.Request {
+            return OrganizationService.GetLocations.Request.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
+          }
+          public class func parseFromInputStream(input:NSInputStream) -> OrganizationService.GetLocations.Request {
+            return OrganizationService.GetLocations.Request.builder().mergeFromInputStream(input).build()
+          }
+          public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->OrganizationService.GetLocations.Request {
+            return OrganizationService.GetLocations.Request.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
+          }
+          public class func parseFromCodedInputStream(input:CodedInputStream) -> OrganizationService.GetLocations.Request {
+            return OrganizationService.GetLocations.Request.builder().mergeFromCodedInputStream(input).build()
+          }
+          public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> OrganizationService.GetLocations.Request {
+            return OrganizationService.GetLocations.Request.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
+          }
+          public class func builder() -> OrganizationService.GetLocations.RequestBuilder {
+            return OrganizationService.GetLocations.Request.classBuilder() as OrganizationService.GetLocations.RequestBuilder
+          }
+          public func builder() -> OrganizationService.GetLocations.RequestBuilder {
+            return classBuilder() as OrganizationService.GetLocations.RequestBuilder
+          }
+          public override class func classBuilder() -> MessageBuilder {
+            return OrganizationService.GetLocations.RequestBuilder()
+          }
+          public override func classBuilder() -> MessageBuilder {
+            return OrganizationService.GetLocations.Request.builder()
+          }
+          public func toBuilder() -> OrganizationService.GetLocations.RequestBuilder {
+            return OrganizationService.GetLocations.Request.builderWithPrototype(self)
+          }
+          public class func builderWithPrototype(prototype:OrganizationService.GetLocations.Request) -> OrganizationService.GetLocations.RequestBuilder {
+            return OrganizationService.GetLocations.Request.builder().mergeFrom(prototype)
+          }
+          override public func writeDescriptionTo(inout output:String, indent:String) {
+            if hasOrganizationId {
+              output += "\(indent) organization_id: \(organization_id) \n"
+            }
+            unknownFields.writeDescriptionTo(&output, indent:indent)
+          }
+          override public var hashValue:Int {
+              get {
+                  var hashCode:Int = 7
+                  if hasOrganizationId {
+                     hashCode = (hashCode &* 31) &+ organization_id.hashValue
+                  }
+                  hashCode = (hashCode &* 31) &+  unknownFields.hashValue
+                  return hashCode
+              }
+          }
+
+
+          //Meta information declaration start
+
+          override public class func className() -> String {
+              return "OrganizationService.GetLocations.Request"
+          }
+          override public func className() -> String {
+              return "OrganizationService.GetLocations.Request"
+          }
+          override public func classMetaType() -> GeneratedMessage.Type {
+              return OrganizationService.GetLocations.Request.self
+          }
+
+
+          //Meta information declaration end
+
+        }
+
+        final public class RequestBuilder : GeneratedMessageBuilder {
+          private var builderResult:OrganizationService.GetLocations.Request
+
+          required override public init () {
+             builderResult = OrganizationService.GetLocations.Request()
+             super.init()
+          }
+          public var hasOrganizationId:Bool {
+               get {
+                    return builderResult.hasOrganizationId
+               }
+          }
+          public var organization_id:String {
+               get {
+                    return builderResult.organization_id
+               }
+               set (value) {
+                   builderResult.hasOrganizationId = true
+                   builderResult.organization_id = value
+               }
+          }
+          public func clearOrganizationId() -> OrganizationService.GetLocations.RequestBuilder{
+               builderResult.hasOrganizationId = false
+               builderResult.organization_id = ""
+               return self
+          }
+          override public var internalGetResult:GeneratedMessage {
+               get {
+                  return builderResult
+               }
+          }
+          public override func clear() -> OrganizationService.GetLocations.RequestBuilder {
+            builderResult = OrganizationService.GetLocations.Request()
+            return self
+          }
+          public override func clone() -> OrganizationService.GetLocations.RequestBuilder {
+            return OrganizationService.GetLocations.Request.builderWithPrototype(builderResult)
+          }
+          public override func build() -> OrganizationService.GetLocations.Request {
+               checkInitialized()
+               return buildPartial()
+          }
+          public func buildPartial() -> OrganizationService.GetLocations.Request {
+            var returnMe:OrganizationService.GetLocations.Request = builderResult
+            return returnMe
+          }
+          public func mergeFrom(other:OrganizationService.GetLocations.Request) -> OrganizationService.GetLocations.RequestBuilder {
+            if other.hasOrganizationId {
+                 organization_id = other.organization_id
+            }
+            mergeUnknownFields(other.unknownFields)
+            return self
+          }
+          public override func mergeFromCodedInputStream(input:CodedInputStream) ->OrganizationService.GetLocations.RequestBuilder {
+               return mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
+          }
+          public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> OrganizationService.GetLocations.RequestBuilder {
+            var unknownFieldsBuilder:UnknownFieldSetBuilder = UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
+            while (true) {
+              var tag = input.readTag()
+              switch tag {
+              case 0: 
+                self.unknownFields = unknownFieldsBuilder.build()
+                return self
+
+              case 10 :
+                organization_id = input.readString()
+
+              default:
+                if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
+                   unknownFields = unknownFieldsBuilder.build()
+                   return self
+                }
+              }
+            }
+          }
+        }
+
+
+
+      //Nested type declaration end
+
+
+
+      //Nested type declaration start
+
+        final public class Response : GeneratedMessage {
+          override public subscript (key: String) -> Any? {
+                 switch key {
+                 default: return nil
+                 }
+          }
+
+          public private(set) var locations:Array<OrganizationService.Containers.Location>  = Array<OrganizationService.Containers.Location>()
+          required public init() {
+               super.init()
+          }
+          override public func isInitialized() -> Bool {
+           return true
+          }
+          override public func writeToCodedOutputStream(output:CodedOutputStream) {
+            for oneElementlocations in locations {
+                output.writeMessage(1, value:oneElementlocations)
+            }
+            unknownFields.writeToCodedOutputStream(output)
+          }
+          override public func serializedSize() -> Int32 {
+            var size:Int32 = memoizedSerializedSize
+            if size != -1 {
+             return size
+            }
+
+            size = 0
+            for oneElementlocations in locations {
+                size += WireFormat.computeMessageSize(1, value:oneElementlocations)
+            }
+            size += unknownFields.serializedSize()
+            memoizedSerializedSize = size
+            return size
+          }
+          public class func parseFromData(data:[Byte]) -> OrganizationService.GetLocations.Response {
+            return OrganizationService.GetLocations.Response.builder().mergeFromData(data).build()
+          }
+          public class func parseFromData(data:[Byte], extensionRegistry:ExtensionRegistry) -> OrganizationService.GetLocations.Response {
+            return OrganizationService.GetLocations.Response.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
+          }
+          public class func parseFromInputStream(input:NSInputStream) -> OrganizationService.GetLocations.Response {
+            return OrganizationService.GetLocations.Response.builder().mergeFromInputStream(input).build()
+          }
+          public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->OrganizationService.GetLocations.Response {
+            return OrganizationService.GetLocations.Response.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
+          }
+          public class func parseFromCodedInputStream(input:CodedInputStream) -> OrganizationService.GetLocations.Response {
+            return OrganizationService.GetLocations.Response.builder().mergeFromCodedInputStream(input).build()
+          }
+          public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> OrganizationService.GetLocations.Response {
+            return OrganizationService.GetLocations.Response.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
+          }
+          public class func builder() -> OrganizationService.GetLocations.ResponseBuilder {
+            return OrganizationService.GetLocations.Response.classBuilder() as OrganizationService.GetLocations.ResponseBuilder
+          }
+          public func builder() -> OrganizationService.GetLocations.ResponseBuilder {
+            return classBuilder() as OrganizationService.GetLocations.ResponseBuilder
+          }
+          public override class func classBuilder() -> MessageBuilder {
+            return OrganizationService.GetLocations.ResponseBuilder()
+          }
+          public override func classBuilder() -> MessageBuilder {
+            return OrganizationService.GetLocations.Response.builder()
+          }
+          public func toBuilder() -> OrganizationService.GetLocations.ResponseBuilder {
+            return OrganizationService.GetLocations.Response.builderWithPrototype(self)
+          }
+          public class func builderWithPrototype(prototype:OrganizationService.GetLocations.Response) -> OrganizationService.GetLocations.ResponseBuilder {
+            return OrganizationService.GetLocations.Response.builder().mergeFrom(prototype)
+          }
+          override public func writeDescriptionTo(inout output:String, indent:String) {
+            var locationsElementIndex:Int = 0
+            for oneElementlocations in locations {
+                output += "\(indent) locations[\(locationsElementIndex)] {\n"
+                oneElementlocations.writeDescriptionTo(&output, indent:"\(indent)  ")
+                output += "\(indent)}\n"
+                locationsElementIndex++
+            }
+            unknownFields.writeDescriptionTo(&output, indent:indent)
+          }
+          override public var hashValue:Int {
+              get {
+                  var hashCode:Int = 7
+                  for oneElementlocations in locations {
+                      hashCode = (hashCode &* 31) &+ oneElementlocations.hashValue
+                  }
+                  hashCode = (hashCode &* 31) &+  unknownFields.hashValue
+                  return hashCode
+              }
+          }
+
+
+          //Meta information declaration start
+
+          override public class func className() -> String {
+              return "OrganizationService.GetLocations.Response"
+          }
+          override public func className() -> String {
+              return "OrganizationService.GetLocations.Response"
+          }
+          override public func classMetaType() -> GeneratedMessage.Type {
+              return OrganizationService.GetLocations.Response.self
+          }
+
+
+          //Meta information declaration end
+
+        }
+
+        final public class ResponseBuilder : GeneratedMessageBuilder {
+          private var builderResult:OrganizationService.GetLocations.Response
+
+          required override public init () {
+             builderResult = OrganizationService.GetLocations.Response()
+             super.init()
+          }
+          public var locations:Array<OrganizationService.Containers.Location> {
+               get {
+                   return builderResult.locations
+               }
+               set (value) {
+                   builderResult.locations = value
+               }
+          }
+          public func clearLocations() -> OrganizationService.GetLocations.ResponseBuilder {
+            builderResult.locations.removeAll(keepCapacity: false)
+            return self
+          }
+          override public var internalGetResult:GeneratedMessage {
+               get {
+                  return builderResult
+               }
+          }
+          public override func clear() -> OrganizationService.GetLocations.ResponseBuilder {
+            builderResult = OrganizationService.GetLocations.Response()
+            return self
+          }
+          public override func clone() -> OrganizationService.GetLocations.ResponseBuilder {
+            return OrganizationService.GetLocations.Response.builderWithPrototype(builderResult)
+          }
+          public override func build() -> OrganizationService.GetLocations.Response {
+               checkInitialized()
+               return buildPartial()
+          }
+          public func buildPartial() -> OrganizationService.GetLocations.Response {
+            var returnMe:OrganizationService.GetLocations.Response = builderResult
+            return returnMe
+          }
+          public func mergeFrom(other:OrganizationService.GetLocations.Response) -> OrganizationService.GetLocations.ResponseBuilder {
+            if !other.locations.isEmpty  {
+               builderResult.locations += other.locations
+            }
+            mergeUnknownFields(other.unknownFields)
+            return self
+          }
+          public override func mergeFromCodedInputStream(input:CodedInputStream) ->OrganizationService.GetLocations.ResponseBuilder {
+               return mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
+          }
+          public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> OrganizationService.GetLocations.ResponseBuilder {
+            var unknownFieldsBuilder:UnknownFieldSetBuilder = UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
+            while (true) {
+              var tag = input.readTag()
+              switch tag {
+              case 0: 
+                self.unknownFields = unknownFieldsBuilder.build()
+                return self
+
+              case 10 :
+                var subBuilder = OrganizationService.Containers.Location.builder()
+                input.readMessage(subBuilder,extensionRegistry:extensionRegistry)
+                locations += [subBuilder.buildPartial()]
+
+              default:
+                if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
+                   unknownFields = unknownFieldsBuilder.build()
+                   return self
+                }
+              }
+            }
+          }
+        }
+
+
+
+      //Nested type declaration end
+
+      override public subscript (key: String) -> Any? {
+             switch key {
+             default: return nil
+             }
+      }
+
+      required public init() {
+           super.init()
+      }
+      override public func isInitialized() -> Bool {
+       return true
+      }
+      override public func writeToCodedOutputStream(output:CodedOutputStream) {
+        unknownFields.writeToCodedOutputStream(output)
+      }
+      override public func serializedSize() -> Int32 {
+        var size:Int32 = memoizedSerializedSize
+        if size != -1 {
+         return size
+        }
+
+        size = 0
+        size += unknownFields.serializedSize()
+        memoizedSerializedSize = size
+        return size
+      }
+      public class func parseFromData(data:[Byte]) -> OrganizationService.GetLocations {
+        return OrganizationService.GetLocations.builder().mergeFromData(data).build()
+      }
+      public class func parseFromData(data:[Byte], extensionRegistry:ExtensionRegistry) -> OrganizationService.GetLocations {
+        return OrganizationService.GetLocations.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
+      }
+      public class func parseFromInputStream(input:NSInputStream) -> OrganizationService.GetLocations {
+        return OrganizationService.GetLocations.builder().mergeFromInputStream(input).build()
+      }
+      public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->OrganizationService.GetLocations {
+        return OrganizationService.GetLocations.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
+      }
+      public class func parseFromCodedInputStream(input:CodedInputStream) -> OrganizationService.GetLocations {
+        return OrganizationService.GetLocations.builder().mergeFromCodedInputStream(input).build()
+      }
+      public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> OrganizationService.GetLocations {
+        return OrganizationService.GetLocations.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
+      }
+      public class func builder() -> OrganizationService.GetLocationsBuilder {
+        return OrganizationService.GetLocations.classBuilder() as OrganizationService.GetLocationsBuilder
+      }
+      public func builder() -> OrganizationService.GetLocationsBuilder {
+        return classBuilder() as OrganizationService.GetLocationsBuilder
+      }
+      public override class func classBuilder() -> MessageBuilder {
+        return OrganizationService.GetLocationsBuilder()
+      }
+      public override func classBuilder() -> MessageBuilder {
+        return OrganizationService.GetLocations.builder()
+      }
+      public func toBuilder() -> OrganizationService.GetLocationsBuilder {
+        return OrganizationService.GetLocations.builderWithPrototype(self)
+      }
+      public class func builderWithPrototype(prototype:OrganizationService.GetLocations) -> OrganizationService.GetLocationsBuilder {
+        return OrganizationService.GetLocations.builder().mergeFrom(prototype)
+      }
+      override public func writeDescriptionTo(inout output:String, indent:String) {
+        unknownFields.writeDescriptionTo(&output, indent:indent)
+      }
+      override public var hashValue:Int {
+          get {
+              var hashCode:Int = 7
+              hashCode = (hashCode &* 31) &+  unknownFields.hashValue
+              return hashCode
+          }
+      }
+
+
+      //Meta information declaration start
+
+      override public class func className() -> String {
+          return "OrganizationService.GetLocations"
+      }
+      override public func className() -> String {
+          return "OrganizationService.GetLocations"
+      }
+      override public func classMetaType() -> GeneratedMessage.Type {
+          return OrganizationService.GetLocations.self
+      }
+
+
+      //Meta information declaration end
+
+    }
+
+    final public class GetLocationsBuilder : GeneratedMessageBuilder {
+      private var builderResult:OrganizationService.GetLocations
+
+      required override public init () {
+         builderResult = OrganizationService.GetLocations()
+         super.init()
+      }
+      override public var internalGetResult:GeneratedMessage {
+           get {
+              return builderResult
+           }
+      }
+      public override func clear() -> OrganizationService.GetLocationsBuilder {
+        builderResult = OrganizationService.GetLocations()
+        return self
+      }
+      public override func clone() -> OrganizationService.GetLocationsBuilder {
+        return OrganizationService.GetLocations.builderWithPrototype(builderResult)
+      }
+      public override func build() -> OrganizationService.GetLocations {
+           checkInitialized()
+           return buildPartial()
+      }
+      public func buildPartial() -> OrganizationService.GetLocations {
+        var returnMe:OrganizationService.GetLocations = builderResult
+        return returnMe
+      }
+      public func mergeFrom(other:OrganizationService.GetLocations) -> OrganizationService.GetLocationsBuilder {
+        mergeUnknownFields(other.unknownFields)
+        return self
+      }
+      public override func mergeFromCodedInputStream(input:CodedInputStream) ->OrganizationService.GetLocationsBuilder {
+           return mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
+      }
+      public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> OrganizationService.GetLocationsBuilder {
+        var unknownFieldsBuilder:UnknownFieldSetBuilder = UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
+        while (true) {
+          var tag = input.readTag()
+          switch tag {
+          case 0: 
+            self.unknownFields = unknownFieldsBuilder.build()
+            return self
+
+          default:
+            if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
+               unknownFields = unknownFieldsBuilder.build()
+               return self
+            }
+          }
+        }
+      }
+    }
+
+
+
+  //Nested type declaration end
+
   override public subscript (key: String) -> Any? {
          switch key {
          default: return nil
@@ -8443,6 +11876,18 @@ public extension OrganizationService.Containers.Address {
         var bytes = [Byte](count: data.length, repeatedValue: 0)
         data.getBytes(&bytes)
         return OrganizationService.Containers.Address.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
+    }
+}
+public extension OrganizationService.Containers.Location {
+    class func parseFromNSData(data:NSData) -> OrganizationService.Containers.Location {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return OrganizationService.Containers.Location.builder().mergeFromData(bytes).build()
+    }
+    class func parseFromNSData(data:NSData, extensionRegistry:ExtensionRegistry) -> OrganizationService.Containers.Location {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return OrganizationService.Containers.Location.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
     }
 }
 public extension OrganizationService.Containers {
@@ -8851,6 +12296,186 @@ public extension OrganizationService.GetAddresses {
         var bytes = [Byte](count: data.length, repeatedValue: 0)
         data.getBytes(&bytes)
         return OrganizationService.GetAddresses.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
+    }
+}
+public extension OrganizationService.CreateLocation.Request {
+    class func parseFromNSData(data:NSData) -> OrganizationService.CreateLocation.Request {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return OrganizationService.CreateLocation.Request.builder().mergeFromData(bytes).build()
+    }
+    class func parseFromNSData(data:NSData, extensionRegistry:ExtensionRegistry) -> OrganizationService.CreateLocation.Request {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return OrganizationService.CreateLocation.Request.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
+    }
+}
+public extension OrganizationService.CreateLocation.Response {
+    class func parseFromNSData(data:NSData) -> OrganizationService.CreateLocation.Response {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return OrganizationService.CreateLocation.Response.builder().mergeFromData(bytes).build()
+    }
+    class func parseFromNSData(data:NSData, extensionRegistry:ExtensionRegistry) -> OrganizationService.CreateLocation.Response {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return OrganizationService.CreateLocation.Response.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
+    }
+}
+public extension OrganizationService.CreateLocation {
+    class func parseFromNSData(data:NSData) -> OrganizationService.CreateLocation {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return OrganizationService.CreateLocation.builder().mergeFromData(bytes).build()
+    }
+    class func parseFromNSData(data:NSData, extensionRegistry:ExtensionRegistry) -> OrganizationService.CreateLocation {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return OrganizationService.CreateLocation.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
+    }
+}
+public extension OrganizationService.UpdateLocation.Request {
+    class func parseFromNSData(data:NSData) -> OrganizationService.UpdateLocation.Request {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return OrganizationService.UpdateLocation.Request.builder().mergeFromData(bytes).build()
+    }
+    class func parseFromNSData(data:NSData, extensionRegistry:ExtensionRegistry) -> OrganizationService.UpdateLocation.Request {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return OrganizationService.UpdateLocation.Request.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
+    }
+}
+public extension OrganizationService.UpdateLocation.Response {
+    class func parseFromNSData(data:NSData) -> OrganizationService.UpdateLocation.Response {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return OrganizationService.UpdateLocation.Response.builder().mergeFromData(bytes).build()
+    }
+    class func parseFromNSData(data:NSData, extensionRegistry:ExtensionRegistry) -> OrganizationService.UpdateLocation.Response {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return OrganizationService.UpdateLocation.Response.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
+    }
+}
+public extension OrganizationService.UpdateLocation {
+    class func parseFromNSData(data:NSData) -> OrganizationService.UpdateLocation {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return OrganizationService.UpdateLocation.builder().mergeFromData(bytes).build()
+    }
+    class func parseFromNSData(data:NSData, extensionRegistry:ExtensionRegistry) -> OrganizationService.UpdateLocation {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return OrganizationService.UpdateLocation.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
+    }
+}
+public extension OrganizationService.GetExtendedLocation.Request {
+    class func parseFromNSData(data:NSData) -> OrganizationService.GetExtendedLocation.Request {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return OrganizationService.GetExtendedLocation.Request.builder().mergeFromData(bytes).build()
+    }
+    class func parseFromNSData(data:NSData, extensionRegistry:ExtensionRegistry) -> OrganizationService.GetExtendedLocation.Request {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return OrganizationService.GetExtendedLocation.Request.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
+    }
+}
+public extension OrganizationService.GetExtendedLocation.Response {
+    class func parseFromNSData(data:NSData) -> OrganizationService.GetExtendedLocation.Response {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return OrganizationService.GetExtendedLocation.Response.builder().mergeFromData(bytes).build()
+    }
+    class func parseFromNSData(data:NSData, extensionRegistry:ExtensionRegistry) -> OrganizationService.GetExtendedLocation.Response {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return OrganizationService.GetExtendedLocation.Response.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
+    }
+}
+public extension OrganizationService.GetExtendedLocation {
+    class func parseFromNSData(data:NSData) -> OrganizationService.GetExtendedLocation {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return OrganizationService.GetExtendedLocation.builder().mergeFromData(bytes).build()
+    }
+    class func parseFromNSData(data:NSData, extensionRegistry:ExtensionRegistry) -> OrganizationService.GetExtendedLocation {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return OrganizationService.GetExtendedLocation.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
+    }
+}
+public extension OrganizationService.GetLocation.Request {
+    class func parseFromNSData(data:NSData) -> OrganizationService.GetLocation.Request {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return OrganizationService.GetLocation.Request.builder().mergeFromData(bytes).build()
+    }
+    class func parseFromNSData(data:NSData, extensionRegistry:ExtensionRegistry) -> OrganizationService.GetLocation.Request {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return OrganizationService.GetLocation.Request.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
+    }
+}
+public extension OrganizationService.GetLocation.Response {
+    class func parseFromNSData(data:NSData) -> OrganizationService.GetLocation.Response {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return OrganizationService.GetLocation.Response.builder().mergeFromData(bytes).build()
+    }
+    class func parseFromNSData(data:NSData, extensionRegistry:ExtensionRegistry) -> OrganizationService.GetLocation.Response {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return OrganizationService.GetLocation.Response.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
+    }
+}
+public extension OrganizationService.GetLocation {
+    class func parseFromNSData(data:NSData) -> OrganizationService.GetLocation {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return OrganizationService.GetLocation.builder().mergeFromData(bytes).build()
+    }
+    class func parseFromNSData(data:NSData, extensionRegistry:ExtensionRegistry) -> OrganizationService.GetLocation {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return OrganizationService.GetLocation.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
+    }
+}
+public extension OrganizationService.GetLocations.Request {
+    class func parseFromNSData(data:NSData) -> OrganizationService.GetLocations.Request {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return OrganizationService.GetLocations.Request.builder().mergeFromData(bytes).build()
+    }
+    class func parseFromNSData(data:NSData, extensionRegistry:ExtensionRegistry) -> OrganizationService.GetLocations.Request {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return OrganizationService.GetLocations.Request.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
+    }
+}
+public extension OrganizationService.GetLocations.Response {
+    class func parseFromNSData(data:NSData) -> OrganizationService.GetLocations.Response {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return OrganizationService.GetLocations.Response.builder().mergeFromData(bytes).build()
+    }
+    class func parseFromNSData(data:NSData, extensionRegistry:ExtensionRegistry) -> OrganizationService.GetLocations.Response {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return OrganizationService.GetLocations.Response.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
+    }
+}
+public extension OrganizationService.GetLocations {
+    class func parseFromNSData(data:NSData) -> OrganizationService.GetLocations {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return OrganizationService.GetLocations.builder().mergeFromData(bytes).build()
+    }
+    class func parseFromNSData(data:NSData, extensionRegistry:ExtensionRegistry) -> OrganizationService.GetLocations {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return OrganizationService.GetLocations.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
     }
 }
 public extension OrganizationService {

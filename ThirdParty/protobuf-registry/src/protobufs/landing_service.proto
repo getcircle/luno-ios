@@ -36,6 +36,7 @@ message LandingService {
             repeated main.profile_service.ProfileService.Containers.Skill skills = 7;
             repeated main.organization_service.OrganizationService.Containers.Team teams = 8;
             repeated main.note_service.NoteService.Containers.Note notes = 9;
+            repeated main.organization_service.OrganizationService.Containers.Location locations = 10;
         }
 
     }

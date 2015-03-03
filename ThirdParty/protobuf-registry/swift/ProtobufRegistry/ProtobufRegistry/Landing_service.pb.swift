@@ -120,6 +120,7 @@ final public class LandingService : GeneratedMessage {
           public private(set) var skills:Array<ProfileService.Containers.Skill>  = Array<ProfileService.Containers.Skill>()
           public private(set) var teams:Array<OrganizationService.Containers.Team>  = Array<OrganizationService.Containers.Team>()
           public private(set) var notes:Array<NoteService.Containers.Note>  = Array<NoteService.Containers.Note>()
+          public private(set) var locations:Array<OrganizationService.Containers.Location>  = Array<OrganizationService.Containers.Location>()
           required public init() {
                super.init()
           }
@@ -153,6 +154,9 @@ final public class LandingService : GeneratedMessage {
             }
             for oneElementnotes in notes {
                 output.writeMessage(9, value:oneElementnotes)
+            }
+            for oneElementlocations in locations {
+                output.writeMessage(10, value:oneElementlocations)
             }
             unknownFields.writeToCodedOutputStream(output)
           }
@@ -189,6 +193,9 @@ final public class LandingService : GeneratedMessage {
             }
             for oneElementnotes in notes {
                 size += WireFormat.computeMessageSize(9, value:oneElementnotes)
+            }
+            for oneElementlocations in locations {
+                size += WireFormat.computeMessageSize(10, value:oneElementlocations)
             }
             size += unknownFields.serializedSize()
             memoizedSerializedSize = size
@@ -278,6 +285,13 @@ final public class LandingService : GeneratedMessage {
                 output += "\(indent)}\n"
                 notesElementIndex++
             }
+            var locationsElementIndex:Int = 0
+            for oneElementlocations in locations {
+                output += "\(indent) locations[\(locationsElementIndex)] {\n"
+                oneElementlocations.writeDescriptionTo(&output, indent:"\(indent)  ")
+                output += "\(indent)}\n"
+                locationsElementIndex++
+            }
             unknownFields.writeDescriptionTo(&output, indent:indent)
           }
           override public var hashValue:Int {
@@ -309,6 +323,9 @@ final public class LandingService : GeneratedMessage {
                   }
                   for oneElementnotes in notes {
                       hashCode = (hashCode &* 31) &+ oneElementnotes.hashValue
+                  }
+                  for oneElementlocations in locations {
+                      hashCode = (hashCode &* 31) &+ oneElementlocations.hashValue
                   }
                   hashCode = (hashCode &* 31) &+  unknownFields.hashValue
                   return hashCode
@@ -476,6 +493,18 @@ final public class LandingService : GeneratedMessage {
             builderResult.notes.removeAll(keepCapacity: false)
             return self
           }
+          public var locations:Array<OrganizationService.Containers.Location> {
+               get {
+                   return builderResult.locations
+               }
+               set (value) {
+                   builderResult.locations = value
+               }
+          }
+          public func clearLocations() -> LandingService.Containers.CategoryBuilder {
+            builderResult.locations.removeAll(keepCapacity: false)
+            return self
+          }
           override public var internalGetResult:GeneratedMessage {
                get {
                   return builderResult
@@ -523,6 +552,9 @@ final public class LandingService : GeneratedMessage {
             }
             if !other.notes.isEmpty  {
                builderResult.notes += other.notes
+            }
+            if !other.locations.isEmpty  {
+               builderResult.locations += other.locations
             }
             mergeUnknownFields(other.unknownFields)
             return self
@@ -580,6 +612,11 @@ final public class LandingService : GeneratedMessage {
                 var subBuilder = NoteService.Containers.Note.builder()
                 input.readMessage(subBuilder,extensionRegistry:extensionRegistry)
                 notes += [subBuilder.buildPartial()]
+
+              case 82 :
+                var subBuilder = OrganizationService.Containers.Location.builder()
+                input.readMessage(subBuilder,extensionRegistry:extensionRegistry)
+                locations += [subBuilder.buildPartial()]
 
               default:
                 if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {

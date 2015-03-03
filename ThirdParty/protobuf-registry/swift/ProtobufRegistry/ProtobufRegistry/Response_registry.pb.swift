@@ -112,6 +112,31 @@ public var OrganizationServiceResponses_get_top_level_team:ConcreateExtensionFie
        return ResponseRegistryRoot.sharedInstance.OrganizationServiceResponses_get_top_level_teamStatic
    }
 }
+public var OrganizationServiceResponses_create_location:ConcreateExtensionField {
+   get {
+       return ResponseRegistryRoot.sharedInstance.OrganizationServiceResponses_create_locationStatic
+   }
+}
+public var OrganizationServiceResponses_update_location:ConcreateExtensionField {
+   get {
+       return ResponseRegistryRoot.sharedInstance.OrganizationServiceResponses_update_locationStatic
+   }
+}
+public var OrganizationServiceResponses_get_extended_location:ConcreateExtensionField {
+   get {
+       return ResponseRegistryRoot.sharedInstance.OrganizationServiceResponses_get_extended_locationStatic
+   }
+}
+public var OrganizationServiceResponses_get_locations:ConcreateExtensionField {
+   get {
+       return ResponseRegistryRoot.sharedInstance.OrganizationServiceResponses_get_locationsStatic
+   }
+}
+public var OrganizationServiceResponses_get_location:ConcreateExtensionField {
+   get {
+       return ResponseRegistryRoot.sharedInstance.OrganizationServiceResponses_get_locationStatic
+   }
+}
 public var ProfileServiceResponses_create_profile:ConcreateExtensionField {
    get {
        return ResponseRegistryRoot.sharedInstance.ProfileServiceResponses_create_profileStatic
@@ -316,6 +341,11 @@ public struct ResponseRegistryRoot {
   var OrganizationServiceResponses_get_addressesStatic:ConcreateExtensionField
   var OrganizationServiceResponses_get_team_childrenStatic:ConcreateExtensionField
   var OrganizationServiceResponses_get_top_level_teamStatic:ConcreateExtensionField
+  var OrganizationServiceResponses_create_locationStatic:ConcreateExtensionField
+  var OrganizationServiceResponses_update_locationStatic:ConcreateExtensionField
+  var OrganizationServiceResponses_get_extended_locationStatic:ConcreateExtensionField
+  var OrganizationServiceResponses_get_locationsStatic:ConcreateExtensionField
+  var OrganizationServiceResponses_get_locationStatic:ConcreateExtensionField
   var ProfileServiceResponses_create_profileStatic:ConcreateExtensionField
   var ProfileServiceResponses_get_extended_profileStatic:ConcreateExtensionField
   var ProfileServiceResponses_get_profileStatic:ConcreateExtensionField
@@ -376,6 +406,11 @@ public struct ResponseRegistryRoot {
     OrganizationServiceResponses_get_addressesStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 208, defaultValue:OrganizationService.GetAddresses.Response(), messageOrGroupClass:OrganizationService.GetAddresses.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     OrganizationServiceResponses_get_team_childrenStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 209, defaultValue:OrganizationService.GetTeamChildren.Response(), messageOrGroupClass:OrganizationService.GetTeamChildren.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     OrganizationServiceResponses_get_top_level_teamStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 210, defaultValue:OrganizationService.GetTopLevelTeam.Response(), messageOrGroupClass:OrganizationService.GetTopLevelTeam.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
+    OrganizationServiceResponses_create_locationStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 211, defaultValue:OrganizationService.CreateLocation.Response(), messageOrGroupClass:OrganizationService.CreateLocation.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
+    OrganizationServiceResponses_update_locationStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 212, defaultValue:OrganizationService.UpdateLocation.Response(), messageOrGroupClass:OrganizationService.UpdateLocation.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
+    OrganizationServiceResponses_get_extended_locationStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 213, defaultValue:OrganizationService.GetExtendedLocation.Response(), messageOrGroupClass:OrganizationService.GetExtendedLocation.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
+    OrganizationServiceResponses_get_locationsStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 214, defaultValue:OrganizationService.GetLocations.Response(), messageOrGroupClass:OrganizationService.GetLocations.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
+    OrganizationServiceResponses_get_locationStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 215, defaultValue:OrganizationService.GetLocation.Response(), messageOrGroupClass:OrganizationService.GetLocation.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     ProfileServiceResponses_create_profileStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 300, defaultValue:ProfileService.CreateProfile.Response(), messageOrGroupClass:ProfileService.CreateProfile.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     ProfileServiceResponses_get_extended_profileStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 301, defaultValue:ProfileService.GetExtendedProfile.Response(), messageOrGroupClass:ProfileService.GetExtendedProfile.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     ProfileServiceResponses_get_profileStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 302, defaultValue:ProfileService.GetProfile.Response(), messageOrGroupClass:ProfileService.GetProfile.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
@@ -391,8 +426,8 @@ public struct ResponseRegistryRoot {
     ProfileServiceResponses_get_upcoming_birthdaysStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 312, defaultValue:ProfileService.GetUpcomingBirthdays.Response(), messageOrGroupClass:ProfileService.GetUpcomingBirthdays.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     ProfileServiceResponses_get_recent_hiresStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 313, defaultValue:ProfileService.GetRecentHires.Response(), messageOrGroupClass:ProfileService.GetRecentHires.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     ProfileServiceResponses_get_active_skillsStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 314, defaultValue:ProfileService.GetActiveSkills.Response(), messageOrGroupClass:ProfileService.GetActiveSkills.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
-    ProfileServiceResponses_bulk_create_profilesStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 315, defaultValue:ProfileService.BulkCreateProfiles.Request(), messageOrGroupClass:ProfileService.BulkCreateProfiles.Request.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
-    ProfileServiceResponses_bulk_update_profilesStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 316, defaultValue:ProfileService.BulkUpdateProfiles.Request(), messageOrGroupClass:ProfileService.BulkUpdateProfiles.Request.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
+    ProfileServiceResponses_bulk_create_profilesStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 315, defaultValue:ProfileService.BulkCreateProfiles.Response(), messageOrGroupClass:ProfileService.BulkCreateProfiles.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
+    ProfileServiceResponses_bulk_update_profilesStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 316, defaultValue:ProfileService.BulkUpdateProfiles.Response(), messageOrGroupClass:ProfileService.BulkUpdateProfiles.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     SearchServiceResponses_searchStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 400, defaultValue:SearchService.Search.Response(), messageOrGroupClass:SearchService.Search.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     LandingServiceResponses_get_categoriesStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 500, defaultValue:LandingService.GetCategories.Response(), messageOrGroupClass:LandingService.GetCategories.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     LandingServiceResponses_get_organization_categoriesStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 501, defaultValue:LandingService.GetOrganizationCategories.Response(), messageOrGroupClass:LandingService.GetOrganizationCategories.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
@@ -447,6 +482,11 @@ public struct ResponseRegistryRoot {
     registry.addExtension(OrganizationServiceResponses_get_addressesStatic)
     registry.addExtension(OrganizationServiceResponses_get_team_childrenStatic)
     registry.addExtension(OrganizationServiceResponses_get_top_level_teamStatic)
+    registry.addExtension(OrganizationServiceResponses_create_locationStatic)
+    registry.addExtension(OrganizationServiceResponses_update_locationStatic)
+    registry.addExtension(OrganizationServiceResponses_get_extended_locationStatic)
+    registry.addExtension(OrganizationServiceResponses_get_locationsStatic)
+    registry.addExtension(OrganizationServiceResponses_get_locationStatic)
     registry.addExtension(ProfileServiceResponses_create_profileStatic)
     registry.addExtension(ProfileServiceResponses_get_extended_profileStatic)
     registry.addExtension(ProfileServiceResponses_get_profileStatic)
@@ -774,6 +814,21 @@ final public class OrganizationServiceResponses : GeneratedMessage {
   }
   public class func get_top_level_team() -> ConcreateExtensionField {
        return OrganizationServiceResponses_get_top_level_team
+  }
+  public class func create_location() -> ConcreateExtensionField {
+       return OrganizationServiceResponses_create_location
+  }
+  public class func update_location() -> ConcreateExtensionField {
+       return OrganizationServiceResponses_update_location
+  }
+  public class func get_extended_location() -> ConcreateExtensionField {
+       return OrganizationServiceResponses_get_extended_location
+  }
+  public class func get_locations() -> ConcreateExtensionField {
+       return OrganizationServiceResponses_get_locations
+  }
+  public class func get_location() -> ConcreateExtensionField {
+       return OrganizationServiceResponses_get_location
   }
   required public init() {
        super.init()

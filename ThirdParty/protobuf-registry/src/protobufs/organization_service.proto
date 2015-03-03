@@ -43,6 +43,14 @@ message OrganizationService {
             optional string longitude = 12;
         }
 
+        message Location {
+            optional string id = 1;
+            optional string name = 2;
+            optional string address_id = 3;
+            optional string organization_id = 4;
+            optional uint32 profile_count = 5;
+        }
+
     }
 
     // MARK: - Actions
@@ -179,6 +187,72 @@ message OrganizationService {
 
         message Response {
             repeated Containers.Address addresses = 1;
+        }
+
+    }
+
+    message CreateLocation {
+
+        message Request {
+            optional Containers.Location location = 1;
+        }
+
+        message Response {
+            optional Containers.Location location = 1;
+        }
+
+    }
+
+    message UpdateLocation {
+
+        message Request {
+            optional Containers.Location location = 1;
+        }
+
+        message Response {
+            optional Containers.Location location = 1;
+        }
+
+    }
+
+    message GetExtendedLocation {
+
+        message Request {
+            optional string location_id = 1;
+        }
+
+        message Response {
+            optional Containers.Location location = 1;
+            optional Containers.Address address = 2;
+            // NB: we can't use the profile container due to a circular import
+            optional string member_profiles_payload = 3;
+            repeated Containers.Team teams = 4;
+        }
+
+    }
+
+    message GetLocation {
+
+        message Request {
+            optional string location_id = 1;
+            optional string name = 2;
+            optional string organization_id = 3;
+        }
+
+        message Response {
+            optional Containers.Location location = 1;
+        }
+
+    }
+
+    message GetLocations {
+
+        message Request {
+            optional string organization_id = 1;
+        }
+
+        message Response {
+            repeated Containers.Location locations = 1;
         }
 
     }

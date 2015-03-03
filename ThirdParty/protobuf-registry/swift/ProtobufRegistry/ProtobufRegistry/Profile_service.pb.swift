@@ -205,6 +205,7 @@ final public class ProfileService : GeneratedMessage {
                  case "hire_date": return hire_date
                  case "verified": return verified
                  case "about": return about
+                 case "location_id": return location_id
                  default: return nil
                  }
           }
@@ -259,6 +260,9 @@ final public class ProfileService : GeneratedMessage {
 
           public private(set) var hasAbout:Bool = false
           public private(set) var about:String = ""
+
+          public private(set) var hasLocationId:Bool = false
+          public private(set) var location_id:String = ""
 
           public private(set) var items:Array<ProfileService.Containers.ProfileItem>  = Array<ProfileService.Containers.ProfileItem>()
           required public init() {
@@ -322,6 +326,9 @@ final public class ProfileService : GeneratedMessage {
             if hasAbout {
               output.writeString(18, value:about)
             }
+            if hasLocationId {
+              output.writeString(19, value:location_id)
+            }
             unknownFields.writeToCodedOutputStream(output)
           }
           override public func serializedSize() -> Int32 {
@@ -384,6 +391,9 @@ final public class ProfileService : GeneratedMessage {
             }
             if hasAbout {
               size += WireFormat.computeStringSize(18, value:about)
+            }
+            if hasLocationId {
+              size += WireFormat.computeStringSize(19, value:location_id)
             }
             size += unknownFields.serializedSize()
             memoizedSerializedSize = size
@@ -484,6 +494,9 @@ final public class ProfileService : GeneratedMessage {
             if hasAbout {
               output += "\(indent) about: \(about) \n"
             }
+            if hasLocationId {
+              output += "\(indent) location_id: \(location_id) \n"
+            }
             unknownFields.writeDescriptionTo(&output, indent:indent)
           }
           override public var hashValue:Int {
@@ -542,6 +555,9 @@ final public class ProfileService : GeneratedMessage {
                   }
                   if hasAbout {
                      hashCode = (hashCode &* 31) &+ about.hashValue
+                  }
+                  if hasLocationId {
+                     hashCode = (hashCode &* 31) &+ location_id.hashValue
                   }
                   hashCode = (hashCode &* 31) &+  unknownFields.hashValue
                   return hashCode
@@ -908,6 +924,25 @@ final public class ProfileService : GeneratedMessage {
                builderResult.about = ""
                return self
           }
+          public var hasLocationId:Bool {
+               get {
+                    return builderResult.hasLocationId
+               }
+          }
+          public var location_id:String {
+               get {
+                    return builderResult.location_id
+               }
+               set (value) {
+                   builderResult.hasLocationId = true
+                   builderResult.location_id = value
+               }
+          }
+          public func clearLocationId() -> ProfileService.Containers.ProfileBuilder{
+               builderResult.hasLocationId = false
+               builderResult.location_id = ""
+               return self
+          }
           override public var internalGetResult:GeneratedMessage {
                get {
                   return builderResult
@@ -983,6 +1018,9 @@ final public class ProfileService : GeneratedMessage {
             if other.hasAbout {
                  about = other.about
             }
+            if other.hasLocationId {
+                 location_id = other.location_id
+            }
             mergeUnknownFields(other.unknownFields)
             return self
           }
@@ -1053,6 +1091,9 @@ final public class ProfileService : GeneratedMessage {
 
               case 146 :
                 about = input.readString()
+
+              case 154 :
+                location_id = input.readString()
 
               default:
                 if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
@@ -1758,6 +1799,196 @@ final public class ProfileService : GeneratedMessage {
 
               case 18 :
                 count = input.readString()
+
+              default:
+                if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
+                   unknownFields = unknownFieldsBuilder.build()
+                   return self
+                }
+              }
+            }
+          }
+        }
+
+
+
+      //Nested type declaration end
+
+
+
+      //Nested type declaration start
+
+        final public class ProfileArray : GeneratedMessage {
+          override public subscript (key: String) -> Any? {
+                 switch key {
+                 default: return nil
+                 }
+          }
+
+          public private(set) var items:Array<ProfileService.Containers.Profile>  = Array<ProfileService.Containers.Profile>()
+          required public init() {
+               super.init()
+          }
+          override public func isInitialized() -> Bool {
+           return true
+          }
+          override public func writeToCodedOutputStream(output:CodedOutputStream) {
+            for oneElementitems in items {
+                output.writeMessage(1, value:oneElementitems)
+            }
+            unknownFields.writeToCodedOutputStream(output)
+          }
+          override public func serializedSize() -> Int32 {
+            var size:Int32 = memoizedSerializedSize
+            if size != -1 {
+             return size
+            }
+
+            size = 0
+            for oneElementitems in items {
+                size += WireFormat.computeMessageSize(1, value:oneElementitems)
+            }
+            size += unknownFields.serializedSize()
+            memoizedSerializedSize = size
+            return size
+          }
+          public class func parseFromData(data:[Byte]) -> ProfileService.Containers.ProfileArray {
+            return ProfileService.Containers.ProfileArray.builder().mergeFromData(data).build()
+          }
+          public class func parseFromData(data:[Byte], extensionRegistry:ExtensionRegistry) -> ProfileService.Containers.ProfileArray {
+            return ProfileService.Containers.ProfileArray.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
+          }
+          public class func parseFromInputStream(input:NSInputStream) -> ProfileService.Containers.ProfileArray {
+            return ProfileService.Containers.ProfileArray.builder().mergeFromInputStream(input).build()
+          }
+          public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->ProfileService.Containers.ProfileArray {
+            return ProfileService.Containers.ProfileArray.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
+          }
+          public class func parseFromCodedInputStream(input:CodedInputStream) -> ProfileService.Containers.ProfileArray {
+            return ProfileService.Containers.ProfileArray.builder().mergeFromCodedInputStream(input).build()
+          }
+          public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.Containers.ProfileArray {
+            return ProfileService.Containers.ProfileArray.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
+          }
+          public class func builder() -> ProfileService.Containers.ProfileArrayBuilder {
+            return ProfileService.Containers.ProfileArray.classBuilder() as ProfileService.Containers.ProfileArrayBuilder
+          }
+          public func builder() -> ProfileService.Containers.ProfileArrayBuilder {
+            return classBuilder() as ProfileService.Containers.ProfileArrayBuilder
+          }
+          public override class func classBuilder() -> MessageBuilder {
+            return ProfileService.Containers.ProfileArrayBuilder()
+          }
+          public override func classBuilder() -> MessageBuilder {
+            return ProfileService.Containers.ProfileArray.builder()
+          }
+          public func toBuilder() -> ProfileService.Containers.ProfileArrayBuilder {
+            return ProfileService.Containers.ProfileArray.builderWithPrototype(self)
+          }
+          public class func builderWithPrototype(prototype:ProfileService.Containers.ProfileArray) -> ProfileService.Containers.ProfileArrayBuilder {
+            return ProfileService.Containers.ProfileArray.builder().mergeFrom(prototype)
+          }
+          override public func writeDescriptionTo(inout output:String, indent:String) {
+            var itemsElementIndex:Int = 0
+            for oneElementitems in items {
+                output += "\(indent) items[\(itemsElementIndex)] {\n"
+                oneElementitems.writeDescriptionTo(&output, indent:"\(indent)  ")
+                output += "\(indent)}\n"
+                itemsElementIndex++
+            }
+            unknownFields.writeDescriptionTo(&output, indent:indent)
+          }
+          override public var hashValue:Int {
+              get {
+                  var hashCode:Int = 7
+                  for oneElementitems in items {
+                      hashCode = (hashCode &* 31) &+ oneElementitems.hashValue
+                  }
+                  hashCode = (hashCode &* 31) &+  unknownFields.hashValue
+                  return hashCode
+              }
+          }
+
+
+          //Meta information declaration start
+
+          override public class func className() -> String {
+              return "ProfileService.Containers.ProfileArray"
+          }
+          override public func className() -> String {
+              return "ProfileService.Containers.ProfileArray"
+          }
+          override public func classMetaType() -> GeneratedMessage.Type {
+              return ProfileService.Containers.ProfileArray.self
+          }
+
+
+          //Meta information declaration end
+
+        }
+
+        final public class ProfileArrayBuilder : GeneratedMessageBuilder {
+          private var builderResult:ProfileService.Containers.ProfileArray
+
+          required override public init () {
+             builderResult = ProfileService.Containers.ProfileArray()
+             super.init()
+          }
+          public var items:Array<ProfileService.Containers.Profile> {
+               get {
+                   return builderResult.items
+               }
+               set (value) {
+                   builderResult.items = value
+               }
+          }
+          public func clearItems() -> ProfileService.Containers.ProfileArrayBuilder {
+            builderResult.items.removeAll(keepCapacity: false)
+            return self
+          }
+          override public var internalGetResult:GeneratedMessage {
+               get {
+                  return builderResult
+               }
+          }
+          public override func clear() -> ProfileService.Containers.ProfileArrayBuilder {
+            builderResult = ProfileService.Containers.ProfileArray()
+            return self
+          }
+          public override func clone() -> ProfileService.Containers.ProfileArrayBuilder {
+            return ProfileService.Containers.ProfileArray.builderWithPrototype(builderResult)
+          }
+          public override func build() -> ProfileService.Containers.ProfileArray {
+               checkInitialized()
+               return buildPartial()
+          }
+          public func buildPartial() -> ProfileService.Containers.ProfileArray {
+            var returnMe:ProfileService.Containers.ProfileArray = builderResult
+            return returnMe
+          }
+          public func mergeFrom(other:ProfileService.Containers.ProfileArray) -> ProfileService.Containers.ProfileArrayBuilder {
+            if !other.items.isEmpty  {
+               builderResult.items += other.items
+            }
+            mergeUnknownFields(other.unknownFields)
+            return self
+          }
+          public override func mergeFromCodedInputStream(input:CodedInputStream) ->ProfileService.Containers.ProfileArrayBuilder {
+               return mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
+          }
+          public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.Containers.ProfileArrayBuilder {
+            var unknownFieldsBuilder:UnknownFieldSetBuilder = UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
+            while (true) {
+              var tag = input.readTag()
+              switch tag {
+              case 0: 
+                self.unknownFields = unknownFieldsBuilder.build()
+                return self
+
+              case 10 :
+                var subBuilder = ProfileService.Containers.Profile.builder()
+                input.readMessage(subBuilder,extensionRegistry:extensionRegistry)
+                items += [subBuilder.buildPartial()]
 
               default:
                 if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
@@ -4998,6 +5229,7 @@ final public class ProfileService : GeneratedMessage {
                  case "manager": return manager
                  case "team": return team
                  case "resume": return resume
+                 case "location": return location
                  default: return nil
                  }
           }
@@ -5012,6 +5244,8 @@ final public class ProfileService : GeneratedMessage {
           public private(set) var team:OrganizationService.Containers.Team = OrganizationService.Containers.Team()
           public private(set) var hasResume:Bool = false
           public private(set) var resume:ResumeService.Containers.Resume = ResumeService.Containers.Resume()
+          public private(set) var hasLocation:Bool = false
+          public private(set) var location:OrganizationService.Containers.Location = OrganizationService.Containers.Location()
           public private(set) var notes:Array<NoteService.Containers.Note>  = Array<NoteService.Containers.Note>()
           public private(set) var skills:Array<ProfileService.Containers.Skill>  = Array<ProfileService.Containers.Skill>()
           public private(set) var identities:Array<UserService.Containers.Identity>  = Array<UserService.Containers.Identity>()
@@ -5050,6 +5284,9 @@ final public class ProfileService : GeneratedMessage {
             if hasResume {
               output.writeMessage(9, value:resume)
             }
+            if hasLocation {
+              output.writeMessage(10, value:location)
+            }
             unknownFields.writeToCodedOutputStream(output)
           }
           override public func serializedSize() -> Int32 {
@@ -5085,6 +5322,9 @@ final public class ProfileService : GeneratedMessage {
             }
             if hasResume {
               size += WireFormat.computeMessageSize(9, value:resume)
+            }
+            if hasLocation {
+              size += WireFormat.computeMessageSize(10, value:location)
             }
             size += unknownFields.serializedSize()
             memoizedSerializedSize = size
@@ -5180,6 +5420,11 @@ final public class ProfileService : GeneratedMessage {
               resume.writeDescriptionTo(&output, indent:"\(indent)  ")
               output += "\(indent) }\n"
             }
+            if hasLocation {
+              output += "\(indent) location {\n"
+              location.writeDescriptionTo(&output, indent:"\(indent)  ")
+              output += "\(indent) }\n"
+            }
             unknownFields.writeDescriptionTo(&output, indent:indent)
           }
           override public var hashValue:Int {
@@ -5211,6 +5456,9 @@ final public class ProfileService : GeneratedMessage {
                   }
                   if hasResume {
                     hashCode = (hashCode &* 31) &+ resume.hashValue
+                  }
+                  if hasLocation {
+                    hashCode = (hashCode &* 31) &+ location.hashValue
                   }
                   hashCode = (hashCode &* 31) &+  unknownFields.hashValue
                   return hashCode
@@ -5450,6 +5698,38 @@ final public class ProfileService : GeneratedMessage {
             builderResult.resume = ResumeService.Containers.Resume()
             return self
           }
+          public var hasLocation:Bool {
+               get {
+                   return builderResult.hasLocation
+               }
+          }
+          public var location:OrganizationService.Containers.Location {
+               get {
+                   return builderResult.location
+               }
+               set (value) {
+                   builderResult.hasLocation = true
+                   builderResult.location = value
+               }
+          }
+          public func setLocationBuilder(builderForValue:OrganizationService.Containers.LocationBuilder) -> ProfileService.GetExtendedProfile.ResponseBuilder {
+            location = builderForValue.build()
+            return self
+          }
+          public func mergeLocation(value:OrganizationService.Containers.Location) -> ProfileService.GetExtendedProfile.ResponseBuilder {
+            if (builderResult.hasLocation) {
+              builderResult.location = OrganizationService.Containers.Location.builderWithPrototype(builderResult.location).mergeFrom(value).buildPartial()
+            } else {
+              builderResult.location = value
+            }
+            builderResult.hasLocation = true
+            return self
+          }
+          public func clearLocation() -> ProfileService.GetExtendedProfile.ResponseBuilder {
+            builderResult.hasLocation = false
+            builderResult.location = OrganizationService.Containers.Location()
+            return self
+          }
           override public var internalGetResult:GeneratedMessage {
                get {
                   return builderResult
@@ -5497,6 +5777,9 @@ final public class ProfileService : GeneratedMessage {
             }
             if (other.hasResume) {
                 mergeResume(other.resume)
+            }
+            if (other.hasLocation) {
+                mergeLocation(other.location)
             }
             mergeUnknownFields(other.unknownFields)
             return self
@@ -5572,6 +5855,14 @@ final public class ProfileService : GeneratedMessage {
                 }
                 input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
                 resume = subBuilder.buildPartial()
+
+              case 82 :
+                var subBuilder:OrganizationService.Containers.LocationBuilder = OrganizationService.Containers.Location.builder()
+                if hasLocation {
+                  subBuilder.mergeFrom(location)
+                }
+                input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
+                location = subBuilder.buildPartial()
 
               default:
                 if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
@@ -7440,6 +7731,7 @@ final public class ProfileService : GeneratedMessage {
                  case "organization_id": return organization_id
                  case "skill_id": return skill_id
                  case "address_id": return address_id
+                 case "location_id": return location_id
                  default: return nil
                  }
           }
@@ -7455,6 +7747,9 @@ final public class ProfileService : GeneratedMessage {
 
           public private(set) var hasAddressId:Bool = false
           public private(set) var address_id:String = ""
+
+          public private(set) var hasLocationId:Bool = false
+          public private(set) var location_id:String = ""
 
           public private(set) var ids:Array<String> = Array<String>()
           required public init() {
@@ -7480,6 +7775,9 @@ final public class ProfileService : GeneratedMessage {
               for oneValueids in ids {
                 output.writeString(5, value:oneValueids)
               }
+            }
+            if hasLocationId {
+              output.writeString(6, value:location_id)
             }
             unknownFields.writeToCodedOutputStream(output)
           }
@@ -7508,6 +7806,9 @@ final public class ProfileService : GeneratedMessage {
             }
             size += dataSizeIds
             size += 1 * Int32(ids.count)
+            if hasLocationId {
+              size += WireFormat.computeStringSize(6, value:location_id)
+            }
             size += unknownFields.serializedSize()
             memoizedSerializedSize = size
             return size
@@ -7566,6 +7867,9 @@ final public class ProfileService : GeneratedMessage {
                 output += "\(indent) ids[\(idsElementIndex)]: \(oneValueids)\n"
                 idsElementIndex++
             }
+            if hasLocationId {
+              output += "\(indent) location_id: \(location_id) \n"
+            }
             unknownFields.writeDescriptionTo(&output, indent:indent)
           }
           override public var hashValue:Int {
@@ -7585,6 +7889,9 @@ final public class ProfileService : GeneratedMessage {
                   }
                   for oneValueids in ids {
                       hashCode = (hashCode &* 31) &+ oneValueids.hashValue
+                  }
+                  if hasLocationId {
+                     hashCode = (hashCode &* 31) &+ location_id.hashValue
                   }
                   hashCode = (hashCode &* 31) &+  unknownFields.hashValue
                   return hashCode
@@ -7704,6 +8011,25 @@ final public class ProfileService : GeneratedMessage {
              builderResult.ids.removeAll(keepCapacity: false)
              return self
           }
+          public var hasLocationId:Bool {
+               get {
+                    return builderResult.hasLocationId
+               }
+          }
+          public var location_id:String {
+               get {
+                    return builderResult.location_id
+               }
+               set (value) {
+                   builderResult.hasLocationId = true
+                   builderResult.location_id = value
+               }
+          }
+          public func clearLocationId() -> ProfileService.GetProfiles.RequestBuilder{
+               builderResult.hasLocationId = false
+               builderResult.location_id = ""
+               return self
+          }
           override public var internalGetResult:GeneratedMessage {
                get {
                   return builderResult
@@ -7740,6 +8066,9 @@ final public class ProfileService : GeneratedMessage {
             if !other.ids.isEmpty {
                 builderResult.ids += other.ids
             }
+            if other.hasLocationId {
+                 location_id = other.location_id
+            }
             mergeUnknownFields(other.unknownFields)
             return self
           }
@@ -7769,6 +8098,9 @@ final public class ProfileService : GeneratedMessage {
 
               case 42 :
                 ids += [input.readString()]
+
+              case 50 :
+                location_id = input.readString()
 
               default:
                 if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
@@ -9254,6 +9586,7 @@ final public class ProfileService : GeneratedMessage {
           }
 
           public private(set) var address_ids:Array<String> = Array<String>()
+          public private(set) var location_ids:Array<String> = Array<String>()
           required public init() {
                super.init()
           }
@@ -9264,6 +9597,11 @@ final public class ProfileService : GeneratedMessage {
             if !address_ids.isEmpty {
               for oneValueaddress_ids in address_ids {
                 output.writeString(1, value:oneValueaddress_ids)
+              }
+            }
+            if !location_ids.isEmpty {
+              for oneValuelocation_ids in location_ids {
+                output.writeString(2, value:oneValuelocation_ids)
               }
             }
             unknownFields.writeToCodedOutputStream(output)
@@ -9281,6 +9619,12 @@ final public class ProfileService : GeneratedMessage {
             }
             size += dataSizeAddressIds
             size += 1 * Int32(address_ids.count)
+            var dataSizeLocationIds:Int32 = 0
+            for oneValuelocation_ids in location_ids {
+                dataSizeLocationIds += WireFormat.computeStringSizeNoTag(oneValuelocation_ids)
+            }
+            size += dataSizeLocationIds
+            size += 1 * Int32(location_ids.count)
             size += unknownFields.serializedSize()
             memoizedSerializedSize = size
             return size
@@ -9327,6 +9671,11 @@ final public class ProfileService : GeneratedMessage {
                 output += "\(indent) address_ids[\(address_idsElementIndex)]: \(oneValueaddress_ids)\n"
                 address_idsElementIndex++
             }
+            var location_idsElementIndex:Int = 0
+            for oneValuelocation_ids in location_ids  {
+                output += "\(indent) location_ids[\(location_idsElementIndex)]: \(oneValuelocation_ids)\n"
+                location_idsElementIndex++
+            }
             unknownFields.writeDescriptionTo(&output, indent:indent)
           }
           override public var hashValue:Int {
@@ -9334,6 +9683,9 @@ final public class ProfileService : GeneratedMessage {
                   var hashCode:Int = 7
                   for oneValueaddress_ids in address_ids {
                       hashCode = (hashCode &* 31) &+ oneValueaddress_ids.hashValue
+                  }
+                  for oneValuelocation_ids in location_ids {
+                      hashCode = (hashCode &* 31) &+ oneValuelocation_ids.hashValue
                   }
                   hashCode = (hashCode &* 31) &+  unknownFields.hashValue
                   return hashCode
@@ -9377,6 +9729,18 @@ final public class ProfileService : GeneratedMessage {
              builderResult.address_ids.removeAll(keepCapacity: false)
              return self
           }
+          public var location_ids:Array<String> {
+               get {
+                   return builderResult.location_ids
+               }
+               set (array) {
+                   builderResult.location_ids = array
+               }
+          }
+          public func clearLocationIds() -> ProfileService.GetProfileStats.RequestBuilder {
+             builderResult.location_ids.removeAll(keepCapacity: false)
+             return self
+          }
           override public var internalGetResult:GeneratedMessage {
                get {
                   return builderResult
@@ -9401,6 +9765,9 @@ final public class ProfileService : GeneratedMessage {
             if !other.address_ids.isEmpty {
                 builderResult.address_ids += other.address_ids
             }
+            if !other.location_ids.isEmpty {
+                builderResult.location_ids += other.location_ids
+            }
             mergeUnknownFields(other.unknownFields)
             return self
           }
@@ -9418,6 +9785,9 @@ final public class ProfileService : GeneratedMessage {
 
               case 10 :
                 address_ids += [input.readString()]
+
+              case 18 :
+                location_ids += [input.readString()]
 
               default:
                 if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
@@ -12112,6 +12482,18 @@ public extension ProfileService.Containers.Stats {
         var bytes = [Byte](count: data.length, repeatedValue: 0)
         data.getBytes(&bytes)
         return ProfileService.Containers.Stats.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
+    }
+}
+public extension ProfileService.Containers.ProfileArray {
+    class func parseFromNSData(data:NSData) -> ProfileService.Containers.ProfileArray {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return ProfileService.Containers.ProfileArray.builder().mergeFromData(bytes).build()
+    }
+    class func parseFromNSData(data:NSData, extensionRegistry:ExtensionRegistry) -> ProfileService.Containers.ProfileArray {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return ProfileService.Containers.ProfileArray.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
     }
 }
 public extension ProfileService.Containers {

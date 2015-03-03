@@ -21,7 +21,7 @@ import protobufs.profile_service_pb2
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='protobufs/landing_service.proto',
   package='main.landing_service',
-  serialized_pb=_b('\n\x1fprotobufs/landing_service.proto\x12\x14main.landing_service\x1a\x1cprotobufs/note_service.proto\x1a$protobufs/organization_service.proto\x1a\x1fprotobufs/profile_service.proto\"\xb8\t\n\x0eLandingService\x1a\xd7\x05\n\nContainers\x1a\xc8\x05\n\x08\x43\x61tegory\x12\r\n\x05title\x18\x01 \x01(\t\x12\x13\n\x0b\x63ontent_key\x18\x02 \x01(\t\x12S\n\x04type\x18\x03 \x01(\x0e\x32\x45.main.landing_service.LandingService.Containers.Category.CategoryType\x12\x13\n\x0btotal_count\x18\x04 \x01(\t\x12I\n\x08profiles\x18\x05 \x03(\x0b\x32\x37.main.profile_service.ProfileService.Containers.Profile\x12T\n\taddresses\x18\x06 \x03(\x0b\x32\x41.main.organization_service.OrganizationService.Containers.Address\x12\x45\n\x06skills\x18\x07 \x03(\x0b\x32\x35.main.profile_service.ProfileService.Containers.Skill\x12M\n\x05teams\x18\x08 \x03(\x0b\x32>.main.organization_service.OrganizationService.Containers.Team\x12=\n\x05notes\x18\t \x03(\x0b\x32..main.note_service.NoteService.Containers.Note\"\xb7\x01\n\x0c\x43\x61tegoryType\x12\x12\n\x0e\x44IRECT_REPORTS\x10\x01\x12\x11\n\rANNIVERSARIES\x10\x02\x12\r\n\tBIRTHDAYS\x10\x03\x12\r\n\tLOCATIONS\x10\x04\x12\n\n\x06SKILLS\x10\x05\x12\t\n\x05PEERS\x10\x06\x12\r\n\tNEW_HIRES\x10\x07\x12\x0f\n\x0b\x44\x45PARTMENTS\x10\x08\x12\x0e\n\nEXECUTIVES\x10\t\x12\x10\n\x0cORGANIZATION\x10\n\x12\t\n\x05NOTES\x10\x0b\x1a\x88\x01\n\rGetCategories\x1a\x1d\n\x07Request\x12\x12\n\nprofile_id\x18\x01 \x01(\t\x1aX\n\x08Response\x12L\n\ncategories\x18\x01 \x03(\x0b\x32\x38.main.landing_service.LandingService.Containers.Category\x1a\xc0\x02\n\x19GetOrganizationCategories\x1a\"\n\x07Request\x12\x17\n\x0forganization_id\x18\x01 \x01(\t\x1a\xfe\x01\n\x08Response\x12L\n\ncategories\x18\x01 \x03(\x0b\x32\x38.main.landing_service.LandingService.Containers.Category\x12\x46\n\x05owner\x18\x02 \x01(\x0b\x32\x37.main.profile_service.ProfileService.Containers.Profile\x12\\\n\x0corganization\x18\x03 \x01(\x0b\x32\x46.main.organization_service.OrganizationService.Containers.Organization')
+  serialized_pb=_b('\n\x1fprotobufs/landing_service.proto\x12\x14main.landing_service\x1a\x1cprotobufs/note_service.proto\x1a$protobufs/organization_service.proto\x1a\x1fprotobufs/profile_service.proto\"\x8f\n\n\x0eLandingService\x1a\xae\x06\n\nContainers\x1a\x9f\x06\n\x08\x43\x61tegory\x12\r\n\x05title\x18\x01 \x01(\t\x12\x13\n\x0b\x63ontent_key\x18\x02 \x01(\t\x12S\n\x04type\x18\x03 \x01(\x0e\x32\x45.main.landing_service.LandingService.Containers.Category.CategoryType\x12\x13\n\x0btotal_count\x18\x04 \x01(\t\x12I\n\x08profiles\x18\x05 \x03(\x0b\x32\x37.main.profile_service.ProfileService.Containers.Profile\x12T\n\taddresses\x18\x06 \x03(\x0b\x32\x41.main.organization_service.OrganizationService.Containers.Address\x12\x45\n\x06skills\x18\x07 \x03(\x0b\x32\x35.main.profile_service.ProfileService.Containers.Skill\x12M\n\x05teams\x18\x08 \x03(\x0b\x32>.main.organization_service.OrganizationService.Containers.Team\x12=\n\x05notes\x18\t \x03(\x0b\x32..main.note_service.NoteService.Containers.Note\x12U\n\tlocations\x18\n \x03(\x0b\x32\x42.main.organization_service.OrganizationService.Containers.Location\"\xb7\x01\n\x0c\x43\x61tegoryType\x12\x12\n\x0e\x44IRECT_REPORTS\x10\x01\x12\x11\n\rANNIVERSARIES\x10\x02\x12\r\n\tBIRTHDAYS\x10\x03\x12\r\n\tLOCATIONS\x10\x04\x12\n\n\x06SKILLS\x10\x05\x12\t\n\x05PEERS\x10\x06\x12\r\n\tNEW_HIRES\x10\x07\x12\x0f\n\x0b\x44\x45PARTMENTS\x10\x08\x12\x0e\n\nEXECUTIVES\x10\t\x12\x10\n\x0cORGANIZATION\x10\n\x12\t\n\x05NOTES\x10\x0b\x1a\x88\x01\n\rGetCategories\x1a\x1d\n\x07Request\x12\x12\n\nprofile_id\x18\x01 \x01(\t\x1aX\n\x08Response\x12L\n\ncategories\x18\x01 \x03(\x0b\x32\x38.main.landing_service.LandingService.Containers.Category\x1a\xc0\x02\n\x19GetOrganizationCategories\x1a\"\n\x07Request\x12\x17\n\x0forganization_id\x18\x01 \x01(\t\x1a\xfe\x01\n\x08Response\x12L\n\ncategories\x18\x01 \x03(\x0b\x32\x38.main.landing_service.LandingService.Containers.Category\x12\x46\n\x05owner\x18\x02 \x01(\x0b\x32\x37.main.profile_service.ProfileService.Containers.Profile\x12\\\n\x0corganization\x18\x03 \x01(\x0b\x32\x46.main.organization_service.OrganizationService.Containers.Organization')
   ,
   dependencies=[protobufs.note_service_pb2.DESCRIPTOR,protobufs.organization_service_pb2.DESCRIPTOR,protobufs.profile_service_pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
@@ -81,8 +81,8 @@ _LANDINGSERVICE_CONTAINERS_CATEGORY_CATEGORYTYPE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=722,
-  serialized_end=905,
+  serialized_start=809,
+  serialized_end=992,
 )
 _sym_db.RegisterEnumDescriptor(_LANDINGSERVICE_CONTAINERS_CATEGORY_CATEGORYTYPE)
 
@@ -157,6 +157,13 @@ _LANDINGSERVICE_CONTAINERS_CATEGORY = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
+    _descriptor.FieldDescriptor(
+      name='locations', full_name='main.landing_service.LandingService.Containers.Category.locations', index=9,
+      number=10, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
   ],
   extensions=[
   ],
@@ -170,7 +177,7 @@ _LANDINGSERVICE_CONTAINERS_CATEGORY = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=193,
-  serialized_end=905,
+  serialized_end=992,
 )
 
 _LANDINGSERVICE_CONTAINERS = _descriptor.Descriptor(
@@ -192,7 +199,7 @@ _LANDINGSERVICE_CONTAINERS = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=178,
-  serialized_end=905,
+  serialized_end=992,
 )
 
 _LANDINGSERVICE_GETCATEGORIES_REQUEST = _descriptor.Descriptor(
@@ -220,8 +227,8 @@ _LANDINGSERVICE_GETCATEGORIES_REQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=925,
-  serialized_end=954,
+  serialized_start=1012,
+  serialized_end=1041,
 )
 
 _LANDINGSERVICE_GETCATEGORIES_RESPONSE = _descriptor.Descriptor(
@@ -249,8 +256,8 @@ _LANDINGSERVICE_GETCATEGORIES_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=956,
-  serialized_end=1044,
+  serialized_start=1043,
+  serialized_end=1131,
 )
 
 _LANDINGSERVICE_GETCATEGORIES = _descriptor.Descriptor(
@@ -271,8 +278,8 @@ _LANDINGSERVICE_GETCATEGORIES = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=908,
-  serialized_end=1044,
+  serialized_start=995,
+  serialized_end=1131,
 )
 
 _LANDINGSERVICE_GETORGANIZATIONCATEGORIES_REQUEST = _descriptor.Descriptor(
@@ -300,8 +307,8 @@ _LANDINGSERVICE_GETORGANIZATIONCATEGORIES_REQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1076,
-  serialized_end=1110,
+  serialized_start=1163,
+  serialized_end=1197,
 )
 
 _LANDINGSERVICE_GETORGANIZATIONCATEGORIES_RESPONSE = _descriptor.Descriptor(
@@ -343,8 +350,8 @@ _LANDINGSERVICE_GETORGANIZATIONCATEGORIES_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1113,
-  serialized_end=1367,
+  serialized_start=1200,
+  serialized_end=1454,
 )
 
 _LANDINGSERVICE_GETORGANIZATIONCATEGORIES = _descriptor.Descriptor(
@@ -365,8 +372,8 @@ _LANDINGSERVICE_GETORGANIZATIONCATEGORIES = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1047,
-  serialized_end=1367,
+  serialized_start=1134,
+  serialized_end=1454,
 )
 
 _LANDINGSERVICE = _descriptor.Descriptor(
@@ -388,7 +395,7 @@ _LANDINGSERVICE = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=159,
-  serialized_end=1367,
+  serialized_end=1454,
 )
 
 _LANDINGSERVICE_CONTAINERS_CATEGORY.fields_by_name['type'].enum_type = _LANDINGSERVICE_CONTAINERS_CATEGORY_CATEGORYTYPE
@@ -397,6 +404,7 @@ _LANDINGSERVICE_CONTAINERS_CATEGORY.fields_by_name['addresses'].message_type = p
 _LANDINGSERVICE_CONTAINERS_CATEGORY.fields_by_name['skills'].message_type = protobufs.profile_service_pb2._PROFILESERVICE_CONTAINERS_SKILL
 _LANDINGSERVICE_CONTAINERS_CATEGORY.fields_by_name['teams'].message_type = protobufs.organization_service_pb2._ORGANIZATIONSERVICE_CONTAINERS_TEAM
 _LANDINGSERVICE_CONTAINERS_CATEGORY.fields_by_name['notes'].message_type = protobufs.note_service_pb2._NOTESERVICE_CONTAINERS_NOTE
+_LANDINGSERVICE_CONTAINERS_CATEGORY.fields_by_name['locations'].message_type = protobufs.organization_service_pb2._ORGANIZATIONSERVICE_CONTAINERS_LOCATION
 _LANDINGSERVICE_CONTAINERS_CATEGORY.containing_type = _LANDINGSERVICE_CONTAINERS
 _LANDINGSERVICE_CONTAINERS_CATEGORY_CATEGORYTYPE.containing_type = _LANDINGSERVICE_CONTAINERS_CATEGORY
 _LANDINGSERVICE_CONTAINERS.containing_type = _LANDINGSERVICE

@@ -41,6 +41,11 @@ message OrganizationServiceResponses {
         optional main.organization_service.OrganizationService.GetAddresses.Response get_addresses = 208;
         optional main.organization_service.OrganizationService.GetTeamChildren.Response get_team_children = 209;
         optional main.organization_service.OrganizationService.GetTopLevelTeam.Response get_top_level_team = 210;
+        optional main.organization_service.OrganizationService.CreateLocation.Response create_location = 211;
+        optional main.organization_service.OrganizationService.UpdateLocation.Response update_location = 212;
+        optional main.organization_service.OrganizationService.GetExtendedLocation.Response get_extended_location = 213;
+        optional main.organization_service.OrganizationService.GetLocations.Response get_locations = 214;
+        optional main.organization_service.OrganizationService.GetLocation.Response get_location = 215;
     }
 }
 
@@ -61,8 +66,8 @@ message ProfileServiceResponses {
         optional main.profile_service.ProfileService.GetUpcomingBirthdays.Response get_upcoming_birthdays = 312;
         optional main.profile_service.ProfileService.GetRecentHires.Response get_recent_hires = 313;
         optional main.profile_service.ProfileService.GetActiveSkills.Response get_active_skills = 314;
-        optional main.profile_service.ProfileService.BulkCreateProfiles.Request bulk_create_profiles = 315;
-        optional main.profile_service.ProfileService.BulkUpdateProfiles.Request bulk_update_profiles = 316;
+        optional main.profile_service.ProfileService.BulkCreateProfiles.Response bulk_create_profiles = 315;
+        optional main.profile_service.ProfileService.BulkUpdateProfiles.Response bulk_update_profiles = 316;
     }
 }
 

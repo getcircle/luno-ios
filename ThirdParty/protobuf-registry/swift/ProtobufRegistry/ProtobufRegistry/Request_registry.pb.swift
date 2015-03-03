@@ -112,6 +112,31 @@ public var OrganizationServiceRequests_get_top_level_team:ConcreateExtensionFiel
        return RequestRegistryRoot.sharedInstance.OrganizationServiceRequests_get_top_level_teamStatic
    }
 }
+public var OrganizationServiceRequests_create_location:ConcreateExtensionField {
+   get {
+       return RequestRegistryRoot.sharedInstance.OrganizationServiceRequests_create_locationStatic
+   }
+}
+public var OrganizationServiceRequests_update_location:ConcreateExtensionField {
+   get {
+       return RequestRegistryRoot.sharedInstance.OrganizationServiceRequests_update_locationStatic
+   }
+}
+public var OrganizationServiceRequests_get_extended_location:ConcreateExtensionField {
+   get {
+       return RequestRegistryRoot.sharedInstance.OrganizationServiceRequests_get_extended_locationStatic
+   }
+}
+public var OrganizationServiceRequests_get_locations:ConcreateExtensionField {
+   get {
+       return RequestRegistryRoot.sharedInstance.OrganizationServiceRequests_get_locationsStatic
+   }
+}
+public var OrganizationServiceRequests_get_location:ConcreateExtensionField {
+   get {
+       return RequestRegistryRoot.sharedInstance.OrganizationServiceRequests_get_locationStatic
+   }
+}
 public var ProfileServiceRequests_create_profile:ConcreateExtensionField {
    get {
        return RequestRegistryRoot.sharedInstance.ProfileServiceRequests_create_profileStatic
@@ -316,6 +341,11 @@ public struct RequestRegistryRoot {
   var OrganizationServiceRequests_get_addressesStatic:ConcreateExtensionField
   var OrganizationServiceRequests_get_team_childrenStatic:ConcreateExtensionField
   var OrganizationServiceRequests_get_top_level_teamStatic:ConcreateExtensionField
+  var OrganizationServiceRequests_create_locationStatic:ConcreateExtensionField
+  var OrganizationServiceRequests_update_locationStatic:ConcreateExtensionField
+  var OrganizationServiceRequests_get_extended_locationStatic:ConcreateExtensionField
+  var OrganizationServiceRequests_get_locationsStatic:ConcreateExtensionField
+  var OrganizationServiceRequests_get_locationStatic:ConcreateExtensionField
   var ProfileServiceRequests_create_profileStatic:ConcreateExtensionField
   var ProfileServiceRequests_get_extended_profileStatic:ConcreateExtensionField
   var ProfileServiceRequests_get_profileStatic:ConcreateExtensionField
@@ -376,6 +406,11 @@ public struct RequestRegistryRoot {
     OrganizationServiceRequests_get_addressesStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionRequestParams.self, fieldNumber: 208, defaultValue:OrganizationService.GetAddresses.Request(), messageOrGroupClass:OrganizationService.GetAddresses.Request.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     OrganizationServiceRequests_get_team_childrenStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionRequestParams.self, fieldNumber: 209, defaultValue:OrganizationService.GetTeamChildren.Request(), messageOrGroupClass:OrganizationService.GetTeamChildren.Request.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     OrganizationServiceRequests_get_top_level_teamStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionRequestParams.self, fieldNumber: 210, defaultValue:OrganizationService.GetTopLevelTeam.Request(), messageOrGroupClass:OrganizationService.GetTopLevelTeam.Request.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
+    OrganizationServiceRequests_create_locationStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionRequestParams.self, fieldNumber: 211, defaultValue:OrganizationService.CreateLocation.Request(), messageOrGroupClass:OrganizationService.CreateLocation.Request.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
+    OrganizationServiceRequests_update_locationStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionRequestParams.self, fieldNumber: 212, defaultValue:OrganizationService.UpdateLocation.Request(), messageOrGroupClass:OrganizationService.UpdateLocation.Request.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
+    OrganizationServiceRequests_get_extended_locationStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionRequestParams.self, fieldNumber: 213, defaultValue:OrganizationService.GetExtendedLocation.Request(), messageOrGroupClass:OrganizationService.GetExtendedLocation.Request.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
+    OrganizationServiceRequests_get_locationsStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionRequestParams.self, fieldNumber: 214, defaultValue:OrganizationService.GetLocations.Request(), messageOrGroupClass:OrganizationService.GetLocations.Request.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
+    OrganizationServiceRequests_get_locationStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionRequestParams.self, fieldNumber: 215, defaultValue:OrganizationService.GetLocation.Request(), messageOrGroupClass:OrganizationService.GetLocation.Request.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     ProfileServiceRequests_create_profileStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionRequestParams.self, fieldNumber: 300, defaultValue:ProfileService.CreateProfile.Request(), messageOrGroupClass:ProfileService.CreateProfile.Request.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     ProfileServiceRequests_get_extended_profileStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionRequestParams.self, fieldNumber: 301, defaultValue:ProfileService.GetExtendedProfile.Request(), messageOrGroupClass:ProfileService.GetExtendedProfile.Request.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     ProfileServiceRequests_get_profileStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionRequestParams.self, fieldNumber: 302, defaultValue:ProfileService.GetProfile.Request(), messageOrGroupClass:ProfileService.GetProfile.Request.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
@@ -447,6 +482,11 @@ public struct RequestRegistryRoot {
     registry.addExtension(OrganizationServiceRequests_get_addressesStatic)
     registry.addExtension(OrganizationServiceRequests_get_team_childrenStatic)
     registry.addExtension(OrganizationServiceRequests_get_top_level_teamStatic)
+    registry.addExtension(OrganizationServiceRequests_create_locationStatic)
+    registry.addExtension(OrganizationServiceRequests_update_locationStatic)
+    registry.addExtension(OrganizationServiceRequests_get_extended_locationStatic)
+    registry.addExtension(OrganizationServiceRequests_get_locationsStatic)
+    registry.addExtension(OrganizationServiceRequests_get_locationStatic)
     registry.addExtension(ProfileServiceRequests_create_profileStatic)
     registry.addExtension(ProfileServiceRequests_get_extended_profileStatic)
     registry.addExtension(ProfileServiceRequests_get_profileStatic)
@@ -774,6 +814,21 @@ final public class OrganizationServiceRequests : GeneratedMessage {
   }
   public class func get_top_level_team() -> ConcreateExtensionField {
        return OrganizationServiceRequests_get_top_level_team
+  }
+  public class func create_location() -> ConcreateExtensionField {
+       return OrganizationServiceRequests_create_location
+  }
+  public class func update_location() -> ConcreateExtensionField {
+       return OrganizationServiceRequests_update_location
+  }
+  public class func get_extended_location() -> ConcreateExtensionField {
+       return OrganizationServiceRequests_get_extended_location
+  }
+  public class func get_locations() -> ConcreateExtensionField {
+       return OrganizationServiceRequests_get_locations
+  }
+  public class func get_location() -> ConcreateExtensionField {
+       return OrganizationServiceRequests_get_location
   }
   required public init() {
        super.init()
