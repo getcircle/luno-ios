@@ -232,14 +232,14 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
     private func getOfficeTeamSection() -> Section {
         let sectionItems = [
             SectionItem(
-                title: "Office & Team",
+                title: "Office, Team & Manager",
                 container: "",
                 containerKey: "",
                 contentType: .OfficeTeam,
                 image: ItemImage.genericNextImage
             )
         ]
-        return Section(title: "Office & Team", items: sectionItems, cardType: .OfficeTeam, cardHeaderSize: CGSizeMake(CircleCollectionViewCell.width, CardHeaderCollectionReusableView.height))
+        return Section(title: "Office, Team & Manager", items: sectionItems, cardType: .OfficeTeam, cardHeaderSize: CGSizeMake(CircleCollectionViewCell.width, CardHeaderCollectionReusableView.height))
     }
     
     private func getSkillsSection() -> Section {

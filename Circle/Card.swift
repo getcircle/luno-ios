@@ -72,7 +72,7 @@ class Card: Equatable {
         case KeyValue = "KeyValue"
         case Offices = "Offices"
         case OfficeAddress = "Office Address"
-        case OfficeTeam = "Office & Team"
+        case OfficeTeam = "Office, Team & Manager"
         case NewHires = "NewHires"
         case Notes = "Notes"
         case People = "People"
