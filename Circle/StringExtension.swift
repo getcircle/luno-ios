@@ -45,7 +45,7 @@ extension String {
     
     func toDate() -> NSDate? {
         let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "YYYY-MM-DD"
+        dateFormatter.dateFormat = "YYYY-MM-dd"
         return dateFormatter.dateFromString(self)
     }
     
