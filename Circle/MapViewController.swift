@@ -76,13 +76,13 @@ class MapViewController: UIViewController, UIViewControllerTransitioningDelegate
         closeButton.setImage(UIImage(named: "Close")?.imageWithRenderingMode(.AlwaysTemplate), forState: .Normal)
         closeButton.tintColor = UIColor.whiteColor()
         closeButton.imageEdgeInsets = UIEdgeInsetsMake(10.0, 10.0, 10.0, 10.0)
-        closeButton.layer.cornerRadius = 4.0
+        closeButton.layer.cornerRadius = 18.0
         closeButton.addTarget(self, action: "close:", forControlEvents: .TouchUpInside)
         view.addSubview(closeButton)
         closeButton.autoPinEdgeToSuperviewEdge(.Left, withInset: 20.0)
         closeButton.autoPinEdgeToSuperviewEdge(.Top, withInset: 20.0)
-        closeButton.autoSetDimension(.Height, toSize: 35.0)
-        closeButton.autoSetDimension(.Width, toSize: 35.0)
+        closeButton.autoSetDimension(.Height, toSize: 36.0)
+        closeButton.autoSetDimension(.Width, toSize: 36.0)
         
         // Address View
         addressContainerView = UIView(frame: CGRectMake(0.0, 0.0, view.frameWidth, 35.0))
@@ -90,7 +90,7 @@ class MapViewController: UIViewController, UIViewControllerTransitioningDelegate
         addressContainerView.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.8)
         view.addSubview(addressContainerView)
         addressContainerView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero, excludingEdge: .Top)
-        addressContainerView.autoSetDimension(.Height, toSize: 35.0)
+        addressContainerView.autoSetDimension(.Height, toSize: 60.0)
         
         var tapGestureRecognizer = UITapGestureRecognizer(target: self, action: "close:")
         tapGestureRecognizer.numberOfTapsRequired = 1
@@ -100,7 +100,7 @@ class MapViewController: UIViewController, UIViewControllerTransitioningDelegate
         addressContainerView.addGestureRecognizer(panGestureRecognizer)
     }
 
-    // MAR: - Configuration
+    // MARK: - Configuration
     
     private func configureAddressView() {
         if let addressView = addressSnapshotView {
@@ -110,11 +110,12 @@ class MapViewController: UIViewController, UIViewControllerTransitioningDelegate
         }
         else {
             let addressLabel = UILabel(forAutoLayout: ())
-            addressLabel.text = selectedOffice.shortOfficeAddress()
+            addressLabel.text = selectedOffice.fullAddress()
             addressLabel.backgroundColor = UIColor.clearColor()
             addressLabel.font = UIFont.appAttributeValueLabelFont()
             addressLabel.textColor = UIColor.whiteColor()
             addressLabel.textAlignment = .Center
+            addressLabel.numberOfLines = 2
             addressContainerView.addSubview(addressLabel)
             addressLabel.autoAlignAxisToSuperviewAxis(.Vertical)
             addressLabel.autoAlignAxisToSuperviewAxis(.Horizontal)

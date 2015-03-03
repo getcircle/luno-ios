@@ -22,4 +22,19 @@ extension OrganizationService.Containers.Address {
         address = address.stringByTrimmingCharactersInSet(NSCharacterSet(charactersInString: ","))
         return address
     }
+    
+    func fullAddress() -> String {
+        var address = shortOfficeAddress()
+        address += ",\n" + city
+        if hasRegion {
+            address += ", " + region
+        }
+        
+        address += ", " + country_code
+        if hasPostalCode {
+            address += " " + postal_code
+        }
+
+        return address
+    }
 }
