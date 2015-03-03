@@ -43,13 +43,7 @@ class MapViewController: UIViewController, UIViewControllerTransitioningDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        if let addressView = addressSnapshotView {
-            addressContainerView.addSubview(addressView)
-            addressView.setTranslatesAutoresizingMaskIntoConstraints(false)
-            addressView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
-        }
-     
+        configureAddressView()
         let annotationTitle = NSString(
             format: NSLocalizedString("%@ Office",
                 comment: "Title of map annotation indicating the name of the office at a location. E.g., San Francisco Office"),
@@ -106,6 +100,29 @@ class MapViewController: UIViewController, UIViewControllerTransitioningDelegate
         addressContainerView.addGestureRecognizer(panGestureRecognizer)
     }
 
+    // MAR: - Configuration
+    
+    private func configureAddressView() {
+        if let addressView = addressSnapshotView {
+            addressContainerView.addSubview(addressView)
+            addressView.setTranslatesAutoresizingMaskIntoConstraints(false)
+            addressView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
+        }
+        else {
+            let addressLabel = UILabel(forAutoLayout: ())
+            addressLabel.text = selectedOffice.shortOfficeAddress()
+            addressLabel.backgroundColor = UIColor.clearColor()
+            addressLabel.font = UIFont.appAttributeValueLabelFont()
+            addressLabel.textColor = UIColor.whiteColor()
+            addressLabel.textAlignment = .Center
+            addressContainerView.addSubview(addressLabel)
+            addressLabel.autoAlignAxisToSuperviewAxis(.Vertical)
+            addressLabel.autoAlignAxisToSuperviewAxis(.Horizontal)
+            addressLabel.autoPinEdgeToSuperviewEdge(.Left, withInset: 15.0)
+            addressLabel.autoPinEdgeToSuperviewEdge(.Right, withInset: 15.0)
+        }
+    }
+    
     // MARK: - Animators
     
     func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {

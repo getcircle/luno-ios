@@ -52,6 +52,11 @@ class OfficeDetailViewController: DetailViewController {
                     break
                 }
                 
+            case .OfficeAddress:
+                presentFullScreenMapView(true)
+                break
+                
+                
             default:
                 break
             }
@@ -61,6 +66,16 @@ class OfficeDetailViewController: DetailViewController {
     func scrollViewDidScroll(scrollView: UIScrollView) {
         if let profileHeaderView = (dataSource as OfficeDetailDataSource).profileHeaderView as? ProfileHeaderCollectionReusableView {
             profileHeaderView.adjustViewForScrollContentOffset(scrollView.contentOffset)
+        }
+    }
+    
+    // MARK: - Present Map View
+    
+    private func presentFullScreenMapView(animated: Bool) {
+        var mapViewController = MapViewController()
+        if let headerView = (dataSource as OfficeDetailDataSource).profileHeaderView {
+            mapViewController.selectedOffice = (dataSource as OfficeDetailDataSource).selectedOffice
+            presentViewController(mapViewController, animated: animated, completion: nil)
         }
     }
 }

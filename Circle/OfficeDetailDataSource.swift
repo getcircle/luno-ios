@@ -38,6 +38,14 @@ class OfficeDetailDataSource: CardDataSource {
             ProfileService.Actions.getProfiles(addressId: selectedOffice.id) { (profiles, error) -> Void in
                 if error == nil && profiles != nil {
                     self.profiles.extend(profiles!)
+                    
+                    // Address
+                    let addressCard = Card(cardType: .OfficeAddress, title: "Address")
+                    addressCard.sectionInset = sectionInset
+                    addressCard.addContent(content: [self.selectedOffice] as [AnyObject])
+                    self.appendCard(addressCard)
+                    
+                    // People Count
                     let keyValueCard = Card(cardType: .KeyValue, title: "People")
                     let image = ItemImage.genericNextImage
                     var content: [String: AnyObject] = [
@@ -55,6 +63,7 @@ class OfficeDetailDataSource: CardDataSource {
                     keyValueCard.sectionInset = sectionInset
                     self.appendCard(keyValueCard)
 
+                    // People
                     let peopleCard = Card(cardType: .People, title: "Direct Reports")
                     peopleCard.addContent(content: profiles! as [AnyObject])
                     peopleCard.sectionInset = sectionInset
