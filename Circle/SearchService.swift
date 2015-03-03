@@ -98,7 +98,7 @@ extension SearchService {
                 let trimmedSearchTerm = trim(searchTerm)
                 
                 // Match first name
-                var firstNamePredicate = NSComparisonPredicate(
+                let firstNamePredicate = NSComparisonPredicate(
                     leftExpression: NSExpression(forVariable: "first_name"),
                     rightExpression: NSExpression(forConstantValue: trimmedSearchTerm),
                     modifier: .DirectPredicateModifier,
@@ -107,7 +107,7 @@ extension SearchService {
                 )
                 
                 // Match last name
-                var lastNamePredicate = NSComparisonPredicate(
+                let lastNamePredicate = NSComparisonPredicate(
                     leftExpression: NSExpression(forVariable: "last_name"),
                     rightExpression: NSExpression(forConstantValue: trimmedSearchTerm),
                     modifier: .DirectPredicateModifier,
@@ -117,7 +117,7 @@ extension SearchService {
                 
                 
                 // Match title
-                var titlePredicate = NSComparisonPredicate(
+                let titlePredicate = NSComparisonPredicate(
                     leftExpression: NSExpression(forVariable: "title"),
                     rightExpression: NSExpression(forConstantValue: trimmedSearchTerm),
                     modifier: .DirectPredicateModifier,
@@ -125,8 +125,17 @@ extension SearchService {
                     options: .CaseInsensitivePredicateOption
                 )
                 
+                // Match email
+                let emailPredicate = NSComparisonPredicate(
+                    leftExpression: NSExpression(forVariable: "email"),
+                    rightExpression: NSExpression(forConstantValue: trimmedSearchTerm),
+                    modifier: .DirectPredicateModifier,
+                    type: .BeginsWithPredicateOperatorType,
+                    options: .CaseInsensitivePredicateOption
+                )
+                
                 // Match full title
-                var fullTitlePredicate = NSComparisonPredicate(
+                let fullTitlePredicate = NSComparisonPredicate(
                     leftExpression: NSExpression(forVariable: "title"),
                     rightExpression: NSExpression(forConstantValue: " ".join(searchTerms)),
                     modifier: .DirectPredicateModifier,
@@ -139,6 +148,7 @@ extension SearchService {
                         firstNamePredicate,
                         lastNamePredicate,
                         titlePredicate,
+                        emailPredicate,
                         fullTitlePredicate
                     ])
                 )
@@ -147,7 +157,12 @@ extension SearchService {
             let finalPredicate = NSCompoundPredicate.andPredicateWithSubpredicates(andPredicates)
             return ObjectStore.sharedInstance.profiles.values.array.filter { finalPredicate.evaluateWithObject(
                 $0,
-                substitutionVariables: ["first_name": $0.first_name, "last_name": $0.last_name, "title": $0.title]
+                substitutionVariables: [
+                    "first_name": $0.first_name, 
+                    "last_name": $0.last_name, 
+                    "title": $0.title,
+                    "email": $0.email
+                ]
             )}
         }
         
