@@ -145,13 +145,36 @@ extension UIColor {
             return color
         }
         else {
-            let palette = [
+            let randomPalette = [
                 UIColor(red: 17, green: 36, blue: 65),
                 UIColor(red: 65, green: 20, blue: 20),
                 UIColor(red: 70, green: 33, blue: 18),
                 UIColor(red: 37, green: 37, blue: 37),
                 UIColor(red: 20, green: 50, blue: 21),
                 UIColor(red: 44, green: 25, blue: 49)
+            ]
+            
+            // flatuicolors.com
+            let palette = [
+                UIColor(red: 26, green: 188, blue: 156),
+                UIColor(red: 26, green: 188, blue: 156),
+                UIColor(red: 46, green: 204, blue: 113),
+                UIColor(red: 52, green: 152, blue: 219),
+                UIColor(red: 155, green: 89, blue: 182),
+                UIColor(red: 52, green: 73, blue: 94),
+                UIColor(red: 22, green: 160, blue: 133),
+                UIColor(red: 39, green: 174, blue: 96),
+                UIColor(red: 41, green: 128, blue: 185),
+                UIColor(red: 142, green: 68, blue: 173),
+                UIColor(red: 44, green: 62, blue: 80),
+                UIColor(red: 241, green: 196, blue: 15),
+                UIColor(red: 230, green: 126, blue: 34),
+                UIColor(red: 231, green: 76, blue: 60),
+                UIColor(red: 149, green: 165, blue: 166),
+                UIColor(red: 243, green: 156, blue: 18),
+                UIColor(red: 211, green: 84, blue: 0),
+                UIColor(red: 192, green: 57, blue: 43),
+                UIColor(red: 127, green: 140, blue: 141)
             ]
         
             let color = palette[Int(arc4random_uniform(UInt32(palette.count)))]
