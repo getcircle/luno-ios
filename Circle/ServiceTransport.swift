@@ -80,7 +80,7 @@ struct ServiceHttpRequest: URLRequestConvertible {
         case Production
         
         var scheme: String {
-            return "http"
+            return "https"
         }
         
         var host: String {
@@ -111,8 +111,8 @@ struct ServiceHttpRequest: URLRequestConvertible {
         }
     }
     
-//    static let environment = Environment.Staging
-    static let environment = Environment.Local
+    static let environment = Environment.Staging
+//    static let environment = Environment.Local
     
     var data: NSData
     var token: String?
