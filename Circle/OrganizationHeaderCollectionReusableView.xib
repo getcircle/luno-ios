@@ -15,7 +15,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
                     <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Eventbrite" translatesAutoresizingMaskIntoConstraints="NO" id="v0a-Kc-D0j" userLabel="ProfileImageView" customClass="CircleImageView" customModule="circle" customModuleProvider="target">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Eventbrite" translatesAutoresizingMaskIntoConstraints="NO" id="v0a-Kc-D0j" userLabel="ProfileImageView" customClass="CircleImageView" customModule="circle" customModuleProvider="target">
                     <rect key="frame" x="120" y="45" width="80" height="80"/>
                     <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
