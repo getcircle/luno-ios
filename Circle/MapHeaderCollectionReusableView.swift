@@ -90,16 +90,16 @@ class MapHeaderCollectionReusableView: CircleCollectionReusableView, MKMapViewDe
         }
     }
     
-    func setData(#offices: [OrganizationService.Containers.Address]) {
+    func setData(#offices: [OrganizationService.Containers.Location]) {
         // Remove existing annotations
         mapView.removeAnnotations(mapView.annotations)
         
         // Annotate all offices
         for office in offices {
             mapView.addAnnotation(
-                MapHeaderCollectionReusableView.annotationTitleForLocation(office),
-                latitude: office.latitude,
-                longitude: office.longitude
+                MapHeaderCollectionReusableView.annotationTitleForLocation(office.address),
+                latitude: office.address.latitude,
+                longitude: office.address.longitude
             )
         }
         mapView.showAnnotations(mapView.annotations, animated: true)

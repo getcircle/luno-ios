@@ -15,7 +15,7 @@ class MapViewController: UIViewController, UIViewControllerTransitioningDelegate
     var addressSnapshotView: UIView?
     var finalMapViewRect: CGRect?
     var initialMapViewRect: CGRect?
-    var selectedOffice: OrganizationService.Containers.Address!
+    var selectedOffice: OrganizationService.Containers.Location!
 
     private(set) var addressContainerView: UIView!
     private(set) var closeButton: UIButton!
@@ -47,13 +47,13 @@ class MapViewController: UIViewController, UIViewControllerTransitioningDelegate
         let annotationTitle = NSString(
             format: NSLocalizedString("%@ Office",
                 comment: "Title of map annotation indicating the name of the office at a location. E.g., San Francisco Office"),
-            selectedOffice.city
+            selectedOffice.address.city
         )
         
         mapView.annotateAndSetRegion(
             annotationTitle,
-            latitude: selectedOffice.latitude,
-            longitude: selectedOffice.longitude
+            latitude: selectedOffice.address.latitude,
+            longitude: selectedOffice.address.longitude
         )
     }
 
@@ -110,7 +110,7 @@ class MapViewController: UIViewController, UIViewControllerTransitioningDelegate
         }
         else {
             let addressLabel = UILabel(forAutoLayout: ())
-            addressLabel.text = selectedOffice.fullAddress()
+            addressLabel.text = selectedOffice.address.fullAddress()
             addressLabel.backgroundColor = UIColor.clearColor()
             addressLabel.font = UIFont.appAttributeValueLabelFont()
             addressLabel.textColor = UIColor.whiteColor()

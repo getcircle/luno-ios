@@ -11,7 +11,7 @@ import ProtobufRegistry
 
 class OfficesOverviewDataSource: CardDataSource {
 
-    private(set) var offices = Array<OrganizationService.Containers.Address>()
+    private(set) var offices = Array<OrganizationService.Containers.Location>()
     
     // MARK: - Set Initial Data
     
@@ -20,7 +20,7 @@ class OfficesOverviewDataSource: CardDataSource {
         let officesCard = Card(cardType: cardType!, title: "")
         officesCard.addContent(content: content)
         officesCard.sectionInset = UIEdgeInsetsZero        
-        offices.extend(content as Array<OrganizationService.Containers.Address>)
+        offices.extend(content as Array<OrganizationService.Containers.Location>)
         appendCard(officesCard)
     }
     

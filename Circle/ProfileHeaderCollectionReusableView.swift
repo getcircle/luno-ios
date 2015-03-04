@@ -114,10 +114,10 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
         verifiedProfileButton.hidden = !userProfile.verified
     }
 
-    func setOffice(office: OrganizationService.Containers.Address) {
+    func setOffice(office: OrganizationService.Containers.Location) {
         
-        let officeName = office.hasName ? office.name : office.city
-        let officeStateAndCountry = (office.hasRegion ? office.region : "") + ", " + office.country_code
+        let officeName = office.address.officeName()
+        let officeStateAndCountry = (office.address.hasRegion ? office.address.region : "") + ", " + office.address.country_code
         nameLabel.text = officeName
         nameNavLabel.text = officeName
         titleLabel.text = officeStateAndCountry

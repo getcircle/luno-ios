@@ -24,12 +24,10 @@ class OfficeCollectionViewCell: CircleCollectionViewCell {
     @IBOutlet weak private(set) var numbrOfPeopleLabel: UILabel!
     
     override func setData(data: AnyObject) {
-        if let address = data as? OrganizationService.Containers.Address {
-            officeNameLabel.text = "\(address.city), \(address.region)"
-            // HACK: address_2 isn't filled in right now
-//            addressLabel.text = "\(address.address_1), \(address.address_2)"
-            addressLabel.text = "\(address.address_1)"
-            numbrOfPeopleLabel.text = address.profile_count
+        if let location = data as? OrganizationService.Containers.Location {
+            officeNameLabel.text = location.address.officeName()
+            addressLabel.text = "\(location.address.address_1)"
+            numbrOfPeopleLabel.text = location.address.profile_count
         }
     }
 }

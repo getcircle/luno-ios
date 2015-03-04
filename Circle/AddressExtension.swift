@@ -37,4 +37,13 @@ extension OrganizationService.Containers.Address {
 
         return address
     }
+    
+    func officeName() -> String {
+        var officeName = name
+        if officeName.trimWhitespace() == "" {
+            officeName = city + ", " + region
+        }
+        
+        return officeName
+    }
 }

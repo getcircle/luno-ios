@@ -235,13 +235,13 @@ NewNoteViewControllerDelegate {
                 navigationController?.pushViewController(viewController, animated: true)
 
             case .Offices:
-                if let officeAddress = dataSource.contentAtIndexPath(indexPath)? as? OrganizationService.Containers.Address {
+                if let office = dataSource.contentAtIndexPath(indexPath)? as? OrganizationService.Containers.Location {
                     let viewController = OfficeDetailViewController()
-                    (viewController.dataSource as OfficeDetailDataSource).selectedOffice = officeAddress
+                    (viewController.dataSource as OfficeDetailDataSource).selectedOffice = office
                     viewController.hidesBottomBarWhenPushed = true
                     properties.append(TrackerProperty.withKey(.Destination).withSource(.Detail))
                     properties.append(TrackerProperty.withKey(.DestinationDetailType).withDetailType(.Office))
-                    properties.append(TrackerProperty.withDestinationId("office_id").withString(officeAddress.id))
+                    properties.append(TrackerProperty.withDestinationId("office_id").withString(office.id))
                     Tracker.sharedInstance.track(.DetailItemTapped, properties: properties)
                     navigationController?.pushViewController(viewController, animated: true)
                 }

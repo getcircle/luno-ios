@@ -11,7 +11,7 @@ import ProtobufRegistry
 
 class OfficeDetailDataSource: CardDataSource {
     
-    var selectedOffice: OrganizationService.Containers.Address!
+    var selectedOffice: OrganizationService.Containers.Location!
 
     private(set) var profiles = Array<ProfileService.Containers.Profile>()
     private(set) var profileHeaderView: CircleCollectionReusableView?
@@ -35,48 +35,49 @@ class OfficeDetailDataSource: CardDataSource {
                 ProfileSectionHeaderCollectionReusableView.width, 
                 ProfileSectionHeaderCollectionReusableView.height
             )
+            
+            // Address
+            let addressCard = Card(cardType: .OfficeAddress, title: "Address")
+            addressCard.sectionInset = sectionInset
+            addressCard.addContent(content: [self.selectedOffice.address] as [AnyObject])
+            self.appendCard(addressCard)
+            
+            // People Count
+            let keyValueCard = Card(cardType: .KeyValue, title: "People")
+            let image = ItemImage.genericNextImage
+            var content: [String: AnyObject] = [
+                "name": AppStrings.CardTitlePeople,
+                "value": String(self.selectedOffice.profile_count),
+                "image": image.name,
+                "imageTintColor": image.tint,
+                "type": ContentType.PeopleCount.rawValue
+            ]
+            
+            if let imageSize = image.size {
+                content["imageSize"] = NSValue(CGSize: imageSize)
+            }
+            keyValueCard.addContent(content: [content] as [AnyObject])
+            keyValueCard.sectionInset = sectionInset
+            self.appendCard(keyValueCard)
+            
+            // Teams
+            var teams = Array<OrganizationService.Containers.Team>()
+            for i in 0..<4 {
+                var team = OrganizationService.Containers.Team.builder()
+                team.name = "Product Development"
+                teams.append(team.build())
+            }
+            
+            let teamsCard = Card(cardType: .TeamsGrid, title: AppStrings.CardTitleOfficeTeam)
+            teamsCard.addContent(content: teams as [AnyObject])
+            teamsCard.sectionInset = sectionInset
+            teamsCard.headerSize = sectionHeaderSize
+            self.appendCard(teamsCard)
+            completionHandler(error: nil)
+            
             ProfileService.Actions.getProfiles(addressId: selectedOffice.id) { (profiles, error) -> Void in
                 if error == nil && profiles != nil {
                     self.profiles.extend(profiles!)
-                    
-                    // Address
-                    let addressCard = Card(cardType: .OfficeAddress, title: "Address")
-                    addressCard.sectionInset = sectionInset
-                    addressCard.addContent(content: [self.selectedOffice] as [AnyObject])
-                    self.appendCard(addressCard)
-                    
-                    // People Count
-                    let keyValueCard = Card(cardType: .KeyValue, title: "People")
-                    let image = ItemImage.genericNextImage
-                    var content: [String: AnyObject] = [
-                        "name": AppStrings.CardTitlePeople,
-                        "value": String(profiles!.count),
-                        "image": image.name,
-                        "imageTintColor": image.tint,
-                        "type": ContentType.PeopleCount.rawValue
-                    ]
-    
-                    if let imageSize = image.size {
-                        content["imageSize"] = NSValue(CGSize: imageSize)
-                    }
-                    keyValueCard.addContent(content: [content] as [AnyObject])
-                    keyValueCard.sectionInset = sectionInset
-                    self.appendCard(keyValueCard)
-
-                    // Teams
-                    var teams = Array<OrganizationService.Containers.Team>()
-                    for i in 0..<4 {
-                        var team = OrganizationService.Containers.Team.builder()
-                        team.name = "Product Development"
-                        teams.append(team.build())
-                    }
-                    
-                    let teamsCard = Card(cardType: .TeamsGrid, title: AppStrings.CardTitleOfficeTeam)
-                    teamsCard.addContent(content: teams as [AnyObject])
-                    teamsCard.sectionInset = sectionInset
-                    teamsCard.headerSize = sectionHeaderSize
-                    self.appendCard(teamsCard)
-
                     completionHandler(error: nil)
                 } else {
                     completionHandler(error: error)

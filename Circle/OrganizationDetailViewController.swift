@@ -119,9 +119,9 @@ class OrganizationDetailViewController: DetailViewController, CardHeaderViewDele
             navigationController?.pushViewController(viewController, animated: true)
             
         case .Offices:
-            if let officeAddress = dataSource.contentAtIndexPath(indexPath)? as? OrganizationService.Containers.Address {
+            if let office = dataSource.contentAtIndexPath(indexPath)? as? OrganizationService.Containers.Location {
                 let viewController = OfficeDetailViewController()
-                (viewController.dataSource as OfficeDetailDataSource).selectedOffice = officeAddress
+                (viewController.dataSource as OfficeDetailDataSource).selectedOffice = office
                 viewController.hidesBottomBarWhenPushed = true
                 properties.append(TrackerProperty.withKey(.Destination).withSource(.Detail))
                 properties.append(TrackerProperty.withKey(.DestinationDetailType).withDetailType(.Office))

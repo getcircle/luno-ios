@@ -45,7 +45,7 @@ class OfficeDetailViewController: DetailViewController {
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
                     let viewController = storyboard.instantiateViewControllerWithIdentifier("ProfilesViewController") as ProfilesViewController
                     viewController.dataSource.setInitialData(officeDetailDataSource.profiles, ofType: nil)
-                    viewController.title = "People @ " + officeDetailDataSource.selectedOffice.city
+                    viewController.title = "People @ " + officeDetailDataSource.selectedOffice.address.city
                     navigationController?.pushViewController(viewController, animated: true)
                     
                 default:
