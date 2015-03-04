@@ -75,7 +75,7 @@ class OfficeDetailDataSource: CardDataSource {
             self.appendCard(teamsCard)
             completionHandler(error: nil)
             
-            ProfileService.Actions.getProfiles(addressId: selectedOffice.id) { (profiles, error) -> Void in
+            ProfileService.Actions.getProfiles(locationId: selectedOffice.id) { (profiles, error) -> Void in
                 if error == nil && profiles != nil {
                     self.profiles.extend(profiles!)
                     completionHandler(error: nil)

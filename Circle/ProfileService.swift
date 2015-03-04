@@ -85,6 +85,12 @@ extension ProfileService {
             self.getProfiles(requestBuilder, completionHandler: completionHandler)
         }
         
+        class func getProfiles(#locationId: String, completionHandler: GetProfilesCompletionHandler?) {
+            let requestBuilder = ProfileService.GetProfiles.Request.builder()
+            requestBuilder.location_id = locationId
+            self.getProfiles(requestBuilder, completionHandler: completionHandler)
+        }
+        
         class func getExtendedProfile(profileId: String, completionHandler: GetExtendedProfileCompletionHandler?) {
             let requestBuilder = ProfileService.GetExtendedProfile.Request.builder()
             requestBuilder.profile_id = profileId
