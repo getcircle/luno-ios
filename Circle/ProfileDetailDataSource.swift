@@ -480,19 +480,11 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
         }
         else {
             // TODO: Remove after testing UI
-            var location = address!.name.stringByReplacingOccurrencesOfString(
-                "HQ", 
-                withString: "", 
-                options: .CaseInsensitiveSearch, 
-                range: nil
-            )
-            location = location.trimWhitespace()
-
             let fakeBio = NSString(
                 format: "Hi! I'm %@. I work on the %@ team in %@. I am a food lover, photographer and traveler.",
                 profile.first_name,
                 team!.name,
-                location
+                location!.address.officeName()
             )
             card.addContent(content: [fakeBio] as [AnyObject])
         }
