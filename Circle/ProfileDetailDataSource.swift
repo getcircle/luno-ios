@@ -20,6 +20,7 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
     private(set) var team: OrganizationService.Containers.Team?
     private(set) var identities: Array<UserService.Containers.Identity>?
     private(set) var resume: ResumeService.Containers.Resume?
+    private(set) var location: OrganizationService.Containers.Location?
 
     private var hasSocialConnectCTAs = false
     private(set) var profileHeaderView: ProfileHeaderCollectionReusableView?
@@ -57,7 +58,7 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
             var placeholderCard = Card(cardType: .Placeholder, title: "Info")
             appendCard(placeholderCard)
             ProfileService.Actions.getExtendedProfile(profile.id) {
-                (profile, manager, team, address, skills, _, identities, resume, error) -> Void in
+                (profile, manager, team, address, skills, _, identities, resume, location, error) -> Void in
                 if error == nil {
                     self.manager = manager
                     self.team = team
