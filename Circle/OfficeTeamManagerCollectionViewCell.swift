@@ -97,10 +97,10 @@ class OfficeTeamManagerCollectionViewCell: CircleCollectionViewCell {
                 hideManagerInfo()
             }
             
-            if let office = dataDictionary["office"] as? OrganizationService.Containers.Address {
+            if let office = dataDictionary["office"] as? OrganizationService.Containers.Location {
                 // TODO: Make this come from the backend
                 officeImageView.image = UIImage(named: "SF")
-                officeLabel.text = office.name
+                officeLabel.text = office.address.officeName()
             }
         }
     }

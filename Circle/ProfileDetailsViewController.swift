@@ -502,13 +502,13 @@ class ProfileDetailsViewController:
     }
     
     func onOfficeTapped(notification: NSNotification) {
-//        let profileInfoCollectionView = detailViews[0]
-//        if let dataSource = profileInfoCollectionView.dataSource as? ProfileDetailDataSource {
-//            let officeDetailVC = OfficeDetailViewController()
-////            (officeDetailVC.dataSource as OfficeDetailDataSource).selectedOffice = dataSource.address
-//            officeDetailVC.hidesBottomBarWhenPushed = true
-//            navigationController?.pushViewController(officeDetailVC, animated: true)
-//        }
+        let profileInfoCollectionView = detailViews[0]
+        if let dataSource = profileInfoCollectionView.dataSource as? ProfileDetailDataSource {
+            let officeDetailVC = OfficeDetailViewController()
+            (officeDetailVC.dataSource as OfficeDetailDataSource).selectedOffice = dataSource.location
+            officeDetailVC.hidesBottomBarWhenPushed = true
+            navigationController?.pushViewController(officeDetailVC, animated: true)
+        }
     }
     
     func onTeamTapped(notification: NSNotification) {

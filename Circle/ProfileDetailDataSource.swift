@@ -66,6 +66,7 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
                     self.skills = skills
                     self.identities = identities
                     self.resume = resume
+                    self.location = location
                     self.populateData()
                 }
                 completionHandler(error: error)
@@ -458,7 +459,7 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
             content["team"] = team
         }
 
-        if let office = address {
+        if let office = location {
             content["office"] = office
         }
 
