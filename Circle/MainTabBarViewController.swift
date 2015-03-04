@@ -10,6 +10,8 @@ import UIKit
 
 class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
 
+    let tabBarItemImageInset = UIEdgeInsetsMake(6.0, 0.0, -6.0, 0.0)
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -31,10 +33,11 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
         let searchNavigationController = UINavigationController(rootViewController: searchViewController)
         let homeTabImage = UIImage(named: "Home")?.imageWithRenderingMode(.AlwaysTemplate)
         searchNavigationController.tabBarItem = UITabBarItem(
-            title: "Home",
+            title: "",
             image: homeTabImage,
             selectedImage: homeTabImage
         )
+        searchNavigationController.tabBarItem.imageInsets = tabBarItemImageInset
         tabBarViewControllers.append(searchNavigationController)
 
         setViewControllers(tabBarViewControllers, animated: true)
@@ -53,10 +56,11 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
                 let orgTabImage = UIImage(named: "Building")?.imageWithRenderingMode(.AlwaysTemplate)
                 let organization = AuthViewController.getLoggedInUserOrganization()!
                 navController.tabBarItem = UITabBarItem(
-                    title: organization.name,
+                    title: "",
                     image: orgTabImage,
                     selectedImage: orgTabImage
                 )
+                navController.tabBarItem.imageInsets = tabBarItemImageInset
                 tabBarViewControllers.append(navController)
 
                 // Profile Tab
@@ -70,10 +74,11 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
                 let profileNavController = UINavigationController(rootViewController: profileViewController)
                 let profileTabImage = UIImage(named: "Profile")?.imageWithRenderingMode(.AlwaysTemplate)
                 profileNavController.tabBarItem = UITabBarItem(
-                    title: "You",
+                    title: "",
                     image: profileTabImage,
                     selectedImage: profileTabImage
                 )
+                profileNavController.tabBarItem.imageInsets = tabBarItemImageInset
                 tabBarViewControllers.append(profileNavController)
 
                 setViewControllers(tabBarViewControllers, animated: true)

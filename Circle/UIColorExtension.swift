@@ -25,7 +25,7 @@ extension UIColor {
     class func appTintColor() -> UIColor {
 //        return UIColor(red: 225, green: 40, blue: 47)
 //        return UIColor.blackColor()
-        return UIColor(red: 37, green: 37, blue: 37)
+        return UIColor(red: 0, green: 0, blue: 0)
     }
     
     class func defaultLightTextColor() -> UIColor {
