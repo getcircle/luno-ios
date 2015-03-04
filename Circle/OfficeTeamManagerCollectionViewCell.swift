@@ -45,6 +45,7 @@ class OfficeTeamManagerCollectionViewCell: CircleCollectionViewCell {
         super.awakeFromNib()
         
         // Initialization code
+        selectedBackgroundView = nil
         configureImageViews()
         configureSpacerViews()
         configureButtons()

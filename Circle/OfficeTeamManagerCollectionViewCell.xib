@@ -14,7 +14,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="172"/>
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="akz-t7-tGz" userLabel="OfficeButton">
-                        <rect key="frame" x="0.0" y="10" width="107" height="152"/>
+                        <rect key="frame" x="0.0" y="0.0" width="107" height="172"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="130" id="HKr-Z9-oTF"/>
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="105" id="tTa-El-Hei"/>
@@ -32,7 +32,7 @@
                         </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lYX-pg-Ehm" userLabel="TeamButton">
-                        <rect key="frame" x="107" y="10" width="106" height="152"/>
+                        <rect key="frame" x="107" y="0.0" width="106" height="172"/>
                         <state key="normal">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
@@ -41,7 +41,7 @@
                         </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lls-vh-Nqt" userLabel="ManagerButton">
-                        <rect key="frame" x="213" y="10" width="107" height="152"/>
+                        <rect key="frame" x="213" y="0.0" width="107" height="172"/>
                         <state key="normal">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
@@ -122,13 +122,13 @@
             </view>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="akz-t7-tGz" secondAttribute="bottom" constant="10" id="0Ad-SD-nnr"/>
+                <constraint firstAttribute="bottom" secondItem="akz-t7-tGz" secondAttribute="bottom" id="0Ad-SD-nnr"/>
                 <constraint firstItem="Mp8-2b-qNF" firstAttribute="leading" secondItem="62q-EE-3o3" secondAttribute="leading" constant="30" id="0JX-zQ-5qr"/>
                 <constraint firstItem="tmC-id-ZdJ" firstAttribute="leading" secondItem="Si7-Pq-8al" secondAttribute="trailing" id="1PH-Tv-5mC"/>
                 <constraint firstItem="qzp-1d-KyF" firstAttribute="leading" secondItem="q8v-FJ-kAF" secondAttribute="trailing" id="1TK-MV-AM0"/>
                 <constraint firstItem="q8v-FJ-kAF" firstAttribute="width" secondItem="Z5n-wR-AV5" secondAttribute="width" id="3LE-1v-gWI"/>
                 <constraint firstItem="akz-t7-tGz" firstAttribute="leading" secondItem="62q-EE-3o3" secondAttribute="leading" constant="30" id="4ML-i6-ll7"/>
-                <constraint firstItem="akz-t7-tGz" firstAttribute="top" secondItem="62q-EE-3o3" secondAttribute="top" constant="10" id="5dH-iE-Oc4"/>
+                <constraint firstItem="akz-t7-tGz" firstAttribute="top" secondItem="62q-EE-3o3" secondAttribute="top" id="5dH-iE-Oc4"/>
                 <constraint firstItem="Lls-vh-Nqt" firstAttribute="height" secondItem="akz-t7-tGz" secondAttribute="height" id="5fN-9H-63P"/>
                 <constraint firstItem="lYX-pg-Ehm" firstAttribute="leading" secondItem="akz-t7-tGz" secondAttribute="trailing" id="8IY-hy-stk"/>
                 <constraint firstAttribute="trailing" secondItem="a5z-KZ-lsl" secondAttribute="trailing" constant="15" id="8ge-zq-5ba"/>
@@ -209,7 +209,7 @@
                 <outlet property="teamLabel" destination="tmC-id-ZdJ" id="oGR-3E-NXd"/>
                 <outlet property="teamNameLetterLabel" destination="ihC-7H-fN7" id="7mh-uW-mZq"/>
             </connections>
-            <point key="canvasLocation" x="-154" y="-311"/>
+            <point key="canvasLocation" x="-438" y="-1639"/>
         </collectionViewCell>
     </objects>
 </document>
