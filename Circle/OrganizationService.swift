@@ -13,6 +13,7 @@ typealias GetAddressesCompletionHandler = (addresses: Array<OrganizationService.
 typealias GetTeamsCompletionHandler = (teams: Array<OrganizationService.Containers.Team>?, error: NSError?) -> Void
 typealias GetTeamChildrenCompletionHandler = (teams: Array<OrganizationService.Containers.Team>?, error: NSError?) -> Void
 typealias GetOrganizationCompletionHandler = (organization: OrganizationService.Containers.Organization?, error: NSError?) -> Void
+typealias GetLocationsCompletionHandler = (locations: Array<OrganizationService.Containers.Location>?, error: NSError?) -> Void
 
 extension OrganizationService {
     class Actions {
@@ -82,5 +83,23 @@ extension OrganizationService {
                     completionHandler?(organization: response?.organization, error: error)
             }
         }
+        
+        class func getLocations(organizationId: String, completionHandler: GetLocationsCompletionHandler?) {
+            let requestBuilder = OrganizationService.GetLocations.Request.builder()
+            requestBuilder.organization_id = organizationId
+            
+            let client = ServiceClient(serviceName: "organization")
+            client.callAction(
+                "get_locations",
+                extensionField: OrganizationServiceRequests_get_locations,
+                requestBuilder: requestBuilder
+            ) { (_, _, _, actionResponse, error) -> Void in
+                let response = actionResponse?.result.getExtension(
+                    OrganizationServiceRequests_get_locations
+                ) as? OrganizationService.GetLocations.Response
+                completionHandler?(locations: response?.locations, error: error)
+            }
+        }
+        
     }
 }

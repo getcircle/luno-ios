@@ -25,6 +25,7 @@ class ObjectStore {
         var addresses: Array<OrganizationService.Containers.Address>?
         var skills: Array<ProfileService.Containers.Skill>?
         var activeSkills: Array<ProfileService.Containers.Skill>?
+        var locations: Array<OrganizationService.Containers.Location>?
     }
     
     class var sharedInstance: ObjectStore {
@@ -37,6 +38,7 @@ class ObjectStore {
     private(set) var profiles = Dictionary<String, ProfileService.Containers.Profile>()
     private(set) var teams = Dictionary<String, OrganizationService.Containers.Team>()
     private(set) var addresses = Dictionary<String, OrganizationService.Containers.Address>()
+    private(set) var locations = Dictionary<String, OrganizationService.Containers.Location>()
     private(set) var skills = Dictionary<String, ProfileService.Containers.Skill>()
     private(set) var activeSkills = Dictionary<String, ProfileService.Containers.Skill>()
     
@@ -68,6 +70,11 @@ class ObjectStore {
                 objects.activeSkills = skills
                 self.update(objects)
             }
+            
+            OrganizationService.Actions.getLocations(currentProfile.organization_id) { (locations, error) -> Void in
+                objects.locations = locations
+                self.update(objects)
+            }
         }
     }
     
@@ -88,6 +95,12 @@ class ObjectStore {
             var cache = addresses as [String: GeneratedMessage]
             updateCache(&cache, containers: containers)
             addresses = cache as [String: OrganizationService.Containers.Address]
+        }
+        
+        if let containers = objects.locations {
+            var cache = locations as [String: GeneratedMessage]
+            updateCache(&cache, containers: containers)
+            locations = cache as [String: OrganizationService.Containers.Location]
         }
         
         if let containers = objects.skills {
