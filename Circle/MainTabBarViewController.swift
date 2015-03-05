@@ -53,7 +53,7 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
                 // Organization Tab
                 let orgVC = OrganizationDetailViewController()
                 let navController = UINavigationController(rootViewController: orgVC)
-                let orgTabImage = UIImage(named: "Building")?.imageWithRenderingMode(.AlwaysTemplate)
+                let orgTabImage = UIImage(named: "Briefcase")?.imageWithRenderingMode(.AlwaysTemplate)
                 let organization = AuthViewController.getLoggedInUserOrganization()!
                 navController.tabBarItem = UITabBarItem(
                     title: "",
@@ -72,7 +72,7 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
                 )
 
                 let profileNavController = UINavigationController(rootViewController: profileViewController)
-                let profileTabImage = UIImage(named: "Profile")?.imageWithRenderingMode(.AlwaysTemplate)
+                let profileTabImage = UIImage(named: "User")?.imageWithRenderingMode(.AlwaysTemplate)
                 profileNavController.tabBarItem = UITabBarItem(
                     title: "",
                     image: profileTabImage,
