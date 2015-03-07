@@ -133,6 +133,6 @@ class CircleImageView: UIImageView {
     // MARK: - Helper
     
     private func setImageLabelFont() {
-        imageLabel.font = UIFont(name: "Avenir-Light", size: frameWidth / 2.0)
+        imageLabel.font = UIFont(name: "Avenir-Light", size: min(frameWidth / 2.0, 22.0))
     }
 }

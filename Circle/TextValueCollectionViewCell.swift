@@ -22,6 +22,12 @@ class TextValueCollectionViewCell: CircleCollectionViewCell {
         return .Dynamic
     }
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        selectedBackgroundView = nil
+    }
+
     override func intrinsicContentSize() -> CGSize {
         var height = textLabel.intrinsicContentSize().height
         height += textLabelTopConstraint.constant

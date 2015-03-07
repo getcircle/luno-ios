@@ -56,7 +56,7 @@
                             <constraint firstAttribute="width" secondItem="Mp8-2b-qNF" secondAttribute="height" multiplier="1:1" id="uph-rK-t8e"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="San Francisco" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="Si7-Pq-8al" userLabel="OfficeLabel">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="San Francisco" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="Si7-Pq-8al" userLabel="OfficeLabel">
                         <rect key="frame" x="15" y="100" width="90" height="20"/>
                         <constraints>
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="Tmh-dJ-xTw"/>
@@ -80,7 +80,7 @@
                             <constraint firstAttribute="width" constant="60" id="QsN-0m-JMX"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Design" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="tmC-id-ZdJ" userLabel="TeamLabel">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Design" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="tmC-id-ZdJ" userLabel="TeamLabel">
                         <rect key="frame" x="115" y="100" width="90" height="20"/>
                         <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
                         <color key="textColor" red="0.15056315064430237" green="0.15055865049362183" blue="0.15056121349334717" alpha="1" colorSpace="calibratedRGB"/>
@@ -111,7 +111,7 @@
                             <constraint firstAttribute="width" constant="60" id="RD6-yd-hHS"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tom S" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="a5z-KZ-lsl" userLabel="ManagerLabel">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tom S" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="a5z-KZ-lsl" userLabel="ManagerLabel">
                         <rect key="frame" x="215" y="100" width="90" height="20"/>
                         <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
                         <color key="textColor" red="0.15056315064430237" green="0.15055865049362183" blue="0.15056121349334717" alpha="1" colorSpace="calibratedRGB"/>
