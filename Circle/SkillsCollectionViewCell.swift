@@ -103,7 +103,7 @@ class SkillsCollectionViewCell: CircleCollectionViewCell, UICollectionViewDataSo
         prototypeCell.setNeedsLayout()
         prototypeCell.layoutIfNeeded()
         let intrinsicSize = prototypeCell.intrinsicContentSize()
-        return CGSizeMake(intrinsicSize.width, 28.0)
+        return CGSizeMake(intrinsicSize.width, 40.0)
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {

@@ -125,7 +125,7 @@ extension UIColor {
     }
 
     class func skillNormalBorderColor() -> UIColor {
-        return UIColor(red: 180, green: 180, blue: 180)
+        return UIColor(red: 212, green: 212, blue: 212)
     }
     
     class func skillSelectedBorderColor() -> UIColor {
