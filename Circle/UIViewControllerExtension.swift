@@ -43,28 +43,28 @@ enum QuickAction: Int {
         case .Message:
             return MetaInfo(
                 actionLabel: AppStrings.QuickActionMessageLabel,
-                imageSource: "Messages",
+                imageSource: "Sms",
                 placeholder: AppStrings.QuickActionMessagePlaceholder
             )
 
         case .MoreInfo:
             return MetaInfo(
                 actionLabel: AppStrings.QuickActionInfoLabel,
-                imageSource: "More",
+                imageSource: "Ellipsis",
                 placeholder: AppStrings.QuickActionInfoPlaceholder
             )
         
         case .Note:
             return MetaInfo(
                 actionLabel: AppStrings.QuickActionNoteLabel,
-                imageSource: "Notepad",
+                imageSource: "Compose",
                 placeholder: AppStrings.QuickActionNotePlaceholder
             )
 
         case .Phone:
             return MetaInfo(
                 actionLabel: AppStrings.QuickActionCallLabel,
-                imageSource: "Telephone",
+                imageSource: "Call",
                 placeholder: AppStrings.QuickActionCallPlaceholder
             )
             

@@ -228,4 +228,8 @@ extension UIColor {
     class func appAttributeTitleLabelColor() -> UIColor {
         return UIColor(red: 119, green: 119, blue: 119)
     }
+    
+    class func appQuickActionsTintColor() -> UIColor {
+        return UIColor(red: 119, green: 119, blue: 119)
+    }
 }

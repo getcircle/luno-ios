@@ -66,11 +66,10 @@ class QuickActionsCollectionViewCell: CircleCollectionViewCell {
                 let metaInfo = QuickAction.metaInfoForQuickAction(quickActionsToAdd[index])
                 button.setImage(UIImage(named: metaInfo.imageSource), forState: .Normal)
                 actionButtonLabels[index].text = metaInfo.actionLabel.localizedUppercaseString()
-                button.makeItCircular(true, borderColor: UIColor.appQuickActionsDarkTintColor())
                 button.convertToTemplateImageForState(.Normal)
-                button.imageEdgeInsets = UIEdgeInsetsMake(10.0, 10.0, 10.0, 10.0)
                 button.alpha = 1.0
                 button.tag = index
+                button.tintColor = UIColor.appQuickActionsDarkTintColor()
                 button.addTarget(self, action: "quickActionTapped:", forControlEvents: .TouchUpInside)
             }
             else {
@@ -89,20 +88,6 @@ class QuickActionsCollectionViewCell: CircleCollectionViewCell {
         }
     }
     
-    // MARK: Hide, Show Borders
-    
-    func hideBorders() {
-        for button in actionButtons {
-            button.layer.borderColor = backgroundColor?.CGColor
-        }
-    }
-    
-    func addBorders() {
-        for button in actionButtons {
-            button.layer.borderColor = UIColor.appQuickActionsDarkTintColor().CGColor
-        }
-    }
-
     // MARK: Hide, Show Labels
     
     func hideLabels() {

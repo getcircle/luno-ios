@@ -498,7 +498,6 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
             quickActionsCell.backgroundColor = UIColor.whiteColor()
             quickActionsCell.quickActions = [.Message, .Email, .Phone, .MoreInfo]
             quickActionsCell.hideLabels()
-            quickActionsCell.hideBorders()
         }
     }
     
