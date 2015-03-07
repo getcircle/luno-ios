@@ -36,8 +36,13 @@ extension SearchService {
         
         class func search(query: String, completionHandler: SearchCompletionHandler?) {
             // Query the cache
-            var (result, error) = search(query)
-            completionHandler?(result: result, error: error)
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), { () -> Void in
+                var (result, error) = self.search(query)
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    completionHandler?(result: result, error: error)
+                    return
+                })
+            })
             
             // Send a search request to the servers
 //            let requestBuilder = SearchService.Search.Request.builder()
