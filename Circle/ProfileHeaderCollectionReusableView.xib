@@ -43,16 +43,6 @@
                         <constraint firstAttribute="height" constant="35" id="HK9-TE-Fkf"/>
                     </constraints>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xmj-MC-afc" userLabel="VerifiedButton">
-                    <rect key="frame" x="222" y="157" width="20" height="20"/>
-                    <constraints>
-                        <constraint firstAttribute="width" secondItem="xmj-MC-afc" secondAttribute="height" multiplier="1:1" id="FJM-Mn-orJ"/>
-                        <constraint firstAttribute="width" constant="20" id="JBa-7b-jUB"/>
-                    </constraints>
-                    <state key="normal" image="CircleCheck">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ravi Rani" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zJL-k5-Ada" userLabel="NameNavLabel">
                     <rect key="frame" x="20" y="238" width="280" height="20"/>
                     <constraints>
@@ -68,9 +58,20 @@
                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xmj-MC-afc" userLabel="VerifiedButton">
+                    <rect key="frame" x="190" y="85" width="20" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="xmj-MC-afc" secondAttribute="height" multiplier="1:1" id="FJM-Mn-orJ"/>
+                        <constraint firstAttribute="width" constant="20" id="JBa-7b-jUB"/>
+                    </constraints>
+                    <state key="normal" image="CircleCheckFilled">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
             </subviews>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="4NY-Ue-zhf" secondAttribute="trailing" id="2u1-2N-e1H"/>
+                <constraint firstItem="xmj-MC-afc" firstAttribute="centerX" secondItem="kX0-a4-Q8w" secondAttribute="centerX" constant="40" id="3ft-yc-wru"/>
                 <constraint firstItem="Raz-vM-IgD" firstAttribute="trailing" secondItem="zJL-k5-Ada" secondAttribute="trailing" id="6V4-GG-xG8"/>
                 <constraint firstItem="65x-XU-UUc" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" id="7FU-uk-nJx"/>
                 <constraint firstItem="GGm-ME-NAZ" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" constant="10" id="9Gx-ny-GHb"/>
@@ -83,6 +84,7 @@
                 <constraint firstAttribute="trailing" secondItem="zJL-k5-Ada" secondAttribute="trailing" constant="20" symbolic="YES" id="LPl-jQ-bUh"/>
                 <constraint firstItem="GGm-ME-NAZ" firstAttribute="top" secondItem="1Tu-Zx-9yR" secondAttribute="bottom" constant="-2" id="Ohk-wO-3LS"/>
                 <constraint firstItem="1Tu-Zx-9yR" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="U6b-Vx-4bR" secondAttribute="leading" constant="10" id="Oyq-iZ-2Td"/>
+                <constraint firstItem="xmj-MC-afc" firstAttribute="centerY" secondItem="kX0-a4-Q8w" secondAttribute="centerY" id="QBy-S8-c1F"/>
                 <constraint firstAttribute="centerX" secondItem="1Tu-Zx-9yR" secondAttribute="centerX" id="R4p-Us-ip0"/>
                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="xmj-MC-afc" secondAttribute="trailing" constant="10" id="bAE-0G-sPF"/>
                 <constraint firstItem="65x-XU-UUc" firstAttribute="top" secondItem="U6b-Vx-4bR" secondAttribute="top" id="bdw-jq-pCf"/>
@@ -99,6 +101,9 @@
             </constraints>
             <variation key="default">
                 <mask key="constraints">
+                    <exclude reference="im7-pz-jDa"/>
+                    <exclude reference="bAE-0G-sPF"/>
+                    <exclude reference="xPc-Ml-eOy"/>
                     <exclude reference="JG4-cb-RHZ"/>
                 </mask>
             </variation>
@@ -116,6 +121,6 @@
         </collectionReusableView>
     </objects>
     <resources>
-        <image name="CircleCheck" width="24" height="24"/>
+        <image name="CircleCheckFilled" width="24" height="24"/>
     </resources>
 </document>

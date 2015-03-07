@@ -74,7 +74,7 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
     
     private func configureVerifiedProfileButton() {
         verifiedProfileButton.convertToTemplateImageForState(.Normal)
-        verifiedProfileButton.tintColor = UIColor.whiteColor()
+        verifiedProfileButton.tintColor = UIColor.tabBarTintColor()
         verifiedProfileButton.makeItCircular()
     }
     
