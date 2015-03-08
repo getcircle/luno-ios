@@ -23,7 +23,6 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
     private(set) var location: OrganizationService.Containers.Location?
 
     private var hasSocialConnectCTAs = false
-    private(set) var profileHeaderView: ProfileHeaderCollectionReusableView?
     private var sections = [Section]()
 
     private let numberOfEducationItemsVisibleInitially = 1
@@ -55,8 +54,6 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
         }
         else {
             // Add placeholder card to load profile header instantly
-            var placeholderCard = Card(cardType: .Placeholder, title: "Info")
-            appendCard(placeholderCard)
             ProfileService.Actions.getExtendedProfile(profile.id) {
                 (profile, manager, team, address, skills, _, identities, resume, location, error) -> Void in
                 if error == nil {
@@ -77,10 +74,19 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
     // MARK: - Configuration
     
     private func configureSections() {
+        sections.removeAll(keepCapacity: true)
         if onlyShowContactInfo == true {
             sections.append(getContactInfoSection())
         }
         else {
+            if let socialConnectSection = getSocialConnectSection() {
+                hasSocialConnectCTAs = true
+                sections.insert(socialConnectSection, atIndex: 1)
+            }
+            else {
+                hasSocialConnectCTAs = false
+            }
+            
             sections.append(getQuickActionsSection())
             sections.append(getAboutSection())
             sections.append(getSkillsSection())
@@ -287,13 +293,6 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
     
     private func populateData() {
         resetCards()
-        if let socialConnectSection = getSocialConnectSection() {
-            hasSocialConnectCTAs = true
-            sections.insert(socialConnectSection, atIndex: 1)
-        }
-        else {
-            hasSocialConnectCTAs = false
-        }
         
         // Add top margin only when there is a social connect button added
         // to the profile

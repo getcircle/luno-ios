@@ -279,7 +279,7 @@ class VerifyProfileViewController:
         checkDataAndEnableNext()
     }
     
-    // MARK: - Geature Recognizer
+    // MARK: - Gesture Recognizer
     
     func viewTapped(sender: AnyObject!) {
         dismissKeyboard()

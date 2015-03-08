@@ -145,6 +145,4 @@ class FormBuilder: NSObject, UITextFieldDelegate {
             }
         }
     }
-    
-    
 }

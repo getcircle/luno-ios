@@ -577,6 +577,7 @@ class ProfileDetailsViewController:
         if let dataSource = profileInfoCollectionView.dataSource as? ProfileDetailDataSource {
             dataSource.profile = profile
             dataSource.loadData({ (error) -> Void in
+                println("coming here")
                 profileInfoCollectionView.reloadData()
             })
         }
@@ -626,6 +627,7 @@ class ProfileDetailsViewController:
     @IBAction func editProfileButtonTapped(sender: AnyObject!) {
         let editProfileVC = EditProfileViewController(nibName: "EditProfileViewController", bundle: nil)
         editProfileVC.profile = profile
+        editProfileVC.editProfileDelegate = self
         editProfileVC.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(editProfileVC, animated: true)
     }
@@ -687,8 +689,11 @@ class ProfileDetailsViewController:
         if let loggedInUserProfile = AuthViewController.getLoggedInUserProfile() {
             if profile.id == loggedInUserProfile.id {
                 profile = loggedInUserProfile
-                
                 reloadInfoCollectionViewData()
+                
+                if let headerView = profileHeaderView() {
+                    headerView.setProfile(profile)
+                }
             }
         }
     }

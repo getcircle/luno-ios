@@ -444,4 +444,10 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         dismissViewControllerAnimated(true, completion: nil)
     }
+    
+    // MARK: - Gesture Recognizer
+    
+    func viewTapped(sender: AnyObject!) {
+        dismissKeyboard()
+    }
 }
