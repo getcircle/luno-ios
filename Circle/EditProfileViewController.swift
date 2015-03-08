@@ -9,18 +9,22 @@
 import UIKit
 import ProtobufRegistry
 
+protocol EditProfileDelegate {
+    func didFinishEditingProfile()
+}
+
 class EditProfileViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
-
-    var profile: ProfileService.Containers.Profile!
-
-    private var formBuilder = FormBuilder()
     
     @IBOutlet weak private(set) var editImageButton: UIButton!
     @IBOutlet weak private(set) var profileImageView: CircleImageView!
     @IBOutlet weak private(set) var rootScrollView: UIScrollView!
     
+    var editProfileDelegate: EditProfileDelegate?
+    var profile: ProfileService.Containers.Profile!
+
     private var addImageActionSheet: UIAlertController?
     private var didUploadPhoto = false
+    private var formBuilder = FormBuilder()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -104,7 +108,7 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
                     type: .TextField,
                     keyboardType: .EmailAddress,
                     container: "profile",
-                    containerKey: "email"
+                    containerKey: "personal_email"
                 )
             ]),
             FormBuilder.Section(
@@ -129,7 +133,7 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
                     type: .TextField,
                     keyboardType: .PhonePad,
                     container: "profile",
-                    containerKey: "email"
+                    containerKey: "home_phone"
                 )
             ]),
         ]
@@ -213,6 +217,10 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
     
     @IBAction func saveButtonTapped(sender: AnyObject!) {
         handleImageUpload { () -> Void in
+            if let delegate = self.editProfileDelegate {
+                delegate.didFinishEditingProfile()
+            }
+            
             if self.isBeingPresentedModally() {
                 self.dismissViewControllerAnimated(true, completion: nil)
             }
@@ -342,6 +350,46 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
     private func updateProfile(completion: () -> Void) {
         let builder = profile.toBuilder()
         builder.verified = true
+        
+        formBuilder.updateValues()
+        for section in formBuilder.sections {
+            for item in section.items {
+                if let value = item.value {
+                    switch item.container {
+                        case "profile":
+                            // TODO: - Remove after subscripting support
+                            switch item.containerKey {
+                            case "first_name":
+                                builder.first_name = value as String
+                                
+                            case "last_name":
+                                builder.last_name = value as String
+                            
+                            case "title":
+                                builder.title = value as String
+                            
+                            case "email":
+                                builder.email = value as String
+                            
+                            case "work_phone":
+                                builder.work_phone = value as String
+                                
+                            case "cell_phone":
+                                builder.cell_phone = value as String
+                                
+                            default:
+                                break
+                                
+                            }
+                        
+                        default:
+                            break
+                    }
+                }
+                println("Key - \(item.containerKey) Value - \(item.value)")
+            }
+        }
+        
         ProfileService.Actions.updateProfile(builder.build()) { (profile, error) -> Void in
             if let profile = profile {
                 AuthViewController.updateUserProfile(profile)

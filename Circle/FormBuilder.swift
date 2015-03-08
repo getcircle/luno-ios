@@ -20,11 +20,12 @@ class FormBuilder: NSObject, UITextFieldDelegate {
     }
     
     class SectionItem {
-        var placeholder: String
-        var type: FormFieldType
-        var keyboardType: UIKeyboardType
         var container: String
         var containerKey: String
+        var input: AnyObject?
+        var keyboardType: UIKeyboardType
+        var placeholder: String
+        var type: FormFieldType
         var value: Any?
         
         init(placeholder withPlaceholder: String, type andType: FormFieldType, keyboardType andKeyboardType: UIKeyboardType, container andContainer: String, containerKey andContainerKey: String) {
@@ -91,6 +92,7 @@ class FormBuilder: NSObject, UITextFieldDelegate {
                         textField.text = textValue
                     }
 
+                    item.input = textField
                     previousView = textField
                     break
                     
@@ -108,6 +110,41 @@ class FormBuilder: NSObject, UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(textField: UITextField) {
-        activeField = nil
+        textFieldEditingComplete(textField)
     }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textFieldEditingComplete(textField)
+        return true
+    }
+    
+    private func textFieldEditingComplete(textField: UITextField) {
+        activeField = nil
+        updateValues()
+    }
+    
+    
+    // MARK: Data
+    
+    func updateValues() {
+        
+        for section in sections {
+            
+            for item in section.items {
+                
+                if let input: AnyObject = item.input {
+                    switch item.type {
+                    case .TextField:
+                        item.value = (input as UITextField).text
+                        println(item.value)
+
+                    default:
+                        break
+                    }
+                }
+            }
+        }
+    }
+    
+    
 }

@@ -14,7 +14,8 @@ class ProfileDetailsViewController:
         UnderlyingCollectionViewDelegate,
         UIScrollViewDelegate,
         NewNoteViewControllerDelegate,
-        ProfileDetailSegmentedControlDelegate
+        ProfileDetailSegmentedControlDelegate,
+        EditProfileDelegate
     {
     
     // Segmented Control Helpers
@@ -96,22 +97,22 @@ class ProfileDetailsViewController:
     // MARK: - Configurations
     
     private func configureNavigationButtons() {
-//        if profile.id == AuthViewController.getLoggedInUserProfile()!.id {
-//            let editButtonItem = UIBarButtonItem(
-//                image: UIImage(named: "Pencil"),
-//                style: .Plain,
-//                target: self,
-//                action: "editProfileButtonTapped:"
-//            )
-//            
-//            var rightBarButtonItems = [UIBarButtonItem]()
-//            if navigationItem.rightBarButtonItem != nil {
-//                rightBarButtonItems.append(navigationItem.rightBarButtonItem!)
-//            }
-//
-//            rightBarButtonItems.append(editButtonItem)
-//            navigationItem.rightBarButtonItems = rightBarButtonItems
-//        }
+        if profile.id == AuthViewController.getLoggedInUserProfile()!.id {
+            let editButtonItem = UIBarButtonItem(
+                image: UIImage(named: "Pencil"),
+                style: .Plain,
+                target: self,
+                action: "editProfileButtonTapped:"
+            )
+            
+            var rightBarButtonItems = [UIBarButtonItem]()
+            if navigationItem.rightBarButtonItem != nil {
+                rightBarButtonItems.append(navigationItem.rightBarButtonItem!)
+            }
+
+            rightBarButtonItems.append(editButtonItem)
+            navigationItem.rightBarButtonItems = rightBarButtonItems
+        }
     }
 
     private func configureOverlayView() {
@@ -444,12 +445,7 @@ class ProfileDetailsViewController:
     }
     
     func socialServiceConnectNotification(notification: NSNotification) {
-        let profileInfoCollectionView = detailViews[0]
-        if let dataSource = profileInfoCollectionView.dataSource as? ProfileDetailDataSource {
-            dataSource.loadData({ (error) -> Void in
-                profileInfoCollectionView.reloadData()
-            })
-        }
+        reloadInfoCollectionViewData()
     }
     
     private func performQuickAction(quickAction: QuickAction, additionalData: AnyObject? = nil) {
@@ -576,6 +572,16 @@ class ProfileDetailsViewController:
         return false
     }
     
+    private func reloadInfoCollectionViewData() {
+        let profileInfoCollectionView = detailViews[0]
+        if let dataSource = profileInfoCollectionView.dataSource as? ProfileDetailDataSource {
+            dataSource.profile = profile
+            dataSource.loadData({ (error) -> Void in
+                profileInfoCollectionView.reloadData()
+            })
+        }
+    }
+    
     // Class Methods
     
     class func forProfile(
@@ -674,4 +680,17 @@ class ProfileDetailsViewController:
         }
         return properties
     }
+    
+    // MARK: - EditProfileDelegate
+    
+    func didFinishEditingProfile() {
+        if let loggedInUserProfile = AuthViewController.getLoggedInUserProfile() {
+            if profile.id == loggedInUserProfile.id {
+                profile = loggedInUserProfile
+                
+                reloadInfoCollectionViewData()
+            }
+        }
+    }
+    
 }
