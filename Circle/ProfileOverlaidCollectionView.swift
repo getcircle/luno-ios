@@ -68,6 +68,20 @@ class ProfileOverlaidCollectionViewDataSource: CardDataSource {
         return super.collectionView(collectionView, viewForSupplementaryElementOfKind: kind, atIndexPath: indexPath)
     }
     
+    // MARK: - Public Methods
+    
+    func matchContentHeight(height: CGFloat) {
+        resetCards()
+        let cells = Int(ceil(height / CircleCollectionViewCell.height))
+        let card = Card(cardType: .Empty, title: "Empty")
+        var placeholders = [Int]()
+        for i in 0..<cells {
+            placeholders.append(i)
+        }
+        card.addContent(content: placeholders)
+        appendCard(card)
+    }
+    
 }
 
 class ProfileOverlaidCollectionView: UICollectionView, UICollectionViewDelegate {
@@ -133,5 +147,12 @@ class ProfileOverlaidCollectionView: UICollectionView, UICollectionViewDelegate 
 
         // Pass touch events to other sub-views
         return nil
+    }
+    
+    // MARK: - Public Methods
+    
+    func matchContentHeight(height: CGFloat) {
+        collectionViewDataSource?.matchContentHeight(height)
+        reloadData()
     }
 }

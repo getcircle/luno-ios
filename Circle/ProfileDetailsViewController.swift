@@ -89,6 +89,15 @@ class ProfileDetailsViewController:
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
+        // The ProfileOverlaidCollectionView needs to have the same height as the max of the detailViews. Otherwise, the contentOffset gets reset to zero when we push child view controllers.
+        var maxHeight: CGFloat = 0
+        for detailView in detailViews {
+            if detailView.contentSize.height > maxHeight {
+                maxHeight = detailView.contentSize.height
+            }
+        }
+        (overlaidCollectionView as? ProfileOverlaidCollectionView)?.matchContentHeight(maxHeight)
+        
         // When data is cached, it is possible to have it loaded before we even have the chance to
         // register for notifications
         updateNotesTitle(nil)
