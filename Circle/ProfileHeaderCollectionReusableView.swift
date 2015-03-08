@@ -43,6 +43,7 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
     private var sectionIndicatorWidthConstraint: NSLayoutConstraint?
     private var sectionIndicatorViewIsAnimating = false
     private var segmentedControlButtons = [UIButton]()
+    private var controlsConfigured = false
     
     private let buttonAttributes = [
         NSKernAttributeName: NSNumber(double: 2.0),
@@ -125,6 +126,14 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
     // MARK: - Segmented Control
 
     private func configureSegmentedControl(sections withSections: [ProfileDetailView]) {
+        
+        // Ensure we only configure the controls once
+        if controlsConfigured {
+            return
+        } else {
+            controlsConfigured = true
+        }
+        
         // Setup the segment buttons
         let buttonSegmentOffset: CGFloat = 0.5
         let width: CGFloat = (frame.width - (CGFloat(withSections.count - 1) * buttonSegmentOffset)) / CGFloat(withSections.count)
