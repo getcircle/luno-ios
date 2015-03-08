@@ -33,6 +33,7 @@ class CircleImageView: UIImageView {
         }
     }
     
+    var addLabelIfImageLoadingFails = true
     private var imageLabel: UILabel!
     
     override init(frame: CGRect) {
@@ -67,27 +68,40 @@ class CircleImageView: UIImageView {
         imageResponseSerializer = serializer
     }
 
-    func setImageWithProfile(profile: ProfileService.Containers.Profile) {
+    func setImageWithProfile(profile: ProfileService.Containers.Profile, successHandler: ((image: UIImage) -> Void)? = nil) {
         let request = NSURLRequest(URL: NSURL(string: profile.image_url)!)
         updateAcceptableContentTypes()
         
         if let cachedImage = UIImageView.sharedImageCache().cachedImageForRequest(request) {
-            self.image = cachedImage
+            if let successCallback = successHandler {
+                successCallback(image: cachedImage)
+            }
+            else {
+                image = cachedImage
+            }
         }
         else {
             transform = CGAffineTransformMakeScale(0.0, 0.0)
-            
             setImageWithURLRequest(request,
                 placeholderImage: UIImage.imageFromColor(UIColor.darkGrayColor(), withRect: bounds),
                 success: { (request, response, image) -> Void in
-                    self.image = image
-                    self.makeImageVisible(true)
+                    if let successCallback = successHandler {
+                        self.transform = CGAffineTransformIdentity
+                        successCallback(image: image)
+                    }
+                    else {
+                        self.image = image
+                        self.makeImageVisible(true)
+                    }
                 },
                 failure: { (request, response, error) -> Void in
-                    self.imageText = profile.first_name[0] + profile.last_name[0]
-                    var profileImageBackgroundColor = ProfileColorsHolder.colors[profile.id] ?? UIColor.profileImageBackgroundColor()
-                    ProfileColorsHolder.colors[profile.id] = profileImageBackgroundColor
-                    self.imageLabel.backgroundColor = profileImageBackgroundColor
+                    if self.addLabelIfImageLoadingFails {
+                        self.imageText = profile.first_name[0] + profile.last_name[0]
+                        var profileImageBackgroundColor = ProfileColorsHolder.colors[profile.id] ?? UIColor.profileImageBackgroundColor()
+                        ProfileColorsHolder.colors[profile.id] = profileImageBackgroundColor
+                        self.imageLabel.backgroundColor = profileImageBackgroundColor
+                    }
+                    
                     self.makeImageVisible(false)
                     println("failed to fetch image for profile: \(profile.full_name) - \(profile.image_url) error: \(error.localizedDescription)")
                 }

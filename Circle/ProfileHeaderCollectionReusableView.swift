@@ -15,7 +15,7 @@ protocol ProfileDetailSegmentedControlDelegate {
 
 class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
 
-    @IBOutlet weak private(set) var backgroundImage: UIImageView!
+    @IBOutlet weak private(set) var backgroundImageView: CircleImageView!
     @IBOutlet weak private(set) var nameLabel: UILabel!
     @IBOutlet weak private(set) var nameNavLabel: UILabel!
     @IBOutlet weak private(set) var titleLabel: UILabel!
@@ -65,6 +65,7 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
 
         // Initialization code
         profileImage.makeItCircular()
+        backgroundImageView.addLabelIfImageLoadingFails = false
         nameNavLabel.alpha = 0.0
         titleNavLabel.alpha = 0.0
         configureVerifiedProfileButton()
@@ -94,23 +95,20 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
         nameNavLabel.text = nameLabel.text
         titleLabel.text = userProfile.title
         titleNavLabel.text = titleLabel.text
-        profileImage.setImageWithProfile(userProfile)
+        profileImage.setImageWithProfile(userProfile, successHandler: { (image) -> Void in
+            self.profileImage.image = image
+            if self.backgroundImageView.image != image {
+                self.backgroundImageView.image = image
+                self.addBlurEffect()
+            }
+        })
         
-        if let imageURL = NSURL(string: userProfile.image_url) {
-            let urlImageRequest = NSURLRequest(URL: imageURL)
-            backgroundImage.setImageWithURLRequest(
-                urlImageRequest,
-                placeholderImage: UIImage.imageFromColor(UIColor.darkGrayColor(), withRect: bounds),
-                success: { (request, response, image) -> Void in
-                    if self.backgroundImage.image != image {
-                        self.backgroundImage.image = image
-                        self.addBlurEffect()
-                    }
-                },
-                failure: nil
-            )
-        }
-        
+//        backgroundImageView.setImageWithProfile(userProfile, successHandler: { (image) -> Void in
+//            if self.backgroundImageView.image != self.profileImage.image {
+//                self.backgroundImageView.image = self.profileImage.image
+//                self.addBlurEffect()
+//            }
+//        })
         verifiedProfileButton.hidden = !userProfile.verified
     }
 
@@ -125,7 +123,7 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
 
         // TODO: - Remove hardcoded image
         profileImage.image = UIImage(named: "SF")
-        backgroundImage.image = UIImage(named: "SF")
+        backgroundImageView.image = UIImage(named: "SF")
         addBlurEffect()
         verifiedProfileButton.hidden = true
     }
@@ -292,7 +290,7 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
             let blurEffect = UIBlurEffect(style: .Dark)
             visualEffectView = UIVisualEffectView(effect: blurEffect)
             visualEffectView!.setTranslatesAutoresizingMaskIntoConstraints(false)
-            insertSubview(visualEffectView!, aboveSubview: backgroundImage)
+            insertSubview(visualEffectView!, aboveSubview: backgroundImageView)
             visualEffectView!.autoSetDimensionsToSize(UIScreen.mainScreen().bounds.size)
             visualEffectView?.userInteractionEnabled = false
         }
