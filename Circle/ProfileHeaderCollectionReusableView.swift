@@ -75,7 +75,8 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
     
     private func configureVerifiedProfileButton() {
         verifiedProfileButton.convertToTemplateImageForState(.Normal)
-        verifiedProfileButton.tintColor = UIColor.tabBarTintColor()
+        verifiedProfileButton.tintColor = UIColor.whiteColor()
+        verifiedProfileButton.backgroundColor = UIColor.tabBarTintColor()
         verifiedProfileButton.makeItCircular()
     }
     
@@ -102,13 +103,6 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
                 self.addBlurEffect()
             }
         })
-        
-//        backgroundImageView.setImageWithProfile(userProfile, successHandler: { (image) -> Void in
-//            if self.backgroundImageView.image != self.profileImage.image {
-//                self.backgroundImageView.image = self.profileImage.image
-//                self.addBlurEffect()
-//            }
-//        })
         verifiedProfileButton.hidden = !userProfile.verified
     }
 
@@ -305,9 +299,13 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
             // Scale down the image and reduce opacity
             let profileImageFractionValue = 1.0 - (contentOffset.y - minOffsetToMakeChanges)/profileImage.frameY
             profileImage.alpha = profileImageFractionValue
+            verifiedProfileButton.alpha = profileImageFractionValue
+
             if profileImageFractionValue >= 0 {
                 var transform = CGAffineTransformMakeScale(profileImageFractionValue, profileImageFractionValue)
                 profileImage.transform = transform
+                verifiedProfileButton.transform = transform
+                verifiedProfileButton.center = CGPointMake(profileImage.center.x + (profileImage.frameWidth/2.0), verifiedProfileButton.center.y)
             }
             
             // Reduce opacity of the name and title label at a faster pace
@@ -315,7 +313,6 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
             let nameLabelAlpha = 1.0 - contentOffset.y/(nameLabel.frameY - 40.0)
             let sectionsAlpha = 1.0 - contentOffset.y/(sectionsView.frameY - 40.0)
             titleLabel.alpha = titleLabelAlpha
-            verifiedProfileButton.alpha = nameLabelAlpha
             nameLabel.alpha = nameLabelAlpha
             nameNavLabel.alpha = sectionsAlpha <= 0.0 ? nameNavLabel.alpha + 1/20 : 0.0
             titleNavLabel.alpha = sectionsAlpha <= 0.0 ? titleNavLabel.alpha + 1/20 : 0.0
@@ -328,7 +325,7 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
             // Change it slower for everything else
             let otherViewsAlpha = max(0.0, 1.0 - -contentOffset.y/120.0)
             nameLabel.alpha = otherViewsAlpha
-            verifiedProfileButton.alpha = otherViewsAlpha
+            verifiedProfileButton.alpha = profileImageAlpha
             nameNavLabel.alpha = 0.0
             titleNavLabel.alpha = 0.0
             titleLabel.alpha = otherViewsAlpha
