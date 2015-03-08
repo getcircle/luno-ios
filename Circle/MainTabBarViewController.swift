@@ -48,41 +48,42 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
         var tabBarViewControllers = viewControllers ?? [UIViewController]()
 
         if let loggedInUserProfile = AuthViewController.getLoggedInUserProfile() {
+            // Keep only the first one and re-add organization & profile tabs
+            // This allows us to switch between organizations easily.
+            tabBarViewControllers = [tabBarViewControllers[0]]
 
-            if tabBarViewControllers.count == 1 {
-                // Organization Tab
-                let orgVC = OrganizationDetailViewController()
-                let navController = UINavigationController(rootViewController: orgVC)
-                let orgTabImage = UIImage(named: "Briefcase")?.imageWithRenderingMode(.AlwaysTemplate)
-                let organization = AuthViewController.getLoggedInUserOrganization()!
-                navController.tabBarItem = UITabBarItem(
-                    title: "",
-                    image: orgTabImage,
-                    selectedImage: orgTabImage
-                )
-                navController.tabBarItem.imageInsets = tabBarItemImageInset
-                tabBarViewControllers.append(navController)
+            // Organization Tab
+            let orgVC = OrganizationDetailViewController()
+            let navController = UINavigationController(rootViewController: orgVC)
+            let orgTabImage = UIImage(named: "Briefcase")?.imageWithRenderingMode(.AlwaysTemplate)
+            let organization = AuthViewController.getLoggedInUserOrganization()!
+            navController.tabBarItem = UITabBarItem(
+                title: "",
+                image: orgTabImage,
+                selectedImage: orgTabImage
+            )
+            navController.tabBarItem.imageInsets = tabBarItemImageInset
+            tabBarViewControllers.append(navController)
 
-                // Profile Tab
-                let profileViewController = ProfileDetailsViewController.forProfile(
-                    loggedInUserProfile,
-                    showLogOutButton: false,
-                    showCloseButton: false,
-                    showSettingsButton: true
-                )
+            // Profile Tab
+            let profileViewController = ProfileDetailsViewController.forProfile(
+                loggedInUserProfile,
+                showLogOutButton: false,
+                showCloseButton: false,
+                showSettingsButton: true
+            )
 
-                let profileNavController = UINavigationController(rootViewController: profileViewController)
-                let profileTabImage = UIImage(named: "User")?.imageWithRenderingMode(.AlwaysTemplate)
-                profileNavController.tabBarItem = UITabBarItem(
-                    title: "",
-                    image: profileTabImage,
-                    selectedImage: profileTabImage
-                )
-                profileNavController.tabBarItem.imageInsets = tabBarItemImageInset
-                tabBarViewControllers.append(profileNavController)
+            let profileNavController = UINavigationController(rootViewController: profileViewController)
+            let profileTabImage = UIImage(named: "User")?.imageWithRenderingMode(.AlwaysTemplate)
+            profileNavController.tabBarItem = UITabBarItem(
+                title: "",
+                image: profileTabImage,
+                selectedImage: profileTabImage
+            )
+            profileNavController.tabBarItem.imageInsets = tabBarItemImageInset
+            tabBarViewControllers.append(profileNavController)
 
-                setViewControllers(tabBarViewControllers, animated: true)
-            }
+            setViewControllers(tabBarViewControllers, animated: true)
         }
     }
 

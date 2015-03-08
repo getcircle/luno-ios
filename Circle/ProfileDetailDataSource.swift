@@ -54,6 +54,8 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
         }
         else {
             // Add placeholder card to load profile header instantly
+            var placeholderCard = Card(cardType: .Placeholder, title: "Info")
+            appendCard(placeholderCard)
             ProfileService.Actions.getExtendedProfile(profile.id) {
                 (profile, manager, team, address, skills, _, identities, resume, location, error) -> Void in
                 if error == nil {
