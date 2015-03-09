@@ -106,6 +106,12 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
 
     func tabBarController(tabBarController: UITabBarController, shouldSelectViewController viewController: UIViewController) -> Bool {
         trackTabSelected(viewController)
+        
+        if selectedIndex == 0 && getActiveViewController(viewController) is SearchViewController {
+            let searchVC = getActiveViewController(viewController) as SearchViewController
+            searchVC.activateSearch()
+        }
+        
         return true
     }
 

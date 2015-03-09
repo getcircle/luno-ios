@@ -187,6 +187,10 @@ NewNoteViewControllerDelegate {
     
     // MARK: Search Targets
     
+    func activateSearch() {
+        searchHeaderView.searchTextField.becomeFirstResponder()
+    }
+    
     func search() {
         let query = searchHeaderView.searchTextField.text
         (collectionView.dataSource as SearchQueryDataSource).filter(searchHeaderView.searchTextField.text) { (error) -> Void in
@@ -359,17 +363,17 @@ NewNoteViewControllerDelegate {
 
     @IBAction func messageButtonTapped(sender: AnyObject!) {
         selectedAction = .Message
-        searchHeaderView.searchTextField.becomeFirstResponder()
+        activateSearch()
     }
     
     @IBAction func emailButtonTapped(sender: AnyObject!) {
         selectedAction = .Email
-        searchHeaderView.searchTextField.becomeFirstResponder()
+        activateSearch()
     }
 
     @IBAction func phoneButtonTapped(sender: AnyObject!) {
         selectedAction = .Phone
-        searchHeaderView.searchTextField.becomeFirstResponder()
+        activateSearch()
     }
     
     // MARK: - Notifications
@@ -439,7 +443,7 @@ NewNoteViewControllerDelegate {
             if let quickAction = userInfo[QuickActionNotifications.QuickActionTypeUserInfoKey] as? Int {
                 if let quickActionType = QuickAction(rawValue: quickAction) {
                     selectedAction = quickActionType
-                    searchHeaderView.searchTextField.becomeFirstResponder()
+                    activateSearch()
                 }
             }
         }
