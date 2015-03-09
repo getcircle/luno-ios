@@ -33,7 +33,7 @@ class SkillsOverviewViewController: UIViewController, UICollectionViewDelegateFl
     // MARK: - Configuration
     
     private func configureView() {
-        view.backgroundColor = UIColor.viewBackgroundColor()
+        view.backgroundColor = UIColor.appViewBackgroundColor()
     }
     
     private func configurePrototypeCell() {

@@ -26,7 +26,7 @@ class AppreciationCollectionView: UnderlyingCollectionView {
         appreciationDataSource = AppreciationDataSource(profile: profile!)
         appreciationDataSource!.registerCardHeader(self)
         appreciationDelegate = StickyHeaderCollectionViewDelegate()
-        backgroundColor = UIColor.viewBackgroundColor()
+        backgroundColor = UIColor.appViewBackgroundColor()
         dataSource = appreciationDataSource
         delegate = appreciationDelegate
         alwaysBounceVertical = true

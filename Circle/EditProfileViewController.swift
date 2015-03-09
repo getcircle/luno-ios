@@ -154,7 +154,7 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
     
     private func configureView() {
         title = NSLocalizedString("Edit Profile", comment: "Title of the edit profile view")
-        view.backgroundColor = UIColor.viewBackgroundColor()
+        view.backgroundColor = UIColor.appViewBackgroundColor()
         var tapGestureRecognizer = UITapGestureRecognizer(target: self, action: "viewTapped:")
         view.addGestureRecognizer(tapGestureRecognizer)
         editImageButton.tintColor = UIColor.whiteColor()
@@ -286,7 +286,7 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
             message: nil,
             preferredStyle: .ActionSheet
         )
-        actionSheet.view.tintColor = UIColor.actionSheetControlsTintColor()
+        actionSheet.view.tintColor = UIColor.appActionSheetControlsTintColor()
         
         var takeAPictureActionControl = UIAlertAction(
             title: NSLocalizedString("Take a picture", comment: "Button prompt to take a picture using the camera"),

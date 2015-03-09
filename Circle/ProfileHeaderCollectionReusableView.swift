@@ -77,7 +77,7 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
     private func configureVerifiedProfileButton() {
         verifiedProfileButton.convertToTemplateImageForState(.Normal)
         verifiedProfileButton.tintColor = UIColor.whiteColor()
-        verifiedProfileButton.backgroundColor = UIColor.tabBarTintColor()
+        verifiedProfileButton.backgroundColor = UIColor.appTintColor()
         verifiedProfileButton.makeItCircular()
     }
     
@@ -181,7 +181,7 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
         sectionsView.addSubview(sectionIndicatorView!)
         
         selectButtonAtIndex(0)
-        sectionIndicatorView?.backgroundColor = UIColor.tabBarTintColor()
+        sectionIndicatorView?.backgroundColor = UIColor.appTintColor()
         sectionIndicatorView?.autoSetDimension(.Height, toSize: 1.5)
         sectionIndicatorView?.autoPinEdgeToSuperviewEdge(.Bottom, withInset: 5.0)
         sectionIndicatorWidthConstraint = sectionIndicatorView?.autoSetDimension(.Width, toSize: segmentedControlButtons[0].frameWidth)

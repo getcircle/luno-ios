@@ -19,11 +19,11 @@ class SearchHeaderView: UIView {
     @IBOutlet weak private(set) var searchTextFieldHeightConstraint: NSLayoutConstraint!    
     @IBOutlet weak private(set) var searchTextFieldTrailingSpaceConstraint: NSLayoutConstraint!
     
-    var containerBackgroundColor = UIColor.viewBackgroundColor()
+    var containerBackgroundColor = UIColor.appViewBackgroundColor()
     var delegate: SearchHeaderViewDelegate?
-    var searchFieldBackgroundColor = UIColor.searchTextFieldBackground()
-    var searchFieldTextColor = UIColor.defaultDarkTextColor()
-    var searchFieldTintColor = UIColor.appTintColor()
+    var searchFieldBackgroundColor = UIColor.appSearchTextFieldBackground()
+    var searchFieldTextColor = UIColor.appDefaultDarkTextColor()
+    var searchFieldTintColor = UIColor.appUIBackgroundColor()
 
     private var leftViewImageView: UIImageView!
     
@@ -60,7 +60,7 @@ class SearchHeaderView: UIView {
         
         searchFieldBackgroundColor = UIColor.whiteColor()
         containerBackgroundColor = UIColor.whiteColor()
-        searchFieldTintColor = UIColor.appTintColor()
+        searchFieldTintColor = UIColor.appUIBackgroundColor()
         updateView()
     }
     

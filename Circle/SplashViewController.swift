@@ -26,7 +26,7 @@ class SplashViewController: VENTouchLockSplashViewController {
     }
 
     private func customInit() {
-        view.backgroundColor = UIColor.appTintColor()
+        view.backgroundColor = UIColor.appUIBackgroundColor()
     }
     
     override func viewDidLoad() {
@@ -45,7 +45,7 @@ class SplashViewController: VENTouchLockSplashViewController {
     // MARK: - Configuration
     
     private func configureView() {
-        view.backgroundColor = UIColor.viewBackgroundColor()
+        view.backgroundColor = UIColor.appViewBackgroundColor()
     }
     
     private func configureResponseCallback() {
@@ -81,8 +81,8 @@ class SplashViewController: VENTouchLockSplashViewController {
             touchIDButtonLabel.alpha = 1.0
         }
 
-        touchIDButton.makeItCircular(true, borderColor: UIColor.appTintColor())
-        passcodeButton.makeItCircular(true, borderColor: UIColor.appTintColor())
+        touchIDButton.makeItCircular(true, borderColor: UIColor.appUIBackgroundColor())
+        passcodeButton.makeItCircular(true, borderColor: UIColor.appUIBackgroundColor())
     }
     
     // MARK: - IBActions

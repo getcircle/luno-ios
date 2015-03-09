@@ -109,7 +109,7 @@ class ProfileNotesCollectionView: UnderlyingCollectionView {
         profileNotesDataSource = ProfileNotesDataSource(profile: profile!)
         profileNotesDataSource?.registerCardHeader(self)
         profileNotesDelegate = StickyHeaderCollectionViewDelegate()
-        backgroundColor = UIColor.viewBackgroundColor()
+        backgroundColor = UIColor.appViewBackgroundColor()
         dataSource = profileNotesDataSource
         delegate = profileNotesDelegate
         alwaysBounceVertical = true

@@ -79,7 +79,7 @@ NewNoteViewControllerDelegate {
     // MARK: - Configuration
 
     private func configureView() {
-        view.backgroundColor = UIColor.viewBackgroundColor()
+        view.backgroundColor = UIColor.appViewBackgroundColor()
     }
 
     private func configureLaunchScreenView() {
@@ -155,7 +155,7 @@ NewNoteViewControllerDelegate {
 
     private func configureCollectionView() {
         collectionView.keyboardDismissMode = .OnDrag
-        collectionView.backgroundColor = UIColor.viewBackgroundColor()
+        collectionView.backgroundColor = UIColor.appViewBackgroundColor()
         (collectionView.delegate as CardCollectionViewDelegate?)?.delegate = self
         
         landingDataSource = SearchLandingDataSource()

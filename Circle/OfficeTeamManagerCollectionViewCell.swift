@@ -61,14 +61,14 @@ class OfficeTeamManagerCollectionViewCell: CircleCollectionViewCell {
     
     private func configureSpacerViews() {
         for spacer in [spacer1, spacer2] {
-            spacer.backgroundColor = UIColor.viewBackgroundColor()
+            spacer.backgroundColor = UIColor.appViewBackgroundColor()
         }
     }
     
     private func configureButtons() {
         for button in [officeButton, teamButton, managerButton] {
             button.setImage(
-                UIImage.imageFromColor(UIColor.controlHighlightedColor() , withRect: button.bounds),
+                UIImage.imageFromColor(UIColor.appControlHighlightedColor() , withRect: button.bounds),
                 forState: .Highlighted
             )
         }
@@ -79,7 +79,7 @@ class OfficeTeamManagerCollectionViewCell: CircleCollectionViewCell {
     override func setData(data: AnyObject) {
         if let dataDictionary = data as? [String: AnyObject] {
             if let team = dataDictionary["team"] as? OrganizationService.Containers.Team {
-                teamImageView.backgroundColor = UIColor.teamHeaderBackgroundColor(team.id)
+                teamImageView.backgroundColor = UIColor.appTeamHeaderBackgroundColor(team.id)
                 teamLabel.text = team.name
                 teamNameLetterLabel.text = team.name[0]
             }

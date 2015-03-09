@@ -54,10 +54,10 @@ class FormBuilder: NSObject, UITextFieldDelegate {
             
             // Section title
             let sectionTitleLabel = UILabel(forAutoLayout: ())
-            sectionTitleLabel.backgroundColor = UIColor.viewBackgroundColor()
+            sectionTitleLabel.backgroundColor = UIColor.appViewBackgroundColor()
             sectionTitleLabel.text = section.title
             sectionTitleLabel.font = UIFont(name: "Avenir-Heavy", size: 15.0)
-            sectionTitleLabel.textColor = UIColor.defaultDarkTextColor()
+            sectionTitleLabel.textColor = UIColor.appDefaultDarkTextColor()
             parentView.addSubview(sectionTitleLabel)
             if let lastView = previousView {
                 sectionTitleLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: lastView, withOffset: formFieldEdgeInset.top)
@@ -75,7 +75,7 @@ class FormBuilder: NSObject, UITextFieldDelegate {
                 
                 case .TextField:
                     let textField = CircleTextField(forAutoLayout: ())
-                    textField.textColor = UIColor.defaultDarkTextColor()
+                    textField.textColor = UIColor.appDefaultDarkTextColor()
                     textField.placeholder = item.placeholder
                     textField.clearButtonMode = .WhileEditing
                     textField.keyboardType = item.keyboardType

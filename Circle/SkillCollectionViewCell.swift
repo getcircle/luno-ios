@@ -24,13 +24,13 @@ class SkillCollectionViewCell: CircleCollectionViewCell {
         return .Dynamic
     }
     
-    var defaultTextColor = UIColor.defaultDarkTextColor()
-    var defaultBackgroundColor = UIColor.skillNormalBackgroundColor()
-    var defaultBorderColor = UIColor.skillNormalBorderColor()
+    var defaultTextColor = UIColor.appDefaultDarkTextColor()
+    var defaultBackgroundColor = UIColor.appSkillNormalBackgroundColor()
+    var defaultBorderColor = UIColor.appSkillNormalBorderColor()
 
-    var highlightedTextColor = UIColor.defaultLightTextColor()
-    var highlightedBackgroundColor = UIColor.skillSelectedBackgroundColor()
-    var highlightedBorderColor = UIColor.skillSelectedBorderColor()
+    var highlightedTextColor = UIColor.appDefaultLightTextColor()
+    var highlightedBackgroundColor = UIColor.appSkillSelectedBackgroundColor()
+    var highlightedBorderColor = UIColor.appSkillNormalBackgroundColor()
 
     override func awakeFromNib() {
         super.awakeFromNib()

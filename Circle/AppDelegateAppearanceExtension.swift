@@ -21,18 +21,18 @@ extension AppDelegate {
             appWindow.layer.rasterizationScale = UIScreen.mainScreen().scale
         }
         
-        window!.tintColor = UIColor.appTintColor()
-        UINavigationBar.appearance().tintColor = UIColor.navigationBarTintColor()
-        UINavigationBar.appearance().barTintColor = UIColor.navigationBarBarTintColor()
+        window!.tintColor = UIColor.appUIBackgroundColor()
+        UINavigationBar.appearance().tintColor = UIColor.appNavigationBarTintColor()
+        UINavigationBar.appearance().barTintColor = UIColor.appNavigationBarBarTintColor()
         UINavigationBar.appearance().translucent = false
 
-        UITabBar.appearance().tintColor = UIColor.tabBarTintColor()
-        UITabBar.appearance().barTintColor = UIColor.tabBarBarTintColor()
+        UITabBar.appearance().tintColor = UIColor.appTintColor()
+        UITabBar.appearance().barTintColor = UIColor.appTabBarBarTintColor()
         UITabBar.appearance().translucent = false
 
         let navBarTitleAttributes = [
             NSFontAttributeName: UIFont.navigationBarFont(),
-            NSForegroundColorAttributeName: UIColor.navigationBarTitleColor(),
+            NSForegroundColorAttributeName: UIColor.appNavigationBarTitleColor(),
         ]
         UINavigationBar.appearance().titleTextAttributes = navBarTitleAttributes
         UIBarButtonItem.appearance().setTitleTextAttributes(navBarTitleAttributes, forState: .Normal)
@@ -49,6 +49,6 @@ extension AppDelegate {
             barMetrics: .Default
         )
         
-        UIButton.appearance().tintColor = UIColor.appTintColor()
+        UIButton.appearance().tintColor = UIColor.appUIBackgroundColor()
     }
 }

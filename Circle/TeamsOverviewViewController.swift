@@ -37,7 +37,7 @@ class TeamsOverviewViewController: UIViewController, UICollectionViewDelegate {
     // MARK: - Configuration
     
     private func configureCollectionView() {
-        collectionView.backgroundColor = UIColor.viewBackgroundColor()
+        collectionView.backgroundColor = UIColor.appViewBackgroundColor()
         collectionView.dataSource = dataSource
         collectionView.delegate = delegate
         (collectionView.delegate as CardCollectionViewDelegate).delegate = self

@@ -48,7 +48,7 @@ class SocialConnectCollectionViewCell: CircleCollectionViewCell {
                 CTAContentType = ContentType(rawValue: typeOfCTA)
                 switch CTAContentType! {
                 case .LinkedInConnect:
-                    socialConnectCTA.backgroundColor = UIColor.linkedinConnectCTABackgroundColor()
+                    socialConnectCTA.backgroundColor = UIColor.appLinkedinConnectCTABackgroundColor()
                     break
                 default:
                     break

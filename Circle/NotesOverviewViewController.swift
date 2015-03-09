@@ -38,11 +38,11 @@ class NotesOverviewViewController: UIViewController, UICollectionViewDelegate, N
     // MARK: - Configuration
     
     private func configureView() {
-        view.backgroundColor = UIColor.viewBackgroundColor()
+        view.backgroundColor = UIColor.appViewBackgroundColor()
     }
     
     private func configureCollectionView() {
-        collectionView.backgroundColor = UIColor.viewBackgroundColor()
+        collectionView.backgroundColor = UIColor.appViewBackgroundColor()
         collectionView.dataSource = dataSource
         collectionView.delegate = delegate
         (collectionView.delegate as CardCollectionViewDelegate).delegate = self

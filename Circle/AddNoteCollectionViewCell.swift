@@ -35,8 +35,8 @@ class AddNoteCollectionViewCell: CircleCollectionViewCell {
     // MARK: - Configuration
     
     private func configureAddNoteButton() {
-        addNoteButton.tintColor = UIColor.actionButtonTintColor()
-        addNoteButton.setTitleColor(UIColor.actionButtonTintColor(), forState: .Normal)
+        addNoteButton.tintColor = UIColor.appActionButtonTintColor()
+        addNoteButton.setTitleColor(UIColor.appActionButtonTintColor(), forState: .Normal)
         addNoteButton.setImage(
             addNoteButton.imageForState(.Normal)!.imageWithRenderingMode(.AlwaysTemplate),
             forState: .Normal

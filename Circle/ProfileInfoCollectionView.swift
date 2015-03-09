@@ -27,7 +27,7 @@ class ProfileInfoCollectionView: UnderlyingCollectionView, CardFooterViewDelegat
         profileInfoDataSource.registerCardHeader(self)
         profileInfoDataSource.cardFooterDelegate = self
         profileInfoDelegate = StickyHeaderCollectionViewDelegate()
-        backgroundColor = UIColor.viewBackgroundColor()
+        backgroundColor = UIColor.appViewBackgroundColor()
         dataSource = profileInfoDataSource
         delegate = profileInfoDelegate
         alwaysBounceVertical = true

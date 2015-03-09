@@ -23,124 +23,83 @@ extension UIColor {
     }
     
     class func appTintColor() -> UIColor {
-//        return UIColor(red: 225, green: 40, blue: 47)
-//        return UIColor.blackColor()
-        return UIColor(red: 47, green: 55, blue: 62)
-    }
-    
-    class func defaultLightTextColor() -> UIColor {
-        return UIColor.whiteColor()
-    }
-    
-    class func defaultDarkTextColor() -> UIColor {
-        return UIColor(red: 38, green: 38, blue: 38)
-    }
-    
-    class func navigationBarBarTintColor() -> UIColor {
-        return UIColor.appTintColor()
-    }
-
-    class func navigationBarTintColor() -> UIColor {
-        return UIColor.whiteColor()
-    }
-    
-    class func navigationBarTitleColor() -> UIColor {
-        return UIColor.whiteColor()
-    }
-    
-    class func tabBarTintColor() -> UIColor {
         return UIColor(red: 0, green: 201, blue: 255)
     }
     
-    class func tabBarBarTintColor() -> UIColor {
-        return UIColor.appTintColor()
+    class func appUIBackgroundColor() -> UIColor {
+        // return UIColor(red: 225, green: 40, blue: 47)
+        return UIColor(red: 47, green: 55, blue: 62)
     }
     
-    class func accessoryButtonBackgroundColor() -> UIColor {
-        return UIColor(red: 240, green: 240, blue: 240)
+    class func appDefaultLightTextColor() -> UIColor {
+        return UIColor.whiteColor()
     }
     
-    class func separatorViewColor() -> UIColor {
+    class func appDefaultDarkTextColor() -> UIColor {
+        return UIColor(red: 38, green: 38, blue: 38)
+    }
+    
+    class func appNavigationBarBarTintColor() -> UIColor {
+        return UIColor.appUIBackgroundColor()
+    }
+
+    class func appNavigationBarTintColor() -> UIColor {
+        return UIColor.whiteColor()
+    }
+    
+    class func appNavigationBarTitleColor() -> UIColor {
+        return UIColor.whiteColor()
+    }
+
+    class func appTabBarBarTintColor() -> UIColor {
+        return UIColor.appUIBackgroundColor()
+    }
+    
+    class func appSeparatorViewColor() -> UIColor {
         return UIColor(red: 222, green: 222, blue: 222)
     }
     
-    class func viewBackgroundColor() -> UIColor {
+    class func appViewBackgroundColor() -> UIColor {
         return UIColor(red: 240, green: 240, blue: 240)
     }
     
-    class func twitterColor() -> UIColor {
-        return UIColor(red: 85, green: 172, blue: 238)
-    }
-
-    class func facebookColor() -> UIColor {
-        return UIColor(red: 45, green: 68, blue: 134)
-    }
-    
-    class func pinterestColor() -> UIColor {
-        return UIColor(red: 197, green: 34, blue: 34)
-    }
-
-    class func googlePlusColor() -> UIColor {
-        return UIColor(red: 211, green: 53, blue: 44)
-    }
-
-    class func emailTintColor() -> UIColor {
-        return UIColor(red: 83, green: 83, blue: 83)
-    }
-    
-    class func phoneTintColor() -> UIColor {
-        return UIColor(red: 83, green: 83, blue: 83)
-    }
-    
-    class func linkedinColor() -> UIColor {
-        return UIColor(red: 30, green: 136, blue: 190)
-    }
-    
-    class func linkedinConnectCTABackgroundColor() -> UIColor {
+    class func appLinkedinConnectCTABackgroundColor() -> UIColor {
         return UIColor(red: 36, green: 104, blue: 167)
     }
-    
-    class func githubColor() -> UIColor {
-        return UIColor(red: 83, green: 83, blue: 83)
-    }
-    
-    class func keyValueNextImageTintColor() -> UIColor {
+
+    class func appKeyValueNextImageTintColor() -> UIColor {
         return UIColor(red: 150, green: 150, blue: 150)
     }
     
-    class func searchTextFieldBackground() -> UIColor {
+    class func appSearchTextFieldBackground() -> UIColor {
         return UIColor(red: 220, green: 220, blue: 220)
     }
     
-    class func searchOverlayButtonBackgroundColor() -> UIColor {
-        return UIColor.viewBackgroundColor()
-    }
-    
-    class func skillNormalBackgroundColor() -> UIColor {
+    class func appSkillNormalBackgroundColor() -> UIColor {
         return UIColor.whiteColor()
     }
     
-    class func skillSelectedBackgroundColor() -> UIColor {
-        return UIColor.appTintColor()
+    class func appSkillSelectedBackgroundColor() -> UIColor {
+        return UIColor.appUIBackgroundColor()
     }
 
-    class func skillNormalBorderColor() -> UIColor {
+    class func appSkillNormalBorderColor() -> UIColor {
         return UIColor(red: 212, green: 212, blue: 212)
     }
     
-    class func skillSelectedBorderColor() -> UIColor {
+    class func appSkillSelectedBorderColor() -> UIColor {
         return UIColor.whiteColor()
     }
     
-    class func actionSheetControlsTintColor() -> UIColor {
+    class func appActionSheetControlsTintColor() -> UIColor {
         return UIColor(red: 85, green: 85, blue: 94)
     }
     
-    class func controlHighlightedColor() -> UIColor {
+    class func appControlHighlightedColor() -> UIColor {
         return UIColor(red: 206, green: 206, blue: 206).colorWithAlphaComponent(0.5)
     }
     
-    class func teamHeaderBackgroundColor(teamId: String) -> UIColor {
+    class func appTeamHeaderBackgroundColor(teamId: String) -> UIColor {
         if let color = TeamColorsHolder.colors[teamId] {
             return color
         }
@@ -183,7 +142,7 @@ extension UIColor {
         }
     }
     
-    class func profileImageBackgroundColor(randomNumber withRandomNumber: Int? = 0) -> UIColor {
+    class func appProfileImageBackgroundColor(randomNumber withRandomNumber: Int? = 0) -> UIColor {
         let palette = [
             UIColor(red: 30, green: 146, blue: 57),
             UIColor(red: 14, green: 99, blue: 177),
@@ -197,15 +156,15 @@ extension UIColor {
         return palette[Int(arc4random_uniform(UInt32(randomNumber!)))]
     }
     
-    class func detailViewBorderColor() -> UIColor {
+    class func appDetailViewBorderColor() -> UIColor {
         return UIColor.blackColor().colorWithAlphaComponent(0.8)
     }
     
-    class func actionButtonTintColor() -> UIColor {
+    class func appActionButtonTintColor() -> UIColor {
         return UIColor(red: 0, green: 128, blue: 189)
     }
     
-    class func activityIndicatorViewColor() -> UIColor {
+    class func appActivityIndicatorViewColor() -> UIColor {
         return UIColor(red: 51, green: 51, blue: 51)
     }
     
@@ -213,7 +172,7 @@ extension UIColor {
         return UIColor(red: 102, green: 102, blue: 102)
     }
     
-    class func profileImageBorderColor() -> UIColor {
+    class func appProfileImageBorderColor() -> UIColor {
         return UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.3)
     }
     
@@ -239,5 +198,31 @@ extension UIColor {
     
     class func appCTATextColor() -> UIColor {
         return UIColor.whiteColor()
+    }
+    
+    // MARK: - Social
+    
+    class func twitterColor() -> UIColor {
+        return UIColor(red: 85, green: 172, blue: 238)
+    }
+    
+    class func facebookColor() -> UIColor {
+        return UIColor(red: 45, green: 68, blue: 134)
+    }
+    
+    class func pinterestColor() -> UIColor {
+        return UIColor(red: 197, green: 34, blue: 34)
+    }
+    
+    class func googlePlusColor() -> UIColor {
+        return UIColor(red: 211, green: 53, blue: 44)
+    }
+    
+    class func linkedinColor() -> UIColor {
+        return UIColor(red: 30, green: 136, blue: 190)
+    }
+    
+    class func githubColor() -> UIColor {
+        return UIColor(red: 83, green: 83, blue: 83)
     }
 }

@@ -104,8 +104,8 @@ class SkillSelectorViewController:
             
             switch theme {
             case .Onboarding:
-                searchHeaderView.containerBackgroundColor = UIColor.appTintColor()
-                searchHeaderView.searchFieldBackgroundColor = UIColor.appTintColor()
+                searchHeaderView.containerBackgroundColor = UIColor.appUIBackgroundColor()
+                searchHeaderView.searchFieldBackgroundColor = UIColor.appUIBackgroundColor()
                 searchHeaderView.searchFieldTintColor = UIColor.whiteColor()
                 searchHeaderView.searchFieldTextColor = UIColor.whiteColor()
                 searchHeaderView.cancelButton.tintColor = UIColor.whiteColor()
@@ -119,8 +119,8 @@ class SkillSelectorViewController:
     }
     
     private func configureGradients() {
-        let startColor = UIColor.appTintColor().CGColor
-        let endColor = UIColor.appTintColor().colorWithAlphaComponent(0.0).CGColor
+        let startColor = UIColor.appUIBackgroundColor().CGColor
+        let endColor = UIColor.appUIBackgroundColor().colorWithAlphaComponent(0.0).CGColor
         
         // Top
         topLayer = CALayer.gradientLayerWithFrame(
@@ -152,17 +152,17 @@ class SkillSelectorViewController:
     private func configureViewByTheme() {
         switch theme {
         case .Onboarding:
-            view.backgroundColor = UIColor.appTintColor()
-            collectionView.backgroundColor = UIColor.appTintColor()
-            searchControllerParentView.backgroundColor = UIColor.appTintColor()
+            view.backgroundColor = UIColor.appUIBackgroundColor()
+            collectionView.backgroundColor = UIColor.appUIBackgroundColor()
+            searchControllerParentView.backgroundColor = UIColor.appUIBackgroundColor()
             titleLabel.textColor = UIColor.whiteColor()
-            titleLabel.backgroundColor = UIColor.appTintColor()
+            titleLabel.backgroundColor = UIColor.appUIBackgroundColor()
             titleTextLabel.textColor = UIColor.whiteColor()
-            titleTextLabel.backgroundColor = UIColor.appTintColor()
-            doneButton.backgroundColor = UIColor.appTintColor()
+            titleTextLabel.backgroundColor = UIColor.appUIBackgroundColor()
+            doneButton.backgroundColor = UIColor.appUIBackgroundColor()
             addSkillButton.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(1.0)
-            addSkillButton.setTitleColor(UIColor.appTintColor(), forState: .Normal)
-            addSkillButton.tintColor = UIColor.appTintColor()
+            addSkillButton.setTitleColor(UIColor.appUIBackgroundColor(), forState: .Normal)
+            addSkillButton.tintColor = UIColor.appUIBackgroundColor()
 
         case .Regular:
             break
@@ -172,14 +172,14 @@ class SkillSelectorViewController:
     private func configureCellByTheme(cell: SkillCollectionViewCell) {
         switch theme {
         case .Onboarding:
-            cell.backgroundColor = UIColor.appTintColor()
+            cell.backgroundColor = UIColor.appUIBackgroundColor()
             cell.defaultTextColor = UIColor.whiteColor()
-            cell.defaultBackgroundColor = UIColor.appTintColor()
+            cell.defaultBackgroundColor = UIColor.appUIBackgroundColor()
             cell.defaultBorderColor = UIColor.whiteColor()
             
-            cell.highlightedTextColor = UIColor.appTintColor()
+            cell.highlightedTextColor = UIColor.appUIBackgroundColor()
             cell.highlightedBackgroundColor = UIColor.whiteColor()
-            cell.highlightedBorderColor = UIColor.appTintColor()
+            cell.highlightedBorderColor = UIColor.appUIBackgroundColor()
 
         case .Regular:
             break

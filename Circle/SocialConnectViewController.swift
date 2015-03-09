@@ -46,7 +46,7 @@ class SocialConnectViewController: UIViewController, WKNavigationDelegate {
     // MARK: - Configuration
     
     private func configureView() {
-        view.backgroundColor = UIColor.appTintColor()
+        view.backgroundColor = UIColor.appUIBackgroundColor()
         activityIndicator = view.addActivityIndicator(color: UIColor.whiteColor())
     }
     

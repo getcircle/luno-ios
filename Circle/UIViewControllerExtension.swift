@@ -136,7 +136,7 @@ extension UIViewController {
                     mailVC.mailComposeDelegate = composeDelegate
                 }
                 
-                mailVC.navigationBar.tintColor = UIColor.navigationBarTintColor()
+                mailVC.navigationBar.tintColor = UIColor.appNavigationBarTintColor()
                 presentViewController(mailVC, animated: true, completion: { () -> Void in
                     UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: false)
                     if let handler = completionHandler {
@@ -184,7 +184,7 @@ extension UIViewController {
                 messageVC.messageComposeDelegate = composeDelegate
             }
             
-            messageVC.navigationBar.tintColor = UIColor.navigationBarTintColor()
+            messageVC.navigationBar.tintColor = UIColor.appNavigationBarTintColor()
             presentViewController(messageVC, animated: true, completion: { () -> Void in
                 UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: false)
                 if let handler = completionHandler {

@@ -15,7 +15,7 @@ class HomelessViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.makeTransparent()
-        view.backgroundColor = UIColor.appTintColor()
+        view.backgroundColor = UIColor.appUIBackgroundColor()
         infoLabel.textColor = UIColor.whiteColor()
     }
 

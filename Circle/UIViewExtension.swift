@@ -10,11 +10,11 @@ import UIKit
 
 extension UIView {
     // It is assumed that the view would be 1:1 aspect ratio
-    func makeItCircular(addBorder: Bool, borderColor: UIColor? = UIColor.profileImageBorderColor()) {
+    func makeItCircular(addBorder: Bool, borderColor: UIColor? = UIColor.appProfileImageBorderColor()) {
         layer.cornerRadiusWithMaskToBounds(bounds.size.width/2.0)
         
         if addBorder {
-            layer.borderColor = borderColor?.CGColor ?? UIColor.profileImageBorderColor().CGColor
+            layer.borderColor = borderColor?.CGColor ?? UIColor.appProfileImageBorderColor().CGColor
             layer.borderWidth = 1.0
         }
     }
@@ -40,7 +40,7 @@ extension UIView {
     
     func addBottomBorder(offset withOffset: CGFloat? = 1.0) -> UIView {
         var borderView = UIView(forAutoLayout: ())
-        borderView.backgroundColor = UIColor.separatorViewColor()
+        borderView.backgroundColor = UIColor.appSeparatorViewColor()
         if let parentView = superview {
             parentView.addSubview(borderView)
             borderView.autoPinEdge(.Left, toEdge: .Left, ofView: self)
@@ -54,7 +54,7 @@ extension UIView {
     
     func addTopBorder(offset withOffset: CGFloat? = 1.0) -> UIView {
         var borderView = UIView(forAutoLayout: ())
-        borderView.backgroundColor = UIColor.separatorViewColor()
+        borderView.backgroundColor = UIColor.appSeparatorViewColor()
         if let parentView = superview {
             parentView.addSubview(borderView)
             borderView.autoPinEdge(.Left, toEdge: .Left, ofView: self)
@@ -86,7 +86,7 @@ extension UIView {
         return visualEffectView
     }
     
-    func addActivityIndicator(color: UIColor = UIColor.activityIndicatorViewColor()) -> UIActivityIndicatorView {
+    func addActivityIndicator(color: UIColor = UIColor.appActivityIndicatorViewColor()) -> UIActivityIndicatorView {
         var activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
         activityIndicatorView.color = color
         activityIndicatorView.setTranslatesAutoresizingMaskIntoConstraints(false)

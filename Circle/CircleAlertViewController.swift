@@ -95,7 +95,7 @@ class CircleAlertViewController: UIViewController, UIViewControllerTransitioning
             "Welcome to Circle",
             comment: "Title label for welcoming users to the app"
         )
-        titleLabel.textColor = UIColor.defaultDarkTextColor()
+        titleLabel.textColor = UIColor.appDefaultDarkTextColor()
         titleLabel.font = UIFont.appOnboardingModalTitle()
         parentContainerView.addSubview(titleLabel)
         titleLabel.autoPinEdgesToSuperviewEdgesWithInsets(
@@ -110,7 +110,7 @@ class CircleAlertViewController: UIViewController, UIViewControllerTransitioning
         textLabel.text = NSLocalizedString(
             "Lets get started by verifying your phone number and setting up your profile.", 
             comment: "Text to indicate users the next steps of phone number verification and profile setup.")
-        textLabel.textColor = UIColor.defaultDarkTextColor()
+        textLabel.textColor = UIColor.appDefaultDarkTextColor()
         textLabel.font = UIFont.appOnboardingModalText()
         textLabel.numberOfLines = 0
         parentContainerView.addSubview(textLabel)
@@ -126,8 +126,8 @@ class CircleAlertViewController: UIViewController, UIViewControllerTransitioning
             ),
             forState: .Normal
         )
-        actionButton.tintColor = UIColor.appTintColor()
-        actionButton.setTitleColor(UIColor.appTintColor(), forState: .Normal)
+        actionButton.tintColor = UIColor.appUIBackgroundColor()
+        actionButton.setTitleColor(UIColor.appUIBackgroundColor(), forState: .Normal)
         actionButton.titleLabel!.font = UIFont.appOnboardingModalCTA()
         actionButton.showsTouchWhenHighlighted = true
         actionButton.addTarget(self, action: "viewTapped:", forControlEvents: .TouchUpInside)

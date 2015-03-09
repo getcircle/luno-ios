@@ -31,7 +31,7 @@ class ContactInfoViewController: CircleAlertViewController, UICollectionViewDele
         
         var titleLabel = UILabel(forAutoLayout: ())
         titleLabel.opaque = true
-        titleLabel.backgroundColor = UIColor.tabBarTintColor()
+        titleLabel.backgroundColor = UIColor.appTintColor()
         titleLabel.textColor = UIColor.whiteColor()
         titleLabel.font = UIFont.appModalTitleLabelFont()
         titleLabel.textAlignment = .Center
@@ -57,7 +57,7 @@ class ContactInfoViewController: CircleAlertViewController, UICollectionViewDele
         )
         collectionView.setTranslatesAutoresizingMaskIntoConstraints(false)
         collectionView.opaque = true
-        collectionView.backgroundColor = UIColor.viewBackgroundColor()
+        collectionView.backgroundColor = UIColor.appViewBackgroundColor()
         parentContainerView.addSubview(collectionView)
         collectionViewDataSource.onlyShowContactInfo = true
         collectionViewDataSource.animateContent = false

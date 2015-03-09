@@ -58,7 +58,7 @@ class ProfileDetailsViewController:
     
     override func loadView() {
         view = UIView(frame: UIScreen.mainScreen().bounds)
-        view.backgroundColor = UIColor.viewBackgroundColor()
+        view.backgroundColor = UIColor.appViewBackgroundColor()
         configureUnderlyingViews()
         configureOverlayView()
     }
@@ -146,7 +146,7 @@ class ProfileDetailsViewController:
             detailView.autoSetDimension(.Width, toSize: view.frame.width)
             detailView.externalScrollDelegate = self
             detailView.layer.borderWidth = 0.0
-            detailView.layer.borderColor = UIColor.detailViewBorderColor().CGColor
+            detailView.layer.borderColor = UIColor.appDetailViewBorderColor().CGColor
             previous = detailView
         }
         
@@ -549,7 +549,7 @@ class ProfileDetailsViewController:
             var settingsButton = UIButton.buttonWithType(.Custom) as UIButton
             settingsButton.frame = CGRectMake(0.0, 0.0, 22.0, 22.0)
             settingsButton.setImage(UIImage(named: "Cog")?.imageWithRenderingMode(.AlwaysTemplate), forState: .Normal)
-            settingsButton.tintColor = UIColor.navigationBarTintColor()
+            settingsButton.tintColor = UIColor.appNavigationBarTintColor()
             settingsButton.addTarget(self, action: "settingsButtonTapped:", forControlEvents: .TouchUpInside)
             
             let settingsBarButton = UIBarButtonItem(customView: settingsButton)

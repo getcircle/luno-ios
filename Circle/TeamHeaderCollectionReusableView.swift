@@ -50,6 +50,6 @@ class TeamHeaderCollectionReusableView: CircleCollectionReusableView {
             teamNameLabelCenterYConstraintInitialValue =  0.0
         }
 
-        backgroundColor = UIColor.teamHeaderBackgroundColor(team.id)
+        backgroundColor = UIColor.appTeamHeaderBackgroundColor(team.id)
     }
 }

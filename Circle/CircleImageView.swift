@@ -97,9 +97,9 @@ class CircleImageView: UIImageView {
                 failure: { (request, response, error) -> Void in
                     if self.addLabelIfImageLoadingFails {
                         self.imageText = profile.first_name[0] + profile.last_name[0]
-                        var profileImageBackgroundColor = ProfileColorsHolder.colors[profile.id] ?? UIColor.profileImageBackgroundColor()
-                        ProfileColorsHolder.colors[profile.id] = profileImageBackgroundColor
-                        self.imageLabel.backgroundColor = profileImageBackgroundColor
+                        var appProfileImageBackgroundColor = ProfileColorsHolder.colors[profile.id] ?? UIColor.appProfileImageBackgroundColor()
+                        ProfileColorsHolder.colors[profile.id] = appProfileImageBackgroundColor
+                        self.imageLabel.backgroundColor = appProfileImageBackgroundColor
                     }
                     
                     self.makeImageVisible(false)

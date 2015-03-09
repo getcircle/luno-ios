@@ -25,7 +25,7 @@ class SeparatorDecorationView: UICollectionReusableView {
     }
     
     private func setup() {
-        backgroundColor = UIColor.separatorViewColor()
+        backgroundColor = UIColor.appSeparatorViewColor()
         opaque = true
     }
 }

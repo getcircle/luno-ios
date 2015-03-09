@@ -14,7 +14,7 @@ class ItemImage {
     var size: CGSize?
     
     class var genericNextImage: ItemImage {
-        return ItemImage(name: "Next", tint: UIColor.keyValueNextImageTintColor(), size: CGSizeMake(15.0, 15.0))
+        return ItemImage(name: "Next", tint: UIColor.appKeyValueNextImageTintColor(), size: CGSizeMake(15.0, 15.0))
     }
     
     init(name itemName: String, tint itemTint: UIColor, size imageSize: CGSize? = nil) {

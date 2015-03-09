@@ -60,7 +60,7 @@ class DetailViewController: BaseDetailViewController, UICollectionViewDelegate {
         assert(dataSource != nil, { () -> String in
             return "Data source must be set before calling this function"
         }())
-        collectionView.backgroundColor = UIColor.viewBackgroundColor()
+        collectionView.backgroundColor = UIColor.appViewBackgroundColor()
         collectionView.keyboardDismissMode = .OnDrag
         collectionView.showsVerticalScrollIndicator = true
         collectionView.bounces = true

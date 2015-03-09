@@ -40,7 +40,7 @@ class OfficesOverviewViewController: UIViewController, UICollectionViewDataSourc
     // MARK: - Configuration
     
     private func configureCollectionView() {
-        collectionView.backgroundColor = UIColor.viewBackgroundColor()
+        collectionView.backgroundColor = UIColor.appViewBackgroundColor()
         collectionView.dataSource = dataSource
         collectionView.delegate = delegate
         (collectionView.delegate as CardCollectionViewDelegate).delegate = self
@@ -49,7 +49,7 @@ class OfficesOverviewViewController: UIViewController, UICollectionViewDataSourc
     }
     
     private func configureMapHeaderCollectionView() {
-        mapHeaderCollectionView.backgroundColor = UIColor.viewBackgroundColor()
+        mapHeaderCollectionView.backgroundColor = UIColor.appViewBackgroundColor()
         mapHeaderCollectionView.registerNib(
             UINib(nibName: "MapHeaderCollectionReusableView", bundle: nil),
             forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,

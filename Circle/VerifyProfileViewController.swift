@@ -59,7 +59,7 @@ class VerifyProfileViewController:
         edgesForExtendedLayout = .Top
         extendedLayoutIncludesOpaqueBars = true
         navigationController?.navigationBar.makeTransparent()
-        view.backgroundColor = UIColor.appTintColor()
+        view.backgroundColor = UIColor.appUIBackgroundColor()
         
         var tapGestureRecognizer = UITapGestureRecognizer(target: self, action: "viewTapped:")
         view.addGestureRecognizer(tapGestureRecognizer)
@@ -95,7 +95,7 @@ class VerifyProfileViewController:
         }
         
         let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
-        activityIndicatorView.color = UIColor.appTintColor()
+        activityIndicatorView.color = UIColor.appUIBackgroundColor()
         activityIndicatorView.setTranslatesAutoresizingMaskIntoConstraints(false)
         nextButton.setTitle("", forState: .Normal)
         nextButton.addSubview(activityIndicatorView)
@@ -114,7 +114,7 @@ class VerifyProfileViewController:
             message: nil,
             preferredStyle: .ActionSheet
         )
-        actionSheet.view.tintColor = UIColor.actionSheetControlsTintColor()
+        actionSheet.view.tintColor = UIColor.appActionSheetControlsTintColor()
 
         var takeAPictureActionControl = UIAlertAction(
             title: NSLocalizedString("Take a picture", comment: "Button prompt to take a picture using the camera"),

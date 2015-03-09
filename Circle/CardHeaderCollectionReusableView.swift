@@ -36,7 +36,7 @@ class CardHeaderCollectionReusableView: CircleCollectionReusableView {
         cardImageView.tintColor = UIColor.blackColor()
         
         let selectionImage = UIImage.imageFromColor(
-            UIColor.controlHighlightedColor(),
+            UIColor.appControlHighlightedColor(),
             withRect: CGRectMake(0.0, 0.0, 1.0, 1.0)
         )
 

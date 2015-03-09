@@ -36,7 +36,7 @@ class PasscodeTouchIDViewController: UIViewController {
     // MARK: - Configuration
     
     private func configureView() {
-        view.backgroundColor = UIColor.viewBackgroundColor()
+        view.backgroundColor = UIColor.appViewBackgroundColor()
         title = NSLocalizedString("Passcode & Touch ID", comment: "Title of the view containing passcode and touch ID settings")
     }
     

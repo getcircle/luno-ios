@@ -59,14 +59,14 @@ class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate, Ci
     private func configureView() {
         navigationController?.navigationBar.makeTransparent()
         
-        view.backgroundColor = UIColor.appTintColor()
+        view.backgroundColor = UIColor.appUIBackgroundColor()
         phoneNumberField.delegate = self
         phoneNumberField.tintColor = UIColor.whiteColor()
         verificationCodeField.delegate = self
         verificationCodeField.tintColor = UIColor.whiteColor()
         phoneNumberField.addBottomBorder()
 
-        actionButton.setTitleColor(UIColor.searchTextFieldBackground(), forState: .Disabled)
+        actionButton.setTitleColor(UIColor.appSearchTextFieldBackground(), forState: .Disabled)
         actionButton.enabled = false
         resendCodeButton.enabled = false
     }
@@ -250,7 +250,7 @@ class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate, Ci
             case resendCodeButton:
                 tintColor = UIColor.whiteColor()
             default:
-                tintColor = UIColor.appTintColor()
+                tintColor = UIColor.appUIBackgroundColor()
             }
             activityIndicatorView?.color = tintColor
             activityIndicatorView!.setTranslatesAutoresizingMaskIntoConstraints(false)
