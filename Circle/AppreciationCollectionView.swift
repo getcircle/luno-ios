@@ -24,7 +24,7 @@ class AppreciationCollectionView: UnderlyingCollectionView {
         layout = stickyLayout
         layout?.headerHeight = ProfileHeaderCollectionReusableView.height
         appreciationDataSource = AppreciationDataSource(profile: profile!)
-        appreciationDataSource?.registerCardHeader(self)
+        appreciationDataSource!.registerCardHeader(self)
         appreciationDelegate = StickyHeaderCollectionViewDelegate()
         backgroundColor = UIColor.viewBackgroundColor()
         dataSource = appreciationDataSource
@@ -73,35 +73,36 @@ class AppreciationDataSource: UnderlyingCollectionViewDataSource {
     }
 
     private func populateData() {
-        resetCards()
+        // resetCards()
         
         // Add add note card
-//        let addNotesCard = Card(
-//            cardType: .AddNote,
-//            title: "Add Note",
-//            content: ["placeholder"],
-//            contentCount: 1,
-//            addDefaultFooter: false
-//        )
-//        addNotesCard.sectionInset = UIEdgeInsetsMake(0.0, 0.0, 0.0, 0.0)
-//        appendCard(addNotesCard)
+        let appreciateCard = Card(
+            cardType: .Appreciate,
+            title: AppStrings.AppreciateCTATitle,
+            content: ["placeholder"],
+            contentCount: 1,
+            addDefaultFooter: false
+        )
+        appreciateCard.sectionInset = UIEdgeInsetsMake(0.0, 0.0, 0.0, 0.0)
+        appendCard(appreciateCard)
         
         if appreciations.count > 0 {
+            
             // Add appreciations card
-            let card = Card(cardType: .Appreciations, title: "Appreciations")
+            let card = Card(cardType: .Appreciations, title: AppStrings.AppreciateCTATitle)
             card.addContent(content: appreciations as [AnyObject])
             card.sectionInset = UIEdgeInsetsMake(0.0, 0.0, 25.0, 0.0)
             appendCard(card)
         }
     }
     
-//    func addNote(note: NoteService.Containers.Note) {
-//        notes.insert(note, atIndex: 0)
-//        populateData()
-//    }
-//    
-//    func removeNote(note: NoteService.Containers.Note) {
-//        notes = notes.filter { $0.id != note.id }
-//        populateData()
-//    }
+    func addAppreciation(appreciation: AppreciationService.Containers.Appreciation) {
+        appreciations.insert(appreciation, atIndex: 0)
+        populateData()
+    }
+    
+    func removeAppreciation(appreciation: AppreciationService.Containers.Appreciation) {
+        appreciations = appreciations.filter { $0.id != appreciation.id }
+        populateData()
+    }
 }

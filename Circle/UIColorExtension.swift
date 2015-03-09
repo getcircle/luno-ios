@@ -232,4 +232,12 @@ extension UIColor {
     class func appQuickActionsTintColor() -> UIColor {
         return UIColor(red: 119, green: 119, blue: 119)
     }
+    
+    class func appCTABackgroundColor() -> UIColor {
+        return UIColor(red: 48, green: 48, blue: 48)
+    }
+    
+    class func appCTATextColor() -> UIColor {
+        return UIColor.whiteColor()
+    }
 }

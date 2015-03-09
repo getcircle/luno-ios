@@ -65,6 +65,7 @@ class Card: Equatable {
     enum CardType: String {
         case AddNote = "AddNote"
         case Anniversaries = "Anniversaries"
+        case Appreciate = "Appreciate"
         case Appreciations = "Appreciations"
         case Birthdays = "Birthdays"
         case Empty = "Empty"
@@ -111,6 +112,14 @@ class Card: Equatable {
                     imageName: "Jewel",
                     classType: ProfileCollectionViewCell.self,
                     className: "ProfileCollectionViewCell",
+                    contentType: .Flat
+                )
+                
+            case Appreciate:
+                return CardTypeInfo(
+                    imageName: "Heart",
+                    classType: AppreciateActionCollectionViewCell.self,
+                    className: "AppreciateActionCollectionViewCell",
                     contentType: .Flat
                 )
                 

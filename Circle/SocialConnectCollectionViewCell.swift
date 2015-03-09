@@ -42,17 +42,7 @@ class SocialConnectCollectionViewCell: CircleCollectionViewCell {
     
     override func setData(data: AnyObject) {
         if let keyValueDictionary = data as? [String: AnyObject] {
-            socialConnectCTA.setAttributedTitle(
-                NSAttributedString(
-                    string: keyValueDictionary["title"] as String!,
-                    attributes: [
-                        NSKernAttributeName: NSNumber(double: 2.0),
-                        NSForegroundColorAttributeName: UIColor.whiteColor(),
-                        NSFontAttributeName: socialConnectCTA.titleLabel!.font
-                    ]
-                ),
-                forState: .Normal
-            )
+            socialConnectCTA.setCustomAttributedTitle(keyValueDictionary["title"] as String!, forState: .Normal)
             
             if let typeOfCTA = keyValueDictionary["type"] as? Int {
                 CTAContentType = ContentType(rawValue: typeOfCTA)

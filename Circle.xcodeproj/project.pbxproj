@@ -124,6 +124,8 @@
 		8FCC95CD1A52828B00421E65 /* ProfileCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FCC95CB1A52828B00421E65 /* ProfileCollectionViewCell.swift */; };
 		8FCC95CE1A52828B00421E65 /* ProfileCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8FCC95CC1A52828B00421E65 /* ProfileCollectionViewCell.xib */; };
 		8FD041A21A2C03AA00FE28EF /* UIFontExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD041A11A2C03AA00FE28EF /* UIFontExtention.swift */; };
+		8FD321861AAD6566005B238A /* AppreciateActionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD321841AAD6566005B238A /* AppreciateActionCollectionViewCell.swift */; };
+		8FD321871AAD6566005B238A /* AppreciateActionCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8FD321851AAD6566005B238A /* AppreciateActionCollectionViewCell.xib */; };
 		8FD7EC471AA530EF004A2CEA /* AddressCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD7EC451AA530EF004A2CEA /* AddressCollectionViewCell.swift */; };
 		8FD7EC481AA530EF004A2CEA /* AddressCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8FD7EC461AA530EF004A2CEA /* AddressCollectionViewCell.xib */; };
 		8FD7EC4D1AA53EB7004A2CEA /* AddressExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD7EC4C1AA53EB7004A2CEA /* AddressExtension.swift */; };
@@ -418,6 +420,8 @@
 		8FCC95CB1A52828B00421E65 /* ProfileCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileCollectionViewCell.swift; sourceTree = "<group>"; };
 		8FCC95CC1A52828B00421E65 /* ProfileCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileCollectionViewCell.xib; sourceTree = "<group>"; };
 		8FD041A11A2C03AA00FE28EF /* UIFontExtention.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIFontExtention.swift; sourceTree = "<group>"; };
+		8FD321841AAD6566005B238A /* AppreciateActionCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppreciateActionCollectionViewCell.swift; sourceTree = "<group>"; };
+		8FD321851AAD6566005B238A /* AppreciateActionCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AppreciateActionCollectionViewCell.xib; sourceTree = "<group>"; };
 		8FD7EC451AA530EF004A2CEA /* AddressCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressCollectionViewCell.swift; sourceTree = "<group>"; };
 		8FD7EC461AA530EF004A2CEA /* AddressCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddressCollectionViewCell.xib; sourceTree = "<group>"; };
 		8FD7EC4C1AA53EB7004A2CEA /* AddressExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressExtension.swift; sourceTree = "<group>"; };
@@ -646,6 +650,7 @@
 			children = (
 				BF1DB6571A76FA31006F2B7D /* AddNoteCollectionViewCell.swift */,
 				8FD7EC451AA530EF004A2CEA /* AddressCollectionViewCell.swift */,
+				8FD321841AAD6566005B238A /* AppreciateActionCollectionViewCell.swift */,
 				8FCC31281AA2859E0093F00A /* AppreciationCollectionView.swift */,
 				8FCC312A1AA28AC10093F00A /* AppreciationCollectionViewCell.swift */,
 				8F08A9F71A748F5200B93149 /* CardFooterCollectionReusableView.swift */,
@@ -734,6 +739,7 @@
 			children = (
 				BF1DB6581A76FA31006F2B7D /* AddNoteCollectionViewCell.xib */,
 				8FD7EC461AA530EF004A2CEA /* AddressCollectionViewCell.xib */,
+				8FD321851AAD6566005B238A /* AppreciateActionCollectionViewCell.xib */,
 				8FCC312B1AA28AC10093F00A /* AppreciationCollectionViewCell.xib */,
 				8F22CBF71A29A8EB0026376E /* AuthViewController.xib */,
 				8F08A9F81A748F5200B93149 /* CardFooterCollectionReusableView.xib */,
@@ -1124,6 +1130,7 @@
 				BFCFDB051A915249009A5FD4 /* EducationCollectionViewCell.xib in Resources */,
 				8F7E2DC71A8FC00000B8548D /* SplashViewController.xib in Resources */,
 				8F0004A51A2419730096477A /* LaunchScreen.xib in Resources */,
+				8FD321871AAD6566005B238A /* AppreciateActionCollectionViewCell.xib in Resources */,
 				8F9F60CD1A8C439E00FCAA25 /* SettingsViewController.xib in Resources */,
 				8F7795161A92769E00BEF6EA /* QuickActionsCollectionViewCell.xib in Resources */,
 				8FF2254D1A641B27001B2E32 /* SearchResultsCardHeaderCollectionReusableView.xib in Resources */,
@@ -1269,6 +1276,7 @@
 				BFC05DD31A97B32800F246EA /* ResumeService.swift in Sources */,
 				8F823E381A706B790006264B /* OrganizationDetailViewController.swift in Sources */,
 				8F22CBE51A27ED190026376E /* StickyHeaderCollectionViewLayout.swift in Sources */,
+				8FD321861AAD6566005B238A /* AppreciateActionCollectionViewCell.swift in Sources */,
 				BF764DC41A5F6E8200D122F4 /* LandingService.swift in Sources */,
 				BF25722D1A6450F20052C3E3 /* VerifyPhoneNumberViewController.swift in Sources */,
 				8FF298441A4DF38E00306CFC /* SkillSelectorViewController.swift in Sources */,

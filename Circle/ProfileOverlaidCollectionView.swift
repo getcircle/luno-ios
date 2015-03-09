@@ -12,6 +12,11 @@ import ProtobufRegistry
 struct ProfileDetailView {
     var title: String
     var image: String?
+    
+    init(title withTitle: String, image withImage: String? = nil) {
+        title = withTitle
+        image = withImage
+    }
 }
 
 class ProfileOverlaidCollectionViewDataSource: CardDataSource {
