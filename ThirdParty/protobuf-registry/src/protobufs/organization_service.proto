@@ -41,6 +41,7 @@ message OrganizationService {
             optional string profile_count = 10;
             optional string latitude = 11;
             optional string longitude = 12;
+            optional string timezone = 13;
         }
 
         message Location {
@@ -212,21 +213,6 @@ message OrganizationService {
 
         message Response {
             optional Containers.Location location = 1;
-        }
-
-    }
-
-    message GetExtendedLocation {
-
-        message Request {
-            optional string location_id = 1;
-        }
-
-        message Response {
-            optional Containers.Location location = 1;
-            // NB: we can't use the profile container due to a circular import
-            optional string member_profiles_payload = 2;
-            repeated Containers.Team teams = 3;
         }
 
     }
