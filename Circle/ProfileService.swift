@@ -10,7 +10,7 @@ import Foundation
 import ProtobufRegistry
 
 typealias GetProfileCompletionHandler = (profile: ProfileService.Containers.Profile?, error: NSError?) -> Void
-typealias GetProfilesCompletionHandler = (profiles: Array<ProfileService.Containers.Profile>?, error: NSError?) -> Void
+typealias GetProfilesCompletionHandler = (profiles: Array<ProfileService.Containers.Profile>?, paginator: Paginator?, error: NSError?) -> Void
 typealias GetExtendedProfileCompletionHandler = (
     profile: ProfileService.Containers.Profile?,
     manager: ProfileService.Containers.Profile?,
@@ -56,7 +56,7 @@ extension ProfileService {
             client.callAction("get_profiles", extensionField: ProfileServiceRequests_get_profiles, requestBuilder: requestBuilder) {
                 (_, _, _, actionResponse, error) -> Void in
                 let response = actionResponse?.result.getExtension(ProfileServiceRequests_get_profiles) as? ProfileService.GetProfiles.Response
-                completionHandler?(profiles: response?.profiles, error: error)
+                completionHandler?(profiles: response?.profiles, paginator: actionResponse?.control.paginator, error: error)
             }
         }
         

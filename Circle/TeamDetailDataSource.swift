@@ -30,7 +30,7 @@ class TeamDetailDataSource: CardDataSource {
         appendCard(placeholderHeaderCard)
         
         if let currentProfile = AuthViewController.getLoggedInUserProfile() {
-            ProfileService.Actions.getProfiles(selectedTeam!.id) { (profiles, error) -> Void in
+            ProfileService.Actions.getProfiles(selectedTeam!.id) { (profiles, _, error) -> Void in
                 if error == nil {
                     // Add Owner Card
                     var allProfilesExceptOwner = profiles?.filter({ (profile) -> Bool in
