@@ -9,7 +9,7 @@
 import UIKit
 import ProtobufRegistry
 
-class OfficeDetailViewController: DetailViewController {
+class OfficeDetailViewController: DetailViewController, CardFooterViewDelegate {
 
     private let offsetToTriggerFullScreenMapView: CGFloat = -100.0
     private var overlayButtonHandlerAdded = false
@@ -27,6 +27,9 @@ class OfficeDetailViewController: DetailViewController {
 
     override func configureCollectionView() {
         collectionView.dataSource = dataSource
+        dataSource.registerCardHeader(collectionView)
+        dataSource.cardFooterDelegate = self
+        
         collectionView.delegate = delegate
         
         layout.headerHeight = ProfileHeaderCollectionReusableView.height
@@ -77,5 +80,12 @@ class OfficeDetailViewController: DetailViewController {
             mapViewController.selectedOffice = (dataSource as OfficeDetailDataSource).selectedOffice
             presentViewController(mapViewController, animated: animated, completion: nil)
         }
+    }
+    
+    // MARK: - CardFooterViewDelegate
+    
+    func cardFooterTapped(card: Card!) {
+        card.toggleShowingFullContent()
+        collectionView.reloadSections(NSIndexSet(index: card.cardIndex))
     }
 }

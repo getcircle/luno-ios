@@ -22,7 +22,7 @@ import protobufs.user_service_pb2
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='protobufs/profile_service.proto',
   package='main.profile_service',
-  serialized_pb=_b('\n\x1fprotobufs/profile_service.proto\x12\x14main.profile_service\x1a$protobufs/organization_service.proto\x1a\x1cprotobufs/note_service.proto\x1a\x1eprotobufs/resume_service.proto\x1a\x1cprotobufs/user_service.proto\"\xb3 \n\x0eProfileService\x1a\xf9\x04\n\nContainers\x1a\xa0\x03\n\x07Profile\x12\n\n\x02id\x18\x01 \x01(\t\x12\x17\n\x0forganization_id\x18\x02 \x01(\t\x12\x0f\n\x07user_id\x18\x03 \x01(\t\x12\x12\n\naddress_id\x18\x04 \x01(\t\x12\r\n\x05title\x18\x05 \x01(\t\x12\x12\n\nfirst_name\x18\x06 \x01(\t\x12\x11\n\tlast_name\x18\x07 \x01(\t\x12\x12\n\ncell_phone\x18\x08 \x01(\t\x12\x12\n\nwork_phone\x18\t \x01(\t\x12\x11\n\timage_url\x18\n \x01(\t\x12\r\n\x05\x65mail\x18\x0b \x01(\t\x12\x0f\n\x07team_id\x18\x0c \x01(\t\x12\x11\n\tfull_name\x18\r \x01(\t\x12\x12\n\nbirth_date\x18\x0e \x01(\t\x12\x11\n\thire_date\x18\x0f \x01(\t\x12\x10\n\x08verified\x18\x10 \x01(\x08\x12J\n\x05items\x18\x11 \x03(\x0b\x32;.main.profile_service.ProfileService.Containers.ProfileItem\x12\r\n\x05\x61\x62out\x18\x12 \x01(\t\x12\x13\n\x0blocation_id\x18\x13 \x01(\t\x1a)\n\x0bProfileItem\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t\x1a!\n\x05Skill\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x1a\"\n\x05Stats\x12\n\n\x02id\x18\x01 \x01(\t\x12\r\n\x05\x63ount\x18\x02 \x01(\t\x1aV\n\x0cProfileArray\x12\x46\n\x05items\x18\x01 \x03(\x0b\x32\x37.main.profile_service.ProfileService.Containers.Profile\x1a\xba\x01\n\rCreateProfile\x1aS\n\x07Request\x12H\n\x07profile\x18\x01 \x01(\x0b\x32\x37.main.profile_service.ProfileService.Containers.Profile\x1aT\n\x08Response\x12H\n\x07profile\x18\x01 \x01(\x0b\x32\x37.main.profile_service.ProfileService.Containers.Profile\x1a\xc1\x01\n\x12\x42ulkCreateProfiles\x1aT\n\x07Request\x12I\n\x08profiles\x18\x01 \x03(\x0b\x32\x37.main.profile_service.ProfileService.Containers.Profile\x1aU\n\x08Response\x12I\n\x08profiles\x18\x01 \x03(\x0b\x32\x37.main.profile_service.ProfileService.Containers.Profile\x1a\xc1\x01\n\x12\x42ulkUpdateProfiles\x1aT\n\x07Request\x12I\n\x08profiles\x18\x01 \x03(\x0b\x32\x37.main.profile_service.ProfileService.Containers.Profile\x1aU\n\x08Response\x12I\n\x08profiles\x18\x01 \x03(\x0b\x32\x37.main.profile_service.ProfileService.Containers.Profile\x1a\xba\x01\n\rUpdateProfile\x1aS\n\x07Request\x12H\n\x07profile\x18\x01 \x01(\x0b\x32\x37.main.profile_service.ProfileService.Containers.Profile\x1aT\n\x08Response\x12H\n\x07profile\x18\x01 \x01(\x0b\x32\x37.main.profile_service.ProfileService.Containers.Profile\x1a\x92\x01\n\nGetProfile\x1a.\n\x07Request\x12\x12\n\nprofile_id\x18\x01 \x01(\t\x12\x0f\n\x07user_id\x18\x02 \x01(\t\x1aT\n\x08Response\x12H\n\x07profile\x18\x01 \x01(\x0b\x32\x37.main.profile_service.ProfileService.Containers.Profile\x1a\xc2\x06\n\x12GetExtendedProfile\x1a.\n\x07Request\x12\x12\n\nprofile_id\x18\x01 \x01(\t\x12\x0f\n\x07user_id\x18\x02 \x01(\t\x1a\xfb\x05\n\x08Response\x12H\n\x07profile\x18\x01 \x01(\x0b\x32\x37.main.profile_service.ProfileService.Containers.Profile\x12R\n\x07\x61\x64\x64ress\x18\x02 \x01(\x0b\x32\x41.main.organization_service.OrganizationService.Containers.Address\x12H\n\x07manager\x18\x03 \x01(\x0b\x32\x37.main.profile_service.ProfileService.Containers.Profile\x12L\n\x04team\x18\x04 \x01(\x0b\x32>.main.organization_service.OrganizationService.Containers.Team\x12=\n\x05notes\x18\x05 \x03(\x0b\x32..main.note_service.NoteService.Containers.Note\x12\x45\n\x06skills\x18\x06 \x03(\x0b\x32\x35.main.profile_service.ProfileService.Containers.Skill\x12\x46\n\nidentities\x18\x07 \x03(\x0b\x32\x32.main.user_service.UserService.Containers.Identity\x12O\n\x0e\x64irect_reports\x18\x08 \x03(\x0b\x32\x37.main.profile_service.ProfileService.Containers.Profile\x12\x44\n\x06resume\x18\t \x01(\x0b\x32\x34.main.resume_service.ResumeService.Containers.Resume\x12T\n\x08location\x18\n \x01(\x0b\x32\x42.main.organization_service.OrganizationService.Containers.Location\x1a\xcc\x01\n\x0c\x43reateSkills\x1ai\n\x07Request\x12\x45\n\x06skills\x18\x01 \x03(\x0b\x32\x35.main.profile_service.ProfileService.Containers.Skill\x12\x17\n\x0forganization_id\x18\x02 \x01(\t\x1aQ\n\x08Response\x12\x45\n\x06skills\x18\x01 \x03(\x0b\x32\x35.main.profile_service.ProfileService.Containers.Skill\x1a\x96\x01\n\tGetSkills\x1a\x36\n\x07Request\x12\x12\n\nprofile_id\x18\x01 \x01(\t\x12\x17\n\x0forganization_id\x18\x02 \x01(\t\x1aQ\n\x08Response\x12\x45\n\x06skills\x18\x01 \x03(\x0b\x32\x35.main.profile_service.ProfileService.Containers.Skill\x1a}\n\tAddSkills\x1a\x64\n\x07Request\x12\x12\n\nprofile_id\x18\x01 \x01(\t\x12\x45\n\x06skills\x18\x02 \x03(\x0b\x32\x35.main.profile_service.ProfileService.Containers.Skill\x1a\n\n\x08Response\x1a\xe1\x01\n\x0bGetProfiles\x1a{\n\x07Request\x12\x0f\n\x07team_id\x18\x01 \x01(\t\x12\x17\n\x0forganization_id\x18\x02 \x01(\t\x12\x10\n\x08skill_id\x18\x03 \x01(\t\x12\x12\n\naddress_id\x18\x04 \x01(\t\x12\x0b\n\x03ids\x18\x05 \x03(\t\x12\x13\n\x0blocation_id\x18\x06 \x01(\t\x1aU\n\x08Response\x12I\n\x08profiles\x18\x01 \x03(\x0b\x32\x37.main.profile_service.ProfileService.Containers.Profile\x1a\x99\x01\n\x10GetDirectReports\x1a.\n\x07Request\x12\x12\n\nprofile_id\x18\x01 \x01(\t\x12\x0f\n\x07user_id\x18\x02 \x01(\t\x1aU\n\x08Response\x12I\n\x08profiles\x18\x01 \x03(\x0b\x32\x37.main.profile_service.ProfileService.Containers.Profile\x1a\x80\x01\n\x08GetPeers\x1a\x1d\n\x07Request\x12\x12\n\nprofile_id\x18\x01 \x01(\t\x1aU\n\x08Response\x12I\n\x08profiles\x18\x02 \x03(\x0b\x32\x37.main.profile_service.ProfileService.Containers.Profile\x1a\x99\x01\n\x0fGetProfileStats\x1a\x34\n\x07Request\x12\x13\n\x0b\x61\x64\x64ress_ids\x18\x01 \x03(\t\x12\x14\n\x0clocation_ids\x18\x02 \x03(\t\x1aP\n\x08Response\x12\x44\n\x05stats\x18\x01 \x03(\x0b\x32\x35.main.profile_service.ProfileService.Containers.Stats\x1a\x95\x01\n\x18GetUpcomingAnniversaries\x1a\"\n\x07Request\x12\x17\n\x0forganization_id\x18\x01 \x01(\t\x1aU\n\x08Response\x12I\n\x08profiles\x18\x01 \x03(\x0b\x32\x37.main.profile_service.ProfileService.Containers.Profile\x1a\x91\x01\n\x14GetUpcomingBirthdays\x1a\"\n\x07Request\x12\x17\n\x0forganization_id\x18\x01 \x01(\t\x1aU\n\x08Response\x12I\n\x08profiles\x18\x01 \x03(\x0b\x32\x37.main.profile_service.ProfileService.Containers.Profile\x1a\x8b\x01\n\x0eGetRecentHires\x1a\"\n\x07Request\x12\x17\n\x0forganization_id\x18\x01 \x01(\t\x1aU\n\x08Response\x12I\n\x08profiles\x18\x01 \x03(\x0b\x32\x37.main.profile_service.ProfileService.Containers.Profile\x1a\x88\x01\n\x0fGetActiveSkills\x1a\"\n\x07Request\x12\x17\n\x0forganization_id\x18\x01 \x01(\t\x1aQ\n\x08Response\x12\x45\n\x06skills\x18\x01 \x03(\x0b\x32\x35.main.profile_service.ProfileService.Containers.Skill')
+  serialized_pb=_b('\n\x1fprotobufs/profile_service.proto\x12\x14main.profile_service\x1a$protobufs/organization_service.proto\x1a\x1cprotobufs/note_service.proto\x1a\x1eprotobufs/resume_service.proto\x1a\x1cprotobufs/user_service.proto\"\x9b\"\n\x0eProfileService\x1a\xa3\x05\n\nContainers\x1a\xa0\x03\n\x07Profile\x12\n\n\x02id\x18\x01 \x01(\t\x12\x17\n\x0forganization_id\x18\x02 \x01(\t\x12\x0f\n\x07user_id\x18\x03 \x01(\t\x12\x12\n\naddress_id\x18\x04 \x01(\t\x12\r\n\x05title\x18\x05 \x01(\t\x12\x12\n\nfirst_name\x18\x06 \x01(\t\x12\x11\n\tlast_name\x18\x07 \x01(\t\x12\x12\n\ncell_phone\x18\x08 \x01(\t\x12\x12\n\nwork_phone\x18\t \x01(\t\x12\x11\n\timage_url\x18\n \x01(\t\x12\r\n\x05\x65mail\x18\x0b \x01(\t\x12\x0f\n\x07team_id\x18\x0c \x01(\t\x12\x11\n\tfull_name\x18\r \x01(\t\x12\x12\n\nbirth_date\x18\x0e \x01(\t\x12\x11\n\thire_date\x18\x0f \x01(\t\x12\x10\n\x08verified\x18\x10 \x01(\x08\x12J\n\x05items\x18\x11 \x03(\x0b\x32;.main.profile_service.ProfileService.Containers.ProfileItem\x12\r\n\x05\x61\x62out\x18\x12 \x01(\t\x12\x13\n\x0blocation_id\x18\x13 \x01(\t\x1a)\n\x0bProfileItem\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t\x1a!\n\x05Skill\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x1a\"\n\x05Stats\x12\n\n\x02id\x18\x01 \x01(\t\x12\r\n\x05\x63ount\x18\x02 \x01(\t\x1aV\n\x0cProfileArray\x12\x46\n\x05items\x18\x01 \x03(\x0b\x32\x37.main.profile_service.ProfileService.Containers.Profile\x1a(\n\tAttribute\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t\x1a\xba\x01\n\rCreateProfile\x1aS\n\x07Request\x12H\n\x07profile\x18\x01 \x01(\x0b\x32\x37.main.profile_service.ProfileService.Containers.Profile\x1aT\n\x08Response\x12H\n\x07profile\x18\x01 \x01(\x0b\x32\x37.main.profile_service.ProfileService.Containers.Profile\x1a\xc1\x01\n\x12\x42ulkCreateProfiles\x1aT\n\x07Request\x12I\n\x08profiles\x18\x01 \x03(\x0b\x32\x37.main.profile_service.ProfileService.Containers.Profile\x1aU\n\x08Response\x12I\n\x08profiles\x18\x01 \x03(\x0b\x32\x37.main.profile_service.ProfileService.Containers.Profile\x1a\xc1\x01\n\x12\x42ulkUpdateProfiles\x1aT\n\x07Request\x12I\n\x08profiles\x18\x01 \x03(\x0b\x32\x37.main.profile_service.ProfileService.Containers.Profile\x1aU\n\x08Response\x12I\n\x08profiles\x18\x01 \x03(\x0b\x32\x37.main.profile_service.ProfileService.Containers.Profile\x1a\xba\x01\n\rUpdateProfile\x1aS\n\x07Request\x12H\n\x07profile\x18\x01 \x01(\x0b\x32\x37.main.profile_service.ProfileService.Containers.Profile\x1aT\n\x08Response\x12H\n\x07profile\x18\x01 \x01(\x0b\x32\x37.main.profile_service.ProfileService.Containers.Profile\x1a\x92\x01\n\nGetProfile\x1a.\n\x07Request\x12\x12\n\nprofile_id\x18\x01 \x01(\t\x12\x0f\n\x07user_id\x18\x02 \x01(\t\x1aT\n\x08Response\x12H\n\x07profile\x18\x01 \x01(\x0b\x32\x37.main.profile_service.ProfileService.Containers.Profile\x1a\xc2\x06\n\x12GetExtendedProfile\x1a.\n\x07Request\x12\x12\n\nprofile_id\x18\x01 \x01(\t\x12\x0f\n\x07user_id\x18\x02 \x01(\t\x1a\xfb\x05\n\x08Response\x12H\n\x07profile\x18\x01 \x01(\x0b\x32\x37.main.profile_service.ProfileService.Containers.Profile\x12R\n\x07\x61\x64\x64ress\x18\x02 \x01(\x0b\x32\x41.main.organization_service.OrganizationService.Containers.Address\x12H\n\x07manager\x18\x03 \x01(\x0b\x32\x37.main.profile_service.ProfileService.Containers.Profile\x12L\n\x04team\x18\x04 \x01(\x0b\x32>.main.organization_service.OrganizationService.Containers.Team\x12=\n\x05notes\x18\x05 \x03(\x0b\x32..main.note_service.NoteService.Containers.Note\x12\x45\n\x06skills\x18\x06 \x03(\x0b\x32\x35.main.profile_service.ProfileService.Containers.Skill\x12\x46\n\nidentities\x18\x07 \x03(\x0b\x32\x32.main.user_service.UserService.Containers.Identity\x12O\n\x0e\x64irect_reports\x18\x08 \x03(\x0b\x32\x37.main.profile_service.ProfileService.Containers.Profile\x12\x44\n\x06resume\x18\t \x01(\x0b\x32\x34.main.resume_service.ResumeService.Containers.Resume\x12T\n\x08location\x18\n \x01(\x0b\x32\x42.main.organization_service.OrganizationService.Containers.Location\x1a\xcc\x01\n\x0c\x43reateSkills\x1ai\n\x07Request\x12\x45\n\x06skills\x18\x01 \x03(\x0b\x32\x35.main.profile_service.ProfileService.Containers.Skill\x12\x17\n\x0forganization_id\x18\x02 \x01(\t\x1aQ\n\x08Response\x12\x45\n\x06skills\x18\x01 \x03(\x0b\x32\x35.main.profile_service.ProfileService.Containers.Skill\x1a\x96\x01\n\tGetSkills\x1a\x36\n\x07Request\x12\x12\n\nprofile_id\x18\x01 \x01(\t\x12\x17\n\x0forganization_id\x18\x02 \x01(\t\x1aQ\n\x08Response\x12\x45\n\x06skills\x18\x01 \x03(\x0b\x32\x35.main.profile_service.ProfileService.Containers.Skill\x1a}\n\tAddSkills\x1a\x64\n\x07Request\x12\x12\n\nprofile_id\x18\x01 \x01(\t\x12\x45\n\x06skills\x18\x02 \x03(\x0b\x32\x35.main.profile_service.ProfileService.Containers.Skill\x1a\n\n\x08Response\x1a\xe1\x01\n\x0bGetProfiles\x1a{\n\x07Request\x12\x0f\n\x07team_id\x18\x01 \x01(\t\x12\x17\n\x0forganization_id\x18\x02 \x01(\t\x12\x10\n\x08skill_id\x18\x03 \x01(\t\x12\x12\n\naddress_id\x18\x04 \x01(\t\x12\x0b\n\x03ids\x18\x05 \x03(\t\x12\x13\n\x0blocation_id\x18\x06 \x01(\t\x1aU\n\x08Response\x12I\n\x08profiles\x18\x01 \x03(\x0b\x32\x37.main.profile_service.ProfileService.Containers.Profile\x1a\x99\x01\n\x10GetDirectReports\x1a.\n\x07Request\x12\x12\n\nprofile_id\x18\x01 \x01(\t\x12\x0f\n\x07user_id\x18\x02 \x01(\t\x1aU\n\x08Response\x12I\n\x08profiles\x18\x01 \x03(\x0b\x32\x37.main.profile_service.ProfileService.Containers.Profile\x1a\x80\x01\n\x08GetPeers\x1a\x1d\n\x07Request\x12\x12\n\nprofile_id\x18\x01 \x01(\t\x1aU\n\x08Response\x12I\n\x08profiles\x18\x02 \x03(\x0b\x32\x37.main.profile_service.ProfileService.Containers.Profile\x1a\x99\x01\n\x0fGetProfileStats\x1a\x34\n\x07Request\x12\x13\n\x0b\x61\x64\x64ress_ids\x18\x01 \x03(\t\x12\x14\n\x0clocation_ids\x18\x02 \x03(\t\x1aP\n\x08Response\x12\x44\n\x05stats\x18\x01 \x03(\x0b\x32\x35.main.profile_service.ProfileService.Containers.Stats\x1a\x95\x01\n\x18GetUpcomingAnniversaries\x1a\"\n\x07Request\x12\x17\n\x0forganization_id\x18\x01 \x01(\t\x1aU\n\x08Response\x12I\n\x08profiles\x18\x01 \x03(\x0b\x32\x37.main.profile_service.ProfileService.Containers.Profile\x1a\x91\x01\n\x14GetUpcomingBirthdays\x1a\"\n\x07Request\x12\x17\n\x0forganization_id\x18\x01 \x01(\t\x1aU\n\x08Response\x12I\n\x08profiles\x18\x01 \x03(\x0b\x32\x37.main.profile_service.ProfileService.Containers.Profile\x1a\x8b\x01\n\x0eGetRecentHires\x1a\"\n\x07Request\x12\x17\n\x0forganization_id\x18\x01 \x01(\t\x1aU\n\x08Response\x12I\n\x08profiles\x18\x01 \x03(\x0b\x32\x37.main.profile_service.ProfileService.Containers.Profile\x1a\x88\x01\n\x0fGetActiveSkills\x1a\"\n\x07Request\x12\x17\n\x0forganization_id\x18\x01 \x01(\t\x1aQ\n\x08Response\x12\x45\n\x06skills\x18\x01 \x03(\x0b\x32\x35.main.profile_service.ProfileService.Containers.Skill\x1a\xbb\x01\n\x18GetAttributesForProfiles\x1a\x44\n\x07Request\x12\x12\n\nattributes\x18\x01 \x03(\t\x12\x10\n\x08\x64istinct\x18\x02 \x01(\x08\x12\x13\n\x0blocation_id\x18\x03 \x01(\t\x1aY\n\x08Response\x12M\n\nattributes\x18\x01 \x03(\x0b\x32\x39.main.profile_service.ProfileService.Containers.Attribute')
   ,
   dependencies=[protobufs.organization_service_pb2.DESCRIPTOR,protobufs.note_service_pb2.DESCRIPTOR,protobufs.resume_service_pb2.DESCRIPTOR,protobufs.user_service_pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
@@ -322,6 +322,42 @@ _PROFILESERVICE_CONTAINERS_PROFILEARRAY = _descriptor.Descriptor(
   serialized_end=840,
 )
 
+_PROFILESERVICE_CONTAINERS_ATTRIBUTE = _descriptor.Descriptor(
+  name='Attribute',
+  full_name='main.profile_service.ProfileService.Containers.Attribute',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='name', full_name='main.profile_service.ProfileService.Containers.Attribute.name', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='value', full_name='main.profile_service.ProfileService.Containers.Attribute.value', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=842,
+  serialized_end=882,
+)
+
 _PROFILESERVICE_CONTAINERS = _descriptor.Descriptor(
   name='Containers',
   full_name='main.profile_service.ProfileService.Containers',
@@ -332,7 +368,7 @@ _PROFILESERVICE_CONTAINERS = _descriptor.Descriptor(
   ],
   extensions=[
   ],
-  nested_types=[_PROFILESERVICE_CONTAINERS_PROFILE, _PROFILESERVICE_CONTAINERS_PROFILEITEM, _PROFILESERVICE_CONTAINERS_SKILL, _PROFILESERVICE_CONTAINERS_STATS, _PROFILESERVICE_CONTAINERS_PROFILEARRAY, ],
+  nested_types=[_PROFILESERVICE_CONTAINERS_PROFILE, _PROFILESERVICE_CONTAINERS_PROFILEITEM, _PROFILESERVICE_CONTAINERS_SKILL, _PROFILESERVICE_CONTAINERS_STATS, _PROFILESERVICE_CONTAINERS_PROFILEARRAY, _PROFILESERVICE_CONTAINERS_ATTRIBUTE, ],
   enum_types=[
   ],
   options=None,
@@ -341,7 +377,7 @@ _PROFILESERVICE_CONTAINERS = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=207,
-  serialized_end=840,
+  serialized_end=882,
 )
 
 _PROFILESERVICE_CREATEPROFILE_REQUEST = _descriptor.Descriptor(
@@ -369,8 +405,8 @@ _PROFILESERVICE_CREATEPROFILE_REQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=860,
-  serialized_end=943,
+  serialized_start=902,
+  serialized_end=985,
 )
 
 _PROFILESERVICE_CREATEPROFILE_RESPONSE = _descriptor.Descriptor(
@@ -398,8 +434,8 @@ _PROFILESERVICE_CREATEPROFILE_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=945,
-  serialized_end=1029,
+  serialized_start=987,
+  serialized_end=1071,
 )
 
 _PROFILESERVICE_CREATEPROFILE = _descriptor.Descriptor(
@@ -420,8 +456,8 @@ _PROFILESERVICE_CREATEPROFILE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=843,
-  serialized_end=1029,
+  serialized_start=885,
+  serialized_end=1071,
 )
 
 _PROFILESERVICE_BULKCREATEPROFILES_REQUEST = _descriptor.Descriptor(
@@ -449,8 +485,8 @@ _PROFILESERVICE_BULKCREATEPROFILES_REQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1054,
-  serialized_end=1138,
+  serialized_start=1096,
+  serialized_end=1180,
 )
 
 _PROFILESERVICE_BULKCREATEPROFILES_RESPONSE = _descriptor.Descriptor(
@@ -478,8 +514,8 @@ _PROFILESERVICE_BULKCREATEPROFILES_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1140,
-  serialized_end=1225,
+  serialized_start=1182,
+  serialized_end=1267,
 )
 
 _PROFILESERVICE_BULKCREATEPROFILES = _descriptor.Descriptor(
@@ -500,8 +536,8 @@ _PROFILESERVICE_BULKCREATEPROFILES = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1032,
-  serialized_end=1225,
+  serialized_start=1074,
+  serialized_end=1267,
 )
 
 _PROFILESERVICE_BULKUPDATEPROFILES_REQUEST = _descriptor.Descriptor(
@@ -529,8 +565,8 @@ _PROFILESERVICE_BULKUPDATEPROFILES_REQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1054,
-  serialized_end=1138,
+  serialized_start=1096,
+  serialized_end=1180,
 )
 
 _PROFILESERVICE_BULKUPDATEPROFILES_RESPONSE = _descriptor.Descriptor(
@@ -558,8 +594,8 @@ _PROFILESERVICE_BULKUPDATEPROFILES_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1140,
-  serialized_end=1225,
+  serialized_start=1182,
+  serialized_end=1267,
 )
 
 _PROFILESERVICE_BULKUPDATEPROFILES = _descriptor.Descriptor(
@@ -580,8 +616,8 @@ _PROFILESERVICE_BULKUPDATEPROFILES = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1228,
-  serialized_end=1421,
+  serialized_start=1270,
+  serialized_end=1463,
 )
 
 _PROFILESERVICE_UPDATEPROFILE_REQUEST = _descriptor.Descriptor(
@@ -609,8 +645,8 @@ _PROFILESERVICE_UPDATEPROFILE_REQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=860,
-  serialized_end=943,
+  serialized_start=902,
+  serialized_end=985,
 )
 
 _PROFILESERVICE_UPDATEPROFILE_RESPONSE = _descriptor.Descriptor(
@@ -638,8 +674,8 @@ _PROFILESERVICE_UPDATEPROFILE_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=945,
-  serialized_end=1029,
+  serialized_start=987,
+  serialized_end=1071,
 )
 
 _PROFILESERVICE_UPDATEPROFILE = _descriptor.Descriptor(
@@ -660,8 +696,8 @@ _PROFILESERVICE_UPDATEPROFILE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1424,
-  serialized_end=1610,
+  serialized_start=1466,
+  serialized_end=1652,
 )
 
 _PROFILESERVICE_GETPROFILE_REQUEST = _descriptor.Descriptor(
@@ -696,8 +732,8 @@ _PROFILESERVICE_GETPROFILE_REQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1627,
-  serialized_end=1673,
+  serialized_start=1669,
+  serialized_end=1715,
 )
 
 _PROFILESERVICE_GETPROFILE_RESPONSE = _descriptor.Descriptor(
@@ -725,8 +761,8 @@ _PROFILESERVICE_GETPROFILE_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=945,
-  serialized_end=1029,
+  serialized_start=987,
+  serialized_end=1071,
 )
 
 _PROFILESERVICE_GETPROFILE = _descriptor.Descriptor(
@@ -747,8 +783,8 @@ _PROFILESERVICE_GETPROFILE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1613,
-  serialized_end=1759,
+  serialized_start=1655,
+  serialized_end=1801,
 )
 
 _PROFILESERVICE_GETEXTENDEDPROFILE_REQUEST = _descriptor.Descriptor(
@@ -783,8 +819,8 @@ _PROFILESERVICE_GETEXTENDEDPROFILE_REQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1627,
-  serialized_end=1673,
+  serialized_start=1669,
+  serialized_end=1715,
 )
 
 _PROFILESERVICE_GETEXTENDEDPROFILE_RESPONSE = _descriptor.Descriptor(
@@ -875,8 +911,8 @@ _PROFILESERVICE_GETEXTENDEDPROFILE_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1833,
-  serialized_end=2596,
+  serialized_start=1875,
+  serialized_end=2638,
 )
 
 _PROFILESERVICE_GETEXTENDEDPROFILE = _descriptor.Descriptor(
@@ -897,8 +933,8 @@ _PROFILESERVICE_GETEXTENDEDPROFILE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1762,
-  serialized_end=2596,
+  serialized_start=1804,
+  serialized_end=2638,
 )
 
 _PROFILESERVICE_CREATESKILLS_REQUEST = _descriptor.Descriptor(
@@ -933,8 +969,8 @@ _PROFILESERVICE_CREATESKILLS_REQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2615,
-  serialized_end=2720,
+  serialized_start=2657,
+  serialized_end=2762,
 )
 
 _PROFILESERVICE_CREATESKILLS_RESPONSE = _descriptor.Descriptor(
@@ -962,8 +998,8 @@ _PROFILESERVICE_CREATESKILLS_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2722,
-  serialized_end=2803,
+  serialized_start=2764,
+  serialized_end=2845,
 )
 
 _PROFILESERVICE_CREATESKILLS = _descriptor.Descriptor(
@@ -984,8 +1020,8 @@ _PROFILESERVICE_CREATESKILLS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2599,
-  serialized_end=2803,
+  serialized_start=2641,
+  serialized_end=2845,
 )
 
 _PROFILESERVICE_GETSKILLS_REQUEST = _descriptor.Descriptor(
@@ -1020,8 +1056,8 @@ _PROFILESERVICE_GETSKILLS_REQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2819,
-  serialized_end=2873,
+  serialized_start=2861,
+  serialized_end=2915,
 )
 
 _PROFILESERVICE_GETSKILLS_RESPONSE = _descriptor.Descriptor(
@@ -1049,8 +1085,8 @@ _PROFILESERVICE_GETSKILLS_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2722,
-  serialized_end=2803,
+  serialized_start=2764,
+  serialized_end=2845,
 )
 
 _PROFILESERVICE_GETSKILLS = _descriptor.Descriptor(
@@ -1071,8 +1107,8 @@ _PROFILESERVICE_GETSKILLS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2806,
-  serialized_end=2956,
+  serialized_start=2848,
+  serialized_end=2998,
 )
 
 _PROFILESERVICE_ADDSKILLS_REQUEST = _descriptor.Descriptor(
@@ -1107,8 +1143,8 @@ _PROFILESERVICE_ADDSKILLS_REQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2971,
-  serialized_end=3071,
+  serialized_start=3013,
+  serialized_end=3113,
 )
 
 _PROFILESERVICE_ADDSKILLS_RESPONSE = _descriptor.Descriptor(
@@ -1129,8 +1165,8 @@ _PROFILESERVICE_ADDSKILLS_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=945,
-  serialized_end=955,
+  serialized_start=987,
+  serialized_end=997,
 )
 
 _PROFILESERVICE_ADDSKILLS = _descriptor.Descriptor(
@@ -1151,8 +1187,8 @@ _PROFILESERVICE_ADDSKILLS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2958,
-  serialized_end=3083,
+  serialized_start=3000,
+  serialized_end=3125,
 )
 
 _PROFILESERVICE_GETPROFILES_REQUEST = _descriptor.Descriptor(
@@ -1215,8 +1251,8 @@ _PROFILESERVICE_GETPROFILES_REQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3101,
-  serialized_end=3224,
+  serialized_start=3143,
+  serialized_end=3266,
 )
 
 _PROFILESERVICE_GETPROFILES_RESPONSE = _descriptor.Descriptor(
@@ -1244,8 +1280,8 @@ _PROFILESERVICE_GETPROFILES_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1140,
-  serialized_end=1225,
+  serialized_start=1182,
+  serialized_end=1267,
 )
 
 _PROFILESERVICE_GETPROFILES = _descriptor.Descriptor(
@@ -1266,8 +1302,8 @@ _PROFILESERVICE_GETPROFILES = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3086,
-  serialized_end=3311,
+  serialized_start=3128,
+  serialized_end=3353,
 )
 
 _PROFILESERVICE_GETDIRECTREPORTS_REQUEST = _descriptor.Descriptor(
@@ -1302,8 +1338,8 @@ _PROFILESERVICE_GETDIRECTREPORTS_REQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1627,
-  serialized_end=1673,
+  serialized_start=1669,
+  serialized_end=1715,
 )
 
 _PROFILESERVICE_GETDIRECTREPORTS_RESPONSE = _descriptor.Descriptor(
@@ -1331,8 +1367,8 @@ _PROFILESERVICE_GETDIRECTREPORTS_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1140,
-  serialized_end=1225,
+  serialized_start=1182,
+  serialized_end=1267,
 )
 
 _PROFILESERVICE_GETDIRECTREPORTS = _descriptor.Descriptor(
@@ -1353,8 +1389,8 @@ _PROFILESERVICE_GETDIRECTREPORTS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3314,
-  serialized_end=3467,
+  serialized_start=3356,
+  serialized_end=3509,
 )
 
 _PROFILESERVICE_GETPEERS_REQUEST = _descriptor.Descriptor(
@@ -1382,8 +1418,8 @@ _PROFILESERVICE_GETPEERS_REQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1627,
-  serialized_end=1656,
+  serialized_start=1669,
+  serialized_end=1698,
 )
 
 _PROFILESERVICE_GETPEERS_RESPONSE = _descriptor.Descriptor(
@@ -1411,8 +1447,8 @@ _PROFILESERVICE_GETPEERS_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3513,
-  serialized_end=3598,
+  serialized_start=3555,
+  serialized_end=3640,
 )
 
 _PROFILESERVICE_GETPEERS = _descriptor.Descriptor(
@@ -1433,8 +1469,8 @@ _PROFILESERVICE_GETPEERS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3470,
-  serialized_end=3598,
+  serialized_start=3512,
+  serialized_end=3640,
 )
 
 _PROFILESERVICE_GETPROFILESTATS_REQUEST = _descriptor.Descriptor(
@@ -1469,8 +1505,8 @@ _PROFILESERVICE_GETPROFILESTATS_REQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3620,
-  serialized_end=3672,
+  serialized_start=3662,
+  serialized_end=3714,
 )
 
 _PROFILESERVICE_GETPROFILESTATS_RESPONSE = _descriptor.Descriptor(
@@ -1498,8 +1534,8 @@ _PROFILESERVICE_GETPROFILESTATS_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3674,
-  serialized_end=3754,
+  serialized_start=3716,
+  serialized_end=3796,
 )
 
 _PROFILESERVICE_GETPROFILESTATS = _descriptor.Descriptor(
@@ -1520,8 +1556,8 @@ _PROFILESERVICE_GETPROFILESTATS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3601,
-  serialized_end=3754,
+  serialized_start=3643,
+  serialized_end=3796,
 )
 
 _PROFILESERVICE_GETUPCOMINGANNIVERSARIES_REQUEST = _descriptor.Descriptor(
@@ -1549,8 +1585,8 @@ _PROFILESERVICE_GETUPCOMINGANNIVERSARIES_REQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3785,
-  serialized_end=3819,
+  serialized_start=3827,
+  serialized_end=3861,
 )
 
 _PROFILESERVICE_GETUPCOMINGANNIVERSARIES_RESPONSE = _descriptor.Descriptor(
@@ -1578,8 +1614,8 @@ _PROFILESERVICE_GETUPCOMINGANNIVERSARIES_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1140,
-  serialized_end=1225,
+  serialized_start=1182,
+  serialized_end=1267,
 )
 
 _PROFILESERVICE_GETUPCOMINGANNIVERSARIES = _descriptor.Descriptor(
@@ -1600,8 +1636,8 @@ _PROFILESERVICE_GETUPCOMINGANNIVERSARIES = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3757,
-  serialized_end=3906,
+  serialized_start=3799,
+  serialized_end=3948,
 )
 
 _PROFILESERVICE_GETUPCOMINGBIRTHDAYS_REQUEST = _descriptor.Descriptor(
@@ -1629,8 +1665,8 @@ _PROFILESERVICE_GETUPCOMINGBIRTHDAYS_REQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3785,
-  serialized_end=3819,
+  serialized_start=3827,
+  serialized_end=3861,
 )
 
 _PROFILESERVICE_GETUPCOMINGBIRTHDAYS_RESPONSE = _descriptor.Descriptor(
@@ -1658,8 +1694,8 @@ _PROFILESERVICE_GETUPCOMINGBIRTHDAYS_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1140,
-  serialized_end=1225,
+  serialized_start=1182,
+  serialized_end=1267,
 )
 
 _PROFILESERVICE_GETUPCOMINGBIRTHDAYS = _descriptor.Descriptor(
@@ -1680,8 +1716,8 @@ _PROFILESERVICE_GETUPCOMINGBIRTHDAYS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3909,
-  serialized_end=4054,
+  serialized_start=3951,
+  serialized_end=4096,
 )
 
 _PROFILESERVICE_GETRECENTHIRES_REQUEST = _descriptor.Descriptor(
@@ -1709,8 +1745,8 @@ _PROFILESERVICE_GETRECENTHIRES_REQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3785,
-  serialized_end=3819,
+  serialized_start=3827,
+  serialized_end=3861,
 )
 
 _PROFILESERVICE_GETRECENTHIRES_RESPONSE = _descriptor.Descriptor(
@@ -1738,8 +1774,8 @@ _PROFILESERVICE_GETRECENTHIRES_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1140,
-  serialized_end=1225,
+  serialized_start=1182,
+  serialized_end=1267,
 )
 
 _PROFILESERVICE_GETRECENTHIRES = _descriptor.Descriptor(
@@ -1760,8 +1796,8 @@ _PROFILESERVICE_GETRECENTHIRES = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4057,
-  serialized_end=4196,
+  serialized_start=4099,
+  serialized_end=4238,
 )
 
 _PROFILESERVICE_GETACTIVESKILLS_REQUEST = _descriptor.Descriptor(
@@ -1789,8 +1825,8 @@ _PROFILESERVICE_GETACTIVESKILLS_REQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3785,
-  serialized_end=3819,
+  serialized_start=3827,
+  serialized_end=3861,
 )
 
 _PROFILESERVICE_GETACTIVESKILLS_RESPONSE = _descriptor.Descriptor(
@@ -1818,8 +1854,8 @@ _PROFILESERVICE_GETACTIVESKILLS_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2722,
-  serialized_end=2803,
+  serialized_start=2764,
+  serialized_end=2845,
 )
 
 _PROFILESERVICE_GETACTIVESKILLS = _descriptor.Descriptor(
@@ -1840,8 +1876,102 @@ _PROFILESERVICE_GETACTIVESKILLS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4199,
-  serialized_end=4335,
+  serialized_start=4241,
+  serialized_end=4377,
+)
+
+_PROFILESERVICE_GETATTRIBUTESFORPROFILES_REQUEST = _descriptor.Descriptor(
+  name='Request',
+  full_name='main.profile_service.ProfileService.GetAttributesForProfiles.Request',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='attributes', full_name='main.profile_service.ProfileService.GetAttributesForProfiles.Request.attributes', index=0,
+      number=1, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='distinct', full_name='main.profile_service.ProfileService.GetAttributesForProfiles.Request.distinct', index=1,
+      number=2, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='location_id', full_name='main.profile_service.ProfileService.GetAttributesForProfiles.Request.location_id', index=2,
+      number=3, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=4408,
+  serialized_end=4476,
+)
+
+_PROFILESERVICE_GETATTRIBUTESFORPROFILES_RESPONSE = _descriptor.Descriptor(
+  name='Response',
+  full_name='main.profile_service.ProfileService.GetAttributesForProfiles.Response',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='attributes', full_name='main.profile_service.ProfileService.GetAttributesForProfiles.Response.attributes', index=0,
+      number=1, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=4478,
+  serialized_end=4567,
+)
+
+_PROFILESERVICE_GETATTRIBUTESFORPROFILES = _descriptor.Descriptor(
+  name='GetAttributesForProfiles',
+  full_name='main.profile_service.ProfileService.GetAttributesForProfiles',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+  ],
+  extensions=[
+  ],
+  nested_types=[_PROFILESERVICE_GETATTRIBUTESFORPROFILES_REQUEST, _PROFILESERVICE_GETATTRIBUTESFORPROFILES_RESPONSE, ],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=4380,
+  serialized_end=4567,
 )
 
 _PROFILESERVICE = _descriptor.Descriptor(
@@ -1854,7 +1984,7 @@ _PROFILESERVICE = _descriptor.Descriptor(
   ],
   extensions=[
   ],
-  nested_types=[_PROFILESERVICE_CONTAINERS, _PROFILESERVICE_CREATEPROFILE, _PROFILESERVICE_BULKCREATEPROFILES, _PROFILESERVICE_BULKUPDATEPROFILES, _PROFILESERVICE_UPDATEPROFILE, _PROFILESERVICE_GETPROFILE, _PROFILESERVICE_GETEXTENDEDPROFILE, _PROFILESERVICE_CREATESKILLS, _PROFILESERVICE_GETSKILLS, _PROFILESERVICE_ADDSKILLS, _PROFILESERVICE_GETPROFILES, _PROFILESERVICE_GETDIRECTREPORTS, _PROFILESERVICE_GETPEERS, _PROFILESERVICE_GETPROFILESTATS, _PROFILESERVICE_GETUPCOMINGANNIVERSARIES, _PROFILESERVICE_GETUPCOMINGBIRTHDAYS, _PROFILESERVICE_GETRECENTHIRES, _PROFILESERVICE_GETACTIVESKILLS, ],
+  nested_types=[_PROFILESERVICE_CONTAINERS, _PROFILESERVICE_CREATEPROFILE, _PROFILESERVICE_BULKCREATEPROFILES, _PROFILESERVICE_BULKUPDATEPROFILES, _PROFILESERVICE_UPDATEPROFILE, _PROFILESERVICE_GETPROFILE, _PROFILESERVICE_GETEXTENDEDPROFILE, _PROFILESERVICE_CREATESKILLS, _PROFILESERVICE_GETSKILLS, _PROFILESERVICE_ADDSKILLS, _PROFILESERVICE_GETPROFILES, _PROFILESERVICE_GETDIRECTREPORTS, _PROFILESERVICE_GETPEERS, _PROFILESERVICE_GETPROFILESTATS, _PROFILESERVICE_GETUPCOMINGANNIVERSARIES, _PROFILESERVICE_GETUPCOMINGBIRTHDAYS, _PROFILESERVICE_GETRECENTHIRES, _PROFILESERVICE_GETACTIVESKILLS, _PROFILESERVICE_GETATTRIBUTESFORPROFILES, ],
   enum_types=[
   ],
   options=None,
@@ -1863,7 +1993,7 @@ _PROFILESERVICE = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=188,
-  serialized_end=4335,
+  serialized_end=4567,
 )
 
 _PROFILESERVICE_CONTAINERS_PROFILE.fields_by_name['items'].message_type = _PROFILESERVICE_CONTAINERS_PROFILEITEM
@@ -1873,6 +2003,7 @@ _PROFILESERVICE_CONTAINERS_SKILL.containing_type = _PROFILESERVICE_CONTAINERS
 _PROFILESERVICE_CONTAINERS_STATS.containing_type = _PROFILESERVICE_CONTAINERS
 _PROFILESERVICE_CONTAINERS_PROFILEARRAY.fields_by_name['items'].message_type = _PROFILESERVICE_CONTAINERS_PROFILE
 _PROFILESERVICE_CONTAINERS_PROFILEARRAY.containing_type = _PROFILESERVICE_CONTAINERS
+_PROFILESERVICE_CONTAINERS_ATTRIBUTE.containing_type = _PROFILESERVICE_CONTAINERS
 _PROFILESERVICE_CONTAINERS.containing_type = _PROFILESERVICE
 _PROFILESERVICE_CREATEPROFILE_REQUEST.fields_by_name['profile'].message_type = _PROFILESERVICE_CONTAINERS_PROFILE
 _PROFILESERVICE_CREATEPROFILE_REQUEST.containing_type = _PROFILESERVICE_CREATEPROFILE
@@ -1956,6 +2087,10 @@ _PROFILESERVICE_GETACTIVESKILLS_REQUEST.containing_type = _PROFILESERVICE_GETACT
 _PROFILESERVICE_GETACTIVESKILLS_RESPONSE.fields_by_name['skills'].message_type = _PROFILESERVICE_CONTAINERS_SKILL
 _PROFILESERVICE_GETACTIVESKILLS_RESPONSE.containing_type = _PROFILESERVICE_GETACTIVESKILLS
 _PROFILESERVICE_GETACTIVESKILLS.containing_type = _PROFILESERVICE
+_PROFILESERVICE_GETATTRIBUTESFORPROFILES_REQUEST.containing_type = _PROFILESERVICE_GETATTRIBUTESFORPROFILES
+_PROFILESERVICE_GETATTRIBUTESFORPROFILES_RESPONSE.fields_by_name['attributes'].message_type = _PROFILESERVICE_CONTAINERS_ATTRIBUTE
+_PROFILESERVICE_GETATTRIBUTESFORPROFILES_RESPONSE.containing_type = _PROFILESERVICE_GETATTRIBUTESFORPROFILES
+_PROFILESERVICE_GETATTRIBUTESFORPROFILES.containing_type = _PROFILESERVICE
 DESCRIPTOR.message_types_by_name['ProfileService'] = _PROFILESERVICE
 
 ProfileService = _reflection.GeneratedProtocolMessageType('ProfileService', (_message.Message,), dict(
@@ -1994,6 +2129,13 @@ ProfileService = _reflection.GeneratedProtocolMessageType('ProfileService', (_me
       DESCRIPTOR = _PROFILESERVICE_CONTAINERS_PROFILEARRAY,
       __module__ = 'protobufs.profile_service_pb2'
       # @@protoc_insertion_point(class_scope:main.profile_service.ProfileService.Containers.ProfileArray)
+      ))
+    ,
+
+    Attribute = _reflection.GeneratedProtocolMessageType('Attribute', (_message.Message,), dict(
+      DESCRIPTOR = _PROFILESERVICE_CONTAINERS_ATTRIBUTE,
+      __module__ = 'protobufs.profile_service_pb2'
+      # @@protoc_insertion_point(class_scope:main.profile_service.ProfileService.Containers.Attribute)
       ))
     ,
     DESCRIPTOR = _PROFILESERVICE_CONTAINERS,
@@ -2358,6 +2500,27 @@ ProfileService = _reflection.GeneratedProtocolMessageType('ProfileService', (_me
     # @@protoc_insertion_point(class_scope:main.profile_service.ProfileService.GetActiveSkills)
     ))
   ,
+
+  GetAttributesForProfiles = _reflection.GeneratedProtocolMessageType('GetAttributesForProfiles', (_message.Message,), dict(
+
+    Request = _reflection.GeneratedProtocolMessageType('Request', (_message.Message,), dict(
+      DESCRIPTOR = _PROFILESERVICE_GETATTRIBUTESFORPROFILES_REQUEST,
+      __module__ = 'protobufs.profile_service_pb2'
+      # @@protoc_insertion_point(class_scope:main.profile_service.ProfileService.GetAttributesForProfiles.Request)
+      ))
+    ,
+
+    Response = _reflection.GeneratedProtocolMessageType('Response', (_message.Message,), dict(
+      DESCRIPTOR = _PROFILESERVICE_GETATTRIBUTESFORPROFILES_RESPONSE,
+      __module__ = 'protobufs.profile_service_pb2'
+      # @@protoc_insertion_point(class_scope:main.profile_service.ProfileService.GetAttributesForProfiles.Response)
+      ))
+    ,
+    DESCRIPTOR = _PROFILESERVICE_GETATTRIBUTESFORPROFILES,
+    __module__ = 'protobufs.profile_service_pb2'
+    # @@protoc_insertion_point(class_scope:main.profile_service.ProfileService.GetAttributesForProfiles)
+    ))
+  ,
   DESCRIPTOR = _PROFILESERVICE,
   __module__ = 'protobufs.profile_service_pb2'
   # @@protoc_insertion_point(class_scope:main.profile_service.ProfileService)
@@ -2369,6 +2532,7 @@ _sym_db.RegisterMessage(ProfileService.Containers.ProfileItem)
 _sym_db.RegisterMessage(ProfileService.Containers.Skill)
 _sym_db.RegisterMessage(ProfileService.Containers.Stats)
 _sym_db.RegisterMessage(ProfileService.Containers.ProfileArray)
+_sym_db.RegisterMessage(ProfileService.Containers.Attribute)
 _sym_db.RegisterMessage(ProfileService.CreateProfile)
 _sym_db.RegisterMessage(ProfileService.CreateProfile.Request)
 _sym_db.RegisterMessage(ProfileService.CreateProfile.Response)
@@ -2420,6 +2584,9 @@ _sym_db.RegisterMessage(ProfileService.GetRecentHires.Response)
 _sym_db.RegisterMessage(ProfileService.GetActiveSkills)
 _sym_db.RegisterMessage(ProfileService.GetActiveSkills.Request)
 _sym_db.RegisterMessage(ProfileService.GetActiveSkills.Response)
+_sym_db.RegisterMessage(ProfileService.GetAttributesForProfiles)
+_sym_db.RegisterMessage(ProfileService.GetAttributesForProfiles.Request)
+_sym_db.RegisterMessage(ProfileService.GetAttributesForProfiles.Response)
 
 
 # @@protoc_insertion_point(module_scope)

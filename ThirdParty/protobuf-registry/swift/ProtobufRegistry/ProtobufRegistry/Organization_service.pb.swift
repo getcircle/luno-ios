@@ -4741,12 +4741,16 @@ final public class OrganizationService : GeneratedMessage {
           override public subscript (key: String) -> Any? {
                  switch key {
                  case "organization_id": return organization_id
+                 case "location_id": return location_id
                  default: return nil
                  }
           }
 
           public private(set) var hasOrganizationId:Bool = false
           public private(set) var organization_id:String = ""
+
+          public private(set) var hasLocationId:Bool = false
+          public private(set) var location_id:String = ""
 
           required public init() {
                super.init()
@@ -4757,6 +4761,9 @@ final public class OrganizationService : GeneratedMessage {
           override public func writeToCodedOutputStream(output:CodedOutputStream) {
             if hasOrganizationId {
               output.writeString(1, value:organization_id)
+            }
+            if hasLocationId {
+              output.writeString(2, value:location_id)
             }
             unknownFields.writeToCodedOutputStream(output)
           }
@@ -4769,6 +4776,9 @@ final public class OrganizationService : GeneratedMessage {
             size = 0
             if hasOrganizationId {
               size += WireFormat.computeStringSize(1, value:organization_id)
+            }
+            if hasLocationId {
+              size += WireFormat.computeStringSize(2, value:location_id)
             }
             size += unknownFields.serializedSize()
             memoizedSerializedSize = size
@@ -4814,6 +4824,9 @@ final public class OrganizationService : GeneratedMessage {
             if hasOrganizationId {
               output += "\(indent) organization_id: \(organization_id) \n"
             }
+            if hasLocationId {
+              output += "\(indent) location_id: \(location_id) \n"
+            }
             unknownFields.writeDescriptionTo(&output, indent:indent)
           }
           override public var hashValue:Int {
@@ -4821,6 +4834,9 @@ final public class OrganizationService : GeneratedMessage {
                   var hashCode:Int = 7
                   if hasOrganizationId {
                      hashCode = (hashCode &* 31) &+ organization_id.hashValue
+                  }
+                  if hasLocationId {
+                     hashCode = (hashCode &* 31) &+ location_id.hashValue
                   }
                   hashCode = (hashCode &* 31) &+  unknownFields.hashValue
                   return hashCode
@@ -4871,6 +4887,25 @@ final public class OrganizationService : GeneratedMessage {
                builderResult.organization_id = ""
                return self
           }
+          public var hasLocationId:Bool {
+               get {
+                    return builderResult.hasLocationId
+               }
+          }
+          public var location_id:String {
+               get {
+                    return builderResult.location_id
+               }
+               set (value) {
+                   builderResult.hasLocationId = true
+                   builderResult.location_id = value
+               }
+          }
+          public func clearLocationId() -> OrganizationService.GetTeams.RequestBuilder{
+               builderResult.hasLocationId = false
+               builderResult.location_id = ""
+               return self
+          }
           override public var internalGetResult:GeneratedMessage {
                get {
                   return builderResult
@@ -4895,6 +4930,9 @@ final public class OrganizationService : GeneratedMessage {
             if other.hasOrganizationId {
                  organization_id = other.organization_id
             }
+            if other.hasLocationId {
+                 location_id = other.location_id
+            }
             mergeUnknownFields(other.unknownFields)
             return self
           }
@@ -4912,6 +4950,9 @@ final public class OrganizationService : GeneratedMessage {
 
               case 10 :
                 organization_id = input.readString()
+
+              case 18 :
+                location_id = input.readString()
 
               default:
                 if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {

@@ -52,6 +52,11 @@ message ProfileService {
             repeated Profile items = 1;
         }
 
+        message Attribute {
+            optional string name = 1;
+            optional string value = 2;
+        }
+
     }
 
     // MARK: - Actions
@@ -270,6 +275,20 @@ message ProfileService {
 
         message Response {
             repeated Containers.Skill skills = 1;
+        }
+
+    }
+
+    message GetAttributesForProfiles {
+
+        message Request {
+            repeated string attributes = 1;
+            optional bool distinct = 2;
+            optional string location_id = 3;
+        }
+
+        message Response {
+            repeated Containers.Attribute attributes = 1;
         }
 
     }

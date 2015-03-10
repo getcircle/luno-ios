@@ -222,6 +222,11 @@ public var ProfileServiceResponses_bulk_update_profiles:ConcreateExtensionField 
        return ResponseRegistryRoot.sharedInstance.ProfileServiceResponses_bulk_update_profilesStatic
    }
 }
+public var ProfileServiceResponses_get_attributes_for_profiles:ConcreateExtensionField {
+   get {
+       return ResponseRegistryRoot.sharedInstance.ProfileServiceResponses_get_attributes_for_profilesStatic
+   }
+}
 public var SearchServiceResponses_search:ConcreateExtensionField {
    get {
        return ResponseRegistryRoot.sharedInstance.SearchServiceResponses_searchStatic
@@ -363,6 +368,7 @@ public struct ResponseRegistryRoot {
   var ProfileServiceResponses_get_active_skillsStatic:ConcreateExtensionField
   var ProfileServiceResponses_bulk_create_profilesStatic:ConcreateExtensionField
   var ProfileServiceResponses_bulk_update_profilesStatic:ConcreateExtensionField
+  var ProfileServiceResponses_get_attributes_for_profilesStatic:ConcreateExtensionField
   var SearchServiceResponses_searchStatic:ConcreateExtensionField
   var LandingServiceResponses_get_categoriesStatic:ConcreateExtensionField
   var LandingServiceResponses_get_organization_categoriesStatic:ConcreateExtensionField
@@ -428,6 +434,7 @@ public struct ResponseRegistryRoot {
     ProfileServiceResponses_get_active_skillsStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 314, defaultValue:ProfileService.GetActiveSkills.Response(), messageOrGroupClass:ProfileService.GetActiveSkills.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     ProfileServiceResponses_bulk_create_profilesStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 315, defaultValue:ProfileService.BulkCreateProfiles.Response(), messageOrGroupClass:ProfileService.BulkCreateProfiles.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     ProfileServiceResponses_bulk_update_profilesStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 316, defaultValue:ProfileService.BulkUpdateProfiles.Response(), messageOrGroupClass:ProfileService.BulkUpdateProfiles.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
+    ProfileServiceResponses_get_attributes_for_profilesStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 317, defaultValue:ProfileService.GetAttributesForProfiles.Response(), messageOrGroupClass:ProfileService.GetAttributesForProfiles.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     SearchServiceResponses_searchStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 400, defaultValue:SearchService.Search.Response(), messageOrGroupClass:SearchService.Search.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     LandingServiceResponses_get_categoriesStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 500, defaultValue:LandingService.GetCategories.Response(), messageOrGroupClass:LandingService.GetCategories.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     LandingServiceResponses_get_organization_categoriesStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 501, defaultValue:LandingService.GetOrganizationCategories.Response(), messageOrGroupClass:LandingService.GetOrganizationCategories.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
@@ -504,6 +511,7 @@ public struct ResponseRegistryRoot {
     registry.addExtension(ProfileServiceResponses_get_active_skillsStatic)
     registry.addExtension(ProfileServiceResponses_bulk_create_profilesStatic)
     registry.addExtension(ProfileServiceResponses_bulk_update_profilesStatic)
+    registry.addExtension(ProfileServiceResponses_get_attributes_for_profilesStatic)
     registry.addExtension(SearchServiceResponses_searchStatic)
     registry.addExtension(LandingServiceResponses_get_categoriesStatic)
     registry.addExtension(LandingServiceResponses_get_organization_categoriesStatic)
@@ -1025,6 +1033,9 @@ final public class ProfileServiceResponses : GeneratedMessage {
   }
   public class func bulk_update_profiles() -> ConcreateExtensionField {
        return ProfileServiceResponses_bulk_update_profiles
+  }
+  public class func get_attributes_for_profiles() -> ConcreateExtensionField {
+       return ProfileServiceResponses_get_attributes_for_profiles
   }
   required public init() {
        super.init()

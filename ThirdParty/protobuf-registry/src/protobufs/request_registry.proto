@@ -68,6 +68,7 @@ message ProfileServiceRequests {
         optional main.profile_service.ProfileService.GetActiveSkills.Request get_active_skills = 314;
         optional main.profile_service.ProfileService.BulkCreateProfiles.Request bulk_create_profiles = 315;
         optional main.profile_service.ProfileService.BulkUpdateProfiles.Request bulk_update_profiles = 316;
+        optional main.profile_service.ProfileService.GetAttributesForProfiles.Request get_attributes_for_profiles = 317;
     }
 }
 

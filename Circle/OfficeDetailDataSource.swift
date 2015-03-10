@@ -14,7 +14,14 @@ class OfficeDetailDataSource: CardDataSource {
     var selectedOffice: OrganizationService.Containers.Location!
 
     private(set) var profiles = Array<ProfileService.Containers.Profile>()
+    private(set) var teams = Array<OrganizationService.Containers.Team>()
     private(set) var profileHeaderView: CircleCollectionReusableView?
+    
+    private let defaultSectionInset = UIEdgeInsetsMake(0.0, 0.0, 1.0, 0.0)
+    private var defaultSectionHeaderSize = CGSizeMake(
+        ProfileSectionHeaderCollectionReusableView.width,
+        ProfileSectionHeaderCollectionReusableView.height
+    )
     
     // MARK: - Load Data
     
@@ -24,65 +31,36 @@ class OfficeDetailDataSource: CardDataSource {
             return
         }
         
-        // Add a Placeholder card for the map view
-        let placeholderMapCard = Card(cardType: .Placeholder, title: "Map Header")
-        placeholderMapCard.sectionInset = UIEdgeInsetsZero
-        appendCard(placeholderMapCard)
+        // Add placeholder card to load profile header instantly
+        var placeholderCard = Card(cardType: .Placeholder, title: "Info")
+        appendCard(placeholderCard)
         
-        if let currentProfile = AuthViewController.getLoggedInUserProfile() {
-            let sectionInset = UIEdgeInsetsMake(0.0, 0.0, 1.0, 0.0)
-            let sectionHeaderSize = CGSizeMake(
-                ProfileSectionHeaderCollectionReusableView.width, 
-                ProfileSectionHeaderCollectionReusableView.height
-            )
-            
-            // Address
-            let addressCard = Card(cardType: .OfficeAddress, title: "Address")
-            addressCard.sectionInset = sectionInset
-            addressCard.addContent(content: [self.selectedOffice.address] as [AnyObject])
-            self.appendCard(addressCard)
-            
-            // People Count
-            let keyValueCard = Card(cardType: .KeyValue, title: "People")
-            let image = ItemImage.genericNextImage
-            var content: [String: AnyObject] = [
-                "name": AppStrings.CardTitlePeople,
-                "value": String(self.selectedOffice.profile_count),
-                "image": image.name,
-                "imageTintColor": image.tint,
-                "type": ContentType.PeopleCount.rawValue
-            ]
-            
-            if let imageSize = image.size {
-                content["imageSize"] = NSValue(CGSize: imageSize)
+        // Fetch data within a dispatch group, calling populateData when all tasks have finished
+        var storedError: NSError!
+        var actionsGroup = dispatch_group_create()
+        dispatch_group_enter(actionsGroup)
+        OrganizationService.Actions.getTeams(locationId: self.selectedOffice.id) { (teams, error) -> Void in
+            if let teams = teams {
+                self.teams.extend(teams)
             }
-            keyValueCard.addContent(content: [content] as [AnyObject])
-            keyValueCard.sectionInset = sectionInset
-            self.appendCard(keyValueCard)
-            
-            // Teams
-            var teams = Array<OrganizationService.Containers.Team>()
-            for i in 0..<4 {
-                var team = OrganizationService.Containers.Team.builder()
-                team.name = "Product Development"
-                teams.append(team.build())
+            if let error = error {
+                storedError = error
             }
-            
-            let teamsCard = Card(cardType: .TeamsGrid, title: AppStrings.CardTitleOfficeTeam)
-            teamsCard.addContent(content: teams as [AnyObject])
-            teamsCard.sectionInset = sectionInset
-            teamsCard.headerSize = sectionHeaderSize
-            self.appendCard(teamsCard)
-            completionHandler(error: nil)
-            
-            ProfileService.Actions.getProfiles(locationId: selectedOffice.id) { (profiles, error) -> Void in
-                if error == nil && profiles != nil {
-                    self.profiles.extend(profiles!)
-                    completionHandler(error: nil)
-                } else {
-                    completionHandler(error: error)
-                }
+            dispatch_group_leave(actionsGroup)
+        }
+        dispatch_group_enter(actionsGroup)
+        ProfileService.Actions.getProfiles(locationId: self.selectedOffice.id) { (profiles, error) -> Void in
+            if let profiles = profiles {
+                self.profiles.extend(profiles)
             }
+            if let error = error {
+                storedError = error
+            }
+            dispatch_group_leave(actionsGroup)
+        }
+        dispatch_group_notify(actionsGroup, GlobalMainQueue) { () -> Void in
+            self.populateData()
+            completionHandler(error: storedError)
         }
     }
 
@@ -118,27 +96,28 @@ class OfficeDetailDataSource: CardDataSource {
         viewForSupplementaryElementOfKind kind: String,
         atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
             
-            if indexPath.section == 0 {
-                let supplementaryView = collectionView.dequeueReusableSupplementaryViewOfKind(
-                    kind,
-                    withReuseIdentifier: ProfileHeaderCollectionReusableView.classReuseIdentifier,
-                    forIndexPath: indexPath
-                ) as ProfileHeaderCollectionReusableView
-                
-                supplementaryView.setOffice(selectedOffice)
-                profileHeaderView = supplementaryView
-                return supplementaryView
-            }
-            else {
-                let card = cardAtSection(indexPath.section)
-                let supplementaryView = collectionView.dequeueReusableSupplementaryViewOfKind(
-                    kind,
-                    withReuseIdentifier: ProfileSectionHeaderCollectionReusableView.classReuseIdentifier,
-                    forIndexPath: indexPath
-                ) as ProfileSectionHeaderCollectionReusableView
-                supplementaryView.setCard(card!)
-                return supplementaryView
-            }
+        if indexPath.section == 0 {
+            let supplementaryView = collectionView.dequeueReusableSupplementaryViewOfKind(
+                kind,
+                withReuseIdentifier: ProfileHeaderCollectionReusableView.classReuseIdentifier,
+                forIndexPath: indexPath
+            ) as ProfileHeaderCollectionReusableView
+            
+            supplementaryView.setOffice(selectedOffice)
+            profileHeaderView = supplementaryView
+            return supplementaryView
+        } else if kind == UICollectionElementKindSectionHeader {
+            let card = cardAtSection(indexPath.section)
+            let supplementaryView = collectionView.dequeueReusableSupplementaryViewOfKind(
+                kind,
+                withReuseIdentifier: ProfileSectionHeaderCollectionReusableView.classReuseIdentifier,
+                forIndexPath: indexPath
+            ) as ProfileSectionHeaderCollectionReusableView
+            supplementaryView.setCard(card!)
+            return supplementaryView
+        } else {
+            return super.collectionView(collectionView, viewForSupplementaryElementOfKind: kind, atIndexPath: indexPath)
+        }
     }
     
     func typeOfContent(indexPath: NSIndexPath) -> ContentType {
@@ -147,6 +126,48 @@ class OfficeDetailDataSource: CardDataSource {
             return ContentType(rawValue: (rowDataDictionary["type"] as Int!))!
         }
         
+        
         return .Other
+    }
+    
+    // MARK: - Helpers
+    private func populateData() {
+        resetCards()
+        
+        // Address
+        let addressCard = Card(cardType: .OfficeAddress, title: AppStrings.CardTitleAddress)
+        addressCard.sectionInset = defaultSectionInset
+        addressCard.headerSize = defaultSectionHeaderSize
+        addressCard.addContent(content: [selectedOffice.address] as [AnyObject])
+        appendCard(addressCard)
+        
+        
+        // People Count
+        let keyValueCard = Card(cardType: .KeyValue, title: AppStrings.CardTitlePeople)
+        let image = ItemImage.genericNextImage
+        var content: [String: AnyObject] = [
+            "name": AppStrings.CardTitlePeople,
+            "value": String(profiles.count),
+            "image": image.name,
+            "imageTintColor": image.tint,
+            "type": ContentType.PeopleCount.rawValue
+        ]
+        
+        if let imageSize = image.size {
+            content["imageSize"] = NSValue(CGSize: imageSize)
+        }
+        keyValueCard.addContent(content: [content] as [AnyObject])
+        keyValueCard.sectionInset = defaultSectionInset
+        appendCard(keyValueCard)
+        
+        // Teams
+        if teams.count > 0 {
+            let teamsCard = Card(cardType: .TeamsGrid, title: AppStrings.CardTitleOfficeTeam)
+            teamsCard.addContent(content: teams as [AnyObject])
+            teamsCard.sectionInset = UIEdgeInsetsZero
+            teamsCard.headerSize = defaultSectionHeaderSize
+            appendCard(teamsCard)
+        }
+        
     }
 }

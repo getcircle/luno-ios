@@ -110,6 +110,7 @@ message OrganizationService {
 
         message Request {
             optional string organization_id = 1;
+            optional string location_id = 2;
         }
 
         message Response {
