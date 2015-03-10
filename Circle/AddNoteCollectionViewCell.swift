@@ -35,12 +35,17 @@ class AddNoteCollectionViewCell: CircleCollectionViewCell {
     // MARK: - Configuration
     
     private func configureAddNoteButton() {
-        addNoteButton.tintColor = UIColor.appActionButtonTintColor()
-        addNoteButton.setTitleColor(UIColor.appActionButtonTintColor(), forState: .Normal)
-        addNoteButton.setImage(
-            addNoteButton.imageForState(.Normal)!.imageWithRenderingMode(.AlwaysTemplate),
+        addNoteButton.addRoundCorners(radius: 2.0)
+        addNoteButton.backgroundColor = UIColor.appCTABackgroundColor()
+        addNoteButton.setTitleColor(UIColor.appCTATextColor(), forState: .Normal)
+        addNoteButton.tintColor = UIColor.whiteColor()
+        addNoteButton.titleLabel?.font = UIFont.appCTATitleFont()
+        addNoteButton.convertToTemplateImageForState(.Normal)
+        addNoteButton.setCustomAttributedTitle(
+            AppStrings.AddNoteCTATitle.uppercaseStringWithLocale(NSLocale.currentLocale()),
             forState: .Normal
         )
+        
         addNoteButton.userInteractionEnabled = false
     }
     

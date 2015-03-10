@@ -32,5 +32,6 @@ struct AppStrings {
     static let CardTitlePeople = NSLocalizedString("People", comment: "Title of the card showing people")
     static let CardTitleOfficeTeam = NSLocalizedString("Office Teams", comment: "Title of the card showing teams in a office")
     
+    static let AddNoteCTATitle = NSLocalizedString("Add private note", comment: "Title of the button to add a private note on a co-worker")
     static let AppreciateCTATitle = NSLocalizedString("Appreciate", comment: "Title of the button to leave an appreciation for a co-worker")
 }
