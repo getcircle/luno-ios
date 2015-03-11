@@ -276,7 +276,6 @@ class CardDataSource: NSObject, UICollectionViewDataSource {
             return
         }
         
-        
         var uniqueIndex: String
         
         // Unique indexes make sure each item or supplementary view animates only once

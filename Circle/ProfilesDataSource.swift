@@ -18,6 +18,7 @@ class ProfilesDataSource: CardDataSource {
     override func setInitialData(content: [AnyObject], ofType: Card.CardType?) {
         let cardType = ofType != nil ? ofType : .People
         let profilesCard = Card(cardType: cardType!, title: "")
+        profilesCard.sectionInset = UIEdgeInsetsZero
         profilesCard.addContent(content: content)
         appendCard(profilesCard)
     }
@@ -25,13 +26,5 @@ class ProfilesDataSource: CardDataSource {
     // MARK: - Load Data
     override func loadData(completionHandler: (error: NSError?) -> Void) {
         completionHandler(error: nil)
-    }
-    
-    // MARK: - Cell Configuration
-    
-    override func configureCell(cell: CircleCollectionViewCell, atIndexPath indexPath: NSIndexPath) {
-        if let profileCell = cell as? ProfileCollectionViewCell {
-            profileCell.sizeMode = .Medium
-        }
     }
 }

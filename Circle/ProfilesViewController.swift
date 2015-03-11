@@ -20,7 +20,7 @@ class ProfilesViewController: UIViewController,
     @IBOutlet weak private(set) var collectionView: UICollectionView!
     @IBOutlet weak private(set) var searchControllerContainerView: UIView!
 
-    let rowHeight: CGFloat = 64.0
+    let rowHeight: CGFloat = 70.0
     
     var dataSource = ProfilesDataSource()
 //    private var filteredPeople: [Person]?

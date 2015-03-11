@@ -87,10 +87,7 @@ class TeamDetailDataSource: CardDataSource {
     override func configureCell(cell: CircleCollectionViewCell, atIndexPath indexPath: NSIndexPath) {
         super.configureCell(cell, atIndexPath: indexPath)
         
-        if let profileCell = cell as? ProfileCollectionViewCell {
-            profileCell.sizeMode = .Medium
-        }
-        else if cell is TeamsCollectionViewCell {
+        if cell is TeamsCollectionViewCell {
             (cell as TeamsCollectionViewCell).showTeamsLabel = true
         }
     }

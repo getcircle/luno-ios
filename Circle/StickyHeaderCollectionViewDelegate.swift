@@ -21,13 +21,4 @@ class StickyHeaderCollectionViewDelegate: CardCollectionViewDelegate {
         
         return CGSizeZero
     }
-    
-    override func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        if cardDataSource(collectionView).cardAtSection(indexPath.section)!.type == Card.CardType.People {
-            return CGSizeMake(ProfileCollectionViewCell.width, 64.0)
-        }
-        
-        return super.collectionView(collectionView, layout: collectionViewLayout, sizeForItemAtIndexPath: indexPath)
-    }
-    
 }

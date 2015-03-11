@@ -45,13 +45,7 @@ class SkillDetailDataSource: CardDataSource {
             }
         }
     }
-    
-    override func configureCell(cell: CircleCollectionViewCell, atIndexPath indexPath: NSIndexPath) {
-        if let profileCell = cell as? ProfileCollectionViewCell {
-            profileCell.sizeMode = .Medium
-        }
-    }
-    
+
     // MARK: - Supplementary View
     
     override func registerCardHeader(collectionView: UICollectionView) {

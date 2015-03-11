@@ -20,75 +20,77 @@ class ProfileCollectionViewCell: CircleCollectionViewCell {
         return "ProfileCollectionViewCell"
     }
     
-    // NOTE: Because height is a computed class variable, it cannot be modifed
-    // as per the size mode. This value is applicable only for the .Small
-    // mode which is the default. So, the view controller should define
-    // the height for this cell on thier own if not using the default mode.
     override class var height: CGFloat {
-        return 48.0
+        return 70.0
     }
     
     @IBOutlet weak private(set) var nameLabel: UILabel!
-    @IBOutlet weak private(set) var nameLabelTopSpaceConstraint: NSLayoutConstraint!
     @IBOutlet weak private(set) var profileImageView: CircleImageView!
-    @IBOutlet weak private(set) var profileImageViewWidthConstraint: NSLayoutConstraint!
     @IBOutlet weak private(set) var subTextLabel: UILabel!
+    @IBOutlet weak private(set) var teamNameLetterLabel: UILabel!
     
-    // NOTE: The expected behavior here is to change mode just once
-    var sizeMode: SizeMode = .Small {
-        didSet {
-            if oldValue != sizeMode {
-                updateViewByMode()
-            }
-        }
-    }
-
     override func awakeFromNib() {
         super.awakeFromNib()
+        
         profileImageView.makeItCircular()
+        nameLabel.font = UIFont.appPrimaryTextFont()
+        subTextLabel.font = UIFont.appSecondaryTextFont()
+        nameLabel.textColor = UIColor.appPrimaryTextColor()
+        subTextLabel.textColor = UIColor.appSecondaryTextColor()
     }
 
     override func setData(data: AnyObject) {
+        teamNameLetterLabel.hidden = true
         if let profile = data as? ProfileService.Containers.Profile {
-            nameLabel.text = profile.full_name
-            var subtitle = profile.title
-            if let cardType = card?.type {
-                switch card!.type {
-                case .Birthdays:
-                    if let date = profile.birth_date.toDate() {
-                        subtitle = NSDateFormatter.sharedBirthdayFormatter.stringFromDate(date)
-                    }
-                case .Anniversaries:
-                    subtitle = getAnniversarySubtitle(profile)
-
-                case .NewHires:
-                    if let date = profile.hire_date.toDate() {
-                        subtitle = NSDateFormatter.stringFromDateWithStyles(date, dateStyle: .LongStyle, timeStyle: .NoStyle)
-                    }
-                default:
-                    subtitle = profile.title
+            setProfile(profile)
+        }
+        else if let team = data as? OrganizationService.Containers.Team {
+            setTeam(team)
+        }
+        else if let location = data as? OrganizationService.Containers.Location {
+            setLocation(location)
+        }
+    }
+    
+    private func setProfile(profile: ProfileService.Containers.Profile) {
+        nameLabel.text = profile.full_name
+        var subtitle = profile.title
+        if let cardType = card?.type {
+            switch card!.type {
+            case .Birthdays:
+                if let date = profile.birth_date.toDate() {
+                    subtitle = NSDateFormatter.sharedBirthdayFormatter.stringFromDate(date)
                 }
+            case .Anniversaries:
+                subtitle = getAnniversarySubtitle(profile)
+                
+            case .NewHires:
+                if let date = profile.hire_date.toDate() {
+                    subtitle = NSDateFormatter.stringFromDateWithStyles(date, dateStyle: .LongStyle, timeStyle: .NoStyle)
+                }
+            default:
+                subtitle = profile.title
             }
-            subTextLabel.text = subtitle
-            profileImageView.setImageWithProfile(profile)
         }
+        subTextLabel.text = subtitle
+        profileImageView.setImageWithProfile(profile)
+    }
+
+    private func setTeam(team: OrganizationService.Containers.Team) {
+        profileImageView.backgroundColor = UIColor.appTeamHeaderBackgroundColor(team.id)
+        profileImageView.image = nil
+        nameLabel.text = team.name
+        subTextLabel.text = "10 People"
+        teamNameLetterLabel.text = team.name[0]
+        teamNameLetterLabel.hidden = false
     }
     
-    // MARK: - Sizing functions based on mode
-    
-    private func updateViewByMode() {
-        switch sizeMode {
-        case .Small:
-            break
-            
-        case .Medium:
-            nameLabel.font = UIFont(name: nameLabel.font.familyName, size: 17.0)
-            nameLabelTopSpaceConstraint.constant = 12.0
-            profileImageViewWidthConstraint.constant = 44.0
-            profileImageView.layer.cornerRadiusWithMaskToBounds(22.0)
-        }
+    private func setLocation(location: OrganizationService.Containers.Location) {
+        nameLabel.text = location.address.officeName()
+        profileImageView.image = UIImage(named: "SF")
+        subTextLabel.text = "10 People"
     }
-    
+
     // MARK: - Helpers
     private func getAnniversarySubtitle(profile: ProfileService.Containers.Profile) -> String {
         var subtitle = ""
