@@ -455,14 +455,14 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
     
     private func addOfficeTeamItemToCard(item: SectionItem, card: Card) {
         var content = [AnyObject]()
-        if let team = team {
-            content.append(team)
-        }
-
         if let office = location {
             content.append(office)
         }
 
+        if let team = team {
+            content.append(team)
+        }
+        
         card.addContent(content: content, maxVisibleItems: 0)
     }
     
@@ -492,7 +492,7 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
         if cell is QuickActionsCollectionViewCell {
             let quickActionsCell = cell as QuickActionsCollectionViewCell
             quickActionsCell.backgroundColor = UIColor.whiteColor()
-            quickActionsCell.quickActions = [.Message, .Email, .Phone, .MoreInfo]
+            quickActionsCell.quickActions = [.Phone, .Message, .Email, .MoreInfo]
             quickActionsCell.hideLabels()
         }        
     }

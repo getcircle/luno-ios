@@ -23,7 +23,7 @@ class QuickActionsCollectionViewCell: CircleCollectionViewCell {
     
     private var actionButtons = [UIButton]()
     private var actionButtonLabels = [UILabel]()
-    private let defaultQuickActions: [QuickAction] = [.Message, .Email, .Note, .Phone]
+    private let defaultQuickActions: [QuickAction] = [.Phone, .Message, .Email, .Note]
     private var firstButtonTopConstraintInitialValue: CGFloat = 0.0
     private var profile: ProfileService.Containers.Profile?
     
