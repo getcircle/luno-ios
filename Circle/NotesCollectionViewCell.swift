@@ -15,22 +15,17 @@ class NotesCollectionViewCell: CircleCollectionViewCell {
     @IBOutlet weak var noteSummaryLabel: UILabel!
     @IBOutlet weak var noteTimestampLabel: UILabel!
     @IBOutlet weak var noteTimestampLabelTopConstraint: NSLayoutConstraint!
-    @IBOutlet weak var separatorView: UIView!
     
     override class var classReuseIdentifier: String {
         return "NotesCell"
     }
     
     override class var height: CGFloat {
-        return 48.0
+        return 103.0
     }
     
     override class var lineSpacing: CGFloat {
-        return 0.0
-    }
-    
-    override class var sizeCalculationMethod: SizeCalculation {
-        return .Dynamic
+        return 1.0
     }
 
     var showUserProfile: Bool = true {
@@ -73,18 +68,18 @@ class NotesCollectionViewCell: CircleCollectionViewCell {
     
     private func adjustConstraintsAsPerProfileVisibility() {
         if !showUserProfile {
+            noteSummaryLabel.numberOfLines = 2
             noteTimestampLabelTopConstraint.constant = -(noteTimestampLabel.frameY - noteOnProfileName.frameY)
 
             noteSummaryLabel.setNeedsUpdateConstraints()
             noteTimestampLabel.setNeedsUpdateConstraints()
-            separatorView.setNeedsUpdateConstraints()
             noteSummaryLabel.layoutIfNeeded()
             noteTimestampLabel.layoutIfNeeded()
-            separatorView.layoutIfNeeded()
             noteOnProfileName.hidden = true
         }
         else {
             // this is the default, so no action is needed
+            noteSummaryLabel.numberOfLines = 1
         }
     }
 }

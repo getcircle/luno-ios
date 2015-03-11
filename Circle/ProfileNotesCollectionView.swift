@@ -69,7 +69,7 @@ class ProfileNotesDataSource: UnderlyingCollectionViewDataSource {
             contentCount: 1,
             addDefaultFooter: false
         )
-        addNotesCard.sectionInset = UIEdgeInsetsMake(0.0, 0.0, 0.0, 0.0)
+        addNotesCard.sectionInset = UIEdgeInsetsMake(0.0, 0.0, 10.0, 0.0)
         appendCard(addNotesCard)
         
         if notes.count > 0 {

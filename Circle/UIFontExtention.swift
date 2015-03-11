@@ -31,7 +31,7 @@ extension UIFont {
     }
 
     class func appCTATitleFont() -> UIFont {
-        return UIFont(name: "Avenir-Roman", size: 12.0)!
+        return UIFont(name: "Avenir-Medium", size: 12.0)!
     }
     
     class func appSkillsOverviewSectionHeader() -> UIFont {
