@@ -135,10 +135,29 @@ struct ServiceHttpRequest: URLRequestConvertible {
 }
 
 class HttpsTransport: BaseTransport {
+    private struct NetworkActivity {
+        static var totalRequests = 0
+    }
+    
     override func processRequest(serviceRequest: ServiceRequest, serializedRequest: NSData, completionHandler: ServiceCompletionHandler) {
+        NetworkActivity.totalRequests++
+        updateNetworkIndicatorVisibility()
+        
         Alamofire.request(ServiceHttpRequest(data: serializedRequest, token: serviceRequest.control.token))
             .responseProtobuf { (request, response, serviceResponse, actionResponse, error) -> Void in
+                NetworkActivity.totalRequests--
+                self.updateNetworkIndicatorVisibility()
+                
                 completionHandler(request, response, serviceResponse, actionResponse, error)
+        }
+    }
+    
+    private func updateNetworkIndicatorVisibility() {
+        if NetworkActivity.totalRequests > 0 {
+            UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+        }
+        else {
+            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
         }
     }
 }
