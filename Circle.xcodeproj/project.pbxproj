@@ -100,8 +100,6 @@
 		8F823E4C1A729E1B0006264B /* TeamsOverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F823E4A1A729E1B0006264B /* TeamsOverviewViewController.swift */; };
 		8F823E4D1A729E1B0006264B /* TeamsOverviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F823E4B1A729E1B0006264B /* TeamsOverviewViewController.xib */; };
 		8F823E4F1A72A0850006264B /* TeamsOverviewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F823E4E1A72A0850006264B /* TeamsOverviewDataSource.swift */; };
-		8F834F851A9909AC007B7095 /* OfficeTeamManagerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F834F831A9909AC007B7095 /* OfficeTeamManagerCollectionViewCell.swift */; };
-		8F834F861A9909AC007B7095 /* OfficeTeamManagerCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F834F841A9909AC007B7095 /* OfficeTeamManagerCollectionViewCell.xib */; };
 		8F834F8B1A9C1814007B7095 /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F834F8A1A9C1813007B7095 /* UIButtonExtension.swift */; };
 		8F834F971A9E9F21007B7095 /* ContactInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F834F951A9E9F21007B7095 /* ContactInfoViewController.swift */; };
 		8F834F981A9E9F21007B7095 /* ContactInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F834F961A9E9F21007B7095 /* ContactInfoViewController.xib */; };
@@ -396,8 +394,6 @@
 		8F823E4A1A729E1B0006264B /* TeamsOverviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamsOverviewViewController.swift; sourceTree = "<group>"; };
 		8F823E4B1A729E1B0006264B /* TeamsOverviewViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TeamsOverviewViewController.xib; sourceTree = "<group>"; };
 		8F823E4E1A72A0850006264B /* TeamsOverviewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamsOverviewDataSource.swift; sourceTree = "<group>"; };
-		8F834F831A9909AC007B7095 /* OfficeTeamManagerCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OfficeTeamManagerCollectionViewCell.swift; sourceTree = "<group>"; };
-		8F834F841A9909AC007B7095 /* OfficeTeamManagerCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OfficeTeamManagerCollectionViewCell.xib; sourceTree = "<group>"; };
 		8F834F8A1A9C1813007B7095 /* UIButtonExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
 		8F834F951A9E9F21007B7095 /* ContactInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactInfoViewController.swift; sourceTree = "<group>"; };
 		8F834F961A9E9F21007B7095 /* ContactInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactInfoViewController.xib; sourceTree = "<group>"; };
@@ -664,7 +660,6 @@
 				8F4805E31A5DE4B800273731 /* MapHeaderCollectionReusableView.swift */,
 				8F4E53761A5A0D9E00DC876B /* NotesCollectionViewCell.swift */,
 				8F65C4FC1A51222100C7F3E6 /* OfficeCollectionViewCell.swift */,
-				8F834F831A9909AC007B7095 /* OfficeTeamManagerCollectionViewCell.swift */,
 				8F823E411A714B5D0006264B /* OrganizationHeaderCollectionReusableView.swift */,
 				BFCFDB0F1A9165A9009A5FD4 /* PositionCollectionViewCell.swift */,
 				8FCC95CB1A52828B00421E65 /* ProfileCollectionViewCell.swift */,
@@ -759,7 +754,6 @@
 				8F809F861A79DD6900029A47 /* NotesOverviewViewController.xib */,
 				8F65C4FD1A51222100C7F3E6 /* OfficeCollectionViewCell.xib */,
 				8F306B8C1A7416E00024EB03 /* OfficesOverviewViewController.xib */,
-				8F834F841A9909AC007B7095 /* OfficeTeamManagerCollectionViewCell.xib */,
 				8F823E421A714B5D0006264B /* OrganizationHeaderCollectionReusableView.xib */,
 				8F7E2DCC1A8FDBB500B8548D /* PasscodeTouchIDViewController.xib */,
 				BFCFDB101A9165A9009A5FD4 /* PositionCollectionViewCell.xib */,
@@ -1105,7 +1099,6 @@
 			files = (
 				8FF298041A4A4E3600306CFC /* ProfileImagesCollectionViewCell.xib in Resources */,
 				8F085A961A6C191400F8139B /* TeamGridItemCollectionViewCell.xib in Resources */,
-				8F834F861A9909AC007B7095 /* OfficeTeamManagerCollectionViewCell.xib in Resources */,
 				8F085A8E1A6B5B4900F8139B /* TeamHeaderCollectionReusableView.xib in Resources */,
 				8F682F411A65F9090066BDEE /* SkillSelectorViewController.xib in Resources */,
 				BFCFDB221A91951A009A5FD4 /* TextValueCollectionViewCell.xib in Resources */,
@@ -1332,7 +1325,6 @@
 				BFCFDB211A91951A009A5FD4 /* TextValueCollectionViewCell.swift in Sources */,
 				8FF298531A4E306600306CFC /* CenterAlignFlowLayout.swift in Sources */,
 				8F834F8B1A9C1814007B7095 /* UIButtonExtension.swift in Sources */,
-				8F834F851A9909AC007B7095 /* OfficeTeamManagerCollectionViewCell.swift in Sources */,
 				BF8DAC731A6CB03F000860DD /* NotesCardHeaderCollectionReusableView.swift in Sources */,
 				8F22CBE31A27AE9B0026376E /* UIImageViewExtension.swift in Sources */,
 				8F2234B21A6F7A7500C39E39 /* CircleImageView.swift in Sources */,

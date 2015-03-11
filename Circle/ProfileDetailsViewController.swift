@@ -198,6 +198,19 @@ class ProfileDetailsViewController:
                     switch card.type {
                     case .KeyValue:
                         handleKeyValueCardSelection(dataSource, indexPath: indexPath)
+
+                    case .People:
+                        let data: AnyObject? = dataSource.contentAtIndexPath(indexPath)
+                        if data is OrganizationService.Containers.Team {
+                            onTeamTapped(nil)
+                        }
+                        else if data is OrganizationService.Containers.Location {
+                            onOfficeTapped(nil)
+                        }
+                        else if data is ProfileService.Containers.Profile {
+                            onManagerTapped(nil)
+                        }
+                        
                     default:
                         break
                     }
@@ -312,27 +325,6 @@ class ProfileDetailsViewController:
             object: nil
         )
 
-        NSNotificationCenter.defaultCenter().addObserver(
-            self,
-            selector: "onManagerTapped:",
-            name: OfficeTeamManagerNotifications.onManagerTappedNotification,
-            object: nil
-        )
-        
-        NSNotificationCenter.defaultCenter().addObserver(
-            self,
-            selector: "onOfficeTapped:",
-            name: OfficeTeamManagerNotifications.onOfficeTappedNotification,
-            object: nil
-        )
-        
-        NSNotificationCenter.defaultCenter().addObserver(
-            self,
-            selector: "onTeamTapped:",
-            name: OfficeTeamManagerNotifications.onTeamTappedNotification,
-            object: nil
-        )
-        
         super.registerNotifications()
     }
     
@@ -361,24 +353,6 @@ class ProfileDetailsViewController:
         
         NSNotificationCenter.defaultCenter().removeObserver(self,
             name: QuickActionNotifications.onQuickActionStarted,
-            object: nil
-        )
-        
-        NSNotificationCenter.defaultCenter().removeObserver(
-            self,
-            name: OfficeTeamManagerNotifications.onManagerTappedNotification,
-            object: nil
-        )
-        
-        NSNotificationCenter.defaultCenter().removeObserver(
-            self,
-            name: OfficeTeamManagerNotifications.onOfficeTappedNotification,
-            object: nil
-        )
-        
-        NSNotificationCenter.defaultCenter().removeObserver(
-            self,
-            name: OfficeTeamManagerNotifications.onTeamTappedNotification,
             object: nil
         )
 
@@ -497,7 +471,7 @@ class ProfileDetailsViewController:
         }
     }
     
-    func onManagerTapped(notification: NSNotification) {
+    func onManagerTapped(notification: NSNotification?) {
         let profileInfoCollectionView = detailViews[0]
         if let dataSource = profileInfoCollectionView.dataSource as? ProfileDetailDataSource {
             let profileVC = ProfileDetailsViewController.forProfile(dataSource.manager!)
@@ -506,7 +480,7 @@ class ProfileDetailsViewController:
         }
     }
     
-    func onOfficeTapped(notification: NSNotification) {
+    func onOfficeTapped(notification: NSNotification?) {
         let profileInfoCollectionView = detailViews[0]
         if let dataSource = profileInfoCollectionView.dataSource as? ProfileDetailDataSource {
             let officeDetailVC = OfficeDetailViewController()
@@ -516,7 +490,7 @@ class ProfileDetailsViewController:
         }
     }
     
-    func onTeamTapped(notification: NSNotification) {
+    func onTeamTapped(notification: NSNotification?) {
         let profileInfoCollectionView = detailViews[0]
         if let dataSource = profileInfoCollectionView.dataSource as? ProfileDetailDataSource {
             let teamVC = TeamDetailViewController()

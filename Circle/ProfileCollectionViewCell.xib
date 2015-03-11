@@ -14,7 +14,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="415" height="70"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CEO" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bkV-ww-aQf" userLabel="Title">
-                        <rect key="frame" x="60" y="39" width="340" height="18"/>
+                        <rect key="frame" x="60" y="38" width="340" height="18"/>
                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="13"/>
                         <color key="textColor" red="0.4392156862745098" green="0.4392156862745098" blue="0.4392156862745098" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
@@ -43,7 +43,7 @@
             </view>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="bkV-ww-aQf" firstAttribute="top" secondItem="9nj-gl-dh0" secondAttribute="bottom" constant="2" id="2XQ-DN-rzh"/>
+                <constraint firstItem="bkV-ww-aQf" firstAttribute="top" secondItem="9nj-gl-dh0" secondAttribute="bottom" constant="1" id="2XQ-DN-rzh"/>
                 <constraint firstItem="0Uo-RU-eGd" firstAttribute="top" secondItem="WaH-1I-lf2" secondAttribute="top" id="BOl-Lz-Ejn"/>
                 <constraint firstItem="0Uo-RU-eGd" firstAttribute="trailing" secondItem="WaH-1I-lf2" secondAttribute="trailing" id="C2l-pn-1Dj"/>
                 <constraint firstItem="bkV-ww-aQf" firstAttribute="leading" secondItem="9nj-gl-dh0" secondAttribute="leading" id="IDj-BR-Asz"/>

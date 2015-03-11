@@ -74,7 +74,6 @@ class Card: Equatable {
         case KeyValue = "KeyValue"
         case Offices = "Offices"
         case OfficeAddress = "Office Address"
-        case OfficeTeam = "Office, Team & Manager"
         case NewHires = "NewHires"
         case Notes = "Notes"
         case People = "People"
@@ -186,15 +185,7 @@ class Card: Equatable {
                     className: "AddressCollectionViewCell",
                     contentType: .Flat
                 )
-                
-            case OfficeTeam:
-                return CardTypeInfo(
-                    imageName: "Satchel",
-                    classType: OfficeTeamManagerCollectionViewCell.self,
-                    className: "OfficeTeamManagerCollectionViewCell",
-                    contentType: .Flat
-                )
-                
+
             case Notes:
                 return CardTypeInfo(
                     imageName: "Notepad",
