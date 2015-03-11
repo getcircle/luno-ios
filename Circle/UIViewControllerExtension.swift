@@ -57,7 +57,7 @@ enum QuickAction: Int {
         case .Note:
             return MetaInfo(
                 actionLabel: AppStrings.QuickActionNoteLabel,
-                imageSource: "Compose",
+                imageSource: "Notebook",
                 placeholder: AppStrings.QuickActionNotePlaceholder
             )
 

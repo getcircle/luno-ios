@@ -42,6 +42,7 @@ class NewNoteViewController: UIViewController, UIViewControllerTransitioningDele
         configureNavigationBar()
         configureNavigationItems()
         configureDeleteAlertController()
+        configureNewNoteAndDeleteButton()
     }
     
     deinit {
@@ -109,7 +110,7 @@ class NewNoteViewController: UIViewController, UIViewControllerTransitioningDele
     private func configureNavigationItems() {
         if isBeingPresentedModally() {
             let closeButton = UIBarButtonItem(
-                image: UIImage(named: "Down"),
+                image: UIImage(named: "SmallClose"),
                 style: .Plain,
                 target: self,
                 action: "closeButtonTapped:"
@@ -146,6 +147,13 @@ class NewNoteViewController: UIViewController, UIViewControllerTransitioningDele
         )
         deleteAlertController.addAction(deleteAction)
         deleteAlertController.addAction(cancelAction)
+    }
+    
+    private func configureNewNoteAndDeleteButton() {
+        for button in [newNoteButton, deleteNoteButton] {
+            button.convertToTemplateImageForState(.Normal)
+            button.tintColor = UIColor.appQuickActionsTintColor()
+        }
     }
     
     // MARK: - IBActions
@@ -213,7 +221,7 @@ class NewNoteViewController: UIViewController, UIViewControllerTransitioningDele
     private func addDoneButton() {
         if navigationItem.rightBarButtonItems == nil {
             let doneButton = UIBarButtonItem(
-                image: UIImage(named: "CircleCheckFilled"),
+                image: UIImage(named: "Check"),
                 style: .Plain,
                 target: self,
                 action: "doneButtonTapped:"
