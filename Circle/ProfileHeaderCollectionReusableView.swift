@@ -342,6 +342,8 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
             visualEffectView?.alpha = otherViewsAlpha
             sectionsView.alpha = otherViewsAlpha
             profileImage.transform = CGAffineTransformIdentity
+            verifiedProfileButton.transform = CGAffineTransformIdentity
+            verifiedProfileButton.center = CGPointMake(profileImage.center.x + (profileImage.frameWidth/2.0), verifiedProfileButton.center.y)
         }
     }
 }
