@@ -19,15 +19,13 @@ class OfficeCollectionViewCell: CircleCollectionViewCell {
         return 48.0
     }
     
-    @IBOutlet weak private(set) var addressLabel: UILabel!
     @IBOutlet weak private(set) var officeNameLabel: UILabel!
     @IBOutlet weak private(set) var numbrOfPeopleLabel: UILabel!
     
     override func setData(data: AnyObject) {
         if let location = data as? OrganizationService.Containers.Location {
             officeNameLabel.text = location.address.officeName()
-            addressLabel.text = "\(location.address.address_1)"
-            numbrOfPeopleLabel.text = location.address.profile_count
+            numbrOfPeopleLabel.text = String(location.profile_count)
         }
     }
 }

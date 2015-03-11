@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -12,8 +12,8 @@
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="San Francisco, CA" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5E1-pM-LS4" userLabel="City">
-                        <rect key="frame" x="10" y="4" width="259" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="San Francisco, CA" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5E1-pM-LS4" userLabel="OfficeName">
+                        <rect key="frame" x="10" y="20" width="259" height="21"/>
                         <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="15"/>
                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
@@ -24,29 +24,25 @@
                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="155 5th Street, 7th Floor" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="esG-Yn-dSe" userLabel="Address">
-                        <rect key="frame" x="10" y="25" width="259" height="20"/>
-                        <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="14"/>
-                        <color key="textColor" red="0.53333333333333333" green="0.53333333333333333" blue="0.53333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="esG-Yn-dSe" firstAttribute="trailing" secondItem="5E1-pM-LS4" secondAttribute="trailing" id="5tk-xm-GlX"/>
                 <constraint firstAttribute="centerY" secondItem="EAc-73-yii" secondAttribute="centerY" id="D8w-Kn-yN7"/>
                 <constraint firstItem="5E1-pM-LS4" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="4" id="JSD-0n-vLb"/>
                 <constraint firstItem="5E1-pM-LS4" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="agD-S8-ihR"/>
+                <constraint firstAttribute="centerY" secondItem="5E1-pM-LS4" secondAttribute="centerY" id="hZA-eO-X5b"/>
                 <constraint firstAttribute="trailing" secondItem="EAc-73-yii" secondAttribute="trailing" constant="15" id="jPJ-42-wbt"/>
-                <constraint firstItem="esG-Yn-dSe" firstAttribute="leading" secondItem="5E1-pM-LS4" secondAttribute="leading" id="ktS-fR-iIP"/>
                 <constraint firstItem="EAc-73-yii" firstAttribute="leading" secondItem="5E1-pM-LS4" secondAttribute="trailing" priority="750" constant="10" id="pVT-JV-BfT"/>
-                <constraint firstItem="esG-Yn-dSe" firstAttribute="top" secondItem="5E1-pM-LS4" secondAttribute="bottom" id="vEd-qa-rLs"/>
             </constraints>
             <size key="customSize" width="363" height="106"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="JSD-0n-vLb"/>
+                </mask>
+            </variation>
             <connections>
-                <outlet property="addressLabel" destination="esG-Yn-dSe" id="vwh-Cz-hcM"/>
                 <outlet property="numbrOfPeopleLabel" destination="EAc-73-yii" id="cfE-iT-cqh"/>
                 <outlet property="officeNameLabel" destination="5E1-pM-LS4" id="V5M-aX-3U5"/>
             </connections>
