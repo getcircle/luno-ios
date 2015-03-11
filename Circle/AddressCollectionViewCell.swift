@@ -13,43 +13,29 @@ import ProtobufRegistry
 class AddressCollectionViewCell: CircleCollectionViewCell {
 
     @IBOutlet weak private(set) var addressLabel: UILabel!
-    @IBOutlet weak private(set) var mapView: MKMapView!
+    @IBOutlet weak var cityStateLabel: UILabel!
+    @IBOutlet weak var genericNextImage: UIImageView!
     
     override class var classReuseIdentifier: String {
         return "AddressCollectionViewCell"
     }
     
     override class var height: CGFloat {
-        return 100.0
+        return 70.0
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-        // Initialization code
-        configureMapView()
+        genericNextImage.image = UIImage(named: "Next")?.imageWithRenderingMode(.AlwaysTemplate)
+        genericNextImage.tintColor = UIColor.appKeyValueNextImageTintColor()
     }
-    
-    // MARK: - Configuration
-    
-    private func configureMapView() {
-        mapView.makeItCircular()
-        mapView.userInteractionEnabled = false
-    }
-    
+
     // MARK: - Data
     
     override func setData(data: AnyObject) {
         if let office = data as? OrganizationService.Containers.Address {
             addressLabel.text = office.shortOfficeAddress()
-
-            // Remove existing annotations
-            mapView.removeAnnotations(mapView.annotations)
-            mapView.annotateAndSetRegion(
-                MapHeaderCollectionReusableView.annotationTitleForLocation(office),
-                latitude: office.latitude,
-                longitude: office.longitude
-            )
+            cityStateLabel.text = office.cityRegionPostalCode()
         }
     }
 }

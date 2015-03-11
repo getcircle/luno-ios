@@ -11,6 +11,7 @@ import Foundation
 class StickyHeaderCollectionViewDelegate: CardCollectionViewDelegate {
 
     override func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        
         if section == 0 {
             return CGSizeMake(collectionView.frame.size.width, (collectionView.collectionViewLayout as StickyHeaderCollectionViewLayout).headerHeight)
         }

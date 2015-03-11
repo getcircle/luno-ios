@@ -18,7 +18,7 @@ class OfficeDetailDataSource: CardDataSource {
     private(set) var teams = Array<OrganizationService.Containers.Team>()
     private(set) var profileHeaderView: CircleCollectionReusableView?
     
-    private let defaultSectionInset = UIEdgeInsetsMake(0.0, 0.0, 1.0, 0.0)
+    private let defaultSectionInset = UIEdgeInsetsMake(0.0, 0.0, 20.0, 0.0)
     private var defaultSectionHeaderSize = CGSizeMake(
         ProfileSectionHeaderCollectionReusableView.width,
         ProfileSectionHeaderCollectionReusableView.height
@@ -31,9 +31,11 @@ class OfficeDetailDataSource: CardDataSource {
         if cards.count > 0 {
             return
         }
+        resetCards()
         
         // Add placeholder card to load profile header instantly
         var placeholderCard = Card(cardType: .Placeholder, title: "Info")
+        placeholderCard.sectionInset = UIEdgeInsetsZero
         appendCard(placeholderCard)
         
         // Fetch data within a dispatch group, calling populateData when all tasks have finished
@@ -96,7 +98,7 @@ class OfficeDetailDataSource: CardDataSource {
     override func collectionView(collectionView: UICollectionView,
         viewForSupplementaryElementOfKind kind: String,
         atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
-            
+        
         if indexPath.section == 0 {
             let supplementaryView = collectionView.dequeueReusableSupplementaryViewOfKind(
                 kind,
@@ -133,12 +135,10 @@ class OfficeDetailDataSource: CardDataSource {
     
     // MARK: - Helpers
     private func populateData() {
-        resetCards()
         
         // Address
         let addressCard = Card(cardType: .OfficeAddress, title: AppStrings.CardTitleAddress)
         addressCard.sectionInset = defaultSectionInset
-        addressCard.headerSize = defaultSectionHeaderSize
         addressCard.addContent(content: [selectedOffice.address] as [AnyObject])
         appendCard(addressCard)
         

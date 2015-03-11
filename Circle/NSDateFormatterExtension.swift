@@ -69,6 +69,33 @@ extension NSDateFormatter {
         return Static.relativeDateFormatter
     }
     
+    class var sharedOfficeCurrentDateFormatter: NSDateFormatter {
+        struct Static {
+            static let instance = dateFormatter
+            static var dateFormatter: NSDateFormatter {
+                let dateFormatter = NSDateFormatter()
+                dateFormatter.locale = NSLocale.currentLocale()
+                dateFormatter.dateFormat = "EEEE, MMMM d"
+                return dateFormatter
+            }
+        }
+
+        return Static.instance
+    }
+    
+    class var sharedOfficeCurrentTimeFormatter: NSDateFormatter {
+        struct Static {
+            static let instance = dateFormatter
+            static var dateFormatter: NSDateFormatter {
+                let dateFormatter = NSDateFormatter()
+                dateFormatter.locale = NSLocale.currentLocale()
+                dateFormatter.dateFormat = "h:mm a zzz"
+                return dateFormatter
+            }
+        }
+        return Static.instance
+    }
+    
     class func stringFromDateWithStyles(
         date: NSDate,
         dateStyle: NSDateFormatterStyle,

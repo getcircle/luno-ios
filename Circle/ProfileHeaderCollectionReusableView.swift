@@ -113,8 +113,8 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
         let officeStateAndCountry = (office.address.hasRegion ? office.address.region : "") + ", " + office.address.country_code
         nameLabel.text = officeName
         nameNavLabel.text = officeName
-        titleLabel.text = officeStateAndCountry
-        titleNavLabel.text = officeStateAndCountry
+        titleLabel.text = office.address.officeCurrentDateAndTime()
+        titleNavLabel.text = office.address.officeCurrentTime(nil)
 
         // TODO: - Remove hardcoded image
         profileImage.image = UIImage(named: "SF")
