@@ -19,7 +19,8 @@ extension NSDateFormatter {
     
     class var sharedTimestampFormatter: NSDateFormatter {
         struct Static {
-            static var timestampConverterFormatter: NSDateFormatter {
+            static let instance = dateFormatter
+            static var dateFormatter: NSDateFormatter {
                 let dateFormatter = NSDateFormatter()
                 dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSZZZZZ"
                 dateFormatter.timeZone = NSTimeZone(forSecondsFromGMT: 0)
@@ -27,12 +28,13 @@ extension NSDateFormatter {
             }
         }
         
-        return Static.timestampConverterFormatter
+        return Static.instance
     }
 
     class var sharedBirthdayFormatter: NSDateFormatter {
         struct Static {
-            static var birthdayFormatter: NSDateFormatter {
+            static let instance = dateFormatter
+            static var dateFormatter: NSDateFormatter {
                 let dateFormatter = NSDateFormatter()
                 dateFormatter.dateFormat = "MMMM d"
                 dateFormatter.locale = NSLocale.currentLocale()
@@ -40,12 +42,13 @@ extension NSDateFormatter {
             }
         }
         
-        return Static.birthdayFormatter
+        return Static.instance
     }
 
     class var sharedAnniversaryFormatter: NSDateFormatter {
         struct Static {
-            static var anniversaryFormatter: NSDateFormatter {
+            static let instance = dateFormatter
+            static var dateFormatter: NSDateFormatter {
                 let dateFormatter = NSDateFormatter()
                 dateFormatter.dateFormat = "MMMM YYYY"
                 dateFormatter.locale = NSLocale.currentLocale()
@@ -53,12 +56,13 @@ extension NSDateFormatter {
             }
         }
         
-        return Static.anniversaryFormatter
+        return Static.instance
     }
     
     class var sharedRelativeDateFormatter: NSDateFormatter {
         struct Static {
-            static var relativeDateFormatter: NSDateFormatter {
+            static let instance = dateFormatter
+            static var dateFormatter: NSDateFormatter {
                 let dateFormatter = NSDateFormatter()
                 dateFormatter.locale = NSLocale.currentLocale()
                 dateFormatter.timeZone = NSTimeZone.localTimeZone()
@@ -66,7 +70,7 @@ extension NSDateFormatter {
             }
         }
         
-        return Static.relativeDateFormatter
+        return Static.instance
     }
     
     class var sharedOfficeCurrentDateFormatter: NSDateFormatter {
