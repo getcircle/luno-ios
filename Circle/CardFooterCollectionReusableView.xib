@@ -35,6 +35,8 @@
             </constraints>
             <connections>
                 <outlet property="footerButton" destination="Qfk-AU-riU" id="D3I-cb-r4D"/>
+                <outlet property="footerButtonLeadingConstraint" destination="63G-Yo-dY7" id="Q0r-uM-qrU"/>
+                <outlet property="footerButtonTrailingConstraint" destination="ZQp-xe-dHP" id="iu9-Z2-h5P"/>
             </connections>
             <point key="canvasLocation" x="211" y="139"/>
         </collectionReusableView>
