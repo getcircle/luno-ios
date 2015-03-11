@@ -25,8 +25,8 @@ extension AppreciationService {
                 "create_appreciation",
                 extensionField: AppreciationServiceRequests_create_appreciation,
                 requestBuilder: requestBuilder
-            ) { (_, _, _, actionResponse, error) -> Void in
-                let response = actionResponse?.result.getExtension(
+            ) { (_, _, wrapped, error) -> Void in
+                let response = wrapped?.response?.result.getExtension(
                     AppreciationServiceRequests_create_appreciation
                 ) as? AppreciationService.CreateAppreciation.Response
                 completionHandler?(appreciation: response?.appreciation, error: error)
@@ -41,7 +41,7 @@ extension AppreciationService {
                 "delete_appreciation",
                 extensionField: AppreciationServiceRequests_delete_appreciation,
                 requestBuilder: requestBuilder
-            ) { (_, _, _, actionResponse, error) -> Void in
+            ) { (_, _, _, error) -> Void in
                 completionHandler?(error: error)
                 return
             }
@@ -55,8 +55,8 @@ extension AppreciationService {
                 "update_appreciation",
                 extensionField: AppreciationServiceRequests_update_appreciation,
                 requestBuilder: requestBuilder
-            ) { (_, _, _, actionResponse, error) -> Void in
-                let response = actionResponse?.result.getExtension(
+            ) { (_, _, wrapped, error) -> Void in
+                let response = wrapped?.response?.result.getExtension(
                     AppreciationServiceRequests_update_appreciation
                 ) as? AppreciationService.UpdateAppreciation.Response
                 completionHandler?(appreciation: appreciation, error: error)
@@ -71,8 +71,8 @@ extension AppreciationService {
                 "get_appreciation",
                 extensionField: AppreciationServiceRequests_get_appreciation,
                 requestBuilder: requestBuilder
-            ) { (_, _, _, actionResponse, error) -> Void in
-                let response = actionResponse?.result.getExtension(
+            ) { (_, _, wrapped, error) -> Void in
+                let response = wrapped?.response?.result.getExtension(
                     AppreciationServiceRequests_get_appreciation
                 ) as? AppreciationService.GetAppreciation.Response
                 completionHandler?(appreciation: response?.appreciation, error: error)

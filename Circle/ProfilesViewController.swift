@@ -186,4 +186,18 @@ class ProfilesViewController: UIViewController,
         (collectionView.collectionViewLayout as UICollectionViewFlowLayout).itemSize = CGSizeMake(size.width, rowHeight)
         collectionView.collectionViewLayout.invalidateLayout()
     }
+    
+    // MARK: - UIScrollViewDelegate
+    
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        let offset = scrollView.contentOffset.y
+        let maxOffset = scrollView.contentSize.height - scrollView.frame.size.height
+        if (maxOffset - offset) <= 40 {
+            let card = dataSource.cardAtSection(0)
+            card?.triggerNextRequest {
+                self.collectionView.reloadData()
+            }
+        }
+    }
+
 }

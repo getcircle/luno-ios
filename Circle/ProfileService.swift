@@ -10,7 +10,7 @@ import Foundation
 import ProtobufRegistry
 
 typealias GetProfileCompletionHandler = (profile: ProfileService.Containers.Profile?, error: NSError?) -> Void
-typealias GetProfilesCompletionHandler = (profiles: Array<ProfileService.Containers.Profile>?, paginator: Paginator?, error: NSError?) -> Void
+typealias GetProfilesCompletionHandler = (profiles: Array<ProfileService.Containers.Profile>?, nextRequest: ServiceRequest?, paginator: Paginator?, error: NSError?) -> Void
 typealias GetExtendedProfileCompletionHandler = (
     profile: ProfileService.Containers.Profile?,
     manager: ProfileService.Containers.Profile?,
@@ -33,8 +33,8 @@ extension ProfileService {
         private class func getProfile(requestBuilder: AbstractMessageBuilder, completionHandler: GetProfileCompletionHandler?) {
             let client = ServiceClient(serviceName: "profile")
             client.callAction("get_profile", extensionField: ProfileServiceRequests_get_profile, requestBuilder: requestBuilder) {
-                (_, _, _, actionResponse, error) -> Void in
-                let response = actionResponse?.result.getExtension(ProfileServiceRequests_get_profile) as? ProfileService.GetProfile.Response
+                (_, _, wrapped, error) -> Void in
+                let response = wrapped?.response?.result.getExtension(ProfileServiceRequests_get_profile) as? ProfileService.GetProfile.Response
                 completionHandler?(profile: response?.profile, error: error)
             }
         }
@@ -54,9 +54,15 @@ extension ProfileService {
         private class func getProfiles(requestBuilder: AbstractMessageBuilder, completionHandler: GetProfilesCompletionHandler?) {
             let client = ServiceClient(serviceName: "profile")
             client.callAction("get_profiles", extensionField: ProfileServiceRequests_get_profiles, requestBuilder: requestBuilder) {
-                (_, _, _, actionResponse, error) -> Void in
-                let response = actionResponse?.result.getExtension(ProfileServiceRequests_get_profiles) as? ProfileService.GetProfiles.Response
-                completionHandler?(profiles: response?.profiles, paginator: actionResponse?.control.paginator, error: error)
+                (_, _, wrapped, error) -> Void in
+                let response = wrapped?.response?.result.getExtension(ProfileServiceRequests_get_profiles) as? ProfileService.GetProfiles.Response
+                
+                var nextRequest: ServiceRequest? = nil
+                let paginator = wrapped?.getPaginator()
+                if paginator != nil {
+                    nextRequest = wrapped?.serviceRequest.getNextRequest(paginator!)
+                }
+                completionHandler?(profiles: response?.profiles, nextRequest: nextRequest, paginator: paginator, error: error)
             }
         }
         
@@ -99,8 +105,8 @@ extension ProfileService {
                 "get_extended_profile",
                 extensionField: ProfileServiceRequests_get_extended_profile,
                 requestBuilder: requestBuilder
-            ) { (_, _, _, actionResponse, error) -> Void in
-                let response = actionResponse?.result.getExtension(
+            ) { (_, _, wrapped, error) -> Void in
+                let response = wrapped?.response?.result.getExtension(
                     ProfileServiceRequests_get_extended_profile
                 ) as? ProfileService.GetExtendedProfile.Response
                 completionHandler?(
@@ -127,8 +133,8 @@ extension ProfileService {
                 "get_skills",
                 extensionField: ProfileServiceRequests_get_skills,
                 requestBuilder: requestBuilder
-            ) { (_, _, _, actionResponse, error) -> Void in
-                let response = actionResponse?.result.getExtension(ProfileServiceRequests_get_skills) as? ProfileService.GetSkills.Response
+            ) { (_, _, wrapped, error) -> Void in
+                let response = wrapped?.response?.result.getExtension(ProfileServiceRequests_get_skills) as? ProfileService.GetSkills.Response
                 completionHandler?(skills: response?.skills, error: error)
             }
         }
@@ -141,8 +147,8 @@ extension ProfileService {
             client.callAction(
                 "get_active_skills",
                 extensionField: ProfileServiceRequests_get_active_skills,
-                requestBuilder: requestBuilder) { (_, _, _, actionResponse, error) -> Void in
-                    let response = actionResponse?.result.getExtension(
+                requestBuilder: requestBuilder) { (_, _, wrapped, error) -> Void in
+                    let response = wrapped?.response?.result.getExtension(
                         ProfileServiceRequests_get_active_skills
                     ) as? ProfileService.GetActiveSkills.Response
                     completionHandler?(skills: response?.skills, error: error)
@@ -157,8 +163,8 @@ extension ProfileService {
             client.callAction(
                 "update_profile",
                 extensionField: ProfileServiceRequests_update_profile,
-                requestBuilder: requestBuilder) { (_, _, _, actionResponse, error) -> Void in
-                    let response = actionResponse?.result.getExtension(
+                requestBuilder: requestBuilder) { (_, _, wrapped, error) -> Void in
+                    let response = wrapped?.response?.result.getExtension(
                         ProfileServiceRequests_update_profile
                     ) as? ProfileService.UpdateProfile.Response
                     ObjectStore.sharedInstance.update(response?.profile, type: .Profile)
@@ -175,8 +181,8 @@ extension ProfileService {
             client.callAction(
                 "add_skills",
                 extensionField: ProfileServiceRequests_add_skills,
-                requestBuilder: requestBuilder) { (_, _, _, actionResponse, error) -> Void in
-                    let response = actionResponse?.result.getExtension(ProfileServiceRequests_add_skills) as? ProfileService.AddSkills.Response
+                requestBuilder: requestBuilder) { (_, _, wrapped, error) -> Void in
+                    let response = wrapped?.response?.result.getExtension(ProfileServiceRequests_add_skills) as? ProfileService.AddSkills.Response
                     completionHandler?(error: error)
             }
         }

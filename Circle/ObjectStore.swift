@@ -45,7 +45,7 @@ class ObjectStore {
     func repopulate() {
         let objects = Objects()
         if let currentProfile = AuthViewController.getLoggedInUserProfile() {
-            ProfileService.Actions.getProfiles(organizationId: currentProfile.organization_id) { (profiles, _, error) -> Void in
+            ProfileService.Actions.getProfiles(organizationId: currentProfile.organization_id) { (profiles, _, _, error) -> Void in
                 objects.profiles = profiles
                 self.update(objects)
             }

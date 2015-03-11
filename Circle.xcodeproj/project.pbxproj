@@ -155,6 +155,7 @@
 		BF1DB6591A76FA31006F2B7D /* AddNoteCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1DB6571A76FA31006F2B7D /* AddNoteCollectionViewCell.swift */; };
 		BF1DB65A1A76FA31006F2B7D /* AddNoteCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF1DB6581A76FA31006F2B7D /* AddNoteCollectionViewCell.xib */; };
 		BF1FA6B61A71D0120044936D /* UnderlyingCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1FA6B51A71D0120044936D /* UnderlyingCollectionView.swift */; };
+		BF220F041AB0221D00C948D0 /* ServiceRequestExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF220F031AB0221D00C948D0 /* ServiceRequestExtension.swift */; };
 		BF24FCFD1A4A25F3003DF4C2 /* ProtobufRegistry.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = BF24FCF81A4A25E7003DF4C2 /* ProtobufRegistry.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BF25722D1A6450F20052C3E3 /* VerifyPhoneNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF25722B1A6450F20052C3E3 /* VerifyPhoneNumberViewController.swift */; };
 		BF25722E1A6450F20052C3E3 /* VerifyPhoneNumberViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF25722C1A6450F20052C3E3 /* VerifyPhoneNumberViewController.xib */; };
@@ -448,6 +449,7 @@
 		BF1DB6571A76FA31006F2B7D /* AddNoteCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNoteCollectionViewCell.swift; sourceTree = "<group>"; };
 		BF1DB6581A76FA31006F2B7D /* AddNoteCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddNoteCollectionViewCell.xib; sourceTree = "<group>"; };
 		BF1FA6B51A71D0120044936D /* UnderlyingCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnderlyingCollectionView.swift; sourceTree = "<group>"; };
+		BF220F031AB0221D00C948D0 /* ServiceRequestExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceRequestExtension.swift; sourceTree = "<group>"; };
 		BF24FCF21A4A25E6003DF4C2 /* ProtobufRegistry.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ProtobufRegistry.xcodeproj; path = "ThirdParty/protobuf-registry/swift/ProtobufRegistry/ProtobufRegistry.xcodeproj"; sourceTree = SOURCE_ROOT; };
 		BF25722B1A6450F20052C3E3 /* VerifyPhoneNumberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerifyPhoneNumberViewController.swift; sourceTree = "<group>"; };
 		BF25722C1A6450F20052C3E3 /* VerifyPhoneNumberViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VerifyPhoneNumberViewController.xib; sourceTree = "<group>"; };
@@ -708,6 +710,7 @@
 				BF59AA921A2C152F00C0CDB9 /* UITableViewExtension.swift */,
 				8FEE88461A411BA90011CE4A /* UIViewControllerExtension.swift */,
 				8F22CBFA1A29AF450026376E /* UIViewExtension.swift */,
+				BF220F031AB0221D00C948D0 /* ServiceRequestExtension.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -1344,6 +1347,7 @@
 				8F7400231A6862BF00D96B60 /* SkillDetailViewController.swift in Sources */,
 				8FEE3D961A8309A400B17569 /* EditProfileViewController.swift in Sources */,
 				BF7DF98F1A44E53200A4F924 /* ServiceTransport.swift in Sources */,
+				BF220F041AB0221D00C948D0 /* ServiceRequestExtension.swift in Sources */,
 				8F085A851A6B0C1E00F8139B /* TeamDetailViewController.swift in Sources */,
 				BF8DAC881A6D7EB1000860DD /* NewNoteViewController.swift in Sources */,
 				8F77950C1A917FB400BEF6EA /* CircleCache.swift in Sources */,

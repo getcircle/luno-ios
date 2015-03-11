@@ -12,10 +12,30 @@ import ProtobufRegistry
 
 let ServiceErrorDomain = "co.circlehq.circle.services"
 
+public struct WrappedResponse {
+    
+    var serviceRequest: ServiceRequest
+    var serviceResponse: ServiceResponse?
+    var response: ActionResponse?
+    
+    init(serviceRequest withServiceRequest: ServiceRequest, serviceResponse withServiceResponse: ServiceResponse?, actionResponse: ActionResponse?) {
+        serviceRequest = withServiceRequest
+        serviceResponse = withServiceResponse
+        response = actionResponse
+    }
+    
+    func getPaginator() -> Paginator? {
+        return response?.control.paginator
+    }
+    
+}
+
 protocol ServiceTransport {
     func sendRequest(serviceRequest: ServiceRequest, completionHandler: ServiceCompletionHandler);
     func processRequest(serviceRequest: ServiceRequest, serializedRequest: NSData, completionHandler: ServiceCompletionHandler);
 }
+
+public typealias ServiceTransportCompletionHandler = (NSURLRequest, NSHTTPURLResponse?, ServiceResponse?, ActionResponse?, NSError?) -> Void
 
 extension Request {
     class func ServiceResponseSerializer() -> Serializer {
@@ -38,7 +58,7 @@ extension Request {
         }
     }
     
-    func responseProtobuf(completionHandler: ServiceCompletionHandler) -> Self {
+    func responseProtobuf(completionHandler: ServiceTransportCompletionHandler) -> Self {
         return response(serializer: Request.ServiceResponseSerializer(), completionHandler: { (request, response, serviceResponse, error) in
             let serviceResponse = serviceResponse as? ServiceResponse
             let actionResponse = serviceResponse?.actions[0]
@@ -54,6 +74,7 @@ extension Request {
                     }
                 }
             }
+
             completionHandler(request, response, serviceResponse, actionResponse, serviceError)
         })
     }
@@ -147,8 +168,12 @@ class HttpsTransport: BaseTransport {
             .responseProtobuf { (request, response, serviceResponse, actionResponse, error) -> Void in
                 NetworkActivity.totalRequests--
                 self.updateNetworkIndicatorVisibility()
-                
-                completionHandler(request, response, serviceResponse, actionResponse, error)
+                let wrapped = WrappedResponse(
+                    serviceRequest: serviceRequest,
+                    serviceResponse: serviceResponse,
+                    actionResponse: actionResponse
+                )
+                completionHandler(request, response, wrapped, error)
         }
     }
     

@@ -31,7 +31,7 @@ class SkillDetailDataSource: CardDataSource {
         
         if let currentProfile = AuthViewController.getLoggedInUserProfile() {
             let profile = AuthViewController.getLoggedInUserProfile()!
-            ProfileService.Actions.getProfiles(skillId: selectedSkill!.id, organizationId: profile.organization_id) { (profiles, _, error) -> Void in
+            ProfileService.Actions.getProfiles(skillId: selectedSkill!.id, organizationId: profile.organization_id) { (profiles, _, _, error) -> Void in
                 if let profiles = profiles {
                     self.profiles.extend(profiles)
                     let peopleCard = Card(cardType: .Profiles, title: "People by Skill")

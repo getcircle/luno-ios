@@ -56,6 +56,9 @@ class Card: Equatable {
     }
     private(set) var title: String
     private(set) var type: CardType
+    private(set) var nextRequest: ServiceRequest?
+    private(set) var nextRequestCompletionHandler: ServiceCompletionHandler?
+    private var isLoadingNextRequest = false
 
     enum CardContentType {
         case Flat
@@ -454,5 +457,36 @@ class Card: Equatable {
         else {
             setContentToAllContent()
         }
+    }
+    
+    func setNextRequest(nextRequest withNextRequest: ServiceRequest?) {
+        nextRequest = withNextRequest
+    }
+    
+    func registerNextRequest(nextRequest withNextRequest: ServiceRequest, completionHandler: ServiceCompletionHandler) {
+        nextRequest = withNextRequest
+        nextRequestCompletionHandler = completionHandler
+    }
+    
+    func triggerNextRequest(completionHandler: () -> Void) {
+        if !shouldMakeNextRequest(nextRequest) {
+            return
+        }
+        
+        isLoadingNextRequest = true
+        ServiceClient.sendRequest(nextRequest!) { (request, response, wrapped, error) -> Void in
+            self.isLoadingNextRequest = false
+            self.nextRequestCompletionHandler!(request, response, wrapped, error)
+            completionHandler()
+        }
+    }
+    
+    private func shouldMakeNextRequest(serviceRequest: ServiceRequest?) -> Bool {
+        let paginator = serviceRequest?.getFirstPaginator()
+        if paginator?.page > paginator?.total_pages {
+            return false
+        }
+        
+        return !isLoadingNextRequest && nextRequest != nil && nextRequestCompletionHandler != nil
     }
 }

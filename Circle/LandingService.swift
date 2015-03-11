@@ -23,8 +23,8 @@ extension LandingService {
                 "get_categories",
                 extensionField: LandingServiceRequests_get_categories,
                 requestBuilder: requestBuilder
-            ) { (_, _, _, actionResponse, error) -> Void in
-                let response = actionResponse?.result.getExtension(
+            ) { (_, _, wrapped, error) -> Void in
+                let response = wrapped?.response?.result.getExtension(
                     LandingServiceRequests_get_categories
                 ) as? LandingService.GetCategories.Response
                 completionHandler?(
@@ -42,8 +42,8 @@ extension LandingService {
                 "get_organization_categories",
                 extensionField: LandingServiceRequests_get_organization_categories,
                 requestBuilder: requestBuilder
-            ) { (_, _, _, actionResponse, error) -> Void in
-                let response = actionResponse?.result.getExtension(
+            ) { (_, _, wrapped, error) -> Void in
+                let response = wrapped?.response?.result.getExtension(
                     LandingServiceRequests_get_organization_categories
                 ) as? LandingService.GetOrganizationCategories.Response
                 completionHandler?(categories: response?.categories, error: error)

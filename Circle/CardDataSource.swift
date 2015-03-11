@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import ProtobufRegistry
 
 class ItemImage {
     var name: String
@@ -157,6 +158,10 @@ class CardDataSource: NSObject, UICollectionViewDataSource {
         fatalError("All subclasses need to override this")
     }
     
+    func setInitialData(#content: [AnyObject], ofType: Card.CardType? = .Profiles, nextRequest withNextRequest: ServiceRequest?) {
+        fatalError("All subclasses need to override this")
+    }
+    
     /**
     Registers the default card header supplementary view with the passed in collection view.
     
@@ -218,6 +223,7 @@ class CardDataSource: NSObject, UICollectionViewDataSource {
     
     final func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let card = cards[indexPath.section]
+        let percentContent = Float(indexPath.row) / Float(card.content.count) * 100
         registerReusableCell(collectionView, forCard: card)
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(
             card.contentClass.classReuseIdentifier,
@@ -402,4 +408,5 @@ class CardDataSource: NSObject, UICollectionViewDataSource {
 
         return nil
     }
+
 }

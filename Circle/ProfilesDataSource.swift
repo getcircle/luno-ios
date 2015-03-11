@@ -11,6 +11,7 @@ import ProtobufRegistry
 
 class ProfilesDataSource: CardDataSource {
 
+    private var nextRequest: ServiceRequest?
     private var profiles = Array<ProfileService.Containers.Profile>()
     
     // MARK: - Set Initial Data
@@ -18,9 +19,33 @@ class ProfilesDataSource: CardDataSource {
     override func setInitialData(content: [AnyObject], ofType: Card.CardType?) {
         let cardType = ofType != nil ? ofType : .Profiles
         let profilesCard = Card(cardType: cardType!, title: "")
+        if let nextRequest = nextRequest {
+            profilesCard.registerNextRequest(nextRequest: nextRequest) { (_, _, wrapped, error) -> Void in
+                profilesCard.setNextRequest(nextRequest: nil)
+                
+                let response = wrapped?.response?.result.getExtension(
+                    ProfileServiceRequests_get_profiles
+                ) as? ProfileService.GetProfiles.Response
+                
+                if let profiles = response?.profiles {
+                    profilesCard.addContent(content: profiles as [AnyObject])
+                    if let paginator = wrapped?.getPaginator() {
+                        if paginator.total_pages != paginator.next_page {
+                            profilesCard.setNextRequest(nextRequest: wrapped?.serviceRequest.getNextRequest(paginator))
+                        }
+                    }
+                }
+            }
+        }
+        
         profilesCard.sectionInset = UIEdgeInsetsZero
         profilesCard.addContent(content: content)
         appendCard(profilesCard)
+    }
+    
+    override func setInitialData(#content: [AnyObject], ofType: Card.CardType?, nextRequest withNextRequest: ServiceRequest?) {
+        nextRequest = withNextRequest
+        self.setInitialData(content, ofType: ofType)
     }
     
     // MARK: - Load Data

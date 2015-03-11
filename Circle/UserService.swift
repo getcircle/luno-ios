@@ -30,8 +30,8 @@ extension UserService {
             requestBuilder.credentials = credentials
             let client = ServiceClient(serviceName: "user")
             client.callAction("authenticate_user", extensionField: UserServiceRequests_authenticate_user, requestBuilder: requestBuilder) {
-                (_, _, _, actionResponse, error) in
-                let response = actionResponse?.result.getExtension(UserServiceRequests_authenticate_user) as? UserService.AuthenticateUser.Response
+                (_, _, wrapped, error) in
+                let response = wrapped?.response?.result.getExtension(UserServiceRequests_authenticate_user) as? UserService.AuthenticateUser.Response
                 completionHandler?(user: response?.user, token: response?.token, newUser: response?.new_user, error: error)
             }
         }
@@ -45,8 +45,8 @@ extension UserService {
                 "update_user",
                 extensionField: UserServiceRequests_update_user,
                 requestBuilder: requestBuilder
-            ) { (_, _, _, actionResponse, error) -> Void in
-                let response = actionResponse?.result.getExtension(UserServiceRequests_update_user) as? UserService.UpdateUser.Response
+            ) { (_, _, wrapped, error) -> Void in
+                let response = wrapped?.response?.result.getExtension(UserServiceRequests_update_user) as? UserService.UpdateUser.Response
                 completionHandler?(user: response?.user, error: error)
             }
         }
@@ -61,7 +61,7 @@ extension UserService {
                 "send_verification_code",
                 extensionField: UserServiceRequests_send_verification_code,
                 requestBuilder: requestBuilder
-            ) { (_, _, _, _, error) -> Void in
+            ) { (_, _, _, error) -> Void in
                 completionHandler?(error: error)
                 return
             }
@@ -77,8 +77,8 @@ extension UserService {
                 "verify_verification_code",
                 extensionField: UserServiceRequests_verify_verification_code,
                 requestBuilder: requestBuilder
-            ) { (_, _, _, actionResponse, error) -> Void in
-                let response = actionResponse?.result.getExtension(
+            ) { (_, _, wrapped, error) -> Void in
+                let response = wrapped?.response?.result.getExtension(
                     UserServiceRequests_verify_verification_code
                 ) as? UserService.VerifyVerificationCode.Response
                 completionHandler?(verified: response?.verified, error: error)
@@ -93,8 +93,8 @@ extension UserService {
             client.callAction(
                 "get_authorization_instructions",
                 extensionField: UserServiceRequests_get_authorization_instructions,
-                requestBuilder: requestBuilder) { (_, _, _, actionResponse, error) -> Void in
-                    let response = actionResponse?.result.getExtension(
+                requestBuilder: requestBuilder) { (_, _, wrapped, error) -> Void in
+                    let response = wrapped?.response?.result.getExtension(
                         UserServiceRequests_get_authorization_instructions
                     ) as? UserService.GetAuthorizationInstructions.Response
                     completionHandler?(authorizationURL: response?.authorization_url, error: error)
@@ -120,8 +120,8 @@ extension UserService {
             client.callAction(
                 "complete_authorization",
                 extensionField: UserServiceRequests_complete_authorization,
-                requestBuilder: requestBuilder) { (_, _, _, actionResponse, error) -> Void in
-                    let response = actionResponse?.result.getExtension(
+                requestBuilder: requestBuilder) { (_, _, wrapped, error) -> Void in
+                    let response = wrapped?.response?.result.getExtension(
                         UserServiceRequests_complete_authorization
                     ) as? UserService.CompleteAuthorization.Response
                     completionHandler?(user: response?.user, identity: response?.identity, error: error)
@@ -136,8 +136,8 @@ extension UserService {
             client.callAction(
                 "get_identities",
                 extensionField: UserServiceRequests_get_identities,
-                requestBuilder: requestBuilder) { (_, _, _, actionResponse, error) -> Void in
-                    let response = actionResponse?.result.getExtension(
+                requestBuilder: requestBuilder) { (_, _, wrapped, error) -> Void in
+                    let response = wrapped?.response?.result.getExtension(
                         UserServiceRequests_get_identities
                     ) as? UserService.GetIdentities.Response
                     completionHandler?(identities: response?.identities, error: error)

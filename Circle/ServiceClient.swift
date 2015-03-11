@@ -9,7 +9,7 @@
 import Foundation
 import ProtobufRegistry
 
-public typealias ServiceCompletionHandler = (NSURLRequest, NSHTTPURLResponse?, ServiceResponse?, ActionResponse?, NSError?) -> Void
+public typealias ServiceCompletionHandler = (NSURLRequest, NSHTTPURLResponse?, WrappedResponse?, NSError?) -> Void
 
 public class ServiceClient {
     
@@ -75,9 +75,14 @@ public class ServiceClient {
         let actionRequestParams = ActionRequestParams.builder()
         actionRequestParams.setExtension(extensionField, value: requestBuilder.build())
         actionRequest.params = actionRequestParams.build()
-        
         serviceRequest.actions += [actionRequest.build()]
+        
         self.transport.sendRequest(serviceRequest.build(), completionHandler: completionHandler)
+    }
+    
+    public class func sendRequest(serviceRequest: ServiceRequest, completionHandler: ServiceCompletionHandler) {
+        let client = ServiceClient(serviceName: "")
+        client.transport.sendRequest(serviceRequest, completionHandler: completionHandler)
     }
     
 }

@@ -30,8 +30,8 @@ extension MediaService {
                 "start_image_upload",
                 extensionField: MediaServiceRequests_start_image_upload,
                 requestBuilder: requestBuilder
-            ) { (_, _, _, actionResponse, error) -> Void in
-                let response = actionResponse?.result.getExtension(
+            ) { (_, _, wrapped, error) -> Void in
+                let response = wrapped?.response?.result.getExtension(
                     MediaServiceRequests_start_image_upload
                 ) as? MediaService.StartImageUpload.Response
                 completionHandler?(instructions: response?.upload_instructions, error: error)
@@ -56,8 +56,8 @@ extension MediaService {
                 "complete_image_upload",
                 extensionField: MediaServiceRequests_complete_image_upload,
                 requestBuilder: requestBuilder
-            ) { (_, _, _, actionResponse, error) -> Void in
-                let response = actionResponse?.result.getExtension(
+            ) { (_, _, wrapped, error) -> Void in
+                let response = wrapped?.response?.result.getExtension(
                     MediaServiceRequests_complete_image_upload
                 ) as? MediaService.CompleteImageUpload.Response
                 completionHandler?(mediaURL: response?.media_url, error: error)

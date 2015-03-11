@@ -27,8 +27,8 @@ extension OrganizationService {
                 "get_addresses",
                 extensionField: OrganizationServiceRequests_get_addresses,
                 requestBuilder: requestBuilder
-            ) { (_, _, _, actionResponse, error) -> Void in
-                let response = actionResponse?.result.getExtension(
+            ) { (_, _, wrapped, error) -> Void in
+                let response = wrapped?.response?.result.getExtension(
                     OrganizationServiceRequests_get_addresses
                 ) as? OrganizationService.GetAddresses.Response
                 completionHandler?(addresses: response?.addresses, error: error)
@@ -41,8 +41,8 @@ extension OrganizationService {
                 "get_teams",
                 extensionField: OrganizationServiceRequests_get_teams,
                 requestBuilder: requestBuilder
-                ) { (_, _, _, actionResponse, error) -> Void in
-                    let response = actionResponse?.result.getExtension(
+                ) { (_, _, wrapped, error) -> Void in
+                    let response = wrapped?.response?.result.getExtension(
                         OrganizationServiceRequests_get_teams
                         ) as? OrganizationService.GetTeams.Response
                     completionHandler?(teams: response?.teams, error: error)
@@ -69,8 +69,8 @@ extension OrganizationService {
             client.callAction(
                 "get_team_children",
                 extensionField: OrganizationServiceRequests_get_team_children,
-                requestBuilder: requestBuilder) { (_, _, _, actionResponse, error) -> Void in
-                    let response = actionResponse?.result.getExtension(
+                requestBuilder: requestBuilder) { (_, _, wrapped, error) -> Void in
+                    let response = wrapped?.response?.result.getExtension(
                         OrganizationServiceRequests_get_team_children
                     ) as? OrganizationService.GetTeamChildren.Response
                     completionHandler?(teams: response?.teams, error: error)
@@ -85,8 +85,8 @@ extension OrganizationService {
             client.callAction(
                 "get_organization",
                 extensionField: OrganizationServiceRequests_get_organization,
-                requestBuilder: requestBuilder) { (_, _, _, actionResponse, error) -> Void in
-                    let response = actionResponse?.result.getExtension(
+                requestBuilder: requestBuilder) { (_, _, wrapped, error) -> Void in
+                    let response = wrapped?.response?.result.getExtension(
                         OrganizationServiceRequests_get_organization
                     ) as? OrganizationService.GetOrganization.Response
                     completionHandler?(organization: response?.organization, error: error)
@@ -102,8 +102,8 @@ extension OrganizationService {
                 "get_locations",
                 extensionField: OrganizationServiceRequests_get_locations,
                 requestBuilder: requestBuilder
-            ) { (_, _, _, actionResponse, error) -> Void in
-                let response = actionResponse?.result.getExtension(
+            ) { (_, _, wrapped, error) -> Void in
+                let response = wrapped?.response?.result.getExtension(
                     OrganizationServiceRequests_get_locations
                 ) as? OrganizationService.GetLocations.Response
                 completionHandler?(locations: response?.locations, error: error)

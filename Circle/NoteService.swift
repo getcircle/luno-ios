@@ -25,8 +25,8 @@ extension NoteService {
                 "create_note",
                 extensionField: NoteServiceRequests_create_note,
                 requestBuilder: requestBuilder
-            ) { (_, _, _, actionResponse, error) -> Void in
-                let response = actionResponse?.result.getExtension(
+            ) { (_, _, wrapped, error) -> Void in
+                let response = wrapped?.response?.result.getExtension(
                     NoteServiceRequests_create_note
                 ) as? NoteService.CreateNote.Response
                 completionHandler?(note: response?.note, error: error)
@@ -40,7 +40,7 @@ extension NoteService {
             client.callAction(
                 "delete_note",
                 extensionField: NoteServiceRequests_delete_note,
-                requestBuilder: requestBuilder) { (_, _, _, actionResponse, error) -> Void in
+                requestBuilder: requestBuilder) { (_, _, _, error) -> Void in
                     completionHandler?(error: error)
                     return
             }
@@ -53,8 +53,8 @@ extension NoteService {
             client.callAction(
                 "update_note",
                 extensionField: NoteServiceRequests_update_note,
-                requestBuilder: requestBuilder) { (_, _, _, actionResponse, error) -> Void in
-                    let response = actionResponse?.result.getExtension(
+                requestBuilder: requestBuilder) { (_, _, wrapped, error) -> Void in
+                    let response = wrapped?.response?.result.getExtension(
                         NoteServiceRequests_update_note
                     ) as? NoteService.UpdateNote.Response
                     completionHandler?(note: response?.note, error: error)
@@ -69,8 +69,8 @@ extension NoteService {
             client.callAction(
                 "get_notes",
                 extensionField: NoteServiceRequests_get_notes,
-                requestBuilder: requestBuilder) { (_, _, _, actionResponse, error) -> Void in
-                    let response = actionResponse?.result.getExtension(
+                requestBuilder: requestBuilder) { (_, _, wrapped, error) -> Void in
+                    let response = wrapped?.response?.result.getExtension(
                         NoteServiceRequests_get_notes
                     ) as? NoteService.GetNotes.Response
                     completionHandler?(notes: response?.notes, error: error)
