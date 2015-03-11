@@ -24,6 +24,7 @@ class OrganizationDetailViewController: DetailViewController, CardHeaderViewDele
     
     override func configureCollectionView() {
         // Data Source
+        dataSource.animateContent = true
         collectionView.dataSource = dataSource
         dataSource.registerDefaultCardHeader(collectionView)
         dataSource.cardHeaderDelegate = self

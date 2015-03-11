@@ -101,7 +101,7 @@ class CardDataSource: NSObject, UICollectionViewDataSource {
         case Header
     }
     
-    var animateContent = true
+    var animateContent = false
     private var animatedRowIndexes = NSMutableIndexSet()
     /**
     Array for holding data cards. View controllers should access data via this array.

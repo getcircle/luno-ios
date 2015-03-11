@@ -26,6 +26,7 @@ class OfficeDetailViewController: DetailViewController, CardFooterViewDelegate {
     // MARK: - Configuration
 
     override func configureCollectionView() {
+        dataSource.animateContent = true
         collectionView.dataSource = dataSource
         dataSource.registerCardHeader(collectionView)
         dataSource.cardFooterDelegate = self

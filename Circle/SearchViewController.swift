@@ -161,6 +161,7 @@ NewNoteViewControllerDelegate {
         landingDataSource = SearchLandingDataSource()
         landingDataSource.registerDefaultCardHeader(collectionView)
         landingDataSource.cardHeaderDelegate = self
+        landingDataSource.animateContent = true
         collectionView.dataSource = landingDataSource
         
         queryDataSource = SearchQueryDataSource()

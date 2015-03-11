@@ -61,7 +61,6 @@ class ProfilesViewController: UIViewController,
     private func configureCollectionView() {
         collectionView.backgroundColor = UIColor.appViewBackgroundColor()
         collectionView.dataSource = dataSource
-        dataSource.animateContent = false
         (collectionView.delegate as ProfilesCollectionViewDelegate).delegate = self
     }
 

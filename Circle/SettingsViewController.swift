@@ -43,7 +43,6 @@ class SettingsViewController: UIViewController, UICollectionViewDelegate {
     
     private func configureCollectionView() {
         collectionView.backgroundColor = UIColor.appViewBackgroundColor()
-        dataSource.animateContent = false
         dataSource.loadData { (error) -> Void in
             if error == nil {
                 self.collectionView.reloadData()
