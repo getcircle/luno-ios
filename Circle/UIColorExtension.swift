@@ -39,6 +39,14 @@ extension UIColor {
         return UIColor(red: 38, green: 38, blue: 38)
     }
     
+    class func appPrimaryTextColor() -> UIColor {
+        return UIColor(red: 48, green: 48, blue: 48)
+    }
+
+    class func appSecondaryTextColor() -> UIColor {
+        return UIColor(red: 112, green: 112, blue: 112)
+    }
+
     class func appNavigationBarBarTintColor() -> UIColor {
         return UIColor.appUIBackgroundColor()
     }

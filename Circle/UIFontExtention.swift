@@ -62,4 +62,11 @@ extension UIFont {
         return UIFont(name: "Avenir-Light", size: 20.0)!
     }
 
+    class func appPrimaryTextFont() -> UIFont {
+        return UIFont(name: "Avenir-Medium", size: 15.0)!
+    }
+    
+    class func appSecondaryTextFont() -> UIFont {
+        return UIFont(name: "Avenir-Book", size: 13.0)!
+    }
 }

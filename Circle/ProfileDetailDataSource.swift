@@ -242,14 +242,14 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
     private func getOfficeTeamSection() -> Section {
         let sectionItems = [
             SectionItem(
-                title: "Office, Team & Manager",
+                title: AppStrings.ProfileSectionTitle,
                 container: "",
                 containerKey: "",
                 contentType: .OfficeTeam,
                 image: ItemImage.genericNextImage
             )
         ]
-        return Section(title: "Office, Team & Manager", items: sectionItems, cardType: .OfficeTeam, cardHeaderSize: CGSizeMake(CircleCollectionViewCell.width, CardHeaderCollectionReusableView.height))
+        return Section(title: AppStrings.ProfileSectionTitle, items: sectionItems, cardType: .People, cardHeaderSize: CGSizeMake(CircleCollectionViewCell.width, CardHeaderCollectionReusableView.height))
     }
     
     private func getSkillsSection() -> Section {
@@ -298,7 +298,7 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
         
         // Add top margin only when there is a social connect button added
         // to the profile
-        var defaultSectionInset = UIEdgeInsetsMake(0.0, 0.0, 1.0, 0.0)
+        var defaultSectionInset = UIEdgeInsetsMake(0.0, 0.0, 20.0, 0.0)
         for section in sections {
             let sectionCard = Card(cardType: section.cardType, title: section.title)
             sectionCard.sectionInset = defaultSectionInset
@@ -320,7 +320,7 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
             addEducationItemToCard(item, card: card)
         case .KeyValue:
             addKeyValueItemToCard(item, card: card)
-        case .OfficeTeam:
+        case .People:
             addOfficeTeamItemToCard(item, card: card)
         case .Position:
             addPositionItemToCard(item, card: card)
@@ -455,20 +455,16 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
     }
     
     private func addOfficeTeamItemToCard(item: SectionItem, card: Card) {
-        var content = [String: AnyObject]()
+        var content = [AnyObject]()
         if let team = team {
-            content["team"] = team
+            content.append(team)
         }
 
         if let office = location {
-            content["office"] = office
+            content.append(office)
         }
 
-        if let manager = manager {
-            content["manager"] = manager
-        }
-        
-        card.addContent(content: [content])
+        card.addContent(content: content, maxVisibleItems: 0)
     }
     
     private func addQuickActionsItemToCard(item: SectionItem, card: Card) {
@@ -499,7 +495,7 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
             quickActionsCell.backgroundColor = UIColor.whiteColor()
             quickActionsCell.quickActions = [.Message, .Email, .Phone, .MoreInfo]
             quickActionsCell.hideLabels()
-        }
+        }        
     }
     
     // MARK: - Cell Type
@@ -517,7 +513,7 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
         
         if kind == UICollectionElementKindSectionFooter {
             var footerView = addDefaultFooterView(collectionView, atIndexPath: indexPath)
-            footerView.backgroundColor = UIColor.whiteColor()
+            (footerView as CardFooterCollectionReusableView).insetEdges = false
             return footerView
         }
         else {
