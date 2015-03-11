@@ -249,7 +249,7 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
                 image: ItemImage.genericNextImage
             )
         ]
-        return Section(title: AppStrings.ProfileSectionTitle, items: sectionItems, cardType: .People, cardHeaderSize: CGSizeMake(CircleCollectionViewCell.width, CardHeaderCollectionReusableView.height))
+        return Section(title: AppStrings.ProfileSectionTitle, items: sectionItems, cardType: .Profiles, cardHeaderSize: CGSizeMake(CircleCollectionViewCell.width, CardHeaderCollectionReusableView.height))
     }
     
     private func getSkillsSection() -> Section {
@@ -320,7 +320,7 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
             addEducationItemToCard(item, card: card)
         case .KeyValue:
             addKeyValueItemToCard(item, card: card)
-        case .People:
+        case .Profiles:
             addOfficeTeamItemToCard(item, card: card)
         case .Position:
             addPositionItemToCard(item, card: card)

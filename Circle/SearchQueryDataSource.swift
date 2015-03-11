@@ -55,7 +55,7 @@ class SearchQueryDataSource: CardDataSource {
             // are straight up suggestions without any search term
             
             let profilesCardTitle = searchTerm.trimWhitespace() == "" ? "Recent" : "People"
-            let peopleCard = Card(cardType: .People, title: profilesCardTitle)
+            let peopleCard = Card(cardType: .Profiles, title: profilesCardTitle)
             peopleCard.addContent(content: visibleProfiles as [AnyObject])
             peopleCard.contentCount = visibleProfiles.count
             peopleCard.sectionInset = sectionInset

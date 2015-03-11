@@ -99,7 +99,7 @@ class OrganizationDetailViewController: DetailViewController, CardHeaderViewDele
         ]
         
         switch selectedCard.type {
-        case .People, .Birthdays, .Anniversaries, .NewHires:
+        case .Profiles, .Birthdays, .Anniversaries, .NewHires:
             if let profile = dataSource.contentAtIndexPath(indexPath)? as? ProfileService.Containers.Profile {
                 let profileVC = ProfileDetailsViewController.forProfile(profile)
                 profileVC.hidesBottomBarWhenPushed = true
@@ -150,7 +150,7 @@ class OrganizationDetailViewController: DetailViewController, CardHeaderViewDele
     func cardHeaderTapped(card: Card!) {
         let dataSource = (collectionView.dataSource as CardDataSource)
         switch card.type {
-        case .Group, .People, .Birthdays, .Anniversaries, .NewHires:
+        case .Group, .Profiles, .Birthdays, .Anniversaries, .NewHires:
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let viewController = storyboard.instantiateViewControllerWithIdentifier("ProfilesViewController") as ProfilesViewController
             if card.type == .Group {

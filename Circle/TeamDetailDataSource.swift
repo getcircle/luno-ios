@@ -43,7 +43,7 @@ class TeamDetailDataSource: CardDataSource {
                     })
                     
                     if let owner = self.ownerProfile {
-                        let ownerCard = Card(cardType: .People, title: "Team Lead")
+                        let ownerCard = Card(cardType: .Profiles, title: "Team Lead")
                         ownerCard.addContent(content: [self.ownerProfile])
                         ownerCard.sectionInset = UIEdgeInsetsMake(0.0, 0.0, 25.0, 0.0)
                         self.appendCard(ownerCard)
@@ -56,7 +56,7 @@ class TeamDetailDataSource: CardDataSource {
                             "Members",
                             comment: "Title for list of team members"
                         ).uppercaseStringWithLocale(NSLocale.currentLocale())
-                        let membersCard = Card(cardType: .People, title: membersCardTitle)
+                        let membersCard = Card(cardType: .Profiles, title: membersCardTitle)
                         membersCard.addContent(content: allProfilesExceptOwner! as [AnyObject])
                         membersCard.sectionInset = UIEdgeInsetsMake(0.0, 0.0, 25.0, 0.0)
                         self.appendCard(membersCard)

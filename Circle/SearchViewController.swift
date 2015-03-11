@@ -218,7 +218,7 @@ NewNoteViewControllerDelegate {
         }
         else {
             switch selectedCard.type {
-            case .People, .Birthdays, .Anniversaries, .NewHires:
+            case .Profiles, .Birthdays, .Anniversaries, .NewHires:
                 if let profile = dataSource.contentAtIndexPath(indexPath)? as? ProfileService.Containers.Profile {
                     let profileVC = ProfileDetailsViewController.forProfile(profile)
                     profileVC.hidesBottomBarWhenPushed = true
@@ -318,7 +318,7 @@ NewNoteViewControllerDelegate {
         trackCardHeaderTapped(card)
         let dataSource = (collectionView.dataSource as CardDataSource)
         switch card.type {
-        case .Group, .People, .Birthdays, .Anniversaries, .NewHires:
+        case .Group, .Profiles, .Birthdays, .Anniversaries, .NewHires:
             let viewController = storyboard?.instantiateViewControllerWithIdentifier("ProfilesViewController") as ProfilesViewController
             if card.type == .Group {
                 viewController.dataSource.setInitialData(card.content[0] as [AnyObject], ofType: nil)

@@ -17,7 +17,7 @@ class NotesOverviewDataSource: CardDataSource {
     
     // MARK: - Set Initial Data
     
-    override func setInitialData(#content: [AnyObject], ofType: Card.CardType? = .People, withMetaData metaData:AnyObject? = nil) {
+    override func setInitialData(#content: [AnyObject], ofType: Card.CardType? = .Profiles, withMetaData metaData:AnyObject? = nil) {
         notes = content as Array<NoteService.Containers.Note>
         filteredNotes = notes
         for profile in metaData as Array<ProfileService.Containers.Profile> {

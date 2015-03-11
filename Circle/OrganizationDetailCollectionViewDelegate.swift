@@ -16,7 +16,7 @@ class OrganizationDetailCollectionViewDelegate: StickyHeaderCollectionViewDelega
         let card = cardDataSource(collectionView).cardAtSection(indexPath.section)!
         var leftAndRightInsets = card.sectionInset.left
         leftAndRightInsets += card.sectionInset.right
-        if card.type == .People {
+        if card.type == .Profiles {
             return CGSizeMake(ProfileCollectionViewCell.width - leftAndRightInsets, ProfileCollectionViewCell.height)
         }
         

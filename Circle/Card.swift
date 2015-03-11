@@ -76,7 +76,7 @@ class Card: Equatable {
         case OfficeAddress = "Office Address"
         case NewHires = "NewHires"
         case Notes = "Notes"
-        case People = "People"
+        case Profiles = "Profiles"
         case Placeholder = "Placeholder"
         case Position = "Position"
         case Settings = "Settings"
@@ -194,7 +194,7 @@ class Card: Equatable {
                     contentType: .Flat
                 )
 
-            case People:
+            case Profiles:
                 return CardTypeInfo(
                     imageName: "People",
                     classType: ProfileCollectionViewCell.self,
@@ -347,11 +347,11 @@ class Card: Equatable {
         case .Skills:
             cardType = .Skills
         case .Executives:
-            cardType = .People
+            cardType = .Profiles
         case .Departments:
             cardType = .TeamsGrid
         default:
-            cardType = .People
+            cardType = .Profiles
         }
 
         self.init(

@@ -16,7 +16,7 @@ class ProfilesDataSource: CardDataSource {
     // MARK: - Set Initial Data
     
     override func setInitialData(content: [AnyObject], ofType: Card.CardType?) {
-        let cardType = ofType != nil ? ofType : .People
+        let cardType = ofType != nil ? ofType : .Profiles
         let profilesCard = Card(cardType: cardType!, title: "")
         profilesCard.sectionInset = UIEdgeInsetsZero
         profilesCard.addContent(content: content)

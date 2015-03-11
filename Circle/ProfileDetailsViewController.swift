@@ -199,7 +199,7 @@ class ProfileDetailsViewController:
                     case .KeyValue:
                         handleKeyValueCardSelection(dataSource, indexPath: indexPath)
 
-                    case .People:
+                    case .Profiles:
                         let data: AnyObject? = dataSource.contentAtIndexPath(indexPath)
                         if data is OrganizationService.Containers.Team {
                             onTeamTapped(nil)
