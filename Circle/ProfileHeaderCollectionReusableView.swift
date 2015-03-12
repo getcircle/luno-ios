@@ -16,6 +16,7 @@ protocol ProfileDetailSegmentedControlDelegate {
 class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
 
     @IBOutlet weak private(set) var backgroundImageView: CircleImageView!
+    @IBOutlet weak private(set) var containerView: UIView!
     @IBOutlet weak private(set) var nameLabel: UILabel!
     @IBOutlet weak private(set) var nameNavLabel: UILabel!
     @IBOutlet weak private(set) var titleLabel: UILabel!
@@ -70,6 +71,9 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
         nameNavLabel.alpha = 0.0
         titleNavLabel.alpha = 0.0
         configureVerifiedProfileButton()
+        addBlurEffect()
+        visualEffectView!.contentView.addSubview(containerView)
+        containerView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
     }
     
     // MARK: - Configuration
@@ -101,7 +105,6 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
             self.profileImage.image = image
             if self.backgroundImageView.image != image {
                 self.backgroundImageView.image = image
-                self.addBlurEffect()
             }
         })
         verifiedProfileButton.hidden = !userProfile.verified
@@ -294,8 +297,7 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
             visualEffectView = UIVisualEffectView(effect: blurEffect)
             visualEffectView!.setTranslatesAutoresizingMaskIntoConstraints(false)
             insertSubview(visualEffectView!, aboveSubview: backgroundImageView)
-            visualEffectView!.autoSetDimensionsToSize(UIScreen.mainScreen().bounds.size)
-            visualEffectView?.userInteractionEnabled = false
+            visualEffectView!.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
         }
     }
     
