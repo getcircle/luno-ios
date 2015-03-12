@@ -1602,6 +1602,94 @@
 			};
 			name = Release;
 		};
+		8FEE88C41AB13602005B9E9F /* AdHoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = AdHoc;
+		};
+		8FEE88C51AB13602005B9E9F /* AdHoc */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CC982AC8BAF0AFF23DCD301A /* Pods.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Circle/circle.entitlements;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Circle",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+				);
+				INFOPLIST_FILE = Circle/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = circle;
+				PROVISIONING_PROFILE = "a2de6d08-c19a-4a34-a74e-c02125ceda7f";
+				SWIFT_OBJC_BRIDGING_HEADER = "$SRCROOT/Circle/Circle-Bridging-Header.h";
+			};
+			name = AdHoc;
+		};
+		8FEE88C61AB13602005B9E9F /* AdHoc */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CC982AC8BAF0AFF23DCD301A /* Pods.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(PROJECT_DIR)/Circle",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = CircleTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Circle.app/Circle";
+			};
+			name = AdHoc;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1609,6 +1697,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8F0004B21A2419730096477A /* Debug */,
+				8FEE88C41AB13602005B9E9F /* AdHoc */,
 				8F0004B31A2419730096477A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -1618,6 +1707,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8F0004B51A2419730096477A /* Debug */,
+				8FEE88C51AB13602005B9E9F /* AdHoc */,
 				8F0004B61A2419730096477A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -1627,6 +1717,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8F0004B81A2419730096477A /* Debug */,
+				8FEE88C61AB13602005B9E9F /* AdHoc */,
 				8F0004B91A2419730096477A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
