@@ -54,6 +54,7 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
         else {
             // Add placeholder card to load profile header instantly
             var placeholderCard = Card(cardType: .Placeholder, title: "Info")
+            placeholderCard.sectionInset = UIEdgeInsetsZero
             appendCard(placeholderCard)
             ProfileService.Actions.getExtendedProfile(profile.id) {
                 (profile, manager, team, address, skills, _, identities, resume, location, error) -> Void in
@@ -287,7 +288,6 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
     // MARK: - Populate Data
     
     private func populateData() {
-        resetCards()
         
         // Add top margin only when there is a social connect button added
         // to the profile
