@@ -92,6 +92,7 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
             sections.append(getAboutSection())
             sections.append(getSkillsSection())
             sections.append(getOfficeTeamSection())
+            sections.append(getManagerSection())
             sections.append(getBasicInfoSection())
             sections.append(getWorkExperienceSection())
             sections.append(getEducationSection())
@@ -217,38 +218,31 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
 
         return height
     }
-    
-    private func getManagerInfoSection() -> Section {
-        let sectionItems = [
-            SectionItem(
-                title: "Manager",
-                container: "manager",
-                containerKey: "full_name",
-                contentType: .Manager,
-                image: ItemImage.genericNextImage
-            ),
-            SectionItem(
-                title: "Team",
-                container: "team",
-                containerKey: "name",
-                contentType: .Team,
-                image: ItemImage.genericNextImage
-            )
-        ]
-        return Section(title: "Manager Info", items: sectionItems, cardType: .KeyValue)
-    }
-    
+
     private func getOfficeTeamSection() -> Section {
         let sectionItems = [
             SectionItem(
-                title: AppStrings.ProfileSectionTitle,
+                title: AppStrings.ProfileSectionOfficeTeamTitle,
                 container: "",
                 containerKey: "",
                 contentType: .OfficeTeam,
                 image: ItemImage.genericNextImage
             )
         ]
-        return Section(title: AppStrings.ProfileSectionTitle, items: sectionItems, cardType: .Profiles, cardHeaderSize: CGSizeMake(CircleCollectionViewCell.width, CardHeaderCollectionReusableView.height))
+        return Section(title: AppStrings.ProfileSectionOfficeTeamTitle, items: sectionItems, cardType: .Profiles, cardHeaderSize: CGSizeMake(CircleCollectionViewCell.width, CardHeaderCollectionReusableView.height))
+    }
+
+    private func getManagerSection() -> Section {
+        let sectionItems = [
+            SectionItem(
+                title: AppStrings.ProfileSectionManagerTitle,
+                container: "",
+                containerKey: "",
+                contentType: .Manager,
+                image: ItemImage.genericNextImage
+            )
+        ]
+        return Section(title: AppStrings.ProfileSectionManagerTitle, items: sectionItems, cardType: .Profiles, cardHeaderSize: CGSizeMake(CircleCollectionViewCell.width, CardHeaderCollectionReusableView.height))
     }
     
     private func getSkillsSection() -> Section {
@@ -320,7 +314,7 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
         case .KeyValue:
             addKeyValueItemToCard(item, card: card)
         case .Profiles:
-            addOfficeTeamItemToCard(item, card: card)
+            addOfficeTeamManagerItemToCard(item, card: card)
         case .Position:
             addPositionItemToCard(item, card: card)
         case .QuickActions:
@@ -453,17 +447,31 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
         }
     }
     
-    private func addOfficeTeamItemToCard(item: SectionItem, card: Card) {
+    private func addOfficeTeamManagerItemToCard(item: SectionItem, card: Card) {
         var content = [AnyObject]()
-        if let office = location {
-            content.append(office)
-        }
+        
+        switch item.contentType! {
+        case .OfficeTeam:
+            if let office = location {
+                content.append(office)
+            }
+            
+            if let team = team {
+                content.append(team)
+            }
 
-        if let team = team {
-            content.append(team)
+        case .Manager:
+            if let manager = manager {
+                content.append(manager)
+            }
+            
+        default:
+            break
         }
         
-        card.addContent(content: content, maxVisibleItems: 0)
+        if content.count > 0 {
+            card.addContent(content: content, maxVisibleItems: 0)
+        }
     }
     
     private func addQuickActionsItemToCard(item: SectionItem, card: Card) {

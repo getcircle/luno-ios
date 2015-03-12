@@ -36,5 +36,6 @@ struct AppStrings {
     static let AddNoteCTATitle = NSLocalizedString("Add private note", comment: "Title of the button to add a private note on a co-worker")
     static let AppreciateCTATitle = NSLocalizedString("Appreciate", comment: "Title of the button to leave an appreciation for a co-worker")
     
-    static let ProfileSectionTitle = NSLocalizedString("Office & Team", comment: "Title of the section which shows a user's office and team")
+    static let ProfileSectionOfficeTeamTitle = NSLocalizedString("Office & Team", comment: "Title of the section which shows a user's office and team")
+    static let ProfileSectionManagerTitle = NSLocalizedString("Manager", comment: "Title of the section which shows a user's manager")
 }
