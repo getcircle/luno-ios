@@ -45,7 +45,13 @@ class ObjectStore {
     func repopulate() {
         let objects = Objects()
         if let currentProfile = AuthViewController.getLoggedInUserProfile() {
-            ProfileService.Actions.getProfiles(organizationId: currentProfile.organization_id) { (profiles, _, _, error) -> Void in
+            let paginatorBuilder = Paginator.builder()
+            paginatorBuilder.page_size = 5000
+            
+            ProfileService.Actions.getProfiles(
+                organizationId: currentProfile.organization_id,
+                paginatorBuilder: paginatorBuilder
+            ) { (profiles, _, _, error) -> Void in
                 objects.profiles = profiles
                 self.update(objects)
             }
@@ -60,7 +66,7 @@ class ObjectStore {
                 self.update(objects)
             }
             
-            OrganizationService.Actions.getTeams(currentProfile.organization_id) { (teams, error) -> Void in
+            OrganizationService.Actions.getTeams(currentProfile.organization_id, paginatorBuilder: paginatorBuilder) { (teams, error) -> Void in
                 objects.teams = teams
                 self.update(objects)
             }

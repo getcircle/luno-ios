@@ -51,12 +51,23 @@ extension ProfileService {
             self.getProfile(requestBuilder, completionHandler: completionHandler)
         }
         
-        private class func getProfiles(requestBuilder: AbstractMessageBuilder, completionHandler: GetProfilesCompletionHandler?) {
+        private class func getProfiles(
+            requestBuilder: AbstractMessageBuilder,
+            completionHandler: GetProfilesCompletionHandler?,
+            paginatorBuilder: PaginatorBuilder? = nil
+        ) {
             let client = ServiceClient(serviceName: "profile")
-            client.callAction("get_profiles", extensionField: ProfileServiceRequests_get_profiles, requestBuilder: requestBuilder) {
+            client.callAction(
+                "get_profiles",
+                extensionField: ProfileServiceRequests_get_profiles,
+                requestBuilder: requestBuilder,
+                paginatorBuilder: paginatorBuilder
+            ) {
                 (_, _, wrapped, error) -> Void in
                 let response = wrapped?.response?.result.getExtension(ProfileServiceRequests_get_profiles) as? ProfileService.GetProfiles.Response
                 
+                // XXX should move this to a method on WrappedResponse
+                // XXX getPaginator should be an extension of ServiceRequest
                 var nextRequest: ServiceRequest? = nil
                 let paginator = wrapped?.getPaginator()
                 if paginator != nil {
@@ -66,35 +77,56 @@ extension ProfileService {
             }
         }
         
-        class func getProfiles(teamId: String, completionHandler: GetProfilesCompletionHandler?) {
+        class func getProfiles(
+            teamId: String,
+            paginatorBuilder: PaginatorBuilder? = nil,
+            completionHandler: GetProfilesCompletionHandler?
+        ) {
             let requestBuilder = ProfileService.GetProfiles.Request.builder()
             requestBuilder.team_id = teamId
-            self.getProfiles(requestBuilder, completionHandler: completionHandler)
+            self.getProfiles(requestBuilder, completionHandler: completionHandler, paginatorBuilder: paginatorBuilder)
         }
         
-        class func getProfiles(#organizationId: String, completionHandler: GetProfilesCompletionHandler?) {
+        class func getProfiles(
+            #organizationId: String,
+            paginatorBuilder: PaginatorBuilder? = nil,
+            completionHandler: GetProfilesCompletionHandler?
+        ) {
             let requestBuilder = ProfileService.GetProfiles.Request.builder()
             requestBuilder.organization_id = organizationId
-            self.getProfiles(requestBuilder, completionHandler: completionHandler)
+            self.getProfiles(requestBuilder, completionHandler: completionHandler, paginatorBuilder: paginatorBuilder)
         }
         
-        class func getProfiles(#skillId: String, organizationId: String, completionHandler: GetProfilesCompletionHandler?) {
+        class func getProfiles(
+            #skillId: String,
+            organizationId: String,
+            paginatorBuilder: PaginatorBuilder? = nil,
+            completionHandler: GetProfilesCompletionHandler?
+        ) {
             let requestBuilder = ProfileService.GetProfiles.Request.builder()
             requestBuilder.skill_id = skillId
             requestBuilder.organization_id = organizationId
-            self.getProfiles(requestBuilder, completionHandler: completionHandler)
+            self.getProfiles(requestBuilder, completionHandler: completionHandler, paginatorBuilder: paginatorBuilder)
         }
         
-        class func getProfiles(#addressId: String, completionHandler: GetProfilesCompletionHandler?) {
+        class func getProfiles(
+            #addressId: String,
+            paginatorBuilder: PaginatorBuilder? = nil,
+            completionHandler: GetProfilesCompletionHandler?
+        ) {
             let requestBuilder = ProfileService.GetProfiles.Request.builder()
             requestBuilder.address_id = addressId
-            self.getProfiles(requestBuilder, completionHandler: completionHandler)
+            self.getProfiles(requestBuilder, completionHandler: completionHandler, paginatorBuilder: paginatorBuilder)
         }
         
-        class func getProfiles(#locationId: String, completionHandler: GetProfilesCompletionHandler?) {
+        class func getProfiles(
+            #locationId: String,
+            paginatorBuilder: PaginatorBuilder? = nil,
+            completionHandler: GetProfilesCompletionHandler?
+        ) {
             let requestBuilder = ProfileService.GetProfiles.Request.builder()
             requestBuilder.location_id = locationId
-            self.getProfiles(requestBuilder, completionHandler: completionHandler)
+            self.getProfiles(requestBuilder, completionHandler: completionHandler, paginatorBuilder: paginatorBuilder)
         }
         
         class func getExtendedProfile(profileId: String, completionHandler: GetExtendedProfileCompletionHandler?) {

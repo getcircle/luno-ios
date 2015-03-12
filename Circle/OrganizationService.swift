@@ -35,12 +35,17 @@ extension OrganizationService {
             }
         }
         
-        class func getTeams(requestBuilder: OrganizationService.GetTeams.RequestBuilder, completionHandler: GetTeamsCompletionHandler?) {
+        class func getTeams(
+            requestBuilder: OrganizationService.GetTeams.RequestBuilder,
+            paginatorBuilder: PaginatorBuilder? = nil,
+            completionHandler: GetTeamsCompletionHandler?
+        ) {
             let client = ServiceClient(serviceName: "organization")
             client.callAction(
                 "get_teams",
                 extensionField: OrganizationServiceRequests_get_teams,
-                requestBuilder: requestBuilder
+                requestBuilder: requestBuilder,
+                paginatorBuilder: paginatorBuilder
                 ) { (_, _, wrapped, error) -> Void in
                     let response = wrapped?.response?.result.getExtension(
                         OrganizationServiceRequests_get_teams
@@ -49,16 +54,24 @@ extension OrganizationService {
             }
         }
         
-        class func getTeams(organizationId: String, completionHandler: GetTeamsCompletionHandler?) {
+        class func getTeams(
+            organizationId: String,
+            paginatorBuilder: PaginatorBuilder? = nil,
+            completionHandler: GetTeamsCompletionHandler?
+        ) {
             let requestBuilder = OrganizationService.GetTeams.Request.builder()
             requestBuilder.organization_id = organizationId
-            self.getTeams(requestBuilder, completionHandler: completionHandler)
+            self.getTeams(requestBuilder, paginatorBuilder: paginatorBuilder, completionHandler: completionHandler)
         }
         
-        class func getTeams(#locationId: String, completionHandler: GetTeamsCompletionHandler?) {
+        class func getTeams(
+            #locationId: String,
+            paginatorBuilder: PaginatorBuilder? = nil,
+            completionHandler: GetTeamsCompletionHandler?
+        ) {
             let requestBuilder = OrganizationService.GetTeams.Request.builder()
             requestBuilder.location_id = locationId
-            self.getTeams(requestBuilder, completionHandler: completionHandler)
+            self.getTeams(requestBuilder, paginatorBuilder: paginatorBuilder, completionHandler: completionHandler)
         }
         
         class func getTeamChildren(teamId: String, completionHandler: GetTeamChildrenCompletionHandler?) {
