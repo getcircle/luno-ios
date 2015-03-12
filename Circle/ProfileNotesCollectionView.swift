@@ -36,9 +36,7 @@ class ProfileNotesDataSource: UnderlyingCollectionViewDataSource {
     
     override func loadData(completionHandler: (error: NSError?) -> Void) {
         // Add placeholder card to load profile header instantly
-        var placeholderCard = Card(cardType: .Placeholder, title: "Info")
-        placeholderCard.sectionInset = UIEdgeInsetsZero
-        appendCard(placeholderCard)
+        addPlaceholderCard()
         NoteService.Actions.getNotes(profile.id) { (notes, error) -> Void in
             if let notes = notes {
                 self.notes = notes
@@ -59,11 +57,16 @@ class ProfileNotesDataSource: UnderlyingCollectionViewDataSource {
         }
     }
     
+    private func addPlaceholderCard() {
+        var placeholderCard = Card(cardType: .Placeholder, title: "Info")
+        placeholderCard.sectionInset = UIEdgeInsetsZero
+        appendCard(placeholderCard)
+    }
+    
     private func populateData() {
         resetCards()
-        var placeholderCard = Card(cardType: .Placeholder, title: "Info")
-        appendCard(placeholderCard)
-        
+
+        addPlaceholderCard()
         // Add add note card
         let addNotesCard = Card(
             cardType: .AddNote,
