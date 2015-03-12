@@ -116,6 +116,7 @@
 		8FC7BB3B1A58A6E2005BDDDB /* CardDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC7BB3A1A58A6E2005BDDDB /* CardDataSource.swift */; };
 		8FC7BB401A58AF4C005BDDDB /* SearchLandingDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC7BB3F1A58AF4C005BDDDB /* SearchLandingDataSource.swift */; };
 		8FC7BB431A58B15B005BDDDB /* CardCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC7BB421A58B15B005BDDDB /* CardCollectionViewDelegate.swift */; };
+		8FC877FC1AB21775003FDB27 /* DebugUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC877FB1AB21775003FDB27 /* DebugUtils.swift */; };
 		8FCC31291AA2859E0093F00A /* AppreciationCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FCC31281AA2859E0093F00A /* AppreciationCollectionView.swift */; };
 		8FCC312C1AA28AC10093F00A /* AppreciationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FCC312A1AA28AC10093F00A /* AppreciationCollectionViewCell.swift */; };
 		8FCC312D1AA28AC10093F00A /* AppreciationCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8FCC312B1AA28AC10093F00A /* AppreciationCollectionViewCell.xib */; };
@@ -411,6 +412,7 @@
 		8FC7BB3A1A58A6E2005BDDDB /* CardDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardDataSource.swift; sourceTree = "<group>"; };
 		8FC7BB3F1A58AF4C005BDDDB /* SearchLandingDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchLandingDataSource.swift; sourceTree = "<group>"; };
 		8FC7BB421A58B15B005BDDDB /* CardCollectionViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardCollectionViewDelegate.swift; sourceTree = "<group>"; };
+		8FC877FB1AB21775003FDB27 /* DebugUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DebugUtils.swift; sourceTree = "<group>"; };
 		8FCC31281AA2859E0093F00A /* AppreciationCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppreciationCollectionView.swift; sourceTree = "<group>"; };
 		8FCC312A1AA28AC10093F00A /* AppreciationCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppreciationCollectionViewCell.swift; sourceTree = "<group>"; };
 		8FCC312B1AA28AC10093F00A /* AppreciationCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AppreciationCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -834,6 +836,7 @@
 			children = (
 				8FD7EC4C1AA53EB7004A2CEA /* AddressExtension.swift */,
 				8F77950B1A917FB400BEF6EA /* CircleCache.swift */,
+				8FC877FB1AB21775003FDB27 /* DebugUtils.swift */,
 				8FEE3D9A1A84172800B17569 /* FormBuilder.swift */,
 				8F22CBFD1A29C7120026376E /* GCDUtils.swift */,
 				8F02B1FB1A54A08000A1A307 /* RootNavigationDelegate.swift */,
@@ -1328,6 +1331,7 @@
 				BFCFDB211A91951A009A5FD4 /* TextValueCollectionViewCell.swift in Sources */,
 				8FF298531A4E306600306CFC /* CenterAlignFlowLayout.swift in Sources */,
 				8F834F8B1A9C1814007B7095 /* UIButtonExtension.swift in Sources */,
+				8FC877FC1AB21775003FDB27 /* DebugUtils.swift in Sources */,
 				BF8DAC731A6CB03F000860DD /* NotesCardHeaderCollectionReusableView.swift in Sources */,
 				8F22CBE31A27AE9B0026376E /* UIImageViewExtension.swift in Sources */,
 				8F2234B21A6F7A7500C39E39 /* CircleImageView.swift in Sources */,
