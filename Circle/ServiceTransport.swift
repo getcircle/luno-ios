@@ -51,7 +51,9 @@ extension Request {
             if response?.statusCode != 200 {
                 println("error making service request: \(response?)")
                 if response?.statusCode == 401 {
-                    AuthViewController.logOut()
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        AuthViewController.logOut()
+                    })
                 }
                 return (nil, nil)
             }
