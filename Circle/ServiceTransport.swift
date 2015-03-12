@@ -50,6 +50,9 @@ extension Request {
             
             if response?.statusCode != 200 {
                 println("error making service request: \(response?)")
+                if response?.statusCode == 401 {
+                    AuthViewController.logOut()
+                }
                 return (nil, nil)
             }
             
