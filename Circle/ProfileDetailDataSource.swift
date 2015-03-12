@@ -462,7 +462,9 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
 
         case .Manager:
             if let manager = manager {
-                content.append(manager)
+                if manager.hasFirstName {
+                    content.append(manager)
+                }
             }
             
         default:
