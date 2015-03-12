@@ -43,7 +43,7 @@ class QuickActionsCollectionViewCell: CircleCollectionViewCell {
     }
     
     override class var height: CGFloat {
-        return 90.0
+        return 70.0
     }
     
     override func awakeFromNib() {
