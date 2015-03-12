@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SkillSelectorViewController" customModule="Circle" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SkillSelectorViewController" customModule="circle" customModuleProvider="target">
             <connections>
                 <outlet property="addSkillButton" destination="92R-S9-7K0" id="paG-23-5Tg"/>
                 <outlet property="addSkillButtonHeightConstraint" destination="MlO-H5-YRa" id="bZ7-Rj-7jy"/>
@@ -68,7 +68,7 @@
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="6Ft-oh-z30">
                     <rect key="frame" x="0.0" y="247" width="600" height="353"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="eOu-Jf-uv8" customClass="CenterAlignFlowLayout" customModule="Circle" customModuleProvider="target">
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="eOu-Jf-uv8" customClass="CenterAlignFlowLayout" customModule="circle" customModuleProvider="target">
                         <size key="itemSize" width="50" height="50"/>
                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -105,11 +105,11 @@
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="urb-BS-J6b" userLabel="DoneButton">
-                    <rect key="frame" x="536" y="45" width="44" height="44"/>
+                    <rect key="frame" x="530" y="42" width="50" height="50"/>
                     <color key="backgroundColor" red="0.88235294119999996" green="0.15686274510000001" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="urb-BS-J6b" secondAttribute="height" multiplier="1:1" id="Drm-Qv-vxa"/>
-                        <constraint firstAttribute="width" constant="44" id="NeL-PC-V53"/>
+                        <constraint firstAttribute="width" constant="50" id="NeL-PC-V53"/>
                     </constraints>
                     <state key="normal" image="CircleCheckFilled">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
