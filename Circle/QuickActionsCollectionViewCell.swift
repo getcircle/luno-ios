@@ -23,6 +23,7 @@ class QuickActionsCollectionViewCell: CircleCollectionViewCell {
     
     private var actionButtons = [UIButton]()
     private var actionButtonLabels = [UILabel]()
+    private var areLabelsHidden = false
     private let defaultQuickActions: [QuickAction] = [.Phone, .Message, .Email, .Note]
     private var firstButtonTopConstraintInitialValue: CGFloat = 0.0
     private var profile: ProfileService.Containers.Profile?
@@ -44,6 +45,10 @@ class QuickActionsCollectionViewCell: CircleCollectionViewCell {
     
     override class var height: CGFloat {
         return 70.0
+    }
+    
+    override class var sizeCalculationMethod: SizeCalculation {
+        return .Dynamic
     }
     
     override func awakeFromNib() {
@@ -95,6 +100,8 @@ class QuickActionsCollectionViewCell: CircleCollectionViewCell {
             buttonLabel.alpha = 0.0
         }
         
+        
+        areLabelsHidden = true
         setTopConstaintToValue((frameHeight - thirdButton.frameHeight) / 2)
     }
     
@@ -103,6 +110,7 @@ class QuickActionsCollectionViewCell: CircleCollectionViewCell {
             buttonLabel.alpha = 1.0
         }
         
+        areLabelsHidden = false
         setTopConstaintToValue(firstButtonTopConstraintInitialValue)
     }
     
@@ -112,6 +120,10 @@ class QuickActionsCollectionViewCell: CircleCollectionViewCell {
             button.setNeedsUpdateConstraints()
             button.layoutIfNeeded()
         }
+    }
+
+    override func intrinsicContentSize() -> CGSize {
+        return CGSizeMake(CircleCollectionViewCell.width, areLabelsHidden == true ? 70.0 : 90.0)
     }
     
     // MARK: - IBActions
