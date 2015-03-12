@@ -24,6 +24,14 @@ public struct WrappedResponse {
         response = actionResponse
     }
     
+    func getNextRequest() -> ServiceRequest? {
+        var nextRequest: ServiceRequest? = nil
+        if let paginator = getPaginator() {
+            nextRequest = serviceRequest.getNextRequest(paginator)
+        }
+        return nextRequest
+    }
+    
     func getPaginator() -> Paginator? {
         return response?.control.paginator
     }

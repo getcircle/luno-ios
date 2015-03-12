@@ -94,6 +94,19 @@ class Section {
     }
 }
 
+enum CardDataSourceState {
+    case Loaded
+    case Loading
+    case AllLoaded
+}
+
+@objc protocol CardDataSourceDelegate {
+    // TODO we should combine these into like onSateChanged when @objc protocol can accept swift arguments
+    optional func onDataLoading()
+    optional func onDataLoaded(indexPaths: [NSIndexPath])
+    optional func onAllDataLoaded()
+}
+
 class CardDataSource: NSObject, UICollectionViewDataSource {
     
     enum TypeOfView {
@@ -101,6 +114,12 @@ class CardDataSource: NSObject, UICollectionViewDataSource {
         case Footer
         case Header
     }
+    
+    private(set) var state: CardDataSourceState = .Loaded
+    private var nextRequest: ServiceRequest?
+    private var nextRequestCompletionHandler: ServiceCompletionHandler?
+    var contentThreshold: Float = 50.0
+    var delegate: CardDataSourceDelegate?
     
     var animateContent = false
     private var animatedRowIndexes = NSMutableIndexSet()
@@ -223,7 +242,10 @@ class CardDataSource: NSObject, UICollectionViewDataSource {
     
     final func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let card = cards[indexPath.section]
-        let percentContent = Float(indexPath.row) / Float(card.content.count) * 100
+        if shouldTriggerNextRequest(card, indexPath: indexPath) {
+            triggerNextRequest()
+        }
+        
         registerReusableCell(collectionView, forCard: card)
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(
             card.contentClass.classReuseIdentifier,
@@ -392,6 +414,17 @@ class CardDataSource: NSObject, UICollectionViewDataSource {
         return cards[section] ?? nil
     }
     
+    func sectionForCard(card withCard: Card) -> Int? {
+        var section: Int?
+        for (cardIndex, card) in enumerate(cards) {
+            if card == withCard {
+                section = cardIndex
+                break
+            }
+        }
+        return section
+    }
+    
     /**
         Return the content object at a particular indexPath.
         
@@ -407,6 +440,64 @@ class CardDataSource: NSObject, UICollectionViewDataSource {
         }
 
         return nil
+    }
+    
+    // MARK: - Pagination
+    
+    func registerNextRequest(nextRequest withNextRequest: ServiceRequest?) {
+        nextRequest = withNextRequest
+    }
+    
+    func registerNextRequest(nextRequest withNextRequest: ServiceRequest, completionHandler: ServiceCompletionHandler) {
+        nextRequest = withNextRequest
+        nextRequestCompletionHandler = completionHandler
+    }
+    
+    func registerNextRequestCompletionHandler(completionHandler: ServiceCompletionHandler) {
+        nextRequestCompletionHandler = completionHandler
+    }
+    
+    func handleNewContentAddedToCard(card: Card, newContent: [AnyObject]) {
+        if let section = sectionForCard(card: card) {
+            var indexPaths = [NSIndexPath]()
+            for var i = card.content.count - newContent.count; i < card.content.count; i++ {
+                indexPaths.append(NSIndexPath(forRow: i, inSection: section))
+            }
+            delegate?.onDataLoaded?(indexPaths)
+        }
+    }
+    
+    private func shouldTriggerNextRequest(card: Card, indexPath: NSIndexPath) -> Bool {
+        switch state {
+        case .Loading: return false
+        default: break
+        }
+        
+        let percentContent = Float(indexPath.row) / Float(card.content.count) * 100
+        if percentContent >= contentThreshold {
+            return true
+        }
+        return false
+    }
+    
+    private func triggerNextRequest() {
+        if let request = nextRequest {
+            if let completionHandler = nextRequestCompletionHandler {
+                state = .Loading
+                self.delegate?.onDataLoading?()
+                ServiceClient.sendRequest(request) { (request, response, wrapped, error) -> Void in
+                    self.nextRequest = nil
+                    self.state = .AllLoaded
+                    if let paginator = wrapped?.getPaginator() {
+                        if paginator.hasNextPage {
+                            self.nextRequest = wrapped?.getNextRequest()
+                            self.state = .Loaded
+                        }
+                    }
+                    completionHandler(request, response, wrapped, error)
+                }
+            }
+        }
     }
 
 }

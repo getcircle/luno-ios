@@ -51,7 +51,7 @@ class ObjectStore {
             ProfileService.Actions.getProfiles(
                 organizationId: currentProfile.organization_id,
                 paginatorBuilder: paginatorBuilder
-            ) { (profiles, _, _, error) -> Void in
+            ) { (profiles, _, error) -> Void in
                 objects.profiles = profiles
                 self.update(objects)
             }

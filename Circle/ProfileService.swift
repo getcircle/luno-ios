@@ -10,7 +10,7 @@ import Foundation
 import ProtobufRegistry
 
 typealias GetProfileCompletionHandler = (profile: ProfileService.Containers.Profile?, error: NSError?) -> Void
-typealias GetProfilesCompletionHandler = (profiles: Array<ProfileService.Containers.Profile>?, nextRequest: ServiceRequest?, paginator: Paginator?, error: NSError?) -> Void
+typealias GetProfilesCompletionHandler = (profiles: Array<ProfileService.Containers.Profile>?, nextRequest: ServiceRequest?, error: NSError?) -> Void
 typealias GetExtendedProfileCompletionHandler = (
     profile: ProfileService.Containers.Profile?,
     manager: ProfileService.Containers.Profile?,
@@ -64,16 +64,11 @@ extension ProfileService {
                 paginatorBuilder: paginatorBuilder
             ) {
                 (_, _, wrapped, error) -> Void in
-                let response = wrapped?.response?.result.getExtension(ProfileServiceRequests_get_profiles) as? ProfileService.GetProfiles.Response
-                
-                // XXX should move this to a method on WrappedResponse
-                // XXX getPaginator should be an extension of ServiceRequest
-                var nextRequest: ServiceRequest? = nil
-                let paginator = wrapped?.getPaginator()
-                if paginator != nil {
-                    nextRequest = wrapped?.serviceRequest.getNextRequest(paginator!)
-                }
-                completionHandler?(profiles: response?.profiles, nextRequest: nextRequest, paginator: paginator, error: error)
+                let response = wrapped?.response?.result.getExtension(
+                    ProfileServiceRequests_get_profiles
+                ) as? ProfileService.GetProfiles.Response
+                let nextRequest = wrapped?.getNextRequest()
+                completionHandler?(profiles: response?.profiles, nextRequest: nextRequest, error: error)
             }
         }
         

@@ -11,10 +11,12 @@ import UIKit
 import ProtobufRegistry
 
 class ProfilesViewController: UIViewController,
-                            MFMailComposeViewControllerDelegate,
-                            UICollectionViewDelegate,
-                            UISearchBarDelegate,
-                            UISearchResultsUpdating {
+    MFMailComposeViewControllerDelegate,
+    UICollectionViewDelegate,
+    UISearchBarDelegate,
+    UISearchResultsUpdating,
+    CardDataSourceDelegate
+{
 
     @IBOutlet weak private(set) var activityIndicatorView: UIActivityIndicatorView!    
     @IBOutlet weak private(set) var collectionView: UICollectionView!
@@ -33,6 +35,7 @@ class ProfilesViewController: UIViewController,
 //        filteredPeople = []
         configureSearchController()
         configureCollectionView()
+        dataSource.delegate = self
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -187,17 +190,10 @@ class ProfilesViewController: UIViewController,
         collectionView.collectionViewLayout.invalidateLayout()
     }
     
-    // MARK: - UIScrollViewDelegate
+    // MARK: - CardDataSourceDelegate
     
-    func scrollViewDidScroll(scrollView: UIScrollView) {
-        let offset = scrollView.contentOffset.y
-        let maxOffset = scrollView.contentSize.height - scrollView.frame.size.height
-        if (maxOffset - offset) <= 40 {
-            let card = dataSource.cardAtSection(0)
-            card?.triggerNextRequest {
-                self.collectionView.reloadData()
-            }
-        }
+    func onDataLoaded(indexPaths: [NSIndexPath]) {
+        collectionView.insertItemsAtIndexPaths(indexPaths)
     }
 
 }

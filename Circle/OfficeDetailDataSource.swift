@@ -15,7 +15,6 @@ class OfficeDetailDataSource: CardDataSource {
 
     private(set) var profiles = Array<ProfileService.Containers.Profile>()
     private(set) var nextProfilesRequest: ServiceRequest?
-    private(set) var profilesPaginator: Paginator?
     private(set) var teams = Array<OrganizationService.Containers.Team>()
     private(set) var profileHeaderView: CircleCollectionReusableView?
     
@@ -53,11 +52,10 @@ class OfficeDetailDataSource: CardDataSource {
             dispatch_group_leave(actionsGroup)
         }
         dispatch_group_enter(actionsGroup)
-        ProfileService.Actions.getProfiles(locationId: self.selectedOffice.id) { (profiles, nextRequest, paginator, error) -> Void in
+        ProfileService.Actions.getProfiles(locationId: self.selectedOffice.id) { (profiles, nextRequest, error) -> Void in
             if let profiles = profiles {
                 self.profiles.extend(profiles)
                 self.nextProfilesRequest = nextRequest
-                self.profilesPaginator = paginator
             }
             if let error = error {
                 storedError = error
@@ -150,7 +148,7 @@ class OfficeDetailDataSource: CardDataSource {
         let image = ItemImage.genericNextImage
         var content: [String: AnyObject] = [
             "name": AppStrings.CardTitlePeople,
-            "value": String(profilesPaginator?.count ?? 0),
+            "value": String(nextProfilesRequest?.getFirstPaginator().count ?? 0),
             "image": image.name,
             "imageTintColor": image.tint,
             "type": ContentType.PeopleCount.rawValue
