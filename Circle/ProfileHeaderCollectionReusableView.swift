@@ -73,7 +73,8 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
         configureVerifiedProfileButton()
         addBlurEffect()
         visualEffectView!.contentView.addSubview(containerView)
-        containerView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
+        containerView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero, excludingEdge: .Bottom)
+        containerView.autoMatchDimension(.Height, toDimension: .Height, ofView: backgroundImageView)
     }
     
     // MARK: - Configuration
@@ -91,7 +92,7 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
         if sectionIndicatorView?.frameWidth == 0.0 {
             sectionIndicatorLeftOffsetConstraint?.constant = segmentedControlButtons[selectedButtonIndex()].frameX
             sectionIndicatorWidthConstraint?.constant = segmentedControlButtons[selectedButtonIndex()].frameWidth
-            animateSectionIndicator()
+            adjustSectionIndicator(false)
         }
     }
 
@@ -212,7 +213,7 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
     func beginMovingSectionIndicatorView(contentOffset: CGPoint) {
         sectionIndicatorViewIsAnimating = true
         sectionIndicatorWidthConstraint?.constant = sectionIndicatorBeginningWidth
-        animateSectionIndicator()
+        adjustSectionIndicator(true)
     }
     
     func updateSectionIndicatorView(contentOffset: CGPoint) {
@@ -224,7 +225,7 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
             animationOffset = currentSelectedButton.frameX
         }
         sectionIndicatorLeftOffsetConstraint?.constant = (contentOffset.x / CGFloat(sections!.count)) + animationOffset
-        animateSectionIndicator()
+        adjustSectionIndicator(true)
     }
     
     func finishMovingSelectionIndicatorView(contentOffset: CGPoint) {
@@ -234,13 +235,13 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
             sectionIndicatorLeftOffsetConstraint?.constant = contentOffset.x / CGFloat(sections!.count) + segmentedControlButtons[buttonIndexToBeSelected].frameX
             selectButtonAtIndex(buttonIndexToBeSelected)
         }
-        animateSectionIndicator()
+        adjustSectionIndicator(true)
         sectionIndicatorViewIsAnimating = false
     }
     
-    private func animateSectionIndicator() {
+    private func adjustSectionIndicator(animated: Bool) {
         UIView.animateWithDuration(
-            0.3,
+            animated ? 0.3 : 0.0,
             delay: 0,
             usingSpringWithDamping: 0.8,
             initialSpringVelocity: 0.8,
@@ -297,7 +298,7 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
             visualEffectView = UIVisualEffectView(effect: blurEffect)
             visualEffectView!.setTranslatesAutoresizingMaskIntoConstraints(false)
             insertSubview(visualEffectView!, aboveSubview: backgroundImageView)
-            visualEffectView!.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
+            visualEffectView!.autoSetDimensionsToSize(UIScreen.mainScreen().bounds.size)
         }
     }
     
