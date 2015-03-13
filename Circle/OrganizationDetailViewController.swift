@@ -102,7 +102,7 @@ class OrganizationDetailViewController: DetailViewController, CardHeaderViewDele
         switch selectedCard.type {
         case .Profiles, .Birthdays, .Anniversaries, .NewHires:
             if let profile = dataSource.contentAtIndexPath(indexPath)? as? ProfileService.Containers.Profile {
-                let profileVC = ProfileDetailsViewController.forProfile(profile)
+                let profileVC = ProfileDetailViewController.forProfile(profile)
                 profileVC.hidesBottomBarWhenPushed = true
                 properties.append(TrackerProperty.withKey(.Destination).withSource(.Detail))
                 properties.append(TrackerProperty.withKey(.DestinationDetailType).withDetailType(.Profile))

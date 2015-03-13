@@ -37,7 +37,7 @@ class SkillDetailViewController: DetailViewController {
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         if let profile = dataSource.contentAtIndexPath(indexPath)? as? ProfileService.Containers.Profile {
-            let profileVC = ProfileDetailsViewController.forProfile(profile)
+            let profileVC = ProfileDetailViewController.forProfile(profile)
             navigationController?.pushViewController(profileVC, animated: true)
         }
         

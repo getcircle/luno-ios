@@ -68,7 +68,7 @@ class ProfilesViewController: UIViewController,
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         if let profile = dataSource.contentAtIndexPath(indexPath)? as? ProfileService.Containers.Profile {
             trackViewProfile(profile)
-            let profileVC = ProfileDetailsViewController.forProfile(profile)
+            let profileVC = ProfileDetailViewController.forProfile(profile)
             navigationController?.pushViewController(profileVC, animated: true)
         }
     }

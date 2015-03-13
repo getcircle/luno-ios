@@ -9,10 +9,11 @@
 import UIKit
 import ProtobufRegistry
 
-class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
+class ProfileDetailDataSource: CardDataSource {
 
     var onlyShowContactInfo = false
     var profile: ProfileService.Containers.Profile!
+    var profileHeaderView: ProfileHeaderCollectionReusableView?    
     
     private(set) var address: OrganizationService.Containers.Address?
     private(set) var manager: ProfileService.Containers.Profile?
@@ -37,6 +38,13 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
     override func registerCardHeader(collectionView: UICollectionView) {
         // TODO should have some like "onLoad" function we can plug into
         configureSections()
+        collectionView.registerNib(
+            UINib(nibName: "ProfileHeaderCollectionReusableView", bundle: nil),
+            forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
+            withReuseIdentifier: ProfileHeaderCollectionReusableView.classReuseIdentifier
+        )
+        super.registerCardHeader(collectionView)
+        
         collectionView.registerNib(
             UINib(nibName: "ProfileSectionHeaderCollectionReusableView", bundle: nil),
             forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
@@ -525,7 +533,22 @@ class ProfileDetailDataSource: UnderlyingCollectionViewDataSource {
             (footerView as CardFooterCollectionReusableView).insetEdges = false
             return footerView
         }
+        else  if indexPath.section == 0 {
+            let supplementaryView = collectionView.dequeueReusableSupplementaryViewOfKind(
+                kind,
+                withReuseIdentifier: ProfileHeaderCollectionReusableView.classReuseIdentifier,
+                forIndexPath: indexPath
+                ) as ProfileHeaderCollectionReusableView
+            
+            if profile != nil {
+                supplementaryView.setProfile(profile!)
+            }
+            
+            profileHeaderView = supplementaryView
+            return supplementaryView
+        }
         else {
+            
             let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(
                 kind,
                 withReuseIdentifier: ProfileSectionHeaderCollectionReusableView.classReuseIdentifier,

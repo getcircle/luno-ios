@@ -66,10 +66,8 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
             tabBarViewControllers.append(navController)
 
             // Profile Tab
-            let profileViewController = ProfileDetailsViewController.forProfile(
+            let profileViewController = ProfileDetailViewController.forProfile(
                 loggedInUserProfile,
-                showLogOutButton: false,
-                showCloseButton: false,
                 showSettingsButton: true
             )
 
@@ -128,7 +126,7 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
         var source: Tracker.Source
         if sourceViewController! is SearchViewController {
             source = .Home
-        } else if sourceViewController! is ProfileDetailsViewController {
+        } else if sourceViewController! is ProfileDetailViewController {
             source = .UserProfile
         } else if sourceViewController! is OrganizationDetailViewController {
             source = .Organization
@@ -140,7 +138,7 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
         var destination: Tracker.Source
         if destinationViewController! is SearchViewController {
             destination = .Home
-        } else if destinationViewController! is ProfileDetailsViewController {
+        } else if destinationViewController! is ProfileDetailViewController {
             destination = .UserProfile
         } else if destinationViewController! is OrganizationDetailViewController {
             destination = .Organization

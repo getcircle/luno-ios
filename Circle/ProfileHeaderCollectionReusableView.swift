@@ -260,22 +260,6 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
             completion: nil
         )
     }
-
-    override func pointInside(point: CGPoint, withEvent event: UIEvent?) -> Bool {
-
-        // Check if the touch happened on any of the segmented control buttons
-        // If not, let the super view handle the touch event
-        for (index, button) in enumerate(segmentedControlButtons) {
-            let pointRelativeToButton = button.convertPoint(point, fromView: self)
-            if button.pointInside(pointRelativeToButton, withEvent: event) {
-                tappedButton = button
-                tappedButtonIndex = index
-                return true
-            }
-        }
-
-        return false
-    }
     
     private func selectButtonAtIndex(index: Int) {
         if index < segmentedControlButtons.count {
