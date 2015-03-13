@@ -36,10 +36,6 @@ class ProfilesViewController: UIViewController,
         configureSearchController()
         configureCollectionView()
         dataSource.delegate = self
-    }
-
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
         dataSource.loadData { (error) -> Void in
             if error == nil {
                 self.activityIndicatorView.stopAnimating()

@@ -116,10 +116,12 @@ class CardDataSource: NSObject, UICollectionViewDataSource {
     }
     
     private(set) var state: CardDataSourceState = .Loaded
-    private var nextRequest: ServiceRequest?
-    private var nextRequestCompletionHandler: ServiceCompletionHandler?
+    private(set) var nextRequest: ServiceRequest?
+    private(set) var nextRequestCompletionHandler: ServiceCompletionHandler?
+    private var hasLoadedOnce = false
     var contentThreshold: Float = 50.0
     var delegate: CardDataSourceDelegate?
+
     
     var animateContent = false
     private var animatedRowIndexes = NSMutableIndexSet()
@@ -166,7 +168,11 @@ class CardDataSource: NSObject, UICollectionViewDataSource {
     :param: completionHandler Closure called when the data or status is available.
     */
     func loadData(completionHandler: (error: NSError?) -> Void) {
-        fatalError("All subclasses need to override this")
+        if !hasLoadedOnce {
+            loadInitialData(completionHandler)
+        } else {
+            refreshData(completionHandler)
+        }
     }
     
     func setInitialData(content: [AnyObject], ofType: Card.CardType? = .Profiles) {
@@ -179,6 +185,14 @@ class CardDataSource: NSObject, UICollectionViewDataSource {
     
     func setInitialData(#content: [AnyObject], ofType: Card.CardType? = .Profiles, nextRequest withNextRequest: ServiceRequest?) {
         fatalError("All subclasses need to override this")
+    }
+    
+    func loadInitialData(completionHandler: (error: NSError?) -> Void) {
+        hasLoadedOnce = true
+    }
+    
+    func refreshData(completionHandler: (error: NSError?) -> Void) {
+        
     }
     
     /**
@@ -243,7 +257,7 @@ class CardDataSource: NSObject, UICollectionViewDataSource {
     final func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let card = cards[indexPath.section]
         if shouldTriggerNextRequest(card, indexPath: indexPath) {
-            triggerNextRequest()
+            triggerNextRequest(nil)
         }
         
         registerReusableCell(collectionView, forCard: card)
@@ -467,12 +481,20 @@ class CardDataSource: NSObject, UICollectionViewDataSource {
         }
     }
     
-    private func shouldTriggerNextRequest(card: Card, indexPath: NSIndexPath) -> Bool {
+    func canTriggerNextRequest() -> Bool {
         switch state {
         case .Loading: return false
         default: break
         }
-        
+
+        return nextRequest != nil && nextRequestCompletionHandler != nil
+    }
+    
+    private func shouldTriggerNextRequest(card: Card, indexPath: NSIndexPath) -> Bool {
+        if !canTriggerNextRequest() {
+            return false
+        }
+
         let percentContent = Float(indexPath.row) / Float(card.content.count) * 100
         if percentContent >= contentThreshold {
             return true
@@ -480,9 +502,9 @@ class CardDataSource: NSObject, UICollectionViewDataSource {
         return false
     }
     
-    private func triggerNextRequest() {
+    func triggerNextRequest(completionHandler: (() -> Void)?) {
         if let request = nextRequest {
-            if let completionHandler = nextRequestCompletionHandler {
+            if let requestCompletionHandler = nextRequestCompletionHandler {
                 state = .Loading
                 self.delegate?.onDataLoading?()
                 ServiceClient.sendRequest(request) { (request, response, wrapped, error) -> Void in
@@ -494,8 +516,11 @@ class CardDataSource: NSObject, UICollectionViewDataSource {
                             self.state = .Loaded
                         }
                     }
-                    completionHandler(request, response, wrapped, error)
+                    requestCompletionHandler(request, response, wrapped, error)
+                    completionHandler?()
                 }
+            } else {
+                completionHandler?()
             }
         }
     }

@@ -47,6 +47,7 @@ class OfficeDetailViewController: DetailViewController, CardFooterViewDelegate {
                 case .PeopleCount:
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
                     let viewController = storyboard.instantiateViewControllerWithIdentifier("ProfilesViewController") as ProfilesViewController
+                    viewController.dataSource.configureForLocation(officeDetailDataSource.selectedOffice.id)
                     viewController.dataSource.setInitialData(
                         content: officeDetailDataSource.profiles,
                         ofType: nil,

@@ -31,28 +31,12 @@ public class ServiceClient {
         self.token = token
     }
     
-    public func callAction(
+    public func buildRequest(
         actionName: String,
         extensionField: ConcreateExtensionField,
         requestBuilder: AbstractMessageBuilder,
-        completionHandler: ServiceCompletionHandler
-    ) {
-        callAction(
-            actionName,
-            extensionField: extensionField,
-            requestBuilder: requestBuilder,
-            paginatorBuilder: nil,
-            completionHandler: completionHandler
-        )
-    }
-    
-    public func callAction(
-        actionName: String,
-        extensionField: ConcreateExtensionField,
-        requestBuilder: AbstractMessageBuilder,
-        paginatorBuilder: PaginatorBuilder?,
-        completionHandler: ServiceCompletionHandler
-    ) {
+        paginatorBuilder: PaginatorBuilder?
+    ) -> ServiceRequest {
         let serviceRequest = ServiceRequest.builder()
         let control = Control.builder()
         control.service = serviceName
@@ -76,8 +60,38 @@ public class ServiceClient {
         actionRequestParams.setExtension(extensionField, value: requestBuilder.build())
         actionRequest.params = actionRequestParams.build()
         serviceRequest.actions += [actionRequest.build()]
-        
-        self.transport.sendRequest(serviceRequest.build(), completionHandler: completionHandler)
+        return serviceRequest.build()
+    }
+    
+    public func callAction(
+        actionName: String,
+        extensionField: ConcreateExtensionField,
+        requestBuilder: AbstractMessageBuilder,
+        completionHandler: ServiceCompletionHandler
+    ) {
+        callAction(
+            actionName,
+            extensionField: extensionField,
+            requestBuilder: requestBuilder,
+            paginatorBuilder: nil,
+            completionHandler: completionHandler
+        )
+    }
+    
+    public func callAction(
+        actionName: String,
+        extensionField: ConcreateExtensionField,
+        requestBuilder: AbstractMessageBuilder,
+        paginatorBuilder: PaginatorBuilder?,
+        completionHandler: ServiceCompletionHandler
+    ) {
+       let serviceRequest = buildRequest(
+            actionName,
+            extensionField: extensionField,
+            requestBuilder: requestBuilder,
+            paginatorBuilder: paginatorBuilder
+        )
+        self.transport.sendRequest(serviceRequest, completionHandler: completionHandler)
     }
     
     public class func sendRequest(serviceRequest: ServiceRequest, completionHandler: ServiceCompletionHandler) {
