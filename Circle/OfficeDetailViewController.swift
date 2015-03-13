@@ -11,9 +11,6 @@ import ProtobufRegistry
 
 class OfficeDetailViewController: DetailViewController, CardFooterViewDelegate {
 
-    private let offsetToTriggerFullScreenMapView: CGFloat = -100.0
-    private var overlayButtonHandlerAdded = false
-
     // MARK: - Initialization
     
     override func customInit() {
@@ -31,7 +28,6 @@ class OfficeDetailViewController: DetailViewController, CardFooterViewDelegate {
         dataSource.cardFooterDelegate = self
         
         collectionView.delegate = delegate
-        
         layout.headerHeight = ProfileHeaderCollectionReusableView.height
         super.configureCollectionView()
     }

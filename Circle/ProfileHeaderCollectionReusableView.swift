@@ -38,7 +38,9 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
     private(set) var visualEffectView: UIVisualEffectView?
     
     private var buttonContainerWidth: CGFloat = 0.0
+    private var location: OrganizationService.Containers.Location?
     private var profile: ProfileService.Containers.Profile?
+    
     private var sectionIndicatorView: UIView?
     private var sectionIndicatorLeftOffsetConstraint: NSLayoutConstraint?
     private var sectionIndicatorWidthConstraint: NSLayoutConstraint?
@@ -115,18 +117,21 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
     }
 
     func setOffice(office: OrganizationService.Containers.Location) {
-        let officeName = office.address.officeName()
-        let officeStateAndCountry = (office.address.hasRegion ? office.address.region : "") + ", " + office.address.country_code
-        nameLabel.text = officeName
-        nameNavLabel.text = officeName
-        titleLabel.text = office.address.officeCurrentDateAndTime()
-        titleNavLabel.text = office.address.officeCurrentTime(nil)
+        if location == nil {
+            location = office
+            let officeName = office.address.officeName()
+            let officeStateAndCountry = (office.address.hasRegion ? office.address.region : "") + ", " + office.address.country_code
+            nameLabel.text = officeName
+            nameNavLabel.text = officeName
+            titleLabel.text = office.address.officeCurrentDateAndTime()
+            titleNavLabel.text = office.address.officeCurrentTime(nil)
 
-        // TODO: - Remove hardcoded image
-        profileImage.image = UIImage(named: "SF")
-        backgroundImageView.image = UIImage(named: "SF")
-        addBlurEffect()
-        verifiedProfileButton.hidden = true
+            // TODO: - Remove hardcoded image
+            profileImage.image = UIImage(named: "SF")
+            backgroundImageView.image = UIImage(named: "SF")
+            addBlurEffect()
+            verifiedProfileButton.hidden = true
+        }
     }
 
     // MARK: - Segmented Control
