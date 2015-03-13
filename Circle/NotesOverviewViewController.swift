@@ -9,7 +9,11 @@
 import UIKit
 import ProtobufRegistry
 
-class NotesOverviewViewController: UIViewController, UICollectionViewDelegate, NewNoteViewControllerDelegate, SearchHeaderViewDelegate {
+class NotesOverviewViewController: UIViewController,
+    UICollectionViewDelegate,
+    NewNoteViewControllerDelegate,
+    SearchHeaderViewDelegate
+{
 
     @IBOutlet weak private(set) var activityIndicatorView: UIActivityIndicatorView!
     @IBOutlet weak private(set) var collectionView: UICollectionView!

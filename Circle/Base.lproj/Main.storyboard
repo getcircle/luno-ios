@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="gsH-2F-RFu">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="gsH-2F-RFu">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
     </dependencies>
     <scenes>
         <!--Home-->
@@ -53,7 +53,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hqq-xo-pLX" userLabel="SearchControllerContainerView">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hqq-xo-pLX" userLabel="SearchContainerView">
                                 <rect key="frame" x="0.0" y="64" width="600" height="44"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -61,7 +61,7 @@
                                 </constraints>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ip8-kc-O5j">
-                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
+                                <rect key="frame" x="0.0" y="108" width="600" height="443"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="SY1-X2-Ytp">
                                     <size key="itemSize" width="50" height="50"/>
@@ -99,13 +99,14 @@
                             <constraint firstAttribute="trailing" secondItem="hqq-xo-pLX" secondAttribute="trailing" id="gmt-YB-apB"/>
                             <constraint firstItem="90M-NW-Qsi" firstAttribute="top" secondItem="ip8-kc-O5j" secondAttribute="bottom" id="ihG-gU-gVe"/>
                             <constraint firstAttribute="centerY" secondItem="AVd-zd-gf8" secondAttribute="centerY" id="lV8-xl-81E"/>
-                            <constraint firstItem="ip8-kc-O5j" firstAttribute="top" secondItem="hqq-xo-pLX" secondAttribute="bottom" constant="-44" id="zjS-P2-Ifc"/>
+                            <constraint firstItem="ip8-kc-O5j" firstAttribute="top" secondItem="hqq-xo-pLX" secondAttribute="bottom" id="zjS-P2-Ifc"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="activityIndicatorView" destination="AVd-zd-gf8" id="w3r-J6-qv2"/>
                         <outlet property="collectionView" destination="ip8-kc-O5j" id="Vco-6M-cs5"/>
-                        <outlet property="searchControllerContainerView" destination="hqq-xo-pLX" id="crO-MB-gEY"/>
+                        <outlet property="collectionViewVerticalSpaceConstraint" destination="zjS-P2-Ifc" id="ISw-ts-eR5"/>
+                        <outlet property="searchContainerView" destination="hqq-xo-pLX" id="DdH-Jl-ijh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f5R-TC-QAe" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -192,6 +193,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Home" width="32" height="32"/>
+        <image name="Home" width="24" height="20"/>
     </resources>
 </document>

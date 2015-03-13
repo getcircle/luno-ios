@@ -66,7 +66,7 @@ class ProfilesDataSource: CardDataSource {
             }
         }
         
-        profilesCard.sectionInset = UIEdgeInsetsZero
+        profilesCard.sectionInset = UIEdgeInsetsMake(1.0, 0.0, 0.0, 0.0)
         appendCard(profilesCard)
         if profiles.count > 0 {
             profilesCard.addContent(content: profiles)

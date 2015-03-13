@@ -13,31 +13,30 @@ import ProtobufRegistry
 class ProfilesViewController: UIViewController,
     MFMailComposeViewControllerDelegate,
     UICollectionViewDelegate,
-    UISearchBarDelegate,
-    UISearchResultsUpdating,
+    SearchHeaderViewDelegate,
     CardDataSourceDelegate
 {
 
     @IBOutlet weak private(set) var activityIndicatorView: UIActivityIndicatorView!    
     @IBOutlet weak private(set) var collectionView: UICollectionView!
-    @IBOutlet weak private(set) var searchControllerContainerView: UIView!
+    @IBOutlet weak private(set) var searchContainerView: UIView!
+    @IBOutlet weak var collectionViewVerticalSpaceConstraint: NSLayoutConstraint!
+    
+    private var searchHeaderView: SearchHeaderView?
 
     let rowHeight: CGFloat = 70.0
     
     var dataSource = ProfilesDataSource()
-//    private var filteredPeople: [Person]?
-    private var searchController: UISearchController!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view, typically from a nib.
-//        filteredPeople = []
-        configureSearchController()
+        
         configureCollectionView()
+        configureSearchHeaderView()
         dataSource.delegate = self
         dataSource.loadData { (error) -> Void in
             if error == nil {
+                self.hideFilterIfLimitedContent()
                 self.activityIndicatorView.stopAnimating()
                 self.collectionView.reloadData()
             }
@@ -45,22 +44,27 @@ class ProfilesViewController: UIViewController,
     }
     
     // MARK: - Configuration
-
-    private func configureSearchController() {
-        searchController = UISearchController(searchResultsController: nil)
-//        searchController.searchResultsUpdater = self
-//        searchController.searchBar.delegate = self
-        searchController.hidesNavigationBarDuringPresentation = false
-        searchController.dimsBackgroundDuringPresentation = false
-        searchController.searchBar.sizeToFit()
-        searchControllerContainerView.addSubview(searchController.searchBar)
-        definesPresentationContext = true
-    }
     
     private func configureCollectionView() {
         collectionView.backgroundColor = UIColor.appViewBackgroundColor()
         collectionView.dataSource = dataSource
         (collectionView.delegate as ProfilesCollectionViewDelegate).delegate = self
+    }
+    
+    private func configureSearchHeaderView() {
+        if let nibViews = NSBundle.mainBundle().loadNibNamed("SearchHeaderView", owner: nil, options: nil) as? [UIView] {
+            if let headerView = nibViews.first as? SearchHeaderView {
+                headerView.delegate = self
+                headerView.searchTextField.placeholder = NSLocalizedString(
+                    "Filter people",
+                    comment: "Placeholder for text field used for filtering people"
+                )
+                headerView.searchTextField.addTarget(self, action: "filterPeople:", forControlEvents: .EditingChanged)
+                searchContainerView.addSubview(headerView)
+                headerView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
+                headerView.layer.cornerRadius = 10.0
+            }
+        }
     }
 
     // MARK: - Collection View Delegate
@@ -72,81 +76,16 @@ class ProfilesViewController: UIViewController,
             navigationController?.pushViewController(profileVC, animated: true)
         }
     }
-
-    // MARK: - UISearchResultsUpdating
-    
-    func updateSearchResultsForSearchController(searchController: UISearchController) {
-//        let searchString = searchController.searchBar.text
-//        let whitespaceCharacterSet = NSCharacterSet.whitespaceCharacterSet()
-//        let trimmedString = searchString.stringByTrimmingCharactersInSet(whitespaceCharacterSet)
-//        if trimmedString == "" {
-//            filteredPeople = people
-//        }
-//        else {
-//            
-//            var andPredicates = [NSPredicate]()
-//            var searchTerms = trimmedString.componentsSeparatedByString(" ")
-//            
-//            for searchTerm in searchTerms {
-//                var searchTermPredicates = [NSPredicate]()
-//                let trimmedSearchTerm = searchTerm.stringByTrimmingCharactersInSet(whitespaceCharacterSet)
-//
-//                // Match first name
-//                var firstNamePredicate = NSComparisonPredicate(
-//                    leftExpression: NSExpression(forKeyPath: "firstName"),
-//                    rightExpression: NSExpression(forConstantValue: trimmedSearchTerm),
-//                    modifier: .DirectPredicateModifier,
-//                    type: .ContainsPredicateOperatorType,
-//                    options: .CaseInsensitivePredicateOption
-//                )
-//                
-//                // Match last name
-//                var lastNamePredicate = NSComparisonPredicate(
-//                    leftExpression: NSExpression(forKeyPath: "lastName"),
-//                    rightExpression: NSExpression(forConstantValue: trimmedSearchTerm),
-//                    modifier: .DirectPredicateModifier,
-//                    type: .ContainsPredicateOperatorType,
-//                    options: .CaseInsensitivePredicateOption
-//                )
-//
-//                // Match title
-//                var titlePredicate = NSComparisonPredicate(
-//                    leftExpression: NSExpression(forKeyPath: "title"),
-//                    rightExpression: NSExpression(forConstantValue: trimmedSearchTerm),
-//                    modifier: .DirectPredicateModifier,
-//                    type: .ContainsPredicateOperatorType,
-//                    options: .CaseInsensitivePredicateOption
-//                )
-//                
-//                andPredicates.append(
-//                    NSCompoundPredicate.orPredicateWithSubpredicates([
-//                        firstNamePredicate,
-//                        lastNamePredicate,
-//                        titlePredicate
-//                    ])
-//                )
-//            }
-//    
-//            let allPeople = people
-//            let finalPredicate = NSCompoundPredicate.andPredicateWithSubpredicates(andPredicates)
-//            filteredPeople = allPeople?.filter{ finalPredicate.evaluateWithObject($0) }
-//        }
-//
-//        collectionView.reloadData()
-    }
-    
-    // MARK: UISearchBarDelegate
-//    
-//    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-//        searchBar.resignFirstResponder()
-//    }
-//    
-//    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
-//        updateSearchResultsForSearchController(searchController)
-//        searchBar.resignFirstResponder()
-//    }
     
     // MARK: Helpers
+    
+    private func hideFilterIfLimitedContent() {
+        if dataSource.cardAtSection(0)?.content.count < 10 {
+            collectionViewVerticalSpaceConstraint.constant = -44
+            collectionView.setNeedsUpdateConstraints()
+            searchHeaderView?.removeFromSuperview()
+        }
+    }
     
 //    // Function to fetch the correct person for a row regardless of whether
 //    // the data source is for a search results view or regular table view
@@ -178,18 +117,19 @@ class ProfilesViewController: UIViewController,
         Tracker.sharedInstance.track(.DetailItemTapped, properties: properties)
     }
     
-    // MARK: - Orientation change
-
-    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
-        (collectionView.collectionViewLayout as UICollectionViewFlowLayout).itemSize = CGSizeMake(size.width, rowHeight)
-        collectionView.collectionViewLayout.invalidateLayout()
-    }
-    
     // MARK: - CardDataSourceDelegate
     
     func onDataLoaded(indexPaths: [NSIndexPath]) {
         collectionView.insertItemsAtIndexPaths(indexPaths)
+    }
+    
+    // MARK: - SearchHeaderViewDelegate
+    
+    func didCancel(sender: UIView) {
+        collectionView.reloadData()
+    }
+    
+    func filterPeople(sender: AnyObject?) {
     }
 
 }
