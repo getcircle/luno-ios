@@ -97,22 +97,24 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
     }
 
     func setProfile(userProfile: ProfileService.Containers.Profile) {
-        profile = userProfile
-        nameLabel.text = userProfile.first_name + " " + userProfile.last_name
-        nameNavLabel.text = nameLabel.text
-        titleLabel.text = userProfile.title
-        titleNavLabel.text = titleLabel.text
-        profileImage.setImageWithProfile(userProfile, successHandler: { (image) -> Void in
-            self.profileImage.image = image
-            if self.backgroundImageView.image != image {
-                self.backgroundImageView.image = image
-            }
-        })
-        verifiedProfileButton.hidden = !userProfile.verified
+        if profile == nil {
+            profile = userProfile
+            nameLabel.text = userProfile.first_name + " " + userProfile.last_name
+            nameNavLabel.text = nameLabel.text
+            titleLabel.text = userProfile.title
+            titleNavLabel.text = titleLabel.text
+            profileImage.setImageWithProfile(userProfile, successHandler: { (image) -> Void in
+                self.profileImage.image = image
+                if self.backgroundImageView.image != image {
+                    self.backgroundImageView.image = image
+                    self.addBlurEffect()
+                }
+            })
+            verifiedProfileButton.hidden = !userProfile.verified
+        }
     }
 
     func setOffice(office: OrganizationService.Containers.Location) {
-        
         let officeName = office.address.officeName()
         let officeStateAndCountry = (office.address.hasRegion ? office.address.region : "") + ", " + office.address.country_code
         nameLabel.text = officeName
