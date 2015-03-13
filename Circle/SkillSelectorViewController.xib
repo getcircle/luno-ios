@@ -2,19 +2,13 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SkillSelectorViewController" customModule="circle" customModuleProvider="target">
             <connections>
-                <outlet property="addSkillButton" destination="92R-S9-7K0" id="paG-23-5Tg"/>
-                <outlet property="addSkillButtonHeightConstraint" destination="MlO-H5-YRa" id="bZ7-Rj-7jy"/>
                 <outlet property="bottomGradientView" destination="on4-QA-7eH" id="XJi-xs-1OU"/>
                 <outlet property="collectionView" destination="6Ft-oh-z30" id="kiW-Ht-7nb"/>
-                <outlet property="doneButton" destination="urb-BS-J6b" id="d9h-gu-Y1z"/>
                 <outlet property="searchControllerParentView" destination="4f2-zM-5Ik" id="2pu-v1-XCS"/>
-                <outlet property="titleLabel" destination="eJA-IB-c6c" id="Fbv-WX-Fgf"/>
                 <outlet property="titleTextLabel" destination="C9I-6f-dRp" id="QYe-b4-EzC"/>
                 <outlet property="topGradientView" destination="29Q-ct-HcU" id="Un2-OG-iEe"/>
                 <outlet property="view" destination="EV5-Sl-Tyf" id="M1I-Pb-nWS"/>
@@ -25,48 +19,14 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add skills" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eJA-IB-c6c" userLabel="TitleLabel">
-                    <rect key="frame" x="28" y="50" width="544" height="33"/>
-                    <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="24"/>
-                    <color key="textColor" red="0.1505631506" green="0.1505586505" blue="0.15056121350000001" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select the skills relevant to you" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C9I-6f-dRp" userLabel="InstructionLabel">
-                    <rect key="frame" x="20" y="103" width="560" height="25"/>
+                    <rect key="frame" x="20" y="84" width="560" height="25"/>
                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="18"/>
                     <color key="textColor" red="0.15056315064430237" green="0.15055865049362183" blue="0.15056121349334717" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4f2-zM-5Ik" userLabel="SearchControllerParentView">
-                    <rect key="frame" x="10" y="148" width="580" height="44"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="44" id="Q2m-eq-IOh"/>
-                    </constraints>
-                </view>
-                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="92R-S9-7K0" userLabel="AddSkillButton">
-                    <rect key="frame" x="20" y="202" width="560" height="35"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="35" id="MlO-H5-YRa"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
-                    <color key="tintColor" red="0.88235294119999996" green="0.15686274510000001" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <inset key="imageEdgeInsets" minX="0.0" minY="-2" maxX="10" maxY="0.0"/>
-                    <state key="normal" title="Add skill &quot;Something&quot;" image="Plus">
-                        <color key="titleColor" red="0.88235294119999996" green="0.15686274510000001" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                            <integer key="value" value="5"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
-                    <connections>
-                        <action selector="addSkillButtedTapped:" destination="-1" eventType="touchUpInside" id="e8I-n9-whd"/>
-                    </connections>
-                </button>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="6Ft-oh-z30">
-                    <rect key="frame" x="0.0" y="247" width="600" height="353"/>
+                    <rect key="frame" x="0.0" y="183" width="600" height="417"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="eOu-Jf-uv8" customClass="CenterAlignFlowLayout" customModule="circle" customModuleProvider="target">
                         <size key="itemSize" width="50" height="50"/>
@@ -91,10 +51,17 @@
                     </connections>
                 </collectionView>
                 <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="29Q-ct-HcU" userLabel="TopGradientView">
-                    <rect key="frame" x="0.0" y="237" width="600" height="20"/>
+                    <rect key="frame" x="0.0" y="173" width="600" height="20"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="20" id="XYs-58-4fU"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4f2-zM-5Ik" userLabel="SearchControllerParentView">
+                    <rect key="frame" x="10" y="129" width="580" height="44"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="Q2m-eq-IOh"/>
                     </constraints>
                 </view>
                 <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="on4-QA-7eH" userLabel="BottomGradientView">
@@ -104,78 +71,32 @@
                         <constraint firstAttribute="height" constant="30" id="S44-gH-Bao"/>
                     </constraints>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="urb-BS-J6b" userLabel="DoneButton">
-                    <rect key="frame" x="530" y="42" width="50" height="50"/>
-                    <color key="backgroundColor" red="0.88235294119999996" green="0.15686274510000001" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="width" secondItem="urb-BS-J6b" secondAttribute="height" multiplier="1:1" id="Drm-Qv-vxa"/>
-                        <constraint firstAttribute="width" constant="50" id="NeL-PC-V53"/>
-                    </constraints>
-                    <state key="normal" image="CircleCheckFilled">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="close:" destination="-1" eventType="touchUpInside" id="Mxz-l6-svP"/>
-                    </connections>
-                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="92R-S9-7K0" firstAttribute="top" secondItem="6Ft-oh-z30" secondAttribute="bottom" id="0ax-hW-ARB"/>
                 <constraint firstItem="C9I-6f-dRp" firstAttribute="leading" secondItem="EV5-Sl-Tyf" secondAttribute="leading" constant="20" id="2DK-vv-ANB"/>
                 <constraint firstAttribute="bottom" secondItem="6Ft-oh-z30" secondAttribute="bottom" id="2zo-zf-lUy"/>
-                <constraint firstItem="C9I-6f-dRp" firstAttribute="top" secondItem="eJA-IB-c6c" secondAttribute="bottom" constant="20" id="8uV-rt-009"/>
-                <constraint firstAttribute="trailing" secondItem="urb-BS-J6b" secondAttribute="trailing" constant="20" id="9M8-Db-pUF"/>
                 <constraint firstItem="on4-QA-7eH" firstAttribute="top" secondItem="6Ft-oh-z30" secondAttribute="top" constant="43" id="C85-V4-DXH"/>
-                <constraint firstAttribute="centerX" secondItem="eJA-IB-c6c" secondAttribute="centerX" id="FnZ-NT-nHC"/>
                 <constraint firstItem="4f2-zM-5Ik" firstAttribute="leading" secondItem="EV5-Sl-Tyf" secondAttribute="leading" constant="10" id="HbR-PV-HCx"/>
                 <constraint firstAttribute="trailing" secondItem="4f2-zM-5Ik" secondAttribute="trailing" constant="10" id="J9Q-be-OHN"/>
-                <constraint firstAttribute="bottom" secondItem="92R-S9-7K0" secondAttribute="bottom" id="KlW-2o-QW9"/>
                 <constraint firstItem="6Ft-oh-z30" firstAttribute="leading" secondItem="EV5-Sl-Tyf" secondAttribute="leading" id="Kyx-aL-6Kj"/>
-                <constraint firstItem="4f2-zM-5Ik" firstAttribute="top" secondItem="eJA-IB-c6c" secondAttribute="bottom" constant="60" id="MJ3-bh-GOf"/>
-                <constraint firstItem="eJA-IB-c6c" firstAttribute="top" secondItem="4f2-zM-5Ik" secondAttribute="bottom" constant="-14" id="MOG-Xq-y6Y"/>
-                <constraint firstItem="eJA-IB-c6c" firstAttribute="top" secondItem="4f2-zM-5Ik" secondAttribute="bottom" constant="-14" id="Pfy-s7-Xdv"/>
-                <constraint firstAttribute="centerY" secondItem="92R-S9-7K0" secondAttribute="centerY" id="QKR-Sw-4nw"/>
-                <constraint firstAttribute="trailing" secondItem="eJA-IB-c6c" secondAttribute="trailing" constant="36" id="Sot-2a-y1J"/>
                 <constraint firstAttribute="bottom" secondItem="6Ft-oh-z30" secondAttribute="bottom" id="T0O-yC-NNx"/>
-                <constraint firstAttribute="centerX" secondItem="92R-S9-7K0" secondAttribute="centerX" id="Tp6-U1-p6V"/>
-                <constraint firstItem="eJA-IB-c6c" firstAttribute="leading" secondItem="EV5-Sl-Tyf" secondAttribute="leading" constant="36" id="X4R-IW-7wd"/>
-                <constraint firstItem="eJA-IB-c6c" firstAttribute="leading" secondItem="EV5-Sl-Tyf" secondAttribute="leadingMargin" constant="20" id="Yko-lk-LAH"/>
-                <constraint firstItem="92R-S9-7K0" firstAttribute="leading" secondItem="EV5-Sl-Tyf" secondAttribute="leading" constant="20" id="bhk-Ap-16t"/>
-                <constraint firstItem="92R-S9-7K0" firstAttribute="top" secondItem="4f2-zM-5Ik" secondAttribute="bottom" constant="10" id="c2c-Zy-2eA"/>
                 <constraint firstItem="29Q-ct-HcU" firstAttribute="trailing" secondItem="6Ft-oh-z30" secondAttribute="trailing" id="caV-9E-HdQ"/>
                 <constraint firstItem="on4-QA-7eH" firstAttribute="leading" secondItem="6Ft-oh-z30" secondAttribute="leading" id="cvv-TN-OOG"/>
                 <constraint firstItem="29Q-ct-HcU" firstAttribute="leading" secondItem="6Ft-oh-z30" secondAttribute="leading" id="dMc-fv-oNx"/>
                 <constraint firstItem="on4-QA-7eH" firstAttribute="bottom" secondItem="6Ft-oh-z30" secondAttribute="bottom" id="fLT-eQ-n2y"/>
                 <constraint firstItem="6Ft-oh-z30" firstAttribute="top" secondItem="4f2-zM-5Ik" secondAttribute="bottom" constant="20" id="fw6-vx-TmP"/>
-                <constraint firstAttribute="trailing" secondItem="92R-S9-7K0" secondAttribute="trailing" constant="-1" id="gTw-XO-f2b"/>
-                <constraint firstItem="6Ft-oh-z30" firstAttribute="top" secondItem="92R-S9-7K0" secondAttribute="bottom" constant="10" id="haL-IC-ATw"/>
                 <constraint firstAttribute="trailing" secondItem="6Ft-oh-z30" secondAttribute="trailing" id="hkC-4O-zfz"/>
-                <constraint firstItem="eJA-IB-c6c" firstAttribute="top" secondItem="4f2-zM-5Ik" secondAttribute="bottom" constant="182" id="k5r-kC-d3z"/>
                 <constraint firstItem="on4-QA-7eH" firstAttribute="trailing" secondItem="6Ft-oh-z30" secondAttribute="trailing" id="lGg-28-UZ7"/>
+                <constraint firstItem="6Ft-oh-z30" firstAttribute="top" secondItem="4f2-zM-5Ik" secondAttribute="bottom" constant="10" id="lJq-IZ-Yt2"/>
                 <constraint firstAttribute="trailing" secondItem="C9I-6f-dRp" secondAttribute="trailing" constant="20" id="mux-qL-ouf"/>
-                <constraint firstItem="eJA-IB-c6c" firstAttribute="top" secondItem="EV5-Sl-Tyf" secondAttribute="top" constant="50" id="pVY-eY-xcE"/>
                 <constraint firstItem="29Q-ct-HcU" firstAttribute="top" secondItem="6Ft-oh-z30" secondAttribute="top" constant="-10" id="qRf-74-Ytv"/>
+                <constraint firstItem="C9I-6f-dRp" firstAttribute="top" secondItem="EV5-Sl-Tyf" secondAttribute="top" constant="84" id="sSe-Ai-s50"/>
                 <constraint firstItem="4f2-zM-5Ik" firstAttribute="top" secondItem="C9I-6f-dRp" secondAttribute="bottom" constant="20" id="suJ-ux-K4v"/>
-                <constraint firstAttribute="trailing" secondItem="92R-S9-7K0" secondAttribute="trailing" constant="20" id="uBc-BV-Llh"/>
-                <constraint firstItem="92R-S9-7K0" firstAttribute="leading" secondItem="EV5-Sl-Tyf" secondAttribute="leading" constant="-1" id="uqG-Wt-uaj"/>
-                <constraint firstAttribute="trailingMargin" secondItem="eJA-IB-c6c" secondAttribute="trailing" constant="20" id="yMt-k1-Dlu"/>
                 <constraint firstAttribute="centerX" secondItem="C9I-6f-dRp" secondAttribute="centerX" id="yzh-g5-xIk"/>
-                <constraint firstItem="eJA-IB-c6c" firstAttribute="centerY" secondItem="urb-BS-J6b" secondAttribute="centerY" id="zCq-6t-ASQ"/>
             </constraints>
             <variation key="default">
                 <mask key="constraints">
-                    <exclude reference="MOG-Xq-y6Y"/>
-                    <exclude reference="Pfy-s7-Xdv"/>
-                    <exclude reference="Sot-2a-y1J"/>
-                    <exclude reference="X4R-IW-7wd"/>
-                    <exclude reference="k5r-kC-d3z"/>
-                    <exclude reference="MJ3-bh-GOf"/>
-                    <exclude reference="0ax-hW-ARB"/>
-                    <exclude reference="KlW-2o-QW9"/>
-                    <exclude reference="QKR-Sw-4nw"/>
-                    <exclude reference="gTw-XO-f2b"/>
-                    <exclude reference="uqG-Wt-uaj"/>
                     <exclude reference="T0O-yC-NNx"/>
                     <exclude reference="fw6-vx-TmP"/>
                     <exclude reference="C85-V4-DXH"/>
@@ -184,8 +105,4 @@
             <point key="canvasLocation" x="134" y="230"/>
         </view>
     </objects>
-    <resources>
-        <image name="CircleCheckFilled" width="24" height="24"/>
-        <image name="Plus" width="22" height="22"/>
-    </resources>
 </document>

@@ -21,7 +21,7 @@ class CircleTextField: UITextField {
     */
 
     override func drawPlaceholderInRect(rect: CGRect) {
-        var defaultPlaceholderColor = UIColor.whiteColor().colorWithAlphaComponent(0.85)
+        var defaultPlaceholderColor = UIColor.grayColor().colorWithAlphaComponent(0.75)
         var updatedRect = CGRectInset(rect, 0, (rect.size.height - font.lineHeight) / 2.0)
         placeholder?.drawInRect(
             updatedRect,

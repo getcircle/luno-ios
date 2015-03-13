@@ -15,7 +15,7 @@ protocol SearchHeaderViewDelegate {
 class SearchHeaderView: UIView {
     
     @IBOutlet weak private(set) var cancelButton: UIButton!
-    @IBOutlet weak private(set) var searchTextField: UITextField!
+    @IBOutlet weak private(set) var searchTextField: CircleTextField!
     @IBOutlet weak private(set) var searchTextFieldHeightConstraint: NSLayoutConstraint!    
     @IBOutlet weak private(set) var searchTextFieldTrailingSpaceConstraint: NSLayoutConstraint!
     

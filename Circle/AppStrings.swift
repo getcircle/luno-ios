@@ -9,6 +9,22 @@
 import Foundation
 
 struct AppStrings {
+    
+    static let AddNoteCTATitle = NSLocalizedString("Add private note", comment: "Title of the button to add a private note on a co-worker")
+    static let AddSkillsNavigationTitle = NSLocalizedString("Add Skills", comment: "Title of the view to add skills")
+    static let AppreciateCTATitle = NSLocalizedString("Appreciate", comment: "Title of the button to leave an appreciation for a co-worker")
+
+    static let CardTitlePeople = NSLocalizedString("People", comment: "Title of the card showing people")
+    static let CardTitleOfficeTeam = NSLocalizedString("Office Teams", comment: "Title of the card showing teams in a office")
+    static let CardTitleAddress = NSLocalizedString("Location", comment: "Title of the card showing address")
+        
+    static let ProfileInfoTabTitle = NSLocalizedString("Info", comment: "Title of the Info section")
+    static let ProfileNotesTabTitle = NSLocalizedString("Notes", comment: "Title of the Notes section")
+    static let ProfileAppreciationTabTitle = NSLocalizedString("Appreciation", comment: "Title of the Appreciation section")
+    
+    static let ProfileSectionOfficeTeamTitle = NSLocalizedString("Office & Team", comment: "Title of the section which shows a user's office and team")
+    static let ProfileSectionManagerTitle = NSLocalizedString("Manager", comment: "Title of the section which shows a user's manager")
+    
     static let QuickActionNoneLabel = ""
     static let QuickActionEmailLabel = NSLocalizedString("Email", comment: "Title for button used to send an email")
     static let QuickActionInfoLabel = NSLocalizedString("Info", comment: "Title for button used to see info")
@@ -25,17 +41,9 @@ struct AppStrings {
     static let QuickActionCallPlaceholder = NSLocalizedString("Who do you want to call?", comment: "Placeholder for search field used to search for the person user intends to call")
     static let QuickActionSlackPlaceholder = NSLocalizedString("Who do you want to message?", comment: "Placeholder for search field used to search for the person user intends to send a message")
     
-    static let ProfileInfoTabTitle = NSLocalizedString("Info", comment: "Title of the Info section")
-    static let ProfileNotesTabTitle = NSLocalizedString("Notes", comment: "Title of the Notes section")
-    static let ProfileAppreciationTabTitle = NSLocalizedString("Appreciation", comment: "Title of the Appreciation section")
+    static let TextPlaceholderFilterSkills = NSLocalizedString("Filter skills", comment: "Placeholder text for filter skills input box")
+
     
-    static let CardTitlePeople = NSLocalizedString("People", comment: "Title of the card showing people")
-    static let CardTitleOfficeTeam = NSLocalizedString("Office Teams", comment: "Title of the card showing teams in a office")
-    static let CardTitleAddress = NSLocalizedString("Location", comment: "Title of the card showing address")
     
-    static let AddNoteCTATitle = NSLocalizedString("Add private note", comment: "Title of the button to add a private note on a co-worker")
-    static let AppreciateCTATitle = NSLocalizedString("Appreciate", comment: "Title of the button to leave an appreciation for a co-worker")
     
-    static let ProfileSectionOfficeTeamTitle = NSLocalizedString("Office & Team", comment: "Title of the section which shows a user's office and team")
-    static let ProfileSectionManagerTitle = NSLocalizedString("Manager", comment: "Title of the section which shows a user's manager")
 }

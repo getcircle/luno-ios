@@ -21,19 +21,14 @@ class SkillSelectorViewController:
         case Regular
     }
     
-    @IBOutlet weak private(set) var addSkillButton: UIButton!
-    @IBOutlet weak private(set) var addSkillButtonHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak private(set) var bottomGradientView: UIView!
     @IBOutlet weak private(set) var collectionView: UICollectionView!
-    @IBOutlet weak private(set) var doneButton: UIButton!
     @IBOutlet weak private(set) var searchControllerParentView: UIView!
-    @IBOutlet weak private(set) var titleLabel: UILabel!
     @IBOutlet weak private(set) var titleTextLabel: UILabel!
     @IBOutlet weak private(set) var topGradientView: UIView!
     
     var theme: Themes = .Regular
     
-    private var addSkillButtonInitialHeight: CGFloat = 0.0
     private var animatedCell = [NSIndexPath: Bool]()
     private var bottomLayer: CAGradientLayer!
     private var cachedItemSizes =  [String: CGSize]()
@@ -50,11 +45,11 @@ class SkillSelectorViewController:
         
         // Configurations
         configureView()
+        configureNavigationBar()
         configureSearchHeaderView()
         configurePrototypeCell()
         configureCollectionView()
         configureGradients()
-        configureAddSkillButton()
         configureViewByTheme()
     }
 
@@ -68,8 +63,19 @@ class SkillSelectorViewController:
 
     private func configureView() {
         edgesForExtendedLayout = .Top
-        automaticallyAdjustsScrollViewInsets = false
-        extendedLayoutIncludesOpaqueBars = true
+        automaticallyAdjustsScrollViewInsets = true
+    }
+    
+    private func configureNavigationBar() {
+        title = AppStrings.AddSkillsNavigationTitle
+        
+        let doneButtonItem = UIBarButtonItem(
+            image: UIImage(named: "CircleCheckFilled"), 
+            style: .Plain, 
+            target: self, 
+            action: "close:"
+        )
+        navigationItem.rightBarButtonItem = doneButtonItem
     }
     
     private func configurePrototypeCell() {
@@ -85,7 +91,6 @@ class SkillSelectorViewController:
         )
         collectionView.keyboardDismissMode = .OnDrag
         collectionView.allowsMultipleSelection = true
-        
     }
 
     private func configureSearchHeaderView() {
@@ -93,10 +98,11 @@ class SkillSelectorViewController:
             searchHeaderView = nibViews.first as SearchHeaderView
             searchHeaderView.delegate = self
             searchHeaderView.searchTextField.addBottomBorder()
+            searchHeaderView.searchTextField.autocapitalizationType = .Words
             searchHeaderView.searchTextField.clearButtonMode = .Always
             searchHeaderView.searchTextField.returnKeyType = .Done
             searchHeaderView.searchTextField.delegate = self
-            searchHeaderView.searchTextField.placeholder = NSLocalizedString("Filter skills", comment: "Placeholder text for filter skills input box")
+            searchHeaderView.searchTextField.placeholder = AppStrings.TextPlaceholderFilterSkills
             searchHeaderView.searchTextField.addTarget(self, action: "filter", forControlEvents: .EditingChanged)
             searchHeaderView.searchTextFieldHeightConstraint.constant = searchControllerParentView.frameHeight
             searchControllerParentView.addSubview(searchHeaderView)
@@ -104,6 +110,7 @@ class SkillSelectorViewController:
             
             switch theme {
             case .Onboarding:
+                searchHeaderView.searchTextField.placeholderColor = UIColor.whiteColor().colorWithAlphaComponent(0.8)
                 searchHeaderView.containerBackgroundColor = UIColor.appUIBackgroundColor()
                 searchHeaderView.searchFieldBackgroundColor = UIColor.appUIBackgroundColor()
                 searchHeaderView.searchFieldTintColor = UIColor.whiteColor()
@@ -138,31 +145,15 @@ class SkillSelectorViewController:
         )
         bottomGradientView.layer.addSublayer(bottomLayer)
     }
-    
-    private func configureAddSkillButton() {
-        addSkillButtonInitialHeight = addSkillButtonHeightConstraint.constant
-        addSkillButton.setImage(
-            addSkillButton.imageForState(.Normal)?.imageWithRenderingMode(.AlwaysTemplate),
-            forState: .Normal
-        )
 
-        hideAddSkillButton()
-    }
-    
     private func configureViewByTheme() {
         switch theme {
         case .Onboarding:
             view.backgroundColor = UIColor.appUIBackgroundColor()
             collectionView.backgroundColor = UIColor.appUIBackgroundColor()
             searchControllerParentView.backgroundColor = UIColor.appUIBackgroundColor()
-            titleLabel.textColor = UIColor.whiteColor()
-            titleLabel.backgroundColor = UIColor.appUIBackgroundColor()
             titleTextLabel.textColor = UIColor.whiteColor()
             titleTextLabel.backgroundColor = UIColor.appUIBackgroundColor()
-            doneButton.backgroundColor = UIColor.appUIBackgroundColor()
-            addSkillButton.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(1.0)
-            addSkillButton.setTitleColor(UIColor.appUIBackgroundColor(), forState: .Normal)
-            addSkillButton.tintColor = UIColor.appUIBackgroundColor()
 
         case .Regular:
             break
@@ -242,6 +233,9 @@ class SkillSelectorViewController:
         cell.selectCell(true)
         let skill = filteredSkills[indexPath.row]
         selectedSkills[skill.hashValue] = skill
+        if !skill.hasId {
+            skills.append(skill)
+        }
     }
     
     func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
@@ -278,26 +272,16 @@ class SkillSelectorViewController:
         dismissViewControllerAnimated(true, completion: nil)
     }
     
-    @IBAction func addSkillButtedTapped(sender: AnyObject!) {
+    private func getNewSkillObject() -> ProfileService.Containers.Skill? {
         var skillName = searchHeaderView.searchTextField.text
         skillName = skillName.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
         if skillName != "" {
-            
             var skillBuilderObject = ProfileService.Containers.Skill.builder()
             skillBuilderObject.name = skillName
-            let skill = skillBuilderObject.build()
-            
-            // Add to source
-            // TODO we need to be de-duping these skills
-            skills.append(skill)
-            selectedSkills[skill.hashValue] = skill
-            
-            // Call filter again
-            filter()
-            
-            // Hide the button
-            hideAddSkillButton()
+            return skillBuilderObject.build()
         }
+        
+        return nil
     }
     
     // MARK: - SearchHeaderViewDelegate
@@ -314,13 +298,19 @@ class SkillSelectorViewController:
         let trimmedString = searchString.stringByTrimmingCharactersInSet(whitespaceCharacterSet).lowercaseString
         if trimmedString == "" {
             filteredSkills = skills
-            hideAddSkillButton()
         }
         else {
-            // We need to filter each time from the full set to handle backspace correctly.
-            // We used filteredSkills to make things specific but that only make sense when adding characters.
-            filteredSkills = skills.filter({ $0.name.lowercaseString.hasPrefix(trimmedString) })
-            showAddSkillButton(trimmedString)
+            DebugUtils.measure("Filter", call: { () -> Void in
+                // We need to filter each time from the full set to handle backspace correctly.
+                // We used filteredSkills to make things specific but that only make sense when adding characters.
+                self.filteredSkills = self.skills.filter({ $0.name.lowercaseString.hasPrefix(trimmedString) })
+                let exactMatchSkills = self.skills.filter({ $0.name.lowercaseString == trimmedString })
+                if exactMatchSkills.count == 0 {
+                    if let newSkill = self.getNewSkillObject() {
+                        self.filteredSkills.insert(newSkill, atIndex: 0)
+                    }
+                }
+            })
         }
         
         if filteredSkills.count != skills.count || trimmedString == "" {
@@ -339,7 +329,6 @@ class SkillSelectorViewController:
             dismissSearchField()
         }
         
-        hideAddSkillButton()
         return true
     }
     
@@ -356,7 +345,6 @@ class SkillSelectorViewController:
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         dismissSearchField()
         collectionView.reloadData()
-        hideAddSkillButton()
         return true
     }
     
@@ -373,23 +361,5 @@ class SkillSelectorViewController:
     private func dismissSearchField() {
         searchHeaderView.searchTextField.text = ""
         searchHeaderView.searchTextField.resignFirstResponder()
-    }
-    
-    private func showAddSkillButton(skillName: String) {
-        hideAddSkillButton()
-        return
-//        addSkillButton.setTitle(
-//            NSString(format: NSLocalizedString("Add skill \"%@\"", comment: "Button title used when adding a skill with name %@"), skillName),
-//            forState: .Normal
-//        )
-//        addSkillButtonHeightConstraint.constant = addSkillButtonInitialHeight
-//        addSkillButton.updateConstraints()
-//        addSkillButton.layoutIfNeeded()
-    }
-    
-    private func hideAddSkillButton() {
-        addSkillButtonHeightConstraint.constant = 0.0
-        addSkillButton.updateConstraints()
-        addSkillButton.layoutIfNeeded()
     }
 }
