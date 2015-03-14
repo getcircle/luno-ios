@@ -20,13 +20,14 @@ class SearchLandingDataSource: CardDataSource {
                     self.resetCards()
                     
                     // Add quick actions to the top
-                    let quickActionsCard = Card(cardType: .QuickActions, title: "", addDefaultFooter: false)
+                    let quickActionsCard = Card(cardType: .QuickActions, title: "Quick Actions", addDefaultFooter: false)
                     quickActionsCard.addContent(content: [["placeholder": true]], maxVisibleItems: 0)
                     quickActionsCard.sectionInset = UIEdgeInsetsMake(15.0, 10.0, 25.0, 10.0)
                     self.appendCard(quickActionsCard)
 
                     for category in categories ?? [] {
                         let categoryCard = Card(category: category)
+                        categoryCard.addDefaultHeader()
                         if category.notes.count > 0 {
                             categoryCard.addContent(content: category.notes, maxVisibleItems: 5)
                             categoryCard.metaData = category.profiles

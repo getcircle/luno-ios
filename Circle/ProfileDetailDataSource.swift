@@ -33,25 +33,9 @@ class ProfileDetailDataSource: CardDataSource {
     convenience init(profile withProfile: ProfileService.Containers.Profile) {
         self.init()
         profile = withProfile
+        configureSections()
     }
     
-    override func registerCardHeader(collectionView: UICollectionView) {
-        // TODO should have some like "onLoad" function we can plug into
-        configureSections()
-        collectionView.registerNib(
-            UINib(nibName: "ProfileHeaderCollectionReusableView", bundle: nil),
-            forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
-            withReuseIdentifier: ProfileHeaderCollectionReusableView.classReuseIdentifier
-        )
-        
-        collectionView.registerNib(
-            UINib(nibName: "ProfileSectionHeaderCollectionReusableView", bundle: nil),
-            forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
-            withReuseIdentifier: ProfileSectionHeaderCollectionReusableView.classReuseIdentifier
-        )
-        super.registerCardHeader(collectionView)
-    }
-
     override func loadData(completionHandler: (error: NSError?) -> Void) {
         if onlyShowContactInfo == true {
             configureSections()
@@ -61,6 +45,10 @@ class ProfileDetailDataSource: CardDataSource {
         else {
             // Add placeholder card to load profile header instantly
             var placeholderCard = Card(cardType: .Placeholder, title: "Info")
+            placeholderCard.addHeader(
+                headerClass: ProfileHeaderCollectionReusableView.self, 
+                headerClassName: "ProfileHeaderCollectionReusableView"
+            )
             placeholderCard.sectionInset = UIEdgeInsetsZero
             appendCard(placeholderCard)
             ProfileService.Actions.getExtendedProfile(profile.id) {
@@ -303,7 +291,11 @@ class ProfileDetailDataSource: CardDataSource {
         for section in sections {
             let sectionCard = Card(cardType: section.cardType, title: section.title)
             sectionCard.sectionInset = defaultSectionInset
-            sectionCard.headerSize = section.cardHeaderSize
+            sectionCard.addHeader(
+                headerClass: ProfileSectionHeaderCollectionReusableView.self, 
+                headerClassName: "ProfileSectionHeaderCollectionReusableView",
+                headerSize: section.cardHeaderSize
+            )
             sectionCard.showContentCount = false
 
             for item in section.items {
@@ -527,46 +519,25 @@ class ProfileDetailDataSource: CardDataSource {
         
         return .Other
     }
-    
-    override func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+
+    override func configureHeader(header: CircleCollectionReusableView, atIndexPath indexPath: NSIndexPath) {
+        super.configureHeader(header, atIndexPath: indexPath)
         
-        
-        if kind == UICollectionElementKindSectionFooter {
-            var footerView = addDefaultFooterView(collectionView, atIndexPath: indexPath)
-            (footerView as CardFooterCollectionReusableView).insetEdges = false
-            return footerView
+        if let profileHeader = header as? ProfileHeaderCollectionReusableView {
+            profileHeader.setProfile(profile!)
+            profileHeaderView = profileHeader
         }
-        else  if indexPath.section == 0 {
-            let supplementaryView = collectionView.dequeueReusableSupplementaryViewOfKind(
-                kind,
-                withReuseIdentifier: ProfileHeaderCollectionReusableView.classReuseIdentifier,
-                forIndexPath: indexPath
-                ) as ProfileHeaderCollectionReusableView
-            
-            if profile != nil {
-                supplementaryView.setProfile(profile!)
-            }
-            
-            profileHeaderView = supplementaryView
-            return supplementaryView
-        }
-        else {
-            
-            let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(
-                kind,
-                withReuseIdentifier: ProfileSectionHeaderCollectionReusableView.classReuseIdentifier,
-                forIndexPath: indexPath
-            ) as ProfileSectionHeaderCollectionReusableView
-            if (isProfileLoggedInUserProfile() && sections[indexPath.section - 1].allowEmptyContent) {
-                headerView.showAddEditButton = true
-            }
-            
-            headerView.setCard(cards[indexPath.section])
-            headerView.cardHeaderDelegate = cardHeaderDelegate
-            return headerView
-        }
+
+//        if (isProfileLoggedInUserProfile() && sections[indexPath.section - 1].allowEmptyContent) {
+//            headerView.showAddEditButton = true
+//        }
     }
     
+    override func configureFooter(footer: CircleCollectionReusableView, atIndexPath indexPath: NSIndexPath) {
+        super.configureFooter(footer, atIndexPath: indexPath)
+        (footer as CardFooterCollectionReusableView).insetEdges = false
+    }
+
     private func isProfileLoggedInUserProfile() -> Bool {
         if let loggedInUserProfile = AuthViewController.getLoggedInUserProfile() {
             return loggedInUserProfile.id == profile.id

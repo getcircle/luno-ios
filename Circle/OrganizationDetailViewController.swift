@@ -26,7 +26,6 @@ class OrganizationDetailViewController: DetailViewController, CardHeaderViewDele
         // Data Source
         dataSource.animateContent = true
         collectionView.dataSource = dataSource
-        dataSource.registerDefaultCardHeader(collectionView)
         dataSource.cardHeaderDelegate = self
         dataSource.cardFooterDelegate = self
         

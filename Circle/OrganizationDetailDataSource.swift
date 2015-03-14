@@ -20,6 +20,10 @@ class OrganizationDetailDataSource: CardDataSource {
         
         // Get the header early
         let placeholderCard = Card(cardType: .Placeholder, title: "")
+        placeholderCard.addHeader(
+            headerClass: OrganizationHeaderCollectionReusableView.self, 
+            headerClassName: "OrganizationHeaderCollectionReusableView"
+        )
         appendCard(placeholderCard)
         
         if let currentProfile = AuthViewController.getLoggedInUserProfile() {
@@ -27,6 +31,7 @@ class OrganizationDetailDataSource: CardDataSource {
                 if error == nil {
                     for category in categories ?? [] {
                         let categoryCard = Card(category: category)
+                        categoryCard.addDefaultHeader()
                         if category.profiles.count > 0 {
                             var profiles = category.profiles
                             switch category.type {
@@ -54,39 +59,16 @@ class OrganizationDetailDataSource: CardDataSource {
         }
     }
 
-    override func registerCardHeader(collectionView: UICollectionView) {
-        collectionView.registerNib(
-            UINib(nibName: "OrganizationHeaderCollectionReusableView", bundle: nil),
-            forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
-            withReuseIdentifier: OrganizationHeaderCollectionReusableView.classReuseIdentifier
-        )
-
-        super.registerCardHeader(collectionView)
-    }
-    
     // MARK: - UICollectionViewDataSource
     
-    override func collectionView(
-        collectionView: UICollectionView,
-        viewForSupplementaryElementOfKind kind: String,
-        atIndexPath indexPath: NSIndexPath
-    ) -> UICollectionReusableView {
-        if indexPath.section == 0 && kind == UICollectionElementKindSectionHeader {
-            let supplementaryView = collectionView.dequeueReusableSupplementaryViewOfKind(
-                kind,
-                withReuseIdentifier: OrganizationHeaderCollectionReusableView.classReuseIdentifier,
-                forIndexPath: indexPath
-            ) as OrganizationHeaderCollectionReusableView
-            
-            profileHeaderView = supplementaryView
-            // You can only view the organization associated with the current logged in user
+    override func configureHeader(header: CircleCollectionReusableView, atIndexPath indexPath: NSIndexPath) {
+        super.configureHeader(header, atIndexPath: indexPath)
+        
+        if let orgHeader = header as? OrganizationHeaderCollectionReusableView {
+            profileHeaderView = orgHeader
             if let currentOrganization = AuthViewController.getLoggedInUserOrganization() {
-                supplementaryView.setOrganization(currentOrganization)
+                orgHeader.setOrganization(currentOrganization)
             }
-            return supplementaryView
-        }
-        else {
-            return super.collectionView(collectionView, viewForSupplementaryElementOfKind: kind, atIndexPath: indexPath)
         }
     }
 }

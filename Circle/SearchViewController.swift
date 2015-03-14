@@ -159,13 +159,10 @@ NewNoteViewControllerDelegate {
         (collectionView.delegate as CardCollectionViewDelegate?)?.delegate = self
         
         landingDataSource = SearchLandingDataSource()
-        landingDataSource.registerDefaultCardHeader(collectionView)
         landingDataSource.cardHeaderDelegate = self
-        landingDataSource.animateContent = true
         collectionView.dataSource = landingDataSource
-        
+
         queryDataSource = SearchQueryDataSource()
-        queryDataSource.registerCardHeader(collectionView)
     }
 
     // MARK: - TextField Delegate

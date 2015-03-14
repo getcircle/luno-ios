@@ -47,7 +47,9 @@ class SearchQueryDataSource: CardDataSource {
     private func updateVisibleCards() {
         resetCards()
         let sectionInset = UIEdgeInsetsMake(0.0, 0.0, 10.0, 0.0)
-        
+        let headerClass = SearchResultsCardHeaderCollectionReusableView.self
+        let headerClassName = "SearchResultsCardHeaderCollectionReusableView"
+
         // TODO these should be sorted by relevancy
         if visibleProfiles.count > 0 {
             
@@ -56,6 +58,7 @@ class SearchQueryDataSource: CardDataSource {
             
             let profilesCardTitle = searchTerm.trimWhitespace() == "" ? "Recent" : "People"
             let peopleCard = Card(cardType: .Profiles, title: profilesCardTitle)
+            peopleCard.addHeader(headerClass: headerClass, headerClassName: headerClassName)
             peopleCard.addContent(content: visibleProfiles as [AnyObject])
             peopleCard.contentCount = visibleProfiles.count
             peopleCard.sectionInset = sectionInset
@@ -64,6 +67,7 @@ class SearchQueryDataSource: CardDataSource {
 
         if visibleTeams.count > 0 {
             let teamsCard = Card(cardType: .Team, title: "Teams")
+            teamsCard.addHeader(headerClass: headerClass, headerClassName: headerClassName)
             teamsCard.addContent(content: visibleTeams as [AnyObject])
             teamsCard.contentCount = visibleTeams.count
             teamsCard.sectionInset = sectionInset
@@ -72,6 +76,7 @@ class SearchQueryDataSource: CardDataSource {
         
         if visibleSkills.count > 0 {
             let skillsCard = Card(cardType: .Skills, title: "Skills")
+            skillsCard.addHeader(headerClass: headerClass, headerClassName: headerClassName)
             skillsCard.addContent(content: visibleSkills as [AnyObject])
             skillsCard.contentCount = visibleSkills.count
             skillsCard.sectionInset = sectionInset
@@ -85,27 +90,10 @@ class SearchQueryDataSource: CardDataSource {
             (cell as TeamGridItemCollectionViewCell).sizeMode = .Compact
         }
     }
-
-    override func registerCardHeader(collectionView: UICollectionView) {
-        collectionView.registerNib(
-            UINib(nibName: "SearchResultsCardHeaderCollectionReusableView", bundle: nil),
-            forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
-            withReuseIdentifier: SearchResultsCardHeaderCollectionReusableView.classReuseIdentifier
-        )
-        
-        super.registerCardHeader(collectionView)
-    }
     
-    override func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
-        let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(
-            kind,
-            withReuseIdentifier: SearchResultsCardHeaderCollectionReusableView.classReuseIdentifier,
-            forIndexPath: indexPath
-        ) as SearchResultsCardHeaderCollectionReusableView
-        
-        headerView.addBottomBorder = true
-        headerView.setCard(cards[indexPath.section])
-        headerView.backgroundColor = UIColor.clearColor()
-        return headerView
+    override func configureHeader(header: CircleCollectionReusableView, atIndexPath indexPath: NSIndexPath) {
+        super.configureHeader(header, atIndexPath: indexPath)
+        (header as? SearchResultsCardHeaderCollectionReusableView)?.addBottomBorder = true
+        header.backgroundColor = UIColor.clearColor()
     }
 }

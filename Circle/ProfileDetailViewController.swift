@@ -37,7 +37,6 @@ class ProfileDetailViewController: DetailViewController,
     
     override func configureCollectionView() {
         collectionView.dataSource = dataSource
-        dataSource.registerCardHeader(collectionView)
         dataSource.cardHeaderDelegate = self
         dataSource.cardFooterDelegate = self
         
