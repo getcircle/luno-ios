@@ -304,6 +304,7 @@ class ProfileDetailDataSource: CardDataSource {
             let sectionCard = Card(cardType: section.cardType, title: section.title)
             sectionCard.sectionInset = defaultSectionInset
             sectionCard.headerSize = section.cardHeaderSize
+            sectionCard.showContentCount = false
 
             for item in section.items {
                 addItemToCard(item, card: sectionCard)
