@@ -50,7 +50,7 @@ class TeamDetailDataSource: CardDataSource {
                     if let owner = self.ownerProfile {
                         let ownerCard = Card(cardType: .Profiles, title: "Team Lead")
                         ownerCard.addContent(content: [self.ownerProfile])
-                        ownerCard.sectionInset = UIEdgeInsetsMake(0.0, 0.0, 25.0, 0.0)
+                        ownerCard.sectionInset = UIEdgeInsetsMake(0.0, 0.0, 15.0, 0.0)
                         self.appendCard(ownerCard)
                     }
                     
@@ -67,7 +67,7 @@ class TeamDetailDataSource: CardDataSource {
                         let membersCard = Card(cardType: .Profiles, title: membersCardTitle)
                         membersCard.addHeader(headerClass: sectionHeaderClass, headerClassName: sectionHeaderClassName)
                         membersCard.addContent(content: allProfilesExceptOwner! as [AnyObject])
-                        membersCard.sectionInset = UIEdgeInsetsMake(0.0, 0.0, 25.0, 0.0)
+                        membersCard.sectionInset = UIEdgeInsetsMake(10.0, 0.0, 25.0, 0.0)
                         self.appendCard(membersCard)
                     }
                     
@@ -75,11 +75,10 @@ class TeamDetailDataSource: CardDataSource {
                     // TODO: we should support sending multiple actions with a single service request.
                     OrganizationService.Actions.getTeamChildren(self.selectedTeam!.id) { (teams, error) -> Void in
                         if let teams = teams {
-                            // TODO we need to fix this
                             var teamsCard = Card(cardType: .TeamsGrid, title: "Teams")
-//                            teamsCard.addHeader(headerClass: sectionHeaderClass, headerClassName: sectionHeaderClassName)
+                            teamsCard.addHeader(headerClass: sectionHeaderClass, headerClassName: sectionHeaderClassName)
                             teamsCard.addContent(content: teams)
-                            teamsCard.sectionInset = UIEdgeInsetsMake(0.0, 0.0, 25.0, 0.0)
+                            teamsCard.sectionInset = UIEdgeInsetsMake(10.0, 0.0, 25.0, 0.0)
                             self.appendCard(teamsCard)
                         }
                         completionHandler(error: error)
@@ -89,16 +88,6 @@ class TeamDetailDataSource: CardDataSource {
                     completionHandler(error: error)
                 }
             }
-        }
-    }
-    
-    // MARK: - Cell Configuration
-    
-    override func configureCell(cell: CircleCollectionViewCell, atIndexPath indexPath: NSIndexPath) {
-        super.configureCell(cell, atIndexPath: indexPath)
-        
-        if cell is TeamsCollectionViewCell {
-            (cell as TeamsCollectionViewCell).showTeamsLabel = true
         }
     }
 

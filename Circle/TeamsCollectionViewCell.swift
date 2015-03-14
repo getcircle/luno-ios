@@ -18,32 +18,13 @@ class TeamsCollectionViewCell: CircleCollectionViewCell, UICollectionViewDataSou
     override class var classReuseIdentifier: String {
         return "TeamsCollectionViewCell"
     }
-    
-    override class var height: CGFloat {
-        return 90.0
-    }
-    
+
     override class var sizeCalculationMethod: SizeCalculation {
         return .Dynamic
     }
     
     @IBOutlet weak private(set) var collectionView: UICollectionView!
-    @IBOutlet weak private var collectionViewTopSpaceConstraint: NSLayoutConstraint!
-    @IBOutlet weak private var teamsLabel: UILabel!
     
-    var showTeamsLabel: Bool = false {
-        didSet {
-            if showTeamsLabel {
-                teamsLabel.hidden = false
-                collectionViewTopSpaceConstraint.constant = 45.0
-            }
-            else {
-                teamsLabel.hidden = true
-                collectionViewTopSpaceConstraint.constant = 0.0
-            }
-        }
-    }
-
     var selectedTeam: OrganizationService.Containers.Team?
     private var teams = Array<OrganizationService.Containers.Team>()
     
@@ -51,7 +32,6 @@ class TeamsCollectionViewCell: CircleCollectionViewCell, UICollectionViewDataSou
         super.awakeFromNib()
         
         // Initialization code
-        showTeamsLabel = false
         configureCollectionView()
         selectedBackgroundView = nil
     }
@@ -98,13 +78,7 @@ class TeamsCollectionViewCell: CircleCollectionViewCell, UICollectionViewDataSou
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
-        if showTeamsLabel {
-            // Algin skills with the label if the label is shown
-            return UIEdgeInsetsMake(10.0, teamsLabel.frameX, 10.0, teamsLabel.frameX)
-        }
-        else {
-            return UIEdgeInsetsMake(10.0, 10.0, 10.0, 10.0)
-        }
+        return UIEdgeInsetsMake(10.0, 10.0, 10.0, 10.0)
     }
     
     // MARK: - UICollectionViewDelegate
@@ -137,7 +111,7 @@ class TeamsCollectionViewCell: CircleCollectionViewCell, UICollectionViewDataSou
     
     override func intrinsicContentSize() -> CGSize {
         let collectionViewLayout = collectionView.collectionViewLayout as UICollectionViewFlowLayout
-        let height = collectionViewLayout.collectionViewContentSize().height + collectionViewTopSpaceConstraint.constant
+        let height = collectionViewLayout.collectionViewContentSize().height
         return CGSizeMake(CircleCollectionViewCell.width, height)
     }
 }

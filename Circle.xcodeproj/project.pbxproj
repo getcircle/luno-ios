@@ -25,7 +25,6 @@
 		8F085A921A6C175C00F8139B /* TeamsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F085A901A6C175C00F8139B /* TeamsCollectionViewCell.xib */; };
 		8F085A951A6C191400F8139B /* TeamGridItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F085A931A6C191400F8139B /* TeamGridItemCollectionViewCell.swift */; };
 		8F085A961A6C191400F8139B /* TeamGridItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F085A941A6C191400F8139B /* TeamGridItemCollectionViewCell.xib */; };
-		8F085A981A6C4B0D00F8139B /* TeamDetailCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F085A971A6C4B0D00F8139B /* TeamDetailCollectionViewDelegate.swift */; };
 		8F08A9F91A748F5200B93149 /* CardFooterCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F08A9F71A748F5200B93149 /* CardFooterCollectionReusableView.swift */; };
 		8F08A9FA1A748F5200B93149 /* CardFooterCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F08A9F81A748F5200B93149 /* CardFooterCollectionReusableView.xib */; };
 		8F0B96371A73288600C601A6 /* MKMapViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0B96361A73288600C601A6 /* MKMapViewExtension.swift */; };
@@ -319,7 +318,6 @@
 		8F085A901A6C175C00F8139B /* TeamsCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TeamsCollectionViewCell.xib; sourceTree = "<group>"; };
 		8F085A931A6C191400F8139B /* TeamGridItemCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamGridItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		8F085A941A6C191400F8139B /* TeamGridItemCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TeamGridItemCollectionViewCell.xib; sourceTree = "<group>"; };
-		8F085A971A6C4B0D00F8139B /* TeamDetailCollectionViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamDetailCollectionViewDelegate.swift; sourceTree = "<group>"; };
 		8F08A9F71A748F5200B93149 /* CardFooterCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardFooterCollectionReusableView.swift; sourceTree = "<group>"; };
 		8F08A9F81A748F5200B93149 /* CardFooterCollectionReusableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CardFooterCollectionReusableView.xib; sourceTree = "<group>"; };
 		8F0B96361A73288600C601A6 /* MKMapViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKMapViewExtension.swift; sourceTree = "<group>"; };
@@ -849,7 +847,6 @@
 			isa = PBXGroup;
 			children = (
 				8FC7BB421A58B15B005BDDDB /* CardCollectionViewDelegate.swift */,
-				8F085A971A6C4B0D00F8139B /* TeamDetailCollectionViewDelegate.swift */,
 			);
 			name = Delegates;
 			sourceTree = "<group>";
@@ -1278,7 +1275,6 @@
 				8FF298441A4DF38E00306CFC /* SkillSelectorViewController.swift in Sources */,
 				8FCC312C1AA28AC10093F00A /* AppreciationCollectionViewCell.swift in Sources */,
 				BF2D86171A707A86002C3D64 /* ProfileInfoCollectionView.swift in Sources */,
-				8F085A981A6C4B0D00F8139B /* TeamDetailCollectionViewDelegate.swift in Sources */,
 				8F22CBFB1A29AF450026376E /* UIViewExtension.swift in Sources */,
 				BF004C501A5CF91200AB8A6F /* OrganizationService.swift in Sources */,
 				BFE213C81A5EE63F0033E2F5 /* SearchService.swift in Sources */,

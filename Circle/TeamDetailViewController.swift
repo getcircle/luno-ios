@@ -17,7 +17,7 @@ class TeamDetailViewController: DetailViewController {
         super.customInit()
 
         dataSource = TeamDetailDataSource()
-        delegate = TeamDetailCollectionViewDelegate()
+        delegate = CardCollectionViewDelegate()
     }
     
     // MARK: - Configuration

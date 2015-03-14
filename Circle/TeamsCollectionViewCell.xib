@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -12,17 +12,8 @@
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="633" height="308"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TEAMS" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gBn-BS-UZM">
-                        <rect key="frame" x="15" y="15" width="47" height="21"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="21" id="y2X-6C-W78"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
-                        <color key="textColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="hOr-KN-FDI">
-                        <rect key="frame" x="0.0" y="45" width="633" height="263"/>
+                        <rect key="frame" x="0.0" y="0.0" width="633" height="308"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Gtm-3d-1vy">
                             <size key="itemSize" width="50" height="50"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -39,17 +30,13 @@
             </view>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="hOr-KN-FDI" secondAttribute="bottom" id="G8s-ZL-dgL"/>
-                <constraint firstItem="hOr-KN-FDI" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="45" id="LBN-Ax-6DK"/>
-                <constraint firstItem="gBn-BS-UZM" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="15" id="OlH-VX-Gvb"/>
-                <constraint firstItem="gBn-BS-UZM" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="15" id="QY5-XL-OSX"/>
+                <constraint firstItem="hOr-KN-FDI" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="LBN-Ax-6DK"/>
                 <constraint firstAttribute="trailing" secondItem="hOr-KN-FDI" secondAttribute="trailing" id="ZYU-da-4Z7"/>
                 <constraint firstItem="hOr-KN-FDI" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="nJK-TY-H8M"/>
             </constraints>
             <size key="customSize" width="633" height="308"/>
             <connections>
                 <outlet property="collectionView" destination="hOr-KN-FDI" id="Uue-Mh-vx1"/>
-                <outlet property="collectionViewTopSpaceConstraint" destination="LBN-Ax-6DK" id="Zdt-fN-1dd"/>
-                <outlet property="teamsLabel" destination="gBn-BS-UZM" id="Rb6-Uf-icv"/>
             </connections>
             <point key="canvasLocation" x="416.5" y="19"/>
         </collectionViewCell>
