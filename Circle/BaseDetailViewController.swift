@@ -77,24 +77,13 @@ MFMessageComposeViewControllerDelegate {
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        
-        // Do not show the opaque bar again if:
-        // a. this view was presented modally
-        // b. this view is being dismissed vs disappearing because another view controller was added to the stack
-        // c. the view controller prior to this one was a DetailViewController
-        if isMovingFromParentViewController() || (navigationController?.viewControllers.first is BaseDetailViewController) {
-            if let totalViewControllers = navigationController?.viewControllers.count {
-                let parentController = navigationController?.viewControllers[(totalViewControllers - 1)] as? UIViewController
-                if !(parentController is BaseDetailViewController) {
-                    transitionCoordinator()?.animateAlongsideTransition({ (transitionContext) -> Void in
-                        var toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey) as UIViewController!
-                        toViewController.navigationController?.navigationBar.makeOpaque()
-                        
-                        return
-                    }, completion: nil)
-                }
+        transitionCoordinator()?.animateAlongsideTransition({ (transitionContext) -> Void in
+            var toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey) as UIViewController!
+            if !(toViewController is BaseDetailViewController) {
+                toViewController.navigationController?.navigationBar.makeOpaque()
             }
-        }
+            return
+        }, completion: nil)
     }
     
     override func viewDidDisappear(animated: Bool) {
@@ -178,7 +167,7 @@ MFMessageComposeViewControllerDelegate {
             if let selectedSkill = userInfo["skill"] as? ProfileService.Containers.Skill {
                 let viewController = SkillDetailViewController()
                 (viewController.dataSource as SkillDetailDataSource).selectedSkill = selectedSkill
-                viewController.hidesBottomBarWhenPushed = true
+                viewController.hidesBottomBarWhenPushed = false
                 navigationController?.pushViewController(viewController, animated: true)
             }
         }
@@ -189,7 +178,7 @@ MFMessageComposeViewControllerDelegate {
             if let selectedTeam = userInfo["team"] as? OrganizationService.Containers.Team {
                 let viewController = TeamDetailViewController()
                 (viewController.dataSource as TeamDetailDataSource).selectedTeam = selectedTeam
-                viewController.hidesBottomBarWhenPushed = true
+                viewController.hidesBottomBarWhenPushed = false
                 navigationController?.pushViewController(viewController, animated: true)
             }
         }

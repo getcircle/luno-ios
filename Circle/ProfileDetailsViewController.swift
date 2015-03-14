@@ -475,7 +475,7 @@ class ProfileDetailsViewController:
         let profileInfoCollectionView = detailViews[0]
         if let dataSource = profileInfoCollectionView.dataSource as? ProfileDetailDataSource {
             let profileVC = ProfileDetailsViewController.forProfile(dataSource.manager!)
-            profileVC.hidesBottomBarWhenPushed = true
+            profileVC.hidesBottomBarWhenPushed = false
             navigationController?.pushViewController(profileVC, animated: true)
         }
     }
@@ -485,7 +485,7 @@ class ProfileDetailsViewController:
         if let dataSource = profileInfoCollectionView.dataSource as? ProfileDetailDataSource {
             let officeDetailVC = OfficeDetailViewController()
             (officeDetailVC.dataSource as OfficeDetailDataSource).selectedOffice = dataSource.location
-            officeDetailVC.hidesBottomBarWhenPushed = true
+            officeDetailVC.hidesBottomBarWhenPushed = false
             navigationController?.pushViewController(officeDetailVC, animated: true)
         }
     }
@@ -495,7 +495,7 @@ class ProfileDetailsViewController:
         if let dataSource = profileInfoCollectionView.dataSource as? ProfileDetailDataSource {
             let teamVC = TeamDetailViewController()
             (teamVC.dataSource as TeamDetailDataSource).selectedTeam = dataSource.team!
-            teamVC.hidesBottomBarWhenPushed = true
+            teamVC.hidesBottomBarWhenPushed = false
             navigationController?.pushViewController(teamVC, animated: true)
         }
     }
@@ -611,7 +611,7 @@ class ProfileDetailsViewController:
         let editProfileVC = EditProfileViewController(nibName: "EditProfileViewController", bundle: nil)
         editProfileVC.profile = profile
         editProfileVC.editProfileDelegate = self
-        editProfileVC.hidesBottomBarWhenPushed = true
+        editProfileVC.hidesBottomBarWhenPushed = false
         navigationController?.pushViewController(editProfileVC, animated: true)
     }
     

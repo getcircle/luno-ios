@@ -222,7 +222,7 @@ NewNoteViewControllerDelegate {
             case .Profiles, .Birthdays, .Anniversaries, .NewHires:
                 if let profile = dataSource.contentAtIndexPath(indexPath)? as? ProfileService.Containers.Profile {
                     let profileVC = ProfileDetailViewController.forProfile(profile)
-                    profileVC.hidesBottomBarWhenPushed = true
+                    profileVC.hidesBottomBarWhenPushed = false
                     properties.append(TrackerProperty.withKey(.Destination).withSource(.Detail))
                     properties.append(TrackerProperty.withKey(.DestinationDetailType).withDetailType(.Profile))
                     properties.append(TrackerProperty.withDestinationId("profile_id").withString(profile.id))
@@ -233,7 +233,7 @@ NewNoteViewControllerDelegate {
                 let viewController = storyboard?.instantiateViewControllerWithIdentifier("ProfilesViewController") as ProfilesViewController
                 viewController.dataSource.setInitialData(selectedCard.content[0] as [AnyObject], ofType: nil)
                 viewController.title = selectedCard.title
-                viewController.hidesBottomBarWhenPushed = true
+                viewController.hidesBottomBarWhenPushed = false
                 properties.append(TrackerProperty.withKey(.Destination).withSource(.Overview))
                 properties.append(TrackerProperty.withKey(.DestinationOverviewType).withOverviewType(.Profiles))
                 Tracker.sharedInstance.track(.DetailItemTapped, properties: properties)
@@ -243,7 +243,7 @@ NewNoteViewControllerDelegate {
                 if let office = dataSource.contentAtIndexPath(indexPath)? as? OrganizationService.Containers.Location {
                     let viewController = OfficeDetailViewController()
                     (viewController.dataSource as OfficeDetailDataSource).selectedOffice = office
-                    viewController.hidesBottomBarWhenPushed = true
+                    viewController.hidesBottomBarWhenPushed = false
                     properties.append(TrackerProperty.withKey(.Destination).withSource(.Detail))
                     properties.append(TrackerProperty.withKey(.DestinationDetailType).withDetailType(.Office))
                     properties.append(TrackerProperty.withDestinationId("office_id").withString(office.id))
@@ -255,7 +255,7 @@ NewNoteViewControllerDelegate {
                 if let selectedTeam = dataSource.contentAtIndexPath(indexPath)? as? OrganizationService.Containers.Team {
                     let viewController = TeamDetailViewController()
                     (viewController.dataSource as TeamDetailDataSource).selectedTeam = selectedTeam
-                    viewController.hidesBottomBarWhenPushed = true
+                    viewController.hidesBottomBarWhenPushed = false
                     properties.append(TrackerProperty.withKey(.Destination).withSource(.Detail))
                     properties.append(TrackerProperty.withKey(.DestinationDetailType).withDetailType(.Team))
                     properties.append(TrackerProperty.withDestinationId("team_id").withString(selectedTeam.id))
@@ -271,7 +271,7 @@ NewNoteViewControllerDelegate {
                             viewController.profile = selectedProfile
                             viewController.delegate = self
                             viewController.note = selectedNote
-                            viewController.hidesBottomBarWhenPushed = true
+                            viewController.hidesBottomBarWhenPushed = false
                             properties.append(TrackerProperty.withKey(.Destination).withSource(.Detail))
                             properties.append(TrackerProperty.withKey(.DestinationDetailType).withDetailType(.Note))
                             Tracker.sharedInstance.track(.DetailItemTapped, properties: properties)
@@ -307,7 +307,7 @@ NewNoteViewControllerDelegate {
                 trackSkillSelected(selectedSkill)
                 let viewController = SkillDetailViewController()
                 (viewController.dataSource as SkillDetailDataSource).selectedSkill = selectedSkill
-                viewController.hidesBottomBarWhenPushed = true
+                viewController.hidesBottomBarWhenPushed = false
                 navigationController?.pushViewController(viewController, animated: true)
             }
         }
@@ -328,7 +328,7 @@ NewNoteViewControllerDelegate {
                 viewController.dataSource.setInitialData(card.allContent, ofType: card.type)
             }
             viewController.title = card.title
-            viewController.hidesBottomBarWhenPushed = true
+            viewController.hidesBottomBarWhenPushed = false
             navigationController?.pushViewController(viewController, animated: true)
 
         case .Offices:
@@ -338,14 +338,14 @@ NewNoteViewControllerDelegate {
             let skillsOverviewViewController = SkillsOverviewViewController(nibName: "SkillsOverviewViewController", bundle: nil)
             skillsOverviewViewController.dataSource.setInitialData(content: card.allContent[0] as [AnyObject])
             skillsOverviewViewController.title = card.title
-            skillsOverviewViewController.hidesBottomBarWhenPushed = true
+            skillsOverviewViewController.hidesBottomBarWhenPushed = false
             navigationController?.pushViewController(skillsOverviewViewController, animated: true)
             
         case .Notes:
             let viewController = NotesOverviewViewController(nibName: "NotesOverviewViewController", bundle: nil)
             viewController.dataSource.setInitialData(content: card.allContent as [AnyObject], ofType: nil, withMetaData: card.metaData)
             viewController.title = card.title
-            viewController.hidesBottomBarWhenPushed = true
+            viewController.hidesBottomBarWhenPushed = false
             navigationController?.pushViewController(viewController, animated: true)
 
         default:

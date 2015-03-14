@@ -103,11 +103,17 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
     // MARK: - UITabBarControllerDelegate
 
     func tabBarController(tabBarController: UITabBarController, shouldSelectViewController viewController: UIViewController) -> Bool {
-        trackTabSelected(viewController)
         
+        trackTabSelected(viewController)
         if selectedIndex == 0 && getActiveViewController(viewController) is SearchViewController {
             let searchVC = getActiveViewController(viewController) as SearchViewController
-            searchVC.activateSearch()
+            if searchVC.isViewLoaded() && searchVC.view.window != nil {
+                searchVC.activateSearch()
+            }
+        }
+        
+        if !(getActiveViewController(viewController) is BaseDetailViewController) {
+            getActiveViewController(viewController)!.navigationController?.navigationBar.makeOpaque()
         }
         
         return true
@@ -158,7 +164,7 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
     private func getActiveViewController(viewController: UIViewController?) -> UIViewController? {
         var activeViewController: UIViewController?
         if let navigationController = viewController as? UINavigationController {
-            activeViewController = navigationController.topViewController
+            activeViewController = navigationController.viewControllers.first as? UIViewController
         } else {
             activeViewController = selectedViewController
         }
