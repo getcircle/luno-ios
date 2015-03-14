@@ -24,7 +24,6 @@ class AppreciationCollectionView: UnderlyingCollectionView {
         layout = stickyLayout
         layout?.headerHeight = ProfileHeaderCollectionReusableView.height
         appreciationDataSource = AppreciationDataSource(profile: profile!)
-        appreciationDataSource!.registerCardHeader(self)
         appreciationDelegate = StickyHeaderCollectionViewDelegate()
         backgroundColor = UIColor.appViewBackgroundColor()
         dataSource = appreciationDataSource
@@ -55,9 +54,7 @@ class AppreciationDataSource: UnderlyingCollectionViewDataSource {
 
     override func loadData(completionHandler: (error: NSError?) -> Void) {
         // Add placeholder card to load profile header instantly
-        var placeholderCard = Card(cardType: .Placeholder, title: "Info")
-        appendCard(placeholderCard)
-        
+        addPlaceholderCard()
         AppreciationService.Actions.getAppreciation(profile.id, completionHandler: { (appreciation, error) -> Void in
             if let appreciation = appreciation {
                 self.appreciations = appreciation

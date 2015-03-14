@@ -25,15 +25,7 @@ class ProfileNotesDataSource: UnderlyingCollectionViewDataSource {
         self.init()
         profile = withProfile
     }
-    
-    override func registerCardHeader(collectionView: UICollectionView) {
-        super.registerCardHeader(collectionView)
-        collectionView.registerNib(
-            UINib(nibName: "NotesCollectionView", bundle: nil),
-            forCellWithReuseIdentifier: NoteCellReuseIdentifier
-        )
-    }
-    
+
     override func loadData(completionHandler: (error: NSError?) -> Void) {
         // Add placeholder card to load profile header instantly
         addPlaceholderCard()
@@ -56,13 +48,7 @@ class ProfileNotesDataSource: UnderlyingCollectionViewDataSource {
             (cell as NotesCollectionViewCell).showUserProfile = false
         }
     }
-    
-    private func addPlaceholderCard() {
-        var placeholderCard = Card(cardType: .Placeholder, title: "Info")
-        placeholderCard.sectionInset = UIEdgeInsetsZero
-        appendCard(placeholderCard)
-    }
-    
+
     private func populateData() {
         resetCards()
 
@@ -113,7 +99,6 @@ class ProfileNotesCollectionView: UnderlyingCollectionView {
         layout = stickyLayout
         layout?.headerHeight = ProfileHeaderCollectionReusableView.height
         profileNotesDataSource = ProfileNotesDataSource(profile: profile!)
-        profileNotesDataSource?.registerCardHeader(self)
         profileNotesDelegate = StickyHeaderCollectionViewDelegate()
         backgroundColor = UIColor.appViewBackgroundColor()
         dataSource = profileNotesDataSource

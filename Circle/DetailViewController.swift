@@ -65,7 +65,6 @@ class DetailViewController: BaseDetailViewController, UICollectionViewDelegate {
         collectionView.showsVerticalScrollIndicator = true
         collectionView.bounces = true
         collectionView.alwaysBounceVertical = true
-        (collectionView.dataSource as CardDataSource).registerCardHeader(collectionView!)
         (collectionView.delegate as CardCollectionViewDelegate).delegate = self
     }
 

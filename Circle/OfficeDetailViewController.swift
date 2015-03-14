@@ -27,7 +27,6 @@ class OfficeDetailViewController: DetailViewController,
 
     override func configureCollectionView() {
         collectionView.dataSource = dataSource
-        dataSource.registerCardHeader(collectionView)
         dataSource.cardFooterDelegate = self
         dataSource.cardHeaderDelegate = self
         

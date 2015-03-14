@@ -17,7 +17,6 @@ class Card: Equatable {
 
     var cardIndex = 0
     var contentCount: Int
-    var headerSize = CGSizeZero
     var metaData: AnyObject?
     var sectionInset = UIEdgeInsetsMake(1.0, 10.0, 25.0, 10.0)
     var showAllContent: Bool = false {
@@ -45,6 +44,7 @@ class Card: Equatable {
     private(set) var footerSize = CGSizeZero
     private(set) var headerClass: CircleCollectionReusableView.Type?
     private(set) var headerClassName: String?
+    private(set) var headerSize = CGSizeZero
     private(set) var imageSource: String
     private(set) var maxVisibleItems: Int = 0 {
         didSet {

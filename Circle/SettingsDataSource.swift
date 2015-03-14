@@ -27,12 +27,16 @@ class SettingsDataSource: CardDataSource {
     
     override func loadData(completionHandler: (error: NSError?) -> Void) {
         
+        let sectionHeaderClass = SearchResultsCardHeaderCollectionReusableView.self
+        let sectionHeaderClassName = "SearchResultsCardHeaderCollectionReusableView"
+        
         // Security card
         var securityCard = Card(
             cardType: .Settings,
             title: NSLocalizedString("Security", comment: "Title of section related to security settings"),
             addDefaultFooter: false
         )
+        securityCard.addHeader(headerClass: sectionHeaderClass, headerClassName: sectionHeaderClassName)
         securityCard.sectionInset = UIEdgeInsetsMake(0.0, 0.0, 10.0, 0.0)
         securityCard.addContent(content: [
             [
@@ -48,6 +52,7 @@ class SettingsDataSource: CardDataSource {
             title: NSLocalizedString("Contact", comment: "Title of contact us section"),
             addDefaultFooter: false
         )
+        contactCard.addHeader(headerClass: sectionHeaderClass, headerClassName: sectionHeaderClassName)
         contactCard.sectionInset = UIEdgeInsetsMake(0.0, 0.0, 10.0, 0.0)
         contactCard.addContent(content: [
             [
@@ -67,6 +72,7 @@ class SettingsDataSource: CardDataSource {
             title: NSLocalizedString("Legal", comment: "Title of legal section"),
             addDefaultFooter: false
         )
+        legalCard.addHeader(headerClass: sectionHeaderClass, headerClassName: sectionHeaderClassName)
         legalCard.sectionInset = UIEdgeInsetsMake(0.0, 0.0, 10.0, 0.0)
         legalCard.addContent(content: [
             [
@@ -91,6 +97,7 @@ class SettingsDataSource: CardDataSource {
                 title: "Social",
                 addDefaultFooter: false
             )
+            socialCard.addHeader(headerClass: sectionHeaderClass, headerClassName: sectionHeaderClassName)
             socialCard.sectionInset = UIEdgeInsetsZero
             socialCard.addContent(content: identities as [AnyObject])
             appendCard(socialCard)
@@ -102,6 +109,7 @@ class SettingsDataSource: CardDataSource {
             title: "Account",
             addDefaultFooter: false
         )
+        logoutCard.addHeader(headerClass: sectionHeaderClass, headerClassName: sectionHeaderClassName)
         logoutCard.sectionInset = UIEdgeInsetsMake(1.0, 0.0, 10.0, 0.0)
         logoutCard.addContent(content: [
             [
@@ -117,6 +125,7 @@ class SettingsDataSource: CardDataSource {
         
         // Version card
         var versionCard = Card(cardType: .Settings, title: "", addDefaultFooter: false)
+        versionCard.addHeader(headerClass: sectionHeaderClass, headerClassName: sectionHeaderClassName)
         versionCard.sectionInset = UIEdgeInsetsZero
         versionCard.addContent(content: [
             [
@@ -189,29 +198,11 @@ class SettingsDataSource: CardDataSource {
     
     // MARK: - Section header
     
-    override func registerCardHeader(collectionView: UICollectionView) {
-        collectionView.registerNib(
-            UINib(nibName: "SearchResultsCardHeaderCollectionReusableView", bundle: nil), 
-            forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, 
-            withReuseIdentifier: SearchResultsCardHeaderCollectionReusableView.classReuseIdentifier
-        )
-        
-        super.registerCardHeader(collectionView)
+    override func configureHeader(header: CircleCollectionReusableView, atIndexPath indexPath: NSIndexPath) {
+        super.configureHeader(header, atIndexPath: indexPath)
+        if let settingsHeader = header as? SearchResultsCardHeaderCollectionReusableView {
+            settingsHeader.cardTitleLabel.font = UIFont.appSettingsCardHeader()
+            settingsHeader.backgroundColor = UIColor.clearColor()
+        }
     }
-    
-    override func collectionView(collectionView: UICollectionView,
-        viewForSupplementaryElementOfKind kind: String,
-        atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
-        let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(
-            kind,
-            withReuseIdentifier: SearchResultsCardHeaderCollectionReusableView.classReuseIdentifier,
-            forIndexPath: indexPath
-        ) as SearchResultsCardHeaderCollectionReusableView
-        
-        headerView.setCard(cards[indexPath.section])
-        headerView.cardTitleLabel.font = UIFont.appSettingsCardHeader()
-        headerView.backgroundColor = UIColor.clearColor()
-        return headerView
-    }
-    
 }

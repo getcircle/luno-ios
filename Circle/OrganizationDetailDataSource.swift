@@ -50,7 +50,6 @@ class OrganizationDetailDataSource: CardDataSource {
                             categoryCard.addContent(content: category.teams, maxVisibleItems: 6)
                         }
                         
-                        categoryCard.headerSize = CGSizeMake(CircleCollectionViewCell.width, CardHeaderCollectionReusableView.height)
                         self.appendCard(categoryCard)
                     }
                     completionHandler(error: nil)

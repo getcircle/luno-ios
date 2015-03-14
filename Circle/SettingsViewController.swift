@@ -49,7 +49,6 @@ class SettingsViewController: UIViewController, UICollectionViewDelegate {
             }
         }
 
-        dataSource.registerCardHeader(collectionView)
         collectionView.dataSource = dataSource
         collectionViewDelegate.delegate = self
         collectionView.delegate = collectionViewDelegate

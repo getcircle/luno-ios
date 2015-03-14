@@ -24,7 +24,6 @@ class ProfileInfoCollectionView: UnderlyingCollectionView, CardFooterViewDelegat
         layout = stickyLayout
         layout?.headerHeight = ProfileHeaderCollectionReusableView.height
         profileInfoDataSource = ProfileDetailDataSource(profile: profile!)
-        profileInfoDataSource.registerCardHeader(self)
         profileInfoDataSource.cardFooterDelegate = self
         profileInfoDelegate = StickyHeaderCollectionViewDelegate()
         backgroundColor = UIColor.appViewBackgroundColor()

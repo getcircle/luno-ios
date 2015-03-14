@@ -20,10 +20,6 @@ class OfficeDetailDataSource: CardDataSource {
     private(set) var profileHeaderView: CircleCollectionReusableView?
     
     private let defaultSectionInset = UIEdgeInsetsMake(0.0, 0.0, 20.0, 0.0)
-    private var defaultSectionHeaderSize = CGSizeMake(
-        ProfileSectionHeaderCollectionReusableView.width,
-        ProfileSectionHeaderCollectionReusableView.height
-    )
     
     // MARK: - Load Data
     
@@ -37,6 +33,10 @@ class OfficeDetailDataSource: CardDataSource {
         // Add placeholder card to load profile header instantly
         var placeholderCard = Card(cardType: .Placeholder, title: "Info")
         placeholderCard.sectionInset = UIEdgeInsetsZero
+        placeholderCard.addHeader(
+            headerClass: ProfileHeaderCollectionReusableView.self, 
+            headerClassName: "ProfileHeaderCollectionReusableView"
+        )
         appendCard(placeholderCard)
         
         // Fetch data within a dispatch group, calling populateData when all tasks have finished
@@ -77,52 +77,13 @@ class OfficeDetailDataSource: CardDataSource {
         }
     }
     
-    // MARK: - Supplementary View
-
-    override func registerCardHeader(collectionView: UICollectionView) {
-        collectionView.registerNib(
-            UINib(nibName: "ProfileHeaderCollectionReusableView", bundle: nil),
-            forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
-            withReuseIdentifier: ProfileHeaderCollectionReusableView.classReuseIdentifier
-        )
-        
-        collectionView.registerNib(
-            UINib(nibName: "ProfileSectionHeaderCollectionReusableView", bundle: nil),
-            forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
-            withReuseIdentifier: ProfileSectionHeaderCollectionReusableView.classReuseIdentifier
-        )
-        
-        super.registerCardHeader(collectionView)
-    }
-    
     // MARK: - UICollectionViewDataSource
     
-    override func collectionView(collectionView: UICollectionView,
-        viewForSupplementaryElementOfKind kind: String,
-        atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+    override func configureHeader(header: CircleCollectionReusableView, atIndexPath indexPath: NSIndexPath) {
         
-        if indexPath.section == 0 {
-            let supplementaryView = collectionView.dequeueReusableSupplementaryViewOfKind(
-                kind,
-                withReuseIdentifier: ProfileHeaderCollectionReusableView.classReuseIdentifier,
-                forIndexPath: indexPath
-            ) as ProfileHeaderCollectionReusableView
-            
-            supplementaryView.setOffice(selectedOffice)
-            profileHeaderView = supplementaryView
-            return supplementaryView
-        } else if kind == UICollectionElementKindSectionHeader {
-            let card = cardAtSection(indexPath.section)
-            let supplementaryView = collectionView.dequeueReusableSupplementaryViewOfKind(
-                kind,
-                withReuseIdentifier: ProfileSectionHeaderCollectionReusableView.classReuseIdentifier,
-                forIndexPath: indexPath
-            ) as ProfileSectionHeaderCollectionReusableView
-            supplementaryView.cardHeaderDelegate = cardHeaderDelegate
-            supplementaryView.setCard(card!)
-            return supplementaryView
-        } else {
-            return super.collectionView(collectionView, viewForSupplementaryElementOfKind: kind, atIndexPath: indexPath)
+        if let profileHeader = header as? ProfileHeaderCollectionReusableView {
+            profileHeader.setOffice(selectedOffice)
+            profileHeaderView = profileHeader
         }
     }
     
@@ -173,9 +134,11 @@ class OfficeDetailDataSource: CardDataSource {
             )
             teamsCard.addContent(content: teams as [AnyObject], maxVisibleItems: 6)
             teamsCard.sectionInset = UIEdgeInsetsZero
-            teamsCard.headerSize = defaultSectionHeaderSize
+            teamsCard.addHeader(
+                headerClass: ProfileSectionHeaderCollectionReusableView.self, 
+                headerClassName: "ProfileSectionHeaderCollectionReusableView"
+            )
             appendCard(teamsCard)
         }
-        
     }
 }

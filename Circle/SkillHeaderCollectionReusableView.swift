@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ProtobufRegistry
 
 class SkillHeaderCollectionReusableView: CircleCollectionReusableView {
 
@@ -31,5 +32,12 @@ class SkillHeaderCollectionReusableView: CircleCollectionReusableView {
         skillNameLabel.layer.borderColor = UIColor.whiteColor().CGColor
         skillNameLabel.layer.borderWidth = 0.5
         skillLabelInitialFontSize = skillNameLabel.font.pointSize
+    }
+    
+    func setSkill(skill: ProfileService.Containers.Skill) {
+        skillNameLabel.attributedText = NSAttributedString(
+            string: skill.name.uppercaseString,
+            attributes: [NSKernAttributeName: 2.0]
+        )
     }
 }

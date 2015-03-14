@@ -155,13 +155,6 @@ class CardDataSource: NSObject, UICollectionViewDataSource {
     insertCardAtIndex, removeCardAtIndex to manage the data.
     */
     private(set) var cards = [Card]()
-    
-    /**
-    Readonly flag indicating whether a header was registered with the collection view.
-    
-    This flag can be used by the layout or layout delegate objects to return appropriate sizes for supplementary views.
-    */
-    private(set) var isHeaderRegistered = false
     private var registeredCellClasses = NSMutableSet()
     
     var cardHeaderDelegate: CardHeaderViewDelegate?
@@ -209,38 +202,6 @@ class CardDataSource: NSObject, UICollectionViewDataSource {
     
     func refreshData(completionHandler: (error: NSError?) -> Void) {
         
-    }
-    
-    /**
-    Registers the default card header supplementary view with the passed in collection view.
-    
-    :param: collectionView The collection view with which to register the supplementary view with.
-    */
-    func registerDefaultCardHeader(collectionView: UICollectionView) {
-        collectionView.registerNib(
-            UINib(nibName: "CardHeaderCollectionReusableView", bundle: nil),
-            forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
-            withReuseIdentifier: CardHeaderCollectionReusableView.classReuseIdentifier
-        )
-        
-        registerCardHeader(collectionView)
-    }
-    
-    /**
-    Register supplementary views with the passed collection view. The default implementation simply sets the internal state.
-    This state can then be queried to determine whether to support headers or not from generic layout delegates.
-    
-    View controllers may choose to register supplementary views but then not actually display them by setting different
-    size attributes in the layout directly or via the layout delegate.
-    
-    Subclasses may override this method to register other custom headers and footers. If they do, the superclass 
-    implementation needs to be called as well. In addition to this, subclasses then need to provide the implmentation for
-    viewForSupplementaryElementOfKind method.
-    
-    :param: collectionView The collection view with which to register the supplementary view with.
-    */
-    func registerCardHeader(collectionView: UICollectionView) {
-        isHeaderRegistered = true
     }
     
     /**
@@ -305,33 +266,18 @@ class CardDataSource: NSObject, UICollectionViewDataSource {
         // Default Implementation
     }
     
-    func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+    final func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
         let card = cards[indexPath.section]
-        
-        println(card.title)
-        println(card.headerClassName)
-        
+
         if kind == UICollectionElementKindSectionFooter && card.addFooter {
-            return addDefaultFooterView(collectionView, atIndexPath: indexPath)
+            return addFooterView(collectionView, atIndexPath: indexPath)
         }
         else if kind == UICollectionElementKindSectionHeader && card.addHeader {
-            registerReusableHeader(collectionView, forCard: card)
-            let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(
-                kind,
-                withReuseIdentifier: card.headerClass!.classReuseIdentifier,
-                forIndexPath: indexPath
-            ) as CircleCollectionReusableView
-            
-            if let delegate = cardHeaderDelegate {
-                headerView.cardHeaderDelegate = delegate
-            }
-            headerView.setCard(card)
-            configureHeader(headerView, atIndexPath: indexPath)
-            animate(headerView, ofType: .Header, atIndexPath: indexPath)
-            return headerView
+            return addHeaderView(collectionView, atIndexPath: indexPath)
         }
         
         // We should never get here
+        assert(false, "Headers not configured correctly. Check addHeader calls on cards.")
         return CircleCollectionReusableView()
     }
     
@@ -351,7 +297,27 @@ class CardDataSource: NSObject, UICollectionViewDataSource {
         // Default Implementation
     }
     
-    final func addDefaultFooterView(collectionView: UICollectionView, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+    private func addHeaderView(collectionView: UICollectionView, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+        
+        let card = cards[indexPath.section]
+        registerReusableHeader(collectionView, forCard: card)
+        let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(
+            UICollectionElementKindSectionHeader,
+            withReuseIdentifier: card.headerClass!.classReuseIdentifier,
+            forIndexPath: indexPath
+        ) as CircleCollectionReusableView
+        
+        if let delegate = cardHeaderDelegate {
+            headerView.cardHeaderDelegate = delegate
+        }
+
+        headerView.setCard(card)
+        configureHeader(headerView, atIndexPath: indexPath)
+        animate(headerView, ofType: .Header, atIndexPath: indexPath)
+        return headerView
+    }
+
+    private func addFooterView(collectionView: UICollectionView, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
         let card = cards[indexPath.section]
         registerReusableFooter(collectionView, forCard: card)
         let footerView = collectionView.dequeueReusableSupplementaryViewOfKind(
@@ -369,6 +335,7 @@ class CardDataSource: NSObject, UICollectionViewDataSource {
         animate(footerView, ofType: .Footer, atIndexPath: indexPath)
         return footerView
     }
+    
     
     private func animate(view: UICollectionReusableView, ofType typeOfView: TypeOfView, atIndexPath indexPath: NSIndexPath) {
         if !animateContent {

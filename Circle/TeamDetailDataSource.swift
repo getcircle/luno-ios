@@ -27,9 +27,14 @@ class TeamDetailDataSource: CardDataSource {
         // Add a placeholder card for header view
         let placeholderHeaderCard = Card(cardType: .Placeholder, title: "Team Header")
         placeholderHeaderCard.sectionInset = UIEdgeInsetsZero
+        placeholderHeaderCard.addHeader(
+            headerClass: TeamHeaderCollectionReusableView.self, 
+            headerClassName: "TeamHeaderCollectionReusableView"
+        )
         appendCard(placeholderHeaderCard)
         
         if let currentProfile = AuthViewController.getLoggedInUserProfile() {
+            
             ProfileService.Actions.getProfiles(selectedTeam!.id) { (profiles, _, error) -> Void in
                 if error == nil {
                     // Add Owner Card
@@ -49,6 +54,9 @@ class TeamDetailDataSource: CardDataSource {
                         self.appendCard(ownerCard)
                     }
                     
+                    let sectionHeaderClass = SearchResultsCardHeaderCollectionReusableView.self
+                    let sectionHeaderClassName = "SearchResultsCardHeaderCollectionReusableView"
+                    
                     // Add Members Card
                     if allProfilesExceptOwner?.count > 0 {
                         self.profiles.extend(allProfilesExceptOwner!)
@@ -57,6 +65,7 @@ class TeamDetailDataSource: CardDataSource {
                             comment: "Title for list of team members"
                         ).uppercaseStringWithLocale(NSLocale.currentLocale())
                         let membersCard = Card(cardType: .Profiles, title: membersCardTitle)
+                        membersCard.addHeader(headerClass: sectionHeaderClass, headerClassName: sectionHeaderClassName)
                         membersCard.addContent(content: allProfilesExceptOwner! as [AnyObject])
                         membersCard.sectionInset = UIEdgeInsetsMake(0.0, 0.0, 25.0, 0.0)
                         self.appendCard(membersCard)
@@ -67,7 +76,8 @@ class TeamDetailDataSource: CardDataSource {
                     OrganizationService.Actions.getTeamChildren(self.selectedTeam!.id) { (teams, error) -> Void in
                         if let teams = teams {
                             // TODO we need to fix this
-                            var teamsCard = Card(cardType: .TeamsGrid, title: "")
+                            var teamsCard = Card(cardType: .TeamsGrid, title: "Teams")
+//                            teamsCard.addHeader(headerClass: sectionHeaderClass, headerClassName: sectionHeaderClassName)
                             teamsCard.addContent(content: teams)
                             teamsCard.sectionInset = UIEdgeInsetsMake(0.0, 0.0, 25.0, 0.0)
                             self.appendCard(teamsCard)
@@ -91,50 +101,19 @@ class TeamDetailDataSource: CardDataSource {
             (cell as TeamsCollectionViewCell).showTeamsLabel = true
         }
     }
-    
-    // MARK: - Supplementary View
-    
-    override func registerCardHeader(collectionView: UICollectionView) {
-        collectionView.registerNib(
-            UINib(nibName: "TeamHeaderCollectionReusableView", bundle: nil),
-            forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
-            withReuseIdentifier: TeamHeaderCollectionReusableView.classReuseIdentifier
-        )
-        
-        collectionView.registerNib(
-            UINib(nibName: "SearchResultsCardHeaderCollectionReusableView", bundle: nil),
-            forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
-            withReuseIdentifier: SearchResultsCardHeaderCollectionReusableView.classReuseIdentifier
-        )
 
-        super.registerCardHeader(collectionView)
-    }
-    
     // MARK: - UICollectionViewDataSource
     
-    override func collectionView(collectionView: UICollectionView,
-        viewForSupplementaryElementOfKind kind: String,
-        atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+    override func configureHeader(header: CircleCollectionReusableView, atIndexPath indexPath: NSIndexPath) {
+        super.configureHeader(header, atIndexPath: indexPath)
         
-            if indexPath.section == 0 {
-                let supplementaryView = collectionView.dequeueReusableSupplementaryViewOfKind(
-                    kind,
-                    withReuseIdentifier: TeamHeaderCollectionReusableView.classReuseIdentifier,
-                    forIndexPath: indexPath
-                ) as TeamHeaderCollectionReusableView
-                
-                supplementaryView.setData(selectedTeam)
-                profileHeaderView = supplementaryView
-                return supplementaryView
-            }
-            
-            let supplementaryView = collectionView.dequeueReusableSupplementaryViewOfKind(
-                kind,
-                withReuseIdentifier: SearchResultsCardHeaderCollectionReusableView.classReuseIdentifier,
-                forIndexPath: indexPath
-            ) as SearchResultsCardHeaderCollectionReusableView
-            supplementaryView.setCard(cards[indexPath.section])
-            supplementaryView.backgroundColor = UIColor.clearColor()
-            return supplementaryView
+        if let teamHeader = header as? TeamHeaderCollectionReusableView {
+            teamHeader.setData(selectedTeam)
+            profileHeaderView = teamHeader
+        }
+        
+        if let sectionHeader = header as? SearchResultsCardHeaderCollectionReusableView {
+            sectionHeader.backgroundColor = UIColor.clearColor()
+        }
     }
 }

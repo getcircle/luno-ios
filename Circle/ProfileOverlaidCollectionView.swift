@@ -32,45 +32,29 @@ class ProfileOverlaidCollectionViewDataSource: CardDataSource {
         sections = withSections
     }
     
-    override func registerCardHeader(collectionView: UICollectionView) {
-        collectionView.registerNib(
-            UINib(nibName: "ProfileHeaderCollectionReusableView", bundle: nil),
-            forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
-            withReuseIdentifier: ProfileHeaderCollectionReusableView.classReuseIdentifier
-        )
-        super.registerCardHeader(collectionView)
-    }
-    
     override func loadData(completionHandler: (error: NSError?) -> Void) {
         let placeholderCard = Card(cardType: .Placeholder, title: "Placeholder")
+        placeholderCard.addHeader(
+            headerClass: ProfileHeaderCollectionReusableView.self, 
+            headerClassName: "ProfileHeaderCollectionReusableView"
+        )
         appendCard(placeholderCard)
     }
     
-    override func collectionView(
-        collectionView: UICollectionView,
-        viewForSupplementaryElementOfKind kind: String,
-        atIndexPath indexPath: NSIndexPath
-    ) -> UICollectionReusableView {
-            
-        if indexPath.section == 0 {
-            let supplementaryView = collectionView.dequeueReusableSupplementaryViewOfKind(
-                kind,
-                withReuseIdentifier: ProfileHeaderCollectionReusableView.classReuseIdentifier,
-                forIndexPath: indexPath
-            ) as ProfileHeaderCollectionReusableView
-            
+    override func configureHeader(header: CircleCollectionReusableView, atIndexPath indexPath: NSIndexPath) {
+        super.configureHeader(header, atIndexPath: indexPath)
+        
+        if let header = header as? ProfileHeaderCollectionReusableView {
             if profile != nil {
-                supplementaryView.setProfile(profile!)
+                header.setProfile(profile!)
             }
             
-            profileHeaderView = supplementaryView
+            profileHeaderView = header
             profileHeaderView?.sections = sections
             if let delegate = profileHeaderViewDelegate {
                 profileHeaderView?.profileSegmentedControlDelegate = delegate
             }
-            return supplementaryView
         }
-        return super.collectionView(collectionView, viewForSupplementaryElementOfKind: kind, atIndexPath: indexPath)
     }
     
     // MARK: - Public Methods
@@ -117,7 +101,6 @@ class ProfileOverlaidCollectionView: UICollectionView, UICollectionViewDelegate 
             profile: profile!,
             sections: sections
         )
-        collectionViewDataSource?.registerCardHeader(self)
         collectionViewDelegate = StickyHeaderCollectionViewDelegate()
         backgroundColor = UIColor.clearColor()
         dataSource = collectionViewDataSource

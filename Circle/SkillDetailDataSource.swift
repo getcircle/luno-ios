@@ -27,6 +27,10 @@ class SkillDetailDataSource: CardDataSource {
         // Add a placeholder card for skill view
         let placeholderSkillCard = Card(cardType: .Placeholder, title: "Skill Header")
         placeholderSkillCard.sectionInset = UIEdgeInsetsZero
+        placeholderSkillCard.addHeader(
+            headerClass: SkillHeaderCollectionReusableView.self, 
+            headerClassName: "SkillHeaderCollectionReusableView"
+        )
         appendCard(placeholderSkillCard)
         
         if let currentProfile = AuthViewController.getLoggedInUserProfile() {
@@ -45,33 +49,15 @@ class SkillDetailDataSource: CardDataSource {
             }
         }
     }
-
-    // MARK: - Supplementary View
-    
-    override func registerCardHeader(collectionView: UICollectionView) {
-        collectionView.registerNib(
-            UINib(nibName: "SkillHeaderCollectionReusableView", bundle: nil),
-            forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
-            withReuseIdentifier: SkillHeaderCollectionReusableView.classReuseIdentifier
-        )
-        
-        super.registerCardHeader(collectionView)
-    }
     
     // MARK: - UICollectionViewDataSource
     
-    override func collectionView(collectionView: UICollectionView,
-        viewForSupplementaryElementOfKind kind: String,
-        atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
-            
-            let supplementaryView = collectionView.dequeueReusableSupplementaryViewOfKind(
-                kind,
-                withReuseIdentifier: SkillHeaderCollectionReusableView.classReuseIdentifier,
-                forIndexPath: indexPath
-            ) as SkillHeaderCollectionReusableView
-            supplementaryView.skillNameLabel.attributedText = NSAttributedString(string: selectedSkill.name.uppercaseString, attributes: [NSKernAttributeName: 2.0])
-            
-            profileHeaderView = supplementaryView
-            return supplementaryView
+    override func configureHeader(header: CircleCollectionReusableView, atIndexPath indexPath: NSIndexPath) {
+        super.configureHeader(header, atIndexPath: indexPath)
+        
+        if let skillsHeader = header as? SkillHeaderCollectionReusableView {
+            skillsHeader.setSkill(selectedSkill)
+            profileHeaderView = skillsHeader
+        }
     }
 }
