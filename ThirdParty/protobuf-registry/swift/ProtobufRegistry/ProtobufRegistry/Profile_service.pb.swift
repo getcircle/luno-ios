@@ -9830,6 +9830,7 @@ final public class ProfileService : GeneratedMessage {
 
           public private(set) var address_ids:Array<String> = Array<String>()
           public private(set) var location_ids:Array<String> = Array<String>()
+          public private(set) var team_ids:Array<String> = Array<String>()
           required public init() {
                super.init()
           }
@@ -9845,6 +9846,11 @@ final public class ProfileService : GeneratedMessage {
             if !location_ids.isEmpty {
               for oneValuelocation_ids in location_ids {
                 output.writeString(2, value:oneValuelocation_ids)
+              }
+            }
+            if !team_ids.isEmpty {
+              for oneValueteam_ids in team_ids {
+                output.writeString(3, value:oneValueteam_ids)
               }
             }
             unknownFields.writeToCodedOutputStream(output)
@@ -9868,6 +9874,12 @@ final public class ProfileService : GeneratedMessage {
             }
             size += dataSizeLocationIds
             size += 1 * Int32(location_ids.count)
+            var dataSizeTeamIds:Int32 = 0
+            for oneValueteam_ids in team_ids {
+                dataSizeTeamIds += WireFormat.computeStringSizeNoTag(oneValueteam_ids)
+            }
+            size += dataSizeTeamIds
+            size += 1 * Int32(team_ids.count)
             size += unknownFields.serializedSize()
             memoizedSerializedSize = size
             return size
@@ -9919,6 +9931,11 @@ final public class ProfileService : GeneratedMessage {
                 output += "\(indent) location_ids[\(location_idsElementIndex)]: \(oneValuelocation_ids)\n"
                 location_idsElementIndex++
             }
+            var team_idsElementIndex:Int = 0
+            for oneValueteam_ids in team_ids  {
+                output += "\(indent) team_ids[\(team_idsElementIndex)]: \(oneValueteam_ids)\n"
+                team_idsElementIndex++
+            }
             unknownFields.writeDescriptionTo(&output, indent:indent)
           }
           override public var hashValue:Int {
@@ -9929,6 +9946,9 @@ final public class ProfileService : GeneratedMessage {
                   }
                   for oneValuelocation_ids in location_ids {
                       hashCode = (hashCode &* 31) &+ oneValuelocation_ids.hashValue
+                  }
+                  for oneValueteam_ids in team_ids {
+                      hashCode = (hashCode &* 31) &+ oneValueteam_ids.hashValue
                   }
                   hashCode = (hashCode &* 31) &+  unknownFields.hashValue
                   return hashCode
@@ -9984,6 +10004,18 @@ final public class ProfileService : GeneratedMessage {
              builderResult.location_ids.removeAll(keepCapacity: false)
              return self
           }
+          public var team_ids:Array<String> {
+               get {
+                   return builderResult.team_ids
+               }
+               set (array) {
+                   builderResult.team_ids = array
+               }
+          }
+          public func clearTeamIds() -> ProfileService.GetProfileStats.RequestBuilder {
+             builderResult.team_ids.removeAll(keepCapacity: false)
+             return self
+          }
           override public var internalGetResult:GeneratedMessage {
                get {
                   return builderResult
@@ -10011,6 +10043,9 @@ final public class ProfileService : GeneratedMessage {
             if !other.location_ids.isEmpty {
                 builderResult.location_ids += other.location_ids
             }
+            if !other.team_ids.isEmpty {
+                builderResult.team_ids += other.team_ids
+            }
             mergeUnknownFields(other.unknownFields)
             return self
           }
@@ -10031,6 +10066,9 @@ final public class ProfileService : GeneratedMessage {
 
               case 18 :
                 location_ids += [input.readString()]
+
+              case 26 :
+                team_ids += [input.readString()]
 
               default:
                 if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {

@@ -766,6 +766,7 @@ final public class OrganizationService : GeneratedMessage {
                  case "owner_id": return owner_id
                  case "organization_id": return organization_id
                  case "department": return department
+                 case "profile_count": return profile_count
                  default: return nil
                  }
           }
@@ -784,6 +785,9 @@ final public class OrganizationService : GeneratedMessage {
 
           public private(set) var hasDepartment:Bool = false
           public private(set) var department:String = ""
+
+          public private(set) var hasProfileCount:Bool = false
+          public private(set) var profile_count:UInt32 = UInt32(0)
 
           public private(set) var path:Array<OrganizationService.Containers.PathPart>  = Array<OrganizationService.Containers.PathPart>()
           required public init() {
@@ -811,6 +815,9 @@ final public class OrganizationService : GeneratedMessage {
             if hasDepartment {
               output.writeString(6, value:department)
             }
+            if hasProfileCount {
+              output.writeUInt32(7, value:profile_count)
+            }
             unknownFields.writeToCodedOutputStream(output)
           }
           override public func serializedSize() -> Int32 {
@@ -837,6 +844,9 @@ final public class OrganizationService : GeneratedMessage {
             }
             if hasDepartment {
               size += WireFormat.computeStringSize(6, value:department)
+            }
+            if hasProfileCount {
+              size += WireFormat.computeUInt32Size(7, value:profile_count)
             }
             size += unknownFields.serializedSize()
             memoizedSerializedSize = size
@@ -901,6 +911,9 @@ final public class OrganizationService : GeneratedMessage {
             if hasDepartment {
               output += "\(indent) department: \(department) \n"
             }
+            if hasProfileCount {
+              output += "\(indent) profile_count: \(profile_count) \n"
+            }
             unknownFields.writeDescriptionTo(&output, indent:indent)
           }
           override public var hashValue:Int {
@@ -923,6 +936,9 @@ final public class OrganizationService : GeneratedMessage {
                   }
                   if hasDepartment {
                      hashCode = (hashCode &* 31) &+ department.hashValue
+                  }
+                  if hasProfileCount {
+                     hashCode = (hashCode &* 31) &+ profile_count.hashValue
                   }
                   hashCode = (hashCode &* 31) &+  unknownFields.hashValue
                   return hashCode
@@ -1061,6 +1077,25 @@ final public class OrganizationService : GeneratedMessage {
                builderResult.department = ""
                return self
           }
+          public var hasProfileCount:Bool {
+               get {
+                    return builderResult.hasProfileCount
+               }
+          }
+          public var profile_count:UInt32 {
+               get {
+                    return builderResult.profile_count
+               }
+               set (value) {
+                   builderResult.hasProfileCount = true
+                   builderResult.profile_count = value
+               }
+          }
+          public func clearProfileCount() -> OrganizationService.Containers.TeamBuilder{
+               builderResult.hasProfileCount = false
+               builderResult.profile_count = UInt32(0)
+               return self
+          }
           override public var internalGetResult:GeneratedMessage {
                get {
                   return builderResult
@@ -1100,6 +1135,9 @@ final public class OrganizationService : GeneratedMessage {
             if other.hasDepartment {
                  department = other.department
             }
+            if other.hasProfileCount {
+                 profile_count = other.profile_count
+            }
             mergeUnknownFields(other.unknownFields)
             return self
           }
@@ -1134,6 +1172,9 @@ final public class OrganizationService : GeneratedMessage {
 
               case 50 :
                 department = input.readString()
+
+              case 56 :
+                profile_count = input.readUInt32()
 
               default:
                 if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {

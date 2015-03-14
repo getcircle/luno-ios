@@ -80,7 +80,7 @@ class ProfileCollectionViewCell: CircleCollectionViewCell {
         profileImageView.backgroundColor = UIColor.appTeamHeaderBackgroundColor(team.id)
         profileImageView.image = nil
         nameLabel.text = team.name
-        subTextLabel.text = "10 People"
+        subTextLabel.text = getCountLabel(team.profile_count)
         teamNameLetterLabel.text = team.name[0]
         teamNameLetterLabel.hidden = false
     }

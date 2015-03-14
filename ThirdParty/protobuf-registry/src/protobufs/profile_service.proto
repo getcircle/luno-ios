@@ -223,6 +223,7 @@ message ProfileService {
         message Request {
             repeated string address_ids = 1;
             repeated string location_ids = 2;
+            repeated string team_ids = 3;
         }
 
         message Response {
