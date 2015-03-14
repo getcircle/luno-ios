@@ -335,6 +335,22 @@ class CardDataSource: NSObject, UICollectionViewDataSource {
         return CircleCollectionReusableView()
     }
     
+    /**
+    Configure footer instances for display. The default implementation of this method is empty.
+    
+    This method is called from viewForSupplementaryElementOfKind.
+    
+    Subclasses can override this method to further customize footers per instance and to provide custom data.
+    The customization should be minimum and generally not include fixed layout changes. A good use case of footer
+    configuration would be to hide/show a label within a footer depending on the use case.
+    
+    :param: footer Footer being configured.
+    :param: indexPath Indexpath of the footer.
+    */
+    func configureFooter(footer: CircleCollectionReusableView, atIndexPath indexPath: NSIndexPath) {
+        // Default Implementation
+    }
+    
     final func addDefaultFooterView(collectionView: UICollectionView, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
         let card = cards[indexPath.section]
         registerReusableFooter(collectionView, forCard: card)
@@ -344,12 +360,13 @@ class CardDataSource: NSObject, UICollectionViewDataSource {
             forIndexPath: indexPath
         ) as CardFooterCollectionReusableView
         
-        animate(footerView, ofType: .Footer, atIndexPath: indexPath)
         if let delegate = cardFooterDelegate {
             footerView.cardFooterDelegate = delegate
         }
         
         footerView.card = card
+        configureFooter(footerView, atIndexPath: indexPath)
+        animate(footerView, ofType: .Footer, atIndexPath: indexPath)
         return footerView
     }
     
