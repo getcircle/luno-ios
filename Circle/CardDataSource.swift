@@ -81,16 +81,30 @@ class Section {
     var cardType: Card.CardType
     var cardHeaderSize: CGSize
     
+    /**
+        If set, data sources add the section even when
+        no content is set. This is primarily applicable 
+        on logged in user's profile where they need to
+        add content for section that are not filled.
+    */
+    var allowEmptyContent: Bool
+    
     init(
         title sectionTitle: String,
         items sectionItems: [SectionItem],
         cardType sectionCardType: Card.CardType,
-        cardHeaderSize sectionCardHeaderSize: CGSize = CGSizeZero
+        cardHeaderSize sectionCardHeaderSize: CGSize = CGSizeZero,
+        allowEmptyContent sectionCardAllowEmptyContent: Bool? = false
         ) {
             title = sectionTitle
             items = sectionItems
             cardType = sectionCardType
             cardHeaderSize = sectionCardHeaderSize
+            allowEmptyContent = sectionCardAllowEmptyContent != nil ? sectionCardAllowEmptyContent! : false
+    }
+    
+    func toString() -> String {
+        return title
     }
 }
 

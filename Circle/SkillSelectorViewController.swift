@@ -194,7 +194,7 @@ class SkillSelectorViewController:
         ) as SkillCollectionViewCell
     
         // Configure the cell
-        cell.skillLabel.text = filteredSkills[indexPath.row].name.capitalizedString
+        cell.skillLabel.text = filteredSkills[indexPath.row].name
         configureCellByTheme(cell)
         if animatedCell[indexPath] == nil {
             animatedCell[indexPath] = true
@@ -248,7 +248,7 @@ class SkillSelectorViewController:
     // MARK: - UICollectionViewDelegateFlowLayout
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        let skillText = filteredSkills[indexPath.row].name.capitalizedString
+        let skillText = filteredSkills[indexPath.row].name
         if cachedItemSizes[skillText] == nil {
             prototypeCell.skillLabel.text = skillText
             prototypeCell.setNeedsLayout()

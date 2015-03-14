@@ -38,7 +38,8 @@ class SearchResultsCardHeaderCollectionReusableView: CircleCollectionReusableVie
         // Initialization code
     }
     
-    func setCard(card: Card) {
+    override func setCard(card: Card) {
         cardTitleLabel.text = card.title.uppercaseStringWithLocale(NSLocale.currentLocale())
+        super.setCard(card)
     }
 }

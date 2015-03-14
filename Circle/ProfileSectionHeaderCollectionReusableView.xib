@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -11,7 +11,7 @@
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="PEOPLE" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="538-Iu-4CO">
-                    <rect key="frame" x="15" y="15" width="290" height="21"/>
+                    <rect key="frame" x="15" y="15" width="230" height="21"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="dH1-j7-bXX"/>
                     </constraints>
@@ -19,20 +19,37 @@
                     <color key="textColor" red="0.1505631506" green="0.1505586505" blue="0.15056121350000001" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="49R-WV-QsX" userLabel="AddEditButton">
+                    <rect key="frame" x="245" y="9" width="60" height="32"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="32" id="QAu-MO-KsH"/>
+                        <constraint firstAttribute="width" constant="40" id="ROe-vS-jZW"/>
+                        <constraint firstAttribute="width" constant="60" id="tPP-Kc-LCf"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="13"/>
+                    <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    <inset key="imageEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
+                    <state key="normal" title="EDIT">
+                        <color key="titleColor" red="0.14901960784313725" green="0.14901960784313725" blue="0.14901960784313725" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="ROe-vS-jZW"/>
+                        </mask>
+                    </variation>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="538-Iu-4CO" secondAttribute="trailing" constant="15" id="Yrh-9L-iAe"/>
+                <constraint firstItem="49R-WV-QsX" firstAttribute="leading" secondItem="538-Iu-4CO" secondAttribute="trailing" id="0ef-eZ-SB7"/>
+                <constraint firstAttribute="trailing" secondItem="49R-WV-QsX" secondAttribute="trailing" constant="15" id="5dT-r6-WX3"/>
+                <constraint firstAttribute="centerY" secondItem="49R-WV-QsX" secondAttribute="centerY" id="KaE-Yd-VzL"/>
                 <constraint firstItem="538-Iu-4CO" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" constant="15" id="cN1-np-5yv"/>
                 <constraint firstAttribute="centerY" secondItem="538-Iu-4CO" secondAttribute="centerY" id="nVi-5I-MbB"/>
-                <constraint firstAttribute="centerY" secondItem="538-Iu-4CO" secondAttribute="centerY" id="tYh-ef-dpj"/>
             </constraints>
-            <variation key="default">
-                <mask key="constraints">
-                    <exclude reference="tYh-ef-dpj"/>
-                </mask>
-            </variation>
             <connections>
+                <outlet property="addEditButton" destination="49R-WV-QsX" id="Or7-zP-HSb"/>
                 <outlet property="cardTitleLabel" destination="538-Iu-4CO" id="3mV-jS-vRw"/>
             </connections>
             <point key="canvasLocation" x="-359" y="35"/>

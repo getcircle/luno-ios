@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol CardHeaderViewDelegate {
+    func cardHeaderTapped(card: Card!)
+}
+
 class CircleCollectionReusableView: UICollectionReusableView {
 
     class var classReuseIdentifier: String {
@@ -20,5 +24,13 @@ class CircleCollectionReusableView: UICollectionReusableView {
     
     class var height: CGFloat {
         return 44.0
+    }
+    
+    
+    var currentCard: Card?
+    var cardHeaderDelegate: CardHeaderViewDelegate?
+    
+    func setCard(card: Card) {
+        currentCard = card
     }
 }

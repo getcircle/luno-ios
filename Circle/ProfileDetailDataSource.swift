@@ -43,7 +43,6 @@ class ProfileDetailDataSource: CardDataSource {
             forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
             withReuseIdentifier: ProfileHeaderCollectionReusableView.classReuseIdentifier
         )
-        super.registerCardHeader(collectionView)
         
         collectionView.registerNib(
             UINib(nibName: "ProfileSectionHeaderCollectionReusableView", bundle: nil),
@@ -264,7 +263,8 @@ class ProfileDetailDataSource: CardDataSource {
                 image: nil
             )
         ]
-        return Section(title: "Skills", items: sectionItems, cardType: .Skills, cardHeaderSize: CGSizeMake(CircleCollectionViewCell.width, CardHeaderCollectionReusableView.height))
+        
+        return Section(title: "Skills", items: sectionItems, cardType: .Skills, cardHeaderSize: CGSizeMake(CircleCollectionViewCell.width, CardHeaderCollectionReusableView.height), allowEmptyContent: true)
     }
     
     private func getEducationSection() -> Section {
@@ -309,7 +309,8 @@ class ProfileDetailDataSource: CardDataSource {
                 addItemToCard(item, card: sectionCard)
             }
             
-            if sectionCard.content.count > 0 {
+            if sectionCard.content.count > 0 ||
+                (section.allowEmptyContent && isProfileLoggedInUserProfile()) {
                 appendCard(sectionCard)
             }
         }
@@ -528,6 +529,7 @@ class ProfileDetailDataSource: CardDataSource {
     
     override func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
         
+        
         if kind == UICollectionElementKindSectionFooter {
             var footerView = addDefaultFooterView(collectionView, atIndexPath: indexPath)
             (footerView as CardFooterCollectionReusableView).insetEdges = false
@@ -554,9 +556,21 @@ class ProfileDetailDataSource: CardDataSource {
                 withReuseIdentifier: ProfileSectionHeaderCollectionReusableView.classReuseIdentifier,
                 forIndexPath: indexPath
             ) as ProfileSectionHeaderCollectionReusableView
+            if (isProfileLoggedInUserProfile() && sections[indexPath.section - 1].allowEmptyContent) {
+                headerView.showAddEditButton = true
+            }
             
             headerView.setCard(cards[indexPath.section])
+            headerView.cardHeaderDelegate = cardHeaderDelegate
             return headerView
         }
+    }
+    
+    private func isProfileLoggedInUserProfile() -> Bool {
+        if let loggedInUserProfile = AuthViewController.getLoggedInUserProfile() {
+            return loggedInUserProfile.id == profile.id
+        }
+        
+        return false
     }
 }

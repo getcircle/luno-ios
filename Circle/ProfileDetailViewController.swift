@@ -10,6 +10,7 @@ import UIKit
 import ProtobufRegistry
 
 class ProfileDetailViewController: DetailViewController,
+    CardHeaderViewDelegate,
     CardFooterViewDelegate,
     EditProfileDelegate
 {
@@ -47,6 +48,7 @@ class ProfileDetailViewController: DetailViewController,
     override func configureCollectionView() {
         collectionView.dataSource = dataSource
         dataSource.registerCardHeader(collectionView)
+        dataSource.cardHeaderDelegate = self
         dataSource.cardFooterDelegate = self
         
         collectionView.delegate = delegate
@@ -403,4 +405,19 @@ class ProfileDetailViewController: DetailViewController,
             }
         }
     }
+    
+    // MARK: - CardHeaderViewDelegate
+    
+    func cardHeaderTapped(card: Card!) {
+        switch card.type {
+        case .Skills:
+            let skillSelectorViewController = SkillSelectorViewController(nibName: "SkillSelectorViewController", bundle: nil)
+            let skillsNavController = UINavigationController(rootViewController: skillSelectorViewController)
+            navigationController?.presentViewController(skillsNavController, animated: true, completion: nil)
+
+        default:
+            break
+        }
+    }
+    
 }

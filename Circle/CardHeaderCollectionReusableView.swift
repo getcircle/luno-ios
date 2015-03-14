@@ -8,10 +8,6 @@
 
 import UIKit
 
-protocol CardHeaderViewDelegate {
-    func cardHeaderTapped(card: Card!)
-}
-
 class CardHeaderCollectionReusableView: CircleCollectionReusableView {
     
     override class var classReuseIdentifier: String {
@@ -28,9 +24,6 @@ class CardHeaderCollectionReusableView: CircleCollectionReusableView {
     @IBOutlet weak private(set) var cardTitleLabel: UILabel!
     @IBOutlet weak private var cardTriggerButton: UIButton!
     
-    var currentCard: Card?
-    var cardHeaderDelegate: CardHeaderViewDelegate?
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         cardImageView.tintColor = UIColor.blackColor()
@@ -43,7 +36,7 @@ class CardHeaderCollectionReusableView: CircleCollectionReusableView {
         cardTriggerButton.setBackgroundImage(selectionImage, forState: .Highlighted)
     }
     
-    func setCard(card: Card) {
+    override func setCard(card: Card) {
         cardTitleLabel.text = card.title
         cardImageView.image = UIImage(named: card.imageSource)?.imageWithRenderingMode(.AlwaysTemplate)
         if card.showContentCount {
@@ -53,7 +46,7 @@ class CardHeaderCollectionReusableView: CircleCollectionReusableView {
             cardContentCountLabel.text = ""
         }
 
-        currentCard = card
+        super.setCard(card)
     }
     
     @IBAction func cardHeaderTapped(sender: AnyObject!) {
