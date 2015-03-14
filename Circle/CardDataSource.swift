@@ -163,13 +163,14 @@ class CardDataSource: NSObject, UICollectionViewDataSource {
     */
     private(set) var isHeaderRegistered = false
     private var registeredCellClasses = NSMutableSet()
-    var cardHeaderDelegate: CardHeaderViewDelegate?
     
+    var cardHeaderDelegate: CardHeaderViewDelegate?
+    private var registeredHeaderClasses = NSMutableSet()
+
     /**
     Footer view delegate.
     */
     var cardFooterDelegate: CardFooterViewDelegate?
-    private(set) var isFooterRegistered = false
     private var registeredFooterClasses = NSMutableSet()
 
     /**
@@ -288,26 +289,50 @@ class CardDataSource: NSObject, UICollectionViewDataSource {
         return cell
     }
     
+    /**
+        Configure header instances for display. The default implementation of this method is empty.
+        
+        This method is called from viewForSupplementaryElementOfKind.
+        
+        Subclasses can override this method to further customize headers per instance and to provide custom data. 
+        The customization should be minimum and generally not include fixed layout changes. A good use case of header 
+        configuration would be to hide/show a label within a header depending on the use case.
+        
+        :param: header Header being configured.
+        :param: indexPath Indexpath of the header.
+    */
+    func configureHeader(header: CircleCollectionReusableView, atIndexPath indexPath: NSIndexPath) {
+        // Default Implementation
+    }
+    
     func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
         let card = cards[indexPath.section]
+        
+        println(card.title)
+        println(card.headerClassName)
         
         if kind == UICollectionElementKindSectionFooter && card.addFooter {
             return addDefaultFooterView(collectionView, atIndexPath: indexPath)
         }
-        else {
+        else if kind == UICollectionElementKindSectionHeader && card.addHeader {
+            registerReusableHeader(collectionView, forCard: card)
             let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(
                 kind,
-                withReuseIdentifier: CardHeaderCollectionReusableView.classReuseIdentifier,
+                withReuseIdentifier: card.headerClass!.classReuseIdentifier,
                 forIndexPath: indexPath
-            ) as CardHeaderCollectionReusableView
+            ) as CircleCollectionReusableView
             
-            animate(headerView, ofType: .Header, atIndexPath: indexPath)
             if let delegate = cardHeaderDelegate {
                 headerView.cardHeaderDelegate = delegate
             }
             headerView.setCard(card)
+            configureHeader(headerView, atIndexPath: indexPath)
+            animate(headerView, ofType: .Header, atIndexPath: indexPath)
             return headerView
         }
+        
+        // We should never get here
+        return CircleCollectionReusableView()
     }
     
     final func addDefaultFooterView(collectionView: UICollectionView, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
@@ -399,6 +424,22 @@ class CardDataSource: NSObject, UICollectionViewDataSource {
     
     final func resetCards() {
         cards.removeAll(keepCapacity: true)
+    }
+    
+    // MARK: - Header Registration
+    
+    private func registerReusableHeader(collectionView: UICollectionView, forCard card: Card) {
+        if card.addHeader {
+            if !registeredHeaderClasses.containsObject(card.headerClassName!) {
+                collectionView.registerNib(
+                    UINib(nibName: card.headerClassName!, bundle: nil),
+                    forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
+                    withReuseIdentifier: card.headerClass!.classReuseIdentifier
+                )
+                
+                registeredHeaderClasses.addObject(card.headerClassName!)
+            }
+        }
     }
     
     // MARK: - Cell Registration

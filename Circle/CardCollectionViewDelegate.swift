@@ -65,12 +65,13 @@ class CardCollectionViewDelegate: NSObject, UICollectionViewDelegateFlowLayout, 
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         
-        let card = cardDataSource(collectionView).cardAtSection(section)
-        if !cardDataSource(collectionView).isHeaderRegistered || card?.title == "" {
-            return CGSizeZero
+        if let card = cardDataSource(collectionView).cardAtSection(section) {
+            if card.addHeader {
+                return card.headerSize
+            }
         }
 
-        return CGSizeMake(collectionView.frameWidth, CardHeaderCollectionReusableView.height)
+        return CGSizeZero
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {

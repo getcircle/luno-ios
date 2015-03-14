@@ -34,15 +34,17 @@ class Card: Equatable {
     var showContentCount = true
 
     private(set) var allContent = [AnyObject]()
+    private(set) var addHeader = false
     private(set) var addFooter = false
+    private(set) var cardContentType: CardContentType
     private(set) var content = [AnyObject]()
     private(set) var contentClass: CircleCollectionViewCell.Type
     private(set) var contentClassName: String
-    private(set) var cardContentType: CardContentType
     private(set) var footerClass: CircleCollectionReusableView.Type?
-    // Yup, this is ugly but swift makes us do this
     private(set) var footerClassName: String?
     private(set) var footerSize = CGSizeZero
+    private(set) var headerClass: CircleCollectionReusableView.Type?
+    private(set) var headerClassName: String?
     private(set) var imageSource: String
     private(set) var maxVisibleItems: Int = 0 {
         didSet {
@@ -439,6 +441,32 @@ class Card: Equatable {
             0.0,
             sectionInset.right
         )
+    }
+    
+    func addDefaultHeader() {
+        addHeader(
+            headerClass: CardHeaderCollectionReusableView.self,
+            headerClassName: "CardHeaderCollectionReusableView"
+        )
+    }
+
+    func addHeader(
+        headerClass withHeaderClass: CircleCollectionReusableView.Type,
+        headerClassName withHeaderClassName: String,
+        headerSize withHeaderSize: CGSize? = nil
+    ) {
+        addHeader = true
+        headerClass = withHeaderClass
+        headerClassName = withHeaderClassName
+        if let providedHeaderSize = withHeaderSize {
+            headerSize = providedHeaderSize
+        }
+        else {
+            headerSize = CGSizeMake(
+                withHeaderClass.width - sectionInset.left - sectionInset.right,
+                withHeaderClass.height
+            )
+        }
     }
 
     func setContentToVisibleItems() {
