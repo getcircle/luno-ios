@@ -88,10 +88,11 @@ class ProfileCollectionViewCell: CircleCollectionViewCell {
     private func setLocation(location: OrganizationService.Containers.Location) {
         nameLabel.text = location.address.officeName()
         profileImageView.image = UIImage(named: "SF")
-        subTextLabel.text = "10 People"
+        subTextLabel.text = getCountLabel(location.profile_count)
     }
 
     // MARK: - Helpers
+    
     private func getAnniversarySubtitle(profile: ProfileService.Containers.Profile) -> String {
         var subtitle = ""
         if let hireDate = profile.hire_date.toDate() {
@@ -121,6 +122,16 @@ class ProfileCollectionViewCell: CircleCollectionViewCell {
             }
         }
         return subtitle
+    }
+    
+    private func getCountLabel(count: UInt32) -> String {
+        var label = String(count)
+        if count == 1 {
+            label += " Person"
+        } else {
+            label += " People"
+        }
+        return label
     }
     
 }

@@ -113,7 +113,7 @@ final public class LandingService : GeneratedMessage {
           public private(set) var type:LandingService.Containers.Category.CategoryType = LandingService.Containers.Category.CategoryType.DirectReports
           public private(set) var hasTypes:Bool = false
           public private(set) var hasTotalCount:Bool = false
-          public private(set) var total_count:String = ""
+          public private(set) var total_count:UInt32 = UInt32(0)
 
           public private(set) var profiles:Array<ProfileService.Containers.Profile>  = Array<ProfileService.Containers.Profile>()
           public private(set) var addresses:Array<OrganizationService.Containers.Address>  = Array<OrganizationService.Containers.Address>()
@@ -138,7 +138,7 @@ final public class LandingService : GeneratedMessage {
               output.writeEnum(3, value:type.rawValue)
             }
             if hasTotalCount {
-              output.writeString(4, value:total_count)
+              output.writeUInt32(4, value:total_count)
             }
             for oneElementprofiles in profiles {
                 output.writeMessage(5, value:oneElementprofiles)
@@ -177,7 +177,7 @@ final public class LandingService : GeneratedMessage {
               size += WireFormat.computeEnumSize(3, value:type.rawValue)
             }
             if hasTotalCount {
-              size += WireFormat.computeStringSize(4, value:total_count)
+              size += WireFormat.computeUInt32Size(4, value:total_count)
             }
             for oneElementprofiles in profiles {
                 size += WireFormat.computeMessageSize(5, value:oneElementprofiles)
@@ -419,7 +419,7 @@ final public class LandingService : GeneratedMessage {
                     return builderResult.hasTotalCount
                }
           }
-          public var total_count:String {
+          public var total_count:UInt32 {
                get {
                     return builderResult.total_count
                }
@@ -430,7 +430,7 @@ final public class LandingService : GeneratedMessage {
           }
           public func clearTotalCount() -> LandingService.Containers.CategoryBuilder{
                builderResult.hasTotalCount = false
-               builderResult.total_count = ""
+               builderResult.total_count = UInt32(0)
                return self
           }
           public var profiles:Array<ProfileService.Containers.Profile> {
@@ -585,8 +585,8 @@ final public class LandingService : GeneratedMessage {
                      unknownFieldsBuilder.mergeVarintField(3, value:Int64(valueInttype))
                 }
 
-              case 34 :
-                total_count = input.readString()
+              case 32 :
+                total_count = input.readUInt32()
 
               case 42 :
                 var subBuilder = ProfileService.Containers.Profile.builder()

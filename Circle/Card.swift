@@ -363,7 +363,7 @@ class Card: Equatable {
             cardType: cardType,
             title: category.title,
             content: nil,
-            contentCount: category.total_count.toInt(),
+            contentCount: String(category.total_count).toInt() ?? 0,
             addDefaultFooter: addDefaultFooter ?? false
         )
     }

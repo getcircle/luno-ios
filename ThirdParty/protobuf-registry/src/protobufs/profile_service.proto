@@ -45,7 +45,7 @@ message ProfileService {
 
         message Stats {
             optional string id = 1;
-            optional string count = 2;
+            optional uint32 count = 2;
         }
 
         message ProfileArray {

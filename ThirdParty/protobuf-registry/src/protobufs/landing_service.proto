@@ -29,7 +29,7 @@ message LandingService {
             optional string title = 1;
             optional string content_key = 2;
             optional CategoryType type = 3;
-            optional string total_count = 4;
+            optional uint32 total_count = 4;
 
             repeated main.profile_service.ProfileService.Containers.Profile profiles = 5;
             repeated main.organization_service.OrganizationService.Containers.Address addresses = 6;

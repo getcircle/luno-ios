@@ -171,6 +171,7 @@ final public class OrganizationService : GeneratedMessage {
                  case "id": return id
                  case "name": return name
                  case "domain": return domain
+                 case "image_url": return image_url
                  default: return nil
                  }
           }
@@ -183,6 +184,9 @@ final public class OrganizationService : GeneratedMessage {
 
           public private(set) var hasDomain:Bool = false
           public private(set) var domain:String = ""
+
+          public private(set) var hasImageUrl:Bool = false
+          public private(set) var image_url:String = ""
 
           required public init() {
                super.init()
@@ -199,6 +203,9 @@ final public class OrganizationService : GeneratedMessage {
             }
             if hasDomain {
               output.writeString(3, value:domain)
+            }
+            if hasImageUrl {
+              output.writeString(4, value:image_url)
             }
             unknownFields.writeToCodedOutputStream(output)
           }
@@ -217,6 +224,9 @@ final public class OrganizationService : GeneratedMessage {
             }
             if hasDomain {
               size += WireFormat.computeStringSize(3, value:domain)
+            }
+            if hasImageUrl {
+              size += WireFormat.computeStringSize(4, value:image_url)
             }
             size += unknownFields.serializedSize()
             memoizedSerializedSize = size
@@ -268,6 +278,9 @@ final public class OrganizationService : GeneratedMessage {
             if hasDomain {
               output += "\(indent) domain: \(domain) \n"
             }
+            if hasImageUrl {
+              output += "\(indent) image_url: \(image_url) \n"
+            }
             unknownFields.writeDescriptionTo(&output, indent:indent)
           }
           override public var hashValue:Int {
@@ -281,6 +294,9 @@ final public class OrganizationService : GeneratedMessage {
                   }
                   if hasDomain {
                      hashCode = (hashCode &* 31) &+ domain.hashValue
+                  }
+                  if hasImageUrl {
+                     hashCode = (hashCode &* 31) &+ image_url.hashValue
                   }
                   hashCode = (hashCode &* 31) &+  unknownFields.hashValue
                   return hashCode
@@ -369,6 +385,25 @@ final public class OrganizationService : GeneratedMessage {
                builderResult.domain = ""
                return self
           }
+          public var hasImageUrl:Bool {
+               get {
+                    return builderResult.hasImageUrl
+               }
+          }
+          public var image_url:String {
+               get {
+                    return builderResult.image_url
+               }
+               set (value) {
+                   builderResult.hasImageUrl = true
+                   builderResult.image_url = value
+               }
+          }
+          public func clearImageUrl() -> OrganizationService.Containers.OrganizationBuilder{
+               builderResult.hasImageUrl = false
+               builderResult.image_url = ""
+               return self
+          }
           override public var internalGetResult:GeneratedMessage {
                get {
                   return builderResult
@@ -399,6 +434,9 @@ final public class OrganizationService : GeneratedMessage {
             if other.hasDomain {
                  domain = other.domain
             }
+            if other.hasImageUrl {
+                 image_url = other.image_url
+            }
             mergeUnknownFields(other.unknownFields)
             return self
           }
@@ -422,6 +460,9 @@ final public class OrganizationService : GeneratedMessage {
 
               case 26 :
                 domain = input.readString()
+
+              case 34 :
+                image_url = input.readString()
 
               default:
                 if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
@@ -1806,6 +1847,7 @@ final public class OrganizationService : GeneratedMessage {
                  case "address": return address
                  case "organization_id": return organization_id
                  case "profile_count": return profile_count
+                 case "image_url": return image_url
                  default: return nil
                  }
           }
@@ -1823,6 +1865,9 @@ final public class OrganizationService : GeneratedMessage {
 
           public private(set) var hasProfileCount:Bool = false
           public private(set) var profile_count:UInt32 = UInt32(0)
+
+          public private(set) var hasImageUrl:Bool = false
+          public private(set) var image_url:String = ""
 
           required public init() {
                super.init()
@@ -1845,6 +1890,9 @@ final public class OrganizationService : GeneratedMessage {
             }
             if hasProfileCount {
               output.writeUInt32(5, value:profile_count)
+            }
+            if hasImageUrl {
+              output.writeString(6, value:image_url)
             }
             unknownFields.writeToCodedOutputStream(output)
           }
@@ -1869,6 +1917,9 @@ final public class OrganizationService : GeneratedMessage {
             }
             if hasProfileCount {
               size += WireFormat.computeUInt32Size(5, value:profile_count)
+            }
+            if hasImageUrl {
+              size += WireFormat.computeStringSize(6, value:image_url)
             }
             size += unknownFields.serializedSize()
             memoizedSerializedSize = size
@@ -1928,6 +1979,9 @@ final public class OrganizationService : GeneratedMessage {
             if hasProfileCount {
               output += "\(indent) profile_count: \(profile_count) \n"
             }
+            if hasImageUrl {
+              output += "\(indent) image_url: \(image_url) \n"
+            }
             unknownFields.writeDescriptionTo(&output, indent:indent)
           }
           override public var hashValue:Int {
@@ -1947,6 +2001,9 @@ final public class OrganizationService : GeneratedMessage {
                   }
                   if hasProfileCount {
                      hashCode = (hashCode &* 31) &+ profile_count.hashValue
+                  }
+                  if hasImageUrl {
+                     hashCode = (hashCode &* 31) &+ image_url.hashValue
                   }
                   hashCode = (hashCode &* 31) &+  unknownFields.hashValue
                   return hashCode
@@ -2086,6 +2143,25 @@ final public class OrganizationService : GeneratedMessage {
                builderResult.profile_count = UInt32(0)
                return self
           }
+          public var hasImageUrl:Bool {
+               get {
+                    return builderResult.hasImageUrl
+               }
+          }
+          public var image_url:String {
+               get {
+                    return builderResult.image_url
+               }
+               set (value) {
+                   builderResult.hasImageUrl = true
+                   builderResult.image_url = value
+               }
+          }
+          public func clearImageUrl() -> OrganizationService.Containers.LocationBuilder{
+               builderResult.hasImageUrl = false
+               builderResult.image_url = ""
+               return self
+          }
           override public var internalGetResult:GeneratedMessage {
                get {
                   return builderResult
@@ -2122,6 +2198,9 @@ final public class OrganizationService : GeneratedMessage {
             if other.hasProfileCount {
                  profile_count = other.profile_count
             }
+            if other.hasImageUrl {
+                 image_url = other.image_url
+            }
             mergeUnknownFields(other.unknownFields)
             return self
           }
@@ -2156,6 +2235,9 @@ final public class OrganizationService : GeneratedMessage {
 
               case 40 :
                 profile_count = input.readUInt32()
+
+              case 50 :
+                image_url = input.readString()
 
               default:
                 if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
