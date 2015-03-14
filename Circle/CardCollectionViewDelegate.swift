@@ -105,6 +105,10 @@ class CardCollectionViewDelegate: NSObject, UICollectionViewDelegateFlowLayout, 
     
     // MARK: - ScrollViewDelegate
     
+    func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+        delegate?.scrollViewWillBeginDragging?(scrollView)
+    }
+    
     func scrollViewDidScrollToTop(scrollView: UIScrollView) {
         delegate?.scrollViewDidScrollToTop?(scrollView)
     }

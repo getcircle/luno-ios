@@ -22,7 +22,7 @@ class SearchQueryDataSource: CardDataSource {
     override func loadData(completionHandler: (error: NSError?) -> Void) {
     }
     
-    func filter(string: String, completionHandler: (error: NSError?) -> Void) {
+    override func filter(string: String, completionHandler: (error: NSError?) -> Void) {
         searchTerm = string
         SearchService.Actions.search(string, completionHandler: { (results, error) -> Void in
             if let results = results {

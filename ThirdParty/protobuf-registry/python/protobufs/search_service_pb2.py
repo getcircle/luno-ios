@@ -20,12 +20,68 @@ import protobufs.profile_service_pb2
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='protobufs/search_service.proto',
   package='main.search_service',
-  serialized_pb=_b('\n\x1eprotobufs/search_service.proto\x12\x13main.search_service\x1a$protobufs/organization_service.proto\x1a\x1fprotobufs/profile_service.proto\"\xb1\x02\n\rSearchService\x1a\x9f\x02\n\x06Search\x1a\x18\n\x07Request\x12\r\n\x05query\x18\x01 \x01(\t\x1a\xfa\x01\n\x08Response\x12I\n\x08profiles\x18\x01 \x03(\x0b\x32\x37.main.profile_service.ProfileService.Containers.Profile\x12M\n\x05teams\x18\x02 \x03(\x0b\x32>.main.organization_service.OrganizationService.Containers.Team\x12T\n\taddresses\x18\x03 \x03(\x0b\x32\x41.main.organization_service.OrganizationService.Containers.Address')
+  serialized_pb=_b('\n\x1eprotobufs/search_service.proto\x12\x13main.search_service\x1a$protobufs/organization_service.proto\x1a\x1fprotobufs/profile_service.proto\"\xa8\x03\n\rSearchService\x1a\x9f\x02\n\x06Search\x1a\x18\n\x07Request\x12\r\n\x05query\x18\x01 \x01(\t\x1a\xfa\x01\n\x08Response\x12I\n\x08profiles\x18\x01 \x03(\x0b\x32\x37.main.profile_service.ProfileService.Containers.Profile\x12M\n\x05teams\x18\x02 \x03(\x0b\x32>.main.organization_service.OrganizationService.Containers.Team\x12T\n\taddresses\x18\x03 \x03(\x0b\x32\x41.main.organization_service.OrganizationService.Containers.Address\"<\n\x08\x43\x61tegory\x12\n\n\x06PEOPLE\x10\x00\x12\t\n\x05TEAMS\x10\x01\x12\r\n\tLOCATIONS\x10\x02\x12\n\n\x06SKILLS\x10\x03\"7\n\tAttribute\x12\x0f\n\x0bLOCATION_ID\x10\x00\x12\x0b\n\x07TEAM_ID\x10\x01\x12\x0c\n\x08SKILL_ID\x10\x02')
   ,
   dependencies=[protobufs.organization_service_pb2.DESCRIPTOR,protobufs.profile_service_pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 
+
+_SEARCHSERVICE_CATEGORY = _descriptor.EnumDescriptor(
+  name='Category',
+  full_name='main.search_service.SearchService.Category',
+  filename=None,
+  file=DESCRIPTOR,
+  values=[
+    _descriptor.EnumValueDescriptor(
+      name='PEOPLE', index=0, number=0,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='TEAMS', index=1, number=1,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='LOCATIONS', index=2, number=2,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='SKILLS', index=3, number=3,
+      options=None,
+      type=None),
+  ],
+  containing_type=None,
+  options=None,
+  serialized_start=434,
+  serialized_end=494,
+)
+_sym_db.RegisterEnumDescriptor(_SEARCHSERVICE_CATEGORY)
+
+_SEARCHSERVICE_ATTRIBUTE = _descriptor.EnumDescriptor(
+  name='Attribute',
+  full_name='main.search_service.SearchService.Attribute',
+  filename=None,
+  file=DESCRIPTOR,
+  values=[
+    _descriptor.EnumValueDescriptor(
+      name='LOCATION_ID', index=0, number=0,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='TEAM_ID', index=1, number=1,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='SKILL_ID', index=2, number=2,
+      options=None,
+      type=None),
+  ],
+  containing_type=None,
+  options=None,
+  serialized_start=496,
+  serialized_end=551,
+)
+_sym_db.RegisterEnumDescriptor(_SEARCHSERVICE_ATTRIBUTE)
 
 
 _SEARCHSERVICE_SEARCH_REQUEST = _descriptor.Descriptor(
@@ -134,6 +190,8 @@ _SEARCHSERVICE = _descriptor.Descriptor(
   ],
   nested_types=[_SEARCHSERVICE_SEARCH, ],
   enum_types=[
+    _SEARCHSERVICE_CATEGORY,
+    _SEARCHSERVICE_ATTRIBUTE,
   ],
   options=None,
   is_extendable=False,
@@ -141,7 +199,7 @@ _SEARCHSERVICE = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=127,
-  serialized_end=432,
+  serialized_end=551,
 )
 
 _SEARCHSERVICE_SEARCH_REQUEST.containing_type = _SEARCHSERVICE_SEARCH
@@ -150,6 +208,8 @@ _SEARCHSERVICE_SEARCH_RESPONSE.fields_by_name['teams'].message_type = protobufs.
 _SEARCHSERVICE_SEARCH_RESPONSE.fields_by_name['addresses'].message_type = protobufs.organization_service_pb2._ORGANIZATIONSERVICE_CONTAINERS_ADDRESS
 _SEARCHSERVICE_SEARCH_RESPONSE.containing_type = _SEARCHSERVICE_SEARCH
 _SEARCHSERVICE_SEARCH.containing_type = _SEARCHSERVICE
+_SEARCHSERVICE_CATEGORY.containing_type = _SEARCHSERVICE
+_SEARCHSERVICE_ATTRIBUTE.containing_type = _SEARCHSERVICE
 DESCRIPTOR.message_types_by_name['SearchService'] = _SEARCHSERVICE
 
 SearchService = _reflection.GeneratedProtocolMessageType('SearchService', (_message.Message,), dict(

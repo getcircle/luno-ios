@@ -11,6 +11,10 @@ import ProtobufRegistry
 
 class ProfilesDataSource: CardDataSource {
 
+    private(set) var searchAttribute: SearchService.Attribute?
+    private(set) var searchAttributeValue: AnyObject?
+    
+    private var card: Card!
     private var cardType: Card.CardType = .Profiles
     private var profiles = Array<ProfileService.Containers.Profile>()
     
@@ -19,6 +23,8 @@ class ProfilesDataSource: CardDataSource {
     func configureForLocation(locationId: String) {
         let requestBuilder = ProfileService.GetProfiles.Request.builder()
         requestBuilder.location_id = locationId
+        searchAttribute = .LocationId
+        searchAttributeValue = locationId
         configureForParameters(requestBuilder)
     }
     
@@ -54,22 +60,24 @@ class ProfilesDataSource: CardDataSource {
     override func loadInitialData(completionHandler: (error: NSError?) -> Void) {
         super.loadInitialData(completionHandler)
         
-        let profilesCard = Card(cardType: cardType, title: "")
+        card = Card(cardType: cardType, title: "")
+        card.sectionInset = UIEdgeInsetsMake(1.0, 0.0, 0.0, 0.0)
+        
         registerNextRequestCompletionHandler { (_, _, wrapped, error) -> Void in
             let response = wrapped?.response?.result.getExtension(
                 ProfileServiceRequests_get_profiles
                 ) as? ProfileService.GetProfiles.Response
             
             if let profiles = response?.profiles {
-                profilesCard.addContent(content: profiles as [AnyObject])
-                self.handleNewContentAddedToCard(profilesCard, newContent: profiles)
+                self.profiles.extend(profiles)
+                self.card.addContent(content: profiles as [AnyObject])
+                self.handleNewContentAddedToCard(self.card, newContent: profiles)
             }
         }
         
-        profilesCard.sectionInset = UIEdgeInsetsMake(1.0, 0.0, 0.0, 0.0)
-        appendCard(profilesCard)
+        appendCard(card)
+        card.addContent(content: profiles)
         if profiles.count > 0 {
-            profilesCard.addContent(content: profiles)
             completionHandler(error: nil)
         } else {
             if canTriggerNextRequest() {
@@ -78,6 +86,32 @@ class ProfilesDataSource: CardDataSource {
                 }
             }
         }
+    }
+    
+    // MARK: - Filtering
+    
+    override func handleFiltering(query: String, completionHandler: (error: NSError?) -> Void) {
+        // XXX handle all cases where we're using this view controller (birthdays, anniversaries etc.)
+        if searchAttribute != nil && searchAttributeValue != nil {
+            SearchService.Actions.search(
+                query,
+                category: .People,
+                attribute: searchAttribute!,
+                attributeValue: searchAttributeValue!
+            ) { (result, error) -> Void in
+                self.card.resetContent(result?.profiles ?? [])
+                completionHandler(error: error)
+            }
+        } else {
+            // XXX some actual error handling here
+            completionHandler(error: nil)
+        }
+    }
+    
+    override func clearFilter(completionHandler: () -> Void) {
+        super.clearFilter(completionHandler)
+        card.resetContent(profiles)
+        completionHandler()
     }
     
 }

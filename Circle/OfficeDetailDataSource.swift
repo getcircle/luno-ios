@@ -164,7 +164,7 @@ class OfficeDetailDataSource: CardDataSource {
         // Teams
         if teams.count > 0 {
             let teamsCard = Card(cardType: .TeamsGrid, title: AppStrings.CardTitleOfficeTeam)
-            teamsCard.addContent(content: teams as [AnyObject])
+            teamsCard.addContent(content: teams as [AnyObject], maxVisibleItems: 6)
             teamsCard.sectionInset = UIEdgeInsetsZero
             teamsCard.headerSize = defaultSectionHeaderSize
             appendCard(teamsCard)

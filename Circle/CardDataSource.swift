@@ -111,6 +111,7 @@ class Section {
 enum CardDataSourceState {
     case Loaded
     case Loading
+    case Filtered
     case AllLoaded
 }
 
@@ -497,7 +498,7 @@ class CardDataSource: NSObject, UICollectionViewDataSource {
     
     func canTriggerNextRequest() -> Bool {
         switch state {
-        case .Loading: return false
+        case .Loading, .Filtered: return false
         default: break
         }
 
@@ -537,6 +538,23 @@ class CardDataSource: NSObject, UICollectionViewDataSource {
                 completionHandler?()
             }
         }
+    }
+    
+    // MARK: - Filtering
+    
+    func filter(query: String, completionHandler: (error: NSError?) -> Void) {
+        state = .Filtered
+        handleFiltering(query) { (error: NSError?) -> Void in
+            completionHandler(error: error)
+        }
+    }
+    
+    func handleFiltering(query: String, completionHandler: (error: NSError?) -> Void) {
+        fatalError("subclasses must override this method")
+    }
+    
+    func clearFilter(completionHandler: () -> Void) {
+        state = .Loaded
     }
 
 }

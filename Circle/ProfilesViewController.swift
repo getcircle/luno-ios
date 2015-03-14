@@ -54,6 +54,7 @@ class ProfilesViewController: UIViewController,
     private func configureSearchHeaderView() {
         if let nibViews = NSBundle.mainBundle().loadNibNamed("SearchHeaderView", owner: nil, options: nil) as? [UIView] {
             if let headerView = nibViews.first as? SearchHeaderView {
+                searchHeaderView = headerView
                 headerView.delegate = self
                 headerView.searchTextField.placeholder = NSLocalizedString(
                     "Filter people",
@@ -80,7 +81,7 @@ class ProfilesViewController: UIViewController,
     // MARK: Helpers
     
     private func hideFilterIfLimitedContent() {
-        if dataSource.cardAtSection(0)?.content.count < 10 {
+        if dataSource.cardAtSection(0)?.content.count < 5 {
             collectionViewVerticalSpaceConstraint.constant = -44
             collectionView.setNeedsUpdateConstraints()
             searchHeaderView?.removeFromSuperview()
@@ -126,10 +127,28 @@ class ProfilesViewController: UIViewController,
     // MARK: - SearchHeaderViewDelegate
     
     func didCancel(sender: UIView) {
-        collectionView.reloadData()
+        dataSource.clearFilter {
+            self.collectionView.reloadData()
+        }
     }
     
     func filterPeople(sender: AnyObject?) {
+        if searchHeaderView != nil {
+            let query = searchHeaderView!.searchTextField.text
+            if query.trimWhitespace() == "" {
+                dataSource.clearFilter { () -> Void in
+                    self.collectionView.reloadData()
+                }
+            } else {
+                dataSource.filter(searchHeaderView!.searchTextField.text) { (error) -> Void in
+                    self.collectionView.reloadData()
+                }
+            }
+        }
+    }
+    
+    func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+        searchHeaderView?.searchTextField.resignFirstResponder()
     }
 
 }

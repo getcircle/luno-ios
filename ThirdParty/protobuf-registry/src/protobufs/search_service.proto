@@ -5,6 +5,19 @@ import "protobufs/profile_service.proto";
 
 message SearchService {
 
+    enum Category {
+        PEOPLE = 0;
+        TEAMS = 1;
+        LOCATIONS = 2;
+        SKILLS = 3;
+    }
+
+    enum Attribute {
+        LOCATION_ID = 0;
+        TEAM_ID = 1;
+        SKILL_ID = 2;
+    }
+
     // MARK: - Actions
 
     message Search {

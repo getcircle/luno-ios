@@ -10,6 +10,7 @@ import Foundation
 import ProtobufRegistry
 
 typealias SearchCompletionHandler = (result: SearchService.Actions.SearchResults?, error: NSError?) -> Void
+typealias FilterCompletionHandler = (content: [AnyObject], error: NSError?) -> Void
 
 extension SearchService {
 
@@ -56,7 +57,63 @@ extension SearchService {
 //            }
         }
         
+        class func filter(
+            query: String,
+            category: SearchService.Category,
+            toFilter: [AnyObject],
+            completionHandler: FilterCompletionHandler?
+        ) {
+                
+        }
+        
+        class func search(
+            query: String,
+            category: SearchService.Category,
+            attribute: SearchService.Attribute?,
+            attributeValue: AnyObject?,
+            completionHandler: SearchCompletionHandler?
+        ) {
+            // Query the cache
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), { () -> Void in
+                let (result, error) = self.search(query, category: category, attribute: attribute, attributeValue: attributeValue)
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    completionHandler?(result: result, error: error)
+                    return
+                })
+            })
+        }
+        
         // MARK: - Helpers
+        
+        private class func searchTermsFromQuery(query: String) -> [String] {
+            return query.componentsSeparatedByString(" ")
+        }
+            
+        private class func search(
+            query: String,
+            category: SearchService.Category,
+            attribute: SearchService.Attribute?,
+            attributeValue: AnyObject?
+        ) -> (SearchResults?, NSError?) {
+            
+            let searchTerms = searchTermsFromQuery(query)
+            let results = SearchResults()
+            
+            switch category {
+            case .People:
+                var toFilter: Array<ProfileService.Containers.Profile>
+                if attribute != nil && attributeValue != nil {
+                    toFilter = ObjectStore.sharedInstance.getProfilesForAttribute(attribute!, value: attributeValue!)
+                } else {
+                    toFilter = ObjectStore.sharedInstance.profiles.values.array
+                }
+                results.profiles = filterProfiles(searchTerms, toFilter: toFilter)
+                return (results, nil)
+            default: break
+            }
+            
+            return (nil, nil)
+        }
         
         // given the query, search the local objects we have cached
         private class func search(query: String) -> (SearchResults?, NSError?) {
@@ -74,7 +131,7 @@ extension SearchService {
                 }
             }
             
-            var searchTerms = query.componentsSeparatedByString(" ")
+            let searchTerms = searchTermsFromQuery(query)
             let matchedProfiles = filterProfiles(searchTerms)
             let matchedTeams = filterTeams(searchTerms)
             let matchedSkills = filterSkills(searchTerms)
@@ -97,7 +154,10 @@ extension SearchService {
             return matchedProfiles
         }
         
-        private class func filterProfiles(searchTerms: [String]) -> Array<ProfileService.Containers.Profile> {
+        private class func filterProfiles(
+            searchTerms: [String],
+            toFilter: Array<ProfileService.Containers.Profile>
+        ) -> Array<ProfileService.Containers.Profile> {
             var andPredicates = [NSPredicate]()
             for searchTerm in searchTerms {
                 let trimmedSearchTerm = trim(searchTerm)
@@ -155,20 +215,24 @@ extension SearchService {
                         titlePredicate,
                         emailPredicate,
                         fullTitlePredicate
-                    ])
+                        ])
                 )
             }
             
             let finalPredicate = NSCompoundPredicate.andPredicateWithSubpredicates(andPredicates)
-            return ObjectStore.sharedInstance.profiles.values.array.filter { finalPredicate.evaluateWithObject(
+            return toFilter.filter { finalPredicate.evaluateWithObject(
                 $0,
                 substitutionVariables: [
-                    "first_name": $0.first_name, 
-                    "last_name": $0.last_name, 
+                    "first_name": $0.first_name,
+                    "last_name": $0.last_name,
                     "title": $0.title,
                     "email": $0.email
                 ]
             )}
+        }
+        
+        private class func filterProfiles(searchTerms: [String]) -> Array<ProfileService.Containers.Profile> {
+            return filterProfiles(searchTerms, toFilter: ObjectStore.sharedInstance.profiles.values.array)
         }
         
         private class func filterTeams(searchTerms: [String]) -> Array<OrganizationService.Containers.Team> {

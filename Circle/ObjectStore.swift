@@ -158,6 +158,19 @@ class ObjectStore {
         activeSkills.removeAll(keepCapacity: false)
     }
     
+    func getProfilesForAttribute(attribute: SearchService.Attribute, value: AnyObject) -> Array<ProfileService.Containers.Profile> {
+        return ObjectStore.sharedInstance.profiles.values.array.filter {
+            switch attribute {
+            case .LocationId:
+                if let location_id = value as? String {
+                    return $0.location_id == location_id
+                }
+                return false
+            default: return false
+            }
+        }
+    }
+    
     // MARK: - Helpers
     
     private func updateCache(inout cache: [String: GeneratedMessage], containers: Array<GeneratedMessage>) {

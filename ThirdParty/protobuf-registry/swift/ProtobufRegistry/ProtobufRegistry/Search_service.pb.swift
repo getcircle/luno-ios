@@ -649,6 +649,49 @@ final public class SearchService : GeneratedMessage {
 
   //Nested type declaration end
 
+
+
+    //Enum type declaration start 
+
+    public enum Category:Int32 {
+      case People = 0
+      case Teams = 1
+      case Locations = 2
+      case Skills = 3
+
+      public static func IsValidValue(value:Int32) ->Bool {
+          if let check = Category(rawValue:value) {
+              return true
+          }
+          return false
+      }
+    }
+
+
+
+    //Enum type declaration end 
+
+
+
+    //Enum type declaration start 
+
+    public enum Attribute:Int32 {
+      case LocationId = 0
+      case TeamId = 1
+      case SkillId = 2
+
+      public static func IsValidValue(value:Int32) ->Bool {
+          if let check = Attribute(rawValue:value) {
+              return true
+          }
+          return false
+      }
+    }
+
+
+
+    //Enum type declaration end 
+
   override public subscript (key: String) -> Any? {
          switch key {
          default: return nil

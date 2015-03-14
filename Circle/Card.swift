@@ -385,6 +385,11 @@ class Card: Equatable {
         allContent = []
         contentCount = 0
     }
+    
+    func resetContent(newContent: [AnyObject]) {
+        resetContent()
+        addContent(content: newContent)
+    }
 
     func hasProfileCells() -> Bool {
         return self.contentClass is ProfileCollectionViewCell.Type
