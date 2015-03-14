@@ -16,6 +16,7 @@ class OfficeDetailDataSource: CardDataSource {
     private(set) var profiles = Array<ProfileService.Containers.Profile>()
     private(set) var nextProfilesRequest: ServiceRequest?
     private(set) var teams = Array<OrganizationService.Containers.Team>()
+    private(set) var nextTeamsRequest: ServiceRequest?
     private(set) var profileHeaderView: CircleCollectionReusableView?
     
     private let defaultSectionInset = UIEdgeInsetsMake(0.0, 0.0, 20.0, 0.0)
@@ -42,9 +43,10 @@ class OfficeDetailDataSource: CardDataSource {
         var storedError: NSError!
         var actionsGroup = dispatch_group_create()
         dispatch_group_enter(actionsGroup)
-        OrganizationService.Actions.getTeams(locationId: self.selectedOffice.id) { (teams, error) -> Void in
+        OrganizationService.Actions.getTeams(locationId: self.selectedOffice.id) { (teams, nextRequest, error) -> Void in
             if let teams = teams {
                 self.teams.extend(teams)
+                self.nextTeamsRequest = nextRequest
             }
             if let error = error {
                 storedError = error
@@ -116,6 +118,7 @@ class OfficeDetailDataSource: CardDataSource {
                 withReuseIdentifier: ProfileSectionHeaderCollectionReusableView.classReuseIdentifier,
                 forIndexPath: indexPath
             ) as ProfileSectionHeaderCollectionReusableView
+            supplementaryView.cardHeaderDelegate = cardHeaderDelegate
             supplementaryView.setCard(card!)
             return supplementaryView
         } else {
@@ -163,7 +166,11 @@ class OfficeDetailDataSource: CardDataSource {
         
         // Teams
         if teams.count > 0 {
-            let teamsCard = Card(cardType: .TeamsGrid, title: AppStrings.CardTitleOfficeTeam)
+            let teamsCard = Card(
+                cardType: .TeamsGrid,
+                title: AppStrings.CardTitleOfficeTeam,
+                contentCount: nextTeamsRequest?.getFirstPaginator().countAsInt() ?? 0
+            )
             teamsCard.addContent(content: teams as [AnyObject], maxVisibleItems: 6)
             teamsCard.sectionInset = UIEdgeInsetsZero
             teamsCard.headerSize = defaultSectionHeaderSize

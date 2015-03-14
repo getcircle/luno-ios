@@ -12,6 +12,9 @@ class ProfileSectionHeaderCollectionReusableView: CircleCollectionReusableView {
 
     @IBOutlet weak var cardTitleLabel: UILabel!
     @IBOutlet weak var addEditButton: UIButton!
+    @IBOutlet weak var nextIconImage: UIImageView!
+    @IBOutlet weak var cardContentCountLabel: UILabel!
+    @IBOutlet weak var cardTriggerButton: UIButton!
     
     var showAddEditButton: Bool = false
 
@@ -37,19 +40,32 @@ class ProfileSectionHeaderCollectionReusableView: CircleCollectionReusableView {
     override func setCard(card: Card) {
         cardTitleLabel.text = card.title.uppercaseStringWithLocale(NSLocale.currentLocale())
         addEditButton.alpha = showAddEditButton ? 1.0 : 0.0
+        nextIconImage.alpha = 0.0
+        cardContentCountLabel.alpha = 0.0
+        cardTriggerButton.enabled = false
         if showAddEditButton {
             let buttonTitle = card.content.count > 0 ? AppStrings.ProfileInfoEditButtonTitle : AppStrings.ProfileInfoAddButtonTitle
             addEditButton.setTitle(buttonTitle.uppercaseStringWithLocale(NSLocale.currentLocale()), forState: .Normal)
         }
-        
+    
+        if !showAddEditButton && card.showContentCount {
+            nextIconImage.alpha = 1.0
+            cardContentCountLabel.alpha = 1.0
+            cardContentCountLabel.text = card.contentCountLabel()
+            cardTriggerButton.enabled = true
+        }
         super.setCard(card)
     }
     
     @IBAction func addEditButtonTapped(sender: AnyObject!) {
-        if let delegate = cardHeaderDelegate {
-            if let card = currentCard {
-                delegate.cardHeaderTapped(card)
-            }
+        if let card = currentCard {
+            cardHeaderDelegate?.cardHeaderTapped(card)
+        }
+    }
+    
+    @IBAction func cardHeaderTapped(sender: AnyObject) {
+        if let card = currentCard {
+            cardHeaderDelegate?.cardHeaderTapped(card)
         }
     }
 }

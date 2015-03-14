@@ -170,6 +170,7 @@
 		BF6A2D0F1AAD08DA00692315 /* EmptyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6A2D0D1AAD08DA00692315 /* EmptyCollectionViewCell.swift */; };
 		BF6A2D101AAD08DA00692315 /* EmptyCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF6A2D0E1AAD08DA00692315 /* EmptyCollectionViewCell.xib */; };
 		BF764DC41A5F6E8200D122F4 /* LandingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF764DC31A5F6E8200D122F4 /* LandingService.swift */; };
+		BF768A621AB402D100D677B1 /* PaginatorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF768A611AB402D100D677B1 /* PaginatorExtension.swift */; };
 		BF7B238B1A70842500137BCB /* ProfileNotesCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7B238A1A70842500137BCB /* ProfileNotesCollectionView.swift */; };
 		BF7B23901A70894100137BCB /* ProfileDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7B238F1A70894100137BCB /* ProfileDetailsViewController.swift */; };
 		BF7DF98F1A44E53200A4F924 /* ServiceTransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7DF98E1A44E53200A4F924 /* ServiceTransport.swift */; };
@@ -466,6 +467,7 @@
 		BF6A2D0D1AAD08DA00692315 /* EmptyCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyCollectionViewCell.swift; sourceTree = "<group>"; };
 		BF6A2D0E1AAD08DA00692315 /* EmptyCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmptyCollectionViewCell.xib; sourceTree = "<group>"; };
 		BF764DC31A5F6E8200D122F4 /* LandingService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandingService.swift; sourceTree = "<group>"; };
+		BF768A611AB402D100D677B1 /* PaginatorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaginatorExtension.swift; sourceTree = "<group>"; };
 		BF7B238A1A70842500137BCB /* ProfileNotesCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileNotesCollectionView.swift; sourceTree = "<group>"; };
 		BF7B238F1A70894100137BCB /* ProfileDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileDetailsViewController.swift; sourceTree = "<group>"; };
 		BF7DF98E1A44E53200A4F924 /* ServiceTransport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceTransport.swift; sourceTree = "<group>"; };
@@ -716,6 +718,7 @@
 				8FEE88461A411BA90011CE4A /* UIViewControllerExtension.swift */,
 				8F22CBFA1A29AF450026376E /* UIViewExtension.swift */,
 				BF220F031AB0221D00C948D0 /* ServiceRequestExtension.swift */,
+				BF768A611AB402D100D677B1 /* PaginatorExtension.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -1325,6 +1328,7 @@
 				8F65C4FE1A51222100C7F3E6 /* OfficeCollectionViewCell.swift in Sources */,
 				8FD907F71A6033310025A17B /* OfficeDetailViewController.swift in Sources */,
 				BFEDB1431A2A8CA700250165 /* UICollectionViewFlowLayoutExtension.swift in Sources */,
+				BF768A621AB402D100D677B1 /* PaginatorExtension.swift in Sources */,
 				8F22CBF81A29A8EB0026376E /* AuthViewController.swift in Sources */,
 				8F7E2DC61A8FC00000B8548D /* SplashViewController.swift in Sources */,
 				8FC8780B1AB276B1003FDB27 /* ProfileDetailViewController.swift in Sources */,

@@ -10,7 +10,7 @@ import Foundation
 import ProtobufRegistry
 
 typealias GetAddressesCompletionHandler = (addresses: Array<OrganizationService.Containers.Address>?, error: NSError?) -> Void
-typealias GetTeamsCompletionHandler = (teams: Array<OrganizationService.Containers.Team>?, error: NSError?) -> Void
+typealias GetTeamsCompletionHandler = (teams: Array<OrganizationService.Containers.Team>?, nextRequest: ServiceRequest?, error: NSError?) -> Void
 typealias GetTeamChildrenCompletionHandler = (teams: Array<OrganizationService.Containers.Team>?, error: NSError?) -> Void
 typealias GetOrganizationCompletionHandler = (organization: OrganizationService.Containers.Organization?, error: NSError?) -> Void
 typealias GetLocationsCompletionHandler = (locations: Array<OrganizationService.Containers.Location>?, error: NSError?) -> Void
@@ -50,7 +50,9 @@ extension OrganizationService {
                     let response = wrapped?.response?.result.getExtension(
                         OrganizationServiceRequests_get_teams
                         ) as? OrganizationService.GetTeams.Response
-                    completionHandler?(teams: response?.teams, error: error)
+                    let nextRequest = wrapped?.getNextRequest()
+                    println("nextRequest: \(nextRequest)")
+                    completionHandler?(teams: response?.teams, nextRequest: nextRequest, error: error)
             }
         }
         

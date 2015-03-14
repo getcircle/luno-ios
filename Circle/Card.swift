@@ -318,12 +318,17 @@ class Card: Equatable {
         }
     }
 
-    convenience init(cardType: CardType, title withTitle: String, addDefaultFooter: Bool? = false) {
+    convenience init(
+        cardType: CardType,
+        title withTitle: String,
+        addDefaultFooter: Bool? = false,
+        contentCount withContentCount: Int? = nil
+    ) {
         self.init(
             cardType: cardType,
             title: withTitle,
             content: nil,
-            contentCount: nil,
+            contentCount: withContentCount,
             addDefaultFooter: addDefaultFooter ?? false
         )
     }
@@ -459,6 +464,13 @@ class Card: Equatable {
         else {
             setContentToAllContent()
         }
+    }
+    
+    func contentCountLabel() -> String {
+        if showContentCount {
+            return contentCount == 1 ? "" : "All " + String(contentCount)
+        }
+        return String()
     }
 
 }

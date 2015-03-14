@@ -9,7 +9,10 @@
 import UIKit
 import ProtobufRegistry
 
-class TeamsOverviewViewController: UIViewController, UICollectionViewDelegate {
+class TeamsOverviewViewController: UIViewController,
+    UICollectionViewDelegate,
+    CardDataSourceDelegate
+{
 
     @IBOutlet weak private(set) var activityIndicatorView: UIActivityIndicatorView!
     @IBOutlet weak private(set) var collectionView: UICollectionView!
@@ -37,6 +40,7 @@ class TeamsOverviewViewController: UIViewController, UICollectionViewDelegate {
     // MARK: - Configuration
     
     private func configureCollectionView() {
+        dataSource.delegate = self
         collectionView.backgroundColor = UIColor.appViewBackgroundColor()
         collectionView.dataSource = dataSource
         collectionView.delegate = delegate
@@ -54,6 +58,12 @@ class TeamsOverviewViewController: UIViewController, UICollectionViewDelegate {
             (teamDetailVC.dataSource as TeamDetailDataSource).selectedTeam = team
             navigationController?.pushViewController(teamDetailVC, animated: true)
         }
+    }
+    
+    // MARK: - CardDataSourceDelegate
+    
+    func onDataLoaded(indexPaths: [NSIndexPath]) {
+        collectionView.insertItemsAtIndexPaths(indexPaths)
     }
 
     // MARK: - Orientation change

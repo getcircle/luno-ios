@@ -52,7 +52,7 @@ class ProfilesDataSource: CardDataSource {
     
     override func setInitialData(#content: [AnyObject], ofType: Card.CardType?, nextRequest withNextRequest: ServiceRequest?) {
         registerNextRequest(nextRequest: withNextRequest)
-        self.setInitialData(content, ofType: ofType)
+        setInitialData(content, ofType: ofType)
     }
     
     // MARK: - Load Initial Data
@@ -66,11 +66,11 @@ class ProfilesDataSource: CardDataSource {
         registerNextRequestCompletionHandler { (_, _, wrapped, error) -> Void in
             let response = wrapped?.response?.result.getExtension(
                 ProfileServiceRequests_get_profiles
-                ) as? ProfileService.GetProfiles.Response
+            ) as? ProfileService.GetProfiles.Response
             
             if let profiles = response?.profiles {
                 self.profiles.extend(profiles)
-                self.card.addContent(content: profiles as [AnyObject])
+                self.card.addContent(content: profiles)
                 self.handleNewContentAddedToCard(self.card, newContent: profiles)
             }
         }

@@ -66,7 +66,7 @@ class ObjectStore {
                 self.update(objects)
             }
             
-            OrganizationService.Actions.getTeams(currentProfile.organization_id, paginatorBuilder: paginatorBuilder) { (teams, error) -> Void in
+            OrganizationService.Actions.getTeams(currentProfile.organization_id, paginatorBuilder: paginatorBuilder) { (teams, _, error) -> Void in
                 objects.teams = teams
                 self.update(objects)
             }

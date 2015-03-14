@@ -81,7 +81,7 @@ class ProfilesViewController: UIViewController,
     // MARK: Helpers
     
     private func hideFilterIfLimitedContent() {
-        if dataSource.cardAtSection(0)?.content.count < 5 {
+        if dataSource.cardAtSection(0)?.content.count < 15 {
             collectionViewVerticalSpaceConstraint.constant = -44
             collectionView.setNeedsUpdateConstraints()
             searchHeaderView?.removeFromSuperview()
