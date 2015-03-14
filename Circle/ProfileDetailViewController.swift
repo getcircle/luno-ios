@@ -11,30 +11,20 @@ import ProtobufRegistry
 
 class ProfileDetailViewController: DetailViewController,
     CardHeaderViewDelegate,
-    CardFooterViewDelegate,
-    EditProfileDelegate
+    CardFooterViewDelegate
 {
 
     var profile: ProfileService.Containers.Profile!
     
-    convenience init(
-        profile withProfile: ProfileService.Containers.Profile,
-        showSettingsButton: Bool = false
-    ) {
+    convenience init(profile withProfile: ProfileService.Containers.Profile) {
         self.init()
         profile = withProfile
         dataSource = ProfileDetailDataSource(profile: profile)
         delegate = StickyHeaderCollectionViewDelegate()
-        
-        if showSettingsButton {
-            addSettingsButton()
-        }
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        configureNavigationButtons()
         registerFullLifecycleNotifications()
         if let loggedInUserProfile = AuthViewController.getLoggedInUserProfile() {
             if profile.id != loggedInUserProfile.id {
@@ -55,26 +45,7 @@ class ProfileDetailViewController: DetailViewController,
         layout.headerHeight = ProfileHeaderCollectionReusableView.height
         super.configureCollectionView()
     }
-    
-    private func configureNavigationButtons() {
-        if profile.id == AuthViewController.getLoggedInUserProfile()!.id {
-            let editButtonItem = UIBarButtonItem(
-                image: UIImage(named: "Pencil"),
-                style: .Plain,
-                target: self,
-                action: "editProfileButtonTapped:"
-            )
-            
-            var rightBarButtonItems = [UIBarButtonItem]()
-            if navigationItem.rightBarButtonItem != nil {
-                rightBarButtonItems.append(navigationItem.rightBarButtonItem!)
-            }
-            
-            rightBarButtonItems.append(editButtonItem)
-            navigationItem.rightBarButtonItems = rightBarButtonItems
-        }
-    }
-    
+
     // MARK: - Collection View delegate
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
@@ -235,18 +206,6 @@ class ProfileDetailViewController: DetailViewController,
         }
     }
     
-    // Class Methods
-    
-    class func forProfile(
-        profile: ProfileService.Containers.Profile,
-        showSettingsButton: Bool = false
-    ) -> ProfileDetailViewController {
-            return ProfileDetailViewController(
-                profile: profile,
-                showSettingsButton: showSettingsButton
-            )
-    }
-
     private func performQuickAction(quickAction: QuickAction, additionalData: AnyObject? = nil) {
         switch quickAction {
         case .Email:
@@ -289,7 +248,7 @@ class ProfileDetailViewController: DetailViewController,
     
     func onManagerTapped(notification: NSNotification?) {
         if let dataSource = dataSource as? ProfileDetailDataSource {
-            let profileVC = ProfileDetailViewController.forProfile(dataSource.manager!)
+            let profileVC = ProfileDetailViewController(profile: dataSource.manager!)
             profileVC.hidesBottomBarWhenPushed = false
             navigationController?.pushViewController(profileVC, animated: true)
         }
@@ -312,58 +271,7 @@ class ProfileDetailViewController: DetailViewController,
             navigationController?.pushViewController(teamVC, animated: true)
         }
     }
-    
-    // MARK: - Helpers
 
-    private func addSettingsButton() {
-        if navigationItem.leftBarButtonItem == nil {
-            var settingsButton = UIButton.buttonWithType(.Custom) as UIButton
-            settingsButton.frame = CGRectMake(0.0, 0.0, 22.0, 22.0)
-            settingsButton.setImage(UIImage(named: "Cog")?.imageWithRenderingMode(.AlwaysTemplate), forState: .Normal)
-            settingsButton.tintColor = UIColor.appNavigationBarTintColor()
-            settingsButton.addTarget(self, action: "settingsButtonTapped:", forControlEvents: .TouchUpInside)
-            
-            let settingsBarButton = UIBarButtonItem(customView: settingsButton)
-            navigationItem.leftBarButtonItem = settingsBarButton
-            
-            let longPressGesture = UILongPressGestureRecognizer(target: self, action: "profileLongPressHandler:")
-            settingsButton.addGestureRecognizer(longPressGesture)
-        }
-    }
-    
-    // MARK: - IBActions
-    
-    @IBAction func editProfileButtonTapped(sender: AnyObject!) {
-        let editProfileVC = EditProfileViewController(nibName: "EditProfileViewController", bundle: nil)
-        editProfileVC.profile = profile
-        editProfileVC.editProfileDelegate = self
-        editProfileVC.hidesBottomBarWhenPushed = false
-        navigationController?.pushViewController(editProfileVC, animated: true)
-    }
-    
-    @IBAction func logOutTapped(sender: AnyObject!) {
-        if isBeingPresentedModally() {
-            dismissViewControllerAnimated(false, completion: { () -> Void in
-                AuthViewController.logOut()
-            })
-        }
-        else {
-            AuthViewController.logOut()
-        }
-    }
-    
-    @IBAction func settingsButtonTapped(sender: AnyObject!) {
-        let settingsViewController = SettingsViewController(nibName: "SettingsViewController", bundle: nil)
-        let settingsNavController = UINavigationController(rootViewController: settingsViewController)
-        presentViewController(settingsNavController, animated: true, completion: nil)
-    }
-    
-    @IBAction func profileLongPressHandler(sender: AnyObject!) {
-        let verifyPhoneNumberVC = VerifyPhoneNumberViewController(nibName: "VerifyPhoneNumberViewController", bundle: nil)
-        let onboardingNavigationController = UINavigationController(rootViewController: verifyPhoneNumberVC)
-        navigationController?.presentViewController(onboardingNavigationController, animated: true, completion: nil)
-    }
-    
     // MARK: - Tracking
     
     private func trackNewNoteAction() {
@@ -389,23 +297,6 @@ class ProfileDetailViewController: DetailViewController,
         return properties
     }
     
-    // MARK: - EditProfileDelegate
-    
-    func didFinishEditingProfile() {
-        if let loggedInUserProfile = AuthViewController.getLoggedInUserProfile() {
-            if profile.id == loggedInUserProfile.id {
-                profile = loggedInUserProfile
-                reloadInfoCollectionViewData()
-
-                if let dataSource = dataSource as? ProfileDetailDataSource {
-                    if let headerView = dataSource.profileHeaderView {
-                        headerView.setProfile(profile)
-                    }
-                }
-            }
-        }
-    }
-    
     // MARK: - CardHeaderViewDelegate
     
     func cardHeaderTapped(card: Card!) {
@@ -423,4 +314,20 @@ class ProfileDetailViewController: DetailViewController,
         }
     }
     
+    // MARK: - EditProfileDelegate
+    
+    func didFinishEditingProfile() {
+        if let loggedInUserProfile = AuthViewController.getLoggedInUserProfile() {
+            if profile.id == loggedInUserProfile.id {
+                profile = loggedInUserProfile
+                reloadInfoCollectionViewData()
+                
+                if let dataSource = dataSource as? ProfileDetailDataSource {
+                    if let headerView = dataSource.profileHeaderView {
+                        headerView.setProfile(profile)
+                    }
+                }
+            }
+        }
+    }    
 }

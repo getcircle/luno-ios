@@ -221,7 +221,7 @@ NewNoteViewControllerDelegate {
             switch selectedCard.type {
             case .Profiles, .Birthdays, .Anniversaries, .NewHires:
                 if let profile = dataSource.contentAtIndexPath(indexPath)? as? ProfileService.Containers.Profile {
-                    let profileVC = ProfileDetailViewController.forProfile(profile)
+                    let profileVC = ProfileDetailViewController(profile: profile)
                     profileVC.hidesBottomBarWhenPushed = false
                     properties.append(TrackerProperty.withKey(.Destination).withSource(.Detail))
                     properties.append(TrackerProperty.withKey(.DestinationDetailType).withDetailType(.Profile))
