@@ -412,6 +412,9 @@ class ProfileDetailViewController: DetailViewController,
         switch card.type {
         case .Skills:
             let skillSelectorViewController = SkillSelectorViewController(nibName: "SkillSelectorViewController", bundle: nil)
+            if let skills = (dataSource as ProfileDetailDataSource).skills {
+                skillSelectorViewController.preSelectSkills = skills
+            }
             let skillsNavController = UINavigationController(rootViewController: skillSelectorViewController)
             navigationController?.presentViewController(skillsNavController, animated: true, completion: nil)
 

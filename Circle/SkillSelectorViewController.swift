@@ -28,6 +28,13 @@ class SkillSelectorViewController:
     @IBOutlet weak private(set) var topGradientView: UIView!
     
     var theme: Themes = .Regular
+    var preSelectSkills: Array<ProfileService.Containers.Skill> = Array<ProfileService.Containers.Skill>() {
+        didSet {
+            for skill in preSelectSkills {
+                selectedSkills[skill.hashValue] = skill
+            }
+        }
+    }
     
     private var animatedCell = [NSIndexPath: Bool]()
     private var bottomLayer: CAGradientLayer!
@@ -64,18 +71,30 @@ class SkillSelectorViewController:
     private func configureView() {
         edgesForExtendedLayout = .Top
         automaticallyAdjustsScrollViewInsets = true
+        extendedLayoutIncludesOpaqueBars = true
     }
     
     private func configureNavigationBar() {
         title = AppStrings.AddSkillsNavigationTitle
         
-        let doneButtonItem = UIBarButtonItem(
+        let saveButtonItem = UIBarButtonItem(
             image: UIImage(named: "CircleCheckFilled"), 
             style: .Plain, 
             target: self, 
-            action: "close:"
+            action: "save:"
         )
-        navigationItem.rightBarButtonItem = doneButtonItem
+        navigationItem.rightBarButtonItem = saveButtonItem
+        
+        if isBeingPresentedModally() {
+            let cancelButtonItem = UIBarButtonItem(
+                image: UIImage(named: "Close"),
+                style: .Plain,
+                target: self,
+                action: "cancel:"
+            )
+            cancelButtonItem.imageInsets = UIEdgeInsetsMake(5.0, 0.0, 5.0, 10.0)
+            navigationItem.leftBarButtonItem = cancelButtonItem
+        }
     }
     
     private func configurePrototypeCell() {
@@ -126,8 +145,18 @@ class SkillSelectorViewController:
     }
     
     private func configureGradients() {
-        let startColor = UIColor.appUIBackgroundColor().CGColor
-        let endColor = UIColor.appUIBackgroundColor().colorWithAlphaComponent(0.0).CGColor
+        var startColor: CGColor
+        var endColor: CGColor
+        
+        switch theme {
+        case .Onboarding:
+            startColor = UIColor.appUIBackgroundColor().CGColor
+            endColor = UIColor.appUIBackgroundColor().colorWithAlphaComponent(0.0).CGColor
+
+        case .Regular:
+            startColor = UIColor.appViewBackgroundColor().CGColor
+            endColor = UIColor.appViewBackgroundColor().colorWithAlphaComponent(0.0).CGColor
+        }
         
         // Top
         topLayer = CALayer.gradientLayerWithFrame(
@@ -156,6 +185,8 @@ class SkillSelectorViewController:
             titleTextLabel.backgroundColor = UIColor.appUIBackgroundColor()
 
         case .Regular:
+            view.backgroundColor = UIColor.appViewBackgroundColor()
+            collectionView.backgroundColor = UIColor.appViewBackgroundColor()
             break
         }
     }
@@ -261,17 +292,26 @@ class SkillSelectorViewController:
 
     // MARK: - IBActions
     
-    @IBAction func close(sender: AnyObject!) {
+    @IBAction func save(sender: AnyObject!) {
         // fire and forget
         if let profile = AuthViewController.getLoggedInUserProfile() {
             if selectedSkills.count > 0 {
                 ProfileService.Actions.addSkills(profile.id, skills: selectedSkills.values.array, completionHandler: nil)
             }
         }
+
+        dismissView()
+    }
+
+    @IBAction func cancel(sender: AnyObject!) {
+        dismissView()
+    }
+    
+    private func dismissView() {
         dismissSearchField()
         dismissViewControllerAnimated(true, completion: nil)
     }
-    
+
     private func getNewSkillObject() -> ProfileService.Containers.Skill? {
         var skillName = searchHeaderView.searchTextField.text
         skillName = skillName.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
