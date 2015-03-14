@@ -17,7 +17,7 @@ class SkillDetailViewController: DetailViewController {
         super.customInit()
 
         dataSource = SkillDetailDataSource()
-        delegate = StickyHeaderCollectionViewDelegate()
+        delegate = CardCollectionViewDelegate()
     }
     
     // MARK: - Configuration

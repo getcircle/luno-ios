@@ -20,7 +20,7 @@ class ProfileDetailViewController: DetailViewController,
         self.init()
         profile = withProfile
         dataSource = ProfileDetailDataSource(profile: profile)
-        delegate = StickyHeaderCollectionViewDelegate()
+        delegate = CardCollectionViewDelegate()
     }
 
     override func viewDidLoad() {

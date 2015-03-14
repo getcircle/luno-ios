@@ -89,7 +89,7 @@ class ProfileNotesCollectionView: UnderlyingCollectionView {
     private var layout: StickyHeaderCollectionViewLayout?
     private var profile: ProfileService.Containers.Profile?
     private var profileNotesDataSource: ProfileNotesDataSource?
-    private var profileNotesDelegate: StickyHeaderCollectionViewDelegate?
+    private var profileNotesDelegate: CardCollectionViewDelegate?
     
     convenience init(profile: ProfileService.Containers.Profile?) {
         let stickyLayout = StickyHeaderCollectionViewLayout()
@@ -99,7 +99,7 @@ class ProfileNotesCollectionView: UnderlyingCollectionView {
         layout = stickyLayout
         layout?.headerHeight = ProfileHeaderCollectionReusableView.height
         profileNotesDataSource = ProfileNotesDataSource(profile: profile!)
-        profileNotesDelegate = StickyHeaderCollectionViewDelegate()
+        profileNotesDelegate = CardCollectionViewDelegate()
         backgroundColor = UIColor.appViewBackgroundColor()
         dataSource = profileNotesDataSource
         delegate = profileNotesDelegate

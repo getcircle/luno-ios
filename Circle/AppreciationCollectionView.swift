@@ -14,7 +14,7 @@ class AppreciationCollectionView: UnderlyingCollectionView {
     private var layout: StickyHeaderCollectionViewLayout?
     private var profile: ProfileService.Containers.Profile?
     private var appreciationDataSource: AppreciationDataSource?
-    private var appreciationDelegate: StickyHeaderCollectionViewDelegate?
+    private var appreciationDelegate: CardCollectionViewDelegate?
     
     convenience init(profile: ProfileService.Containers.Profile?) {
         let stickyLayout = StickyHeaderCollectionViewLayout()
@@ -24,7 +24,7 @@ class AppreciationCollectionView: UnderlyingCollectionView {
         layout = stickyLayout
         layout?.headerHeight = ProfileHeaderCollectionReusableView.height
         appreciationDataSource = AppreciationDataSource(profile: profile!)
-        appreciationDelegate = StickyHeaderCollectionViewDelegate()
+        appreciationDelegate = CardCollectionViewDelegate()
         backgroundColor = UIColor.appViewBackgroundColor()
         dataSource = appreciationDataSource
         delegate = appreciationDelegate

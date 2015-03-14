@@ -16,7 +16,7 @@ class OfficesOverviewViewController: UIViewController, UICollectionViewDataSourc
     @IBOutlet weak private(set) var mapHeaderCollectionView: UICollectionView!
     
     private(set) var dataSource = OfficesOverviewDataSource()
-    private(set) var delegate = OfficesOverviewCollectionViewDelegate()
+    private(set) var delegate = CardCollectionViewDelegate()
     
     override func viewDidLoad() {
         super.viewDidLoad()

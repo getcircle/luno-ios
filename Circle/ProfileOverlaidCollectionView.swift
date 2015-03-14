@@ -86,7 +86,7 @@ class ProfileOverlaidCollectionView: UICollectionView, UICollectionViewDelegate 
     private var layout: StickyHeaderCollectionViewLayout?
     private var profile: ProfileService.Containers.Profile?
     private var collectionViewDataSource: ProfileOverlaidCollectionViewDataSource?
-    private var collectionViewDelegate: StickyHeaderCollectionViewDelegate?
+    private var collectionViewDelegate: CardCollectionViewDelegate?
     
     convenience init(profile: ProfileService.Containers.Profile?, sections: [ProfileDetailView]?) {
         let stickyLayout = StickyHeaderCollectionViewLayout()
@@ -101,7 +101,7 @@ class ProfileOverlaidCollectionView: UICollectionView, UICollectionViewDelegate 
             profile: profile!,
             sections: sections
         )
-        collectionViewDelegate = StickyHeaderCollectionViewDelegate()
+        collectionViewDelegate = CardCollectionViewDelegate()
         backgroundColor = UIColor.clearColor()
         dataSource = collectionViewDataSource
         delegate = collectionViewDelegate

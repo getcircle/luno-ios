@@ -20,7 +20,7 @@ class CurrentUserProfileDetailViewController: ProfileDetailViewController,
             self.init()
             profile = withProfile
             dataSource = ProfileDetailDataSource(profile: profile)
-            delegate = StickyHeaderCollectionViewDelegate()
+            delegate = CardCollectionViewDelegate()
             
             if showSettingsButton {
                 addSettingsButton()

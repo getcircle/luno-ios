@@ -14,7 +14,7 @@ class ProfileInfoCollectionView: UnderlyingCollectionView, CardFooterViewDelegat
     private var layout: StickyHeaderCollectionViewLayout?
     private var profile: ProfileService.Containers.Profile?
     private var profileInfoDataSource: ProfileDetailDataSource!
-    private var profileInfoDelegate: StickyHeaderCollectionViewDelegate!
+    private var profileInfoDelegate: CardCollectionViewDelegate!
     
     convenience init(profile: ProfileService.Containers.Profile?) {
         let stickyLayout = StickyHeaderCollectionViewLayout()
@@ -25,7 +25,7 @@ class ProfileInfoCollectionView: UnderlyingCollectionView, CardFooterViewDelegat
         layout?.headerHeight = ProfileHeaderCollectionReusableView.height
         profileInfoDataSource = ProfileDetailDataSource(profile: profile!)
         profileInfoDataSource.cardFooterDelegate = self
-        profileInfoDelegate = StickyHeaderCollectionViewDelegate()
+        profileInfoDelegate = CardCollectionViewDelegate()
         backgroundColor = UIColor.appViewBackgroundColor()
         dataSource = profileInfoDataSource
         delegate = profileInfoDelegate

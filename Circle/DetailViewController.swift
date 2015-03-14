@@ -16,7 +16,7 @@ class DetailViewController: BaseDetailViewController, UICollectionViewDelegate {
     var animationSourceRect: CGRect?
     private(set) var collectionView: UICollectionView!
     var dataSource: CardDataSource!
-    var delegate: StickyHeaderCollectionViewDelegate!
+    var delegate: CardCollectionViewDelegate!
     var layout: StickyHeaderCollectionViewLayout!
     
     override func loadView() {

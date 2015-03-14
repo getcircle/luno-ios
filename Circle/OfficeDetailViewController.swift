@@ -20,7 +20,7 @@ class OfficeDetailViewController: DetailViewController,
         super.customInit()
         
         dataSource = OfficeDetailDataSource()
-        delegate = StickyHeaderCollectionViewDelegate()
+        delegate = CardCollectionViewDelegate()
     }
     
     // MARK: - Configuration

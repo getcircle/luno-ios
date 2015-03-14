@@ -48,7 +48,7 @@ class ProfilesViewController: UIViewController,
     private func configureCollectionView() {
         collectionView.backgroundColor = UIColor.appViewBackgroundColor()
         collectionView.dataSource = dataSource
-        (collectionView.delegate as ProfilesCollectionViewDelegate).delegate = self
+        (collectionView.delegate as CardCollectionViewDelegate).delegate = self
     }
     
     private func configureSearchHeaderView() {
