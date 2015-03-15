@@ -14,17 +14,16 @@ class ProfileDetailDataSource: CardDataSource {
     var onlyShowContactInfo = false
     var profile: ProfileService.Containers.Profile!
     var profileHeaderView: ProfileHeaderCollectionReusableView?    
+
+    internal var sections = [Section]()
     
     private(set) var address: OrganizationService.Containers.Address?
     private(set) var identities: Array<UserService.Containers.Identity>?
     private(set) var location: OrganizationService.Containers.Location?
     private(set) var manager: ProfileService.Containers.Profile?
-    private(set) var sections = [Section]()
     private(set) var skills: Array<ProfileService.Containers.Skill>?
     private(set) var team: OrganizationService.Containers.Team?
     private(set) var resume: ResumeService.Containers.Resume?
-
-    private var hasSocialConnectCTAs = false
 
     private let numberOfEducationItemsVisibleInitially = 1
     private let numberOfExperienceItemsVisibleInitially = 2
@@ -36,13 +35,13 @@ class ProfileDetailDataSource: CardDataSource {
     }
     
     override func loadData(completionHandler: (error: NSError?) -> Void) {
+        resetCards()
+
         if onlyShowContactInfo == true {
-            configureSections()
             populateData()
             completionHandler(error: nil)
         }
         else {
-            configureSections()
             // Add placeholder card to load profile header instantly
             var placeholderCard = Card(cardType: .Placeholder, title: "Info")
             placeholderCard.addHeader(
@@ -70,20 +69,12 @@ class ProfileDetailDataSource: CardDataSource {
     
     // MARK: - Configuration
     
-    private func configureSections() {
+    internal func configureSections() {
         sections.removeAll(keepCapacity: true)
-        if onlyShowContactInfo == true {
+        if onlyShowContactInfo {
             sections.append(getContactInfoSection())
         }
         else {
-            if let socialConnectSection = getSocialConnectSection() {
-                hasSocialConnectCTAs = true
-                sections.insert(socialConnectSection, atIndex: 1)
-            }
-            else {
-                hasSocialConnectCTAs = false
-            }
-            
             sections.append(getQuickActionsSection())
             sections.append(getAboutSection())
             sections.append(getSkillsSection())
@@ -94,33 +85,7 @@ class ProfileDetailDataSource: CardDataSource {
             sections.append(getEducationSection())
         }
     }
-    
-    private func getSocialConnectSection() -> Section? {
-        if profile.id == AuthViewController.getLoggedInUserProfile()!.id {
-            if let identities = identities {
-                var hasLinkedInIdentity = false
-                for identity in identities {
-                    if identity.provider == UserService.Provider.Linkedin {
-                        hasLinkedInIdentity = true
-                    }
-                }
-                if !hasLinkedInIdentity {
-                    let sectionItems = [
-                        SectionItem(
-                            title: NSLocalizedString("Connect with LinkedIn", comment: "Button title for connect with LinkedIn button").uppercaseStringWithLocale(NSLocale.currentLocale()),
-                            container: "social",
-                            containerKey: "profile",
-                            contentType: .LinkedInConnect,
-                            image: ItemImage(name: "LinkedIn", tint: UIColor.linkedinColor())
-                        )
-                    ]
-                    return Section(title: "Social", items: sectionItems, cardType: .SocialConnectCTAs)
-                }
-            }
-        }
-        return nil
-    }
-    
+
     private func getQuickActionsSection() -> Section {
         let sectionItems = [
             SectionItem(
@@ -284,7 +249,8 @@ class ProfileDetailDataSource: CardDataSource {
     // MARK: - Populate Data
     
     private func populateData() {
-        
+
+        configureSections()
         // Add top margin only when there is a social connect button added
         // to the profile
         var defaultSectionInset = UIEdgeInsetsMake(0.0, 0.0, 20.0, 0.0)
