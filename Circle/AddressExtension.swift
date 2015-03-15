@@ -60,12 +60,12 @@ extension OrganizationService.Containers.Address {
         return officeName
     }
     
-    func officeCurrentDateAndTime() -> String {
+    func officeCurrentDateAndTimeLabel() -> String {
         let currentDate = NSDate()
-        return officeCurrentDate(currentDate) + " " + officeCurrentTime(currentDate)
+        return officeCurrentDateLabel(currentDate) + " " + officeCurrentTimeLabel(currentDate)
     }
     
-    func officeCurrentDate(date: NSDate?) -> String {
+    func officeCurrentDateLabel(date: NSDate?) -> String {
         var currentDate = date ?? NSDate()
         var currentDateString: String
         let officeTimeZone = NSTimeZone(name: timezone)!
@@ -77,11 +77,24 @@ extension OrganizationService.Containers.Address {
         return currentDateString
     }
     
-    func officeCurrentTime(date: NSDate?) -> String {
+    func officeCurrentTimeLabel(date: NSDate?) -> String {
         var currentDate = date ?? NSDate()
         let officeTimeZone = NSTimeZone(name: timezone)!
         NSDateFormatter.sharedOfficeCurrentTimeFormatter.timeZone = officeTimeZone
         return NSDateFormatter.sharedOfficeCurrentTimeFormatter.stringFromDate(currentDate)
+    }
+    
+    func officeDaylightIndicator() -> UIImage? {
+        let calendar = NSCalendar(calendarIdentifier: NSGregorianCalendar)
+        calendar?.timeZone = NSTimeZone(name: timezone)!
+        let components = calendar?.components(NSCalendarUnit.CalendarUnitHour, fromDate: NSDate())
+        var image: UIImage?
+        if components?.hour >= 18 {
+            image = UIImage(named: "Moon")
+        } else {
+            image = UIImage(named: "Sun")
+        }
+        return image
     }
     
     func dateSuffixForDate(date: NSDate) -> String {

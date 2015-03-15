@@ -51,7 +51,6 @@ extension OrganizationService {
                         OrganizationServiceRequests_get_teams
                         ) as? OrganizationService.GetTeams.Response
                     let nextRequest = wrapped?.getNextRequest()
-                    println("nextRequest: \(nextRequest)")
                     completionHandler?(teams: response?.teams, nextRequest: nextRequest, error: error)
             }
         }

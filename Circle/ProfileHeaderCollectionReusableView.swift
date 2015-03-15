@@ -24,6 +24,8 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
     @IBOutlet weak private(set) var profileImage: CircleImageView!
     @IBOutlet weak private(set) var sectionsView: UIView!
     @IBOutlet weak private(set) var verifiedProfileButton: UIButton!
+    @IBOutlet weak private(set) var daylightIndicatorImage: UIImageView!
+    @IBOutlet weak private(set) var daylightIndicatorNavImage: UIImageView!
     
     var profileSegmentedControlDelegate: ProfileDetailSegmentedControlDelegate?
     var sections: [ProfileDetailView]? {
@@ -123,8 +125,13 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
             let officeStateAndCountry = (office.address.hasRegion ? office.address.region : "") + ", " + office.address.country_code
             nameLabel.text = officeName
             nameNavLabel.text = officeName
-            titleLabel.text = office.address.officeCurrentDateAndTime()
-            titleNavLabel.text = office.address.officeCurrentTime(nil)
+            titleLabel.text = office.address.officeCurrentDateAndTimeLabel()
+            titleNavLabel.text = office.address.officeCurrentTimeLabel(nil)
+            if let indicatorImage = office.address.officeDaylightIndicator() {
+                daylightIndicatorImage.alpha = 1.0
+                daylightIndicatorImage.image = indicatorImage
+                daylightIndicatorNavImage.image = indicatorImage
+            }
 
             // TODO: - Remove hardcoded image
             profileImage.image = UIImage(named: "SF")
@@ -317,8 +324,10 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
             let sectionsAlpha = 1.0 - contentOffset.y/(sectionsView.frameY - 40.0)
             titleLabel.alpha = titleLabelAlpha
             nameLabel.alpha = nameLabelAlpha
+            daylightIndicatorImage.alpha = titleLabelAlpha
             nameNavLabel.alpha = sectionsAlpha <= 0.0 ? nameNavLabel.alpha + 1/20 : 0.0
             titleNavLabel.alpha = sectionsAlpha <= 0.0 ? titleNavLabel.alpha + 1/20 : 0.0
+            daylightIndicatorNavImage.alpha = titleNavLabel.alpha
             sectionsView.alpha = sectionsAlpha
         }
         else {
@@ -331,6 +340,7 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
             verifiedProfileButton.alpha = profileImageAlpha
             nameNavLabel.alpha = 0.0
             titleNavLabel.alpha = 0.0
+            daylightIndicatorNavImage.alpha = titleNavLabel.alpha
             titleLabel.alpha = otherViewsAlpha
             profileImage.alpha = profileImageAlpha
             visualEffectView?.alpha = otherViewsAlpha
