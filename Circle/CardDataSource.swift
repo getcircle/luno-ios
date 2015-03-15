@@ -311,8 +311,8 @@ class CardDataSource: NSObject, UICollectionViewDataSource {
             headerView.cardHeaderDelegate = delegate
         }
 
-        headerView.setCard(card)
         configureHeader(headerView, atIndexPath: indexPath)
+        headerView.setCard(card)
         animate(headerView, ofType: .Header, atIndexPath: indexPath)
         return headerView
     }

@@ -115,6 +115,7 @@
 		8FC877FC1AB21775003FDB27 /* DebugUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC877FB1AB21775003FDB27 /* DebugUtils.swift */; };
 		8FC8780B1AB276B1003FDB27 /* ProfileDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC8780A1AB276B1003FDB27 /* ProfileDetailViewController.swift */; };
 		8FC878161AB4B60F003FDB27 /* CurrentUserProfileDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC878151AB4B60F003FDB27 /* CurrentUserProfileDetailViewController.swift */; };
+		8FC8781D1AB539F6003FDB27 /* CurrentUserProfileDetailDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC8781C1AB539F6003FDB27 /* CurrentUserProfileDetailDataSource.swift */; };
 		8FCC31291AA2859E0093F00A /* AppreciationCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FCC31281AA2859E0093F00A /* AppreciationCollectionView.swift */; };
 		8FCC312C1AA28AC10093F00A /* AppreciationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FCC312A1AA28AC10093F00A /* AppreciationCollectionViewCell.swift */; };
 		8FCC312D1AA28AC10093F00A /* AppreciationCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8FCC312B1AA28AC10093F00A /* AppreciationCollectionViewCell.xib */; };
@@ -409,6 +410,7 @@
 		8FC877FB1AB21775003FDB27 /* DebugUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DebugUtils.swift; sourceTree = "<group>"; };
 		8FC8780A1AB276B1003FDB27 /* ProfileDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileDetailViewController.swift; sourceTree = "<group>"; };
 		8FC878151AB4B60F003FDB27 /* CurrentUserProfileDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentUserProfileDetailViewController.swift; sourceTree = "<group>"; };
+		8FC8781C1AB539F6003FDB27 /* CurrentUserProfileDetailDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentUserProfileDetailDataSource.swift; sourceTree = "<group>"; };
 		8FCC31281AA2859E0093F00A /* AppreciationCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppreciationCollectionView.swift; sourceTree = "<group>"; };
 		8FCC312A1AA28AC10093F00A /* AppreciationCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppreciationCollectionViewCell.swift; sourceTree = "<group>"; };
 		8FCC312B1AA28AC10093F00A /* AppreciationCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AppreciationCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -817,6 +819,7 @@
 				8F306B921A74171C0024EB03 /* OfficesOverviewDataSource.swift */,
 				8F823E391A706BB20006264B /* OrganizationDetailDataSource.swift */,
 				8F22CBF41A2865030026376E /* ProfileDetailDataSource.swift */,
+				8FC8781C1AB539F6003FDB27 /* CurrentUserProfileDetailDataSource.swift */,
 				8F2D7DEF1A5B2412001D36B0 /* ProfilesDataSource.swift */,
 				8FC7BB3F1A58AF4C005BDDDB /* SearchLandingDataSource.swift */,
 				BFE213CE1A5F0B1D0033E2F5 /* SearchQueryDataSource.swift */,
@@ -1281,6 +1284,7 @@
 				8FF297FD1A4A4DCA00306CFC /* SearchViewController.swift in Sources */,
 				8F823E3A1A706BB20006264B /* OrganizationDetailDataSource.swift in Sources */,
 				BFCFDB2B1A92759A009A5FD4 /* ToggleSocialConnectionCollectionViewCell.swift in Sources */,
+				8FC8781D1AB539F6003FDB27 /* CurrentUserProfileDetailDataSource.swift in Sources */,
 				8F0004BB1A241BDE0096477A /* UIColorExtension.swift in Sources */,
 				8F809F8D1A79DE1A00029A47 /* NotesOverviewDataSource.swift in Sources */,
 				8F00049B1A2419730096477A /* ProfilesViewController.swift in Sources */,

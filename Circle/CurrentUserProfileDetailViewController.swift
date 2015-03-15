@@ -19,7 +19,7 @@ class CurrentUserProfileDetailViewController: ProfileDetailViewController,
     ) {
             self.init()
             profile = withProfile
-            dataSource = ProfileDetailDataSource(profile: profile)
+            dataSource = CurrentUserProfileDetailDataSource(profile: profile)
             delegate = CardCollectionViewDelegate()
             
             if showSettingsButton {
