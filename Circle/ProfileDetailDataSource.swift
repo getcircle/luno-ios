@@ -217,7 +217,7 @@ class ProfileDetailDataSource: CardDataSource {
             )
         ]
         
-        return Section(title: "Skills", items: sectionItems, cardType: .Skills, addCardHeader: true, allowEmptyContent: true)
+        return Section(title: AppStrings.ProfileSectionSkillsTitle, items: sectionItems, cardType: .Skills, addCardHeader: true, allowEmptyContent: true)
     }
     
     private func getEducationSection() -> Section {
@@ -230,7 +230,7 @@ class ProfileDetailDataSource: CardDataSource {
                 image: nil
             )
         ]
-        return Section(title: "Education", items: sectionItems, cardType: .Education, addCardHeader: true)
+        return Section(title: AppStrings.ProfileSectionEducationTitle, items: sectionItems, cardType: .Education, addCardHeader: true)
     }
     
     private func getWorkExperienceSection() -> Section {
@@ -243,7 +243,7 @@ class ProfileDetailDataSource: CardDataSource {
                 image: nil
             )
         ]
-        return Section(title: "Experience", items: sectionItems, cardType: .Position, addCardHeader: true)
+        return Section(title: AppStrings.ProfileSectionExperienceTitle, items: sectionItems, cardType: .Position, addCardHeader: true)
     }
     
     // MARK: - Populate Data

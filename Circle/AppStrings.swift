@@ -30,6 +30,9 @@ struct AppStrings {
     static let ProfileSectionOfficeTeamTitle = NSLocalizedString("Office & Team", comment: "Title of the section which shows a user's office and team")
     static let ProfileSectionManagerTitle = NSLocalizedString("Manager", comment: "Title of the section which shows a user's manager")
     static let ProfileSectionManagerTeamTitle = NSLocalizedString("Manager & Team", comment: "Title of the section which shows a user's manager and team")
+    static let ProfileSectionSkillsTitle = NSLocalizedString("Skills", comment: "Title of the section which shows a user's skills")
+    static let ProfileSectionExperienceTitle = NSLocalizedString("Experience", comment: "Title of the section which shows a user's experience")
+    static let ProfileSectionEducationTitle = NSLocalizedString("Education", comment: "Title of the section which shows a user's education")
     
     static let QuickActionNoneLabel = ""
     static let QuickActionEmailLabel = NSLocalizedString("Email", comment: "Title for button used to send an email")
@@ -50,8 +53,5 @@ struct AppStrings {
     static let SocialConnectLinkedInCTA = NSLocalizedString("Connect with LinkedIn", comment: "Button title for connect with LinkedIn button")
 
     static let TextPlaceholderFilterSkills = NSLocalizedString("Filter skills", comment: "Placeholder text for filter skills input box")
-
-    
-    
     
 }
