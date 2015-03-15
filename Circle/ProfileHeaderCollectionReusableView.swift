@@ -130,7 +130,9 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
             if let indicatorImage = office.address.officeDaylightIndicator() {
                 daylightIndicatorImage.alpha = 1.0
                 daylightIndicatorImage.image = indicatorImage
+                daylightIndicatorImage.tintColor = titleLabel.textColor
                 daylightIndicatorNavImage.image = indicatorImage
+                daylightIndicatorNavImage.tintColor = titleNavLabel.textColor
             }
 
             // TODO: - Remove hardcoded image

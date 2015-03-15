@@ -94,7 +94,8 @@ extension OrganizationService.Containers.Address {
         } else {
             image = UIImage(named: "Sun")
         }
-        return image
+
+        return image?.imageWithRenderingMode(.AlwaysTemplate)
     }
     
     func dateSuffixForDate(date: NSDate) -> String {
