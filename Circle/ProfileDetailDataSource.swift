@@ -16,15 +16,15 @@ class ProfileDetailDataSource: CardDataSource {
     var profileHeaderView: ProfileHeaderCollectionReusableView?    
     
     private(set) var address: OrganizationService.Containers.Address?
+    private(set) var identities: Array<UserService.Containers.Identity>?
+    private(set) var location: OrganizationService.Containers.Location?
     private(set) var manager: ProfileService.Containers.Profile?
+    private(set) var sections = [Section]()
     private(set) var skills: Array<ProfileService.Containers.Skill>?
     private(set) var team: OrganizationService.Containers.Team?
-    private(set) var identities: Array<UserService.Containers.Identity>?
     private(set) var resume: ResumeService.Containers.Resume?
-    private(set) var location: OrganizationService.Containers.Location?
 
     private var hasSocialConnectCTAs = false
-    private var sections = [Section]()
 
     private let numberOfEducationItemsVisibleInitially = 1
     private let numberOfExperienceItemsVisibleInitially = 2
@@ -33,7 +33,6 @@ class ProfileDetailDataSource: CardDataSource {
     convenience init(profile withProfile: ProfileService.Containers.Profile) {
         self.init()
         profile = withProfile
-        configureSections()
     }
     
     override func loadData(completionHandler: (error: NSError?) -> Void) {
@@ -43,6 +42,7 @@ class ProfileDetailDataSource: CardDataSource {
             completionHandler(error: nil)
         }
         else {
+            configureSections()
             // Add placeholder card to load profile header instantly
             var placeholderCard = Card(cardType: .Placeholder, title: "Info")
             placeholderCard.addHeader(
@@ -87,8 +87,8 @@ class ProfileDetailDataSource: CardDataSource {
             sections.append(getQuickActionsSection())
             sections.append(getAboutSection())
             sections.append(getSkillsSection())
-            sections.append(getOfficeTeamSection())
             sections.append(getManagerSection())
+            sections.append(getOfficeTeamSection())
             sections.append(getBasicInfoSection())
             sections.append(getWorkExperienceSection())
             sections.append(getEducationSection())
@@ -527,10 +527,6 @@ class ProfileDetailDataSource: CardDataSource {
             profileHeader.setProfile(profile!)
             profileHeaderView = profileHeader
         }
-
-//        if (isProfileLoggedInUserProfile() && sections[indexPath.section - 1].allowEmptyContent) {
-//            headerView.showAddEditButton = true
-//        }
     }
     
     override func configureFooter(footer: CircleCollectionReusableView, atIndexPath indexPath: NSIndexPath) {
