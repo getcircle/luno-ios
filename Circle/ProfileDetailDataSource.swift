@@ -502,8 +502,6 @@ class ProfileDetailDataSource: CardDataSource {
             profileHeader.setProfile(profile!)
             profileHeaderView = profileHeader
         }
-
-        header.backgroundColor = UIColor.clearColor()
     }
     
     override func configureFooter(footer: CircleCollectionReusableView, atIndexPath indexPath: NSIndexPath) {
