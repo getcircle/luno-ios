@@ -102,9 +102,9 @@ public var OrganizationServiceRequests_get_addresses:ConcreateExtensionField {
        return RequestRegistryRoot.sharedInstance.OrganizationServiceRequests_get_addressesStatic
    }
 }
-public var OrganizationServiceRequests_get_team_children:ConcreateExtensionField {
+public var OrganizationServiceRequests_get_team_descendants:ConcreateExtensionField {
    get {
-       return RequestRegistryRoot.sharedInstance.OrganizationServiceRequests_get_team_childrenStatic
+       return RequestRegistryRoot.sharedInstance.OrganizationServiceRequests_get_team_descendantsStatic
    }
 }
 public var OrganizationServiceRequests_get_top_level_team:ConcreateExtensionField {
@@ -339,7 +339,7 @@ public struct RequestRegistryRoot {
   var OrganizationServiceRequests_get_organizationStatic:ConcreateExtensionField
   var OrganizationServiceRequests_get_teamsStatic:ConcreateExtensionField
   var OrganizationServiceRequests_get_addressesStatic:ConcreateExtensionField
-  var OrganizationServiceRequests_get_team_childrenStatic:ConcreateExtensionField
+  var OrganizationServiceRequests_get_team_descendantsStatic:ConcreateExtensionField
   var OrganizationServiceRequests_get_top_level_teamStatic:ConcreateExtensionField
   var OrganizationServiceRequests_create_locationStatic:ConcreateExtensionField
   var OrganizationServiceRequests_update_locationStatic:ConcreateExtensionField
@@ -404,7 +404,7 @@ public struct RequestRegistryRoot {
     OrganizationServiceRequests_get_organizationStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionRequestParams.self, fieldNumber: 206, defaultValue:OrganizationService.GetOrganization.Request(), messageOrGroupClass:OrganizationService.GetOrganization.Request.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     OrganizationServiceRequests_get_teamsStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionRequestParams.self, fieldNumber: 207, defaultValue:OrganizationService.GetTeams.Request(), messageOrGroupClass:OrganizationService.GetTeams.Request.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     OrganizationServiceRequests_get_addressesStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionRequestParams.self, fieldNumber: 208, defaultValue:OrganizationService.GetAddresses.Request(), messageOrGroupClass:OrganizationService.GetAddresses.Request.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
-    OrganizationServiceRequests_get_team_childrenStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionRequestParams.self, fieldNumber: 209, defaultValue:OrganizationService.GetTeamChildren.Request(), messageOrGroupClass:OrganizationService.GetTeamChildren.Request.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
+    OrganizationServiceRequests_get_team_descendantsStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionRequestParams.self, fieldNumber: 209, defaultValue:OrganizationService.GetTeamDescendants.Request(), messageOrGroupClass:OrganizationService.GetTeamDescendants.Request.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     OrganizationServiceRequests_get_top_level_teamStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionRequestParams.self, fieldNumber: 210, defaultValue:OrganizationService.GetTopLevelTeam.Request(), messageOrGroupClass:OrganizationService.GetTopLevelTeam.Request.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     OrganizationServiceRequests_create_locationStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionRequestParams.self, fieldNumber: 211, defaultValue:OrganizationService.CreateLocation.Request(), messageOrGroupClass:OrganizationService.CreateLocation.Request.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     OrganizationServiceRequests_update_locationStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionRequestParams.self, fieldNumber: 212, defaultValue:OrganizationService.UpdateLocation.Request(), messageOrGroupClass:OrganizationService.UpdateLocation.Request.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
@@ -480,7 +480,7 @@ public struct RequestRegistryRoot {
     registry.addExtension(OrganizationServiceRequests_get_organizationStatic)
     registry.addExtension(OrganizationServiceRequests_get_teamsStatic)
     registry.addExtension(OrganizationServiceRequests_get_addressesStatic)
-    registry.addExtension(OrganizationServiceRequests_get_team_childrenStatic)
+    registry.addExtension(OrganizationServiceRequests_get_team_descendantsStatic)
     registry.addExtension(OrganizationServiceRequests_get_top_level_teamStatic)
     registry.addExtension(OrganizationServiceRequests_create_locationStatic)
     registry.addExtension(OrganizationServiceRequests_update_locationStatic)
@@ -809,8 +809,8 @@ final public class OrganizationServiceRequests : GeneratedMessage {
   public class func get_addresses() -> ConcreateExtensionField {
        return OrganizationServiceRequests_get_addresses
   }
-  public class func get_team_children() -> ConcreateExtensionField {
-       return OrganizationServiceRequests_get_team_children
+  public class func get_team_descendants() -> ConcreateExtensionField {
+       return OrganizationServiceRequests_get_team_descendants
   }
   public class func get_top_level_team() -> ConcreateExtensionField {
        return OrganizationServiceRequests_get_top_level_team

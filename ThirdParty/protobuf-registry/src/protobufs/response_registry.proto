@@ -39,7 +39,7 @@ message OrganizationServiceResponses {
         optional main.organization_service.OrganizationService.GetOrganization.Response get_organization = 206;
         optional main.organization_service.OrganizationService.GetTeams.Response get_teams = 207;
         optional main.organization_service.OrganizationService.GetAddresses.Response get_addresses = 208;
-        optional main.organization_service.OrganizationService.GetTeamChildren.Response get_team_children = 209;
+        optional main.organization_service.OrganizationService.GetTeamDescendants.Response get_team_descendants = 209;
         optional main.organization_service.OrganizationService.GetTopLevelTeam.Response get_top_level_team = 210;
         optional main.organization_service.OrganizationService.CreateLocation.Response create_location = 211;
         optional main.organization_service.OrganizationService.UpdateLocation.Response update_location = 212;

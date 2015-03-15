@@ -73,7 +73,7 @@ class TeamDetailDataSource: CardDataSource {
                     
                     // Fetch subteams
                     // TODO: we should support sending multiple actions with a single service request.
-                    OrganizationService.Actions.getTeamChildren(self.selectedTeam!.id) { (teams, error) -> Void in
+                    OrganizationService.Actions.getTeamDescendants(self.selectedTeam!.id, depth: 1, completionHandler: { (teams, error) -> Void in
                         if let teams = teams {
                             var teamsCard = Card(cardType: .TeamsGrid, title: "Teams")
                             teamsCard.addHeader(headerClass: sectionHeaderClass, headerClassName: sectionHeaderClassName)
@@ -82,7 +82,7 @@ class TeamDetailDataSource: CardDataSource {
                             self.appendCard(teamsCard)
                         }
                         completionHandler(error: error)
-                    }
+                    })
                 }
                 else {
                     completionHandler(error: error)

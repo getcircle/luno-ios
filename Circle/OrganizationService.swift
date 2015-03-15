@@ -11,7 +11,7 @@ import ProtobufRegistry
 
 typealias GetAddressesCompletionHandler = (addresses: Array<OrganizationService.Containers.Address>?, error: NSError?) -> Void
 typealias GetTeamsCompletionHandler = (teams: Array<OrganizationService.Containers.Team>?, nextRequest: ServiceRequest?, error: NSError?) -> Void
-typealias GetTeamChildrenCompletionHandler = (teams: Array<OrganizationService.Containers.Team>?, error: NSError?) -> Void
+typealias GetTeamDescendantsCompletionHandler = (teams: Array<OrganizationService.Containers.Team>?, error: NSError?) -> Void
 typealias GetOrganizationCompletionHandler = (organization: OrganizationService.Containers.Organization?, error: NSError?) -> Void
 typealias GetLocationsCompletionHandler = (locations: Array<OrganizationService.Containers.Location>?, error: NSError?) -> Void
 
@@ -76,19 +76,30 @@ extension OrganizationService {
             self.getTeams(requestBuilder, paginatorBuilder: paginatorBuilder, completionHandler: completionHandler)
         }
         
-        class func getTeamChildren(teamId: String, completionHandler: GetTeamChildrenCompletionHandler?) {
-            let requestBuilder = OrganizationService.GetTeamChildren.Request.builder()
+        class func getTeamDescendants(
+            teamId: String,
+            depth: UInt32? = nil,
+            attributes: [String]? = nil,
+            completionHandler: GetTeamDescendantsCompletionHandler?
+        ) {
+            let requestBuilder = OrganizationService.GetTeamDescendants.Request.builder()
             requestBuilder.team_id = teamId
-            
+            if depth != nil {
+                requestBuilder.depth = depth!
+            }
+            if attributes != nil {
+                requestBuilder.attributes.extend(attributes!)
+            }
             let client = ServiceClient(serviceName: "organization")
             client.callAction(
-                "get_team_children",
-                extensionField: OrganizationServiceRequests_get_team_children,
-                requestBuilder: requestBuilder) { (_, _, wrapped, error) -> Void in
-                    let response = wrapped?.response?.result.getExtension(
-                        OrganizationServiceRequests_get_team_children
-                    ) as? OrganizationService.GetTeamChildren.Response
-                    completionHandler?(teams: response?.teams, error: error)
+                "get_team_descendants",
+                extensionField: OrganizationServiceRequests_get_team_descendants,
+                requestBuilder: requestBuilder
+            ) { (_, _, wrapped, error) -> Void in
+                let response = wrapped?.response?.result.getExtension(
+                    OrganizationServiceRequests_get_team_descendants
+                ) as? OrganizationService.GetTeamDescendants.Response
+                completionHandler?(teams: response?.teams, error: error)
             }
         }
         
