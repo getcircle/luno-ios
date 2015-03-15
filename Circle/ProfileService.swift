@@ -9,6 +9,10 @@
 import Foundation
 import ProtobufRegistry
 
+struct ProfileServiceNotifications {
+    static let onProfileUpdatedNotification = "com.ravcode.notification:onProfileUpdatedNotification"
+}
+
 typealias GetProfileCompletionHandler = (profile: ProfileService.Containers.Profile?, error: NSError?) -> Void
 typealias GetProfilesCompletionHandler = (profiles: Array<ProfileService.Containers.Profile>?, nextRequest: ServiceRequest?, error: NSError?) -> Void
 typealias GetExtendedProfileCompletionHandler = (
@@ -191,6 +195,14 @@ extension ProfileService {
                 "update_profile",
                 extensionField: ProfileServiceRequests_update_profile,
                 requestBuilder: requestBuilder) { (_, _, wrapped, error) -> Void in
+                    // DWM - Discuss with Michael
+                    // TODO: Either check for no errors or pass than along in the userInfo
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        NSNotificationCenter.defaultCenter().postNotificationName(
+                            ProfileServiceNotifications.onProfileUpdatedNotification,
+                            object: nil
+                        )
+                    })
                     let response = wrapped?.response?.result.getExtension(
                         ProfileServiceRequests_update_profile
                     ) as? ProfileService.UpdateProfile.Response
@@ -209,10 +221,17 @@ extension ProfileService {
                 "add_skills",
                 extensionField: ProfileServiceRequests_add_skills,
                 requestBuilder: requestBuilder) { (_, _, wrapped, error) -> Void in
+                    // DWM - Discuss with Michael
+                    // TODO: Either check for no errors or pass than along in the userInfo
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        NSNotificationCenter.defaultCenter().postNotificationName(
+                            ProfileServiceNotifications.onProfileUpdatedNotification,
+                            object: nil
+                        )
+                    })
                     let response = wrapped?.response?.result.getExtension(ProfileServiceRequests_add_skills) as? ProfileService.AddSkills.Response
                     completionHandler?(error: error)
             }
         }
-        
     }
 }

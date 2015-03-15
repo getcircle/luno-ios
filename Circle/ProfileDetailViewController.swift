@@ -25,7 +25,7 @@ class ProfileDetailViewController: DetailViewController,
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        registerFullLifecycleNotifications()
+        
         if let loggedInUserProfile = AuthViewController.getLoggedInUserProfile() {
             if profile.id != loggedInUserProfile.id {
                 CircleCache.recordProfileVisit(profile)
@@ -108,20 +108,7 @@ class ProfileDetailViewController: DetailViewController,
     // MARK: - Notifications
     
     override func registerNotifications() {
-        NSNotificationCenter.defaultCenter().addObserver(
-            self,
-            selector: "updateNotesTitle:",
-            name: ProfileNotesNotifications.onNotesChanged,
-            object: nil
-        )
-        
-        NSNotificationCenter.defaultCenter().addObserver(
-            self,
-            selector: "socialConnectCTATapped:",
-            name: SocialConnectCollectionViewCellNotifications.onCTATappedNotification,
-            object: nil
-        )
-        
+
         NSNotificationCenter.defaultCenter().addObserver(
             self,
             selector: "quickActionButtonTapped:",
@@ -132,28 +119,7 @@ class ProfileDetailViewController: DetailViewController,
         super.registerNotifications()
     }
     
-    private func registerFullLifecycleNotifications() {
-        // Do not un-register this notification in viewDidDisappear
-        NSNotificationCenter.defaultCenter().addObserver(
-            self,
-            selector: "socialServiceConnectNotification:",
-            name: SocialConnectNotifications.onServiceConnectedNotification,
-            object: nil
-        )
-    }
-    
     override func unregisterNotifications() {
-        NSNotificationCenter.defaultCenter().removeObserver(
-            self,
-            name: ProfileNotesNotifications.onNotesChanged,
-            object: nil
-        )
-        
-        NSNotificationCenter.defaultCenter().removeObserver(
-            self,
-            name: SocialConnectCollectionViewCellNotifications.onCTATappedNotification,
-            object: nil
-        )
         
         NSNotificationCenter.defaultCenter().removeObserver(self,
             name: QuickActionNotifications.onQuickActionStarted,
@@ -165,23 +131,6 @@ class ProfileDetailViewController: DetailViewController,
     
     // MARK: - Notification handlers
     
-    func socialConnectCTATapped(notification: NSNotification) {
-        if let userInfo = notification.userInfo {
-            if let typeOfCTA = userInfo["type"] as? Int {
-                if let contentType = ContentType(rawValue: typeOfCTA) {
-                    switch contentType {
-                    case .LinkedInConnect:
-                        let socialConnectVC = SocialConnectViewController(provider: .Linkedin)
-                        navigationController?.presentViewController(socialConnectVC, animated: true, completion:nil)
-                        
-                    default:
-                        break
-                    }
-                }
-            }
-        }
-    }
-    
     func quickActionButtonTapped(notification: NSNotification) {
         if let userInfo = notification.userInfo {
             if let quickAction = userInfo[QuickActionNotifications.QuickActionTypeUserInfoKey] as? Int {
@@ -191,12 +140,8 @@ class ProfileDetailViewController: DetailViewController,
             }
         }
     }
-    
-    func socialServiceConnectNotification(notification: NSNotification) {
-        reloadInfoCollectionViewData()
-    }
-    
-    private func reloadInfoCollectionViewData() {
+
+    func reloadData() {
         if let dataSource = dataSource as? ProfileDetailDataSource {
             dataSource.profile = profile
             dataSource.loadData({ (error) -> Void in
@@ -319,7 +264,7 @@ class ProfileDetailViewController: DetailViewController,
         if let loggedInUserProfile = AuthViewController.getLoggedInUserProfile() {
             if profile.id == loggedInUserProfile.id {
                 profile = loggedInUserProfile
-                reloadInfoCollectionViewData()
+                reloadData()
                 
                 if let dataSource = dataSource as? ProfileDetailDataSource {
                     if let headerView = dataSource.profileHeaderView {

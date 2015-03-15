@@ -44,25 +44,26 @@ class CurrentUserProfileDetailViewController: ProfileDetailViewController,
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavigationButtons()
+        registerFullLifecycleNotifications()
     }
 
     private func configureNavigationButtons() {
-        if profile.id == AuthViewController.getLoggedInUserProfile()!.id {
-            let editButtonItem = UIBarButtonItem(
-                image: UIImage(named: "Pencil"),
-                style: .Plain,
-                target: self,
-                action: "editProfileButtonTapped:"
-            )
-            
-            var rightBarButtonItems = [UIBarButtonItem]()
-            if navigationItem.rightBarButtonItem != nil {
-                rightBarButtonItems.append(navigationItem.rightBarButtonItem!)
-            }
-            
-            rightBarButtonItems.append(editButtonItem)
-            navigationItem.rightBarButtonItems = rightBarButtonItems
-        }
+//        if profile.id == AuthViewController.getLoggedInUserProfile()!.id {
+//            let editButtonItem = UIBarButtonItem(
+//                image: UIImage(named: "Pencil"),
+//                style: .Plain,
+//                target: self,
+//                action: "editProfileButtonTapped:"
+//            )
+//            
+//            var rightBarButtonItems = [UIBarButtonItem]()
+//            if navigationItem.rightBarButtonItem != nil {
+//                rightBarButtonItems.append(navigationItem.rightBarButtonItem!)
+//            }
+//            
+//            rightBarButtonItems.append(editButtonItem)
+//            navigationItem.rightBarButtonItems = rightBarButtonItems
+//        }
     }
 
     // MARK: - Helpers
@@ -82,7 +83,6 @@ class CurrentUserProfileDetailViewController: ProfileDetailViewController,
             settingsButton.addGestureRecognizer(longPressGesture)
         }
     }
-    
     
     // MARK: - IBActions
     
@@ -104,5 +104,64 @@ class CurrentUserProfileDetailViewController: ProfileDetailViewController,
         let verifyPhoneNumberVC = VerifyPhoneNumberViewController(nibName: "VerifyPhoneNumberViewController", bundle: nil)
         let onboardingNavigationController = UINavigationController(rootViewController: verifyPhoneNumberVC)
         navigationController?.presentViewController(onboardingNavigationController, animated: true, completion: nil)
+    }
+    
+    // MARK: - Notifications
+    
+    override func registerNotifications() {
+        
+        NSNotificationCenter.defaultCenter().addObserver(
+            self,
+            selector: "socialConnectCTATapped:",
+            name: SocialConnectCollectionViewCellNotifications.onCTATappedNotification,
+            object: nil
+        )
+        
+        super.registerNotifications()
+    }
+    
+    private func registerFullLifecycleNotifications() {
+        // Do not un-register this notification in viewDidDisappear
+        NSNotificationCenter.defaultCenter().addObserver(
+            self,
+            selector: "onProfileUpdated:",
+            name: ProfileServiceNotifications.onProfileUpdatedNotification,
+            object: nil
+        )
+    }
+
+    override func unregisterNotifications() {
+        
+        NSNotificationCenter.defaultCenter().removeObserver(
+            self,
+            name: SocialConnectCollectionViewCellNotifications.onCTATappedNotification,
+            object: nil
+        )
+        
+        super.unregisterNotifications()
+    }
+    
+    
+    // MARK: - Notification handlers
+    
+    func socialConnectCTATapped(notification: NSNotification) {
+        if let userInfo = notification.userInfo {
+            if let typeOfCTA = userInfo["type"] as? Int {
+                if let contentType = ContentType(rawValue: typeOfCTA) {
+                    switch contentType {
+                    case .LinkedInConnect:
+                        let socialConnectVC = SocialConnectViewController(provider: .Linkedin)
+                        navigationController?.presentViewController(socialConnectVC, animated: true, completion:nil)
+                        
+                    default:
+                        break
+                    }
+                }
+            }
+        }
+    }
+
+    func onProfileUpdated(notification: NSNotification) {
+        reloadData()
     }
 }
