@@ -136,7 +136,7 @@ class ProfileDetailDataSource: CardDataSource {
                 image: nil
             )
         ]
-        return Section(title: "Info", items: sectionItems, cardType: .KeyValue)
+        return Section(title: AppStrings.ProfileSectionInfoTitle, items: sectionItems, cardType: .KeyValue, addCardHeader: true)
     }
     
     private func getContactInfoSection() -> Section {
@@ -183,27 +183,27 @@ class ProfileDetailDataSource: CardDataSource {
     private func getOfficeTeamSection() -> Section {
         let sectionItems = [
             SectionItem(
-                title: AppStrings.ProfileSectionOfficeTeamTitle,
+                title: AppStrings.ProfileSectionOfficeTitle,
                 container: "",
                 containerKey: "",
                 contentType: .OfficeTeam,
                 image: ItemImage.genericNextImage
             )
         ]
-        return Section(title: AppStrings.ProfileSectionOfficeTeamTitle, items: sectionItems, cardType: .Profiles, cardHeaderSize: CGSizeMake(CircleCollectionViewCell.width, CardHeaderCollectionReusableView.height))
+        return Section(title: AppStrings.ProfileSectionOfficeTitle, items: sectionItems, cardType: .Profiles, addCardHeader: true)
     }
 
     private func getManagerSection() -> Section {
         let sectionItems = [
             SectionItem(
-                title: AppStrings.ProfileSectionManagerTitle,
+                title: AppStrings.ProfileSectionManagerTeamTitle,
                 container: "",
                 containerKey: "",
                 contentType: .Manager,
                 image: ItemImage.genericNextImage
             )
         ]
-        return Section(title: AppStrings.ProfileSectionManagerTitle, items: sectionItems, cardType: .Profiles, cardHeaderSize: CGSizeMake(CircleCollectionViewCell.width, CardHeaderCollectionReusableView.height))
+        return Section(title: AppStrings.ProfileSectionManagerTeamTitle, items: sectionItems, cardType: .Profiles, addCardHeader: true)
     }
     
     private func getSkillsSection() -> Section {
@@ -217,7 +217,7 @@ class ProfileDetailDataSource: CardDataSource {
             )
         ]
         
-        return Section(title: "Skills", items: sectionItems, cardType: .Skills, cardHeaderSize: CGSizeMake(CircleCollectionViewCell.width, CardHeaderCollectionReusableView.height), allowEmptyContent: true)
+        return Section(title: "Skills", items: sectionItems, cardType: .Skills, addCardHeader: true, allowEmptyContent: true)
     }
     
     private func getEducationSection() -> Section {
@@ -230,7 +230,7 @@ class ProfileDetailDataSource: CardDataSource {
                 image: nil
             )
         ]
-        return Section(title: "Education", items: sectionItems, cardType: .Education, cardHeaderSize: CGSizeMake(CircleCollectionViewCell.width, CardHeaderCollectionReusableView.height))
+        return Section(title: "Education", items: sectionItems, cardType: .Education, addCardHeader: true)
     }
     
     private func getWorkExperienceSection() -> Section {
@@ -243,7 +243,7 @@ class ProfileDetailDataSource: CardDataSource {
                 image: nil
             )
         ]
-        return Section(title: "Experience", items: sectionItems, cardType: .Position, cardHeaderSize: CGSizeMake(CircleCollectionViewCell.width, CardHeaderCollectionReusableView.height))
+        return Section(title: "Experience", items: sectionItems, cardType: .Position, addCardHeader: true)
     }
     
     // MARK: - Populate Data
@@ -253,18 +253,27 @@ class ProfileDetailDataSource: CardDataSource {
         configureSections()
         // Add top margin only when there is a social connect button added
         // to the profile
-        var defaultSectionInset = UIEdgeInsetsMake(0.0, 0.0, 20.0, 0.0)
+        let sectionInsetBeforeBio = UIEdgeInsetsMake(0.0, 0.0, 1.0, 0.0)
+        let sectionInsetAfterBio = UIEdgeInsetsMake(0.0, 0.0, 25.0, 0.0)
+        var defaultSectionInset = sectionInsetBeforeBio
         for section in sections {
             let sectionCard = Card(cardType: section.cardType, title: section.title)
-            sectionCard.sectionInset = defaultSectionInset
-            sectionCard.addHeader(
-                headerClass: ProfileSectionHeaderCollectionReusableView.self, 
-                headerClassName: "ProfileSectionHeaderCollectionReusableView",
-                headerSize: section.cardHeaderSize
-            )
+            if section.addCardHeader {
+                sectionCard.addHeader(
+                    headerClass: ProfileSectionHeaderCollectionReusableView.self, 
+                    headerClassName: "ProfileSectionHeaderCollectionReusableView"
+                )
+            }
+            
             sectionCard.showContentCount = false
+            sectionCard.sectionInset = defaultSectionInset
 
             for item in section.items {
+                if item.contentType.rawValue == ContentType.About.rawValue {
+                    defaultSectionInset = sectionInsetAfterBio
+                    sectionCard.sectionInset = defaultSectionInset
+                }
+
                 addItemToCard(item, card: sectionCard)
             }
             
@@ -423,16 +432,16 @@ class ProfileDetailDataSource: CardDataSource {
             if let office = location {
                 content.append(office)
             }
-            
-            if let team = team {
-                content.append(team)
-            }
 
         case .Manager:
             if let manager = manager {
                 if manager.hasFirstName {
                     content.append(manager)
                 }
+            }
+            
+            if let team = team {
+                content.append(team)
             }
             
         default:
@@ -493,6 +502,8 @@ class ProfileDetailDataSource: CardDataSource {
             profileHeader.setProfile(profile!)
             profileHeaderView = profileHeader
         }
+
+        header.backgroundColor = UIColor.clearColor()
     }
     
     override func configureFooter(footer: CircleCollectionReusableView, atIndexPath indexPath: NSIndexPath) {

@@ -79,7 +79,7 @@ class Section {
     var title: String
     var items: [SectionItem]
     var cardType: Card.CardType
-    var cardHeaderSize: CGSize
+    var addCardHeader: Bool
     
     /**
         If set, data sources add the section even when
@@ -93,13 +93,13 @@ class Section {
         title sectionTitle: String,
         items sectionItems: [SectionItem],
         cardType sectionCardType: Card.CardType,
-        cardHeaderSize sectionCardHeaderSize: CGSize = CGSizeZero,
+        addCardHeader sectionCardAddHeader: Bool = false,
         allowEmptyContent sectionCardAllowEmptyContent: Bool? = false
         ) {
             title = sectionTitle
             items = sectionItems
             cardType = sectionCardType
-            cardHeaderSize = sectionCardHeaderSize
+            addCardHeader = sectionCardAddHeader
             allowEmptyContent = sectionCardAllowEmptyContent != nil ? sectionCardAllowEmptyContent! : false
     }
     

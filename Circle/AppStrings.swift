@@ -21,12 +21,15 @@ struct AppStrings {
     static let ProfileInfoAddButtonTitle = NSLocalizedString("Add", comment: "Title of the button to add info")
     static let ProfileInfoEditButtonTitle = NSLocalizedString("Edit", comment: "Title of the button to edit info")
     
-    static let ProfileInfoTabTitle = NSLocalizedString("Info", comment: "Title of the Info section")
+
     static let ProfileNotesTabTitle = NSLocalizedString("Notes", comment: "Title of the Notes section")
     static let ProfileAppreciationTabTitle = NSLocalizedString("Appreciation", comment: "Title of the Appreciation section")
     
+    static let ProfileSectionInfoTitle = NSLocalizedString("Info", comment: "Title of the Info section")
+    static let ProfileSectionOfficeTitle = NSLocalizedString("Office", comment: "Title of the section which shows a user's office")
     static let ProfileSectionOfficeTeamTitle = NSLocalizedString("Office & Team", comment: "Title of the section which shows a user's office and team")
     static let ProfileSectionManagerTitle = NSLocalizedString("Manager", comment: "Title of the section which shows a user's manager")
+    static let ProfileSectionManagerTeamTitle = NSLocalizedString("Manager & Team", comment: "Title of the section which shows a user's manager and team")
     
     static let QuickActionNoneLabel = ""
     static let QuickActionEmailLabel = NSLocalizedString("Email", comment: "Title for button used to send an email")
