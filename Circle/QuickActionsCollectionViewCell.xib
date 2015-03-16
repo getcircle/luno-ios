@@ -13,7 +13,7 @@
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="320" height="90"/>
                 <subviews>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kq5-3k-b21" userLabel="FirstButton">
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kq5-3k-b21" userLabel="FirstButton" customClass="CircleButton" customModule="circle" customModuleProvider="target">
                         <rect key="frame" x="15" y="15" width="44" height="44"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="Kq5-3k-b21" secondAttribute="height" multiplier="1:1" id="jbh-E8-WJw"/>
@@ -37,7 +37,7 @@
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="31" id="7eO-QE-VXa"/>
                         </constraints>
                     </view>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o81-Au-qrS" userLabel="SecondButton">
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o81-Au-qrS" userLabel="SecondButton" customClass="CircleButton" customModule="circle" customModuleProvider="target">
                         <rect key="frame" x="97" y="15" width="44" height="44"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="44" id="5TY-B9-Jn4"/>
@@ -66,7 +66,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VHJ-sx-L1j" userLabel="ThirdButton">
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VHJ-sx-L1j" userLabel="ThirdButton" customClass="CircleButton" customModule="circle" customModuleProvider="target">
                         <rect key="frame" x="179" y="15" width="44" height="44"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="VHJ-sx-L1j" secondAttribute="height" multiplier="1:1" id="fOX-ZN-GDU"/>
@@ -83,7 +83,7 @@
                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gK8-NX-Gmv" userLabel="FourthButton">
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gK8-NX-Gmv" userLabel="FourthButton" customClass="CircleButton" customModule="circle" customModuleProvider="target">
                         <rect key="frame" x="261" y="15" width="44" height="44"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="gK8-NX-Gmv" secondAttribute="height" multiplier="1:1" id="FMg-1Q-mQc"/>

@@ -11,14 +11,14 @@ import ProtobufRegistry
 
 class QuickActionsCollectionViewCell: CircleCollectionViewCell {
 
-    @IBOutlet weak private(set) var firstButton: UIButton!
+    @IBOutlet weak private(set) var firstButton: CircleButton!
     @IBOutlet weak private(set) var firstButtonLabel: UILabel!
     @IBOutlet weak private(set) var firstButtonTopConstraint: NSLayoutConstraint!
-    @IBOutlet weak private(set) var fourthButton: UIButton!
+    @IBOutlet weak private(set) var fourthButton: CircleButton!
     @IBOutlet weak private(set) var fourthButtonLabel: UILabel!
-    @IBOutlet weak private(set) var secondButton: UIButton!
+    @IBOutlet weak private(set) var secondButton: CircleButton!
     @IBOutlet weak private(set) var secondButtonLabel: UILabel!
-    @IBOutlet weak private(set) var thirdButton: UIButton!
+    @IBOutlet weak private(set) var thirdButton: CircleButton!
     @IBOutlet weak private(set) var thirdButtonLabel: UILabel!
     
     private var actionButtons = [UIButton]()
@@ -74,6 +74,7 @@ class QuickActionsCollectionViewCell: CircleCollectionViewCell {
                 button.convertToTemplateImageForState(.Normal)
                 button.alpha = 1.0
                 button.tag = index
+                button.makeItCircular()
                 button.tintColor = UIColor.appQuickActionsDarkTintColor()
                 button.addTarget(self, action: "quickActionTapped:", forControlEvents: .TouchUpInside)
             }

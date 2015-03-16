@@ -11,7 +11,7 @@ import UIKit
 class ProfileSectionHeaderCollectionReusableView: CircleCollectionReusableView {
 
     @IBOutlet weak var cardTitleLabel: UILabel!
-    @IBOutlet weak var addEditButton: UIButton!
+    @IBOutlet weak var addEditButton: CircleButton!
     @IBOutlet weak var nextIconImage: UIImageView!
     @IBOutlet weak var cardContentCountLabel: UILabel!
     @IBOutlet weak var cardTriggerButton: UIButton!

@@ -180,6 +180,10 @@ extension UIColor {
         return UIColor(red: 102, green: 102, blue: 102)
     }
     
+    class func appButtonHighlightColor() -> UIColor {
+        return UIColor(red: 215, green: 215, blue: 215)
+    }
+    
     class func appProfileImageBorderColor() -> UIColor {
         return UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.3)
     }

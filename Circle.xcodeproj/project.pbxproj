@@ -116,6 +116,7 @@
 		8FC8780B1AB276B1003FDB27 /* ProfileDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC8780A1AB276B1003FDB27 /* ProfileDetailViewController.swift */; };
 		8FC878161AB4B60F003FDB27 /* CurrentUserProfileDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC878151AB4B60F003FDB27 /* CurrentUserProfileDetailViewController.swift */; };
 		8FC8781D1AB539F6003FDB27 /* CurrentUserProfileDetailDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC8781C1AB539F6003FDB27 /* CurrentUserProfileDetailDataSource.swift */; };
+		8FC8781F1AB68B38003FDB27 /* CircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC8781E1AB68B38003FDB27 /* CircleButton.swift */; };
 		8FCC31291AA2859E0093F00A /* AppreciationCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FCC31281AA2859E0093F00A /* AppreciationCollectionView.swift */; };
 		8FCC312C1AA28AC10093F00A /* AppreciationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FCC312A1AA28AC10093F00A /* AppreciationCollectionViewCell.swift */; };
 		8FCC312D1AA28AC10093F00A /* AppreciationCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8FCC312B1AA28AC10093F00A /* AppreciationCollectionViewCell.xib */; };
@@ -411,6 +412,7 @@
 		8FC8780A1AB276B1003FDB27 /* ProfileDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileDetailViewController.swift; sourceTree = "<group>"; };
 		8FC878151AB4B60F003FDB27 /* CurrentUserProfileDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentUserProfileDetailViewController.swift; sourceTree = "<group>"; };
 		8FC8781C1AB539F6003FDB27 /* CurrentUserProfileDetailDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentUserProfileDetailDataSource.swift; sourceTree = "<group>"; };
+		8FC8781E1AB68B38003FDB27 /* CircleButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleButton.swift; sourceTree = "<group>"; };
 		8FCC31281AA2859E0093F00A /* AppreciationCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppreciationCollectionView.swift; sourceTree = "<group>"; };
 		8FCC312A1AA28AC10093F00A /* AppreciationCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppreciationCollectionViewCell.swift; sourceTree = "<group>"; };
 		8FCC312B1AA28AC10093F00A /* AppreciationCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AppreciationCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -875,6 +877,7 @@
 			isa = PBXGroup;
 			children = (
 				8F7400371A6A3FF700D96B60 /* CircleAlertViewController.swift */,
+				8FC8781E1AB68B38003FDB27 /* CircleButton.swift */,
 				8F2234B11A6F7A7500C39E39 /* CircleImageView.swift */,
 				8F682F511A67AF360066BDEE /* CircleTextField.swift */,
 				8F7400291A68878800D96B60 /* GradientView.swift */,
@@ -1304,6 +1307,7 @@
 				BF2CBFD61A473E9100BE589D /* UserService.swift in Sources */,
 				8F7400251A6863B000D96B60 /* SkillDetailDataSource.swift in Sources */,
 				8F4805E41A5DE4B800273731 /* MapHeaderCollectionReusableView.swift in Sources */,
+				8FC8781F1AB68B38003FDB27 /* CircleButton.swift in Sources */,
 				8F809F871A79DD6900029A47 /* NotesOverviewViewController.swift in Sources */,
 				8FF298471A4E050100306CFC /* SkillCollectionViewCell.swift in Sources */,
 				8FD907F91A6070D70025A17B /* MapViewController.swift in Sources */,
