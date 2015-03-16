@@ -89,7 +89,7 @@ extension OrganizationService.Containers.Address {
         calendar?.timeZone = NSTimeZone(name: timezone)!
         let components = calendar?.components(NSCalendarUnit.CalendarUnitHour, fromDate: NSDate())
         var image: UIImage?
-        if components?.hour >= 18 {
+        if components?.hour >= 18 || components?.hour < 6 {
             image = UIImage(named: "Moon")
         } else {
             image = UIImage(named: "Sun")
