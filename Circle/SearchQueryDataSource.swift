@@ -82,11 +82,31 @@ class SearchQueryDataSource: CardDataSource {
             skillsCard.sectionInset = sectionInset
             appendCard(skillsCard)
         }
+        
+        if searchTerm == "" {
+            let statsCard = Card(cardType: .StatTile, title: "Categories", showContentCount: false)
+            statsCard.addHeader(headerClass: headerClass, headerClassName: headerClassName)
+            let stats = [
+                ["title": "People", "value": ObjectStore.sharedInstance.profiles.values.array.count],
+                ["title": "Teams", "value": ObjectStore.sharedInstance.teams.values.array.count],
+                ["title": "Skills", "value": ObjectStore.sharedInstance.activeSkills.values.array.count],
+                ["title": "Offices", "value": ObjectStore.sharedInstance.locations.values.array.count]
+            ] as [AnyObject]
+            statsCard.addContent(content: stats)
+            
+            statsCard.sectionInset = UIEdgeInsetsMake(10.0, 10.0, 20.0, 10.0)
+            appendCard(statsCard)
+        }
     }
     
     override func configureCell(cell: CircleCollectionViewCell, atIndexPath indexPath: NSIndexPath) {
         if cell is TeamGridItemCollectionViewCell {
             (cell as TeamGridItemCollectionViewCell).sizeMode = .Compact
+        } else if cell is ProfileCollectionViewCell {
+            cell.backgroundColor = UIColor.clearColor()
+        } else if cell is StatTileCollectionViewCell {
+            cell.backgroundColor = UIColor.whiteColor()
+            cell.addRoundCorners(radius: 5.0)
         }
     }
     

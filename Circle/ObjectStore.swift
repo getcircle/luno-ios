@@ -156,6 +156,7 @@ class ObjectStore {
         teams.removeAll(keepCapacity: false)
         skills.removeAll(keepCapacity: false)
         activeSkills.removeAll(keepCapacity: false)
+        locations.removeAll(keepCapacity: false)
     }
     
     func getProfilesForAttribute(attribute: SearchService.Attribute, value: AnyObject) -> Array<ProfileService.Containers.Profile> {

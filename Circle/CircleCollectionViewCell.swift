@@ -54,6 +54,10 @@ class CircleCollectionViewCell: UICollectionViewCell {
     class var sizeCalculationMethod: SizeCalculation {
         return .Fixed
     }
+
+    class var sizeIncludesInsets: Bool {
+        return false
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()

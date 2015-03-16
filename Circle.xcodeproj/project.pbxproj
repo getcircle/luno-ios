@@ -170,6 +170,8 @@
 		BF6A2D101AAD08DA00692315 /* EmptyCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF6A2D0E1AAD08DA00692315 /* EmptyCollectionViewCell.xib */; };
 		BF764DC41A5F6E8200D122F4 /* LandingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF764DC31A5F6E8200D122F4 /* LandingService.swift */; };
 		BF768A621AB402D100D677B1 /* PaginatorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF768A611AB402D100D677B1 /* PaginatorExtension.swift */; };
+		BF768A741AB66E4700D677B1 /* StatTileCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF768A721AB66E4700D677B1 /* StatTileCollectionViewCell.swift */; };
+		BF768A751AB66E4700D677B1 /* StatTileCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF768A731AB66E4700D677B1 /* StatTileCollectionViewCell.xib */; };
 		BF7B238B1A70842500137BCB /* ProfileNotesCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7B238A1A70842500137BCB /* ProfileNotesCollectionView.swift */; };
 		BF7B23901A70894100137BCB /* ProfileDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7B238F1A70894100137BCB /* ProfileDetailsViewController.swift */; };
 		BF7DF98F1A44E53200A4F924 /* ServiceTransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7DF98E1A44E53200A4F924 /* ServiceTransport.swift */; };
@@ -465,6 +467,8 @@
 		BF6A2D0E1AAD08DA00692315 /* EmptyCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmptyCollectionViewCell.xib; sourceTree = "<group>"; };
 		BF764DC31A5F6E8200D122F4 /* LandingService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandingService.swift; sourceTree = "<group>"; };
 		BF768A611AB402D100D677B1 /* PaginatorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaginatorExtension.swift; sourceTree = "<group>"; };
+		BF768A721AB66E4700D677B1 /* StatTileCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatTileCollectionViewCell.swift; sourceTree = "<group>"; };
+		BF768A731AB66E4700D677B1 /* StatTileCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StatTileCollectionViewCell.xib; sourceTree = "<group>"; };
 		BF7B238A1A70842500137BCB /* ProfileNotesCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileNotesCollectionView.swift; sourceTree = "<group>"; };
 		BF7B238F1A70894100137BCB /* ProfileDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileDetailsViewController.swift; sourceTree = "<group>"; };
 		BF7DF98E1A44E53200A4F924 /* ServiceTransport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceTransport.swift; sourceTree = "<group>"; };
@@ -684,6 +688,7 @@
 				8F74001B1A684F2400D96B60 /* SkillHeaderCollectionReusableView.swift */,
 				8F65C5051A52661700C7F3E6 /* SkillsCollectionViewCell.swift */,
 				8F9F60AD1A88738100FCAA25 /* SocialConnectCollectionViewCell.swift */,
+				BF768A721AB66E4700D677B1 /* StatTileCollectionViewCell.swift */,
 				8F085A931A6C191400F8139B /* TeamGridItemCollectionViewCell.swift */,
 				8F085A8B1A6B5B4900F8139B /* TeamHeaderCollectionReusableView.swift */,
 				8F085A8F1A6C175C00F8139B /* TeamsCollectionViewCell.swift */,
@@ -781,6 +786,7 @@
 				8F7795031A909AFC00BEF6EA /* SkillsOverviewViewController.xib */,
 				8F9F60AE1A88738100FCAA25 /* SocialConnectCollectionViewCell.xib */,
 				8F7E2DC51A8FC00000B8548D /* SplashViewController.xib */,
+				BF768A731AB66E4700D677B1 /* StatTileCollectionViewCell.xib */,
 				8F085A941A6C191400F8139B /* TeamGridItemCollectionViewCell.xib */,
 				8F085A8C1A6B5B4900F8139B /* TeamHeaderCollectionReusableView.xib */,
 				8F085A901A6C175C00F8139B /* TeamsCollectionViewCell.xib */,
@@ -1144,6 +1150,7 @@
 				8F823E441A714B5D0006264B /* OrganizationHeaderCollectionReusableView.xib in Resources */,
 				BF8DAC781A6CB05B000860DD /* NotesCardHeaderCollectionReusableView.xib in Resources */,
 				8F0004A21A2419730096477A /* Images.xcassets in Resources */,
+				BF768A751AB66E4700D677B1 /* StatTileCollectionViewCell.xib in Resources */,
 				BFCFDB1B1A917944009A5FD4 /* ProfileSectionHeaderCollectionReusableView.xib in Resources */,
 				8F7E2DCE1A8FDBB600B8548D /* PasscodeTouchIDViewController.xib in Resources */,
 				8F65C4F61A50F28E00C7F3E6 /* CardHeaderCollectionReusableView.xib in Resources */,
@@ -1273,6 +1280,7 @@
 				8F08A9F91A748F5200B93149 /* CardFooterCollectionReusableView.swift in Sources */,
 				8F823E431A714B5D0006264B /* OrganizationHeaderCollectionReusableView.swift in Sources */,
 				BFC05DD31A97B32800F246EA /* ResumeService.swift in Sources */,
+				BF768A741AB66E4700D677B1 /* StatTileCollectionViewCell.swift in Sources */,
 				8F823E381A706B790006264B /* OrganizationDetailViewController.swift in Sources */,
 				8F22CBE51A27ED190026376E /* StickyHeaderCollectionViewLayout.swift in Sources */,
 				8FD321861AAD6566005B238A /* AppreciateActionCollectionViewCell.swift in Sources */,

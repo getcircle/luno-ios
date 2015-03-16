@@ -35,11 +35,16 @@ class CardCollectionViewDelegate: NSObject, UICollectionViewDelegateFlowLayout, 
         // Use default width and height methods if size calculation method of choice is Fixed
         let dataSource = cardDataSource(collectionView)
         let card = dataSource.cards[indexPath.section]
-        var leftAndRightInsets = card.sectionInset.left
-        leftAndRightInsets += card.sectionInset.right
+        var leftAndRightInsets: CGFloat
+        if card.contentClass.sizeIncludesInsets {
+            leftAndRightInsets = 0.0
+        } else {
+            leftAndRightInsets = card.sectionInset.left
+            leftAndRightInsets += card.sectionInset.right
+        }
 
         if card.contentClass.sizeCalculationMethod == SizeCalculation.Fixed {
-            return CGSizeMake(collectionView.frameWidth - leftAndRightInsets, card.contentClass.height)
+            return CGSizeMake(card.contentClass.width - leftAndRightInsets, card.contentClass.height)
         }
         else {
             
