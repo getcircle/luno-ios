@@ -20,7 +20,14 @@ class TeamsOverviewDataSource: CardDataSource {
     func configureForLocation(locationId: String) {
         let requestBuilder = OrganizationService.GetTeams.Request.builder()
         requestBuilder.location_id = locationId
-        
+        configureForParameters(requestBuilder)
+    }
+    
+    func configureForOrganization() {
+        let requestBuilder = OrganizationService.GetTeams.Request.builder()
+        let organizationId = AuthViewController.getLoggedInUserOrganization()!.id
+        requestBuilder.organization_id = organizationId
+        configureForParameters(requestBuilder)
     }
     
     private func configureForParameters(requestBuilder: AbstractMessageBuilder) {

@@ -16,6 +16,7 @@ message SearchService {
         LOCATION_ID = 0;
         TEAM_ID = 1;
         SKILL_ID = 2;
+        ORGANIZATION_ID = 3;
     }
 
     // MARK: - Actions

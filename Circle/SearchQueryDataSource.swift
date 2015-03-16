@@ -87,10 +87,26 @@ class SearchQueryDataSource: CardDataSource {
             let statsCard = Card(cardType: .StatTile, title: "Categories", showContentCount: false)
             statsCard.addHeader(headerClass: headerClass, headerClassName: headerClassName)
             let stats = [
-                ["title": "People", "value": ObjectStore.sharedInstance.profiles.values.array.count],
-                ["title": "Teams", "value": ObjectStore.sharedInstance.teams.values.array.count],
-                ["title": "Skills", "value": ObjectStore.sharedInstance.activeSkills.values.array.count],
-                ["title": "Offices", "value": ObjectStore.sharedInstance.locations.values.array.count]
+                [
+                    "title": "People",
+                    "value": ObjectStore.sharedInstance.profiles.values.array.count,
+                    "type": StatTileCollectionViewCell.TileType.People.rawValue
+                ],
+                [
+                    "title": "Offices",
+                    "value": ObjectStore.sharedInstance.locations.values.array.count,
+                    "type": StatTileCollectionViewCell.TileType.Offices.rawValue
+                ],
+                [
+                    "title": "Teams",
+                    "value": ObjectStore.sharedInstance.teams.values.array.count,
+                    "type": StatTileCollectionViewCell.TileType.Teams.rawValue
+                ],
+                [
+                    "title": "Skills",
+                    "value": ObjectStore.sharedInstance.activeSkills.values.array.count,
+                    "type": StatTileCollectionViewCell.TileType.Skills.rawValue
+                ]
             ] as [AnyObject]
             statsCard.addContent(content: stats)
             
@@ -107,8 +123,6 @@ class SearchQueryDataSource: CardDataSource {
         } else if cell is StatTileCollectionViewCell {
             cell.backgroundColor = UIColor.whiteColor()
             cell.addRoundCorners(radius: 5.0)
-        } else if cell is SkillsCollectionViewCell {
-            cell.backgroundColor = UIColor.clearColor()
         }
     }
     

@@ -679,6 +679,7 @@ final public class SearchService : GeneratedMessage {
       case LocationId = 0
       case TeamId = 1
       case SkillId = 2
+      case OrganizationId = 3
 
       public static func IsValidValue(value:Int32) ->Bool {
           if let check = Attribute(rawValue:value) {

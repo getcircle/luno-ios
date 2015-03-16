@@ -28,6 +28,16 @@ class ProfilesDataSource: CardDataSource {
         configureForParameters(requestBuilder)
     }
     
+    func configureForOrganization() {
+        let organizationId = AuthViewController.getLoggedInUserOrganization()!.id
+        let requestBuilder = ProfileService.GetProfiles.Request.builder()
+        requestBuilder.organization_id = organizationId
+        searchAttribute = .OrganizationId
+        println("organizationId: \(organizationId)")
+        searchAttributeValue = organizationId
+        configureForParameters(requestBuilder)
+    }
+    
     private func configureForParameters(requestBuilder: AbstractMessageBuilder) {
         let client = ServiceClient(serviceName: "profile")
         let serviceRequest = client.buildRequest(

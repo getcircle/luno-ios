@@ -167,6 +167,11 @@ class ObjectStore {
                     return $0.location_id == location_id
                 }
                 return false
+            case .OrganizationId:
+                if let organization_id = value as? String {
+                    return $0.organization_id == organization_id
+                }
+                return false
             default: return false
             }
         }

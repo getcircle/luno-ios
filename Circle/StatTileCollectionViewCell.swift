@@ -9,9 +9,17 @@
 import UIKit
 
 class StatTileCollectionViewCell: CircleCollectionViewCell {
+    
+    enum TileType: Int {
+        case People = 1
+        case Offices
+        case Teams
+        case Skills
+    }
 
     @IBOutlet weak private(set) var countLabel: UILabel!
     @IBOutlet weak private(set) var titleLabel: UILabel!
+    private(set) var tileType: TileType?
     
     override class var sizeIncludesInsets: Bool {
         return true
@@ -40,6 +48,9 @@ class StatTileCollectionViewCell: CircleCollectionViewCell {
         if let stats = data as? [String: AnyObject] {
             titleLabel.text = data["title"] as String!
             countLabel.text = String(data["value"] as Int!)
+            if let type = data["type"] as? Int {
+                tileType = TileType(rawValue: type)
+            }
         }
     }
     

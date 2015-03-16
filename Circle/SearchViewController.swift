@@ -279,6 +279,34 @@ class SearchViewController: UIViewController,
                         }
                     }
                 }
+            case .StatTile:
+                let cell = collectionView.dataSource?.collectionView(collectionView, cellForItemAtIndexPath: indexPath) as StatTileCollectionViewCell
+                switch cell.tileType! {
+                case .People:
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    let viewController = storyboard.instantiateViewControllerWithIdentifier("ProfilesViewController") as ProfilesViewController
+                    viewController.dataSource.configureForOrganization()
+                    viewController.title = "People"
+                    navigationController?.pushViewController(viewController, animated: true)
+                case .Offices:
+                    let viewController = OfficesOverviewViewController(nibName: "OfficesOverviewViewController", bundle: nil)
+                    viewController.title = "Offices"
+                    viewController.dataSource.setInitialData(
+                        ObjectStore.sharedInstance.locations.values.array,
+                        ofType: nil
+                    )
+                    navigationController?.pushViewController(viewController, animated: true)
+                case .Teams:
+                    let viewController = TeamsOverviewViewController(nibName: "TeamsOverviewViewController", bundle: nil)
+                    viewController.title = "Teams"
+                    viewController.dataSource.configureForOrganization()
+                    navigationController?.pushViewController(viewController, animated: true)
+                case .Skills:
+                    let skillsOverviewViewController = SkillsOverviewViewController(nibName: "SkillsOverviewViewController", bundle: nil)
+                    skillsOverviewViewController.title = "Skills"
+                    skillsOverviewViewController.dataSource.setInitialData(content: ObjectStore.sharedInstance.activeSkills.values.array)
+                    navigationController?.pushViewController(skillsOverviewViewController, animated: true)
+                }
                 
             default:
                 break
