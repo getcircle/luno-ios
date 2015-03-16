@@ -87,6 +87,8 @@ class SearchQueryDataSource: CardDataSource {
         if searchTerm == "" && !isQuickAction {
             let statsCard = Card(cardType: .StatTile, title: "Categories", showContentCount: false)
             statsCard.addHeader(headerClass: headerClass, headerClassName: headerClassName)
+            let officeCount = ObjectStore.sharedInstance.locations.values.array.count
+            let officeTitle = officeCount == 1 ? "Office" : "Offices"
             let stats = [
                 [
                     "title": "People",
@@ -94,8 +96,8 @@ class SearchQueryDataSource: CardDataSource {
                     "type": StatTileCollectionViewCell.TileType.People.rawValue
                 ],
                 [
-                    "title": "Offices",
-                    "value": ObjectStore.sharedInstance.locations.values.array.count,
+                    "title": officeTitle,
+                    "value": officeCount,
                     "type": StatTileCollectionViewCell.TileType.Offices.rawValue
                 ],
                 [
