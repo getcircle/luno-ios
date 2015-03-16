@@ -212,6 +212,22 @@ extension UIColor {
         return UIColor.whiteColor()
     }
     
+    class func appWorkAnniversaryBannerBackground() -> UIColor {
+        return UIColor(red: 0, green: 212, blue: 143)
+    }
+    
+    class func appWorkAnniversaryBannerCTABackground() -> UIColor {
+        return UIColor(red: 0, green: 169, blue: 115)
+    }
+
+    class func appBirthdayBannerBackground() -> UIColor {
+        return UIColor(red: 0, green: 172, blue: 203)
+    }
+    
+    class func appBirthdayBannerCTABackground() -> UIColor {
+        return UIColor(red: 0, green: 137, blue: 163)
+    }
+
     // MARK: - Social
     
     class func twitterColor() -> UIColor {

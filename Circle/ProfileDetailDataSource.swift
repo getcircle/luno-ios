@@ -11,9 +11,10 @@ import ProtobufRegistry
 
 class ProfileDetailDataSource: CardDataSource {
 
+    var addBannerOfType: BannerType?
     var onlyShowContactInfo = false
     var profile: ProfileService.Containers.Profile!
-    var profileHeaderView: ProfileHeaderCollectionReusableView?    
+    var profileHeaderView: ProfileHeaderCollectionReusableView?
 
     internal var sections = [Section]()
     
@@ -76,6 +77,11 @@ class ProfileDetailDataSource: CardDataSource {
         }
         else {
             sections.append(getQuickActionsSection())
+            if let addBanner = addBannerOfType {
+                if !isProfileLoggedInUserProfile() {
+                    sections.append(getBannersSection())
+                }
+            }
             sections.append(getAboutSection())
             sections.append(getSkillsSection())
             sections.append(getManagerSection())
@@ -97,6 +103,20 @@ class ProfileDetailDataSource: CardDataSource {
             )
         ]
         return Section(title: "Quick Actions", items: sectionItems, cardType: .QuickActions)
+    }
+    
+    private func getBannersSection() -> Section {
+        // TODO: Check birthday / anniversary and customize
+        let sectionItems = [
+            SectionItem(
+                title: "Banner",
+                container: "",
+                containerKey: "",
+                contentType: .Banner,
+                image: nil
+            )
+        ]
+        return Section(title: "Banner", items: sectionItems, cardType: .Banners)
     }
     
     private func getAboutSection() -> Section {
@@ -286,6 +306,8 @@ class ProfileDetailDataSource: CardDataSource {
     
     private func addItemToCard(item: SectionItem, card: Card) {
         switch card.type {
+        case .Banners:
+            addBannerItemToCard(item, card: card)
         case .Education:
             addEducationItemToCard(item, card: card)
         case .KeyValue:
@@ -421,6 +443,17 @@ class ProfileDetailDataSource: CardDataSource {
             if resume.positions.count > numberOfExperienceItemsVisibleInitially {
                 card.addDefaultFooter()
             }
+        }
+    }
+    
+    private func addBannerItemToCard(item: SectionItem, card: Card) {
+        if let addBanner = addBannerOfType {
+            var bannerDictionary: [String: AnyObject] = [
+                "type": addBanner.rawValue,
+                "profile": profile
+            ]
+            
+            card.addContent(content: [bannerDictionary])
         }
     }
     

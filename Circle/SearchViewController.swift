@@ -222,6 +222,12 @@ class SearchViewController: UIViewController,
             case .Profiles, .Birthdays, .Anniversaries, .NewHires:
                 if let profile = dataSource.contentAtIndexPath(indexPath)? as? ProfileService.Containers.Profile {
                     let profileVC = ProfileDetailViewController(profile: profile)
+                    if selectedCard.type == .Anniversaries {
+                        (profileVC.dataSource as ProfileDetailDataSource).addBannerOfType = .Anniversary
+                    }
+                    else if selectedCard.type == .Birthdays {
+                        (profileVC.dataSource as ProfileDetailDataSource).addBannerOfType = .Birthday
+                    }
                     profileVC.hidesBottomBarWhenPushed = false
                     properties.append(TrackerProperty.withKey(.Destination).withSource(.Detail))
                     properties.append(TrackerProperty.withKey(.DestinationDetailType).withDetailType(.Profile))

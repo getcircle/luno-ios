@@ -115,7 +115,21 @@ class ProfileDetailViewController: DetailViewController,
             name: QuickActionNotifications.onQuickActionStarted,
             object: nil
         )
-        
+
+        NSNotificationCenter.defaultCenter().addObserver(
+            self,
+            selector: "bannerCTATapped:",
+            name: BannerNotifications.onBannerCTATappedNotification,
+            object: nil
+        )
+
+        NSNotificationCenter.defaultCenter().addObserver(
+            self,
+            selector: "bannerCloseTapped:",
+            name: BannerNotifications.onBannerCloseTappedNotification,
+            object: nil
+        )
+
         super.registerNotifications()
     }
     
@@ -123,6 +137,18 @@ class ProfileDetailViewController: DetailViewController,
         
         NSNotificationCenter.defaultCenter().removeObserver(self,
             name: QuickActionNotifications.onQuickActionStarted,
+            object: nil
+        )
+
+        NSNotificationCenter.defaultCenter().removeObserver(
+            self,
+            name: BannerNotifications.onBannerCTATappedNotification,
+            object: nil
+        )
+        
+        NSNotificationCenter.defaultCenter().removeObserver(
+            self,
+            name: BannerNotifications.onBannerCloseTappedNotification,
             object: nil
         )
         
@@ -139,6 +165,16 @@ class ProfileDetailViewController: DetailViewController,
                 }
             }
         }
+    }
+
+    func bannerCTATapped(notification: NSNotification) {
+        (dataSource as ProfileDetailDataSource).addBannerOfType = nil
+        reloadData()
+    }
+
+    func bannerCloseTapped(notification: NSNotification) {
+        (dataSource as ProfileDetailDataSource).addBannerOfType = nil
+        reloadData()
     }
 
     func reloadData() {
