@@ -66,7 +66,7 @@ class SearchQueryDataSource: CardDataSource {
         }
 
         if visibleTeams.count > 0 {
-            let teamsCard = Card(cardType: .Team, title: "Teams")
+            let teamsCard = Card(cardType: .Team, title: "Teams", showContentCount: false)
             teamsCard.addHeader(headerClass: headerClass, headerClassName: headerClassName)
             teamsCard.addContent(content: visibleTeams as [AnyObject])
             teamsCard.contentCount = visibleTeams.count
@@ -75,7 +75,7 @@ class SearchQueryDataSource: CardDataSource {
         }
         
         if visibleSkills.count > 0 {
-            let skillsCard = Card(cardType: .Skills, title: "Skills")
+            let skillsCard = Card(cardType: .Skills, title: "Skills", showContentCount: false)
             skillsCard.addHeader(headerClass: headerClass, headerClassName: headerClassName)
             skillsCard.addContent(content: visibleSkills as [AnyObject])
             skillsCard.contentCount = visibleSkills.count
