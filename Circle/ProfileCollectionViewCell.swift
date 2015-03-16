@@ -77,6 +77,7 @@ class ProfileCollectionViewCell: CircleCollectionViewCell {
     }
 
     private func setTeam(team: OrganizationService.Containers.Team) {
+        profileImageView.imageText = ""
         profileImageView.backgroundColor = UIColor.appTeamHeaderBackgroundColor(team.id)
         profileImageView.image = nil
         nameLabel.text = team.name
