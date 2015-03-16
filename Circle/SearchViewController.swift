@@ -182,6 +182,7 @@ class SearchViewController: UIViewController,
         selectedAction = .None
         collectionView.dataSource = landingDataSource
         queryDataSource.resetCards()
+        queryDataSource.isQuickAction = false
         collectionView.reloadData()
     }
     
@@ -189,6 +190,7 @@ class SearchViewController: UIViewController,
     
     func activateSearch() {
         hideNavbarAnimated(false)
+        queryDataSource.isQuickAction = true
         searchHeaderView.searchTextField.becomeFirstResponder()
     }
     

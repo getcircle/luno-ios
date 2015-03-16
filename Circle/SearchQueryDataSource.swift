@@ -11,6 +11,7 @@ import ProtobufRegistry
 
 class SearchQueryDataSource: CardDataSource {
     
+    var isQuickAction: Bool = false
     private let whitespaceCharacterSet = NSCharacterSet.whitespaceCharacterSet()
     
     private var searchTerm = ""
@@ -83,7 +84,7 @@ class SearchQueryDataSource: CardDataSource {
             appendCard(skillsCard)
         }
         
-        if searchTerm == "" {
+        if searchTerm == "" && !isQuickAction {
             let statsCard = Card(cardType: .StatTile, title: "Categories", showContentCount: false)
             statsCard.addHeader(headerClass: headerClass, headerClassName: headerClassName)
             let stats = [
