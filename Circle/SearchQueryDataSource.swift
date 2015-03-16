@@ -47,8 +47,8 @@ class SearchQueryDataSource: CardDataSource {
     private func updateVisibleCards() {
         resetCards()
         let sectionInset = UIEdgeInsetsMake(0.0, 0.0, 10.0, 0.0)
-        let headerClass = SearchResultsCardHeaderCollectionReusableView.self
-        let headerClassName = "SearchResultsCardHeaderCollectionReusableView"
+        let headerClass = ProfileSectionHeaderCollectionReusableView.self
+        let headerClassName = "ProfileSectionHeaderCollectionReusableView"
 
         // TODO these should be sorted by relevancy
         if visibleProfiles.count > 0 {
@@ -57,7 +57,7 @@ class SearchQueryDataSource: CardDataSource {
             // are straight up suggestions without any search term
             
             let profilesCardTitle = searchTerm.trimWhitespace() == "" ? "Recent" : "People"
-            let peopleCard = Card(cardType: .Profiles, title: profilesCardTitle)
+            let peopleCard = Card(cardType: .Profiles, title: profilesCardTitle, showContentCount: false)
             peopleCard.addHeader(headerClass: headerClass, headerClassName: headerClassName)
             peopleCard.addContent(content: visibleProfiles as [AnyObject])
             peopleCard.contentCount = visibleProfiles.count
@@ -85,15 +85,9 @@ class SearchQueryDataSource: CardDataSource {
     }
     
     override func configureCell(cell: CircleCollectionViewCell, atIndexPath indexPath: NSIndexPath) {
-        cell.backgroundColor = UIColor.clearColor()
         if cell is TeamGridItemCollectionViewCell {
             (cell as TeamGridItemCollectionViewCell).sizeMode = .Compact
         }
     }
     
-    override func configureHeader(header: CircleCollectionReusableView, atIndexPath indexPath: NSIndexPath) {
-        super.configureHeader(header, atIndexPath: indexPath)
-        (header as? SearchResultsCardHeaderCollectionReusableView)?.addBottomBorder = true
-        header.backgroundColor = UIColor.clearColor()
-    }
 }

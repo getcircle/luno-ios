@@ -18,6 +18,18 @@ class ProfileSectionHeaderCollectionReusableView: CircleCollectionReusableView {
     
     var showAddEditButton: Bool = false
 
+    private var bottomBorder: UIView?
+    
+    var addBottomBorder: Bool? {
+        didSet {
+            if let addBorder = addBottomBorder {
+                if bottomBorder == nil {
+                    bottomBorder = cardTitleLabel.addBottomBorder(offset: 8.0)
+                }
+            }
+        }
+    }
+
     override class var classReuseIdentifier: String {
         return "ProfileSectionHeaderView"
     }

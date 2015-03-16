@@ -11,13 +11,14 @@ import MessageUI
 import ProtobufRegistry
 
 class SearchViewController: UIViewController,
-UICollectionViewDelegate,
-UITextFieldDelegate,
-MFMailComposeViewControllerDelegate,
-MFMessageComposeViewControllerDelegate,
-SearchHeaderViewDelegate,
-CardHeaderViewDelegate,
-NewNoteViewControllerDelegate {
+    UICollectionViewDelegate,
+    UITextFieldDelegate,
+    MFMailComposeViewControllerDelegate,
+    MFMessageComposeViewControllerDelegate,
+    SearchHeaderViewDelegate,
+    CardHeaderViewDelegate,
+    NewNoteViewControllerDelegate
+{
 
     @IBOutlet weak private(set) var activityIndicatorView: UIActivityIndicatorView!
     @IBOutlet weak private(set) var collectionView: UICollectionView!
@@ -168,6 +169,7 @@ NewNoteViewControllerDelegate {
     // MARK: - TextField Delegate
     
     func textFieldDidBeginEditing(textField: UITextField) {
+        hideNavbarAnimated(false)
         searchHeaderView.showCancelButton()
         collectionView.dataSource = queryDataSource
         collectionView.reloadData()
@@ -186,6 +188,7 @@ NewNoteViewControllerDelegate {
     // MARK: Search Targets
     
     func activateSearch() {
+        hideNavbarAnimated(false)
         searchHeaderView.searchTextField.becomeFirstResponder()
     }
     

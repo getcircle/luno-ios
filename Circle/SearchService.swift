@@ -27,7 +27,7 @@ extension SearchService {
             }
             
             class var maxSuggestionsPerCategory: Int {
-                return 6
+                return 3
             }
         }
         

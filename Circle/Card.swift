@@ -300,7 +300,8 @@ class Card: Equatable {
         title withTitle: String,
         content withContent: [AnyObject]?,
         contentCount withContentCount: Int?,
-        addDefaultFooter withFooter: Bool?
+        addDefaultFooter withFooter: Bool?,
+        showContentCount withShowContentCount: Bool? = true
     ) {
         type = cardType
         let infoByCardType = CardType.infoByCardType(type)
@@ -312,6 +313,9 @@ class Card: Equatable {
         contentCount = withContentCount ?? 0
         content = withContent ?? []
         allContent = content
+        if withShowContentCount != nil {
+            showContentCount = withShowContentCount!
+        }
 
         if let addADefaultFooter = withFooter {
             if addADefaultFooter {
@@ -324,14 +328,16 @@ class Card: Equatable {
         cardType: CardType,
         title withTitle: String,
         addDefaultFooter: Bool? = false,
-        contentCount withContentCount: Int? = nil
+        contentCount withContentCount: Int? = nil,
+        showContentCount withShowContentCount: Bool? = true
     ) {
         self.init(
             cardType: cardType,
             title: withTitle,
             content: nil,
             contentCount: withContentCount,
-            addDefaultFooter: addDefaultFooter ?? false
+            addDefaultFooter: addDefaultFooter ?? false,
+            showContentCount: withShowContentCount
         )
     }
 
