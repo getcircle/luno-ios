@@ -34,6 +34,7 @@ class CircleImageView: UIImageView {
     }
     
     var addLabelIfImageLoadingFails = true
+    var imageProfileIdentifier: String?
     private var imageLabel: UILabel!
     
     override init(frame: CGRect) {
@@ -85,6 +86,14 @@ class CircleImageView: UIImageView {
             setImageWithURLRequest(request,
                 placeholderImage: UIImage.imageFromColor(UIColor.darkGrayColor(), withRect: bounds),
                 success: { (request, response, image) -> Void in
+                    
+                    if let imageID = self.imageProfileIdentifier {
+                        if imageID != profile.id {
+                            self.transform = CGAffineTransformIdentity
+                            return
+                        }
+                    }
+                    
                     if let successCallback = successHandler {
                         self.transform = CGAffineTransformIdentity
                         successCallback(image: image)

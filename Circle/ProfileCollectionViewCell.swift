@@ -73,6 +73,7 @@ class ProfileCollectionViewCell: CircleCollectionViewCell {
             }
         }
         subTextLabel.text = subtitle
+        profileImageView.imageProfileIdentifier = profile.id
         profileImageView.setImageWithProfile(profile)
     }
 
@@ -88,6 +89,7 @@ class ProfileCollectionViewCell: CircleCollectionViewCell {
     
     private func setLocation(location: OrganizationService.Containers.Location) {
         nameLabel.text = location.address.officeName()
+        profileImageView.imageText = ""
         profileImageView.image = UIImage(named: "SF")
         subTextLabel.text = getCountLabel(location.profile_count)
     }
