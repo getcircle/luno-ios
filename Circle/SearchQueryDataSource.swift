@@ -107,6 +107,8 @@ class SearchQueryDataSource: CardDataSource {
         } else if cell is StatTileCollectionViewCell {
             cell.backgroundColor = UIColor.whiteColor()
             cell.addRoundCorners(radius: 5.0)
+        } else if cell is SkillsCollectionViewCell {
+            cell.backgroundColor = UIColor.clearColor()
         }
     }
     
