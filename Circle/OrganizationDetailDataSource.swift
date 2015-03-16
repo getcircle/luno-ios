@@ -24,6 +24,7 @@ class OrganizationDetailDataSource: CardDataSource {
             headerClass: OrganizationHeaderCollectionReusableView.self, 
             headerClassName: "OrganizationHeaderCollectionReusableView"
         )
+        placeholderCard.sectionInset = UIEdgeInsetsZero
         appendCard(placeholderCard)
         
         if let currentProfile = AuthViewController.getLoggedInUserProfile() {

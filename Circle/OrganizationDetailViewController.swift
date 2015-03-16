@@ -20,6 +20,16 @@ class OrganizationDetailViewController: DetailViewController, CardHeaderViewDele
         delegate = CardCollectionViewDelegate()
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        var statusBarView = UIView(forAutoLayout: ())
+        statusBarView.backgroundColor = UIColor.appUIBackgroundColor()
+        view.insertSubview(statusBarView, aboveSubview: collectionView)
+        statusBarView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero, excludingEdge: .Bottom)
+        statusBarView.autoSetDimension(.Height, toSize: 20.0)
+    }
+    
     // MARK: - Configuration
     
     override func configureCollectionView() {
@@ -51,39 +61,6 @@ class OrganizationDetailViewController: DetailViewController, CardHeaderViewDele
             direction: .Vertical,
             properties: properties
         )
-        if let profileHeaderView = (collectionView!.dataSource as OrganizationDetailDataSource).profileHeaderView {
-            let contentOffset = scrollView.contentOffset
-            let minOffsetToMakeChanges: CGFloat = 20.0
-            
-            // Do not change anything unless user scrolls up more than 20 points
-            if contentOffset.y > minOffsetToMakeChanges {
-                
-                // Scale down the image and reduce opacity
-                let profileImageFractionValue = 1.0 - (contentOffset.y - minOffsetToMakeChanges)/profileHeaderView.profileImage.frameY
-                profileHeaderView.profileImage.alpha = profileImageFractionValue
-                if profileImageFractionValue >= 0 {
-                    var transform = CGAffineTransformMakeScale(profileImageFractionValue, profileImageFractionValue)
-                    profileHeaderView.profileImage.transform = transform
-                }
-                
-                // Reduce opacity of the name and title label at a faster pace
-                let titleLabelAlpha = 1.0 - contentOffset.y/(profileHeaderView.nameNavLabel.frameY - 40.0)
-                profileHeaderView.nameLabel.alpha = 1.0 - contentOffset.y/(profileHeaderView.nameLabel.frameY - 40.0)
-                profileHeaderView.nameNavLabel.alpha = titleLabelAlpha <= 0.0 ? profileHeaderView.nameNavLabel.alpha + 1/20 : 0.0
-            }
-            else {
-                // Change alpha faster for profile image
-                let profileImageAlpha = max(0.0, 1.0 - -contentOffset.y/80.0)
-                
-                // Change it slower for everything else
-                let otherViewsAlpha = max(0.0, 1.0 - -contentOffset.y/120.0)
-                profileHeaderView.nameLabel.alpha = otherViewsAlpha
-                profileHeaderView.nameNavLabel.alpha = 0.0
-                profileHeaderView.profileImage.alpha = profileImageAlpha
-                profileHeaderView.visualEffectView.alpha = otherViewsAlpha
-                profileHeaderView.profileImage.transform = CGAffineTransformIdentity
-            }
-        }
     }
     
     // MARK: - UICollectionViewDelegate
