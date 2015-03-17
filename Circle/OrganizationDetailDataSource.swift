@@ -20,10 +20,7 @@ class OrganizationDetailDataSource: CardDataSource {
         
         // Get the header early
         let placeholderCard = Card(cardType: .Placeholder, title: "")
-        placeholderCard.addHeader(
-            headerClass: OrganizationHeaderCollectionReusableView.self, 
-            headerClassName: "OrganizationHeaderCollectionReusableView"
-        )
+        placeholderCard.addHeader(headerClass: OrganizationHeaderCollectionReusableView.self)
         placeholderCard.sectionInset = UIEdgeInsetsZero
         appendCard(placeholderCard)
         

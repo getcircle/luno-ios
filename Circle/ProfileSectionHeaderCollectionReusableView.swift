@@ -31,7 +31,7 @@ class ProfileSectionHeaderCollectionReusableView: CircleCollectionReusableView {
     }
 
     override class var classReuseIdentifier: String {
-        return "ProfileSectionHeaderView"
+        return "ProfileSectionHeaderCollectionReusableView"
     }
 
     override func awakeFromNib() {

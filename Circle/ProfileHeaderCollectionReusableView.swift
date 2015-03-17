@@ -59,7 +59,7 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
 
     
     override class var classReuseIdentifier: String {
-        return "ProfileHeaderView"
+        return "ProfileHeaderCollectionReusableView"
     }
     
     override class var height: CGFloat {

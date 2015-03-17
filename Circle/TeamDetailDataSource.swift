@@ -28,8 +28,7 @@ class TeamDetailDataSource: CardDataSource {
         let placeholderHeaderCard = Card(cardType: .Placeholder, title: "Team Header")
         placeholderHeaderCard.sectionInset = UIEdgeInsetsZero
         placeholderHeaderCard.addHeader(
-            headerClass: TeamHeaderCollectionReusableView.self, 
-            headerClassName: "TeamHeaderCollectionReusableView"
+            headerClass: TeamHeaderCollectionReusableView.self
         )
         appendCard(placeholderHeaderCard)
         
@@ -55,7 +54,6 @@ class TeamDetailDataSource: CardDataSource {
                     }
                     
                     let sectionHeaderClass = SearchResultsCardHeaderCollectionReusableView.self
-                    let sectionHeaderClassName = "SearchResultsCardHeaderCollectionReusableView"
                     
                     // Add Members Card
                     if allProfilesExceptOwner?.count > 0 {
@@ -65,7 +63,7 @@ class TeamDetailDataSource: CardDataSource {
                             comment: "Title for list of team members"
                         ).uppercaseStringWithLocale(NSLocale.currentLocale())
                         let membersCard = Card(cardType: .Profiles, title: membersCardTitle)
-                        membersCard.addHeader(headerClass: sectionHeaderClass, headerClassName: sectionHeaderClassName)
+                        membersCard.addHeader(headerClass: sectionHeaderClass)
                         membersCard.addContent(content: allProfilesExceptOwner! as [AnyObject])
                         membersCard.sectionInset = UIEdgeInsetsMake(10.0, 0.0, 25.0, 0.0)
                         self.appendCard(membersCard)
@@ -76,7 +74,7 @@ class TeamDetailDataSource: CardDataSource {
                     OrganizationService.Actions.getTeamDescendants(self.selectedTeam!.id, depth: 1, completionHandler: { (teams, error) -> Void in
                         if let teams = teams {
                             var teamsCard = Card(cardType: .TeamsGrid, title: "Teams")
-                            teamsCard.addHeader(headerClass: sectionHeaderClass, headerClassName: sectionHeaderClassName)
+                            teamsCard.addHeader(headerClass: sectionHeaderClass)
                             teamsCard.addContent(content: teams)
                             teamsCard.sectionInset = UIEdgeInsetsMake(10.0, 0.0, 25.0, 0.0)
                             self.appendCard(teamsCard)

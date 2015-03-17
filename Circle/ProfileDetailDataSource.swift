@@ -46,8 +46,7 @@ class ProfileDetailDataSource: CardDataSource {
             // Add placeholder card to load profile header instantly
             var placeholderCard = Card(cardType: .Placeholder, title: "Info")
             placeholderCard.addHeader(
-                headerClass: ProfileHeaderCollectionReusableView.self, 
-                headerClassName: "ProfileHeaderCollectionReusableView"
+                headerClass: ProfileHeaderCollectionReusableView.self
             )
             placeholderCard.sectionInset = UIEdgeInsetsZero
             appendCard(placeholderCard)
@@ -280,8 +279,7 @@ class ProfileDetailDataSource: CardDataSource {
             let sectionCard = Card(cardType: section.cardType, title: section.title)
             if section.addCardHeader {
                 sectionCard.addHeader(
-                    headerClass: ProfileSectionHeaderCollectionReusableView.self, 
-                    headerClassName: "ProfileSectionHeaderCollectionReusableView"
+                    headerClass: ProfileSectionHeaderCollectionReusableView.self
                 )
             }
             

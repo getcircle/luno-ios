@@ -28,7 +28,6 @@ class SettingsDataSource: CardDataSource {
     override func loadData(completionHandler: (error: NSError?) -> Void) {
         
         let sectionHeaderClass = SearchResultsCardHeaderCollectionReusableView.self
-        let sectionHeaderClassName = "SearchResultsCardHeaderCollectionReusableView"
         
         // Security card
         var securityCard = Card(
@@ -36,7 +35,7 @@ class SettingsDataSource: CardDataSource {
             title: NSLocalizedString("Security", comment: "Title of section related to security settings"),
             addDefaultFooter: false
         )
-        securityCard.addHeader(headerClass: sectionHeaderClass, headerClassName: sectionHeaderClassName)
+        securityCard.addHeader(headerClass: sectionHeaderClass)
         securityCard.sectionInset = UIEdgeInsetsMake(0.0, 0.0, 10.0, 0.0)
         securityCard.addContent(content: [
             [
@@ -52,7 +51,7 @@ class SettingsDataSource: CardDataSource {
             title: NSLocalizedString("Contact", comment: "Title of contact us section"),
             addDefaultFooter: false
         )
-        contactCard.addHeader(headerClass: sectionHeaderClass, headerClassName: sectionHeaderClassName)
+        contactCard.addHeader(headerClass: sectionHeaderClass)
         contactCard.sectionInset = UIEdgeInsetsMake(0.0, 0.0, 10.0, 0.0)
         contactCard.addContent(content: [
             [
@@ -72,7 +71,7 @@ class SettingsDataSource: CardDataSource {
             title: NSLocalizedString("Legal", comment: "Title of legal section"),
             addDefaultFooter: false
         )
-        legalCard.addHeader(headerClass: sectionHeaderClass, headerClassName: sectionHeaderClassName)
+        legalCard.addHeader(headerClass: sectionHeaderClass)
         legalCard.sectionInset = UIEdgeInsetsMake(0.0, 0.0, 10.0, 0.0)
         legalCard.addContent(content: [
             [
@@ -97,7 +96,7 @@ class SettingsDataSource: CardDataSource {
                 title: "Social",
                 addDefaultFooter: false
             )
-            socialCard.addHeader(headerClass: sectionHeaderClass, headerClassName: sectionHeaderClassName)
+            socialCard.addHeader(headerClass: sectionHeaderClass)
             socialCard.sectionInset = UIEdgeInsetsZero
             socialCard.addContent(content: identities as [AnyObject])
             appendCard(socialCard)
@@ -109,7 +108,7 @@ class SettingsDataSource: CardDataSource {
             title: "Account",
             addDefaultFooter: false
         )
-        logoutCard.addHeader(headerClass: sectionHeaderClass, headerClassName: sectionHeaderClassName)
+        logoutCard.addHeader(headerClass: sectionHeaderClass)
         logoutCard.sectionInset = UIEdgeInsetsMake(1.0, 0.0, 10.0, 0.0)
         logoutCard.addContent(content: [
             [
@@ -125,7 +124,7 @@ class SettingsDataSource: CardDataSource {
         
         // Version card
         var versionCard = Card(cardType: .Settings, title: "", addDefaultFooter: false)
-        versionCard.addHeader(headerClass: sectionHeaderClass, headerClassName: sectionHeaderClassName)
+        versionCard.addHeader(headerClass: sectionHeaderClass)
         versionCard.sectionInset = UIEdgeInsetsZero
         versionCard.addContent(content: [
             [

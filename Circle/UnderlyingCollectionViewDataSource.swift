@@ -16,8 +16,7 @@ class UnderlyingCollectionViewDataSource: CardDataSource {
         var placeholderCard = Card(cardType: .Placeholder, title: "Info")
         placeholderCard.sectionInset = UIEdgeInsetsZero
         placeholderCard.addHeader(
-            headerClass: CircleCollectionReusableView.self,
-            headerClassName: EmptyHeaderReuseIdentifier
+            headerClass: CircleCollectionReusableView.self
         )
         appendCard(placeholderCard)
     }

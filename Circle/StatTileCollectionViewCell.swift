@@ -21,6 +21,10 @@ class StatTileCollectionViewCell: CircleCollectionViewCell {
     @IBOutlet weak private(set) var titleLabel: UILabel!
     private(set) var tileType: TileType?
     
+    override class var classReuseIdentifier: String {
+        return "StatTileCollectionViewCell"
+    }
+    
     override class var sizeIncludesInsets: Bool {
         return true
     }

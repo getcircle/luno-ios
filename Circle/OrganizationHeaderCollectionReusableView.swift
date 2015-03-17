@@ -14,7 +14,7 @@ class OrganizationHeaderCollectionReusableView: CircleCollectionReusableView {
     @IBOutlet weak var profileImage: CircleImageView!
 
     override class var classReuseIdentifier: String {
-        return "ProfileHeaderView"
+        return "OrganizationHeaderCollectionReusableView"
     }
     
     override class var height: CGFloat {

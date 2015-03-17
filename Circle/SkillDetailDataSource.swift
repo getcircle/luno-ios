@@ -27,10 +27,7 @@ class SkillDetailDataSource: CardDataSource {
         // Add a placeholder card for skill view
         let placeholderSkillCard = Card(cardType: .Placeholder, title: "Skill Header")
         placeholderSkillCard.sectionInset = UIEdgeInsetsZero
-        placeholderSkillCard.addHeader(
-            headerClass: SkillHeaderCollectionReusableView.self, 
-            headerClassName: "SkillHeaderCollectionReusableView"
-        )
+        placeholderSkillCard.addHeader(headerClass: SkillHeaderCollectionReusableView.self)
         appendCard(placeholderSkillCard)
         
         if let currentProfile = AuthViewController.getLoggedInUserProfile() {

@@ -11,7 +11,7 @@ import UIKit
 class CardHeaderCollectionReusableView: CircleCollectionReusableView {
     
     override class var classReuseIdentifier: String {
-        return "CardSectionHeaderView"
+        return "CardHeaderCollectionReusableView"
     }
     
     override class var height: CGFloat {

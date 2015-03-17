@@ -20,7 +20,7 @@ class ToggleSocialConnectionCollectionViewCell: CircleCollectionViewCell {
     @IBOutlet weak var providerEnabledSwitch: UISwitch!
     
     override class var classReuseIdentifier: String {
-        return "ToggleSocialConnectionCell"
+        return "ToggleSocialConnectionCollectionViewCell"
     }
     
     private var identity: UserService.Containers.Identity?

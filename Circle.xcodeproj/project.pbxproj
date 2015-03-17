@@ -663,6 +663,7 @@
 				8FD321841AAD6566005B238A /* AppreciateActionCollectionViewCell.swift */,
 				8FCC31281AA2859E0093F00A /* AppreciationCollectionView.swift */,
 				8FCC312A1AA28AC10093F00A /* AppreciationCollectionViewCell.swift */,
+				8FC878201AB6A511003FDB27 /* BannerCollectionViewCell.swift */,
 				8F08A9F71A748F5200B93149 /* CardFooterCollectionReusableView.swift */,
 				8F65C4F31A50F28E00C7F3E6 /* CardHeaderCollectionReusableView.swift */,
 				8F4A98B21A6350B9005AD63C /* CircleCollectionReusableView.swift */,
@@ -698,8 +699,6 @@
 				8F085A8F1A6C175C00F8139B /* TeamsCollectionViewCell.swift */,
 				BFCFDB1F1A91951A009A5FD4 /* TextValueCollectionViewCell.swift */,
 				BFCFDB291A92759A009A5FD4 /* ToggleSocialConnectionCollectionViewCell.swift */,
-				8FC878201AB6A511003FDB27 /* BannerCollectionViewCell.swift */,
-				8FC878211AB6A511003FDB27 /* BannerCollectionViewCell.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -756,6 +755,7 @@
 				8FD321851AAD6566005B238A /* AppreciateActionCollectionViewCell.xib */,
 				8FCC312B1AA28AC10093F00A /* AppreciationCollectionViewCell.xib */,
 				8F22CBF71A29A8EB0026376E /* AuthViewController.xib */,
+				8FC878211AB6A511003FDB27 /* BannerCollectionViewCell.xib */,
 				8F08A9F81A748F5200B93149 /* CardFooterCollectionReusableView.xib */,
 				8F65C4F41A50F28E00C7F3E6 /* CardHeaderCollectionReusableView.xib */,
 				8F834F961A9E9F21007B7095 /* ContactInfoViewController.xib */,

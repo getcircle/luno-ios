@@ -14,7 +14,7 @@ class AddNoteCollectionViewCell: CircleCollectionViewCell {
     @IBOutlet weak private(set) var addNoteLabel: UILabel!
     
     override class var classReuseIdentifier: String {
-        return "AddNoteCell"
+        return "AddNoteCollectionViewCell"
     }
     
     override class var height: CGFloat {

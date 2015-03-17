@@ -34,8 +34,7 @@ class OfficeDetailDataSource: CardDataSource {
         var placeholderCard = Card(cardType: .Placeholder, title: "Info")
         placeholderCard.sectionInset = UIEdgeInsetsZero
         placeholderCard.addHeader(
-            headerClass: ProfileHeaderCollectionReusableView.self, 
-            headerClassName: "ProfileHeaderCollectionReusableView"
+            headerClass: ProfileHeaderCollectionReusableView.self
         )
         appendCard(placeholderCard)
         
@@ -135,8 +134,7 @@ class OfficeDetailDataSource: CardDataSource {
             teamsCard.addContent(content: teams as [AnyObject], maxVisibleItems: 6)
             teamsCard.sectionInset = UIEdgeInsetsZero
             teamsCard.addHeader(
-                headerClass: ProfileSectionHeaderCollectionReusableView.self, 
-                headerClassName: "ProfileSectionHeaderCollectionReusableView"
+                headerClass: ProfileSectionHeaderCollectionReusableView.self
             )
             appendCard(teamsCard)
         }

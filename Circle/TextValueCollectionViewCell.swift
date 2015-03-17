@@ -15,7 +15,7 @@ class TextValueCollectionViewCell: CircleCollectionViewCell {
     @IBOutlet weak var textLabelBottomConstraint: NSLayoutConstraint!
     
     override class var classReuseIdentifier: String {
-        return "TextValueCell"
+        return "TextValueCollectionViewCell"
     }
     
     override class var sizeCalculationMethod: SizeCalculation {

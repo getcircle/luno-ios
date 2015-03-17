@@ -35,8 +35,7 @@ class ProfileOverlaidCollectionViewDataSource: CardDataSource {
     override func loadData(completionHandler: (error: NSError?) -> Void) {
         let placeholderCard = Card(cardType: .Placeholder, title: "Placeholder")
         placeholderCard.addHeader(
-            headerClass: ProfileHeaderCollectionReusableView.self, 
-            headerClassName: "ProfileHeaderCollectionReusableView"
+            headerClass: ProfileHeaderCollectionReusableView.self
         )
         appendCard(placeholderCard)
     }

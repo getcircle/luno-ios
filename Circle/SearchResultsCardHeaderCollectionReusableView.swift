@@ -25,7 +25,7 @@ class SearchResultsCardHeaderCollectionReusableView: CircleCollectionReusableVie
     }
     
     override class var classReuseIdentifier: String {
-        return "SearchResultsCardHeaderView"
+        return "SearchResultsCardHeaderCollectionReusableView"
     }
     
     override class var height: CGFloat {

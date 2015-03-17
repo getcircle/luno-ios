@@ -19,7 +19,7 @@ class KeyValueCollectionViewCell: CircleCollectionViewCell {
     private var nameImageViewWidthConstraintInitialValue: CGFloat!
     
     override class var classReuseIdentifier: String {
-        return "KeyValueCell"
+        return "KeyValueCollectionViewCell"
     }
     
     override class var height: CGFloat {

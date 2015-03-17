@@ -95,7 +95,6 @@ class Card: Equatable {
         struct CardTypeInfo {
             var imageName: String
             var classType: CircleCollectionViewCell.Type
-            var className: String
             var contentType: CardContentType
         }
 
@@ -106,7 +105,6 @@ class Card: Equatable {
                 return CardTypeInfo(
                     imageName: "Plus",
                     classType: AddNoteCollectionViewCell.self,
-                    className: "AddNoteCollectionViewCell",
                     contentType: .Flat
                 )
 
@@ -114,7 +112,6 @@ class Card: Equatable {
                 return CardTypeInfo(
                     imageName: "Jewel",
                     classType: ProfileCollectionViewCell.self,
-                    className: "ProfileCollectionViewCell",
                     contentType: .Flat
                 )
                 
@@ -122,7 +119,6 @@ class Card: Equatable {
                 return CardTypeInfo(
                     imageName: "Heart",
                     classType: AppreciateActionCollectionViewCell.self,
-                    className: "AppreciateActionCollectionViewCell",
                     contentType: .Flat
                 )
                 
@@ -130,7 +126,6 @@ class Card: Equatable {
                 return CardTypeInfo(
                     imageName: "Jewel",
                     classType: AppreciationCollectionViewCell.self,
-                    className: "AppreciationCollectionViewCell",
                     contentType: .Flat
                 )
 
@@ -138,7 +133,6 @@ class Card: Equatable {
                 return CardTypeInfo(
                     imageName: "Cake",
                     classType: BannerCollectionViewCell.self,
-                    className: "BannerCollectionViewCell",
                     contentType: .Flat
                 )
                 
@@ -146,7 +140,6 @@ class Card: Equatable {
                 return CardTypeInfo(
                     imageName: "Cake",
                     classType: ProfileCollectionViewCell.self,
-                    className: "ProfileCollectionViewCell",
                     contentType: .Flat
                 )
                 
@@ -154,7 +147,6 @@ class Card: Equatable {
                 return CardTypeInfo(
                     imageName: "Info",
                     classType: EmptyCollectionViewCell.self,
-                    className: "EmptyCollectionViewCell",
                     contentType: .Flat
                 )
 
@@ -162,7 +154,6 @@ class Card: Equatable {
                 return CardTypeInfo(
                     imageName: "GraduateCap",
                     classType: EducationCollectionViewCell.self,
-                    className: "EducationCollectionViewCell",
                     contentType: .Flat
                 )
 
@@ -170,7 +161,6 @@ class Card: Equatable {
                 return CardTypeInfo(
                     imageName: "People",
                     classType: ProfileImagesCollectionViewCell.self,
-                    className: "ProfileImagesCollectionViewCell",
                     contentType: .Aggregate
                 )
 
@@ -178,7 +168,6 @@ class Card: Equatable {
                 return CardTypeInfo(
                     imageName: "Info",
                     classType: KeyValueCollectionViewCell.self,
-                    className: "KeyValueCollectionViewCell",
                     contentType: .Flat
                 )
 
@@ -186,7 +175,6 @@ class Card: Equatable {
                 return CardTypeInfo(
                     imageName: "MapPin",
                     classType: OfficeCollectionViewCell.self,
-                    className: "OfficeCollectionViewCell",
                     contentType: .Flat
                 )
 
@@ -194,7 +182,6 @@ class Card: Equatable {
                 return CardTypeInfo(
                     imageName: "MapPin",
                     classType: AddressCollectionViewCell.self,
-                    className: "AddressCollectionViewCell",
                     contentType: .Flat
                 )
 
@@ -202,7 +189,6 @@ class Card: Equatable {
                 return CardTypeInfo(
                     imageName: "Notepad",
                     classType: NotesCollectionViewCell.self,
-                    className: "NotesCollectionViewCell",
                     contentType: .Flat
                 )
 
@@ -210,7 +196,6 @@ class Card: Equatable {
                 return CardTypeInfo(
                     imageName: "People",
                     classType: ProfileCollectionViewCell.self,
-                    className: "ProfileCollectionViewCell",
                     contentType: .Flat
                 )
 
@@ -218,7 +203,6 @@ class Card: Equatable {
                 return CardTypeInfo(
                     imageName: "People",
                     classType: ProfileCollectionViewCell.self,
-                    className: "ProfileCollectionViewCell",
                     contentType: .Flat
                 )
 
@@ -226,7 +210,6 @@ class Card: Equatable {
                 return CardTypeInfo(
                     imageName: "Info",
                     classType: CircleCollectionViewCell.self,
-                    className: "CircleCollectionViewCell",
                     contentType: .Flat
                 )
 
@@ -234,7 +217,6 @@ class Card: Equatable {
                 return CardTypeInfo(
                     imageName: "Satchel",
                     classType: PositionCollectionViewCell.self,
-                    className: "PositionCollectionViewCell",
                     contentType: .Flat
                 )
 
@@ -242,7 +224,6 @@ class Card: Equatable {
                 return CardTypeInfo(
                     imageName: "Cog",
                     classType: SettingsCollectionViewCell.self,
-                    className: "SettingsCollectionViewCell",
                     contentType: .Flat
                 )
 
@@ -250,7 +231,6 @@ class Card: Equatable {
                 return CardTypeInfo(
                     imageName: "Tag",
                     classType: SkillsCollectionViewCell.self,
-                    className: "SkillsCollectionViewCell",
                     contentType: .Aggregate
                 )
 
@@ -258,7 +238,6 @@ class Card: Equatable {
                 return CardTypeInfo(
                     imageName: "Info",
                     classType: SocialConnectCollectionViewCell.self,
-                    className: "SocialConnectCollectionViewCell",
                     contentType: .Flat
                 )
 
@@ -266,7 +245,6 @@ class Card: Equatable {
                 return CardTypeInfo(
                     imageName: "Info",
                     classType: ToggleSocialConnectionCollectionViewCell.self,
-                    className: "ToggleSocialConnectionCollectionViewCell",
                     contentType: .Flat
                 )
                 
@@ -274,7 +252,6 @@ class Card: Equatable {
                 return CardTypeInfo(
                     imageName: String(),
                     classType: StatTileCollectionViewCell.self,
-                    className: "StatTileCollectionViewCell",
                     contentType: .Flat
                 )
 
@@ -282,7 +259,6 @@ class Card: Equatable {
                 return CardTypeInfo(
                     imageName: "Info",
                     classType: QuickActionsCollectionViewCell.self,
-                    className: "QuickActionsCollectionViewCell",
                     contentType: .Flat
                 )
 
@@ -290,7 +266,6 @@ class Card: Equatable {
                 return CardTypeInfo(
                     imageName: "People",
                     classType: TeamGridItemCollectionViewCell.self,
-                    className: "TeamGridItemCollectionViewCell",
                     contentType: .Flat
                 )
 
@@ -298,7 +273,6 @@ class Card: Equatable {
                 return CardTypeInfo(
                     imageName: "People",
                     classType: TeamsCollectionViewCell.self,
-                    className: "TeamsCollectionViewCell",
                     contentType: .Aggregate
                 )
 
@@ -306,7 +280,6 @@ class Card: Equatable {
                 return CardTypeInfo(
                     imageName: "Info",
                     classType: TextValueCollectionViewCell.self,
-                    className: "TextValueCollectionViewCell",
                     contentType: .Flat
                 )
             }
@@ -325,7 +298,7 @@ class Card: Equatable {
         let infoByCardType = CardType.infoByCardType(type)
         imageSource = infoByCardType.imageName
         contentClass = infoByCardType.classType
-        contentClassName = infoByCardType.className
+        contentClassName = contentClass.classReuseIdentifier
         cardContentType = infoByCardType.contentType
         title = withTitle
         contentCount = withContentCount ?? 0
@@ -442,18 +415,14 @@ class Card: Equatable {
 
     func addDefaultFooter() {
         addFooter(
-            footerClass: CardFooterCollectionReusableView.self,
-            footerClassName: "CardFooterCollectionReusableView"
+            footerClass: CardFooterCollectionReusableView.self
         )
     }
 
-    func addFooter(
-        footerClass withFooterClass: CircleCollectionReusableView.Type,
-        footerClassName withFooterClassName: String
-    ) {
+    func addFooter(footerClass withFooterClass: CircleCollectionReusableView.Type) {
         addFooter = true
         footerClass = withFooterClass
-        footerClassName = withFooterClassName
+        footerClassName = withFooterClass.classReuseIdentifier
         footerSize = CGSizeMake(
             withFooterClass.width - sectionInset.left - sectionInset.right,
             withFooterClass.height + sectionInset.bottom
@@ -469,19 +438,17 @@ class Card: Equatable {
     
     func addDefaultHeader() {
         addHeader(
-            headerClass: CardHeaderCollectionReusableView.self,
-            headerClassName: "CardHeaderCollectionReusableView"
+            headerClass: CardHeaderCollectionReusableView.self
         )
     }
 
     func addHeader(
         headerClass withHeaderClass: CircleCollectionReusableView.Type,
-        headerClassName withHeaderClassName: String,
         headerSize withHeaderSize: CGSize? = nil
     ) {
         addHeader = true
         headerClass = withHeaderClass
-        headerClassName = withHeaderClassName
+        headerClassName = withHeaderClass.classReuseIdentifier
         if let providedHeaderSize = withHeaderSize {
             headerSize = providedHeaderSize
         }
