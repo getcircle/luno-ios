@@ -39,9 +39,7 @@ class ProfileSectionHeaderCollectionReusableView: CircleCollectionReusableView {
 
         cardTitleLabel.font = UIFont.appAttributeTitleLabelFont()
         cardTitleLabel.textColor = UIColor.appAttributeTitleLabelColor()
-        addEditButton.tintColor = UIColor.appTintColor()
-        addEditButton.setTitleColor(UIColor.appTintColor(), forState: .Normal)
-        addEditButton.addTarget(self, action: "addEditButtonTapped:", forControlEvents: .TouchUpInside)
+        configureAddEditButton()
     }
     
     override func prepareForReuse() {
@@ -49,6 +47,15 @@ class ProfileSectionHeaderCollectionReusableView: CircleCollectionReusableView {
         showAddEditButton = false
     }
     
+    // MARK: - Configuration
+    
+    private func configureAddEditButton() {
+        addEditButton.addRoundCorners(radius: 3.0)
+        addEditButton.tintColor = UIColor.appTintColor()
+        addEditButton.setTitleColor(UIColor.appTintColor(), forState: .Normal)
+        addEditButton.addTarget(self, action: "addEditButtonTapped:", forControlEvents: .TouchUpInside)
+    }
+
     override func setCard(card: Card) {
         cardTitleLabel.text = card.title.uppercaseStringWithLocale(NSLocale.currentLocale())
         addEditButton.alpha = showAddEditButton ? 1.0 : 0.0

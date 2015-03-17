@@ -84,7 +84,7 @@ class ProfileDetailDataSource: CardDataSource {
             sections.append(getAboutSection())
             sections.append(getSkillsSection())
             sections.append(getManagerSection())
-            sections.append(getOfficeTeamSection())
+            sections.extend(getOfficeSections())
             sections.append(getBasicInfoSection())
             sections.append(getWorkExperienceSection())
             sections.append(getEducationSection())
@@ -117,8 +117,8 @@ class ProfileDetailDataSource: CardDataSource {
         ]
         return Section(title: "Banner", items: sectionItems, cardType: .Banners)
     }
-    
-    private func getAboutSection() -> Section {
+
+    internal func getAboutSection() -> Section {
         let sectionItems = [
             SectionItem(
                 title: "About",
@@ -133,13 +133,6 @@ class ProfileDetailDataSource: CardDataSource {
     
     private func getBasicInfoSection() -> Section {
         let sectionItems = [
-            SectionItem(
-                title: "Seating Info",
-                container: "profile",
-                containerKey: "seating_info",
-                contentType: .SeatingInfo,
-                image: nil
-            ),
             SectionItem(
                 title: "Hire Date",
                 container: "profile",
@@ -199,8 +192,24 @@ class ProfileDetailDataSource: CardDataSource {
         return height
     }
 
-    private func getOfficeTeamSection() -> Section {
-        let sectionItems = [
+    private func getOfficeSections() -> [Section] {
+        let seatingInfoItem = [
+            SectionItem(
+                title: "Seating Info",
+                container: "profile",
+                containerKey: "seating_info",
+                contentType: .SeatingInfo,
+                image: nil
+            )
+        ]
+        let seatingInfoSection = Section(
+            title: AppStrings.ProfileSectionOfficeTitle, 
+            items: seatingInfoItem, 
+            cardType: .KeyValue, 
+            addCardHeader: true
+        )
+
+        let officeLocationItem = [
             SectionItem(
                 title: AppStrings.ProfileSectionOfficeTitle,
                 container: "",
@@ -209,7 +218,9 @@ class ProfileDetailDataSource: CardDataSource {
                 image: ItemImage.genericNextImage
             )
         ]
-        return Section(title: AppStrings.ProfileSectionOfficeTitle, items: sectionItems, cardType: .Profiles, addCardHeader: true)
+        let officeSection = Section(title: "", items: officeLocationItem, cardType: .Profiles)
+
+        return [seatingInfoSection, officeSection]
     }
 
     private func getManagerSection() -> Section {
@@ -272,10 +283,11 @@ class ProfileDetailDataSource: CardDataSource {
         configureSections()
         // Add top margin only when there is a social connect button added
         // to the profile
-        let sectionInsetBeforeBio = UIEdgeInsetsMake(0.0, 0.0, 1.0, 0.0)
-        let sectionInsetAfterBio = UIEdgeInsetsMake(0.0, 0.0, 25.0, 0.0)
-        var defaultSectionInset = sectionInsetBeforeBio
-        for section in sections {
+        let sectionInsetWithoutHeader = UIEdgeInsetsMake(0.0, 0.0, 1.0, 0.0)
+        let sectionInsetWithHeader = UIEdgeInsetsMake(0.0, 0.0, 25.0, 0.0)
+        var nextSection: Section?
+        for (index, section) in enumerate(sections) {
+            nextSection = index < (sections.count - 1) ? sections[index + 1] : nil
             let sectionCard = Card(cardType: section.cardType, title: section.title)
             if section.addCardHeader {
                 sectionCard.addHeader(
@@ -283,15 +295,17 @@ class ProfileDetailDataSource: CardDataSource {
                 )
             }
             
+            // We have to look at the next section, because we currently add
+            // the bottom inset for spacing.
+            if nextSection?.addCardHeader == true {
+                sectionCard.sectionInset = sectionInsetWithHeader
+            }
+            else {
+                sectionCard.sectionInset = sectionInsetWithoutHeader
+            }
+            
             sectionCard.showContentCount = false
-            sectionCard.sectionInset = defaultSectionInset
-
             for item in section.items {
-                if item.contentType.rawValue == ContentType.About.rawValue {
-                    defaultSectionInset = sectionInsetAfterBio
-                    sectionCard.sectionInset = defaultSectionInset
-                }
-
                 addItemToCard(item, card: sectionCard)
             }
             
