@@ -57,6 +57,6 @@
         </collectionReusableView>
     </objects>
     <resources>
-        <image name="POPSUGAR" width="560" height="533"/>
+        <image name="POPSUGAR" width="120" height="120"/>
     </resources>
 </document>

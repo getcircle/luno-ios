@@ -29,7 +29,7 @@ class SkillDetailViewController: DetailViewController {
         // Delegate
         collectionView.delegate = delegate
         
-        layout.headerHeight = SkillHeaderCollectionReusableView.height
+        (layout as StickyHeaderCollectionViewLayout).headerHeight = SkillHeaderCollectionReusableView.height
         super.configureCollectionView()
     }
     

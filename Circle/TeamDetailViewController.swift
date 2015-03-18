@@ -29,7 +29,7 @@ class TeamDetailViewController: DetailViewController {
         // Delegate
         collectionView.delegate = delegate
         
-        layout.headerHeight = TeamHeaderCollectionReusableView.height
+        (layout as StickyHeaderCollectionViewLayout).headerHeight = TeamHeaderCollectionReusableView.height
         super.configureCollectionView()
     }
     

@@ -23,6 +23,8 @@ class OrganizationHeaderCollectionReusableView: CircleCollectionReusableView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        profileImage.addRoundCorners(radius: 3.0)
     }
     
     func setOrganization(organization: OrganizationService.Containers.Organization) {

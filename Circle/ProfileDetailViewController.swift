@@ -41,7 +41,7 @@ class ProfileDetailViewController: DetailViewController,
         dataSource.cardFooterDelegate = self
         
         collectionView.delegate = delegate
-        layout.headerHeight = ProfileHeaderCollectionReusableView.height
+        (layout as StickyHeaderCollectionViewLayout).headerHeight = ProfileHeaderCollectionReusableView.height
         super.configureCollectionView()
     }
 

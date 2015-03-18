@@ -18,6 +18,7 @@ class OrganizationDetailViewController: DetailViewController, CardHeaderViewDele
 
         dataSource = OrganizationDetailDataSource()
         delegate = CardCollectionViewDelegate()
+        layout = UICollectionViewFlowLayout()
     }
     
     override func viewDidLoad() {
@@ -41,10 +42,6 @@ class OrganizationDetailViewController: DetailViewController, CardHeaderViewDele
         
         // Delegate
         collectionView.delegate = delegate
-
-        // Header height
-        layout.headerHeight = OrganizationHeaderCollectionReusableView.height
-
         super.configureCollectionView()
     }
 

@@ -31,7 +31,7 @@ class OfficeDetailViewController: DetailViewController,
         dataSource.cardHeaderDelegate = self
         
         collectionView.delegate = delegate
-        layout.headerHeight = ProfileHeaderCollectionReusableView.height
+        (layout as StickyHeaderCollectionViewLayout).headerHeight = ProfileHeaderCollectionReusableView.height
         super.configureCollectionView()
     }
     

@@ -17,7 +17,7 @@ class DetailViewController: BaseDetailViewController, UICollectionViewDelegate {
     private(set) var collectionView: UICollectionView!
     var dataSource: CardDataSource!
     var delegate: CardCollectionViewDelegate!
-    var layout: StickyHeaderCollectionViewLayout!
+    var layout: UICollectionViewFlowLayout!
     
     override func loadView() {
         var rootView = UIView(frame: UIScreen.mainScreen().bounds)
@@ -25,7 +25,9 @@ class DetailViewController: BaseDetailViewController, UICollectionViewDelegate {
         view = rootView
         
         // Collection View
-        layout = StickyHeaderCollectionViewLayout()
+        if layout == nil {
+            layout = StickyHeaderCollectionViewLayout()
+        }
         collectionView = UICollectionView(frame: view.frame, collectionViewLayout: layout)
         view.addSubview(collectionView)
         collectionView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
