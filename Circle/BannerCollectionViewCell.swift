@@ -12,6 +12,7 @@ import ProtobufRegistry
 enum BannerType: Int {
     case Anniversary
     case Birthday
+    case NewHire
 }
 
 struct BannerNotifications {
@@ -73,6 +74,18 @@ class BannerCollectionViewCell : CircleCollectionViewCell {
                         )
                         backgroundColor = UIColor.appBirthdayBannerBackground()
                         bannerCTAButton.backgroundColor = UIColor.appBirthdayBannerCTABackground()
+                    }
+                    break
+                    
+                case .NewHire:
+                    if let profile = bannerDictionary["profile"] as? ProfileService.Containers.Profile {
+                        bannerTextLabel.text = profile.first_name + "'s new to the team!"
+                        bannerCTAButton.setCustomAttributedTitle(
+                            "Introduce yourself".uppercaseStringWithLocale(NSLocale.currentLocale()),
+                            forState: .Normal
+                        )
+                        backgroundColor = UIColor.appNewHireBannerBackground()
+                        bannerCTAButton.backgroundColor = UIColor.appNewHireBannerCTABackground()
                     }
                     break
                 }

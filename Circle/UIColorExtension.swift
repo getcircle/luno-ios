@@ -228,6 +228,14 @@ extension UIColor {
         return UIColor(red: 0, green: 137, blue: 163)
     }
 
+    class func appNewHireBannerBackground() -> UIColor {
+        return UIColor(red: 0, green: 172, blue: 203)
+    }
+    
+    class func appNewHireBannerCTABackground() -> UIColor {
+        return UIColor(red: 0, green: 137, blue: 163)
+    }
+
     // MARK: - Social
     
     class func twitterColor() -> UIColor {

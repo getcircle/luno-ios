@@ -230,6 +230,9 @@ class SearchViewController: UIViewController,
                     else if selectedCard.type == .Birthdays {
                         (profileVC.dataSource as ProfileDetailDataSource).addBannerOfType = .Birthday
                     }
+                    else if selectedCard.type == .NewHires {
+                        (profileVC.dataSource as ProfileDetailDataSource).addBannerOfType = .NewHire
+                    }
                     profileVC.hidesBottomBarWhenPushed = false
                     properties.append(TrackerProperty.withKey(.Destination).withSource(.Detail))
                     properties.append(TrackerProperty.withKey(.DestinationDetailType).withDetailType(.Profile))
