@@ -164,6 +164,7 @@ class CurrentUserProfileDetailViewController: ProfileDetailViewController,
     }
 
     func onProfileUpdated(notification: NSNotification) {
+        profile = AuthViewController.getLoggedInUserProfile()!
         reloadData()
     }
     

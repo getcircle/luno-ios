@@ -13,7 +13,7 @@ class EditAboutViewController: UIViewController {
 
     @IBOutlet weak private(set) var bioTextView: UITextView!
     
-    private var allControls = [UIControl]()
+    private var allControls = [AnyObject]()
     
     var profile: ProfileService.Containers.Profile!
     
@@ -25,10 +25,16 @@ class EditAboutViewController: UIViewController {
         configureView()
         configureNavigationBar()
         configureAboutTextView()
+        populateData()
     }
 
-    // MARK: - Configuration
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        bioTextView.becomeFirstResponder()
+    }
     
+    // MARK: - Configuration
+
     private func configureView() {
         view.backgroundColor = UIColor.appViewBackgroundColor()
     }
@@ -43,6 +49,7 @@ class EditAboutViewController: UIViewController {
         bioTextView.addRoundCorners(radius: 3.0)
         bioTextView.layer.borderColor = UIColor.lightGrayColor().CGColor
         bioTextView.layer.borderWidth = 1.0
+        allControls.append(bioTextView)
     }
     
     private func populateData() {
@@ -71,6 +78,7 @@ class EditAboutViewController: UIViewController {
     // MARK: - Helpers
     
     private func dismissView() {
+        dismissKeyboard()
         dismissViewControllerAnimated(true, completion: nil)
     }
     

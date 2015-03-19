@@ -195,6 +195,11 @@ extension ProfileService {
                 "update_profile",
                 extensionField: ProfileServiceRequests_update_profile,
                 requestBuilder: requestBuilder) { (_, _, wrapped, error) -> Void in
+                    let response = wrapped?.response?.result.getExtension(
+                        ProfileServiceRequests_update_profile
+                    ) as? ProfileService.UpdateProfile.Response
+                    ObjectStore.sharedInstance.update(response?.profile, type: .Profile)
+                    completionHandler?(profile: response?.profile, error: error)
                     // DWM - Discuss with Michael
                     // TODO: Either check for no errors or pass than along in the userInfo
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
@@ -203,11 +208,6 @@ extension ProfileService {
                             object: nil
                         )
                     })
-                    let response = wrapped?.response?.result.getExtension(
-                        ProfileServiceRequests_update_profile
-                    ) as? ProfileService.UpdateProfile.Response
-                    ObjectStore.sharedInstance.update(response?.profile, type: .Profile)
-                    completionHandler?(profile: response?.profile, error: error)
             }
         }
         
