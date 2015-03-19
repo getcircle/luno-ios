@@ -15,8 +15,10 @@ class CurrentUserProfileDetailDataSource: ProfileDetailDataSource {
         super.configureSections()
         
         if !onlyShowContactInfo {
+            sections.removeAtIndex(0)
+//            sections.insert(getContactPreferencesSection(), atIndex: 0)
             if let socialConnectSection = getSocialConnectSection() {
-                sections.insert(socialConnectSection, atIndex: 1)
+                sections.insert(socialConnectSection, atIndex: 0)
             }
         }
     }
@@ -46,6 +48,26 @@ class CurrentUserProfileDetailDataSource: ProfileDetailDataSource {
             }
         }
         return nil
+    }
+    
+    private func getContactPreferencesSection() -> Section {
+        var contactPreferencesSectionItem = SectionItem(
+            title: AppStrings.ProfileSectionContactPreferencesTitle,
+            container: "", 
+            containerKey: "", 
+            contentType: .ContactPreferences, 
+            image: ItemImage.genericNextImage,
+            defaultValue: ""
+        )
+        
+        return Section(title: "", items: [contactPreferencesSectionItem], cardType: .KeyValue)
+    }
+    
+    override func getAboutSection() -> Section {
+        var aboutSection = super.getAboutSection()
+        aboutSection.addCardHeader = true
+        aboutSection.allowEmptyContent = true
+        return aboutSection
     }
     
     override func configureHeader(header: CircleCollectionReusableView, atIndexPath indexPath: NSIndexPath) {

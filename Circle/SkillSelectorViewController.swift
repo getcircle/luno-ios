@@ -76,25 +76,8 @@ class SkillSelectorViewController:
     
     private func configureNavigationBar() {
         title = AppStrings.AddSkillsNavigationTitle
-        
-        let saveButtonItem = UIBarButtonItem(
-            image: UIImage(named: "CircleCheckFilled"), 
-            style: .Plain, 
-            target: self, 
-            action: "save:"
-        )
-        navigationItem.rightBarButtonItem = saveButtonItem
-        
-        if isBeingPresentedModally() {
-            let cancelButtonItem = UIBarButtonItem(
-                image: UIImage(named: "Close"),
-                style: .Plain,
-                target: self,
-                action: "cancel:"
-            )
-            cancelButtonItem.imageInsets = UIEdgeInsetsMake(5.0, 0.0, 5.0, 10.0)
-            navigationItem.leftBarButtonItem = cancelButtonItem
-        }
+        addDoneButtonWithAction("save:")
+        addCloseButtonWithAction("cancel:")
     }
     
     private func configurePrototypeCell() {

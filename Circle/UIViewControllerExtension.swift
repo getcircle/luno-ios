@@ -227,4 +227,32 @@ extension UIViewController {
         
         return 0.0
     }
+
+    func addDoneButtonWithAction(callbackMethod: Selector) -> UIBarButtonItem? {
+        let saveButtonItem = UIBarButtonItem(
+            image: UIImage(named: "CircleCheckFilled"),
+            style: .Plain,
+            target: self,
+            action: callbackMethod
+        )
+
+        navigationItem.rightBarButtonItem = saveButtonItem
+        return saveButtonItem
+    }
+    
+    func addCloseButtonWithAction(callbackMethod: Selector) -> UIBarButtonItem? {
+        if isBeingPresentedModally() {
+            let cancelButtonItem = UIBarButtonItem(
+                image: UIImage(named: "Close"),
+                style: .Plain,
+                target: self,
+                action: callbackMethod
+            )
+            cancelButtonItem.imageInsets = UIEdgeInsetsMake(5.0, 0.0, 5.0, 10.0)
+            navigationItem.leftBarButtonItem = cancelButtonItem
+            return cancelButtonItem
+        }
+        
+        return nil
+    }
 }

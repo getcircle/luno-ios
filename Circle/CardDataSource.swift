@@ -30,6 +30,7 @@ enum ContentType: Int {
     case Banner
     case Birthday
     case CellPhone
+    case ContactPreferences
     case Education
     case Email
     case Facebook
@@ -38,6 +39,7 @@ enum ContentType: Int {
     case LinkedIn
     case LinkedInConnect
     case Manager
+    case ManagerTeam
     case Office
     case OfficeTeam
     case Other

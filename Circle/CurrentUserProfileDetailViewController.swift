@@ -10,6 +10,7 @@ import UIKit
 import ProtobufRegistry
 
 class CurrentUserProfileDetailViewController: ProfileDetailViewController,
+    CardHeaderViewDelegate,
     EditProfileDelegate
 {
 
@@ -20,6 +21,7 @@ class CurrentUserProfileDetailViewController: ProfileDetailViewController,
             self.init()
             profile = withProfile
             dataSource = CurrentUserProfileDetailDataSource(profile: profile)
+            dataSource.cardHeaderDelegate = self
             delegate = CardCollectionViewDelegate()
             
             if showSettingsButton {
@@ -164,4 +166,29 @@ class CurrentUserProfileDetailViewController: ProfileDetailViewController,
     func onProfileUpdated(notification: NSNotification) {
         reloadData()
     }
+    
+    // MARK: - CardHeaderViewDelegate
+    
+    func cardHeaderTapped(card: Card!) {
+        switch card.type {
+        case .TextValue:
+            let aboutViewController = EditAboutViewController(nibName: "EditAboutViewController", bundle: nil)
+            aboutViewController.profile = profile
+            let aboutViewNavController = UINavigationController(rootViewController: aboutViewController)
+            navigationController?.presentViewController(aboutViewNavController, animated: true, completion: nil)
+            break
+            
+        case .Skills:
+            let skillSelectorViewController = SkillSelectorViewController(nibName: "SkillSelectorViewController", bundle: nil)
+            if let skills = (dataSource as CurrentUserProfileDetailDataSource).skills {
+                skillSelectorViewController.preSelectSkills = skills
+            }
+            let skillsNavController = UINavigationController(rootViewController: skillSelectorViewController)
+            navigationController?.presentViewController(skillsNavController, animated: true, completion: nil)
+            
+        default:
+            break
+        }
+    }
+    
 }
