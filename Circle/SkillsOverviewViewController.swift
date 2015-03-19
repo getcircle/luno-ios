@@ -18,7 +18,29 @@ class SkillsOverviewViewController: UIViewController, UICollectionViewDelegateFl
     
     private var cachedItemSizes = [String: CGSize]()
     private var prototypeCell: SkillCollectionViewCell!
-    private var searchHeaderView: SearchHeaderView!
+    private(set) var searchHeaderView: SearchHeaderView!
+    private var isFilterView = false
+    
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        customInit()
+    }
+    
+    convenience init(nibName: String?, bundle: NSBundle?, isFilterView withIsFilterView: Bool) {
+        self.init(nibName: nibName, bundle: bundle)
+        isFilterView = withIsFilterView
+        customInit()
+    }
+
+    required init(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        customInit()
+    }
+    
+    
+    private func customInit() {
+        initializeSearchHeaderView()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +50,19 @@ class SkillsOverviewViewController: UIViewController, UICollectionViewDelegateFl
         configureCollectionView()
         configurePrototypeCell()
         configureSearchHeaderView()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        activateSearchField()
+    }
+    
+    // MARK: - Initialization
+    
+    private func initializeSearchHeaderView() {
+        if let nibViews = NSBundle.mainBundle().loadNibNamed("SearchHeaderView", owner: nil, options: nil) as? [UIView] {
+            searchHeaderView = nibViews.first as SearchHeaderView
+        }
     }
 
     // MARK: - Configuration
@@ -70,16 +105,13 @@ class SkillsOverviewViewController: UIViewController, UICollectionViewDelegateFl
     }
     
     private func configureSearchHeaderView() {
-        if let nibViews = NSBundle.mainBundle().loadNibNamed("SearchHeaderView", owner: nil, options: nil) as? [UIView] {
-            searchHeaderView = nibViews.first as SearchHeaderView
-            searchHeaderView.delegate = self
-            searchHeaderView.searchTextField.placeholder = NSLocalizedString("Filter skills",
-                comment: "Placeholder for text field used for filtering skills by name")
-            searchHeaderView.searchTextField.addTarget(self, action: "filterData:", forControlEvents: .EditingChanged)
-            searchContainerView.addSubview(searchHeaderView)
-            searchHeaderView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
-            searchHeaderView.layer.cornerRadius = 10.0
-        }
+        searchHeaderView.delegate = self
+        searchHeaderView.searchTextField.placeholder = NSLocalizedString("Filter skills",
+            comment: "Placeholder for text field used for filtering skills by name")
+        searchHeaderView.searchTextField.addTarget(self, action: "filterData:", forControlEvents: .EditingChanged)
+        searchContainerView.addSubview(searchHeaderView)
+        searchHeaderView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
+        searchHeaderView.layer.cornerRadius = 10.0
     }
     
     // MARK: - UICollectionViewDelegate
@@ -134,6 +166,14 @@ class SkillsOverviewViewController: UIViewController, UICollectionViewDelegateFl
         return 10.0
     }
     
+    // MARK: - Helpers
+    
+    private func activateSearchField() {
+        if searchHeaderView.searchTextField.text != "" {
+            searchHeaderView.searchTextField.becomeFirstResponder()
+        }
+    }
+    
     // MARK: - SearchHeaderViewDelegate
     
     func didCancel(sender: UIView) {
@@ -142,12 +182,16 @@ class SkillsOverviewViewController: UIViewController, UICollectionViewDelegateFl
     }
     
     func filterData(sender: AnyObject?) {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), { () -> Void in
-            self.dataSource.filterData(self.searchHeaderView.searchTextField.text)
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                self.collectionView.reloadData()
+        if isFilterView && searchHeaderView.searchTextField.text == "" {
+            navigationController?.popViewControllerAnimated(true)
+        } else {
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), { () -> Void in
+                self.dataSource.filterData(self.searchHeaderView.searchTextField.text)
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    self.collectionView.reloadData()
+                })
             })
-        })
+        }
     }
     
     // MARK: - Tracking

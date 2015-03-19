@@ -421,9 +421,14 @@ class SearchViewController: UIViewController,
             viewController.searchHeaderView?.searchTextField.text = searchHeaderView.searchTextField.text
             navigationController?.pushViewController(viewController, animated: true)
         case .Skills:
-            let skillsOverviewViewController = SkillsOverviewViewController(nibName: "SkillsOverviewViewController", bundle: nil)
+            let skillsOverviewViewController = SkillsOverviewViewController(
+                nibName: "SkillsOverviewViewController",
+                bundle: nil,
+                isFilterView: true
+            )
             skillsOverviewViewController.dataSource.setInitialData(content: card.allContent[0] as [AnyObject])
             skillsOverviewViewController.title = card.title
+            skillsOverviewViewController.searchHeaderView.searchTextField.text = searchHeaderView.searchTextField.text
             navigationController?.pushViewController(skillsOverviewViewController, animated: true)
         case .Team:
             let viewController = TeamsOverviewViewController(isFilterView: true)
