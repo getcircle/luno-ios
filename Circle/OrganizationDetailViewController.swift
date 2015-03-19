@@ -121,7 +121,7 @@ class OrganizationDetailViewController: DetailViewController, CardHeaderViewDele
     
     // MARK: - Card Header View Delegate
     
-    func cardHeaderTapped(card: Card!) {
+    func cardHeaderTapped(sender: AnyObject!, card: Card!) {
         let dataSource = (collectionView.dataSource as CardDataSource)
         switch card.type {
         case .Group, .Profiles, .Birthdays, .Anniversaries, .NewHires:

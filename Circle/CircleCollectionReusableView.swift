@@ -9,7 +9,7 @@
 import UIKit
 
 protocol CardHeaderViewDelegate {
-    func cardHeaderTapped(card: Card!)
+    func cardHeaderTapped(sender: AnyObject!, card: Card!)
 }
 
 class CircleCollectionReusableView: UICollectionReusableView {

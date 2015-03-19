@@ -164,6 +164,7 @@ class SearchViewController: UIViewController,
         collectionView.dataSource = landingDataSource
 
         queryDataSource = SearchQueryDataSource()
+        queryDataSource.cardHeaderDelegate = self
     }
 
     // MARK: - TextField Delegate
@@ -355,7 +356,11 @@ class SearchViewController: UIViewController,
     
     // MARK: - Card Header View Delegate
     
-    func cardHeaderTapped(card: Card!) {
+    func cardHeaderTapped(sender: AnyObject!, card: Card!) {
+        handleFeedHeaderTapped(card)
+    }
+    
+    private func handleFeedHeaderTapped(card: Card) {
         trackCardHeaderTapped(card)
         let dataSource = (collectionView.dataSource as CardDataSource)
         switch card.type {
@@ -370,7 +375,7 @@ class SearchViewController: UIViewController,
             viewController.title = card.title
             viewController.hidesBottomBarWhenPushed = false
             navigationController?.pushViewController(viewController, animated: true)
-
+            
         case .Offices:
             break
             
@@ -387,7 +392,7 @@ class SearchViewController: UIViewController,
             viewController.title = card.title
             viewController.hidesBottomBarWhenPushed = false
             navigationController?.pushViewController(viewController, animated: true)
-
+            
         default:
             break
         }

@@ -94,7 +94,7 @@ class OfficeDetailViewController: DetailViewController,
     
     // MARK: - CardHeaderViewDelegate
     
-    func cardHeaderTapped(card: Card!) {
+    func cardHeaderTapped(sender: AnyObject!, card: Card!) {
         let officeDetailDataSource = dataSource as OfficeDetailDataSource
         switch card.type {
         case .TeamsGrid:

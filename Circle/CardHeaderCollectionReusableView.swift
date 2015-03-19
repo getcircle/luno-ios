@@ -45,7 +45,7 @@ class CardHeaderCollectionReusableView: CircleCollectionReusableView {
     
     @IBAction func cardHeaderTapped(sender: AnyObject!) {
         if let card = currentCard {
-            cardHeaderDelegate?.cardHeaderTapped(card)
+            cardHeaderDelegate?.cardHeaderTapped(sender, card: card)
         }
     }
 }

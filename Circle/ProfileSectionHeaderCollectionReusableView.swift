@@ -78,13 +78,13 @@ class ProfileSectionHeaderCollectionReusableView: CircleCollectionReusableView {
     
     @IBAction func addEditButtonTapped(sender: AnyObject!) {
         if let card = currentCard {
-            cardHeaderDelegate?.cardHeaderTapped(card)
+            cardHeaderDelegate?.cardHeaderTapped(sender, card: card)
         }
     }
     
     @IBAction func cardHeaderTapped(sender: AnyObject) {
         if let card = currentCard {
-            cardHeaderDelegate?.cardHeaderTapped(card)
+            cardHeaderDelegate?.cardHeaderTapped(sender, card: card)
         }
     }
 }
