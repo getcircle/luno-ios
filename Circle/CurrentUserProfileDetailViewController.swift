@@ -170,7 +170,7 @@ class CurrentUserProfileDetailViewController: ProfileDetailViewController,
     
     // MARK: - CardHeaderViewDelegate
     
-    func cardHeaderTapped(card: Card!) {
+    func cardHeaderTapped(sender: AnyObject!, card: Card!) {
         switch card.type {
         case .TextValue:
             let aboutViewController = EditAboutViewController(nibName: "EditAboutViewController", bundle: nil)
