@@ -71,11 +71,12 @@ extension SearchService {
             category: SearchService.Category,
             attribute: SearchService.Attribute?,
             attributeValue: AnyObject?,
+            objects withObjects: [AnyObject]? = nil,
             completionHandler: SearchCompletionHandler?
         ) {
             // Query the cache
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), { () -> Void in
-                let (result, error) = self.search(query, category: category, attribute: attribute, attributeValue: attributeValue)
+                let (result, error) = self.search(query, category: category, attribute: attribute, attributeValue: attributeValue, objects: withObjects)
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     completionHandler?(result: result, error: error)
                     return
@@ -93,7 +94,8 @@ extension SearchService {
             query: String,
             category: SearchService.Category,
             attribute: SearchService.Attribute?,
-            attributeValue: AnyObject?
+            attributeValue: AnyObject?,
+            objects: [AnyObject]?
         ) -> (SearchResults?, NSError?) {
             
             let searchTerms = searchTermsFromQuery(query)
@@ -104,6 +106,8 @@ extension SearchService {
                 var toFilter: Array<ProfileService.Containers.Profile>
                 if attribute != nil && attributeValue != nil {
                     toFilter = ObjectStore.sharedInstance.getProfilesForAttribute(attribute!, value: attributeValue!)
+                } else if objects != nil {
+                    toFilter = objects as Array<ProfileService.Containers.Profile>
                 } else {
                     toFilter = ObjectStore.sharedInstance.profiles.values.array
                 }

@@ -100,20 +100,15 @@ class ProfilesDataSource: CardDataSource {
     // MARK: - Filtering
     
     override func handleFiltering(query: String, completionHandler: (error: NSError?) -> Void) {
-        // XXX handle all cases where we're using this view controller (birthdays, anniversaries etc.)
-        if searchAttribute != nil && searchAttributeValue != nil {
-            SearchService.Actions.search(
-                query,
-                category: .People,
-                attribute: searchAttribute!,
-                attributeValue: searchAttributeValue!
-            ) { (result, error) -> Void in
-                self.card.resetContent(result?.profiles ?? [])
-                completionHandler(error: error)
-            }
-        } else {
-            // XXX some actual error handling here
-            completionHandler(error: nil)
+        SearchService.Actions.search(
+            query,
+            category: .People,
+            attribute: searchAttribute,
+            attributeValue: searchAttributeValue,
+            objects: profiles
+        ) { (result, error) -> Void in
+            self.card.resetContent(result?.profiles ?? [])
+            completionHandler(error: error)
         }
     }
     
