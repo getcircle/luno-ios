@@ -177,7 +177,10 @@ class SearchViewController: UIViewController,
     // MARK: - TextField Delegate
     
     func textFieldDidBeginEditing(textField: UITextField) {
-        hideNavbarAnimated(false)
+        // only hide the navbar if we haven't searched for text yet
+        if searchHeaderView.searchTextField.text == "" {
+            hideNavbarAnimated(false)
+        }
         searchHeaderView.showCancelButton()
         collectionView.dataSource = queryDataSource
         collectionView.reloadData()
