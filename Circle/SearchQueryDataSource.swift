@@ -56,8 +56,12 @@ class SearchQueryDataSource: CardDataSource {
             // Don't show title if there is no search string implying those
             // are straight up suggestions without any search term
             
+            let maxVisibleItems = 3
             let profilesCardTitle = searchTerm.trimWhitespace() == "" ? "Recent" : "People"
-            let peopleShowContentCount = searchTerm.trimWhitespace() == "" ? false : true
+            var peopleShowContentCount = searchTerm.trimWhitespace() == "" ? false : true
+            if visibleProfiles.count <= maxVisibleItems {
+                peopleShowContentCount = false
+            }
             let peopleCard = Card(cardType: .Profiles, title: profilesCardTitle, showContentCount: peopleShowContentCount)
             peopleCard.addHeader(headerClass: headerClass)
             peopleCard.addContent(content: visibleProfiles as [AnyObject], maxVisibleItems: 3)
@@ -67,7 +71,13 @@ class SearchQueryDataSource: CardDataSource {
         }
 
         if visibleTeams.count > 0 {
-            let teamsCard = Card(cardType: .Team, title: "Teams")
+            let maxVisibleItems = 3
+            var teamsShowContentCount = true
+            if visibleTeams.count <= maxVisibleItems {
+                teamsShowContentCount = false
+            }
+            
+            let teamsCard = Card(cardType: .Team, title: "Teams", showContentCount: teamsShowContentCount)
             teamsCard.addHeader(headerClass: headerClass)
             teamsCard.addContent(content: visibleTeams as [AnyObject], maxVisibleItems: 3)
             teamsCard.contentCount = visibleTeams.count
@@ -76,7 +86,12 @@ class SearchQueryDataSource: CardDataSource {
         }
         
         if visibleSkills.count > 0 {
-            let skillsCard = Card(cardType: .Skills, title: "Skills")
+            let maxVisibleItems = 10
+            var skillsShowContentCount = true
+            if visibleSkills.count <= maxVisibleItems {
+                skillsShowContentCount = false
+            }
+            let skillsCard = Card(cardType: .Skills, title: "Skills", showContentCount: skillsShowContentCount)
             skillsCard.addHeader(headerClass: headerClass)
             skillsCard.addContent(content: visibleSkills as [AnyObject], maxVisibleItems: 10)
             skillsCard.contentCount = visibleSkills.count
