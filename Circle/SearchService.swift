@@ -139,13 +139,9 @@ extension SearchService {
             }
             
             let searchTerms = searchTermsFromQuery(query)
-            let matchedProfiles = filterProfiles(searchTerms)
-            let matchedTeams = filterTeams(searchTerms)
-            let matchedSkills = filterSkills(searchTerms)
-            
-            results.profiles = Array(matchedProfiles[0..<min(SearchResults.maxResultsPerCategory, matchedProfiles.count)])
-            results.teams = Array(matchedTeams[0..<min(SearchResults.maxResultsPerCategory, matchedTeams.count)])
-            results.skills = Array(matchedSkills[0..<min(SearchResults.maxResultsPerCategory, matchedSkills.count)])
+            results.profiles = filterProfiles(searchTerms)
+            results.teams = filterTeams(searchTerms)
+            results.skills = filterSkills(searchTerms)
             return (results, nil)
         }
         

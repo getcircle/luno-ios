@@ -35,5 +35,5 @@ class TeamsOverviewViewController: OverviewViewController {
             navigationController?.pushViewController(teamDetailVC, animated: true)
         }
     }
-
+    
 }

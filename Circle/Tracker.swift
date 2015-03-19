@@ -117,6 +117,7 @@ class Tracker {
         case UserProfile = "User Profile"
         case Overview = "Overview"
         case Detail = "Detail"
+        case Search = "Search"
         case Unknown = "Unknown"
     }
     

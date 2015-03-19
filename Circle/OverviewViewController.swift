@@ -26,6 +26,9 @@ class OverviewViewController:
     private(set) var dataSource: CardDataSource!
     private(set) var delegate = CardCollectionViewDelegate()
     
+    private var minimumResultsForFilter = 15
+    private var isFilterView = false
+    
     override init() {
         super.init()
         customInit()
@@ -41,6 +44,11 @@ class OverviewViewController:
         customInit()
     }
     
+    convenience init(isFilterView withIsFilterView: Bool) {
+        self.init()
+        isFilterView = withIsFilterView
+    }
+    
     private func customInit() {
         dataSource = initializeDataSource()
         activityIndicatorView = initializeActivityIndicator()
@@ -53,9 +61,9 @@ class OverviewViewController:
         let rootView = UIView(frame: UIScreen.mainScreen().bounds)
         rootView.opaque = true
         view = rootView
+        configureActivityIndicator()
         configureSearchHeaderView()
         configureCollectionView()
-        configureActivityIndicator()
     }
 
     override func viewDidLoad() {
@@ -73,6 +81,7 @@ class OverviewViewController:
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        activateSearchIfApplicable()
         dataSource.loadData { (error) -> Void in
             if error == nil {
                 self.activityIndicatorView.stopAnimating()
@@ -147,6 +156,7 @@ class OverviewViewController:
             searchHeaderView!.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero, excludingEdge: .Bottom)
             searchHeaderView!.autoSetDimension(.Height, toSize: 44.0)
             searchHeaderView!.layer.cornerRadius = 10.0
+            searchHeaderView!.addBottomBorder(offset: 0.0)
         }
     }
     
@@ -159,9 +169,17 @@ class OverviewViewController:
     // MARK: Helpers
     
     private func hideFilterIfLimitedContent() {
-        if dataSource.cardAtSection(0)?.content.count < 15 && collectionViewVerticalSpaceConstraint != nil {
+        if dataSource.cardAtSection(0)?.content.count < minimumResultsForFilter && collectionViewVerticalSpaceConstraint != nil {
             collectionViewVerticalSpaceConstraint!.constant = -44
             collectionView.setNeedsUpdateConstraints()
+        }
+    }
+    
+    private func activateSearchIfApplicable() {
+        if dataSource.cardAtSection(0)?.content.count < minimumResultsForFilter {
+            searchHeaderView?.searchTextField.resignFirstResponder()
+        } else if searchHeaderView?.searchTextField.text != "" {
+            searchHeaderView?.searchTextField.becomeFirstResponder()
         }
     }
     
@@ -182,14 +200,18 @@ class OverviewViewController:
     
     func filterChanged(sender: AnyObject?) {
         if searchHeaderView != nil {
-            let query = searchHeaderView!.searchTextField.text
-            if query.trimWhitespace() == "" {
-                dataSource.clearFilter { () -> Void in
-                    self.collectionView.reloadData()
-                }
+            if isFilterView && searchHeaderView!.searchTextField.text == "" {
+                navigationController?.popViewControllerAnimated(true)
             } else {
-                dataSource.filter(query) { (error) -> Void in
-                    self.collectionView.reloadData()
+                let query = searchHeaderView!.searchTextField.text
+                if query.trimWhitespace() == "" {
+                    dataSource.clearFilter { () -> Void in
+                        self.collectionView.reloadData()
+                    }
+                } else {
+                    dataSource.filter(query) { (error) -> Void in
+                        self.collectionView.reloadData()
+                    }
                 }
             }
         }

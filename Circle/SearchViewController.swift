@@ -52,6 +52,7 @@ class SearchViewController: UIViewController,
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        activateSearchFieldIfPreSet()
         registerNotifications()
         loadData()
     }
@@ -165,6 +166,12 @@ class SearchViewController: UIViewController,
 
         queryDataSource = SearchQueryDataSource()
         queryDataSource.cardHeaderDelegate = self
+    }
+    
+    private func activateSearchFieldIfPreSet() {
+        if searchHeaderView.searchTextField.text != "" && !searchHeaderView.searchTextField.isFirstResponder() {
+            searchHeaderView.searchTextField.becomeFirstResponder()
+        }
     }
 
     // MARK: - TextField Delegate
@@ -357,12 +364,15 @@ class SearchViewController: UIViewController,
     // MARK: - Card Header View Delegate
     
     func cardHeaderTapped(sender: AnyObject!, card: Card!) {
-        handleFeedHeaderTapped(card)
+        if collectionView.dataSource is SearchLandingDataSource {
+            handleFeedHeaderTapped(card)
+        } else {
+            handleQueryHeaderTapped(card)
+        }
     }
     
     private func handleFeedHeaderTapped(card: Card) {
-        trackCardHeaderTapped(card)
-        let dataSource = (collectionView.dataSource as CardDataSource)
+        trackFeedCardHeaderTapped(card)
         switch card.type {
         case .Group, .Profiles, .Birthdays, .Anniversaries, .NewHires:
             let viewController = ProfilesViewController()
@@ -393,6 +403,26 @@ class SearchViewController: UIViewController,
             viewController.hidesBottomBarWhenPushed = false
             navigationController?.pushViewController(viewController, animated: true)
             
+        default:
+            break
+        }
+    }
+    
+    private func handleQueryHeaderTapped(card: Card) {
+        trackQueryCardHeaderTapped(card)
+        switch card.type {
+        case .Profiles:
+            let viewController = ProfilesViewController(isFilterView: true)
+            viewController.dataSource.setInitialData(card.allContent, ofType: nil)
+            viewController.title = card.title
+            viewController.searchHeaderView?.searchTextField.text = searchHeaderView.searchTextField.text
+            navigationController?.pushViewController(viewController, animated: true)
+        case .Team:
+            let viewController = TeamsOverviewViewController(isFilterView: true)
+            viewController.dataSource.setInitialData(card.allContent, ofType: nil)
+            viewController.title = card.title
+            viewController.searchHeaderView?.searchTextField.text = searchHeaderView.searchTextField.text
+            navigationController?.pushViewController(viewController, animated: true)
         default:
             break
         }
@@ -565,10 +595,22 @@ class SearchViewController: UIViewController,
     
     // MARK: - Tracking
     
-    private func trackCardHeaderTapped(card: Card) {
+    private func trackFeedCardHeaderTapped(card: Card) {
         let properties = [
             TrackerProperty.withKeyString("card_type").withString(card.type.rawValue),
             TrackerProperty.withKey(.Source).withSource(.Home),
+            TrackerProperty.withKey(.Destination).withSource(.Overview),
+            TrackerProperty.withKey(.DestinationOverviewType).withString(card.title),
+            TrackerProperty.withKeyString("card_title").withString(card.title),
+            TrackerProperty.withKey(.ActiveViewController).withString(self.dynamicType.description())
+        ]
+        Tracker.sharedInstance.track(.CardHeaderTapped, properties: properties)
+    }
+    
+    private func trackQueryCardHeaderTapped(card: Card) {
+        let properties = [
+            TrackerProperty.withKeyString("card_type").withString(card.type.rawValue),
+            TrackerProperty.withKey(.Source).withSource(.Search),
             TrackerProperty.withKey(.Destination).withSource(.Overview),
             TrackerProperty.withKey(.DestinationOverviewType).withString(card.title),
             TrackerProperty.withKeyString("card_title").withString(card.title),

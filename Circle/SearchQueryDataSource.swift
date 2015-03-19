@@ -57,27 +57,28 @@ class SearchQueryDataSource: CardDataSource {
             // are straight up suggestions without any search term
             
             let profilesCardTitle = searchTerm.trimWhitespace() == "" ? "Recent" : "People"
-            let peopleCard = Card(cardType: .Profiles, title: profilesCardTitle, showContentCount: false)
+            let peopleShowContentCount = searchTerm.trimWhitespace() == "" ? false : true
+            let peopleCard = Card(cardType: .Profiles, title: profilesCardTitle, showContentCount: peopleShowContentCount)
             peopleCard.addHeader(headerClass: headerClass)
-            peopleCard.addContent(content: visibleProfiles as [AnyObject])
+            peopleCard.addContent(content: visibleProfiles as [AnyObject], maxVisibleItems: 3)
             peopleCard.contentCount = visibleProfiles.count
             peopleCard.sectionInset = sectionInset
             appendCard(peopleCard)
         }
 
         if visibleTeams.count > 0 {
-            let teamsCard = Card(cardType: .Team, title: "Teams", showContentCount: false)
+            let teamsCard = Card(cardType: .Team, title: "Teams")
             teamsCard.addHeader(headerClass: headerClass)
-            teamsCard.addContent(content: visibleTeams as [AnyObject])
+            teamsCard.addContent(content: visibleTeams as [AnyObject], maxVisibleItems: 3)
             teamsCard.contentCount = visibleTeams.count
             teamsCard.sectionInset = sectionInset
             appendCard(teamsCard)
         }
         
         if visibleSkills.count > 0 {
-            let skillsCard = Card(cardType: .Skills, title: "Skills", showContentCount: false)
+            let skillsCard = Card(cardType: .Skills, title: "Skills")
             skillsCard.addHeader(headerClass: headerClass)
-            skillsCard.addContent(content: visibleSkills as [AnyObject])
+            skillsCard.addContent(content: visibleSkills as [AnyObject], maxVisibleItems: 10)
             skillsCard.contentCount = visibleSkills.count
             skillsCard.sectionInset = sectionInset
             appendCard(skillsCard)
