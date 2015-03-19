@@ -41,79 +41,6 @@
             </objects>
             <point key="canvasLocation" x="-371" y="-1336"/>
         </scene>
-        <!--Profiles View Controller-->
-        <scene sceneID="MUU-Kj-5cV">
-            <objects>
-                <viewController storyboardIdentifier="ProfilesViewController" extendedLayoutIncludesOpaqueBars="YES" id="sfD-c4-aFJ" customClass="ProfilesViewController" customModule="circle" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="GD7-Su-MnX"/>
-                        <viewControllerLayoutGuide type="bottom" id="90M-NW-Qsi"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="gAl-eb-P45">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hqq-xo-pLX" userLabel="SearchContainerView">
-                                <rect key="frame" x="0.0" y="64" width="600" height="44"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="Jcp-94-Poo"/>
-                                </constraints>
-                            </view>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ip8-kc-O5j">
-                                <rect key="frame" x="0.0" y="108" width="600" height="443"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="SY1-X2-Ytp">
-                                    <size key="itemSize" width="50" height="50"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="s9W-PL-Lny">
-                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </view>
-                                    </collectionViewCell>
-                                </cells>
-                                <connections>
-                                    <outlet property="delegate" destination="bX9-8U-C2p" id="DnL-pW-roN"/>
-                                </connections>
-                            </collectionView>
-                            <activityIndicatorView contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="AVd-zd-gf8">
-                                <rect key="frame" x="290" y="290" width="20" height="20"/>
-                                <color key="color" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </activityIndicatorView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="centerX" secondItem="AVd-zd-gf8" secondAttribute="centerX" id="AJY-UP-ZQy"/>
-                            <constraint firstItem="ip8-kc-O5j" firstAttribute="leading" secondItem="gAl-eb-P45" secondAttribute="leading" id="KcF-Rx-IWn"/>
-                            <constraint firstItem="hqq-xo-pLX" firstAttribute="top" secondItem="GD7-Su-MnX" secondAttribute="bottom" id="R8N-ZQ-93e"/>
-                            <constraint firstItem="hqq-xo-pLX" firstAttribute="leading" secondItem="gAl-eb-P45" secondAttribute="leading" id="VJa-Rq-hte"/>
-                            <constraint firstAttribute="trailing" secondItem="ip8-kc-O5j" secondAttribute="trailing" id="XYm-xQ-rVF"/>
-                            <constraint firstAttribute="trailing" secondItem="hqq-xo-pLX" secondAttribute="trailing" id="gmt-YB-apB"/>
-                            <constraint firstItem="90M-NW-Qsi" firstAttribute="top" secondItem="ip8-kc-O5j" secondAttribute="bottom" id="ihG-gU-gVe"/>
-                            <constraint firstAttribute="centerY" secondItem="AVd-zd-gf8" secondAttribute="centerY" id="lV8-xl-81E"/>
-                            <constraint firstItem="ip8-kc-O5j" firstAttribute="top" secondItem="hqq-xo-pLX" secondAttribute="bottom" id="zjS-P2-Ifc"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="activityIndicatorView" destination="AVd-zd-gf8" id="w3r-J6-qv2"/>
-                        <outlet property="collectionView" destination="ip8-kc-O5j" id="Vco-6M-cs5"/>
-                        <outlet property="collectionViewVerticalSpaceConstraint" destination="zjS-P2-Ifc" id="ISw-ts-eR5"/>
-                        <outlet property="searchContainerView" destination="hqq-xo-pLX" id="DdH-Jl-ijh"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="f5R-TC-QAe" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <customObject id="bX9-8U-C2p" customClass="CardCollectionViewDelegate" customModule="circle" customModuleProvider="target"/>
-            </objects>
-            <point key="canvasLocation" x="1944" y="-1336"/>
-        </scene>
         <!--Search-->
         <scene sceneID="HTA-V4-sgE">
             <objects>
@@ -150,9 +77,6 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
-                                        <connections>
-                                            <segue destination="sfD-c4-aFJ" kind="show" identifier="showListOfPeople" id="EFc-pR-lLE"/>
-                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                                 <connections>

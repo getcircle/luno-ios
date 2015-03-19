@@ -83,7 +83,7 @@ class OrganizationDetailViewController: DetailViewController, CardHeaderViewDele
                 navigationController?.pushViewController(profileVC, animated: true)
             }
         case .Group:
-            let viewController = storyboard?.instantiateViewControllerWithIdentifier("ProfilesViewController") as ProfilesViewController
+            let viewController = ProfilesViewController()
             viewController.dataSource.setInitialData(selectedCard.content[0] as [AnyObject], ofType: nil)
             viewController.title = selectedCard.title
             viewController.hidesBottomBarWhenPushed = false
@@ -125,8 +125,7 @@ class OrganizationDetailViewController: DetailViewController, CardHeaderViewDele
         let dataSource = (collectionView.dataSource as CardDataSource)
         switch card.type {
         case .Group, .Profiles, .Birthdays, .Anniversaries, .NewHires:
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let viewController = storyboard.instantiateViewControllerWithIdentifier("ProfilesViewController") as ProfilesViewController
+            let viewController = ProfilesViewController()
             if card.type == .Group {
                 viewController.dataSource.setInitialData(card.content[0] as [AnyObject], ofType: nil)
             }
@@ -154,7 +153,7 @@ class OrganizationDetailViewController: DetailViewController, CardHeaderViewDele
             navigationController?.pushViewController(skillsOverviewViewController, animated: true)
         
         case .TeamsGrid:
-            let viewController = TeamsOverviewViewController(nibName: "TeamsOverviewViewController", bundle: nil) 
+            let viewController = TeamsOverviewViewController()
             viewController.dataSource.setInitialData(card.allContent[0] as [AnyObject], ofType: nil)
             viewController.title = card.title
             viewController.hidesBottomBarWhenPushed = false

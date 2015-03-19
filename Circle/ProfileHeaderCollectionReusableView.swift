@@ -134,11 +134,22 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
                 daylightIndicatorNavImage.image = indicatorImage
                 daylightIndicatorNavImage.tintColor = titleNavLabel.textColor
             }
-
-            // TODO: - Remove hardcoded image
-            profileImage.image = UIImage(named: "SF")
-            backgroundImageView.image = UIImage(named: "SF")
-            addBlurEffect()
+            
+            self.profileImage.contentMode = .ScaleAspectFill
+            if location!.hasImageUrl {
+                profileImage.setImageWithLocation(location!) { (image) -> Void in
+                    self.profileImage.image = image
+                    if self.backgroundImageView != image {
+                        self.backgroundImageView.image = image
+                        self.addBlurEffect()
+                    }
+                }
+            } else {
+                // TODO: - Remove hardcoded image
+                profileImage.image = UIImage(named: "SF")
+                backgroundImageView.image = UIImage(named: "SF")
+                addBlurEffect()
+            }
             verifiedProfileButton.hidden = true
         }
     }

@@ -89,4 +89,20 @@ class TeamsOverviewDataSource: CardDataSource {
             }
         }
     }
+    
+    // MARK: - Filtering
+    
+    override func handleFiltering(query: String, completionHandler: (error: NSError?) -> Void) {
+        SearchService.Actions.search(query, category: .Teams, attribute: nil, attributeValue: nil) { (result, error) -> Void in
+            self.card.resetContent(result?.teams ?? [])
+            completionHandler(error: error)
+        }
+    }
+    
+    override func clearFilter(completionHandler: () -> Void) {
+        super.clearFilter(completionHandler)
+        card.resetContent(teams)
+        completionHandler()
+    }
+    
 }

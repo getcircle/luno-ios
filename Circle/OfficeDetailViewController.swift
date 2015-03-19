@@ -44,9 +44,8 @@ class OfficeDetailViewController: DetailViewController,
             case .KeyValue:
                 switch officeDetailDataSource.typeOfContent(indexPath) {
                 case .PeopleCount:
-                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                    let viewController = storyboard.instantiateViewControllerWithIdentifier("ProfilesViewController") as ProfilesViewController
-                    viewController.dataSource.configureForLocation(officeDetailDataSource.selectedOffice.id)
+                    let viewController = ProfilesViewController()
+                    (viewController.dataSource as ProfilesDataSource).configureForLocation(officeDetailDataSource.selectedOffice.id)
                     viewController.dataSource.setInitialData(
                         content: officeDetailDataSource.profiles,
                         ofType: nil,
@@ -99,7 +98,7 @@ class OfficeDetailViewController: DetailViewController,
         let officeDetailDataSource = dataSource as OfficeDetailDataSource
         switch card.type {
         case .TeamsGrid:
-            let viewController = TeamsOverviewViewController(nibName: "TeamsOverviewViewController", bundle: nil)
+            let viewController = TeamsOverviewViewController()
             viewController.dataSource.setInitialData(
                 content: card.allContent[0] as [AnyObject],
                 ofType: nil,

@@ -9,44 +9,20 @@
 import UIKit
 import ProtobufRegistry
 
-class TeamsOverviewViewController: UIViewController,
-    UICollectionViewDelegate,
-    CardDataSourceDelegate
-{
-
-    @IBOutlet weak private(set) var activityIndicatorView: UIActivityIndicatorView!
-    @IBOutlet weak private(set) var collectionView: UICollectionView!
+class TeamsOverviewViewController: OverviewViewController {
     
-    private(set) var dataSource = TeamsOverviewDataSource()
-    private(set) var delegate = CardCollectionViewDelegate()
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        // Do any additional setup after loading the view, typically from a nib.
-        configureCollectionView()
+    override func filterPlaceHolderComment() -> String {
+        return "Placeholder for text field used for filtering teams."
     }
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        dataSource.loadData { (error) -> Void in
-            if error == nil {
-                self.activityIndicatorView.stopAnimating()
-                self.collectionView.reloadData()
-            }
-        }
+    override func filterPlaceHolderText() -> String {
+        return "Filter teams"
     }
     
-    // MARK: - Configuration
+    // MARK: - Initialization
     
-    private func configureCollectionView() {
-        dataSource.delegate = self
-        collectionView.backgroundColor = UIColor.appViewBackgroundColor()
-        collectionView.dataSource = dataSource
-        collectionView.delegate = delegate
-        (collectionView.delegate as CardCollectionViewDelegate).delegate = self
-        collectionView.bounces = true
-        collectionView.alwaysBounceVertical = true
+    override func initializeDataSource() -> CardDataSource {
+        return TeamsOverviewDataSource()
     }
     
     // MARK: - Collection View Delegate
@@ -59,18 +35,5 @@ class TeamsOverviewViewController: UIViewController,
             navigationController?.pushViewController(teamDetailVC, animated: true)
         }
     }
-    
-    // MARK: - CardDataSourceDelegate
-    
-    func onDataLoaded(indexPaths: [NSIndexPath]) {
-        collectionView.insertItemsAtIndexPaths(indexPaths)
-    }
 
-    // MARK: - Orientation change
-    
-//    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
-//        super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
-//        (collectionView.collectionViewLayout as UICollectionViewFlowLayout).itemSize = CGSizeMake(size.width, rowHeight)
-//        collectionView.collectionViewLayout.invalidateLayout()
-//    }
 }

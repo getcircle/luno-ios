@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TeamsOverviewViewController" customModule="Circle" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TeamsOverviewViewController" customModule="circle" customModuleProvider="target">
             <connections>
                 <outlet property="activityIndicatorView" destination="QL5-Nh-wWA" id="IU7-Q3-PWa"/>
                 <outlet property="collectionView" destination="HaF-FS-ShZ" id="jzx-Hs-Uet"/>
+                <outlet property="collectionViewVerticalSpaceConstraint" destination="KTs-5i-2GU" id="DbK-1p-xmn"/>
+                <outlet property="searchContainerView" destination="g8l-fJ-UaV" id="doL-Qj-9yb"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -16,8 +18,15 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g8l-fJ-UaV" userLabel="SearchContainerView">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="zUb-4S-jEa"/>
+                    </constraints>
+                </view>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="HaF-FS-ShZ">
-                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <rect key="frame" x="0.0" y="44" width="600" height="556"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="D3V-5r-CZ1">
                         <size key="itemSize" width="50" height="50"/>
                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -35,10 +44,23 @@
                 <constraint firstItem="QL5-Nh-wWA" firstAttribute="centerX" secondItem="HaF-FS-ShZ" secondAttribute="centerX" id="0P8-9c-fgq"/>
                 <constraint firstAttribute="bottom" secondItem="HaF-FS-ShZ" secondAttribute="bottom" id="58P-1S-mJ1"/>
                 <constraint firstItem="HaF-FS-ShZ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="5RN-7G-CfI"/>
+                <constraint firstAttribute="trailing" secondItem="g8l-fJ-UaV" secondAttribute="trailing" id="7tZ-a5-VhE"/>
+                <constraint firstAttribute="centerY" secondItem="QL5-Nh-wWA" secondAttribute="centerY" id="BaD-t4-Cvy"/>
+                <constraint firstItem="g8l-fJ-UaV" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Df8-Ev-dTz"/>
                 <constraint firstItem="HaF-FS-ShZ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Fpa-D9-Zod"/>
+                <constraint firstItem="g8l-fJ-UaV" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Fx8-Zi-wDr"/>
+                <constraint firstAttribute="centerX" secondItem="QL5-Nh-wWA" secondAttribute="centerX" id="J1J-U2-BLC"/>
+                <constraint firstItem="HaF-FS-ShZ" firstAttribute="top" secondItem="g8l-fJ-UaV" secondAttribute="bottom" id="KTs-5i-2GU"/>
                 <constraint firstAttribute="trailing" secondItem="HaF-FS-ShZ" secondAttribute="trailing" id="cHe-bY-wtm"/>
                 <constraint firstItem="QL5-Nh-wWA" firstAttribute="centerY" secondItem="HaF-FS-ShZ" secondAttribute="centerY" id="s2n-pn-jHY"/>
             </constraints>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="5RN-7G-CfI"/>
+                    <exclude reference="0P8-9c-fgq"/>
+                    <exclude reference="s2n-pn-jHY"/>
+                </mask>
+            </variation>
             <point key="canvasLocation" x="-22" y="-95"/>
         </view>
     </objects>

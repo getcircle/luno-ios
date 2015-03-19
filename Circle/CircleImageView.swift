@@ -118,6 +118,45 @@ class CircleImageView: UIImageView {
         }
     }
     
+    func setImageWithLocation(location: OrganizationService.Containers.Location, successHandler: ((image: UIImage) -> Void)? = nil) {
+        let request = NSURLRequest(URL: NSURL(string: location.image_url)!)
+        updateAcceptableContentTypes()
+        
+        if let cachedImage = UIImageView.sharedImageCache().cachedImageForRequest(request) {
+            if let successCallback = successHandler {
+                successCallback(image: cachedImage)
+            }
+            else {
+                image = cachedImage
+            }
+        }
+        else {
+            transform = CGAffineTransformMakeScale(0.0, 0.0)
+            setImageWithURLRequest(request,
+                placeholderImage: UIImage.imageFromColor(UIColor.darkGrayColor(), withRect: bounds),
+                success: { (request, response, image) -> Void in
+                    if let successCallback = successHandler {
+                        self.transform = CGAffineTransformIdentity
+                        successCallback(image: image)
+                    }
+                    else {
+                        self.image = image
+                        self.makeImageVisible(true)
+                    }
+                },
+                failure: { (request, response, error) -> Void in
+                    if self.addLabelIfImageLoadingFails {
+                        self.imageText = location.name[0]
+                        self.imageLabel.backgroundColor = UIColor.appProfileImageBackgroundColor()
+                    }
+                    
+                    self.makeImageVisible(false)
+                    println("failed to fetch image for location: \(location.name) - \(location.image_url) error: \(error.localizedDescription)")
+                }
+            )
+        }
+    }
+    
     func setImageWithProfileImageURL(profileImageURL: String) {
         updateAcceptableContentTypes()
         setImageWithURL(

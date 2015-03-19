@@ -109,6 +109,9 @@ extension SearchService {
                 }
                 results.profiles = filterProfiles(searchTerms, toFilter: toFilter)
                 return (results, nil)
+            case .Teams:
+                results.teams = filterTeams(searchTerms)
+                return (results, nil)
             default: break
             }
             
@@ -236,8 +239,15 @@ extension SearchService {
         }
         
         private class func filterTeams(searchTerms: [String]) -> Array<OrganizationService.Containers.Team> {
+            return filterTeams(searchTerms, toFilter: ObjectStore.sharedInstance.teams.values.array)
+        }
+        
+        private class func filterTeams(
+            searchTerms: [String],
+            toFilter: Array<OrganizationService.Containers.Team>
+        ) -> Array<OrganizationService.Containers.Team> {
             var orPredicates = [NSPredicate]()
-
+            
             // Match full name
             var fullTeamNameMatchPredicate = NSComparisonPredicate(
                 leftExpression: NSExpression(forVariable: "name"),
@@ -272,12 +282,13 @@ extension SearchService {
                 )
                 orPredicates.append(fullTeamNameComponentMatchPredicate)
             }
-
+            
             let finalPredicate = NSCompoundPredicate.orPredicateWithSubpredicates(orPredicates)
-            return ObjectStore.sharedInstance.teams.values.array.filter { finalPredicate.evaluateWithObject(
+            return toFilter.filter { finalPredicate.evaluateWithObject(
                 $0,
                 substitutionVariables: ["name": $0.name, "team_name_components": $0.name.componentsSeparatedByString(" ")]
-            )}
+                )
+            }
         }
         
         private class func filterSkills(searchTerms: [String]) -> Array<ProfileService.Containers.Skill> {

@@ -241,7 +241,7 @@ class SearchViewController: UIViewController,
                     navigationController?.pushViewController(profileVC, animated: true)
                 }
             case .Group:
-                let viewController = storyboard?.instantiateViewControllerWithIdentifier("ProfilesViewController") as ProfilesViewController
+                let viewController = ProfilesViewController()
                 viewController.dataSource.setInitialData(selectedCard.content[0] as [AnyObject], ofType: nil)
                 viewController.title = selectedCard.title
                 viewController.hidesBottomBarWhenPushed = false
@@ -294,12 +294,12 @@ class SearchViewController: UIViewController,
                 let cell = collectionView.dataSource?.collectionView(collectionView, cellForItemAtIndexPath: indexPath) as StatTileCollectionViewCell
                 switch cell.tileType! {
                 case .People:
-                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                    let viewController = storyboard.instantiateViewControllerWithIdentifier("ProfilesViewController") as ProfilesViewController
-                    viewController.dataSource.configureForOrganization()
+                    let viewController = ProfilesViewController()
+                    (viewController.dataSource as ProfilesDataSource).configureForOrganization()
                     viewController.title = "People"
                     navigationController?.pushViewController(viewController, animated: true)
                 case .Offices:
+                    // TODO This should be coming from a paginated data source
                     let viewController = OfficesOverviewViewController(nibName: "OfficesOverviewViewController", bundle: nil)
                     viewController.title = "Offices"
                     viewController.dataSource.setInitialData(
@@ -308,11 +308,12 @@ class SearchViewController: UIViewController,
                     )
                     navigationController?.pushViewController(viewController, animated: true)
                 case .Teams:
-                    let viewController = TeamsOverviewViewController(nibName: "TeamsOverviewViewController", bundle: nil)
+                    let viewController = TeamsOverviewViewController()
                     viewController.title = "Teams"
-                    viewController.dataSource.configureForOrganization()
+                    (viewController.dataSource as TeamsOverviewDataSource).configureForOrganization()
                     navigationController?.pushViewController(viewController, animated: true)
                 case .Skills:
+                    // TODO This should be coming from a paginated data source
                     let skillsOverviewViewController = SkillsOverviewViewController(nibName: "SkillsOverviewViewController", bundle: nil)
                     skillsOverviewViewController.title = "Skills"
                     skillsOverviewViewController.dataSource.setInitialData(content: ObjectStore.sharedInstance.activeSkills.values.array)
@@ -359,7 +360,7 @@ class SearchViewController: UIViewController,
         let dataSource = (collectionView.dataSource as CardDataSource)
         switch card.type {
         case .Group, .Profiles, .Birthdays, .Anniversaries, .NewHires:
-            let viewController = storyboard?.instantiateViewControllerWithIdentifier("ProfilesViewController") as ProfilesViewController
+            let viewController = ProfilesViewController()
             if card.type == .Group {
                 viewController.dataSource.setInitialData(card.content[0] as [AnyObject], ofType: nil)
             }

@@ -33,7 +33,6 @@ class ProfilesDataSource: CardDataSource {
         let requestBuilder = ProfileService.GetProfiles.Request.builder()
         requestBuilder.organization_id = organizationId
         searchAttribute = .OrganizationId
-        println("organizationId: \(organizationId)")
         searchAttributeValue = organizationId
         configureForParameters(requestBuilder)
     }
