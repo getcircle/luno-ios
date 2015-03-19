@@ -53,9 +53,9 @@ class OverviewViewController:
         let rootView = UIView(frame: UIScreen.mainScreen().bounds)
         rootView.opaque = true
         view = rootView
-        configureActivityIndicator()
         configureSearchHeaderView()
         configureCollectionView()
+        configureActivityIndicator()
     }
 
     override func viewDidLoad() {
