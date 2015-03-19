@@ -162,7 +162,6 @@ class OverviewViewController:
         if dataSource.cardAtSection(0)?.content.count < 15 && collectionViewVerticalSpaceConstraint != nil {
             collectionViewVerticalSpaceConstraint!.constant = -44
             collectionView.setNeedsUpdateConstraints()
-            searchHeaderView?.removeFromSuperview()
         }
     }
     
