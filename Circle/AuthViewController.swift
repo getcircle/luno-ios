@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Crashlytics
 import Locksmith
 import ProtobufRegistry
 
@@ -469,6 +470,8 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
     
     class func checkUser(#unverifiedPhoneHandler: (() -> Void)?, unverifiedProfileHandler: (() -> Void)?) -> Bool {
         if let user = getLoggedInUser() {
+            Crashlytics.sharedInstance().setUserIdentifier(user.id)
+
             if getLoggedInUserProfile() == nil {
                 self.presentHomelessViewController()
                 return false
