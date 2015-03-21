@@ -204,9 +204,8 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
     
     private func cacheLoginData(token: String, user: UserService.Containers.User) {
         // Cache locally
-        LoggedInUserHolder.token = token
-        LoggedInUserHolder.user = user
-        
+        self.dynamicType.cacheTokenAndUserInMemory(token, user: user)
+
         // Cache token to keychain
         let error = Locksmith.updateData(
             [token: "\(NSDate())"],
@@ -224,6 +223,11 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
         
         // Cache email used
         NSUserDefaults.standardUserDefaults().setObject(user.primary_email, forKey: DefaultsLastLoggedInUserEmail)
+    }
+    
+    internal class func cacheTokenAndUserInMemory(token: String, user: UserService.Containers.User) {
+        LoggedInUserHolder.token = token
+        LoggedInUserHolder.user = user
     }
     
     // MARK: - Loading State
@@ -407,11 +411,16 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
     
     class func getLoggedInUserToken() -> String? {
         if let token = LoggedInUserHolder.token {
+            println("Token from memory")
             return token
         } else {
             if let user = self.getLoggedInUser() {
+                println("Token from keychain")
                 let (data, error) = Locksmith.loadData(forKey: LocksmithAuthTokenKey, inService: LocksmithService, forUserAccount: user.id)
-                return data?.allKeys[0] as? String
+                if let token = data?.allKeys[0] as? String {
+                    cacheTokenAndUserInMemory(token, user: user)
+                    return token
+                }
             }
         }
         return nil
