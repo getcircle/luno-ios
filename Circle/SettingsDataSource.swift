@@ -27,8 +27,9 @@ class SettingsDataSource: CardDataSource {
     
     override func loadData(completionHandler: (error: NSError?) -> Void) {
         
-        let sectionHeaderClass = SearchResultsCardHeaderCollectionReusableView.self
-        
+        let sectionHeaderClass = ProfileSectionHeaderCollectionReusableView.self
+        let sectionInset = UIEdgeInsetsMake(0.0, 0.0, 20.0, 0.0)
+
         // Security card
         var securityCard = Card(
             cardType: .Settings,
@@ -36,7 +37,8 @@ class SettingsDataSource: CardDataSource {
             addDefaultFooter: false
         )
         securityCard.addHeader(headerClass: sectionHeaderClass)
-        securityCard.sectionInset = UIEdgeInsetsMake(0.0, 0.0, 10.0, 0.0)
+        securityCard.sectionInset = sectionInset
+        securityCard.showContentCount = false
         securityCard.addContent(content: [
             [
                 "text": NSLocalizedString("Passcode & Touch ID", comment: "Title of button used to set a passcode and enable Touch ID"),
@@ -52,7 +54,8 @@ class SettingsDataSource: CardDataSource {
             addDefaultFooter: false
         )
         contactCard.addHeader(headerClass: sectionHeaderClass)
-        contactCard.sectionInset = UIEdgeInsetsMake(0.0, 0.0, 10.0, 0.0)
+        contactCard.sectionInset = sectionInset
+        contactCard.showContentCount = false
         contactCard.addContent(content: [
             [
                 "text": NSLocalizedString("Email us feedback", comment: "Title of button used to email app feedback"),
@@ -72,7 +75,8 @@ class SettingsDataSource: CardDataSource {
             addDefaultFooter: false
         )
         legalCard.addHeader(headerClass: sectionHeaderClass)
-        legalCard.sectionInset = UIEdgeInsetsMake(0.0, 0.0, 10.0, 0.0)
+        legalCard.sectionInset = sectionInset
+        legalCard.showContentCount = false
         legalCard.addContent(content: [
             [
                 "text": NSLocalizedString("Attributions", comment: "Title of button to see third party library attributions"),
@@ -97,7 +101,8 @@ class SettingsDataSource: CardDataSource {
                 addDefaultFooter: false
             )
             socialCard.addHeader(headerClass: sectionHeaderClass)
-            socialCard.sectionInset = UIEdgeInsetsZero
+            socialCard.sectionInset = sectionInset
+            socialCard.showContentCount = false
             socialCard.addContent(content: identities as [AnyObject])
             appendCard(socialCard)
         }
@@ -109,7 +114,8 @@ class SettingsDataSource: CardDataSource {
             addDefaultFooter: false
         )
         logoutCard.addHeader(headerClass: sectionHeaderClass)
-        logoutCard.sectionInset = UIEdgeInsetsMake(1.0, 0.0, 10.0, 0.0)
+        logoutCard.sectionInset = sectionInset
+        logoutCard.showContentCount = false
         logoutCard.addContent(content: [
             [
                 "text": AuthViewController.getLoggedInUser()!.primary_email,
@@ -125,7 +131,8 @@ class SettingsDataSource: CardDataSource {
         // Version card
         var versionCard = Card(cardType: .Settings, title: "", addDefaultFooter: false)
         versionCard.addHeader(headerClass: sectionHeaderClass)
-        versionCard.sectionInset = UIEdgeInsetsZero
+        versionCard.sectionInset = sectionInset
+        versionCard.showContentCount = false
         versionCard.addContent(content: [
             [
                 "text": NSString(format:
@@ -192,16 +199,6 @@ class SettingsDataSource: CardDataSource {
         else {
             // Currently no cell except settings cells should be active
             cell.selectedBackgroundView = nil
-        }
-    }
-    
-    // MARK: - Section header
-    
-    override func configureHeader(header: CircleCollectionReusableView, atIndexPath indexPath: NSIndexPath) {
-        super.configureHeader(header, atIndexPath: indexPath)
-        if let settingsHeader = header as? SearchResultsCardHeaderCollectionReusableView {
-            settingsHeader.cardTitleLabel.font = UIFont.appSettingsCardHeader()
-            settingsHeader.backgroundColor = UIColor.clearColor()
         }
     }
 }

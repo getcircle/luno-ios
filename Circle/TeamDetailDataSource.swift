@@ -15,6 +15,7 @@ class TeamDetailDataSource: CardDataSource {
     private var profiles = Array<ProfileService.Containers.Profile>()
     private var ownerProfile: ProfileService.Containers.Profile!
     private(set) var profileHeaderView: TeamHeaderCollectionReusableView!
+    private let sectionInset = UIEdgeInsetsMake(0.0, 0.0, 25.0, 0.0)
     
     // MARK: - Load Data
     
@@ -49,11 +50,11 @@ class TeamDetailDataSource: CardDataSource {
                     if let owner = self.ownerProfile {
                         let ownerCard = Card(cardType: .Profiles, title: "Team Lead")
                         ownerCard.addContent(content: [self.ownerProfile])
-                        ownerCard.sectionInset = UIEdgeInsetsMake(0.0, 0.0, 15.0, 0.0)
+                        ownerCard.sectionInset = self.sectionInset
                         self.appendCard(ownerCard)
                     }
                     
-                    let sectionHeaderClass = SearchResultsCardHeaderCollectionReusableView.self
+                    let sectionHeaderClass = ProfileSectionHeaderCollectionReusableView.self
                     
                     // Add Members Card
                     if allProfilesExceptOwner?.count > 0 {
@@ -63,9 +64,10 @@ class TeamDetailDataSource: CardDataSource {
                             comment: "Title for list of team members"
                         ).uppercaseStringWithLocale(NSLocale.currentLocale())
                         let membersCard = Card(cardType: .Profiles, title: membersCardTitle)
+                        membersCard.showContentCount = false
                         membersCard.addHeader(headerClass: sectionHeaderClass)
                         membersCard.addContent(content: allProfilesExceptOwner! as [AnyObject])
-                        membersCard.sectionInset = UIEdgeInsetsMake(10.0, 0.0, 25.0, 0.0)
+                        membersCard.sectionInset = self.sectionInset
                         self.appendCard(membersCard)
                     }
                     
@@ -74,9 +76,10 @@ class TeamDetailDataSource: CardDataSource {
                     OrganizationService.Actions.getTeamDescendants(self.selectedTeam!.id, depth: 1, completionHandler: { (teams, error) -> Void in
                         if let teams = teams {
                             var teamsCard = Card(cardType: .TeamsGrid, title: "Teams")
+                            teamsCard.showContentCount = false
                             teamsCard.addHeader(headerClass: sectionHeaderClass)
                             teamsCard.addContent(content: teams)
-                            teamsCard.sectionInset = UIEdgeInsetsMake(10.0, 0.0, 25.0, 0.0)
+                            teamsCard.sectionInset = self.sectionInset
                             self.appendCard(teamsCard)
                         }
                         completionHandler(error: error)
@@ -97,10 +100,6 @@ class TeamDetailDataSource: CardDataSource {
         if let teamHeader = header as? TeamHeaderCollectionReusableView {
             teamHeader.setData(selectedTeam)
             profileHeaderView = teamHeader
-        }
-        
-        if let sectionHeader = header as? SearchResultsCardHeaderCollectionReusableView {
-            sectionHeader.backgroundColor = UIColor.clearColor()
         }
     }
 }

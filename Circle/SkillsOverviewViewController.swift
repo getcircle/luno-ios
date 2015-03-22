@@ -81,9 +81,9 @@ class SkillsOverviewViewController: UIViewController, UICollectionViewDelegateFl
         collectionView.backgroundColor = UIColor.whiteColor()
         // Header
         collectionView.registerNib(
-            UINib(nibName: "SearchResultsCardHeaderCollectionReusableView", bundle: nil),
+            UINib(nibName: "ProfileSectionHeaderCollectionReusableView", bundle: nil),
             forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
-            withReuseIdentifier: SearchResultsCardHeaderCollectionReusableView.classReuseIdentifier
+            withReuseIdentifier: ProfileSectionHeaderCollectionReusableView.classReuseIdentifier
         )
 
         // Footer
@@ -147,7 +147,7 @@ class SkillsOverviewViewController: UIViewController, UICollectionViewDelegateFl
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-            return CGSizeMake(view.frameWidth, SearchResultsCardHeaderCollectionReusableView.height)
+            return CGSizeMake(view.frameWidth, ProfileSectionHeaderCollectionReusableView.height)
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {

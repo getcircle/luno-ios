@@ -39,6 +39,10 @@ class ProfileSectionHeaderCollectionReusableView: CircleCollectionReusableView {
 
         cardTitleLabel.font = UIFont.appAttributeTitleLabelFont()
         cardTitleLabel.textColor = UIColor.appAttributeTitleLabelColor()
+        nextIconImage.alpha = 0.0
+        cardContentCountLabel.alpha = 0.0
+        cardTriggerButton.enabled = false
+        addEditButton.alpha = 0.0
         configureAddEditButton()
     }
     

@@ -64,9 +64,9 @@ class SkillsOverviewDataSource: NSObject, UICollectionViewDataSource {
         if kind == UICollectionElementKindSectionHeader {
             let headerView =  collectionView.dequeueReusableSupplementaryViewOfKind(
                 kind, 
-                withReuseIdentifier: SearchResultsCardHeaderCollectionReusableView.classReuseIdentifier, 
+                withReuseIdentifier: ProfileSectionHeaderCollectionReusableView.classReuseIdentifier,
                 forIndexPath: indexPath
-            ) as SearchResultsCardHeaderCollectionReusableView
+            ) as ProfileSectionHeaderCollectionReusableView
             
             var indexPathOfFirstSkillInSection = NSIndexPath(forItem: 0, inSection: indexPath.section)
             if let skill = skill(collectionView: collectionView, atIndexPath: indexPathOfFirstSkillInSection) {
