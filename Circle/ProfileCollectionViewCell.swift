@@ -90,7 +90,13 @@ class ProfileCollectionViewCell: CircleCollectionViewCell {
     private func setLocation(location: OrganizationService.Containers.Location) {
         nameLabel.text = location.address.officeName()
         profileImageView.imageText = ""
-        profileImageView.image = UIImage(named: "SF")
+        if location.hasImageUrl {
+            profileImageView.setImageWithLocation(location) { (image) -> Void in
+                self.profileImageView.image = image
+            }
+        } else {
+            profileImageView.image = UIImage(named: "SF")
+        }
         subTextLabel.text = getCountLabel(location.profile_count)
     }
 
