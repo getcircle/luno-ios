@@ -196,6 +196,7 @@ class VerifyProfileViewController:
                 if let mediaURL = mediaURL {
                     let profileBuilder = self.profile.toBuilder()
                     profileBuilder.image_url = mediaURL
+                    self.profile = profileBuilder.build()
                     self.updateProfile(completion)
                 }
             }
