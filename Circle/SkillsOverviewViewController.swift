@@ -52,11 +52,6 @@ class SkillsOverviewViewController: UIViewController, UICollectionViewDelegateFl
         configureSearchHeaderView()
     }
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        activateSearchField()
-    }
-    
     // MARK: - Initialization
     
     private func initializeSearchHeaderView() {
@@ -69,6 +64,8 @@ class SkillsOverviewViewController: UIViewController, UICollectionViewDelegateFl
     
     private func configureView() {
         view.backgroundColor = UIColor.appViewBackgroundColor()
+        edgesForExtendedLayout = .None
+        automaticallyAdjustsScrollViewInsets = false        
     }
     
     private func configurePrototypeCell() {
