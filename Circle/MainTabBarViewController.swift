@@ -108,7 +108,7 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
         if selectedIndex == 0 && getActiveViewController(viewController) is SearchViewController {
             let searchVC = getActiveViewController(viewController) as SearchViewController
             if searchVC.isViewLoaded() && searchVC.view.window != nil {
-                searchVC.activateSearch()
+                searchVC.activateSearch(false)
             }
         }
         

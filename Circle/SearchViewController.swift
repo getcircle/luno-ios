@@ -199,9 +199,9 @@ class SearchViewController: UIViewController,
     
     // MARK: Search Targets
     
-    func activateSearch() {
+    func activateSearch(isQuickAction: Bool) {
         hideNavbarAnimated(false)
-        queryDataSource.isQuickAction = true
+        queryDataSource.isQuickAction = isQuickAction
         searchHeaderView.searchTextField.becomeFirstResponder()
     }
     
@@ -452,17 +452,17 @@ class SearchViewController: UIViewController,
 
     @IBAction func messageButtonTapped(sender: AnyObject!) {
         selectedAction = .Message
-        activateSearch()
+        activateSearch(true)
     }
     
     @IBAction func emailButtonTapped(sender: AnyObject!) {
         selectedAction = .Email
-        activateSearch()
+        activateSearch(true)
     }
 
     @IBAction func phoneButtonTapped(sender: AnyObject!) {
         selectedAction = .Phone
-        activateSearch()
+        activateSearch(true)
     }
     
     // MARK: - Notifications
@@ -532,7 +532,7 @@ class SearchViewController: UIViewController,
             if let quickAction = userInfo[QuickActionNotifications.QuickActionTypeUserInfoKey] as? Int {
                 if let quickActionType = QuickAction(rawValue: quickAction) {
                     selectedAction = quickActionType
-                    activateSearch()
+                    activateSearch(true)
                 }
             }
         }
