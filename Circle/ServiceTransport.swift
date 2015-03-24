@@ -174,6 +174,7 @@ class HttpsTransport: BaseTransport {
     }
     
     override func processRequest(serviceRequest: ServiceRequest, serializedRequest: NSData, completionHandler: ServiceCompletionHandler) {
+        let startTime = CACurrentMediaTime()
         NetworkActivity.totalRequests++
         updateNetworkIndicatorVisibility()
         
@@ -186,6 +187,8 @@ class HttpsTransport: BaseTransport {
                     serviceResponse: serviceResponse,
                     actionResponse: actionResponse
                 )
+                let endTime = CACurrentMediaTime()
+                println("\(serviceRequest.control.service):\(serviceRequest.actions[0].control.action): Time - \(endTime - startTime)")
                 completionHandler(request, response, wrapped, error)
         }
     }
