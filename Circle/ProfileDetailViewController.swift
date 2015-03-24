@@ -282,13 +282,7 @@ class ProfileDetailViewController: DetailViewController,
             if profile.id == loggedInUserProfile.id {
                 profile = loggedInUserProfile
                 reloadData()
-                
-                if let dataSource = dataSource as? ProfileDetailDataSource {
-                    if let headerView = dataSource.profileHeaderView {
-                        headerView.setProfile(profile)
-                    }
-                }
             }
         }
-    }    
+    }
 }

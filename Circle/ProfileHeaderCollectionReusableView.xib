@@ -8,18 +8,18 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionReusableView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ProfileHeaderCollectionReusableView" id="U6b-Vx-4bR" customClass="ProfileHeaderCollectionReusableView" customModule="circle" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="220"/>
+            <rect key="frame" x="0.0" y="0.0" width="474" height="399"/>
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="65x-XU-UUc" userLabel="BackgroundImageView" customClass="CircleImageView" customModule="circle" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="220"/>
+                    <rect key="frame" x="0.0" y="0.0" width="474" height="399"/>
                     <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JUx-bd-ahe" userLabel="ContainerView">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="220"/>
+                    <rect key="frame" x="0.0" y="0.0" width="474" height="399"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kX0-a4-Q8w" userLabel="ProfileImageView" customClass="CircleImageView" customModule="circle" customModuleProvider="target">
-                            <rect key="frame" x="120" y="55" width="80" height="80"/>
+                            <rect key="frame" x="197" y="145" width="80" height="80"/>
                             <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="kX0-a4-Q8w" secondAttribute="height" multiplier="1:1" id="147-lS-seV"/>
@@ -35,20 +35,20 @@
                             </variation>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ravi Rani" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="1Tu-Zx-9yR" userLabel="NameLabel">
-                            <rect key="frame" x="104" y="147" width="112" height="39"/>
+                            <rect key="frame" x="181" y="237" width="112" height="39"/>
                             <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="28"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4NY-Ue-zhf" userLabel="SegmentedControlView">
-                            <rect key="frame" x="0.0" y="170" width="320" height="35"/>
+                            <rect key="frame" x="0.0" y="349" width="474" height="35"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="35" id="HK9-TE-Fkf"/>
                             </constraints>
                         </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ravi Rani" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="zJL-k5-Ada" userLabel="NameNavLabel">
-                            <rect key="frame" x="30" y="178" width="260" height="20"/>
+                            <rect key="frame" x="30" y="357" width="414" height="20"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="20" id="LGc-Hs-MLq"/>
                             </constraints>
@@ -57,13 +57,13 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Co-founder" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="Raz-vM-IgD" userLabel="TitleNavLabel">
-                            <rect key="frame" x="124" y="198" width="73" height="16"/>
+                            <rect key="frame" x="201" y="377" width="73" height="16"/>
                             <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xmj-MC-afc" userLabel="VerifiedButton">
-                            <rect key="frame" x="190" y="85" width="20" height="20"/>
+                            <rect key="frame" x="267" y="175" width="20" height="20"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="xmj-MC-afc" secondAttribute="height" multiplier="1:1" id="FJM-Mn-orJ"/>
                                 <constraint firstAttribute="width" constant="20" id="JBa-7b-jUB"/>
@@ -73,25 +73,38 @@
                             </state>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Co-founder" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="GGm-ME-NAZ" userLabel="TitleLabel">
-                            <rect key="frame" x="124" y="184" width="73" height="20"/>
+                            <rect key="frame" x="201" y="274" width="73" height="20"/>
                             <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
                             <color key="textColor" red="0.78431372549019607" green="0.78431372549019607" blue="0.78431372549019607" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ces-e9-sN5" userLabel="DaylightIndicatorImage">
-                            <rect key="frame" x="109" y="189" width="10" height="11"/>
+                            <rect key="frame" x="186" y="279" width="10" height="11"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="10" id="HbT-Wp-ECu"/>
                                 <constraint firstAttribute="height" constant="11" id="heA-l8-TSe"/>
                             </constraints>
                         </imageView>
                         <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hdG-v4-wEq" userLabel="DaylightIndicatorNavImage">
-                            <rect key="frame" x="109" y="201" width="10" height="11"/>
+                            <rect key="frame" x="186" y="380" width="10" height="11"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="11" id="ISW-Qi-9Tg"/>
                                 <constraint firstAttribute="width" constant="10" id="Kol-ug-wct"/>
                             </constraints>
                         </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ab6-6x-tgQ" userLabel="EditImageButton">
+                            <rect key="frame" x="0.0" y="359" width="474" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="gWv-6x-Ojj"/>
+                            </constraints>
+                            <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="10" maxY="0.0"/>
+                            <state key="normal" image="CameraFilled">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="editImageButtonTapped:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="ymX-XG-IGw"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
@@ -107,13 +120,16 @@
                         <constraint firstItem="GGm-ME-NAZ" firstAttribute="centerY" secondItem="ces-e9-sN5" secondAttribute="centerY" id="9eg-Jw-EfM"/>
                         <constraint firstItem="zJL-k5-Ada" firstAttribute="leading" secondItem="Raz-vM-IgD" secondAttribute="leading" id="BCZ-DR-Nf7"/>
                         <constraint firstAttribute="bottom" secondItem="Raz-vM-IgD" secondAttribute="bottom" constant="6" id="Cb3-Ht-JcU"/>
+                        <constraint firstAttribute="trailing" secondItem="ab6-6x-tgQ" secondAttribute="trailing" id="Ce8-f8-uIz"/>
                         <constraint firstAttribute="centerY" secondItem="kX0-a4-Q8w" secondAttribute="centerY" constant="15" id="Cq9-g3-mi2"/>
                         <constraint firstItem="Raz-vM-IgD" firstAttribute="leading" secondItem="ces-e9-sN5" secondAttribute="trailing" constant="5" id="DEK-Ae-wLW"/>
+                        <constraint firstAttribute="bottom" secondItem="ab6-6x-tgQ" secondAttribute="bottom" id="DfH-3r-s95"/>
                         <constraint firstItem="1Tu-Zx-9yR" firstAttribute="top" secondItem="GGm-ME-NAZ" secondAttribute="bottom" constant="-3" id="Gpm-JD-Y0c"/>
                         <constraint firstAttribute="bottom" secondItem="zJL-k5-Ada" secondAttribute="bottom" constant="22" id="Gpu-y0-Hjt"/>
                         <constraint firstItem="Raz-vM-IgD" firstAttribute="leading" secondItem="hdG-v4-wEq" secondAttribute="trailing" constant="5" id="Pev-Fs-dvK"/>
                         <constraint firstItem="GGm-ME-NAZ" firstAttribute="leading" secondItem="JUx-bd-ahe" secondAttribute="leading" constant="30" id="Q2H-Rz-j8c"/>
                         <constraint firstAttribute="trailing" secondItem="GGm-ME-NAZ" secondAttribute="trailing" constant="30" id="UkJ-Vb-niE"/>
+                        <constraint firstItem="ab6-6x-tgQ" firstAttribute="leading" secondItem="JUx-bd-ahe" secondAttribute="leading" id="Xh3-G9-6kt"/>
                         <constraint firstItem="4NY-Ue-zhf" firstAttribute="leading" secondItem="JUx-bd-ahe" secondAttribute="leading" id="YPf-X2-o7d"/>
                         <constraint firstItem="1Tu-Zx-9yR" firstAttribute="top" secondItem="kX0-a4-Q8w" secondAttribute="bottom" constant="12" id="b8p-d8-vRT"/>
                         <constraint firstItem="GGm-ME-NAZ" firstAttribute="centerX" secondItem="1Tu-Zx-9yR" secondAttribute="centerX" id="beT-MI-PAr"/>
@@ -130,11 +146,11 @@
                     <variation key="default">
                         <mask key="constraints">
                             <exclude reference="Gpm-JD-Y0c"/>
-                            <exclude reference="BCZ-DR-Nf7"/>
-                            <exclude reference="gur-ii-eRs"/>
                             <exclude reference="Q2H-Rz-j8c"/>
                             <exclude reference="UkJ-Vb-niE"/>
                             <exclude reference="zgR-0y-z6k"/>
+                            <exclude reference="BCZ-DR-Nf7"/>
+                            <exclude reference="gur-ii-eRs"/>
                             <exclude reference="2bK-VM-tKh"/>
                             <exclude reference="DEK-Ae-wLW"/>
                         </mask>
@@ -156,6 +172,7 @@
                 <outlet property="containerView" destination="JUx-bd-ahe" id="YQJ-86-Iry"/>
                 <outlet property="daylightIndicatorImage" destination="ces-e9-sN5" id="9Fp-Jg-ErA"/>
                 <outlet property="daylightIndicatorNavImage" destination="hdG-v4-wEq" id="gob-8Z-vmw"/>
+                <outlet property="editImageButton" destination="ab6-6x-tgQ" id="lBn-AQ-8p2"/>
                 <outlet property="nameLabel" destination="1Tu-Zx-9yR" id="dCN-I3-cEP"/>
                 <outlet property="nameNavLabel" destination="zJL-k5-Ada" id="fZN-PC-Fce"/>
                 <outlet property="profileImage" destination="kX0-a4-Q8w" id="idA-m8-Iy4"/>
@@ -164,10 +181,11 @@
                 <outlet property="titleNavLabel" destination="Raz-vM-IgD" id="4tA-Yx-E8u"/>
                 <outlet property="verifiedProfileButton" destination="xmj-MC-afc" id="JX3-5E-uLr"/>
             </connections>
-            <point key="canvasLocation" x="-1249" y="-359"/>
+            <point key="canvasLocation" x="-1467" y="-472.5"/>
         </collectionReusableView>
     </objects>
     <resources>
+        <image name="CameraFilled" width="32" height="32"/>
         <image name="Check" width="8" height="9"/>
     </resources>
 </document>

@@ -11,9 +11,16 @@ import ProtobufRegistry
 
 class CurrentUserProfileDetailViewController: ProfileDetailViewController,
     CardHeaderViewDelegate,
+    UINavigationControllerDelegate,
+    UIImagePickerControllerDelegate,
+    ProfileEditImageButtonDelegate,
     EditProfileDelegate
 {
 
+    private var addImageActionSheet: UIAlertController?
+    private var didUploadPhoto = false
+    private var imageToUpload: UIImage?
+    
     convenience init(
         profile withProfile: ProfileService.Containers.Profile,
         showSettingsButton: Bool = false
@@ -21,6 +28,7 @@ class CurrentUserProfileDetailViewController: ProfileDetailViewController,
             self.init()
             profile = withProfile
             dataSource = CurrentUserProfileDetailDataSource(profile: profile)
+            (dataSource as CurrentUserProfileDetailDataSource).editImageButtonDelegate = self
             dataSource.cardHeaderDelegate = self
             delegate = CardCollectionViewDelegate()
             
@@ -69,6 +77,14 @@ class CurrentUserProfileDetailViewController: ProfileDetailViewController,
     }
 
     // MARK: - Helpers
+    
+    private func reloadHeader() {
+        if let dataSource = dataSource as? CurrentUserProfileDetailDataSource {
+            if let headerView = dataSource.profileHeaderView {
+                headerView.setProfile(profile)
+            }
+        }
+    }
     
     private func addSettingsButton() {
         if navigationItem.leftBarButtonItem == nil {
@@ -192,4 +208,118 @@ class CurrentUserProfileDetailViewController: ProfileDetailViewController,
         }
     }
     
+    // MARK: - Image Upload
+    
+    func onEditImageButtonTapped(sender: AnyObject!) {
+
+        var actionSheet = UIAlertController(
+            title: AppStrings.ActionSheetAddAPictureButtonTitle,
+            message: nil,
+            preferredStyle: .ActionSheet
+        )
+        actionSheet.view.tintColor = UIColor.appActionSheetControlsTintColor()
+        
+        var takeAPictureActionControl = UIAlertAction(
+            title: AppStrings.ActionSheetTakeAPictureButtonTitle,
+            style: .Default,
+            handler: takeAPictureAction
+        )
+        actionSheet.addAction(takeAPictureActionControl)
+        
+        var pickAPhotoActionControl = UIAlertAction(
+            title: AppStrings.ActionSheetPickAPhotoButtonTitle,
+            style: .Default,
+            handler: pickAPhotoAction
+        )
+        actionSheet.addAction(pickAPhotoActionControl)
+        
+        var cancelControl = UIAlertAction(
+            title: AppStrings.GenericCancelButtonTitle,
+            style: .Cancel,
+            handler: { (action) -> Void in
+                self.dismissAddImageActionSheet(true)
+            }
+        )
+        actionSheet.addAction(cancelControl)
+        addImageActionSheet = actionSheet
+        presentViewController(actionSheet, animated: true, completion: nil)
+    }
+    
+    func takeAPictureAction(action: UIAlertAction!) {
+        dismissAddImageActionSheet(false)
+        if UIImagePickerController.isSourceTypeAvailable(.Camera) {
+            var pickerVC = UIImagePickerController()
+            pickerVC.sourceType = .Camera
+            pickerVC.cameraCaptureMode = .Photo
+            if UIImagePickerController.isCameraDeviceAvailable(.Front) {
+                pickerVC.cameraDevice = .Front
+            }
+            else {
+                pickerVC.cameraDevice = .Rear
+            }
+            
+            pickerVC.allowsEditing = true
+            pickerVC.delegate = self
+            presentViewController(pickerVC, animated: true, completion: nil)
+        }
+    }
+    
+    func pickAPhotoAction(action: UIAlertAction!) {
+        dismissAddImageActionSheet(false)
+        if UIImagePickerController.isSourceTypeAvailable(.PhotoLibrary) {
+            var pickerVC = UIImagePickerController()
+            pickerVC.sourceType = .PhotoLibrary
+            pickerVC.allowsEditing = true
+            pickerVC.delegate = self
+            presentViewController(pickerVC, animated: true, completion: nil)
+        }
+    }
+    
+    // MARK: - UIImagePickerControllerDelegate
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
+        if let pickedImage = info[UIImagePickerControllerEditedImage] as? UIImage {
+            imageToUpload = pickedImage
+        }
+        else {
+            // XXX when is this ever hit?
+            imageToUpload = info[UIImagePickerControllerOriginalImage] as? UIImage
+        }
+        
+        handleImageUpload { () -> Void in
+            self.reloadHeader()
+            self.imageToUpload = nil
+        }
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    private func handleImageUpload(completion: () -> Void) {
+        if let newImage = imageToUpload {
+            MediaService.Actions.uploadProfileImage(profile.id, image: newImage) { (mediaURL, error) -> Void in
+                if let mediaURL = mediaURL {
+                    let profileBuilder = self.profile.toBuilder()
+                    profileBuilder.image_url = mediaURL
+                    ProfileService.Actions.updateProfile(profileBuilder.build()) { (profile, error) -> Void in
+                        if let profile = profile {
+                            AuthViewController.updateUserProfile(profile)
+                            self.profile = profile
+                            completion()
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    private func dismissAddImageActionSheet(animated: Bool) {
+        if addImageActionSheet != nil {
+            addImageActionSheet!.dismissViewControllerAnimated(animated, completion: {() -> Void in
+                self.addImageActionSheet = nil
+            })
+        }
+    }
 }

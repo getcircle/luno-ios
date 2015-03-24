@@ -10,18 +10,23 @@ import Foundation
 
 struct AppStrings {
     
+    static let ActionSheetAddAPictureButtonTitle = NSLocalizedString("Add a picture", comment: "Title of window which asks user to add a picture")
+    static let ActionSheetPickAPhotoButtonTitle = NSLocalizedString("Pick a photo", comment: "Button prompt to pick a photo from user's photos")
+    static let ActionSheetTakeAPictureButtonTitle = NSLocalizedString("Take a picture", comment: "Button prompt to take a picture using the camera")
+
     static let AddNoteCTATitle = NSLocalizedString("Add private note", comment: "Title of the button to add a private note on a co-worker")
     static let AddSkillsNavigationTitle = NSLocalizedString("Add Skills", comment: "Title of the view to add skills")
     static let AppreciateCTATitle = NSLocalizedString("Appreciate", comment: "Title of the button to leave an appreciation for a co-worker")
-
+    
     static let CardTitlePeople = NSLocalizedString("People", comment: "Title of the card showing people")
     static let CardTitleOfficeTeam = NSLocalizedString("Office Teams", comment: "Title of the card showing teams in a office")
     static let CardTitleAddress = NSLocalizedString("Location", comment: "Title of the card showing address")
     
+    static let GenericCancelButtonTitle = NSLocalizedString("Cancel", comment: "Generic title for cancelling a user action")
+    
     static let ProfileInfoAddButtonTitle = NSLocalizedString("Add", comment: "Title of the button to add info")
     static let ProfileInfoEditButtonTitle = NSLocalizedString("Edit", comment: "Title of the button to edit info")
     
-
     static let ProfileNotesTabTitle = NSLocalizedString("Notes", comment: "Title of the Notes section")
     static let ProfileAppreciationTabTitle = NSLocalizedString("Appreciation", comment: "Title of the Appreciation section")
     

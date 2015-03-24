@@ -13,10 +13,15 @@ protocol ProfileDetailSegmentedControlDelegate {
     func onButtonTouchUpInsideAtIndex(index: Int)
 }
 
+protocol ProfileEditImageButtonDelegate {
+    func onEditImageButtonTapped(sender: AnyObject!)
+}
+
 class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
 
     @IBOutlet weak private(set) var backgroundImageView: CircleImageView!
     @IBOutlet weak private(set) var containerView: UIView!
+    @IBOutlet weak private(set) var editImageButton: UIButton!
     @IBOutlet weak private(set) var nameLabel: UILabel!
     @IBOutlet weak private(set) var nameNavLabel: UILabel!
     @IBOutlet weak private(set) var titleLabel: UILabel!
@@ -27,6 +32,7 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
     @IBOutlet weak private(set) var daylightIndicatorImage: UIImageView!
     @IBOutlet weak private(set) var daylightIndicatorNavImage: UIImageView!
     
+    var profileEditImageButtonDelegate: ProfileEditImageButtonDelegate?
     var profileSegmentedControlDelegate: ProfileDetailSegmentedControlDelegate?
     var sections: [ProfileDetailView]? {
         didSet {
@@ -70,18 +76,23 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
         super.awakeFromNib()
 
         // Initialization code
+        addBlurEffect()
+        configureContainerView()
+        configureVerifiedProfileButton()
+        configureEditImageButton()
+    }
+    
+    // MARK: - Configuration
+
+    private func configureContainerView() {
         profileImage.makeItCircular()
         backgroundImageView.addLabelIfImageLoadingFails = false
         nameNavLabel.alpha = 0.0
         titleNavLabel.alpha = 0.0
-        configureVerifiedProfileButton()
-        addBlurEffect()
         visualEffectView!.contentView.addSubview(containerView)
         containerView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero, excludingEdge: .Bottom)
         containerView.autoMatchDimension(.Height, toDimension: .Height, ofView: backgroundImageView)
     }
-    
-    // MARK: - Configuration
     
     private func configureVerifiedProfileButton() {
         verifiedProfileButton.convertToTemplateImageForState(.Normal)
@@ -99,23 +110,27 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
             adjustSectionIndicator(false)
         }
     }
+    
+    private func configureEditImageButton() {
+        editImageButton.convertToTemplateImageForState(.Normal)
+        editImageButton.tintColor = UIColor.appViewBackgroundColor()
+        editImageButton.hidden = true
+    }
 
     func setProfile(userProfile: ProfileService.Containers.Profile) {
-        if profile == nil {
-            profile = userProfile
-            nameLabel.text = userProfile.first_name + " " + userProfile.last_name
-            nameNavLabel.text = nameLabel.text
-            titleLabel.text = userProfile.title
-            titleNavLabel.text = titleLabel.text
-            profileImage.setImageWithProfile(userProfile, successHandler: { (image) -> Void in
-                self.profileImage.image = image
-                if self.backgroundImageView.image != image {
-                    self.backgroundImageView.image = image
-                    self.addBlurEffect()
-                }
-            })
-            verifiedProfileButton.hidden = !userProfile.verified
-        }
+        profile = userProfile
+        nameLabel.text = userProfile.first_name + " " + userProfile.last_name
+        nameNavLabel.text = nameLabel.text
+        titleLabel.text = userProfile.title
+        titleNavLabel.text = titleLabel.text
+        profileImage.setImageWithProfile(userProfile, successHandler: { (image) -> Void in
+            self.profileImage.image = image
+            if self.backgroundImageView.image != image {
+                self.backgroundImageView.image = image
+                self.addBlurEffect()
+            }
+        })
+        verifiedProfileButton.hidden = !userProfile.verified
     }
 
     func setOffice(office: OrganizationService.Containers.Location) {
@@ -338,6 +353,7 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
             titleLabel.alpha = titleLabelAlpha
             nameLabel.alpha = nameLabelAlpha
             daylightIndicatorImage.alpha = titleLabelAlpha
+            editImageButton.alpha = titleLabelAlpha
             nameNavLabel.alpha = sectionsAlpha <= 0.0 ? nameNavLabel.alpha + 1/20 : 0.0
             titleNavLabel.alpha = sectionsAlpha <= 0.0 ? titleNavLabel.alpha + 1/20 : 0.0
             daylightIndicatorNavImage.alpha = titleNavLabel.alpha
@@ -349,18 +365,26 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
             
             // Change it slower for everything else
             let otherViewsAlpha = max(0.0, 1.0 - -contentOffset.y/120.0)
-            nameLabel.alpha = otherViewsAlpha
             verifiedProfileButton.alpha = profileImageAlpha
             nameNavLabel.alpha = 0.0
             titleNavLabel.alpha = 0.0
             daylightIndicatorNavImage.alpha = titleNavLabel.alpha
-            titleLabel.alpha = otherViewsAlpha
             profileImage.alpha = profileImageAlpha
             visualEffectView?.alpha = otherViewsAlpha
-            sectionsView.alpha = otherViewsAlpha
+            containerView.alpha = otherViewsAlpha
             profileImage.transform = CGAffineTransformIdentity
             verifiedProfileButton.transform = CGAffineTransformIdentity
             verifiedProfileButton.center = CGPointMake(profileImage.center.x + (profileImage.frameWidth/2.0), verifiedProfileButton.center.y)
         }
+    }
+    
+    // MARK: - IBAction
+    
+    @IBAction func editImageButtonTapped(sender: AnyObject!) {
+        profileEditImageButtonDelegate?.onEditImageButtonTapped(sender)
+    }
+    
+    func setEditImageButtonHidden(hidden: Bool) {
+        editImageButton.hidden = hidden
     }
 }

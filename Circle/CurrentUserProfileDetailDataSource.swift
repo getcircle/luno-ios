@@ -11,6 +11,8 @@ import ProtobufRegistry
 
 class CurrentUserProfileDetailDataSource: ProfileDetailDataSource {
 
+    var editImageButtonDelegate: ProfileEditImageButtonDelegate?
+    
     override func configureSections() {
         super.configureSections()
         
@@ -72,6 +74,11 @@ class CurrentUserProfileDetailDataSource: ProfileDetailDataSource {
     
     override func configureHeader(header: CircleCollectionReusableView, atIndexPath indexPath: NSIndexPath) {
         super.configureHeader(header, atIndexPath: indexPath)
+        
+        if let profileHeader = header as? ProfileHeaderCollectionReusableView {
+            profileHeader.setEditImageButtonHidden(false)
+            profileHeader.profileEditImageButtonDelegate = editImageButtonDelegate
+        }
         
         if sections.count > 0 && (indexPath.section - 1) >= 0 {
             if (sections[indexPath.section - 1].allowEmptyContent) {
