@@ -43,44 +43,50 @@ class ObjectStore {
     private(set) var activeSkills = Dictionary<String, ProfileService.Containers.Skill>()
     
     func repopulate() {
-        let objects = Objects()
         if let currentProfile = AuthViewController.getLoggedInUserProfile() {
-            let paginatorBuilder = Paginator.builder()
-            paginatorBuilder.page_size = 5000
-            
-            ProfileService.Actions.getProfiles(
-                organizationId: currentProfile.organization_id,
-                paginatorBuilder: paginatorBuilder
+            dispatch_async(GlobalUserInitiatedQueue, { () -> Void in
+                self.repopulate(currentProfile)
+            })
+        }
+    }
+    
+    private func repopulate(profile: ProfileService.Containers.Profile) {
+        let objects = Objects()
+        let paginatorBuilder = Paginator.builder()
+        paginatorBuilder.page_size = 5000
+        
+        ProfileService.Actions.getProfiles(
+            organizationId: profile.organization_id,
+            paginatorBuilder: paginatorBuilder
             ) { (profiles, _, error) -> Void in
                 objects.profiles = profiles
                 self.update(objects)
-            }
-            
-            ProfileService.Actions.getSkills(currentProfile.organization_id) { (skills, error) -> Void in
-                objects.skills = skills
-                self.update(objects)
-            }
-            
-            OrganizationService.Actions.getAddresses(currentProfile.organization_id) { (addresses, error) -> Void in
-                objects.addresses = addresses
-                self.update(objects)
-            }
-            
-            OrganizationService.Actions.getTeams(currentProfile.organization_id, paginatorBuilder: paginatorBuilder) { (teams, _, error) -> Void in
-                objects.teams = teams
-                self.update(objects)
-            }
-            
-            ProfileService.Actions.getActiveSkills(currentProfile.organization_id) { (skills, error) -> Void in
-                objects.skills = skills
-                objects.activeSkills = skills
-                self.update(objects)
-            }
-            
-            OrganizationService.Actions.getLocations(currentProfile.organization_id) { (locations, error) -> Void in
-                objects.locations = locations
-                self.update(objects)
-            }
+        }
+        
+        ProfileService.Actions.getSkills(profile.organization_id) { (skills, error) -> Void in
+            objects.skills = skills
+            self.update(objects)
+        }
+        
+        OrganizationService.Actions.getAddresses(profile.organization_id) { (addresses, error) -> Void in
+            objects.addresses = addresses
+            self.update(objects)
+        }
+        
+        OrganizationService.Actions.getTeams(profile.organization_id, paginatorBuilder: paginatorBuilder) { (teams, _, error) -> Void in
+            objects.teams = teams
+            self.update(objects)
+        }
+        
+        ProfileService.Actions.getActiveSkills(profile.organization_id) { (skills, error) -> Void in
+            objects.skills = skills
+            objects.activeSkills = skills
+            self.update(objects)
+        }
+        
+        OrganizationService.Actions.getLocations(profile.organization_id) { (locations, error) -> Void in
+            objects.locations = locations
+            self.update(objects)
         }
     }
     

@@ -85,13 +85,13 @@ public class ServiceClient {
         paginatorBuilder: PaginatorBuilder?,
         completionHandler: ServiceCompletionHandler
     ) {
-       let serviceRequest = buildRequest(
+        let serviceRequest = buildRequest(
             actionName,
             extensionField: extensionField,
             requestBuilder: requestBuilder,
             paginatorBuilder: paginatorBuilder
         )
-        self.transport.sendRequest(serviceRequest, completionHandler: completionHandler)
+        transport.sendRequest(serviceRequest, completionHandler: completionHandler)
     }
     
     public class func sendRequest(serviceRequest: ServiceRequest, completionHandler: ServiceCompletionHandler) {
