@@ -82,7 +82,7 @@ extension OrganizationService {
             completionHandler: GetTeamDescendantsCompletionHandler?
         ) {
             let requestBuilder = OrganizationService.GetTeamDescendants.Request.builder()
-            requestBuilder.team_id = teamId
+            requestBuilder.team_ids = [teamId]
             if depth != nil {
                 requestBuilder.depth = depth!
             }
@@ -98,7 +98,7 @@ extension OrganizationService {
                 let response = wrapped?.response?.result.getExtension(
                     OrganizationServiceRequests_get_team_descendants
                 ) as? OrganizationService.GetTeamDescendants.Response
-                completionHandler?(teams: response?.teams, error: error)
+                completionHandler?(teams: response?.descendants[0].teams, error: error)
             }
         }
         

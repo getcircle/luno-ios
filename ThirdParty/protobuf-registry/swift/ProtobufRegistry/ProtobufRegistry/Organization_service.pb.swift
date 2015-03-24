@@ -2294,6 +2294,278 @@ final public class OrganizationService : GeneratedMessage {
 
       //Nested type declaration end
 
+
+
+      //Nested type declaration start
+
+        final public class TeamDescendants : GeneratedMessage {
+          override public subscript (key: String) -> Any? {
+                 switch key {
+                 case "depth": return depth
+                 case "parent_team_id": return parent_team_id
+                 default: return nil
+                 }
+          }
+
+          public private(set) var hasDepth:Bool = false
+          public private(set) var depth:UInt32 = UInt32(0)
+
+          public private(set) var hasParentTeamId:Bool = false
+          public private(set) var parent_team_id:String = ""
+
+          public private(set) var teams:Array<OrganizationService.Containers.Team>  = Array<OrganizationService.Containers.Team>()
+          required public init() {
+               super.init()
+          }
+          override public func isInitialized() -> Bool {
+           return true
+          }
+          override public func writeToCodedOutputStream(output:CodedOutputStream) {
+            if hasDepth {
+              output.writeUInt32(1, value:depth)
+            }
+            if hasParentTeamId {
+              output.writeString(2, value:parent_team_id)
+            }
+            for oneElementteams in teams {
+                output.writeMessage(3, value:oneElementteams)
+            }
+            unknownFields.writeToCodedOutputStream(output)
+          }
+          override public func serializedSize() -> Int32 {
+            var size:Int32 = memoizedSerializedSize
+            if size != -1 {
+             return size
+            }
+
+            size = 0
+            if hasDepth {
+              size += WireFormat.computeUInt32Size(1, value:depth)
+            }
+            if hasParentTeamId {
+              size += WireFormat.computeStringSize(2, value:parent_team_id)
+            }
+            for oneElementteams in teams {
+                size += WireFormat.computeMessageSize(3, value:oneElementteams)
+            }
+            size += unknownFields.serializedSize()
+            memoizedSerializedSize = size
+            return size
+          }
+          public class func parseFromData(data:[Byte]) -> OrganizationService.Containers.TeamDescendants {
+            return OrganizationService.Containers.TeamDescendants.builder().mergeFromData(data).build()
+          }
+          public class func parseFromData(data:[Byte], extensionRegistry:ExtensionRegistry) -> OrganizationService.Containers.TeamDescendants {
+            return OrganizationService.Containers.TeamDescendants.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
+          }
+          public class func parseFromInputStream(input:NSInputStream) -> OrganizationService.Containers.TeamDescendants {
+            return OrganizationService.Containers.TeamDescendants.builder().mergeFromInputStream(input).build()
+          }
+          public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->OrganizationService.Containers.TeamDescendants {
+            return OrganizationService.Containers.TeamDescendants.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
+          }
+          public class func parseFromCodedInputStream(input:CodedInputStream) -> OrganizationService.Containers.TeamDescendants {
+            return OrganizationService.Containers.TeamDescendants.builder().mergeFromCodedInputStream(input).build()
+          }
+          public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> OrganizationService.Containers.TeamDescendants {
+            return OrganizationService.Containers.TeamDescendants.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
+          }
+          public class func builder() -> OrganizationService.Containers.TeamDescendantsBuilder {
+            return OrganizationService.Containers.TeamDescendants.classBuilder() as OrganizationService.Containers.TeamDescendantsBuilder
+          }
+          public func builder() -> OrganizationService.Containers.TeamDescendantsBuilder {
+            return classBuilder() as OrganizationService.Containers.TeamDescendantsBuilder
+          }
+          public override class func classBuilder() -> MessageBuilder {
+            return OrganizationService.Containers.TeamDescendantsBuilder()
+          }
+          public override func classBuilder() -> MessageBuilder {
+            return OrganizationService.Containers.TeamDescendants.builder()
+          }
+          public func toBuilder() -> OrganizationService.Containers.TeamDescendantsBuilder {
+            return OrganizationService.Containers.TeamDescendants.builderWithPrototype(self)
+          }
+          public class func builderWithPrototype(prototype:OrganizationService.Containers.TeamDescendants) -> OrganizationService.Containers.TeamDescendantsBuilder {
+            return OrganizationService.Containers.TeamDescendants.builder().mergeFrom(prototype)
+          }
+          override public func writeDescriptionTo(inout output:String, indent:String) {
+            if hasDepth {
+              output += "\(indent) depth: \(depth) \n"
+            }
+            if hasParentTeamId {
+              output += "\(indent) parent_team_id: \(parent_team_id) \n"
+            }
+            var teamsElementIndex:Int = 0
+            for oneElementteams in teams {
+                output += "\(indent) teams[\(teamsElementIndex)] {\n"
+                oneElementteams.writeDescriptionTo(&output, indent:"\(indent)  ")
+                output += "\(indent)}\n"
+                teamsElementIndex++
+            }
+            unknownFields.writeDescriptionTo(&output, indent:indent)
+          }
+          override public var hashValue:Int {
+              get {
+                  var hashCode:Int = 7
+                  if hasDepth {
+                     hashCode = (hashCode &* 31) &+ depth.hashValue
+                  }
+                  if hasParentTeamId {
+                     hashCode = (hashCode &* 31) &+ parent_team_id.hashValue
+                  }
+                  for oneElementteams in teams {
+                      hashCode = (hashCode &* 31) &+ oneElementteams.hashValue
+                  }
+                  hashCode = (hashCode &* 31) &+  unknownFields.hashValue
+                  return hashCode
+              }
+          }
+
+
+          //Meta information declaration start
+
+          override public class func className() -> String {
+              return "OrganizationService.Containers.TeamDescendants"
+          }
+          override public func className() -> String {
+              return "OrganizationService.Containers.TeamDescendants"
+          }
+          override public func classMetaType() -> GeneratedMessage.Type {
+              return OrganizationService.Containers.TeamDescendants.self
+          }
+
+
+          //Meta information declaration end
+
+        }
+
+        final public class TeamDescendantsBuilder : GeneratedMessageBuilder {
+          private var builderResult:OrganizationService.Containers.TeamDescendants
+
+          required override public init () {
+             builderResult = OrganizationService.Containers.TeamDescendants()
+             super.init()
+          }
+          public var hasDepth:Bool {
+               get {
+                    return builderResult.hasDepth
+               }
+          }
+          public var depth:UInt32 {
+               get {
+                    return builderResult.depth
+               }
+               set (value) {
+                   builderResult.hasDepth = true
+                   builderResult.depth = value
+               }
+          }
+          public func clearDepth() -> OrganizationService.Containers.TeamDescendantsBuilder{
+               builderResult.hasDepth = false
+               builderResult.depth = UInt32(0)
+               return self
+          }
+          public var hasParentTeamId:Bool {
+               get {
+                    return builderResult.hasParentTeamId
+               }
+          }
+          public var parent_team_id:String {
+               get {
+                    return builderResult.parent_team_id
+               }
+               set (value) {
+                   builderResult.hasParentTeamId = true
+                   builderResult.parent_team_id = value
+               }
+          }
+          public func clearParentTeamId() -> OrganizationService.Containers.TeamDescendantsBuilder{
+               builderResult.hasParentTeamId = false
+               builderResult.parent_team_id = ""
+               return self
+          }
+          public var teams:Array<OrganizationService.Containers.Team> {
+               get {
+                   return builderResult.teams
+               }
+               set (value) {
+                   builderResult.teams = value
+               }
+          }
+          public func clearTeams() -> OrganizationService.Containers.TeamDescendantsBuilder {
+            builderResult.teams.removeAll(keepCapacity: false)
+            return self
+          }
+          override public var internalGetResult:GeneratedMessage {
+               get {
+                  return builderResult
+               }
+          }
+          public override func clear() -> OrganizationService.Containers.TeamDescendantsBuilder {
+            builderResult = OrganizationService.Containers.TeamDescendants()
+            return self
+          }
+          public override func clone() -> OrganizationService.Containers.TeamDescendantsBuilder {
+            return OrganizationService.Containers.TeamDescendants.builderWithPrototype(builderResult)
+          }
+          public override func build() -> OrganizationService.Containers.TeamDescendants {
+               checkInitialized()
+               return buildPartial()
+          }
+          public func buildPartial() -> OrganizationService.Containers.TeamDescendants {
+            var returnMe:OrganizationService.Containers.TeamDescendants = builderResult
+            return returnMe
+          }
+          public func mergeFrom(other:OrganizationService.Containers.TeamDescendants) -> OrganizationService.Containers.TeamDescendantsBuilder {
+            if other.hasDepth {
+                 depth = other.depth
+            }
+            if other.hasParentTeamId {
+                 parent_team_id = other.parent_team_id
+            }
+            if !other.teams.isEmpty  {
+               builderResult.teams += other.teams
+            }
+            mergeUnknownFields(other.unknownFields)
+            return self
+          }
+          public override func mergeFromCodedInputStream(input:CodedInputStream) ->OrganizationService.Containers.TeamDescendantsBuilder {
+               return mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
+          }
+          public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> OrganizationService.Containers.TeamDescendantsBuilder {
+            var unknownFieldsBuilder:UnknownFieldSetBuilder = UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
+            while (true) {
+              var tag = input.readTag()
+              switch tag {
+              case 0: 
+                self.unknownFields = unknownFieldsBuilder.build()
+                return self
+
+              case 8 :
+                depth = input.readUInt32()
+
+              case 18 :
+                parent_team_id = input.readString()
+
+              case 26 :
+                var subBuilder = OrganizationService.Containers.Team.builder()
+                input.readMessage(subBuilder,extensionRegistry:extensionRegistry)
+                teams += [subBuilder.buildPartial()]
+
+              default:
+                if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
+                   unknownFields = unknownFieldsBuilder.build()
+                   return self
+                }
+              }
+            }
+          }
+        }
+
+
+
+      //Nested type declaration end
+
       override public subscript (key: String) -> Any? {
              switch key {
              default: return nil
@@ -5474,18 +5746,15 @@ final public class OrganizationService : GeneratedMessage {
         final public class Request : GeneratedMessage {
           override public subscript (key: String) -> Any? {
                  switch key {
-                 case "team_id": return team_id
                  case "depth": return depth
                  default: return nil
                  }
           }
 
-          public private(set) var hasTeamId:Bool = false
-          public private(set) var team_id:String = ""
-
           public private(set) var hasDepth:Bool = false
           public private(set) var depth:UInt32 = UInt32(0)
 
+          public private(set) var team_ids:Array<String> = Array<String>()
           public private(set) var attributes:Array<String> = Array<String>()
           required public init() {
                super.init()
@@ -5494,8 +5763,10 @@ final public class OrganizationService : GeneratedMessage {
            return true
           }
           override public func writeToCodedOutputStream(output:CodedOutputStream) {
-            if hasTeamId {
-              output.writeString(1, value:team_id)
+            if !team_ids.isEmpty {
+              for oneValueteam_ids in team_ids {
+                output.writeString(1, value:oneValueteam_ids)
+              }
             }
             if !attributes.isEmpty {
               for oneValueattributes in attributes {
@@ -5514,9 +5785,12 @@ final public class OrganizationService : GeneratedMessage {
             }
 
             size = 0
-            if hasTeamId {
-              size += WireFormat.computeStringSize(1, value:team_id)
+            var dataSizeTeamIds:Int32 = 0
+            for oneValueteam_ids in team_ids {
+                dataSizeTeamIds += WireFormat.computeStringSizeNoTag(oneValueteam_ids)
             }
+            size += dataSizeTeamIds
+            size += 1 * Int32(team_ids.count)
             var dataSizeAttributes:Int32 = 0
             for oneValueattributes in attributes {
                 dataSizeAttributes += WireFormat.computeStringSizeNoTag(oneValueattributes)
@@ -5567,8 +5841,10 @@ final public class OrganizationService : GeneratedMessage {
             return OrganizationService.GetTeamDescendants.Request.builder().mergeFrom(prototype)
           }
           override public func writeDescriptionTo(inout output:String, indent:String) {
-            if hasTeamId {
-              output += "\(indent) team_id: \(team_id) \n"
+            var team_idsElementIndex:Int = 0
+            for oneValueteam_ids in team_ids  {
+                output += "\(indent) team_ids[\(team_idsElementIndex)]: \(oneValueteam_ids)\n"
+                team_idsElementIndex++
             }
             var attributesElementIndex:Int = 0
             for oneValueattributes in attributes  {
@@ -5583,8 +5859,8 @@ final public class OrganizationService : GeneratedMessage {
           override public var hashValue:Int {
               get {
                   var hashCode:Int = 7
-                  if hasTeamId {
-                     hashCode = (hashCode &* 31) &+ team_id.hashValue
+                  for oneValueteam_ids in team_ids {
+                      hashCode = (hashCode &* 31) &+ oneValueteam_ids.hashValue
                   }
                   for oneValueattributes in attributes {
                       hashCode = (hashCode &* 31) &+ oneValueattributes.hashValue
@@ -5622,24 +5898,17 @@ final public class OrganizationService : GeneratedMessage {
              builderResult = OrganizationService.GetTeamDescendants.Request()
              super.init()
           }
-          public var hasTeamId:Bool {
+          public var team_ids:Array<String> {
                get {
-                    return builderResult.hasTeamId
+                   return builderResult.team_ids
+               }
+               set (array) {
+                   builderResult.team_ids = array
                }
           }
-          public var team_id:String {
-               get {
-                    return builderResult.team_id
-               }
-               set (value) {
-                   builderResult.hasTeamId = true
-                   builderResult.team_id = value
-               }
-          }
-          public func clearTeamId() -> OrganizationService.GetTeamDescendants.RequestBuilder{
-               builderResult.hasTeamId = false
-               builderResult.team_id = ""
-               return self
+          public func clearTeamIds() -> OrganizationService.GetTeamDescendants.RequestBuilder {
+             builderResult.team_ids.removeAll(keepCapacity: false)
+             return self
           }
           public var attributes:Array<String> {
                get {
@@ -5693,8 +5962,8 @@ final public class OrganizationService : GeneratedMessage {
             return returnMe
           }
           public func mergeFrom(other:OrganizationService.GetTeamDescendants.Request) -> OrganizationService.GetTeamDescendants.RequestBuilder {
-            if other.hasTeamId {
-                 team_id = other.team_id
+            if !other.team_ids.isEmpty {
+                builderResult.team_ids += other.team_ids
             }
             if !other.attributes.isEmpty {
                 builderResult.attributes += other.attributes
@@ -5718,7 +5987,7 @@ final public class OrganizationService : GeneratedMessage {
                 return self
 
               case 10 :
-                team_id = input.readString()
+                team_ids += [input.readString()]
 
               case 18 :
                 attributes += [input.readString()]
@@ -5751,7 +6020,7 @@ final public class OrganizationService : GeneratedMessage {
                  }
           }
 
-          public private(set) var teams:Array<OrganizationService.Containers.Team>  = Array<OrganizationService.Containers.Team>()
+          public private(set) var descendants:Array<OrganizationService.Containers.TeamDescendants>  = Array<OrganizationService.Containers.TeamDescendants>()
           required public init() {
                super.init()
           }
@@ -5759,8 +6028,8 @@ final public class OrganizationService : GeneratedMessage {
            return true
           }
           override public func writeToCodedOutputStream(output:CodedOutputStream) {
-            for oneElementteams in teams {
-                output.writeMessage(1, value:oneElementteams)
+            for oneElementdescendants in descendants {
+                output.writeMessage(1, value:oneElementdescendants)
             }
             unknownFields.writeToCodedOutputStream(output)
           }
@@ -5771,8 +6040,8 @@ final public class OrganizationService : GeneratedMessage {
             }
 
             size = 0
-            for oneElementteams in teams {
-                size += WireFormat.computeMessageSize(1, value:oneElementteams)
+            for oneElementdescendants in descendants {
+                size += WireFormat.computeMessageSize(1, value:oneElementdescendants)
             }
             size += unknownFields.serializedSize()
             memoizedSerializedSize = size
@@ -5815,20 +6084,20 @@ final public class OrganizationService : GeneratedMessage {
             return OrganizationService.GetTeamDescendants.Response.builder().mergeFrom(prototype)
           }
           override public func writeDescriptionTo(inout output:String, indent:String) {
-            var teamsElementIndex:Int = 0
-            for oneElementteams in teams {
-                output += "\(indent) teams[\(teamsElementIndex)] {\n"
-                oneElementteams.writeDescriptionTo(&output, indent:"\(indent)  ")
+            var descendantsElementIndex:Int = 0
+            for oneElementdescendants in descendants {
+                output += "\(indent) descendants[\(descendantsElementIndex)] {\n"
+                oneElementdescendants.writeDescriptionTo(&output, indent:"\(indent)  ")
                 output += "\(indent)}\n"
-                teamsElementIndex++
+                descendantsElementIndex++
             }
             unknownFields.writeDescriptionTo(&output, indent:indent)
           }
           override public var hashValue:Int {
               get {
                   var hashCode:Int = 7
-                  for oneElementteams in teams {
-                      hashCode = (hashCode &* 31) &+ oneElementteams.hashValue
+                  for oneElementdescendants in descendants {
+                      hashCode = (hashCode &* 31) &+ oneElementdescendants.hashValue
                   }
                   hashCode = (hashCode &* 31) &+  unknownFields.hashValue
                   return hashCode
@@ -5860,16 +6129,16 @@ final public class OrganizationService : GeneratedMessage {
              builderResult = OrganizationService.GetTeamDescendants.Response()
              super.init()
           }
-          public var teams:Array<OrganizationService.Containers.Team> {
+          public var descendants:Array<OrganizationService.Containers.TeamDescendants> {
                get {
-                   return builderResult.teams
+                   return builderResult.descendants
                }
                set (value) {
-                   builderResult.teams = value
+                   builderResult.descendants = value
                }
           }
-          public func clearTeams() -> OrganizationService.GetTeamDescendants.ResponseBuilder {
-            builderResult.teams.removeAll(keepCapacity: false)
+          public func clearDescendants() -> OrganizationService.GetTeamDescendants.ResponseBuilder {
+            builderResult.descendants.removeAll(keepCapacity: false)
             return self
           }
           override public var internalGetResult:GeneratedMessage {
@@ -5893,8 +6162,8 @@ final public class OrganizationService : GeneratedMessage {
             return returnMe
           }
           public func mergeFrom(other:OrganizationService.GetTeamDescendants.Response) -> OrganizationService.GetTeamDescendants.ResponseBuilder {
-            if !other.teams.isEmpty  {
-               builderResult.teams += other.teams
+            if !other.descendants.isEmpty  {
+               builderResult.descendants += other.descendants
             }
             mergeUnknownFields(other.unknownFields)
             return self
@@ -5912,9 +6181,9 @@ final public class OrganizationService : GeneratedMessage {
                 return self
 
               case 10 :
-                var subBuilder = OrganizationService.Containers.Team.builder()
+                var subBuilder = OrganizationService.Containers.TeamDescendants.builder()
                 input.readMessage(subBuilder,extensionRegistry:extensionRegistry)
-                teams += [subBuilder.buildPartial()]
+                descendants += [subBuilder.buildPartial()]
 
               default:
                 if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
@@ -11485,6 +11754,18 @@ public extension OrganizationService.Containers.Location {
         var bytes = [Byte](count: data.length, repeatedValue: 0)
         data.getBytes(&bytes)
         return OrganizationService.Containers.Location.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
+    }
+}
+public extension OrganizationService.Containers.TeamDescendants {
+    class func parseFromNSData(data:NSData) -> OrganizationService.Containers.TeamDescendants {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return OrganizationService.Containers.TeamDescendants.builder().mergeFromData(bytes).build()
+    }
+    class func parseFromNSData(data:NSData, extensionRegistry:ExtensionRegistry) -> OrganizationService.Containers.TeamDescendants {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return OrganizationService.Containers.TeamDescendants.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
     }
 }
 public extension OrganizationService.Containers {
