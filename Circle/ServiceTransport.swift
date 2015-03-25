@@ -66,7 +66,10 @@ extension Request {
                 return (nil, nil)
             }
             
-            let serviceResponse = ServiceResponse.parseFromNSData(data!, extensionRegistry: ResponseRegistryRoot.sharedInstance.extensionRegistry)
+            let serviceResponse = ServiceResponse.parseFromNSData(
+                data!,
+                extensionRegistry: ResponseRegistryRoot.sharedInstance.extensionRegistry
+            )
             return (serviceResponse, nil)
         }
     }
@@ -159,6 +162,7 @@ struct ServiceHttpRequest: URLRequestConvertible {
     var URLRequest: NSURLRequest {
         let mutableURLRequest = NSMutableURLRequest(URL: ServiceHttpRequest.environment.serviceEndpoint)
         mutableURLRequest.setValue("application/x-protobuf", forHTTPHeaderField: "Content-Type")
+        mutableURLRequest.setValue("gzip", forHTTPHeaderField: "Accept-Encoding")
         if token != "" {
             mutableURLRequest.setValue("Token \(token!)", forHTTPHeaderField: "Authorization")
         }

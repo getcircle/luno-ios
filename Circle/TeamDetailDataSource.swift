@@ -75,12 +75,14 @@ class TeamDetailDataSource: CardDataSource {
                     // TODO: we should support sending multiple actions with a single service request.
                     OrganizationService.Actions.getTeamDescendants(self.selectedTeam!.id, depth: 1, completionHandler: { (teams, error) -> Void in
                         if let teams = teams {
-                            var teamsCard = Card(cardType: .TeamsGrid, title: "Teams")
-                            teamsCard.showContentCount = false
-                            teamsCard.addHeader(headerClass: sectionHeaderClass)
-                            teamsCard.addContent(content: teams)
-                            teamsCard.sectionInset = self.sectionInset
-                            self.appendCard(teamsCard)
+                            if teams.count > 0 {
+                                var teamsCard = Card(cardType: .TeamsGrid, title: "Teams")
+                                teamsCard.showContentCount = false
+                                teamsCard.addHeader(headerClass: sectionHeaderClass)
+                                teamsCard.addContent(content: teams)
+                                teamsCard.sectionInset = self.sectionInset
+                                self.appendCard(teamsCard)
+                            }
                         }
                         completionHandler(error: error)
                     })
