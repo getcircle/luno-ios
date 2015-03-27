@@ -88,11 +88,19 @@ class SettingsViewController: UIViewController, UICollectionViewDelegate {
 
         case .SecurityPasscodeAndTouchID:
             let passcodeTouchIDViewController = PasscodeTouchIDViewController(
-                nibName: "PasscodeTouchIDViewController", 
+                nibName: "PasscodeTouchIDViewController",
                 bundle: nil
             )
             navigationController?.pushViewController(passcodeTouchIDViewController, animated: true)
-            
+
+        case .LegalPrivacy:
+            let webViewController = WebViewController(pageURL: PrivacyPolicyURL)
+            navigationController?.pushViewController(webViewController, animated: true)
+
+        case .LegalTermsOfService:
+            let webViewController = WebViewController(pageURL: TermsURL)
+            navigationController?.pushViewController(webViewController, animated: true)
+
         default:
             break
         }

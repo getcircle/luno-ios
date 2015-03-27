@@ -11,6 +11,8 @@ import Alamofire
 import ProtobufRegistry
 
 let ServiceErrorDomain = "co.circlehq.circle.services"
+let PrivacyPolicyURL = "http://www.circlehq.co/privacy.html"
+let TermsURL = "http://www.circlehq.co/terms.html"
 
 public struct WrappedResponse {
     
