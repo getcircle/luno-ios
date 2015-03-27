@@ -11,6 +11,7 @@ import Alamofire
 import ProtobufRegistry
 
 let ServiceErrorDomain = "co.circlehq.circle.services"
+let AttributionsURL = "http://www.circlehq.co/attributions.html"
 let PrivacyPolicyURL = "http://www.circlehq.co/privacy.html"
 let TermsURL = "http://www.circlehq.co/terms.html"
 

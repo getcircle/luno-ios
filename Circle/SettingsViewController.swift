@@ -93,6 +93,10 @@ class SettingsViewController: UIViewController, UICollectionViewDelegate {
             )
             navigationController?.pushViewController(passcodeTouchIDViewController, animated: true)
 
+        case .LegalAttributions:
+            let webViewController = WebViewController(pageURL: AttributionsURL)
+            navigationController?.pushViewController(webViewController, animated: true)
+
         case .LegalPrivacy:
             let webViewController = WebViewController(pageURL: PrivacyPolicyURL)
             navigationController?.pushViewController(webViewController, animated: true)
