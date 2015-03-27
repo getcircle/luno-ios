@@ -23,8 +23,8 @@ class ObjectStore {
         var profiles: Array<ProfileService.Containers.Profile>?
         var teams: Array<OrganizationService.Containers.Team>?
         var addresses: Array<OrganizationService.Containers.Address>?
-        var skills: Array<ProfileService.Containers.Skill>?
-        var activeSkills: Array<ProfileService.Containers.Skill>?
+        var skills: Array<ProfileService.Containers.Tag>?
+        var activeSkills: Array<ProfileService.Containers.Tag>?
         var locations: Array<OrganizationService.Containers.Location>?
     }
     
@@ -39,8 +39,8 @@ class ObjectStore {
     private(set) var teams = Dictionary<String, OrganizationService.Containers.Team>()
     private(set) var addresses = Dictionary<String, OrganizationService.Containers.Address>()
     private(set) var locations = Dictionary<String, OrganizationService.Containers.Location>()
-    private(set) var skills = Dictionary<String, ProfileService.Containers.Skill>()
-    private(set) var activeSkills = Dictionary<String, ProfileService.Containers.Skill>()
+    private(set) var skills = Dictionary<String, ProfileService.Containers.Tag>()
+    private(set) var activeSkills = Dictionary<String, ProfileService.Containers.Tag>()
     
     func repopulate() {
         if let currentProfile = AuthViewController.getLoggedInUserProfile() {
@@ -118,13 +118,13 @@ class ObjectStore {
         if let containers = objects.skills {
             var cache = skills as [String: GeneratedMessage]
             updateCache(&cache, containers: containers)
-            skills = cache as [String: ProfileService.Containers.Skill]
+            skills = cache as [String: ProfileService.Containers.Tag]
         }
         
         if let containers = objects.activeSkills {
             var cache = activeSkills as [String: GeneratedMessage]
             updateCache(&cache, containers: containers)
-            activeSkills = cache as [String: ProfileService.Containers.Skill]
+            activeSkills = cache as [String: ProfileService.Containers.Tag]
         }
     }
     
@@ -144,11 +144,11 @@ class ObjectStore {
                 objects.addresses = [address]
             }
         case .Skill:
-            if let skill = object as? ProfileService.Containers.Skill {
+            if let skill = object as? ProfileService.Containers.Tag {
                 objects.skills = [skill]
             }
         case .ActiveSkill:
-            if let skill = object as? ProfileService.Containers.Skill {
+            if let skill = object as? ProfileService.Containers.Tag {
                 objects.skills = [skill]
                 objects.activeSkills = [skill]
             }

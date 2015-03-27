@@ -42,8 +42,8 @@ class OrganizationDetailDataSource: CardDataSource {
                             categoryCard.addDefaultFooter()
                         } else if category.locations.count > 0 {
                             categoryCard.addContent(content: category.locations)
-                        } else if category.skills.count > 0 {
-                            categoryCard.addContent(content: category.skills, maxVisibleItems: 10)
+                        } else if category.tags.count > 0 {
+                            categoryCard.addContent(content: category.tags, maxVisibleItems: 10)
                         } else if category.teams.count > 0 {
                             categoryCard.addContent(content: category.teams, maxVisibleItems: 6)
                         }

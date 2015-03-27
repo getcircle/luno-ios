@@ -193,7 +193,7 @@ class SkillsOverviewViewController: UIViewController, UICollectionViewDelegateFl
     
     // MARK: - Tracking
     
-    private func trackSkillSelected(skill: ProfileService.Containers.Skill) {
+    private func trackSkillSelected(skill: ProfileService.Containers.Tag) {
         let properties = [
             TrackerProperty.withKey(.ActiveViewController).withString(self.dynamicType.description()),
             TrackerProperty.withKey(.Source).withSource(.Overview),

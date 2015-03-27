@@ -7,6 +7,13 @@ import "protobufs/user_service.proto";
 
 message ProfileService {
 
+    enum TagType {
+        SKILL = 0;
+        INTEREST = 1;
+        LANGUAGE = 2;
+        PROJECT = 3;
+    }
+
     // MARK: - Containers
 
     message Containers {
@@ -38,9 +45,10 @@ message ProfileService {
             optional string value = 2;
         }
 
-        message Skill {
+        message Tag {
             optional string id = 1;
             optional string name = 2;
+            optional TagType type = 3;
         }
 
         message Stats {
@@ -131,7 +139,7 @@ message ProfileService {
             optional Containers.Profile manager = 3;
             optional main.organization_service.OrganizationService.Containers.Team team = 4;
             repeated main.note_service.NoteService.Containers.Note notes = 5;
-            repeated Containers.Skill skills = 6;
+            repeated Containers.Tag tags = 6;
             repeated main.user_service.UserService.Containers.Identity identities = 7;
             repeated Containers.Profile direct_reports = 8;
             optional main.resume_service.ResumeService.Containers.Resume resume = 9;
@@ -140,37 +148,38 @@ message ProfileService {
 
     }
 
-    message CreateSkills {
+    message CreateTags {
 
         message Request {
-            repeated Containers.Skill skills = 1;
+            repeated Containers.Tag tags = 1;
             optional string organization_id = 2;
         }
 
         message Response {
-            repeated Containers.Skill skills = 1;
+            repeated Containers.Tag tags = 1;
         }
 
     }
 
-    message GetSkills {
+    message GetTags {
 
         message Request {
             optional string profile_id = 1;
             optional string organization_id = 2;
+            optional TagType tag_type = 3;
         }
 
         message Response {
-            repeated Containers.Skill skills = 1;
+            repeated Containers.Tag tags = 1;
         }
 
     }
 
-    message AddSkills {
+    message AddTags {
 
         message Request {
             optional string profile_id = 1;
-            repeated Containers.Skill skills = 2;
+            repeated Containers.Tag tags = 2;
         }
 
         message Response {}
@@ -182,7 +191,7 @@ message ProfileService {
         message Request {
             optional string team_id = 1;
             optional string organization_id = 2;
-            optional string skill_id = 3;
+            optional string tag_id = 3;
             optional string address_id = 4;
             repeated string ids = 5;
             optional string location_id = 6;
@@ -268,14 +277,15 @@ message ProfileService {
 
     }
 
-    message GetActiveSkills {
+    message GetActiveTags {
 
         message Request {
             optional string organization_id = 1;
+            optional TagType tag_type = 2;
         }
 
         message Response {
-            repeated Containers.Skill skills = 1;
+            repeated Containers.Tag tags = 1;
         }
 
     }

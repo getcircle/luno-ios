@@ -164,7 +164,7 @@ MFMessageComposeViewControllerDelegate {
     
     func didSelectSkill(notification: NSNotification) {
         if let userInfo = notification.userInfo {
-            if let selectedSkill = userInfo["skill"] as? ProfileService.Containers.Skill {
+            if let selectedSkill = userInfo["skill"] as? ProfileService.Containers.Tag {
                 let viewController = SkillDetailViewController()
                 (viewController.dataSource as SkillDetailDataSource).selectedSkill = selectedSkill
                 viewController.hidesBottomBarWhenPushed = false

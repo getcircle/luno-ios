@@ -39,8 +39,8 @@ class SkillsCollectionViewCell: CircleCollectionViewCell, UICollectionViewDataSo
         }
     }
     
-    var selectedSkill: ProfileService.Containers.Skill?
-    private var skills = Array<ProfileService.Containers.Skill>()
+    var selectedSkill: ProfileService.Containers.Tag?
+    private var skills = Array<ProfileService.Containers.Tag>()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -130,7 +130,7 @@ class SkillsCollectionViewCell: CircleCollectionViewCell, UICollectionViewDataSo
     // MARK: - Data Setter
     
     override func setData(data: AnyObject) {
-        if let arrayOfSkills = data as? [ProfileService.Containers.Skill] {
+        if let arrayOfSkills = data as? [ProfileService.Containers.Tag] {
             skills = arrayOfSkills
             collectionView.reloadData()
         }

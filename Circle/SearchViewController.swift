@@ -356,7 +356,7 @@ class SearchViewController: UIViewController,
     
     func didSelectSkill(notification: NSNotification) {
         if let userInfo = notification.userInfo {
-            if let selectedSkill = userInfo["skill"] as? ProfileService.Containers.Skill {
+            if let selectedSkill = userInfo["skill"] as? ProfileService.Containers.Tag {
                 trackSkillSelected(selectedSkill)
                 let viewController = SkillDetailViewController()
                 (viewController.dataSource as SkillDetailDataSource).selectedSkill = selectedSkill
@@ -634,7 +634,7 @@ class SearchViewController: UIViewController,
         Tracker.sharedInstance.track(.CardHeaderTapped, properties: properties)
     }
     
-    private func trackSkillSelected(skill: ProfileService.Containers.Skill) {
+    private func trackSkillSelected(skill: ProfileService.Containers.Tag) {
         let properties = [
             TrackerProperty.withKey(.ActiveViewController).withString(self.dynamicType.description()),
             TrackerProperty.withKey(.Source).withSource(.Home),

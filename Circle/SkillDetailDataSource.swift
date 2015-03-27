@@ -11,7 +11,7 @@ import ProtobufRegistry
 
 class SkillDetailDataSource: CardDataSource {
     
-    var selectedSkill: ProfileService.Containers.Skill!
+    var selectedSkill: ProfileService.Containers.Tag!
     
     private var profiles = Array<ProfileService.Containers.Profile>()
     private(set) var profileHeaderView: SkillHeaderCollectionReusableView?

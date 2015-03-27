@@ -11,21 +11,21 @@ import ProtobufRegistry
 
 class SkillsOverviewDataSource: NSObject, UICollectionViewDataSource {
 
-    private var filteredSkills = Array<Array<ProfileService.Containers.Skill>>()
-    private var skills = Array<ProfileService.Containers.Skill>()
+    private var filteredSkills = Array<Array<ProfileService.Containers.Tag>>()
+    private var skills = Array<ProfileService.Containers.Tag>()
     
     private var animatedCell = [NSIndexPath: Bool]()
 
     // MARK: - Set Initial Data
     
     func setInitialData(#content: [AnyObject]) {
-        skills = content as Array<ProfileService.Containers.Skill>
+        skills = content as Array<ProfileService.Containers.Tag>
         filteredSkills = sortAlphabeticallyAndArrangeInSections(skills)
     }
     
-    func skill(collectionView _: UICollectionView, atIndexPath indexPath: NSIndexPath) -> ProfileService.Containers.Skill? {
-        if let skillsSection = filteredSkills[indexPath.section] as Array<ProfileService.Containers.Skill>? {
-            if let skill = skillsSection[indexPath.row] as ProfileService.Containers.Skill? {
+    func skill(collectionView _: UICollectionView, atIndexPath indexPath: NSIndexPath) -> ProfileService.Containers.Tag? {
+        if let skillsSection = filteredSkills[indexPath.section] as Array<ProfileService.Containers.Tag>? {
+            if let skill = skillsSection[indexPath.row] as ProfileService.Containers.Tag? {
                 return skill
             }
         }
@@ -154,14 +154,14 @@ class SkillsOverviewDataSource: NSObject, UICollectionViewDataSource {
     
     // MARK: - Helpers
     
-    private func sortAlphabeticallyAndArrangeInSections(skillsArray: Array<ProfileService.Containers.Skill>) -> Array<Array<ProfileService.Containers.Skill>> {
+    private func sortAlphabeticallyAndArrangeInSections(skillsArray: Array<ProfileService.Containers.Tag>) -> Array<Array<ProfileService.Containers.Tag>> {
         let sortedSkills = skillsArray.sorted { $0.name.localizedCaseInsensitiveCompare($1.name) == NSComparisonResult.OrderedAscending }
         
-        var skillsArrangedByFirstLetter = Array<Array<ProfileService.Containers.Skill>>()
+        var skillsArrangedByFirstLetter = Array<Array<ProfileService.Containers.Tag>>()
         
         if sortedSkills.count > 0 {
             var previousLetter = sortedSkills[0].name[0].uppercaseString
-            var skillsPerLetter = Array<ProfileService.Containers.Skill>()
+            var skillsPerLetter = Array<ProfileService.Containers.Tag>()
             for skill in sortedSkills {
                 
                 if previousLetter != skill.name[0].uppercaseString {

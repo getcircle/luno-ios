@@ -34,7 +34,7 @@ class SkillHeaderCollectionReusableView: CircleCollectionReusableView {
         skillLabelInitialFontSize = skillNameLabel.font.pointSize
     }
     
-    func setSkill(skill: ProfileService.Containers.Skill) {
+    func setSkill(skill: ProfileService.Containers.Tag) {
         skillNameLabel.attributedText = NSAttributedString(
             string: skill.name.uppercaseString,
             attributes: [NSKernAttributeName: 2.0]

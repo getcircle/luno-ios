@@ -18,7 +18,7 @@ class SearchQueryDataSource: CardDataSource {
     private var visibleProfiles = Array<ProfileService.Containers.Profile>()
     private var visibleTeams = Array<OrganizationService.Containers.Team>()
     private var visibleAddresses = Array<OrganizationService.Containers.Address>()
-    private var visibleSkills = Array<ProfileService.Containers.Skill>()
+    private var visibleSkills = Array<ProfileService.Containers.Tag>()
     
     override func loadData(completionHandler: (error: NSError?) -> Void) {
     }

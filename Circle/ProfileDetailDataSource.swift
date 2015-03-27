@@ -22,7 +22,7 @@ class ProfileDetailDataSource: CardDataSource {
     private(set) var identities: Array<UserService.Containers.Identity>?
     private(set) var location: OrganizationService.Containers.Location?
     private(set) var manager: ProfileService.Containers.Profile?
-    private(set) var skills: Array<ProfileService.Containers.Skill>?
+    private(set) var skills: Array<ProfileService.Containers.Tag>?
     private(set) var team: OrganizationService.Containers.Team?
     private(set) var resume: ResumeService.Containers.Resume?
 

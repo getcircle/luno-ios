@@ -28,7 +28,7 @@ class SkillSelectorViewController:
     @IBOutlet weak private(set) var topGradientView: UIView!
     
     var theme: Themes = .Regular
-    var preSelectSkills: Array<ProfileService.Containers.Skill> = Array<ProfileService.Containers.Skill>() {
+    var preSelectSkills: Array<ProfileService.Containers.Tag> = Array<ProfileService.Containers.Tag>() {
         didSet {
             for skill in preSelectSkills {
                 selectedSkills[skill.hashValue] = skill
@@ -39,9 +39,9 @@ class SkillSelectorViewController:
     private var animatedCell = [NSIndexPath: Bool]()
     private var bottomLayer: CAGradientLayer!
     private var cachedItemSizes =  [String: CGSize]()
-    private var skills = Array<ProfileService.Containers.Skill>()
-    private var filteredSkills = Array<ProfileService.Containers.Skill>()
-    private var selectedSkills = Dictionary<Int, ProfileService.Containers.Skill>()
+    private var skills = Array<ProfileService.Containers.Tag>()
+    private var filteredSkills = Array<ProfileService.Containers.Tag>()
+    private var selectedSkills = Dictionary<Int, ProfileService.Containers.Tag>()
     private var prototypeCell: SkillCollectionViewCell!
     private var searchHeaderView: SearchHeaderView!
     private var topLayer: CAGradientLayer!
@@ -295,11 +295,11 @@ class SkillSelectorViewController:
         dismissViewControllerAnimated(true, completion: nil)
     }
 
-    private func getNewSkillObject() -> ProfileService.Containers.Skill? {
+    private func getNewSkillObject() -> ProfileService.Containers.Tag? {
         var skillName = searchHeaderView.searchTextField.text
         skillName = skillName.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
         if skillName != "" {
-            var skillBuilderObject = ProfileService.Containers.Skill.builder()
+            var skillBuilderObject = ProfileService.Containers.Tag.builder()
             skillBuilderObject.name = skillName
             return skillBuilderObject.build()
         }

@@ -53,9 +53,9 @@ message ProfileServiceResponses {
         optional main.profile_service.ProfileService.CreateProfile.Response create_profile = 300;
         optional main.profile_service.ProfileService.GetExtendedProfile.Response get_extended_profile = 301;
         optional main.profile_service.ProfileService.GetProfile.Response get_profile = 302;
-        optional main.profile_service.ProfileService.CreateSkills.Response create_skills = 303;
-        optional main.profile_service.ProfileService.GetSkills.Response get_skills = 304;
-        optional main.profile_service.ProfileService.AddSkills.Response add_skills = 305;
+        optional main.profile_service.ProfileService.CreateTags.Response create_tags = 303;
+        optional main.profile_service.ProfileService.GetTags.Response get_tags = 304;
+        optional main.profile_service.ProfileService.AddTags.Response add_tags = 305;
         optional main.profile_service.ProfileService.UpdateProfile.Response update_profile = 306;
         optional main.profile_service.ProfileService.GetProfiles.Response get_profiles = 307;
         optional main.profile_service.ProfileService.GetDirectReports.Response get_direct_reports = 308;
@@ -64,7 +64,7 @@ message ProfileServiceResponses {
         optional main.profile_service.ProfileService.GetUpcomingAnniversaries.Response get_upcoming_anniversaries = 311;
         optional main.profile_service.ProfileService.GetUpcomingBirthdays.Response get_upcoming_birthdays = 312;
         optional main.profile_service.ProfileService.GetRecentHires.Response get_recent_hires = 313;
-        optional main.profile_service.ProfileService.GetActiveSkills.Response get_active_skills = 314;
+        optional main.profile_service.ProfileService.GetActiveTags.Response get_active_tags = 314;
         optional main.profile_service.ProfileService.BulkCreateProfiles.Response bulk_create_profiles = 315;
         optional main.profile_service.ProfileService.BulkUpdateProfiles.Response bulk_update_profiles = 316;
         optional main.profile_service.ProfileService.GetAttributesForProfiles.Response get_attributes_for_profiles = 317;
