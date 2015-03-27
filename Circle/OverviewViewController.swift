@@ -51,7 +51,6 @@ class OverviewViewController:
     
     private func customInit() {
         dataSource = initializeDataSource()
-        activityIndicatorView = initializeActivityIndicator()
         searchHeaderView = initializeSearchHeader()
         collectionViewLayout = initializeCollectionViewLayout()
         collectionView = initializeCollectionView()
@@ -113,10 +112,6 @@ class OverviewViewController:
         return nil
     }
     
-    func initializeActivityIndicator() -> CircleActivityIndicatorView {
-        return view.addActivityIndicator()
-    }
-    
     // MARK: - Configuration
     
     func filterPlaceHolderText() -> String {
@@ -159,9 +154,7 @@ class OverviewViewController:
     }
     
     private func configureActivityIndicator() {
-        view.addSubview(activityIndicatorView)
-        activityIndicatorView.autoCenterInSuperview()
-        activityIndicatorView.startAnimating()
+        activityIndicatorView = view.addActivityIndicator()
     }
     
     // MARK: Helpers

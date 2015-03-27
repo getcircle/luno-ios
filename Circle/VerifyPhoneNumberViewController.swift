@@ -28,7 +28,7 @@ class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate, Ci
     @IBOutlet weak var verificationCodeFieldWidth: NSLayoutConstraint!
     
     private var activeField = ActiveField.PhoneNumber
-    private var activityIndicatorView: UIActivityIndicatorView?
+    private var activityIndicatorView: CircleActivityIndicatorView?
     private var bypassChecks = ServiceHttpRequest.environment != .Production
     private var codeDigits = 0
     private var phoneNumberFieldPreviousVerticalSpacing: CGFloat = 0.0
@@ -244,7 +244,6 @@ class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate, Ci
             button.setTitle(toggleLoadingStateTextHolder, forState: .Normal)
             self.activityIndicatorView = nil
         } else {
-            activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
             var tintColor: UIColor
             switch button {
             case resendCodeButton:
@@ -252,14 +251,9 @@ class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate, Ci
             default:
                 tintColor = UIColor.appUIBackgroundColor()
             }
-            activityIndicatorView?.color = tintColor
-            activityIndicatorView!.setTranslatesAutoresizingMaskIntoConstraints(false)
-            
+            button.addActivityIndicator(color: tintColor)
             toggleLoadingStateTextHolder = button.titleLabel?.text
             button.setTitle("", forState: .Normal)
-            button.addSubview(activityIndicatorView!)
-            activityIndicatorView!.autoCenterInSuperview()
-            activityIndicatorView!.startAnimating()
         }
     }
     

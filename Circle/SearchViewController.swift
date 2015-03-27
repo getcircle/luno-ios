@@ -20,11 +20,12 @@ class SearchViewController: UIViewController,
     NewNoteViewControllerDelegate
 {
 
-    @IBOutlet weak private(set) var activityIndicatorView: UIActivityIndicatorView!
+
     @IBOutlet weak private(set) var collectionView: UICollectionView!
     @IBOutlet weak private(set) var searchHeaderContainerView: UIView!
     @IBOutlet weak private(set) var searchHeaderContinerViewTopConstraint: NSLayoutConstraint!
     
+    private var activityIndicatorView: CircleActivityIndicatorView!
     private var data = [Card]()
     private var firstLoad = false
     private var landingDataSource: SearchLandingDataSource!
@@ -48,6 +49,7 @@ class SearchViewController: UIViewController,
         configureSearchHeaderView()
         configureCollectionView()
         followScrollView(collectionView, usingTopConstraint: searchHeaderContinerViewTopConstraint)
+        activityIndicatorView = view.addActivityIndicator()
     }
 
     override func viewWillAppear(animated: Bool) {

@@ -6,7 +6,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NotesOverviewViewController" customModule="circle" customModuleProvider="target">
             <connections>
-                <outlet property="activityIndicatorView" destination="ClE-qD-M3h" id="wzu-c9-gaO"/>
                 <outlet property="collectionView" destination="vFq-Uw-rSd" id="vtF-VN-R32"/>
                 <outlet property="searchContainerView" destination="Esb-eX-Z6Q" id="Ius-v7-RlJ"/>
                 <outlet property="view" destination="E12-bl-CWu" id="7Zj-vi-PNT"/>
@@ -17,10 +16,6 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="ClE-qD-M3h">
-                    <rect key="frame" x="290" y="312" width="20" height="20"/>
-                    <color key="color" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                </activityIndicatorView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Esb-eX-Z6Q" userLabel="SearchContainerView">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -41,7 +36,6 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="vFq-Uw-rSd" secondAttribute="trailing" id="C6i-HI-TF9"/>
-                <constraint firstItem="ClE-qD-M3h" firstAttribute="centerX" secondItem="vFq-Uw-rSd" secondAttribute="centerX" id="CBd-kr-cNf"/>
                 <constraint firstItem="vFq-Uw-rSd" firstAttribute="top" secondItem="E12-bl-CWu" secondAttribute="top" id="DsP-KX-IDH"/>
                 <constraint firstItem="vFq-Uw-rSd" firstAttribute="top" secondItem="Esb-eX-Z6Q" secondAttribute="bottom" constant="1" id="F3M-xW-51B"/>
                 <constraint firstItem="vFq-Uw-rSd" firstAttribute="leading" secondItem="E12-bl-CWu" secondAttribute="leading" id="JUZ-uY-u3W"/>
@@ -49,7 +43,6 @@
                 <constraint firstItem="vFq-Uw-rSd" firstAttribute="top" secondItem="Esb-eX-Z6Q" secondAttribute="bottom" id="OIK-fg-dIe"/>
                 <constraint firstItem="Esb-eX-Z6Q" firstAttribute="top" secondItem="E12-bl-CWu" secondAttribute="top" id="TBe-ub-J4I"/>
                 <constraint firstItem="Esb-eX-Z6Q" firstAttribute="leading" secondItem="E12-bl-CWu" secondAttribute="leading" id="aFh-hU-Dqb"/>
-                <constraint firstItem="ClE-qD-M3h" firstAttribute="centerY" secondItem="vFq-Uw-rSd" secondAttribute="centerY" id="cFd-Ko-H03"/>
                 <constraint firstAttribute="trailing" secondItem="Esb-eX-Z6Q" secondAttribute="trailing" id="nic-9R-QVL"/>
                 <constraint firstAttribute="bottom" secondItem="vFq-Uw-rSd" secondAttribute="bottom" id="v8I-Ij-NG1"/>
             </constraints>

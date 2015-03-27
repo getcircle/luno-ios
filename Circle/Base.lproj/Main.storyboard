@@ -83,17 +83,11 @@
                                     <outlet property="delegate" destination="YDr-At-X3C" id="Dod-co-txx"/>
                                 </connections>
                             </collectionView>
-                            <activityIndicatorView contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="heX-JS-q97">
-                                <rect key="frame" x="290" y="323" width="20" height="20"/>
-                                <color key="color" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="5kQ-sW-5v8" firstAttribute="leading" secondItem="bGb-OZ-dC1" secondAttribute="leading" id="2lx-ER-7df"/>
-                            <constraint firstAttribute="centerX" secondItem="heX-JS-q97" secondAttribute="centerX" id="3Lx-1I-rxa"/>
                             <constraint firstItem="5kQ-sW-5v8" firstAttribute="top" secondItem="iQd-um-0Yq" secondAttribute="bottom" id="3h5-Ga-KBe"/>
-                            <constraint firstItem="heX-JS-q97" firstAttribute="centerY" secondItem="FpX-4G-cZW" secondAttribute="centerY" id="8jS-rg-G6N"/>
                             <constraint firstAttribute="trailing" secondItem="FpX-4G-cZW" secondAttribute="trailing" id="UnW-tG-yPS"/>
                             <constraint firstAttribute="trailing" secondItem="5kQ-sW-5v8" secondAttribute="trailing" id="cqS-IH-9aj"/>
                             <constraint firstItem="rUn-MN-xeZ" firstAttribute="top" secondItem="FpX-4G-cZW" secondAttribute="bottom" id="ihf-mG-9Li"/>
@@ -104,7 +98,6 @@
                     <extendedEdge key="edgesForExtendedLayout" top="YES"/>
                     <navigationItem key="navigationItem" title="circle" id="wys-4b-D4W"/>
                     <connections>
-                        <outlet property="activityIndicatorView" destination="heX-JS-q97" id="agu-HE-HiO"/>
                         <outlet property="collectionView" destination="FpX-4G-cZW" id="47Q-HQ-Uri"/>
                         <outlet property="searchHeaderContainerView" destination="5kQ-sW-5v8" id="IPE-OO-odc"/>
                         <outlet property="searchHeaderContinerViewTopConstraint" destination="3h5-Ga-KBe" id="RQm-cp-2FF"/>

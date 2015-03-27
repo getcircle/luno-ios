@@ -15,13 +15,13 @@ class NotesOverviewViewController: UIViewController,
     SearchHeaderViewDelegate
 {
 
-    @IBOutlet weak private(set) var activityIndicatorView: UIActivityIndicatorView!
     @IBOutlet weak private(set) var collectionView: UICollectionView!
     @IBOutlet weak private(set) var searchContainerView: UIView!
     
     private(set) var dataSource = NotesOverviewDataSource()
     private(set) var delegate = CardCollectionViewDelegate()
     
+    private var activityIndicatorView: CircleActivityIndicatorView!
     private var profileForSelectedNote: ProfileService.Containers.Profile?
     private var searchHeaderView: SearchHeaderView!
     
@@ -32,6 +32,7 @@ class NotesOverviewViewController: UIViewController,
         configureCollectionView()
         configureNavigationButtons()
         configureSearchHeaderView()
+        configureActivityIndicatorView()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -43,6 +44,10 @@ class NotesOverviewViewController: UIViewController,
     
     private func configureView() {
         view.backgroundColor = UIColor.appViewBackgroundColor()
+    }
+    
+    private func configureActivityIndicatorView() {
+        activityIndicatorView = view.addActivityIndicator()
     }
     
     private func configureCollectionView() {

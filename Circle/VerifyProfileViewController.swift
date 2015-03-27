@@ -94,13 +94,8 @@ class VerifyProfileViewController:
             textField.resignFirstResponder()
         }
         
-        let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
-        activityIndicatorView.color = UIColor.appUIBackgroundColor()
-        activityIndicatorView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        let activityIndicatorView = nextButton.addActivityIndicator(color: UIColor.appUIBackgroundColor())
         nextButton.setTitle("", forState: .Normal)
-        nextButton.addSubview(activityIndicatorView)
-        activityIndicatorView.autoCenterInSuperview()
-        activityIndicatorView.startAnimating()
         handleImageUpload { () -> Void in
             activityIndicatorView.stopAnimating()
             activityIndicatorView.removeFromSuperview()

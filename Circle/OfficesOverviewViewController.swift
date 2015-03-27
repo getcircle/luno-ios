@@ -11,10 +11,10 @@ import ProtobufRegistry
 
 class OfficesOverviewViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
 
-    @IBOutlet weak private(set) var activityIndicatorView: UIActivityIndicatorView!
     @IBOutlet weak private(set) var collectionView: UICollectionView!
     @IBOutlet weak private(set) var mapHeaderCollectionView: UICollectionView!
     
+    private var activityIndicatorView: CircleActivityIndicatorView!
     private(set) var dataSource = OfficesOverviewDataSource()
     private(set) var delegate = CardCollectionViewDelegate()
     
@@ -25,6 +25,7 @@ class OfficesOverviewViewController: UIViewController, UICollectionViewDataSourc
         edgesForExtendedLayout = .None
         configureCollectionView()
         configureMapHeaderCollectionView()
+        activityIndicatorView = view.addActivityIndicator()
     }
     
     override func viewWillAppear(animated: Bool) {
