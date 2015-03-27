@@ -12,7 +12,7 @@ import ProtobufRegistry
 
 class DetailViewController: BaseDetailViewController, UICollectionViewDelegate {
 
-    private(set) var activityIndicatorView: UIActivityIndicatorView!
+    private(set) var activityIndicatorView: CircleActivityIndicatorView!
     var animationSourceRect: CGRect?
     private(set) var collectionView: UICollectionView!
     var dataSource: CardDataSource!
@@ -33,11 +33,7 @@ class DetailViewController: BaseDetailViewController, UICollectionViewDelegate {
         collectionView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
 
         // Activity View
-        activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
-        activityIndicatorView.setTranslatesAutoresizingMaskIntoConstraints(true)
-        view.addSubview(activityIndicatorView)
-        activityIndicatorView.autoCenterInSuperview()
-        activityIndicatorView.startAnimating()
+        activityIndicatorView = view.addActivityIndicator()
     }
 
     override func viewDidLoad() {

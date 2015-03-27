@@ -86,15 +86,15 @@ extension UIView {
         return visualEffectView
     }
     
-    func addActivityIndicator(color: UIColor = UIColor.appActivityIndicatorViewColor()) -> UIActivityIndicatorView {
-        var activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
-        activityIndicatorView.color = color
-        activityIndicatorView.setTranslatesAutoresizingMaskIntoConstraints(false)
+    func addActivityIndicator(color: UIColor = UIColor.appActivityIndicatorViewColor()) -> CircleActivityIndicatorView {
+        var activityIndicatorView = CircleActivityIndicatorView()
+        activityIndicatorView.tintColor = color
         activityIndicatorView.hidesWhenStopped = true
         activityIndicatorView.startAnimating()
         addSubview(activityIndicatorView)
         bringSubviewToFront(activityIndicatorView)
         activityIndicatorView.autoCenterInSuperview()
+        activityIndicatorView.autoSetDimensionsToSize(CGSizeMake(CircleActivityIndicatorView.width, CircleActivityIndicatorView.height))
 
         return activityIndicatorView
     }

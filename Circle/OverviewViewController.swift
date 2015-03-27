@@ -16,7 +16,7 @@ class OverviewViewController:
     CardDataSourceDelegate
 {
     
-    private(set) var activityIndicatorView: UIActivityIndicatorView!
+    private(set) var activityIndicatorView: CircleActivityIndicatorView!
     private(set) var collectionViewLayout: UICollectionViewLayout!
     private(set) var collectionView: UICollectionView!
     private(set) var searchContainerView: UIView!
@@ -113,10 +113,8 @@ class OverviewViewController:
         return nil
     }
     
-    func initializeActivityIndicator() -> UIActivityIndicatorView {
-        let indicator = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
-        indicator.setTranslatesAutoresizingMaskIntoConstraints(true)
-        return indicator
+    func initializeActivityIndicator() -> CircleActivityIndicatorView {
+        return view.addActivityIndicator()
     }
     
     // MARK: - Configuration

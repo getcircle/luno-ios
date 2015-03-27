@@ -18,7 +18,7 @@ struct SocialConnectNotifications {
 
 class SocialConnectViewController: UIViewController, WKNavigationDelegate {
     
-    var activityIndicator: UIActivityIndicatorView!
+    var activityIndicator: CircleActivityIndicatorView!
     var webView: WKWebView!
     var provider: UserService.Provider?
     
