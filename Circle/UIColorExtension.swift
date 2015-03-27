@@ -83,19 +83,19 @@ extension UIColor {
         return UIColor(red: 220, green: 220, blue: 220)
     }
     
-    class func appSkillNormalBackgroundColor() -> UIColor {
+    class func appInterestNormalBackgroundColor() -> UIColor {
         return UIColor.whiteColor()
     }
     
-    class func appSkillSelectedBackgroundColor() -> UIColor {
+    class func appInterestSelectedBackgroundColor() -> UIColor {
         return UIColor.appUIBackgroundColor()
     }
 
-    class func appSkillNormalBorderColor() -> UIColor {
+    class func appInterestNormalBorderColor() -> UIColor {
         return UIColor(red: 212, green: 212, blue: 212)
     }
     
-    class func appSkillSelectedBorderColor() -> UIColor {
+    class func appInterestSelectedBorderColor() -> UIColor {
         return UIColor.whiteColor()
     }
     

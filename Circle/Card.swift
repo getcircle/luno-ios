@@ -75,6 +75,7 @@ class Card: Equatable {
         case Education = "Education"
         case Group = "Group"
         case KeyValue = "KeyValue"
+        case Interests = "Interests"
         case Offices = "Offices"
         case OfficeAddress = "Office Address"
         case NewHires = "NewHires"
@@ -83,7 +84,6 @@ class Card: Equatable {
         case Placeholder = "Placeholder"
         case Position = "Position"
         case Settings = "Settings"
-        case Skills = "Skills"
         case SocialConnectCTAs = "SocialConnectCTAs"
         case SocialToggle = "SocialToggle"
         case StatTile = "StatTile"
@@ -91,6 +91,7 @@ class Card: Equatable {
         case Team = "Team"
         case TeamsGrid = "TeamsGrid"
         case TextValue = "TextValue"
+        case Skills = "Skills"
 
         struct CardTypeInfo {
             var imageName: String
@@ -163,6 +164,13 @@ class Card: Equatable {
                     classType: ProfileImagesCollectionViewCell.self,
                     contentType: .Aggregate
                 )
+                
+            case Interests:
+                return CardTypeInfo(
+                    imageName: "Tag",
+                    classType: InterestsCollectionViewCell.self,
+                    contentType: .Aggregate
+                )
 
             case KeyValue:
                 return CardTypeInfo(
@@ -226,11 +234,11 @@ class Card: Equatable {
                     classType: SettingsCollectionViewCell.self,
                     contentType: .Flat
                 )
-
+                
             case Skills:
                 return CardTypeInfo(
                     imageName: "Tag",
-                    classType: SkillsCollectionViewCell.self,
+                    classType: InterestsCollectionViewCell.self,
                     contentType: .Aggregate
                 )
 
@@ -348,8 +356,8 @@ class Card: Equatable {
             cardType = .Group
         case .Locations:
             cardType = .Offices
-        case .Skills:
-            cardType = .Skills
+        case .Interests:
+            cardType = .Interests
         case .Executives:
             cardType = .Profiles
         case .Departments:

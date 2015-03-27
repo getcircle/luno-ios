@@ -20,16 +20,16 @@ typealias GetExtendedProfileCompletionHandler = (
     manager: ProfileService.Containers.Profile?,
     team: OrganizationService.Containers.Team?,
     address: OrganizationService.Containers.Address?,
-    skills: Array<ProfileService.Containers.Tag>?,
+    interests: Array<ProfileService.Containers.Tag>?,
     notes: Array<NoteService.Containers.Note>?,
     identities: Array<UserService.Containers.Identity>?,
     resume: ResumeService.Containers.Resume?,
     location: OrganizationService.Containers.Location?,
     error: NSError?
 ) -> Void
-typealias GetSkillsCompletionHandler = (skills: Array<ProfileService.Containers.Tag>?, error: NSError?) -> Void
+typealias GetInterestsCompletionHandler = (interests: Array<ProfileService.Containers.Tag>?, error: NSError?) -> Void
 typealias UpdateProfileCompletionHandler = (profile: ProfileService.Containers.Profile?, error: NSError?) -> Void
-typealias AddSkillsCompletionHandler = (error: NSError?) -> Void
+typealias AddInterestsCompletionHandler = (error: NSError?) -> Void
 
 extension ProfileService {
     class Actions {
@@ -97,13 +97,13 @@ extension ProfileService {
         }
         
         class func getProfiles(
-            #skillId: String,
+            #interestId: String,
             organizationId: String,
             paginatorBuilder: PaginatorBuilder? = nil,
             completionHandler: GetProfilesCompletionHandler?
         ) {
             let requestBuilder = ProfileService.GetProfiles.Request.builder()
-            requestBuilder.tag_id = skillId
+            requestBuilder.tag_id = interestId
             requestBuilder.organization_id = organizationId
             self.getProfiles(requestBuilder, completionHandler: completionHandler, paginatorBuilder: paginatorBuilder)
         }
@@ -145,7 +145,7 @@ extension ProfileService {
                     manager: response?.manager,
                     team: response?.team,
                     address: response?.address,
-                    skills: response?.tags,
+                    interests: response?.tags,
                     notes: response?.notes,
                     identities: response?.identities,
                     resume: response?.resume,
@@ -155,10 +155,10 @@ extension ProfileService {
             }
         }
         
-        class func getSkills(organizationId: String, completionHandler: GetSkillsCompletionHandler?) {
+        class func getInterests(organizationId: String, completionHandler: GetInterestsCompletionHandler?) {
             let requestBuilder = ProfileService.GetTags.Request.builder()
             requestBuilder.organization_id = organizationId
-            requestBuilder.tag_type = .Skill
+            requestBuilder.tag_type = .Interest
             
             let client = ServiceClient(serviceName: "profile")
             client.callAction(
@@ -167,14 +167,14 @@ extension ProfileService {
                 requestBuilder: requestBuilder
             ) { (_, _, wrapped, error) -> Void in
                 let response = wrapped?.response?.result.getExtension(ProfileServiceRequests_get_tags) as? ProfileService.GetTags.Response
-                completionHandler?(skills: response?.tags, error: error)
+                completionHandler?(interests: response?.tags, error: error)
             }
         }
         
-        class func getActiveSkills(organizationId: String, completionHandler: GetSkillsCompletionHandler?) {
+        class func getActiveInterests(organizationId: String, completionHandler: GetInterestsCompletionHandler?) {
             let requestBuilder = ProfileService.GetActiveTags.Request.builder()
             requestBuilder.organization_id = organizationId
-            requestBuilder.tag_type = .Skill
+            requestBuilder.tag_type = .Interest
             
             let client = ServiceClient(serviceName: "profile")
             client.callAction(
@@ -184,7 +184,7 @@ extension ProfileService {
                     let response = wrapped?.response?.result.getExtension(
                         ProfileServiceRequests_get_active_tags
                     ) as? ProfileService.GetActiveTags.Response
-                    completionHandler?(skills: response?.tags, error: error)
+                    completionHandler?(interests: response?.tags, error: error)
             }
         }
         
@@ -213,10 +213,10 @@ extension ProfileService {
             }
         }
         
-        class func addSkills(profileId: String, skills: Array<ProfileService.Containers.Tag>, completionHandler: AddSkillsCompletionHandler?) {
+        class func addInterests(profileId: String, interests: Array<ProfileService.Containers.Tag>, completionHandler: AddInterestsCompletionHandler?) {
             let requestBuilder = ProfileService.AddTags.Request.builder()
             requestBuilder.profile_id = profileId
-            requestBuilder.tags = skills
+            requestBuilder.tags = interests
             
             let client = ServiceClient(serviceName: "profile")
             client.callAction(

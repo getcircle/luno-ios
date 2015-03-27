@@ -17,7 +17,7 @@ message LandingService {
                 ANNIVERSARIES = 2;
                 BIRTHDAYS = 3;
                 LOCATIONS = 4;
-                SKILLS = 5;
+                INTERESTS = 5;
                 PEERS = 6;
                 NEW_HIRES = 7;
                 DEPARTMENTS = 8;

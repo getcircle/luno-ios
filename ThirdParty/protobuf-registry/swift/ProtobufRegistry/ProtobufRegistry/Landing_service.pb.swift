@@ -74,7 +74,7 @@ final public class LandingService : GeneratedMessage {
               case Anniversaries = 2
               case Birthdays = 3
               case Locations = 4
-              case Skills = 5
+              case Interests = 5
               case Peers = 6
               case NewHires = 7
               case Departments = 8

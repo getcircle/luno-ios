@@ -18,7 +18,7 @@ class SearchQueryDataSource: CardDataSource {
     private var visibleProfiles = Array<ProfileService.Containers.Profile>()
     private var visibleTeams = Array<OrganizationService.Containers.Team>()
     private var visibleAddresses = Array<OrganizationService.Containers.Address>()
-    private var visibleSkills = Array<ProfileService.Containers.Tag>()
+    private var visibleInterests = Array<ProfileService.Containers.Tag>()
     
     override func loadData(completionHandler: (error: NSError?) -> Void) {
     }
@@ -36,8 +36,8 @@ class SearchQueryDataSource: CardDataSource {
                 if let addresses = results.addresses {
                     self.visibleAddresses = addresses
                 }
-                if let skills = results.skills {
-                    self.visibleSkills = skills
+                if let interests = results.interests {
+                    self.visibleInterests = interests
                 }
                 self.updateVisibleCards()
             }
@@ -85,18 +85,18 @@ class SearchQueryDataSource: CardDataSource {
             appendCard(teamsCard)
         }
         
-        if visibleSkills.count > 0 {
+        if visibleInterests.count > 0 {
             let maxVisibleItems = 10
-            var skillsShowContentCount = true
-            if visibleSkills.count <= maxVisibleItems {
-                skillsShowContentCount = false
+            var interestsShowContentCount = true
+            if visibleInterests.count <= maxVisibleItems {
+                interestsShowContentCount = false
             }
-            let skillsCard = Card(cardType: .Skills, title: "Skills", showContentCount: skillsShowContentCount)
-            skillsCard.addHeader(headerClass: headerClass)
-            skillsCard.addContent(content: visibleSkills as [AnyObject], maxVisibleItems: 10)
-            skillsCard.contentCount = visibleSkills.count
-            skillsCard.sectionInset = sectionInset
-            appendCard(skillsCard)
+            let interestsCard = Card(cardType: .Interests, title: "Interests", showContentCount: interestsShowContentCount)
+            interestsCard.addHeader(headerClass: headerClass)
+            interestsCard.addContent(content: visibleInterests as [AnyObject], maxVisibleItems: 10)
+            interestsCard.contentCount = visibleInterests.count
+            interestsCard.sectionInset = sectionInset
+            appendCard(interestsCard)
         }
         
         if searchTerm == "" && !isQuickAction {
@@ -121,9 +121,9 @@ class SearchQueryDataSource: CardDataSource {
                     "type": StatTileCollectionViewCell.TileType.Teams.rawValue
                 ],
                 [
-                    "title": "Skills",
-                    "value": ObjectStore.sharedInstance.activeSkills.values.array.count,
-                    "type": StatTileCollectionViewCell.TileType.Skills.rawValue
+                    "title": "Interests",
+                    "value": ObjectStore.sharedInstance.activeInterests.values.array.count,
+                    "type": StatTileCollectionViewCell.TileType.Interests.rawValue
                 ]
             ] as [AnyObject]
             statsCard.addContent(content: stats)
@@ -141,7 +141,7 @@ class SearchQueryDataSource: CardDataSource {
         } else if cell is StatTileCollectionViewCell {
             cell.backgroundColor = UIColor.whiteColor()
             cell.addRoundCorners(radius: 5.0)
-        } else if cell is SkillsCollectionViewCell {
+        } else if cell is InterestsCollectionViewCell {
             cell.backgroundColor = UIColor.clearColor()
         }
     }

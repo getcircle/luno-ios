@@ -1,5 +1,5 @@
 //
-//  SkillDetailDataSource.swift
+//  InterestDetailDataSource.swift
 //  Circle
 //
 //  Created by Ravi Rani on 1/15/15.
@@ -9,12 +9,12 @@
 import UIKit
 import ProtobufRegistry
 
-class SkillDetailDataSource: CardDataSource {
+class InterestDetailDataSource: CardDataSource {
     
-    var selectedSkill: ProfileService.Containers.Tag!
+    var selectedInterest: ProfileService.Containers.Tag!
     
     private var profiles = Array<ProfileService.Containers.Profile>()
-    private(set) var profileHeaderView: SkillHeaderCollectionReusableView?
+    private(set) var profileHeaderView: InterestHeaderCollectionReusableView?
     
     // MARK: - Load Data
     
@@ -24,18 +24,18 @@ class SkillDetailDataSource: CardDataSource {
             return
         }
         
-        // Add a placeholder card for skill view
-        let placeholderSkillCard = Card(cardType: .Placeholder, title: "Skill Header")
-        placeholderSkillCard.sectionInset = UIEdgeInsetsZero
-        placeholderSkillCard.addHeader(headerClass: SkillHeaderCollectionReusableView.self)
-        appendCard(placeholderSkillCard)
+        // Add a placeholder card for interest view
+        let placeholderInterestCard = Card(cardType: .Placeholder, title: "Interest Header")
+        placeholderInterestCard.sectionInset = UIEdgeInsetsZero
+        placeholderInterestCard.addHeader(headerClass: InterestHeaderCollectionReusableView.self)
+        appendCard(placeholderInterestCard)
         
         if let currentProfile = AuthViewController.getLoggedInUserProfile() {
             let profile = AuthViewController.getLoggedInUserProfile()!
-            ProfileService.Actions.getProfiles(skillId: selectedSkill!.id, organizationId: profile.organization_id) { (profiles, _, error) -> Void in
+            ProfileService.Actions.getProfiles(interestId: selectedInterest!.id, organizationId: profile.organization_id) { (profiles, _, error) -> Void in
                 if let profiles = profiles {
                     self.profiles.extend(profiles)
-                    let peopleCard = Card(cardType: .Profiles, title: "People by Skill")
+                    let peopleCard = Card(cardType: .Profiles, title: "People by Interest")
                     peopleCard.addContent(content: profiles as [AnyObject])
                     peopleCard.sectionInset = UIEdgeInsetsZero
                     self.appendCard(peopleCard)
@@ -52,9 +52,9 @@ class SkillDetailDataSource: CardDataSource {
     override func configureHeader(header: CircleCollectionReusableView, atIndexPath indexPath: NSIndexPath) {
         super.configureHeader(header, atIndexPath: indexPath)
         
-        if let skillsHeader = header as? SkillHeaderCollectionReusableView {
-            skillsHeader.setSkill(selectedSkill)
-            profileHeaderView = skillsHeader
+        if let interestsHeader = header as? InterestHeaderCollectionReusableView {
+            interestsHeader.setInterest(selectedInterest)
+            profileHeaderView = interestsHeader
         }
     }
 }

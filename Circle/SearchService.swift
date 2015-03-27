@@ -20,7 +20,7 @@ extension SearchService {
             var profiles: Array<ProfileService.Containers.Profile>?
             var teams: Array<OrganizationService.Containers.Team>?
             var addresses: Array<OrganizationService.Containers.Address>?
-            var skills: Array<ProfileService.Containers.Tag>?
+            var interests: Array<ProfileService.Containers.Tag>?
 
             class var maxResultsPerCategory: Int {
                 return 3
@@ -133,7 +133,7 @@ extension SearchService {
                     let matchedProfiles = filterProfiles(profileIDs: recentProfileIDs)
                     results.profiles = Array(matchedProfiles[0..<min(SearchResults.maxSuggestionsPerCategory, matchedProfiles.count)])
                     results.teams = Array<OrganizationService.Containers.Team>()
-                    results.skills = Array<ProfileService.Containers.Tag>()
+                    results.interests = Array<ProfileService.Containers.Tag>()
                     return (results, nil)
                 }
             }
@@ -141,7 +141,7 @@ extension SearchService {
             let searchTerms = searchTermsFromQuery(query)
             results.profiles = filterProfiles(searchTerms)
             results.teams = filterTeams(searchTerms)
-            results.skills = filterSkills(searchTerms)
+            results.interests = filterInterests(searchTerms)
             return (results, nil)
         }
         
@@ -291,7 +291,7 @@ extension SearchService {
             }
         }
         
-        private class func filterSkills(searchTerms: [String]) -> Array<ProfileService.Containers.Tag> {
+        private class func filterInterests(searchTerms: [String]) -> Array<ProfileService.Containers.Tag> {
             var andPredicates = [NSPredicate]()
             for searchTerm in searchTerms {
                 let trimmedSearchTerm = trim(searchTerm)
@@ -312,7 +312,7 @@ extension SearchService {
             }
             
             let finalPredicate = NSCompoundPredicate.andPredicateWithSubpredicates(andPredicates)
-            return ObjectStore.sharedInstance.activeSkills.values.array.filter {
+            return ObjectStore.sharedInstance.activeInterests.values.array.filter {
                 return finalPredicate.evaluateWithObject($0, substitutionVariables: ["name": $0.name])
             }
         }

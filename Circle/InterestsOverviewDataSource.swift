@@ -1,5 +1,5 @@
 //
-//  SkillsOverviewDataSource.swift
+//  InterestsOverviewDataSource.swift
 //  Circle
 //
 //  Created by Ravi Rani on 2/15/15.
@@ -9,24 +9,24 @@
 import UIKit
 import ProtobufRegistry
 
-class SkillsOverviewDataSource: NSObject, UICollectionViewDataSource {
+class InterestsOverviewDataSource: NSObject, UICollectionViewDataSource {
 
-    private var filteredSkills = Array<Array<ProfileService.Containers.Tag>>()
-    private var skills = Array<ProfileService.Containers.Tag>()
+    private var filteredInterests = Array<Array<ProfileService.Containers.Tag>>()
+    private var interests = Array<ProfileService.Containers.Tag>()
     
     private var animatedCell = [NSIndexPath: Bool]()
 
     // MARK: - Set Initial Data
     
     func setInitialData(#content: [AnyObject]) {
-        skills = content as Array<ProfileService.Containers.Tag>
-        filteredSkills = sortAlphabeticallyAndArrangeInSections(skills)
+        interests = content as Array<ProfileService.Containers.Tag>
+        filteredInterests = sortAlphabeticallyAndArrangeInSections(interests)
     }
     
-    func skill(collectionView _: UICollectionView, atIndexPath indexPath: NSIndexPath) -> ProfileService.Containers.Tag? {
-        if let skillsSection = filteredSkills[indexPath.section] as Array<ProfileService.Containers.Tag>? {
-            if let skill = skillsSection[indexPath.row] as ProfileService.Containers.Tag? {
-                return skill
+    func interest(collectionView _: UICollectionView, atIndexPath indexPath: NSIndexPath) -> ProfileService.Containers.Tag? {
+        if let interestsSection = filteredInterests[indexPath.section] as Array<ProfileService.Containers.Tag>? {
+            if let interest = interestsSection[indexPath.row] as ProfileService.Containers.Tag? {
+                return interest
             }
         }
         
@@ -36,21 +36,21 @@ class SkillsOverviewDataSource: NSObject, UICollectionViewDataSource {
     // MARK: - UICollectionViewDataSource
     
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        return filteredSkills.count
+        return filteredInterests.count
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return filteredSkills[section].count
+        return filteredInterests[section].count
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(
-            SkillCollectionViewCell.classReuseIdentifier,
+            InterestCollectionViewCell.classReuseIdentifier,
             forIndexPath: indexPath
-        ) as SkillCollectionViewCell
+        ) as InterestCollectionViewCell
         
         // Configure the cell
-        cell.skillLabel.text = filteredSkills[indexPath.section][indexPath.row].name.capitalizedString
+        cell.interestLabel.text = filteredInterests[indexPath.section][indexPath.row].name.capitalizedString
         if animatedCell[indexPath] == nil {
             animatedCell[indexPath] = true
             cell.animateForCollection(collectionView, atIndexPath: indexPath)
@@ -68,10 +68,10 @@ class SkillsOverviewDataSource: NSObject, UICollectionViewDataSource {
                 forIndexPath: indexPath
             ) as ProfileSectionHeaderCollectionReusableView
             
-            var indexPathOfFirstSkillInSection = NSIndexPath(forItem: 0, inSection: indexPath.section)
-            if let skill = skill(collectionView: collectionView, atIndexPath: indexPathOfFirstSkillInSection) {
-                headerView.cardTitleLabel.text = skill.name[0].uppercaseString
-                headerView.cardTitleLabel.font = UIFont.appSkillsOverviewSectionHeader()
+            var indexPathOfFirstInterestInSection = NSIndexPath(forItem: 0, inSection: indexPath.section)
+            if let interest = interest(collectionView: collectionView, atIndexPath: indexPathOfFirstInterestInSection) {
+                headerView.cardTitleLabel.text = interest.name[0].uppercaseString
+                headerView.cardTitleLabel.font = UIFont.appInterestsOverviewSectionHeader()
             }
             
             return headerView
@@ -91,7 +91,7 @@ class SkillsOverviewDataSource: NSObject, UICollectionViewDataSource {
     
     func filterData(term: String) {
         if term.trimWhitespace() == "" {
-            filteredSkills = sortAlphabeticallyAndArrangeInSections(skills)
+            filteredInterests = sortAlphabeticallyAndArrangeInSections(interests)
             return
         }
         
@@ -99,15 +99,15 @@ class SkillsOverviewDataSource: NSObject, UICollectionViewDataSource {
         let filterTerms = trimmedTerm.componentsSeparatedByString(" ")
         var orPredicates = [NSPredicate]()
 
-        // Full/exact skill name match
-        let fullSkillNameMatch = NSComparisonPredicate(
+        // Full/exact interest name match
+        let fullInterestNameMatch = NSComparisonPredicate(
             leftExpression: NSExpression(forVariable: "content"),
             rightExpression: NSExpression(forConstantValue: trimmedTerm),
             modifier: .DirectPredicateModifier,
             type: .BeginsWithPredicateOperatorType,
             options: .CaseInsensitivePredicateOption
         )
-        orPredicates.append(fullSkillNameMatch)
+        orPredicates.append(fullInterestNameMatch)
         
         for filterTerm in filterTerms {
             let trimmedFilterTerm = filterTerm.trimWhitespace()
@@ -137,7 +137,7 @@ class SkillsOverviewDataSource: NSObject, UICollectionViewDataSource {
         // Apply predicates
         
         let finalPredicate = NSCompoundPredicate.orPredicateWithSubpredicates(orPredicates)
-        let filteredSkillsData = skills.filter {
+        let filteredInterestsData = interests.filter {
             let match = finalPredicate.evaluateWithObject(
                 $0,
                 substitutionVariables: [
@@ -149,34 +149,34 @@ class SkillsOverviewDataSource: NSObject, UICollectionViewDataSource {
             return match
         }
         
-        filteredSkills = sortAlphabeticallyAndArrangeInSections(filteredSkillsData)
+        filteredInterests = sortAlphabeticallyAndArrangeInSections(filteredInterestsData)
     }
     
     // MARK: - Helpers
     
-    private func sortAlphabeticallyAndArrangeInSections(skillsArray: Array<ProfileService.Containers.Tag>) -> Array<Array<ProfileService.Containers.Tag>> {
-        let sortedSkills = skillsArray.sorted { $0.name.localizedCaseInsensitiveCompare($1.name) == NSComparisonResult.OrderedAscending }
+    private func sortAlphabeticallyAndArrangeInSections(interestsArray: Array<ProfileService.Containers.Tag>) -> Array<Array<ProfileService.Containers.Tag>> {
+        let sortedInterests = interestsArray.sorted { $0.name.localizedCaseInsensitiveCompare($1.name) == NSComparisonResult.OrderedAscending }
         
-        var skillsArrangedByFirstLetter = Array<Array<ProfileService.Containers.Tag>>()
+        var interestsArrangedByFirstLetter = Array<Array<ProfileService.Containers.Tag>>()
         
-        if sortedSkills.count > 0 {
-            var previousLetter = sortedSkills[0].name[0].uppercaseString
-            var skillsPerLetter = Array<ProfileService.Containers.Tag>()
-            for skill in sortedSkills {
+        if sortedInterests.count > 0 {
+            var previousLetter = sortedInterests[0].name[0].uppercaseString
+            var interestsPerLetter = Array<ProfileService.Containers.Tag>()
+            for interest in sortedInterests {
                 
-                if previousLetter != skill.name[0].uppercaseString {
-                    skillsArrangedByFirstLetter.append(skillsPerLetter)
-                    skillsPerLetter.removeAll(keepCapacity: true)
+                if previousLetter != interest.name[0].uppercaseString {
+                    interestsArrangedByFirstLetter.append(interestsPerLetter)
+                    interestsPerLetter.removeAll(keepCapacity: true)
                 }
                 
-                skillsPerLetter.append(skill)
-                previousLetter = skill.name[0].uppercaseString
+                interestsPerLetter.append(interest)
+                previousLetter = interest.name[0].uppercaseString
             }
             
-            if skillsPerLetter.count > 0 {
-                skillsArrangedByFirstLetter.append(skillsPerLetter)
+            if interestsPerLetter.count > 0 {
+                interestsArrangedByFirstLetter.append(interestsPerLetter)
             }
         }
-        return skillsArrangedByFirstLetter
+        return interestsArrangedByFirstLetter
     }
 }

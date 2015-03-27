@@ -1,5 +1,5 @@
 //
-//  SkillDetailViewController.swift
+//  InterestDetailViewController.swift
 //  Circle
 //
 //  Created by Ravi Rani on 1/15/15.
@@ -9,14 +9,14 @@
 import UIKit
 import ProtobufRegistry
 
-class SkillDetailViewController: DetailViewController {
+class InterestDetailViewController: DetailViewController {
 
     // MARK: - Initialization
     
     override func customInit() {
         super.customInit()
 
-        dataSource = SkillDetailDataSource()
+        dataSource = InterestDetailDataSource()
         delegate = CardCollectionViewDelegate()
     }
     
@@ -29,7 +29,7 @@ class SkillDetailViewController: DetailViewController {
         // Delegate
         collectionView.delegate = delegate
         
-        (layout as StickyHeaderCollectionViewLayout).headerHeight = SkillHeaderCollectionReusableView.height
+        (layout as StickyHeaderCollectionViewLayout).headerHeight = InterestHeaderCollectionReusableView.height
         super.configureCollectionView()
     }
     
@@ -47,7 +47,7 @@ class SkillDetailViewController: DetailViewController {
     // MARK: - Scroll view delegate
 
     func scrollViewDidScroll(scrollView: UIScrollView) {
-        if let profileHeaderView = (collectionView!.dataSource as SkillDetailDataSource).profileHeaderView {
+        if let profileHeaderView = (collectionView!.dataSource as InterestDetailDataSource).profileHeaderView {
             let contentOffset = scrollView.contentOffset
             
             // Todo: need to understand how this changes with orientation
@@ -59,35 +59,35 @@ class SkillDetailViewController: DetailViewController {
             // Initial y value is added because for center y constraints this represents additional distance it needs
             // to move down
             let distanceToMove: CGFloat = finalYConstraintValue + initialYConstrainValue
-            let pointAtWhichFinalHeightShouldBeInPlace: CGFloat = SkillHeaderCollectionReusableView.height - navBarStatusBarHeight
+            let pointAtWhichFinalHeightShouldBeInPlace: CGFloat = InterestHeaderCollectionReusableView.height - navBarStatusBarHeight
             let pointAtWhichHeightShouldStartIncreasing: CGFloat = pointAtWhichFinalHeightShouldBeInPlace - distanceToMove
             
             // Y Constraint has to be modified only after a certain point
             if contentOffset.y > pointAtWhichHeightShouldStartIncreasing {
                 var newY: CGFloat = initialYConstrainValue
                 newY += max(-distanceToMove, -contentOffset.y + pointAtWhichHeightShouldStartIncreasing)
-                profileHeaderView.skillNameLabelCenterYConstraint.constant = newY
+                profileHeaderView.interestNameLabelCenterYConstraint.constant = newY
             }
             else {
-                profileHeaderView.skillNameLabelCenterYConstraint.constant = initialYConstrainValue
+                profileHeaderView.interestNameLabelCenterYConstraint.constant = initialYConstrainValue
             }
             
             let minFontSize: CGFloat = 15.0
-            let maxFontSize: CGFloat = profileHeaderView.skillLabelInitialFontSize
+            let maxFontSize: CGFloat = profileHeaderView.interestLabelInitialFontSize
             let pointAtWhichSizeShouldStartChanging: CGFloat = 20.0
 
             // Size needs to be modified much sooner
             if contentOffset.y > pointAtWhichSizeShouldStartChanging {
                 var size = max(minFontSize, maxFontSize - ((contentOffset.y - pointAtWhichSizeShouldStartChanging) / (maxFontSize - minFontSize)))
-                profileHeaderView.skillNameLabel.font = UIFont(name: profileHeaderView.skillNameLabel.font.familyName, size: size)
+                profileHeaderView.interestNameLabel.font = UIFont(name: profileHeaderView.interestNameLabel.font.familyName, size: size)
             }
             else {
-                profileHeaderView.skillNameLabel.font = UIFont(name: profileHeaderView.skillNameLabel.font.familyName, size: maxFontSize)
+                profileHeaderView.interestNameLabel.font = UIFont(name: profileHeaderView.interestNameLabel.font.familyName, size: maxFontSize)
             }
             
             // Update constraints and request layout
-            profileHeaderView.skillNameLabel.setNeedsUpdateConstraints()
-            profileHeaderView.skillNameLabel.layoutIfNeeded()
+            profileHeaderView.interestNameLabel.setNeedsUpdateConstraints()
+            profileHeaderView.interestNameLabel.layoutIfNeeded()
         }
     }
 }

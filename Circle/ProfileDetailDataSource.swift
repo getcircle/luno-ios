@@ -22,12 +22,14 @@ class ProfileDetailDataSource: CardDataSource {
     private(set) var identities: Array<UserService.Containers.Identity>?
     private(set) var location: OrganizationService.Containers.Location?
     private(set) var manager: ProfileService.Containers.Profile?
+    private(set) var interests: Array<ProfileService.Containers.Tag>?
     private(set) var skills: Array<ProfileService.Containers.Tag>?
     private(set) var team: OrganizationService.Containers.Team?
     private(set) var resume: ResumeService.Containers.Resume?
 
     private let numberOfEducationItemsVisibleInitially = 1
     private let numberOfExperienceItemsVisibleInitially = 2
+    private let numberOfInterestItemsVisibleInitially = 6
     private let numberOfSkillItemsVisibleInitially = 6
     
     convenience init(profile withProfile: ProfileService.Containers.Profile) {
@@ -239,7 +241,7 @@ class ProfileDetailDataSource: CardDataSource {
     private func getSkillsSection() -> Section {
         let sectionItems = [
             SectionItem(
-                title: "Skills",
+                title: "Expertise",
                 container: "skills",
                 containerKey: "name",
                 contentType: .Skills,
@@ -247,7 +249,7 @@ class ProfileDetailDataSource: CardDataSource {
             )
         ]
         
-        return Section(title: AppStrings.ProfileSectionSkillsTitle, items: sectionItems, cardType: .Skills, addCardHeader: true, allowEmptyContent: true)
+        return Section(title: AppStrings.ProfileSectionExpertiseTitle, items: sectionItems, cardType: .Skills, addCardHeader: true, allowEmptyContent: true)
     }
     
     private func getEducationSection() -> Section {
@@ -415,6 +417,17 @@ class ProfileDetailDataSource: CardDataSource {
                 }
 
                 card.addContent(content: [dataDict])
+            }
+        }
+    }
+    
+    private func addInterestsItemToCard(item: SectionItem, card: Card) {
+        if let interests = interests {
+            if interests.count > 0 {
+                card.addContent(content: interests as [AnyObject], maxVisibleItems: numberOfInterestItemsVisibleInitially)
+                if interests.count > numberOfInterestItemsVisibleInitially {
+                    card.addDefaultFooter()
+                }
             }
         }
     }

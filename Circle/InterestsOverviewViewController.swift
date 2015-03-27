@@ -1,5 +1,5 @@
 //
-//  SkillsOverviewViewController.swift
+//  InterestsOverviewViewController.swift
 //  Circle
 //
 //  Created by Ravi Rani on 2/15/15.
@@ -9,15 +9,15 @@
 import UIKit
 import ProtobufRegistry
 
-class SkillsOverviewViewController: UIViewController, UICollectionViewDelegateFlowLayout, SearchHeaderViewDelegate {
+class InterestsOverviewViewController: UIViewController, UICollectionViewDelegateFlowLayout, SearchHeaderViewDelegate {
 
     @IBOutlet weak private(set) var collectionView: UICollectionView!
     @IBOutlet weak private(set) var searchContainerView: UIView!
 
-    private(set) var dataSource = SkillsOverviewDataSource()
+    private(set) var dataSource = InterestsOverviewDataSource()
     
     private var cachedItemSizes = [String: CGSize]()
-    private var prototypeCell: SkillCollectionViewCell!
+    private var prototypeCell: InterestCollectionViewCell!
     private(set) var searchHeaderView: SearchHeaderView!
     private var isFilterView = false
     
@@ -70,8 +70,8 @@ class SkillsOverviewViewController: UIViewController, UICollectionViewDelegateFl
     
     private func configurePrototypeCell() {
         // Init prototype cell
-        let cellNibViews = NSBundle.mainBundle().loadNibNamed("SkillCollectionViewCell", owner: self, options: nil)
-        prototypeCell = cellNibViews.first as SkillCollectionViewCell
+        let cellNibViews = NSBundle.mainBundle().loadNibNamed("InterestCollectionViewCell", owner: self, options: nil)
+        prototypeCell = cellNibViews.first as InterestCollectionViewCell
     }
     
     private func configureCollectionView() {
@@ -92,8 +92,8 @@ class SkillsOverviewViewController: UIViewController, UICollectionViewDelegateFl
         
         // Item
         collectionView.registerNib(
-            UINib(nibName: "SkillCollectionViewCell", bundle: nil),
-            forCellWithReuseIdentifier: SkillCollectionViewCell.classReuseIdentifier
+            UINib(nibName: "InterestCollectionViewCell", bundle: nil),
+            forCellWithReuseIdentifier: InterestCollectionViewCell.classReuseIdentifier
         )
         
         collectionView.keyboardDismissMode = .OnDrag
@@ -103,8 +103,8 @@ class SkillsOverviewViewController: UIViewController, UICollectionViewDelegateFl
     
     private func configureSearchHeaderView() {
         searchHeaderView.delegate = self
-        searchHeaderView.searchTextField.placeholder = NSLocalizedString("Filter skills",
-            comment: "Placeholder for text field used for filtering skills by name")
+        searchHeaderView.searchTextField.placeholder = NSLocalizedString("Filter interests",
+            comment: "Placeholder for text field used for filtering interests by name")
         searchHeaderView.searchTextField.addTarget(self, action: "filterData:", forControlEvents: .EditingChanged)
         searchContainerView.addSubview(searchHeaderView)
         searchHeaderView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
@@ -114,10 +114,10 @@ class SkillsOverviewViewController: UIViewController, UICollectionViewDelegateFl
     // MARK: - UICollectionViewDelegate
 
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        if let selectedSkill = dataSource.skill(collectionView: collectionView, atIndexPath: indexPath) {
-            trackSkillSelected(selectedSkill)
-            let viewController = SkillDetailViewController()
-            (viewController.dataSource as SkillDetailDataSource).selectedSkill = selectedSkill
+        if let selectedInterest = dataSource.interest(collectionView: collectionView, atIndexPath: indexPath) {
+            trackInterestSelected(selectedInterest)
+            let viewController = InterestDetailViewController()
+            (viewController.dataSource as InterestDetailDataSource).selectedInterest = selectedInterest
             navigationController?.pushViewController(viewController, animated: true)
         }
         
@@ -128,16 +128,16 @@ class SkillsOverviewViewController: UIViewController, UICollectionViewDelegateFl
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         
-        if let skill = dataSource.skill(collectionView: collectionView, atIndexPath: indexPath) {
-            let skillText = skill.name.capitalizedString
-            if cachedItemSizes[skillText] == nil {
-                prototypeCell.skillLabel.text = skillText
+        if let interest = dataSource.interest(collectionView: collectionView, atIndexPath: indexPath) {
+            let interestText = interest.name.capitalizedString
+            if cachedItemSizes[interestText] == nil {
+                prototypeCell.interestLabel.text = interestText
                 prototypeCell.setNeedsLayout()
                 prototypeCell.layoutIfNeeded()
-                cachedItemSizes[skillText] = prototypeCell.intrinsicContentSize()
+                cachedItemSizes[interestText] = prototypeCell.intrinsicContentSize()
             }
             
-            return cachedItemSizes[skillText]!
+            return cachedItemSizes[interestText]!
         }
         
         return CGSizeZero
@@ -193,14 +193,14 @@ class SkillsOverviewViewController: UIViewController, UICollectionViewDelegateFl
     
     // MARK: - Tracking
     
-    private func trackSkillSelected(skill: ProfileService.Containers.Tag) {
+    private func trackInterestSelected(interest: ProfileService.Containers.Tag) {
         let properties = [
             TrackerProperty.withKey(.ActiveViewController).withString(self.dynamicType.description()),
             TrackerProperty.withKey(.Source).withSource(.Overview),
-            TrackerProperty.withKey(.SourceOverviewType).withOverviewType(.Skills),
+            TrackerProperty.withKey(.SourceOverviewType).withOverviewType(.Interests),
             TrackerProperty.withKey(.Destination).withSource(.Detail),
-            TrackerProperty.withKey(.DestinationDetailType).withDetailType(.Skill),
-            TrackerProperty.withDestinationId("skill_id").withString(skill.id)
+            TrackerProperty.withKey(.DestinationDetailType).withDetailType(.Interest),
+            TrackerProperty.withDestinationId("interest_id").withString(interest.id)
         ]
         Tracker.sharedInstance.track(.DetailItemTapped, properties: properties)
     }

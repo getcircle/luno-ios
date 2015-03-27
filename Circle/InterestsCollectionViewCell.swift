@@ -1,5 +1,5 @@
 //
-//  SkillsCollectionViewCell.swift
+//  InterestsCollectionViewCell.swift
 //  Circle
 //
 //  Created by Ravi Rani on 12/29/14.
@@ -9,14 +9,14 @@
 import UIKit
 import ProtobufRegistry
 
-struct SkillsCollectionViewCellNotifications {
-    static let onSkillSelectedNotification = "com.ravcode.notification:onSkillSelectedNotification"
+struct InterestsCollectionViewCellNotifications {
+    static let onInterestSelectedNotification = "com.ravcode.notification:onInterestSelectedNotification"
 }
 
-class SkillsCollectionViewCell: CircleCollectionViewCell, UICollectionViewDataSource, UICollectionViewDelegate {
+class InterestsCollectionViewCell: CircleCollectionViewCell, UICollectionViewDataSource, UICollectionViewDelegate {
 
     override class var classReuseIdentifier: String {
-        return "SkillsCollectionViewCell"
+        return "InterestsCollectionViewCell"
     }
 
     override class var height: CGFloat {
@@ -29,7 +29,7 @@ class SkillsCollectionViewCell: CircleCollectionViewCell, UICollectionViewDataSo
 
     @IBOutlet weak private(set) var collectionView: UICollectionView!
     
-    var prototypeCell: SkillCollectionViewCell!
+    var prototypeCell: InterestCollectionViewCell!
     
     // pass backgroundColor changes to the collectionView
     override var backgroundColor: UIColor? {
@@ -39,8 +39,8 @@ class SkillsCollectionViewCell: CircleCollectionViewCell, UICollectionViewDataSo
         }
     }
     
-    var selectedSkill: ProfileService.Containers.Tag?
-    private var skills = Array<ProfileService.Containers.Tag>()
+    var selectedInterest: ProfileService.Containers.Tag?
+    private var interests = Array<ProfileService.Containers.Tag>()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -60,15 +60,15 @@ class SkillsCollectionViewCell: CircleCollectionViewCell, UICollectionViewDataSo
         collectionView.allowsSelection = true
         collectionView.bounces = false
         collectionView.registerNib(
-            UINib(nibName: "SkillCollectionViewCell", bundle: nil),
-            forCellWithReuseIdentifier: SkillCollectionViewCell.classReuseIdentifier
+            UINib(nibName: "InterestCollectionViewCell", bundle: nil),
+            forCellWithReuseIdentifier: InterestCollectionViewCell.classReuseIdentifier
         )
     }
     
     private func configurePrototypeCell() {
         // Init prototype cell
-        let cellNibViews = NSBundle.mainBundle().loadNibNamed("SkillCollectionViewCell", owner: self, options: nil)
-        prototypeCell = cellNibViews.first as SkillCollectionViewCell
+        let cellNibViews = NSBundle.mainBundle().loadNibNamed("InterestCollectionViewCell", owner: self, options: nil)
+        prototypeCell = cellNibViews.first as InterestCollectionViewCell
     }
 
     // MARK: - UICollectionViewDataSource
@@ -78,18 +78,18 @@ class SkillsCollectionViewCell: CircleCollectionViewCell, UICollectionViewDataSo
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return skills.count
+        return interests.count
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let skill = skills[indexPath.row]
+        let interest = interests[indexPath.row]
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(
-            SkillCollectionViewCell.classReuseIdentifier,
+            InterestCollectionViewCell.classReuseIdentifier,
             forIndexPath: indexPath
-        ) as SkillCollectionViewCell
+        ) as InterestCollectionViewCell
         
-        cell.skillLabel.text = skill.name
-        cell.skillLabel.backgroundColor = collectionView.backgroundColor
+        cell.interestLabel.text = interest.name
+        cell.interestLabel.backgroundColor = collectionView.backgroundColor
         cell.backgroundColor = collectionView.backgroundColor
         return cell
     }
@@ -97,9 +97,9 @@ class SkillsCollectionViewCell: CircleCollectionViewCell, UICollectionViewDataSo
     // MARK: - UICollectionViewDelegateFlowLayout
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        let skill = skills[indexPath.row]
+        let interest = interests[indexPath.row]
 
-        prototypeCell.skillLabel.text = skill.name
+        prototypeCell.interestLabel.text = interest.name
         prototypeCell.setNeedsLayout()
         prototypeCell.layoutIfNeeded()
         let intrinsicSize = prototypeCell.intrinsicContentSize()
@@ -113,25 +113,25 @@ class SkillsCollectionViewCell: CircleCollectionViewCell, UICollectionViewDataSo
     // MARK: - UICollectionViewDelegate
 
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        let skill = skills[indexPath.row]
-        selectedSkill = skill
+        let interest = interests[indexPath.row]
+        selectedInterest = interest
         NSNotificationCenter.defaultCenter().postNotificationName(
-            SkillsCollectionViewCellNotifications.onSkillSelectedNotification,
+            InterestsCollectionViewCellNotifications.onInterestSelectedNotification,
             object: nil,
-            userInfo: ["skill": skill]
+            userInfo: ["interest": interest]
         )
         collectionView.deselectItemAtIndexPath(indexPath, animated: true)
     }
     
     func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
-        selectedSkill = nil
+        selectedInterest = nil
     }
     
     // MARK: - Data Setter
     
     override func setData(data: AnyObject) {
-        if let arrayOfSkills = data as? [ProfileService.Containers.Tag] {
-            skills = arrayOfSkills
+        if let arrayOfInterests = data as? [ProfileService.Containers.Tag] {
+            interests = arrayOfInterests
             collectionView.reloadData()
         }
     }

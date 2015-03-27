@@ -36,6 +36,7 @@ enum ContentType: Int {
     case Facebook
     case Github
     case HireDate
+    case Interests
     case LinkedIn
     case LinkedInConnect
     case Manager

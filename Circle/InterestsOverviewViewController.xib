@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SkillsOverviewViewController" customModule="circle" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="InterestsOverviewViewController" customModule="circle" customModuleProvider="target">
             <connections>
                 <outlet property="collectionView" destination="ObK-dq-hUC" id="9Sz-x6-a1O"/>
                 <outlet property="searchContainerView" destination="BNp-2Y-iWR" id="GVj-aF-IVb"/>

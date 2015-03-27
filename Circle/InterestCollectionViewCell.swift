@@ -1,5 +1,5 @@
 //
-//  SkillCollectionViewCell.swift
+//  InterestCollectionViewCell.swift
 //  Circle
 //
 //  Created by Ravi Rani on 12/26/14.
@@ -8,12 +8,12 @@
 
 import UIKit
 
-class SkillCollectionViewCell: CircleCollectionViewCell {
+class InterestCollectionViewCell: CircleCollectionViewCell {
 
-    @IBOutlet weak private(set) var skillLabel: PaddedLabel!
+    @IBOutlet weak private(set) var interestLabel: PaddedLabel!
 
     override class var classReuseIdentifier: String {
-        return "SkillCollectionViewCell"
+        return "InterestCollectionViewCell"
     }
     
     override class var height: CGFloat {
@@ -25,31 +25,31 @@ class SkillCollectionViewCell: CircleCollectionViewCell {
     }
     
     var defaultTextColor = UIColor.appDefaultDarkTextColor()
-    var defaultBackgroundColor = UIColor.appSkillNormalBackgroundColor()
-    var defaultBorderColor = UIColor.appSkillNormalBorderColor()
+    var defaultBackgroundColor = UIColor.appInterestNormalBackgroundColor()
+    var defaultBorderColor = UIColor.appInterestNormalBorderColor()
 
     var highlightedTextColor = UIColor.appDefaultLightTextColor()
-    var highlightedBackgroundColor = UIColor.appSkillSelectedBackgroundColor()
-    var highlightedBorderColor = UIColor.appSkillNormalBackgroundColor()
+    var highlightedBackgroundColor = UIColor.appInterestSelectedBackgroundColor()
+    var highlightedBorderColor = UIColor.appInterestNormalBackgroundColor()
 
     override func awakeFromNib() {
         super.awakeFromNib()
         
         // Initialization code
-        skillLabel.textColor = defaultTextColor
-        skillLabel.layer.borderColor = defaultBorderColor.CGColor
-        skillLabel.layer.borderWidth = 1.0
-        skillLabel.paddingEdgeInsets = UIEdgeInsetsMake(5.0, 10.0, 5.0, 10.0)
+        interestLabel.textColor = defaultTextColor
+        interestLabel.layer.borderColor = defaultBorderColor.CGColor
+        interestLabel.layer.borderWidth = 1.0
+        interestLabel.paddingEdgeInsets = UIEdgeInsetsMake(5.0, 10.0, 5.0, 10.0)
         bringSubviewToFront(selectedBackgroundView)
     }
     
     override func intrinsicContentSize() -> CGSize {
-        return CGSizeMake(skillLabel.intrinsicContentSize().width, 35.0)
+        return CGSizeMake(interestLabel.intrinsicContentSize().width, 35.0)
     }
 
     override func setData(data: AnyObject) {
-        if let skillsDictionary = data as? [String: String] {
-            skillLabel.text = skillsDictionary["name"]
+        if let interestsDictionary = data as? [String: String] {
+            interestLabel.text = interestsDictionary["name"]
         }
     }
 
@@ -108,7 +108,7 @@ class SkillCollectionViewCell: CircleCollectionViewCell {
     func highlightCell(animated: Bool) {
         let duration = animated ? 0.2 : 0.0
         
-        if skillLabel.backgroundColor == highlightedBackgroundColor {
+        if interestLabel.backgroundColor == highlightedBackgroundColor {
             return
         }
         
@@ -123,7 +123,7 @@ class SkillCollectionViewCell: CircleCollectionViewCell {
     func unHighlightCell(animated: Bool) {
         let duration = animated ? 0.2 : 0.0
         
-        if skillLabel.backgroundColor == defaultBackgroundColor {
+        if interestLabel.backgroundColor == defaultBackgroundColor {
             return
         }
 
@@ -131,9 +131,9 @@ class SkillCollectionViewCell: CircleCollectionViewCell {
         UIView.animateWithDuration(
             duration,
             animations: { () -> Void in
-                self.skillLabel.textColor = self.defaultTextColor
-                self.skillLabel.backgroundColor = self.defaultBackgroundColor
-                self.skillLabel.layer.borderColor = self.defaultBorderColor.CGColor
+                self.interestLabel.textColor = self.defaultTextColor
+                self.interestLabel.backgroundColor = self.defaultBackgroundColor
+                self.interestLabel.layer.borderColor = self.defaultBorderColor.CGColor
             }
         )
     }
@@ -141,9 +141,9 @@ class SkillCollectionViewCell: CircleCollectionViewCell {
     // MARK: - Helpers
     
     private func _selectCell() {
-        skillLabel.textColor = highlightedTextColor
-        skillLabel.backgroundColor = highlightedBackgroundColor
-        skillLabel.layer.borderColor = highlightedBorderColor.CGColor
+        interestLabel.textColor = highlightedTextColor
+        interestLabel.backgroundColor = highlightedBackgroundColor
+        interestLabel.layer.borderColor = highlightedBorderColor.CGColor
         
         // If the call gets here, it implies we are using custom selection
         selectedBackgroundView = nil

@@ -195,13 +195,13 @@ class CurrentUserProfileDetailViewController: ProfileDetailViewController,
             navigationController?.presentViewController(aboutViewNavController, animated: true, completion: nil)
             break
             
-        case .Skills:
-            let skillSelectorViewController = SkillSelectorViewController(nibName: "SkillSelectorViewController", bundle: nil)
-            if let skills = (dataSource as CurrentUserProfileDetailDataSource).skills {
-                skillSelectorViewController.preSelectSkills = skills
+        case .Interests:
+            let interestSelectorViewController = InterestSelectorViewController(nibName: "InterestSelectorViewController", bundle: nil)
+            if let interests = (dataSource as CurrentUserProfileDetailDataSource).interests {
+                interestSelectorViewController.preSelectInterests = interests
             }
-            let skillsNavController = UINavigationController(rootViewController: skillSelectorViewController)
-            navigationController?.presentViewController(skillsNavController, animated: true, completion: nil)
+            let interestsNavController = UINavigationController(rootViewController: interestSelectorViewController)
+            navigationController?.presentViewController(interestsNavController, animated: true, completion: nil)
             
         default:
             break

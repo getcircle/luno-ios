@@ -1,5 +1,5 @@
 //
-//  SkillSelectorViewController.swift
+//  InterestSelectorViewController.swift
 //  Circle
 //
 //  Created by Ravi Rani on 12/26/14.
@@ -11,7 +11,7 @@ import ProtobufRegistry
 
 let reuseIdentifier = "Cell"
 
-class SkillSelectorViewController:
+class InterestSelectorViewController:
     UIViewController,
     UITextFieldDelegate,
     SearchHeaderViewDelegate {
@@ -28,10 +28,10 @@ class SkillSelectorViewController:
     @IBOutlet weak private(set) var topGradientView: UIView!
     
     var theme: Themes = .Regular
-    var preSelectSkills: Array<ProfileService.Containers.Tag> = Array<ProfileService.Containers.Tag>() {
+    var preSelectInterests: Array<ProfileService.Containers.Tag> = Array<ProfileService.Containers.Tag>() {
         didSet {
-            for skill in preSelectSkills {
-                selectedSkills[skill.hashValue] = skill
+            for interest in preSelectInterests {
+                selectedInterests[interest.hashValue] = interest
             }
         }
     }
@@ -39,16 +39,16 @@ class SkillSelectorViewController:
     private var animatedCell = [NSIndexPath: Bool]()
     private var bottomLayer: CAGradientLayer!
     private var cachedItemSizes =  [String: CGSize]()
-    private var skills = Array<ProfileService.Containers.Tag>()
-    private var filteredSkills = Array<ProfileService.Containers.Tag>()
-    private var selectedSkills = Dictionary<Int, ProfileService.Containers.Tag>()
-    private var prototypeCell: SkillCollectionViewCell!
+    private var interests = Array<ProfileService.Containers.Tag>()
+    private var filteredInterests = Array<ProfileService.Containers.Tag>()
+    private var selectedInterests = Dictionary<Int, ProfileService.Containers.Tag>()
+    private var prototypeCell: InterestCollectionViewCell!
     private var searchHeaderView: SearchHeaderView!
     private var topLayer: CAGradientLayer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        skills = ObjectStore.sharedInstance.skills.values.array
+        interests = ObjectStore.sharedInstance.interests.values.array
         
         // Configurations
         configureView()
@@ -62,7 +62,7 @@ class SkillSelectorViewController:
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        filteredSkills = skills
+        filteredInterests = interests
         collectionView.reloadData()
     }
     
@@ -75,21 +75,21 @@ class SkillSelectorViewController:
     }
     
     private func configureNavigationBar() {
-        title = AppStrings.AddSkillsNavigationTitle
+        title = AppStrings.AddInterestsNavigationTitle
         addDoneButtonWithAction("save:")
         addCloseButtonWithAction("cancel:")
     }
     
     private func configurePrototypeCell() {
         // Init prototype cell
-        let cellNibViews = NSBundle.mainBundle().loadNibNamed("SkillCollectionViewCell", owner: self, options: nil)
-        prototypeCell = cellNibViews.first as SkillCollectionViewCell
+        let cellNibViews = NSBundle.mainBundle().loadNibNamed("InterestCollectionViewCell", owner: self, options: nil)
+        prototypeCell = cellNibViews.first as InterestCollectionViewCell
     }
     
     private func configureCollectionView() {
         collectionView.registerNib(
-            UINib(nibName: "SkillCollectionViewCell", bundle: nil),
-            forCellWithReuseIdentifier: SkillCollectionViewCell.classReuseIdentifier
+            UINib(nibName: "InterestCollectionViewCell", bundle: nil),
+            forCellWithReuseIdentifier: InterestCollectionViewCell.classReuseIdentifier
         )
         collectionView.keyboardDismissMode = .OnDrag
         collectionView.allowsMultipleSelection = true
@@ -104,7 +104,7 @@ class SkillSelectorViewController:
             searchHeaderView.searchTextField.clearButtonMode = .Always
             searchHeaderView.searchTextField.returnKeyType = .Done
             searchHeaderView.searchTextField.delegate = self
-            searchHeaderView.searchTextField.placeholder = AppStrings.TextPlaceholderFilterSkills
+            searchHeaderView.searchTextField.placeholder = AppStrings.TextPlaceholderFilterInterests
             searchHeaderView.searchTextField.addTarget(self, action: "filter", forControlEvents: .EditingChanged)
             searchHeaderView.searchTextFieldHeightConstraint.constant = searchControllerParentView.frameHeight
             searchControllerParentView.addSubview(searchHeaderView)
@@ -174,7 +174,7 @@ class SkillSelectorViewController:
         }
     }
 
-    private func configureCellByTheme(cell: SkillCollectionViewCell) {
+    private func configureCellByTheme(cell: InterestCollectionViewCell) {
         switch theme {
         case .Onboarding:
             cell.backgroundColor = UIColor.appUIBackgroundColor()
@@ -198,17 +198,17 @@ class SkillSelectorViewController:
     }
 
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return filteredSkills.count
+        return filteredInterests.count
     }
 
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(
-            SkillCollectionViewCell.classReuseIdentifier,
+            InterestCollectionViewCell.classReuseIdentifier,
             forIndexPath: indexPath
-        ) as SkillCollectionViewCell
+        ) as InterestCollectionViewCell
     
         // Configure the cell
-        cell.skillLabel.text = filteredSkills[indexPath.row].name
+        cell.interestLabel.text = filteredInterests[indexPath.row].name
         configureCellByTheme(cell)
         if animatedCell[indexPath] == nil {
             animatedCell[indexPath] = true
@@ -216,10 +216,10 @@ class SkillSelectorViewController:
         }
         
         // Manage Selection
-        let skill = filteredSkills[indexPath.row]
+        let interest = filteredInterests[indexPath.row]
         if cell.selected {
             cell.selectCell(false)
-        } else if let selectedSkill = selectedSkills[skill.hashValue] {
+        } else if let selectedInterest = selectedInterests[interest.hashValue] {
             cell.selectCell(false)
             cell.selected = true
             collectionView.selectItemAtIndexPath(indexPath, animated: false, scrollPosition: nil)
@@ -233,44 +233,44 @@ class SkillSelectorViewController:
     // MARK: UICollectionViewDelegate
 
     func collectionView(collectionView: UICollectionView, didHighlightItemAtIndexPath indexPath: NSIndexPath) {
-        let cell = collectionView.cellForItemAtIndexPath(indexPath) as SkillCollectionViewCell
+        let cell = collectionView.cellForItemAtIndexPath(indexPath) as InterestCollectionViewCell
         cell.highlightCell(true)
     }
     
     func collectionView(collectionView: UICollectionView, didUnhighlightItemAtIndexPath indexPath: NSIndexPath) {
-        let cell = collectionView.cellForItemAtIndexPath(indexPath) as SkillCollectionViewCell
+        let cell = collectionView.cellForItemAtIndexPath(indexPath) as InterestCollectionViewCell
         cell.unHighlightCell(true)
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        let cell = collectionView.cellForItemAtIndexPath(indexPath) as SkillCollectionViewCell
+        let cell = collectionView.cellForItemAtIndexPath(indexPath) as InterestCollectionViewCell
         cell.selectCell(true)
-        let skill = filteredSkills[indexPath.row]
-        selectedSkills[skill.hashValue] = skill
-        if !skill.hasId {
-            skills.append(skill)
+        let interest = filteredInterests[indexPath.row]
+        selectedInterests[interest.hashValue] = interest
+        if !interest.hasId {
+            interests.append(interest)
         }
     }
     
     func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
-        let cell = collectionView.cellForItemAtIndexPath(indexPath) as SkillCollectionViewCell
+        let cell = collectionView.cellForItemAtIndexPath(indexPath) as InterestCollectionViewCell
         cell.unHighlightCell(true)
-        let skill = filteredSkills[indexPath.row]
-        selectedSkills[skill.hashValue] = nil
+        let interest = filteredInterests[indexPath.row]
+        selectedInterests[interest.hashValue] = nil
     }
     
     // MARK: - UICollectionViewDelegateFlowLayout
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        let skillText = filteredSkills[indexPath.row].name
-        if cachedItemSizes[skillText] == nil {
-            prototypeCell.skillLabel.text = skillText
+        let interestText = filteredInterests[indexPath.row].name
+        if cachedItemSizes[interestText] == nil {
+            prototypeCell.interestLabel.text = interestText
             prototypeCell.setNeedsLayout()
             prototypeCell.layoutIfNeeded()
-            cachedItemSizes[skillText] = prototypeCell.intrinsicContentSize()
+            cachedItemSizes[interestText] = prototypeCell.intrinsicContentSize()
         }
         
-        return cachedItemSizes[skillText]!
+        return cachedItemSizes[interestText]!
     }
 
     // MARK: - IBActions
@@ -278,8 +278,8 @@ class SkillSelectorViewController:
     @IBAction func save(sender: AnyObject!) {
         // fire and forget
         if let profile = AuthViewController.getLoggedInUserProfile() {
-            if selectedSkills.count > 0 {
-                ProfileService.Actions.addSkills(profile.id, skills: selectedSkills.values.array, completionHandler: nil)
+            if selectedInterests.count > 0 {
+                ProfileService.Actions.addInterests(profile.id, interests: selectedInterests.values.array, completionHandler: nil)
             }
         }
 
@@ -295,13 +295,13 @@ class SkillSelectorViewController:
         dismissViewControllerAnimated(true, completion: nil)
     }
 
-    private func getNewSkillObject() -> ProfileService.Containers.Tag? {
-        var skillName = searchHeaderView.searchTextField.text
-        skillName = skillName.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
-        if skillName != "" {
-            var skillBuilderObject = ProfileService.Containers.Tag.builder()
-            skillBuilderObject.name = skillName
-            return skillBuilderObject.build()
+    private func getNewInterestObject() -> ProfileService.Containers.Tag? {
+        var interestName = searchHeaderView.searchTextField.text
+        interestName = interestName.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+        if interestName != "" {
+            var interestBuilderObject = ProfileService.Containers.Tag.builder()
+            interestBuilderObject.name = interestName
+            return interestBuilderObject.build()
         }
         
         return nil
@@ -320,23 +320,23 @@ class SkillSelectorViewController:
         let whitespaceCharacterSet = NSCharacterSet.whitespaceCharacterSet()
         let trimmedString = searchString.stringByTrimmingCharactersInSet(whitespaceCharacterSet).lowercaseString
         if trimmedString == "" {
-            filteredSkills = skills
+            filteredInterests = interests
         }
         else {
             DebugUtils.measure("Filter", call: { () -> Void in
                 // We need to filter each time from the full set to handle backspace correctly.
-                // We used filteredSkills to make things specific but that only make sense when adding characters.
-                self.filteredSkills = self.skills.filter({ $0.name.lowercaseString.hasPrefix(trimmedString) })
-                let exactMatchSkills = self.skills.filter({ $0.name.lowercaseString == trimmedString })
-                if exactMatchSkills.count == 0 {
-                    if let newSkill = self.getNewSkillObject() {
-                        self.filteredSkills.insert(newSkill, atIndex: 0)
+                // We used filteredInterests to make things specific but that only make sense when adding characters.
+                self.filteredInterests = self.interests.filter({ $0.name.lowercaseString.hasPrefix(trimmedString) })
+                let exactMatchInterests = self.interests.filter({ $0.name.lowercaseString == trimmedString })
+                if exactMatchInterests.count == 0 {
+                    if let newInterest = self.getNewInterestObject() {
+                        self.filteredInterests.insert(newInterest, atIndex: 0)
                     }
                 }
             })
         }
         
-        if filteredSkills.count != skills.count || trimmedString == "" {
+        if filteredInterests.count != interests.count || trimmedString == "" {
             collectionView.reloadData()
         }
     }

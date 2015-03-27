@@ -145,12 +145,12 @@ class OrganizationDetailViewController: DetailViewController, CardHeaderViewDele
             trackCardHeaderTapped(card, overviewType: .Offices)
             navigationController?.pushViewController(viewController, animated: true)
             
-        case .Skills:
-            let skillsOverviewViewController = SkillsOverviewViewController(nibName: "SkillsOverviewViewController", bundle: nil)
-            skillsOverviewViewController.dataSource.setInitialData(content: card.allContent[0] as [AnyObject])
-            skillsOverviewViewController.title = card.title
-            skillsOverviewViewController.hidesBottomBarWhenPushed = false
-            navigationController?.pushViewController(skillsOverviewViewController, animated: true)
+        case .Interests:
+            let interestsOverviewViewController = InterestsOverviewViewController(nibName: "InterestsOverviewViewController", bundle: nil)
+            interestsOverviewViewController.dataSource.setInitialData(content: card.allContent[0] as [AnyObject])
+            interestsOverviewViewController.title = card.title
+            interestsOverviewViewController.hidesBottomBarWhenPushed = false
+            navigationController?.pushViewController(interestsOverviewViewController, animated: true)
         
         case .TeamsGrid:
             let viewController = TeamsOverviewViewController()
@@ -174,11 +174,11 @@ class OrganizationDetailViewController: DetailViewController, CardHeaderViewDele
     
     // MARK: - Notification Handlers
     
-    override func didSelectSkill(notification: NSNotification) {
-        super.didSelectSkill(notification)
+    override func didSelectInterest(notification: NSNotification) {
+        super.didSelectInterest(notification)
         if let userInfo = notification.userInfo {
-            if let selectedSkill = userInfo["skill"] as? ProfileService.Containers.Tag {
-                trackSkillSelected(selectedSkill)
+            if let selectedInterest = userInfo["interest"] as? ProfileService.Containers.Tag {
+                trackInterestSelected(selectedInterest)
             }
         }
     }
@@ -197,13 +197,13 @@ class OrganizationDetailViewController: DetailViewController, CardHeaderViewDele
         Tracker.sharedInstance.track(.CardHeaderTapped, properties: properties)
     }
     
-    private func trackSkillSelected(skill: ProfileService.Containers.Tag) {
+    private func trackInterestSelected(interest: ProfileService.Containers.Tag) {
         let properties = [
             TrackerProperty.withKey(.ActiveViewController).withString(self.dynamicType.description()),
             TrackerProperty.withKey(.Source).withSource(.Organization),
             TrackerProperty.withKey(.Destination).withSource(.Detail),
-            TrackerProperty.withKey(.DestinationDetailType).withDetailType(.Skill),
-            TrackerProperty.withDestinationId("skill_id").withString(skill.id)
+            TrackerProperty.withKey(.DestinationDetailType).withDetailType(.Interest),
+            TrackerProperty.withDestinationId("tag_id").withString(interest.id)
         ]
         Tracker.sharedInstance.track(.DetailItemTapped, properties: properties)
     }

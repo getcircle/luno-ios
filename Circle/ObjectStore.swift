@@ -15,16 +15,16 @@ class ObjectStore {
         case Profile
         case Team
         case Address
-        case Skill
-        case ActiveSkill
+        case Interest
+        case ActiveInterest
     }
     
     class Objects {
         var profiles: Array<ProfileService.Containers.Profile>?
         var teams: Array<OrganizationService.Containers.Team>?
         var addresses: Array<OrganizationService.Containers.Address>?
-        var skills: Array<ProfileService.Containers.Tag>?
-        var activeSkills: Array<ProfileService.Containers.Tag>?
+        var interests: Array<ProfileService.Containers.Tag>?
+        var activeInterests: Array<ProfileService.Containers.Tag>?
         var locations: Array<OrganizationService.Containers.Location>?
     }
     
@@ -39,8 +39,8 @@ class ObjectStore {
     private(set) var teams = Dictionary<String, OrganizationService.Containers.Team>()
     private(set) var addresses = Dictionary<String, OrganizationService.Containers.Address>()
     private(set) var locations = Dictionary<String, OrganizationService.Containers.Location>()
-    private(set) var skills = Dictionary<String, ProfileService.Containers.Tag>()
-    private(set) var activeSkills = Dictionary<String, ProfileService.Containers.Tag>()
+    private(set) var interests = Dictionary<String, ProfileService.Containers.Tag>()
+    private(set) var activeInterests = Dictionary<String, ProfileService.Containers.Tag>()
     
     func repopulate() {
         if let currentProfile = AuthViewController.getLoggedInUserProfile() {
@@ -63,8 +63,8 @@ class ObjectStore {
                 self.update(objects)
         }
         
-        ProfileService.Actions.getSkills(profile.organization_id) { (skills, error) -> Void in
-            objects.skills = skills
+        ProfileService.Actions.getInterests(profile.organization_id) { (interests, error) -> Void in
+            objects.interests = interests
             self.update(objects)
         }
         
@@ -78,9 +78,9 @@ class ObjectStore {
             self.update(objects)
         }
         
-        ProfileService.Actions.getActiveSkills(profile.organization_id) { (skills, error) -> Void in
-            objects.skills = skills
-            objects.activeSkills = skills
+        ProfileService.Actions.getActiveInterests(profile.organization_id) { (interests, error) -> Void in
+            objects.interests = interests
+            objects.activeInterests = interests
             self.update(objects)
         }
         
@@ -115,16 +115,16 @@ class ObjectStore {
             locations = cache as [String: OrganizationService.Containers.Location]
         }
         
-        if let containers = objects.skills {
-            var cache = skills as [String: GeneratedMessage]
+        if let containers = objects.interests {
+            var cache = interests as [String: GeneratedMessage]
             updateCache(&cache, containers: containers)
-            skills = cache as [String: ProfileService.Containers.Tag]
+            interests = cache as [String: ProfileService.Containers.Tag]
         }
         
-        if let containers = objects.activeSkills {
-            var cache = activeSkills as [String: GeneratedMessage]
+        if let containers = objects.activeInterests {
+            var cache = activeInterests as [String: GeneratedMessage]
             updateCache(&cache, containers: containers)
-            activeSkills = cache as [String: ProfileService.Containers.Tag]
+            activeInterests = cache as [String: ProfileService.Containers.Tag]
         }
     }
     
@@ -143,14 +143,14 @@ class ObjectStore {
             if let address = object as? OrganizationService.Containers.Address {
                 objects.addresses = [address]
             }
-        case .Skill:
-            if let skill = object as? ProfileService.Containers.Tag {
-                objects.skills = [skill]
+        case .Interest:
+            if let interest = object as? ProfileService.Containers.Tag {
+                objects.interests = [interest]
             }
-        case .ActiveSkill:
-            if let skill = object as? ProfileService.Containers.Tag {
-                objects.skills = [skill]
-                objects.activeSkills = [skill]
+        case .ActiveInterest:
+            if let interest = object as? ProfileService.Containers.Tag {
+                objects.interests = [interest]
+                objects.activeInterests = [interest]
             }
         }
         update(objects)
@@ -160,8 +160,8 @@ class ObjectStore {
         profiles.removeAll(keepCapacity: false)
         addresses.removeAll(keepCapacity: false)
         teams.removeAll(keepCapacity: false)
-        skills.removeAll(keepCapacity: false)
-        activeSkills.removeAll(keepCapacity: false)
+        interests.removeAll(keepCapacity: false)
+        activeInterests.removeAll(keepCapacity: false)
         locations.removeAll(keepCapacity: false)
     }
     

@@ -125,8 +125,8 @@ MFMessageComposeViewControllerDelegate {
     func registerNotifications() {
         NSNotificationCenter.defaultCenter().addObserver(
             self,
-            selector: "didSelectSkill:",
-            name: SkillsCollectionViewCellNotifications.onSkillSelectedNotification,
+            selector: "didSelectInterest:",
+            name: InterestsCollectionViewCellNotifications.onInterestSelectedNotification,
             object: nil
         )
         
@@ -149,7 +149,7 @@ MFMessageComposeViewControllerDelegate {
     func unregisterNotifications() {
         NSNotificationCenter.defaultCenter().removeObserver(
             self,
-            name: SkillsCollectionViewCellNotifications.onSkillSelectedNotification,
+            name: InterestsCollectionViewCellNotifications.onInterestSelectedNotification,
             object: nil
         )
         
@@ -162,11 +162,11 @@ MFMessageComposeViewControllerDelegate {
     
     // MARK: - Notification Handlers
     
-    func didSelectSkill(notification: NSNotification) {
+    func didSelectInterest(notification: NSNotification) {
         if let userInfo = notification.userInfo {
-            if let selectedSkill = userInfo["skill"] as? ProfileService.Containers.Tag {
-                let viewController = SkillDetailViewController()
-                (viewController.dataSource as SkillDetailDataSource).selectedSkill = selectedSkill
+            if let selectedInterest = userInfo["interest"] as? ProfileService.Containers.Tag {
+                let viewController = InterestDetailViewController()
+                (viewController.dataSource as InterestDetailDataSource).selectedInterest = selectedInterest
                 viewController.hidesBottomBarWhenPushed = false
                 navigationController?.pushViewController(viewController, animated: true)
             }

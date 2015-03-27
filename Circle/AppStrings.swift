@@ -15,7 +15,7 @@ struct AppStrings {
     static let ActionSheetTakeAPictureButtonTitle = NSLocalizedString("Take a picture", comment: "Button prompt to take a picture using the camera")
 
     static let AddNoteCTATitle = NSLocalizedString("Add private note", comment: "Title of the button to add a private note on a co-worker")
-    static let AddSkillsNavigationTitle = NSLocalizedString("Add Skills", comment: "Title of the view to add skills")
+    static let AddInterestsNavigationTitle = NSLocalizedString("Add Interests", comment: "Title of the view to add interests")
     static let AppreciateCTATitle = NSLocalizedString("Appreciate", comment: "Title of the button to leave an appreciation for a co-worker")
     
     static let CardTitlePeople = NSLocalizedString("People", comment: "Title of the card showing people")
@@ -37,9 +37,10 @@ struct AppStrings {
     static let ProfileSectionOfficeTeamTitle = NSLocalizedString("Office & Team", comment: "Title of the section which shows a user's office and team")
     static let ProfileSectionManagerTitle = NSLocalizedString("Manager", comment: "Title of the section which shows a user's manager")
     static let ProfileSectionManagerTeamTitle = NSLocalizedString("Manager & Team", comment: "Title of the section which shows a user's manager and team")
-    static let ProfileSectionSkillsTitle = NSLocalizedString("Skills", comment: "Title of the section which shows a user's skills")
+    static let ProfileSectionInterestsTitle = NSLocalizedString("Interests", comment: "Title of the section which shows a user's interests")
     static let ProfileSectionExperienceTitle = NSLocalizedString("Experience", comment: "Title of the section which shows a user's experience")
     static let ProfileSectionEducationTitle = NSLocalizedString("Education", comment: "Title of the section which shows a user's education")
+    static let ProfileSectionExpertiseTitle = NSLocalizedString("Expertise", comment: "Title of the section which shows a user's expertise")
     
     static let QuickActionNoneLabel = ""
     static let QuickActionEmailLabel = NSLocalizedString("Email", comment: "Title for button used to send an email")
@@ -49,7 +50,7 @@ struct AppStrings {
     static let QuickActionCallLabel = NSLocalizedString("Call", comment: "Title for button used to initiate a call")
     static let QuickActionSlackLabel = NSLocalizedString("Slack", comment: "Title for button used send a message via Slack")
     
-    static let QuickActionNonePlaceholder = NSLocalizedString("Find people, teams, and skills", comment: "Placeholder text for search field used to search people, teams and skills.")
+    static let QuickActionNonePlaceholder = NSLocalizedString("Find people, teams, and interests", comment: "Placeholder text for search field used to search people, teams and interests.")
     static let QuickActionEmailPlaceholder = NSLocalizedString("Who do you want to email?", comment: "Placeholder for search field used to search for the person user intends to email")
     static let QuickActionInfoPlaceholder = NSLocalizedString("Who do you want contact info on?", comment: "Placeholder for search field used to search for the person user intends to email")
     static let QuickActionMessagePlaceholder = NSLocalizedString("Who do you want to message?", comment: "Placeholder for search field used to search for the person user intends to send a message")
@@ -59,6 +60,6 @@ struct AppStrings {
     
     static let SocialConnectLinkedInCTA = NSLocalizedString("Connect with LinkedIn", comment: "Button title for connect with LinkedIn button")
 
-    static let TextPlaceholderFilterSkills = NSLocalizedString("Filter skills", comment: "Placeholder text for filter skills input box")
+    static let TextPlaceholderFilterInterests = NSLocalizedString("Filter interests", comment: "Placeholder text for filter interests input box")
     
 }

@@ -325,12 +325,12 @@ class SearchViewController: UIViewController,
                     viewController.title = "Teams"
                     (viewController.dataSource as TeamsOverviewDataSource).configureForOrganization()
                     navigationController?.pushViewController(viewController, animated: true)
-                case .Skills:
+                case .Interests:
                     // TODO This should be coming from a paginated data source
-                    let skillsOverviewViewController = SkillsOverviewViewController(nibName: "SkillsOverviewViewController", bundle: nil)
-                    skillsOverviewViewController.title = "Skills"
-                    skillsOverviewViewController.dataSource.setInitialData(content: ObjectStore.sharedInstance.activeSkills.values.array)
-                    navigationController?.pushViewController(skillsOverviewViewController, animated: true)
+                    let interestsOverviewViewController = InterestsOverviewViewController(nibName: "InterestsOverviewViewController", bundle: nil)
+                    interestsOverviewViewController.title = "Interests"
+                    interestsOverviewViewController.dataSource.setInitialData(content: ObjectStore.sharedInstance.activeInterests.values.array)
+                    navigationController?.pushViewController(interestsOverviewViewController, animated: true)
                 }
                 
             default:
@@ -352,14 +352,14 @@ class SearchViewController: UIViewController,
         )
     }
     
-    //MARK: - Skill Selected Notification
+    //MARK: - Interest Selected Notification
     
-    func didSelectSkill(notification: NSNotification) {
+    func didSelectInterest(notification: NSNotification) {
         if let userInfo = notification.userInfo {
-            if let selectedSkill = userInfo["skill"] as? ProfileService.Containers.Tag {
-                trackSkillSelected(selectedSkill)
-                let viewController = SkillDetailViewController()
-                (viewController.dataSource as SkillDetailDataSource).selectedSkill = selectedSkill
+            if let selectedInterest = userInfo["interest"] as? ProfileService.Containers.Tag {
+                trackInterestSelected(selectedInterest)
+                let viewController = InterestDetailViewController()
+                (viewController.dataSource as InterestDetailDataSource).selectedInterest = selectedInterest
                 viewController.hidesBottomBarWhenPushed = false
                 navigationController?.pushViewController(viewController, animated: true)
             }
@@ -394,12 +394,12 @@ class SearchViewController: UIViewController,
         case .Offices:
             break
             
-        case .Skills:
-            let skillsOverviewViewController = SkillsOverviewViewController(nibName: "SkillsOverviewViewController", bundle: nil)
-            skillsOverviewViewController.dataSource.setInitialData(content: card.allContent[0] as [AnyObject])
-            skillsOverviewViewController.title = card.title
-            skillsOverviewViewController.hidesBottomBarWhenPushed = false
-            navigationController?.pushViewController(skillsOverviewViewController, animated: true)
+        case .Interests:
+            let interestsOverviewViewController = InterestsOverviewViewController(nibName: "InterestsOverviewViewController", bundle: nil)
+            interestsOverviewViewController.dataSource.setInitialData(content: card.allContent[0] as [AnyObject])
+            interestsOverviewViewController.title = card.title
+            interestsOverviewViewController.hidesBottomBarWhenPushed = false
+            navigationController?.pushViewController(interestsOverviewViewController, animated: true)
             
         case .Notes:
             let viewController = NotesOverviewViewController(nibName: "NotesOverviewViewController", bundle: nil)
@@ -422,16 +422,16 @@ class SearchViewController: UIViewController,
             viewController.title = card.title
             viewController.searchHeaderView?.searchTextField.text = searchHeaderView.searchTextField.text
             navigationController?.pushViewController(viewController, animated: true)
-        case .Skills:
-            let skillsOverviewViewController = SkillsOverviewViewController(
-                nibName: "SkillsOverviewViewController",
+        case .Interests:
+            let interestsOverviewViewController = InterestsOverviewViewController(
+                nibName: "InterestsOverviewViewController",
                 bundle: nil,
                 isFilterView: true
             )
-            skillsOverviewViewController.dataSource.setInitialData(content: card.allContent[0] as [AnyObject])
-            skillsOverviewViewController.title = card.title
-            skillsOverviewViewController.searchHeaderView.searchTextField.text = searchHeaderView.searchTextField.text
-            navigationController?.pushViewController(skillsOverviewViewController, animated: true)
+            interestsOverviewViewController.dataSource.setInitialData(content: card.allContent[0] as [AnyObject])
+            interestsOverviewViewController.title = card.title
+            interestsOverviewViewController.searchHeaderView.searchTextField.text = searchHeaderView.searchTextField.text
+            navigationController?.pushViewController(interestsOverviewViewController, animated: true)
         case .Team:
             let viewController = TeamsOverviewViewController(isFilterView: true)
             viewController.dataSource.setInitialData(card.allContent, ofType: nil)
@@ -478,8 +478,8 @@ class SearchViewController: UIViewController,
         unregisterNotifications(true)
         NSNotificationCenter.defaultCenter().addObserver(
             self,
-            selector: "didSelectSkill:",
-            name: SkillsCollectionViewCellNotifications.onSkillSelectedNotification,
+            selector: "didSelectInterest:",
+            name: InterestsCollectionViewCellNotifications.onInterestSelectedNotification,
             object: nil
         )
         
@@ -507,7 +507,7 @@ class SearchViewController: UIViewController,
             // specifically the ones that modify the view hierarchy
             NSNotificationCenter.defaultCenter().removeObserver(
                 self,
-                name: SkillsCollectionViewCellNotifications.onSkillSelectedNotification,
+                name: InterestsCollectionViewCellNotifications.onInterestSelectedNotification,
                 object: nil
             )
 
@@ -634,13 +634,13 @@ class SearchViewController: UIViewController,
         Tracker.sharedInstance.track(.CardHeaderTapped, properties: properties)
     }
     
-    private func trackSkillSelected(skill: ProfileService.Containers.Tag) {
+    private func trackInterestSelected(interest: ProfileService.Containers.Tag) {
         let properties = [
             TrackerProperty.withKey(.ActiveViewController).withString(self.dynamicType.description()),
             TrackerProperty.withKey(.Source).withSource(.Home),
             TrackerProperty.withKey(.Destination).withSource(.Detail),
-            TrackerProperty.withKey(.DestinationDetailType).withDetailType(.Skill),
-            TrackerProperty.withDestinationId("skill_id").withString(skill.id)
+            TrackerProperty.withKey(.DestinationDetailType).withDetailType(.Interest),
+            TrackerProperty.withDestinationId("interest_id").withString(interest.id)
         ]
         Tracker.sharedInstance.track(.DetailItemTapped, properties: properties)
     }

@@ -307,8 +307,8 @@ class VerifyProfileViewController:
     }
     
     private func verificationComplete() {
-        let skillSelectorVC = SkillSelectorViewController(nibName: "SkillSelectorViewController", bundle: nil)
-        skillSelectorVC.theme = .Onboarding
-        navigationController?.pushViewController(skillSelectorVC, animated: true)
+        let interestSelectorVC = InterestSelectorViewController(nibName: "InterestSelectorViewController", bundle: nil)
+        interestSelectorVC.theme = .Onboarding
+        navigationController?.pushViewController(interestSelectorVC, animated: true)
     }
 }
