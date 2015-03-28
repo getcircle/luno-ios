@@ -538,8 +538,7 @@ class ProfileDetailDataSource: CardDataSource {
             let quickActionsCell = cell as QuickActionsCollectionViewCell
             quickActionsCell.backgroundColor = UIColor.whiteColor()
             quickActionsCell.quickActions = [.Phone, .Message, .Email, .MoreInfo]
-            quickActionsCell.hideLabels()
-        }        
+        }
     }
     
     // MARK: - Cell Type

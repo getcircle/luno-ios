@@ -12,20 +12,12 @@ import ProtobufRegistry
 class QuickActionsCollectionViewCell: CircleCollectionViewCell {
 
     @IBOutlet weak private(set) var firstButton: CircleButton!
-    @IBOutlet weak private(set) var firstButtonLabel: UILabel!
-    @IBOutlet weak private(set) var firstButtonTopConstraint: NSLayoutConstraint!
     @IBOutlet weak private(set) var fourthButton: CircleButton!
-    @IBOutlet weak private(set) var fourthButtonLabel: UILabel!
     @IBOutlet weak private(set) var secondButton: CircleButton!
-    @IBOutlet weak private(set) var secondButtonLabel: UILabel!
     @IBOutlet weak private(set) var thirdButton: CircleButton!
-    @IBOutlet weak private(set) var thirdButtonLabel: UILabel!
     
     private var actionButtons = [UIButton]()
-    private var actionButtonLabels = [UILabel]()
-    private var areLabelsHidden = false
     private let defaultQuickActions: [QuickAction] = [.Phone, .Message, .Email, .Note]
-    private var firstButtonTopConstraintInitialValue: CGFloat = 0.0
     private var profile: ProfileService.Containers.Profile?
     
     /**
@@ -46,18 +38,12 @@ class QuickActionsCollectionViewCell: CircleCollectionViewCell {
     override class var height: CGFloat {
         return 70.0
     }
-    
-    override class var sizeCalculationMethod: SizeCalculation {
-        return .Dynamic
-    }
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
 
         // Initialization code
         actionButtons = [firstButton, secondButton, thirdButton, fourthButton]
-        actionButtonLabels = [firstButtonLabel, secondButtonLabel, thirdButtonLabel, fourthButtonLabel]
-        firstButtonTopConstraintInitialValue = firstButtonTopConstraint.constant
         configureButtons()
         selectedBackgroundView = nil
     }
@@ -70,7 +56,6 @@ class QuickActionsCollectionViewCell: CircleCollectionViewCell {
             if index < quickActionsToAdd.count {
                 let metaInfo = QuickAction.metaInfoForQuickAction(quickActionsToAdd[index])
                 button.setImage(UIImage(named: metaInfo.imageSource), forState: .Normal)
-                actionButtonLabels[index].text = metaInfo.actionLabel.localizedUppercaseString()
                 button.convertToTemplateImageForState(.Normal)
                 button.alpha = 1.0
                 button.tag = index
@@ -93,40 +78,7 @@ class QuickActionsCollectionViewCell: CircleCollectionViewCell {
             }
         }
     }
-    
-    // MARK: Hide, Show Labels
-    
-    func hideLabels() {
-        for buttonLabel in actionButtonLabels {
-            buttonLabel.alpha = 0.0
-        }
-        
-        
-        areLabelsHidden = true
-        setTopConstaintToValue((frameHeight - thirdButton.frameHeight) / 2)
-    }
-    
-    func showLabels() {
-        for buttonLabel in actionButtonLabels {
-            buttonLabel.alpha = 1.0
-        }
-        
-        areLabelsHidden = false
-        setTopConstaintToValue(firstButtonTopConstraintInitialValue)
-    }
-    
-    private func setTopConstaintToValue(value: CGFloat) {
-        firstButtonTopConstraint.constant = value
-        for button in actionButtons {
-            button.setNeedsUpdateConstraints()
-            button.layoutIfNeeded()
-        }
-    }
 
-    override func intrinsicContentSize() -> CGSize {
-        return CGSizeMake(CircleCollectionViewCell.width, areLabelsHidden == true ? 70.0 : 90.0)
-    }
-    
     // MARK: - IBActions
     
     @IBAction func quickActionTapped(sender: UIButton!) {
