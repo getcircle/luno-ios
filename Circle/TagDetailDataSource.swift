@@ -1,5 +1,5 @@
 //
-//  InterestDetailDataSource.swift
+//  TagDetailDataSource.swift
 //  Circle
 //
 //  Created by Ravi Rani on 1/15/15.
@@ -9,12 +9,12 @@
 import UIKit
 import ProtobufRegistry
 
-class InterestDetailDataSource: CardDataSource {
+class TagDetailDataSource: CardDataSource {
     
-    var selectedInterest: ProfileService.Containers.Tag!
+    var selectedTag: ProfileService.Containers.Tag!
     
     private var profiles = Array<ProfileService.Containers.Profile>()
-    private(set) var profileHeaderView: InterestHeaderCollectionReusableView?
+    private(set) var profileHeaderView: TagHeaderCollectionReusableView?
     
     // MARK: - Load Data
     
@@ -25,17 +25,17 @@ class InterestDetailDataSource: CardDataSource {
         }
         
         // Add a placeholder card for interest view
-        let placeholderInterestCard = Card(cardType: .Placeholder, title: "Interest Header")
-        placeholderInterestCard.sectionInset = UIEdgeInsetsZero
-        placeholderInterestCard.addHeader(headerClass: InterestHeaderCollectionReusableView.self)
-        appendCard(placeholderInterestCard)
+        let placeholderTagCard = Card(cardType: .Placeholder, title: "Tag Header")
+        placeholderTagCard.sectionInset = UIEdgeInsetsZero
+        placeholderTagCard.addHeader(headerClass: TagHeaderCollectionReusableView.self)
+        appendCard(placeholderTagCard)
         
         if let currentProfile = AuthViewController.getLoggedInUserProfile() {
             let profile = AuthViewController.getLoggedInUserProfile()!
-            ProfileService.Actions.getProfiles(interestId: selectedInterest!.id, organizationId: profile.organization_id) { (profiles, _, error) -> Void in
+            ProfileService.Actions.getProfiles(interestId: selectedTag!.id, organizationId: profile.organization_id) { (profiles, _, error) -> Void in
                 if let profiles = profiles {
                     self.profiles.extend(profiles)
-                    let peopleCard = Card(cardType: .Profiles, title: "People by Interest")
+                    let peopleCard = Card(cardType: .Profiles, title: "People by Tag")
                     peopleCard.addContent(content: profiles as [AnyObject])
                     peopleCard.sectionInset = UIEdgeInsetsZero
                     self.appendCard(peopleCard)
@@ -52,8 +52,8 @@ class InterestDetailDataSource: CardDataSource {
     override func configureHeader(header: CircleCollectionReusableView, atIndexPath indexPath: NSIndexPath) {
         super.configureHeader(header, atIndexPath: indexPath)
         
-        if let interestsHeader = header as? InterestHeaderCollectionReusableView {
-            interestsHeader.setInterest(selectedInterest)
+        if let interestsHeader = header as? TagHeaderCollectionReusableView {
+            interestsHeader.setTag(selectedTag)
             profileHeaderView = interestsHeader
         }
     }

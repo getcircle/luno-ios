@@ -195,10 +195,10 @@ class CurrentUserProfileDetailViewController: ProfileDetailViewController,
             navigationController?.presentViewController(aboutViewNavController, animated: true, completion: nil)
             break
             
-        case .Interests:
-            let interestSelectorViewController = InterestSelectorViewController(nibName: "InterestSelectorViewController", bundle: nil)
+        case .Tags:
+            let interestSelectorViewController = TagScrollingSelectorViewController(nibName: "TagScrollingSelectorViewController", bundle: nil)
             if let interests = (dataSource as CurrentUserProfileDetailDataSource).interests {
-                interestSelectorViewController.preSelectInterests = interests
+                interestSelectorViewController.preSelectTags = interests
             }
             let interestsNavController = UINavigationController(rootViewController: interestSelectorViewController)
             navigationController?.presentViewController(interestsNavController, animated: true, completion: nil)

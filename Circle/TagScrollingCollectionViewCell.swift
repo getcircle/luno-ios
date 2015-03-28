@@ -1,5 +1,5 @@
 //
-//  InterestsCollectionViewCell.swift
+//  TagScrollingCollectionViewCell.swift
 //  Circle
 //
 //  Created by Ravi Rani on 12/29/14.
@@ -9,14 +9,14 @@
 import UIKit
 import ProtobufRegistry
 
-struct InterestsCollectionViewCellNotifications {
-    static let onInterestSelectedNotification = "com.ravcode.notification:onInterestSelectedNotification"
+struct TagScrollingCollectionViewCellNotifications {
+    static let onTagSelectedNotification = "com.ravcode.notification:onTagSelectedNotification"
 }
 
-class InterestsCollectionViewCell: CircleCollectionViewCell, UICollectionViewDataSource, UICollectionViewDelegate {
+class TagScrollingCollectionViewCell: CircleCollectionViewCell, UICollectionViewDataSource, UICollectionViewDelegate {
 
     override class var classReuseIdentifier: String {
-        return "InterestsCollectionViewCell"
+        return "TagScrollingCollectionViewCell"
     }
 
     override class var height: CGFloat {
@@ -29,7 +29,7 @@ class InterestsCollectionViewCell: CircleCollectionViewCell, UICollectionViewDat
 
     @IBOutlet weak private(set) var collectionView: UICollectionView!
     
-    var prototypeCell: InterestCollectionViewCell!
+    var prototypeCell: TagCollectionViewCell!
     
     // pass backgroundColor changes to the collectionView
     override var backgroundColor: UIColor? {
@@ -39,7 +39,7 @@ class InterestsCollectionViewCell: CircleCollectionViewCell, UICollectionViewDat
         }
     }
     
-    var selectedInterest: ProfileService.Containers.Tag?
+    var selectedTag: ProfileService.Containers.Tag?
     private var interests = Array<ProfileService.Containers.Tag>()
     
     override func awakeFromNib() {
@@ -60,15 +60,15 @@ class InterestsCollectionViewCell: CircleCollectionViewCell, UICollectionViewDat
         collectionView.allowsSelection = true
         collectionView.bounces = false
         collectionView.registerNib(
-            UINib(nibName: "InterestCollectionViewCell", bundle: nil),
-            forCellWithReuseIdentifier: InterestCollectionViewCell.classReuseIdentifier
+            UINib(nibName: "TagCollectionViewCell", bundle: nil),
+            forCellWithReuseIdentifier: TagCollectionViewCell.classReuseIdentifier
         )
     }
     
     private func configurePrototypeCell() {
         // Init prototype cell
-        let cellNibViews = NSBundle.mainBundle().loadNibNamed("InterestCollectionViewCell", owner: self, options: nil)
-        prototypeCell = cellNibViews.first as InterestCollectionViewCell
+        let cellNibViews = NSBundle.mainBundle().loadNibNamed("TagCollectionViewCell", owner: self, options: nil)
+        prototypeCell = cellNibViews.first as TagCollectionViewCell
     }
 
     // MARK: - UICollectionViewDataSource
@@ -84,9 +84,9 @@ class InterestsCollectionViewCell: CircleCollectionViewCell, UICollectionViewDat
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let interest = interests[indexPath.row]
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(
-            InterestCollectionViewCell.classReuseIdentifier,
+            TagCollectionViewCell.classReuseIdentifier,
             forIndexPath: indexPath
-        ) as InterestCollectionViewCell
+        ) as TagCollectionViewCell
         
         cell.interestLabel.text = interest.name
         cell.interestLabel.backgroundColor = collectionView.backgroundColor
@@ -114,9 +114,9 @@ class InterestsCollectionViewCell: CircleCollectionViewCell, UICollectionViewDat
 
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let interest = interests[indexPath.row]
-        selectedInterest = interest
+        selectedTag = interest
         NSNotificationCenter.defaultCenter().postNotificationName(
-            InterestsCollectionViewCellNotifications.onInterestSelectedNotification,
+            TagScrollingCollectionViewCellNotifications.onTagSelectedNotification,
             object: nil,
             userInfo: ["interest": interest]
         )
@@ -124,14 +124,14 @@ class InterestsCollectionViewCell: CircleCollectionViewCell, UICollectionViewDat
     }
     
     func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
-        selectedInterest = nil
+        selectedTag = nil
     }
     
     // MARK: - Data Setter
     
     override func setData(data: AnyObject) {
-        if let arrayOfInterests = data as? [ProfileService.Containers.Tag] {
-            interests = arrayOfInterests
+        if let arrayOfTags = data as? [ProfileService.Containers.Tag] {
+            interests = arrayOfTags
             collectionView.reloadData()
         }
     }

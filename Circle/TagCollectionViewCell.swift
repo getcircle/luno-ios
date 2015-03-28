@@ -1,5 +1,5 @@
 //
-//  InterestCollectionViewCell.swift
+//  TagCollectionViewCell.swift
 //  Circle
 //
 //  Created by Ravi Rani on 12/26/14.
@@ -8,12 +8,12 @@
 
 import UIKit
 
-class InterestCollectionViewCell: CircleCollectionViewCell {
+class TagCollectionViewCell: CircleCollectionViewCell {
 
     @IBOutlet weak private(set) var interestLabel: PaddedLabel!
 
     override class var classReuseIdentifier: String {
-        return "InterestCollectionViewCell"
+        return "TagCollectionViewCell"
     }
     
     override class var height: CGFloat {
@@ -25,12 +25,12 @@ class InterestCollectionViewCell: CircleCollectionViewCell {
     }
     
     var defaultTextColor = UIColor.appDefaultDarkTextColor()
-    var defaultBackgroundColor = UIColor.appInterestNormalBackgroundColor()
-    var defaultBorderColor = UIColor.appInterestNormalBorderColor()
+    var defaultBackgroundColor = UIColor.appTagNormalBackgroundColor()
+    var defaultBorderColor = UIColor.appTagNormalBorderColor()
 
     var highlightedTextColor = UIColor.appDefaultLightTextColor()
-    var highlightedBackgroundColor = UIColor.appInterestSelectedBackgroundColor()
-    var highlightedBorderColor = UIColor.appInterestNormalBackgroundColor()
+    var highlightedBackgroundColor = UIColor.appTagSelectedBackgroundColor()
+    var highlightedBorderColor = UIColor.appTagNormalBackgroundColor()
 
     override func awakeFromNib() {
         super.awakeFromNib()

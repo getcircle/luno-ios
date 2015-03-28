@@ -15,8 +15,8 @@ class ObjectStore {
         case Profile
         case Team
         case Address
-        case Interest
-        case ActiveInterest
+        case Tag
+        case ActiveTag
     }
     
     class Objects {
@@ -24,7 +24,7 @@ class ObjectStore {
         var teams: Array<OrganizationService.Containers.Team>?
         var addresses: Array<OrganizationService.Containers.Address>?
         var interests: Array<ProfileService.Containers.Tag>?
-        var activeInterests: Array<ProfileService.Containers.Tag>?
+        var activeTags: Array<ProfileService.Containers.Tag>?
         var locations: Array<OrganizationService.Containers.Location>?
     }
     
@@ -40,7 +40,7 @@ class ObjectStore {
     private(set) var addresses = Dictionary<String, OrganizationService.Containers.Address>()
     private(set) var locations = Dictionary<String, OrganizationService.Containers.Location>()
     private(set) var interests = Dictionary<String, ProfileService.Containers.Tag>()
-    private(set) var activeInterests = Dictionary<String, ProfileService.Containers.Tag>()
+    private(set) var activeTags = Dictionary<String, ProfileService.Containers.Tag>()
     
     func repopulate() {
         if let currentProfile = AuthViewController.getLoggedInUserProfile() {
@@ -63,7 +63,7 @@ class ObjectStore {
                 self.update(objects)
         }
         
-        ProfileService.Actions.getInterests(profile.organization_id) { (interests, error) -> Void in
+        ProfileService.Actions.getTags(profile.organization_id) { (interests, error) -> Void in
             objects.interests = interests
             self.update(objects)
         }
@@ -78,9 +78,9 @@ class ObjectStore {
             self.update(objects)
         }
         
-        ProfileService.Actions.getActiveInterests(profile.organization_id) { (interests, error) -> Void in
+        ProfileService.Actions.getActiveTags(profile.organization_id) { (interests, error) -> Void in
             objects.interests = interests
-            objects.activeInterests = interests
+            objects.activeTags = interests
             self.update(objects)
         }
         
@@ -121,10 +121,10 @@ class ObjectStore {
             interests = cache as [String: ProfileService.Containers.Tag]
         }
         
-        if let containers = objects.activeInterests {
-            var cache = activeInterests as [String: GeneratedMessage]
+        if let containers = objects.activeTags {
+            var cache = activeTags as [String: GeneratedMessage]
             updateCache(&cache, containers: containers)
-            activeInterests = cache as [String: ProfileService.Containers.Tag]
+            activeTags = cache as [String: ProfileService.Containers.Tag]
         }
     }
     
@@ -143,14 +143,14 @@ class ObjectStore {
             if let address = object as? OrganizationService.Containers.Address {
                 objects.addresses = [address]
             }
-        case .Interest:
+        case .Tag:
             if let interest = object as? ProfileService.Containers.Tag {
                 objects.interests = [interest]
             }
-        case .ActiveInterest:
+        case .ActiveTag:
             if let interest = object as? ProfileService.Containers.Tag {
                 objects.interests = [interest]
-                objects.activeInterests = [interest]
+                objects.activeTags = [interest]
             }
         }
         update(objects)
@@ -161,7 +161,7 @@ class ObjectStore {
         addresses.removeAll(keepCapacity: false)
         teams.removeAll(keepCapacity: false)
         interests.removeAll(keepCapacity: false)
-        activeInterests.removeAll(keepCapacity: false)
+        activeTags.removeAll(keepCapacity: false)
         locations.removeAll(keepCapacity: false)
     }
     

@@ -125,8 +125,8 @@ MFMessageComposeViewControllerDelegate {
     func registerNotifications() {
         NSNotificationCenter.defaultCenter().addObserver(
             self,
-            selector: "didSelectInterest:",
-            name: InterestsCollectionViewCellNotifications.onInterestSelectedNotification,
+            selector: "didSelectTag:",
+            name: TagScrollingCollectionViewCellNotifications.onTagSelectedNotification,
             object: nil
         )
         
@@ -149,7 +149,7 @@ MFMessageComposeViewControllerDelegate {
     func unregisterNotifications() {
         NSNotificationCenter.defaultCenter().removeObserver(
             self,
-            name: InterestsCollectionViewCellNotifications.onInterestSelectedNotification,
+            name: TagScrollingCollectionViewCellNotifications.onTagSelectedNotification,
             object: nil
         )
         
@@ -162,11 +162,11 @@ MFMessageComposeViewControllerDelegate {
     
     // MARK: - Notification Handlers
     
-    func didSelectInterest(notification: NSNotification) {
+    func didSelectTag(notification: NSNotification) {
         if let userInfo = notification.userInfo {
-            if let selectedInterest = userInfo["interest"] as? ProfileService.Containers.Tag {
-                let viewController = InterestDetailViewController()
-                (viewController.dataSource as InterestDetailDataSource).selectedInterest = selectedInterest
+            if let selectedTag = userInfo["interest"] as? ProfileService.Containers.Tag {
+                let viewController = TagDetailViewController()
+                (viewController.dataSource as TagDetailDataSource).selectedTag = selectedTag
                 viewController.hidesBottomBarWhenPushed = false
                 navigationController?.pushViewController(viewController, animated: true)
             }

@@ -1,5 +1,5 @@
 //
-//  InterestHeaderCollectionReusableView.swift
+//  TagHeaderCollectionReusableView.swift
 //  Circle
 //
 //  Created by Ravi Rani on 1/15/15.
@@ -9,10 +9,10 @@
 import UIKit
 import ProtobufRegistry
 
-class InterestHeaderCollectionReusableView: CircleCollectionReusableView {
+class TagHeaderCollectionReusableView: CircleCollectionReusableView {
 
     override class var classReuseIdentifier: String {
-        return "InterestHeaderCollectionReusableView"
+        return "TagHeaderCollectionReusableView"
     }
     
     override class var height: CGFloat {
@@ -34,7 +34,7 @@ class InterestHeaderCollectionReusableView: CircleCollectionReusableView {
         interestLabelInitialFontSize = interestNameLabel.font.pointSize
     }
     
-    func setInterest(interest: ProfileService.Containers.Tag) {
+    func setTag(interest: ProfileService.Containers.Tag) {
         interestNameLabel.attributedText = NSAttributedString(
             string: interest.name.uppercaseString,
             attributes: [NSKernAttributeName: 2.0]

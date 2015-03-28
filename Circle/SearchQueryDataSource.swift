@@ -18,7 +18,7 @@ class SearchQueryDataSource: CardDataSource {
     private var visibleProfiles = Array<ProfileService.Containers.Profile>()
     private var visibleTeams = Array<OrganizationService.Containers.Team>()
     private var visibleAddresses = Array<OrganizationService.Containers.Address>()
-    private var visibleInterests = Array<ProfileService.Containers.Tag>()
+    private var visibleTags = Array<ProfileService.Containers.Tag>()
     
     override func loadData(completionHandler: (error: NSError?) -> Void) {
     }
@@ -37,7 +37,7 @@ class SearchQueryDataSource: CardDataSource {
                     self.visibleAddresses = addresses
                 }
                 if let interests = results.interests {
-                    self.visibleInterests = interests
+                    self.visibleTags = interests
                 }
                 self.updateVisibleCards()
             }
@@ -85,16 +85,16 @@ class SearchQueryDataSource: CardDataSource {
             appendCard(teamsCard)
         }
         
-        if visibleInterests.count > 0 {
+        if visibleTags.count > 0 {
             let maxVisibleItems = 10
             var interestsShowContentCount = true
-            if visibleInterests.count <= maxVisibleItems {
+            if visibleTags.count <= maxVisibleItems {
                 interestsShowContentCount = false
             }
-            let interestsCard = Card(cardType: .Interests, title: "Interests", showContentCount: interestsShowContentCount)
+            let interestsCard = Card(cardType: .Tags, title: "Tags", showContentCount: interestsShowContentCount)
             interestsCard.addHeader(headerClass: headerClass)
-            interestsCard.addContent(content: visibleInterests as [AnyObject], maxVisibleItems: 10)
-            interestsCard.contentCount = visibleInterests.count
+            interestsCard.addContent(content: visibleTags as [AnyObject], maxVisibleItems: 10)
+            interestsCard.contentCount = visibleTags.count
             interestsCard.sectionInset = sectionInset
             appendCard(interestsCard)
         }
@@ -121,9 +121,9 @@ class SearchQueryDataSource: CardDataSource {
                     "type": StatTileCollectionViewCell.TileType.Teams.rawValue
                 ],
                 [
-                    "title": "Interests",
-                    "value": ObjectStore.sharedInstance.activeInterests.values.array.count,
-                    "type": StatTileCollectionViewCell.TileType.Interests.rawValue
+                    "title": "Tags",
+                    "value": ObjectStore.sharedInstance.activeTags.values.array.count,
+                    "type": StatTileCollectionViewCell.TileType.Tags.rawValue
                 ]
             ] as [AnyObject]
             statsCard.addContent(content: stats)
@@ -141,7 +141,7 @@ class SearchQueryDataSource: CardDataSource {
         } else if cell is StatTileCollectionViewCell {
             cell.backgroundColor = UIColor.whiteColor()
             cell.addRoundCorners(radius: 5.0)
-        } else if cell is InterestsCollectionViewCell {
+        } else if cell is TagScrollingCollectionViewCell {
             cell.backgroundColor = UIColor.clearColor()
         }
     }

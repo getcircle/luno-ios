@@ -75,7 +75,7 @@ class Card: Equatable {
         case Education = "Education"
         case Group = "Group"
         case KeyValue = "KeyValue"
-        case Interests = "Interests"
+        case Tags = "Tags"
         case Offices = "Offices"
         case OfficeAddress = "Office Address"
         case NewHires = "NewHires"
@@ -165,10 +165,10 @@ class Card: Equatable {
                     contentType: .Aggregate
                 )
 
-            case Interests:
+            case Tags:
                 return CardTypeInfo(
                     imageName: "FeedSkills",
-                    classType: InterestsCollectionViewCell.self,
+                    classType: TagScrollingCollectionViewCell.self,
                     contentType: .Aggregate
                 )
 
@@ -238,7 +238,7 @@ class Card: Equatable {
             case Skills:
                 return CardTypeInfo(
                     imageName: "FeedSkills",
-                    classType: InterestsCollectionViewCell.self,
+                    classType: TagScrollingCollectionViewCell.self,
                     contentType: .Aggregate
                 )
 
@@ -357,7 +357,7 @@ class Card: Equatable {
         case .Locations:
             cardType = .Offices
         case .Interests:
-            cardType = .Interests
+            cardType = .Tags
         case .Executives:
             cardType = .Profiles
         case .Departments:

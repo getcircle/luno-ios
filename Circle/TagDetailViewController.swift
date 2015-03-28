@@ -1,5 +1,5 @@
 //
-//  InterestDetailViewController.swift
+//  TagDetailViewController.swift
 //  Circle
 //
 //  Created by Ravi Rani on 1/15/15.
@@ -9,14 +9,14 @@
 import UIKit
 import ProtobufRegistry
 
-class InterestDetailViewController: DetailViewController {
+class TagDetailViewController: DetailViewController {
 
     // MARK: - Initialization
     
     override func customInit() {
         super.customInit()
 
-        dataSource = InterestDetailDataSource()
+        dataSource = TagDetailDataSource()
         delegate = CardCollectionViewDelegate()
     }
     
@@ -29,7 +29,7 @@ class InterestDetailViewController: DetailViewController {
         // Delegate
         collectionView.delegate = delegate
         
-        (layout as StickyHeaderCollectionViewLayout).headerHeight = InterestHeaderCollectionReusableView.height
+        (layout as StickyHeaderCollectionViewLayout).headerHeight = TagHeaderCollectionReusableView.height
         super.configureCollectionView()
     }
     
@@ -47,7 +47,7 @@ class InterestDetailViewController: DetailViewController {
     // MARK: - Scroll view delegate
 
     func scrollViewDidScroll(scrollView: UIScrollView) {
-        if let profileHeaderView = (collectionView!.dataSource as InterestDetailDataSource).profileHeaderView {
+        if let profileHeaderView = (collectionView!.dataSource as TagDetailDataSource).profileHeaderView {
             let contentOffset = scrollView.contentOffset
             
             // Todo: need to understand how this changes with orientation
@@ -59,7 +59,7 @@ class InterestDetailViewController: DetailViewController {
             // Initial y value is added because for center y constraints this represents additional distance it needs
             // to move down
             let distanceToMove: CGFloat = finalYConstraintValue + initialYConstrainValue
-            let pointAtWhichFinalHeightShouldBeInPlace: CGFloat = InterestHeaderCollectionReusableView.height - navBarStatusBarHeight
+            let pointAtWhichFinalHeightShouldBeInPlace: CGFloat = TagHeaderCollectionReusableView.height - navBarStatusBarHeight
             let pointAtWhichHeightShouldStartIncreasing: CGFloat = pointAtWhichFinalHeightShouldBeInPlace - distanceToMove
             
             // Y Constraint has to be modified only after a certain point

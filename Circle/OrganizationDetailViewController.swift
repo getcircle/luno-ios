@@ -145,8 +145,8 @@ class OrganizationDetailViewController: DetailViewController, CardHeaderViewDele
             trackCardHeaderTapped(card, overviewType: .Offices)
             navigationController?.pushViewController(viewController, animated: true)
             
-        case .Interests:
-            let interestsOverviewViewController = InterestsOverviewViewController(nibName: "InterestsOverviewViewController", bundle: nil)
+        case .Tags:
+            let interestsOverviewViewController = TagsOverviewViewController(nibName: "TagsOverviewViewController", bundle: nil)
             interestsOverviewViewController.dataSource.setInitialData(content: card.allContent[0] as [AnyObject])
             interestsOverviewViewController.title = card.title
             interestsOverviewViewController.hidesBottomBarWhenPushed = false
@@ -174,11 +174,11 @@ class OrganizationDetailViewController: DetailViewController, CardHeaderViewDele
     
     // MARK: - Notification Handlers
     
-    override func didSelectInterest(notification: NSNotification) {
-        super.didSelectInterest(notification)
+    override func didSelectTag(notification: NSNotification) {
+        super.didSelectTag(notification)
         if let userInfo = notification.userInfo {
-            if let selectedInterest = userInfo["interest"] as? ProfileService.Containers.Tag {
-                trackInterestSelected(selectedInterest)
+            if let selectedTag = userInfo["interest"] as? ProfileService.Containers.Tag {
+                trackTagSelected(selectedTag)
             }
         }
     }
@@ -197,12 +197,12 @@ class OrganizationDetailViewController: DetailViewController, CardHeaderViewDele
         Tracker.sharedInstance.track(.CardHeaderTapped, properties: properties)
     }
     
-    private func trackInterestSelected(interest: ProfileService.Containers.Tag) {
+    private func trackTagSelected(interest: ProfileService.Containers.Tag) {
         let properties = [
             TrackerProperty.withKey(.ActiveViewController).withString(self.dynamicType.description()),
             TrackerProperty.withKey(.Source).withSource(.Organization),
             TrackerProperty.withKey(.Destination).withSource(.Detail),
-            TrackerProperty.withKey(.DestinationDetailType).withDetailType(.Interest),
+            TrackerProperty.withKey(.DestinationDetailType).withDetailType(.Tag),
             TrackerProperty.withDestinationId("tag_id").withString(interest.id)
         ]
         Tracker.sharedInstance.track(.DetailItemTapped, properties: properties)

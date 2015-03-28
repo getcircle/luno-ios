@@ -27,9 +27,9 @@ typealias GetExtendedProfileCompletionHandler = (
     location: OrganizationService.Containers.Location?,
     error: NSError?
 ) -> Void
-typealias GetInterestsCompletionHandler = (interests: Array<ProfileService.Containers.Tag>?, error: NSError?) -> Void
+typealias GetTagsCompletionHandler = (interests: Array<ProfileService.Containers.Tag>?, error: NSError?) -> Void
 typealias UpdateProfileCompletionHandler = (profile: ProfileService.Containers.Profile?, error: NSError?) -> Void
-typealias AddInterestsCompletionHandler = (error: NSError?) -> Void
+typealias AddTagsCompletionHandler = (error: NSError?) -> Void
 
 extension ProfileService {
     class Actions {
@@ -155,7 +155,7 @@ extension ProfileService {
             }
         }
         
-        class func getInterests(organizationId: String, completionHandler: GetInterestsCompletionHandler?) {
+        class func getTags(organizationId: String, completionHandler: GetTagsCompletionHandler?) {
             let requestBuilder = ProfileService.GetTags.Request.builder()
             requestBuilder.organization_id = organizationId
             requestBuilder.tag_type = .Interest
@@ -171,7 +171,7 @@ extension ProfileService {
             }
         }
         
-        class func getActiveInterests(organizationId: String, completionHandler: GetInterestsCompletionHandler?) {
+        class func getActiveTags(organizationId: String, completionHandler: GetTagsCompletionHandler?) {
             let requestBuilder = ProfileService.GetActiveTags.Request.builder()
             requestBuilder.organization_id = organizationId
             requestBuilder.tag_type = .Interest
@@ -213,7 +213,7 @@ extension ProfileService {
             }
         }
         
-        class func addInterests(profileId: String, interests: Array<ProfileService.Containers.Tag>, completionHandler: AddInterestsCompletionHandler?) {
+        class func addTags(profileId: String, interests: Array<ProfileService.Containers.Tag>, completionHandler: AddTagsCompletionHandler?) {
             let requestBuilder = ProfileService.AddTags.Request.builder()
             requestBuilder.profile_id = profileId
             requestBuilder.tags = interests

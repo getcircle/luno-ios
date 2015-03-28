@@ -1,5 +1,5 @@
 //
-//  InterestSelectorViewController.swift
+//  TagScrollingSelectorViewController.swift
 //  Circle
 //
 //  Created by Ravi Rani on 12/26/14.
@@ -11,7 +11,7 @@ import ProtobufRegistry
 
 let reuseIdentifier = "Cell"
 
-class InterestSelectorViewController:
+class TagScrollingSelectorViewController:
     UIViewController,
     UITextFieldDelegate,
     SearchHeaderViewDelegate {
@@ -28,10 +28,10 @@ class InterestSelectorViewController:
     @IBOutlet weak private(set) var topGradientView: UIView!
     
     var theme: Themes = .Regular
-    var preSelectInterests: Array<ProfileService.Containers.Tag> = Array<ProfileService.Containers.Tag>() {
+    var preSelectTags: Array<ProfileService.Containers.Tag> = Array<ProfileService.Containers.Tag>() {
         didSet {
-            for interest in preSelectInterests {
-                selectedInterests[interest.hashValue] = interest
+            for interest in preSelectTags {
+                selectedTags[interest.hashValue] = interest
             }
         }
     }
@@ -40,9 +40,9 @@ class InterestSelectorViewController:
     private var bottomLayer: CAGradientLayer!
     private var cachedItemSizes =  [String: CGSize]()
     private var interests = Array<ProfileService.Containers.Tag>()
-    private var filteredInterests = Array<ProfileService.Containers.Tag>()
-    private var selectedInterests = Dictionary<Int, ProfileService.Containers.Tag>()
-    private var prototypeCell: InterestCollectionViewCell!
+    private var filteredTags = Array<ProfileService.Containers.Tag>()
+    private var selectedTags = Dictionary<Int, ProfileService.Containers.Tag>()
+    private var prototypeCell: TagCollectionViewCell!
     private var searchHeaderView: SearchHeaderView!
     private var topLayer: CAGradientLayer!
     
@@ -62,7 +62,7 @@ class InterestSelectorViewController:
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        filteredInterests = interests
+        filteredTags = interests
         collectionView.reloadData()
     }
     
@@ -75,21 +75,21 @@ class InterestSelectorViewController:
     }
     
     private func configureNavigationBar() {
-        title = AppStrings.AddInterestsNavigationTitle
+        title = AppStrings.AddTagsNavigationTitle
         addDoneButtonWithAction("save:")
         addCloseButtonWithAction("cancel:")
     }
     
     private func configurePrototypeCell() {
         // Init prototype cell
-        let cellNibViews = NSBundle.mainBundle().loadNibNamed("InterestCollectionViewCell", owner: self, options: nil)
-        prototypeCell = cellNibViews.first as InterestCollectionViewCell
+        let cellNibViews = NSBundle.mainBundle().loadNibNamed("TagCollectionViewCell", owner: self, options: nil)
+        prototypeCell = cellNibViews.first as TagCollectionViewCell
     }
     
     private func configureCollectionView() {
         collectionView.registerNib(
-            UINib(nibName: "InterestCollectionViewCell", bundle: nil),
-            forCellWithReuseIdentifier: InterestCollectionViewCell.classReuseIdentifier
+            UINib(nibName: "TagCollectionViewCell", bundle: nil),
+            forCellWithReuseIdentifier: TagCollectionViewCell.classReuseIdentifier
         )
         collectionView.keyboardDismissMode = .OnDrag
         collectionView.allowsMultipleSelection = true
@@ -104,7 +104,7 @@ class InterestSelectorViewController:
             searchHeaderView.searchTextField.clearButtonMode = .Always
             searchHeaderView.searchTextField.returnKeyType = .Done
             searchHeaderView.searchTextField.delegate = self
-            searchHeaderView.searchTextField.placeholder = AppStrings.TextPlaceholderFilterInterests
+            searchHeaderView.searchTextField.placeholder = AppStrings.TextPlaceholderFilterTags
             searchHeaderView.searchTextField.addTarget(self, action: "filter", forControlEvents: .EditingChanged)
             searchHeaderView.searchTextFieldHeightConstraint.constant = searchControllerParentView.frameHeight
             searchControllerParentView.addSubview(searchHeaderView)
@@ -174,7 +174,7 @@ class InterestSelectorViewController:
         }
     }
 
-    private func configureCellByTheme(cell: InterestCollectionViewCell) {
+    private func configureCellByTheme(cell: TagCollectionViewCell) {
         switch theme {
         case .Onboarding:
             cell.backgroundColor = UIColor.appUIBackgroundColor()
@@ -198,17 +198,17 @@ class InterestSelectorViewController:
     }
 
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return filteredInterests.count
+        return filteredTags.count
     }
 
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(
-            InterestCollectionViewCell.classReuseIdentifier,
+            TagCollectionViewCell.classReuseIdentifier,
             forIndexPath: indexPath
-        ) as InterestCollectionViewCell
+        ) as TagCollectionViewCell
     
         // Configure the cell
-        cell.interestLabel.text = filteredInterests[indexPath.row].name
+        cell.interestLabel.text = filteredTags[indexPath.row].name
         configureCellByTheme(cell)
         if animatedCell[indexPath] == nil {
             animatedCell[indexPath] = true
@@ -216,10 +216,10 @@ class InterestSelectorViewController:
         }
         
         // Manage Selection
-        let interest = filteredInterests[indexPath.row]
+        let interest = filteredTags[indexPath.row]
         if cell.selected {
             cell.selectCell(false)
-        } else if let selectedInterest = selectedInterests[interest.hashValue] {
+        } else if let selectedTag = selectedTags[interest.hashValue] {
             cell.selectCell(false)
             cell.selected = true
             collectionView.selectItemAtIndexPath(indexPath, animated: false, scrollPosition: nil)
@@ -233,36 +233,36 @@ class InterestSelectorViewController:
     // MARK: UICollectionViewDelegate
 
     func collectionView(collectionView: UICollectionView, didHighlightItemAtIndexPath indexPath: NSIndexPath) {
-        let cell = collectionView.cellForItemAtIndexPath(indexPath) as InterestCollectionViewCell
+        let cell = collectionView.cellForItemAtIndexPath(indexPath) as TagCollectionViewCell
         cell.highlightCell(true)
     }
     
     func collectionView(collectionView: UICollectionView, didUnhighlightItemAtIndexPath indexPath: NSIndexPath) {
-        let cell = collectionView.cellForItemAtIndexPath(indexPath) as InterestCollectionViewCell
+        let cell = collectionView.cellForItemAtIndexPath(indexPath) as TagCollectionViewCell
         cell.unHighlightCell(true)
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        let cell = collectionView.cellForItemAtIndexPath(indexPath) as InterestCollectionViewCell
+        let cell = collectionView.cellForItemAtIndexPath(indexPath) as TagCollectionViewCell
         cell.selectCell(true)
-        let interest = filteredInterests[indexPath.row]
-        selectedInterests[interest.hashValue] = interest
+        let interest = filteredTags[indexPath.row]
+        selectedTags[interest.hashValue] = interest
         if !interest.hasId {
             interests.append(interest)
         }
     }
     
     func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
-        let cell = collectionView.cellForItemAtIndexPath(indexPath) as InterestCollectionViewCell
+        let cell = collectionView.cellForItemAtIndexPath(indexPath) as TagCollectionViewCell
         cell.unHighlightCell(true)
-        let interest = filteredInterests[indexPath.row]
-        selectedInterests[interest.hashValue] = nil
+        let interest = filteredTags[indexPath.row]
+        selectedTags[interest.hashValue] = nil
     }
     
     // MARK: - UICollectionViewDelegateFlowLayout
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        let interestText = filteredInterests[indexPath.row].name
+        let interestText = filteredTags[indexPath.row].name
         if cachedItemSizes[interestText] == nil {
             prototypeCell.interestLabel.text = interestText
             prototypeCell.setNeedsLayout()
@@ -278,8 +278,8 @@ class InterestSelectorViewController:
     @IBAction func save(sender: AnyObject!) {
         // fire and forget
         if let profile = AuthViewController.getLoggedInUserProfile() {
-            if selectedInterests.count > 0 {
-                ProfileService.Actions.addInterests(profile.id, interests: selectedInterests.values.array, completionHandler: nil)
+            if selectedTags.count > 0 {
+                ProfileService.Actions.addTags(profile.id, interests: selectedTags.values.array, completionHandler: nil)
             }
         }
 
@@ -295,7 +295,7 @@ class InterestSelectorViewController:
         dismissViewControllerAnimated(true, completion: nil)
     }
 
-    private func getNewInterestObject() -> ProfileService.Containers.Tag? {
+    private func getNewTagObject() -> ProfileService.Containers.Tag? {
         var interestName = searchHeaderView.searchTextField.text
         interestName = interestName.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
         if interestName != "" {
@@ -320,23 +320,23 @@ class InterestSelectorViewController:
         let whitespaceCharacterSet = NSCharacterSet.whitespaceCharacterSet()
         let trimmedString = searchString.stringByTrimmingCharactersInSet(whitespaceCharacterSet).lowercaseString
         if trimmedString == "" {
-            filteredInterests = interests
+            filteredTags = interests
         }
         else {
             DebugUtils.measure("Filter", call: { () -> Void in
                 // We need to filter each time from the full set to handle backspace correctly.
-                // We used filteredInterests to make things specific but that only make sense when adding characters.
-                self.filteredInterests = self.interests.filter({ $0.name.lowercaseString.hasPrefix(trimmedString) })
-                let exactMatchInterests = self.interests.filter({ $0.name.lowercaseString == trimmedString })
-                if exactMatchInterests.count == 0 {
-                    if let newInterest = self.getNewInterestObject() {
-                        self.filteredInterests.insert(newInterest, atIndex: 0)
+                // We used filteredTags to make things specific but that only make sense when adding characters.
+                self.filteredTags = self.interests.filter({ $0.name.lowercaseString.hasPrefix(trimmedString) })
+                let exactMatchTags = self.interests.filter({ $0.name.lowercaseString == trimmedString })
+                if exactMatchTags.count == 0 {
+                    if let newTag = self.getNewTagObject() {
+                        self.filteredTags.insert(newTag, atIndex: 0)
                     }
                 }
             })
         }
         
-        if filteredInterests.count != interests.count || trimmedString == "" {
+        if filteredTags.count != interests.count || trimmedString == "" {
             collectionView.reloadData()
         }
     }

@@ -34,7 +34,7 @@ extension UIFont {
         return UIFont(name: "Avenir-Medium", size: 12.0)!
     }
     
-    class func appInterestsOverviewSectionHeader() -> UIFont {
+    class func appTagsOverviewSectionHeader() -> UIFont {
         return UIFont(name: "Avenir-Medium", size: 15.0)!
     }
     

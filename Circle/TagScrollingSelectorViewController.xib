@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="InterestSelectorViewController" customModule="circle" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TagScrollingSelectorViewController" customModule="circle" customModuleProvider="target">
             <connections>
                 <outlet property="bottomGradientView" destination="on4-QA-7eH" id="XJi-xs-1OU"/>
                 <outlet property="collectionView" destination="6Ft-oh-z30" id="kiW-Ht-7nb"/>
@@ -15,7 +15,7 @@
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="EV5-Sl-Tyf" userLabel="InterestSelectorView">
+        <view contentMode="scaleToFill" id="EV5-Sl-Tyf" userLabel="TagSelectorView">
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>

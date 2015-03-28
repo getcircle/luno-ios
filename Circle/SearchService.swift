@@ -141,7 +141,7 @@ extension SearchService {
             let searchTerms = searchTermsFromQuery(query)
             results.profiles = filterProfiles(searchTerms)
             results.teams = filterTeams(searchTerms)
-            results.interests = filterInterests(searchTerms)
+            results.interests = filterTags(searchTerms)
             return (results, nil)
         }
         
@@ -291,7 +291,7 @@ extension SearchService {
             }
         }
         
-        private class func filterInterests(searchTerms: [String]) -> Array<ProfileService.Containers.Tag> {
+        private class func filterTags(searchTerms: [String]) -> Array<ProfileService.Containers.Tag> {
             var andPredicates = [NSPredicate]()
             for searchTerm in searchTerms {
                 let trimmedSearchTerm = trim(searchTerm)
@@ -312,7 +312,7 @@ extension SearchService {
             }
             
             let finalPredicate = NSCompoundPredicate.andPredicateWithSubpredicates(andPredicates)
-            return ObjectStore.sharedInstance.activeInterests.values.array.filter {
+            return ObjectStore.sharedInstance.activeTags.values.array.filter {
                 return finalPredicate.evaluateWithObject($0, substitutionVariables: ["name": $0.name])
             }
         }

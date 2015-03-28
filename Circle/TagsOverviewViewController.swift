@@ -1,5 +1,5 @@
 //
-//  InterestsOverviewViewController.swift
+//  TagsOverviewViewController.swift
 //  Circle
 //
 //  Created by Ravi Rani on 2/15/15.
@@ -9,15 +9,15 @@
 import UIKit
 import ProtobufRegistry
 
-class InterestsOverviewViewController: UIViewController, UICollectionViewDelegateFlowLayout, SearchHeaderViewDelegate {
+class TagsOverviewViewController: UIViewController, UICollectionViewDelegateFlowLayout, SearchHeaderViewDelegate {
 
     @IBOutlet weak private(set) var collectionView: UICollectionView!
     @IBOutlet weak private(set) var searchContainerView: UIView!
 
-    private(set) var dataSource = InterestsOverviewDataSource()
+    private(set) var dataSource = TagsOverviewDataSource()
     
     private var cachedItemSizes = [String: CGSize]()
-    private var prototypeCell: InterestCollectionViewCell!
+    private var prototypeCell: TagCollectionViewCell!
     private(set) var searchHeaderView: SearchHeaderView!
     private var isFilterView = false
     
@@ -70,8 +70,8 @@ class InterestsOverviewViewController: UIViewController, UICollectionViewDelegat
     
     private func configurePrototypeCell() {
         // Init prototype cell
-        let cellNibViews = NSBundle.mainBundle().loadNibNamed("InterestCollectionViewCell", owner: self, options: nil)
-        prototypeCell = cellNibViews.first as InterestCollectionViewCell
+        let cellNibViews = NSBundle.mainBundle().loadNibNamed("TagCollectionViewCell", owner: self, options: nil)
+        prototypeCell = cellNibViews.first as TagCollectionViewCell
     }
     
     private func configureCollectionView() {
@@ -92,8 +92,8 @@ class InterestsOverviewViewController: UIViewController, UICollectionViewDelegat
         
         // Item
         collectionView.registerNib(
-            UINib(nibName: "InterestCollectionViewCell", bundle: nil),
-            forCellWithReuseIdentifier: InterestCollectionViewCell.classReuseIdentifier
+            UINib(nibName: "TagCollectionViewCell", bundle: nil),
+            forCellWithReuseIdentifier: TagCollectionViewCell.classReuseIdentifier
         )
         
         collectionView.keyboardDismissMode = .OnDrag
@@ -114,10 +114,10 @@ class InterestsOverviewViewController: UIViewController, UICollectionViewDelegat
     // MARK: - UICollectionViewDelegate
 
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        if let selectedInterest = dataSource.interest(collectionView: collectionView, atIndexPath: indexPath) {
-            trackInterestSelected(selectedInterest)
-            let viewController = InterestDetailViewController()
-            (viewController.dataSource as InterestDetailDataSource).selectedInterest = selectedInterest
+        if let selectedTag = dataSource.interest(collectionView: collectionView, atIndexPath: indexPath) {
+            trackTagSelected(selectedTag)
+            let viewController = TagDetailViewController()
+            (viewController.dataSource as TagDetailDataSource).selectedTag = selectedTag
             navigationController?.pushViewController(viewController, animated: true)
         }
         
@@ -193,13 +193,13 @@ class InterestsOverviewViewController: UIViewController, UICollectionViewDelegat
     
     // MARK: - Tracking
     
-    private func trackInterestSelected(interest: ProfileService.Containers.Tag) {
+    private func trackTagSelected(interest: ProfileService.Containers.Tag) {
         let properties = [
             TrackerProperty.withKey(.ActiveViewController).withString(self.dynamicType.description()),
             TrackerProperty.withKey(.Source).withSource(.Overview),
-            TrackerProperty.withKey(.SourceOverviewType).withOverviewType(.Interests),
+            TrackerProperty.withKey(.SourceOverviewType).withOverviewType(.Tags),
             TrackerProperty.withKey(.Destination).withSource(.Detail),
-            TrackerProperty.withKey(.DestinationDetailType).withDetailType(.Interest),
+            TrackerProperty.withKey(.DestinationDetailType).withDetailType(.Tag),
             TrackerProperty.withDestinationId("interest_id").withString(interest.id)
         ]
         Tracker.sharedInstance.track(.DetailItemTapped, properties: properties)

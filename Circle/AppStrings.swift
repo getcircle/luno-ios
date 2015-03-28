@@ -15,7 +15,7 @@ struct AppStrings {
     static let ActionSheetTakeAPictureButtonTitle = NSLocalizedString("Take a picture", comment: "Button prompt to take a picture using the camera")
 
     static let AddNoteCTATitle = NSLocalizedString("Add private note", comment: "Title of the button to add a private note on a co-worker")
-    static let AddInterestsNavigationTitle = NSLocalizedString("Add Interests", comment: "Title of the view to add interests")
+    static let AddTagsNavigationTitle = NSLocalizedString("Add Tags", comment: "Title of the view to add interests")
     static let AppreciateCTATitle = NSLocalizedString("Appreciate", comment: "Title of the button to leave an appreciation for a co-worker")
     
     static let CardTitlePeople = NSLocalizedString("People", comment: "Title of the card showing people")
@@ -37,7 +37,7 @@ struct AppStrings {
     static let ProfileSectionOfficeTeamTitle = NSLocalizedString("Office & Team", comment: "Title of the section which shows a user's office and team")
     static let ProfileSectionManagerTitle = NSLocalizedString("Manager", comment: "Title of the section which shows a user's manager")
     static let ProfileSectionManagerTeamTitle = NSLocalizedString("Manager & Team", comment: "Title of the section which shows a user's manager and team")
-    static let ProfileSectionInterestsTitle = NSLocalizedString("Interests", comment: "Title of the section which shows a user's interests")
+    static let ProfileSectionTagsTitle = NSLocalizedString("Tags", comment: "Title of the section which shows a user's interests")
     static let ProfileSectionExperienceTitle = NSLocalizedString("Experience", comment: "Title of the section which shows a user's experience")
     static let ProfileSectionEducationTitle = NSLocalizedString("Education", comment: "Title of the section which shows a user's education")
     static let ProfileSectionExpertiseTitle = NSLocalizedString("Expertise", comment: "Title of the section which shows a user's expertise")
@@ -60,6 +60,6 @@ struct AppStrings {
     
     static let SocialConnectLinkedInCTA = NSLocalizedString("Connect with LinkedIn", comment: "Button title for connect with LinkedIn button")
 
-    static let TextPlaceholderFilterInterests = NSLocalizedString("Filter interests", comment: "Placeholder text for filter interests input box")
+    static let TextPlaceholderFilterTags = NSLocalizedString("Filter interests", comment: "Placeholder text for filter interests input box")
     
 }

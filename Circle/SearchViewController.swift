@@ -325,11 +325,11 @@ class SearchViewController: UIViewController,
                     viewController.title = "Teams"
                     (viewController.dataSource as TeamsOverviewDataSource).configureForOrganization()
                     navigationController?.pushViewController(viewController, animated: true)
-                case .Interests:
+                case .Tags:
                     // TODO This should be coming from a paginated data source
-                    let interestsOverviewViewController = InterestsOverviewViewController(nibName: "InterestsOverviewViewController", bundle: nil)
-                    interestsOverviewViewController.title = "Interests"
-                    interestsOverviewViewController.dataSource.setInitialData(content: ObjectStore.sharedInstance.activeInterests.values.array)
+                    let interestsOverviewViewController = TagsOverviewViewController(nibName: "TagsOverviewViewController", bundle: nil)
+                    interestsOverviewViewController.title = "Tags"
+                    interestsOverviewViewController.dataSource.setInitialData(content: ObjectStore.sharedInstance.activeTags.values.array)
                     navigationController?.pushViewController(interestsOverviewViewController, animated: true)
                 }
                 
@@ -352,14 +352,14 @@ class SearchViewController: UIViewController,
         )
     }
     
-    //MARK: - Interest Selected Notification
+    //MARK: - Tag Selected Notification
     
-    func didSelectInterest(notification: NSNotification) {
+    func didSelectTag(notification: NSNotification) {
         if let userInfo = notification.userInfo {
-            if let selectedInterest = userInfo["interest"] as? ProfileService.Containers.Tag {
-                trackInterestSelected(selectedInterest)
-                let viewController = InterestDetailViewController()
-                (viewController.dataSource as InterestDetailDataSource).selectedInterest = selectedInterest
+            if let selectedTag = userInfo["interest"] as? ProfileService.Containers.Tag {
+                trackTagSelected(selectedTag)
+                let viewController = TagDetailViewController()
+                (viewController.dataSource as TagDetailDataSource).selectedTag = selectedTag
                 viewController.hidesBottomBarWhenPushed = false
                 navigationController?.pushViewController(viewController, animated: true)
             }
@@ -394,8 +394,8 @@ class SearchViewController: UIViewController,
         case .Offices:
             break
             
-        case .Interests:
-            let interestsOverviewViewController = InterestsOverviewViewController(nibName: "InterestsOverviewViewController", bundle: nil)
+        case .Tags:
+            let interestsOverviewViewController = TagsOverviewViewController(nibName: "TagsOverviewViewController", bundle: nil)
             interestsOverviewViewController.dataSource.setInitialData(content: card.allContent[0] as [AnyObject])
             interestsOverviewViewController.title = card.title
             interestsOverviewViewController.hidesBottomBarWhenPushed = false
@@ -422,9 +422,9 @@ class SearchViewController: UIViewController,
             viewController.title = card.title
             viewController.searchHeaderView?.searchTextField.text = searchHeaderView.searchTextField.text
             navigationController?.pushViewController(viewController, animated: true)
-        case .Interests:
-            let interestsOverviewViewController = InterestsOverviewViewController(
-                nibName: "InterestsOverviewViewController",
+        case .Tags:
+            let interestsOverviewViewController = TagsOverviewViewController(
+                nibName: "TagsOverviewViewController",
                 bundle: nil,
                 isFilterView: true
             )
@@ -478,8 +478,8 @@ class SearchViewController: UIViewController,
         unregisterNotifications(true)
         NSNotificationCenter.defaultCenter().addObserver(
             self,
-            selector: "didSelectInterest:",
-            name: InterestsCollectionViewCellNotifications.onInterestSelectedNotification,
+            selector: "didSelectTag:",
+            name: TagScrollingCollectionViewCellNotifications.onTagSelectedNotification,
             object: nil
         )
         
@@ -507,7 +507,7 @@ class SearchViewController: UIViewController,
             // specifically the ones that modify the view hierarchy
             NSNotificationCenter.defaultCenter().removeObserver(
                 self,
-                name: InterestsCollectionViewCellNotifications.onInterestSelectedNotification,
+                name: TagScrollingCollectionViewCellNotifications.onTagSelectedNotification,
                 object: nil
             )
 
@@ -634,12 +634,12 @@ class SearchViewController: UIViewController,
         Tracker.sharedInstance.track(.CardHeaderTapped, properties: properties)
     }
     
-    private func trackInterestSelected(interest: ProfileService.Containers.Tag) {
+    private func trackTagSelected(interest: ProfileService.Containers.Tag) {
         let properties = [
             TrackerProperty.withKey(.ActiveViewController).withString(self.dynamicType.description()),
             TrackerProperty.withKey(.Source).withSource(.Home),
             TrackerProperty.withKey(.Destination).withSource(.Detail),
-            TrackerProperty.withKey(.DestinationDetailType).withDetailType(.Interest),
+            TrackerProperty.withKey(.DestinationDetailType).withDetailType(.Tag),
             TrackerProperty.withDestinationId("interest_id").withString(interest.id)
         ]
         Tracker.sharedInstance.track(.DetailItemTapped, properties: properties)

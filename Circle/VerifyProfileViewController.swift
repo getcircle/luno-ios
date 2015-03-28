@@ -307,7 +307,7 @@ class VerifyProfileViewController:
     }
     
     private func verificationComplete() {
-        let interestSelectorVC = InterestSelectorViewController(nibName: "InterestSelectorViewController", bundle: nil)
+        let interestSelectorVC = TagScrollingSelectorViewController(nibName: "TagScrollingSelectorViewController", bundle: nil)
         interestSelectorVC.theme = .Onboarding
         navigationController?.pushViewController(interestSelectorVC, animated: true)
     }

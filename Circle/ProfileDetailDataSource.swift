@@ -29,7 +29,7 @@ class ProfileDetailDataSource: CardDataSource {
 
     private let numberOfEducationItemsVisibleInitially = 1
     private let numberOfExperienceItemsVisibleInitially = 2
-    private let numberOfInterestItemsVisibleInitially = 6
+    private let numberOfTagItemsVisibleInitially = 6
     private let numberOfSkillItemsVisibleInitially = 6
     
     convenience init(profile withProfile: ProfileService.Containers.Profile) {
@@ -421,11 +421,11 @@ class ProfileDetailDataSource: CardDataSource {
         }
     }
     
-    private func addInterestsItemToCard(item: SectionItem, card: Card) {
+    private func addTagsItemToCard(item: SectionItem, card: Card) {
         if let interests = interests {
             if interests.count > 0 {
-                card.addContent(content: interests as [AnyObject], maxVisibleItems: numberOfInterestItemsVisibleInitially)
-                if interests.count > numberOfInterestItemsVisibleInitially {
+                card.addContent(content: interests as [AnyObject], maxVisibleItems: numberOfTagItemsVisibleInitially)
+                if interests.count > numberOfTagItemsVisibleInitially {
                     card.addDefaultFooter()
                 }
             }

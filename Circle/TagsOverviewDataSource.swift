@@ -1,5 +1,5 @@
 //
-//  InterestsOverviewDataSource.swift
+//  TagsOverviewDataSource.swift
 //  Circle
 //
 //  Created by Ravi Rani on 2/15/15.
@@ -9,9 +9,9 @@
 import UIKit
 import ProtobufRegistry
 
-class InterestsOverviewDataSource: NSObject, UICollectionViewDataSource {
+class TagsOverviewDataSource: NSObject, UICollectionViewDataSource {
 
-    private var filteredInterests = Array<Array<ProfileService.Containers.Tag>>()
+    private var filteredTags = Array<Array<ProfileService.Containers.Tag>>()
     private var interests = Array<ProfileService.Containers.Tag>()
     
     private var animatedCell = [NSIndexPath: Bool]()
@@ -20,11 +20,11 @@ class InterestsOverviewDataSource: NSObject, UICollectionViewDataSource {
     
     func setInitialData(#content: [AnyObject]) {
         interests = content as Array<ProfileService.Containers.Tag>
-        filteredInterests = sortAlphabeticallyAndArrangeInSections(interests)
+        filteredTags = sortAlphabeticallyAndArrangeInSections(interests)
     }
     
     func interest(collectionView _: UICollectionView, atIndexPath indexPath: NSIndexPath) -> ProfileService.Containers.Tag? {
-        if let interestsSection = filteredInterests[indexPath.section] as Array<ProfileService.Containers.Tag>? {
+        if let interestsSection = filteredTags[indexPath.section] as Array<ProfileService.Containers.Tag>? {
             if let interest = interestsSection[indexPath.row] as ProfileService.Containers.Tag? {
                 return interest
             }
@@ -36,21 +36,21 @@ class InterestsOverviewDataSource: NSObject, UICollectionViewDataSource {
     // MARK: - UICollectionViewDataSource
     
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        return filteredInterests.count
+        return filteredTags.count
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return filteredInterests[section].count
+        return filteredTags[section].count
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(
-            InterestCollectionViewCell.classReuseIdentifier,
+            TagCollectionViewCell.classReuseIdentifier,
             forIndexPath: indexPath
-        ) as InterestCollectionViewCell
+        ) as TagCollectionViewCell
         
         // Configure the cell
-        cell.interestLabel.text = filteredInterests[indexPath.section][indexPath.row].name.capitalizedString
+        cell.interestLabel.text = filteredTags[indexPath.section][indexPath.row].name.capitalizedString
         if animatedCell[indexPath] == nil {
             animatedCell[indexPath] = true
             cell.animateForCollection(collectionView, atIndexPath: indexPath)
@@ -68,10 +68,10 @@ class InterestsOverviewDataSource: NSObject, UICollectionViewDataSource {
                 forIndexPath: indexPath
             ) as ProfileSectionHeaderCollectionReusableView
             
-            var indexPathOfFirstInterestInSection = NSIndexPath(forItem: 0, inSection: indexPath.section)
-            if let interest = interest(collectionView: collectionView, atIndexPath: indexPathOfFirstInterestInSection) {
+            var indexPathOfFirstTagInSection = NSIndexPath(forItem: 0, inSection: indexPath.section)
+            if let interest = interest(collectionView: collectionView, atIndexPath: indexPathOfFirstTagInSection) {
                 headerView.cardTitleLabel.text = interest.name[0].uppercaseString
-                headerView.cardTitleLabel.font = UIFont.appInterestsOverviewSectionHeader()
+                headerView.cardTitleLabel.font = UIFont.appTagsOverviewSectionHeader()
             }
             
             return headerView
@@ -91,7 +91,7 @@ class InterestsOverviewDataSource: NSObject, UICollectionViewDataSource {
     
     func filterData(term: String) {
         if term.trimWhitespace() == "" {
-            filteredInterests = sortAlphabeticallyAndArrangeInSections(interests)
+            filteredTags = sortAlphabeticallyAndArrangeInSections(interests)
             return
         }
         
@@ -100,14 +100,14 @@ class InterestsOverviewDataSource: NSObject, UICollectionViewDataSource {
         var orPredicates = [NSPredicate]()
 
         // Full/exact interest name match
-        let fullInterestNameMatch = NSComparisonPredicate(
+        let fullTagNameMatch = NSComparisonPredicate(
             leftExpression: NSExpression(forVariable: "content"),
             rightExpression: NSExpression(forConstantValue: trimmedTerm),
             modifier: .DirectPredicateModifier,
             type: .BeginsWithPredicateOperatorType,
             options: .CaseInsensitivePredicateOption
         )
-        orPredicates.append(fullInterestNameMatch)
+        orPredicates.append(fullTagNameMatch)
         
         for filterTerm in filterTerms {
             let trimmedFilterTerm = filterTerm.trimWhitespace()
@@ -137,7 +137,7 @@ class InterestsOverviewDataSource: NSObject, UICollectionViewDataSource {
         // Apply predicates
         
         let finalPredicate = NSCompoundPredicate.orPredicateWithSubpredicates(orPredicates)
-        let filteredInterestsData = interests.filter {
+        let filteredTagsData = interests.filter {
             let match = finalPredicate.evaluateWithObject(
                 $0,
                 substitutionVariables: [
@@ -149,20 +149,20 @@ class InterestsOverviewDataSource: NSObject, UICollectionViewDataSource {
             return match
         }
         
-        filteredInterests = sortAlphabeticallyAndArrangeInSections(filteredInterestsData)
+        filteredTags = sortAlphabeticallyAndArrangeInSections(filteredTagsData)
     }
     
     // MARK: - Helpers
     
     private func sortAlphabeticallyAndArrangeInSections(interestsArray: Array<ProfileService.Containers.Tag>) -> Array<Array<ProfileService.Containers.Tag>> {
-        let sortedInterests = interestsArray.sorted { $0.name.localizedCaseInsensitiveCompare($1.name) == NSComparisonResult.OrderedAscending }
+        let sortedTags = interestsArray.sorted { $0.name.localizedCaseInsensitiveCompare($1.name) == NSComparisonResult.OrderedAscending }
         
         var interestsArrangedByFirstLetter = Array<Array<ProfileService.Containers.Tag>>()
         
-        if sortedInterests.count > 0 {
-            var previousLetter = sortedInterests[0].name[0].uppercaseString
+        if sortedTags.count > 0 {
+            var previousLetter = sortedTags[0].name[0].uppercaseString
             var interestsPerLetter = Array<ProfileService.Containers.Tag>()
-            for interest in sortedInterests {
+            for interest in sortedTags {
                 
                 if previousLetter != interest.name[0].uppercaseString {
                     interestsArrangedByFirstLetter.append(interestsPerLetter)

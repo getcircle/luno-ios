@@ -14,7 +14,7 @@ class StatTileCollectionViewCell: CircleCollectionViewCell {
         case People = 1
         case Offices
         case Teams
-        case Interests
+        case Tags
     }
 
     @IBOutlet weak private(set) var countLabel: UILabel!
