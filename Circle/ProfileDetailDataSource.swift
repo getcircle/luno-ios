@@ -522,7 +522,7 @@ class ProfileDetailDataSource: CardDataSource {
         else {
             // TODO: Remove after testing UI
             let fakeBio = NSString(
-                format: "Hi! I'm %@. I work on the %@ team in %@. I am a food lover, photographer and traveler.",
+                format: "Hi! I'm %@. I work on the %@ team in %@.",
                 profile.first_name,
                 team!.name,
                 location!.address.officeName()
