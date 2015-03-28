@@ -422,9 +422,11 @@ class Card: Equatable {
     }
 
     func addDefaultFooter() {
-        addFooter(
-            footerClass: CardFooterCollectionReusableView.self
-        )
+        if !isContentAllContent() {
+            addFooter(
+                footerClass: CardFooterCollectionReusableView.self
+            )
+        }
     }
 
     func addFooter(footerClass withFooterClass: CircleCollectionReusableView.Type) {
