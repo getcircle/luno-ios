@@ -14,7 +14,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nuZ-2b-MHg" userLabel="CardParentView">
                     <rect key="frame" x="10" y="0.0" width="300" height="55"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Users" translatesAutoresizingMaskIntoConstraints="NO" id="tyz-Ai-K8s" userLabel="CardImageView">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Users" translatesAutoresizingMaskIntoConstraints="NO" id="tyz-Ai-K8s" userLabel="CardImageView">
                             <rect key="frame" x="10" y="17" width="24" height="18"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="tyz-Ai-K8s" secondAttribute="height" multiplier="1:1" id="9Uz-4U-27L"/>
@@ -28,8 +28,8 @@
                             </variation>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Direct Reports" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hwM-UY-bVz" userLabel="CardTitle">
-                            <rect key="frame" x="44" y="17" width="98" height="21"/>
-                            <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="15"/>
+                            <rect key="frame" x="44" y="17" width="104" height="22"/>
+                            <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
                             <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
@@ -41,7 +41,7 @@
                             </constraints>
                         </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="All (5)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yAf-Md-PrH" userLabel="CardContentCount">
-                            <rect key="frame" x="242" y="6" width="37" height="42"/>
+                            <rect key="frame" x="242" y="6" width="37" height="44"/>
                             <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
                             <color key="textColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>

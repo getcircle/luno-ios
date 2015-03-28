@@ -16,13 +16,13 @@ class ProfileImagesCollectionViewCell: CircleCollectionViewCell {
     }
     
     override class var height: CGFloat {
-        return 50.0
+        return 60.0
     }
     
     @IBOutlet weak private(set) var cardContentView: UIView!
     
     private let numberOfProfileImageViews = 10
-    private let profileImageWidthHeight: CGFloat = 30.0
+    private let profileImageWidthHeight: CGFloat = 34.0
     private let profileImageInterSpacing: CGFloat = 20.0
 
     private var profileImageViews = [CircleImageView]()
