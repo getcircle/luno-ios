@@ -35,6 +35,7 @@ class CardHeaderCollectionReusableView: CircleCollectionReusableView {
 
         cardTriggerButton.setBackgroundImage(selectionImage, forState: .Highlighted)
         nextIconImageView.image = nextIconImageView.image?.imageWithRenderingMode(.AlwaysTemplate)
+        cardContentCountLabel.textColor = UIColor.appTintColor()
     }
     
     override func setCard(card: Card) {
