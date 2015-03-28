@@ -111,18 +111,18 @@ class Card: Equatable {
 
             case Anniversaries:
                 return CardTypeInfo(
-                    imageName: "Jewel",
+                    imageName: "Medal",
                     classType: ProfileCollectionViewCell.self,
                     contentType: .Flat
                 )
-                
+
             case Appreciate:
                 return CardTypeInfo(
                     imageName: "Heart",
                     classType: AppreciateActionCollectionViewCell.self,
                     contentType: .Flat
                 )
-                
+
             case Appreciations:
                 return CardTypeInfo(
                     imageName: "Jewel",
@@ -132,18 +132,18 @@ class Card: Equatable {
 
             case Banners:
                 return CardTypeInfo(
-                    imageName: "Cake",
+                    imageName: "Balloons",
                     classType: BannerCollectionViewCell.self,
                     contentType: .Flat
                 )
-                
+
             case Birthdays:
                 return CardTypeInfo(
-                    imageName: "Cake",
+                    imageName: "Balloons",
                     classType: ProfileCollectionViewCell.self,
                     contentType: .Flat
                 )
-                
+
             case Empty:
                 return CardTypeInfo(
                     imageName: "Info",
@@ -160,11 +160,11 @@ class Card: Equatable {
 
             case Group:
                 return CardTypeInfo(
-                    imageName: "People",
+                    imageName: "Users",
                     classType: ProfileImagesCollectionViewCell.self,
                     contentType: .Aggregate
                 )
-                
+
             case Interests:
                 return CardTypeInfo(
                     imageName: "Tag",
@@ -202,14 +202,14 @@ class Card: Equatable {
 
             case Profiles:
                 return CardTypeInfo(
-                    imageName: "People",
+                    imageName: "Users",
                     classType: ProfileCollectionViewCell.self,
                     contentType: .Flat
                 )
 
             case NewHires:
                 return CardTypeInfo(
-                    imageName: "People",
+                    imageName: "Users",
                     classType: ProfileCollectionViewCell.self,
                     contentType: .Flat
                 )
@@ -234,10 +234,10 @@ class Card: Equatable {
                     classType: SettingsCollectionViewCell.self,
                     contentType: .Flat
                 )
-                
+
             case Skills:
                 return CardTypeInfo(
-                    imageName: "Tag",
+                    imageName: "TitleTag",
                     classType: InterestsCollectionViewCell.self,
                     contentType: .Aggregate
                 )
@@ -255,7 +255,7 @@ class Card: Equatable {
                     classType: ToggleSocialConnectionCollectionViewCell.self,
                     contentType: .Flat
                 )
-                
+
             case StatTile:
                 return CardTypeInfo(
                     imageName: String(),
@@ -397,7 +397,7 @@ class Card: Equatable {
         allContent = []
         contentCount = 0
     }
-    
+
     func resetContent(newContent: [AnyObject]) {
         resetContent()
         addContent(content: newContent)
@@ -443,7 +443,7 @@ class Card: Equatable {
             sectionInset.right
         )
     }
-    
+
     func addDefaultHeader() {
         addHeader(
             headerClass: CardHeaderCollectionReusableView.self
@@ -492,7 +492,7 @@ class Card: Equatable {
             setContentToAllContent()
         }
     }
-    
+
     func contentCountLabel() -> String {
         if showContentCount {
             return contentCount == 1 ? "" : "All " + String(contentCount)

@@ -15,7 +15,7 @@ class CardHeaderCollectionReusableView: CircleCollectionReusableView {
     }
     
     override class var height: CGFloat {
-        return 44.0
+        return 54.0
     }
     
     @IBOutlet weak private(set) var cardContentCountLabel: UILabel!
@@ -26,7 +26,6 @@ class CardHeaderCollectionReusableView: CircleCollectionReusableView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        cardImageView.tintColor = UIColor.blackColor()
         
         let selectionImage = UIImage.imageFromColor(
             UIColor.appControlHighlightedColor(),
@@ -38,7 +37,7 @@ class CardHeaderCollectionReusableView: CircleCollectionReusableView {
     
     override func setCard(card: Card) {
         cardTitleLabel.text = card.title
-        cardImageView.image = UIImage(named: card.imageSource)?.imageWithRenderingMode(.AlwaysTemplate)
+        cardImageView.image = UIImage(named: card.imageSource)
         cardContentCountLabel.text = card.contentCountLabel()
         super.setCard(card)
     }
