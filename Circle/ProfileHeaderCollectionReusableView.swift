@@ -99,6 +99,7 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
         verifiedProfileButton.tintColor = UIColor.whiteColor()
         verifiedProfileButton.backgroundColor = UIColor.appTintColor()
         verifiedProfileButton.makeItCircular()
+        verifiedProfileButton.hidden = true
     }
     
     override func layoutSubviews() {
@@ -118,19 +119,22 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
     }
 
     func setProfile(userProfile: ProfileService.Containers.Profile) {
+        var hasProfileImageChanged = profile?.image_url != userProfile.image_url
         profile = userProfile
         nameLabel.text = userProfile.first_name + " " + userProfile.last_name
         nameNavLabel.text = nameLabel.text
         titleLabel.text = userProfile.title
         titleNavLabel.text = titleLabel.text
-        profileImage.setImageWithProfile(userProfile, successHandler: { (image) -> Void in
-            self.profileImage.image = image
-            if self.backgroundImageView.image != image {
-                self.backgroundImageView.image = image
-                self.addBlurEffect()
-            }
-        })
-        verifiedProfileButton.hidden = !userProfile.verified
+        if hasProfileImageChanged {
+            profileImage.setImageWithProfile(userProfile, successHandler: { (image) -> Void in
+                self.profileImage.image = image
+                if self.backgroundImageView.image != image {
+                    self.backgroundImageView.image = image
+                    self.addBlurEffect()
+                }
+                self.verifiedProfileButton.hidden = !userProfile.verified
+            })
+        }
     }
 
     func setOffice(office: OrganizationService.Containers.Location) {
