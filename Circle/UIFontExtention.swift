@@ -43,7 +43,7 @@ extension UIFont {
     }
 
     class func appAttributeValueLabelFont() -> UIFont {
-        return UIFont(name: "Avenir-Book", size: 17.0)!
+        return UIFont(name: "Avenir-Book", size: 16.0)!
     }
 
     class func appModalTitleLabelFont() -> UIFont {

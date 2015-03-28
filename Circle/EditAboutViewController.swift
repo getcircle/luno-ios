@@ -11,8 +11,11 @@ import ProtobufRegistry
 
 class EditAboutViewController: UIViewController, UITextFieldDelegate {
 
-    @IBOutlet weak private(set) var bioLabel: UILabel!
+    @IBOutlet weak private(set) var bioSectionLabel: UILabel!
     @IBOutlet weak private(set) var bioTextField: UITextField!
+    @IBOutlet weak private(set) var otherSectionLabel: UILabel!
+    @IBOutlet weak private(set) var nickNameLabel: UILabel!
+    @IBOutlet weak private(set) var nickNameTextField: UITextField!
     
     private var allControls = [AnyObject]()
     
@@ -25,8 +28,9 @@ class EditAboutViewController: UIViewController, UITextFieldDelegate {
         assert(profile != nil, "Profile should be set for this view controller")
         configureView()
         configureNavigationBar()
-        configureBioLabel()
+        configureSectionLabels()
         configureBioTextField()
+        configureNickNameFields()
         populateData()
     }
 
@@ -47,19 +51,36 @@ class EditAboutViewController: UIViewController, UITextFieldDelegate {
         addCloseButtonWithAction("cancel:")
     }
     
-    private func configureBioLabel() {
-        bioLabel.textColor = UIColor.appAttributeTitleLabelColor()
-        bioLabel.font = UIFont.appAttributeTitleLabelFont()
-        bioLabel.text = AppStrings.ProfileSectionBioTitle.uppercaseStringWithLocale(NSLocale.currentLocale())
+    private func configureSectionLabels() {
+        for label in [bioSectionLabel, otherSectionLabel] {
+            label.textColor = UIColor.appAttributeTitleLabelColor()
+            label.font = UIFont.appAttributeTitleLabelFont()
+        }
+        
+        bioSectionLabel.text = AppStrings.ProfileSectionBioTitle.uppercaseStringWithLocale(NSLocale.currentLocale())
+        otherSectionLabel.text = AppStrings.ProfileSectionOtherTitle.uppercaseStringWithLocale(NSLocale.currentLocale())
     }
     
     private func configureBioTextField() {
         allControls.append(bioTextField)
     }
     
+    private func configureNickNameFields() {
+        nickNameLabel.font = UIFont.appAttributeTitleLabelFont()
+        nickNameLabel.textColor = UIColor.appAttributeTitleLabelColor()
+        nickNameTextField.font = UIFont.appAttributeValueLabelFont()
+        nickNameTextField.textColor = UIColor.appAttributeValueLabelColor()
+        allControls.append(nickNameTextField)
+    }
+    
     private func populateData() {
         if profile.hasAbout {
             bioTextField.text = profile.about
+        }
+
+        //TODO: Replace with Nickname
+        if profile.hasFirstName {
+            nickNameTextField.text = profile.first_name
         }
     }
     
@@ -83,7 +104,12 @@ class EditAboutViewController: UIViewController, UITextFieldDelegate {
     // MARK: - UITextFieldDelegate
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        done(textField)
+        if textField == bioTextField {
+            nickNameTextField.becomeFirstResponder()
+        }
+        else {
+            done(textField)
+        }
         return true
     }
     
@@ -106,6 +132,7 @@ class EditAboutViewController: UIViewController, UITextFieldDelegate {
     private func updateProfile(completion: () -> Void) {
         let builder = profile.toBuilder()
         builder.about = bioTextField.text
+        builder.first_name = nickNameTextField.text
         ProfileService.Actions.updateProfile(builder.build()) { (profile, error) -> Void in
             if let profile = profile {
                 AuthViewController.updateUserProfile(profile)

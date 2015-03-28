@@ -34,6 +34,8 @@ class KeyValueCollectionViewCell: CircleCollectionViewCell {
         nameLabel.font = UIFont.appAttributeTitleLabelFont()
         nameLabel.textColor = UIColor.appAttributeTitleLabelColor()
         valueLabel.textAlignment = .Right
+        valueLabel.font = UIFont.appAttributeValueLabelFont()
+        valueLabel.textColor = UIColor.appAttributeValueLabelColor()
     }
 
     override func setData(data: AnyObject) {
