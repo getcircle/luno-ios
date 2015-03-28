@@ -50,10 +50,6 @@ class ProfileDetailsViewController:
         if showLogOutButton {
             addLogOutButton()
         }
-        
-        if showSettingsButton {
-            addSettingsButton()
-        }
     }
     
     override func loadView() {
@@ -515,22 +511,6 @@ class ProfileDetailsViewController:
         if navigationItem.rightBarButtonItem == nil {
             let logOutButton = UIBarButtonItem(title: "Log Out", style: .Plain, target: self, action: "logOutTapped:")
             navigationItem.rightBarButtonItem = logOutButton
-        }
-    }
-    
-    private func addSettingsButton() {
-        if navigationItem.leftBarButtonItem == nil {
-            var settingsButton = UIButton.buttonWithType(.Custom) as UIButton
-            settingsButton.frame = CGRectMake(0.0, 0.0, 22.0, 22.0)
-            settingsButton.setImage(UIImage(named: "Cog")?.imageWithRenderingMode(.AlwaysTemplate), forState: .Normal)
-            settingsButton.tintColor = UIColor.appNavigationBarTintColor()
-            settingsButton.addTarget(self, action: "settingsButtonTapped:", forControlEvents: .TouchUpInside)
-            
-            let settingsBarButton = UIBarButtonItem(customView: settingsButton)
-            navigationItem.leftBarButtonItem = settingsBarButton
-
-            let longPressGesture = UILongPressGestureRecognizer(target: self, action: "profileLongPressHandler:")
-            settingsButton.addGestureRecognizer(longPressGesture)
         }
     }
 
