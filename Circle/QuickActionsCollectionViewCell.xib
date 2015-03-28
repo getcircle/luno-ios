@@ -8,13 +8,13 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="QuickActionsCollectionViewCell" customModule="circle" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kq5-3k-b21" userLabel="FirstButton" customClass="CircleButton" customModule="circle" customModuleProvider="target">
-                        <rect key="frame" x="15" y="13" width="44" height="44"/>
+                        <rect key="frame" x="15" y="8" width="44" height="44"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="Kq5-3k-b21" secondAttribute="height" multiplier="1:1" id="jbh-E8-WJw"/>
                             <constraint firstAttribute="width" constant="44" id="pkV-cY-blr"/>
@@ -25,14 +25,14 @@
                         </state>
                     </button>
                     <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dsv-fI-d8d" userLabel="Spacer1">
-                        <rect key="frame" x="59" y="13" width="38" height="44"/>
+                        <rect key="frame" x="59" y="8" width="38" height="44"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="31" id="7eO-QE-VXa"/>
                         </constraints>
                     </view>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o81-Au-qrS" userLabel="SecondButton" customClass="CircleButton" customModule="circle" customModuleProvider="target">
-                        <rect key="frame" x="97" y="13" width="44" height="44"/>
+                        <rect key="frame" x="97" y="8" width="44" height="44"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="44" id="5TY-B9-Jn4"/>
                             <constraint firstAttribute="width" secondItem="o81-Au-qrS" secondAttribute="height" multiplier="1:1" id="avj-nu-O9S"/>
@@ -43,7 +43,7 @@
                         </state>
                     </button>
                     <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RsW-fx-561" userLabel="Spacer2">
-                        <rect key="frame" x="141" y="13" width="38" height="44"/>
+                        <rect key="frame" x="141" y="8" width="38" height="44"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="31" id="6KF-dQ-T5C"/>
@@ -55,7 +55,7 @@
                         </variation>
                     </view>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VHJ-sx-L1j" userLabel="ThirdButton" customClass="CircleButton" customModule="circle" customModuleProvider="target">
-                        <rect key="frame" x="179" y="13" width="44" height="44"/>
+                        <rect key="frame" x="179" y="8" width="44" height="44"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="VHJ-sx-L1j" secondAttribute="height" multiplier="1:1" id="fOX-ZN-GDU"/>
                             <constraint firstAttribute="width" constant="44" id="xlU-SW-rcH"/>
@@ -66,7 +66,7 @@
                         </state>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gK8-NX-Gmv" userLabel="FourthButton" customClass="CircleButton" customModule="circle" customModuleProvider="target">
-                        <rect key="frame" x="261" y="13" width="44" height="44"/>
+                        <rect key="frame" x="261" y="8" width="44" height="44"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="gK8-NX-Gmv" secondAttribute="height" multiplier="1:1" id="FMg-1Q-mQc"/>
                             <constraint firstAttribute="width" constant="44" id="Mx6-ro-MEN"/>
@@ -83,7 +83,7 @@
                         </variation>
                     </button>
                     <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xAb-7Y-dne" userLabel="Spacer3">
-                        <rect key="frame" x="223" y="13" width="38" height="44"/>
+                        <rect key="frame" x="223" y="8" width="38" height="44"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="31" id="XkU-LT-Vdk"/>

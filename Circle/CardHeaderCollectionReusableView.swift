@@ -15,7 +15,7 @@ class CardHeaderCollectionReusableView: CircleCollectionReusableView {
     }
     
     override class var height: CGFloat {
-        return 54.0
+        return 60.0
     }
     
     @IBOutlet weak private(set) var cardContentCountLabel: UILabel!
@@ -23,6 +23,7 @@ class CardHeaderCollectionReusableView: CircleCollectionReusableView {
     @IBOutlet weak private(set) var cardParentView: UIView!
     @IBOutlet weak private(set) var cardTitleLabel: UILabel!
     @IBOutlet weak private var cardTriggerButton: UIButton!
+    @IBOutlet weak private(set) var nextIconImageView: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -33,6 +34,7 @@ class CardHeaderCollectionReusableView: CircleCollectionReusableView {
         )
 
         cardTriggerButton.setBackgroundImage(selectionImage, forState: .Highlighted)
+        nextIconImageView.image = nextIconImageView.image?.imageWithRenderingMode(.AlwaysTemplate)
     }
     
     override func setCard(card: Card) {

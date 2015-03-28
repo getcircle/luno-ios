@@ -111,7 +111,7 @@ class Card: Equatable {
 
             case Anniversaries:
                 return CardTypeInfo(
-                    imageName: "Medal",
+                    imageName: "FeedWork",
                     classType: ProfileCollectionViewCell.self,
                     contentType: .Flat
                 )
@@ -125,7 +125,7 @@ class Card: Equatable {
 
             case Appreciations:
                 return CardTypeInfo(
-                    imageName: "Jewel",
+                    imageName: "Heart",
                     classType: AppreciationCollectionViewCell.self,
                     contentType: .Flat
                 )
@@ -139,7 +139,7 @@ class Card: Equatable {
 
             case Birthdays:
                 return CardTypeInfo(
-                    imageName: "Balloons",
+                    imageName: "FeedBirthday",
                     classType: ProfileCollectionViewCell.self,
                     contentType: .Flat
                 )
@@ -160,14 +160,14 @@ class Card: Equatable {
 
             case Group:
                 return CardTypeInfo(
-                    imageName: "Users",
+                    imageName: "FeedPeers",
                     classType: ProfileImagesCollectionViewCell.self,
                     contentType: .Aggregate
                 )
 
             case Interests:
                 return CardTypeInfo(
-                    imageName: "Tag",
+                    imageName: "FeedSkills",
                     classType: InterestsCollectionViewCell.self,
                     contentType: .Aggregate
                 )
@@ -209,7 +209,7 @@ class Card: Equatable {
 
             case NewHires:
                 return CardTypeInfo(
-                    imageName: "Users",
+                    imageName: "FeedNewHire",
                     classType: ProfileCollectionViewCell.self,
                     contentType: .Flat
                 )
@@ -230,14 +230,14 @@ class Card: Equatable {
 
             case Settings:
                 return CardTypeInfo(
-                    imageName: "Cog",
+                    imageName: "Settings",
                     classType: SettingsCollectionViewCell.self,
                     contentType: .Flat
                 )
 
             case Skills:
                 return CardTypeInfo(
-                    imageName: "TitleTag",
+                    imageName: "FeedSkills",
                     classType: InterestsCollectionViewCell.self,
                     contentType: .Aggregate
                 )
