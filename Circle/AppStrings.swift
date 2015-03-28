@@ -31,6 +31,7 @@ struct AppStrings {
     static let ProfileAppreciationTabTitle = NSLocalizedString("Appreciation", comment: "Title of the Appreciation section")
     
     static let ProfileSectionAboutTitle = NSLocalizedString("About", comment: "Title of the section which shows user bio, nick name and other personal info")
+    static let ProfileSectionBioTitle = NSLocalizedString("Bio", comment: "Title of the section which shows user's bio")
     static let ProfileSectionContactPreferencesTitle = NSLocalizedString("Contact Preferences", comment: "Title of the section which takes user to preferences on contact info")
     static let ProfileSectionInfoTitle = NSLocalizedString("Info", comment: "Title of the Info section")
     static let ProfileSectionOfficeTitle = NSLocalizedString("Office", comment: "Title of the section which shows a user's office")

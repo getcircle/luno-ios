@@ -9,9 +9,10 @@
 import UIKit
 import ProtobufRegistry
 
-class EditAboutViewController: UIViewController {
+class EditAboutViewController: UIViewController, UITextFieldDelegate {
 
-    @IBOutlet weak private(set) var bioTextView: UITextView!
+    @IBOutlet weak private(set) var bioLabel: UILabel!
+    @IBOutlet weak private(set) var bioTextField: UITextField!
     
     private var allControls = [AnyObject]()
     
@@ -24,13 +25,14 @@ class EditAboutViewController: UIViewController {
         assert(profile != nil, "Profile should be set for this view controller")
         configureView()
         configureNavigationBar()
-        configureAboutTextView()
+        configureBioLabel()
+        configureBioTextField()
         populateData()
     }
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        bioTextView.becomeFirstResponder()
+        bioTextField.becomeFirstResponder()
     }
     
     // MARK: - Configuration
@@ -45,16 +47,19 @@ class EditAboutViewController: UIViewController {
         addCloseButtonWithAction("cancel:")
     }
     
-    private func configureAboutTextView() {
-        bioTextView.addRoundCorners(radius: 3.0)
-        bioTextView.layer.borderColor = UIColor.lightGrayColor().CGColor
-        bioTextView.layer.borderWidth = 1.0
-        allControls.append(bioTextView)
+    private func configureBioLabel() {
+        bioLabel.textColor = UIColor.appAttributeTitleLabelColor()
+        bioLabel.font = UIFont.appAttributeTitleLabelFont()
+        bioLabel.text = AppStrings.ProfileSectionBioTitle.uppercaseStringWithLocale(NSLocale.currentLocale())
+    }
+    
+    private func configureBioTextField() {
+        allControls.append(bioTextField)
     }
     
     private func populateData() {
         if profile.hasAbout {
-            bioTextView.text = profile.about
+            bioTextField.text = profile.about
         }
     }
     
@@ -75,6 +80,13 @@ class EditAboutViewController: UIViewController {
         dismissView()
     }
     
+    // MARK: - UITextFieldDelegate
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        done(textField)
+        return true
+    }
+    
     // MARK: - Helpers
     
     private func dismissView() {
@@ -93,7 +105,7 @@ class EditAboutViewController: UIViewController {
     
     private func updateProfile(completion: () -> Void) {
         let builder = profile.toBuilder()
-        builder.about = bioTextView.text
+        builder.about = bioTextField.text
         ProfileService.Actions.updateProfile(builder.build()) { (profile, error) -> Void in
             if let profile = profile {
                 AuthViewController.updateUserProfile(profile)

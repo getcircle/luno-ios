@@ -6,7 +6,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EditAboutViewController" customModule="circle" customModuleProvider="target">
             <connections>
-                <outlet property="bioTextView" destination="ZyL-HW-CP9" id="3Q8-uU-vfe"/>
+                <outlet property="bioLabel" destination="XXs-q9-7Uu" id="cIq-dX-UjF"/>
+                <outlet property="bioTextField" destination="Bp6-eI-HIY" id="vRh-On-KhM"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -21,24 +22,44 @@
                     <color key="textColor" red="0.14901960784313725" green="0.14901960784313725" blue="0.14901960784313725" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZyL-HW-CP9">
-                    <rect key="frame" x="10" y="65" width="580" height="100"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BIO" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XXs-q9-7Uu">
+                    <rect key="frame" x="15" y="65" width="27" height="18"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yp0-Eg-r2B" userLabel="BioTextViewContainer">
+                    <rect key="frame" x="0.0" y="93" width="600" height="100"/>
+                    <subviews>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bp6-eI-HIY" userLabel="BioTextField">
+                            <rect key="frame" x="10" y="10" width="580" height="80"/>
+                            <color key="textColor" red="0.14901960784313725" green="0.14901960784313725" blue="0.14901960784313725" alpha="1" colorSpace="calibratedRGB"/>
+                            <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="15"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="yes" returnKeyType="done"/>
+                            <connections>
+                                <outlet property="delegate" destination="-1" id="qLZ-kj-8M3"/>
+                            </connections>
+                        </textField>
+                    </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="100" id="wzz-dh-fER"/>
+                        <constraint firstItem="Bp6-eI-HIY" firstAttribute="leading" secondItem="Yp0-Eg-r2B" secondAttribute="leading" constant="10" id="2Ar-Yb-0db"/>
+                        <constraint firstItem="Bp6-eI-HIY" firstAttribute="top" secondItem="Yp0-Eg-r2B" secondAttribute="top" constant="10" id="2YP-LW-RtE"/>
+                        <constraint firstAttribute="trailing" secondItem="Bp6-eI-HIY" secondAttribute="trailing" constant="10" id="J6p-ug-B8z"/>
+                        <constraint firstAttribute="bottom" secondItem="Bp6-eI-HIY" secondAttribute="bottom" constant="10" id="UUV-L8-M1m"/>
+                        <constraint firstAttribute="height" constant="100" id="eWG-FH-KDj"/>
                     </constraints>
-                    <color key="textColor" red="0.14901960784313725" green="0.14901960784313725" blue="0.14901960784313725" alpha="1" colorSpace="calibratedRGB"/>
-                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="15"/>
-                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="yes" spellCheckingType="yes" keyboardType="alphabet" returnKeyType="done"/>
-                </textView>
+                </view>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="ZyL-HW-CP9" secondAttribute="trailing" constant="10" id="ESo-0H-0O3"/>
-                <constraint firstItem="ZyL-HW-CP9" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="HOO-r9-Mgb"/>
+                <constraint firstItem="XXs-q9-7Uu" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="KyM-lp-5Jg"/>
                 <constraint firstItem="kkk-E9-jA5" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="O7x-pu-LSH"/>
-                <constraint firstItem="ZyL-HW-CP9" firstAttribute="top" secondItem="kkk-E9-jA5" secondAttribute="bottom" constant="20" id="Z9k-Yr-KvT"/>
+                <constraint firstItem="Yp0-Eg-r2B" firstAttribute="top" secondItem="XXs-q9-7Uu" secondAttribute="bottom" constant="10" id="OnU-0F-tUD"/>
+                <constraint firstItem="Yp0-Eg-r2B" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="bux-HX-PhM"/>
+                <constraint firstAttribute="trailing" secondItem="Yp0-Eg-r2B" secondAttribute="trailing" id="fYW-aG-N8G"/>
                 <constraint firstAttribute="centerX" secondItem="kkk-E9-jA5" secondAttribute="centerX" constant="15.5" id="fdM-m0-9oW"/>
+                <constraint firstItem="XXs-q9-7Uu" firstAttribute="top" secondItem="kkk-E9-jA5" secondAttribute="bottom" constant="20" id="vRb-mj-p80"/>
             </constraints>
             <point key="canvasLocation" x="-18" y="41"/>
         </view>

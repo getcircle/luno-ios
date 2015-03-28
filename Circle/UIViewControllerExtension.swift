@@ -230,7 +230,7 @@ extension UIViewController {
 
     func addDoneButtonWithAction(callbackMethod: Selector) -> UIBarButtonItem? {
         let saveButtonItem = UIBarButtonItem(
-            image: UIImage(named: "CircleCheckFilled"),
+            image: UIImage(named: "Check"),
             style: .Plain,
             target: self,
             action: callbackMethod
@@ -243,7 +243,7 @@ extension UIViewController {
     func addCloseButtonWithAction(callbackMethod: Selector) -> UIBarButtonItem? {
         if isBeingPresentedModally() {
             let cancelButtonItem = UIBarButtonItem(
-                image: UIImage(named: "Close"),
+                image: UIImage(named: "SmallClose"),
                 style: .Plain,
                 target: self,
                 action: callbackMethod
