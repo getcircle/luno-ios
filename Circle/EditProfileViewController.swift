@@ -27,6 +27,7 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
 
         // Do any additional setup after loading the view.
         configureView()
+        configureScrollView()
         configureContentView()
         configureNavigationButtons()
         configureFormFields()
@@ -42,6 +43,19 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         unregisterNotifications()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        var maxY: CGFloat = 0.0
+        var heightOfTheLastElement: CGFloat = 0.0
+        for subview in rootContentView.subviews {
+            if subview.frameY >= maxY {
+                maxY = subview.frameY
+                heightOfTheLastElement = subview.frameHeight
+            }
+        }
+
+        rootScrollView.contentSize = CGSizeMake(UIScreen.mainScreen().bounds.width, maxY + heightOfTheLastElement + 100.0)
     }
 
     // MARK - Configuration
