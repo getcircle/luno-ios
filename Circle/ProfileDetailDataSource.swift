@@ -400,7 +400,7 @@ class ProfileDetailDataSource: CardDataSource {
     private func addKeyValueItemToCard(item: SectionItem, card: Card) {
         var value = getValueForItem(item)
         if let value = value as? String {
-            if value != "" {
+            if value != "" || item.contentType == ContentType.ContactPreferences {
                 var dataDict: [String: AnyObject] = [
                     "key": item.containerKey,
                     "name": item.title,

@@ -55,12 +55,12 @@ class FormBuilder: NSObject, UITextFieldDelegate {
             // Section title
             let sectionTitleLabel = UILabel(forAutoLayout: ())
             sectionTitleLabel.backgroundColor = UIColor.appViewBackgroundColor()
-            sectionTitleLabel.text = section.title
-            sectionTitleLabel.font = UIFont(name: "Avenir-Heavy", size: 15.0)
-            sectionTitleLabel.textColor = UIColor.appDefaultDarkTextColor()
+            sectionTitleLabel.text = section.title.uppercaseStringWithLocale(NSLocale.currentLocale())
+            sectionTitleLabel.font = UIFont.appAttributeTitleLabelFont()
+            sectionTitleLabel.textColor = UIColor.appAttributeTitleLabelColor()
             parentView.addSubview(sectionTitleLabel)
             if let lastView = previousView {
-                sectionTitleLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: lastView, withOffset: formFieldEdgeInset.top)
+                sectionTitleLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: lastView, withOffset: 25.0)
                 sectionTitleLabel.autoPinEdgeToSuperviewEdge(.Left, withInset: formFieldEdgeInset.left)
                 sectionTitleLabel.autoPinEdgeToSuperviewEdge(.Right, withInset: formFieldEdgeInset.right)
             }
@@ -74,33 +74,51 @@ class FormBuilder: NSObject, UITextFieldDelegate {
                 switch item.type {
                 
                 case .TextField:
-                    let textField = CircleTextField(forAutoLayout: ())
-                    textField.textColor = UIColor.appDefaultDarkTextColor()
-                    textField.placeholder = item.placeholder
+                    let containerView = UIView(forAutoLayout: ())
+                    containerView.opaque = true
+                    containerView.backgroundColor = UIColor.whiteColor()
+                    parentView.addSubview(containerView)
+                    containerView.autoPinEdgeToSuperviewEdge(.Left)
+                    containerView.autoPinEdgeToSuperviewEdge(.Right)
+                    containerView.autoPinEdge(.Top, toEdge: .Bottom, ofView: previousView!, withOffset: (previousView == sectionTitleLabel ? 10.0 : 1.0))
+                    containerView.autoSetDimension(.Height, toSize: 60.0)
+                    
+                    let fieldNameLabel = UILabel(forAutoLayout: ())
+                    fieldNameLabel.opaque = true
+                    fieldNameLabel.backgroundColor = UIColor.whiteColor()
+                    fieldNameLabel.text = item.placeholder.uppercaseStringWithLocale(NSLocale.currentLocale())
+                    fieldNameLabel.font = UIFont.appAttributeTitleLabelFont()
+                    fieldNameLabel.textColor = UIColor.appAttributeTitleLabelColor()
+                    containerView.addSubview(fieldNameLabel)
+                    fieldNameLabel.autoPinEdgeToSuperviewEdge(.Left, withInset: formFieldEdgeInset.left)
+                    fieldNameLabel.autoAlignAxisToSuperviewAxis(.Horizontal)
+                    
+                    let textField = UITextField(forAutoLayout: ())
+                    textField.textColor = UIColor.appAttributeValueLabelColor()
+                    textField.font = UIFont.appAttributeValueLabelFont()
                     textField.clearButtonMode = .WhileEditing
+                    textField.textAlignment = .Right
                     textField.keyboardType = item.keyboardType
                     textField.delegate = self
-                    textField.placeholderColor = UIColor.lightGrayColor()
-                    textField.font = UIFont(name: "Avenir-Light", size: 17.0)
-                    parentView.addSubview(textField)
-                    textField.addBottomBorder(offset: 0.0)
-                    textField.autoPinEdgeToSuperviewEdge(.Left, withInset: formFieldEdgeInset.left)
+                    containerView.addSubview(textField)
+                    textField.autoPinEdge(.Left, toEdge: .Right, ofView: fieldNameLabel, withOffset: 10.0)
                     textField.autoPinEdgeToSuperviewEdge(.Right, withInset: formFieldEdgeInset.right)
-                    textField.autoPinEdge(.Top, toEdge: .Bottom, ofView: previousView!, withOffset: 10.0)
-                    textField.autoSetDimension(.Height, toSize: 30.0)
+                    textField.autoAlignAxisToSuperviewAxis(.Horizontal)
+                    textField.autoSetDimension(.Height, toSize: 40.0)
+
                     if let textValue = item.value as? String {
                         textField.text = textValue
                     }
 
                     item.input = textField
-                    previousView = textField
+                    previousView = containerView
                     break
                     
                 default:
                     break
                 }
             }
-        }
+        }        
     }
     
     // MARK: - UITextFieldDelegate

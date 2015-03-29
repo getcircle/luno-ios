@@ -33,6 +33,7 @@ class KeyValueCollectionViewCell: CircleCollectionViewCell {
         nameImageViewWidthConstraintInitialValue = nameImageViewWidthConstraint.constant
         nameLabel.font = UIFont.appAttributeTitleLabelFont()
         nameLabel.textColor = UIColor.appAttributeTitleLabelColor()
+
         valueLabel.textAlignment = .Right
         valueLabel.font = UIFont.appAttributeValueLabelFont()
         valueLabel.textColor = UIColor.appAttributeValueLabelColor()
@@ -60,7 +61,6 @@ class KeyValueCollectionViewCell: CircleCollectionViewCell {
             }
             else {
                 nameImageView.alpha = 0.0
-                // valueLabelTrailingSpaceConstraint.constant = 15.0
             }
         }
     }

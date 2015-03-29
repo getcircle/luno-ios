@@ -53,27 +53,7 @@ class CurrentUserProfileDetailViewController: ProfileDetailViewController,
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureNavigationButtons()
         registerFullLifecycleNotifications()
-    }
-
-    private func configureNavigationButtons() {
-//        if profile.id == AuthViewController.getLoggedInUserProfile()!.id {
-//            let editButtonItem = UIBarButtonItem(
-//                image: UIImage(named: "Pencil"),
-//                style: .Plain,
-//                target: self,
-//                action: "editProfileButtonTapped:"
-//            )
-//            
-//            var rightBarButtonItems = [UIBarButtonItem]()
-//            if navigationItem.rightBarButtonItem != nil {
-//                rightBarButtonItems.append(navigationItem.rightBarButtonItem!)
-//            }
-//            
-//            rightBarButtonItems.append(editButtonItem)
-//            navigationItem.rightBarButtonItems = rightBarButtonItems
-//        }
     }
 
     // MARK: - Helpers
@@ -103,15 +83,7 @@ class CurrentUserProfileDetailViewController: ProfileDetailViewController,
     }
     
     // MARK: - IBActions
-    
-    @IBAction func editProfileButtonTapped(sender: AnyObject!) {
-        let editProfileVC = EditProfileViewController(nibName: "EditProfileViewController", bundle: nil)
-        editProfileVC.profile = profile
-        editProfileVC.editProfileDelegate = self
-        editProfileVC.hidesBottomBarWhenPushed = false
-        navigationController?.pushViewController(editProfileVC, animated: true)
-    }
-    
+
     @IBAction func settingsButtonTapped(sender: AnyObject!) {
         let settingsViewController = SettingsViewController(nibName: "SettingsViewController", bundle: nil)
         let settingsNavController = UINavigationController(rootViewController: settingsViewController)
@@ -320,6 +292,22 @@ class CurrentUserProfileDetailViewController: ProfileDetailViewController,
             addImageActionSheet!.dismissViewControllerAnimated(animated, completion: {() -> Void in
                 self.addImageActionSheet = nil
             })
+        }
+    }
+    
+    // MARK: - UICollectionViewDelegate
+    
+    override func handleKeyValueCardSelection(dataSource: ProfileDetailDataSource, indexPath: NSIndexPath) {
+        switch dataSource.typeOfCell(indexPath) {
+        case .ContactPreferences:
+            let editProfileVC = EditProfileViewController(nibName: "EditProfileViewController", bundle: nil)
+            editProfileVC.profile = profile
+            editProfileVC.editProfileDelegate = self
+            editProfileVC.hidesBottomBarWhenPushed = false
+            navigationController?.pushViewController(editProfileVC, animated: true)
+            
+        default:
+            super.handleKeyValueCardSelection(dataSource, indexPath: indexPath)
         }
     }
 }

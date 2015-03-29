@@ -18,9 +18,9 @@ class CurrentUserProfileDetailDataSource: ProfileDetailDataSource {
         
         if !onlyShowContactInfo {
             sections.removeAtIndex(0)
-//            sections.insert(getContactPreferencesSection(), atIndex: 0)
+            sections.insert(getContactPreferencesSection(), atIndex: 0)
             if let socialConnectSection = getSocialConnectSection() {
-                sections.insert(socialConnectSection, atIndex: 0)
+                sections.insert(socialConnectSection, atIndex: 1)
             }
         }
     }
@@ -57,7 +57,7 @@ class CurrentUserProfileDetailDataSource: ProfileDetailDataSource {
             title: AppStrings.ProfileSectionContactPreferencesTitle,
             container: "", 
             containerKey: "", 
-            contentType: .ContactPreferences, 
+            contentType: .ContactPreferences,
             image: ItemImage.genericNextImage,
             defaultValue: ""
         )

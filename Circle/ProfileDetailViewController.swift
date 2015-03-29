@@ -73,7 +73,7 @@ class ProfileDetailViewController: DetailViewController,
         }
     }
     
-    private func handleKeyValueCardSelection(dataSource: ProfileDetailDataSource, indexPath: NSIndexPath) {
+    internal func handleKeyValueCardSelection(dataSource: ProfileDetailDataSource, indexPath: NSIndexPath) {
         switch dataSource.typeOfCell(indexPath) {
         case .CellPhone:
             performQuickAction(.Phone, additionalData: profile.cell_phone)

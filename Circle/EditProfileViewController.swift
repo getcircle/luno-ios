@@ -15,15 +15,11 @@ protocol EditProfileDelegate {
 
 class EditProfileViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
-    @IBOutlet weak private(set) var editImageButton: UIButton!
-    @IBOutlet weak private(set) var profileImageView: CircleImageView!
+    @IBOutlet weak private(set) var rootContentView: UIView!
     @IBOutlet weak private(set) var rootScrollView: UIScrollView!
     
     var editProfileDelegate: EditProfileDelegate?
     var profile: ProfileService.Containers.Profile!
-
-    private var addImageActionSheet: UIAlertController?
-    private var didUploadPhoto = false
     private var formBuilder = FormBuilder()
     
     override func viewDidLoad() {
@@ -31,9 +27,11 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
 
         // Do any additional setup after loading the view.
         configureView()
+        configureContentView()
         configureNavigationButtons()
         configureFormFields()
         populateData()
+        formBuilder.build(rootContentView)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -46,55 +44,24 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
         unregisterNotifications()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    // MARK - Configuration
+    
+    private func configureScrollView() {
+        rootScrollView.backgroundColor = UIColor.appViewBackgroundColor()
+        rootScrollView.opaque = true
     }
     
-    
-    // MARK - Form Builder
+    private func configureContentView() {
+        rootContentView.backgroundColor = UIColor.appViewBackgroundColor()
+        rootContentView.opaque = true
+        rootContentView.autoMatchDimension(.Height, toDimension: .Height, ofView: view)
+        rootContentView.autoMatchDimension(.Width, toDimension: .Width, ofView: view)
+    }
     
     private func configureFormFields() {
-        // Short bio
-        // Image
-        // Name
-        // Title
         var formSections = [
             FormBuilder.Section(
-                title: NSLocalizedString("About:", comment: "Title of the section listing name, title, and short bio"),
-                items: [
-                FormBuilder.SectionItem(
-                    placeholder: NSLocalizedString("First Name", comment: "Placeholder for textfield that accepts user's first name"),
-                    type: .TextField,
-                    keyboardType: .NamePhonePad,
-                    container: "profile",
-                    containerKey: "first_name"
-                ),
-                FormBuilder.SectionItem(
-                    placeholder: NSLocalizedString("Last Name", comment: "Placeholder for textfield that accepts user's last name"),
-                    type: .TextField,
-                    keyboardType: .NamePhonePad,
-                    container: "profile",
-                    containerKey: "last_name"
-                ),
-                FormBuilder.SectionItem(
-                    placeholder: NSLocalizedString("Title", comment: "Placeholder for textfield that accepts job title"), 
-                    type: .TextField,
-                    keyboardType: .NamePhonePad,
-                    container: "profile",
-                    containerKey: "title"
-                ),
-//                FormBuilder.SectionItem(
-//                    placeholder: NSLocalizedString("Write a short bio for youself. You can add things like your favorite song, your personalysis profile or meyers briggs personality type, etc.",
-//                    comment: "Placeholder for textfield that accepts a short bio for a user"),
-//                    andType: .TextField,
-//                    andKeyboardType: .ASCIICapable,
-//                    andContainer: "profile",
-//                    andContainerKey: "title"
-//                )
-            ]),
-            FormBuilder.Section(
-                title: NSLocalizedString("Email:", comment: "Title of the section listing emails"),
+                title: AppStrings.QuickActionEmailLabel,
                 items: [
                 FormBuilder.SectionItem(
                     placeholder: NSLocalizedString("Work Email", comment: "Placeholder for textfield that accepts a work email"),
@@ -112,7 +79,7 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
                 )
             ]),
             FormBuilder.Section(
-                title: NSLocalizedString("Phone:", comment: "Title of the section listing phone numbers"),
+                title: AppStrings.QuickActionCallLabel,
                 items: [
                 FormBuilder.SectionItem(
                     placeholder: NSLocalizedString("Work Phone", comment: "Placeholder for textfield that accepts a work phone"),
@@ -147,66 +114,41 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
         }
         
         formBuilder.sections.extend(formSections)
-        formBuilder.build(rootScrollView, afterSubView: profileImageView)
     }
-
-    // MARK - Configuration
     
     private func configureView() {
-        title = NSLocalizedString("Edit Profile", comment: "Title of the edit profile view")
+        title = AppStrings.ProfileSectionContactPreferencesTitle
         view.backgroundColor = UIColor.appViewBackgroundColor()
         var tapGestureRecognizer = UITapGestureRecognizer(target: self, action: "viewTapped:")
         view.addGestureRecognizer(tapGestureRecognizer)
-        editImageButton.tintColor = UIColor.whiteColor()
-        editImageButton.setImage(
-            editImageButton.imageForState(.Normal)?.imageWithRenderingMode(.AlwaysTemplate),
-            forState: .Normal
-        )
     }
     
     override func viewDidLayoutSubviews() {
-        var maxY: CGFloat = 0.0
-        var heightOfTheLastElement: CGFloat = 0.0
-        for subview in rootScrollView.subviews {
-            if subview.frameY >= maxY {
-                maxY = subview.frameY
-                heightOfTheLastElement = subview.frameHeight
-            }
-        }
-        
-        rootScrollView.contentSize = CGSizeMake(UIScreen.mainScreen().bounds.width, maxY + heightOfTheLastElement + 100.0)
-    }
-
-    private func configureScrollView() {
+//        var maxY: CGFloat = 0.0
+//        var heightOfTheLastElement: CGFloat = 0.0
+//        for subview in rootScrollView.subviews {
+//            if subview.frameY >= maxY {
+//                maxY = subview.frameY
+//                heightOfTheLastElement = subview.frameHeight
+//            }
+//        }
+//        
+//        rootScrollView.contentSize = CGSizeMake(UIScreen.mainScreen().bounds.width, maxY + heightOfTheLastElement + 100.0)
     }
     
     private func configureNavigationButtons() {
         
         if isBeingPresentedModally() {
-            let cancelButtonItem = UIBarButtonItem(
-                image: UIImage(named: "Close"),
-                style: .Plain,
-                target: self,
-                action: "cancelButtonTapped:"
-            )
-            
-            navigationItem.leftBarButtonItem = cancelButtonItem
+            addCloseButtonWithAction("cancelButtonTapped:")
         }
 
-        let doneButtonItem = UIBarButtonItem(
-            image: UIImage(named: "CircleCheckFilled"),
-            style: .Plain,
-            target: self,
-            action: "saveButtonTapped:"
-        )
-        
-        navigationItem.rightBarButtonItem = doneButtonItem
+        addDoneButtonWithAction("saveButtonTapped:")
     }
 
     // MARK: - Data
     
     private func populateData() {
-        profileImageView.setImageWithProfile(profile)
+
     }
     
     // MARK: - IBAction
@@ -216,7 +158,7 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
     }
     
     @IBAction func saveButtonTapped(sender: AnyObject!) {
-        handleImageUpload { () -> Void in
+        updateProfile { () -> Void in
             if let delegate = self.editProfileDelegate {
                 delegate.didFinishEditingProfile()
             }
@@ -278,73 +220,6 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
         rootScrollView.scrollIndicatorInsets = contentInsets;
     }
     
-    // MARK: - Profile Image
-
-    @IBAction func editImageButtonTapped(sender: AnyObject!) {
-        var actionSheet = UIAlertController(
-            title: NSLocalizedString("Add a picture", comment: "Title of window which asks user to add a picture"),
-            message: nil,
-            preferredStyle: .ActionSheet
-        )
-        actionSheet.view.tintColor = UIColor.appActionSheetControlsTintColor()
-        
-        var takeAPictureActionControl = UIAlertAction(
-            title: NSLocalizedString("Take a picture", comment: "Button prompt to take a picture using the camera"),
-            style: .Default,
-            handler: takeAPictureAction
-        )
-        actionSheet.addAction(takeAPictureActionControl)
-        
-        var pickAPhotoActionControl = UIAlertAction(
-            title: NSLocalizedString("Pick a photo", comment: "Button prompt to pick a photo from user's photos"),
-            style: .Default,
-            handler: pickAPhotoAction
-        )
-        actionSheet.addAction(pickAPhotoActionControl)
-        
-        var cancelControl = UIAlertAction(
-            title: "Cancel",
-            style: .Cancel,
-            handler: { (action) -> Void in
-                self.dismissAddImageActionSheet(true)
-            }
-        )
-        actionSheet.addAction(cancelControl)
-        addImageActionSheet = actionSheet
-        presentViewController(actionSheet, animated: true, completion: nil)
-        dismissKeyboard()
-    }
-    
-    func takeAPictureAction(action: UIAlertAction!) {
-        dismissAddImageActionSheet(false)
-        if UIImagePickerController.isSourceTypeAvailable(.Camera) {
-            var pickerVC = UIImagePickerController()
-            pickerVC.sourceType = .Camera
-            pickerVC.cameraCaptureMode = .Photo
-            if UIImagePickerController.isCameraDeviceAvailable(.Front) {
-                pickerVC.cameraDevice = .Front
-            }
-            else {
-                pickerVC.cameraDevice = .Rear
-            }
-            
-            pickerVC.allowsEditing = true
-            pickerVC.delegate = self
-            presentViewController(pickerVC, animated: true, completion: nil)
-        }
-    }
-    
-    func pickAPhotoAction(action: UIAlertAction!) {
-        dismissAddImageActionSheet(false)
-        if UIImagePickerController.isSourceTypeAvailable(.PhotoLibrary) {
-            var pickerVC = UIImagePickerController()
-            pickerVC.sourceType = .PhotoLibrary
-            pickerVC.allowsEditing = true
-            pickerVC.delegate = self
-            presentViewController(pickerVC, animated: true, completion: nil)
-        }
-    }
-    
     // MARK: - Helpers
 
     private func updateProfile(completion: () -> Void) {
@@ -398,53 +273,12 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
         }
     }
     
-    private func handleImageUpload(completion: () -> Void) {
-        if didUploadPhoto {
-            MediaService.Actions.uploadProfileImage(profile.id, image: profileImageView.image!) { (mediaURL, error) -> Void in
-                if let mediaURL = mediaURL {
-                    let profileBuilder = self.profile.toBuilder()
-                    profileBuilder.image_url = mediaURL
-                    self.updateProfile(completion)
-                }
-            }
-        } else {
-            updateProfile(completion)
-        }
-    }
-    
-    private func dismissAddImageActionSheet(animated: Bool) {
-        if addImageActionSheet != nil {
-            addImageActionSheet!.dismissViewControllerAnimated(animated, completion: {() -> Void in
-                self.addImageActionSheet = nil
-            })
-        }
-    }
-
     private func dismissKeyboard() {
         if let activeField = formBuilder.activeField {
             activeField.resignFirstResponder()
         }
     }
-    
-    // MARK: - UIImagePickerDelegate
-    
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
-        if let pickedImage = info[UIImagePickerControllerEditedImage] as? UIImage {
-            profileImageView.image = pickedImage
-            didUploadPhoto = true
-        }
-        else {
-            // XXX when is this ever hit?
-            profileImageView.image = info[UIImagePickerControllerOriginalImage] as? UIImage
-        }
 
-        dismissViewControllerAnimated(true, completion: nil)
-    }
-    
-    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-        dismissViewControllerAnimated(true, completion: nil)
-    }
-    
     // MARK: - Gesture Recognizer
     
     func viewTapped(sender: AnyObject!) {
