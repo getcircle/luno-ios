@@ -38,7 +38,7 @@ class CircleActivityIndicatorView: UIImageView {
     private func customInit() {
         var animatedImages = [UIImage]()
         
-        for i in 0...58 {
+        for i in 0...59 {
             let imageName = "Loader_000" + (i <= 9 ? "0" : "") + String(i)
             animatedImages.append(
                 UIImage(named: imageName)!.imageWithRenderingMode(.AlwaysTemplate)
