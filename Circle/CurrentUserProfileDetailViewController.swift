@@ -303,8 +303,8 @@ class CurrentUserProfileDetailViewController: ProfileDetailViewController,
             let editProfileVC = EditProfileViewController(nibName: "EditProfileViewController", bundle: nil)
             editProfileVC.profile = profile
             editProfileVC.editProfileDelegate = self
-            editProfileVC.hidesBottomBarWhenPushed = false
-            navigationController?.pushViewController(editProfileVC, animated: true)
+            let editProfileNavVC = UINavigationController(rootViewController: editProfileVC)
+            navigationController?.presentViewController(editProfileNavVC, animated: true, completion: nil)
             
         default:
             super.handleKeyValueCardSelection(dataSource, indexPath: indexPath)

@@ -49,6 +49,8 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
     private func configureScrollView() {
         rootScrollView.backgroundColor = UIColor.appViewBackgroundColor()
         rootScrollView.opaque = true
+        rootScrollView.bounces = true
+        rootScrollView.alwaysBounceVertical = true
     }
     
     private func configureContentView() {
@@ -62,6 +64,7 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
         var formSections = [
             FormBuilder.Section(
                 title: AppStrings.QuickActionEmailLabel,
+                imageSource: "Email",
                 items: [
                 FormBuilder.SectionItem(
                     placeholder: NSLocalizedString("Work Email", comment: "Placeholder for textfield that accepts a work email"),
@@ -80,28 +83,69 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
             ]),
             FormBuilder.Section(
                 title: AppStrings.QuickActionCallLabel,
+                imageSource: "Call",
                 items: [
-                FormBuilder.SectionItem(
-                    placeholder: NSLocalizedString("Work Phone", comment: "Placeholder for textfield that accepts a work phone"),
-                    type: .TextField,
-                    keyboardType: .PhonePad,
-                    container: "profile",
-                    containerKey: "work_phone"
-                ),
-                FormBuilder.SectionItem(
-                    placeholder: NSLocalizedString("Cell Phone", comment: "Placeholder for textfield that accepts a cell phone"),
-                    type: .TextField,
-                    keyboardType: .PhonePad,
-                    container: "profile",
-                    containerKey: "cell_phone"
-                ),
-                FormBuilder.SectionItem(
-                    placeholder: NSLocalizedString("Home Phone", comment: "Placeholder for textfield that acceots a home phone"),
-                    type: .TextField,
-                    keyboardType: .PhonePad,
-                    container: "profile",
-                    containerKey: "home_phone"
-                )
+                    FormBuilder.SectionItem(
+                        placeholder: NSLocalizedString("Work Phone", comment: "Placeholder for textfield that accepts a work phone"),
+                        type: .TextField,
+                        keyboardType: .PhonePad,
+                        container: "profile",
+                        containerKey: "work_phone"
+                    ),
+                    FormBuilder.SectionItem(
+                        placeholder: NSLocalizedString("Cell Phone", comment: "Placeholder for textfield that accepts a cell phone"),
+                        type: .TextField,
+                        keyboardType: .PhonePad,
+                        container: "profile",
+                        containerKey: "cell_phone"
+                    ),
+                    FormBuilder.SectionItem(
+                        placeholder: NSLocalizedString("Home Phone", comment: "Placeholder for textfield that acceots a home phone"),
+                        type: .TextField,
+                        keyboardType: .PhonePad,
+                        container: "profile",
+                        containerKey: "home_phone"
+                    )
+            ]),
+            FormBuilder.Section(
+                title: AppStrings.QuickActionMessageLabel,
+                imageSource: "Sms",
+                items: [
+                    FormBuilder.SectionItem(
+                        placeholder: "Sms",
+                        type: .TextField,
+                        keyboardType: .PhonePad,
+                        container: "profile",
+                        containerKey: "cell_phone"
+                    ),
+                    FormBuilder.SectionItem(
+                        placeholder: "Slack",
+                        type: .TextField,
+                        keyboardType: .PhonePad,
+                        container: "profile",
+                        containerKey: "slack"
+                    ),
+                    FormBuilder.SectionItem(
+                        placeholder: "Hip Chat",
+                        type: .TextField,
+                        keyboardType: .PhonePad,
+                        container: "profile",
+                        containerKey: "hip_chat"
+                    ),
+                    FormBuilder.SectionItem(
+                        placeholder: "Facbeook Messenger",
+                        type: .TextField,
+                        keyboardType: .PhonePad,
+                        container: "profile",
+                        containerKey: "hip_chat"
+                    ),
+                    FormBuilder.SectionItem(
+                        placeholder: "Twitter",
+                        type: .TextField,
+                        keyboardType: .PhonePad,
+                        container: "profile",
+                        containerKey: "hip_chat"
+                    ),
             ]),
         ]
         
@@ -122,22 +166,9 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
         var tapGestureRecognizer = UITapGestureRecognizer(target: self, action: "viewTapped:")
         view.addGestureRecognizer(tapGestureRecognizer)
     }
-    
-    override func viewDidLayoutSubviews() {
-//        var maxY: CGFloat = 0.0
-//        var heightOfTheLastElement: CGFloat = 0.0
-//        for subview in rootScrollView.subviews {
-//            if subview.frameY >= maxY {
-//                maxY = subview.frameY
-//                heightOfTheLastElement = subview.frameHeight
-//            }
-//        }
-//        
-//        rootScrollView.contentSize = CGSizeMake(UIScreen.mainScreen().bounds.width, maxY + heightOfTheLastElement + 100.0)
-    }
-    
+
     private func configureNavigationButtons() {
-        
+
         if isBeingPresentedModally() {
             addCloseButtonWithAction("cancelButtonTapped:")
         }

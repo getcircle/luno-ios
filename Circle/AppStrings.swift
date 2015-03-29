@@ -47,7 +47,7 @@ struct AppStrings {
     static let QuickActionNoneLabel = ""
     static let QuickActionEmailLabel = NSLocalizedString("Email", comment: "Title for button used to send an email")
     static let QuickActionInfoLabel = NSLocalizedString("Info", comment: "Title for button used to see info")
-    static let QuickActionMessageLabel = NSLocalizedString("Text", comment: "Title for button used to send a message")
+    static let QuickActionMessageLabel = NSLocalizedString("Message", comment: "Title for button used to send a message")
     static let QuickActionNoteLabel = NSLocalizedString("Note", comment: "Title for button used to take a note")
     static let QuickActionCallLabel = NSLocalizedString("Call", comment: "Title for button used to initiate a call")
     static let QuickActionSlackLabel = NSLocalizedString("Slack", comment: "Title for button used send a message via Slack")

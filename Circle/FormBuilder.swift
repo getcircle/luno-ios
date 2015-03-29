@@ -39,6 +39,7 @@ class FormBuilder: NSObject, UITextFieldDelegate {
     
     struct Section {
         var title: String
+        var imageSource: String
         var items: [SectionItem]
     }
     
@@ -47,27 +48,45 @@ class FormBuilder: NSObject, UITextFieldDelegate {
 
     func build(parentView: UIView, afterSubView: UIView? = nil) {
         
-        let formFieldEdgeInset = UIEdgeInsetsMake(40.0, 15.0, 0.0, 15.0)
+        let formFieldEdgeInset = UIEdgeInsetsMake(25.0, 15.0, 0.0, 15.0)
         var previousView = afterSubView
         
         for section in sections {
             
-            // Section title
+            // Section Container
+            let sectionContainerView = UIView(forAutoLayout: ())
+            sectionContainerView.opaque = true
+            sectionContainerView.backgroundColor = UIColor.appViewBackgroundColor()
+            parentView.addSubview(sectionContainerView)
+            if let lastView = previousView {
+                sectionContainerView.autoPinEdge(.Top, toEdge: .Bottom, ofView: lastView, withOffset: formFieldEdgeInset.top)
+                sectionContainerView.autoPinEdgeToSuperviewEdge(.Left, withInset: formFieldEdgeInset.left)
+                sectionContainerView.autoPinEdgeToSuperviewEdge(.Right, withInset: formFieldEdgeInset.right)
+            }
+            else {
+                sectionContainerView.autoPinEdgesToSuperviewEdgesWithInsets(formFieldEdgeInset, excludingEdge: .Bottom)
+            }
+            sectionContainerView.autoSetDimension(.Height, toSize: 44.0)
+            previousView = sectionContainerView
+            
+            // Section Image
+            let sectionImageView = UIImageView(forAutoLayout: ())
+            sectionImageView.image = UIImage(named: section.imageSource)
+            sectionContainerView.addSubview(sectionImageView)
+            sectionImageView.autoPinEdgeToSuperviewEdge(.Left)
+            sectionImageView.autoAlignAxisToSuperviewAxis(.Horizontal)
+            sectionImageView.autoSetDimensionsToSize(sectionImageView.image!.size)
+            
+            // Section Title
             let sectionTitleLabel = UILabel(forAutoLayout: ())
             sectionTitleLabel.backgroundColor = UIColor.appViewBackgroundColor()
             sectionTitleLabel.text = section.title.uppercaseStringWithLocale(NSLocale.currentLocale())
             sectionTitleLabel.font = UIFont.appAttributeTitleLabelFont()
             sectionTitleLabel.textColor = UIColor.appAttributeTitleLabelColor()
-            parentView.addSubview(sectionTitleLabel)
-            if let lastView = previousView {
-                sectionTitleLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: lastView, withOffset: 25.0)
-                sectionTitleLabel.autoPinEdgeToSuperviewEdge(.Left, withInset: formFieldEdgeInset.left)
-                sectionTitleLabel.autoPinEdgeToSuperviewEdge(.Right, withInset: formFieldEdgeInset.right)
-            }
-            else {
-                sectionTitleLabel.autoPinEdgesToSuperviewEdgesWithInsets(formFieldEdgeInset, excludingEdge: .Bottom)
-            }
-            previousView = sectionTitleLabel
+            sectionContainerView.addSubview(sectionTitleLabel)
+            sectionTitleLabel.autoPinEdge(.Left, toEdge: .Right, ofView: sectionImageView, withOffset: 10.0)
+            sectionTitleLabel.autoPinEdgeToSuperviewEdge(.Right)
+            sectionTitleLabel.autoAlignAxisToSuperviewAxis(.Horizontal)
 
             for item in section.items {
 
@@ -96,7 +115,6 @@ class FormBuilder: NSObject, UITextFieldDelegate {
                     let textField = UITextField(forAutoLayout: ())
                     textField.textColor = UIColor.appAttributeValueLabelColor()
                     textField.font = UIFont.appAttributeValueLabelFont()
-                    textField.clearButtonMode = .WhileEditing
                     textField.textAlignment = .Right
                     textField.keyboardType = item.keyboardType
                     textField.delegate = self
@@ -118,7 +136,7 @@ class FormBuilder: NSObject, UITextFieldDelegate {
                     break
                 }
             }
-        }        
+        }
     }
     
     // MARK: - UITextFieldDelegate
