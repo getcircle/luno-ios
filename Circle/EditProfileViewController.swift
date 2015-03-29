@@ -77,8 +77,27 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
     private func configureFormFields() {
         var formSections = [
             FormBuilder.Section(
+                title: AppStrings.QuickActionCallLabel,
+                imageSource: "TitlePhone",
+                items: [
+                    FormBuilder.SectionItem(
+                        placeholder: NSLocalizedString("Cell Phone", comment: "Placeholder for textfield that accepts a cell phone"),
+                        type: .TextField,
+                        keyboardType: .PhonePad,
+                        container: "profile",
+                        containerKey: "cell_phone"
+                    ),
+                    FormBuilder.SectionItem(
+                        placeholder: NSLocalizedString("Work Phone", comment: "Placeholder for textfield that accepts a work phone"),
+                        type: .TextField,
+                        keyboardType: .PhonePad,
+                        container: "profile",
+                        containerKey: "work_phone"
+                    )
+            ]),
+            FormBuilder.Section(
                 title: AppStrings.QuickActionEmailLabel,
-                imageSource: "Email",
+                imageSource: "TitleEmail",
                 items: [
                 FormBuilder.SectionItem(
                     placeholder: NSLocalizedString("Work Email", comment: "Placeholder for textfield that accepts a work email"),
@@ -96,42 +115,9 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
                 )
             ]),
             FormBuilder.Section(
-                title: AppStrings.QuickActionCallLabel,
-                imageSource: "Call",
-                items: [
-                    FormBuilder.SectionItem(
-                        placeholder: NSLocalizedString("Work Phone", comment: "Placeholder for textfield that accepts a work phone"),
-                        type: .TextField,
-                        keyboardType: .PhonePad,
-                        container: "profile",
-                        containerKey: "work_phone"
-                    ),
-                    FormBuilder.SectionItem(
-                        placeholder: NSLocalizedString("Cell Phone", comment: "Placeholder for textfield that accepts a cell phone"),
-                        type: .TextField,
-                        keyboardType: .PhonePad,
-                        container: "profile",
-                        containerKey: "cell_phone"
-                    ),
-                    FormBuilder.SectionItem(
-                        placeholder: NSLocalizedString("Home Phone", comment: "Placeholder for textfield that acceots a home phone"),
-                        type: .TextField,
-                        keyboardType: .PhonePad,
-                        container: "profile",
-                        containerKey: "home_phone"
-                    )
-            ]),
-            FormBuilder.Section(
                 title: AppStrings.QuickActionMessageLabel,
-                imageSource: "Sms",
+                imageSource: "TitleChat",
                 items: [
-                    FormBuilder.SectionItem(
-                        placeholder: "Sms",
-                        type: .TextField,
-                        keyboardType: .PhonePad,
-                        container: "profile",
-                        containerKey: "cell_phone"
-                    ),
                     FormBuilder.SectionItem(
                         placeholder: "Slack",
                         type: .TextField,
@@ -140,26 +126,52 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
                         containerKey: "slack"
                     ),
                     FormBuilder.SectionItem(
-                        placeholder: "Hip Chat",
+                        placeholder: "HipChat",
                         type: .TextField,
                         keyboardType: .PhonePad,
                         container: "profile",
                         containerKey: "hip_chat"
                     ),
                     FormBuilder.SectionItem(
-                        placeholder: "Facbeook Messenger",
+                        placeholder: "Facebook Messenger",
                         type: .TextField,
                         keyboardType: .PhonePad,
                         container: "profile",
-                        containerKey: "hip_chat"
+                        containerKey: "messenger"
+                    ),
+                    FormBuilder.SectionItem(
+                        placeholder: "Sms",
+                        type: .TextField,
+                        keyboardType: .PhonePad,
+                        container: "profile",
+                        containerKey: "cell_phone"
                     ),
                     FormBuilder.SectionItem(
                         placeholder: "Twitter",
                         type: .TextField,
                         keyboardType: .PhonePad,
                         container: "profile",
-                        containerKey: "hip_chat"
+                        containerKey: "twitter"
                     ),
+            ]),
+            FormBuilder.Section(
+                title: AppStrings.QuickActionVideoLabel,
+                imageSource: "TitleVideo",
+                items: [
+                    FormBuilder.SectionItem(
+                        placeholder: "Skype",
+                        type: .TextField,
+                        keyboardType: .EmailAddress,
+                        container: "profile",
+                        containerKey: "skype"
+                    ),
+                    FormBuilder.SectionItem(
+                        placeholder: "Hangouts",
+                        type: .TextField,
+                        keyboardType: .EmailAddress,
+                        container: "profile",
+                        containerKey: "hangouts"
+                    )
             ]),
         ]
         

@@ -243,12 +243,11 @@ extension UIViewController {
     func addCloseButtonWithAction(callbackMethod: Selector) -> UIBarButtonItem? {
         if isBeingPresentedModally() {
             let cancelButtonItem = UIBarButtonItem(
-                image: UIImage(named: "SmallClose"),
+                image: UIImage(named: "Close"),
                 style: .Plain,
                 target: self,
                 action: callbackMethod
             )
-            cancelButtonItem.imageInsets = UIEdgeInsetsMake(5.0, 0.0, 5.0, 10.0)
             navigationItem.leftBarButtonItem = cancelButtonItem
             return cancelButtonItem
         }

@@ -45,12 +45,13 @@ struct AppStrings {
     static let ProfileSectionExpertiseTitle = NSLocalizedString("Expertise", comment: "Title of the section which shows a user's expertise")
     
     static let QuickActionNoneLabel = ""
+    static let QuickActionCallLabel = NSLocalizedString("Call", comment: "Title for button used to initiate a call")
     static let QuickActionEmailLabel = NSLocalizedString("Email", comment: "Title for button used to send an email")
     static let QuickActionInfoLabel = NSLocalizedString("Info", comment: "Title for button used to see info")
     static let QuickActionMessageLabel = NSLocalizedString("Message", comment: "Title for button used to send a message")
     static let QuickActionNoteLabel = NSLocalizedString("Note", comment: "Title for button used to take a note")
-    static let QuickActionCallLabel = NSLocalizedString("Call", comment: "Title for button used to initiate a call")
     static let QuickActionSlackLabel = NSLocalizedString("Slack", comment: "Title for button used send a message via Slack")
+    static let QuickActionVideoLabel = NSLocalizedString("Video", comment: "Title for button used to initial a video call")
     
     static let QuickActionNonePlaceholder = NSLocalizedString("Find people, teams, and interests", comment: "Placeholder text for search field used to search people, teams and interests.")
     static let QuickActionEmailPlaceholder = NSLocalizedString("Who do you want to email?", comment: "Placeholder for search field used to search for the person user intends to email")

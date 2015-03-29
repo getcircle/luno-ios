@@ -181,14 +181,14 @@ class Card: Equatable {
 
             case Offices:
                 return CardTypeInfo(
-                    imageName: "MapPin",
+                    imageName: "FeedLocation",
                     classType: OfficeCollectionViewCell.self,
                     contentType: .Flat
                 )
 
             case OfficeAddress:
                 return CardTypeInfo(
-                    imageName: "MapPin",
+                    imageName: "FeedLocation",
                     classType: AddressCollectionViewCell.self,
                     contentType: .Flat
                 )
@@ -272,14 +272,14 @@ class Card: Equatable {
 
             case Team:
                 return CardTypeInfo(
-                    imageName: "People",
+                    imageName: "FeedTeam",
                     classType: TeamGridItemCollectionViewCell.self,
                     contentType: .Flat
                 )
 
             case TeamsGrid:
                 return CardTypeInfo(
-                    imageName: "People",
+                    imageName: "FeedTeam",
                     classType: TeamsCollectionViewCell.self,
                     contentType: .Aggregate
                 )

@@ -68,7 +68,7 @@
                                 <constraint firstAttribute="width" secondItem="xmj-MC-afc" secondAttribute="height" multiplier="1:1" id="FJM-Mn-orJ"/>
                                 <constraint firstAttribute="width" constant="20" id="JBa-7b-jUB"/>
                             </constraints>
-                            <state key="normal" image="Check">
+                            <state key="normal" image="SmallCheck">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                         </button>
@@ -186,6 +186,6 @@
     </objects>
     <resources>
         <image name="Camera" width="21" height="17"/>
-        <image name="Check" width="8" height="9"/>
+        <image name="SmallCheck" width="8" height="9"/>
     </resources>
 </document>
