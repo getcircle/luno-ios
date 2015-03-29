@@ -300,7 +300,7 @@ class CurrentUserProfileDetailViewController: ProfileDetailViewController,
     override func handleKeyValueCardSelection(dataSource: ProfileDetailDataSource, indexPath: NSIndexPath) {
         switch dataSource.typeOfCell(indexPath) {
         case .ContactPreferences:
-            let editProfileVC = EditProfileViewController(nibName: "EditProfileViewController", bundle: nil)
+            let editProfileVC = EditContactInfoViewController(nibName: "EditContactInfoViewController", bundle: nil)
             editProfileVC.profile = profile
             editProfileVC.editProfileDelegate = self
             let editProfileNavVC = UINavigationController(rootViewController: editProfileVC)

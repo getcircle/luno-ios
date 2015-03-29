@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EditProfileViewController" customModule="circle" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EditContactInfoViewController" customModule="circle" customModuleProvider="target">
             <connections>
                 <outlet property="rootContentView" destination="6zo-7h-i8l" id="aSt-H8-03q"/>
                 <outlet property="rootScrollView" destination="Z7Z-cC-NkN" id="nbr-zZ-vgC"/>

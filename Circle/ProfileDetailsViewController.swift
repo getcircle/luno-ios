@@ -588,7 +588,7 @@ class ProfileDetailsViewController:
     // MARK: - IBActions
     
     @IBAction func editProfileButtonTapped(sender: AnyObject!) {
-        let editProfileVC = EditProfileViewController(nibName: "EditProfileViewController", bundle: nil)
+        let editProfileVC = EditContactInfoViewController(nibName: "EditContactInfoViewController", bundle: nil)
         editProfileVC.profile = profile
         editProfileVC.editProfileDelegate = self
         editProfileVC.hidesBottomBarWhenPushed = false

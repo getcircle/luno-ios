@@ -1,5 +1,5 @@
 //
-//  EditProfileViewController.swift
+//  EditContactInfoViewController.swift
 //  Circle
 //
 //  Created by Ravi Rani on 2/4/15.
@@ -13,7 +13,7 @@ protocol EditProfileDelegate {
     func didFinishEditingProfile()
 }
 
-class EditProfileViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+class EditContactInfoViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
     @IBOutlet weak private(set) var rootContentView: UIView!
     @IBOutlet weak private(set) var rootScrollView: UIScrollView!
