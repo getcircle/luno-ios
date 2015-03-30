@@ -20,13 +20,13 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select the interests relevant to you" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C9I-6f-dRp" userLabel="InstructionLabel">
-                    <rect key="frame" x="20" y="84" width="560" height="25"/>
-                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="18"/>
+                    <rect key="frame" x="20" y="84" width="560" height="22"/>
+                    <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="16"/>
                     <color key="textColor" red="0.15056315064430237" green="0.15055865049362183" blue="0.15056121349334717" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="6Ft-oh-z30">
-                    <rect key="frame" x="0.0" y="183" width="600" height="417"/>
+                    <rect key="frame" x="0.0" y="180" width="600" height="420"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="eOu-Jf-uv8" customClass="CenterAlignFlowLayout" customModule="circle" customModuleProvider="target">
                         <size key="itemSize" width="50" height="50"/>
@@ -51,14 +51,14 @@
                     </connections>
                 </collectionView>
                 <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="29Q-ct-HcU" userLabel="TopGradientView">
-                    <rect key="frame" x="0.0" y="173" width="600" height="20"/>
+                    <rect key="frame" x="0.0" y="170" width="600" height="20"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="20" id="XYs-58-4fU"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4f2-zM-5Ik" userLabel="SearchControllerParentView">
-                    <rect key="frame" x="10" y="129" width="580" height="44"/>
+                    <rect key="frame" x="10" y="126" width="580" height="44"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="Q2m-eq-IOh"/>

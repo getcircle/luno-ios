@@ -269,7 +269,7 @@ class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate {
             self.mainSwitchToConfirmationAnimation()
         }
     }
-    
+
     private func mainSwitchToConfirmationAnimation() {
         phoneNumberFieldPreviousVerticalSpacing = phoneNumberFieldVerticalSpacing.constant
         phoneNumberFieldVerticalSpacing.constant = 15
@@ -294,7 +294,7 @@ class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate {
         
         UIView.transitionWithView(instructionsLabel, duration: 0.1, options: .TransitionCrossDissolve, animations: { () -> Void in
             self.instructionsLabel.text = "You should be getting a text shortly."
-            }, completion: nil)
+        }, completion: nil)
         
         UIView.animateWithDuration(
             0.4,

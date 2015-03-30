@@ -13,7 +13,7 @@
                 <outlet property="phoneNumberFieldVerticalSpacing" destination="faZ-KA-ZI4" id="XN6-HY-zPR"/>
                 <outlet property="phoneNumberFieldWidth" destination="s9m-Qo-nYq" id="26d-7g-tDR"/>
                 <outlet property="resendCodeButton" destination="xYt-EZ-9Yk" id="u3q-T0-VVa"/>
-                <outlet property="verificationCodeField" destination="tgc-YS-f45" id="VfN-xG-dg2"/>
+                <outlet property="verificationCodeField" destination="tgc-YS-f45" id="nRL-7U-ZBV"/>
                 <outlet property="verificationCodeFieldVerticalSpacing" destination="jxx-MB-bag" id="ZkK-Oe-bFM"/>
                 <outlet property="verificationCodeFieldWidth" destination="t2X-5r-kmj" id="5gf-Pc-8Vd"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -25,13 +25,13 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Verify your phone number for your team to contact you." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gv6-p4-A3b" userLabel="instructionsLabel">
-                    <rect key="frame" x="20" y="120" width="560" height="22"/>
+                    <rect key="frame" x="20" y="100" width="560" height="22"/>
                     <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="16"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Phone Number" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0i3-sJ-bdt" userLabel="phoneNumberField" customClass="CircleTextField" customModule="circle" customModuleProvider="target">
-                    <rect key="frame" x="208" y="202" width="185" height="41"/>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Phone Number" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0i3-sJ-bdt" userLabel="phoneNumberField" customClass="CircleTextField" customModule="circle" customModuleProvider="target">
+                    <rect key="frame" x="208" y="182" width="185" height="41"/>
                     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="41" id="AOx-x7-cFd"/>
@@ -42,7 +42,7 @@
                     <textInputTraits key="textInputTraits" keyboardType="numberPad" keyboardAppearance="alert"/>
                 </textField>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r9c-Xa-sse" userLabel="actionButton">
-                    <rect key="frame" x="208" y="258" width="185" height="50"/>
+                    <rect key="frame" x="208" y="253" width="185" height="50"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="185" id="RSP-Yo-WbU"/>
@@ -57,7 +57,7 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </button>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Code" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tgc-YS-f45" userLabel="verificationCodeField" customClass="CircleTextField" customModule="circle" customModuleProvider="target">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Code" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tgc-YS-f45" userLabel="verificationCodeField" customClass="CircleTextField" customModule="circle" customModuleProvider="target">
                     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" id="t2X-5r-kmj"/>
@@ -68,7 +68,7 @@
                     <textInputTraits key="textInputTraits" keyboardType="numberPad" keyboardAppearance="alert"/>
                 </textField>
                 <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xYt-EZ-9Yk" userLabel="resendCodeButton">
-                    <rect key="frame" x="408" y="207" width="43" height="32"/>
+                    <rect key="frame" x="408" y="187" width="43" height="32"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="80" id="tT5-jD-mUk"/>
@@ -90,11 +90,11 @@
             </subviews>
             <color key="backgroundColor" red="0.1843137255" green="0.2156862745" blue="0.24313725489999999" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstItem="gv6-p4-A3b" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="120" id="8Qa-PF-tQA"/>
+                <constraint firstItem="gv6-p4-A3b" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="100" id="8Qa-PF-tQA"/>
                 <constraint firstAttribute="centerY" secondItem="r9c-Xa-sse" secondAttribute="centerY" constant="23" id="Aox-Jo-RMa"/>
                 <constraint firstItem="r9c-Xa-sse" firstAttribute="leading" secondItem="xYt-EZ-9Yk" secondAttribute="leading" id="Aze-Wr-7Bt"/>
                 <constraint firstAttribute="centerX" secondItem="r9c-Xa-sse" secondAttribute="centerX" id="BZF-z5-udL"/>
-                <constraint firstItem="r9c-Xa-sse" firstAttribute="top" secondItem="tgc-YS-f45" secondAttribute="bottom" constant="15" id="FVU-jJ-fwQ"/>
+                <constraint firstItem="r9c-Xa-sse" firstAttribute="top" secondItem="tgc-YS-f45" secondAttribute="bottom" constant="30" id="FVU-jJ-fwQ"/>
                 <constraint firstItem="gv6-p4-A3b" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="100" id="GcT-1c-Kdo"/>
                 <constraint firstItem="0i3-sJ-bdt" firstAttribute="width" secondItem="r9c-Xa-sse" secondAttribute="width" id="Oil-hP-8Ya"/>
                 <constraint firstItem="0i3-sJ-bdt" firstAttribute="centerY" secondItem="xYt-EZ-9Yk" secondAttribute="centerY" id="OjO-gP-qTC"/>
@@ -114,6 +114,7 @@
             </constraints>
             <variation key="default">
                 <mask key="constraints">
+                    <exclude reference="tfZ-Vy-bQP"/>
                     <exclude reference="GcT-1c-Kdo"/>
                     <exclude reference="Oil-hP-8Ya"/>
                     <exclude reference="uzo-sx-Obv"/>
@@ -121,7 +122,6 @@
                     <exclude reference="Aze-Wr-7Bt"/>
                     <exclude reference="WtH-yo-6H7"/>
                     <exclude reference="xY8-Ee-ltb"/>
-                    <exclude reference="tfZ-Vy-bQP"/>
                     <exclude reference="Zgj-eR-jvt"/>
                 </mask>
             </variation>
