@@ -138,18 +138,15 @@ class TagInputViewController: UIViewController,
 
     // MARK: - VENTokenFieldDelegate
     
-    func tokenFieldDidBeginEditing(tokenField: VENTokenField!) {
-        // TODO hide initial copy view
-    }
-    
     func tokenField(tokenField: VENTokenField!, didEnterText text: String!) {
-        addNewTagToSet {
-            self.collectionView.reloadData()
-        }
+        selectedTags.append(newTag!)
+        newTag = nil
+        tokenField.reloadData()
+        collectionView.reloadData()
+        setShouldDisplayEmptyCollectionView(true)
     }
     
     func tokenField(tokenField: VENTokenField!, didChangeText text: String!) {
-        // TODO show copy view if empty
         if text == "" {
             newTag = nil
             suggestedTags.removeAll(keepCapacity: false)
