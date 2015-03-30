@@ -50,6 +50,11 @@ class SocialConnectViewController: UIViewController, WKNavigationDelegate {
         activityIndicator = view.addActivityIndicator(color: UIColor.whiteColor())
     }
     
+    private func configureNavigationBar() {
+        title = AppStrings.SocialConnectLinkedInCTA
+        addCloseButtonWithAction("cancel:")
+    }
+    
     private func configureWebView() {
         webView = WKWebView.newAutoLayoutView()
         webView.navigationDelegate = self
@@ -107,6 +112,12 @@ class SocialConnectViewController: UIViewController, WKNavigationDelegate {
                 }
             }
         }
+    }
+    
+    // MARK: - IBActions
+    
+    @IBAction func cancel(sender: AnyObject!) {
+        dismissViewControllerAnimated(true, completion: nil)
     }
 
 }

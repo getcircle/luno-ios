@@ -141,7 +141,8 @@ class CurrentUserProfileDetailViewController: ProfileDetailViewController,
                     switch contentType {
                     case .LinkedInConnect:
                         let socialConnectVC = SocialConnectViewController(provider: .Linkedin)
-                        navigationController?.presentViewController(socialConnectVC, animated: true, completion:nil)
+                        let socialNavController = UINavigationController(rootViewController: socialConnectVC)
+                        navigationController?.presentViewController(socialNavController, animated: true, completion:nil)
                         
                     default:
                         break
