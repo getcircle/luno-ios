@@ -234,6 +234,10 @@
 		BF59AA931A2C152F00C0CDB9 /* UITableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF59AA921A2C152F00C0CDB9 /* UITableViewExtension.swift */; };
 		BF6A2D0F1AAD08DA00692315 /* EmptyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6A2D0D1AAD08DA00692315 /* EmptyCollectionViewCell.swift */; };
 		BF6A2D101AAD08DA00692315 /* EmptyCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF6A2D0E1AAD08DA00692315 /* EmptyCollectionViewCell.xib */; };
+		BF6ACE371AC75057009F2B05 /* TagInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6ACE351AC75057009F2B05 /* TagInputViewController.swift */; };
+		BF6ACE381AC75057009F2B05 /* TagInputViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF6ACE361AC75057009F2B05 /* TagInputViewController.xib */; };
+		BF6ACE3E1AC766EF009F2B05 /* TagSuggestionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6ACE3C1AC766EF009F2B05 /* TagSuggestionCollectionViewCell.swift */; };
+		BF6ACE3F1AC766EF009F2B05 /* TagSuggestionCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF6ACE3D1AC766EF009F2B05 /* TagSuggestionCollectionViewCell.xib */; };
 		BF764DC41A5F6E8200D122F4 /* LandingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF764DC31A5F6E8200D122F4 /* LandingService.swift */; };
 		BF768A621AB402D100D677B1 /* PaginatorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF768A611AB402D100D677B1 /* PaginatorExtension.swift */; };
 		BF768A741AB66E4700D677B1 /* StatTileCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF768A721AB66E4700D677B1 /* StatTileCollectionViewCell.swift */; };
@@ -598,6 +602,10 @@
 		BF59AA921A2C152F00C0CDB9 /* UITableViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewExtension.swift; sourceTree = "<group>"; };
 		BF6A2D0D1AAD08DA00692315 /* EmptyCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyCollectionViewCell.swift; sourceTree = "<group>"; };
 		BF6A2D0E1AAD08DA00692315 /* EmptyCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmptyCollectionViewCell.xib; sourceTree = "<group>"; };
+		BF6ACE351AC75057009F2B05 /* TagInputViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagInputViewController.swift; sourceTree = "<group>"; };
+		BF6ACE361AC75057009F2B05 /* TagInputViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TagInputViewController.xib; sourceTree = "<group>"; };
+		BF6ACE3C1AC766EF009F2B05 /* TagSuggestionCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagSuggestionCollectionViewCell.swift; sourceTree = "<group>"; };
+		BF6ACE3D1AC766EF009F2B05 /* TagSuggestionCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TagSuggestionCollectionViewCell.xib; sourceTree = "<group>"; };
 		BF764DC31A5F6E8200D122F4 /* LandingService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandingService.swift; sourceTree = "<group>"; };
 		BF768A611AB402D100D677B1 /* PaginatorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaginatorExtension.swift; sourceTree = "<group>"; };
 		BF768A721AB66E4700D677B1 /* StatTileCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatTileCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -774,11 +782,12 @@
 				8F00049A1A2419730096477A /* ProfilesViewController.swift */,
 				8FF297FC1A4A4DCA00306CFC /* SearchViewController.swift */,
 				8F9F60CA1A8C439E00FCAA25 /* SettingsViewController.swift */,
-				8F7400221A6862BF00D96B60 /* TagDetailViewController.swift */,
-				8FF298431A4DF38E00306CFC /* TagScrollingSelectorViewController.swift */,
-				8F7795021A909AFC00BEF6EA /* TagsOverviewViewController.swift */,
 				BFF5E6F31A814C2C00827757 /* SocialConnectViewController.swift */,
 				8F7E2DC41A8FC00000B8548D /* SplashViewController.swift */,
+				8F7400221A6862BF00D96B60 /* TagDetailViewController.swift */,
+				BF6ACE351AC75057009F2B05 /* TagInputViewController.swift */,
+				8FF298431A4DF38E00306CFC /* TagScrollingSelectorViewController.swift */,
+				8F7795021A909AFC00BEF6EA /* TagsOverviewViewController.swift */,
 				8F085A841A6B0C1E00F8139B /* TeamDetailViewController.swift */,
 				8F823E4A1A729E1B0006264B /* TeamsOverviewViewController.swift */,
 				BF25722B1A6450F20052C3E3 /* VerifyPhoneNumberViewController.swift */,
@@ -823,11 +832,12 @@
 				8FF298081A4B490E00306CFC /* SearchHeaderView.swift */,
 				8F22CBEC1A283D3D0026376E /* SeparatorDecorationView.swift */,
 				8F9F60D31A8C481F00FCAA25 /* SettingsCollectionViewCell.swift */,
+				8F9F60AD1A88738100FCAA25 /* SocialConnectCollectionViewCell.swift */,
+				BF768A721AB66E4700D677B1 /* StatTileCollectionViewCell.swift */,
 				8FF298451A4E050100306CFC /* TagCollectionViewCell.swift */,
 				8F74001B1A684F2400D96B60 /* TagHeaderCollectionReusableView.swift */,
 				8F65C5051A52661700C7F3E6 /* TagScrollingCollectionViewCell.swift */,
-				8F9F60AD1A88738100FCAA25 /* SocialConnectCollectionViewCell.swift */,
-				BF768A721AB66E4700D677B1 /* StatTileCollectionViewCell.swift */,
+				BF6ACE3C1AC766EF009F2B05 /* TagSuggestionCollectionViewCell.swift */,
 				8F085A931A6C191400F8139B /* TeamGridItemCollectionViewCell.swift */,
 				8F085A8B1A6B5B4900F8139B /* TeamHeaderCollectionReusableView.swift */,
 				8F085A8F1A6C175C00F8139B /* TeamsCollectionViewCell.swift */,
@@ -920,14 +930,16 @@
 				8FF298091A4B490E00306CFC /* SearchHeaderView.xib */,
 				8F9F60D41A8C481F00FCAA25 /* SettingsCollectionViewCell.xib */,
 				8F9F60CB1A8C439E00FCAA25 /* SettingsViewController.xib */,
-				8FF298461A4E050100306CFC /* TagCollectionViewCell.xib */,
-				8F74001C1A684F2400D96B60 /* TagHeaderCollectionReusableView.xib */,
-				8F65C5061A52661700C7F3E6 /* TagScrollingCollectionViewCell.xib */,
-				8F682F401A65F9090066BDEE /* TagScrollingSelectorViewController.xib */,
-				8F7795031A909AFC00BEF6EA /* TagsOverviewViewController.xib */,
 				8F9F60AE1A88738100FCAA25 /* SocialConnectCollectionViewCell.xib */,
 				8F7E2DC51A8FC00000B8548D /* SplashViewController.xib */,
 				BF768A731AB66E4700D677B1 /* StatTileCollectionViewCell.xib */,
+				8FF298461A4E050100306CFC /* TagCollectionViewCell.xib */,
+				8F74001C1A684F2400D96B60 /* TagHeaderCollectionReusableView.xib */,
+				BF6ACE361AC75057009F2B05 /* TagInputViewController.xib */,
+				8F65C5061A52661700C7F3E6 /* TagScrollingCollectionViewCell.xib */,
+				8F682F401A65F9090066BDEE /* TagScrollingSelectorViewController.xib */,
+				8F7795031A909AFC00BEF6EA /* TagsOverviewViewController.xib */,
+				BF6ACE3D1AC766EF009F2B05 /* TagSuggestionCollectionViewCell.xib */,
 				8F085A941A6C191400F8139B /* TeamGridItemCollectionViewCell.xib */,
 				8F085A8C1A6B5B4900F8139B /* TeamHeaderCollectionReusableView.xib */,
 				8F085A901A6C175C00F8139B /* TeamsCollectionViewCell.xib */,
@@ -1324,6 +1336,7 @@
 				8FF298041A4A4E3600306CFC /* ProfileImagesCollectionViewCell.xib in Resources */,
 				8F0ADD301AC5344E00A44B68 /* Loader_00020@2x.png in Resources */,
 				8F0ADD331AC5344E00A44B68 /* Loader_00023@2x.png in Resources */,
+				BF6ACE381AC75057009F2B05 /* TagInputViewController.xib in Resources */,
 				8F0ADD221AC5344E00A44B68 /* Loader_00006@2x.png in Resources */,
 				8F085A961A6C191400F8139B /* TeamGridItemCollectionViewCell.xib in Resources */,
 				8F0ADD531AC5344E00A44B68 /* Loader_00055@2x.png in Resources */,
@@ -1413,6 +1426,7 @@
 				8F7E2DCE1A8FDBB600B8548D /* PasscodeTouchIDViewController.xib in Resources */,
 				8F65C4F61A50F28E00C7F3E6 /* CardHeaderCollectionReusableView.xib in Resources */,
 				BFCFDB121A9165A9009A5FD4 /* PositionCollectionViewCell.xib in Resources */,
+				BF6ACE3F1AC766EF009F2B05 /* TagSuggestionCollectionViewCell.xib in Resources */,
 				8F0ADD511AC5344E00A44B68 /* Loader_00053@2x.png in Resources */,
 				8F0ADD201AC5344E00A44B68 /* Loader_00004@2x.png in Resources */,
 				8F0ADD351AC5344E00A44B68 /* Loader_00025@2x.png in Resources */,
@@ -1609,6 +1623,7 @@
 				BF768A621AB402D100D677B1 /* PaginatorExtension.swift in Sources */,
 				8F22CBF81A29A8EB0026376E /* AuthViewController.swift in Sources */,
 				8F7E2DC61A8FC00000B8548D /* SplashViewController.swift in Sources */,
+				BF6ACE371AC75057009F2B05 /* TagInputViewController.swift in Sources */,
 				8FC8780B1AB276B1003FDB27 /* ProfileDetailViewController.swift in Sources */,
 				BF7B23901A70894100137BCB /* ProfileDetailsViewController.swift in Sources */,
 				8F9F60B81A896CE400FCAA25 /* MainTabBarViewController.swift in Sources */,
@@ -1636,6 +1651,7 @@
 				8F7400231A6862BF00D96B60 /* TagDetailViewController.swift in Sources */,
 				8FEE3D961A8309A400B17569 /* EditContactInfoViewController.swift in Sources */,
 				BF7DF98F1A44E53200A4F924 /* ServiceTransport.swift in Sources */,
+				BF6ACE3E1AC766EF009F2B05 /* TagSuggestionCollectionViewCell.swift in Sources */,
 				BF220F041AB0221D00C948D0 /* ServiceRequestExtension.swift in Sources */,
 				8F085A851A6B0C1E00F8139B /* TeamDetailViewController.swift in Sources */,
 				BF8DAC881A6D7EB1000860DD /* NewNoteViewController.swift in Sources */,

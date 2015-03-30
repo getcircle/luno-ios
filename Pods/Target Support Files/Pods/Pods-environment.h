@@ -54,6 +54,12 @@
 #define COCOAPODS_VERSION_MINOR_AMScrollingNavbar 3
 #define COCOAPODS_VERSION_PATCH_AMScrollingNavbar 4
 
+// FrameAccessor
+#define COCOAPODS_POD_AVAILABLE_FrameAccessor
+#define COCOAPODS_VERSION_MAJOR_FrameAccessor 1
+#define COCOAPODS_VERSION_MINOR_FrameAccessor 3
+#define COCOAPODS_VERSION_PATCH_FrameAccessor 2
+
 // Mixpanel
 #define COCOAPODS_POD_AVAILABLE_Mixpanel
 #define COCOAPODS_VERSION_MAJOR_Mixpanel 2
@@ -83,6 +89,12 @@
 #define COCOAPODS_VERSION_MAJOR_UIViewPlusPosition 0
 #define COCOAPODS_VERSION_MINOR_UIViewPlusPosition 0
 #define COCOAPODS_VERSION_PATCH_UIViewPlusPosition 1
+
+// VENTokenField
+#define COCOAPODS_POD_AVAILABLE_VENTokenField
+#define COCOAPODS_VERSION_MAJOR_VENTokenField 2
+#define COCOAPODS_VERSION_MINOR_VENTokenField 3
+#define COCOAPODS_VERSION_PATCH_VENTokenField 0
 
 // VENTouchLock
 #define COCOAPODS_POD_AVAILABLE_VENTouchLock

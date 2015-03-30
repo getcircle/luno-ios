@@ -175,6 +175,10 @@ class CurrentUserProfileDetailViewController: ProfileDetailViewController,
             let interestsNavController = UINavigationController(rootViewController: interestSelectorViewController)
             navigationController?.presentViewController(interestsNavController, animated: true, completion: nil)
             
+        case .Skills:
+            let tagInputViewController = TagInputViewController(nibName: TagInputViewController.getNibName(), bundle: nil)
+            navigationController?.presentViewController(tagInputViewController, animated: true, completion: nil)
+            
         default:
             break
         }
