@@ -794,7 +794,6 @@
 				8F81713A1A62E07000CB7692 /* VerifyProfileViewController.swift */,
 				8F1D0B6F1AC5E77900488BD7 /* WebViewController.swift */,
 				8F1D0B8D1AC9101100488BD7 /* WelcomeViewController.swift */,
-				8F1D0B8E1AC9101100488BD7 /* WelcomeViewController.xib */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -948,6 +947,7 @@
 				BFCFDB2A1A92759A009A5FD4 /* ToggleSocialConnectionCollectionViewCell.xib */,
 				BF25722C1A6450F20052C3E3 /* VerifyPhoneNumberViewController.xib */,
 				8F81713B1A62E07000CB7692 /* VerifyProfileViewController.xib */,
+				8F1D0B8E1AC9101100488BD7 /* WelcomeViewController.xib */,
 			);
 			name = "Storyboards / XIBs";
 			sourceTree = "<group>";
