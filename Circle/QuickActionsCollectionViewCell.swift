@@ -17,7 +17,7 @@ class QuickActionsCollectionViewCell: CircleCollectionViewCell {
     @IBOutlet weak private(set) var thirdButton: CircleButton!
     
     private var actionButtons = [UIButton]()
-    private let defaultQuickActions: [QuickAction] = [.Phone, .Message, .Email, .Note]
+    private let defaultQuickActions: [QuickAction] = [.Phone, .Message, .Email]
     private var profile: ProfileService.Containers.Profile?
     
     /**
