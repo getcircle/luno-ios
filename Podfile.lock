@@ -52,7 +52,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   VENTokenField:
-    :commit: 5e0f2dfd7d749b09bcdcf759ea425616186f1c8c
+    :commit: 6a8ffe3f38471b4d510dfbd0a2143c117a637e7a
     :git: https://github.com/mhahn/VENTokenField.git
 
 SPEC CHECKSUMS:

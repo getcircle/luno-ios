@@ -45,12 +45,18 @@
     self.tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapToken:)];
     self.colorScheme = [UIColor blueColor];
     self.titleLabel.textColor = self.colorScheme;
+    if (self.font != nil) {
+        self.titleLabel.font = self.font;
+    }
     [self addGestureRecognizer:self.tapGestureRecognizer];
 }
 
 - (void)setTitleText:(NSString *)text
 {
     self.titleLabel.text = text;
+    if (self.font != nil) {
+        self.titleLabel.font = self.font;
+    }
     self.titleLabel.textColor = self.colorScheme;
     if (self.textColor != nil) {
         self.titleLabel.textColor = self.textColor;

@@ -177,7 +177,8 @@ class CurrentUserProfileDetailViewController: ProfileDetailViewController,
             
         case .Skills:
             let tagInputViewController = TagInputViewController(nibName: TagInputViewController.getNibName(), bundle: nil)
-            navigationController?.presentViewController(tagInputViewController, animated: true, completion: nil)
+            let tagInputNavController = UINavigationController(rootViewController: tagInputViewController)
+            navigationController?.presentViewController(tagInputNavController, animated: true, completion: nil)
             
         default:
             break

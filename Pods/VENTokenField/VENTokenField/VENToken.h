@@ -31,6 +31,7 @@
 @property (strong, nonatomic) UIColor *textColor;
 @property (strong, nonatomic) UIColor *highlightedTextColor;
 @property (strong, nonatomic) UIColor *highlightedBackgroundColor;
+@property (strong, nonatomic) UIFont *font;
 
 - (void)setTitleText:(NSString *)text;
 

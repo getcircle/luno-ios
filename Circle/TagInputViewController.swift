@@ -39,6 +39,7 @@ class TagInputViewController: UIViewController,
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
+        configureNavigationBar()
         configureCollectionView()
         configureTokenField()
     }
@@ -49,27 +50,37 @@ class TagInputViewController: UIViewController,
         view.backgroundColor = UIColor.appViewBackgroundColor()
     }
     
+    private func configureNavigationBar() {
+        title = AppStrings.ProfileSectionExpertiseTitle
+        addDoneButtonWithAction("done:")
+        addCloseButtonWithAction("cancel:")
+    }
+    
     private func configureTokenField() {
         tokenField.removeConstraint(tokenFieldHeightConstraint)
         tokenField.dataSource = self
         tokenField.delegate = self
         tokenField.addRoundCorners()
-        tokenField.placeholderText = NSLocalizedString("Enter skills and expertise...", comment: "Placeholder text indicating field where skills and expertise should be added.")
-        tokenField.toLabelText = String()
+        tokenField.placeholderText = NSLocalizedString(
+            "Enter skills and expertise...",
+            comment: "Placeholder text indicating field where skills and expertise should be added."
+        )
+        tokenField.labelFont = UIFont.appTagTokenFont()
         tokenField.tokenBackgroundColor = UIColor.lightGrayColor()
         tokenField.tokenTextColor = UIColor.whiteColor()
         tokenField.tokenHighlightedTextColor = UIColor.whiteColor()
         tokenField.tokenHighlightedBackgroundColor = UIColor.appTintColor()
         tokenField.tokenPadding = 10.0
+        tokenField.toLabel.hidden = true
         tokenField.appendDelimiterToToken = false
     }
     
     private func configureCollectionView() {
         emptyCollectionView.backgroundColor = UIColor.appViewBackgroundColor()
-        emptyCollectionView.hidden = true
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.backgroundColor = UIColor.appViewBackgroundColor()
+        collectionView.alwaysBounceVertical = true
         collectionView.registerNib(
             TagSuggestionCollectionViewCell.nib,
             forCellWithReuseIdentifier: TagSuggestionCollectionViewCell.classReuseIdentifier
@@ -87,6 +98,7 @@ class TagInputViewController: UIViewController,
             TagSuggestionCollectionViewCell.classReuseIdentifier,
             forIndexPath: indexPath
         ) as TagSuggestionCollectionViewCell
+        
         var suggestedTag: ProfileService.Containers.Tag?
         if shouldUseNewTag(indexPath) {
             suggestedTag = newTag
@@ -101,9 +113,17 @@ class TagInputViewController: UIViewController,
     // MARK: - UICollectionViewDelegate
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        addNewTagToSet { () -> Void in
-            self.collectionView.deleteItemsAtIndexPaths([indexPath])
+        var tag: ProfileService.Containers.Tag
+        if shouldUseNewTag(indexPath) {
+            selectedTags.append(newTag!)
+        } else {
+            selectedTags.append(suggestedTags[indexPath.row])
         }
+        newTag = nil
+        tokenField.reloadData()
+        suggestedTags.removeAll(keepCapacity: false)
+        setShouldDisplayEmptyCollectionView(true)
+        collectionView.reloadData()
     }
     
     // MARK: - UICollectionViewDelegateFlowLayout
@@ -112,26 +132,15 @@ class TagInputViewController: UIViewController,
         return CGSizeMake(collectionView.frameWidth, 44.0)
     }
     
-    // MARK: - UITextFieldDelegate
-    
-    func textFieldDidBeginEditing(textField: UITextField) {
-        // TODO hide initial copy view
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
+        return 1.0
     }
 
-    // MARK: - Helpers
-    
-    private func shouldUseNewTag(indexPath: NSIndexPath) -> Bool {
-        return (indexPath.row + 1) > suggestedTags.count
-    }
-    
-    private func addNewTagToSet(completion: () -> Void) {
-        selectedTags.append(newTag!)
-        newTag = nil
-        tokenField.reloadData()
-        completion()
-    }
-    
     // MARK: - VENTokenFieldDelegate
+    
+    func tokenFieldDidBeginEditing(tokenField: VENTokenField!) {
+        // TODO hide initial copy view
+    }
     
     func tokenField(tokenField: VENTokenField!, didEnterText text: String!) {
         addNewTagToSet {
@@ -140,16 +149,30 @@ class TagInputViewController: UIViewController,
     }
     
     func tokenField(tokenField: VENTokenField!, didChangeText text: String!) {
-        var tagBuilder: ProfileService.Containers.TagBuilder
-        if newTag != nil {
-            tagBuilder = newTag!.toBuilder()
-        } else {
-            tagBuilder = ProfileService.Containers.Tag.builder()
-        }
-        tagBuilder.name = text
-        newTag = tagBuilder.build()
-        collectionView.reloadData()
         // TODO show copy view if empty
+        if text == "" {
+            newTag = nil
+            suggestedTags.removeAll(keepCapacity: false)
+            collectionView.reloadData()
+            setShouldDisplayEmptyCollectionView(true)
+        } else {
+            setShouldDisplayEmptyCollectionView(false)
+            SearchService.Actions.search(text, category: .Skills, attribute: nil, attributeValue: nil, objects: nil) { (result, error) -> Void in
+                if (result?.skills != nil) {
+                    self.suggestedTags = result!.skills!
+                }
+                
+                var tagBuilder: ProfileService.Containers.TagBuilder
+                if self.newTag != nil {
+                    tagBuilder = self.newTag!.toBuilder()
+                } else {
+                    tagBuilder = ProfileService.Containers.Tag.builder()
+                }
+                tagBuilder.name = text
+                self.newTag = tagBuilder.build()
+                self.collectionView.reloadData()
+            }
+        }
     }
     
     func tokenField(tokenField: VENTokenField!, didDeleteTokenAtIndex index: UInt) {
@@ -166,5 +189,37 @@ class TagInputViewController: UIViewController,
     func numberOfTokensInTokenField(tokenField: VENTokenField!) -> UInt {
         return UInt(selectedTags.count)
     }
-
+    
+    // MARK: - IBActions
+    
+    @IBAction func done(sender: AnyObject!) {
+        // TODO send to backend
+        println("add the following expertise to the person: \(selectedTags)")
+        dismissView()
+    }
+    
+    @IBAction func cancel(sender: AnyObject!) {
+        dismissView()
+    }
+    // MARK: - Helpers
+    
+    private func shouldUseNewTag(indexPath: NSIndexPath) -> Bool {
+        return (indexPath.row + 1) > suggestedTags.count
+    }
+    
+    private func addNewTagToSet(completion: () -> Void) {
+        selectedTags.append(newTag!)
+        newTag = nil
+        tokenField.reloadData()
+        completion()
+    }
+    
+    private func dismissView() {
+        tokenField.resignFirstResponder()
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    private func setShouldDisplayEmptyCollectionView(shouldDisplay: Bool) {
+        emptyCollectionView.hidden = !shouldDisplay
+    }
 }

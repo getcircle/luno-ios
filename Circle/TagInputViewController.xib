@@ -19,7 +19,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="jaK-P5-dbd">
-                    <rect key="frame" x="0.0" y="65" width="600" height="535"/>
+                    <rect key="frame" x="0.0" y="70" width="600" height="530"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="9x3-QL-UA9">
                         <size key="itemSize" width="50" height="50"/>
                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -28,16 +28,16 @@
                     </collectionViewFlowLayout>
                 </collectionView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S5P-hr-Anr">
-                    <rect key="frame" x="0.0" y="65" width="600" height="535"/>
+                    <rect key="frame" x="0.0" y="70" width="600" height="530"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add your Expertise" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cvr-ip-Is3">
-                            <rect key="frame" x="221.5" y="50" width="157.5" height="23.5"/>
+                            <rect key="frame" x="221.5" y="0.0" width="157.5" height="23.5"/>
                             <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="17"/>
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Adding your expertise helps your co-workers find you when they're looking for someone with a particular skill set." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jua-eJ-P62">
-                            <rect key="frame" x="20" y="93.5" width="560" height="46.5"/>
+                            <rect key="frame" x="20" y="43.5" width="560" height="46.5"/>
                             <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="17"/>
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
@@ -49,15 +49,15 @@
                         <constraint firstAttribute="trailing" secondItem="jua-eJ-P62" secondAttribute="trailing" constant="20" id="MLm-Eg-atB"/>
                         <constraint firstAttribute="centerX" secondItem="Cvr-ip-Is3" secondAttribute="centerX" id="UIE-bI-m7m"/>
                         <constraint firstItem="jua-eJ-P62" firstAttribute="leading" secondItem="S5P-hr-Anr" secondAttribute="leading" constant="20" id="YML-6f-iUL"/>
-                        <constraint firstItem="Cvr-ip-Is3" firstAttribute="top" secondItem="S5P-hr-Anr" secondAttribute="top" constant="50" id="gqj-Tv-SoQ"/>
+                        <constraint firstItem="Cvr-ip-Is3" firstAttribute="top" secondItem="S5P-hr-Anr" secondAttribute="top" id="gqj-Tv-SoQ"/>
                         <constraint firstItem="jua-eJ-P62" firstAttribute="top" secondItem="Cvr-ip-Is3" secondAttribute="bottom" constant="20" id="luI-rq-wDb"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="owE-YR-bOa" userLabel="TokenContainerView" customClass="VENTokenField">
-                    <rect key="frame" x="15" y="15" width="570" height="35"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="owE-YR-bOa" userLabel="TokenField" customClass="VENTokenField">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="35" id="zHy-t7-NEh"/>
+                        <constraint firstAttribute="height" constant="50" id="zHy-t7-NEh"/>
                     </constraints>
                 </view>
             </subviews>
@@ -67,10 +67,10 @@
                 <constraint firstItem="S5P-hr-Anr" firstAttribute="centerY" secondItem="jaK-P5-dbd" secondAttribute="centerY" id="6yR-Je-dBu"/>
                 <constraint firstItem="S5P-hr-Anr" firstAttribute="height" secondItem="jaK-P5-dbd" secondAttribute="height" id="92c-Gz-vdj"/>
                 <constraint firstAttribute="bottom" secondItem="jaK-P5-dbd" secondAttribute="bottom" id="AI7-Ss-IS7"/>
-                <constraint firstItem="owE-YR-bOa" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="Buv-8W-vrT"/>
-                <constraint firstItem="owE-YR-bOa" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="15" id="PiS-5i-dDX"/>
+                <constraint firstItem="owE-YR-bOa" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Buv-8W-vrT"/>
+                <constraint firstItem="owE-YR-bOa" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="PiS-5i-dDX"/>
                 <constraint firstAttribute="centerX" secondItem="owE-YR-bOa" secondAttribute="centerX" id="Piy-05-2tF"/>
-                <constraint firstItem="S5P-hr-Anr" firstAttribute="top" secondItem="owE-YR-bOa" secondAttribute="bottom" constant="15" id="X4z-wd-oWU"/>
+                <constraint firstItem="S5P-hr-Anr" firstAttribute="top" secondItem="owE-YR-bOa" secondAttribute="bottom" constant="20" id="X4z-wd-oWU"/>
                 <constraint firstAttribute="trailing" secondItem="jaK-P5-dbd" secondAttribute="trailing" id="bYc-YY-VfO"/>
                 <constraint firstItem="S5P-hr-Anr" firstAttribute="centerX" secondItem="jaK-P5-dbd" secondAttribute="centerX" id="rhn-Kw-f3e"/>
                 <constraint firstItem="jaK-P5-dbd" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="zOA-Vc-ntJ"/>

@@ -21,6 +21,7 @@ extension SearchService {
             var teams: Array<OrganizationService.Containers.Team>?
             var addresses: Array<OrganizationService.Containers.Address>?
             var interests: Array<ProfileService.Containers.Tag>?
+            var skills: Array<ProfileService.Containers.Tag>?
 
             class var maxResultsPerCategory: Int {
                 return 3
@@ -112,14 +113,14 @@ extension SearchService {
                     toFilter = ObjectStore.sharedInstance.profiles.values.array
                 }
                 results.profiles = filterProfiles(searchTerms, toFilter: toFilter)
-                return (results, nil)
             case .Teams:
                 results.teams = filterTeams(searchTerms)
-                return (results, nil)
+            case .Skills:
+                results.skills = filterTags(searchTerms, toFilter: ObjectStore.sharedInstance.skills)
             default: break
             }
             
-            return (nil, nil)
+            return (results, nil)
         }
         
         // given the query, search the local objects we have cached
@@ -292,6 +293,17 @@ extension SearchService {
         }
         
         private class func filterTags(searchTerms: [String], tagType: ProfileService.TagType) -> Array<ProfileService.Containers.Tag> {
+            var tags: Dictionary<String, ProfileService.Containers.Tag>
+            switch tagType {
+            case .Skill:
+                tags = ObjectStore.sharedInstance.activeSkills
+            default:
+                tags = ObjectStore.sharedInstance.activeInterests
+            }
+            return filterTags(searchTerms, toFilter: tags)
+        }
+        
+        private class func filterTags(searchTerms: [String], toFilter: Dictionary<String, ProfileService.Containers.Tag>) -> Array<ProfileService.Containers.Tag> {
             var andPredicates = [NSPredicate]()
             for searchTerm in searchTerms {
                 let trimmedSearchTerm = trim(searchTerm)
@@ -312,14 +324,7 @@ extension SearchService {
             }
             
             let finalPredicate = NSCompoundPredicate.andPredicateWithSubpredicates(andPredicates)
-            var tags: Dictionary<String, ProfileService.Containers.Tag>
-            switch tagType {
-            case .Skill:
-                tags = ObjectStore.sharedInstance.activeSkills
-            default:
-                tags = ObjectStore.sharedInstance.activeInterests
-            }
-            return tags.values.array.filter {
+            return toFilter.values.array.filter {
                 return finalPredicate.evaluateWithObject($0, substitutionVariables: ["name": $0.name])
             }
         }
