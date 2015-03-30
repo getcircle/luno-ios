@@ -23,9 +23,11 @@ struct AppStrings {
     static let CardTitleAddress = NSLocalizedString("Location", comment: "Title of the card showing address")
     
     static let GenericCancelButtonTitle = NSLocalizedString("Cancel", comment: "Generic title for cancelling a user action")
+    static let GenericGetStartedButtonTitle = NSLocalizedString("Get Started", comment: "Generic button title to start some action")
+    static let GenericNextButtonTitle = NSLocalizedString("Next", comment: "Generic title for moving to next action")
+    static let GenericTryAgainButtonTitle = NSLocalizedString("Try Again", comment: "Generic button title to try some action again")
     
     static let RequestAccessButtonTitle = NSLocalizedString("Request Access", comment: "Title of the button to request access to the app")
-    static let TryAgainButtonTitle = NSLocalizedString("Try Again", comment: "Generic button title to try some action again")
     
     static let PrivateBetaInfoText = NSLocalizedString("circle is currently in private beta! You can request access below or try logging into a different account.", comment: "Message indicating that the app is in private beta and the user can either request access or try a different account")
     
@@ -72,4 +74,6 @@ struct AppStrings {
 
     static let TextPlaceholderFilterTags = NSLocalizedString("Filter interests", comment: "Placeholder text for filter interests input box")
     
+    static let WelcomeTitleText = NSLocalizedString("Welcome to circle", comment: "Header text for welcoming users to the app")
+    static let WelcomeInfoText = NSLocalizedString("The easiest way to access any information on the people, teams, and locations that make up your company.\n\nLets get started by setting up your profile.", comment: "Tag line message shown on welcome view")
 }

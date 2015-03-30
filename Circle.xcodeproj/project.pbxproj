@@ -93,6 +93,8 @@
 		8F0E44871A61EE99008710E7 /* LocationAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0E44861A61EE99008710E7 /* LocationAnnotation.swift */; };
 		8F1D0B701AC5E77900488BD7 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1D0B6F1AC5E77900488BD7 /* WebViewController.swift */; };
 		8F1D0B861AC8AB1200488BD7 /* Loader_00059@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F1D0B851AC8AB1200488BD7 /* Loader_00059@2x.png */; };
+		8F1D0B8F1AC9101100488BD7 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1D0B8D1AC9101100488BD7 /* WelcomeViewController.swift */; };
+		8F1D0B901AC9101100488BD7 /* WelcomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F1D0B8E1AC9101100488BD7 /* WelcomeViewController.xib */; };
 		8F2234B21A6F7A7500C39E39 /* CircleImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F2234B11A6F7A7500C39E39 /* CircleImageView.swift */; };
 		8F22CB771A2661890026376E /* AppDelegateAppearanceExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F22CB761A2661890026376E /* AppDelegateAppearanceExtension.swift */; };
 		8F22CBE01A27A8E60026376E /* ProfileHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F22CBDE1A27A8E60026376E /* ProfileHeaderCollectionReusableView.swift */; };
@@ -455,6 +457,8 @@
 		8F0E44861A61EE99008710E7 /* LocationAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationAnnotation.swift; sourceTree = "<group>"; };
 		8F1D0B6F1AC5E77900488BD7 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		8F1D0B851AC8AB1200488BD7 /* Loader_00059@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Loader_00059@2x.png"; sourceTree = "<group>"; };
+		8F1D0B8D1AC9101100488BD7 /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
+		8F1D0B8E1AC9101100488BD7 /* WelcomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WelcomeViewController.xib; sourceTree = "<group>"; };
 		8F2234B11A6F7A7500C39E39 /* CircleImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleImageView.swift; sourceTree = "<group>"; };
 		8F22CB761A2661890026376E /* AppDelegateAppearanceExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegateAppearanceExtension.swift; sourceTree = "<group>"; };
 		8F22CB7A1A268C040026376E /* Circle-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Circle-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -780,6 +784,8 @@
 				BF25722B1A6450F20052C3E3 /* VerifyPhoneNumberViewController.swift */,
 				8F81713A1A62E07000CB7692 /* VerifyProfileViewController.swift */,
 				8F1D0B6F1AC5E77900488BD7 /* WebViewController.swift */,
+				8F1D0B8D1AC9101100488BD7 /* WelcomeViewController.swift */,
+				8F1D0B8E1AC9101100488BD7 /* WelcomeViewController.xib */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -1416,6 +1422,7 @@
 				8F0ADD251AC5344E00A44B68 /* Loader_00009@2x.png in Resources */,
 				8F08A9FA1A748F5200B93149 /* CardFooterCollectionReusableView.xib in Resources */,
 				8F0ADD4C1AC5344E00A44B68 /* Loader_00048@2x.png in Resources */,
+				8F1D0B901AC9101100488BD7 /* WelcomeViewController.xib in Resources */,
 				8F0ADD3B1AC5344E00A44B68 /* Loader_00031@2x.png in Resources */,
 				8F0ADD411AC5344E00A44B68 /* Loader_00037@2x.png in Resources */,
 				8F0ADD551AC5344E00A44B68 /* Loader_00057@2x.png in Resources */,
@@ -1566,6 +1573,7 @@
 				8FC878221AB6A511003FDB27 /* BannerCollectionViewCell.swift in Sources */,
 				8F809F8D1A79DE1A00029A47 /* NotesOverviewDataSource.swift in Sources */,
 				8F00049B1A2419730096477A /* ProfilesViewController.swift in Sources */,
+				8F1D0B8F1AC9101100488BD7 /* WelcomeViewController.swift in Sources */,
 				BF041BBA1A2C119B0043EC72 /* NSDateFormatterExtension.swift in Sources */,
 				8FEB032B1A5F69020081BB65 /* OfficeDetailDataSource.swift in Sources */,
 				8F085A8A1A6B0CB300F8139B /* TeamDetailDataSource.swift in Sources */,

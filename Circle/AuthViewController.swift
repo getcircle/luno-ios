@@ -96,7 +96,7 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
         googleSignInButton.addRoundCorners(radius: 2.0)
         googleSignInButton.backgroundColor = UIColor.appTintColor()
         googleSignInButton.setCustomAttributedTitle(
-            AppStrings.SocialConnectGooglePlusCTA.uppercaseStringWithLocale(NSLocale.currentLocale()),
+            AppStrings.SocialConnectGooglePlusCTA.localizedUppercaseString(),
             forState: .Normal
         )
         googleSignInButton.addTarget(self, action: "googlePlusSignInButtonTapped:", forControlEvents: .TouchUpInside)
@@ -279,8 +279,8 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
                     object: nil
                 )
                 if self.dynamicType.checkUser(unverifiedPhoneHandler: { () -> Void in
-                    let verifyPhoneNumberVC = VerifyPhoneNumberViewController(nibName: "VerifyPhoneNumberViewController", bundle: nil)
-                    self.navigationController?.setViewControllers([verifyPhoneNumberVC], animated: true)
+                    let welcomeVC = WelcomeViewController(nibName: "WelcomeViewController", bundle: nil)
+                    self.navigationController?.setViewControllers([welcomeVC], animated: true)
                 }, unverifiedProfileHandler: nil) {
                     self.dismissViewControllerAnimated(true, completion: nil)
                 }
@@ -367,15 +367,11 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
         let authViewController = AuthViewController(nibName: "AuthViewController", bundle: nil)
         self.presentViewControllerWithNavigationController(authViewController)
     }
-    
-    class func presentPhoneVerification() {
-        let verifyPhoneNumberVC = VerifyPhoneNumberViewController(nibName: "VerifyPhoneNumberViewController", bundle: nil)
-        self.presentViewControllerWithNavigationController(verifyPhoneNumberVC)
-    }
-    
-    class func presentProfileVerification() {
-        let verifyProfileVC = VerifyProfileViewController(nibName: "VerifyProfileViewController", bundle: nil)
-        self.presentViewControllerWithNavigationController(verifyProfileVC)
+
+    class func presentWelcomeView(goToPhoneVerification: Bool) {
+        let welcomeVC = WelcomeViewController(nibName: "WelcomeViewController", bundle: nil)
+        welcomeVC.goToPhoneVerification = goToPhoneVerification
+        self.presentViewControllerWithNavigationController(welcomeVC)
     }
     
     class func presentHomelessViewController() {
@@ -492,7 +488,7 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
                 if let handler = unverifiedPhoneHandler {
                     handler()
                 } else {
-                    presentPhoneVerification()
+                    presentWelcomeView(true)
                 }
                 return false
             }
@@ -502,7 +498,7 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
                     if let handler = unverifiedPhoneHandler {
                         handler()
                     } else {
-                        presentProfileVerification()
+                        presentWelcomeView(false)
                     }
                 }
             }

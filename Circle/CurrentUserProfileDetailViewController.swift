@@ -91,8 +91,8 @@ class CurrentUserProfileDetailViewController: ProfileDetailViewController,
     }
     
     @IBAction func profileLongPressHandler(sender: AnyObject!) {
-        let verifyPhoneNumberVC = VerifyPhoneNumberViewController(nibName: "VerifyPhoneNumberViewController", bundle: nil)
-        let onboardingNavigationController = UINavigationController(rootViewController: verifyPhoneNumberVC)
+        let welcomeVC = WelcomeViewController(nibName: "WelcomeViewController", bundle: nil)
+        let onboardingNavigationController = UINavigationController(rootViewController: welcomeVC)
         navigationController?.presentViewController(onboardingNavigationController, animated: true, completion: nil)
     }
     
