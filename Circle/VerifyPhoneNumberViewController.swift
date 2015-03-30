@@ -253,7 +253,7 @@ class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate {
             default:
                 tintColor = UIColor.appUIBackgroundColor()
             }
-            button.addActivityIndicator(color: tintColor)
+            activityIndicatorView = button.addActivityIndicator(color: tintColor)
             toggleLoadingStateTextHolder = button.titleLabel?.text
             button.setTitle("", forState: .Normal)
         }

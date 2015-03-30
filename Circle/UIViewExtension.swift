@@ -94,7 +94,9 @@ extension UIView {
         addSubview(activityIndicatorView)
         bringSubviewToFront(activityIndicatorView)
         activityIndicatorView.autoCenterInSuperview()
-        activityIndicatorView.autoSetDimensionsToSize(CGSizeMake(CircleActivityIndicatorView.width, CircleActivityIndicatorView.height))
+        let height = min(frameHeight - 10.0, CircleActivityIndicatorView.height)
+        let width = height
+        activityIndicatorView.autoSetDimensionsToSize(CGSizeMake(width, height))
 
         return activityIndicatorView
     }
