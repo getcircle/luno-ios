@@ -16,12 +16,8 @@ class VerifyProfileViewController:
     UIImagePickerControllerDelegate {
 
     @IBOutlet weak private(set) var editImageButton: UIButton!
-    @IBOutlet weak private(set) var firstNameField: UITextField!
-    @IBOutlet weak private(set) var lastNameField: UITextField!
     @IBOutlet weak private(set) var nextButton: UIButton!
     @IBOutlet weak private(set) var profileImageView: CircleImageView!
-    @IBOutlet weak private(set) var titleField: UITextField!
-    @IBOutlet weak private(set) var titleLabel: UILabel!
     @IBOutlet weak private(set) var verifyTextLabel: UILabel!
 
     private var addImageActionSheet: UIAlertController?
@@ -60,40 +56,24 @@ class VerifyProfileViewController:
         extendedLayoutIncludesOpaqueBars = true
         navigationController?.navigationBar.makeTransparent()
         view.backgroundColor = UIColor.appUIBackgroundColor()
-        
-        var tapGestureRecognizer = UITapGestureRecognizer(target: self, action: "viewTapped:")
-        view.addGestureRecognizer(tapGestureRecognizer)
-        
+
         editImageButton.tintColor = UIColor.whiteColor()
         editImageButton.setImage(
             editImageButton.imageForState(.Normal)?.imageWithRenderingMode(.AlwaysTemplate),
             forState: .Normal
         )
-        
-        [firstNameField, lastNameField, titleField].enumerateObjectsUsingBlock({object, index, stop in
-            (object as UITextField).addBottomBorder()
-            (object as UITextField).tintColor = UIColor.whiteColor()
-        })
     }
 
     // MARK: - Data Source
     
     private func populateData() {
         profile = AuthViewController.getLoggedInUserProfile()
-    
-        firstNameField.text = profile.first_name
-        lastNameField.text = profile.last_name
-        titleField.text = profile.title
         profileImageView.setImageWithProfileImageURL(profile.image_url)
     }
     
     // MARK: - IBActions
     
     @IBAction func nextButtonTapped(sender: AnyObject!) {
-        for textField in [titleField, firstNameField, lastNameField] {
-            textField.resignFirstResponder()
-        }
-        
         let activityIndicatorView = nextButton.addActivityIndicator(color: UIColor.appUIBackgroundColor())
         nextButton.setTitle("", forState: .Normal)
         handleImageUpload { () -> Void in
@@ -105,28 +85,28 @@ class VerifyProfileViewController:
     
     @IBAction func editImageButtonTapped(sender: AnyObject!) {
         var actionSheet = UIAlertController(
-            title: NSLocalizedString("Add a picture", comment: "Title of window which asks user to add a picture"),
+            title: AppStrings.ActionSheetAddAPictureButtonTitle,
             message: nil,
             preferredStyle: .ActionSheet
         )
         actionSheet.view.tintColor = UIColor.appActionSheetControlsTintColor()
 
         var takeAPictureActionControl = UIAlertAction(
-            title: NSLocalizedString("Take a picture", comment: "Button prompt to take a picture using the camera"),
+            title: AppStrings.ActionSheetTakeAPictureButtonTitle,
             style: .Default,
             handler: takeAPictureAction
         )
         actionSheet.addAction(takeAPictureActionControl)
 
         var pickAPhotoActionControl = UIAlertAction(
-            title: NSLocalizedString("Pick a photo", comment: "Button prompt to pick a photo from user's photos"),
+            title: AppStrings.ActionSheetPickAPhotoButtonTitle,
             style: .Default,
             handler: pickAPhotoAction
         )
         actionSheet.addAction(pickAPhotoActionControl)
 
         var cancelControl = UIAlertAction(
-            title: "Cancel",
+            title: AppStrings.GenericCancelButtonTitle,
             style: .Cancel,
             handler: { (action) -> Void in
                 self.dismissAddImageActionSheet(true)
@@ -135,7 +115,6 @@ class VerifyProfileViewController:
         actionSheet.addAction(cancelControl)
         addImageActionSheet = actionSheet
         presentViewController(actionSheet, animated: true, completion: nil)
-        dismissKeyboard()
     }
     
     func takeAPictureAction(action: UIAlertAction!) {
@@ -227,85 +206,14 @@ class VerifyProfileViewController:
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         dismissViewControllerAnimated(true, completion: nil)
     }
-    
-    // MARK: - UITextFieldDelegate
-    
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        let isTextFieldEmpty = textField.text.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) == ""
-        switch textField {
-        case firstNameField:
-            if !isTextFieldEmpty {
-                lastNameField.becomeFirstResponder()
-            }
-            
-        case lastNameField:
-            if !isTextFieldEmpty {
-                titleField.becomeFirstResponder()
-            }
-            
-        case titleField:
-            if !isTextFieldEmpty {
-                titleField.resignFirstResponder()
-                checkDataAndEnableNext()
-            }
 
-        default:
-            break
-        }
-        
-        checkDataAndEnableNext()
-        return true
-    }
-    
-    func textFieldDidEndEditing(textField: UITextField) {
-        // update the profile fields
-        let text = textField.text
-        let builder = profile.toBuilder()
-        switch textField {
-        case firstNameField:
-            builder.first_name = text
-        case lastNameField:
-            builder.last_name = text
-        case titleField:
-            builder.title = text
-        default:
-            break
-        }
-        profile = builder.build()
-        checkDataAndEnableNext()
-    }
-    
-    // MARK: - Gesture Recognizer
-    
-    func viewTapped(sender: AnyObject!) {
-        dismissKeyboard()
-    }
-    
     // MARK: - Helpers
     
     private func checkDataAndEnableNext() {
-        var allTextFieldsFilled = true
-        allTextFields().enumerateObjectsUsingBlock({object, index, stop in
-            if allTextFieldsFilled {
-                allTextFieldsFilled = (object as UITextField).text.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) != ""
-            }
-        })
-        
-        nextButton.enabled = allTextFieldsFilled && profileImageView.image != nil
+        nextButton.enabled = profileImageView.image != nil
         nextButton.setTitle("Next", forState: .Normal)
     }
-    
-    private func dismissKeyboard() {
-        allTextFields().enumerateObjectsUsingBlock({object, index, stop -> Void in
-            (object as UITextField).resignFirstResponder()
-            return
-        })
-    }
-    
-    private func allTextFields() -> NSArray {
-        return [firstNameField, lastNameField, titleField]
-    }
-    
+
     private func verificationComplete() {
         let interestSelectorVC = TagScrollingSelectorViewController(nibName: "TagScrollingSelectorViewController", bundle: nil)
         interestSelectorVC.theme = .Onboarding
