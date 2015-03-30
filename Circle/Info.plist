@@ -24,10 +24,10 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>com.ravcode.circle</string>
+			<string>com.rhlabs.circle</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.ravcode.circle</string>
+				<string>com.rhlabs.circle</string>
 			</array>
 		</dict>
 	</array>
