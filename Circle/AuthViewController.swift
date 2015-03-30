@@ -80,7 +80,7 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
     }
     
     private func configureView() {
-        view.backgroundColor = UIColor(red: 49, green: 49, blue: 49)
+        view.backgroundColor = UIColor.appUIBackgroundColor()
     }
     
     private func configureGoogleAuthentication() {
