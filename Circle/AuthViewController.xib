@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AuthViewController" customModule="circle" customModuleProvider="target">
             <connections>
                 <outlet property="appNameLabel" destination="7eh-3f-DhV" id="I1t-aw-slU"/>
                 <outlet property="appNameYConstraint" destination="Txn-xi-eRN" id="lVR-n5-JET"/>
-                <outlet property="googleSignInButton" destination="cBC-Rj-jaa" id="Uiw-LZ-OjN"/>
+                <outlet property="googleSignInButton" destination="cBC-Rj-jaa" id="24k-Bm-RBa"/>
+                <outlet property="googleSignInButtonBottomConstraint" destination="tfw-fS-TUs" id="Vyu-QJ-AFb"/>
                 <outlet property="tagLineLabel" destination="pK5-tP-ZNS" id="hiX-b0-xSM"/>
                 <outlet property="view" destination="ba3-xx-xRk" id="XSY-D5-AkP"/>
             </connections>
@@ -19,21 +21,17 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="circle" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="7eh-3f-DhV" userLabel="AppName">
-                    <rect key="frame" x="20" y="239" width="560" height="63"/>
+                    <rect key="frame" x="20" y="279" width="560" height="63"/>
                     <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="46"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" text="Know the people you work with" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="pK5-tP-ZNS" userLabel="Tagline">
-                    <rect key="frame" x="186" y="302" width="229" height="22"/>
-                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
-                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cBC-Rj-jaa" customClass="GPPSignInButton">
-                    <rect key="frame" x="285" y="424" width="30" height="34"/>
+                <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cBC-Rj-jaa">
+                    <rect key="frame" x="15" y="620" width="570" height="50"/>
+                    <color key="backgroundColor" red="0.1505631506" green="0.1505586505" blue="0.15056121350000001" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="240" id="TIY-Mo-cJz"/>
+                        <constraint firstAttribute="height" constant="50" id="Ux6-yw-qpy"/>
                         <constraint firstAttribute="height" constant="80" id="YVs-e4-v5k"/>
                         <constraint firstAttribute="height" constant="60" id="blW-ZV-wAK"/>
                         <constraint firstAttribute="width" constant="520" id="kGS-5B-R1E"/>
@@ -50,31 +48,38 @@
                         </mask>
                     </variation>
                 </button>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon" translatesAutoresizingMaskIntoConstraints="NO" id="SIq-Yl-dI4">
+                    <rect key="frame" x="255" y="174" width="90" height="90"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="90" id="HzY-rr-wuH"/>
+                        <constraint firstAttribute="width" secondItem="SIq-Yl-dI4" secondAttribute="height" multiplier="1:1" id="hrA-UV-R1b"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" text="Know the people you work with" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="pK5-tP-ZNS" userLabel="Tagline">
+                    <rect key="frame" x="188" y="342" width="224" height="22"/>
+                    <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="16"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="0.88235294119999996" green="0.15686274510000001" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="7eh-3f-DhV" firstAttribute="leading" secondItem="ba3-xx-xRk" secondAttribute="leading" constant="20" symbolic="YES" id="0ah-93-zJK"/>
-                <constraint firstItem="cBC-Rj-jaa" firstAttribute="centerX" secondItem="pK5-tP-ZNS" secondAttribute="centerX" constant="5.5" id="4Cs-nh-zUB"/>
-                <constraint firstItem="cBC-Rj-jaa" firstAttribute="centerX" secondItem="pK5-tP-ZNS" secondAttribute="centerX" id="FJj-dJ-X35"/>
+                <constraint firstAttribute="trailing" secondItem="cBC-Rj-jaa" secondAttribute="trailing" constant="15" id="9xf-Wf-nAb"/>
                 <constraint firstAttribute="trailing" secondItem="7eh-3f-DhV" secondAttribute="trailing" constant="20" symbolic="YES" id="MwH-ef-daQ"/>
-                <constraint firstAttribute="trailing" secondItem="cBC-Rj-jaa" secondAttribute="trailing" constant="40" id="OFh-q2-wjP"/>
                 <constraint firstItem="pK5-tP-ZNS" firstAttribute="top" secondItem="7eh-3f-DhV" secondAttribute="bottom" id="Rhe-sv-hBS"/>
-                <constraint firstItem="cBC-Rj-jaa" firstAttribute="top" secondItem="pK5-tP-ZNS" secondAttribute="bottom" constant="100" id="S1K-Sr-GJ0"/>
-                <constraint firstAttribute="centerY" secondItem="7eh-3f-DhV" secondAttribute="centerY" constant="30" id="Txn-xi-eRN"/>
+                <constraint firstAttribute="centerY" secondItem="7eh-3f-DhV" secondAttribute="centerY" constant="-10" id="Txn-xi-eRN"/>
                 <constraint firstAttribute="trailing" secondItem="pK5-tP-ZNS" secondAttribute="trailing" priority="750" constant="20" symbolic="YES" id="ayW-Ox-miN"/>
+                <constraint firstAttribute="centerX" secondItem="SIq-Yl-dI4" secondAttribute="centerX" id="cfi-ez-b9q"/>
+                <constraint firstItem="7eh-3f-DhV" firstAttribute="top" secondItem="SIq-Yl-dI4" secondAttribute="bottom" constant="15" id="dM4-Tq-Xk9"/>
                 <constraint firstItem="pK5-tP-ZNS" firstAttribute="leading" secondItem="ba3-xx-xRk" secondAttribute="leading" priority="750" constant="20" symbolic="YES" id="qQN-Uz-Gqd"/>
+                <constraint firstAttribute="bottom" secondItem="cBC-Rj-jaa" secondAttribute="bottom" constant="-70" id="tfw-fS-TUs"/>
+                <constraint firstItem="cBC-Rj-jaa" firstAttribute="leading" secondItem="ba3-xx-xRk" secondAttribute="leading" constant="15" id="tnG-iz-QeI"/>
                 <constraint firstAttribute="centerX" secondItem="7eh-3f-DhV" secondAttribute="centerX" id="v5g-9h-qkZ"/>
-                <constraint firstItem="cBC-Rj-jaa" firstAttribute="leading" secondItem="ba3-xx-xRk" secondAttribute="leading" constant="40" id="zJt-qD-miZ"/>
+                <constraint firstAttribute="centerX" secondItem="cBC-Rj-jaa" secondAttribute="centerX" id="xwU-AC-5EK"/>
                 <constraint firstAttribute="centerX" secondItem="pK5-tP-ZNS" secondAttribute="centerX" id="zeZ-UU-ar7"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
-            <variation key="default">
-                <mask key="constraints">
-                    <exclude reference="4Cs-nh-zUB"/>
-                    <exclude reference="OFh-q2-wjP"/>
-                    <exclude reference="zJt-qD-miZ"/>
-                </mask>
-            </variation>
             <connections>
                 <outletCollection property="gestureRecognizers" destination="YoK-1K-HFw" appends="YES" id="E74-4a-osp"/>
             </connections>
@@ -82,4 +87,7 @@
         </view>
         <tapGestureRecognizer id="YoK-1K-HFw"/>
     </objects>
+    <resources>
+        <image name="Icon" width="90" height="90"/>
+    </resources>
 </document>

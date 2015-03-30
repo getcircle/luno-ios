@@ -27,7 +27,6 @@ extension UIColor {
     }
     
     class func appUIBackgroundColor() -> UIColor {
-        // return UIColor(red: 225, green: 40, blue: 47)
         return UIColor(red: 47, green: 55, blue: 62)
     }
     

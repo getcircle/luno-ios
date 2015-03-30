@@ -46,7 +46,8 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
     @IBOutlet weak var appNameLabel: UILabel!
     @IBOutlet weak var appNameYConstraint: NSLayoutConstraint!
     @IBOutlet weak var tagLineLabel: UILabel!
-    @IBOutlet weak var googleSignInButton: GPPSignInButton!
+    @IBOutlet weak var googleSignInButton: UIButton!
+    @IBOutlet weak var googleSignInButtonBottomConstraint: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,7 +61,7 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        hideFieldsAndControls(false)
+        // hideFieldsAndControls(false)
         navigationController?.navigationBar.makeTransparent()
     }
     
@@ -79,7 +80,7 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
     }
     
     private func configureView() {
-        view.backgroundColor = UIColor.appUIBackgroundColor()
+        view.backgroundColor = UIColor(red: 49, green: 49, blue: 49)
     }
     
     private func configureGoogleAuthentication() {
@@ -89,10 +90,16 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
         googleSignIn.homeServerClientID = GoogleServerClientID
         googleSignIn.scopes = ["https://www.googleapis.com/auth/plus.login", "https://www.googleapis.com/auth/plus.profile.emails.read"]
         googleSignIn.delegate = self
-        googleSignInButton.colorScheme = kGPPSignInButtonColorSchemeLight
-        googleSignInButton.style = kGPPSignInButtonStyleWide
-        
-        googleSignInButton.addTarget(self, action: "startingGoogleAuthentication:", forControlEvents: .TouchUpInside)
+//        googleSignInButton.colorScheme = kGPPSignInButtonColorSchemeLight
+//        googleSignInButton.style = kGPPSignInButtonStyleWide
+        googleSignInButton.titleLabel!.font = UIFont.appSocialCTATitleFont()
+        googleSignInButton.addRoundCorners(radius: 2.0)
+        googleSignInButton.backgroundColor = UIColor.appTintColor()
+        googleSignInButton.setCustomAttributedTitle(
+            AppStrings.SocialConnectGooglePlusCTA.uppercaseStringWithLocale(NSLocale.currentLocale()),
+            forState: .Normal
+        )
+        googleSignInButton.addTarget(self, action: "googlePlusSignInButtonTapped:", forControlEvents: .TouchUpInside)
     }
     
     // MARK: - GPPSignInDelegate
@@ -114,15 +121,16 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
     // MARK: - Initial Animation
     
     private func moveAppNameLabel() {
-        appNameYConstraint.constant = 200.0
+        googleSignInButtonBottomConstraint.constant = 10.0
+        // appNameYConstraint.constant = 200.0
         appNameLabel.setNeedsUpdateConstraints()
         UIView.animateWithDuration(0.7, animations: { () -> Void in
             self.appNameLabel.layoutIfNeeded()
-            self.googleSignInButton.alpha = 0.0
+//            self.googleSignInButton.alpha = 0.0
             self.googleSignInButton.layoutIfNeeded()
             self.tagLineLabel.layoutIfNeeded()
         }, { (completed: Bool) -> Void in
-            self.showFieldsAndControls(true)
+            // self.showFieldsAndControls(true)
         })
     }
     
@@ -523,5 +531,12 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
             passcodeAttemptLimit: 10, 
             splashViewControllerClass: SplashViewController.self
         )
+    }
+
+    // MARK: - IBActions
+    
+    @IBAction func googlePlusSignInButtonTapped(sender: AnyObject!) {
+        startingGoogleAuthentication(sender)
+        GPPSignIn.sharedInstance().authenticate()
     }
 }

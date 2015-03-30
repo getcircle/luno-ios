@@ -34,6 +34,10 @@ extension UIFont {
         return UIFont(name: "Avenir-Medium", size: 12.0)!
     }
     
+    class func appSocialCTATitleFont() -> UIFont {
+        return UIFont(name: "Avenir-Roman", size: 12.0)!
+    }
+    
     class func appTagsOverviewSectionHeader() -> UIFont {
         return UIFont(name: "Avenir-Medium", size: 15.0)!
     }
