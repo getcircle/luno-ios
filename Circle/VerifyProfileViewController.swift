@@ -215,8 +215,10 @@ class VerifyProfileViewController:
     }
 
     private func verificationComplete() {
-        let interestSelectorVC = TagScrollingSelectorViewController(nibName: "TagScrollingSelectorViewController", bundle: nil)
-        interestSelectorVC.theme = .Onboarding
-        navigationController?.pushViewController(interestSelectorVC, animated: true)
+        let editAboutViewController = EditAboutViewController(nibName: "EditAboutViewController", bundle: nil)
+        editAboutViewController.profile = profile
+        editAboutViewController.addNextButton = true
+        editAboutViewController.theme = .Onboarding
+        navigationController?.pushViewController(editAboutViewController, animated: true)
     }
 }

@@ -11,6 +11,12 @@ import ProtobufRegistry
 
 class EditAboutViewController: UIViewController, UITextFieldDelegate {
 
+    enum Themes {
+        case Onboarding
+        case Regular
+    }
+    
+    @IBOutlet weak private(set) var aboutTitleTextLabel: UILabel!
     @IBOutlet weak private(set) var bioSectionLabel: UILabel!
     @IBOutlet weak private(set) var bioTextField: UITextField!
     @IBOutlet weak private(set) var otherSectionLabel: UILabel!
@@ -18,9 +24,11 @@ class EditAboutViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak private(set) var nickNameTextField: UITextField!
     
     private var allControls = [AnyObject]()
-    
+
+    var addNextButton: Bool = false
     var profile: ProfileService.Containers.Profile!
-    
+    var theme: Themes = .Regular
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -29,8 +37,7 @@ class EditAboutViewController: UIViewController, UITextFieldDelegate {
         configureView()
         configureNavigationBar()
         configureSectionLabels()
-        configureBioTextField()
-        configureNickNameFields()
+        configureTextFields()
         populateData()
     }
 
@@ -42,13 +49,31 @@ class EditAboutViewController: UIViewController, UITextFieldDelegate {
     // MARK: - Configuration
 
     private func configureView() {
-        view.backgroundColor = UIColor.appViewBackgroundColor()
+        switch theme {
+        case .Regular:
+            view.backgroundColor = UIColor.appViewBackgroundColor()
+            aboutTitleTextLabel.textColor = UIColor.appDefaultDarkTextColor()
+            
+        case .Onboarding:
+            view.backgroundColor = UIColor.appUIBackgroundColor()
+            aboutTitleTextLabel.textColor = UIColor.appDefaultLightTextColor()
+        }
+        
+        extendedLayoutIncludesOpaqueBars = true
     }
     
     private func configureNavigationBar() {
         title = AppStrings.ProfileSectionAboutTitle
-        addDoneButtonWithAction("done:")
-        addCloseButtonWithAction("cancel:")
+        if addNextButton {
+            addNextButtonWithAction("nextButtonTapped:")
+        }
+        else {
+            addDoneButtonWithAction("done:")
+        }
+        
+        if isBeingPresentedModally() {
+            addCloseButtonWithAction("cancel:")
+        }
     }
     
     private func configureSectionLabels() {
@@ -60,17 +85,25 @@ class EditAboutViewController: UIViewController, UITextFieldDelegate {
         bioSectionLabel.text = AppStrings.ProfileSectionBioTitle.localizedUppercaseString()
         otherSectionLabel.text = AppStrings.ProfileSectionOtherTitle.localizedUppercaseString()
     }
-    
-    private func configureBioTextField() {
+
+    private func configureTextFields() {
         allControls.append(bioTextField)
-    }
-    
-    private func configureNickNameFields() {
+
         nickNameLabel.font = UIFont.appAttributeTitleLabelFont()
         nickNameLabel.textColor = UIColor.appAttributeTitleLabelColor()
         nickNameTextField.font = UIFont.appAttributeValueLabelFont()
         nickNameTextField.textColor = UIColor.appAttributeValueLabelColor()
         allControls.append(nickNameTextField)
+        
+        switch theme {
+        case .Regular:
+            bioTextField.keyboardAppearance = .Light
+            nickNameTextField.keyboardAppearance = .Light
+            
+        case .Onboarding:
+            bioTextField.keyboardAppearance = .Dark
+            nickNameTextField.keyboardAppearance = .Dark
+        }
     }
     
     private func populateData() {
@@ -139,5 +172,13 @@ class EditAboutViewController: UIViewController, UITextFieldDelegate {
             }
             completion()
         }
+    }
+    
+    // MARK: - IBActions
+    
+    @IBAction func nextButtonTapped(sender: AnyObject!) {
+        let interestSelectorVC = TagScrollingSelectorViewController(nibName: "TagScrollingSelectorViewController", bundle: nil)
+        interestSelectorVC.theme = .Onboarding
+        navigationController?.pushViewController(interestSelectorVC, animated: true)        
     }
 }

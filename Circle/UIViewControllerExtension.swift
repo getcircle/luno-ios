@@ -228,6 +228,18 @@ extension UIViewController {
         return 0.0
     }
 
+    func addNextButtonWithAction(callbackMethod: Selector) -> UIBarButtonItem? {
+        let nextButtonItem = UIBarButtonItem(
+            title: AppStrings.GenericNextButtonTitle,
+            style: .Plain,
+            target: self,
+            action: callbackMethod
+        )
+        
+        navigationItem.rightBarButtonItem = nextButtonItem
+        return nextButtonItem
+    }
+
     func addDoneButtonWithAction(callbackMethod: Selector) -> UIBarButtonItem? {
         let saveButtonItem = UIBarButtonItem(
             image: UIImage(named: "Check"),
