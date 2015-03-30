@@ -81,6 +81,7 @@ class TagInputViewController: UIViewController,
         collectionView.delegate = self
         collectionView.backgroundColor = UIColor.appViewBackgroundColor()
         collectionView.alwaysBounceVertical = true
+        collectionView.keyboardDismissMode = .OnDrag
         collectionView.registerNib(
             TagSuggestionCollectionViewCell.nib,
             forCellWithReuseIdentifier: TagSuggestionCollectionViewCell.classReuseIdentifier
@@ -123,6 +124,9 @@ class TagInputViewController: UIViewController,
         tokenField.reloadData()
         suggestedTags.removeAll(keepCapacity: false)
         setShouldDisplayEmptyCollectionView(true)
+        if !tokenField.isFirstResponder() {
+            tokenField.becomeFirstResponder()
+        }
         collectionView.reloadData()
     }
     
@@ -164,6 +168,7 @@ class TagInputViewController: UIViewController,
                     tagBuilder = self.newTag!.toBuilder()
                 } else {
                     tagBuilder = ProfileService.Containers.Tag.builder()
+                    tagBuilder.type = .Skill
                 }
                 tagBuilder.name = text
                 self.newTag = tagBuilder.build()
@@ -190,9 +195,23 @@ class TagInputViewController: UIViewController,
     // MARK: - IBActions
     
     @IBAction func done(sender: AnyObject!) {
-        // TODO send to backend
-        println("add the following expertise to the person: \(selectedTags)")
-        dismissView()
+        // TODO check for no tags added
+        // TODO only display done button if we have added a tag
+        let activityIndicator = view.addActivityIndicator(start: false)
+        UIView.animateWithDuration(0.3, animations: { () -> Void in
+            self.emptyCollectionView.alpha = 0.0
+        }) { (complete) -> Void in
+            activityIndicator.startAnimating()
+        }
+        
+        ProfileService.Actions.addTags(AuthViewController.getLoggedInUserProfile()!.id, tags: selectedTags) { (error) in
+            if error != nil {
+                println("error adding tags: \(error)")
+            } else {
+                // TODO return any tags that were created so we can add them to the ObjectStore
+                self.dismissView()
+            }
+        }
     }
     
     @IBAction func cancel(sender: AnyObject!) {

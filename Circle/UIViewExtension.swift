@@ -86,11 +86,13 @@ extension UIView {
         return visualEffectView
     }
     
-    func addActivityIndicator(color: UIColor = UIColor.appActivityIndicatorViewColor()) -> CircleActivityIndicatorView {
+    func addActivityIndicator(color: UIColor = UIColor.appActivityIndicatorViewColor(), start: Bool = true) -> CircleActivityIndicatorView {
         var activityIndicatorView = CircleActivityIndicatorView()
         activityIndicatorView.tintColor = color
         activityIndicatorView.hidesWhenStopped = true
-        activityIndicatorView.startAnimating()
+        if start {
+            activityIndicatorView.startAnimating()
+        }
         addSubview(activityIndicatorView)
         bringSubviewToFront(activityIndicatorView)
         activityIndicatorView.autoCenterInSuperview()
