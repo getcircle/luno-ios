@@ -57,8 +57,8 @@ class EditAboutViewController: UIViewController, UITextFieldDelegate {
             label.font = UIFont.appAttributeTitleLabelFont()
         }
         
-        bioSectionLabel.text = AppStrings.ProfileSectionBioTitle.uppercaseStringWithLocale(NSLocale.currentLocale())
-        otherSectionLabel.text = AppStrings.ProfileSectionOtherTitle.uppercaseStringWithLocale(NSLocale.currentLocale())
+        bioSectionLabel.text = AppStrings.ProfileSectionBioTitle.localizedUppercaseString()
+        otherSectionLabel.text = AppStrings.ProfileSectionOtherTitle.localizedUppercaseString()
     }
     
     private func configureBioTextField() {

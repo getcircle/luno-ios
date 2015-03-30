@@ -38,7 +38,7 @@ class ContactInfoViewController: CircleAlertViewController, UICollectionViewDele
         let titleText = NSLocalizedString(
             "Contact Info", 
             comment: "Title of window showing user's contact info"
-        ).uppercaseStringWithLocale(NSLocale.currentLocale())
+        ).localizedUppercaseString()
         titleLabel.attributedText = NSAttributedString(
             string: titleText,
             attributes: [

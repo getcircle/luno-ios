@@ -57,7 +57,7 @@ class BannerCollectionViewCell : CircleCollectionViewCell {
                     if let profile = bannerDictionary["profile"] as? ProfileService.Containers.Profile {
                         bannerTextLabel.text = "It's " + profile.first_name + "'s Work Anniversary!"
                         bannerCTAButton.setCustomAttributedTitle(
-                            "Say Congratulations".uppercaseStringWithLocale(NSLocale.currentLocale()),
+                            "Say Congratulations".localizedUppercaseString(),
                             forState: .Normal
                         )
                         backgroundColor = UIColor.appWorkAnniversaryBannerBackground()
@@ -69,7 +69,7 @@ class BannerCollectionViewCell : CircleCollectionViewCell {
                     if let profile = bannerDictionary["profile"] as? ProfileService.Containers.Profile {
                         bannerTextLabel.text = "It's " + profile.first_name + "'s Birthday!"
                         bannerCTAButton.setCustomAttributedTitle(
-                            "Wish Happy Birthday".uppercaseStringWithLocale(NSLocale.currentLocale()),
+                            "Wish Happy Birthday".localizedUppercaseString(),
                             forState: .Normal
                         )
                         backgroundColor = UIColor.appBirthdayBannerBackground()
@@ -81,7 +81,7 @@ class BannerCollectionViewCell : CircleCollectionViewCell {
                     if let profile = bannerDictionary["profile"] as? ProfileService.Containers.Profile {
                         bannerTextLabel.text = profile.first_name + "'s new to the team!"
                         bannerCTAButton.setCustomAttributedTitle(
-                            "Introduce yourself".uppercaseStringWithLocale(NSLocale.currentLocale()),
+                            "Introduce yourself".localizedUppercaseString(),
                             forState: .Normal
                         )
                         backgroundColor = UIColor.appNewHireBannerBackground()

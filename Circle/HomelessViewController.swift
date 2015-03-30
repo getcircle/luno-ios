@@ -37,7 +37,7 @@ class HomelessViewController: UIViewController {
     private func configureRequestAccessButton() {
         requestAccessButton.addRoundCorners(radius: 2.0)
         requestAccessButton.setCustomAttributedTitle(
-            AppStrings.RequestAccessButtonTitle.uppercaseStringWithLocale(NSLocale.currentLocale()),
+            AppStrings.RequestAccessButtonTitle.localizedUppercaseString(),
             forState: .Normal
         )
         requestAccessButton.backgroundColor = UIColor.appTintColor()
@@ -47,7 +47,7 @@ class HomelessViewController: UIViewController {
     private func configureTryAgainButton() {
         tryAgainButton.addRoundCorners(radius: 2.0)
         tryAgainButton.setCustomAttributedTitle(
-            AppStrings.TryAgainButtonTitle.uppercaseStringWithLocale(NSLocale.currentLocale()),
+            AppStrings.GenericTryAgainButtonTitle.localizedUppercaseString(),
             forState: .Normal,
             withColor: UIColor.appTintColor()
         )

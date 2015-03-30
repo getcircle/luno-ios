@@ -80,7 +80,7 @@ class FormBuilder: NSObject, UITextFieldDelegate {
             // Section Title
             let sectionTitleLabel = UILabel(forAutoLayout: ())
             sectionTitleLabel.backgroundColor = UIColor.appViewBackgroundColor()
-            sectionTitleLabel.text = section.title.uppercaseStringWithLocale(NSLocale.currentLocale())
+            sectionTitleLabel.text = section.title.localizedUppercaseString()
             sectionTitleLabel.font = UIFont.appAttributeTitleLabelFont()
             sectionTitleLabel.textColor = UIColor.appAttributeTitleLabelColor()
             sectionContainerView.addSubview(sectionTitleLabel)
@@ -105,7 +105,7 @@ class FormBuilder: NSObject, UITextFieldDelegate {
                     let fieldNameLabel = UILabel(forAutoLayout: ())
                     fieldNameLabel.opaque = true
                     fieldNameLabel.backgroundColor = UIColor.whiteColor()
-                    fieldNameLabel.text = item.placeholder.uppercaseStringWithLocale(NSLocale.currentLocale())
+                    fieldNameLabel.text = item.placeholder.localizedUppercaseString()
                     fieldNameLabel.font = UIFont.appAttributeTitleLabelFont()
                     fieldNameLabel.textColor = UIColor.appAttributeTitleLabelColor()
                     containerView.addSubview(fieldNameLabel)

@@ -38,7 +38,7 @@ class CurrentUserProfileDetailDataSource: ProfileDetailDataSource {
                 if !hasLinkedInIdentity {
                     let sectionItems = [
                         SectionItem(
-                            title: AppStrings.SocialConnectLinkedInCTA.uppercaseStringWithLocale(NSLocale.currentLocale()),
+                            title: AppStrings.SocialConnectLinkedInCTA.localizedUppercaseString(),
                             container: "social",
                             containerKey: "profile",
                             contentType: .LinkedInConnect,

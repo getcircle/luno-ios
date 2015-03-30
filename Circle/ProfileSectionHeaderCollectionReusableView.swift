@@ -61,14 +61,14 @@ class ProfileSectionHeaderCollectionReusableView: CircleCollectionReusableView {
     }
 
     override func setCard(card: Card) {
-        cardTitleLabel.text = card.title.uppercaseStringWithLocale(NSLocale.currentLocale())
+        cardTitleLabel.text = card.title.localizedUppercaseString()
         addEditButton.alpha = showAddEditButton ? 1.0 : 0.0
         nextIconImage.alpha = 0.0
         cardContentCountLabel.alpha = 0.0
         cardTriggerButton.enabled = false
         if showAddEditButton {
             let buttonTitle = card.content.count > 0 ? AppStrings.ProfileInfoEditButtonTitle : AppStrings.ProfileInfoAddButtonTitle
-            addEditButton.setTitle(buttonTitle.uppercaseStringWithLocale(NSLocale.currentLocale()), forState: .Normal)
+            addEditButton.setTitle(buttonTitle.localizedUppercaseString(), forState: .Normal)
         }
     
         if !showAddEditButton && card.showContentCount {

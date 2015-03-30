@@ -42,7 +42,7 @@ class AddNoteCollectionViewCell: CircleCollectionViewCell {
         addNoteButton.titleLabel?.font = UIFont.appCTATitleFont()
         addNoteButton.convertToTemplateImageForState(.Normal)
         addNoteButton.setCustomAttributedTitle(
-            AppStrings.AddNoteCTATitle.uppercaseStringWithLocale(NSLocale.currentLocale()),
+            AppStrings.AddNoteCTATitle.localizedUppercaseString(),
             forState: .Normal
         )
         

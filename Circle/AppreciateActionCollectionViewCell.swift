@@ -37,7 +37,7 @@ class AppreciateActionCollectionViewCell: CircleCollectionViewCell {
         appreciateButton.titleLabel?.font = UIFont.appCTATitleFont()
         appreciateButton.convertToTemplateImageForState(.Normal)
         appreciateButton.setCustomAttributedTitle(
-            AppStrings.AppreciateCTATitle.uppercaseStringWithLocale(NSLocale.currentLocale()),
+            AppStrings.AppreciateCTATitle.localizedUppercaseString(),
             forState: .Normal
         )
     }

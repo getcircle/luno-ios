@@ -62,7 +62,7 @@ class TeamDetailDataSource: CardDataSource {
                         let membersCardTitle = NSLocalizedString(
                             "Members",
                             comment: "Title for list of team members"
-                        ).uppercaseStringWithLocale(NSLocale.currentLocale())
+                        ).localizedUppercaseString()
                         let membersCard = Card(cardType: .Profiles, title: membersCardTitle)
                         membersCard.showContentCount = false
                         membersCard.addHeader(headerClass: sectionHeaderClass)
