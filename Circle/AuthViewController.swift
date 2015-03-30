@@ -121,7 +121,7 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
     // MARK: - Initial Animation
     
     private func moveAppNameLabel() {
-        googleSignInButtonBottomConstraint.constant = 10.0
+        googleSignInButtonBottomConstraint.constant = 20.0
         // appNameYConstraint.constant = 200.0
         appNameLabel.setNeedsUpdateConstraints()
         UIView.animateWithDuration(0.7, animations: { () -> Void in
@@ -379,8 +379,11 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
     }
     
     class func presentHomelessViewController() {
-        let homelessVC = HomelessViewController(nibName: "HomelessViewController", bundle: nil)
-        self.presentViewControllerWithNavigationController(homelessVC)
+        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        appDelegate.window!.rootViewController!.dismissViewControllerAnimated(false, completion: { () -> Void in
+            let homelessVC = HomelessViewController(nibName: "HomelessViewController", bundle: nil)
+            self.presentViewControllerWithNavigationController(homelessVC)
+        })
     }
     
     // MARK: - Logged In User Helpers

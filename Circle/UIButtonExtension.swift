@@ -15,12 +15,16 @@ extension UIButton {
     }
     
     func setCustomAttributedTitle(title: String, forState state: UIControlState) {
+        setCustomAttributedTitle(title, forState: .Normal, withColor: UIColor.whiteColor())
+    }
+    
+    func setCustomAttributedTitle(title: String, forState state: UIControlState, withColor color: UIColor) {
         setAttributedTitle(
             NSAttributedString(
                 string: title,
                 attributes: [
                     NSKernAttributeName: NSNumber(double: 2.0),
-                    NSForegroundColorAttributeName: UIColor.whiteColor(),
+                    NSForegroundColorAttributeName: color,
                     NSFontAttributeName: titleLabel!.font
                 ]
             ),

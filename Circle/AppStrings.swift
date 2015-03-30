@@ -24,6 +24,11 @@ struct AppStrings {
     
     static let GenericCancelButtonTitle = NSLocalizedString("Cancel", comment: "Generic title for cancelling a user action")
     
+    static let RequestAccessButtonTitle = NSLocalizedString("Request Access", comment: "Title of the button to request access to the app")
+    static let TryAgainButtonTitle = NSLocalizedString("Try Again", comment: "Generic button title to try some action again")
+    
+    static let PrivateBetaInfoText = NSLocalizedString("circle is currently in private beta! You can request access below or try logging into a different account.", comment: "Message indicating that the app is in private beta and the user can either request access or try a different account")
+    
     static let ProfileInfoAddButtonTitle = NSLocalizedString("Add", comment: "Title of the button to add info")
     static let ProfileInfoEditButtonTitle = NSLocalizedString("Edit", comment: "Title of the button to edit info")
     
