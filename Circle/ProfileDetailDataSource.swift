@@ -80,7 +80,7 @@ class ProfileDetailDataSource: CardDataSource {
             sections.append(getQuickActionsSection())
             if let addBanner = addBannerOfType {
                 if !isProfileLoggedInUserProfile() {
-                    sections.append(getBannersSection())
+                    // sections.append(getBannersSection())
                 }
             }
             sections.append(getAboutSection())
