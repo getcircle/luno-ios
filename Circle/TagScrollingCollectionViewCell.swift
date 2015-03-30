@@ -10,7 +10,7 @@ import UIKit
 import ProtobufRegistry
 
 struct TagScrollingCollectionViewCellNotifications {
-    static let onTagSelectedNotification = "com.ravcode.notification:onTagSelectedNotification"
+    static let onTagSelectedNotification = "com.rhlabs.notification:onTagSelectedNotification"
 }
 
 class TagScrollingCollectionViewCell: CircleCollectionViewCell, UICollectionViewDataSource, UICollectionViewDelegate {

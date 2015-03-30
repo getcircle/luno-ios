@@ -23,10 +23,10 @@ struct LoggedInUserHolder {
 }
 
 struct AuthNotifications {
-    static let onLoginNotification = "com.ravcode.notification:onLoginNotification"
-    static let onLogoutNotification = "com.ravcode.notification:onLogoutNotification"
-    static let onProfileChangedNotification = "com.ravcode.notification:onProfileChangedNotification"
-    static let onUserChangedNotification = "com.ravcode.notifcation:onUserChangedNotification"
+    static let onLoginNotification = "com.rhlabs.notification:onLoginNotification"
+    static let onLogoutNotification = "com.rhlabs.notification:onLogoutNotification"
+    static let onProfileChangedNotification = "com.rhlabs.notification:onProfileChangedNotification"
+    static let onUserChangedNotification = "com.rhlabs.notifcation:onUserChangedNotification"
 }
 
 private let AuthPasscode = "AuthPasscode"

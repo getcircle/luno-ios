@@ -10,7 +10,7 @@ import Foundation
 import ProtobufRegistry
 
 struct ProfileServiceNotifications {
-    static let onProfileUpdatedNotification = "com.ravcode.notification:onProfileUpdatedNotification"
+    static let onProfileUpdatedNotification = "com.rhlabs.notification:onProfileUpdatedNotification"
 }
 
 typealias GetProfileCompletionHandler = (profile: ProfileService.Containers.Profile?, error: NSError?) -> Void

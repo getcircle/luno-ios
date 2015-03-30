@@ -81,11 +81,11 @@ enum QuickAction: Int {
 struct QuickActionNotifications {
     // Started indicates taps where the receipient or the info needed to do the quick action
     // is still to be gathered
-    static let onQuickActionStarted = "com.ravcode.notification:QuickActionStarted"
+    static let onQuickActionStarted = "com.rhlabs.notification:QuickActionStarted"
     
     // Selected should be used when the receipient info is available and is expected
     // in the user info dictionary
-    static let onQuickActionSelected = "com.ravcode.notification:QuickActionSelected"
+    static let onQuickActionSelected = "com.rhlabs.notification:QuickActionSelected"
     
     // UserInfo Keys
     static let QuickActionTypeUserInfoKey = "quickAction"

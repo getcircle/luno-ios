@@ -12,7 +12,7 @@ import ProtobufRegistry
 private let NoteCellReuseIdentifier = "NotesCellReuseIdentifier"
 
 struct ProfileNotesNotifications {
-    static let onNotesChanged = "com.ravcode.notification:onNotesChanged"
+    static let onNotesChanged = "com.rhlabs.notification:onNotesChanged"
 }
 
 // TODO should potentially just take notes as an init variable so we can use the getExtendedProfile call

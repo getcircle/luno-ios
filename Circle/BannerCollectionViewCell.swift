@@ -16,8 +16,8 @@ enum BannerType: Int {
 }
 
 struct BannerNotifications {
-    static let onBannerCTATappedNotification = "com.ravcode.notification:onBannerCTATappedNotification"
-    static let onBannerCloseTappedNotification = "com.ravcode.notification:onBannerCloseTappedNotification"
+    static let onBannerCTATappedNotification = "com.rhlabs.notification:onBannerCTATappedNotification"
+    static let onBannerCloseTappedNotification = "com.rhlabs.notification:onBannerCloseTappedNotification"
 }
 
 class BannerCollectionViewCell : CircleCollectionViewCell {

@@ -9,7 +9,7 @@
 import UIKit
 
 struct NotesCardHeaderCollectionReusableViewNotifications {
-    static let onAddNoteNotification = "com.ravcode.notification:onAddNoteNotification"
+    static let onAddNoteNotification = "com.rhlabs.notification:onAddNoteNotification"
 }
 
 class NotesCardHeaderCollectionReusableView: CircleCollectionReusableView {

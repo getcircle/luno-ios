@@ -10,7 +10,7 @@ import UIKit
 import ProtobufRegistry
 
 struct TeamsCollectionViewCellNotifications {
-    static let onTeamSelectedNotification = "com.ravcode.notification:onTeamSelectedNotification"
+    static let onTeamSelectedNotification = "com.rhlabs.notification:onTeamSelectedNotification"
 }
 
 class TeamsCollectionViewCell: CircleCollectionViewCell, UICollectionViewDataSource, UICollectionViewDelegate {

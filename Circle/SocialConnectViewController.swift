@@ -12,7 +12,7 @@ import WebKit
 
 struct SocialConnectNotifications {
     
-    static let onServiceConnectedNotification = "com.ravcode.notification:onSocialServiceConnectedNotification"
+    static let onServiceConnectedNotification = "com.rhlabs.notification:onSocialServiceConnectedNotification"
     static let serviceProviderUserInfoKey = "provider"
 }
 

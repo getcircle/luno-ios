@@ -9,7 +9,7 @@
 import UIKit
 
 struct SocialConnectCollectionViewCellNotifications {
-    static let onCTATappedNotification = "com.ravcode.notification:onSocialConnectCTATappedNotification"
+    static let onCTATappedNotification = "com.rhlabs.notification:onSocialConnectCTATappedNotification"
 }
 
 class SocialConnectCollectionViewCell: CircleCollectionViewCell {

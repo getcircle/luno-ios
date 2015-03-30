@@ -39,7 +39,7 @@ class AppreciationCollectionView: UnderlyingCollectionView {
 }
 
 struct AppreciationNotifications {
-    static let onAppreciationsChanged = "com.ravcode.notification:onAppreciationsChanged"
+    static let onAppreciationsChanged = "com.rhlabs.notification:onAppreciationsChanged"
 }
 
 class AppreciationDataSource: UnderlyingCollectionViewDataSource {
