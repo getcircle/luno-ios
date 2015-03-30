@@ -9,8 +9,8 @@
 import UIKit
 import ProtobufRegistry
 
-class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate, CircleAlertViewDelegate {
-    
+class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate {
+
     enum ActiveField {
         case PhoneNumber
         case Code
@@ -19,11 +19,11 @@ class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate, Ci
     @IBOutlet weak private(set) var actionButton: UIButton!
     @IBOutlet weak var actionButtonWidth: NSLayoutConstraint!
     @IBOutlet weak var instructionsLabel: UILabel!
-    @IBOutlet weak private(set) var phoneNumberField: UITextField!
+    @IBOutlet weak private(set) var phoneNumberField: CircleTextField!
     @IBOutlet weak var phoneNumberFieldVerticalSpacing: NSLayoutConstraint!
     @IBOutlet weak var phoneNumberFieldWidth: NSLayoutConstraint!
     @IBOutlet weak private(set) var resendCodeButton: UIButton!
-    @IBOutlet weak private(set) var verificationCodeField: UITextField!
+    @IBOutlet weak private(set) var verificationCodeField: CircleTextField!
     @IBOutlet weak var verificationCodeFieldVerticalSpacing: NSLayoutConstraint!
     @IBOutlet weak var verificationCodeFieldWidth: NSLayoutConstraint!
     
@@ -38,7 +38,6 @@ class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate, Ci
     private var transitionedToConfirmation = false
     private var verificationCodeFieldBottomBorder: UIView?
     private var verificationCodeFieldPreviousVerticalSpacing: CGFloat = 0.0
-    private var welcomeAlertPresented = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,11 +46,9 @@ class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate, Ci
         phoneNumberFormatter = NBAsYouTypeFormatter(regionCode: "US")
     }
     
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        if !welcomeAlertPresented {
-            presentWelcomeAlert()
-        }
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        phoneNumberField.becomeFirstResponder()
     }
     
     // MARK: - Configuration
@@ -59,11 +56,16 @@ class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate, Ci
     private func configureView() {
         navigationController?.navigationBar.makeTransparent()
         
+        title = "Verify Phone"
+
         view.backgroundColor = UIColor.appUIBackgroundColor()
         phoneNumberField.delegate = self
         phoneNumberField.tintColor = UIColor.whiteColor()
+        phoneNumberField.placeholderColor = UIColor.whiteColor().colorWithAlphaComponent(0.8)
+
         verificationCodeField.delegate = self
         verificationCodeField.tintColor = UIColor.whiteColor()
+        verificationCodeField.placeholderColor = UIColor.whiteColor().colorWithAlphaComponent(0.8)
         phoneNumberField.addBottomBorder()
 
         actionButton.setTitleColor(UIColor.appSearchTextFieldBackground(), forState: .Disabled)
@@ -359,23 +361,4 @@ class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate, Ci
         let verifyProfileVC = VerifyProfileViewController(nibName: "VerifyProfileViewController", bundle: nil)
         navigationController?.setViewControllers([verifyProfileVC], animated: true)
     }
-    
-    // MARK: - Welcome Alert
-    
-    private func presentWelcomeAlert() {
-        let alertViewController = CircleAlertViewController()
-        alertViewController.modalPresentationStyle = .Custom
-        alertViewController.transitioningDelegate = alertViewController
-        alertViewController.circleAlertViewDelegate = self
-        presentViewController(alertViewController, animated: true, completion: nil)
-        welcomeAlertPresented = true
-    }
-
-    // MARK: - CircleAlertViewDelegate
-    
-    func alertActionButtonPressed(sender: AnyObject!) {
-        phoneNumberField.becomeFirstResponder()
-    }
-    
-    
 }
