@@ -30,6 +30,7 @@ class SocialConnectViewController: UIViewController, WKNavigationDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
+        configureNavigationBar()
         configureWebView()
     }
     
@@ -46,7 +47,7 @@ class SocialConnectViewController: UIViewController, WKNavigationDelegate {
     // MARK: - Configuration
     
     private func configureView() {
-        view.backgroundColor = UIColor.appUIBackgroundColor()
+        view.backgroundColor = UIColor.appViewBackgroundColor()
         activityIndicator = view.addActivityIndicator(color: UIColor.whiteColor())
     }
     
