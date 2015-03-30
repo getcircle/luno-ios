@@ -155,10 +155,12 @@ extension ProfileService {
             }
         }
         
-        class func getTags(organizationId: String, completionHandler: GetTagsCompletionHandler?) {
+        class func getTags(organizationId: String, tagType: ProfileService.TagType?, completionHandler: GetTagsCompletionHandler?) {
             let requestBuilder = ProfileService.GetTags.Request.builder()
             requestBuilder.organization_id = organizationId
-            requestBuilder.tag_type = .Interest
+            if tagType != nil {
+                requestBuilder.tag_type = tagType!
+            }
             
             let client = ServiceClient(serviceName: "profile")
             client.callAction(
@@ -171,10 +173,12 @@ extension ProfileService {
             }
         }
         
-        class func getActiveTags(organizationId: String, completionHandler: GetTagsCompletionHandler?) {
+        class func getActiveTags(organizationId: String, tagType: ProfileService.TagType?, completionHandler: GetTagsCompletionHandler?) {
             let requestBuilder = ProfileService.GetActiveTags.Request.builder()
             requestBuilder.organization_id = organizationId
-            requestBuilder.tag_type = .Interest
+            if tagType != nil {
+                requestBuilder.tag_type = tagType!
+            }
             
             let client = ServiceClient(serviceName: "profile")
             client.callAction(
@@ -213,10 +217,10 @@ extension ProfileService {
             }
         }
         
-        class func addTags(profileId: String, interests: Array<ProfileService.Containers.Tag>, completionHandler: AddTagsCompletionHandler?) {
+        class func addTags(profileId: String, tags: Array<ProfileService.Containers.Tag>, completionHandler: AddTagsCompletionHandler?) {
             let requestBuilder = ProfileService.AddTags.Request.builder()
             requestBuilder.profile_id = profileId
-            requestBuilder.tags = interests
+            requestBuilder.tags = tags
             
             let client = ServiceClient(serviceName: "profile")
             client.callAction(

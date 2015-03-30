@@ -325,11 +325,11 @@ class SearchViewController: UIViewController,
                     viewController.title = "Teams"
                     (viewController.dataSource as TeamsOverviewDataSource).configureForOrganization()
                     navigationController?.pushViewController(viewController, animated: true)
-                case .Tags:
+                case .Interests:
                     // TODO This should be coming from a paginated data source
                     let interestsOverviewViewController = TagsOverviewViewController(nibName: "TagsOverviewViewController", bundle: nil)
                     interestsOverviewViewController.title = "Tags"
-                    interestsOverviewViewController.dataSource.setInitialData(content: ObjectStore.sharedInstance.activeTags.values.array)
+                    interestsOverviewViewController.dataSource.setInitialData(content: ObjectStore.sharedInstance.activeInterests.values.array)
                     navigationController?.pushViewController(interestsOverviewViewController, animated: true)
                 }
                 

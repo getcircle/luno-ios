@@ -279,7 +279,7 @@ class TagScrollingSelectorViewController:
         // fire and forget
         if let profile = AuthViewController.getLoggedInUserProfile() {
             if selectedTags.count > 0 {
-                ProfileService.Actions.addTags(profile.id, interests: selectedTags.values.array, completionHandler: nil)
+                ProfileService.Actions.addTags(profile.id, tags: selectedTags.values.array, completionHandler: nil)
             }
         }
 
