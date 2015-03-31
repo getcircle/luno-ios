@@ -17,6 +17,7 @@ typealias GetAuthorizationInstructionsCompletionHandler = (authorizationURL: Str
 typealias CompleteAuthorizationCompletionHandler = (user: UserService.Containers.User?, identity: UserService.Containers.Identity?, error: NSError?) -> Void
 typealias GetIdentitiesCompletionHandler = (identities: Array<UserService.Containers.Identity>?, error: NSError?) -> Void
 typealias RecordDeviceCompletionHandler = (device: UserService.Containers.Device?, error: NSError?) -> Void
+typealias RequestAccessCompletionHandler = (access_request: UserService.Containers.AccessRequest?, error: NSError?) -> Void
 
 extension UserService {
     class Actions {
@@ -144,23 +145,6 @@ extension UserService {
                     completionHandler?(identities: response?.identities, error: error)
             }
         }
-        
-        class func recordDevice(device: UserService.Containers.Device, completionHandler: RecordDeviceCompletionHandler?) {
-            let requestBuilder = UserService.RecordDevice.Request.builder()
-            requestBuilder.device = device
-            
-            let client = ServiceClient(serviceName: "user")
-            client.callAction(
-                "record_device",
-                extensionField: UserServiceRequests_record_device,
-                requestBuilder: requestBuilder
-            ) { (_, _, wrapped, error) -> Void in
-                let response = wrapped?.response?.result.getExtension(
-                    UserServiceRequests_record_device
-                ) as? UserService.RecordDevice.Response
-                completionHandler?(device: response?.device, error: error)
-            }
-        }
 
         class func recordDevice(pushToken: String?, completionHandler: RecordDeviceCompletionHandler?) {
             dispatch_async(dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0), { () -> Void in
@@ -174,7 +158,6 @@ extension UserService {
                     if let pushToken = pushToken {
                         deviceBuilder.notification_token = pushToken
                     }
-                    println(deviceBuilder.build())
                     let requestBuilder = UserService.RecordDevice.Request.builder()
                     requestBuilder.device = deviceBuilder.build()
                     
@@ -195,5 +178,30 @@ extension UserService {
                 }
             })
         }
+
+        class func requestAccess(completionHandler: RequestAccessCompletionHandler?) {
+            dispatch_async(dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0), { () -> Void in
+                if let loggedInUser = AuthViewController.getLoggedInUser() {
+                    let requestBuilder = UserService.RequestAccess.Request.builder()
+                    requestBuilder.user_id = loggedInUser.id
+                    
+                    let client = ServiceClient(serviceName: "user")
+                    client.callAction(
+                        "request_access",
+                        extensionField: UserServiceRequests_request_access,
+                        requestBuilder: requestBuilder
+                    ) { (_, _, wrapped, error) -> Void in
+                            let response = wrapped?.response?.result.getExtension(
+                                UserServiceRequests_request_access
+                            ) as? UserService.RequestAccess.Response
+                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                            completionHandler?(access_request: response?.access_request, error: error)
+                            return
+                        })
+                    }
+                }
+            })
+        }
+    
     }
 }

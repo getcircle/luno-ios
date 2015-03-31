@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ProtobufRegistry
 
 class HomelessViewController: UIViewController {
     
@@ -58,7 +59,14 @@ class HomelessViewController: UIViewController {
     // MARK: - IBActions
     
     @IBAction func requestAccessButtonTapped() {
-        // TODO: Make API Call here
+        UserService.Actions.requestAccess { (access_request, error) -> Void in
+            // TODO: Store API token so we don't re-enable the request button
+            if access_request != nil {
+                self.requestAccessButton.enabled = false
+            } else {
+                println("Error requesting access: \(error)")
+            }
+        }
     }
     
     @IBAction func tryAgainButtonTapped() {
