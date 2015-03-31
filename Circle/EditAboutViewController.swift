@@ -182,9 +182,17 @@ class EditAboutViewController: UIViewController, UITextFieldDelegate {
     // MARK: - IBActions
     
     private func goToNextVC() {
-        let interestSelectorVC = TagScrollingSelectorViewController(nibName: "TagScrollingSelectorViewController", bundle: nil)
-        interestSelectorVC.theme = .Onboarding
-        interestSelectorVC.addNextButton = true
-        navigationController?.pushViewController(interestSelectorVC, animated: true)        
+        // TODO: Check for hire date and go to projects
+        // If hire date is under two weeks, show skills or interests
+        if ABTestUtils.shouldShowInterests() {
+            let interestSelectorVC = TagScrollingSelectorViewController(nibName: "TagScrollingSelectorViewController", bundle: nil)
+            interestSelectorVC.theme = .Onboarding
+            interestSelectorVC.addNextButton = true
+            navigationController?.pushViewController(interestSelectorVC, animated: true)
+        }
+        else {
+            let tagInputViewController = TagInputViewController(nibName: TagInputViewController.getNibName(), bundle: nil)
+            navigationController?.pushViewController(tagInputViewController, animated: true)
+        }
     }
 }

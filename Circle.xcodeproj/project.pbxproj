@@ -128,6 +128,7 @@
 		8F5933CC1AC9FD8B00905E14 /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5933CA1AC9FD8B00905E14 /* NotificationsViewController.swift */; };
 		8F5933CD1AC9FD8B00905E14 /* NotificationsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F5933CB1AC9FD8B00905E14 /* NotificationsViewController.xib */; };
 		8F5933D01ACA331700905E14 /* UIDeviceExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5933CF1ACA331700905E14 /* UIDeviceExtension.swift */; };
+		8F5933D21ACB5B4300905E14 /* ABTestUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F5933D11ACB5B4300905E14 /* ABTestUtils.m */; };
 		8F65C4F51A50F28E00C7F3E6 /* CardHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F65C4F31A50F28E00C7F3E6 /* CardHeaderCollectionReusableView.swift */; };
 		8F65C4F61A50F28E00C7F3E6 /* CardHeaderCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F65C4F41A50F28E00C7F3E6 /* CardHeaderCollectionReusableView.xib */; };
 		8F65C4FB1A50F92500C7F3E6 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F65C4FA1A50F92500C7F3E6 /* Card.swift */; };
@@ -501,6 +502,8 @@
 		8F5933CB1AC9FD8B00905E14 /* NotificationsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotificationsViewController.xib; sourceTree = "<group>"; };
 		8F5933CE1ACA142300905E14 /* circle.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = circle.entitlements; sourceTree = "<group>"; };
 		8F5933CF1ACA331700905E14 /* UIDeviceExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDeviceExtension.swift; sourceTree = "<group>"; };
+		8F5933D11ACB5B4300905E14 /* ABTestUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABTestUtils.m; sourceTree = "<group>"; };
+		8F5933D31ACB5CF100905E14 /* ABTestUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ABTestUtils.h; sourceTree = "<group>"; };
 		8F65C4F31A50F28E00C7F3E6 /* CardHeaderCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardHeaderCollectionReusableView.swift; sourceTree = "<group>"; };
 		8F65C4F41A50F28E00C7F3E6 /* CardHeaderCollectionReusableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CardHeaderCollectionReusableView.xib; sourceTree = "<group>"; };
 		8F65C4FA1A50F92500C7F3E6 /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
@@ -743,6 +746,8 @@
 				8F834F9F1A9FFC2F007B7095 /* AppStrings.swift */,
 				8F22CB7A1A268C040026376E /* Circle-Bridging-Header.h */,
 				8F0004941A2419730096477A /* Info.plist */,
+				8F5933D11ACB5B4300905E14 /* ABTestUtils.m */,
+				8F5933D31ACB5CF100905E14 /* ABTestUtils.h */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -1592,6 +1597,7 @@
 				8FCC312C1AA28AC10093F00A /* AppreciationCollectionViewCell.swift in Sources */,
 				BF2D86171A707A86002C3D64 /* ProfileInfoCollectionView.swift in Sources */,
 				8F22CBFB1A29AF450026376E /* UIViewExtension.swift in Sources */,
+				8F5933D21ACB5B4300905E14 /* ABTestUtils.m in Sources */,
 				BF004C501A5CF91200AB8A6F /* OrganizationService.swift in Sources */,
 				BFE213C81A5EE63F0033E2F5 /* SearchService.swift in Sources */,
 				8FF297FD1A4A4DCA00306CFC /* SearchViewController.swift in Sources */,
