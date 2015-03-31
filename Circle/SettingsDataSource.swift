@@ -61,10 +61,10 @@ class SettingsDataSource: CardDataSource {
                 "text": NSLocalizedString("Email us feedback", comment: "Title of button used to email app feedback"),
                 "type": SettingsCellType.ContactEmail.rawValue
             ],
-            [
-                "text": NSLocalizedString("Call us", comment: "Title of button to call us"),
-                "type": SettingsCellType.ContactPhone.rawValue
-            ]
+//            [
+//                "text": NSLocalizedString("Call us", comment: "Title of button to call us"),
+//                "type": SettingsCellType.ContactPhone.rawValue
+//            ]
         ])
         appendCard(contactCard)
 
