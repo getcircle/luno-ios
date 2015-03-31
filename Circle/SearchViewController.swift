@@ -61,8 +61,11 @@ class SearchViewController: UIViewController,
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        if checkUserAndPresentAuthViewController() {
-            hideAndRemoveLaunchView()
+        if firstLoad {
+            firstLoad = false
+            if checkUserAndPresentAuthViewController() {
+                hideAndRemoveLaunchView()
+            }
         }
     }
     

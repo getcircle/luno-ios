@@ -375,11 +375,8 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
     }
     
     class func presentHomelessViewController() {
-        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
-        appDelegate.window!.rootViewController!.dismissViewControllerAnimated(false, completion: { () -> Void in
-            let homelessVC = HomelessViewController(nibName: "HomelessViewController", bundle: nil)
-            self.presentViewControllerWithNavigationController(homelessVC)
-        })
+        let homelessVC = HomelessViewController(nibName: "HomelessViewController", bundle: nil)
+        self.presentViewControllerWithNavigationController(homelessVC)
     }
     
     // MARK: - Logged In User Helpers
