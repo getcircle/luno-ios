@@ -9,6 +9,7 @@
 import UIKit
 import Alamofire
 import Crashlytics
+import ProtobufRegistry
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -25,6 +26,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         // Populate the Search Cache
         loadStoreForUser()
+        
+        // Record device
+        UserService.Actions.recordDevice(nil, completionHandler: nil)
 
         // Initialize splash view with passcode & touch ID
         AuthViewController.initializeSplashViewWithPasscodeAndTouchID()
@@ -50,12 +54,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Remote Notification Delegate
     
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
-        // TODO: Pass token to the backend
         var deviceTokenString = deviceToken.description.stringByTrimmingCharactersInSet(NSCharacterSet(charactersInString: "<>"))
         deviceTokenString = deviceTokenString.stringByReplacingOccurrencesOfString(" ", withString: "")
         deviceTokenString = deviceTokenString.trimWhitespace()
-        println("Device Token \(deviceTokenString)")
         Mixpanel.sharedInstance().people.addPushDeviceToken(deviceToken)
+        UserService.Actions.recordDevice(deviceTokenString, completionHandler: nil)
     }
     
     func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {

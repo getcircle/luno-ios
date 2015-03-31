@@ -161,6 +161,39 @@ extension UserService {
                 completionHandler?(device: response?.device, error: error)
             }
         }
-        
+
+        class func recordDevice(pushToken: String?, completionHandler: RecordDeviceCompletionHandler?) {
+            dispatch_async(dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0), { () -> Void in
+                if let loggedInUser = AuthViewController.getLoggedInUser() {
+                    let deviceBuilder = UserService.Containers.Device.builder()
+                    deviceBuilder.platform = UIDevice.currentDevice().modelName
+                    deviceBuilder.os_version = NSString(format:"%@ %@", UIDevice.currentDevice().systemName, UIDevice.currentDevice().systemVersion)
+                    deviceBuilder.app_version = NSString(format:"%@ (%@)", NSBundle.appVersion(), NSBundle.appBuild())
+                    deviceBuilder.device_uuid = UIDevice.currentDevice().identifierForVendor.UUIDString
+                    deviceBuilder.user_id = loggedInUser.id
+                    if let pushToken = pushToken {
+                        deviceBuilder.notification_token = pushToken
+                    }
+                    println(deviceBuilder.build())
+                    let requestBuilder = UserService.RecordDevice.Request.builder()
+                    requestBuilder.device = deviceBuilder.build()
+                    
+                    let client = ServiceClient(serviceName: "user")
+                    client.callAction(
+                        "record_device",
+                        extensionField: UserServiceRequests_record_device,
+                        requestBuilder: requestBuilder
+                    ) { (_, _, wrapped, error) -> Void in
+                        let response = wrapped?.response?.result.getExtension(
+                            UserServiceRequests_record_device
+                        ) as? UserService.RecordDevice.Response
+                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                            completionHandler?(device: response?.device, error: error)
+                            return
+                        })
+                    }
+                }
+            })
+        }
     }
 }

@@ -264,6 +264,9 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
 
             Mixpanel.identifyUser(user!, newUser: newUser!)
             Mixpanel.registerSuperPropertiesForUser(user!)
+            // Record user's device
+            UserService.Actions.recordDevice(nil, completionHandler: nil)
+            
             self.trackSignupLogin(backend, newUser: newUser!)
             self.cacheLoginData(token!, user: user!)
             self.fetchAndCacheUserProfile(user!.id) { (error) in
@@ -416,11 +419,9 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
     
     class func getLoggedInUserToken() -> String? {
         if let token = LoggedInUserHolder.token {
-            println("Token from memory")
             return token
         } else {
             if let user = self.getLoggedInUser() {
-                println("Token from keychain")
                 let (data, error) = Locksmith.loadData(forKey: LocksmithAuthTokenKey, inService: LocksmithService, forUserAccount: user.id)
                 if let token = data?.allKeys[0] as? String {
                     cacheTokenAndUserInMemory(token, user: user)
