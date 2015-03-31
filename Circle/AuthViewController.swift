@@ -326,7 +326,7 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
     
     // MARK: - Log out
     
-    class func logOut() {
+    class func logOut(shouldDisconnect: Bool? = false) {
         // Clear keychain
         if let user = LoggedInUserHolder.user {
             Locksmith.deleteData(
@@ -334,6 +334,11 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
                 inService: LocksmithService,
                 forUserAccount: user.id
             )
+        }
+        if let disconnect = shouldDisconnect {
+            if disconnect {
+                GPPSignIn.sharedInstance().disconnect()
+            }
         }
         GPPSignIn.sharedInstance().signOut()
         

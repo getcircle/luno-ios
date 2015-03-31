@@ -151,9 +151,8 @@ class SettingsViewController: UIViewController, UICollectionViewDelegate, MFMail
                     switch identity.provider {
                     case .Google:
                         if !enable {
-                            GPPSignIn.sharedInstance().disconnect()
                             dismissViewControllerAnimated(true) { () -> Void in
-                                AuthViewController.logOut()
+                                AuthViewController.logOut(shouldDisconnect: true)
                             }
                         }
                     case .Linkedin:
