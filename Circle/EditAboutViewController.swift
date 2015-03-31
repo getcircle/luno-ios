@@ -112,8 +112,8 @@ class EditAboutViewController: UIViewController, UITextFieldDelegate {
         }
 
         //TODO: Replace with Nickname
-        if profile.hasFirstName {
-            nickNameTextField.text = profile.first_name
+        if profile.hasNickname {
+            nickNameTextField.text = profile.nickname
         }
     }
     
@@ -170,7 +170,7 @@ class EditAboutViewController: UIViewController, UITextFieldDelegate {
     private func updateProfile(completion: () -> Void) {
         let builder = profile.toBuilder()
         builder.about = bioTextField.text
-        builder.first_name = nickNameTextField.text
+        builder.nickname = nickNameTextField.text
         ProfileService.Actions.updateProfile(builder.build()) { (profile, error) -> Void in
             if let profile = profile {
                 AuthViewController.updateUserProfile(profile)

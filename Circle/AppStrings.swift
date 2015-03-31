@@ -23,6 +23,9 @@ struct AppStrings {
     static let CardTitleAddress = NSLocalizedString("Location", comment: "Title of the card showing address")
     
     static let EmailFeedbackSubject = NSLocalizedString("Feedback on circle", comment: "Subject of the feedback email")
+    
+    static let FieldLabelNickname = NSLocalizedString("Nickname", comment: "A person's nickname")
+
     static let GenericCancelButtonTitle = NSLocalizedString("Cancel", comment: "Generic button title for cancelling a user action")
     static let GenericDoneButtonTitle = NSLocalizedString("Done", comment: "Generic button title for indicating a user has completed an action")
     static let GenericGetStartedButtonTitle = NSLocalizedString("Get Started", comment: "Generic button title to start some action")
