@@ -7,9 +7,10 @@
 //
 
 import UIKit
+import MessageUI
 import ProtobufRegistry
 
-class SettingsViewController: UIViewController, UICollectionViewDelegate {
+class SettingsViewController: UIViewController, UICollectionViewDelegate, MFMailComposeViewControllerDelegate {
 
     @IBOutlet weak private(set) var collectionView: UICollectionView!
     
@@ -83,6 +84,24 @@ class SettingsViewController: UIViewController, UICollectionViewDelegate {
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         collectionView.deselectItemAtIndexPath(indexPath, animated: true)
         switch dataSource.typeOfCell(indexPath) {
+        case .ContactEmail:
+            var message = "\n\n\n\n\n"
+            message += "------------------"
+            message += "\n"
+            message += NSString(format:"Version: %@ (%@)", NSBundle.appVersion(), NSBundle.appBuild())
+            message += "\n"
+            message += NSString(format:"OS Version: %@ (%@)", UIDevice.currentDevice().systemName, UIDevice.currentDevice().systemVersion)
+            message += "\n"
+            message += NSString(format:"Device: %@", UIDevice.currentDevice().modelName)
+            
+            presentMailViewController(
+                ["Circle Feedback<feedback@circlehq.co>"],
+                subject: AppStrings.EmailFeedbackSubject + " - v" + NSBundle.appVersion(),
+                messageBody: message,
+                completionHandler: nil
+            )
+            
+            
         case .LogOut:
             logoutButtonTapped(collectionView)
 
@@ -148,5 +167,15 @@ class SettingsViewController: UIViewController, UICollectionViewDelegate {
                 }
             }
         }
+    }
+    
+    // MARK: - MFMailComposeViewControllerDelegate
+    
+    func mailComposeController(
+        controller: MFMailComposeViewController!,
+        didFinishWithResult result: MFMailComposeResult,
+        error: NSError!
+        ) {
+            dismissViewControllerAnimated(true, completion: nil)
     }
 }
