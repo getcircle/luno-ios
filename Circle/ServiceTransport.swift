@@ -120,7 +120,7 @@ struct ServiceHttpRequest: URLRequestConvertible {
         case Production
         
         var scheme: String {
-            return "http"
+            return "https"
         }
         
         var host: String {
