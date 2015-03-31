@@ -53,7 +53,7 @@ class EditAboutViewController: UIViewController, UITextFieldDelegate {
         case .Regular:
             view.backgroundColor = UIColor.appViewBackgroundColor()
             aboutTitleTextLabel.textColor = UIColor.appDefaultDarkTextColor()
-            
+
         case .Onboarding:
             view.backgroundColor = UIColor.appUIBackgroundColor()
             aboutTitleTextLabel.textColor = UIColor.appDefaultLightTextColor()
@@ -65,7 +65,7 @@ class EditAboutViewController: UIViewController, UITextFieldDelegate {
     private func configureNavigationBar() {
         title = AppStrings.ProfileSectionAboutTitle
         if addNextButton {
-            addNextButtonWithAction("nextButtonTapped:")
+            addNextButtonWithAction("done:")
         }
         else {
             addDoneButtonWithAction("done:")
@@ -126,7 +126,12 @@ class EditAboutViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func done(sender: AnyObject!) {
         updateProfile { () -> Void in
-            self.dismissView()
+            if self.addNextButton {
+                self.goToNextVC()
+            }
+            else {
+                self.dismissView()
+            }
         }
     }
 
@@ -176,7 +181,7 @@ class EditAboutViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: - IBActions
     
-    @IBAction func nextButtonTapped(sender: AnyObject!) {
+    private func goToNextVC() {
         let interestSelectorVC = TagScrollingSelectorViewController(nibName: "TagScrollingSelectorViewController", bundle: nil)
         interestSelectorVC.theme = .Onboarding
         interestSelectorVC.addNextButton = true
