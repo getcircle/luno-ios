@@ -16,6 +16,7 @@ typealias VerifyVerificationCodeCompletionHandler = (verified: Bool?, error: NSE
 typealias GetAuthorizationInstructionsCompletionHandler = (authorizationURL: String?, error: NSError?) -> Void
 typealias CompleteAuthorizationCompletionHandler = (user: UserService.Containers.User?, identity: UserService.Containers.Identity?, error: NSError?) -> Void
 typealias GetIdentitiesCompletionHandler = (identities: Array<UserService.Containers.Identity>?, error: NSError?) -> Void
+typealias RecordDeviceCompletionHandler = (device: UserService.Containers.Device?, error: NSError?) -> Void
 
 extension UserService {
     class Actions {
@@ -141,6 +142,23 @@ extension UserService {
                         UserServiceRequests_get_identities
                     ) as? UserService.GetIdentities.Response
                     completionHandler?(identities: response?.identities, error: error)
+            }
+        }
+        
+        class func recordDevice(device: UserService.Containers.Device, completionHandler: RecordDeviceCompletionHandler?) {
+            let requestBuilder = UserService.RecordDevice.Request.builder()
+            requestBuilder.device = device
+            
+            let client = ServiceClient(serviceName: "user")
+            client.callAction(
+                "record_device",
+                extensionField: UserServiceRequests_record_device,
+                requestBuilder: requestBuilder
+            ) { (_, _, wrapped, error) -> Void in
+                let response = wrapped?.response?.result.getExtension(
+                    UserServiceRequests_record_device
+                ) as? UserService.RecordDevice.Response
+                completionHandler?(device: response?.device, error: error)
             }
         }
         
