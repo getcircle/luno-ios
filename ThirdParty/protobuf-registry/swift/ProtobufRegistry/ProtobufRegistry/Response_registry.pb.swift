@@ -62,6 +62,11 @@ public var UserServiceResponses_record_device:ConcreateExtensionField {
        return ResponseRegistryRoot.sharedInstance.UserServiceResponses_record_deviceStatic
    }
 }
+public var UserServiceResponses_request_access:ConcreateExtensionField {
+   get {
+       return ResponseRegistryRoot.sharedInstance.UserServiceResponses_request_accessStatic
+   }
+}
 public var OrganizationServiceResponses_create_organization:ConcreateExtensionField {
    get {
        return ResponseRegistryRoot.sharedInstance.OrganizationServiceResponses_create_organizationStatic
@@ -336,6 +341,7 @@ public struct ResponseRegistryRoot {
   var UserServiceResponses_get_identitiesStatic:ConcreateExtensionField
   var UserServiceResponses_bulk_create_usersStatic:ConcreateExtensionField
   var UserServiceResponses_record_deviceStatic:ConcreateExtensionField
+  var UserServiceResponses_request_accessStatic:ConcreateExtensionField
   var OrganizationServiceResponses_create_organizationStatic:ConcreateExtensionField
   var OrganizationServiceResponses_create_teamStatic:ConcreateExtensionField
   var OrganizationServiceResponses_create_addressStatic:ConcreateExtensionField
@@ -402,6 +408,7 @@ public struct ResponseRegistryRoot {
     UserServiceResponses_get_identitiesStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 109, defaultValue:UserService.GetIdentities.Response(), messageOrGroupClass:UserService.GetIdentities.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     UserServiceResponses_bulk_create_usersStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 110, defaultValue:UserService.BulkCreateUsers.Response(), messageOrGroupClass:UserService.BulkCreateUsers.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     UserServiceResponses_record_deviceStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 111, defaultValue:UserService.RecordDevice.Response(), messageOrGroupClass:UserService.RecordDevice.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
+    UserServiceResponses_request_accessStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 112, defaultValue:UserService.RequestAccess.Response(), messageOrGroupClass:UserService.RequestAccess.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     OrganizationServiceResponses_create_organizationStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 200, defaultValue:OrganizationService.CreateOrganization.Response(), messageOrGroupClass:OrganizationService.CreateOrganization.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     OrganizationServiceResponses_create_teamStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 201, defaultValue:OrganizationService.CreateTeam.Response(), messageOrGroupClass:OrganizationService.CreateTeam.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     OrganizationServiceResponses_create_addressStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 202, defaultValue:OrganizationService.CreateAddress.Response(), messageOrGroupClass:OrganizationService.CreateAddress.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
@@ -479,6 +486,7 @@ public struct ResponseRegistryRoot {
     registry.addExtension(UserServiceResponses_get_identitiesStatic)
     registry.addExtension(UserServiceResponses_bulk_create_usersStatic)
     registry.addExtension(UserServiceResponses_record_deviceStatic)
+    registry.addExtension(UserServiceResponses_request_accessStatic)
     registry.addExtension(OrganizationServiceResponses_create_organizationStatic)
     registry.addExtension(OrganizationServiceResponses_create_teamStatic)
     registry.addExtension(OrganizationServiceResponses_create_addressStatic)
@@ -647,6 +655,9 @@ final public class UserServiceResponses : GeneratedMessage {
   }
   public class func record_device() -> ConcreateExtensionField {
        return UserServiceResponses_record_device
+  }
+  public class func request_access() -> ConcreateExtensionField {
+       return UserServiceResponses_request_access
   }
   required public init() {
        super.init()
