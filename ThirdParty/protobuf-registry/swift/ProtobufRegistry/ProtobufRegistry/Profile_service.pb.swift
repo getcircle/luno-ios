@@ -214,6 +214,7 @@ final public class ProfileService : GeneratedMessage {
                  case "verified": return verified
                  case "about": return about
                  case "location_id": return location_id
+                 case "nickname": return nickname
                  default: return nil
                  }
           }
@@ -271,6 +272,9 @@ final public class ProfileService : GeneratedMessage {
 
           public private(set) var hasLocationId:Bool = false
           public private(set) var location_id:String = ""
+
+          public private(set) var hasNickname:Bool = false
+          public private(set) var nickname:String = ""
 
           public private(set) var items:Array<ProfileService.Containers.ProfileItem>  = Array<ProfileService.Containers.ProfileItem>()
           required public init() {
@@ -337,6 +341,9 @@ final public class ProfileService : GeneratedMessage {
             if hasLocationId {
               output.writeString(19, value:location_id)
             }
+            if hasNickname {
+              output.writeString(20, value:nickname)
+            }
             unknownFields.writeToCodedOutputStream(output)
           }
           override public func serializedSize() -> Int32 {
@@ -402,6 +409,9 @@ final public class ProfileService : GeneratedMessage {
             }
             if hasLocationId {
               size += WireFormat.computeStringSize(19, value:location_id)
+            }
+            if hasNickname {
+              size += WireFormat.computeStringSize(20, value:nickname)
             }
             size += unknownFields.serializedSize()
             memoizedSerializedSize = size
@@ -505,6 +515,9 @@ final public class ProfileService : GeneratedMessage {
             if hasLocationId {
               output += "\(indent) location_id: \(location_id) \n"
             }
+            if hasNickname {
+              output += "\(indent) nickname: \(nickname) \n"
+            }
             unknownFields.writeDescriptionTo(&output, indent:indent)
           }
           override public var hashValue:Int {
@@ -566,6 +579,9 @@ final public class ProfileService : GeneratedMessage {
                   }
                   if hasLocationId {
                      hashCode = (hashCode &* 31) &+ location_id.hashValue
+                  }
+                  if hasNickname {
+                     hashCode = (hashCode &* 31) &+ nickname.hashValue
                   }
                   hashCode = (hashCode &* 31) &+  unknownFields.hashValue
                   return hashCode
@@ -951,6 +967,25 @@ final public class ProfileService : GeneratedMessage {
                builderResult.location_id = ""
                return self
           }
+          public var hasNickname:Bool {
+               get {
+                    return builderResult.hasNickname
+               }
+          }
+          public var nickname:String {
+               get {
+                    return builderResult.nickname
+               }
+               set (value) {
+                   builderResult.hasNickname = true
+                   builderResult.nickname = value
+               }
+          }
+          public func clearNickname() -> ProfileService.Containers.ProfileBuilder{
+               builderResult.hasNickname = false
+               builderResult.nickname = ""
+               return self
+          }
           override public var internalGetResult:GeneratedMessage {
                get {
                   return builderResult
@@ -1029,6 +1064,9 @@ final public class ProfileService : GeneratedMessage {
             if other.hasLocationId {
                  location_id = other.location_id
             }
+            if other.hasNickname {
+                 nickname = other.nickname
+            }
             mergeUnknownFields(other.unknownFields)
             return self
           }
@@ -1102,6 +1140,9 @@ final public class ProfileService : GeneratedMessage {
 
               case 154 :
                 location_id = input.readString()
+
+              case 162 :
+                nickname = input.readString()
 
               default:
                 if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {

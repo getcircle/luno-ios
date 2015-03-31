@@ -44,6 +44,16 @@ message UserService {
             optional string refresh_token = 9;
         }
 
+        message Device {
+            optional string id = 1;
+            optional string notification_token = 2;
+            optional string platform = 3;
+            optional string os_version = 4;
+            optional string app_version = 5;
+            optional string device_uuid = 6;
+            optional string user_id = 7;
+        }
+
     }
 
     // MARK: - Actions
@@ -190,6 +200,18 @@ message UserService {
 
         message Response {
             repeated Containers.Identity identities = 1;
+        }
+
+    }
+
+    message RecordDevice {
+
+        message Request {
+            optional Containers.Device device = 1;
+        }
+
+        message Response {
+            optional Containers.Device device = 1;
         }
 
     }

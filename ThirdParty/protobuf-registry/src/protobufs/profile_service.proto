@@ -38,6 +38,7 @@ message ProfileService {
             repeated ProfileItem items = 17;
             optional string about = 18;
             optional string location_id = 19;
+            optional string nickname = 20;
         }
 
         message ProfileItem {

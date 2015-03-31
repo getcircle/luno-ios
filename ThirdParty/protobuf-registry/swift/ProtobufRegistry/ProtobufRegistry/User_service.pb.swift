@@ -115,6 +115,14 @@ public func == (lhs: UserService.GetIdentities, rhs: UserService.GetIdentities) 
   return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
 }
 
+public func == (lhs: UserService.RecordDevice, rhs: UserService.RecordDevice) -> Bool {
+  if (lhs === rhs) {
+    return true
+  }
+  var fieldCheck:Bool = (lhs.hashValue == rhs.hashValue)
+  return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
+}
+
 public func == (lhs: UserService, rhs: UserService) -> Bool {
   if (lhs === rhs) {
     return true
@@ -1550,6 +1558,446 @@ final public class UserService : GeneratedMessage {
 
               case 74 :
                 refresh_token = input.readString()
+
+              default:
+                if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
+                   unknownFields = unknownFieldsBuilder.build()
+                   return self
+                }
+              }
+            }
+          }
+        }
+
+
+
+      //Nested type declaration end
+
+
+
+      //Nested type declaration start
+
+        final public class Device : GeneratedMessage {
+          override public subscript (key: String) -> Any? {
+                 switch key {
+                 case "id": return id
+                 case "notification_token": return notification_token
+                 case "platform": return platform
+                 case "os_version": return os_version
+                 case "app_version": return app_version
+                 case "device_uuid": return device_uuid
+                 case "user_id": return user_id
+                 default: return nil
+                 }
+          }
+
+          public private(set) var hasId:Bool = false
+          public private(set) var id:String = ""
+
+          public private(set) var hasNotificationToken:Bool = false
+          public private(set) var notification_token:String = ""
+
+          public private(set) var hasPlatform:Bool = false
+          public private(set) var platform:String = ""
+
+          public private(set) var hasOsVersion:Bool = false
+          public private(set) var os_version:String = ""
+
+          public private(set) var hasAppVersion:Bool = false
+          public private(set) var app_version:String = ""
+
+          public private(set) var hasDeviceUuid:Bool = false
+          public private(set) var device_uuid:String = ""
+
+          public private(set) var hasUserId:Bool = false
+          public private(set) var user_id:String = ""
+
+          required public init() {
+               super.init()
+          }
+          override public func isInitialized() -> Bool {
+           return true
+          }
+          override public func writeToCodedOutputStream(output:CodedOutputStream) {
+            if hasId {
+              output.writeString(1, value:id)
+            }
+            if hasNotificationToken {
+              output.writeString(2, value:notification_token)
+            }
+            if hasPlatform {
+              output.writeString(3, value:platform)
+            }
+            if hasOsVersion {
+              output.writeString(4, value:os_version)
+            }
+            if hasAppVersion {
+              output.writeString(5, value:app_version)
+            }
+            if hasDeviceUuid {
+              output.writeString(6, value:device_uuid)
+            }
+            if hasUserId {
+              output.writeString(7, value:user_id)
+            }
+            unknownFields.writeToCodedOutputStream(output)
+          }
+          override public func serializedSize() -> Int32 {
+            var size:Int32 = memoizedSerializedSize
+            if size != -1 {
+             return size
+            }
+
+            size = 0
+            if hasId {
+              size += WireFormat.computeStringSize(1, value:id)
+            }
+            if hasNotificationToken {
+              size += WireFormat.computeStringSize(2, value:notification_token)
+            }
+            if hasPlatform {
+              size += WireFormat.computeStringSize(3, value:platform)
+            }
+            if hasOsVersion {
+              size += WireFormat.computeStringSize(4, value:os_version)
+            }
+            if hasAppVersion {
+              size += WireFormat.computeStringSize(5, value:app_version)
+            }
+            if hasDeviceUuid {
+              size += WireFormat.computeStringSize(6, value:device_uuid)
+            }
+            if hasUserId {
+              size += WireFormat.computeStringSize(7, value:user_id)
+            }
+            size += unknownFields.serializedSize()
+            memoizedSerializedSize = size
+            return size
+          }
+          public class func parseFromData(data:[Byte]) -> UserService.Containers.Device {
+            return UserService.Containers.Device.builder().mergeFromData(data).build()
+          }
+          public class func parseFromData(data:[Byte], extensionRegistry:ExtensionRegistry) -> UserService.Containers.Device {
+            return UserService.Containers.Device.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
+          }
+          public class func parseFromInputStream(input:NSInputStream) -> UserService.Containers.Device {
+            return UserService.Containers.Device.builder().mergeFromInputStream(input).build()
+          }
+          public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->UserService.Containers.Device {
+            return UserService.Containers.Device.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
+          }
+          public class func parseFromCodedInputStream(input:CodedInputStream) -> UserService.Containers.Device {
+            return UserService.Containers.Device.builder().mergeFromCodedInputStream(input).build()
+          }
+          public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> UserService.Containers.Device {
+            return UserService.Containers.Device.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
+          }
+          public class func builder() -> UserService.Containers.DeviceBuilder {
+            return UserService.Containers.Device.classBuilder() as UserService.Containers.DeviceBuilder
+          }
+          public func builder() -> UserService.Containers.DeviceBuilder {
+            return classBuilder() as UserService.Containers.DeviceBuilder
+          }
+          public override class func classBuilder() -> MessageBuilder {
+            return UserService.Containers.DeviceBuilder()
+          }
+          public override func classBuilder() -> MessageBuilder {
+            return UserService.Containers.Device.builder()
+          }
+          public func toBuilder() -> UserService.Containers.DeviceBuilder {
+            return UserService.Containers.Device.builderWithPrototype(self)
+          }
+          public class func builderWithPrototype(prototype:UserService.Containers.Device) -> UserService.Containers.DeviceBuilder {
+            return UserService.Containers.Device.builder().mergeFrom(prototype)
+          }
+          override public func writeDescriptionTo(inout output:String, indent:String) {
+            if hasId {
+              output += "\(indent) id: \(id) \n"
+            }
+            if hasNotificationToken {
+              output += "\(indent) notification_token: \(notification_token) \n"
+            }
+            if hasPlatform {
+              output += "\(indent) platform: \(platform) \n"
+            }
+            if hasOsVersion {
+              output += "\(indent) os_version: \(os_version) \n"
+            }
+            if hasAppVersion {
+              output += "\(indent) app_version: \(app_version) \n"
+            }
+            if hasDeviceUuid {
+              output += "\(indent) device_uuid: \(device_uuid) \n"
+            }
+            if hasUserId {
+              output += "\(indent) user_id: \(user_id) \n"
+            }
+            unknownFields.writeDescriptionTo(&output, indent:indent)
+          }
+          override public var hashValue:Int {
+              get {
+                  var hashCode:Int = 7
+                  if hasId {
+                     hashCode = (hashCode &* 31) &+ id.hashValue
+                  }
+                  if hasNotificationToken {
+                     hashCode = (hashCode &* 31) &+ notification_token.hashValue
+                  }
+                  if hasPlatform {
+                     hashCode = (hashCode &* 31) &+ platform.hashValue
+                  }
+                  if hasOsVersion {
+                     hashCode = (hashCode &* 31) &+ os_version.hashValue
+                  }
+                  if hasAppVersion {
+                     hashCode = (hashCode &* 31) &+ app_version.hashValue
+                  }
+                  if hasDeviceUuid {
+                     hashCode = (hashCode &* 31) &+ device_uuid.hashValue
+                  }
+                  if hasUserId {
+                     hashCode = (hashCode &* 31) &+ user_id.hashValue
+                  }
+                  hashCode = (hashCode &* 31) &+  unknownFields.hashValue
+                  return hashCode
+              }
+          }
+
+
+          //Meta information declaration start
+
+          override public class func className() -> String {
+              return "UserService.Containers.Device"
+          }
+          override public func className() -> String {
+              return "UserService.Containers.Device"
+          }
+          override public func classMetaType() -> GeneratedMessage.Type {
+              return UserService.Containers.Device.self
+          }
+
+
+          //Meta information declaration end
+
+        }
+
+        final public class DeviceBuilder : GeneratedMessageBuilder {
+          private var builderResult:UserService.Containers.Device
+
+          required override public init () {
+             builderResult = UserService.Containers.Device()
+             super.init()
+          }
+          public var hasId:Bool {
+               get {
+                    return builderResult.hasId
+               }
+          }
+          public var id:String {
+               get {
+                    return builderResult.id
+               }
+               set (value) {
+                   builderResult.hasId = true
+                   builderResult.id = value
+               }
+          }
+          public func clearId() -> UserService.Containers.DeviceBuilder{
+               builderResult.hasId = false
+               builderResult.id = ""
+               return self
+          }
+          public var hasNotificationToken:Bool {
+               get {
+                    return builderResult.hasNotificationToken
+               }
+          }
+          public var notification_token:String {
+               get {
+                    return builderResult.notification_token
+               }
+               set (value) {
+                   builderResult.hasNotificationToken = true
+                   builderResult.notification_token = value
+               }
+          }
+          public func clearNotificationToken() -> UserService.Containers.DeviceBuilder{
+               builderResult.hasNotificationToken = false
+               builderResult.notification_token = ""
+               return self
+          }
+          public var hasPlatform:Bool {
+               get {
+                    return builderResult.hasPlatform
+               }
+          }
+          public var platform:String {
+               get {
+                    return builderResult.platform
+               }
+               set (value) {
+                   builderResult.hasPlatform = true
+                   builderResult.platform = value
+               }
+          }
+          public func clearPlatform() -> UserService.Containers.DeviceBuilder{
+               builderResult.hasPlatform = false
+               builderResult.platform = ""
+               return self
+          }
+          public var hasOsVersion:Bool {
+               get {
+                    return builderResult.hasOsVersion
+               }
+          }
+          public var os_version:String {
+               get {
+                    return builderResult.os_version
+               }
+               set (value) {
+                   builderResult.hasOsVersion = true
+                   builderResult.os_version = value
+               }
+          }
+          public func clearOsVersion() -> UserService.Containers.DeviceBuilder{
+               builderResult.hasOsVersion = false
+               builderResult.os_version = ""
+               return self
+          }
+          public var hasAppVersion:Bool {
+               get {
+                    return builderResult.hasAppVersion
+               }
+          }
+          public var app_version:String {
+               get {
+                    return builderResult.app_version
+               }
+               set (value) {
+                   builderResult.hasAppVersion = true
+                   builderResult.app_version = value
+               }
+          }
+          public func clearAppVersion() -> UserService.Containers.DeviceBuilder{
+               builderResult.hasAppVersion = false
+               builderResult.app_version = ""
+               return self
+          }
+          public var hasDeviceUuid:Bool {
+               get {
+                    return builderResult.hasDeviceUuid
+               }
+          }
+          public var device_uuid:String {
+               get {
+                    return builderResult.device_uuid
+               }
+               set (value) {
+                   builderResult.hasDeviceUuid = true
+                   builderResult.device_uuid = value
+               }
+          }
+          public func clearDeviceUuid() -> UserService.Containers.DeviceBuilder{
+               builderResult.hasDeviceUuid = false
+               builderResult.device_uuid = ""
+               return self
+          }
+          public var hasUserId:Bool {
+               get {
+                    return builderResult.hasUserId
+               }
+          }
+          public var user_id:String {
+               get {
+                    return builderResult.user_id
+               }
+               set (value) {
+                   builderResult.hasUserId = true
+                   builderResult.user_id = value
+               }
+          }
+          public func clearUserId() -> UserService.Containers.DeviceBuilder{
+               builderResult.hasUserId = false
+               builderResult.user_id = ""
+               return self
+          }
+          override public var internalGetResult:GeneratedMessage {
+               get {
+                  return builderResult
+               }
+          }
+          public override func clear() -> UserService.Containers.DeviceBuilder {
+            builderResult = UserService.Containers.Device()
+            return self
+          }
+          public override func clone() -> UserService.Containers.DeviceBuilder {
+            return UserService.Containers.Device.builderWithPrototype(builderResult)
+          }
+          public override func build() -> UserService.Containers.Device {
+               checkInitialized()
+               return buildPartial()
+          }
+          public func buildPartial() -> UserService.Containers.Device {
+            var returnMe:UserService.Containers.Device = builderResult
+            return returnMe
+          }
+          public func mergeFrom(other:UserService.Containers.Device) -> UserService.Containers.DeviceBuilder {
+            if other.hasId {
+                 id = other.id
+            }
+            if other.hasNotificationToken {
+                 notification_token = other.notification_token
+            }
+            if other.hasPlatform {
+                 platform = other.platform
+            }
+            if other.hasOsVersion {
+                 os_version = other.os_version
+            }
+            if other.hasAppVersion {
+                 app_version = other.app_version
+            }
+            if other.hasDeviceUuid {
+                 device_uuid = other.device_uuid
+            }
+            if other.hasUserId {
+                 user_id = other.user_id
+            }
+            mergeUnknownFields(other.unknownFields)
+            return self
+          }
+          public override func mergeFromCodedInputStream(input:CodedInputStream) ->UserService.Containers.DeviceBuilder {
+               return mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
+          }
+          public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> UserService.Containers.DeviceBuilder {
+            var unknownFieldsBuilder:UnknownFieldSetBuilder = UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
+            while (true) {
+              var tag = input.readTag()
+              switch tag {
+              case 0: 
+                self.unknownFields = unknownFieldsBuilder.build()
+                return self
+
+              case 10 :
+                id = input.readString()
+
+              case 18 :
+                notification_token = input.readString()
+
+              case 26 :
+                platform = input.readString()
+
+              case 34 :
+                os_version = input.readString()
+
+              case 42 :
+                app_version = input.readString()
+
+              case 50 :
+                device_uuid = input.readString()
+
+              case 58 :
+                user_id = input.readString()
 
               default:
                 if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
@@ -8568,6 +9016,585 @@ final public class UserService : GeneratedMessage {
 
 
 
+  //Nested type declaration start
+
+    final public class RecordDevice : GeneratedMessage {
+
+
+      //Nested type declaration start
+
+        final public class Request : GeneratedMessage {
+          override public subscript (key: String) -> Any? {
+                 switch key {
+                 case "device": return device
+                 default: return nil
+                 }
+          }
+
+          public private(set) var hasDevice:Bool = false
+          public private(set) var device:UserService.Containers.Device = UserService.Containers.Device()
+          required public init() {
+               super.init()
+          }
+          override public func isInitialized() -> Bool {
+           return true
+          }
+          override public func writeToCodedOutputStream(output:CodedOutputStream) {
+            if hasDevice {
+              output.writeMessage(1, value:device)
+            }
+            unknownFields.writeToCodedOutputStream(output)
+          }
+          override public func serializedSize() -> Int32 {
+            var size:Int32 = memoizedSerializedSize
+            if size != -1 {
+             return size
+            }
+
+            size = 0
+            if hasDevice {
+              size += WireFormat.computeMessageSize(1, value:device)
+            }
+            size += unknownFields.serializedSize()
+            memoizedSerializedSize = size
+            return size
+          }
+          public class func parseFromData(data:[Byte]) -> UserService.RecordDevice.Request {
+            return UserService.RecordDevice.Request.builder().mergeFromData(data).build()
+          }
+          public class func parseFromData(data:[Byte], extensionRegistry:ExtensionRegistry) -> UserService.RecordDevice.Request {
+            return UserService.RecordDevice.Request.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
+          }
+          public class func parseFromInputStream(input:NSInputStream) -> UserService.RecordDevice.Request {
+            return UserService.RecordDevice.Request.builder().mergeFromInputStream(input).build()
+          }
+          public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->UserService.RecordDevice.Request {
+            return UserService.RecordDevice.Request.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
+          }
+          public class func parseFromCodedInputStream(input:CodedInputStream) -> UserService.RecordDevice.Request {
+            return UserService.RecordDevice.Request.builder().mergeFromCodedInputStream(input).build()
+          }
+          public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> UserService.RecordDevice.Request {
+            return UserService.RecordDevice.Request.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
+          }
+          public class func builder() -> UserService.RecordDevice.RequestBuilder {
+            return UserService.RecordDevice.Request.classBuilder() as UserService.RecordDevice.RequestBuilder
+          }
+          public func builder() -> UserService.RecordDevice.RequestBuilder {
+            return classBuilder() as UserService.RecordDevice.RequestBuilder
+          }
+          public override class func classBuilder() -> MessageBuilder {
+            return UserService.RecordDevice.RequestBuilder()
+          }
+          public override func classBuilder() -> MessageBuilder {
+            return UserService.RecordDevice.Request.builder()
+          }
+          public func toBuilder() -> UserService.RecordDevice.RequestBuilder {
+            return UserService.RecordDevice.Request.builderWithPrototype(self)
+          }
+          public class func builderWithPrototype(prototype:UserService.RecordDevice.Request) -> UserService.RecordDevice.RequestBuilder {
+            return UserService.RecordDevice.Request.builder().mergeFrom(prototype)
+          }
+          override public func writeDescriptionTo(inout output:String, indent:String) {
+            if hasDevice {
+              output += "\(indent) device {\n"
+              device.writeDescriptionTo(&output, indent:"\(indent)  ")
+              output += "\(indent) }\n"
+            }
+            unknownFields.writeDescriptionTo(&output, indent:indent)
+          }
+          override public var hashValue:Int {
+              get {
+                  var hashCode:Int = 7
+                  if hasDevice {
+                    hashCode = (hashCode &* 31) &+ device.hashValue
+                  }
+                  hashCode = (hashCode &* 31) &+  unknownFields.hashValue
+                  return hashCode
+              }
+          }
+
+
+          //Meta information declaration start
+
+          override public class func className() -> String {
+              return "UserService.RecordDevice.Request"
+          }
+          override public func className() -> String {
+              return "UserService.RecordDevice.Request"
+          }
+          override public func classMetaType() -> GeneratedMessage.Type {
+              return UserService.RecordDevice.Request.self
+          }
+
+
+          //Meta information declaration end
+
+        }
+
+        final public class RequestBuilder : GeneratedMessageBuilder {
+          private var builderResult:UserService.RecordDevice.Request
+
+          required override public init () {
+             builderResult = UserService.RecordDevice.Request()
+             super.init()
+          }
+          public var hasDevice:Bool {
+               get {
+                   return builderResult.hasDevice
+               }
+          }
+          public var device:UserService.Containers.Device {
+               get {
+                   return builderResult.device
+               }
+               set (value) {
+                   builderResult.hasDevice = true
+                   builderResult.device = value
+               }
+          }
+          public func setDeviceBuilder(builderForValue:UserService.Containers.DeviceBuilder) -> UserService.RecordDevice.RequestBuilder {
+            device = builderForValue.build()
+            return self
+          }
+          public func mergeDevice(value:UserService.Containers.Device) -> UserService.RecordDevice.RequestBuilder {
+            if (builderResult.hasDevice) {
+              builderResult.device = UserService.Containers.Device.builderWithPrototype(builderResult.device).mergeFrom(value).buildPartial()
+            } else {
+              builderResult.device = value
+            }
+            builderResult.hasDevice = true
+            return self
+          }
+          public func clearDevice() -> UserService.RecordDevice.RequestBuilder {
+            builderResult.hasDevice = false
+            builderResult.device = UserService.Containers.Device()
+            return self
+          }
+          override public var internalGetResult:GeneratedMessage {
+               get {
+                  return builderResult
+               }
+          }
+          public override func clear() -> UserService.RecordDevice.RequestBuilder {
+            builderResult = UserService.RecordDevice.Request()
+            return self
+          }
+          public override func clone() -> UserService.RecordDevice.RequestBuilder {
+            return UserService.RecordDevice.Request.builderWithPrototype(builderResult)
+          }
+          public override func build() -> UserService.RecordDevice.Request {
+               checkInitialized()
+               return buildPartial()
+          }
+          public func buildPartial() -> UserService.RecordDevice.Request {
+            var returnMe:UserService.RecordDevice.Request = builderResult
+            return returnMe
+          }
+          public func mergeFrom(other:UserService.RecordDevice.Request) -> UserService.RecordDevice.RequestBuilder {
+            if (other.hasDevice) {
+                mergeDevice(other.device)
+            }
+            mergeUnknownFields(other.unknownFields)
+            return self
+          }
+          public override func mergeFromCodedInputStream(input:CodedInputStream) ->UserService.RecordDevice.RequestBuilder {
+               return mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
+          }
+          public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> UserService.RecordDevice.RequestBuilder {
+            var unknownFieldsBuilder:UnknownFieldSetBuilder = UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
+            while (true) {
+              var tag = input.readTag()
+              switch tag {
+              case 0: 
+                self.unknownFields = unknownFieldsBuilder.build()
+                return self
+
+              case 10 :
+                var subBuilder:UserService.Containers.DeviceBuilder = UserService.Containers.Device.builder()
+                if hasDevice {
+                  subBuilder.mergeFrom(device)
+                }
+                input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
+                device = subBuilder.buildPartial()
+
+              default:
+                if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
+                   unknownFields = unknownFieldsBuilder.build()
+                   return self
+                }
+              }
+            }
+          }
+        }
+
+
+
+      //Nested type declaration end
+
+
+
+      //Nested type declaration start
+
+        final public class Response : GeneratedMessage {
+          override public subscript (key: String) -> Any? {
+                 switch key {
+                 case "device": return device
+                 default: return nil
+                 }
+          }
+
+          public private(set) var hasDevice:Bool = false
+          public private(set) var device:UserService.Containers.Device = UserService.Containers.Device()
+          required public init() {
+               super.init()
+          }
+          override public func isInitialized() -> Bool {
+           return true
+          }
+          override public func writeToCodedOutputStream(output:CodedOutputStream) {
+            if hasDevice {
+              output.writeMessage(1, value:device)
+            }
+            unknownFields.writeToCodedOutputStream(output)
+          }
+          override public func serializedSize() -> Int32 {
+            var size:Int32 = memoizedSerializedSize
+            if size != -1 {
+             return size
+            }
+
+            size = 0
+            if hasDevice {
+              size += WireFormat.computeMessageSize(1, value:device)
+            }
+            size += unknownFields.serializedSize()
+            memoizedSerializedSize = size
+            return size
+          }
+          public class func parseFromData(data:[Byte]) -> UserService.RecordDevice.Response {
+            return UserService.RecordDevice.Response.builder().mergeFromData(data).build()
+          }
+          public class func parseFromData(data:[Byte], extensionRegistry:ExtensionRegistry) -> UserService.RecordDevice.Response {
+            return UserService.RecordDevice.Response.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
+          }
+          public class func parseFromInputStream(input:NSInputStream) -> UserService.RecordDevice.Response {
+            return UserService.RecordDevice.Response.builder().mergeFromInputStream(input).build()
+          }
+          public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->UserService.RecordDevice.Response {
+            return UserService.RecordDevice.Response.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
+          }
+          public class func parseFromCodedInputStream(input:CodedInputStream) -> UserService.RecordDevice.Response {
+            return UserService.RecordDevice.Response.builder().mergeFromCodedInputStream(input).build()
+          }
+          public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> UserService.RecordDevice.Response {
+            return UserService.RecordDevice.Response.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
+          }
+          public class func builder() -> UserService.RecordDevice.ResponseBuilder {
+            return UserService.RecordDevice.Response.classBuilder() as UserService.RecordDevice.ResponseBuilder
+          }
+          public func builder() -> UserService.RecordDevice.ResponseBuilder {
+            return classBuilder() as UserService.RecordDevice.ResponseBuilder
+          }
+          public override class func classBuilder() -> MessageBuilder {
+            return UserService.RecordDevice.ResponseBuilder()
+          }
+          public override func classBuilder() -> MessageBuilder {
+            return UserService.RecordDevice.Response.builder()
+          }
+          public func toBuilder() -> UserService.RecordDevice.ResponseBuilder {
+            return UserService.RecordDevice.Response.builderWithPrototype(self)
+          }
+          public class func builderWithPrototype(prototype:UserService.RecordDevice.Response) -> UserService.RecordDevice.ResponseBuilder {
+            return UserService.RecordDevice.Response.builder().mergeFrom(prototype)
+          }
+          override public func writeDescriptionTo(inout output:String, indent:String) {
+            if hasDevice {
+              output += "\(indent) device {\n"
+              device.writeDescriptionTo(&output, indent:"\(indent)  ")
+              output += "\(indent) }\n"
+            }
+            unknownFields.writeDescriptionTo(&output, indent:indent)
+          }
+          override public var hashValue:Int {
+              get {
+                  var hashCode:Int = 7
+                  if hasDevice {
+                    hashCode = (hashCode &* 31) &+ device.hashValue
+                  }
+                  hashCode = (hashCode &* 31) &+  unknownFields.hashValue
+                  return hashCode
+              }
+          }
+
+
+          //Meta information declaration start
+
+          override public class func className() -> String {
+              return "UserService.RecordDevice.Response"
+          }
+          override public func className() -> String {
+              return "UserService.RecordDevice.Response"
+          }
+          override public func classMetaType() -> GeneratedMessage.Type {
+              return UserService.RecordDevice.Response.self
+          }
+
+
+          //Meta information declaration end
+
+        }
+
+        final public class ResponseBuilder : GeneratedMessageBuilder {
+          private var builderResult:UserService.RecordDevice.Response
+
+          required override public init () {
+             builderResult = UserService.RecordDevice.Response()
+             super.init()
+          }
+          public var hasDevice:Bool {
+               get {
+                   return builderResult.hasDevice
+               }
+          }
+          public var device:UserService.Containers.Device {
+               get {
+                   return builderResult.device
+               }
+               set (value) {
+                   builderResult.hasDevice = true
+                   builderResult.device = value
+               }
+          }
+          public func setDeviceBuilder(builderForValue:UserService.Containers.DeviceBuilder) -> UserService.RecordDevice.ResponseBuilder {
+            device = builderForValue.build()
+            return self
+          }
+          public func mergeDevice(value:UserService.Containers.Device) -> UserService.RecordDevice.ResponseBuilder {
+            if (builderResult.hasDevice) {
+              builderResult.device = UserService.Containers.Device.builderWithPrototype(builderResult.device).mergeFrom(value).buildPartial()
+            } else {
+              builderResult.device = value
+            }
+            builderResult.hasDevice = true
+            return self
+          }
+          public func clearDevice() -> UserService.RecordDevice.ResponseBuilder {
+            builderResult.hasDevice = false
+            builderResult.device = UserService.Containers.Device()
+            return self
+          }
+          override public var internalGetResult:GeneratedMessage {
+               get {
+                  return builderResult
+               }
+          }
+          public override func clear() -> UserService.RecordDevice.ResponseBuilder {
+            builderResult = UserService.RecordDevice.Response()
+            return self
+          }
+          public override func clone() -> UserService.RecordDevice.ResponseBuilder {
+            return UserService.RecordDevice.Response.builderWithPrototype(builderResult)
+          }
+          public override func build() -> UserService.RecordDevice.Response {
+               checkInitialized()
+               return buildPartial()
+          }
+          public func buildPartial() -> UserService.RecordDevice.Response {
+            var returnMe:UserService.RecordDevice.Response = builderResult
+            return returnMe
+          }
+          public func mergeFrom(other:UserService.RecordDevice.Response) -> UserService.RecordDevice.ResponseBuilder {
+            if (other.hasDevice) {
+                mergeDevice(other.device)
+            }
+            mergeUnknownFields(other.unknownFields)
+            return self
+          }
+          public override func mergeFromCodedInputStream(input:CodedInputStream) ->UserService.RecordDevice.ResponseBuilder {
+               return mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
+          }
+          public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> UserService.RecordDevice.ResponseBuilder {
+            var unknownFieldsBuilder:UnknownFieldSetBuilder = UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
+            while (true) {
+              var tag = input.readTag()
+              switch tag {
+              case 0: 
+                self.unknownFields = unknownFieldsBuilder.build()
+                return self
+
+              case 10 :
+                var subBuilder:UserService.Containers.DeviceBuilder = UserService.Containers.Device.builder()
+                if hasDevice {
+                  subBuilder.mergeFrom(device)
+                }
+                input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
+                device = subBuilder.buildPartial()
+
+              default:
+                if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
+                   unknownFields = unknownFieldsBuilder.build()
+                   return self
+                }
+              }
+            }
+          }
+        }
+
+
+
+      //Nested type declaration end
+
+      override public subscript (key: String) -> Any? {
+             switch key {
+             default: return nil
+             }
+      }
+
+      required public init() {
+           super.init()
+      }
+      override public func isInitialized() -> Bool {
+       return true
+      }
+      override public func writeToCodedOutputStream(output:CodedOutputStream) {
+        unknownFields.writeToCodedOutputStream(output)
+      }
+      override public func serializedSize() -> Int32 {
+        var size:Int32 = memoizedSerializedSize
+        if size != -1 {
+         return size
+        }
+
+        size = 0
+        size += unknownFields.serializedSize()
+        memoizedSerializedSize = size
+        return size
+      }
+      public class func parseFromData(data:[Byte]) -> UserService.RecordDevice {
+        return UserService.RecordDevice.builder().mergeFromData(data).build()
+      }
+      public class func parseFromData(data:[Byte], extensionRegistry:ExtensionRegistry) -> UserService.RecordDevice {
+        return UserService.RecordDevice.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
+      }
+      public class func parseFromInputStream(input:NSInputStream) -> UserService.RecordDevice {
+        return UserService.RecordDevice.builder().mergeFromInputStream(input).build()
+      }
+      public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->UserService.RecordDevice {
+        return UserService.RecordDevice.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
+      }
+      public class func parseFromCodedInputStream(input:CodedInputStream) -> UserService.RecordDevice {
+        return UserService.RecordDevice.builder().mergeFromCodedInputStream(input).build()
+      }
+      public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> UserService.RecordDevice {
+        return UserService.RecordDevice.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
+      }
+      public class func builder() -> UserService.RecordDeviceBuilder {
+        return UserService.RecordDevice.classBuilder() as UserService.RecordDeviceBuilder
+      }
+      public func builder() -> UserService.RecordDeviceBuilder {
+        return classBuilder() as UserService.RecordDeviceBuilder
+      }
+      public override class func classBuilder() -> MessageBuilder {
+        return UserService.RecordDeviceBuilder()
+      }
+      public override func classBuilder() -> MessageBuilder {
+        return UserService.RecordDevice.builder()
+      }
+      public func toBuilder() -> UserService.RecordDeviceBuilder {
+        return UserService.RecordDevice.builderWithPrototype(self)
+      }
+      public class func builderWithPrototype(prototype:UserService.RecordDevice) -> UserService.RecordDeviceBuilder {
+        return UserService.RecordDevice.builder().mergeFrom(prototype)
+      }
+      override public func writeDescriptionTo(inout output:String, indent:String) {
+        unknownFields.writeDescriptionTo(&output, indent:indent)
+      }
+      override public var hashValue:Int {
+          get {
+              var hashCode:Int = 7
+              hashCode = (hashCode &* 31) &+  unknownFields.hashValue
+              return hashCode
+          }
+      }
+
+
+      //Meta information declaration start
+
+      override public class func className() -> String {
+          return "UserService.RecordDevice"
+      }
+      override public func className() -> String {
+          return "UserService.RecordDevice"
+      }
+      override public func classMetaType() -> GeneratedMessage.Type {
+          return UserService.RecordDevice.self
+      }
+
+
+      //Meta information declaration end
+
+    }
+
+    final public class RecordDeviceBuilder : GeneratedMessageBuilder {
+      private var builderResult:UserService.RecordDevice
+
+      required override public init () {
+         builderResult = UserService.RecordDevice()
+         super.init()
+      }
+      override public var internalGetResult:GeneratedMessage {
+           get {
+              return builderResult
+           }
+      }
+      public override func clear() -> UserService.RecordDeviceBuilder {
+        builderResult = UserService.RecordDevice()
+        return self
+      }
+      public override func clone() -> UserService.RecordDeviceBuilder {
+        return UserService.RecordDevice.builderWithPrototype(builderResult)
+      }
+      public override func build() -> UserService.RecordDevice {
+           checkInitialized()
+           return buildPartial()
+      }
+      public func buildPartial() -> UserService.RecordDevice {
+        var returnMe:UserService.RecordDevice = builderResult
+        return returnMe
+      }
+      public func mergeFrom(other:UserService.RecordDevice) -> UserService.RecordDeviceBuilder {
+        mergeUnknownFields(other.unknownFields)
+        return self
+      }
+      public override func mergeFromCodedInputStream(input:CodedInputStream) ->UserService.RecordDeviceBuilder {
+           return mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
+      }
+      public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> UserService.RecordDeviceBuilder {
+        var unknownFieldsBuilder:UnknownFieldSetBuilder = UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
+        while (true) {
+          var tag = input.readTag()
+          switch tag {
+          case 0: 
+            self.unknownFields = unknownFieldsBuilder.build()
+            return self
+
+          default:
+            if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
+               unknownFields = unknownFieldsBuilder.build()
+               return self
+            }
+          }
+        }
+      }
+    }
+
+
+
+  //Nested type declaration end
+
+
+
     //Enum type declaration start 
 
     public enum Provider:Int32 {
@@ -8780,6 +9807,18 @@ public extension UserService.Containers.Identity {
         var bytes = [Byte](count: data.length, repeatedValue: 0)
         data.getBytes(&bytes)
         return UserService.Containers.Identity.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
+    }
+}
+public extension UserService.Containers.Device {
+    class func parseFromNSData(data:NSData) -> UserService.Containers.Device {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return UserService.Containers.Device.builder().mergeFromData(bytes).build()
+    }
+    class func parseFromNSData(data:NSData, extensionRegistry:ExtensionRegistry) -> UserService.Containers.Device {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return UserService.Containers.Device.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
     }
 }
 public extension UserService.Containers {
@@ -9200,6 +10239,42 @@ public extension UserService.GetIdentities {
         var bytes = [Byte](count: data.length, repeatedValue: 0)
         data.getBytes(&bytes)
         return UserService.GetIdentities.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
+    }
+}
+public extension UserService.RecordDevice.Request {
+    class func parseFromNSData(data:NSData) -> UserService.RecordDevice.Request {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return UserService.RecordDevice.Request.builder().mergeFromData(bytes).build()
+    }
+    class func parseFromNSData(data:NSData, extensionRegistry:ExtensionRegistry) -> UserService.RecordDevice.Request {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return UserService.RecordDevice.Request.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
+    }
+}
+public extension UserService.RecordDevice.Response {
+    class func parseFromNSData(data:NSData) -> UserService.RecordDevice.Response {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return UserService.RecordDevice.Response.builder().mergeFromData(bytes).build()
+    }
+    class func parseFromNSData(data:NSData, extensionRegistry:ExtensionRegistry) -> UserService.RecordDevice.Response {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return UserService.RecordDevice.Response.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
+    }
+}
+public extension UserService.RecordDevice {
+    class func parseFromNSData(data:NSData) -> UserService.RecordDevice {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return UserService.RecordDevice.builder().mergeFromData(bytes).build()
+    }
+    class func parseFromNSData(data:NSData, extensionRegistry:ExtensionRegistry) -> UserService.RecordDevice {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return UserService.RecordDevice.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
     }
 }
 public extension UserService {

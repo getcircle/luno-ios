@@ -25,6 +25,7 @@ message UserServiceRequests {
         optional main.user_service.UserService.CompleteAuthorization.Request complete_authorization = 108;
         optional main.user_service.UserService.GetIdentities.Request get_identities = 109;
         optional main.user_service.UserService.BulkCreateUsers.Response bulk_create_users = 110;
+        optional main.user_service.UserService.RecordDevice.Response record_device = 111;
     }
 }
 
