@@ -55,6 +55,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         deviceTokenString = deviceTokenString.stringByReplacingOccurrencesOfString(" ", withString: "")
         deviceTokenString = deviceTokenString.trimWhitespace()
         println("Device Token \(deviceTokenString)")
+        Mixpanel.sharedInstance().people.addPushDeviceToken(deviceToken)
     }
     
     func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
