@@ -240,6 +240,18 @@ extension UIViewController {
         return nextButtonItem
     }
 
+    func addDoneTextButtonWithAction(callbackMethod: Selector) -> UIBarButtonItem? {
+        let doneButtonItem = UIBarButtonItem(
+            title: AppStrings.GenericDoneButtonTitle,
+            style: .Plain,
+            target: self,
+            action: callbackMethod
+        )
+        
+        navigationItem.rightBarButtonItem = doneButtonItem
+        return doneButtonItem
+    }
+    
     func addDoneButtonWithAction(callbackMethod: Selector) -> UIBarButtonItem? {
         let saveButtonItem = UIBarButtonItem(
             image: UIImage(named: "Check"),

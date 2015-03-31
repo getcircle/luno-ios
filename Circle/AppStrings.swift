@@ -22,10 +22,16 @@ struct AppStrings {
     static let CardTitleOfficeTeam = NSLocalizedString("Office Teams", comment: "Title of the card showing teams in a office")
     static let CardTitleAddress = NSLocalizedString("Location", comment: "Title of the card showing address")
     
-    static let GenericCancelButtonTitle = NSLocalizedString("Cancel", comment: "Generic title for cancelling a user action")
+    static let GenericCancelButtonTitle = NSLocalizedString("Cancel", comment: "Generic button title for cancelling a user action")
+    static let GenericDoneButtonTitle = NSLocalizedString("Done", comment: "Generic button title for indicating a user has completed an action")
     static let GenericGetStartedButtonTitle = NSLocalizedString("Get Started", comment: "Generic button title to start some action")
-    static let GenericNextButtonTitle = NSLocalizedString("Next", comment: "Generic title for moving to next action")
+    static let GenericNextButtonTitle = NSLocalizedString("Next", comment: "Generic button title for moving to next action")
+    static let GenericNoThanksButtonTitle = NSLocalizedString("No thanks", comment: "Generic button title for declining an action")
+    static let GenericYesButtonTitle = NSLocalizedString("Yes", comment: "Generic button title for confirming an action")
     static let GenericTryAgainButtonTitle = NSLocalizedString("Try Again", comment: "Generic button title to try some action again")
+    
+    static let NotificationsTitle = NSLocalizedString("Notifications", comment: "Title of the view that shows content related to notifications")
+    static let NotificationInfoText = NSLocalizedString("We'd like to notify you when new people join, you are invited to events or when someone on your team is having a work anniversary. Turn notifications on?", comment: "Message indicating the users why we would like to notify them and asking for notifications permission")
     
     static let RequestAccessButtonTitle = NSLocalizedString("Request Access", comment: "Title of the button to request access to the app")
     

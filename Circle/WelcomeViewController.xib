@@ -75,12 +75,12 @@ Lets get started by setting up your profile.</string>
             </constraints>
             <variation key="default">
                 <mask key="constraints">
-                    <exclude reference="IQR-H9-eFZ"/>
                     <exclude reference="XAT-EF-L8b"/>
+                    <exclude reference="IQR-H9-eFZ"/>
                     <exclude reference="PVm-uy-gtb"/>
                 </mask>
             </variation>
-            <point key="canvasLocation" x="-1024" y="-962"/>
+            <point key="canvasLocation" x="-1992" y="-1807"/>
         </view>
     </objects>
     <resources>

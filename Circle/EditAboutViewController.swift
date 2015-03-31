@@ -179,6 +179,7 @@ class EditAboutViewController: UIViewController, UITextFieldDelegate {
     @IBAction func nextButtonTapped(sender: AnyObject!) {
         let interestSelectorVC = TagScrollingSelectorViewController(nibName: "TagScrollingSelectorViewController", bundle: nil)
         interestSelectorVC.theme = .Onboarding
+        interestSelectorVC.addNextButton = true
         navigationController?.pushViewController(interestSelectorVC, animated: true)        
     }
 }

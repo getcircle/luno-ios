@@ -27,6 +27,7 @@ class TagScrollingSelectorViewController:
     @IBOutlet weak private(set) var titleTextLabel: UILabel!
     @IBOutlet weak private(set) var topGradientView: UIView!
     
+    var addNextButton: Bool = false
     var theme: Themes = .Regular
     var preSelectTags: Array<ProfileService.Containers.Tag> = Array<ProfileService.Containers.Tag>() {
         didSet {
@@ -39,8 +40,8 @@ class TagScrollingSelectorViewController:
     private var animatedCell = [NSIndexPath: Bool]()
     private var bottomLayer: CAGradientLayer!
     private var cachedItemSizes =  [String: CGSize]()
-    private var interests = Array<ProfileService.Containers.Tag>()
     private var filteredTags = Array<ProfileService.Containers.Tag>()
+    private var interests = Array<ProfileService.Containers.Tag>()
     private var selectedTags = Dictionary<Int, ProfileService.Containers.Tag>()
     private var prototypeCell: TagCollectionViewCell!
     private var searchHeaderView: SearchHeaderView!
@@ -76,7 +77,13 @@ class TagScrollingSelectorViewController:
     
     private func configureNavigationBar() {
         title = AppStrings.AddTagsNavigationTitle
-        addDoneButtonWithAction("save:")
+        if addNextButton {
+            addNextButtonWithAction("save:")
+        }
+        else {
+            addDoneButtonWithAction("save:")
+        }
+
         addCloseButtonWithAction("cancel:")
     }
     
@@ -290,11 +297,6 @@ class TagScrollingSelectorViewController:
         dismissView()
     }
     
-    private func dismissView() {
-        dismissSearchField()
-        dismissViewControllerAnimated(true, completion: nil)
-    }
-
     private func getNewTagObject() -> ProfileService.Containers.Tag? {
         var interestName = searchHeaderView.searchTextField.text
         interestName = interestName.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
@@ -384,5 +386,21 @@ class TagScrollingSelectorViewController:
     private func dismissSearchField() {
         searchHeaderView.searchTextField.text = ""
         searchHeaderView.searchTextField.resignFirstResponder()
+    }
+    
+    private func dismissView() {
+        dismissSearchField()
+        if addNextButton {
+            saveAndNextButtonTapped()
+        }
+        else {
+            dismissViewControllerAnimated(true, completion: nil)
+        }
+    }
+
+    private func saveAndNextButtonTapped() {
+        //TODO: Check if user object already has a token
+        let notificationsVC = NotificationsViewController(nibName: "NotificationsViewController", bundle: nil)
+        navigationController?.pushViewController(notificationsVC, animated: true)
     }
 }

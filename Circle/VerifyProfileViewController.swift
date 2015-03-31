@@ -211,7 +211,7 @@ class VerifyProfileViewController:
     
     private func checkDataAndEnableNext() {
         nextButton.enabled = profileImageView.image != nil
-        nextButton.setTitle("Next", forState: .Normal)
+        nextButton.setTitle(AppStrings.GenericNextButtonTitle, forState: .Normal)
     }
 
     private func verificationComplete() {

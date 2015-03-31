@@ -28,6 +28,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         // Initialize splash view with passcode & touch ID
         AuthViewController.initializeSplashViewWithPasscodeAndTouchID()
+        
+        // Register app level notifications
+        registerNotifications()
 
         return true
     }
@@ -43,5 +46,41 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidEnterBackground(application: UIApplication) {
         Tracker.sharedInstance.trackSessionEnd()
     }
-}
 
+    // MARK: - Remote Notification Delegate
+    
+    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+        // TODO: Pass token to the backend
+        var deviceTokenString = deviceToken.description.stringByTrimmingCharactersInSet(NSCharacterSet(charactersInString: "<>"))
+        deviceTokenString = deviceTokenString.stringByReplacingOccurrencesOfString(" ", withString: "")
+        deviceTokenString = deviceTokenString.trimWhitespace()
+        println("Device Token \(deviceTokenString)")
+    }
+    
+    func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
+        println("Error registering for notifications \(error)")
+    }
+    
+    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject], fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
+        // Will ideally use a URL router here
+    }
+    
+    // MARK: - Notification
+    
+    func registerNotifications() {
+        NSNotificationCenter.defaultCenter().addObserver(
+            self, 
+            selector: "recordUsersLocaleSetting:", 
+            name: NSCurrentLocaleDidChangeNotification, 
+            object: nil
+        )
+    }
+
+    // MARK: - Notification Handlers
+
+    func recordUsersLocaleSetting(sender: AnyObject!) {
+        let preferredLanguage: String = NSLocale.preferredLanguages()[0] as String
+        // TODO: Register language
+        println(preferredLanguage)
+    }
+}
