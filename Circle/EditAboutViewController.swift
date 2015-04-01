@@ -111,7 +111,6 @@ class EditAboutViewController: UIViewController, UITextFieldDelegate {
             bioTextField.text = profile.about
         }
 
-        //TODO: Replace with Nickname
         if profile.hasNickname {
             nickNameTextField.text = profile.nickname
         }

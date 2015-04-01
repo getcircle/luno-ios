@@ -399,7 +399,6 @@ class TagScrollingSelectorViewController:
     }
 
     private func saveAndNextButtonTapped() {
-        //TODO: Check if user object already has a token
         let notificationsVC = NotificationsViewController(nibName: "NotificationsViewController", bundle: nil)
         navigationController?.pushViewController(notificationsVC, animated: true)
     }
