@@ -133,7 +133,7 @@ class EditContactInfoViewController: UIViewController, UINavigationControllerDel
                         containerKey: "hip_chat"
                     ),
                     FormBuilder.SectionItem(
-                        placeholder: "Facebook Messenger",
+                        placeholder: "Facebook",
                         type: .TextField,
                         keyboardType: .PhonePad,
                         container: "profile",
@@ -291,12 +291,6 @@ class EditContactInfoViewController: UIViewController, UINavigationControllerDel
                         case "profile":
                             // TODO: - Remove after subscripting support
                             switch item.containerKey {
-                            case "first_name":
-                                builder.first_name = value as String
-                                
-                            case "last_name":
-                                builder.last_name = value as String
-                            
                             case "title":
                                 builder.title = value as String
 //                            

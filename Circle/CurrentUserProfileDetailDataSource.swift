@@ -16,9 +16,9 @@ class CurrentUserProfileDetailDataSource: ProfileDetailDataSource {
     override func configureSections() {
         super.configureSections()
         sections.removeAtIndex(0)
-        sections.insert(getContactPreferencesSection(), atIndex: 0)
+//        sections.insert(getContactPreferencesSection(), atIndex: 0)
         if let socialConnectSection = getSocialConnectSection() {
-            sections.insert(socialConnectSection, atIndex: 1)
+            sections.insert(socialConnectSection, atIndex: 0)
         }
     }
 
