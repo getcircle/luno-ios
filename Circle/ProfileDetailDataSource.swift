@@ -141,6 +141,22 @@ class ProfileDetailDataSource: CardDataSource {
     }
 
     private func getOfficeSections() -> [Section] {
+        let placeholderItem = [
+            SectionItem(
+                title: "Placeholder",
+                container: "",
+                containerKey: "",
+                contentType: .Other,
+                image: nil
+            )
+        ]
+        let placeholderSection = Section(
+            title: AppStrings.ProfileSectionOfficeTitle,
+            items: placeholderItem,
+            cardType: .Placeholder,
+            addCardHeader: true
+        )
+
         let seatingInfoItem = [
             SectionItem(
                 title: "Seating Info",
@@ -153,8 +169,7 @@ class ProfileDetailDataSource: CardDataSource {
         let seatingInfoSection = Section(
             title: AppStrings.ProfileSectionOfficeTitle, 
             items: seatingInfoItem, 
-            cardType: .KeyValue, 
-            addCardHeader: true
+            cardType: .KeyValue
         )
 
         let officeLocationItem = [
@@ -167,8 +182,7 @@ class ProfileDetailDataSource: CardDataSource {
             )
         ]
         let officeSection = Section(title: "", items: officeLocationItem, cardType: .Profiles)
-
-        return [seatingInfoSection, officeSection]
+        return [placeholderSection, seatingInfoSection, officeSection]
     }
 
     private func getManagerSection() -> Section {
@@ -258,7 +272,9 @@ class ProfileDetailDataSource: CardDataSource {
             }
             
             if sectionCard.content.count > 0 ||
-                (section.allowEmptyContent && isProfileLoggedInUserProfile()) {
+                (section.allowEmptyContent && isProfileLoggedInUserProfile()) || 
+                sectionCard.type == .Placeholder
+            {
                 appendCard(sectionCard)
             }
         }
@@ -308,18 +324,7 @@ class ProfileDetailDataSource: CardDataSource {
                 else {
                     return nil
                 }
-                
-            case "seating_info":
-                let sampleInfo = [
-                    "Floor 1",
-                    "Green 4",
-                    "Red 15",
-                    "R123",
-                    "Floor 5",
-                    "Floor 10"
-                ]
-                value = sampleInfo[Int(arc4random_uniform(UInt32(sampleInfo.count)))]
-                
+
             default:
                 value = profile[item.containerKey]
             }
