@@ -44,7 +44,8 @@ class CardCollectionViewDelegate: NSObject, UICollectionViewDelegateFlowLayout, 
         }
 
         if card.contentClass.sizeCalculationMethod == SizeCalculation.Fixed {
-            return CGSizeMake(card.contentClass.width - leftAndRightInsets, card.contentClass.height)
+            let width = min(card.contentClass.width, collectionView.frameWidth)
+            return CGSizeMake(width - leftAndRightInsets, card.contentClass.height)
         }
         else {
             
