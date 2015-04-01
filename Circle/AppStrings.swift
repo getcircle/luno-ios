@@ -22,6 +22,11 @@ struct AppStrings {
     static let CardTitleOfficeTeam = NSLocalizedString("Office Teams", comment: "Title of the card showing teams in a office")
     static let CardTitleAddress = NSLocalizedString("Location", comment: "Title of the card showing address")
     
+    static let ContactLabelCellPhone = NSLocalizedString("Cell Phone", comment: "Label for showing cell phone")
+    static let ContactLabelPersonalEmail = NSLocalizedString("Personal Email", comment: "Label for showing personal email")
+    static let ContactLabelWorkEmail = NSLocalizedString("Work Email", comment: "Label for showing work email")
+    static let ContactLabelWorkPhone = NSLocalizedString("Work Phone", comment: "Label for showing work phone")
+    
     static let EmailFeedbackSubject = NSLocalizedString("Feedback on circle", comment: "Subject of the feedback email")
     
     static let FieldLabelNickname = NSLocalizedString("Nickname", comment: "A person's nickname")

@@ -80,13 +80,13 @@ class EditContactInfoViewController: UIViewController, UINavigationControllerDel
                 imageSource: "TitlePhone",
                 items: [
                     FormBuilder.ContactSectionItem(
-                        placeholder: NSLocalizedString("Cell Phone", comment: "Placeholder for textfield that accepts a cell phone"),
+                        placeholder: AppStrings.ContactLabelCellPhone,
                         type: .TextField,
                         keyboardType: .PhonePad,
                         contactMethodType: .CellPhone
                     ),
                     FormBuilder.ContactSectionItem(
-                        placeholder: NSLocalizedString("Work Phone", comment: "Placeholder for textfield that accepts a work phone"),
+                        placeholder: AppStrings.ContactLabelWorkPhone,
                         type: .TextField,
                         keyboardType: .PhonePad,
                         contactMethodType: .Phone
@@ -97,13 +97,13 @@ class EditContactInfoViewController: UIViewController, UINavigationControllerDel
                 imageSource: "TitleEmail",
                 items: [
                 FormBuilder.ContactSectionItem(
-                    placeholder: NSLocalizedString("Work Email", comment: "Placeholder for textfield that accepts a work email"),
+                    placeholder: AppStrings.ContactLabelWorkEmail,
                     type: .TextField,
                     keyboardType: .EmailAddress,
-                    contactMethodType: .Phone
+                    contactMethodType: .Email
                 ),
                 FormBuilder.ContactSectionItem(
-                    placeholder: NSLocalizedString("Personal Email", comment: "Placeholder for textfield that accepts a personal email"), 
+                    placeholder: AppStrings.ContactLabelPersonalEmail,
                     type: .TextField,
                     keyboardType: .EmailAddress,
                     contactMethodType: .Email
@@ -116,23 +116,23 @@ class EditContactInfoViewController: UIViewController, UINavigationControllerDel
                     FormBuilder.ContactSectionItem(
                         placeholder: "Slack",
                         type: .TextField,
-                        keyboardType: .PhonePad,
+                        keyboardType: .ASCIICapable,
                         contactMethodType: .Slack
                     ),
                     FormBuilder.ContactSectionItem(
                         placeholder: "Hipchat",
                         type: .TextField,
-                        keyboardType: .PhonePad,
+                        keyboardType: .ASCIICapable,
                         contactMethodType: .Hipchat
                     ),
                     FormBuilder.ContactSectionItem(
                         placeholder: "Facebook",
                         type: .TextField,
-                        keyboardType: .PhonePad,
+                        keyboardType: .ASCIICapable,
                         contactMethodType: .Facebook
                     ),
                     FormBuilder.ContactSectionItem(
-                        placeholder: "Sms",
+                        placeholder: "SMS",
                         type: .TextField,
                         keyboardType: .PhonePad,
                         contactMethodType: .CellPhone
@@ -140,7 +140,7 @@ class EditContactInfoViewController: UIViewController, UINavigationControllerDel
                     FormBuilder.ContactSectionItem(
                         placeholder: "Twitter",
                         type: .TextField,
-                        keyboardType: .PhonePad,
+                        keyboardType: .Twitter,
                         contactMethodType: .Twitter
                     ),
             ]),
@@ -151,7 +151,7 @@ class EditContactInfoViewController: UIViewController, UINavigationControllerDel
                     FormBuilder.ContactSectionItem(
                         placeholder: "Skype",
                         type: .TextField,
-                        keyboardType: .EmailAddress,
+                        keyboardType: .ASCIICapable,
                         contactMethodType: .Skype
                     ),
                     FormBuilder.ContactSectionItem(
@@ -173,6 +173,16 @@ class EditContactInfoViewController: UIViewController, UINavigationControllerDel
                 if let contactItem = item as? FormBuilder.ContactSectionItem {
                     if let value = contactMethodValuesByType[contactItem.contactMethodType] {
                         item.value = value
+                    }
+                    
+                    if contactItem.contactMethodType == .Email &&
+                        (contactItem.placeholder == AppStrings.ContactLabelWorkEmail || contactItem.placeholder == "Hangouts") {
+                        item.value = profile.email
+                        item.inputEnabled = false
+                    }
+                    
+                    if contactItem.contactMethodType == .CellPhone && contactItem.placeholder == "SMS" {
+                        item.inputEnabled = false
                     }
                 }
             }
@@ -261,9 +271,9 @@ class EditContactInfoViewController: UIViewController, UINavigationControllerDel
     }
 
     func keyboardWillBeHidden(notification: NSNotification) {
-        let contentInsets = UIEdgeInsetsZero;
-        rootScrollView.contentInset = contentInsets;
-        rootScrollView.scrollIndicatorInsets = contentInsets;
+        let contentInsets = UIEdgeInsetsZero
+        rootScrollView.contentInset = contentInsets
+        rootScrollView.scrollIndicatorInsets = contentInsets
     }
     
     // MARK: - Helpers
@@ -278,17 +288,15 @@ class EditContactInfoViewController: UIViewController, UINavigationControllerDel
             for item in section.items {
                 if let value = item.value {
                     if let contactItem = item as? FormBuilder.ContactSectionItem {
-                        if value.trimWhitespace() != "" {
+                        if value.trimWhitespace() != "" && (contactItem.inputEnabled == nil || contactItem.inputEnabled == false) {
                             var contactMethod = ProfileService.Containers.ContactMethod.builder()
                             contactMethod.label = contactItem.placeholder
                             contactMethod.value = value.trimWhitespace()
                             contactMethod.type = contactItem.contactMethodType
                             contactMethods.append(contactMethod.build())
-                            println(item.value)
                         }
                     }
                 }
-                println("Key - \(item.placeholder) Value - \(item.value)")
             }
         }
         builder.contact_methods = contactMethods

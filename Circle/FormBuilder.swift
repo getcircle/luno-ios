@@ -24,6 +24,7 @@ class FormBuilder: NSObject, UITextFieldDelegate {
         var container: String
         var containerKey: String
         var input: AnyObject?
+        var inputEnabled: Bool?
         var keyboardType: UIKeyboardType
         var placeholder: String
         var type: FormFieldType
@@ -118,7 +119,19 @@ class FormBuilder: NSObject, UITextFieldDelegate {
                     textField.font = UIFont.appAttributeValueLabelFont()
                     textField.textAlignment = .Right
                     textField.keyboardType = item.keyboardType
+                    // TODO: Make these configurable
+                    // Not urgent since we are using the form builder for contact info
+                    // only, to which the following settings are fine
+                    textField.autocapitalizationType = .None
+                    textField.autocorrectionType = .No
+                    textField.spellCheckingType = .No
                     textField.delegate = self
+                    if let inputEnabled = item.inputEnabled {
+                        textField.enabled = inputEnabled
+                        if !inputEnabled {
+                            textField.textColor = UIColor.lightGrayColor()
+                        }
+                    }
                     containerView.addSubview(textField)
                     textField.autoPinEdge(.Left, toEdge: .Right, ofView: fieldNameLabel, withOffset: 10.0)
                     textField.autoPinEdgeToSuperviewEdge(.Right, withInset: formFieldEdgeInset.right)
