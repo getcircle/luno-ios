@@ -281,10 +281,17 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
                     AuthNotifications.onLoginNotification,
                     object: nil
                 )
-                if self.dynamicType.checkUser(unverifiedPhoneHandler: { () -> Void in
+                
+                let allInfoVerified = self.dynamicType.checkUser(unverifiedPhoneHandler: { () -> Void in
                     let welcomeVC = WelcomeViewController(nibName: "WelcomeViewController", bundle: nil)
                     self.navigationController?.setViewControllers([welcomeVC], animated: true)
-                }, unverifiedProfileHandler: nil) {
+                }, unverifiedProfileHandler: {
+                    let welcomeVC = WelcomeViewController(nibName: "WelcomeViewController", bundle: nil)
+                    welcomeVC.goToPhoneVerification = false
+                    self.navigationController?.setViewControllers([welcomeVC], animated: true)
+                })
+                
+                if allInfoVerified {
                     self.dismissViewControllerAnimated(true, completion: nil)
                 }
             }
@@ -498,7 +505,7 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
             
             if let profile = getLoggedInUserProfile() {
                 if !profile.verified {
-                    if let handler = unverifiedPhoneHandler {
+                    if let handler = unverifiedProfileHandler {
                         handler()
                     } else {
                         presentWelcomeView(false)

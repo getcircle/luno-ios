@@ -159,6 +159,7 @@ class VerifyProfileViewController:
         ProfileService.Actions.updateProfile(builder.build()) { (profile, error) -> Void in
             if let profile = profile {
                 AuthViewController.updateUserProfile(profile)
+                self.profile = profile
             }
             completion()
         }
