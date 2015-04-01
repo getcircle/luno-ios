@@ -118,6 +118,12 @@ class CurrentUserProfileDetailViewController: ProfileDetailViewController,
             name: ProfileServiceNotifications.onProfileUpdatedNotification,
             object: nil
         )
+        NSNotificationCenter.defaultCenter().addObserver(
+            self,
+            selector: "onProfileUpdated:",
+            name: SocialConnectNotifications.onServiceConnectedNotification,
+            object: nil
+        )
     }
 
     override func unregisterNotifications() {
