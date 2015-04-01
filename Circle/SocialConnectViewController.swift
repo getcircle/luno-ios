@@ -95,7 +95,7 @@ class SocialConnectViewController: UIViewController, WKNavigationDelegate {
                 println("error connecting to linkedin: \(url)")
             }
             decisionHandler(.Cancel)
-            self.dismissViewControllerAnimated(true, completion: nil)
+            self.dismiss()
         } else {
             decisionHandler(.Allow)
         }
@@ -118,6 +118,13 @@ class SocialConnectViewController: UIViewController, WKNavigationDelegate {
     // MARK: - IBActions
     
     @IBAction func cancel(sender: AnyObject!) {
+        dismiss()
+    }
+    
+    // MARK: - Helpers
+    
+    private func dismiss() {
+        webView.endEditing(true)
         dismissViewControllerAnimated(true, completion: nil)
     }
 
