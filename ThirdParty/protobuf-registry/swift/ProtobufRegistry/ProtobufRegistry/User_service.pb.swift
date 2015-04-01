@@ -1595,6 +1595,7 @@ final public class UserService : GeneratedMessage {
                  case "app_version": return app_version
                  case "device_uuid": return device_uuid
                  case "user_id": return user_id
+                 case "language_preference": return language_preference
                  default: return nil
                  }
           }
@@ -1619,6 +1620,9 @@ final public class UserService : GeneratedMessage {
 
           public private(set) var hasUserId:Bool = false
           public private(set) var user_id:String = ""
+
+          public private(set) var hasLanguagePreference:Bool = false
+          public private(set) var language_preference:String = ""
 
           required public init() {
                super.init()
@@ -1647,6 +1651,9 @@ final public class UserService : GeneratedMessage {
             }
             if hasUserId {
               output.writeString(7, value:user_id)
+            }
+            if hasLanguagePreference {
+              output.writeString(8, value:language_preference)
             }
             unknownFields.writeToCodedOutputStream(output)
           }
@@ -1677,6 +1684,9 @@ final public class UserService : GeneratedMessage {
             }
             if hasUserId {
               size += WireFormat.computeStringSize(7, value:user_id)
+            }
+            if hasLanguagePreference {
+              size += WireFormat.computeStringSize(8, value:language_preference)
             }
             size += unknownFields.serializedSize()
             memoizedSerializedSize = size
@@ -1740,6 +1750,9 @@ final public class UserService : GeneratedMessage {
             if hasUserId {
               output += "\(indent) user_id: \(user_id) \n"
             }
+            if hasLanguagePreference {
+              output += "\(indent) language_preference: \(language_preference) \n"
+            }
             unknownFields.writeDescriptionTo(&output, indent:indent)
           }
           override public var hashValue:Int {
@@ -1765,6 +1778,9 @@ final public class UserService : GeneratedMessage {
                   }
                   if hasUserId {
                      hashCode = (hashCode &* 31) &+ user_id.hashValue
+                  }
+                  if hasLanguagePreference {
+                     hashCode = (hashCode &* 31) &+ language_preference.hashValue
                   }
                   hashCode = (hashCode &* 31) &+  unknownFields.hashValue
                   return hashCode
@@ -1929,6 +1945,25 @@ final public class UserService : GeneratedMessage {
                builderResult.user_id = ""
                return self
           }
+          public var hasLanguagePreference:Bool {
+               get {
+                    return builderResult.hasLanguagePreference
+               }
+          }
+          public var language_preference:String {
+               get {
+                    return builderResult.language_preference
+               }
+               set (value) {
+                   builderResult.hasLanguagePreference = true
+                   builderResult.language_preference = value
+               }
+          }
+          public func clearLanguagePreference() -> UserService.Containers.DeviceBuilder{
+               builderResult.hasLanguagePreference = false
+               builderResult.language_preference = ""
+               return self
+          }
           override public var internalGetResult:GeneratedMessage {
                get {
                   return builderResult
@@ -1971,6 +2006,9 @@ final public class UserService : GeneratedMessage {
             if other.hasUserId {
                  user_id = other.user_id
             }
+            if other.hasLanguagePreference {
+                 language_preference = other.language_preference
+            }
             mergeUnknownFields(other.unknownFields)
             return self
           }
@@ -2006,6 +2044,9 @@ final public class UserService : GeneratedMessage {
 
               case 58 :
                 user_id = input.readString()
+
+              case 66 :
+                language_preference = input.readString()
 
               default:
                 if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {

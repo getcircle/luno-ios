@@ -192,9 +192,6 @@ class ProfileDetailsViewController:
             if let card = dataSource.cardAtSection(indexPath.section) {
                 if let dataSource = collectionView.dataSource as? ProfileDetailDataSource {
                     switch card.type {
-                    case .KeyValue:
-                        handleKeyValueCardSelection(dataSource, indexPath: indexPath)
-
                     case .Profiles:
                         let data: AnyObject? = dataSource.contentAtIndexPath(indexPath)
                         if data is OrganizationService.Containers.Team {
@@ -217,22 +214,6 @@ class ProfileDetailsViewController:
             }
         }
         collectionView.deselectItemAtIndexPath(indexPath, animated: true)
-    }
-    
-    private func handleKeyValueCardSelection(dataSource: ProfileDetailDataSource, indexPath: NSIndexPath) {
-        switch dataSource.typeOfCell(indexPath) {
-        case .CellPhone:
-            performQuickAction(.Phone, additionalData: profile.cell_phone)
-
-        case .Email:
-            performQuickAction(.Email)
-
-        case .WorkPhone:
-            performQuickAction(.Phone, additionalData: profile.work_phone)
-
-        default:
-            break
-        }
     }
     
     private func handleNotesCardSelection(card: Card, indexPath: NSIndexPath) {
@@ -430,24 +411,33 @@ class ProfileDetailsViewController:
     private func performQuickAction(quickAction: QuickAction, additionalData: AnyObject? = nil) {
         switch quickAction {
         case .Email:
-            presentMailViewController(
-                [profile.email],
-                subject: "Hey",
-                messageBody: "",
-                completionHandler: nil
-            )
+            if let email = profile.getEmail() {
+                presentMailViewController(
+                    [email],
+                    subject: "Hey",
+                    messageBody: "",
+                    completionHandler: nil
+                )
+            }
             
         case .Message:
-            var recipient = profile.cell_phone ?? profile.email
-            presentMessageViewController(
-                [recipient],
-                subject: "Hey",
-                messageBody: "",
-                completionHandler: nil
-            )
+            var recipient: String?
+            if let phone = profile.getCellPhone() {
+                recipient = phone
+            } else if let email = profile.getEmail() {
+                recipient = email
+            }
+            if recipient != nil {
+                presentMessageViewController(
+                    [recipient!],
+                    subject: "Hey",
+                    messageBody: "",
+                    completionHandler: nil
+                )
+            }
             
         case .Phone:
-            if let number = profile.cell_phone as String? {
+            if let number = profile.getCellPhone() as String? {
                 if let phoneURL = NSURL(string: NSString(format: "tel://%@", number.removePhoneNumberFormatting())) {
                     UIApplication.sharedApplication().openURL(phoneURL)
                 }

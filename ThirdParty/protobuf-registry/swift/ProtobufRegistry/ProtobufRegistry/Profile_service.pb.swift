@@ -203,10 +203,7 @@ final public class ProfileService : GeneratedMessage {
                  case "title": return title
                  case "first_name": return first_name
                  case "last_name": return last_name
-                 case "cell_phone": return cell_phone
-                 case "work_phone": return work_phone
                  case "image_url": return image_url
-                 case "email": return email
                  case "team_id": return team_id
                  case "full_name": return full_name
                  case "birth_date": return birth_date
@@ -215,6 +212,8 @@ final public class ProfileService : GeneratedMessage {
                  case "about": return about
                  case "location_id": return location_id
                  case "nickname": return nickname
+                 case "seating_info": return seating_info
+                 case "email": return email
                  default: return nil
                  }
           }
@@ -240,17 +239,8 @@ final public class ProfileService : GeneratedMessage {
           public private(set) var hasLastName:Bool = false
           public private(set) var last_name:String = ""
 
-          public private(set) var hasCellPhone:Bool = false
-          public private(set) var cell_phone:String = ""
-
-          public private(set) var hasWorkPhone:Bool = false
-          public private(set) var work_phone:String = ""
-
           public private(set) var hasImageUrl:Bool = false
           public private(set) var image_url:String = ""
-
-          public private(set) var hasEmail:Bool = false
-          public private(set) var email:String = ""
 
           public private(set) var hasTeamId:Bool = false
           public private(set) var team_id:String = ""
@@ -276,7 +266,14 @@ final public class ProfileService : GeneratedMessage {
           public private(set) var hasNickname:Bool = false
           public private(set) var nickname:String = ""
 
+          public private(set) var hasSeatingInfo:Bool = false
+          public private(set) var seating_info:String = ""
+
+          public private(set) var hasEmail:Bool = false
+          public private(set) var email:String = ""
+
           public private(set) var items:Array<ProfileService.Containers.ProfileItem>  = Array<ProfileService.Containers.ProfileItem>()
+          public private(set) var contact_methods:Array<ProfileService.Containers.ContactMethod>  = Array<ProfileService.Containers.ContactMethod>()
           required public init() {
                super.init()
           }
@@ -305,44 +302,44 @@ final public class ProfileService : GeneratedMessage {
             if hasLastName {
               output.writeString(7, value:last_name)
             }
-            if hasCellPhone {
-              output.writeString(8, value:cell_phone)
-            }
-            if hasWorkPhone {
-              output.writeString(9, value:work_phone)
-            }
             if hasImageUrl {
-              output.writeString(10, value:image_url)
-            }
-            if hasEmail {
-              output.writeString(11, value:email)
+              output.writeString(8, value:image_url)
             }
             if hasTeamId {
-              output.writeString(12, value:team_id)
+              output.writeString(9, value:team_id)
             }
             if hasFullName {
-              output.writeString(13, value:full_name)
+              output.writeString(10, value:full_name)
             }
             if hasBirthDate {
-              output.writeString(14, value:birth_date)
+              output.writeString(11, value:birth_date)
             }
             if hasHireDate {
-              output.writeString(15, value:hire_date)
+              output.writeString(12, value:hire_date)
             }
             if hasVerified {
-              output.writeBool(16, value:verified)
+              output.writeBool(13, value:verified)
             }
             for oneElementitems in items {
-                output.writeMessage(17, value:oneElementitems)
+                output.writeMessage(14, value:oneElementitems)
             }
             if hasAbout {
-              output.writeString(18, value:about)
+              output.writeString(15, value:about)
             }
             if hasLocationId {
-              output.writeString(19, value:location_id)
+              output.writeString(16, value:location_id)
             }
             if hasNickname {
-              output.writeString(20, value:nickname)
+              output.writeString(17, value:nickname)
+            }
+            for oneElementcontact_methods in contact_methods {
+                output.writeMessage(18, value:oneElementcontact_methods)
+            }
+            if hasSeatingInfo {
+              output.writeString(19, value:seating_info)
+            }
+            if hasEmail {
+              output.writeString(20, value:email)
             }
             unknownFields.writeToCodedOutputStream(output)
           }
@@ -374,44 +371,44 @@ final public class ProfileService : GeneratedMessage {
             if hasLastName {
               size += WireFormat.computeStringSize(7, value:last_name)
             }
-            if hasCellPhone {
-              size += WireFormat.computeStringSize(8, value:cell_phone)
-            }
-            if hasWorkPhone {
-              size += WireFormat.computeStringSize(9, value:work_phone)
-            }
             if hasImageUrl {
-              size += WireFormat.computeStringSize(10, value:image_url)
-            }
-            if hasEmail {
-              size += WireFormat.computeStringSize(11, value:email)
+              size += WireFormat.computeStringSize(8, value:image_url)
             }
             if hasTeamId {
-              size += WireFormat.computeStringSize(12, value:team_id)
+              size += WireFormat.computeStringSize(9, value:team_id)
             }
             if hasFullName {
-              size += WireFormat.computeStringSize(13, value:full_name)
+              size += WireFormat.computeStringSize(10, value:full_name)
             }
             if hasBirthDate {
-              size += WireFormat.computeStringSize(14, value:birth_date)
+              size += WireFormat.computeStringSize(11, value:birth_date)
             }
             if hasHireDate {
-              size += WireFormat.computeStringSize(15, value:hire_date)
+              size += WireFormat.computeStringSize(12, value:hire_date)
             }
             if hasVerified {
-              size += WireFormat.computeBoolSize(16, value:verified)
+              size += WireFormat.computeBoolSize(13, value:verified)
             }
             for oneElementitems in items {
-                size += WireFormat.computeMessageSize(17, value:oneElementitems)
+                size += WireFormat.computeMessageSize(14, value:oneElementitems)
             }
             if hasAbout {
-              size += WireFormat.computeStringSize(18, value:about)
+              size += WireFormat.computeStringSize(15, value:about)
             }
             if hasLocationId {
-              size += WireFormat.computeStringSize(19, value:location_id)
+              size += WireFormat.computeStringSize(16, value:location_id)
             }
             if hasNickname {
-              size += WireFormat.computeStringSize(20, value:nickname)
+              size += WireFormat.computeStringSize(17, value:nickname)
+            }
+            for oneElementcontact_methods in contact_methods {
+                size += WireFormat.computeMessageSize(18, value:oneElementcontact_methods)
+            }
+            if hasSeatingInfo {
+              size += WireFormat.computeStringSize(19, value:seating_info)
+            }
+            if hasEmail {
+              size += WireFormat.computeStringSize(20, value:email)
             }
             size += unknownFields.serializedSize()
             memoizedSerializedSize = size
@@ -475,17 +472,8 @@ final public class ProfileService : GeneratedMessage {
             if hasLastName {
               output += "\(indent) last_name: \(last_name) \n"
             }
-            if hasCellPhone {
-              output += "\(indent) cell_phone: \(cell_phone) \n"
-            }
-            if hasWorkPhone {
-              output += "\(indent) work_phone: \(work_phone) \n"
-            }
             if hasImageUrl {
               output += "\(indent) image_url: \(image_url) \n"
-            }
-            if hasEmail {
-              output += "\(indent) email: \(email) \n"
             }
             if hasTeamId {
               output += "\(indent) team_id: \(team_id) \n"
@@ -518,6 +506,19 @@ final public class ProfileService : GeneratedMessage {
             if hasNickname {
               output += "\(indent) nickname: \(nickname) \n"
             }
+            var contact_methodsElementIndex:Int = 0
+            for oneElementcontact_methods in contact_methods {
+                output += "\(indent) contact_methods[\(contact_methodsElementIndex)] {\n"
+                oneElementcontact_methods.writeDescriptionTo(&output, indent:"\(indent)  ")
+                output += "\(indent)}\n"
+                contact_methodsElementIndex++
+            }
+            if hasSeatingInfo {
+              output += "\(indent) seating_info: \(seating_info) \n"
+            }
+            if hasEmail {
+              output += "\(indent) email: \(email) \n"
+            }
             unknownFields.writeDescriptionTo(&output, indent:indent)
           }
           override public var hashValue:Int {
@@ -544,17 +545,8 @@ final public class ProfileService : GeneratedMessage {
                   if hasLastName {
                      hashCode = (hashCode &* 31) &+ last_name.hashValue
                   }
-                  if hasCellPhone {
-                     hashCode = (hashCode &* 31) &+ cell_phone.hashValue
-                  }
-                  if hasWorkPhone {
-                     hashCode = (hashCode &* 31) &+ work_phone.hashValue
-                  }
                   if hasImageUrl {
                      hashCode = (hashCode &* 31) &+ image_url.hashValue
-                  }
-                  if hasEmail {
-                     hashCode = (hashCode &* 31) &+ email.hashValue
                   }
                   if hasTeamId {
                      hashCode = (hashCode &* 31) &+ team_id.hashValue
@@ -582,6 +574,15 @@ final public class ProfileService : GeneratedMessage {
                   }
                   if hasNickname {
                      hashCode = (hashCode &* 31) &+ nickname.hashValue
+                  }
+                  for oneElementcontact_methods in contact_methods {
+                      hashCode = (hashCode &* 31) &+ oneElementcontact_methods.hashValue
+                  }
+                  if hasSeatingInfo {
+                     hashCode = (hashCode &* 31) &+ seating_info.hashValue
+                  }
+                  if hasEmail {
+                     hashCode = (hashCode &* 31) &+ email.hashValue
                   }
                   hashCode = (hashCode &* 31) &+  unknownFields.hashValue
                   return hashCode
@@ -746,44 +747,6 @@ final public class ProfileService : GeneratedMessage {
                builderResult.last_name = ""
                return self
           }
-          public var hasCellPhone:Bool {
-               get {
-                    return builderResult.hasCellPhone
-               }
-          }
-          public var cell_phone:String {
-               get {
-                    return builderResult.cell_phone
-               }
-               set (value) {
-                   builderResult.hasCellPhone = true
-                   builderResult.cell_phone = value
-               }
-          }
-          public func clearCellPhone() -> ProfileService.Containers.ProfileBuilder{
-               builderResult.hasCellPhone = false
-               builderResult.cell_phone = ""
-               return self
-          }
-          public var hasWorkPhone:Bool {
-               get {
-                    return builderResult.hasWorkPhone
-               }
-          }
-          public var work_phone:String {
-               get {
-                    return builderResult.work_phone
-               }
-               set (value) {
-                   builderResult.hasWorkPhone = true
-                   builderResult.work_phone = value
-               }
-          }
-          public func clearWorkPhone() -> ProfileService.Containers.ProfileBuilder{
-               builderResult.hasWorkPhone = false
-               builderResult.work_phone = ""
-               return self
-          }
           public var hasImageUrl:Bool {
                get {
                     return builderResult.hasImageUrl
@@ -801,25 +764,6 @@ final public class ProfileService : GeneratedMessage {
           public func clearImageUrl() -> ProfileService.Containers.ProfileBuilder{
                builderResult.hasImageUrl = false
                builderResult.image_url = ""
-               return self
-          }
-          public var hasEmail:Bool {
-               get {
-                    return builderResult.hasEmail
-               }
-          }
-          public var email:String {
-               get {
-                    return builderResult.email
-               }
-               set (value) {
-                   builderResult.hasEmail = true
-                   builderResult.email = value
-               }
-          }
-          public func clearEmail() -> ProfileService.Containers.ProfileBuilder{
-               builderResult.hasEmail = false
-               builderResult.email = ""
                return self
           }
           public var hasTeamId:Bool {
@@ -986,6 +930,56 @@ final public class ProfileService : GeneratedMessage {
                builderResult.nickname = ""
                return self
           }
+          public var contact_methods:Array<ProfileService.Containers.ContactMethod> {
+               get {
+                   return builderResult.contact_methods
+               }
+               set (value) {
+                   builderResult.contact_methods = value
+               }
+          }
+          public func clearContactMethods() -> ProfileService.Containers.ProfileBuilder {
+            builderResult.contact_methods.removeAll(keepCapacity: false)
+            return self
+          }
+          public var hasSeatingInfo:Bool {
+               get {
+                    return builderResult.hasSeatingInfo
+               }
+          }
+          public var seating_info:String {
+               get {
+                    return builderResult.seating_info
+               }
+               set (value) {
+                   builderResult.hasSeatingInfo = true
+                   builderResult.seating_info = value
+               }
+          }
+          public func clearSeatingInfo() -> ProfileService.Containers.ProfileBuilder{
+               builderResult.hasSeatingInfo = false
+               builderResult.seating_info = ""
+               return self
+          }
+          public var hasEmail:Bool {
+               get {
+                    return builderResult.hasEmail
+               }
+          }
+          public var email:String {
+               get {
+                    return builderResult.email
+               }
+               set (value) {
+                   builderResult.hasEmail = true
+                   builderResult.email = value
+               }
+          }
+          public func clearEmail() -> ProfileService.Containers.ProfileBuilder{
+               builderResult.hasEmail = false
+               builderResult.email = ""
+               return self
+          }
           override public var internalGetResult:GeneratedMessage {
                get {
                   return builderResult
@@ -1028,17 +1022,8 @@ final public class ProfileService : GeneratedMessage {
             if other.hasLastName {
                  last_name = other.last_name
             }
-            if other.hasCellPhone {
-                 cell_phone = other.cell_phone
-            }
-            if other.hasWorkPhone {
-                 work_phone = other.work_phone
-            }
             if other.hasImageUrl {
                  image_url = other.image_url
-            }
-            if other.hasEmail {
-                 email = other.email
             }
             if other.hasTeamId {
                  team_id = other.team_id
@@ -1066,6 +1051,15 @@ final public class ProfileService : GeneratedMessage {
             }
             if other.hasNickname {
                  nickname = other.nickname
+            }
+            if !other.contact_methods.isEmpty  {
+               builderResult.contact_methods += other.contact_methods
+            }
+            if other.hasSeatingInfo {
+                 seating_info = other.seating_info
+            }
+            if other.hasEmail {
+                 email = other.email
             }
             mergeUnknownFields(other.unknownFields)
             return self
@@ -1104,45 +1098,47 @@ final public class ProfileService : GeneratedMessage {
                 last_name = input.readString()
 
               case 66 :
-                cell_phone = input.readString()
-
-              case 74 :
-                work_phone = input.readString()
-
-              case 82 :
                 image_url = input.readString()
 
-              case 90 :
-                email = input.readString()
-
-              case 98 :
+              case 74 :
                 team_id = input.readString()
 
-              case 106 :
+              case 82 :
                 full_name = input.readString()
 
-              case 114 :
+              case 90 :
                 birth_date = input.readString()
 
-              case 122 :
+              case 98 :
                 hire_date = input.readString()
 
-              case 128 :
+              case 104 :
                 verified = input.readBool()
 
-              case 138 :
+              case 114 :
                 var subBuilder = ProfileService.Containers.ProfileItem.builder()
                 input.readMessage(subBuilder,extensionRegistry:extensionRegistry)
                 items += [subBuilder.buildPartial()]
 
-              case 146 :
+              case 122 :
                 about = input.readString()
 
-              case 154 :
+              case 130 :
                 location_id = input.readString()
 
-              case 162 :
+              case 138 :
                 nickname = input.readString()
+
+              case 146 :
+                var subBuilder = ProfileService.Containers.ContactMethod.builder()
+                input.readMessage(subBuilder,extensionRegistry:extensionRegistry)
+                contact_methods += [subBuilder.buildPartial()]
+
+              case 154 :
+                seating_info = input.readString()
+
+              case 162 :
+                email = input.readString()
 
               default:
                 if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
@@ -1378,6 +1374,327 @@ final public class ProfileService : GeneratedMessage {
 
               case 18 :
                 value = input.readString()
+
+              default:
+                if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
+                   unknownFields = unknownFieldsBuilder.build()
+                   return self
+                }
+              }
+            }
+          }
+        }
+
+
+
+      //Nested type declaration end
+
+
+
+      //Nested type declaration start
+
+        final public class ContactMethod : GeneratedMessage {
+          override public subscript (key: String) -> Any? {
+                 switch key {
+                 case "id": return id
+                 case "label": return label
+                 case "value": return value
+                 case "type": return Int(self.type.rawValue)
+                 default: return nil
+                 }
+          }
+
+          public private(set) var hasId:Bool = false
+          public private(set) var id:String = ""
+
+          public private(set) var hasLabel:Bool = false
+          public private(set) var label:String = ""
+
+          public private(set) var hasValue:Bool = false
+          public private(set) var value:String = ""
+
+          public private(set) var type:ProfileService.ContactMethodType = ProfileService.ContactMethodType.CellPhone
+          public private(set) var hasTypes:Bool = false
+          required public init() {
+               super.init()
+          }
+          override public func isInitialized() -> Bool {
+           return true
+          }
+          override public func writeToCodedOutputStream(output:CodedOutputStream) {
+            if hasId {
+              output.writeString(1, value:id)
+            }
+            if hasLabel {
+              output.writeString(2, value:label)
+            }
+            if hasValue {
+              output.writeString(3, value:value)
+            }
+            if hasTypes {
+              output.writeEnum(4, value:type.rawValue)
+            }
+            unknownFields.writeToCodedOutputStream(output)
+          }
+          override public func serializedSize() -> Int32 {
+            var size:Int32 = memoizedSerializedSize
+            if size != -1 {
+             return size
+            }
+
+            size = 0
+            if hasId {
+              size += WireFormat.computeStringSize(1, value:id)
+            }
+            if hasLabel {
+              size += WireFormat.computeStringSize(2, value:label)
+            }
+            if hasValue {
+              size += WireFormat.computeStringSize(3, value:value)
+            }
+            if (hasTypes) {
+              size += WireFormat.computeEnumSize(4, value:type.rawValue)
+            }
+            size += unknownFields.serializedSize()
+            memoizedSerializedSize = size
+            return size
+          }
+          public class func parseFromData(data:[Byte]) -> ProfileService.Containers.ContactMethod {
+            return ProfileService.Containers.ContactMethod.builder().mergeFromData(data).build()
+          }
+          public class func parseFromData(data:[Byte], extensionRegistry:ExtensionRegistry) -> ProfileService.Containers.ContactMethod {
+            return ProfileService.Containers.ContactMethod.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
+          }
+          public class func parseFromInputStream(input:NSInputStream) -> ProfileService.Containers.ContactMethod {
+            return ProfileService.Containers.ContactMethod.builder().mergeFromInputStream(input).build()
+          }
+          public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->ProfileService.Containers.ContactMethod {
+            return ProfileService.Containers.ContactMethod.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
+          }
+          public class func parseFromCodedInputStream(input:CodedInputStream) -> ProfileService.Containers.ContactMethod {
+            return ProfileService.Containers.ContactMethod.builder().mergeFromCodedInputStream(input).build()
+          }
+          public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.Containers.ContactMethod {
+            return ProfileService.Containers.ContactMethod.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
+          }
+          public class func builder() -> ProfileService.Containers.ContactMethodBuilder {
+            return ProfileService.Containers.ContactMethod.classBuilder() as ProfileService.Containers.ContactMethodBuilder
+          }
+          public func builder() -> ProfileService.Containers.ContactMethodBuilder {
+            return classBuilder() as ProfileService.Containers.ContactMethodBuilder
+          }
+          public override class func classBuilder() -> MessageBuilder {
+            return ProfileService.Containers.ContactMethodBuilder()
+          }
+          public override func classBuilder() -> MessageBuilder {
+            return ProfileService.Containers.ContactMethod.builder()
+          }
+          public func toBuilder() -> ProfileService.Containers.ContactMethodBuilder {
+            return ProfileService.Containers.ContactMethod.builderWithPrototype(self)
+          }
+          public class func builderWithPrototype(prototype:ProfileService.Containers.ContactMethod) -> ProfileService.Containers.ContactMethodBuilder {
+            return ProfileService.Containers.ContactMethod.builder().mergeFrom(prototype)
+          }
+          override public func writeDescriptionTo(inout output:String, indent:String) {
+            if hasId {
+              output += "\(indent) id: \(id) \n"
+            }
+            if hasLabel {
+              output += "\(indent) label: \(label) \n"
+            }
+            if hasValue {
+              output += "\(indent) value: \(value) \n"
+            }
+            if (hasTypes) {
+              output += "\(indent) type: \(type.rawValue)\n"
+            }
+            unknownFields.writeDescriptionTo(&output, indent:indent)
+          }
+          override public var hashValue:Int {
+              get {
+                  var hashCode:Int = 7
+                  if hasId {
+                     hashCode = (hashCode &* 31) &+ id.hashValue
+                  }
+                  if hasLabel {
+                     hashCode = (hashCode &* 31) &+ label.hashValue
+                  }
+                  if hasValue {
+                     hashCode = (hashCode &* 31) &+ value.hashValue
+                  }
+                  if hasTypes {
+                     hashCode = (hashCode &* 31) &+ Int(type.rawValue)
+                  }
+                  hashCode = (hashCode &* 31) &+  unknownFields.hashValue
+                  return hashCode
+              }
+          }
+
+
+          //Meta information declaration start
+
+          override public class func className() -> String {
+              return "ProfileService.Containers.ContactMethod"
+          }
+          override public func className() -> String {
+              return "ProfileService.Containers.ContactMethod"
+          }
+          override public func classMetaType() -> GeneratedMessage.Type {
+              return ProfileService.Containers.ContactMethod.self
+          }
+
+
+          //Meta information declaration end
+
+        }
+
+        final public class ContactMethodBuilder : GeneratedMessageBuilder {
+          private var builderResult:ProfileService.Containers.ContactMethod
+
+          required override public init () {
+             builderResult = ProfileService.Containers.ContactMethod()
+             super.init()
+          }
+          public var hasId:Bool {
+               get {
+                    return builderResult.hasId
+               }
+          }
+          public var id:String {
+               get {
+                    return builderResult.id
+               }
+               set (value) {
+                   builderResult.hasId = true
+                   builderResult.id = value
+               }
+          }
+          public func clearId() -> ProfileService.Containers.ContactMethodBuilder{
+               builderResult.hasId = false
+               builderResult.id = ""
+               return self
+          }
+          public var hasLabel:Bool {
+               get {
+                    return builderResult.hasLabel
+               }
+          }
+          public var label:String {
+               get {
+                    return builderResult.label
+               }
+               set (value) {
+                   builderResult.hasLabel = true
+                   builderResult.label = value
+               }
+          }
+          public func clearLabel() -> ProfileService.Containers.ContactMethodBuilder{
+               builderResult.hasLabel = false
+               builderResult.label = ""
+               return self
+          }
+          public var hasValue:Bool {
+               get {
+                    return builderResult.hasValue
+               }
+          }
+          public var value:String {
+               get {
+                    return builderResult.value
+               }
+               set (value) {
+                   builderResult.hasValue = true
+                   builderResult.value = value
+               }
+          }
+          public func clearValue() -> ProfileService.Containers.ContactMethodBuilder{
+               builderResult.hasValue = false
+               builderResult.value = ""
+               return self
+          }
+            public var hasTypes:Bool{
+                get {
+                    return builderResult.hasTypes
+                }
+            }
+            public var type:ProfileService.ContactMethodType {
+                get {
+                    return builderResult.type
+                }
+                set (value) {
+                    builderResult.hasTypes = true
+                    builderResult.type = value
+                }
+            }
+            public func clearTypes() -> ProfileService.Containers.ContactMethodBuilder {
+               builderResult.hasTypes = false
+               builderResult.type = .CellPhone
+               return self
+            }
+          override public var internalGetResult:GeneratedMessage {
+               get {
+                  return builderResult
+               }
+          }
+          public override func clear() -> ProfileService.Containers.ContactMethodBuilder {
+            builderResult = ProfileService.Containers.ContactMethod()
+            return self
+          }
+          public override func clone() -> ProfileService.Containers.ContactMethodBuilder {
+            return ProfileService.Containers.ContactMethod.builderWithPrototype(builderResult)
+          }
+          public override func build() -> ProfileService.Containers.ContactMethod {
+               checkInitialized()
+               return buildPartial()
+          }
+          public func buildPartial() -> ProfileService.Containers.ContactMethod {
+            var returnMe:ProfileService.Containers.ContactMethod = builderResult
+            return returnMe
+          }
+          public func mergeFrom(other:ProfileService.Containers.ContactMethod) -> ProfileService.Containers.ContactMethodBuilder {
+            if other.hasId {
+                 id = other.id
+            }
+            if other.hasLabel {
+                 label = other.label
+            }
+            if other.hasValue {
+                 value = other.value
+            }
+            if other.hasTypes {
+                 type = other.type
+            }
+            mergeUnknownFields(other.unknownFields)
+            return self
+          }
+          public override func mergeFromCodedInputStream(input:CodedInputStream) ->ProfileService.Containers.ContactMethodBuilder {
+               return mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
+          }
+          public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.Containers.ContactMethodBuilder {
+            var unknownFieldsBuilder:UnknownFieldSetBuilder = UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
+            while (true) {
+              var tag = input.readTag()
+              switch tag {
+              case 0: 
+                self.unknownFields = unknownFieldsBuilder.build()
+                return self
+
+              case 10 :
+                id = input.readString()
+
+              case 18 :
+                label = input.readString()
+
+              case 26 :
+                value = input.readString()
+
+              case 32 :
+                let valueInttype = input.readEnum()
+                if let enumstype = ProfileService.ContactMethodType(rawValue:valueInttype){
+                     type = enumstype
+                } else {
+                     unknownFieldsBuilder.mergeVarintField(4, value:Int64(valueInttype))
+                }
 
               default:
                 if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
@@ -13384,6 +13701,32 @@ final public class ProfileService : GeneratedMessage {
 
     //Enum type declaration end 
 
+
+
+    //Enum type declaration start 
+
+    public enum ContactMethodType:Int32 {
+      case CellPhone = 0
+      case Phone = 1
+      case Email = 2
+      case Slack = 3
+      case Twitter = 4
+      case Hipchat = 5
+      case Facebook = 6
+      case Skype = 7
+
+      public static func IsValidValue(value:Int32) ->Bool {
+          if let check = ContactMethodType(rawValue:value) {
+              return true
+          }
+          return false
+      }
+    }
+
+
+
+    //Enum type declaration end 
+
   override public subscript (key: String) -> Any? {
          switch key {
          default: return nil
@@ -13553,6 +13896,18 @@ public extension ProfileService.Containers.ProfileItem {
         var bytes = [Byte](count: data.length, repeatedValue: 0)
         data.getBytes(&bytes)
         return ProfileService.Containers.ProfileItem.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
+    }
+}
+public extension ProfileService.Containers.ContactMethod {
+    class func parseFromNSData(data:NSData) -> ProfileService.Containers.ContactMethod {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return ProfileService.Containers.ContactMethod.builder().mergeFromData(bytes).build()
+    }
+    class func parseFromNSData(data:NSData, extensionRegistry:ExtensionRegistry) -> ProfileService.Containers.ContactMethod {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return ProfileService.Containers.ContactMethod.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
     }
 }
 public extension ProfileService.Containers.Tag {

@@ -260,6 +260,7 @@
 		BFA1187F1AA2738E0073B13A /* AppreciationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA1187E1AA2738E0073B13A /* AppreciationService.swift */; };
 		BFAE43551A8B05010085AB2B /* HomelessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAE43531A8B05010085AB2B /* HomelessViewController.swift */; };
 		BFAE43561A8B05010085AB2B /* HomelessViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFAE43541A8B05010085AB2B /* HomelessViewController.xib */; };
+		BFAF272F1ACB75A600E881BC /* ContactInfoDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAF272E1ACB75A600E881BC /* ContactInfoDataSource.swift */; };
 		BFB791891A2C346A0048E8FB /* CALayerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB791881A2C346A0048E8FB /* CALayerExtension.swift */; };
 		BFB7918B1A2C3C860048E8FB /* SpringFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB7918A1A2C3C860048E8FB /* SpringFlowLayout.swift */; };
 		BFB83F131A8D2D80000223C0 /* Mixpanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB83F121A8D2D80000223C0 /* Mixpanel.swift */; };
@@ -634,6 +635,7 @@
 		BFA1187E1AA2738E0073B13A /* AppreciationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppreciationService.swift; sourceTree = "<group>"; };
 		BFAE43531A8B05010085AB2B /* HomelessViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomelessViewController.swift; sourceTree = "<group>"; };
 		BFAE43541A8B05010085AB2B /* HomelessViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomelessViewController.xib; sourceTree = "<group>"; };
+		BFAF272E1ACB75A600E881BC /* ContactInfoDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactInfoDataSource.swift; sourceTree = "<group>"; };
 		BFB791881A2C346A0048E8FB /* CALayerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CALayerExtension.swift; sourceTree = "<group>"; };
 		BFB7918A1A2C3C860048E8FB /* SpringFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpringFlowLayout.swift; sourceTree = "<group>"; };
 		BFB83F121A8D2D80000223C0 /* Mixpanel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mixpanel.swift; sourceTree = "<group>"; };
@@ -1074,6 +1076,7 @@
 				8F085A891A6B0CB300F8139B /* TeamDetailDataSource.swift */,
 				8F823E4E1A72A0850006264B /* TeamsOverviewDataSource.swift */,
 				BF27CC931A7569B700E683C7 /* UnderlyingCollectionViewDataSource.swift */,
+				BFAF272E1ACB75A600E881BC /* ContactInfoDataSource.swift */,
 			);
 			name = DataSources;
 			sourceTree = "<group>";
@@ -1685,6 +1688,7 @@
 				8FEE88471A411BA90011CE4A /* UIViewControllerExtension.swift in Sources */,
 				8F085A8D1A6B5B4900F8139B /* TeamHeaderCollectionReusableView.swift in Sources */,
 				BFE213CD1A5EF7E30033E2F5 /* AppDelegateSearchCacheExtension.swift in Sources */,
+				BFAF272F1ACB75A600E881BC /* ContactInfoDataSource.swift in Sources */,
 				8F22CBE81A27FDA70026376E /* KeyValueCollectionViewCell.swift in Sources */,
 				8F5933D01ACA331700905E14 /* UIDeviceExtension.swift in Sources */,
 				BF9D72121A68492C002CDC66 /* ObjectStore.swift in Sources */,

@@ -16,7 +16,7 @@ class ContactInfoViewController: CircleAlertViewController, UICollectionViewDele
 
     private var collectionView: UICollectionView!
     private var collectionViewDelegate = CardCollectionViewDelegate()
-    private var collectionViewDataSource = ProfileDetailDataSource()
+    private var collectionViewDataSource: ContactInfoDataSource!
     private var collectionViewLayout = UICollectionViewFlowLayout()
 
     override func viewDidLoad() {
@@ -59,9 +59,7 @@ class ContactInfoViewController: CircleAlertViewController, UICollectionViewDele
         collectionView.opaque = true
         collectionView.backgroundColor = UIColor.appViewBackgroundColor()
         parentContainerView.addSubview(collectionView)
-        collectionViewDataSource.onlyShowContactInfo = true
-        collectionViewDataSource.animateContent = false
-        collectionViewDataSource.profile = profile
+        collectionViewDataSource = ContactInfoDataSource(profile: profile)
         collectionView.dataSource = collectionViewDataSource
         collectionView.delegate = collectionViewDelegate
         collectionViewDataSource.loadData { (error) -> Void in
@@ -76,20 +74,18 @@ class ContactInfoViewController: CircleAlertViewController, UICollectionViewDele
     // MARK: - UICollectionViewDelegate
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        switch collectionViewDataSource.typeOfCell(indexPath) {
+        let contactMethod = profile.contact_methods[indexPath.row]
+        switch contactMethod.type {
         case .Email:
             presentMailViewController(
-            [profile.email],
-            subject: "Hey",
-            messageBody: "",
-            completionHandler: nil
-        )
-        
-        case .CellPhone:
-            if let number = profile.cell_phone as String? {
-                if let phoneURL = NSURL(string: NSString(format: "tel://%@", number.removePhoneNumberFormatting())) {
-                    UIApplication.sharedApplication().openURL(phoneURL)
-                }
+                [contactMethod.value],
+                subject: "Hey",
+                messageBody: "",
+                completionHandler: nil
+            )
+        case .CellPhone, .Phone:
+            if let phoneURL = NSURL(string: NSString(format: "tel://%@", contactMethod.value.removePhoneNumberFormatting())) {
+                UIApplication.sharedApplication().openURL(phoneURL)
             }
             
         default:

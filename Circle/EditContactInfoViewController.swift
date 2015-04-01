@@ -299,15 +299,20 @@ class EditContactInfoViewController: UIViewController, UINavigationControllerDel
                             
                             case "title":
                                 builder.title = value as String
-                            
-                            case "email":
-                                builder.email = value as String
-                            
-                            case "work_phone":
-                                builder.work_phone = value as String
-                                
-                            case "cell_phone":
-                                builder.cell_phone = value as String
+//                            
+//                            case "email":
+//                                let contactMethodBuilder = ProfileService.Containers.ContactMethod.builder()
+//                                contactMethodBuilder.label = "Email"
+//                                contactMethodBuilder.value = value
+//                                contactMethodBuilder.type = .Email
+//                                builder.contact_methods.append(contactMethodBuilder.build())
+//                            
+//                            case "work_phone":
+//                                let contactBuilder
+//                                builder.work_phone = value as String
+//                                
+//                            case "cell_phone":
+//                                builder.cell_phone = value as String
                                 
                             default:
                                 break

@@ -241,3 +241,19 @@ extension ProfileService {
         }
     }
 }
+
+extension ProfileService.Containers.Profile {
+    
+    func getEmail() -> String? {
+        return email
+    }
+    
+    func getCellPhone() -> String? {
+        let cellPhones = contact_methods.filter { $0.type == .CellPhone }
+        if cellPhones.count > 0 {
+            return cellPhones[0].value
+        }
+        return nil
+    }
+    
+}

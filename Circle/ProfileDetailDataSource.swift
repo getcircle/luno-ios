@@ -12,7 +12,6 @@ import ProtobufRegistry
 class ProfileDetailDataSource: CardDataSource {
 
     var addBannerOfType: BannerType?
-    var onlyShowContactInfo = false
     var profile: ProfileService.Containers.Profile!
     var profileHeaderView: ProfileHeaderCollectionReusableView?
 
@@ -39,33 +38,26 @@ class ProfileDetailDataSource: CardDataSource {
     
     override func loadData(completionHandler: (error: NSError?) -> Void) {
         resetCards()
-
-        if onlyShowContactInfo == true {
-            populateData()
-            completionHandler(error: nil)
-        }
-        else {
-            // Add placeholder card to load profile header instantly
-            var placeholderCard = Card(cardType: .Placeholder, title: "Info")
-            placeholderCard.addHeader(
-                headerClass: ProfileHeaderCollectionReusableView.self
-            )
-            placeholderCard.sectionInset = UIEdgeInsetsZero
-            appendCard(placeholderCard)
-            ProfileService.Actions.getExtendedProfile(profile.id) {
-                (profile, manager, team, address, skills, _, identities, resume, location, error) -> Void in
-                if error == nil {
-                    self.manager = manager
-                    self.team = team
-                    self.address = address
-                    self.skills = skills
-                    self.identities = identities
-                    self.resume = resume
-                    self.location = location
-                    self.populateData()
-                }
-                completionHandler(error: error)
+        // Add placeholder card to load profile header instantly
+        var placeholderCard = Card(cardType: .Placeholder, title: "Info")
+        placeholderCard.addHeader(
+            headerClass: ProfileHeaderCollectionReusableView.self
+        )
+        placeholderCard.sectionInset = UIEdgeInsetsZero
+        appendCard(placeholderCard)
+        ProfileService.Actions.getExtendedProfile(profile.id) {
+            (profile, manager, team, address, skills, _, identities, resume, location, error) -> Void in
+            if error == nil {
+                self.manager = manager
+                self.team = team
+                self.address = address
+                self.skills = skills
+                self.identities = identities
+                self.resume = resume
+                self.location = location
+                self.populateData()
             }
+            completionHandler(error: error)
         }
     }
     
@@ -73,24 +65,19 @@ class ProfileDetailDataSource: CardDataSource {
     
     internal func configureSections() {
         sections.removeAll(keepCapacity: true)
-        if onlyShowContactInfo {
-            sections.append(getContactInfoSection())
-        }
-        else {
-            sections.append(getQuickActionsSection())
-            if let addBanner = addBannerOfType {
-                if !isProfileLoggedInUserProfile() {
-                    // sections.append(getBannersSection())
-                }
+        sections.append(getQuickActionsSection())
+        if let addBanner = addBannerOfType {
+            if !isProfileLoggedInUserProfile() {
+                // sections.append(getBannersSection())
             }
-            sections.append(getAboutSection())
-            sections.append(getSkillsSection())
-            sections.append(getManagerSection())
-            sections.extend(getOfficeSections())
-            sections.append(getBasicInfoSection())
-            sections.append(getWorkExperienceSection())
-            sections.append(getEducationSection())
         }
+        sections.append(getAboutSection())
+        sections.append(getSkillsSection())
+        sections.append(getManagerSection())
+        sections.extend(getOfficeSections())
+        sections.append(getBasicInfoSection())
+        sections.append(getWorkExperienceSection())
+        sections.append(getEducationSection())
     }
 
     private func getQuickActionsSection() -> Section {
@@ -151,47 +138,6 @@ class ProfileDetailDataSource: CardDataSource {
             )
         ]
         return Section(title: AppStrings.ProfileSectionInfoTitle, items: sectionItems, cardType: .KeyValue, addCardHeader: true)
-    }
-    
-    private func getContactInfoSection() -> Section {
-        let sectionItems = [
-            SectionItem(
-                title: "Email",
-                container: "profile",
-                containerKey: "email",
-                contentType: .Email,
-                image: nil
-            ),
-            SectionItem(
-                title: "Cell Phone",
-                container: "profile",
-                containerKey: "cell_phone",
-                contentType: .CellPhone,
-                image: nil
-            ),
-            SectionItem(
-                title: "Work Phone",
-                container: "profile",
-                containerKey: "work_phone",
-                contentType: .WorkPhone,
-                image: nil
-            )
-        ]
-        return Section(title: "Info", items: sectionItems, cardType: .KeyValue)
-    }
-    
-    func heightOfContactInfoSection() -> CGFloat {
-        var height: CGFloat = 0.0
-        let contactsSection = getContactInfoSection()
-        for item in contactsSection.items {
-            if let value = getValueForItem(item) as? String {
-                if value != "" {
-                    height += KeyValueCollectionViewCell.height
-                }
-            }
-        }
-
-        return height
     }
 
     private func getOfficeSections() -> [Section] {

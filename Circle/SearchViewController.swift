@@ -548,17 +548,26 @@ class SearchViewController: UIViewController,
     private func performQuickAction(profile: ProfileService.Containers.Profile) -> Bool {
         switch selectedAction {
         case .Email:
-            presentMailViewController([profile.email], subject: "Hey", messageBody: "", completionHandler: {() -> Void in
-                self.resetQuickAction()
-            })
-            return true
+            if let email = profile.getEmail() {
+                presentMailViewController([email], subject: "Hey", messageBody: "", completionHandler: {() -> Void in
+                    self.resetQuickAction()
+                })
+                return true
+            }
 
         case .Message:
-            var recipient = profile.cell_phone ?? profile.email
-            presentMessageViewController([recipient], subject: "Hey", messageBody: "", completionHandler: {() -> Void in
-                self.resetQuickAction()
-            })
-            return true
+            var recipient: String?
+            if let phone = profile.getCellPhone() {
+                recipient = phone
+            } else if let email = profile.getEmail() {
+                recipient = email
+            }
+            if recipient != nil {
+                presentMessageViewController([recipient!], subject: "Hey", messageBody: "", completionHandler: {() -> Void in
+                    self.resetQuickAction()
+                })
+                return true
+            }
 
         case .Note:
             let viewController = NewNoteViewController(nibName: "NewNoteViewController", bundle: nil)
@@ -570,7 +579,7 @@ class SearchViewController: UIViewController,
             return true
             
         case .Phone:
-            if let recipient = profile.cell_phone as String? {
+            if let recipient = profile.getCellPhone() as String? {
                 if let phoneURL = NSURL(string: NSString(format: "tel://%@", recipient.removePhoneNumberFormatting())) {
                     UIApplication.sharedApplication().openURL(phoneURL)
                 }

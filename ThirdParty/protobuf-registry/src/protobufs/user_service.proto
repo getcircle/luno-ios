@@ -52,6 +52,7 @@ message UserService {
             optional string app_version = 5;
             optional string device_uuid = 6;
             optional string user_id = 7;
+            optional string language_preference = 8;
         }
 
         message AccessRequest {

@@ -14,6 +14,17 @@ message ProfileService {
         PROJECT = 3;
     }
 
+    enum ContactMethodType {
+        CELL_PHONE = 0;
+        PHONE = 1;
+        EMAIL = 2;
+        SLACK = 3;
+        TWITTER = 4;
+        HIPCHAT = 5;
+        FACEBOOK = 6;
+        SKYPE = 7;
+    }
+
     // MARK: - Containers
 
     message Containers {
@@ -26,24 +37,31 @@ message ProfileService {
             optional string title = 5;
             optional string first_name = 6;
             optional string last_name = 7;
-            optional string cell_phone = 8;
-            optional string work_phone = 9;
-            optional string image_url = 10;
-            optional string email = 11;
-            optional string team_id = 12;
-            optional string full_name = 13;
-            optional string birth_date = 14;
-            optional string hire_date = 15;
-            optional bool verified = 16;
-            repeated ProfileItem items = 17;
-            optional string about = 18;
-            optional string location_id = 19;
-            optional string nickname = 20;
+            optional string image_url = 8;
+            optional string team_id = 9;
+            optional string full_name = 10;
+            optional string birth_date = 11;
+            optional string hire_date = 12;
+            optional bool verified = 13;
+            repeated ProfileItem items = 14;
+            optional string about = 15;
+            optional string location_id = 16;
+            optional string nickname = 17;
+            repeated ContactMethod contact_methods = 18;
+            optional string seating_info = 19;
+            optional string email = 20;
         }
 
         message ProfileItem {
             optional string key = 1;
             optional string value = 2;
+        }
+
+        message ContactMethod {
+            optional string id = 1;
+            optional string label = 2;
+            optional string value = 3;
+            optional ContactMethodType type = 4;
         }
 
         message Tag {
