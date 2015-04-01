@@ -122,7 +122,7 @@ class SettingsDataSource: CardDataSource {
                 "type": SettingsCellType.AccountEmail.rawValue
             ],
             [
-                "text": NSLocalizedString("Sign out", comment: "Title of sign out button"),
+                "text": AppStrings.SignOutButtonTitle,
                 "type": SettingsCellType.LogOut.rawValue
             ]
         ])
