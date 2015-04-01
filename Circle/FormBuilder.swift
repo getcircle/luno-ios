@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import ProtobufRegistry
 
 class FormBuilder: NSObject, UITextFieldDelegate {
     
@@ -18,7 +19,7 @@ class FormBuilder: NSObject, UITextFieldDelegate {
         case Select
         case DatePicker
     }
-    
+
     class SectionItem {
         var container: String
         var containerKey: String
@@ -26,7 +27,7 @@ class FormBuilder: NSObject, UITextFieldDelegate {
         var keyboardType: UIKeyboardType
         var placeholder: String
         var type: FormFieldType
-        var value: Any?
+        var value: String?
         
         init(placeholder withPlaceholder: String, type andType: FormFieldType, keyboardType andKeyboardType: UIKeyboardType, container andContainer: String, containerKey andContainerKey: String) {
             placeholder = withPlaceholder
@@ -124,7 +125,7 @@ class FormBuilder: NSObject, UITextFieldDelegate {
                     textField.autoAlignAxisToSuperviewAxis(.Horizontal)
                     textField.autoSetDimension(.Height, toSize: 40.0)
 
-                    if let textValue = item.value as? String {
+                    if let textValue = item.value {
                         textField.text = textValue
                     }
 
@@ -172,13 +173,28 @@ class FormBuilder: NSObject, UITextFieldDelegate {
                     switch item.type {
                     case .TextField:
                         item.value = (input as UITextField).text
-                        println(item.value)
 
                     default:
                         break
                     }
                 }
             }
+        }
+    }
+}
+
+extension FormBuilder {
+    class ContactSectionItem: SectionItem {
+        var contactMethodType: ProfileService.ContactMethodType
+        
+        required init(placeholder withPlaceholder: String, type andType: FormFieldType, keyboardType andKeyboardType: UIKeyboardType, container andContainer: String, containerKey andContainerKey: String, contactMethodType andContactMethodType: ProfileService.ContactMethodType) {
+            contactMethodType = andContactMethodType
+            super.init(placeholder: withPlaceholder, type: andType, keyboardType: andKeyboardType, container: andContainer, containerKey: andContainerKey)
+        }
+        
+        convenience init(placeholder withPlaceholder: String, type andType: FormFieldType, keyboardType andKeyboardType: UIKeyboardType, contactMethodType andContactMethodType: ProfileService.ContactMethodType) {
+         
+            self.init(placeholder: withPlaceholder, type: andType, keyboardType: andKeyboardType, container: "", containerKey: "", contactMethodType: andContactMethodType)
         }
     }
 }

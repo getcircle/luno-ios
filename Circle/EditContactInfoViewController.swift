@@ -31,7 +31,6 @@ class EditContactInfoViewController: UIViewController, UINavigationControllerDel
         configureContentView()
         configureNavigationButtons()
         configureFormFields()
-        populateData()
         formBuilder.build(rootContentView)
     }
     
@@ -80,105 +79,101 @@ class EditContactInfoViewController: UIViewController, UINavigationControllerDel
                 title: AppStrings.QuickActionCallLabel,
                 imageSource: "TitlePhone",
                 items: [
-                    FormBuilder.SectionItem(
+                    FormBuilder.ContactSectionItem(
                         placeholder: NSLocalizedString("Cell Phone", comment: "Placeholder for textfield that accepts a cell phone"),
                         type: .TextField,
                         keyboardType: .PhonePad,
-                        container: "profile",
-                        containerKey: "cell_phone"
+                        contactMethodType: .CellPhone
                     ),
-                    FormBuilder.SectionItem(
+                    FormBuilder.ContactSectionItem(
                         placeholder: NSLocalizedString("Work Phone", comment: "Placeholder for textfield that accepts a work phone"),
                         type: .TextField,
                         keyboardType: .PhonePad,
-                        container: "profile",
-                        containerKey: "work_phone"
+                        contactMethodType: .Phone
                     )
             ]),
             FormBuilder.Section(
                 title: AppStrings.QuickActionEmailLabel,
                 imageSource: "TitleEmail",
                 items: [
-                FormBuilder.SectionItem(
+                FormBuilder.ContactSectionItem(
                     placeholder: NSLocalizedString("Work Email", comment: "Placeholder for textfield that accepts a work email"),
                     type: .TextField,
                     keyboardType: .EmailAddress,
-                    container: "profile",
-                    containerKey: "email"
+                    contactMethodType: .Phone
                 ),
-                FormBuilder.SectionItem(
+                FormBuilder.ContactSectionItem(
                     placeholder: NSLocalizedString("Personal Email", comment: "Placeholder for textfield that accepts a personal email"), 
                     type: .TextField,
                     keyboardType: .EmailAddress,
-                    container: "profile",
-                    containerKey: "personal_email"
+                    contactMethodType: .Email
                 )
             ]),
             FormBuilder.Section(
                 title: AppStrings.QuickActionMessageLabel,
                 imageSource: "TitleChat",
                 items: [
-                    FormBuilder.SectionItem(
+                    FormBuilder.ContactSectionItem(
                         placeholder: "Slack",
                         type: .TextField,
                         keyboardType: .PhonePad,
-                        container: "profile",
-                        containerKey: "slack"
+                        contactMethodType: .Slack
                     ),
-                    FormBuilder.SectionItem(
-                        placeholder: "HipChat",
+                    FormBuilder.ContactSectionItem(
+                        placeholder: "Hipchat",
                         type: .TextField,
                         keyboardType: .PhonePad,
-                        container: "profile",
-                        containerKey: "hip_chat"
+                        contactMethodType: .Hipchat
                     ),
-                    FormBuilder.SectionItem(
+                    FormBuilder.ContactSectionItem(
                         placeholder: "Facebook",
                         type: .TextField,
                         keyboardType: .PhonePad,
-                        container: "profile",
-                        containerKey: "messenger"
+                        contactMethodType: .Facebook
                     ),
-                    FormBuilder.SectionItem(
+                    FormBuilder.ContactSectionItem(
                         placeholder: "Sms",
                         type: .TextField,
                         keyboardType: .PhonePad,
-                        container: "profile",
-                        containerKey: "cell_phone"
+                        contactMethodType: .CellPhone
                     ),
-                    FormBuilder.SectionItem(
+                    FormBuilder.ContactSectionItem(
                         placeholder: "Twitter",
                         type: .TextField,
                         keyboardType: .PhonePad,
-                        container: "profile",
-                        containerKey: "twitter"
+                        contactMethodType: .Twitter
                     ),
             ]),
             FormBuilder.Section(
                 title: AppStrings.QuickActionVideoLabel,
                 imageSource: "TitleVideo",
                 items: [
-                    FormBuilder.SectionItem(
+                    FormBuilder.ContactSectionItem(
                         placeholder: "Skype",
                         type: .TextField,
                         keyboardType: .EmailAddress,
-                        container: "profile",
-                        containerKey: "skype"
+                        contactMethodType: .Skype
                     ),
-                    FormBuilder.SectionItem(
+                    FormBuilder.ContactSectionItem(
                         placeholder: "Hangouts",
                         type: .TextField,
                         keyboardType: .EmailAddress,
-                        container: "profile",
-                        containerKey: "hangouts"
+                        contactMethodType: .Skype
                     )
             ]),
         ]
         
+        var contactMethodValuesByType = Dictionary<ProfileService.ContactMethodType, String>()
+        for contactMethod in profile.contact_methods {
+            contactMethodValuesByType.updateValue(contactMethod.value, forKey: contactMethod.type)
+        }
+        
         for section in formSections {
             for item in section.items {
-                if item.container == "profile" {
-                    item.value = profile[item.containerKey]
+                if let contactItem = item as? FormBuilder.ContactSectionItem {
+                    if let value = contactMethodValuesByType[contactItem.contactMethodType] {
+                        item.value = value
+                    }
                 }
             }
         }
@@ -200,12 +195,6 @@ class EditContactInfoViewController: UIViewController, UINavigationControllerDel
         }
 
         addDoneButtonWithAction("saveButtonTapped:")
-    }
-
-    // MARK: - Data
-    
-    private func populateData() {
-
     }
     
     // MARK: - IBAction
@@ -284,43 +273,25 @@ class EditContactInfoViewController: UIViewController, UINavigationControllerDel
         builder.verified = true
         
         formBuilder.updateValues()
+        var contactMethods = Array<ProfileService.Containers.ContactMethod>()
         for section in formBuilder.sections {
             for item in section.items {
                 if let value = item.value {
-                    switch item.container {
-                        case "profile":
-                            // TODO: - Remove after subscripting support
-                            switch item.containerKey {
-                            case "title":
-                                builder.title = value as String
-//                            
-//                            case "email":
-//                                let contactMethodBuilder = ProfileService.Containers.ContactMethod.builder()
-//                                contactMethodBuilder.label = "Email"
-//                                contactMethodBuilder.value = value
-//                                contactMethodBuilder.type = .Email
-//                                builder.contact_methods.append(contactMethodBuilder.build())
-//                            
-//                            case "work_phone":
-//                                let contactBuilder
-//                                builder.work_phone = value as String
-//                                
-//                            case "cell_phone":
-//                                builder.cell_phone = value as String
-                                
-                            default:
-                                break
-                                
-                            }
-                        
-                        default:
-                            break
+                    if let contactItem = item as? FormBuilder.ContactSectionItem {
+                        if value.trimWhitespace() != "" {
+                            var contactMethod = ProfileService.Containers.ContactMethod.builder()
+                            contactMethod.label = contactItem.placeholder
+                            contactMethod.value = value.trimWhitespace()
+                            contactMethod.type = contactItem.contactMethodType
+                            contactMethods.append(contactMethod.build())
+                            println(item.value)
+                        }
                     }
                 }
-                println("Key - \(item.containerKey) Value - \(item.value)")
+                println("Key - \(item.placeholder) Value - \(item.value)")
             }
         }
-        
+        builder.contact_methods = contactMethods
         ProfileService.Actions.updateProfile(builder.build()) { (profile, error) -> Void in
             if let profile = profile {
                 AuthViewController.updateUserProfile(profile)
