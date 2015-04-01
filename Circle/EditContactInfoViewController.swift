@@ -20,6 +20,8 @@ class EditContactInfoViewController: UIViewController, UINavigationControllerDel
     
     var editProfileDelegate: EditProfileDelegate?
     var profile: ProfileService.Containers.Profile!
+
+    private var existingContactMethodsByType = Dictionary<ProfileService.ContactMethodType, ProfileService.Containers.ContactMethod>()
     private var formBuilder = FormBuilder()
     
     override func viewDidLoad() {
@@ -163,15 +165,14 @@ class EditContactInfoViewController: UIViewController, UINavigationControllerDel
             ]),
         ]
         
-        var contactMethodValuesByType = Dictionary<ProfileService.ContactMethodType, String>()
         for contactMethod in profile.contact_methods {
-            contactMethodValuesByType.updateValue(contactMethod.value, forKey: contactMethod.type)
+            existingContactMethodsByType.updateValue(contactMethod, forKey: contactMethod.type)
         }
         
         for section in formSections {
             for item in section.items {
                 if let contactItem = item as? FormBuilder.ContactSectionItem {
-                    if let value = contactMethodValuesByType[contactItem.contactMethodType] {
+                    if let value = existingContactMethodsByType[contactItem.contactMethodType]?.value {
                         item.value = value
                     }
                     
@@ -288,8 +289,15 @@ class EditContactInfoViewController: UIViewController, UINavigationControllerDel
             for item in section.items {
                 if let value = item.value {
                     if let contactItem = item as? FormBuilder.ContactSectionItem {
-                        if value.trimWhitespace() != "" && (contactItem.inputEnabled == nil || contactItem.inputEnabled == false) {
-                            var contactMethod = ProfileService.Containers.ContactMethod.builder()
+                        if value.trimWhitespace() != "" && (contactItem.inputEnabled == nil || contactItem.inputEnabled == true) {
+                            var contactMethod: ProfileService.Containers.ContactMethodBuilder
+                            if let existingContactMethod = existingContactMethodsByType[contactItem.contactMethodType] {
+                                contactMethod = existingContactMethod.toBuilder()
+                            }
+                            else {
+                                contactMethod = ProfileService.Containers.ContactMethod.builder()
+                            }
+
                             contactMethod.label = contactItem.placeholder
                             contactMethod.value = value.trimWhitespace()
                             contactMethod.type = contactItem.contactMethodType
