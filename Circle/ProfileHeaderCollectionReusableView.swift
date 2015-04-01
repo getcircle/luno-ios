@@ -121,7 +121,7 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
     func setProfile(userProfile: ProfileService.Containers.Profile) {
         var hasProfileImageChanged = profile?.image_url != userProfile.image_url
         profile = userProfile
-        nameLabel.text = userProfile.first_name + " " + (userProfile.hasNickname ? "(" + userProfile.nickname + ") " : "") + userProfile.last_name
+        nameLabel.text = userProfile.nameWithNickName()
         nameNavLabel.text = nameLabel.text
         titleLabel.text = userProfile.title
         titleNavLabel.text = titleLabel.text
