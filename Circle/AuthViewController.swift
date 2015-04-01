@@ -48,6 +48,8 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
     @IBOutlet weak var tagLineLabel: UILabel!
     @IBOutlet weak var googleSignInButton: UIButton!
     @IBOutlet weak var googleSignInButtonBottomConstraint: NSLayoutConstraint!
+    private var activityIndicator: CircleActivityIndicatorView?
+    private var googleSignInButtonText: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -242,10 +244,22 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
     // MARK: - Loading State
     
     private func showLoadingState() {
+        googleSignInButtonText = googleSignInButton.titleLabel?.text
+        googleSignInButton.setCustomAttributedTitle("", forState: .Normal)
+        if activityIndicator == nil {
+            // TODO this should be white
+            activityIndicator = googleSignInButton.addActivityIndicator(color: UIColor.whiteColor(), start: false)
+        }
+        activityIndicator?.startAnimating()
         googleSignInButton.enabled = false
     }
     
     private func hideLoadingState() {
+        activityIndicator?.stopAnimating()
+        if googleSignInButtonText != nil {
+            googleSignInButton.setCustomAttributedTitle(googleSignInButtonText!, forState: .Normal)
+        }
+        googleSignInButton.backgroundColor = UIColor.appTintColor()
         googleSignInButton.enabled = true
     }
     
@@ -256,8 +270,8 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
         credentials: UserService.AuthenticateUser.Request.Credentials
     ) {
         UserService.Actions.authenticateUser(backend, credentials: credentials) { (user, token, newUser, error) -> Void in
-            self.hideLoadingState()
             if error != nil {
+                self.hideLoadingState()
                 self.googleSignInButton.addShakeAnimation()
                 return
             }
