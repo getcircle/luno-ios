@@ -224,14 +224,14 @@ extension SearchService {
             }
             
             let finalPredicate = NSCompoundPredicate.andPredicateWithSubpredicates(andPredicates)
-            return toFilter.filter {
-                var variables = [
+            return toFilter.filter { finalPredicate.evaluateWithObject(
+                $0,
+                substitutionVariables: [
                     "first_name": $0.first_name,
                     "last_name": $0.last_name,
                     "title": $0.title,
                     "email": $0.email,
-                ]
-                return finalPredicate.evaluateWithObject($0, substitutionVariables: variables)
+                ])
             }
         }
         
