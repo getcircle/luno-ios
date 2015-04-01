@@ -14,7 +14,6 @@ class KeyValueCollectionViewCell: CircleCollectionViewCell {
     @IBOutlet private(set) weak var nameImageViewWidthConstraint: NSLayoutConstraint!
     @IBOutlet private(set) weak var nameLabel: UILabel!
     @IBOutlet private(set) weak var valueLabel: UILabel!
-    @IBOutlet private(set) weak var valueLabelTrailingSpaceConstraint: NSLayoutConstraint!
     
     private var nameImageViewWidthConstraintInitialValue: CGFloat!
     
@@ -46,7 +45,6 @@ class KeyValueCollectionViewCell: CircleCollectionViewCell {
             
             if let imageSource = keyValueDictionary["image"] as String? {
                 nameImageView.alpha = 1.0
-                valueLabelTrailingSpaceConstraint.constant = 40.0
                 nameImageView.image = UIImage(named: imageSource)?.imageWithRenderingMode(.AlwaysTemplate)
                 nameImageView.tintColor = keyValueDictionary["imageTintColor"] as UIColor!
                 if let imageSizeValue = keyValueDictionary["imageSize"] as NSValue? {
@@ -55,13 +53,14 @@ class KeyValueCollectionViewCell: CircleCollectionViewCell {
                 else {
                     nameImageViewWidthConstraint.constant = nameImageViewWidthConstraintInitialValue
                 }
-                
-                nameImageView.setNeedsUpdateConstraints()
-                nameImageView.layoutIfNeeded()
             }
             else {
+                nameImageViewWidthConstraint.constant = 0.0
                 nameImageView.alpha = 0.0
             }
+
+            nameImageView.setNeedsUpdateConstraints()
+            nameImageView.layoutIfNeeded()
         }
     }
 }

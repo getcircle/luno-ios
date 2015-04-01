@@ -14,7 +14,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="639" height="44"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="ravirani@gmail.com" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Ax-wo-sff" userLabel="ValueLabel">
-                        <rect key="frame" x="64" y="11" width="560" height="22"/>
+                        <rect key="frame" x="64" y="11" width="535" height="22"/>
                         <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
@@ -38,9 +38,9 @@
             </view>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="867-SJ-3vd" firstAttribute="leading" secondItem="6Ax-wo-sff" secondAttribute="trailing" constant="1" id="5B8-cf-p2x"/>
                 <constraint firstAttribute="centerY" secondItem="lAf-wh-yGN" secondAttribute="centerY" id="RRZ-ma-lRp"/>
                 <constraint firstItem="lAf-wh-yGN" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="15" id="Xor-qf-DPt"/>
-                <constraint firstAttribute="trailing" secondItem="6Ax-wo-sff" secondAttribute="trailing" constant="15" id="c3i-aL-zmh"/>
                 <constraint firstAttribute="centerY" secondItem="867-SJ-3vd" secondAttribute="centerY" id="crk-Fd-Raf"/>
                 <constraint firstItem="6Ax-wo-sff" firstAttribute="leading" secondItem="lAf-wh-yGN" secondAttribute="trailing" constant="10" id="iba-i5-ao6"/>
                 <constraint firstAttribute="centerY" secondItem="6Ax-wo-sff" secondAttribute="centerY" id="n0J-iO-lS4"/>
@@ -52,7 +52,6 @@
                 <outlet property="nameImageViewWidthConstraint" destination="8IL-ey-Ssg" id="leF-mN-jF8"/>
                 <outlet property="nameLabel" destination="lAf-wh-yGN" id="4PV-aG-I92"/>
                 <outlet property="valueLabel" destination="6Ax-wo-sff" id="wy0-5B-o4d"/>
-                <outlet property="valueLabelTrailingSpaceConstraint" destination="c3i-aL-zmh" id="V0T-bE-bBS"/>
             </connections>
             <point key="canvasLocation" x="513.5" y="372"/>
         </collectionViewCell>
