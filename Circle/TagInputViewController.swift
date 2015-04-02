@@ -21,8 +21,6 @@ class TagInputViewController: UIViewController,
     @IBOutlet private(set) weak var tokenField: TokenField!
     @IBOutlet private(set) weak var collectionView: UICollectionView!
     
-    // TODO this should be 2 * the tokenHeight
-    private var tokenFieldMaxHeight: CGFloat = 2 * 40.0
     private var newTag: ProfileService.Containers.Tag?
     private var deletedTags = Array<ProfileService.Containers.Tag>()
     private var selectedTags = Array<ProfileService.Containers.Tag>()
@@ -60,7 +58,6 @@ class TagInputViewController: UIViewController,
     }
     
     private func configureTokenField() {
-        tokenField.maxHeight = tokenFieldMaxHeight
         tokenField.dataSource = self
         tokenField.delegate = self
         tokenField.addBottomBorder(offset: 0.0)

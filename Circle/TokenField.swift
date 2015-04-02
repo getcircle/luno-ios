@@ -214,16 +214,6 @@ class TokenField: UIView,
         } else {
             contentViewHeightConstraint!.constant = intrinsicHeight
         }
-        invalidateIntrinsicContentSize()
-    }
-    
-    override func intrinsicContentSize() -> CGSize {
-        var height = intrinsicHeight
-        if maxHeight != nil {
-            height = maxHeight!
-        }
-        let size = CGSizeMake(UIViewNoIntrinsicMetric, height)
-        return size
     }
     
     // MARK: - Data Source Helpers
@@ -327,7 +317,7 @@ class TokenField: UIView,
     // MARK: - Private Methods
     
     private func focusInputTextField() {
-        var contentOffsetY: CGFloat = intrinsicHeight - intrinsicContentSize().height
+        var contentOffsetY: CGFloat = intrinsicHeight - frameHeight
         if contentOffsetY < 0 {
             contentOffsetY = 0
         }
