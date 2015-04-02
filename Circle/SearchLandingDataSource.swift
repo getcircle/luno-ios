@@ -50,8 +50,8 @@ class SearchLandingDataSource: CardDataSource {
                         }
                         self.appendCard(categoryCard)
                     }
-                    completionHandler(error: nil)
                 }
+                completionHandler(error: error)
             }
         }
     }

@@ -26,6 +26,7 @@ class SearchViewController: UIViewController,
     @IBOutlet weak private(set) var searchHeaderContinerViewTopConstraint: NSLayoutConstraint!
     
     private var activityIndicatorView: CircleActivityIndicatorView!
+    private var errorMessageView: CircleErrorMessageView!
     private var data = [Card]()
     private var firstLoad = false
     private var landingDataSource: SearchLandingDataSource!
@@ -50,6 +51,11 @@ class SearchViewController: UIViewController,
         configureCollectionView()
         followScrollView(collectionView, usingTopConstraint: searchHeaderContinerViewTopConstraint)
         activityIndicatorView = view.addActivityIndicator()
+        errorMessageView = view.addErrorMessageView(nil, tryAgainHandler: { () -> Void in
+            self.errorMessageView.hide()
+            self.activityIndicatorView.startAnimating()
+            self.loadData()
+        })
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -136,9 +142,15 @@ class SearchViewController: UIViewController,
     private func loadData() {
         if let currentDataSource = (collectionView.dataSource as? SearchLandingDataSource) {
             currentDataSource.loadData { (error) -> Void in
+                self.activityIndicatorView.stopAnimating()
+                
                 if error == nil {
-                    self.activityIndicatorView.stopAnimating()
+                    self.errorMessageView.hide()
                     self.collectionView.reloadData()
+                }
+                else if currentDataSource.cards.count == 0 {
+                    self.errorMessageView.error = error
+                    self.errorMessageView.show()
                 }
             }
         }
