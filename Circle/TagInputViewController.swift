@@ -44,20 +44,10 @@ class TagInputViewController: UIViewController,
         configureTokenField()
     }
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        // TODO remove this if we're not going to re-adjust the size based on the keyboard
-        registerNotifications()
-    }
-    
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-        unregisterNotifications()
-    }
-    
     // MARK: - Configuration
     
     private func configureView() {
+        automaticallyAdjustsScrollViewInsets = false
         view.backgroundColor = UIColor.appViewBackgroundColor()
         extendedLayoutIncludesOpaqueBars = true
     }
@@ -72,6 +62,7 @@ class TagInputViewController: UIViewController,
         tokenField.maxHeight = tokenFieldMaxHeight
         tokenField.dataSource = self
         tokenField.delegate = self
+        tokenField.addBottomBorder(offset: 0.0)
         tokenField.reloadData()
     }
     
@@ -165,19 +156,17 @@ class TagInputViewController: UIViewController,
         }
     }
     
-    func tokenField(tokenField: TokenField!, didEnterText text: String!) {
+    func tokenField(tokenField: TokenField, didEnterText text: String!) {
         selectedTags.append(newTag!)
         newTag = nil
         tokenField.reloadData()
         collectionView.reloadData()
     }
     
-//
-//    
-//    func tokenField(tokenField: VENTokenField!, didDeleteTokenAtIndex index: UInt) {
-//        selectedTags.removeAtIndex(Int(index))
-//        tokenField.reloadData()
-//    }
+    func tokenField(tokenField: TokenField, didDeleteTokenAtIndex index: UInt) {
+        selectedTags.removeAtIndex(Int(index))
+        tokenField.reloadData()
+    }
     
     // MARK - TokenFieldDataSource
     
@@ -208,55 +197,16 @@ class TagInputViewController: UIViewController,
     @IBAction func cancel(sender: AnyObject!) {
         dismissView()
     }
+    
     // MARK: - Helpers
     
     private func shouldUseNewTag(indexPath: NSIndexPath) -> Bool {
         return (indexPath.row + 1) > suggestedTags.count
     }
     
-    private func addNewTagToSet(completion: () -> Void) {
-        selectedTags.append(newTag!)
-        newTag = nil
-//        tokenField.reloadData()
-        completion()
-    }
-    
     private func dismissView() {
         tokenField.resignFirstResponder()
         dismissViewControllerAnimated(true, completion: nil)
-    }
-    
-    // MARK: - Notifications
-    
-    private func registerNotifications() {
-        NSNotificationCenter.defaultCenter().addObserver(
-            self,
-            selector: "keyboardWasShown:",
-            name: UIKeyboardDidShowNotification,
-            object: nil
-        )
-        NSNotificationCenter.defaultCenter().addObserver(
-            self,
-            selector: "keyboardWillBeHidden:",
-            name: UIKeyboardWillHideNotification,
-            object: nil
-        )
-    }
-    
-    private func unregisterNotifications() {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
-    }
-    
-    func keyboardWasShown(notification: NSNotification) {
-
-    }
-    
-    func keyboardWillBeHidden(notification: NSNotification) {
-//        tokenField.maxHeight = tokenFieldMaxHeight + 200.0
-//        tokenField.invalidateIntrinsicContentSize()
-//        UIView.animateWithDuration(0.3, animations: { () -> Void in
-//            self.view.layoutIfNeeded()
-//        })
     }
 
 }

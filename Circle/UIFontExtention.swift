@@ -75,6 +75,6 @@ extension UIFont {
     }
     
     class func appTagTokenFont() -> UIFont {
-        return UIFont(name: "Avenir-Roman", size: 15.5)!
+        return UIFont(name: "Avenir-Roman", size: 15.0)!
     }
 }

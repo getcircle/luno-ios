@@ -10,10 +10,27 @@ import UIKit
 
 private let TagTokenHeight: CGFloat = 35.0
 
+protocol TagTokenDelegate {
+    func didTapToken(token: TagToken)
+}
+
 class TagToken: UIView {
     
+    var delegate: TagTokenDelegate?
+    var highlighted: Bool = false {
+        didSet {
+            if highlighted {
+                backgroundView.backgroundColor = UIColor.appTintColor()
+                titleLabel.textColor = UIColor.whiteColor()
+            } else {
+                backgroundView.backgroundColor = UIColor.appTagNormalBackgroundColor()
+                titleLabel.textColor = UIColor.appDefaultDarkTextColor()
+            }
+        }
+    }
     private var backgroundView: UIView!
     private var titleLabel: PaddedLabel!
+    private var tapGestureRecognizer: UITapGestureRecognizer!
     
     override init() {
         super.init()
@@ -31,11 +48,17 @@ class TagToken: UIView {
     }
     
     private func customInit() {
+        configureView()
         configureBackgroundView()
         configureTitleLabel()
     }
     
     // MARK: - Configuration
+    
+    private func configureView() {
+        tapGestureRecognizer = UITapGestureRecognizer(target: self, action: "didTapToken:")
+        addGestureRecognizer(tapGestureRecognizer)
+    }
     
     private func configureBackgroundView() {
         backgroundView = UIView.newAutoLayoutView()
@@ -50,6 +73,7 @@ class TagToken: UIView {
         titleLabel = PaddedLabel.newAutoLayoutView()
         titleLabel.paddingEdgeInsets = UIEdgeInsetsMake(5.0, 10.0, 5.0, 10.0)
         titleLabel.textColor = UIColor.appDefaultDarkTextColor()
+        titleLabel.font = UIFont.appTagTokenFont()
         backgroundView.addSubview(titleLabel)
         titleLabel.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
     }
@@ -60,6 +84,12 @@ class TagToken: UIView {
     
     func setTitle(text: String) {
         titleLabel.text = text
+    }
+    
+    // MARK: - Targets
+    
+    func didTapToken(tapGestureRecognizer: UITapGestureRecognizer) {
+        delegate?.didTapToken(self)
     }
     
 }

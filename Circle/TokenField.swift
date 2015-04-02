@@ -22,7 +22,10 @@ private let InputTextFieldMinimumWidth: CGFloat = 100.0
     optional func tokenFieldDidBeginEditing(tokenField: TokenField)
 }
 
-class TokenField: UIView, UITextFieldDelegate {
+class TokenField: UIView,
+    BackspaceTextFieldDelegate,
+    TagTokenDelegate
+{
     
     var tokenHeight: CGFloat = 35.0
     var dataSource: TokenFieldDataSource?
@@ -32,7 +35,9 @@ class TokenField: UIView, UITextFieldDelegate {
     private var scrollView: UIScrollView!
     private var contentView: UIView!
     private var contentViewHeightConstraint: NSLayoutConstraint?
-    private var inputTextField: UITextField?
+    private var inputTextField: BackspaceTextField?
+    private var invisibleTextField: BackspaceTextField?
+    private var tokens = [TagToken]()
     
     private var tokenConstraints = [NSLayoutConstraint]()
     private var intrinsicHeight: CGFloat = 0.0
@@ -56,6 +61,7 @@ class TokenField: UIView, UITextFieldDelegate {
     private func customInit() {
         configureScrollView()
         configureContentView()
+        configureInvisibleTextField()
     }
     
     private func configureScrollView() {
@@ -70,15 +76,22 @@ class TokenField: UIView, UITextFieldDelegate {
     private func configureContentView() {
         contentView = UIView.newAutoLayoutView()
         scrollView.addSubview(contentView)
+        contentView.autoMatchDimension(.Width, toDimension: .Width, ofView: self).autoIdentify("ContentView Width")
         UIView.autoSetPriority(750, forConstraints: { () -> Void in
             self.contentView.autoSetContentCompressionResistancePriorityForAxis(.Vertical)
             self.contentView.autoSetContentCompressionResistancePriorityForAxis(.Horizontal)
         })
-        contentView.autoMatchDimension(.Width, toDimension: .Width, ofView: self).autoIdentify("ContentView Width")
         UIView.autoSetIdentifier("ContentView PinEdgesToSuperViewEdges", forConstraints: { () -> Void in
             self.contentView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
             return
         })
+    }
+    
+    private func configureInvisibleTextField() {
+        invisibleTextField = BackspaceTextField.newAutoLayoutView()
+        invisibleTextField!.autoSetDimensionsToSize(CGSizeZero)
+        invisibleTextField!.delegate = self
+        addSubview(invisibleTextField!)
     }
     
     override func layoutSubviews() {
@@ -108,17 +121,19 @@ class TokenField: UIView, UITextFieldDelegate {
         }
         
         let leftPadding: CGFloat = 10.0
+        tokens.removeAll(keepCapacity: true)
         for (var index: UInt = 0; index < numberOfTokens(); index++) {
             let title = titleForTokenAtIndex(index)
             let token = TagToken.newAutoLayoutView()
             token.setTitle(title)
+            token.delegate = self
             contentView.addSubview(token)
             token.autoSetDimension(.Width, toSize: UIScreen.mainScreen().bounds.width - leftPadding, relation: .LessThanOrEqual)
+            tokens.append(token)
         }
         
-        inputTextField = UITextField.newAutoLayoutView()
+        inputTextField = BackspaceTextField.newAutoLayoutView()
         inputTextField?.delegate = self
-        inputTextField?.addTarget(self, action: "inputTextFieldDidChange:", forControlEvents: .EditingChanged)
         contentView.addSubview(inputTextField!)
         inputTextField?.autoSetDimension(.Width, toSize: UIScreen.mainScreen().bounds.width - leftPadding, relation: .LessThanOrEqual)
         inputTextField?.autoSetDimension(.Width, toSize: 80.0, relation: .GreaterThanOrEqual)
@@ -151,7 +166,7 @@ class TokenField: UIView, UITextFieldDelegate {
                 tokenConstraints.append(view.autoPinEdgeToSuperviewEdge(.Leading, withInset: leftOffset, relation: .GreaterThanOrEqual))
                 currentX += itemMargin
                 var viewWidth = size.width
-                if view is UITextField {
+                if view is BackspaceTextField {
                     viewWidth = width - currentX
                     if viewWidth < InputTextFieldMinimumWidth {
                         viewWidth = width - leftOffset
@@ -176,7 +191,7 @@ class TokenField: UIView, UITextFieldDelegate {
                 tokenConstraints.append(view.autoPinEdgeToSuperviewEdge(.Leading, withInset: leftOffset, relation: .Equal))
                 intrinsicHeight += size.height
                 currentX += size.width
-                if view is UITextField {
+                if view is BackspaceTextField {
                     view.autoSetDimension(.Width, toSize: width - leftOffset)
                 }
             }
@@ -204,7 +219,6 @@ class TokenField: UIView, UITextFieldDelegate {
             height = maxHeight!
         }
         let size = CGSizeMake(UIViewNoIntrinsicMetric, height)
-        println("intrinsicSize: \(size)")
         return size
     }
     
@@ -229,33 +243,76 @@ class TokenField: UIView, UITextFieldDelegate {
     }
     
     override func becomeFirstResponder() -> Bool {
+        invisibleTextField?.resignFirstResponder()
+        tokens.map { $0.highlighted = false }
         return inputTextField?.becomeFirstResponder() ?? false
     }
     
     override func resignFirstResponder() -> Bool {
+        // TODO resign invisible text field too
         return inputTextField?.resignFirstResponder() ?? false
     }
     
-    // MARK: - Targets
-    
-    func inputTextFieldDidChange(textField: UITextField) {
-        delegate?.tokenField?(self, didChangeText: textField.text)
-    }
-    
-    // MARK: - UITextFieldDelegate
+    // MARK: - BackspaceTextFieldDelegate
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         delegate?.tokenField?(self, didEnterText: textField.text)
         return false
     }
+
+    func textFieldDidEnterBackspace(textField: UITextField) {
+        var didDeleteToken = false
+        for (index, token) in enumerate(tokens) {
+            if token.highlighted {
+                // TODO use Int instead of UInt
+                delegate?.tokenField?(self, didDeleteTokenAtIndex: UInt(index))
+                didDeleteToken = true
+            }
+        }
+        
+        if !didDeleteToken {
+            if let token = tokens.last {
+                token.highlighted = true
+            }
+        }
+        setCursorVisibility()
+    }
     
-    // TODO add rest of textfield delegate
+    func textFieldDidChangeText(text: String) {
+        delegate?.tokenField?(self, didChangeText: text)
+    }
+    
+    // MARK: - TagTokenDelegate
+    
+    func didTapToken(token: TagToken) {
+        for item in tokens {
+            if item == token {
+                item.highlighted = !item.highlighted
+            } else {
+                item.highlighted = false
+            }
+        }
+        setCursorVisibility()
+    }
     
     // MARK: - Private Methods
     
     private func focusInputTextField() {
-        // TODO should maybe account for the text input being the last line
-        scrollView.setContentOffset(CGPointMake(0, intrinsicHeight - intrinsicContentSize().height), animated: false)
+        var contentOffsetY: CGFloat = intrinsicHeight - intrinsicContentSize().height
+        if contentOffsetY < 0 {
+            contentOffsetY = 0
+        }
+        scrollView.setContentOffset(CGPointMake(0, contentOffsetY), animated: false)
+    }
+    
+    private func setCursorVisibility() {
+        let highlightedTokens = tokens.filter { $0.highlighted }
+        if highlightedTokens.count == 0 {
+            becomeFirstResponder()
+        } else {
+            inputTextField?.resignFirstResponder()
+            invisibleTextField?.becomeFirstResponder()
+        }
     }
 
 }

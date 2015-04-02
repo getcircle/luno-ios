@@ -225,6 +225,7 @@
 		BF004C501A5CF91200AB8A6F /* OrganizationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF004C4F1A5CF91200AB8A6F /* OrganizationService.swift */; };
 		BF041BBA1A2C119B0043EC72 /* NSDateFormatterExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF041BB91A2C119B0043EC72 /* NSDateFormatterExtension.swift */; };
 		BF093F0F1A672F8900BA60BD /* MediaService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF093F0E1A672F8900BA60BD /* MediaService.swift */; };
+		BF0B10591ACD3DA500E27DC2 /* BackspaceTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0B10581ACD3DA500E27DC2 /* BackspaceTextField.swift */; };
 		BF1DB6591A76FA31006F2B7D /* AddNoteCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1DB6571A76FA31006F2B7D /* AddNoteCollectionViewCell.swift */; };
 		BF1DB65A1A76FA31006F2B7D /* AddNoteCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF1DB6581A76FA31006F2B7D /* AddNoteCollectionViewCell.xib */; };
 		BF1FA6B61A71D0120044936D /* UnderlyingCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1FA6B51A71D0120044936D /* UnderlyingCollectionView.swift */; };
@@ -603,6 +604,7 @@
 		BF004C4F1A5CF91200AB8A6F /* OrganizationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrganizationService.swift; sourceTree = "<group>"; };
 		BF041BB91A2C119B0043EC72 /* NSDateFormatterExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDateFormatterExtension.swift; sourceTree = "<group>"; };
 		BF093F0E1A672F8900BA60BD /* MediaService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaService.swift; sourceTree = "<group>"; };
+		BF0B10581ACD3DA500E27DC2 /* BackspaceTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackspaceTextField.swift; sourceTree = "<group>"; };
 		BF1DB6571A76FA31006F2B7D /* AddNoteCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNoteCollectionViewCell.swift; sourceTree = "<group>"; };
 		BF1DB6581A76FA31006F2B7D /* AddNoteCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddNoteCollectionViewCell.xib; sourceTree = "<group>"; };
 		BF1FA6B51A71D0120044936D /* UnderlyingCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnderlyingCollectionView.swift; sourceTree = "<group>"; };
@@ -828,6 +830,7 @@
 				8FD321841AAD6566005B238A /* AppreciateActionCollectionViewCell.swift */,
 				8FCC31281AA2859E0093F00A /* AppreciationCollectionView.swift */,
 				8FCC312A1AA28AC10093F00A /* AppreciationCollectionViewCell.swift */,
+				BF0B10581ACD3DA500E27DC2 /* BackspaceTextField.swift */,
 				8FC878201AB6A511003FDB27 /* BannerCollectionViewCell.swift */,
 				8F08A9F71A748F5200B93149 /* CardFooterCollectionReusableView.swift */,
 				8F65C4F31A50F28E00C7F3E6 /* CardHeaderCollectionReusableView.swift */,
@@ -859,13 +862,13 @@
 				8F74001B1A684F2400D96B60 /* TagHeaderCollectionReusableView.swift */,
 				8F65C5051A52661700C7F3E6 /* TagScrollingCollectionViewCell.swift */,
 				BF6ACE3C1AC766EF009F2B05 /* TagSuggestionCollectionViewCell.swift */,
+				BF2B34591ACD307200667B50 /* TagToken.swift */,
 				8F085A931A6C191400F8139B /* TeamGridItemCollectionViewCell.swift */,
 				8F085A8B1A6B5B4900F8139B /* TeamHeaderCollectionReusableView.swift */,
 				8F085A8F1A6C175C00F8139B /* TeamsCollectionViewCell.swift */,
 				BFCFDB1F1A91951A009A5FD4 /* TextValueCollectionViewCell.swift */,
 				BFCFDB291A92759A009A5FD4 /* ToggleSocialConnectionCollectionViewCell.swift */,
 				BF97F2D61ACA0B4500F1BC2E /* TokenField.swift */,
-				BF2B34591ACD307200667B50 /* TagToken.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -1643,6 +1646,7 @@
 				8FC8781F1AB68B38003FDB27 /* CircleButton.swift in Sources */,
 				8F809F871A79DD6900029A47 /* NotesOverviewViewController.swift in Sources */,
 				8FF298471A4E050100306CFC /* TagCollectionViewCell.swift in Sources */,
+				BF0B10591ACD3DA500E27DC2 /* BackspaceTextField.swift in Sources */,
 				8FD907F91A6070D70025A17B /* MapViewController.swift in Sources */,
 				8F22CBF11A2844F50026376E /* UINavigationBarExtension.swift in Sources */,
 				8F74002A1A68878800D96B60 /* GradientView.swift in Sources */,
