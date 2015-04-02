@@ -7,9 +7,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TagInputViewController" customModule="circle" customModuleProvider="target">
             <connections>
                 <outlet property="collectionView" destination="jaK-P5-dbd" id="d1m-dQ-hbF"/>
-                <outlet property="emptyCollectionView" destination="S5P-hr-Anr" id="l5D-LU-fbc"/>
                 <outlet property="tokenField" destination="owE-YR-bOa" id="bSP-vf-SHC"/>
-                <outlet property="tokenFieldHeightConstraint" destination="zHy-t7-NEh" id="gzj-0K-s4O"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -19,7 +17,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="jaK-P5-dbd">
-                    <rect key="frame" x="0.0" y="70" width="600" height="530"/>
+                    <rect key="frame" x="0.0" y="176" width="600" height="424"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="9x3-QL-UA9">
                         <size key="itemSize" width="50" height="50"/>
                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -27,54 +25,39 @@
                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                     </collectionViewFlowLayout>
                 </collectionView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S5P-hr-Anr">
-                    <rect key="frame" x="0.0" y="70" width="600" height="530"/>
-                    <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Add your Expertise" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cvr-ip-Is3">
-                            <rect key="frame" x="222" y="0.0" width="158" height="24"/>
-                            <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="17"/>
-                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Adding your expertise helps your co-workers find you when they're looking for someone with a particular skill set." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jua-eJ-P62">
-                            <rect key="frame" x="20" y="44" width="560" height="47"/>
-                            <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="17"/>
-                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                    </subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="owE-YR-bOa" userLabel="TokenField" customClass="TokenField" customModule="circle" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="126" width="600" height="50"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstItem="jua-eJ-P62" firstAttribute="centerX" secondItem="Cvr-ip-Is3" secondAttribute="centerX" id="6uX-uu-mS7"/>
-                        <constraint firstAttribute="trailing" secondItem="jua-eJ-P62" secondAttribute="trailing" constant="20" id="MLm-Eg-atB"/>
-                        <constraint firstAttribute="centerX" secondItem="Cvr-ip-Is3" secondAttribute="centerX" id="UIE-bI-m7m"/>
-                        <constraint firstItem="jua-eJ-P62" firstAttribute="leading" secondItem="S5P-hr-Anr" secondAttribute="leading" constant="20" id="YML-6f-iUL"/>
-                        <constraint firstItem="Cvr-ip-Is3" firstAttribute="top" secondItem="S5P-hr-Anr" secondAttribute="top" id="gqj-Tv-SoQ"/>
-                        <constraint firstItem="jua-eJ-P62" firstAttribute="top" secondItem="Cvr-ip-Is3" secondAttribute="bottom" constant="20" id="luI-rq-wDb"/>
+                        <constraint firstAttribute="height" constant="50" placeholder="YES" id="zHy-t7-NEh"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="owE-YR-bOa" userLabel="TokenField" customClass="VENTokenField">
-                    <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="50" id="zHy-t7-NEh"/>
-                    </constraints>
-                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add skills and expertise to help people find out what you're good at." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VQ7-2o-Ixg">
+                    <rect key="frame" x="20" y="84" width="560" height="22"/>
+                    <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="16"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="S5P-hr-Anr" firstAttribute="width" secondItem="jaK-P5-dbd" secondAttribute="width" id="0Jc-Gp-ntB"/>
-                <constraint firstItem="S5P-hr-Anr" firstAttribute="centerY" secondItem="jaK-P5-dbd" secondAttribute="centerY" id="6yR-Je-dBu"/>
-                <constraint firstItem="S5P-hr-Anr" firstAttribute="height" secondItem="jaK-P5-dbd" secondAttribute="height" id="92c-Gz-vdj"/>
+                <constraint firstAttribute="trailing" secondItem="VQ7-2o-Ixg" secondAttribute="trailing" constant="20" id="25X-8o-Kkw"/>
                 <constraint firstAttribute="bottom" secondItem="jaK-P5-dbd" secondAttribute="bottom" id="AI7-Ss-IS7"/>
                 <constraint firstItem="owE-YR-bOa" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Buv-8W-vrT"/>
                 <constraint firstItem="owE-YR-bOa" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="PiS-5i-dDX"/>
                 <constraint firstAttribute="centerX" secondItem="owE-YR-bOa" secondAttribute="centerX" id="Piy-05-2tF"/>
-                <constraint firstItem="S5P-hr-Anr" firstAttribute="top" secondItem="owE-YR-bOa" secondAttribute="bottom" constant="20" id="X4z-wd-oWU"/>
+                <constraint firstItem="owE-YR-bOa" firstAttribute="top" secondItem="VQ7-2o-Ixg" secondAttribute="bottom" constant="20" id="Q53-AN-qfM"/>
+                <constraint firstItem="VQ7-2o-Ixg" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="Z3z-bQ-9Ce"/>
                 <constraint firstAttribute="trailing" secondItem="jaK-P5-dbd" secondAttribute="trailing" id="bYc-YY-VfO"/>
-                <constraint firstItem="S5P-hr-Anr" firstAttribute="centerX" secondItem="jaK-P5-dbd" secondAttribute="centerX" id="rhn-Kw-f3e"/>
+                <constraint firstItem="VQ7-2o-Ixg" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="84" id="ch9-fg-hau"/>
+                <constraint firstItem="jaK-P5-dbd" firstAttribute="top" secondItem="owE-YR-bOa" secondAttribute="bottom" id="wYa-Kn-oJz"/>
                 <constraint firstItem="jaK-P5-dbd" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="zOA-Vc-ntJ"/>
             </constraints>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="PiS-5i-dDX"/>
+                </mask>
+            </variation>
         </view>
     </objects>
 </document>

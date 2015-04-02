@@ -183,7 +183,11 @@ class CurrentUserProfileDetailViewController: ProfileDetailViewController,
             navigationController?.presentViewController(interestsNavController, animated: true, completion: nil)
             
         case .Skills:
-            let tagInputViewController = TagInputViewController(nibName: TagInputViewController.getNibName(), bundle: nil)
+            var existingSkills = Array<ProfileService.Containers.Tag>()
+            if let skills = (dataSource as CurrentUserProfileDetailDataSource).skills {
+                existingSkills = skills
+            }
+            let tagInputViewController = TagInputViewController(existingTags: existingSkills)
             let tagInputNavController = UINavigationController(rootViewController: tagInputViewController)
             navigationController?.presentViewController(tagInputNavController, animated: true, completion: nil)
             

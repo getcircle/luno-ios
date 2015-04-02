@@ -14,15 +14,14 @@ class TagInputViewController: UIViewController,
     UICollectionViewDataSource,
     UICollectionViewDelegateFlowLayout,
     UICollectionViewDelegate,
-    VENTokenFieldDelegate,
-    VENTokenFieldDataSource
+    TokenFieldDataSource,
+    TokenFieldDelegate
 {
 
-    @IBOutlet private(set) weak var tokenField: VENTokenField!
+    @IBOutlet private(set) weak var tokenField: TokenField!
     @IBOutlet private(set) weak var collectionView: UICollectionView!
-    @IBOutlet private(set) weak var emptyCollectionView: UIView!
-    @IBOutlet weak var tokenFieldHeightConstraint: NSLayoutConstraint!
     
+    private var tokenFieldMaxHeight: CGFloat = 2 * 40.0
     private var newTag: ProfileService.Containers.Tag?
     private var selectedTags = Array<ProfileService.Containers.Tag>()
     private var suggestedTags = Array<ProfileService.Containers.Tag>()
@@ -34,6 +33,11 @@ class TagInputViewController: UIViewController,
     convenience init(existingTags: Array<ProfileService.Containers.Tag>) {
         self.init(nibName: "TagInputViewController", bundle: nil)
         selectedTags.extend(existingTags)
+        for text in ["Some Tag", "Some Other Tag Dfasdfasdfafaf", "Some other tag", "Another Tag", "Another One", "her", "Some other tag", "Another Tag", "Another One", "her", "Some other tag", "Another Tag", "Another One", "her", "Some other tag", "Another Tag", "Another One", "her", "Some other tag", "Another Tag", "Another One", "her", "Some other tag", "Another Tag", "Another One", "her", "Some other tag", "Another Tag", "Another One", "her", "Some other tag", "Another Tag", "Another One", "her", "Some other tag", "Another Tag", "Another One", "her", "her", "her"] {
+            let tagBuilder = ProfileService.Containers.Tag().builder()
+            tagBuilder.name = text
+            selectedTags.append(tagBuilder.build())
+        }
     }
     
     override func viewDidLoad() {
@@ -44,10 +48,21 @@ class TagInputViewController: UIViewController,
         configureTokenField()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        registerNotifications()
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        unregisterNotifications()
+    }
+    
     // MARK: - Configuration
     
     private func configureView() {
         view.backgroundColor = UIColor.appViewBackgroundColor()
+        extendedLayoutIncludesOpaqueBars = true
     }
     
     private func configureNavigationBar() {
@@ -57,26 +72,13 @@ class TagInputViewController: UIViewController,
     }
     
     private func configureTokenField() {
-        tokenField.removeConstraint(tokenFieldHeightConstraint)
+        tokenField.maxHeight = tokenFieldMaxHeight
         tokenField.dataSource = self
         tokenField.delegate = self
-        tokenField.addRoundCorners()
-        tokenField.placeholderText = NSLocalizedString(
-            "Enter skills and expertise...",
-            comment: "Placeholder text indicating field where skills and expertise should be added."
-        )
-        tokenField.labelFont = UIFont.appTagTokenFont()
-        tokenField.tokenBackgroundColor = UIColor.lightGrayColor()
-        tokenField.tokenTextColor = UIColor.whiteColor()
-        tokenField.tokenHighlightedTextColor = UIColor.whiteColor()
-        tokenField.tokenHighlightedBackgroundColor = UIColor.appTintColor()
-        tokenField.tokenPadding = 10.0
-        tokenField.toLabel.hidden = true
-        tokenField.appendDelimiterToToken = false
+        tokenField.layoutTokens()
     }
     
     private func configureCollectionView() {
-        emptyCollectionView.backgroundColor = UIColor.appViewBackgroundColor()
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.backgroundColor = UIColor.appViewBackgroundColor()
@@ -121,9 +123,8 @@ class TagInputViewController: UIViewController,
             selectedTags.append(suggestedTags[indexPath.row])
         }
         newTag = nil
-        tokenField.reloadData()
+//        tokenField.reloadData()
         suggestedTags.removeAll(keepCapacity: false)
-        setShouldDisplayEmptyCollectionView(true)
         if !tokenField.isFirstResponder() {
             tokenField.becomeFirstResponder()
         }
@@ -140,24 +141,14 @@ class TagInputViewController: UIViewController,
         return 1.0
     }
 
-    // MARK: - VENTokenFieldDelegate
+    // MARK: - TokenFieldDelegate
     
-    func tokenField(tokenField: VENTokenField!, didEnterText text: String!) {
-        selectedTags.append(newTag!)
-        newTag = nil
-        tokenField.reloadData()
-        collectionView.reloadData()
-        setShouldDisplayEmptyCollectionView(true)
-    }
-    
-    func tokenField(tokenField: VENTokenField!, didChangeText text: String!) {
+    func tokenField(tokenField: TokenField, didChangeText text: String) {
         if text == "" {
             newTag = nil
             suggestedTags.removeAll(keepCapacity: false)
             collectionView.reloadData()
-            setShouldDisplayEmptyCollectionView(true)
         } else {
-            setShouldDisplayEmptyCollectionView(false)
             SearchService.Actions.search(text, category: .Skills, attribute: nil, attributeValue: nil, objects: nil) { (result, error) -> Void in
                 if (result?.skills != nil) {
                     self.suggestedTags = result!.skills!
@@ -177,18 +168,27 @@ class TagInputViewController: UIViewController,
         }
     }
     
-    func tokenField(tokenField: VENTokenField!, didDeleteTokenAtIndex index: UInt) {
-        selectedTags.removeAtIndex(Int(index))
+    func tokenField(tokenField: TokenField!, didEnterText text: String!) {
+        selectedTags.append(newTag!)
+        newTag = nil
         tokenField.reloadData()
+        collectionView.reloadData()
     }
     
-    // MARK - VENTokenFieldDataSource
+//
+//    
+//    func tokenField(tokenField: VENTokenField!, didDeleteTokenAtIndex index: UInt) {
+//        selectedTags.removeAtIndex(Int(index))
+//        tokenField.reloadData()
+//    }
     
-    func tokenField(tokenField: VENTokenField!, titleForTokenAtIndex index: UInt) -> String! {
+    // MARK - TokenFieldDataSource
+    
+    func tokenField(tokenField: TokenField, titleForTokenAtIndex index: UInt) -> String {
         return selectedTags[Int(index)].name
     }
-    
-    func numberOfTokensInTokenField(tokenField: VENTokenField!) -> UInt {
+
+    func numberOfTokensInTokenField(tokenField: TokenField) -> UInt {
         return UInt(selectedTags.count)
     }
     
@@ -197,13 +197,7 @@ class TagInputViewController: UIViewController,
     @IBAction func done(sender: AnyObject!) {
         // TODO check for no tags added
         // TODO only display done button if we have added a tag
-        let activityIndicator = view.addActivityIndicator(start: false)
-        UIView.animateWithDuration(0.3, animations: { () -> Void in
-            self.emptyCollectionView.alpha = 0.0
-        }) { (complete) -> Void in
-            activityIndicator.startAnimating()
-        }
-        
+        let activityIndicator = view.addActivityIndicator()
         ProfileService.Actions.addTags(AuthViewController.getLoggedInUserProfile()!.id, tags: selectedTags) { (error) in
             if error != nil {
                 println("error adding tags: \(error)")
@@ -226,7 +220,7 @@ class TagInputViewController: UIViewController,
     private func addNewTagToSet(completion: () -> Void) {
         selectedTags.append(newTag!)
         newTag = nil
-        tokenField.reloadData()
+//        tokenField.reloadData()
         completion()
     }
     
@@ -235,7 +229,37 @@ class TagInputViewController: UIViewController,
         dismissViewControllerAnimated(true, completion: nil)
     }
     
-    private func setShouldDisplayEmptyCollectionView(shouldDisplay: Bool) {
-        emptyCollectionView.hidden = !shouldDisplay
+    // MARK: - Notifications
+    
+    private func registerNotifications() {
+        NSNotificationCenter.defaultCenter().addObserver(
+            self,
+            selector: "keyboardWasShown:",
+            name: UIKeyboardDidShowNotification,
+            object: nil
+        )
+        NSNotificationCenter.defaultCenter().addObserver(
+            self,
+            selector: "keyboardWillBeHidden:",
+            name: UIKeyboardWillHideNotification,
+            object: nil
+        )
     }
+    
+    private func unregisterNotifications() {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
+    func keyboardWasShown(notification: NSNotification) {
+
+    }
+    
+    func keyboardWillBeHidden(notification: NSNotification) {
+//        tokenField.maxHeight = tokenFieldMaxHeight + 200.0
+//        tokenField.invalidateIntrinsicContentSize()
+//        UIView.animateWithDuration(0.3, animations: { () -> Void in
+//            self.view.layoutIfNeeded()
+//        })
+    }
+
 }

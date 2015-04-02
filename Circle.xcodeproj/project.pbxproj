@@ -234,6 +234,7 @@
 		BF25722E1A6450F20052C3E3 /* VerifyPhoneNumberViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF25722C1A6450F20052C3E3 /* VerifyPhoneNumberViewController.xib */; };
 		BF27CC631A747B2100E683C7 /* BaseDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF27CC621A747B2100E683C7 /* BaseDetailViewController.swift */; };
 		BF27CC941A7569B700E683C7 /* UnderlyingCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF27CC931A7569B700E683C7 /* UnderlyingCollectionViewDataSource.swift */; };
+		BF2B345A1ACD307200667B50 /* TagToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2B34591ACD307200667B50 /* TagToken.swift */; };
 		BF2CBFD61A473E9100BE589D /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2CBFD51A473E9100BE589D /* UserService.swift */; };
 		BF2D86171A707A86002C3D64 /* ProfileInfoCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2D86161A707A86002C3D64 /* ProfileInfoCollectionView.swift */; };
 		BF3F0F611A5B1C1100D4287E /* ProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3F0F601A5B1C1100D4287E /* ProfileService.swift */; };
@@ -257,6 +258,7 @@
 		BF8DAC891A6D7EB1000860DD /* NewNoteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF8DAC871A6D7EB1000860DD /* NewNoteViewController.xib */; };
 		BF8DAC901A6D904D000860DD /* NoteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8DAC8F1A6D904D000860DD /* NoteService.swift */; };
 		BF8FC3D91A44DA83007FD8BA /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8FC3D81A44DA83007FD8BA /* StringExtension.swift */; };
+		BF97F2D71ACA0B4500F1BC2E /* TokenField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF97F2D61ACA0B4500F1BC2E /* TokenField.swift */; };
 		BF9D72121A68492C002CDC66 /* ObjectStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9D72111A68492C002CDC66 /* ObjectStore.swift */; };
 		BFA1187F1AA2738E0073B13A /* AppreciationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA1187E1AA2738E0073B13A /* AppreciationService.swift */; };
 		BFAE43551A8B05010085AB2B /* HomelessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAE43531A8B05010085AB2B /* HomelessViewController.swift */; };
@@ -610,6 +612,7 @@
 		BF25722C1A6450F20052C3E3 /* VerifyPhoneNumberViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VerifyPhoneNumberViewController.xib; sourceTree = "<group>"; };
 		BF27CC621A747B2100E683C7 /* BaseDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseDetailViewController.swift; sourceTree = "<group>"; };
 		BF27CC931A7569B700E683C7 /* UnderlyingCollectionViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnderlyingCollectionViewDataSource.swift; sourceTree = "<group>"; };
+		BF2B34591ACD307200667B50 /* TagToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagToken.swift; sourceTree = "<group>"; };
 		BF2CBFD51A473E9100BE589D /* UserService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		BF2D86161A707A86002C3D64 /* ProfileInfoCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileInfoCollectionView.swift; sourceTree = "<group>"; };
 		BF3F0F601A5B1C1100D4287E /* ProfileService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileService.swift; sourceTree = "<group>"; };
@@ -633,6 +636,7 @@
 		BF8DAC871A6D7EB1000860DD /* NewNoteViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewNoteViewController.xib; sourceTree = "<group>"; };
 		BF8DAC8F1A6D904D000860DD /* NoteService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteService.swift; sourceTree = "<group>"; };
 		BF8FC3D81A44DA83007FD8BA /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		BF97F2D61ACA0B4500F1BC2E /* TokenField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenField.swift; sourceTree = "<group>"; };
 		BF9D72111A68492C002CDC66 /* ObjectStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectStore.swift; sourceTree = "<group>"; };
 		BFA1187E1AA2738E0073B13A /* AppreciationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppreciationService.swift; sourceTree = "<group>"; };
 		BFAE43531A8B05010085AB2B /* HomelessViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomelessViewController.swift; sourceTree = "<group>"; };
@@ -860,6 +864,8 @@
 				8F085A8F1A6C175C00F8139B /* TeamsCollectionViewCell.swift */,
 				BFCFDB1F1A91951A009A5FD4 /* TextValueCollectionViewCell.swift */,
 				BFCFDB291A92759A009A5FD4 /* ToggleSocialConnectionCollectionViewCell.swift */,
+				BF97F2D61ACA0B4500F1BC2E /* TokenField.swift */,
+				BF2B34591ACD307200667B50 /* TagToken.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -1587,6 +1593,7 @@
 				8F0004961A2419730096477A /* AppDelegate.swift in Sources */,
 				8F823E4C1A729E1B0006264B /* TeamsOverviewViewController.swift in Sources */,
 				8F0B96371A73288600C601A6 /* MKMapViewExtension.swift in Sources */,
+				BF97F2D71ACA0B4500F1BC2E /* TokenField.swift in Sources */,
 				8FD7EC471AA530EF004A2CEA /* AddressCollectionViewCell.swift in Sources */,
 				BFCFDB111A9165A9009A5FD4 /* PositionCollectionViewCell.swift in Sources */,
 				BF6A2D0F1AAD08DA00692315 /* EmptyCollectionViewCell.swift in Sources */,
@@ -1704,6 +1711,7 @@
 				8F7795151A92769E00BEF6EA /* QuickActionsCollectionViewCell.swift in Sources */,
 				8F085A951A6C191400F8139B /* TeamGridItemCollectionViewCell.swift in Sources */,
 				8F5933E31ACBC12400905E14 /* ProfileExtension.swift in Sources */,
+				BF2B345A1ACD307200667B50 /* TagToken.swift in Sources */,
 				8F65C5071A52661700C7F3E6 /* TagScrollingCollectionViewCell.swift in Sources */,
 				8F5933C61AC9FAD000905E14 /* AppDelegateNotificationExtension.swift in Sources */,
 				8F65C4F51A50F28E00C7F3E6 /* CardHeaderCollectionReusableView.swift in Sources */,
