@@ -232,6 +232,11 @@ public var ProfileServiceResponses_get_attributes_for_profiles:ConcreateExtensio
        return ResponseRegistryRoot.sharedInstance.ProfileServiceResponses_get_attributes_for_profilesStatic
    }
 }
+public var ProfileServiceResponses_remove_tags:ConcreateExtensionField {
+   get {
+       return ResponseRegistryRoot.sharedInstance.ProfileServiceResponses_remove_tagsStatic
+   }
+}
 public var SearchServiceResponses_search:ConcreateExtensionField {
    get {
        return ResponseRegistryRoot.sharedInstance.SearchServiceResponses_searchStatic
@@ -375,6 +380,7 @@ public struct ResponseRegistryRoot {
   var ProfileServiceResponses_bulk_create_profilesStatic:ConcreateExtensionField
   var ProfileServiceResponses_bulk_update_profilesStatic:ConcreateExtensionField
   var ProfileServiceResponses_get_attributes_for_profilesStatic:ConcreateExtensionField
+  var ProfileServiceResponses_remove_tagsStatic:ConcreateExtensionField
   var SearchServiceResponses_searchStatic:ConcreateExtensionField
   var LandingServiceResponses_get_categoriesStatic:ConcreateExtensionField
   var LandingServiceResponses_get_organization_categoriesStatic:ConcreateExtensionField
@@ -442,6 +448,7 @@ public struct ResponseRegistryRoot {
     ProfileServiceResponses_bulk_create_profilesStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 315, defaultValue:ProfileService.BulkCreateProfiles.Response(), messageOrGroupClass:ProfileService.BulkCreateProfiles.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     ProfileServiceResponses_bulk_update_profilesStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 316, defaultValue:ProfileService.BulkUpdateProfiles.Response(), messageOrGroupClass:ProfileService.BulkUpdateProfiles.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     ProfileServiceResponses_get_attributes_for_profilesStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 317, defaultValue:ProfileService.GetAttributesForProfiles.Response(), messageOrGroupClass:ProfileService.GetAttributesForProfiles.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
+    ProfileServiceResponses_remove_tagsStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 318, defaultValue:ProfileService.RemoveTags.Response(), messageOrGroupClass:ProfileService.RemoveTags.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     SearchServiceResponses_searchStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 400, defaultValue:SearchService.Search.Response(), messageOrGroupClass:SearchService.Search.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     LandingServiceResponses_get_categoriesStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 500, defaultValue:LandingService.GetCategories.Response(), messageOrGroupClass:LandingService.GetCategories.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     LandingServiceResponses_get_organization_categoriesStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionResponseResult.self, fieldNumber: 501, defaultValue:LandingService.GetOrganizationCategories.Response(), messageOrGroupClass:LandingService.GetOrganizationCategories.Response.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
@@ -520,6 +527,7 @@ public struct ResponseRegistryRoot {
     registry.addExtension(ProfileServiceResponses_bulk_create_profilesStatic)
     registry.addExtension(ProfileServiceResponses_bulk_update_profilesStatic)
     registry.addExtension(ProfileServiceResponses_get_attributes_for_profilesStatic)
+    registry.addExtension(ProfileServiceResponses_remove_tagsStatic)
     registry.addExtension(SearchServiceResponses_searchStatic)
     registry.addExtension(LandingServiceResponses_get_categoriesStatic)
     registry.addExtension(LandingServiceResponses_get_organization_categoriesStatic)
@@ -1047,6 +1055,9 @@ final public class ProfileServiceResponses : GeneratedMessage {
   }
   public class func get_attributes_for_profiles() -> ConcreateExtensionField {
        return ProfileServiceResponses_get_attributes_for_profiles
+  }
+  public class func remove_tags() -> ConcreateExtensionField {
+       return ProfileServiceResponses_remove_tags
   }
   required public init() {
        super.init()

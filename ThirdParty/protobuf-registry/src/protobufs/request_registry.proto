@@ -70,6 +70,7 @@ message ProfileServiceRequests {
         optional main.profile_service.ProfileService.BulkCreateProfiles.Request bulk_create_profiles = 315;
         optional main.profile_service.ProfileService.BulkUpdateProfiles.Request bulk_update_profiles = 316;
         optional main.profile_service.ProfileService.GetAttributesForProfiles.Request get_attributes_for_profiles = 317;
+        optional main.profile_service.ProfileService.RemoveTags.Request remove_tags = 318;
     }
 }
 

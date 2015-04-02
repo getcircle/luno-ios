@@ -103,6 +103,14 @@ public func == (lhs: ProfileService.AddTags, rhs: ProfileService.AddTags) -> Boo
   return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
 }
 
+public func == (lhs: ProfileService.RemoveTags, rhs: ProfileService.RemoveTags) -> Bool {
+  if (lhs === rhs) {
+    return true
+  }
+  var fieldCheck:Bool = (lhs.hashValue == rhs.hashValue)
+  return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
+}
+
 public func == (lhs: ProfileService.GetProfiles, rhs: ProfileService.GetProfiles) -> Bool {
   if (lhs === rhs) {
     return true
@@ -8410,6 +8418,543 @@ final public class ProfileService : GeneratedMessage {
 
   //Nested type declaration start
 
+    final public class RemoveTags : GeneratedMessage {
+
+
+      //Nested type declaration start
+
+        final public class Request : GeneratedMessage {
+          override public subscript (key: String) -> Any? {
+                 switch key {
+                 case "profile_id": return profile_id
+                 default: return nil
+                 }
+          }
+
+          public private(set) var hasProfileId:Bool = false
+          public private(set) var profile_id:String = ""
+
+          public private(set) var tags:Array<ProfileService.Containers.Tag>  = Array<ProfileService.Containers.Tag>()
+          required public init() {
+               super.init()
+          }
+          override public func isInitialized() -> Bool {
+           return true
+          }
+          override public func writeToCodedOutputStream(output:CodedOutputStream) {
+            if hasProfileId {
+              output.writeString(1, value:profile_id)
+            }
+            for oneElementtags in tags {
+                output.writeMessage(2, value:oneElementtags)
+            }
+            unknownFields.writeToCodedOutputStream(output)
+          }
+          override public func serializedSize() -> Int32 {
+            var size:Int32 = memoizedSerializedSize
+            if size != -1 {
+             return size
+            }
+
+            size = 0
+            if hasProfileId {
+              size += WireFormat.computeStringSize(1, value:profile_id)
+            }
+            for oneElementtags in tags {
+                size += WireFormat.computeMessageSize(2, value:oneElementtags)
+            }
+            size += unknownFields.serializedSize()
+            memoizedSerializedSize = size
+            return size
+          }
+          public class func parseFromData(data:[Byte]) -> ProfileService.RemoveTags.Request {
+            return ProfileService.RemoveTags.Request.builder().mergeFromData(data).build()
+          }
+          public class func parseFromData(data:[Byte], extensionRegistry:ExtensionRegistry) -> ProfileService.RemoveTags.Request {
+            return ProfileService.RemoveTags.Request.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
+          }
+          public class func parseFromInputStream(input:NSInputStream) -> ProfileService.RemoveTags.Request {
+            return ProfileService.RemoveTags.Request.builder().mergeFromInputStream(input).build()
+          }
+          public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->ProfileService.RemoveTags.Request {
+            return ProfileService.RemoveTags.Request.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
+          }
+          public class func parseFromCodedInputStream(input:CodedInputStream) -> ProfileService.RemoveTags.Request {
+            return ProfileService.RemoveTags.Request.builder().mergeFromCodedInputStream(input).build()
+          }
+          public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.RemoveTags.Request {
+            return ProfileService.RemoveTags.Request.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
+          }
+          public class func builder() -> ProfileService.RemoveTags.RequestBuilder {
+            return ProfileService.RemoveTags.Request.classBuilder() as ProfileService.RemoveTags.RequestBuilder
+          }
+          public func builder() -> ProfileService.RemoveTags.RequestBuilder {
+            return classBuilder() as ProfileService.RemoveTags.RequestBuilder
+          }
+          public override class func classBuilder() -> MessageBuilder {
+            return ProfileService.RemoveTags.RequestBuilder()
+          }
+          public override func classBuilder() -> MessageBuilder {
+            return ProfileService.RemoveTags.Request.builder()
+          }
+          public func toBuilder() -> ProfileService.RemoveTags.RequestBuilder {
+            return ProfileService.RemoveTags.Request.builderWithPrototype(self)
+          }
+          public class func builderWithPrototype(prototype:ProfileService.RemoveTags.Request) -> ProfileService.RemoveTags.RequestBuilder {
+            return ProfileService.RemoveTags.Request.builder().mergeFrom(prototype)
+          }
+          override public func writeDescriptionTo(inout output:String, indent:String) {
+            if hasProfileId {
+              output += "\(indent) profile_id: \(profile_id) \n"
+            }
+            var tagsElementIndex:Int = 0
+            for oneElementtags in tags {
+                output += "\(indent) tags[\(tagsElementIndex)] {\n"
+                oneElementtags.writeDescriptionTo(&output, indent:"\(indent)  ")
+                output += "\(indent)}\n"
+                tagsElementIndex++
+            }
+            unknownFields.writeDescriptionTo(&output, indent:indent)
+          }
+          override public var hashValue:Int {
+              get {
+                  var hashCode:Int = 7
+                  if hasProfileId {
+                     hashCode = (hashCode &* 31) &+ profile_id.hashValue
+                  }
+                  for oneElementtags in tags {
+                      hashCode = (hashCode &* 31) &+ oneElementtags.hashValue
+                  }
+                  hashCode = (hashCode &* 31) &+  unknownFields.hashValue
+                  return hashCode
+              }
+          }
+
+
+          //Meta information declaration start
+
+          override public class func className() -> String {
+              return "ProfileService.RemoveTags.Request"
+          }
+          override public func className() -> String {
+              return "ProfileService.RemoveTags.Request"
+          }
+          override public func classMetaType() -> GeneratedMessage.Type {
+              return ProfileService.RemoveTags.Request.self
+          }
+
+
+          //Meta information declaration end
+
+        }
+
+        final public class RequestBuilder : GeneratedMessageBuilder {
+          private var builderResult:ProfileService.RemoveTags.Request
+
+          required override public init () {
+             builderResult = ProfileService.RemoveTags.Request()
+             super.init()
+          }
+          public var hasProfileId:Bool {
+               get {
+                    return builderResult.hasProfileId
+               }
+          }
+          public var profile_id:String {
+               get {
+                    return builderResult.profile_id
+               }
+               set (value) {
+                   builderResult.hasProfileId = true
+                   builderResult.profile_id = value
+               }
+          }
+          public func clearProfileId() -> ProfileService.RemoveTags.RequestBuilder{
+               builderResult.hasProfileId = false
+               builderResult.profile_id = ""
+               return self
+          }
+          public var tags:Array<ProfileService.Containers.Tag> {
+               get {
+                   return builderResult.tags
+               }
+               set (value) {
+                   builderResult.tags = value
+               }
+          }
+          public func clearTags() -> ProfileService.RemoveTags.RequestBuilder {
+            builderResult.tags.removeAll(keepCapacity: false)
+            return self
+          }
+          override public var internalGetResult:GeneratedMessage {
+               get {
+                  return builderResult
+               }
+          }
+          public override func clear() -> ProfileService.RemoveTags.RequestBuilder {
+            builderResult = ProfileService.RemoveTags.Request()
+            return self
+          }
+          public override func clone() -> ProfileService.RemoveTags.RequestBuilder {
+            return ProfileService.RemoveTags.Request.builderWithPrototype(builderResult)
+          }
+          public override func build() -> ProfileService.RemoveTags.Request {
+               checkInitialized()
+               return buildPartial()
+          }
+          public func buildPartial() -> ProfileService.RemoveTags.Request {
+            var returnMe:ProfileService.RemoveTags.Request = builderResult
+            return returnMe
+          }
+          public func mergeFrom(other:ProfileService.RemoveTags.Request) -> ProfileService.RemoveTags.RequestBuilder {
+            if other.hasProfileId {
+                 profile_id = other.profile_id
+            }
+            if !other.tags.isEmpty  {
+               builderResult.tags += other.tags
+            }
+            mergeUnknownFields(other.unknownFields)
+            return self
+          }
+          public override func mergeFromCodedInputStream(input:CodedInputStream) ->ProfileService.RemoveTags.RequestBuilder {
+               return mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
+          }
+          public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.RemoveTags.RequestBuilder {
+            var unknownFieldsBuilder:UnknownFieldSetBuilder = UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
+            while (true) {
+              var tag = input.readTag()
+              switch tag {
+              case 0: 
+                self.unknownFields = unknownFieldsBuilder.build()
+                return self
+
+              case 10 :
+                profile_id = input.readString()
+
+              case 18 :
+                var subBuilder = ProfileService.Containers.Tag.builder()
+                input.readMessage(subBuilder,extensionRegistry:extensionRegistry)
+                tags += [subBuilder.buildPartial()]
+
+              default:
+                if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
+                   unknownFields = unknownFieldsBuilder.build()
+                   return self
+                }
+              }
+            }
+          }
+        }
+
+
+
+      //Nested type declaration end
+
+
+
+      //Nested type declaration start
+
+        final public class Response : GeneratedMessage {
+          override public subscript (key: String) -> Any? {
+                 switch key {
+                 default: return nil
+                 }
+          }
+
+          required public init() {
+               super.init()
+          }
+          override public func isInitialized() -> Bool {
+           return true
+          }
+          override public func writeToCodedOutputStream(output:CodedOutputStream) {
+            unknownFields.writeToCodedOutputStream(output)
+          }
+          override public func serializedSize() -> Int32 {
+            var size:Int32 = memoizedSerializedSize
+            if size != -1 {
+             return size
+            }
+
+            size = 0
+            size += unknownFields.serializedSize()
+            memoizedSerializedSize = size
+            return size
+          }
+          public class func parseFromData(data:[Byte]) -> ProfileService.RemoveTags.Response {
+            return ProfileService.RemoveTags.Response.builder().mergeFromData(data).build()
+          }
+          public class func parseFromData(data:[Byte], extensionRegistry:ExtensionRegistry) -> ProfileService.RemoveTags.Response {
+            return ProfileService.RemoveTags.Response.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
+          }
+          public class func parseFromInputStream(input:NSInputStream) -> ProfileService.RemoveTags.Response {
+            return ProfileService.RemoveTags.Response.builder().mergeFromInputStream(input).build()
+          }
+          public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->ProfileService.RemoveTags.Response {
+            return ProfileService.RemoveTags.Response.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
+          }
+          public class func parseFromCodedInputStream(input:CodedInputStream) -> ProfileService.RemoveTags.Response {
+            return ProfileService.RemoveTags.Response.builder().mergeFromCodedInputStream(input).build()
+          }
+          public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.RemoveTags.Response {
+            return ProfileService.RemoveTags.Response.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
+          }
+          public class func builder() -> ProfileService.RemoveTags.ResponseBuilder {
+            return ProfileService.RemoveTags.Response.classBuilder() as ProfileService.RemoveTags.ResponseBuilder
+          }
+          public func builder() -> ProfileService.RemoveTags.ResponseBuilder {
+            return classBuilder() as ProfileService.RemoveTags.ResponseBuilder
+          }
+          public override class func classBuilder() -> MessageBuilder {
+            return ProfileService.RemoveTags.ResponseBuilder()
+          }
+          public override func classBuilder() -> MessageBuilder {
+            return ProfileService.RemoveTags.Response.builder()
+          }
+          public func toBuilder() -> ProfileService.RemoveTags.ResponseBuilder {
+            return ProfileService.RemoveTags.Response.builderWithPrototype(self)
+          }
+          public class func builderWithPrototype(prototype:ProfileService.RemoveTags.Response) -> ProfileService.RemoveTags.ResponseBuilder {
+            return ProfileService.RemoveTags.Response.builder().mergeFrom(prototype)
+          }
+          override public func writeDescriptionTo(inout output:String, indent:String) {
+            unknownFields.writeDescriptionTo(&output, indent:indent)
+          }
+          override public var hashValue:Int {
+              get {
+                  var hashCode:Int = 7
+                  hashCode = (hashCode &* 31) &+  unknownFields.hashValue
+                  return hashCode
+              }
+          }
+
+
+          //Meta information declaration start
+
+          override public class func className() -> String {
+              return "ProfileService.RemoveTags.Response"
+          }
+          override public func className() -> String {
+              return "ProfileService.RemoveTags.Response"
+          }
+          override public func classMetaType() -> GeneratedMessage.Type {
+              return ProfileService.RemoveTags.Response.self
+          }
+
+
+          //Meta information declaration end
+
+        }
+
+        final public class ResponseBuilder : GeneratedMessageBuilder {
+          private var builderResult:ProfileService.RemoveTags.Response
+
+          required override public init () {
+             builderResult = ProfileService.RemoveTags.Response()
+             super.init()
+          }
+          override public var internalGetResult:GeneratedMessage {
+               get {
+                  return builderResult
+               }
+          }
+          public override func clear() -> ProfileService.RemoveTags.ResponseBuilder {
+            builderResult = ProfileService.RemoveTags.Response()
+            return self
+          }
+          public override func clone() -> ProfileService.RemoveTags.ResponseBuilder {
+            return ProfileService.RemoveTags.Response.builderWithPrototype(builderResult)
+          }
+          public override func build() -> ProfileService.RemoveTags.Response {
+               checkInitialized()
+               return buildPartial()
+          }
+          public func buildPartial() -> ProfileService.RemoveTags.Response {
+            var returnMe:ProfileService.RemoveTags.Response = builderResult
+            return returnMe
+          }
+          public func mergeFrom(other:ProfileService.RemoveTags.Response) -> ProfileService.RemoveTags.ResponseBuilder {
+            mergeUnknownFields(other.unknownFields)
+            return self
+          }
+          public override func mergeFromCodedInputStream(input:CodedInputStream) ->ProfileService.RemoveTags.ResponseBuilder {
+               return mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
+          }
+          public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.RemoveTags.ResponseBuilder {
+            var unknownFieldsBuilder:UnknownFieldSetBuilder = UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
+            while (true) {
+              var tag = input.readTag()
+              switch tag {
+              case 0: 
+                self.unknownFields = unknownFieldsBuilder.build()
+                return self
+
+              default:
+                if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
+                   unknownFields = unknownFieldsBuilder.build()
+                   return self
+                }
+              }
+            }
+          }
+        }
+
+
+
+      //Nested type declaration end
+
+      override public subscript (key: String) -> Any? {
+             switch key {
+             default: return nil
+             }
+      }
+
+      required public init() {
+           super.init()
+      }
+      override public func isInitialized() -> Bool {
+       return true
+      }
+      override public func writeToCodedOutputStream(output:CodedOutputStream) {
+        unknownFields.writeToCodedOutputStream(output)
+      }
+      override public func serializedSize() -> Int32 {
+        var size:Int32 = memoizedSerializedSize
+        if size != -1 {
+         return size
+        }
+
+        size = 0
+        size += unknownFields.serializedSize()
+        memoizedSerializedSize = size
+        return size
+      }
+      public class func parseFromData(data:[Byte]) -> ProfileService.RemoveTags {
+        return ProfileService.RemoveTags.builder().mergeFromData(data).build()
+      }
+      public class func parseFromData(data:[Byte], extensionRegistry:ExtensionRegistry) -> ProfileService.RemoveTags {
+        return ProfileService.RemoveTags.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
+      }
+      public class func parseFromInputStream(input:NSInputStream) -> ProfileService.RemoveTags {
+        return ProfileService.RemoveTags.builder().mergeFromInputStream(input).build()
+      }
+      public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->ProfileService.RemoveTags {
+        return ProfileService.RemoveTags.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
+      }
+      public class func parseFromCodedInputStream(input:CodedInputStream) -> ProfileService.RemoveTags {
+        return ProfileService.RemoveTags.builder().mergeFromCodedInputStream(input).build()
+      }
+      public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.RemoveTags {
+        return ProfileService.RemoveTags.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
+      }
+      public class func builder() -> ProfileService.RemoveTagsBuilder {
+        return ProfileService.RemoveTags.classBuilder() as ProfileService.RemoveTagsBuilder
+      }
+      public func builder() -> ProfileService.RemoveTagsBuilder {
+        return classBuilder() as ProfileService.RemoveTagsBuilder
+      }
+      public override class func classBuilder() -> MessageBuilder {
+        return ProfileService.RemoveTagsBuilder()
+      }
+      public override func classBuilder() -> MessageBuilder {
+        return ProfileService.RemoveTags.builder()
+      }
+      public func toBuilder() -> ProfileService.RemoveTagsBuilder {
+        return ProfileService.RemoveTags.builderWithPrototype(self)
+      }
+      public class func builderWithPrototype(prototype:ProfileService.RemoveTags) -> ProfileService.RemoveTagsBuilder {
+        return ProfileService.RemoveTags.builder().mergeFrom(prototype)
+      }
+      override public func writeDescriptionTo(inout output:String, indent:String) {
+        unknownFields.writeDescriptionTo(&output, indent:indent)
+      }
+      override public var hashValue:Int {
+          get {
+              var hashCode:Int = 7
+              hashCode = (hashCode &* 31) &+  unknownFields.hashValue
+              return hashCode
+          }
+      }
+
+
+      //Meta information declaration start
+
+      override public class func className() -> String {
+          return "ProfileService.RemoveTags"
+      }
+      override public func className() -> String {
+          return "ProfileService.RemoveTags"
+      }
+      override public func classMetaType() -> GeneratedMessage.Type {
+          return ProfileService.RemoveTags.self
+      }
+
+
+      //Meta information declaration end
+
+    }
+
+    final public class RemoveTagsBuilder : GeneratedMessageBuilder {
+      private var builderResult:ProfileService.RemoveTags
+
+      required override public init () {
+         builderResult = ProfileService.RemoveTags()
+         super.init()
+      }
+      override public var internalGetResult:GeneratedMessage {
+           get {
+              return builderResult
+           }
+      }
+      public override func clear() -> ProfileService.RemoveTagsBuilder {
+        builderResult = ProfileService.RemoveTags()
+        return self
+      }
+      public override func clone() -> ProfileService.RemoveTagsBuilder {
+        return ProfileService.RemoveTags.builderWithPrototype(builderResult)
+      }
+      public override func build() -> ProfileService.RemoveTags {
+           checkInitialized()
+           return buildPartial()
+      }
+      public func buildPartial() -> ProfileService.RemoveTags {
+        var returnMe:ProfileService.RemoveTags = builderResult
+        return returnMe
+      }
+      public func mergeFrom(other:ProfileService.RemoveTags) -> ProfileService.RemoveTagsBuilder {
+        mergeUnknownFields(other.unknownFields)
+        return self
+      }
+      public override func mergeFromCodedInputStream(input:CodedInputStream) ->ProfileService.RemoveTagsBuilder {
+           return mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
+      }
+      public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> ProfileService.RemoveTagsBuilder {
+        var unknownFieldsBuilder:UnknownFieldSetBuilder = UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
+        while (true) {
+          var tag = input.readTag()
+          switch tag {
+          case 0: 
+            self.unknownFields = unknownFieldsBuilder.build()
+            return self
+
+          default:
+            if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
+               unknownFields = unknownFieldsBuilder.build()
+               return self
+            }
+          }
+        }
+      }
+    }
+
+
+
+  //Nested type declaration end
+
+
+
+  //Nested type declaration start
+
     final public class GetProfiles : GeneratedMessage {
 
 
@@ -14292,6 +14837,42 @@ public extension ProfileService.AddTags {
         var bytes = [Byte](count: data.length, repeatedValue: 0)
         data.getBytes(&bytes)
         return ProfileService.AddTags.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
+    }
+}
+public extension ProfileService.RemoveTags.Request {
+    class func parseFromNSData(data:NSData) -> ProfileService.RemoveTags.Request {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return ProfileService.RemoveTags.Request.builder().mergeFromData(bytes).build()
+    }
+    class func parseFromNSData(data:NSData, extensionRegistry:ExtensionRegistry) -> ProfileService.RemoveTags.Request {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return ProfileService.RemoveTags.Request.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
+    }
+}
+public extension ProfileService.RemoveTags.Response {
+    class func parseFromNSData(data:NSData) -> ProfileService.RemoveTags.Response {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return ProfileService.RemoveTags.Response.builder().mergeFromData(bytes).build()
+    }
+    class func parseFromNSData(data:NSData, extensionRegistry:ExtensionRegistry) -> ProfileService.RemoveTags.Response {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return ProfileService.RemoveTags.Response.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
+    }
+}
+public extension ProfileService.RemoveTags {
+    class func parseFromNSData(data:NSData) -> ProfileService.RemoveTags {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return ProfileService.RemoveTags.builder().mergeFromData(bytes).build()
+    }
+    class func parseFromNSData(data:NSData, extensionRegistry:ExtensionRegistry) -> ProfileService.RemoveTags {
+        var bytes = [Byte](count: data.length, repeatedValue: 0)
+        data.getBytes(&bytes)
+        return ProfileService.RemoveTags.builder().mergeFromData(bytes, extensionRegistry:extensionRegistry).build()
     }
 }
 public extension ProfileService.GetProfiles.Request {

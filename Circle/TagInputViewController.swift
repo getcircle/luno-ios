@@ -24,6 +24,7 @@ class TagInputViewController: UIViewController,
     // TODO this should be 2 * the tokenHeight
     private var tokenFieldMaxHeight: CGFloat = 2 * 40.0
     private var newTag: ProfileService.Containers.Tag?
+    private var deletedTags = Array<ProfileService.Containers.Tag>()
     private var selectedTags = Array<ProfileService.Containers.Tag>()
     private var suggestedTags = Array<ProfileService.Containers.Tag>()
     
@@ -164,7 +165,10 @@ class TagInputViewController: UIViewController,
     }
     
     func tokenField(tokenField: TokenField, didDeleteTokenAtIndex index: UInt) {
-        selectedTags.removeAtIndex(Int(index))
+        let deletedTag = selectedTags.removeAtIndex(Int(index)) as ProfileService.Containers.Tag
+        if deletedTag.hasId {
+            deletedTags.append(deletedTag)
+        }
         tokenField.reloadData()
     }
     
@@ -187,16 +191,34 @@ class TagInputViewController: UIViewController,
     // MARK: - IBActions
     
     @IBAction func done(sender: AnyObject!) {
-        // TODO check for no tags added
         // TODO only display done button if we have added a tag
         let activityIndicator = view.addActivityIndicator()
-        ProfileService.Actions.addTags(AuthViewController.getLoggedInUserProfile()!.id, tags: selectedTags) { (error) in
-            if error != nil {
-                println("error adding tags: \(error)")
-            } else {
+        
+        var storedError: NSError!
+        var actionsGroup = dispatch_group_create()
+        let profileId = AuthViewController.getLoggedInUserProfile()!.id
+        if selectedTags.count > 0 {
+            dispatch_group_enter(actionsGroup)
+            ProfileService.Actions.addTags(profileId, tags: selectedTags) { (error) in
                 // TODO return any tags that were created so we can add them to the ObjectStore
-                self.dismissView()
+                if let error = error {
+                    storedError = error
+                }
+                dispatch_group_leave(actionsGroup)
             }
+        }
+        if deletedTags.count > 0 {
+            dispatch_group_enter(actionsGroup)
+            ProfileService.Actions.removeTags(profileId, tags: deletedTags) { (error) -> Void in
+                if let error = error {
+                    storedError = error
+                }
+                dispatch_group_leave(actionsGroup)
+            }
+        }
+        dispatch_group_notify(actionsGroup, GlobalMainQueue) { () -> Void in
+            // TODO print the storedError if there is an error
+            self.dismissView()
         }
     }
     

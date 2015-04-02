@@ -30,6 +30,7 @@ typealias GetExtendedProfileCompletionHandler = (
 typealias GetTagsCompletionHandler = (interests: Array<ProfileService.Containers.Tag>?, error: NSError?) -> Void
 typealias UpdateProfileCompletionHandler = (profile: ProfileService.Containers.Profile?, error: NSError?) -> Void
 typealias AddTagsCompletionHandler = (error: NSError?) -> Void
+typealias RemoveTagsCompletionHandler = (error: NSError?) -> Void
 
 extension ProfileService {
     class Actions {
@@ -237,6 +238,30 @@ extension ProfileService {
                     })
                     let response = wrapped?.response?.result.getExtension(ProfileServiceRequests_add_tags) as? ProfileService.AddTags.Response
                     completionHandler?(error: error)
+            }
+        }
+        
+        class func removeTags(profileId: String, tags: Array<ProfileService.Containers.Tag>, completionHandler: RemoveTagsCompletionHandler?) {
+            let requestBuilder = ProfileService.RemoveTags.Request.builder()
+            requestBuilder.profile_id = profileId
+            requestBuilder.tags = tags
+            
+            let client = ServiceClient(serviceName: "profile")
+            client.callAction(
+                "remove_tags",
+                extensionField: ProfileServiceRequests_remove_tags,
+                requestBuilder: requestBuilder
+            ) { (_, _, wrapped, error) -> Void in
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    NSNotificationCenter.defaultCenter().postNotificationName(
+                        ProfileServiceNotifications.onProfileUpdatedNotification,
+                        object: nil
+                    )
+                })
+                let response = wrapped?.response?.result.getExtension(
+                    ProfileServiceRequests_remove_tags
+                ) as? ProfileService.RemoveTags.Response
+                completionHandler?(error: error)
             }
         }
     }

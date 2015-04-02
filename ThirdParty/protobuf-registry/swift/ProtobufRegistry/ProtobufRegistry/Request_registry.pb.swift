@@ -232,6 +232,11 @@ public var ProfileServiceRequests_get_attributes_for_profiles:ConcreateExtension
        return RequestRegistryRoot.sharedInstance.ProfileServiceRequests_get_attributes_for_profilesStatic
    }
 }
+public var ProfileServiceRequests_remove_tags:ConcreateExtensionField {
+   get {
+       return RequestRegistryRoot.sharedInstance.ProfileServiceRequests_remove_tagsStatic
+   }
+}
 public var SearchServiceRequests_search:ConcreateExtensionField {
    get {
        return RequestRegistryRoot.sharedInstance.SearchServiceRequests_searchStatic
@@ -375,6 +380,7 @@ public struct RequestRegistryRoot {
   var ProfileServiceRequests_bulk_create_profilesStatic:ConcreateExtensionField
   var ProfileServiceRequests_bulk_update_profilesStatic:ConcreateExtensionField
   var ProfileServiceRequests_get_attributes_for_profilesStatic:ConcreateExtensionField
+  var ProfileServiceRequests_remove_tagsStatic:ConcreateExtensionField
   var SearchServiceRequests_searchStatic:ConcreateExtensionField
   var LandingServiceRequests_get_categoriesStatic:ConcreateExtensionField
   var LandingServiceRequests_get_organization_categoriesStatic:ConcreateExtensionField
@@ -442,6 +448,7 @@ public struct RequestRegistryRoot {
     ProfileServiceRequests_bulk_create_profilesStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionRequestParams.self, fieldNumber: 315, defaultValue:ProfileService.BulkCreateProfiles.Request(), messageOrGroupClass:ProfileService.BulkCreateProfiles.Request.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     ProfileServiceRequests_bulk_update_profilesStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionRequestParams.self, fieldNumber: 316, defaultValue:ProfileService.BulkUpdateProfiles.Request(), messageOrGroupClass:ProfileService.BulkUpdateProfiles.Request.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     ProfileServiceRequests_get_attributes_for_profilesStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionRequestParams.self, fieldNumber: 317, defaultValue:ProfileService.GetAttributesForProfiles.Request(), messageOrGroupClass:ProfileService.GetAttributesForProfiles.Request.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
+    ProfileServiceRequests_remove_tagsStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionRequestParams.self, fieldNumber: 318, defaultValue:ProfileService.RemoveTags.Request(), messageOrGroupClass:ProfileService.RemoveTags.Request.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     SearchServiceRequests_searchStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionRequestParams.self, fieldNumber: 400, defaultValue:SearchService.Search.Request(), messageOrGroupClass:SearchService.Search.Request.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     LandingServiceRequests_get_categoriesStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionRequestParams.self, fieldNumber: 500, defaultValue:LandingService.GetCategories.Request(), messageOrGroupClass:LandingService.GetCategories.Request.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     LandingServiceRequests_get_organization_categoriesStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionRequestParams.self, fieldNumber: 501, defaultValue:LandingService.GetOrganizationCategories.Request(), messageOrGroupClass:LandingService.GetOrganizationCategories.Request.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
@@ -520,6 +527,7 @@ public struct RequestRegistryRoot {
     registry.addExtension(ProfileServiceRequests_bulk_create_profilesStatic)
     registry.addExtension(ProfileServiceRequests_bulk_update_profilesStatic)
     registry.addExtension(ProfileServiceRequests_get_attributes_for_profilesStatic)
+    registry.addExtension(ProfileServiceRequests_remove_tagsStatic)
     registry.addExtension(SearchServiceRequests_searchStatic)
     registry.addExtension(LandingServiceRequests_get_categoriesStatic)
     registry.addExtension(LandingServiceRequests_get_organization_categoriesStatic)
@@ -1047,6 +1055,9 @@ final public class ProfileServiceRequests : GeneratedMessage {
   }
   public class func get_attributes_for_profiles() -> ConcreateExtensionField {
        return ProfileServiceRequests_get_attributes_for_profiles
+  }
+  public class func remove_tags() -> ConcreateExtensionField {
+       return ProfileServiceRequests_remove_tags
   }
   required public init() {
        super.init()

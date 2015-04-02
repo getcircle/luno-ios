@@ -205,6 +205,16 @@ message ProfileService {
 
     }
 
+    message RemoveTags {
+
+        message Request {
+            optional string profile_id = 1;
+            repeated Containers.Tag tags = 2;
+        }
+
+        message Response {}
+    }
+
     message GetProfiles {
 
         message Request {

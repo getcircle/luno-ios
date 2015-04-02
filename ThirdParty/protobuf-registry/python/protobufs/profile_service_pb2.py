@@ -22,7 +22,7 @@ import protobufs.user_service_pb2
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='protobufs/profile_service.proto',
   package='main.profile_service',
-  serialized_pb=_b('\n\x1fprotobufs/profile_service.proto\x12\x14main.profile_service\x1a$protobufs/organization_service.proto\x1a\x1cprotobufs/note_service.proto\x1a\x1eprotobufs/resume_service.proto\x1a\x1cprotobufs/user_service.proto\"\xd6&\n\x0eProfileService\x1a\xb6\x07\n\nContainers\x1a\xf8\x03\n\x07Profile\x12\n\n\x02id\x18\x01 \x01(\t\x12\x17\n\x0forganization_id\x18\x02 \x01(\t\x12\x0f\n\x07user_id\x18\x03 \x01(\t\x12\x12\n\naddress_id\x18\x04 \x01(\t\x12\r\n\x05title\x18\x05 \x01(\t\x12\x12\n\nfirst_name\x18\x06 \x01(\t\x12\x11\n\tlast_name\x18\x07 \x01(\t\x12\x11\n\timage_url\x18\x08 \x01(\t\x12\x0f\n\x07team_id\x18\t \x01(\t\x12\x11\n\tfull_name\x18\n \x01(\t\x12\x12\n\nbirth_date\x18\x0b \x01(\t\x12\x11\n\thire_date\x18\x0c \x01(\t\x12\x10\n\x08verified\x18\r \x01(\x08\x12J\n\x05items\x18\x0e \x03(\x0b\x32;.main.profile_service.ProfileService.Containers.ProfileItem\x12\r\n\x05\x61\x62out\x18\x0f \x01(\t\x12\x13\n\x0blocation_id\x18\x10 \x01(\t\x12\x10\n\x08nickname\x18\x11 \x01(\t\x12V\n\x0f\x63ontact_methods\x18\x12 \x03(\x0b\x32=.main.profile_service.ProfileService.Containers.ContactMethod\x12\x14\n\x0cseating_info\x18\x13 \x01(\t\x12\r\n\x05\x65mail\x18\x14 \x01(\t\x1a)\n\x0bProfileItem\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t\x1a\x7f\n\rContactMethod\x12\n\n\x02id\x18\x01 \x01(\t\x12\r\n\x05label\x18\x02 \x01(\t\x12\r\n\x05value\x18\x03 \x01(\t\x12\x44\n\x04type\x18\x04 \x01(\x0e\x32\x36.main.profile_service.ProfileService.ContactMethodType\x1a[\n\x03Tag\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12:\n\x04type\x18\x03 \x01(\x0e\x32,.main.profile_service.ProfileService.TagType\x1a\"\n\x05Stats\x12\n\n\x02id\x18\x01 \x01(\t\x12\r\n\x05\x63ount\x18\x02 \x01(\r\x1aV\n\x0cProfileArray\x12\x46\n\x05items\x18\x01 \x03(\x0b\x32\x37.main.profile_service.ProfileService.Containers.Profile\x1a(\n\tAttribute\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t\x1a\xba\x01\n\rCreateProfile\x1aS\n\x07Request\x12H\n\x07profile\x18\x01 \x01(\x0b\x32\x37.main.profile_service.ProfileService.Containers.Profile\x1aT\n\x08Response\x12H\n\x07profile\x18\x01 \x01(\x0b\x32\x37.main.profile_service.ProfileService.Containers.Profile\x1a\xc1\x01\n\x12\x42ulkCreateProfiles\x1aT\n\x07Request\x12I\n\x08profiles\x18\x01 \x03(\x0b\x32\x37.main.profile_service.ProfileService.Containers.Profile\x1aU\n\x08Response\x12I\n\x08profiles\x18\x01 \x03(\x0b\x32\x37.main.profile_service.ProfileService.Containers.Profile\x1a\xc1\x01\n\x12\x42ulkUpdateProfiles\x1aT\n\x07Request\x12I\n\x08profiles\x18\x01 \x03(\x0b\x32\x37.main.profile_service.ProfileService.Containers.Profile\x1aU\n\x08Response\x12I\n\x08profiles\x18\x01 \x03(\x0b\x32\x37.main.profile_service.ProfileService.Containers.Profile\x1a\xba\x01\n\rUpdateProfile\x1aS\n\x07Request\x12H\n\x07profile\x18\x01 \x01(\x0b\x32\x37.main.profile_service.ProfileService.Containers.Profile\x1aT\n\x08Response\x12H\n\x07profile\x18\x01 \x01(\x0b\x32\x37.main.profile_service.ProfileService.Containers.Profile\x1a\x92\x01\n\nGetProfile\x1a.\n\x07Request\x12\x12\n\nprofile_id\x18\x01 \x01(\t\x12\x0f\n\x07user_id\x18\x02 \x01(\t\x1aT\n\x08Response\x12H\n\x07profile\x18\x01 \x01(\x0b\x32\x37.main.profile_service.ProfileService.Containers.Profile\x1a\xbe\x06\n\x12GetExtendedProfile\x1a.\n\x07Request\x12\x12\n\nprofile_id\x18\x01 \x01(\t\x12\x0f\n\x07user_id\x18\x02 \x01(\t\x1a\xf7\x05\n\x08Response\x12H\n\x07profile\x18\x01 \x01(\x0b\x32\x37.main.profile_service.ProfileService.Containers.Profile\x12R\n\x07\x61\x64\x64ress\x18\x02 \x01(\x0b\x32\x41.main.organization_service.OrganizationService.Containers.Address\x12H\n\x07manager\x18\x03 \x01(\x0b\x32\x37.main.profile_service.ProfileService.Containers.Profile\x12L\n\x04team\x18\x04 \x01(\x0b\x32>.main.organization_service.OrganizationService.Containers.Team\x12=\n\x05notes\x18\x05 \x03(\x0b\x32..main.note_service.NoteService.Containers.Note\x12\x41\n\x04tags\x18\x06 \x03(\x0b\x32\x33.main.profile_service.ProfileService.Containers.Tag\x12\x46\n\nidentities\x18\x07 \x03(\x0b\x32\x32.main.user_service.UserService.Containers.Identity\x12O\n\x0e\x64irect_reports\x18\x08 \x03(\x0b\x32\x37.main.profile_service.ProfileService.Containers.Profile\x12\x44\n\x06resume\x18\t \x01(\x0b\x32\x34.main.resume_service.ResumeService.Containers.Resume\x12T\n\x08location\x18\n \x01(\x0b\x32\x42.main.organization_service.OrganizationService.Containers.Location\x1a\xc2\x01\n\nCreateTags\x1a\x65\n\x07Request\x12\x41\n\x04tags\x18\x01 \x03(\x0b\x32\x33.main.profile_service.ProfileService.Containers.Tag\x12\x17\n\x0forganization_id\x18\x02 \x01(\t\x1aM\n\x08Response\x12\x41\n\x04tags\x18\x01 \x03(\x0b\x32\x33.main.profile_service.ProfileService.Containers.Tag\x1a\xd0\x01\n\x07GetTags\x1av\n\x07Request\x12\x12\n\nprofile_id\x18\x01 \x01(\t\x12\x17\n\x0forganization_id\x18\x02 \x01(\t\x12>\n\x08tag_type\x18\x03 \x01(\x0e\x32,.main.profile_service.ProfileService.TagType\x1aM\n\x08Response\x12\x41\n\x04tags\x18\x01 \x03(\x0b\x32\x33.main.profile_service.ProfileService.Containers.Tag\x1aw\n\x07\x41\x64\x64Tags\x1a`\n\x07Request\x12\x12\n\nprofile_id\x18\x01 \x01(\t\x12\x41\n\x04tags\x18\x02 \x03(\x0b\x32\x33.main.profile_service.ProfileService.Containers.Tag\x1a\n\n\x08Response\x1a\xdf\x01\n\x0bGetProfiles\x1ay\n\x07Request\x12\x0f\n\x07team_id\x18\x01 \x01(\t\x12\x17\n\x0forganization_id\x18\x02 \x01(\t\x12\x0e\n\x06tag_id\x18\x03 \x01(\t\x12\x12\n\naddress_id\x18\x04 \x01(\t\x12\x0b\n\x03ids\x18\x05 \x03(\t\x12\x13\n\x0blocation_id\x18\x06 \x01(\t\x1aU\n\x08Response\x12I\n\x08profiles\x18\x01 \x03(\x0b\x32\x37.main.profile_service.ProfileService.Containers.Profile\x1a\x99\x01\n\x10GetDirectReports\x1a.\n\x07Request\x12\x12\n\nprofile_id\x18\x01 \x01(\t\x12\x0f\n\x07user_id\x18\x02 \x01(\t\x1aU\n\x08Response\x12I\n\x08profiles\x18\x01 \x03(\x0b\x32\x37.main.profile_service.ProfileService.Containers.Profile\x1a\x80\x01\n\x08GetPeers\x1a\x1d\n\x07Request\x12\x12\n\nprofile_id\x18\x01 \x01(\t\x1aU\n\x08Response\x12I\n\x08profiles\x18\x02 \x03(\x0b\x32\x37.main.profile_service.ProfileService.Containers.Profile\x1a\xab\x01\n\x0fGetProfileStats\x1a\x46\n\x07Request\x12\x13\n\x0b\x61\x64\x64ress_ids\x18\x01 \x03(\t\x12\x14\n\x0clocation_ids\x18\x02 \x03(\t\x12\x10\n\x08team_ids\x18\x03 \x03(\t\x1aP\n\x08Response\x12\x44\n\x05stats\x18\x01 \x03(\x0b\x32\x35.main.profile_service.ProfileService.Containers.Stats\x1a\x95\x01\n\x18GetUpcomingAnniversaries\x1a\"\n\x07Request\x12\x17\n\x0forganization_id\x18\x01 \x01(\t\x1aU\n\x08Response\x12I\n\x08profiles\x18\x01 \x03(\x0b\x32\x37.main.profile_service.ProfileService.Containers.Profile\x1a\x91\x01\n\x14GetUpcomingBirthdays\x1a\"\n\x07Request\x12\x17\n\x0forganization_id\x18\x01 \x01(\t\x1aU\n\x08Response\x12I\n\x08profiles\x18\x01 \x03(\x0b\x32\x37.main.profile_service.ProfileService.Containers.Profile\x1a\x8b\x01\n\x0eGetRecentHires\x1a\"\n\x07Request\x12\x17\n\x0forganization_id\x18\x01 \x01(\t\x1aU\n\x08Response\x12I\n\x08profiles\x18\x01 \x03(\x0b\x32\x37.main.profile_service.ProfileService.Containers.Profile\x1a\xc2\x01\n\rGetActiveTags\x1a\x62\n\x07Request\x12\x17\n\x0forganization_id\x18\x01 \x01(\t\x12>\n\x08tag_type\x18\x02 \x01(\x0e\x32,.main.profile_service.ProfileService.TagType\x1aM\n\x08Response\x12\x41\n\x04tags\x18\x01 \x03(\x0b\x32\x33.main.profile_service.ProfileService.Containers.Tag\x1a\xbb\x01\n\x18GetAttributesForProfiles\x1a\x44\n\x07Request\x12\x12\n\nattributes\x18\x01 \x03(\t\x12\x10\n\x08\x64istinct\x18\x02 \x01(\x08\x12\x13\n\x0blocation_id\x18\x03 \x01(\t\x1aY\n\x08Response\x12M\n\nattributes\x18\x01 \x03(\x0b\x32\x39.main.profile_service.ProfileService.Containers.Attribute\"=\n\x07TagType\x12\t\n\x05SKILL\x10\x00\x12\x0c\n\x08INTEREST\x10\x01\x12\x0c\n\x08LANGUAGE\x10\x02\x12\x0b\n\x07PROJECT\x10\x03\"w\n\x11\x43ontactMethodType\x12\x0e\n\nCELL_PHONE\x10\x00\x12\t\n\x05PHONE\x10\x01\x12\t\n\x05\x45MAIL\x10\x02\x12\t\n\x05SLACK\x10\x03\x12\x0b\n\x07TWITTER\x10\x04\x12\x0b\n\x07HIPCHAT\x10\x05\x12\x0c\n\x08\x46\x41\x43\x45\x42OOK\x10\x06\x12\t\n\x05SKYPE\x10\x07')
+  serialized_pb=_b('\n\x1fprotobufs/profile_service.proto\x12\x14main.profile_service\x1a$protobufs/organization_service.proto\x1a\x1cprotobufs/note_service.proto\x1a\x1eprotobufs/resume_service.proto\x1a\x1cprotobufs/user_service.proto\"\xd2\'\n\x0eProfileService\x1a\xb6\x07\n\nContainers\x1a\xf8\x03\n\x07Profile\x12\n\n\x02id\x18\x01 \x01(\t\x12\x17\n\x0forganization_id\x18\x02 \x01(\t\x12\x0f\n\x07user_id\x18\x03 \x01(\t\x12\x12\n\naddress_id\x18\x04 \x01(\t\x12\r\n\x05title\x18\x05 \x01(\t\x12\x12\n\nfirst_name\x18\x06 \x01(\t\x12\x11\n\tlast_name\x18\x07 \x01(\t\x12\x11\n\timage_url\x18\x08 \x01(\t\x12\x0f\n\x07team_id\x18\t \x01(\t\x12\x11\n\tfull_name\x18\n \x01(\t\x12\x12\n\nbirth_date\x18\x0b \x01(\t\x12\x11\n\thire_date\x18\x0c \x01(\t\x12\x10\n\x08verified\x18\r \x01(\x08\x12J\n\x05items\x18\x0e \x03(\x0b\x32;.main.profile_service.ProfileService.Containers.ProfileItem\x12\r\n\x05\x61\x62out\x18\x0f \x01(\t\x12\x13\n\x0blocation_id\x18\x10 \x01(\t\x12\x10\n\x08nickname\x18\x11 \x01(\t\x12V\n\x0f\x63ontact_methods\x18\x12 \x03(\x0b\x32=.main.profile_service.ProfileService.Containers.ContactMethod\x12\x14\n\x0cseating_info\x18\x13 \x01(\t\x12\r\n\x05\x65mail\x18\x14 \x01(\t\x1a)\n\x0bProfileItem\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t\x1a\x7f\n\rContactMethod\x12\n\n\x02id\x18\x01 \x01(\t\x12\r\n\x05label\x18\x02 \x01(\t\x12\r\n\x05value\x18\x03 \x01(\t\x12\x44\n\x04type\x18\x04 \x01(\x0e\x32\x36.main.profile_service.ProfileService.ContactMethodType\x1a[\n\x03Tag\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t\x12:\n\x04type\x18\x03 \x01(\x0e\x32,.main.profile_service.ProfileService.TagType\x1a\"\n\x05Stats\x12\n\n\x02id\x18\x01 \x01(\t\x12\r\n\x05\x63ount\x18\x02 \x01(\r\x1aV\n\x0cProfileArray\x12\x46\n\x05items\x18\x01 \x03(\x0b\x32\x37.main.profile_service.ProfileService.Containers.Profile\x1a(\n\tAttribute\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t\x1a\xba\x01\n\rCreateProfile\x1aS\n\x07Request\x12H\n\x07profile\x18\x01 \x01(\x0b\x32\x37.main.profile_service.ProfileService.Containers.Profile\x1aT\n\x08Response\x12H\n\x07profile\x18\x01 \x01(\x0b\x32\x37.main.profile_service.ProfileService.Containers.Profile\x1a\xc1\x01\n\x12\x42ulkCreateProfiles\x1aT\n\x07Request\x12I\n\x08profiles\x18\x01 \x03(\x0b\x32\x37.main.profile_service.ProfileService.Containers.Profile\x1aU\n\x08Response\x12I\n\x08profiles\x18\x01 \x03(\x0b\x32\x37.main.profile_service.ProfileService.Containers.Profile\x1a\xc1\x01\n\x12\x42ulkUpdateProfiles\x1aT\n\x07Request\x12I\n\x08profiles\x18\x01 \x03(\x0b\x32\x37.main.profile_service.ProfileService.Containers.Profile\x1aU\n\x08Response\x12I\n\x08profiles\x18\x01 \x03(\x0b\x32\x37.main.profile_service.ProfileService.Containers.Profile\x1a\xba\x01\n\rUpdateProfile\x1aS\n\x07Request\x12H\n\x07profile\x18\x01 \x01(\x0b\x32\x37.main.profile_service.ProfileService.Containers.Profile\x1aT\n\x08Response\x12H\n\x07profile\x18\x01 \x01(\x0b\x32\x37.main.profile_service.ProfileService.Containers.Profile\x1a\x92\x01\n\nGetProfile\x1a.\n\x07Request\x12\x12\n\nprofile_id\x18\x01 \x01(\t\x12\x0f\n\x07user_id\x18\x02 \x01(\t\x1aT\n\x08Response\x12H\n\x07profile\x18\x01 \x01(\x0b\x32\x37.main.profile_service.ProfileService.Containers.Profile\x1a\xbe\x06\n\x12GetExtendedProfile\x1a.\n\x07Request\x12\x12\n\nprofile_id\x18\x01 \x01(\t\x12\x0f\n\x07user_id\x18\x02 \x01(\t\x1a\xf7\x05\n\x08Response\x12H\n\x07profile\x18\x01 \x01(\x0b\x32\x37.main.profile_service.ProfileService.Containers.Profile\x12R\n\x07\x61\x64\x64ress\x18\x02 \x01(\x0b\x32\x41.main.organization_service.OrganizationService.Containers.Address\x12H\n\x07manager\x18\x03 \x01(\x0b\x32\x37.main.profile_service.ProfileService.Containers.Profile\x12L\n\x04team\x18\x04 \x01(\x0b\x32>.main.organization_service.OrganizationService.Containers.Team\x12=\n\x05notes\x18\x05 \x03(\x0b\x32..main.note_service.NoteService.Containers.Note\x12\x41\n\x04tags\x18\x06 \x03(\x0b\x32\x33.main.profile_service.ProfileService.Containers.Tag\x12\x46\n\nidentities\x18\x07 \x03(\x0b\x32\x32.main.user_service.UserService.Containers.Identity\x12O\n\x0e\x64irect_reports\x18\x08 \x03(\x0b\x32\x37.main.profile_service.ProfileService.Containers.Profile\x12\x44\n\x06resume\x18\t \x01(\x0b\x32\x34.main.resume_service.ResumeService.Containers.Resume\x12T\n\x08location\x18\n \x01(\x0b\x32\x42.main.organization_service.OrganizationService.Containers.Location\x1a\xc2\x01\n\nCreateTags\x1a\x65\n\x07Request\x12\x41\n\x04tags\x18\x01 \x03(\x0b\x32\x33.main.profile_service.ProfileService.Containers.Tag\x12\x17\n\x0forganization_id\x18\x02 \x01(\t\x1aM\n\x08Response\x12\x41\n\x04tags\x18\x01 \x03(\x0b\x32\x33.main.profile_service.ProfileService.Containers.Tag\x1a\xd0\x01\n\x07GetTags\x1av\n\x07Request\x12\x12\n\nprofile_id\x18\x01 \x01(\t\x12\x17\n\x0forganization_id\x18\x02 \x01(\t\x12>\n\x08tag_type\x18\x03 \x01(\x0e\x32,.main.profile_service.ProfileService.TagType\x1aM\n\x08Response\x12\x41\n\x04tags\x18\x01 \x03(\x0b\x32\x33.main.profile_service.ProfileService.Containers.Tag\x1aw\n\x07\x41\x64\x64Tags\x1a`\n\x07Request\x12\x12\n\nprofile_id\x18\x01 \x01(\t\x12\x41\n\x04tags\x18\x02 \x03(\x0b\x32\x33.main.profile_service.ProfileService.Containers.Tag\x1a\n\n\x08Response\x1az\n\nRemoveTags\x1a`\n\x07Request\x12\x12\n\nprofile_id\x18\x01 \x01(\t\x12\x41\n\x04tags\x18\x02 \x03(\x0b\x32\x33.main.profile_service.ProfileService.Containers.Tag\x1a\n\n\x08Response\x1a\xdf\x01\n\x0bGetProfiles\x1ay\n\x07Request\x12\x0f\n\x07team_id\x18\x01 \x01(\t\x12\x17\n\x0forganization_id\x18\x02 \x01(\t\x12\x0e\n\x06tag_id\x18\x03 \x01(\t\x12\x12\n\naddress_id\x18\x04 \x01(\t\x12\x0b\n\x03ids\x18\x05 \x03(\t\x12\x13\n\x0blocation_id\x18\x06 \x01(\t\x1aU\n\x08Response\x12I\n\x08profiles\x18\x01 \x03(\x0b\x32\x37.main.profile_service.ProfileService.Containers.Profile\x1a\x99\x01\n\x10GetDirectReports\x1a.\n\x07Request\x12\x12\n\nprofile_id\x18\x01 \x01(\t\x12\x0f\n\x07user_id\x18\x02 \x01(\t\x1aU\n\x08Response\x12I\n\x08profiles\x18\x01 \x03(\x0b\x32\x37.main.profile_service.ProfileService.Containers.Profile\x1a\x80\x01\n\x08GetPeers\x1a\x1d\n\x07Request\x12\x12\n\nprofile_id\x18\x01 \x01(\t\x1aU\n\x08Response\x12I\n\x08profiles\x18\x02 \x03(\x0b\x32\x37.main.profile_service.ProfileService.Containers.Profile\x1a\xab\x01\n\x0fGetProfileStats\x1a\x46\n\x07Request\x12\x13\n\x0b\x61\x64\x64ress_ids\x18\x01 \x03(\t\x12\x14\n\x0clocation_ids\x18\x02 \x03(\t\x12\x10\n\x08team_ids\x18\x03 \x03(\t\x1aP\n\x08Response\x12\x44\n\x05stats\x18\x01 \x03(\x0b\x32\x35.main.profile_service.ProfileService.Containers.Stats\x1a\x95\x01\n\x18GetUpcomingAnniversaries\x1a\"\n\x07Request\x12\x17\n\x0forganization_id\x18\x01 \x01(\t\x1aU\n\x08Response\x12I\n\x08profiles\x18\x01 \x03(\x0b\x32\x37.main.profile_service.ProfileService.Containers.Profile\x1a\x91\x01\n\x14GetUpcomingBirthdays\x1a\"\n\x07Request\x12\x17\n\x0forganization_id\x18\x01 \x01(\t\x1aU\n\x08Response\x12I\n\x08profiles\x18\x01 \x03(\x0b\x32\x37.main.profile_service.ProfileService.Containers.Profile\x1a\x8b\x01\n\x0eGetRecentHires\x1a\"\n\x07Request\x12\x17\n\x0forganization_id\x18\x01 \x01(\t\x1aU\n\x08Response\x12I\n\x08profiles\x18\x01 \x03(\x0b\x32\x37.main.profile_service.ProfileService.Containers.Profile\x1a\xc2\x01\n\rGetActiveTags\x1a\x62\n\x07Request\x12\x17\n\x0forganization_id\x18\x01 \x01(\t\x12>\n\x08tag_type\x18\x02 \x01(\x0e\x32,.main.profile_service.ProfileService.TagType\x1aM\n\x08Response\x12\x41\n\x04tags\x18\x01 \x03(\x0b\x32\x33.main.profile_service.ProfileService.Containers.Tag\x1a\xbb\x01\n\x18GetAttributesForProfiles\x1a\x44\n\x07Request\x12\x12\n\nattributes\x18\x01 \x03(\t\x12\x10\n\x08\x64istinct\x18\x02 \x01(\x08\x12\x13\n\x0blocation_id\x18\x03 \x01(\t\x1aY\n\x08Response\x12M\n\nattributes\x18\x01 \x03(\x0b\x32\x39.main.profile_service.ProfileService.Containers.Attribute\"=\n\x07TagType\x12\t\n\x05SKILL\x10\x00\x12\x0c\n\x08INTEREST\x10\x01\x12\x0c\n\x08LANGUAGE\x10\x02\x12\x0b\n\x07PROJECT\x10\x03\"w\n\x11\x43ontactMethodType\x12\x0e\n\nCELL_PHONE\x10\x00\x12\t\n\x05PHONE\x10\x01\x12\t\n\x05\x45MAIL\x10\x02\x12\t\n\x05SLACK\x10\x03\x12\x0b\n\x07TWITTER\x10\x04\x12\x0b\n\x07HIPCHAT\x10\x05\x12\x0c\n\x08\x46\x41\x43\x45\x42OOK\x10\x06\x12\t\n\x05SKYPE\x10\x07')
   ,
   dependencies=[protobufs.organization_service_pb2.DESCRIPTOR,protobufs.note_service_pb2.DESCRIPTOR,protobufs.resume_service_pb2.DESCRIPTOR,protobufs.user_service_pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
@@ -54,8 +54,8 @@ _PROFILESERVICE_TAGTYPE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=4956,
-  serialized_end=5017,
+  serialized_start=5080,
+  serialized_end=5141,
 )
 _sym_db.RegisterEnumDescriptor(_PROFILESERVICE_TAGTYPE)
 
@@ -100,8 +100,8 @@ _PROFILESERVICE_CONTACTMETHODTYPE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=5019,
-  serialized_end=5138,
+  serialized_start=5143,
+  serialized_end=5262,
 )
 _sym_db.RegisterEnumDescriptor(_PROFILESERVICE_CONTACTMETHODTYPE)
 
@@ -1338,6 +1338,86 @@ _PROFILESERVICE_ADDTAGS = _descriptor.Descriptor(
   serialized_end=3438,
 )
 
+_PROFILESERVICE_REMOVETAGS_REQUEST = _descriptor.Descriptor(
+  name='Request',
+  full_name='main.profile_service.ProfileService.RemoveTags.Request',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='profile_id', full_name='main.profile_service.ProfileService.RemoveTags.Request.profile_id', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='tags', full_name='main.profile_service.ProfileService.RemoveTags.Request.tags', index=1,
+      number=2, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=3330,
+  serialized_end=3426,
+)
+
+_PROFILESERVICE_REMOVETAGS_RESPONSE = _descriptor.Descriptor(
+  name='Response',
+  full_name='main.profile_service.ProfileService.RemoveTags.Response',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1262,
+  serialized_end=1272,
+)
+
+_PROFILESERVICE_REMOVETAGS = _descriptor.Descriptor(
+  name='RemoveTags',
+  full_name='main.profile_service.ProfileService.RemoveTags',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+  ],
+  extensions=[
+  ],
+  nested_types=[_PROFILESERVICE_REMOVETAGS_REQUEST, _PROFILESERVICE_REMOVETAGS_RESPONSE, ],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=3440,
+  serialized_end=3562,
+)
+
 _PROFILESERVICE_GETPROFILES_REQUEST = _descriptor.Descriptor(
   name='Request',
   full_name='main.profile_service.ProfileService.GetProfiles.Request',
@@ -1398,8 +1478,8 @@ _PROFILESERVICE_GETPROFILES_REQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3456,
-  serialized_end=3577,
+  serialized_start=3580,
+  serialized_end=3701,
 )
 
 _PROFILESERVICE_GETPROFILES_RESPONSE = _descriptor.Descriptor(
@@ -1449,8 +1529,8 @@ _PROFILESERVICE_GETPROFILES = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3441,
-  serialized_end=3664,
+  serialized_start=3565,
+  serialized_end=3788,
 )
 
 _PROFILESERVICE_GETDIRECTREPORTS_REQUEST = _descriptor.Descriptor(
@@ -1536,8 +1616,8 @@ _PROFILESERVICE_GETDIRECTREPORTS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3667,
-  serialized_end=3820,
+  serialized_start=3791,
+  serialized_end=3944,
 )
 
 _PROFILESERVICE_GETPEERS_REQUEST = _descriptor.Descriptor(
@@ -1594,8 +1674,8 @@ _PROFILESERVICE_GETPEERS_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3866,
-  serialized_end=3951,
+  serialized_start=3990,
+  serialized_end=4075,
 )
 
 _PROFILESERVICE_GETPEERS = _descriptor.Descriptor(
@@ -1616,8 +1696,8 @@ _PROFILESERVICE_GETPEERS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3823,
-  serialized_end=3951,
+  serialized_start=3947,
+  serialized_end=4075,
 )
 
 _PROFILESERVICE_GETPROFILESTATS_REQUEST = _descriptor.Descriptor(
@@ -1659,8 +1739,8 @@ _PROFILESERVICE_GETPROFILESTATS_REQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3973,
-  serialized_end=4043,
+  serialized_start=4097,
+  serialized_end=4167,
 )
 
 _PROFILESERVICE_GETPROFILESTATS_RESPONSE = _descriptor.Descriptor(
@@ -1688,8 +1768,8 @@ _PROFILESERVICE_GETPROFILESTATS_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4045,
-  serialized_end=4125,
+  serialized_start=4169,
+  serialized_end=4249,
 )
 
 _PROFILESERVICE_GETPROFILESTATS = _descriptor.Descriptor(
@@ -1710,8 +1790,8 @@ _PROFILESERVICE_GETPROFILESTATS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3954,
-  serialized_end=4125,
+  serialized_start=4078,
+  serialized_end=4249,
 )
 
 _PROFILESERVICE_GETUPCOMINGANNIVERSARIES_REQUEST = _descriptor.Descriptor(
@@ -1739,8 +1819,8 @@ _PROFILESERVICE_GETUPCOMINGANNIVERSARIES_REQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4156,
-  serialized_end=4190,
+  serialized_start=4280,
+  serialized_end=4314,
 )
 
 _PROFILESERVICE_GETUPCOMINGANNIVERSARIES_RESPONSE = _descriptor.Descriptor(
@@ -1790,8 +1870,8 @@ _PROFILESERVICE_GETUPCOMINGANNIVERSARIES = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4128,
-  serialized_end=4277,
+  serialized_start=4252,
+  serialized_end=4401,
 )
 
 _PROFILESERVICE_GETUPCOMINGBIRTHDAYS_REQUEST = _descriptor.Descriptor(
@@ -1819,8 +1899,8 @@ _PROFILESERVICE_GETUPCOMINGBIRTHDAYS_REQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4156,
-  serialized_end=4190,
+  serialized_start=4280,
+  serialized_end=4314,
 )
 
 _PROFILESERVICE_GETUPCOMINGBIRTHDAYS_RESPONSE = _descriptor.Descriptor(
@@ -1870,8 +1950,8 @@ _PROFILESERVICE_GETUPCOMINGBIRTHDAYS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4280,
-  serialized_end=4425,
+  serialized_start=4404,
+  serialized_end=4549,
 )
 
 _PROFILESERVICE_GETRECENTHIRES_REQUEST = _descriptor.Descriptor(
@@ -1899,8 +1979,8 @@ _PROFILESERVICE_GETRECENTHIRES_REQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4156,
-  serialized_end=4190,
+  serialized_start=4280,
+  serialized_end=4314,
 )
 
 _PROFILESERVICE_GETRECENTHIRES_RESPONSE = _descriptor.Descriptor(
@@ -1950,8 +2030,8 @@ _PROFILESERVICE_GETRECENTHIRES = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4428,
-  serialized_end=4567,
+  serialized_start=4552,
+  serialized_end=4691,
 )
 
 _PROFILESERVICE_GETACTIVETAGS_REQUEST = _descriptor.Descriptor(
@@ -1986,8 +2066,8 @@ _PROFILESERVICE_GETACTIVETAGS_REQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4587,
-  serialized_end=4685,
+  serialized_start=4711,
+  serialized_end=4809,
 )
 
 _PROFILESERVICE_GETACTIVETAGS_RESPONSE = _descriptor.Descriptor(
@@ -2037,8 +2117,8 @@ _PROFILESERVICE_GETACTIVETAGS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4570,
-  serialized_end=4764,
+  serialized_start=4694,
+  serialized_end=4888,
 )
 
 _PROFILESERVICE_GETATTRIBUTESFORPROFILES_REQUEST = _descriptor.Descriptor(
@@ -2080,8 +2160,8 @@ _PROFILESERVICE_GETATTRIBUTESFORPROFILES_REQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4795,
-  serialized_end=4863,
+  serialized_start=4919,
+  serialized_end=4987,
 )
 
 _PROFILESERVICE_GETATTRIBUTESFORPROFILES_RESPONSE = _descriptor.Descriptor(
@@ -2109,8 +2189,8 @@ _PROFILESERVICE_GETATTRIBUTESFORPROFILES_RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4865,
-  serialized_end=4954,
+  serialized_start=4989,
+  serialized_end=5078,
 )
 
 _PROFILESERVICE_GETATTRIBUTESFORPROFILES = _descriptor.Descriptor(
@@ -2131,8 +2211,8 @@ _PROFILESERVICE_GETATTRIBUTESFORPROFILES = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4767,
-  serialized_end=4954,
+  serialized_start=4891,
+  serialized_end=5078,
 )
 
 _PROFILESERVICE = _descriptor.Descriptor(
@@ -2145,7 +2225,7 @@ _PROFILESERVICE = _descriptor.Descriptor(
   ],
   extensions=[
   ],
-  nested_types=[_PROFILESERVICE_CONTAINERS, _PROFILESERVICE_CREATEPROFILE, _PROFILESERVICE_BULKCREATEPROFILES, _PROFILESERVICE_BULKUPDATEPROFILES, _PROFILESERVICE_UPDATEPROFILE, _PROFILESERVICE_GETPROFILE, _PROFILESERVICE_GETEXTENDEDPROFILE, _PROFILESERVICE_CREATETAGS, _PROFILESERVICE_GETTAGS, _PROFILESERVICE_ADDTAGS, _PROFILESERVICE_GETPROFILES, _PROFILESERVICE_GETDIRECTREPORTS, _PROFILESERVICE_GETPEERS, _PROFILESERVICE_GETPROFILESTATS, _PROFILESERVICE_GETUPCOMINGANNIVERSARIES, _PROFILESERVICE_GETUPCOMINGBIRTHDAYS, _PROFILESERVICE_GETRECENTHIRES, _PROFILESERVICE_GETACTIVETAGS, _PROFILESERVICE_GETATTRIBUTESFORPROFILES, ],
+  nested_types=[_PROFILESERVICE_CONTAINERS, _PROFILESERVICE_CREATEPROFILE, _PROFILESERVICE_BULKCREATEPROFILES, _PROFILESERVICE_BULKUPDATEPROFILES, _PROFILESERVICE_UPDATEPROFILE, _PROFILESERVICE_GETPROFILE, _PROFILESERVICE_GETEXTENDEDPROFILE, _PROFILESERVICE_CREATETAGS, _PROFILESERVICE_GETTAGS, _PROFILESERVICE_ADDTAGS, _PROFILESERVICE_REMOVETAGS, _PROFILESERVICE_GETPROFILES, _PROFILESERVICE_GETDIRECTREPORTS, _PROFILESERVICE_GETPEERS, _PROFILESERVICE_GETPROFILESTATS, _PROFILESERVICE_GETUPCOMINGANNIVERSARIES, _PROFILESERVICE_GETUPCOMINGBIRTHDAYS, _PROFILESERVICE_GETRECENTHIRES, _PROFILESERVICE_GETACTIVETAGS, _PROFILESERVICE_GETATTRIBUTESFORPROFILES, ],
   enum_types=[
     _PROFILESERVICE_TAGTYPE,
     _PROFILESERVICE_CONTACTMETHODTYPE,
@@ -2156,7 +2236,7 @@ _PROFILESERVICE = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=188,
-  serialized_end=5138,
+  serialized_end=5262,
 )
 
 _PROFILESERVICE_CONTAINERS_PROFILE.fields_by_name['items'].message_type = _PROFILESERVICE_CONTAINERS_PROFILEITEM
@@ -2223,6 +2303,10 @@ _PROFILESERVICE_ADDTAGS_REQUEST.fields_by_name['tags'].message_type = _PROFILESE
 _PROFILESERVICE_ADDTAGS_REQUEST.containing_type = _PROFILESERVICE_ADDTAGS
 _PROFILESERVICE_ADDTAGS_RESPONSE.containing_type = _PROFILESERVICE_ADDTAGS
 _PROFILESERVICE_ADDTAGS.containing_type = _PROFILESERVICE
+_PROFILESERVICE_REMOVETAGS_REQUEST.fields_by_name['tags'].message_type = _PROFILESERVICE_CONTAINERS_TAG
+_PROFILESERVICE_REMOVETAGS_REQUEST.containing_type = _PROFILESERVICE_REMOVETAGS
+_PROFILESERVICE_REMOVETAGS_RESPONSE.containing_type = _PROFILESERVICE_REMOVETAGS
+_PROFILESERVICE_REMOVETAGS.containing_type = _PROFILESERVICE
 _PROFILESERVICE_GETPROFILES_REQUEST.containing_type = _PROFILESERVICE_GETPROFILES
 _PROFILESERVICE_GETPROFILES_RESPONSE.fields_by_name['profiles'].message_type = _PROFILESERVICE_CONTAINERS_PROFILE
 _PROFILESERVICE_GETPROFILES_RESPONSE.containing_type = _PROFILESERVICE_GETPROFILES
@@ -2511,6 +2595,27 @@ ProfileService = _reflection.GeneratedProtocolMessageType('ProfileService', (_me
     ))
   ,
 
+  RemoveTags = _reflection.GeneratedProtocolMessageType('RemoveTags', (_message.Message,), dict(
+
+    Request = _reflection.GeneratedProtocolMessageType('Request', (_message.Message,), dict(
+      DESCRIPTOR = _PROFILESERVICE_REMOVETAGS_REQUEST,
+      __module__ = 'protobufs.profile_service_pb2'
+      # @@protoc_insertion_point(class_scope:main.profile_service.ProfileService.RemoveTags.Request)
+      ))
+    ,
+
+    Response = _reflection.GeneratedProtocolMessageType('Response', (_message.Message,), dict(
+      DESCRIPTOR = _PROFILESERVICE_REMOVETAGS_RESPONSE,
+      __module__ = 'protobufs.profile_service_pb2'
+      # @@protoc_insertion_point(class_scope:main.profile_service.ProfileService.RemoveTags.Response)
+      ))
+    ,
+    DESCRIPTOR = _PROFILESERVICE_REMOVETAGS,
+    __module__ = 'protobufs.profile_service_pb2'
+    # @@protoc_insertion_point(class_scope:main.profile_service.ProfileService.RemoveTags)
+    ))
+  ,
+
   GetProfiles = _reflection.GeneratedProtocolMessageType('GetProfiles', (_message.Message,), dict(
 
     Request = _reflection.GeneratedProtocolMessageType('Request', (_message.Message,), dict(
@@ -2739,6 +2844,9 @@ _sym_db.RegisterMessage(ProfileService.GetTags.Response)
 _sym_db.RegisterMessage(ProfileService.AddTags)
 _sym_db.RegisterMessage(ProfileService.AddTags.Request)
 _sym_db.RegisterMessage(ProfileService.AddTags.Response)
+_sym_db.RegisterMessage(ProfileService.RemoveTags)
+_sym_db.RegisterMessage(ProfileService.RemoveTags.Request)
+_sym_db.RegisterMessage(ProfileService.RemoveTags.Response)
 _sym_db.RegisterMessage(ProfileService.GetProfiles)
 _sym_db.RegisterMessage(ProfileService.GetProfiles.Request)
 _sym_db.RegisterMessage(ProfileService.GetProfiles.Response)
