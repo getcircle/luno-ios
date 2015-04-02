@@ -21,6 +21,7 @@ class TagInputViewController: UIViewController,
     @IBOutlet private(set) weak var tokenField: TokenField!
     @IBOutlet private(set) weak var collectionView: UICollectionView!
     
+    // TODO this should be 2 * the tokenHeight
     private var tokenFieldMaxHeight: CGFloat = 2 * 40.0
     private var newTag: ProfileService.Containers.Tag?
     private var selectedTags = Array<ProfileService.Containers.Tag>()
@@ -33,11 +34,6 @@ class TagInputViewController: UIViewController,
     convenience init(existingTags: Array<ProfileService.Containers.Tag>) {
         self.init(nibName: "TagInputViewController", bundle: nil)
         selectedTags.extend(existingTags)
-        for text in ["Some Tag", "Some Other Tag Dfasdfasdfafaf", "Some other tag", "Another Tag", "Another One", "her", "Some other tag", "Another Tag", "Another One", "her", "Some other tag", "Another Tag", "Another One", "her", "Some other tag", "Another Tag", "Another One", "her", "Some other tag", "Another Tag", "Another One", "her", "Some other tag", "Another Tag", "Another One", "her", "Some other tag", "Another Tag", "Another One", "her", "Some other tag", "Another Tag", "Another One", "her", "Some other tag", "Another Tag", "Another One", "her", "her", "her"] {
-            let tagBuilder = ProfileService.Containers.Tag().builder()
-            tagBuilder.name = text
-            selectedTags.append(tagBuilder.build())
-        }
     }
     
     override func viewDidLoad() {
@@ -50,6 +46,7 @@ class TagInputViewController: UIViewController,
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        // TODO remove this if we're not going to re-adjust the size based on the keyboard
         registerNotifications()
     }
     
@@ -75,7 +72,7 @@ class TagInputViewController: UIViewController,
         tokenField.maxHeight = tokenFieldMaxHeight
         tokenField.dataSource = self
         tokenField.delegate = self
-        tokenField.layoutTokens()
+        tokenField.reloadData()
     }
     
     private func configureCollectionView() {
@@ -123,7 +120,7 @@ class TagInputViewController: UIViewController,
             selectedTags.append(suggestedTags[indexPath.row])
         }
         newTag = nil
-//        tokenField.reloadData()
+        tokenField.reloadData()
         suggestedTags.removeAll(keepCapacity: false)
         if !tokenField.isFirstResponder() {
             tokenField.becomeFirstResponder()

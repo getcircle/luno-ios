@@ -83,8 +83,7 @@ class TokenField: UIView, UITextFieldDelegate {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        // TODO move to focus textfield function
-        scrollView.setContentOffset(CGPointMake(0, intrinsicHeight - intrinsicContentSize().height), animated: false)
+        focusInputTextField()
     }
     
     override func updateConstraints() {
@@ -130,6 +129,7 @@ class TokenField: UIView, UITextFieldDelegate {
         })
         inputTextField?.becomeFirstResponder()
         setNeedsUpdateConstraints()
+        setNeedsLayout()
     }
     
     private func updateTokenConstraints() {
@@ -250,5 +250,12 @@ class TokenField: UIView, UITextFieldDelegate {
     }
     
     // TODO add rest of textfield delegate
+    
+    // MARK: - Private Methods
+    
+    private func focusInputTextField() {
+        // TODO should maybe account for the text input being the last line
+        scrollView.setContentOffset(CGPointMake(0, intrinsicHeight - intrinsicContentSize().height), animated: false)
+    }
 
 }
