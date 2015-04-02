@@ -297,6 +297,7 @@ class TokenField: UIView,
     func textFieldDidChangeText(text: String) {
         if invisibleTextField != nil && invisibleTextField!.isFirstResponder() {
             invisibleTextField?.resignFirstResponder()
+            invisibleTextField?.text = String()
             inputTextField?.text = text
             inputTextField?.becomeFirstResponder()
         }
