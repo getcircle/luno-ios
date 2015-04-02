@@ -172,7 +172,6 @@
 		8F823E4F1A72A0850006264B /* TeamsOverviewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F823E4E1A72A0850006264B /* TeamsOverviewDataSource.swift */; };
 		8F834F8B1A9C1814007B7095 /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F834F8A1A9C1813007B7095 /* UIButtonExtension.swift */; };
 		8F834F971A9E9F21007B7095 /* ContactInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F834F951A9E9F21007B7095 /* ContactInfoViewController.swift */; };
-		8F834F981A9E9F21007B7095 /* ContactInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F834F961A9E9F21007B7095 /* ContactInfoViewController.xib */; };
 		8F834FA01A9FFC2F007B7095 /* AppStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F834F9F1A9FFC2F007B7095 /* AppStrings.swift */; };
 		8F9F60AF1A88738100FCAA25 /* SocialConnectCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9F60AD1A88738100FCAA25 /* SocialConnectCollectionViewCell.swift */; };
 		8F9F60B01A88738100FCAA25 /* SocialConnectCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F9F60AE1A88738100FCAA25 /* SocialConnectCollectionViewCell.xib */; };
@@ -553,7 +552,6 @@
 		8F823E4E1A72A0850006264B /* TeamsOverviewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamsOverviewDataSource.swift; sourceTree = "<group>"; };
 		8F834F8A1A9C1813007B7095 /* UIButtonExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
 		8F834F951A9E9F21007B7095 /* ContactInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactInfoViewController.swift; sourceTree = "<group>"; };
-		8F834F961A9E9F21007B7095 /* ContactInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactInfoViewController.xib; sourceTree = "<group>"; };
 		8F834F9F1A9FFC2F007B7095 /* AppStrings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppStrings.swift; sourceTree = "<group>"; };
 		8F9F60AD1A88738100FCAA25 /* SocialConnectCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialConnectCollectionViewCell.swift; sourceTree = "<group>"; };
 		8F9F60AE1A88738100FCAA25 /* SocialConnectCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SocialConnectCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -933,7 +931,6 @@
 				8FC878211AB6A511003FDB27 /* BannerCollectionViewCell.xib */,
 				8F08A9F81A748F5200B93149 /* CardFooterCollectionReusableView.xib */,
 				8F65C4F41A50F28E00C7F3E6 /* CardHeaderCollectionReusableView.xib */,
-				8F834F961A9E9F21007B7095 /* ContactInfoViewController.xib */,
 				8F0544AD1ABA3C7800570327 /* EditAboutViewController.xib */,
 				8FEE3D9C1A85B97E00B17569 /* EditContactInfoViewController.xib */,
 				BFCFDB031A915249009A5FD4 /* EducationCollectionViewCell.xib */,
@@ -1419,7 +1416,6 @@
 				8F0ADD271AC5344E00A44B68 /* Loader_00011@2x.png in Resources */,
 				8F0544AF1ABA3C7800570327 /* EditAboutViewController.xib in Resources */,
 				8F0ADD341AC5344E00A44B68 /* Loader_00024@2x.png in Resources */,
-				8F834F981A9E9F21007B7095 /* ContactInfoViewController.xib in Resources */,
 				8F0ADD261AC5344E00A44B68 /* Loader_00010@2x.png in Resources */,
 				8F0ADD421AC5344E00A44B68 /* Loader_00038@2x.png in Resources */,
 				8F1D0B861AC8AB1200488BD7 /* Loader_00059@2x.png in Resources */,
