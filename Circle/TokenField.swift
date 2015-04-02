@@ -67,6 +67,7 @@ class TokenField: UIView,
     
     private func configureScrollView() {
         scrollView = UIScrollView.newAutoLayoutView()
+        scrollView.showsVerticalScrollIndicator = true
         addSubview(scrollView)
         UIView.autoSetIdentifier("ScrollView PinEdgesToSuperViewEdges", forConstraints: { () -> Void in
             self.scrollView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
@@ -143,7 +144,9 @@ class TokenField: UIView,
             self.inputTextField?.autoSetContentCompressionResistancePriorityForAxis(.Horizontal)
             return
         })
-        inputTextField?.becomeFirstResponder()
+        if invisibleTextField != nil && !invisibleTextField!.isFirstResponder() {
+            inputTextField?.becomeFirstResponder()
+        }
         setNeedsUpdateConstraints()
         setNeedsLayout()
     }
@@ -251,7 +254,12 @@ class TokenField: UIView,
     
     override func resignFirstResponder() -> Bool {
         // TODO resign invisible text field too
-        return inputTextField?.resignFirstResponder() ?? false
+        if inputTextField != nil && inputTextField!.isFirstResponder() {
+            return inputTextField!.resignFirstResponder()
+        } else if invisibleTextField != nil && invisibleTextField!.isFirstResponder() {
+            return invisibleTextField!.resignFirstResponder()
+        }
+        return true
     }
     
     // MARK: - BackspaceTextFieldDelegate
@@ -276,10 +284,20 @@ class TokenField: UIView,
                 token.highlighted = true
             }
         }
-        setCursorVisibility()
+        if inputTextField != nil && inputTextField!.isFirstResponder() {
+            inputTextField?.resignFirstResponder()
+        }
+        if invisibleTextField != nil && !invisibleTextField!.isFirstResponder() {
+            invisibleTextField?.becomeFirstResponder()
+        }
     }
     
     func textFieldDidChangeText(text: String) {
+        if invisibleTextField != nil && invisibleTextField!.isFirstResponder() {
+            invisibleTextField?.resignFirstResponder()
+            inputTextField?.text = text
+            inputTextField?.becomeFirstResponder()
+        }
         delegate?.tokenField?(self, didChangeText: text)
     }
     
