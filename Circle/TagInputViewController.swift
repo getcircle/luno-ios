@@ -168,6 +168,12 @@ class TagInputViewController: UIViewController,
         tokenField.reloadData()
     }
     
+    func tokenFieldDidCancelEditing(tokenField: TokenField) {
+        newTag = nil
+        suggestedTags.removeAll(keepCapacity: false)
+        collectionView.reloadData()
+    }
+    
     // MARK - TokenFieldDataSource
     
     func tokenField(tokenField: TokenField, titleForTokenAtIndex index: UInt) -> String {

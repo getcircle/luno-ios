@@ -9,8 +9,14 @@
 import UIKit
 
 @objc protocol BackspaceTextFieldDelegate: UITextFieldDelegate {
-    func textFieldDidEnterBackspace(textField: UITextField)
+    func textFieldDidEnterBackspace(textField: BackspaceTextField)
+    
     optional func textFieldDidChangeText(text: String)
+    optional func textField(textField: BackspaceTextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String)
+    optional func textFieldDidBeginEditing(textField: BackspaceTextField)
+    optional func textFieldDidEndEditing(textField: BackspaceTextField)
+    optional func textFieldShouldBeginEditing(textField: BackspaceTextField) -> Bool
+    optional func textFieldShouldReturn(textField: BackspaceTextField) -> Bool
 }
 
 class BackspaceTextField: UIView, UITextFieldDelegate {
@@ -75,26 +81,26 @@ class BackspaceTextField: UIView, UITextFieldDelegate {
     
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         if range.length == 1 && range.location == 0 && string == "" {
-            delegate?.textFieldDidEnterBackspace(textField)
+            delegate?.textFieldDidEnterBackspace(self)
             return false
         }
         return delegate?.textField?(textField, shouldChangeCharactersInRange: range, replacementString: string) ?? true
     }
     
     func textFieldDidBeginEditing(textField: UITextField) {
-        delegate?.textFieldDidBeginEditing?(textField)
+        delegate?.textFieldDidBeginEditing?(self)
     }
     
     func textFieldDidEndEditing(textField: UITextField) {
-        delegate?.textFieldDidEndEditing?(textField)
+        delegate?.textFieldDidEndEditing?(self)
     }
     
     func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
-        return delegate?.textFieldShouldBeginEditing?(textField) ?? true
+        return delegate?.textFieldShouldBeginEditing?(self) ?? true
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        return delegate?.textFieldShouldReturn?(textField) ?? true
+        return delegate?.textFieldShouldReturn?(self) ?? true
     }
     
     // MARK: - Targets

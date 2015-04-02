@@ -20,6 +20,7 @@ private let InputTextFieldMinimumWidth: CGFloat = 100.0
     optional func tokenField(tokenField: TokenField, didDeleteTokenAtIndex index: UInt)
     optional func tokenField(tokenField: TokenField, didChangeText text: String)
     optional func tokenFieldDidBeginEditing(tokenField: TokenField)
+    optional func tokenFieldDidCancelEditing(tokenField: TokenField)
 }
 
 class TokenField: UIView,
@@ -255,12 +256,12 @@ class TokenField: UIView,
     
     // MARK: - BackspaceTextFieldDelegate
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(textField: BackspaceTextField) -> Bool {
         delegate?.tokenField?(self, didEnterText: textField.text)
         return false
     }
 
-    func textFieldDidEnterBackspace(textField: UITextField) {
+    func textFieldDidEnterBackspace(textField: BackspaceTextField) {
         var didDeleteToken = false
         for (index, token) in enumerate(tokens) {
             if token.highlighted {
@@ -280,6 +281,13 @@ class TokenField: UIView,
     
     func textFieldDidChangeText(text: String) {
         delegate?.tokenField?(self, didChangeText: text)
+    }
+    
+    func textFieldDidBeginEditing(textField: BackspaceTextField) {
+        if textField != invisibleTextField {
+            tokens.map { $0.highlighted = false }
+        }
+        delegate?.tokenFieldDidBeginEditing?(self)
     }
     
     // MARK: - TagTokenDelegate
@@ -310,7 +318,9 @@ class TokenField: UIView,
         if highlightedTokens.count == 0 {
             becomeFirstResponder()
         } else {
+            inputTextField?.text = String()
             inputTextField?.resignFirstResponder()
+            delegate?.tokenFieldDidCancelEditing?(self)
             invisibleTextField?.becomeFirstResponder()
         }
     }
