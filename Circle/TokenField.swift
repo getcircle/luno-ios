@@ -265,7 +265,9 @@ class TokenField: UIView,
     // MARK: - BackspaceTextFieldDelegate
     
     func textFieldShouldReturn(textField: BackspaceTextField) -> Bool {
-        delegate?.tokenField?(self, didEnterText: textField.text)
+        if textField.text != String() {
+            delegate?.tokenField?(self, didEnterText: textField.text)
+        }
         return false
     }
 
