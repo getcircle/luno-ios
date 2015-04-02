@@ -18,4 +18,3 @@
 #import "Mixpanel.h"
 #import "ABTestUtils.h"
 #import "UIViewController+ScrollingNavbar.h"
-#import "VENTokenField.h"
