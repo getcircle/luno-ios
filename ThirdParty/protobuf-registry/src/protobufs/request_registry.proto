@@ -27,6 +27,7 @@ message UserServiceRequests {
         optional main.user_service.UserService.BulkCreateUsers.Request bulk_create_users = 110;
         optional main.user_service.UserService.RecordDevice.Request record_device = 111;
         optional main.user_service.UserService.RequestAccess.Request request_access = 112;
+        optional main.user_service.UserService.DeleteIdentity.Request delete_identity = 113;
     }
 }
 

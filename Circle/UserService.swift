@@ -18,6 +18,7 @@ typealias CompleteAuthorizationCompletionHandler = (user: UserService.Containers
 typealias GetIdentitiesCompletionHandler = (identities: Array<UserService.Containers.Identity>?, error: NSError?) -> Void
 typealias RecordDeviceCompletionHandler = (device: UserService.Containers.Device?, error: NSError?) -> Void
 typealias RequestAccessCompletionHandler = (access_request: UserService.Containers.AccessRequest?, error: NSError?) -> Void
+typealias DeleteIdentityCompletionHandler = (error: NSError?) -> Void
 
 extension UserService {
     class Actions {
@@ -201,6 +202,23 @@ extension UserService {
                     }
                 }
             })
+        }
+        
+        class func deleteIdentity(identity: UserService.Containers.Identity, completionHandler: DeleteIdentityCompletionHandler?) {
+            let requestBuilder = UserService.DeleteIdentity.Request.builder()
+            requestBuilder.identity = identity
+            
+            let client = ServiceClient(serviceName: "user")
+            client.callAction(
+                "delete_identity",
+                extensionField: UserServiceRequests.delete_identity(),
+                requestBuilder: requestBuilder
+            ) { (_, _, wrapped, error) -> Void in
+                let response = wrapped?.response?.result.getExtension(
+                    UserServiceRequests.delete_identity()
+                ) as? UserService.RequestAccess.Response
+                completionHandler?(error: error)
+            }
         }
     
     }

@@ -149,12 +149,6 @@ class SettingsViewController: UIViewController, UICollectionViewDelegate, MFMail
             if let enable = userInfo["enable"] as? Bool {
                 if let identity = userInfo["identity"] as? UserService.Containers.Identity {
                     switch identity.provider {
-                    case .Google:
-                        if !enable {
-                            dismissViewControllerAnimated(true) { () -> Void in
-                                AuthViewController.logOut(shouldDisconnect: true)
-                            }
-                        }
                     case .Linkedin:
                         if enable {
                             let socialConnectVC = SocialConnectViewController(provider: .Linkedin)
@@ -162,6 +156,27 @@ class SettingsViewController: UIViewController, UICollectionViewDelegate, MFMail
                         }
                     default:
                         break
+                    }
+                    
+                    if !enable {
+                        UserService.Actions.deleteIdentity(identity) { (error) -> Void in
+                            if error != nil {
+                                println("error deleting user identity: \(error)")
+                            } else {
+                                UserService.Actions.getIdentities(AuthViewController.getLoggedInUser()!.id) { (identities, error) -> Void in
+                                    if let identities = identities {
+                                        AuthViewController.updateIdentities(identities)
+                                        if identity.provider == .Google {
+                                            self.dismissViewControllerAnimated(true) { () -> Void in
+                                                AuthViewController.logOut(shouldDisconnect: true)
+                                            }
+                                        } else {
+                                            self.collectionView.reloadData()
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }

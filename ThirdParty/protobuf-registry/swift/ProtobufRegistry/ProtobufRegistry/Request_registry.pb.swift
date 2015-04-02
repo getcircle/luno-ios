@@ -67,6 +67,11 @@ public var UserServiceRequests_request_access:ConcreateExtensionField {
        return RequestRegistryRoot.sharedInstance.UserServiceRequests_request_accessStatic
    }
 }
+public var UserServiceRequests_delete_identity:ConcreateExtensionField {
+   get {
+       return RequestRegistryRoot.sharedInstance.UserServiceRequests_delete_identityStatic
+   }
+}
 public var OrganizationServiceRequests_create_organization:ConcreateExtensionField {
    get {
        return RequestRegistryRoot.sharedInstance.OrganizationServiceRequests_create_organizationStatic
@@ -347,6 +352,7 @@ public struct RequestRegistryRoot {
   var UserServiceRequests_bulk_create_usersStatic:ConcreateExtensionField
   var UserServiceRequests_record_deviceStatic:ConcreateExtensionField
   var UserServiceRequests_request_accessStatic:ConcreateExtensionField
+  var UserServiceRequests_delete_identityStatic:ConcreateExtensionField
   var OrganizationServiceRequests_create_organizationStatic:ConcreateExtensionField
   var OrganizationServiceRequests_create_teamStatic:ConcreateExtensionField
   var OrganizationServiceRequests_create_addressStatic:ConcreateExtensionField
@@ -415,6 +421,7 @@ public struct RequestRegistryRoot {
     UserServiceRequests_bulk_create_usersStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionRequestParams.self, fieldNumber: 110, defaultValue:UserService.BulkCreateUsers.Request(), messageOrGroupClass:UserService.BulkCreateUsers.Request.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     UserServiceRequests_record_deviceStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionRequestParams.self, fieldNumber: 111, defaultValue:UserService.RecordDevice.Request(), messageOrGroupClass:UserService.RecordDevice.Request.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     UserServiceRequests_request_accessStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionRequestParams.self, fieldNumber: 112, defaultValue:UserService.RequestAccess.Request(), messageOrGroupClass:UserService.RequestAccess.Request.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
+    UserServiceRequests_delete_identityStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionRequestParams.self, fieldNumber: 113, defaultValue:UserService.DeleteIdentity.Request(), messageOrGroupClass:UserService.DeleteIdentity.Request.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     OrganizationServiceRequests_create_organizationStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionRequestParams.self, fieldNumber: 200, defaultValue:OrganizationService.CreateOrganization.Request(), messageOrGroupClass:OrganizationService.CreateOrganization.Request.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     OrganizationServiceRequests_create_teamStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionRequestParams.self, fieldNumber: 201, defaultValue:OrganizationService.CreateTeam.Request(), messageOrGroupClass:OrganizationService.CreateTeam.Request.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
     OrganizationServiceRequests_create_addressStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:ActionRequestParams.self, fieldNumber: 202, defaultValue:OrganizationService.CreateAddress.Request(), messageOrGroupClass:OrganizationService.CreateAddress.Request.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
@@ -494,6 +501,7 @@ public struct RequestRegistryRoot {
     registry.addExtension(UserServiceRequests_bulk_create_usersStatic)
     registry.addExtension(UserServiceRequests_record_deviceStatic)
     registry.addExtension(UserServiceRequests_request_accessStatic)
+    registry.addExtension(UserServiceRequests_delete_identityStatic)
     registry.addExtension(OrganizationServiceRequests_create_organizationStatic)
     registry.addExtension(OrganizationServiceRequests_create_teamStatic)
     registry.addExtension(OrganizationServiceRequests_create_addressStatic)
@@ -666,6 +674,9 @@ final public class UserServiceRequests : GeneratedMessage {
   }
   public class func request_access() -> ConcreateExtensionField {
        return UserServiceRequests_request_access
+  }
+  public class func delete_identity() -> ConcreateExtensionField {
+       return UserServiceRequests_delete_identity
   }
   required public init() {
        super.init()

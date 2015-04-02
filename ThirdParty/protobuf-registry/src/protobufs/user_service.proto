@@ -198,6 +198,16 @@ message UserService {
 
     }
 
+    message DeleteIdentity {
+
+        message Request {
+            optional Containers.Identity identity = 1;
+        }
+
+        message Response {}
+
+    }
+
     message GetIdentities {
 
         message Request {
