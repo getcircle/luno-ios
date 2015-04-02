@@ -105,6 +105,7 @@ extension UIView {
 
     func addErrorMessageView(error: NSError?, tryAgainHandler: (()-> Void)?) -> CircleErrorMessageView {
         var errorView = CircleErrorMessageView(error: error, errorHandler: tryAgainHandler)
+        errorView.hide()
         addSubview(errorView)
         bringSubviewToFront(errorView)
         errorView.autoCenterInSuperview()

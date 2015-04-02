@@ -43,6 +43,8 @@ class BackspaceTextField: UIView, UITextFieldDelegate {
         textField = UITextField.newAutoLayoutView()
         textField.delegate = self
         textField.text = " "
+        textField.autocorrectionType = .No
+        textField.spellCheckingType = .No
         textField.addTarget(self, action: "textFieldChanged:", forControlEvents: .EditingChanged)
         addSubview(textField)
         textField.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
