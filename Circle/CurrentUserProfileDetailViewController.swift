@@ -78,6 +78,7 @@ class CurrentUserProfileDetailViewController: ProfileDetailViewController,
             navigationItem.leftBarButtonItem = settingsBarButton
             
             let longPressGesture = UILongPressGestureRecognizer(target: self, action: "profileLongPressHandler:")
+            longPressGesture.minimumPressDuration = 5.0
             settingsButton.addGestureRecognizer(longPressGesture)
         }
     }

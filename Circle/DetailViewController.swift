@@ -13,8 +13,10 @@ import ProtobufRegistry
 class DetailViewController: BaseDetailViewController, UICollectionViewDelegate {
 
     private(set) var activityIndicatorView: CircleActivityIndicatorView!
-    var animationSourceRect: CGRect?
     private(set) var collectionView: UICollectionView!
+    private(set) var errorMessageView: CircleErrorMessageView!
+
+    var animationSourceRect: CGRect?
     var dataSource: CardDataSource!
     var delegate: CardCollectionViewDelegate!
     var layout: UICollectionViewFlowLayout!
@@ -34,14 +36,31 @@ class DetailViewController: BaseDetailViewController, UICollectionViewDelegate {
 
         // Activity View
         activityIndicatorView = view.addActivityIndicator()
+        errorMessageView = view.addErrorMessageView(nil, tryAgainHandler: { () -> Void in
+            self.errorMessageView.hide()
+            self.activityIndicatorView.startAnimating()
+            self.loadData()
+        })
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCollectionView()
+        loadData()
+    }
+    
+    final func loadData() {
         dataSource.loadData { (error) -> Void in
             self.activityIndicatorView.stopAnimating()
-            self.collectionView!.reloadData()
+            
+            if error == nil {
+                self.errorMessageView.hide()
+                self.collectionView.reloadData()
+            }
+            else if self.dataSource.cards.count >= 1 {
+                self.errorMessageView.error = error
+                self.errorMessageView.show()
+            }
         }
     }
 
