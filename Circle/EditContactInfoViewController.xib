@@ -7,6 +7,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EditContactInfoViewController" customModule="circle" customModuleProvider="target">
             <connections>
                 <outlet property="rootContentView" destination="6zo-7h-i8l" id="aSt-H8-03q"/>
+                <outlet property="rootContentViewHeightConstraint" destination="0ls-Gs-RQp" id="F1G-Rq-bBG"/>
                 <outlet property="rootScrollView" destination="Z7Z-cC-NkN" id="nbr-zZ-vgC"/>
                 <outlet property="view" destination="ilJ-ay-kka" id="qwb-Xl-xXY"/>
             </connections>
@@ -23,13 +24,13 @@
                             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="600" placeholder="YES" id="0ls-Gs-RQp"/>
-                                <constraint firstAttribute="width" constant="600" placeholder="YES" id="jUa-RD-0SB"/>
+                                <constraint firstAttribute="height" constant="600" id="0ls-Gs-RQp"/>
                             </constraints>
                         </view>
                     </subviews>
                     <constraints>
                         <constraint firstItem="6zo-7h-i8l" firstAttribute="top" secondItem="Z7Z-cC-NkN" secondAttribute="top" id="JV7-6w-akl"/>
+                        <constraint firstItem="6zo-7h-i8l" firstAttribute="width" secondItem="Z7Z-cC-NkN" secondAttribute="width" id="NsL-Fd-ZJg"/>
                         <constraint firstAttribute="bottom" secondItem="6zo-7h-i8l" secondAttribute="bottom" id="Won-Mg-VBd"/>
                         <constraint firstAttribute="trailing" secondItem="6zo-7h-i8l" secondAttribute="trailing" id="a2m-wU-gdf"/>
                         <constraint firstItem="6zo-7h-i8l" firstAttribute="leading" secondItem="Z7Z-cC-NkN" secondAttribute="leading" id="sWV-UN-hsn"/>

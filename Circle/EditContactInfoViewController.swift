@@ -16,6 +16,7 @@ protocol EditProfileDelegate {
 class EditContactInfoViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
     @IBOutlet weak private(set) var rootContentView: UIView!
+    @IBOutlet weak private(set) var rootContentViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak private(set) var rootScrollView: UIScrollView!
     
     var editProfileDelegate: EditProfileDelegate?
@@ -47,6 +48,8 @@ class EditContactInfoViewController: UIViewController, UINavigationControllerDel
     }
     
     override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
         var maxY: CGFloat = 0.0
         var heightOfTheLastElement: CGFloat = 0.0
         for subview in rootContentView.subviews {
@@ -56,7 +59,10 @@ class EditContactInfoViewController: UIViewController, UINavigationControllerDel
             }
         }
 
-        rootScrollView.contentSize = CGSizeMake(UIScreen.mainScreen().bounds.width, maxY + heightOfTheLastElement + 100.0)
+        let contentHeight: CGFloat = maxY + heightOfTheLastElement + 100.0
+        rootScrollView.contentSize = CGSizeMake(UIScreen.mainScreen().bounds.width, contentHeight)
+        rootContentViewHeightConstraint.constant = contentHeight
+        rootContentView.setNeedsUpdateConstraints()
     }
 
     // MARK - Configuration
@@ -71,8 +77,6 @@ class EditContactInfoViewController: UIViewController, UINavigationControllerDel
     private func configureContentView() {
         rootContentView.backgroundColor = UIColor.appViewBackgroundColor()
         rootContentView.opaque = true
-        rootContentView.autoMatchDimension(.Height, toDimension: .Height, ofView: view)
-        rootContentView.autoMatchDimension(.Width, toDimension: .Width, ofView: view)
     }
     
     private func configureFormFields() {
