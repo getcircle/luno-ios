@@ -13,7 +13,7 @@
 
 + (BOOL)shouldShowInterests {
 
-    if (MPTweakValue(@"Show Interests", YES)) {
+    if (MPTweakValue(@"Show Interests", NO)) {
         return YES;
     } else {
         return NO;
