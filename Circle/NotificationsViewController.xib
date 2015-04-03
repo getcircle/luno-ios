@@ -54,13 +54,22 @@
                         <action selector="noButtonTapped:" destination="-1" eventType="touchUpInside" id="CXD-ee-vT7"/>
                     </connections>
                 </button>
+                <imageView userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Notifications" translatesAutoresizingMaskIntoConstraints="NO" id="dG1-Xq-q2i">
+                    <rect key="frame" x="0.0" y="138" width="600" height="200"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="200" id="lUL-Ii-EPy"/>
+                    </constraints>
+                </imageView>
             </subviews>
             <color key="backgroundColor" red="0.1843137255" green="0.2156862745" blue="0.24313725489999999" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="xun-dL-AH2" firstAttribute="top" secondItem="tq3-Jw-J6p" secondAttribute="bottom" constant="10" id="0rd-gX-vwF"/>
                 <constraint firstAttribute="centerX" secondItem="xun-dL-AH2" secondAttribute="centerX" id="1YH-FQ-8P3"/>
+                <constraint firstItem="dG1-Xq-q2i" firstAttribute="top" secondItem="Lwc-bB-Vfu" secondAttribute="bottom" constant="10" id="1sl-N3-mO1"/>
                 <constraint firstAttribute="centerX" secondItem="tq3-Jw-J6p" secondAttribute="centerX" id="2Fb-9F-gTg"/>
+                <constraint firstItem="dG1-Xq-q2i" firstAttribute="leading" secondItem="lPk-gf-IgP" secondAttribute="leading" id="9Ge-6G-Ooi"/>
                 <constraint firstItem="Lwc-bB-Vfu" firstAttribute="leading" secondItem="lPk-gf-IgP" secondAttribute="leading" constant="15" id="JAM-wo-GR0"/>
+                <constraint firstAttribute="trailing" secondItem="dG1-Xq-q2i" secondAttribute="trailing" id="KyP-5R-mpE"/>
                 <constraint firstAttribute="bottom" secondItem="tq3-Jw-J6p" secondAttribute="bottom" constant="60" id="M9D-ID-W7v"/>
                 <constraint firstItem="tq3-Jw-J6p" firstAttribute="top" secondItem="Lwc-bB-Vfu" secondAttribute="bottom" constant="45" id="aJM-If-Yhg"/>
                 <constraint firstAttribute="trailing" secondItem="Lwc-bB-Vfu" secondAttribute="trailing" constant="15" id="j1F-s6-dg8"/>
@@ -79,4 +88,7 @@
             <point key="canvasLocation" x="-1992" y="-1807"/>
         </view>
     </objects>
+    <resources>
+        <image name="Notifications" width="749" height="384"/>
+    </resources>
 </document>

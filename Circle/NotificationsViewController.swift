@@ -22,6 +22,7 @@ class NotificationsViewController: UIViewController {
         configureView()
         configureNotificationTextLabel()
         configureButtons()
+        configureNavButtons()
     }
     
     // MARK: - Configuration
