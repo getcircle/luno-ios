@@ -82,6 +82,10 @@ class CircleErrorMessageView: UIView {
         }
     }
     
+    func isVisible() -> Bool {
+        return alpha == 1.0
+    }
+    
     func show() {
         alpha = 1.0
     }

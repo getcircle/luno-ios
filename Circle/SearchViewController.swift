@@ -19,8 +19,6 @@ class SearchViewController: UIViewController,
     CardHeaderViewDelegate,
     NewNoteViewControllerDelegate
 {
-
-
     @IBOutlet weak private(set) var collectionView: UICollectionView!
     @IBOutlet weak private(set) var searchHeaderContainerView: UIView!
     @IBOutlet weak private(set) var searchHeaderContinerViewTopConstraint: NSLayoutConstraint!
@@ -39,6 +37,7 @@ class SearchViewController: UIViewController,
     }
     private var shadowAdded = false
     private var queryDataSource: SearchQueryDataSource!
+    private var wasErrorViewVisible = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -148,7 +147,7 @@ class SearchViewController: UIViewController,
                     self.errorMessageView.hide()
                     self.collectionView.reloadData()
                 }
-                else if currentDataSource.cards.count == 0 {
+                else if currentDataSource.cards.count <= 1 {
                     self.errorMessageView.error = error
                     self.errorMessageView.show()
                 }
@@ -199,6 +198,8 @@ class SearchViewController: UIViewController,
             hideNavbarAnimated(false)
         }
         searchHeaderView.showCancelButton()
+        wasErrorViewVisible = errorMessageView.isVisible()
+        errorMessageView.hide()
         collectionView.dataSource = queryDataSource
         collectionView.reloadData()
         search()
@@ -212,6 +213,9 @@ class SearchViewController: UIViewController,
         queryDataSource.resetCards()
         queryDataSource.isQuickAction = false
         collectionView.reloadData()
+        if wasErrorViewVisible && landingDataSource.cards.count <= 1 {
+            errorMessageView.show()
+        }
     }
     
     // MARK: Search Targets

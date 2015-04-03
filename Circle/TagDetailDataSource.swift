@@ -19,10 +19,7 @@ class TagDetailDataSource: CardDataSource {
     // MARK: - Load Data
     
     override func loadData(completionHandler: (error: NSError?) -> Void) {
-        // Only try to load data if it doesn't exist
-        if cards.count > 0 {
-            return
-        }
+        resetCards()
         
         // Add a placeholder card for interest view
         let placeholderTagCard = Card(cardType: .Placeholder, title: "Tag Header")

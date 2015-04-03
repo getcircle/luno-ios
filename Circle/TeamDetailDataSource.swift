@@ -20,11 +20,8 @@ class TeamDetailDataSource: CardDataSource {
     // MARK: - Load Data
     
     override func loadData(completionHandler: (error: NSError?) -> Void) {
-        // Only try to load data if it doesn't exist
-        if cards.count > 0 {
-            return
-        }
-        
+        resetCards()
+
         // Add a placeholder card for header view
         let placeholderHeaderCard = Card(cardType: .Placeholder, title: "Team Header")
         placeholderHeaderCard.sectionInset = UIEdgeInsetsZero

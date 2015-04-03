@@ -24,10 +24,6 @@ class OfficeDetailDataSource: CardDataSource {
     // MARK: - Load Data
     
     override func loadData(completionHandler: (error: NSError?) -> Void) {
-        // Only try to load data if it doesn't exist
-        if cards.count > 0 {
-            return
-        }
         resetCards()
         
         // Add placeholder card to load profile header instantly
@@ -97,6 +93,7 @@ class OfficeDetailDataSource: CardDataSource {
     }
     
     // MARK: - Helpers
+
     private func populateData() {
         
         // Address
@@ -104,7 +101,6 @@ class OfficeDetailDataSource: CardDataSource {
         addressCard.sectionInset = defaultSectionInset
         addressCard.addContent(content: [selectedOffice.address] as [AnyObject])
         appendCard(addressCard)
-        
         
         // People Count
         let keyValueCard = Card(cardType: .KeyValue, title: AppStrings.CardTitlePeople)
