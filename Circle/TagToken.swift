@@ -16,15 +16,24 @@ protocol TagTokenDelegate {
 
 class TagToken: UIView {
     
+    var highlightedBackgroundViewBackgroundColor = UIColor.appTintColor()
+    var highlightedTokenTitleLabelTextColor = UIColor.whiteColor()
+    var highlightedBorderColor = UIColor.appTagNormalBorderColor()
+    var backgroundViewBackgroundColor = UIColor.appTagNormalBackgroundColor()
+    var titleLabelTextColor = UIColor.appDefaultDarkTextColor()
+    var borderColor = UIColor.appTagNormalBorderColor()
+    
     var delegate: TagTokenDelegate?
     var highlighted: Bool = false {
         didSet {
             if highlighted {
-                backgroundView.backgroundColor = UIColor.appTintColor()
-                titleLabel.textColor = UIColor.whiteColor()
+                backgroundView.backgroundColor = highlightedBackgroundViewBackgroundColor
+                titleLabel.textColor = highlightedTokenTitleLabelTextColor
+                backgroundView.layer.borderColor = highlightedBorderColor.CGColor
             } else {
-                backgroundView.backgroundColor = UIColor.appTagNormalBackgroundColor()
-                titleLabel.textColor = UIColor.appDefaultDarkTextColor()
+                backgroundView.backgroundColor = backgroundViewBackgroundColor
+                titleLabel.textColor = titleLabelTextColor
+                backgroundView.layer.borderColor = borderColor.CGColor
             }
         }
     }
@@ -62,8 +71,8 @@ class TagToken: UIView {
     
     private func configureBackgroundView() {
         backgroundView = UIView.newAutoLayoutView()
-        backgroundView.backgroundColor = UIColor.appTagNormalBackgroundColor()
-        backgroundView.layer.borderColor = UIColor.appTagNormalBorderColor().CGColor
+        backgroundView.backgroundColor = backgroundViewBackgroundColor
+        backgroundView.layer.borderColor = borderColor.CGColor
         backgroundView.layer.borderWidth = 1.0
         addSubview(backgroundView)
         backgroundView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
@@ -72,7 +81,7 @@ class TagToken: UIView {
     private func configureTitleLabel() {
         titleLabel = PaddedLabel.newAutoLayoutView()
         titleLabel.paddingEdgeInsets = UIEdgeInsetsMake(5.0, 10.0, 5.0, 10.0)
-        titleLabel.textColor = UIColor.appDefaultDarkTextColor()
+        titleLabel.textColor = titleLabelTextColor
         titleLabel.font = UIFont.appTagTokenFont()
         backgroundView.addSubview(titleLabel)
         titleLabel.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)

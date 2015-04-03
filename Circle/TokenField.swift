@@ -33,6 +33,20 @@ class TokenField: UIView,
     var delegate: TokenFieldDelegate?
     var maxHeight: CGFloat?
     
+    var tokenHighlightedBackgroundViewBackgroundColor = UIColor.appTintColor()
+    var tokenHighlightedTokenTitleLabelTextColor = UIColor.whiteColor()
+    var tokenHighlightedBorderColor = UIColor.appTagNormalBorderColor()
+    var tokenBackgroundViewBackgroundColor = UIColor.appTagNormalBackgroundColor()
+    var tokenTitleLabelTextColor = UIColor.appDefaultDarkTextColor()
+    var tokenBorderColor = UIColor.appTagNormalBorderColor()
+    var tokenTintColor = UIColor.appTintColor()
+    var keyboardAppearance: UIKeyboardAppearance? {
+        didSet {
+            inputTextField?.keyboardAppearance = keyboardAppearance!
+            invisibleTextField?.keyboardAppearance = keyboardAppearance!
+        }
+    }
+    
     private var scrollView: UIScrollView!
     private var contentView: UIView!
     private var contentViewHeightConstraint: NSLayoutConstraint?
@@ -131,10 +145,23 @@ class TokenField: UIView,
             token.delegate = self
             contentView.addSubview(token)
             token.autoSetDimension(.Width, toSize: UIScreen.mainScreen().bounds.width - leftPadding, relation: .LessThanOrEqual)
+            
+            token.highlightedBackgroundViewBackgroundColor = tokenHighlightedBackgroundViewBackgroundColor
+            token.highlightedTokenTitleLabelTextColor = tokenHighlightedTokenTitleLabelTextColor
+            token.backgroundViewBackgroundColor = tokenBackgroundViewBackgroundColor
+            token.titleLabelTextColor = tokenTitleLabelTextColor
+            token.borderColor = tokenBorderColor
+            // TODO have to trigger reconfiguring the colors of the elements, should move this to the didSet methods of the above properties
+            token.highlighted = false
             tokens.append(token)
         }
         
         inputTextField = BackspaceTextField.newAutoLayoutView()
+        if keyboardAppearance != nil {
+            inputTextField?.keyboardAppearance = keyboardAppearance!
+        }
+        inputTextField?.textColor = tokenTitleLabelTextColor
+        inputTextField?.tintColor = tokenTintColor
         inputTextField?.delegate = self
         contentView.addSubview(inputTextField!)
         inputTextField?.autoSetDimension(.Width, toSize: UIScreen.mainScreen().bounds.width - leftPadding, relation: .LessThanOrEqual)

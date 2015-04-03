@@ -17,22 +17,36 @@ class TagInputViewController: UIViewController,
     TokenFieldDataSource,
     TokenFieldDelegate
 {
+    
+    enum Themes {
+        case Onboarding
+        case Regular
+    }
 
     @IBOutlet private(set) weak var tokenField: TokenField!
     @IBOutlet private(set) weak var collectionView: UICollectionView!
+    @IBOutlet weak var viewDescriptionLabel: UILabel!
     
+    private var theme: Themes = .Regular
     private var newTag: ProfileService.Containers.Tag?
     private var deletedTags = Array<ProfileService.Containers.Tag>()
     private var selectedTags = Array<ProfileService.Containers.Tag>()
     private var suggestedTags = Array<ProfileService.Containers.Tag>()
     
+    private var tokenFieldBottomBorder: UIView?
+    private var suggestionCollectionViewCellBackgroundColor = UIColor.whiteColor()
+    private var suggestionCollectionViewCellTextColor = UIColor.appDefaultDarkTextColor()
+    
     class func getNibName() -> String {
         return "TagInputViewController"
     }
     
-    convenience init(existingTags: Array<ProfileService.Containers.Tag>) {
+    convenience init(existingTags: Array<ProfileService.Containers.Tag>? = nil, theme withTheme: Themes = .Regular) {
         self.init(nibName: "TagInputViewController", bundle: nil)
-        selectedTags.extend(existingTags)
+        if existingTags != nil {
+            selectedTags.extend(existingTags!)
+        }
+        theme = withTheme
     }
     
     override func viewDidLoad() {
@@ -41,13 +55,13 @@ class TagInputViewController: UIViewController,
         configureNavigationBar()
         configureCollectionView()
         configureTokenField()
+        configureViewByTheme()
     }
     
     // MARK: - Configuration
     
     private func configureView() {
         automaticallyAdjustsScrollViewInsets = false
-        view.backgroundColor = UIColor.appViewBackgroundColor()
         extendedLayoutIncludesOpaqueBars = true
     }
     
@@ -60,20 +74,46 @@ class TagInputViewController: UIViewController,
     private func configureTokenField() {
         tokenField.dataSource = self
         tokenField.delegate = self
-        tokenField.addBottomBorder(offset: 0.0)
+        tokenFieldBottomBorder = tokenField.addBottomBorder(offset: 0.0)
         tokenField.reloadData()
     }
     
     private func configureCollectionView() {
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.backgroundColor = UIColor.appViewBackgroundColor()
         collectionView.alwaysBounceVertical = true
         collectionView.keyboardDismissMode = .OnDrag
         collectionView.registerNib(
             TagSuggestionCollectionViewCell.nib,
             forCellWithReuseIdentifier: TagSuggestionCollectionViewCell.classReuseIdentifier
         )
+    }
+    
+    private func configureViewByTheme() {
+        switch theme {
+        case .Onboarding:
+            view.backgroundColor = UIColor.appUIBackgroundColor()
+            collectionView.backgroundColor = UIColor.appUIBackgroundColor()
+            tokenField.backgroundColor = UIColor.appUIBackgroundColor()
+            tokenField.tokenBackgroundViewBackgroundColor = UIColor.appUIBackgroundColor()
+            tokenField.tokenTitleLabelTextColor = UIColor.whiteColor()
+            tokenField.tokenBorderColor = UIColor.whiteColor()
+            tokenField.tokenHighlightedBackgroundViewBackgroundColor = UIColor.whiteColor()
+            tokenField.tokenHighlightedTokenTitleLabelTextColor = UIColor.appUIBackgroundColor()
+            tokenField.tokenHighlightedBorderColor = UIColor.appUIBackgroundColor()
+            viewDescriptionLabel.textColor = UIColor.whiteColor()
+            suggestionCollectionViewCellBackgroundColor = UIColor.appUIBackgroundColor()
+            suggestionCollectionViewCellTextColor = UIColor.whiteColor()
+            tokenFieldBottomBorder?.backgroundColor = UIColor.whiteColor()
+            tokenField.tokenTintColor = UIColor.whiteColor()
+            tokenField.keyboardAppearance = .Dark
+            // TODO this shouldn't need to be here
+            tokenField.reloadData()
+        case .Regular:
+            view.backgroundColor = UIColor.appViewBackgroundColor()
+            collectionView.backgroundColor = UIColor.appViewBackgroundColor()
+        }
+        
     }
     
     // MARK: - UICollectionViewDataSource
@@ -95,7 +135,8 @@ class TagInputViewController: UIViewController,
             suggestedTag = suggestedTags[indexPath.row]
         }
         cell.suggestedTag = suggestedTag
-        cell.backgroundColor = UIColor.whiteColor()
+        cell.backgroundColor = suggestionCollectionViewCellBackgroundColor
+        cell.tagSuggestionLabel.textColor = suggestionCollectionViewCellTextColor
         return cell
     }
     

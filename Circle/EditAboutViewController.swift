@@ -196,7 +196,7 @@ class EditAboutViewController: UIViewController, UITextFieldDelegate {
             navigationController?.pushViewController(interestSelectorVC, animated: true)
         }
         else {
-            let tagInputViewController = TagInputViewController(nibName: TagInputViewController.getNibName(), bundle: nil)
+            let tagInputViewController = TagInputViewController(theme: .Onboarding)
             navigationController?.pushViewController(tagInputViewController, animated: true)
         }
     }

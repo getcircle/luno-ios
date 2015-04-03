@@ -9,6 +9,7 @@
                 <outlet property="collectionView" destination="jaK-P5-dbd" id="d1m-dQ-hbF"/>
                 <outlet property="tokenField" destination="owE-YR-bOa" id="bSP-vf-SHC"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="viewDescriptionLabel" destination="VQ7-2o-Ixg" id="f5R-4C-NBD"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>

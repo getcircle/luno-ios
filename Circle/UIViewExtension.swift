@@ -38,9 +38,9 @@ extension UIView {
         layer.addAnimation(animation, forKey: "position")
     }
     
-    func addBottomBorder(offset withOffset: CGFloat? = 1.0) -> UIView {
+    func addBottomBorder(offset withOffset: CGFloat? = 1.0, color: UIColor? = UIColor.appSeparatorViewColor()) -> UIView {
         var borderView = UIView(forAutoLayout: ())
-        borderView.backgroundColor = UIColor.appSeparatorViewColor()
+        borderView.backgroundColor = color
         if let parentView = superview {
             parentView.addSubview(borderView)
             borderView.autoPinEdge(.Left, toEdge: .Left, ofView: self)

@@ -22,6 +22,22 @@ import UIKit
 class BackspaceTextField: UIView, UITextFieldDelegate {
     
     var delegate: BackspaceTextFieldDelegate?
+    var textColor: UIColor? {
+        didSet {
+            textField.textColor = textColor!
+        }
+    }
+    override var tintColor: UIColor? {
+        didSet {
+            textField.tintColor = tintColor!
+        }
+    }
+    var keyboardAppearance: UIKeyboardAppearance? {
+        didSet {
+            textField.keyboardAppearance = keyboardAppearance!
+        }
+    }
+    
     private var textField: UITextField!
     
     override init() {
