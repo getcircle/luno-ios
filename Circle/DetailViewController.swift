@@ -26,44 +26,48 @@ class DetailViewController: BaseDetailViewController, UICollectionViewDelegate {
         rootView.opaque = true
         view = rootView
         
-        // Collection View
         if layout == nil {
-            layout = StickyHeaderCollectionViewLayout()
+            layout = initializeCollectionViewLayout()
         }
-        collectionView = UICollectionView(frame: view.frame, collectionViewLayout: layout)
-        view.addSubview(collectionView)
-        collectionView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
-
-        // Activity View
-        activityIndicatorView = view.addActivityIndicator()
-        errorMessageView = view.addErrorMessageView(nil, tryAgainHandler: { () -> Void in
-            self.errorMessageView.hide()
-            self.activityIndicatorView.startAnimating()
-            self.loadData()
-        })
+        collectionView = initializeCollectionView()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCollectionView()
+        configureActivityIndicator()
+        configureErrorMessageView()
         loadData()
     }
     
     final func loadData() {
         dataSource.loadData { (error) -> Void in
             self.activityIndicatorView.stopAnimating()
-            
+            println("Cards Count = \(self.dataSource.cards.count)")
             if error == nil {
                 self.errorMessageView.hide()
                 self.collectionView.reloadData()
             }
-            else if self.dataSource.cards.count >= 1 {
+            else if self.dataSource.cards.count <= 1 {
                 self.errorMessageView.error = error
                 self.errorMessageView.show()
             }
         }
     }
 
+    // MARK: - Initialization
+    
+    func initializeCollectionViewLayout() -> StickyHeaderCollectionViewLayout {
+        return StickyHeaderCollectionViewLayout()
+    }
+    
+    func initializeCollectionView() -> UICollectionView {
+        let collectionView = UICollectionView(frame: view.frame, collectionViewLayout: layout)
+        view.addSubview(collectionView)
+        collectionView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
+        return collectionView
+    }
+    
     // MARK: - Configuration
     
     /**
@@ -83,6 +87,18 @@ class DetailViewController: BaseDetailViewController, UICollectionViewDelegate {
         collectionView.bounces = true
         collectionView.alwaysBounceVertical = true
         (collectionView.delegate as CardCollectionViewDelegate).delegate = self
+    }
+    
+    private func configureActivityIndicator() {
+        activityIndicatorView = view.addActivityIndicator()
+    }
+    
+    private func configureErrorMessageView() {
+        errorMessageView = view.addErrorMessageView(nil, tryAgainHandler: { () -> Void in
+            self.errorMessageView.hide()
+            self.activityIndicatorView.startAnimating()
+            self.loadData()
+        })
     }
 
     // MARK: - Orientation change

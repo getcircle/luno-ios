@@ -39,10 +39,8 @@ class TagDetailDataSource: CardDataSource {
                     peopleCard.addContent(content: profiles as [AnyObject])
                     peopleCard.sectionInset = UIEdgeInsetsZero
                     self.appendCard(peopleCard)
-                    completionHandler(error: nil)
-                } else {
-                    completionHandler(error: error)
                 }
+                completionHandler(error: error)
             }
         }
     }

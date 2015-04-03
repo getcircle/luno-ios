@@ -14,9 +14,7 @@ class OrganizationDetailDataSource: CardDataSource {
     private(set) var profileHeaderView: OrganizationHeaderCollectionReusableView?
 
     override func loadData(completionHandler: (error: NSError?) -> Void) {
-        if cards.count > 0 {
-            return
-        }
+        resetCards()
         
         // Get the header early
         let placeholderCard = Card(cardType: .Placeholder, title: "")
@@ -50,8 +48,8 @@ class OrganizationDetailDataSource: CardDataSource {
                         
                         self.appendCard(categoryCard)
                     }
-                    completionHandler(error: nil)
                 }
+                completionHandler(error: error)
             }
         }
     }

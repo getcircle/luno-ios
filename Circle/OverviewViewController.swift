@@ -19,12 +19,12 @@ class OverviewViewController:
     private(set) var activityIndicatorView: CircleActivityIndicatorView!
     private(set) var collectionViewLayout: UICollectionViewLayout!
     private(set) var collectionView: UICollectionView!
-    private(set) var searchContainerView: UIView!
     private(set) var collectionViewVerticalSpaceConstraint: NSLayoutConstraint?
-    private(set) var searchHeaderView: SearchHeaderView?
-
     private(set) var dataSource: CardDataSource!
     private(set) var delegate = CardCollectionViewDelegate()
+    private(set) var errorMessageView: CircleErrorMessageView!
+    private(set) var searchContainerView: UIView!
+    private(set) var searchHeaderView: SearchHeaderView?
     
     private var minimumResultsForFilter = 15
     private var isFilterView = false
@@ -81,12 +81,7 @@ class OverviewViewController:
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         activateSearchIfApplicable()
-        dataSource.loadData { (error) -> Void in
-            if error == nil {
-                self.activityIndicatorView.stopAnimating()
-                self.collectionView.reloadData()
-            }
-        }
+        loadData()
     }
     
     // MARK: - Initialization
@@ -157,7 +152,30 @@ class OverviewViewController:
         activityIndicatorView = view.addActivityIndicator()
     }
     
+    private func configureErrorMessageView() {
+        errorMessageView = view.addErrorMessageView(nil, tryAgainHandler: { () -> Void in
+            self.errorMessageView.hide()
+            self.activityIndicatorView.startAnimating()
+            self.loadData()
+        })
+    }
+    
     // MARK: Helpers
+    
+    final func loadData() {
+        dataSource.loadData { (error) -> Void in
+            self.activityIndicatorView.stopAnimating()
+            
+            if error == nil {
+                self.errorMessageView.hide()
+                self.collectionView.reloadData()
+            }
+            else if self.dataSource.cards.count <= 1 {
+                self.errorMessageView.error = error
+                self.errorMessageView.show()
+            }
+        }
+    }
     
     private func hideFilterIfLimitedContent() {
         if dataSource.cardAtSection(0)?.content.count < minimumResultsForFilter && collectionViewVerticalSpaceConstraint != nil {
