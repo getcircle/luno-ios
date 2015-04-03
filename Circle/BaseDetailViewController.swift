@@ -53,18 +53,12 @@ MFMessageComposeViewControllerDelegate {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        if isBeingPresentedModally() {
-            navigationController?.navigationBar.makeTransparent()
-        }
-        else {
-            transitionCoordinator()?.animateAlongsideTransition({ (transitionContext) -> Void in
-                self.navigationController?.navigationBar.makeTransparent()
-                return
-                },
-                completion: nil
-            )
-        }
-        
+        transitionCoordinator()?.animateAlongsideTransition({ (transitionContext) -> Void in
+            self.navigationController?.navigationBar.makeTransparent()
+            return
+            },
+            completion: nil
+        )
         navigationItem.title = ""
     }
     
