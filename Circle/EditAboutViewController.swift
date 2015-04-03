@@ -197,6 +197,7 @@ class EditAboutViewController: UIViewController, UITextFieldDelegate {
         }
         else {
             let tagInputViewController = TagInputViewController(theme: .Onboarding)
+            tagInputViewController.addNextButton = true
             navigationController?.pushViewController(tagInputViewController, animated: true)
         }
     }

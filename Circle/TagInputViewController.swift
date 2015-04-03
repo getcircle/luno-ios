@@ -27,9 +27,11 @@ class TagInputViewController: UIViewController,
     @IBOutlet private(set) weak var collectionView: UICollectionView!
     @IBOutlet weak var viewDescriptionLabel: UILabel!
     
+    var addNextButton: Bool = false
+
     private var theme: Themes = .Regular
-    private var newTag: ProfileService.Containers.Tag?
     private var deletedTags = Array<ProfileService.Containers.Tag>()
+    private var newTag: ProfileService.Containers.Tag?
     private var selectedTags = Array<ProfileService.Containers.Tag>()
     private var suggestedTags = Array<ProfileService.Containers.Tag>()
     
@@ -67,7 +69,13 @@ class TagInputViewController: UIViewController,
     
     private func configureNavigationBar() {
         title = AppStrings.ProfileSectionExpertiseTitle
-        addDoneButtonWithAction("done:")
+        if addNextButton {
+            addNextButtonWithAction("done:")
+        }
+        else {
+            addDoneButtonWithAction("done:")
+        }
+        
         addCloseButtonWithAction("cancel:")
     }
     
@@ -272,7 +280,16 @@ class TagInputViewController: UIViewController,
     
     private func dismissView() {
         tokenField.resignFirstResponder()
-        dismissViewControllerAnimated(true, completion: nil)
+        if addNextButton {
+            saveAndNextButtonTapped()
+        }
+        else {
+            dismissViewControllerAnimated(true, completion: nil)
+        }
     }
-
+    
+    private func saveAndNextButtonTapped() {
+        let notificationsVC = NotificationsViewController(nibName: "NotificationsViewController", bundle: nil)
+        navigationController?.pushViewController(notificationsVC, animated: true)
+    }
 }
