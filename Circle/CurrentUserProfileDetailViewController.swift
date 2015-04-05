@@ -121,7 +121,7 @@ class CurrentUserProfileDetailViewController: ProfileDetailViewController,
         )
         NSNotificationCenter.defaultCenter().addObserver(
             self,
-            selector: "onProfileUpdated:",
+            selector: "onSocialAccountConnected:",
             name: SocialConnectNotifications.onServiceConnectedNotification,
             object: nil
         )
@@ -160,6 +160,17 @@ class CurrentUserProfileDetailViewController: ProfileDetailViewController,
     }
 
     func onProfileUpdated(notification: NSNotification) {
+        profile = AuthViewController.getLoggedInUserProfile()!
+        reloadData()
+    }
+    
+    func onSocialAccountConnected(notification: NSNotification) {
+        UserService.Actions.getIdentities(profile.user_id) { (identities, error) -> Void in
+            if identities != nil {
+                AuthViewController.updateIdentities(identities!)
+                self.profile = AuthViewController.getLoggedInUserProfile()!
+            }
+        }
         profile = AuthViewController.getLoggedInUserProfile()!
         reloadData()
     }
