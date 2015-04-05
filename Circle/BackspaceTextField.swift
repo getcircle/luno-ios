@@ -71,7 +71,9 @@ class BackspaceTextField: UIView, UITextFieldDelegate {
     var text: String {
         get {
             var result = textField.text
-            result.removeAtIndex(result.startIndex)
+            if result.startIndex != result.endIndex {
+                result.removeAtIndex(result.startIndex)
+            }
             return result
         }
         set {
