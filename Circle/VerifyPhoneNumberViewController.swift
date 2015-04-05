@@ -190,8 +190,8 @@ class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate {
         let code = verificationCodeField.text
         if let user = AuthViewController.getLoggedInUser() {
             UserService.Actions.verifyVerificationCode(code, user: user) { (verified, error) -> Void in
+                self.toggleLoadingState(self.actionButton)
                 if error == nil {
-                    self.toggleLoadingState(self.actionButton)
                     if verified! {
                         self.verificationComplete()
                     } else {
