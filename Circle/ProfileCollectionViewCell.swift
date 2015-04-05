@@ -79,7 +79,7 @@ class ProfileCollectionViewCell: CircleCollectionViewCell {
 
     private func setTeam(team: OrganizationService.Containers.Team) {
         profileImageView.imageText = ""
-        profileImageView.backgroundColor = UIColor.appTeamHeaderBackgroundColor(team.id)
+        profileImageView.backgroundColor = UIColor.appTeamHeaderBackgroundColor(team)
         profileImageView.image = nil
         nameLabel.text = team.name
         subTextLabel.text = getCountLabel(team.profile_count)

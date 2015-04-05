@@ -190,8 +190,7 @@ final public class OrganizationService : GeneratedMessage {
           public private(set) var image_url:String = ""
 
           public private(set) var hasTintColor:Bool = false
-          public private(set) var tint_color:String = ""
-
+          public private(set) var tint_color:OrganizationService.Containers.Color = OrganizationService.Containers.Color()
           required public init() {
                super.init()
           }
@@ -212,7 +211,7 @@ final public class OrganizationService : GeneratedMessage {
               output.writeString(4, value:image_url)
             }
             if hasTintColor {
-              output.writeString(5, value:tint_color)
+              output.writeMessage(5, value:tint_color)
             }
             unknownFields.writeToCodedOutputStream(output)
           }
@@ -236,7 +235,7 @@ final public class OrganizationService : GeneratedMessage {
               size += WireFormat.computeStringSize(4, value:image_url)
             }
             if hasTintColor {
-              size += WireFormat.computeStringSize(5, value:tint_color)
+              size += WireFormat.computeMessageSize(5, value:tint_color)
             }
             size += unknownFields.serializedSize()
             memoizedSerializedSize = size
@@ -292,7 +291,9 @@ final public class OrganizationService : GeneratedMessage {
               output += "\(indent) image_url: \(image_url) \n"
             }
             if hasTintColor {
-              output += "\(indent) tint_color: \(tint_color) \n"
+              output += "\(indent) tint_color {\n"
+              tint_color.writeDescriptionTo(&output, indent:"\(indent)  ")
+              output += "\(indent) }\n"
             }
             unknownFields.writeDescriptionTo(&output, indent:indent)
           }
@@ -312,7 +313,7 @@ final public class OrganizationService : GeneratedMessage {
                      hashCode = (hashCode &* 31) &+ image_url.hashValue
                   }
                   if hasTintColor {
-                     hashCode = (hashCode &* 31) &+ tint_color.hashValue
+                    hashCode = (hashCode &* 31) &+ tint_color.hashValue
                   }
                   hashCode = (hashCode &* 31) &+  unknownFields.hashValue
                   return hashCode
@@ -422,22 +423,35 @@ final public class OrganizationService : GeneratedMessage {
           }
           public var hasTintColor:Bool {
                get {
-                    return builderResult.hasTintColor
+                   return builderResult.hasTintColor
                }
           }
-          public var tint_color:String {
+          public var tint_color:OrganizationService.Containers.Color {
                get {
-                    return builderResult.tint_color
+                   return builderResult.tint_color
                }
                set (value) {
                    builderResult.hasTintColor = true
                    builderResult.tint_color = value
                }
           }
-          public func clearTintColor() -> OrganizationService.Containers.OrganizationBuilder{
-               builderResult.hasTintColor = false
-               builderResult.tint_color = ""
-               return self
+          public func setTintColorBuilder(builderForValue:OrganizationService.Containers.ColorBuilder) -> OrganizationService.Containers.OrganizationBuilder {
+            tint_color = builderForValue.build()
+            return self
+          }
+          public func mergeTintColor(value:OrganizationService.Containers.Color) -> OrganizationService.Containers.OrganizationBuilder {
+            if (builderResult.hasTintColor) {
+              builderResult.tint_color = OrganizationService.Containers.Color.builderWithPrototype(builderResult.tint_color).mergeFrom(value).buildPartial()
+            } else {
+              builderResult.tint_color = value
+            }
+            builderResult.hasTintColor = true
+            return self
+          }
+          public func clearTintColor() -> OrganizationService.Containers.OrganizationBuilder {
+            builderResult.hasTintColor = false
+            builderResult.tint_color = OrganizationService.Containers.Color()
+            return self
           }
           override public var internalGetResult:GeneratedMessage {
                get {
@@ -472,8 +486,8 @@ final public class OrganizationService : GeneratedMessage {
             if other.hasImageUrl {
                  image_url = other.image_url
             }
-            if other.hasTintColor {
-                 tint_color = other.tint_color
+            if (other.hasTintColor) {
+                mergeTintColor(other.tint_color)
             }
             mergeUnknownFields(other.unknownFields)
             return self
@@ -503,7 +517,12 @@ final public class OrganizationService : GeneratedMessage {
                 image_url = input.readString()
 
               case 42 :
-                tint_color = input.readString()
+                var subBuilder:OrganizationService.Containers.ColorBuilder = OrganizationService.Containers.Color.builder()
+                if hasTintColor {
+                  subBuilder.mergeFrom(tint_color)
+                }
+                input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
+                tint_color = subBuilder.buildPartial()
 
               default:
                 if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
