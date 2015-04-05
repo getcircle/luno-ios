@@ -207,6 +207,7 @@ class TagInputViewController: UIViewController,
     func tokenField(tokenField: TokenField, didEnterText text: String!) {
         selectedTags.append(newTag!)
         newTag = nil
+        suggestedTags.removeAll(keepCapacity: false)
         tokenField.reloadData()
         collectionView.reloadData()
     }
