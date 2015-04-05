@@ -151,7 +151,7 @@ struct ServiceHttpRequest: URLRequestConvertible {
         }
     }
     
-    static let environment = Environment.Staging
+    static let environment = Environment.Production
 //    static let environment = Environment.Local
     
     var data: NSData
