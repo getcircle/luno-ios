@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ProtobufRegistry
 
 extension UIColor {
 
@@ -106,11 +107,14 @@ extension UIColor {
         return UIColor(red: 206, green: 206, blue: 206).colorWithAlphaComponent(0.5)
     }
     
-    class func appTeamHeaderBackgroundColor(teamId: String) -> UIColor {
-        if let color = TeamColorsHolder.colors[teamId] {
+    class func appTeamHeaderBackgroundColor(team: OrganizationService.Containers.Team) -> UIColor {
+        if let color = TeamColorsHolder.colors[team.id] {
             return color
-        }
-        else {
+        } else if team.hasColor {
+            let color = UIColor(red: Int(team.color.red), green: Int(team.color.green), blue: Int(team.color.blue))
+            TeamColorsHolder.colors[team.id] = color
+            return color
+        } else {
             let randomPalette = [
                 UIColor(red: 17, green: 36, blue: 65),
                 UIColor(red: 65, green: 20, blue: 20),
@@ -144,7 +148,7 @@ extension UIColor {
             ]
         
             let color = palette[Int(arc4random_uniform(UInt32(palette.count)))]
-            TeamColorsHolder.colors[teamId] = color
+            TeamColorsHolder.colors[team.id] = color
             return color
         }
     }
