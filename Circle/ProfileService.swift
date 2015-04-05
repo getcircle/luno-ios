@@ -174,7 +174,7 @@ extension ProfileService {
             }
         }
         
-        class func getActiveTags(organizationId: String, tagType: ProfileService.TagType?, completionHandler: GetTagsCompletionHandler?) {
+        class func getActiveTags(organizationId: String, tagType: ProfileService.TagType?, paginatorBuilder: PaginatorBuilder? = nil, completionHandler: GetTagsCompletionHandler?) {
             let requestBuilder = ProfileService.GetActiveTags.Request.builder()
             requestBuilder.organization_id = organizationId
             if tagType != nil {
@@ -185,11 +185,13 @@ extension ProfileService {
             client.callAction(
                 "get_active_tags",
                 extensionField: ProfileServiceRequests_get_active_tags,
-                requestBuilder: requestBuilder) { (_, _, wrapped, error) -> Void in
-                    let response = wrapped?.response?.result.getExtension(
-                        ProfileServiceRequests_get_active_tags
-                    ) as? ProfileService.GetActiveTags.Response
-                    completionHandler?(interests: response?.tags, error: error)
+                requestBuilder: requestBuilder,
+                paginatorBuilder: paginatorBuilder
+            ) { (_, _, wrapped, error) -> Void in
+                let response = wrapped?.response?.result.getExtension(
+                    ProfileServiceRequests_get_active_tags
+                ) as? ProfileService.GetActiveTags.Response
+                completionHandler?(interests: response?.tags, error: error)
             }
         }
         

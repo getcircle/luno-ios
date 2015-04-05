@@ -75,11 +75,16 @@ class ObjectStore {
             objects.skills = tags?.filter { $0.type == .Skill }
             self.update(objects)
         }
-        ProfileService.Actions.getActiveTags(profile.organization_id, tagType: nil) { (tags, error) -> Void in
-            objects.activeInterests = tags?.filter { $0.type == .Interest }
-            objects.activeSkills = tags?.filter { $0.type == .Skill }
-            self.update(objects)
-        }
+        ProfileService.Actions.getActiveTags(
+            profile.organization_id,
+            tagType: nil,
+            paginatorBuilder: paginatorBuilder,
+            completionHandler: { (tags, error) -> Void in
+                objects.activeInterests = tags?.filter { $0.type == .Interest }
+                objects.activeSkills = tags?.filter { $0.type == .Skill }
+                self.update(objects)
+            }
+        )
         
         OrganizationService.Actions.getAddresses(profile.organization_id) { (addresses, error) -> Void in
             objects.addresses = addresses
