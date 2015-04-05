@@ -347,8 +347,14 @@ class SearchViewController: UIViewController,
                 case .Interests:
                     // TODO This should be coming from a paginated data source
                     let interestsOverviewViewController = TagsOverviewViewController(nibName: "TagsOverviewViewController", bundle: nil)
-                    interestsOverviewViewController.title = "Tags"
+                    interestsOverviewViewController.title = "Interests"
                     interestsOverviewViewController.dataSource.setInitialData(content: ObjectStore.sharedInstance.activeInterests.values.array)
+                    navigationController?.pushViewController(interestsOverviewViewController, animated: true)
+                case .Skills:
+                    // TODO This should be coming from a paginated data source
+                    let interestsOverviewViewController = TagsOverviewViewController(nibName: "TagsOverviewViewController", bundle: nil)
+                    interestsOverviewViewController.title = "Skills"
+                    interestsOverviewViewController.dataSource.setInitialData(content: ObjectStore.sharedInstance.activeSkills.values.array)
                     navigationController?.pushViewController(interestsOverviewViewController, animated: true)
                 }
                 

@@ -121,9 +121,9 @@ class SearchQueryDataSource: CardDataSource {
                     "type": StatTileCollectionViewCell.TileType.Teams.rawValue
                 ],
                 [
-                    "title": "Interests",
-                    "value": ObjectStore.sharedInstance.activeInterests.values.array.count,
-                    "type": StatTileCollectionViewCell.TileType.Interests.rawValue
+                    "title": "Skills",
+                    "value": ObjectStore.sharedInstance.activeSkills.values.array.count,
+                    "type": StatTileCollectionViewCell.TileType.Skills.rawValue
                 ]
             ] as [AnyObject]
             statsCard.addContent(content: stats)
