@@ -28,6 +28,6 @@ class OrganizationHeaderCollectionReusableView: CircleCollectionReusableView {
     }
     
     func setOrganization(organization: OrganizationService.Containers.Organization) {
-        profileImage.image = UIImage(named: organization.name)
+        profileImage.setImageWithURL(NSURL(string: organization.image_url))
     }
 }
