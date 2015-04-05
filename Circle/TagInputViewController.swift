@@ -34,6 +34,7 @@ class TagInputViewController: UIViewController,
     private var newTag: ProfileService.Containers.Tag?
     private var selectedTags = Array<ProfileService.Containers.Tag>()
     private var suggestedTags = Array<ProfileService.Containers.Tag>()
+    private var activityIndicator: CircleActivityIndicatorView?
     
     private var tokenFieldBottomBorder: UIView?
     private var suggestionCollectionViewCellBackgroundColor = UIColor.whiteColor()
@@ -238,7 +239,7 @@ class TagInputViewController: UIViewController,
     
     @IBAction func done(sender: AnyObject!) {
         // TODO only display done button if we have added a tag
-        let activityIndicator = view.addActivityIndicator()
+        activityIndicator = view.addActivityIndicator()
         
         var storedError: NSError!
         var actionsGroup = dispatch_group_create()
@@ -280,6 +281,9 @@ class TagInputViewController: UIViewController,
     
     private func dismissView() {
         tokenField.resignFirstResponder()
+        if activityIndicator != nil {
+            activityIndicator!.stopAnimating()
+        }
         if addNextButton {
             saveAndNextButtonTapped()
         }
