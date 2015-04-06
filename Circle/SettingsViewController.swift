@@ -163,16 +163,16 @@ class SettingsViewController: UIViewController, UICollectionViewDelegate, MFMail
                             if error != nil {
                                 println("error deleting user identity: \(error)")
                             } else {
-                                UserService.Actions.getIdentities(AuthViewController.getLoggedInUser()!.id) { (identities, error) -> Void in
-                                    if let identities = identities {
-                                        AuthViewController.updateIdentities(identities)
-                                        if identity.provider == .Google {
-                                            self.dismissViewControllerAnimated(true) { () -> Void in
-                                                AuthViewController.logOut(shouldDisconnect: true)
-                                            }
-                                        } else {
-                                            self.collectionView.reloadData()
+                                if identity.provider == .Google {
+                                    self.dismissViewControllerAnimated(true) { () -> Void in
+                                        AuthViewController.logOut(shouldDisconnect: true)
+                                    }
+                                } else {
+                                    UserService.Actions.getIdentities(AuthViewController.getLoggedInUser()!.id) { (identities, error) -> Void in
+                                        if let identities = identities {
+                                            AuthViewController.updateIdentities(identities)
                                         }
+                                        self.collectionView.reloadData()
                                     }
                                 }
                             }
