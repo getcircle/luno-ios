@@ -92,7 +92,7 @@ class SocialConnectViewController: UIViewController, WKNavigationDelegate {
                     ]
                 )
             } else {
-                println("error connecting to linkedin: \(url)")
+                println("error connecting to linkedin")
             }
             decisionHandler(.Cancel)
             self.dismiss()

@@ -43,7 +43,6 @@ class DetailViewController: BaseDetailViewController, UICollectionViewDelegate {
     final func loadData() {
         dataSource.loadData { (error) -> Void in
             self.activityIndicatorView.stopAnimating()
-            println("Cards Count = \(self.dataSource.cards.count)")
             if error == nil {
                 self.errorMessageView.hide()
                 self.collectionView.reloadData()

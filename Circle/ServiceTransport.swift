@@ -60,7 +60,7 @@ extension Request {
             }
             
             if response?.statusCode != 200 {
-                println("error making service request: \(response?)")
+                // println("error making service request: \(response?)")
                 if response?.statusCode == 401 {
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
                         AuthViewController.logOut()
@@ -195,7 +195,7 @@ class HttpsTransport: BaseTransport {
                     actionResponse: actionResponse
                 )
                 let endTime = CACurrentMediaTime()
-                println("\(serviceRequest.control.service):\(serviceRequest.actions[0].control.action): Time - \(endTime - startTime)")
+                // println("\(serviceRequest.control.service):\(serviceRequest.actions[0].control.action): Time - \(endTime - startTime)")
                 completionHandler(request, response, wrapped, error)
         }
     }

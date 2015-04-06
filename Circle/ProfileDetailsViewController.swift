@@ -530,7 +530,6 @@ class ProfileDetailsViewController:
         if let dataSource = profileInfoCollectionView.dataSource as? ProfileDetailDataSource {
             dataSource.profile = profile
             dataSource.loadData({ (error) -> Void in
-                println("coming here")
                 profileInfoCollectionView.reloadData()
             })
         }
