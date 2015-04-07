@@ -170,6 +170,11 @@ class CircleImageView: UIImageView {
             }
             else {
                 image = cachedImage
+                if animated {
+                    UIView.animateWithDuration(0.3, animations: { () -> Void in
+                        self.alpha = 1.0
+                    })
+                }
             }
         } else {
             setImageWithURLRequest(request,
