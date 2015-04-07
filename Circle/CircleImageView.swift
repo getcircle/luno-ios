@@ -157,6 +157,41 @@ class CircleImageView: UIImageView {
         }
     }
     
+    func setImageWithURL(url: NSURL, animated: Bool, successHandler: ((image: UIImage) -> Void)? = nil) {
+        let request = NSURLRequest(URL: url)
+        updateAcceptableContentTypes()
+        if animated {
+            alpha = 0.0
+        }
+        
+        if let cachedImage = UIImageView.sharedImageCache().cachedImageForRequest(request) {
+            if let successCallback = successHandler {
+                successCallback(image: cachedImage)
+            }
+            else {
+                image = cachedImage
+            }
+        } else {
+            setImageWithURLRequest(request,
+                placeholderImage: UIImage.imageFromColor(UIColor.darkGrayColor(), withRect: bounds),
+                success: { (request, response, image) -> Void in
+                    if let successCallback = successHandler {
+                        successCallback(image: image)
+                    }
+                    else {
+                        self.image = image
+                    }
+                    if animated {
+                        UIView.animateWithDuration(0.3, animations: { () -> Void in
+                            self.alpha = 1.0
+                        })
+                    }
+                },
+                failure: nil
+            )
+        }
+    }
+    
     func setImageWithProfileImageURL(profileImageURL: String) {
         updateAcceptableContentTypes()
         setImageWithURL(
