@@ -135,6 +135,7 @@ extension SearchService {
                     results.profiles = Array(matchedProfiles[0..<min(SearchResults.maxSuggestionsPerCategory, matchedProfiles.count)])
                     results.teams = Array<OrganizationService.Containers.Team>()
                     results.interests = Array<ProfileService.Containers.Tag>()
+                    results.skills = Array<ProfileService.Containers.Tag>()
                     return (results, nil)
                 }
             }
@@ -143,6 +144,7 @@ extension SearchService {
             results.profiles = filterProfiles(searchTerms)
             results.teams = filterTeams(searchTerms)
             results.interests = filterTags(searchTerms, tagType: .Interest)
+            results.skills = filterTags(searchTerms, tagType: .Skill)
             return (results, nil)
         }
         

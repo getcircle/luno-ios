@@ -36,8 +36,8 @@ class SearchQueryDataSource: CardDataSource {
                 if let addresses = results.addresses {
                     self.visibleAddresses = addresses
                 }
-                if let interests = results.interests {
-                    self.visibleTags = interests
+                if let skills = results.skills {
+                    self.visibleTags = skills
                 }
                 self.updateVisibleCards()
             }
