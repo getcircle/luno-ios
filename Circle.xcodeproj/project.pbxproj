@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7899CA44139AE8B96BACC3EA /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FD94FE17CC5CD80FF96B24E5 /* libPods.a */; };
+		7899CA44139AE8B96BACC3EA /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		8F0004961A2419730096477A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0004951A2419730096477A /* AppDelegate.swift */; };
 		8F00049B1A2419730096477A /* ProfilesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F00049A1A2419730096477A /* ProfilesViewController.swift */; };
 		8F00049D1A2419730096477A /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F00049C1A2419730096477A /* DetailViewController.swift */; };
@@ -210,7 +210,6 @@
 		8FEE3D9B1A84172800B17569 /* FormBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FEE3D9A1A84172800B17569 /* FormBuilder.swift */; };
 		8FEE3D9D1A85B97E00B17569 /* EditContactInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8FEE3D9C1A85B97E00B17569 /* EditContactInfoViewController.xib */; };
 		8FEE88471A411BA90011CE4A /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FEE88461A411BA90011CE4A /* UIViewControllerExtension.swift */; };
-		8FEE88601A437DE40011CE4A /* Alamofire.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 8FEE885B1A437DB10011CE4A /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8FF297FD1A4A4DCA00306CFC /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF297FC1A4A4DCA00306CFC /* SearchViewController.swift */; };
 		8FF298031A4A4E3600306CFC /* ProfileImagesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF298011A4A4E3600306CFC /* ProfileImagesCollectionViewCell.swift */; };
 		8FF298041A4A4E3600306CFC /* ProfileImagesCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8FF298021A4A4E3600306CFC /* ProfileImagesCollectionViewCell.xib */; };
@@ -221,7 +220,6 @@
 		8FF298481A4E050100306CFC /* TagCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8FF298461A4E050100306CFC /* TagCollectionViewCell.xib */; };
 		8FF2984D1A4E29F400306CFC /* PaddedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF2984C1A4E29F400306CFC /* PaddedLabel.swift */; };
 		8FF298531A4E306600306CFC /* CenterAlignFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF298521A4E306600306CFC /* CenterAlignFlowLayout.swift */; };
-		A73E1BB3914D1A036D2FAE47 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FD94FE17CC5CD80FF96B24E5 /* libPods.a */; };
 		BF004C501A5CF91200AB8A6F /* OrganizationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF004C4F1A5CF91200AB8A6F /* OrganizationService.swift */; };
 		BF041BBA1A2C119B0043EC72 /* NSDateFormatterExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF041BB91A2C119B0043EC72 /* NSDateFormatterExtension.swift */; };
 		BF093F0F1A672F8900BA60BD /* MediaService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF093F0E1A672F8900BA60BD /* MediaService.swift */; };
@@ -289,6 +287,8 @@
 		BFEDF2EF1ABA251C00E6F3D5 /* OverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFEDF2EE1ABA251C00E6F3D5 /* OverviewViewController.swift */; };
 		BFF5E6F51A814C2C00827757 /* SocialConnectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF5E6F31A814C2C00827757 /* SocialConnectViewController.swift */; };
 		BFFB1A041A4872F200CCFFC3 /* Locksmith.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = BFFB19FF1A4872E200CCFFC3 /* Locksmith.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		DF400245E813C40A9AB735B3 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BE4CE18D8FDD109BFC6307A /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		EB54E3185BD76EB7E29EEA8C /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BE4CE18D8FDD109BFC6307A /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -298,27 +298,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 8F00048F1A2419730096477A;
 			remoteInfo = Circle;
-		};
-		8FEE885A1A437DB10011CE4A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8FEE88491A4371A80011CE4A /* Alamofire.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = F8111E3319A95C8B0040E7D1;
-			remoteInfo = Alamofire;
-		};
-		8FEE885C1A437DB10011CE4A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8FEE88491A4371A80011CE4A /* Alamofire.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = F8111E3E19A95C8B0040E7D1;
-			remoteInfo = AlamofireTests;
-		};
-		8FEE885E1A437DB90011CE4A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8FEE88491A4371A80011CE4A /* Alamofire.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = F8111E3219A95C8B0040E7D1;
-			remoteInfo = Alamofire;
 		};
 		BF24FCF71A4A25E7003DF4C2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -373,7 +352,6 @@
 			files = (
 				BF24FCFD1A4A25F3003DF4C2 /* ProtobufRegistry.framework in Copy Frameworks */,
 				BFFB1A041A4872F200CCFFC3 /* Locksmith.framework in Copy Frameworks */,
-				8FEE88601A437DE40011CE4A /* Alamofire.framework in Copy Frameworks */,
 			);
 			name = "Copy Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -382,6 +360,7 @@
 
 /* Begin PBXFileReference section */
 		0E955F60570F60CAEDB21587 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		4BE4CE18D8FDD109BFC6307A /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F0004901A2419730096477A /* circle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = circle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F0004941A2419730096477A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8F0004951A2419730096477A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -590,7 +569,6 @@
 		8FEE3D9A1A84172800B17569 /* FormBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormBuilder.swift; sourceTree = "<group>"; };
 		8FEE3D9C1A85B97E00B17569 /* EditContactInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditContactInfoViewController.xib; sourceTree = "<group>"; };
 		8FEE88461A411BA90011CE4A /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
-		8FEE88491A4371A80011CE4A /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = ../ThirdParty/Alamofire/Alamofire.xcodeproj; sourceTree = "<group>"; };
 		8FF297FC1A4A4DCA00306CFC /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		8FF298011A4A4E3600306CFC /* ProfileImagesCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileImagesCollectionViewCell.swift; sourceTree = "<group>"; };
 		8FF298021A4A4E3600306CFC /* ProfileImagesCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileImagesCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -669,7 +647,6 @@
 		BFF5E6F31A814C2C00827757 /* SocialConnectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialConnectViewController.swift; sourceTree = "<group>"; };
 		BFFB19F91A4872E200CCFFC3 /* Locksmith.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Locksmith.xcodeproj; path = ThirdParty/Locksmith/Locksmith.xcodeproj; sourceTree = SOURCE_ROOT; };
 		CC982AC8BAF0AFF23DCD301A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		FD94FE17CC5CD80FF96B24E5 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -678,7 +655,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8F4805C41A5B643F00273731 /* Crashlytics.framework in Frameworks */,
-				A73E1BB3914D1A036D2FAE47 /* libPods.a in Frameworks */,
+				DF400245E813C40A9AB735B3 /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -687,7 +664,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				8F4805C81A5B64FA00273731 /* Crashlytics.framework in Frameworks */,
-				7899CA44139AE8B96BACC3EA /* libPods.a in Frameworks */,
+				7899CA44139AE8B96BACC3EA /* (null) in Frameworks */,
+				EB54E3185BD76EB7E29EEA8C /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -697,7 +675,7 @@
 		31F9C7E511DF7D5BF18D0B04 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				FD94FE17CC5CD80FF96B24E5 /* libPods.a */,
+				4BE4CE18D8FDD109BFC6307A /* Pods.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -726,7 +704,6 @@
 			isa = PBXGroup;
 			children = (
 				8F5933CE1ACA142300905E14 /* circle.entitlements */,
-				8FEE88491A4371A80011CE4A /* Alamofire.xcodeproj */,
 				BFFB19F91A4872E200CCFFC3 /* Locksmith.xcodeproj */,
 				BF24FCF21A4A25E6003DF4C2 /* ProtobufRegistry.xcodeproj */,
 				8F0004951A2419730096477A /* AppDelegate.swift */,
@@ -1121,15 +1098,6 @@
 			name = ThirdParty;
 			sourceTree = "<group>";
 		};
-		8FEE88561A437DB10011CE4A /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				8FEE885B1A437DB10011CE4A /* Alamofire.framework */,
-				8FEE885D1A437DB10011CE4A /* AlamofireTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		8FF298511A4E2B3300306CFC /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -1222,12 +1190,12 @@
 				3C394438B815062A6628C956 /* Copy Pods Resources */,
 				8FEE88481A4370D90011CE4A /* Copy Frameworks */,
 				8F4805C91A5B675E00273731 /* Crashlytics */,
+				F2BD4FAC418153BFBCFB7507 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				BF24FCFC1A4A25F0003DF4C2 /* PBXTargetDependency */,
-				8FEE885F1A437DB90011CE4A /* PBXTargetDependency */,
 				BFFB1A031A4872ED00CCFFC3 /* PBXTargetDependency */,
 			);
 			name = Circle;
@@ -1244,6 +1212,7 @@
 				8F0004A71A2419730096477A /* Frameworks */,
 				8F0004A81A2419730096477A /* Resources */,
 				9390DB12278ECFD5C0BC90B7 /* Copy Pods Resources */,
+				DC6B904EB72DF1403D381FFF /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1295,10 +1264,6 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 8FEE88561A437DB10011CE4A /* Products */;
-					ProjectRef = 8FEE88491A4371A80011CE4A /* Alamofire.xcodeproj */;
-				},
-				{
 					ProductGroup = BFFB19FA1A4872E200CCFFC3 /* Products */;
 					ProjectRef = BFFB19F91A4872E200CCFFC3 /* Locksmith.xcodeproj */;
 				},
@@ -1316,20 +1281,6 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		8FEE885B1A437DB10011CE4A /* Alamofire.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Alamofire.framework;
-			remoteRef = 8FEE885A1A437DB10011CE4A /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		8FEE885D1A437DB10011CE4A /* AlamofireTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = AlamofireTests.xctest;
-			remoteRef = 8FEE885C1A437DB10011CE4A /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		BF24FCF81A4A25E7003DF4C2 /* ProtobufRegistry.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -1567,6 +1518,36 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		DC6B904EB72DF1403D381FFF /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F2BD4FAC418153BFBCFB7507 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1751,11 +1732,6 @@
 			isa = PBXTargetDependency;
 			target = 8F00048F1A2419730096477A /* Circle */;
 			targetProxy = 8F0004AB1A2419730096477A /* PBXContainerItemProxy */;
-		};
-		8FEE885F1A437DB90011CE4A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Alamofire;
-			targetProxy = 8FEE885E1A437DB90011CE4A /* PBXContainerItemProxy */;
 		};
 		BF24FCFC1A4A25F0003DF4C2 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

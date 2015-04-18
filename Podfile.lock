@@ -20,6 +20,7 @@ PODS:
   - AFNetworking/UIKit (2.5.2):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - Alamofire (1.2.0)
   - AMScrollingNavbar (1.3.4)
   - google-plus-ios-sdk (1.7.1)
   - libPhoneNumber-iOS (0.8.4)
@@ -34,6 +35,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (~> 2.5)
+  - Alamofire (~> 1.2)
   - AMScrollingNavbar (~> 1.3)
   - google-plus-ios-sdk (~> 1.7)
   - libPhoneNumber-iOS (~> 0.7)
@@ -44,6 +46,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: fefbce9660acb17f48ae0011292d4da0f457bf36
+  Alamofire: d765c5c1713aa64106b0228aaa600a1e6851f68d
   AMScrollingNavbar: 3318f0cc0fd24c972d5e8c84112edcfe61529506
   google-plus-ios-sdk: 47adbe03ea904bdb7aa1c0eca282a23c4686e1bc
   libPhoneNumber-iOS: dbfc7b4128510a4955df3e5a6f125393fc9ebc2f
@@ -53,4 +56,4 @@ SPEC CHECKSUMS:
   UIViewPlusPosition: 56c99fd247aa0674b3a3fcfd1f5b92a1fa0d0d55
   VENTouchLock: d3b4f07229ca352a49057ed55bffe894d6701357
 
-COCOAPODS: 0.36.1
+COCOAPODS: 0.36.4
