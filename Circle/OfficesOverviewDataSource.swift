@@ -20,7 +20,7 @@ class OfficesOverviewDataSource: CardDataSource {
         let officesCard = Card(cardType: cardType!, title: "")
         officesCard.addContent(content: content)
         officesCard.sectionInset = UIEdgeInsetsZero        
-        offices.extend(content as Array<Services.Organization.Containers.LocationV1>)
+        offices.extend(content as! Array<Services.Organization.Containers.LocationV1>)
         appendCard(officesCard)
     }
     

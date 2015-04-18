@@ -7,11 +7,12 @@
 //
 
 import Foundation
+import Mixpanel
 import ProtobufRegistry
 
 extension Mixpanel {
     
-    class func setup() {
+    static func setup() {
         Mixpanel.sharedInstanceWithToken("3086517890dd4df6da6e25ef8873d4e5")
         Mixpanel.sharedInstance().registerSuperPropertiesOnce([
             "\(TrackingPrefix)environemnt": ServiceHttpRequest.environment.name
@@ -25,11 +26,11 @@ extension Mixpanel {
         }
     }
     
-    class func registerSuperPropertiesForUser(user: Services.User.Containers.UserV1) {
+    static func registerSuperPropertiesForUser(user: Services.User.Containers.UserV1) {
         Mixpanel.sharedInstance().registerSuperPropertiesOnce(["\(TrackingPrefix)userId": user.id])
     }
     
-    class func registerSuperPropertiesForProfile(profile: Services.Profile.Containers.ProfileV1) {
+    static func registerSuperPropertiesForProfile(profile: Services.Profile.Containers.ProfileV1) {
         let mixpanel = Mixpanel.sharedInstance()
         mixpanel.registerSuperPropertiesOnce([
             "\(TrackingPrefix)profileId": profile.id,
@@ -42,7 +43,7 @@ extension Mixpanel {
         ])
     }
     
-    class func identifyUser(user: Services.User.Containers.UserV1, newUser: Bool) {
+    static func identifyUser(user: Services.User.Containers.UserV1, newUser: Bool) {
         let mixpanel = Mixpanel.sharedInstance()
         if newUser {
             mixpanel.createAlias(user.id, forDistinctID: mixpanel.distinctId)

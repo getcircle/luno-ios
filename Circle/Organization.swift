@@ -17,7 +17,7 @@ typealias GetLocationsCompletionHandler = (locations: Array<Services.Organizatio
 
 extension Services.Organization.Actions {
         
-    class func getAddresses(organizationId: String, completionHandler: GetAddressesCompletionHandler?) {
+    static func getAddresses(organizationId: String, completionHandler: GetAddressesCompletionHandler?) {
         let requestBuilder = Services.Organization.Actions.GetAddresses.RequestV1.builder()
         requestBuilder.organizationId = organizationId
         
@@ -34,8 +34,8 @@ extension Services.Organization.Actions {
         }
     }
     
-    class func getTeams(
-        requestBuilder: Services.Organization.Actions.GetTeams.RequestBuilder,
+    static func getTeams(
+        requestBuilder: Services.Organization.Actions.GetTeams.RequestV1Builder,
         paginatorBuilder: Soa.PaginatorV1Builder? = nil,
         completionHandler: GetTeamsCompletionHandler?
     ) {
@@ -54,7 +54,7 @@ extension Services.Organization.Actions {
         }
     }
     
-    class func getTeams(
+    static func getTeams(
         organizationId: String,
         paginatorBuilder: Soa.PaginatorV1Builder? = nil,
         completionHandler: GetTeamsCompletionHandler?
@@ -64,7 +64,7 @@ extension Services.Organization.Actions {
         self.getTeams(requestBuilder, paginatorBuilder: paginatorBuilder, completionHandler: completionHandler)
     }
     
-    class func getTeams(
+    static func getTeams(
         #locationId: String,
         paginatorBuilder: Soa.PaginatorV1Builder? = nil,
         completionHandler: GetTeamsCompletionHandler?
@@ -74,14 +74,14 @@ extension Services.Organization.Actions {
         self.getTeams(requestBuilder, paginatorBuilder: paginatorBuilder, completionHandler: completionHandler)
     }
     
-    class func getTeamDescendants(
+    static func getTeamDescendants(
         teamId: String,
         depth: UInt32? = nil,
         attributes: [String]? = nil,
         completionHandler: GetTeamDescendantsCompletionHandler?
     ) {
         let requestBuilder = Services.Organization.Actions.GetTeamDescendants.RequestV1.builder()
-        requestBuilder.team_ids = [teamId]
+        requestBuilder.teamIds = [teamId]
         if depth != nil {
             requestBuilder.depth = depth!
         }
@@ -101,7 +101,7 @@ extension Services.Organization.Actions {
         }
     }
     
-    class func getOrganization(organizationId: String, completionHandler: GetOrganizationCompletionHandler?) {
+    static func getOrganization(organizationId: String, completionHandler: GetOrganizationCompletionHandler?) {
         let requestBuilder = Services.Organization.Actions.GetOrganization.RequestV1.builder()
         requestBuilder.organizationId = organizationId
         
@@ -117,7 +117,7 @@ extension Services.Organization.Actions {
         }
     }
     
-    class func getLocations(organizationId: String, completionHandler: GetLocationsCompletionHandler?) {
+    static func getLocations(organizationId: String, completionHandler: GetLocationsCompletionHandler?) {
         let requestBuilder = Services.Organization.Actions.GetLocations.RequestV1.builder()
         requestBuilder.organizationId = organizationId
         

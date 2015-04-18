@@ -22,12 +22,12 @@ class ContactInfoDataSource: CardDataSource {
         let card = Card(cardType: .KeyValue, title: "Info")
         card.sectionInset = UIEdgeInsetsMake(0.0, 0.0, 1.0, 0.0)
         card.showContentCount = false
-        for contactMethod in profile.contact_methods {
+        for contactMethod in profile.contactMethods {
             var dataDict: [String: AnyObject] = [
                 "key": contactMethod.label,
                 "name": contactMethod.label,
                 "value": contactMethod.value,
-                "type": Int(contactMethod.type.rawValue),
+                "type": Int(contactMethod.contactMethodType.rawValue),
             ]
             card.addContent(content: [dataDict])
         }
@@ -36,7 +36,7 @@ class ContactInfoDataSource: CardDataSource {
     }
     
     func heightOfContactInfoSection() -> CGFloat {
-        return KeyValueCollectionViewCell.height * CGFloat(profile.contact_methods.count)
+        return KeyValueCollectionViewCell.height * CGFloat(profile.contactMethods.count)
     }
     
 }

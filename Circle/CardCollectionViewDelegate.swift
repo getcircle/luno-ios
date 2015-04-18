@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class CardCollectionViewDelegate: NSObject, UICollectionViewDelegateFlowLayout, UIScrollViewDelegate {
 
@@ -44,7 +45,7 @@ class CardCollectionViewDelegate: NSObject, UICollectionViewDelegateFlowLayout, 
         }
 
         if card.contentClass.sizeCalculationMethod == SizeCalculation.Fixed {
-            let width = min(card.contentClass.width, collectionView.frameWidth)
+            let width = min(card.contentClass.width, collectionView.frame.width)
             return CGSizeMake(width - leftAndRightInsets, card.contentClass.height)
         }
         else {
@@ -139,6 +140,6 @@ class CardCollectionViewDelegate: NSObject, UICollectionViewDelegateFlowLayout, 
     // MARK: - Helpers
     
     func cardDataSource(collectionView: UICollectionView) -> CardDataSource {
-        return (collectionView.dataSource as CardDataSource)
+        return (collectionView.dataSource as! CardDataSource)
     }
 }

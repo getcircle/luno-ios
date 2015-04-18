@@ -7,10 +7,11 @@
 //
 
 import Foundation
+import UIKit
 
 extension UIImage {
 
-    class func imageFromColor(color: UIColor, withRect imageRect: CGRect) -> UIImage {
+    static func imageFromColor(color: UIColor, withRect imageRect: CGRect) -> UIImage {
         UIGraphicsBeginImageContext(imageRect.size)
         var context = UIGraphicsGetCurrentContext()
         CGContextSetFillColorWithColor(context, color.CGColor)

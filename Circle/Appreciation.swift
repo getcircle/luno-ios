@@ -16,7 +16,7 @@ typealias UpdateAppreciationCompletionHandler = (appreciation: Services.Apprecia
 
 extension Services.Appreciation.Actions {
         
-    class func createAppreciation(appreciation: Services.Appreciation.Containers.AppreciationV1, completionHandler: CreateAppreciationCompletionHandler?) {
+    static func createAppreciation(appreciation: Services.Appreciation.Containers.AppreciationV1, completionHandler: CreateAppreciationCompletionHandler?) {
         let requestBuilder = Services.Appreciation.Actions.CreateAppreciation.RequestV1.builder()
         requestBuilder.appreciation = appreciation
         let client = ServiceClient(serviceName: "appreciation")
@@ -32,7 +32,7 @@ extension Services.Appreciation.Actions {
         }
     }
     
-    class func deleteAppreciation(appreciation: Services.Appreciation.Containers.AppreciationV1, completionHandler: DeleteAppreciationCompletionHandler?) {
+    static func deleteAppreciation(appreciation: Services.Appreciation.Containers.AppreciationV1, completionHandler: DeleteAppreciationCompletionHandler?) {
         let requestBuilder = Services.Appreciation.Actions.DeleteAppreciation.RequestV1.builder()
         requestBuilder.appreciation = appreciation
         let client = ServiceClient(serviceName: "appreciation")
@@ -46,7 +46,7 @@ extension Services.Appreciation.Actions {
         }
     }
     
-    class func updateAppreciation(appreciation: Services.Appreciation.Containers.AppreciationV1, completionHandler: UpdateAppreciationCompletionHandler?) {
+    static func updateAppreciation(appreciation: Services.Appreciation.Containers.AppreciationV1, completionHandler: UpdateAppreciationCompletionHandler?) {
         let requestBuilder = Services.Appreciation.Actions.UpdateAppreciation.RequestV1.builder()
         requestBuilder.appreciation = appreciation
         let client = ServiceClient(serviceName: "appreciation")
@@ -62,9 +62,9 @@ extension Services.Appreciation.Actions {
         }
     }
     
-    class func getAppreciation(forProfileId: String, completionHandler: GetAppreciationCompletionHandler?) {
+    static func getAppreciation(forProfileId: String, completionHandler: GetAppreciationCompletionHandler?) {
         let requestBuilder = Services.Appreciation.Actions.GetAppreciation.RequestV1.builder()
-        requestBuilder.destination_profileId = forProfileId
+        requestBuilder.destinationProfileId = forProfileId
         let client = ServiceClient(serviceName: "appreciation")
         client.callAction(
             "get_appreciation",

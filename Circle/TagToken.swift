@@ -41,8 +41,8 @@ class TagToken: UIView {
     private var titleLabel: PaddedLabel!
     private var tapGestureRecognizer: UITapGestureRecognizer!
     
-    override init() {
-        super.init()
+    init() {
+        super.init(frame: CGRectZero)
         customInit()
     }
     

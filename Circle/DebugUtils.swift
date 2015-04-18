@@ -7,10 +7,11 @@
 //
 
 import Foundation
+import UIKit
 
 class DebugUtils {
 
-    class func measure(title: String!, call: () -> Void) {
+    static func measure(title: String!, call: () -> Void) {
         let startTime = CACurrentMediaTime()
         call()
         let endTime = CACurrentMediaTime()

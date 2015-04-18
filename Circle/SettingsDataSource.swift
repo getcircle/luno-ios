@@ -118,7 +118,7 @@ class SettingsDataSource: CardDataSource {
         logoutCard.showContentCount = false
         logoutCard.addContent(content: [
             [
-                "text": AuthViewController.getLoggedInUser()!.primary_email,
+                "text": AuthViewController.getLoggedInUser()!.primaryEmail,
                 "type": SettingsCellType.AccountEmail.rawValue
             ],
             [
@@ -149,7 +149,7 @@ class SettingsDataSource: CardDataSource {
     func typeOfCell(indexPath: NSIndexPath) -> SettingsCellType {
         let card = cards[indexPath.section]
         if let rowDataDictionary = card.content[indexPath.row] as? [String: AnyObject] {
-            return SettingsCellType(rawValue: (rowDataDictionary["type"] as Int!))!
+            return SettingsCellType(rawValue: (rowDataDictionary["type"] as! Int!))!
         }
         
         return .Other

@@ -14,8 +14,8 @@ typealias GetOrganizationCategoriesCompletionHandler = (categories: Array<Servic
 
 extension Services.Feed.Actions {
         
-    class func getCategories(profileId: String, completionHandler: GetCategoriesCompletionHandler?) {
-        let requestBuilder = Services.Feed.Actions.GetCategories.RequestV1.builder()
+    static func getProfileFeed(profileId: String, completionHandler: GetCategoriesCompletionHandler?) {
+        let requestBuilder = Services.Feed.Actions.GetProfileFeed.RequestV1.builder()
         requestBuilder.profileId = profileId
         let client = ServiceClient(serviceName: "feed")
         client.callAction(
@@ -25,7 +25,7 @@ extension Services.Feed.Actions {
         ) { (_, _, wrapped, error) -> Void in
             let response = wrapped?.response?.result.getExtension(
                 Services.Registry.Requests.Feed.getProfileFeed()
-            ) as? Services.Feed.Actions.GetCategories.ResponseV1
+            ) as? Services.Feed.Actions.GetProfileFeed.ResponseV1
             completionHandler?(
                 categories: response?.categories,
                 error: error
@@ -33,8 +33,8 @@ extension Services.Feed.Actions {
         }
     }
     
-    class func getOrganizationCategories(organizationId: String, completionHandler: GetOrganizationCategoriesCompletionHandler?) {
-        let requestBuilder = Services.Feed.Actions.GetOrganizationCategories.RequestV1.builder()
+    static func getOrganizationFeed(organizationId: String, completionHandler: GetOrganizationCategoriesCompletionHandler?) {
+        let requestBuilder = Services.Feed.Actions.GetOrganizationFeed.RequestV1.builder()
         requestBuilder.organizationId = organizationId
         let client = ServiceClient(serviceName: "feed")
         client.callAction(
@@ -44,7 +44,7 @@ extension Services.Feed.Actions {
         ) { (_, _, wrapped, error) -> Void in
             let response = wrapped?.response?.result.getExtension(
                 Services.Registry.Requests.Feed.getOrganizationFeed()
-            ) as? Services.Feed.Actions.GetOrganizationCategories.ResponseV1
+            ) as? Services.Feed.Actions.GetOrganizationFeed.ResponseV1
             completionHandler?(categories: response?.categories, error: error)
         }
     }

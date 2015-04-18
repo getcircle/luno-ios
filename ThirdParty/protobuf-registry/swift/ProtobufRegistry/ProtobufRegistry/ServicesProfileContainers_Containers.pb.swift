@@ -12,7 +12,7 @@ public func == (lhs: Services.Profile.Containers.ContactMethodV1, rhs: Services.
   fieldCheck = fieldCheck && (lhs.hasId == rhs.hasId) && (!lhs.hasId || lhs.id == rhs.id)
   fieldCheck = fieldCheck && (lhs.hasLabel == rhs.hasLabel) && (!lhs.hasLabel || lhs.label == rhs.label)
   fieldCheck = fieldCheck && (lhs.hasValue == rhs.hasValue) && (!lhs.hasValue || lhs.value == rhs.value)
-  fieldCheck = fieldCheck && (lhs.hasTypes == rhs.hasTypes) && (!lhs.hasTypes || lhs.types == rhs.types)
+  fieldCheck = fieldCheck && (lhs.hasContactMethodType == rhs.hasContactMethodType) && (!lhs.hasContactMethodType || lhs.contactMethodType == rhs.contactMethodType)
   return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
 }
 
@@ -86,7 +86,7 @@ public func == (lhs: Services.Profile.Containers.TagV1, rhs: Services.Profile.Co
   fieldCheck = fieldCheck && (lhs.hasVersion == rhs.hasVersion) && (!lhs.hasVersion || lhs.version == rhs.version)
   fieldCheck = fieldCheck && (lhs.hasId == rhs.hasId) && (!lhs.hasId || lhs.id == rhs.id)
   fieldCheck = fieldCheck && (lhs.hasName == rhs.hasName) && (!lhs.hasName || lhs.name == rhs.name)
-  fieldCheck = fieldCheck && (lhs.hasTypes == rhs.hasTypes) && (!lhs.hasTypes || lhs.types == rhs.types)
+  fieldCheck = fieldCheck && (lhs.hasTagType == rhs.hasTagType) && (!lhs.hasTagType || lhs.tagType == rhs.tagType)
   return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
 }
 
@@ -133,7 +133,7 @@ public extension Services.Profile.Containers {
            case "id": return id
            case "label": return label
            case "value": return value
-           case "types": return self.types
+           case "contactMethodType": return self.contactMethodType
            default: return nil
            }
     }
@@ -150,8 +150,8 @@ public extension Services.Profile.Containers {
     public private(set) var hasValue:Bool = false
     public private(set) var value:String = ""
 
-    public private(set) var types:Services.Profile.Containers.ContactMethodV1.ContactMethodTypeV1 = Services.Profile.Containers.ContactMethodV1.ContactMethodTypeV1.CellPhone
-    public private(set) var hasTypes:Bool = false
+    public private(set) var contactMethodType:Services.Profile.Containers.ContactMethodV1.ContactMethodTypeV1 = Services.Profile.Containers.ContactMethodV1.ContactMethodTypeV1.CellPhone
+    public private(set) var hasContactMethodType:Bool = false
     required public init() {
          super.init()
     }
@@ -171,8 +171,8 @@ public extension Services.Profile.Containers {
       if hasValue {
         output.writeString(4, value:value)
       }
-      if hasTypes {
-        output.writeEnum(5, value:types.rawValue)
+      if hasContactMethodType {
+        output.writeEnum(5, value:contactMethodType.rawValue)
       }
       unknownFields.writeToCodedOutputStream(output)
     }
@@ -195,8 +195,8 @@ public extension Services.Profile.Containers {
       if hasValue {
         serialize_size += value.computeStringSize(4)
       }
-      if (hasTypes) {
-        serialize_size += types.rawValue.computeEnumSize(5)
+      if (hasContactMethodType) {
+        serialize_size += contactMethodType.rawValue.computeEnumSize(5)
       }
       serialize_size += unknownFields.serializedSize()
       memoizedSerializedSize = serialize_size
@@ -251,8 +251,8 @@ public extension Services.Profile.Containers {
       if hasValue {
         output += "\(indent) value: \(value) \n"
       }
-      if (hasTypes) {
-        output += "\(indent) types: \(types.rawValue)\n"
+      if (hasContactMethodType) {
+        output += "\(indent) contactMethodType: \(contactMethodType.rawValue)\n"
       }
       unknownFields.writeDescriptionTo(&output, indent:indent)
     }
@@ -271,8 +271,8 @@ public extension Services.Profile.Containers {
             if hasValue {
                hashCode = (hashCode &* 31) &+ value.hashValue
             }
-            if hasTypes {
-               hashCode = (hashCode &* 31) &+ Int(types.rawValue)
+            if hasContactMethodType {
+               hashCode = (hashCode &* 31) &+ Int(contactMethodType.rawValue)
             }
             hashCode = (hashCode &* 31) &+  unknownFields.hashValue
             return hashCode
@@ -394,27 +394,27 @@ public extension Services.Profile.Containers {
          builderResult.value = ""
          return self
     }
-      public var hasTypes:Bool{
+      public var hasContactMethodType:Bool{
           get {
-              return builderResult.hasTypes
+              return builderResult.hasContactMethodType
           }
       }
-      public var types:Services.Profile.Containers.ContactMethodV1.ContactMethodTypeV1 {
+      public var contactMethodType:Services.Profile.Containers.ContactMethodV1.ContactMethodTypeV1 {
           get {
-              return builderResult.types
+              return builderResult.contactMethodType
           }
           set (value) {
-              builderResult.hasTypes = true
-              builderResult.types = value
+              builderResult.hasContactMethodType = true
+              builderResult.contactMethodType = value
           }
       }
-      public func setTypes(value:Services.Profile.Containers.ContactMethodV1.ContactMethodTypeV1)-> Services.Profile.Containers.ContactMethodV1Builder {
-        self.types = value
+      public func setContactMethodType(value:Services.Profile.Containers.ContactMethodV1.ContactMethodTypeV1)-> Services.Profile.Containers.ContactMethodV1Builder {
+        self.contactMethodType = value
         return self
       }
-      public func clearTypes() -> Services.Profile.Containers.ContactMethodV1Builder {
-         builderResult.hasTypes = false
-         builderResult.types = .CellPhone
+      public func clearContactMethodType() -> Services.Profile.Containers.ContactMethodV1Builder {
+         builderResult.hasContactMethodType = false
+         builderResult.contactMethodType = .CellPhone
          return self
       }
     override public var internalGetResult:GeneratedMessage {
@@ -453,8 +453,8 @@ public extension Services.Profile.Containers {
       if other.hasValue {
            value = other.value
       }
-      if other.hasTypes {
-           types = other.types
+      if other.hasContactMethodType {
+           contactMethodType = other.contactMethodType
       }
       mergeUnknownFields(other.unknownFields)
       return self
@@ -484,11 +484,11 @@ public extension Services.Profile.Containers {
           value = input.readString()
 
         case 40 :
-          let valueInttypes = input.readEnum()
-          if let enumstypes = Services.Profile.Containers.ContactMethodV1.ContactMethodTypeV1(rawValue:valueInttypes){
-               types = enumstypes
+          let valueIntcontactMethodType = input.readEnum()
+          if let enumscontactMethodType = Services.Profile.Containers.ContactMethodV1.ContactMethodTypeV1(rawValue:valueIntcontactMethodType){
+               contactMethodType = enumscontactMethodType
           } else {
-               unknownFieldsBuilder.mergeVarintField(5, value:Int64(valueInttypes))
+               unknownFieldsBuilder.mergeVarintField(5, value:Int64(valueIntcontactMethodType))
           }
 
         default:
@@ -2447,7 +2447,7 @@ public extension Services.Profile.Containers {
            case "version": return version
            case "id": return id
            case "name": return name
-           case "types": return self.types
+           case "tagType": return self.tagType
            default: return nil
            }
     }
@@ -2461,8 +2461,8 @@ public extension Services.Profile.Containers {
     public private(set) var hasName:Bool = false
     public private(set) var name:String = ""
 
-    public private(set) var types:Services.Profile.Containers.TagV1.TagTypeV1 = Services.Profile.Containers.TagV1.TagTypeV1.Skill
-    public private(set) var hasTypes:Bool = false
+    public private(set) var tagType:Services.Profile.Containers.TagV1.TagTypeV1 = Services.Profile.Containers.TagV1.TagTypeV1.Skill
+    public private(set) var hasTagType:Bool = false
     required public init() {
          super.init()
     }
@@ -2479,8 +2479,8 @@ public extension Services.Profile.Containers {
       if hasName {
         output.writeString(3, value:name)
       }
-      if hasTypes {
-        output.writeEnum(4, value:types.rawValue)
+      if hasTagType {
+        output.writeEnum(4, value:tagType.rawValue)
       }
       unknownFields.writeToCodedOutputStream(output)
     }
@@ -2500,8 +2500,8 @@ public extension Services.Profile.Containers {
       if hasName {
         serialize_size += name.computeStringSize(3)
       }
-      if (hasTypes) {
-        serialize_size += types.rawValue.computeEnumSize(4)
+      if (hasTagType) {
+        serialize_size += tagType.rawValue.computeEnumSize(4)
       }
       serialize_size += unknownFields.serializedSize()
       memoizedSerializedSize = serialize_size
@@ -2553,8 +2553,8 @@ public extension Services.Profile.Containers {
       if hasName {
         output += "\(indent) name: \(name) \n"
       }
-      if (hasTypes) {
-        output += "\(indent) types: \(types.rawValue)\n"
+      if (hasTagType) {
+        output += "\(indent) tagType: \(tagType.rawValue)\n"
       }
       unknownFields.writeDescriptionTo(&output, indent:indent)
     }
@@ -2570,8 +2570,8 @@ public extension Services.Profile.Containers {
             if hasName {
                hashCode = (hashCode &* 31) &+ name.hashValue
             }
-            if hasTypes {
-               hashCode = (hashCode &* 31) &+ Int(types.rawValue)
+            if hasTagType {
+               hashCode = (hashCode &* 31) &+ Int(tagType.rawValue)
             }
             hashCode = (hashCode &* 31) &+  unknownFields.hashValue
             return hashCode
@@ -2670,27 +2670,27 @@ public extension Services.Profile.Containers {
          builderResult.name = ""
          return self
     }
-      public var hasTypes:Bool{
+      public var hasTagType:Bool{
           get {
-              return builderResult.hasTypes
+              return builderResult.hasTagType
           }
       }
-      public var types:Services.Profile.Containers.TagV1.TagTypeV1 {
+      public var tagType:Services.Profile.Containers.TagV1.TagTypeV1 {
           get {
-              return builderResult.types
+              return builderResult.tagType
           }
           set (value) {
-              builderResult.hasTypes = true
-              builderResult.types = value
+              builderResult.hasTagType = true
+              builderResult.tagType = value
           }
       }
-      public func setTypes(value:Services.Profile.Containers.TagV1.TagTypeV1)-> Services.Profile.Containers.TagV1Builder {
-        self.types = value
+      public func setTagType(value:Services.Profile.Containers.TagV1.TagTypeV1)-> Services.Profile.Containers.TagV1Builder {
+        self.tagType = value
         return self
       }
-      public func clearTypes() -> Services.Profile.Containers.TagV1Builder {
-         builderResult.hasTypes = false
-         builderResult.types = .Skill
+      public func clearTagType() -> Services.Profile.Containers.TagV1Builder {
+         builderResult.hasTagType = false
+         builderResult.tagType = .Skill
          return self
       }
     override public var internalGetResult:GeneratedMessage {
@@ -2726,8 +2726,8 @@ public extension Services.Profile.Containers {
       if other.hasName {
            name = other.name
       }
-      if other.hasTypes {
-           types = other.types
+      if other.hasTagType {
+           tagType = other.tagType
       }
       mergeUnknownFields(other.unknownFields)
       return self
@@ -2754,11 +2754,11 @@ public extension Services.Profile.Containers {
           name = input.readString()
 
         case 32 :
-          let valueInttypes = input.readEnum()
-          if let enumstypes = Services.Profile.Containers.TagV1.TagTypeV1(rawValue:valueInttypes){
-               types = enumstypes
+          let valueInttagType = input.readEnum()
+          if let enumstagType = Services.Profile.Containers.TagV1.TagTypeV1(rawValue:valueInttagType){
+               tagType = enumstagType
           } else {
-               unknownFieldsBuilder.mergeVarintField(4, value:Int64(valueInttypes))
+               unknownFieldsBuilder.mergeVarintField(4, value:Int64(valueInttagType))
           }
 
         default:

@@ -18,13 +18,13 @@ class TeamsOverviewDataSource: CardDataSource {
     // MARK: - Configuration
     
     func configureForLocation(locationId: String) {
-        let requestBuilder = OrganizationService.GetTeams.RequestV1.builder()
+        let requestBuilder = Services.Organization.Actions.GetTeams.RequestV1.builder()
         requestBuilder.locationId = locationId
         configureForParameters(requestBuilder)
     }
     
     func configureForOrganization() {
-        let requestBuilder = OrganizationService.GetTeams.RequestV1.builder()
+        let requestBuilder = Services.Organization.Actions.GetTeams.RequestV1.builder()
         let organizationId = AuthViewController.getLoggedInUserOrganization()!.id
         requestBuilder.organizationId = organizationId
         configureForParameters(requestBuilder)
@@ -34,7 +34,7 @@ class TeamsOverviewDataSource: CardDataSource {
         let client = ServiceClient(serviceName: "organization")
         let serviceRequest = client.buildRequest(
             "get_teams",
-            extensionField: OrganizationSoa.ServiceRequestV1s_get_teams,
+            extensionField: Services.Registry.Requests.Organization.getTeams(),
             requestBuilder: requestBuilder,
             paginatorBuilder: nil
         )
@@ -46,7 +46,7 @@ class TeamsOverviewDataSource: CardDataSource {
     // MARK: - Set Initial Data
 
     override func setInitialData(content: [AnyObject], ofType: Card.CardType?) {
-        teams.extend(content as [Services.Organization.Containers.TeamV1])
+        teams.extend(content as! [Services.Organization.Containers.TeamV1])
         if ofType != nil {
             cardType = ofType!
         }
@@ -67,8 +67,8 @@ class TeamsOverviewDataSource: CardDataSource {
         
         registerNextRequestCompletionHandler { (_, _, wrapped, error) -> Void in
             let response = wrapped?.response?.result.getExtension(
-                OrganizationSoa.ServiceRequestV1s_get_teams
-            ) as? OrganizationService.GetTeams.ResponseV1
+                Services.Registry.Requests.Organization.getTeams()
+            ) as? Services.Organization.Actions.GetTeams.ResponseV1
             
             if let teams = response?.teams {
                 self.teams.extend(teams)
@@ -93,7 +93,7 @@ class TeamsOverviewDataSource: CardDataSource {
     // MARK: - Filtering
     
     override func handleFiltering(query: String, completionHandler: (error: NSError?) -> Void) {
-        SearchService.Actions.search(query, category: .Teams, attribute: nil, attributeValue: nil) { (result, error) -> Void in
+        Services.Search.Actions.search(query, category: .Teams, attribute: nil, attributeValue: nil) { (result, error) -> Void in
             self.card.resetContent(result?.teams ?? [])
             completionHandler(error: error)
         }

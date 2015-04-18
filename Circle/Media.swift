@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Alamofire
 import ProtobufRegistry
 
 typealias StartImageUploadCompletionHandler = (instructions: Services.Media.Containers.UploadInstructionsV1?, error: NSError?) -> Void
@@ -14,14 +15,14 @@ typealias CompleteImageUploadCompletionHandler = (mediaURL: String?, error: NSEr
 
 extension Services.Media.Actions {
         
-    class func startImageUpload(
+    static func startImageUpload(
         mediaType: Services.Media.Containers.Media.MediaTypeV1,
         key: String,
         completionHandler: StartImageUploadCompletionHandler?
     ) {
         let requestBuilder = Services.Media.Actions.StartImageUpload.RequestV1.builder()
         requestBuilder.mediaType = mediaType
-        requestBuilder.media_key = key
+        requestBuilder.mediaKey = key
 
         let client = ServiceClient(serviceName: "media")
         client.callAction(
@@ -36,7 +37,7 @@ extension Services.Media.Actions {
         }
     }
     
-    class func completeImageUpload(
+    static func completeImageUpload(
         mediaType: Services.Media.Containers.Media.MediaTypeV1,
         mediaKey: String,
         uploadId: String,
@@ -45,9 +46,9 @@ extension Services.Media.Actions {
     ) {
         let requestBuilder = Services.Media.Actions.CompleteImageUpload.RequestV1.builder()
         requestBuilder.mediaType = mediaType
-        requestBuilder.media_key = mediaKey
-        requestBuilder.upload_id = uploadId
-        requestBuilder.upload_key = uploadKey
+        requestBuilder.mediaKey = mediaKey
+        requestBuilder.uploadId = uploadId
+        requestBuilder.uploadKey = uploadKey
         
         let client = ServiceClient(serviceName: "media")
         client.callAction(
@@ -58,23 +59,23 @@ extension Services.Media.Actions {
             let response = wrapped?.response?.result.getExtension(
                 Services.Registry.Requests.Media.completeImageUpload()
             ) as? Services.Media.Actions.CompleteImageUpload.ResponseV1
-            completionHandler?(mediaURL: response?.media_url, error: error)
+            completionHandler?(mediaURL: response?.mediaUrl, error: error)
         }
     }
     
-    class func uploadProfileImage(profileId: String, image: UIImage, completionHandler: CompleteImageUploadCompletionHandler?) {
-        Actions.startImageUpload(.Profile, key: profileId) { (instructions, error) -> Void in
+    static func uploadProfileImage(profileId: String, image: UIImage, completionHandler: CompleteImageUploadCompletionHandler?) {
+        startImageUpload(.Profile, key: profileId) { (instructions, error) -> Void in
             if let instructions = instructions {
-                Alamofire.upload(.PUT, instructions.upload_url, UIImagePNGRepresentation(image))
+                Alamofire.upload(.PUT, instructions.uploadUrl, UIImagePNGRepresentation(image))
                     .progress { (bytesWritten, totalBytesWritten, totalBytesExpectedToWrite) in
                         println("progress \(totalBytesWritten): \(totalBytesExpectedToWrite)")
                     }
                     .response { (request, response, _, error) -> Void in
-                        Actions.completeImageUpload(
+                        self.completeImageUpload(
                             .Profile,
                             mediaKey: profileId,
-                            uploadId: instructions.upload_id,
-                            uploadKey: instructions.upload_key
+                            uploadId: instructions.uploadId,
+                            uploadKey: instructions.uploadKey
                         ) { (mediaURL, error) -> Void in
                             completionHandler?(mediaURL: mediaURL, error: error)
                             return

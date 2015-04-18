@@ -9,7 +9,7 @@
 import Foundation
 import ProtobufRegistry
 
-typealias SearchCompletionHandler = (result: SearchService.Actions.SearchResults?, error: NSError?) -> Void
+typealias SearchCompletionHandler = (result: Services.Search.Actions.SearchResults?, error: NSError?) -> Void
 typealias FilterCompletionHandler = (content: [AnyObject], error: NSError?) -> Void
 
 extension Services.Search.Actions {
@@ -30,11 +30,11 @@ extension Services.Search.Actions {
         }
     }
     
-    private class var whitespaceCharacterSet: NSCharacterSet {
+    private static var whitespaceCharacterSet: NSCharacterSet {
         return NSCharacterSet.whitespaceCharacterSet()
     }
     
-    class func search(query: String, completionHandler: SearchCompletionHandler?) {
+    static func search(query: String, completionHandler: SearchCompletionHandler?) {
         // Query the cache
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), { () -> Void in
             var (result, error) = self.search(query)
@@ -45,30 +45,30 @@ extension Services.Search.Actions {
         })
         
         // Send a search request to the servers
-//            let requestBuilder = SearchService.Search.RequestV1.builder()
+//            let requestBuilder = Services.Search.Containers.Search.Search.RequestV1.builder()
 //            requestBuilder.query = query
 //            let client = ServiceClient(serviceName: "search")
 //            client.callAction("search", extensionField: SearchSoa.ServiceRequestV1s_search, requestBuilder: requestBuilder) {
 //                (_, _, _, actionResponse, error) -> Void in
-//                let response = actionResponse?.result.getExtension(SearchSoa.ServiceResponseV1s_search) as? SearchService.Search.ResponseV1
+//                let response = actionResponse?.result.getExtension(SearchSoa.ServiceResponseV1s_search) as? Services.Search.Containers.Search.Search.ResponseV1
 //                SearchCache.sharedInstance.update(response?.profiles, teams: response?.teams, addresses: response?.addresses)
 //                completionHandler(profiles: response?.profiles, teams: response?.teams, addresses: response?.addresses)
 //            }
     }
     
-    class func filter(
+    static func filter(
         query: String,
-        category: SearchService.Category,
+        category: Services.Search.Containers.Search.CategoryV1,
         toFilter: [AnyObject],
         completionHandler: FilterCompletionHandler?
     ) {
             
     }
     
-    class func search(
+    static func search(
         query: String,
-        category: SearchService.Category,
-        attribute: SearchService.Attribute?,
+        category: Services.Search.Containers.Search.CategoryV1,
+        attribute: Services.Search.Containers.Search.AttributeV1?,
         attributeValue: AnyObject?,
         objects withObjects: [AnyObject]? = nil,
         completionHandler: SearchCompletionHandler?
@@ -85,14 +85,14 @@ extension Services.Search.Actions {
     
     // MARK: - Helpers
     
-    private class func searchTermsFromQuery(query: String) -> [String] {
+    private static func searchTermsFromQuery(query: String) -> [String] {
         return query.componentsSeparatedByString(" ")
     }
         
-    private class func search(
+    private static func search(
         query: String,
-        category: SearchService.Category,
-        attribute: SearchService.Attribute?,
+        category: Services.Search.Containers.Search.CategoryV1,
+        attribute: Services.Search.Containers.Search.AttributeV1?,
         attributeValue: AnyObject?,
         objects: [AnyObject]?
     ) -> (SearchResults?, NSError?) {
@@ -106,7 +106,7 @@ extension Services.Search.Actions {
             if attribute != nil && attributeValue != nil {
                 toFilter = ObjectStore.sharedInstance.getProfilesForAttribute(attribute!, value: attributeValue!)
             } else if objects != nil {
-                toFilter = objects as Array<Services.Profile.Containers.ProfileV1>
+                toFilter = objects as! Array<Services.Profile.Containers.ProfileV1>
             } else {
                 toFilter = ObjectStore.sharedInstance.profiles.values.array
             }
@@ -122,7 +122,7 @@ extension Services.Search.Actions {
     }
     
     // given the query, search the local objects we have cached
-    private class func search(query: String) -> (SearchResults?, NSError?) {
+    private static func search(query: String) -> (SearchResults?, NSError?) {
         
         let results = SearchResults()
         
@@ -146,7 +146,7 @@ extension Services.Search.Actions {
         return (results, nil)
     }
     
-    private class func filterProfiles(#profileIDs: [String]) -> Array<Services.Profile.Containers.ProfileV1> {
+    private static func filterProfiles(#profileIDs: [String]) -> Array<Services.Profile.Containers.ProfileV1> {
         var matchedProfiles = Array<Services.Profile.Containers.ProfileV1>()
         
         for profileID in profileIDs {
@@ -158,7 +158,7 @@ extension Services.Search.Actions {
         return matchedProfiles
     }
     
-    private class func filterProfiles(
+    private static func filterProfiles(
         searchTerms: [String],
         toFilter: Array<Services.Profile.Containers.ProfileV1>
     ) -> Array<Services.Profile.Containers.ProfileV1> {
@@ -235,15 +235,15 @@ extension Services.Search.Actions {
         }
     }
     
-    private class func filterProfiles(searchTerms: [String]) -> Array<Services.Profile.Containers.ProfileV1> {
+    private static func filterProfiles(searchTerms: [String]) -> Array<Services.Profile.Containers.ProfileV1> {
         return filterProfiles(searchTerms, toFilter: ObjectStore.sharedInstance.profiles.values.array)
     }
     
-    private class func filterTeams(searchTerms: [String]) -> Array<Services.Organization.Containers.TeamV1> {
+    private static func filterTeams(searchTerms: [String]) -> Array<Services.Organization.Containers.TeamV1> {
         return filterTeams(searchTerms, toFilter: ObjectStore.sharedInstance.teams.values.array)
     }
     
-    private class func filterTeams(
+    private static func filterTeams(
         searchTerms: [String],
         toFilter: Array<Services.Organization.Containers.TeamV1>
     ) -> Array<Services.Organization.Containers.TeamV1> {
@@ -292,7 +292,7 @@ extension Services.Search.Actions {
         }
     }
     
-    private class func filterTags(searchTerms: [String], tagType: ProfileService.TagType) -> Array<Services.Profile.Containers.TagV1> {
+    private static func filterTags(searchTerms: [String], tagType: Services.Profile.Containers.TagV1.TagTypeV1) -> Array<Services.Profile.Containers.TagV1> {
         var tags: Dictionary<String, Services.Profile.Containers.TagV1>
         switch tagType {
         case .Skill:
@@ -303,7 +303,7 @@ extension Services.Search.Actions {
         return filterTags(searchTerms, toFilter: tags)
     }
     
-    private class func filterTags(searchTerms: [String], toFilter: Dictionary<String, Services.Profile.Containers.TagV1>) -> Array<ProfileService.Containers.Tag> {
+    private static func filterTags(searchTerms: [String], toFilter: Dictionary<String, Services.Profile.Containers.TagV1>) -> Array<Services.Profile.Containers.TagV1> {
         var andPredicates = [NSPredicate]()
         for searchTerm in searchTerms {
             let trimmedSearchTerm = trim(searchTerm)
@@ -329,7 +329,7 @@ extension Services.Search.Actions {
         }
     }
     
-    private class func trim(string: String) -> String {
+    private static func trim(string: String) -> String {
         return string.stringByTrimmingCharactersInSet(whitespaceCharacterSet)
     }
     

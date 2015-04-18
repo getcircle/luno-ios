@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AMScrollingNavbar
 import MessageUI
 import ProtobufRegistry
 
@@ -106,7 +107,7 @@ class SearchViewController: UIViewController,
     
     private func configureSearchHeaderView() {
         if let nibViews = NSBundle.mainBundle().loadNibNamed("SearchHeaderView", owner: nil, options: nil) as? [UIView] {
-            searchHeaderView = nibViews.first as SearchHeaderView
+            searchHeaderView = nibViews.first as! SearchHeaderView
             searchHeaderView.delegate = self
             searchHeaderView.searchTextField.delegate = self
             searchHeaderView.searchTextField.addTarget(self, action: "search", forControlEvents: .EditingChanged)
@@ -159,9 +160,9 @@ class SearchViewController: UIViewController,
         if !shadowAdded {
             var path = UIBezierPath()
             path.moveToPoint(CGPointMake(-0.1, 5.0))
-            path.addLineToPoint(CGPointMake(-0.1, searchHeaderView.frameHeight - 0.9))
-            path.addLineToPoint(CGPointMake(searchHeaderView.frameWidth + 0.1, searchHeaderView.frameHeight - 0.9))
-            path.addLineToPoint(CGPointMake(searchHeaderView.frameWidth + 0.1, 5.0))
+            path.addLineToPoint(CGPointMake(-0.1, searchHeaderView.frame.height - 0.9))
+            path.addLineToPoint(CGPointMake(searchHeaderView.frame.width + 0.1, searchHeaderView.frame.height - 0.9))
+            path.addLineToPoint(CGPointMake(searchHeaderView.frame.width + 0.1, 5.0))
             searchHeaderView.layer.shadowPath = path.CGPath
             searchHeaderView.layer.shadowOpacity = 0.0
             searchHeaderView.layer.shadowOffset = CGSizeMake(1.0, 0.5)
@@ -174,7 +175,7 @@ class SearchViewController: UIViewController,
     private func configureCollectionView() {
         collectionView.keyboardDismissMode = .OnDrag
         collectionView.backgroundColor = UIColor.appViewBackgroundColor()
-        (collectionView.delegate as CardCollectionViewDelegate?)?.delegate = self
+        (collectionView.delegate as! CardCollectionViewDelegate?)?.delegate = self
         
         landingDataSource = SearchLandingDataSource()
         landingDataSource.cardHeaderDelegate = self
@@ -228,7 +229,7 @@ class SearchViewController: UIViewController,
     
     func search() {
         let query = searchHeaderView.searchTextField.text
-        (collectionView.dataSource as SearchQueryDataSource).filter(searchHeaderView.searchTextField.text) { (error) -> Void in
+        (collectionView.dataSource as! SearchQueryDataSource).filter(searchHeaderView.searchTextField.text) { (error) -> Void in
             self.collectionView.reloadData()
         }
     }
@@ -236,7 +237,7 @@ class SearchViewController: UIViewController,
     // MARK: - UICollectionViewDelegate
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        let dataSource = (collectionView.dataSource as CardDataSource)
+        let dataSource = (collectionView.dataSource as! CardDataSource)
         let selectedCard = dataSource.cardAtSection(indexPath.section)!
         var properties = [
             TrackerProperty.withKeyString("card_type").withString(selectedCard.type.rawValue),
@@ -247,23 +248,23 @@ class SearchViewController: UIViewController,
         
         // Handle quick actions - this assumes quick actions will be on profiles only
         if dataSource is SearchQueryDataSource && selectedAction != .None {
-            if let profile = dataSource.contentAtIndexPath(indexPath)? as? Services.Profile.Containers.ProfileV1 {
+            if let profile = dataSource.contentAtIndexPath(indexPath) as? Services.Profile.Containers.ProfileV1 {
                 performQuickAction(profile)
             }
         }
         else {
             switch selectedCard.type {
             case .Profiles, .Birthdays, .Anniversaries, .NewHires:
-                if let profile = dataSource.contentAtIndexPath(indexPath)? as? Services.Profile.Containers.ProfileV1 {
+                if let profile = dataSource.contentAtIndexPath(indexPath) as? Services.Profile.Containers.ProfileV1 {
                     let profileVC = ProfileDetailViewController(profile: profile)
                     if selectedCard.type == .Anniversaries {
-                        (profileVC.dataSource as ProfileDetailDataSource).addBannerOfType = .Anniversary
+                        (profileVC.dataSource as! ProfileDetailDataSource).addBannerOfType = .Anniversary
                     }
                     else if selectedCard.type == .Birthdays {
-                        (profileVC.dataSource as ProfileDetailDataSource).addBannerOfType = .Birthday
+                        (profileVC.dataSource as! ProfileDetailDataSource).addBannerOfType = .Birthday
                     }
                     else if selectedCard.type == .NewHires {
-                        (profileVC.dataSource as ProfileDetailDataSource).addBannerOfType = .NewHire
+                        (profileVC.dataSource as! ProfileDetailDataSource).addBannerOfType = .NewHire
                     }
                     profileVC.hidesBottomBarWhenPushed = false
                     properties.append(TrackerProperty.withKey(.Destination).withSource(.Detail))
@@ -274,7 +275,7 @@ class SearchViewController: UIViewController,
                 }
             case .Group:
                 let viewController = ProfilesViewController()
-                viewController.dataSource.setInitialData(selectedCard.content[0] as [AnyObject], ofType: nil)
+                viewController.dataSource.setInitialData(selectedCard.content[0] as! [AnyObject], ofType: nil)
                 viewController.title = selectedCard.title
                 viewController.hidesBottomBarWhenPushed = false
                 properties.append(TrackerProperty.withKey(.Destination).withSource(.Overview))
@@ -283,9 +284,9 @@ class SearchViewController: UIViewController,
                 navigationController?.pushViewController(viewController, animated: true)
 
             case .Offices:
-                if let office = dataSource.contentAtIndexPath(indexPath)? as? Services.Organization.Containers.LocationV1 {
+                if let office = dataSource.contentAtIndexPath(indexPath) as? Services.Organization.Containers.LocationV1 {
                     let viewController = OfficeDetailViewController()
-                    (viewController.dataSource as OfficeDetailDataSource).selectedOffice = office
+                    (viewController.dataSource as! OfficeDetailDataSource).selectedOffice = office
                     viewController.hidesBottomBarWhenPushed = false
                     properties.append(TrackerProperty.withKey(.Destination).withSource(.Detail))
                     properties.append(TrackerProperty.withKey(.DestinationDetailType).withDetailType(.Office))
@@ -295,9 +296,9 @@ class SearchViewController: UIViewController,
                 }
                 
             case .Team:
-                if let selectedTeam = dataSource.contentAtIndexPath(indexPath)? as? Services.Organization.Containers.TeamV1 {
+                if let selectedTeam = dataSource.contentAtIndexPath(indexPath) as? Services.Organization.Containers.TeamV1 {
                     let viewController = TeamDetailViewController()
-                    (viewController.dataSource as TeamDetailDataSource).selectedTeam = selectedTeam
+                    (viewController.dataSource as! TeamDetailDataSource).selectedTeam = selectedTeam
                     viewController.hidesBottomBarWhenPushed = false
                     properties.append(TrackerProperty.withKey(.Destination).withSource(.Detail))
                     properties.append(TrackerProperty.withKey(.DestinationDetailType).withDetailType(.Team))
@@ -307,7 +308,7 @@ class SearchViewController: UIViewController,
                 }
             
             case .Notes:
-                if let selectedNote = dataSource.contentAtIndexPath(indexPath)? as? Services.Note.Containers.NoteV1 {
+                if let selectedNote = dataSource.contentAtIndexPath(indexPath) as? Services.Note.Containers.NoteV1 {
                     if let profiles = selectedCard.metaData as? [Services.Profile.Containers.ProfileV1] {
                         if let selectedProfile = profiles[indexPath.row] as Services.Profile.Containers.ProfileV1? {
                             let viewController = NewNoteViewController(nibName: "NewNoteViewController", bundle: nil)
@@ -323,11 +324,11 @@ class SearchViewController: UIViewController,
                     }
                 }
             case .StatTile:
-                let cell = collectionView.dataSource?.collectionView(collectionView, cellForItemAtIndexPath: indexPath) as StatTileCollectionViewCell
+                let cell = collectionView.dataSource?.collectionView(collectionView, cellForItemAtIndexPath: indexPath) as! StatTileCollectionViewCell
                 switch cell.tileType! {
                 case .People:
                     let viewController = ProfilesViewController()
-                    (viewController.dataSource as ProfilesDataSource).configureForOrganization()
+                    (viewController.dataSource as! ProfilesDataSource).configureForOrganization()
                     viewController.title = "People"
                     navigationController?.pushViewController(viewController, animated: true)
                 case .Offices:
@@ -342,7 +343,7 @@ class SearchViewController: UIViewController,
                 case .Teams:
                     let viewController = TeamsOverviewViewController()
                     viewController.title = "Teams"
-                    (viewController.dataSource as TeamsOverviewDataSource).configureForOrganization()
+                    (viewController.dataSource as! TeamsOverviewDataSource).configureForOrganization()
                     navigationController?.pushViewController(viewController, animated: true)
                 case .Interests:
                     // TODO This should be coming from a paginated data source
@@ -384,7 +385,7 @@ class SearchViewController: UIViewController,
             if let selectedTag = userInfo["interest"] as? Services.Profile.Containers.TagV1 {
                 trackTagSelected(selectedTag)
                 let viewController = TagDetailViewController()
-                (viewController.dataSource as TagDetailDataSource).selectedTag = selectedTag
+                (viewController.dataSource as! TagDetailDataSource).selectedTag = selectedTag
                 viewController.hidesBottomBarWhenPushed = false
                 navigationController?.pushViewController(viewController, animated: true)
             }
@@ -407,7 +408,7 @@ class SearchViewController: UIViewController,
         case .Group, .Profiles, .Birthdays, .Anniversaries, .NewHires:
             let viewController = ProfilesViewController()
             if card.type == .Group {
-                viewController.dataSource.setInitialData(card.content[0] as [AnyObject], ofType: nil)
+                viewController.dataSource.setInitialData(card.content[0] as! [AnyObject], ofType: nil)
             }
             else {
                 viewController.dataSource.setInitialData(card.allContent, ofType: card.type)
@@ -421,7 +422,7 @@ class SearchViewController: UIViewController,
             
         case .Tags:
             let interestsOverviewViewController = TagsOverviewViewController(nibName: "TagsOverviewViewController", bundle: nil)
-            interestsOverviewViewController.dataSource.setInitialData(content: card.allContent[0] as [AnyObject])
+            interestsOverviewViewController.dataSource.setInitialData(content: card.allContent[0] as! [AnyObject])
             interestsOverviewViewController.title = card.title
             interestsOverviewViewController.hidesBottomBarWhenPushed = false
             navigationController?.pushViewController(interestsOverviewViewController, animated: true)
@@ -453,7 +454,7 @@ class SearchViewController: UIViewController,
                 bundle: nil,
                 isFilterView: true
             )
-            interestsOverviewViewController.dataSource.setInitialData(content: card.allContent[0] as [AnyObject])
+            interestsOverviewViewController.dataSource.setInitialData(content: card.allContent[0] as! [AnyObject])
             interestsOverviewViewController.title = card.title
             interestsOverviewViewController.searchHeaderView.searchTextField.text = searchHeaderView.searchTextField.text
             navigationController?.pushViewController(interestsOverviewViewController, animated: true)
@@ -602,7 +603,7 @@ class SearchViewController: UIViewController,
             
         case .Phone:
             if let recipient = profile.getCellPhone() as String? {
-                if let phoneURL = NSURL(string: NSString(format: "tel://%@", recipient.removePhoneNumberFormatting())) {
+                if let phoneURL = NSURL(string: NSString(format: "tel://%@", recipient.removePhoneNumberFormatting()) as String) {
                     UIApplication.sharedApplication().openURL(phoneURL)
                 }
             }

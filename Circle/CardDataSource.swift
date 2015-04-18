@@ -245,7 +245,7 @@ class CardDataSource: NSObject, UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(
             card.contentClass.classReuseIdentifier,
             forIndexPath: indexPath
-        ) as CircleCollectionViewCell
+        ) as! CircleCollectionViewCell
         
         cell.card = card
         cell.setData(card.content[indexPath.row])
@@ -309,7 +309,7 @@ class CardDataSource: NSObject, UICollectionViewDataSource {
             UICollectionElementKindSectionHeader,
             withReuseIdentifier: card.headerClass!.classReuseIdentifier,
             forIndexPath: indexPath
-        ) as CircleCollectionReusableView
+        ) as! CircleCollectionReusableView
         
         if let delegate = cardHeaderDelegate {
             headerView.cardHeaderDelegate = delegate
@@ -328,7 +328,7 @@ class CardDataSource: NSObject, UICollectionViewDataSource {
             UICollectionElementKindSectionFooter,
             withReuseIdentifier: card.footerClass!.classReuseIdentifier,
             forIndexPath: indexPath
-        ) as CardFooterCollectionReusableView
+        ) as! CardFooterCollectionReusableView
         
         if let delegate = cardFooterDelegate {
             footerView.cardFooterDelegate = delegate
@@ -365,7 +365,7 @@ class CardDataSource: NSObject, UICollectionViewDataSource {
         if animatedRowIndexes.containsIndex(intIndex) == false {
             animatedRowIndexes.addIndex(intIndex)
             let finalFrame = view.frame
-            view.frameY = finalFrame.origin.y + 40.0
+            view.frame.origin.y = finalFrame.origin.y + 40.0
             
             // Delay is based on section index if there are more than one sections else its based on row
             // This ensures cards animate at the same time if there are more than one

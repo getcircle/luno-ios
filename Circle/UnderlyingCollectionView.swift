@@ -19,7 +19,7 @@ class UnderlyingCollectionView: UICollectionView, UICollectionViewDelegate {
     
     override var delegate: UICollectionViewDelegate? {
         didSet {
-            if let cardCollectionViewDelegate = delegate as CardCollectionViewDelegate? {
+            if let cardCollectionViewDelegate = delegate as! CardCollectionViewDelegate? {
                 cardCollectionViewDelegate.delegate = self
             }
         }

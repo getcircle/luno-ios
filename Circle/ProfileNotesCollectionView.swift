@@ -29,7 +29,7 @@ class ProfileNotesDataSource: UnderlyingCollectionViewDataSource {
     override func loadData(completionHandler: (error: NSError?) -> Void) {
         // Add placeholder card to load profile header instantly
         addPlaceholderCard()
-        NoteService.Actions.getNotes(profile.id) { (notes, error) -> Void in
+        Services.Note.Actions.getNotes(profile.id) { (notes, error) -> Void in
             if let notes = notes {
                 self.notes = notes
                 NSNotificationCenter.defaultCenter().postNotificationName(
@@ -45,7 +45,7 @@ class ProfileNotesDataSource: UnderlyingCollectionViewDataSource {
     
     override func configureCell(cell: CircleCollectionViewCell, atIndexPath indexPath: NSIndexPath) {
         if cell is NotesCollectionViewCell {
-            (cell as NotesCollectionViewCell).showUserProfile = false
+            (cell as! NotesCollectionViewCell).showUserProfile = false
         }
     }
 

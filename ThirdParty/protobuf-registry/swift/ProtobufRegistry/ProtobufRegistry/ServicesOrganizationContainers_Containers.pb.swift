@@ -91,6 +91,7 @@ public func == (lhs: Services.Organization.Containers.TeamV1, rhs: Services.Orga
   fieldCheck = fieldCheck && (lhs.path == rhs.path)
   fieldCheck = fieldCheck && (lhs.hasDepartment == rhs.hasDepartment) && (!lhs.hasDepartment || lhs.department == rhs.department)
   fieldCheck = fieldCheck && (lhs.hasProfileCount == rhs.hasProfileCount) && (!lhs.hasProfileCount || lhs.profileCount == rhs.profileCount)
+  fieldCheck = fieldCheck && (lhs.hasColor == rhs.hasColor) && (!lhs.hasColor || lhs.color == rhs.color)
   return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
 }
 
@@ -2477,6 +2478,7 @@ public extension Services.Organization.Containers {
            case "organizationId": return organizationId
            case "department": return department
            case "profileCount": return profileCount
+           case "color": return color
            default: return nil
            }
     }
@@ -2502,6 +2504,8 @@ public extension Services.Organization.Containers {
     public private(set) var hasProfileCount:Bool = false
     public private(set) var profileCount:UInt32 = UInt32(0)
 
+    public private(set) var hasColor:Bool = false
+    public private(set) var color:Services.Organization.Containers.ColorV1!
     public private(set) var path:Array<Services.Organization.Containers.PathPartV1>  = Array<Services.Organization.Containers.PathPartV1>()
     required public init() {
          super.init()
@@ -2533,6 +2537,9 @@ public extension Services.Organization.Containers {
       }
       if hasProfileCount {
         output.writeUInt32(8, value:profileCount)
+      }
+      if hasColor {
+        output.writeMessage(9, value:color)
       }
       unknownFields.writeToCodedOutputStream(output)
     }
@@ -2566,6 +2573,11 @@ public extension Services.Organization.Containers {
       }
       if hasProfileCount {
         serialize_size += profileCount.computeUInt32Size(8)
+      }
+      if hasColor {
+          if let varSizecolor = color?.computeMessageSize(9) {
+              serialize_size += varSizecolor
+          }
       }
       serialize_size += unknownFields.serializedSize()
       memoizedSerializedSize = serialize_size
@@ -2636,6 +2648,11 @@ public extension Services.Organization.Containers {
       if hasProfileCount {
         output += "\(indent) profileCount: \(profileCount) \n"
       }
+      if hasColor {
+        output += "\(indent) color {\n"
+        color?.writeDescriptionTo(&output, indent:"\(indent)  ")
+        output += "\(indent) }\n"
+      }
       unknownFields.writeDescriptionTo(&output, indent:indent)
     }
     override public var hashValue:Int {
@@ -2664,6 +2681,11 @@ public extension Services.Organization.Containers {
             }
             if hasProfileCount {
                hashCode = (hashCode &* 31) &+ profileCount.hashValue
+            }
+            if hasColor {
+                if let hashValuecolor = color?.hashValue {
+                    hashCode = (hashCode &* 31) &+ hashValuecolor
+                }
             }
             hashCode = (hashCode &* 31) &+  unknownFields.hashValue
             return hashCode
@@ -2870,6 +2892,38 @@ public extension Services.Organization.Containers {
          builderResult.profileCount = UInt32(0)
          return self
     }
+    public var hasColor:Bool {
+         get {
+             return builderResult.hasColor
+         }
+    }
+    public var color:Services.Organization.Containers.ColorV1! {
+         get {
+             return builderResult.color
+         }
+         set (value) {
+             builderResult.hasColor = true
+             builderResult.color = value
+         }
+    }
+    public func setColor(value:Services.Organization.Containers.ColorV1!)-> Services.Organization.Containers.TeamV1Builder {
+      self.color = value
+      return self
+    }
+    public func mergeColor(value:Services.Organization.Containers.ColorV1) -> Services.Organization.Containers.TeamV1Builder {
+      if (builderResult.hasColor) {
+        builderResult.color = Services.Organization.Containers.ColorV1.builderWithPrototype(builderResult.color).mergeFrom(value).buildPartial()
+      } else {
+        builderResult.color = value
+      }
+      builderResult.hasColor = true
+      return self
+    }
+    public func clearColor() -> Services.Organization.Containers.TeamV1Builder {
+      builderResult.hasColor = false
+      builderResult.color = nil
+      return self
+    }
     override public var internalGetResult:GeneratedMessage {
          get {
             return builderResult
@@ -2918,6 +2972,9 @@ public extension Services.Organization.Containers {
       if other.hasProfileCount {
            profileCount = other.profileCount
       }
+      if (other.hasColor) {
+          mergeColor(other.color)
+      }
       mergeUnknownFields(other.unknownFields)
       return self
     }
@@ -2958,6 +3015,14 @@ public extension Services.Organization.Containers {
 
         case 64 :
           profileCount = input.readUInt32()
+
+        case 74 :
+          var subBuilder:Services.Organization.Containers.ColorV1Builder = Services.Organization.Containers.ColorV1.builder()
+          if hasColor {
+            subBuilder.mergeFrom(color)
+          }
+          input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
+          color = subBuilder.buildPartial()
 
         default:
           if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {

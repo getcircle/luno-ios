@@ -20,8 +20,8 @@ class CircleActivityIndicatorView: UIImageView {
         return 40.0
     }
 
-    override init() {
-        super.init()
+    init() {
+        super.init(frame: CGRectZero)
         customInit()
     }
     

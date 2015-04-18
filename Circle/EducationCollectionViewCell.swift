@@ -49,8 +49,8 @@ class EducationCollectionViewCell: CircleCollectionViewCell {
     }
     
     override func setData(data: AnyObject) {
-        if let education = data as? ResumeService.Containers.Education {
-            schoolNameLabel.text = education.school_name
+        if let education = data as? Services.Resume.Containers.EducationV1 {
+            schoolNameLabel.text = education.schoolName
             degreeAndFieldOfStudyLabel.text = getFormattedDegreeAndFieldOfStudy(education)
             durationLabel.text = getFormattedDurationLabel(education)
         }
@@ -58,13 +58,13 @@ class EducationCollectionViewCell: CircleCollectionViewCell {
     
     // MARK: - Formatting
     
-    private func getFormattedDegreeAndFieldOfStudy(education: ResumeService.Containers.Education) -> String {
+    private func getFormattedDegreeAndFieldOfStudy(education: Services.Resume.Containers.EducationV1) -> String {
         var label = String()
         if education.degree != "" {
             label = "\(education.degree)"
         }
-        if education.field_of_study != "" {
-            var fieldOfStudy = education.field_of_study
+        if education.fieldOfStudy != "" {
+            var fieldOfStudy = education.fieldOfStudy
             if label != "" {
                 fieldOfStudy = ", \(fieldOfStudy)"
             }
@@ -73,13 +73,13 @@ class EducationCollectionViewCell: CircleCollectionViewCell {
         return label
     }
     
-    private func getFormattedDurationLabel(education: ResumeService.Containers.Education) -> String {
+    private func getFormattedDurationLabel(education: Services.Resume.Containers.EducationV1) -> String {
         var label = String()
-        if education.start_date.year != 0 {
-            label = "\(education.start_date.year)"
+        if education.startDate.year != 0 {
+            label = "\(education.startDate.year)"
         }
-        if education.end_date.year != 0 {
-            var endDate = "\(education.end_date.year)"
+        if education.endDate.year != 0 {
+            var endDate = "\(education.endDate.year)"
             if label != "" {
                 endDate = " - \(endDate)"
             }

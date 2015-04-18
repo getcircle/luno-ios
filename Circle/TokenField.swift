@@ -58,8 +58,7 @@ class TokenField: UIView,
     private var intrinsicHeight: CGFloat = 0.0
     private var updateConstraintsCalled = false
     
-    override init() {
-        super.init()
+    init() {
         customInit()
     }
     
@@ -132,7 +131,7 @@ class TokenField: UIView,
             tokenConstraints.removeAll(keepCapacity: false)
         }
         
-        for view in contentView.subviews as [UIView] {
+        for view in contentView.subviews as! [UIView] {
             view.removeFromSuperview()
         }
         
@@ -190,7 +189,7 @@ class TokenField: UIView,
         var lineIndex = 0
         // TODO figure out how to not need this
         let width = UIScreen.mainScreen().bounds.width
-        for view in contentView.subviews as [UIView] {
+        for view in contentView.subviews as! [UIView] {
             let size = view.intrinsicContentSize()
             if previousView != nil {
                 tokenConstraints.append(view.autoPinEdgeToSuperviewEdge(.Top, withInset: topPadding, relation: .GreaterThanOrEqual))
@@ -344,7 +343,7 @@ class TokenField: UIView,
     // MARK: - Private Methods
     
     private func focusInputTextField() {
-        var contentOffsetY: CGFloat = intrinsicHeight - frameHeight
+        var contentOffsetY: CGFloat = intrinsicHeight - frame.height
         if contentOffsetY < 0 {
             contentOffsetY = 0
         }

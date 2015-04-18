@@ -58,7 +58,7 @@ class NotificationsViewController: UIViewController {
 
     @IBAction func yesButtonTapped(sender: AnyObject!) {
         dismissView { () -> Void in
-            let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
             appDelegate.registerForRemoteNotifications()
         }
     }

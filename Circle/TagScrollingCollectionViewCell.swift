@@ -68,7 +68,7 @@ class TagScrollingCollectionViewCell: CircleCollectionViewCell, UICollectionView
     private func configurePrototypeCell() {
         // Init prototype cell
         let cellNibViews = NSBundle.mainBundle().loadNibNamed("TagCollectionViewCell", owner: self, options: nil)
-        prototypeCell = cellNibViews.first as TagCollectionViewCell
+        prototypeCell = cellNibViews.first as! TagCollectionViewCell
     }
 
     // MARK: - UICollectionViewDataSource
@@ -86,7 +86,7 @@ class TagScrollingCollectionViewCell: CircleCollectionViewCell, UICollectionView
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(
             TagCollectionViewCell.classReuseIdentifier,
             forIndexPath: indexPath
-        ) as TagCollectionViewCell
+        ) as! TagCollectionViewCell
         
         cell.interestLabel.text = interest.name
         cell.interestLabel.backgroundColor = collectionView.backgroundColor
@@ -139,7 +139,7 @@ class TagScrollingCollectionViewCell: CircleCollectionViewCell, UICollectionView
     // MARK: - Sizing
     
     override func intrinsicContentSize() -> CGSize {
-        let collectionViewLayout = collectionView.collectionViewLayout as UICollectionViewFlowLayout
+        let collectionViewLayout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
         let height = collectionViewLayout.collectionViewContentSize().height
         return CGSizeMake(CircleCollectionViewCell.width, height)
     }

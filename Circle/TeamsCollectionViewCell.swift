@@ -65,7 +65,7 @@ class TeamsCollectionViewCell: CircleCollectionViewCell, UICollectionViewDataSou
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(
             TeamGridItemCollectionViewCell.classReuseIdentifier,
             forIndexPath: indexPath
-        ) as TeamGridItemCollectionViewCell
+        ) as! TeamGridItemCollectionViewCell
 
         cell.setData(team)
         return cell
@@ -110,7 +110,7 @@ class TeamsCollectionViewCell: CircleCollectionViewCell, UICollectionViewDataSou
     // MARK: - Sizing
     
     override func intrinsicContentSize() -> CGSize {
-        let collectionViewLayout = collectionView.collectionViewLayout as UICollectionViewFlowLayout
+        let collectionViewLayout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
         let height = collectionViewLayout.collectionViewContentSize().height
         return CGSizeMake(CircleCollectionViewCell.width, height)
     }

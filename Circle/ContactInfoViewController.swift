@@ -74,8 +74,8 @@ class ContactInfoViewController: CircleAlertViewController, UICollectionViewDele
     // MARK: - UICollectionViewDelegate
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        let contactMethod = profile.contact_methods[indexPath.row]
-        switch contactMethod.type {
+        let contactMethod = profile.contactMethods[indexPath.row]
+        switch contactMethod.contactMethodType {
         case .Email:
             presentMailViewController(
                 [contactMethod.value],
@@ -84,7 +84,7 @@ class ContactInfoViewController: CircleAlertViewController, UICollectionViewDele
                 completionHandler: nil
             )
         case .CellPhone, .Phone:
-            if let phoneURL = NSURL(string: NSString(format: "tel://%@", contactMethod.value.removePhoneNumberFormatting())) {
+            if let phoneURL = NSURL(string: NSString(format: "tel://%@", contactMethod.value.removePhoneNumberFormatting()) as String) {
                 UIApplication.sharedApplication().openURL(phoneURL)
             }
             

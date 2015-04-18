@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import UIKit
+import Mixpanel
 
 let TrackingPrefix = "c_"
 
@@ -75,15 +77,15 @@ class TrackerProperty {
         return self
     }
     
-    class func withKey(key: Key) -> TrackerProperty {
+    static func withKey(key: Key) -> TrackerProperty {
         return TrackerProperty(key: key.rawValue, value: nil)
     }
     
-    class func withKeyString(key: String) -> TrackerProperty {
+    static func withKeyString(key: String) -> TrackerProperty {
         return TrackerProperty(key: key, value: nil)
     }
     
-    class func withDestinationId(key: String) -> TrackerProperty {
+    static func withDestinationId(key: String) -> TrackerProperty {
         return TrackerProperty(key: "destination_\(key)", value: nil)
     }
     
@@ -160,9 +162,9 @@ class Tracker {
         var scrollPercent: CGFloat
         switch direction {
         case .Vertical:
-            scrollPercent = scrollView.contentOffset.y / (scrollView.contentSize.height - scrollView.frameHeight) * 100
+            scrollPercent = scrollView.contentOffset.y / (scrollView.contentSize.height - scrollView.frame.height) * 100
         case .Horizontal:
-            scrollPercent = scrollView.contentOffset.x / (scrollView.contentSize.width - scrollView.frameWidth) * 100
+            scrollPercent = scrollView.contentOffset.x / (scrollView.contentSize.width - scrollView.frame.width) * 100
         }
         if floor(scrollPercent % 25) <= 1 {
             if let lastTracked = majorScrollEvents[event.rawValue] {

@@ -18,7 +18,7 @@ extension Soa.ServiceRequestV1 {
             let actionBuilder = action.toBuilder()
             let actionControlBuilder = action.control.toBuilder()
             let paginatorBuilder = paginator.toBuilder()
-            paginatorBuilder.page = paginator.next_page
+            paginatorBuilder.page = paginator.nextPage
             actionControlBuilder.paginator = paginatorBuilder.build()
             actionBuilder.control = actionControlBuilder.build()
             serviceRequestBuilder.actions.append(actionBuilder.build())

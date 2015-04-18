@@ -53,19 +53,19 @@ class ProfileCollectionViewCell: CircleCollectionViewCell {
     }
     
     private func setProfile(profile: Services.Profile.Containers.ProfileV1) {
-        nameLabel.text = profile.full_name
+        nameLabel.text = profile.fullName
         var subtitle = profile.title
         if let cardType = card?.type {
             switch card!.type {
             case .Birthdays:
-                if let date = profile.birth_date.toDate() {
+                if let date = profile.birthDate.toDate() {
                     subtitle = NSDateFormatter.sharedBirthdayFormatter.stringFromDate(date)
                 }
             case .Anniversaries:
                 subtitle = getAnniversarySubtitle(profile)
                 
             case .NewHires:
-                if let date = profile.hire_date.toDate() {
+                if let date = profile.hireDate.toDate() {
                     subtitle = NSDateFormatter.stringFromDateWithStyles(date, dateStyle: .LongStyle, timeStyle: .NoStyle)
                 }
             default:
@@ -82,7 +82,7 @@ class ProfileCollectionViewCell: CircleCollectionViewCell {
         profileImageView.backgroundColor = UIColor.appTeamHeaderBackgroundColor(team)
         profileImageView.image = nil
         nameLabel.text = team.name
-        subTextLabel.text = getCountLabel(team.profile_count)
+        subTextLabel.text = getCountLabel(team.profileCount)
         teamNameLetterLabel.text = team.name[0]
         teamNameLetterLabel.hidden = false
     }
@@ -97,14 +97,14 @@ class ProfileCollectionViewCell: CircleCollectionViewCell {
         } else {
             profileImageView.image = UIImage(named: "SF")
         }
-        subTextLabel.text = getCountLabel(location.profile_count)
+        subTextLabel.text = getCountLabel(location.profileCount)
     }
 
     // MARK: - Helpers
     
     private func getAnniversarySubtitle(profile: Services.Profile.Containers.ProfileV1) -> String {
         var subtitle = ""
-        if let hireDate = profile.hire_date.toDate() {
+        if let hireDate = profile.hireDate.toDate() {
             let dateFormatter = NSDateFormatter.sharedAnniversaryFormatter
             let calendar = NSCalendar(calendarIdentifier: NSGregorianCalendar)
             

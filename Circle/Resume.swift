@@ -12,18 +12,18 @@ import ProtobufRegistry
 extension Services.Resume {
     class Utils {
         
-        class func formatPositionApproximateDate(position: Services.Resume.Containers.PositionV1) -> String {
+        static func formatPositionApproximateDate(position: Services.Resume.Containers.PositionV1) -> String {
             var formatted = String()
             if position.startDate.year != 0 {
                 formatted += "\(position.startDate.year)"
-                if position.end_date.year != 0 || position.is_current {
+                if position.endDate.year != 0 || position.isCurrent {
                     formatted += " - "
                 }
             }
             
-            if position.end_date.year != 0 {
-                formatted += "\(position.end_date.year)"
-            } else if position.is_current {
+            if position.endDate.year != 0 {
+                formatted += "\(position.endDate.year)"
+            } else if position.isCurrent {
                 formatted += NSLocalizedString("Present", comment: "This position is currently held")
             }
             return formatted

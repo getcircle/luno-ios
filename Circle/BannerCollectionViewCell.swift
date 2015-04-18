@@ -51,7 +51,7 @@ class BannerCollectionViewCell : CircleCollectionViewCell {
     
     override func setData(data: AnyObject) {
         if let bannerDictionary = data as? [String: AnyObject] {
-            if let bannerType = BannerType(rawValue: (bannerDictionary["type"] as Int)) {
+            if let bannerType = BannerType(rawValue: (bannerDictionary["type"] as! Int)) {
                 switch bannerType {
                 case .Anniversary:
                     if let profile = bannerDictionary["profile"] as? Services.Profile.Containers.ProfileV1 {

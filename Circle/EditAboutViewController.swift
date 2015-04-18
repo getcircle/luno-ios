@@ -176,7 +176,7 @@ class EditAboutViewController: UIViewController, UITextFieldDelegate {
             builder.nickname = nickNameTextField.text
         }
 
-        ProfileService.Actions.updateProfile(builder.build()) { (profile, error) -> Void in
+        Services.Profile.Actions.updateProfile(builder.build()) { (profile, error) -> Void in
             if let profile = profile {
                 AuthViewController.updateUserProfile(profile)
             }

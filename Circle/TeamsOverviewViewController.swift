@@ -28,10 +28,10 @@ class TeamsOverviewViewController: OverviewViewController {
     // MARK: - Collection View Delegate
 
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        if let team = dataSource.contentAtIndexPath(indexPath)? as? Services.Organization.Containers.TeamV1 {
+        if let team = dataSource.contentAtIndexPath(indexPath) as? Services.Organization.Containers.TeamV1 {
             
             var teamDetailVC = TeamDetailViewController()
-            (teamDetailVC.dataSource as TeamDetailDataSource).selectedTeam = team
+            (teamDetailVC.dataSource as! TeamDetailDataSource).selectedTeam = team
             navigationController?.pushViewController(teamDetailVC, animated: true)
         }
     }

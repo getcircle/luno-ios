@@ -17,7 +17,7 @@ message ContactMethodV1 {
     optional string id = 2;
     optional string label = 3;
     optional string value = 4;
-    optional ContactMethodTypeV1 type = 5;
+    optional ContactMethodTypeV1 contact_method_type = 5;
 }
 
 message ProfileV1 {
@@ -74,5 +74,5 @@ message TagV1 {
     optional uint32 version = 1 [default = 1];
     optional string id = 2;
     optional string name = 3;
-    optional TagTypeV1 type = 4;
+    optional TagTypeV1 tag_type = 4;
 }

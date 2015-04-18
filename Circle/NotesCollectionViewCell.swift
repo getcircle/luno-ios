@@ -61,7 +61,7 @@ class NotesCollectionViewCell: CircleCollectionViewCell {
             else {
                 noteOnProfileName.text = NSString(format: NSLocalizedString("Note on %@",
                     comment: "Title for note on a specific person. E.g., Note on Michael"),
-                    (profile.firstName + " " + profile.lastName[0] + "."))
+                    (profile.firstName + " " + profile.lastName[0] + ".")) as String
             }
         }
     }
@@ -69,7 +69,7 @@ class NotesCollectionViewCell: CircleCollectionViewCell {
     private func adjustConstraintsAsPerProfileVisibility() {
         if !showUserProfile {
             noteSummaryLabel.numberOfLines = 2
-            noteTimestampLabelTopConstraint.constant = -(noteTimestampLabel.frameY - noteOnProfileName.frameY)
+            noteTimestampLabelTopConstraint.constant = -(noteTimestampLabel.frame.origin.y - noteOnProfileName.frame.origin.y)
 
             noteSummaryLabel.setNeedsUpdateConstraints()
             noteTimestampLabel.setNeedsUpdateConstraints()

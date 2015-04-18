@@ -11,7 +11,7 @@ import ProtobufRegistry
 
 class ProfilesDataSource: CardDataSource {
 
-    private(set) var searchAttribute: SearchService.Attribute?
+    private(set) var searchAttribute: Services.Search.Containers.Search.AttributeV1?
     private(set) var searchAttributeValue: AnyObject?
     
     private var card: Card!
@@ -21,7 +21,7 @@ class ProfilesDataSource: CardDataSource {
     // MARK: - Configuration
     
     func configureForLocation(locationId: String) {
-        let requestBuilder = ProfileService.GetProfiles.RequestV1.builder()
+        let requestBuilder = Services.Profile.Actions.GetProfiles.RequestV1.builder()
         requestBuilder.locationId = locationId
         searchAttribute = .LocationId
         searchAttributeValue = locationId
@@ -30,7 +30,7 @@ class ProfilesDataSource: CardDataSource {
     
     func configureForOrganization() {
         let organizationId = AuthViewController.getLoggedInUserOrganization()!.id
-        let requestBuilder = ProfileService.GetProfiles.RequestV1.builder()
+        let requestBuilder = Services.Profile.Actions.GetProfiles.RequestV1.builder()
         requestBuilder.organizationId = organizationId
         searchAttribute = .OrganizationId
         searchAttributeValue = organizationId
@@ -41,7 +41,7 @@ class ProfilesDataSource: CardDataSource {
         let client = ServiceClient(serviceName: "profile")
         let serviceRequest = client.buildRequest(
             "get_profiles",
-            extensionField: ProfileSoa.ServiceRequestV1s_get_profiles,
+            extensionField: Services.Registry.Requests.Profile.getProfiles(),
             requestBuilder: requestBuilder,
             paginatorBuilder: nil
         )
@@ -53,7 +53,7 @@ class ProfilesDataSource: CardDataSource {
     // MARK: - Set Initial Data
     
     override func setInitialData(content: [AnyObject], ofType: Card.CardType?) {
-        profiles.extend(content as [Services.Profile.Containers.ProfileV1])
+        profiles.extend(content as! [Services.Profile.Containers.ProfileV1])
         if ofType != nil {
             cardType = ofType!
         }
@@ -74,8 +74,8 @@ class ProfilesDataSource: CardDataSource {
         
         registerNextRequestCompletionHandler { (_, _, wrapped, error) -> Void in
             let response = wrapped?.response?.result.getExtension(
-                ProfileSoa.ServiceRequestV1s_get_profiles
-            ) as? ProfileService.GetProfiles.ResponseV1
+                Services.Registry.Requests.Profile.getProfiles()
+            ) as? Services.Profile.Actions.GetProfiles.ResponseV1
             
             if let profiles = response?.profiles {
                 self.profiles.extend(profiles)
@@ -100,7 +100,7 @@ class ProfilesDataSource: CardDataSource {
     // MARK: - Filtering
     
     override func handleFiltering(query: String, completionHandler: (error: NSError?) -> Void) {
-        SearchService.Actions.search(
+        Services.Search.Actions.search(
             query,
             category: .People,
             attribute: searchAttribute,

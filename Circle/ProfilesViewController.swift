@@ -29,7 +29,7 @@ class ProfilesViewController: OverviewViewController {
     // MARK: - Collection View Delegate
 
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        if let profile = dataSource.contentAtIndexPath(indexPath)? as? Services.Profile.Containers.ProfileV1 {
+        if let profile = dataSource.contentAtIndexPath(indexPath) as? Services.Profile.Containers.ProfileV1 {
             trackViewProfile(profile)
             let profileVC = ProfileDetailViewController(profile: profile)
             navigationController?.pushViewController(profileVC, animated: true)

@@ -40,7 +40,7 @@ class TagInputViewController: UIViewController,
     private var suggestionCollectionViewCellBackgroundColor = UIColor.whiteColor()
     private var suggestionCollectionViewCellTextColor = UIColor.appDefaultDarkTextColor()
     
-    class func getNibName() -> String {
+    static func getNibName() -> String {
         return "TagInputViewController"
     }
     
@@ -135,7 +135,7 @@ class TagInputViewController: UIViewController,
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(
             TagSuggestionCollectionViewCell.classReuseIdentifier,
             forIndexPath: indexPath
-        ) as TagSuggestionCollectionViewCell
+        ) as! TagSuggestionCollectionViewCell
         
         var suggestedTag: Services.Profile.Containers.TagV1?
         if shouldUseNewTag(indexPath) {
@@ -170,7 +170,7 @@ class TagInputViewController: UIViewController,
     // MARK: - UICollectionViewDelegateFlowLayout
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        return CGSizeMake(collectionView.frameWidth, 44.0)
+        return CGSizeMake(collectionView.frame.width, 44.0)
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
@@ -185,7 +185,7 @@ class TagInputViewController: UIViewController,
             suggestedTags.removeAll(keepCapacity: false)
             collectionView.reloadData()
         } else {
-            SearchService.Actions.search(text, category: .Skills, attribute: nil, attributeValue: nil, objects: nil) { (result, error) -> Void in
+            Services.Search.Actions.search(text, category: .Skills, attribute: nil, attributeValue: nil, objects: nil) { (result, error) -> Void in
                 if (result?.skills != nil) {
                     self.suggestedTags = result!.skills!
                 }
@@ -195,7 +195,7 @@ class TagInputViewController: UIViewController,
                     tagBuilder = self.newTag!.toBuilder()
                 } else {
                     tagBuilder = Services.Profile.Containers.TagV1.builder()
-                    tagBuilder.type = .Skill
+                    tagBuilder.tagType = .Skill
                 }
                 tagBuilder.name = text
                 self.newTag = tagBuilder.build()
@@ -247,7 +247,7 @@ class TagInputViewController: UIViewController,
         let profileId = AuthViewController.getLoggedInUserProfile()!.id
         if selectedTags.count > 0 {
             dispatch_group_enter(actionsGroup)
-            ProfileService.Actions.addTags(profileId, tags: selectedTags) { (error) in
+            Services.Profile.Actions.addTags(profileId, tags: selectedTags) { (error) in
                 // TODO return any tags that were created so we can add them to the ObjectStore
                 if let error = error {
                     storedError = error
@@ -257,7 +257,7 @@ class TagInputViewController: UIViewController,
         }
         if deletedTags.count > 0 {
             dispatch_group_enter(actionsGroup)
-            ProfileService.Actions.removeTags(profileId, tags: deletedTags) { (error) -> Void in
+            Services.Profile.Actions.removeTags(profileId, tags: deletedTags) { (error) -> Void in
                 if let error = error {
                     storedError = error
                 }

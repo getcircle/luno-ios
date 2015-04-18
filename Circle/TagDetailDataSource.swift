@@ -29,7 +29,7 @@ class TagDetailDataSource: CardDataSource {
         
         if let currentProfile = AuthViewController.getLoggedInUserProfile() {
             let profile = AuthViewController.getLoggedInUserProfile()!
-            ProfileService.Actions.getProfiles(tagId: selectedTag!.id, organizationId: profile.organizationId) { (profiles, _, error) -> Void in
+            Services.Profile.Actions.getProfiles(tagId: selectedTag!.id, organizationId: profile.organizationId) { (profiles, _, error) -> Void in
                 if let profiles = profiles {
                     self.profiles.extend(profiles)
                     let peopleCard = Card(cardType: .Profiles, title: "People by Tag")

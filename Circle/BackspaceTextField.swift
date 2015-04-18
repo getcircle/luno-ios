@@ -40,8 +40,8 @@ class BackspaceTextField: UIView, UITextFieldDelegate {
     
     private var textField: UITextField!
     
-    override init() {
-        super.init()
+    init() {
+        super.init(frame: CGRectZero)
         customInit()
     }
     

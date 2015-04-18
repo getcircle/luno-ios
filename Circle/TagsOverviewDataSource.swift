@@ -19,7 +19,7 @@ class TagsOverviewDataSource: NSObject, UICollectionViewDataSource {
     // MARK: - Set Initial Data
     
     func setInitialData(#content: [AnyObject]) {
-        interests = content as Array<Services.Profile.Containers.TagV1>
+        interests = content as! Array<Services.Profile.Containers.TagV1>
         filteredTags = sortAlphabeticallyAndArrangeInSections(interests)
     }
     
@@ -47,7 +47,7 @@ class TagsOverviewDataSource: NSObject, UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(
             TagCollectionViewCell.classReuseIdentifier,
             forIndexPath: indexPath
-        ) as TagCollectionViewCell
+        ) as! TagCollectionViewCell
         
         // Configure the cell
         cell.interestLabel.text = filteredTags[indexPath.section][indexPath.row].name.capitalizedString
@@ -66,7 +66,7 @@ class TagsOverviewDataSource: NSObject, UICollectionViewDataSource {
                 kind, 
                 withReuseIdentifier: ProfileSectionHeaderCollectionReusableView.classReuseIdentifier,
                 forIndexPath: indexPath
-            ) as ProfileSectionHeaderCollectionReusableView
+            ) as! ProfileSectionHeaderCollectionReusableView
             
             var indexPathOfFirstTagInSection = NSIndexPath(forItem: 0, inSection: indexPath.section)
             if let interest = interest(collectionView: collectionView, atIndexPath: indexPathOfFirstTagInSection) {
@@ -81,7 +81,7 @@ class TagsOverviewDataSource: NSObject, UICollectionViewDataSource {
                 kind,
                 withReuseIdentifier: SeparatorDecorationView.classReuseIdentifier,
                 forIndexPath: indexPath
-            ) as SeparatorDecorationView
+            ) as! SeparatorDecorationView
             
             return footerView
         }
@@ -154,7 +154,7 @@ class TagsOverviewDataSource: NSObject, UICollectionViewDataSource {
     
     // MARK: - Helpers
     
-    private func sortAlphabeticallyAndArrangeInSections(interestsArray: Array<Services.Profile.Containers.TagV1>) -> Array<Array<ProfileService.Containers.Tag>> {
+    private func sortAlphabeticallyAndArrangeInSections(interestsArray: Array<Services.Profile.Containers.TagV1>) -> Array<Array<Services.Profile.Containers.TagV1>> {
         let sortedTags = interestsArray.sorted { $0.name.localizedCaseInsensitiveCompare($1.name) == NSComparisonResult.OrderedAscending }
         
         var interestsArrangedByFirstLetter = Array<Array<Services.Profile.Containers.TagV1>>()

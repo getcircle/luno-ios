@@ -55,7 +55,7 @@ class AppreciationDataSource: UnderlyingCollectionViewDataSource {
     override func loadData(completionHandler: (error: NSError?) -> Void) {
         // Add placeholder card to load profile header instantly
         addPlaceholderCard()
-        AppreciationService.Actions.getAppreciation(profile.id, completionHandler: { (appreciation, error) -> Void in
+        Services.Appreciation.Actions.getAppreciation(profile.id, completionHandler: { (appreciation, error) -> Void in
             if let appreciation = appreciation {
                 self.appreciations = appreciation
                 NSNotificationCenter.defaultCenter().postNotificationName(

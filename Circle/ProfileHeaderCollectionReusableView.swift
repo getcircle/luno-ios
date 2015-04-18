@@ -105,9 +105,9 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        if sectionIndicatorView?.frameWidth == 0.0 {
-            sectionIndicatorLeftOffsetConstraint?.constant = segmentedControlButtons[selectedButtonIndex()].frameX
-            sectionIndicatorWidthConstraint?.constant = segmentedControlButtons[selectedButtonIndex()].frameWidth
+        if sectionIndicatorView?.frame.width == 0.0 {
+            sectionIndicatorLeftOffsetConstraint?.constant = segmentedControlButtons[selectedButtonIndex()].frame.origin.x
+            sectionIndicatorWidthConstraint?.constant = segmentedControlButtons[selectedButtonIndex()].frame.width
             adjustSectionIndicator(false)
         }
     }
@@ -119,7 +119,7 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
     }
 
     func setProfile(userProfile: Services.Profile.Containers.ProfileV1) {
-        var hasProfileImageChanged = profile?.image_url != userProfile.image_url
+        var hasProfileImageChanged = profile?.imageUrl != userProfile.imageUrl
         profile = userProfile
         nameLabel.text = userProfile.nameWithNickName()
         nameNavLabel.text = nameLabel.text
@@ -141,7 +141,7 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
         if location == nil {
             location = office
             let officeName = office.address.officeName()
-            let officeStateAndCountry = (office.address.hasRegion ? office.address.region : "") + ", " + office.address.country_code
+            let officeStateAndCountry = (office.address.hasRegion ? office.address.region : "") + ", " + office.address.countryCode
             nameLabel.text = officeName
             nameNavLabel.text = officeName
             titleLabel.text = office.address.officeCurrentDateAndTimeLabel()
@@ -188,7 +188,7 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
         let buttonSegmentOffset: CGFloat = 0.5
         let width: CGFloat = (frame.width - (CGFloat(withSections.count - 1) * buttonSegmentOffset)) / CGFloat(withSections.count)
         buttonContainerWidth = width
-        let buttonContainerSize = CGSizeMake(width, sectionsView.frameHeight)
+        let buttonContainerSize = CGSizeMake(width, sectionsView.frame.height)
         
         var previousButtonContainer: UIView?
         for section in withSections {
@@ -198,7 +198,7 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
             sectionsView.addSubview(buttonContainerView)
             buttonContainerView.autoSetDimensionsToSize(buttonContainerSize)
 
-            let button = UIButton.buttonWithType(.Custom) as UIButton
+            let button = UIButton.buttonWithType(.Custom) as! UIButton
             button.setTitleColor(UIColor.appSegmentedControlTitleNormalColor(), forState: .Normal)
             button.setTitleColor(UIColor.appSegmentedControlTitleSelectedColor(), forState: .Selected)
             button.tintColor = UIColor.appSegmentedControlTitleNormalColor()
@@ -234,8 +234,8 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
         sectionIndicatorView?.backgroundColor = UIColor.appTintColor()
         sectionIndicatorView?.autoSetDimension(.Height, toSize: 1.5)
         sectionIndicatorView?.autoPinEdgeToSuperviewEdge(.Bottom, withInset: 5.0)
-        sectionIndicatorWidthConstraint = sectionIndicatorView?.autoSetDimension(.Width, toSize: segmentedControlButtons[0].frameWidth)
-        sectionIndicatorLeftOffsetConstraint = sectionIndicatorView?.autoPinEdgeToSuperviewEdge(.Left, withInset: segmentedControlButtons[0].frameX)
+        sectionIndicatorWidthConstraint = sectionIndicatorView?.autoSetDimension(.Width, toSize: segmentedControlButtons[0].frame.width)
+        sectionIndicatorLeftOffsetConstraint = sectionIndicatorView?.autoPinEdgeToSuperviewEdge(.Left, withInset: segmentedControlButtons[0].frame.origin.x)
     }
     
     func segmentButtonPressed(sender: AnyObject!) {
@@ -266,19 +266,19 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
 
         // We aren't animating the width of the sectionIndicator if someone taps on the segmented controls
         let currentSelectedButton = segmentedControlButtons[selectedButtonIndex()]
-        var animationOffset = (currentSelectedButton.frameWidth / 2) + currentSelectedButton.frameX - (sectionIndicatorBeginningWidth / 2.0)
+        var animationOffset = (currentSelectedButton.frame.width / 2) + currentSelectedButton.frame.origin.x - (sectionIndicatorBeginningWidth / 2.0)
         if !sectionIndicatorViewIsAnimating {
-            animationOffset = currentSelectedButton.frameX
+            animationOffset = currentSelectedButton.frame.origin.x
         }
         sectionIndicatorLeftOffsetConstraint?.constant = (contentOffset.x / CGFloat(sections!.count)) + animationOffset
         adjustSectionIndicator(true)
     }
     
     func finishMovingSelectionIndicatorView(contentOffset: CGPoint) {
-        let buttonIndexToBeSelected = Int(contentOffset.x/frameWidth)
+        let buttonIndexToBeSelected = Int(contentOffset.x/frame.width)
         if buttonIndexToBeSelected < segmentedControlButtons.count {
-            sectionIndicatorWidthConstraint?.constant = segmentedControlButtons[buttonIndexToBeSelected].frameWidth
-            sectionIndicatorLeftOffsetConstraint?.constant = contentOffset.x / CGFloat(sections!.count) + segmentedControlButtons[buttonIndexToBeSelected].frameX
+            sectionIndicatorWidthConstraint?.constant = segmentedControlButtons[buttonIndexToBeSelected].frame.width
+            sectionIndicatorLeftOffsetConstraint?.constant = contentOffset.x / CGFloat(sections!.count) + segmentedControlButtons[buttonIndexToBeSelected].frame.origin.x
             selectButtonAtIndex(buttonIndexToBeSelected)
         }
         adjustSectionIndicator(true)
@@ -339,7 +339,7 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
         if contentOffset.y > minOffsetToMakeChanges {
             
             // Scale down the image and reduce opacity
-            let profileImageFractionValue = 1.0 - (contentOffset.y - minOffsetToMakeChanges)/profileImage.frameY
+            let profileImageFractionValue = 1.0 - (contentOffset.y - minOffsetToMakeChanges)/profileImage.frame.origin.y
             profileImage.alpha = profileImageFractionValue
             verifiedProfileButton.alpha = profileImageFractionValue
 
@@ -347,13 +347,13 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
                 var transform = CGAffineTransformMakeScale(profileImageFractionValue, profileImageFractionValue)
                 profileImage.transform = transform
                 verifiedProfileButton.transform = transform
-                verifiedProfileButton.center = CGPointMake(profileImage.center.x + (profileImage.frameWidth/2.0), verifiedProfileButton.center.y)
+                verifiedProfileButton.center = CGPointMake(profileImage.center.x + (profileImage.frame.width/2.0), verifiedProfileButton.center.y)
             }
             
             // Reduce opacity of the name and title label at a faster pace
-            let titleLabelAlpha = 1.0 - contentOffset.y/(titleLabel.frameY - 40.0)
-            let nameLabelAlpha = 1.0 - contentOffset.y/(nameLabel.frameY - 40.0)
-            let sectionsAlpha = 1.0 - contentOffset.y/(sectionsView.frameY - 40.0)
+            let titleLabelAlpha = 1.0 - contentOffset.y/(titleLabel.frame.origin.y - 40.0)
+            let nameLabelAlpha = 1.0 - contentOffset.y/(nameLabel.frame.origin.y - 40.0)
+            let sectionsAlpha = 1.0 - contentOffset.y/(sectionsView.frame.origin.y - 40.0)
             titleLabel.alpha = titleLabelAlpha
             nameLabel.alpha = nameLabelAlpha
             daylightIndicatorImage.alpha = titleLabelAlpha
@@ -378,7 +378,7 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
             containerView.alpha = otherViewsAlpha
             profileImage.transform = CGAffineTransformIdentity
             verifiedProfileButton.transform = CGAffineTransformIdentity
-            verifiedProfileButton.center = CGPointMake(profileImage.center.x + (profileImage.frameWidth/2.0), verifiedProfileButton.center.y)
+            verifiedProfileButton.center = CGPointMake(profileImage.center.x + (profileImage.frame.width/2.0), verifiedProfileButton.center.y)
         }
     }
     

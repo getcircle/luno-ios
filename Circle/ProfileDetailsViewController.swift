@@ -46,7 +46,7 @@ class ProfileDetailsViewController:
         profile = withProfile
         detailViews = withDetailViews
         overlaidCollectionView = withOverlaidCollectionView
-        (overlaidCollectionView.dataSource as ProfileOverlaidCollectionViewDataSource).profileHeaderViewDelegate = self
+        (overlaidCollectionView.dataSource as! ProfileOverlaidCollectionViewDataSource).profileHeaderViewDelegate = self
         if showLogOutButton {
             addLogOutButton()
         }
@@ -370,7 +370,7 @@ class ProfileDetailsViewController:
             }
             else {
                 profileHeaderView()?.updateTitle(
-                    NSString(format: NSLocalizedString("Notes (%d)", comment: "Title of the Notes section with # of notes. E.g., Notes (5)"), dataSource.notes.count),
+                    NSString(format: NSLocalizedString("Notes (%d)", comment: "Title of the Notes section with # of notes. E.g., Notes (5)"), dataSource.notes.count) as String,
                     forSegmentAtIndex: 1
                 )
             }
@@ -438,7 +438,7 @@ class ProfileDetailsViewController:
             
         case .Phone:
             if let number = profile.getCellPhone() as String? {
-                if let phoneURL = NSURL(string: NSString(format: "tel://%@", number.removePhoneNumberFormatting())) {
+                if let phoneURL = NSURL(string: NSString(format: "tel://%@", number.removePhoneNumberFormatting()) as String) {
                     UIApplication.sharedApplication().openURL(phoneURL)
                 }
             }
@@ -470,7 +470,7 @@ class ProfileDetailsViewController:
         let profileInfoCollectionView = detailViews[0]
         if let dataSource = profileInfoCollectionView.dataSource as? ProfileDetailDataSource {
             let officeDetailVC = OfficeDetailViewController()
-            (officeDetailVC.dataSource as OfficeDetailDataSource).selectedOffice = dataSource.location
+            (officeDetailVC.dataSource as! OfficeDetailDataSource).selectedOffice = dataSource.location
             officeDetailVC.hidesBottomBarWhenPushed = false
             navigationController?.pushViewController(officeDetailVC, animated: true)
         }
@@ -480,7 +480,7 @@ class ProfileDetailsViewController:
         let profileInfoCollectionView = detailViews[0]
         if let dataSource = profileInfoCollectionView.dataSource as? ProfileDetailDataSource {
             let teamVC = TeamDetailViewController()
-            (teamVC.dataSource as TeamDetailDataSource).selectedTeam = dataSource.team!
+            (teamVC.dataSource as! TeamDetailDataSource).selectedTeam = dataSource.team!
             teamVC.hidesBottomBarWhenPushed = false
             navigationController?.pushViewController(teamVC, animated: true)
         }
@@ -537,7 +537,7 @@ class ProfileDetailsViewController:
     
     // Class Methods
     
-    class func forProfile(
+    static func forProfile(
         profile: Services.Profile.Containers.ProfileV1,
         showLogOutButton: Bool = false,
         showCloseButton: Bool = false,

@@ -29,8 +29,8 @@ class OverviewViewController:
     private var minimumResultsForFilter = 15
     private var isFilterView = false
     
-    override init() {
-        super.init()
+    init() {
+        super.init(nibName: nil, bundle: nil)
         customInit()
     }
 
@@ -123,7 +123,7 @@ class OverviewViewController:
         collectionView.setTranslatesAutoresizingMaskIntoConstraints(false)
         collectionView.dataSource = dataSource
         collectionView.delegate = delegate
-        (collectionView.delegate as CardCollectionViewDelegate).delegate = self
+        (collectionView.delegate as! CardCollectionViewDelegate).delegate = self
         collectionView.bounces = true
         collectionView.alwaysBounceVertical = true
         

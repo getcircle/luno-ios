@@ -19,7 +19,7 @@ class CenterAlignFlowLayout: UICollectionViewFlowLayout {
     }
     
     override func layoutAttributesForElementsInRect(rect: CGRect) -> [AnyObject]? {
-        let currentAttributes = super.layoutAttributesForElementsInRect(rect) as [UICollectionViewLayoutAttributes]
+        let currentAttributes = super.layoutAttributesForElementsInRect(rect) as! [UICollectionViewLayoutAttributes]
         
         // Collect item attributes by row
         var itemAttributesByRow = [CGFloat: [UICollectionViewLayoutAttributes]]()
@@ -41,7 +41,7 @@ class CenterAlignFlowLayout: UICollectionViewFlowLayout {
                 $0 + CGRectGetWidth(($1 as UICollectionViewLayoutAttributes).frame)
             }
             
-            let startingX = (collectionView!.frameWidth - totalSpacing - totalItemWidths) / 2.0
+            let startingX = (collectionView!.frame.width - totalSpacing - totalItemWidths) / 2.0
             var previousFrame = CGRectZero
             for itemAttributes in perRowItemsAttributes {
                 

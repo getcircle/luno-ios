@@ -29,7 +29,7 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
         var tabBarViewControllers = [UIViewController]()
 
         // Home Tab
-        let searchViewController = self.storyboard?.instantiateViewControllerWithIdentifier("SearchViewController") as SearchViewController
+        let searchViewController = self.storyboard?.instantiateViewControllerWithIdentifier("SearchViewController") as! SearchViewController
         let searchNavigationController = UINavigationController(rootViewController: searchViewController)
         let homeTabImage = UIImage(named: "Home")?.imageWithRenderingMode(.AlwaysTemplate)
         searchNavigationController.tabBarItem = UITabBarItem(
@@ -106,7 +106,7 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
         
         trackTabSelected(viewController)
         if selectedIndex == 0 && getActiveViewController(viewController) is SearchViewController {
-            let searchVC = getActiveViewController(viewController) as SearchViewController
+            let searchVC = getActiveViewController(viewController) as! SearchViewController
             if searchVC.isViewLoaded() && searchVC.view.window != nil {
                 searchVC.activateSearch(false)
             }

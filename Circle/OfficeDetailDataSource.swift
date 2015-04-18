@@ -38,7 +38,7 @@ class OfficeDetailDataSource: CardDataSource {
         var storedError: NSError!
         var actionsGroup = dispatch_group_create()
         dispatch_group_enter(actionsGroup)
-        OrganizationService.Actions.getTeams(locationId: self.selectedOffice.id) { (teams, nextRequest, error) -> Void in
+        Services.Organization.Actions.getTeams(locationId: self.selectedOffice.id) { (teams, nextRequest, error) -> Void in
             if let teams = teams {
                 self.teams.extend(teams)
                 self.nextTeamsRequest = nextRequest
@@ -49,7 +49,7 @@ class OfficeDetailDataSource: CardDataSource {
             dispatch_group_leave(actionsGroup)
         }
         dispatch_group_enter(actionsGroup)
-        ProfileService.Actions.getProfiles(locationId: self.selectedOffice.id) { (profiles, nextRequest, error) -> Void in
+        Services.Profile.Actions.getProfiles(locationId: self.selectedOffice.id) { (profiles, nextRequest, error) -> Void in
             if let profiles = profiles {
                 self.profiles.extend(profiles)
                 self.nextProfilesRequest = nextRequest
@@ -85,7 +85,7 @@ class OfficeDetailDataSource: CardDataSource {
     func typeOfContent(indexPath: NSIndexPath) -> ContentType {
         let card = cards[indexPath.section]
         if let rowDataDictionary = card.content[indexPath.row] as? [String: AnyObject] {
-            return ContentType(rawValue: (rowDataDictionary["type"] as Int!))!
+            return ContentType(rawValue: (rowDataDictionary["type"] as! Int!))!
         }
         
         
@@ -107,7 +107,7 @@ class OfficeDetailDataSource: CardDataSource {
         let image = ItemImage.genericNextImage
         var content: [String: AnyObject] = [
             "name": AppStrings.CardTitlePeople,
-            "value": String(nextProfilesRequest?.getFirstSoa.PaginatorV1().count ?? 0),
+            "value": String(nextProfilesRequest?.getPaginator().count ?? 0),
             "image": image.name,
             "imageTintColor": image.tint,
             "type": ContentType.PeopleCount.rawValue
@@ -125,7 +125,7 @@ class OfficeDetailDataSource: CardDataSource {
             let teamsCard = Card(
                 cardType: .TeamsGrid,
                 title: AppStrings.CardTitleOfficeTeam,
-                contentCount: nextTeamsRequest?.getFirstSoa.PaginatorV1().countAsInt() ?? 0
+                contentCount: nextTeamsRequest?.getPaginator().countAsInt() ?? 0
             )
             teamsCard.addContent(content: teams as [AnyObject], maxVisibleItems: 6)
             teamsCard.sectionInset = UIEdgeInsetsZero

@@ -88,11 +88,11 @@ class SettingsViewController: UIViewController, UICollectionViewDelegate, MFMail
             var message = "\n\n\n\n\n"
             message += "------------------"
             message += "\n"
-            message += NSString(format:"Version: %@ (%@)", NSBundle.appVersion(), NSBundle.appBuild())
+            message += NSString(format:"Version: %@ (%@)", NSBundle.appVersion(), NSBundle.appBuild()) as String
             message += "\n"
-            message += NSString(format:"OS Version: %@ (%@)", UIDevice.currentDevice().systemName, UIDevice.currentDevice().systemVersion)
+            message += NSString(format:"OS Version: %@ (%@)", UIDevice.currentDevice().systemName, UIDevice.currentDevice().systemVersion) as String
             message += "\n"
-            message += NSString(format:"Device: %@", UIDevice.currentDevice().modelName)
+            message += NSString(format:"Device: %@", UIDevice.currentDevice().modelName) as String
             
             presentMailViewController(
                 ["Circle Feedback<feedback@circlehq.co>"],
@@ -159,7 +159,7 @@ class SettingsViewController: UIViewController, UICollectionViewDelegate, MFMail
                     }
                     
                     if !enable {
-                        UserService.Actions.deleteIdentity(identity) { (error) -> Void in
+                        Services.User.Actions.deleteIdentity(identity) { (error) -> Void in
                             if error != nil {
                                 println("error deleting user identity: \(error)")
                             } else {
@@ -168,7 +168,7 @@ class SettingsViewController: UIViewController, UICollectionViewDelegate, MFMail
                                         AuthViewController.logOut(shouldDisconnect: true)
                                     }
                                 } else {
-                                    UserService.Actions.getIdentities(AuthViewController.getLoggedInUser()!.id) { (identities, error) -> Void in
+                                    Services.User.Actions.getIdentities(AuthViewController.getLoggedInUser()!.id) { (identities, error) -> Void in
                                         if let identities = identities {
                                             AuthViewController.updateIdentities(identities)
                                         }

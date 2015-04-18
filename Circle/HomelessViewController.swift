@@ -86,14 +86,14 @@ class HomelessViewController: UIViewController {
     // MARK: - IBActions
     
     @IBAction func requestAccessButtonTapped() {
-        UserService.Actions.requestAccess { (access_request, error) -> Void in
-            if access_request != nil {
+        Services.User.Actions.requestAccess { (accessRequest, error) -> Void in
+            if accessRequest != nil {
                 UIView.animateWithDuration(0.3, animations: { () -> Void in
                     self.requestAccessButton.alpha = 0.0
                     self.confirmationLabel.alpha = 1.0
                 })
                 
-                NSUserDefaults.standardUserDefaults().setObject(access_request!.userId, forKey: "requested_access_to_app")
+                NSUserDefaults.standardUserDefaults().setObject(accessRequest!.userId, forKey: "requested_access_to_app")
                 NSUserDefaults.standardUserDefaults().synchronize()
             } else {
                 println("Error requesting access: \(error)")

@@ -61,7 +61,7 @@ class ObjectStore {
         let paginatorBuilder = Soa.PaginatorV1.builder()
         paginatorBuilder.pageSize = 5000
         
-        ProfileService.Actions.getProfiles(
+        Services.Profile.Actions.getProfiles(
             organizationId: profile.organizationId,
             paginatorBuilder: paginatorBuilder
             ) { (profiles, _, error) -> Void in
@@ -70,33 +70,33 @@ class ObjectStore {
         }
         
         // Get and categorize tags
-        ProfileService.Actions.getTags(profile.organizationId, tagType: nil) { (tags, error) -> Void in
-            objects.interests = tags?.filter { $0.type == .Interest }
-            objects.skills = tags?.filter { $0.type == .Skill }
+        Services.Profile.Actions.getTags(profile.organizationId, tagType: nil) { (tags, error) -> Void in
+            objects.interests = tags?.filter { $0.tagType == .Interest }
+            objects.skills = tags?.filter { $0.tagType == .Skill }
             self.update(objects)
         }
-        ProfileService.Actions.getActiveTags(
+        Services.Profile.Actions.getActiveTags(
             profile.organizationId,
             tagType: nil,
             paginatorBuilder: paginatorBuilder,
             completionHandler: { (tags, error) -> Void in
-                objects.activeInterests = tags?.filter { $0.type == .Interest }
-                objects.activeSkills = tags?.filter { $0.type == .Skill }
+                objects.activeInterests = tags?.filter { $0.tagType == .Interest }
+                objects.activeSkills = tags?.filter { $0.tagType == .Skill }
                 self.update(objects)
             }
         )
         
-        OrganizationService.Actions.getAddresses(profile.organizationId) { (addresses, error) -> Void in
+        Services.Organization.Actions.getAddresses(profile.organizationId) { (addresses, error) -> Void in
             objects.addresses = addresses
             self.update(objects)
         }
         
-        OrganizationService.Actions.getTeams(profile.organizationId, paginatorBuilder: paginatorBuilder) { (teams, _, error) -> Void in
+        Services.Organization.Actions.getTeams(profile.organizationId, paginatorBuilder: paginatorBuilder) { (teams, _, error) -> Void in
             objects.teams = teams
             self.update(objects)
         }
         
-        OrganizationService.Actions.getLocations(profile.organizationId) { (locations, error) -> Void in
+        Services.Organization.Actions.getLocations(profile.organizationId) { (locations, error) -> Void in
             objects.locations = locations
             self.update(objects)
         }
@@ -106,49 +106,49 @@ class ObjectStore {
         if let containers = objects.profiles {
             var cache = profiles as [String: GeneratedMessage]
             updateCache(&cache, containers: (containers as [GeneratedMessage]))
-            profiles = cache as [String: Services.Profile.Containers.ProfileV1]
+            profiles = cache as! [String: Services.Profile.Containers.ProfileV1]
         }
         
         if let containers = objects.teams {
             var cache = teams as [String: GeneratedMessage]
             updateCache(&cache, containers: containers as [GeneratedMessage])
-            teams = cache as [String: Services.Organization.Containers.TeamV1]
+            teams = cache as! [String: Services.Organization.Containers.TeamV1]
         }
         
         if let containers = objects.addresses {
             var cache = addresses as [String: GeneratedMessage]
             updateCache(&cache, containers: containers)
-            addresses = cache as [String: Services.Organization.Containers.AddressV1]
+            addresses = cache as! [String: Services.Organization.Containers.AddressV1]
         }
         
         if let containers = objects.locations {
             var cache = locations as [String: GeneratedMessage]
             updateCache(&cache, containers: containers)
-            locations = cache as [String: Services.Organization.Containers.LocationV1]
+            locations = cache as! [String: Services.Organization.Containers.LocationV1]
         }
         
         if let containers = objects.interests {
             var cache = interests as [String: GeneratedMessage]
             updateCache(&cache, containers: containers)
-            interests = cache as [String: Services.Profile.Containers.TagV1]
+            interests = cache as! [String: Services.Profile.Containers.TagV1]
         }
         
         if let containers = objects.skills {
             var cache = skills as [String: GeneratedMessage]
             updateCache(&cache, containers: containers)
-            skills = cache as [String: Services.Profile.Containers.TagV1]
+            skills = cache as! [String: Services.Profile.Containers.TagV1]
         }
         
         if let containers = objects.activeInterests {
             var cache = activeInterests as [String: GeneratedMessage]
             updateCache(&cache, containers: containers)
-            activeInterests = cache as [String: Services.Profile.Containers.TagV1]
+            activeInterests = cache as! [String: Services.Profile.Containers.TagV1]
         }
         
         if let containers = objects.activeSkills {
             var cache = activeSkills as [String: GeneratedMessage]
             updateCache(&cache, containers: containers)
-            activeSkills = cache as [String: Services.Profile.Containers.TagV1]
+            activeSkills = cache as! [String: Services.Profile.Containers.TagV1]
         }
     }
     
@@ -198,7 +198,7 @@ class ObjectStore {
         locations.removeAll(keepCapacity: false)
     }
     
-    func getProfilesForAttribute(attribute: SearchService.Attribute, value: AnyObject) -> Array<Services.Profile.Containers.ProfileV1> {
+    func getProfilesForAttribute(attribute: Services.Search.Containers.Search.AttributeV1, value: AnyObject) -> Array<Services.Profile.Containers.ProfileV1> {
         return ObjectStore.sharedInstance.profiles.values.array.filter {
             switch attribute {
             case .LocationId:

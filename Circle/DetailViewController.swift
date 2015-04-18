@@ -74,7 +74,7 @@ class DetailViewController: BaseDetailViewController, UICollectionViewDelegate {
         background color, registers the header, sets the collection view delegate.
     
         Subclasses must override this to actually set the data source and the delegate. So, 
-        any custom implmentation should preceed the superclass function call.
+        any custom implmentation should preceed the superstatic function call.
     */
     func configureCollectionView() {
         assert(dataSource != nil, { () -> String in
@@ -85,7 +85,7 @@ class DetailViewController: BaseDetailViewController, UICollectionViewDelegate {
         collectionView.showsVerticalScrollIndicator = true
         collectionView.bounces = true
         collectionView.alwaysBounceVertical = true
-        (collectionView.delegate as CardCollectionViewDelegate).delegate = self
+        (collectionView.delegate as! CardCollectionViewDelegate).delegate = self
     }
     
     private func configureActivityIndicator() {

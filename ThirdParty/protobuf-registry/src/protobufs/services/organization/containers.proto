@@ -59,6 +59,7 @@ message TeamV1 {
     repeated PathPartV1 path = 6;
     optional string department = 7;
     optional uint32 profile_count = 8;
+    optional ColorV1 color = 9;
 }
 
 message TeamDescendantsV1 {

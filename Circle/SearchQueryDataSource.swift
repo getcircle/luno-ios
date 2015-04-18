@@ -25,7 +25,7 @@ class SearchQueryDataSource: CardDataSource {
     
     override func filter(string: String, completionHandler: (error: NSError?) -> Void) {
         searchTerm = string
-        SearchService.Actions.search(string, completionHandler: { (results, error) -> Void in
+        Services.Search.Actions.search(string, completionHandler: { (results, error) -> Void in
             if let results = results {
                 if let profiles = results.profiles {
                     self.visibleProfiles = profiles
@@ -135,7 +135,7 @@ class SearchQueryDataSource: CardDataSource {
     
     override func configureCell(cell: CircleCollectionViewCell, atIndexPath indexPath: NSIndexPath) {
         if cell is TeamGridItemCollectionViewCell {
-            (cell as TeamGridItemCollectionViewCell).sizeMode = .Compact
+            (cell as! TeamGridItemCollectionViewCell).sizeMode = .Compact
         } else if cell is ProfileCollectionViewCell {
             cell.backgroundColor = UIColor.clearColor()
         } else if cell is StatTileCollectionViewCell {

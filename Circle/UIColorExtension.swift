@@ -23,91 +23,91 @@ extension UIColor {
         self.init(red: newRed, green: newGreen, blue: newBlue, alpha: CGFloat(1.0))
     }
     
-    class func appTintColor() -> UIColor {
+    static func appTintColor() -> UIColor {
         return UIColor(red: 0, green: 201, blue: 255)
     }
     
-    class func appUIBackgroundColor() -> UIColor {
+    static func appUIBackgroundColor() -> UIColor {
         return UIColor(red: 47, green: 55, blue: 62)
     }
     
-    class func appDefaultLightTextColor() -> UIColor {
+    static func appDefaultLightTextColor() -> UIColor {
         return UIColor.whiteColor()
     }
     
-    class func appDefaultDarkTextColor() -> UIColor {
+    static func appDefaultDarkTextColor() -> UIColor {
         return UIColor(red: 38, green: 38, blue: 38)
     }
     
-    class func appPrimaryTextColor() -> UIColor {
+    static func appPrimaryTextColor() -> UIColor {
         return UIColor(red: 48, green: 48, blue: 48)
     }
 
-    class func appSecondaryTextColor() -> UIColor {
+    static func appSecondaryTextColor() -> UIColor {
         return UIColor(red: 112, green: 112, blue: 112)
     }
 
-    class func appNavigationBarBarTintColor() -> UIColor {
+    static func appNavigationBarBarTintColor() -> UIColor {
         return UIColor.appUIBackgroundColor()
     }
 
-    class func appNavigationBarTintColor() -> UIColor {
+    static func appNavigationBarTintColor() -> UIColor {
         return UIColor.whiteColor()
     }
     
-    class func appNavigationBarTitleColor() -> UIColor {
+    static func appNavigationBarTitleColor() -> UIColor {
         return UIColor.whiteColor()
     }
 
-    class func appTabBarBarTintColor() -> UIColor {
+    static func appTabBarBarTintColor() -> UIColor {
         return UIColor.appUIBackgroundColor()
     }
     
-    class func appSeparatorViewColor() -> UIColor {
+    static func appSeparatorViewColor() -> UIColor {
         return UIColor(red: 222, green: 222, blue: 222)
     }
     
-    class func appViewBackgroundColor() -> UIColor {
+    static func appViewBackgroundColor() -> UIColor {
         return UIColor(red: 240, green: 240, blue: 240)
     }
     
-    class func appLinkedinConnectCTABackgroundColor() -> UIColor {
+    static func appLinkedinConnectCTABackgroundColor() -> UIColor {
         return UIColor(red: 36, green: 104, blue: 167)
     }
 
-    class func appKeyValueNextImageTintColor() -> UIColor {
+    static func appKeyValueNextImageTintColor() -> UIColor {
         return UIColor(red: 150, green: 150, blue: 150)
     }
     
-    class func appSearchTextFieldBackground() -> UIColor {
+    static func appSearchTextFieldBackground() -> UIColor {
         return UIColor(red: 220, green: 220, blue: 220)
     }
     
-    class func appTagNormalBackgroundColor() -> UIColor {
+    static func appTagNormalBackgroundColor() -> UIColor {
         return UIColor.whiteColor()
     }
     
-    class func appTagSelectedBackgroundColor() -> UIColor {
+    static func appTagSelectedBackgroundColor() -> UIColor {
         return UIColor.appUIBackgroundColor()
     }
 
-    class func appTagNormalBorderColor() -> UIColor {
+    static func appTagNormalBorderColor() -> UIColor {
         return UIColor(red: 212, green: 212, blue: 212)
     }
     
-    class func appTagSelectedBorderColor() -> UIColor {
+    static func appTagSelectedBorderColor() -> UIColor {
         return UIColor.whiteColor()
     }
     
-    class func appActionSheetControlsTintColor() -> UIColor {
+    static func appActionSheetControlsTintColor() -> UIColor {
         return UIColor(red: 85, green: 85, blue: 94)
     }
     
-    class func appControlHighlightedColor() -> UIColor {
+    static func appControlHighlightedColor() -> UIColor {
         return UIColor(red: 206, green: 206, blue: 206).colorWithAlphaComponent(0.5)
     }
     
-    class func appTeamHeaderBackgroundColor(team: Services.Organization.Containers.TeamV1) -> UIColor {
+    static func appTeamHeaderBackgroundColor(team: Services.Organization.Containers.TeamV1) -> UIColor {
         if let color = TeamColorsHolder.colors[team.id] {
             return color
         } else if team.hasColor {
@@ -153,7 +153,7 @@ extension UIColor {
         }
     }
     
-    class func appProfileImageBackgroundColor(randomNumber withRandomNumber: Int? = 0) -> UIColor {
+    static func appProfileImageBackgroundColor(randomNumber withRandomNumber: Int? = 0) -> UIColor {
         let palette = [
             UIColor(red: 30, green: 146, blue: 57),
             UIColor(red: 14, green: 99, blue: 177),
@@ -167,105 +167,105 @@ extension UIColor {
         return palette[Int(arc4random_uniform(UInt32(randomNumber!)))]
     }
     
-    class func appDetailViewBorderColor() -> UIColor {
+    static func appDetailViewBorderColor() -> UIColor {
         return UIColor.blackColor().colorWithAlphaComponent(0.8)
     }
     
-    class func appActionButtonTintColor() -> UIColor {
+    static func appActionButtonTintColor() -> UIColor {
         return UIColor(red: 0, green: 128, blue: 189)
     }
     
-    class func appActivityIndicatorViewColor() -> UIColor {
+    static func appActivityIndicatorViewColor() -> UIColor {
         return UIColor(red: 51, green: 51, blue: 51)
     }
     
-    class func appQuickActionsDarkTintColor() -> UIColor {
+    static func appQuickActionsDarkTintColor() -> UIColor {
         return UIColor(red: 102, green: 102, blue: 102)
     }
     
-    class func appButtonHighlightColor() -> UIColor {
+    static func appButtonHighlightColor() -> UIColor {
         return UIColor(red: 215, green: 215, blue: 215)
     }
     
-    class func appProfileImageBorderColor() -> UIColor {
+    static func appProfileImageBorderColor() -> UIColor {
         return UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.3)
     }
     
-    class func appSegmentedControlTitleNormalColor() -> UIColor {
+    static func appSegmentedControlTitleNormalColor() -> UIColor {
         return UIColor.whiteColor().colorWithAlphaComponent(0.8)
     }
 
-    class func appSegmentedControlTitleSelectedColor() -> UIColor {
+    static func appSegmentedControlTitleSelectedColor() -> UIColor {
         return UIColor.whiteColor()
     }
     
-    class func appAttributeTitleLabelColor() -> UIColor {
+    static func appAttributeTitleLabelColor() -> UIColor {
         return UIColor(red: 119, green: 119, blue: 119)
     }
 
-    class func appAttributeValueLabelColor() -> UIColor {
+    static func appAttributeValueLabelColor() -> UIColor {
         return UIColor(red: 48, green: 48, blue: 48)
     }
     
-    class func appQuickActionsTintColor() -> UIColor {
+    static func appQuickActionsTintColor() -> UIColor {
         return UIColor(red: 119, green: 119, blue: 119)
     }
     
-    class func appCTABackgroundColor() -> UIColor {
+    static func appCTABackgroundColor() -> UIColor {
         return UIColor(red: 48, green: 48, blue: 48)
     }
     
-    class func appCTATextColor() -> UIColor {
+    static func appCTATextColor() -> UIColor {
         return UIColor.whiteColor()
     }
     
-    class func appWorkAnniversaryBannerBackground() -> UIColor {
+    static func appWorkAnniversaryBannerBackground() -> UIColor {
         return UIColor(red: 0, green: 212, blue: 143)
     }
     
-    class func appWorkAnniversaryBannerCTABackground() -> UIColor {
+    static func appWorkAnniversaryBannerCTABackground() -> UIColor {
         return UIColor(red: 0, green: 169, blue: 115)
     }
 
-    class func appBirthdayBannerBackground() -> UIColor {
+    static func appBirthdayBannerBackground() -> UIColor {
         return UIColor(red: 0, green: 172, blue: 203)
     }
     
-    class func appBirthdayBannerCTABackground() -> UIColor {
+    static func appBirthdayBannerCTABackground() -> UIColor {
         return UIColor(red: 0, green: 137, blue: 163)
     }
 
-    class func appNewHireBannerBackground() -> UIColor {
+    static func appNewHireBannerBackground() -> UIColor {
         return UIColor(red: 0, green: 172, blue: 203)
     }
     
-    class func appNewHireBannerCTABackground() -> UIColor {
+    static func appNewHireBannerCTABackground() -> UIColor {
         return UIColor(red: 0, green: 137, blue: 163)
     }
 
     // MARK: - Social
     
-    class func twitterColor() -> UIColor {
+    static func twitterColor() -> UIColor {
         return UIColor(red: 85, green: 172, blue: 238)
     }
     
-    class func facebookColor() -> UIColor {
+    static func facebookColor() -> UIColor {
         return UIColor(red: 45, green: 68, blue: 134)
     }
     
-    class func pinterestColor() -> UIColor {
+    static func pinterestColor() -> UIColor {
         return UIColor(red: 197, green: 34, blue: 34)
     }
     
-    class func googlePlusColor() -> UIColor {
+    static func googlePlusColor() -> UIColor {
         return UIColor(red: 211, green: 53, blue: 44)
     }
     
-    class func linkedinColor() -> UIColor {
+    static func linkedinColor() -> UIColor {
         return UIColor(red: 30, green: 136, blue: 190)
     }
     
-    class func githubColor() -> UIColor {
+    static func githubColor() -> UIColor {
         return UIColor(red: 83, green: 83, blue: 83)
     }
 }

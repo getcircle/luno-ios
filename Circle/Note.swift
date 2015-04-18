@@ -16,7 +16,7 @@ typealias GetNotesCompletionHandler = (notes: Array<Services.Note.Containers.Not
 
 extension Services.Note.Actions {
 
-    class func createNote(note: Services.Note.Containers.NoteV1, completionHandler: CreateNoteCompletionHandler?) {
+    static func createNote(note: Services.Note.Containers.NoteV1, completionHandler: CreateNoteCompletionHandler?) {
         let requestBuilder = Services.Note.Actions.CreateNote.RequestV1.builder()
         requestBuilder.note = note
         let client = ServiceClient(serviceName: "note")
@@ -32,7 +32,7 @@ extension Services.Note.Actions {
         }
     }
 
-    class func deleteNote(note: Services.Note.Containers.NoteV1, completionHandler: DeleteNoteCompletionHandler?) {
+    static func deleteNote(note: Services.Note.Containers.NoteV1, completionHandler: DeleteNoteCompletionHandler?) {
         let requestBuilder = Services.Note.Actions.DeleteNote.RequestV1.builder()
         requestBuilder.note = note
         let client = ServiceClient(serviceName: "note")
@@ -46,7 +46,7 @@ extension Services.Note.Actions {
         }
     }
 
-    class func updateNote(note: Services.Note.Containers.NoteV1, completionHandler: UpdateNoteCompletionHandler?) {
+    static func updateNote(note: Services.Note.Containers.NoteV1, completionHandler: UpdateNoteCompletionHandler?) {
         let requestBuilder = Services.Note.Actions.UpdateNote.RequestV1.builder()
         requestBuilder.note = note
         let client = ServiceClient(serviceName: "note")
@@ -62,10 +62,10 @@ extension Services.Note.Actions {
         }
     }
 
-    class func getNotes(forProfileId: String, completionHandler: GetNotesCompletionHandler?) {
+    static func getNotes(forProfileId: String, completionHandler: GetNotesCompletionHandler?) {
         let requestBuilder = Services.Note.Actions.GetNotes.RequestV1.builder()
-        requestBuilder.for_profileId = forProfileId
-        requestBuilder.owner_profileId = AuthViewController.getLoggedInUserProfile()!.id
+        requestBuilder.forProfileId = forProfileId
+        requestBuilder.ownerProfileId = AuthViewController.getLoggedInUserProfile()!.id
         let client = ServiceClient(serviceName: "note")
         client.callAction(
             "get_notes",

@@ -44,7 +44,7 @@ class SpringFlowLayout: UICollectionViewFlowLayout {
         interfaceOrientation = statusBarOrientation
         // Overflow the actual rect slightly to avoid flickering
         let visibleRect = CGRectInset(collectionView!.bounds, -100, -100)
-        let itemsInVisibleRect = super.layoutAttributesForElementsInRect(visibleRect) as [UICollectionViewLayoutAttributes]
+        let itemsInVisibleRect = super.layoutAttributesForElementsInRect(visibleRect) as! [UICollectionViewLayoutAttributes]
         let itemsIndexPathsInVisibleRect = NSSet(array: itemsInVisibleRect.map { item in item.indexPath })
         
         // Step 1: Remove any behaviors that are no longer visible
@@ -53,7 +53,7 @@ class SpringFlowLayout: UICollectionViewFlowLayout {
                 return !itemsIndexPathsInVisibleRect.containsObject(firstItem.indexPath)
             }
             return true
-        } as [UIAttachmentBehavior]
+        } as! [UIAttachmentBehavior]
         
         for behavior in noLongerVisibleBehaviors {
             dynamicAnimator?.removeBehavior(behavior)
@@ -145,12 +145,12 @@ class SpringFlowLayout: UICollectionViewFlowLayout {
             
             let touchPoint = getTouchPoint()
             
-            for springBehavior in dynamicAnimator?.behaviors as [UIAttachmentBehavior] {
+            for springBehavior in dynamicAnimator?.behaviors as! [UIAttachmentBehavior] {
                 if scrollDirection == .Vertical {
                     let distanceFromTouch = getDistanceAsNumber(touchPoint.y, second: springBehavior.anchorPoint.y)
                     
                     let scrollResistance = CGFloat(distanceFromTouch) / scrollResistanceFactor
-                    let attributes = springBehavior.items.first as UICollectionViewLayoutAttributes
+                    let attributes = springBehavior.items.first as! UICollectionViewLayoutAttributes
                     var center = attributes.center
                     if delta < 0 {
                         center.y += max(delta, delta * scrollResistance)
@@ -163,7 +163,7 @@ class SpringFlowLayout: UICollectionViewFlowLayout {
                     let distanceFromTouch = getDistanceAsNumber(touchPoint.x, second: springBehavior.anchorPoint.x)
                     
                     let scrollResistance = CGFloat(distanceFromTouch) / scrollResistanceFactor
-                    let attributes = springBehavior.items.first as UICollectionViewLayoutAttributes
+                    let attributes = springBehavior.items.first as! UICollectionViewLayoutAttributes
                     var center = attributes.center
                     if delta < 0 {
                         center.x += max(delta, delta * scrollResistance)
@@ -181,13 +181,13 @@ class SpringFlowLayout: UICollectionViewFlowLayout {
     override func prepareForCollectionViewUpdates(updateItems: [AnyObject]!) {
         super.prepareForCollectionViewUpdates(updateItems)
         
-        for item in updateItems as [UICollectionViewUpdateItem] {
+        for item in updateItems as! [UICollectionViewUpdateItem] {
             if item.updateAction == .Insert {
-                if (dynamicAnimator?.layoutAttributesForCellAtIndexPath(item.indexPathAfterUpdate) != nil) {
+                if (dynamicAnimator?.layoutAttributesForCellAtIndexPath(item.indexPathAfterUpdate!) != nil) {
                     return
                 }
                 
-                let attributes = UICollectionViewLayoutAttributes(forCellWithIndexPath: item.indexPathAfterUpdate)
+                let attributes = UICollectionViewLayoutAttributes(forCellWithIndexPath: item.indexPathAfterUpdate!)
                 let springBehavior = UIAttachmentBehavior(item: attributes, attachedToAnchor: attributes.center)
                 
                 springBehavior.length = 1.0

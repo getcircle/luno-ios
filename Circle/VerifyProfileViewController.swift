@@ -68,7 +68,7 @@ class VerifyProfileViewController:
     
     private func populateData() {
         profile = AuthViewController.getLoggedInUserProfile()
-        profileImageView.setImageWithProfileImageURL(profile.image_url)
+        profileImageView.setImageWithProfileImageURL(profile.imageUrl)
     }
     
     // MARK: - IBActions
@@ -156,7 +156,7 @@ class VerifyProfileViewController:
     private func updateProfile(completion: () -> Void) {
         let builder = profile.toBuilder()
         builder.verified = true
-        ProfileService.Actions.updateProfile(builder.build()) { (profile, error) -> Void in
+        Services.Profile.Actions.updateProfile(builder.build()) { (profile, error) -> Void in
             if let profile = profile {
                 AuthViewController.updateUserProfile(profile)
                 self.profile = profile
@@ -167,10 +167,10 @@ class VerifyProfileViewController:
     
     private func handleImageUpload(completion: () -> Void) {
         if didUploadPhoto {
-            MediaService.Actions.uploadProfileImage(profile.id, image: profileImageView.image!) { (mediaURL, error) -> Void in
+            Services.Media.Actions.uploadProfileImage(profile.id, image: profileImageView.image!) { (mediaURL, error) -> Void in
                 if let mediaURL = mediaURL {
                     let profileBuilder = self.profile.toBuilder()
-                    profileBuilder.image_url = mediaURL
+                    profileBuilder.imageUrl = mediaURL
                     self.profile = profileBuilder.build()
                     self.updateProfile(completion)
                 }

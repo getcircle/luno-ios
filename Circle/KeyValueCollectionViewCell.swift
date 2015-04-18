@@ -40,14 +40,14 @@ class KeyValueCollectionViewCell: CircleCollectionViewCell {
 
     override func setData(data: AnyObject) {
         if let keyValueDictionary = data as? [String: AnyObject] {
-            nameLabel.text = (keyValueDictionary["name"] as String!).uppercaseString
-            valueLabel.text = keyValueDictionary["value"] as String!
+            nameLabel.text = (keyValueDictionary["name"] as! String!).uppercaseString
+            valueLabel.text = keyValueDictionary["value"] as! String!
             
-            if let imageSource = keyValueDictionary["image"] as String? {
+            if let imageSource = keyValueDictionary["image"] as! String? {
                 nameImageView.alpha = 1.0
                 nameImageView.image = UIImage(named: imageSource)?.imageWithRenderingMode(.AlwaysTemplate)
-                nameImageView.tintColor = keyValueDictionary["imageTintColor"] as UIColor!
-                if let imageSizeValue = keyValueDictionary["imageSize"] as NSValue? {
+                nameImageView.tintColor = keyValueDictionary["imageTintColor"] as! UIColor!
+                if let imageSizeValue = keyValueDictionary["imageSize"] as! NSValue? {
                     nameImageViewWidthConstraint.constant = imageSizeValue.CGSizeValue().width
                 }
                 else {

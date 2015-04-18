@@ -45,7 +45,7 @@ class ProfileDetailDataSource: CardDataSource {
         )
         placeholderCard.sectionInset = UIEdgeInsetsZero
         appendCard(placeholderCard)
-        ProfileService.Actions.getExtendedProfile(profile.id) {
+        Services.Profile.Actions.getExtendedProfile(profile.id) {
             (profile, manager, team, address, skills, _, identities, resume, location, error) -> Void in
             if error == nil {
                 self.manager = manager
@@ -125,14 +125,14 @@ class ProfileDetailDataSource: CardDataSource {
             SectionItem(
                 title: "Hire Date",
                 container: "profile",
-                containerKey: "hire_date",
+                containerKey: "hireDate",
                 contentType: .HireDate,
                 image: nil
             ),
             SectionItem(
                 title: "Birthday",
                 container: "profile",
-                containerKey: "birth_date",
+                containerKey: "birthDate",
                 contentType: .Birthday,
                 image: nil
             )
@@ -309,17 +309,17 @@ class ProfileDetailDataSource: CardDataSource {
         switch item.container {
         case "profile":
             switch item.containerKey {
-            case "hire_date":
+            case "hireDate":
                 if profile.hasHireDate {
-                    value = NSDateFormatter.sharedAnniversaryFormatter.stringFromDate(profile.hire_date.toDate()!)
+                    value = NSDateFormatter.sharedAnniversaryFormatter.stringFromDate(profile.hireDate.toDate()!)
                 }
                 else {
                     return nil
                 }
                 
-            case "birth_date":
+            case "birthDate":
                 if profile.hasBirthDate {
-                    value = NSDateFormatter.sharedBirthdayFormatter.stringFromDate(profile.birth_date.toDate()!)
+                    value = NSDateFormatter.sharedBirthdayFormatter.stringFromDate(profile.birthDate.toDate()!)
                 }
                 else {
                     return nil
@@ -486,7 +486,7 @@ class ProfileDetailDataSource: CardDataSource {
     
     override func configureCell(cell: CircleCollectionViewCell, atIndexPath indexPath: NSIndexPath) {
         if cell is QuickActionsCollectionViewCell {
-            let quickActionsCell = cell as QuickActionsCollectionViewCell
+            let quickActionsCell = cell as! QuickActionsCollectionViewCell
             quickActionsCell.backgroundColor = UIColor.whiteColor()
             quickActionsCell.quickActions = [.Phone, .Message, .Email, .MoreInfo]
         }
@@ -497,7 +497,7 @@ class ProfileDetailDataSource: CardDataSource {
     func typeOfCell(indexPath: NSIndexPath) -> ContentType {
         let card = cards[indexPath.section]
         if let rowDataDictionary = card.content[indexPath.row] as? [String: AnyObject] {
-           return ContentType(rawValue: (rowDataDictionary["type"] as Int!))!
+           return ContentType(rawValue: (rowDataDictionary["type"] as! Int!))!
         }
         
         return .Other
@@ -514,7 +514,7 @@ class ProfileDetailDataSource: CardDataSource {
     
     override func configureFooter(footer: CircleCollectionReusableView, atIndexPath indexPath: NSIndexPath) {
         super.configureFooter(footer, atIndexPath: indexPath)
-        (footer as CardFooterCollectionReusableView).insetEdges = false
+        (footer as! CardFooterCollectionReusableView).insetEdges = false
     }
 
     private func isProfileLoggedInUserProfile() -> Bool {

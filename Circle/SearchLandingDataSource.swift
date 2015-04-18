@@ -15,7 +15,7 @@ class SearchLandingDataSource: CardDataSource {
 
     override func loadData(completionHandler: (error: NSError?) -> Void) {
         if let currentProfile = AuthViewController.getLoggedInUserProfile() {
-            LandingService.Actions.getCategories(currentProfile.id) { (categories, error) -> Void in
+            Services.Feed.Actions.getProfileFeed(currentProfile.id) { (categories, error) -> Void in
                 if error == nil {
                     self.resetCards()
                     
@@ -35,7 +35,7 @@ class SearchLandingDataSource: CardDataSource {
                         } else if category.profiles.count > 0 {
                             var profiles = category.profiles
                             var maxVisibleItems = 0
-                            switch category.type {
+                            switch category.categoryType {
                             case .Birthdays, .Anniversaries, .NewHires:
                                 // HACK: limit the number of results in a card to 3 until we can get smarter about displaying them on the detail view
                                 maxVisibleItems = 3
@@ -60,7 +60,7 @@ class SearchLandingDataSource: CardDataSource {
         cell.backgroundColor = UIColor.whiteColor()
         
         if cell is NotesCollectionViewCell && profilesAssociatedWithNotes.count > 0 {
-            (cell as NotesCollectionViewCell).setProfile(profilesAssociatedWithNotes[indexPath.row])
+            (cell as! NotesCollectionViewCell).setProfile(profilesAssociatedWithNotes[indexPath.row])
         }
     }
 }

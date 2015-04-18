@@ -34,112 +34,112 @@ typealias RemoveTagsCompletionHandler = (error: NSError?) -> Void
 
 extension Services.Profile.Actions {
         
-    private class func getProfile(requestBuilder: AbstractMessageBuilder, completionHandler: GetProfileCompletionHandler?) {
+    private static func getProfile(requestBuilder: AbstractMessageBuilder, completionHandler: GetProfileCompletionHandler?) {
         let client = ServiceClient(serviceName: "profile")
-        client.callAction("get_profile", extensionField: Services.Registry.Requets.Profile.getProfile(), requestBuilder: requestBuilder) {
+        client.callAction("get_profile", extensionField: Services.Registry.Requests.Profile.getProfile(), requestBuilder: requestBuilder) {
             (_, _, wrapped, error) -> Void in
-            let response = wrapped?.response?.result.getExtension(Services.Registry.Requets.Profile.getProfile()) as? ProfileService.GetProfile.ResponseV1
+            let response = wrapped?.response?.result.getExtension(Services.Registry.Requests.Profile.getProfile()) as? Services.Profile.Actions.GetProfile.ResponseV1
             completionHandler?(profile: response?.profile, error: error)
         }
     }
     
-    class func getProfile(profileId: String, completionHandler: GetProfileCompletionHandler?) {
-        let requestBuilder = ProfileService.GetProfile.RequestV1.builder()
+    static func getProfile(profileId: String, completionHandler: GetProfileCompletionHandler?) {
+        let requestBuilder = Services.Profile.Actions.GetProfile.RequestV1.builder()
         requestBuilder.profileId = profileId
         self.getProfile(requestBuilder, completionHandler: completionHandler)
     }
     
-    class func getProfile(#userId: String, completionHandler: GetProfileCompletionHandler?) {
-        let requestBuilder = ProfileService.GetProfile.RequestV1.builder()
+    static func getProfile(#userId: String, completionHandler: GetProfileCompletionHandler?) {
+        let requestBuilder = Services.Profile.Actions.GetProfile.RequestV1.builder()
         requestBuilder.userId = userId
         self.getProfile(requestBuilder, completionHandler: completionHandler)
     }
     
-    private class func getProfiles(
+    private static func getProfiles(
         requestBuilder: AbstractMessageBuilder,
-        completionHandler: GetProfilesCompletionHandler?,
-        paginatorBuilder: Soa.PaginatorV1Builder? = nil
+        paginatorBuilder: Soa.PaginatorV1Builder? = nil,
+        completionHandler: GetProfilesCompletionHandler?
     ) {
         let client = ServiceClient(serviceName: "profile")
         client.callAction(
             "get_profiles",
-            extensionField: Services.Registry.Requets.Profile.getProfiles(),
+            extensionField: Services.Registry.Requests.Profile.getProfiles(),
             requestBuilder: requestBuilder,
             paginatorBuilder: paginatorBuilder
         ) {
             (_, _, wrapped, error) -> Void in
             let response = wrapped?.response?.result.getExtension(
-                Services.Registry.Requets.Profile.getProfiles()
-            ) as? ProfileService.GetProfiles.ResponseV1
+                Services.Registry.Requests.Profile.getProfiles()
+            ) as? Services.Profile.Actions.GetProfiles.ResponseV1
             let nextRequest = wrapped?.getNextRequest()
             completionHandler?(profiles: response?.profiles, nextRequest: nextRequest, error: error)
         }
     }
     
-    class func getProfiles(
+    static func getProfiles(
         teamId: String,
         paginatorBuilder: Soa.PaginatorV1Builder? = nil,
         completionHandler: GetProfilesCompletionHandler?
     ) {
-        let requestBuilder = ProfileService.GetProfiles.RequestV1.builder()
-        requestBuilder.team_id = teamId
-        self.getProfiles(requestBuilder, completionHandler: completionHandler, paginatorBuilder: paginatorBuilder)
+        let requestBuilder = Services.Profile.Actions.GetProfiles.RequestV1.builder()
+        requestBuilder.teamId = teamId
+        self.getProfiles(requestBuilder, paginatorBuilder: paginatorBuilder, completionHandler: completionHandler)
     }
     
-    class func getProfiles(
+    static func getProfiles(
         #organizationId: String,
         paginatorBuilder: Soa.PaginatorV1Builder? = nil,
         completionHandler: GetProfilesCompletionHandler?
     ) {
-        let requestBuilder = ProfileService.GetProfiles.RequestV1.builder()
+        let requestBuilder = Services.Profile.Actions.GetProfiles.RequestV1.builder()
         requestBuilder.organizationId = organizationId
-        self.getProfiles(requestBuilder, completionHandler: completionHandler, paginatorBuilder: paginatorBuilder)
+        self.getProfiles(requestBuilder, paginatorBuilder: paginatorBuilder, completionHandler: completionHandler)
     }
     
-    class func getProfiles(
+    static func getProfiles(
         #tagId: String,
         organizationId: String,
         paginatorBuilder: Soa.PaginatorV1Builder? = nil,
         completionHandler: GetProfilesCompletionHandler?
     ) {
-        let requestBuilder = ProfileService.GetProfiles.RequestV1.builder()
+        let requestBuilder = Services.Profile.Actions.GetProfiles.RequestV1.builder()
         requestBuilder.tagId = tagId
         requestBuilder.organizationId = organizationId
-        self.getProfiles(requestBuilder, completionHandler: completionHandler, paginatorBuilder: paginatorBuilder)
+        self.getProfiles(requestBuilder, paginatorBuilder: paginatorBuilder, completionHandler: completionHandler)
     }
     
-    class func getProfiles(
+    static func getProfiles(
         #addressId: String,
         paginatorBuilder: Soa.PaginatorV1Builder? = nil,
         completionHandler: GetProfilesCompletionHandler?
     ) {
-        let requestBuilder = ProfileService.GetProfiles.RequestV1.builder()
+        let requestBuilder = Services.Profile.Actions.GetProfiles.RequestV1.builder()
         requestBuilder.addressId = addressId
-        self.getProfiles(requestBuilder, completionHandler: completionHandler, paginatorBuilder: paginatorBuilder)
+        self.getProfiles(requestBuilder, paginatorBuilder: paginatorBuilder, completionHandler: completionHandler)
     }
     
-    class func getProfiles(
+    static func getProfiles(
         #locationId: String,
         paginatorBuilder: Soa.PaginatorV1Builder? = nil,
         completionHandler: GetProfilesCompletionHandler?
     ) {
-        let requestBuilder = ProfileService.GetProfiles.RequestV1.builder()
+        let requestBuilder = Services.Profile.Actions.GetProfiles.RequestV1.builder()
         requestBuilder.locationId = locationId
-        self.getProfiles(requestBuilder, completionHandler: completionHandler, paginatorBuilder: paginatorBuilder)
+        self.getProfiles(requestBuilder, paginatorBuilder: paginatorBuilder, completionHandler: completionHandler)
     }
     
-    class func getExtendedProfile(profileId: String, completionHandler: GetExtendedProfileCompletionHandler?) {
-        let requestBuilder = ProfileService.GetExtendedProfile.RequestV1.builder()
+    static func getExtendedProfile(profileId: String, completionHandler: GetExtendedProfileCompletionHandler?) {
+        let requestBuilder = Services.Profile.Actions.GetExtendedProfile.RequestV1.builder()
         requestBuilder.profileId = profileId
         let client = ServiceClient(serviceName: "profile")
         client.callAction(
             "get_extended_profile",
-            extensionField: Services.Registry.Requets.Profile.getExtendedProfile(),
+            extensionField: Services.Registry.Requests.Profile.getExtendedProfile(),
             requestBuilder: requestBuilder
         ) { (_, _, wrapped, error) -> Void in
             let response = wrapped?.response?.result.getExtension(
-                Services.Registry.Requets.Profile.getExtendedProfile()
-            ) as? ProfileService.GetExtendedProfile.ResponseV1
+                Services.Registry.Requests.Profile.getExtendedProfile()
+            ) as? Services.Profile.Actions.GetExtendedProfile.ResponseV1
             completionHandler?(
                 profile: response?.profile,
                 manager: response?.manager,
@@ -155,57 +155,57 @@ extension Services.Profile.Actions {
         }
     }
     
-    class func getTags(organizationId: String, tagType: ProfileService.TagType?, completionHandler: GetTagsCompletionHandler?) {
-        let requestBuilder = ProfileService.GetTags.RequestV1.builder()
+    static func getTags(organizationId: String, tagType: Services.Profile.Containers.TagV1.TagTypeV1?, completionHandler: GetTagsCompletionHandler?) {
+        let requestBuilder = Services.Profile.Actions.GetTags.RequestV1.builder()
         requestBuilder.organizationId = organizationId
         if tagType != nil {
-            requestBuilder.tag_type = tagType!
+            requestBuilder.tagType = tagType!
         }
         
         let client = ServiceClient(serviceName: "profile")
         client.callAction(
             "get_tags",
-            extensionField: Services.Registry.Requets.Profile.getTags(),
+            extensionField: Services.Registry.Requests.Profile.getTags(),
             requestBuilder: requestBuilder
         ) { (_, _, wrapped, error) -> Void in
-            let response = wrapped?.response?.result.getExtension(Services.Registry.Requets.Profile.getTags()) as? ProfileService.GetTags.ResponseV1
+            let response = wrapped?.response?.result.getExtension(Services.Registry.Requests.Profile.getTags()) as? Services.Profile.Actions.GetTags.ResponseV1
             completionHandler?(interests: response?.tags, error: error)
         }
     }
     
-    class func getActiveTags(organizationId: String, tagType: ProfileService.TagType?, paginatorBuilder: Soa.PaginatorV1Builder? = nil, completionHandler: GetTagsCompletionHandler?) {
-        let requestBuilder = ProfileService.GetActiveTags.RequestV1.builder()
+    static func getActiveTags(organizationId: String, tagType: Services.Profile.Containers.TagV1.TagTypeV1?, paginatorBuilder: Soa.PaginatorV1Builder? = nil, completionHandler: GetTagsCompletionHandler?) {
+        let requestBuilder = Services.Profile.Actions.GetActiveTags.RequestV1.builder()
         requestBuilder.organizationId = organizationId
         if tagType != nil {
-            requestBuilder.tag_type = tagType!
+            requestBuilder.tagType = tagType!
         }
         
         let client = ServiceClient(serviceName: "profile")
         client.callAction(
             "get_active_tags",
-            extensionField: Services.Registry.Requets.Profile.getActiveTags(),
+            extensionField: Services.Registry.Requests.Profile.getActiveTags(),
             requestBuilder: requestBuilder,
             paginatorBuilder: paginatorBuilder
         ) { (_, _, wrapped, error) -> Void in
             let response = wrapped?.response?.result.getExtension(
-                Services.Registry.Requets.Profile.getActiveTags()
-            ) as? ProfileService.GetActiveTags.ResponseV1
+                Services.Registry.Requests.Profile.getActiveTags()
+            ) as? Services.Profile.Actions.GetActiveTags.ResponseV1
             completionHandler?(interests: response?.tags, error: error)
         }
     }
     
-    class func updateProfile(profile: Services.Profile.Containers.ProfileV1, completionHandler: UpdateProfileCompletionHandler?) {
-        let requestBuilder = ProfileService.UpdateProfile.RequestV1.builder()
+    static func updateProfile(profile: Services.Profile.Containers.ProfileV1, completionHandler: UpdateProfileCompletionHandler?) {
+        let requestBuilder = Services.Profile.Actions.UpdateProfile.RequestV1.builder()
         requestBuilder.profile = profile
         
         let client = ServiceClient(serviceName: "profile")
         client.callAction(
             "update_profile",
-            extensionField: Services.Registry.Requets.Profile.updateProfile(),
+            extensionField: Services.Registry.Requests.Profile.updateProfile(),
             requestBuilder: requestBuilder) { (_, _, wrapped, error) -> Void in
                 let response = wrapped?.response?.result.getExtension(
-                    Services.Registry.Requets.Profile.updateProfile()
-                ) as? ProfileService.UpdateProfile.ResponseV1
+                    Services.Registry.Requests.Profile.updateProfile()
+                ) as? Services.Profile.Actions.UpdateProfile.ResponseV1
                 ObjectStore.sharedInstance.update(response?.profile, type: .Profile)
                 completionHandler?(profile: response?.profile, error: error)
                 // DWM - Discuss with Michael
@@ -219,15 +219,15 @@ extension Services.Profile.Actions {
         }
     }
     
-    class func addTags(profileId: String, tags: Array<Services.Profile.Containers.TagV1>, completionHandler: AddTagsCompletionHandler?) {
-        let requestBuilder = ProfileService.AddTags.RequestV1.builder()
+    static func addTags(profileId: String, tags: Array<Services.Profile.Containers.TagV1>, completionHandler: AddTagsCompletionHandler?) {
+        let requestBuilder = Services.Profile.Actions.AddTags.RequestV1.builder()
         requestBuilder.profileId = profileId
         requestBuilder.tags = tags
         
         let client = ServiceClient(serviceName: "profile")
         client.callAction(
             "add_tags",
-            extensionField: Services.Registry.Requets.Profile.addTags(),
+            extensionField: Services.Registry.Requests.Profile.addTags(),
             requestBuilder: requestBuilder) { (_, _, wrapped, error) -> Void in
                 // DWM - Discuss with Michael
                 // TODO: Either check for no errors or pass than along in the userInfo
@@ -237,20 +237,20 @@ extension Services.Profile.Actions {
                         object: nil
                     )
                 })
-                let response = wrapped?.response?.result.getExtension(Services.Registry.Requets.Profile.addTags()) as? ProfileService.AddTags.ResponseV1
+                let response = wrapped?.response?.result.getExtension(Services.Registry.Requests.Profile.addTags()) as? Services.Profile.Actions.AddTags.ResponseV1
                 completionHandler?(error: error)
         }
     }
     
-    class func removeTags(profileId: String, tags: Array<Services.Profile.Containers.TagV1>, completionHandler: RemoveTagsCompletionHandler?) {
-        let requestBuilder = ProfileService.RemoveTags.RequestV1.builder()
+    static func removeTags(profileId: String, tags: Array<Services.Profile.Containers.TagV1>, completionHandler: RemoveTagsCompletionHandler?) {
+        let requestBuilder = Services.Profile.Actions.RemoveTags.RequestV1.builder()
         requestBuilder.profileId = profileId
         requestBuilder.tags = tags
         
         let client = ServiceClient(serviceName: "profile")
         client.callAction(
             "remove_tags",
-            extensionField: Services.Registry.Requets.Profile.removeTags(),
+            extensionField: Services.Registry.Requests.Profile.removeTags(),
             requestBuilder: requestBuilder
         ) { (_, _, wrapped, error) -> Void in
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
@@ -260,8 +260,8 @@ extension Services.Profile.Actions {
                 )
             })
             let response = wrapped?.response?.result.getExtension(
-                Services.Registry.Requets.Profile.removeTags()
-            ) as? ProfileService.RemoveTags.ResponseV1
+                Services.Registry.Requests.Profile.removeTags()
+            ) as? Services.Profile.Actions.RemoveTags.ResponseV1
             completionHandler?(error: error)
         }
     }
@@ -274,7 +274,7 @@ extension Services.Profile.Containers.ProfileV1 {
     }
     
     func getCellPhone() -> String? {
-        let cellPhones = contact_methods.filter { $0.type == .CellPhone }
+        let cellPhones = contactMethods.filter { $0.contactMethodType == .CellPhone }
         if cellPhones.count > 0 {
             return cellPhones[0].value
         }

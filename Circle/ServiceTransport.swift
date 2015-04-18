@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Alamofire
 import ProtobufRegistry
 
 let ServiceErrorDomain = "co.circlehq.circle.services"
@@ -48,7 +49,7 @@ protocol ServiceTransport {
 public typealias ServiceTransportCompletionHandler = (NSURLRequest, NSHTTPURLResponse?, Soa.ServiceResponseV1?, Soa.ActionResponseV1?, NSError?) -> Void
 
 extension Request {
-    class func ServiceResponseSerializer() -> Serializer {
+    static func ServiceResponseSerializer() -> Serializer {
         return { (request, response, data) in
             if data == nil {
                 return (nil, nil)
@@ -68,9 +69,9 @@ extension Request {
                 return (nil, nil)
             }
             
-            let serviceResponse = Soa.ServiceResponseV1.parseFromNSData(
+            let serviceResponse = Soa.ServiceResponseV1.parseFromData(
                 data!,
-                extensionRegistry: ResponseRegistryRoot.sharedInstance.extensionRegistry
+                extensionRegistry: Services.Registry.Requests.RequestsRoot.sharedInstance.extensionRegistry
             )
             return (serviceResponse, nil)
         }
@@ -86,9 +87,9 @@ extension Request {
                     if !result.success {
                         let userInfo = [
                             "errors": result.errors,
-                            "error_details": result.error_details,
+                            "error_details": result.errorDetails,
                         ]
-                        serviceError = NSError(domain: ServiceErrorDomain, code: -1, userInfo: userInfo)
+                        serviceError = NSError(domain: ServiceErrorDomain, code: -1, userInfo: userInfo as [NSObject : AnyObject])
                     }
                 }
             }
@@ -101,7 +102,7 @@ extension Request {
 class BaseTransport: ServiceTransport {
     
     func sendRequest(serviceRequest: Soa.ServiceRequestV1, completionHandler: ServiceCompletionHandler) {
-        let serializedRequest = serviceRequest.getNSData()
+        let serializedRequest = serviceRequest.data()
         processRequest(serviceRequest, serializedRequest: serializedRequest, completionHandler: completionHandler)
     }
     

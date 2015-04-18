@@ -21,8 +21,8 @@ MFMessageComposeViewControllerDelegate {
         }
     }
     
-    override init() {
-        super.init()
+    init() {
+        super.init(nibName: nil, bundle: nil)
         customInit()
     }
     
@@ -114,7 +114,7 @@ MFMessageComposeViewControllerDelegate {
         The default handlers are also provided in this class. However subclasses can override
         the handlers and add any other custom functionality as needed.
         
-        When overriding, subclasses should call the super class function as well.
+        When overriding, subclasses should call the super static function as well.
     */
     func registerNotifications() {
         NSNotificationCenter.defaultCenter().addObserver(
@@ -138,7 +138,7 @@ MFMessageComposeViewControllerDelegate {
         Subclasses should override this function if they have also overridden registerNotifications and
         remove observer for custom notifications.
         
-        When overriding, subclasses should call the super class function as well.
+        When overriding, subclasses should call the super static function as well.
     */
     func unregisterNotifications() {
         NSNotificationCenter.defaultCenter().removeObserver(
@@ -160,7 +160,7 @@ MFMessageComposeViewControllerDelegate {
         if let userInfo = notification.userInfo {
             if let selectedTag = userInfo["interest"] as? Services.Profile.Containers.TagV1 {
                 let viewController = TagDetailViewController()
-                (viewController.dataSource as TagDetailDataSource).selectedTag = selectedTag
+                (viewController.dataSource as! TagDetailDataSource).selectedTag = selectedTag
                 viewController.hidesBottomBarWhenPushed = false
                 navigationController?.pushViewController(viewController, animated: true)
             }
@@ -171,7 +171,7 @@ MFMessageComposeViewControllerDelegate {
         if let userInfo = notification.userInfo {
             if let selectedTeam = userInfo["team"] as? Services.Organization.Containers.TeamV1 {
                 let viewController = TeamDetailViewController()
-                (viewController.dataSource as TeamDetailDataSource).selectedTeam = selectedTeam
+                (viewController.dataSource as! TeamDetailDataSource).selectedTeam = selectedTeam
                 viewController.hidesBottomBarWhenPushed = false
                 navigationController?.pushViewController(viewController, animated: true)
             }

@@ -47,7 +47,7 @@ class AppreciationCollectionViewCell: CircleCollectionViewCell {
     }
     
     func setProfile(profile: Services.Profile.Containers.ProfileV1) {
-        nameLabel.text = profile.full_name
+        nameLabel.text = profile.fullName
         titleLabel.text = profile.title
         profileImageView.setImageWithProfile(profile)
     }

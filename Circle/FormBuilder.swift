@@ -185,7 +185,7 @@ class FormBuilder: NSObject, UITextFieldDelegate {
                 if let input: AnyObject = item.input {
                     switch item.type {
                     case .TextField:
-                        item.value = (input as UITextField).text
+                        item.value = (input as! UITextField).text
 
                     default:
                         break
@@ -198,14 +198,14 @@ class FormBuilder: NSObject, UITextFieldDelegate {
 
 extension FormBuilder {
     class ContactSectionItem: SectionItem {
-        var contactMethodType: ProfileService.ContactMethodType
+        var contactMethodType: Services.Profile.Containers.ContactMethodV1.ContactMethodTypeV1
         
-        required init(placeholder withPlaceholder: String, type andType: FormFieldType, keyboardType andKeyboardType: UIKeyboardType, container andContainer: String, containerKey andContainerKey: String, contactMethodType andContactMethodType: ProfileService.ContactMethodType) {
+        required init(placeholder withPlaceholder: String, type andType: FormFieldType, keyboardType andKeyboardType: UIKeyboardType, container andContainer: String, containerKey andContainerKey: String, contactMethodType andContactMethodType: Services.Profile.Containers.ContactMethodV1.ContactMethodTypeV1) {
             contactMethodType = andContactMethodType
             super.init(placeholder: withPlaceholder, type: andType, keyboardType: andKeyboardType, container: andContainer, containerKey: andContainerKey)
         }
         
-        convenience init(placeholder withPlaceholder: String, type andType: FormFieldType, keyboardType andKeyboardType: UIKeyboardType, contactMethodType andContactMethodType: ProfileService.ContactMethodType) {
+        convenience init(placeholder withPlaceholder: String, type andType: FormFieldType, keyboardType andKeyboardType: UIKeyboardType, contactMethodType andContactMethodType: Services.Profile.Containers.ContactMethodV1.ContactMethodTypeV1) {
          
             self.init(placeholder: withPlaceholder, type: andType, keyboardType: andKeyboardType, container: "", containerKey: "", contactMethodType: andContactMethodType)
         }

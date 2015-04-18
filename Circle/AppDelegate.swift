@@ -8,6 +8,8 @@
 
 import UIKit
 import Crashlytics
+import google_plus_ios_sdk
+import Mixpanel
 import ProtobufRegistry
 
 @UIApplicationMain
@@ -27,7 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         loadStoreForUser()
         
         // Record device
-        UserService.Actions.recordDevice(nil, completionHandler: nil)
+        Services.User.Actions.recordDevice(nil, completionHandler: nil)
 
         // Initialize splash view with passcode & touch ID
         AuthViewController.initializeSplashViewWithPasscodeAndTouchID()
@@ -57,7 +59,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         deviceTokenString = deviceTokenString.stringByReplacingOccurrencesOfString(" ", withString: "")
         deviceTokenString = deviceTokenString.trimWhitespace()
         Mixpanel.sharedInstance().people.addPushDeviceToken(deviceToken)
-        UserService.Actions.recordDevice(deviceTokenString, completionHandler: nil)
+        Services.User.Actions.recordDevice(deviceTokenString, completionHandler: nil)
     }
     
     func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
@@ -82,7 +84,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Notification Handlers
 
     func recordUsersLocaleSetting(sender: AnyObject!) {
-        let preferredLanguage: String = NSLocale.preferredLanguages()[0] as String
+        let preferredLanguage: String = NSLocale.preferredLanguages()[0] as! String
         // TODO: Register language
         println(preferredLanguage)
     }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AFNetworking
 import ProtobufRegistry
 
 class CircleImageView: UIImageView {
@@ -65,12 +66,12 @@ class CircleImageView: UIImageView {
 
     private func updateAcceptableContentTypes() {
         let serializer = AFImageResponseSerializer()
-        serializer.acceptableContentTypes = serializer.acceptableContentTypes.setByAddingObjectsFromArray(["image/jpg", "image/pjpeg"])
+        serializer.acceptableContentTypes = serializer.acceptableContentTypes.union(["image/jpg", "image/pjpeg"])
         imageResponseSerializer = serializer
     }
 
     func setImageWithProfile(profile: Services.Profile.Containers.ProfileV1, successHandler: ((image: UIImage) -> Void)? = nil) {
-        let request = NSURLRequest(URL: NSURL(string: profile.image_url)!)
+        let request = NSURLRequest(URL: NSURL(string: profile.imageUrl)!)
         updateAcceptableContentTypes()
         
         if let cachedImage = UIImageView.sharedImageCache().cachedImageForRequest(request) {
@@ -112,14 +113,14 @@ class CircleImageView: UIImageView {
                     }
                     
                     self.makeImageVisible(false)
-                    println("failed to fetch image for profile: \(profile.full_name) - \(profile.image_url) error: \(error.localizedDescription)")
+                    println("failed to fetch image for profile: \(profile.fullName) - \(profile.imageUrl) error: \(error.localizedDescription)")
                 }
             )
         }
     }
     
     func setImageWithLocation(location: Services.Organization.Containers.LocationV1, successHandler: ((image: UIImage) -> Void)? = nil) {
-        let request = NSURLRequest(URL: NSURL(string: location.image_url)!)
+        let request = NSURLRequest(URL: NSURL(string: location.imageUrl)!)
         updateAcceptableContentTypes()
         
         if let cachedImage = UIImageView.sharedImageCache().cachedImageForRequest(request) {
@@ -151,7 +152,7 @@ class CircleImageView: UIImageView {
                     }
                     
                     self.makeImageVisible(false)
-                    println("failed to fetch image for location: \(location.name) - \(location.image_url) error: \(error.localizedDescription)")
+                    println("failed to fetch image for location: \(location.name) - \(location.imageUrl) error: \(error.localizedDescription)")
                 }
             )
         }
@@ -235,6 +236,6 @@ class CircleImageView: UIImageView {
     // MARK: - Helper
     
     private func setImageLabelFont() {
-        imageLabel.font = UIFont(name: "Avenir-Light", size: min(frameWidth / 2.5, 22.0))
+        imageLabel.font = UIFont(name: "Avenir-Light", size: min(frame.width / 2.5, 22.0))
     }
 }

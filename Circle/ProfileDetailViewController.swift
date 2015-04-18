@@ -39,7 +39,7 @@ class ProfileDetailViewController: DetailViewController,
         dataSource.cardFooterDelegate = self
         
         collectionView.delegate = delegate
-        (layout as StickyHeaderCollectionViewLayout).headerHeight = ProfileHeaderCollectionReusableView.height
+        (layout as! StickyHeaderCollectionViewLayout).headerHeight = ProfileHeaderCollectionReusableView.height
         super.configureCollectionView()
     }
 
@@ -94,7 +94,7 @@ class ProfileDetailViewController: DetailViewController,
     }
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
-        if let profileHeaderView = (dataSource as ProfileDetailDataSource).profileHeaderView {
+        if let profileHeaderView = (dataSource as! ProfileDetailDataSource).profileHeaderView {
             profileHeaderView.adjustViewForScrollContentOffset(scrollView.contentOffset)
         }
     }
@@ -170,12 +170,12 @@ class ProfileDetailViewController: DetailViewController,
     }
 
     func bannerCTATapped(notification: NSNotification) {
-        (dataSource as ProfileDetailDataSource).addBannerOfType = nil
+        (dataSource as! ProfileDetailDataSource).addBannerOfType = nil
         reloadData()
     }
 
     func bannerCloseTapped(notification: NSNotification) {
-        (dataSource as ProfileDetailDataSource).addBannerOfType = nil
+        (dataSource as! ProfileDetailDataSource).addBannerOfType = nil
         reloadData()
     }
 
@@ -218,7 +218,7 @@ class ProfileDetailViewController: DetailViewController,
             
         case .Phone:
             if let number = profile.getCellPhone() as String? {
-                if let phoneURL = NSURL(string: NSString(format: "tel://%@", number.removePhoneNumberFormatting())) {
+                if let phoneURL = NSURL(string: NSString(format: "tel://%@", number.removePhoneNumberFormatting()) as String) {
                     UIApplication.sharedApplication().openURL(phoneURL)
                 }
             }
@@ -248,7 +248,7 @@ class ProfileDetailViewController: DetailViewController,
     func onOfficeTapped(notification: NSNotification?) {
         if let dataSource = dataSource as? ProfileDetailDataSource {
             let officeDetailVC = OfficeDetailViewController()
-            (officeDetailVC.dataSource as OfficeDetailDataSource).selectedOffice = dataSource.location
+            (officeDetailVC.dataSource as! OfficeDetailDataSource).selectedOffice = dataSource.location
             officeDetailVC.hidesBottomBarWhenPushed = false
             navigationController?.pushViewController(officeDetailVC, animated: true)
         }
@@ -257,7 +257,7 @@ class ProfileDetailViewController: DetailViewController,
     func onTeamTapped(notification: NSNotification?) {
         if let dataSource = dataSource as? ProfileDetailDataSource {
             let teamVC = TeamDetailViewController()
-            (teamVC.dataSource as TeamDetailDataSource).selectedTeam = dataSource.team!
+            (teamVC.dataSource as! TeamDetailDataSource).selectedTeam = dataSource.team!
             teamVC.hidesBottomBarWhenPushed = false
             navigationController?.pushViewController(teamVC, animated: true)
         }

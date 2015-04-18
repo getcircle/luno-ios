@@ -18,9 +18,9 @@ class NotesOverviewDataSource: CardDataSource {
     // MARK: - Set Initial Data
     
     override func setInitialData(#content: [AnyObject], ofType: Card.CardType? = .Profiles, withMetaData metaData:AnyObject? = nil) {
-        notes = content as Array<Services.Note.Containers.NoteV1>
+        notes = content as! Array<Services.Note.Containers.NoteV1>
         filteredNotes = notes
-        for profile in metaData as Array<Services.Profile.Containers.ProfileV1> {
+        for profile in metaData as! Array<Services.Profile.Containers.ProfileV1> {
             profiles[profile.id] = profile
         }
     }
@@ -40,7 +40,7 @@ class NotesOverviewDataSource: CardDataSource {
     
     func addNote(note: Services.Note.Containers.NoteV1, forProfile profile: Services.Profile.Containers.ProfileV1) {
         notes.insert(note, atIndex: 0)
-        profiles[note.for_profileId] = profile
+        profiles[note.forProfileId] = profile
     }
     
     func removeNote(noteToBeDeleted: Services.Note.Containers.NoteV1, forProfile profile: Services.Profile.Containers.ProfileV1) {
@@ -134,7 +134,7 @@ class NotesOverviewDataSource: CardDataSource {
         var matchedProfileIds = [String: Bool]()
         for (profileId, profile) in profiles {
             let match = finalProfileNamePredicate.evaluateWithObject(profile, substitutionVariables: [
-                "profile_name": profile.full_name,
+                "profile_name": profile.fullName,
                 "profile_name_components": [profile.firstName, profile.lastName]
             ])
             
@@ -144,7 +144,7 @@ class NotesOverviewDataSource: CardDataSource {
         }
         
         for note in notes {
-            if matchedProfileIds[note.for_profileId] == true && includedNotesIds[note.id] == nil {
+            if matchedProfileIds[note.forProfileId] == true && includedNotesIds[note.id] == nil {
                 filteredNotes.append(note)
             }
         }
@@ -155,7 +155,7 @@ class NotesOverviewDataSource: CardDataSource {
     override func configureCell(cell: CircleCollectionViewCell, atIndexPath indexPath: NSIndexPath) {
         if cell is NotesCollectionViewCell {
             if let note = contentAtIndexPath(indexPath) as? Services.Note.Containers.NoteV1 {
-                (cell as NotesCollectionViewCell).setProfile(profiles[note.for_profileId]!)
+                (cell as! NotesCollectionViewCell).setProfile(profiles[note.forProfileId]!)
             }
         }
     }

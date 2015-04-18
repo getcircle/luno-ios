@@ -54,7 +54,7 @@ class NotesOverviewViewController: UIViewController,
         collectionView.backgroundColor = UIColor.appViewBackgroundColor()
         collectionView.dataSource = dataSource
         collectionView.delegate = delegate
-        (collectionView.delegate as CardCollectionViewDelegate).delegate = self
+        (collectionView.delegate as! CardCollectionViewDelegate).delegate = self
         collectionView.bounces = true
         collectionView.keyboardDismissMode = .OnDrag
         collectionView.alwaysBounceVertical = true
@@ -72,7 +72,7 @@ class NotesOverviewViewController: UIViewController,
 
     private func configureSearchHeaderView() {
         if let nibViews = NSBundle.mainBundle().loadNibNamed("SearchHeaderView", owner: nil, options: nil) as? [UIView] {
-            searchHeaderView = nibViews.first as SearchHeaderView
+            searchHeaderView = nibViews.first as! SearchHeaderView
             searchHeaderView.delegate = self
             searchHeaderView.searchTextField.placeholder = NSLocalizedString("Filter notes",
                 comment: "Placeholder for text field used for filtering notes")
@@ -98,9 +98,9 @@ class NotesOverviewViewController: UIViewController,
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let selectedCard = dataSource.cardAtSection(indexPath.section)!        
-        if let selectedNote = dataSource.contentAtIndexPath(indexPath)? as? Services.Note.Containers.NoteV1 {
+        if let selectedNote = dataSource.contentAtIndexPath(indexPath) as? Services.Note.Containers.NoteV1 {
             if let profiles = selectedCard.metaData as? [String: Services.Profile.Containers.ProfileV1] {
-                if let selectedProfile = profiles[selectedNote.for_profileId] as Services.Profile.Containers.ProfileV1? {
+                if let selectedProfile = profiles[selectedNote.forProfileId] as Services.Profile.Containers.ProfileV1? {
                     let viewController = NewNoteViewController(nibName: "NewNoteViewController", bundle: nil)
                     profileForSelectedNote = selectedProfile
                     viewController.profile = selectedProfile
@@ -194,7 +194,7 @@ class NotesOverviewViewController: UIViewController,
         ]
         if let note = note {
             properties.append(TrackerProperty.withDestinationId("note_id").withString(note.id))
-            properties.append(TrackerProperty.withKeyString("personal_note").withValue(isPersonalNote(note.for_profileId)))
+            properties.append(TrackerProperty.withKeyString("personal_note").withValue(isPersonalNote(note.forProfileId)))
         } else {
             properties.append(TrackerProperty.withKeyString("personal_note").withValue(true))
         }

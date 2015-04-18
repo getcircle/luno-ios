@@ -96,7 +96,7 @@ extension UIView {
         addSubview(activityIndicatorView)
         bringSubviewToFront(activityIndicatorView)
         activityIndicatorView.autoCenterInSuperview()
-        let height = min(frameHeight - 10.0, CircleActivityIndicatorView.height)
+        let height = min(frame.height - 10.0, CircleActivityIndicatorView.height)
         let width = height
         activityIndicatorView.autoSetDimensionsToSize(CGSizeMake(width, height))
         
@@ -109,8 +109,8 @@ extension UIView {
         addSubview(errorView)
         bringSubviewToFront(errorView)
         errorView.autoCenterInSuperview()
-        let height = min(frameHeight - 10.0, CircleErrorMessageView.height)
-        let width = frameWidth
+        let height = min(frame.height - 10.0, CircleErrorMessageView.height)
+        let width = frame.width
         errorView.autoSetDimensionsToSize(CGSizeMake(width, height))
         return errorView
     }

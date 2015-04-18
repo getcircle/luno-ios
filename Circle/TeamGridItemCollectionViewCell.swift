@@ -59,7 +59,7 @@ class TeamGridItemCollectionViewCell: CircleCollectionViewCell {
         }
     }
     
-    class func sizeByMode(sizeMode: SizeMode) -> CGSize {
+    static func sizeByMode(sizeMode: SizeMode) -> CGSize {
         var width: CGFloat
         switch sizeMode {
         case .Regular:

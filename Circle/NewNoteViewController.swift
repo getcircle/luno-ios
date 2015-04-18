@@ -53,7 +53,7 @@ class NewNoteViewController: UIViewController, UIViewControllerTransitioningDele
         super.viewWillAppear(animated)
         if let profile = profile {
             if isPersonalNote() {
-                noteTextViewTopConstraint.constant = -profileImageView.frameHeight
+                noteTextViewTopConstraint.constant = -profileImageView.frame.height
                 noteTextView.setNeedsUpdateConstraints()
                 noteTextView.layoutIfNeeded()
                 noteTopBorder.hidden = true
@@ -61,7 +61,7 @@ class NewNoteViewController: UIViewController, UIViewControllerTransitioningDele
             }
             else {
                 profileImageView.setImageWithProfile(profile)
-                profileNameLabel.text = profile.full_name
+                profileNameLabel.text = profile.fullName
                 profileTitleLabel.text = profile.title
             }
         }
@@ -130,7 +130,7 @@ class NewNoteViewController: UIViewController, UIViewControllerTransitioningDele
                 title: NSLocalizedString("Delete", comment: "Generic button title for deleting an item"),
                 style: .Destructive
             ) { (action) -> Void in
-                NoteService.Actions.deleteNote(self.note!, completionHandler: { (error) -> Void in
+                Services.Note.Actions.deleteNote(self.note!, completionHandler: { (error) -> Void in
                     if error == nil {
                         self.trackDeleteNoteAction(self.note!)
                         self.delegate?.didDeleteNote(self.note!)
@@ -233,10 +233,10 @@ class NewNoteViewController: UIViewController, UIViewControllerTransitioningDele
     private func saveNewNote() {
         let currentProfile = AuthViewController.getLoggedInUserProfile()!
         let noteBuilder = Services.Note.Containers.NoteV1.builder()
-        noteBuilder.for_profileId = profile!.id
-        noteBuilder.owner_profileId = currentProfile.id
+        noteBuilder.forProfileId = profile!.id
+        noteBuilder.ownerProfileId = currentProfile.id
         noteBuilder.content = noteTextView.text
-        NoteService.Actions.createNote(noteBuilder.build()) { (note, error) -> Void in
+        Services.Note.Actions.createNote(noteBuilder.build()) { (note, error) -> Void in
             if let note = note {
                 self.trackSaveNoteAction(note)
                 self.delegate?.didAddNote(note)
@@ -248,7 +248,7 @@ class NewNoteViewController: UIViewController, UIViewControllerTransitioningDele
     private func updateNote() {
         let noteBuilder = note!.toBuilder()
         noteBuilder.content = noteTextView.text
-        NoteService.Actions.updateNote(noteBuilder.build()) { (note, error) -> Void in
+        Services.Note.Actions.updateNote(noteBuilder.build()) { (note, error) -> Void in
             if let note = note {
                 self.trackUpdateNoteAction(note)
                 self.delegate?.didDeleteNote(self.note!)
@@ -355,7 +355,7 @@ class NewNoteViewController: UIViewController, UIViewControllerTransitioningDele
             TrackerProperty.withKeyString("personal_note").withValue(isPersonalNote()),
         ]
         if let profile = profile {
-            properties.append(TrackerProperty.withKeyString("for_profileId").withString(profile.id))
+            properties.append(TrackerProperty.withKeyString("forProfileId").withString(profile.id))
         }
         return properties
     }

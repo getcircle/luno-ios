@@ -20,9 +20,9 @@ class SocialConnectViewController: UIViewController, WKNavigationDelegate {
     
     var activityIndicator: CircleActivityIndicatorView!
     var webView: WKWebView!
-    var provider: UserService.Provider?
+    var provider: Services.User.Containers.IdentityV1.ProviderV1?
     
-    convenience init(provider withProvider: UserService.Provider) {
+    convenience init(provider withProvider: Services.User.Containers.IdentityV1.ProviderV1) {
         self.init()
         provider = withProvider
     }
@@ -67,7 +67,7 @@ class SocialConnectViewController: UIViewController, WKNavigationDelegate {
     }
     
     private func loadWebView() {
-        UserService.Actions.getAuthorizationInstructions(provider!) { (authorizationURL, error) -> Void in
+        Services.User.Actions.getAuthorizationInstructions(provider!) { (authorizationURL, error) -> Void in
             if let authorizationURL = authorizationURL {
                 let url = NSURL(string: authorizationURL)
                 let request = NSURLRequest(URL: url!)
@@ -80,8 +80,8 @@ class SocialConnectViewController: UIViewController, WKNavigationDelegate {
     
     func webView(webView: WKWebView, decidePolicyForNavigationAction navigationAction: WKNavigationAction, decisionHandler: (WKNavigationActionPolicy) -> Void) {
         let url = navigationAction.request.URL
-        if url.host == ServiceHttpRequest.environment.host && (url.path!.hasSuffix("success") || url.path!.hasSuffix("error")) {
-            if url.path!.hasSuffix("success") {
+        if url!.host == ServiceHttpRequest.environment.host && (url!.path!.hasSuffix("success") || url!.path!.hasSuffix("error")) {
+            if url!.path!.hasSuffix("success") {
                 println("successfully connected to linkedin")
                 
                 NSNotificationCenter.defaultCenter().postNotificationName(

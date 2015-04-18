@@ -56,7 +56,7 @@ class TagsOverviewViewController: UIViewController, UICollectionViewDelegateFlow
     
     private func initializeSearchHeaderView() {
         if let nibViews = NSBundle.mainBundle().loadNibNamed("SearchHeaderView", owner: nil, options: nil) as? [UIView] {
-            searchHeaderView = nibViews.first as SearchHeaderView
+            searchHeaderView = nibViews.first as! SearchHeaderView
         }
     }
 
@@ -71,7 +71,7 @@ class TagsOverviewViewController: UIViewController, UICollectionViewDelegateFlow
     private func configurePrototypeCell() {
         // Init prototype cell
         let cellNibViews = NSBundle.mainBundle().loadNibNamed("TagCollectionViewCell", owner: self, options: nil)
-        prototypeCell = cellNibViews.first as TagCollectionViewCell
+        prototypeCell = cellNibViews.first as! TagCollectionViewCell
     }
     
     private func configureCollectionView() {
@@ -117,7 +117,7 @@ class TagsOverviewViewController: UIViewController, UICollectionViewDelegateFlow
         if let selectedTag = dataSource.interest(collectionView: collectionView, atIndexPath: indexPath) {
             trackTagSelected(selectedTag)
             let viewController = TagDetailViewController()
-            (viewController.dataSource as TagDetailDataSource).selectedTag = selectedTag
+            (viewController.dataSource as! TagDetailDataSource).selectedTag = selectedTag
             navigationController?.pushViewController(viewController, animated: true)
         }
         
@@ -144,11 +144,11 @@ class TagsOverviewViewController: UIViewController, UICollectionViewDelegateFlow
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-            return CGSizeMake(view.frameWidth, ProfileSectionHeaderCollectionReusableView.height)
+            return CGSizeMake(view.frame.width, ProfileSectionHeaderCollectionReusableView.height)
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
-            return CGSizeMake(view.frameWidth, 1.0)
+            return CGSizeMake(view.frame.width, 1.0)
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
