@@ -11,7 +11,7 @@ public func == (lhs: Services.Feed.Containers.CategoryV1, rhs: Services.Feed.Con
   fieldCheck = fieldCheck && (lhs.hasVersion == rhs.hasVersion) && (!lhs.hasVersion || lhs.version == rhs.version)
   fieldCheck = fieldCheck && (lhs.hasTitle == rhs.hasTitle) && (!lhs.hasTitle || lhs.title == rhs.title)
   fieldCheck = fieldCheck && (lhs.hasContentKey == rhs.hasContentKey) && (!lhs.hasContentKey || lhs.contentKey == rhs.contentKey)
-  fieldCheck = fieldCheck && (lhs.hasTypes == rhs.hasTypes) && (!lhs.hasTypes || lhs.types == rhs.types)
+  fieldCheck = fieldCheck && (lhs.hasCategoryType == rhs.hasCategoryType) && (!lhs.hasCategoryType || lhs.categoryType == rhs.categoryType)
   fieldCheck = fieldCheck && (lhs.hasTotalCount == rhs.hasTotalCount) && (!lhs.hasTotalCount || lhs.totalCount == rhs.totalCount)
   fieldCheck = fieldCheck && (lhs.profiles == rhs.profiles)
   fieldCheck = fieldCheck && (lhs.addresses == rhs.addresses)
@@ -70,7 +70,7 @@ public extension Services.Feed.Containers {
            case "version": return version
            case "title": return title
            case "contentKey": return contentKey
-           case "types": return self.types
+           case "categoryType": return self.categoryType
            case "totalCount": return totalCount
            default: return nil
            }
@@ -85,8 +85,8 @@ public extension Services.Feed.Containers {
     public private(set) var hasContentKey:Bool = false
     public private(set) var contentKey:String = ""
 
-    public private(set) var types:Services.Feed.Containers.CategoryV1.CategoryTypeV1 = Services.Feed.Containers.CategoryV1.CategoryTypeV1.DirectReports
-    public private(set) var hasTypes:Bool = false
+    public private(set) var categoryType:Services.Feed.Containers.CategoryV1.CategoryTypeV1 = Services.Feed.Containers.CategoryV1.CategoryTypeV1.DirectReports
+    public private(set) var hasCategoryType:Bool = false
     public private(set) var hasTotalCount:Bool = false
     public private(set) var totalCount:UInt32 = UInt32(0)
 
@@ -112,8 +112,8 @@ public extension Services.Feed.Containers {
       if hasContentKey {
         output.writeString(3, value:contentKey)
       }
-      if hasTypes {
-        output.writeEnum(4, value:types.rawValue)
+      if hasCategoryType {
+        output.writeEnum(4, value:categoryType.rawValue)
       }
       if hasTotalCount {
         output.writeUInt32(5, value:totalCount)
@@ -154,8 +154,8 @@ public extension Services.Feed.Containers {
       if hasContentKey {
         serialize_size += contentKey.computeStringSize(3)
       }
-      if (hasTypes) {
-        serialize_size += types.rawValue.computeEnumSize(4)
+      if (hasCategoryType) {
+        serialize_size += categoryType.rawValue.computeEnumSize(4)
       }
       if hasTotalCount {
         serialize_size += totalCount.computeUInt32Size(5)
@@ -228,8 +228,8 @@ public extension Services.Feed.Containers {
       if hasContentKey {
         output += "\(indent) contentKey: \(contentKey) \n"
       }
-      if (hasTypes) {
-        output += "\(indent) types: \(types.rawValue)\n"
+      if (hasCategoryType) {
+        output += "\(indent) categoryType: \(categoryType.rawValue)\n"
       }
       if hasTotalCount {
         output += "\(indent) totalCount: \(totalCount) \n"
@@ -290,8 +290,8 @@ public extension Services.Feed.Containers {
             if hasContentKey {
                hashCode = (hashCode &* 31) &+ contentKey.hashValue
             }
-            if hasTypes {
-               hashCode = (hashCode &* 31) &+ Int(types.rawValue)
+            if hasCategoryType {
+               hashCode = (hashCode &* 31) &+ Int(categoryType.rawValue)
             }
             if hasTotalCount {
                hashCode = (hashCode &* 31) &+ totalCount.hashValue
@@ -411,27 +411,27 @@ public extension Services.Feed.Containers {
          builderResult.contentKey = ""
          return self
     }
-      public var hasTypes:Bool{
+      public var hasCategoryType:Bool{
           get {
-              return builderResult.hasTypes
+              return builderResult.hasCategoryType
           }
       }
-      public var types:Services.Feed.Containers.CategoryV1.CategoryTypeV1 {
+      public var categoryType:Services.Feed.Containers.CategoryV1.CategoryTypeV1 {
           get {
-              return builderResult.types
+              return builderResult.categoryType
           }
           set (value) {
-              builderResult.hasTypes = true
-              builderResult.types = value
+              builderResult.hasCategoryType = true
+              builderResult.categoryType = value
           }
       }
-      public func setTypes(value:Services.Feed.Containers.CategoryV1.CategoryTypeV1)-> Services.Feed.Containers.CategoryV1Builder {
-        self.types = value
+      public func setCategoryType(value:Services.Feed.Containers.CategoryV1.CategoryTypeV1)-> Services.Feed.Containers.CategoryV1Builder {
+        self.categoryType = value
         return self
       }
-      public func clearTypes() -> Services.Feed.Containers.CategoryV1Builder {
-         builderResult.hasTypes = false
-         builderResult.types = .DirectReports
+      public func clearCategoryType() -> Services.Feed.Containers.CategoryV1Builder {
+         builderResult.hasCategoryType = false
+         builderResult.categoryType = .DirectReports
          return self
       }
     public var hasTotalCount:Bool {
@@ -586,8 +586,8 @@ public extension Services.Feed.Containers {
       if other.hasContentKey {
            contentKey = other.contentKey
       }
-      if other.hasTypes {
-           types = other.types
+      if other.hasCategoryType {
+           categoryType = other.categoryType
       }
       if other.hasTotalCount {
            totalCount = other.totalCount
@@ -635,11 +635,11 @@ public extension Services.Feed.Containers {
           contentKey = input.readString()
 
         case 32 :
-          let valueInttypes = input.readEnum()
-          if let enumstypes = Services.Feed.Containers.CategoryV1.CategoryTypeV1(rawValue:valueInttypes){
-               types = enumstypes
+          let valueIntcategoryType = input.readEnum()
+          if let enumscategoryType = Services.Feed.Containers.CategoryV1.CategoryTypeV1(rawValue:valueIntcategoryType){
+               categoryType = enumscategoryType
           } else {
-               unknownFieldsBuilder.mergeVarintField(4, value:Int64(valueInttypes))
+               unknownFieldsBuilder.mergeVarintField(4, value:Int64(valueIntcategoryType))
           }
 
         case 40 :

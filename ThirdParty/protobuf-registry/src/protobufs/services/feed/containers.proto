@@ -23,7 +23,7 @@ message CategoryV1 {
     optional uint32 version = 1 [default = 1];
     optional string title = 2;
     optional string content_key = 3;
-    optional CategoryTypeV1 type = 4;
+    optional CategoryTypeV1 category_type = 4;
     optional uint32 total_count = 5;
 
     repeated services.profile.containers.ProfileV1 profiles = 6;

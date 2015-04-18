@@ -21,7 +21,7 @@ import protobufs.services.profile.containers_pb2
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='protobufs/services/feed/containers.proto',
   package='services.feed.containers',
-  serialized_pb=_b('\n(protobufs/services/feed/containers.proto\x12\x18services.feed.containers\x1a(protobufs/services/note/containers.proto\x1a\x30protobufs/services/organization/containers.proto\x1a+protobufs/services/profile/containers.proto\"\xb2\x05\n\nCategoryV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\r\n\x05title\x18\x02 \x01(\t\x12\x13\n\x0b\x63ontent_key\x18\x03 \x01(\t\x12\x41\n\x04type\x18\x04 \x01(\x0e\x32\x33.services.feed.containers.CategoryV1.CategoryTypeV1\x12\x13\n\x0btotal_count\x18\x05 \x01(\r\x12\x38\n\x08profiles\x18\x06 \x03(\x0b\x32&.services.profile.containers.ProfileV1\x12>\n\taddresses\x18\x07 \x03(\x0b\x32+.services.organization.containers.AddressV1\x12\x30\n\x04tags\x18\x08 \x03(\x0b\x32\".services.profile.containers.TagV1\x12\x37\n\x05teams\x18\t \x03(\x0b\x32(.services.organization.containers.TeamV1\x12/\n\x05notes\x18\n \x03(\x0b\x32 .services.note.containers.NoteV1\x12?\n\tlocations\x18\x0b \x03(\x0b\x32,.services.organization.containers.LocationV1\"\xbc\x01\n\x0e\x43\x61tegoryTypeV1\x12\x12\n\x0e\x44IRECT_REPORTS\x10\x01\x12\x11\n\rANNIVERSARIES\x10\x02\x12\r\n\tBIRTHDAYS\x10\x03\x12\r\n\tLOCATIONS\x10\x04\x12\r\n\tINTERESTS\x10\x05\x12\t\n\x05PEERS\x10\x06\x12\r\n\tNEW_HIRES\x10\x07\x12\x0f\n\x0b\x44\x45PARTMENTS\x10\x08\x12\x0e\n\nEXECUTIVES\x10\t\x12\x10\n\x0cORGANIZATION\x10\n\x12\t\n\x05NOTES\x10\x0b')
+  serialized_pb=_b('\n(protobufs/services/feed/containers.proto\x12\x18services.feed.containers\x1a(protobufs/services/note/containers.proto\x1a\x30protobufs/services/organization/containers.proto\x1a+protobufs/services/profile/containers.proto\"\xbb\x05\n\nCategoryV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\r\n\x05title\x18\x02 \x01(\t\x12\x13\n\x0b\x63ontent_key\x18\x03 \x01(\t\x12J\n\rcategory_type\x18\x04 \x01(\x0e\x32\x33.services.feed.containers.CategoryV1.CategoryTypeV1\x12\x13\n\x0btotal_count\x18\x05 \x01(\r\x12\x38\n\x08profiles\x18\x06 \x03(\x0b\x32&.services.profile.containers.ProfileV1\x12>\n\taddresses\x18\x07 \x03(\x0b\x32+.services.organization.containers.AddressV1\x12\x30\n\x04tags\x18\x08 \x03(\x0b\x32\".services.profile.containers.TagV1\x12\x37\n\x05teams\x18\t \x03(\x0b\x32(.services.organization.containers.TeamV1\x12/\n\x05notes\x18\n \x03(\x0b\x32 .services.note.containers.NoteV1\x12?\n\tlocations\x18\x0b \x03(\x0b\x32,.services.organization.containers.LocationV1\"\xbc\x01\n\x0e\x43\x61tegoryTypeV1\x12\x12\n\x0e\x44IRECT_REPORTS\x10\x01\x12\x11\n\rANNIVERSARIES\x10\x02\x12\r\n\tBIRTHDAYS\x10\x03\x12\r\n\tLOCATIONS\x10\x04\x12\r\n\tINTERESTS\x10\x05\x12\t\n\x05PEERS\x10\x06\x12\r\n\tNEW_HIRES\x10\x07\x12\x0f\n\x0b\x44\x45PARTMENTS\x10\x08\x12\x0e\n\nEXECUTIVES\x10\t\x12\x10\n\x0cORGANIZATION\x10\n\x12\t\n\x05NOTES\x10\x0b')
   ,
   dependencies=[protobufs.services.note.containers_pb2.DESCRIPTOR,protobufs.services.organization.containers_pb2.DESCRIPTOR,protobufs.services.profile.containers_pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
@@ -81,8 +81,8 @@ _CATEGORYV1_CATEGORYTYPEV1 = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=710,
-  serialized_end=898,
+  serialized_start=719,
+  serialized_end=907,
 )
 _sym_db.RegisterEnumDescriptor(_CATEGORYV1_CATEGORYTYPEV1)
 
@@ -116,7 +116,7 @@ _CATEGORYV1 = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='type', full_name='services.feed.containers.CategoryV1.type', index=3,
+      name='category_type', full_name='services.feed.containers.CategoryV1.category_type', index=3,
       number=4, type=14, cpp_type=8, label=1,
       has_default_value=False, default_value=1,
       message_type=None, enum_type=None, containing_type=None,
@@ -184,10 +184,10 @@ _CATEGORYV1 = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=208,
-  serialized_end=898,
+  serialized_end=907,
 )
 
-_CATEGORYV1.fields_by_name['type'].enum_type = _CATEGORYV1_CATEGORYTYPEV1
+_CATEGORYV1.fields_by_name['category_type'].enum_type = _CATEGORYV1_CATEGORYTYPEV1
 _CATEGORYV1.fields_by_name['profiles'].message_type = protobufs.services.profile.containers_pb2._PROFILEV1
 _CATEGORYV1.fields_by_name['addresses'].message_type = protobufs.services.organization.containers_pb2._ADDRESSV1
 _CATEGORYV1.fields_by_name['tags'].message_type = protobufs.services.profile.containers_pb2._TAGV1
