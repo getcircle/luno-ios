@@ -12,11 +12,11 @@ import ProtobufRegistry
 class AppreciationCollectionView: UnderlyingCollectionView {
 
     private var layout: StickyHeaderCollectionViewLayout?
-    private var profile: ProfileService.Containers.Profile?
+    private var profile: Services.Profile.Containers.ProfileV1?
     private var appreciationDataSource: AppreciationDataSource?
     private var appreciationDelegate: CardCollectionViewDelegate?
     
-    convenience init(profile: ProfileService.Containers.Profile?) {
+    convenience init(profile: Services.Profile.Containers.ProfileV1?) {
         let stickyLayout = StickyHeaderCollectionViewLayout()
         self.init(frame: CGRectZero, collectionViewLayout: stickyLayout)
         setTranslatesAutoresizingMaskIntoConstraints(false)
@@ -44,10 +44,10 @@ struct AppreciationNotifications {
 
 class AppreciationDataSource: UnderlyingCollectionViewDataSource {
     
-    var profile: ProfileService.Containers.Profile!
-    private(set) var appreciations = Array<AppreciationService.Containers.Appreciation>()
+    var profile: Services.Profile.Containers.ProfileV1!
+    private(set) var appreciations = Array<Services.Appreciation.Containers.AppreciationV1>()
     
-    convenience init(profile withProfile: ProfileService.Containers.Profile) {
+    convenience init(profile withProfile: Services.Profile.Containers.ProfileV1) {
         self.init()
         profile = withProfile
     }
@@ -93,12 +93,12 @@ class AppreciationDataSource: UnderlyingCollectionViewDataSource {
         }
     }
     
-    func addAppreciation(appreciation: AppreciationService.Containers.Appreciation) {
+    func addAppreciation(appreciation: Services.Appreciation.Containers.AppreciationV1) {
         appreciations.insert(appreciation, atIndex: 0)
         populateData()
     }
     
-    func removeAppreciation(appreciation: AppreciationService.Containers.Appreciation) {
+    func removeAppreciation(appreciation: Services.Appreciation.Containers.AppreciationV1) {
         appreciations = appreciations.filter { $0.id != appreciation.id }
         populateData()
     }

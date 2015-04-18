@@ -193,7 +193,7 @@ class TagsOverviewViewController: UIViewController, UICollectionViewDelegateFlow
     
     // MARK: - Tracking
     
-    private func trackTagSelected(interest: ProfileService.Containers.Tag) {
+    private func trackTagSelected(interest: Services.Profile.Containers.TagV1) {
         let properties = [
             TrackerProperty.withKey(.ActiveViewController).withString(self.dynamicType.description()),
             TrackerProperty.withKey(.Source).withSource(.Overview),

@@ -1,0 +1,35 @@
+package services.feed.containers;
+
+import "protobufs/services/note/containers.proto";
+import "protobufs/services/organization/containers.proto";
+import "protobufs/services/profile/containers.proto";
+
+message CategoryV1 {
+
+    enum CategoryTypeV1 {
+        DIRECT_REPORTS = 1;
+        ANNIVERSARIES = 2;
+        BIRTHDAYS = 3;
+        LOCATIONS = 4;
+        INTERESTS = 5;
+        PEERS = 6;
+        NEW_HIRES = 7;
+        DEPARTMENTS = 8;
+        EXECUTIVES = 9;
+        ORGANIZATION = 10;
+        NOTES = 11;
+    }
+
+    optional uint32 version = 1 [default = 1];
+    optional string title = 2;
+    optional string content_key = 3;
+    optional CategoryTypeV1 type = 4;
+    optional uint32 total_count = 5;
+
+    repeated services.profile.containers.ProfileV1 profiles = 6;
+    repeated services.organization.containers.AddressV1 addresses = 7;
+    repeated services.profile.containers.TagV1 tags = 8;
+    repeated services.organization.containers.TeamV1 teams = 9;
+    repeated services.note.containers.NoteV1 notes = 10;
+    repeated services.organization.containers.LocationV1 locations = 11;
+}

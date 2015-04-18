@@ -247,14 +247,14 @@ class SearchViewController: UIViewController,
         
         // Handle quick actions - this assumes quick actions will be on profiles only
         if dataSource is SearchQueryDataSource && selectedAction != .None {
-            if let profile = dataSource.contentAtIndexPath(indexPath)? as? ProfileService.Containers.Profile {
+            if let profile = dataSource.contentAtIndexPath(indexPath)? as? Services.Profile.Containers.ProfileV1 {
                 performQuickAction(profile)
             }
         }
         else {
             switch selectedCard.type {
             case .Profiles, .Birthdays, .Anniversaries, .NewHires:
-                if let profile = dataSource.contentAtIndexPath(indexPath)? as? ProfileService.Containers.Profile {
+                if let profile = dataSource.contentAtIndexPath(indexPath)? as? Services.Profile.Containers.ProfileV1 {
                     let profileVC = ProfileDetailViewController(profile: profile)
                     if selectedCard.type == .Anniversaries {
                         (profileVC.dataSource as ProfileDetailDataSource).addBannerOfType = .Anniversary
@@ -268,7 +268,7 @@ class SearchViewController: UIViewController,
                     profileVC.hidesBottomBarWhenPushed = false
                     properties.append(TrackerProperty.withKey(.Destination).withSource(.Detail))
                     properties.append(TrackerProperty.withKey(.DestinationDetailType).withDetailType(.Profile))
-                    properties.append(TrackerProperty.withDestinationId("profile_id").withString(profile.id))
+                    properties.append(TrackerProperty.withDestinationId("profileId").withString(profile.id))
                     Tracker.sharedInstance.track(.DetailItemTapped, properties: properties)
                     navigationController?.pushViewController(profileVC, animated: true)
                 }
@@ -283,7 +283,7 @@ class SearchViewController: UIViewController,
                 navigationController?.pushViewController(viewController, animated: true)
 
             case .Offices:
-                if let office = dataSource.contentAtIndexPath(indexPath)? as? OrganizationService.Containers.Location {
+                if let office = dataSource.contentAtIndexPath(indexPath)? as? Services.Organization.Containers.LocationV1 {
                     let viewController = OfficeDetailViewController()
                     (viewController.dataSource as OfficeDetailDataSource).selectedOffice = office
                     viewController.hidesBottomBarWhenPushed = false
@@ -295,7 +295,7 @@ class SearchViewController: UIViewController,
                 }
                 
             case .Team:
-                if let selectedTeam = dataSource.contentAtIndexPath(indexPath)? as? OrganizationService.Containers.Team {
+                if let selectedTeam = dataSource.contentAtIndexPath(indexPath)? as? Services.Organization.Containers.TeamV1 {
                     let viewController = TeamDetailViewController()
                     (viewController.dataSource as TeamDetailDataSource).selectedTeam = selectedTeam
                     viewController.hidesBottomBarWhenPushed = false
@@ -307,9 +307,9 @@ class SearchViewController: UIViewController,
                 }
             
             case .Notes:
-                if let selectedNote = dataSource.contentAtIndexPath(indexPath)? as? NoteService.Containers.Note {
-                    if let profiles = selectedCard.metaData as? [ProfileService.Containers.Profile] {
-                        if let selectedProfile = profiles[indexPath.row] as ProfileService.Containers.Profile? {
+                if let selectedNote = dataSource.contentAtIndexPath(indexPath)? as? Services.Note.Containers.NoteV1 {
+                    if let profiles = selectedCard.metaData as? [Services.Profile.Containers.ProfileV1] {
+                        if let selectedProfile = profiles[indexPath.row] as Services.Profile.Containers.ProfileV1? {
                             let viewController = NewNoteViewController(nibName: "NewNoteViewController", bundle: nil)
                             viewController.profile = selectedProfile
                             viewController.delegate = self
@@ -381,7 +381,7 @@ class SearchViewController: UIViewController,
     
     func didSelectTag(notification: NSNotification) {
         if let userInfo = notification.userInfo {
-            if let selectedTag = userInfo["interest"] as? ProfileService.Containers.Tag {
+            if let selectedTag = userInfo["interest"] as? Services.Profile.Containers.TagV1 {
                 trackTagSelected(selectedTag)
                 let viewController = TagDetailViewController()
                 (viewController.dataSource as TagDetailDataSource).selectedTag = selectedTag
@@ -567,7 +567,7 @@ class SearchViewController: UIViewController,
     
     // MARK: - Quick Actions
     
-    private func performQuickAction(profile: ProfileService.Containers.Profile) -> Bool {
+    private func performQuickAction(profile: Services.Profile.Containers.ProfileV1) -> Bool {
         switch selectedAction {
         case .Email:
             if let email = profile.getEmail() {
@@ -634,11 +634,11 @@ class SearchViewController: UIViewController,
     
     // MARK: - NewNoteViewControllerDelegate
     
-    func didAddNote(note: NoteService.Containers.Note) {
+    func didAddNote(note: Services.Note.Containers.NoteV1) {
         loadData()
     }
     
-    func didDeleteNote(note: NoteService.Containers.Note) {
+    func didDeleteNote(note: Services.Note.Containers.NoteV1) {
         loadData()
     }
     
@@ -668,7 +668,7 @@ class SearchViewController: UIViewController,
         Tracker.sharedInstance.track(.CardHeaderTapped, properties: properties)
     }
     
-    private func trackTagSelected(interest: ProfileService.Containers.Tag) {
+    private func trackTagSelected(interest: Services.Profile.Containers.TagV1) {
         let properties = [
             TrackerProperty.withKey(.ActiveViewController).withString(self.dynamicType.description()),
             TrackerProperty.withKey(.Source).withSource(.Home),

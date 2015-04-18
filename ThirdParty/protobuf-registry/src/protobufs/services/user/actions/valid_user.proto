@@ -1,0 +1,11 @@
+package services.user.actions.valid_user;
+
+message RequestV1 {
+    optional uint32 version = 1 [default = 1];
+    optional string user_id = 2;
+}
+
+message ResponseV1 {
+    optional uint32 version = 1 [default = 1];
+    optional bool exists = 2;
+}

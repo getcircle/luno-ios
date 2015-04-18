@@ -23,10 +23,10 @@ class ProfileOverlaidCollectionViewDataSource: CardDataSource {
 
     var profileHeaderView: ProfileHeaderCollectionReusableView?
     var profileHeaderViewDelegate: ProfileDetailSegmentedControlDelegate?
-    private var profile: ProfileService.Containers.Profile?
+    private var profile: Services.Profile.Containers.ProfileV1?
     private var sections: [ProfileDetailView]?
     
-    convenience init(profile withProfile: ProfileService.Containers.Profile, sections withSections: [ProfileDetailView]?) {
+    convenience init(profile withProfile: Services.Profile.Containers.ProfileV1, sections withSections: [ProfileDetailView]?) {
         self.init()
         profile = withProfile
         sections = withSections
@@ -83,11 +83,11 @@ class ProfileOverlaidCollectionView: UICollectionView, UICollectionViewDelegate 
     }
     
     private var layout: StickyHeaderCollectionViewLayout?
-    private var profile: ProfileService.Containers.Profile?
+    private var profile: Services.Profile.Containers.ProfileV1?
     private var collectionViewDataSource: ProfileOverlaidCollectionViewDataSource?
     private var collectionViewDelegate: CardCollectionViewDelegate?
     
-    convenience init(profile: ProfileService.Containers.Profile?, sections: [ProfileDetailView]?) {
+    convenience init(profile: Services.Profile.Containers.ProfileV1?, sections: [ProfileDetailView]?) {
         let stickyLayout = StickyHeaderCollectionViewLayout()
         self.init(frame: CGRectZero, collectionViewLayout: stickyLayout)
         setTranslatesAutoresizingMaskIntoConstraints(false)

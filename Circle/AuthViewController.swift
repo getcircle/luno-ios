@@ -8,17 +8,16 @@
 
 import UIKit
 import Crashlytics
-import Locksmith
 import ProtobufRegistry
 
 // Swift doesn't support static variables yet.
 // This is the way it is recommended on the docs.
 // https://developer.apple.com/library/ios/documentation/swift/conceptual/Swift_Programming_Language/Properties.html
 struct LoggedInUserHolder {
-    static var user: UserService.Containers.User?
-    static var profile: ProfileService.Containers.Profile?
-    static var organization: OrganizationService.Containers.Organization?
-    static var identities: Array<UserService.Containers.Identity>?
+    static var user: Services.User.Containers.UserV1?
+    static var profile: Services.Profile.Containers.ProfileV1?
+    static var organization: Services.Organization.Containers.OrganizationV1?
+    static var identities: Array<Services.User.Containers.IdentityV1>?
     static var token: String?
 }
 
@@ -108,7 +107,7 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
     
     func finishedWithAuth(auth: GTMOAuth2Authentication!, error: NSError!) {
         if error == nil {
-            let credentials = UserService.AuthenticateUser.Request.Credentials.builder()
+            let credentials = Services.User.Actions.AuthenticateUser.RequestV1.CredentialsV1.builder()
             if let code = GPPSignIn.sharedInstance().homeServerAuthorizationCode? {
                 credentials.key = code
             }
@@ -158,51 +157,51 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
     
     // MARK: - Helpers
     
-    private class func loadCachedUser() -> UserService.Containers.User? {
+    private class func loadCachedUser() -> Services.User.Containers.UserV1? {
         if let data = NSUserDefaults.standardUserDefaults().objectForKey(DefaultsUserKey) as? NSData {
-            return UserService.Containers.User.parseFromNSData(data)
+            return Services.User.Containers.UserV1.parseFromNSData(data)
         }
         return nil
     }
     
-    private class func loadCachedProfile() -> ProfileService.Containers.Profile? {
+    private class func loadCachedProfile() -> Services.Profile.Containers.ProfileV1? {
         if let data = NSUserDefaults.standardUserDefaults().objectForKey(DefaultsProfileKey) as? NSData {
-            return ProfileService.Containers.Profile.parseFromNSData(data)
+            return Services.Profile.Containers.ProfileV1.parseFromNSData(data)
         }
         return nil
     }
     
-    private class func loadCachedOrganization() -> OrganizationService.Containers.Organization? {
+    private class func loadCachedOrganization() -> Services.Organization.Containers.OrganizationV1? {
         if let data = NSUserDefaults.standardUserDefaults().objectForKey(DefaultsOrganizationKey) as? NSData {
-            return OrganizationService.Containers.Organization.parseFromNSData(data)
+            return Services.Organization.Containers.OrganizationV1.parseFromNSData(data)
         }
         return nil
     }
     
-    private class func loadCachedIdentities() -> Array<UserService.Containers.Identity>? {
+    private class func loadCachedIdentities() -> Array<Services.User.Containers.IdentityV1>? {
         if let data = NSUserDefaults.standardUserDefaults().objectForKey(DefaultsIdentitiesKey) as? [NSData] {
-            var identities = Array<UserService.Containers.Identity>()
+            var identities = Array<Services.User.Containers.IdentityV1>()
             for object in data {
-                identities.append(UserService.Containers.Identity.parseFromNSData(object))
+                identities.append(Services.User.Containers.IdentityV1.parseFromNSData(object))
             }
             return identities
         }
         return nil
     }
     
-    private class func cacheUserData(user: UserService.Containers.User) {
+    private class func cacheUserData(user: Services.User.Containers.UserV1) {
         NSUserDefaults.standardUserDefaults().setObject(user.getNSData(), forKey: DefaultsUserKey)
     }
     
-    private class func cacheProfileData(profile: ProfileService.Containers.Profile) {
+    private class func cacheProfileData(profile: Services.Profile.Containers.ProfileV1) {
         NSUserDefaults.standardUserDefaults().setObject(profile.getNSData(), forKey: DefaultsProfileKey)
     }
     
-    private class func cacheOrganizationData(organization: OrganizationService.Containers.Organization) {
+    private class func cacheOrganizationData(organization: Services.Organization.Containers.OrganizationV1) {
         NSUserDefaults.standardUserDefaults().setObject(organization.getNSData(), forKey: DefaultsOrganizationKey)
     }
     
-    private class func cacheUserIdentities(identities: Array<UserService.Containers.Identity>) {
+    private class func cacheUserIdentities(identities: Array<Services.User.Containers.IdentityV1>) {
         var cleanIdentities = [NSData]()
         for identity in identities {
             let builder = identity.toBuilder()
@@ -213,7 +212,7 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
         NSUserDefaults.standardUserDefaults().setObject(cleanIdentities, forKey: DefaultsIdentitiesKey)
     }
     
-    private func cacheLoginData(token: String, user: UserService.Containers.User) {
+    private func cacheLoginData(token: String, user: Services.User.Containers.UserV1) {
         // Cache locally
         self.dynamicType.cacheTokenAndUserInMemory(token, user: user)
 
@@ -236,7 +235,7 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
         NSUserDefaults.standardUserDefaults().setObject(user.primary_email, forKey: DefaultsLastLoggedInUserEmail)
     }
     
-    internal class func cacheTokenAndUserInMemory(token: String, user: UserService.Containers.User) {
+    internal class func cacheTokenAndUserInMemory(token: String, user: Services.User.Containers.UserV1) {
         LoggedInUserHolder.token = token
         LoggedInUserHolder.user = user
     }
@@ -266,8 +265,8 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
     // MARK: - Log in
     
     private func login(
-        backend: UserService.AuthenticateUser.Request.AuthBackend,
-        credentials: UserService.AuthenticateUser.Request.Credentials
+        backend: Services.User.Actions.AuthenticateUser.RequestV1.AuthBackendV1,
+        credentials: Services.User.Actions.AuthenticateUser.RequestV1.CredentialsV1
     ) {
         UserService.Actions.authenticateUser(backend, credentials: credentials) { (user, token, newUser, error) -> Void in
             if error != nil {
@@ -317,7 +316,7 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
         ProfileService.Actions.getProfile(userId: userId) { (profile, error) -> Void in
             if let profile = profile {
                 self.dynamicType.updateUserProfile(profile)
-                self.fetchAndCacheUserOrganization(profile.organization_id, userId: profile.user_id, completion: completion)
+                self.fetchAndCacheUserOrganization(profile.organizationId, userId: profile.userId, completion: completion)
             } else {
                 completion(error: error)
             }
@@ -410,7 +409,7 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
     
     // MARK: - Logged In User Helpers
     
-    class func getLoggedInUser() -> UserService.Containers.User? {
+    class func getLoggedInUser() -> Services.User.Containers.UserV1? {
         if let user = LoggedInUserHolder.user {
             return user
         } else {
@@ -421,7 +420,7 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
         return nil
     }
     
-    class func getLoggedInUserProfile() -> ProfileService.Containers.Profile? {
+    class func getLoggedInUserProfile() -> Services.Profile.Containers.ProfileV1? {
         if let profile = LoggedInUserHolder.profile {
             return profile
         } else {
@@ -432,7 +431,7 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
         return nil
     }
     
-    class func getLoggedInUserOrganization() -> OrganizationService.Containers.Organization? {
+    class func getLoggedInUserOrganization() -> Services.Organization.Containers.OrganizationV1? {
         if let organization = LoggedInUserHolder.organization {
             return organization
         } else {
@@ -458,7 +457,7 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
         return nil
     }
     
-    class func getLoggedInUserIdentities() -> Array<UserService.Containers.Identity>? {
+    class func getLoggedInUserIdentities() -> Array<Services.User.Containers.IdentityV1>? {
         if let identities = LoggedInUserHolder.identities {
             return identities
         } else {
@@ -469,7 +468,7 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
         return nil
     }
     
-    class func updateUserProfile(profile: ProfileService.Containers.Profile) {
+    class func updateUserProfile(profile: Services.Profile.Containers.ProfileV1) {
         LoggedInUserHolder.profile = profile
         cacheProfileData(profile)
         NSNotificationCenter.defaultCenter().postNotificationName(
@@ -478,7 +477,7 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
         )
     }
     
-    class func updateUser(user: UserService.Containers.User) {
+    class func updateUser(user: Services.User.Containers.UserV1) {
         LoggedInUserHolder.user = user
         cacheUserData(user)
         NSNotificationCenter.defaultCenter().postNotificationName(
@@ -487,12 +486,12 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
         )
     }
     
-    class func updateOrganization(organization: OrganizationService.Containers.Organization) {
+    class func updateOrganization(organization: Services.Organization.Containers.OrganizationV1) {
         LoggedInUserHolder.organization = organization
         cacheOrganizationData(organization)
     }
     
-    class func updateIdentities(identities: Array<UserService.Containers.Identity>)  {
+    class func updateIdentities(identities: Array<Services.User.Containers.IdentityV1>)  {
         LoggedInUserHolder.identities = identities
         cacheUserIdentities(identities)
     }
@@ -535,7 +534,7 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
     
     // MARK: - Tracking
     
-    private func trackSignupLogin(backend: UserService.AuthenticateUser.Request.AuthBackend, newUser: Bool) {
+    private func trackSignupLogin(backend: Services.User.Actions.AuthenticateUser.RequestV1.AuthBackendV1, newUser: Bool) {
         let properties = [TrackerProperty.withKeyString("auth_backend").withValue(Int(backend.rawValue))]
         if newUser {
             Tracker.sharedInstance.track(.UserSignup, properties: properties)

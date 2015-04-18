@@ -13,9 +13,9 @@ class ProfileDetailViewController: DetailViewController,
     CardFooterViewDelegate
 {
 
-    var profile: ProfileService.Containers.Profile!
+    var profile: Services.Profile.Containers.ProfileV1!
     
-    convenience init(profile withProfile: ProfileService.Containers.Profile) {
+    convenience init(profile withProfile: Services.Profile.Containers.ProfileV1) {
         self.init()
         profile = withProfile
         dataSource = ProfileDetailDataSource(profile: profile)
@@ -55,13 +55,13 @@ class ProfileDetailViewController: DetailViewController,
                         
                     case .Profiles:
                         let data: AnyObject? = dataSource.contentAtIndexPath(indexPath)
-                        if data is OrganizationService.Containers.Team {
+                        if data is Services.Organization.Containers.TeamV1 {
                             onTeamTapped(nil)
                         }
-                        else if data is OrganizationService.Containers.Location {
+                        else if data is Services.Organization.Containers.LocationV1 {
                             onOfficeTapped(nil)
                         }
-                        else if data is ProfileService.Containers.Profile {
+                        else if data is Services.Profile.Containers.ProfileV1 {
                             onManagerTapped(nil)
                         }
                         
@@ -270,15 +270,15 @@ class ProfileDetailViewController: DetailViewController,
         Tracker.sharedInstance.track(.NewNote, properties: properties)
     }
     
-    private func trackViewNoteAction(note: NoteService.Containers.Note) {
+    private func trackViewNoteAction(note: Services.Note.Containers.NoteV1) {
         let properties = getTrackingProperties(note)
         Tracker.sharedInstance.track(.ViewNote, properties: properties)
     }
     
-    private func getTrackingProperties(note: NoteService.Containers.Note?) -> [TrackerProperty] {
+    private func getTrackingProperties(note: Services.Note.Containers.NoteV1?) -> [TrackerProperty] {
         var properties = [
             TrackerProperty.withKey(.ActiveViewController).withString(self.dynamicType.description()),
-            TrackerProperty.withDestinationId("profile_id").withString(profile.id),
+            TrackerProperty.withDestinationId("profileId").withString(profile.id),
             TrackerProperty.withKey(.Source).withSource(.Detail),
             TrackerProperty.withKey(.SourceDetailType).withDetailType(.Profile),
             TrackerProperty.withKey(.Destination).withSource(.Detail),

@@ -16,13 +16,13 @@ class ProfilesDataSource: CardDataSource {
     
     private var card: Card!
     private var cardType: Card.CardType = .Profiles
-    private var profiles = Array<ProfileService.Containers.Profile>()
+    private var profiles = Array<Services.Profile.Containers.ProfileV1>()
     
     // MARK: - Configuration
     
     func configureForLocation(locationId: String) {
-        let requestBuilder = ProfileService.GetProfiles.Request.builder()
-        requestBuilder.location_id = locationId
+        let requestBuilder = ProfileService.GetProfiles.RequestV1.builder()
+        requestBuilder.locationId = locationId
         searchAttribute = .LocationId
         searchAttributeValue = locationId
         configureForParameters(requestBuilder)
@@ -30,8 +30,8 @@ class ProfilesDataSource: CardDataSource {
     
     func configureForOrganization() {
         let organizationId = AuthViewController.getLoggedInUserOrganization()!.id
-        let requestBuilder = ProfileService.GetProfiles.Request.builder()
-        requestBuilder.organization_id = organizationId
+        let requestBuilder = ProfileService.GetProfiles.RequestV1.builder()
+        requestBuilder.organizationId = organizationId
         searchAttribute = .OrganizationId
         searchAttributeValue = organizationId
         configureForParameters(requestBuilder)
@@ -41,7 +41,7 @@ class ProfilesDataSource: CardDataSource {
         let client = ServiceClient(serviceName: "profile")
         let serviceRequest = client.buildRequest(
             "get_profiles",
-            extensionField: ProfileServiceRequests_get_profiles,
+            extensionField: ProfileSoa.ServiceRequestV1s_get_profiles,
             requestBuilder: requestBuilder,
             paginatorBuilder: nil
         )
@@ -53,13 +53,13 @@ class ProfilesDataSource: CardDataSource {
     // MARK: - Set Initial Data
     
     override func setInitialData(content: [AnyObject], ofType: Card.CardType?) {
-        profiles.extend(content as [ProfileService.Containers.Profile])
+        profiles.extend(content as [Services.Profile.Containers.ProfileV1])
         if ofType != nil {
             cardType = ofType!
         }
     }
     
-    override func setInitialData(#content: [AnyObject], ofType: Card.CardType?, nextRequest withNextRequest: ServiceRequest?) {
+    override func setInitialData(#content: [AnyObject], ofType: Card.CardType?, nextRequest withNextRequest: Soa.ServiceRequestV1?) {
         registerNextRequest(nextRequest: withNextRequest)
         setInitialData(content, ofType: ofType)
     }
@@ -74,8 +74,8 @@ class ProfilesDataSource: CardDataSource {
         
         registerNextRequestCompletionHandler { (_, _, wrapped, error) -> Void in
             let response = wrapped?.response?.result.getExtension(
-                ProfileServiceRequests_get_profiles
-            ) as? ProfileService.GetProfiles.Response
+                ProfileSoa.ServiceRequestV1s_get_profiles
+            ) as? ProfileService.GetProfiles.ResponseV1
             
             if let profiles = response?.profiles {
                 self.profiles.extend(profiles)

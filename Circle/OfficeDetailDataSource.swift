@@ -11,12 +11,12 @@ import ProtobufRegistry
 
 class OfficeDetailDataSource: CardDataSource {
     
-    var selectedOffice: OrganizationService.Containers.Location!
+    var selectedOffice: Services.Organization.Containers.LocationV1!
 
-    private(set) var profiles = Array<ProfileService.Containers.Profile>()
-    private(set) var nextProfilesRequest: ServiceRequest?
-    private(set) var teams = Array<OrganizationService.Containers.Team>()
-    private(set) var nextTeamsRequest: ServiceRequest?
+    private(set) var profiles = Array<Services.Profile.Containers.ProfileV1>()
+    private(set) var nextProfilesRequest: Soa.ServiceRequestV1?
+    private(set) var teams = Array<Services.Organization.Containers.TeamV1>()
+    private(set) var nextTeamsRequest: Soa.ServiceRequestV1?
     private(set) var profileHeaderView: CircleCollectionReusableView?
     
     private let defaultSectionInset = UIEdgeInsetsMake(0.0, 0.0, 20.0, 0.0)
@@ -67,7 +67,7 @@ class OfficeDetailDataSource: CardDataSource {
 
     override func configureCell(cell: CircleCollectionViewCell, atIndexPath indexPath: NSIndexPath) {
         if let profileCell = cell as? ProfileCollectionViewCell {
-            let profile = contentAtIndexPath(indexPath) as? ProfileService.Containers.Profile
+            let profile = contentAtIndexPath(indexPath) as? Services.Profile.Containers.ProfileV1
             profileCell.subTextLabel.text = profile?.title
         }
     }
@@ -107,7 +107,7 @@ class OfficeDetailDataSource: CardDataSource {
         let image = ItemImage.genericNextImage
         var content: [String: AnyObject] = [
             "name": AppStrings.CardTitlePeople,
-            "value": String(nextProfilesRequest?.getFirstPaginator().count ?? 0),
+            "value": String(nextProfilesRequest?.getFirstSoa.PaginatorV1().count ?? 0),
             "image": image.name,
             "imageTintColor": image.tint,
             "type": ContentType.PeopleCount.rawValue
@@ -125,7 +125,7 @@ class OfficeDetailDataSource: CardDataSource {
             let teamsCard = Card(
                 cardType: .TeamsGrid,
                 title: AppStrings.CardTitleOfficeTeam,
-                contentCount: nextTeamsRequest?.getFirstPaginator().countAsInt() ?? 0
+                contentCount: nextTeamsRequest?.getFirstSoa.PaginatorV1().countAsInt() ?? 0
             )
             teamsCard.addContent(content: teams as [AnyObject], maxVisibleItems: 6)
             teamsCard.sectionInset = UIEdgeInsetsZero

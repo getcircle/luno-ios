@@ -11,21 +11,21 @@ import ProtobufRegistry
 
 class TagsOverviewDataSource: NSObject, UICollectionViewDataSource {
 
-    private var filteredTags = Array<Array<ProfileService.Containers.Tag>>()
-    private var interests = Array<ProfileService.Containers.Tag>()
+    private var filteredTags = Array<Array<Services.Profile.Containers.TagV1>>()
+    private var interests = Array<Services.Profile.Containers.TagV1>()
     
     private var animatedCell = [NSIndexPath: Bool]()
 
     // MARK: - Set Initial Data
     
     func setInitialData(#content: [AnyObject]) {
-        interests = content as Array<ProfileService.Containers.Tag>
+        interests = content as Array<Services.Profile.Containers.TagV1>
         filteredTags = sortAlphabeticallyAndArrangeInSections(interests)
     }
     
-    func interest(collectionView _: UICollectionView, atIndexPath indexPath: NSIndexPath) -> ProfileService.Containers.Tag? {
-        if let interestsSection = filteredTags[indexPath.section] as Array<ProfileService.Containers.Tag>? {
-            if let interest = interestsSection[indexPath.row] as ProfileService.Containers.Tag? {
+    func interest(collectionView _: UICollectionView, atIndexPath indexPath: NSIndexPath) -> Services.Profile.Containers.TagV1? {
+        if let interestsSection = filteredTags[indexPath.section] as Array<Services.Profile.Containers.TagV1>? {
+            if let interest = interestsSection[indexPath.row] as Services.Profile.Containers.TagV1? {
                 return interest
             }
         }
@@ -154,14 +154,14 @@ class TagsOverviewDataSource: NSObject, UICollectionViewDataSource {
     
     // MARK: - Helpers
     
-    private func sortAlphabeticallyAndArrangeInSections(interestsArray: Array<ProfileService.Containers.Tag>) -> Array<Array<ProfileService.Containers.Tag>> {
+    private func sortAlphabeticallyAndArrangeInSections(interestsArray: Array<Services.Profile.Containers.TagV1>) -> Array<Array<ProfileService.Containers.Tag>> {
         let sortedTags = interestsArray.sorted { $0.name.localizedCaseInsensitiveCompare($1.name) == NSComparisonResult.OrderedAscending }
         
-        var interestsArrangedByFirstLetter = Array<Array<ProfileService.Containers.Tag>>()
+        var interestsArrangedByFirstLetter = Array<Array<Services.Profile.Containers.TagV1>>()
         
         if sortedTags.count > 0 {
             var previousLetter = sortedTags[0].name[0].uppercaseString
-            var interestsPerLetter = Array<ProfileService.Containers.Tag>()
+            var interestsPerLetter = Array<Services.Profile.Containers.TagV1>()
             for interest in sortedTags {
                 
                 if previousLetter != interest.name[0].uppercaseString {

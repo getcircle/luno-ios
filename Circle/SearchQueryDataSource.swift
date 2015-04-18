@@ -15,10 +15,10 @@ class SearchQueryDataSource: CardDataSource {
     private let whitespaceCharacterSet = NSCharacterSet.whitespaceCharacterSet()
     
     private var searchTerm = ""
-    private var visibleProfiles = Array<ProfileService.Containers.Profile>()
-    private var visibleTeams = Array<OrganizationService.Containers.Team>()
-    private var visibleAddresses = Array<OrganizationService.Containers.Address>()
-    private var visibleTags = Array<ProfileService.Containers.Tag>()
+    private var visibleProfiles = Array<Services.Profile.Containers.ProfileV1>()
+    private var visibleTeams = Array<Services.Organization.Containers.TeamV1>()
+    private var visibleAddresses = Array<Services.Organization.Containers.AddressV1>()
+    private var visibleTags = Array<Services.Profile.Containers.TagV1>()
     
     override func loadData(completionHandler: (error: NSError?) -> Void) {
     }

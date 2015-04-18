@@ -69,7 +69,7 @@ class CircleImageView: UIImageView {
         imageResponseSerializer = serializer
     }
 
-    func setImageWithProfile(profile: ProfileService.Containers.Profile, successHandler: ((image: UIImage) -> Void)? = nil) {
+    func setImageWithProfile(profile: Services.Profile.Containers.ProfileV1, successHandler: ((image: UIImage) -> Void)? = nil) {
         let request = NSURLRequest(URL: NSURL(string: profile.image_url)!)
         updateAcceptableContentTypes()
         
@@ -105,7 +105,7 @@ class CircleImageView: UIImageView {
                 },
                 failure: { (request, response, error) -> Void in
                     if self.addLabelIfImageLoadingFails {
-                        self.imageText = profile.first_name[0] + profile.last_name[0]
+                        self.imageText = profile.firstName[0] + profile.lastName[0]
                         var appProfileImageBackgroundColor = ProfileColorsHolder.colors[profile.id] ?? UIColor.appProfileImageBackgroundColor()
                         ProfileColorsHolder.colors[profile.id] = appProfileImageBackgroundColor
                         self.imageLabel.backgroundColor = appProfileImageBackgroundColor
@@ -118,7 +118,7 @@ class CircleImageView: UIImageView {
         }
     }
     
-    func setImageWithLocation(location: OrganizationService.Containers.Location, successHandler: ((image: UIImage) -> Void)? = nil) {
+    func setImageWithLocation(location: Services.Organization.Containers.LocationV1, successHandler: ((image: UIImage) -> Void)? = nil) {
         let request = NSURLRequest(URL: NSURL(string: location.image_url)!)
         updateAcceptableContentTypes()
         

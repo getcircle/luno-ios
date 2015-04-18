@@ -21,7 +21,7 @@ class VerifyProfileViewController:
     @IBOutlet weak private(set) var verifyTextLabel: UILabel!
 
     private var addImageActionSheet: UIAlertController?
-    private var profile: ProfileService.Containers.Profile! {
+    private var profile: Services.Profile.Containers.ProfileV1! {
         didSet {
             // only set the staticProfile once
             if staticProfile == nil {
@@ -31,7 +31,7 @@ class VerifyProfileViewController:
         }
     }
     // create a static copy to the profile we can compare with the "profile" object to detect changes
-    private var staticProfile: ProfileService.Containers.Profile?
+    private var staticProfile: Services.Profile.Containers.ProfileV1?
     private var didUploadPhoto = false
 
     override func viewDidLoad() {

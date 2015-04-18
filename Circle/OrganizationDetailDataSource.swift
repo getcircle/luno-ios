@@ -23,7 +23,7 @@ class OrganizationDetailDataSource: CardDataSource {
         appendCard(placeholderCard)
         
         if let currentProfile = AuthViewController.getLoggedInUserProfile() {
-            LandingService.Actions.getOrganizationCategories(currentProfile.organization_id) { (categories, error) -> Void in
+            LandingService.Actions.getOrganizationCategories(currentProfile.organizationId) { (categories, error) -> Void in
                 if error == nil {
                     for category in categories ?? [] {
                         let categoryCard = Card(category: category)

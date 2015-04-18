@@ -74,7 +74,7 @@ class OrganizationDetailViewController: DetailViewController, CardHeaderViewDele
         
         switch selectedCard.type {
         case .Profiles, .Birthdays, .Anniversaries, .NewHires:
-            if let profile = dataSource.contentAtIndexPath(indexPath)? as? ProfileService.Containers.Profile {
+            if let profile = dataSource.contentAtIndexPath(indexPath)? as? Services.Profile.Containers.ProfileV1 {
                 let profileVC = ProfileDetailViewController(profile: profile)
                 profileVC.hidesBottomBarWhenPushed = false
                 properties.append(TrackerProperty.withKey(.Destination).withSource(.Detail))
@@ -93,7 +93,7 @@ class OrganizationDetailViewController: DetailViewController, CardHeaderViewDele
             navigationController?.pushViewController(viewController, animated: true)
             
         case .Offices:
-            if let office = dataSource.contentAtIndexPath(indexPath)? as? OrganizationService.Containers.Location {
+            if let office = dataSource.contentAtIndexPath(indexPath)? as? Services.Organization.Containers.LocationV1 {
                 let viewController = OfficeDetailViewController()
                 (viewController.dataSource as OfficeDetailDataSource).selectedOffice = office
                 viewController.hidesBottomBarWhenPushed = false
@@ -104,7 +104,7 @@ class OrganizationDetailViewController: DetailViewController, CardHeaderViewDele
             }
 
         case .TeamsGrid:
-            if let selectedTeam = dataSource.contentAtIndexPath(indexPath)? as? OrganizationService.Containers.Team {
+            if let selectedTeam = dataSource.contentAtIndexPath(indexPath)? as? Services.Organization.Containers.TeamV1 {
                 let viewController = TeamDetailViewController()
                 (viewController.dataSource as TeamDetailDataSource).selectedTeam = selectedTeam
                 viewController.hidesBottomBarWhenPushed = false
@@ -177,7 +177,7 @@ class OrganizationDetailViewController: DetailViewController, CardHeaderViewDele
     override func didSelectTag(notification: NSNotification) {
         super.didSelectTag(notification)
         if let userInfo = notification.userInfo {
-            if let selectedTag = userInfo["interest"] as? ProfileService.Containers.Tag {
+            if let selectedTag = userInfo["interest"] as? Services.Profile.Containers.TagV1 {
                 trackTagSelected(selectedTag)
             }
         }
@@ -197,13 +197,13 @@ class OrganizationDetailViewController: DetailViewController, CardHeaderViewDele
         Tracker.sharedInstance.track(.CardHeaderTapped, properties: properties)
     }
     
-    private func trackTagSelected(interest: ProfileService.Containers.Tag) {
+    private func trackTagSelected(interest: Services.Profile.Containers.TagV1) {
         let properties = [
             TrackerProperty.withKey(.ActiveViewController).withString(self.dynamicType.description()),
             TrackerProperty.withKey(.Source).withSource(.Organization),
             TrackerProperty.withKey(.Destination).withSource(.Detail),
             TrackerProperty.withKey(.DestinationDetailType).withDetailType(.Tag),
-            TrackerProperty.withDestinationId("tag_id").withString(interest.id)
+            TrackerProperty.withDestinationId("tagId").withString(interest.id)
         ]
         Tracker.sharedInstance.track(.DetailItemTapped, properties: properties)
     }

@@ -29,7 +29,7 @@ class TagScrollingSelectorViewController:
     
     var addNextButton: Bool = false
     var theme: Themes = .Regular
-    var preSelectTags: Array<ProfileService.Containers.Tag> = Array<ProfileService.Containers.Tag>() {
+    var preSelectTags: Array<Services.Profile.Containers.TagV1> = Array<ProfileService.Containers.Tag>() {
         didSet {
             for interest in preSelectTags {
                 selectedTags[interest.hashValue] = interest
@@ -40,9 +40,9 @@ class TagScrollingSelectorViewController:
     private var animatedCell = [NSIndexPath: Bool]()
     private var bottomLayer: CAGradientLayer!
     private var cachedItemSizes =  [String: CGSize]()
-    private var filteredTags = Array<ProfileService.Containers.Tag>()
-    private var interests = Array<ProfileService.Containers.Tag>()
-    private var selectedTags = Dictionary<Int, ProfileService.Containers.Tag>()
+    private var filteredTags = Array<Services.Profile.Containers.TagV1>()
+    private var interests = Array<Services.Profile.Containers.TagV1>()
+    private var selectedTags = Dictionary<Int, Services.Profile.Containers.TagV1>()
     private var prototypeCell: TagCollectionViewCell!
     private var searchHeaderView: SearchHeaderView!
     private var topLayer: CAGradientLayer!
@@ -297,11 +297,11 @@ class TagScrollingSelectorViewController:
         dismissView()
     }
     
-    private func getNewTagObject() -> ProfileService.Containers.Tag? {
+    private func getNewTagObject() -> Services.Profile.Containers.TagV1? {
         var interestName = searchHeaderView.searchTextField.text
         interestName = interestName.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
         if interestName != "" {
-            var interestBuilderObject = ProfileService.Containers.Tag.builder()
+            var interestBuilderObject = Services.Profile.Containers.TagV1.builder()
             interestBuilderObject.name = interestName
             return interestBuilderObject.build()
         }

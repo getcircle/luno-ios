@@ -13,20 +13,20 @@ class TeamsOverviewDataSource: CardDataSource {
     
     private var card: Card!
     private var cardType: Card.CardType = .Team
-    private var teams = Array<OrganizationService.Containers.Team>()
+    private var teams = Array<Services.Organization.Containers.TeamV1>()
     
     // MARK: - Configuration
     
     func configureForLocation(locationId: String) {
-        let requestBuilder = OrganizationService.GetTeams.Request.builder()
-        requestBuilder.location_id = locationId
+        let requestBuilder = OrganizationService.GetTeams.RequestV1.builder()
+        requestBuilder.locationId = locationId
         configureForParameters(requestBuilder)
     }
     
     func configureForOrganization() {
-        let requestBuilder = OrganizationService.GetTeams.Request.builder()
+        let requestBuilder = OrganizationService.GetTeams.RequestV1.builder()
         let organizationId = AuthViewController.getLoggedInUserOrganization()!.id
-        requestBuilder.organization_id = organizationId
+        requestBuilder.organizationId = organizationId
         configureForParameters(requestBuilder)
     }
     
@@ -34,7 +34,7 @@ class TeamsOverviewDataSource: CardDataSource {
         let client = ServiceClient(serviceName: "organization")
         let serviceRequest = client.buildRequest(
             "get_teams",
-            extensionField: OrganizationServiceRequests_get_teams,
+            extensionField: OrganizationSoa.ServiceRequestV1s_get_teams,
             requestBuilder: requestBuilder,
             paginatorBuilder: nil
         )
@@ -46,13 +46,13 @@ class TeamsOverviewDataSource: CardDataSource {
     // MARK: - Set Initial Data
 
     override func setInitialData(content: [AnyObject], ofType: Card.CardType?) {
-        teams.extend(content as [OrganizationService.Containers.Team])
+        teams.extend(content as [Services.Organization.Containers.TeamV1])
         if ofType != nil {
             cardType = ofType!
         }
     }
     
-    override func setInitialData(#content: [AnyObject], ofType: Card.CardType?, nextRequest withNextRequest: ServiceRequest?) {
+    override func setInitialData(#content: [AnyObject], ofType: Card.CardType?, nextRequest withNextRequest: Soa.ServiceRequestV1?) {
         registerNextRequest(nextRequest: withNextRequest)
         setInitialData(content, ofType: ofType)
     }
@@ -67,8 +67,8 @@ class TeamsOverviewDataSource: CardDataSource {
         
         registerNextRequestCompletionHandler { (_, _, wrapped, error) -> Void in
             let response = wrapped?.response?.result.getExtension(
-                OrganizationServiceRequests_get_teams
-            ) as? OrganizationService.GetTeams.Response
+                OrganizationSoa.ServiceRequestV1s_get_teams
+            ) as? OrganizationService.GetTeams.ResponseV1
             
             if let teams = response?.teams {
                 self.teams.extend(teams)

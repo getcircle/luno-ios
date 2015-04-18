@@ -12,7 +12,7 @@ import ProtobufRegistry
 
 class ContactInfoViewController: CircleAlertViewController, UICollectionViewDelegate, MFMailComposeViewControllerDelegate {
     
-    var profile: ProfileService.Containers.Profile!
+    var profile: Services.Profile.Containers.ProfileV1!
 
     private var collectionView: UICollectionView!
     private var collectionViewDelegate = CardCollectionViewDelegate()

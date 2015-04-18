@@ -1,0 +1,15 @@
+package services.profile.actions.get_profile_stats;
+
+import "protobufs/services/profile/containers.proto";
+
+message RequestV1 {
+    optional uint32 version = 1 [default = 1];
+    repeated string address_ids = 2;
+    repeated string location_ids = 3;
+    repeated string team_ids = 4;
+}
+
+message ResponseV1 {
+    optional uint32 version = 1 [default = 1];
+    repeated services.profile.containers.StatV1 stats = 2;
+}

@@ -1,0 +1,15 @@
+package services.media.actions.start_image_upload;
+
+import "protobufs/services/media/containers.proto";
+import "protobufs/services/media/containers/media.proto";
+
+message RequestV1 {
+    optional uint32 version = 1 [default = 1];
+    optional services.media.containers.media.MediaTypeV1 media_type = 2;
+    optional string media_key = 3;
+}
+
+message ResponseV1 {
+    optional uint32 version = 1 [default = 1];
+    optional services.media.containers.UploadInstructionsV1 upload_instructions = 2;
+}

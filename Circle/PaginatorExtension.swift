@@ -9,7 +9,7 @@
 import Foundation
 import ProtobufRegistry
 
-extension Paginator {
+extension Soa.PaginatorV1 {
     
     func countAsInt() -> Int {
         let value = String(count)

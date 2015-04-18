@@ -33,7 +33,7 @@ class AddressCollectionViewCell: CircleCollectionViewCell {
     // MARK: - Data
     
     override func setData(data: AnyObject) {
-        if let office = data as? OrganizationService.Containers.Address {
+        if let office = data as? Services.Organization.Containers.AddressV1 {
             addressLabel.text = office.shortOfficeAddress()
             cityStateLabel.text = office.cityRegionPostalCode()
         }

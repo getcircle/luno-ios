@@ -15,7 +15,7 @@ class MapViewController: UIViewController, UIViewControllerTransitioningDelegate
     var addressSnapshotView: UIView?
     var finalMapViewRect: CGRect?
     var initialMapViewRect: CGRect?
-    var selectedOffice: OrganizationService.Containers.Location!
+    var selectedOffice: Services.Organization.Containers.LocationV1!
 
     private(set) var addressContainerView: UIView!
     private(set) var closeButton: UIButton!

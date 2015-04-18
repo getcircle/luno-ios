@@ -52,7 +52,7 @@ class TeamGridItemCollectionViewCell: CircleCollectionViewCell {
     }
     
     override func setData(data: AnyObject) {
-        if let team = data as? OrganizationService.Containers.Team {
+        if let team = data as? Services.Organization.Containers.TeamV1 {
             teamBackgroundImageView.backgroundColor = UIColor.appTeamHeaderBackgroundColor(team)
             teamLabel.text = team.name
             teamNameLetterLabel.text = team.name[0]

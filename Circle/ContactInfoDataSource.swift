@@ -11,9 +11,9 @@ import ProtobufRegistry
 
 class ContactInfoDataSource: CardDataSource {
     
-    var profile: ProfileService.Containers.Profile!
+    var profile: Services.Profile.Containers.ProfileV1!
     
-    convenience init(profile withProfile: ProfileService.Containers.Profile) {
+    convenience init(profile withProfile: Services.Profile.Containers.ProfileV1) {
         self.init()
         profile = withProfile
     }

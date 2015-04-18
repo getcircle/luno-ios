@@ -147,7 +147,7 @@ class SettingsViewController: UIViewController, UICollectionViewDelegate, MFMail
     func didToggleProvider(notification: NSNotification) {
         if let userInfo = notification.userInfo {
             if let enable = userInfo["enable"] as? Bool {
-                if let identity = userInfo["identity"] as? UserService.Containers.Identity {
+                if let identity = userInfo["identity"] as? Services.User.Containers.IdentityV1 {
                     switch identity.provider {
                     case .Linkedin:
                         if enable {

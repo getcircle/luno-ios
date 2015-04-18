@@ -46,8 +46,8 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
     private(set) var visualEffectView: UIVisualEffectView?
     
     private var buttonContainerWidth: CGFloat = 0.0
-    private var location: OrganizationService.Containers.Location?
-    private var profile: ProfileService.Containers.Profile?
+    private var location: Services.Organization.Containers.LocationV1?
+    private var profile: Services.Profile.Containers.ProfileV1?
     
     private var sectionIndicatorView: UIView?
     private var sectionIndicatorLeftOffsetConstraint: NSLayoutConstraint?
@@ -118,7 +118,7 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
         editImageButton.hidden = true
     }
 
-    func setProfile(userProfile: ProfileService.Containers.Profile) {
+    func setProfile(userProfile: Services.Profile.Containers.ProfileV1) {
         var hasProfileImageChanged = profile?.image_url != userProfile.image_url
         profile = userProfile
         nameLabel.text = userProfile.nameWithNickName()
@@ -137,7 +137,7 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
         }
     }
 
-    func setOffice(office: OrganizationService.Containers.Location) {
+    func setOffice(office: Services.Organization.Containers.LocationV1) {
         if location == nil {
             location = office
             let officeName = office.address.officeName()

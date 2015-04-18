@@ -11,16 +11,16 @@ import ProtobufRegistry
 
 class NotesOverviewDataSource: CardDataSource {
     
-    private var filteredNotes = Array<NoteService.Containers.Note>()
-    private var notes = Array<NoteService.Containers.Note>()
-    private var profiles = Dictionary<String, ProfileService.Containers.Profile>()
+    private var filteredNotes = Array<Services.Note.Containers.NoteV1>()
+    private var notes = Array<Services.Note.Containers.NoteV1>()
+    private var profiles = Dictionary<String, Services.Profile.Containers.ProfileV1>()
     
     // MARK: - Set Initial Data
     
     override func setInitialData(#content: [AnyObject], ofType: Card.CardType? = .Profiles, withMetaData metaData:AnyObject? = nil) {
-        notes = content as Array<NoteService.Containers.Note>
+        notes = content as Array<Services.Note.Containers.NoteV1>
         filteredNotes = notes
-        for profile in metaData as Array<ProfileService.Containers.Profile> {
+        for profile in metaData as Array<Services.Profile.Containers.ProfileV1> {
             profiles[profile.id] = profile
         }
     }
@@ -38,12 +38,12 @@ class NotesOverviewDataSource: CardDataSource {
         completionHandler(error: nil)
     }
     
-    func addNote(note: NoteService.Containers.Note, forProfile profile: ProfileService.Containers.Profile) {
+    func addNote(note: Services.Note.Containers.NoteV1, forProfile profile: Services.Profile.Containers.ProfileV1) {
         notes.insert(note, atIndex: 0)
-        profiles[note.for_profile_id] = profile
+        profiles[note.for_profileId] = profile
     }
     
-    func removeNote(noteToBeDeleted: NoteService.Containers.Note, forProfile profile: ProfileService.Containers.Profile) {
+    func removeNote(noteToBeDeleted: Services.Note.Containers.NoteV1, forProfile profile: Services.Profile.Containers.ProfileV1) {
         for (index, note) in enumerate(notes) {
             if noteToBeDeleted.id == notes[index].id {
                 notes.removeAtIndex(index)
@@ -135,7 +135,7 @@ class NotesOverviewDataSource: CardDataSource {
         for (profileId, profile) in profiles {
             let match = finalProfileNamePredicate.evaluateWithObject(profile, substitutionVariables: [
                 "profile_name": profile.full_name,
-                "profile_name_components": [profile.first_name, profile.last_name]
+                "profile_name_components": [profile.firstName, profile.lastName]
             ])
             
             if match {
@@ -144,7 +144,7 @@ class NotesOverviewDataSource: CardDataSource {
         }
         
         for note in notes {
-            if matchedProfileIds[note.for_profile_id] == true && includedNotesIds[note.id] == nil {
+            if matchedProfileIds[note.for_profileId] == true && includedNotesIds[note.id] == nil {
                 filteredNotes.append(note)
             }
         }
@@ -154,8 +154,8 @@ class NotesOverviewDataSource: CardDataSource {
     
     override func configureCell(cell: CircleCollectionViewCell, atIndexPath indexPath: NSIndexPath) {
         if cell is NotesCollectionViewCell {
-            if let note = contentAtIndexPath(indexPath) as? NoteService.Containers.Note {
-                (cell as NotesCollectionViewCell).setProfile(profiles[note.for_profile_id]!)
+            if let note = contentAtIndexPath(indexPath) as? Services.Note.Containers.NoteV1 {
+                (cell as NotesCollectionViewCell).setProfile(profiles[note.for_profileId]!)
             }
         }
     }

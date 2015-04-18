@@ -340,7 +340,7 @@ class Card: Equatable {
         )
     }
 
-    convenience init(category: LandingService.Containers.Category, addDefaultFooter: Bool? = false) {
+    convenience init(category: Services.Feed.Containers.CategoryV1, addDefaultFooter: Bool? = false) {
         var cardType: CardType
 
         switch category.type {

@@ -54,8 +54,8 @@ class BannerCollectionViewCell : CircleCollectionViewCell {
             if let bannerType = BannerType(rawValue: (bannerDictionary["type"] as Int)) {
                 switch bannerType {
                 case .Anniversary:
-                    if let profile = bannerDictionary["profile"] as? ProfileService.Containers.Profile {
-                        bannerTextLabel.text = "It's " + profile.first_name + "'s Work Anniversary!"
+                    if let profile = bannerDictionary["profile"] as? Services.Profile.Containers.ProfileV1 {
+                        bannerTextLabel.text = "It's " + profile.firstName + "'s Work Anniversary!"
                         bannerCTAButton.setCustomAttributedTitle(
                             "Say Congratulations".localizedUppercaseString(),
                             forState: .Normal
@@ -66,8 +66,8 @@ class BannerCollectionViewCell : CircleCollectionViewCell {
                     break
 
                 case .Birthday:
-                    if let profile = bannerDictionary["profile"] as? ProfileService.Containers.Profile {
-                        bannerTextLabel.text = "It's " + profile.first_name + "'s Birthday!"
+                    if let profile = bannerDictionary["profile"] as? Services.Profile.Containers.ProfileV1 {
+                        bannerTextLabel.text = "It's " + profile.firstName + "'s Birthday!"
                         bannerCTAButton.setCustomAttributedTitle(
                             "Wish Happy Birthday".localizedUppercaseString(),
                             forState: .Normal
@@ -78,8 +78,8 @@ class BannerCollectionViewCell : CircleCollectionViewCell {
                     break
                     
                 case .NewHire:
-                    if let profile = bannerDictionary["profile"] as? ProfileService.Containers.Profile {
-                        bannerTextLabel.text = profile.first_name + "'s new to the team!"
+                    if let profile = bannerDictionary["profile"] as? Services.Profile.Containers.ProfileV1 {
+                        bannerTextLabel.text = profile.firstName + "'s new to the team!"
                         bannerCTAButton.setCustomAttributedTitle(
                             "Introduce yourself".localizedUppercaseString(),
                             forState: .Normal

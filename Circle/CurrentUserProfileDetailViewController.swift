@@ -22,7 +22,7 @@ class CurrentUserProfileDetailViewController: ProfileDetailViewController,
     private var imageToUpload: UIImage?
     
     convenience init(
-        profile withProfile: ProfileService.Containers.Profile,
+        profile withProfile: Services.Profile.Containers.ProfileV1,
         showSettingsButton: Bool = false
     ) {
             self.init()
@@ -40,7 +40,7 @@ class CurrentUserProfileDetailViewController: ProfileDetailViewController,
     // MARK: - Class Methods
     
     class func forProfile(
-        profile: ProfileService.Containers.Profile, 
+        profile: Services.Profile.Containers.ProfileV1, 
         showSettingsButton: Bool = false
     ) -> CurrentUserProfileDetailViewController {
             return CurrentUserProfileDetailViewController(
@@ -165,7 +165,7 @@ class CurrentUserProfileDetailViewController: ProfileDetailViewController,
     }
     
     func onSocialAccountConnected(notification: NSNotification) {
-        UserService.Actions.getIdentities(profile.user_id) { (identities, error) -> Void in
+        UserService.Actions.getIdentities(profile.userId) { (identities, error) -> Void in
             if identities != nil {
                 AuthViewController.updateIdentities(identities!)
                 self.profile = AuthViewController.getLoggedInUserProfile()!
@@ -195,7 +195,7 @@ class CurrentUserProfileDetailViewController: ProfileDetailViewController,
             navigationController?.presentViewController(interestsNavController, animated: true, completion: nil)
             
         case .Skills:
-            var existingSkills = Array<ProfileService.Containers.Tag>()
+            var existingSkills = Array<Services.Profile.Containers.TagV1>()
             if let skills = (dataSource as CurrentUserProfileDetailDataSource).skills {
                 existingSkills = skills
             }

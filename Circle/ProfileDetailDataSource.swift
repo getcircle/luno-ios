@@ -12,26 +12,26 @@ import ProtobufRegistry
 class ProfileDetailDataSource: CardDataSource {
 
     var addBannerOfType: BannerType?
-    var profile: ProfileService.Containers.Profile!
+    var profile: Services.Profile.Containers.ProfileV1!
     var profileHeaderView: ProfileHeaderCollectionReusableView?
 
     internal var sections = [Section]()
     
-    private(set) var address: OrganizationService.Containers.Address?
-    private(set) var identities: Array<UserService.Containers.Identity>?
-    private(set) var location: OrganizationService.Containers.Location?
-    private(set) var manager: ProfileService.Containers.Profile?
-    private(set) var interests: Array<ProfileService.Containers.Tag>?
-    private(set) var skills: Array<ProfileService.Containers.Tag>?
-    private(set) var team: OrganizationService.Containers.Team?
-    private(set) var resume: ResumeService.Containers.Resume?
+    private(set) var address: Services.Organization.Containers.AddressV1?
+    private(set) var identities: Array<Services.User.Containers.IdentityV1>?
+    private(set) var location: Services.Organization.Containers.LocationV1?
+    private(set) var manager: Services.Profile.Containers.ProfileV1?
+    private(set) var interests: Array<Services.Profile.Containers.TagV1>?
+    private(set) var skills: Array<Services.Profile.Containers.TagV1>?
+    private(set) var team: Services.Organization.Containers.TeamV1?
+    private(set) var resume: Services.Resume.Containers.ResumeV1?
 
     private let numberOfEducationItemsVisibleInitially = 1
     private let numberOfExperienceItemsVisibleInitially = 2
     private let numberOfTagItemsVisibleInitially = 6
     private let numberOfSkillItemsVisibleInitially = 6
     
-    convenience init(profile withProfile: ProfileService.Containers.Profile) {
+    convenience init(profile withProfile: Services.Profile.Containers.ProfileV1) {
         self.init()
         profile = withProfile
     }
@@ -474,7 +474,7 @@ class ProfileDetailDataSource: CardDataSource {
             // TODO: Remove after testing UI
             let fakeBio = NSString(
                 format: "Hi! I'm %@. I work on the %@ team in %@.",
-                profile.first_name,
+                profile.firstName,
                 team!.name,
                 location!.address.officeName()
             )

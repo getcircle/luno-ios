@@ -107,7 +107,7 @@ extension UIColor {
         return UIColor(red: 206, green: 206, blue: 206).colorWithAlphaComponent(0.5)
     }
     
-    class func appTeamHeaderBackgroundColor(team: OrganizationService.Containers.Team) -> UIColor {
+    class func appTeamHeaderBackgroundColor(team: Services.Organization.Containers.TeamV1) -> UIColor {
         if let color = TeamColorsHolder.colors[team.id] {
             return color
         } else if team.hasColor {

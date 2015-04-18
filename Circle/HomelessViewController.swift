@@ -93,7 +93,7 @@ class HomelessViewController: UIViewController {
                     self.confirmationLabel.alpha = 1.0
                 })
                 
-                NSUserDefaults.standardUserDefaults().setObject(access_request!.user_id, forKey: "requested_access_to_app")
+                NSUserDefaults.standardUserDefaults().setObject(access_request!.userId, forKey: "requested_access_to_app")
                 NSUserDefaults.standardUserDefaults().synchronize()
             } else {
                 println("Error requesting access: \(error)")

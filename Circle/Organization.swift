@@ -1,0 +1,137 @@
+//
+//  Organization.swift
+//  Circle
+//
+//  Created by Michael Hahn on 1/6/15.
+//  Copyright (c) 2015 RH Labs Inc. All rights reserved.
+//
+
+import Foundation
+import ProtobufRegistry
+
+typealias GetAddressesCompletionHandler = (addresses: Array<Services.Organization.Containers.AddressV1>?, error: NSError?) -> Void
+typealias GetTeamsCompletionHandler = (teams: Array<Services.Organization.Containers.TeamV1>?, nextRequest: Soa.ServiceRequestV1?, error: NSError?) -> Void
+typealias GetTeamDescendantsCompletionHandler = (teams: Array<Services.Organization.Containers.TeamV1>?, error: NSError?) -> Void
+typealias GetOrganizationCompletionHandler = (organization: Services.Organization.Containers.OrganizationV1?, error: NSError?) -> Void
+typealias GetLocationsCompletionHandler = (locations: Array<Services.Organization.Containers.LocationV1>?, error: NSError?) -> Void
+
+extension Services.Organization.Actions {
+        
+    class func getAddresses(organizationId: String, completionHandler: GetAddressesCompletionHandler?) {
+        let requestBuilder = Services.Organization.Actions.GetAddresses.RequestV1.builder()
+        requestBuilder.organizationId = organizationId
+        
+        let client = ServiceClient(serviceName: "organization")
+        client.callAction(
+            "get_addresses",
+            extensionField: Services.Registry.Requests.Organization.getAddresses(),
+            requestBuilder: requestBuilder
+        ) { (_, _, wrapped, error) -> Void in
+            let response = wrapped?.response?.result.getExtension(
+                Services.Registry.Requests.Organization.getAddresses()
+            ) as? Services.Organization.Actions.GetAddresses.ResponseV1
+            completionHandler?(addresses: response?.addresses, error: error)
+        }
+    }
+    
+    class func getTeams(
+        requestBuilder: Services.Organization.Actions.GetTeams.RequestBuilder,
+        paginatorBuilder: Soa.PaginatorV1Builder? = nil,
+        completionHandler: GetTeamsCompletionHandler?
+    ) {
+        let client = ServiceClient(serviceName: "organization")
+        client.callAction(
+            "get_teams",
+            extensionField: Services.Registry.Requests.Organization.getTeams(),
+            requestBuilder: requestBuilder,
+            paginatorBuilder: paginatorBuilder
+            ) { (_, _, wrapped, error) -> Void in
+                let response = wrapped?.response?.result.getExtension(
+                    Services.Registry.Requests.Organization.getTeams()
+                    ) as? Services.Organization.Actions.GetTeams.ResponseV1
+                let nextRequest = wrapped?.getNextRequest()
+                completionHandler?(teams: response?.teams, nextRequest: nextRequest, error: error)
+        }
+    }
+    
+    class func getTeams(
+        organizationId: String,
+        paginatorBuilder: Soa.PaginatorV1Builder? = nil,
+        completionHandler: GetTeamsCompletionHandler?
+    ) {
+        let requestBuilder = Services.Organization.Actions.GetTeams.RequestV1.builder()
+        requestBuilder.organizationId = organizationId
+        self.getTeams(requestBuilder, paginatorBuilder: paginatorBuilder, completionHandler: completionHandler)
+    }
+    
+    class func getTeams(
+        #locationId: String,
+        paginatorBuilder: Soa.PaginatorV1Builder? = nil,
+        completionHandler: GetTeamsCompletionHandler?
+    ) {
+        let requestBuilder = Services.Organization.Actions.GetTeams.RequestV1.builder()
+        requestBuilder.locationId = locationId
+        self.getTeams(requestBuilder, paginatorBuilder: paginatorBuilder, completionHandler: completionHandler)
+    }
+    
+    class func getTeamDescendants(
+        teamId: String,
+        depth: UInt32? = nil,
+        attributes: [String]? = nil,
+        completionHandler: GetTeamDescendantsCompletionHandler?
+    ) {
+        let requestBuilder = Services.Organization.Actions.GetTeamDescendants.RequestV1.builder()
+        requestBuilder.team_ids = [teamId]
+        if depth != nil {
+            requestBuilder.depth = depth!
+        }
+        if attributes != nil {
+            requestBuilder.attributes.extend(attributes!)
+        }
+        let client = ServiceClient(serviceName: "organization")
+        client.callAction(
+            "get_team_descendants",
+            extensionField: Services.Registry.Requests.Organization.getTeamDescendants(),
+            requestBuilder: requestBuilder
+        ) { (_, _, wrapped, error) -> Void in
+            let response = wrapped?.response?.result.getExtension(
+                Services.Registry.Requests.Organization.getTeamDescendants()
+            ) as? Services.Organization.Actions.GetTeamDescendants.ResponseV1
+            completionHandler?(teams: response?.descendants[0].teams, error: error)
+        }
+    }
+    
+    class func getOrganization(organizationId: String, completionHandler: GetOrganizationCompletionHandler?) {
+        let requestBuilder = Services.Organization.Actions.GetOrganization.RequestV1.builder()
+        requestBuilder.organizationId = organizationId
+        
+        let client = ServiceClient(serviceName: "organization")
+        client.callAction(
+            "get_organization",
+            extensionField: Services.Registry.Requests.Organization.getOrganization(),
+            requestBuilder: requestBuilder) { (_, _, wrapped, error) -> Void in
+                let response = wrapped?.response?.result.getExtension(
+                    Services.Registry.Requests.Organization.getOrganization()
+                ) as? Services.Organization.Actions.GetOrganization.ResponseV1
+                completionHandler?(organization: response?.organization, error: error)
+        }
+    }
+    
+    class func getLocations(organizationId: String, completionHandler: GetLocationsCompletionHandler?) {
+        let requestBuilder = Services.Organization.Actions.GetLocations.RequestV1.builder()
+        requestBuilder.organizationId = organizationId
+        
+        let client = ServiceClient(serviceName: "organization")
+        client.callAction(
+            "get_locations",
+            extensionField: Services.Registry.Requests.Organization.getLocations(),
+            requestBuilder: requestBuilder
+        ) { (_, _, wrapped, error) -> Void in
+            let response = wrapped?.response?.result.getExtension(
+                Services.Registry.Requests.Organization.getLocations()
+            ) as? Services.Organization.Actions.GetLocations.ResponseV1
+            completionHandler?(locations: response?.locations, error: error)
+        }
+    }
+    
+}

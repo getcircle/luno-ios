@@ -10,10 +10,10 @@ import UIKit
 import ProtobufRegistry
 
 class TeamDetailDataSource: CardDataSource {
-    var selectedTeam: OrganizationService.Containers.Team!
+    var selectedTeam: Services.Organization.Containers.TeamV1!
     
-    private var profiles = Array<ProfileService.Containers.Profile>()
-    private var ownerProfile: ProfileService.Containers.Profile!
+    private var profiles = Array<Services.Profile.Containers.ProfileV1>()
+    private var ownerProfile: Services.Profile.Containers.ProfileV1!
     private(set) var profileHeaderView: TeamHeaderCollectionReusableView!
     private let sectionInset = UIEdgeInsetsMake(0.0, 0.0, 25.0, 0.0)
     
@@ -36,7 +36,7 @@ class TeamDetailDataSource: CardDataSource {
                 if error == nil {
                     // Add Owner Card
                     var allProfilesExceptOwner = profiles?.filter({ (profile) -> Bool in
-                        if profile.user_id == self.selectedTeam.owner_id {
+                        if profile.userId == self.selectedTeam.owner_id {
                             self.ownerProfile = profile
                             return false
                         }

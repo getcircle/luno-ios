@@ -30,10 +30,10 @@ class TagInputViewController: UIViewController,
     var addNextButton: Bool = false
 
     private var theme: Themes = .Regular
-    private var deletedTags = Array<ProfileService.Containers.Tag>()
-    private var newTag: ProfileService.Containers.Tag?
-    private var selectedTags = Array<ProfileService.Containers.Tag>()
-    private var suggestedTags = Array<ProfileService.Containers.Tag>()
+    private var deletedTags = Array<Services.Profile.Containers.TagV1>()
+    private var newTag: Services.Profile.Containers.TagV1?
+    private var selectedTags = Array<Services.Profile.Containers.TagV1>()
+    private var suggestedTags = Array<Services.Profile.Containers.TagV1>()
     private var activityIndicator: CircleActivityIndicatorView?
     
     private var tokenFieldBottomBorder: UIView?
@@ -44,7 +44,7 @@ class TagInputViewController: UIViewController,
         return "TagInputViewController"
     }
     
-    convenience init(existingTags: Array<ProfileService.Containers.Tag>? = nil, theme withTheme: Themes = .Regular) {
+    convenience init(existingTags: Array<Services.Profile.Containers.TagV1>? = nil, theme withTheme: Themes = .Regular) {
         self.init(nibName: "TagInputViewController", bundle: nil)
         if existingTags != nil {
             selectedTags.extend(existingTags!)
@@ -137,7 +137,7 @@ class TagInputViewController: UIViewController,
             forIndexPath: indexPath
         ) as TagSuggestionCollectionViewCell
         
-        var suggestedTag: ProfileService.Containers.Tag?
+        var suggestedTag: Services.Profile.Containers.TagV1?
         if shouldUseNewTag(indexPath) {
             suggestedTag = newTag
         } else {
@@ -152,7 +152,7 @@ class TagInputViewController: UIViewController,
     // MARK: - UICollectionViewDelegate
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        var tag: ProfileService.Containers.Tag
+        var tag: Services.Profile.Containers.TagV1
         if shouldUseNewTag(indexPath) {
             selectedTags.append(newTag!)
         } else {
@@ -190,11 +190,11 @@ class TagInputViewController: UIViewController,
                     self.suggestedTags = result!.skills!
                 }
                 
-                var tagBuilder: ProfileService.Containers.TagBuilder
+                var tagBuilder: Services.Profile.Containers.TagV1Builder
                 if self.newTag != nil {
                     tagBuilder = self.newTag!.toBuilder()
                 } else {
-                    tagBuilder = ProfileService.Containers.Tag.builder()
+                    tagBuilder = Services.Profile.Containers.TagV1.builder()
                     tagBuilder.type = .Skill
                 }
                 tagBuilder.name = text
@@ -213,7 +213,7 @@ class TagInputViewController: UIViewController,
     }
     
     func tokenField(tokenField: TokenField, didDeleteTokenAtIndex index: UInt) {
-        let deletedTag = selectedTags.removeAtIndex(Int(index)) as ProfileService.Containers.Tag
+        let deletedTag = selectedTags.removeAtIndex(Int(index)) as Services.Profile.Containers.TagV1
         if deletedTag.hasId {
             deletedTags.append(deletedTag)
         }

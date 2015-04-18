@@ -36,7 +36,7 @@ class TeamDetailViewController: DetailViewController {
     // MARK: - Collection View delegate
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        if let profile = dataSource.contentAtIndexPath(indexPath)? as? ProfileService.Containers.Profile {
+        if let profile = dataSource.contentAtIndexPath(indexPath)? as? Services.Profile.Containers.ProfileV1 {
             let profileVC = ProfileDetailViewController(profile: profile)
             navigationController?.pushViewController(profileVC, animated: true)
         }

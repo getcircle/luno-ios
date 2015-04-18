@@ -20,7 +20,7 @@ class EditContactInfoViewController: UIViewController, UINavigationControllerDel
     @IBOutlet weak private(set) var rootScrollView: UIScrollView!
     
     var editProfileDelegate: EditProfileDelegate?
-    var profile: ProfileService.Containers.Profile!
+    var profile: Services.Profile.Containers.ProfileV1!
 
     private var existingContactMethodsByType = Dictionary<ProfileService.ContactMethodType, ProfileService.Containers.ContactMethod>()
     private var formBuilder = FormBuilder()

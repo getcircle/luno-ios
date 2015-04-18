@@ -135,7 +135,7 @@ class CardDataSource: NSObject, UICollectionViewDataSource {
     }
     
     private(set) var state: CardDataSourceState = .Loaded
-    private(set) var nextRequest: ServiceRequest?
+    private(set) var nextRequest: Soa.ServiceRequestV1?
     private(set) var nextRequestCompletionHandler: ServiceCompletionHandler?
     private var hasLoadedOnce = false
     var contentThreshold: Float = 50.0
@@ -196,7 +196,7 @@ class CardDataSource: NSObject, UICollectionViewDataSource {
         fatalError("All subclasses need to override this")
     }
     
-    func setInitialData(#content: [AnyObject], ofType: Card.CardType? = .Profiles, nextRequest withNextRequest: ServiceRequest?) {
+    func setInitialData(#content: [AnyObject], ofType: Card.CardType? = .Profiles, nextRequest withNextRequest: Soa.ServiceRequestV1?) {
         fatalError("All subclasses need to override this")
     }
     
@@ -502,11 +502,11 @@ class CardDataSource: NSObject, UICollectionViewDataSource {
     
     // MARK: - Pagination
     
-    func registerNextRequest(nextRequest withNextRequest: ServiceRequest?) {
+    func registerNextRequest(nextRequest withNextRequest: Soa.ServiceRequestV1?) {
         nextRequest = withNextRequest
     }
     
-    func registerNextRequest(nextRequest withNextRequest: ServiceRequest, completionHandler: ServiceCompletionHandler) {
+    func registerNextRequest(nextRequest withNextRequest: Soa.ServiceRequestV1, completionHandler: ServiceCompletionHandler) {
         nextRequest = withNextRequest
         nextRequestCompletionHandler = completionHandler
     }

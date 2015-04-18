@@ -25,24 +25,24 @@ extension Mixpanel {
         }
     }
     
-    class func registerSuperPropertiesForUser(user: UserService.Containers.User) {
-        Mixpanel.sharedInstance().registerSuperPropertiesOnce(["\(TrackingPrefix)user_id": user.id])
+    class func registerSuperPropertiesForUser(user: Services.User.Containers.UserV1) {
+        Mixpanel.sharedInstance().registerSuperPropertiesOnce(["\(TrackingPrefix)userId": user.id])
     }
     
-    class func registerSuperPropertiesForProfile(profile: ProfileService.Containers.Profile) {
+    class func registerSuperPropertiesForProfile(profile: Services.Profile.Containers.ProfileV1) {
         let mixpanel = Mixpanel.sharedInstance()
         mixpanel.registerSuperPropertiesOnce([
-            "\(TrackingPrefix)profile_id": profile.id,
-            "\(TrackingPrefix)organization_id": profile.organization_id,
+            "\(TrackingPrefix)profileId": profile.id,
+            "\(TrackingPrefix)organizationId": profile.organizationId,
         ])
         mixpanel.people.set([
-            "profile_id": profile.id,
-            "organization_id": profile.organization_id,
+            "profileId": profile.id,
+            "organizationId": profile.organizationId,
             "title": profile.title
         ])
     }
     
-    class func identifyUser(user: UserService.Containers.User, newUser: Bool) {
+    class func identifyUser(user: Services.User.Containers.UserV1, newUser: Bool) {
         let mixpanel = Mixpanel.sharedInstance()
         if newUser {
             mixpanel.createAlias(user.id, forDistinctID: mixpanel.distinctId)
@@ -50,7 +50,7 @@ extension Mixpanel {
         } else {
             mixpanel.identify(user.id)
         }
-        mixpanel.people.set(["user_id": user.id])
+        mixpanel.people.set(["userId": user.id])
     }
     
 }

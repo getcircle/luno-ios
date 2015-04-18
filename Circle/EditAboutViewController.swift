@@ -26,7 +26,7 @@ class EditAboutViewController: UIViewController, UITextFieldDelegate {
     private var allControls = [AnyObject]()
 
     var addNextButton: Bool = false
-    var profile: ProfileService.Containers.Profile!
+    var profile: Services.Profile.Containers.ProfileV1!
     var theme: Themes = .Regular
 
     override func viewDidLoad() {

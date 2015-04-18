@@ -56,7 +56,7 @@ class ProfileImagesCollectionViewCell: CircleCollectionViewCell {
     // MARK: - Load People
     
     override func setData(data: AnyObject) {
-        if let profiles = data as? [ProfileService.Containers.Profile] {
+        if let profiles = data as? [Services.Profile.Containers.ProfileV1] {
             let containerWidth = cardContentView.frameWidth
             var counter = 0
             

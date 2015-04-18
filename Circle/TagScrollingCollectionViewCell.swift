@@ -39,8 +39,8 @@ class TagScrollingCollectionViewCell: CircleCollectionViewCell, UICollectionView
         }
     }
     
-    var selectedTag: ProfileService.Containers.Tag?
-    private var interests = Array<ProfileService.Containers.Tag>()
+    var selectedTag: Services.Profile.Containers.TagV1?
+    private var interests = Array<Services.Profile.Containers.TagV1>()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -130,7 +130,7 @@ class TagScrollingCollectionViewCell: CircleCollectionViewCell, UICollectionView
     // MARK: - Data Setter
     
     override func setData(data: AnyObject) {
-        if let arrayOfTags = data as? [ProfileService.Containers.Tag] {
+        if let arrayOfTags = data as? [Services.Profile.Containers.TagV1] {
             interests = arrayOfTags
             collectionView.reloadData()
         }

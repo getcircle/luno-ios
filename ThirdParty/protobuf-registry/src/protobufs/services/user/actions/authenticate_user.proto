@@ -1,0 +1,28 @@
+package services.user.actions.authenticate_user;
+
+import "protobufs/services/user/containers.proto";
+
+message RequestV1 {
+
+    enum AuthBackendV1 {
+        INTERNAL = 0;
+        GOOGLE = 1;
+    }
+
+    message CredentialsV1 {
+        optional uint32 version = 1 [default = 1];
+        optional string key = 2;
+        optional string secret = 3;
+    }
+
+    optional uint32 version = 1 [default = 1];
+    optional AuthBackendV1 backend = 2;
+    optional CredentialsV1 credentials = 3;
+}
+
+message ResponseV1 {
+    optional uint32 version = 1 [default = 1];
+    optional services.user.containers.UserV1 user = 2;
+    optional string token = 3;
+    optional bool new_user = 4;
+}

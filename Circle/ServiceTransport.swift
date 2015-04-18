@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Alamofire
 import ProtobufRegistry
 
 let ServiceErrorDomain = "co.circlehq.circle.services"
@@ -17,36 +16,36 @@ let TermsURL = "http://www.circlehq.co/terms.html"
 
 public struct WrappedResponse {
     
-    var serviceRequest: ServiceRequest
-    var serviceResponse: ServiceResponse?
-    var response: ActionResponse?
+    var serviceRequest: Soa.ServiceRequestV1
+    var serviceResponse: Soa.ServiceResponseV1?
+    var response: Soa.ActionResponseV1?
     
-    init(serviceRequest withServiceRequest: ServiceRequest, serviceResponse withServiceResponse: ServiceResponse?, actionResponse: ActionResponse?) {
+    init(serviceRequest withServiceRequest: Soa.ServiceRequestV1, serviceResponse withServiceResponse: Soa.ServiceResponseV1?, actionResponse: Soa.ActionResponseV1?) {
         serviceRequest = withServiceRequest
         serviceResponse = withServiceResponse
         response = actionResponse
     }
     
-    func getNextRequest() -> ServiceRequest? {
-        var nextRequest: ServiceRequest? = nil
+    func getNextRequest() -> Soa.ServiceRequestV1? {
+        var nextRequest: Soa.ServiceRequestV1? = nil
         if let paginator = getPaginator() {
             nextRequest = serviceRequest.getNextRequest(paginator)
         }
         return nextRequest
     }
     
-    func getPaginator() -> Paginator? {
+    func getPaginator() -> Soa.PaginatorV1? {
         return response?.control.paginator
     }
     
 }
 
 protocol ServiceTransport {
-    func sendRequest(serviceRequest: ServiceRequest, completionHandler: ServiceCompletionHandler);
-    func processRequest(serviceRequest: ServiceRequest, serializedRequest: NSData, completionHandler: ServiceCompletionHandler);
+    func sendRequest(serviceRequest: Soa.ServiceRequestV1, completionHandler: ServiceCompletionHandler);
+    func processRequest(serviceRequest: Soa.ServiceRequestV1, serializedRequest: NSData, completionHandler: ServiceCompletionHandler);
 }
 
-public typealias ServiceTransportCompletionHandler = (NSURLRequest, NSHTTPURLResponse?, ServiceResponse?, ActionResponse?, NSError?) -> Void
+public typealias ServiceTransportCompletionHandler = (NSURLRequest, NSHTTPURLResponse?, Soa.ServiceResponseV1?, Soa.ActionResponseV1?, NSError?) -> Void
 
 extension Request {
     class func ServiceResponseSerializer() -> Serializer {
@@ -69,7 +68,7 @@ extension Request {
                 return (nil, nil)
             }
             
-            let serviceResponse = ServiceResponse.parseFromNSData(
+            let serviceResponse = Soa.ServiceResponseV1.parseFromNSData(
                 data!,
                 extensionRegistry: ResponseRegistryRoot.sharedInstance.extensionRegistry
             )
@@ -79,7 +78,7 @@ extension Request {
     
     func responseProtobuf(completionHandler: ServiceTransportCompletionHandler) -> Self {
         return response(serializer: Request.ServiceResponseSerializer(), completionHandler: { (request, response, serviceResponse, error) in
-            let serviceResponse = serviceResponse as? ServiceResponse
+            let serviceResponse = serviceResponse as? Soa.ServiceResponseV1
             let actionResponse = serviceResponse?.actions[0]
             var serviceError = error
             if serviceError == nil {
@@ -101,12 +100,12 @@ extension Request {
 
 class BaseTransport: ServiceTransport {
     
-    func sendRequest(serviceRequest: ServiceRequest, completionHandler: ServiceCompletionHandler) {
+    func sendRequest(serviceRequest: Soa.ServiceRequestV1, completionHandler: ServiceCompletionHandler) {
         let serializedRequest = serviceRequest.getNSData()
         processRequest(serviceRequest, serializedRequest: serializedRequest, completionHandler: completionHandler)
     }
     
-    func processRequest(serviceRequest: ServiceRequest, serializedRequest: NSData, completionHandler: ServiceCompletionHandler) {
+    func processRequest(serviceRequest: Soa.ServiceRequestV1, serializedRequest: NSData, completionHandler: ServiceCompletionHandler) {
         assert(false, "Subclass must override `processRequest`")
     }
     
@@ -180,7 +179,7 @@ class HttpsTransport: BaseTransport {
         static var totalRequests = 0
     }
     
-    override func processRequest(serviceRequest: ServiceRequest, serializedRequest: NSData, completionHandler: ServiceCompletionHandler) {
+    override func processRequest(serviceRequest: Soa.ServiceRequestV1, serializedRequest: NSData, completionHandler: ServiceCompletionHandler) {
         let startTime = CACurrentMediaTime()
         NetworkActivity.totalRequests++
         updateNetworkIndicatorVisibility()

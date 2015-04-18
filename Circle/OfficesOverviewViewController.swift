@@ -63,7 +63,7 @@ class OfficesOverviewViewController: UIViewController, UICollectionViewDataSourc
     // MARK: - Collection View Delegate
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        if let office = dataSource.contentAtIndexPath(indexPath)? as? OrganizationService.Containers.Location {
+        if let office = dataSource.contentAtIndexPath(indexPath)? as? Services.Organization.Containers.LocationV1 {
             trackOfficeSelected(office)
             var officeDetailVC = OfficeDetailViewController()
             (officeDetailVC.dataSource as OfficeDetailDataSource).selectedOffice = office
@@ -110,7 +110,7 @@ class OfficesOverviewViewController: UIViewController, UICollectionViewDataSourc
     
     // MARK: - Tracking
     
-    func trackOfficeSelected(office: OrganizationService.Containers.Location) {
+    func trackOfficeSelected(office: Services.Organization.Containers.LocationV1) {
         let properties = [
             TrackerProperty.withKey(.ActiveViewController).withString(self.dynamicType.description()),
             TrackerProperty.withKey(.Source).withSource(.Overview),

@@ -33,7 +33,7 @@ class TeamHeaderCollectionReusableView: CircleCollectionReusableView {
         teamNameLabelInitialFontSize = teamNameLabel.font.pointSize
     }
     
-    func setData(team: OrganizationService.Containers.Team) {
+    func setData(team: Services.Organization.Containers.TeamV1) {
         teamNameLabel.attributedText = NSAttributedString(string: team.name.uppercaseString, attributes: [NSKernAttributeName: 2.0])
         teamNameLabel.layer.borderWidth = 0.0
         if team.name != team.department &&

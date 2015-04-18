@@ -11,7 +11,7 @@ import ProtobufRegistry
 
 class SearchLandingDataSource: CardDataSource {
     
-    private var profilesAssociatedWithNotes = Array<ProfileService.Containers.Profile>()
+    private var profilesAssociatedWithNotes = Array<Services.Profile.Containers.ProfileV1>()
 
     override func loadData(completionHandler: (error: NSError?) -> Void) {
         if let currentProfile = AuthViewController.getLoggedInUserProfile() {

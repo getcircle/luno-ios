@@ -35,9 +35,9 @@ public class ServiceClient {
         actionName: String,
         extensionField: ConcreateExtensionField,
         requestBuilder: AbstractMessageBuilder,
-        paginatorBuilder: PaginatorBuilder?
-    ) -> ServiceRequest {
-        let serviceRequest = ServiceRequest.builder()
+        paginatorBuilder: Soa.PaginatorV1Builder?
+    ) -> Soa.ServiceRequestV1 {
+        let serviceRequest = Soa.ServiceRequestV1.builder()
         let control = Control.builder()
         control.service = serviceName
         if let token = token {
@@ -49,7 +49,7 @@ public class ServiceClient {
         let actionControl = ActionControl.builder()
         var paginatorBuilder = paginatorBuilder
         if paginatorBuilder == nil {
-            paginatorBuilder = Paginator.builder()
+            paginatorBuilder = Soa.PaginatorV1.builder()
         }
         actionControl.service = serviceName
         actionControl.action = actionName
@@ -82,7 +82,7 @@ public class ServiceClient {
         actionName: String,
         extensionField: ConcreateExtensionField,
         requestBuilder: AbstractMessageBuilder,
-        paginatorBuilder: PaginatorBuilder?,
+        paginatorBuilder: Soa.PaginatorV1Builder?,
         completionHandler: ServiceCompletionHandler
     ) {
         let serviceRequest = buildRequest(
@@ -94,7 +94,7 @@ public class ServiceClient {
         transport.sendRequest(serviceRequest, completionHandler: completionHandler)
     }
     
-    public class func sendRequest(serviceRequest: ServiceRequest, completionHandler: ServiceCompletionHandler) {
+    public class func sendRequest(serviceRequest: Soa.ServiceRequestV1, completionHandler: ServiceCompletionHandler) {
         let client = ServiceClient(serviceName: "")
         client.transport.sendRequest(serviceRequest, completionHandler: completionHandler)
     }

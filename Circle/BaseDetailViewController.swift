@@ -158,7 +158,7 @@ MFMessageComposeViewControllerDelegate {
     
     func didSelectTag(notification: NSNotification) {
         if let userInfo = notification.userInfo {
-            if let selectedTag = userInfo["interest"] as? ProfileService.Containers.Tag {
+            if let selectedTag = userInfo["interest"] as? Services.Profile.Containers.TagV1 {
                 let viewController = TagDetailViewController()
                 (viewController.dataSource as TagDetailDataSource).selectedTag = selectedTag
                 viewController.hidesBottomBarWhenPushed = false
@@ -169,7 +169,7 @@ MFMessageComposeViewControllerDelegate {
     
     func didSelectTeam(notification: NSNotification!) {
         if let userInfo = notification.userInfo {
-            if let selectedTeam = userInfo["team"] as? OrganizationService.Containers.Team {
+            if let selectedTeam = userInfo["team"] as? Services.Organization.Containers.TeamV1 {
                 let viewController = TeamDetailViewController()
                 (viewController.dataSource as TeamDetailDataSource).selectedTeam = selectedTeam
                 viewController.hidesBottomBarWhenPushed = false

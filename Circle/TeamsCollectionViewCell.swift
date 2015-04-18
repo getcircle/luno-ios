@@ -25,8 +25,8 @@ class TeamsCollectionViewCell: CircleCollectionViewCell, UICollectionViewDataSou
     
     @IBOutlet weak private(set) var collectionView: UICollectionView!
     
-    var selectedTeam: OrganizationService.Containers.Team?
-    private var teams = Array<OrganizationService.Containers.Team>()
+    var selectedTeam: Services.Organization.Containers.TeamV1?
+    private var teams = Array<Services.Organization.Containers.TeamV1>()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -101,7 +101,7 @@ class TeamsCollectionViewCell: CircleCollectionViewCell, UICollectionViewDataSou
     // MARK: - Data Setter
     
     override func setData(data: AnyObject) {
-        if let arrayOfTeams = data as? [OrganizationService.Containers.Team] {
+        if let arrayOfTeams = data as? [Services.Organization.Containers.TeamV1] {
             teams = arrayOfTeams
             collectionView.reloadData()
         }

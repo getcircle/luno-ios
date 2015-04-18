@@ -9,15 +9,15 @@
 import Foundation
 import ProtobufRegistry
 
-extension ProfileService.Containers.Profile {
+extension Services.Profile.Containers.ProfileV1 {
 
     func nameWithNickName() -> String {
-        var fullNameWithNickname = first_name
+        var fullNameWithNickname = firstName
         
         if hasNickname && nickname.trimWhitespace() != "" {
             fullNameWithNickname += " (" + nickname + ")"
         }
-        fullNameWithNickname += " " + last_name
+        fullNameWithNickname += " " + lastName
         return fullNameWithNickname
     }
 }
