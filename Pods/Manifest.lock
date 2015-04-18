@@ -24,6 +24,7 @@ PODS:
   - AMScrollingNavbar (1.3.4)
   - google-plus-ios-sdk (1.7.1)
   - libPhoneNumber-iOS (0.8.4)
+  - Locksmith (1.2.1)
   - Mixpanel (2.7.3):
     - Mixpanel/MPCategoryHelpers (= 2.7.3)
   - Mixpanel/MPCategoryHelpers (2.7.3)
@@ -39,6 +40,7 @@ DEPENDENCIES:
   - AMScrollingNavbar (~> 1.3)
   - google-plus-ios-sdk (~> 1.7)
   - libPhoneNumber-iOS (~> 0.7)
+  - Locksmith (~> 1.2)
   - Mixpanel (~> 2.7)
   - PureLayout (~> 2.0)
   - UIViewPlusPosition (~> 0.0)
@@ -50,6 +52,7 @@ SPEC CHECKSUMS:
   AMScrollingNavbar: 3318f0cc0fd24c972d5e8c84112edcfe61529506
   google-plus-ios-sdk: 47adbe03ea904bdb7aa1c0eca282a23c4686e1bc
   libPhoneNumber-iOS: dbfc7b4128510a4955df3e5a6f125393fc9ebc2f
+  Locksmith: 770f6c5c6e5c5c712d1f00e709c62b8a7240c716
   Mixpanel: 1d387d76800e07e953958c62c97fea27f13632dd
   PureLayout: a0fe75f1cf485801e7e00b723b8a3c32dca558e2
   SSKeychain: 88767e903ee8d274ed380e364d96b7a101235286
