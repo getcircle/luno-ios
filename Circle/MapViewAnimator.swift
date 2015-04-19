@@ -39,7 +39,7 @@ class MapViewAnimator: NSObject, UIViewControllerAnimatedTransitioning {
             UIView.animateWithDuration(
                 transitionDuration(transitionContext),
                 animations: { () -> Void in
-                    mapViewController.mapView.frame.height = UIScreen.mainScreen().bounds.size.height - 35.0
+                    mapViewController.mapView.frameHeight = UIScreen.mainScreen().bounds.size.height - 35.0
                     mapViewController.closeButton.alpha = 1.0
                     mapViewController.addressContainerView.frame.origin.y = UIScreen.mainScreen().bounds.size.height - mapViewController.addressContainerView.frame.height
                     officeViewController.collectionView.setContentOffset(scrollOffset, animated: true)
@@ -54,14 +54,14 @@ class MapViewAnimator: NSObject, UIViewControllerAnimatedTransitioning {
             // dismiss animation
             var officeViewController = ((toViewController as! MainTabBarViewController).selectedViewController as! UINavigationController).topViewController as! OfficeDetailViewController
             var mapViewController = fromViewController as! MapViewController
-            mapViewController.mapView.frame.height = UIScreen.mainScreen().bounds.size.height
+            mapViewController.mapView.frameHeight = UIScreen.mainScreen().bounds.size.height
             mapViewController.closeButton.alpha = 1.0
             mapViewController.addressContainerView.frame.origin.y = mapViewController.mapView.frameBottom - mapViewController.addressContainerView.frame.height
             
             UIView.animateWithDuration(
                 transitionDuration(transitionContext),
                 animations: { () -> Void in
-                    mapViewController.mapView.frame.height = mapViewController.finalMapViewRect!.size.height
+                    mapViewController.mapView.frameHeight = mapViewController.finalMapViewRect!.size.height
                     mapViewController.closeButton.alpha = 0.0
                     mapViewController.addressContainerView.frame.origin.y = mapViewController.finalMapViewRect!.size.height - mapViewController.addressContainerView.frame.height
                     officeViewController.collectionView.setContentOffset(CGPointZero, animated: true)

@@ -220,7 +220,7 @@ class ObjectStore {
     
     private func updateCache(inout cache: [String: GeneratedMessage], containers: Array<GeneratedMessage>) {
         for container in containers {
-            var identifier = container["id"] as String
+            var identifier = container["id"] as! String
             cache[identifier] = container
         }
     }

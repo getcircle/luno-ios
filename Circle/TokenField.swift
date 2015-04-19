@@ -59,6 +59,7 @@ class TokenField: UIView,
     private var updateConstraintsCalled = false
     
     init() {
+        super.init(frame: CGRectZero)
         customInit()
     }
     

@@ -8,9 +8,10 @@
 
 import UIKit
 
-@objc protocol BackspaceTextFieldDelegate: UITextFieldDelegate {
+@objc protocol BackspaceTextFieldDelegate {
     func textFieldDidEnterBackspace(textField: BackspaceTextField)
-    
+
+    optional func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool
     optional func textFieldDidChangeText(text: String)
     optional func textField(textField: BackspaceTextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String)
     optional func textFieldDidBeginEditing(textField: BackspaceTextField)
