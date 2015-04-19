@@ -106,7 +106,7 @@ public extension Services.User.Containers {
   }
 
   final public class AccessRequestV1 : GeneratedMessage, GeneratedMessageProtocol {
-    public subscript(key: String) -> Any? {
+    override public subscript(key: String) -> Any? {
            switch key {
            case "version": return version
            case "id": return id
@@ -387,7 +387,7 @@ public extension Services.User.Containers {
   }
 
   final public class DeviceV1 : GeneratedMessage, GeneratedMessageProtocol {
-    public subscript(key: String) -> Any? {
+    override public subscript(key: String) -> Any? {
            switch key {
            case "version": return version
            case "id": return id
@@ -951,7 +951,7 @@ public extension Services.User.Containers {
 
       //Enum type declaration end 
 
-    public subscript(key: String) -> Any? {
+    override public subscript(key: String) -> Any? {
            switch key {
            case "version": return version
            case "id": return id
@@ -1551,7 +1551,7 @@ public extension Services.User.Containers {
   }
 
   final public class OAuth2DetailsV1 : GeneratedMessage, GeneratedMessageProtocol {
-    public subscript(key: String) -> Any? {
+    override public subscript(key: String) -> Any? {
            switch key {
            case "version": return version
            case "code": return code
@@ -1832,7 +1832,7 @@ public extension Services.User.Containers {
   }
 
   final public class OAuthSDKDetailsV1 : GeneratedMessage, GeneratedMessageProtocol {
-    public subscript(key: String) -> Any? {
+    override public subscript(key: String) -> Any? {
            switch key {
            case "version": return version
            case "code": return code
@@ -2113,7 +2113,7 @@ public extension Services.User.Containers {
   }
 
   final public class UserV1 : GeneratedMessage, GeneratedMessageProtocol {
-    public subscript(key: String) -> Any? {
+    override public subscript(key: String) -> Any? {
            switch key {
            case "version": return version
            case "id": return id

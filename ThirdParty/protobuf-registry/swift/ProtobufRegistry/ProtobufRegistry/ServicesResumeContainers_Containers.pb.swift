@@ -93,7 +93,7 @@ public extension Services.Resume.Containers {
   }
 
   final public class ApproximateDateV1 : GeneratedMessage, GeneratedMessageProtocol {
-    public subscript(key: String) -> Any? {
+    override public subscript(key: String) -> Any? {
            switch key {
            case "version": return version
            case "year": return year
@@ -419,7 +419,7 @@ public extension Services.Resume.Containers {
   }
 
   final public class ResumeV1 : GeneratedMessage, GeneratedMessageProtocol {
-    public subscript(key: String) -> Any? {
+    override public subscript(key: String) -> Any? {
            switch key {
            case "version": return version
            case "userId": return userId
@@ -737,7 +737,7 @@ public extension Services.Resume.Containers {
   }
 
   final public class EducationV1 : GeneratedMessage, GeneratedMessageProtocol {
-    public subscript(key: String) -> Any? {
+    override public subscript(key: String) -> Any? {
            switch key {
            case "version": return version
            case "id": return id
@@ -1371,7 +1371,7 @@ public extension Services.Resume.Containers {
   }
 
   final public class PositionV1 : GeneratedMessage, GeneratedMessageProtocol {
-    public subscript(key: String) -> Any? {
+    override public subscript(key: String) -> Any? {
            switch key {
            case "version": return version
            case "id": return id
@@ -1979,7 +1979,7 @@ public extension Services.Resume.Containers {
   }
 
   final public class CompanyV1 : GeneratedMessage, GeneratedMessageProtocol {
-    public subscript(key: String) -> Any? {
+    override public subscript(key: String) -> Any? {
            switch key {
            case "version": return version
            case "id": return id

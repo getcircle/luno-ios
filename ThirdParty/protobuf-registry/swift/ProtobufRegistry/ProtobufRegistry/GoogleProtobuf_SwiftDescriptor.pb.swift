@@ -57,7 +57,7 @@ public extension Google.Protobuf {
   //Enum type declaration end 
 
   final public class SwiftFileOptions : GeneratedMessage, GeneratedMessageProtocol {
-    public subscript(key: String) -> Any? {
+    override public subscript(key: String) -> Any? {
            switch key {
            case "classPrefix": return classPrefix
            case "entitiesAccessControl": return self.entitiesAccessControl

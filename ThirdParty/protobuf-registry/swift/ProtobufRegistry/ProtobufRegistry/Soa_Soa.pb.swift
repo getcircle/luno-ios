@@ -139,7 +139,7 @@ public extension Soa {
   }
 
   final public class ControlV1 : GeneratedMessage, GeneratedMessageProtocol {
-    public subscript(key: String) -> Any? {
+    override public subscript(key: String) -> Any? {
            switch key {
            case "version": return version
            case "token": return token
@@ -420,7 +420,7 @@ public extension Soa {
   }
 
   final public class PaginatorV1 : GeneratedMessage, GeneratedMessageProtocol {
-    public subscript(key: String) -> Any? {
+    override public subscript(key: String) -> Any? {
            switch key {
            case "version": return version
            case "nextPage": return nextPage
@@ -881,7 +881,7 @@ public extension Soa {
   }
 
   final public class ActionControlV1 : GeneratedMessage, GeneratedMessageProtocol {
-    public subscript(key: String) -> Any? {
+    override public subscript(key: String) -> Any? {
            switch key {
            case "version": return version
            case "service": return service
@@ -1226,7 +1226,7 @@ public extension Soa {
   }
 
   final public class ActionRequestV1 : GeneratedMessage, GeneratedMessageProtocol {
-    public subscript(key: String) -> Any? {
+    override public subscript(key: String) -> Any? {
            switch key {
            case "version": return version
            case "control": return control
@@ -1550,7 +1550,7 @@ public extension Soa {
   }
 
   final public class ActionRequestParamsV1 : ExtendableMessage, GeneratedMessageProtocol {
-    public subscript(key: String) -> Any? {
+    override public subscript(key: String) -> Any? {
            switch key {
            case "version": return version
            default: return nil
@@ -1754,7 +1754,7 @@ public extension Soa {
     //Nested type declaration start
 
       final public class ErrorDetailV1 : GeneratedMessage, GeneratedMessageProtocol {
-        public subscript(key: String) -> Any? {
+        override public subscript(key: String) -> Any? {
                switch key {
                case "version": return version
                case "error": return error
@@ -2081,7 +2081,7 @@ public extension Soa {
 
     //Nested type declaration end
 
-    public subscript(key: String) -> Any? {
+    override public subscript(key: String) -> Any? {
            switch key {
            case "version": return version
            case "success": return success
@@ -2408,7 +2408,7 @@ public extension Soa {
   }
 
   final public class ActionResponseV1 : GeneratedMessage, GeneratedMessageProtocol {
-    public subscript(key: String) -> Any? {
+    override public subscript(key: String) -> Any? {
            switch key {
            case "version": return version
            case "control": return control
@@ -2732,7 +2732,7 @@ public extension Soa {
   }
 
   final public class ServiceRequestV1 : GeneratedMessage, GeneratedMessageProtocol {
-    public subscript(key: String) -> Any? {
+    override public subscript(key: String) -> Any? {
            switch key {
            case "version": return version
            case "control": return control
@@ -3038,7 +3038,7 @@ public extension Soa {
   }
 
   final public class ServiceResponseV1 : GeneratedMessage, GeneratedMessageProtocol {
-    public subscript(key: String) -> Any? {
+    override public subscript(key: String) -> Any? {
            switch key {
            case "version": return version
            case "control": return control

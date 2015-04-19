@@ -34,7 +34,7 @@ public extension Services.Media.Containers {
   }
 
   final public class UploadInstructionsV1 : GeneratedMessage, GeneratedMessageProtocol {
-    public subscript(key: String) -> Any? {
+    override public subscript(key: String) -> Any? {
            switch key {
            case "version": return version
            case "uploadId": return uploadId

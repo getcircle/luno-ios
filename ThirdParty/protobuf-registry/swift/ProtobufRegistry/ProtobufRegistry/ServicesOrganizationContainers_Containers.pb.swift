@@ -126,7 +126,7 @@ public extension Services.Organization.Containers {
   }
 
   final public class AddressV1 : GeneratedMessage, GeneratedMessageProtocol {
-    public subscript(key: String) -> Any? {
+    override public subscript(key: String) -> Any? {
            switch key {
            case "version": return version
            case "id": return id
@@ -902,7 +902,7 @@ public extension Services.Organization.Containers {
   }
 
   final public class ColorV1 : GeneratedMessage, GeneratedMessageProtocol {
-    public subscript(key: String) -> Any? {
+    override public subscript(key: String) -> Any? {
            switch key {
            case "version": return version
            case "red": return red
@@ -1228,7 +1228,7 @@ public extension Services.Organization.Containers {
   }
 
   final public class LocationV1 : GeneratedMessage, GeneratedMessageProtocol {
-    public subscript(key: String) -> Any? {
+    override public subscript(key: String) -> Any? {
            switch key {
            case "version": return version
            case "id": return id
@@ -1708,7 +1708,7 @@ public extension Services.Organization.Containers {
   }
 
   final public class OrganizationV1 : GeneratedMessage, GeneratedMessageProtocol {
-    public subscript(key: String) -> Any? {
+    override public subscript(key: String) -> Any? {
            switch key {
            case "version": return version
            case "id": return id
@@ -2143,7 +2143,7 @@ public extension Services.Organization.Containers {
   }
 
   final public class PathPartV1 : GeneratedMessage, GeneratedMessageProtocol {
-    public subscript(key: String) -> Any? {
+    override public subscript(key: String) -> Any? {
            switch key {
            case "version": return version
            case "id": return id
@@ -2469,7 +2469,7 @@ public extension Services.Organization.Containers {
   }
 
   final public class TeamV1 : GeneratedMessage, GeneratedMessageProtocol {
-    public subscript(key: String) -> Any? {
+    override public subscript(key: String) -> Any? {
            switch key {
            case "version": return version
            case "id": return id
@@ -3035,7 +3035,7 @@ public extension Services.Organization.Containers {
   }
 
   final public class TeamDescendantsV1 : GeneratedMessage, GeneratedMessageProtocol {
-    public subscript(key: String) -> Any? {
+    override public subscript(key: String) -> Any? {
            switch key {
            case "version": return version
            case "depth": return depth

@@ -44,7 +44,7 @@ public extension Services.User.Actions.CreateUser {
   }
 
   final public class RequestV1 : GeneratedMessage, GeneratedMessageProtocol {
-    public subscript(key: String) -> Any? {
+    override public subscript(key: String) -> Any? {
            switch key {
            case "version": return version
            case "password": return password
@@ -325,7 +325,7 @@ public extension Services.User.Actions.CreateUser {
   }
 
   final public class ResponseV1 : GeneratedMessage, GeneratedMessageProtocol {
-    public subscript(key: String) -> Any? {
+    override public subscript(key: String) -> Any? {
            switch key {
            case "version": return version
            case "user": return user

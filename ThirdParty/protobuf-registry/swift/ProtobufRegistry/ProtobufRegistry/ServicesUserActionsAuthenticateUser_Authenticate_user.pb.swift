@@ -62,7 +62,7 @@ public extension Services.User.Actions.AuthenticateUser {
     //Nested type declaration start
 
       final public class CredentialsV1 : GeneratedMessage, GeneratedMessageProtocol {
-        public subscript(key: String) -> Any? {
+        override public subscript(key: String) -> Any? {
                switch key {
                case "version": return version
                case "key": return key
@@ -356,7 +356,7 @@ public extension Services.User.Actions.AuthenticateUser {
 
       //Enum type declaration end 
 
-    public subscript(key: String) -> Any? {
+    override public subscript(key: String) -> Any? {
            switch key {
            case "version": return version
            case "backend": return self.backend
@@ -660,7 +660,7 @@ public extension Services.User.Actions.AuthenticateUser {
   }
 
   final public class ResponseV1 : GeneratedMessage, GeneratedMessageProtocol {
-    public subscript(key: String) -> Any? {
+    override public subscript(key: String) -> Any? {
            switch key {
            case "version": return version
            case "user": return user

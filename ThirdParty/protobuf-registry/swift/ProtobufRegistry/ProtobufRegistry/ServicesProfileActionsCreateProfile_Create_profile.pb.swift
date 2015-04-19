@@ -43,7 +43,7 @@ public extension Services.Profile.Actions.CreateProfile {
   }
 
   final public class RequestV1 : GeneratedMessage, GeneratedMessageProtocol {
-    public subscript(key: String) -> Any? {
+    override public subscript(key: String) -> Any? {
            switch key {
            case "version": return version
            case "profile": return profile
@@ -298,7 +298,7 @@ public extension Services.Profile.Actions.CreateProfile {
   }
 
   final public class ResponseV1 : GeneratedMessage, GeneratedMessageProtocol {
-    public subscript(key: String) -> Any? {
+    override public subscript(key: String) -> Any? {
            switch key {
            case "version": return version
            case "profile": return profile

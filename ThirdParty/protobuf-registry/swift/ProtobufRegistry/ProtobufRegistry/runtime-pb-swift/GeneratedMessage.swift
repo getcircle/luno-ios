@@ -37,6 +37,10 @@ public class GeneratedMessage:AbstractMessage
     }
     
     //Override
+    public subscript (key: String) -> Any?
+    {
+        return nil
+    }
     public class func className() -> String
     {
         return "GeneratedMessage"

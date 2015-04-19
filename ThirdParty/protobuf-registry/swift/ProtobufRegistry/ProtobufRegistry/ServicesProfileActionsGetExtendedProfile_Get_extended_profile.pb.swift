@@ -57,7 +57,7 @@ public extension Services.Profile.Actions.GetExtendedProfile {
   }
 
   final public class RequestV1 : GeneratedMessage, GeneratedMessageProtocol {
-    public subscript(key: String) -> Any? {
+    override public subscript(key: String) -> Any? {
            switch key {
            case "version": return version
            case "profileId": return profileId
@@ -338,7 +338,7 @@ public extension Services.Profile.Actions.GetExtendedProfile {
   }
 
   final public class ResponseV1 : GeneratedMessage, GeneratedMessageProtocol {
-    public subscript(key: String) -> Any? {
+    override public subscript(key: String) -> Any? {
            switch key {
            case "version": return version
            case "profile": return profile

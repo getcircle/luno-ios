@@ -42,7 +42,7 @@ public extension Services.User.Actions.DeleteIdentity {
   }
 
   final public class RequestV1 : GeneratedMessage, GeneratedMessageProtocol {
-    public subscript(key: String) -> Any? {
+    override public subscript(key: String) -> Any? {
            switch key {
            case "version": return version
            case "identity": return identity
@@ -297,7 +297,7 @@ public extension Services.User.Actions.DeleteIdentity {
   }
 
   final public class ResponseV1 : GeneratedMessage, GeneratedMessageProtocol {
-    public subscript(key: String) -> Any? {
+    override public subscript(key: String) -> Any? {
            switch key {
            case "version": return version
            default: return nil

@@ -44,7 +44,7 @@ public extension Services.Note.Actions.GetNotes {
   }
 
   final public class RequestV1 : GeneratedMessage, GeneratedMessageProtocol {
-    public subscript(key: String) -> Any? {
+    override public subscript(key: String) -> Any? {
            switch key {
            case "version": return version
            case "ownerProfileId": return ownerProfileId
@@ -325,7 +325,7 @@ public extension Services.Note.Actions.GetNotes {
   }
 
   final public class ResponseV1 : GeneratedMessage, GeneratedMessageProtocol {
-    public subscript(key: String) -> Any? {
+    override public subscript(key: String) -> Any? {
            switch key {
            case "version": return version
            default: return nil

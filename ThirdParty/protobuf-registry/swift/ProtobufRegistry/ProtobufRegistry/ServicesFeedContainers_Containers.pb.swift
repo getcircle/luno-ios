@@ -65,7 +65,7 @@ public extension Services.Feed.Containers {
 
       //Enum type declaration end 
 
-    public subscript(key: String) -> Any? {
+    override public subscript(key: String) -> Any? {
            switch key {
            case "version": return version
            case "title": return title

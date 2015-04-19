@@ -689,7 +689,7 @@ public extension Services.Registry.Requests {
   }
 
   final public class User : GeneratedMessage, GeneratedMessageProtocol {
-    public subscript(key: String) -> Any? {
+    override public subscript(key: String) -> Any? {
            switch key {
            default: return nil
            }
@@ -877,7 +877,7 @@ public extension Services.Registry.Requests {
   }
 
   final public class Organization : GeneratedMessage, GeneratedMessageProtocol {
-    public subscript(key: String) -> Any? {
+    override public subscript(key: String) -> Any? {
            switch key {
            default: return nil
            }
@@ -1068,7 +1068,7 @@ public extension Services.Registry.Requests {
   }
 
   final public class Profile : GeneratedMessage, GeneratedMessageProtocol {
-    public subscript(key: String) -> Any? {
+    override public subscript(key: String) -> Any? {
            switch key {
            default: return nil
            }
@@ -1271,7 +1271,7 @@ public extension Services.Registry.Requests {
   }
 
   final public class Search : GeneratedMessage, GeneratedMessageProtocol {
-    public subscript(key: String) -> Any? {
+    override public subscript(key: String) -> Any? {
            switch key {
            default: return nil
            }
@@ -1420,7 +1420,7 @@ public extension Services.Registry.Requests {
   }
 
   final public class Feed : GeneratedMessage, GeneratedMessageProtocol {
-    public subscript(key: String) -> Any? {
+    override public subscript(key: String) -> Any? {
            switch key {
            default: return nil
            }
@@ -1572,7 +1572,7 @@ public extension Services.Registry.Requests {
   }
 
   final public class Media : GeneratedMessage, GeneratedMessageProtocol {
-    public subscript(key: String) -> Any? {
+    override public subscript(key: String) -> Any? {
            switch key {
            default: return nil
            }
@@ -1724,7 +1724,7 @@ public extension Services.Registry.Requests {
   }
 
   final public class Note : GeneratedMessage, GeneratedMessageProtocol {
-    public subscript(key: String) -> Any? {
+    override public subscript(key: String) -> Any? {
            switch key {
            default: return nil
            }
@@ -1882,7 +1882,7 @@ public extension Services.Registry.Requests {
   }
 
   final public class Resume : GeneratedMessage, GeneratedMessageProtocol {
-    public subscript(key: String) -> Any? {
+    override public subscript(key: String) -> Any? {
            switch key {
            default: return nil
            }
@@ -2043,7 +2043,7 @@ public extension Services.Registry.Requests {
   }
 
   final public class Appreciation : GeneratedMessage, GeneratedMessageProtocol {
-    public subscript(key: String) -> Any? {
+    override public subscript(key: String) -> Any? {
            switch key {
            default: return nil
            }

@@ -127,7 +127,7 @@ public extension Services.Profile.Containers {
 
       //Enum type declaration end 
 
-    public subscript(key: String) -> Any? {
+    override public subscript(key: String) -> Any? {
            switch key {
            case "version": return version
            case "id": return id
@@ -502,7 +502,7 @@ public extension Services.Profile.Containers {
   }
 
   final public class ProfileV1 : GeneratedMessage, GeneratedMessageProtocol {
-    public subscript(key: String) -> Any? {
+    override public subscript(key: String) -> Any? {
            switch key {
            case "version": return version
            case "id": return id
@@ -1585,7 +1585,7 @@ public extension Services.Profile.Containers {
   }
 
   final public class ProfileItemV1 : GeneratedMessage, GeneratedMessageProtocol {
-    public subscript(key: String) -> Any? {
+    override public subscript(key: String) -> Any? {
            switch key {
            case "version": return version
            case "key": return key
@@ -1866,7 +1866,7 @@ public extension Services.Profile.Containers {
   }
 
   final public class AttributeV1 : GeneratedMessage, GeneratedMessageProtocol {
-    public subscript(key: String) -> Any? {
+    override public subscript(key: String) -> Any? {
            switch key {
            case "version": return version
            case "name": return name
@@ -2147,7 +2147,7 @@ public extension Services.Profile.Containers {
   }
 
   final public class StatV1 : GeneratedMessage, GeneratedMessageProtocol {
-    public subscript(key: String) -> Any? {
+    override public subscript(key: String) -> Any? {
            switch key {
            case "version": return version
            case "id": return id
@@ -2442,7 +2442,7 @@ public extension Services.Profile.Containers {
 
       //Enum type declaration end 
 
-    public subscript(key: String) -> Any? {
+    override public subscript(key: String) -> Any? {
            switch key {
            case "version": return version
            case "id": return id

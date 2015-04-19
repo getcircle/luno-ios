@@ -288,7 +288,7 @@ public extension Google.Protobuf {
   }
 
   final public class FileDescriptorSet : GeneratedMessage, GeneratedMessageProtocol {
-    public subscript(key: String) -> Any? {
+    override public subscript(key: String) -> Any? {
            switch key {
            default: return nil
            }
@@ -485,7 +485,7 @@ public extension Google.Protobuf {
   }
 
   final public class FileDescriptorProto : GeneratedMessage, GeneratedMessageProtocol {
-    public subscript(key: String) -> Any? {
+    override public subscript(key: String) -> Any? {
            switch key {
            case "name": return name
            case "package": return package
@@ -1189,7 +1189,7 @@ public extension Google.Protobuf {
     //Nested type declaration start
 
       final public class ExtensionRange : GeneratedMessage, GeneratedMessageProtocol {
-        public subscript(key: String) -> Any? {
+        override public subscript(key: String) -> Any? {
                switch key {
                case "start": return start
                case "end": return end
@@ -1426,7 +1426,7 @@ public extension Google.Protobuf {
 
     //Nested type declaration end
 
-    public subscript(key: String) -> Any? {
+    override public subscript(key: String) -> Any? {
            switch key {
            case "name": return name
            case "options": return options
@@ -2013,7 +2013,7 @@ public extension Google.Protobuf {
 
       //Enum type declaration end 
 
-    public subscript(key: String) -> Any? {
+    override public subscript(key: String) -> Any? {
            switch key {
            case "name": return name
            case "number": return number
@@ -2596,7 +2596,7 @@ public extension Google.Protobuf {
   }
 
   final public class OneofDescriptorProto : GeneratedMessage, GeneratedMessageProtocol {
-    public subscript(key: String) -> Any? {
+    override public subscript(key: String) -> Any? {
            switch key {
            case "name": return name
            default: return nil
@@ -2787,7 +2787,7 @@ public extension Google.Protobuf {
   }
 
   final public class EnumDescriptorProto : GeneratedMessage, GeneratedMessageProtocol {
-    public subscript(key: String) -> Any? {
+    override public subscript(key: String) -> Any? {
            switch key {
            case "name": return name
            case "options": return options
@@ -3098,7 +3098,7 @@ public extension Google.Protobuf {
   }
 
   final public class EnumValueDescriptorProto : GeneratedMessage, GeneratedMessageProtocol {
-    public subscript(key: String) -> Any? {
+    override public subscript(key: String) -> Any? {
            switch key {
            case "name": return name
            case "number": return number
@@ -3403,7 +3403,7 @@ public extension Google.Protobuf {
   }
 
   final public class ServiceDescriptorProto : GeneratedMessage, GeneratedMessageProtocol {
-    public subscript(key: String) -> Any? {
+    override public subscript(key: String) -> Any? {
            switch key {
            case "name": return name
            case "options": return options
@@ -3714,7 +3714,7 @@ public extension Google.Protobuf {
   }
 
   final public class MethodDescriptorProto : GeneratedMessage, GeneratedMessageProtocol {
-    public subscript(key: String) -> Any? {
+    override public subscript(key: String) -> Any? {
            switch key {
            case "name": return name
            case "inputType": return inputType
@@ -4077,7 +4077,7 @@ public extension Google.Protobuf {
 
       //Enum type declaration end 
 
-    public subscript(key: String) -> Any? {
+    override public subscript(key: String) -> Any? {
            switch key {
            case "javaPackage": return javaPackage
            case "javaOuterClassname": return javaOuterClassname
@@ -4781,7 +4781,7 @@ public extension Google.Protobuf {
   }
 
   final public class MessageOptions : ExtendableMessage, GeneratedMessageProtocol {
-    public subscript(key: String) -> Any? {
+    override public subscript(key: String) -> Any? {
            switch key {
            case "messageSetWireFormat": return messageSetWireFormat
            case "noStandardDescriptorAccessor": return noStandardDescriptorAccessor
@@ -5134,7 +5134,7 @@ public extension Google.Protobuf {
 
       //Enum type declaration end 
 
-    public subscript(key: String) -> Any? {
+    override public subscript(key: String) -> Any? {
            switch key {
            case "ctype": return self.ctype
            case "packed": return packed
@@ -5613,7 +5613,7 @@ public extension Google.Protobuf {
   }
 
   final public class EnumOptions : ExtendableMessage, GeneratedMessageProtocol {
-    public subscript(key: String) -> Any? {
+    override public subscript(key: String) -> Any? {
            switch key {
            case "allowAlias": return allowAlias
            case "deprecated": return deprecated
@@ -5908,7 +5908,7 @@ public extension Google.Protobuf {
   }
 
   final public class EnumValueOptions : ExtendableMessage, GeneratedMessageProtocol {
-    public subscript(key: String) -> Any? {
+    override public subscript(key: String) -> Any? {
            switch key {
            case "deprecated": return deprecated
            default: return nil
@@ -6158,7 +6158,7 @@ public extension Google.Protobuf {
   }
 
   final public class ServiceOptions : ExtendableMessage, GeneratedMessageProtocol {
-    public subscript(key: String) -> Any? {
+    override public subscript(key: String) -> Any? {
            switch key {
            case "deprecated": return deprecated
            default: return nil
@@ -6408,7 +6408,7 @@ public extension Google.Protobuf {
   }
 
   final public class MethodOptions : ExtendableMessage, GeneratedMessageProtocol {
-    public subscript(key: String) -> Any? {
+    override public subscript(key: String) -> Any? {
            switch key {
            case "deprecated": return deprecated
            default: return nil
@@ -6663,7 +6663,7 @@ public extension Google.Protobuf {
     //Nested type declaration start
 
       final public class NamePart : GeneratedMessage, GeneratedMessageProtocol {
-        public subscript(key: String) -> Any? {
+        override public subscript(key: String) -> Any? {
                switch key {
                case "namePart": return namePart
                case "isExtension": return isExtension
@@ -6906,7 +6906,7 @@ public extension Google.Protobuf {
 
     //Nested type declaration end
 
-    public subscript(key: String) -> Any? {
+    override public subscript(key: String) -> Any? {
            switch key {
            case "identifierValue": return identifierValue
            case "positiveIntValue": return positiveIntValue
@@ -7378,7 +7378,7 @@ public extension Google.Protobuf {
     //Nested type declaration start
 
       final public class Location : GeneratedMessage, GeneratedMessageProtocol {
-        public subscript(key: String) -> Any? {
+        override public subscript(key: String) -> Any? {
                switch key {
                case "leadingComments": return leadingComments
                case "trailingComments": return trailingComments
@@ -7723,7 +7723,7 @@ public extension Google.Protobuf {
 
     //Nested type declaration end
 
-    public subscript(key: String) -> Any? {
+    override public subscript(key: String) -> Any? {
            switch key {
            default: return nil
            }

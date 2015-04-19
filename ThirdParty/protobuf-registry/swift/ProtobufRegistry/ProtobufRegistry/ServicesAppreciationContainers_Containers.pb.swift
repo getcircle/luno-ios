@@ -37,7 +37,7 @@ public extension Services.Appreciation.Containers {
   }
 
   final public class AppreciationV1 : GeneratedMessage, GeneratedMessageProtocol {
-    public subscript(key: String) -> Any? {
+    override public subscript(key: String) -> Any? {
            switch key {
            case "version": return version
            case "id": return id

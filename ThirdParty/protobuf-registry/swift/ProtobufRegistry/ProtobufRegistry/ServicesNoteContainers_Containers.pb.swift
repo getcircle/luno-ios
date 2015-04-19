@@ -37,7 +37,7 @@ public extension Services.Note.Containers {
   }
 
   final public class NoteV1 : GeneratedMessage, GeneratedMessageProtocol {
-    public subscript(key: String) -> Any? {
+    override public subscript(key: String) -> Any? {
            switch key {
            case "version": return version
            case "id": return id
