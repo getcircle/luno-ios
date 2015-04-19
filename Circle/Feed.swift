@@ -19,12 +19,12 @@ extension Services.Feed.Actions {
         requestBuilder.profileId = profileId
         let client = ServiceClient(serviceName: "feed")
         client.callAction(
-            "get_categories",
+            "get_profile_feed",
             extensionField: Services.Registry.Requests.Feed.getProfileFeed(),
             requestBuilder: requestBuilder
         ) { (_, _, wrapped, error) -> Void in
             let response = wrapped?.response?.result.getExtension(
-                Services.Registry.Requests.Feed.getProfileFeed()
+                Services.Registry.Responses.Feed.getProfileFeed()
             ) as? Services.Feed.Actions.GetProfileFeed.ResponseV1
             completionHandler?(
                 categories: response?.categories,
@@ -38,12 +38,12 @@ extension Services.Feed.Actions {
         requestBuilder.organizationId = organizationId
         let client = ServiceClient(serviceName: "feed")
         client.callAction(
-            "get_organization_categories",
+            "get_organization_feed",
             extensionField: Services.Registry.Requests.Feed.getOrganizationFeed(),
             requestBuilder: requestBuilder
         ) { (_, _, wrapped, error) -> Void in
             let response = wrapped?.response?.result.getExtension(
-                Services.Registry.Requests.Feed.getOrganizationFeed()
+                Services.Registry.Responses.Feed.getOrganizationFeed()
             ) as? Services.Feed.Actions.GetOrganizationFeed.ResponseV1
             completionHandler?(categories: response?.categories, error: error)
         }

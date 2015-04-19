@@ -38,7 +38,9 @@ extension Services.Profile.Actions {
         let client = ServiceClient(serviceName: "profile")
         client.callAction("get_profile", extensionField: Services.Registry.Requests.Profile.getProfile(), requestBuilder: requestBuilder) {
             (_, _, wrapped, error) -> Void in
-            let response = wrapped?.response?.result.getExtension(Services.Registry.Requests.Profile.getProfile()) as? Services.Profile.Actions.GetProfile.ResponseV1
+            let response = wrapped?.response?.result.getExtension(
+                Services.Registry.Responses.Profile.getProfile()
+            ) as? Services.Profile.Actions.GetProfile.ResponseV1
             completionHandler?(profile: response?.profile, error: error)
         }
     }
@@ -69,7 +71,7 @@ extension Services.Profile.Actions {
         ) {
             (_, _, wrapped, error) -> Void in
             let response = wrapped?.response?.result.getExtension(
-                Services.Registry.Requests.Profile.getProfiles()
+                Services.Registry.Responses.Profile.getProfiles()
             ) as? Services.Profile.Actions.GetProfiles.ResponseV1
             let nextRequest = wrapped?.getNextRequest()
             completionHandler?(profiles: response?.profiles, nextRequest: nextRequest, error: error)
@@ -138,7 +140,7 @@ extension Services.Profile.Actions {
             requestBuilder: requestBuilder
         ) { (_, _, wrapped, error) -> Void in
             let response = wrapped?.response?.result.getExtension(
-                Services.Registry.Requests.Profile.getExtendedProfile()
+                Services.Registry.Responses.Profile.getExtendedProfile()
             ) as? Services.Profile.Actions.GetExtendedProfile.ResponseV1
             completionHandler?(
                 profile: response?.profile,
@@ -168,7 +170,9 @@ extension Services.Profile.Actions {
             extensionField: Services.Registry.Requests.Profile.getTags(),
             requestBuilder: requestBuilder
         ) { (_, _, wrapped, error) -> Void in
-            let response = wrapped?.response?.result.getExtension(Services.Registry.Requests.Profile.getTags()) as? Services.Profile.Actions.GetTags.ResponseV1
+            let response = wrapped?.response?.result.getExtension(
+                Services.Registry.Responses.Profile.getTags()
+            ) as? Services.Profile.Actions.GetTags.ResponseV1
             completionHandler?(interests: response?.tags, error: error)
         }
     }
@@ -188,7 +192,7 @@ extension Services.Profile.Actions {
             paginatorBuilder: paginatorBuilder
         ) { (_, _, wrapped, error) -> Void in
             let response = wrapped?.response?.result.getExtension(
-                Services.Registry.Requests.Profile.getActiveTags()
+                Services.Registry.Responses.Profile.getActiveTags()
             ) as? Services.Profile.Actions.GetActiveTags.ResponseV1
             completionHandler?(interests: response?.tags, error: error)
         }
@@ -204,7 +208,7 @@ extension Services.Profile.Actions {
             extensionField: Services.Registry.Requests.Profile.updateProfile(),
             requestBuilder: requestBuilder) { (_, _, wrapped, error) -> Void in
                 let response = wrapped?.response?.result.getExtension(
-                    Services.Registry.Requests.Profile.updateProfile()
+                    Services.Registry.Responses.Profile.updateProfile()
                 ) as? Services.Profile.Actions.UpdateProfile.ResponseV1
                 ObjectStore.sharedInstance.update(response?.profile, type: .Profile)
                 completionHandler?(profile: response?.profile, error: error)
@@ -237,7 +241,9 @@ extension Services.Profile.Actions {
                         object: nil
                     )
                 })
-                let response = wrapped?.response?.result.getExtension(Services.Registry.Requests.Profile.addTags()) as? Services.Profile.Actions.AddTags.ResponseV1
+                let response = wrapped?.response?.result.getExtension(
+                    Services.Registry.Responses.Profile.addTags()
+                ) as? Services.Profile.Actions.AddTags.ResponseV1
                 completionHandler?(error: error)
         }
     }
@@ -260,7 +266,7 @@ extension Services.Profile.Actions {
                 )
             })
             let response = wrapped?.response?.result.getExtension(
-                Services.Registry.Requests.Profile.removeTags()
+                Services.Registry.Responses.Profile.removeTags()
             ) as? Services.Profile.Actions.RemoveTags.ResponseV1
             completionHandler?(error: error)
         }

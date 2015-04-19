@@ -33,11 +33,9 @@ extension Services.User.Actions {
         let client = ServiceClient(serviceName: "user")
         client.callAction("authenticate_user", extensionField: Services.Registry.Requests.User.authenticateUser(), requestBuilder: requestBuilder) {
             (_, _, wrapped, error) in
-            println(wrapped?.response?.result.extensionsAreInitialized())
-            println(wrapped?.response?.result.extensionRegistry)
-            println(wrapped?.response?.result.getExtension(Services.Registry.Responses.User.authenticateUser()))
-            println(wrapped?.response?.result.getExtension(Services.Registry.Requests.User.authenticateUser()))
-            let response = wrapped?.response?.result.getExtension(Services.Registry.Requests.User.authenticateUser()) as? Services.User.Actions.AuthenticateUser.ResponseV1
+            let response = wrapped?.response?.result.getExtension(
+                Services.Registry.Responses.User.authenticateUser()
+            ) as? Services.User.Actions.AuthenticateUser.ResponseV1
             completionHandler?(user: response?.user, token: response?.token, newUser: response?.newUser, error: error)
         }
     }
@@ -52,7 +50,9 @@ extension Services.User.Actions {
             extensionField: Services.Registry.Requests.User.updateUser(),
             requestBuilder: requestBuilder
         ) { (_, _, wrapped, error) -> Void in
-            let response = wrapped?.response?.result.getExtension(Services.Registry.Requests.User.updateUser()) as? Services.User.Actions.UpdateUser.ResponseV1
+            let response = wrapped?.response?.result.getExtension(
+                Services.Registry.Responses.User.updateUser()
+            ) as? Services.User.Actions.UpdateUser.ResponseV1
             completionHandler?(user: response?.user, error: error)
         }
     }
@@ -85,7 +85,7 @@ extension Services.User.Actions {
             requestBuilder: requestBuilder
         ) { (_, _, wrapped, error) -> Void in
             let response = wrapped?.response?.result.getExtension(
-                Services.Registry.Requests.User.verifyVerificationCode()
+                Services.Registry.Responses.User.verifyVerificationCode()
             ) as? Services.User.Actions.VerifyVerificationCode.ResponseV1
             completionHandler?(verified: response?.verified, error: error)
         }
@@ -101,7 +101,7 @@ extension Services.User.Actions {
             extensionField: Services.Registry.Requests.User.getAuthorizationInstructions(),
             requestBuilder: requestBuilder) { (_, _, wrapped, error) -> Void in
                 let response = wrapped?.response?.result.getExtension(
-                    Services.Registry.Requests.User.getAuthorizationInstructions()
+                    Services.Registry.Responses.User.getAuthorizationInstructions()
                 ) as? Services.User.Actions.GetAuthorizationInstructions.ResponseV1
                 completionHandler?(authorizationURL: response?.authorizationUrl, error: error)
         }
@@ -128,7 +128,7 @@ extension Services.User.Actions {
             extensionField: Services.Registry.Requests.User.completeAuthorization(),
             requestBuilder: requestBuilder) { (_, _, wrapped, error) -> Void in
                 let response = wrapped?.response?.result.getExtension(
-                    Services.Registry.Requests.User.completeAuthorization()
+                    Services.Registry.Responses.User.completeAuthorization()
                 ) as? Services.User.Actions.CompleteAuthorization.ResponseV1
                 completionHandler?(user: response?.user, identity: response?.identity, error: error)
         }
@@ -144,7 +144,7 @@ extension Services.User.Actions {
             extensionField: Services.Registry.Requests.User.getIdentities(),
             requestBuilder: requestBuilder) { (_, _, wrapped, error) -> Void in
                 let response = wrapped?.response?.result.getExtension(
-                    Services.Registry.Requests.User.getIdentities()
+                    Services.Registry.Responses.User.getIdentities()
                 ) as? Services.User.Actions.GetIdentities.ResponseV1
                 completionHandler?(identities: response?.identities, error: error)
         }
@@ -175,7 +175,7 @@ extension Services.User.Actions {
                     requestBuilder: requestBuilder
                 ) { (_, _, wrapped, error) -> Void in
                     let response = wrapped?.response?.result.getExtension(
-                        Services.Registry.Requests.User.recordDevice()
+                        Services.Registry.Responses.User.recordDevice()
                     ) as? Services.User.Actions.RecordDevice.ResponseV1
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
                         completionHandler?(device: response?.device, error: error)
@@ -199,7 +199,7 @@ extension Services.User.Actions {
                     requestBuilder: requestBuilder
                 ) { (_, _, wrapped, error) -> Void in
                         let response = wrapped?.response?.result.getExtension(
-                            Services.Registry.Requests.User.requestAccess()
+                            Services.Registry.Responses.User.requestAccess()
                         ) as? Services.User.Actions.RequestAccess.ResponseV1
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
                         completionHandler?(accessRequest: response?.accessRequest, error: error)
@@ -221,7 +221,7 @@ extension Services.User.Actions {
             requestBuilder: requestBuilder
         ) { (_, _, wrapped, error) -> Void in
             let response = wrapped?.response?.result.getExtension(
-                Services.Registry.Requests.User.deleteIdentity()
+                Services.Registry.Responses.User.deleteIdentity()
             ) as? Services.User.Actions.RequestAccess.ResponseV1
             completionHandler?(error: error)
         }

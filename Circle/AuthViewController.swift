@@ -112,7 +112,9 @@ class AuthViewController: UIViewController, GIDSignInDelegate {
             googleSignInButton.addShakeAnimation()
         } else {
             let credentials = Services.User.Actions.AuthenticateUser.RequestV1.CredentialsV1.builder()
-            credentials.key = user.serverAuthCode
+            if let code = user.serverAuthCode {
+                credentials.key = user.serverAuthCode
+            }
             credentials.secret = user.authentication.idToken
             login(.Google, credentials: credentials.build())
         }
@@ -267,6 +269,7 @@ class AuthViewController: UIViewController, GIDSignInDelegate {
         credentials: Services.User.Actions.AuthenticateUser.RequestV1.CredentialsV1
     ) {
         Services.User.Actions.authenticateUser(backend, credentials: credentials) { (user, token, newUser, error) -> Void in
+            // TODO we should be explicitly checking the authenticated bool here or existence of a token
             if error != nil {
                 self.hideLoadingState()
                 self.googleSignInButton.addShakeAnimation()

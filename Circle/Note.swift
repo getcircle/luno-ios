@@ -26,7 +26,7 @@ extension Services.Note.Actions {
             requestBuilder: requestBuilder
         ) { (_, _, wrapped, error) -> Void in
             let response = wrapped?.response?.result.getExtension(
-                Services.Registry.Requests.Note.createNote()
+                Services.Registry.Responses.Note.createNote()
             ) as? Services.Note.Actions.CreateNote.ResponseV1
             completionHandler?(note: response?.note, error: error)
         }
@@ -56,7 +56,7 @@ extension Services.Note.Actions {
             requestBuilder: requestBuilder
         ) { (_, _, wrapped, error) -> Void in
             let response = wrapped?.response?.result.getExtension(
-                Services.Registry.Requests.Note.updateNote()
+                Services.Registry.Responses.Note.updateNote()
             ) as? Services.Note.Actions.UpdateNote.ResponseV1
             completionHandler?(note: response?.note, error: error)
         }
@@ -73,7 +73,7 @@ extension Services.Note.Actions {
             requestBuilder: requestBuilder
         ) { (_, _, wrapped, error) -> Void in
             let response = wrapped?.response?.result.getExtension(
-                Services.Registry.Requests.Note.getNotes()
+                Services.Registry.Responses.Note.getNotes()
             ) as? Services.Note.Actions.GetNotes.ResponseV1
             completionHandler?(notes: response?.notes, error: error)
         }

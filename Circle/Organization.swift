@@ -28,7 +28,7 @@ extension Services.Organization.Actions {
             requestBuilder: requestBuilder
         ) { (_, _, wrapped, error) -> Void in
             let response = wrapped?.response?.result.getExtension(
-                Services.Registry.Requests.Organization.getAddresses()
+                Services.Registry.Responses.Organization.getAddresses()
             ) as? Services.Organization.Actions.GetAddresses.ResponseV1
             completionHandler?(addresses: response?.addresses, error: error)
         }
@@ -47,8 +47,8 @@ extension Services.Organization.Actions {
             paginatorBuilder: paginatorBuilder
             ) { (_, _, wrapped, error) -> Void in
                 let response = wrapped?.response?.result.getExtension(
-                    Services.Registry.Requests.Organization.getTeams()
-                    ) as? Services.Organization.Actions.GetTeams.ResponseV1
+                    Services.Registry.Responses.Organization.getTeams()
+                ) as? Services.Organization.Actions.GetTeams.ResponseV1
                 let nextRequest = wrapped?.getNextRequest()
                 completionHandler?(teams: response?.teams, nextRequest: nextRequest, error: error)
         }
@@ -95,7 +95,7 @@ extension Services.Organization.Actions {
             requestBuilder: requestBuilder
         ) { (_, _, wrapped, error) -> Void in
             let response = wrapped?.response?.result.getExtension(
-                Services.Registry.Requests.Organization.getTeamDescendants()
+                Services.Registry.Responses.Organization.getTeamDescendants()
             ) as? Services.Organization.Actions.GetTeamDescendants.ResponseV1
             completionHandler?(teams: response?.descendants[0].teams, error: error)
         }
@@ -111,7 +111,7 @@ extension Services.Organization.Actions {
             extensionField: Services.Registry.Requests.Organization.getOrganization(),
             requestBuilder: requestBuilder) { (_, _, wrapped, error) -> Void in
                 let response = wrapped?.response?.result.getExtension(
-                    Services.Registry.Requests.Organization.getOrganization()
+                    Services.Registry.Responses.Organization.getOrganization()
                 ) as? Services.Organization.Actions.GetOrganization.ResponseV1
                 completionHandler?(organization: response?.organization, error: error)
         }
@@ -128,7 +128,7 @@ extension Services.Organization.Actions {
             requestBuilder: requestBuilder
         ) { (_, _, wrapped, error) -> Void in
             let response = wrapped?.response?.result.getExtension(
-                Services.Registry.Requests.Organization.getLocations()
+                Services.Registry.Responses.Organization.getLocations()
             ) as? Services.Organization.Actions.GetLocations.ResponseV1
             completionHandler?(locations: response?.locations, error: error)
         }

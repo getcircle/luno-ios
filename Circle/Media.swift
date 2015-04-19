@@ -31,7 +31,7 @@ extension Services.Media.Actions {
             requestBuilder: requestBuilder
         ) { (_, _, wrapped, error) -> Void in
             let response = wrapped?.response?.result.getExtension(
-                Services.Registry.Requests.Media.startImageUpload()
+                Services.Registry.Responses.Media.startImageUpload()
             ) as? Services.Media.Actions.StartImageUpload.ResponseV1
             completionHandler?(instructions: response?.uploadInstructions, error: error)
         }
@@ -57,7 +57,7 @@ extension Services.Media.Actions {
             requestBuilder: requestBuilder
         ) { (_, _, wrapped, error) -> Void in
             let response = wrapped?.response?.result.getExtension(
-                Services.Registry.Requests.Media.completeImageUpload()
+                Services.Registry.Responses.Media.completeImageUpload()
             ) as? Services.Media.Actions.CompleteImageUpload.ResponseV1
             completionHandler?(mediaURL: response?.mediaUrl, error: error)
         }

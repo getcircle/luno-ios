@@ -26,7 +26,7 @@ extension Services.Appreciation.Actions {
             requestBuilder: requestBuilder
         ) { (_, _, wrapped, error) -> Void in
             let response = wrapped?.response?.result.getExtension(
-                Services.Registry.Requests.Appreciation.createAppreciation()
+                Services.Registry.Responses.Appreciation.createAppreciation()
             ) as? Services.Appreciation.Actions.CreateAppreciation.ResponseV1
             completionHandler?(appreciation: response?.appreciation, error: error)
         }
@@ -56,7 +56,7 @@ extension Services.Appreciation.Actions {
             requestBuilder: requestBuilder
         ) { (_, _, wrapped, error) -> Void in
             let response = wrapped?.response?.result.getExtension(
-                Services.Registry.Requests.Appreciation.updateAppreciation()
+                Services.Registry.Responses.Appreciation.updateAppreciation()
             ) as? Services.Appreciation.Actions.UpdateAppreciation.ResponseV1
             completionHandler?(appreciation: appreciation, error: error)
         }
@@ -72,7 +72,7 @@ extension Services.Appreciation.Actions {
             requestBuilder: requestBuilder
         ) { (_, _, wrapped, error) -> Void in
             let response = wrapped?.response?.result.getExtension(
-                Services.Registry.Requests.Appreciation.getAppreciation()
+                Services.Registry.Responses.Appreciation.getAppreciation()
             ) as? Services.Appreciation.Actions.GetAppreciation.ResponseV1
             completionHandler?(appreciation: response?.appreciation, error: error)
         }
