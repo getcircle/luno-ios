@@ -8,7 +8,6 @@
 
 import UIKit
 import Crashlytics
-import google_plus_ios_sdk
 import Locksmith
 import Mixpanel
 import ProtobufRegistry
@@ -43,7 +42,7 @@ private let DefaultsIdentitiesKey = "DefaultsIdentitiesKey"
 private let GoogleClientID = "1077014421904-pes3pbf96obmp75kb00qouoiqf18u78h.apps.googleusercontent.com"
 private let GoogleServerClientID = "1077014421904-1a697ks3qvtt6975qfqhmed8529en8s2.apps.googleusercontent.com"
 
-class AuthViewController: UIViewController, GPPSignInDelegate {
+class AuthViewController: UIViewController, GIDSignInDelegate {
 
     @IBOutlet weak var appNameLabel: UILabel!
     @IBOutlet weak var appNameYConstraint: NSLayoutConstraint!
@@ -60,7 +59,7 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
         configureAppNameLabel()
         configureView()
         configureGoogleAuthentication()
-        GPPSignIn.sharedInstance().trySilentAuthentication()
+        GIDSignIn.sharedInstance().signInSilently()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -88,10 +87,9 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
     }
     
     private func configureGoogleAuthentication() {
-        let googleSignIn = GPPSignIn.sharedInstance()
+        let googleSignIn = GIDSignIn.sharedInstance()
         googleSignIn.clientID = GoogleClientID
-        googleSignIn.attemptSSO = true
-        googleSignIn.homeServerClientID = GoogleServerClientID
+        googleSignIn.serverClientID = GoogleServerClientID
         googleSignIn.scopes = ["https://www.googleapis.com/auth/plus.login", "https://www.googleapis.com/auth/plus.profile.emails.read"]
         googleSignIn.delegate = self
 //        googleSignInButton.colorScheme = kGPPSignInButtonColorSchemeLight
@@ -106,19 +104,17 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
         googleSignInButton.addTarget(self, action: "googlePlusSignInButtonTapped:", forControlEvents: .TouchUpInside)
     }
     
-    // MARK: - GPPSignInDelegate
+    // MARK: - GIDSignInDelegate
     
-    func finishedWithAuth(auth: GTMOAuth2Authentication!, error: NSError!) {
-        if error == nil {
-            let credentials = Services.User.Actions.AuthenticateUser.RequestV1.CredentialsV1.builder()
-            if let code = GPPSignIn.sharedInstance().homeServerAuthorizationCode {
-                credentials.key = code
-            }
-            credentials.secret = GPPSignIn.sharedInstance().idToken
-            login(.Google, credentials: credentials.build())
-        } else {
+    func signIn(signIn: GIDSignIn!, didSignInForUser user: GIDGoogleUser!, withError error: NSError!) {
+        if error != nil {
             hideLoadingState()
             googleSignInButton.addShakeAnimation()
+        } else {
+            let credentials = Services.User.Actions.AuthenticateUser.RequestV1.CredentialsV1.builder()
+            credentials.key = user.serverAuthCode
+            credentials.secret = user.authentication.idToken
+            login(.Google, credentials: credentials.build())
         }
     }
     
@@ -355,10 +351,10 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
         }
         if let disconnect = shouldDisconnect {
             if disconnect {
-                GPPSignIn.sharedInstance().disconnect()
+                GIDSignIn.sharedInstance().disconnect()
             }
         }
-        GPPSignIn.sharedInstance().signOut()
+        GIDSignIn.sharedInstance().signOut()
         
         // Remove local cached date
         LoggedInUserHolder.profile = nil
@@ -557,6 +553,6 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
     
     @IBAction func googlePlusSignInButtonTapped(sender: AnyObject!) {
         startingGoogleAuthentication(sender)
-        GPPSignIn.sharedInstance().authenticate()
+        GIDSignIn.sharedInstance().signIn()
     }
 }

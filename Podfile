@@ -6,7 +6,6 @@ xcodeproj 'Circle.xcodeproj'
 use_frameworks!
 
 pod 'AFNetworking', '~> 2.5'
-pod 'google-plus-ios-sdk', '~> 1.7'
 pod 'libPhoneNumber-iOS', '~> 0.7'
 pod 'Mixpanel', '~> 2.7'
 pod 'PureLayout', '~> 2.0'

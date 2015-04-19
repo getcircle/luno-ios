@@ -260,6 +260,7 @@
 		BF97F2D71ACA0B4500F1BC2E /* TokenField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF97F2D61ACA0B4500F1BC2E /* TokenField.swift */; };
 		BF9D72121A68492C002CDC66 /* ObjectStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9D72111A68492C002CDC66 /* ObjectStore.swift */; };
 		BFA1187F1AA2738E0073B13A /* Appreciation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA1187E1AA2738E0073B13A /* Appreciation.swift */; };
+		BFA4F6461AE34CD300385D45 /* GoogleSignIn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFA4F6451AE34CD300385D45 /* GoogleSignIn.framework */; };
 		BFAE43551A8B05010085AB2B /* HomelessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAE43531A8B05010085AB2B /* HomelessViewController.swift */; };
 		BFAE43561A8B05010085AB2B /* HomelessViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFAE43541A8B05010085AB2B /* HomelessViewController.xib */; };
 		BFAF272F1ACB75A600E881BC /* ContactInfoDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAF272E1ACB75A600E881BC /* ContactInfoDataSource.swift */; };
@@ -596,6 +597,7 @@
 		BF97F2D61ACA0B4500F1BC2E /* TokenField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenField.swift; sourceTree = "<group>"; };
 		BF9D72111A68492C002CDC66 /* ObjectStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectStore.swift; sourceTree = "<group>"; };
 		BFA1187E1AA2738E0073B13A /* Appreciation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Appreciation.swift; sourceTree = "<group>"; };
+		BFA4F6451AE34CD300385D45 /* GoogleSignIn.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleSignIn.framework; sourceTree = "<group>"; };
 		BFAE43531A8B05010085AB2B /* HomelessViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomelessViewController.swift; sourceTree = "<group>"; };
 		BFAE43541A8B05010085AB2B /* HomelessViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomelessViewController.xib; sourceTree = "<group>"; };
 		BFAF272E1ACB75A600E881BC /* ContactInfoDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactInfoDataSource.swift; sourceTree = "<group>"; };
@@ -631,6 +633,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8F4805C41A5B643F00273731 /* Crashlytics.framework in Frameworks */,
+				BFA4F6461AE34CD300385D45 /* GoogleSignIn.framework in Frameworks */,
 				DF400245E813C40A9AB735B3 /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -652,6 +655,7 @@
 			isa = PBXGroup;
 			children = (
 				4BE4CE18D8FDD109BFC6307A /* Pods.framework */,
+				BFA4F6451AE34CD300385D45 /* GoogleSignIn.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1797,6 +1801,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Circle",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
@@ -1822,6 +1827,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Circle",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Circle/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
