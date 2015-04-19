@@ -8,6 +8,7 @@
 
 import UIKit
 import ProtobufRegistry
+import libPhoneNumber_iOS
 
 class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate {
 
@@ -174,9 +175,9 @@ class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate {
         if bypassChecks {
             if let user = AuthViewController.getLoggedInUser() {
                 let builder = user.toBuilder()
-                builder.phone_number = phoneNumberField.text
-                builder.phone_number_verified = true
-                UserService.Actions.updateUser(builder.build()) { (user, error) -> Void in
+                builder.phoneNumber = phoneNumberField.text
+                builder.phoneNumberVerified = true
+                Services.User.Actions.updateUser(builder.build()) { (user, error) -> Void in
                     if let user = user {
                         AuthViewController.updateUser(user)
                     }
@@ -189,7 +190,7 @@ class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate {
         
         let code = verificationCodeField.text
         if let user = AuthViewController.getLoggedInUser() {
-            UserService.Actions.verifyVerificationCode(code, user: user) { (verified, error) -> Void in
+            Services.User.Actions.verifyVerificationCode(code, user: user) { (verified, error) -> Void in
                 self.toggleLoadingState(self.actionButton)
                 if error == nil {
                     if verified! {
@@ -220,10 +221,10 @@ class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate {
         let phoneNumber = phoneNumberField.text
         if let user = AuthViewController.getLoggedInUser() {
             let userBuilder = user.toBuilder()
-            userBuilder.phone_number = phoneNumber
-            UserService.Actions.updateUser(userBuilder.build()) { (user, error) -> Void in
+            userBuilder.phoneNumber = phoneNumber
+            Services.User.Actions.updateUser(userBuilder.build()) { (user, error) -> Void in
                 if error == nil {
-                    UserService.Actions.sendVerificationCode(user!) { (error) -> Void in
+                    Services.User.Actions.sendVerificationCode(user!) { (error) -> Void in
                         self.toggleLoadingState(button)
                         completionHandler(error)
                     }

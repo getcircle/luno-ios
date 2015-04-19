@@ -1,0 +1,62 @@
+package services.user.containers;
+
+message AccessRequestV1 {
+    optional uint32 version = 1 [default = 1];
+    optional string id = 2;
+    optional string user_id = 3;
+}
+
+message DeviceV1 {
+    optional uint32 version = 1 [default = 1];
+    optional string id = 2;
+    optional string notification_token = 3;
+    optional string platform = 4;
+    optional string os_version = 5;
+    optional string app_version = 6;
+    optional string device_uuid = 7;
+    optional string user_id = 8;
+    optional string language_preference = 9;
+}
+
+message IdentityV1 {
+
+    enum ProviderV1 {
+        INTERNAL = 0;
+        LINKEDIN = 1;
+        GOOGLE = 2;
+    }
+
+    optional uint32 version = 1 [default = 1];
+    optional string id = 2;
+    optional ProviderV1 provider = 3;
+    optional string full_name = 4;
+    optional string email = 5;
+    optional string access_token = 6;
+    optional string expires_at = 7;
+    optional string provider_uid = 8;
+    optional string user_id = 9;
+    optional string refresh_token = 10;
+}
+
+message OAuth2DetailsV1 {
+    optional uint32 version = 1 [default = 1];
+    optional string code = 2;
+    optional string state = 3;
+}
+
+message OAuthSDKDetailsV1 {
+    optional uint32 version = 1 [default = 1];
+    optional string code = 2;
+    optional string id_token = 3;
+}
+
+message UserV1 {
+    optional uint32 version = 1 [default = 1];
+    optional string id = 2;
+    optional string primary_email = 3;
+    optional bool is_admin = 4;
+    optional bool is_active = 5;
+    optional string phone_number = 6;
+    optional bool phone_number_verified = 7;
+    optional string password = 8;
+}

@@ -27,7 +27,7 @@ class OrganizationHeaderCollectionReusableView: CircleCollectionReusableView {
         profileImage.addRoundCorners(radius: 3.0)
     }
     
-    func setOrganization(organization: OrganizationService.Containers.Organization) {
-        profileImage.setImageWithURL(NSURL(string: organization.image_url)!, animated: true)
+    func setOrganization(organization: Services.Organization.Containers.OrganizationV1) {
+        profileImage.setImageWithURL(NSURL(string: organization.imageUrl)!, animated: true)
     }
 }

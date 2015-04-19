@@ -10,7 +10,7 @@ import Foundation
 
 extension NSBundle {
 
-    class func appName() -> String {
+    static func appName() -> String {
         if let bundleName: String = NSBundle.mainBundle().infoDictionary?["CFBundleName"] as? String {
             return bundleName
         }
@@ -18,7 +18,7 @@ extension NSBundle {
         return "circle"
     }
     
-    class func appVersion() -> String {
+    static func appVersion() -> String {
         if let bundleVersion: String = NSBundle.mainBundle().infoDictionary?["CFBundleShortVersionString"] as? String {
             return bundleVersion
         }
@@ -26,7 +26,7 @@ extension NSBundle {
         return "version"
     }
     
-    class func appBuild() -> String {
+    static func appBuild() -> String {
         if let bundleBuild: String = NSBundle.mainBundle().infoDictionary?["CFBundleVersion"] as? String {
             return bundleBuild
         }

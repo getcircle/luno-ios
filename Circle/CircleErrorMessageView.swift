@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PureLayout
 
 class CircleErrorMessageView: UIView {
 
@@ -26,8 +27,8 @@ class CircleErrorMessageView: UIView {
     private var messageLabel: UILabel!
     private var tryAgainButton: UIButton!
     
-    override init() {
-        super.init()
+    init() {
+        super.init(frame: CGRectZero)
         customInit()
     }
     

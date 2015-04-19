@@ -45,7 +45,7 @@ class NotesCollectionViewCell: CircleCollectionViewCell {
     }
     
     override func setData(data: AnyObject) {
-        if let note = data as? NoteService.Containers.Note {
+        if let note = data as? Services.Note.Containers.NoteV1 {
             noteSummaryLabel.text = note.content
             if let gmtDate = NSDateFormatter.dateFromTimestampString(note.changed) {
                 noteTimestampLabel.text = NSDateFormatter.localizedRelativeDateString(gmtDate)
@@ -53,7 +53,7 @@ class NotesCollectionViewCell: CircleCollectionViewCell {
         }
     }
     
-    func setProfile(profile: ProfileService.Containers.Profile) {
+    func setProfile(profile: Services.Profile.Containers.ProfileV1) {
         if let loggedInUserProfile = AuthViewController.getLoggedInUserProfile() {
             if profile.id == loggedInUserProfile.id {
                 noteOnProfileName.text = NSLocalizedString("Your note", comment: "Text indicating that the note is user's private note")
@@ -61,7 +61,7 @@ class NotesCollectionViewCell: CircleCollectionViewCell {
             else {
                 noteOnProfileName.text = NSString(format: NSLocalizedString("Note on %@",
                     comment: "Title for note on a specific person. E.g., Note on Michael"),
-                    (profile.first_name + " " + profile.last_name[0] + "."))
+                    (profile.firstName + " " + profile.lastName[0] + ".")) as String
             }
         }
     }
@@ -69,7 +69,7 @@ class NotesCollectionViewCell: CircleCollectionViewCell {
     private func adjustConstraintsAsPerProfileVisibility() {
         if !showUserProfile {
             noteSummaryLabel.numberOfLines = 2
-            noteTimestampLabelTopConstraint.constant = -(noteTimestampLabel.frameY - noteOnProfileName.frameY)
+            noteTimestampLabelTopConstraint.constant = -(noteTimestampLabel.frame.origin.y - noteOnProfileName.frame.origin.y)
 
             noteSummaryLabel.setNeedsUpdateConstraints()
             noteTimestampLabel.setNeedsUpdateConstraints()

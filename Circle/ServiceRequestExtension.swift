@@ -1,5 +1,5 @@
 //
-//  ServiceRequestExtension.swift
+//  Soa.ServiceRequestV1Extension.swift
 //  Circle
 //
 //  Created by Michael Hahn on 3/11/15.
@@ -9,16 +9,16 @@
 import Foundation
 import ProtobufRegistry
 
-extension ServiceRequest {
+extension Soa.ServiceRequestV1 {
     
-    func getNextRequest(paginator: Paginator) -> ServiceRequest {
+    func getNextRequest(paginator: Soa.PaginatorV1) -> Soa.ServiceRequestV1 {
         let serviceRequestBuilder = toBuilder()
         serviceRequestBuilder.actions.removeAll(keepCapacity: true)
         for action in actions {
             let actionBuilder = action.toBuilder()
             let actionControlBuilder = action.control.toBuilder()
             let paginatorBuilder = paginator.toBuilder()
-            paginatorBuilder.page = paginator.next_page
+            paginatorBuilder.page = paginator.nextPage
             actionControlBuilder.paginator = paginatorBuilder.build()
             actionBuilder.control = actionControlBuilder.build()
             serviceRequestBuilder.actions.append(actionBuilder.build())
@@ -26,7 +26,7 @@ extension ServiceRequest {
         return serviceRequestBuilder.build()
     }
     
-    func getFirstPaginator() -> Paginator {
+    func getPaginator() -> Soa.PaginatorV1 {
         let action = actions[0]
         return action.control.paginator
     }

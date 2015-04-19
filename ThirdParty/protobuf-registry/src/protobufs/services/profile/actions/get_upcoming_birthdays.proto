@@ -1,0 +1,13 @@
+package services.profile.actions.get_upcoming_birthdays;
+
+import "protobufs/services/profile/containers.proto";
+
+message RequestV1 {
+    optional uint32 version = 1 [default = 1];
+    optional string organization_id = 2;
+}
+
+message ResponseV1 {
+    optional uint32 version = 1 [default = 1];
+    repeated services.profile.containers.ProfileV1 profiles = 2;
+}

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import VENTouchLock
 
 class PasscodeTouchIDViewController: UIViewController {
 

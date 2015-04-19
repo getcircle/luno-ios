@@ -11,9 +11,9 @@ import ProtobufRegistry
 
 class TagDetailDataSource: CardDataSource {
     
-    var selectedTag: ProfileService.Containers.Tag!
+    var selectedTag: Services.Profile.Containers.TagV1!
     
-    private var profiles = Array<ProfileService.Containers.Profile>()
+    private var profiles = Array<Services.Profile.Containers.ProfileV1>()
     private(set) var profileHeaderView: TagHeaderCollectionReusableView?
     
     // MARK: - Load Data
@@ -29,7 +29,7 @@ class TagDetailDataSource: CardDataSource {
         
         if let currentProfile = AuthViewController.getLoggedInUserProfile() {
             let profile = AuthViewController.getLoggedInUserProfile()!
-            ProfileService.Actions.getProfiles(interestId: selectedTag!.id, organizationId: profile.organization_id) { (profiles, _, error) -> Void in
+            Services.Profile.Actions.getProfiles(tagId: selectedTag!.id, organizationId: profile.organizationId) { (profiles, _, error) -> Void in
                 if let profiles = profiles {
                     self.profiles.extend(profiles)
                     let peopleCard = Card(cardType: .Profiles, title: "People by Tag")

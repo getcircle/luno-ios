@@ -1,0 +1,15 @@
+package services.search.containers.search;
+
+enum CategoryV1 {
+    PEOPLE = 0;
+    TEAMS = 1;
+    LOCATIONS = 2;
+    SKILLS = 3;
+}
+
+enum AttributeV1 {
+    LOCATION_ID = 0;
+    TEAM_ID = 1;
+    SKILL_ID = 2;
+    ORGANIZATION_ID = 3;
+}

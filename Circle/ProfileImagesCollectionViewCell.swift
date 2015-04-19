@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import UIViewPlusPosition
 import ProtobufRegistry
 
 class ProfileImagesCollectionViewCell: CircleCollectionViewCell {
@@ -37,7 +38,7 @@ class ProfileImagesCollectionViewCell: CircleCollectionViewCell {
     // MARK: - Configuration
     
     private func configureContentView() {
-        let containerWidth = cardContentView.frameWidth
+        let containerWidth = cardContentView.frame.width
         var currentX: CGFloat = 0.0
         for i in 0...numberOfProfileImageViews {
             var profileImage = CircleImageView(frame: CGRectMake(currentX, 0.0, profileImageWidthHeight, profileImageWidthHeight))
@@ -56,8 +57,8 @@ class ProfileImagesCollectionViewCell: CircleCollectionViewCell {
     // MARK: - Load People
     
     override func setData(data: AnyObject) {
-        if let profiles = data as? [ProfileService.Containers.Profile] {
-            let containerWidth = cardContentView.frameWidth
+        if let profiles = data as? [Services.Profile.Containers.ProfileV1] {
+            let containerWidth = cardContentView.frame.width
             var counter = 0
             
             profileImageViews = profileImageViews.map({

@@ -49,7 +49,7 @@ class PositionCollectionViewCell: CircleCollectionViewCell {
     }
     
     override func setData(data: AnyObject) {
-        if let position = data as? ResumeService.Containers.Position {
+        if let position = data as? Services.Resume.Containers.PositionV1 {
             titleLabel.text = position.title
             companyLabel.text = position.company.name
             durationLabel.text = getFormattedDurationLabel(position)
@@ -58,8 +58,8 @@ class PositionCollectionViewCell: CircleCollectionViewCell {
     
     // MARK: - Formatting
     
-    private func getFormattedDurationLabel(position: ResumeService.Containers.Position) -> String {
-        return ResumeService.Utils.formatPositionApproximateDate(position)
+    private func getFormattedDurationLabel(position: Services.Resume.Containers.PositionV1) -> String {
+        return Services.Resume.Utils.formatPositionApproximateDate(position)
     }
 
 }

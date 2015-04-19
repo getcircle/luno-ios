@@ -18,7 +18,7 @@ class QuickActionsCollectionViewCell: CircleCollectionViewCell {
     
     private var actionButtons = [UIButton]()
     private let defaultQuickActions: [QuickAction] = [.Phone, .Message, .Email]
-    private var profile: ProfileService.Containers.Profile?
+    private var profile: Services.Profile.Containers.ProfileV1?
     
     /**
         Quick actions that need to be shown. Only the first four are added to the UI.
@@ -72,8 +72,8 @@ class QuickActionsCollectionViewCell: CircleCollectionViewCell {
     // MARK: - Data
     
     override func setData(data: AnyObject) {
-        if let dataDictionary = data as? [String: ProfileService.Containers.Profile] {
-            if let userProfile = dataDictionary["profile"] as ProfileService.Containers.Profile? {
+        if let dataDictionary = data as? [String: Services.Profile.Containers.ProfileV1] {
+            if let userProfile = dataDictionary["profile"] as Services.Profile.Containers.ProfileV1? {
                 profile = userProfile
             }
         }

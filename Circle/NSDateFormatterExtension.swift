@@ -100,7 +100,7 @@ extension NSDateFormatter {
         return Static.instance
     }
     
-    class func stringFromDateWithStyles(
+    static func stringFromDateWithStyles(
         date: NSDate,
         dateStyle: NSDateFormatterStyle,
         timeStyle: NSDateFormatterStyle
@@ -110,17 +110,17 @@ extension NSDateFormatter {
         return self.sharedInstance.stringFromDate(date)
     }
     
-    class func shortStyleStringFromDate(date: NSDate) -> String {
+    static func shortStyleStringFromDate(date: NSDate) -> String {
         self.sharedInstance.dateStyle = .ShortStyle
         return self.sharedInstance.stringFromDate(date)
     }
     
-    class func dateFromTimestampString(timestamp: String) -> NSDate? {
+    static func dateFromTimestampString(timestamp: String) -> NSDate? {
         let dateFormatter = NSDateFormatter.sharedTimestampFormatter
         return dateFormatter.dateFromString(timestamp)
     }
     
-    class func localizedRelativeDateString(date: NSDate) -> String {
+    static func localizedRelativeDateString(date: NSDate) -> String {
         let dateFormatter = NSDateFormatter.sharedRelativeDateFormatter
         if NSCalendar.currentCalendar().isDateInToday(date) {
             dateFormatter.timeStyle = .ShortStyle

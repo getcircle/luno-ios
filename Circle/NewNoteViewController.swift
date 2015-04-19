@@ -10,15 +10,15 @@ import UIKit
 import ProtobufRegistry
 
 protocol NewNoteViewControllerDelegate {
-    func didAddNote(note: NoteService.Containers.Note)
-    func didDeleteNote(note: NoteService.Containers.Note)
+    func didAddNote(note: Services.Note.Containers.NoteV1)
+    func didDeleteNote(note: Services.Note.Containers.NoteV1)
 }
 
 class NewNoteViewController: UIViewController, UIViewControllerTransitioningDelegate, UITextViewDelegate, NSLayoutManagerDelegate {
     
     var delegate: NewNoteViewControllerDelegate?
-    var note: NoteService.Containers.Note?
-    var profile: ProfileService.Containers.Profile?
+    var note: Services.Note.Containers.NoteV1?
+    var profile: Services.Profile.Containers.ProfileV1?
 
     @IBOutlet weak var deleteNoteButton: UIButton!
     @IBOutlet weak var noteTextView: UITextView!
@@ -53,7 +53,7 @@ class NewNoteViewController: UIViewController, UIViewControllerTransitioningDele
         super.viewWillAppear(animated)
         if let profile = profile {
             if isPersonalNote() {
-                noteTextViewTopConstraint.constant = -profileImageView.frameHeight
+                noteTextViewTopConstraint.constant = -profileImageView.frame.height
                 noteTextView.setNeedsUpdateConstraints()
                 noteTextView.layoutIfNeeded()
                 noteTopBorder.hidden = true
@@ -61,7 +61,7 @@ class NewNoteViewController: UIViewController, UIViewControllerTransitioningDele
             }
             else {
                 profileImageView.setImageWithProfile(profile)
-                profileNameLabel.text = profile.full_name
+                profileNameLabel.text = profile.fullName
                 profileTitleLabel.text = profile.title
             }
         }
@@ -130,7 +130,7 @@ class NewNoteViewController: UIViewController, UIViewControllerTransitioningDele
                 title: NSLocalizedString("Delete", comment: "Generic button title for deleting an item"),
                 style: .Destructive
             ) { (action) -> Void in
-                NoteService.Actions.deleteNote(self.note!, completionHandler: { (error) -> Void in
+                Services.Note.Actions.deleteNote(self.note!, completionHandler: { (error) -> Void in
                     if error == nil {
                         self.trackDeleteNoteAction(self.note!)
                         self.delegate?.didDeleteNote(self.note!)
@@ -232,11 +232,11 @@ class NewNoteViewController: UIViewController, UIViewControllerTransitioningDele
     
     private func saveNewNote() {
         let currentProfile = AuthViewController.getLoggedInUserProfile()!
-        let noteBuilder = NoteService.Containers.Note.builder()
-        noteBuilder.for_profile_id = profile!.id
-        noteBuilder.owner_profile_id = currentProfile.id
+        let noteBuilder = Services.Note.Containers.NoteV1.builder()
+        noteBuilder.forProfileId = profile!.id
+        noteBuilder.ownerProfileId = currentProfile.id
         noteBuilder.content = noteTextView.text
-        NoteService.Actions.createNote(noteBuilder.build()) { (note, error) -> Void in
+        Services.Note.Actions.createNote(noteBuilder.build()) { (note, error) -> Void in
             if let note = note {
                 self.trackSaveNoteAction(note)
                 self.delegate?.didAddNote(note)
@@ -248,7 +248,7 @@ class NewNoteViewController: UIViewController, UIViewControllerTransitioningDele
     private func updateNote() {
         let noteBuilder = note!.toBuilder()
         noteBuilder.content = noteTextView.text
-        NoteService.Actions.updateNote(noteBuilder.build()) { (note, error) -> Void in
+        Services.Note.Actions.updateNote(noteBuilder.build()) { (note, error) -> Void in
             if let note = note {
                 self.trackUpdateNoteAction(note)
                 self.delegate?.didDeleteNote(self.note!)
@@ -319,22 +319,22 @@ class NewNoteViewController: UIViewController, UIViewControllerTransitioningDele
             TrackerProperty.withKey(.SourceDetailType).withDetailType(.Note)
         ]
         if let profile = profile {
-            properties.append(TrackerProperty.withDestinationId("profile_id").withString(profile.id))
+            properties.append(TrackerProperty.withDestinationId("profileId").withString(profile.id))
         }
         Tracker.sharedInstance.track(.NewNote, properties: properties)
     }
     
-    private func trackSaveNoteAction(note: NoteService.Containers.Note) {
+    private func trackSaveNoteAction(note: Services.Note.Containers.NoteV1) {
         let properties = propertiesForNoteTracking(note)
         Tracker.sharedInstance.track(.SaveNote, properties: properties)
     }
     
-    private func trackDeleteNoteAction(note: NoteService.Containers.Note) {
+    private func trackDeleteNoteAction(note: Services.Note.Containers.NoteV1) {
         let properties = propertiesForNoteTracking(note)
         Tracker.sharedInstance.track(.DeleteNote, properties: properties)
     }
     
-    private func trackUpdateNoteAction(note: NoteService.Containers.Note) {
+    private func trackUpdateNoteAction(note: Services.Note.Containers.NoteV1) {
         let properties = propertiesForNoteTracking(note)
         Tracker.sharedInstance.track(.UpdateNote, properties: properties)
     }
@@ -349,13 +349,13 @@ class NewNoteViewController: UIViewController, UIViewControllerTransitioningDele
         Tracker.sharedInstance.track(.DismissNote, properties: properties)
     }
     
-    private func propertiesForNoteTracking(note: NoteService.Containers.Note) -> [TrackerProperty] {
+    private func propertiesForNoteTracking(note: Services.Note.Containers.NoteV1) -> [TrackerProperty] {
         var properties = [
             TrackerProperty.withKeyString("note_id").withString(note.id),
             TrackerProperty.withKeyString("personal_note").withValue(isPersonalNote()),
         ]
         if let profile = profile {
-            properties.append(TrackerProperty.withKeyString("for_profile_id").withString(profile.id))
+            properties.append(TrackerProperty.withKeyString("forProfileId").withString(profile.id))
         }
         return properties
     }

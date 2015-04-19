@@ -46,12 +46,12 @@ class SearchHeaderView: UIView {
             10.0,
             0.0,
             36.0,
-            searchTextField.frameHeight
+            searchTextField.frame.height
         ))
         leftView.backgroundColor = UIColor.clearColor()
         leftViewImageView = UIImageView(image: UIImage(named: "Search")?.imageWithRenderingMode(.AlwaysTemplate))
         leftViewImageView.contentMode = .ScaleAspectFit
-        leftViewImageView.frame = CGRectMake(10.0, (searchTextField.frameHeight - 16.0)/2.0, 16.0, 16.0)
+        leftViewImageView.frame = CGRectMake(10.0, (searchTextField.frame.height - 16.0)/2.0, 16.0, 16.0)
         leftView.addSubview(leftViewImageView)
         
         searchTextField.leftViewMode = .Always
@@ -75,7 +75,7 @@ class SearchHeaderView: UIView {
     // MARK: - CancelButtonState
     
     func showCancelButton() {
-        searchTextFieldTrailingSpaceConstraint.constant = frameWidth - cancelButton.frameX + 10.0
+        searchTextFieldTrailingSpaceConstraint.constant = frame.width - cancelButton.frame.origin.x + 10.0
         searchTextField.setNeedsUpdateConstraints()
         UIView.animateWithDuration(
             0.2,

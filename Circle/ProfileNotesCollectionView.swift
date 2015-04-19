@@ -18,10 +18,10 @@ struct ProfileNotesNotifications {
 // TODO should potentially just take notes as an init variable so we can use the getExtendedProfile call
 class ProfileNotesDataSource: UnderlyingCollectionViewDataSource {
     
-    var profile: ProfileService.Containers.Profile!
-    private(set) var notes = Array<NoteService.Containers.Note>()
+    var profile: Services.Profile.Containers.ProfileV1!
+    private(set) var notes = Array<Services.Note.Containers.NoteV1>()
     
-    convenience init(profile withProfile: ProfileService.Containers.Profile) {
+    convenience init(profile withProfile: Services.Profile.Containers.ProfileV1) {
         self.init()
         profile = withProfile
     }
@@ -29,7 +29,7 @@ class ProfileNotesDataSource: UnderlyingCollectionViewDataSource {
     override func loadData(completionHandler: (error: NSError?) -> Void) {
         // Add placeholder card to load profile header instantly
         addPlaceholderCard()
-        NoteService.Actions.getNotes(profile.id) { (notes, error) -> Void in
+        Services.Note.Actions.getNotes(profile.id) { (notes, error) -> Void in
             if let notes = notes {
                 self.notes = notes
                 NSNotificationCenter.defaultCenter().postNotificationName(
@@ -45,7 +45,7 @@ class ProfileNotesDataSource: UnderlyingCollectionViewDataSource {
     
     override func configureCell(cell: CircleCollectionViewCell, atIndexPath indexPath: NSIndexPath) {
         if cell is NotesCollectionViewCell {
-            (cell as NotesCollectionViewCell).showUserProfile = false
+            (cell as! NotesCollectionViewCell).showUserProfile = false
         }
     }
 
@@ -73,12 +73,12 @@ class ProfileNotesDataSource: UnderlyingCollectionViewDataSource {
         }
     }
     
-    func addNote(note: NoteService.Containers.Note) {
+    func addNote(note: Services.Note.Containers.NoteV1) {
         notes.insert(note, atIndex: 0)
         populateData()
     }
     
-    func removeNote(note: NoteService.Containers.Note) {
+    func removeNote(note: Services.Note.Containers.NoteV1) {
         notes = notes.filter { $0.id != note.id }
         populateData()
     }
@@ -87,11 +87,11 @@ class ProfileNotesDataSource: UnderlyingCollectionViewDataSource {
 class ProfileNotesCollectionView: UnderlyingCollectionView {
     
     private var layout: StickyHeaderCollectionViewLayout?
-    private var profile: ProfileService.Containers.Profile?
+    private var profile: Services.Profile.Containers.ProfileV1?
     private var profileNotesDataSource: ProfileNotesDataSource?
     private var profileNotesDelegate: CardCollectionViewDelegate?
     
-    convenience init(profile: ProfileService.Containers.Profile?) {
+    convenience init(profile: Services.Profile.Containers.ProfileV1?) {
         let stickyLayout = StickyHeaderCollectionViewLayout()
         self.init(frame: CGRectZero, collectionViewLayout: stickyLayout)
         setTranslatesAutoresizingMaskIntoConstraints(false)

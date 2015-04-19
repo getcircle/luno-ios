@@ -22,7 +22,7 @@ class NotesOverviewViewController: UIViewController,
     private(set) var delegate = CardCollectionViewDelegate()
     
     private var activityIndicatorView: CircleActivityIndicatorView!
-    private var profileForSelectedNote: ProfileService.Containers.Profile?
+    private var profileForSelectedNote: Services.Profile.Containers.ProfileV1?
     private var searchHeaderView: SearchHeaderView!
     
     override func viewDidLoad() {
@@ -54,7 +54,7 @@ class NotesOverviewViewController: UIViewController,
         collectionView.backgroundColor = UIColor.appViewBackgroundColor()
         collectionView.dataSource = dataSource
         collectionView.delegate = delegate
-        (collectionView.delegate as CardCollectionViewDelegate).delegate = self
+        (collectionView.delegate as! CardCollectionViewDelegate).delegate = self
         collectionView.bounces = true
         collectionView.keyboardDismissMode = .OnDrag
         collectionView.alwaysBounceVertical = true
@@ -72,7 +72,7 @@ class NotesOverviewViewController: UIViewController,
 
     private func configureSearchHeaderView() {
         if let nibViews = NSBundle.mainBundle().loadNibNamed("SearchHeaderView", owner: nil, options: nil) as? [UIView] {
-            searchHeaderView = nibViews.first as SearchHeaderView
+            searchHeaderView = nibViews.first as! SearchHeaderView
             searchHeaderView.delegate = self
             searchHeaderView.searchTextField.placeholder = NSLocalizedString("Filter notes",
                 comment: "Placeholder for text field used for filtering notes")
@@ -98,9 +98,9 @@ class NotesOverviewViewController: UIViewController,
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let selectedCard = dataSource.cardAtSection(indexPath.section)!        
-        if let selectedNote = dataSource.contentAtIndexPath(indexPath)? as? NoteService.Containers.Note {
-            if let profiles = selectedCard.metaData as? [String: ProfileService.Containers.Profile] {
-                if let selectedProfile = profiles[selectedNote.for_profile_id] as ProfileService.Containers.Profile? {
+        if let selectedNote = dataSource.contentAtIndexPath(indexPath) as? Services.Note.Containers.NoteV1 {
+            if let profiles = selectedCard.metaData as? [String: Services.Profile.Containers.ProfileV1] {
+                if let selectedProfile = profiles[selectedNote.forProfileId] as Services.Profile.Containers.ProfileV1? {
                     let viewController = NewNoteViewController(nibName: "NewNoteViewController", bundle: nil)
                     profileForSelectedNote = selectedProfile
                     viewController.profile = selectedProfile
@@ -126,7 +126,7 @@ class NotesOverviewViewController: UIViewController,
     
     // MARK: - NewNoteViewControllerDelegate
     
-    func didAddNote(note: NoteService.Containers.Note) {
+    func didAddNote(note: Services.Note.Containers.NoteV1) {
         if let profile = profileForSelectedNote {
             dataSource.addNote(note, forProfile: profile)
             filterNotes(nil)
@@ -134,7 +134,7 @@ class NotesOverviewViewController: UIViewController,
         }
     }
     
-    func didDeleteNote(note: NoteService.Containers.Note) {
+    func didDeleteNote(note: Services.Note.Containers.NoteV1) {
         if let profile = profileForSelectedNote {
             dataSource.removeNote(note, forProfile: profile)
             filterNotes(nil)
@@ -179,12 +179,12 @@ class NotesOverviewViewController: UIViewController,
         Tracker.sharedInstance.track(.NewNote, properties: properties)
     }
     
-    private func trackViewNoteAction(note: NoteService.Containers.Note) {
+    private func trackViewNoteAction(note: Services.Note.Containers.NoteV1) {
         let properties = getTrackingProperties(note)
         Tracker.sharedInstance.track(.ViewNote, properties: properties)
     }
     
-    private func getTrackingProperties(note: NoteService.Containers.Note?) -> [TrackerProperty] {
+    private func getTrackingProperties(note: Services.Note.Containers.NoteV1?) -> [TrackerProperty] {
         var properties = [
             TrackerProperty.withKey(.Source).withSource(.Overview),
             TrackerProperty.withKey(.SourceOverviewType).withOverviewType(.Notes),
@@ -194,7 +194,7 @@ class NotesOverviewViewController: UIViewController,
         ]
         if let note = note {
             properties.append(TrackerProperty.withDestinationId("note_id").withString(note.id))
-            properties.append(TrackerProperty.withKeyString("personal_note").withValue(isPersonalNote(note.for_profile_id)))
+            properties.append(TrackerProperty.withKeyString("personal_note").withValue(isPersonalNote(note.forProfileId)))
         } else {
             properties.append(TrackerProperty.withKeyString("personal_note").withValue(true))
         }

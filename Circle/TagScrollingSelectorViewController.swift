@@ -29,7 +29,7 @@ class TagScrollingSelectorViewController:
     
     var addNextButton: Bool = false
     var theme: Themes = .Regular
-    var preSelectTags: Array<ProfileService.Containers.Tag> = Array<ProfileService.Containers.Tag>() {
+    var preSelectTags: Array<Services.Profile.Containers.TagV1> = Array<Services.Profile.Containers.TagV1>() {
         didSet {
             for interest in preSelectTags {
                 selectedTags[interest.hashValue] = interest
@@ -40,9 +40,9 @@ class TagScrollingSelectorViewController:
     private var animatedCell = [NSIndexPath: Bool]()
     private var bottomLayer: CAGradientLayer!
     private var cachedItemSizes =  [String: CGSize]()
-    private var filteredTags = Array<ProfileService.Containers.Tag>()
-    private var interests = Array<ProfileService.Containers.Tag>()
-    private var selectedTags = Dictionary<Int, ProfileService.Containers.Tag>()
+    private var filteredTags = Array<Services.Profile.Containers.TagV1>()
+    private var interests = Array<Services.Profile.Containers.TagV1>()
+    private var selectedTags = Dictionary<Int, Services.Profile.Containers.TagV1>()
     private var prototypeCell: TagCollectionViewCell!
     private var searchHeaderView: SearchHeaderView!
     private var topLayer: CAGradientLayer!
@@ -90,7 +90,7 @@ class TagScrollingSelectorViewController:
     private func configurePrototypeCell() {
         // Init prototype cell
         let cellNibViews = NSBundle.mainBundle().loadNibNamed("TagCollectionViewCell", owner: self, options: nil)
-        prototypeCell = cellNibViews.first as TagCollectionViewCell
+        prototypeCell = cellNibViews.first as! TagCollectionViewCell
     }
     
     private func configureCollectionView() {
@@ -104,7 +104,7 @@ class TagScrollingSelectorViewController:
 
     private func configureSearchHeaderView() {
         if let nibViews = NSBundle.mainBundle().loadNibNamed("SearchHeaderView", owner: nil, options: nil) as? [UIView] {
-            searchHeaderView = nibViews.first as SearchHeaderView
+            searchHeaderView = nibViews.first as! SearchHeaderView
             searchHeaderView.delegate = self
             searchHeaderView.searchTextField.addBottomBorder()
             searchHeaderView.searchTextField.autocapitalizationType = .Words
@@ -113,7 +113,7 @@ class TagScrollingSelectorViewController:
             searchHeaderView.searchTextField.delegate = self
             searchHeaderView.searchTextField.placeholder = AppStrings.TextPlaceholderFilterTags
             searchHeaderView.searchTextField.addTarget(self, action: "filter", forControlEvents: .EditingChanged)
-            searchHeaderView.searchTextFieldHeightConstraint.constant = searchControllerParentView.frameHeight
+            searchHeaderView.searchTextFieldHeightConstraint.constant = searchControllerParentView.frame.height
             searchControllerParentView.addSubview(searchHeaderView)
             searchHeaderView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
             
@@ -212,7 +212,7 @@ class TagScrollingSelectorViewController:
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(
             TagCollectionViewCell.classReuseIdentifier,
             forIndexPath: indexPath
-        ) as TagCollectionViewCell
+        ) as! TagCollectionViewCell
     
         // Configure the cell
         cell.interestLabel.text = filteredTags[indexPath.row].name
@@ -240,17 +240,17 @@ class TagScrollingSelectorViewController:
     // MARK: UICollectionViewDelegate
 
     func collectionView(collectionView: UICollectionView, didHighlightItemAtIndexPath indexPath: NSIndexPath) {
-        let cell = collectionView.cellForItemAtIndexPath(indexPath) as TagCollectionViewCell
+        let cell = collectionView.cellForItemAtIndexPath(indexPath) as! TagCollectionViewCell
         cell.highlightCell(true)
     }
     
     func collectionView(collectionView: UICollectionView, didUnhighlightItemAtIndexPath indexPath: NSIndexPath) {
-        let cell = collectionView.cellForItemAtIndexPath(indexPath) as TagCollectionViewCell
+        let cell = collectionView.cellForItemAtIndexPath(indexPath) as! TagCollectionViewCell
         cell.unHighlightCell(true)
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        let cell = collectionView.cellForItemAtIndexPath(indexPath) as TagCollectionViewCell
+        let cell = collectionView.cellForItemAtIndexPath(indexPath) as! TagCollectionViewCell
         cell.selectCell(true)
         let interest = filteredTags[indexPath.row]
         selectedTags[interest.hashValue] = interest
@@ -260,7 +260,7 @@ class TagScrollingSelectorViewController:
     }
     
     func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
-        let cell = collectionView.cellForItemAtIndexPath(indexPath) as TagCollectionViewCell
+        let cell = collectionView.cellForItemAtIndexPath(indexPath) as! TagCollectionViewCell
         cell.unHighlightCell(true)
         let interest = filteredTags[indexPath.row]
         selectedTags[interest.hashValue] = nil
@@ -286,7 +286,7 @@ class TagScrollingSelectorViewController:
         // fire and forget
         if let profile = AuthViewController.getLoggedInUserProfile() {
             if selectedTags.count > 0 {
-                ProfileService.Actions.addTags(profile.id, tags: selectedTags.values.array, completionHandler: nil)
+                Services.Profile.Actions.addTags(profile.id, tags: selectedTags.values.array, completionHandler: nil)
             }
         }
 
@@ -297,11 +297,11 @@ class TagScrollingSelectorViewController:
         dismissView()
     }
     
-    private func getNewTagObject() -> ProfileService.Containers.Tag? {
+    private func getNewTagObject() -> Services.Profile.Containers.TagV1? {
         var interestName = searchHeaderView.searchTextField.text
         interestName = interestName.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
         if interestName != "" {
-            var interestBuilderObject = ProfileService.Containers.Tag.builder()
+            var interestBuilderObject = Services.Profile.Containers.TagV1.builder()
             interestBuilderObject.name = interestName
             return interestBuilderObject.build()
         }
@@ -376,11 +376,11 @@ class TagScrollingSelectorViewController:
     // MARK: - Helpers
     
     private func topGrientLayerFrame() -> CGRect {
-        return CGRectMake(10.0, 0.0, topGradientView.frameWidth - 20.0, 30.0)
+        return CGRectMake(10.0, 0.0, topGradientView.frame.width - 20.0, 30.0)
     }
     
     private func bottomGradientLayerFrame() -> CGRect {
-        return CGRectMake(10.0, 0.0, bottomGradientView.frameWidth - 20.0, 60.0)
+        return CGRectMake(10.0, 0.0, bottomGradientView.frame.width - 20.0, 60.0)
     }
     
     private func dismissSearchField() {

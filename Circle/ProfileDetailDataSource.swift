@@ -12,26 +12,26 @@ import ProtobufRegistry
 class ProfileDetailDataSource: CardDataSource {
 
     var addBannerOfType: BannerType?
-    var profile: ProfileService.Containers.Profile!
+    var profile: Services.Profile.Containers.ProfileV1!
     var profileHeaderView: ProfileHeaderCollectionReusableView?
 
     internal var sections = [Section]()
     
-    private(set) var address: OrganizationService.Containers.Address?
-    private(set) var identities: Array<UserService.Containers.Identity>?
-    private(set) var location: OrganizationService.Containers.Location?
-    private(set) var manager: ProfileService.Containers.Profile?
-    private(set) var interests: Array<ProfileService.Containers.Tag>?
-    private(set) var skills: Array<ProfileService.Containers.Tag>?
-    private(set) var team: OrganizationService.Containers.Team?
-    private(set) var resume: ResumeService.Containers.Resume?
+    private(set) var address: Services.Organization.Containers.AddressV1?
+    private(set) var identities: Array<Services.User.Containers.IdentityV1>?
+    private(set) var location: Services.Organization.Containers.LocationV1?
+    private(set) var manager: Services.Profile.Containers.ProfileV1?
+    private(set) var interests: Array<Services.Profile.Containers.TagV1>?
+    private(set) var skills: Array<Services.Profile.Containers.TagV1>?
+    private(set) var team: Services.Organization.Containers.TeamV1?
+    private(set) var resume: Services.Resume.Containers.ResumeV1?
 
     private let numberOfEducationItemsVisibleInitially = 1
     private let numberOfExperienceItemsVisibleInitially = 2
     private let numberOfTagItemsVisibleInitially = 6
     private let numberOfSkillItemsVisibleInitially = 6
     
-    convenience init(profile withProfile: ProfileService.Containers.Profile) {
+    convenience init(profile withProfile: Services.Profile.Containers.ProfileV1) {
         self.init()
         profile = withProfile
     }
@@ -45,7 +45,7 @@ class ProfileDetailDataSource: CardDataSource {
         )
         placeholderCard.sectionInset = UIEdgeInsetsZero
         appendCard(placeholderCard)
-        ProfileService.Actions.getExtendedProfile(profile.id) {
+        Services.Profile.Actions.getExtendedProfile(profile.id) {
             (profile, manager, team, address, skills, _, identities, resume, location, error) -> Void in
             if error == nil {
                 self.manager = manager
@@ -125,14 +125,14 @@ class ProfileDetailDataSource: CardDataSource {
             SectionItem(
                 title: "Hire Date",
                 container: "profile",
-                containerKey: "hire_date",
+                containerKey: "hireDate",
                 contentType: .HireDate,
                 image: nil
             ),
             SectionItem(
                 title: "Birthday",
                 container: "profile",
-                containerKey: "birth_date",
+                containerKey: "birthDate",
                 contentType: .Birthday,
                 image: nil
             )
@@ -309,17 +309,17 @@ class ProfileDetailDataSource: CardDataSource {
         switch item.container {
         case "profile":
             switch item.containerKey {
-            case "hire_date":
+            case "hireDate":
                 if profile.hasHireDate {
-                    value = NSDateFormatter.sharedAnniversaryFormatter.stringFromDate(profile.hire_date.toDate()!)
+                    value = NSDateFormatter.sharedAnniversaryFormatter.stringFromDate(profile.hireDate.toDate()!)
                 }
                 else {
                     return nil
                 }
                 
-            case "birth_date":
+            case "birthDate":
                 if profile.hasBirthDate {
-                    value = NSDateFormatter.sharedBirthdayFormatter.stringFromDate(profile.birth_date.toDate()!)
+                    value = NSDateFormatter.sharedBirthdayFormatter.stringFromDate(profile.birthDate.toDate()!)
                 }
                 else {
                     return nil
@@ -474,7 +474,7 @@ class ProfileDetailDataSource: CardDataSource {
             // TODO: Remove after testing UI
             let fakeBio = NSString(
                 format: "Hi! I'm %@. I work on the %@ team in %@.",
-                profile.first_name,
+                profile.firstName,
                 team!.name,
                 location!.address.officeName()
             )
@@ -486,7 +486,7 @@ class ProfileDetailDataSource: CardDataSource {
     
     override func configureCell(cell: CircleCollectionViewCell, atIndexPath indexPath: NSIndexPath) {
         if cell is QuickActionsCollectionViewCell {
-            let quickActionsCell = cell as QuickActionsCollectionViewCell
+            let quickActionsCell = cell as! QuickActionsCollectionViewCell
             quickActionsCell.backgroundColor = UIColor.whiteColor()
             quickActionsCell.quickActions = [.Phone, .Message, .Email, .MoreInfo]
         }
@@ -497,7 +497,7 @@ class ProfileDetailDataSource: CardDataSource {
     func typeOfCell(indexPath: NSIndexPath) -> ContentType {
         let card = cards[indexPath.section]
         if let rowDataDictionary = card.content[indexPath.row] as? [String: AnyObject] {
-           return ContentType(rawValue: (rowDataDictionary["type"] as Int!))!
+           return ContentType(rawValue: (rowDataDictionary["type"] as! Int!))!
         }
         
         return .Other
@@ -514,7 +514,7 @@ class ProfileDetailDataSource: CardDataSource {
     
     override func configureFooter(footer: CircleCollectionReusableView, atIndexPath indexPath: NSIndexPath) {
         super.configureFooter(footer, atIndexPath: indexPath)
-        (footer as CardFooterCollectionReusableView).insetEdges = false
+        (footer as! CardFooterCollectionReusableView).insetEdges = false
     }
 
     private func isProfileLoggedInUserProfile() -> Bool {

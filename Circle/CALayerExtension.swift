@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 extension CALayer {
     
@@ -16,7 +17,7 @@ extension CALayer {
         contentsScale = UIScreen.mainScreen().scale
     }
     
-    class func gradientLayerWithFrame(frame: CGRect, startColor: CGColorRef, endColor: CGColorRef) -> CAGradientLayer {
+    static func gradientLayerWithFrame(frame: CGRect, startColor: CGColorRef, endColor: CGColorRef) -> CAGradientLayer {
         var gradientLayer = CAGradientLayer()
         gradientLayer.frame = frame
         gradientLayer.colors = [startColor, endColor]

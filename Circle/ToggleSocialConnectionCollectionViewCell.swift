@@ -23,10 +23,10 @@ class ToggleSocialConnectionCollectionViewCell: CircleCollectionViewCell {
         return "ToggleSocialConnectionCollectionViewCell"
     }
     
-    private var identity: UserService.Containers.Identity?
+    private var identity: Services.User.Containers.IdentityV1?
     
     override func setData(data: AnyObject) {
-        if let identity = data as? UserService.Containers.Identity {
+        if let identity = data as? Services.User.Containers.IdentityV1 {
             self.identity = identity
             switch identity.provider {
             case .Google:

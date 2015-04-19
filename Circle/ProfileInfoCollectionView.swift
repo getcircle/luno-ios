@@ -12,11 +12,11 @@ import ProtobufRegistry
 class ProfileInfoCollectionView: UnderlyingCollectionView, CardFooterViewDelegate {
     
     private var layout: StickyHeaderCollectionViewLayout?
-    private var profile: ProfileService.Containers.Profile?
+    private var profile: Services.Profile.Containers.ProfileV1?
     private var profileInfoDataSource: ProfileDetailDataSource!
     private var profileInfoDelegate: CardCollectionViewDelegate!
     
-    convenience init(profile: ProfileService.Containers.Profile?) {
+    convenience init(profile: Services.Profile.Containers.ProfileV1?) {
         let stickyLayout = StickyHeaderCollectionViewLayout()
         self.init(frame: CGRectZero, collectionViewLayout: stickyLayout)
         setTranslatesAutoresizingMaskIntoConstraints(false)

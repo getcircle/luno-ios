@@ -1,0 +1,14 @@
+package services.profile.actions.create_tags;
+
+import "protobufs/services/profile/containers.proto";
+
+message RequestV1 {
+    optional uint32 version = 1 [default = 1];
+    repeated services.profile.containers.TagV1 tags = 2;
+    optional string organization_id = 3;
+}
+
+message ResponseV1 {
+    optional uint32 version = 1 [default = 1];
+    repeated services.profile.containers.TagV1 tags = 2;
+}

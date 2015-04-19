@@ -30,9 +30,19 @@
 				<string>com.rhlabs.circle</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>com.googleusercontent.apps</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.1077014421904-pes3pbf96obmp75kb00qouoiqf18u78h</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>95</string>
+	<string>96</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UIBackgroundModes</key>

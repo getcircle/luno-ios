@@ -41,31 +41,31 @@ class ProfileCollectionViewCell: CircleCollectionViewCell {
 
     override func setData(data: AnyObject) {
         teamNameLetterLabel.hidden = true
-        if let profile = data as? ProfileService.Containers.Profile {
+        if let profile = data as? Services.Profile.Containers.ProfileV1 {
             setProfile(profile)
         }
-        else if let team = data as? OrganizationService.Containers.Team {
+        else if let team = data as? Services.Organization.Containers.TeamV1 {
             setTeam(team)
         }
-        else if let location = data as? OrganizationService.Containers.Location {
+        else if let location = data as? Services.Organization.Containers.LocationV1 {
             setLocation(location)
         }
     }
     
-    private func setProfile(profile: ProfileService.Containers.Profile) {
-        nameLabel.text = profile.full_name
+    private func setProfile(profile: Services.Profile.Containers.ProfileV1) {
+        nameLabel.text = profile.fullName
         var subtitle = profile.title
         if let cardType = card?.type {
             switch card!.type {
             case .Birthdays:
-                if let date = profile.birth_date.toDate() {
+                if let date = profile.birthDate.toDate() {
                     subtitle = NSDateFormatter.sharedBirthdayFormatter.stringFromDate(date)
                 }
             case .Anniversaries:
                 subtitle = getAnniversarySubtitle(profile)
                 
             case .NewHires:
-                if let date = profile.hire_date.toDate() {
+                if let date = profile.hireDate.toDate() {
                     subtitle = NSDateFormatter.stringFromDateWithStyles(date, dateStyle: .LongStyle, timeStyle: .NoStyle)
                 }
             default:
@@ -77,17 +77,17 @@ class ProfileCollectionViewCell: CircleCollectionViewCell {
         profileImageView.setImageWithProfile(profile)
     }
 
-    private func setTeam(team: OrganizationService.Containers.Team) {
+    private func setTeam(team: Services.Organization.Containers.TeamV1) {
         profileImageView.imageText = ""
         profileImageView.backgroundColor = UIColor.appTeamHeaderBackgroundColor(team)
         profileImageView.image = nil
         nameLabel.text = team.name
-        subTextLabel.text = getCountLabel(team.profile_count)
+        subTextLabel.text = getCountLabel(team.profileCount)
         teamNameLetterLabel.text = team.name[0]
         teamNameLetterLabel.hidden = false
     }
     
-    private func setLocation(location: OrganizationService.Containers.Location) {
+    private func setLocation(location: Services.Organization.Containers.LocationV1) {
         nameLabel.text = location.address.officeName()
         profileImageView.imageText = ""
         if location.hasImageUrl {
@@ -97,27 +97,27 @@ class ProfileCollectionViewCell: CircleCollectionViewCell {
         } else {
             profileImageView.image = UIImage(named: "SF")
         }
-        subTextLabel.text = getCountLabel(location.profile_count)
+        subTextLabel.text = getCountLabel(location.profileCount)
     }
 
     // MARK: - Helpers
     
-    private func getAnniversarySubtitle(profile: ProfileService.Containers.Profile) -> String {
+    private func getAnniversarySubtitle(profile: Services.Profile.Containers.ProfileV1) -> String {
         var subtitle = ""
-        if let hireDate = profile.hire_date.toDate() {
+        if let hireDate = profile.hireDate.toDate() {
             let dateFormatter = NSDateFormatter.sharedAnniversaryFormatter
-            let calendar = NSCalendar(calendarIdentifier: NSGregorianCalendar)
+            let calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)
             
             let dateString = dateFormatter.stringFromDate(hireDate)
             
             // calculate the upcoming anniversary to get the accurate number of years the anniversary represents
-            let nowComponents = calendar?.components(.YearCalendarUnit, fromDate: NSDate())
-            let upcomingAnniveraryComponents = calendar?.components(.DayCalendarUnit | .MonthCalendarUnit, fromDate: hireDate)
+            let nowComponents = calendar?.components(.CalendarUnitYear, fromDate: NSDate())
+            let upcomingAnniveraryComponents = calendar?.components(.CalendarUnitDay | .CalendarUnitMonth, fromDate: hireDate)
             upcomingAnniveraryComponents?.year = nowComponents!.year
             let upcomingAnniversary = calendar?.dateFromComponents(upcomingAnniveraryComponents!)
             
             let components = calendar?.components(
-                .YearCalendarUnit,
+                .CalendarUnitYear,
                 fromDate: hireDate,
                 toDate: upcomingAnniversary!,
                 options: .WrapComponents

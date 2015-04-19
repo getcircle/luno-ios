@@ -15,14 +15,14 @@ class MapViewController: UIViewController, UIViewControllerTransitioningDelegate
     var addressSnapshotView: UIView?
     var finalMapViewRect: CGRect?
     var initialMapViewRect: CGRect?
-    var selectedOffice: OrganizationService.Containers.Location!
+    var selectedOffice: Services.Organization.Containers.LocationV1!
 
     private(set) var addressContainerView: UIView!
     private(set) var closeButton: UIButton!
     private(set) var mapView: MKMapView!
 
-    override init() {
-        super.init()
+    init() {
+        super.init(nibName: nil, bundle: nil)
         customInit()
     }
     
@@ -51,7 +51,7 @@ class MapViewController: UIViewController, UIViewControllerTransitioningDelegate
         )
         
         mapView.annotateAndSetRegion(
-            annotationTitle,
+            annotationTitle as String,
             latitude: selectedOffice.address.latitude,
             longitude: selectedOffice.address.longitude
         )
@@ -85,7 +85,7 @@ class MapViewController: UIViewController, UIViewControllerTransitioningDelegate
         closeButton.autoSetDimension(.Width, toSize: 36.0)
         
         // Address View
-        addressContainerView = UIView(frame: CGRectMake(0.0, 0.0, view.frameWidth, 35.0))
+        addressContainerView = UIView(frame: CGRectMake(0.0, 0.0, view.frame.width, 35.0))
         addressSnapshotView?.setTranslatesAutoresizingMaskIntoConstraints(false)
         addressContainerView.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.8)
         view.addSubview(addressContainerView)

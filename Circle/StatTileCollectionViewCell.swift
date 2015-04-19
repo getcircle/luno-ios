@@ -51,8 +51,8 @@ class StatTileCollectionViewCell: CircleCollectionViewCell {
     
     override func setData(data: AnyObject) {
         if let stats = data as? [String: AnyObject] {
-            titleLabel.text = data["title"] as String!
-            countLabel.text = String(data["value"] as Int!)
+            titleLabel.text = data["title"] as! String!
+            countLabel.text = String(data["value"] as! Int!)
             if let type = data["type"] as? Int {
                 tileType = TileType(rawValue: type)
             }

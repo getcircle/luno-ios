@@ -62,12 +62,12 @@ class CircleCache {
 
 extension CircleCache {
     
-    class func recordProfileVisit(profile: ProfileService.Containers.Profile) {
-        var existingProfilesIDs = CircleCache.sharedInstance.objectForKey(CircleCache.Keys.RecentProfileVisits) as [String]? ?? [String]()
+    static func recordProfileVisit(profile: Services.Profile.Containers.ProfileV1) {
+        var existingProfilesIDs = CircleCache.sharedInstance.objectForKey(CircleCache.Keys.RecentProfileVisits) as! [String]? ?? [String]()
         var uniqueProfileIDs = NSMutableOrderedSet(array: existingProfilesIDs)
         uniqueProfileIDs.insertObject(profile.id, atIndex: 0)
         let maxRecords: Int = min(uniqueProfileIDs.count, 5)
-        existingProfilesIDs = uniqueProfileIDs.array as [String]
+        existingProfilesIDs = uniqueProfileIDs.array as! [String]
         existingProfilesIDs = Array(existingProfilesIDs[0..<maxRecords])
         CircleCache.sharedInstance.setObject(existingProfilesIDs, forKey: CircleCache.Keys.RecentProfileVisits)
     }

@@ -213,7 +213,7 @@ extension UIViewController {
     
     func navigationBarHeight() -> CGFloat {
         if let navBarHidden = navigationController?.navigationBarHidden {
-            return (navBarHidden ? 0.0 : (navigationController?.navigationBar.frameHeight ?? 0.0))
+            return (navBarHidden ? 0.0 : (navigationController?.navigationBar.frame.height ?? 0.0))
         }
         
         return 0.0

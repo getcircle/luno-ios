@@ -24,7 +24,7 @@ public class CodedOutputStream
     private var output:NSOutputStream!
     internal var buffer:RingBuffer
     
-    public init (output aOutput:NSOutputStream!, data:[Byte])
+    public init (output aOutput:NSOutputStream!, data:NSMutableData)
     {
         output = aOutput
         buffer = RingBuffer(data:data)
@@ -32,19 +32,19 @@ public class CodedOutputStream
   
     public init(output aOutput:NSOutputStream!, bufferSize:Int32)
     {
-        var data = [Byte](count: Int(bufferSize), repeatedValue: 0)
+        var data = NSMutableData(length: Int(bufferSize))!
         output = aOutput
         buffer = RingBuffer(data: data)
     }
    
     public init(output:NSOutputStream)
     {
-        var data = [Byte](count: Int(DEFAULT_BUFFER_SIZE), repeatedValue: 0)
+        var data = NSMutableData(length: Int(DEFAULT_BUFFER_SIZE))!
         self.output = output
         buffer = RingBuffer(data: data)
     }
     
-    public init(data aData:[Byte])
+    public init(data aData:NSMutableData)
     {
         buffer = RingBuffer(data: aData)
     }
@@ -59,7 +59,7 @@ public class CodedOutputStream
        var size = buffer.flushToOutputStream(output!)
     }
    
-    public func writeRawByte(byte aByte:Byte)
+    public func writeRawByte(byte aByte:UInt8)
     {
         while (!buffer.appendByte(byte: aByte))
         {
@@ -67,12 +67,12 @@ public class CodedOutputStream
         }
     }
     
-    public func writeRawData(data:[Byte])
+    public func writeRawData(data:NSData)
     {
-        writeRawData(data, offset:0, length: Int32(data.count))
+        writeRawData(data, offset:0, length: Int32(data.length))
     
     }
-    public func writeRawData(data:[Byte], offset:Int32, length:Int32)
+    public func writeRawData(data:NSData, offset:Int32, length:Int32)
     {
         var aLength = length
         var aOffset = offset
@@ -197,10 +197,9 @@ public class CodedOutputStream
     
     public func writeStringNoTag(value:String)
     {        
-        var result:[Byte] = [Byte]()
-        result += value.utf8
-        writeRawVarint32(Int32(result.count))
-        writeRawData(result)
+        let data = value.utf8ToNSData()
+        writeRawVarint32(Int32(data.length))
+        writeRawData(data)
     }
     
     public func writeString(fieldNumber:Int32, value:String)
@@ -244,13 +243,13 @@ public class CodedOutputStream
         writeMessageNoTag(value)
     }
     
-    public func writeDataNoTag(data:[Byte])
+    public func writeDataNoTag(data:NSData)
     {
-        writeRawVarint32(Int32(data.count))
+        writeRawVarint32(Int32(data.length))
         writeRawData(data)
     }
     
-    public func writeData(fieldNumber:Int32, value:[Byte])
+    public func writeData(fieldNumber:Int32, value:NSData)
     {
         writeTag(fieldNumber, format: WireFormat.WireFormatLengthDelimited)
         writeDataNoTag(value)
@@ -330,11 +329,11 @@ public class CodedOutputStream
         writeTag(WireFormatMessage.WireFormatMessageSetItem.rawValue, format:WireFormat.WireFormatEndGroup)
     }
     
-    public func writeRawMessageSetExtension(fieldNumber:Int32, value:[Byte]?)
+    public func writeRawMessageSetExtension(fieldNumber:Int32, value:NSData)
     {
         writeTag(WireFormatMessage.WireFormatMessageSetItem.rawValue, format:WireFormat.WireFormatStartGroup)
         writeUInt32(WireFormatMessage.WireFormatMessageSetTypeId.rawValue, value:UInt32(fieldNumber))
-        writeData( WireFormatMessage.WireFormatMessageSetMessage.rawValue, value: value!)
+        writeData( WireFormatMessage.WireFormatMessageSetMessage.rawValue, value: value)
         writeTag(WireFormatMessage.WireFormatMessageSetItem.rawValue, format:WireFormat.WireFormatEndGroup)
     }
     
@@ -345,34 +344,34 @@ public class CodedOutputStream
     
     public func writeRawLittleEndian32(value:Int32)
     {
-        writeRawByte(byte:Byte(value & 0xFF))
-        writeRawByte(byte:Byte((value >> 8) & 0xFF))
-        writeRawByte(byte:Byte((value >> 16) & 0xFF))
-        writeRawByte(byte:Byte((value >> 24) & 0xFF))
+        writeRawByte(byte:UInt8(value & 0xFF))
+        writeRawByte(byte:UInt8((value >> 8) & 0xFF))
+        writeRawByte(byte:UInt8((value >> 16) & 0xFF))
+        writeRawByte(byte:UInt8((value >> 24) & 0xFF))
     }
     
     public func writeRawLittleEndian64(value:Int64)
     {
-        writeRawByte(byte:Byte(value & 0xFF))
-        writeRawByte(byte:Byte((value >> 8) & 0xFF))
-        writeRawByte(byte:Byte((value >> 16) & 0xFF))
-        writeRawByte(byte:Byte((value >> 24) & 0xFF))
-        writeRawByte(byte:Byte((value >> 32) & 0xFF))
-        writeRawByte(byte:Byte((value >> 40) & 0xFF))
-        writeRawByte(byte:Byte((value >> 48) & 0xFF))
-        writeRawByte(byte:Byte((value >> 56) & 0xFF))
+        writeRawByte(byte:UInt8(value & 0xFF))
+        writeRawByte(byte:UInt8((value >> 8) & 0xFF))
+        writeRawByte(byte:UInt8((value >> 16) & 0xFF))
+        writeRawByte(byte:UInt8((value >> 24) & 0xFF))
+        writeRawByte(byte:UInt8((value >> 32) & 0xFF))
+        writeRawByte(byte:UInt8((value >> 40) & 0xFF))
+        writeRawByte(byte:UInt8((value >> 48) & 0xFF))
+        writeRawByte(byte:UInt8((value >> 56) & 0xFF))
     }
     
     
     public func writeRawVarint32(var value:Int32) {
         while (true) {
             if ((value & ~0x7F) == 0) {
-                writeRawByte(byte:Byte(value))
+                writeRawByte(byte:UInt8(value))
                 break
             } else
             {
-                writeRawByte(byte: Byte((value & 0x7F) | 0x80))
-                value = WireFormat.logicalRightShift32(value: value, spaces: 7)
+                writeRawByte(byte: UInt8((value & 0x7F) | 0x80))
+                value = WireFormat.logicalRightShift32(value:value,spaces: 7)
             }
         }
     }
@@ -380,11 +379,11 @@ public class CodedOutputStream
     public func writeRawVarint64(var value:Int64) {
         while (true) {
             if ((value & ~0x7F) == 0) {
-                writeRawByte(byte:Byte(value))
+                writeRawByte(byte:UInt8(value))
                 break
             } else {
-                writeRawByte(byte: Byte((value & 0x7F) | 0x80))
-                value = WireFormat.logicalRightShift64(value: value, spaces: 7)
+                writeRawByte(byte: UInt8((value & 0x7F) | 0x80))
+                value = WireFormat.logicalRightShift64(value:value, spaces: 7)
             }
         }
     }

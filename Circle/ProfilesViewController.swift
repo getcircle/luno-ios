@@ -29,7 +29,7 @@ class ProfilesViewController: OverviewViewController {
     // MARK: - Collection View Delegate
 
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        if let profile = dataSource.contentAtIndexPath(indexPath)? as? ProfileService.Containers.Profile {
+        if let profile = dataSource.contentAtIndexPath(indexPath) as? Services.Profile.Containers.ProfileV1 {
             trackViewProfile(profile)
             let profileVC = ProfileDetailViewController(profile: profile)
             navigationController?.pushViewController(profileVC, animated: true)
@@ -38,9 +38,9 @@ class ProfilesViewController: OverviewViewController {
     
     // MARK: - Tracking
     
-    private func trackViewProfile(profile: ProfileService.Containers.Profile) {
+    private func trackViewProfile(profile: Services.Profile.Containers.ProfileV1) {
         var properties = [
-            TrackerProperty.withDestinationId("profile_id").withString(profile.id),
+            TrackerProperty.withDestinationId("profileId").withString(profile.id),
             TrackerProperty.withKey(.Source).withSource(.Overview),
             TrackerProperty.withKey(.Destination).withSource(.Detail),
             TrackerProperty.withKey(.DestinationDetailType).withDetailType(.Profile),

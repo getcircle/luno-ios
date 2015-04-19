@@ -10,79 +10,79 @@ import UIKit
 
 extension UIFont {
 
-    class func navigationBarFont() -> UIFont! {
+    static func navigationBarFont() -> UIFont! {
         return UIFont(name: "Avenir-Roman", size: 17.0)
     }
     
-    class func appSegmentedControlTitleFont() -> UIFont! {
+    static func appSegmentedControlTitleFont() -> UIFont! {
         return UIFont(name: "Avenir-Medium", size: 13.0)
     }
     
-    class func lightFont() -> UIFont! {
+    static func lightFont() -> UIFont! {
         return UIFont(name: "Avenir-Light", size: 17.0)
     }
     
-    class func lightFont(size: CGFloat) -> UIFont! {
+    static func lightFont(size: CGFloat) -> UIFont! {
         return UIFont(name: "Avenir-Light", size: size)
     }
     
-    class func appSettingsCardHeader() -> UIFont {
+    static func appSettingsCardHeader() -> UIFont {
         return UIFont(name: "Avenir-Roman", size: 12.0)!
     }
 
-    class func appCTATitleFont() -> UIFont {
+    static func appCTATitleFont() -> UIFont {
         return UIFont(name: "Avenir-Medium", size: 12.0)!
     }
     
-    class func appSocialCTATitleFont() -> UIFont {
+    static func appSocialCTATitleFont() -> UIFont {
         return UIFont(name: "Avenir-Roman", size: 12.0)!
     }
     
-    class func appTagsOverviewSectionHeader() -> UIFont {
+    static func appTagsOverviewSectionHeader() -> UIFont {
         return UIFont(name: "Avenir-Medium", size: 15.0)!
     }
     
-    class func appAttributeTitleLabelFont() -> UIFont {
+    static func appAttributeTitleLabelFont() -> UIFont {
         return UIFont(name: "Avenir-Medium", size: 13.0)!
     }
 
-    class func appAttributeValueLabelFont() -> UIFont {
+    static func appAttributeValueLabelFont() -> UIFont {
         return UIFont(name: "Avenir-Book", size: 16.0)!
     }
 
-    class func appModalTitleLabelFont() -> UIFont {
+    static func appModalTitleLabelFont() -> UIFont {
         return UIFont(name: "Avenir-Roman", size: 14.0)!
     }
     
-    class func appOnboardingModalTitle() -> UIFont {
+    static func appOnboardingModalTitle() -> UIFont {
         return UIFont(name: "Avenir-Medium", size: 20.0)!
     }
 
-    class func appOnboardingModalText() -> UIFont {
+    static func appOnboardingModalText() -> UIFont {
         return UIFont(name: "Avenir-Roman", size: 16.0)!
     }
     
-    class func appOnboardingModalCTA() -> UIFont {
+    static func appOnboardingModalCTA() -> UIFont {
         return UIFont(name: "Avenir-Light", size: 20.0)!
     }
 
-    class func appPrimaryTextFont() -> UIFont {
+    static func appPrimaryTextFont() -> UIFont {
         return UIFont(name: "Avenir-Medium", size: 15.0)!
     }
     
-    class func appSecondaryTextFont() -> UIFont {
+    static func appSecondaryTextFont() -> UIFont {
         return UIFont(name: "Avenir-Book", size: 13.0)!
     }
     
-    class func appTagTokenFont() -> UIFont {
+    static func appTagTokenFont() -> UIFont {
         return UIFont(name: "Avenir-Roman", size: 15.0)!
     }
     
-    class func appMessageFont() -> UIFont {
+    static func appMessageFont() -> UIFont {
         return UIFont(name: "Avenir-Light", size: 16.0)!
     }
 
-    class func appSecondaryActionCTAFont() -> UIFont {
+    static func appSecondaryActionCTAFont() -> UIFont {
         return UIFont(name: "Avenir-Light", size: 18.0)!
     }
 }

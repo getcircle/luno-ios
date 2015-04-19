@@ -64,18 +64,18 @@ class MapHeaderCollectionReusableView: CircleCollectionReusableView, MKMapViewDe
     
     // MARK: - Set data
     
-    func setData(office: OrganizationService.Containers.Address) {
+    func setData(office: Services.Organization.Containers.AddressV1) {
         var addressString = ""
         if office.hasAddress1 {
-            addressString = office.address_1 + " "
+            addressString = office.address1 + " "
         }
 
         if office.hasAddress2 {
-            addressString += office.address_2
+            addressString += office.address2
         }
         
         if addressString == "" {
-            addressString = office.city + ", " + office.country_code
+            addressString = office.city + ", " + office.countryCode
         }
         
         if addressString != addressLabel.text {
@@ -90,7 +90,7 @@ class MapHeaderCollectionReusableView: CircleCollectionReusableView, MKMapViewDe
         }
     }
     
-    func setData(#offices: [OrganizationService.Containers.Location]) {
+    func setData(#offices: [Services.Organization.Containers.LocationV1]) {
         // Remove existing annotations
         mapView.removeAnnotations(mapView.annotations)
         
@@ -113,17 +113,17 @@ class MapHeaderCollectionReusableView: CircleCollectionReusableView, MKMapViewDe
                 format: NSLocalizedString("%d offices worldwide",
                     comment: "Label indicating there are # offices worldwide. E.g., 3 offices worldwide"),
                 offices.count
-            )
+            ) as String
         }
     }
 
-    class func annotationTitleForLocation(office: OrganizationService.Containers.Address) -> String {
+    static func annotationTitleForLocation(office: Services.Organization.Containers.AddressV1) -> String {
         let annotationTitle = NSString(
             format: NSLocalizedString("%@ Office",
                 comment: "Title of map annotation indicating the name of the office at a location. E.g., San Francisco Office"),
             office.city
         )
         
-        return annotationTitle
+        return annotationTitle as String
     }
 }

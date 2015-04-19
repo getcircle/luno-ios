@@ -10,10 +10,10 @@ import UIKit
 import ProtobufRegistry
 
 class TeamDetailDataSource: CardDataSource {
-    var selectedTeam: OrganizationService.Containers.Team!
+    var selectedTeam: Services.Organization.Containers.TeamV1!
     
-    private var profiles = Array<ProfileService.Containers.Profile>()
-    private var ownerProfile: ProfileService.Containers.Profile!
+    private var profiles = Array<Services.Profile.Containers.ProfileV1>()
+    private var ownerProfile: Services.Profile.Containers.ProfileV1!
     private(set) var profileHeaderView: TeamHeaderCollectionReusableView!
     private let sectionInset = UIEdgeInsetsMake(0.0, 0.0, 25.0, 0.0)
     
@@ -32,11 +32,11 @@ class TeamDetailDataSource: CardDataSource {
         
         if let currentProfile = AuthViewController.getLoggedInUserProfile() {
             
-            ProfileService.Actions.getProfiles(selectedTeam!.id) { (profiles, _, error) -> Void in
+            Services.Profile.Actions.getProfiles(selectedTeam!.id) { (profiles, _, error) -> Void in
                 if error == nil {
                     // Add Owner Card
                     var allProfilesExceptOwner = profiles?.filter({ (profile) -> Bool in
-                        if profile.user_id == self.selectedTeam.owner_id {
+                        if profile.userId == self.selectedTeam.ownerId {
                             self.ownerProfile = profile
                             return false
                         }
@@ -70,7 +70,7 @@ class TeamDetailDataSource: CardDataSource {
                     
                     // Fetch subteams
                     // TODO: we should support sending multiple actions with a single service request.
-                    OrganizationService.Actions.getTeamDescendants(self.selectedTeam!.id, depth: 1, completionHandler: { (teams, error) -> Void in
+                    Services.Organization.Actions.getTeamDescendants(self.selectedTeam!.id, depth: 1, completionHandler: { (teams, error) -> Void in
                         if let teams = teams {
                             if teams.count > 0 {
                                 var teamsCard = Card(cardType: .TeamsGrid, title: "Teams")

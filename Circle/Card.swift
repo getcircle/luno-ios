@@ -340,10 +340,10 @@ class Card: Equatable {
         )
     }
 
-    convenience init(category: LandingService.Containers.Category, addDefaultFooter: Bool? = false) {
+    convenience init(category: Services.Feed.Containers.CategoryV1, addDefaultFooter: Bool? = false) {
         var cardType: CardType
 
-        switch category.type {
+        switch category.categoryType {
         case .Anniversaries:
             cardType = .Anniversaries
         case .Birthdays:
@@ -370,7 +370,7 @@ class Card: Equatable {
             cardType: cardType,
             title: category.title,
             content: nil,
-            contentCount: String(category.total_count).toInt() ?? 0,
+            contentCount: String(category.totalCount).toInt() ?? 0,
             addDefaultFooter: addDefaultFooter ?? false
         )
     }
@@ -477,7 +477,7 @@ class Card: Equatable {
                 content = Array(content[0..<maxVisibleItems])
             }
             else if cardContentType == .Aggregate && content.first!.count > maxVisibleItems {
-                content[0] = Array((content.first! as [AnyObject])[0..<maxVisibleItems])
+                content[0] = Array((content.first! as![AnyObject])[0..<maxVisibleItems])
             }
         }
     }

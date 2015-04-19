@@ -34,7 +34,7 @@ class TagHeaderCollectionReusableView: CircleCollectionReusableView {
         interestLabelInitialFontSize = interestNameLabel.font.pointSize
     }
     
-    func setTag(interest: ProfileService.Containers.Tag) {
+    func setTag(interest: Services.Profile.Containers.TagV1) {
         interestNameLabel.attributedText = NSAttributedString(
             string: interest.name.uppercaseString,
             attributes: [NSKernAttributeName: 2.0]

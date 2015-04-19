@@ -51,7 +51,7 @@ class StickyHeaderCollectionViewLayout: UICollectionViewFlowLayout, UICollection
     override func layoutAttributesForElementsInRect(rect: CGRect) -> [AnyObject]? {
 
         let contentOffset = collectionView!.contentOffset
-        var attributes = super.layoutAttributesForElementsInRect(rect) as [UICollectionViewLayoutAttributes]
+        var attributes = super.layoutAttributesForElementsInRect(rect) as! [UICollectionViewLayoutAttributes]
         
         var isHeaderMissing = true
         for attribute in attributes {

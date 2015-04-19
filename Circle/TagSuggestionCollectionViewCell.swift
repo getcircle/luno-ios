@@ -11,7 +11,7 @@ import ProtobufRegistry
 
 class TagSuggestionCollectionViewCell: UICollectionViewCell {
     
-    var suggestedTag: ProfileService.Containers.Tag? {
+    var suggestedTag: Services.Profile.Containers.TagV1? {
         didSet {
             if suggestedTag!.hasId {
                 tagSuggestionLabel.text = suggestedTag!.name

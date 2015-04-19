@@ -54,6 +54,18 @@
 #define COCOAPODS_VERSION_MINOR_AMScrollingNavbar 3
 #define COCOAPODS_VERSION_PATCH_AMScrollingNavbar 4
 
+// Alamofire
+#define COCOAPODS_POD_AVAILABLE_Alamofire
+#define COCOAPODS_VERSION_MAJOR_Alamofire 1
+#define COCOAPODS_VERSION_MINOR_Alamofire 2
+#define COCOAPODS_VERSION_PATCH_Alamofire 0
+
+// Locksmith
+#define COCOAPODS_POD_AVAILABLE_Locksmith
+#define COCOAPODS_VERSION_MAJOR_Locksmith 1
+#define COCOAPODS_VERSION_MINOR_Locksmith 2
+#define COCOAPODS_VERSION_PATCH_Locksmith 1
+
 // Mixpanel
 #define COCOAPODS_POD_AVAILABLE_Mixpanel
 #define COCOAPODS_VERSION_MAJOR_Mixpanel 2
@@ -76,7 +88,7 @@
 #define COCOAPODS_POD_AVAILABLE_SSKeychain
 #define COCOAPODS_VERSION_MAJOR_SSKeychain 1
 #define COCOAPODS_VERSION_MINOR_SSKeychain 2
-#define COCOAPODS_VERSION_PATCH_SSKeychain 2
+#define COCOAPODS_VERSION_PATCH_SSKeychain 3
 
 // UIViewPlusPosition
 #define COCOAPODS_POD_AVAILABLE_UIViewPlusPosition
@@ -89,12 +101,6 @@
 #define COCOAPODS_VERSION_MAJOR_VENTouchLock 1
 #define COCOAPODS_VERSION_MINOR_VENTouchLock 0
 #define COCOAPODS_VERSION_PATCH_VENTouchLock 6
-
-// google-plus-ios-sdk
-#define COCOAPODS_POD_AVAILABLE_google_plus_ios_sdk
-#define COCOAPODS_VERSION_MAJOR_google_plus_ios_sdk 1
-#define COCOAPODS_VERSION_MINOR_google_plus_ios_sdk 7
-#define COCOAPODS_VERSION_PATCH_google_plus_ios_sdk 1
 
 // libPhoneNumber-iOS
 #define COCOAPODS_POD_AVAILABLE_libPhoneNumber_iOS

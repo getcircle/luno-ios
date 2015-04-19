@@ -22,13 +22,13 @@ class CurrentUserProfileDetailViewController: ProfileDetailViewController,
     private var imageToUpload: UIImage?
     
     convenience init(
-        profile withProfile: ProfileService.Containers.Profile,
+        profile withProfile: Services.Profile.Containers.ProfileV1,
         showSettingsButton: Bool = false
     ) {
             self.init()
             profile = withProfile
             dataSource = CurrentUserProfileDetailDataSource(profile: profile)
-            (dataSource as CurrentUserProfileDetailDataSource).editImageButtonDelegate = self
+            (dataSource as! CurrentUserProfileDetailDataSource).editImageButtonDelegate = self
             dataSource.cardHeaderDelegate = self
             delegate = CardCollectionViewDelegate()
             
@@ -39,8 +39,8 @@ class CurrentUserProfileDetailViewController: ProfileDetailViewController,
     
     // MARK: - Class Methods
     
-    class func forProfile(
-        profile: ProfileService.Containers.Profile, 
+    static func forProfile(
+        profile: Services.Profile.Containers.ProfileV1, 
         showSettingsButton: Bool = false
     ) -> CurrentUserProfileDetailViewController {
             return CurrentUserProfileDetailViewController(
@@ -68,7 +68,7 @@ class CurrentUserProfileDetailViewController: ProfileDetailViewController,
     
     private func addSettingsButton() {
         if navigationItem.leftBarButtonItem == nil {
-            var settingsButton = UIButton.buttonWithType(.Custom) as UIButton
+            var settingsButton = UIButton.buttonWithType(.Custom) as! UIButton
             settingsButton.frame = CGRectMake(0.0, 0.0, 22.0, 22.0)
             settingsButton.setImage(UIImage(named: "Settings")?.imageWithRenderingMode(.AlwaysTemplate), forState: .Normal)
             settingsButton.tintColor = UIColor.appNavigationBarTintColor()
@@ -165,7 +165,7 @@ class CurrentUserProfileDetailViewController: ProfileDetailViewController,
     }
     
     func onSocialAccountConnected(notification: NSNotification) {
-        UserService.Actions.getIdentities(profile.user_id) { (identities, error) -> Void in
+        Services.User.Actions.getIdentities(profile.userId) { (identities, error) -> Void in
             if identities != nil {
                 AuthViewController.updateIdentities(identities!)
                 self.profile = AuthViewController.getLoggedInUserProfile()!
@@ -188,15 +188,15 @@ class CurrentUserProfileDetailViewController: ProfileDetailViewController,
             
         case .Tags:
             let interestSelectorViewController = TagScrollingSelectorViewController(nibName: "TagScrollingSelectorViewController", bundle: nil)
-            if let interests = (dataSource as CurrentUserProfileDetailDataSource).interests {
+            if let interests = (dataSource as! CurrentUserProfileDetailDataSource).interests {
                 interestSelectorViewController.preSelectTags = interests
             }
             let interestsNavController = UINavigationController(rootViewController: interestSelectorViewController)
             navigationController?.presentViewController(interestsNavController, animated: true, completion: nil)
             
         case .Skills:
-            var existingSkills = Array<ProfileService.Containers.Tag>()
-            if let skills = (dataSource as CurrentUserProfileDetailDataSource).skills {
+            var existingSkills = Array<Services.Profile.Containers.TagV1>()
+            if let skills = (dataSource as! CurrentUserProfileDetailDataSource).skills {
                 existingSkills = skills
             }
             let tagInputViewController = TagInputViewController(existingTags: existingSkills)
@@ -299,11 +299,11 @@ class CurrentUserProfileDetailViewController: ProfileDetailViewController,
     
     private func handleImageUpload(completion: () -> Void) {
         if let newImage = imageToUpload {
-            MediaService.Actions.uploadProfileImage(profile.id, image: newImage) { (mediaURL, error) -> Void in
+            Services.Media.Actions.uploadProfileImage(profile.id, image: newImage) { (mediaURL, error) -> Void in
                 if let mediaURL = mediaURL {
                     let profileBuilder = self.profile.toBuilder()
-                    profileBuilder.image_url = mediaURL
-                    ProfileService.Actions.updateProfile(profileBuilder.build()) { (profile, error) -> Void in
+                    profileBuilder.imageUrl = mediaURL
+                    Services.Profile.Actions.updateProfile(profileBuilder.build()) { (profile, error) -> Void in
                         if let profile = profile {
                             AuthViewController.updateUserProfile(profile)
                             self.profile = profile

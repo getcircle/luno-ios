@@ -9,16 +9,18 @@
 import UIKit
 import Crashlytics
 import Locksmith
+import Mixpanel
 import ProtobufRegistry
+import VENTouchLock
 
 // Swift doesn't support static variables yet.
 // This is the way it is recommended on the docs.
 // https://developer.apple.com/library/ios/documentation/swift/conceptual/Swift_Programming_Language/Properties.html
 struct LoggedInUserHolder {
-    static var user: UserService.Containers.User?
-    static var profile: ProfileService.Containers.Profile?
-    static var organization: OrganizationService.Containers.Organization?
-    static var identities: Array<UserService.Containers.Identity>?
+    static var user: Services.User.Containers.UserV1?
+    static var profile: Services.Profile.Containers.ProfileV1?
+    static var organization: Services.Organization.Containers.OrganizationV1?
+    static var identities: Array<Services.User.Containers.IdentityV1>?
     static var token: String?
 }
 
@@ -31,7 +33,6 @@ struct AuthNotifications {
 
 private let AuthPasscode = "AuthPasscode"
 private let LocksmithService = "LocksmithAuthTokenService"
-private let LocksmithAuthTokenKey = "LocksmithAuthToken"
 private let DefaultsUserKey = "DefaultsUserKey"
 private let DefaultsProfileKey = "DefaultsProfileKey"
 private let DefaultsLastLoggedInUserEmail = "DefaultsLastLoggedInUserEmail"
@@ -41,7 +42,7 @@ private let DefaultsIdentitiesKey = "DefaultsIdentitiesKey"
 private let GoogleClientID = "1077014421904-pes3pbf96obmp75kb00qouoiqf18u78h.apps.googleusercontent.com"
 private let GoogleServerClientID = "1077014421904-1a697ks3qvtt6975qfqhmed8529en8s2.apps.googleusercontent.com"
 
-class AuthViewController: UIViewController, GPPSignInDelegate {
+class AuthViewController: UIViewController, GIDSignInDelegate {
 
     @IBOutlet weak var appNameLabel: UILabel!
     @IBOutlet weak var appNameYConstraint: NSLayoutConstraint!
@@ -58,7 +59,7 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
         configureAppNameLabel()
         configureView()
         configureGoogleAuthentication()
-        GPPSignIn.sharedInstance().trySilentAuthentication()
+        GIDSignIn.sharedInstance().signInSilently()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -86,10 +87,9 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
     }
     
     private func configureGoogleAuthentication() {
-        let googleSignIn = GPPSignIn.sharedInstance()
+        let googleSignIn = GIDSignIn.sharedInstance()
         googleSignIn.clientID = GoogleClientID
-        googleSignIn.attemptSSO = true
-        googleSignIn.homeServerClientID = GoogleServerClientID
+        googleSignIn.serverClientID = GoogleServerClientID
         googleSignIn.scopes = ["https://www.googleapis.com/auth/plus.login", "https://www.googleapis.com/auth/plus.profile.emails.read"]
         googleSignIn.delegate = self
 //        googleSignInButton.colorScheme = kGPPSignInButtonColorSchemeLight
@@ -104,19 +104,19 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
         googleSignInButton.addTarget(self, action: "googlePlusSignInButtonTapped:", forControlEvents: .TouchUpInside)
     }
     
-    // MARK: - GPPSignInDelegate
+    // MARK: - GIDSignInDelegate
     
-    func finishedWithAuth(auth: GTMOAuth2Authentication!, error: NSError!) {
-        if error == nil {
-            let credentials = UserService.AuthenticateUser.Request.Credentials.builder()
-            if let code = GPPSignIn.sharedInstance().homeServerAuthorizationCode? {
-                credentials.key = code
-            }
-            credentials.secret = GPPSignIn.sharedInstance().idToken
-            login(.Google, credentials: credentials.build())
-        } else {
+    func signIn(signIn: GIDSignIn!, didSignInForUser user: GIDGoogleUser!, withError error: NSError!) {
+        if error != nil {
             hideLoadingState()
             googleSignInButton.addShakeAnimation()
+        } else {
+            let credentials = Services.User.Actions.AuthenticateUser.RequestV1.CredentialsV1.builder()
+            if let code = user.serverAuthCode {
+                credentials.key = user.serverAuthCode
+            }
+            credentials.secret = user.authentication.idToken
+            login(.Google, credentials: credentials.build())
         }
     }
     
@@ -131,7 +131,7 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
 //            self.googleSignInButton.alpha = 0.0
             self.googleSignInButton.layoutIfNeeded()
             self.tagLineLabel.layoutIfNeeded()
-        }, { (completed: Bool) -> Void in
+        }, completion: { (completed: Bool) -> Void in
             // self.showFieldsAndControls(true)
         })
     }
@@ -158,71 +158,70 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
     
     // MARK: - Helpers
     
-    private class func loadCachedUser() -> UserService.Containers.User? {
+    private static func loadCachedUser() -> Services.User.Containers.UserV1? {
         if let data = NSUserDefaults.standardUserDefaults().objectForKey(DefaultsUserKey) as? NSData {
-            return UserService.Containers.User.parseFromNSData(data)
+            return Services.User.Containers.UserV1.parseFromData(data)
         }
         return nil
     }
     
-    private class func loadCachedProfile() -> ProfileService.Containers.Profile? {
+    private static func loadCachedProfile() -> Services.Profile.Containers.ProfileV1? {
         if let data = NSUserDefaults.standardUserDefaults().objectForKey(DefaultsProfileKey) as? NSData {
-            return ProfileService.Containers.Profile.parseFromNSData(data)
+            return Services.Profile.Containers.ProfileV1.parseFromData(data)
         }
         return nil
     }
     
-    private class func loadCachedOrganization() -> OrganizationService.Containers.Organization? {
+    private static func loadCachedOrganization() -> Services.Organization.Containers.OrganizationV1? {
         if let data = NSUserDefaults.standardUserDefaults().objectForKey(DefaultsOrganizationKey) as? NSData {
-            return OrganizationService.Containers.Organization.parseFromNSData(data)
+            return Services.Organization.Containers.OrganizationV1.parseFromData(data)
         }
         return nil
     }
     
-    private class func loadCachedIdentities() -> Array<UserService.Containers.Identity>? {
+    private static func loadCachedIdentities() -> Array<Services.User.Containers.IdentityV1>? {
         if let data = NSUserDefaults.standardUserDefaults().objectForKey(DefaultsIdentitiesKey) as? [NSData] {
-            var identities = Array<UserService.Containers.Identity>()
+            var identities = Array<Services.User.Containers.IdentityV1>()
             for object in data {
-                identities.append(UserService.Containers.Identity.parseFromNSData(object))
+                identities.append(Services.User.Containers.IdentityV1.parseFromData(object))
             }
             return identities
         }
         return nil
     }
     
-    private class func cacheUserData(user: UserService.Containers.User) {
-        NSUserDefaults.standardUserDefaults().setObject(user.getNSData(), forKey: DefaultsUserKey)
+    private static func cacheUserData(user: Services.User.Containers.UserV1) {
+        NSUserDefaults.standardUserDefaults().setObject(user.data(), forKey: DefaultsUserKey)
     }
     
-    private class func cacheProfileData(profile: ProfileService.Containers.Profile) {
-        NSUserDefaults.standardUserDefaults().setObject(profile.getNSData(), forKey: DefaultsProfileKey)
+    private static func cacheProfileData(profile: Services.Profile.Containers.ProfileV1) {
+        NSUserDefaults.standardUserDefaults().setObject(profile.data(), forKey: DefaultsProfileKey)
     }
     
-    private class func cacheOrganizationData(organization: OrganizationService.Containers.Organization) {
-        NSUserDefaults.standardUserDefaults().setObject(organization.getNSData(), forKey: DefaultsOrganizationKey)
+    private static func cacheOrganizationData(organization: Services.Organization.Containers.OrganizationV1) {
+        NSUserDefaults.standardUserDefaults().setObject(organization.data(), forKey: DefaultsOrganizationKey)
     }
     
-    private class func cacheUserIdentities(identities: Array<UserService.Containers.Identity>) {
+    private static func cacheUserIdentities(identities: Array<Services.User.Containers.IdentityV1>) {
         var cleanIdentities = [NSData]()
         for identity in identities {
             let builder = identity.toBuilder()
             builder.clearAccessToken()
             builder.clearRefreshToken()
-            cleanIdentities.append(builder.build().getNSData())
+            cleanIdentities.append(builder.build().data())
         }
         NSUserDefaults.standardUserDefaults().setObject(cleanIdentities, forKey: DefaultsIdentitiesKey)
     }
     
-    private func cacheLoginData(token: String, user: UserService.Containers.User) {
+    private func cacheLoginData(token: String, user: Services.User.Containers.UserV1) {
         // Cache locally
         self.dynamicType.cacheTokenAndUserInMemory(token, user: user)
 
         // Cache token to keychain
         let error = Locksmith.updateData(
             [token: "\(NSDate())"],
-            forKey: LocksmithAuthTokenKey,
-            inService: LocksmithService,
-            forUserAccount: user.id
+            forUserAccount: user.id,
+            inService: LocksmithService
         )
         if error != nil {
             // XXX what is the correct way to report errors?
@@ -233,10 +232,10 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
         self.dynamicType.cacheUserData(user)
         
         // Cache email used
-        NSUserDefaults.standardUserDefaults().setObject(user.primary_email, forKey: DefaultsLastLoggedInUserEmail)
+        NSUserDefaults.standardUserDefaults().setObject(user.primaryEmail, forKey: DefaultsLastLoggedInUserEmail)
     }
     
-    internal class func cacheTokenAndUserInMemory(token: String, user: UserService.Containers.User) {
+    internal static func cacheTokenAndUserInMemory(token: String, user: Services.User.Containers.UserV1) {
         LoggedInUserHolder.token = token
         LoggedInUserHolder.user = user
     }
@@ -266,10 +265,11 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
     // MARK: - Log in
     
     private func login(
-        backend: UserService.AuthenticateUser.Request.AuthBackend,
-        credentials: UserService.AuthenticateUser.Request.Credentials
+        backend: Services.User.Actions.AuthenticateUser.RequestV1.AuthBackendV1,
+        credentials: Services.User.Actions.AuthenticateUser.RequestV1.CredentialsV1
     ) {
-        UserService.Actions.authenticateUser(backend, credentials: credentials) { (user, token, newUser, error) -> Void in
+        Services.User.Actions.authenticateUser(backend, credentials: credentials) { (user, token, newUser, error) -> Void in
+            // TODO we should be explicitly checking the authenticated bool here or existence of a token
             if error != nil {
                 self.hideLoadingState()
                 self.googleSignInButton.addShakeAnimation()
@@ -279,7 +279,7 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
             Mixpanel.identifyUser(user!, newUser: newUser!)
             Mixpanel.registerSuperPropertiesForUser(user!)
             // Record user's device
-            UserService.Actions.recordDevice(nil, completionHandler: nil)
+            Services.User.Actions.recordDevice(nil, completionHandler: nil)
             
             self.trackSignupLogin(backend, newUser: newUser!)
             self.cacheLoginData(token!, user: user!)
@@ -314,10 +314,10 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
     
     private func fetchAndCacheUserProfile(userId: String, completion: (error: NSError?) -> Void) {
         // XXX handle profile doesn't exist
-        ProfileService.Actions.getProfile(userId: userId) { (profile, error) -> Void in
+        Services.Profile.Actions.getProfile(userId: userId) { (profile, error) -> Void in
             if let profile = profile {
                 self.dynamicType.updateUserProfile(profile)
-                self.fetchAndCacheUserOrganization(profile.organization_id, userId: profile.user_id, completion: completion)
+                self.fetchAndCacheUserOrganization(profile.organizationId, userId: profile.userId, completion: completion)
             } else {
                 completion(error: error)
             }
@@ -325,7 +325,7 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
     }
     
     private func fetchAndCacheUserOrganization(organizationId: String, userId: String, completion: (error: NSError?) -> Void) {
-        OrganizationService.Actions.getOrganization(organizationId) { (organization, error) -> Void in
+        Services.Organization.Actions.getOrganization(organizationId) { (organization, error) -> Void in
             if let organization = organization {
                 self.dynamicType.updateOrganization(organization)
                 self.fetchAndCacheUserIdentities(userId, completion: completion)
@@ -336,7 +336,7 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
     }
     
     private func fetchAndCacheUserIdentities(userId: String, completion: (error: NSError?) -> Void) {
-        UserService.Actions.getIdentities(userId) { (identities, error) -> Void in
+        Services.User.Actions.getIdentities(userId) { (identities, error) -> Void in
             if let identities = identities {
                 self.dynamicType.updateIdentities(identities)
             }
@@ -347,21 +347,17 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
     
     // MARK: - Log out
     
-    class func logOut(shouldDisconnect: Bool? = false) {
+    static func logOut(shouldDisconnect: Bool? = false) {
         // Clear keychain
         if let user = LoggedInUserHolder.user {
-            Locksmith.deleteData(
-                forKey: LocksmithAuthTokenKey,
-                inService: LocksmithService,
-                forUserAccount: user.id
-            )
+            Locksmith.deleteDataForUserAccount(user.id, inService: LocksmithService)
         }
         if let disconnect = shouldDisconnect {
             if disconnect {
-                GPPSignIn.sharedInstance().disconnect()
+                GIDSignIn.sharedInstance().disconnect()
             }
         }
-        GPPSignIn.sharedInstance().signOut()
+        GIDSignIn.sharedInstance().signOut()
         
         // Remove local cached date
         LoggedInUserHolder.profile = nil
@@ -385,32 +381,32 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
         presentAuthViewController()
     }
     
-    private class func presentViewControllerWithNavigationController(vc: UIViewController) {
+    private static func presentViewControllerWithNavigationController(vc: UIViewController) {
         let navController = UINavigationController(rootViewController: vc)
-        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         appDelegate.window!.rootViewController!.presentViewController(navController, animated: false, completion: nil)
     }
     
-    class func presentAuthViewController() {
+    static func presentAuthViewController() {
         // Check if user is logged in. If not, present auth view controller
         let authViewController = AuthViewController(nibName: "AuthViewController", bundle: nil)
         self.presentViewControllerWithNavigationController(authViewController)
     }
 
-    class func presentWelcomeView(goToPhoneVerification: Bool) {
+    static func presentWelcomeView(goToPhoneVerification: Bool) {
         let welcomeVC = WelcomeViewController(nibName: "WelcomeViewController", bundle: nil)
         welcomeVC.goToPhoneVerification = goToPhoneVerification
         self.presentViewControllerWithNavigationController(welcomeVC)
     }
     
-    class func presentHomelessViewController() {
+    static func presentHomelessViewController() {
         let homelessVC = HomelessViewController(nibName: "HomelessViewController", bundle: nil)
         self.presentViewControllerWithNavigationController(homelessVC)
     }
     
     // MARK: - Logged In User Helpers
     
-    class func getLoggedInUser() -> UserService.Containers.User? {
+    static func getLoggedInUser() -> Services.User.Containers.UserV1? {
         if let user = LoggedInUserHolder.user {
             return user
         } else {
@@ -421,7 +417,7 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
         return nil
     }
     
-    class func getLoggedInUserProfile() -> ProfileService.Containers.Profile? {
+    static func getLoggedInUserProfile() -> Services.Profile.Containers.ProfileV1? {
         if let profile = LoggedInUserHolder.profile {
             return profile
         } else {
@@ -432,7 +428,7 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
         return nil
     }
     
-    class func getLoggedInUserOrganization() -> OrganizationService.Containers.Organization? {
+    static func getLoggedInUserOrganization() -> Services.Organization.Containers.OrganizationV1? {
         if let organization = LoggedInUserHolder.organization {
             return organization
         } else {
@@ -443,12 +439,12 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
         return nil
     }
     
-    class func getLoggedInUserToken() -> String? {
+    static func getLoggedInUserToken() -> String? {
         if let token = LoggedInUserHolder.token {
             return token
         } else {
             if let user = self.getLoggedInUser() {
-                let (data, error) = Locksmith.loadData(forKey: LocksmithAuthTokenKey, inService: LocksmithService, forUserAccount: user.id)
+                let (data, error) = Locksmith.loadDataForUserAccount(user.id, inService: LocksmithService)
                 if let token = data?.allKeys[0] as? String {
                     cacheTokenAndUserInMemory(token, user: user)
                     return token
@@ -458,7 +454,7 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
         return nil
     }
     
-    class func getLoggedInUserIdentities() -> Array<UserService.Containers.Identity>? {
+    static func getLoggedInUserIdentities() -> Array<Services.User.Containers.IdentityV1>? {
         if let identities = LoggedInUserHolder.identities {
             return identities
         } else {
@@ -469,7 +465,7 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
         return nil
     }
     
-    class func updateUserProfile(profile: ProfileService.Containers.Profile) {
+    static func updateUserProfile(profile: Services.Profile.Containers.ProfileV1) {
         LoggedInUserHolder.profile = profile
         cacheProfileData(profile)
         NSNotificationCenter.defaultCenter().postNotificationName(
@@ -478,7 +474,7 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
         )
     }
     
-    class func updateUser(user: UserService.Containers.User) {
+    static func updateUser(user: Services.User.Containers.UserV1) {
         LoggedInUserHolder.user = user
         cacheUserData(user)
         NSNotificationCenter.defaultCenter().postNotificationName(
@@ -487,19 +483,19 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
         )
     }
     
-    class func updateOrganization(organization: OrganizationService.Containers.Organization) {
+    static func updateOrganization(organization: Services.Organization.Containers.OrganizationV1) {
         LoggedInUserHolder.organization = organization
         cacheOrganizationData(organization)
     }
     
-    class func updateIdentities(identities: Array<UserService.Containers.Identity>)  {
+    static func updateIdentities(identities: Array<Services.User.Containers.IdentityV1>)  {
         LoggedInUserHolder.identities = identities
         cacheUserIdentities(identities)
     }
     
     // MARK: - Authentication Helpers
     
-    class func checkUser(#unverifiedPhoneHandler: (() -> Void)?, unverifiedProfileHandler: (() -> Void)?) -> Bool {
+    static func checkUser(#unverifiedPhoneHandler: (() -> Void)?, unverifiedProfileHandler: (() -> Void)?) -> Bool {
         if let user = getLoggedInUser() {
             Crashlytics.sharedInstance().setUserIdentifier(user.id)
 
@@ -508,7 +504,7 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
                 return false
             }
             
-            if !user.phone_number_verified {
+            if !user.phoneNumberVerified {
                 if let handler = unverifiedPhoneHandler {
                     handler()
                 } else {
@@ -535,7 +531,7 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
     
     // MARK: - Tracking
     
-    private func trackSignupLogin(backend: UserService.AuthenticateUser.Request.AuthBackend, newUser: Bool) {
+    private func trackSignupLogin(backend: Services.User.Actions.AuthenticateUser.RequestV1.AuthBackendV1, newUser: Bool) {
         let properties = [TrackerProperty.withKeyString("auth_backend").withValue(Int(backend.rawValue))]
         if newUser {
             Tracker.sharedInstance.track(.UserSignup, properties: properties)
@@ -546,7 +542,7 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
     
     // MARK: - Passcode & Touch ID
     
-    class func initializeSplashViewWithPasscodeAndTouchID() {
+    static func initializeSplashViewWithPasscodeAndTouchID() {
         VENTouchLock.sharedInstance().setKeychainService(
             LocksmithService, 
             keychainAccount: AuthPasscode, 
@@ -560,6 +556,6 @@ class AuthViewController: UIViewController, GPPSignInDelegate {
     
     @IBAction func googlePlusSignInButtonTapped(sender: AnyObject!) {
         startingGoogleAuthentication(sender)
-        GPPSignIn.sharedInstance().authenticate()
+        GIDSignIn.sharedInstance().signIn()
     }
 }

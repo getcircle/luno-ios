@@ -32,10 +32,10 @@ class ProfileDetailsViewController:
     
     // Public variables
     var detailViews = [UnderlyingCollectionView]()
-    var profile: ProfileService.Containers.Profile!
+    var profile: Services.Profile.Containers.ProfileV1!
     
     convenience init(
-        profile withProfile: ProfileService.Containers.Profile,
+        profile withProfile: Services.Profile.Containers.ProfileV1,
         detailViews withDetailViews: [UnderlyingCollectionView],
         overlaidCollectionView withOverlaidCollectionView: UICollectionView,
         showLogOutButton: Bool = false,
@@ -46,7 +46,7 @@ class ProfileDetailsViewController:
         profile = withProfile
         detailViews = withDetailViews
         overlaidCollectionView = withOverlaidCollectionView
-        (overlaidCollectionView.dataSource as ProfileOverlaidCollectionViewDataSource).profileHeaderViewDelegate = self
+        (overlaidCollectionView.dataSource as! ProfileOverlaidCollectionViewDataSource).profileHeaderViewDelegate = self
         if showLogOutButton {
             addLogOutButton()
         }
@@ -194,13 +194,13 @@ class ProfileDetailsViewController:
                     switch card.type {
                     case .Profiles:
                         let data: AnyObject? = dataSource.contentAtIndexPath(indexPath)
-                        if data is OrganizationService.Containers.Team {
+                        if data is Services.Organization.Containers.TeamV1 {
                             onTeamTapped(nil)
                         }
-                        else if data is OrganizationService.Containers.Location {
+                        else if data is Services.Organization.Containers.LocationV1 {
                             onOfficeTapped(nil)
                         }
-                        else if data is ProfileService.Containers.Profile {
+                        else if data is Services.Profile.Containers.ProfileV1 {
                             onManagerTapped(nil)
                         }
                         
@@ -217,10 +217,10 @@ class ProfileDetailsViewController:
     }
     
     private func handleNotesCardSelection(card: Card, indexPath: NSIndexPath) {
-        var note: NoteService.Containers.Note?
+        var note: Services.Note.Containers.NoteV1?
         switch card.type {
         case .Notes:
-            note = card.content[indexPath.row] as? NoteService.Containers.Note
+            note = card.content[indexPath.row] as? Services.Note.Containers.NoteV1
         default:
             break
         }
@@ -338,7 +338,7 @@ class ProfileDetailsViewController:
     
     // MARK: - NewNoteViewControllerDelegate
     
-    func didAddNote(note: NoteService.Containers.Note) {
+    func didAddNote(note: Services.Note.Containers.NoteV1) {
         let notesCollectionView = detailViews[1]
         if let dataSource = notesCollectionView.dataSource as? ProfileNotesDataSource {
             dataSource.addNote(note)
@@ -348,7 +348,7 @@ class ProfileDetailsViewController:
         }
     }
     
-    func didDeleteNote(note: NoteService.Containers.Note) {
+    func didDeleteNote(note: Services.Note.Containers.NoteV1) {
         let notesCollectionView = detailViews[1]
         if let dataSource = notesCollectionView.dataSource as? ProfileNotesDataSource {
             dataSource.removeNote(note)
@@ -370,7 +370,7 @@ class ProfileDetailsViewController:
             }
             else {
                 profileHeaderView()?.updateTitle(
-                    NSString(format: NSLocalizedString("Notes (%d)", comment: "Title of the Notes section with # of notes. E.g., Notes (5)"), dataSource.notes.count),
+                    NSString(format: NSLocalizedString("Notes (%d)", comment: "Title of the Notes section with # of notes. E.g., Notes (5)"), dataSource.notes.count) as String,
                     forSegmentAtIndex: 1
                 )
             }
@@ -438,7 +438,7 @@ class ProfileDetailsViewController:
             
         case .Phone:
             if let number = profile.getCellPhone() as String? {
-                if let phoneURL = NSURL(string: NSString(format: "tel://%@", number.removePhoneNumberFormatting())) {
+                if let phoneURL = NSURL(string: NSString(format: "tel://%@", number.removePhoneNumberFormatting()) as String) {
                     UIApplication.sharedApplication().openURL(phoneURL)
                 }
             }
@@ -470,7 +470,7 @@ class ProfileDetailsViewController:
         let profileInfoCollectionView = detailViews[0]
         if let dataSource = profileInfoCollectionView.dataSource as? ProfileDetailDataSource {
             let officeDetailVC = OfficeDetailViewController()
-            (officeDetailVC.dataSource as OfficeDetailDataSource).selectedOffice = dataSource.location
+            (officeDetailVC.dataSource as! OfficeDetailDataSource).selectedOffice = dataSource.location
             officeDetailVC.hidesBottomBarWhenPushed = false
             navigationController?.pushViewController(officeDetailVC, animated: true)
         }
@@ -480,7 +480,7 @@ class ProfileDetailsViewController:
         let profileInfoCollectionView = detailViews[0]
         if let dataSource = profileInfoCollectionView.dataSource as? ProfileDetailDataSource {
             let teamVC = TeamDetailViewController()
-            (teamVC.dataSource as TeamDetailDataSource).selectedTeam = dataSource.team!
+            (teamVC.dataSource as! TeamDetailDataSource).selectedTeam = dataSource.team!
             teamVC.hidesBottomBarWhenPushed = false
             navigationController?.pushViewController(teamVC, animated: true)
         }
@@ -488,7 +488,7 @@ class ProfileDetailsViewController:
     
     // MARK: - Helpers
     
-    private func presentNoteView(note: NoteService.Containers.Note?) {
+    private func presentNoteView(note: Services.Note.Containers.NoteV1?) {
         let newNoteViewController = NewNoteViewController(nibName: "NewNoteViewController", bundle: nil)
         newNoteViewController.profile = profile
         newNoteViewController.delegate = self
@@ -537,8 +537,8 @@ class ProfileDetailsViewController:
     
     // Class Methods
     
-    class func forProfile(
-        profile: ProfileService.Containers.Profile,
+    static func forProfile(
+        profile: Services.Profile.Containers.ProfileV1,
         showLogOutButton: Bool = false,
         showCloseButton: Bool = false,
         showSettingsButton: Bool = false
@@ -614,15 +614,15 @@ class ProfileDetailsViewController:
         Tracker.sharedInstance.track(.NewNote, properties: properties)
     }
     
-    private func trackViewNoteAction(note: NoteService.Containers.Note) {
+    private func trackViewNoteAction(note: Services.Note.Containers.NoteV1) {
         let properties = getTrackingProperties(note)
         Tracker.sharedInstance.track(.ViewNote, properties: properties)
     }
     
-    private func getTrackingProperties(note: NoteService.Containers.Note?) -> [TrackerProperty] {
+    private func getTrackingProperties(note: Services.Note.Containers.NoteV1?) -> [TrackerProperty] {
         var properties = [
             TrackerProperty.withKey(.ActiveViewController).withString(self.dynamicType.description()),
-            TrackerProperty.withDestinationId("profile_id").withString(profile.id),
+            TrackerProperty.withDestinationId("profileId").withString(profile.id),
             TrackerProperty.withKey(.Source).withSource(.Detail),
             TrackerProperty.withKey(.SourceDetailType).withDetailType(.Profile),
             TrackerProperty.withKey(.Destination).withSource(.Detail),

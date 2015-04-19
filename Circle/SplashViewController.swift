@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import VENTouchLock
 
 class SplashViewController: VENTouchLockSplashViewController {
 
@@ -17,7 +18,7 @@ class SplashViewController: VENTouchLockSplashViewController {
     @IBOutlet weak private(set) var passcodeButtonXConstraint: NSLayoutConstraint!
     @IBOutlet weak private(set) var signInToDifferentAccountButton: UIButton!
     
-    override init() {
+    init() {
         super.init(nibName: "SplashViewController", bundle: nil)
     }
 

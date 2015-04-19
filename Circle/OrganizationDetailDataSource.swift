@@ -23,14 +23,14 @@ class OrganizationDetailDataSource: CardDataSource {
         appendCard(placeholderCard)
         
         if let currentProfile = AuthViewController.getLoggedInUserProfile() {
-            LandingService.Actions.getOrganizationCategories(currentProfile.organization_id) { (categories, error) -> Void in
+            Services.Feed.Actions.getOrganizationFeed(currentProfile.organizationId) { (categories, error) -> Void in
                 if error == nil {
                     for category in categories ?? [] {
                         let categoryCard = Card(category: category)
                         categoryCard.addDefaultHeader()
                         if category.profiles.count > 0 {
                             var profiles = category.profiles
-                            switch category.type {
+                            switch category.categoryType {
                             case .Executives:
                                 categoryCard.showContentCount = false
 

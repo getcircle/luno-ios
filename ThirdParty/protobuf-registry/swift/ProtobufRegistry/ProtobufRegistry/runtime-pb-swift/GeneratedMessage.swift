@@ -16,6 +16,17 @@
 // limitations under the License.
 
 import Foundation
+
+public protocol GeneratedMessageProtocol: class, Message
+{
+    static func parseFromData(data:NSData) -> Self
+    static func parseFromData(data:NSData, extensionRegistry:ExtensionRegistry) -> Self
+    static func parseFromInputStream(input:NSInputStream) -> Self
+    static func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) -> Self
+    static func parseFromCodedInputStream(input:CodedInputStream) -> Self
+    static func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> Self
+}
+
 public class GeneratedMessage:AbstractMessage
 {
     public var memoizedSerializedSize:Int32 = -1
@@ -26,10 +37,10 @@ public class GeneratedMessage:AbstractMessage
     }
     
     //Override
-    public subscript (key: String) -> Any? {
+    public subscript (key: String) -> Any?
+    {
         return nil
     }
-
     public class func className() -> String
     {
         return "GeneratedMessage"
@@ -52,6 +63,7 @@ public class GeneratedMessage:AbstractMessage
     }
     //
 }
+
 
 
 
@@ -111,6 +123,33 @@ public class GeneratedMessageBuilder:AbstractMessageBuilder
     }
     public func parseUnknownField(input:CodedInputStream ,unknownFields:UnknownFieldSetBuilder, extensionRegistry:ExtensionRegistry, tag:Int32) -> Bool {
         return unknownFields.mergeFieldFrom(tag, input:input)
+    }
+}
+
+extension GeneratedMessage:DebugPrintable
+{
+    public var debugDescription:String
+        {
+            return description
+    }
+}
+
+extension GeneratedMessage:Printable
+{
+    public var description:String {
+        get {
+            var output:String = ""
+            writeDescriptionTo(&output, indent:"")
+            return output
+        }
+    }
+}
+
+extension GeneratedMessageBuilder:DebugPrintable
+{
+    public var debugDescription:String
+    {
+            return internalGetResult.description
     }
 }
 

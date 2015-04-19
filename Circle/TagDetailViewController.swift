@@ -29,14 +29,14 @@ class TagDetailViewController: DetailViewController {
         // Delegate
         collectionView.delegate = delegate
         
-        (layout as StickyHeaderCollectionViewLayout).headerHeight = TagHeaderCollectionReusableView.height
+        (layout as! StickyHeaderCollectionViewLayout).headerHeight = TagHeaderCollectionReusableView.height
         super.configureCollectionView()
     }
     
     // MARK: - Collection View delegate
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        if let profile = dataSource.contentAtIndexPath(indexPath)? as? ProfileService.Containers.Profile {
+        if let profile = dataSource.contentAtIndexPath(indexPath) as? Services.Profile.Containers.ProfileV1 {
             let profileVC = ProfileDetailViewController(profile: profile)
             navigationController?.pushViewController(profileVC, animated: true)
         }
@@ -47,7 +47,7 @@ class TagDetailViewController: DetailViewController {
     // MARK: - Scroll view delegate
 
     func scrollViewDidScroll(scrollView: UIScrollView) {
-        if let profileHeaderView = (collectionView!.dataSource as TagDetailDataSource).profileHeaderView {
+        if let profileHeaderView = (collectionView!.dataSource as! TagDetailDataSource).profileHeaderView {
             let contentOffset = scrollView.contentOffset
             
             // Todo: need to understand how this changes with orientation
@@ -55,7 +55,7 @@ class TagDetailViewController: DetailViewController {
             let navBarHeight: CGFloat = navigationBarHeight()
             let navBarStatusBarHeight: CGFloat = navBarHeight + statusBarHeight
             let initialYConstrainValue: CGFloat = 0.0
-            let finalYConstraintValue: CGFloat = profileHeaderView.frameHeight/2.0 - navBarHeight/2.0
+            let finalYConstraintValue: CGFloat = profileHeaderView.frame.height/2.0 - navBarHeight/2.0
             // Initial y value is added because for center y constraints this represents additional distance it needs
             // to move down
             let distanceToMove: CGFloat = finalYConstraintValue + initialYConstrainValue

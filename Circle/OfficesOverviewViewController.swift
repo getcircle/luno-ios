@@ -44,7 +44,7 @@ class OfficesOverviewViewController: UIViewController, UICollectionViewDataSourc
         collectionView.backgroundColor = UIColor.appViewBackgroundColor()
         collectionView.dataSource = dataSource
         collectionView.delegate = delegate
-        (collectionView.delegate as CardCollectionViewDelegate).delegate = self
+        (collectionView.delegate as! CardCollectionViewDelegate).delegate = self
         collectionView.bounces = true
         collectionView.alwaysBounceVertical = true
     }
@@ -63,10 +63,10 @@ class OfficesOverviewViewController: UIViewController, UICollectionViewDataSourc
     // MARK: - Collection View Delegate
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        if let office = dataSource.contentAtIndexPath(indexPath)? as? OrganizationService.Containers.Location {
+        if let office = dataSource.contentAtIndexPath(indexPath) as? Services.Organization.Containers.LocationV1 {
             trackOfficeSelected(office)
             var officeDetailVC = OfficeDetailViewController()
-            (officeDetailVC.dataSource as OfficeDetailDataSource).selectedOffice = office
+            (officeDetailVC.dataSource as! OfficeDetailDataSource).selectedOffice = office
             navigationController?.pushViewController(officeDetailVC, animated: true)
         }
     }
@@ -91,7 +91,7 @@ class OfficesOverviewViewController: UIViewController, UICollectionViewDataSourc
             kind,
             withReuseIdentifier: MapHeaderCollectionReusableView.classReuseIdentifier,
             forIndexPath: indexPath
-        ) as MapHeaderCollectionReusableView
+        ) as! MapHeaderCollectionReusableView
         
         supplementaryView.setData(offices: dataSource.offices)
         supplementaryView.allowInteraction = true
@@ -103,14 +103,14 @@ class OfficesOverviewViewController: UIViewController, UICollectionViewDataSourc
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         
         return CGSizeMake(
-            mapHeaderCollectionView.frameWidth,
-            mapHeaderCollectionView.frameHeight
+            mapHeaderCollectionView.frame.width,
+            mapHeaderCollectionView.frame.height
         )
     }
     
     // MARK: - Tracking
     
-    func trackOfficeSelected(office: OrganizationService.Containers.Location) {
+    func trackOfficeSelected(office: Services.Organization.Containers.LocationV1) {
         let properties = [
             TrackerProperty.withKey(.ActiveViewController).withString(self.dynamicType.description()),
             TrackerProperty.withKey(.Source).withSource(.Overview),

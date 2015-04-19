@@ -31,25 +31,25 @@ class OfficeDetailViewController: DetailViewController,
         dataSource.cardHeaderDelegate = self
         
         collectionView.delegate = delegate
-        (layout as StickyHeaderCollectionViewLayout).headerHeight = ProfileHeaderCollectionReusableView.height
+        (layout as! StickyHeaderCollectionViewLayout).headerHeight = ProfileHeaderCollectionReusableView.height
         super.configureCollectionView()
     }
     
     // MARK: - Collection View delegate
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        let officeDetailDataSource = dataSource as OfficeDetailDataSource
+        let officeDetailDataSource = dataSource as! OfficeDetailDataSource
         if let card = dataSource.cardAtSection(indexPath.section) {
             switch card.type {
             case .KeyValue:
                 switch officeDetailDataSource.typeOfContent(indexPath) {
                 case .PeopleCount:
                     let viewController = ProfilesViewController()
-                    (viewController.dataSource as ProfilesDataSource).configureForLocation(officeDetailDataSource.selectedOffice.id)
+                    (viewController.dataSource as! ProfilesDataSource).configureForLocation(officeDetailDataSource.selectedOffice.id)
                     viewController.dataSource.setInitialData(
                         content: officeDetailDataSource.profiles,
                         ofType: nil,
-                        nextRequest: officeDetailDataSource.nextProfilesRequest?
+                        nextRequest: officeDetailDataSource.nextProfilesRequest
                     )
                     viewController.title = "People @ " + officeDetailDataSource.selectedOffice.address.city
                     navigationController?.pushViewController(viewController, animated: true)
@@ -70,7 +70,7 @@ class OfficeDetailViewController: DetailViewController,
     }
 
     func scrollViewDidScroll(scrollView: UIScrollView) {
-        if let profileHeaderView = (dataSource as OfficeDetailDataSource).profileHeaderView as? ProfileHeaderCollectionReusableView {
+        if let profileHeaderView = (dataSource as! OfficeDetailDataSource).profileHeaderView as? ProfileHeaderCollectionReusableView {
             profileHeaderView.adjustViewForScrollContentOffset(scrollView.contentOffset)
         }
     }
@@ -79,8 +79,8 @@ class OfficeDetailViewController: DetailViewController,
     
     private func presentFullScreenMapView(animated: Bool) {
         var mapViewController = MapViewController()
-        if let headerView = (dataSource as OfficeDetailDataSource).profileHeaderView {
-            mapViewController.selectedOffice = (dataSource as OfficeDetailDataSource).selectedOffice
+        if let headerView = (dataSource as! OfficeDetailDataSource).profileHeaderView {
+            mapViewController.selectedOffice = (dataSource as! OfficeDetailDataSource).selectedOffice
             presentViewController(mapViewController, animated: animated, completion: nil)
         }
     }
@@ -95,12 +95,12 @@ class OfficeDetailViewController: DetailViewController,
     // MARK: - CardHeaderViewDelegate
     
     func cardHeaderTapped(sender: AnyObject!, card: Card!) {
-        let officeDetailDataSource = dataSource as OfficeDetailDataSource
+        let officeDetailDataSource = dataSource as! OfficeDetailDataSource
         switch card.type {
         case .TeamsGrid:
             let viewController = TeamsOverviewViewController()
             viewController.dataSource.setInitialData(
-                content: card.allContent[0] as [AnyObject],
+                content: card.allContent[0] as! [AnyObject],
                 ofType: nil,
                 nextRequest: officeDetailDataSource.nextTeamsRequest
             )

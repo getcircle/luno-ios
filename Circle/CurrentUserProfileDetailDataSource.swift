@@ -27,7 +27,7 @@ class CurrentUserProfileDetailDataSource: ProfileDetailDataSource {
             if let identities = identities {
                 var hasLinkedInIdentity = false
                 for identity in identities {
-                    if identity.provider == UserService.Provider.Linkedin {
+                    if identity.provider == Services.User.Containers.IdentityV1.ProviderV1.Linkedin {
                         hasLinkedInIdentity = true
                     }
                 }

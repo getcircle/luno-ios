@@ -8,7 +8,7 @@
 
 import UIKit
 import XCTest
-import Circle
+import circle
 
 class CircleTests: XCTestCase {
     

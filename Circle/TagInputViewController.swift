@@ -30,21 +30,21 @@ class TagInputViewController: UIViewController,
     var addNextButton: Bool = false
 
     private var theme: Themes = .Regular
-    private var deletedTags = Array<ProfileService.Containers.Tag>()
-    private var newTag: ProfileService.Containers.Tag?
-    private var selectedTags = Array<ProfileService.Containers.Tag>()
-    private var suggestedTags = Array<ProfileService.Containers.Tag>()
+    private var deletedTags = Array<Services.Profile.Containers.TagV1>()
+    private var newTag: Services.Profile.Containers.TagV1?
+    private var selectedTags = Array<Services.Profile.Containers.TagV1>()
+    private var suggestedTags = Array<Services.Profile.Containers.TagV1>()
     private var activityIndicator: CircleActivityIndicatorView?
     
     private var tokenFieldBottomBorder: UIView?
     private var suggestionCollectionViewCellBackgroundColor = UIColor.whiteColor()
     private var suggestionCollectionViewCellTextColor = UIColor.appDefaultDarkTextColor()
     
-    class func getNibName() -> String {
+    static func getNibName() -> String {
         return "TagInputViewController"
     }
     
-    convenience init(existingTags: Array<ProfileService.Containers.Tag>? = nil, theme withTheme: Themes = .Regular) {
+    convenience init(existingTags: Array<Services.Profile.Containers.TagV1>? = nil, theme withTheme: Themes = .Regular) {
         self.init(nibName: "TagInputViewController", bundle: nil)
         if existingTags != nil {
             selectedTags.extend(existingTags!)
@@ -135,9 +135,9 @@ class TagInputViewController: UIViewController,
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(
             TagSuggestionCollectionViewCell.classReuseIdentifier,
             forIndexPath: indexPath
-        ) as TagSuggestionCollectionViewCell
+        ) as! TagSuggestionCollectionViewCell
         
-        var suggestedTag: ProfileService.Containers.Tag?
+        var suggestedTag: Services.Profile.Containers.TagV1?
         if shouldUseNewTag(indexPath) {
             suggestedTag = newTag
         } else {
@@ -152,7 +152,7 @@ class TagInputViewController: UIViewController,
     // MARK: - UICollectionViewDelegate
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        var tag: ProfileService.Containers.Tag
+        var tag: Services.Profile.Containers.TagV1
         if shouldUseNewTag(indexPath) {
             selectedTags.append(newTag!)
         } else {
@@ -170,7 +170,7 @@ class TagInputViewController: UIViewController,
     // MARK: - UICollectionViewDelegateFlowLayout
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        return CGSizeMake(collectionView.frameWidth, 44.0)
+        return CGSizeMake(collectionView.frame.width, 44.0)
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
@@ -185,17 +185,17 @@ class TagInputViewController: UIViewController,
             suggestedTags.removeAll(keepCapacity: false)
             collectionView.reloadData()
         } else {
-            SearchService.Actions.search(text, category: .Skills, attribute: nil, attributeValue: nil, objects: nil) { (result, error) -> Void in
+            Services.Search.Actions.search(text, category: .Skills, attribute: nil, attributeValue: nil, objects: nil) { (result, error) -> Void in
                 if (result?.skills != nil) {
                     self.suggestedTags = result!.skills!
                 }
                 
-                var tagBuilder: ProfileService.Containers.TagBuilder
+                var tagBuilder: Services.Profile.Containers.TagV1Builder
                 if self.newTag != nil {
                     tagBuilder = self.newTag!.toBuilder()
                 } else {
-                    tagBuilder = ProfileService.Containers.Tag.builder()
-                    tagBuilder.type = .Skill
+                    tagBuilder = Services.Profile.Containers.TagV1.builder()
+                    tagBuilder.tagType = .Skill
                 }
                 tagBuilder.name = text
                 self.newTag = tagBuilder.build()
@@ -204,7 +204,7 @@ class TagInputViewController: UIViewController,
         }
     }
     
-    func tokenField(tokenField: TokenField, didEnterText text: String!) {
+    func tokenField(tokenField: TokenField, didEnterText text: String) {
         selectedTags.append(newTag!)
         newTag = nil
         suggestedTags.removeAll(keepCapacity: false)
@@ -213,7 +213,7 @@ class TagInputViewController: UIViewController,
     }
     
     func tokenField(tokenField: TokenField, didDeleteTokenAtIndex index: UInt) {
-        let deletedTag = selectedTags.removeAtIndex(Int(index)) as ProfileService.Containers.Tag
+        let deletedTag = selectedTags.removeAtIndex(Int(index)) as Services.Profile.Containers.TagV1
         if deletedTag.hasId {
             deletedTags.append(deletedTag)
         }
@@ -247,7 +247,7 @@ class TagInputViewController: UIViewController,
         let profileId = AuthViewController.getLoggedInUserProfile()!.id
         if selectedTags.count > 0 {
             dispatch_group_enter(actionsGroup)
-            ProfileService.Actions.addTags(profileId, tags: selectedTags) { (error) in
+            Services.Profile.Actions.addTags(profileId, tags: selectedTags) { (error) in
                 // TODO return any tags that were created so we can add them to the ObjectStore
                 if let error = error {
                     storedError = error
@@ -257,7 +257,7 @@ class TagInputViewController: UIViewController,
         }
         if deletedTags.count > 0 {
             dispatch_group_enter(actionsGroup)
-            ProfileService.Actions.removeTags(profileId, tags: deletedTags) { (error) -> Void in
+            Services.Profile.Actions.removeTags(profileId, tags: deletedTags) { (error) -> Void in
                 if let error = error {
                     storedError = error
                 }

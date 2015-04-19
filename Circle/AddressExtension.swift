@@ -9,13 +9,13 @@
 import Foundation
 import ProtobufRegistry
 
-extension OrganizationService.Containers.Address {
+extension Services.Organization.Containers.AddressV1 {
 
     func shortOfficeAddress() -> String {
-        var address = address_1
+        var address = address1
         
         if hasAddress2 {
-            address += ", " + address_2
+            address += ", " + address2
         }
         
         address = address.trimWhitespace()
@@ -30,7 +30,7 @@ extension OrganizationService.Containers.Address {
         }
         
         if hasPostalCode {
-            address += " " + postal_code
+            address += " " + postalCode
         }
         
         return address
@@ -43,9 +43,9 @@ extension OrganizationService.Containers.Address {
             address += ", " + region
         }
         
-        address += ", " + country_code
+        address += ", " + countryCode
         if hasPostalCode {
-            address += " " + postal_code
+            address += " " + postalCode
         }
 
         return address
@@ -71,7 +71,7 @@ extension OrganizationService.Containers.Address {
         let officeTimeZone = NSTimeZone(name: timezone)!
         NSDateFormatter.sharedOfficeCurrentDateFormatter.timeZone = officeTimeZone
         currentDateString = NSDateFormatter.sharedOfficeCurrentDateFormatter.stringFromDate(currentDate)
-        if NSBundle.mainBundle().preferredLocalizations[0] as String == "en" {
+        if NSBundle.mainBundle().preferredLocalizations[0] as! String == "en" {
             currentDateString += dateSuffixForDate(currentDate)
         }
         return currentDateString
@@ -85,7 +85,7 @@ extension OrganizationService.Containers.Address {
     }
     
     func officeDaylightIndicator() -> UIImage? {
-        let calendar = NSCalendar(calendarIdentifier: NSGregorianCalendar)
+        let calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)
         calendar?.timeZone = NSTimeZone(name: timezone)!
         let components = calendar?.components(NSCalendarUnit.CalendarUnitHour, fromDate: NSDate())
         var image: UIImage?

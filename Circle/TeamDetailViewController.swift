@@ -29,14 +29,14 @@ class TeamDetailViewController: DetailViewController {
         // Delegate
         collectionView.delegate = delegate
         
-        (layout as StickyHeaderCollectionViewLayout).headerHeight = TeamHeaderCollectionReusableView.height
+        (layout as! StickyHeaderCollectionViewLayout).headerHeight = TeamHeaderCollectionReusableView.height
         super.configureCollectionView()
     }
     
     // MARK: - Collection View delegate
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        if let profile = dataSource.contentAtIndexPath(indexPath)? as? ProfileService.Containers.Profile {
+        if let profile = dataSource.contentAtIndexPath(indexPath) as? Services.Profile.Containers.ProfileV1 {
             let profileVC = ProfileDetailViewController(profile: profile)
             navigationController?.pushViewController(profileVC, animated: true)
         }
@@ -48,7 +48,7 @@ class TeamDetailViewController: DetailViewController {
     // MARK: - Scroll view delegate
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
-        if let profileHeaderView = (collectionView!.dataSource as TeamDetailDataSource).profileHeaderView {
+        if let profileHeaderView = (collectionView!.dataSource as! TeamDetailDataSource).profileHeaderView {
             let contentOffset = scrollView.contentOffset
             
             // Todo: need to understand how this changes with orientation
@@ -56,7 +56,7 @@ class TeamDetailViewController: DetailViewController {
             let navBarHeight: CGFloat = navigationBarHeight()
             let navBarStatusBarHeight: CGFloat = navBarHeight + statusBarHeight
             let initialYConstrainValue: CGFloat = profileHeaderView.teamNameLabelCenterYConstraintInitialValue
-            let finalYConstraintValue: CGFloat = profileHeaderView.frameHeight/2.0 - navBarHeight/2.0
+            let finalYConstraintValue: CGFloat = profileHeaderView.frame.height/2.0 - navBarHeight/2.0
             // Initial y value is added because for center y constraints this represents additional distance it needs
             // to move down
             let distanceToMove: CGFloat = finalYConstraintValue + initialYConstrainValue
@@ -88,7 +88,7 @@ class TeamDetailViewController: DetailViewController {
             
             // Modify alpha for departmentlabel
             if contentOffset.y > 0.0 {
-                profileHeaderView.departmentNameLabel.alpha = 1.0 - contentOffset.y/(profileHeaderView.departmentNameLabel.frameY - 40.0)
+                profileHeaderView.departmentNameLabel.alpha = 1.0 - contentOffset.y/(profileHeaderView.departmentNameLabel.frame.origin.y - 40.0)
             }
             else {
                 profileHeaderView.departmentNameLabel.alpha = 1.0

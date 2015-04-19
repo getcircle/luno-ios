@@ -57,7 +57,7 @@ public class ExtensionRegistry
     public func addExtension(extensions:ConcreateExtensionField)
     {
         let extendedClass = extensions.extendedClass.className()
-        var extensionMap = classMap[extendedClass]?
+        var extensionMap = classMap[extendedClass]
         if extensionMap == nil
         {
             extensionMap = [Int32 : ConcreateExtensionField]()
@@ -65,7 +65,6 @@ public class ExtensionRegistry
         }
         extensionMap![extensions.fieldNumber] = extensions
         classMap[extendedClass] = extensionMap
-        
     }
     
 }

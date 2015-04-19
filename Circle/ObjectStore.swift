@@ -22,14 +22,14 @@ class ObjectStore {
     }
     
     class Objects {
-        var profiles: Array<ProfileService.Containers.Profile>?
-        var teams: Array<OrganizationService.Containers.Team>?
-        var addresses: Array<OrganizationService.Containers.Address>?
-        var interests: Array<ProfileService.Containers.Tag>?
-        var skills: Array<ProfileService.Containers.Tag>?
-        var activeInterests: Array<ProfileService.Containers.Tag>?
-        var activeSkills: Array<ProfileService.Containers.Tag>?
-        var locations: Array<OrganizationService.Containers.Location>?
+        var profiles: Array<Services.Profile.Containers.ProfileV1>?
+        var teams: Array<Services.Organization.Containers.TeamV1>?
+        var addresses: Array<Services.Organization.Containers.AddressV1>?
+        var interests: Array<Services.Profile.Containers.TagV1>?
+        var skills: Array<Services.Profile.Containers.TagV1>?
+        var activeInterests: Array<Services.Profile.Containers.TagV1>?
+        var activeSkills: Array<Services.Profile.Containers.TagV1>?
+        var locations: Array<Services.Organization.Containers.LocationV1>?
     }
     
     class var sharedInstance: ObjectStore {
@@ -39,14 +39,14 @@ class ObjectStore {
         return Static.instance
     }
     
-    private(set) var profiles = Dictionary<String, ProfileService.Containers.Profile>()
-    private(set) var teams = Dictionary<String, OrganizationService.Containers.Team>()
-    private(set) var addresses = Dictionary<String, OrganizationService.Containers.Address>()
-    private(set) var locations = Dictionary<String, OrganizationService.Containers.Location>()
-    private(set) var interests = Dictionary<String, ProfileService.Containers.Tag>()
-    private(set) var skills = Dictionary<String, ProfileService.Containers.Tag>()
-    private(set) var activeInterests = Dictionary<String, ProfileService.Containers.Tag>()
-    private(set) var activeSkills = Dictionary<String, ProfileService.Containers.Tag>()
+    private(set) var profiles = Dictionary<String, Services.Profile.Containers.ProfileV1>()
+    private(set) var teams = Dictionary<String, Services.Organization.Containers.TeamV1>()
+    private(set) var addresses = Dictionary<String, Services.Organization.Containers.AddressV1>()
+    private(set) var locations = Dictionary<String, Services.Organization.Containers.LocationV1>()
+    private(set) var interests = Dictionary<String, Services.Profile.Containers.TagV1>()
+    private(set) var skills = Dictionary<String, Services.Profile.Containers.TagV1>()
+    private(set) var activeInterests = Dictionary<String, Services.Profile.Containers.TagV1>()
+    private(set) var activeSkills = Dictionary<String, Services.Profile.Containers.TagV1>()
     
     func repopulate() {
         if let currentProfile = AuthViewController.getLoggedInUserProfile() {
@@ -56,13 +56,13 @@ class ObjectStore {
         }
     }
     
-    private func repopulate(profile: ProfileService.Containers.Profile) {
+    private func repopulate(profile: Services.Profile.Containers.ProfileV1) {
         let objects = Objects()
-        let paginatorBuilder = Paginator.builder()
-        paginatorBuilder.page_size = 5000
+        let paginatorBuilder = Soa.PaginatorV1.builder()
+        paginatorBuilder.pageSize = 5000
         
-        ProfileService.Actions.getProfiles(
-            organizationId: profile.organization_id,
+        Services.Profile.Actions.getProfiles(
+            organizationId: profile.organizationId,
             paginatorBuilder: paginatorBuilder
             ) { (profiles, _, error) -> Void in
                 objects.profiles = profiles
@@ -70,33 +70,33 @@ class ObjectStore {
         }
         
         // Get and categorize tags
-        ProfileService.Actions.getTags(profile.organization_id, tagType: nil) { (tags, error) -> Void in
-            objects.interests = tags?.filter { $0.type == .Interest }
-            objects.skills = tags?.filter { $0.type == .Skill }
+        Services.Profile.Actions.getTags(profile.organizationId, tagType: nil) { (tags, error) -> Void in
+            objects.interests = tags?.filter { $0.tagType == .Interest }
+            objects.skills = tags?.filter { $0.tagType == .Skill }
             self.update(objects)
         }
-        ProfileService.Actions.getActiveTags(
-            profile.organization_id,
+        Services.Profile.Actions.getActiveTags(
+            profile.organizationId,
             tagType: nil,
             paginatorBuilder: paginatorBuilder,
             completionHandler: { (tags, error) -> Void in
-                objects.activeInterests = tags?.filter { $0.type == .Interest }
-                objects.activeSkills = tags?.filter { $0.type == .Skill }
+                objects.activeInterests = tags?.filter { $0.tagType == .Interest }
+                objects.activeSkills = tags?.filter { $0.tagType == .Skill }
                 self.update(objects)
             }
         )
         
-        OrganizationService.Actions.getAddresses(profile.organization_id) { (addresses, error) -> Void in
+        Services.Organization.Actions.getAddresses(profile.organizationId) { (addresses, error) -> Void in
             objects.addresses = addresses
             self.update(objects)
         }
         
-        OrganizationService.Actions.getTeams(profile.organization_id, paginatorBuilder: paginatorBuilder) { (teams, _, error) -> Void in
+        Services.Organization.Actions.getTeams(profile.organizationId, paginatorBuilder: paginatorBuilder) { (teams, _, error) -> Void in
             objects.teams = teams
             self.update(objects)
         }
         
-        OrganizationService.Actions.getLocations(profile.organization_id) { (locations, error) -> Void in
+        Services.Organization.Actions.getLocations(profile.organizationId) { (locations, error) -> Void in
             objects.locations = locations
             self.update(objects)
         }
@@ -106,49 +106,49 @@ class ObjectStore {
         if let containers = objects.profiles {
             var cache = profiles as [String: GeneratedMessage]
             updateCache(&cache, containers: (containers as [GeneratedMessage]))
-            profiles = cache as [String: ProfileService.Containers.Profile]
+            profiles = cache as! [String: Services.Profile.Containers.ProfileV1]
         }
         
         if let containers = objects.teams {
             var cache = teams as [String: GeneratedMessage]
             updateCache(&cache, containers: containers as [GeneratedMessage])
-            teams = cache as [String: OrganizationService.Containers.Team]
+            teams = cache as! [String: Services.Organization.Containers.TeamV1]
         }
         
         if let containers = objects.addresses {
             var cache = addresses as [String: GeneratedMessage]
             updateCache(&cache, containers: containers)
-            addresses = cache as [String: OrganizationService.Containers.Address]
+            addresses = cache as! [String: Services.Organization.Containers.AddressV1]
         }
         
         if let containers = objects.locations {
             var cache = locations as [String: GeneratedMessage]
             updateCache(&cache, containers: containers)
-            locations = cache as [String: OrganizationService.Containers.Location]
+            locations = cache as! [String: Services.Organization.Containers.LocationV1]
         }
         
         if let containers = objects.interests {
             var cache = interests as [String: GeneratedMessage]
             updateCache(&cache, containers: containers)
-            interests = cache as [String: ProfileService.Containers.Tag]
+            interests = cache as! [String: Services.Profile.Containers.TagV1]
         }
         
         if let containers = objects.skills {
             var cache = skills as [String: GeneratedMessage]
             updateCache(&cache, containers: containers)
-            skills = cache as [String: ProfileService.Containers.Tag]
+            skills = cache as! [String: Services.Profile.Containers.TagV1]
         }
         
         if let containers = objects.activeInterests {
             var cache = activeInterests as [String: GeneratedMessage]
             updateCache(&cache, containers: containers)
-            activeInterests = cache as [String: ProfileService.Containers.Tag]
+            activeInterests = cache as! [String: Services.Profile.Containers.TagV1]
         }
         
         if let containers = objects.activeSkills {
             var cache = activeSkills as [String: GeneratedMessage]
             updateCache(&cache, containers: containers)
-            activeSkills = cache as [String: ProfileService.Containers.Tag]
+            activeSkills = cache as! [String: Services.Profile.Containers.TagV1]
         }
     }
     
@@ -156,31 +156,31 @@ class ObjectStore {
         let objects = Objects()
         switch type {
         case .Profile:
-            if let profile = object as? ProfileService.Containers.Profile {
+            if let profile = object as? Services.Profile.Containers.ProfileV1 {
                 objects.profiles = [profile]
             }
         case .Team:
-            if let team = object as? OrganizationService.Containers.Team {
+            if let team = object as? Services.Organization.Containers.TeamV1 {
                 objects.teams = [team]
             }
         case .Address:
-            if let address = object as? OrganizationService.Containers.Address {
+            if let address = object as? Services.Organization.Containers.AddressV1 {
                 objects.addresses = [address]
             }
         case .Interest:
-            if let interest = object as? ProfileService.Containers.Tag {
+            if let interest = object as? Services.Profile.Containers.TagV1 {
                 objects.interests = [interest]
             }
         case .Skill:
-            if let skill = object as? ProfileService.Containers.Tag {
+            if let skill = object as? Services.Profile.Containers.TagV1 {
                 objects.skills = [skill]
             }
         case .ActiveInterest:
-            if let interest = object as? ProfileService.Containers.Tag {
+            if let interest = object as? Services.Profile.Containers.TagV1 {
                 objects.activeInterests = [interest]
             }
         case .ActiveSkill:
-            if let skill = object as? ProfileService.Containers.Tag {
+            if let skill = object as? Services.Profile.Containers.TagV1 {
                 objects.activeSkills = [skill]
             }
         }
@@ -198,17 +198,17 @@ class ObjectStore {
         locations.removeAll(keepCapacity: false)
     }
     
-    func getProfilesForAttribute(attribute: SearchService.Attribute, value: AnyObject) -> Array<ProfileService.Containers.Profile> {
+    func getProfilesForAttribute(attribute: Services.Search.Containers.Search.AttributeV1, value: AnyObject) -> Array<Services.Profile.Containers.ProfileV1> {
         return ObjectStore.sharedInstance.profiles.values.array.filter {
             switch attribute {
             case .LocationId:
-                if let location_id = value as? String {
-                    return $0.location_id == location_id
+                if let locationId = value as? String {
+                    return $0.locationId == locationId
                 }
                 return false
             case .OrganizationId:
-                if let organization_id = value as? String {
-                    return $0.organization_id == organization_id
+                if let organizationId = value as? String {
+                    return $0.organizationId == organizationId
                 }
                 return false
             default: return false
@@ -220,7 +220,7 @@ class ObjectStore {
     
     private func updateCache(inout cache: [String: GeneratedMessage], containers: Array<GeneratedMessage>) {
         for container in containers {
-            var identifier = container["id"] as String
+            var identifier = container["id"] as! String
             cache[identifier] = container
         }
     }

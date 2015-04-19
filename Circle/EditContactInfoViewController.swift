@@ -20,9 +20,9 @@ class EditContactInfoViewController: UIViewController, UINavigationControllerDel
     @IBOutlet weak private(set) var rootScrollView: UIScrollView!
     
     var editProfileDelegate: EditProfileDelegate?
-    var profile: ProfileService.Containers.Profile!
+    var profile: Services.Profile.Containers.ProfileV1!
 
-    private var existingContactMethodsByType = Dictionary<ProfileService.ContactMethodType, ProfileService.Containers.ContactMethod>()
+    private var existingContactMethodsByType = Dictionary<Services.Profile.Containers.ContactMethodV1.ContactMethodTypeV1, Services.Profile.Containers.ContactMethodV1>()
     private var formBuilder = FormBuilder()
     
     override func viewDidLoad() {
@@ -53,9 +53,9 @@ class EditContactInfoViewController: UIViewController, UINavigationControllerDel
         var maxY: CGFloat = 0.0
         var heightOfTheLastElement: CGFloat = 0.0
         for subview in rootContentView.subviews {
-            if subview.frameY >= maxY {
-                maxY = subview.frameY
-                heightOfTheLastElement = subview.frameHeight
+            if subview.frame.origin.y >= maxY {
+                maxY = subview.frame.origin.y
+                heightOfTheLastElement = subview.frame.height
             }
         }
 
@@ -169,8 +169,8 @@ class EditContactInfoViewController: UIViewController, UINavigationControllerDel
             ]),
         ]
         
-        for contactMethod in profile.contact_methods {
-            existingContactMethodsByType.updateValue(contactMethod, forKey: contactMethod.type)
+        for contactMethod in profile.contactMethods {
+            existingContactMethodsByType.updateValue(contactMethod, forKey: contactMethod.contactMethodType)
         }
         
         for section in formSections {
@@ -288,31 +288,31 @@ class EditContactInfoViewController: UIViewController, UINavigationControllerDel
         builder.verified = true
         
         formBuilder.updateValues()
-        var contactMethods = Array<ProfileService.Containers.ContactMethod>()
+        var contactMethods = Array<Services.Profile.Containers.ContactMethodV1>()
         for section in formBuilder.sections {
             for item in section.items {
                 if let value = item.value {
                     if let contactItem = item as? FormBuilder.ContactSectionItem {
                         if value.trimWhitespace() != "" && (contactItem.inputEnabled == nil || contactItem.inputEnabled == true) {
-                            var contactMethod: ProfileService.Containers.ContactMethodBuilder
+                            var contactMethod: Services.Profile.Containers.ContactMethodV1Builder
                             if let existingContactMethod = existingContactMethodsByType[contactItem.contactMethodType] {
                                 contactMethod = existingContactMethod.toBuilder()
                             }
                             else {
-                                contactMethod = ProfileService.Containers.ContactMethod.builder()
+                                contactMethod = Services.Profile.Containers.ContactMethodV1.builder()
                             }
 
                             contactMethod.label = contactItem.placeholder
                             contactMethod.value = value.trimWhitespace()
-                            contactMethod.type = contactItem.contactMethodType
+                            contactMethod.contactMethodType = contactItem.contactMethodType
                             contactMethods.append(contactMethod.build())
                         }
                     }
                 }
             }
         }
-        builder.contact_methods = contactMethods
-        ProfileService.Actions.updateProfile(builder.build()) { (profile, error) -> Void in
+        builder.contactMethods = contactMethods
+        Services.Profile.Actions.updateProfile(builder.build()) { (profile, error) -> Void in
             if let profile = profile {
                 AuthViewController.updateUserProfile(profile)
             }

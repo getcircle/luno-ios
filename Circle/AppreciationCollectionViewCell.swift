@@ -37,7 +37,7 @@ class AppreciationCollectionViewCell: CircleCollectionViewCell {
     }
     
     override func setData(data: AnyObject) {
-        if let appreciation = data as? AppreciationService.Containers.Appreciation {
+        if let appreciation = data as? Services.Appreciation.Containers.AppreciationV1 {
             appreciationTextLabel.text = appreciation.content
 
             if let gmtDate = NSDateFormatter.dateFromTimestampString(appreciation.created) {
@@ -46,8 +46,8 @@ class AppreciationCollectionViewCell: CircleCollectionViewCell {
         }
     }
     
-    func setProfile(profile: ProfileService.Containers.Profile) {
-        nameLabel.text = profile.full_name
+    func setProfile(profile: Services.Profile.Containers.ProfileV1) {
+        nameLabel.text = profile.fullName
         titleLabel.text = profile.title
         profileImageView.setImageWithProfile(profile)
     }

@@ -37,7 +37,7 @@ def ensure_init_exists():
 def clean():
     print 'cleaning python...'
     with python_directory():
-        run("find %s -name '*.py*' | xargs rm" % (PACKAGE_NAME,))
+        run('rm -r %s' % (PACKAGE_NAME,))
 
 
 @task(post=[ensure_init_exists], default=True)

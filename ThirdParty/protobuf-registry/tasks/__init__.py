@@ -4,6 +4,8 @@ from invoke import (
 )
 
 from . import (
+    go,
+    java,
     python,
     release,
     swift,
@@ -21,6 +23,8 @@ def full_release():
 
 
 ns = Collection()
+ns.add_collection(go)
+ns.add_collection(java)
 ns.add_collection(python)
 ns.add_collection(release)
 ns.add_collection(swift)
