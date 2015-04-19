@@ -204,7 +204,7 @@ class TagInputViewController: UIViewController,
         }
     }
     
-    func tokenField(tokenField: TokenField, didEnterText text: String!) {
+    func tokenField(tokenField: TokenField, didEnterText text: String) {
         selectedTags.append(newTag!)
         newTag = nil
         suggestedTags.removeAll(keepCapacity: false)

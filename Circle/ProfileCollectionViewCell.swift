@@ -106,18 +106,18 @@ class ProfileCollectionViewCell: CircleCollectionViewCell {
         var subtitle = ""
         if let hireDate = profile.hireDate.toDate() {
             let dateFormatter = NSDateFormatter.sharedAnniversaryFormatter
-            let calendar = NSCalendar(calendarIdentifier: NSGregorianCalendar)
+            let calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)
             
             let dateString = dateFormatter.stringFromDate(hireDate)
             
             // calculate the upcoming anniversary to get the accurate number of years the anniversary represents
-            let nowComponents = calendar?.components(.YearCalendarUnit, fromDate: NSDate())
-            let upcomingAnniveraryComponents = calendar?.components(.DayCalendarUnit | .MonthCalendarUnit, fromDate: hireDate)
+            let nowComponents = calendar?.components(.CalendarUnitYear, fromDate: NSDate())
+            let upcomingAnniveraryComponents = calendar?.components(.CalendarUnitDay | .CalendarUnitMonth, fromDate: hireDate)
             upcomingAnniveraryComponents?.year = nowComponents!.year
             let upcomingAnniversary = calendar?.dateFromComponents(upcomingAnniveraryComponents!)
             
             let components = calendar?.components(
-                .YearCalendarUnit,
+                .CalendarUnitYear,
                 fromDate: hireDate,
                 toDate: upcomingAnniversary!,
                 options: .WrapComponents

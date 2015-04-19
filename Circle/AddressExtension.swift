@@ -85,7 +85,7 @@ extension Services.Organization.Containers.AddressV1 {
     }
     
     func officeDaylightIndicator() -> UIImage? {
-        let calendar = NSCalendar(calendarIdentifier: NSGregorianCalendar)
+        let calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)
         calendar?.timeZone = NSTimeZone(name: timezone)!
         let components = calendar?.components(NSCalendarUnit.CalendarUnitHour, fromDate: NSDate())
         var image: UIImage?
