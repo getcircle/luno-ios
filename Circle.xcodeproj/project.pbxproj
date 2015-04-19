@@ -271,6 +271,9 @@
 		BFBC44011A7212FA007202E7 /* ProfileOverlaidCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBC44001A7212FA007202E7 /* ProfileOverlaidCollectionView.swift */; };
 		BFC05DD31A97B32800F246EA /* Resume.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC05DD21A97B32800F246EA /* Resume.swift */; };
 		BFC6CF9C1A44D2B90081F45B /* ServiceClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC6CF9B1A44D2B90081F45B /* ServiceClient.swift */; };
+		BFCB028D1AE36692004DE2F3 /* GoogleSignIn.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BFCB028C1AE36692004DE2F3 /* GoogleSignIn.bundle */; };
+		BFCB028F1AE367BD004DE2F3 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFCB028E1AE367BD004DE2F3 /* AddressBook.framework */; };
+		BFCB02911AE367CA004DE2F3 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFCB02901AE367CA004DE2F3 /* SystemConfiguration.framework */; };
 		BFCFDB041A915249009A5FD4 /* EducationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCFDB021A915249009A5FD4 /* EducationCollectionViewCell.swift */; };
 		BFCFDB051A915249009A5FD4 /* EducationCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFCFDB031A915249009A5FD4 /* EducationCollectionViewCell.xib */; };
 		BFCFDB111A9165A9009A5FD4 /* PositionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCFDB0F1A9165A9009A5FD4 /* PositionCollectionViewCell.swift */; };
@@ -608,6 +611,9 @@
 		BFBC44001A7212FA007202E7 /* ProfileOverlaidCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileOverlaidCollectionView.swift; sourceTree = "<group>"; };
 		BFC05DD21A97B32800F246EA /* Resume.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resume.swift; sourceTree = "<group>"; };
 		BFC6CF9B1A44D2B90081F45B /* ServiceClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceClient.swift; sourceTree = "<group>"; };
+		BFCB028C1AE36692004DE2F3 /* GoogleSignIn.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = GoogleSignIn.bundle; sourceTree = "<group>"; };
+		BFCB028E1AE367BD004DE2F3 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		BFCB02901AE367CA004DE2F3 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		BFCFDB021A915249009A5FD4 /* EducationCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EducationCollectionViewCell.swift; sourceTree = "<group>"; };
 		BFCFDB031A915249009A5FD4 /* EducationCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EducationCollectionViewCell.xib; sourceTree = "<group>"; };
 		BFCFDB0F1A9165A9009A5FD4 /* PositionCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PositionCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -632,6 +638,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFCB02911AE367CA004DE2F3 /* SystemConfiguration.framework in Frameworks */,
+				BFCB028F1AE367BD004DE2F3 /* AddressBook.framework in Frameworks */,
 				8F4805C41A5B643F00273731 /* Crashlytics.framework in Frameworks */,
 				BFA4F6461AE34CD300385D45 /* GoogleSignIn.framework in Frameworks */,
 				DF400245E813C40A9AB735B3 /* Pods.framework in Frameworks */,
@@ -654,6 +662,8 @@
 		31F9C7E511DF7D5BF18D0B04 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BFCB02901AE367CA004DE2F3 /* SystemConfiguration.framework */,
+				BFCB028E1AE367BD004DE2F3 /* AddressBook.framework */,
 				4BE4CE18D8FDD109BFC6307A /* Pods.framework */,
 				BFA4F6451AE34CD300385D45 /* GoogleSignIn.framework */,
 			);
@@ -663,6 +673,7 @@
 		8F0004871A2419730096477A = {
 			isa = PBXGroup;
 			children = (
+				BFCB028C1AE36692004DE2F3 /* GoogleSignIn.bundle */,
 				8F0004921A2419730096477A /* Circle */,
 				8F0004AD1A2419730096477A /* CircleTests */,
 				8F0004911A2419730096477A /* Products */,
@@ -1267,6 +1278,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFCB028D1AE36692004DE2F3 /* GoogleSignIn.bundle in Resources */,
 				8F0ADD481AC5344E00A44B68 /* Loader_00044@2x.png in Resources */,
 				8F0ADD2F1AC5344E00A44B68 /* Loader_00019@2x.png in Resources */,
 				8F0ADD4A1AC5344E00A44B68 /* Loader_00046@2x.png in Resources */,

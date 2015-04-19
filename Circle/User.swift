@@ -33,6 +33,10 @@ extension Services.User.Actions {
         let client = ServiceClient(serviceName: "user")
         client.callAction("authenticate_user", extensionField: Services.Registry.Requests.User.authenticateUser(), requestBuilder: requestBuilder) {
             (_, _, wrapped, error) in
+            println(wrapped?.response?.result.extensionsAreInitialized())
+            println(wrapped?.response?.result.extensionRegistry)
+            println(wrapped?.response?.result.getExtension(Services.Registry.Responses.User.authenticateUser()))
+            println(wrapped?.response?.result.getExtension(Services.Registry.Requests.User.authenticateUser()))
             let response = wrapped?.response?.result.getExtension(Services.Registry.Requests.User.authenticateUser()) as? Services.User.Actions.AuthenticateUser.ResponseV1
             completionHandler?(user: response?.user, token: response?.token, newUser: response?.newUser, error: error)
         }
