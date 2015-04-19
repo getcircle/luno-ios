@@ -57,7 +57,6 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework 'SSKeychain.framework'
   install_framework 'UIViewPlusPosition.framework'
   install_framework 'VENTouchLock.framework'
-  install_framework 'google_plus_ios_sdk.framework'
   install_framework 'libPhoneNumber_iOS.framework'
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
@@ -70,6 +69,5 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework 'SSKeychain.framework'
   install_framework 'UIViewPlusPosition.framework'
   install_framework 'VENTouchLock.framework'
-  install_framework 'google_plus_ios_sdk.framework'
   install_framework 'libPhoneNumber_iOS.framework'
 fi
