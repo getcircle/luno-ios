@@ -71,7 +71,7 @@ extension Request {
             
             let serviceResponse = Soa.ServiceResponseV1.parseFromData(
                 data!,
-                extensionRegistry: Services.Registry.Requests.RequestsRoot.sharedInstance.extensionRegistry
+                extensionRegistry: Services.Registry.Responses.ResponsesRoot.sharedInstance.extensionRegistry
             )
             return (serviceResponse, nil)
         }
