@@ -15,6 +15,7 @@ func ==(lhs: Card, rhs: Card) -> Bool {
 
 class Card: Equatable {
 
+    var allowEditingContent = false
     var cardIndex = 0
     var contentCount: Int
     var metaData: AnyObject?

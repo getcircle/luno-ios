@@ -75,6 +75,7 @@ class ProfileDetailDataSource: CardDataSource {
         sections.append(getSkillsSection())
         sections.append(getManagerSection())
         sections.extend(getOfficeSections())
+        sections.append(getInterestsSection())
         sections.append(getBasicInfoSection())
         sections.append(getWorkExperienceSection())
         sections.append(getEducationSection())
@@ -201,7 +202,7 @@ class ProfileDetailDataSource: CardDataSource {
     private func getSkillsSection() -> Section {
         let sectionItems = [
             SectionItem(
-                title: "Expertise",
+                title: AppStrings.ProfileSectionExpertiseTitle,
                 container: "skills",
                 containerKey: "name",
                 contentType: .Skills,
@@ -212,10 +213,24 @@ class ProfileDetailDataSource: CardDataSource {
         return Section(title: AppStrings.ProfileSectionExpertiseTitle, items: sectionItems, cardType: .Skills, addCardHeader: true, allowEmptyContent: true)
     }
     
+    private func getInterestsSection() -> Section {
+        let sectionItems = [
+            SectionItem(
+                title: AppStrings.ProfileSectionInterestsTitle,
+                container: "interests",
+                containerKey: "name",
+                contentType: .Interests,
+                image: nil
+            )
+        ]
+        
+        return Section(title: AppStrings.ProfileSectionInterestsTitle, items: sectionItems, cardType: .Tags, addCardHeader: true, allowEmptyContent: true)
+    }
+    
     private func getEducationSection() -> Section {
         let sectionItems = [
             SectionItem(
-                title: "Education",
+                title: AppStrings.ProfileSectionEducationTitle,
                 container: "education",
                 containerKey: "name",
                 contentType: .Education,
@@ -228,7 +243,7 @@ class ProfileDetailDataSource: CardDataSource {
     private func getWorkExperienceSection() -> Section {
         let sectionItems = [
             SectionItem(
-                title: "Experience",
+                title: AppStrings.ProfileSectionExperienceTitle,
                 container: "position",
                 containerKey: "title",
                 contentType: .Position,
@@ -271,10 +286,8 @@ class ProfileDetailDataSource: CardDataSource {
                 addItemToCard(item, card: sectionCard)
             }
             
-            if sectionCard.content.count > 0 ||
-                (section.allowEmptyContent && isProfileLoggedInUserProfile()) || 
-                sectionCard.type == .Placeholder
-            {
+            sectionCard.allowEditingContent = section.allowEmptyContent && isProfileLoggedInUserProfile() && self is CurrentUserProfileDetailDataSource
+            if sectionCard.content.count > 0 || sectionCard.allowEditingContent || sectionCard.type == .Placeholder {
                 appendCard(sectionCard)
             }
         }
@@ -288,6 +301,8 @@ class ProfileDetailDataSource: CardDataSource {
             addEducationItemToCard(item, card: card)
         case .KeyValue:
             addKeyValueItemToCard(item, card: card)
+        case .Tags:
+            addTagsItemToCard(item, card: card)
         case .Profiles:
             addOfficeTeamManagerItemToCard(item, card: card)
         case .Position:

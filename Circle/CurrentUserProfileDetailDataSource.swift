@@ -77,12 +77,8 @@ class CurrentUserProfileDetailDataSource: ProfileDetailDataSource {
             profileHeader.profileEditImageButtonDelegate = editImageButtonDelegate
         }
         
-        if sections.count > 0 && (indexPath.section - 1) >= 0 {
-            if (sections[indexPath.section - 1].allowEmptyContent) {
-                if let headerView = header as? ProfileSectionHeaderCollectionReusableView {
-                    headerView.showAddEditButton = true
-                }
-            }
+        if let headerView = header as? ProfileSectionHeaderCollectionReusableView, card = cardAtSection(indexPath.section) where card.allowEditingContent {
+            headerView.showAddEditButton = true
         }
     }
 }

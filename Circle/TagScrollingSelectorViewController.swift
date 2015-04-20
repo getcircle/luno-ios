@@ -303,6 +303,7 @@ class TagScrollingSelectorViewController:
         if interestName != "" {
             var interestBuilderObject = Services.Profile.Containers.TagV1.builder()
             interestBuilderObject.name = interestName
+            interestBuilderObject.tagType = .Interest
             return interestBuilderObject.build()
         }
         

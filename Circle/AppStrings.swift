@@ -69,6 +69,8 @@ struct AppStrings {
     static let ProfileSectionExperienceTitle = NSLocalizedString("Experience", comment: "Title of the section which shows a user's experience")
     static let ProfileSectionEducationTitle = NSLocalizedString("Education", comment: "Title of the section which shows a user's education")
     static let ProfileSectionExpertiseTitle = NSLocalizedString("Expertise", comment: "Title of the section which shows a user's expertise")
+    static let ProfileSectionInterestsTitle = NSLocalizedString("Interests", comment: "Title of the section which shows a user's interests")
+
     
     static let QuickActionNoneLabel = ""
     static let QuickActionCallLabel = NSLocalizedString("Call", comment: "Title for button used to initiate a call")
