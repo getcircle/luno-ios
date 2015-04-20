@@ -74,22 +74,23 @@ class ContactInfoViewController: CircleAlertViewController, UICollectionViewDele
     // MARK: - UICollectionViewDelegate
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        let contactMethod = profile.contactMethods[indexPath.row]
-        switch contactMethod.contactMethodType {
-        case .Email:
-            presentMailViewController(
-                [contactMethod.value],
-                subject: "Hey",
-                messageBody: "",
-                completionHandler: nil
-            )
-        case .CellPhone, .Phone:
-            if let phoneURL = NSURL(string: NSString(format: "tel://%@", contactMethod.value.removePhoneNumberFormatting()) as String) {
-                UIApplication.sharedApplication().openURL(phoneURL)
+        if let (contactMethodType, contactMethodValue) = collectionViewDataSource.contactMethodTypeAndValueAtIndexPath(indexPath) {
+            switch contactMethodType {
+            case .Email:
+                presentMailViewController(
+                    [contactMethodValue],
+                    subject: "Hey",
+                    messageBody: "",
+                    completionHandler: nil
+                )
+            case .CellPhone, .Phone:
+                if let phoneURL = NSURL(string: NSString(format: "tel://%@", contactMethodValue.removePhoneNumberFormatting()) as String) {
+                    UIApplication.sharedApplication().openURL(phoneURL)
+                }
+                
+            default:
+                break
             }
-            
-        default:
-            break
         }
     }
     

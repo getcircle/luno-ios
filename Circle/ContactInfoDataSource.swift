@@ -55,4 +55,16 @@ class ContactInfoDataSource: CardDataSource {
         return KeyValueCollectionViewCell.height * CGFloat((profile.contactMethods.count + 1))
     }
     
+    func contactMethodTypeAndValueAtIndexPath(indexPath: NSIndexPath) -> (Services.Profile.Containers.ContactMethodV1.ContactMethodTypeV1, String)? {
+        
+        if indexPath.row == 0 {
+            return (Services.Profile.Containers.ContactMethodV1.ContactMethodTypeV1.Email, profile.email)
+        }
+        else if (indexPath.row - 1) < profile.contactMethods.count {
+            let contactMethod = profile.contactMethods[indexPath.row - 1]
+            return (contactMethod.contactMethodType, contactMethod.value)
+        }
+        
+        return nil
+    }
 }
