@@ -180,7 +180,7 @@ class CircleImageView: UIImageView {
     }
     
     private func addImageLabelForProfile(profile: Services.Profile.Containers.ProfileV1) {
-        if addLabelIfImageLoadingFails {
+        if let imageID = imageProfileIdentifier where addLabelIfImageLoadingFails && imageID == profile.id {
             imageText = profile.firstName[0] + profile.lastName[0]
             var appProfileImageBackgroundColor = ProfileColorsHolder.colors[profile.id] ?? UIColor.appProfileImageBackgroundColor()
             ProfileColorsHolder.colors[profile.id] = appProfileImageBackgroundColor
