@@ -48,9 +48,9 @@ code_sign() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_framework 'AFNetworking.framework'
   install_framework 'AMScrollingNavbar.framework'
   install_framework 'Alamofire.framework'
+  install_framework 'Kingfisher.framework'
   install_framework 'Locksmith.framework'
   install_framework 'Mixpanel.framework'
   install_framework 'PureLayout.framework'
@@ -60,9 +60,9 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework 'libPhoneNumber_iOS.framework'
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_framework 'AFNetworking.framework'
   install_framework 'AMScrollingNavbar.framework'
   install_framework 'Alamofire.framework'
+  install_framework 'Kingfisher.framework'
   install_framework 'Locksmith.framework'
   install_framework 'Mixpanel.framework'
   install_framework 'PureLayout.framework'
