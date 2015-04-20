@@ -87,8 +87,7 @@ extension UIView {
     }
     
     func addActivityIndicator(color: UIColor = UIColor.appActivityIndicatorViewColor(), start: Bool = true) -> CircleActivityIndicatorView {
-        var activityIndicatorView = CircleActivityIndicatorView()
-        activityIndicatorView.tintColor = color
+        var activityIndicatorView = CircleActivityIndicatorView(tintColor: color)
         activityIndicatorView.hidesWhenStopped = true
         if start {
             activityIndicatorView.startAnimating()

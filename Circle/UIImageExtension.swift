@@ -24,4 +24,26 @@ extension UIImage {
     func templateImage() -> UIImage {
         return imageWithRenderingMode(.AlwaysTemplate)
     }
+    
+    /*
+    * This function tints an image and it should be used only when the default implementation
+    * does not support tinting images. E.g., animated images.
+    */
+    func imageWithTintColor(tintColor: UIColor, scale: CGFloat) -> UIImage {
+        UIGraphicsBeginImageContextWithOptions(size, false, scale)
+        let context = UIGraphicsGetCurrentContext()
+        CGContextSetBlendMode(context, kCGBlendModeNormal)
+        CGContextSetAlpha(context, 1)
+        
+        let rect = CGRectMake(0.0, 0.0, size.width, size.height)
+        CGContextBeginTransparencyLayerWithRect(context, rect, nil)
+        tintColor.setFill()
+        drawInRect(rect)
+        UIRectFillUsingBlendMode(rect, kCGBlendModeSourceIn)
+        CGContextEndTransparencyLayer(context)
+        
+        let tintedImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return tintedImage
+    }
 }

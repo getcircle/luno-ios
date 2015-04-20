@@ -246,7 +246,6 @@ class AuthViewController: UIViewController, GIDSignInDelegate {
         googleSignInButtonText = googleSignInButton.titleLabel?.text
         googleSignInButton.setCustomAttributedTitle("", forState: .Normal)
         if activityIndicator == nil {
-            // TODO this should be white
             activityIndicator = googleSignInButton.addActivityIndicator(color: UIColor.whiteColor(), start: false)
         }
         activityIndicator?.startAnimating()

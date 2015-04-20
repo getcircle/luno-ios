@@ -19,10 +19,9 @@ class CircleActivityIndicatorView: UIImageView {
     class var width: CGFloat {
         return 40.0
     }
-
+    
     init() {
         super.init(frame: CGRectZero)
-        customInit()
     }
     
     override init(frame: CGRect) {
@@ -35,13 +34,19 @@ class CircleActivityIndicatorView: UIImageView {
         customInit()
     }
     
+    convenience init(tintColor withTintColor: UIColor) {
+        self.init()
+        tintColor = withTintColor
+        customInit()
+    }
+    
     private func customInit() {
         var animatedImages = [UIImage]()
         
         for i in 0...59 {
             let imageName = "Loader_000" + (i <= 9 ? "0" : "") + String(i)
             animatedImages.append(
-                UIImage(named: imageName)!.imageWithRenderingMode(.AlwaysTemplate)
+                UIImage(named: imageName)!.imageWithRenderingMode(.Automatic).imageWithTintColor(tintColor, scale: contentScaleFactor)
             )
         }
 
