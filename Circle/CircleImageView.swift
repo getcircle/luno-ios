@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import AFNetworking
+import Kingfisher
 import ProtobufRegistry
 
 class CircleImageView: UIImageView {
@@ -64,146 +64,143 @@ class CircleImageView: UIImageView {
         setImageLabelFont()
     }
 
-    private func updateAcceptableContentTypes() {
-        let serializer = AFImageResponseSerializer()
-        serializer.acceptableContentTypes = serializer.acceptableContentTypes.union(["image/jpg", "image/pjpeg"])
-        imageResponseSerializer = serializer
-    }
-
     func setImageWithProfile(profile: Services.Profile.Containers.ProfileV1, successHandler: ((image: UIImage) -> Void)? = nil) {
-        let request = NSURLRequest(URL: NSURL(string: profile.imageUrl)!)
-        updateAcceptableContentTypes()
-        
-        if let cachedImage = UIImageView.sharedImageCache().cachedImageForRequest(request) {
-            if let successCallback = successHandler {
-                successCallback(image: cachedImage)
+        if let imageURL = NSURL(string: profile.imageUrl) where profile.imageUrl.trimWhitespace() != "" {
+            let isImageCached = isImageInCache(imageURL)
+            if !isImageCached {
+                transform = CGAffineTransformMakeScale(0.0, 0.0)
             }
-            else {
-                image = cachedImage
-            }
-        }
-        else {
-            transform = CGAffineTransformMakeScale(0.0, 0.0)
-            setImageWithURLRequest(request,
-                placeholderImage: UIImage.imageFromColor(UIColor.darkGrayColor(), withRect: bounds),
-                success: { (request, response, image) -> Void in
-                    
-                    if let imageID = self.imageProfileIdentifier {
-                        if imageID != profile.id {
+            
+            kf_setImageWithURL(imageURL,
+                placeholderImage: UIImage.imageFromColor(UIColor.lightGrayColor(), withRect: bounds),
+                options: KingfisherOptions.None,
+                progressBlock: nil,
+                completionHandler: { (image, error, imageURL) -> Void in
+                    if let image = image where error == nil {
+                        if let imageID = self.imageProfileIdentifier {
+                            if imageID != profile.id {
+                                self.transform = CGAffineTransformIdentity
+                                return
+                            }
+                        }
+                        
+                        if let successCallback = successHandler {
                             self.transform = CGAffineTransformIdentity
-                            return
+                            successCallback(image: image)
+                        }
+                        else {
+                            self.image = image
+                            self.makeImageVisible(!isImageCached)
                         }
                     }
-                    
-                    if let successCallback = successHandler {
-                        self.transform = CGAffineTransformIdentity
-                        successCallback(image: image)
-                    }
                     else {
-                        self.image = image
-                        self.makeImageVisible(true)
+                        self.addImageLabelForProfile(profile)
+                        self.makeImageVisible(false)
+                        println("failed to fetch image for profile: \(profile.fullName) - \(profile.imageUrl) error: \(error?.localizedDescription)")
                     }
-                },
-                failure: { (request, response, error) -> Void in
-                    if self.addLabelIfImageLoadingFails {
-                        self.imageText = profile.firstName[0] + profile.lastName[0]
-                        var appProfileImageBackgroundColor = ProfileColorsHolder.colors[profile.id] ?? UIColor.appProfileImageBackgroundColor()
-                        ProfileColorsHolder.colors[profile.id] = appProfileImageBackgroundColor
-                        self.imageLabel.backgroundColor = appProfileImageBackgroundColor
-                    }
-                    
-                    self.makeImageVisible(false)
-                    println("failed to fetch image for profile: \(profile.fullName) - \(profile.imageUrl) error: \(error.localizedDescription)")
                 }
             )
+        }
+        else {
+            addImageLabelForProfile(profile)
         }
     }
     
     func setImageWithLocation(location: Services.Organization.Containers.LocationV1, successHandler: ((image: UIImage) -> Void)? = nil) {
-        let request = NSURLRequest(URL: NSURL(string: location.imageUrl)!)
-        updateAcceptableContentTypes()
-        
-        if let cachedImage = UIImageView.sharedImageCache().cachedImageForRequest(request) {
-            if let successCallback = successHandler {
-                successCallback(image: cachedImage)
+        if let imageURL = NSURL(string: location.imageUrl) where location.imageUrl.trimWhitespace() != "" {
+            let isImageCached = isImageInCache(imageURL)
+            if !isImageCached {
+                transform = CGAffineTransformMakeScale(0.0, 0.0)
             }
-            else {
-                image = cachedImage
-            }
-        }
-        else {
-            transform = CGAffineTransformMakeScale(0.0, 0.0)
-            setImageWithURLRequest(request,
-                placeholderImage: UIImage.imageFromColor(UIColor.darkGrayColor(), withRect: bounds),
-                success: { (request, response, image) -> Void in
-                    if let successCallback = successHandler {
-                        self.transform = CGAffineTransformIdentity
-                        successCallback(image: image)
+            kf_setImageWithURL(imageURL,
+                placeholderImage: UIImage.imageFromColor(UIColor.lightGrayColor(), withRect: bounds),
+                options: KingfisherOptions.None,
+                progressBlock: nil,
+                completionHandler: { (image, error, imageURL) -> Void in
+                    if let image = image where error == nil {
+                        if let successCallback = successHandler {
+                            self.transform = CGAffineTransformIdentity
+                            successCallback(image: image)
+                        }
+                        else {
+                            self.image = image
+                            if !isImageCached {
+                                self.makeImageVisible(!isImageCached)
+                            }
+                        }
                     }
                     else {
-                        self.image = image
-                        self.makeImageVisible(true)
+                        self.addImageLabelForLocation(location)
+                        self.makeImageVisible(false)
+                        println("failed to fetch image for location: \(location.name) - \(location.imageUrl) error: \(error?.localizedDescription)")
                     }
-                },
-                failure: { (request, response, error) -> Void in
-                    if self.addLabelIfImageLoadingFails {
-                        self.imageText = location.name[0]
-                        self.imageLabel.backgroundColor = UIColor.appProfileImageBackgroundColor()
-                    }
-                    
-                    self.makeImageVisible(false)
-                    println("failed to fetch image for location: \(location.name) - \(location.imageUrl) error: \(error.localizedDescription)")
                 }
             )
+        }
+        else {
+            addImageLabelForLocation(location)
         }
     }
     
     func setImageWithURL(url: NSURL, animated: Bool, successHandler: ((image: UIImage) -> Void)? = nil) {
-        let request = NSURLRequest(URL: url)
-        updateAcceptableContentTypes()
-        if animated {
+        var shouldAnimate = animated
+        let isImageCached = isImageInCache(url)
+        shouldAnimate = isImageCached ? false : shouldAnimate
+        if shouldAnimate {
             alpha = 0.0
         }
         
-        if let cachedImage = UIImageView.sharedImageCache().cachedImageForRequest(request) {
-            if let successCallback = successHandler {
-                successCallback(image: cachedImage)
-            }
-            else {
-                image = cachedImage
-                if animated {
-                    UIView.animateWithDuration(0.3, animations: { () -> Void in
-                        self.alpha = 1.0
-                    })
-                }
-            }
-        } else {
-            setImageWithURLRequest(request,
-                placeholderImage: UIImage.imageFromColor(UIColor.darkGrayColor(), withRect: bounds),
-                success: { (request, response, image) -> Void in
+        kf_setImageWithURL(url,
+            placeholderImage: UIImage.imageFromColor(UIColor.lightGrayColor(), withRect: bounds),
+            options: KingfisherOptions.None,
+            progressBlock: nil,
+            completionHandler: { (image, error, imageURL) -> Void in
+                if let image = image where error == nil {
                     if let successCallback = successHandler {
                         successCallback(image: image)
                     }
                     else {
                         self.image = image
                     }
-                    if animated {
-                        UIView.animateWithDuration(0.3, animations: { () -> Void in
-                            self.alpha = 1.0
-                        })
-                    }
-                },
-                failure: nil
+                    UIView.animateWithDuration(shouldAnimate ? 0.3 : 0.0, animations: { () -> Void in
+                        self.alpha = 1.0
+                    })
+                }
+            }
+        )
+    }
+    
+    func setImageWithProfileImageURL(profileImageURL: String) {
+        if let imageURL = NSURL(string: profileImageURL) {
+            kf_setImageWithURL(
+                imageURL,
+                placeholderImage: UIImage.imageFromColor(UIColor.lightGrayColor(), withRect: bounds)
             )
         }
     }
     
-    func setImageWithProfileImageURL(profileImageURL: String) {
-        updateAcceptableContentTypes()
-        setImageWithURL(
-            NSURL(string: profileImageURL),
-            placeholderImage: UIImage.imageFromColor(UIColor.darkGrayColor(), withRect: bounds)
-        )
+    private func addImageLabelForProfile(profile: Services.Profile.Containers.ProfileV1) {
+        if addLabelIfImageLoadingFails {
+            imageText = profile.firstName[0] + profile.lastName[0]
+            var appProfileImageBackgroundColor = ProfileColorsHolder.colors[profile.id] ?? UIColor.appProfileImageBackgroundColor()
+            ProfileColorsHolder.colors[profile.id] = appProfileImageBackgroundColor
+            imageLabel.backgroundColor = appProfileImageBackgroundColor
+        }
+    }
+    
+    private func addImageLabelForLocation(location: Services.Organization.Containers.LocationV1) {
+        if self.addLabelIfImageLoadingFails {
+            self.imageText = location.name[0]
+            self.imageLabel.backgroundColor = UIColor.appProfileImageBackgroundColor()
+        }
+    }
+    
+    private func isImageInCache(url: NSURL) -> Bool {
+        if let urlString = url.absoluteString {
+            return KingfisherManager.sharedManager.cache.isImageCachedForKey(urlString).cached
+        }
+        
+        return false
     }
     
     private func makeImageVisible(animated: Bool) {

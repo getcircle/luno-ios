@@ -35,6 +35,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Register app level notifications
         registerNotifications()
+        
+        // Configure image cache
+        setupImageCache()
 
         return true
     }
