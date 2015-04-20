@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
@@ -56,8 +56,8 @@
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Co-founder" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="Raz-vM-IgD" userLabel="TitleNavLabel">
-                            <rect key="frame" x="201" y="377" width="73" height="16"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Really really really big title for people who are founders, engineers, designers, etc and want to tell the world" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="Raz-vM-IgD" userLabel="TitleNavLabel">
+                            <rect key="frame" x="31" y="377" width="413" height="16"/>
                             <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
@@ -86,7 +86,7 @@
                             </constraints>
                         </imageView>
                         <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hdG-v4-wEq" userLabel="DaylightIndicatorNavImage">
-                            <rect key="frame" x="186" y="380" width="10" height="11"/>
+                            <rect key="frame" x="16" y="380" width="10" height="11"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="11" id="ISW-Qi-9Tg"/>
                                 <constraint firstAttribute="width" constant="10" id="Kol-ug-wct"/>
@@ -126,6 +126,8 @@
                         <constraint firstAttribute="bottom" secondItem="ab6-6x-tgQ" secondAttribute="bottom" id="DfH-3r-s95"/>
                         <constraint firstItem="1Tu-Zx-9yR" firstAttribute="top" secondItem="GGm-ME-NAZ" secondAttribute="bottom" constant="-3" id="Gpm-JD-Y0c"/>
                         <constraint firstAttribute="bottom" secondItem="zJL-k5-Ada" secondAttribute="bottom" constant="22" id="Gpu-y0-Hjt"/>
+                        <constraint firstItem="Raz-vM-IgD" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="JUx-bd-ahe" secondAttribute="leading" constant="30" id="HsL-an-SSV"/>
+                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="GGm-ME-NAZ" secondAttribute="trailing" constant="15" id="L4T-g7-5tl"/>
                         <constraint firstItem="Raz-vM-IgD" firstAttribute="leading" secondItem="hdG-v4-wEq" secondAttribute="trailing" constant="5" id="Pev-Fs-dvK"/>
                         <constraint firstItem="GGm-ME-NAZ" firstAttribute="leading" secondItem="JUx-bd-ahe" secondAttribute="leading" constant="30" id="Q2H-Rz-j8c"/>
                         <constraint firstAttribute="trailing" secondItem="GGm-ME-NAZ" secondAttribute="trailing" constant="30" id="UkJ-Vb-niE"/>
@@ -137,10 +139,12 @@
                         <constraint firstItem="1Tu-Zx-9yR" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="JUx-bd-ahe" secondAttribute="leading" constant="15" id="dVp-vy-znz"/>
                         <constraint firstItem="zJL-k5-Ada" firstAttribute="trailing" secondItem="Raz-vM-IgD" secondAttribute="trailing" id="gur-ii-eRs"/>
                         <constraint firstItem="kX0-a4-Q8w" firstAttribute="centerX" secondItem="xmj-MC-afc" secondAttribute="centerX" constant="-40" id="naQ-Uz-eTp"/>
+                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Raz-vM-IgD" secondAttribute="trailing" constant="30" id="oFW-vf-EO4"/>
                         <constraint firstItem="Raz-vM-IgD" firstAttribute="top" secondItem="zJL-k5-Ada" secondAttribute="bottom" id="oQg-mP-8Mk"/>
                         <constraint firstItem="GGm-ME-NAZ" firstAttribute="top" secondItem="1Tu-Zx-9yR" secondAttribute="bottom" constant="-2" id="smn-TP-dV4"/>
                         <constraint firstItem="zJL-k5-Ada" firstAttribute="leading" secondItem="JUx-bd-ahe" secondAttribute="leading" constant="30" id="wTS-Dm-fFK"/>
                         <constraint firstItem="kX0-a4-Q8w" firstAttribute="centerY" secondItem="xmj-MC-afc" secondAttribute="centerY" id="yju-DX-RIW"/>
+                        <constraint firstItem="GGm-ME-NAZ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="JUx-bd-ahe" secondAttribute="leading" constant="15" id="zVE-Z1-qvJ"/>
                         <constraint firstItem="GGm-ME-NAZ" firstAttribute="leading" secondItem="ces-e9-sN5" secondAttribute="trailing" constant="5" id="zgR-0y-z6k"/>
                     </constraints>
                     <variation key="default">
