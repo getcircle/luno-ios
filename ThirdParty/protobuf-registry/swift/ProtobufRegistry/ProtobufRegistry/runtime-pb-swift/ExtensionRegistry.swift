@@ -65,6 +65,7 @@ public class ExtensionRegistry
         }
         extensionMap![extensions.fieldNumber] = extensions
         classMap[extendedClass] = extensionMap
+        
     }
     
 }

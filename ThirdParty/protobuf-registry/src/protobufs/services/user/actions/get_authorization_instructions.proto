@@ -5,6 +5,7 @@ import "protobufs/services/user/containers.proto";
 message RequestV1 {
     optional uint32 version = 1 [default = 1];
     optional services.user.containers.IdentityV1.ProviderV1 provider = 2;
+    optional string login_hint = 3;
 }
 
 message ResponseV1 {

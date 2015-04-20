@@ -24,6 +24,7 @@ public func == (lhs: Services.User.Actions.CompleteAuthorization.ResponseV1, rhs
   fieldCheck = fieldCheck && (lhs.hasUser == rhs.hasUser) && (!lhs.hasUser || lhs.user == rhs.user)
   fieldCheck = fieldCheck && (lhs.hasIdentity == rhs.hasIdentity) && (!lhs.hasIdentity || lhs.identity == rhs.identity)
   fieldCheck = fieldCheck && (lhs.hasNewUser == rhs.hasNewUser) && (!lhs.hasNewUser || lhs.newUser == rhs.newUser)
+  fieldCheck = fieldCheck && (lhs.hasOauthSdkDetails == rhs.hasOauthSdkDetails) && (!lhs.hasOauthSdkDetails || lhs.oauthSdkDetails == rhs.oauthSdkDetails)
   return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
 }
 
@@ -421,6 +422,7 @@ public extension Services.User.Actions.CompleteAuthorization {
            case "user": return user
            case "identity": return identity
            case "newUser": return newUser
+           case "oauthSdkDetails": return oauthSdkDetails
            default: return nil
            }
     }
@@ -435,6 +437,8 @@ public extension Services.User.Actions.CompleteAuthorization {
     public private(set) var hasNewUser:Bool = false
     public private(set) var newUser:Bool = false
 
+    public private(set) var hasOauthSdkDetails:Bool = false
+    public private(set) var oauthSdkDetails:Services.User.Containers.OAuthSDKDetailsV1!
     required public init() {
          super.init()
     }
@@ -453,6 +457,9 @@ public extension Services.User.Actions.CompleteAuthorization {
       }
       if hasNewUser {
         output.writeBool(4, value:newUser)
+      }
+      if hasOauthSdkDetails {
+        output.writeMessage(5, value:oauthSdkDetails)
       }
       unknownFields.writeToCodedOutputStream(output)
     }
@@ -478,6 +485,11 @@ public extension Services.User.Actions.CompleteAuthorization {
       }
       if hasNewUser {
         serialize_size += newUser.computeBoolSize(4)
+      }
+      if hasOauthSdkDetails {
+          if let varSizeoauthSdkDetails = oauthSdkDetails?.computeMessageSize(5) {
+              serialize_size += varSizeoauthSdkDetails
+          }
       }
       serialize_size += unknownFields.serializedSize()
       memoizedSerializedSize = serialize_size
@@ -536,6 +548,11 @@ public extension Services.User.Actions.CompleteAuthorization {
       if hasNewUser {
         output += "\(indent) newUser: \(newUser) \n"
       }
+      if hasOauthSdkDetails {
+        output += "\(indent) oauthSdkDetails {\n"
+        oauthSdkDetails?.writeDescriptionTo(&output, indent:"\(indent)  ")
+        output += "\(indent) }\n"
+      }
       unknownFields.writeDescriptionTo(&output, indent:indent)
     }
     override public var hashValue:Int {
@@ -556,6 +573,11 @@ public extension Services.User.Actions.CompleteAuthorization {
             }
             if hasNewUser {
                hashCode = (hashCode &* 31) &+ newUser.hashValue
+            }
+            if hasOauthSdkDetails {
+                if let hashValueoauthSdkDetails = oauthSdkDetails?.hashValue {
+                    hashCode = (hashCode &* 31) &+ hashValueoauthSdkDetails
+                }
             }
             hashCode = (hashCode &* 31) &+  unknownFields.hashValue
             return hashCode
@@ -695,6 +717,38 @@ public extension Services.User.Actions.CompleteAuthorization {
          builderResult.newUser = false
          return self
     }
+    public var hasOauthSdkDetails:Bool {
+         get {
+             return builderResult.hasOauthSdkDetails
+         }
+    }
+    public var oauthSdkDetails:Services.User.Containers.OAuthSDKDetailsV1! {
+         get {
+             return builderResult.oauthSdkDetails
+         }
+         set (value) {
+             builderResult.hasOauthSdkDetails = true
+             builderResult.oauthSdkDetails = value
+         }
+    }
+    public func setOauthSdkDetails(value:Services.User.Containers.OAuthSDKDetailsV1!)-> Services.User.Actions.CompleteAuthorization.ResponseV1Builder {
+      self.oauthSdkDetails = value
+      return self
+    }
+    public func mergeOauthSdkDetails(value:Services.User.Containers.OAuthSDKDetailsV1) -> Services.User.Actions.CompleteAuthorization.ResponseV1Builder {
+      if (builderResult.hasOauthSdkDetails) {
+        builderResult.oauthSdkDetails = Services.User.Containers.OAuthSDKDetailsV1.builderWithPrototype(builderResult.oauthSdkDetails).mergeFrom(value).buildPartial()
+      } else {
+        builderResult.oauthSdkDetails = value
+      }
+      builderResult.hasOauthSdkDetails = true
+      return self
+    }
+    public func clearOauthSdkDetails() -> Services.User.Actions.CompleteAuthorization.ResponseV1Builder {
+      builderResult.hasOauthSdkDetails = false
+      builderResult.oauthSdkDetails = nil
+      return self
+    }
     override public var internalGetResult:GeneratedMessage {
          get {
             return builderResult
@@ -730,6 +784,9 @@ public extension Services.User.Actions.CompleteAuthorization {
       }
       if other.hasNewUser {
            newUser = other.newUser
+      }
+      if (other.hasOauthSdkDetails) {
+          mergeOauthSdkDetails(other.oauthSdkDetails)
       }
       mergeUnknownFields(other.unknownFields)
       return self
@@ -767,6 +824,14 @@ public extension Services.User.Actions.CompleteAuthorization {
 
         case 32 :
           newUser = input.readBool()
+
+        case 42 :
+          var subBuilder:Services.User.Containers.OAuthSDKDetailsV1Builder = Services.User.Containers.OAuthSDKDetailsV1.builder()
+          if hasOauthSdkDetails {
+            subBuilder.mergeFrom(oauthSdkDetails)
+          }
+          input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
+          oauthSdkDetails = subBuilder.buildPartial()
 
         default:
           if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {

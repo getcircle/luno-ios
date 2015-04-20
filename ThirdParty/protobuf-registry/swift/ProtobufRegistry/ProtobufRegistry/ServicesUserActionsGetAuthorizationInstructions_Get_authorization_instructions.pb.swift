@@ -10,6 +10,7 @@ public func == (lhs: Services.User.Actions.GetAuthorizationInstructions.RequestV
   var fieldCheck:Bool = (lhs.hashValue == rhs.hashValue)
   fieldCheck = fieldCheck && (lhs.hasVersion == rhs.hasVersion) && (!lhs.hasVersion || lhs.version == rhs.version)
   fieldCheck = fieldCheck && (lhs.hasProvider == rhs.hasProvider) && (!lhs.hasProvider || lhs.provider == rhs.provider)
+  fieldCheck = fieldCheck && (lhs.hasLoginHint == rhs.hasLoginHint) && (!lhs.hasLoginHint || lhs.loginHint == rhs.loginHint)
   return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
 }
 
@@ -47,6 +48,7 @@ public extension Services.User.Actions.GetAuthorizationInstructions {
            switch key {
            case "version": return version
            case "provider": return self.provider
+           case "loginHint": return loginHint
            default: return nil
            }
     }
@@ -56,6 +58,9 @@ public extension Services.User.Actions.GetAuthorizationInstructions {
 
     public private(set) var provider:Services.User.Containers.IdentityV1.ProviderV1 = Services.User.Containers.IdentityV1.ProviderV1.Internal
     public private(set) var hasProvider:Bool = false
+    public private(set) var hasLoginHint:Bool = false
+    public private(set) var loginHint:String = ""
+
     required public init() {
          super.init()
     }
@@ -68,6 +73,9 @@ public extension Services.User.Actions.GetAuthorizationInstructions {
       }
       if hasProvider {
         output.writeEnum(2, value:provider.rawValue)
+      }
+      if hasLoginHint {
+        output.writeString(3, value:loginHint)
       }
       unknownFields.writeToCodedOutputStream(output)
     }
@@ -83,6 +91,9 @@ public extension Services.User.Actions.GetAuthorizationInstructions {
       }
       if (hasProvider) {
         serialize_size += provider.rawValue.computeEnumSize(2)
+      }
+      if hasLoginHint {
+        serialize_size += loginHint.computeStringSize(3)
       }
       serialize_size += unknownFields.serializedSize()
       memoizedSerializedSize = serialize_size
@@ -131,6 +142,9 @@ public extension Services.User.Actions.GetAuthorizationInstructions {
       if (hasProvider) {
         output += "\(indent) provider: \(provider.rawValue)\n"
       }
+      if hasLoginHint {
+        output += "\(indent) loginHint: \(loginHint) \n"
+      }
       unknownFields.writeDescriptionTo(&output, indent:indent)
     }
     override public var hashValue:Int {
@@ -141,6 +155,9 @@ public extension Services.User.Actions.GetAuthorizationInstructions {
             }
             if hasProvider {
                hashCode = (hashCode &* 31) &+ Int(provider.rawValue)
+            }
+            if hasLoginHint {
+               hashCode = (hashCode &* 31) &+ loginHint.hashValue
             }
             hashCode = (hashCode &* 31) &+  unknownFields.hashValue
             return hashCode
@@ -216,6 +233,29 @@ public extension Services.User.Actions.GetAuthorizationInstructions {
          builderResult.provider = .Internal
          return self
       }
+    public var hasLoginHint:Bool {
+         get {
+              return builderResult.hasLoginHint
+         }
+    }
+    public var loginHint:String {
+         get {
+              return builderResult.loginHint
+         }
+         set (value) {
+             builderResult.hasLoginHint = true
+             builderResult.loginHint = value
+         }
+    }
+    public func setLoginHint(value:String)-> Services.User.Actions.GetAuthorizationInstructions.RequestV1Builder {
+      self.loginHint = value
+      return self
+    }
+    public func clearLoginHint() -> Services.User.Actions.GetAuthorizationInstructions.RequestV1Builder{
+         builderResult.hasLoginHint = false
+         builderResult.loginHint = ""
+         return self
+    }
     override public var internalGetResult:GeneratedMessage {
          get {
             return builderResult
@@ -246,6 +286,9 @@ public extension Services.User.Actions.GetAuthorizationInstructions {
       if other.hasProvider {
            provider = other.provider
       }
+      if other.hasLoginHint {
+           loginHint = other.loginHint
+      }
       mergeUnknownFields(other.unknownFields)
       return self
     }
@@ -271,6 +314,9 @@ public extension Services.User.Actions.GetAuthorizationInstructions {
           } else {
                unknownFieldsBuilder.mergeVarintField(2, value:Int64(valueIntprovider))
           }
+
+        case 26 :
+          loginHint = input.readString()
 
         default:
           if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
