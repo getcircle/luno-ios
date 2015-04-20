@@ -32,7 +32,9 @@ struct AuthNotifications {
 }
 
 private let AuthPasscode = "AuthPasscode"
-private let LocksmithService = "LocksmithAuthTokenService"
+private let LocksmithMainUserAccount = "LocksmithMainUserAccount"
+private let LocksmithAuthTokenService = "LocksmithAuthTokenService"
+private let LocksmithAuthDetailsService = "LocksmithAuthDetailsService"
 private let DefaultsUserKey = "DefaultsUserKey"
 private let DefaultsProfileKey = "DefaultsProfileKey"
 private let DefaultsLastLoggedInUserEmail = "DefaultsLastLoggedInUserEmail"
@@ -42,15 +44,17 @@ private let DefaultsIdentitiesKey = "DefaultsIdentitiesKey"
 private let GoogleClientID = "1077014421904-pes3pbf96obmp75kb00qouoiqf18u78h.apps.googleusercontent.com"
 private let GoogleServerClientID = "1077014421904-1a697ks3qvtt6975qfqhmed8529en8s2.apps.googleusercontent.com"
 
-class AuthViewController: UIViewController, GIDSignInDelegate {
+class AuthViewController: UIViewController {
 
     @IBOutlet weak var appNameLabel: UILabel!
     @IBOutlet weak var appNameYConstraint: NSLayoutConstraint!
     @IBOutlet weak var tagLineLabel: UILabel!
     @IBOutlet weak var googleSignInButton: UIButton!
     @IBOutlet weak var googleSignInButtonBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var workEmailTextField: UITextField!
     private var activityIndicator: CircleActivityIndicatorView?
     private var googleSignInButtonText: String?
+    private var socialConnectVC = SocialConnectViewController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,7 +63,7 @@ class AuthViewController: UIViewController, GIDSignInDelegate {
         configureAppNameLabel()
         configureView()
         configureGoogleAuthentication()
-        GIDSignIn.sharedInstance().signInSilently()
+        trySilentAuthentication()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -70,7 +74,7 @@ class AuthViewController: UIViewController, GIDSignInDelegate {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        
+        registerNotifications()
         delay(0.3) {
             self.moveAppNameLabel()
         }
@@ -87,13 +91,10 @@ class AuthViewController: UIViewController, GIDSignInDelegate {
     }
     
     private func configureGoogleAuthentication() {
-        let googleSignIn = GIDSignIn.sharedInstance()
-        googleSignIn.clientID = GoogleClientID
-        googleSignIn.serverClientID = GoogleServerClientID
-        googleSignIn.scopes = ["https://www.googleapis.com/auth/plus.login", "https://www.googleapis.com/auth/plus.profile.emails.read"]
-        googleSignIn.delegate = self
 //        googleSignInButton.colorScheme = kGPPSignInButtonColorSchemeLight
 //        googleSignInButton.style = kGPPSignInButtonStyleWide
+        workEmailTextField.attributedPlaceholder = NSAttributedString(string: AppStrings.SignInPlaceHolderText, attributes: [NSForegroundColorAttributeName: UIColor.whiteColor()])
+        workEmailTextField.addBottomBorder(offset: nil, color: UIColor.whiteColor())
         googleSignInButton.titleLabel!.font = UIFont.appSocialCTATitleFont()
         googleSignInButton.addRoundCorners(radius: 2.0)
         googleSignInButton.backgroundColor = UIColor.appTintColor()
@@ -104,20 +105,14 @@ class AuthViewController: UIViewController, GIDSignInDelegate {
         googleSignInButton.addTarget(self, action: "googlePlusSignInButtonTapped:", forControlEvents: .TouchUpInside)
     }
     
-    // MARK: - GIDSignInDelegate
-    
-    func signIn(signIn: GIDSignIn!, didSignInForUser user: GIDGoogleUser!, withError error: NSError!) {
-        if error != nil {
-            hideLoadingState()
-            googleSignInButton.addShakeAnimation()
-        } else {
-            let credentials = Services.User.Actions.AuthenticateUser.RequestV1.CredentialsV1.builder()
-            if let code = user.serverAuthCode {
-                credentials.key = user.serverAuthCode
-            }
-            credentials.secret = user.authentication.idToken
-            login(.Google, credentials: credentials.build())
-        }
+    private func registerNotifications() {
+        // Do not unregister this notification in viewDidDisappear
+        NSNotificationCenter.defaultCenter().addObserver(
+            self,
+            selector: "onSocialAccountConnected:",
+            name: SocialConnectNotifications.onServiceConnectedNotification,
+            object: socialConnectVC
+        )
     }
     
     // MARK: - Initial Animation
@@ -127,6 +122,7 @@ class AuthViewController: UIViewController, GIDSignInDelegate {
         // appNameYConstraint.constant = 200.0
         appNameLabel.setNeedsUpdateConstraints()
         UIView.animateWithDuration(0.7, animations: { () -> Void in
+            self.workEmailTextField.alpha = 1.0
             self.appNameLabel.layoutIfNeeded()
 //            self.googleSignInButton.alpha = 0.0
             self.googleSignInButton.layoutIfNeeded()
@@ -151,12 +147,38 @@ class AuthViewController: UIViewController, GIDSignInDelegate {
     }
     
     // MARK: - Targets
-    
-    func startingGoogleAuthentication(sender: AnyObject!) {
-        showLoadingState()
+
+    func onSocialAccountConnected(notification: NSNotification) {
+        if let
+            userInfo = notification.userInfo,
+            authDetails = userInfo["oauth_sdk_details"] as? Services.User.Containers.OAuthSDKDetailsV1
+        {
+            let credentials = Services.User.Actions.AuthenticateUser.RequestV1.CredentialsV1.builder()
+            credentials.key = authDetails.code
+            credentials.secret = authDetails.idToken
+            let data = [authDetails.data().base64EncodedStringWithOptions(nil): "\(NSDate())"]
+            let error = Locksmith.saveData(data, forUserAccount: LocksmithMainUserAccount, inService: LocksmithAuthDetailsService)
+            if error != nil {
+                println("error saving authDetails: \(error) | authDetails: \(authDetails)")
+            }
+            login(.Google, credentials: credentials.build())
+        }
     }
     
     // MARK: - Helpers
+    
+    private func trySilentAuthentication() {
+        let (data, error) = Locksmith.loadDataForUserAccount(LocksmithMainUserAccount, inService: LocksmithAuthDetailsService)
+        if let authDetailsString = data?.allKeys[0] as? String, data = NSData(base64EncodedString: authDetailsString, options: nil) {
+            let authDetails = Services.User.Containers.OAuthSDKDetailsV1.parseFromData(data)
+            let credentials = Services.User.Actions.AuthenticateUser.RequestV1.CredentialsV1.builder()
+            credentials.key = authDetails.code
+            credentials.secret = authDetails.idToken
+            login(.Google, credentials: credentials.build(), silent: true)
+        } else if error != nil {
+            println("error trying to silently login: \(error)")
+        }
+    }
     
     private static func loadCachedUser() -> Services.User.Containers.UserV1? {
         if let data = NSUserDefaults.standardUserDefaults().objectForKey(DefaultsUserKey) as? NSData {
@@ -221,7 +243,7 @@ class AuthViewController: UIViewController, GIDSignInDelegate {
         let error = Locksmith.updateData(
             [token: "\(NSDate())"],
             forUserAccount: user.id,
-            inService: LocksmithService
+            inService: LocksmithAuthTokenService
         )
         if error != nil {
             // XXX what is the correct way to report errors?
@@ -265,13 +287,19 @@ class AuthViewController: UIViewController, GIDSignInDelegate {
     
     private func login(
         backend: Services.User.Actions.AuthenticateUser.RequestV1.AuthBackendV1,
-        credentials: Services.User.Actions.AuthenticateUser.RequestV1.CredentialsV1
+        credentials: Services.User.Actions.AuthenticateUser.RequestV1.CredentialsV1,
+        silent: Bool = false
     ) {
+        if !silent {
+            showLoadingState()
+        }
         Services.User.Actions.authenticateUser(backend, credentials: credentials) { (user, token, newUser, error) -> Void in
             // TODO we should be explicitly checking the authenticated bool here or existence of a token
             if error != nil {
-                self.hideLoadingState()
-                self.googleSignInButton.addShakeAnimation()
+                if !silent {
+                    self.hideLoadingState()
+                    self.googleSignInButton.addShakeAnimation()
+                }
                 return
             }
 
@@ -349,14 +377,12 @@ class AuthViewController: UIViewController, GIDSignInDelegate {
     static func logOut(shouldDisconnect: Bool? = false) {
         // Clear keychain
         if let user = LoggedInUserHolder.user {
-            Locksmith.deleteDataForUserAccount(user.id, inService: LocksmithService)
+            Locksmith.deleteDataForUserAccount(user.id, inService: LocksmithAuthTokenService)
         }
-        if let disconnect = shouldDisconnect {
-            if disconnect {
-                GIDSignIn.sharedInstance().disconnect()
-            }
+        if let disconnect = shouldDisconnect where disconnect {
+            println("disconnect account")
         }
-        GIDSignIn.sharedInstance().signOut()
+        Locksmith.deleteDataForUserAccount(LocksmithMainUserAccount, inService: LocksmithAuthDetailsService)
         
         // Remove local cached date
         LoggedInUserHolder.profile = nil
@@ -443,7 +469,7 @@ class AuthViewController: UIViewController, GIDSignInDelegate {
             return token
         } else {
             if let user = self.getLoggedInUser() {
-                let (data, error) = Locksmith.loadDataForUserAccount(user.id, inService: LocksmithService)
+                let (data, error) = Locksmith.loadDataForUserAccount(user.id, inService: LocksmithAuthTokenService)
                 if let token = data?.allKeys[0] as? String {
                     cacheTokenAndUserInMemory(token, user: user)
                     return token
@@ -543,7 +569,7 @@ class AuthViewController: UIViewController, GIDSignInDelegate {
     
     static func initializeSplashViewWithPasscodeAndTouchID() {
         VENTouchLock.sharedInstance().setKeychainService(
-            LocksmithService, 
+            LocksmithAuthTokenService, 
             keychainAccount: AuthPasscode, 
             touchIDReason: NSLocalizedString("Touch to unlock circle", comment: "Help text for touch ID alert"),
             passcodeAttemptLimit: 10, 
@@ -554,7 +580,9 @@ class AuthViewController: UIViewController, GIDSignInDelegate {
     // MARK: - IBActions
     
     @IBAction func googlePlusSignInButtonTapped(sender: AnyObject!) {
-        startingGoogleAuthentication(sender)
-        GIDSignIn.sharedInstance().signIn()
+        socialConnectVC.provider = .Google
+        socialConnectVC.loginHint = workEmailTextField.text
+        let socialNavController = UINavigationController(rootViewController: socialConnectVC)
+        navigationController?.presentViewController(socialNavController, animated: true, completion:nil)
     }
 }

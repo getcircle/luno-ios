@@ -14,17 +14,22 @@ struct SocialConnectNotifications {
     
     static let onServiceConnectedNotification = "com.rhlabs.notification:onSocialServiceConnectedNotification"
     static let serviceProviderUserInfoKey = "provider"
+    static let serviceUserUserInfoKey = "user"
+    static let serviceIdentityUserInfoKey = "identity"
+    static let serviceOAuthSDKDetailsUserInfoKey = "oauth_sdk_details"
 }
 
 class SocialConnectViewController: UIViewController, WKNavigationDelegate {
-    
+
     var activityIndicator: CircleActivityIndicatorView!
     var webView: WKWebView!
     var provider: Services.User.Containers.IdentityV1.ProviderV1?
+    var loginHint: String?
     
-    convenience init(provider withProvider: Services.User.Containers.IdentityV1.ProviderV1) {
+    convenience init(provider withProvider: Services.User.Containers.IdentityV1.ProviderV1, loginHint withLoginHint: String? = nil) {
         self.init()
         provider = withProvider
+        loginHint = withLoginHint
     }
 
     override func viewDidLoad() {
@@ -48,11 +53,18 @@ class SocialConnectViewController: UIViewController, WKNavigationDelegate {
     
     private func configureView() {
         view.backgroundColor = UIColor.appViewBackgroundColor()
-        activityIndicator = view.addActivityIndicator(color: UIColor.whiteColor())
+        activityIndicator = view.addActivityIndicator(color: UIColor.appTintColor())
     }
     
     private func configureNavigationBar() {
-        title = AppStrings.SocialConnectLinkedInCTA
+        switch provider! {
+        case .Linkedin:
+            title = AppStrings.SocialConnectLinkedInCTA
+        case .Google:
+            title = AppStrings.SocialConnectGooglePlusCTA
+        default:
+            title = AppStrings.SocialConnectDefaultCTA
+        }
         addCloseButtonWithAction("cancel:")
     }
     
@@ -67,7 +79,7 @@ class SocialConnectViewController: UIViewController, WKNavigationDelegate {
     }
     
     private func loadWebView() {
-        Services.User.Actions.getAuthorizationInstructions(provider!) { (authorizationURL, error) -> Void in
+        Services.User.Actions.getAuthorizationInstructions(provider!, loginHint: loginHint) { (authorizationURL, error) -> Void in
             if let authorizationURL = authorizationURL {
                 let url = NSURL(string: authorizationURL)
                 let request = NSURLRequest(URL: url!)
@@ -82,17 +94,37 @@ class SocialConnectViewController: UIViewController, WKNavigationDelegate {
         let url = navigationAction.request.URL
         if url!.host == ServiceHttpRequest.environment.host && (url!.path!.hasSuffix("success") || url!.path!.hasSuffix("error")) {
             if url!.path!.hasSuffix("success") {
-                println("successfully connected to linkedin")
-                
-                NSNotificationCenter.defaultCenter().postNotificationName(
-                    SocialConnectNotifications.onServiceConnectedNotification, 
-                    object: nil, 
-                    userInfo: [
-                        SocialConnectNotifications.serviceProviderUserInfoKey: NSNumber(int: provider?.rawValue ?? 0)
-                    ]
-                )
+                var user: Services.User.Containers.UserV1?
+                var identity: Services.User.Containers.IdentityV1?
+                var authDetails: Services.User.Containers.OAuthSDKDetailsV1?
+                if
+                    let components = NSURLComponents(URL: url!, resolvingAgainstBaseURL: false),
+                    items = components.queryItems as? [NSURLQueryItem] {
+                    for item in items {
+                        if let value = item.value, data = NSData(base64EncodedString: value, options: nil) {
+                            switch item.name {
+                            case "user": user = Services.User.Containers.UserV1.parseFromData(data)
+                            case "identity": identity = Services.User.Containers.IdentityV1.parseFromData(data)
+                            case "oauth_sdk_details": authDetails = Services.User.Containers.OAuthSDKDetailsV1.parseFromData(data)
+                            default: break
+                            }
+                        }
+                    }
+                }
+                if let user = user, identity = identity, authDetails = authDetails {
+                    NSNotificationCenter.defaultCenter().postNotificationName(
+                        SocialConnectNotifications.onServiceConnectedNotification, 
+                        object: self,
+                        userInfo: [
+                            SocialConnectNotifications.serviceProviderUserInfoKey: NSNumber(int: provider?.rawValue ?? 0),
+                            SocialConnectNotifications.serviceUserUserInfoKey: user,
+                            SocialConnectNotifications.serviceIdentityUserInfoKey: identity,
+                            SocialConnectNotifications.serviceOAuthSDKDetailsUserInfoKey: authDetails
+                        ]
+                    )
+                }
             } else {
-                println("error connecting to linkedin")
+                println("error connecting to provider")
             }
             decisionHandler(.Cancel)
             self.dismiss()

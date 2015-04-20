@@ -20,21 +20,22 @@ class CurrentUserProfileDetailViewController: ProfileDetailViewController,
     private var addImageActionSheet: UIAlertController?
     private var didUploadPhoto = false
     private var imageToUpload: UIImage?
+    private var socialConnectVC = SocialConnectViewController()
     
     convenience init(
         profile withProfile: Services.Profile.Containers.ProfileV1,
         showSettingsButton: Bool = false
     ) {
-            self.init()
-            profile = withProfile
-            dataSource = CurrentUserProfileDetailDataSource(profile: profile)
-            (dataSource as! CurrentUserProfileDetailDataSource).editImageButtonDelegate = self
-            dataSource.cardHeaderDelegate = self
-            delegate = CardCollectionViewDelegate()
-            
-            if showSettingsButton {
-                addSettingsButton()
-            }
+        self.init()
+        profile = withProfile
+        dataSource = CurrentUserProfileDetailDataSource(profile: profile)
+        (dataSource as! CurrentUserProfileDetailDataSource).editImageButtonDelegate = self
+        dataSource.cardHeaderDelegate = self
+        delegate = CardCollectionViewDelegate()
+        
+        if showSettingsButton {
+            addSettingsButton()
+        }
     }
     
     // MARK: - Class Methods
@@ -123,7 +124,7 @@ class CurrentUserProfileDetailViewController: ProfileDetailViewController,
             self,
             selector: "onSocialAccountConnected:",
             name: SocialConnectNotifications.onServiceConnectedNotification,
-            object: nil
+            object: socialConnectVC
         )
     }
 
@@ -147,7 +148,7 @@ class CurrentUserProfileDetailViewController: ProfileDetailViewController,
                 if let contentType = ContentType(rawValue: typeOfCTA) {
                     switch contentType {
                     case .LinkedInConnect:
-                        let socialConnectVC = SocialConnectViewController(provider: .Linkedin)
+                        socialConnectVC.provider = .Linkedin
                         let socialNavController = UINavigationController(rootViewController: socialConnectVC)
                         navigationController?.presentViewController(socialNavController, animated: true, completion:nil)
                         

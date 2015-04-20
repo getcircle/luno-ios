@@ -89,6 +89,7 @@ struct AppStrings {
     static let QuickActionCallPlaceholder = NSLocalizedString("Who do you want to call?", comment: "Placeholder for search field used to search for the person user intends to call")
     static let QuickActionSlackPlaceholder = NSLocalizedString("Who do you want to message?", comment: "Placeholder for search field used to search for the person user intends to send a message")
     
+    static let SocialConnectDefaultCTA = NSLocalizedString("Connect", comment: "Button title for connecting with generic social account")
     static let SocialConnectGooglePlusCTA = NSLocalizedString("Sign in with Google", comment: "Button title for sign in with Google button")
 
     static let SocialConnectLinkedInCTA = NSLocalizedString("Connect with LinkedIn", comment: "Button title for connect with LinkedIn button")
@@ -99,5 +100,6 @@ struct AppStrings {
     static let WelcomeTitleText = NSLocalizedString("Welcome to circle", comment: "Header text for welcoming users to the app")
     static let WelcomeInfoText = NSLocalizedString("The easiest way to access any information on the people, teams, and locations that make up your company.\n\nLets get started by setting up your profile.", comment: "Tag line message shown on welcome view")
     
+    static let SignInPlaceHolderText = NSLocalizedString("Work email address", comment: "Placeholder text indicating text field for entering work email address")
     static let SignOutButtonTitle = NSLocalizedString("Sign out", comment: "Title of sign out button")
 }

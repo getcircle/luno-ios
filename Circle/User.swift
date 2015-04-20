@@ -91,9 +91,12 @@ extension Services.User.Actions {
         }
     }
     
-    static func getAuthorizationInstructions(provider: Services.User.Containers.IdentityV1.ProviderV1, completionHandler: GetAuthorizationInstructionsCompletionHandler?) {
+    static func getAuthorizationInstructions(provider: Services.User.Containers.IdentityV1.ProviderV1, loginHint: String? = nil, completionHandler: GetAuthorizationInstructionsCompletionHandler?) {
         let requestBuilder = Services.User.Actions.GetAuthorizationInstructions.RequestV1.builder()
         requestBuilder.provider = provider
+        if loginHint != nil {
+            requestBuilder.loginHint = loginHint!
+        }
         
         let client = ServiceClient(serviceName: "user")
         client.callAction(
