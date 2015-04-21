@@ -42,6 +42,7 @@ class TagScrollingSelectorViewController:
     private var cachedItemSizes =  [String: CGSize]()
     private var filteredTags = Array<Services.Profile.Containers.TagV1>()
     private var interests = Array<Services.Profile.Containers.TagV1>()
+    private var deletedTags = Dictionary<Int, Services.Profile.Containers.TagV1>()
     private var selectedTags = Dictionary<Int, Services.Profile.Containers.TagV1>()
     private var prototypeCell: TagCollectionViewCell!
     private var searchHeaderView: SearchHeaderView!
@@ -253,7 +254,7 @@ class TagScrollingSelectorViewController:
         let cell = collectionView.cellForItemAtIndexPath(indexPath) as! TagCollectionViewCell
         cell.selectCell(true)
         let interest = filteredTags[indexPath.row]
-        selectedTags[interest.hashValue] = interest
+        selectTag(interest)
         if !interest.hasId {
             interests.append(interest)
         }
@@ -262,8 +263,7 @@ class TagScrollingSelectorViewController:
     func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
         let cell = collectionView.cellForItemAtIndexPath(indexPath) as! TagCollectionViewCell
         cell.unHighlightCell(true)
-        let interest = filteredTags[indexPath.row]
-        selectedTags[interest.hashValue] = nil
+        deleteTag(filteredTags[indexPath.row])
     }
     
     // MARK: - UICollectionViewDelegateFlowLayout
@@ -283,14 +283,24 @@ class TagScrollingSelectorViewController:
     // MARK: - IBActions
     
     @IBAction func save(sender: AnyObject!) {
-        // fire and forget
         if let profile = AuthViewController.getLoggedInUserProfile() {
+            let actionsGroup = dispatch_group_create()
             if selectedTags.count > 0 {
-                Services.Profile.Actions.addTags(profile.id, tags: selectedTags.values.array, completionHandler: nil)
+                dispatch_group_enter(actionsGroup)
+                Services.Profile.Actions.addTags(profile.id, tags: selectedTags.values.array) {(error) -> Void in
+                    dispatch_group_leave(actionsGroup)
+                }
+            }
+            if deletedTags.count > 0 {
+                dispatch_group_enter(actionsGroup)
+                Services.Profile.Actions.removeTags(profile.id, tags: deletedTags.values.array) { (error) -> Void in
+                    dispatch_group_leave(actionsGroup)
+                }
+            }
+            dispatch_group_notify(actionsGroup, GlobalMainQueue) { () -> Void in
+                self.dismissView()
             }
         }
-
-        dismissView()
     }
 
     @IBAction func cancel(sender: AnyObject!) {
@@ -402,5 +412,15 @@ class TagScrollingSelectorViewController:
     private func saveAndNextButtonTapped() {
         let notificationsVC = NotificationsViewController(nibName: "NotificationsViewController", bundle: nil)
         navigationController?.pushViewController(notificationsVC, animated: true)
+    }
+    
+    private func selectTag(tag: Services.Profile.Containers.TagV1) {
+        selectedTags[tag.hashValue] = tag
+        deletedTags[tag.hashValue] = nil
+    }
+    
+    private func deleteTag(tag: Services.Profile.Containers.TagV1) {
+        selectedTags[tag.hashValue] = nil
+        deletedTags[tag.hashValue] = tag
     }
 }

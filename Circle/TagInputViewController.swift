@@ -152,12 +152,13 @@ class TagInputViewController: UIViewController,
     // MARK: - UICollectionViewDelegate
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        var tag: Services.Profile.Containers.TagV1
+        let tag: Services.Profile.Containers.TagV1
         if shouldUseNewTag(indexPath) {
-            selectedTags.append(newTag!)
+            tag = newTag!
         } else {
-            selectedTags.append(suggestedTags[indexPath.row])
+            tag = suggestedTags[indexPath.row]
         }
+        selectedTags.append(tag)
         newTag = nil
         tokenField.reloadData()
         suggestedTags.removeAll(keepCapacity: false)
