@@ -88,12 +88,18 @@ class AuthViewController: UIViewController {
     
     private func configureView() {
         view.backgroundColor = UIColor.appUIBackgroundColor()
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: "didTapView:")
+        view.addGestureRecognizer(tapGestureRecognizer)
     }
     
     private func configureGoogleAuthentication() {
 //        googleSignInButton.colorScheme = kGPPSignInButtonColorSchemeLight
 //        googleSignInButton.style = kGPPSignInButtonStyleWide
-        workEmailTextField.attributedPlaceholder = NSAttributedString(string: AppStrings.SignInPlaceHolderText, attributes: [NSForegroundColorAttributeName: UIColor.whiteColor()])
+        workEmailTextField.attributedPlaceholder = NSAttributedString(
+            string: AppStrings.SignInPlaceHolderText,
+            attributes: [NSForegroundColorAttributeName: UIColor.whiteColor()]
+        )
+        workEmailTextField.tintColor = UIColor.whiteColor()
         workEmailTextField.addBottomBorder(offset: nil, color: UIColor.whiteColor())
         googleSignInButton.titleLabel!.font = UIFont.appSocialCTATitleFont()
         googleSignInButton.addRoundCorners(radius: 2.0)
@@ -147,6 +153,10 @@ class AuthViewController: UIViewController {
     }
     
     // MARK: - Targets
+    
+    func didTapView(sender: AnyObject!) {
+        workEmailTextField.resignFirstResponder()
+    }
 
     func onSocialAccountConnected(notification: NSNotification) {
         if let
