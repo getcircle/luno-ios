@@ -27,6 +27,7 @@ class WebViewController: UIViewController {
         // Do any additional setup after loading the view.
         configureView()
         configureWebView()
+        configureNavBar()
         assert(pageURLToLoad != nil, "URL of the page to be loaded should be set")
         loadPage()
     }
@@ -60,6 +61,12 @@ class WebViewController: UIViewController {
         view.addSubview(webView)
         webView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
     }
+    
+    private func configureNavBar() {
+        if isBeingPresentedModally() {
+            addCloseButtonWithAction("close:")
+        }
+    }
 
     private func loadPage() {
         if let validURL = NSURL(string: pageURLToLoad) {
@@ -85,5 +92,11 @@ class WebViewController: UIViewController {
                 }
             }
         }
+    }
+    
+    // MARK: - IBActions
+    
+    @IBAction func close(sender: AnyObject!) {
+        dismissViewControllerAnimated(true, completion: nil)
     }
 }

@@ -9,8 +9,53 @@
 import UIKit
 import MessageUI
 import ProtobufRegistry
+import StoreKit
 
-class ContactInfoViewController: CircleAlertViewController, UICollectionViewDelegate, MFMailComposeViewControllerDelegate {
+class ContactInfoViewController: CircleAlertViewController, 
+UICollectionViewDelegate, 
+MFMailComposeViewControllerDelegate,
+SKStoreProductViewControllerDelegate {
+
+    // This can come from the backend
+    struct AppURLS {
+        private var nativeAppURL: String?
+        private var webAppURL: String?
+        private var appStoreID: Int?
+        private var appStoreURL: String?
+    }
+    
+    static let appURLByContactMethodType: [Services.Profile.Containers.ContactMethodV1.ContactMethodTypeV1: AppURLS] = [
+        .Hipchat: AppURLS(
+            nativeAppURL: "hipchat://www.hipchat.com/user/%@", 
+            webAppURL: nil, 
+            appStoreID: 418168984,
+            appStoreURL: "https://itunes.apple.com/us/app/hipchat-group-chat-video-file/id418168984?mt=8"
+        ),
+        .Twitter: AppURLS(
+            nativeAppURL: "twitter://user?screen_name=%@", 
+            webAppURL: "http://www.twitter.com/%@", 
+            appStoreID: 333903271,
+            appStoreURL: "https://itunes.apple.com/us/app/twitter/id333903271?mt=8"
+        ),
+        .Facebook: AppURLS(
+            nativeAppURL: "fb-messenger://profile",
+            webAppURL: nil,
+            appStoreID: 454638411,
+            appStoreURL: "https://itunes.apple.com/us/app/facebook-messenger/id454638411?mt=8"
+        ),
+        .Skype: AppURLS(
+            nativeAppURL: "skype:%@",
+            webAppURL: nil,
+            appStoreID: 304878510,
+            appStoreURL: "https://itunes.apple.com/us/app/skype-for-iphone/id304878510?mt=8"
+        ),
+        .Slack: AppURLS(
+            nativeAppURL: "slack://%@",
+            webAppURL: nil,
+            appStoreID: 618783545,
+            appStoreURL: "https://itunes.apple.com/us/app/slack-team-communication/id618783545?mt=8"
+        )
+    ]
     
     var profile: Services.Profile.Containers.ProfileV1!
 
@@ -35,10 +80,7 @@ class ContactInfoViewController: CircleAlertViewController, UICollectionViewDele
         titleLabel.textColor = UIColor.whiteColor()
         titleLabel.font = UIFont.appModalTitleLabelFont()
         titleLabel.textAlignment = .Center
-        let titleText = NSLocalizedString(
-            "Contact Info", 
-            comment: "Title of window showing user's contact info"
-        ).localizedUppercaseString()
+        let titleText = AppStrings.TitleContactInfoView.localizedUppercaseString()
         titleLabel.attributedText = NSAttributedString(
             string: titleText,
             attributes: [
@@ -74,24 +116,124 @@ class ContactInfoViewController: CircleAlertViewController, UICollectionViewDele
     // MARK: - UICollectionViewDelegate
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        if let (contactMethodType, contactMethodValue) = collectionViewDataSource.contactMethodTypeAndValueAtIndexPath(indexPath) {
-            switch contactMethodType {
+        if let contactMethod = collectionViewDataSource.contactMethodAtIndexPath(indexPath) {
+            switch contactMethod.contactMethodType {
             case .Email:
                 presentMailViewController(
-                    [contactMethodValue],
+                    [contactMethod.value],
                     subject: "Hey",
                     messageBody: "",
                     completionHandler: nil
                 )
             case .CellPhone, .Phone:
-                if let phoneURL = NSURL(string: NSString(format: "tel://%@", contactMethodValue.removePhoneNumberFormatting()) as String) {
+                if let phoneURL = NSURL(string: NSString(format: "tel://%@", contactMethod.value.removePhoneNumberFormatting()) as String) {
                     UIApplication.sharedApplication().openURL(phoneURL)
                 }
-                
+
             default:
+                redirectUserToApplication(contactMethod)
                 break
             }
         }
+    }
+    
+    /*
+        Redirects user to a specific service's app, website or app store page.
+    
+        The function checks through all the available options and redirects to the appropriate source.
+        The logic here assumers any native app URLs and website URLs have a placeholder for the user identifier.
+        These URLs are formatted using the NSString(format: "", args...) method.
+    
+        NOTE: This function should probably be part of some util file.
+
+        :param: contactMethod Contact method for which the redirect is being requested
+        :returns: Bool Boolean indicating whether a redirect did happen.
+    */
+    private func redirectUserToApplication(contactMethod: Services.Profile.Containers.ContactMethodV1) -> Bool {
+        // TODO: Add Mixpanel tracking
+        
+        // Check there are some URLs defined for this contact method
+        if let appURLForContactMethodType = self.dynamicType.appURLByContactMethodType[contactMethod.contactMethodType] {
+            
+            // NATIVE APP
+            // Is there a native app URL and can it be opened
+            if let appURL = appURLForContactMethodType.nativeAppURL where appURL.trimWhitespace() != "" {
+                let appURLWithUserIdentifier = NSString(format: appURL, contactMethod.value)
+                if let appNSURL = NSURL(string: appURLWithUserIdentifier as String) where UIApplication.sharedApplication().canOpenURL(appNSURL) {
+                    UIApplication.sharedApplication().openURL(appNSURL)
+                    return true
+                }
+            }
+            
+            // WEB APP
+            // If we got here, we didn't have a valid native URL...now check for a web URL
+            if let webURL = appURLForContactMethodType.webAppURL where webURL.trimWhitespace() != "" {
+                let webURLWithUserIdentifier = NSString(format: webURL, contactMethod.value)
+                if let webNSURL = NSURL(string: webURLWithUserIdentifier as String) {
+                    // Redirect to generic webview controller
+                    let webViewController = WebViewController(pageURL: webURLWithUserIdentifier as String)
+                    let webViewNavigationController = UINavigationController(rootViewController: webViewController)
+                    presentViewController(webViewNavigationController, animated: true, completion: nil)
+                    return true
+                }
+            }
+            
+            // APP STORE
+            // If we got here, we didn't have a valid native app or a web URL...now check for app store ID and URL
+            // Check if we can open the app store view w/o leaving the app
+            if let appStoreID = appURLForContactMethodType.appStoreID {
+                weak var weakSelf = self
+                presentOptionToDownloadAppFromStore(contactMethod, yesButtonHandler: { () -> Void in
+
+                    let productViewController = SKStoreProductViewController()
+                    productViewController.delegate = weakSelf
+                    productViewController.loadProductWithParameters([
+                        SKStoreProductParameterITunesItemIdentifier: NSNumber(integer: appStoreID)
+                    ],
+                    completionBlock: { (loaded, error) -> Void in
+                        if loaded && error == nil {
+                            weakSelf?.presentViewController(productViewController, animated: true, completion: {() -> Void in
+                                UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: false)
+                            })
+                        }
+                    })
+                })
+                
+                return true
+            }
+
+            if let appStoreURL = appURLForContactMethodType.appStoreURL where appStoreURL.trimWhitespace() != "" {
+                if let appStoreNSURL = NSURL(string: appStoreURL) where UIApplication.sharedApplication().canOpenURL(appStoreNSURL) {
+                    presentOptionToDownloadAppFromStore(contactMethod, yesButtonHandler: { () -> Void in
+                        // Redirect to the app store
+                        UIApplication.sharedApplication().openURL(appStoreNSURL)
+                    })
+                    return true
+                }
+            }
+        }
+        
+        return false
+    }
+    
+    private func presentOptionToDownloadAppFromStore(contactMethod: Services.Profile.Containers.ContactMethodV1, yesButtonHandler: () -> Void) {
+        
+        let alertController = UIAlertController(
+            title: NSString(format: AppStrings.TitleDownloadAppAlert, contactMethod.label) as String,
+            message: NSString(format: AppStrings.TextDownloadApp, contactMethod.label) as String,
+            preferredStyle: .Alert
+        )
+        
+        let yesAction = UIAlertAction(title: AppStrings.GenericYesButtonTitle, style: .Default, handler: { (action) -> Void in
+            yesButtonHandler()
+        })
+        alertController.addAction(yesAction)
+        
+        let cancelAction = UIAlertAction(title: AppStrings.GenericNotNowButtonTitle, style: .Cancel, handler: { (action) -> Void in
+            alertController.dismissViewControllerAnimated(true, completion: nil)
+        })
+        alertController.addAction(cancelAction)
+        presentViewController(alertController, animated: true, completion: nil)
     }
     
     // MARK: - MFMailComposeViewControllerDelegate
@@ -102,5 +244,11 @@ class ContactInfoViewController: CircleAlertViewController, UICollectionViewDele
         error: NSError!
         ) {
             dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    // MARK: - SKStoreProductViewControllerDelegate
+    
+    func productViewControllerDidFinish(viewController: SKStoreProductViewController!) {
+        viewController.dismissViewControllerAnimated(true, completion: nil)
     }
 }

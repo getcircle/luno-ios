@@ -38,6 +38,7 @@ struct AppStrings {
     static let GenericGetStartedButtonTitle = NSLocalizedString("Get Started", comment: "Generic button title to start some action")
     static let GenericNextButtonTitle = NSLocalizedString("Next", comment: "Generic button title for moving to next action")
     static let GenericNoThanksButtonTitle = NSLocalizedString("No thanks", comment: "Generic button title for declining an action")
+    static let GenericNotNowButtonTitle = NSLocalizedString("Not now", comment: "Generic button title for declining an action for now")
     static let GenericYesButtonTitle = NSLocalizedString("Yes", comment: "Generic button title for confirming an action")
     static let GenericTryAgainButtonTitle = NSLocalizedString("Try Again", comment: "Generic button title to try some action again")
     
@@ -71,7 +72,6 @@ struct AppStrings {
     static let ProfileSectionExpertiseTitle = NSLocalizedString("Expertise", comment: "Title of the section which shows a user's expertise")
     static let ProfileSectionInterestsTitle = NSLocalizedString("Interests", comment: "Title of the section which shows a user's interests")
 
-    
     static let QuickActionNoneLabel = ""
     static let QuickActionCallLabel = NSLocalizedString("Call", comment: "Title for button used to initiate a call")
     static let QuickActionEmailLabel = NSLocalizedString("Email", comment: "Title for button used to send an email")
@@ -93,7 +93,10 @@ struct AppStrings {
 
     static let SocialConnectLinkedInCTA = NSLocalizedString("Connect with LinkedIn", comment: "Button title for connect with LinkedIn button")
 
+    static let TitleDownloadAppAlert = NSLocalizedString("Download %@ App", comment: "Title of the alert dialog asking user if they would like to download %@ app")
+    static let TitleContactInfoView = NSLocalizedString("Contact Info", comment: "Title of window showing user's contact info")
     static let TextPlaceholderFilterTags = NSLocalizedString("Filter interests", comment: "Placeholder text for filter interests input box")
+    static let TextDownloadApp = NSLocalizedString("We tried opening the %@ app but it looks like you do not have it installed. Would you like to download it from the App Store?", comment: "Message of the alert dialog asking user if they would like to download %@ app")
     
     static let WaitlistInfoText = NSLocalizedString("circle is currently in private beta! You are on our list and we will notify you when your account is ready. Thanks!", comment: "Message indicating that the app is in private beta and the user's request to access it is in progress")
     static let WelcomeTitleText = NSLocalizedString("Welcome to circle", comment: "Header text for welcoming users to the app")

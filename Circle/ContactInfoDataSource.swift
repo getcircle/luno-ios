@@ -28,7 +28,7 @@ class ContactInfoDataSource: CardDataSource {
         // Add explicit row for Work Email
         let emailKeyValueDict: [String: AnyObject] = [
             "key": "work_email",
-            "name": "Email",
+            "name": AppStrings.QuickActionEmailLabel,
             "value": profile.email,
             "type": Int(Services.Profile.Containers.ContactMethodV1.ContactMethodTypeV1.Email.rawValue)
         ]
@@ -55,14 +55,18 @@ class ContactInfoDataSource: CardDataSource {
         return KeyValueCollectionViewCell.height * CGFloat((profile.contactMethods.count + 1))
     }
     
-    func contactMethodTypeAndValueAtIndexPath(indexPath: NSIndexPath) -> (Services.Profile.Containers.ContactMethodV1.ContactMethodTypeV1, String)? {
+    func contactMethodAtIndexPath(indexPath: NSIndexPath) -> Services.Profile.Containers.ContactMethodV1? {
         
         if indexPath.row == 0 {
-            return (Services.Profile.Containers.ContactMethodV1.ContactMethodTypeV1.Email, profile.email)
+            let contactMethodBuilder = Services.Profile.Containers.ContactMethodV1.builder()
+            contactMethodBuilder.label = AppStrings.QuickActionEmailLabel
+            contactMethodBuilder.value = profile.email
+            contactMethodBuilder.contactMethodType = .Email
+            return contactMethodBuilder.build()
         }
         else if (indexPath.row - 1) < profile.contactMethods.count {
             let contactMethod = profile.contactMethods[indexPath.row - 1]
-            return (contactMethod.contactMethodType, contactMethod.value)
+            return contactMethod
         }
         
         return nil
