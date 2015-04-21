@@ -36,17 +36,18 @@ class SocialConnectViewController: UIViewController, WKNavigationDelegate {
         super.viewDidLoad()
         configureView()
         configureNavigationBar()
-        configureWebView()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        configureWebView()
         loadWebView()
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         webView.removeObserver(self, forKeyPath: "loading")
+        webView.removeFromSuperview()
     }
     
     // MARK: - Configuration
