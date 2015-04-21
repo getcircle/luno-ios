@@ -165,7 +165,7 @@ class SettingsViewController: UIViewController, UICollectionViewDelegate, MFMail
                             } else {
                                 if identity.provider == .Google {
                                     self.dismissViewControllerAnimated(true) { () -> Void in
-                                        AuthViewController.logOut(shouldDisconnect: true)
+                                        AuthViewController.logOut()
                                     }
                                 } else {
                                     Services.User.Actions.getIdentities(AuthViewController.getLoggedInUser()!.id) { (identities, error) -> Void in

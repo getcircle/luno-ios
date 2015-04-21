@@ -19,6 +19,7 @@ typealias GetIdentitiesCompletionHandler = (identities: Array<Services.User.Cont
 typealias RecordDeviceCompletionHandler = (device: Services.User.Containers.DeviceV1?, error: NSError?) -> Void
 typealias RequestAccessCompletionHandler = (accessRequest: Services.User.Containers.AccessRequestV1?, error: NSError?) -> Void
 typealias DeleteIdentityCompletionHandler = (error: NSError?) -> Void
+typealias LogoutCompletionHandler = (error: NSError?) -> Void
 
 extension Services.User.Actions {
     
@@ -226,6 +227,18 @@ extension Services.User.Actions {
             let response = wrapped?.response?.result.getExtension(
                 Services.Registry.Responses.User.deleteIdentity()
             ) as? Services.User.Actions.RequestAccess.ResponseV1
+            completionHandler?(error: error)
+        }
+    }
+    
+    static func logout(completionHandler: LogoutCompletionHandler?) {
+        let requestBuilder = Services.User.Actions.Logout.RequestV1.builder()
+        let client = ServiceClient(serviceName: "user")
+        client.callAction(
+            "logout",
+            extensionField: Services.Registry.Requests.User.logout(),
+            requestBuilder: requestBuilder
+        ) { (_, _, wrapped, error) -> Void in
             completionHandler?(error: error)
         }
     }

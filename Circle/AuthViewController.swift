@@ -384,36 +384,38 @@ class AuthViewController: UIViewController {
     
     // MARK: - Log out
     
-    static func logOut(shouldDisconnect: Bool? = false) {
-        // Clear keychain
-        if let user = LoggedInUserHolder.user {
-            Locksmith.deleteDataForUserAccount(user.id, inService: LocksmithAuthTokenService)
+    static func logOut() {
+        Services.User.Actions.logout { (error) in
+            if error != nil {
+                println("error logging user out from server: \(error)")
+            }
+            // Clear keychain
+            if let user = LoggedInUserHolder.user {
+                Locksmith.deleteDataForUserAccount(user.id, inService: LocksmithAuthTokenService)
+            }
+            Locksmith.deleteDataForUserAccount(LocksmithMainUserAccount, inService: LocksmithAuthDetailsService)
+            
+            // Remove local cached date
+            LoggedInUserHolder.profile = nil
+            LoggedInUserHolder.user = nil
+            LoggedInUserHolder.token = nil
+            LoggedInUserHolder.organization = nil
+            ObjectStore.sharedInstance.reset(self)
+            
+            // Remove persistent cached data
+            NSUserDefaults.standardUserDefaults().removeObjectForKey(DefaultsUserKey)
+            NSUserDefaults.standardUserDefaults().removeObjectForKey(DefaultsProfileKey)
+            NSUserDefaults.standardUserDefaults().removeObjectForKey(DefaultsOrganizationKey)
+            
+            // Notify everyone
+            NSNotificationCenter.defaultCenter().postNotificationName(
+                AuthNotifications.onLogoutNotification,
+                object: nil
+            )
+            
+            // Present auth view
+            self.presentAuthViewController()
         }
-        if let disconnect = shouldDisconnect where disconnect {
-            println("disconnect account")
-        }
-        Locksmith.deleteDataForUserAccount(LocksmithMainUserAccount, inService: LocksmithAuthDetailsService)
-        
-        // Remove local cached date
-        LoggedInUserHolder.profile = nil
-        LoggedInUserHolder.user = nil
-        LoggedInUserHolder.token = nil
-        LoggedInUserHolder.organization = nil
-        ObjectStore.sharedInstance.reset(self)
-        
-        // Remove persistent cached data
-        NSUserDefaults.standardUserDefaults().removeObjectForKey(DefaultsUserKey)
-        NSUserDefaults.standardUserDefaults().removeObjectForKey(DefaultsProfileKey)
-        NSUserDefaults.standardUserDefaults().removeObjectForKey(DefaultsOrganizationKey)
-        
-        // Notify everyone
-        NSNotificationCenter.defaultCenter().postNotificationName(
-            AuthNotifications.onLogoutNotification,
-            object: nil
-        )
-        
-        // Present auth view
-        presentAuthViewController()
     }
     
     private static func presentViewControllerWithNavigationController(vc: UIViewController) {

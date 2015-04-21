@@ -103,7 +103,7 @@ class HomelessViewController: UIViewController {
     
     @IBAction func tryAgainButtonTapped() {
         dismissViewControllerAnimated(false, completion: { () -> Void in
-            AuthViewController.logOut(shouldDisconnect: true)
+            AuthViewController.logOut()
         })
     }
 }
