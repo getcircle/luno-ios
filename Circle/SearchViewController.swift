@@ -73,6 +73,9 @@ class SearchViewController: UIViewController,
                 hideAndRemoveLaunchView()
             }
         }
+        else if let user = AuthViewController.getLoggedInUser() where launchScreenView != nil {
+            hideAndRemoveLaunchView()
+        }
     }
     
     override func viewWillDisappear(animated: Bool) {
