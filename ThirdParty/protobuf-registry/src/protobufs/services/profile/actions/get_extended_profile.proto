@@ -19,9 +19,10 @@ message ResponseV1 {
     optional services.profile.containers.ProfileV1 manager = 4;
     optional services.organization.containers.TeamV1 team = 5;
     repeated services.note.containers.NoteV1 notes = 6;
-    repeated services.profile.containers.TagV1 tags = 7;
-    repeated services.user.containers.IdentityV1 identities = 8;
-    repeated services.profile.containers.ProfileV1 direct_reports = 9;
-    optional services.resume.containers.ResumeV1 resume = 10;
-    optional services.organization.containers.LocationV1 location = 11;
+    repeated services.user.containers.IdentityV1 identities = 7;
+    repeated services.profile.containers.ProfileV1 direct_reports = 8;
+    optional services.resume.containers.ResumeV1 resume = 9;
+    optional services.organization.containers.LocationV1 location = 10;
+    repeated services.profile.containers.TagV1 interests = 11;
+    repeated services.profile.containers.TagV1 skills = 12;
 }

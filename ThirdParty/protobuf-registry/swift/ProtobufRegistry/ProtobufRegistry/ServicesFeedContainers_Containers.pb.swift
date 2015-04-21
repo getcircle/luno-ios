@@ -60,6 +60,7 @@ public extension Services.Feed.Containers {
         case Executives = 9
         case Organization = 10
         case Notes = 11
+        case Skills = 12
 
       }
 

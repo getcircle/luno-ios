@@ -18,6 +18,7 @@ message CategoryV1 {
         EXECUTIVES = 9;
         ORGANIZATION = 10;
         NOTES = 11;
+        SKILLS = 12;
     }
 
     optional uint32 version = 1 [default = 1];

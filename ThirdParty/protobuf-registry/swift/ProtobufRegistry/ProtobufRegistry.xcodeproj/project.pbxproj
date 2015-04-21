@@ -102,6 +102,7 @@
 		BFC6CEF51A44B58B0081F45B /* ProtobufRegistry.h in Headers */ = {isa = PBXBuildFile; fileRef = BFC6CEF41A44B58B0081F45B /* ProtobufRegistry.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BFC6CEFB1A44B58B0081F45B /* ProtobufRegistry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFC6CEEF1A44B58B0081F45B /* ProtobufRegistry.framework */; };
 		BFC6CF021A44B58B0081F45B /* ProtobufRegistryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC6CF011A44B58B0081F45B /* ProtobufRegistryTests.swift */; };
+		BFF67AC61AE609C20062815A /* ServicesUserActionsLogout_Logout.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF67AC51AE609C20062815A /* ServicesUserActionsLogout_Logout.pb.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -213,6 +214,7 @@
 		BFC6CEFA1A44B58B0081F45B /* ProtobufRegistryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ProtobufRegistryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFC6CF001A44B58B0081F45B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BFC6CF011A44B58B0081F45B /* ProtobufRegistryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtobufRegistryTests.swift; sourceTree = "<group>"; };
+		BFF67AC51AE609C20062815A /* ServicesUserActionsLogout_Logout.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesUserActionsLogout_Logout.pb.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -328,6 +330,7 @@
 				BF1B140A1AE1944300F36620 /* ServicesUserActionsGetAuthorizationInstructions_Get_authorization_instructions.pb.swift */,
 				BF1B140B1AE1944300F36620 /* ServicesUserActionsGetIdentities_Get_identities.pb.swift */,
 				BF1B140C1AE1944300F36620 /* ServicesUserActionsGetUser_Get_user.pb.swift */,
+				BFF67AC51AE609C20062815A /* ServicesUserActionsLogout_Logout.pb.swift */,
 				BF1B140D1AE1944300F36620 /* ServicesUserActionsRecordDevice_Record_device.pb.swift */,
 				BF1B140E1AE1944300F36620 /* ServicesUserActionsRequestAccess_Request_access.pb.swift */,
 				BF1B140F1AE1944300F36620 /* ServicesUserActionsSendVerificationCode_Send_verification_code.pb.swift */,
@@ -559,6 +562,7 @@
 				BF1B14631AE1944300F36620 /* ServicesUserActionsUpdateUser_Update_user.pb.swift in Sources */,
 				BF1B14641AE1944300F36620 /* ServicesUserActionsValidUser_Valid_user.pb.swift in Sources */,
 				BF1B14651AE1944300F36620 /* ServicesUserActionsVerifyVerificationCode_Verify_verification_code.pb.swift in Sources */,
+				BFF67AC61AE609C20062815A /* ServicesUserActionsLogout_Logout.pb.swift in Sources */,
 				BF3D3CB41AE06D9300B5780B /* ServicesOrganizationActionsCreateOrganization_Create_organization.pb.swift in Sources */,
 				BF3D3CB51AE06D9300B5780B /* ServicesOrganizationActionsGetOrganization_Get_organization.pb.swift in Sources */,
 				BF3D3CB81AE06D9300B5780B /* ServicesProfileActionsGetExtendedProfile_Get_extended_profile.pb.swift in Sources */,
