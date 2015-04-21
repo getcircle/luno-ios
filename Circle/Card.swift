@@ -357,7 +357,7 @@ class Card: Equatable {
             cardType = .Group
         case .Locations:
             cardType = .Offices
-        case .Interests:
+        case .Interests, .Skills:
             cardType = .Tags
         case .Executives:
             cardType = .Profiles
