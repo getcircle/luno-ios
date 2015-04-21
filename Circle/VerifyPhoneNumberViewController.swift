@@ -194,6 +194,9 @@ class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate {
                 self.toggleLoadingState(self.actionButton)
                 if error == nil {
                     if verified! {
+                        let userBuilder = user.toBuilder()
+                        userBuilder.phoneNumberVerified = true
+                        AuthViewController.updateUser(userBuilder.build())
                         self.verificationComplete()
                     } else {
                         println("user verification failed")
