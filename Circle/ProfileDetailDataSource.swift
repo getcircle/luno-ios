@@ -38,13 +38,7 @@ class ProfileDetailDataSource: CardDataSource {
     
     override func loadData(completionHandler: (error: NSError?) -> Void) {
         resetCards()
-        // Add placeholder card to load profile header instantly
-        var placeholderCard = Card(cardType: .Placeholder, title: "Info")
-        placeholderCard.addHeader(
-            headerClass: ProfileHeaderCollectionReusableView.self
-        )
-        placeholderCard.sectionInset = UIEdgeInsetsZero
-        appendCard(placeholderCard)
+        addPlaceholderCard()
         Services.Profile.Actions.getExtendedProfile(profile.id) {
             (profile, manager, team, address, interests, skills, notes, identities, resume, location, error) -> Void in
             if error == nil {
@@ -82,6 +76,17 @@ class ProfileDetailDataSource: CardDataSource {
         sections.append(getEducationSection())
     }
 
+    private func addPlaceholderCard() {
+        
+        // Add placeholder card to load profile header instantly
+        var placeholderCard = Card(cardType: .Placeholder, title: "Info")
+        placeholderCard.addHeader(
+            headerClass: ProfileHeaderCollectionReusableView.self
+        )
+        placeholderCard.sectionInset = UIEdgeInsetsZero
+        appendCard(placeholderCard)
+    }
+    
     private func getQuickActionsSection() -> Section {
         let sectionItems = [
             SectionItem(
@@ -257,7 +262,8 @@ class ProfileDetailDataSource: CardDataSource {
     // MARK: - Populate Data
     
     private func populateData() {
-
+        resetCards()
+        addPlaceholderCard()
         configureSections()
         // Add top margin only when there is a social connect button added
         // to the profile
