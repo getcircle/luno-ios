@@ -48,7 +48,7 @@ struct AppStrings {
     
     static let RequestAccessConfirmationTest = NSLocalizedString("Great! We will notify you when your account is ready to access. Thanks!", comment: "Confirmation text shown when user requests access to the app.")
     
-    static let PrivateBetaInfoText = NSLocalizedString("circle is currently in private beta! You can request access below or try logging into a different account.", comment: "Message indicating that the app is in private beta and the user can either request access or try a different account")
+    static let PrivateBetaInfoText = NSLocalizedString("circle is currently available only to employees at participating companies! You can request access below or try logging into a different account.", comment: "Message indicating that the app is only available to employees of participating companies and the user can either request access or try a different account")
     
     static let ProfileInfoAddButtonTitle = NSLocalizedString("Add", comment: "Title of the button to add info")
     static let ProfileInfoEditButtonTitle = NSLocalizedString("Edit", comment: "Title of the button to edit info")
@@ -96,7 +96,7 @@ struct AppStrings {
 
     static let TextPlaceholderFilterTags = NSLocalizedString("Filter interests", comment: "Placeholder text for filter interests input box")
     
-    static let WaitlistInfoText = NSLocalizedString("circle is currently in private beta! You are on our list and we will notify you when your account is ready. Thanks!", comment: "Message indicating that the app is in private beta and the user's request to access it is in progress")
+    static let WaitlistInfoText = NSLocalizedString("circle is currently available only to employees at participating companies! You are on our list and we will notify you when your account is ready. Thanks!", comment: "Message indicating that the app is only available to employees of participating companies and the user's request to access it is in progress")
     static let WelcomeTitleText = NSLocalizedString("Welcome to circle", comment: "Header text for welcoming users to the app")
     static let WelcomeInfoText = NSLocalizedString("The easiest way to access any information on the people, teams, and locations that make up your company.\n\nLets get started by setting up your profile.", comment: "Tag line message shown on welcome view")
     
