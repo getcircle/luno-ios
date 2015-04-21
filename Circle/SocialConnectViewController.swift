@@ -80,7 +80,7 @@ class SocialConnectViewController: UIViewController, WKNavigationDelegate {
     }
     
     private func loadWebView() {
-        Services.User.Actions.getAuthorizationInstructions(provider!, loginHint: loginHint) { (authorizationURL, error) -> Void in
+        Services.User.Actions.getAuthorizationInstructions(provider!) { (authorizationURL, error) -> Void in
             if let authorizationURL = authorizationURL {
                 let url = NSURL(string: authorizationURL)
                 let request = NSURLRequest(URL: url!)
