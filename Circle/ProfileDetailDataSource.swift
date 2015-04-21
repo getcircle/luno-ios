@@ -46,12 +46,13 @@ class ProfileDetailDataSource: CardDataSource {
         placeholderCard.sectionInset = UIEdgeInsetsZero
         appendCard(placeholderCard)
         Services.Profile.Actions.getExtendedProfile(profile.id) {
-            (profile, manager, team, address, skills, _, identities, resume, location, error) -> Void in
+            (profile, manager, team, address, interests, skills, notes, identities, resume, location, error) -> Void in
             if error == nil {
                 self.manager = manager
                 self.team = team
                 self.address = address
                 self.skills = skills
+                self.interests = interests
                 self.identities = identities
                 self.resume = resume
                 self.location = location
