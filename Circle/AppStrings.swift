@@ -100,6 +100,6 @@ struct AppStrings {
     static let WelcomeTitleText = NSLocalizedString("Welcome to circle", comment: "Header text for welcoming users to the app")
     static let WelcomeInfoText = NSLocalizedString("The easiest way to access any information on the people, teams, and locations that make up your company.\n\nLets get started by setting up your profile.", comment: "Tag line message shown on welcome view")
     
-    static let SignInPlaceHolderText = NSLocalizedString("Work email address", comment: "Placeholder text indicating text field for entering work email address")
+    static let SignInPlaceHolderText = NSLocalizedString("Enter your Work email address", comment: "Placeholder text indicating text field for entering work email address")
     static let SignOutButtonTitle = NSLocalizedString("Sign out", comment: "Title of sign out button")
 }

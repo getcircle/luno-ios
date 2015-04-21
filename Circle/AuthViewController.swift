@@ -46,12 +46,14 @@ private let GoogleServerClientID = "1077014421904-1a697ks3qvtt6975qfqhmed8529en8
 
 class AuthViewController: UIViewController {
 
+    @IBOutlet weak var appLogoImageView: UIImageView!
     @IBOutlet weak var appNameLabel: UILabel!
     @IBOutlet weak var appNameYConstraint: NSLayoutConstraint!
     @IBOutlet weak var tagLineLabel: UILabel!
     @IBOutlet weak var googleSignInButton: UIButton!
     @IBOutlet weak var googleSignInButtonBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var workEmailTextField: UITextField!
+    private var workTextFieldBottomBorderView: UIView!
     private var activityIndicator: CircleActivityIndicatorView?
     private var googleSignInButtonText: String?
     private var socialConnectVC = SocialConnectViewController()
@@ -93,14 +95,15 @@ class AuthViewController: UIViewController {
     }
     
     private func configureGoogleAuthentication() {
-//        googleSignInButton.colorScheme = kGPPSignInButtonColorSchemeLight
-//        googleSignInButton.style = kGPPSignInButtonStyleWide
         workEmailTextField.attributedPlaceholder = NSAttributedString(
             string: AppStrings.SignInPlaceHolderText,
             attributes: [NSForegroundColorAttributeName: UIColor.whiteColor()]
         )
         workEmailTextField.tintColor = UIColor.whiteColor()
-        workEmailTextField.addBottomBorder(offset: nil, color: UIColor.whiteColor())
+        workTextFieldBottomBorderView = workEmailTextField.addBottomBorder(offset: nil, color: UIColor.whiteColor())
+        workTextFieldBottomBorderView.alpha = 0.0
+        workEmailTextField.alpha = 0.0
+        googleSignInButton.alpha = 0.0
         googleSignInButton.titleLabel!.font = UIFont.appSocialCTATitleFont()
         googleSignInButton.addRoundCorners(radius: 2.0)
         googleSignInButton.backgroundColor = UIColor.appTintColor()
@@ -125,16 +128,17 @@ class AuthViewController: UIViewController {
     
     private func moveAppNameLabel() {
         googleSignInButtonBottomConstraint.constant = 20.0
-        // appNameYConstraint.constant = 200.0
+        // appNameYConstraint.constant = 95.0
         appNameLabel.setNeedsUpdateConstraints()
         UIView.animateWithDuration(0.7, animations: { () -> Void in
-            self.workEmailTextField.alpha = 1.0
+            self.appLogoImageView.layoutIfNeeded()
             self.appNameLabel.layoutIfNeeded()
-//            self.googleSignInButton.alpha = 0.0
+            self.workEmailTextField.layoutIfNeeded()
             self.googleSignInButton.layoutIfNeeded()
+            self.workTextFieldBottomBorderView.layoutIfNeeded()
             self.tagLineLabel.layoutIfNeeded()
+            self.googleSignInButton.alpha = 1.0
         }, completion: { (completed: Bool) -> Void in
-            // self.showFieldsAndControls(true)
         })
     }
     
@@ -592,9 +596,20 @@ class AuthViewController: UIViewController {
     // MARK: - IBActions
     
     @IBAction func googlePlusSignInButtonTapped(sender: AnyObject!) {
+//        if workEmailTextField.text.trimWhitespace() == "" {
+//            googleSignInButton.addShakeAnimation()
+//            return
+//        }
+        
         socialConnectVC.provider = .Google
         socialConnectVC.loginHint = workEmailTextField.text
         let socialNavController = UINavigationController(rootViewController: socialConnectVC)
         navigationController?.presentViewController(socialNavController, animated: true, completion:nil)
+    }
+    
+    // MARK: - UITextFieldDelegate
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        return true
     }
 }
