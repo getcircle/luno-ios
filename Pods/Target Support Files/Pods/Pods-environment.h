@@ -16,13 +16,13 @@
 #define COCOAPODS_POD_AVAILABLE_Alamofire
 #define COCOAPODS_VERSION_MAJOR_Alamofire 1
 #define COCOAPODS_VERSION_MINOR_Alamofire 2
-#define COCOAPODS_VERSION_PATCH_Alamofire 0
+#define COCOAPODS_VERSION_PATCH_Alamofire 1
 
 // Kingfisher
 #define COCOAPODS_POD_AVAILABLE_Kingfisher
 #define COCOAPODS_VERSION_MAJOR_Kingfisher 1
 #define COCOAPODS_VERSION_MINOR_Kingfisher 1
-#define COCOAPODS_VERSION_PATCH_Kingfisher 1
+#define COCOAPODS_VERSION_PATCH_Kingfisher 2
 
 // Locksmith
 #define COCOAPODS_POD_AVAILABLE_Locksmith
