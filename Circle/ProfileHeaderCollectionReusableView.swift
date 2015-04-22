@@ -125,6 +125,7 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
         nameNavLabel.text = nameLabel.text
         titleLabel.text = userProfile.title
         titleNavLabel.text = titleLabel.text
+        profileImage.imageProfileIdentifier = userProfile.id
         if hasProfileImageChanged {
             profileImage.setImageWithProfile(userProfile, successHandler: { (image) -> Void in
                 self.profileImage.image = image
