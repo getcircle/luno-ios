@@ -173,7 +173,7 @@ class AuthViewController: UIViewController {
             let data = [authDetails.data().base64EncodedStringWithOptions(nil): "\(NSDate())"]
             let error = Locksmith.saveData(data, forUserAccount: LocksmithMainUserAccount, inService: LocksmithAuthDetailsService)
             if error != nil {
-                println("error saving authDetails: \(error) | authDetails: \(authDetails)")
+                println("error saving authDetails: \(error)")
             }
             login(.Google, credentials: credentials.build())
         }
