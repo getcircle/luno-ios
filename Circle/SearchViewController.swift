@@ -56,13 +56,14 @@ class SearchViewController: UIViewController,
             self.activityIndicatorView.startAnimating()
             self.loadData()
         })
+
+        loadData()
     }
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         activateSearchFieldIfPreSet()
         registerNotifications()
-        loadData()
     }
 
     override func viewDidAppear(animated: Bool) {
