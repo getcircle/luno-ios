@@ -34,10 +34,10 @@ extension Services.Search.Actions {
         return NSCharacterSet.whitespaceCharacterSet()
     }
     
-    static func search(query: String, completionHandler: SearchCompletionHandler?) {
+    static func search(query: String, showRecents: Bool, completionHandler: SearchCompletionHandler?) {
         // Query the cache
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), { () -> Void in
-            var (result, error) = self.search(query)
+            var (result, error) = self.search(query, showRecents: showRecents)
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 completionHandler?(result: result, error: error)
                 return
@@ -122,12 +122,12 @@ extension Services.Search.Actions {
     }
     
     // given the query, search the local objects we have cached
-    private static func search(query: String) -> (SearchResults?, NSError?) {
+    private static func search(query: String, showRecents: Bool) -> (SearchResults?, NSError?) {
         
         let results = SearchResults()
         
         // Show recent profile visits as suggestions if string is empty
-        if query.trimWhitespace() == "" {
+        if query.trimWhitespace() == "" && showRecents {
             if let recentProfileIDs = CircleCache.sharedInstance.objectForKey(CircleCache.Keys.RecentProfileVisits) as? [String] {
                 let matchedProfiles = filterProfiles(profileIDs: recentProfileIDs)
                 results.profiles = Array(matchedProfiles[0..<min(SearchResults.maxSuggestionsPerCategory, matchedProfiles.count)])

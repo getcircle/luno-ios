@@ -25,7 +25,7 @@ class SearchQueryDataSource: CardDataSource {
     
     override func filter(string: String, completionHandler: (error: NSError?) -> Void) {
         searchTerm = string
-        Services.Search.Actions.search(string, completionHandler: { (results, error) -> Void in
+        Services.Search.Actions.search(string, showRecents: isQuickAction, completionHandler: { (results, error) -> Void in
             if let results = results {
                 if let profiles = results.profiles {
                     self.visibleProfiles = profiles
