@@ -187,8 +187,6 @@ class OverviewViewController:
     private func activateSearchIfApplicable() {
         if dataSource.cardAtSection(0)?.content.count < minimumResultsForFilter {
             searchHeaderView?.searchTextField.resignFirstResponder()
-        } else if searchHeaderView?.searchTextField.text != "" {
-            searchHeaderView?.searchTextField.becomeFirstResponder()
         }
     }
     
