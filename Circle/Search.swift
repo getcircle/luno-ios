@@ -163,6 +163,7 @@ extension Services.Search.Actions {
         toFilter: Array<Services.Profile.Containers.ProfileV1>
     ) -> Array<Services.Profile.Containers.ProfileV1> {
         var andPredicates = [NSPredicate]()
+        
         for searchTerm in searchTerms {
             let trimmedSearchTerm = trim(searchTerm)
             
@@ -212,14 +213,24 @@ extension Services.Search.Actions {
                 options: .CaseInsensitivePredicateOption
             )
             
+            // Match each word of the title
+            var titleWordMatchPredicate = NSComparisonPredicate(
+                leftExpression: NSExpression(forVariable: "title_words"),
+                rightExpression: NSExpression(forConstantValue: trimmedSearchTerm),
+                modifier: .AnyPredicateModifier,
+                type: .BeginsWithPredicateOperatorType,
+                options: .CaseInsensitivePredicateOption
+            )
+            
             andPredicates.append(
                 NSCompoundPredicate.orPredicateWithSubpredicates([
                     firstNamePredicate,
                     lastNamePredicate,
                     titlePredicate,
                     emailPredicate,
-                    fullTitlePredicate
-                    ])
+                    fullTitlePredicate,
+                    titleWordMatchPredicate
+                ])
             )
         }
         
@@ -231,6 +242,7 @@ extension Services.Search.Actions {
                 "lastName": $0.lastName,
                 "title": $0.title,
                 "email": $0.email,
+                "title_words": $0.title.componentsSeparatedByString(" ")
             ])
         }
     }
