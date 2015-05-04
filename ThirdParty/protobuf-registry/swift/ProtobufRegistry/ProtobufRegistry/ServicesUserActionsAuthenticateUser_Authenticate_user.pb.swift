@@ -22,6 +22,7 @@ public func == (lhs: Services.User.Actions.AuthenticateUser.RequestV1, rhs: Serv
   fieldCheck = fieldCheck && (lhs.hasVersion == rhs.hasVersion) && (!lhs.hasVersion || lhs.version == rhs.version)
   fieldCheck = fieldCheck && (lhs.hasBackend == rhs.hasBackend) && (!lhs.hasBackend || lhs.backend == rhs.backend)
   fieldCheck = fieldCheck && (lhs.hasCredentials == rhs.hasCredentials) && (!lhs.hasCredentials || lhs.credentials == rhs.credentials)
+  fieldCheck = fieldCheck && (lhs.hasClientType == rhs.hasClientType) && (!lhs.hasClientType || lhs.clientType == rhs.clientType)
   return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
 }
 
@@ -51,6 +52,7 @@ public extension Services.User.Actions.AuthenticateUser {
       extensionRegistry = ExtensionRegistry()
       registerAllExtensions(extensionRegistry)
       Services.User.Containers.ContainersRoot.sharedInstance.registerAllExtensions(extensionRegistry)
+      Services.User.Containers.Token.TokenRoot.sharedInstance.registerAllExtensions(extensionRegistry)
     }
     public func registerAllExtensions(registry:ExtensionRegistry) {
     }
@@ -361,6 +363,7 @@ public extension Services.User.Actions.AuthenticateUser {
            case "version": return version
            case "backend": return self.backend
            case "credentials": return credentials
+           case "clientType": return self.clientType
            default: return nil
            }
     }
@@ -372,6 +375,8 @@ public extension Services.User.Actions.AuthenticateUser {
     public private(set) var hasBackend:Bool = false
     public private(set) var hasCredentials:Bool = false
     public private(set) var credentials:Services.User.Actions.AuthenticateUser.RequestV1.CredentialsV1!
+    public private(set) var clientType:Services.User.Containers.Token.ClientTypeV1 = Services.User.Containers.Token.ClientTypeV1.Ios
+    public private(set) var hasClientType:Bool = false
     required public init() {
          super.init()
     }
@@ -387,6 +392,9 @@ public extension Services.User.Actions.AuthenticateUser {
       }
       if hasCredentials {
         output.writeMessage(3, value:credentials)
+      }
+      if hasClientType {
+        output.writeEnum(4, value:clientType.rawValue)
       }
       unknownFields.writeToCodedOutputStream(output)
     }
@@ -407,6 +415,9 @@ public extension Services.User.Actions.AuthenticateUser {
           if let varSizecredentials = credentials?.computeMessageSize(3) {
               serialize_size += varSizecredentials
           }
+      }
+      if (hasClientType) {
+        serialize_size += clientType.rawValue.computeEnumSize(4)
       }
       serialize_size += unknownFields.serializedSize()
       memoizedSerializedSize = serialize_size
@@ -460,6 +471,9 @@ public extension Services.User.Actions.AuthenticateUser {
         credentials?.writeDescriptionTo(&output, indent:"\(indent)  ")
         output += "\(indent) }\n"
       }
+      if (hasClientType) {
+        output += "\(indent) clientType: \(clientType.rawValue)\n"
+      }
       unknownFields.writeDescriptionTo(&output, indent:indent)
     }
     override public var hashValue:Int {
@@ -475,6 +489,9 @@ public extension Services.User.Actions.AuthenticateUser {
                 if let hashValuecredentials = credentials?.hashValue {
                     hashCode = (hashCode &* 31) &+ hashValuecredentials
                 }
+            }
+            if hasClientType {
+               hashCode = (hashCode &* 31) &+ Int(clientType.rawValue)
             }
             hashCode = (hashCode &* 31) &+  unknownFields.hashValue
             return hashCode
@@ -582,6 +599,29 @@ public extension Services.User.Actions.AuthenticateUser {
       builderResult.credentials = nil
       return self
     }
+      public var hasClientType:Bool{
+          get {
+              return builderResult.hasClientType
+          }
+      }
+      public var clientType:Services.User.Containers.Token.ClientTypeV1 {
+          get {
+              return builderResult.clientType
+          }
+          set (value) {
+              builderResult.hasClientType = true
+              builderResult.clientType = value
+          }
+      }
+      public func setClientType(value:Services.User.Containers.Token.ClientTypeV1)-> Services.User.Actions.AuthenticateUser.RequestV1Builder {
+        self.clientType = value
+        return self
+      }
+      public func clearClientType() -> Services.User.Actions.AuthenticateUser.RequestV1Builder {
+         builderResult.hasClientType = false
+         builderResult.clientType = .Ios
+         return self
+      }
     override public var internalGetResult:GeneratedMessage {
          get {
             return builderResult
@@ -614,6 +654,9 @@ public extension Services.User.Actions.AuthenticateUser {
       }
       if (other.hasCredentials) {
           mergeCredentials(other.credentials)
+      }
+      if other.hasClientType {
+           clientType = other.clientType
       }
       mergeUnknownFields(other.unknownFields)
       return self
@@ -648,6 +691,14 @@ public extension Services.User.Actions.AuthenticateUser {
           }
           input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
           credentials = subBuilder.buildPartial()
+
+        case 32 :
+          let valueIntclientType = input.readEnum()
+          if let enumsclientType = Services.User.Containers.Token.ClientTypeV1(rawValue:valueIntclientType){
+               clientType = enumsclientType
+          } else {
+               unknownFieldsBuilder.mergeVarintField(4, value:Int64(valueIntclientType))
+          }
 
         default:
           if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {

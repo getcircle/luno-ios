@@ -107,6 +107,17 @@ public func == (lhs: Services.Organization.Containers.TeamDescendantsV1, rhs: Se
   return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
 }
 
+public func == (lhs: Services.Organization.Containers.TokenV1, rhs: Services.Organization.Containers.TokenV1) -> Bool {
+  if (lhs === rhs) {
+    return true
+  }
+  var fieldCheck:Bool = (lhs.hashValue == rhs.hashValue)
+  fieldCheck = fieldCheck && (lhs.hasVersion == rhs.hasVersion) && (!lhs.hasVersion || lhs.version == rhs.version)
+  fieldCheck = fieldCheck && (lhs.hasKey == rhs.hasKey) && (!lhs.hasKey || lhs.key == rhs.key)
+  fieldCheck = fieldCheck && (lhs.hasRequestedByUserId == rhs.hasRequestedByUserId) && (!lhs.hasRequestedByUserId || lhs.requestedByUserId == rhs.requestedByUserId)
+  return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
+}
+
 public extension Services.Organization.Containers {
   public struct ContainersRoot {
     public static var sharedInstance : ContainersRoot {
@@ -3345,6 +3356,287 @@ public extension Services.Organization.Containers {
           var subBuilder = Services.Organization.Containers.TeamV1.builder()
           input.readMessage(subBuilder,extensionRegistry:extensionRegistry)
           teams += [subBuilder.buildPartial()]
+
+        default:
+          if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
+             unknownFields = unknownFieldsBuilder.build()
+             return self
+          }
+        }
+      }
+    }
+  }
+
+  final public class TokenV1 : GeneratedMessage, GeneratedMessageProtocol {
+    override public subscript(key: String) -> Any? {
+           switch key {
+           case "version": return version
+           case "key": return key
+           case "requestedByUserId": return requestedByUserId
+           default: return nil
+           }
+    }
+
+    public private(set) var hasVersion:Bool = false
+    public private(set) var version:UInt32 = UInt32(1)
+
+    public private(set) var hasKey:Bool = false
+    public private(set) var key:String = ""
+
+    public private(set) var hasRequestedByUserId:Bool = false
+    public private(set) var requestedByUserId:String = ""
+
+    required public init() {
+         super.init()
+    }
+    override public func isInitialized() -> Bool {
+     return true
+    }
+    override public func writeToCodedOutputStream(output:CodedOutputStream) {
+      if hasVersion {
+        output.writeUInt32(1, value:version)
+      }
+      if hasKey {
+        output.writeString(2, value:key)
+      }
+      if hasRequestedByUserId {
+        output.writeString(3, value:requestedByUserId)
+      }
+      unknownFields.writeToCodedOutputStream(output)
+    }
+    override public func serializedSize() -> Int32 {
+      var serialize_size:Int32 = memoizedSerializedSize
+      if serialize_size != -1 {
+       return serialize_size
+      }
+
+      serialize_size = 0
+      if hasVersion {
+        serialize_size += version.computeUInt32Size(1)
+      }
+      if hasKey {
+        serialize_size += key.computeStringSize(2)
+      }
+      if hasRequestedByUserId {
+        serialize_size += requestedByUserId.computeStringSize(3)
+      }
+      serialize_size += unknownFields.serializedSize()
+      memoizedSerializedSize = serialize_size
+      return serialize_size
+    }
+    public class func parseFromData(data:NSData) -> Services.Organization.Containers.TokenV1 {
+      return Services.Organization.Containers.TokenV1.builder().mergeFromData(data, extensionRegistry:Services.Organization.Containers.ContainersRoot.sharedInstance.extensionRegistry).build()
+    }
+    public class func parseFromData(data:NSData, extensionRegistry:ExtensionRegistry) -> Services.Organization.Containers.TokenV1 {
+      return Services.Organization.Containers.TokenV1.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
+    }
+    public class func parseFromInputStream(input:NSInputStream) -> Services.Organization.Containers.TokenV1 {
+      return Services.Organization.Containers.TokenV1.builder().mergeFromInputStream(input).build()
+    }
+    public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->Services.Organization.Containers.TokenV1 {
+      return Services.Organization.Containers.TokenV1.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
+    }
+    public class func parseFromCodedInputStream(input:CodedInputStream) -> Services.Organization.Containers.TokenV1 {
+      return Services.Organization.Containers.TokenV1.builder().mergeFromCodedInputStream(input).build()
+    }
+    public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> Services.Organization.Containers.TokenV1 {
+      return Services.Organization.Containers.TokenV1.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
+    }
+    public class func builder() -> Services.Organization.Containers.TokenV1Builder {
+      return Services.Organization.Containers.TokenV1.classBuilder() as! Services.Organization.Containers.TokenV1Builder
+    }
+    public func builder() -> Services.Organization.Containers.TokenV1Builder {
+      return classBuilder() as! Services.Organization.Containers.TokenV1Builder
+    }
+    public override class func classBuilder() -> MessageBuilder {
+      return Services.Organization.Containers.TokenV1Builder()
+    }
+    public override func classBuilder() -> MessageBuilder {
+      return Services.Organization.Containers.TokenV1.builder()
+    }
+    public func toBuilder() -> Services.Organization.Containers.TokenV1Builder {
+      return Services.Organization.Containers.TokenV1.builderWithPrototype(self)
+    }
+    public class func builderWithPrototype(prototype:Services.Organization.Containers.TokenV1) -> Services.Organization.Containers.TokenV1Builder {
+      return Services.Organization.Containers.TokenV1.builder().mergeFrom(prototype)
+    }
+    override public func writeDescriptionTo(inout output:String, indent:String) {
+      if hasVersion {
+        output += "\(indent) version: \(version) \n"
+      }
+      if hasKey {
+        output += "\(indent) key: \(key) \n"
+      }
+      if hasRequestedByUserId {
+        output += "\(indent) requestedByUserId: \(requestedByUserId) \n"
+      }
+      unknownFields.writeDescriptionTo(&output, indent:indent)
+    }
+    override public var hashValue:Int {
+        get {
+            var hashCode:Int = 7
+            if hasVersion {
+               hashCode = (hashCode &* 31) &+ version.hashValue
+            }
+            if hasKey {
+               hashCode = (hashCode &* 31) &+ key.hashValue
+            }
+            if hasRequestedByUserId {
+               hashCode = (hashCode &* 31) &+ requestedByUserId.hashValue
+            }
+            hashCode = (hashCode &* 31) &+  unknownFields.hashValue
+            return hashCode
+        }
+    }
+
+
+    //Meta information declaration start
+
+    override public class func className() -> String {
+        return "Services.Organization.Containers.TokenV1"
+    }
+    override public func className() -> String {
+        return "Services.Organization.Containers.TokenV1"
+    }
+    override public func classMetaType() -> GeneratedMessage.Type {
+        return Services.Organization.Containers.TokenV1.self
+    }
+    //Meta information declaration end
+
+  }
+
+  final public class TokenV1Builder : GeneratedMessageBuilder {
+    private var builderResult:Services.Organization.Containers.TokenV1
+
+    required override public init () {
+       builderResult = Services.Organization.Containers.TokenV1()
+       super.init()
+    }
+    public var hasVersion:Bool {
+         get {
+              return builderResult.hasVersion
+         }
+    }
+    public var version:UInt32 {
+         get {
+              return builderResult.version
+         }
+         set (value) {
+             builderResult.hasVersion = true
+             builderResult.version = value
+         }
+    }
+    public func setVersion(value:UInt32)-> Services.Organization.Containers.TokenV1Builder {
+      self.version = value
+      return self
+    }
+    public func clearVersion() -> Services.Organization.Containers.TokenV1Builder{
+         builderResult.hasVersion = false
+         builderResult.version = UInt32(1)
+         return self
+    }
+    public var hasKey:Bool {
+         get {
+              return builderResult.hasKey
+         }
+    }
+    public var key:String {
+         get {
+              return builderResult.key
+         }
+         set (value) {
+             builderResult.hasKey = true
+             builderResult.key = value
+         }
+    }
+    public func setKey(value:String)-> Services.Organization.Containers.TokenV1Builder {
+      self.key = value
+      return self
+    }
+    public func clearKey() -> Services.Organization.Containers.TokenV1Builder{
+         builderResult.hasKey = false
+         builderResult.key = ""
+         return self
+    }
+    public var hasRequestedByUserId:Bool {
+         get {
+              return builderResult.hasRequestedByUserId
+         }
+    }
+    public var requestedByUserId:String {
+         get {
+              return builderResult.requestedByUserId
+         }
+         set (value) {
+             builderResult.hasRequestedByUserId = true
+             builderResult.requestedByUserId = value
+         }
+    }
+    public func setRequestedByUserId(value:String)-> Services.Organization.Containers.TokenV1Builder {
+      self.requestedByUserId = value
+      return self
+    }
+    public func clearRequestedByUserId() -> Services.Organization.Containers.TokenV1Builder{
+         builderResult.hasRequestedByUserId = false
+         builderResult.requestedByUserId = ""
+         return self
+    }
+    override public var internalGetResult:GeneratedMessage {
+         get {
+            return builderResult
+         }
+    }
+    public override func clear() -> Services.Organization.Containers.TokenV1Builder {
+      builderResult = Services.Organization.Containers.TokenV1()
+      return self
+    }
+    public override func clone() -> Services.Organization.Containers.TokenV1Builder {
+      return Services.Organization.Containers.TokenV1.builderWithPrototype(builderResult)
+    }
+    public override func build() -> Services.Organization.Containers.TokenV1 {
+         checkInitialized()
+         return buildPartial()
+    }
+    public func buildPartial() -> Services.Organization.Containers.TokenV1 {
+      var returnMe:Services.Organization.Containers.TokenV1 = builderResult
+      return returnMe
+    }
+    public func mergeFrom(other:Services.Organization.Containers.TokenV1) -> Services.Organization.Containers.TokenV1Builder {
+      if (other == Services.Organization.Containers.TokenV1()) {
+       return self
+      }
+      if other.hasVersion {
+           version = other.version
+      }
+      if other.hasKey {
+           key = other.key
+      }
+      if other.hasRequestedByUserId {
+           requestedByUserId = other.requestedByUserId
+      }
+      mergeUnknownFields(other.unknownFields)
+      return self
+    }
+    public override func mergeFromCodedInputStream(input:CodedInputStream) ->Services.Organization.Containers.TokenV1Builder {
+         return mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
+    }
+    public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> Services.Organization.Containers.TokenV1Builder {
+      var unknownFieldsBuilder:UnknownFieldSetBuilder = UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
+      while (true) {
+        var tag = input.readTag()
+        switch tag {
+        case 0: 
+          self.unknownFields = unknownFieldsBuilder.build()
+          return self
+
+        case 8 :
+          version = input.readUInt32()
+
+        case 18 :
+          key = input.readString()
+
+        case 26 :
+          requestedByUserId = input.readString()
 
         default:
           if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {

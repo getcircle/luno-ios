@@ -19,7 +19,7 @@ import protobufs.services.resume.containers_pb2
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='protobufs/services/resume/actions/bulk_create_educations.proto',
   package='services.resume.actions.bulk_create_educations',
-  serialized_pb=_b('\n>protobufs/services/resume/actions/bulk_create_educations.proto\x12.services.resume.actions.bulk_create_educations\x1a*protobufs/services/resume/containers.proto\"\\\n\tRequestV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12;\n\neducations\x18\x02 \x03(\x0b\x32\'.services.resume.containers.EducationV1\"]\n\nResponseV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12;\n\neducations\x18\x02 \x03(\x0b\x32\'.services.resume.containers.EducationV1')
+  serialized_pb=_b('\n>protobufs/services/resume/actions/bulk_create_educations.proto\x12.services.resume.actions.bulk_create_educations\x1a*protobufs/services/resume/containers.proto\"\\\n\tRequestV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12;\n\neducations\x18\x02 \x03(\x0b\x32\'.services.resume.containers.EducationV1\"]\n\nResponseV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12;\n\neducations\x18\x02 \x03(\x0b\x32\'.services.resume.containers.EducationV1BE\nCcom.rhlabs.protobufs.services.resume.actions.bulk_create_educations')
   ,
   dependencies=[protobufs.services.resume.containers_pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
@@ -120,4 +120,6 @@ ResponseV1 = _reflection.GeneratedProtocolMessageType('ResponseV1', (_message.Me
 _sym_db.RegisterMessage(ResponseV1)
 
 
+DESCRIPTOR.has_options = True
+DESCRIPTOR._options = _descriptor._ParseOptions(descriptor_pb2.FileOptions(), _b('\nCcom.rhlabs.protobufs.services.resume.actions.bulk_create_educations'))
 # @@protoc_insertion_point(module_scope)

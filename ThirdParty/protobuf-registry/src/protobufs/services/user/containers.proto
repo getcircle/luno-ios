@@ -1,5 +1,8 @@
 package services.user.containers;
 
+// GENERATED OPTIONS FOR: JAVA
+option java_package = "com.rhlabs.protobufs.services.user.containers";
+
 message AccessRequestV1 {
     optional uint32 version = 1 [default = 1];
     optional string id = 2;

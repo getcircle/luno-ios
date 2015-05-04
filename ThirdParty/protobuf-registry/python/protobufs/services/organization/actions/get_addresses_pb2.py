@@ -19,7 +19,7 @@ import protobufs.services.organization.containers_pb2
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='protobufs/services/organization/actions/get_addresses.proto',
   package='services.organization.actions.get_addresses',
-  serialized_pb=_b('\n;protobufs/services/organization/actions/get_addresses.proto\x12+services.organization.actions.get_addresses\x1a\x30protobufs/services/organization/containers.proto\"8\n\tRequestV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x17\n\x0forganization_id\x18\x02 \x01(\t\"`\n\nResponseV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12>\n\taddresses\x18\x02 \x03(\x0b\x32+.services.organization.containers.AddressV1')
+  serialized_pb=_b('\n;protobufs/services/organization/actions/get_addresses.proto\x12+services.organization.actions.get_addresses\x1a\x30protobufs/services/organization/containers.proto\"8\n\tRequestV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x17\n\x0forganization_id\x18\x02 \x01(\t\"`\n\nResponseV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12>\n\taddresses\x18\x02 \x03(\x0b\x32+.services.organization.containers.AddressV1BB\n@com.rhlabs.protobufs.services.organization.actions.get_addresses')
   ,
   dependencies=[protobufs.services.organization.containers_pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
@@ -119,4 +119,6 @@ ResponseV1 = _reflection.GeneratedProtocolMessageType('ResponseV1', (_message.Me
 _sym_db.RegisterMessage(ResponseV1)
 
 
+DESCRIPTOR.has_options = True
+DESCRIPTOR._options = _descriptor._ParseOptions(descriptor_pb2.FileOptions(), _b('\n@com.rhlabs.protobufs.services.organization.actions.get_addresses'))
 # @@protoc_insertion_point(module_scope)

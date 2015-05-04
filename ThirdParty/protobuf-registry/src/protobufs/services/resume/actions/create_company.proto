@@ -1,5 +1,8 @@
 package services.resume.actions.create_company;
 
+// GENERATED OPTIONS FOR: JAVA
+option java_package = "com.rhlabs.protobufs.services.resume.actions.create_company";
+
 import "protobufs/services/resume/containers.proto";
 
 message RequestV1 {

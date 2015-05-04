@@ -18,7 +18,7 @@ _sym_db = _symbol_database.Default()
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='protobufs/services/note/containers.proto',
   package='services.note.containers',
-  serialized_pb=_b('\n(protobufs/services/note/containers.proto\x12\x18services.note.containers\"\x8d\x01\n\x06NoteV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\n\n\x02id\x18\x02 \x01(\t\x12\x16\n\x0e\x66or_profile_id\x18\x03 \x01(\t\x12\x18\n\x10owner_profile_id\x18\x04 \x01(\t\x12\x0f\n\x07\x63ontent\x18\x05 \x01(\t\x12\x0f\n\x07\x63reated\x18\x06 \x01(\t\x12\x0f\n\x07\x63hanged\x18\x07 \x01(\t')
+  serialized_pb=_b('\n(protobufs/services/note/containers.proto\x12\x18services.note.containers\"\x8d\x01\n\x06NoteV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\n\n\x02id\x18\x02 \x01(\t\x12\x16\n\x0e\x66or_profile_id\x18\x03 \x01(\t\x12\x18\n\x10owner_profile_id\x18\x04 \x01(\t\x12\x0f\n\x07\x63ontent\x18\x05 \x01(\t\x12\x0f\n\x07\x63reated\x18\x06 \x01(\t\x12\x0f\n\x07\x63hanged\x18\x07 \x01(\tB/\n-com.rhlabs.protobufs.services.note.containers')
 )
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
@@ -106,4 +106,6 @@ NoteV1 = _reflection.GeneratedProtocolMessageType('NoteV1', (_message.Message,),
 _sym_db.RegisterMessage(NoteV1)
 
 
+DESCRIPTOR.has_options = True
+DESCRIPTOR._options = _descriptor._ParseOptions(descriptor_pb2.FileOptions(), _b('\n-com.rhlabs.protobufs.services.note.containers'))
 # @@protoc_insertion_point(module_scope)

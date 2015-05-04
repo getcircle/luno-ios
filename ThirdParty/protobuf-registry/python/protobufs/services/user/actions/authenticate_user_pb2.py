@@ -14,14 +14,15 @@ _sym_db = _symbol_database.Default()
 
 
 import protobufs.services.user.containers_pb2
+import protobufs.services.user.containers.token_pb2
 
 
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='protobufs/services/user/actions/authenticate_user.proto',
   package='services.user.actions.authenticate_user',
-  serialized_pb=_b('\n7protobufs/services/user/actions/authenticate_user.proto\x12\'services.user.actions.authenticate_user\x1a(protobufs/services/user/containers.proto\"\xb6\x02\n\tRequestV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12Q\n\x07\x62\x61\x63kend\x18\x02 \x01(\x0e\x32@.services.user.actions.authenticate_user.RequestV1.AuthBackendV1\x12U\n\x0b\x63redentials\x18\x03 \x01(\x0b\x32@.services.user.actions.authenticate_user.RequestV1.CredentialsV1\x1a@\n\rCredentialsV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x0b\n\x03key\x18\x02 \x01(\t\x12\x0e\n\x06secret\x18\x03 \x01(\t\")\n\rAuthBackendV1\x12\x0c\n\x08INTERNAL\x10\x00\x12\n\n\x06GOOGLE\x10\x01\"q\n\nResponseV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12.\n\x04user\x18\x02 \x01(\x0b\x32 .services.user.containers.UserV1\x12\r\n\x05token\x18\x03 \x01(\t\x12\x10\n\x08new_user\x18\x04 \x01(\x08')
+  serialized_pb=_b('\n7protobufs/services/user/actions/authenticate_user.proto\x12\'services.user.actions.authenticate_user\x1a(protobufs/services/user/containers.proto\x1a.protobufs/services/user/containers/token.proto\"\xf9\x02\n\tRequestV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12Q\n\x07\x62\x61\x63kend\x18\x02 \x01(\x0e\x32@.services.user.actions.authenticate_user.RequestV1.AuthBackendV1\x12U\n\x0b\x63redentials\x18\x03 \x01(\x0b\x32@.services.user.actions.authenticate_user.RequestV1.CredentialsV1\x12\x41\n\x0b\x63lient_type\x18\x04 \x01(\x0e\x32,.services.user.containers.token.ClientTypeV1\x1a@\n\rCredentialsV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x0b\n\x03key\x18\x02 \x01(\t\x12\x0e\n\x06secret\x18\x03 \x01(\t\")\n\rAuthBackendV1\x12\x0c\n\x08INTERNAL\x10\x00\x12\n\n\x06GOOGLE\x10\x01\"q\n\nResponseV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12.\n\x04user\x18\x02 \x01(\x0b\x32 .services.user.containers.UserV1\x12\r\n\x05token\x18\x03 \x01(\t\x12\x10\n\x08new_user\x18\x04 \x01(\x08\x42>\n<com.rhlabs.protobufs.services.user.actions.authenticate_user')
   ,
-  dependencies=[protobufs.services.user.containers_pb2.DESCRIPTOR,])
+  dependencies=[protobufs.services.user.containers_pb2.DESCRIPTOR,protobufs.services.user.containers.token_pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 
@@ -43,8 +44,8 @@ _REQUESTV1_AUTHBACKENDV1 = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=412,
-  serialized_end=453,
+  serialized_start=527,
+  serialized_end=568,
 )
 _sym_db.RegisterEnumDescriptor(_REQUESTV1_AUTHBACKENDV1)
 
@@ -88,8 +89,8 @@ _REQUESTV1_CREDENTIALSV1 = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=346,
-  serialized_end=410,
+  serialized_start=461,
+  serialized_end=525,
 )
 
 _REQUESTV1 = _descriptor.Descriptor(
@@ -120,6 +121,13 @@ _REQUESTV1 = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
+    _descriptor.FieldDescriptor(
+      name='client_type', full_name='services.user.actions.authenticate_user.RequestV1.client_type', index=3,
+      number=4, type=14, cpp_type=8, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
   ],
   extensions=[
   ],
@@ -132,8 +140,8 @@ _REQUESTV1 = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=143,
-  serialized_end=453,
+  serialized_start=191,
+  serialized_end=568,
 )
 
 
@@ -183,13 +191,14 @@ _RESPONSEV1 = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=455,
-  serialized_end=568,
+  serialized_start=570,
+  serialized_end=683,
 )
 
 _REQUESTV1_CREDENTIALSV1.containing_type = _REQUESTV1
 _REQUESTV1.fields_by_name['backend'].enum_type = _REQUESTV1_AUTHBACKENDV1
 _REQUESTV1.fields_by_name['credentials'].message_type = _REQUESTV1_CREDENTIALSV1
+_REQUESTV1.fields_by_name['client_type'].enum_type = protobufs.services.user.containers.token_pb2._CLIENTTYPEV1
 _REQUESTV1_AUTHBACKENDV1.containing_type = _REQUESTV1
 _RESPONSEV1.fields_by_name['user'].message_type = protobufs.services.user.containers_pb2._USERV1
 DESCRIPTOR.message_types_by_name['RequestV1'] = _REQUESTV1
@@ -218,4 +227,6 @@ ResponseV1 = _reflection.GeneratedProtocolMessageType('ResponseV1', (_message.Me
 _sym_db.RegisterMessage(ResponseV1)
 
 
+DESCRIPTOR.has_options = True
+DESCRIPTOR._options = _descriptor._ParseOptions(descriptor_pb2.FileOptions(), _b('\n<com.rhlabs.protobufs.services.user.actions.authenticate_user'))
 # @@protoc_insertion_point(module_scope)

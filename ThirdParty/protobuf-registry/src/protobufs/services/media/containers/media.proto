@@ -1,5 +1,8 @@
 package services.media.containers.media;
 
+// GENERATED OPTIONS FOR: JAVA
+option java_package = "com.rhlabs.protobufs.services.media.containers.media";
+
 enum MediaTypeV1 {
     PROFILE = 1;
 }

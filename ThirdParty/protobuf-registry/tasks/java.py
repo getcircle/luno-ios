@@ -19,4 +19,7 @@ def clean():
 def compile():
     print 'compiling %s...' % (LANGUAGE,)
     with common.base_directory():
-        common.compile('java_out', LANGUAGE)
+        compiler = 'java -jar ~/open_source/wire/wire-compiler/target/wire-compiler-1.8.0-SNAPSHOT-jar-with-dependencies.jar'
+        # wire auto adds the source directory path
+        filters = " sed 's/src\///' | "
+        common.compile('java_out', LANGUAGE, compiler=compiler, filters=filters)

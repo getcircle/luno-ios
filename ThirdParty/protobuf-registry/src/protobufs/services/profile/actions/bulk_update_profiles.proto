@@ -1,5 +1,8 @@
 package services.profile.actions.bulk_update_profiles;
 
+// GENERATED OPTIONS FOR: JAVA
+option java_package = "com.rhlabs.protobufs.services.profile.actions.bulk_update_profiles";
+
 import "protobufs/services/profile/containers.proto";
 
 message RequestV1 {

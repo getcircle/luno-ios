@@ -20,7 +20,7 @@ import protobufs.services.profile.containers_pb2
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='protobufs/services/search/actions/search.proto',
   package='services.search.actions.search',
-  serialized_pb=_b('\n.protobufs/services/search/actions/search.proto\x12\x1eservices.search.actions.search\x1a\x30protobufs/services/organization/containers.proto\x1a+protobufs/services/profile/containers.proto\".\n\tRequestV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\r\n\x05query\x18\x02 \x01(\t\"\xd3\x01\n\nResponseV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x38\n\x08profiles\x18\x02 \x03(\x0b\x32&.services.profile.containers.ProfileV1\x12\x37\n\x05teams\x18\x03 \x03(\x0b\x32(.services.organization.containers.TeamV1\x12>\n\taddresses\x18\x04 \x03(\x0b\x32+.services.organization.containers.AddressV1')
+  serialized_pb=_b('\n.protobufs/services/search/actions/search.proto\x12\x1eservices.search.actions.search\x1a\x30protobufs/services/organization/containers.proto\x1a+protobufs/services/profile/containers.proto\".\n\tRequestV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\r\n\x05query\x18\x02 \x01(\t\"\xd3\x01\n\nResponseV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x38\n\x08profiles\x18\x02 \x03(\x0b\x32&.services.profile.containers.ProfileV1\x12\x37\n\x05teams\x18\x03 \x03(\x0b\x32(.services.organization.containers.TeamV1\x12>\n\taddresses\x18\x04 \x03(\x0b\x32+.services.organization.containers.AddressV1B5\n3com.rhlabs.protobufs.services.search.actions.search')
   ,
   dependencies=[protobufs.services.organization.containers_pb2.DESCRIPTOR,protobufs.services.profile.containers_pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
@@ -136,4 +136,6 @@ ResponseV1 = _reflection.GeneratedProtocolMessageType('ResponseV1', (_message.Me
 _sym_db.RegisterMessage(ResponseV1)
 
 
+DESCRIPTOR.has_options = True
+DESCRIPTOR._options = _descriptor._ParseOptions(descriptor_pb2.FileOptions(), _b('\n3com.rhlabs.protobufs.services.search.actions.search'))
 # @@protoc_insertion_point(module_scope)

@@ -19,7 +19,7 @@ import protobufs.services.resume.containers_pb2
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='protobufs/services/resume/actions/create_company.proto',
   package='services.resume.actions.create_company',
-  serialized_pb=_b('\n6protobufs/services/resume/actions/create_company.proto\x12&services.resume.actions.create_company\x1a*protobufs/services/resume/containers.proto\"W\n\tRequestV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x36\n\x07\x63ompany\x18\x02 \x01(\x0b\x32%.services.resume.containers.CompanyV1\"X\n\nResponseV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x36\n\x07\x63ompany\x18\x02 \x01(\x0b\x32%.services.resume.containers.CompanyV1')
+  serialized_pb=_b('\n6protobufs/services/resume/actions/create_company.proto\x12&services.resume.actions.create_company\x1a*protobufs/services/resume/containers.proto\"W\n\tRequestV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x36\n\x07\x63ompany\x18\x02 \x01(\x0b\x32%.services.resume.containers.CompanyV1\"X\n\nResponseV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x36\n\x07\x63ompany\x18\x02 \x01(\x0b\x32%.services.resume.containers.CompanyV1B=\n;com.rhlabs.protobufs.services.resume.actions.create_company')
   ,
   dependencies=[protobufs.services.resume.containers_pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
@@ -120,4 +120,6 @@ ResponseV1 = _reflection.GeneratedProtocolMessageType('ResponseV1', (_message.Me
 _sym_db.RegisterMessage(ResponseV1)
 
 
+DESCRIPTOR.has_options = True
+DESCRIPTOR._options = _descriptor._ParseOptions(descriptor_pb2.FileOptions(), _b('\n;com.rhlabs.protobufs.services.resume.actions.create_company'))
 # @@protoc_insertion_point(module_scope)

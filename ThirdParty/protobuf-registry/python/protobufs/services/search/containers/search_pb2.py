@@ -19,7 +19,7 @@ _sym_db = _symbol_database.Default()
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='protobufs/services/search/containers/search.proto',
   package='services.search.containers.search',
-  serialized_pb=_b('\n1protobufs/services/search/containers/search.proto\x12!services.search.containers.search*>\n\nCategoryV1\x12\n\n\x06PEOPLE\x10\x00\x12\t\n\x05TEAMS\x10\x01\x12\r\n\tLOCATIONS\x10\x02\x12\n\n\x06SKILLS\x10\x03*N\n\x0b\x41ttributeV1\x12\x0f\n\x0bLOCATION_ID\x10\x00\x12\x0b\n\x07TEAM_ID\x10\x01\x12\x0c\n\x08SKILL_ID\x10\x02\x12\x13\n\x0fORGANIZATION_ID\x10\x03')
+  serialized_pb=_b('\n1protobufs/services/search/containers/search.proto\x12!services.search.containers.search*>\n\nCategoryV1\x12\n\n\x06PEOPLE\x10\x00\x12\t\n\x05TEAMS\x10\x01\x12\r\n\tLOCATIONS\x10\x02\x12\n\n\x06SKILLS\x10\x03*N\n\x0b\x41ttributeV1\x12\x0f\n\x0bLOCATION_ID\x10\x00\x12\x0b\n\x07TEAM_ID\x10\x01\x12\x0c\n\x08SKILL_ID\x10\x02\x12\x13\n\x0fORGANIZATION_ID\x10\x03\x42\x38\n6com.rhlabs.protobufs.services.search.containers.search')
 )
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
@@ -99,4 +99,6 @@ DESCRIPTOR.enum_types_by_name['CategoryV1'] = _CATEGORYV1
 DESCRIPTOR.enum_types_by_name['AttributeV1'] = _ATTRIBUTEV1
 
 
+DESCRIPTOR.has_options = True
+DESCRIPTOR._options = _descriptor._ParseOptions(descriptor_pb2.FileOptions(), _b('\n6com.rhlabs.protobufs.services.search.containers.search'))
 # @@protoc_insertion_point(module_scope)

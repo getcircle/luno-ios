@@ -8,6 +8,7 @@ from . import (
     java,
     python,
     release,
+    rewrite,
     swift,
 )
 
@@ -28,6 +29,7 @@ ns.add_collection(java)
 ns.add_collection(python)
 ns.add_collection(release)
 ns.add_collection(swift)
+ns.add_collection(rewrite)
 
 ns.add_task(compile)
 ns.add_task(full_release)

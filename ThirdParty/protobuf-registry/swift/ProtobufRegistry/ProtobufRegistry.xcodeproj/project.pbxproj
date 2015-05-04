@@ -97,6 +97,14 @@
 		BF5AF6F71AE2E231000E876E /* ServicesOrganizationContainers_Containers.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5AF6F01AE2E231000E876E /* ServicesOrganizationContainers_Containers.pb.swift */; };
 		BF5AF6F81AE2E231000E876E /* ServicesProfileContainers_Containers.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5AF6F11AE2E231000E876E /* ServicesProfileContainers_Containers.pb.swift */; };
 		BF5AF6F91AE2E231000E876E /* ServicesUserContainers_Containers.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5AF6F21AE2E231000E876E /* ServicesUserContainers_Containers.pb.swift */; };
+		BF79ED711AF803D100A90034 /* ServicesOrganizationActionsCreateToken_Create_token.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF79ED6D1AF803D100A90034 /* ServicesOrganizationActionsCreateToken_Create_token.pb.swift */; };
+		BF79ED721AF803D100A90034 /* ServicesOrganizationActionsGetTokens_Get_tokens.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF79ED6E1AF803D100A90034 /* ServicesOrganizationActionsGetTokens_Get_tokens.pb.swift */; };
+		BF79ED731AF803D100A90034 /* ServicesUserContainersToken_Token.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF79ED6F1AF803D100A90034 /* ServicesUserContainersToken_Token.pb.swift */; };
+		BF79ED741AF803D100A90034 /* ServicesSyncActionsCompleteSync_Complete_sync.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF79ED701AF803D100A90034 /* ServicesSyncActionsCompleteSync_Complete_sync.pb.swift */; };
+		BF79ED791AF803DC00A90034 /* ServicesSyncActionsStartSync_Start_sync.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF79ED751AF803DC00A90034 /* ServicesSyncActionsStartSync_Start_sync.pb.swift */; };
+		BF79ED7A1AF803DC00A90034 /* ServicesSyncActionsSync_Sync.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF79ED761AF803DC00A90034 /* ServicesSyncActionsSync_Sync.pb.swift */; };
+		BF79ED7B1AF803DC00A90034 /* ServicesSyncContainersPayload_Payload.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF79ED771AF803DC00A90034 /* ServicesSyncContainersPayload_Payload.pb.swift */; };
+		BF79ED7C1AF803DC00A90034 /* ServicesSyncContainersSource_Source.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF79ED781AF803DC00A90034 /* ServicesSyncContainersSource_Source.pb.swift */; };
 		BF98CB751AE08CA400F96BFE /* ServicesRegistryRequests_Requests.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF98CB721AE08CA400F96BFE /* ServicesRegistryRequests_Requests.pb.swift */; };
 		BF98CB761AE08CA400F96BFE /* ServicesRegistryResponses_Responses.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF98CB731AE08CA400F96BFE /* ServicesRegistryResponses_Responses.pb.swift */; };
 		BFC6CEF51A44B58B0081F45B /* ProtobufRegistry.h in Headers */ = {isa = PBXBuildFile; fileRef = BFC6CEF41A44B58B0081F45B /* ProtobufRegistry.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -206,6 +214,14 @@
 		BF5AF6F01AE2E231000E876E /* ServicesOrganizationContainers_Containers.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesOrganizationContainers_Containers.pb.swift; sourceTree = "<group>"; };
 		BF5AF6F11AE2E231000E876E /* ServicesProfileContainers_Containers.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesProfileContainers_Containers.pb.swift; sourceTree = "<group>"; };
 		BF5AF6F21AE2E231000E876E /* ServicesUserContainers_Containers.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesUserContainers_Containers.pb.swift; sourceTree = "<group>"; };
+		BF79ED6D1AF803D100A90034 /* ServicesOrganizationActionsCreateToken_Create_token.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesOrganizationActionsCreateToken_Create_token.pb.swift; sourceTree = "<group>"; };
+		BF79ED6E1AF803D100A90034 /* ServicesOrganizationActionsGetTokens_Get_tokens.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesOrganizationActionsGetTokens_Get_tokens.pb.swift; sourceTree = "<group>"; };
+		BF79ED6F1AF803D100A90034 /* ServicesUserContainersToken_Token.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesUserContainersToken_Token.pb.swift; sourceTree = "<group>"; };
+		BF79ED701AF803D100A90034 /* ServicesSyncActionsCompleteSync_Complete_sync.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesSyncActionsCompleteSync_Complete_sync.pb.swift; sourceTree = "<group>"; };
+		BF79ED751AF803DC00A90034 /* ServicesSyncActionsStartSync_Start_sync.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesSyncActionsStartSync_Start_sync.pb.swift; sourceTree = "<group>"; };
+		BF79ED761AF803DC00A90034 /* ServicesSyncActionsSync_Sync.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesSyncActionsSync_Sync.pb.swift; sourceTree = "<group>"; };
+		BF79ED771AF803DC00A90034 /* ServicesSyncContainersPayload_Payload.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesSyncContainersPayload_Payload.pb.swift; sourceTree = "<group>"; };
+		BF79ED781AF803DC00A90034 /* ServicesSyncContainersSource_Source.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesSyncContainersSource_Source.pb.swift; sourceTree = "<group>"; };
 		BF98CB721AE08CA400F96BFE /* ServicesRegistryRequests_Requests.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesRegistryRequests_Requests.pb.swift; sourceTree = "<group>"; };
 		BF98CB731AE08CA400F96BFE /* ServicesRegistryResponses_Responses.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesRegistryResponses_Responses.pb.swift; sourceTree = "<group>"; };
 		BFC6CEEF1A44B58B0081F45B /* ProtobufRegistry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ProtobufRegistry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -280,6 +296,7 @@
 				BF1B13D91AE1944300F36620 /* ServicesOrganizationActionsCreateLocation_Create_location.pb.swift */,
 				BF3D3CAE1AE06D9300B5780B /* ServicesOrganizationActionsCreateOrganization_Create_organization.pb.swift */,
 				BF1B13DA1AE1944300F36620 /* ServicesOrganizationActionsCreateTeam_Create_team.pb.swift */,
+				BF79ED6D1AF803D100A90034 /* ServicesOrganizationActionsCreateToken_Create_token.pb.swift */,
 				BF1B13DB1AE1944300F36620 /* ServicesOrganizationActionsDeleteAddress_Delete_address.pb.swift */,
 				BF1B13DC1AE1944300F36620 /* ServicesOrganizationActionsGetAddress_Get_address.pb.swift */,
 				BF1B13DD1AE1944300F36620 /* ServicesOrganizationActionsGetAddresses_Get_addresses.pb.swift */,
@@ -289,6 +306,7 @@
 				BF1B13E01AE1944300F36620 /* ServicesOrganizationActionsGetTeam_Get_team.pb.swift */,
 				BF1B13E11AE1944300F36620 /* ServicesOrganizationActionsGetTeamDescendants_Get_team_descendants.pb.swift */,
 				BF1B13E21AE1944300F36620 /* ServicesOrganizationActionsGetTeams_Get_teams.pb.swift */,
+				BF79ED6E1AF803D100A90034 /* ServicesOrganizationActionsGetTokens_Get_tokens.pb.swift */,
 				BF1B13E31AE1944300F36620 /* ServicesOrganizationActionsGetTopLevelTeam_Get_top_level_team.pb.swift */,
 				BF1B13E41AE1944300F36620 /* ServicesOrganizationActionsUpdateLocation_Update_location.pb.swift */,
 				BF5AF6F01AE2E231000E876E /* ServicesOrganizationContainers_Containers.pb.swift */,
@@ -322,6 +340,11 @@
 				BF5AF6E81AE2D603000E876E /* ServicesResumeContainers_Containers.pb.swift */,
 				BF1B14031AE1944300F36620 /* ServicesSearchActionsSearch_Search.pb.swift */,
 				BF1B14041AE1944300F36620 /* ServicesSearchContainersSearch_Search.pb.swift */,
+				BF79ED701AF803D100A90034 /* ServicesSyncActionsCompleteSync_Complete_sync.pb.swift */,
+				BF79ED751AF803DC00A90034 /* ServicesSyncActionsStartSync_Start_sync.pb.swift */,
+				BF79ED761AF803DC00A90034 /* ServicesSyncActionsSync_Sync.pb.swift */,
+				BF79ED771AF803DC00A90034 /* ServicesSyncContainersPayload_Payload.pb.swift */,
+				BF79ED781AF803DC00A90034 /* ServicesSyncContainersSource_Source.pb.swift */,
 				BF1B14051AE1944300F36620 /* ServicesUserActionsAuthenticateUser_Authenticate_user.pb.swift */,
 				BF1B14061AE1944300F36620 /* ServicesUserActionsBulkCreateUsers_Bulk_create_users.pb.swift */,
 				BF1B14071AE1944300F36620 /* ServicesUserActionsCompleteAuthorization_Complete_authorization.pb.swift */,
@@ -338,6 +361,7 @@
 				BF1B14111AE1944300F36620 /* ServicesUserActionsValidUser_Valid_user.pb.swift */,
 				BF1B14121AE1944300F36620 /* ServicesUserActionsVerifyVerificationCode_Verify_verification_code.pb.swift */,
 				BF5AF6F21AE2E231000E876E /* ServicesUserContainers_Containers.pb.swift */,
+				BF79ED6F1AF803D100A90034 /* ServicesUserContainersToken_Token.pb.swift */,
 				BF4125C21AC4616E00BC37F6 /* Soa_Soa.pb.swift */,
 				BFC6CEF21A44B58B0081F45B /* Supporting Files */,
 			);
@@ -541,6 +565,7 @@
 				BF1B144A1AE1944300F36620 /* ServicesProfileActionsGetUpcomingBirthdays_Get_upcoming_birthdays.pb.swift in Sources */,
 				BF1B144B1AE1944300F36620 /* ServicesProfileActionsRemoveTags_Remove_tags.pb.swift in Sources */,
 				BF1B144C1AE1944300F36620 /* ServicesProfileActionsUpdateProfile_Update_profile.pb.swift in Sources */,
+				BF3D3CB81AE06D9300B5780B /* ServicesProfileActionsGetExtendedProfile_Get_extended_profile.pb.swift in Sources */,
 				BF1B14501AE1944300F36620 /* ServicesResumeActionsBulkCreateCompanies_Bulk_create_companies.pb.swift in Sources */,
 				BF1B14511AE1944300F36620 /* ServicesResumeActionsBulkCreateEducations_Bulk_create_educations.pb.swift in Sources */,
 				BF1B14521AE1944300F36620 /* ServicesResumeActionsBulkCreatePositions_Bulk_create_positions.pb.swift in Sources */,
@@ -562,10 +587,8 @@
 				BF1B14631AE1944300F36620 /* ServicesUserActionsUpdateUser_Update_user.pb.swift in Sources */,
 				BF1B14641AE1944300F36620 /* ServicesUserActionsValidUser_Valid_user.pb.swift in Sources */,
 				BF1B14651AE1944300F36620 /* ServicesUserActionsVerifyVerificationCode_Verify_verification_code.pb.swift in Sources */,
-				BFF67AC61AE609C20062815A /* ServicesUserActionsLogout_Logout.pb.swift in Sources */,
 				BF3D3CB41AE06D9300B5780B /* ServicesOrganizationActionsCreateOrganization_Create_organization.pb.swift in Sources */,
 				BF3D3CB51AE06D9300B5780B /* ServicesOrganizationActionsGetOrganization_Get_organization.pb.swift in Sources */,
-				BF3D3CB81AE06D9300B5780B /* ServicesProfileActionsGetExtendedProfile_Get_extended_profile.pb.swift in Sources */,
 				BF3D3CC91AE070EF00B5780B /* AbstractMessage.swift in Sources */,
 				BF3D3CCA1AE070EF00B5780B /* CodedInputStream.swift in Sources */,
 				BF3D3CCB1AE070EF00B5780B /* CodedOutputStream.swift in Sources */,
@@ -586,9 +609,18 @@
 				BF5AF6F61AE2E231000E876E /* ServicesNoteContainers_Containers.pb.swift in Sources */,
 				BF5AF6F71AE2E231000E876E /* ServicesOrganizationContainers_Containers.pb.swift in Sources */,
 				BF5AF6F81AE2E231000E876E /* ServicesProfileContainers_Containers.pb.swift in Sources */,
+				BF79ED731AF803D100A90034 /* ServicesUserContainersToken_Token.pb.swift in Sources */,
 				BF5AF6F91AE2E231000E876E /* ServicesUserContainers_Containers.pb.swift in Sources */,
+				BF79ED711AF803D100A90034 /* ServicesOrganizationActionsCreateToken_Create_token.pb.swift in Sources */,
+				BF79ED721AF803D100A90034 /* ServicesOrganizationActionsGetTokens_Get_tokens.pb.swift in Sources */,
+				BF79ED741AF803D100A90034 /* ServicesSyncActionsCompleteSync_Complete_sync.pb.swift in Sources */,
+				BF79ED791AF803DC00A90034 /* ServicesSyncActionsStartSync_Start_sync.pb.swift in Sources */,
+				BF79ED7A1AF803DC00A90034 /* ServicesSyncActionsSync_Sync.pb.swift in Sources */,
+				BF79ED7B1AF803DC00A90034 /* ServicesSyncContainersPayload_Payload.pb.swift in Sources */,
+				BF79ED7C1AF803DC00A90034 /* ServicesSyncContainersSource_Source.pb.swift in Sources */,
 				BF98CB751AE08CA400F96BFE /* ServicesRegistryRequests_Requests.pb.swift in Sources */,
 				BF98CB761AE08CA400F96BFE /* ServicesRegistryResponses_Responses.pb.swift in Sources */,
+				BFF67AC61AE609C20062815A /* ServicesUserActionsLogout_Logout.pb.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

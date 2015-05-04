@@ -19,7 +19,7 @@ import protobufs.services.note.containers_pb2
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='protobufs/services/note/actions/get_notes.proto',
   package='services.note.actions.get_notes',
-  serialized_pb=_b('\n/protobufs/services/note/actions/get_notes.proto\x12\x1fservices.note.actions.get_notes\x1a(protobufs/services/note/containers.proto\"Q\n\tRequestV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x18\n\x10owner_profile_id\x18\x02 \x01(\t\x12\x16\n\x0e\x66or_profile_id\x18\x03 \x01(\t\"Q\n\nResponseV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12/\n\x05notes\x18\x02 \x03(\x0b\x32 .services.note.containers.NoteV1')
+  serialized_pb=_b('\n/protobufs/services/note/actions/get_notes.proto\x12\x1fservices.note.actions.get_notes\x1a(protobufs/services/note/containers.proto\"Q\n\tRequestV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x18\n\x10owner_profile_id\x18\x02 \x01(\t\x12\x16\n\x0e\x66or_profile_id\x18\x03 \x01(\t\"Q\n\nResponseV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12/\n\x05notes\x18\x02 \x03(\x0b\x32 .services.note.containers.NoteV1B6\n4com.rhlabs.protobufs.services.note.actions.get_notes')
   ,
   dependencies=[protobufs.services.note.containers_pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
@@ -126,4 +126,6 @@ ResponseV1 = _reflection.GeneratedProtocolMessageType('ResponseV1', (_message.Me
 _sym_db.RegisterMessage(ResponseV1)
 
 
+DESCRIPTOR.has_options = True
+DESCRIPTOR._options = _descriptor._ParseOptions(descriptor_pb2.FileOptions(), _b('\n4com.rhlabs.protobufs.services.note.actions.get_notes'))
 # @@protoc_insertion_point(module_scope)

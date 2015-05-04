@@ -1,5 +1,8 @@
 package services.user.actions.record_device;
 
+// GENERATED OPTIONS FOR: JAVA
+option java_package = "com.rhlabs.protobufs.services.user.actions.record_device";
+
 import "protobufs/services/user/containers.proto";
 
 message RequestV1 {

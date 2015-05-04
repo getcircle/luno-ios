@@ -1,5 +1,8 @@
 package services.feed.actions.get_profile_feed;
 
+// GENERATED OPTIONS FOR: JAVA
+option java_package = "com.rhlabs.protobufs.services.feed.actions.get_profile_feed";
+
 import "protobufs/services/feed/containers.proto";
 
 message RequestV1 {

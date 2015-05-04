@@ -1,7 +1,14 @@
 package services.user.actions.logout;
 
+// GENERATED OPTIONS FOR: JAVA
+option java_package = "com.rhlabs.protobufs.services.user.actions.logout";
+
+import "protobufs/services/user/containers/token.proto";
+
 message RequestV1 {
     optional uint32 version = 1 [default = 1];
+    optional services.user.containers.token.ClientTypeV1 client_type = 2;
+    optional bool revoke_all = 3 [default = false];
 }
 
 message ResponseV1 {

@@ -18,7 +18,7 @@ _sym_db = _symbol_database.Default()
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='protobufs/services/user/actions/send_verification_code.proto',
   package='services.user.actions.send_verification_code',
-  serialized_pb=_b('\n<protobufs/services/user/actions/send_verification_code.proto\x12,services.user.actions.send_verification_code\"0\n\tRequestV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x0f\n\x07user_id\x18\x02 \x01(\t\"4\n\nResponseV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x12\n\nmessage_id\x18\x02 \x01(\t')
+  serialized_pb=_b('\n<protobufs/services/user/actions/send_verification_code.proto\x12,services.user.actions.send_verification_code\"0\n\tRequestV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x0f\n\x07user_id\x18\x02 \x01(\t\"4\n\nResponseV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x12\n\nmessage_id\x18\x02 \x01(\tBC\nAcom.rhlabs.protobufs.services.user.actions.send_verification_code')
 )
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
@@ -116,4 +116,6 @@ ResponseV1 = _reflection.GeneratedProtocolMessageType('ResponseV1', (_message.Me
 _sym_db.RegisterMessage(ResponseV1)
 
 
+DESCRIPTOR.has_options = True
+DESCRIPTOR._options = _descriptor._ParseOptions(descriptor_pb2.FileOptions(), _b('\nAcom.rhlabs.protobufs.services.user.actions.send_verification_code'))
 # @@protoc_insertion_point(module_scope)

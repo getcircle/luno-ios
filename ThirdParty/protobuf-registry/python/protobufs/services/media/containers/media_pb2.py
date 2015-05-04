@@ -19,7 +19,7 @@ _sym_db = _symbol_database.Default()
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='protobufs/services/media/containers/media.proto',
   package='services.media.containers.media',
-  serialized_pb=_b('\n/protobufs/services/media/containers/media.proto\x12\x1fservices.media.containers.media*\x1a\n\x0bMediaTypeV1\x12\x0b\n\x07PROFILE\x10\x01')
+  serialized_pb=_b('\n/protobufs/services/media/containers/media.proto\x12\x1fservices.media.containers.media*\x1a\n\x0bMediaTypeV1\x12\x0b\n\x07PROFILE\x10\x01\x42\x36\n4com.rhlabs.protobufs.services.media.containers.media')
 )
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
@@ -48,4 +48,6 @@ PROFILE = 1
 DESCRIPTOR.enum_types_by_name['MediaTypeV1'] = _MEDIATYPEV1
 
 
+DESCRIPTOR.has_options = True
+DESCRIPTOR._options = _descriptor._ParseOptions(descriptor_pb2.FileOptions(), _b('\n4com.rhlabs.protobufs.services.media.containers.media'))
 # @@protoc_insertion_point(module_scope)

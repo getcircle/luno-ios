@@ -19,7 +19,7 @@ import protobufs.services.profile.containers_pb2
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='protobufs/services/profile/actions/get_attributes_for_profiles.proto',
   package='services.profile.actions.get_attributes_for_profiles',
-  serialized_pb=_b('\nDprotobufs/services/profile/actions/get_attributes_for_profiles.proto\x12\x34services.profile.actions.get_attributes_for_profiles\x1a+protobufs/services/profile/containers.proto\"Z\n\tRequestV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x12\n\nattributes\x18\x02 \x03(\t\x12\x10\n\x08\x64istinct\x18\x03 \x01(\x08\x12\x13\n\x0blocation_id\x18\x04 \x01(\t\"^\n\nResponseV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12<\n\nattributes\x18\x02 \x03(\x0b\x32(.services.profile.containers.AttributeV1')
+  serialized_pb=_b('\nDprotobufs/services/profile/actions/get_attributes_for_profiles.proto\x12\x34services.profile.actions.get_attributes_for_profiles\x1a+protobufs/services/profile/containers.proto\"Z\n\tRequestV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x12\n\nattributes\x18\x02 \x03(\t\x12\x10\n\x08\x64istinct\x18\x03 \x01(\x08\x12\x13\n\x0blocation_id\x18\x04 \x01(\t\"^\n\nResponseV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12<\n\nattributes\x18\x02 \x03(\x0b\x32(.services.profile.containers.AttributeV1BK\nIcom.rhlabs.protobufs.services.profile.actions.get_attributes_for_profiles')
   ,
   dependencies=[protobufs.services.profile.containers_pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
@@ -133,4 +133,6 @@ ResponseV1 = _reflection.GeneratedProtocolMessageType('ResponseV1', (_message.Me
 _sym_db.RegisterMessage(ResponseV1)
 
 
+DESCRIPTOR.has_options = True
+DESCRIPTOR._options = _descriptor._ParseOptions(descriptor_pb2.FileOptions(), _b('\nIcom.rhlabs.protobufs.services.profile.actions.get_attributes_for_profiles'))
 # @@protoc_insertion_point(module_scope)

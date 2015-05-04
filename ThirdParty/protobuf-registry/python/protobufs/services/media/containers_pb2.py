@@ -18,7 +18,7 @@ _sym_db = _symbol_database.Default()
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='protobufs/services/media/containers.proto',
   package='services.media.containers',
-  serialized_pb=_b('\n)protobufs/services/media/containers.proto\x12\x19services.media.containers\"e\n\x14UploadInstructionsV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x11\n\tupload_id\x18\x02 \x01(\t\x12\x12\n\nupload_url\x18\x03 \x01(\t\x12\x12\n\nupload_key\x18\x04 \x01(\t')
+  serialized_pb=_b('\n)protobufs/services/media/containers.proto\x12\x19services.media.containers\"e\n\x14UploadInstructionsV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x11\n\tupload_id\x18\x02 \x01(\t\x12\x12\n\nupload_url\x18\x03 \x01(\t\x12\x12\n\nupload_key\x18\x04 \x01(\tB0\n.com.rhlabs.protobufs.services.media.containers')
 )
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
@@ -85,4 +85,6 @@ UploadInstructionsV1 = _reflection.GeneratedProtocolMessageType('UploadInstructi
 _sym_db.RegisterMessage(UploadInstructionsV1)
 
 
+DESCRIPTOR.has_options = True
+DESCRIPTOR._options = _descriptor._ParseOptions(descriptor_pb2.FileOptions(), _b('\n.com.rhlabs.protobufs.services.media.containers'))
 # @@protoc_insertion_point(module_scope)

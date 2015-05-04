@@ -19,7 +19,7 @@ import protobufs.services.feed.containers_pb2
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='protobufs/services/feed/actions/get_profile_feed.proto',
   package='services.feed.actions.get_profile_feed',
-  serialized_pb=_b('\n6protobufs/services/feed/actions/get_profile_feed.proto\x12&services.feed.actions.get_profile_feed\x1a(protobufs/services/feed/containers.proto\"3\n\tRequestV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x12\n\nprofile_id\x18\x02 \x01(\t\"Z\n\nResponseV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x38\n\ncategories\x18\x02 \x03(\x0b\x32$.services.feed.containers.CategoryV1')
+  serialized_pb=_b('\n6protobufs/services/feed/actions/get_profile_feed.proto\x12&services.feed.actions.get_profile_feed\x1a(protobufs/services/feed/containers.proto\"3\n\tRequestV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x12\n\nprofile_id\x18\x02 \x01(\t\"Z\n\nResponseV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x38\n\ncategories\x18\x02 \x03(\x0b\x32$.services.feed.containers.CategoryV1B=\n;com.rhlabs.protobufs.services.feed.actions.get_profile_feed')
   ,
   dependencies=[protobufs.services.feed.containers_pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
@@ -119,4 +119,6 @@ ResponseV1 = _reflection.GeneratedProtocolMessageType('ResponseV1', (_message.Me
 _sym_db.RegisterMessage(ResponseV1)
 
 
+DESCRIPTOR.has_options = True
+DESCRIPTOR._options = _descriptor._ParseOptions(descriptor_pb2.FileOptions(), _b('\n;com.rhlabs.protobufs.services.feed.actions.get_profile_feed'))
 # @@protoc_insertion_point(module_scope)

@@ -19,7 +19,7 @@ import protobufs.services.profile.containers_pb2
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='protobufs/services/profile/actions/add_tags.proto',
   package='services.profile.actions.add_tags',
-  serialized_pb=_b('\n1protobufs/services/profile/actions/add_tags.proto\x12!services.profile.actions.add_tags\x1a+protobufs/services/profile/containers.proto\"e\n\tRequestV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x30\n\x04tags\x18\x02 \x03(\x0b\x32\".services.profile.containers.TagV1\x12\x12\n\nprofile_id\x18\x03 \x01(\t\"R\n\nResponseV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x30\n\x04tags\x18\x02 \x03(\x0b\x32\".services.profile.containers.TagV1')
+  serialized_pb=_b('\n1protobufs/services/profile/actions/add_tags.proto\x12!services.profile.actions.add_tags\x1a+protobufs/services/profile/containers.proto\"e\n\tRequestV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x30\n\x04tags\x18\x02 \x03(\x0b\x32\".services.profile.containers.TagV1\x12\x12\n\nprofile_id\x18\x03 \x01(\t\"R\n\nResponseV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x30\n\x04tags\x18\x02 \x03(\x0b\x32\".services.profile.containers.TagV1B8\n6com.rhlabs.protobufs.services.profile.actions.add_tags')
   ,
   dependencies=[protobufs.services.profile.containers_pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
@@ -127,4 +127,6 @@ ResponseV1 = _reflection.GeneratedProtocolMessageType('ResponseV1', (_message.Me
 _sym_db.RegisterMessage(ResponseV1)
 
 
+DESCRIPTOR.has_options = True
+DESCRIPTOR._options = _descriptor._ParseOptions(descriptor_pb2.FileOptions(), _b('\n6com.rhlabs.protobufs.services.profile.actions.add_tags'))
 # @@protoc_insertion_point(module_scope)

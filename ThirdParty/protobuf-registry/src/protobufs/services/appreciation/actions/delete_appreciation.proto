@@ -1,5 +1,8 @@
 package services.appreciation.actions.delete_appreciation;
 
+// GENERATED OPTIONS FOR: JAVA
+option java_package = "com.rhlabs.protobufs.services.appreciation.actions.delete_appreciation";
+
 import "protobufs/services/appreciation/containers.proto";
 
 message RequestV1 {

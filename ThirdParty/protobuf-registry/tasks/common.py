@@ -23,11 +23,13 @@ def compile(
         out_directory,
         extra='',
         filters='',
+        compiler='protoc'
     ):
     command = (
-        "find src -type f -name '*.proto' | %s xargs protoc --proto_path"
-        " ./src/ --%s %s %s" % (
+        "find src -type f -name '*.proto' | %s xargs %s --proto_path"
+        "=./src --%s=%s %s" % (
             filters,
+            compiler,
             out_prefix,
             out_directory,
             extra,

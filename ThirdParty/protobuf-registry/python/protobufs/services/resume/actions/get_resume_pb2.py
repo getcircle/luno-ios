@@ -19,7 +19,7 @@ import protobufs.services.resume.containers_pb2
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='protobufs/services/resume/actions/get_resume.proto',
   package='services.resume.actions.get_resume',
-  serialized_pb=_b('\n2protobufs/services/resume/actions/get_resume.proto\x12\"services.resume.actions.get_resume\x1a*protobufs/services/resume/containers.proto\"0\n\tRequestV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x0f\n\x07user_id\x18\x02 \x01(\t\"V\n\nResponseV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x34\n\x06resume\x18\x02 \x01(\x0b\x32$.services.resume.containers.ResumeV1')
+  serialized_pb=_b('\n2protobufs/services/resume/actions/get_resume.proto\x12\"services.resume.actions.get_resume\x1a*protobufs/services/resume/containers.proto\"0\n\tRequestV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x0f\n\x07user_id\x18\x02 \x01(\t\"V\n\nResponseV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x34\n\x06resume\x18\x02 \x01(\x0b\x32$.services.resume.containers.ResumeV1B9\n7com.rhlabs.protobufs.services.resume.actions.get_resume')
   ,
   dependencies=[protobufs.services.resume.containers_pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
@@ -119,4 +119,6 @@ ResponseV1 = _reflection.GeneratedProtocolMessageType('ResponseV1', (_message.Me
 _sym_db.RegisterMessage(ResponseV1)
 
 
+DESCRIPTOR.has_options = True
+DESCRIPTOR._options = _descriptor._ParseOptions(descriptor_pb2.FileOptions(), _b('\n7com.rhlabs.protobufs.services.resume.actions.get_resume'))
 # @@protoc_insertion_point(module_scope)

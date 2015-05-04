@@ -1,5 +1,8 @@
 package services.user.actions.valid_user;
 
+// GENERATED OPTIONS FOR: JAVA
+option java_package = "com.rhlabs.protobufs.services.user.actions.valid_user";
+
 message RequestV1 {
     optional uint32 version = 1 [default = 1];
     optional string user_id = 2;

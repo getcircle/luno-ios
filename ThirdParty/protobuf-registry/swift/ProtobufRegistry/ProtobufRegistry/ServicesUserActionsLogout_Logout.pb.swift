@@ -9,6 +9,8 @@ public func == (lhs: Services.User.Actions.Logout.RequestV1, rhs: Services.User.
   }
   var fieldCheck:Bool = (lhs.hashValue == rhs.hashValue)
   fieldCheck = fieldCheck && (lhs.hasVersion == rhs.hasVersion) && (!lhs.hasVersion || lhs.version == rhs.version)
+  fieldCheck = fieldCheck && (lhs.hasClientType == rhs.hasClientType) && (!lhs.hasClientType || lhs.clientType == rhs.clientType)
+  fieldCheck = fieldCheck && (lhs.hasRevokeAll == rhs.hasRevokeAll) && (!lhs.hasRevokeAll || lhs.revokeAll == rhs.revokeAll)
   return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
 }
 
@@ -34,6 +36,7 @@ public extension Services.User.Actions.Logout {
     init() {
       extensionRegistry = ExtensionRegistry()
       registerAllExtensions(extensionRegistry)
+      Services.User.Containers.Token.TokenRoot.sharedInstance.registerAllExtensions(extensionRegistry)
     }
     public func registerAllExtensions(registry:ExtensionRegistry) {
     }
@@ -43,12 +46,19 @@ public extension Services.User.Actions.Logout {
     override public subscript(key: String) -> Any? {
            switch key {
            case "version": return version
+           case "clientType": return self.clientType
+           case "revokeAll": return revokeAll
            default: return nil
            }
     }
 
     public private(set) var hasVersion:Bool = false
     public private(set) var version:UInt32 = UInt32(1)
+
+    public private(set) var clientType:Services.User.Containers.Token.ClientTypeV1 = Services.User.Containers.Token.ClientTypeV1.Ios
+    public private(set) var hasClientType:Bool = false
+    public private(set) var hasRevokeAll:Bool = false
+    public private(set) var revokeAll:Bool = false
 
     required public init() {
          super.init()
@@ -59,6 +69,12 @@ public extension Services.User.Actions.Logout {
     override public func writeToCodedOutputStream(output:CodedOutputStream) {
       if hasVersion {
         output.writeUInt32(1, value:version)
+      }
+      if hasClientType {
+        output.writeEnum(2, value:clientType.rawValue)
+      }
+      if hasRevokeAll {
+        output.writeBool(3, value:revokeAll)
       }
       unknownFields.writeToCodedOutputStream(output)
     }
@@ -71,6 +87,12 @@ public extension Services.User.Actions.Logout {
       serialize_size = 0
       if hasVersion {
         serialize_size += version.computeUInt32Size(1)
+      }
+      if (hasClientType) {
+        serialize_size += clientType.rawValue.computeEnumSize(2)
+      }
+      if hasRevokeAll {
+        serialize_size += revokeAll.computeBoolSize(3)
       }
       serialize_size += unknownFields.serializedSize()
       memoizedSerializedSize = serialize_size
@@ -116,6 +138,12 @@ public extension Services.User.Actions.Logout {
       if hasVersion {
         output += "\(indent) version: \(version) \n"
       }
+      if (hasClientType) {
+        output += "\(indent) clientType: \(clientType.rawValue)\n"
+      }
+      if hasRevokeAll {
+        output += "\(indent) revokeAll: \(revokeAll) \n"
+      }
       unknownFields.writeDescriptionTo(&output, indent:indent)
     }
     override public var hashValue:Int {
@@ -123,6 +151,12 @@ public extension Services.User.Actions.Logout {
             var hashCode:Int = 7
             if hasVersion {
                hashCode = (hashCode &* 31) &+ version.hashValue
+            }
+            if hasClientType {
+               hashCode = (hashCode &* 31) &+ Int(clientType.rawValue)
+            }
+            if hasRevokeAll {
+               hashCode = (hashCode &* 31) &+ revokeAll.hashValue
             }
             hashCode = (hashCode &* 31) &+  unknownFields.hashValue
             return hashCode
@@ -175,6 +209,52 @@ public extension Services.User.Actions.Logout {
          builderResult.version = UInt32(1)
          return self
     }
+      public var hasClientType:Bool{
+          get {
+              return builderResult.hasClientType
+          }
+      }
+      public var clientType:Services.User.Containers.Token.ClientTypeV1 {
+          get {
+              return builderResult.clientType
+          }
+          set (value) {
+              builderResult.hasClientType = true
+              builderResult.clientType = value
+          }
+      }
+      public func setClientType(value:Services.User.Containers.Token.ClientTypeV1)-> Services.User.Actions.Logout.RequestV1Builder {
+        self.clientType = value
+        return self
+      }
+      public func clearClientType() -> Services.User.Actions.Logout.RequestV1Builder {
+         builderResult.hasClientType = false
+         builderResult.clientType = .Ios
+         return self
+      }
+    public var hasRevokeAll:Bool {
+         get {
+              return builderResult.hasRevokeAll
+         }
+    }
+    public var revokeAll:Bool {
+         get {
+              return builderResult.revokeAll
+         }
+         set (value) {
+             builderResult.hasRevokeAll = true
+             builderResult.revokeAll = value
+         }
+    }
+    public func setRevokeAll(value:Bool)-> Services.User.Actions.Logout.RequestV1Builder {
+      self.revokeAll = value
+      return self
+    }
+    public func clearRevokeAll() -> Services.User.Actions.Logout.RequestV1Builder{
+         builderResult.hasRevokeAll = false
+         builderResult.revokeAll = false
+         return self
+    }
     override public var internalGetResult:GeneratedMessage {
          get {
             return builderResult
@@ -202,6 +282,12 @@ public extension Services.User.Actions.Logout {
       if other.hasVersion {
            version = other.version
       }
+      if other.hasClientType {
+           clientType = other.clientType
+      }
+      if other.hasRevokeAll {
+           revokeAll = other.revokeAll
+      }
       mergeUnknownFields(other.unknownFields)
       return self
     }
@@ -219,6 +305,17 @@ public extension Services.User.Actions.Logout {
 
         case 8 :
           version = input.readUInt32()
+
+        case 16 :
+          let valueIntclientType = input.readEnum()
+          if let enumsclientType = Services.User.Containers.Token.ClientTypeV1(rawValue:valueIntclientType){
+               clientType = enumsclientType
+          } else {
+               unknownFieldsBuilder.mergeVarintField(2, value:Int64(valueIntclientType))
+          }
+
+        case 24 :
+          revokeAll = input.readBool()
 
         default:
           if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {

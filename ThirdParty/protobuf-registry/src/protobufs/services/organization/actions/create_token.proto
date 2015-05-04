@@ -1,0 +1,15 @@
+package services.organization.actions.create_token;
+
+// GENERATED OPTIONS FOR: JAVA
+option java_package = "com.rhlabs.protobufs.services.organization.actions.create_token";
+
+import "protobufs/services/organization/containers.proto";
+
+message RequestV1 {
+    optional uint32 version = 1 [default = 1];
+}
+
+message ResponseV1 {
+    optional uint32 version = 1 [default = 1];
+    optional services.organization.containers.TokenV1 token = 2;
+}

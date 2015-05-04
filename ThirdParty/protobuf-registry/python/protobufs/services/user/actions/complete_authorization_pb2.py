@@ -19,7 +19,7 @@ import protobufs.services.user.containers_pb2
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='protobufs/services/user/actions/complete_authorization.proto',
   package='services.user.actions.complete_authorization',
-  serialized_pb=_b('\n<protobufs/services/user/actions/complete_authorization.proto\x12,services.user.actions.complete_authorization\x1a(protobufs/services/user/containers.proto\"\xed\x01\n\tRequestV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x41\n\x08provider\x18\x02 \x01(\x0e\x32/.services.user.containers.IdentityV1.ProviderV1\x12\x41\n\x0eoauth2_details\x18\x03 \x01(\x0b\x32).services.user.containers.OAuth2DetailsV1\x12\x46\n\x11oauth_sdk_details\x18\x04 \x01(\x0b\x32+.services.user.containers.OAuthSDKDetailsV1\"\xe2\x01\n\nResponseV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12.\n\x04user\x18\x02 \x01(\x0b\x32 .services.user.containers.UserV1\x12\x36\n\x08identity\x18\x03 \x01(\x0b\x32$.services.user.containers.IdentityV1\x12\x10\n\x08new_user\x18\x04 \x01(\x08\x12\x46\n\x11oauth_sdk_details\x18\x05 \x01(\x0b\x32+.services.user.containers.OAuthSDKDetailsV1')
+  serialized_pb=_b('\n<protobufs/services/user/actions/complete_authorization.proto\x12,services.user.actions.complete_authorization\x1a(protobufs/services/user/containers.proto\"\xed\x01\n\tRequestV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x41\n\x08provider\x18\x02 \x01(\x0e\x32/.services.user.containers.IdentityV1.ProviderV1\x12\x41\n\x0eoauth2_details\x18\x03 \x01(\x0b\x32).services.user.containers.OAuth2DetailsV1\x12\x46\n\x11oauth_sdk_details\x18\x04 \x01(\x0b\x32+.services.user.containers.OAuthSDKDetailsV1\"\xe2\x01\n\nResponseV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12.\n\x04user\x18\x02 \x01(\x0b\x32 .services.user.containers.UserV1\x12\x36\n\x08identity\x18\x03 \x01(\x0b\x32$.services.user.containers.IdentityV1\x12\x10\n\x08new_user\x18\x04 \x01(\x08\x12\x46\n\x11oauth_sdk_details\x18\x05 \x01(\x0b\x32+.services.user.containers.OAuthSDKDetailsV1BC\nAcom.rhlabs.protobufs.services.user.actions.complete_authorization')
   ,
   dependencies=[protobufs.services.user.containers_pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
@@ -159,4 +159,6 @@ ResponseV1 = _reflection.GeneratedProtocolMessageType('ResponseV1', (_message.Me
 _sym_db.RegisterMessage(ResponseV1)
 
 
+DESCRIPTOR.has_options = True
+DESCRIPTOR._options = _descriptor._ParseOptions(descriptor_pb2.FileOptions(), _b('\nAcom.rhlabs.protobufs.services.user.actions.complete_authorization'))
 # @@protoc_insertion_point(module_scope)

@@ -1,5 +1,8 @@
 package services.profile.containers;
 
+// GENERATED OPTIONS FOR: JAVA
+option java_package = "com.rhlabs.protobufs.services.profile.containers";
+
 message ContactMethodV1 {
 
     enum ContactMethodTypeV1 {

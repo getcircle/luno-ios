@@ -1,5 +1,8 @@
 package services.profile.actions.get_recent_hires;
 
+// GENERATED OPTIONS FOR: JAVA
+option java_package = "com.rhlabs.protobufs.services.profile.actions.get_recent_hires";
+
 import "protobufs/services/profile/containers.proto";
 
 message RequestV1 {

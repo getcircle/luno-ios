@@ -1,5 +1,8 @@
 package services.registry.requests;
 
+// GENERATED OPTIONS FOR: JAVA
+option java_package = "com.rhlabs.protobufs.services.registry.requests";
+
 import "service_protobufs/soa.proto";
 
 import "protobufs/services/user/actions/create_user.proto";
@@ -33,6 +36,8 @@ import "protobufs/services/organization/actions/create_location.proto";
 import "protobufs/services/organization/actions/update_location.proto";
 import "protobufs/services/organization/actions/get_locations.proto";
 import "protobufs/services/organization/actions/get_location.proto";
+import "protobufs/services/organization/actions/create_token.proto";
+import "protobufs/services/organization/actions/get_tokens.proto";
 
 import "protobufs/services/profile/actions/create_profile.proto";
 import "protobufs/services/profile/actions/get_extended_profile.proto";
@@ -78,6 +83,10 @@ import "protobufs/services/appreciation/actions/get_appreciation.proto";
 import "protobufs/services/appreciation/actions/delete_appreciation.proto";
 import "protobufs/services/appreciation/actions/update_appreciation.proto";
 
+import "protobufs/services/sync/actions/start_sync.proto";
+import "protobufs/services/sync/actions/sync.proto";
+import "protobufs/services/sync/actions/complete_sync.proto";
+
 message User {
     extend soa.ActionRequestParamsV1 {
         optional services.user.actions.create_user.RequestV1 create_user = 100;
@@ -115,6 +124,8 @@ message Organization {
         optional services.organization.actions.update_location.RequestV1 update_location = 212;
         optional services.organization.actions.get_locations.RequestV1 get_locations = 213;
         optional services.organization.actions.get_location.RequestV1 get_location = 214;
+        optional services.organization.actions.create_token.RequestV1 create_token = 215;
+        optional services.organization.actions.get_tokens.RequestV1 get_tokens = 216;
     }
 }
 
@@ -188,5 +199,13 @@ message Appreciation {
         optional services.appreciation.actions.get_appreciation.RequestV1 get_appreciation = 901;
         optional services.appreciation.actions.delete_appreciation.RequestV1 delete_appreciation = 902;
         optional services.appreciation.actions.update_appreciation.RequestV1 update_appreciation = 903;
+    }
+}
+
+message Sync {
+    extend soa.ActionRequestParamsV1 {
+        optional services.sync.actions.start_sync.RequestV1 start_sync = 1000;
+        optional services.sync.actions.sync.RequestV1 sync_payloads = 1001;
+        optional services.sync.actions.complete_sync.RequestV1 complete_sync = 1002;
     }
 }

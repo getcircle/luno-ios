@@ -1,5 +1,8 @@
 package services.feed.containers;
 
+// GENERATED OPTIONS FOR: JAVA
+option java_package = "com.rhlabs.protobufs.services.feed.containers";
+
 import "protobufs/services/note/containers.proto";
 import "protobufs/services/organization/containers.proto";
 import "protobufs/services/profile/containers.proto";

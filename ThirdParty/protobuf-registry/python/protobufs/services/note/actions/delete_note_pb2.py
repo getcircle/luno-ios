@@ -19,7 +19,7 @@ import protobufs.services.note.containers_pb2
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='protobufs/services/note/actions/delete_note.proto',
   package='services.note.actions.delete_note',
-  serialized_pb=_b('\n1protobufs/services/note/actions/delete_note.proto\x12!services.note.actions.delete_note\x1a(protobufs/services/note/containers.proto\"O\n\tRequestV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12.\n\x04note\x18\x02 \x01(\x0b\x32 .services.note.containers.NoteV1\" \n\nResponseV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31')
+  serialized_pb=_b('\n1protobufs/services/note/actions/delete_note.proto\x12!services.note.actions.delete_note\x1a(protobufs/services/note/containers.proto\"O\n\tRequestV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12.\n\x04note\x18\x02 \x01(\x0b\x32 .services.note.containers.NoteV1\" \n\nResponseV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x42\x38\n6com.rhlabs.protobufs.services.note.actions.delete_note')
   ,
   dependencies=[protobufs.services.note.containers_pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
@@ -112,4 +112,6 @@ ResponseV1 = _reflection.GeneratedProtocolMessageType('ResponseV1', (_message.Me
 _sym_db.RegisterMessage(ResponseV1)
 
 
+DESCRIPTOR.has_options = True
+DESCRIPTOR._options = _descriptor._ParseOptions(descriptor_pb2.FileOptions(), _b('\n6com.rhlabs.protobufs.services.note.actions.delete_note'))
 # @@protoc_insertion_point(module_scope)

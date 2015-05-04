@@ -21,7 +21,7 @@ import protobufs.services.profile.containers_pb2
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='protobufs/services/feed/actions/get_organization_feed.proto',
   package='services.feed.actions.get_organization_feed',
-  serialized_pb=_b('\n;protobufs/services/feed/actions/get_organization_feed.proto\x12+services.feed.actions.get_organization_feed\x1a(protobufs/services/feed/containers.proto\x1a\x30protobufs/services/organization/containers.proto\x1a+protobufs/services/profile/containers.proto\"8\n\tRequestV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x17\n\x0forganization_id\x18\x02 \x01(\t\"\xd9\x01\n\nResponseV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x38\n\ncategories\x18\x02 \x03(\x0b\x32$.services.feed.containers.CategoryV1\x12\x35\n\x05owner\x18\x03 \x01(\x0b\x32&.services.profile.containers.ProfileV1\x12\x46\n\x0corganization\x18\x04 \x01(\x0b\x32\x30.services.organization.containers.OrganizationV1')
+  serialized_pb=_b('\n;protobufs/services/feed/actions/get_organization_feed.proto\x12+services.feed.actions.get_organization_feed\x1a(protobufs/services/feed/containers.proto\x1a\x30protobufs/services/organization/containers.proto\x1a+protobufs/services/profile/containers.proto\"8\n\tRequestV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x17\n\x0forganization_id\x18\x02 \x01(\t\"\xd9\x01\n\nResponseV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x38\n\ncategories\x18\x02 \x03(\x0b\x32$.services.feed.containers.CategoryV1\x12\x35\n\x05owner\x18\x03 \x01(\x0b\x32&.services.profile.containers.ProfileV1\x12\x46\n\x0corganization\x18\x04 \x01(\x0b\x32\x30.services.organization.containers.OrganizationV1BB\n@com.rhlabs.protobufs.services.feed.actions.get_organization_feed')
   ,
   dependencies=[protobufs.services.feed.containers_pb2.DESCRIPTOR,protobufs.services.organization.containers_pb2.DESCRIPTOR,protobufs.services.profile.containers_pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
@@ -137,4 +137,6 @@ ResponseV1 = _reflection.GeneratedProtocolMessageType('ResponseV1', (_message.Me
 _sym_db.RegisterMessage(ResponseV1)
 
 
+DESCRIPTOR.has_options = True
+DESCRIPTOR._options = _descriptor._ParseOptions(descriptor_pb2.FileOptions(), _b('\n@com.rhlabs.protobufs.services.feed.actions.get_organization_feed'))
 # @@protoc_insertion_point(module_scope)

@@ -18,7 +18,7 @@ _sym_db = _symbol_database.Default()
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='protobufs/services/appreciation/containers.proto',
   package='services.appreciation.containers',
-  serialized_pb=_b('\n0protobufs/services/appreciation/containers.proto\x12 services.appreciation.containers\"\x9e\x01\n\x0e\x41ppreciationV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\n\n\x02id\x18\x02 \x01(\t\x12\x1e\n\x16\x64\x65stination_profile_id\x18\x03 \x01(\t\x12\x19\n\x11source_profile_id\x18\x04 \x01(\t\x12\x0f\n\x07\x63ontent\x18\x05 \x01(\t\x12\x0f\n\x07\x63reated\x18\x06 \x01(\t\x12\x0f\n\x07\x63hanged\x18\x07 \x01(\t')
+  serialized_pb=_b('\n0protobufs/services/appreciation/containers.proto\x12 services.appreciation.containers\"\x9e\x01\n\x0e\x41ppreciationV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\n\n\x02id\x18\x02 \x01(\t\x12\x1e\n\x16\x64\x65stination_profile_id\x18\x03 \x01(\t\x12\x19\n\x11source_profile_id\x18\x04 \x01(\t\x12\x0f\n\x07\x63ontent\x18\x05 \x01(\t\x12\x0f\n\x07\x63reated\x18\x06 \x01(\t\x12\x0f\n\x07\x63hanged\x18\x07 \x01(\tB7\n5com.rhlabs.protobufs.services.appreciation.containers')
 )
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
@@ -106,4 +106,6 @@ AppreciationV1 = _reflection.GeneratedProtocolMessageType('AppreciationV1', (_me
 _sym_db.RegisterMessage(AppreciationV1)
 
 
+DESCRIPTOR.has_options = True
+DESCRIPTOR._options = _descriptor._ParseOptions(descriptor_pb2.FileOptions(), _b('\n5com.rhlabs.protobufs.services.appreciation.containers'))
 # @@protoc_insertion_point(module_scope)

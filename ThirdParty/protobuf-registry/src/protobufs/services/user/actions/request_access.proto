@@ -1,5 +1,8 @@
 package services.user.actions.request_access;
 
+// GENERATED OPTIONS FOR: JAVA
+option java_package = "com.rhlabs.protobufs.services.user.actions.request_access";
+
 import "protobufs/services/user/containers.proto";
 
 message RequestV1 {

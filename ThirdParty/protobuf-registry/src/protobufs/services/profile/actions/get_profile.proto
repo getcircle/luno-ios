@@ -1,5 +1,8 @@
 package services.profile.actions.get_profile;
 
+// GENERATED OPTIONS FOR: JAVA
+option java_package = "com.rhlabs.protobufs.services.profile.actions.get_profile";
+
 import "protobufs/services/profile/containers.proto";
 
 message RequestV1 {

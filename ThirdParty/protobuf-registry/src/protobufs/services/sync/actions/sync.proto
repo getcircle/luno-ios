@@ -1,0 +1,16 @@
+package services.sync.actions.sync;
+
+// GENERATED OPTIONS FOR: JAVA
+option java_package = "com.rhlabs.protobufs.services.sync.actions.sync";
+
+import "protobufs/services/sync/containers/payload.proto";
+
+message RequestV1 {
+    optional uint32 version = 1 [default = 1];
+    optional string sync_id = 2;
+    repeated services.sync.containers.payload.PayloadV1 payloads = 3;
+}
+
+message ResponseV1 {
+    optional uint32 version = 1 [default = 1];
+}

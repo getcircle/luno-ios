@@ -1,0 +1,5 @@
+java:
+    - java_package = "com.rhlabs.protobufs.%(package)s"
+    #- java_class_prefix:
+        #option: "%(camel_case_container)s"
+        #file_regex: ".*/actions/.*"

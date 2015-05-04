@@ -18,7 +18,7 @@ _sym_db = _symbol_database.Default()
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='protobufs/services/organization/actions/delete_address.proto',
   package='services.organization.actions.delete_address',
-  serialized_pb=_b('\n<protobufs/services/organization/actions/delete_address.proto\x12,services.organization.actions.delete_address\"3\n\tRequestV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x12\n\naddress_id\x18\x02 \x01(\t\" \n\nResponseV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31')
+  serialized_pb=_b('\n<protobufs/services/organization/actions/delete_address.proto\x12,services.organization.actions.delete_address\"3\n\tRequestV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x12\n\naddress_id\x18\x02 \x01(\t\" \n\nResponseV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x42\x43\nAcom.rhlabs.protobufs.services.organization.actions.delete_address')
 )
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
@@ -109,4 +109,6 @@ ResponseV1 = _reflection.GeneratedProtocolMessageType('ResponseV1', (_message.Me
 _sym_db.RegisterMessage(ResponseV1)
 
 
+DESCRIPTOR.has_options = True
+DESCRIPTOR._options = _descriptor._ParseOptions(descriptor_pb2.FileOptions(), _b('\nAcom.rhlabs.protobufs.services.organization.actions.delete_address'))
 # @@protoc_insertion_point(module_scope)

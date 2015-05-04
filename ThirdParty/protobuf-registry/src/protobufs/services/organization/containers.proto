@@ -1,5 +1,8 @@
 package services.organization.containers;
 
+// GENERATED OPTIONS FOR: JAVA
+option java_package = "com.rhlabs.protobufs.services.organization.containers";
+
 message AddressV1 {
     optional uint32 version = 1 [default = 1];
     optional string id = 2;
@@ -67,4 +70,10 @@ message TeamDescendantsV1 {
     optional uint32 depth = 2;
     optional string parent_team_id = 3;
     repeated TeamV1 teams = 4;
+}
+
+message TokenV1 {
+    optional uint32 version = 1 [default = 1];
+    optional string key = 2;
+    optional string requested_by_user_id = 3;
 }

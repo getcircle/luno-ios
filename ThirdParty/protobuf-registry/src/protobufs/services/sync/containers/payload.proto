@@ -1,0 +1,16 @@
+package services.sync.containers.payload;
+
+// GENERATED OPTIONS FOR: JAVA
+option java_package = "com.rhlabs.protobufs.services.sync.containers.payload";
+
+message PayloadV1 {
+
+    enum PayloadTypeV1 {
+        USERS = 0;
+        GROUPS = 1;
+    }
+
+    optional uint32 version = 1 [default = 1];
+    optional string payload = 2;
+    optional PayloadTypeV1 payload_type = 3;
+}

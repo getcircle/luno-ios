@@ -1,5 +1,8 @@
 package services.note.actions.get_notes;
 
+// GENERATED OPTIONS FOR: JAVA
+option java_package = "com.rhlabs.protobufs.services.note.actions.get_notes";
+
 import "protobufs/services/note/containers.proto";
 
 message RequestV1 {
