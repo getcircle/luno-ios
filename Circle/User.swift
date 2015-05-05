@@ -31,6 +31,7 @@ extension Services.User.Actions {
         let requestBuilder = Services.User.Actions.AuthenticateUser.RequestV1.builder()
         requestBuilder.backend = backend
         requestBuilder.credentials = credentials
+        requestBuilder.clientType = .Ios
         let client = ServiceClient(serviceName: "user")
         client.callAction("authenticate_user", extensionField: Services.Registry.Requests.User.authenticateUser(), requestBuilder: requestBuilder) {
             (_, _, wrapped, error) in
