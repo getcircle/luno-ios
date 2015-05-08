@@ -160,6 +160,16 @@ public final class Ext_responses {
       .setName("services.registry.responses.get_location")
       .setTag(214)
       .buildOptional();
+  public static final Extension<ActionResultV1 , com.rhlabs.protobufs.services.organization.actions.create_token.CreateTokenResponseV1> create_token = Extension
+      .messageExtending(com.rhlabs.protobufs.services.organization.actions.create_token.CreateTokenResponseV1.class, ActionResultV1.class)
+      .setName("services.registry.responses.create_token")
+      .setTag(215)
+      .buildOptional();
+  public static final Extension<ActionResultV1 , com.rhlabs.protobufs.services.organization.actions.get_tokens.GetTokensResponseV1> get_tokens = Extension
+      .messageExtending(com.rhlabs.protobufs.services.organization.actions.get_tokens.GetTokensResponseV1.class, ActionResultV1.class)
+      .setName("services.registry.responses.get_tokens")
+      .setTag(216)
+      .buildOptional();
   public static final Extension<ActionResultV1 , com.rhlabs.protobufs.services.profile.actions.create_profile.CreateProfileResponseV1> create_profile = Extension
       .messageExtending(com.rhlabs.protobufs.services.profile.actions.create_profile.CreateProfileResponseV1.class, ActionResultV1.class)
       .setName("services.registry.responses.create_profile")

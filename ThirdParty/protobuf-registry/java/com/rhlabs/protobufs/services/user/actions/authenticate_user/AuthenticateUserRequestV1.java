@@ -2,6 +2,7 @@
 // Source file: ./src/protobufs/services/user/actions/authenticate_user.proto
 package com.rhlabs.protobufs.services.user.actions.authenticate_user;
 
+import com.rhlabs.protobufs.services.user.containers.token.ClientTypeV1;
 import com.squareup.wire.Message;
 import com.squareup.wire.ProtoEnum;
 import com.squareup.wire.ProtoField;
@@ -15,6 +16,7 @@ public final class AuthenticateUserRequestV1 extends Message {
 
   public static final Integer DEFAULT_VERSION = 1;
   public static final AuthBackendV1 DEFAULT_BACKEND = AuthBackendV1.INTERNAL;
+  public static final ClientTypeV1 DEFAULT_CLIENT_TYPE = ClientTypeV1.IOS;
 
   @ProtoField(tag = 1, type = UINT32)
   public final Integer version;
@@ -25,14 +27,18 @@ public final class AuthenticateUserRequestV1 extends Message {
   @ProtoField(tag = 3)
   public final CredentialsV1 credentials;
 
-  public AuthenticateUserRequestV1(Integer version, AuthBackendV1 backend, CredentialsV1 credentials) {
+  @ProtoField(tag = 4, type = ENUM)
+  public final ClientTypeV1 client_type;
+
+  public AuthenticateUserRequestV1(Integer version, AuthBackendV1 backend, CredentialsV1 credentials, ClientTypeV1 client_type) {
     this.version = version;
     this.backend = backend;
     this.credentials = credentials;
+    this.client_type = client_type;
   }
 
   private AuthenticateUserRequestV1(Builder builder) {
-    this(builder.version, builder.backend, builder.credentials);
+    this(builder.version, builder.backend, builder.credentials, builder.client_type);
     setBuilder(builder);
   }
 
@@ -43,7 +49,8 @@ public final class AuthenticateUserRequestV1 extends Message {
     AuthenticateUserRequestV1 o = (AuthenticateUserRequestV1) other;
     return equals(version, o.version)
         && equals(backend, o.backend)
-        && equals(credentials, o.credentials);
+        && equals(credentials, o.credentials)
+        && equals(client_type, o.client_type);
   }
 
   @Override
@@ -53,6 +60,7 @@ public final class AuthenticateUserRequestV1 extends Message {
       result = version != null ? version.hashCode() : 0;
       result = result * 37 + (backend != null ? backend.hashCode() : 0);
       result = result * 37 + (credentials != null ? credentials.hashCode() : 0);
+      result = result * 37 + (client_type != null ? client_type.hashCode() : 0);
       hashCode = result;
     }
     return result;
@@ -63,6 +71,7 @@ public final class AuthenticateUserRequestV1 extends Message {
     public Integer version;
     public AuthBackendV1 backend;
     public CredentialsV1 credentials;
+    public ClientTypeV1 client_type;
 
     public Builder() {
     }
@@ -73,6 +82,7 @@ public final class AuthenticateUserRequestV1 extends Message {
       this.version = message.version;
       this.backend = message.backend;
       this.credentials = message.credentials;
+      this.client_type = message.client_type;
     }
 
     public Builder version(Integer version) {
@@ -87,6 +97,11 @@ public final class AuthenticateUserRequestV1 extends Message {
 
     public Builder credentials(CredentialsV1 credentials) {
       this.credentials = credentials;
+      return this;
+    }
+
+    public Builder client_type(ClientTypeV1 client_type) {
+      this.client_type = client_type;
       return this;
     }
 

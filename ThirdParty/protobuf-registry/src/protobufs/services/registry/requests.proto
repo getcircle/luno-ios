@@ -87,6 +87,13 @@ import "protobufs/services/sync/actions/start_sync.proto";
 import "protobufs/services/sync/actions/sync.proto";
 import "protobufs/services/sync/actions/complete_sync.proto";
 
+import "protobufs/services/group/actions/list_groups.proto";
+import "protobufs/services/group/actions/join_group.proto";
+import "protobufs/services/group/actions/respond_to_membership_request.proto";
+import "protobufs/services/group/actions/leave_group.proto";
+import "protobufs/services/group/actions/list_members.proto";
+import "protobufs/services/group/actions/get_group.proto";
+
 message User {
     extend soa.ActionRequestParamsV1 {
         optional services.user.actions.create_user.RequestV1 create_user = 100;
@@ -207,5 +214,16 @@ message Sync {
         optional services.sync.actions.start_sync.RequestV1 start_sync = 1000;
         optional services.sync.actions.sync.RequestV1 sync_payloads = 1001;
         optional services.sync.actions.complete_sync.RequestV1 complete_sync = 1002;
+    }
+}
+
+message Group {
+    extend soa.ActionRequestParamsV1 {
+        optional services.group.actions.list_groups.RequestV1 list_groups = 1100;
+        optional services.group.actions.join_group.RequestV1 join_group = 1101;
+        optional services.group.actions.respond_to_membership_request.RequestV1 respond_to_membership_request = 1102;
+        optional services.group.actions.leave_group.RequestV1 leave_group = 1103;
+        optional services.group.actions.list_members.RequestV1 list_members = 1104;
+        optional services.group.actions.get_group.RequestV1 get_group = 1105;
     }
 }

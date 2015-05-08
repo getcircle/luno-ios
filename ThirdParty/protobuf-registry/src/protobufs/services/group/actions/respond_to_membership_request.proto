@@ -1,0 +1,22 @@
+package services.group.actions.respond_to_membership_request;
+
+// GENERATED OPTIONS FOR: JAVA
+option java_package = "com.rhlabs.protobufs.services.group.actions.respond_to_membership_request";
+
+message RequestV1 {
+
+    enum ResponseActionV1 {
+        APPROVE = 0;
+        DENY = 1;
+    }
+
+    optional uint32 version = 1 [default = 1];
+    optional string request_id = 2;
+    optional ResponseActionV1 action = 3;
+    optional string message = 4;
+
+}
+
+message ResponseV1 {
+    optional uint32 version = 1 [default = 1];
+}

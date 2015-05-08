@@ -1,0 +1,37 @@
+package services.group.containers;
+
+// GENERATED OPTIONS FOR: JAVA
+option java_package = "com.rhlabs.protobufs.services.group.containers";
+
+import "protobufs/services/group/containers/permissions/who_can_join.proto";
+import "protobufs/services/group/containers/permissions/who_can_view_membership.proto";
+import "protobufs/services/group/containers/permissions/who_can_view_group.proto";
+import "protobufs/services/group/containers/permissions/who_can_invite.proto";
+
+enum GroupProviderV1 {
+    GOOGLE = 0;
+}
+
+message GroupV1 {
+    optional uint32 version = 1 [default = 1];
+    optional string id = 2;
+    optional string email = 3;
+    optional string name = 4;
+    optional string display_name = 5;
+    optional string description = 6;
+    repeated string aliases = 7;
+    optional uint32 members_count = 8;
+    optional GroupProviderV1 provider = 9;
+    optional bool can_join = 10;
+    optional bool is_member = 11;
+}
+
+message GroupSettingsV1 {
+    optional uint32 version = 1 [default = 1];
+    optional string id = 2;
+    optional string group_id = 3;
+    optional services.group.containers.permissions.who_can_join.WhoCanJoinPermissionsV1 who_can_join = 4;
+    optional services.group.containers.permissions.who_can_view_membership.WhoCanViewMembershipPermissionsV1 who_can_view_membership = 5;
+    optional services.group.containers.permissions.who_can_view_group.WhoCanViewGroupPermissionsV1 who_can_view_group = 6;
+    optional services.group.containers.permissions.who_can_invite.WhoCanInvitePermissionsV1 who_can_invite = 7;
+}

@@ -1,0 +1,13 @@
+package services.group.actions.leave_group;
+
+// GENERATED OPTIONS FOR: JAVA
+option java_package = "com.rhlabs.protobufs.services.group.actions.leave_group";
+
+message RequestV1 {
+    optional uint32 version = 1 [default = 1];
+    optional string group_id = 2;
+}
+
+message ResponseV1 {
+    optional uint32 version = 1 [default = 1];
+}

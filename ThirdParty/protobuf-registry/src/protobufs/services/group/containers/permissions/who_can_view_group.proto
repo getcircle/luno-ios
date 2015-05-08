@@ -1,0 +1,11 @@
+package services.group.containers.permissions.who_can_view_group;
+
+// GENERATED OPTIONS FOR: JAVA
+option java_package = "com.rhlabs.protobufs.services.group.containers.permissions.who_can_view_group";
+
+enum WhoCanViewGroupPermissionsV1 {
+    ANYONE = 0;
+    ALL_IN_DOMAIN = 1;
+    ALL_MEMBERS = 2;
+    ALL_MANAGERS = 3;
+}
