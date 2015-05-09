@@ -26,6 +26,7 @@ typealias GetExtendedProfileCompletionHandler = (
     identities: Array<Services.User.Containers.IdentityV1>?,
     resume: Services.Resume.Containers.ResumeV1?,
     location: Services.Organization.Containers.LocationV1?,
+    groups: Array<Services.Group.Containers.GroupV1>?,
     error: NSError?
 ) -> Void
 typealias GetTagsCompletionHandler = (interests: Array<Services.Profile.Containers.TagV1>?, error: NSError?) -> Void
@@ -140,6 +141,22 @@ extension Services.Profile.Actions {
             extensionField: Services.Registry.Requests.Profile.getExtendedProfile(),
             requestBuilder: requestBuilder
         ) { (_, _, wrapped, error) -> Void in
+            
+            // TODO: Remove when real response is added
+            var groups: Array<Services.Group.Containers.GroupV1>?
+            let group1 = Services.Group.Containers.GroupV1.builder()
+            group1.name = "Mobile Group"
+            group1.membersCount = 100
+            group1.description_ = "All discussions related to mobile both iOS and Android."
+            group1.canJoin = true
+            
+            let group2 = Services.Group.Containers.GroupV1.builder()
+            group2.name = "Frontend developers"
+            group2.membersCount = 10
+            group2.description_ = "Group for front-end development discussions"
+            group2.canJoin = true
+            groups = [group1.build(), group2.build()]
+            
             let response = wrapped?.response?.result.getExtension(
                 Services.Registry.Responses.Profile.getExtendedProfile()
             ) as? Services.Profile.Actions.GetExtendedProfile.ResponseV1
@@ -154,6 +171,7 @@ extension Services.Profile.Actions {
                 identities: response?.identities,
                 resume: response?.resume,
                 location: response?.location,
+                groups: groups,
                 error: error
             )
         }

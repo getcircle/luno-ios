@@ -178,7 +178,7 @@ class CurrentUserProfileDetailViewController: ProfileDetailViewController,
     
     // MARK: - CardHeaderViewDelegate
     
-    func cardHeaderTapped(sender: AnyObject!, card: Card!) {
+    override func cardHeaderTapped(sender: AnyObject!, card: Card!) {
         switch card.type {
         case .TextValue:
             let aboutViewController = EditAboutViewController(nibName: "EditAboutViewController", bundle: nil)
@@ -205,7 +205,7 @@ class CurrentUserProfileDetailViewController: ProfileDetailViewController,
             navigationController?.presentViewController(tagInputNavController, animated: true, completion: nil)
             
         default:
-            break
+            super.cardHeaderTapped(sender, card: card)
         }
     }
     

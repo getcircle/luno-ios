@@ -30,8 +30,10 @@ class GroupCollectionViewCell: CircleCollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
         // Initialization code
-        configureViews();
+        configureViews()
+        selectedBackgroundView = nil
     }
 
     // MARK: - Configuration

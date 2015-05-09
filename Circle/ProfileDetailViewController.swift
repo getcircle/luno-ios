@@ -9,8 +9,10 @@
 import UIKit
 import ProtobufRegistry
 
-class ProfileDetailViewController: DetailViewController,
-    CardFooterViewDelegate
+class ProfileDetailViewController:
+    DetailViewController,
+    CardFooterViewDelegate,
+    CardHeaderViewDelegate
 {
 
     var profile: Services.Profile.Containers.ProfileV1!
@@ -298,4 +300,21 @@ class ProfileDetailViewController: DetailViewController,
             }
         }
     }
+    
+    // MARK: - CardHeaderViewDelegate
+    
+    func cardHeaderTapped(sender: AnyObject!, card: Card!) {
+        switch card.type {
+        case .Group:
+            let groupsViewController = GroupsViewController()
+            groupsViewController.dataSource.setInitialData(card.allContent, ofType: nil)
+            groupsViewController.title = card.title
+            navigationController?.pushViewController(groupsViewController, animated: true)
+            break
+            
+        default:
+            break
+        }
+    }
+    
 }

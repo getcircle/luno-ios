@@ -198,6 +198,8 @@
 		8F9F60D61A8C481F00FCAA25 /* SettingsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F9F60D41A8C481F00FCAA25 /* SettingsCollectionViewCell.xib */; };
 		8FA6A4AA1AFDCA8100ACC39D /* GroupCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA6A4A81AFDCA8100ACC39D /* GroupCollectionViewCell.swift */; };
 		8FA6A4AB1AFDCA8100ACC39D /* GroupCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8FA6A4A91AFDCA8100ACC39D /* GroupCollectionViewCell.xib */; };
+		8FA6A4AE1AFE92AE00ACC39D /* GroupsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA6A4AD1AFE92AE00ACC39D /* GroupsViewController.swift */; };
+		8FA6A4B01AFE937300ACC39D /* GroupsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA6A4AF1AFE937300ACC39D /* GroupsDataSource.swift */; };
 		8FC7BB3B1A58A6E2005BDDDB /* CardDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC7BB3A1A58A6E2005BDDDB /* CardDataSource.swift */; };
 		8FC7BB401A58AF4C005BDDDB /* SearchLandingDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC7BB3F1A58AF4C005BDDDB /* SearchLandingDataSource.swift */; };
 		8FC7BB431A58B15B005BDDDB /* CardCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC7BB421A58B15B005BDDDB /* CardCollectionViewDelegate.swift */; };
@@ -555,6 +557,8 @@
 		8F9F60D41A8C481F00FCAA25 /* SettingsCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsCollectionViewCell.xib; sourceTree = "<group>"; };
 		8FA6A4A81AFDCA8100ACC39D /* GroupCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupCollectionViewCell.swift; sourceTree = "<group>"; };
 		8FA6A4A91AFDCA8100ACC39D /* GroupCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupCollectionViewCell.xib; sourceTree = "<group>"; };
+		8FA6A4AD1AFE92AE00ACC39D /* GroupsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupsViewController.swift; sourceTree = "<group>"; };
+		8FA6A4AF1AFE937300ACC39D /* GroupsDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupsDataSource.swift; sourceTree = "<group>"; };
 		8FC7BB3A1A58A6E2005BDDDB /* CardDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardDataSource.swift; sourceTree = "<group>"; };
 		8FC7BB3F1A58AF4C005BDDDB /* SearchLandingDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchLandingDataSource.swift; sourceTree = "<group>"; };
 		8FC7BB421A58B15B005BDDDB /* CardCollectionViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardCollectionViewDelegate.swift; sourceTree = "<group>"; };
@@ -790,6 +794,7 @@
 				8F00049C1A2419730096477A /* DetailViewController.swift */,
 				8F0544AC1ABA3C7800570327 /* EditAboutViewController.swift */,
 				8FEE3D951A8309A400B17569 /* EditContactInfoViewController.swift */,
+				8FA6A4AD1AFE92AE00ACC39D /* GroupsViewController.swift */,
 				BFAE43531A8B05010085AB2B /* HomelessViewController.swift */,
 				8F9F60B71A896CE400FCAA25 /* MainTabBarViewController.swift */,
 				8FD907F81A6070D70025A17B /* MapViewController.swift */,
@@ -840,6 +845,7 @@
 				8FF298511A4E2B3300306CFC /* Common */,
 				BFCFDB021A915249009A5FD4 /* EducationCollectionViewCell.swift */,
 				BF6A2D0D1AAD08DA00692315 /* EmptyCollectionViewCell.swift */,
+				8FA6A4A81AFDCA8100ACC39D /* GroupCollectionViewCell.swift */,
 				8F22CBE61A27FDA70026376E /* KeyValueCollectionViewCell.swift */,
 				8F4805E31A5DE4B800273731 /* MapHeaderCollectionReusableView.swift */,
 				8F4E53761A5A0D9E00DC876B /* NotesCollectionViewCell.swift */,
@@ -870,8 +876,6 @@
 				BFCFDB1F1A91951A009A5FD4 /* TextValueCollectionViewCell.swift */,
 				BFCFDB291A92759A009A5FD4 /* ToggleSocialConnectionCollectionViewCell.swift */,
 				BF97F2D61ACA0B4500F1BC2E /* TokenField.swift */,
-				8FA6A4A81AFDCA8100ACC39D /* GroupCollectionViewCell.swift */,
-				8FA6A4A91AFDCA8100ACC39D /* GroupCollectionViewCell.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -939,6 +943,7 @@
 				8FEE3D9C1A85B97E00B17569 /* EditContactInfoViewController.xib */,
 				BFCFDB031A915249009A5FD4 /* EducationCollectionViewCell.xib */,
 				BF6A2D0E1AAD08DA00692315 /* EmptyCollectionViewCell.xib */,
+				8FA6A4A91AFDCA8100ACC39D /* GroupCollectionViewCell.xib */,
 				BFAE43541A8B05010085AB2B /* HomelessViewController.xib */,
 				8F22CBE71A27FDA70026376E /* KeyValueCollectionViewCell.xib */,
 				8F0004A31A2419730096477A /* LaunchScreen.xib */,
@@ -1096,12 +1101,14 @@
 			isa = PBXGroup;
 			children = (
 				8FC7BB3A1A58A6E2005BDDDB /* CardDataSource.swift */,
+				BFAF272E1ACB75A600E881BC /* ContactInfoDataSource.swift */,
+				8FC8781C1AB539F6003FDB27 /* CurrentUserProfileDetailDataSource.swift */,
+				8FA6A4AF1AFE937300ACC39D /* GroupsDataSource.swift */,
 				8F809F8C1A79DE1A00029A47 /* NotesOverviewDataSource.swift */,
 				8FEB032A1A5F69020081BB65 /* OfficeDetailDataSource.swift */,
 				8F306B921A74171C0024EB03 /* OfficesOverviewDataSource.swift */,
 				8F823E391A706BB20006264B /* OrganizationDetailDataSource.swift */,
 				8F22CBF41A2865030026376E /* ProfileDetailDataSource.swift */,
-				8FC8781C1AB539F6003FDB27 /* CurrentUserProfileDetailDataSource.swift */,
 				8F2D7DEF1A5B2412001D36B0 /* ProfilesDataSource.swift */,
 				8FC7BB3F1A58AF4C005BDDDB /* SearchLandingDataSource.swift */,
 				BFE213CE1A5F0B1D0033E2F5 /* SearchQueryDataSource.swift */,
@@ -1111,7 +1118,6 @@
 				8F085A891A6B0CB300F8139B /* TeamDetailDataSource.swift */,
 				8F823E4E1A72A0850006264B /* TeamsOverviewDataSource.swift */,
 				BF27CC931A7569B700E683C7 /* UnderlyingCollectionViewDataSource.swift */,
-				BFAF272E1ACB75A600E881BC /* ContactInfoDataSource.swift */,
 			);
 			name = DataSources;
 			sourceTree = "<group>";
@@ -1654,6 +1660,7 @@
 				8F0E44871A61EE99008710E7 /* LocationAnnotation.swift in Sources */,
 				8F0ADCDC1AC527F900A44B68 /* CircleActivityIndicatorView.swift in Sources */,
 				8F4A98AC1A633BF6005AD63C /* UIImageExtension.swift in Sources */,
+				8FA6A4AE1AFE92AE00ACC39D /* GroupsViewController.swift in Sources */,
 				BF7B238B1A70842500137BCB /* ProfileNotesCollectionView.swift in Sources */,
 				8FCC95CD1A52828B00421E65 /* ProfileCollectionViewCell.swift in Sources */,
 				BF59AA931A2C152F00C0CDB9 /* UITableViewExtension.swift in Sources */,
@@ -1738,6 +1745,7 @@
 				8F65C5071A52661700C7F3E6 /* TagScrollingCollectionViewCell.swift in Sources */,
 				8F5933C61AC9FAD000905E14 /* AppDelegateNotificationExtension.swift in Sources */,
 				8F65C4F51A50F28E00C7F3E6 /* CardHeaderCollectionReusableView.swift in Sources */,
+				8FA6A4B01AFE937300ACC39D /* GroupsDataSource.swift in Sources */,
 				BFAE43551A8B05010085AB2B /* HomelessViewController.swift in Sources */,
 				BFA1187F1AA2738E0073B13A /* Appreciation.swift in Sources */,
 				BF8DAC901A6D904D000860DD /* Note.swift in Sources */,

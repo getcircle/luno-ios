@@ -42,7 +42,7 @@ class ProfileDetailDataSource: CardDataSource {
         resetCards()
         addPlaceholderCard()
         Services.Profile.Actions.getExtendedProfile(profile.id) {
-            (profile, manager, team, address, interests, skills, notes, identities, resume, location, error) -> Void in
+            (profile, manager, team, address, interests, skills, notes, identities, resume, location, groups, error) -> Void in
             if error == nil {
                 self.manager = manager
                 self.team = team
@@ -52,6 +52,7 @@ class ProfileDetailDataSource: CardDataSource {
                 self.identities = identities
                 self.resume = resume
                 self.location = location
+                self.groups = groups
                 self.populateData()
             }
             completionHandler(error: error)
@@ -390,21 +391,9 @@ class ProfileDetailDataSource: CardDataSource {
     }
     
     private func addGroupItemsToCard(item: SectionItem, card: Card) {
-        
-        let group1 = Services.Group.Containers.GroupV1.builder()
-        group1.name = "Mobile Group"
-        group1.membersCount = 100
-        group1.description_ = "All discussions related to mobile both iOS and Android."
-        group1.canJoin = true
+        card.showContentCount = true
+        card.contentCount = groups?.count ?? 0
 
-        let group2 = Services.Group.Containers.GroupV1.builder()
-        group2.name = "Frontend developers"
-        group2.membersCount = 10
-        group2.description_ = "Group for front-end development discussions"
-        group2.canJoin = true
-
-        groups = [group1.build(), group2.build()]
-        
         if let groups = groups {
             if groups.count > 0 {
                 card.addContent(content: groups as [AnyObject], maxVisibleItems: numberOfGroupItemsVisibleInitially)

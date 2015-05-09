@@ -1,22 +1,22 @@
 //
-//  ProfilesDataSource.swift
+//  GroupsDataSource.swift
 //  Circle
 //
-//  Created by Ravi Rani on 1/5/15.
+//  Created by Ravi Rani on 5/9/15.
 //  Copyright (c) 2015 RH Labs Inc. All rights reserved.
 //
 
 import UIKit
 import ProtobufRegistry
 
-class ProfilesDataSource: CardDataSource {
+class GroupsDataSource: CardDataSource {
 
     private(set) var searchAttribute: Services.Search.Containers.Search.AttributeV1?
     private(set) var searchAttributeValue: AnyObject?
     
     private var card: Card!
-    private var cardType: Card.CardType = .Profiles
-    private var profiles = Array<Services.Profile.Containers.ProfileV1>()
+    private var cardType: Card.CardType = .Group
+    private var groups = Array<Services.Group.Containers.GroupV1>()
     
     // MARK: - Configuration
     
@@ -53,7 +53,7 @@ class ProfilesDataSource: CardDataSource {
     // MARK: - Set Initial Data
     
     override func setInitialData(content: [AnyObject], ofType: Card.CardType?) {
-        profiles.extend(content as! [Services.Profile.Containers.ProfileV1])
+        groups.extend(content as! [Services.Group.Containers.GroupV1])
         if ofType != nil {
             cardType = ofType!
         }
@@ -72,21 +72,21 @@ class ProfilesDataSource: CardDataSource {
         card = Card(cardType: cardType, title: "")
         card.sectionInset = UIEdgeInsetsMake(1.0, 0.0, 0.0, 0.0)
         
-        registerNextRequestCompletionHandler { (_, _, wrapped, error) -> Void in
-            let response = wrapped?.response?.result.getExtension(
-                Services.Registry.Requests.Profile.getProfiles()
-            ) as? Services.Profile.Actions.GetProfiles.ResponseV1
-            
-            if let profiles = response?.profiles {
-                self.profiles.extend(profiles)
-                self.card.addContent(content: profiles)
-                self.handleNewContentAddedToCard(self.card, newContent: profiles)
-            }
-        }
+//        registerNextRequestCompletionHandler { (_, _, wrapped, error) -> Void in
+//            let response = wrapped?.response?.result.getExtension(
+//                Services.Registry.Requests.Profile.getProfiles()
+//                ) as? Services.Profile.Actions.GetProfiles.ResponseV1
+//            
+//            if let groups = response?.groups {
+//                self.groups.extend(profiles)
+//                self.card.addContent(content: profiles)
+//                self.handleNewContentAddedToCard(self.card, newContent: profiles)
+//            }
+//        }
         
         appendCard(card)
-        card.addContent(content: profiles)
-        if profiles.count > 0 {
+        card.addContent(content: groups)
+        if groups.count > 0 {
             completionHandler(error: nil)
         } else {
             if canTriggerNextRequest() {
@@ -100,21 +100,21 @@ class ProfilesDataSource: CardDataSource {
     // MARK: - Filtering
     
     override func handleFiltering(query: String, completionHandler: (error: NSError?) -> Void) {
-        Services.Search.Actions.search(
-            query,
-            category: .People,
-            attribute: searchAttribute,
-            attributeValue: searchAttributeValue,
-            objects: profiles
-        ) { (result, error) -> Void in
-            self.card.resetContent(result?.profiles ?? [])
-            completionHandler(error: error)
-        }
+//        Services.Search.Actions.search(
+//            query,
+//            category: .People,
+//            attribute: searchAttribute,
+//            attributeValue: searchAttributeValue,
+//            objects: profiles
+//            ) { (result, error) -> Void in
+//                self.card.resetContent(result?.profiles ?? [])
+//                completionHandler(error: error)
+//        }
     }
     
     override func clearFilter(completionHandler: () -> Void) {
         super.clearFilter(completionHandler)
-        card.resetContent(profiles)
+        card.resetContent(groups)
         completionHandler()
     }
 }
