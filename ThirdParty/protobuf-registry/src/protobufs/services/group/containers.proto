@@ -8,6 +8,8 @@ import "protobufs/services/group/containers/permissions/who_can_view_membership.
 import "protobufs/services/group/containers/permissions/who_can_view_group.proto";
 import "protobufs/services/group/containers/permissions/who_can_invite.proto";
 
+import "protobufs/services/profile/containers.proto";
+
 enum GroupProviderV1 {
     GOOGLE = 0;
 }
@@ -24,6 +26,7 @@ message GroupV1 {
     optional GroupProviderV1 provider = 9;
     optional bool can_join = 10;
     optional bool is_member = 11;
+    optional bool can_request = 12;
 }
 
 message GroupSettingsV1 {
@@ -34,4 +37,17 @@ message GroupSettingsV1 {
     optional services.group.containers.permissions.who_can_view_membership.WhoCanViewMembershipPermissionsV1 who_can_view_membership = 5;
     optional services.group.containers.permissions.who_can_view_group.WhoCanViewGroupPermissionsV1 who_can_view_group = 6;
     optional services.group.containers.permissions.who_can_invite.WhoCanInvitePermissionsV1 who_can_invite = 7;
+}
+
+enum RoleV1 {
+    OWNER = 0;
+    MANAGER = 1;
+    MEMBER = 2;
+}
+
+message MemberV1 {
+    optional uint32 version = 1 [default = 1];
+    optional string id = 2;
+    optional services.profile.containers.ProfileV1 profile = 3;
+    optional RoleV1 role = 4;
 }

@@ -3,14 +3,15 @@ package services.group.actions.list_members;
 // GENERATED OPTIONS FOR: JAVA
 option java_package = "com.rhlabs.protobufs.services.group.actions.list_members";
 
-import "protobufs/services/profile/containers.proto";
+import "protobufs/services/group/containers.proto";
 
 message RequestV1 {
     optional uint32 version = 1 [default = 1];
     optional string group_id = 2;
+    optional services.group.containers.RoleV1 role = 3 [default = MEMBER];
 }
 
 message ResponseV1 {
     optional uint32 version = 1 [default = 1];
-    optional services.profile.containers.ProfileV1 profiles = 2;
+    repeated services.group.containers.MemberV1 members = 2;
 }

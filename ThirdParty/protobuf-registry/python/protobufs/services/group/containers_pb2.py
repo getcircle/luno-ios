@@ -18,14 +18,15 @@ import protobufs.services.group.containers.permissions.who_can_join_pb2
 import protobufs.services.group.containers.permissions.who_can_view_membership_pb2
 import protobufs.services.group.containers.permissions.who_can_view_group_pb2
 import protobufs.services.group.containers.permissions.who_can_invite_pb2
+import protobufs.services.profile.containers_pb2
 
 
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='protobufs/services/group/containers.proto',
   package='services.group.containers',
-  serialized_pb=_b('\n)protobufs/services/group/containers.proto\x12\x19services.group.containers\x1a\x42protobufs/services/group/containers/permissions/who_can_join.proto\x1aMprotobufs/services/group/containers/permissions/who_can_view_membership.proto\x1aHprotobufs/services/group/containers/permissions/who_can_view_group.proto\x1a\x44protobufs/services/group/containers/permissions/who_can_invite.proto\"\xfc\x01\n\x07GroupV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\n\n\x02id\x18\x02 \x01(\t\x12\r\n\x05\x65mail\x18\x03 \x01(\t\x12\x0c\n\x04name\x18\x04 \x01(\t\x12\x14\n\x0c\x64isplay_name\x18\x05 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x06 \x01(\t\x12\x0f\n\x07\x61liases\x18\x07 \x03(\t\x12\x15\n\rmembers_count\x18\x08 \x01(\r\x12<\n\x08provider\x18\t \x01(\x0e\x32*.services.group.containers.GroupProviderV1\x12\x10\n\x08\x63\x61n_join\x18\n \x01(\x08\x12\x11\n\tis_member\x18\x0b \x01(\x08\"\x87\x04\n\x0fGroupSettingsV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\n\n\x02id\x18\x02 \x01(\t\x12\x10\n\x08group_id\x18\x03 \x01(\t\x12\x61\n\x0cwho_can_join\x18\x04 \x01(\x0e\x32K.services.group.containers.permissions.who_can_join.WhoCanJoinPermissionsV1\x12\x81\x01\n\x17who_can_view_membership\x18\x05 \x01(\x0e\x32`.services.group.containers.permissions.who_can_view_membership.WhoCanViewMembershipPermissionsV1\x12r\n\x12who_can_view_group\x18\x06 \x01(\x0e\x32V.services.group.containers.permissions.who_can_view_group.WhoCanViewGroupPermissionsV1\x12g\n\x0ewho_can_invite\x18\x07 \x01(\x0e\x32O.services.group.containers.permissions.who_can_invite.WhoCanInvitePermissionsV1*\x1d\n\x0fGroupProviderV1\x12\n\n\x06GOOGLE\x10\x00\x42\x30\n.com.rhlabs.protobufs.services.group.containers')
+  serialized_pb=_b('\n)protobufs/services/group/containers.proto\x12\x19services.group.containers\x1a\x42protobufs/services/group/containers/permissions/who_can_join.proto\x1aMprotobufs/services/group/containers/permissions/who_can_view_membership.proto\x1aHprotobufs/services/group/containers/permissions/who_can_view_group.proto\x1a\x44protobufs/services/group/containers/permissions/who_can_invite.proto\x1a+protobufs/services/profile/containers.proto\"\x91\x02\n\x07GroupV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\n\n\x02id\x18\x02 \x01(\t\x12\r\n\x05\x65mail\x18\x03 \x01(\t\x12\x0c\n\x04name\x18\x04 \x01(\t\x12\x14\n\x0c\x64isplay_name\x18\x05 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x06 \x01(\t\x12\x0f\n\x07\x61liases\x18\x07 \x03(\t\x12\x15\n\rmembers_count\x18\x08 \x01(\r\x12<\n\x08provider\x18\t \x01(\x0e\x32*.services.group.containers.GroupProviderV1\x12\x10\n\x08\x63\x61n_join\x18\n \x01(\x08\x12\x11\n\tis_member\x18\x0b \x01(\x08\x12\x13\n\x0b\x63\x61n_request\x18\x0c \x01(\x08\"\x87\x04\n\x0fGroupSettingsV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\n\n\x02id\x18\x02 \x01(\t\x12\x10\n\x08group_id\x18\x03 \x01(\t\x12\x61\n\x0cwho_can_join\x18\x04 \x01(\x0e\x32K.services.group.containers.permissions.who_can_join.WhoCanJoinPermissionsV1\x12\x81\x01\n\x17who_can_view_membership\x18\x05 \x01(\x0e\x32`.services.group.containers.permissions.who_can_view_membership.WhoCanViewMembershipPermissionsV1\x12r\n\x12who_can_view_group\x18\x06 \x01(\x0e\x32V.services.group.containers.permissions.who_can_view_group.WhoCanViewGroupPermissionsV1\x12g\n\x0ewho_can_invite\x18\x07 \x01(\x0e\x32O.services.group.containers.permissions.who_can_invite.WhoCanInvitePermissionsV1\"\x94\x01\n\x08MemberV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\n\n\x02id\x18\x02 \x01(\t\x12\x37\n\x07profile\x18\x03 \x01(\x0b\x32&.services.profile.containers.ProfileV1\x12/\n\x04role\x18\x04 \x01(\x0e\x32!.services.group.containers.RoleV1*\x1d\n\x0fGroupProviderV1\x12\n\n\x06GOOGLE\x10\x00*,\n\x06RoleV1\x12\t\n\x05OWNER\x10\x00\x12\x0b\n\x07MANAGER\x10\x01\x12\n\n\x06MEMBER\x10\x02\x42\x30\n.com.rhlabs.protobufs.services.group.containers')
   ,
-  dependencies=[protobufs.services.group.containers.permissions.who_can_join_pb2.DESCRIPTOR,protobufs.services.group.containers.permissions.who_can_view_membership_pb2.DESCRIPTOR,protobufs.services.group.containers.permissions.who_can_view_group_pb2.DESCRIPTOR,protobufs.services.group.containers.permissions.who_can_invite_pb2.DESCRIPTOR,])
+  dependencies=[protobufs.services.group.containers.permissions.who_can_join_pb2.DESCRIPTOR,protobufs.services.group.containers.permissions.who_can_view_membership_pb2.DESCRIPTOR,protobufs.services.group.containers.permissions.who_can_view_group_pb2.DESCRIPTOR,protobufs.services.group.containers.permissions.who_can_invite_pb2.DESCRIPTOR,protobufs.services.profile.containers_pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 _GROUPPROVIDERV1 = _descriptor.EnumDescriptor(
@@ -41,13 +42,43 @@ _GROUPPROVIDERV1 = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=1140,
-  serialized_end=1169,
+  serialized_start=1357,
+  serialized_end=1386,
 )
 _sym_db.RegisterEnumDescriptor(_GROUPPROVIDERV1)
 
 GroupProviderV1 = enum_type_wrapper.EnumTypeWrapper(_GROUPPROVIDERV1)
+_ROLEV1 = _descriptor.EnumDescriptor(
+  name='RoleV1',
+  full_name='services.group.containers.RoleV1',
+  filename=None,
+  file=DESCRIPTOR,
+  values=[
+    _descriptor.EnumValueDescriptor(
+      name='OWNER', index=0, number=0,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='MANAGER', index=1, number=1,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='MEMBER', index=2, number=2,
+      options=None,
+      type=None),
+  ],
+  containing_type=None,
+  options=None,
+  serialized_start=1388,
+  serialized_end=1432,
+)
+_sym_db.RegisterEnumDescriptor(_ROLEV1)
+
+RoleV1 = enum_type_wrapper.EnumTypeWrapper(_ROLEV1)
 GOOGLE = 0
+OWNER = 0
+MANAGER = 1
+MEMBER = 2
 
 
 
@@ -135,6 +166,13 @@ _GROUPV1 = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
+    _descriptor.FieldDescriptor(
+      name='can_request', full_name='services.group.containers.GroupV1.can_request', index=11,
+      number=12, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
   ],
   extensions=[
   ],
@@ -146,8 +184,8 @@ _GROUPV1 = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=364,
-  serialized_end=616,
+  serialized_start=409,
+  serialized_end=682,
 )
 
 
@@ -218,8 +256,59 @@ _GROUPSETTINGSV1 = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=619,
-  serialized_end=1138,
+  serialized_start=685,
+  serialized_end=1204,
+)
+
+
+_MEMBERV1 = _descriptor.Descriptor(
+  name='MemberV1',
+  full_name='services.group.containers.MemberV1',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='version', full_name='services.group.containers.MemberV1.version', index=0,
+      number=1, type=13, cpp_type=3, label=1,
+      has_default_value=True, default_value=1,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='id', full_name='services.group.containers.MemberV1.id', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='profile', full_name='services.group.containers.MemberV1.profile', index=2,
+      number=3, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='role', full_name='services.group.containers.MemberV1.role', index=3,
+      number=4, type=14, cpp_type=8, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1207,
+  serialized_end=1355,
 )
 
 _GROUPV1.fields_by_name['provider'].enum_type = _GROUPPROVIDERV1
@@ -227,9 +316,13 @@ _GROUPSETTINGSV1.fields_by_name['who_can_join'].enum_type = protobufs.services.g
 _GROUPSETTINGSV1.fields_by_name['who_can_view_membership'].enum_type = protobufs.services.group.containers.permissions.who_can_view_membership_pb2._WHOCANVIEWMEMBERSHIPPERMISSIONSV1
 _GROUPSETTINGSV1.fields_by_name['who_can_view_group'].enum_type = protobufs.services.group.containers.permissions.who_can_view_group_pb2._WHOCANVIEWGROUPPERMISSIONSV1
 _GROUPSETTINGSV1.fields_by_name['who_can_invite'].enum_type = protobufs.services.group.containers.permissions.who_can_invite_pb2._WHOCANINVITEPERMISSIONSV1
+_MEMBERV1.fields_by_name['profile'].message_type = protobufs.services.profile.containers_pb2._PROFILEV1
+_MEMBERV1.fields_by_name['role'].enum_type = _ROLEV1
 DESCRIPTOR.message_types_by_name['GroupV1'] = _GROUPV1
 DESCRIPTOR.message_types_by_name['GroupSettingsV1'] = _GROUPSETTINGSV1
+DESCRIPTOR.message_types_by_name['MemberV1'] = _MEMBERV1
 DESCRIPTOR.enum_types_by_name['GroupProviderV1'] = _GROUPPROVIDERV1
+DESCRIPTOR.enum_types_by_name['RoleV1'] = _ROLEV1
 
 GroupV1 = _reflection.GeneratedProtocolMessageType('GroupV1', (_message.Message,), dict(
   DESCRIPTOR = _GROUPV1,
@@ -244,6 +337,13 @@ GroupSettingsV1 = _reflection.GeneratedProtocolMessageType('GroupSettingsV1', (_
   # @@protoc_insertion_point(class_scope:services.group.containers.GroupSettingsV1)
   ))
 _sym_db.RegisterMessage(GroupSettingsV1)
+
+MemberV1 = _reflection.GeneratedProtocolMessageType('MemberV1', (_message.Message,), dict(
+  DESCRIPTOR = _MEMBERV1,
+  __module__ = 'protobufs.services.group.containers_pb2'
+  # @@protoc_insertion_point(class_scope:services.group.containers.MemberV1)
+  ))
+_sym_db.RegisterMessage(MemberV1)
 
 
 DESCRIPTOR.has_options = True

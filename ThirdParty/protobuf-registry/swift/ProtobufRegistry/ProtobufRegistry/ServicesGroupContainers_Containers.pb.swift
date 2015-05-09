@@ -19,6 +19,7 @@ public func == (lhs: Services.Group.Containers.GroupV1, rhs: Services.Group.Cont
   fieldCheck = fieldCheck && (lhs.hasProvider == rhs.hasProvider) && (!lhs.hasProvider || lhs.provider == rhs.provider)
   fieldCheck = fieldCheck && (lhs.hasCanJoin == rhs.hasCanJoin) && (!lhs.hasCanJoin || lhs.canJoin == rhs.canJoin)
   fieldCheck = fieldCheck && (lhs.hasIsMember == rhs.hasIsMember) && (!lhs.hasIsMember || lhs.isMember == rhs.isMember)
+  fieldCheck = fieldCheck && (lhs.hasCanRequest == rhs.hasCanRequest) && (!lhs.hasCanRequest || lhs.canRequest == rhs.canRequest)
   return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
 }
 
@@ -34,6 +35,18 @@ public func == (lhs: Services.Group.Containers.GroupSettingsV1, rhs: Services.Gr
   fieldCheck = fieldCheck && (lhs.hasWhoCanViewMembership == rhs.hasWhoCanViewMembership) && (!lhs.hasWhoCanViewMembership || lhs.whoCanViewMembership == rhs.whoCanViewMembership)
   fieldCheck = fieldCheck && (lhs.hasWhoCanViewGroup == rhs.hasWhoCanViewGroup) && (!lhs.hasWhoCanViewGroup || lhs.whoCanViewGroup == rhs.whoCanViewGroup)
   fieldCheck = fieldCheck && (lhs.hasWhoCanInvite == rhs.hasWhoCanInvite) && (!lhs.hasWhoCanInvite || lhs.whoCanInvite == rhs.whoCanInvite)
+  return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
+}
+
+public func == (lhs: Services.Group.Containers.MemberV1, rhs: Services.Group.Containers.MemberV1) -> Bool {
+  if (lhs === rhs) {
+    return true
+  }
+  var fieldCheck:Bool = (lhs.hashValue == rhs.hashValue)
+  fieldCheck = fieldCheck && (lhs.hasVersion == rhs.hasVersion) && (!lhs.hasVersion || lhs.version == rhs.version)
+  fieldCheck = fieldCheck && (lhs.hasId == rhs.hasId) && (!lhs.hasId || lhs.id == rhs.id)
+  fieldCheck = fieldCheck && (lhs.hasProfile == rhs.hasProfile) && (!lhs.hasProfile || lhs.profile == rhs.profile)
+  fieldCheck = fieldCheck && (lhs.hasRole == rhs.hasRole) && (!lhs.hasRole || lhs.role == rhs.role)
   return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
 }
 
@@ -54,6 +67,7 @@ public extension Services.Group.Containers {
       Services.Group.Containers.Permissions.WhoCanViewMembership.WhoCanViewMembershipRoot.sharedInstance.registerAllExtensions(extensionRegistry)
       Services.Group.Containers.Permissions.WhoCanViewGroup.WhoCanViewGroupRoot.sharedInstance.registerAllExtensions(extensionRegistry)
       Services.Group.Containers.Permissions.WhoCanInvite.WhoCanInviteRoot.sharedInstance.registerAllExtensions(extensionRegistry)
+      Services.Profile.Containers.ContainersRoot.sharedInstance.registerAllExtensions(extensionRegistry)
     }
     public func registerAllExtensions(registry:ExtensionRegistry) {
     }
@@ -65,6 +79,19 @@ public extension Services.Group.Containers {
 
   public enum GroupProviderV1:Int32 {
     case Google = 0
+
+  }
+
+  //Enum type declaration end 
+
+
+
+  //Enum type declaration start 
+
+  public enum RoleV1:Int32 {
+    case Owner = 0
+    case Manager = 1
+    case Member = 2
 
   }
 
@@ -83,6 +110,7 @@ public extension Services.Group.Containers {
            case "provider": return self.provider
            case "canJoin": return canJoin
            case "isMember": return isMember
+           case "canRequest": return canRequest
            default: return nil
            }
     }
@@ -115,6 +143,9 @@ public extension Services.Group.Containers {
 
     public private(set) var hasIsMember:Bool = false
     public private(set) var isMember:Bool = false
+
+    public private(set) var hasCanRequest:Bool = false
+    public private(set) var canRequest:Bool = false
 
     public private(set) var aliases:Array<String> = Array<String>()
     required public init() {
@@ -158,6 +189,9 @@ public extension Services.Group.Containers {
       }
       if hasIsMember {
         output.writeBool(11, value:isMember)
+      }
+      if hasCanRequest {
+        output.writeBool(12, value:canRequest)
       }
       unknownFields.writeToCodedOutputStream(output)
     }
@@ -203,6 +237,9 @@ public extension Services.Group.Containers {
       }
       if hasIsMember {
         serialize_size += isMember.computeBoolSize(11)
+      }
+      if hasCanRequest {
+        serialize_size += canRequest.computeBoolSize(12)
       }
       serialize_size += unknownFields.serializedSize()
       memoizedSerializedSize = serialize_size
@@ -280,6 +317,9 @@ public extension Services.Group.Containers {
       if hasIsMember {
         output += "\(indent) isMember: \(isMember) \n"
       }
+      if hasCanRequest {
+        output += "\(indent) canRequest: \(canRequest) \n"
+      }
       unknownFields.writeDescriptionTo(&output, indent:indent)
     }
     override public var hashValue:Int {
@@ -317,6 +357,9 @@ public extension Services.Group.Containers {
             }
             if hasIsMember {
                hashCode = (hashCode &* 31) &+ isMember.hashValue
+            }
+            if hasCanRequest {
+               hashCode = (hashCode &* 31) &+ canRequest.hashValue
             }
             hashCode = (hashCode &* 31) &+  unknownFields.hashValue
             return hashCode
@@ -592,6 +635,29 @@ public extension Services.Group.Containers {
          builderResult.isMember = false
          return self
     }
+    public var hasCanRequest:Bool {
+         get {
+              return builderResult.hasCanRequest
+         }
+    }
+    public var canRequest:Bool {
+         get {
+              return builderResult.canRequest
+         }
+         set (value) {
+             builderResult.hasCanRequest = true
+             builderResult.canRequest = value
+         }
+    }
+    public func setCanRequest(value:Bool)-> Services.Group.Containers.GroupV1Builder {
+      self.canRequest = value
+      return self
+    }
+    public func clearCanRequest() -> Services.Group.Containers.GroupV1Builder{
+         builderResult.hasCanRequest = false
+         builderResult.canRequest = false
+         return self
+    }
     override public var internalGetResult:GeneratedMessage {
          get {
             return builderResult
@@ -649,6 +715,9 @@ public extension Services.Group.Containers {
       if other.hasIsMember {
            isMember = other.isMember
       }
+      if other.hasCanRequest {
+           canRequest = other.canRequest
+      }
       mergeUnknownFields(other.unknownFields)
       return self
     }
@@ -701,6 +770,9 @@ public extension Services.Group.Containers {
 
         case 88 :
           isMember = input.readBool()
+
+        case 96 :
+          canRequest = input.readBool()
 
         default:
           if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
@@ -1177,6 +1249,355 @@ public extension Services.Group.Containers {
                whoCanInvite = enumswhoCanInvite
           } else {
                unknownFieldsBuilder.mergeVarintField(7, value:Int64(valueIntwhoCanInvite))
+          }
+
+        default:
+          if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
+             unknownFields = unknownFieldsBuilder.build()
+             return self
+          }
+        }
+      }
+    }
+  }
+
+  final public class MemberV1 : GeneratedMessage, GeneratedMessageProtocol {
+    override public subscript(key: String) -> Any? {
+           switch key {
+           case "version": return version
+           case "id": return id
+           case "profile": return profile
+           case "role": return self.role
+           default: return nil
+           }
+    }
+
+    public private(set) var hasVersion:Bool = false
+    public private(set) var version:UInt32 = UInt32(1)
+
+    public private(set) var hasId:Bool = false
+    public private(set) var id:String = ""
+
+    public private(set) var hasProfile:Bool = false
+    public private(set) var profile:Services.Profile.Containers.ProfileV1!
+    public private(set) var role:Services.Group.Containers.RoleV1 = Services.Group.Containers.RoleV1.Owner
+    public private(set) var hasRole:Bool = false
+    required public init() {
+         super.init()
+    }
+    override public func isInitialized() -> Bool {
+     return true
+    }
+    override public func writeToCodedOutputStream(output:CodedOutputStream) {
+      if hasVersion {
+        output.writeUInt32(1, value:version)
+      }
+      if hasId {
+        output.writeString(2, value:id)
+      }
+      if hasProfile {
+        output.writeMessage(3, value:profile)
+      }
+      if hasRole {
+        output.writeEnum(4, value:role.rawValue)
+      }
+      unknownFields.writeToCodedOutputStream(output)
+    }
+    override public func serializedSize() -> Int32 {
+      var serialize_size:Int32 = memoizedSerializedSize
+      if serialize_size != -1 {
+       return serialize_size
+      }
+
+      serialize_size = 0
+      if hasVersion {
+        serialize_size += version.computeUInt32Size(1)
+      }
+      if hasId {
+        serialize_size += id.computeStringSize(2)
+      }
+      if hasProfile {
+          if let varSizeprofile = profile?.computeMessageSize(3) {
+              serialize_size += varSizeprofile
+          }
+      }
+      if (hasRole) {
+        serialize_size += role.rawValue.computeEnumSize(4)
+      }
+      serialize_size += unknownFields.serializedSize()
+      memoizedSerializedSize = serialize_size
+      return serialize_size
+    }
+    public class func parseFromData(data:NSData) -> Services.Group.Containers.MemberV1 {
+      return Services.Group.Containers.MemberV1.builder().mergeFromData(data, extensionRegistry:Services.Group.Containers.ContainersRoot.sharedInstance.extensionRegistry).build()
+    }
+    public class func parseFromData(data:NSData, extensionRegistry:ExtensionRegistry) -> Services.Group.Containers.MemberV1 {
+      return Services.Group.Containers.MemberV1.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
+    }
+    public class func parseFromInputStream(input:NSInputStream) -> Services.Group.Containers.MemberV1 {
+      return Services.Group.Containers.MemberV1.builder().mergeFromInputStream(input).build()
+    }
+    public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->Services.Group.Containers.MemberV1 {
+      return Services.Group.Containers.MemberV1.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
+    }
+    public class func parseFromCodedInputStream(input:CodedInputStream) -> Services.Group.Containers.MemberV1 {
+      return Services.Group.Containers.MemberV1.builder().mergeFromCodedInputStream(input).build()
+    }
+    public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> Services.Group.Containers.MemberV1 {
+      return Services.Group.Containers.MemberV1.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
+    }
+    public class func builder() -> Services.Group.Containers.MemberV1Builder {
+      return Services.Group.Containers.MemberV1.classBuilder() as! Services.Group.Containers.MemberV1Builder
+    }
+    public func builder() -> Services.Group.Containers.MemberV1Builder {
+      return classBuilder() as! Services.Group.Containers.MemberV1Builder
+    }
+    public override class func classBuilder() -> MessageBuilder {
+      return Services.Group.Containers.MemberV1Builder()
+    }
+    public override func classBuilder() -> MessageBuilder {
+      return Services.Group.Containers.MemberV1.builder()
+    }
+    public func toBuilder() -> Services.Group.Containers.MemberV1Builder {
+      return Services.Group.Containers.MemberV1.builderWithPrototype(self)
+    }
+    public class func builderWithPrototype(prototype:Services.Group.Containers.MemberV1) -> Services.Group.Containers.MemberV1Builder {
+      return Services.Group.Containers.MemberV1.builder().mergeFrom(prototype)
+    }
+    override public func writeDescriptionTo(inout output:String, indent:String) {
+      if hasVersion {
+        output += "\(indent) version: \(version) \n"
+      }
+      if hasId {
+        output += "\(indent) id: \(id) \n"
+      }
+      if hasProfile {
+        output += "\(indent) profile {\n"
+        profile?.writeDescriptionTo(&output, indent:"\(indent)  ")
+        output += "\(indent) }\n"
+      }
+      if (hasRole) {
+        output += "\(indent) role: \(role.rawValue)\n"
+      }
+      unknownFields.writeDescriptionTo(&output, indent:indent)
+    }
+    override public var hashValue:Int {
+        get {
+            var hashCode:Int = 7
+            if hasVersion {
+               hashCode = (hashCode &* 31) &+ version.hashValue
+            }
+            if hasId {
+               hashCode = (hashCode &* 31) &+ id.hashValue
+            }
+            if hasProfile {
+                if let hashValueprofile = profile?.hashValue {
+                    hashCode = (hashCode &* 31) &+ hashValueprofile
+                }
+            }
+            if hasRole {
+               hashCode = (hashCode &* 31) &+ Int(role.rawValue)
+            }
+            hashCode = (hashCode &* 31) &+  unknownFields.hashValue
+            return hashCode
+        }
+    }
+
+
+    //Meta information declaration start
+
+    override public class func className() -> String {
+        return "Services.Group.Containers.MemberV1"
+    }
+    override public func className() -> String {
+        return "Services.Group.Containers.MemberV1"
+    }
+    override public func classMetaType() -> GeneratedMessage.Type {
+        return Services.Group.Containers.MemberV1.self
+    }
+    //Meta information declaration end
+
+  }
+
+  final public class MemberV1Builder : GeneratedMessageBuilder {
+    private var builderResult:Services.Group.Containers.MemberV1
+
+    required override public init () {
+       builderResult = Services.Group.Containers.MemberV1()
+       super.init()
+    }
+    public var hasVersion:Bool {
+         get {
+              return builderResult.hasVersion
+         }
+    }
+    public var version:UInt32 {
+         get {
+              return builderResult.version
+         }
+         set (value) {
+             builderResult.hasVersion = true
+             builderResult.version = value
+         }
+    }
+    public func setVersion(value:UInt32)-> Services.Group.Containers.MemberV1Builder {
+      self.version = value
+      return self
+    }
+    public func clearVersion() -> Services.Group.Containers.MemberV1Builder{
+         builderResult.hasVersion = false
+         builderResult.version = UInt32(1)
+         return self
+    }
+    public var hasId:Bool {
+         get {
+              return builderResult.hasId
+         }
+    }
+    public var id:String {
+         get {
+              return builderResult.id
+         }
+         set (value) {
+             builderResult.hasId = true
+             builderResult.id = value
+         }
+    }
+    public func setId(value:String)-> Services.Group.Containers.MemberV1Builder {
+      self.id = value
+      return self
+    }
+    public func clearId() -> Services.Group.Containers.MemberV1Builder{
+         builderResult.hasId = false
+         builderResult.id = ""
+         return self
+    }
+    public var hasProfile:Bool {
+         get {
+             return builderResult.hasProfile
+         }
+    }
+    public var profile:Services.Profile.Containers.ProfileV1! {
+         get {
+             return builderResult.profile
+         }
+         set (value) {
+             builderResult.hasProfile = true
+             builderResult.profile = value
+         }
+    }
+    public func setProfile(value:Services.Profile.Containers.ProfileV1!)-> Services.Group.Containers.MemberV1Builder {
+      self.profile = value
+      return self
+    }
+    public func mergeProfile(value:Services.Profile.Containers.ProfileV1) -> Services.Group.Containers.MemberV1Builder {
+      if (builderResult.hasProfile) {
+        builderResult.profile = Services.Profile.Containers.ProfileV1.builderWithPrototype(builderResult.profile).mergeFrom(value).buildPartial()
+      } else {
+        builderResult.profile = value
+      }
+      builderResult.hasProfile = true
+      return self
+    }
+    public func clearProfile() -> Services.Group.Containers.MemberV1Builder {
+      builderResult.hasProfile = false
+      builderResult.profile = nil
+      return self
+    }
+      public var hasRole:Bool{
+          get {
+              return builderResult.hasRole
+          }
+      }
+      public var role:Services.Group.Containers.RoleV1 {
+          get {
+              return builderResult.role
+          }
+          set (value) {
+              builderResult.hasRole = true
+              builderResult.role = value
+          }
+      }
+      public func setRole(value:Services.Group.Containers.RoleV1)-> Services.Group.Containers.MemberV1Builder {
+        self.role = value
+        return self
+      }
+      public func clearRole() -> Services.Group.Containers.MemberV1Builder {
+         builderResult.hasRole = false
+         builderResult.role = .Owner
+         return self
+      }
+    override public var internalGetResult:GeneratedMessage {
+         get {
+            return builderResult
+         }
+    }
+    public override func clear() -> Services.Group.Containers.MemberV1Builder {
+      builderResult = Services.Group.Containers.MemberV1()
+      return self
+    }
+    public override func clone() -> Services.Group.Containers.MemberV1Builder {
+      return Services.Group.Containers.MemberV1.builderWithPrototype(builderResult)
+    }
+    public override func build() -> Services.Group.Containers.MemberV1 {
+         checkInitialized()
+         return buildPartial()
+    }
+    public func buildPartial() -> Services.Group.Containers.MemberV1 {
+      var returnMe:Services.Group.Containers.MemberV1 = builderResult
+      return returnMe
+    }
+    public func mergeFrom(other:Services.Group.Containers.MemberV1) -> Services.Group.Containers.MemberV1Builder {
+      if (other == Services.Group.Containers.MemberV1()) {
+       return self
+      }
+      if other.hasVersion {
+           version = other.version
+      }
+      if other.hasId {
+           id = other.id
+      }
+      if (other.hasProfile) {
+          mergeProfile(other.profile)
+      }
+      if other.hasRole {
+           role = other.role
+      }
+      mergeUnknownFields(other.unknownFields)
+      return self
+    }
+    public override func mergeFromCodedInputStream(input:CodedInputStream) ->Services.Group.Containers.MemberV1Builder {
+         return mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
+    }
+    public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> Services.Group.Containers.MemberV1Builder {
+      var unknownFieldsBuilder:UnknownFieldSetBuilder = UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
+      while (true) {
+        var tag = input.readTag()
+        switch tag {
+        case 0: 
+          self.unknownFields = unknownFieldsBuilder.build()
+          return self
+
+        case 8 :
+          version = input.readUInt32()
+
+        case 18 :
+          id = input.readString()
+
+        case 26 :
+          var subBuilder:Services.Profile.Containers.ProfileV1Builder = Services.Profile.Containers.ProfileV1.builder()
+          if hasProfile {
+            subBuilder.mergeFrom(profile)
+          }
+          input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
+          profile = subBuilder.buildPartial()
+
+        case 32 :
+          let valueIntrole = input.readEnum()
+          if let enumsrole = Services.Group.Containers.RoleV1(rawValue:valueIntrole){
+               role = enumsrole
+          } else {
+               unknownFieldsBuilder.mergeVarintField(4, value:Int64(valueIntrole))
           }
 
         default:

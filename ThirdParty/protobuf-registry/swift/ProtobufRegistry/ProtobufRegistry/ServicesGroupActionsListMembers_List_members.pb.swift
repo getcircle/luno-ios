@@ -10,6 +10,7 @@ public func == (lhs: Services.Group.Actions.ListMembers.RequestV1, rhs: Services
   var fieldCheck:Bool = (lhs.hashValue == rhs.hashValue)
   fieldCheck = fieldCheck && (lhs.hasVersion == rhs.hasVersion) && (!lhs.hasVersion || lhs.version == rhs.version)
   fieldCheck = fieldCheck && (lhs.hasGroupId == rhs.hasGroupId) && (!lhs.hasGroupId || lhs.groupId == rhs.groupId)
+  fieldCheck = fieldCheck && (lhs.hasRole == rhs.hasRole) && (!lhs.hasRole || lhs.role == rhs.role)
   return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
 }
 
@@ -19,7 +20,7 @@ public func == (lhs: Services.Group.Actions.ListMembers.ResponseV1, rhs: Service
   }
   var fieldCheck:Bool = (lhs.hashValue == rhs.hashValue)
   fieldCheck = fieldCheck && (lhs.hasVersion == rhs.hasVersion) && (!lhs.hasVersion || lhs.version == rhs.version)
-  fieldCheck = fieldCheck && (lhs.hasProfiles == rhs.hasProfiles) && (!lhs.hasProfiles || lhs.profiles == rhs.profiles)
+  fieldCheck = fieldCheck && (lhs.members == rhs.members)
   return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
 }
 
@@ -36,7 +37,7 @@ public extension Services.Group.Actions.ListMembers {
     init() {
       extensionRegistry = ExtensionRegistry()
       registerAllExtensions(extensionRegistry)
-      Services.Profile.Containers.ContainersRoot.sharedInstance.registerAllExtensions(extensionRegistry)
+      Services.Group.Containers.ContainersRoot.sharedInstance.registerAllExtensions(extensionRegistry)
     }
     public func registerAllExtensions(registry:ExtensionRegistry) {
     }
@@ -47,6 +48,7 @@ public extension Services.Group.Actions.ListMembers {
            switch key {
            case "version": return version
            case "groupId": return groupId
+           case "role": return self.role
            default: return nil
            }
     }
@@ -57,6 +59,8 @@ public extension Services.Group.Actions.ListMembers {
     public private(set) var hasGroupId:Bool = false
     public private(set) var groupId:String = ""
 
+    public private(set) var role:Services.Group.Containers.RoleV1 = Services.Group.Containers.RoleV1.Member
+    public private(set) var hasRole:Bool = false
     required public init() {
          super.init()
     }
@@ -69,6 +73,9 @@ public extension Services.Group.Actions.ListMembers {
       }
       if hasGroupId {
         output.writeString(2, value:groupId)
+      }
+      if hasRole {
+        output.writeEnum(3, value:role.rawValue)
       }
       unknownFields.writeToCodedOutputStream(output)
     }
@@ -84,6 +91,9 @@ public extension Services.Group.Actions.ListMembers {
       }
       if hasGroupId {
         serialize_size += groupId.computeStringSize(2)
+      }
+      if (hasRole) {
+        serialize_size += role.rawValue.computeEnumSize(3)
       }
       serialize_size += unknownFields.serializedSize()
       memoizedSerializedSize = serialize_size
@@ -132,6 +142,9 @@ public extension Services.Group.Actions.ListMembers {
       if hasGroupId {
         output += "\(indent) groupId: \(groupId) \n"
       }
+      if (hasRole) {
+        output += "\(indent) role: \(role.rawValue)\n"
+      }
       unknownFields.writeDescriptionTo(&output, indent:indent)
     }
     override public var hashValue:Int {
@@ -142,6 +155,9 @@ public extension Services.Group.Actions.ListMembers {
             }
             if hasGroupId {
                hashCode = (hashCode &* 31) &+ groupId.hashValue
+            }
+            if hasRole {
+               hashCode = (hashCode &* 31) &+ Int(role.rawValue)
             }
             hashCode = (hashCode &* 31) &+  unknownFields.hashValue
             return hashCode
@@ -217,6 +233,29 @@ public extension Services.Group.Actions.ListMembers {
          builderResult.groupId = ""
          return self
     }
+      public var hasRole:Bool{
+          get {
+              return builderResult.hasRole
+          }
+      }
+      public var role:Services.Group.Containers.RoleV1 {
+          get {
+              return builderResult.role
+          }
+          set (value) {
+              builderResult.hasRole = true
+              builderResult.role = value
+          }
+      }
+      public func setRole(value:Services.Group.Containers.RoleV1)-> Services.Group.Actions.ListMembers.RequestV1Builder {
+        self.role = value
+        return self
+      }
+      public func clearRole() -> Services.Group.Actions.ListMembers.RequestV1Builder {
+         builderResult.hasRole = false
+         builderResult.role = .Member
+         return self
+      }
     override public var internalGetResult:GeneratedMessage {
          get {
             return builderResult
@@ -247,6 +286,9 @@ public extension Services.Group.Actions.ListMembers {
       if other.hasGroupId {
            groupId = other.groupId
       }
+      if other.hasRole {
+           role = other.role
+      }
       mergeUnknownFields(other.unknownFields)
       return self
     }
@@ -268,6 +310,14 @@ public extension Services.Group.Actions.ListMembers {
         case 18 :
           groupId = input.readString()
 
+        case 24 :
+          let valueIntrole = input.readEnum()
+          if let enumsrole = Services.Group.Containers.RoleV1(rawValue:valueIntrole){
+               role = enumsrole
+          } else {
+               unknownFieldsBuilder.mergeVarintField(3, value:Int64(valueIntrole))
+          }
+
         default:
           if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
              unknownFields = unknownFieldsBuilder.build()
@@ -282,7 +332,6 @@ public extension Services.Group.Actions.ListMembers {
     override public subscript(key: String) -> Any? {
            switch key {
            case "version": return version
-           case "profiles": return profiles
            default: return nil
            }
     }
@@ -290,8 +339,7 @@ public extension Services.Group.Actions.ListMembers {
     public private(set) var hasVersion:Bool = false
     public private(set) var version:UInt32 = UInt32(1)
 
-    public private(set) var hasProfiles:Bool = false
-    public private(set) var profiles:Services.Profile.Containers.ProfileV1!
+    public private(set) var members:Array<Services.Group.Containers.MemberV1>  = Array<Services.Group.Containers.MemberV1>()
     required public init() {
          super.init()
     }
@@ -302,8 +350,8 @@ public extension Services.Group.Actions.ListMembers {
       if hasVersion {
         output.writeUInt32(1, value:version)
       }
-      if hasProfiles {
-        output.writeMessage(2, value:profiles)
+      for oneElementmembers in members {
+          output.writeMessage(2, value:oneElementmembers)
       }
       unknownFields.writeToCodedOutputStream(output)
     }
@@ -317,10 +365,8 @@ public extension Services.Group.Actions.ListMembers {
       if hasVersion {
         serialize_size += version.computeUInt32Size(1)
       }
-      if hasProfiles {
-          if let varSizeprofiles = profiles?.computeMessageSize(2) {
-              serialize_size += varSizeprofiles
-          }
+      for oneElementmembers in members {
+          serialize_size += oneElementmembers.computeMessageSize(2)
       }
       serialize_size += unknownFields.serializedSize()
       memoizedSerializedSize = serialize_size
@@ -366,10 +412,12 @@ public extension Services.Group.Actions.ListMembers {
       if hasVersion {
         output += "\(indent) version: \(version) \n"
       }
-      if hasProfiles {
-        output += "\(indent) profiles {\n"
-        profiles?.writeDescriptionTo(&output, indent:"\(indent)  ")
-        output += "\(indent) }\n"
+      var membersElementIndex:Int = 0
+      for oneElementmembers in members {
+          output += "\(indent) members[\(membersElementIndex)] {\n"
+          oneElementmembers.writeDescriptionTo(&output, indent:"\(indent)  ")
+          output += "\(indent)}\n"
+          membersElementIndex++
       }
       unknownFields.writeDescriptionTo(&output, indent:indent)
     }
@@ -379,10 +427,8 @@ public extension Services.Group.Actions.ListMembers {
             if hasVersion {
                hashCode = (hashCode &* 31) &+ version.hashValue
             }
-            if hasProfiles {
-                if let hashValueprofiles = profiles?.hashValue {
-                    hashCode = (hashCode &* 31) &+ hashValueprofiles
-                }
+            for oneElementmembers in members {
+                hashCode = (hashCode &* 31) &+ oneElementmembers.hashValue
             }
             hashCode = (hashCode &* 31) &+  unknownFields.hashValue
             return hashCode
@@ -435,36 +481,20 @@ public extension Services.Group.Actions.ListMembers {
          builderResult.version = UInt32(1)
          return self
     }
-    public var hasProfiles:Bool {
+    public var members:Array<Services.Group.Containers.MemberV1> {
          get {
-             return builderResult.hasProfiles
-         }
-    }
-    public var profiles:Services.Profile.Containers.ProfileV1! {
-         get {
-             return builderResult.profiles
+             return builderResult.members
          }
          set (value) {
-             builderResult.hasProfiles = true
-             builderResult.profiles = value
+             builderResult.members = value
          }
     }
-    public func setProfiles(value:Services.Profile.Containers.ProfileV1!)-> Services.Group.Actions.ListMembers.ResponseV1Builder {
-      self.profiles = value
+    public func setMembers(value:Array<Services.Group.Containers.MemberV1>)-> Services.Group.Actions.ListMembers.ResponseV1Builder {
+      self.members = value
       return self
     }
-    public func mergeProfiles(value:Services.Profile.Containers.ProfileV1) -> Services.Group.Actions.ListMembers.ResponseV1Builder {
-      if (builderResult.hasProfiles) {
-        builderResult.profiles = Services.Profile.Containers.ProfileV1.builderWithPrototype(builderResult.profiles).mergeFrom(value).buildPartial()
-      } else {
-        builderResult.profiles = value
-      }
-      builderResult.hasProfiles = true
-      return self
-    }
-    public func clearProfiles() -> Services.Group.Actions.ListMembers.ResponseV1Builder {
-      builderResult.hasProfiles = false
-      builderResult.profiles = nil
+    public func clearMembers() -> Services.Group.Actions.ListMembers.ResponseV1Builder {
+      builderResult.members.removeAll(keepCapacity: false)
       return self
     }
     override public var internalGetResult:GeneratedMessage {
@@ -494,8 +524,8 @@ public extension Services.Group.Actions.ListMembers {
       if other.hasVersion {
            version = other.version
       }
-      if (other.hasProfiles) {
-          mergeProfiles(other.profiles)
+      if !other.members.isEmpty  {
+         builderResult.members += other.members
       }
       mergeUnknownFields(other.unknownFields)
       return self
@@ -516,12 +546,9 @@ public extension Services.Group.Actions.ListMembers {
           version = input.readUInt32()
 
         case 18 :
-          var subBuilder:Services.Profile.Containers.ProfileV1Builder = Services.Profile.Containers.ProfileV1.builder()
-          if hasProfiles {
-            subBuilder.mergeFrom(profiles)
-          }
-          input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
-          profiles = subBuilder.buildPartial()
+          var subBuilder = Services.Group.Containers.MemberV1.builder()
+          input.readMessage(subBuilder,extensionRegistry:extensionRegistry)
+          members += [subBuilder.buildPartial()]
 
         default:
           if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
