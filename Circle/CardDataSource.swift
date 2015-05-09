@@ -35,6 +35,7 @@ enum ContentType: Int {
     case Email
     case Facebook
     case Github
+    case Groups
     case HireDate
     case Interests
     case Tags

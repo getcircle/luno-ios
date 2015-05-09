@@ -19,9 +19,10 @@ class ProfileDetailDataSource: CardDataSource {
     
     private(set) var address: Services.Organization.Containers.AddressV1?
     private(set) var identities: Array<Services.User.Containers.IdentityV1>?
+    private(set) var interests: Array<Services.Profile.Containers.TagV1>?
+    private(set) var groups: Array<Services.Group.Containers.GroupV1>?
     private(set) var location: Services.Organization.Containers.LocationV1?
     private(set) var manager: Services.Profile.Containers.ProfileV1?
-    private(set) var interests: Array<Services.Profile.Containers.TagV1>?
     private(set) var skills: Array<Services.Profile.Containers.TagV1>?
     private(set) var team: Services.Organization.Containers.TeamV1?
     private(set) var resume: Services.Resume.Containers.ResumeV1?
@@ -30,6 +31,7 @@ class ProfileDetailDataSource: CardDataSource {
     private let numberOfExperienceItemsVisibleInitially = 2
     private let numberOfTagItemsVisibleInitially = 6
     private let numberOfSkillItemsVisibleInitially = 6
+    private let numberOfGroupItemsVisibleInitially = 3
     
     convenience init(profile withProfile: Services.Profile.Containers.ProfileV1) {
         self.init()
@@ -74,6 +76,7 @@ class ProfileDetailDataSource: CardDataSource {
         sections.append(getBasicInfoSection())
         sections.append(getWorkExperienceSection())
         sections.append(getEducationSection())
+        sections.append(getGroupsSection())
     }
 
     private func addPlaceholderCard() {
@@ -145,6 +148,20 @@ class ProfileDetailDataSource: CardDataSource {
             )
         ]
         return Section(title: AppStrings.ProfileSectionInfoTitle, items: sectionItems, cardType: .KeyValue, addCardHeader: true)
+    }
+    
+    private func getGroupsSection() -> Section {
+        let sectionItems = [
+            SectionItem(
+                title: AppStrings.ProfileSectionGroupsTitle,
+                container: "groups",
+                containerKey: "name",
+                contentType: .Groups,
+                image: nil
+            )
+        ]
+        
+        return Section(title: AppStrings.ProfileSectionGroupsTitle, items: sectionItems, cardType: .Group, addCardHeader: true)
     }
 
     private func getOfficeSections() -> [Section] {
@@ -306,6 +323,8 @@ class ProfileDetailDataSource: CardDataSource {
             addBannerItemToCard(item, card: card)
         case .Education:
             addEducationItemToCard(item, card: card)
+        case .Group:
+            addGroupItemsToCard(item, card: card)
         case .KeyValue:
             addKeyValueItemToCard(item, card: card)
         case .Tags:
@@ -368,6 +387,29 @@ class ProfileDetailDataSource: CardDataSource {
         }
 
         return value
+    }
+    
+    private func addGroupItemsToCard(item: SectionItem, card: Card) {
+        
+        let group1 = Services.Group.Containers.GroupV1.builder()
+        group1.name = "Mobile Group"
+        group1.membersCount = 100
+        group1.description_ = "All discussions related to mobile both iOS and Android."
+        group1.canJoin = true
+
+        let group2 = Services.Group.Containers.GroupV1.builder()
+        group2.name = "Frontend developers"
+        group2.membersCount = 10
+        group2.description_ = "Group for front-end development discussions"
+        group2.canJoin = true
+
+        groups = [group1.build(), group2.build()]
+        
+        if let groups = groups {
+            if groups.count > 0 {
+                card.addContent(content: groups as [AnyObject], maxVisibleItems: numberOfGroupItemsVisibleInitially)
+            }
+        }
     }
     
     private func addKeyValueItemToCard(item: SectionItem, card: Card) {

@@ -75,6 +75,7 @@ class Card: Equatable {
         case Empty = "Empty"
         case Education = "Education"
         case Group = "Group"
+        case GroupMemberImages = "GroupMemberImages"
         case KeyValue = "KeyValue"
         case Tags = "Tags"
         case Offices = "Offices"
@@ -160,6 +161,13 @@ class Card: Equatable {
                 )
 
             case Group:
+                return CardTypeInfo(
+                    imageName: "FeedPeers",
+                    classType: GroupCollectionViewCell.self,
+                    contentType: .Flat
+                )
+                
+            case GroupMemberImages:
                 return CardTypeInfo(
                     imageName: "FeedPeers",
                     classType: ProfileImagesCollectionViewCell.self,
@@ -354,7 +362,7 @@ class Card: Equatable {
         case .Notes:
             cardType = .Notes
         case .DirectReports, .Peers:
-            cardType = .Group
+            cardType = .GroupMemberImages
         case .Locations:
             cardType = .Offices
         case .Interests, .Skills:

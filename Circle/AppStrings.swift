@@ -42,6 +42,9 @@ struct AppStrings {
     static let GenericYesButtonTitle = NSLocalizedString("Yes", comment: "Generic button title for confirming an action")
     static let GenericTryAgainButtonTitle = NSLocalizedString("Try Again", comment: "Generic button title to try some action again")
     
+    static let GroupMembersCount = NSLocalizedString("%d Members", comment: "Label indicating the number of members of a group")
+    static let GroupOneMemberCount = NSLocalizedString("1 Member", comment: "Label indicating there is one member in a group")
+    
     static let NotificationsTitle = NSLocalizedString("Notifications", comment: "Title of the view that shows content related to notifications")
     static let NotificationInfoText = NSLocalizedString("We'd like to notify you when new people join, you are invited to events or when someone on your team is having a work anniversary. Turn notifications on?", comment: "Message indicating the users why we would like to notify them and asking for notifications permission")
     
@@ -60,6 +63,7 @@ struct AppStrings {
     static let ProfileSectionAboutTitle = NSLocalizedString("About", comment: "Title of the section which shows user bio, nick name and other personal info")
     static let ProfileSectionBioTitle = NSLocalizedString("Bio", comment: "Title of the section which shows user's bio")
     static let ProfileSectionContactPreferencesTitle = NSLocalizedString("Contact Preferences", comment: "Title of the section which takes user to preferences on contact info")
+    static let ProfileSectionGroupsTitle = NSLocalizedString("Groups", comment: "Title of the section which lists the groups a user is part of")
     static let ProfileSectionInfoTitle = NSLocalizedString("Info", comment: "Title of the Info section")
     static let ProfileSectionOfficeTitle = NSLocalizedString("Office", comment: "Title of the section which shows a user's office")
     static let ProfileSectionOfficeTeamTitle = NSLocalizedString("Office & Team", comment: "Title of the section which shows a user's office and team")

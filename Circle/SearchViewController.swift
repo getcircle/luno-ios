@@ -277,7 +277,7 @@ class SearchViewController: UIViewController,
                     Tracker.sharedInstance.track(.DetailItemTapped, properties: properties)
                     navigationController?.pushViewController(profileVC, animated: true)
                 }
-            case .Group:
+            case .GroupMemberImages:
                 let viewController = ProfilesViewController()
                 viewController.dataSource.setInitialData(selectedCard.content[0] as! [AnyObject], ofType: nil)
                 viewController.title = selectedCard.title
@@ -409,9 +409,9 @@ class SearchViewController: UIViewController,
     private func handleFeedHeaderTapped(card: Card) {
         trackFeedCardHeaderTapped(card)
         switch card.type {
-        case .Group, .Profiles, .Birthdays, .Anniversaries, .NewHires:
+        case .GroupMemberImages, .Profiles, .Birthdays, .Anniversaries, .NewHires:
             let viewController = ProfilesViewController()
-            if card.type == .Group {
+            if card.type == .GroupMemberImages {
                 viewController.dataSource.setInitialData(card.content[0] as! [AnyObject], ofType: nil)
             }
             else {
