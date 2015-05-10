@@ -12,8 +12,8 @@ import ProtobufRegistry
 class GroupDetailDataSource: CardDataSource {
     var selectedGroup: Services.Group.Containers.GroupV1!
     
-    private var memberProfiles = Array<Services.Profile.Containers.ProfileV1>()
-    private var managerMemberProfiles = Array<Services.Profile.Containers.ProfileV1>()
+    private(set) var memberProfiles = Array<Services.Profile.Containers.ProfileV1>()
+    private(set) var managerMemberProfiles = Array<Services.Profile.Containers.ProfileV1>()
     private(set) var nextManagerMembersRequest: Soa.ServiceRequestV1?
     private(set) var nextMembersRequest: Soa.ServiceRequestV1?
     private(set) var groupHeaderView: GroupHeaderCollectionReusableView!

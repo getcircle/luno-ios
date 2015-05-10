@@ -9,7 +9,7 @@
 import UIKit
 import ProtobufRegistry
 
-class GroupDetailViewController: DetailViewController {
+class GroupDetailViewController: DetailViewController, CardHeaderViewDelegate {
 
     // MARK: - Initialization
     
@@ -25,6 +25,7 @@ class GroupDetailViewController: DetailViewController {
     override func configureCollectionView() {
         // Data Source
         collectionView.dataSource = dataSource
+        dataSource.cardHeaderDelegate = self
         
         // Delegate
         collectionView.delegate = delegate
@@ -98,5 +99,40 @@ class GroupDetailViewController: DetailViewController {
             groupHeaderView.groupNameLabel.setNeedsUpdateConstraints()
             groupHeaderView.groupNameLabel.layoutIfNeeded()
         }
+    }
+    
+    // MARK: - CardHeaderViewDelegate
+    
+    func cardHeaderTapped(sender: AnyObject!, card: Card!) {
+        let viewController = ProfilesViewController()
+        if let dataSource = dataSource as? GroupDetailDataSource {
+            
+            let nextRequest = card.title == AppStrings.GroupManagersSectionTitle ? dataSource.nextManagerMembersRequest : dataSource.nextMembersRequest
+            let groupRole: Services.Group.Containers.RoleV1 = card.title == AppStrings.GroupManagersSectionTitle ? .Manager : .Member
+            (viewController.dataSource as! ProfilesDataSource).configureForGroup(dataSource.selectedGroup, role: groupRole)
+            viewController.dataSource.setInitialData(
+                content: card.allContent,
+                ofType: nil,
+                nextRequest: nextRequest
+            )
+            
+            viewController.title = card.title
+            navigationController?.pushViewController(viewController, animated: true)
+        }
+    }
+    
+    // MARK: - Tracking
+    
+    func trackCardHeaderTapped(card: Card, overviewType: TrackerProperty.OverviewType) {
+        let properties = [
+            TrackerProperty.withKeyString("card_type").withString(card.type.rawValue),
+            TrackerProperty.withKey(.Source).withSource(.Detail),
+            TrackerProperty.withKey(.SourceDetailType).withDetailType(.Office),
+            TrackerProperty.withKey(.Destination).withSource(.Overview),
+            TrackerProperty.withKey(.DestinationOverviewType).withOverviewType(overviewType),
+            TrackerProperty.withKeyString("card_title").withString(card.title),
+            TrackerProperty.withKey(.ActiveViewController).withString(self.dynamicType.description())
+        ]
+        Tracker.sharedInstance.track(.CardHeaderTapped, properties: properties)
     }
 }
