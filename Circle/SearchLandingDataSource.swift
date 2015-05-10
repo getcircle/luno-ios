@@ -24,6 +24,16 @@ class SearchLandingDataSource: CardDataSource {
                     quickActionsCard.addContent(content: [["placeholder": true]], maxVisibleItems: 0)
                     quickActionsCard.sectionInset = UIEdgeInsetsMake(15.0, 10.0, 25.0, 10.0)
                     self.appendCard(quickActionsCard)
+                    
+                    // TODO - REMOVE WHEN BACKEND IS READY
+                    // ========================================================================================
+                    let groupRequestsCard = Card(cardType: .GroupRequest, title: "Group Requests")
+                    groupRequestsCard.showContentCount = true
+                    groupRequestsCard.contentCount = 4
+                    groupRequestsCard.addDefaultHeader()
+                    groupRequestsCard.addContent(content: [["test"],["test"],["test"],["test"]], maxVisibleItems: 3)
+                    self.appendCard(groupRequestsCard)
+                    // ========================================================================================
 
                     for category in categories ?? [] {
                         let categoryCard = Card(category: category)

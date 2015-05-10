@@ -205,6 +205,8 @@
 		8FA6A4B61AFEB47D00ACC39D /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA6A4B51AFEB47D00ACC39D /* Group.swift */; };
 		8FA6A4B91AFED58B00ACC39D /* GroupHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA6A4B71AFED58B00ACC39D /* GroupHeaderCollectionReusableView.swift */; };
 		8FA6A4BA1AFED58B00ACC39D /* GroupHeaderCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8FA6A4B81AFED58B00ACC39D /* GroupHeaderCollectionReusableView.xib */; };
+		8FA6A4BE1AFFDCBE00ACC39D /* GroupRequestCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA6A4BC1AFFDCBE00ACC39D /* GroupRequestCollectionViewCell.swift */; };
+		8FA6A4BF1AFFDCBE00ACC39D /* GroupRequestCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8FA6A4BD1AFFDCBE00ACC39D /* GroupRequestCollectionViewCell.xib */; };
 		8FC7BB3B1A58A6E2005BDDDB /* CardDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC7BB3A1A58A6E2005BDDDB /* CardDataSource.swift */; };
 		8FC7BB401A58AF4C005BDDDB /* SearchLandingDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC7BB3F1A58AF4C005BDDDB /* SearchLandingDataSource.swift */; };
 		8FC7BB431A58B15B005BDDDB /* CardCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC7BB421A58B15B005BDDDB /* CardCollectionViewDelegate.swift */; };
@@ -569,6 +571,8 @@
 		8FA6A4B51AFEB47D00ACC39D /* Group.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		8FA6A4B71AFED58B00ACC39D /* GroupHeaderCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupHeaderCollectionReusableView.swift; sourceTree = "<group>"; };
 		8FA6A4B81AFED58B00ACC39D /* GroupHeaderCollectionReusableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupHeaderCollectionReusableView.xib; sourceTree = "<group>"; };
+		8FA6A4BC1AFFDCBE00ACC39D /* GroupRequestCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupRequestCollectionViewCell.swift; sourceTree = "<group>"; };
+		8FA6A4BD1AFFDCBE00ACC39D /* GroupRequestCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupRequestCollectionViewCell.xib; sourceTree = "<group>"; };
 		8FC7BB3A1A58A6E2005BDDDB /* CardDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardDataSource.swift; sourceTree = "<group>"; };
 		8FC7BB3F1A58AF4C005BDDDB /* SearchLandingDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchLandingDataSource.swift; sourceTree = "<group>"; };
 		8FC7BB421A58B15B005BDDDB /* CardCollectionViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardCollectionViewDelegate.swift; sourceTree = "<group>"; };
@@ -856,8 +860,9 @@
 				8FF298511A4E2B3300306CFC /* Common */,
 				BFCFDB021A915249009A5FD4 /* EducationCollectionViewCell.swift */,
 				BF6A2D0D1AAD08DA00692315 /* EmptyCollectionViewCell.swift */,
-				8FA6A4B71AFED58B00ACC39D /* GroupHeaderCollectionReusableView.swift */,
 				8FA6A4A81AFDCA8100ACC39D /* GroupCollectionViewCell.swift */,
+				8FA6A4B71AFED58B00ACC39D /* GroupHeaderCollectionReusableView.swift */,
+				8FA6A4BC1AFFDCBE00ACC39D /* GroupRequestCollectionViewCell.swift */,
 				8F22CBE61A27FDA70026376E /* KeyValueCollectionViewCell.swift */,
 				8F4805E31A5DE4B800273731 /* MapHeaderCollectionReusableView.swift */,
 				8F4E53761A5A0D9E00DC876B /* NotesCollectionViewCell.swift */,
@@ -956,6 +961,7 @@
 				BFCFDB031A915249009A5FD4 /* EducationCollectionViewCell.xib */,
 				BF6A2D0E1AAD08DA00692315 /* EmptyCollectionViewCell.xib */,
 				8FA6A4A91AFDCA8100ACC39D /* GroupCollectionViewCell.xib */,
+				8FA6A4BD1AFFDCBE00ACC39D /* GroupRequestCollectionViewCell.xib */,
 				8FA6A4B81AFED58B00ACC39D /* GroupHeaderCollectionReusableView.xib */,
 				BFAE43541A8B05010085AB2B /* HomelessViewController.xib */,
 				8F22CBE71A27FDA70026376E /* KeyValueCollectionViewCell.xib */,
@@ -1479,6 +1485,7 @@
 				8F65C4FF1A51222100C7F3E6 /* OfficeCollectionViewCell.xib in Resources */,
 				8F0ADD251AC5344E00A44B68 /* Loader_00009@2x.png in Resources */,
 				8F08A9FA1A748F5200B93149 /* CardFooterCollectionReusableView.xib in Resources */,
+				8FA6A4BF1AFFDCBE00ACC39D /* GroupRequestCollectionViewCell.xib in Resources */,
 				8F0ADD4C1AC5344E00A44B68 /* Loader_00048@2x.png in Resources */,
 				8F1D0B901AC9101100488BD7 /* WelcomeViewController.xib in Resources */,
 				8F0ADD3B1AC5344E00A44B68 /* Loader_00031@2x.png in Resources */,
@@ -1698,6 +1705,7 @@
 				8F2D7DF01A5B2412001D36B0 /* ProfilesDataSource.swift in Sources */,
 				8FC7BB3B1A58A6E2005BDDDB /* CardDataSource.swift in Sources */,
 				8F7400391A6A3FF700D96B60 /* CircleAlertViewController.swift in Sources */,
+				8FA6A4BE1AFFDCBE00ACC39D /* GroupRequestCollectionViewCell.swift in Sources */,
 				8F65C4FE1A51222100C7F3E6 /* OfficeCollectionViewCell.swift in Sources */,
 				8FD907F71A6033310025A17B /* OfficeDetailViewController.swift in Sources */,
 				BFEDB1431A2A8CA700250165 /* UICollectionViewFlowLayoutExtension.swift in Sources */,

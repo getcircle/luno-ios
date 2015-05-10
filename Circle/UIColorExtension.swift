@@ -51,6 +51,10 @@ extension UIColor {
         return UIColor(red: 112, green: 112, blue: 112)
     }
 
+    static func appSecondaryCTABackgroundColor() -> UIColor {
+        return UIColor(red: 170, green: 170, blue: 170)
+    }
+
     static func appNavigationBarBarTintColor() -> UIColor {
         return UIColor.appUIBackgroundColor()
     }

@@ -46,6 +46,7 @@ struct AppStrings {
     static let GroupMembersSectionTitle = NSLocalizedString("Members", comment: "Label for the section listing members of a group")
     static let GroupMembersCount = NSLocalizedString("%d Members", comment: "Label indicating the number of members of a group")
     static let GroupOneMemberCount = NSLocalizedString("1 Member", comment: "Label indicating there is one member in a group")
+    static let GroupRequestMessage = NSLocalizedString("%@ requested to join %@ group", comment: "Message indicating a person requested access to a group")
     
     static let NotificationsTitle = NSLocalizedString("Notifications", comment: "Title of the view that shows content related to notifications")
     static let NotificationInfoText = NSLocalizedString("We'd like to notify you when new people join, you are invited to events or when someone on your team is having a work anniversary. Turn notifications on?", comment: "Message indicating the users why we would like to notify them and asking for notifications permission")

@@ -76,6 +76,7 @@ class Card: Equatable {
         case Education = "Education"
         case Group = "Group"
         case GroupMemberImages = "GroupMemberImages"
+        case GroupRequest = "GroupRequest"
         case KeyValue = "KeyValue"
         case Tags = "Tags"
         case Offices = "Offices"
@@ -172,6 +173,13 @@ class Card: Equatable {
                     imageName: "FeedPeers",
                     classType: ProfileImagesCollectionViewCell.self,
                     contentType: .Aggregate
+                )
+                
+            case GroupRequest:
+                return CardTypeInfo(
+                    imageName: "FeedNotification",
+                    classType: GroupRequestCollectionViewCell.self,
+                    contentType: .Flat
                 )
 
             case Tags:
