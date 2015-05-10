@@ -33,7 +33,6 @@ class GroupCollectionViewCell: CircleCollectionViewCell {
         
         // Initialization code
         configureViews()
-        selectedBackgroundView = nil
     }
 
     // MARK: - Configuration

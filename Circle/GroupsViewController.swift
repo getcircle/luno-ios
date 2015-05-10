@@ -28,26 +28,27 @@ class GroupsViewController: OverviewViewController {
     // MARK: - Collection View Delegate
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-//        if let group = dataSource.contentAtIndexPath(indexPath) as? Services.Profile.Containers.ProfileV1 {
-//            trackViewProfile(profile)
-//            let profileVC = ProfileDetailViewController(profile: profile)
-//            navigationController?.pushViewController(profileVC, animated: true)
-//        }
+        if let group = dataSource.contentAtIndexPath(indexPath) as? Services.Group.Containers.GroupV1 {
+            trackViewGroup(group)
+            let groupDetailVC = GroupDetailViewController()
+            (groupDetailVC.dataSource as! GroupDetailDataSource).selectedGroup = group
+            navigationController?.pushViewController(groupDetailVC, animated: true)
+        }
     }
     
     // MARK: - Tracking
     
-    private func trackViewGroup(profile: Services.Group.Containers.GroupV1) {
-//        var properties = [
-//            TrackerProperty.withDestinationId("profileId").withString(profile.id),
-//            TrackerProperty.withKey(.Source).withSource(.Overview),
-//            TrackerProperty.withKey(.Destination).withSource(.Detail),
-//            TrackerProperty.withKey(.DestinationDetailType).withDetailType(.Profile),
-//            TrackerProperty.withKey(.ActiveViewController).withString(self.dynamicType.description())
-//        ]
-//        if let title = self.title {
-//            properties.append(TrackerProperty.withKey(.SourceOverviewType).withString(title))
-//        }
-//        Tracker.sharedInstance.track(.DetailItemTapped, properties: properties)
+    private func trackViewGroup(group: Services.Group.Containers.GroupV1) {
+        var properties = [
+            TrackerProperty.withDestinationId("groupId").withString(group.id),
+            TrackerProperty.withKey(.Source).withSource(.Overview),
+            TrackerProperty.withKey(.Destination).withSource(.Detail),
+            TrackerProperty.withKey(.DestinationDetailType).withDetailType(.Group),
+            TrackerProperty.withKey(.ActiveViewController).withString(self.dynamicType.description())
+        ]
+        if let title = self.title {
+            properties.append(TrackerProperty.withKey(.SourceOverviewType).withString(title))
+        }
+        Tracker.sharedInstance.track(.DetailItemTapped, properties: properties)
     }
 }

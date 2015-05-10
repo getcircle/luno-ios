@@ -66,6 +66,13 @@ class ProfileDetailViewController:
                         else if data is Services.Profile.Containers.ProfileV1 {
                             onManagerTapped(nil)
                         }
+                    
+                    case .Group:
+                        if let group = dataSource.contentAtIndexPath(indexPath) as? Services.Group.Containers.GroupV1 {
+                            let groupDetailVC = GroupDetailViewController()
+                            (groupDetailVC.dataSource as! GroupDetailDataSource).selectedGroup = group
+                            navigationController?.pushViewController(groupDetailVC, animated: true)
+                        }
                         
                     default:
                         break
