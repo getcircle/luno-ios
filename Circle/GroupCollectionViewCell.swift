@@ -33,6 +33,7 @@ class GroupCollectionViewCell: CircleCollectionViewCell {
         
         // Initialization code
         configureViews()
+        configureButtons()
     }
 
     // MARK: - Configuration
@@ -42,6 +43,10 @@ class GroupCollectionViewCell: CircleCollectionViewCell {
         groupNameLabel.textColor = UIColor.appPrimaryTextColor()
         descriptionLabel.font = UIFont.appSecondaryTextFont()
         descriptionLabel.textColor = UIColor.appSecondaryTextColor()
+    }
+    
+    private func configureButtons() {
+        joinButton.setTitleColor(UIColor.appTintColor(), forState: .Normal)
     }
     
     override func setData(data: AnyObject) {
