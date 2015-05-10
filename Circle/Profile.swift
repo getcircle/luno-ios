@@ -142,20 +142,24 @@ extension Services.Profile.Actions {
             requestBuilder: requestBuilder
         ) { (_, _, wrapped, error) -> Void in
             
-            // TODO: Remove when real response is added
-            var groups: Array<Services.Group.Containers.GroupV1>?
-            let group1 = Services.Group.Containers.GroupV1.builder()
-            group1.name = "Mobile Group"
-            group1.membersCount = 100
-            group1.description_ = "All discussions related to mobile both iOS and Android."
-            group1.canJoin = true
-            
-            let group2 = Services.Group.Containers.GroupV1.builder()
-            group2.name = "Frontend developers"
-            group2.membersCount = 10
-            group2.description_ = "Group for front-end development discussions"
-            group2.canJoin = true
-            groups = [group1.build(), group2.build()]
+            // TODO: REMOVE WHEN BACKEND IS READY
+            //===================================================================================
+                var groups: Array<Services.Group.Containers.GroupV1>?
+                let group1 = Services.Group.Containers.GroupV1.builder()
+                group1.id = "1234"
+                group1.name = "Mobile Group"
+                group1.membersCount = 100
+                group1.description_ = "All discussions related to mobile both iOS and Android."
+                group1.canJoin = true
+                
+                let group2 = Services.Group.Containers.GroupV1.builder()
+                group2.id = "2342"
+                group2.name = "Frontend developers"
+                group2.membersCount = 10
+                group2.description_ = "Group for front-end development discussions"
+                group2.canJoin = true
+                groups = [group1.build(), group2.build()]
+            //===================================================================================
             
             let response = wrapped?.response?.result.getExtension(
                 Services.Registry.Responses.Profile.getExtendedProfile()
