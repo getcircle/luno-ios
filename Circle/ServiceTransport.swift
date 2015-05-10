@@ -120,7 +120,10 @@ struct ServiceHttpRequest: URLRequestConvertible {
         case Production
         
         var scheme: String {
-            return "https"
+            switch self {
+            case .Local: return "http"
+            default: return "https"
+            }
         }
         
         var host: String {
