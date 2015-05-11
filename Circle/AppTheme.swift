@@ -72,11 +72,11 @@ struct AppTheme {
     }
     
     private static func changeThemeByOrganization(organization: Services.Organization.Containers.OrganizationV1) {
-        println(organization.domain)
         if organization.domain == "soul-cycle.com" {
             if !(AppTheme.currentTheme is SoulCycleTheme) {
                 AppTheme.currentTheme = SoulCycleTheme()
                 updateAppearanceProxy()                
+                println(organization.domain)
             }
         }
     }
