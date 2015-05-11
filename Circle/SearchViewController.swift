@@ -49,7 +49,6 @@ class SearchViewController: UIViewController,
         configureLaunchScreenView()
         configureSearchHeaderView()
         configureCollectionView()
-        followScrollView(collectionView, usingTopConstraint: searchHeaderContinerViewTopConstraint)
         activityIndicatorView = view.addActivityIndicator()
         errorMessageView = view.addErrorMessageView(nil, tryAgainHandler: { () -> Void in
             self.errorMessageView.hide()
@@ -79,11 +78,6 @@ class SearchViewController: UIViewController,
         }
     }
     
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-        showNavBarAnimated(false)
-    }
-
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
         unregisterNotifications(false)
