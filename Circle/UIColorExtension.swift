@@ -9,8 +9,62 @@
 import UIKit
 import ProtobufRegistry
 
-extension UIColor {
+protocol AppTheme {
+    var app_tint_color: UIColor { get }
+    var app_ui_background_color: UIColor { get }
+    
+    var app_nav_bar_color: UIColor { get }
+    var app_nav_bar_text_controls_color: UIColor { get }
+    
+    var app_tab_bar_color: UIColor { get }
+    var app_tab_bar_text_controls_color: UIColor { get }
+    var app_tab_bar_deselected_text_controls_color: UIColor { get }
+    
+    var app_light_text_color: UIColor { get }
+    var app_dark_text_color: UIColor { get }
+    
+    var status_bar_style: UIStatusBarStyle { get }
+}
 
+
+struct Default: AppTheme {
+    var app_tint_color = UIColor(red: 0, green: 201, blue: 255)
+    var app_ui_background_color = UIColor(red: 47, green: 55, blue: 62)
+    
+    var app_nav_bar_color = UIColor(red: 47, green: 55, blue: 62)
+    var app_nav_bar_text_controls_color = UIColor.whiteColor()
+
+    var app_tab_bar_color = UIColor(red: 47, green: 55, blue: 62)
+    var app_tab_bar_text_controls_color = UIColor(red: 0, green: 201, blue: 255)
+    var app_tab_bar_deselected_text_controls_color = UIColor(red: 145, green: 145, blue: 145)
+    
+    var app_light_text_color = UIColor.whiteColor()
+    var app_dark_text_color = UIColor(red: 38, green: 38, blue: 38)
+    
+    var status_bar_style = UIStatusBarStyle.LightContent
+}
+
+struct SoulCycle: AppTheme {
+    var app_tint_color = UIColor(red: 255, green: 217, blue: 21)
+    var app_ui_background_color = UIColor(red: 245, green: 245, blue: 245)
+    
+    var app_nav_bar_color = UIColor(red: 245, green: 245, blue: 245)
+    var app_nav_bar_text_controls_color = UIColor(red: 66, green: 66, blue: 66)
+    
+    var app_tab_bar_color = UIColor(red: 254, green: 224, blue: 0)
+    var app_tab_bar_text_controls_color = UIColor(red: 66, green: 66, blue: 66)
+    var app_tab_bar_deselected_text_controls_color = UIColor(red: 120, green: 113, blue: 71)
+
+    var app_light_text_color = UIColor(red: 67, green: 66, blue: 67)
+    var app_dark_text_color = UIColor(red: 66, green: 66, blue: 66)
+
+    var status_bar_style = UIStatusBarStyle.Default
+}
+
+let appTheme: AppTheme = SoulCycle()
+
+extension UIColor {
+    
     struct TeamColorsHolder {
         static var colors = [String: UIColor]()
     }
@@ -28,19 +82,43 @@ extension UIColor {
     }
     
     static func appTintColor() -> UIColor {
-        return UIColor(red: 0, green: 201, blue: 255)
+        return appTheme.app_tint_color
     }
     
     static func appUIBackgroundColor() -> UIColor {
-        return UIColor(red: 47, green: 55, blue: 62)
+        return appTheme.app_ui_background_color
     }
     
     static func appDefaultLightTextColor() -> UIColor {
-        return UIColor.whiteColor()
+        return appTheme.app_light_text_color
     }
     
     static func appDefaultDarkTextColor() -> UIColor {
-        return UIColor(red: 38, green: 38, blue: 38)
+        return appTheme.app_dark_text_color
+    }
+    
+    static func appNavigationBarBarTintColor() -> UIColor {
+        return appTheme.app_nav_bar_color
+    }
+    
+    static func appNavigationBarTintColor() -> UIColor {
+        return appTheme.app_nav_bar_text_controls_color
+    }
+    
+    static func appNavigationBarTitleColor() -> UIColor {
+        return appTheme.app_nav_bar_text_controls_color
+    }
+    
+    static func appTabBarTintColor() -> UIColor {
+        return appTheme.app_tab_bar_text_controls_color
+    }
+    
+    static func appTabBarBarTintColor() -> UIColor {
+        return appTheme.app_tab_bar_color
+    }
+
+    static func appTabBarDeselectedTintColor() -> UIColor {
+        return appTheme.app_tab_bar_deselected_text_controls_color
     }
     
     static func appPrimaryTextColor() -> UIColor {
@@ -53,22 +131,6 @@ extension UIColor {
 
     static func appSecondaryCTABackgroundColor() -> UIColor {
         return UIColor(red: 170, green: 170, blue: 170)
-    }
-
-    static func appNavigationBarBarTintColor() -> UIColor {
-        return UIColor.appUIBackgroundColor()
-    }
-
-    static func appNavigationBarTintColor() -> UIColor {
-        return UIColor.whiteColor()
-    }
-    
-    static func appNavigationBarTitleColor() -> UIColor {
-        return UIColor.whiteColor()
-    }
-
-    static func appTabBarBarTintColor() -> UIColor {
-        return UIColor.appUIBackgroundColor()
     }
     
     static func appSeparatorViewColor() -> UIColor {
