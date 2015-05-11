@@ -13,19 +13,19 @@
                 <rect key="frame" x="0.0" y="0.0" width="349" height="144"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Group Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MRy-MN-SNQ">
-                        <rect key="frame" x="15" y="15" width="319" height="21"/>
+                        <rect key="frame" x="15" y="10" width="319" height="21"/>
                         <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="15"/>
                         <color key="textColor" red="0.18823529411764706" green="0.18823529411764706" blue="0.18823529411764706" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This label will be used for group's description." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TmO-vz-MAs">
-                        <rect key="frame" x="15" y="64" width="319" height="18"/>
+                        <rect key="frame" x="15" y="59" width="319" height="18"/>
                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="13"/>
                         <color key="textColor" red="0.4392156862745098" green="0.4392156862745098" blue="0.4392156862745098" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nOy-Bq-JZN">
-                        <rect key="frame" x="105" y="92" width="140" height="33"/>
+                        <rect key="frame" x="105" y="87" width="140" height="33"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="140" id="cJ5-qH-Ah1"/>
                         </constraints>
@@ -36,7 +36,7 @@
                         </state>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="180 Members" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aFv-qu-teC">
-                        <rect key="frame" x="15" y="41" width="319" height="18"/>
+                        <rect key="frame" x="15" y="36" width="319" height="18"/>
                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="13"/>
                         <color key="textColor" red="0.4392156862745098" green="0.4392156862745098" blue="0.4392156862745098" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -54,7 +54,7 @@
                 <constraint firstItem="TmO-vz-MAs" firstAttribute="leading" secondItem="MRy-MN-SNQ" secondAttribute="leading" id="NrH-hX-Wbv"/>
                 <constraint firstItem="aFv-qu-teC" firstAttribute="top" secondItem="MRy-MN-SNQ" secondAttribute="bottom" constant="5" id="Thp-nl-99Q"/>
                 <constraint firstItem="TmO-vz-MAs" firstAttribute="trailing" secondItem="MRy-MN-SNQ" secondAttribute="trailing" id="VD7-up-0pE"/>
-                <constraint firstItem="MRy-MN-SNQ" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="15" id="Xen-qh-Mz8"/>
+                <constraint firstItem="MRy-MN-SNQ" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="Xen-qh-Mz8"/>
                 <constraint firstItem="aFv-qu-teC" firstAttribute="trailing" secondItem="MRy-MN-SNQ" secondAttribute="trailing" id="hVy-Gy-7To"/>
                 <constraint firstAttribute="centerX" secondItem="nOy-Bq-JZN" secondAttribute="centerX" id="l10-VF-o1c"/>
                 <constraint firstItem="nOy-Bq-JZN" firstAttribute="top" secondItem="TmO-vz-MAs" secondAttribute="bottom" constant="10" id="q13-1a-LD6"/>

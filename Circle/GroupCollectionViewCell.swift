@@ -16,16 +16,14 @@ class GroupCollectionViewCell: CircleCollectionViewCell {
     @IBOutlet weak private(set) var descriptionLabel: UILabel!
     @IBOutlet weak private(set) var joinButton: UIButton!
     
+    private var group: Services.Group.Containers.GroupV1!
+    
     override class var classReuseIdentifier: String {
         return "GroupCollectionViewCell";
     }
     
-    override class var height: CGFloat {
-        return 144.0
-    }
-    
     override class var sizeCalculationMethod: SizeCalculation {
-        return .Fixed
+        return .Dynamic
     }
     
     override func awakeFromNib() {
@@ -66,6 +64,31 @@ class GroupCollectionViewCell: CircleCollectionViewCell {
             else {
                 joinButton.alpha = 0.0
             }
+            
+            self.group = group
         }
+    }
+    
+    override func intrinsicContentSize() -> CGSize {
+        for view in [groupNameLabel, numberOfMembersLabel, descriptionLabel] {
+            view.layoutIfNeeded()
+        }
+        
+        var height: CGFloat = 10.0
+        height += groupNameLabel.intrinsicContentSize().height
+        height += 5.0
+        height += numberOfMembersLabel.intrinsicContentSize().height
+        
+        if group.description_.trimWhitespace() != "" {
+            height += 5.0
+            height += descriptionLabel.intrinsicContentSize().height
+        }
+        
+        if joinButton.alpha == 1.0 {
+            height += 10.0 + joinButton.frameHeight
+        }
+        
+        height += 10.0
+        return CGSizeMake(self.dynamicType.width, height)
     }
 }
