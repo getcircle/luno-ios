@@ -20,6 +20,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Customize Appearance
         customizeAppearance(application)
 
+        // Set theme if user is already logged in
+        AppTheme.updateThemeForOrganization()
+        
         // Setup Third Party Services
         Crashlytics.startWithAPIKey("e4192b2c032ea5f8065aac4bde634b85760f8d49")
         Mixpanel.setup()

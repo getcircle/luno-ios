@@ -337,6 +337,8 @@ class AuthViewController: UIViewController {
                     object: nil
                 )
                 
+                AppTheme.updateThemeForOrganization()
+                
                 let allInfoVerified = self.dynamicType.checkUser(unverifiedPhoneHandler: { () -> Void in
                     let welcomeVC = WelcomeViewController(nibName: "WelcomeViewController", bundle: nil)
                     self.navigationController?.setViewControllers([welcomeVC], animated: true)
@@ -393,6 +395,7 @@ class AuthViewController: UIViewController {
             if error != nil {
                 println("error logging user out from server: \(error)")
             }
+            
             // Clear keychain
             if let user = LoggedInUserHolder.user {
                 Locksmith.deleteDataForUserAccount(user.id, inService: LocksmithAuthTokenService)
@@ -416,6 +419,9 @@ class AuthViewController: UIViewController {
                 AuthNotifications.onLogoutNotification,
                 object: nil
             )
+            
+            // Switch to default theme on logout
+            AppTheme.switchToDefaultTheme()
             
             // Present auth view
             self.presentAuthViewController()
@@ -545,6 +551,7 @@ class AuthViewController: UIViewController {
                 return false
             }
             
+            AppTheme.updateThemeForOrganization()
             if !user.phoneNumberVerified {
                 if let handler = unverifiedPhoneHandler {
                     handler()

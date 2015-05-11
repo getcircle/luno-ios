@@ -12,7 +12,7 @@ extension AppDelegate {
     
     func customizeAppearance(application: UIApplication) {
         UIApplication.sharedApplication().setStatusBarHidden(false, withAnimation: .None)
-        UIApplication.sharedApplication().setStatusBarStyle(appTheme.status_bar_style, animated: false)
+        UIApplication.sharedApplication().setStatusBarStyle(AppTheme.currentTheme.status_bar_style, animated: false)
 
         if let appWindow = window {
             appWindow.layer.cornerRadius = 6.0
