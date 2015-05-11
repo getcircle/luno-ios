@@ -71,24 +71,25 @@ class GroupsDataSource: CardDataSource {
     override func loadInitialData(completionHandler: (error: NSError?) -> Void) {
         super.loadInitialData(completionHandler)
         
-        card = Card(cardType: cardType, title: "")
-        card.sectionInset = UIEdgeInsetsMake(1.0, 0.0, 0.0, 0.0)
-        
-//        registerNextRequestCompletionHandler { (_, _, wrapped, error) -> Void in
-//            let response = wrapped?.response?.result.getExtension(
-//                Services.Registry.Requests.Profile.getProfiles()
-//                ) as? Services.Profile.Actions.GetProfiles.ResponseV1
-//            
-//            if let groups = response?.groups {
-//                self.groups.extend(profiles)
-//                self.card.addContent(content: profiles)
-//                self.handleNewContentAddedToCard(self.card, newContent: profiles)
-//            }
-//        }
-        
-        appendCard(card)
-        card.addContent(content: groups)
         if groups.count > 0 {
+            card = Card(cardType: cardType, title: "")
+            card.sectionInset = UIEdgeInsetsMake(1.0, 0.0, 0.0, 0.0)
+            
+            //        registerNextRequestCompletionHandler { (_, _, wrapped, error) -> Void in
+            //            let response = wrapped?.response?.result.getExtension(
+            //                Services.Registry.Requests.Profile.getProfiles()
+            //                ) as? Services.Profile.Actions.GetProfiles.ResponseV1
+            //
+            //            if let groups = response?.groups {
+            //                self.groups.extend(profiles)
+            //                self.card.addContent(content: profiles)
+            //                self.handleNewContentAddedToCard(self.card, newContent: profiles)
+            //            }
+            //        }
+            
+            appendCard(card)
+            card.addContent(content: groups)
+
             completionHandler(error: nil)
         } else {
             if canTriggerNextRequest() {

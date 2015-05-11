@@ -22,6 +22,10 @@ class GroupCollectionViewCell: CircleCollectionViewCell {
         return "GroupCollectionViewCell";
     }
     
+    override class var height: CGFloat {
+        return 130.0
+    }
+    
     override class var sizeCalculationMethod: SizeCalculation {
         return .Dynamic
     }
@@ -58,11 +62,9 @@ class GroupCollectionViewCell: CircleCollectionViewCell {
                 numberOfMembersLabel.text = NSString(format: AppStrings.GroupMembersCount, group.membersCount) as String
             }
             
-            if group.canJoin {
+            joinButton.alpha = 0.0
+            if !group.isMember && group.canJoin {
                 joinButton.alpha = 1.0
-            }
-            else {
-                joinButton.alpha = 0.0
             }
             
             self.group = group
@@ -78,7 +80,7 @@ class GroupCollectionViewCell: CircleCollectionViewCell {
         height += groupNameLabel.intrinsicContentSize().height
         height += 5.0
         height += numberOfMembersLabel.intrinsicContentSize().height
-        
+
         if group.description_.trimWhitespace() != "" {
             height += 5.0
             height += descriptionLabel.intrinsicContentSize().height

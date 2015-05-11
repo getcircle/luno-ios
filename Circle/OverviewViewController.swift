@@ -60,8 +60,6 @@ class OverviewViewController:
         let rootView = UIView(frame: UIScreen.mainScreen().bounds)
         rootView.opaque = true
         view = rootView
-        configureActivityIndicator()
-        configureErrorMessageView()
         configureSearchHeaderView()
         configureCollectionView()
     }
@@ -69,14 +67,10 @@ class OverviewViewController:
     override func viewDidLoad() {
         super.viewDidLoad()
         edgesForExtendedLayout = .None
+        configureActivityIndicator()
+        configureErrorMessageView()
         dataSource.delegate = self
-        dataSource.loadData { (error) -> Void in
-            if error == nil {
-                self.hideFilterIfLimitedContent()
-                self.activityIndicatorView.stopAnimating()
-                self.collectionView.reloadData()
-            }
-        }
+        loadData()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -168,6 +162,7 @@ class OverviewViewController:
             self.activityIndicatorView.stopAnimating()
             
             if error == nil {
+                self.hideFilterIfLimitedContent()
                 self.errorMessageView.hide()
                 self.collectionView.reloadData()
             }
@@ -179,14 +174,14 @@ class OverviewViewController:
     }
     
     private func hideFilterIfLimitedContent() {
-        if dataSource.cardAtSection(0)?.content.count < minimumResultsForFilter && collectionViewVerticalSpaceConstraint != nil {
+        if dataSource.cards.count > 0 && dataSource.cardAtSection(0)?.content.count < minimumResultsForFilter && collectionViewVerticalSpaceConstraint != nil {
             collectionViewVerticalSpaceConstraint!.constant = -44
             collectionView.setNeedsUpdateConstraints()
         }
     }
     
     private func activateSearchIfApplicable() {
-        if dataSource.cardAtSection(0)?.content.count < minimumResultsForFilter {
+        if dataSource.cards.count > 0 && dataSource.cardAtSection(0)?.content.count < minimumResultsForFilter {
             searchHeaderView?.searchTextField.resignFirstResponder()
         }
     }
