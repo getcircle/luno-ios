@@ -19,7 +19,7 @@ import protobufs.services.group.containers_pb2
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='protobufs/services/group/actions/list_members.proto',
   package='services.group.actions.list_members',
-  serialized_pb=_b('\n3protobufs/services/group/actions/list_members.proto\x12#services.group.actions.list_members\x1a)protobufs/services/group/containers.proto\"j\n\tRequestV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x10\n\x08group_id\x18\x02 \x01(\t\x12\x37\n\x04role\x18\x03 \x01(\x0e\x32!.services.group.containers.RoleV1:\x06MEMBER\"V\n\nResponseV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x34\n\x07members\x18\x02 \x03(\x0b\x32#.services.group.containers.MemberV1B:\n8com.rhlabs.protobufs.services.group.actions.list_members')
+  serialized_pb=_b('\n3protobufs/services/group/actions/list_members.proto\x12#services.group.actions.list_members\x1a)protobufs/services/group/containers.proto\"\xa8\x01\n\tRequestV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x10\n\x08group_id\x18\x02 \x01(\t\x12\x37\n\x04role\x18\x03 \x01(\x0e\x32!.services.group.containers.RoleV1:\x06MEMBER\x12<\n\x08provider\x18\x04 \x01(\x0e\x32*.services.group.containers.GroupProviderV1\"V\n\nResponseV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x34\n\x07members\x18\x02 \x03(\x0b\x32#.services.group.containers.MemberV1B:\n8com.rhlabs.protobufs.services.group.actions.list_members')
   ,
   dependencies=[protobufs.services.group.containers_pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
@@ -55,6 +55,13 @@ _REQUESTV1 = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
+    _descriptor.FieldDescriptor(
+      name='provider', full_name='services.group.actions.list_members.RequestV1.provider', index=3,
+      number=4, type=14, cpp_type=8, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
   ],
   extensions=[
   ],
@@ -66,8 +73,8 @@ _REQUESTV1 = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=135,
-  serialized_end=241,
+  serialized_start=136,
+  serialized_end=304,
 )
 
 
@@ -103,11 +110,12 @@ _RESPONSEV1 = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=243,
-  serialized_end=329,
+  serialized_start=306,
+  serialized_end=392,
 )
 
 _REQUESTV1.fields_by_name['role'].enum_type = protobufs.services.group.containers_pb2._ROLEV1
+_REQUESTV1.fields_by_name['provider'].enum_type = protobufs.services.group.containers_pb2._GROUPPROVIDERV1
 _RESPONSEV1.fields_by_name['members'].message_type = protobufs.services.group.containers_pb2._MEMBERV1
 DESCRIPTOR.message_types_by_name['RequestV1'] = _REQUESTV1
 DESCRIPTOR.message_types_by_name['ResponseV1'] = _RESPONSEV1

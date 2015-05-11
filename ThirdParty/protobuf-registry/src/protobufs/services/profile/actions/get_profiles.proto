@@ -13,6 +13,7 @@ message RequestV1 {
     optional string address_id = 5;
     repeated string ids = 6;
     optional string location_id = 7;
+    repeated string emails = 8;
 }
 
 message ResponseV1 {

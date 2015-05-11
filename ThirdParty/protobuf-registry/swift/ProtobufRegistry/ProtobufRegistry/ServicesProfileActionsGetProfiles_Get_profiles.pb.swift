@@ -15,6 +15,7 @@ public func == (lhs: Services.Profile.Actions.GetProfiles.RequestV1, rhs: Servic
   fieldCheck = fieldCheck && (lhs.hasAddressId == rhs.hasAddressId) && (!lhs.hasAddressId || lhs.addressId == rhs.addressId)
   fieldCheck = fieldCheck && (lhs.ids == rhs.ids)
   fieldCheck = fieldCheck && (lhs.hasLocationId == rhs.hasLocationId) && (!lhs.hasLocationId || lhs.locationId == rhs.locationId)
+  fieldCheck = fieldCheck && (lhs.emails == rhs.emails)
   return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
 }
 
@@ -79,6 +80,7 @@ public extension Services.Profile.Actions.GetProfiles {
     public private(set) var locationId:String = ""
 
     public private(set) var ids:Array<String> = Array<String>()
+    public private(set) var emails:Array<String> = Array<String>()
     required public init() {
          super.init()
     }
@@ -108,6 +110,11 @@ public extension Services.Profile.Actions.GetProfiles {
       }
       if hasLocationId {
         output.writeString(7, value:locationId)
+      }
+      if !emails.isEmpty {
+        for oneValueemails in emails {
+          output.writeString(8, value:oneValueemails)
+        }
       }
       unknownFields.writeToCodedOutputStream(output)
     }
@@ -142,6 +149,12 @@ public extension Services.Profile.Actions.GetProfiles {
       if hasLocationId {
         serialize_size += locationId.computeStringSize(7)
       }
+      var dataSizeEmails:Int32 = 0
+      for oneValueemails in emails {
+          dataSizeEmails += oneValueemails.computeStringSizeNoTag()
+      }
+      serialize_size += dataSizeEmails
+      serialize_size += 1 * Int32(emails.count)
       serialize_size += unknownFields.serializedSize()
       memoizedSerializedSize = serialize_size
       return serialize_size
@@ -206,6 +219,11 @@ public extension Services.Profile.Actions.GetProfiles {
       if hasLocationId {
         output += "\(indent) locationId: \(locationId) \n"
       }
+      var emailsElementIndex:Int = 0
+      for oneValueemails in emails  {
+          output += "\(indent) emails[\(emailsElementIndex)]: \(oneValueemails)\n"
+          emailsElementIndex++
+      }
       unknownFields.writeDescriptionTo(&output, indent:indent)
     }
     override public var hashValue:Int {
@@ -231,6 +249,9 @@ public extension Services.Profile.Actions.GetProfiles {
             }
             if hasLocationId {
                hashCode = (hashCode &* 31) &+ locationId.hashValue
+            }
+            for oneValueemails in emails {
+                hashCode = (hashCode &* 31) &+ oneValueemails.hashValue
             }
             hashCode = (hashCode &* 31) &+  unknownFields.hashValue
             return hashCode
@@ -414,6 +435,22 @@ public extension Services.Profile.Actions.GetProfiles {
          builderResult.locationId = ""
          return self
     }
+    public var emails:Array<String> {
+         get {
+             return builderResult.emails
+         }
+         set (array) {
+             builderResult.emails = array
+         }
+    }
+    public func setEmails(value:Array<String>)-> Services.Profile.Actions.GetProfiles.RequestV1Builder {
+      self.emails = value
+      return self
+    }
+    public func clearEmails() -> Services.Profile.Actions.GetProfiles.RequestV1Builder {
+       builderResult.emails.removeAll(keepCapacity: false)
+       return self
+    }
     override public var internalGetResult:GeneratedMessage {
          get {
             return builderResult
@@ -459,6 +496,9 @@ public extension Services.Profile.Actions.GetProfiles {
       if other.hasLocationId {
            locationId = other.locationId
       }
+      if !other.emails.isEmpty {
+          builderResult.emails += other.emails
+      }
       mergeUnknownFields(other.unknownFields)
       return self
     }
@@ -494,6 +534,9 @@ public extension Services.Profile.Actions.GetProfiles {
 
         case 58 :
           locationId = input.readString()
+
+        case 66 :
+          emails += [input.readString()]
 
         default:
           if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {

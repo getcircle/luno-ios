@@ -9,6 +9,7 @@ message RequestV1 {
     optional uint32 version = 1 [default = 1];
     optional string group_id = 2;
     optional services.group.containers.RoleV1 role = 3 [default = MEMBER];
+    optional services.group.containers.GroupProviderV1 provider = 4;
 }
 
 message ResponseV1 {

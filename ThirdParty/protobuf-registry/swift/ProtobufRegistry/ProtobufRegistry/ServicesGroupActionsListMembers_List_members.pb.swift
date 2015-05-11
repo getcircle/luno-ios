@@ -11,6 +11,7 @@ public func == (lhs: Services.Group.Actions.ListMembers.RequestV1, rhs: Services
   fieldCheck = fieldCheck && (lhs.hasVersion == rhs.hasVersion) && (!lhs.hasVersion || lhs.version == rhs.version)
   fieldCheck = fieldCheck && (lhs.hasGroupId == rhs.hasGroupId) && (!lhs.hasGroupId || lhs.groupId == rhs.groupId)
   fieldCheck = fieldCheck && (lhs.hasRole == rhs.hasRole) && (!lhs.hasRole || lhs.role == rhs.role)
+  fieldCheck = fieldCheck && (lhs.hasProvider == rhs.hasProvider) && (!lhs.hasProvider || lhs.provider == rhs.provider)
   return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
 }
 
@@ -49,6 +50,7 @@ public extension Services.Group.Actions.ListMembers {
            case "version": return version
            case "groupId": return groupId
            case "role": return self.role
+           case "provider": return self.provider
            default: return nil
            }
     }
@@ -61,6 +63,8 @@ public extension Services.Group.Actions.ListMembers {
 
     public private(set) var role:Services.Group.Containers.RoleV1 = Services.Group.Containers.RoleV1.Member
     public private(set) var hasRole:Bool = false
+    public private(set) var provider:Services.Group.Containers.GroupProviderV1 = Services.Group.Containers.GroupProviderV1.Google
+    public private(set) var hasProvider:Bool = false
     required public init() {
          super.init()
     }
@@ -76,6 +80,9 @@ public extension Services.Group.Actions.ListMembers {
       }
       if hasRole {
         output.writeEnum(3, value:role.rawValue)
+      }
+      if hasProvider {
+        output.writeEnum(4, value:provider.rawValue)
       }
       unknownFields.writeToCodedOutputStream(output)
     }
@@ -94,6 +101,9 @@ public extension Services.Group.Actions.ListMembers {
       }
       if (hasRole) {
         serialize_size += role.rawValue.computeEnumSize(3)
+      }
+      if (hasProvider) {
+        serialize_size += provider.rawValue.computeEnumSize(4)
       }
       serialize_size += unknownFields.serializedSize()
       memoizedSerializedSize = serialize_size
@@ -145,6 +155,9 @@ public extension Services.Group.Actions.ListMembers {
       if (hasRole) {
         output += "\(indent) role: \(role.rawValue)\n"
       }
+      if (hasProvider) {
+        output += "\(indent) provider: \(provider.rawValue)\n"
+      }
       unknownFields.writeDescriptionTo(&output, indent:indent)
     }
     override public var hashValue:Int {
@@ -158,6 +171,9 @@ public extension Services.Group.Actions.ListMembers {
             }
             if hasRole {
                hashCode = (hashCode &* 31) &+ Int(role.rawValue)
+            }
+            if hasProvider {
+               hashCode = (hashCode &* 31) &+ Int(provider.rawValue)
             }
             hashCode = (hashCode &* 31) &+  unknownFields.hashValue
             return hashCode
@@ -256,6 +272,29 @@ public extension Services.Group.Actions.ListMembers {
          builderResult.role = .Member
          return self
       }
+      public var hasProvider:Bool{
+          get {
+              return builderResult.hasProvider
+          }
+      }
+      public var provider:Services.Group.Containers.GroupProviderV1 {
+          get {
+              return builderResult.provider
+          }
+          set (value) {
+              builderResult.hasProvider = true
+              builderResult.provider = value
+          }
+      }
+      public func setProvider(value:Services.Group.Containers.GroupProviderV1)-> Services.Group.Actions.ListMembers.RequestV1Builder {
+        self.provider = value
+        return self
+      }
+      public func clearProvider() -> Services.Group.Actions.ListMembers.RequestV1Builder {
+         builderResult.hasProvider = false
+         builderResult.provider = .Google
+         return self
+      }
     override public var internalGetResult:GeneratedMessage {
          get {
             return builderResult
@@ -289,6 +328,9 @@ public extension Services.Group.Actions.ListMembers {
       if other.hasRole {
            role = other.role
       }
+      if other.hasProvider {
+           provider = other.provider
+      }
       mergeUnknownFields(other.unknownFields)
       return self
     }
@@ -316,6 +358,14 @@ public extension Services.Group.Actions.ListMembers {
                role = enumsrole
           } else {
                unknownFieldsBuilder.mergeVarintField(3, value:Int64(valueIntrole))
+          }
+
+        case 32 :
+          let valueIntprovider = input.readEnum()
+          if let enumsprovider = Services.Group.Containers.GroupProviderV1(rawValue:valueIntprovider){
+               provider = enumsprovider
+          } else {
+               unknownFieldsBuilder.mergeVarintField(4, value:Int64(valueIntprovider))
           }
 
         default:
