@@ -11,6 +11,8 @@ import ProtobufRegistry
 
 class GroupsDataSource: CardDataSource {
 
+    var profile: Services.Profile.Containers.ProfileV1!
+
     private(set) var searchAttribute: Services.Search.Containers.Search.AttributeV1?
     private(set) var searchAttributeValue: AnyObject?
     
@@ -97,8 +99,25 @@ class GroupsDataSource: CardDataSource {
         }
     }
     
+    override func refreshData(completionHandler: (error: NSError?) -> Void) {
+        Services.Group.Actions.listGroups(profile.id, paginatorBuilder: nil) { (groups, nextRequest, error) -> Void in
+            if error == nil {
+                self.resetCards()
+                
+                self.card = Card(cardType: self.cardType, title: "")
+                self.card.sectionInset = UIEdgeInsetsMake(1.0, 0.0, 0.0, 0.0)
+                if let groups = groups {
+                    self.card.addContent(content: groups)
+                }
+                self.appendCard(self.card)
+            }
+            
+            completionHandler(error: error)
+        }
+    }
+
     // MARK: - Filtering
-    
+
     override func handleFiltering(query: String, completionHandler: (error: NSError?) -> Void) {
 //        Services.Search.Actions.search(
 //            query,

@@ -96,7 +96,13 @@ class ProfileDetailViewController:
             if let phone = profile.getCellPhone() {
                 performQuickAction(.Phone, additionalData: phone)
             }
-            
+
+        case .Groups:
+            let groupsViewController = GroupsViewController()
+            groupsViewController.title = AppStrings.ProfileSectionGroupsTitle
+            (groupsViewController.dataSource as! GroupsDataSource).profile = profile
+            navigationController?.pushViewController(groupsViewController, animated: true)
+
         default:
             break
         }

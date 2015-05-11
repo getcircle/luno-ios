@@ -61,6 +61,7 @@ class OverviewViewController:
         rootView.opaque = true
         view = rootView
         configureActivityIndicator()
+        configureErrorMessageView()
         configureSearchHeaderView()
         configureCollectionView()
     }

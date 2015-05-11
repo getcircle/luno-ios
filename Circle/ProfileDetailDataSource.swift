@@ -156,13 +156,13 @@ class ProfileDetailDataSource: CardDataSource {
             SectionItem(
                 title: AppStrings.ProfileSectionGroupsTitle,
                 container: "groups",
-                containerKey: "name",
+                containerKey: "count",
                 contentType: .Groups,
-                image: nil
+                image: ItemImage.genericNextImage
             )
         ]
         
-        return Section(title: AppStrings.ProfileSectionGroupsTitle, items: sectionItems, cardType: .Group, addCardHeader: true)
+        return Section(title: AppStrings.ProfileSectionGroupsTitle, items: sectionItems, cardType: .KeyValue, addCardHeader: false)
     }
 
     private func getOfficeSections() -> [Section] {
@@ -383,6 +383,8 @@ class ProfileDetailDataSource: CardDataSource {
             value = address?[item.containerKey]
         case "team":
             value = team?[item.containerKey]
+        case "groups":
+            value = " "
         default:
             break
         }
