@@ -2,6 +2,7 @@
   <img src="https://raw.githubusercontent.com/onevcat/Kingfisher/master/images/logo.png" alt="Kingfisher" title="Kingfisher">
 </p>
 
+[![Circle CI](https://circleci.com/gh/onevcat/Kingfisher.svg?style=svg)](https://circleci.com/gh/onevcat/Kingfisher)
 [![Carthage Compatibility](https://img.shields.io/badge/Carthage-✔-f2a77e.svg?style=flat)][carthage]
 [![CocoaPods Version](https://img.shields.io/cocoapods/v/Kingfisher.svg?style=flat)][cocoadocs]
 [![License](https://img.shields.io/cocoapods/l/Kingfisher.svg?style=flat)][cocoadocs]
@@ -21,11 +22,11 @@ Kingfisher is a lightweight and pure Swift implemented library for downloading a
 * Cancellable processing task. You can cancel the downloading or image retriving process if it is not needed anymore.
 * Independent components. You can use the downloader or caching system separately. Or even create your own cache based on Kingfisher's code.
 * Options to decompress the image in background before rendering it, which could improve the UI performance.
-* A category over `UIImageView` for setting image from an URL directly.
+* Categories over `UIImageView`, `UIButton` and `WKInterfaceImage` for setting image from an URL directly.
 
 ## Requirements
 
-* iOS 8.0+
+* iOS 8.0+ (iOS 8.2+ for Watch App)
 * Xcode 6.3
 
 ## Installation
@@ -47,7 +48,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '8.0'
 use_frameworks!
 
-pod 'Kingfisher', '~> 1.1'
+pod 'Kingfisher', '~> 1.4'
 ```
 
 Then, run the following command:
@@ -72,7 +73,7 @@ $ brew install carthage
 To integrate Kingfisher into your Xcode project using CocoaPods, specify it in your `Cartfile`:
 
 ```ogdl
-github "onevcat/Kingfisher" >= 1.1
+github "onevcat/Kingfisher" >= 1.4
 ```
 
 Then, run the following command to build the Kingfisher framework:
@@ -142,15 +143,25 @@ imageView.kf_setImageWithURL(NSURL(string: "http://your_image_url.png")!, placeh
 
 #### Options
 
-Kingfisher will search in cache (both memory and disk) first with the URL, if no image found, it will try to download and store the image in the cache. You can change this behavior by passing an option, to let it ignore the cache.
+Kingfisher will search in cache (both memory and disk) first with the URL, if no image found, it will try to download and store the image in the cache. You can change this behavior by passing an option dictionary, to let it ignore the cache.
 
 ```swift
 imageView.kf_setImageWithURL(NSURL(string: "your_image_url")!, 
                          placeholderImage: nil, 
-                                  options: KingfisherOptions.ForceRefresh)
+                              optionsInfo: [.Options: KingfisherOptions.ForceRefresh])
 ```
 
-There are also other options to control the cache level, downloading priority, etc. See [documentation](http://cocoadocs.org/docsets/Kingfisher/0.0.2/Structs/KingfisherOptions.html) for more.
+There are also other options to control the cache level, downloading priority, etc. Take another example, if you need to cache the downloaded image to a customized cache instead of the default one:
+
+```swift
+let myCache = ImageCache(name: "my_cache")
+
+imageView.kf_setImageWithURL(NSURL(string: "your_image_url")!, 
+                         placeholderImage: nil, 
+                              optionsInfo: [.TargetCache: myCache])
+```
+
+This is useful if you want to use a specified cache for some reasons. For more information about options, please see the `KingfisherOptionsInfo` in the [documentation](http://cocoadocs.org/docsets/Kingfisher/index.html).
 
 #### Callbacks
 
@@ -159,7 +170,7 @@ You can get a chance during Kingfisher downloading images and when the process i
 ```swift
 imageView.kf_setImageWithURL(NSURL(string: "your_image_url")!,
                          placeholderImage: nil,
-                                  options: KingfisherOptions.None,
+                              optionsInfo: nil,
                             progressBlock: { (receivedSize, totalSize) -> () in
                                 println("Download Progress: \(receivedSize)/\(totalSize)")
                             },
@@ -188,8 +199,23 @@ Kingfisher will use the default downloader and cache if you do not specify them 
 
 ```swift
 let downloader = KingfisherManager.sharedManager.downloader
-downloader.downloadTimeout = 5 // Download process will timeout after 5 seconds. Default is 15.
 
+// Download process will timeout after 5 seconds. Default is 15.
+downloader.downloadTimeout = 5 
+
+// requestModifier will be called before image download request made.
+downloader.requestModifier = {
+    (request: NSMutableURLRequest) in
+    // Do what you need to modify the download request. Maybe add your HTTP basic authentication for example.
+}
+
+// Hosts in trustedHosts will be ignore the received challenge.
+// You can add the host of your self-signed site to it to bypass the SSL.
+// (Do not do it unless you know what you are doing)
+downloader.trustedHosts = Set(["your_self_signed_host"])
+```
+
+```swift
 let cache = KingfisherManager.sharedManager.cache
 
 // Set max disk cache to 50 mb. Default is no limit.
@@ -197,6 +223,11 @@ cache.maxDiskCacheSize = 50 * 1024 * 1024
 
 // Set max disk cache to duration to 3 days, Default is 1 week.
 cache.maxCachePeriodInSecond = 60 * 60 * 24 * 3
+
+// Get the disk size taken by the cache.
+cache.calculateDiskCacheSizeWithCompletionHandler { (size) -> () in
+    println("disk size in bytes: \(size)")
+}
 ```
 
 The memory cache will be purged whenever the app switched to background or receiving a memory warning. Disk cache will be cleaned when the conditions are met. You can also clear these caches manually:

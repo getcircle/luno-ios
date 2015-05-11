@@ -26,10 +26,24 @@
 
 import Foundation
 
+/**
+This notification will be sent when the disk cache got cleaned either there are cached files expired or the total size exceeding the max allowed size. The `clearDiskCache` method will not trigger this notification.
+
+The `object` of this notification is the `ImageCache` object which sends the notification.
+
+A list of removed hashes (files) could be retrieved by accessing the array under `KingfisherDiskCacheCleanedHashKey` key in `userInfo` of the notification object you received. By checking the array, you could know the hash codes of files are removed.
+*/
+public let KingfisherDidCleanDiskCacheNotification = "com.onevcat.Kingfisher.KingfisherDidCleanDiskCacheNotification"
+
+/**
+Key for array of cleaned hashes in `userInfo` of `KingfisherDidCleanDiskCacheNotification`.
+*/
+public let KingfisherDiskCacheCleanedHashKey = "com.onevcat.Kingfisher.cleanedHash"
+
 private let defaultCacheName = "default"
 private let cacheReverseDNS = "com.onevcat.Kingfisher.ImageCache."
-private let ioQueueName = "com.onevcat.Kingfisher.ImageCache.ioQueue"
-private let processQueueName = "com.onevcat.Kingfisher.ImageCache.processQueue"
+private let ioQueueName = "com.onevcat.Kingfisher.ImageCache.ioQueue."
+private let processQueueName = "com.onevcat.Kingfisher.ImageCache.processQueue."
 
 private let defaultCacheInstance = ImageCache(name: defaultCacheName)
 private let defaultMaxCachePeriodInSecond: NSTimeInterval = 60 * 60 * 24 * 7 //Cache exists for 1 week
@@ -43,9 +57,12 @@ Cache type of a cached image.
 - Disk:   The image is cached in disk.
 */
 public enum CacheType {
-    case Memory, Disk
+    case None, Memory, Disk, Watch
 }
 
+/**
+*	`ImageCache` represents both the memory and disk cache system of Kingfisher. While a default image cache object will be used if you prefer the extension methods of Kingfisher, you can create your own cache object and configure it as your need. You should use an `ImageCache` object to manipulate memory and disk cache for Kingfisher.
+*/
 public class ImageCache {
 
     //Memory
@@ -59,7 +76,7 @@ public class ImageCache {
     }
     
     //Disk
-    private let ioQueue = dispatch_queue_create(ioQueueName, DISPATCH_QUEUE_SERIAL)
+    private let ioQueue: dispatch_queue_t
     private let diskCachePath: String
     private var fileManager: NSFileManager!
     
@@ -69,7 +86,7 @@ public class ImageCache {
     /// The largest disk size can be taken for the cache. It is the total allocated size of cached files in bytes. Default is 0, which means no limit.
     public var maxDiskCacheSize: UInt = 0
     
-    private let processQueue = dispatch_queue_create(processQueueName, DISPATCH_QUEUE_CONCURRENT)
+    private let processQueue: dispatch_queue_t
     
     /// The default cache.
     public class var defaultCache: ImageCache {
@@ -79,16 +96,24 @@ public class ImageCache {
     /**
     Init method. Passing a name for the cache. It represents a cache folder in the memory and disk.
     
-    :param: name Name of the cache.
+    :param: name Name of the cache. It will be used as the memory cache name and the disk cache folder name. This value should not be an empty string.
     
     :returns: The cache object.
     */
     public init(name: String) {
+        
+        if name.isEmpty {
+            fatalError("[Kingfisher] You should specify a name for the cache. A cache with empty name is not permitted.")
+        }
+        
         let cacheName = cacheReverseDNS + name
         memoryCache.name = cacheName
         
         let paths = NSSearchPathForDirectoriesInDomains(.CachesDirectory, NSSearchPathDomainMask.UserDomainMask, true)
         diskCachePath = paths.first!.stringByAppendingPathComponent(cacheName)
+        
+        ioQueue = dispatch_queue_create(ioQueueName + name, DISPATCH_QUEUE_SERIAL)
+        processQueue = dispatch_queue_create(processQueueName + name, DISPATCH_QUEUE_CONCURRENT)
         
         dispatch_sync(ioQueue, { () -> Void in
             self.fileManager = NSFileManager()
@@ -404,6 +429,9 @@ extension ImageCache {
                     
                     for fileURL in sortedFiles {
                         if (self.fileManager.removeItemAtURL(fileURL, error: nil)) {
+                            
+                            URLsToDelete.append(fileURL)
+                            
                             if let fileSize = cachedFiles[fileURL]?[NSURLTotalFileAllocatedSizeKey] as? NSNumber {
                                 diskCacheSize -= fileSize.unsignedLongValue
                             }
@@ -416,6 +444,15 @@ extension ImageCache {
                 }
                 
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    
+                    if URLsToDelete.count != 0 {
+                        let cleanedHashes = URLsToDelete.map({ (url) -> String in
+                            return url.lastPathComponent!
+                        })
+                        
+                        NSNotificationCenter.defaultCenter().postNotificationName(KingfisherDidCleanDiskCacheNotification, object: self, userInfo: [KingfisherDiskCacheCleanedHashKey: cleanedHashes])
+                    }
+                    
                     if let completionHandler = completionHandler {
                         completionHandler()
                     }
@@ -476,16 +513,29 @@ public extension ImageCache {
     :returns: The check result.
     */
     public func isImageCachedForKey(key: String) -> CacheCheckResult {
+        
         if memoryCache.objectForKey(key) != nil {
             return CacheCheckResult(cached: true, cacheType: .Memory)
         }
         
         let filePath = cachePathForKey(key)
+        
         if fileManager.fileExistsAtPath(filePath) {
             return CacheCheckResult(cached: true, cacheType: .Disk)
         }
         
         return CacheCheckResult(cached: false, cacheType: nil)
+    }
+    
+    /**
+    Get the hash for the key. This could be used for matching files.
+    
+    :param: key The key which is used for caching.
+    
+    :returns: Corresponding hash.
+    */
+    public func hashForKey(key: String) -> String {
+        return cacheFileNameForKey(key)
     }
     
     /**
