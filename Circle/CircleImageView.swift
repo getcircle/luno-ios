@@ -73,9 +73,9 @@ class CircleImageView: UIImageView {
             
             kf_setImageWithURL(imageURL,
                 placeholderImage: UIImage.imageFromColor(UIColor.lightGrayColor(), withRect: bounds),
-                options: KingfisherOptions.None,
+                optionsInfo: [.Options: KingfisherOptions.None],
                 progressBlock: nil,
-                completionHandler: { (image, error, imageURL) -> Void in
+                completionHandler: { (image, error, cacheType, imageURL) -> Void in
                     if let image = image where error == nil {
                         if let imageID = self.imageProfileIdentifier {
                             if imageID != profile.id {
@@ -114,9 +114,9 @@ class CircleImageView: UIImageView {
             }
             kf_setImageWithURL(imageURL,
                 placeholderImage: UIImage.imageFromColor(UIColor.lightGrayColor(), withRect: bounds),
-                options: KingfisherOptions.None,
+                optionsInfo: [.Options: KingfisherOptions.None],
                 progressBlock: nil,
-                completionHandler: { (image, error, imageURL) -> Void in
+                completionHandler: { (image, error, cacheType, imageURL) -> Void in
                     if let image = image where error == nil {
                         if let successCallback = successHandler {
                             self.transform = CGAffineTransformIdentity
@@ -152,9 +152,9 @@ class CircleImageView: UIImageView {
         
         kf_setImageWithURL(url,
             placeholderImage: UIImage.imageFromColor(UIColor.lightGrayColor(), withRect: bounds),
-            options: KingfisherOptions.None,
+            optionsInfo: [.Options: KingfisherOptions.None],
             progressBlock: nil,
-            completionHandler: { (image, error, imageURL) -> Void in
+            completionHandler: { (image, error, cacheType, imageURL) -> Void in
                 if let image = image where error == nil {
                     if let successCallback = successHandler {
                         successCallback(image: image)
