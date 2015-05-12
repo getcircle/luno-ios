@@ -102,12 +102,23 @@ class SearchQueryDataSource: CardDataSource {
         if searchTerm == "" && !isQuickAction {
             let statsCard = Card(cardType: .StatTile, title: "Categories", showContentCount: false)
             statsCard.addHeader(headerClass: headerClass)
+            
+            let peopleCount = ObjectStore.sharedInstance.profiles.values.array.count
+            let peopleTitle = peopleCount == 1 ? "Person" : "People"
+
             let officeCount = ObjectStore.sharedInstance.locations.values.array.count
             let officeTitle = officeCount == 1 ? "Office" : "Offices"
+            
+            let teamsCount = ObjectStore.sharedInstance.teams.values.array.count
+            let teamsTitle = teamsCount == 1 ? "Team" : "Teams"
+
+            let skillsCount = ObjectStore.sharedInstance.activeSkills.values.array.count
+            let skillsTitle = skillsCount == 1 ? "Skill" : "Skills"
+            
             let stats = [
                 [
-                    "title": "People",
-                    "value": ObjectStore.sharedInstance.profiles.values.array.count,
+                    "title": peopleTitle,
+                    "value": peopleCount,
                     "type": StatTileCollectionViewCell.TileType.People.rawValue
                 ],
                 [
@@ -116,13 +127,13 @@ class SearchQueryDataSource: CardDataSource {
                     "type": StatTileCollectionViewCell.TileType.Offices.rawValue
                 ],
                 [
-                    "title": "Teams",
-                    "value": ObjectStore.sharedInstance.teams.values.array.count,
+                    "title": teamsTitle,
+                    "value": teamsCount,
                     "type": StatTileCollectionViewCell.TileType.Teams.rawValue
                 ],
                 [
-                    "title": "Skills",
-                    "value": ObjectStore.sharedInstance.activeSkills.values.array.count,
+                    "title": skillsTitle,
+                    "value": skillsCount,
                     "type": StatTileCollectionViewCell.TileType.Skills.rawValue
                 ]
             ] as [AnyObject]
