@@ -22,8 +22,5 @@ extension AppDelegate {
 
         // Set max disk cache to duration to 3 days, Default is 1 week.
         cache.maxCachePeriodInSecond = 60 * 60 * 24 * 3
-        
-        // REMOVE:::::
-        cache.clearDiskCache()
     }
 }
