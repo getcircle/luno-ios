@@ -4,6 +4,7 @@ PODS:
   - Kingfisher (1.4.0)
   - libPhoneNumber-iOS (0.8.4)
   - Locksmith (1.2.1)
+  - MBProgressHUD (0.9.1)
   - Mixpanel (2.8.0):
     - Mixpanel/Mixpanel (= 2.8.0)
   - Mixpanel/Mixpanel (2.8.0):
@@ -21,6 +22,7 @@ DEPENDENCIES:
   - Kingfisher (~> 1.1)
   - libPhoneNumber-iOS (~> 0.7)
   - Locksmith (~> 1.2)
+  - MBProgressHUD (~> 0.9)
   - Mixpanel (~> 2.7)
   - PureLayout (~> 2.0)
   - UIViewPlusPosition (~> 0.0)
@@ -32,6 +34,7 @@ SPEC CHECKSUMS:
   Kingfisher: 634df75082bd517db46a8907956f96eb0f76de63
   libPhoneNumber-iOS: dbfc7b4128510a4955df3e5a6f125393fc9ebc2f
   Locksmith: 770f6c5c6e5c5c712d1f00e709c62b8a7240c716
+  MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
   Mixpanel: 933b51dd0c7914c80866b3753ef407dce353ebc9
   PureLayout: f25f0bb904d5ccfe6e31da3cb869185259f02e0d
   SSKeychain: 3f42991739c6c60a9cf1bbd4dff6c0d3694bcf3d

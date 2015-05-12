@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MBProgressHUD
 import ProtobufRegistry
 
 class VerifyProfileViewController:
@@ -167,12 +168,14 @@ class VerifyProfileViewController:
     
     private func handleImageUpload(completion: () -> Void) {
         if didUploadPhoto {
+            let hud = MBProgressHUD.showHUDAddedTo(view, animated: true)
             Services.Media.Actions.uploadProfileImage(profile.id, image: profileImageView.image!) { (mediaURL, error) -> Void in
                 if let mediaURL = mediaURL {
                     let profileBuilder = self.profile.toBuilder()
                     profileBuilder.imageUrl = mediaURL
                     self.profile = profileBuilder.build()
                     self.updateProfile(completion)
+                    hud.hide(true)
                 }
             }
         } else {

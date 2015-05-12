@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MBProgressHUD
 import ProtobufRegistry
 
 class CurrentUserProfileDetailViewController: ProfileDetailViewController,
@@ -300,6 +301,7 @@ class CurrentUserProfileDetailViewController: ProfileDetailViewController,
     
     private func handleImageUpload(completion: () -> Void) {
         if let newImage = imageToUpload {
+            let hud = MBProgressHUD.showHUDAddedTo(view, animated: true)
             Services.Media.Actions.uploadProfileImage(profile.id, image: newImage) { (mediaURL, error) -> Void in
                 if let mediaURL = mediaURL {
                     let profileBuilder = self.profile.toBuilder()
@@ -308,6 +310,7 @@ class CurrentUserProfileDetailViewController: ProfileDetailViewController,
                         if let profile = profile {
                             AuthViewController.updateUserProfile(profile)
                             self.profile = profile
+                            hud.hide(true)
                             completion()
                         }
                     }
