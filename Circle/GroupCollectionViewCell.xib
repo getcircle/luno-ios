@@ -47,7 +47,6 @@
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="MRy-MN-SNQ" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="15" id="07h-jQ-pvX"/>
-                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="nOy-Bq-JZN" secondAttribute="bottom" constant="10" id="Ae7-3l-mR4"/>
                 <constraint firstItem="aFv-qu-teC" firstAttribute="leading" secondItem="MRy-MN-SNQ" secondAttribute="leading" id="FPi-uV-3yf"/>
                 <constraint firstItem="TmO-vz-MAs" firstAttribute="top" secondItem="aFv-qu-teC" secondAttribute="bottom" constant="5" id="L0X-i3-8uF"/>
                 <constraint firstAttribute="trailing" secondItem="MRy-MN-SNQ" secondAttribute="trailing" constant="15" id="LUd-Xw-faq"/>

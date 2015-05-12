@@ -32,7 +32,7 @@ class SearchLandingDataSource: CardDataSource {
                     groupRequestsCard.contentCount = 4
                     groupRequestsCard.addDefaultHeader()
                     groupRequestsCard.addContent(content: [["test"],["test"],["test"],["test"]], maxVisibleItems: 3)
-                    // self.appendCard(groupRequestsCard)
+                    self.appendCard(groupRequestsCard)
                     // ========================================================================================
 
                     for category in categories ?? [] {

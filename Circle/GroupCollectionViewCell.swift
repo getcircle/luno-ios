@@ -21,11 +21,7 @@ class GroupCollectionViewCell: CircleCollectionViewCell {
     override class var classReuseIdentifier: String {
         return "GroupCollectionViewCell";
     }
-    
-    override class var height: CGFloat {
-        return 130.0
-    }
-    
+
     override class var sizeCalculationMethod: SizeCalculation {
         return .Dynamic
     }
