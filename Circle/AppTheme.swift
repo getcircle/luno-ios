@@ -61,6 +61,24 @@ struct SoulCycleTheme: Theme {
     var status_bar_style = UIStatusBarStyle.Default
 }
 
+struct LookoutTheme: Theme {
+    var app_tint_color = UIColor(red: 0, green: 190, blue: 78)
+    var app_ui_background_color = UIColor(red: 255, green: 255, blue: 255)
+    
+    var app_nav_bar_color = UIColor(red: 0, green: 190, blue: 78)
+    var app_nav_bar_text_controls_color = UIColor(red: 255, green: 255, blue: 255)
+    
+    var app_tab_bar_color = UIColor(red: 248, green: 248, blue: 248)
+    var app_tab_bar_text_controls_color = UIColor(red: 44, green: 44, blue: 44)
+    var app_tab_bar_deselected_text_controls_color = UIColor(red: 160, green: 160, blue: 160)
+    
+    var app_light_text_color = UIColor(red: 245, green: 245, blue: 245)
+    var app_dark_text_color = UIColor(red: 0, green: 0, blue: 0)
+    
+    var status_bar_style = UIStatusBarStyle.LightContent
+}
+
+
 struct AppTheme {
     static var currentTheme: Theme = DefaultTheme()
     
@@ -72,12 +90,20 @@ struct AppTheme {
     }
     
     private static func changeThemeByOrganization(organization: Services.Organization.Containers.OrganizationV1) {
-        if organization.domain == "soul-cycle.com" {
-            if !(AppTheme.currentTheme is SoulCycleTheme) {
-                AppTheme.currentTheme = SoulCycleTheme()
-                updateAppearanceProxy()                
-                println(organization.domain)
-            }
+        let newTheme: Theme
+        switch organization.domain {
+            case "soul-cycle.com":
+                newTheme = SoulCycleTheme()
+            case "corp.lookout.com":
+                newTheme = LookoutTheme()
+            default:
+                newTheme = DefaultTheme()
+        }
+        
+        if String(stringInterpolationSegment: AppTheme.currentTheme.dynamicType) != String(stringInterpolationSegment: newTheme.dynamicType) {
+            AppTheme.currentTheme = newTheme
+            updateAppearanceProxy()
+            println(organization.domain)
         }
     }
     
