@@ -42,7 +42,7 @@ class ProfileDetailDataSource: CardDataSource {
         resetCards()
         addPlaceholderCard()
         Services.Profile.Actions.getExtendedProfile(profile.id) {
-            (profile, manager, team, address, interests, skills, notes, identities, resume, location, groups, error) -> Void in
+            (profile, manager, team, address, interests, skills, notes, identities, resume, location,  error) -> Void in
             if error == nil {
                 self.manager = manager
                 self.team = team
@@ -52,7 +52,6 @@ class ProfileDetailDataSource: CardDataSource {
                 self.identities = identities
                 self.resume = resume
                 self.location = location
-                self.groups = groups
                 self.populateData()
             }
             completionHandler(error: error)
@@ -77,7 +76,7 @@ class ProfileDetailDataSource: CardDataSource {
         sections.append(getBasicInfoSection())
         sections.append(getWorkExperienceSection())
         sections.append(getEducationSection())
-//        sections.append(getGroupsSection())
+        sections.append(getGroupsSection())
     }
 
     private func addPlaceholderCard() {
