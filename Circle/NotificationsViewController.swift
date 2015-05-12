@@ -40,13 +40,13 @@ class NotificationsViewController: UIViewController {
 
     private func configureButtons() {
         yesButton.setTitle(AppStrings.GenericYesButtonTitle, forState: .Normal)
-        yesButton.setTitleColor(UIColor.appDefaultLightTextColor(), forState: .Normal)
-        yesButton.backgroundColor = UIColor.appTintColor()
+        yesButton.setTitleColor(UIColor.appTintColor(), forState: .Normal)
+        yesButton.backgroundColor = UIColor.whiteColor()
         yesButton.addRoundCorners(radius: 2.0)
 
         noButton.setTitle(AppStrings.GenericNoThanksButtonTitle, forState: .Normal)
-        noButton.setTitleColor(UIColor.appTintColor(), forState: .Normal)
-        noButton.backgroundColor = UIColor.appUIBackgroundColor()
+        noButton.setTitleColor(UIColor.appDefaultLightTextColor(), forState: .Normal)
+        noButton.backgroundColor = UIColor.clearColor()
         noButton.addRoundCorners(radius: 2.0)
     }
     
