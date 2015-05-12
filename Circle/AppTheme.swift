@@ -94,7 +94,7 @@ struct AppTheme {
         switch organization.domain {
             case "soul-cycle.com":
                 newTheme = SoulCycleTheme()
-            case "corp.lookout.com":
+            case "lookout.com":
                 newTheme = LookoutTheme()
             default:
                 newTheme = DefaultTheme()
