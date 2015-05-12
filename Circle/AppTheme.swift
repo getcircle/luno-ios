@@ -63,7 +63,7 @@ struct SoulCycleTheme: Theme {
 
 struct LookoutTheme: Theme {
     var app_tint_color = UIColor(red: 0, green: 190, blue: 78)
-    var app_ui_background_color = UIColor(red: 255, green: 255, blue: 255)
+    var app_ui_background_color = UIColor(red: 0, green: 190, blue: 78)
     
     var app_nav_bar_color = UIColor(red: 0, green: 190, blue: 78)
     var app_nav_bar_text_controls_color = UIColor(red: 255, green: 255, blue: 255)
