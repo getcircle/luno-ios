@@ -9,7 +9,7 @@
 import UIKit
 import ProtobufRegistry
 
-class EditAboutViewController: UIViewController, UITextFieldDelegate {
+class EditAboutViewController: UIViewController, UITextViewDelegate {
 
     enum Themes {
         case Onboarding
@@ -18,7 +18,7 @@ class EditAboutViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak private(set) var aboutTitleTextLabel: UILabel!
     @IBOutlet weak private(set) var bioSectionLabel: UILabel!
-    @IBOutlet weak private(set) var bioTextField: UITextField!
+    @IBOutlet weak private(set) var bioTextView: UITextView!
     @IBOutlet weak private(set) var otherSectionLabel: UILabel!
     @IBOutlet weak private(set) var nickNameLabel: UILabel!
     @IBOutlet weak private(set) var nickNameTextField: UITextField!
@@ -43,7 +43,7 @@ class EditAboutViewController: UIViewController, UITextFieldDelegate {
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        bioTextField.becomeFirstResponder()
+        bioTextView.becomeFirstResponder()
     }
     
     // MARK: - Configuration
@@ -87,7 +87,7 @@ class EditAboutViewController: UIViewController, UITextFieldDelegate {
     }
 
     private func configureTextFields() {
-        allControls.append(bioTextField)
+        allControls.append(bioTextView)
 
         nickNameLabel.font = UIFont.appAttributeTitleLabelFont()
         nickNameLabel.textColor = UIColor.appAttributeTitleLabelColor()
@@ -97,18 +97,18 @@ class EditAboutViewController: UIViewController, UITextFieldDelegate {
         
         switch theme {
         case .Regular:
-            bioTextField.keyboardAppearance = .Light
+            bioTextView.keyboardAppearance = .Light
             nickNameTextField.keyboardAppearance = .Light
             
         case .Onboarding:
-            bioTextField.keyboardAppearance = .Dark
+            bioTextView.keyboardAppearance = .Dark
             nickNameTextField.keyboardAppearance = .Dark
         }
     }
     
     private func populateData() {
         if profile.hasAbout {
-            bioTextField.text = profile.about
+            bioTextView.text = profile.about
         }
 
         if profile.hasNickname {
@@ -141,7 +141,7 @@ class EditAboutViewController: UIViewController, UITextFieldDelegate {
     // MARK: - UITextFieldDelegate
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        if textField == bioTextField {
+        if textField == bioTextView {
             nickNameTextField.becomeFirstResponder()
         }
         else {
@@ -168,8 +168,8 @@ class EditAboutViewController: UIViewController, UITextFieldDelegate {
     
     private func updateProfile(completion: () -> Void) {
         let builder = profile.toBuilder()
-        if bioTextField.text.trimWhitespace() != "" {
-            builder.about = bioTextField.text
+        if bioTextView.text.trimWhitespace() != "" {
+            builder.about = bioTextView.text
         }
         
         builder.nickname = nickNameTextField.text
