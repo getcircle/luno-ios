@@ -172,10 +172,7 @@ class EditAboutViewController: UIViewController, UITextFieldDelegate {
             builder.about = bioTextField.text
         }
         
-        if nickNameTextField.text.trimWhitespace() != "" {
-            builder.nickname = nickNameTextField.text
-        }
-
+        builder.nickname = nickNameTextField.text
         Services.Profile.Actions.updateProfile(builder.build()) { (profile, error) -> Void in
             if let profile = profile {
                 AuthViewController.updateUserProfile(profile)
