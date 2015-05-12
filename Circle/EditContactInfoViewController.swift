@@ -262,16 +262,6 @@ class EditContactInfoViewController: UIViewController, UINavigationControllerDel
             let contentInsets = UIEdgeInsetsMake(0.0, 0.0, keyboardSizeValue.CGRectValue().size.height, 0.0);
             rootScrollView.contentInset = contentInsets;
             rootScrollView.scrollIndicatorInsets = contentInsets;
-            
-            // If active text field is hidden by keyboard, scroll it so it's visible
-            // Your app might not need or want this behavior.
-            if let activeField = formBuilder.activeField {
-                var aRect = view.frame;
-                aRect.size.height -= keyboardSizeValue.CGRectValue().size.height;
-                if (!CGRectContainsPoint(aRect, activeField.frame.origin) ) {
-                    rootScrollView.scrollRectToVisible(activeField.frame, animated: true)
-                }
-            }
         }
     }
 
