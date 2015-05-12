@@ -32,11 +32,13 @@ class GroupDetailDataSource: CardDataSource {
         )
         appendCard(placeholderHeaderCard)
         
-        // Add a text value card for description
-        let groupDescriptionCard = Card(cardType: .TextValue, title: "")
-        groupDescriptionCard.sectionInset = sectionInset
-        groupDescriptionCard.addContent(content: [selectedGroup.description_])
-        appendCard(groupDescriptionCard)
+        if selectedGroup.description_.trimWhitespace() != "" {
+            // Add a text value card for description
+            let groupDescriptionCard = Card(cardType: .TextValue, title: "")
+            groupDescriptionCard.sectionInset = sectionInset
+            groupDescriptionCard.addContent(content: [selectedGroup.description_])
+            appendCard(groupDescriptionCard)
+        }
         
         // Fetch data within a dispatch group, calling populateData when all tasks have finished
         var storedError: NSError!
@@ -94,21 +96,23 @@ class GroupDetailDataSource: CardDataSource {
             (AppStrings.GroupManagersSectionTitle, managerMemberProfiles, nextManagerMembersRequest),
             (AppStrings.GroupMembersSectionTitle, memberProfiles, nextMembersRequest)
         ] {
-            let groupMembersCard = Card(
-                cardType: .Profiles,
-                title: title,
-                addDefaultFooter: false,
-                contentCount: nextRequest?.getPaginator().countAsInt() ?? 0,
-                showContentCount: true
-            )
-            
-            groupMembersCard.addHeader(
-                headerClass: ProfileSectionHeaderCollectionReusableView.self
-            )
-            
-            groupMembersCard.sectionInset = sectionInset
-            groupMembersCard.addContent(content: cardContent, maxVisibleItems: 5)
-            appendCard(groupMembersCard)
+            if cardContent.count > 0 {
+                let groupMembersCard = Card(
+                    cardType: .Profiles,
+                    title: title,
+                    addDefaultFooter: false,
+                    contentCount: nextRequest?.getPaginator().countAsInt() ?? 0,
+                    showContentCount: true
+                )
+                
+                groupMembersCard.addHeader(
+                    headerClass: ProfileSectionHeaderCollectionReusableView.self
+                )
+                
+                groupMembersCard.sectionInset = sectionInset
+                groupMembersCard.addContent(content: cardContent, maxVisibleItems: 5)
+                appendCard(groupMembersCard)
+            }
         }
     }
 }
