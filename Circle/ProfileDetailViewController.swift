@@ -17,6 +17,10 @@ class ProfileDetailViewController:
 
     var profile: Services.Profile.Containers.ProfileV1!
     
+    // this is recorded only to maintain state and guarantee one time addition of
+    // the gesture recognizer
+    private var profileImageTapGestureRecognizer: UITapGestureRecognizer?
+    
     convenience init(profile withProfile: Services.Profile.Containers.ProfileV1) {
         self.init()
         profile = withProfile
@@ -78,6 +82,26 @@ class ProfileDetailViewController:
                         break
                     }
                 }
+            }
+        }
+    }
+    
+    func collectionView(
+        collectionView: UICollectionView, 
+        didEndDisplayingSupplementaryView view: UICollectionReusableView, 
+        forElementOfKind elementKind: String, 
+        atIndexPath indexPath: NSIndexPath
+    ) {
+        if let profileHeaderView = (dataSource as! ProfileDetailDataSource).profileHeaderView {
+            if profileImageTapGestureRecognizer == nil {
+                let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: "profileImageTapped:")
+                profileHeaderView.profileImage.addGestureRecognizer(tapGestureRecognizer)
+                profileHeaderView.profileImage.userInteractionEnabled = true
+                profileImageTapGestureRecognizer = tapGestureRecognizer
+
+                let tapGestureRecognizerBackgroundView = UITapGestureRecognizer(target: self, action: "profileBackgroundImageTapped:")
+                profileHeaderView.backgroundImageView.addGestureRecognizer(tapGestureRecognizerBackgroundView)
+                profileHeaderView.backgroundImageView.userInteractionEnabled = true
             }
         }
     }
@@ -330,4 +354,13 @@ class ProfileDetailViewController:
         }
     }
     
+    // MARK: - Gesture Recognizers
+    
+    func profileImageTapped(recognizer: UIGestureRecognizer) {
+        collectionView.setContentOffset(CGPointMake(0.0, -(collectionView.frameHeight * 0.33)), animated: true)
+    }
+    
+    func profileBackgroundImageTapped(recognizer: UIGestureRecognizer) {
+        collectionView.setContentOffset(CGPointZero, animated: true)
+    }
 }
