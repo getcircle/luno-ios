@@ -7,7 +7,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PasscodeTouchIDViewController" customModule="circle" customModuleProvider="target">
             <connections>
                 <outlet property="changePasscodeButton" destination="Wcm-Jn-mf3" id="Gyr-ed-uCI"/>
-                <outlet property="enableTouchIDLabel" destination="mdF-cX-jHP" id="lXz-UJ-msE"/>
+                <outlet property="enableTouchIDInstructionLabel" destination="mdF-cX-jHP" id="6hv-kJ-sGF"/>
+                <outlet property="enableTouchIDLabel" destination="hxw-J0-biX" id="Jmd-4S-C3W"/>
                 <outlet property="touchIDContainerView" destination="XSj-t7-35I" id="zgO-yU-cw5"/>
                 <outlet property="touchIDSwitch" destination="xe1-e5-Kzv" id="LbP-0M-N1s"/>
                 <outlet property="turnOffPasscodeButton" destination="IsO-mo-hgx" id="WhL-mY-Mkt"/>

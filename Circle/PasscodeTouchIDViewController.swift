@@ -13,6 +13,7 @@ class PasscodeTouchIDViewController: UIViewController {
 
     @IBOutlet weak private(set) var changePasscodeButton: UIButton!
     @IBOutlet weak private(set) var enableTouchIDLabel: UILabel!
+    @IBOutlet weak private(set) var enableTouchIDInstructionLabel: UILabel!
     @IBOutlet weak private(set) var touchIDContainerView: UIView!
     @IBOutlet weak private(set) var touchIDSwitch: UISwitch!
     @IBOutlet weak private(set) var turnOffPasscodeButton: UIButton!
@@ -58,13 +59,14 @@ class PasscodeTouchIDViewController: UIViewController {
         }
         else {
             changePasscodeButton.setTitle(NSLocalizedString("Set Passcode", comment: "Title of the set passcode button"), forState: .Normal)
-            turnOffPasscodeButton.enabled = true
+            turnOffPasscodeButton.enabled = false
         }
     }
     
     private func configureEnableTouchIDLabel() {
         UIView.animateWithDuration(0.2, animations: { () -> Void in
-            self.enableTouchIDLabel.alpha = self.touchIDSwitch.enabled ? 0.0 : 1.0
+            self.enableTouchIDInstructionLabel.alpha = self.touchIDSwitch.enabled ? 0.0 : 1.0
+            self.enableTouchIDLabel.alpha = self.touchIDSwitch.enabled ? 1.0 : 0.5
         })
     }
     
