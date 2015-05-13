@@ -78,6 +78,23 @@ struct LookoutTheme: Theme {
     var status_bar_style = UIStatusBarStyle.LightContent
 }
 
+struct NetflixTheme: Theme {
+    var app_tint_color = UIColor(red: 229, green: 9, blue: 20)
+    var app_ui_background_color = UIColor(red: 229, green: 9, blue: 20)
+    
+    var app_nav_bar_color = UIColor(red: 229, green: 9, blue: 20)
+    var app_nav_bar_text_controls_color = UIColor(red: 255, green: 255, blue: 255)
+    
+    var app_tab_bar_color = UIColor(red: 248, green: 248, blue: 248)
+    var app_tab_bar_text_controls_color = UIColor(red: 44, green: 44, blue: 44)
+    var app_tab_bar_deselected_text_controls_color = UIColor(red: 160, green: 160, blue: 160)
+    
+    var app_light_text_color = UIColor(red: 245, green: 245, blue: 245)
+    var app_dark_text_color = UIColor(red: 0, green: 0, blue: 0)
+    
+    var status_bar_style = UIStatusBarStyle.LightContent
+}
+
 
 struct AppTheme {
     static var currentTheme: Theme = DefaultTheme()
@@ -96,6 +113,8 @@ struct AppTheme {
                 newTheme = SoulCycleTheme()
             case "lookout.com":
                 newTheme = LookoutTheme()
+            case "netflix.com":
+                newTheme = NetflixTheme()
             default:
                 newTheme = DefaultTheme()
         }
