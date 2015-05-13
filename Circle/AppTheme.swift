@@ -46,7 +46,7 @@ struct DefaultTheme: Theme {
 
 struct SoulCycleTheme: Theme {
     var app_tint_color = UIColor(red: 255, green: 217, blue: 21)
-    var app_ui_background_color = UIColor(red: 240, green: 240, blue: 240)
+    var app_ui_background_color = UIColor(red: 255, green: 217, blue: 21)
     
     var app_nav_bar_color = UIColor(red: 240, green: 240, blue: 240)
     var app_nav_bar_text_controls_color = UIColor(red: 66, green: 66, blue: 66)
