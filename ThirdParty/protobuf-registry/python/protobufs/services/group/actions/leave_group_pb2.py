@@ -18,7 +18,7 @@ _sym_db = _symbol_database.Default()
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='protobufs/services/group/actions/leave_group.proto',
   package='services.group.actions.leave_group',
-  serialized_pb=_b('\n2protobufs/services/group/actions/leave_group.proto\x12\"services.group.actions.leave_group\"1\n\tRequestV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x10\n\x08group_id\x18\x02 \x01(\t\" \n\nResponseV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x42\x39\n7com.rhlabs.protobufs.services.group.actions.leave_group')
+  serialized_pb=_b('\n2protobufs/services/group/actions/leave_group.proto\x12\"services.group.actions.leave_group\"2\n\tRequestV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x11\n\tgroup_key\x18\x02 \x01(\t\" \n\nResponseV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x42\x39\n7com.rhlabs.protobufs.services.group.actions.leave_group')
 )
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
@@ -40,7 +40,7 @@ _REQUESTV1 = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='group_id', full_name='services.group.actions.leave_group.RequestV1.group_id', index=1,
+      name='group_key', full_name='services.group.actions.leave_group.RequestV1.group_key', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
@@ -58,7 +58,7 @@ _REQUESTV1 = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=90,
-  serialized_end=139,
+  serialized_end=140,
 )
 
 
@@ -87,8 +87,8 @@ _RESPONSEV1 = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=141,
-  serialized_end=173,
+  serialized_start=142,
+  serialized_end=174,
 )
 
 DESCRIPTOR.message_types_by_name['RequestV1'] = _REQUESTV1

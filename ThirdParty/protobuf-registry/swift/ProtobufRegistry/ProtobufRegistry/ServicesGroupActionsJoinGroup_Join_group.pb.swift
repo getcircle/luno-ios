@@ -9,7 +9,7 @@ public func == (lhs: Services.Group.Actions.JoinGroup.RequestV1, rhs: Services.G
   }
   var fieldCheck:Bool = (lhs.hashValue == rhs.hashValue)
   fieldCheck = fieldCheck && (lhs.hasVersion == rhs.hasVersion) && (!lhs.hasVersion || lhs.version == rhs.version)
-  fieldCheck = fieldCheck && (lhs.hasGroupId == rhs.hasGroupId) && (!lhs.hasGroupId || lhs.groupId == rhs.groupId)
+  fieldCheck = fieldCheck && (lhs.hasGroupKey == rhs.hasGroupKey) && (!lhs.hasGroupKey || lhs.groupKey == rhs.groupKey)
   return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
 }
 
@@ -19,7 +19,7 @@ public func == (lhs: Services.Group.Actions.JoinGroup.ResponseV1, rhs: Services.
   }
   var fieldCheck:Bool = (lhs.hashValue == rhs.hashValue)
   fieldCheck = fieldCheck && (lhs.hasVersion == rhs.hasVersion) && (!lhs.hasVersion || lhs.version == rhs.version)
-  fieldCheck = fieldCheck && (lhs.hasStatus == rhs.hasStatus) && (!lhs.hasStatus || lhs.status == rhs.status)
+  fieldCheck = fieldCheck && (lhs.hasRequest == rhs.hasRequest) && (!lhs.hasRequest || lhs.request == rhs.request)
   return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
 }
 
@@ -36,6 +36,7 @@ public extension Services.Group.Actions.JoinGroup {
     init() {
       extensionRegistry = ExtensionRegistry()
       registerAllExtensions(extensionRegistry)
+      Services.Group.Containers.ContainersRoot.sharedInstance.registerAllExtensions(extensionRegistry)
     }
     public func registerAllExtensions(registry:ExtensionRegistry) {
     }
@@ -45,7 +46,7 @@ public extension Services.Group.Actions.JoinGroup {
     override public subscript(key: String) -> Any? {
            switch key {
            case "version": return version
-           case "groupId": return groupId
+           case "groupKey": return groupKey
            default: return nil
            }
     }
@@ -53,8 +54,8 @@ public extension Services.Group.Actions.JoinGroup {
     public private(set) var hasVersion:Bool = false
     public private(set) var version:UInt32 = UInt32(1)
 
-    public private(set) var hasGroupId:Bool = false
-    public private(set) var groupId:String = ""
+    public private(set) var hasGroupKey:Bool = false
+    public private(set) var groupKey:String = ""
 
     required public init() {
          super.init()
@@ -66,8 +67,8 @@ public extension Services.Group.Actions.JoinGroup {
       if hasVersion {
         output.writeUInt32(1, value:version)
       }
-      if hasGroupId {
-        output.writeString(2, value:groupId)
+      if hasGroupKey {
+        output.writeString(2, value:groupKey)
       }
       unknownFields.writeToCodedOutputStream(output)
     }
@@ -81,8 +82,8 @@ public extension Services.Group.Actions.JoinGroup {
       if hasVersion {
         serialize_size += version.computeUInt32Size(1)
       }
-      if hasGroupId {
-        serialize_size += groupId.computeStringSize(2)
+      if hasGroupKey {
+        serialize_size += groupKey.computeStringSize(2)
       }
       serialize_size += unknownFields.serializedSize()
       memoizedSerializedSize = serialize_size
@@ -128,8 +129,8 @@ public extension Services.Group.Actions.JoinGroup {
       if hasVersion {
         output += "\(indent) version: \(version) \n"
       }
-      if hasGroupId {
-        output += "\(indent) groupId: \(groupId) \n"
+      if hasGroupKey {
+        output += "\(indent) groupKey: \(groupKey) \n"
       }
       unknownFields.writeDescriptionTo(&output, indent:indent)
     }
@@ -139,8 +140,8 @@ public extension Services.Group.Actions.JoinGroup {
             if hasVersion {
                hashCode = (hashCode &* 31) &+ version.hashValue
             }
-            if hasGroupId {
-               hashCode = (hashCode &* 31) &+ groupId.hashValue
+            if hasGroupKey {
+               hashCode = (hashCode &* 31) &+ groupKey.hashValue
             }
             hashCode = (hashCode &* 31) &+  unknownFields.hashValue
             return hashCode
@@ -193,27 +194,27 @@ public extension Services.Group.Actions.JoinGroup {
          builderResult.version = UInt32(1)
          return self
     }
-    public var hasGroupId:Bool {
+    public var hasGroupKey:Bool {
          get {
-              return builderResult.hasGroupId
+              return builderResult.hasGroupKey
          }
     }
-    public var groupId:String {
+    public var groupKey:String {
          get {
-              return builderResult.groupId
+              return builderResult.groupKey
          }
          set (value) {
-             builderResult.hasGroupId = true
-             builderResult.groupId = value
+             builderResult.hasGroupKey = true
+             builderResult.groupKey = value
          }
     }
-    public func setGroupId(value:String)-> Services.Group.Actions.JoinGroup.RequestV1Builder {
-      self.groupId = value
+    public func setGroupKey(value:String)-> Services.Group.Actions.JoinGroup.RequestV1Builder {
+      self.groupKey = value
       return self
     }
-    public func clearGroupId() -> Services.Group.Actions.JoinGroup.RequestV1Builder{
-         builderResult.hasGroupId = false
-         builderResult.groupId = ""
+    public func clearGroupKey() -> Services.Group.Actions.JoinGroup.RequestV1Builder{
+         builderResult.hasGroupKey = false
+         builderResult.groupKey = ""
          return self
     }
     override public var internalGetResult:GeneratedMessage {
@@ -243,8 +244,8 @@ public extension Services.Group.Actions.JoinGroup {
       if other.hasVersion {
            version = other.version
       }
-      if other.hasGroupId {
-           groupId = other.groupId
+      if other.hasGroupKey {
+           groupKey = other.groupKey
       }
       mergeUnknownFields(other.unknownFields)
       return self
@@ -265,7 +266,7 @@ public extension Services.Group.Actions.JoinGroup {
           version = input.readUInt32()
 
         case 18 :
-          groupId = input.readString()
+          groupKey = input.readString()
 
         default:
           if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
@@ -278,23 +279,10 @@ public extension Services.Group.Actions.JoinGroup {
   }
 
   final public class ResponseV1 : GeneratedMessage, GeneratedMessageProtocol {
-
-
-      //Enum type declaration start 
-
-      public enum JoinStatusV1:Int32 {
-        case Requested = 0
-        case Joined = 1
-        case Failed = 2
-
-      }
-
-      //Enum type declaration end 
-
     override public subscript(key: String) -> Any? {
            switch key {
            case "version": return version
-           case "status": return self.status
+           case "request": return request
            default: return nil
            }
     }
@@ -302,8 +290,8 @@ public extension Services.Group.Actions.JoinGroup {
     public private(set) var hasVersion:Bool = false
     public private(set) var version:UInt32 = UInt32(1)
 
-    public private(set) var status:Services.Group.Actions.JoinGroup.ResponseV1.JoinStatusV1 = Services.Group.Actions.JoinGroup.ResponseV1.JoinStatusV1.Requested
-    public private(set) var hasStatus:Bool = false
+    public private(set) var hasRequest:Bool = false
+    public private(set) var request:Services.Group.Containers.MembershipRequestV1!
     required public init() {
          super.init()
     }
@@ -314,8 +302,8 @@ public extension Services.Group.Actions.JoinGroup {
       if hasVersion {
         output.writeUInt32(1, value:version)
       }
-      if hasStatus {
-        output.writeEnum(2, value:status.rawValue)
+      if hasRequest {
+        output.writeMessage(2, value:request)
       }
       unknownFields.writeToCodedOutputStream(output)
     }
@@ -329,8 +317,10 @@ public extension Services.Group.Actions.JoinGroup {
       if hasVersion {
         serialize_size += version.computeUInt32Size(1)
       }
-      if (hasStatus) {
-        serialize_size += status.rawValue.computeEnumSize(2)
+      if hasRequest {
+          if let varSizerequest = request?.computeMessageSize(2) {
+              serialize_size += varSizerequest
+          }
       }
       serialize_size += unknownFields.serializedSize()
       memoizedSerializedSize = serialize_size
@@ -376,8 +366,10 @@ public extension Services.Group.Actions.JoinGroup {
       if hasVersion {
         output += "\(indent) version: \(version) \n"
       }
-      if (hasStatus) {
-        output += "\(indent) status: \(status.rawValue)\n"
+      if hasRequest {
+        output += "\(indent) request {\n"
+        request?.writeDescriptionTo(&output, indent:"\(indent)  ")
+        output += "\(indent) }\n"
       }
       unknownFields.writeDescriptionTo(&output, indent:indent)
     }
@@ -387,8 +379,10 @@ public extension Services.Group.Actions.JoinGroup {
             if hasVersion {
                hashCode = (hashCode &* 31) &+ version.hashValue
             }
-            if hasStatus {
-               hashCode = (hashCode &* 31) &+ Int(status.rawValue)
+            if hasRequest {
+                if let hashValuerequest = request?.hashValue {
+                    hashCode = (hashCode &* 31) &+ hashValuerequest
+                }
             }
             hashCode = (hashCode &* 31) &+  unknownFields.hashValue
             return hashCode
@@ -441,29 +435,38 @@ public extension Services.Group.Actions.JoinGroup {
          builderResult.version = UInt32(1)
          return self
     }
-      public var hasStatus:Bool{
-          get {
-              return builderResult.hasStatus
-          }
+    public var hasRequest:Bool {
+         get {
+             return builderResult.hasRequest
+         }
+    }
+    public var request:Services.Group.Containers.MembershipRequestV1! {
+         get {
+             return builderResult.request
+         }
+         set (value) {
+             builderResult.hasRequest = true
+             builderResult.request = value
+         }
+    }
+    public func setRequest(value:Services.Group.Containers.MembershipRequestV1!)-> Services.Group.Actions.JoinGroup.ResponseV1Builder {
+      self.request = value
+      return self
+    }
+    public func mergeRequest(value:Services.Group.Containers.MembershipRequestV1) -> Services.Group.Actions.JoinGroup.ResponseV1Builder {
+      if (builderResult.hasRequest) {
+        builderResult.request = Services.Group.Containers.MembershipRequestV1.builderWithPrototype(builderResult.request).mergeFrom(value).buildPartial()
+      } else {
+        builderResult.request = value
       }
-      public var status:Services.Group.Actions.JoinGroup.ResponseV1.JoinStatusV1 {
-          get {
-              return builderResult.status
-          }
-          set (value) {
-              builderResult.hasStatus = true
-              builderResult.status = value
-          }
-      }
-      public func setStatus(value:Services.Group.Actions.JoinGroup.ResponseV1.JoinStatusV1)-> Services.Group.Actions.JoinGroup.ResponseV1Builder {
-        self.status = value
-        return self
-      }
-      public func clearStatus() -> Services.Group.Actions.JoinGroup.ResponseV1Builder {
-         builderResult.hasStatus = false
-         builderResult.status = .Requested
-         return self
-      }
+      builderResult.hasRequest = true
+      return self
+    }
+    public func clearRequest() -> Services.Group.Actions.JoinGroup.ResponseV1Builder {
+      builderResult.hasRequest = false
+      builderResult.request = nil
+      return self
+    }
     override public var internalGetResult:GeneratedMessage {
          get {
             return builderResult
@@ -491,8 +494,8 @@ public extension Services.Group.Actions.JoinGroup {
       if other.hasVersion {
            version = other.version
       }
-      if other.hasStatus {
-           status = other.status
+      if (other.hasRequest) {
+          mergeRequest(other.request)
       }
       mergeUnknownFields(other.unknownFields)
       return self
@@ -512,13 +515,13 @@ public extension Services.Group.Actions.JoinGroup {
         case 8 :
           version = input.readUInt32()
 
-        case 16 :
-          let valueIntstatus = input.readEnum()
-          if let enumsstatus = Services.Group.Actions.JoinGroup.ResponseV1.JoinStatusV1(rawValue:valueIntstatus){
-               status = enumsstatus
-          } else {
-               unknownFieldsBuilder.mergeVarintField(2, value:Int64(valueIntstatus))
+        case 18 :
+          var subBuilder:Services.Group.Containers.MembershipRequestV1Builder = Services.Group.Containers.MembershipRequestV1.builder()
+          if hasRequest {
+            subBuilder.mergeFrom(request)
           }
+          input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
+          request = subBuilder.buildPartial()
 
         default:
           if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {

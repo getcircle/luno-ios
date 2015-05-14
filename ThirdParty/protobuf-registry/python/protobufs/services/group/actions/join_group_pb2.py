@@ -13,42 +13,18 @@ from google.protobuf import descriptor_pb2
 _sym_db = _symbol_database.Default()
 
 
+import protobufs.services.group.containers_pb2
 
 
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='protobufs/services/group/actions/join_group.proto',
   package='services.group.actions.join_group',
-  serialized_pb=_b('\n1protobufs/services/group/actions/join_group.proto\x12!services.group.actions.join_group\"1\n\tRequestV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x10\n\x08group_id\x18\x02 \x01(\t\"\xa3\x01\n\nResponseV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12J\n\x06status\x18\x02 \x01(\x0e\x32:.services.group.actions.join_group.ResponseV1.JoinStatusV1\"5\n\x0cJoinStatusV1\x12\r\n\tREQUESTED\x10\x00\x12\n\n\x06JOINED\x10\x01\x12\n\n\x06\x46\x41ILED\x10\x02\x42\x38\n6com.rhlabs.protobufs.services.group.actions.join_group')
-)
+  serialized_pb=_b('\n1protobufs/services/group/actions/join_group.proto\x12!services.group.actions.join_group\x1a)protobufs/services/group/containers.proto\"2\n\tRequestV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x11\n\tgroup_key\x18\x02 \x01(\t\"a\n\nResponseV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12?\n\x07request\x18\x02 \x01(\x0b\x32..services.group.containers.MembershipRequestV1B8\n6com.rhlabs.protobufs.services.group.actions.join_group')
+  ,
+  dependencies=[protobufs.services.group.containers_pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 
-
-_RESPONSEV1_JOINSTATUSV1 = _descriptor.EnumDescriptor(
-  name='JoinStatusV1',
-  full_name='services.group.actions.join_group.ResponseV1.JoinStatusV1',
-  filename=None,
-  file=DESCRIPTOR,
-  values=[
-    _descriptor.EnumValueDescriptor(
-      name='REQUESTED', index=0, number=0,
-      options=None,
-      type=None),
-    _descriptor.EnumValueDescriptor(
-      name='JOINED', index=1, number=1,
-      options=None,
-      type=None),
-    _descriptor.EnumValueDescriptor(
-      name='FAILED', index=2, number=2,
-      options=None,
-      type=None),
-  ],
-  containing_type=None,
-  options=None,
-  serialized_start=250,
-  serialized_end=303,
-)
-_sym_db.RegisterEnumDescriptor(_RESPONSEV1_JOINSTATUSV1)
 
 
 _REQUESTV1 = _descriptor.Descriptor(
@@ -66,7 +42,7 @@ _REQUESTV1 = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='group_id', full_name='services.group.actions.join_group.RequestV1.group_id', index=1,
+      name='group_key', full_name='services.group.actions.join_group.RequestV1.group_key', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
@@ -83,8 +59,8 @@ _REQUESTV1 = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=88,
-  serialized_end=137,
+  serialized_start=131,
+  serialized_end=181,
 )
 
 
@@ -103,9 +79,9 @@ _RESPONSEV1 = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='status', full_name='services.group.actions.join_group.ResponseV1.status', index=1,
-      number=2, type=14, cpp_type=8, label=1,
-      has_default_value=False, default_value=0,
+      name='request', full_name='services.group.actions.join_group.ResponseV1.request', index=1,
+      number=2, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
@@ -114,19 +90,17 @@ _RESPONSEV1 = _descriptor.Descriptor(
   ],
   nested_types=[],
   enum_types=[
-    _RESPONSEV1_JOINSTATUSV1,
   ],
   options=None,
   is_extendable=False,
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=140,
-  serialized_end=303,
+  serialized_start=183,
+  serialized_end=280,
 )
 
-_RESPONSEV1.fields_by_name['status'].enum_type = _RESPONSEV1_JOINSTATUSV1
-_RESPONSEV1_JOINSTATUSV1.containing_type = _RESPONSEV1
+_RESPONSEV1.fields_by_name['request'].message_type = protobufs.services.group.containers_pb2._MEMBERSHIPREQUESTV1
 DESCRIPTOR.message_types_by_name['RequestV1'] = _REQUESTV1
 DESCRIPTOR.message_types_by_name['ResponseV1'] = _RESPONSEV1
 

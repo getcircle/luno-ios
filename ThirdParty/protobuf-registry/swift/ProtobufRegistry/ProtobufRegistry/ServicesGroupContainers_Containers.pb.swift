@@ -13,7 +13,7 @@ public func == (lhs: Services.Group.Containers.GroupV1, rhs: Services.Group.Cont
   fieldCheck = fieldCheck && (lhs.hasEmail == rhs.hasEmail) && (!lhs.hasEmail || lhs.email == rhs.email)
   fieldCheck = fieldCheck && (lhs.hasName == rhs.hasName) && (!lhs.hasName || lhs.name == rhs.name)
   fieldCheck = fieldCheck && (lhs.hasDisplayName == rhs.hasDisplayName) && (!lhs.hasDisplayName || lhs.displayName == rhs.displayName)
-  fieldCheck = fieldCheck && (lhs.hasDescription == rhs.hasDescription) && (!lhs.hasDescription || lhs.description_ == rhs.description_)
+  fieldCheck = fieldCheck && (lhs.hasGroupDescription == rhs.hasGroupDescription) && (!lhs.hasGroupDescription || lhs.groupDescription == rhs.groupDescription)
   fieldCheck = fieldCheck && (lhs.aliases == rhs.aliases)
   fieldCheck = fieldCheck && (lhs.hasMembersCount == rhs.hasMembersCount) && (!lhs.hasMembersCount || lhs.membersCount == rhs.membersCount)
   fieldCheck = fieldCheck && (lhs.hasProvider == rhs.hasProvider) && (!lhs.hasProvider || lhs.provider == rhs.provider)
@@ -47,6 +47,34 @@ public func == (lhs: Services.Group.Containers.MemberV1, rhs: Services.Group.Con
   fieldCheck = fieldCheck && (lhs.hasId == rhs.hasId) && (!lhs.hasId || lhs.id == rhs.id)
   fieldCheck = fieldCheck && (lhs.hasProfile == rhs.hasProfile) && (!lhs.hasProfile || lhs.profile == rhs.profile)
   fieldCheck = fieldCheck && (lhs.hasRole == rhs.hasRole) && (!lhs.hasRole || lhs.role == rhs.role)
+  return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
+}
+
+public func == (lhs: Services.Group.Containers.MembershipRequestMetaV1, rhs: Services.Group.Containers.MembershipRequestMetaV1) -> Bool {
+  if (lhs === rhs) {
+    return true
+  }
+  var fieldCheck:Bool = (lhs.hashValue == rhs.hashValue)
+  fieldCheck = fieldCheck && (lhs.hasVersion == rhs.hasVersion) && (!lhs.hasVersion || lhs.version == rhs.version)
+  fieldCheck = fieldCheck && (lhs.hasKey == rhs.hasKey) && (!lhs.hasKey || lhs.key == rhs.key)
+  fieldCheck = fieldCheck && (lhs.hasValue == rhs.hasValue) && (!lhs.hasValue || lhs.value == rhs.value)
+  return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
+}
+
+public func == (lhs: Services.Group.Containers.MembershipRequestV1, rhs: Services.Group.Containers.MembershipRequestV1) -> Bool {
+  if (lhs === rhs) {
+    return true
+  }
+  var fieldCheck:Bool = (lhs.hashValue == rhs.hashValue)
+  fieldCheck = fieldCheck && (lhs.hasVersion == rhs.hasVersion) && (!lhs.hasVersion || lhs.version == rhs.version)
+  fieldCheck = fieldCheck && (lhs.hasId == rhs.hasId) && (!lhs.hasId || lhs.id == rhs.id)
+  fieldCheck = fieldCheck && (lhs.hasStatus == rhs.hasStatus) && (!lhs.hasStatus || lhs.status == rhs.status)
+  fieldCheck = fieldCheck && (lhs.hasRequesterProfileId == rhs.hasRequesterProfileId) && (!lhs.hasRequesterProfileId || lhs.requesterProfileId == rhs.requesterProfileId)
+  fieldCheck = fieldCheck && (lhs.hasApproverProfileId == rhs.hasApproverProfileId) && (!lhs.hasApproverProfileId || lhs.approverProfileId == rhs.approverProfileId)
+  fieldCheck = fieldCheck && (lhs.hasGroupKey == rhs.hasGroupKey) && (!lhs.hasGroupKey || lhs.groupKey == rhs.groupKey)
+  fieldCheck = fieldCheck && (lhs.hasProvider == rhs.hasProvider) && (!lhs.hasProvider || lhs.provider == rhs.provider)
+  fieldCheck = fieldCheck && (lhs.meta == rhs.meta)
+  fieldCheck = fieldCheck && (lhs.hasCreated == rhs.hasCreated) && (!lhs.hasCreated || lhs.created == rhs.created)
   return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
 }
 
@@ -97,6 +125,19 @@ public extension Services.Group.Containers {
 
   //Enum type declaration end 
 
+
+
+  //Enum type declaration start 
+
+  public enum MembershipRequestStatusV1:Int32 {
+    case Pending = 0
+    case Approved = 1
+    case Denied = 2
+
+  }
+
+  //Enum type declaration end 
+
   final public class GroupV1 : GeneratedMessage, GeneratedMessageProtocol {
     override public subscript(key: String) -> Any? {
            switch key {
@@ -105,7 +146,7 @@ public extension Services.Group.Containers {
            case "email": return email
            case "name": return name
            case "displayName": return displayName
-           case "description_": return description_
+           case "groupDescription": return groupDescription
            case "membersCount": return membersCount
            case "provider": return self.provider
            case "canJoin": return canJoin
@@ -130,8 +171,8 @@ public extension Services.Group.Containers {
     public private(set) var hasDisplayName:Bool = false
     public private(set) var displayName:String = ""
 
-    public private(set) var hasDescription:Bool = false
-    public private(set) var description_:String = ""
+    public private(set) var hasGroupDescription:Bool = false
+    public private(set) var groupDescription:String = ""
 
     public private(set) var hasMembersCount:Bool = false
     public private(set) var membersCount:UInt32 = UInt32(0)
@@ -170,8 +211,8 @@ public extension Services.Group.Containers {
       if hasDisplayName {
         output.writeString(5, value:displayName)
       }
-      if hasDescription {
-        output.writeString(6, value:description_)
+      if hasGroupDescription {
+        output.writeString(6, value:groupDescription)
       }
       if !aliases.isEmpty {
         for oneValuealiases in aliases {
@@ -217,8 +258,8 @@ public extension Services.Group.Containers {
       if hasDisplayName {
         serialize_size += displayName.computeStringSize(5)
       }
-      if hasDescription {
-        serialize_size += description_.computeStringSize(6)
+      if hasGroupDescription {
+        serialize_size += groupDescription.computeStringSize(6)
       }
       var dataSizeAliases:Int32 = 0
       for oneValuealiases in aliases {
@@ -297,8 +338,8 @@ public extension Services.Group.Containers {
       if hasDisplayName {
         output += "\(indent) displayName: \(displayName) \n"
       }
-      if hasDescription {
-        output += "\(indent) description_: \(description_) \n"
+      if hasGroupDescription {
+        output += "\(indent) groupDescription: \(groupDescription) \n"
       }
       var aliasesElementIndex:Int = 0
       for oneValuealiases in aliases  {
@@ -340,8 +381,8 @@ public extension Services.Group.Containers {
             if hasDisplayName {
                hashCode = (hashCode &* 31) &+ displayName.hashValue
             }
-            if hasDescription {
-               hashCode = (hashCode &* 31) &+ description_.hashValue
+            if hasGroupDescription {
+               hashCode = (hashCode &* 31) &+ groupDescription.hashValue
             }
             for oneValuealiases in aliases {
                 hashCode = (hashCode &* 31) &+ oneValuealiases.hashValue
@@ -504,27 +545,27 @@ public extension Services.Group.Containers {
          builderResult.displayName = ""
          return self
     }
-    public var hasDescription:Bool {
+    public var hasGroupDescription:Bool {
          get {
-              return builderResult.hasDescription
+              return builderResult.hasGroupDescription
          }
     }
-    public var description_:String {
+    public var groupDescription:String {
          get {
-              return builderResult.description_
+              return builderResult.groupDescription
          }
          set (value) {
-             builderResult.hasDescription = true
-             builderResult.description_ = value
+             builderResult.hasGroupDescription = true
+             builderResult.groupDescription = value
          }
     }
-    public func setDescription(value:String)-> Services.Group.Containers.GroupV1Builder {
-      self.description_ = value
+    public func setGroupDescription(value:String)-> Services.Group.Containers.GroupV1Builder {
+      self.groupDescription = value
       return self
     }
-    public func clearDescription() -> Services.Group.Containers.GroupV1Builder{
-         builderResult.hasDescription = false
-         builderResult.description_ = ""
+    public func clearGroupDescription() -> Services.Group.Containers.GroupV1Builder{
+         builderResult.hasGroupDescription = false
+         builderResult.groupDescription = ""
          return self
     }
     public var aliases:Array<String> {
@@ -697,8 +738,8 @@ public extension Services.Group.Containers {
       if other.hasDisplayName {
            displayName = other.displayName
       }
-      if other.hasDescription {
-           description_ = other.description_
+      if other.hasGroupDescription {
+           groupDescription = other.groupDescription
       }
       if !other.aliases.isEmpty {
           builderResult.aliases += other.aliases
@@ -749,7 +790,7 @@ public extension Services.Group.Containers {
           displayName = input.readString()
 
         case 50 :
-          description_ = input.readString()
+          groupDescription = input.readString()
 
         case 58 :
           aliases += [input.readString()]
@@ -1599,6 +1640,842 @@ public extension Services.Group.Containers {
           } else {
                unknownFieldsBuilder.mergeVarintField(4, value:Int64(valueIntrole))
           }
+
+        default:
+          if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
+             unknownFields = unknownFieldsBuilder.build()
+             return self
+          }
+        }
+      }
+    }
+  }
+
+  final public class MembershipRequestMetaV1 : GeneratedMessage, GeneratedMessageProtocol {
+    override public subscript(key: String) -> Any? {
+           switch key {
+           case "version": return version
+           case "key": return key
+           case "value": return value
+           default: return nil
+           }
+    }
+
+    public private(set) var hasVersion:Bool = false
+    public private(set) var version:UInt32 = UInt32(1)
+
+    public private(set) var hasKey:Bool = false
+    public private(set) var key:String = ""
+
+    public private(set) var hasValue:Bool = false
+    public private(set) var value:String = ""
+
+    required public init() {
+         super.init()
+    }
+    override public func isInitialized() -> Bool {
+     return true
+    }
+    override public func writeToCodedOutputStream(output:CodedOutputStream) {
+      if hasVersion {
+        output.writeUInt32(1, value:version)
+      }
+      if hasKey {
+        output.writeString(2, value:key)
+      }
+      if hasValue {
+        output.writeString(3, value:value)
+      }
+      unknownFields.writeToCodedOutputStream(output)
+    }
+    override public func serializedSize() -> Int32 {
+      var serialize_size:Int32 = memoizedSerializedSize
+      if serialize_size != -1 {
+       return serialize_size
+      }
+
+      serialize_size = 0
+      if hasVersion {
+        serialize_size += version.computeUInt32Size(1)
+      }
+      if hasKey {
+        serialize_size += key.computeStringSize(2)
+      }
+      if hasValue {
+        serialize_size += value.computeStringSize(3)
+      }
+      serialize_size += unknownFields.serializedSize()
+      memoizedSerializedSize = serialize_size
+      return serialize_size
+    }
+    public class func parseFromData(data:NSData) -> Services.Group.Containers.MembershipRequestMetaV1 {
+      return Services.Group.Containers.MembershipRequestMetaV1.builder().mergeFromData(data, extensionRegistry:Services.Group.Containers.ContainersRoot.sharedInstance.extensionRegistry).build()
+    }
+    public class func parseFromData(data:NSData, extensionRegistry:ExtensionRegistry) -> Services.Group.Containers.MembershipRequestMetaV1 {
+      return Services.Group.Containers.MembershipRequestMetaV1.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
+    }
+    public class func parseFromInputStream(input:NSInputStream) -> Services.Group.Containers.MembershipRequestMetaV1 {
+      return Services.Group.Containers.MembershipRequestMetaV1.builder().mergeFromInputStream(input).build()
+    }
+    public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->Services.Group.Containers.MembershipRequestMetaV1 {
+      return Services.Group.Containers.MembershipRequestMetaV1.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
+    }
+    public class func parseFromCodedInputStream(input:CodedInputStream) -> Services.Group.Containers.MembershipRequestMetaV1 {
+      return Services.Group.Containers.MembershipRequestMetaV1.builder().mergeFromCodedInputStream(input).build()
+    }
+    public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> Services.Group.Containers.MembershipRequestMetaV1 {
+      return Services.Group.Containers.MembershipRequestMetaV1.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
+    }
+    public class func builder() -> Services.Group.Containers.MembershipRequestMetaV1Builder {
+      return Services.Group.Containers.MembershipRequestMetaV1.classBuilder() as! Services.Group.Containers.MembershipRequestMetaV1Builder
+    }
+    public func builder() -> Services.Group.Containers.MembershipRequestMetaV1Builder {
+      return classBuilder() as! Services.Group.Containers.MembershipRequestMetaV1Builder
+    }
+    public override class func classBuilder() -> MessageBuilder {
+      return Services.Group.Containers.MembershipRequestMetaV1Builder()
+    }
+    public override func classBuilder() -> MessageBuilder {
+      return Services.Group.Containers.MembershipRequestMetaV1.builder()
+    }
+    public func toBuilder() -> Services.Group.Containers.MembershipRequestMetaV1Builder {
+      return Services.Group.Containers.MembershipRequestMetaV1.builderWithPrototype(self)
+    }
+    public class func builderWithPrototype(prototype:Services.Group.Containers.MembershipRequestMetaV1) -> Services.Group.Containers.MembershipRequestMetaV1Builder {
+      return Services.Group.Containers.MembershipRequestMetaV1.builder().mergeFrom(prototype)
+    }
+    override public func writeDescriptionTo(inout output:String, indent:String) {
+      if hasVersion {
+        output += "\(indent) version: \(version) \n"
+      }
+      if hasKey {
+        output += "\(indent) key: \(key) \n"
+      }
+      if hasValue {
+        output += "\(indent) value: \(value) \n"
+      }
+      unknownFields.writeDescriptionTo(&output, indent:indent)
+    }
+    override public var hashValue:Int {
+        get {
+            var hashCode:Int = 7
+            if hasVersion {
+               hashCode = (hashCode &* 31) &+ version.hashValue
+            }
+            if hasKey {
+               hashCode = (hashCode &* 31) &+ key.hashValue
+            }
+            if hasValue {
+               hashCode = (hashCode &* 31) &+ value.hashValue
+            }
+            hashCode = (hashCode &* 31) &+  unknownFields.hashValue
+            return hashCode
+        }
+    }
+
+
+    //Meta information declaration start
+
+    override public class func className() -> String {
+        return "Services.Group.Containers.MembershipRequestMetaV1"
+    }
+    override public func className() -> String {
+        return "Services.Group.Containers.MembershipRequestMetaV1"
+    }
+    override public func classMetaType() -> GeneratedMessage.Type {
+        return Services.Group.Containers.MembershipRequestMetaV1.self
+    }
+    //Meta information declaration end
+
+  }
+
+  final public class MembershipRequestMetaV1Builder : GeneratedMessageBuilder {
+    private var builderResult:Services.Group.Containers.MembershipRequestMetaV1
+
+    required override public init () {
+       builderResult = Services.Group.Containers.MembershipRequestMetaV1()
+       super.init()
+    }
+    public var hasVersion:Bool {
+         get {
+              return builderResult.hasVersion
+         }
+    }
+    public var version:UInt32 {
+         get {
+              return builderResult.version
+         }
+         set (value) {
+             builderResult.hasVersion = true
+             builderResult.version = value
+         }
+    }
+    public func setVersion(value:UInt32)-> Services.Group.Containers.MembershipRequestMetaV1Builder {
+      self.version = value
+      return self
+    }
+    public func clearVersion() -> Services.Group.Containers.MembershipRequestMetaV1Builder{
+         builderResult.hasVersion = false
+         builderResult.version = UInt32(1)
+         return self
+    }
+    public var hasKey:Bool {
+         get {
+              return builderResult.hasKey
+         }
+    }
+    public var key:String {
+         get {
+              return builderResult.key
+         }
+         set (value) {
+             builderResult.hasKey = true
+             builderResult.key = value
+         }
+    }
+    public func setKey(value:String)-> Services.Group.Containers.MembershipRequestMetaV1Builder {
+      self.key = value
+      return self
+    }
+    public func clearKey() -> Services.Group.Containers.MembershipRequestMetaV1Builder{
+         builderResult.hasKey = false
+         builderResult.key = ""
+         return self
+    }
+    public var hasValue:Bool {
+         get {
+              return builderResult.hasValue
+         }
+    }
+    public var value:String {
+         get {
+              return builderResult.value
+         }
+         set (value) {
+             builderResult.hasValue = true
+             builderResult.value = value
+         }
+    }
+    public func setValue(value:String)-> Services.Group.Containers.MembershipRequestMetaV1Builder {
+      self.value = value
+      return self
+    }
+    public func clearValue() -> Services.Group.Containers.MembershipRequestMetaV1Builder{
+         builderResult.hasValue = false
+         builderResult.value = ""
+         return self
+    }
+    override public var internalGetResult:GeneratedMessage {
+         get {
+            return builderResult
+         }
+    }
+    public override func clear() -> Services.Group.Containers.MembershipRequestMetaV1Builder {
+      builderResult = Services.Group.Containers.MembershipRequestMetaV1()
+      return self
+    }
+    public override func clone() -> Services.Group.Containers.MembershipRequestMetaV1Builder {
+      return Services.Group.Containers.MembershipRequestMetaV1.builderWithPrototype(builderResult)
+    }
+    public override func build() -> Services.Group.Containers.MembershipRequestMetaV1 {
+         checkInitialized()
+         return buildPartial()
+    }
+    public func buildPartial() -> Services.Group.Containers.MembershipRequestMetaV1 {
+      var returnMe:Services.Group.Containers.MembershipRequestMetaV1 = builderResult
+      return returnMe
+    }
+    public func mergeFrom(other:Services.Group.Containers.MembershipRequestMetaV1) -> Services.Group.Containers.MembershipRequestMetaV1Builder {
+      if (other == Services.Group.Containers.MembershipRequestMetaV1()) {
+       return self
+      }
+      if other.hasVersion {
+           version = other.version
+      }
+      if other.hasKey {
+           key = other.key
+      }
+      if other.hasValue {
+           value = other.value
+      }
+      mergeUnknownFields(other.unknownFields)
+      return self
+    }
+    public override func mergeFromCodedInputStream(input:CodedInputStream) ->Services.Group.Containers.MembershipRequestMetaV1Builder {
+         return mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
+    }
+    public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> Services.Group.Containers.MembershipRequestMetaV1Builder {
+      var unknownFieldsBuilder:UnknownFieldSetBuilder = UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
+      while (true) {
+        var tag = input.readTag()
+        switch tag {
+        case 0: 
+          self.unknownFields = unknownFieldsBuilder.build()
+          return self
+
+        case 8 :
+          version = input.readUInt32()
+
+        case 18 :
+          key = input.readString()
+
+        case 26 :
+          value = input.readString()
+
+        default:
+          if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
+             unknownFields = unknownFieldsBuilder.build()
+             return self
+          }
+        }
+      }
+    }
+  }
+
+  final public class MembershipRequestV1 : GeneratedMessage, GeneratedMessageProtocol {
+    override public subscript(key: String) -> Any? {
+           switch key {
+           case "version": return version
+           case "id": return id
+           case "status": return self.status
+           case "requesterProfileId": return requesterProfileId
+           case "approverProfileId": return approverProfileId
+           case "groupKey": return groupKey
+           case "provider": return self.provider
+           case "created": return created
+           default: return nil
+           }
+    }
+
+    public private(set) var hasVersion:Bool = false
+    public private(set) var version:UInt32 = UInt32(1)
+
+    public private(set) var hasId:Bool = false
+    public private(set) var id:String = ""
+
+    public private(set) var status:Services.Group.Containers.MembershipRequestStatusV1 = Services.Group.Containers.MembershipRequestStatusV1.Pending
+    public private(set) var hasStatus:Bool = false
+    public private(set) var hasRequesterProfileId:Bool = false
+    public private(set) var requesterProfileId:String = ""
+
+    public private(set) var hasApproverProfileId:Bool = false
+    public private(set) var approverProfileId:String = ""
+
+    public private(set) var hasGroupKey:Bool = false
+    public private(set) var groupKey:String = ""
+
+    public private(set) var provider:Services.Group.Containers.GroupProviderV1 = Services.Group.Containers.GroupProviderV1.Google
+    public private(set) var hasProvider:Bool = false
+    public private(set) var hasCreated:Bool = false
+    public private(set) var created:String = ""
+
+    public private(set) var meta:Array<Services.Group.Containers.MembershipRequestMetaV1>  = Array<Services.Group.Containers.MembershipRequestMetaV1>()
+    required public init() {
+         super.init()
+    }
+    override public func isInitialized() -> Bool {
+     return true
+    }
+    override public func writeToCodedOutputStream(output:CodedOutputStream) {
+      if hasVersion {
+        output.writeUInt32(1, value:version)
+      }
+      if hasId {
+        output.writeString(2, value:id)
+      }
+      if hasStatus {
+        output.writeEnum(3, value:status.rawValue)
+      }
+      if hasRequesterProfileId {
+        output.writeString(4, value:requesterProfileId)
+      }
+      if hasApproverProfileId {
+        output.writeString(5, value:approverProfileId)
+      }
+      if hasGroupKey {
+        output.writeString(6, value:groupKey)
+      }
+      if hasProvider {
+        output.writeEnum(7, value:provider.rawValue)
+      }
+      for oneElementmeta in meta {
+          output.writeMessage(8, value:oneElementmeta)
+      }
+      if hasCreated {
+        output.writeString(9, value:created)
+      }
+      unknownFields.writeToCodedOutputStream(output)
+    }
+    override public func serializedSize() -> Int32 {
+      var serialize_size:Int32 = memoizedSerializedSize
+      if serialize_size != -1 {
+       return serialize_size
+      }
+
+      serialize_size = 0
+      if hasVersion {
+        serialize_size += version.computeUInt32Size(1)
+      }
+      if hasId {
+        serialize_size += id.computeStringSize(2)
+      }
+      if (hasStatus) {
+        serialize_size += status.rawValue.computeEnumSize(3)
+      }
+      if hasRequesterProfileId {
+        serialize_size += requesterProfileId.computeStringSize(4)
+      }
+      if hasApproverProfileId {
+        serialize_size += approverProfileId.computeStringSize(5)
+      }
+      if hasGroupKey {
+        serialize_size += groupKey.computeStringSize(6)
+      }
+      if (hasProvider) {
+        serialize_size += provider.rawValue.computeEnumSize(7)
+      }
+      for oneElementmeta in meta {
+          serialize_size += oneElementmeta.computeMessageSize(8)
+      }
+      if hasCreated {
+        serialize_size += created.computeStringSize(9)
+      }
+      serialize_size += unknownFields.serializedSize()
+      memoizedSerializedSize = serialize_size
+      return serialize_size
+    }
+    public class func parseFromData(data:NSData) -> Services.Group.Containers.MembershipRequestV1 {
+      return Services.Group.Containers.MembershipRequestV1.builder().mergeFromData(data, extensionRegistry:Services.Group.Containers.ContainersRoot.sharedInstance.extensionRegistry).build()
+    }
+    public class func parseFromData(data:NSData, extensionRegistry:ExtensionRegistry) -> Services.Group.Containers.MembershipRequestV1 {
+      return Services.Group.Containers.MembershipRequestV1.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
+    }
+    public class func parseFromInputStream(input:NSInputStream) -> Services.Group.Containers.MembershipRequestV1 {
+      return Services.Group.Containers.MembershipRequestV1.builder().mergeFromInputStream(input).build()
+    }
+    public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->Services.Group.Containers.MembershipRequestV1 {
+      return Services.Group.Containers.MembershipRequestV1.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
+    }
+    public class func parseFromCodedInputStream(input:CodedInputStream) -> Services.Group.Containers.MembershipRequestV1 {
+      return Services.Group.Containers.MembershipRequestV1.builder().mergeFromCodedInputStream(input).build()
+    }
+    public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> Services.Group.Containers.MembershipRequestV1 {
+      return Services.Group.Containers.MembershipRequestV1.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
+    }
+    public class func builder() -> Services.Group.Containers.MembershipRequestV1Builder {
+      return Services.Group.Containers.MembershipRequestV1.classBuilder() as! Services.Group.Containers.MembershipRequestV1Builder
+    }
+    public func builder() -> Services.Group.Containers.MembershipRequestV1Builder {
+      return classBuilder() as! Services.Group.Containers.MembershipRequestV1Builder
+    }
+    public override class func classBuilder() -> MessageBuilder {
+      return Services.Group.Containers.MembershipRequestV1Builder()
+    }
+    public override func classBuilder() -> MessageBuilder {
+      return Services.Group.Containers.MembershipRequestV1.builder()
+    }
+    public func toBuilder() -> Services.Group.Containers.MembershipRequestV1Builder {
+      return Services.Group.Containers.MembershipRequestV1.builderWithPrototype(self)
+    }
+    public class func builderWithPrototype(prototype:Services.Group.Containers.MembershipRequestV1) -> Services.Group.Containers.MembershipRequestV1Builder {
+      return Services.Group.Containers.MembershipRequestV1.builder().mergeFrom(prototype)
+    }
+    override public func writeDescriptionTo(inout output:String, indent:String) {
+      if hasVersion {
+        output += "\(indent) version: \(version) \n"
+      }
+      if hasId {
+        output += "\(indent) id: \(id) \n"
+      }
+      if (hasStatus) {
+        output += "\(indent) status: \(status.rawValue)\n"
+      }
+      if hasRequesterProfileId {
+        output += "\(indent) requesterProfileId: \(requesterProfileId) \n"
+      }
+      if hasApproverProfileId {
+        output += "\(indent) approverProfileId: \(approverProfileId) \n"
+      }
+      if hasGroupKey {
+        output += "\(indent) groupKey: \(groupKey) \n"
+      }
+      if (hasProvider) {
+        output += "\(indent) provider: \(provider.rawValue)\n"
+      }
+      var metaElementIndex:Int = 0
+      for oneElementmeta in meta {
+          output += "\(indent) meta[\(metaElementIndex)] {\n"
+          oneElementmeta.writeDescriptionTo(&output, indent:"\(indent)  ")
+          output += "\(indent)}\n"
+          metaElementIndex++
+      }
+      if hasCreated {
+        output += "\(indent) created: \(created) \n"
+      }
+      unknownFields.writeDescriptionTo(&output, indent:indent)
+    }
+    override public var hashValue:Int {
+        get {
+            var hashCode:Int = 7
+            if hasVersion {
+               hashCode = (hashCode &* 31) &+ version.hashValue
+            }
+            if hasId {
+               hashCode = (hashCode &* 31) &+ id.hashValue
+            }
+            if hasStatus {
+               hashCode = (hashCode &* 31) &+ Int(status.rawValue)
+            }
+            if hasRequesterProfileId {
+               hashCode = (hashCode &* 31) &+ requesterProfileId.hashValue
+            }
+            if hasApproverProfileId {
+               hashCode = (hashCode &* 31) &+ approverProfileId.hashValue
+            }
+            if hasGroupKey {
+               hashCode = (hashCode &* 31) &+ groupKey.hashValue
+            }
+            if hasProvider {
+               hashCode = (hashCode &* 31) &+ Int(provider.rawValue)
+            }
+            for oneElementmeta in meta {
+                hashCode = (hashCode &* 31) &+ oneElementmeta.hashValue
+            }
+            if hasCreated {
+               hashCode = (hashCode &* 31) &+ created.hashValue
+            }
+            hashCode = (hashCode &* 31) &+  unknownFields.hashValue
+            return hashCode
+        }
+    }
+
+
+    //Meta information declaration start
+
+    override public class func className() -> String {
+        return "Services.Group.Containers.MembershipRequestV1"
+    }
+    override public func className() -> String {
+        return "Services.Group.Containers.MembershipRequestV1"
+    }
+    override public func classMetaType() -> GeneratedMessage.Type {
+        return Services.Group.Containers.MembershipRequestV1.self
+    }
+    //Meta information declaration end
+
+  }
+
+  final public class MembershipRequestV1Builder : GeneratedMessageBuilder {
+    private var builderResult:Services.Group.Containers.MembershipRequestV1
+
+    required override public init () {
+       builderResult = Services.Group.Containers.MembershipRequestV1()
+       super.init()
+    }
+    public var hasVersion:Bool {
+         get {
+              return builderResult.hasVersion
+         }
+    }
+    public var version:UInt32 {
+         get {
+              return builderResult.version
+         }
+         set (value) {
+             builderResult.hasVersion = true
+             builderResult.version = value
+         }
+    }
+    public func setVersion(value:UInt32)-> Services.Group.Containers.MembershipRequestV1Builder {
+      self.version = value
+      return self
+    }
+    public func clearVersion() -> Services.Group.Containers.MembershipRequestV1Builder{
+         builderResult.hasVersion = false
+         builderResult.version = UInt32(1)
+         return self
+    }
+    public var hasId:Bool {
+         get {
+              return builderResult.hasId
+         }
+    }
+    public var id:String {
+         get {
+              return builderResult.id
+         }
+         set (value) {
+             builderResult.hasId = true
+             builderResult.id = value
+         }
+    }
+    public func setId(value:String)-> Services.Group.Containers.MembershipRequestV1Builder {
+      self.id = value
+      return self
+    }
+    public func clearId() -> Services.Group.Containers.MembershipRequestV1Builder{
+         builderResult.hasId = false
+         builderResult.id = ""
+         return self
+    }
+      public var hasStatus:Bool{
+          get {
+              return builderResult.hasStatus
+          }
+      }
+      public var status:Services.Group.Containers.MembershipRequestStatusV1 {
+          get {
+              return builderResult.status
+          }
+          set (value) {
+              builderResult.hasStatus = true
+              builderResult.status = value
+          }
+      }
+      public func setStatus(value:Services.Group.Containers.MembershipRequestStatusV1)-> Services.Group.Containers.MembershipRequestV1Builder {
+        self.status = value
+        return self
+      }
+      public func clearStatus() -> Services.Group.Containers.MembershipRequestV1Builder {
+         builderResult.hasStatus = false
+         builderResult.status = .Pending
+         return self
+      }
+    public var hasRequesterProfileId:Bool {
+         get {
+              return builderResult.hasRequesterProfileId
+         }
+    }
+    public var requesterProfileId:String {
+         get {
+              return builderResult.requesterProfileId
+         }
+         set (value) {
+             builderResult.hasRequesterProfileId = true
+             builderResult.requesterProfileId = value
+         }
+    }
+    public func setRequesterProfileId(value:String)-> Services.Group.Containers.MembershipRequestV1Builder {
+      self.requesterProfileId = value
+      return self
+    }
+    public func clearRequesterProfileId() -> Services.Group.Containers.MembershipRequestV1Builder{
+         builderResult.hasRequesterProfileId = false
+         builderResult.requesterProfileId = ""
+         return self
+    }
+    public var hasApproverProfileId:Bool {
+         get {
+              return builderResult.hasApproverProfileId
+         }
+    }
+    public var approverProfileId:String {
+         get {
+              return builderResult.approverProfileId
+         }
+         set (value) {
+             builderResult.hasApproverProfileId = true
+             builderResult.approverProfileId = value
+         }
+    }
+    public func setApproverProfileId(value:String)-> Services.Group.Containers.MembershipRequestV1Builder {
+      self.approverProfileId = value
+      return self
+    }
+    public func clearApproverProfileId() -> Services.Group.Containers.MembershipRequestV1Builder{
+         builderResult.hasApproverProfileId = false
+         builderResult.approverProfileId = ""
+         return self
+    }
+    public var hasGroupKey:Bool {
+         get {
+              return builderResult.hasGroupKey
+         }
+    }
+    public var groupKey:String {
+         get {
+              return builderResult.groupKey
+         }
+         set (value) {
+             builderResult.hasGroupKey = true
+             builderResult.groupKey = value
+         }
+    }
+    public func setGroupKey(value:String)-> Services.Group.Containers.MembershipRequestV1Builder {
+      self.groupKey = value
+      return self
+    }
+    public func clearGroupKey() -> Services.Group.Containers.MembershipRequestV1Builder{
+         builderResult.hasGroupKey = false
+         builderResult.groupKey = ""
+         return self
+    }
+      public var hasProvider:Bool{
+          get {
+              return builderResult.hasProvider
+          }
+      }
+      public var provider:Services.Group.Containers.GroupProviderV1 {
+          get {
+              return builderResult.provider
+          }
+          set (value) {
+              builderResult.hasProvider = true
+              builderResult.provider = value
+          }
+      }
+      public func setProvider(value:Services.Group.Containers.GroupProviderV1)-> Services.Group.Containers.MembershipRequestV1Builder {
+        self.provider = value
+        return self
+      }
+      public func clearProvider() -> Services.Group.Containers.MembershipRequestV1Builder {
+         builderResult.hasProvider = false
+         builderResult.provider = .Google
+         return self
+      }
+    public var meta:Array<Services.Group.Containers.MembershipRequestMetaV1> {
+         get {
+             return builderResult.meta
+         }
+         set (value) {
+             builderResult.meta = value
+         }
+    }
+    public func setMeta(value:Array<Services.Group.Containers.MembershipRequestMetaV1>)-> Services.Group.Containers.MembershipRequestV1Builder {
+      self.meta = value
+      return self
+    }
+    public func clearMeta() -> Services.Group.Containers.MembershipRequestV1Builder {
+      builderResult.meta.removeAll(keepCapacity: false)
+      return self
+    }
+    public var hasCreated:Bool {
+         get {
+              return builderResult.hasCreated
+         }
+    }
+    public var created:String {
+         get {
+              return builderResult.created
+         }
+         set (value) {
+             builderResult.hasCreated = true
+             builderResult.created = value
+         }
+    }
+    public func setCreated(value:String)-> Services.Group.Containers.MembershipRequestV1Builder {
+      self.created = value
+      return self
+    }
+    public func clearCreated() -> Services.Group.Containers.MembershipRequestV1Builder{
+         builderResult.hasCreated = false
+         builderResult.created = ""
+         return self
+    }
+    override public var internalGetResult:GeneratedMessage {
+         get {
+            return builderResult
+         }
+    }
+    public override func clear() -> Services.Group.Containers.MembershipRequestV1Builder {
+      builderResult = Services.Group.Containers.MembershipRequestV1()
+      return self
+    }
+    public override func clone() -> Services.Group.Containers.MembershipRequestV1Builder {
+      return Services.Group.Containers.MembershipRequestV1.builderWithPrototype(builderResult)
+    }
+    public override func build() -> Services.Group.Containers.MembershipRequestV1 {
+         checkInitialized()
+         return buildPartial()
+    }
+    public func buildPartial() -> Services.Group.Containers.MembershipRequestV1 {
+      var returnMe:Services.Group.Containers.MembershipRequestV1 = builderResult
+      return returnMe
+    }
+    public func mergeFrom(other:Services.Group.Containers.MembershipRequestV1) -> Services.Group.Containers.MembershipRequestV1Builder {
+      if (other == Services.Group.Containers.MembershipRequestV1()) {
+       return self
+      }
+      if other.hasVersion {
+           version = other.version
+      }
+      if other.hasId {
+           id = other.id
+      }
+      if other.hasStatus {
+           status = other.status
+      }
+      if other.hasRequesterProfileId {
+           requesterProfileId = other.requesterProfileId
+      }
+      if other.hasApproverProfileId {
+           approverProfileId = other.approverProfileId
+      }
+      if other.hasGroupKey {
+           groupKey = other.groupKey
+      }
+      if other.hasProvider {
+           provider = other.provider
+      }
+      if !other.meta.isEmpty  {
+         builderResult.meta += other.meta
+      }
+      if other.hasCreated {
+           created = other.created
+      }
+      mergeUnknownFields(other.unknownFields)
+      return self
+    }
+    public override func mergeFromCodedInputStream(input:CodedInputStream) ->Services.Group.Containers.MembershipRequestV1Builder {
+         return mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
+    }
+    public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> Services.Group.Containers.MembershipRequestV1Builder {
+      var unknownFieldsBuilder:UnknownFieldSetBuilder = UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
+      while (true) {
+        var tag = input.readTag()
+        switch tag {
+        case 0: 
+          self.unknownFields = unknownFieldsBuilder.build()
+          return self
+
+        case 8 :
+          version = input.readUInt32()
+
+        case 18 :
+          id = input.readString()
+
+        case 24 :
+          let valueIntstatus = input.readEnum()
+          if let enumsstatus = Services.Group.Containers.MembershipRequestStatusV1(rawValue:valueIntstatus){
+               status = enumsstatus
+          } else {
+               unknownFieldsBuilder.mergeVarintField(3, value:Int64(valueIntstatus))
+          }
+
+        case 34 :
+          requesterProfileId = input.readString()
+
+        case 42 :
+          approverProfileId = input.readString()
+
+        case 50 :
+          groupKey = input.readString()
+
+        case 56 :
+          let valueIntprovider = input.readEnum()
+          if let enumsprovider = Services.Group.Containers.GroupProviderV1(rawValue:valueIntprovider){
+               provider = enumsprovider
+          } else {
+               unknownFieldsBuilder.mergeVarintField(7, value:Int64(valueIntprovider))
+          }
+
+        case 66 :
+          var subBuilder = Services.Group.Containers.MembershipRequestMetaV1.builder()
+          input.readMessage(subBuilder,extensionRegistry:extensionRegistry)
+          meta += [subBuilder.buildPartial()]
+
+        case 74 :
+          created = input.readString()
 
         default:
           if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {

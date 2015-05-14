@@ -20,7 +20,7 @@ message GroupV1 {
     optional string email = 3;
     optional string name = 4;
     optional string display_name = 5;
-    optional string description = 6;
+    optional string group_description = 6;
     repeated string aliases = 7;
     optional uint32 members_count = 8;
     optional GroupProviderV1 provider = 9;
@@ -50,4 +50,28 @@ message MemberV1 {
     optional string id = 2;
     optional services.profile.containers.ProfileV1 profile = 3;
     optional RoleV1 role = 4;
+}
+
+enum MembershipRequestStatusV1 {
+    PENDING = 0;
+    APPROVED = 1;
+    DENIED = 2;
+}
+
+message MembershipRequestMetaV1 {
+    optional uint32 version = 1 [default = 1];
+    optional string key = 2;
+    optional string value = 3;
+}
+
+message MembershipRequestV1 {
+    optional uint32 version = 1 [default = 1];
+    optional string id = 2;
+    optional MembershipRequestStatusV1 status = 3;
+    optional string requester_profile_id = 4;
+    optional string approver_profile_id = 5;
+    optional string group_key = 6;
+    optional GroupProviderV1 provider = 7;
+    repeated MembershipRequestMetaV1 meta = 8;
+    optional string created = 9;
 }
