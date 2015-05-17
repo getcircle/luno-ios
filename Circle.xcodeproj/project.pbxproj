@@ -170,8 +170,8 @@
 		8F77950C1A917FB400BEF6EA /* CircleCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F77950B1A917FB400BEF6EA /* CircleCache.swift */; };
 		8F7795151A92769E00BEF6EA /* QuickActionsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7795131A92769E00BEF6EA /* QuickActionsCollectionViewCell.swift */; };
 		8F7795161A92769E00BEF6EA /* QuickActionsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F7795141A92769E00BEF6EA /* QuickActionsCollectionViewCell.xib */; };
-		8F7E2DC61A8FC00000B8548D /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7E2DC41A8FC00000B8548D /* SplashViewController.swift */; };
-		8F7E2DC71A8FC00000B8548D /* SplashViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F7E2DC51A8FC00000B8548D /* SplashViewController.xib */; };
+		8F7E2DC61A8FC00000B8548D /* PasscodeTouchIDSplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7E2DC41A8FC00000B8548D /* PasscodeTouchIDSplashViewController.swift */; };
+		8F7E2DC71A8FC00000B8548D /* PasscodeTouchIDSplashViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F7E2DC51A8FC00000B8548D /* PasscodeTouchIDSplashViewController.xib */; };
 		8F7E2DCD1A8FDBB600B8548D /* PasscodeTouchIDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7E2DCB1A8FDBB500B8548D /* PasscodeTouchIDViewController.swift */; };
 		8F7E2DCE1A8FDBB600B8548D /* PasscodeTouchIDViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F7E2DCC1A8FDBB500B8548D /* PasscodeTouchIDViewController.xib */; };
 		8F809F871A79DD6900029A47 /* NotesOverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F809F851A79DD6900029A47 /* NotesOverviewViewController.swift */; };
@@ -538,8 +538,8 @@
 		8F77950B1A917FB400BEF6EA /* CircleCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleCache.swift; sourceTree = "<group>"; };
 		8F7795131A92769E00BEF6EA /* QuickActionsCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickActionsCollectionViewCell.swift; sourceTree = "<group>"; };
 		8F7795141A92769E00BEF6EA /* QuickActionsCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuickActionsCollectionViewCell.xib; sourceTree = "<group>"; };
-		8F7E2DC41A8FC00000B8548D /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
-		8F7E2DC51A8FC00000B8548D /* SplashViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SplashViewController.xib; sourceTree = "<group>"; };
+		8F7E2DC41A8FC00000B8548D /* PasscodeTouchIDSplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasscodeTouchIDSplashViewController.swift; sourceTree = "<group>"; };
+		8F7E2DC51A8FC00000B8548D /* PasscodeTouchIDSplashViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PasscodeTouchIDSplashViewController.xib; sourceTree = "<group>"; };
 		8F7E2DCB1A8FDBB500B8548D /* PasscodeTouchIDViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasscodeTouchIDViewController.swift; sourceTree = "<group>"; };
 		8F7E2DCC1A8FDBB500B8548D /* PasscodeTouchIDViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PasscodeTouchIDViewController.xib; sourceTree = "<group>"; };
 		8F809F851A79DD6900029A47 /* NotesOverviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotesOverviewViewController.swift; sourceTree = "<group>"; };
@@ -832,7 +832,7 @@
 				8FF297FC1A4A4DCA00306CFC /* SearchViewController.swift */,
 				8F9F60CA1A8C439E00FCAA25 /* SettingsViewController.swift */,
 				BFF5E6F31A814C2C00827757 /* SocialConnectViewController.swift */,
-				8F7E2DC41A8FC00000B8548D /* SplashViewController.swift */,
+				8F7E2DC41A8FC00000B8548D /* PasscodeTouchIDSplashViewController.swift */,
 				8F7400221A6862BF00D96B60 /* TagDetailViewController.swift */,
 				BF6ACE351AC75057009F2B05 /* TagInputViewController.swift */,
 				8FF298431A4DF38E00306CFC /* TagScrollingSelectorViewController.swift */,
@@ -991,7 +991,7 @@
 				8F9F60D41A8C481F00FCAA25 /* SettingsCollectionViewCell.xib */,
 				8F9F60CB1A8C439E00FCAA25 /* SettingsViewController.xib */,
 				8F9F60AE1A88738100FCAA25 /* SocialConnectCollectionViewCell.xib */,
-				8F7E2DC51A8FC00000B8548D /* SplashViewController.xib */,
+				8F7E2DC51A8FC00000B8548D /* PasscodeTouchIDSplashViewController.xib */,
 				BF768A731AB66E4700D677B1 /* StatTileCollectionViewCell.xib */,
 				8FF298461A4E050100306CFC /* TagCollectionViewCell.xib */,
 				8F74001C1A684F2400D96B60 /* TagHeaderCollectionReusableView.xib */,
@@ -1449,7 +1449,7 @@
 				8F809F881A79DD6900029A47 /* NotesOverviewViewController.xib in Resources */,
 				8F0ADD4F1AC5344E00A44B68 /* Loader_00051@2x.png in Resources */,
 				BFCFDB051A915249009A5FD4 /* EducationCollectionViewCell.xib in Resources */,
-				8F7E2DC71A8FC00000B8548D /* SplashViewController.xib in Resources */,
+				8F7E2DC71A8FC00000B8548D /* PasscodeTouchIDSplashViewController.xib in Resources */,
 				8F0ADD541AC5344E00A44B68 /* Loader_00056@2x.png in Resources */,
 				8F0004A51A2419730096477A /* LaunchScreen.xib in Resources */,
 				8F0ADD381AC5344E00A44B68 /* Loader_00028@2x.png in Resources */,
@@ -1727,7 +1727,7 @@
 				8FA6A4AA1AFDCA8100ACC39D /* GroupCollectionViewCell.swift in Sources */,
 				BF768A621AB402D100D677B1 /* PaginatorExtension.swift in Sources */,
 				8F22CBF81A29A8EB0026376E /* AuthViewController.swift in Sources */,
-				8F7E2DC61A8FC00000B8548D /* SplashViewController.swift in Sources */,
+				8F7E2DC61A8FC00000B8548D /* PasscodeTouchIDSplashViewController.swift in Sources */,
 				BF6ACE371AC75057009F2B05 /* TagInputViewController.swift in Sources */,
 				8FC8780B1AB276B1003FDB27 /* ProfileDetailViewController.swift in Sources */,
 				BF7B23901A70894100137BCB /* ProfileDetailsViewController.swift in Sources */,

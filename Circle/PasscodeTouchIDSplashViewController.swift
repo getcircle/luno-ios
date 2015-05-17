@@ -1,5 +1,5 @@
 //
-//  SplashViewController.swift
+//  PasscodeTouchIDSplashViewController.swift
 //  Circle
 //
 //  Created by Ravi Rani on 2/14/15.
@@ -9,7 +9,7 @@
 import UIKit
 import VENTouchLock
 
-class SplashViewController: VENTouchLockSplashViewController {
+class PasscodeTouchIDSplashViewController: VENTouchLockSplashViewController {
 
     @IBOutlet weak private(set) var touchIDButton: UIButton!
     @IBOutlet weak private(set) var touchIDButtonLabel: UILabel!
@@ -19,7 +19,7 @@ class SplashViewController: VENTouchLockSplashViewController {
     @IBOutlet weak private(set) var signInToDifferentAccountButton: UIButton!
     
     init() {
-        super.init(nibName: "SplashViewController", bundle: nil)
+        super.init(nibName: "PasscodeTouchIDSplashViewController", bundle: nil)
     }
 
     required init(coder aDecoder: NSCoder) {

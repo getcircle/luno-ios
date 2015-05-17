@@ -596,7 +596,7 @@ class AuthViewController: UIViewController {
             keychainAccount: AuthPasscode, 
             touchIDReason: NSLocalizedString("Touch to unlock circle", comment: "Help text for touch ID alert"),
             passcodeAttemptLimit: 10, 
-            splashViewControllerClass: SplashViewController.self
+            splashViewControllerClass: PasscodeTouchIDSplashViewController.self
         )
     }
 

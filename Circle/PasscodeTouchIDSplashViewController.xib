@@ -5,7 +5,7 @@
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SplashViewController" customModule="circle" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PasscodeTouchIDSplashViewController" customModule="circle" customModuleProvider="target">
             <connections>
                 <outlet property="passcodeButton" destination="k2U-e3-nEz" id="x3b-lg-RL8"/>
                 <outlet property="passcodeButtonLabel" destination="WNg-w1-Jto" id="d6g-7v-KKs"/>
