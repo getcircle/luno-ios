@@ -30,7 +30,7 @@ extension Services.Group.Actions {
         completionHandler: GetGroupProfilesCompletionHandler?
     ) {
         let requestBuilder = Services.Group.Actions.ListMembers.RequestV1.builder()
-        requestBuilder.groupId = groupId
+        requestBuilder.groupKey = groupId
         requestBuilder.role = role
         requestBuilder.provider = .Google
         

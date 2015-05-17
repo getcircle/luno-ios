@@ -32,11 +32,11 @@ class GroupDetailDataSource: CardDataSource {
         )
         appendCard(placeholderHeaderCard)
         
-        if selectedGroup.description_.trimWhitespace() != "" {
+        if selectedGroup.groupDescription.trimWhitespace() != "" {
             // Add a text value card for description
             let groupDescriptionCard = Card(cardType: .TextValue, title: "")
             groupDescriptionCard.sectionInset = sectionInset
-            groupDescriptionCard.addContent(content: [selectedGroup.description_])
+            groupDescriptionCard.addContent(content: [selectedGroup.groupDescription])
             appendCard(groupDescriptionCard)
         }
         

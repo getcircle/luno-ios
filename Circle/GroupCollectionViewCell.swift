@@ -50,7 +50,7 @@ class GroupCollectionViewCell: CircleCollectionViewCell {
     override func setData(data: AnyObject) {
         if let group = data as? Services.Group.Containers.GroupV1 {
             groupNameLabel.text = group.name
-            descriptionLabel.text = group.description_
+            descriptionLabel.text = group.groupDescription
             if group.membersCount == 1 {
                 numberOfMembersLabel.text = AppStrings.GroupOneMemberCount
             }
@@ -77,7 +77,7 @@ class GroupCollectionViewCell: CircleCollectionViewCell {
         height += 5.0
         height += numberOfMembersLabel.intrinsicContentSize().height
 
-        if group.description_.trimWhitespace() != "" {
+        if group.groupDescription.trimWhitespace() != "" {
             height += 5.0
             height += descriptionLabel.intrinsicContentSize().height
         }

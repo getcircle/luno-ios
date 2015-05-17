@@ -52,7 +52,7 @@ class ProfilesDataSource: CardDataSource {
     
     func configureForGroup(group: Services.Group.Containers.GroupV1, role: Services.Group.Containers.RoleV1) {
         let requestBuilder = Services.Group.Actions.ListMembers.RequestV1.builder()
-        requestBuilder.groupId = group.id
+        requestBuilder.groupKey = group.id
         requestBuilder.role = role
         let client = ServiceClient(serviceName: "group")
         let serviceRequest = client.buildRequest(
