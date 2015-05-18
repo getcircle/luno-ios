@@ -116,6 +116,8 @@
 		BF79ED7A1AF803DC00A90034 /* ServicesSyncActionsSync_Sync.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF79ED761AF803DC00A90034 /* ServicesSyncActionsSync_Sync.pb.swift */; };
 		BF79ED7B1AF803DC00A90034 /* ServicesSyncContainersPayload_Payload.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF79ED771AF803DC00A90034 /* ServicesSyncContainersPayload_Payload.pb.swift */; };
 		BF79ED7C1AF803DC00A90034 /* ServicesSyncContainersSource_Source.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF79ED781AF803DC00A90034 /* ServicesSyncContainersSource_Source.pb.swift */; };
+		BF7A4B051B0A64D9007B6BFB /* ServicesUserActionsGetAuthenticationInstructions_Get_authentication_instructions.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7A4B031B0A64D9007B6BFB /* ServicesUserActionsGetAuthenticationInstructions_Get_authentication_instructions.pb.swift */; };
+		BF7A4B061B0A64D9007B6BFB /* ServicesRegistry_All.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7A4B041B0A64D9007B6BFB /* ServicesRegistry_All.pb.swift */; };
 		BF98CB751AE08CA400F96BFE /* ServicesRegistryRequests_Requests.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF98CB721AE08CA400F96BFE /* ServicesRegistryRequests_Requests.pb.swift */; };
 		BF98CB761AE08CA400F96BFE /* ServicesRegistryResponses_Responses.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF98CB731AE08CA400F96BFE /* ServicesRegistryResponses_Responses.pb.swift */; };
 		BFC6CEF51A44B58B0081F45B /* ProtobufRegistry.h in Headers */ = {isa = PBXBuildFile; fileRef = BFC6CEF41A44B58B0081F45B /* ProtobufRegistry.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -244,6 +246,8 @@
 		BF79ED761AF803DC00A90034 /* ServicesSyncActionsSync_Sync.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesSyncActionsSync_Sync.pb.swift; sourceTree = "<group>"; };
 		BF79ED771AF803DC00A90034 /* ServicesSyncContainersPayload_Payload.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesSyncContainersPayload_Payload.pb.swift; sourceTree = "<group>"; };
 		BF79ED781AF803DC00A90034 /* ServicesSyncContainersSource_Source.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesSyncContainersSource_Source.pb.swift; sourceTree = "<group>"; };
+		BF7A4B031B0A64D9007B6BFB /* ServicesUserActionsGetAuthenticationInstructions_Get_authentication_instructions.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesUserActionsGetAuthenticationInstructions_Get_authentication_instructions.pb.swift; sourceTree = "<group>"; };
+		BF7A4B041B0A64D9007B6BFB /* ServicesRegistry_All.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesRegistry_All.pb.swift; sourceTree = "<group>"; };
 		BF98CB721AE08CA400F96BFE /* ServicesRegistryRequests_Requests.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesRegistryRequests_Requests.pb.swift; sourceTree = "<group>"; };
 		BF98CB731AE08CA400F96BFE /* ServicesRegistryResponses_Responses.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesRegistryResponses_Responses.pb.swift; sourceTree = "<group>"; };
 		BFC6CEEF1A44B58B0081F45B /* ProtobufRegistry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ProtobufRegistry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -363,6 +367,7 @@
 				BF1B13F81AE1944300F36620 /* ServicesProfileActionsRemoveTags_Remove_tags.pb.swift */,
 				BF1B13F91AE1944300F36620 /* ServicesProfileActionsUpdateProfile_Update_profile.pb.swift */,
 				BF5AF6F11AE2E231000E876E /* ServicesProfileContainers_Containers.pb.swift */,
+				BF7A4B041B0A64D9007B6BFB /* ServicesRegistry_All.pb.swift */,
 				BF98CB721AE08CA400F96BFE /* ServicesRegistryRequests_Requests.pb.swift */,
 				BF98CB731AE08CA400F96BFE /* ServicesRegistryResponses_Responses.pb.swift */,
 				BF1B13FD1AE1944300F36620 /* ServicesResumeActionsBulkCreateCompanies_Bulk_create_companies.pb.swift */,
@@ -383,6 +388,7 @@
 				BF1B14071AE1944300F36620 /* ServicesUserActionsCompleteAuthorization_Complete_authorization.pb.swift */,
 				BF1B14081AE1944300F36620 /* ServicesUserActionsCreateUser_Create_user.pb.swift */,
 				BF1B14091AE1944300F36620 /* ServicesUserActionsDeleteIdentity_Delete_identity.pb.swift */,
+				BF7A4B031B0A64D9007B6BFB /* ServicesUserActionsGetAuthenticationInstructions_Get_authentication_instructions.pb.swift */,
 				BF1B140A1AE1944300F36620 /* ServicesUserActionsGetAuthorizationInstructions_Get_authorization_instructions.pb.swift */,
 				BF1B140B1AE1944300F36620 /* ServicesUserActionsGetIdentities_Get_identities.pb.swift */,
 				BF1B140C1AE1944300F36620 /* ServicesUserActionsGetUser_Get_user.pb.swift */,
@@ -607,6 +613,7 @@
 				BF1B14561AE1944300F36620 /* ServicesSearchActionsSearch_Search.pb.swift in Sources */,
 				BF1B14571AE1944300F36620 /* ServicesSearchContainersSearch_Search.pb.swift in Sources */,
 				BF1B14581AE1944300F36620 /* ServicesUserActionsAuthenticateUser_Authenticate_user.pb.swift in Sources */,
+				BF7A4B051B0A64D9007B6BFB /* ServicesUserActionsGetAuthenticationInstructions_Get_authentication_instructions.pb.swift in Sources */,
 				BF1B14591AE1944300F36620 /* ServicesUserActionsBulkCreateUsers_Bulk_create_users.pb.swift in Sources */,
 				BF1B145A1AE1944300F36620 /* ServicesUserActionsCompleteAuthorization_Complete_authorization.pb.swift in Sources */,
 				BF1B145B1AE1944300F36620 /* ServicesUserActionsCreateUser_Create_user.pb.swift in Sources */,
@@ -629,6 +636,7 @@
 				BF3D3CCD1AE070EF00B5780B /* ExtendableMessage.swift in Sources */,
 				BF3D3CCE1AE070EF00B5780B /* ExtensionRegistry.swift in Sources */,
 				BF3D3CCF1AE070EF00B5780B /* Field.swift in Sources */,
+				BF7A4B061B0A64D9007B6BFB /* ServicesRegistry_All.pb.swift in Sources */,
 				BF3D3CD01AE070EF00B5780B /* GeneratedMessage.swift in Sources */,
 				BF3D3CD41AE070EF00B5780B /* RingBuffer.swift in Sources */,
 				BF3D3CD51AE070EF00B5780B /* UnknownFieldSet.swift in Sources */,

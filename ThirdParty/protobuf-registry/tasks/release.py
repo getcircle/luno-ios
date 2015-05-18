@@ -1,9 +1,12 @@
-from contextlib import contextmanager
-import os
 import re
 import subprocess
 
-from invoke import task
+from invoke import (
+    run,
+    task,
+)
+
+from . import common
 
 PACKAGE_NAME = 'protobufs'
 INIT_FILE = 'python/%s/__init__.py' % (PACKAGE_NAME,)
@@ -16,19 +19,6 @@ RELEASE_MESSAGE_TEMPLATE = "Releasing version %s"
 
 class ReleaseException(Exception):
     """Exception raised if there is a failure releasing"""
-
-
-@contextmanager
-def base_directory():
-    current_path = os.getcwd()
-    os.chdir(os.path.abspath(os.path.join(
-        os.path.dirname((os.path.abspath(__file__))), '../'
-    )))
-    try:
-        yield
-    except ReleaseException as e:
-        print 'Release Exception: %s' % (e.args[0],)
-    os.chdir(current_path)
 
 
 def _update_version():
@@ -55,8 +45,12 @@ def _update_version():
             print 'releasing new version: %s' % (release_version,)
             output.append(VERSION_RE_TEMPLATE % (release_version,))
 
+    # write out the new python version
     with open(INIT_FILE, 'w') as initf:
         initf.write('\n'.join(output))
+
+    # update the javascript package version
+    run('npm version %s --no-git-tag-version' % (release_version,))
     return release_version
 
 
@@ -118,8 +112,11 @@ def _push_release_changes(release_version):
 
 @task()
 def release():
-    with base_directory():
-        release_version = _update_version()
-        _commit_release_changes(release_version)
-        _create_release_tag(release_version)
-        _push_release_changes(release_version)
+    try:
+        with common.base_directory():
+            release_version = _update_version()
+            _commit_release_changes(release_version)
+            _create_release_tag(release_version)
+            _push_release_changes(release_version)
+    except ReleaseException as e:
+        print 'Release Exception: %s' % (e.args[0],)

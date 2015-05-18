@@ -20,6 +20,7 @@ import "protobufs/services/user/actions/record_device.proto";
 import "protobufs/services/user/actions/request_access.proto";
 import "protobufs/services/user/actions/delete_identity.proto";
 import "protobufs/services/user/actions/logout.proto";
+import "protobufs/services/user/actions/get_authentication_instructions.proto";
 
 import "protobufs/services/organization/actions/create_organization.proto";
 import "protobufs/services/organization/actions/create_team.proto";
@@ -111,6 +112,7 @@ message User {
         optional services.user.actions.request_access.RequestV1 request_access = 112;
         optional services.user.actions.delete_identity.RequestV1 delete_identity = 113;
         optional services.user.actions.logout.RequestV1 logout = 114;
+        optional services.user.actions.get_authentication_instructions.RequestV1 get_authentication_instructions = 115;
     }
 }
 

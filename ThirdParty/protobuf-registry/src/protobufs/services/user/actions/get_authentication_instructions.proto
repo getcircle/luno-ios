@@ -1,0 +1,18 @@
+package services.user.actions.get_authentication_instructions;
+
+// GENERATED OPTIONS FOR: JAVA
+option java_package = "com.rhlabs.protobufs.services.user.actions.get_authentication_instructions";
+
+import "protobufs/services/user/containers.proto";
+
+message RequestV1 {
+    optional uint32 version = 1 [default = 1];
+    optional string email = 2;
+}
+
+message ResponseV1 {
+    optional uint32 version = 1 [default = 1];
+    optional services.user.containers.IdentityV1.ProviderV1 provider = 2;
+    optional bool exists = 3;
+    optional string authorization_url = 4;
+}

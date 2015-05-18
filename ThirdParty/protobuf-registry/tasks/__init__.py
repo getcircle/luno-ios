@@ -6,6 +6,7 @@ from invoke import (
 from . import (
     go,
     java,
+    js,
     python,
     release,
     rewrite,
@@ -13,7 +14,7 @@ from . import (
 )
 
 
-@task(post=[python.compile, swift.compile])
+@task(post=[python.compile, swift.compile, js.compile])
 def compile():
     print 'compiling protobufs...'
 
@@ -30,6 +31,7 @@ ns.add_collection(python)
 ns.add_collection(release)
 ns.add_collection(swift)
 ns.add_collection(rewrite)
+ns.add_collection(js)
 
 ns.add_task(compile)
 ns.add_task(full_release)

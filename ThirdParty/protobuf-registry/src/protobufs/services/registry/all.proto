@@ -1,0 +1,4 @@
+package services.registry;
+
+import "protobufs/services/registry/requests.proto";
+import "protobufs/services/registry/responses.proto";
