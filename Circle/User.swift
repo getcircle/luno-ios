@@ -24,7 +24,7 @@ typealias LogoutCompletionHandler = (error: NSError?) -> Void
 extension Services.User.Actions {
     
     static func authenticateUser(
-        backend: Services.User.Actions.AuthenticateUser.RequestV1.AuthBackendV1,
+        backend: Services.User.Containers.AuthBackend.AuthBackendV1,
         credentials: Services.User.Actions.AuthenticateUser.RequestV1.CredentialsV1,
         completionHandler: AuthenticateUserCompletionHandler?
     ) {
