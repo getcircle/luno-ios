@@ -2,17 +2,14 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AuthViewController" customModule="circle" customModuleProvider="target">
             <connections>
-                <outlet property="appLogoImageView" destination="SIq-Yl-dI4" id="Qda-Ht-5lk"/>
-                <outlet property="appNameLabel" destination="7eh-3f-DhV" id="I1t-aw-slU"/>
-                <outlet property="appNameYConstraint" destination="Txn-xi-eRN" id="lVR-n5-JET"/>
                 <outlet property="googleSignInButton" destination="cBC-Rj-jaa" id="24k-Bm-RBa"/>
-                <outlet property="googleSignInButtonBottomConstraint" destination="CWG-iT-ART" id="9dZ-mf-Kq3"/>
-                <outlet property="tagLineLabel" destination="pK5-tP-ZNS" id="hiX-b0-xSM"/>
+                <outlet property="instructionLabel" destination="xL8-RD-N8m" id="lat-Bz-cu1"/>
+                <outlet property="passwordTextField" destination="lwh-CK-sRs" id="j1o-cL-fNs"/>
+                <outlet property="signInButtonTopConstraint" destination="Gzc-1v-4ht" id="YjR-9v-1gn"/>
                 <outlet property="view" destination="ba3-xx-xRk" id="XSY-D5-AkP"/>
                 <outlet property="workEmailTextField" destination="8WP-wI-uMy" id="syZ-gC-tjA"/>
             </connections>
@@ -22,14 +19,38 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="circle" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="7eh-3f-DhV" userLabel="AppName">
-                    <rect key="frame" x="20" y="279" width="560" height="63"/>
-                    <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="46"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign in to start connecting with your co-workers" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xL8-RD-N8m" userLabel="InstructionLabel">
+                    <rect key="frame" x="15" y="79" width="570" height="22"/>
+                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cBC-Rj-jaa">
-                    <rect key="frame" x="15" y="620" width="570" height="50"/>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="email@company.com" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8WP-wI-uMy" userLabel="WorkEmailField">
+                    <rect key="frame" x="15" y="126" width="570" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="V8E-1c-zfa"/>
+                    </constraints>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="15"/>
+                    <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" keyboardAppearance="alert" returnKeyType="next"/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="ust-u8-kHs"/>
+                    </connections>
+                </textField>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="lwh-CK-sRs" userLabel="PasswordField">
+                    <rect key="frame" x="15" y="171" width="570" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="zoZ-7B-iIs"/>
+                    </constraints>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="15"/>
+                    <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" keyboardAppearance="alert" returnKeyType="go" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="1yD-rI-9uD"/>
+                    </connections>
+                </textField>
+                <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cBC-Rj-jaa" userLabel="SignInButton">
+                    <rect key="frame" x="15" y="181" width="570" height="50"/>
                     <color key="backgroundColor" red="0.0" green="0.78823529410000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="Ux6-yw-qpy"/>
@@ -38,49 +59,23 @@
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon" translatesAutoresizingMaskIntoConstraints="NO" id="SIq-Yl-dI4">
-                    <rect key="frame" x="255" y="174" width="90" height="90"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="90" id="HzY-rr-wuH"/>
-                        <constraint firstAttribute="width" secondItem="SIq-Yl-dI4" secondAttribute="height" multiplier="1:1" id="hrA-UV-R1b"/>
-                    </constraints>
-                </imageView>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" text="Know the people you work with" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="pK5-tP-ZNS" userLabel="Tagline">
-                    <rect key="frame" x="188" y="342" width="224" height="22"/>
-                    <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="16"/>
-                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="email@company.com" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8WP-wI-uMy" userLabel="WorkEmailField">
-                    <rect key="frame" x="20" y="550" width="570" height="50"/>
-                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="17"/>
-                    <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" keyboardAppearance="alert" returnKeyType="next"/>
-                    <connections>
-                        <outlet property="delegate" destination="-1" id="ust-u8-kHs"/>
-                    </connections>
-                </textField>
             </subviews>
             <color key="backgroundColor" red="0.1843137255" green="0.2156862745" blue="0.24313725489999999" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstItem="7eh-3f-DhV" firstAttribute="leading" secondItem="ba3-xx-xRk" secondAttribute="leading" constant="20" symbolic="YES" id="0ah-93-zJK"/>
+                <constraint firstItem="lwh-CK-sRs" firstAttribute="centerX" secondItem="8WP-wI-uMy" secondAttribute="centerX" id="3pq-0p-9Oi"/>
+                <constraint firstItem="xL8-RD-N8m" firstAttribute="leading" secondItem="ba3-xx-xRk" secondAttribute="leading" constant="15" id="671-8K-ZXn"/>
                 <constraint firstAttribute="trailing" secondItem="cBC-Rj-jaa" secondAttribute="trailing" constant="15" id="9xf-Wf-nAb"/>
-                <constraint firstAttribute="bottom" secondItem="cBC-Rj-jaa" secondAttribute="bottom" constant="-70" id="CWG-iT-ART"/>
-                <constraint firstItem="cBC-Rj-jaa" firstAttribute="top" secondItem="8WP-wI-uMy" secondAttribute="bottom" constant="20" id="Gzc-1v-4ht"/>
-                <constraint firstAttribute="trailing" secondItem="7eh-3f-DhV" secondAttribute="trailing" constant="20" symbolic="YES" id="MwH-ef-daQ"/>
-                <constraint firstItem="8WP-wI-uMy" firstAttribute="height" secondItem="cBC-Rj-jaa" secondAttribute="height" id="RMW-7f-qLQ"/>
-                <constraint firstItem="pK5-tP-ZNS" firstAttribute="top" secondItem="7eh-3f-DhV" secondAttribute="bottom" id="Rhe-sv-hBS"/>
-                <constraint firstAttribute="centerY" secondItem="7eh-3f-DhV" secondAttribute="centerY" constant="-10" id="Txn-xi-eRN"/>
-                <constraint firstAttribute="trailing" secondItem="pK5-tP-ZNS" secondAttribute="trailing" priority="750" constant="20" symbolic="YES" id="ayW-Ox-miN"/>
-                <constraint firstAttribute="centerX" secondItem="SIq-Yl-dI4" secondAttribute="centerX" id="cfi-ez-b9q"/>
-                <constraint firstItem="7eh-3f-DhV" firstAttribute="top" secondItem="SIq-Yl-dI4" secondAttribute="bottom" constant="15" id="dM4-Tq-Xk9"/>
-                <constraint firstItem="8WP-wI-uMy" firstAttribute="width" secondItem="cBC-Rj-jaa" secondAttribute="width" id="jhq-BQ-8DM"/>
-                <constraint firstItem="pK5-tP-ZNS" firstAttribute="leading" secondItem="ba3-xx-xRk" secondAttribute="leading" priority="750" constant="20" symbolic="YES" id="qQN-Uz-Gqd"/>
+                <constraint firstItem="cBC-Rj-jaa" firstAttribute="top" secondItem="8WP-wI-uMy" secondAttribute="bottom" constant="25" id="Gzc-1v-4ht"/>
+                <constraint firstAttribute="trailing" secondItem="8WP-wI-uMy" secondAttribute="trailing" constant="15" id="JDk-hA-FZE"/>
+                <constraint firstItem="lwh-CK-sRs" firstAttribute="top" secondItem="8WP-wI-uMy" secondAttribute="bottom" constant="15" id="VFJ-nN-pvy"/>
+                <constraint firstItem="xL8-RD-N8m" firstAttribute="top" secondItem="ba3-xx-xRk" secondAttribute="top" constant="79" id="Xtb-F8-OsT"/>
+                <constraint firstItem="8WP-wI-uMy" firstAttribute="leading" secondItem="ba3-xx-xRk" secondAttribute="leading" constant="15" id="bDg-5b-ESJ"/>
+                <constraint firstItem="lwh-CK-sRs" firstAttribute="leading" secondItem="8WP-wI-uMy" secondAttribute="leading" id="c5b-BF-Ay3"/>
+                <constraint firstItem="8WP-wI-uMy" firstAttribute="top" secondItem="xL8-RD-N8m" secondAttribute="bottom" constant="25" id="m4y-0V-1PS"/>
+                <constraint firstAttribute="trailing" secondItem="xL8-RD-N8m" secondAttribute="trailing" constant="15" id="qoo-ux-OkR"/>
                 <constraint firstItem="cBC-Rj-jaa" firstAttribute="leading" secondItem="ba3-xx-xRk" secondAttribute="leading" constant="15" id="tnG-iz-QeI"/>
-                <constraint firstAttribute="centerX" secondItem="7eh-3f-DhV" secondAttribute="centerX" id="v5g-9h-qkZ"/>
-                <constraint firstItem="8WP-wI-uMy" firstAttribute="centerX" secondItem="cBC-Rj-jaa" secondAttribute="centerX" constant="5" id="xrH-bY-XkY"/>
                 <constraint firstAttribute="centerX" secondItem="cBC-Rj-jaa" secondAttribute="centerX" id="xwU-AC-5EK"/>
-                <constraint firstAttribute="centerX" secondItem="pK5-tP-ZNS" secondAttribute="centerX" id="zeZ-UU-ar7"/>
+                <constraint firstItem="lwh-CK-sRs" firstAttribute="trailing" secondItem="8WP-wI-uMy" secondAttribute="trailing" id="xxM-bq-ht2"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
             <connections>
@@ -90,7 +85,4 @@
         </view>
         <tapGestureRecognizer id="YoK-1K-HFw"/>
     </objects>
-    <resources>
-        <image name="Icon" width="90" height="90"/>
-    </resources>
 </document>

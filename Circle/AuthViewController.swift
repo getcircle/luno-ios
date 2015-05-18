@@ -46,50 +46,43 @@ private let GoogleServerClientID = "1077014421904-1a697ks3qvtt6975qfqhmed8529en8
 
 class AuthViewController: UIViewController {
 
-    @IBOutlet weak var appLogoImageView: UIImageView!
-    @IBOutlet weak var appNameLabel: UILabel!
-    @IBOutlet weak var appNameYConstraint: NSLayoutConstraint!
-    @IBOutlet weak var tagLineLabel: UILabel!
-    @IBOutlet weak var googleSignInButton: UIButton!
-    @IBOutlet weak var googleSignInButtonBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var instructionLabel: UILabel!
     @IBOutlet weak var workEmailTextField: UITextField!
-    private var workTextFieldBottomBorderView: UIView!
+    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var googleSignInButton: UIButton!
+    @IBOutlet weak var signInButtonTopConstraint: NSLayoutConstraint!
+
     private var activityIndicator: CircleActivityIndicatorView?
     private var googleSignInButtonText: String?
+    private var passwordFieldBottomBorder: UIView!
     private var socialConnectVC = SocialConnectViewController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        configureAppNameLabel()
         configureView()
         configureGoogleAuthentication()
+        configurePasswordField()
         trySilentAuthentication()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        // hideFieldsAndControls(false)
         navigationController?.navigationBar.makeTransparent()
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         registerNotifications()
-        delay(0.3) {
-            self.moveAppNameLabel()
-        }
+        workEmailTextField.becomeFirstResponder()
     }
 
     // MARK: - Configuration
 
-    private func configureAppNameLabel() {
-        appNameLabel.text = NSBundle.appName()
-    }
-    
     private func configureView() {
         view.backgroundColor = UIColor.appUIBackgroundColor()
+        navigationItem.title = AppStrings.SignInCTA
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: "didTapView:")
         view.addGestureRecognizer(tapGestureRecognizer)
     }
@@ -100,18 +93,26 @@ class AuthViewController: UIViewController {
             attributes: [NSForegroundColorAttributeName: UIColor.whiteColor()]
         )
         workEmailTextField.tintColor = UIColor.whiteColor()
-        workTextFieldBottomBorderView = workEmailTextField.addBottomBorder(offset: nil, color: UIColor.whiteColor())
-        workTextFieldBottomBorderView.alpha = 0.0
-        workEmailTextField.alpha = 0.0
-        googleSignInButton.alpha = 0.0
+        workEmailTextField.addBottomBorder(offset: nil, color: UIColor.whiteColor())
         googleSignInButton.titleLabel!.font = UIFont.appSocialCTATitleFont()
         googleSignInButton.addRoundCorners(radius: 2.0)
         googleSignInButton.backgroundColor = UIColor.appTintColor()
         googleSignInButton.setCustomAttributedTitle(
-            AppStrings.SocialConnectGooglePlusCTA.localizedUppercaseString(),
+            AppStrings.SignInCTA.localizedUppercaseString(),
             forState: .Normal
         )
         googleSignInButton.addTarget(self, action: "googlePlusSignInButtonTapped:", forControlEvents: .TouchUpInside)
+    }
+    
+    private func configurePasswordField() {
+        passwordTextField.attributedPlaceholder = NSAttributedString(
+            string: AppStrings.PasswordTextFieldPlaceholder,
+            attributes: [NSForegroundColorAttributeName: UIColor.whiteColor()]
+        )
+        passwordTextField.tintColor = UIColor.whiteColor()
+        passwordFieldBottomBorder = passwordTextField.addBottomBorder(offset: nil, color: UIColor.whiteColor())
+        passwordTextField.alpha = 0.0
+        passwordFieldBottomBorder.alpha = 0.0
     }
     
     private func registerNotifications() {
@@ -123,39 +124,7 @@ class AuthViewController: UIViewController {
             object: socialConnectVC
         )
     }
-    
-    // MARK: - Initial Animation
-    
-    private func moveAppNameLabel() {
-        googleSignInButtonBottomConstraint.constant = 20.0
-        // appNameYConstraint.constant = 95.0
-        appNameLabel.setNeedsUpdateConstraints()
-        UIView.animateWithDuration(0.7, animations: { () -> Void in
-            self.appLogoImageView.layoutIfNeeded()
-            self.appNameLabel.layoutIfNeeded()
-            self.workEmailTextField.layoutIfNeeded()
-            self.googleSignInButton.layoutIfNeeded()
-            self.workTextFieldBottomBorderView.layoutIfNeeded()
-            self.tagLineLabel.layoutIfNeeded()
-            self.googleSignInButton.alpha = 1.0
-        }, completion: { (completed: Bool) -> Void in
-        })
-    }
-    
-    private func hideFieldsAndControls(animated: Bool) {
-        let duration = animated ? 0.3 : 0.0
-        UIView.animateWithDuration(duration, animations: { () -> Void in
-            self.googleSignInButton.alpha = 0.0
-        })
-    }
-    
-    private func showFieldsAndControls(animated: Bool) {
-        let duration = animated ? 0.5 : 0.0
-        UIView.animateWithDuration(duration, animations: { () -> Void in
-            self.googleSignInButton.alpha = 1.0
-        })
-    }
-    
+
     // MARK: - Targets
     
     func didTapView(sender: AnyObject!) {
@@ -286,6 +255,7 @@ class AuthViewController: UIViewController {
         }
         activityIndicator?.startAnimating()
         googleSignInButton.enabled = false
+        workEmailTextField.enabled = false
     }
     
     private func hideLoadingState() {
@@ -295,6 +265,7 @@ class AuthViewController: UIViewController {
         }
         googleSignInButton.backgroundColor = UIColor.appTintColor()
         googleSignInButton.enabled = true
+        workEmailTextField.enabled = true
     }
     
     // MARK: - Log in
@@ -424,7 +395,7 @@ class AuthViewController: UIViewController {
             AppTheme.switchToDefaultTheme()
             
             // Present auth view
-            self.presentAuthViewController()
+            self.presentSplashViewController()
         }
     }
     
@@ -432,6 +403,12 @@ class AuthViewController: UIViewController {
         let navController = UINavigationController(rootViewController: vc)
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         appDelegate.window!.rootViewController!.presentViewController(navController, animated: false, completion: nil)
+    }
+
+    static func presentSplashViewController() {
+        // Check if user is logged in. If not, present auth view controller
+        let splashViewController = SplashViewController(nibName: "SplashViewController", bundle: nil)
+        self.presentViewControllerWithNavigationController(splashViewController)
     }
     
     static func presentAuthViewController() {
@@ -571,9 +548,10 @@ class AuthViewController: UIViewController {
                 }
             }
         } else {
-            presentAuthViewController()
+            presentSplashViewController()
             return false
         }
+
         return true
     }
     
@@ -603,20 +581,100 @@ class AuthViewController: UIViewController {
     // MARK: - IBActions
     
     @IBAction func googlePlusSignInButtonTapped(sender: AnyObject!) {
-//        if workEmailTextField.text.trimWhitespace() == "" {
-//            googleSignInButton.addShakeAnimation()
-//            return
-//        }
+        // Check if there is an account for this email address
+        // If yes, check if its google sign in or regular sign in
+        // If google sign in, redirect to social connect
+        // If password sign in, show password
+        // If user does not have an account, show password and change title to create account
+        if workEmailTextField.text.trimWhitespace() == "" {
+            googleSignInButton.addShakeAnimation()
+            return
+        }
         
+        enum States {
+            case AccountExistsGoogleSignIn
+            case AccountExistsPasswordSignIn
+            case AccountDoesNotExistPasswordSignIn
+            case AccountDoesNotExistGoogleSignIn
+        }
+        
+        var state: States = .AccountDoesNotExistPasswordSignIn
+        
+        var accountExists = true
+        var authorizationURL: String? = nil
+        
+        switch state {
+        case .AccountExistsGoogleSignIn:
+            authorizationURL = ""
+            accountExists = true
+            
+        case .AccountExistsPasswordSignIn:
+            authorizationURL = nil
+            accountExists = true
+
+        case .AccountDoesNotExistPasswordSignIn:
+            authorizationURL = nil
+            accountExists = false
+
+        case .AccountDoesNotExistGoogleSignIn:
+            authorizationURL = ""
+            accountExists = false
+        }
+        
+        showLoadingState()
+        delay(0.3) {
+
+            self.hideLoadingState()
+            if let authorizationURL = authorizationURL {
+                self.openExternalAuth(authorizationURL)
+            }
+            else {
+                self.showPasswordField(!accountExists)
+            }
+        }
+    }
+    
+    private func openExternalAuth(authorizationURL: String) {
         socialConnectVC.provider = .Google
         socialConnectVC.loginHint = workEmailTextField.text
         let socialNavController = UINavigationController(rootViewController: socialConnectVC)
         navigationController?.presentViewController(socialNavController, animated: true, completion:nil)
     }
     
+    private func showPasswordField(newAccount: Bool) {
+        signInButtonTopConstraint.constant = 80.0
+        googleSignInButton.setNeedsUpdateConstraints()
+        
+        UIView.animateWithDuration(0.3,
+            animations: { () -> Void in
+                self.passwordTextField.alpha = 1.0
+                self.passwordFieldBottomBorder.alpha = 1.0
+                self.googleSignInButton.layoutIfNeeded()
+            },
+            completion: { (completed) -> Void in
+                self.passwordTextField.becomeFirstResponder()
+            }
+        )
+        
+        if newAccount {
+            navigationItem.title = AppStrings.SignUpCTA
+            googleSignInButton.setCustomAttributedTitle(
+                AppStrings.SignUpCTA.localizedUppercaseString(),
+                forState: .Normal
+            )
+        }
+    }
+    
+    private func hidePasswordField(newAccount: Bool) {
+    }
+    
     // MARK: - UITextFieldDelegate
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
+        if textField == passwordTextField {
+            googlePlusSignInButtonTapped(textField)
+        }
+
         return true
     }
 }

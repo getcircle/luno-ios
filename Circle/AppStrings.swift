@@ -55,6 +55,7 @@ struct AppStrings {
     
     static let RequestAccessConfirmationTest = NSLocalizedString("Great! We will notify you when your account is ready to access. Thanks!", comment: "Confirmation text shown when user requests access to the app.")
     
+    static let PasswordTextFieldPlaceholder = NSLocalizedString("Password", comment: "Placeholder for password text field")
     static let PrivateBetaInfoText = NSLocalizedString("circle is currently available only to employees at participating companies! You can request access below or try logging into a different account.", comment: "Message indicating that the app is only available to employees of participating companies and the user can either request access or try a different account")
     
     static let ProfileInfoAddButtonTitle = NSLocalizedString("Add", comment: "Title of the button to add info")
@@ -96,10 +97,12 @@ struct AppStrings {
     static let QuickActionCallPlaceholder = NSLocalizedString("Who do you want to call?", comment: "Placeholder for search field used to search for the person user intends to call")
     static let QuickActionSlackPlaceholder = NSLocalizedString("Who do you want to message?", comment: "Placeholder for search field used to search for the person user intends to send a message")
     
+    static let SignInCTA = NSLocalizedString("Sign In", comment: "Generic button title to sign in to the app")
+    static let SignUpCTA = NSLocalizedString("Sign Up", comment: "Generic button title to sign up for the service")
     static let SocialConnectDefaultCTA = NSLocalizedString("Connect", comment: "Button title for connecting with generic social account")
     static let SocialConnectGooglePlusCTA = NSLocalizedString("Sign in with Google", comment: "Button title for sign in with Google button")
-
     static let SocialConnectLinkedInCTA = NSLocalizedString("Connect with LinkedIn", comment: "Button title for connect with LinkedIn button")
+    static let StartUsingAppCTA = NSLocalizedString("Start using circle", comment: "Button title shown on the first screen to prompt user to sign up")
 
     static let TitleDownloadAppAlert = NSLocalizedString("Download %@ App", comment: "Title of the alert dialog asking user if they would like to download %@ app")
     static let TitleContactInfoView = NSLocalizedString("Contact Info", comment: "Title of window showing user's contact info")
@@ -110,6 +113,6 @@ struct AppStrings {
     static let WelcomeTitleText = NSLocalizedString("Welcome to circle", comment: "Header text for welcoming users to the app")
     static let WelcomeInfoText = NSLocalizedString("The easiest way to access any information on the people, teams, and locations that make up your company.\n\nLets get started by setting up your profile.", comment: "Tag line message shown on welcome view")
     
-    static let SignInPlaceHolderText = NSLocalizedString("Enter your Work email address", comment: "Placeholder text indicating text field for entering work email address")
+    static let SignInPlaceHolderText = NSLocalizedString("Work email address", comment: "Placeholder text indicating text field for entering work email address")
     static let SignOutButtonTitle = NSLocalizedString("Sign out", comment: "Title of sign out button")
 }
