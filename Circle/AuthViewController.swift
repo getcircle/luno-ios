@@ -271,7 +271,7 @@ class AuthViewController: UIViewController {
     // MARK: - Log in
     
     private func login(
-        backend: Services.User.Containers.AuthBackend.AuthBackendV1,
+        backend: Services.User.Actions.AuthenticateUser.RequestV1.AuthBackendV1,
         credentials: Services.User.Actions.AuthenticateUser.RequestV1.CredentialsV1,
         silent: Bool = false
     ) {
@@ -557,7 +557,7 @@ class AuthViewController: UIViewController {
     
     // MARK: - Tracking
     
-    private func trackSignupLogin(backend: Services.User.Containers.AuthBackend.AuthBackendV1, newUser: Bool) {
+    private func trackSignupLogin(backend: Services.User.Actions.AuthenticateUser.RequestV1.AuthBackendV1, newUser: Bool) {
         let properties = [TrackerProperty.withKeyString("auth_backend").withValue(Int(backend.rawValue))]
         if newUser {
             Tracker.sharedInstance.track(.UserSignup, properties: properties)
