@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SplashViewController" customModule="circle" customModuleProvider="target">
+            <connections>
+                <outlet property="appLogoImageView" destination="oID-EW-BtQ" id="5X1-7y-FRg"/>
+                <outlet property="appNameLabel" destination="a2S-Cv-PkH" id="BX9-w8-4Y7"/>
+                <outlet property="appNameYConstraint" destination="JkL-5h-M55" id="UsN-pk-N91"/>
+                <outlet property="getStartedButton" destination="v01-EU-rj6" id="XYb-Bi-2fm"/>
+                <outlet property="getStartedButtonBottomConstraint" destination="MJc-hV-dvE" id="2tN-FN-c9X"/>
+                <outlet property="tagLineLabel" destination="QvU-i0-pPv" id="uyO-Wf-J6f"/>
+                <outlet property="view" destination="AEV-kQ-785" id="bIR-fV-Y5e"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="AEV-kQ-785">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="circle" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="a2S-Cv-PkH" userLabel="AppName">
+                    <rect key="frame" x="20" y="279" width="560" height="63"/>
+                    <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="46"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v01-EU-rj6" userLabel="GetStartedButton">
+                    <rect key="frame" x="15" y="620" width="570" height="50"/>
+                    <color key="backgroundColor" red="0.0" green="0.78823529410000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="IbN-CH-Pb7"/>
+                    </constraints>
+                    <state key="normal">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon" translatesAutoresizingMaskIntoConstraints="NO" id="oID-EW-BtQ">
+                    <rect key="frame" x="255" y="174" width="90" height="90"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="90" id="Hnx-ob-dhR"/>
+                        <constraint firstAttribute="width" secondItem="oID-EW-BtQ" secondAttribute="height" multiplier="1:1" id="xmy-BM-XbJ"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" text="Know the people you work with" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="QvU-i0-pPv" userLabel="Tagline">
+                    <rect key="frame" x="188" y="342" width="224" height="22"/>
+                    <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="16"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="0.1843137255" green="0.2156862745" blue="0.24313725489999999" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="a2S-Cv-PkH" secondAttribute="trailing" constant="20" symbolic="YES" id="3xj-Tq-qIe"/>
+                <constraint firstAttribute="trailing" secondItem="v01-EU-rj6" secondAttribute="trailing" constant="15" id="72B-CR-Har"/>
+                <constraint firstItem="QvU-i0-pPv" firstAttribute="leading" secondItem="AEV-kQ-785" secondAttribute="leading" priority="750" constant="20" symbolic="YES" id="7P8-br-DOq"/>
+                <constraint firstAttribute="centerX" secondItem="a2S-Cv-PkH" secondAttribute="centerX" id="Bar-Hd-1Qj"/>
+                <constraint firstAttribute="trailing" secondItem="QvU-i0-pPv" secondAttribute="trailing" priority="750" constant="20" symbolic="YES" id="BxD-eG-YNr"/>
+                <constraint firstAttribute="centerX" secondItem="QvU-i0-pPv" secondAttribute="centerX" id="G7t-8p-31Z"/>
+                <constraint firstItem="QvU-i0-pPv" firstAttribute="top" secondItem="a2S-Cv-PkH" secondAttribute="bottom" id="ILH-0o-aNX"/>
+                <constraint firstItem="a2S-Cv-PkH" firstAttribute="leading" secondItem="AEV-kQ-785" secondAttribute="leading" constant="20" symbolic="YES" id="IUg-Pb-Rk1"/>
+                <constraint firstItem="v01-EU-rj6" firstAttribute="leading" secondItem="AEV-kQ-785" secondAttribute="leading" constant="15" id="IpW-SY-hmh"/>
+                <constraint firstAttribute="centerY" secondItem="a2S-Cv-PkH" secondAttribute="centerY" constant="-10" id="JkL-5h-M55"/>
+                <constraint firstAttribute="bottom" secondItem="v01-EU-rj6" secondAttribute="bottom" constant="-70" id="MJc-hV-dvE"/>
+                <constraint firstAttribute="centerX" secondItem="v01-EU-rj6" secondAttribute="centerX" id="RaC-z5-LDO"/>
+                <constraint firstItem="a2S-Cv-PkH" firstAttribute="top" secondItem="oID-EW-BtQ" secondAttribute="bottom" constant="15" id="ae5-J2-XQF"/>
+                <constraint firstAttribute="centerX" secondItem="oID-EW-BtQ" secondAttribute="centerX" id="onF-RL-fXG"/>
+            </constraints>
+            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+            <point key="canvasLocation" x="548" y="455"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="Icon" width="90" height="90"/>
+    </resources>
+</document>
