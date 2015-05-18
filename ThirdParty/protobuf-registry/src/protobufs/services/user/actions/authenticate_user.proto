@@ -4,10 +4,14 @@ package services.user.actions.authenticate_user;
 option java_package = "com.rhlabs.protobufs.services.user.actions.authenticate_user";
 
 import "protobufs/services/user/containers.proto";
-import "protobufs/services/user/containers/auth_backend.proto";
 import "protobufs/services/user/containers/token.proto";
 
 message RequestV1 {
+
+    enum AuthBackendV1 {
+        INTERNAL = 0;
+        GOOGLE = 1;
+    }
 
     message CredentialsV1 {
         optional uint32 version = 1 [default = 1];
@@ -16,7 +20,7 @@ message RequestV1 {
     }
 
     optional uint32 version = 1 [default = 1];
-    optional services.user.containers.auth_backend.AuthBackendV1 backend = 2;
+    optional AuthBackendV1 backend = 2;
     optional CredentialsV1 credentials = 3;
     optional services.user.containers.token.ClientTypeV1 client_type = 4;
 }

@@ -38,7 +38,8 @@ public extension Services.User.Actions.GetAuthenticationInstructions {
     init() {
       extensionRegistry = ExtensionRegistry()
       registerAllExtensions(extensionRegistry)
-      Services.User.Containers.AuthBackend.AuthBackendRoot.sharedInstance.registerAllExtensions(extensionRegistry)
+      Services.User.Containers.ContainersRoot.sharedInstance.registerAllExtensions(extensionRegistry)
+      Services.User.Actions.AuthenticateUser.AuthenticateUserRoot.sharedInstance.registerAllExtensions(extensionRegistry)
     }
     public func registerAllExtensions(registry:ExtensionRegistry) {
     }
@@ -294,7 +295,7 @@ public extension Services.User.Actions.GetAuthenticationInstructions {
     public private(set) var hasVersion:Bool = false
     public private(set) var version:UInt32 = UInt32(1)
 
-    public private(set) var backend:Services.User.Containers.AuthBackend.AuthBackendV1 = Services.User.Containers.AuthBackend.AuthBackendV1.Internal
+    public private(set) var backend:Services.User.Actions.AuthenticateUser.RequestV1.AuthBackendV1 = Services.User.Actions.AuthenticateUser.RequestV1.AuthBackendV1.Internal
     public private(set) var hasBackend:Bool = false
     public private(set) var hasUserExists:Bool = false
     public private(set) var userExists:Bool = false
@@ -468,7 +469,7 @@ public extension Services.User.Actions.GetAuthenticationInstructions {
               return builderResult.hasBackend
           }
       }
-      public var backend:Services.User.Containers.AuthBackend.AuthBackendV1 {
+      public var backend:Services.User.Actions.AuthenticateUser.RequestV1.AuthBackendV1 {
           get {
               return builderResult.backend
           }
@@ -477,7 +478,7 @@ public extension Services.User.Actions.GetAuthenticationInstructions {
               builderResult.backend = value
           }
       }
-      public func setBackend(value:Services.User.Containers.AuthBackend.AuthBackendV1)-> Services.User.Actions.GetAuthenticationInstructions.ResponseV1Builder {
+      public func setBackend(value:Services.User.Actions.AuthenticateUser.RequestV1.AuthBackendV1)-> Services.User.Actions.GetAuthenticationInstructions.ResponseV1Builder {
         self.backend = value
         return self
       }
@@ -588,7 +589,7 @@ public extension Services.User.Actions.GetAuthenticationInstructions {
 
         case 16 :
           let valueIntbackend = input.readEnum()
-          if let enumsbackend = Services.User.Containers.AuthBackend.AuthBackendV1(rawValue:valueIntbackend){
+          if let enumsbackend = Services.User.Actions.AuthenticateUser.RequestV1.AuthBackendV1(rawValue:valueIntbackend){
                backend = enumsbackend
           } else {
                unknownFieldsBuilder.mergeVarintField(2, value:Int64(valueIntbackend))
