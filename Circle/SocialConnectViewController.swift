@@ -25,6 +25,7 @@ class SocialConnectViewController: UIViewController, WKNavigationDelegate {
     var webView: WKWebView!
     var provider: Services.User.Containers.IdentityV1.ProviderV1?
     var loginHint: String?
+    var authorizationURL: String?
     
     convenience init(provider withProvider: Services.User.Containers.IdentityV1.ProviderV1, loginHint withLoginHint: String? = nil) {
         self.init()
@@ -80,13 +81,22 @@ class SocialConnectViewController: UIViewController, WKNavigationDelegate {
     }
     
     private func loadWebView() {
-        Services.User.Actions.getAuthorizationInstructions(provider!, loginHint: loginHint) { (authorizationURL, error) -> Void in
-            if let authorizationURL = authorizationURL {
-                let url = NSURL(string: authorizationURL)
-                let request = NSURLRequest(URL: url!)
-                self.webView.loadRequest(request)
+        if let authorizationURL = authorizationURL {
+            loadURL(authorizationURL)
+        }
+        else {
+            Services.User.Actions.getAuthorizationInstructions(provider!, loginHint: loginHint) { (authorizationURL, error) -> Void in
+                if let authorizationURL = authorizationURL {
+                    self.loadURL(authorizationURL)
+                }
             }
         }
+    }
+
+    private func loadURL(webURL: String) {
+        let url = NSURL(string: webURL)
+        let request = NSURLRequest(URL: url!)
+        self.webView.loadRequest(request)
     }
     
     // MARK: - WKNavigationDelegate

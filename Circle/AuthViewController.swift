@@ -598,7 +598,7 @@ class AuthViewController: UIViewController {
             case AccountDoesNotExistGoogleSignIn
         }
         
-        var state: States = .AccountDoesNotExistPasswordSignIn
+        var state: States = .AccountDoesNotExistGoogleSignIn
         
         var accountExists = true
         var authorizationURL: String? = nil
@@ -637,6 +637,9 @@ class AuthViewController: UIViewController {
     private func openExternalAuth(authorizationURL: String) {
         socialConnectVC.provider = .Google
         socialConnectVC.loginHint = workEmailTextField.text
+        if authorizationURL.trimWhitespace() != "" {
+            socialConnectVC.authorizationURL = authorizationURL
+        }
         let socialNavController = UINavigationController(rootViewController: socialConnectVC)
         navigationController?.presentViewController(socialNavController, animated: true, completion:nil)
     }
