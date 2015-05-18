@@ -1,0 +1,6 @@
+package services.user.containers.auth_backend;
+
+enum AuthBackendV1 {
+    INTERNAL = 0;
+    GOOGLE = 1;
+}

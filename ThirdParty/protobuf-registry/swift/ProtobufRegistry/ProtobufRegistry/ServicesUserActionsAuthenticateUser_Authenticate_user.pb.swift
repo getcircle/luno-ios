@@ -52,6 +52,7 @@ public extension Services.User.Actions.AuthenticateUser {
       extensionRegistry = ExtensionRegistry()
       registerAllExtensions(extensionRegistry)
       Services.User.Containers.ContainersRoot.sharedInstance.registerAllExtensions(extensionRegistry)
+      Services.User.Containers.AuthBackend.AuthBackendRoot.sharedInstance.registerAllExtensions(extensionRegistry)
       Services.User.Containers.Token.TokenRoot.sharedInstance.registerAllExtensions(extensionRegistry)
     }
     public func registerAllExtensions(registry:ExtensionRegistry) {
@@ -346,18 +347,6 @@ public extension Services.User.Actions.AuthenticateUser {
 
     //Nested type declaration end
 
-
-
-      //Enum type declaration start 
-
-      public enum AuthBackendV1:Int32 {
-        case Internal = 0
-        case Google = 1
-
-      }
-
-      //Enum type declaration end 
-
     override public subscript(key: String) -> Any? {
            switch key {
            case "version": return version
@@ -371,7 +360,7 @@ public extension Services.User.Actions.AuthenticateUser {
     public private(set) var hasVersion:Bool = false
     public private(set) var version:UInt32 = UInt32(1)
 
-    public private(set) var backend:Services.User.Actions.AuthenticateUser.RequestV1.AuthBackendV1 = Services.User.Actions.AuthenticateUser.RequestV1.AuthBackendV1.Internal
+    public private(set) var backend:Services.User.Containers.AuthBackend.AuthBackendV1 = Services.User.Containers.AuthBackend.AuthBackendV1.Internal
     public private(set) var hasBackend:Bool = false
     public private(set) var hasCredentials:Bool = false
     public private(set) var credentials:Services.User.Actions.AuthenticateUser.RequestV1.CredentialsV1!
@@ -549,7 +538,7 @@ public extension Services.User.Actions.AuthenticateUser {
               return builderResult.hasBackend
           }
       }
-      public var backend:Services.User.Actions.AuthenticateUser.RequestV1.AuthBackendV1 {
+      public var backend:Services.User.Containers.AuthBackend.AuthBackendV1 {
           get {
               return builderResult.backend
           }
@@ -558,7 +547,7 @@ public extension Services.User.Actions.AuthenticateUser {
               builderResult.backend = value
           }
       }
-      public func setBackend(value:Services.User.Actions.AuthenticateUser.RequestV1.AuthBackendV1)-> Services.User.Actions.AuthenticateUser.RequestV1Builder {
+      public func setBackend(value:Services.User.Containers.AuthBackend.AuthBackendV1)-> Services.User.Actions.AuthenticateUser.RequestV1Builder {
         self.backend = value
         return self
       }
@@ -678,7 +667,7 @@ public extension Services.User.Actions.AuthenticateUser {
 
         case 16 :
           let valueIntbackend = input.readEnum()
-          if let enumsbackend = Services.User.Actions.AuthenticateUser.RequestV1.AuthBackendV1(rawValue:valueIntbackend){
+          if let enumsbackend = Services.User.Containers.AuthBackend.AuthBackendV1(rawValue:valueIntbackend){
                backend = enumsbackend
           } else {
                unknownFieldsBuilder.mergeVarintField(2, value:Int64(valueIntbackend))
