@@ -14,15 +14,15 @@ extension Services.Resume {
         
         static func formatPositionApproximateDate(position: Services.Resume.Containers.PositionV1) -> String {
             var formatted = String()
-            if position.hasStartDate && position.startDate.year != 0 {
-                formatted += "\(position.startDate.year)"
-                if (position.hasEndDate && position.endDate.year != 0) || position.isCurrent {
+            if let startYear = position.startDate?.year where startYear != 0 {
+                formatted += "\(startYear)"
+                if let endYear = position.endDate?.year where endYear != 0 || position.isCurrent {
                     formatted += " - "
                 }
             }
             
-            if position.hasEndDate && position.endDate.year != 0 {
-                formatted += "\(position.endDate.year)"
+            if let endYear = position.endDate?.year where endYear != 0 {
+                formatted += "\(endYear)"
             } else if position.isCurrent {
                 formatted += NSLocalizedString("Present", comment: "This position is currently held")
             }
