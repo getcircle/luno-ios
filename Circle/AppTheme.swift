@@ -95,6 +95,22 @@ struct NetflixTheme: Theme {
     var status_bar_style = UIStatusBarStyle.LightContent
 }
 
+struct BoxTheme: Theme {
+    var app_tint_color = UIColor(red: 29, green: 94, blue: 166)
+    var app_ui_background_color = UIColor(red: 29, green: 94, blue: 166)
+    
+    var app_nav_bar_color = UIColor(red: 29, green: 94, blue: 166)
+    var app_nav_bar_text_controls_color = UIColor(red: 255, green: 255, blue: 255)
+    
+    var app_tab_bar_color = UIColor(red: 37, green: 37, blue: 37)
+    var app_tab_bar_text_controls_color = UIColor(red: 253, green: 253, blue: 253)
+    var app_tab_bar_deselected_text_controls_color = UIColor(red: 160, green: 160, blue: 160)
+    
+    var app_light_text_color = UIColor(red: 245, green: 245, blue: 245)
+    var app_dark_text_color = UIColor(red: 48, green: 48, blue: 48)
+    
+    var status_bar_style = UIStatusBarStyle.LightContent
+}
 
 struct AppTheme {
     static var currentTheme: Theme = DefaultTheme()
@@ -115,6 +131,8 @@ struct AppTheme {
                 newTheme = LookoutTheme()
             case "netflix.com":
                 newTheme = NetflixTheme()
+            case "box.com":
+                newTheme = BoxTheme()
             default:
                 newTheme = DefaultTheme()
         }
