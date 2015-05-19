@@ -269,6 +269,7 @@ extension Services.User.Actions {
     
     static func logout(completionHandler: LogoutCompletionHandler?) {
         let requestBuilder = Services.User.Actions.Logout.RequestV1.builder()
+        requestBuilder.clientType = .Ios
         let client = ServiceClient(serviceName: "user")
         client.callAction(
             "logout",
