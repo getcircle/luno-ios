@@ -618,7 +618,7 @@ class AuthViewController: UIViewController {
             if error != nil {
                 self.googleSignInButton.addShakeAnimation()
             }
-            else if let authorizationURL = authorizationURL {
+            else if let authorizationURL = authorizationURL where authorizationURL.trimWhitespace() != "" {
                 self.openExternalAuth(authorizationURL)
             }
             else {
