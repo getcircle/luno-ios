@@ -17,9 +17,9 @@ class CurrentUserProfileDetailDataSource: ProfileDetailDataSource {
         super.configureSections()
         sections.removeAtIndex(0)
         sections.insert(getContactPreferencesSection(), atIndex: 0)
-        if let socialConnectSection = getSocialConnectSection() {
-            sections.insert(socialConnectSection, atIndex: 1)
-        }
+//        if let socialConnectSection = getSocialConnectSection() {
+//            sections.insert(socialConnectSection, atIndex: 1)
+//        }
     }
 
     private func getSocialConnectSection() -> Section? {
