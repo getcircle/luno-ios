@@ -631,7 +631,9 @@ class AuthViewController: UIViewController {
     
     private func signUpUser() {
         Services.User.Actions.createUser(workEmailTextField.text.trimWhitespace(), password: passwordTextField.text.trimWhitespace()) { (user, error) -> Void in
+            self.hideLoadingState()
             if error != nil {
+                println("Error \(error)")
                 self.googleSignInButton.addShakeAnimation()
                 let alertController = UIAlertController(title: "Error signing up", message: "There was an error in creating your account. Please try again.", preferredStyle: .Alert)
                 alertController.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
@@ -642,7 +644,7 @@ class AuthViewController: UIViewController {
             }
         }
     }
-    
+
     private func signInUser() {
         let credentials = Services.User.Actions.AuthenticateUser.RequestV1.CredentialsV1.builder()
         credentials.key = workEmailTextField.text.trimWhitespace()
