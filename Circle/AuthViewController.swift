@@ -56,6 +56,7 @@ class AuthViewController: UIViewController {
     private var googleSignInButtonText: String?
     private var passwordFieldBottomBorder: UIView!
     private var socialConnectVC = SocialConnectViewController()
+    private var isNewAccount = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -591,47 +592,62 @@ class AuthViewController: UIViewController {
             return
         }
         
-        enum States {
-            case AccountExistsGoogleSignIn
-            case AccountExistsPasswordSignIn
-            case AccountDoesNotExistPasswordSignIn
-            case AccountDoesNotExistGoogleSignIn
+        if passwordTextField.alpha == 1.0 && passwordTextField.text.trimWhitespace() == "" {
+            googleSignInButton.addShakeAnimation()
+            return
         }
-        
-        var state: States = .AccountDoesNotExistGoogleSignIn
-        
-        var accountExists = true
-        var authorizationURL: String? = nil
-        
-        switch state {
-        case .AccountExistsGoogleSignIn:
-            authorizationURL = ""
-            accountExists = true
-            
-        case .AccountExistsPasswordSignIn:
-            authorizationURL = nil
-            accountExists = true
 
-        case .AccountDoesNotExistPasswordSignIn:
-            authorizationURL = nil
-            accountExists = false
-
-        case .AccountDoesNotExistGoogleSignIn:
-            authorizationURL = ""
-            accountExists = false
-        }
-        
         showLoadingState()
-        delay(0.3) {
-
+        if passwordTextField.alpha == 1.0 {
+            if isNewAccount {
+                signUpUser()
+            }
+            else {
+                signInUser()
+            }
+        }
+        else {
+            checkAuthenticationMethod()
+        }
+    }
+    
+    private func checkAuthenticationMethod() {
+        Services.User.Actions.getAuthenticationInstructions(workEmailTextField.text, completionHandler: { (accountExists, authorizationURL, error) -> Void in
             self.hideLoadingState()
-            if let authorizationURL = authorizationURL {
+            
+            if error != nil {
+                self.googleSignInButton.addShakeAnimation()
+            }
+            else if let authorizationURL = authorizationURL {
                 self.openExternalAuth(authorizationURL)
             }
             else {
-                self.showPasswordField(!accountExists)
+                let newAccount = (accountExists != nil) ? !(accountExists!) : true
+                self.isNewAccount = newAccount
+                self.showPasswordField(newAccount)
+            }
+        })
+    }
+    
+    private func signUpUser() {
+        Services.User.Actions.createUser(workEmailTextField.text.trimWhitespace(), password: passwordTextField.text.trimWhitespace()) { (user, error) -> Void in
+            if error != nil {
+                self.googleSignInButton.addShakeAnimation()
+                let alertController = UIAlertController(title: "Error signing up", message: "There was an error in creating your account. Please try again.", preferredStyle: .Alert)
+                alertController.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+                self.navigationController?.presentViewController(alertController, animated: true, completion: nil)
+            }
+            else {
+                self.signInUser()
             }
         }
+    }
+    
+    private func signInUser() {
+        let credentials = Services.User.Actions.AuthenticateUser.RequestV1.CredentialsV1.builder()
+        credentials.key = workEmailTextField.text.trimWhitespace()
+        credentials.secret = passwordTextField.text.trimWhitespace()
+        login(.Internal, credentials: credentials.build())
     }
     
     private func openExternalAuth(authorizationURL: String) {

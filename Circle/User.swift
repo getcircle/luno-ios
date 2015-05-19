@@ -9,6 +9,7 @@
 import Foundation
 import ProtobufRegistry
 
+typealias CreateUserCompletionHandler = (user: Services.User.Containers.UserV1?, error: NSError?) -> Void
 typealias AuthenticateUserCompletionHandler = (user: Services.User.Containers.UserV1?, token: String?, newUser: Bool?, error: NSError?) -> Void
 typealias UpdateUserCompletionHandler = (user: Services.User.Containers.UserV1?, error: NSError?) -> Void
 typealias SendVerificationCodeCompletionHandler = (error: NSError?) -> Void
@@ -24,6 +25,24 @@ typealias LogoutCompletionHandler = (error: NSError?) -> Void
 
 extension Services.User.Actions {
     
+    static func createUser(
+        email: String,
+        password: String,
+        completionHandler: CreateUserCompletionHandler?
+    ) {
+            let requestBuilder = Services.User.Actions.CreateUser.RequestV1.builder()
+            requestBuilder.email = email
+            requestBuilder.password = password
+            let client = ServiceClient(serviceName: "user")
+            client.callAction("create_user", extensionField: Services.Registry.Requests.User.createUser(), requestBuilder: requestBuilder) {
+                (_, _, wrapped, error) in
+                let response = wrapped?.response?.result.getExtension(
+                    Services.Registry.Responses.User.createUser()
+                ) as? Services.User.Actions.CreateUser.ResponseV1
+                completionHandler?(user: response?.user, error: error)
+            }
+    }
+
     static func authenticateUser(
         backend: Services.User.Actions.AuthenticateUser.RequestV1.AuthBackendV1,
         credentials: Services.User.Actions.AuthenticateUser.RequestV1.CredentialsV1,
