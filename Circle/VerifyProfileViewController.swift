@@ -84,7 +84,7 @@ class VerifyProfileViewController:
         }
     }
     
-    @IBAction func editImageButtonTapped(sender: AnyObject!) {
+    @IBAction func editImageButtonTapped(sender: UIView!) {
         var actionSheet = UIAlertController(
             title: AppStrings.ActionSheetAddAPictureButtonTitle,
             message: nil,
@@ -115,6 +115,10 @@ class VerifyProfileViewController:
         )
         actionSheet.addAction(cancelControl)
         addImageActionSheet = actionSheet
+        if let popoverViewController = actionSheet.popoverPresentationController {
+            popoverViewController.sourceRect = sender.bounds
+            popoverViewController.sourceView = sender
+        }
         presentViewController(actionSheet, animated: true, completion: nil)
     }
     
