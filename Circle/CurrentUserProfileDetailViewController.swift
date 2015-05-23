@@ -212,7 +212,7 @@ class CurrentUserProfileDetailViewController: ProfileDetailViewController,
     
     // MARK: - Image Upload
     
-    func onEditImageButtonTapped(sender: AnyObject!) {
+    func onEditImageButtonTapped(sender: UIView!) {
 
         var actionSheet = UIAlertController(
             title: AppStrings.ActionSheetAddAPictureButtonTitle,
@@ -244,6 +244,10 @@ class CurrentUserProfileDetailViewController: ProfileDetailViewController,
         )
         actionSheet.addAction(cancelControl)
         addImageActionSheet = actionSheet
+        if let popoverViewController = actionSheet.popoverPresentationController {
+            popoverViewController.sourceRect = sender.bounds
+            popoverViewController.sourceView = sender
+        }
         presentViewController(actionSheet, animated: true, completion: nil)
     }
     

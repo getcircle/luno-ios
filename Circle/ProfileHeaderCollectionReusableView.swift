@@ -14,7 +14,7 @@ protocol ProfileDetailSegmentedControlDelegate {
 }
 
 protocol ProfileEditImageButtonDelegate {
-    func onEditImageButtonTapped(sender: AnyObject!)
+    func onEditImageButtonTapped(sender: UIView!)
 }
 
 class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
@@ -386,7 +386,7 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
     // MARK: - IBAction
     
     @IBAction func editImageButtonTapped(sender: AnyObject!) {
-        profileEditImageButtonDelegate?.onEditImageButtonTapped(sender)
+        profileEditImageButtonDelegate?.onEditImageButtonTapped(sender as! UIView)
     }
     
     func setEditImageButtonHidden(hidden: Bool) {

@@ -3,6 +3,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SplashViewController" customModule="circle" customModuleProvider="target">
@@ -67,8 +68,21 @@
                 <constraint firstAttribute="centerX" secondItem="v01-EU-rj6" secondAttribute="centerX" id="RaC-z5-LDO"/>
                 <constraint firstItem="a2S-Cv-PkH" firstAttribute="top" secondItem="oID-EW-BtQ" secondAttribute="bottom" constant="15" id="ae5-J2-XQF"/>
                 <constraint firstAttribute="centerX" secondItem="oID-EW-BtQ" secondAttribute="centerX" id="onF-RL-fXG"/>
+                <constraint firstItem="a2S-Cv-PkH" firstAttribute="width" secondItem="v01-EU-rj6" secondAttribute="width" multiplier="1:0.6" constant="1" id="tHq-fL-5ro"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="tHq-fL-5ro"/>
+                </mask>
+            </variation>
+            <variation key="heightClass=regular-widthClass=regular">
+                <mask key="constraints">
+                    <include reference="tHq-fL-5ro"/>
+                    <exclude reference="72B-CR-Har"/>
+                    <exclude reference="IpW-SY-hmh"/>
+                </mask>
+            </variation>
             <point key="canvasLocation" x="548" y="455"/>
         </view>
     </objects>

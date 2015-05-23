@@ -32,7 +32,9 @@ class ProfileCollectionViewCell: CircleCollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        profileImageView.makeItCircular()
+        if !(self is ProfileGridItemCollectionViewCell) {
+            profileImageView.makeItCircular()
+        }
         nameLabel.font = UIFont.appPrimaryTextFont()
         subTextLabel.font = UIFont.appSecondaryTextFont()
         nameLabel.textColor = UIColor.appPrimaryTextColor()

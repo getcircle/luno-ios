@@ -138,6 +138,8 @@
 		8F4A98B31A6350B9005AD63C /* CircleCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4A98B21A6350B9005AD63C /* CircleCollectionReusableView.swift */; };
 		8F4E53781A5A0D9E00DC876B /* NotesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4E53761A5A0D9E00DC876B /* NotesCollectionViewCell.swift */; };
 		8F4E53791A5A0D9E00DC876B /* NotesCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F4E53771A5A0D9E00DC876B /* NotesCollectionViewCell.xib */; };
+		8F57AD351B0FD6F400DD40D8 /* ProfileGridItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F57AD331B0FD6F400DD40D8 /* ProfileGridItemCollectionViewCell.swift */; };
+		8F57AD361B0FD6F400DD40D8 /* ProfileGridItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F57AD341B0FD6F400DD40D8 /* ProfileGridItemCollectionViewCell.xib */; };
 		8F5933C61AC9FAD000905E14 /* AppDelegateNotificationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5933C51AC9FAD000905E14 /* AppDelegateNotificationExtension.swift */; };
 		8F5933CC1AC9FD8B00905E14 /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5933CA1AC9FD8B00905E14 /* NotificationsViewController.swift */; };
 		8F5933CD1AC9FD8B00905E14 /* NotificationsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F5933CB1AC9FD8B00905E14 /* NotificationsViewController.xib */; };
@@ -506,6 +508,8 @@
 		8F4A98B21A6350B9005AD63C /* CircleCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleCollectionReusableView.swift; sourceTree = "<group>"; };
 		8F4E53761A5A0D9E00DC876B /* NotesCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotesCollectionViewCell.swift; sourceTree = "<group>"; };
 		8F4E53771A5A0D9E00DC876B /* NotesCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotesCollectionViewCell.xib; sourceTree = "<group>"; };
+		8F57AD331B0FD6F400DD40D8 /* ProfileGridItemCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileGridItemCollectionViewCell.swift; sourceTree = "<group>"; };
+		8F57AD341B0FD6F400DD40D8 /* ProfileGridItemCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileGridItemCollectionViewCell.xib; sourceTree = "<group>"; };
 		8F5933C51AC9FAD000905E14 /* AppDelegateNotificationExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegateNotificationExtension.swift; sourceTree = "<group>"; };
 		8F5933CA1AC9FD8B00905E14 /* NotificationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
 		8F5933CB1AC9FD8B00905E14 /* NotificationsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotificationsViewController.xib; sourceTree = "<group>"; };
@@ -879,6 +883,7 @@
 				8F823E411A714B5D0006264B /* OrganizationHeaderCollectionReusableView.swift */,
 				BFCFDB0F1A9165A9009A5FD4 /* PositionCollectionViewCell.swift */,
 				8FCC95CB1A52828B00421E65 /* ProfileCollectionViewCell.swift */,
+				8F57AD331B0FD6F400DD40D8 /* ProfileGridItemCollectionViewCell.swift */,
 				8F22CBDE1A27A8E60026376E /* ProfileHeaderCollectionReusableView.swift */,
 				8FF298011A4A4E3600306CFC /* ProfileImagesCollectionViewCell.swift */,
 				BF2D86161A707A86002C3D64 /* ProfileInfoCollectionView.swift */,
@@ -990,6 +995,7 @@
 				BFCFDB101A9165A9009A5FD4 /* PositionCollectionViewCell.xib */,
 				8FCC95CC1A52828B00421E65 /* ProfileCollectionViewCell.xib */,
 				8F22CBDF1A27A8E60026376E /* ProfileHeaderCollectionReusableView.xib */,
+				8F57AD341B0FD6F400DD40D8 /* ProfileGridItemCollectionViewCell.xib */,
 				8FF298021A4A4E3600306CFC /* ProfileImagesCollectionViewCell.xib */,
 				BFCFDB191A917944009A5FD4 /* ProfileSectionHeaderCollectionReusableView.xib */,
 				8F7795141A92769E00BEF6EA /* QuickActionsCollectionViewCell.xib */,
@@ -1451,6 +1457,7 @@
 				8F0ADD341AC5344E00A44B68 /* Loader_00024@2x.png in Resources */,
 				8F0ADD261AC5344E00A44B68 /* Loader_00010@2x.png in Resources */,
 				8F0ADD421AC5344E00A44B68 /* Loader_00038@2x.png in Resources */,
+				8F57AD361B0FD6F400DD40D8 /* ProfileGridItemCollectionViewCell.xib in Resources */,
 				8F1D0B861AC8AB1200488BD7 /* Loader_00059@2x.png in Resources */,
 				8F809F881A79DD6900029A47 /* NotesOverviewViewController.xib in Resources */,
 				8F0ADD4F1AC5344E00A44B68 /* Loader_00051@2x.png in Resources */,
@@ -1687,6 +1694,7 @@
 				8FF297FD1A4A4DCA00306CFC /* SearchViewController.swift in Sources */,
 				8F823E3A1A706BB20006264B /* OrganizationDetailDataSource.swift in Sources */,
 				8F0544AE1ABA3C7800570327 /* EditAboutViewController.swift in Sources */,
+				8F57AD351B0FD6F400DD40D8 /* ProfileGridItemCollectionViewCell.swift in Sources */,
 				BFCFDB2B1A92759A009A5FD4 /* ToggleSocialConnectionCollectionViewCell.swift in Sources */,
 				8FC8781D1AB539F6003FDB27 /* CurrentUserProfileDetailDataSource.swift in Sources */,
 				8F0004BB1A241BDE0096477A /* UIColorExtension.swift in Sources */,
@@ -1960,7 +1968,7 @@
 				PRODUCT_NAME = circle;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$SRCROOT/Circle/Circle-Bridging-Header.h";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -1983,7 +1991,7 @@
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$SRCROOT/Circle/Circle-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
