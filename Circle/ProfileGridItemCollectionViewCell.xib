@@ -13,7 +13,7 @@
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="245" height="304"/>
                 <subviews>
-                    <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Ravi" translatesAutoresizingMaskIntoConstraints="NO" id="c10-57-cTX" userLabel="ProfileImage" customClass="CircleImageView" customModule="circle" customModuleProvider="target">
+                    <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="c10-57-cTX" userLabel="ProfileImage" customClass="CircleImageView" customModule="circle" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="245" height="245"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="c10-57-cTX" secondAttribute="height" multiplier="1:1" id="0uP-vx-xnK"/>
@@ -73,7 +73,4 @@
             <point key="canvasLocation" x="192.5" y="244"/>
         </collectionViewCell>
     </objects>
-    <resources>
-        <image name="Ravi" width="399" height="614"/>
-    </resources>
 </document>
