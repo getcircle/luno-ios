@@ -112,6 +112,24 @@ struct BoxTheme: Theme {
     var status_bar_style = UIStatusBarStyle.LightContent
 }
 
+struct LyftTheme: Theme {
+    var app_tint_color = UIColor(red: 234, green: 11, blue: 140)
+    var app_ui_background_color = UIColor(red: 51, green: 61, blue: 71)
+    
+    var app_nav_bar_color = UIColor(red: 51, green: 61, blue: 71)
+    var app_nav_bar_text_controls_color = UIColor.whiteColor()
+    
+    var app_tab_bar_color = UIColor(red: 51, green: 61, blue: 71)
+    var app_tab_bar_text_controls_color = UIColor.whiteColor()
+    var app_tab_bar_deselected_text_controls_color = UIColor(red: 145, green: 145, blue: 145)
+    
+    var app_light_text_color = UIColor.whiteColor()
+    var app_dark_text_color = UIColor(red: 38, green: 38, blue: 38)
+    
+    var status_bar_style = UIStatusBarStyle.LightContent
+    
+}
+
 struct AppTheme {
     static var currentTheme: Theme = DefaultTheme()
     
@@ -133,6 +151,8 @@ struct AppTheme {
                 newTheme = NetflixTheme()
             case "box.com":
                 newTheme = BoxTheme()
+            case "lyft.com":
+                newTheme = LyftTheme()
             default:
                 newTheme = DefaultTheme()
         }
