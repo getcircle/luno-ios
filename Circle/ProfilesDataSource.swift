@@ -15,7 +15,7 @@ class ProfilesDataSource: CardDataSource {
     private(set) var searchAttributeValue: AnyObject?
     
     private var card: Card!
-    private var cardType: Card.CardType = .Profiles
+    private var cardType: Card.CardType = UI_USER_INTERFACE_IDIOM() == .Pad ? .ProfilesGrid : .Profiles
     private var profiles = Array<Services.Profile.Containers.ProfileV1>()
     
     // MARK: - Configuration
@@ -70,9 +70,6 @@ class ProfilesDataSource: CardDataSource {
     
     override func setInitialData(content: [AnyObject], ofType: Card.CardType?) {
         profiles.extend(content as! [Services.Profile.Containers.ProfileV1])
-        if ofType != nil {
-            cardType = ofType!
-        }
     }
     
     override func setInitialData(#content: [AnyObject], ofType: Card.CardType?, nextRequest withNextRequest: Soa.ServiceRequestV1?) {
@@ -86,7 +83,12 @@ class ProfilesDataSource: CardDataSource {
         super.loadInitialData(completionHandler)
         
         card = Card(cardType: cardType, title: "")
-        card.sectionInset = UIEdgeInsetsMake(1.0, 0.0, 0.0, 0.0)
+        if cardType == .ProfilesGrid {
+            card.sectionInset = UIEdgeInsetsMake(20.0, 20.0, 20.0, 20.0)
+        }
+        else {
+            card.sectionInset = UIEdgeInsetsMake(1.0, 0.0, 0.0, 0.0)
+        }
         
         registerNextRequestCompletionHandler { (_, _, wrapped, error) -> Void in
             let response = wrapped?.response?.result.getExtension(

@@ -65,7 +65,7 @@
             <constraints>
                 <constraint firstItem="lwh-CK-sRs" firstAttribute="centerX" secondItem="8WP-wI-uMy" secondAttribute="centerX" id="3pq-0p-9Oi"/>
                 <constraint firstItem="xL8-RD-N8m" firstAttribute="leading" secondItem="ba3-xx-xRk" secondAttribute="leading" constant="15" id="671-8K-ZXn"/>
-                <constraint firstAttribute="centerX" secondItem="8WP-wI-uMy" secondAttribute="centerX" constant="-0.5" id="Frs-eO-r8B"/>
+                <constraint firstAttribute="centerX" secondItem="8WP-wI-uMy" secondAttribute="centerX" id="Frs-eO-r8B"/>
                 <constraint firstItem="cBC-Rj-jaa" firstAttribute="top" secondItem="8WP-wI-uMy" secondAttribute="bottom" constant="25" id="Gzc-1v-4ht"/>
                 <constraint firstAttribute="trailing" secondItem="8WP-wI-uMy" secondAttribute="trailing" constant="15" id="JDk-hA-FZE"/>
                 <constraint firstItem="8WP-wI-uMy" firstAttribute="width" secondItem="xL8-RD-N8m" secondAttribute="width" multiplier="0.6" id="Qc5-rk-p75">

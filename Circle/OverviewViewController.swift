@@ -189,7 +189,10 @@ class OverviewViewController:
     // MARK: - CardDataSourceDelegate
     
     func onDataLoaded(indexPaths: [NSIndexPath]) {
-        collectionView.insertItemsAtIndexPaths(indexPaths)
+        let lcollectionView = collectionView
+        collectionView.performBatchUpdates({ () -> Void in
+            lcollectionView.insertItemsAtIndexPaths(indexPaths)
+        }, completion: nil)
     }
     
     
