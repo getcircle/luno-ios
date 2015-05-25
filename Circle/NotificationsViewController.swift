@@ -22,7 +22,6 @@ class NotificationsViewController: UIViewController {
         configureView()
         configureNotificationTextLabel()
         configureButtons()
-        configureNavButtons()
     }
     
     // MARK: - Configuration
@@ -49,11 +48,7 @@ class NotificationsViewController: UIViewController {
         noButton.backgroundColor = UIColor.clearColor()
         noButton.addRoundCorners(radius: 2.0)
     }
-    
-    private func configureNavButtons() {
-        addDoneButtonWithAction("doneButtonTapped:")
-    }
-    
+
     // MARK: - IBActions
 
     @IBAction func yesButtonTapped(sender: AnyObject!) {
