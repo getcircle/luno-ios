@@ -46,6 +46,7 @@ class ProfilesViewController: OverviewViewController {
             TrackerProperty.withKey(.DestinationDetailType).withDetailType(.Profile),
             TrackerProperty.withKey(.ActiveViewController).withString(self.dynamicType.description())
         ]
+        
         if let title = self.title {
             properties.append(TrackerProperty.withKey(.SourceOverviewType).withString(title))
         }

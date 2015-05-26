@@ -11,7 +11,7 @@ import ProtobufRegistry
 
 protocol ProfileSelectorDelegate {
     // Bool is to indicate whether the view should be dismissed immediately
-    // If a false is returned, a HUD is shown to block the view
+    // If not, it is the responsibility of the delegate to present blocking view, error cases, & dismiss on success.
     func onSelectedProfiles(profiles: Array<Services.Profile.Containers.ProfileV1>) -> Bool
 }
 
@@ -46,7 +46,6 @@ class ProfilesSelectorViewController: ProfilesViewController,
     // MARK: Configuration
     
     private func configureNavigationBar() {
-        title = AppStrings.ProfileSectionExpertiseTitle
         addDoneButtonWithAction("doneButtonTapped:")
         addCloseButtonWithAction("cancelButtonTapped:")
     }
@@ -56,9 +55,13 @@ class ProfilesSelectorViewController: ProfilesViewController,
         tokenField.tokenHeight = 34.0
         tokenField.tokenTopPadding = 6.0
         tokenField.tokenBottomPadding = 4.0
+        tokenField.tokenCornerRadius = 5.0
+        
         view.addSubview(tokenField)
         tokenField.backgroundColor = UIColor.whiteColor()
-        tokenField.tokenBackgroundViewBackgroundColor = UIColor.clearColor()
+        tokenField.tokenBackgroundViewBackgroundColor = tokenField.tokenHighlightedBackgroundViewBackgroundColor.colorWithAlphaComponent(0.1)
+        tokenField.tokenBorderColor = UIColor.whiteColor()
+        tokenField.tokenHighlightedBorderColor = UIColor.whiteColor()
         
         tokenField.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero, excludingEdge: .Bottom)
         tokenField.autoSetDimension(.Height, toSize: 44.0)
@@ -94,6 +97,9 @@ class ProfilesSelectorViewController: ProfilesViewController,
             if !tokenField.isFirstResponder() {
                 tokenField.becomeFirstResponder()
             }
+            
+            // Update results
+            filter("")
         }
     }
     

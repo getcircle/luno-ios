@@ -29,11 +29,11 @@ class TagToken: UIView {
             if highlighted {
                 backgroundView.backgroundColor = highlightedBackgroundViewBackgroundColor
                 titleLabel.textColor = highlightedTokenTitleLabelTextColor
-                backgroundView.layer.borderColor = highlightedBorderColor.CGColor
+                layer.borderColor = highlightedBorderColor.CGColor
             } else {
                 backgroundView.backgroundColor = backgroundViewBackgroundColor
                 titleLabel.textColor = titleLabelTextColor
-                backgroundView.layer.borderColor = borderColor.CGColor
+                layer.borderColor = borderColor.CGColor
             }
         }
     }
@@ -67,13 +67,13 @@ class TagToken: UIView {
     private func configureView() {
         tapGestureRecognizer = UITapGestureRecognizer(target: self, action: "didTapToken:")
         addGestureRecognizer(tapGestureRecognizer)
+        layer.borderColor = borderColor.CGColor
+        layer.borderWidth = 1.0
     }
     
     private func configureBackgroundView() {
         backgroundView = UIView.newAutoLayoutView()
         backgroundView.backgroundColor = backgroundViewBackgroundColor
-        backgroundView.layer.borderColor = borderColor.CGColor
-        backgroundView.layer.borderWidth = 1.0
         addSubview(backgroundView)
         backgroundView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
     }

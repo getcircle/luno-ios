@@ -28,9 +28,13 @@ class TokenField: UIView,
     TagTokenDelegate
 {
     
+    // Token Attributes
     var tokenTopPadding: CGFloat = 10.0
     var tokenBottomPadding: CGFloat = 10.0
     var tokenHeight: CGFloat = 35.0
+    var tokenCornerRadius: CGFloat = 0.0
+    
+    
     var dataSource: TokenFieldDataSource?
     var delegate: TokenFieldDelegate?
     var maxHeight: CGFloat?
@@ -145,6 +149,7 @@ class TokenField: UIView,
             let token = TagToken.newAutoLayoutView()
             token.setTitle(title)
             token.delegate = self
+            token.addRoundCorners(radius: tokenCornerRadius)
             contentView.addSubview(token)
             token.autoSetDimension(.Width, toSize: UIScreen.mainScreen().bounds.width - leftPadding, relation: .LessThanOrEqual)
             
