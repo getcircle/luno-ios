@@ -76,7 +76,7 @@ class ProfileDetailDataSource: CardDataSource {
         sections.append(getBasicInfoSection())
         sections.append(getWorkExperienceSection())
         sections.append(getEducationSection())
-//        sections.append(getGroupsSection())
+        sections.append(getGroupsSection())
     }
 
     private func addPlaceholderCard() {

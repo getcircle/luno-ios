@@ -23,11 +23,15 @@ class OverviewViewController:
     private(set) var dataSource: CardDataSource!
     private(set) var delegate = CardCollectionViewDelegate()
     private(set) var errorMessageView: CircleErrorMessageView!
-    private(set) var searchContainerView: UIView!
     private(set) var searchHeaderView: SearchHeaderView?
     
     private var minimumResultsForFilter = 15
     private var isFilterView = false
+    
+    // By default, all overview view controllers get a searchHeaderView
+    // If this is true and other criteria like min. results are greater than
+    // a certain number, a search/filter view is added.
+    var addSearchFilterView = true
     
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -123,15 +127,11 @@ class OverviewViewController:
         collectionView.alwaysBounceVertical = true
         
         collectionView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero, excludingEdge: .Top)
-        if searchHeaderView != nil {
-            collectionViewVerticalSpaceConstraint = collectionView.autoPinEdge(.Top, toEdge: .Bottom, ofView: searchHeaderView!)
-        } else {
-            collectionView.autoPinEdgeToSuperviewEdge(.Top)
-        }
+        collectionViewVerticalSpaceConstraint = collectionView.autoPinEdgeToSuperviewEdge(.Top, withInset: 44.0)
     }
     
     private func configureSearchHeaderView() {
-        if searchHeaderView != nil {
+        if searchHeaderView != nil && addSearchFilterView {
             view.addSubview(searchHeaderView!)
             searchHeaderView!.delegate = self
             searchHeaderView!.searchTextField.placeholder = NSLocalizedString(filterPlaceHolderText(), comment: filterPlaceHolderComment())
@@ -174,14 +174,19 @@ class OverviewViewController:
     }
     
     private func hideFilterIfLimitedContent() {
-        if dataSource.cards.count > 0 && dataSource.cardAtSection(0)?.content.count < minimumResultsForFilter && collectionViewVerticalSpaceConstraint != nil {
-            collectionViewVerticalSpaceConstraint!.constant = -44
+        if dataSource.cards.count > 0 &&
+           dataSource.cardAtSection(0)?.content.count < minimumResultsForFilter && 
+           collectionViewVerticalSpaceConstraint != nil &&
+           addSearchFilterView {
+            collectionViewVerticalSpaceConstraint!.constant = 0.0
             collectionView.setNeedsUpdateConstraints()
         }
     }
     
     private func activateSearchIfApplicable() {
-        if dataSource.cards.count > 0 && dataSource.cardAtSection(0)?.content.count < minimumResultsForFilter {
+        if dataSource.cards.count > 0 && 
+            dataSource.cardAtSection(0)?.content.count < minimumResultsForFilter && 
+            addSearchFilterView {
             searchHeaderView?.searchTextField.resignFirstResponder()
         }
     }
@@ -205,20 +210,23 @@ class OverviewViewController:
     }
     
     func filterChanged(sender: AnyObject?) {
-        if searchHeaderView != nil {
+        if searchHeaderView != nil && addSearchFilterView {
             if isFilterView && searchHeaderView!.searchTextField.text == "" {
                 navigationController?.popViewControllerAnimated(true)
             } else {
-                let query = searchHeaderView!.searchTextField.text
-                if query.trimWhitespace() == "" {
-                    dataSource.clearFilter { () -> Void in
-                        self.collectionView.reloadData()
-                    }
-                } else {
-                    dataSource.filter(query) { (error) -> Void in
-                        self.collectionView.reloadData()
-                    }
-                }
+                filter(searchHeaderView!.searchTextField.text)
+            }
+        }
+    }
+    
+    final internal func filter(query: String) {
+        if query.trimWhitespace() == "" {
+            dataSource.clearFilter { () -> Void in
+                self.collectionView.reloadData()
+            }
+        } else {
+            dataSource.filter(query) { (error) -> Void in
+                self.collectionView.reloadData()
             }
         }
     }
