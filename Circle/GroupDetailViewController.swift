@@ -9,7 +9,10 @@
 import UIKit
 import ProtobufRegistry
 
-class GroupDetailViewController: DetailViewController, CardHeaderViewDelegate {
+class GroupDetailViewController: DetailViewController, 
+    CardHeaderViewDelegate,
+    ProfileSelectorDelegate
+{
 
     // MARK: - Initialization
     
@@ -20,7 +23,18 @@ class GroupDetailViewController: DetailViewController, CardHeaderViewDelegate {
         delegate = CardCollectionViewDelegate()
     }
     
+    // MARK: - View lifecycle
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        configureNavButtons()
+    }
+    
     // MARK: - Configuration
+
+    private func configureNavButtons() {
+        addAddButtonWithAction("addGroupMemberButtonTapped:")
+    }
 
     override func configureCollectionView() {
         // Data Source
@@ -134,5 +148,26 @@ class GroupDetailViewController: DetailViewController, CardHeaderViewDelegate {
             TrackerProperty.withKey(.ActiveViewController).withString(self.dynamicType.description())
         ]
         Tracker.sharedInstance.track(.CardHeaderTapped, properties: properties)
+    }
+    
+    // MARK: - IBActions
+    
+    @IBAction func addGroupMemberButtonTapped(sender: AnyObject!) {
+        // TODO: Check if this user is a manager
+        let profilesSelectorViewController = ProfilesSelectorViewController()
+        // Don't add the default search/filter textfield...instead VC adds a token field
+        profilesSelectorViewController.addSearchFilterView = false
+        profilesSelectorViewController.profileSelectorDelegate = self
+        profilesSelectorViewController.title = AppStrings.GroupAddMembersNavTitle
+        let addMemberNavController = UINavigationController(rootViewController: profilesSelectorViewController)
+        navigationController?.presentViewController(addMemberNavController, animated: true, completion: nil)
+
+    }
+    
+    // MARK: - ProfilesSelectorDelegate
+    
+    func onSelectedProfiles(profiles: Array<Services.Profile.Containers.ProfileV1>) -> Bool {
+        // TODO: Add call to add member
+        return true
     }
 }
