@@ -53,11 +53,12 @@ class ProfilesSelectorViewController: ProfilesViewController,
 
     private func configureTokenField() {
         tokenField = TokenField(forAutoLayout: ())
+        tokenField.tokenHeight = 34.0
+        tokenField.tokenTopPadding = 6.0
+        tokenField.tokenBottomPadding = 4.0
         view.addSubview(tokenField)
         tokenField.backgroundColor = UIColor.whiteColor()
         tokenField.tokenBackgroundViewBackgroundColor = UIColor.clearColor()
-        tokenField.tokenBorderColor = UIColor.clearColor()
-        tokenField.tokenHighlightedBorderColor = UIColor.clearColor()
         
         tokenField.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero, excludingEdge: .Bottom)
         tokenField.autoSetDimension(.Height, toSize: 44.0)
@@ -114,6 +115,7 @@ class ProfilesSelectorViewController: ProfilesViewController,
 
     func tokenField(tokenField: TokenField, didDeleteTokenAtIndex index: UInt) {
         let deletedProfile = selectedProfiles.removeAtIndex(Int(index)) as Services.Profile.Containers.ProfileV1
+        selectedProfileIDs.remove(deletedProfile.id)
         tokenField.reloadData()
     }
 }

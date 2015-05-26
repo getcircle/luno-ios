@@ -101,7 +101,7 @@ class GroupDetailDataSource: CardDataSource {
                     cardType: .Profiles,
                     title: title,
                     addDefaultFooter: false,
-                    contentCount: nextRequest?.getPaginator().countAsInt() ?? 0,
+                    contentCount: cardContent.count,
                     showContentCount: true
                 )
                 
