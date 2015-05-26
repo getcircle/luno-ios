@@ -1,0 +1,119 @@
+//
+//  ProfilesSelectorViewController.swift
+//  Circle
+//
+//  Created by Ravi Rani on 5/25/15.
+//  Copyright (c) 2015 RH Labs Inc. All rights reserved.
+//
+
+import UIKit
+import ProtobufRegistry
+
+protocol ProfileSelectorDelegate {
+    // Bool is to indicate whether the view should be dismissed immediately
+    // If a false is returned, a HUD is shown to block the view
+    func onSelectedProfiles(profiles: Array<Services.Profile.Containers.ProfileV1>) -> Bool
+}
+
+class ProfilesSelectorViewController: ProfilesViewController,
+    TokenFieldDataSource,
+    TokenFieldDelegate
+{
+    private var selectedProfiles = Array<Services.Profile.Containers.ProfileV1>()
+    private var selectedProfileIDs = Set<String>()
+    private var tokenField: TokenField!
+    private var tokenFieldBottomBorder: UIView!
+    
+    var profileSelectorDelegate: ProfileSelectorDelegate?
+    
+    // MARK: Initialization
+    
+    override func initializeDataSource() -> CardDataSource {
+        let dataSource = super.initializeDataSource()
+        (dataSource as! ProfilesDataSource).configureForOrganization()
+        return dataSource
+    }
+    
+    // MARK: View Lifecycle
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        configureNavigationBar()
+        configureCollectionView()
+        configureTokenField()
+    }
+
+    // MARK: Configuration
+    
+    private func configureNavigationBar() {
+        title = AppStrings.ProfileSectionExpertiseTitle
+        addDoneButtonWithAction("doneButtonTapped:")
+        addCloseButtonWithAction("cancelButtonTapped:")
+    }
+
+    private func configureTokenField() {
+        tokenField = TokenField(forAutoLayout: ())
+        view.addSubview(tokenField)
+        tokenField.backgroundColor = UIColor.whiteColor()
+        tokenField.tokenBackgroundViewBackgroundColor = UIColor.clearColor()
+        tokenField.tokenBorderColor = UIColor.clearColor()
+        tokenField.tokenHighlightedBorderColor = UIColor.clearColor()
+        
+        tokenField.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero, excludingEdge: .Bottom)
+        tokenField.autoSetDimension(.Height, toSize: 44.0)
+        tokenField.dataSource = self
+        tokenField.delegate = self
+        tokenFieldBottomBorder = tokenField.addBottomBorder(offset: 0.0)
+        tokenField.reloadData()
+        tokenField.becomeFirstResponder()
+    }
+    
+    // MARK: IBActions
+    
+    @IBAction func doneButtonTapped(sender: AnyObject!) {
+        if let delegate = profileSelectorDelegate where selectedProfiles.count > 0 {
+            if delegate.onSelectedProfiles(selectedProfiles) {
+                dismissViewControllerAnimated(true, completion: nil)
+            }
+        }
+    }
+
+    @IBAction func cancelButtonTapped(sender: AnyObject!) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    // MARK: UICollectionViewDelegate
+
+    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        
+        if let profile = dataSource.contentAtIndexPath(indexPath) as? Services.Profile.Containers.ProfileV1 where !selectedProfileIDs.contains(profile.id) {
+            selectedProfiles.append(profile)
+            selectedProfileIDs.insert(profile.id)
+            tokenField.reloadData()
+            if !tokenField.isFirstResponder() {
+                tokenField.becomeFirstResponder()
+            }
+        }
+    }
+    
+    // MARK: TokenFieldDataSource
+
+    func tokenField(tokenField: TokenField, titleForTokenAtIndex index: UInt) -> String {
+        return selectedProfiles[Int(index)].fullName
+    }
+    
+    func numberOfTokensInTokenField(tokenField: TokenField) -> UInt {
+        return UInt(selectedProfiles.count)
+    }
+    
+    // MARK: TokenFieldDelegate
+
+    func tokenField(tokenField: TokenField, didChangeText text: String) {
+        filter(text)
+    }
+
+    func tokenField(tokenField: TokenField, didDeleteTokenAtIndex index: UInt) {
+        let deletedProfile = selectedProfiles.removeAtIndex(Int(index)) as Services.Profile.Containers.ProfileV1
+        tokenField.reloadData()
+    }
+}

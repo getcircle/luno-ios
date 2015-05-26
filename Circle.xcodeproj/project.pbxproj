@@ -138,6 +138,7 @@
 		8F4A98B31A6350B9005AD63C /* CircleCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4A98B21A6350B9005AD63C /* CircleCollectionReusableView.swift */; };
 		8F4E53781A5A0D9E00DC876B /* NotesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4E53761A5A0D9E00DC876B /* NotesCollectionViewCell.swift */; };
 		8F4E53791A5A0D9E00DC876B /* NotesCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F4E53771A5A0D9E00DC876B /* NotesCollectionViewCell.xib */; };
+		8F50CBA01B1392C100AC5277 /* ProfilesSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F50CB9F1B1392C100AC5277 /* ProfilesSelectorViewController.swift */; };
 		8F57AD351B0FD6F400DD40D8 /* ProfileGridItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F57AD331B0FD6F400DD40D8 /* ProfileGridItemCollectionViewCell.swift */; };
 		8F57AD361B0FD6F400DD40D8 /* ProfileGridItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F57AD341B0FD6F400DD40D8 /* ProfileGridItemCollectionViewCell.xib */; };
 		8F5933C61AC9FAD000905E14 /* AppDelegateNotificationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5933C51AC9FAD000905E14 /* AppDelegateNotificationExtension.swift */; };
@@ -508,6 +509,7 @@
 		8F4A98B21A6350B9005AD63C /* CircleCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleCollectionReusableView.swift; sourceTree = "<group>"; };
 		8F4E53761A5A0D9E00DC876B /* NotesCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotesCollectionViewCell.swift; sourceTree = "<group>"; };
 		8F4E53771A5A0D9E00DC876B /* NotesCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotesCollectionViewCell.xib; sourceTree = "<group>"; };
+		8F50CB9F1B1392C100AC5277 /* ProfilesSelectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfilesSelectorViewController.swift; sourceTree = "<group>"; };
 		8F57AD331B0FD6F400DD40D8 /* ProfileGridItemCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileGridItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		8F57AD341B0FD6F400DD40D8 /* ProfileGridItemCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileGridItemCollectionViewCell.xib; sourceTree = "<group>"; };
 		8F5933C51AC9FAD000905E14 /* AppDelegateNotificationExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegateNotificationExtension.swift; sourceTree = "<group>"; };
@@ -837,6 +839,7 @@
 				8F7E2DCB1A8FDBB500B8548D /* PasscodeTouchIDViewController.swift */,
 				BF7B238F1A70894100137BCB /* ProfileDetailsViewController.swift */,
 				8FC8780A1AB276B1003FDB27 /* ProfileDetailViewController.swift */,
+				8F50CB9F1B1392C100AC5277 /* ProfilesSelectorViewController.swift */,
 				8F00049A1A2419730096477A /* ProfilesViewController.swift */,
 				8FF297FC1A4A4DCA00306CFC /* SearchViewController.swift */,
 				8F9F60CA1A8C439E00FCAA25 /* SettingsViewController.swift */,
@@ -1809,6 +1812,7 @@
 				BFAE43551A8B05010085AB2B /* HomelessViewController.swift in Sources */,
 				BFA1187F1AA2738E0073B13A /* Appreciation.swift in Sources */,
 				BF8DAC901A6D904D000860DD /* Note.swift in Sources */,
+				8F50CBA01B1392C100AC5277 /* ProfilesSelectorViewController.swift in Sources */,
 				BFC6CF9C1A44D2B90081F45B /* ServiceClient.swift in Sources */,
 				8F74003F1A6A442900D96B60 /* CircleAlertViewAnimator.swift in Sources */,
 				BFF5E6F51A814C2C00827757 /* SocialConnectViewController.swift in Sources */,

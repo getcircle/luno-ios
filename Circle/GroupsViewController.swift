@@ -19,10 +19,21 @@ class GroupsViewController: OverviewViewController {
         return "Filter groups"
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        configureNavButtons()
+    }
+    
     // MARK: - Initialization
     
     override func initializeDataSource() -> CardDataSource {
         return GroupsDataSource()
+    }
+    
+    // MARK: - Configuration
+    
+    private func configureNavButtons() {
+        addAddButtonWithAction("addGroupMemberButtonTapped:")
     }
     
     // MARK: - Collection View Delegate
@@ -50,5 +61,15 @@ class GroupsViewController: OverviewViewController {
             properties.append(TrackerProperty.withKey(.SourceOverviewType).withString(title))
         }
         Tracker.sharedInstance.track(.DetailItemTapped, properties: properties)
+    }
+    
+    // MARK: - IBAction
+    
+    @IBAction func addGroupMemberButtonTapped(sender: AnyObject!) {
+        let profilesSelectorViewController = ProfilesSelectorViewController()
+        // Don't add the default search/filter textfield...instead VC adds a token field
+        profilesSelectorViewController.addSearchFilterView = false
+        let addMemberNavController = UINavigationController(rootViewController: profilesSelectorViewController)
+        navigationController?.presentViewController(addMemberNavController, animated: true, completion: nil)
     }
 }
