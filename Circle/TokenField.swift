@@ -28,6 +28,8 @@ class TokenField: UIView,
     TagTokenDelegate
 {
     
+    var tokenTopPadding: CGFloat = 10.0
+    var tokenBottomPadding: CGFloat = 10.0
     var tokenHeight: CGFloat = 35.0
     var dataSource: TokenFieldDataSource?
     var delegate: TokenFieldDelegate?
@@ -163,6 +165,7 @@ class TokenField: UIView,
         inputTextField?.textColor = tokenTitleLabelTextColor
         inputTextField?.tintColor = tokenTintColor
         inputTextField?.delegate = self
+        inputTextField?.font = UIFont.appTagTokenFont()
         contentView.addSubview(inputTextField!)
         inputTextField?.autoSetDimension(.Width, toSize: UIScreen.mainScreen().bounds.width - leftPadding, relation: .LessThanOrEqual)
         inputTextField?.autoSetDimension(.Width, toSize: 80.0, relation: .GreaterThanOrEqual)
@@ -182,8 +185,8 @@ class TokenField: UIView,
         var previousView: UIView?
         let leftOffset: CGFloat = 10.0
         let itemMargin: CGFloat = 10.0
-        let topPadding: CGFloat = 10.0
-        let bottomPadding: CGFloat = 10.0
+        let topPadding: CGFloat = tokenTopPadding
+        let bottomPadding: CGFloat = tokenBottomPadding
         let itemVerticalMargin: CGFloat = 10.0
         var currentX = leftOffset
         intrinsicHeight = topPadding
