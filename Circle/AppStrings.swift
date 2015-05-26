@@ -43,6 +43,7 @@ struct AppStrings {
     static let GenericTryAgainButtonTitle = NSLocalizedString("Try Again", comment: "Generic button title to try some action again")
     
     static let GroupAddMembersNavTitle = NSLocalizedString("Add members", comment: "Title for view used to add members to a group")
+    static let GroupLeaveGroupButtonTitle = NSLocalizedString("Leave group", comment: "Title of the button to leave a group")
     static let GroupManagersSectionTitle = NSLocalizedString("Managers", comment: "Label for the section listing managers of a group")
     static let GroupMembersSectionTitle = NSLocalizedString("Members", comment: "Label for the section listing members of a group")
     static let GroupMembersCount = NSLocalizedString("%d Members", comment: "Label indicating the number of members of a group")

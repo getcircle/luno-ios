@@ -39,6 +39,7 @@ enum ContentType: Int {
     case HireDate
     case Interests
     case Tags
+    case LeaveGroup
     case LinkedIn
     case LinkedInConnect
     case Manager

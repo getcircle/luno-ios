@@ -32,12 +32,20 @@ class GroupDetailDataSource: CardDataSource {
         )
         appendCard(placeholderHeaderCard)
         
+        let groupEmailCard = Card(cardType: .KeyValue, title: "")
+        groupEmailCard.sectionInset = UIEdgeInsetsZero
+        groupEmailCard.addContent(content: [["name" : AppStrings.QuickActionEmailLabel, "value": selectedGroup.email]])
+        appendCard(groupEmailCard)
+        
         if selectedGroup.groupDescription.trimWhitespace() != "" {
             // Add a text value card for description
             let groupDescriptionCard = Card(cardType: .TextValue, title: "")
             groupDescriptionCard.sectionInset = sectionInset
             groupDescriptionCard.addContent(content: [selectedGroup.groupDescription])
             appendCard(groupDescriptionCard)
+        }
+        else {
+            groupEmailCard.sectionInset = sectionInset
         }
         
         // Fetch data within a dispatch group, calling populateData when all tasks have finished
@@ -88,10 +96,20 @@ class GroupDetailDataSource: CardDataSource {
         }
     }
     
+    override func configureCell(cell: CircleCollectionViewCell, atIndexPath indexPath: NSIndexPath) {
+        if let content = contentAtIndexPath(indexPath) as? [String: AnyObject] where cell is SettingsCollectionViewCell {
+            (cell as! SettingsCollectionViewCell).itemLabel.textAlignment = .Center
+            if let contentType = content["type"] as? Int where ContentType(rawValue: contentType) == ContentType.LeaveGroup {
+                (cell as! SettingsCollectionViewCell).itemLabel.textColor = UIColor.redColor().colorWithAlphaComponent(0.8)
+            }
+        }
+    }
+    
     // MARK: - Helpers
     
     private func populateData() {
-
+        
+        var cardsAdded = false
         for (title, cardContent, nextRequest) in [
             (AppStrings.GroupManagersSectionTitle, managerMemberProfiles, nextManagerMembersRequest),
             (AppStrings.GroupMembersSectionTitle, memberProfiles, nextMembersRequest)
@@ -112,7 +130,15 @@ class GroupDetailDataSource: CardDataSource {
                 groupMembersCard.sectionInset = sectionInset
                 groupMembersCard.addContent(content: cardContent, maxVisibleItems: 5)
                 appendCard(groupMembersCard)
+                cardsAdded = true
             }
+        }
+        
+        if cardsAdded && selectedGroup.isMember {
+            let groupEmailCard = Card(cardType: .Settings, title: "")
+            groupEmailCard.sectionInset = sectionInset
+            groupEmailCard.addContent(content: [["text" : AppStrings.GroupLeaveGroupButtonTitle, "type": ContentType.LeaveGroup.rawValue]])
+            appendCard(groupEmailCard)
         }
     }
 }
