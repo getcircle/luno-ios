@@ -70,7 +70,7 @@ public func == (lhs: Services.Group.Containers.MembershipRequestV1, rhs: Service
   fieldCheck = fieldCheck && (lhs.hasId == rhs.hasId) && (!lhs.hasId || lhs.id == rhs.id)
   fieldCheck = fieldCheck && (lhs.hasStatus == rhs.hasStatus) && (!lhs.hasStatus || lhs.status == rhs.status)
   fieldCheck = fieldCheck && (lhs.hasRequesterProfileId == rhs.hasRequesterProfileId) && (!lhs.hasRequesterProfileId || lhs.requesterProfileId == rhs.requesterProfileId)
-  fieldCheck = fieldCheck && (lhs.hasApproverProfileId == rhs.hasApproverProfileId) && (!lhs.hasApproverProfileId || lhs.approverProfileId == rhs.approverProfileId)
+  fieldCheck = fieldCheck && (lhs.approverProfileIds == rhs.approverProfileIds)
   fieldCheck = fieldCheck && (lhs.hasGroupKey == rhs.hasGroupKey) && (!lhs.hasGroupKey || lhs.groupKey == rhs.groupKey)
   fieldCheck = fieldCheck && (lhs.hasProvider == rhs.hasProvider) && (!lhs.hasProvider || lhs.provider == rhs.provider)
   fieldCheck = fieldCheck && (lhs.meta == rhs.meta)
@@ -1939,7 +1939,6 @@ public extension Services.Group.Containers {
            case "id": return id
            case "status": return self.status
            case "requesterProfileId": return requesterProfileId
-           case "approverProfileId": return approverProfileId
            case "groupKey": return groupKey
            case "provider": return self.provider
            case "created": return created
@@ -1958,9 +1957,6 @@ public extension Services.Group.Containers {
     public private(set) var hasRequesterProfileId:Bool = false
     public private(set) var requesterProfileId:String = ""
 
-    public private(set) var hasApproverProfileId:Bool = false
-    public private(set) var approverProfileId:String = ""
-
     public private(set) var hasGroupKey:Bool = false
     public private(set) var groupKey:String = ""
 
@@ -1969,6 +1965,7 @@ public extension Services.Group.Containers {
     public private(set) var hasCreated:Bool = false
     public private(set) var created:String = ""
 
+    public private(set) var approverProfileIds:Array<String> = Array<String>()
     public private(set) var meta:Array<Services.Group.Containers.MembershipRequestMetaV1>  = Array<Services.Group.Containers.MembershipRequestMetaV1>()
     required public init() {
          super.init()
@@ -1989,8 +1986,10 @@ public extension Services.Group.Containers {
       if hasRequesterProfileId {
         output.writeString(4, value:requesterProfileId)
       }
-      if hasApproverProfileId {
-        output.writeString(5, value:approverProfileId)
+      if !approverProfileIds.isEmpty {
+        for oneValueapproverProfileIds in approverProfileIds {
+          output.writeString(5, value:oneValueapproverProfileIds)
+        }
       }
       if hasGroupKey {
         output.writeString(6, value:groupKey)
@@ -2025,9 +2024,12 @@ public extension Services.Group.Containers {
       if hasRequesterProfileId {
         serialize_size += requesterProfileId.computeStringSize(4)
       }
-      if hasApproverProfileId {
-        serialize_size += approverProfileId.computeStringSize(5)
+      var dataSizeApproverProfileIds:Int32 = 0
+      for oneValueapproverProfileIds in approverProfileIds {
+          dataSizeApproverProfileIds += oneValueapproverProfileIds.computeStringSizeNoTag()
       }
+      serialize_size += dataSizeApproverProfileIds
+      serialize_size += 1 * Int32(approverProfileIds.count)
       if hasGroupKey {
         serialize_size += groupKey.computeStringSize(6)
       }
@@ -2093,8 +2095,10 @@ public extension Services.Group.Containers {
       if hasRequesterProfileId {
         output += "\(indent) requesterProfileId: \(requesterProfileId) \n"
       }
-      if hasApproverProfileId {
-        output += "\(indent) approverProfileId: \(approverProfileId) \n"
+      var approverProfileIdsElementIndex:Int = 0
+      for oneValueapproverProfileIds in approverProfileIds  {
+          output += "\(indent) approverProfileIds[\(approverProfileIdsElementIndex)]: \(oneValueapproverProfileIds)\n"
+          approverProfileIdsElementIndex++
       }
       if hasGroupKey {
         output += "\(indent) groupKey: \(groupKey) \n"
@@ -2129,8 +2133,8 @@ public extension Services.Group.Containers {
             if hasRequesterProfileId {
                hashCode = (hashCode &* 31) &+ requesterProfileId.hashValue
             }
-            if hasApproverProfileId {
-               hashCode = (hashCode &* 31) &+ approverProfileId.hashValue
+            for oneValueapproverProfileIds in approverProfileIds {
+                hashCode = (hashCode &* 31) &+ oneValueapproverProfileIds.hashValue
             }
             if hasGroupKey {
                hashCode = (hashCode &* 31) &+ groupKey.hashValue
@@ -2264,28 +2268,21 @@ public extension Services.Group.Containers {
          builderResult.requesterProfileId = ""
          return self
     }
-    public var hasApproverProfileId:Bool {
+    public var approverProfileIds:Array<String> {
          get {
-              return builderResult.hasApproverProfileId
+             return builderResult.approverProfileIds
+         }
+         set (array) {
+             builderResult.approverProfileIds = array
          }
     }
-    public var approverProfileId:String {
-         get {
-              return builderResult.approverProfileId
-         }
-         set (value) {
-             builderResult.hasApproverProfileId = true
-             builderResult.approverProfileId = value
-         }
-    }
-    public func setApproverProfileId(value:String)-> Services.Group.Containers.MembershipRequestV1Builder {
-      self.approverProfileId = value
+    public func setApproverProfileIds(value:Array<String>)-> Services.Group.Containers.MembershipRequestV1Builder {
+      self.approverProfileIds = value
       return self
     }
-    public func clearApproverProfileId() -> Services.Group.Containers.MembershipRequestV1Builder{
-         builderResult.hasApproverProfileId = false
-         builderResult.approverProfileId = ""
-         return self
+    public func clearApproverProfileIds() -> Services.Group.Containers.MembershipRequestV1Builder {
+       builderResult.approverProfileIds.removeAll(keepCapacity: false)
+       return self
     }
     public var hasGroupKey:Bool {
          get {
@@ -2408,8 +2405,8 @@ public extension Services.Group.Containers {
       if other.hasRequesterProfileId {
            requesterProfileId = other.requesterProfileId
       }
-      if other.hasApproverProfileId {
-           approverProfileId = other.approverProfileId
+      if !other.approverProfileIds.isEmpty {
+          builderResult.approverProfileIds += other.approverProfileIds
       }
       if other.hasGroupKey {
            groupKey = other.groupKey
@@ -2456,7 +2453,7 @@ public extension Services.Group.Containers {
           requesterProfileId = input.readString()
 
         case 42 :
-          approverProfileId = input.readString()
+          approverProfileIds += [input.readString()]
 
         case 50 :
           groupKey = input.readString()

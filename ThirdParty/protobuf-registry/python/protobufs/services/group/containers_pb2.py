@@ -24,7 +24,7 @@ import protobufs.services.profile.containers_pb2
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='protobufs/services/group/containers.proto',
   package='services.group.containers',
-  serialized_pb=_b('\n)protobufs/services/group/containers.proto\x12\x19services.group.containers\x1a\x42protobufs/services/group/containers/permissions/who_can_join.proto\x1aMprotobufs/services/group/containers/permissions/who_can_view_membership.proto\x1aHprotobufs/services/group/containers/permissions/who_can_view_group.proto\x1a\x44protobufs/services/group/containers/permissions/who_can_invite.proto\x1a+protobufs/services/profile/containers.proto\"\x97\x02\n\x07GroupV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\n\n\x02id\x18\x02 \x01(\t\x12\r\n\x05\x65mail\x18\x03 \x01(\t\x12\x0c\n\x04name\x18\x04 \x01(\t\x12\x14\n\x0c\x64isplay_name\x18\x05 \x01(\t\x12\x19\n\x11group_description\x18\x06 \x01(\t\x12\x0f\n\x07\x61liases\x18\x07 \x03(\t\x12\x15\n\rmembers_count\x18\x08 \x01(\r\x12<\n\x08provider\x18\t \x01(\x0e\x32*.services.group.containers.GroupProviderV1\x12\x10\n\x08\x63\x61n_join\x18\n \x01(\x08\x12\x11\n\tis_member\x18\x0b \x01(\x08\x12\x13\n\x0b\x63\x61n_request\x18\x0c \x01(\x08\"\x87\x04\n\x0fGroupSettingsV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\n\n\x02id\x18\x02 \x01(\t\x12\x10\n\x08group_id\x18\x03 \x01(\t\x12\x61\n\x0cwho_can_join\x18\x04 \x01(\x0e\x32K.services.group.containers.permissions.who_can_join.WhoCanJoinPermissionsV1\x12\x81\x01\n\x17who_can_view_membership\x18\x05 \x01(\x0e\x32`.services.group.containers.permissions.who_can_view_membership.WhoCanViewMembershipPermissionsV1\x12r\n\x12who_can_view_group\x18\x06 \x01(\x0e\x32V.services.group.containers.permissions.who_can_view_group.WhoCanViewGroupPermissionsV1\x12g\n\x0ewho_can_invite\x18\x07 \x01(\x0e\x32O.services.group.containers.permissions.who_can_invite.WhoCanInvitePermissionsV1\"\x94\x01\n\x08MemberV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\n\n\x02id\x18\x02 \x01(\t\x12\x37\n\x07profile\x18\x03 \x01(\x0b\x32&.services.profile.containers.ProfileV1\x12/\n\x04role\x18\x04 \x01(\x0e\x32!.services.group.containers.RoleV1\"I\n\x17MembershipRequestMetaV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x0b\n\x03key\x18\x02 \x01(\t\x12\r\n\x05value\x18\x03 \x01(\t\"\xda\x02\n\x13MembershipRequestV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\n\n\x02id\x18\x02 \x01(\t\x12\x44\n\x06status\x18\x03 \x01(\x0e\x32\x34.services.group.containers.MembershipRequestStatusV1\x12\x1c\n\x14requester_profile_id\x18\x04 \x01(\t\x12\x1b\n\x13\x61pprover_profile_id\x18\x05 \x01(\t\x12\x11\n\tgroup_key\x18\x06 \x01(\t\x12<\n\x08provider\x18\x07 \x01(\x0e\x32*.services.group.containers.GroupProviderV1\x12@\n\x04meta\x18\x08 \x03(\x0b\x32\x32.services.group.containers.MembershipRequestMetaV1\x12\x0f\n\x07\x63reated\x18\t \x01(\t*\x1d\n\x0fGroupProviderV1\x12\n\n\x06GOOGLE\x10\x00*,\n\x06RoleV1\x12\t\n\x05OWNER\x10\x00\x12\x0b\n\x07MANAGER\x10\x01\x12\n\n\x06MEMBER\x10\x02*B\n\x19MembershipRequestStatusV1\x12\x0b\n\x07PENDING\x10\x00\x12\x0c\n\x08\x41PPROVED\x10\x01\x12\n\n\x06\x44\x45NIED\x10\x02\x42\x30\n.com.rhlabs.protobufs.services.group.containers')
+  serialized_pb=_b('\n)protobufs/services/group/containers.proto\x12\x19services.group.containers\x1a\x42protobufs/services/group/containers/permissions/who_can_join.proto\x1aMprotobufs/services/group/containers/permissions/who_can_view_membership.proto\x1aHprotobufs/services/group/containers/permissions/who_can_view_group.proto\x1a\x44protobufs/services/group/containers/permissions/who_can_invite.proto\x1a+protobufs/services/profile/containers.proto\"\x97\x02\n\x07GroupV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\n\n\x02id\x18\x02 \x01(\t\x12\r\n\x05\x65mail\x18\x03 \x01(\t\x12\x0c\n\x04name\x18\x04 \x01(\t\x12\x14\n\x0c\x64isplay_name\x18\x05 \x01(\t\x12\x19\n\x11group_description\x18\x06 \x01(\t\x12\x0f\n\x07\x61liases\x18\x07 \x03(\t\x12\x15\n\rmembers_count\x18\x08 \x01(\r\x12<\n\x08provider\x18\t \x01(\x0e\x32*.services.group.containers.GroupProviderV1\x12\x10\n\x08\x63\x61n_join\x18\n \x01(\x08\x12\x11\n\tis_member\x18\x0b \x01(\x08\x12\x13\n\x0b\x63\x61n_request\x18\x0c \x01(\x08\"\x87\x04\n\x0fGroupSettingsV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\n\n\x02id\x18\x02 \x01(\t\x12\x10\n\x08group_id\x18\x03 \x01(\t\x12\x61\n\x0cwho_can_join\x18\x04 \x01(\x0e\x32K.services.group.containers.permissions.who_can_join.WhoCanJoinPermissionsV1\x12\x81\x01\n\x17who_can_view_membership\x18\x05 \x01(\x0e\x32`.services.group.containers.permissions.who_can_view_membership.WhoCanViewMembershipPermissionsV1\x12r\n\x12who_can_view_group\x18\x06 \x01(\x0e\x32V.services.group.containers.permissions.who_can_view_group.WhoCanViewGroupPermissionsV1\x12g\n\x0ewho_can_invite\x18\x07 \x01(\x0e\x32O.services.group.containers.permissions.who_can_invite.WhoCanInvitePermissionsV1\"\x94\x01\n\x08MemberV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\n\n\x02id\x18\x02 \x01(\t\x12\x37\n\x07profile\x18\x03 \x01(\x0b\x32&.services.profile.containers.ProfileV1\x12/\n\x04role\x18\x04 \x01(\x0e\x32!.services.group.containers.RoleV1\"I\n\x17MembershipRequestMetaV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x0b\n\x03key\x18\x02 \x01(\t\x12\r\n\x05value\x18\x03 \x01(\t\"\xdb\x02\n\x13MembershipRequestV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\n\n\x02id\x18\x02 \x01(\t\x12\x44\n\x06status\x18\x03 \x01(\x0e\x32\x34.services.group.containers.MembershipRequestStatusV1\x12\x1c\n\x14requester_profile_id\x18\x04 \x01(\t\x12\x1c\n\x14\x61pprover_profile_ids\x18\x05 \x03(\t\x12\x11\n\tgroup_key\x18\x06 \x01(\t\x12<\n\x08provider\x18\x07 \x01(\x0e\x32*.services.group.containers.GroupProviderV1\x12@\n\x04meta\x18\x08 \x03(\x0b\x32\x32.services.group.containers.MembershipRequestMetaV1\x12\x0f\n\x07\x63reated\x18\t \x01(\t*\x1d\n\x0fGroupProviderV1\x12\n\n\x06GOOGLE\x10\x00*,\n\x06RoleV1\x12\t\n\x05OWNER\x10\x00\x12\x0b\n\x07MANAGER\x10\x01\x12\n\n\x06MEMBER\x10\x02*B\n\x19MembershipRequestStatusV1\x12\x0b\n\x07PENDING\x10\x00\x12\x0c\n\x08\x41PPROVED\x10\x01\x12\n\n\x06\x44\x45NIED\x10\x02\x42\x30\n.com.rhlabs.protobufs.services.group.containers')
   ,
   dependencies=[protobufs.services.group.containers.permissions.who_can_join_pb2.DESCRIPTOR,protobufs.services.group.containers.permissions.who_can_view_membership_pb2.DESCRIPTOR,protobufs.services.group.containers.permissions.who_can_view_group_pb2.DESCRIPTOR,protobufs.services.group.containers.permissions.who_can_invite_pb2.DESCRIPTOR,protobufs.services.profile.containers_pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
@@ -42,8 +42,8 @@ _GROUPPROVIDERV1 = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=1787,
-  serialized_end=1816,
+  serialized_start=1788,
+  serialized_end=1817,
 )
 _sym_db.RegisterEnumDescriptor(_GROUPPROVIDERV1)
 
@@ -69,8 +69,8 @@ _ROLEV1 = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=1818,
-  serialized_end=1862,
+  serialized_start=1819,
+  serialized_end=1863,
 )
 _sym_db.RegisterEnumDescriptor(_ROLEV1)
 
@@ -96,8 +96,8 @@ _MEMBERSHIPREQUESTSTATUSV1 = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=1864,
-  serialized_end=1930,
+  serialized_start=1865,
+  serialized_end=1931,
 )
 _sym_db.RegisterEnumDescriptor(_MEMBERSHIPREQUESTSTATUSV1)
 
@@ -422,9 +422,9 @@ _MEMBERSHIPREQUESTV1 = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='approver_profile_id', full_name='services.group.containers.MembershipRequestV1.approver_profile_id', index=4,
-      number=5, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
+      name='approver_profile_ids', full_name='services.group.containers.MembershipRequestV1.approver_profile_ids', index=4,
+      number=5, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
@@ -468,7 +468,7 @@ _MEMBERSHIPREQUESTV1 = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=1439,
-  serialized_end=1785,
+  serialized_end=1786,
 )
 
 _GROUPV1.fields_by_name['provider'].enum_type = _GROUPPROVIDERV1

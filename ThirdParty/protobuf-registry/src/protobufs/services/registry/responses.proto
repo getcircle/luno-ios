@@ -94,6 +94,8 @@ import "protobufs/services/group/actions/respond_to_membership_request.proto";
 import "protobufs/services/group/actions/leave_group.proto";
 import "protobufs/services/group/actions/list_members.proto";
 import "protobufs/services/group/actions/get_group.proto";
+import "protobufs/services/group/actions/add_to_group.proto";
+import "protobufs/services/group/actions/get_membership_requests.proto";
 
 message User {
     extend soa.ActionResultV1 {
@@ -226,5 +228,7 @@ message Group {
         optional services.group.actions.leave_group.ResponseV1 leave_group = 1103;
         optional services.group.actions.list_members.ResponseV1 list_members = 1104;
         optional services.group.actions.get_group.ResponseV1 get_group = 1105;
+        optional services.group.actions.add_to_group.ResponseV1 add_to_group = 1106;
+        optional services.group.actions.get_membership_requests.ResponseV1 get_membership_requests = 1107;
     }
 }

@@ -1,0 +1,17 @@
+package services.group.actions.add_to_group;
+
+// GENERATED OPTIONS FOR: JAVA
+option java_package = "com.rhlabs.protobufs.services.group.actions.add_to_group";
+
+import "protobufs/services/group/containers.proto";
+
+message RequestV1 {
+    optional uint32 version = 1 [default = 1];
+    optional string group_key = 2;
+    repeated string profile_ids = 3;
+}
+
+message ResponseV1 {
+    optional uint32 version = 1 [default = 1];
+    repeated services.group.containers.MemberV1 new_members = 2;
+}

@@ -486,6 +486,16 @@ public var ServicesRegistryResponsesGroupgetGroup:ConcreateExtensionField {
        return Services.Registry.Responses.ResponsesRoot.sharedInstance.ServicesRegistryResponsesGroupgetGroupStatic
    }
 }
+public var ServicesRegistryResponsesGroupaddToGroup:ConcreateExtensionField {
+   get {
+       return Services.Registry.Responses.ResponsesRoot.sharedInstance.ServicesRegistryResponsesGroupaddToGroupStatic
+   }
+}
+public var ServicesRegistryResponsesGroupgetMembershipRequests:ConcreateExtensionField {
+   get {
+       return Services.Registry.Responses.ResponsesRoot.sharedInstance.ServicesRegistryResponsesGroupgetMembershipRequestsStatic
+   }
+}
 public extension Services.Registry.Responses {
   public struct ResponsesRoot {
     public static var sharedInstance : ResponsesRoot {
@@ -573,6 +583,8 @@ public extension Services.Registry.Responses {
     var ServicesRegistryResponsesGroupleaveGroupStatic:ConcreateExtensionField
     var ServicesRegistryResponsesGrouplistMembersStatic:ConcreateExtensionField
     var ServicesRegistryResponsesGroupgetGroupStatic:ConcreateExtensionField
+    var ServicesRegistryResponsesGroupaddToGroupStatic:ConcreateExtensionField
+    var ServicesRegistryResponsesGroupgetMembershipRequestsStatic:ConcreateExtensionField
     public var extensionRegistry:ExtensionRegistry
 
     init() {
@@ -655,6 +667,8 @@ public extension Services.Registry.Responses {
       ServicesRegistryResponsesGroupleaveGroupStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 1103, defaultValue:Services.Group.Actions.LeaveGroup.ResponseV1(), messageOrGroupClass:Services.Group.Actions.LeaveGroup.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
       ServicesRegistryResponsesGrouplistMembersStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 1104, defaultValue:Services.Group.Actions.ListMembers.ResponseV1(), messageOrGroupClass:Services.Group.Actions.ListMembers.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
       ServicesRegistryResponsesGroupgetGroupStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 1105, defaultValue:Services.Group.Actions.GetGroup.ResponseV1(), messageOrGroupClass:Services.Group.Actions.GetGroup.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
+      ServicesRegistryResponsesGroupaddToGroupStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 1106, defaultValue:Services.Group.Actions.AddToGroup.ResponseV1(), messageOrGroupClass:Services.Group.Actions.AddToGroup.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
+      ServicesRegistryResponsesGroupgetMembershipRequestsStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 1107, defaultValue:Services.Group.Actions.GetMembershipRequests.ResponseV1(), messageOrGroupClass:Services.Group.Actions.GetMembershipRequests.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
       extensionRegistry = ExtensionRegistry()
       registerAllExtensions(extensionRegistry)
       Soa.SoaRoot.sharedInstance.registerAllExtensions(extensionRegistry)
@@ -737,6 +751,8 @@ public extension Services.Registry.Responses {
       Services.Group.Actions.LeaveGroup.LeaveGroupRoot.sharedInstance.registerAllExtensions(extensionRegistry)
       Services.Group.Actions.ListMembers.ListMembersRoot.sharedInstance.registerAllExtensions(extensionRegistry)
       Services.Group.Actions.GetGroup.GetGroupRoot.sharedInstance.registerAllExtensions(extensionRegistry)
+      Services.Group.Actions.AddToGroup.AddToGroupRoot.sharedInstance.registerAllExtensions(extensionRegistry)
+      Services.Group.Actions.GetMembershipRequests.GetMembershipRequestsRoot.sharedInstance.registerAllExtensions(extensionRegistry)
     }
     public func registerAllExtensions(registry:ExtensionRegistry) {
       registry.addExtension(ServicesRegistryResponsesUsercreateUserStatic)
@@ -818,6 +834,8 @@ public extension Services.Registry.Responses {
       registry.addExtension(ServicesRegistryResponsesGroupleaveGroupStatic)
       registry.addExtension(ServicesRegistryResponsesGrouplistMembersStatic)
       registry.addExtension(ServicesRegistryResponsesGroupgetGroupStatic)
+      registry.addExtension(ServicesRegistryResponsesGroupaddToGroupStatic)
+      registry.addExtension(ServicesRegistryResponsesGroupgetMembershipRequestsStatic)
     }
   }
 
@@ -2524,6 +2542,12 @@ public extension Services.Registry.Responses {
     }
     public class func getGroup() -> ConcreateExtensionField {
          return ServicesRegistryResponsesGroupgetGroup
+    }
+    public class func addToGroup() -> ConcreateExtensionField {
+         return ServicesRegistryResponsesGroupaddToGroup
+    }
+    public class func getMembershipRequests() -> ConcreateExtensionField {
+         return ServicesRegistryResponsesGroupgetMembershipRequests
     }
     required public init() {
          super.init()

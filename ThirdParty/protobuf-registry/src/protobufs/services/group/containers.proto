@@ -69,7 +69,7 @@ message MembershipRequestV1 {
     optional string id = 2;
     optional MembershipRequestStatusV1 status = 3;
     optional string requester_profile_id = 4;
-    optional string approver_profile_id = 5;
+    repeated string approver_profile_ids = 5;
     optional string group_key = 6;
     optional GroupProviderV1 provider = 7;
     repeated MembershipRequestMetaV1 meta = 8;

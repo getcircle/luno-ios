@@ -1,0 +1,15 @@
+package services.group.actions.get_membership_requests;
+
+// GENERATED OPTIONS FOR: JAVA
+option java_package = "com.rhlabs.protobufs.services.group.actions.get_membership_reqeusts";
+
+import "protobufs/services/group/containers.proto";
+
+message RequestV1 {
+    optional uint32 version = 1 [default = 1];
+}
+
+message ResponseV1 {
+    optional uint32 version = 1 [default = 1];
+    repeated services.group.containers.MembershipRequestV1 requests = 2;
+}

@@ -19,6 +19,7 @@ public func == (lhs: Services.Feed.Containers.CategoryV1, rhs: Services.Feed.Con
   fieldCheck = fieldCheck && (lhs.teams == rhs.teams)
   fieldCheck = fieldCheck && (lhs.notes == rhs.notes)
   fieldCheck = fieldCheck && (lhs.locations == rhs.locations)
+  fieldCheck = fieldCheck && (lhs.groupMembershipRequests == rhs.groupMembershipRequests)
   return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
 }
 
@@ -35,6 +36,7 @@ public extension Services.Feed.Containers {
     init() {
       extensionRegistry = ExtensionRegistry()
       registerAllExtensions(extensionRegistry)
+      Services.Group.Containers.ContainersRoot.sharedInstance.registerAllExtensions(extensionRegistry)
       Services.Note.Containers.ContainersRoot.sharedInstance.registerAllExtensions(extensionRegistry)
       Services.Organization.Containers.ContainersRoot.sharedInstance.registerAllExtensions(extensionRegistry)
       Services.Profile.Containers.ContainersRoot.sharedInstance.registerAllExtensions(extensionRegistry)
@@ -61,6 +63,7 @@ public extension Services.Feed.Containers {
         case Organization = 10
         case Notes = 11
         case Skills = 12
+        case GroupMembershipRequests = 13
 
       }
 
@@ -97,6 +100,7 @@ public extension Services.Feed.Containers {
     public private(set) var teams:Array<Services.Organization.Containers.TeamV1>  = Array<Services.Organization.Containers.TeamV1>()
     public private(set) var notes:Array<Services.Note.Containers.NoteV1>  = Array<Services.Note.Containers.NoteV1>()
     public private(set) var locations:Array<Services.Organization.Containers.LocationV1>  = Array<Services.Organization.Containers.LocationV1>()
+    public private(set) var groupMembershipRequests:Array<Services.Group.Containers.MembershipRequestV1>  = Array<Services.Group.Containers.MembershipRequestV1>()
     required public init() {
          super.init()
     }
@@ -136,6 +140,9 @@ public extension Services.Feed.Containers {
       }
       for oneElementlocations in locations {
           output.writeMessage(11, value:oneElementlocations)
+      }
+      for oneElementgroupMembershipRequests in groupMembershipRequests {
+          output.writeMessage(12, value:oneElementgroupMembershipRequests)
       }
       unknownFields.writeToCodedOutputStream(output)
     }
@@ -178,6 +185,9 @@ public extension Services.Feed.Containers {
       }
       for oneElementlocations in locations {
           serialize_size += oneElementlocations.computeMessageSize(11)
+      }
+      for oneElementgroupMembershipRequests in groupMembershipRequests {
+          serialize_size += oneElementgroupMembershipRequests.computeMessageSize(12)
       }
       serialize_size += unknownFields.serializedSize()
       memoizedSerializedSize = serialize_size
@@ -277,6 +287,13 @@ public extension Services.Feed.Containers {
           output += "\(indent)}\n"
           locationsElementIndex++
       }
+      var groupMembershipRequestsElementIndex:Int = 0
+      for oneElementgroupMembershipRequests in groupMembershipRequests {
+          output += "\(indent) groupMembershipRequests[\(groupMembershipRequestsElementIndex)] {\n"
+          oneElementgroupMembershipRequests.writeDescriptionTo(&output, indent:"\(indent)  ")
+          output += "\(indent)}\n"
+          groupMembershipRequestsElementIndex++
+      }
       unknownFields.writeDescriptionTo(&output, indent:indent)
     }
     override public var hashValue:Int {
@@ -314,6 +331,9 @@ public extension Services.Feed.Containers {
             }
             for oneElementlocations in locations {
                 hashCode = (hashCode &* 31) &+ oneElementlocations.hashValue
+            }
+            for oneElementgroupMembershipRequests in groupMembershipRequests {
+                hashCode = (hashCode &* 31) &+ oneElementgroupMembershipRequests.hashValue
             }
             hashCode = (hashCode &* 31) &+  unknownFields.hashValue
             return hashCode
@@ -554,6 +574,22 @@ public extension Services.Feed.Containers {
       builderResult.locations.removeAll(keepCapacity: false)
       return self
     }
+    public var groupMembershipRequests:Array<Services.Group.Containers.MembershipRequestV1> {
+         get {
+             return builderResult.groupMembershipRequests
+         }
+         set (value) {
+             builderResult.groupMembershipRequests = value
+         }
+    }
+    public func setGroupMembershipRequests(value:Array<Services.Group.Containers.MembershipRequestV1>)-> Services.Feed.Containers.CategoryV1Builder {
+      self.groupMembershipRequests = value
+      return self
+    }
+    public func clearGroupMembershipRequests() -> Services.Feed.Containers.CategoryV1Builder {
+      builderResult.groupMembershipRequests.removeAll(keepCapacity: false)
+      return self
+    }
     override public var internalGetResult:GeneratedMessage {
          get {
             return builderResult
@@ -610,6 +646,9 @@ public extension Services.Feed.Containers {
       }
       if !other.locations.isEmpty  {
          builderResult.locations += other.locations
+      }
+      if !other.groupMembershipRequests.isEmpty  {
+         builderResult.groupMembershipRequests += other.groupMembershipRequests
       }
       mergeUnknownFields(other.unknownFields)
       return self
@@ -675,6 +714,11 @@ public extension Services.Feed.Containers {
           var subBuilder = Services.Organization.Containers.LocationV1.builder()
           input.readMessage(subBuilder,extensionRegistry:extensionRegistry)
           locations += [subBuilder.buildPartial()]
+
+        case 98 :
+          var subBuilder = Services.Group.Containers.MembershipRequestV1.builder()
+          input.readMessage(subBuilder,extensionRegistry:extensionRegistry)
+          groupMembershipRequests += [subBuilder.buildPartial()]
 
         default:
           if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
