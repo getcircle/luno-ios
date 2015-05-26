@@ -21,6 +21,12 @@ typealias GetGroupsCompletionHandler = (
     error: NSError?
 ) -> Void
 
+typealias JoinGroupCompletionHandler = (
+    status: Services.Group.Containers.MembershipRequestStatusV1?,
+    error: NSError?
+) -> Void
+
+
 extension Services.Group.Actions {
     
     static func listMembers(
@@ -68,5 +74,26 @@ extension Services.Group.Actions {
             let nextRequest = wrapped?.getNextRequest()
             completionHandler?(groups: response?.groups, nextRequest: nextRequest, error: error)
         }
+    }
+    
+    static func joinGroup(
+        groupId: String,
+        completionHandler: JoinGroupCompletionHandler?
+    ) {
+            let requestBuilder = Services.Group.Actions.JoinGroup.RequestV1.builder()
+            requestBuilder.groupKey = groupId
+
+            let client = ServiceClient(serviceName: "group")
+            client.callAction("join_group",
+                extensionField: Services.Registry.Requests.Group.joinGroup(),
+                requestBuilder: requestBuilder,
+                paginatorBuilder: nil
+            ){
+                (_, _, wrapped, error) -> Void in
+                let response = wrapped?.response?.result.getExtension(
+                    Services.Registry.Responses.Group.joinGroup()
+                ) as? Services.Group.Actions.JoinGroup.ResponseV1
+                completionHandler?(status: response?.request.status, error: error)
+            }
     }
 }
