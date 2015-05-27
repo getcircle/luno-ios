@@ -192,8 +192,22 @@ class GroupDetailViewController: DetailViewController,
     // MARK: - ProfilesSelectorDelegate
     
     func onSelectedProfiles(profiles: Array<Services.Profile.Containers.ProfileV1>) -> Bool {
-        // TODO: Add call to add member
-        return true
+        if let presentedViewController = presentedViewController {
+            
+            let hud = MBProgressHUD.showHUDAddedTo(presentedViewController.view, animated: true)
+            Services.Group.Actions.addMembers(
+                (self.dataSource as! GroupDetailDataSource).selectedGroup.email,
+                profiles: profiles, 
+                completionHandler: { (newMembers, error) -> Void in
+                    hud.hide(true)
+
+                    if error == nil {
+                        presentedViewController.dismissViewControllerAnimated(true, completion: nil)
+                        self.loadData()
+                    }
+            })
+        }
+        return false
     }
     
     // MARK: - Helpers
@@ -204,7 +218,7 @@ class GroupDetailViewController: DetailViewController,
         
         switch actionType {
         case .LeaveGroup:
-            Services.Group.Actions.leaveGroup(dataSource.selectedGroup.id, completionHandler: { (status, error) -> Void in
+            Services.Group.Actions.leaveGroup(dataSource.selectedGroup.id, completionHandler: { (error) -> Void in
                 hud.hide(true)
                 if error == nil {
                     self.loadData()

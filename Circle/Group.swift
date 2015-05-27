@@ -27,12 +27,15 @@ typealias JoinGroupCompletionHandler = (
 ) -> Void
 
 typealias LeaveGroupCompletionHandler = (
-    status: Services.Group.Containers.MembershipRequestStatusV1?,
     error: NSError?
 ) -> Void
 
 typealias RespondToMembershipRequestCompletionHandler = (
-    status: Services.Group.Containers.MembershipRequestStatusV1?,
+    error: NSError?
+) -> Void
+
+typealias AddMembersCompletionHandler = (
+    newMembers: Array<Services.Group.Containers.MemberV1>?,
     error: NSError?
 ) -> Void
 
@@ -125,7 +128,7 @@ extension Services.Group.Actions {
                     Services.Registry.Responses.Group.leaveGroup()
                 ) as? Services.Group.Actions.LeaveGroup.ResponseV1
 
-                completionHandler?(status: nil, error: error)
+                completionHandler?(error: error)
             }
     }
     
@@ -148,8 +151,30 @@ extension Services.Group.Actions {
                 let response = wrapped?.response?.result.getExtension(
                     Services.Registry.Responses.Group.respondToMembershipRequest()
                 ) as? Services.Group.Actions.RespondToMembershipRequest.ResponseV1
-                
-                // completionHandler?(status: response?.request.status, error: error)
+                completionHandler?(error: error)
             }
+    }
+    
+    static func addMembers(
+        groupKey: String, 
+        profiles: Array<Services.Profile.Containers.ProfileV1>, 
+        completionHandler: AddMembersCompletionHandler?
+    ) {
+        let requestBuilder = Services.Group.Actions.AddToGroup.RequestV1.builder()
+        requestBuilder.groupKey = groupKey
+        requestBuilder.profileIds = profiles.map({ $0.id })
+
+        let client = ServiceClient(serviceName: "group")
+        client.callAction("add_to_group",
+            extensionField: Services.Registry.Requests.Group.addToGroup(),
+            requestBuilder: requestBuilder,
+            paginatorBuilder: nil
+            ){
+                (_, _, wrapped, error) -> Void in
+                let response = wrapped?.response?.result.getExtension(
+                    Services.Registry.Responses.Group.addToGroup()
+                ) as? Services.Group.Actions.AddToGroup.ResponseV1
+                completionHandler?(newMembers: response?.newMembers, error: error)
+        }
     }
 }
