@@ -387,6 +387,8 @@ class Card: Equatable {
             cardType = .Profiles
         case .Departments:
             cardType = .TeamsGrid
+        case .GroupMembershipRequests:
+            cardType = .GroupRequest
         default:
             cardType = .Profiles
         }

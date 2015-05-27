@@ -24,16 +24,6 @@ class SearchLandingDataSource: CardDataSource {
                     quickActionsCard.addContent(content: [["placeholder": true]], maxVisibleItems: 0)
                     quickActionsCard.sectionInset = UIEdgeInsetsMake(15.0, 10.0, 25.0, 10.0)
                     self.appendCard(quickActionsCard)
-                    
-                    // TODO - REMOVE WHEN BACKEND IS READY
-                    // ========================================================================================
-                    let groupRequestsCard = Card(cardType: .GroupRequest, title: "Group Requests")
-                    groupRequestsCard.showContentCount = true
-                    groupRequestsCard.contentCount = 4
-                    groupRequestsCard.addDefaultHeader()
-                    groupRequestsCard.addContent(content: [["test"],["test"],["test"],["test"]], maxVisibleItems: 3)
-                    // self.appendCard(groupRequestsCard)
-                    // ========================================================================================
 
                     for category in categories ?? [] {
                         let categoryCard = Card(category: category)
@@ -42,7 +32,8 @@ class SearchLandingDataSource: CardDataSource {
                             categoryCard.addContent(content: category.notes, maxVisibleItems: 5)
                             categoryCard.metaData = category.profiles
                             self.profilesAssociatedWithNotes = category.profiles
-                        } else if category.profiles.count > 0 {
+                        }
+                        else if category.profiles.count > 0 {
                             var profiles = category.profiles
                             var maxVisibleItems = 0
                             switch category.categoryType {
@@ -52,12 +43,18 @@ class SearchLandingDataSource: CardDataSource {
                             default: break
                             }
                             categoryCard.addContent(content: profiles, maxVisibleItems: maxVisibleItems)
-                        } else if category.addresses.count > 0 {
+                        }
+                        else if category.addresses.count > 0 {
                             // don't display offices on the search landing page
                             continue
-                        } else if category.tags.count > 0 {
+                        }
+                        else if category.tags.count > 0 {
                             categoryCard.addContent(content: category.tags, maxVisibleItems: 10)
                         }
+                        else if category.groupMembershipRequests.count > 0 {
+                            categoryCard.addContent(content: category.groupMembershipRequests)
+                        }
+                        
                         self.appendCard(categoryCard)
                     }
                 }
