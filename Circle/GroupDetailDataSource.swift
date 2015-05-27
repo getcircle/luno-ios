@@ -39,19 +39,20 @@ class GroupDetailDataSource: CardDataSource {
         appendCard(placeholderHeaderCard)
         
         let groupEmailCard = Card(cardType: .KeyValue, title: "")
-        groupEmailCard.sectionInset = UIEdgeInsetsZero
+        groupEmailCard.sectionInset = sectionInset
         groupEmailCard.addContent(content: [["name" : AppStrings.QuickActionEmailLabel, "value": selectedGroup.email]])
         appendCard(groupEmailCard)
         
         if selectedGroup.groupDescription.trimWhitespace() != "" {
             // Add a text value card for description
-            let groupDescriptionCard = Card(cardType: .TextValue, title: "")
+            let groupDescriptionCard = Card(cardType: .TextValue, title: AppStrings.GroupDescriptionSectionTitle)
             groupDescriptionCard.sectionInset = sectionInset
+            groupDescriptionCard.showContentCount = false
             groupDescriptionCard.addContent(content: [selectedGroup.groupDescription])
+            groupDescriptionCard.addHeader(
+                headerClass: ProfileSectionHeaderCollectionReusableView.self
+            )
             appendCard(groupDescriptionCard)
-        }
-        else {
-            groupEmailCard.sectionInset = sectionInset
         }
         
         fetchAllMembers(completionHandler)
@@ -73,6 +74,9 @@ class GroupDetailDataSource: CardDataSource {
             (cell as! SettingsCollectionViewCell).itemLabel.textAlignment = .Center
             if let contentType = content["type"] as? Int where ContentType(rawValue: contentType) == ContentType.LeaveGroup {
                 (cell as! SettingsCollectionViewCell).itemLabel.textColor = UIColor.redColor().colorWithAlphaComponent(0.8)
+            }
+            else {
+                (cell as! SettingsCollectionViewCell).itemLabel.textColor = UIColor.appTintColor()
             }
         }
     }
@@ -137,7 +141,7 @@ class GroupDetailDataSource: CardDataSource {
         // Add Manager/Member cards
         var cardsAdded = false
         for (title, cardContent, nextRequest) in [
-            (AppStrings.GroupManagersSectionTitle, ownerProfiles, nextOwnersRequest),
+            (AppStrings.GroupOwnersSectionTitle, ownerProfiles, nextOwnersRequest),
             (AppStrings.GroupManagersSectionTitle, managerMemberProfiles, nextManagerMembersRequest),
             (AppStrings.GroupMembersSectionTitle, memberProfiles, nextMembersRequest)
         ] {
@@ -164,7 +168,7 @@ class GroupDetailDataSource: CardDataSource {
         // Add group actions card
         if cardsAdded {
             let groupActionCard = Card(cardType: .Settings, title: "")
-            groupActionCard.sectionInset = sectionInset
+            groupActionCard.sectionInset = UIEdgeInsetsMake(25.0, 0.0, 40.0, 0.0)
             
             var contentType: ContentType?
             var cellTitle: String?

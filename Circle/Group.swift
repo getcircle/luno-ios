@@ -43,13 +43,13 @@ typealias AddMembersCompletionHandler = (
 extension Services.Group.Actions {
     
     static func listMembers(
-        groupId: String,
+        groupKey: String,
         role: Services.Group.Containers.RoleV1,
         paginatorBuilder: Soa.PaginatorV1Builder? = nil,
         completionHandler: GetGroupProfilesCompletionHandler?
     ) {
         let requestBuilder = Services.Group.Actions.ListMembers.RequestV1.builder()
-        requestBuilder.groupKey = groupId
+        requestBuilder.groupKey = groupKey
         requestBuilder.role = role
         requestBuilder.provider = .Google
         
@@ -90,11 +90,11 @@ extension Services.Group.Actions {
     }
     
     static func joinGroup(
-        groupId: String,
+        groupKey: String,
         completionHandler: JoinGroupCompletionHandler?
     ) {
             let requestBuilder = Services.Group.Actions.JoinGroup.RequestV1.builder()
-            requestBuilder.groupKey = groupId
+            requestBuilder.groupKey = groupKey
 
             let client = ServiceClient(serviceName: "group")
             client.callAction("join_group",
@@ -111,11 +111,11 @@ extension Services.Group.Actions {
     }
 
     static func leaveGroup(
-        groupId: String,
+        groupKey: String,
         completionHandler: LeaveGroupCompletionHandler?
     ) {
             let requestBuilder = Services.Group.Actions.LeaveGroup.RequestV1.builder()
-            requestBuilder.groupKey = groupId
+            requestBuilder.groupKey = groupKey
             
             let client = ServiceClient(serviceName: "group")
             client.callAction("leave_group",

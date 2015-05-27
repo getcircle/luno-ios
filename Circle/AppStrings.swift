@@ -47,6 +47,7 @@ struct AppStrings {
     static let GroupJoinGroupButtonTitle = NSLocalizedString("Join group", comment: "Title of the button to join a group")
     static let GroupRequestToJoinGroupButtonTitle = NSLocalizedString("Request to join", comment: "Title of the button to request membership to a group")
     static let GroupLeaveGroupButtonTitle = NSLocalizedString("Leave group", comment: "Title of the button to leave a group")
+    static let GroupDescriptionSectionTitle = NSLocalizedString("Description", comment: "Label for the section listing description of a group")
     static let GroupManagersSectionTitle = NSLocalizedString("Managers", comment: "Label for the section listing managers of a group")
     static let GroupMembersSectionTitle = NSLocalizedString("Members", comment: "Label for the section listing members of a group")
     static let GroupMembersCount = NSLocalizedString("%d Members", comment: "Label indicating the number of members of a group")

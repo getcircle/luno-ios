@@ -211,7 +211,7 @@ class GroupDetailViewController: DetailViewController,
     }
     
     // MARK: - Helpers
-    
+
     private func handleGroupMembershipActions(actionType: ContentType) {
         let dataSource = (self.dataSource as! GroupDetailDataSource)
         let hud = MBProgressHUD.showHUDAddedTo(view, animated: true)
