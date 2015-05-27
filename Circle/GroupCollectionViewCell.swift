@@ -9,12 +9,18 @@
 import UIKit
 import ProtobufRegistry
 
+protocol GroupRequestDelegate {
+    func onJoinGroupButtonTapped(sender: UIView, group: Services.Group.Containers.GroupV1)
+}
+
 class GroupCollectionViewCell: CircleCollectionViewCell {
 
     @IBOutlet weak private(set) var groupNameLabel: UILabel!
     @IBOutlet weak private(set) var numberOfMembersLabel: UILabel!
     @IBOutlet weak private(set) var descriptionLabel: UILabel!
     @IBOutlet weak private(set) var joinButton: UIButton!
+    
+    var groupRequestDelegate: GroupRequestDelegate?
     
     private var group: Services.Group.Containers.GroupV1!
     
@@ -33,7 +39,7 @@ class GroupCollectionViewCell: CircleCollectionViewCell {
         configureViews()
         configureButtons()
     }
-
+    
     // MARK: - Configuration
     
     private func configureViews() {
@@ -58,11 +64,16 @@ class GroupCollectionViewCell: CircleCollectionViewCell {
                 numberOfMembersLabel.text = NSString(format: AppStrings.GroupMembersCount, group.membersCount) as String
             }
             
-            joinButton.alpha = 0.0
-            if !group.isMember && group.canJoin {
-                joinButton.alpha = 1.0
+            hideJoinRequestButton()
+            if !group.isMember {
+                if group.canJoin {
+                    showJoinButton()
+                }
+                else if group.canRequest {
+                    showRequestButton()
+                }
             }
-            
+
             self.group = group
         }
     }
@@ -89,4 +100,25 @@ class GroupCollectionViewCell: CircleCollectionViewCell {
         height += 10.0
         return CGSizeMake(self.dynamicType.width, height)
     }
+    
+    private func showJoinButton() {
+        joinButton.alpha = 1.0
+        joinButton.setTitle(AppStrings.GroupJoinGroupButtonTitle, forState: .Normal)
+    }
+    
+    private func showRequestButton() {
+        joinButton.alpha = 1.0
+        joinButton.setTitle(AppStrings.GroupRequestToJoinGroupButtonTitle, forState: .Normal)
+    }
+    
+    private func hideJoinRequestButton() {
+        joinButton.alpha = 0.0
+    }
+    
+    // MARK: - IBAction
+    
+    @IBAction func joinRequestedButtonTapped(sender: UIView!) {
+        groupRequestDelegate?.onJoinGroupButtonTapped(sender, group: group)
+    }
+    
 }

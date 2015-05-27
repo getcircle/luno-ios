@@ -71,6 +71,7 @@ class CircleCollectionViewCell: UICollectionViewCell {
         selectedBackgroundView.backgroundColor = UIColor.appControlHighlightedColor()
         selectedBackgroundView.opaque = true
         contentView.bringSubviewToFront(selectedBackgroundView)
+
         // Collection view does some trickery and removes constraints from
         // background views. So, we have to add it again in code
         selectedBackgroundView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)

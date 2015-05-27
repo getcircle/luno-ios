@@ -7,9 +7,10 @@
 //
 
 import UIKit
+import MBProgressHUD
 import ProtobufRegistry
 
-class GroupsViewController: OverviewViewController {
+class GroupsViewController: OverviewViewController, GroupRequestDelegate {
 
     override func filterPlaceHolderComment() -> String {
         return "Placeholder for text field use for filtering groups."
@@ -17,6 +18,11 @@ class GroupsViewController: OverviewViewController {
     
     override func filterPlaceHolderText() -> String {
         return "Filter groups"
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        (dataSource as! GroupsDataSource).groupRequestDelegate = self
     }
     
     // MARK: - Initialization
@@ -50,5 +56,43 @@ class GroupsViewController: OverviewViewController {
             properties.append(TrackerProperty.withKey(.SourceOverviewType).withString(title))
         }
         Tracker.sharedInstance.track(.DetailItemTapped, properties: properties)
+    }
+    
+    // MARK: - GroupRequestDelegate
+    
+    func onJoinGroupButtonTapped(sender: UIView, group: Services.Group.Containers.GroupV1) {
+        let buttonPoint = collectionView.convertPoint(sender.center, fromView: sender.superview)
+
+        if let selectedIndexPath = collectionView.indexPathForItemAtPoint(buttonPoint) {
+            let hud = MBProgressHUD.showHUDAddedTo(view, animated: true)
+            Services.Group.Actions.joinGroup(group.email, completionHandler: { (request, error) -> Void in
+                hud.hide(true)
+                if let request = request where error == nil {
+                    // TODO: Manually update the hasRequested to true for this group
+                    if request.status == .Approved {
+                        self.showToast(AppStrings.GroupJoinSuccessConfirmation)
+                    }
+                    else {
+                        self.showToast(AppStrings.GroupRequestSentConfirmation)
+                    }
+                    
+                    self.updateGroup(group, atIndexPath: selectedIndexPath)
+                }
+            })
+        }
+    }
+    
+    private func updateGroup(group: Services.Group.Containers.GroupV1, atIndexPath indexPath: NSIndexPath) {
+        Services.Group.Actions.getGroup(group.email, completionHandler: { (updatedGroup, error) -> Void in
+            if let updatedGroup = updatedGroup {
+                (self.dataSource as! GroupsDataSource).replaceLocalGroup(updatedGroup, atIndex: indexPath.row)
+                self.collectionView.reloadData()
+            }
+            else {
+                // Ideally we would check for specific group error and remove it from the list
+                // Some error..refresh all groups
+                self.loadData()
+            }
+        })
     }
 }
