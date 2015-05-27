@@ -15,6 +15,11 @@ typealias GetGroupProfilesCompletionHandler = (
     error: NSError?
 ) -> Void
 
+typealias GetGroupCompletionHandler = (
+    group: Services.Group.Containers.GroupV1?,
+    error: NSError?
+) -> Void
+
 typealias GetGroupsCompletionHandler = (
     groups: Array<Services.Group.Containers.GroupV1>?,
     nextRequest: Soa.ServiceRequestV1?,
@@ -41,6 +46,26 @@ typealias AddMembersCompletionHandler = (
 
 
 extension Services.Group.Actions {
+    
+    static func getGroup(groupKey: String, completionHandler: GetGroupCompletionHandler?) {
+        let requestBuilder = Services.Group.Actions.GetGroup.RequestV1.builder()
+        requestBuilder.groupKey = groupKey
+        
+        let client = ServiceClient(serviceName: "group")
+        client.callAction("get_group",
+            extensionField: Services.Registry.Requests.Group.getGroup(),
+            requestBuilder: requestBuilder,
+            paginatorBuilder: nil
+        ){
+                (_, _, wrapped, error) -> Void in
+                let response = wrapped?.response?.result.getExtension(
+                    Services.Registry.Responses.Group.getGroup()
+                ) as? Services.Group.Actions.GetGroup.ResponseV1
+                let nextRequest = wrapped?.getNextRequest()
+                completionHandler?(group: response?.group, error: error)
+        }
+    }
+    
     
     static func listMembers(
         groupKey: String,

@@ -38,24 +38,21 @@ class GroupDetailDataSource: CardDataSource {
         )
         appendCard(placeholderHeaderCard)
         
-        let groupEmailCard = Card(cardType: .KeyValue, title: "")
-        groupEmailCard.sectionInset = sectionInset
-        groupEmailCard.addContent(content: [["name" : AppStrings.QuickActionEmailLabel, "value": selectedGroup.email]])
-        appendCard(groupEmailCard)
-        
-        if selectedGroup.groupDescription.trimWhitespace() != "" {
-            // Add a text value card for description
-            let groupDescriptionCard = Card(cardType: .TextValue, title: AppStrings.GroupDescriptionSectionTitle)
-            groupDescriptionCard.sectionInset = sectionInset
-            groupDescriptionCard.showContentCount = false
-            groupDescriptionCard.addContent(content: [selectedGroup.groupDescription])
-            groupDescriptionCard.addHeader(
-                headerClass: ProfileSectionHeaderCollectionReusableView.self
-            )
-            appendCard(groupDescriptionCard)
-        }
-        
         fetchAllMembers(completionHandler)
+    }
+    
+    func updateGroup(completionHandler: ((error: NSError?) -> Void)?) {
+        Services.Group.Actions.getGroup(selectedGroup.email, completionHandler: { (group, error) -> Void in
+            if let error = error {
+                // Handle case where view controller needs to pop out
+                // TODO: look for DOES NOT EXIST error
+                completionHandler?(error: error)
+            }
+            else {
+                self.selectedGroup = group
+                completionHandler?(error: nil)
+            }
+        })
     }
     
     // MARK: - UICollectionViewDataSource
@@ -82,6 +79,25 @@ class GroupDetailDataSource: CardDataSource {
     }
     
     // MARK: - Helpers
+    
+    private func addGroupMetaDataCards() {
+        let groupEmailCard = Card(cardType: .KeyValue, title: "")
+        groupEmailCard.sectionInset = sectionInset
+        groupEmailCard.addContent(content: [["name" : AppStrings.QuickActionEmailLabel, "value": selectedGroup.email]])
+        appendCard(groupEmailCard)
+        
+        if selectedGroup.groupDescription.trimWhitespace() != "" {
+            // Add a text value card for description
+            let groupDescriptionCard = Card(cardType: .TextValue, title: AppStrings.GroupDescriptionSectionTitle)
+            groupDescriptionCard.sectionInset = sectionInset
+            groupDescriptionCard.showContentCount = false
+            groupDescriptionCard.addContent(content: [selectedGroup.groupDescription])
+            groupDescriptionCard.addHeader(
+                headerClass: ProfileSectionHeaderCollectionReusableView.self
+            )
+            appendCard(groupDescriptionCard)
+        }
+    }
     
     private func fetchAllMembers(completionHandler: (error: NSError?) -> Void) {
         // Fetch data within a dispatch group, calling populateData when all tasks have finished
@@ -138,6 +154,8 @@ class GroupDetailDataSource: CardDataSource {
 
     private func populateData() {
         
+        addGroupMetaDataCards()
+
         // Add Manager/Member cards
         var cardsAdded = false
         for (title, cardContent, nextRequest) in [

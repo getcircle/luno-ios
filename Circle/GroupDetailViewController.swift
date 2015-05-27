@@ -194,16 +194,17 @@ class GroupDetailViewController: DetailViewController,
     func onSelectedProfiles(profiles: Array<Services.Profile.Containers.ProfileV1>) -> Bool {
         if let presentedViewController = presentedViewController {
             
+            let dataSource = (self.dataSource as! GroupDetailDataSource)
             let hud = MBProgressHUD.showHUDAddedTo(presentedViewController.view, animated: true)
             Services.Group.Actions.addMembers(
-                (self.dataSource as! GroupDetailDataSource).selectedGroup.email,
+                dataSource.selectedGroup.email,
                 profiles: profiles, 
                 completionHandler: { (newMembers, error) -> Void in
                     hud.hide(true)
 
                     if error == nil {
                         presentedViewController.dismissViewControllerAnimated(true, completion: nil)
-                        self.loadData()
+                        self.updateGroup()
                     }
             })
         }
@@ -215,13 +216,13 @@ class GroupDetailViewController: DetailViewController,
     private func handleGroupMembershipActions(actionType: ContentType) {
         let dataSource = (self.dataSource as! GroupDetailDataSource)
         let hud = MBProgressHUD.showHUDAddedTo(view, animated: true)
-        
+
         switch actionType {
         case .LeaveGroup:
             Services.Group.Actions.leaveGroup(dataSource.selectedGroup.email, completionHandler: { (error) -> Void in
                 hud.hide(true)
                 if error == nil {
-                    self.loadData()
+                    self.updateGroup()
                 }
             })
             
@@ -235,13 +236,25 @@ class GroupDetailViewController: DetailViewController,
                     else {
                         self.showToast(AppStrings.GroupRequestSentConfirmation)
                     }
-                    
-                    self.loadData()
+                    self.updateGroup()
                 }
             })
 
         default:
             break
         }
+    }
+    
+    private func updateGroup() {
+        let dataSource = (self.dataSource as! GroupDetailDataSource)
+        weak var weakSelf = self
+        dataSource.updateGroup({ (error) -> Void in
+            if error == nil {
+                weakSelf?.loadData()
+            }
+            else {
+                self.navigationController?.popViewControllerAnimated(true)
+            }
+        })
     }
 }
