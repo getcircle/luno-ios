@@ -47,6 +47,7 @@ class GroupsDataSource: CardDataSource {
     func replaceLocalGroup(group: Services.Group.Containers.GroupV1, atIndex index: Int) {
         var groups = self.card.content as! Array<Services.Group.Containers.GroupV1>
         groups[index] = group
+        self.card.resetContent()
         self.card.addContent(content: groups)
     }
 }
