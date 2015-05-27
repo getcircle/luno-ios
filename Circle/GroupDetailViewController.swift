@@ -218,7 +218,7 @@ class GroupDetailViewController: DetailViewController,
         
         switch actionType {
         case .LeaveGroup:
-            Services.Group.Actions.leaveGroup(dataSource.selectedGroup.id, completionHandler: { (error) -> Void in
+            Services.Group.Actions.leaveGroup(dataSource.selectedGroup.email, completionHandler: { (error) -> Void in
                 hud.hide(true)
                 if error == nil {
                     self.loadData()
@@ -226,7 +226,7 @@ class GroupDetailViewController: DetailViewController,
             })
             
         case .JoinGroup, .RequestGroup:
-            Services.Group.Actions.joinGroup(dataSource.selectedGroup.id, completionHandler: { (request, error) -> Void in
+            Services.Group.Actions.joinGroup(dataSource.selectedGroup.email, completionHandler: { (request, error) -> Void in
                 hud.hide(true)
                 if let request = request where error == nil {
                     if request.status == .Approved {
