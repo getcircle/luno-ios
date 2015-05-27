@@ -124,7 +124,8 @@ extension Services.Group.Actions {
                 let response = wrapped?.response?.result.getExtension(
                     Services.Registry.Responses.Group.leaveGroup()
                 ) as? Services.Group.Actions.LeaveGroup.ResponseV1
-                // completionHandler?(status: response?.request.status, error: error)
+
+                completionHandler?(status: nil, error: error)
             }
     }
     

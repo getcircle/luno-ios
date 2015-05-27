@@ -14,8 +14,10 @@ class GroupDetailDataSource: CardDataSource {
     
     private(set) var memberProfiles = Array<Services.Profile.Containers.ProfileV1>()
     private(set) var managerMemberProfiles = Array<Services.Profile.Containers.ProfileV1>()
+    private(set) var ownerProfiles = Array<Services.Profile.Containers.ProfileV1>()
     private(set) var nextManagerMembersRequest: Soa.ServiceRequestV1?
     private(set) var nextMembersRequest: Soa.ServiceRequestV1?
+    private(set) var nextOwnersRequest: Soa.ServiceRequestV1?
     private(set) var groupHeaderView: GroupHeaderCollectionReusableView!
     private let sectionInset = UIEdgeInsetsMake(0.0, 0.0, 25.0, 0.0)
     
@@ -23,6 +25,10 @@ class GroupDetailDataSource: CardDataSource {
     
     override func loadData(completionHandler: (error: NSError?) -> Void) {
         resetCards()
+        
+        memberProfiles.removeAll(keepCapacity: true)
+        managerMemberProfiles.removeAll(keepCapacity: true)
+        ownerProfiles.removeAll(keepCapacity: true)
         
         // Add a placeholder card for header view
         let placeholderHeaderCard = Card(cardType: .Placeholder, title: "Team Header")
@@ -48,41 +54,7 @@ class GroupDetailDataSource: CardDataSource {
             groupEmailCard.sectionInset = sectionInset
         }
         
-        // Fetch data within a dispatch group, calling populateData when all tasks have finished
-        var storedError: NSError!
-        var actionsGroup = dispatch_group_create()
-        dispatch_group_enter(actionsGroup)
-        
-        // Fetch group managers
-        Services.Group.Actions.listMembers(selectedGroup.email, role: .Manager) {
-            (members, nextRequest, error) -> Void in
-            if let members = members {
-                self.managerMemberProfiles.extend(members.map({ $0.profile }))
-                self.nextManagerMembersRequest = nextRequest
-            }
-            if let error = error {
-                storedError = error
-            }
-            dispatch_group_leave(actionsGroup)
-        }
-        dispatch_group_enter(actionsGroup)
-        
-        Services.Group.Actions.listMembers(selectedGroup.email, role: .Member) {
-            (members, nextRequest, error) -> Void in
-            if let members = members {
-                self.memberProfiles.extend(members.map({ $0.profile }))
-                self.nextMembersRequest = nextRequest
-            }
-            if let error = error {
-                storedError = error
-            }
-            dispatch_group_leave(actionsGroup)
-        }
-        
-        dispatch_group_notify(actionsGroup, GlobalMainQueue) { () -> Void in
-            self.populateData()
-            completionHandler(error: storedError)
-        }
+        fetchAllMembers(completionHandler)
     }
     
     // MARK: - UICollectionViewDataSource
@@ -107,11 +79,65 @@ class GroupDetailDataSource: CardDataSource {
     
     // MARK: - Helpers
     
+    private func fetchAllMembers(completionHandler: (error: NSError?) -> Void) {
+        // Fetch data within a dispatch group, calling populateData when all tasks have finished
+        var storedError: NSError!
+        var actionsGroup = dispatch_group_create()
+
+        // Fetch owners
+        dispatch_group_enter(actionsGroup)
+        Services.Group.Actions.listMembers(selectedGroup.email, role: .Owner) {
+            (members, nextRequest, error) -> Void in
+            if let members = members {
+                self.ownerProfiles.extend(members.map({ $0.profile }))
+                self.nextOwnersRequest = nextRequest
+            }
+            if let error = error {
+                storedError = error
+            }
+            dispatch_group_leave(actionsGroup)
+        }
+        
+        // Fetch group managers
+        dispatch_group_enter(actionsGroup)
+        Services.Group.Actions.listMembers(selectedGroup.email, role: .Manager) {
+            (members, nextRequest, error) -> Void in
+            if let members = members {
+                self.managerMemberProfiles.extend(members.map({ $0.profile }))
+                self.nextManagerMembersRequest = nextRequest
+            }
+            if let error = error {
+                storedError = error
+            }
+            dispatch_group_leave(actionsGroup)
+        }
+        
+        // Fetch Members
+        dispatch_group_enter(actionsGroup)
+        Services.Group.Actions.listMembers(selectedGroup.email, role: .Member) {
+            (members, nextRequest, error) -> Void in
+            if let members = members {
+                self.memberProfiles.extend(members.map({ $0.profile }))
+                self.nextMembersRequest = nextRequest
+            }
+            if let error = error {
+                storedError = error
+            }
+            dispatch_group_leave(actionsGroup)
+        }
+        
+        dispatch_group_notify(actionsGroup, GlobalMainQueue) { () -> Void in
+            self.populateData()
+            completionHandler(error: storedError)
+        }
+    }
+
     private func populateData() {
         
         // Add Manager/Member cards
         var cardsAdded = false
         for (title, cardContent, nextRequest) in [
+            (AppStrings.GroupManagersSectionTitle, ownerProfiles, nextOwnersRequest),
             (AppStrings.GroupManagersSectionTitle, managerMemberProfiles, nextManagerMembersRequest),
             (AppStrings.GroupMembersSectionTitle, memberProfiles, nextMembersRequest)
         ] {

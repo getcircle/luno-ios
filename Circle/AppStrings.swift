@@ -50,6 +50,7 @@ struct AppStrings {
     static let GroupManagersSectionTitle = NSLocalizedString("Managers", comment: "Label for the section listing managers of a group")
     static let GroupMembersSectionTitle = NSLocalizedString("Members", comment: "Label for the section listing members of a group")
     static let GroupMembersCount = NSLocalizedString("%d Members", comment: "Label indicating the number of members of a group")
+    static let GroupOwnersSectionTitle = NSLocalizedString("Owners", comment: "Label for the section listing owners of a group")
     static let GroupOneMemberCount = NSLocalizedString("1 Member", comment: "Label indicating there is one member in a group")
     static let GroupRequestMessage = NSLocalizedString("%@ requested to join %@ group", comment: "Message indicating a person requested access to a group")
     static let GroupRequestConfirmation = NSLocalizedString("Your request to join this group was sent to the group admins.", comment: "Confirmation message indicating a group request was successfully sent to the admins")
