@@ -1,0 +1,26 @@
+package services.organization.containers.integration;
+
+// GENERATED OPTIONS FOR: JAVA
+option java_package = "com.rhlabs.protobufs.services.organization.containers.integration";
+
+import "protobufs/services/common/containers.proto";
+
+enum IntegrationTypeV1 {
+    GOOGLE_GROUPS = 0;
+}
+
+message IntegrationV1 {
+    optional uint32 version = 1 [default = 1];
+    optional string id = 2;
+    optional string organization_id = 3;
+    optional IntegrationTypeV1 integration_type = 4;
+    oneof details {
+        GoogleGroupDetailsV1 google_groups = 5;
+    }
+}
+
+message GoogleGroupDetailsV1 {
+    optional uint32 version = 1 [default = 1];
+    optional string admin_email = 2;
+    repeated string scopes = 3;
+}

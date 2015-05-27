@@ -19,7 +19,7 @@ import protobufs.services.group.containers_pb2
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='protobufs/services/group/actions/get_membership_requests.proto',
   package='services.group.actions.get_membership_requests',
-  serialized_pb=_b('\n>protobufs/services/group/actions/get_membership_requests.proto\x12.services.group.actions.get_membership_requests\x1a)protobufs/services/group/containers.proto\"\x1f\n\tRequestV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\"b\n\nResponseV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12@\n\x08requests\x18\x02 \x03(\x0b\x32..services.group.containers.MembershipRequestV1BE\nCcom.rhlabs.protobufs.services.group.actions.get_membership_reqeusts')
+  serialized_pb=_b('\n>protobufs/services/group/actions/get_membership_requests.proto\x12.services.group.actions.get_membership_requests\x1a)protobufs/services/group/containers.proto\"\x1f\n\tRequestV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\"b\n\nResponseV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12@\n\x08requests\x18\x02 \x03(\x0b\x32..services.group.containers.MembershipRequestV1BE\nCcom.rhlabs.protobufs.services.group.actions.get_membership_requests')
   ,
   dependencies=[protobufs.services.group.containers_pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
@@ -113,5 +113,5 @@ _sym_db.RegisterMessage(ResponseV1)
 
 
 DESCRIPTOR.has_options = True
-DESCRIPTOR._options = _descriptor._ParseOptions(descriptor_pb2.FileOptions(), _b('\nCcom.rhlabs.protobufs.services.group.actions.get_membership_reqeusts'))
+DESCRIPTOR._options = _descriptor._ParseOptions(descriptor_pb2.FileOptions(), _b('\nCcom.rhlabs.protobufs.services.group.actions.get_membership_requests'))
 # @@protoc_insertion_point(module_scope)

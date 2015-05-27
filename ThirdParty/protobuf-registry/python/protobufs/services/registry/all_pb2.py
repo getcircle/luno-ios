@@ -20,7 +20,7 @@ import protobufs.services.registry.responses_pb2
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='protobufs/services/registry/all.proto',
   package='services.registry',
-  serialized_pb=_b('\n%protobufs/services/registry/all.proto\x12\x11services.registry\x1a*protobufs/services/registry/requests.proto\x1a+protobufs/services/registry/responses.proto')
+  serialized_pb=_b('\n%protobufs/services/registry/all.proto\x12\x11services.registry\x1a*protobufs/services/registry/requests.proto\x1a+protobufs/services/registry/responses.protoB(\n&com.rhlabs.protobufs.services.registry')
   ,
   dependencies=[protobufs.services.registry.requests_pb2.DESCRIPTOR,protobufs.services.registry.responses_pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
@@ -29,4 +29,6 @@ _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 
 
+DESCRIPTOR.has_options = True
+DESCRIPTOR._options = _descriptor._ParseOptions(descriptor_pb2.FileOptions(), _b('\n&com.rhlabs.protobufs.services.registry'))
 # @@protoc_insertion_point(module_scope)

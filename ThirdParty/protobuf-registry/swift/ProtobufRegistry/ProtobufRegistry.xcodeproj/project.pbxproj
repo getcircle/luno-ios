@@ -122,6 +122,11 @@
 		BF98CB761AE08CA400F96BFE /* ServicesRegistryResponses_Responses.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF98CB731AE08CA400F96BFE /* ServicesRegistryResponses_Responses.pb.swift */; };
 		BFC376101B15073800D46640 /* ServicesGroupActionsAddToGroup_Add_to_group.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC3760F1B15073800D46640 /* ServicesGroupActionsAddToGroup_Add_to_group.pb.swift */; };
 		BFC376131B151BE600D46640 /* ServicesGroupActionsGetMembershipRequests_Get_membership_requests.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC376121B151BE600D46640 /* ServicesGroupActionsGetMembershipRequests_Get_membership_requests.pb.swift */; };
+		BFC376191B1557CD00D46640 /* ServicesCommonContainers_Containers.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC376141B1557CD00D46640 /* ServicesCommonContainers_Containers.pb.swift */; };
+		BFC3761C1B1557CD00D46640 /* ServicesOrganizationActionsGetIntegration_Get_integration.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC376171B1557CD00D46640 /* ServicesOrganizationActionsGetIntegration_Get_integration.pb.swift */; };
+		BFC3761D1B1557CD00D46640 /* ServicesOrganizationContainersIntegration_Integration.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC376181B1557CD00D46640 /* ServicesOrganizationContainersIntegration_Integration.pb.swift */; };
+		BFC376201B155B3800D46640 /* ServicesOrganizationActionsDisableIntegration_Disable_integration.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC3761E1B155B3800D46640 /* ServicesOrganizationActionsDisableIntegration_Disable_integration.pb.swift */; };
+		BFC376211B155B3800D46640 /* ServicesOrganizationActionsEnableIntegration_Enable_integration.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC3761F1B155B3800D46640 /* ServicesOrganizationActionsEnableIntegration_Enable_integration.pb.swift */; };
 		BFC6CEF51A44B58B0081F45B /* ProtobufRegistry.h in Headers */ = {isa = PBXBuildFile; fileRef = BFC6CEF41A44B58B0081F45B /* ProtobufRegistry.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BFC6CEFB1A44B58B0081F45B /* ProtobufRegistry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFC6CEEF1A44B58B0081F45B /* ProtobufRegistry.framework */; };
 		BFC6CF021A44B58B0081F45B /* ProtobufRegistryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC6CF011A44B58B0081F45B /* ProtobufRegistryTests.swift */; };
@@ -254,6 +259,11 @@
 		BF98CB731AE08CA400F96BFE /* ServicesRegistryResponses_Responses.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesRegistryResponses_Responses.pb.swift; sourceTree = "<group>"; };
 		BFC3760F1B15073800D46640 /* ServicesGroupActionsAddToGroup_Add_to_group.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesGroupActionsAddToGroup_Add_to_group.pb.swift; sourceTree = "<group>"; };
 		BFC376121B151BE600D46640 /* ServicesGroupActionsGetMembershipRequests_Get_membership_requests.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesGroupActionsGetMembershipRequests_Get_membership_requests.pb.swift; sourceTree = "<group>"; };
+		BFC376141B1557CD00D46640 /* ServicesCommonContainers_Containers.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesCommonContainers_Containers.pb.swift; sourceTree = "<group>"; };
+		BFC376171B1557CD00D46640 /* ServicesOrganizationActionsGetIntegration_Get_integration.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesOrganizationActionsGetIntegration_Get_integration.pb.swift; sourceTree = "<group>"; };
+		BFC376181B1557CD00D46640 /* ServicesOrganizationContainersIntegration_Integration.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesOrganizationContainersIntegration_Integration.pb.swift; sourceTree = "<group>"; };
+		BFC3761E1B155B3800D46640 /* ServicesOrganizationActionsDisableIntegration_Disable_integration.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesOrganizationActionsDisableIntegration_Disable_integration.pb.swift; sourceTree = "<group>"; };
+		BFC3761F1B155B3800D46640 /* ServicesOrganizationActionsEnableIntegration_Enable_integration.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesOrganizationActionsEnableIntegration_Enable_integration.pb.swift; sourceTree = "<group>"; };
 		BFC6CEEF1A44B58B0081F45B /* ProtobufRegistry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ProtobufRegistry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFC6CEF31A44B58B0081F45B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BFC6CEF41A44B58B0081F45B /* ProtobufRegistry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProtobufRegistry.h; sourceTree = "<group>"; };
@@ -310,6 +320,7 @@
 				BF1B13C91AE1944300F36620 /* ServicesAppreciationActionsGetAppreciation_Get_appreciation.pb.swift */,
 				BF1B13CA1AE1944300F36620 /* ServicesAppreciationActionsUpdateAppreciation_Update_appreciation.pb.swift */,
 				BF5AF6EC1AE2E231000E876E /* ServicesAppreciationContainers_Containers.pb.swift */,
+				BFC376141B1557CD00D46640 /* ServicesCommonContainers_Containers.pb.swift */,
 				BF1B13CC1AE1944300F36620 /* ServicesFeedActionsGetOrganizationFeed_Get_organization_feed.pb.swift */,
 				BF1B13CD1AE1944300F36620 /* ServicesFeedActionsGetProfileFeed_Get_profile_feed.pb.swift */,
 				BF5AF6ED1AE2E231000E876E /* ServicesFeedContainers_Containers.pb.swift */,
@@ -341,8 +352,11 @@
 				BF1B13DA1AE1944300F36620 /* ServicesOrganizationActionsCreateTeam_Create_team.pb.swift */,
 				BF79ED6D1AF803D100A90034 /* ServicesOrganizationActionsCreateToken_Create_token.pb.swift */,
 				BF1B13DB1AE1944300F36620 /* ServicesOrganizationActionsDeleteAddress_Delete_address.pb.swift */,
+				BFC3761E1B155B3800D46640 /* ServicesOrganizationActionsDisableIntegration_Disable_integration.pb.swift */,
+				BFC3761F1B155B3800D46640 /* ServicesOrganizationActionsEnableIntegration_Enable_integration.pb.swift */,
 				BF1B13DC1AE1944300F36620 /* ServicesOrganizationActionsGetAddress_Get_address.pb.swift */,
 				BF1B13DD1AE1944300F36620 /* ServicesOrganizationActionsGetAddresses_Get_addresses.pb.swift */,
+				BFC376171B1557CD00D46640 /* ServicesOrganizationActionsGetIntegration_Get_integration.pb.swift */,
 				BF1B13DE1AE1944300F36620 /* ServicesOrganizationActionsGetLocation_Get_location.pb.swift */,
 				BF1B13DF1AE1944300F36620 /* ServicesOrganizationActionsGetLocations_Get_locations.pb.swift */,
 				BF3D3CAF1AE06D9300B5780B /* ServicesOrganizationActionsGetOrganization_Get_organization.pb.swift */,
@@ -353,6 +367,7 @@
 				BF1B13E31AE1944300F36620 /* ServicesOrganizationActionsGetTopLevelTeam_Get_top_level_team.pb.swift */,
 				BF1B13E41AE1944300F36620 /* ServicesOrganizationActionsUpdateLocation_Update_location.pb.swift */,
 				BF5AF6F01AE2E231000E876E /* ServicesOrganizationContainers_Containers.pb.swift */,
+				BFC376181B1557CD00D46640 /* ServicesOrganizationContainersIntegration_Integration.pb.swift */,
 				BF1B13E81AE1944300F36620 /* ServicesProfileActionsAddTags_Add_tags.pb.swift */,
 				BF1B13E91AE1944300F36620 /* ServicesProfileActionsBulkCreateProfiles_Bulk_create_profiles.pb.swift */,
 				BF1B13EA1AE1944300F36620 /* ServicesProfileActionsBulkUpdateProfiles_Bulk_update_profiles.pb.swift */,
@@ -581,6 +596,7 @@
 				BF1B14291AE1944300F36620 /* ServicesNoteActionsUpdateNote_Update_note.pb.swift in Sources */,
 				BF1B142B1AE1944300F36620 /* ServicesOrganizationActionsCreateAddress_Create_address.pb.swift in Sources */,
 				BF1B142C1AE1944300F36620 /* ServicesOrganizationActionsCreateLocation_Create_location.pb.swift in Sources */,
+				BFC3761D1B1557CD00D46640 /* ServicesOrganizationContainersIntegration_Integration.pb.swift in Sources */,
 				BF1B142D1AE1944300F36620 /* ServicesOrganizationActionsCreateTeam_Create_team.pb.swift in Sources */,
 				BF1B142E1AE1944300F36620 /* ServicesOrganizationActionsDeleteAddress_Delete_address.pb.swift in Sources */,
 				BF1B142F1AE1944300F36620 /* ServicesOrganizationActionsGetAddress_Get_address.pb.swift in Sources */,
@@ -595,6 +611,7 @@
 				BF1B143B1AE1944300F36620 /* ServicesProfileActionsAddTags_Add_tags.pb.swift in Sources */,
 				BF1B143C1AE1944300F36620 /* ServicesProfileActionsBulkCreateProfiles_Bulk_create_profiles.pb.swift in Sources */,
 				BF1B143D1AE1944300F36620 /* ServicesProfileActionsBulkUpdateProfiles_Bulk_update_profiles.pb.swift in Sources */,
+				BFC376201B155B3800D46640 /* ServicesOrganizationActionsDisableIntegration_Disable_integration.pb.swift in Sources */,
 				BF1B143E1AE1944300F36620 /* ServicesProfileActionsCreateProfile_Create_profile.pb.swift in Sources */,
 				BF1B143F1AE1944300F36620 /* ServicesProfileActionsCreateTags_Create_tags.pb.swift in Sources */,
 				BF1B14401AE1944300F36620 /* ServicesProfileActionsGetActiveTags_Get_active_tags.pb.swift in Sources */,
@@ -621,6 +638,7 @@
 				BF1B14571AE1944300F36620 /* ServicesSearchContainersSearch_Search.pb.swift in Sources */,
 				BF1B14581AE1944300F36620 /* ServicesUserActionsAuthenticateUser_Authenticate_user.pb.swift in Sources */,
 				BF7A4B051B0A64D9007B6BFB /* ServicesUserActionsGetAuthenticationInstructions_Get_authentication_instructions.pb.swift in Sources */,
+				BFC376211B155B3800D46640 /* ServicesOrganizationActionsEnableIntegration_Enable_integration.pb.swift in Sources */,
 				BF1B14591AE1944300F36620 /* ServicesUserActionsBulkCreateUsers_Bulk_create_users.pb.swift in Sources */,
 				BF1B145A1AE1944300F36620 /* ServicesUserActionsCompleteAuthorization_Complete_authorization.pb.swift in Sources */,
 				BF1B145B1AE1944300F36620 /* ServicesUserActionsCreateUser_Create_user.pb.swift in Sources */,
@@ -633,6 +651,7 @@
 				BF1B14621AE1944300F36620 /* ServicesUserActionsSendVerificationCode_Send_verification_code.pb.swift in Sources */,
 				BF1B14631AE1944300F36620 /* ServicesUserActionsUpdateUser_Update_user.pb.swift in Sources */,
 				BF1B14641AE1944300F36620 /* ServicesUserActionsValidUser_Valid_user.pb.swift in Sources */,
+				BFC376191B1557CD00D46640 /* ServicesCommonContainers_Containers.pb.swift in Sources */,
 				BF1B14651AE1944300F36620 /* ServicesUserActionsVerifyVerificationCode_Verify_verification_code.pb.swift in Sources */,
 				BF3D3CB41AE06D9300B5780B /* ServicesOrganizationActionsCreateOrganization_Create_organization.pb.swift in Sources */,
 				BF3D3CB51AE06D9300B5780B /* ServicesOrganizationActionsGetOrganization_Get_organization.pb.swift in Sources */,
@@ -680,6 +699,7 @@
 				BF79ED7C1AF803DC00A90034 /* ServicesSyncContainersSource_Source.pb.swift in Sources */,
 				BF98CB751AE08CA400F96BFE /* ServicesRegistryRequests_Requests.pb.swift in Sources */,
 				BF98CB761AE08CA400F96BFE /* ServicesRegistryResponses_Responses.pb.swift in Sources */,
+				BFC3761C1B1557CD00D46640 /* ServicesOrganizationActionsGetIntegration_Get_integration.pb.swift in Sources */,
 				BFF67AC61AE609C20062815A /* ServicesUserActionsLogout_Logout.pb.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

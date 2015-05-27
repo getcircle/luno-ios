@@ -1,4 +1,7 @@
 package services.registry;
 
+// GENERATED OPTIONS FOR: JAVA
+option java_package = "com.rhlabs.protobufs.services.registry";
+
 import "protobufs/services/registry/requests.proto";
 import "protobufs/services/registry/responses.proto";
