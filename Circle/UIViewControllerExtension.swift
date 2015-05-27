@@ -290,4 +290,11 @@ extension UIViewController {
         
         return nil
     }
+    
+    func showToast(message: String, title: String? = nil) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        let okAction = UIAlertAction(title: AppStrings.GenericOKButtonTitle, style: .Default, handler: nil)
+        alertController.addAction(okAction)
+        presentViewController(alertController, animated: true, completion: nil)
+    }
 }

@@ -8,6 +8,7 @@
 
 import UIKit
 import ProtobufRegistry
+import MBProgressHUD
 
 class GroupDetailViewController: DetailViewController, 
     CardHeaderViewDelegate,
@@ -51,9 +52,33 @@ class GroupDetailViewController: DetailViewController,
     // MARK: - Collection View delegate
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        if let profile = dataSource.contentAtIndexPath(indexPath) as? Services.Profile.Containers.ProfileV1 {
-            let profileVC = ProfileDetailViewController(profile: profile)
-            navigationController?.pushViewController(profileVC, animated: true)
+        if let card = dataSource.cardAtSection(indexPath.section), content: AnyObject = dataSource.contentAtIndexPath(indexPath) {
+            switch card.type {
+            case .Settings:
+                if let contentTypeValue = content["type"] as? Int, contentType = ContentType(rawValue: contentTypeValue) {
+                    handleGroupMembershipActions(contentType)
+                }
+                break
+                
+                
+            case .Profiles:
+                if let profile = content as? Services.Profile.Containers.ProfileV1 {
+                    let profileVC = ProfileDetailViewController(profile: profile)
+                    navigationController?.pushViewController(profileVC, animated: true)
+                }
+                
+            case .KeyValue:
+                // Assumption: KeyValue here will only be an email value
+                presentMailViewController(
+                    [(dataSource as! GroupDetailDataSource).selectedGroup.email], 
+                    subject: "", 
+                    messageBody: "", 
+                    completionHandler: nil
+                )
+                
+            default:
+                break
+            }
         }
         
         collectionView.deselectItemAtIndexPath(indexPath, animated: true)
@@ -169,5 +194,40 @@ class GroupDetailViewController: DetailViewController,
     func onSelectedProfiles(profiles: Array<Services.Profile.Containers.ProfileV1>) -> Bool {
         // TODO: Add call to add member
         return true
+    }
+    
+    // MARK: - Helpers
+    
+    private func handleGroupMembershipActions(actionType: ContentType) {
+        let dataSource = (self.dataSource as! GroupDetailDataSource)
+        let hud = MBProgressHUD.showHUDAddedTo(view, animated: true)
+        
+        switch actionType {
+        case .LeaveGroup:
+            Services.Group.Actions.leaveGroup(dataSource.selectedGroup.id, completionHandler: { (status, error) -> Void in
+                hud.hide(true)
+                if error == nil {
+                    self.loadData()
+                }
+            })
+            
+        case .JoinGroup, .RequestGroup:
+            Services.Group.Actions.joinGroup(dataSource.selectedGroup.id, completionHandler: { (request, error) -> Void in
+                hud.hide(true)
+                if let request = request where error == nil {
+                    if request.status == .Approved {
+                        self.showToast(AppStrings.GroupJoinSuccessConfirmation)
+                    }
+                    else {
+                        self.showToast(AppStrings.GroupRequestSentConfirmation)
+                    }
+                    
+                    self.loadData()
+                }
+            })
+
+        default:
+            break
+        }
     }
 }

@@ -22,7 +22,7 @@ typealias GetGroupsCompletionHandler = (
 ) -> Void
 
 typealias JoinGroupCompletionHandler = (
-    status: Services.Group.Containers.MembershipRequestStatusV1?,
+    request: Services.Group.Containers.MembershipRequestV1?,
     error: NSError?
 ) -> Void
 
@@ -103,7 +103,7 @@ extension Services.Group.Actions {
                 let response = wrapped?.response?.result.getExtension(
                     Services.Registry.Responses.Group.joinGroup()
                 ) as? Services.Group.Actions.JoinGroup.ResponseV1
-                completionHandler?(status: response?.request.status, error: error)
+                completionHandler?(request: response?.request, error: error)
             }
     }
 

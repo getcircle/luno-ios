@@ -38,7 +38,7 @@ enum ContentType: Int {
     case Groups
     case HireDate
     case Interests
-    case Tags
+    case JoinGroup
     case LeaveGroup
     case LinkedIn
     case LinkedInConnect
@@ -49,8 +49,10 @@ enum ContentType: Int {
     case Other
     case PeopleCount
     case Position
+    case RequestGroup
     case SeatingInfo
     case Skills
+    case Tags
     case Team
     case Twitter
     case QuickActions

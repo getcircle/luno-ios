@@ -109,6 +109,7 @@ class GroupDetailDataSource: CardDataSource {
     
     private func populateData() {
         
+        // Add Manager/Member cards
         var cardsAdded = false
         for (title, cardContent, nextRequest) in [
             (AppStrings.GroupManagersSectionTitle, managerMemberProfiles, nextManagerMembersRequest),
@@ -134,11 +135,30 @@ class GroupDetailDataSource: CardDataSource {
             }
         }
         
-        if cardsAdded && selectedGroup.isMember {
-            let groupEmailCard = Card(cardType: .Settings, title: "")
-            groupEmailCard.sectionInset = sectionInset
-            groupEmailCard.addContent(content: [["text" : AppStrings.GroupLeaveGroupButtonTitle, "type": ContentType.LeaveGroup.rawValue]])
-            appendCard(groupEmailCard)
+        // Add group actions card
+        if cardsAdded {
+            let groupActionCard = Card(cardType: .Settings, title: "")
+            groupActionCard.sectionInset = sectionInset
+            
+            var contentType: ContentType?
+            var cellTitle: String?
+            if selectedGroup.isMember {
+                cellTitle = AppStrings.GroupLeaveGroupButtonTitle
+                contentType = .LeaveGroup
+            }
+            else if selectedGroup.canJoin {
+                cellTitle = AppStrings.GroupJoinGroupButtonTitle
+                contentType = .JoinGroup
+            }
+            else if selectedGroup.canRequest {
+                cellTitle = AppStrings.GroupRequestToJoinGroupButtonTitle
+                contentType = .RequestGroup
+            }
+            
+            if let cellTitle = cellTitle, contentType = contentType {
+                groupActionCard.addContent(content: [["text" : cellTitle, "type": contentType.rawValue]])
+                appendCard(groupActionCard)
+            }
         }
     }
 }
