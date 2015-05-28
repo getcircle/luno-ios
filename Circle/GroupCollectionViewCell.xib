@@ -44,18 +44,28 @@
                         <color key="textColor" red="0.4392156862745098" green="0.4392156862745098" blue="0.4392156862745098" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Access Requested. Pending approval." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="a9I-6H-0eS" userLabel="PendingAccessRequestLabel">
+                        <rect key="frame" x="15" y="87" width="319" height="33"/>
+                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
+                        <color key="textColor" red="0.0" green="0.45870168585526316" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="MRy-MN-SNQ" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="15" id="07h-jQ-pvX"/>
+                <constraint firstItem="a9I-6H-0eS" firstAttribute="leading" secondItem="MRy-MN-SNQ" secondAttribute="leading" id="2SK-Y1-H3q"/>
                 <constraint firstItem="aFv-qu-teC" firstAttribute="leading" secondItem="MRy-MN-SNQ" secondAttribute="leading" id="FPi-uV-3yf"/>
+                <constraint firstItem="a9I-6H-0eS" firstAttribute="bottom" secondItem="nOy-Bq-JZN" secondAttribute="bottom" id="FT7-xg-Eq4"/>
+                <constraint firstItem="a9I-6H-0eS" firstAttribute="trailing" secondItem="MRy-MN-SNQ" secondAttribute="trailing" id="Jg2-ej-xZ5"/>
                 <constraint firstItem="TmO-vz-MAs" firstAttribute="top" secondItem="aFv-qu-teC" secondAttribute="bottom" constant="5" id="L0X-i3-8uF"/>
                 <constraint firstAttribute="trailing" secondItem="MRy-MN-SNQ" secondAttribute="trailing" constant="15" id="LUd-Xw-faq"/>
                 <constraint firstItem="TmO-vz-MAs" firstAttribute="leading" secondItem="MRy-MN-SNQ" secondAttribute="leading" id="NrH-hX-Wbv"/>
                 <constraint firstItem="aFv-qu-teC" firstAttribute="top" secondItem="MRy-MN-SNQ" secondAttribute="bottom" constant="5" id="Thp-nl-99Q"/>
                 <constraint firstItem="TmO-vz-MAs" firstAttribute="trailing" secondItem="MRy-MN-SNQ" secondAttribute="trailing" id="VD7-up-0pE"/>
+                <constraint firstItem="a9I-6H-0eS" firstAttribute="top" secondItem="nOy-Bq-JZN" secondAttribute="top" id="XBM-7b-lzg"/>
                 <constraint firstItem="MRy-MN-SNQ" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="Xen-qh-Mz8"/>
                 <constraint firstItem="aFv-qu-teC" firstAttribute="trailing" secondItem="MRy-MN-SNQ" secondAttribute="trailing" id="hVy-Gy-7To"/>
                 <constraint firstAttribute="centerX" secondItem="nOy-Bq-JZN" secondAttribute="centerX" id="l10-VF-o1c"/>
@@ -67,6 +77,7 @@
                 <outlet property="groupNameLabel" destination="MRy-MN-SNQ" id="ty1-Yd-qUC"/>
                 <outlet property="joinButton" destination="nOy-Bq-JZN" id="YTU-kn-Y8D"/>
                 <outlet property="numberOfMembersLabel" destination="aFv-qu-teC" id="ETZ-9O-g9m"/>
+                <outlet property="pendingAccessRequestLabel" destination="a9I-6H-0eS" id="E8U-IF-c1f"/>
             </connections>
             <point key="canvasLocation" x="-423.5" y="-2484"/>
         </collectionViewCell>

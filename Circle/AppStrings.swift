@@ -43,6 +43,7 @@ struct AppStrings {
     static let GenericOKButtonTitle = NSLocalizedString("OK", comment: "Generic button title for positive affirmation of an action")
     static let GenericTryAgainButtonTitle = NSLocalizedString("Try Again", comment: "Generic button title to try some action again")
     
+    static let GroupAccessRequestedPendingApproval = NSLocalizedString("Access Requested. Pending approval.", comment: "Message shown to users with a pending request to join a group")
     static let GroupAddMembersNavTitle = NSLocalizedString("Add members", comment: "Title for view used to add members to a group")
     static let GroupJoinGroupButtonTitle = NSLocalizedString("Join group", comment: "Title of the button to join a group")
     static let GroupRequestToJoinGroupButtonTitle = NSLocalizedString("Request to join", comment: "Title of the button to request membership to a group")

@@ -19,6 +19,7 @@ class GroupCollectionViewCell: CircleCollectionViewCell {
     @IBOutlet weak private(set) var numberOfMembersLabel: UILabel!
     @IBOutlet weak private(set) var descriptionLabel: UILabel!
     @IBOutlet weak private(set) var joinButton: UIButton!
+    @IBOutlet weak private(set) var pendingAccessRequestLabel: UILabel!
     
     var groupJoinRequestDelegate: GroupJoinRequestDelegate?
     
@@ -53,6 +54,10 @@ class GroupCollectionViewCell: CircleCollectionViewCell {
         joinButton.setTitleColor(UIColor.appTintColor(), forState: .Normal)
     }
     
+    private func configurePendingAccessRequestLabel() {
+        pendingAccessRequestLabel.text = AppStrings.GroupAccessRequestedPendingApproval
+    }
+    
     override func setData(data: AnyObject) {
         if let group = data as? Services.Group.Containers.GroupV1 {
             groupNameLabel.text = group.name
@@ -65,8 +70,12 @@ class GroupCollectionViewCell: CircleCollectionViewCell {
             }
             
             hideJoinRequestButton()
+            pendingAccessRequestLabel.alpha = 0.0
             if !group.isMember {
-                if group.canJoin {
+                if group.hasPendingRequest {
+                    pendingAccessRequestLabel.alpha = 1.0
+                }
+                else if group.canJoin {
                     showJoinButton()
                 }
                 else if group.canRequest {
@@ -93,7 +102,7 @@ class GroupCollectionViewCell: CircleCollectionViewCell {
             height += descriptionLabel.intrinsicContentSize().height
         }
         
-        if joinButton.alpha == 1.0 {
+        if joinButton.alpha == 1.0 || pendingAccessRequestLabel.alpha == 1.0 {
             height += 10.0 + joinButton.frameHeight
         }
         

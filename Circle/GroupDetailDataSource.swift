@@ -194,13 +194,15 @@ class GroupDetailDataSource: CardDataSource {
                 cellTitle = AppStrings.GroupLeaveGroupButtonTitle
                 contentType = .LeaveGroup
             }
-            else if selectedGroup.canJoin {
-                cellTitle = AppStrings.GroupJoinGroupButtonTitle
-                contentType = .JoinGroup
-            }
-            else if selectedGroup.canRequest {
-                cellTitle = AppStrings.GroupRequestToJoinGroupButtonTitle
-                contentType = .RequestGroup
+            else if !selectedGroup.hasPendingRequest {
+                if selectedGroup.canJoin {
+                    cellTitle = AppStrings.GroupJoinGroupButtonTitle
+                    contentType = .JoinGroup
+                }
+                else if selectedGroup.canRequest {
+                    cellTitle = AppStrings.GroupRequestToJoinGroupButtonTitle
+                    contentType = .RequestGroup
+                }
             }
             
             if let cellTitle = cellTitle, contentType = contentType {
