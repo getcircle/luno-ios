@@ -51,13 +51,13 @@ class ProfilesDataSource: CardDataSource {
     }
     
     func configureForGroup(group: Services.Group.Containers.GroupV1, role: Services.Group.Containers.RoleV1) {
-        let requestBuilder = Services.Group.Actions.ListMembers.RequestV1.builder()
+        let requestBuilder = Services.Group.Actions.GetMembers.RequestV1.builder()
         requestBuilder.groupKey = group.id
         requestBuilder.role = role
         let client = ServiceClient(serviceName: "group")
         let serviceRequest = client.buildRequest(
             "list_members",
-            extensionField: Services.Registry.Requests.Group.listMembers(),
+            extensionField: Services.Registry.Requests.Group.getMembers(),
             requestBuilder: requestBuilder,
             paginatorBuilder: nil
         )

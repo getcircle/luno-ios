@@ -67,48 +67,48 @@ extension Services.Group.Actions {
     }
     
     
-    static func listMembers(
+    static func getMembers(
         groupKey: String,
         role: Services.Group.Containers.RoleV1,
         paginatorBuilder: Soa.PaginatorV1Builder? = nil,
         completionHandler: GetGroupProfilesCompletionHandler?
     ) {
-        let requestBuilder = Services.Group.Actions.ListMembers.RequestV1.builder()
+        let requestBuilder = Services.Group.Actions.GetMembers.RequestV1.builder()
         requestBuilder.groupKey = groupKey
         requestBuilder.role = role
         requestBuilder.provider = .Google
         
         let client = ServiceClient(serviceName: "group")
         client.callAction("list_members",
-            extensionField: Services.Registry.Requests.Group.listMembers(),
+            extensionField: Services.Registry.Requests.Group.getMembers(),
             requestBuilder: requestBuilder,
             paginatorBuilder: paginatorBuilder
         ){
             (_, _, wrapped, error) -> Void in
             let response = wrapped?.response?.result.getExtension(
-                Services.Registry.Responses.Group.listMembers()
-            ) as? Services.Group.Actions.ListMembers.ResponseV1
+                Services.Registry.Responses.Group.getMembers()
+            ) as? Services.Group.Actions.GetMembers.ResponseV1
             let nextRequest = wrapped?.getNextRequest()
             completionHandler?(members: response?.members, nextRequest: nextRequest, error: error)
         }
     }
     
-    static func listGroups(
+    static func getGroups(
         profileId: String,
         paginatorBuilder: Soa.PaginatorV1Builder? = nil,
         completionHandler: GetGroupsCompletionHandler?
     ) {
     
-        let requestBuilder = Services.Group.Actions.ListGroups.RequestV1.builder()
+        let requestBuilder = Services.Group.Actions.GetGroups.RequestV1.builder()
         requestBuilder.profileId = profileId
         requestBuilder.provider = .Google
         
         let client = ServiceClient(serviceName: "group")
-        client.callAction("list_groups", extensionField: Services.Registry.Requests.Group.listGroups(), requestBuilder: requestBuilder, paginatorBuilder: paginatorBuilder) {
+        client.callAction("list_groups", extensionField: Services.Registry.Requests.Group.getGroups(), requestBuilder: requestBuilder, paginatorBuilder: paginatorBuilder) {
             (_, _, wrapped, error) -> Void in
             let response = wrapped?.response?.result.getExtension(
-                Services.Registry.Responses.Group.listGroups()
-            ) as? Services.Group.Actions.ListGroups.ResponseV1
+                Services.Registry.Responses.Group.getGroups()
+            ) as? Services.Group.Actions.GetGroups.ResponseV1
             let nextRequest = wrapped?.getNextRequest()
             completionHandler?(groups: response?.groups, nextRequest: nextRequest, error: error)
         }

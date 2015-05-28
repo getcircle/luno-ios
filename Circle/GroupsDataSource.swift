@@ -20,7 +20,7 @@ class GroupsDataSource: CardDataSource {
     override func loadData(completionHandler: (error: NSError?) -> Void) {
         resetCards()
 
-        Services.Group.Actions.listGroups(profile.id, paginatorBuilder: nil) { (groups, nextRequest, error) -> Void in
+        Services.Group.Actions.getGroups(profile.id, paginatorBuilder: nil) { (groups, nextRequest, error) -> Void in
             if error == nil {
                 self.resetCards()
                 

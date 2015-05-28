@@ -106,7 +106,7 @@ class GroupDetailDataSource: CardDataSource {
 
         // Fetch owners
         dispatch_group_enter(actionsGroup)
-        Services.Group.Actions.listMembers(selectedGroup.email, role: .Owner) {
+        Services.Group.Actions.getMembers(selectedGroup.email, role: .Owner) {
             (members, nextRequest, error) -> Void in
             if let members = members {
                 self.ownerProfiles.extend(members.map({ $0.profile }))
@@ -120,7 +120,7 @@ class GroupDetailDataSource: CardDataSource {
         
         // Fetch group managers
         dispatch_group_enter(actionsGroup)
-        Services.Group.Actions.listMembers(selectedGroup.email, role: .Manager) {
+        Services.Group.Actions.getMembers(selectedGroup.email, role: .Manager) {
             (members, nextRequest, error) -> Void in
             if let members = members {
                 self.managerMemberProfiles.extend(members.map({ $0.profile }))
@@ -134,7 +134,7 @@ class GroupDetailDataSource: CardDataSource {
         
         // Fetch Members
         dispatch_group_enter(actionsGroup)
-        Services.Group.Actions.listMembers(selectedGroup.email, role: .Member) {
+        Services.Group.Actions.getMembers(selectedGroup.email, role: .Member) {
             (members, nextRequest, error) -> Void in
             if let members = members {
                 self.memberProfiles.extend(members.map({ $0.profile }))

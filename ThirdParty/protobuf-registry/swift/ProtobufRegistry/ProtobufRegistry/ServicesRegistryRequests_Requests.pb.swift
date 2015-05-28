@@ -471,9 +471,9 @@ public var ServicesRegistryRequestsSynccompleteSync:ConcreateExtensionField {
        return Services.Registry.Requests.RequestsRoot.sharedInstance.ServicesRegistryRequestsSynccompleteSyncStatic
    }
 }
-public var ServicesRegistryRequestsGrouplistGroups:ConcreateExtensionField {
+public var ServicesRegistryRequestsGroupgetGroups:ConcreateExtensionField {
    get {
-       return Services.Registry.Requests.RequestsRoot.sharedInstance.ServicesRegistryRequestsGrouplistGroupsStatic
+       return Services.Registry.Requests.RequestsRoot.sharedInstance.ServicesRegistryRequestsGroupgetGroupsStatic
    }
 }
 public var ServicesRegistryRequestsGroupjoinGroup:ConcreateExtensionField {
@@ -491,9 +491,9 @@ public var ServicesRegistryRequestsGroupleaveGroup:ConcreateExtensionField {
        return Services.Registry.Requests.RequestsRoot.sharedInstance.ServicesRegistryRequestsGroupleaveGroupStatic
    }
 }
-public var ServicesRegistryRequestsGrouplistMembers:ConcreateExtensionField {
+public var ServicesRegistryRequestsGroupgetMembers:ConcreateExtensionField {
    get {
-       return Services.Registry.Requests.RequestsRoot.sharedInstance.ServicesRegistryRequestsGrouplistMembersStatic
+       return Services.Registry.Requests.RequestsRoot.sharedInstance.ServicesRegistryRequestsGroupgetMembersStatic
    }
 }
 public var ServicesRegistryRequestsGroupgetGroup:ConcreateExtensionField {
@@ -595,11 +595,11 @@ public extension Services.Registry.Requests {
     var ServicesRegistryRequestsSyncstartSyncStatic:ConcreateExtensionField
     var ServicesRegistryRequestsSyncsyncPayloadsStatic:ConcreateExtensionField
     var ServicesRegistryRequestsSynccompleteSyncStatic:ConcreateExtensionField
-    var ServicesRegistryRequestsGrouplistGroupsStatic:ConcreateExtensionField
+    var ServicesRegistryRequestsGroupgetGroupsStatic:ConcreateExtensionField
     var ServicesRegistryRequestsGroupjoinGroupStatic:ConcreateExtensionField
     var ServicesRegistryRequestsGrouprespondToMembershipRequestStatic:ConcreateExtensionField
     var ServicesRegistryRequestsGroupleaveGroupStatic:ConcreateExtensionField
-    var ServicesRegistryRequestsGrouplistMembersStatic:ConcreateExtensionField
+    var ServicesRegistryRequestsGroupgetMembersStatic:ConcreateExtensionField
     var ServicesRegistryRequestsGroupgetGroupStatic:ConcreateExtensionField
     var ServicesRegistryRequestsGroupaddToGroupStatic:ConcreateExtensionField
     var ServicesRegistryRequestsGroupgetMembershipRequestsStatic:ConcreateExtensionField
@@ -682,11 +682,11 @@ public extension Services.Registry.Requests {
       ServicesRegistryRequestsSyncstartSyncStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionRequestParamsV1.self, fieldNumber: 1000, defaultValue:Services.Sync.Actions.StartSync.RequestV1(), messageOrGroupClass:Services.Sync.Actions.StartSync.RequestV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
       ServicesRegistryRequestsSyncsyncPayloadsStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionRequestParamsV1.self, fieldNumber: 1001, defaultValue:Services.Sync.Actions.Sync.RequestV1(), messageOrGroupClass:Services.Sync.Actions.Sync.RequestV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
       ServicesRegistryRequestsSynccompleteSyncStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionRequestParamsV1.self, fieldNumber: 1002, defaultValue:Services.Sync.Actions.CompleteSync.RequestV1(), messageOrGroupClass:Services.Sync.Actions.CompleteSync.RequestV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
-      ServicesRegistryRequestsGrouplistGroupsStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionRequestParamsV1.self, fieldNumber: 1100, defaultValue:Services.Group.Actions.ListGroups.RequestV1(), messageOrGroupClass:Services.Group.Actions.ListGroups.RequestV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
+      ServicesRegistryRequestsGroupgetGroupsStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionRequestParamsV1.self, fieldNumber: 1100, defaultValue:Services.Group.Actions.GetGroups.RequestV1(), messageOrGroupClass:Services.Group.Actions.GetGroups.RequestV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
       ServicesRegistryRequestsGroupjoinGroupStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionRequestParamsV1.self, fieldNumber: 1101, defaultValue:Services.Group.Actions.JoinGroup.RequestV1(), messageOrGroupClass:Services.Group.Actions.JoinGroup.RequestV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
       ServicesRegistryRequestsGrouprespondToMembershipRequestStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionRequestParamsV1.self, fieldNumber: 1102, defaultValue:Services.Group.Actions.RespondToMembershipRequest.RequestV1(), messageOrGroupClass:Services.Group.Actions.RespondToMembershipRequest.RequestV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
       ServicesRegistryRequestsGroupleaveGroupStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionRequestParamsV1.self, fieldNumber: 1103, defaultValue:Services.Group.Actions.LeaveGroup.RequestV1(), messageOrGroupClass:Services.Group.Actions.LeaveGroup.RequestV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
-      ServicesRegistryRequestsGrouplistMembersStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionRequestParamsV1.self, fieldNumber: 1104, defaultValue:Services.Group.Actions.ListMembers.RequestV1(), messageOrGroupClass:Services.Group.Actions.ListMembers.RequestV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
+      ServicesRegistryRequestsGroupgetMembersStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionRequestParamsV1.self, fieldNumber: 1104, defaultValue:Services.Group.Actions.GetMembers.RequestV1(), messageOrGroupClass:Services.Group.Actions.GetMembers.RequestV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
       ServicesRegistryRequestsGroupgetGroupStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionRequestParamsV1.self, fieldNumber: 1105, defaultValue:Services.Group.Actions.GetGroup.RequestV1(), messageOrGroupClass:Services.Group.Actions.GetGroup.RequestV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
       ServicesRegistryRequestsGroupaddToGroupStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionRequestParamsV1.self, fieldNumber: 1106, defaultValue:Services.Group.Actions.AddToGroup.RequestV1(), messageOrGroupClass:Services.Group.Actions.AddToGroup.RequestV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
       ServicesRegistryRequestsGroupgetMembershipRequestsStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionRequestParamsV1.self, fieldNumber: 1107, defaultValue:Services.Group.Actions.GetMembershipRequests.RequestV1(), messageOrGroupClass:Services.Group.Actions.GetMembershipRequests.RequestV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
@@ -769,11 +769,11 @@ public extension Services.Registry.Requests {
       Services.Sync.Actions.StartSync.StartSyncRoot.sharedInstance.registerAllExtensions(extensionRegistry)
       Services.Sync.Actions.Sync.SyncRoot.sharedInstance.registerAllExtensions(extensionRegistry)
       Services.Sync.Actions.CompleteSync.CompleteSyncRoot.sharedInstance.registerAllExtensions(extensionRegistry)
-      Services.Group.Actions.ListGroups.ListGroupsRoot.sharedInstance.registerAllExtensions(extensionRegistry)
+      Services.Group.Actions.GetGroups.GetGroupsRoot.sharedInstance.registerAllExtensions(extensionRegistry)
       Services.Group.Actions.JoinGroup.JoinGroupRoot.sharedInstance.registerAllExtensions(extensionRegistry)
       Services.Group.Actions.RespondToMembershipRequest.RespondToMembershipRequestRoot.sharedInstance.registerAllExtensions(extensionRegistry)
       Services.Group.Actions.LeaveGroup.LeaveGroupRoot.sharedInstance.registerAllExtensions(extensionRegistry)
-      Services.Group.Actions.ListMembers.ListMembersRoot.sharedInstance.registerAllExtensions(extensionRegistry)
+      Services.Group.Actions.GetMembers.GetMembersRoot.sharedInstance.registerAllExtensions(extensionRegistry)
       Services.Group.Actions.GetGroup.GetGroupRoot.sharedInstance.registerAllExtensions(extensionRegistry)
       Services.Group.Actions.AddToGroup.AddToGroupRoot.sharedInstance.registerAllExtensions(extensionRegistry)
       Services.Group.Actions.GetMembershipRequests.GetMembershipRequestsRoot.sharedInstance.registerAllExtensions(extensionRegistry)
@@ -855,11 +855,11 @@ public extension Services.Registry.Requests {
       registry.addExtension(ServicesRegistryRequestsSyncstartSyncStatic)
       registry.addExtension(ServicesRegistryRequestsSyncsyncPayloadsStatic)
       registry.addExtension(ServicesRegistryRequestsSynccompleteSyncStatic)
-      registry.addExtension(ServicesRegistryRequestsGrouplistGroupsStatic)
+      registry.addExtension(ServicesRegistryRequestsGroupgetGroupsStatic)
       registry.addExtension(ServicesRegistryRequestsGroupjoinGroupStatic)
       registry.addExtension(ServicesRegistryRequestsGrouprespondToMembershipRequestStatic)
       registry.addExtension(ServicesRegistryRequestsGroupleaveGroupStatic)
-      registry.addExtension(ServicesRegistryRequestsGrouplistMembersStatic)
+      registry.addExtension(ServicesRegistryRequestsGroupgetMembersStatic)
       registry.addExtension(ServicesRegistryRequestsGroupgetGroupStatic)
       registry.addExtension(ServicesRegistryRequestsGroupaddToGroupStatic)
       registry.addExtension(ServicesRegistryRequestsGroupgetMembershipRequestsStatic)
@@ -2561,8 +2561,8 @@ public extension Services.Registry.Requests {
            }
     }
 
-    public class func listGroups() -> ConcreateExtensionField {
-         return ServicesRegistryRequestsGrouplistGroups
+    public class func getGroups() -> ConcreateExtensionField {
+         return ServicesRegistryRequestsGroupgetGroups
     }
     public class func joinGroup() -> ConcreateExtensionField {
          return ServicesRegistryRequestsGroupjoinGroup
@@ -2573,8 +2573,8 @@ public extension Services.Registry.Requests {
     public class func leaveGroup() -> ConcreateExtensionField {
          return ServicesRegistryRequestsGroupleaveGroup
     }
-    public class func listMembers() -> ConcreateExtensionField {
-         return ServicesRegistryRequestsGrouplistMembers
+    public class func getMembers() -> ConcreateExtensionField {
+         return ServicesRegistryRequestsGroupgetMembers
     }
     public class func getGroup() -> ConcreateExtensionField {
          return ServicesRegistryRequestsGroupgetGroup

@@ -91,11 +91,11 @@ import "protobufs/services/sync/actions/start_sync.proto";
 import "protobufs/services/sync/actions/sync.proto";
 import "protobufs/services/sync/actions/complete_sync.proto";
 
-import "protobufs/services/group/actions/list_groups.proto";
+import "protobufs/services/group/actions/get_groups.proto";
 import "protobufs/services/group/actions/join_group.proto";
 import "protobufs/services/group/actions/respond_to_membership_request.proto";
 import "protobufs/services/group/actions/leave_group.proto";
-import "protobufs/services/group/actions/list_members.proto";
+import "protobufs/services/group/actions/get_members.proto";
 import "protobufs/services/group/actions/get_group.proto";
 import "protobufs/services/group/actions/add_to_group.proto";
 import "protobufs/services/group/actions/get_membership_requests.proto";
@@ -229,11 +229,11 @@ message Sync {
 
 message Group {
     extend soa.ActionRequestParamsV1 {
-        optional services.group.actions.list_groups.RequestV1 list_groups = 1100;
+        optional services.group.actions.get_groups.RequestV1 get_groups = 1100;
         optional services.group.actions.join_group.RequestV1 join_group = 1101;
         optional services.group.actions.respond_to_membership_request.RequestV1 respond_to_membership_request = 1102;
         optional services.group.actions.leave_group.RequestV1 leave_group = 1103;
-        optional services.group.actions.list_members.RequestV1 list_members = 1104;
+        optional services.group.actions.get_members.RequestV1 get_members = 1104;
         optional services.group.actions.get_group.RequestV1 get_group = 1105;
         optional services.group.actions.add_to_group.RequestV1 add_to_group = 1106;
         optional services.group.actions.get_membership_requests.RequestV1 get_membership_requests = 1107;
