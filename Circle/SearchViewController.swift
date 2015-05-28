@@ -31,6 +31,7 @@ class SearchViewController: UIViewController,
     private var firstLoad = false
     private var landingDataSource: SearchLandingDataSource!
     private var launchScreenView: UIView?
+    private var refreshControl: UIRefreshControl!
     private var searchHeaderView: SearchHeaderView!
     private var selectedAction: QuickAction = .None {
         didSet {
@@ -50,6 +51,7 @@ class SearchViewController: UIViewController,
         configureLaunchScreenView()
         configureSearchHeaderView()
         configureCollectionView()
+        configurePullToRefreshView()
         activityIndicatorView = view.addActivityIndicator()
         errorMessageView = view.addErrorMessageView(nil, tryAgainHandler: { () -> Void in
             self.errorMessageView.hide()
@@ -118,6 +120,13 @@ class SearchViewController: UIViewController,
         }
     }
     
+    private func configurePullToRefreshView() {
+        refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: "refreshContent:", forControlEvents: .ValueChanged)
+        collectionView.addSubview(refreshControl)
+        collectionView.alwaysBounceVertical = true
+    }
+    
     // MARK: - Launch View
     
     private func hideAndRemoveLaunchView() {
@@ -142,6 +151,7 @@ class SearchViewController: UIViewController,
         if let currentDataSource = (collectionView.dataSource as? SearchLandingDataSource) {
             currentDataSource.loadData { (error) -> Void in
                 self.activityIndicatorView.stopAnimating()
+                self.refreshControl.endRefreshing()
                 
                 if error == nil {
                     self.errorMessageView.hide()
@@ -491,6 +501,15 @@ class SearchViewController: UIViewController,
     @IBAction func phoneButtonTapped(sender: AnyObject!) {
         selectedAction = .Phone
         activateSearch(true)
+    }
+    
+    func refreshContent(sender: AnyObject!) {
+        if collectionView.dataSource is SearchLandingDataSource {
+            loadData()
+        }
+        else {
+            refreshControl.endRefreshing()
+        }
     }
     
     // MARK: - Notifications
