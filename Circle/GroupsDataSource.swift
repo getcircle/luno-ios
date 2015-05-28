@@ -12,13 +12,19 @@ import ProtobufRegistry
 class GroupsDataSource: CardDataSource {
 
     var profile: Services.Profile.Containers.ProfileV1?
+    
     var groupJoinRequestDelegate: GroupJoinRequestDelegate?
+    var groups = Array<Services.Group.Containers.GroupV1>()
     
     private var card: Card!
     private var cardType: Card.CardType = .Group
     
     override func loadData(completionHandler: (error: NSError?) -> Void) {
         resetCards()
+
+//        registerNextRequestHandler()
+//        let paginatorBuilder = Soa.PaginatorV1.builder()
+//        paginatorBuilder.pageSize = 2
 
         Services.Group.Actions.getGroups(profile?.id ?? nil, paginatorBuilder: nil) { (groups, nextRequest, error) -> Void in
             if error == nil {
@@ -27,12 +33,31 @@ class GroupsDataSource: CardDataSource {
                 self.card = Card(cardType: self.cardType, title: "")
                 self.card.sectionInset = UIEdgeInsetsMake(1.0, 0.0, 0.0, 0.0)
                 if let groups = groups {
+                    self.groups.extend(groups)
                     self.card.addContent(content: groups)
                 }
                 self.appendCard(self.card)
+                
+//                if let nextRequest = nextRequest {
+//                    self.registerNextRequest(nextRequest: nextRequest)
+//                }
             }
-
+            
             completionHandler(error: error)
+        }
+    }
+    
+    private func registerNextRequestHandler() {
+        registerNextRequestCompletionHandler { (_, _, wrapped, error) -> Void in
+            let response = wrapped?.response?.result.getExtension(
+                Services.Registry.Requests.Group.getGroups()
+            ) as? Services.Group.Actions.GetGroups.ResponseV1
+            
+            if let groups = response?.groups {
+                self.groups.extend(groups)
+                self.card.addContent(content: groups)
+                self.handleNewContentAddedToCard(self.card, newContent: groups)
+            }
         }
     }
     
