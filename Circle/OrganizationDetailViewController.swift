@@ -118,6 +118,7 @@ class OrganizationDetailViewController: DetailViewController, CardHeaderViewDele
             if selectedCard.title == AppStrings.ProfileSectionGroupsTitle {
                 let groupsViewController = GroupsViewController()
                 groupsViewController.title = selectedCard.title
+                groupsViewController.addSearchFilterView = false
                 navigationController?.pushViewController(groupsViewController, animated: true)
             }
             

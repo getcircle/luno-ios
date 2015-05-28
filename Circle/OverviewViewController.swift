@@ -64,13 +64,13 @@ class OverviewViewController:
         let rootView = UIView(frame: UIScreen.mainScreen().bounds)
         rootView.opaque = true
         view = rootView
-        configureSearchHeaderView()
-        configureCollectionView()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         edgesForExtendedLayout = .None
+        configureSearchHeaderView()
+        configureCollectionView()
         configureActivityIndicator()
         configureErrorMessageView()
         dataSource.delegate = self
@@ -127,7 +127,7 @@ class OverviewViewController:
         collectionView.alwaysBounceVertical = true
         
         collectionView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero, excludingEdge: .Top)
-        collectionViewVerticalSpaceConstraint = collectionView.autoPinEdgeToSuperviewEdge(.Top, withInset: 44.0)
+        collectionViewVerticalSpaceConstraint = collectionView.autoPinEdgeToSuperviewEdge(.Top, withInset: addSearchFilterView ? 44.0 : 0.0)
     }
     
     private func configureSearchHeaderView() {

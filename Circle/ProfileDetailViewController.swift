@@ -124,6 +124,7 @@ class ProfileDetailViewController:
         case .Groups:
             let groupsViewController = GroupsViewController()
             groupsViewController.title = AppStrings.ProfileSectionGroupsTitle
+            groupsViewController.addSearchFilterView = false
             (groupsViewController.dataSource as! GroupsDataSource).profile = profile
             navigationController?.pushViewController(groupsViewController, animated: true)
 
@@ -342,13 +343,6 @@ class ProfileDetailViewController:
     
     func cardHeaderTapped(sender: AnyObject!, card: Card!) {
         switch card.type {
-        case .Group:
-            let groupsViewController = GroupsViewController()
-            groupsViewController.dataSource.setInitialData(card.allContent, ofType: nil)
-            groupsViewController.title = card.title
-            navigationController?.pushViewController(groupsViewController, animated: true)
-            break
-            
         default:
             break
         }

@@ -39,7 +39,6 @@ class ProfilesSelectorViewController: ProfilesViewController,
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavigationBar()
-        configureCollectionView()
         configureTokenField()
     }
 
@@ -70,6 +69,9 @@ class ProfilesSelectorViewController: ProfilesViewController,
         tokenFieldBottomBorder = tokenField.addBottomBorder(offset: 0.0)
         tokenField.reloadData()
         tokenField.becomeFirstResponder()
+        
+        collectionViewVerticalSpaceConstraint!.constant = 44.0
+        collectionView.setNeedsUpdateConstraints()
     }
     
     // MARK: IBActions
