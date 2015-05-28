@@ -34,7 +34,9 @@ class GroupDetailViewController: DetailViewController,
     // MARK: - Configuration
 
     private func configureNavButtons() {
-        addAddButtonWithAction("addGroupMemberButtonTapped:")
+        if (dataSource as! GroupDetailDataSource).selectedGroup.isManager {
+            addAddButtonWithAction("addGroupMemberButtonTapped:")
+        }
     }
 
     override func configureCollectionView() {
