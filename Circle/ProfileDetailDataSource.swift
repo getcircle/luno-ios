@@ -74,7 +74,7 @@ class ProfileDetailDataSource: CardDataSource {
             if let error = error {
                 storedError = error
             }
-            else {
+            else if status {
                 self.supportGoogleGroups = status
             }
             dispatch_group_leave(actionsGroup)

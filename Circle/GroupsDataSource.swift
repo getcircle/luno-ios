@@ -11,7 +11,7 @@ import ProtobufRegistry
 
 class GroupsDataSource: CardDataSource {
 
-    var profile: Services.Profile.Containers.ProfileV1!
+    var profile: Services.Profile.Containers.ProfileV1?
     var groupJoinRequestDelegate: GroupJoinRequestDelegate?
     
     private var card: Card!
@@ -20,7 +20,7 @@ class GroupsDataSource: CardDataSource {
     override func loadData(completionHandler: (error: NSError?) -> Void) {
         resetCards()
 
-        Services.Group.Actions.getGroups(profile.id, paginatorBuilder: nil) { (groups, nextRequest, error) -> Void in
+        Services.Group.Actions.getGroups(profile?.id ?? nil, paginatorBuilder: nil) { (groups, nextRequest, error) -> Void in
             if error == nil {
                 self.resetCards()
                 

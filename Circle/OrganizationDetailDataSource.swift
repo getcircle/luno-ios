@@ -13,6 +13,8 @@ class OrganizationDetailDataSource: CardDataSource {
 
     private(set) var profileHeaderView: OrganizationHeaderCollectionReusableView?
 
+    private var supportGoogleGroups = false
+    
     override func loadData(completionHandler: (error: NSError?) -> Void) {
         resetCards()
         
@@ -23,8 +25,15 @@ class OrganizationDetailDataSource: CardDataSource {
         appendCard(placeholderCard)
         
         if let currentProfile = AuthViewController.getLoggedInUserProfile() {
+            var storedError: NSError!
+            var actionsGroup = dispatch_group_create()
+            
+            dispatch_group_enter(actionsGroup)
             Services.Feed.Actions.getOrganizationFeed(currentProfile.organizationId) { (categories, error) -> Void in
-                if error == nil {
+                if let error = error {
+                    storedError = error
+                }
+                else {
                     for category in categories ?? [] {
                         let categoryCard = Card(category: category)
                         categoryCard.addDefaultHeader()
@@ -49,8 +58,42 @@ class OrganizationDetailDataSource: CardDataSource {
                         self.appendCard(categoryCard)
                     }
                 }
-                completionHandler(error: error)
+                
+                dispatch_group_leave(actionsGroup)
             }
+            
+            dispatch_group_enter(actionsGroup)
+            Services.Organization.Actions.getIntegrationStatus(.GoogleGroups, completionHandler: { (status, error) -> Void in
+                
+                if let error = error {
+                    storedError = error
+                }
+                else if status {
+                    self.supportGoogleGroups = true
+                }
+                dispatch_group_leave(actionsGroup)
+            })
+            
+            dispatch_group_notify(actionsGroup, GlobalMainQueue) { () -> Void in
+                self.addGroupsCard()
+                completionHandler(error: storedError)
+            }
+        }
+    }
+    
+    private func addGroupsCard() {
+        if supportGoogleGroups {
+            let groupsCard = Card(cardType: .KeyValue, title: AppStrings.ProfileSectionGroupsTitle)
+            var dataDict: [String: AnyObject] = [
+                "name": AppStrings.ProfileSectionGroupsTitle,
+                "value": " ",
+                "image": ItemImage.genericNextImage.name,
+                "imageTintColor": ItemImage.genericNextImage.tint,
+                "imageSize": NSValue(CGSize: ItemImage.genericNextImage.size!)
+            ]
+            
+            groupsCard.addContent(content: [dataDict])
+            appendCard(groupsCard)
         }
     }
 

@@ -114,6 +114,13 @@ class OrganizationDetailViewController: DetailViewController, CardHeaderViewDele
                 navigationController?.pushViewController(viewController, animated: true)
             }
             
+        case .KeyValue:
+            if selectedCard.title == AppStrings.ProfileSectionGroupsTitle {
+                let groupsViewController = GroupsViewController()
+                groupsViewController.title = selectedCard.title
+                navigationController?.pushViewController(groupsViewController, animated: true)
+            }
+            
         default:
             break
         }

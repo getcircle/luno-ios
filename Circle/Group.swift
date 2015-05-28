@@ -94,13 +94,15 @@ extension Services.Group.Actions {
     }
     
     static func getGroups(
-        profileId: String,
+        profileId: String?,
         paginatorBuilder: Soa.PaginatorV1Builder? = nil,
         completionHandler: GetGroupsCompletionHandler?
     ) {
     
         let requestBuilder = Services.Group.Actions.GetGroups.RequestV1.builder()
-        requestBuilder.profileId = profileId
+        if let profileId = profileId {
+            requestBuilder.profileId = profileId
+        }
         requestBuilder.provider = .Google
         
         let client = ServiceClient(serviceName: "group")
