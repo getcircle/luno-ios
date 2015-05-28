@@ -7,6 +7,15 @@
 //
 
 import UIKit
+import ProtobufRegistry
+
+protocol GroupRequestDelegate {
+    func onGroupRequestActionTaken(
+        sender: UIView, 
+        request: Services.Group.Containers.MembershipRequestV1, 
+        status: Services.Group.Actions.RespondToMembershipRequest.RequestV1.ResponseActionV1
+    )
+}
 
 class GroupRequestCollectionViewCell: CircleCollectionViewCell {
 
@@ -14,6 +23,10 @@ class GroupRequestCollectionViewCell: CircleCollectionViewCell {
     @IBOutlet weak private(set) var approveButton: UIButton!
     @IBOutlet weak private(set) var denyButton: UIButton!
     
+    var groupRequestDelegate: GroupRequestDelegate?
+    
+    private var membershipRequest: Services.Group.Containers.MembershipRequestV1!
+
     override class var classReuseIdentifier: String {
         return "GroupRequestCollectionViewCell";
     }
@@ -49,24 +62,28 @@ class GroupRequestCollectionViewCell: CircleCollectionViewCell {
     }
     
     override func setData(data: AnyObject) {
-        let profileName = "Ravi Rani"
-        let groupName = "Frontend developers from USC"
-        
-        let message = NSString(format:AppStrings.GroupRequestMessage, profileName, groupName)
-        let messageAttributed = NSMutableAttributedString(string: message as String)
-        messageAttributed.addAttribute(
-            NSFontAttributeName,
-            value: UIFont(name: "Avenir-Heavy", size: notificationMessageLabel.font.pointSize)!,
-            range: message.rangeOfString(profileName)
-        )
+        if let membershipRequest = data as? Services.Group.Containers.MembershipRequestV1 {
+            
+            let profileName = membershipRequest.requesterProfileId
+            let groupName = membershipRequest.groupKey
+            
+            let message = NSString(format:AppStrings.GroupRequestMessage, profileName, groupName)
+            let messageAttributed = NSMutableAttributedString(string: message as String)
+            messageAttributed.addAttribute(
+                NSFontAttributeName,
+                value: UIFont(name: "Avenir-Heavy", size: notificationMessageLabel.font.pointSize)!,
+                range: message.rangeOfString(profileName)
+            )
 
-        messageAttributed.addAttribute(
-            NSFontAttributeName,
-            value: UIFont(name: "Avenir-Heavy", size: notificationMessageLabel.font.pointSize)!,
-            range: message.rangeOfString(groupName)
-        )
-        
-        notificationMessageLabel.attributedText = messageAttributed
+            messageAttributed.addAttribute(
+                NSFontAttributeName,
+                value: UIFont(name: "Avenir-Heavy", size: notificationMessageLabel.font.pointSize)!,
+                range: message.rangeOfString(groupName)
+            )
+            
+            notificationMessageLabel.attributedText = messageAttributed
+            self.membershipRequest = membershipRequest
+        }
     }
     
     override func intrinsicContentSize() -> CGSize {
@@ -75,5 +92,15 @@ class GroupRequestCollectionViewCell: CircleCollectionViewCell {
         let intrinsicSize = notificationMessageLabel.intrinsicContentSize()
         let dynamicHeight = intrinsicSize.height + 30.0 + approveButton.frameHeight
         return CGSizeMake(self.dynamicType.width, dynamicHeight)
+    }
+    
+    // MARK: - IBActions
+    
+    @IBAction func approveRequestButtonTapped(sender: UIView) {
+        groupRequestDelegate?.onGroupRequestActionTaken(sender, request: membershipRequest, status: .Approve)
+    }
+
+    @IBAction func denyRequestButtonTapped(sender: UIView) {
+        groupRequestDelegate?.onGroupRequestActionTaken(sender, request: membershipRequest, status: .Deny)
     }
 }

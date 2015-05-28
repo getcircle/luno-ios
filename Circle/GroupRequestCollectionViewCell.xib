@@ -44,6 +44,9 @@
                                 <exclude reference="XtN-JP-z14"/>
                             </mask>
                         </variation>
+                        <connections>
+                            <action selector="approveRequestButtonTapped:" destination="PD7-xd-QQh" eventType="touchUpInside" id="E28-lb-47f"/>
+                        </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D9d-CK-UeF" userLabel="Deny">
                         <rect key="frame" x="208" y="40" width="100" height="33"/>
@@ -61,6 +64,9 @@
                                 <exclude reference="FlN-aT-NoF"/>
                             </mask>
                         </variation>
+                        <connections>
+                            <action selector="denyRequestButtonTapped:" destination="PD7-xd-QQh" eventType="touchUpInside" id="C97-YL-fSI"/>
+                        </connections>
                     </button>
                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wkw-F3-Obl" userLabel="RightView">
                         <rect key="frame" x="308" y="40" width="68" height="30"/>

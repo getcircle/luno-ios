@@ -10,7 +10,9 @@ import Foundation
 import ProtobufRegistry
 
 class SearchLandingDataSource: CardDataSource {
-    
+
+    var groupRequestDelegate: GroupRequestDelegate?
+
     private var profilesAssociatedWithNotes = Array<Services.Profile.Containers.ProfileV1>()
 
     override func loadData(completionHandler: (error: NSError?) -> Void) {
@@ -33,6 +35,10 @@ class SearchLandingDataSource: CardDataSource {
                             categoryCard.metaData = category.profiles
                             self.profilesAssociatedWithNotes = category.profiles
                         }
+                        else if category.groupMembershipRequests.count > 0 {
+                            categoryCard.showContentCount = false
+                            categoryCard.addContent(content: category.groupMembershipRequests)
+                        }
                         else if category.profiles.count > 0 {
                             var profiles = category.profiles
                             var maxVisibleItems = 0
@@ -51,9 +57,6 @@ class SearchLandingDataSource: CardDataSource {
                         else if category.tags.count > 0 {
                             categoryCard.addContent(content: category.tags, maxVisibleItems: 10)
                         }
-                        else if category.groupMembershipRequests.count > 0 {
-                            categoryCard.addContent(content: category.groupMembershipRequests)
-                        }
                         
                         self.appendCard(categoryCard)
                     }
@@ -69,5 +72,23 @@ class SearchLandingDataSource: CardDataSource {
         if cell is NotesCollectionViewCell && profilesAssociatedWithNotes.count > 0 {
             (cell as! NotesCollectionViewCell).setProfile(profilesAssociatedWithNotes[indexPath.row])
         }
+        
+        if cell is GroupRequestCollectionViewCell {
+            (cell as! GroupRequestCollectionViewCell).groupRequestDelegate = groupRequestDelegate
+        }
+    }
+    
+    func removeMembershipRequestAtIndexPath(indexPath: NSIndexPath) -> Bool {
+        if let card = cardAtSection(indexPath.section) where card.type == .GroupRequest {
+            var requests = card.content as! Array<Services.Group.Containers.MembershipRequestV1>
+            if indexPath.row < requests.count {
+                requests.removeAtIndex(indexPath.row)
+                card.resetContent()
+                card.addContent(content: requests)
+                return true
+            }
+        }
+        
+        return false
     }
 }

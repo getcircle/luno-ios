@@ -18,7 +18,8 @@ class SearchViewController: UIViewController,
     MFMessageComposeViewControllerDelegate,
     SearchHeaderViewDelegate,
     CardHeaderViewDelegate,
-    NewNoteViewControllerDelegate
+    NewNoteViewControllerDelegate,
+    GroupRequestDelegate
 {
     @IBOutlet weak private(set) var collectionView: UICollectionView!
     @IBOutlet weak private(set) var searchHeaderContainerView: UIView!
@@ -177,6 +178,7 @@ class SearchViewController: UIViewController,
         
         landingDataSource = SearchLandingDataSource()
         landingDataSource.cardHeaderDelegate = self
+        landingDataSource.groupRequestDelegate = self
         collectionView.dataSource = landingDataSource
 
         queryDataSource = SearchQueryDataSource()
@@ -639,6 +641,25 @@ class SearchViewController: UIViewController,
     
     func didDeleteNote(note: Services.Note.Containers.NoteV1) {
         loadData()
+    }
+    
+    // MARK: - GroupRequestDelegate
+    
+    func onGroupRequestActionTaken(
+        sender: UIView, 
+        request: Services.Group.Containers.MembershipRequestV1, 
+        status: Services.Group.Actions.RespondToMembershipRequest.RequestV1.ResponseActionV1
+    ) {
+        let buttonPoint = collectionView.convertPoint(sender.center, fromView: sender.superview)
+        if let selectedIndexPath = collectionView.indexPathForItemAtPoint(buttonPoint) {
+            Services.Group.Actions.respondToMembershipRequest(request.id, action: status) { (error) -> Void in
+                if error == nil {
+                    if (self.landingDataSource.removeMembershipRequestAtIndexPath(selectedIndexPath)) {
+                        self.collectionView.reloadSections(NSIndexSet(index: selectedIndexPath.section))
+                    }
+                }
+            }
+        }
     }
     
     // MARK: - Tracking

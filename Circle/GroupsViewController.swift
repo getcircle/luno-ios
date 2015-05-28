@@ -10,7 +10,7 @@ import UIKit
 import MBProgressHUD
 import ProtobufRegistry
 
-class GroupsViewController: OverviewViewController, GroupRequestDelegate {
+class GroupsViewController: OverviewViewController, GroupJoinRequestDelegate {
 
     override func filterPlaceHolderComment() -> String {
         return "Placeholder for text field use for filtering groups."
@@ -22,7 +22,7 @@ class GroupsViewController: OverviewViewController, GroupRequestDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        (dataSource as! GroupsDataSource).groupRequestDelegate = self
+        (dataSource as! GroupsDataSource).groupJoinRequestDelegate = self
     }
     
     // MARK: - Initialization
@@ -58,7 +58,7 @@ class GroupsViewController: OverviewViewController, GroupRequestDelegate {
         Tracker.sharedInstance.track(.DetailItemTapped, properties: properties)
     }
     
-    // MARK: - GroupRequestDelegate
+    // MARK: - GroupJoinRequestDelegate
     
     func onJoinGroupButtonTapped(sender: UIView, group: Services.Group.Containers.GroupV1) {
         let buttonPoint = collectionView.convertPoint(sender.center, fromView: sender.superview)

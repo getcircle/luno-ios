@@ -9,7 +9,7 @@
 import UIKit
 import ProtobufRegistry
 
-protocol GroupRequestDelegate {
+protocol GroupJoinRequestDelegate {
     func onJoinGroupButtonTapped(sender: UIView, group: Services.Group.Containers.GroupV1)
 }
 
@@ -20,7 +20,7 @@ class GroupCollectionViewCell: CircleCollectionViewCell {
     @IBOutlet weak private(set) var descriptionLabel: UILabel!
     @IBOutlet weak private(set) var joinButton: UIButton!
     
-    var groupRequestDelegate: GroupRequestDelegate?
+    var groupJoinRequestDelegate: GroupJoinRequestDelegate?
     
     private var group: Services.Group.Containers.GroupV1!
     
@@ -118,7 +118,7 @@ class GroupCollectionViewCell: CircleCollectionViewCell {
     // MARK: - IBAction
     
     @IBAction func joinRequestedButtonTapped(sender: UIView!) {
-        groupRequestDelegate?.onJoinGroupButtonTapped(sender, group: group)
+        groupJoinRequestDelegate?.onJoinGroupButtonTapped(sender, group: group)
     }
     
 }

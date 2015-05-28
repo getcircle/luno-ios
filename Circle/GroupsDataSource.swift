@@ -12,7 +12,7 @@ import ProtobufRegistry
 class GroupsDataSource: CardDataSource {
 
     var profile: Services.Profile.Containers.ProfileV1!
-    var groupRequestDelegate: GroupRequestDelegate?
+    var groupJoinRequestDelegate: GroupJoinRequestDelegate?
     
     private var card: Card!
     private var cardType: Card.CardType = .Group
@@ -31,7 +31,7 @@ class GroupsDataSource: CardDataSource {
                 }
                 self.appendCard(self.card)
             }
-            
+
             completionHandler(error: error)
         }
     }
@@ -40,7 +40,7 @@ class GroupsDataSource: CardDataSource {
     
     override func configureCell(cell: CircleCollectionViewCell, atIndexPath indexPath: NSIndexPath) {
         if let group = contentAtIndexPath(indexPath) as? Services.Group.Containers.GroupV1, cell = cell as? GroupCollectionViewCell {
-            cell.groupRequestDelegate = groupRequestDelegate
+            cell.groupJoinRequestDelegate = groupJoinRequestDelegate
         }
     }
 
