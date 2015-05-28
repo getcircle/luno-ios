@@ -27,6 +27,7 @@ message GroupV1 {
     optional bool can_join = 10;
     optional bool is_member = 11;
     optional bool can_request = 12;
+    optional bool is_manager = 13;
 }
 
 message GroupSettingsV1 {

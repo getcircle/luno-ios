@@ -20,6 +20,7 @@ public func == (lhs: Services.Group.Containers.GroupV1, rhs: Services.Group.Cont
   fieldCheck = fieldCheck && (lhs.hasCanJoin == rhs.hasCanJoin) && (!lhs.hasCanJoin || lhs.canJoin == rhs.canJoin)
   fieldCheck = fieldCheck && (lhs.hasIsMember == rhs.hasIsMember) && (!lhs.hasIsMember || lhs.isMember == rhs.isMember)
   fieldCheck = fieldCheck && (lhs.hasCanRequest == rhs.hasCanRequest) && (!lhs.hasCanRequest || lhs.canRequest == rhs.canRequest)
+  fieldCheck = fieldCheck && (lhs.hasIsManager == rhs.hasIsManager) && (!lhs.hasIsManager || lhs.isManager == rhs.isManager)
   return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
 }
 
@@ -152,6 +153,7 @@ public extension Services.Group.Containers {
            case "canJoin": return canJoin
            case "isMember": return isMember
            case "canRequest": return canRequest
+           case "isManager": return isManager
            default: return nil
            }
     }
@@ -187,6 +189,9 @@ public extension Services.Group.Containers {
 
     public private(set) var hasCanRequest:Bool = false
     public private(set) var canRequest:Bool = false
+
+    public private(set) var hasIsManager:Bool = false
+    public private(set) var isManager:Bool = false
 
     public private(set) var aliases:Array<String> = Array<String>()
     required public init() {
@@ -233,6 +238,9 @@ public extension Services.Group.Containers {
       }
       if hasCanRequest {
         output.writeBool(12, value:canRequest)
+      }
+      if hasIsManager {
+        output.writeBool(13, value:isManager)
       }
       unknownFields.writeToCodedOutputStream(output)
     }
@@ -281,6 +289,9 @@ public extension Services.Group.Containers {
       }
       if hasCanRequest {
         serialize_size += canRequest.computeBoolSize(12)
+      }
+      if hasIsManager {
+        serialize_size += isManager.computeBoolSize(13)
       }
       serialize_size += unknownFields.serializedSize()
       memoizedSerializedSize = serialize_size
@@ -361,6 +372,9 @@ public extension Services.Group.Containers {
       if hasCanRequest {
         output += "\(indent) canRequest: \(canRequest) \n"
       }
+      if hasIsManager {
+        output += "\(indent) isManager: \(isManager) \n"
+      }
       unknownFields.writeDescriptionTo(&output, indent:indent)
     }
     override public var hashValue:Int {
@@ -401,6 +415,9 @@ public extension Services.Group.Containers {
             }
             if hasCanRequest {
                hashCode = (hashCode &* 31) &+ canRequest.hashValue
+            }
+            if hasIsManager {
+               hashCode = (hashCode &* 31) &+ isManager.hashValue
             }
             hashCode = (hashCode &* 31) &+  unknownFields.hashValue
             return hashCode
@@ -699,6 +716,29 @@ public extension Services.Group.Containers {
          builderResult.canRequest = false
          return self
     }
+    public var hasIsManager:Bool {
+         get {
+              return builderResult.hasIsManager
+         }
+    }
+    public var isManager:Bool {
+         get {
+              return builderResult.isManager
+         }
+         set (value) {
+             builderResult.hasIsManager = true
+             builderResult.isManager = value
+         }
+    }
+    public func setIsManager(value:Bool)-> Services.Group.Containers.GroupV1Builder {
+      self.isManager = value
+      return self
+    }
+    public func clearIsManager() -> Services.Group.Containers.GroupV1Builder{
+         builderResult.hasIsManager = false
+         builderResult.isManager = false
+         return self
+    }
     override public var internalGetResult:GeneratedMessage {
          get {
             return builderResult
@@ -759,6 +799,9 @@ public extension Services.Group.Containers {
       if other.hasCanRequest {
            canRequest = other.canRequest
       }
+      if other.hasIsManager {
+           isManager = other.isManager
+      }
       mergeUnknownFields(other.unknownFields)
       return self
     }
@@ -814,6 +857,9 @@ public extension Services.Group.Containers {
 
         case 96 :
           canRequest = input.readBool()
+
+        case 104 :
+          isManager = input.readBool()
 
         default:
           if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
