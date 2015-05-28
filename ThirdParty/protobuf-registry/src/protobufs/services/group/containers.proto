@@ -28,6 +28,7 @@ message GroupV1 {
     optional bool is_member = 11;
     optional bool can_request = 12;
     optional bool is_manager = 13;
+    optional bool has_pending_request = 14;
 }
 
 message GroupSettingsV1 {

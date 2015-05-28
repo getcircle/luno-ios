@@ -21,6 +21,7 @@ public func == (lhs: Services.Group.Containers.GroupV1, rhs: Services.Group.Cont
   fieldCheck = fieldCheck && (lhs.hasIsMember == rhs.hasIsMember) && (!lhs.hasIsMember || lhs.isMember == rhs.isMember)
   fieldCheck = fieldCheck && (lhs.hasCanRequest == rhs.hasCanRequest) && (!lhs.hasCanRequest || lhs.canRequest == rhs.canRequest)
   fieldCheck = fieldCheck && (lhs.hasIsManager == rhs.hasIsManager) && (!lhs.hasIsManager || lhs.isManager == rhs.isManager)
+  fieldCheck = fieldCheck && (lhs.hasHasPendingRequest == rhs.hasHasPendingRequest) && (!lhs.hasHasPendingRequest || lhs.hasPendingRequest == rhs.hasPendingRequest)
   return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
 }
 
@@ -154,6 +155,7 @@ public extension Services.Group.Containers {
            case "isMember": return isMember
            case "canRequest": return canRequest
            case "isManager": return isManager
+           case "hasPendingRequest": return hasPendingRequest
            default: return nil
            }
     }
@@ -192,6 +194,9 @@ public extension Services.Group.Containers {
 
     public private(set) var hasIsManager:Bool = false
     public private(set) var isManager:Bool = false
+
+    public private(set) var hasHasPendingRequest:Bool = false
+    public private(set) var hasPendingRequest:Bool = false
 
     public private(set) var aliases:Array<String> = Array<String>()
     required public init() {
@@ -241,6 +246,9 @@ public extension Services.Group.Containers {
       }
       if hasIsManager {
         output.writeBool(13, value:isManager)
+      }
+      if hasHasPendingRequest {
+        output.writeBool(14, value:hasPendingRequest)
       }
       unknownFields.writeToCodedOutputStream(output)
     }
@@ -292,6 +300,9 @@ public extension Services.Group.Containers {
       }
       if hasIsManager {
         serialize_size += isManager.computeBoolSize(13)
+      }
+      if hasHasPendingRequest {
+        serialize_size += hasPendingRequest.computeBoolSize(14)
       }
       serialize_size += unknownFields.serializedSize()
       memoizedSerializedSize = serialize_size
@@ -375,6 +386,9 @@ public extension Services.Group.Containers {
       if hasIsManager {
         output += "\(indent) isManager: \(isManager) \n"
       }
+      if hasHasPendingRequest {
+        output += "\(indent) hasPendingRequest: \(hasPendingRequest) \n"
+      }
       unknownFields.writeDescriptionTo(&output, indent:indent)
     }
     override public var hashValue:Int {
@@ -418,6 +432,9 @@ public extension Services.Group.Containers {
             }
             if hasIsManager {
                hashCode = (hashCode &* 31) &+ isManager.hashValue
+            }
+            if hasHasPendingRequest {
+               hashCode = (hashCode &* 31) &+ hasPendingRequest.hashValue
             }
             hashCode = (hashCode &* 31) &+  unknownFields.hashValue
             return hashCode
@@ -739,6 +756,29 @@ public extension Services.Group.Containers {
          builderResult.isManager = false
          return self
     }
+    public var hasHasPendingRequest:Bool {
+         get {
+              return builderResult.hasHasPendingRequest
+         }
+    }
+    public var hasPendingRequest:Bool {
+         get {
+              return builderResult.hasPendingRequest
+         }
+         set (value) {
+             builderResult.hasHasPendingRequest = true
+             builderResult.hasPendingRequest = value
+         }
+    }
+    public func setHasPendingRequest(value:Bool)-> Services.Group.Containers.GroupV1Builder {
+      self.hasPendingRequest = value
+      return self
+    }
+    public func clearHasPendingRequest() -> Services.Group.Containers.GroupV1Builder{
+         builderResult.hasHasPendingRequest = false
+         builderResult.hasPendingRequest = false
+         return self
+    }
     override public var internalGetResult:GeneratedMessage {
          get {
             return builderResult
@@ -802,6 +842,9 @@ public extension Services.Group.Containers {
       if other.hasIsManager {
            isManager = other.isManager
       }
+      if other.hasHasPendingRequest {
+           hasPendingRequest = other.hasPendingRequest
+      }
       mergeUnknownFields(other.unknownFields)
       return self
     }
@@ -860,6 +903,9 @@ public extension Services.Group.Containers {
 
         case 104 :
           isManager = input.readBool()
+
+        case 112 :
+          hasPendingRequest = input.readBool()
 
         default:
           if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
