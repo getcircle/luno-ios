@@ -9,6 +9,7 @@ public func == (lhs: Services.Group.Actions.GetMembershipRequests.RequestV1, rhs
   }
   var fieldCheck:Bool = (lhs.hashValue == rhs.hashValue)
   fieldCheck = fieldCheck && (lhs.hasVersion == rhs.hasVersion) && (!lhs.hasVersion || lhs.version == rhs.version)
+  fieldCheck = fieldCheck && (lhs.hasStatus == rhs.hasStatus) && (!lhs.hasStatus || lhs.status == rhs.status)
   return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
 }
 
@@ -45,6 +46,7 @@ public extension Services.Group.Actions.GetMembershipRequests {
     override public subscript(key: String) -> Any? {
            switch key {
            case "version": return version
+           case "status": return self.status
            default: return nil
            }
     }
@@ -52,6 +54,8 @@ public extension Services.Group.Actions.GetMembershipRequests {
     public private(set) var hasVersion:Bool = false
     public private(set) var version:UInt32 = UInt32(1)
 
+    public private(set) var status:Services.Group.Containers.MembershipRequestStatusV1 = Services.Group.Containers.MembershipRequestStatusV1.Pending
+    public private(set) var hasStatus:Bool = false
     required public init() {
          super.init()
     }
@@ -61,6 +65,9 @@ public extension Services.Group.Actions.GetMembershipRequests {
     override public func writeToCodedOutputStream(output:CodedOutputStream) {
       if hasVersion {
         output.writeUInt32(1, value:version)
+      }
+      if hasStatus {
+        output.writeEnum(2, value:status.rawValue)
       }
       unknownFields.writeToCodedOutputStream(output)
     }
@@ -73,6 +80,9 @@ public extension Services.Group.Actions.GetMembershipRequests {
       serialize_size = 0
       if hasVersion {
         serialize_size += version.computeUInt32Size(1)
+      }
+      if (hasStatus) {
+        serialize_size += status.rawValue.computeEnumSize(2)
       }
       serialize_size += unknownFields.serializedSize()
       memoizedSerializedSize = serialize_size
@@ -118,6 +128,9 @@ public extension Services.Group.Actions.GetMembershipRequests {
       if hasVersion {
         output += "\(indent) version: \(version) \n"
       }
+      if (hasStatus) {
+        output += "\(indent) status: \(status.rawValue)\n"
+      }
       unknownFields.writeDescriptionTo(&output, indent:indent)
     }
     override public var hashValue:Int {
@@ -125,6 +138,9 @@ public extension Services.Group.Actions.GetMembershipRequests {
             var hashCode:Int = 7
             if hasVersion {
                hashCode = (hashCode &* 31) &+ version.hashValue
+            }
+            if hasStatus {
+               hashCode = (hashCode &* 31) &+ Int(status.rawValue)
             }
             hashCode = (hashCode &* 31) &+  unknownFields.hashValue
             return hashCode
@@ -177,6 +193,29 @@ public extension Services.Group.Actions.GetMembershipRequests {
          builderResult.version = UInt32(1)
          return self
     }
+      public var hasStatus:Bool{
+          get {
+              return builderResult.hasStatus
+          }
+      }
+      public var status:Services.Group.Containers.MembershipRequestStatusV1 {
+          get {
+              return builderResult.status
+          }
+          set (value) {
+              builderResult.hasStatus = true
+              builderResult.status = value
+          }
+      }
+      public func setStatus(value:Services.Group.Containers.MembershipRequestStatusV1)-> Services.Group.Actions.GetMembershipRequests.RequestV1Builder {
+        self.status = value
+        return self
+      }
+      public func clearStatus() -> Services.Group.Actions.GetMembershipRequests.RequestV1Builder {
+         builderResult.hasStatus = false
+         builderResult.status = .Pending
+         return self
+      }
     override public var internalGetResult:GeneratedMessage {
          get {
             return builderResult
@@ -204,6 +243,9 @@ public extension Services.Group.Actions.GetMembershipRequests {
       if other.hasVersion {
            version = other.version
       }
+      if other.hasStatus {
+           status = other.status
+      }
       mergeUnknownFields(other.unknownFields)
       return self
     }
@@ -221,6 +263,14 @@ public extension Services.Group.Actions.GetMembershipRequests {
 
         case 8 :
           version = input.readUInt32()
+
+        case 16 :
+          let valueIntstatus = input.readEnum()
+          if let enumsstatus = Services.Group.Containers.MembershipRequestStatusV1(rawValue:valueIntstatus){
+               status = enumsstatus
+          } else {
+               unknownFieldsBuilder.mergeVarintField(2, value:Int64(valueIntstatus))
+          }
 
         default:
           if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {

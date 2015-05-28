@@ -39,5 +39,6 @@ message CategoryV1 {
     repeated services.note.containers.NoteV1 notes = 10;
     repeated services.organization.containers.LocationV1 locations = 11;
     repeated services.group.containers.MembershipRequestV1 group_membership_requests = 12;
+    repeated services.group.containers.GroupV1 groups = 13;
 
 }

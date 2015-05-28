@@ -20,6 +20,7 @@ public func == (lhs: Services.Feed.Containers.CategoryV1, rhs: Services.Feed.Con
   fieldCheck = fieldCheck && (lhs.notes == rhs.notes)
   fieldCheck = fieldCheck && (lhs.locations == rhs.locations)
   fieldCheck = fieldCheck && (lhs.groupMembershipRequests == rhs.groupMembershipRequests)
+  fieldCheck = fieldCheck && (lhs.groups == rhs.groups)
   return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
 }
 
@@ -101,6 +102,7 @@ public extension Services.Feed.Containers {
     public private(set) var notes:Array<Services.Note.Containers.NoteV1>  = Array<Services.Note.Containers.NoteV1>()
     public private(set) var locations:Array<Services.Organization.Containers.LocationV1>  = Array<Services.Organization.Containers.LocationV1>()
     public private(set) var groupMembershipRequests:Array<Services.Group.Containers.MembershipRequestV1>  = Array<Services.Group.Containers.MembershipRequestV1>()
+    public private(set) var groups:Array<Services.Group.Containers.GroupV1>  = Array<Services.Group.Containers.GroupV1>()
     required public init() {
          super.init()
     }
@@ -143,6 +145,9 @@ public extension Services.Feed.Containers {
       }
       for oneElementgroupMembershipRequests in groupMembershipRequests {
           output.writeMessage(12, value:oneElementgroupMembershipRequests)
+      }
+      for oneElementgroups in groups {
+          output.writeMessage(13, value:oneElementgroups)
       }
       unknownFields.writeToCodedOutputStream(output)
     }
@@ -188,6 +193,9 @@ public extension Services.Feed.Containers {
       }
       for oneElementgroupMembershipRequests in groupMembershipRequests {
           serialize_size += oneElementgroupMembershipRequests.computeMessageSize(12)
+      }
+      for oneElementgroups in groups {
+          serialize_size += oneElementgroups.computeMessageSize(13)
       }
       serialize_size += unknownFields.serializedSize()
       memoizedSerializedSize = serialize_size
@@ -294,6 +302,13 @@ public extension Services.Feed.Containers {
           output += "\(indent)}\n"
           groupMembershipRequestsElementIndex++
       }
+      var groupsElementIndex:Int = 0
+      for oneElementgroups in groups {
+          output += "\(indent) groups[\(groupsElementIndex)] {\n"
+          oneElementgroups.writeDescriptionTo(&output, indent:"\(indent)  ")
+          output += "\(indent)}\n"
+          groupsElementIndex++
+      }
       unknownFields.writeDescriptionTo(&output, indent:indent)
     }
     override public var hashValue:Int {
@@ -334,6 +349,9 @@ public extension Services.Feed.Containers {
             }
             for oneElementgroupMembershipRequests in groupMembershipRequests {
                 hashCode = (hashCode &* 31) &+ oneElementgroupMembershipRequests.hashValue
+            }
+            for oneElementgroups in groups {
+                hashCode = (hashCode &* 31) &+ oneElementgroups.hashValue
             }
             hashCode = (hashCode &* 31) &+  unknownFields.hashValue
             return hashCode
@@ -590,6 +608,22 @@ public extension Services.Feed.Containers {
       builderResult.groupMembershipRequests.removeAll(keepCapacity: false)
       return self
     }
+    public var groups:Array<Services.Group.Containers.GroupV1> {
+         get {
+             return builderResult.groups
+         }
+         set (value) {
+             builderResult.groups = value
+         }
+    }
+    public func setGroups(value:Array<Services.Group.Containers.GroupV1>)-> Services.Feed.Containers.CategoryV1Builder {
+      self.groups = value
+      return self
+    }
+    public func clearGroups() -> Services.Feed.Containers.CategoryV1Builder {
+      builderResult.groups.removeAll(keepCapacity: false)
+      return self
+    }
     override public var internalGetResult:GeneratedMessage {
          get {
             return builderResult
@@ -649,6 +683,9 @@ public extension Services.Feed.Containers {
       }
       if !other.groupMembershipRequests.isEmpty  {
          builderResult.groupMembershipRequests += other.groupMembershipRequests
+      }
+      if !other.groups.isEmpty  {
+         builderResult.groups += other.groups
       }
       mergeUnknownFields(other.unknownFields)
       return self
@@ -719,6 +756,11 @@ public extension Services.Feed.Containers {
           var subBuilder = Services.Group.Containers.MembershipRequestV1.builder()
           input.readMessage(subBuilder,extensionRegistry:extensionRegistry)
           groupMembershipRequests += [subBuilder.buildPartial()]
+
+        case 106 :
+          var subBuilder = Services.Group.Containers.GroupV1.builder()
+          input.readMessage(subBuilder,extensionRegistry:extensionRegistry)
+          groups += [subBuilder.buildPartial()]
 
         default:
           if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {

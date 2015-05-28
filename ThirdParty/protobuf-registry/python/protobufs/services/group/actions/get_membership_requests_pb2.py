@@ -19,7 +19,7 @@ import protobufs.services.group.containers_pb2
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='protobufs/services/group/actions/get_membership_requests.proto',
   package='services.group.actions.get_membership_requests',
-  serialized_pb=_b('\n>protobufs/services/group/actions/get_membership_requests.proto\x12.services.group.actions.get_membership_requests\x1a)protobufs/services/group/containers.proto\"\x1f\n\tRequestV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\"b\n\nResponseV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12@\n\x08requests\x18\x02 \x03(\x0b\x32..services.group.containers.MembershipRequestV1BE\nCcom.rhlabs.protobufs.services.group.actions.get_membership_requests')
+  serialized_pb=_b('\n>protobufs/services/group/actions/get_membership_requests.proto\x12.services.group.actions.get_membership_requests\x1a)protobufs/services/group/containers.proto\"e\n\tRequestV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x44\n\x06status\x18\x02 \x01(\x0e\x32\x34.services.group.containers.MembershipRequestStatusV1\"b\n\nResponseV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12@\n\x08requests\x18\x02 \x03(\x0b\x32..services.group.containers.MembershipRequestV1BE\nCcom.rhlabs.protobufs.services.group.actions.get_membership_requests')
   ,
   dependencies=[protobufs.services.group.containers_pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
@@ -41,6 +41,13 @@ _REQUESTV1 = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
+    _descriptor.FieldDescriptor(
+      name='status', full_name='services.group.actions.get_membership_requests.RequestV1.status', index=1,
+      number=2, type=14, cpp_type=8, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
   ],
   extensions=[
   ],
@@ -53,7 +60,7 @@ _REQUESTV1 = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=157,
-  serialized_end=188,
+  serialized_end=258,
 )
 
 
@@ -89,10 +96,11 @@ _RESPONSEV1 = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=190,
-  serialized_end=288,
+  serialized_start=260,
+  serialized_end=358,
 )
 
+_REQUESTV1.fields_by_name['status'].enum_type = protobufs.services.group.containers_pb2._MEMBERSHIPREQUESTSTATUSV1
 _RESPONSEV1.fields_by_name['requests'].message_type = protobufs.services.group.containers_pb2._MEMBERSHIPREQUESTV1
 DESCRIPTOR.message_types_by_name['RequestV1'] = _REQUESTV1
 DESCRIPTOR.message_types_by_name['ResponseV1'] = _RESPONSEV1
