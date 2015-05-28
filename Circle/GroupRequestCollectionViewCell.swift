@@ -25,6 +25,9 @@ class GroupRequestCollectionViewCell: CircleCollectionViewCell {
     
     var groupRequestDelegate: GroupRequestDelegate?
     
+    var groups: Dictionary<String, Services.Group.Containers.GroupV1>!
+    var profiles: Dictionary<String, Services.Profile.Containers.ProfileV1>!
+    
     private var membershipRequest: Services.Group.Containers.MembershipRequestV1!
 
     override class var classReuseIdentifier: String {
@@ -64,8 +67,21 @@ class GroupRequestCollectionViewCell: CircleCollectionViewCell {
     override func setData(data: AnyObject) {
         if let membershipRequest = data as? Services.Group.Containers.MembershipRequestV1 {
             
-            let profileName = membershipRequest.requesterProfileId
-            let groupName = membershipRequest.groupKey
+            let profileName: String
+            if let profile = profiles[membershipRequest.requesterProfileId] {
+                profileName = profile.fullName
+            }
+            else {
+                profileName = membershipRequest.requesterProfileId
+            }
+            
+            let groupName: String
+            if let group = groups[membershipRequest.groupKey] {
+                groupName = group.name
+            }
+            else {
+                groupName = membershipRequest.groupKey
+            }
             
             let message = NSString(format:AppStrings.GroupRequestMessage, profileName, groupName)
             let messageAttributed = NSMutableAttributedString(string: message as String)

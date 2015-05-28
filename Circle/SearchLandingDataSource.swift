@@ -13,8 +13,10 @@ class SearchLandingDataSource: CardDataSource {
 
     var groupRequestDelegate: GroupRequestDelegate?
 
+    private var groupsAssociatedWithGroupRequests = Dictionary<String, Services.Group.Containers.GroupV1>()
+    private var profilesAssociatedWithGroupRequests = Dictionary<String, Services.Profile.Containers.ProfileV1>()
     private var profilesAssociatedWithNotes = Array<Services.Profile.Containers.ProfileV1>()
-
+    
     override func loadData(completionHandler: (error: NSError?) -> Void) {
         if let currentProfile = AuthViewController.getLoggedInUserProfile() {
             Services.Feed.Actions.getProfileFeed(currentProfile.id) { (categories, error) -> Void in
@@ -38,6 +40,13 @@ class SearchLandingDataSource: CardDataSource {
                         else if category.groupMembershipRequests.count > 0 {
                             categoryCard.showContentCount = false
                             categoryCard.addContent(content: category.groupMembershipRequests)
+                            for profile in category.profiles {
+                                self.profilesAssociatedWithGroupRequests[profile.id] = profile
+                            }
+                            
+                            for group in category.groups {
+                                self.groupsAssociatedWithGroupRequests[group.email] = group
+                            }
                         }
                         else if category.profiles.count > 0 {
                             var profiles = category.profiles
@@ -75,6 +84,8 @@ class SearchLandingDataSource: CardDataSource {
         
         if cell is GroupRequestCollectionViewCell {
             (cell as! GroupRequestCollectionViewCell).groupRequestDelegate = groupRequestDelegate
+            (cell as! GroupRequestCollectionViewCell).profiles = profilesAssociatedWithGroupRequests
+            (cell as! GroupRequestCollectionViewCell).groups = groupsAssociatedWithGroupRequests
         }
     }
     
