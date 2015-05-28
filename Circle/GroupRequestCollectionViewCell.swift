@@ -25,8 +25,8 @@ class GroupRequestCollectionViewCell: CircleCollectionViewCell {
     
     var groupRequestDelegate: GroupRequestDelegate?
     
-    var groups: Dictionary<String, Services.Group.Containers.GroupV1>!
-    var profiles: Dictionary<String, Services.Profile.Containers.ProfileV1>!
+    private var groups: Dictionary<String, Services.Group.Containers.GroupV1>!
+    private var profiles: Dictionary<String, Services.Profile.Containers.ProfileV1>!
     
     private var membershipRequest: Services.Group.Containers.MembershipRequestV1!
 
@@ -66,40 +66,51 @@ class GroupRequestCollectionViewCell: CircleCollectionViewCell {
     
     override func setData(data: AnyObject) {
         if let membershipRequest = data as? Services.Group.Containers.MembershipRequestV1 {
-            
-            let profileName: String
-            if let profile = profiles[membershipRequest.requesterProfileId] {
-                profileName = profile.fullName
-            }
-            else {
-                profileName = membershipRequest.requesterProfileId
-            }
-            
-            let groupName: String
-            if let group = groups[membershipRequest.groupKey] {
-                groupName = group.name
-            }
-            else {
-                groupName = membershipRequest.groupKey
-            }
-            
-            let message = NSString(format:AppStrings.GroupRequestMessage, profileName, groupName)
-            let messageAttributed = NSMutableAttributedString(string: message as String)
-            messageAttributed.addAttribute(
-                NSFontAttributeName,
-                value: UIFont(name: "Avenir-Heavy", size: notificationMessageLabel.font.pointSize)!,
-                range: message.rangeOfString(profileName)
-            )
-
-            messageAttributed.addAttribute(
-                NSFontAttributeName,
-                value: UIFont(name: "Avenir-Heavy", size: notificationMessageLabel.font.pointSize)!,
-                range: message.rangeOfString(groupName)
-            )
-            
-            notificationMessageLabel.attributedText = messageAttributed
             self.membershipRequest = membershipRequest
         }
+    }
+    
+    func setProfilesAndGroups(
+        profiles withProfiles: Dictionary<String, Services.Profile.Containers.ProfileV1>!, 
+        groups withGroups: Dictionary<String, Services.Group.Containers.GroupV1>!
+    ) {
+        profiles = withProfiles
+        groups = withGroups
+        populateData()
+    }
+    
+    private func populateData() {
+        let profileName: String
+        if let profile = profiles[membershipRequest.requesterProfileId] {
+            profileName = profile.fullName
+        }
+        else {
+            profileName = membershipRequest.requesterProfileId
+        }
+        
+        let groupName: String
+        if let group = groups[membershipRequest.groupKey] {
+            groupName = group.name
+        }
+        else {
+            groupName = membershipRequest.groupKey
+        }
+        
+        let message = NSString(format:AppStrings.GroupRequestMessage, profileName, groupName)
+        let messageAttributed = NSMutableAttributedString(string: message as String)
+        messageAttributed.addAttribute(
+            NSFontAttributeName,
+            value: UIFont(name: "Avenir-Heavy", size: notificationMessageLabel.font.pointSize)!,
+            range: message.rangeOfString(profileName)
+        )
+        
+        messageAttributed.addAttribute(
+            NSFontAttributeName,
+            value: UIFont(name: "Avenir-Heavy", size: notificationMessageLabel.font.pointSize)!,
+            range: message.rangeOfString(groupName)
+        )
+        
+        notificationMessageLabel.attributedText = messageAttributed
     }
     
     override func intrinsicContentSize() -> CGSize {

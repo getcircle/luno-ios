@@ -84,8 +84,7 @@ class SearchLandingDataSource: CardDataSource {
         
         if cell is GroupRequestCollectionViewCell {
             (cell as! GroupRequestCollectionViewCell).groupRequestDelegate = groupRequestDelegate
-            (cell as! GroupRequestCollectionViewCell).profiles = profilesAssociatedWithGroupRequests
-            (cell as! GroupRequestCollectionViewCell).groups = groupsAssociatedWithGroupRequests
+            (cell as! GroupRequestCollectionViewCell).setProfilesAndGroups(profiles: profilesAssociatedWithGroupRequests, groups: groupsAssociatedWithGroupRequests)
         }
     }
     
