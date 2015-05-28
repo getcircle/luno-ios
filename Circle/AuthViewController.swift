@@ -368,6 +368,8 @@ class AuthViewController: UIViewController {
                 println("error logging user out from server: \(error)")
             }
             
+            // TODO: - Clear all objects in CircleCache
+
             // Clear keychain
             if let user = LoggedInUserHolder.user {
                 Locksmith.deleteDataForUserAccount(user.id, inService: LocksmithAuthTokenService)

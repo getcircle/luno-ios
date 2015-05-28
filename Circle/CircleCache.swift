@@ -20,7 +20,7 @@ class CircleCache {
     
     struct Keys {
         static let RecentProfileVisits = "recent_profile_visits"
-        static let DynamicOrgIntegration = "org_integration_%d"
+        static let Integration = "org_integration_%d"
         private static let KeyValidationTimers = "key_validation_timers"
     }
     
@@ -116,14 +116,14 @@ extension CircleCache {
     static func setIntegrationSetting(value: Bool, ofType type: Services.Organization.Containers.Integration.IntegrationTypeV1) {
         CircleCache.sharedInstance.setObject(
             value,
-            forKey: NSString(format: CircleCache.Keys.DynamicOrgIntegration, type.rawValue) as String,
+            forKey: NSString(format: CircleCache.Keys.Integration, type.rawValue) as String,
             forTimeInSeconds: CircleCache.ValidTimes.GoogleGroupsIntegrationValidTime
         )
     }
     
     static func getIntegrationSetting(type: Services.Organization.Containers.Integration.IntegrationTypeV1) -> Bool? {
         if let value = CircleCache.sharedInstance.objectForKey(
-            NSString(format: CircleCache.Keys.DynamicOrgIntegration, type.rawValue) as String
+            NSString(format: CircleCache.Keys.Integration, type.rawValue) as String
         ) as? Bool {
             return value
         }
