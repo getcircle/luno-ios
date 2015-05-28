@@ -27,6 +27,8 @@ class ProfileDetailDataSource: CardDataSource {
     private(set) var team: Services.Organization.Containers.TeamV1?
     private(set) var resume: Services.Resume.Containers.ResumeV1?
 
+    private var supportGoogleGroups = false
+
     private let numberOfEducationItemsVisibleInitially = 1
     private let numberOfExperienceItemsVisibleInitially = 2
     private let numberOfTagItemsVisibleInitially = 6
@@ -41,9 +43,18 @@ class ProfileDetailDataSource: CardDataSource {
     override func loadData(completionHandler: (error: NSError?) -> Void) {
         resetCards()
         addPlaceholderCard()
+        
+        var storedError: NSError!
+        var actionsGroup = dispatch_group_create()
+        
+        dispatch_group_enter(actionsGroup)
         Services.Profile.Actions.getExtendedProfile(profile.id) {
             (profile, manager, team, address, interests, skills, notes, identities, resume, location,  error) -> Void in
-            if error == nil {
+            
+            if let error = error {
+                storedError = error
+            }
+            else {
                 self.manager = manager
                 self.team = team
                 self.address = address
@@ -52,9 +63,26 @@ class ProfileDetailDataSource: CardDataSource {
                 self.identities = identities
                 self.resume = resume
                 self.location = location
-                self.populateData()
             }
+            dispatch_group_leave(actionsGroup)
             completionHandler(error: error)
+        }
+        
+        dispatch_group_enter(actionsGroup)
+        Services.Organization.Actions.getIntegrationStatus(.GoogleGroups, completionHandler: { (status, error) -> Void in
+            
+            if let error = error {
+                storedError = error
+            }
+            else {
+                self.supportGoogleGroups = status
+            }
+            dispatch_group_leave(actionsGroup)
+        })
+        
+        dispatch_group_notify(actionsGroup, GlobalMainQueue) { () -> Void in
+            self.populateData()
+            completionHandler(error: storedError)
         }
     }
     
@@ -76,7 +104,10 @@ class ProfileDetailDataSource: CardDataSource {
         sections.append(getBasicInfoSection())
         sections.append(getWorkExperienceSection())
         sections.append(getEducationSection())
-        sections.append(getGroupsSection())
+        
+        if self.supportGoogleGroups {
+            sections.append(getGroupsSection())
+        }
     }
 
     private func addPlaceholderCard() {

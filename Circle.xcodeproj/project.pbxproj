@@ -1165,13 +1165,13 @@
 			isa = PBXGroup;
 			children = (
 				8FD7EC4C1AA53EB7004A2CEA /* AddressExtension.swift */,
+				8F6501201B008C69006BB260 /* AppTheme.swift */,
 				8F77950B1A917FB400BEF6EA /* CircleCache.swift */,
 				8FC877FB1AB21775003FDB27 /* DebugUtils.swift */,
 				8FEE3D9A1A84172800B17569 /* FormBuilder.swift */,
 				8F22CBFD1A29C7120026376E /* GCDUtils.swift */,
 				8F5933E21ACBC12400905E14 /* ProfileExtension.swift */,
 				8F02B1FB1A54A08000A1A307 /* RootNavigationDelegate.swift */,
-				8F6501201B008C69006BB260 /* AppTheme.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";

@@ -10,10 +10,16 @@ import Foundation
 import ProtobufRegistry
 
 typealias GetAddressesCompletionHandler = (addresses: Array<Services.Organization.Containers.AddressV1>?, error: NSError?) -> Void
+
 typealias GetTeamsCompletionHandler = (teams: Array<Services.Organization.Containers.TeamV1>?, nextRequest: Soa.ServiceRequestV1?, error: NSError?) -> Void
+
 typealias GetTeamDescendantsCompletionHandler = (teams: Array<Services.Organization.Containers.TeamV1>?, error: NSError?) -> Void
+
 typealias GetOrganizationCompletionHandler = (organization: Services.Organization.Containers.OrganizationV1?, error: NSError?) -> Void
+
 typealias GetLocationsCompletionHandler = (locations: Array<Services.Organization.Containers.LocationV1>?, error: NSError?) -> Void
+
+typealias GetIntegrationStatusCompletionHandler = (status: Bool, error: NSError?) -> Void
 
 extension Services.Organization.Actions {
         
@@ -134,4 +140,31 @@ extension Services.Organization.Actions {
         }
     }
     
+    static func getIntegrationStatus(type: Services.Organization.Containers.Integration.IntegrationTypeV1, completionHandler: GetIntegrationStatusCompletionHandler?) {
+        
+        if let integrationStatus = CircleCache.getIntegrationSetting(type) {
+            completionHandler?(status: integrationStatus, error: nil)
+        }
+        
+        let requestBuilder = Services.Organization.Actions.GetIntegration.RequestV1.builder()
+        requestBuilder.integrationType = type
+
+        let client = ServiceClient(serviceName: "organization")
+        client.callAction(
+            "get_integration",
+            extensionField: Services.Registry.Requests.Organization.getIntegration(),
+            requestBuilder: requestBuilder
+        ) { (_, _, wrapped, error) -> Void in
+            let response = wrapped?.response?.result.getExtension(
+                Services.Registry.Responses.Organization.getIntegration()
+            ) as? Services.Organization.Actions.GetIntegration.ResponseV1
+            
+            var status = false
+            if let response = response, integration = response.integration {
+                status = true
+            }
+
+            completionHandler?(status: status, error: error)
+        }
+    }
 }
