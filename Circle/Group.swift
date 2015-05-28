@@ -79,7 +79,7 @@ extension Services.Group.Actions {
         requestBuilder.provider = .Google
         
         let client = ServiceClient(serviceName: "group")
-        client.callAction("list_members",
+        client.callAction("get_members",
             extensionField: Services.Registry.Requests.Group.getMembers(),
             requestBuilder: requestBuilder,
             paginatorBuilder: paginatorBuilder
@@ -104,7 +104,7 @@ extension Services.Group.Actions {
         requestBuilder.provider = .Google
         
         let client = ServiceClient(serviceName: "group")
-        client.callAction("list_groups", extensionField: Services.Registry.Requests.Group.getGroups(), requestBuilder: requestBuilder, paginatorBuilder: paginatorBuilder) {
+        client.callAction("get_groups", extensionField: Services.Registry.Requests.Group.getGroups(), requestBuilder: requestBuilder, paginatorBuilder: paginatorBuilder) {
             (_, _, wrapped, error) -> Void in
             let response = wrapped?.response?.result.getExtension(
                 Services.Registry.Responses.Group.getGroups()

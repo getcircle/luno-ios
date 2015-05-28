@@ -56,7 +56,7 @@ class ProfilesDataSource: CardDataSource {
         requestBuilder.role = role
         let client = ServiceClient(serviceName: "group")
         let serviceRequest = client.buildRequest(
-            "list_members",
+            "get_members",
             extensionField: Services.Registry.Requests.Group.getMembers(),
             requestBuilder: requestBuilder,
             paginatorBuilder: nil
