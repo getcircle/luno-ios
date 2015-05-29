@@ -8,6 +8,7 @@
 
 import UIKit
 import AMScrollingNavbar
+import MBProgressHUD
 import MessageUI
 import ProtobufRegistry
 
@@ -671,7 +672,9 @@ class SearchViewController: UIViewController,
     ) {
         let buttonPoint = collectionView.convertPoint(sender.center, fromView: sender.superview)
         if let selectedIndexPath = collectionView.indexPathForItemAtPoint(buttonPoint) {
+            let hud = MBProgressHUD.showHUDAddedTo(view, animated: true)
             Services.Group.Actions.respondToMembershipRequest(request.id, action: status) { (error) -> Void in
+                hud.hide(true)
                 if error == nil {
                     if (self.landingDataSource.removeMembershipRequestAtIndexPath(selectedIndexPath)) {
                         self.collectionView.reloadSections(NSIndexSet(index: selectedIndexPath.section))
