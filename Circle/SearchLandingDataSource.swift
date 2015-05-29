@@ -95,6 +95,9 @@ class SearchLandingDataSource: CardDataSource {
                 requests.removeAtIndex(indexPath.row)
                 card.resetContent()
                 card.addContent(content: requests)
+                if requests.count == 0 {
+                    removeCard(card)
+                }
                 return true
             }
         }
