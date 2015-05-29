@@ -20,8 +20,6 @@ class GroupsDataSource: CardDataSource {
     private var cardType: Card.CardType = .Group
     
     override func loadData(completionHandler: (error: NSError?) -> Void) {
-        resetCards()
-
 //        registerNextRequestHandler()
 //        let paginatorBuilder = Soa.PaginatorV1.builder()
 //        paginatorBuilder.pageSize = 2
