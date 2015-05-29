@@ -144,6 +144,7 @@ extension Services.Organization.Actions {
         
         if let integrationStatus = CircleCache.getIntegrationSetting(type) {
             completionHandler?(status: integrationStatus, error: nil)
+            return
         }
         
         let requestBuilder = Services.Organization.Actions.GetIntegration.RequestV1.builder()
@@ -164,6 +165,7 @@ extension Services.Organization.Actions {
                 status = true
             }
 
+            CircleCache.setIntegrationSetting(status, ofType: type)
             completionHandler?(status: status, error: error)
         }
     }

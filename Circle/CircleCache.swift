@@ -19,9 +19,9 @@ import ProtobufRegistry
 class CircleCache {
     
     struct Keys {
-        static let RecentProfileVisits = "recent_profile_visits"
-        static let Integration = "org_integration_%d"
-        private static let KeyValidationTimers = "key_validation_timers"
+        static let RecentProfileVisits = "cache_recent_profile_visits"
+        static let Integration = "cache_org_integration_%d"
+        private static let KeyValidationTimers = "cache_key_validation_timers"
     }
     
     struct ValidTimes {
@@ -29,7 +29,7 @@ class CircleCache {
     }
     
     // Key Name - (Time of entry, number of seconds valid)
-    private var timeForKeys = [String: (NSTimeInterval, Int)]()
+    private var timeForKeys = [String: AnyObject]()
     
     /**
         A shared instance of `CircleCache`.
@@ -65,20 +65,29 @@ class CircleCache {
         _removeObjectForKey(key)
     }
     
+    func clearCache() {
+        var keys = NSUserDefaults.standardUserDefaults().dictionaryRepresentation().keys
+        for key in keys {
+            if let keyString = key as? String where keyString.hasPrefix("cache_") {
+                removeObjectForKey(keyString)
+            }
+            
+        }
+    }
+    
     private func _setValidationTimer(timeInSeconds: Int, forKey key: String) {
-        var validationTimerForKeys = [String: (NSTimeInterval, Int)]()
-        if let timeForKeys = objectForKey(CircleCache.Keys.KeyValidationTimers) as? Dictionary<String, (NSTimeInterval, Int)> {
+        var validationTimerForKeys = [String: AnyObject]()
+        if let timeForKeys = objectForKey(CircleCache.Keys.KeyValidationTimers) as? Dictionary<String, AnyObject> {
             validationTimerForKeys = timeForKeys
         }
         
-        validationTimerForKeys[key] = (NSDate().timeIntervalSince1970, timeInSeconds)
-        setObject(validationTimerForKeys as! AnyObject, forKey: CircleCache.Keys.KeyValidationTimers)
+        validationTimerForKeys[key] = ["time_of_entry": NSDate().timeIntervalSince1970, "expires_in_time": timeInSeconds]
+        setObject(validationTimerForKeys, forKey: CircleCache.Keys.KeyValidationTimers)
     }
     
     private func _isKeyValueValid(key: String) -> Bool {
-        if let timeForKeys = objectForKey(CircleCache.Keys.KeyValidationTimers) as? Dictionary<String, (NSTimeInterval, Int)>,
-            timeValues = timeForKeys[key] {
-            if Int (timeValues.0 - NSDate().timeIntervalSince1970) > timeValues.1 {
+        if let timeForKeys = _objectForKey(CircleCache.Keys.KeyValidationTimers) as? Dictionary<String, AnyObject>, timeValues: AnyObject = timeForKeys[key] {
+            if Int((timeValues["time_of_entry"] as! NSTimeInterval) - NSDate().timeIntervalSince1970) > (timeValues["expires_in_time"] as! Int) {
                 return false
             }
         }

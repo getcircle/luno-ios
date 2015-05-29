@@ -368,7 +368,8 @@ class AuthViewController: UIViewController {
                 println("error logging user out from server: \(error)")
             }
             
-            // TODO: - Clear all objects in CircleCache
+            // Clear all objects in CircleCache
+            CircleCache.sharedInstance.clearCache()
 
             // Clear keychain
             if let user = LoggedInUserHolder.user {
