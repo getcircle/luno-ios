@@ -1,19 +1,19 @@
 PODS:
-  - Alamofire (1.2.1)
-  - AMScrollingNavbar (1.3.5)
-  - Kingfisher (1.4.0)
-  - libPhoneNumber-iOS (0.8.4)
-  - Locksmith (1.2.1)
+  - Alamofire (1.2.2)
+  - AMScrollingNavbar (1.3.8)
+  - Kingfisher (1.4.1)
+  - libPhoneNumber-iOS (0.8.5)
+  - Locksmith (1.2.2)
   - MBProgressHUD (0.9.1)
-  - Mixpanel (2.8.0):
-    - Mixpanel/Mixpanel (= 2.8.0)
-  - Mixpanel/Mixpanel (2.8.0):
+  - Mixpanel (2.8.1):
+    - Mixpanel/Mixpanel (= 2.8.1)
+  - Mixpanel/Mixpanel (2.8.1):
     - Mixpanel/MPCategoryHelpers
-  - Mixpanel/MPCategoryHelpers (2.8.0)
+  - Mixpanel/MPCategoryHelpers (2.8.1)
   - PureLayout (2.0.6)
   - SSKeychain (1.2.3)
   - UIViewPlusPosition (0.0.1)
-  - VENTouchLock (1.0.6):
+  - VENTouchLock (1.10.1):
     - SSKeychain (~> 1.0)
 
 DEPENDENCIES:
@@ -29,16 +29,16 @@ DEPENDENCIES:
   - VENTouchLock (~> 1.0)
 
 SPEC CHECKSUMS:
-  Alamofire: 1acfdf179aff68b41a48dff70c1ac7fa263e2bcb
-  AMScrollingNavbar: 7118f2d2c99de1bbca27944425d2df9f94452e37
-  Kingfisher: 634df75082bd517db46a8907956f96eb0f76de63
-  libPhoneNumber-iOS: dbfc7b4128510a4955df3e5a6f125393fc9ebc2f
-  Locksmith: 770f6c5c6e5c5c712d1f00e709c62b8a7240c716
+  Alamofire: 11a6022f5089887d92ffb5a3014c97a0a915ab98
+  AMScrollingNavbar: 8573197b7077cb10ac548fd64f81d938bf8e9ff0
+  Kingfisher: 962a21cdc2a7b0fa63be3b2c45ea6f180feda535
+  libPhoneNumber-iOS: b8ccd23576379caca37c7cbdd554addf384459ed
+  Locksmith: c84c10bf23f99e6d04703dba65065dc38b038d88
   MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
-  Mixpanel: 933b51dd0c7914c80866b3753ef407dce353ebc9
+  Mixpanel: 93c4825025e6380ced273ed7178496282e385077
   PureLayout: f25f0bb904d5ccfe6e31da3cb869185259f02e0d
   SSKeychain: 3f42991739c6c60a9cf1bbd4dff6c0d3694bcf3d
   UIViewPlusPosition: 56c99fd247aa0674b3a3fcfd1f5b92a1fa0d0d55
-  VENTouchLock: d3b4f07229ca352a49057ed55bffe894d6701357
+  VENTouchLock: 0745fddd1f70e8edf80ca0decf3725978e9bb565
 
 COCOAPODS: 0.36.4

@@ -10,25 +10,25 @@
 #define COCOAPODS_POD_AVAILABLE_AMScrollingNavbar
 #define COCOAPODS_VERSION_MAJOR_AMScrollingNavbar 1
 #define COCOAPODS_VERSION_MINOR_AMScrollingNavbar 3
-#define COCOAPODS_VERSION_PATCH_AMScrollingNavbar 5
+#define COCOAPODS_VERSION_PATCH_AMScrollingNavbar 8
 
 // Alamofire
 #define COCOAPODS_POD_AVAILABLE_Alamofire
 #define COCOAPODS_VERSION_MAJOR_Alamofire 1
 #define COCOAPODS_VERSION_MINOR_Alamofire 2
-#define COCOAPODS_VERSION_PATCH_Alamofire 1
+#define COCOAPODS_VERSION_PATCH_Alamofire 2
 
 // Kingfisher
 #define COCOAPODS_POD_AVAILABLE_Kingfisher
 #define COCOAPODS_VERSION_MAJOR_Kingfisher 1
 #define COCOAPODS_VERSION_MINOR_Kingfisher 4
-#define COCOAPODS_VERSION_PATCH_Kingfisher 0
+#define COCOAPODS_VERSION_PATCH_Kingfisher 1
 
 // Locksmith
 #define COCOAPODS_POD_AVAILABLE_Locksmith
 #define COCOAPODS_VERSION_MAJOR_Locksmith 1
 #define COCOAPODS_VERSION_MINOR_Locksmith 2
-#define COCOAPODS_VERSION_PATCH_Locksmith 1
+#define COCOAPODS_VERSION_PATCH_Locksmith 2
 
 // MBProgressHUD
 #define COCOAPODS_POD_AVAILABLE_MBProgressHUD
@@ -40,19 +40,19 @@
 #define COCOAPODS_POD_AVAILABLE_Mixpanel
 #define COCOAPODS_VERSION_MAJOR_Mixpanel 2
 #define COCOAPODS_VERSION_MINOR_Mixpanel 8
-#define COCOAPODS_VERSION_PATCH_Mixpanel 0
+#define COCOAPODS_VERSION_PATCH_Mixpanel 1
 
 // Mixpanel/MPCategoryHelpers
 #define COCOAPODS_POD_AVAILABLE_Mixpanel_MPCategoryHelpers
 #define COCOAPODS_VERSION_MAJOR_Mixpanel_MPCategoryHelpers 2
 #define COCOAPODS_VERSION_MINOR_Mixpanel_MPCategoryHelpers 8
-#define COCOAPODS_VERSION_PATCH_Mixpanel_MPCategoryHelpers 0
+#define COCOAPODS_VERSION_PATCH_Mixpanel_MPCategoryHelpers 1
 
 // Mixpanel/Mixpanel
 #define COCOAPODS_POD_AVAILABLE_Mixpanel_Mixpanel
 #define COCOAPODS_VERSION_MAJOR_Mixpanel_Mixpanel 2
 #define COCOAPODS_VERSION_MINOR_Mixpanel_Mixpanel 8
-#define COCOAPODS_VERSION_PATCH_Mixpanel_Mixpanel 0
+#define COCOAPODS_VERSION_PATCH_Mixpanel_Mixpanel 1
 
 // PureLayout
 #define COCOAPODS_POD_AVAILABLE_PureLayout
@@ -75,12 +75,12 @@
 // VENTouchLock
 #define COCOAPODS_POD_AVAILABLE_VENTouchLock
 #define COCOAPODS_VERSION_MAJOR_VENTouchLock 1
-#define COCOAPODS_VERSION_MINOR_VENTouchLock 0
-#define COCOAPODS_VERSION_PATCH_VENTouchLock 6
+#define COCOAPODS_VERSION_MINOR_VENTouchLock 10
+#define COCOAPODS_VERSION_PATCH_VENTouchLock 1
 
 // libPhoneNumber-iOS
 #define COCOAPODS_POD_AVAILABLE_libPhoneNumber_iOS
 #define COCOAPODS_VERSION_MAJOR_libPhoneNumber_iOS 0
 #define COCOAPODS_VERSION_MINOR_libPhoneNumber_iOS 8
-#define COCOAPODS_VERSION_PATCH_libPhoneNumber_iOS 4
+#define COCOAPODS_VERSION_PATCH_libPhoneNumber_iOS 5
 

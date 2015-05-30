@@ -4,6 +4,7 @@
 
 [![Cocoapods](https://cocoapod-badges.herokuapp.com/v/AMScrollingNavbar/badge.svg)](http://www.cocoapods.org/?q=amscrollingnavbar)
 [![Build Status](https://travis-ci.org/andreamazz/AMScrollingNavbar.svg)](https://travis-ci.org/andreamazz/AMScrollingNavbar)
+[![Join the chat at https://gitter.im/andreamazz/AMScrollingNavbar](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/andreamazz/AMScrollingNavbar?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 Scrollable UINavigationBar that follows the scrolling of a UIScrollView or similar view (e.g. UITableView or UIWebView). 
 It works like the navigation bar in Chrome or Facebook's app for iOS7.  
@@ -28,6 +29,13 @@ I also wrote about this control in [this article](http://andreamazz.github.io/bl
 	[self showNavBarAnimated:NO];
 }
 
+```
+* Make sure to stop the scrolling on `dealloc`:
+```objc
+- (void)dealloc 
+{
+      [self stopFollowingScrollView];
+}
 ```
 
 #Enable the scrolling with Autolayout

@@ -110,25 +110,28 @@
      this might be improved by adjusting the alpha component of every navbar child */
     CGRect frame = self.navigationController.navigationBar.frame;
     frame.origin = CGPointZero;
-    self.overlay = [[UIView alloc] initWithFrame:frame];
-    
-    if (self.navigationController.navigationBar.barTintColor) {
-        [self.overlay setBackgroundColor:self.navigationController.navigationBar.barTintColor];
-    } else if ([UINavigationBar appearance].barTintColor) {
-        [self.overlay setBackgroundColor:[UINavigationBar appearance].barTintColor];
-    } else {
-        NSLog(@"[%s]: %@", __PRETTY_FUNCTION__, @"[AMScrollingNavbarViewController] Warning: no bar tint color set");
+
+    if (!self.overlay) {
+        self.overlay = [[UIView alloc] initWithFrame:frame];
+
+        if (self.navigationController.navigationBar.barTintColor) {
+            [self.overlay setBackgroundColor:self.navigationController.navigationBar.barTintColor];
+        } else if ([UINavigationBar appearance].barTintColor) {
+            [self.overlay setBackgroundColor:[UINavigationBar appearance].barTintColor];
+        } else {
+            NSLog(@"[%s]: %@", __PRETTY_FUNCTION__, @"[AMScrollingNavbarViewController] Warning: no bar tint color set");
+        }
+
+        if ([self.navigationController.navigationBar isTranslucent]) {
+            NSLog(@"[%s]: %@", __PRETTY_FUNCTION__, @"[AMScrollingNavbarViewController] Warning: the navigation bar should not be translucent");
+        }
+
+        [self.overlay setUserInteractionEnabled:NO];
+        [self.overlay setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
+        [self.navigationController.navigationBar addSubview:self.overlay];
+        [self.overlay setAlpha:0];
     }
-    
-    if ([self.navigationController.navigationBar isTranslucent]) {
-        NSLog(@"[%s]: %@", __PRETTY_FUNCTION__, @"[AMScrollingNavbarViewController] Warning: the navigation bar should not be translucent");
-    }
-    
-    [self.overlay setUserInteractionEnabled:NO];
-    [self.overlay setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
-    [self.navigationController.navigationBar addSubview:self.overlay];
-    [self.overlay setAlpha:0];
-    
+
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(didBecomeActive:)
                                                  name:UIApplicationDidBecomeActiveNotification
@@ -156,11 +159,11 @@
     NSTimeInterval time = SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0") ? 0 : 0.1;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(time * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         if (self.expanded) {
-            [self showNavbar];
-        } else if (self.collapsed) {
             self.collapsed = NO;
             self.expanded = YES;
             [self hideNavbarAnimated:NO];
+        } else if (self.collapsed) {
+            [self showNavbar];
         }
     });
 }
@@ -439,7 +442,7 @@
     NSTimeInterval duration = ABS((self.scrollableHeaderConstraint.constant - self.scrollableHeaderOffset) * 0.2);
     [UIView animateWithDuration:duration delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
         self.scrollableHeaderConstraint.constant = offset;
-        [self.view layoutIfNeeded];
+        [self.view setNeedsLayout];
     } completion:nil];
 }
 
