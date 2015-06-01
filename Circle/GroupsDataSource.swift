@@ -21,10 +21,7 @@ class GroupsDataSource: CardDataSource {
     
     override func loadData(completionHandler: (error: NSError?) -> Void) {
         registerNextRequestHandler()
-        let paginatorBuilder = Soa.PaginatorV1.builder()
-        paginatorBuilder.pageSize = 4
-
-        Services.Group.Actions.getGroups(profile?.id ?? nil, paginatorBuilder: paginatorBuilder) { (groups, nextRequest, error) -> Void in
+        Services.Group.Actions.getGroups(profile?.id ?? nil, paginatorBuilder: nil) { (groups, nextRequest, error) -> Void in
             if error == nil {
                 self.resetCards()
                 
