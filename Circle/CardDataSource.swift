@@ -543,8 +543,14 @@ class CardDataSource: NSObject, UICollectionViewDataSource {
         if !canTriggerNextRequest() {
             return false
         }
-
-        let percentContent = Float(indexPath.row) / Float(card.content.count) * 100
+        
+        // Avoid dividing by 0
+        var currentRow = indexPath.row
+        if currentRow == 0 {
+            currentRow = 1
+        }
+        
+        let percentContent = Float(currentRow) / Float(card.content.count) * 100
         if percentContent >= contentThreshold {
             return true
         }

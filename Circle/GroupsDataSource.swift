@@ -20,11 +20,11 @@ class GroupsDataSource: CardDataSource {
     private var cardType: Card.CardType = .Group
     
     override func loadData(completionHandler: (error: NSError?) -> Void) {
-//        registerNextRequestHandler()
-//        let paginatorBuilder = Soa.PaginatorV1.builder()
-//        paginatorBuilder.pageSize = 2
+        registerNextRequestHandler()
+        let paginatorBuilder = Soa.PaginatorV1.builder()
+        paginatorBuilder.pageSize = 4
 
-        Services.Group.Actions.getGroups(profile?.id ?? nil, paginatorBuilder: nil) { (groups, nextRequest, error) -> Void in
+        Services.Group.Actions.getGroups(profile?.id ?? nil, paginatorBuilder: paginatorBuilder) { (groups, nextRequest, error) -> Void in
             if error == nil {
                 self.resetCards()
                 
@@ -36,9 +36,9 @@ class GroupsDataSource: CardDataSource {
                 }
                 self.appendCard(self.card)
                 
-//                if let nextRequest = nextRequest {
-//                    self.registerNextRequest(nextRequest: nextRequest)
-//                }
+                if let nextRequest = nextRequest {
+                    self.registerNextRequest(nextRequest: nextRequest)
+                }
             }
             
             completionHandler(error: error)

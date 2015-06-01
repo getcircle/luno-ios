@@ -74,7 +74,6 @@ class OverviewViewController:
         configureActivityIndicator()
         configureErrorMessageView()
         dataSource.delegate = self
-        loadData()
     }
     
     override func viewWillAppear(animated: Bool) {

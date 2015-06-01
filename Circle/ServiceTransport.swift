@@ -29,7 +29,7 @@ public struct WrappedResponse {
     
     func getNextRequest() -> Soa.ServiceRequestV1? {
         var nextRequest: Soa.ServiceRequestV1? = nil
-        if let paginator = getPaginator() {
+        if let paginator = getPaginator() where paginator.hasNextPage {
             nextRequest = serviceRequest.getNextRequest(paginator)
         }
         return nextRequest
