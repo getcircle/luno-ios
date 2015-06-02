@@ -42,6 +42,7 @@ public func == (lhs: Services.Profile.Containers.ProfileV1, rhs: Services.Profil
   fieldCheck = fieldCheck && (lhs.contactMethods == rhs.contactMethods)
   fieldCheck = fieldCheck && (lhs.hasSeatingInfo == rhs.hasSeatingInfo) && (!lhs.hasSeatingInfo || lhs.seatingInfo == rhs.seatingInfo)
   fieldCheck = fieldCheck && (lhs.hasEmail == rhs.hasEmail) && (!lhs.hasEmail || lhs.email == rhs.email)
+  fieldCheck = fieldCheck && (lhs.hasIsAdmin == rhs.hasIsAdmin) && (!lhs.hasIsAdmin || lhs.isAdmin == rhs.isAdmin)
   return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
 }
 
@@ -523,6 +524,7 @@ public extension Services.Profile.Containers {
            case "nickname": return nickname
            case "seatingInfo": return seatingInfo
            case "email": return email
+           case "isAdmin": return isAdmin
            default: return nil
            }
     }
@@ -583,6 +585,9 @@ public extension Services.Profile.Containers {
 
     public private(set) var hasEmail:Bool = false
     public private(set) var email:String = ""
+
+    public private(set) var hasIsAdmin:Bool = false
+    public private(set) var isAdmin:Bool = false
 
     public private(set) var items:Array<Services.Profile.Containers.ProfileItemV1>  = Array<Services.Profile.Containers.ProfileItemV1>()
     public private(set) var contactMethods:Array<Services.Profile.Containers.ContactMethodV1>  = Array<Services.Profile.Containers.ContactMethodV1>()
@@ -656,6 +661,9 @@ public extension Services.Profile.Containers {
       if hasEmail {
         output.writeString(21, value:email)
       }
+      if hasIsAdmin {
+        output.writeBool(22, value:isAdmin)
+      }
       unknownFields.writeToCodedOutputStream(output)
     }
     override public func serializedSize() -> Int32 {
@@ -727,6 +735,9 @@ public extension Services.Profile.Containers {
       }
       if hasEmail {
         serialize_size += email.computeStringSize(21)
+      }
+      if hasIsAdmin {
+        serialize_size += isAdmin.computeBoolSize(22)
       }
       serialize_size += unknownFields.serializedSize()
       memoizedSerializedSize = serialize_size
@@ -840,6 +851,9 @@ public extension Services.Profile.Containers {
       if hasEmail {
         output += "\(indent) email: \(email) \n"
       }
+      if hasIsAdmin {
+        output += "\(indent) isAdmin: \(isAdmin) \n"
+      }
       unknownFields.writeDescriptionTo(&output, indent:indent)
     }
     override public var hashValue:Int {
@@ -907,6 +921,9 @@ public extension Services.Profile.Containers {
             }
             if hasEmail {
                hashCode = (hashCode &* 31) &+ email.hashValue
+            }
+            if hasIsAdmin {
+               hashCode = (hashCode &* 31) &+ isAdmin.hashValue
             }
             hashCode = (hashCode &* 31) &+  unknownFields.hashValue
             return hashCode
@@ -1405,6 +1422,29 @@ public extension Services.Profile.Containers {
          builderResult.email = ""
          return self
     }
+    public var hasIsAdmin:Bool {
+         get {
+              return builderResult.hasIsAdmin
+         }
+    }
+    public var isAdmin:Bool {
+         get {
+              return builderResult.isAdmin
+         }
+         set (value) {
+             builderResult.hasIsAdmin = true
+             builderResult.isAdmin = value
+         }
+    }
+    public func setIsAdmin(value:Bool)-> Services.Profile.Containers.ProfileV1Builder {
+      self.isAdmin = value
+      return self
+    }
+    public func clearIsAdmin() -> Services.Profile.Containers.ProfileV1Builder{
+         builderResult.hasIsAdmin = false
+         builderResult.isAdmin = false
+         return self
+    }
     override public var internalGetResult:GeneratedMessage {
          get {
             return builderResult
@@ -1492,6 +1532,9 @@ public extension Services.Profile.Containers {
       if other.hasEmail {
            email = other.email
       }
+      if other.hasIsAdmin {
+           isAdmin = other.isAdmin
+      }
       mergeUnknownFields(other.unknownFields)
       return self
     }
@@ -1573,6 +1616,9 @@ public extension Services.Profile.Containers {
 
         case 170 :
           email = input.readString()
+
+        case 176 :
+          isAdmin = input.readBool()
 
         default:
           if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {

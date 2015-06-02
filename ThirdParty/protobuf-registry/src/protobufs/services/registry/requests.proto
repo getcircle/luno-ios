@@ -100,6 +100,12 @@ import "protobufs/services/group/actions/get_group.proto";
 import "protobufs/services/group/actions/add_to_group.proto";
 import "protobufs/services/group/actions/get_membership_requests.proto";
 
+import "protobufs/services/glossary/actions/create_term.proto";
+import "protobufs/services/glossary/actions/get_term.proto";
+import "protobufs/services/glossary/actions/get_terms.proto";
+import "protobufs/services/glossary/actions/update_term.proto";
+import "protobufs/services/glossary/actions/delete_term.proto";
+
 message User {
     extend soa.ActionRequestParamsV1 {
         optional services.user.actions.create_user.RequestV1 create_user = 100;
@@ -237,5 +243,15 @@ message Group {
         optional services.group.actions.get_group.RequestV1 get_group = 1105;
         optional services.group.actions.add_to_group.RequestV1 add_to_group = 1106;
         optional services.group.actions.get_membership_requests.RequestV1 get_membership_requests = 1107;
+    }
+}
+
+message Glossary {
+    extend soa.ActionRequestParamsV1 {
+        optional services.glossary.actions.create_term.RequestV1 create_term = 1200;
+        optional services.glossary.actions.get_term.RequestV1 get_term = 1201;
+        optional services.glossary.actions.get_terms.RequestV1 get_terms = 1202;
+        optional services.glossary.actions.update_term.RequestV1 update_term = 1203;
+        optional services.glossary.actions.delete_term.RequestV1 delete_term = 1204;
     }
 }

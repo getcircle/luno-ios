@@ -1,0 +1,18 @@
+package services.glossary.containers;
+
+import "protobufs/services/common/containers.proto";
+
+// GENERATED OPTIONS FOR: JAVA
+option java_package = "com.rhlabs.protobufs.services.glossary.containers";
+
+message TermV1 {
+    optional uint32 version = 1 [default = 1];
+    optional string id = 2;
+    optional string name = 3;
+    optional string definition = 4;
+    optional string organization_id = 5;
+    optional string created_by_profile_id = 6;
+    optional string created = 7;
+    optional string changed = 8;
+    optional services.common.containers.PermissionsV1 permissions = 9;
+}

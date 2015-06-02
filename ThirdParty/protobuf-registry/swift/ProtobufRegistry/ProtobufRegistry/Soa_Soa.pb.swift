@@ -11,6 +11,7 @@ public func == (lhs: Soa.ControlV1, rhs: Soa.ControlV1) -> Bool {
   fieldCheck = fieldCheck && (lhs.hasVersion == rhs.hasVersion) && (!lhs.hasVersion || lhs.version == rhs.version)
   fieldCheck = fieldCheck && (lhs.hasToken == rhs.hasToken) && (!lhs.hasToken || lhs.token == rhs.token)
   fieldCheck = fieldCheck && (lhs.hasService == rhs.hasService) && (!lhs.hasService || lhs.service == rhs.service)
+  fieldCheck = fieldCheck && lhs.isEqualExtensionsInOther(rhs, startInclusive:Int32(1000), endExclusive:Int32(536870912))
   return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
 }
 
@@ -26,6 +27,7 @@ public func == (lhs: Soa.PaginatorV1, rhs: Soa.PaginatorV1) -> Bool {
   fieldCheck = fieldCheck && (lhs.hasPageSize == rhs.hasPageSize) && (!lhs.hasPageSize || lhs.pageSize == rhs.pageSize)
   fieldCheck = fieldCheck && (lhs.hasPage == rhs.hasPage) && (!lhs.hasPage || lhs.page == rhs.page)
   fieldCheck = fieldCheck && (lhs.hasTotalPages == rhs.hasTotalPages) && (!lhs.hasTotalPages || lhs.totalPages == rhs.totalPages)
+  fieldCheck = fieldCheck && lhs.isEqualExtensionsInOther(rhs, startInclusive:Int32(1000), endExclusive:Int32(536870912))
   return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
 }
 
@@ -38,6 +40,7 @@ public func == (lhs: Soa.ActionControlV1, rhs: Soa.ActionControlV1) -> Bool {
   fieldCheck = fieldCheck && (lhs.hasService == rhs.hasService) && (!lhs.hasService || lhs.service == rhs.service)
   fieldCheck = fieldCheck && (lhs.hasAction == rhs.hasAction) && (!lhs.hasAction || lhs.action == rhs.action)
   fieldCheck = fieldCheck && (lhs.hasPaginator == rhs.hasPaginator) && (!lhs.hasPaginator || lhs.paginator == rhs.paginator)
+  fieldCheck = fieldCheck && lhs.isEqualExtensionsInOther(rhs, startInclusive:Int32(1000), endExclusive:Int32(536870912))
   return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
 }
 
@@ -49,6 +52,7 @@ public func == (lhs: Soa.ActionRequestV1, rhs: Soa.ActionRequestV1) -> Bool {
   fieldCheck = fieldCheck && (lhs.hasVersion == rhs.hasVersion) && (!lhs.hasVersion || lhs.version == rhs.version)
   fieldCheck = fieldCheck && (lhs.hasControl == rhs.hasControl) && (!lhs.hasControl || lhs.control == rhs.control)
   fieldCheck = fieldCheck && (lhs.hasParams == rhs.hasParams) && (!lhs.hasParams || lhs.params == rhs.params)
+  fieldCheck = fieldCheck && lhs.isEqualExtensionsInOther(rhs, startInclusive:Int32(1000), endExclusive:Int32(536870912))
   return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
 }
 
@@ -95,6 +99,7 @@ public func == (lhs: Soa.ActionResponseV1, rhs: Soa.ActionResponseV1) -> Bool {
   fieldCheck = fieldCheck && (lhs.hasVersion == rhs.hasVersion) && (!lhs.hasVersion || lhs.version == rhs.version)
   fieldCheck = fieldCheck && (lhs.hasControl == rhs.hasControl) && (!lhs.hasControl || lhs.control == rhs.control)
   fieldCheck = fieldCheck && (lhs.hasResult == rhs.hasResult) && (!lhs.hasResult || lhs.result == rhs.result)
+  fieldCheck = fieldCheck && lhs.isEqualExtensionsInOther(rhs, startInclusive:Int32(1000), endExclusive:Int32(536870912))
   return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
 }
 
@@ -106,6 +111,7 @@ public func == (lhs: Soa.ServiceRequestV1, rhs: Soa.ServiceRequestV1) -> Bool {
   fieldCheck = fieldCheck && (lhs.hasVersion == rhs.hasVersion) && (!lhs.hasVersion || lhs.version == rhs.version)
   fieldCheck = fieldCheck && (lhs.hasControl == rhs.hasControl) && (!lhs.hasControl || lhs.control == rhs.control)
   fieldCheck = fieldCheck && (lhs.actions == rhs.actions)
+  fieldCheck = fieldCheck && lhs.isEqualExtensionsInOther(rhs, startInclusive:Int32(1000), endExclusive:Int32(536870912))
   return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
 }
 
@@ -117,6 +123,7 @@ public func == (lhs: Soa.ServiceResponseV1, rhs: Soa.ServiceResponseV1) -> Bool 
   fieldCheck = fieldCheck && (lhs.hasVersion == rhs.hasVersion) && (!lhs.hasVersion || lhs.version == rhs.version)
   fieldCheck = fieldCheck && (lhs.hasControl == rhs.hasControl) && (!lhs.hasControl || lhs.control == rhs.control)
   fieldCheck = fieldCheck && (lhs.actions == rhs.actions)
+  fieldCheck = fieldCheck && lhs.isEqualExtensionsInOther(rhs, startInclusive:Int32(1000), endExclusive:Int32(536870912))
   return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
 }
 
@@ -138,7 +145,7 @@ public extension Soa {
     }
   }
 
-  final public class ControlV1 : GeneratedMessage, GeneratedMessageProtocol {
+  final public class ControlV1 : ExtendableMessage, GeneratedMessageProtocol {
     override public subscript(key: String) -> Any? {
            switch key {
            case "version": return version
@@ -161,6 +168,9 @@ public extension Soa {
          super.init()
     }
     override public func isInitialized() -> Bool {
+      if !extensionsAreInitialized() {
+       return false
+      }
      return true
     }
     override public func writeToCodedOutputStream(output:CodedOutputStream) {
@@ -173,6 +183,7 @@ public extension Soa {
       if hasService {
         output.writeString(3, value:service)
       }
+      writeExtensionsToCodedOutputStream(output, startInclusive:Int32(1000), endExclusive:Int32(536870912))
       unknownFields.writeToCodedOutputStream(output)
     }
     override public func serializedSize() -> Int32 {
@@ -191,6 +202,7 @@ public extension Soa {
       if hasService {
         serialize_size += service.computeStringSize(3)
       }
+      serialize_size += extensionsSerializedSize()
       serialize_size += unknownFields.serializedSize()
       memoizedSerializedSize = serialize_size
       return serialize_size
@@ -241,6 +253,7 @@ public extension Soa {
       if hasService {
         output += "\(indent) service: \(service) \n"
       }
+      writeExtensionDescription(&output, startInclusive:Int32(1000), endExclusive:Int32(536870912), indent:indent)
       unknownFields.writeDescriptionTo(&output, indent:indent)
     }
     override public var hashValue:Int {
@@ -255,6 +268,7 @@ public extension Soa {
             if hasService {
                hashCode = (hashCode &* 31) &+ service.hashValue
             }
+            hashCode = (hashCode &* 31) &+ Int(hashExtensionsFrom(Int32(1000), endExclusive:Int32(536870912)))
             hashCode = (hashCode &* 31) &+  unknownFields.hashValue
             return hashCode
         }
@@ -276,7 +290,7 @@ public extension Soa {
 
   }
 
-  final public class ControlV1Builder : GeneratedMessageBuilder {
+  final public class ControlV1Builder : ExtendableMessageBuilder {
     private var builderResult:Soa.ControlV1
 
     required override public init () {
@@ -352,9 +366,9 @@ public extension Soa {
          builderResult.service = ""
          return self
     }
-    override public var internalGetResult:GeneratedMessage {
+    override public var internalGetResult:ExtendableMessage {
          get {
-            return builderResult
+             return builderResult
          }
     }
     public override func clear() -> Soa.ControlV1Builder {
@@ -385,6 +399,7 @@ public extension Soa {
       if other.hasService {
            service = other.service
       }
+      mergeExtensionFields(other)
       mergeUnknownFields(other.unknownFields)
       return self
     }
@@ -419,7 +434,7 @@ public extension Soa {
     }
   }
 
-  final public class PaginatorV1 : GeneratedMessage, GeneratedMessageProtocol {
+  final public class PaginatorV1 : ExtendableMessage, GeneratedMessageProtocol {
     override public subscript(key: String) -> Any? {
            switch key {
            case "version": return version
@@ -458,6 +473,9 @@ public extension Soa {
          super.init()
     }
     override public func isInitialized() -> Bool {
+      if !extensionsAreInitialized() {
+       return false
+      }
      return true
     }
     override public func writeToCodedOutputStream(output:CodedOutputStream) {
@@ -482,6 +500,7 @@ public extension Soa {
       if hasTotalPages {
         output.writeUInt32(7, value:totalPages)
       }
+      writeExtensionsToCodedOutputStream(output, startInclusive:Int32(1000), endExclusive:Int32(536870912))
       unknownFields.writeToCodedOutputStream(output)
     }
     override public func serializedSize() -> Int32 {
@@ -512,6 +531,7 @@ public extension Soa {
       if hasTotalPages {
         serialize_size += totalPages.computeUInt32Size(7)
       }
+      serialize_size += extensionsSerializedSize()
       serialize_size += unknownFields.serializedSize()
       memoizedSerializedSize = serialize_size
       return serialize_size
@@ -574,6 +594,7 @@ public extension Soa {
       if hasTotalPages {
         output += "\(indent) totalPages: \(totalPages) \n"
       }
+      writeExtensionDescription(&output, startInclusive:Int32(1000), endExclusive:Int32(536870912), indent:indent)
       unknownFields.writeDescriptionTo(&output, indent:indent)
     }
     override public var hashValue:Int {
@@ -600,6 +621,7 @@ public extension Soa {
             if hasTotalPages {
                hashCode = (hashCode &* 31) &+ totalPages.hashValue
             }
+            hashCode = (hashCode &* 31) &+ Int(hashExtensionsFrom(Int32(1000), endExclusive:Int32(536870912)))
             hashCode = (hashCode &* 31) &+  unknownFields.hashValue
             return hashCode
         }
@@ -621,7 +643,7 @@ public extension Soa {
 
   }
 
-  final public class PaginatorV1Builder : GeneratedMessageBuilder {
+  final public class PaginatorV1Builder : ExtendableMessageBuilder {
     private var builderResult:Soa.PaginatorV1
 
     required override public init () {
@@ -789,9 +811,9 @@ public extension Soa {
          builderResult.totalPages = UInt32(0)
          return self
     }
-    override public var internalGetResult:GeneratedMessage {
+    override public var internalGetResult:ExtendableMessage {
          get {
-            return builderResult
+             return builderResult
          }
     }
     public override func clear() -> Soa.PaginatorV1Builder {
@@ -834,6 +856,7 @@ public extension Soa {
       if other.hasTotalPages {
            totalPages = other.totalPages
       }
+      mergeExtensionFields(other)
       mergeUnknownFields(other.unknownFields)
       return self
     }
@@ -880,7 +903,7 @@ public extension Soa {
     }
   }
 
-  final public class ActionControlV1 : GeneratedMessage, GeneratedMessageProtocol {
+  final public class ActionControlV1 : ExtendableMessage, GeneratedMessageProtocol {
     override public subscript(key: String) -> Any? {
            switch key {
            case "version": return version
@@ -906,6 +929,14 @@ public extension Soa {
          super.init()
     }
     override public func isInitialized() -> Bool {
+      if hasPaginator {
+       if !paginator.isInitialized() {
+         return false
+       }
+      }
+      if !extensionsAreInitialized() {
+       return false
+      }
      return true
     }
     override public func writeToCodedOutputStream(output:CodedOutputStream) {
@@ -921,6 +952,7 @@ public extension Soa {
       if hasPaginator {
         output.writeMessage(4, value:paginator)
       }
+      writeExtensionsToCodedOutputStream(output, startInclusive:Int32(1000), endExclusive:Int32(536870912))
       unknownFields.writeToCodedOutputStream(output)
     }
     override public func serializedSize() -> Int32 {
@@ -944,6 +976,7 @@ public extension Soa {
               serialize_size += varSizepaginator
           }
       }
+      serialize_size += extensionsSerializedSize()
       serialize_size += unknownFields.serializedSize()
       memoizedSerializedSize = serialize_size
       return serialize_size
@@ -999,6 +1032,7 @@ public extension Soa {
         paginator?.writeDescriptionTo(&output, indent:"\(indent)  ")
         output += "\(indent) }\n"
       }
+      writeExtensionDescription(&output, startInclusive:Int32(1000), endExclusive:Int32(536870912), indent:indent)
       unknownFields.writeDescriptionTo(&output, indent:indent)
     }
     override public var hashValue:Int {
@@ -1018,6 +1052,7 @@ public extension Soa {
                     hashCode = (hashCode &* 31) &+ hashValuepaginator
                 }
             }
+            hashCode = (hashCode &* 31) &+ Int(hashExtensionsFrom(Int32(1000), endExclusive:Int32(536870912)))
             hashCode = (hashCode &* 31) &+  unknownFields.hashValue
             return hashCode
         }
@@ -1039,7 +1074,7 @@ public extension Soa {
 
   }
 
-  final public class ActionControlV1Builder : GeneratedMessageBuilder {
+  final public class ActionControlV1Builder : ExtendableMessageBuilder {
     private var builderResult:Soa.ActionControlV1
 
     required override public init () {
@@ -1147,9 +1182,9 @@ public extension Soa {
       builderResult.paginator = nil
       return self
     }
-    override public var internalGetResult:GeneratedMessage {
+    override public var internalGetResult:ExtendableMessage {
          get {
-            return builderResult
+             return builderResult
          }
     }
     public override func clear() -> Soa.ActionControlV1Builder {
@@ -1183,6 +1218,7 @@ public extension Soa {
       if (other.hasPaginator) {
           mergePaginator(other.paginator)
       }
+      mergeExtensionFields(other)
       mergeUnknownFields(other.unknownFields)
       return self
     }
@@ -1225,7 +1261,7 @@ public extension Soa {
     }
   }
 
-  final public class ActionRequestV1 : GeneratedMessage, GeneratedMessageProtocol {
+  final public class ActionRequestV1 : ExtendableMessage, GeneratedMessageProtocol {
     override public subscript(key: String) -> Any? {
            switch key {
            case "version": return version
@@ -1246,10 +1282,18 @@ public extension Soa {
          super.init()
     }
     override public func isInitialized() -> Bool {
+      if hasControl {
+       if !control.isInitialized() {
+         return false
+       }
+      }
       if hasParams {
        if !params.isInitialized() {
          return false
        }
+      }
+      if !extensionsAreInitialized() {
+       return false
       }
      return true
     }
@@ -1263,6 +1307,7 @@ public extension Soa {
       if hasParams {
         output.writeMessage(3, value:params)
       }
+      writeExtensionsToCodedOutputStream(output, startInclusive:Int32(1000), endExclusive:Int32(536870912))
       unknownFields.writeToCodedOutputStream(output)
     }
     override public func serializedSize() -> Int32 {
@@ -1285,6 +1330,7 @@ public extension Soa {
               serialize_size += varSizeparams
           }
       }
+      serialize_size += extensionsSerializedSize()
       serialize_size += unknownFields.serializedSize()
       memoizedSerializedSize = serialize_size
       return serialize_size
@@ -1339,6 +1385,7 @@ public extension Soa {
         params?.writeDescriptionTo(&output, indent:"\(indent)  ")
         output += "\(indent) }\n"
       }
+      writeExtensionDescription(&output, startInclusive:Int32(1000), endExclusive:Int32(536870912), indent:indent)
       unknownFields.writeDescriptionTo(&output, indent:indent)
     }
     override public var hashValue:Int {
@@ -1357,6 +1404,7 @@ public extension Soa {
                     hashCode = (hashCode &* 31) &+ hashValueparams
                 }
             }
+            hashCode = (hashCode &* 31) &+ Int(hashExtensionsFrom(Int32(1000), endExclusive:Int32(536870912)))
             hashCode = (hashCode &* 31) &+  unknownFields.hashValue
             return hashCode
         }
@@ -1378,7 +1426,7 @@ public extension Soa {
 
   }
 
-  final public class ActionRequestV1Builder : GeneratedMessageBuilder {
+  final public class ActionRequestV1Builder : ExtendableMessageBuilder {
     private var builderResult:Soa.ActionRequestV1
 
     required override public init () {
@@ -1472,9 +1520,9 @@ public extension Soa {
       builderResult.params = nil
       return self
     }
-    override public var internalGetResult:GeneratedMessage {
+    override public var internalGetResult:ExtendableMessage {
          get {
-            return builderResult
+             return builderResult
          }
     }
     public override func clear() -> Soa.ActionRequestV1Builder {
@@ -1505,6 +1553,7 @@ public extension Soa {
       if (other.hasParams) {
           mergeParams(other.params)
       }
+      mergeExtensionFields(other)
       mergeUnknownFields(other.unknownFields)
       return self
     }
@@ -2407,7 +2456,7 @@ public extension Soa {
     }
   }
 
-  final public class ActionResponseV1 : GeneratedMessage, GeneratedMessageProtocol {
+  final public class ActionResponseV1 : ExtendableMessage, GeneratedMessageProtocol {
     override public subscript(key: String) -> Any? {
            switch key {
            case "version": return version
@@ -2428,10 +2477,18 @@ public extension Soa {
          super.init()
     }
     override public func isInitialized() -> Bool {
+      if hasControl {
+       if !control.isInitialized() {
+         return false
+       }
+      }
       if hasResult {
        if !result.isInitialized() {
          return false
        }
+      }
+      if !extensionsAreInitialized() {
+       return false
       }
      return true
     }
@@ -2445,6 +2502,7 @@ public extension Soa {
       if hasResult {
         output.writeMessage(3, value:result)
       }
+      writeExtensionsToCodedOutputStream(output, startInclusive:Int32(1000), endExclusive:Int32(536870912))
       unknownFields.writeToCodedOutputStream(output)
     }
     override public func serializedSize() -> Int32 {
@@ -2467,6 +2525,7 @@ public extension Soa {
               serialize_size += varSizeresult
           }
       }
+      serialize_size += extensionsSerializedSize()
       serialize_size += unknownFields.serializedSize()
       memoizedSerializedSize = serialize_size
       return serialize_size
@@ -2521,6 +2580,7 @@ public extension Soa {
         result?.writeDescriptionTo(&output, indent:"\(indent)  ")
         output += "\(indent) }\n"
       }
+      writeExtensionDescription(&output, startInclusive:Int32(1000), endExclusive:Int32(536870912), indent:indent)
       unknownFields.writeDescriptionTo(&output, indent:indent)
     }
     override public var hashValue:Int {
@@ -2539,6 +2599,7 @@ public extension Soa {
                     hashCode = (hashCode &* 31) &+ hashValueresult
                 }
             }
+            hashCode = (hashCode &* 31) &+ Int(hashExtensionsFrom(Int32(1000), endExclusive:Int32(536870912)))
             hashCode = (hashCode &* 31) &+  unknownFields.hashValue
             return hashCode
         }
@@ -2560,7 +2621,7 @@ public extension Soa {
 
   }
 
-  final public class ActionResponseV1Builder : GeneratedMessageBuilder {
+  final public class ActionResponseV1Builder : ExtendableMessageBuilder {
     private var builderResult:Soa.ActionResponseV1
 
     required override public init () {
@@ -2654,9 +2715,9 @@ public extension Soa {
       builderResult.result = nil
       return self
     }
-    override public var internalGetResult:GeneratedMessage {
+    override public var internalGetResult:ExtendableMessage {
          get {
-            return builderResult
+             return builderResult
          }
     }
     public override func clear() -> Soa.ActionResponseV1Builder {
@@ -2687,6 +2748,7 @@ public extension Soa {
       if (other.hasResult) {
           mergeResult(other.result)
       }
+      mergeExtensionFields(other)
       mergeUnknownFields(other.unknownFields)
       return self
     }
@@ -2731,7 +2793,7 @@ public extension Soa {
     }
   }
 
-  final public class ServiceRequestV1 : GeneratedMessage, GeneratedMessageProtocol {
+  final public class ServiceRequestV1 : ExtendableMessage, GeneratedMessageProtocol {
     override public subscript(key: String) -> Any? {
            switch key {
            case "version": return version
@@ -2750,6 +2812,11 @@ public extension Soa {
          super.init()
     }
     override public func isInitialized() -> Bool {
+      if hasControl {
+       if !control.isInitialized() {
+         return false
+       }
+      }
       var isInitactions:Bool = true
       for oneElementactions in actions {
           if (!oneElementactions.isInitialized()) {
@@ -2760,6 +2827,9 @@ public extension Soa {
       if !isInitactions {
        return isInitactions
        }
+      if !extensionsAreInitialized() {
+       return false
+      }
      return true
     }
     override public func writeToCodedOutputStream(output:CodedOutputStream) {
@@ -2772,6 +2842,7 @@ public extension Soa {
       for oneElementactions in actions {
           output.writeMessage(3, value:oneElementactions)
       }
+      writeExtensionsToCodedOutputStream(output, startInclusive:Int32(1000), endExclusive:Int32(536870912))
       unknownFields.writeToCodedOutputStream(output)
     }
     override public func serializedSize() -> Int32 {
@@ -2792,6 +2863,7 @@ public extension Soa {
       for oneElementactions in actions {
           serialize_size += oneElementactions.computeMessageSize(3)
       }
+      serialize_size += extensionsSerializedSize()
       serialize_size += unknownFields.serializedSize()
       memoizedSerializedSize = serialize_size
       return serialize_size
@@ -2848,6 +2920,7 @@ public extension Soa {
           output += "\(indent)}\n"
           actionsElementIndex++
       }
+      writeExtensionDescription(&output, startInclusive:Int32(1000), endExclusive:Int32(536870912), indent:indent)
       unknownFields.writeDescriptionTo(&output, indent:indent)
     }
     override public var hashValue:Int {
@@ -2864,6 +2937,7 @@ public extension Soa {
             for oneElementactions in actions {
                 hashCode = (hashCode &* 31) &+ oneElementactions.hashValue
             }
+            hashCode = (hashCode &* 31) &+ Int(hashExtensionsFrom(Int32(1000), endExclusive:Int32(536870912)))
             hashCode = (hashCode &* 31) &+  unknownFields.hashValue
             return hashCode
         }
@@ -2885,7 +2959,7 @@ public extension Soa {
 
   }
 
-  final public class ServiceRequestV1Builder : GeneratedMessageBuilder {
+  final public class ServiceRequestV1Builder : ExtendableMessageBuilder {
     private var builderResult:Soa.ServiceRequestV1
 
     required override public init () {
@@ -2963,9 +3037,9 @@ public extension Soa {
       builderResult.actions.removeAll(keepCapacity: false)
       return self
     }
-    override public var internalGetResult:GeneratedMessage {
+    override public var internalGetResult:ExtendableMessage {
          get {
-            return builderResult
+             return builderResult
          }
     }
     public override func clear() -> Soa.ServiceRequestV1Builder {
@@ -2996,6 +3070,7 @@ public extension Soa {
       if !other.actions.isEmpty  {
          builderResult.actions += other.actions
       }
+      mergeExtensionFields(other)
       mergeUnknownFields(other.unknownFields)
       return self
     }
@@ -3037,7 +3112,7 @@ public extension Soa {
     }
   }
 
-  final public class ServiceResponseV1 : GeneratedMessage, GeneratedMessageProtocol {
+  final public class ServiceResponseV1 : ExtendableMessage, GeneratedMessageProtocol {
     override public subscript(key: String) -> Any? {
            switch key {
            case "version": return version
@@ -3056,6 +3131,11 @@ public extension Soa {
          super.init()
     }
     override public func isInitialized() -> Bool {
+      if hasControl {
+       if !control.isInitialized() {
+         return false
+       }
+      }
       var isInitactions:Bool = true
       for oneElementactions in actions {
           if (!oneElementactions.isInitialized()) {
@@ -3066,6 +3146,9 @@ public extension Soa {
       if !isInitactions {
        return isInitactions
        }
+      if !extensionsAreInitialized() {
+       return false
+      }
      return true
     }
     override public func writeToCodedOutputStream(output:CodedOutputStream) {
@@ -3078,6 +3161,7 @@ public extension Soa {
       for oneElementactions in actions {
           output.writeMessage(3, value:oneElementactions)
       }
+      writeExtensionsToCodedOutputStream(output, startInclusive:Int32(1000), endExclusive:Int32(536870912))
       unknownFields.writeToCodedOutputStream(output)
     }
     override public func serializedSize() -> Int32 {
@@ -3098,6 +3182,7 @@ public extension Soa {
       for oneElementactions in actions {
           serialize_size += oneElementactions.computeMessageSize(3)
       }
+      serialize_size += extensionsSerializedSize()
       serialize_size += unknownFields.serializedSize()
       memoizedSerializedSize = serialize_size
       return serialize_size
@@ -3154,6 +3239,7 @@ public extension Soa {
           output += "\(indent)}\n"
           actionsElementIndex++
       }
+      writeExtensionDescription(&output, startInclusive:Int32(1000), endExclusive:Int32(536870912), indent:indent)
       unknownFields.writeDescriptionTo(&output, indent:indent)
     }
     override public var hashValue:Int {
@@ -3170,6 +3256,7 @@ public extension Soa {
             for oneElementactions in actions {
                 hashCode = (hashCode &* 31) &+ oneElementactions.hashValue
             }
+            hashCode = (hashCode &* 31) &+ Int(hashExtensionsFrom(Int32(1000), endExclusive:Int32(536870912)))
             hashCode = (hashCode &* 31) &+  unknownFields.hashValue
             return hashCode
         }
@@ -3191,7 +3278,7 @@ public extension Soa {
 
   }
 
-  final public class ServiceResponseV1Builder : GeneratedMessageBuilder {
+  final public class ServiceResponseV1Builder : ExtendableMessageBuilder {
     private var builderResult:Soa.ServiceResponseV1
 
     required override public init () {
@@ -3269,9 +3356,9 @@ public extension Soa {
       builderResult.actions.removeAll(keepCapacity: false)
       return self
     }
-    override public var internalGetResult:GeneratedMessage {
+    override public var internalGetResult:ExtendableMessage {
          get {
-            return builderResult
+             return builderResult
          }
     }
     public override func clear() -> Soa.ServiceResponseV1Builder {
@@ -3302,6 +3389,7 @@ public extension Soa {
       if !other.actions.isEmpty  {
          builderResult.actions += other.actions
       }
+      mergeExtensionFields(other)
       mergeUnknownFields(other.unknownFields)
       return self
     }

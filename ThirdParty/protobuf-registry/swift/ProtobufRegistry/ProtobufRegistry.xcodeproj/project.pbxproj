@@ -130,6 +130,12 @@
 		BFC6CEF51A44B58B0081F45B /* ProtobufRegistry.h in Headers */ = {isa = PBXBuildFile; fileRef = BFC6CEF41A44B58B0081F45B /* ProtobufRegistry.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BFC6CEFB1A44B58B0081F45B /* ProtobufRegistry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFC6CEEF1A44B58B0081F45B /* ProtobufRegistry.framework */; };
 		BFC6CF021A44B58B0081F45B /* ProtobufRegistryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC6CF011A44B58B0081F45B /* ProtobufRegistryTests.swift */; };
+		BFDDE3081B1E529900334541 /* ServicesGlossaryActionsCreateTerm_Create_term.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDDE3021B1E529900334541 /* ServicesGlossaryActionsCreateTerm_Create_term.pb.swift */; };
+		BFDDE3091B1E529900334541 /* ServicesGlossaryActionsDeleteTerm_Delete_term.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDDE3031B1E529900334541 /* ServicesGlossaryActionsDeleteTerm_Delete_term.pb.swift */; };
+		BFDDE30A1B1E529900334541 /* ServicesGlossaryActionsGetTerm_Get_term.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDDE3041B1E529900334541 /* ServicesGlossaryActionsGetTerm_Get_term.pb.swift */; };
+		BFDDE30B1B1E529900334541 /* ServicesGlossaryActionsGetTerms_Get_terms.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDDE3051B1E529900334541 /* ServicesGlossaryActionsGetTerms_Get_terms.pb.swift */; };
+		BFDDE30C1B1E529900334541 /* ServicesGlossaryActionsUpdateTerm_Update_term.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDDE3061B1E529900334541 /* ServicesGlossaryActionsUpdateTerm_Update_term.pb.swift */; };
+		BFDDE30D1B1E529900334541 /* ServicesGlossaryContainers_Containers.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDDE3071B1E529900334541 /* ServicesGlossaryContainers_Containers.pb.swift */; };
 		BFF67AC61AE609C20062815A /* ServicesUserActionsLogout_Logout.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF67AC51AE609C20062815A /* ServicesUserActionsLogout_Logout.pb.swift */; };
 /* End PBXBuildFile section */
 
@@ -270,6 +276,12 @@
 		BFC6CEFA1A44B58B0081F45B /* ProtobufRegistryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ProtobufRegistryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFC6CF001A44B58B0081F45B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BFC6CF011A44B58B0081F45B /* ProtobufRegistryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtobufRegistryTests.swift; sourceTree = "<group>"; };
+		BFDDE3021B1E529900334541 /* ServicesGlossaryActionsCreateTerm_Create_term.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesGlossaryActionsCreateTerm_Create_term.pb.swift; sourceTree = "<group>"; };
+		BFDDE3031B1E529900334541 /* ServicesGlossaryActionsDeleteTerm_Delete_term.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesGlossaryActionsDeleteTerm_Delete_term.pb.swift; sourceTree = "<group>"; };
+		BFDDE3041B1E529900334541 /* ServicesGlossaryActionsGetTerm_Get_term.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesGlossaryActionsGetTerm_Get_term.pb.swift; sourceTree = "<group>"; };
+		BFDDE3051B1E529900334541 /* ServicesGlossaryActionsGetTerms_Get_terms.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesGlossaryActionsGetTerms_Get_terms.pb.swift; sourceTree = "<group>"; };
+		BFDDE3061B1E529900334541 /* ServicesGlossaryActionsUpdateTerm_Update_term.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesGlossaryActionsUpdateTerm_Update_term.pb.swift; sourceTree = "<group>"; };
+		BFDDE3071B1E529900334541 /* ServicesGlossaryContainers_Containers.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesGlossaryContainers_Containers.pb.swift; sourceTree = "<group>"; };
 		BFF67AC51AE609C20062815A /* ServicesUserActionsLogout_Logout.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesUserActionsLogout_Logout.pb.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -324,6 +336,12 @@
 				BF1B13CC1AE1944300F36620 /* ServicesFeedActionsGetOrganizationFeed_Get_organization_feed.pb.swift */,
 				BF1B13CD1AE1944300F36620 /* ServicesFeedActionsGetProfileFeed_Get_profile_feed.pb.swift */,
 				BF5AF6ED1AE2E231000E876E /* ServicesFeedContainers_Containers.pb.swift */,
+				BFDDE3021B1E529900334541 /* ServicesGlossaryActionsCreateTerm_Create_term.pb.swift */,
+				BFDDE3031B1E529900334541 /* ServicesGlossaryActionsDeleteTerm_Delete_term.pb.swift */,
+				BFDDE3041B1E529900334541 /* ServicesGlossaryActionsGetTerm_Get_term.pb.swift */,
+				BFDDE3051B1E529900334541 /* ServicesGlossaryActionsGetTerms_Get_terms.pb.swift */,
+				BFDDE3061B1E529900334541 /* ServicesGlossaryActionsUpdateTerm_Update_term.pb.swift */,
+				BFDDE3071B1E529900334541 /* ServicesGlossaryContainers_Containers.pb.swift */,
 				BFC3760F1B15073800D46640 /* ServicesGroupActionsAddToGroup_Add_to_group.pb.swift */,
 				BF70257F1AFD70A50085F6EE /* ServicesGroupActionsGetGroup_Get_group.pb.swift */,
 				BF79D98E1B16911D0052FE48 /* ServicesGroupActionsGetGroups_Get_groups.pb.swift */,
@@ -611,6 +629,7 @@
 				BF1B143B1AE1944300F36620 /* ServicesProfileActionsAddTags_Add_tags.pb.swift in Sources */,
 				BF1B143C1AE1944300F36620 /* ServicesProfileActionsBulkCreateProfiles_Bulk_create_profiles.pb.swift in Sources */,
 				BF1B143D1AE1944300F36620 /* ServicesProfileActionsBulkUpdateProfiles_Bulk_update_profiles.pb.swift in Sources */,
+				BFDDE3081B1E529900334541 /* ServicesGlossaryActionsCreateTerm_Create_term.pb.swift in Sources */,
 				BFC376201B155B3800D46640 /* ServicesOrganizationActionsDisableIntegration_Disable_integration.pb.swift in Sources */,
 				BF1B143E1AE1944300F36620 /* ServicesProfileActionsCreateProfile_Create_profile.pb.swift in Sources */,
 				BF1B143F1AE1944300F36620 /* ServicesProfileActionsCreateTags_Create_tags.pb.swift in Sources */,
@@ -640,11 +659,13 @@
 				BF7A4B051B0A64D9007B6BFB /* ServicesUserActionsGetAuthenticationInstructions_Get_authentication_instructions.pb.swift in Sources */,
 				BFC376211B155B3800D46640 /* ServicesOrganizationActionsEnableIntegration_Enable_integration.pb.swift in Sources */,
 				BF1B14591AE1944300F36620 /* ServicesUserActionsBulkCreateUsers_Bulk_create_users.pb.swift in Sources */,
+				BFDDE3091B1E529900334541 /* ServicesGlossaryActionsDeleteTerm_Delete_term.pb.swift in Sources */,
 				BF1B145A1AE1944300F36620 /* ServicesUserActionsCompleteAuthorization_Complete_authorization.pb.swift in Sources */,
 				BF1B145B1AE1944300F36620 /* ServicesUserActionsCreateUser_Create_user.pb.swift in Sources */,
 				BF1B145C1AE1944300F36620 /* ServicesUserActionsDeleteIdentity_Delete_identity.pb.swift in Sources */,
 				BF1B145D1AE1944300F36620 /* ServicesUserActionsGetAuthorizationInstructions_Get_authorization_instructions.pb.swift in Sources */,
 				BF1B145E1AE1944300F36620 /* ServicesUserActionsGetIdentities_Get_identities.pb.swift in Sources */,
+				BFDDE30C1B1E529900334541 /* ServicesGlossaryActionsUpdateTerm_Update_term.pb.swift in Sources */,
 				BF1B145F1AE1944300F36620 /* ServicesUserActionsGetUser_Get_user.pb.swift in Sources */,
 				BF1B14601AE1944300F36620 /* ServicesUserActionsRecordDevice_Record_device.pb.swift in Sources */,
 				BF1B14611AE1944300F36620 /* ServicesUserActionsRequestAccess_Request_access.pb.swift in Sources */,
@@ -654,6 +675,7 @@
 				BFC376191B1557CD00D46640 /* ServicesCommonContainers_Containers.pb.swift in Sources */,
 				BF1B14651AE1944300F36620 /* ServicesUserActionsVerifyVerificationCode_Verify_verification_code.pb.swift in Sources */,
 				BF3D3CB41AE06D9300B5780B /* ServicesOrganizationActionsCreateOrganization_Create_organization.pb.swift in Sources */,
+				BFDDE30D1B1E529900334541 /* ServicesGlossaryContainers_Containers.pb.swift in Sources */,
 				BF3D3CB51AE06D9300B5780B /* ServicesOrganizationActionsGetOrganization_Get_organization.pb.swift in Sources */,
 				BF3D3CC91AE070EF00B5780B /* AbstractMessage.swift in Sources */,
 				BF3D3CCA1AE070EF00B5780B /* CodedInputStream.swift in Sources */,
@@ -668,6 +690,7 @@
 				BF3D3CD51AE070EF00B5780B /* UnknownFieldSet.swift in Sources */,
 				BF3D3CD61AE070EF00B5780B /* UnknownFieldSetBuilder.swift in Sources */,
 				BF3D3CD71AE070EF00B5780B /* WireFormat.swift in Sources */,
+				BFDDE30A1B1E529900334541 /* ServicesGlossaryActionsGetTerm_Get_term.pb.swift in Sources */,
 				BF79D9901B16911D0052FE48 /* ServicesGroupActionsGetGroups_Get_groups.pb.swift in Sources */,
 				BF4125C71AC4616E00BC37F6 /* Soa_Soa.pb.swift in Sources */,
 				BF5AF6EA1AE2D603000E876E /* ServicesResumeContainers_Containers.pb.swift in Sources */,
@@ -688,6 +711,7 @@
 				BF7025921AFD70A50085F6EE /* ServicesGroupContainersPermissionsWhoCanJoin_Who_can_join.pb.swift in Sources */,
 				BF7025931AFD70A50085F6EE /* ServicesGroupContainersPermissionsWhoCanViewGroup_Who_can_view_group.pb.swift in Sources */,
 				BF70258B1AFD70A50085F6EE /* ServicesGroupActionsJoinGroup_Join_group.pb.swift in Sources */,
+				BFDDE30B1B1E529900334541 /* ServicesGlossaryActionsGetTerms_Get_terms.pb.swift in Sources */,
 				BF7025941AFD70A50085F6EE /* ServicesGroupContainersPermissionsWhoCanViewMembership_Who_can_view_membership.pb.swift in Sources */,
 				BF79ED721AF803D100A90034 /* ServicesOrganizationActionsGetTokens_Get_tokens.pb.swift in Sources */,
 				BFC376131B151BE600D46640 /* ServicesGroupActionsGetMembershipRequests_Get_membership_requests.pb.swift in Sources */,

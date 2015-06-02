@@ -18,7 +18,7 @@ _sym_db = _symbol_database.Default()
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='protobufs/services/common/containers.proto',
   package='services.common.containers',
-  serialized_pb=_b('\n*protobufs/services/common/containers.proto\x12\x1aservices.common.containers\"<\n\nKeyValueV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x0b\n\x03key\x18\x02 \x01(\t\x12\r\n\x05value\x18\x03 \x01(\t\"T\n\x05MapV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x37\n\x07\x63ontent\x18\x02 \x03(\x0b\x32&.services.common.containers.KeyValueV1B1\n/com.rhlabs.protobufs.services.common.containers')
+  serialized_pb=_b('\n*protobufs/services/common/containers.proto\x12\x1aservices.common.containers\"<\n\nKeyValueV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x0b\n\x03key\x18\x02 \x01(\t\x12\r\n\x05value\x18\x03 \x01(\t\"T\n\x05MapV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x37\n\x07\x63ontent\x18\x02 \x03(\x0b\x32&.services.common.containers.KeyValueV1\"Z\n\rPermissionsV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x10\n\x08\x63\x61n_edit\x18\x02 \x01(\x08\x12\x12\n\ncan_delete\x18\x03 \x01(\x08\x12\x0f\n\x07\x63\x61n_add\x18\x04 \x01(\x08\x42\x31\n/com.rhlabs.protobufs.services.common.containers')
 )
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
@@ -105,9 +105,61 @@ _MAPV1 = _descriptor.Descriptor(
   serialized_end=220,
 )
 
+
+_PERMISSIONSV1 = _descriptor.Descriptor(
+  name='PermissionsV1',
+  full_name='services.common.containers.PermissionsV1',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='version', full_name='services.common.containers.PermissionsV1.version', index=0,
+      number=1, type=13, cpp_type=3, label=1,
+      has_default_value=True, default_value=1,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='can_edit', full_name='services.common.containers.PermissionsV1.can_edit', index=1,
+      number=2, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='can_delete', full_name='services.common.containers.PermissionsV1.can_delete', index=2,
+      number=3, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='can_add', full_name='services.common.containers.PermissionsV1.can_add', index=3,
+      number=4, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=222,
+  serialized_end=312,
+)
+
 _MAPV1.fields_by_name['content'].message_type = _KEYVALUEV1
 DESCRIPTOR.message_types_by_name['KeyValueV1'] = _KEYVALUEV1
 DESCRIPTOR.message_types_by_name['MapV1'] = _MAPV1
+DESCRIPTOR.message_types_by_name['PermissionsV1'] = _PERMISSIONSV1
 
 KeyValueV1 = _reflection.GeneratedProtocolMessageType('KeyValueV1', (_message.Message,), dict(
   DESCRIPTOR = _KEYVALUEV1,
@@ -122,6 +174,13 @@ MapV1 = _reflection.GeneratedProtocolMessageType('MapV1', (_message.Message,), d
   # @@protoc_insertion_point(class_scope:services.common.containers.MapV1)
   ))
 _sym_db.RegisterMessage(MapV1)
+
+PermissionsV1 = _reflection.GeneratedProtocolMessageType('PermissionsV1', (_message.Message,), dict(
+  DESCRIPTOR = _PERMISSIONSV1,
+  __module__ = 'protobufs.services.common.containers_pb2'
+  # @@protoc_insertion_point(class_scope:services.common.containers.PermissionsV1)
+  ))
+_sym_db.RegisterMessage(PermissionsV1)
 
 
 DESCRIPTOR.has_options = True

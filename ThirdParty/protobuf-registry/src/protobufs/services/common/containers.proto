@@ -13,3 +13,10 @@ message MapV1 {
     optional uint32 version = 1 [default = 1];
     repeated KeyValueV1 content = 2;
 }
+
+message PermissionsV1 {
+    optional uint32 version = 1 [default = 1];
+    optional bool can_edit = 2;
+    optional bool can_delete = 3;
+    optional bool can_add = 4;
+}

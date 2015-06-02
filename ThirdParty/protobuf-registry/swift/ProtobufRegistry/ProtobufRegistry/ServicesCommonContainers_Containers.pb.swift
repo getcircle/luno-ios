@@ -24,6 +24,18 @@ public func == (lhs: Services.Common.Containers.MapV1, rhs: Services.Common.Cont
   return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
 }
 
+public func == (lhs: Services.Common.Containers.PermissionsV1, rhs: Services.Common.Containers.PermissionsV1) -> Bool {
+  if (lhs === rhs) {
+    return true
+  }
+  var fieldCheck:Bool = (lhs.hashValue == rhs.hashValue)
+  fieldCheck = fieldCheck && (lhs.hasVersion == rhs.hasVersion) && (!lhs.hasVersion || lhs.version == rhs.version)
+  fieldCheck = fieldCheck && (lhs.hasCanEdit == rhs.hasCanEdit) && (!lhs.hasCanEdit || lhs.canEdit == rhs.canEdit)
+  fieldCheck = fieldCheck && (lhs.hasCanDelete == rhs.hasCanDelete) && (!lhs.hasCanDelete || lhs.canDelete == rhs.canDelete)
+  fieldCheck = fieldCheck && (lhs.hasCanAdd == rhs.hasCanAdd) && (!lhs.hasCanAdd || lhs.canAdd == rhs.canAdd)
+  return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
+}
+
 public extension Services.Common.Containers {
   public struct ContainersRoot {
     public static var sharedInstance : ContainersRoot {
@@ -544,6 +556,332 @@ public extension Services.Common.Containers {
           var subBuilder = Services.Common.Containers.KeyValueV1.builder()
           input.readMessage(subBuilder,extensionRegistry:extensionRegistry)
           content += [subBuilder.buildPartial()]
+
+        default:
+          if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
+             unknownFields = unknownFieldsBuilder.build()
+             return self
+          }
+        }
+      }
+    }
+  }
+
+  final public class PermissionsV1 : GeneratedMessage, GeneratedMessageProtocol {
+    override public subscript(key: String) -> Any? {
+           switch key {
+           case "version": return version
+           case "canEdit": return canEdit
+           case "canDelete": return canDelete
+           case "canAdd": return canAdd
+           default: return nil
+           }
+    }
+
+    public private(set) var hasVersion:Bool = false
+    public private(set) var version:UInt32 = UInt32(1)
+
+    public private(set) var hasCanEdit:Bool = false
+    public private(set) var canEdit:Bool = false
+
+    public private(set) var hasCanDelete:Bool = false
+    public private(set) var canDelete:Bool = false
+
+    public private(set) var hasCanAdd:Bool = false
+    public private(set) var canAdd:Bool = false
+
+    required public init() {
+         super.init()
+    }
+    override public func isInitialized() -> Bool {
+     return true
+    }
+    override public func writeToCodedOutputStream(output:CodedOutputStream) {
+      if hasVersion {
+        output.writeUInt32(1, value:version)
+      }
+      if hasCanEdit {
+        output.writeBool(2, value:canEdit)
+      }
+      if hasCanDelete {
+        output.writeBool(3, value:canDelete)
+      }
+      if hasCanAdd {
+        output.writeBool(4, value:canAdd)
+      }
+      unknownFields.writeToCodedOutputStream(output)
+    }
+    override public func serializedSize() -> Int32 {
+      var serialize_size:Int32 = memoizedSerializedSize
+      if serialize_size != -1 {
+       return serialize_size
+      }
+
+      serialize_size = 0
+      if hasVersion {
+        serialize_size += version.computeUInt32Size(1)
+      }
+      if hasCanEdit {
+        serialize_size += canEdit.computeBoolSize(2)
+      }
+      if hasCanDelete {
+        serialize_size += canDelete.computeBoolSize(3)
+      }
+      if hasCanAdd {
+        serialize_size += canAdd.computeBoolSize(4)
+      }
+      serialize_size += unknownFields.serializedSize()
+      memoizedSerializedSize = serialize_size
+      return serialize_size
+    }
+    public class func parseFromData(data:NSData) -> Services.Common.Containers.PermissionsV1 {
+      return Services.Common.Containers.PermissionsV1.builder().mergeFromData(data, extensionRegistry:Services.Common.Containers.ContainersRoot.sharedInstance.extensionRegistry).build()
+    }
+    public class func parseFromData(data:NSData, extensionRegistry:ExtensionRegistry) -> Services.Common.Containers.PermissionsV1 {
+      return Services.Common.Containers.PermissionsV1.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
+    }
+    public class func parseFromInputStream(input:NSInputStream) -> Services.Common.Containers.PermissionsV1 {
+      return Services.Common.Containers.PermissionsV1.builder().mergeFromInputStream(input).build()
+    }
+    public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->Services.Common.Containers.PermissionsV1 {
+      return Services.Common.Containers.PermissionsV1.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
+    }
+    public class func parseFromCodedInputStream(input:CodedInputStream) -> Services.Common.Containers.PermissionsV1 {
+      return Services.Common.Containers.PermissionsV1.builder().mergeFromCodedInputStream(input).build()
+    }
+    public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> Services.Common.Containers.PermissionsV1 {
+      return Services.Common.Containers.PermissionsV1.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
+    }
+    public class func builder() -> Services.Common.Containers.PermissionsV1Builder {
+      return Services.Common.Containers.PermissionsV1.classBuilder() as! Services.Common.Containers.PermissionsV1Builder
+    }
+    public func builder() -> Services.Common.Containers.PermissionsV1Builder {
+      return classBuilder() as! Services.Common.Containers.PermissionsV1Builder
+    }
+    public override class func classBuilder() -> MessageBuilder {
+      return Services.Common.Containers.PermissionsV1Builder()
+    }
+    public override func classBuilder() -> MessageBuilder {
+      return Services.Common.Containers.PermissionsV1.builder()
+    }
+    public func toBuilder() -> Services.Common.Containers.PermissionsV1Builder {
+      return Services.Common.Containers.PermissionsV1.builderWithPrototype(self)
+    }
+    public class func builderWithPrototype(prototype:Services.Common.Containers.PermissionsV1) -> Services.Common.Containers.PermissionsV1Builder {
+      return Services.Common.Containers.PermissionsV1.builder().mergeFrom(prototype)
+    }
+    override public func writeDescriptionTo(inout output:String, indent:String) {
+      if hasVersion {
+        output += "\(indent) version: \(version) \n"
+      }
+      if hasCanEdit {
+        output += "\(indent) canEdit: \(canEdit) \n"
+      }
+      if hasCanDelete {
+        output += "\(indent) canDelete: \(canDelete) \n"
+      }
+      if hasCanAdd {
+        output += "\(indent) canAdd: \(canAdd) \n"
+      }
+      unknownFields.writeDescriptionTo(&output, indent:indent)
+    }
+    override public var hashValue:Int {
+        get {
+            var hashCode:Int = 7
+            if hasVersion {
+               hashCode = (hashCode &* 31) &+ version.hashValue
+            }
+            if hasCanEdit {
+               hashCode = (hashCode &* 31) &+ canEdit.hashValue
+            }
+            if hasCanDelete {
+               hashCode = (hashCode &* 31) &+ canDelete.hashValue
+            }
+            if hasCanAdd {
+               hashCode = (hashCode &* 31) &+ canAdd.hashValue
+            }
+            hashCode = (hashCode &* 31) &+  unknownFields.hashValue
+            return hashCode
+        }
+    }
+
+
+    //Meta information declaration start
+
+    override public class func className() -> String {
+        return "Services.Common.Containers.PermissionsV1"
+    }
+    override public func className() -> String {
+        return "Services.Common.Containers.PermissionsV1"
+    }
+    override public func classMetaType() -> GeneratedMessage.Type {
+        return Services.Common.Containers.PermissionsV1.self
+    }
+    //Meta information declaration end
+
+  }
+
+  final public class PermissionsV1Builder : GeneratedMessageBuilder {
+    private var builderResult:Services.Common.Containers.PermissionsV1
+
+    required override public init () {
+       builderResult = Services.Common.Containers.PermissionsV1()
+       super.init()
+    }
+    public var hasVersion:Bool {
+         get {
+              return builderResult.hasVersion
+         }
+    }
+    public var version:UInt32 {
+         get {
+              return builderResult.version
+         }
+         set (value) {
+             builderResult.hasVersion = true
+             builderResult.version = value
+         }
+    }
+    public func setVersion(value:UInt32)-> Services.Common.Containers.PermissionsV1Builder {
+      self.version = value
+      return self
+    }
+    public func clearVersion() -> Services.Common.Containers.PermissionsV1Builder{
+         builderResult.hasVersion = false
+         builderResult.version = UInt32(1)
+         return self
+    }
+    public var hasCanEdit:Bool {
+         get {
+              return builderResult.hasCanEdit
+         }
+    }
+    public var canEdit:Bool {
+         get {
+              return builderResult.canEdit
+         }
+         set (value) {
+             builderResult.hasCanEdit = true
+             builderResult.canEdit = value
+         }
+    }
+    public func setCanEdit(value:Bool)-> Services.Common.Containers.PermissionsV1Builder {
+      self.canEdit = value
+      return self
+    }
+    public func clearCanEdit() -> Services.Common.Containers.PermissionsV1Builder{
+         builderResult.hasCanEdit = false
+         builderResult.canEdit = false
+         return self
+    }
+    public var hasCanDelete:Bool {
+         get {
+              return builderResult.hasCanDelete
+         }
+    }
+    public var canDelete:Bool {
+         get {
+              return builderResult.canDelete
+         }
+         set (value) {
+             builderResult.hasCanDelete = true
+             builderResult.canDelete = value
+         }
+    }
+    public func setCanDelete(value:Bool)-> Services.Common.Containers.PermissionsV1Builder {
+      self.canDelete = value
+      return self
+    }
+    public func clearCanDelete() -> Services.Common.Containers.PermissionsV1Builder{
+         builderResult.hasCanDelete = false
+         builderResult.canDelete = false
+         return self
+    }
+    public var hasCanAdd:Bool {
+         get {
+              return builderResult.hasCanAdd
+         }
+    }
+    public var canAdd:Bool {
+         get {
+              return builderResult.canAdd
+         }
+         set (value) {
+             builderResult.hasCanAdd = true
+             builderResult.canAdd = value
+         }
+    }
+    public func setCanAdd(value:Bool)-> Services.Common.Containers.PermissionsV1Builder {
+      self.canAdd = value
+      return self
+    }
+    public func clearCanAdd() -> Services.Common.Containers.PermissionsV1Builder{
+         builderResult.hasCanAdd = false
+         builderResult.canAdd = false
+         return self
+    }
+    override public var internalGetResult:GeneratedMessage {
+         get {
+            return builderResult
+         }
+    }
+    public override func clear() -> Services.Common.Containers.PermissionsV1Builder {
+      builderResult = Services.Common.Containers.PermissionsV1()
+      return self
+    }
+    public override func clone() -> Services.Common.Containers.PermissionsV1Builder {
+      return Services.Common.Containers.PermissionsV1.builderWithPrototype(builderResult)
+    }
+    public override func build() -> Services.Common.Containers.PermissionsV1 {
+         checkInitialized()
+         return buildPartial()
+    }
+    public func buildPartial() -> Services.Common.Containers.PermissionsV1 {
+      var returnMe:Services.Common.Containers.PermissionsV1 = builderResult
+      return returnMe
+    }
+    public func mergeFrom(other:Services.Common.Containers.PermissionsV1) -> Services.Common.Containers.PermissionsV1Builder {
+      if (other == Services.Common.Containers.PermissionsV1()) {
+       return self
+      }
+      if other.hasVersion {
+           version = other.version
+      }
+      if other.hasCanEdit {
+           canEdit = other.canEdit
+      }
+      if other.hasCanDelete {
+           canDelete = other.canDelete
+      }
+      if other.hasCanAdd {
+           canAdd = other.canAdd
+      }
+      mergeUnknownFields(other.unknownFields)
+      return self
+    }
+    public override func mergeFromCodedInputStream(input:CodedInputStream) ->Services.Common.Containers.PermissionsV1Builder {
+         return mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
+    }
+    public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> Services.Common.Containers.PermissionsV1Builder {
+      var unknownFieldsBuilder:UnknownFieldSetBuilder = UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
+      while (true) {
+        var tag = input.readTag()
+        switch tag {
+        case 0: 
+          self.unknownFields = unknownFieldsBuilder.build()
+          return self
+
+        case 8 :
+          version = input.readUInt32()
+
+        case 16 :
+          canEdit = input.readBool()
+
+        case 24 :
+          canDelete = input.readBool()
+
+        case 32 :
+          canAdd = input.readBool()
 
         default:
           if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {

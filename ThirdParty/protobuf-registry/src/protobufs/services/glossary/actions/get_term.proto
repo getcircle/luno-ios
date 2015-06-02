@@ -1,0 +1,17 @@
+package services.glossary.actions.get_term;
+
+// GENERATED OPTIONS FOR: JAVA
+option java_package = "com.rhlabs.protobufs.services.glossary.actions.get_term";
+
+import "protobufs/services/glossary/containers.proto";
+
+message RequestV1 {
+    optional uint32 version = 1 [default = 1];
+    optional string id = 2;
+    optional string name = 3;
+}
+
+message ResponseV1 {
+    optional uint32 version = 1 [default = 1];
+    optional services.glossary.containers.TermV1 term = 2;
+}

@@ -91,6 +91,14 @@ public func == (lhs: Services.Registry.Requests.Group, rhs: Services.Registry.Re
   return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
 }
 
+public func == (lhs: Services.Registry.Requests.Glossary, rhs: Services.Registry.Requests.Glossary) -> Bool {
+  if (lhs === rhs) {
+    return true
+  }
+  var fieldCheck:Bool = (lhs.hashValue == rhs.hashValue)
+  return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
+}
+
 public var ServicesRegistryRequestsUsercreateUser:ConcreateExtensionField {
    get {
        return Services.Registry.Requests.RequestsRoot.sharedInstance.ServicesRegistryRequestsUsercreateUserStatic
@@ -511,6 +519,31 @@ public var ServicesRegistryRequestsGroupgetMembershipRequests:ConcreateExtension
        return Services.Registry.Requests.RequestsRoot.sharedInstance.ServicesRegistryRequestsGroupgetMembershipRequestsStatic
    }
 }
+public var ServicesRegistryRequestsGlossarycreateTerm:ConcreateExtensionField {
+   get {
+       return Services.Registry.Requests.RequestsRoot.sharedInstance.ServicesRegistryRequestsGlossarycreateTermStatic
+   }
+}
+public var ServicesRegistryRequestsGlossarygetTerm:ConcreateExtensionField {
+   get {
+       return Services.Registry.Requests.RequestsRoot.sharedInstance.ServicesRegistryRequestsGlossarygetTermStatic
+   }
+}
+public var ServicesRegistryRequestsGlossarygetTerms:ConcreateExtensionField {
+   get {
+       return Services.Registry.Requests.RequestsRoot.sharedInstance.ServicesRegistryRequestsGlossarygetTermsStatic
+   }
+}
+public var ServicesRegistryRequestsGlossaryupdateTerm:ConcreateExtensionField {
+   get {
+       return Services.Registry.Requests.RequestsRoot.sharedInstance.ServicesRegistryRequestsGlossaryupdateTermStatic
+   }
+}
+public var ServicesRegistryRequestsGlossarydeleteTerm:ConcreateExtensionField {
+   get {
+       return Services.Registry.Requests.RequestsRoot.sharedInstance.ServicesRegistryRequestsGlossarydeleteTermStatic
+   }
+}
 public extension Services.Registry.Requests {
   public struct RequestsRoot {
     public static var sharedInstance : RequestsRoot {
@@ -603,6 +636,11 @@ public extension Services.Registry.Requests {
     var ServicesRegistryRequestsGroupgetGroupStatic:ConcreateExtensionField
     var ServicesRegistryRequestsGroupaddToGroupStatic:ConcreateExtensionField
     var ServicesRegistryRequestsGroupgetMembershipRequestsStatic:ConcreateExtensionField
+    var ServicesRegistryRequestsGlossarycreateTermStatic:ConcreateExtensionField
+    var ServicesRegistryRequestsGlossarygetTermStatic:ConcreateExtensionField
+    var ServicesRegistryRequestsGlossarygetTermsStatic:ConcreateExtensionField
+    var ServicesRegistryRequestsGlossaryupdateTermStatic:ConcreateExtensionField
+    var ServicesRegistryRequestsGlossarydeleteTermStatic:ConcreateExtensionField
     public var extensionRegistry:ExtensionRegistry
 
     init() {
@@ -690,6 +728,11 @@ public extension Services.Registry.Requests {
       ServicesRegistryRequestsGroupgetGroupStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionRequestParamsV1.self, fieldNumber: 1105, defaultValue:Services.Group.Actions.GetGroup.RequestV1(), messageOrGroupClass:Services.Group.Actions.GetGroup.RequestV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
       ServicesRegistryRequestsGroupaddToGroupStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionRequestParamsV1.self, fieldNumber: 1106, defaultValue:Services.Group.Actions.AddToGroup.RequestV1(), messageOrGroupClass:Services.Group.Actions.AddToGroup.RequestV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
       ServicesRegistryRequestsGroupgetMembershipRequestsStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionRequestParamsV1.self, fieldNumber: 1107, defaultValue:Services.Group.Actions.GetMembershipRequests.RequestV1(), messageOrGroupClass:Services.Group.Actions.GetMembershipRequests.RequestV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
+      ServicesRegistryRequestsGlossarycreateTermStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionRequestParamsV1.self, fieldNumber: 1200, defaultValue:Services.Glossary.Actions.CreateTerm.RequestV1(), messageOrGroupClass:Services.Glossary.Actions.CreateTerm.RequestV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
+      ServicesRegistryRequestsGlossarygetTermStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionRequestParamsV1.self, fieldNumber: 1201, defaultValue:Services.Glossary.Actions.GetTerm.RequestV1(), messageOrGroupClass:Services.Glossary.Actions.GetTerm.RequestV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
+      ServicesRegistryRequestsGlossarygetTermsStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionRequestParamsV1.self, fieldNumber: 1202, defaultValue:Services.Glossary.Actions.GetTerms.RequestV1(), messageOrGroupClass:Services.Glossary.Actions.GetTerms.RequestV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
+      ServicesRegistryRequestsGlossaryupdateTermStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionRequestParamsV1.self, fieldNumber: 1203, defaultValue:Services.Glossary.Actions.UpdateTerm.RequestV1(), messageOrGroupClass:Services.Glossary.Actions.UpdateTerm.RequestV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
+      ServicesRegistryRequestsGlossarydeleteTermStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionRequestParamsV1.self, fieldNumber: 1204, defaultValue:Services.Glossary.Actions.DeleteTerm.RequestV1(), messageOrGroupClass:Services.Glossary.Actions.DeleteTerm.RequestV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
       extensionRegistry = ExtensionRegistry()
       registerAllExtensions(extensionRegistry)
       Soa.SoaRoot.sharedInstance.registerAllExtensions(extensionRegistry)
@@ -777,6 +820,11 @@ public extension Services.Registry.Requests {
       Services.Group.Actions.GetGroup.GetGroupRoot.sharedInstance.registerAllExtensions(extensionRegistry)
       Services.Group.Actions.AddToGroup.AddToGroupRoot.sharedInstance.registerAllExtensions(extensionRegistry)
       Services.Group.Actions.GetMembershipRequests.GetMembershipRequestsRoot.sharedInstance.registerAllExtensions(extensionRegistry)
+      Services.Glossary.Actions.CreateTerm.CreateTermRoot.sharedInstance.registerAllExtensions(extensionRegistry)
+      Services.Glossary.Actions.GetTerm.GetTermRoot.sharedInstance.registerAllExtensions(extensionRegistry)
+      Services.Glossary.Actions.GetTerms.GetTermsRoot.sharedInstance.registerAllExtensions(extensionRegistry)
+      Services.Glossary.Actions.UpdateTerm.UpdateTermRoot.sharedInstance.registerAllExtensions(extensionRegistry)
+      Services.Glossary.Actions.DeleteTerm.DeleteTermRoot.sharedInstance.registerAllExtensions(extensionRegistry)
     }
     public func registerAllExtensions(registry:ExtensionRegistry) {
       registry.addExtension(ServicesRegistryRequestsUsercreateUserStatic)
@@ -863,6 +911,11 @@ public extension Services.Registry.Requests {
       registry.addExtension(ServicesRegistryRequestsGroupgetGroupStatic)
       registry.addExtension(ServicesRegistryRequestsGroupaddToGroupStatic)
       registry.addExtension(ServicesRegistryRequestsGroupgetMembershipRequestsStatic)
+      registry.addExtension(ServicesRegistryRequestsGlossarycreateTermStatic)
+      registry.addExtension(ServicesRegistryRequestsGlossarygetTermStatic)
+      registry.addExtension(ServicesRegistryRequestsGlossarygetTermsStatic)
+      registry.addExtension(ServicesRegistryRequestsGlossaryupdateTermStatic)
+      registry.addExtension(ServicesRegistryRequestsGlossarydeleteTermStatic)
     }
   }
 
@@ -2706,6 +2759,167 @@ public extension Services.Registry.Requests {
          return mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
     }
     public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> Services.Registry.Requests.GroupBuilder {
+      var unknownFieldsBuilder:UnknownFieldSetBuilder = UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
+      while (true) {
+        var tag = input.readTag()
+        switch tag {
+        case 0: 
+          self.unknownFields = unknownFieldsBuilder.build()
+          return self
+
+        default:
+          if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
+             unknownFields = unknownFieldsBuilder.build()
+             return self
+          }
+        }
+      }
+    }
+  }
+
+  final public class Glossary : GeneratedMessage, GeneratedMessageProtocol {
+    override public subscript(key: String) -> Any? {
+           switch key {
+           default: return nil
+           }
+    }
+
+    public class func createTerm() -> ConcreateExtensionField {
+         return ServicesRegistryRequestsGlossarycreateTerm
+    }
+    public class func getTerm() -> ConcreateExtensionField {
+         return ServicesRegistryRequestsGlossarygetTerm
+    }
+    public class func getTerms() -> ConcreateExtensionField {
+         return ServicesRegistryRequestsGlossarygetTerms
+    }
+    public class func updateTerm() -> ConcreateExtensionField {
+         return ServicesRegistryRequestsGlossaryupdateTerm
+    }
+    public class func deleteTerm() -> ConcreateExtensionField {
+         return ServicesRegistryRequestsGlossarydeleteTerm
+    }
+    required public init() {
+         super.init()
+    }
+    override public func isInitialized() -> Bool {
+     return true
+    }
+    override public func writeToCodedOutputStream(output:CodedOutputStream) {
+      unknownFields.writeToCodedOutputStream(output)
+    }
+    override public func serializedSize() -> Int32 {
+      var serialize_size:Int32 = memoizedSerializedSize
+      if serialize_size != -1 {
+       return serialize_size
+      }
+
+      serialize_size = 0
+      serialize_size += unknownFields.serializedSize()
+      memoizedSerializedSize = serialize_size
+      return serialize_size
+    }
+    public class func parseFromData(data:NSData) -> Services.Registry.Requests.Glossary {
+      return Services.Registry.Requests.Glossary.builder().mergeFromData(data, extensionRegistry:Services.Registry.Requests.RequestsRoot.sharedInstance.extensionRegistry).build()
+    }
+    public class func parseFromData(data:NSData, extensionRegistry:ExtensionRegistry) -> Services.Registry.Requests.Glossary {
+      return Services.Registry.Requests.Glossary.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
+    }
+    public class func parseFromInputStream(input:NSInputStream) -> Services.Registry.Requests.Glossary {
+      return Services.Registry.Requests.Glossary.builder().mergeFromInputStream(input).build()
+    }
+    public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->Services.Registry.Requests.Glossary {
+      return Services.Registry.Requests.Glossary.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
+    }
+    public class func parseFromCodedInputStream(input:CodedInputStream) -> Services.Registry.Requests.Glossary {
+      return Services.Registry.Requests.Glossary.builder().mergeFromCodedInputStream(input).build()
+    }
+    public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> Services.Registry.Requests.Glossary {
+      return Services.Registry.Requests.Glossary.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
+    }
+    public class func builder() -> Services.Registry.Requests.GlossaryBuilder {
+      return Services.Registry.Requests.Glossary.classBuilder() as! Services.Registry.Requests.GlossaryBuilder
+    }
+    public func builder() -> Services.Registry.Requests.GlossaryBuilder {
+      return classBuilder() as! Services.Registry.Requests.GlossaryBuilder
+    }
+    public override class func classBuilder() -> MessageBuilder {
+      return Services.Registry.Requests.GlossaryBuilder()
+    }
+    public override func classBuilder() -> MessageBuilder {
+      return Services.Registry.Requests.Glossary.builder()
+    }
+    public func toBuilder() -> Services.Registry.Requests.GlossaryBuilder {
+      return Services.Registry.Requests.Glossary.builderWithPrototype(self)
+    }
+    public class func builderWithPrototype(prototype:Services.Registry.Requests.Glossary) -> Services.Registry.Requests.GlossaryBuilder {
+      return Services.Registry.Requests.Glossary.builder().mergeFrom(prototype)
+    }
+    override public func writeDescriptionTo(inout output:String, indent:String) {
+      unknownFields.writeDescriptionTo(&output, indent:indent)
+    }
+    override public var hashValue:Int {
+        get {
+            var hashCode:Int = 7
+            hashCode = (hashCode &* 31) &+  unknownFields.hashValue
+            return hashCode
+        }
+    }
+
+
+    //Meta information declaration start
+
+    override public class func className() -> String {
+        return "Services.Registry.Requests.Glossary"
+    }
+    override public func className() -> String {
+        return "Services.Registry.Requests.Glossary"
+    }
+    override public func classMetaType() -> GeneratedMessage.Type {
+        return Services.Registry.Requests.Glossary.self
+    }
+    //Meta information declaration end
+
+  }
+
+  final public class GlossaryBuilder : GeneratedMessageBuilder {
+    private var builderResult:Services.Registry.Requests.Glossary
+
+    required override public init () {
+       builderResult = Services.Registry.Requests.Glossary()
+       super.init()
+    }
+    override public var internalGetResult:GeneratedMessage {
+         get {
+            return builderResult
+         }
+    }
+    public override func clear() -> Services.Registry.Requests.GlossaryBuilder {
+      builderResult = Services.Registry.Requests.Glossary()
+      return self
+    }
+    public override func clone() -> Services.Registry.Requests.GlossaryBuilder {
+      return Services.Registry.Requests.Glossary.builderWithPrototype(builderResult)
+    }
+    public override func build() -> Services.Registry.Requests.Glossary {
+         checkInitialized()
+         return buildPartial()
+    }
+    public func buildPartial() -> Services.Registry.Requests.Glossary {
+      var returnMe:Services.Registry.Requests.Glossary = builderResult
+      return returnMe
+    }
+    public func mergeFrom(other:Services.Registry.Requests.Glossary) -> Services.Registry.Requests.GlossaryBuilder {
+      if (other == Services.Registry.Requests.Glossary()) {
+       return self
+      }
+      mergeUnknownFields(other.unknownFields)
+      return self
+    }
+    public override func mergeFromCodedInputStream(input:CodedInputStream) ->Services.Registry.Requests.GlossaryBuilder {
+         return mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
+    }
+    public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> Services.Registry.Requests.GlossaryBuilder {
       var unknownFieldsBuilder:UnknownFieldSetBuilder = UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
       while (true) {
         var tag = input.readTag()
