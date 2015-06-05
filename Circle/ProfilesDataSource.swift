@@ -15,7 +15,7 @@ class ProfilesDataSource: CardDataSource {
     private(set) var searchAttributeValue: AnyObject?
     
     private var card: Card!
-    private var cardType: Card.CardType = UI_USER_INTERFACE_IDIOM() == .Pad ? .ProfilesGrid : .Profiles
+    private var cardType: Card.CardType = UIDevice.currentDevice().userInterfaceIdiom == .Pad ? .ProfilesGrid : .Profiles
     private var profiles = Array<Services.Profile.Containers.ProfileV1>()
     
     // MARK: - Configuration

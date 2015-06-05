@@ -10,7 +10,7 @@ import UIKit
 
 class ProfileGridItemCollectionViewCell: ProfileCollectionViewCell {
 
-    let NUMBER_OF_COLUMNS: CGFloat = UI_USER_INTERFACE_IDIOM() == .Pad ? 3.0 : 2.0
+    let NUMBER_OF_COLUMNS: CGFloat = UIDevice.currentDevice().userInterfaceIdiom == .Pad ? 3.0 : 2.0
     
     override class var interItemSpacing: CGFloat {
         return 10.0

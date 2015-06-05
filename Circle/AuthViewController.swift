@@ -662,7 +662,7 @@ class AuthViewController: UIViewController {
             socialConnectVC.authorizationURL = authorizationURL
         }
         let socialNavController = UINavigationController(rootViewController: socialConnectVC)
-        if (UI_USER_INTERFACE_IDIOM() == .Pad) {
+        if (UIDevice.currentDevice().userInterfaceIdiom == .Pad) {
             socialNavController.modalPresentationStyle = .FormSheet
         }
         navigationController?.presentViewController(socialNavController, animated: true, completion:nil)
