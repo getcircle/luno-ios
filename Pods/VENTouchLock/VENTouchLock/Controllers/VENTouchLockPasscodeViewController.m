@@ -79,6 +79,7 @@ static const NSInteger VENTouchLockViewControllerPasscodeLength = 4;
     passcodeView.characterColor = self.touchLock.appearance.passcodeViewControllerCharacterColor;
     [self.view addSubview:passcodeView];
     self.passcodeView = passcodeView;
+    self.passcodeView.frame = self.view.bounds;
 }
 
 - (void)userTappedCancel
@@ -101,7 +102,7 @@ static const NSInteger VENTouchLockViewControllerPasscodeLength = 4;
 
 - (UINavigationController *)embeddedInNavigationController
 {
-    return [super ventouchlock_embeddedInNavigationController];
+    return [super ventouchlock_embeddedInNavigationControllerWithNavigationBarClass:self.touchLock.appearance.navigationBarClass];
 }
 
 - (void)keyboardWillShow:(NSNotification *)notification

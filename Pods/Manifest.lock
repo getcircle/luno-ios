@@ -13,7 +13,7 @@ PODS:
   - PureLayout (2.0.6)
   - SSKeychain (1.2.3)
   - UIViewPlusPosition (0.0.1)
-  - VENTouchLock (1.10.1):
+  - VENTouchLock (1.11.0):
     - SSKeychain (~> 1.0)
 
 DEPENDENCIES:
@@ -39,6 +39,6 @@ SPEC CHECKSUMS:
   PureLayout: f25f0bb904d5ccfe6e31da3cb869185259f02e0d
   SSKeychain: 3f42991739c6c60a9cf1bbd4dff6c0d3694bcf3d
   UIViewPlusPosition: 56c99fd247aa0674b3a3fcfd1f5b92a1fa0d0d55
-  VENTouchLock: 0745fddd1f70e8edf80ca0decf3725978e9bb565
+  VENTouchLock: f3145d6fbff243d6692dfb1107b88db06dc216c9
 
 COCOAPODS: 0.36.4
