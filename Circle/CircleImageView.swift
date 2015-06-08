@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Kingfisher
+import AFNetworking
 import ProtobufRegistry
 
 class CircleImageView: UIImageView {
@@ -15,11 +15,7 @@ class CircleImageView: UIImageView {
     struct ProfileColorsHolder {
         static var colors = [String: UIColor]()
     }
-    
-    class var imageOptions: KingfisherOptionsInfo {
-        return [KingfisherOptionsInfoKey.Options: KingfisherOptions.BackgroundDecode]
-    }
-    
+        
     override var image: UIImage? {
         didSet {
             if image != nil {
@@ -60,6 +56,7 @@ class CircleImageView: UIImageView {
         setImageLabelFont()
     }
     
+    
     private func customInit() {
         imageLabel = UILabel(forAutoLayout: ())
         imageLabel.backgroundColor = UIColor.clearColor()
@@ -70,20 +67,27 @@ class CircleImageView: UIImageView {
         imageLabel.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
         setImageLabelFont()
     }
+    
+    private func updateAcceptableContentTypes() {
+        let serializer = AFImageResponseSerializer()
+        serializer.acceptableContentTypes = serializer.acceptableContentTypes.union(["image/jpg", "image/pjpeg"])
+        imageResponseSerializer = serializer
+    }
 
     func setImageWithProfile(profile: Services.Profile.Containers.ProfileV1, successHandler: ((image: UIImage) -> Void)? = nil) {
         if let imageURL = NSURL(string: profile.imageUrl) where profile.imageUrl.trimWhitespace() != "" {
+            let imageURLRequest = NSURLRequest(URL: imageURL)
             let isImageCached = isImageInCache(imageURL)
             if !isImageCached {
                 transform = CGAffineTransformMakeScale(0.0, 0.0)
             }
             
-            kf_setImageWithURL(imageURL,
-                placeholderImage: nil,
-                optionsInfo: self.dynamicType.imageOptions,
-                progressBlock: nil,
-                completionHandler: { (image, error, cacheType, imageURL) -> Void in
-                    if let image = image where error == nil {
+            updateAcceptableContentTypes()
+            setImageWithURLRequest(
+                imageURLRequest, 
+                placeholderImage: nil, 
+                success: { (urlRequest, response, image) -> Void in
+                    if let image = image {
                         if let imageID = self.imageProfileIdentifier {
                             if imageID != profile.id {
                                 self.transform = CGAffineTransformIdentity
@@ -100,11 +104,12 @@ class CircleImageView: UIImageView {
                             self.makeImageVisible(!isImageCached)
                         }
                     }
-                    else {
-                        self.addImageLabelForProfile(profile)
-                        self.makeImageVisible(false)
-                        println("failed to fetch image for profile: \(profile.fullName) - \(profile.imageUrl) error: \(error?.localizedDescription)")
-                    }
+                    
+                },
+                failure: { (imageURLRequest, response, error) -> Void in
+                    self.addImageLabelForProfile(profile)
+                    self.makeImageVisible(false)
+                    println("failed to fetch image for profile: \(profile.fullName) - \(profile.imageUrl) error: \(error?.localizedDescription)")
                 }
             )
         }
@@ -119,12 +124,14 @@ class CircleImageView: UIImageView {
             if !isImageCached {
                 transform = CGAffineTransformMakeScale(0.0, 0.0)
             }
-            kf_setImageWithURL(imageURL,
+            
+            let imageURLRequest = NSURLRequest(URL: imageURL)
+            updateAcceptableContentTypes()
+            setImageWithURLRequest(
+                imageURLRequest,
                 placeholderImage: nil,
-                optionsInfo: self.dynamicType.imageOptions,
-                progressBlock: nil,
-                completionHandler: { (image, error, cacheType, imageURL) -> Void in
-                    if let image = image where error == nil {
+                success: { (urlRequest, response, image) -> Void in
+                    if let image = image {
                         if let successCallback = successHandler {
                             self.transform = CGAffineTransformIdentity
                             successCallback(image: image)
@@ -136,11 +143,11 @@ class CircleImageView: UIImageView {
                             }
                         }
                     }
-                    else {
-                        self.addImageLabelForLocation(location)
-                        self.makeImageVisible(false)
-                        println("failed to fetch image for location: \(location.name) - \(location.imageUrl) error: \(error?.localizedDescription)")
-                    }
+                },
+                failure: { (imageURLRequest, response, error) -> Void in
+                    self.addImageLabelForLocation(location)
+                    self.makeImageVisible(false)
+                    println("failed to fetch image for location: \(location.name) - \(location.imageUrl) error: \(error?.localizedDescription)")
                 }
             )
         }
@@ -149,20 +156,21 @@ class CircleImageView: UIImageView {
         }
     }
     
-    func setImageWithURL(url: NSURL, animated: Bool, successHandler: ((image: UIImage) -> Void)? = nil) {
+    func setImageWithURL(imageURL: NSURL, animated: Bool, successHandler: ((image: UIImage) -> Void)? = nil) {
         var shouldAnimate = animated
-        let isImageCached = isImageInCache(url)
+        let isImageCached = isImageInCache(imageURL)
         shouldAnimate = isImageCached ? false : shouldAnimate
         if shouldAnimate {
             alpha = 0.0
         }
         
-        kf_setImageWithURL(url,
+        let imageURLRequest = NSURLRequest(URL: imageURL)
+        updateAcceptableContentTypes()
+        setImageWithURLRequest(
+            imageURLRequest,
             placeholderImage: nil,
-            optionsInfo: self.dynamicType.imageOptions,
-            progressBlock: nil,
-            completionHandler: { (image, error, cacheType, imageURL) -> Void in
-                if let image = image where error == nil {
+            success: { (urlRequest, response, image) -> Void in
+                if let image = image {
                     if let successCallback = successHandler {
                         successCallback(image: image)
                     }
@@ -173,17 +181,15 @@ class CircleImageView: UIImageView {
                         self.alpha = 1.0
                     })
                 }
-            }
+            },
+            failure: nil
         )
     }
     
     func setImageWithProfileImageURL(profileImageURL: String) {
         if let imageURL = NSURL(string: profileImageURL) {
-            kf_setImageWithURL(
-                imageURL,
-                placeholderImage: nil,
-                optionsInfo: self.dynamicType.imageOptions
-            )
+            updateAcceptableContentTypes()
+            setImageWithURL(imageURL)
         }
     }
     
@@ -205,7 +211,10 @@ class CircleImageView: UIImageView {
     
     private func isImageInCache(url: NSURL) -> Bool {
         if let urlString = url.absoluteString {
-            return KingfisherManager.sharedManager.cache.isImageCachedForKey(urlString).cached
+            let imageURLRequest = NSURLRequest(URL: url)
+            if let cachedUIImage = UIImageView.sharedImageCache().cachedImageForRequest(imageURLRequest) {
+                return true
+            }
         }
         
         return false
