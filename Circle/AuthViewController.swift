@@ -291,12 +291,13 @@ class AuthViewController: UIViewController {
 
             Mixpanel.identifyUser(user!, newUser: newUser!)
             Mixpanel.registerSuperPropertiesForUser(user!)
-            // Record user's device
-            Services.User.Actions.recordDevice(nil, completionHandler: nil)
             
             self.trackSignupLogin(backend, newUser: newUser!)
             self.cacheLoginData(token!, user: user!)
             self.fetchAndCacheUserProfile(user!.id) { (error) in
+                // Record user's device
+                Services.User.Actions.recordDevice(nil, completionHandler: nil)
+                
                 if error != nil {
                     let homelessVC = HomelessViewController(nibName: "HomelessViewController", bundle: nil)
                     self.navigationController?.setViewControllers([homelessVC], animated: true)
