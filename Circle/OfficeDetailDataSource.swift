@@ -107,7 +107,7 @@ class OfficeDetailDataSource: CardDataSource {
         let image = ItemImage.genericNextImage
         var content: [String: AnyObject] = [
             "name": AppStrings.CardTitlePeople,
-            "value": String(nextProfilesRequest?.getPaginator().count ?? 0),
+            "value": String(selectedOffice.profileCount),
             "image": image.name,
             "imageTintColor": image.tint,
             "type": ContentType.PeopleCount.rawValue
@@ -125,7 +125,7 @@ class OfficeDetailDataSource: CardDataSource {
             let teamsCard = Card(
                 cardType: .TeamsGrid,
                 title: AppStrings.CardTitleOfficeTeam,
-                contentCount: nextTeamsRequest?.getPaginator().countAsInt() ?? 0
+                contentCount: nextTeamsRequest?.getPaginator().countAsInt() ?? teams.count
             )
             teamsCard.addContent(content: teams as [AnyObject], maxVisibleItems: 6)
             teamsCard.sectionInset = UIEdgeInsetsZero

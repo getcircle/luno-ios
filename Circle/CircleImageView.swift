@@ -33,7 +33,7 @@ class CircleImageView: UIImageView {
             }
         }
     }
-    
+
     // Set this boolean to control globally whether the image loading should be animated
     // This is honored over any internal condition around image caching.
     var animateImageLoading = true
