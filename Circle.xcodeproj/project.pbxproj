@@ -180,7 +180,7 @@
 		8F809F871A79DD6900029A47 /* NotesOverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F809F851A79DD6900029A47 /* NotesOverviewViewController.swift */; };
 		8F809F881A79DD6900029A47 /* NotesOverviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F809F861A79DD6900029A47 /* NotesOverviewViewController.xib */; };
 		8F809F8D1A79DE1A00029A47 /* NotesOverviewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F809F8C1A79DE1A00029A47 /* NotesOverviewDataSource.swift */; };
-		8F8167D31AE5712400B7B9B7 /* AppDelegateKingfisherExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8167D21AE5712400B7B9B7 /* AppDelegateKingfisherExtension.swift */; };
+		8F8167D31AE5712400B7B9B7 /* AppDelegateCacheExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8167D21AE5712400B7B9B7 /* AppDelegateCacheExtension.swift */; };
 		8F81713C1A62E07000CB7692 /* VerifyProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F81713A1A62E07000CB7692 /* VerifyProfileViewController.swift */; };
 		8F81713D1A62E07000CB7692 /* VerifyProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F81713B1A62E07000CB7692 /* VerifyProfileViewController.xib */; };
 		8F823E381A706B790006264B /* OrganizationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F823E371A706B790006264B /* OrganizationDetailViewController.swift */; };
@@ -553,7 +553,7 @@
 		8F809F851A79DD6900029A47 /* NotesOverviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotesOverviewViewController.swift; sourceTree = "<group>"; };
 		8F809F861A79DD6900029A47 /* NotesOverviewViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotesOverviewViewController.xib; sourceTree = "<group>"; };
 		8F809F8C1A79DE1A00029A47 /* NotesOverviewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotesOverviewDataSource.swift; sourceTree = "<group>"; };
-		8F8167D21AE5712400B7B9B7 /* AppDelegateKingfisherExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegateKingfisherExtension.swift; sourceTree = "<group>"; };
+		8F8167D21AE5712400B7B9B7 /* AppDelegateCacheExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegateCacheExtension.swift; sourceTree = "<group>"; };
 		8F81713A1A62E07000CB7692 /* VerifyProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerifyProfileViewController.swift; sourceTree = "<group>"; };
 		8F81713B1A62E07000CB7692 /* VerifyProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VerifyProfileViewController.xib; sourceTree = "<group>"; };
 		8F823E371A706B790006264B /* OrganizationDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrganizationDetailViewController.swift; sourceTree = "<group>"; };
@@ -918,7 +918,7 @@
 			isa = PBXGroup;
 			children = (
 				8F22CB761A2661890026376E /* AppDelegateAppearanceExtension.swift */,
-				8F8167D21AE5712400B7B9B7 /* AppDelegateKingfisherExtension.swift */,
+				8F8167D21AE5712400B7B9B7 /* AppDelegateCacheExtension.swift */,
 				8F5933C51AC9FAD000905E14 /* AppDelegateNotificationExtension.swift */,
 				BFE213CC1A5EF7E30033E2F5 /* AppDelegateSearchCacheExtension.swift */,
 				BFB791881A2C346A0048E8FB /* CALayerExtension.swift */,
@@ -1721,7 +1721,7 @@
 				8FCC95CD1A52828B00421E65 /* ProfileCollectionViewCell.swift in Sources */,
 				BF59AA931A2C152F00C0CDB9 /* UITableViewExtension.swift in Sources */,
 				BF2CBFD61A473E9100BE589D /* User.swift in Sources */,
-				8F8167D31AE5712400B7B9B7 /* AppDelegateKingfisherExtension.swift in Sources */,
+				8F8167D31AE5712400B7B9B7 /* AppDelegateCacheExtension.swift in Sources */,
 				8F7400251A6863B000D96B60 /* TagDetailDataSource.swift in Sources */,
 				8F4805E41A5DE4B800273731 /* MapHeaderCollectionReusableView.swift in Sources */,
 				8FC8781F1AB68B38003FDB27 /* CircleButton.swift in Sources */,
