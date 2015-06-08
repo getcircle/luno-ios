@@ -16,6 +16,10 @@ class CircleImageView: UIImageView {
         static var colors = [String: UIColor]()
     }
     
+    class var imageOptions: KingfisherOptionsInfo {
+        return [KingfisherOptionsInfoKey.Options: KingfisherOptions.BackgroundDecode]
+    }
+    
     override var image: UIImage? {
         didSet {
             if image != nil {
@@ -75,8 +79,8 @@ class CircleImageView: UIImageView {
             }
             
             kf_setImageWithURL(imageURL,
-                placeholderImage: UIImage.imageFromColor(UIColor.lightGrayColor(), withRect: bounds),
-                optionsInfo: [.Options: KingfisherOptions.None],
+                placeholderImage: nil,
+                optionsInfo: self.dynamicType.imageOptions,
                 progressBlock: nil,
                 completionHandler: { (image, error, cacheType, imageURL) -> Void in
                     if let image = image where error == nil {
@@ -116,8 +120,8 @@ class CircleImageView: UIImageView {
                 transform = CGAffineTransformMakeScale(0.0, 0.0)
             }
             kf_setImageWithURL(imageURL,
-                placeholderImage: UIImage.imageFromColor(UIColor.lightGrayColor(), withRect: bounds),
-                optionsInfo: [.Options: KingfisherOptions.None],
+                placeholderImage: nil,
+                optionsInfo: self.dynamicType.imageOptions,
                 progressBlock: nil,
                 completionHandler: { (image, error, cacheType, imageURL) -> Void in
                     if let image = image where error == nil {
@@ -154,8 +158,8 @@ class CircleImageView: UIImageView {
         }
         
         kf_setImageWithURL(url,
-            placeholderImage: UIImage.imageFromColor(UIColor.lightGrayColor(), withRect: bounds),
-            optionsInfo: [.Options: KingfisherOptions.None],
+            placeholderImage: nil,
+            optionsInfo: self.dynamicType.imageOptions,
             progressBlock: nil,
             completionHandler: { (image, error, cacheType, imageURL) -> Void in
                 if let image = image where error == nil {
@@ -177,7 +181,8 @@ class CircleImageView: UIImageView {
         if let imageURL = NSURL(string: profileImageURL) {
             kf_setImageWithURL(
                 imageURL,
-                placeholderImage: UIImage.imageFromColor(UIColor.lightGrayColor(), withRect: bounds)
+                placeholderImage: nil,
+                optionsInfo: self.dynamicType.imageOptions
             )
         }
     }
