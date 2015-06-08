@@ -28,6 +28,7 @@ public func == (lhs: Services.User.Containers.DeviceV1, rhs: Services.User.Conta
   fieldCheck = fieldCheck && (lhs.hasDeviceUuid == rhs.hasDeviceUuid) && (!lhs.hasDeviceUuid || lhs.deviceUuid == rhs.deviceUuid)
   fieldCheck = fieldCheck && (lhs.hasUserId == rhs.hasUserId) && (!lhs.hasUserId || lhs.userId == rhs.userId)
   fieldCheck = fieldCheck && (lhs.hasLanguagePreference == rhs.hasLanguagePreference) && (!lhs.hasLanguagePreference || lhs.languagePreference == rhs.languagePreference)
+  fieldCheck = fieldCheck && (lhs.hasProvider == rhs.hasProvider) && (!lhs.hasProvider || lhs.provider == rhs.provider)
   return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
 }
 
@@ -387,6 +388,18 @@ public extension Services.User.Containers {
   }
 
   final public class DeviceV1 : GeneratedMessage, GeneratedMessageProtocol {
+
+
+      //Enum type declaration start 
+
+      public enum ProviderV1:Int32 {
+        case Apple = 0
+        case Google = 1
+
+      }
+
+      //Enum type declaration end 
+
     override public subscript(key: String) -> Any? {
            switch key {
            case "version": return version
@@ -398,6 +411,7 @@ public extension Services.User.Containers {
            case "deviceUuid": return deviceUuid
            case "userId": return userId
            case "languagePreference": return languagePreference
+           case "provider": return self.provider
            default: return nil
            }
     }
@@ -429,6 +443,8 @@ public extension Services.User.Containers {
     public private(set) var hasLanguagePreference:Bool = false
     public private(set) var languagePreference:String = ""
 
+    public private(set) var provider:Services.User.Containers.DeviceV1.ProviderV1 = Services.User.Containers.DeviceV1.ProviderV1.Apple
+    public private(set) var hasProvider:Bool = false
     required public init() {
          super.init()
     }
@@ -462,6 +478,9 @@ public extension Services.User.Containers {
       }
       if hasLanguagePreference {
         output.writeString(9, value:languagePreference)
+      }
+      if hasProvider {
+        output.writeEnum(10, value:provider.rawValue)
       }
       unknownFields.writeToCodedOutputStream(output)
     }
@@ -498,6 +517,9 @@ public extension Services.User.Containers {
       }
       if hasLanguagePreference {
         serialize_size += languagePreference.computeStringSize(9)
+      }
+      if (hasProvider) {
+        serialize_size += provider.rawValue.computeEnumSize(10)
       }
       serialize_size += unknownFields.serializedSize()
       memoizedSerializedSize = serialize_size
@@ -567,6 +589,9 @@ public extension Services.User.Containers {
       if hasLanguagePreference {
         output += "\(indent) languagePreference: \(languagePreference) \n"
       }
+      if (hasProvider) {
+        output += "\(indent) provider: \(provider.rawValue)\n"
+      }
       unknownFields.writeDescriptionTo(&output, indent:indent)
     }
     override public var hashValue:Int {
@@ -598,6 +623,9 @@ public extension Services.User.Containers {
             }
             if hasLanguagePreference {
                hashCode = (hashCode &* 31) &+ languagePreference.hashValue
+            }
+            if hasProvider {
+               hashCode = (hashCode &* 31) &+ Int(provider.rawValue)
             }
             hashCode = (hashCode &* 31) &+  unknownFields.hashValue
             return hashCode
@@ -834,6 +862,29 @@ public extension Services.User.Containers {
          builderResult.languagePreference = ""
          return self
     }
+      public var hasProvider:Bool{
+          get {
+              return builderResult.hasProvider
+          }
+      }
+      public var provider:Services.User.Containers.DeviceV1.ProviderV1 {
+          get {
+              return builderResult.provider
+          }
+          set (value) {
+              builderResult.hasProvider = true
+              builderResult.provider = value
+          }
+      }
+      public func setProvider(value:Services.User.Containers.DeviceV1.ProviderV1)-> Services.User.Containers.DeviceV1Builder {
+        self.provider = value
+        return self
+      }
+      public func clearProvider() -> Services.User.Containers.DeviceV1Builder {
+         builderResult.hasProvider = false
+         builderResult.provider = .Apple
+         return self
+      }
     override public var internalGetResult:GeneratedMessage {
          get {
             return builderResult
@@ -885,6 +936,9 @@ public extension Services.User.Containers {
       if other.hasLanguagePreference {
            languagePreference = other.languagePreference
       }
+      if other.hasProvider {
+           provider = other.provider
+      }
       mergeUnknownFields(other.unknownFields)
       return self
     }
@@ -926,6 +980,14 @@ public extension Services.User.Containers {
 
         case 74 :
           languagePreference = input.readString()
+
+        case 80 :
+          let valueIntprovider = input.readEnum()
+          if let enumsprovider = Services.User.Containers.DeviceV1.ProviderV1(rawValue:valueIntprovider){
+               provider = enumsprovider
+          } else {
+               unknownFieldsBuilder.mergeVarintField(10, value:Int64(valueIntprovider))
+          }
 
         default:
           if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {

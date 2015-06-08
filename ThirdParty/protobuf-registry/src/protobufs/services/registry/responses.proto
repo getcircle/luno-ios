@@ -21,6 +21,7 @@ import "protobufs/services/user/actions/request_access.proto";
 import "protobufs/services/user/actions/delete_identity.proto";
 import "protobufs/services/user/actions/logout.proto";
 import "protobufs/services/user/actions/get_authentication_instructions.proto";
+import "protobufs/services/user/actions/get_active_devices.proto";
 
 import "protobufs/services/organization/actions/create_organization.proto";
 import "protobufs/services/organization/actions/create_team.proto";
@@ -106,6 +107,11 @@ import "protobufs/services/glossary/actions/get_terms.proto";
 import "protobufs/services/glossary/actions/update_term.proto";
 import "protobufs/services/glossary/actions/delete_term.proto";
 
+import "protobufs/services/notification/actions/register_device.proto";
+import "protobufs/services/notification/actions/get_preferences.proto";
+import "protobufs/services/notification/actions/update_preference.proto";
+import "protobufs/services/notification/actions/send_notification.proto";
+
 message User {
     extend soa.ActionResultV1 {
         optional services.user.actions.create_user.ResponseV1 create_user = 100;
@@ -124,6 +130,7 @@ message User {
         optional services.user.actions.delete_identity.ResponseV1 delete_identity = 113;
         optional services.user.actions.logout.ResponseV1 logout = 114;
         optional services.user.actions.get_authentication_instructions.ResponseV1 get_authentication_instructions = 115;
+        optional services.user.actions.get_active_devices.ResponseV1 get_active_devices = 116;
     }
 }
 
@@ -252,5 +259,14 @@ message Glossary {
         optional services.glossary.actions.get_terms.ResponseV1 get_terms = 1202;
         optional services.glossary.actions.update_term.ResponseV1 update_term = 1203;
         optional services.glossary.actions.delete_term.ResponseV1 delete_term = 1204;
+    }
+}
+
+message Notification {
+    extend soa.ActionResultV1 {
+        optional services.notification.actions.register_device.ResponseV1 register_device = 1300;
+        optional services.notification.actions.get_preferences.ResponseV1 get_preferences = 1301;
+        optional services.notification.actions.update_preference.ResponseV1 update_preference = 1302;
+        optional services.notification.actions.send_notification.ResponseV1 send_notification = 1303;
     }
 }

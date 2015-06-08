@@ -1,0 +1,13 @@
+package services.user.actions.get_active_devices;
+
+import "protobufs/services/user/containers.proto";
+
+message RequestV1 {
+    optional uint32 version = 1 [default = 1];
+    optional string user_id = 2;
+}
+
+message ResponseV1 {
+    optional uint32 version = 1 [default = 1];
+    repeated services.user.containers.DeviceV1 devices = 2;
+}

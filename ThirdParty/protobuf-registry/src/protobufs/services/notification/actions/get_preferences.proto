@@ -1,0 +1,13 @@
+package services.notification.actions.get_preferences;
+
+import "protobufs/services/notification/containers.proto";
+
+message RequestV1 {
+    optional uint32 version = 1 [default = 1];
+    optional services.notification.containers.NotificationChannelV1 channel = 2;
+}
+
+message ResponseV1 {
+    optional uint32 version = 1 [default = 1];
+    repeated services.notification.containers.NotificationPreferenceV1 preferences = 2;
+}

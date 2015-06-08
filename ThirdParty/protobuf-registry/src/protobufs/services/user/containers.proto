@@ -10,6 +10,12 @@ message AccessRequestV1 {
 }
 
 message DeviceV1 {
+
+    enum ProviderV1 {
+        APPLE = 0;
+        GOOGLE = 1;
+    }
+
     optional uint32 version = 1 [default = 1];
     optional string id = 2;
     optional string notification_token = 3;
@@ -19,6 +25,7 @@ message DeviceV1 {
     optional string device_uuid = 7;
     optional string user_id = 8;
     optional string language_preference = 9;
+    optional ProviderV1 provider = 10;
 }
 
 message IdentityV1 {

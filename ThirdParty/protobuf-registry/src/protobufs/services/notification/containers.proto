@@ -1,0 +1,60 @@
+package services.notification.containers;
+
+enum NotificationChannelV1 {
+    MOBILE_PUSH = 0;
+}
+
+message NotificationTokenV1 {
+
+    enum ProviderV1 {
+        SNS = 0;
+    }
+
+    enum ProviderPlatformV1 {
+        APNS = 0;
+        GCM = 1;
+    }
+
+    optional uint32 version = 1 [default = 1];
+    optional string user_id = 2;
+    optional string device_id = 3;
+    optional string provider_token = 4;
+    optional ProviderV1 provider = 5;
+    optional ProviderPlatformV1 provider_platform = 6;
+}
+
+message NotificationPreferenceV1 {
+    optional uint32 version = 1 [default = 1];
+    optional string id = 2;
+    optional string profile_id = 3;
+    optional NotificationTypeV1.TypeIdV1 notification_type_id = 4;
+    optional bool subscribed = 5;
+    optional NotificationTypeV1 notification_type = 6;
+}
+
+message NotificationTypeV1 {
+
+    enum TypeIdV1 {
+        GROUP_MEMBERSHIP_REQUEST = 0;
+        UPCOMING_BIRTHDAY_TEAM = 1;
+    }
+
+    optional uint32 version = 1 [default = 1];
+    optional TypeIdV1 id = 2;
+    optional string description = 3;
+    optional bool opt_in = 4;
+    optional bool mobile_push = 5;
+}
+
+message NotificationV1 {
+    optional uint32 version = 1 [default = 1];
+    optional NotificationTypeV1.TypeIdV1 notification_type_id = 2;
+
+    optional GroupMembershipRequestNotificationV1 group_membership_request = 3;
+}
+
+message GroupMembershipRequestNotificationV1 {
+    optional uint32 version = 1 [default = 1];
+    optional string requester_profile_id = 2;
+    optional string group_id = 3;
+}
