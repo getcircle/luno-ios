@@ -54,6 +54,7 @@ class CircleImageView: UIImageView {
     override func awakeFromNib() {
         super.awakeFromNib()
         setImageLabelFont()
+        updateAcceptableContentTypes()
     }
     
     
@@ -82,7 +83,6 @@ class CircleImageView: UIImageView {
                 transform = CGAffineTransformMakeScale(0.0, 0.0)
             }
             
-            updateAcceptableContentTypes()
             setImageWithURLRequest(
                 imageURLRequest, 
                 placeholderImage: nil, 
@@ -129,7 +129,6 @@ class CircleImageView: UIImageView {
             }
             
             let imageURLRequest = NSURLRequest(URL: imageURL)
-            updateAcceptableContentTypes()
             setImageWithURLRequest(
                 imageURLRequest,
                 placeholderImage: nil,
@@ -172,7 +171,6 @@ class CircleImageView: UIImageView {
         }
         
         let imageURLRequest = NSURLRequest(URL: imageURL)
-        updateAcceptableContentTypes()
         setImageWithURLRequest(
             imageURLRequest,
             placeholderImage: nil,
@@ -195,7 +193,6 @@ class CircleImageView: UIImageView {
     
     func setImageWithProfileImageURL(profileImageURL: String) {
         if let imageURL = NSURL(string: profileImageURL) {
-            updateAcceptableContentTypes()
             setImageWithURL(imageURL)
         }
     }
