@@ -60,11 +60,16 @@ class StickyHeaderCollectionViewLayout: UICollectionViewFlowLayout, UICollection
             }
         }
         
-        if isHeaderMissing {
-            attributes.append(super.layoutAttributesForSupplementaryViewOfKind(
+        if isHeaderMissing && collectionView!.numberOfSections() > 0 {
+
+            let headerAttributes = super.layoutAttributesForSupplementaryViewOfKind(
                 UICollectionElementKindSectionHeader,
                 atIndexPath: NSIndexPath(forItem: 0, inSection: 0)
-            ))
+            )
+            
+            if headerAttributes != nil {
+                attributes.append(headerAttributes)
+            }
         }
         
         for attribute in attributes {
