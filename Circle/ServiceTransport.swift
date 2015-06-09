@@ -11,6 +11,7 @@ import Alamofire
 import ProtobufRegistry
 
 let ServiceErrorDomain = "co.circlehq.circle.services"
+
 let AttributionsURL = "http://www.circlehq.co/attributions.html"
 let PrivacyPolicyURL = "http://www.circlehq.co/privacy.html"
 let TermsURL = "http://www.circlehq.co/terms.html"
@@ -183,6 +184,19 @@ class HttpsTransport: BaseTransport {
         static var totalRequests = 0
     }
     
+    private func printErrorMessage(error: NSError?) {
+        if let error = error {
+            println("Error Description: \(error.description)")
+            if let userInfo = error.userInfo {
+                if let errorDetails = userInfo["error_details"] as? [ProtobufRegistry.Soa.ActionResultV1.ErrorDetailV1] {
+                    for errorDetail in errorDetails {
+                        println("Error Details: \(errorDetail)")
+                    }
+                }
+            }
+        }
+    }
+    
     override func processRequest(serviceRequest: Soa.ServiceRequestV1, serializedRequest: NSData, completionHandler: ServiceCompletionHandler) {
         let startTime = CACurrentMediaTime()
         NetworkActivity.totalRequests++
@@ -199,6 +213,7 @@ class HttpsTransport: BaseTransport {
                 )
                 let endTime = CACurrentMediaTime()
                 // println("\(serviceRequest.control.service):\(serviceRequest.actions[0].control.action): Time - \(endTime - startTime)")
+                self.printErrorMessage(error)
                 completionHandler(request, response, wrapped, error)
         }
     }
