@@ -9,7 +9,7 @@
 import UIKit
 import ProtobufRegistry
 
-class TeamDetailViewController: DetailViewController {
+class TeamDetailViewController: DetailViewController, EditTeamViewControllerDelegate {
 
     // MARK: - Initialization
     
@@ -36,9 +36,24 @@ class TeamDetailViewController: DetailViewController {
     // MARK: - Collection View delegate
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        if let profile = dataSource.contentAtIndexPath(indexPath) as? Services.Profile.Containers.ProfileV1 {
-            let profileVC = ProfileDetailViewController(profile: profile)
-            navigationController?.pushViewController(profileVC, animated: true)
+        if let tappedCard = dataSource.cardAtSection(indexPath.section) {
+            switch tappedCard.type {
+            case .Profiles:
+                if let profile = dataSource.contentAtIndexPath(indexPath) as? Services.Profile.Containers.ProfileV1 {
+                    let profileVC = ProfileDetailViewController(profile: profile)
+                    navigationController?.pushViewController(profileVC, animated: true)
+                }
+
+            case .Settings:
+                let editTeamViewController = EditTeamViewController(nibName: "EditTeamViewController", bundle: nil)
+                let editTeamNavController = UINavigationController(rootViewController: editTeamViewController)
+                editTeamViewController.team = (dataSource as! TeamDetailDataSource).selectedTeam
+                editTeamViewController.editTeamViewControllerDelegate = self
+                navigationController?.presentViewController(editTeamNavController, animated: true, completion: nil)
+
+            default:
+                break
+            }
         }
         
         collectionView.deselectItemAtIndexPath(indexPath, animated: true)
@@ -98,5 +113,12 @@ class TeamDetailViewController: DetailViewController {
             profileHeaderView.teamNameLabel.setNeedsUpdateConstraints()
             profileHeaderView.teamNameLabel.layoutIfNeeded()
         }
+    }
+    
+    // MARK: - EditTeamViewControllerDelegate
+    
+    func onTeamDetailsUpdated(team: Services.Organization.Containers.TeamV1) {
+        (dataSource as! TeamDetailDataSource).selectedTeam = team
+        loadData()
     }
 }

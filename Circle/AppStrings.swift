@@ -35,6 +35,7 @@ struct AppStrings {
     
     static let GenericCancelButtonTitle = NSLocalizedString("Cancel", comment: "Generic button title for cancelling a user action")
     static let GenericDoneButtonTitle = NSLocalizedString("Done", comment: "Generic button title for indicating a user has completed an action")
+    static let GenericErrorDialogTitle = NSLocalizedString("Error", comment: "Generic title for a dialog showing an error message")
     static let GenericGetStartedButtonTitle = NSLocalizedString("Get Started", comment: "Generic button title to start some action")
     static let GenericNextButtonTitle = NSLocalizedString("Next", comment: "Generic button title for moving to next action")
     static let GenericNoThanksButtonTitle = NSLocalizedString("No thanks", comment: "Generic button title for declining an action")
@@ -115,6 +116,11 @@ struct AppStrings {
     static let SocialConnectLinkedInCTA = NSLocalizedString("Connect with LinkedIn", comment: "Button title for connect with LinkedIn button")
     static let StartUsingAppCTA = NSLocalizedString("Start using circle", comment: "Button title shown on the first screen to prompt user to sign up")
 
+    static let TeamEditButtonTitle = NSLocalizedString("Edit team", comment: "Title of the button to edit detail of a team")
+    static let TeamSubTeamsSectionTitle = NSLocalizedString("Teams", comment: "Title of the section showing sub-teams of a team")
+    static let TeamNameFieldLabel = NSLocalizedString("Team name", comment: "Label for team name input field")
+    static let TeamNameErrorCannotBeEmpty = NSLocalizedString("Team name cannot be empty.", comment: "Error message indicating team name cannot be an empty string")
+    
     static let TitleDownloadAppAlert = NSLocalizedString("Download %@ App", comment: "Title of the alert dialog asking user if they would like to download %@ app")
     static let TitleContactInfoView = NSLocalizedString("Contact Info", comment: "Title of window showing user's contact info")
     static let TextPlaceholderFilterTags = NSLocalizedString("Filter interests", comment: "Placeholder text for filter interests input box")

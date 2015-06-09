@@ -193,6 +193,9 @@
 		8F834F8B1A9C1814007B7095 /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F834F8A1A9C1813007B7095 /* UIButtonExtension.swift */; };
 		8F834F971A9E9F21007B7095 /* ContactInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F834F951A9E9F21007B7095 /* ContactInfoViewController.swift */; };
 		8F834FA01A9FFC2F007B7095 /* AppStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F834F9F1A9FFC2F007B7095 /* AppStrings.swift */; };
+		8F93E2BB1B26BBFD004671D7 /* EditTeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F93E2B91B26BBFD004671D7 /* EditTeamViewController.swift */; };
+		8F93E2BC1B26BBFD004671D7 /* EditTeamViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F93E2BA1B26BBFD004671D7 /* EditTeamViewController.xib */; };
+		8F93E2BF1B26C08D004671D7 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F93E2BE1B26C08D004671D7 /* Team.swift */; };
 		8F9F60AF1A88738100FCAA25 /* SocialConnectCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9F60AD1A88738100FCAA25 /* SocialConnectCollectionViewCell.swift */; };
 		8F9F60B01A88738100FCAA25 /* SocialConnectCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F9F60AE1A88738100FCAA25 /* SocialConnectCollectionViewCell.xib */; };
 		8F9F60B81A896CE400FCAA25 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9F60B71A896CE400FCAA25 /* MainTabBarViewController.swift */; };
@@ -566,6 +569,9 @@
 		8F834F8A1A9C1813007B7095 /* UIButtonExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
 		8F834F951A9E9F21007B7095 /* ContactInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactInfoViewController.swift; sourceTree = "<group>"; };
 		8F834F9F1A9FFC2F007B7095 /* AppStrings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppStrings.swift; sourceTree = "<group>"; };
+		8F93E2B91B26BBFD004671D7 /* EditTeamViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTeamViewController.swift; sourceTree = "<group>"; };
+		8F93E2BA1B26BBFD004671D7 /* EditTeamViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditTeamViewController.xib; sourceTree = "<group>"; };
+		8F93E2BE1B26C08D004671D7 /* Team.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 		8F9F60AD1A88738100FCAA25 /* SocialConnectCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialConnectCollectionViewCell.swift; sourceTree = "<group>"; };
 		8F9F60AE1A88738100FCAA25 /* SocialConnectCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SocialConnectCollectionViewCell.xib; sourceTree = "<group>"; };
 		8F9F60B71A896CE400FCAA25 /* MainTabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
@@ -822,6 +828,7 @@
 				8F00049C1A2419730096477A /* DetailViewController.swift */,
 				8F0544AC1ABA3C7800570327 /* EditAboutViewController.swift */,
 				8FEE3D951A8309A400B17569 /* EditContactInfoViewController.swift */,
+				8F93E2B91B26BBFD004671D7 /* EditTeamViewController.swift */,
 				8FA6A4B11AFEAEF200ACC39D /* GroupDetailViewController.swift */,
 				8FA6A4AD1AFE92AE00ACC39D /* GroupsViewController.swift */,
 				BFAE43531A8B05010085AB2B /* HomelessViewController.swift */,
@@ -975,6 +982,7 @@
 				8F65C4F41A50F28E00C7F3E6 /* CardHeaderCollectionReusableView.xib */,
 				8F0544AD1ABA3C7800570327 /* EditAboutViewController.xib */,
 				8FEE3D9C1A85B97E00B17569 /* EditContactInfoViewController.xib */,
+				8F93E2BA1B26BBFD004671D7 /* EditTeamViewController.xib */,
 				BFCFDB031A915249009A5FD4 /* EducationCollectionViewCell.xib */,
 				BF6A2D0E1AAD08DA00692315 /* EmptyCollectionViewCell.xib */,
 				8FA6A4A91AFDCA8100ACC39D /* GroupCollectionViewCell.xib */,
@@ -1239,6 +1247,7 @@
 				BF004C4F1A5CF91200AB8A6F /* Organization.swift */,
 				BF3F0F601A5B1C1100D4287E /* Profile.swift */,
 				BFC05DD21A97B32800F246EA /* Resume.swift */,
+				8F93E2BE1B26C08D004671D7 /* Team.swift */,
 				BFE213C71A5EE63F0033E2F5 /* Search.swift */,
 				BF2CBFD51A473E9100BE589D /* User.swift */,
 			);
@@ -1429,6 +1438,7 @@
 				8F0ADD3E1AC5344E00A44B68 /* Loader_00034@2x.png in Resources */,
 				8F0ADD391AC5344E00A44B68 /* Loader_00029@2x.png in Resources */,
 				BF6A2D101AAD08DA00692315 /* EmptyCollectionViewCell.xib in Resources */,
+				8F93E2BC1B26BBFD004671D7 /* EditTeamViewController.xib in Resources */,
 				8F0ADD431AC5344E00A44B68 /* Loader_00039@2x.png in Resources */,
 				8F9F60B01A88738100FCAA25 /* SocialConnectCollectionViewCell.xib in Resources */,
 				8F07ACB71AE878F100D1F41D /* MPNotification.storyboard in Resources */,
@@ -1713,6 +1723,7 @@
 				8FF2980A1A4B490E00306CFC /* SearchHeaderView.swift in Sources */,
 				BF093F0F1A672F8900BA60BD /* Media.swift in Sources */,
 				8F4A98B31A6350B9005AD63C /* CircleCollectionReusableView.swift in Sources */,
+				8F93E2BF1B26C08D004671D7 /* Team.swift in Sources */,
 				8F0E44871A61EE99008710E7 /* LocationAnnotation.swift in Sources */,
 				8F0ADCDC1AC527F900A44B68 /* CircleActivityIndicatorView.swift in Sources */,
 				8F4A98AC1A633BF6005AD63C /* UIImageExtension.swift in Sources */,
@@ -1723,6 +1734,7 @@
 				BF2CBFD61A473E9100BE589D /* User.swift in Sources */,
 				8F8167D31AE5712400B7B9B7 /* AppDelegateCacheExtension.swift in Sources */,
 				8F7400251A6863B000D96B60 /* TagDetailDataSource.swift in Sources */,
+				8F93E2BB1B26BBFD004671D7 /* EditTeamViewController.swift in Sources */,
 				8F4805E41A5DE4B800273731 /* MapHeaderCollectionReusableView.swift in Sources */,
 				8FC8781F1AB68B38003FDB27 /* CircleButton.swift in Sources */,
 				8F809F871A79DD6900029A47 /* NotesOverviewViewController.swift in Sources */,

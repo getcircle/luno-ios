@@ -115,12 +115,7 @@ class EditAboutViewController: UIViewController, UITextViewDelegate {
             nickNameTextField.text = profile.nickname
         }
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
+
     // MARK: - IBActions
     
     @IBAction func done(sender: AnyObject!) {

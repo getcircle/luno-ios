@@ -32,6 +32,7 @@ enum ContentType: Int {
     case CellPhone
     case ContactPreferences
     case Education
+    case EditTeam
     case Email
     case Facebook
     case Github
