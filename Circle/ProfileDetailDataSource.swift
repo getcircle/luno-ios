@@ -41,9 +41,12 @@ class ProfileDetailDataSource: CardDataSource {
     }
     
     override func loadData(completionHandler: (error: NSError?) -> Void) {
-        resetCards()
-        addPlaceholderCard()
         
+        // If loading for the first time, add the placeholder card
+        if cards.count == 0 {
+            addPlaceholderCard()
+        }
+
         var storedError: NSError!
         var actionsGroup = dispatch_group_create()
         
@@ -555,13 +558,13 @@ class ProfileDetailDataSource: CardDataSource {
         if profile.hasAbout {
             card.addContent(content: [profile.about] as [AnyObject])
         }
-        else {
+        else if let team = team, location = location {
             // TODO: Remove after testing UI
             let fakeBio = NSString(
                 format: "Hi! I'm %@. I work on the %@ team in %@.",
                 profile.firstName,
-                team!.name,
-                location!.address.officeName()
+                team.name,
+                location.address.officeName()
             )
             card.addContent(content: [fakeBio] as [AnyObject])
         }
