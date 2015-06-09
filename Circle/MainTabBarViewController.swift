@@ -53,6 +53,7 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
         var tabBarViewControllers = viewControllers ?? [UIViewController]()
 
         if let loggedInUserProfile = AuthViewController.getLoggedInUserProfile() {
+            // Reloading tabs
             // Keep only the first one and re-add organization & profile tabs
             // This allows us to switch between organizations easily.
             tabBarViewControllers = [tabBarViewControllers[0]]
@@ -119,17 +120,32 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
     func tabBarController(tabBarController: UITabBarController, shouldSelectViewController viewController: UIViewController) -> Bool {
         
         trackTabSelected(viewController)
-        if selectedIndex == 0 && getActiveViewController(viewController) is SearchViewController {
-            let searchVC = getActiveViewController(viewController) as! SearchViewController
-            if searchVC.isViewLoaded() && searchVC.view.window != nil {
-                searchVC.activateSearch(false)
+        
+        // Refresh data for selected view controllers
+        if let sourceViewController = getActiveViewController(viewController) {
+            
+            if sourceViewController.isViewLoaded() && sourceViewController.view.window == nil {
+                if sourceViewController is SearchViewController {
+                    (sourceViewController as! SearchViewController).loadData()
+                } else if sourceViewController is CurrentUserProfileDetailViewController {
+                    (sourceViewController as! CurrentUserProfileDetailViewController).loadData()
+                } else if sourceViewController is OrganizationDetailViewController {
+                    (sourceViewController as! OrganizationDetailViewController).loadData()
+                }
+                
+                // Activate Search
+                if selectedIndex == 0 && sourceViewController is SearchViewController {
+                    let searchVC = sourceViewController as! SearchViewController
+                    if searchVC.view.window != nil {
+                        searchVC.activateSearch(false)
+                    }
+                }
+            }
+            
+            if !(sourceViewController is BaseDetailViewController) {
+                sourceViewController.navigationController?.navigationBar.makeOpaque()
             }
         }
-        
-        if !(getActiveViewController(viewController) is BaseDetailViewController) {
-            getActiveViewController(viewController)!.navigationController?.navigationBar.makeOpaque()
-        }
-        
         return true
     }
 

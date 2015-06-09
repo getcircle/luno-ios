@@ -148,7 +148,7 @@ class SearchViewController: UIViewController,
     
     // MARK: - Load Data
     
-    private func loadData() {
+    func loadData() {
         if let currentDataSource = (collectionView.dataSource as? SearchLandingDataSource) {
             currentDataSource.loadData { (error) -> Void in
                 self.activityIndicatorView.stopAnimating()
