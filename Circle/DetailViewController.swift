@@ -45,12 +45,17 @@ class DetailViewController: BaseDetailViewController, UICollectionViewDelegate {
             self.activityIndicatorView.stopAnimating()
             if error == nil {
                 self.errorMessageView.hide()
-                self.collectionView.reloadData()
             }
-            else if self.dataSource.cards.count <= 1 {
-                self.errorMessageView.error = error
-                self.errorMessageView.show()
+            else if let error = error where self.dataSource.cards.count <= 1 {
+                // Only show non-200 errors
+                // TODO: Need to handle application specific errors.
+                if error.domain != ServiceErrorDomain {
+                    self.errorMessageView.error = error
+                    self.errorMessageView.show()
+                }
             }
+            
+            self.collectionView.reloadData()
         }
     }
 
