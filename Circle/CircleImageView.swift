@@ -77,8 +77,8 @@ class CircleImageView: UIImageView {
     
     func setImageWithProfile(profile: Services.Profile.Containers.ProfileV1, successHandler: ((image: UIImage) -> Void)? = nil) {
         var profileImageURL = profile.imageUrl
-        if let smallImageURL = profile.smallImageUrl where smallImageURL.trimWhitespace() != "" {
-            profileImageURL = smallImageURL
+        if profile.smallImageUrl.trimWhitespace() != "" {
+            profileImageURL = profile.smallImageUrl
         }
         
         if let imageURL = NSURL(string: profileImageURL) where profileImageURL.trimWhitespace() != "" {
