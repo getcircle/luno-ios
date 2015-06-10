@@ -676,8 +676,14 @@ class SearchViewController: UIViewController,
             Services.Group.Actions.respondToMembershipRequest(request.id, action: status) { (error) -> Void in
                 hud.hide(true)
                 if error == nil {
-                    if (self.landingDataSource.removeMembershipRequestAtIndexPath(selectedIndexPath)) {
-                        self.collectionView.reloadSections(NSIndexSet(index: selectedIndexPath.section))
+                    let numberOfItems = self.collectionView.numberOfItemsInSection(selectedIndexPath.section)
+                    if (self.landingDataSource.removeMembershipRequestAtIndexPath(selectedIndexPath))  {
+                        if numberOfItems == 1 {
+                            self.collectionView.reloadData()
+                        }
+                        else {
+                            self.collectionView.reloadSections(NSIndexSet(index: selectedIndexPath.section))
+                        }
                     }
                 }
             }
