@@ -74,9 +74,14 @@ class CircleImageView: UIImageView {
         serializer.acceptableContentTypes = serializer.acceptableContentTypes.union(["image/jpg", "image/pjpeg"])
         imageResponseSerializer = serializer
     }
-
+    
     func setImageWithProfile(profile: Services.Profile.Containers.ProfileV1, successHandler: ((image: UIImage) -> Void)? = nil) {
-        if let imageURL = NSURL(string: profile.imageUrl) where profile.imageUrl.trimWhitespace() != "" {
+        var profileImageURL = profile.imageUrl
+        if let smallImageURL = profile.smallImageUrl where smallImageURL.trimWhitespace() != "" {
+            profileImageURL = smallImageURL
+        }
+        
+        if let imageURL = NSURL(string: profileImageURL) where profileImageURL.trimWhitespace() != "" {
             let imageURLRequest = NSURLRequest(URL: imageURL)
             let isImageCached = isImageInCache(imageURL)
             if !isImageCached {
@@ -112,7 +117,7 @@ class CircleImageView: UIImageView {
                     if let response = response {
                         println("Response \(response.statusCode) \(response)")
                     }
-                    println("failed to fetch image for profile: \(profile.imageUrl) error: \(error?.localizedDescription)")
+                    println("failed to fetch image for profile: \(profileImageURL) error: \(error?.localizedDescription)")
                 }
             )
         }
@@ -191,8 +196,8 @@ class CircleImageView: UIImageView {
         )
     }
     
-    func setImageWithProfileImageURL(profileImageURL: String) {
-        if let imageURL = NSURL(string: profileImageURL) {
+    func setLargerProfileImage(profile: Services.Profile.Containers.ProfileV1) {
+        if let imageURL = NSURL(string: profile.imageUrl) {
             setImageWithURL(imageURL)
         }
     }
