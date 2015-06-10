@@ -126,6 +126,7 @@
 		BF7A4B061B0A64D9007B6BFB /* ServicesRegistry_All.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7A4B041B0A64D9007B6BFB /* ServicesRegistry_All.pb.swift */; };
 		BF98CB751AE08CA400F96BFE /* ServicesRegistryRequests_Requests.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF98CB721AE08CA400F96BFE /* ServicesRegistryRequests_Requests.pb.swift */; };
 		BF98CB761AE08CA400F96BFE /* ServicesRegistryResponses_Responses.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF98CB731AE08CA400F96BFE /* ServicesRegistryResponses_Responses.pb.swift */; };
+		BFBEB61F1B27B4DB00F8B5E3 /* ServicesOrganizationActionsUpdateTeam_Update_team.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBEB61E1B27B4DB00F8B5E3 /* ServicesOrganizationActionsUpdateTeam_Update_team.pb.swift */; };
 		BFC376101B15073800D46640 /* ServicesGroupActionsAddToGroup_Add_to_group.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC3760F1B15073800D46640 /* ServicesGroupActionsAddToGroup_Add_to_group.pb.swift */; };
 		BFC376131B151BE600D46640 /* ServicesGroupActionsGetMembershipRequests_Get_membership_requests.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC376121B151BE600D46640 /* ServicesGroupActionsGetMembershipRequests_Get_membership_requests.pb.swift */; };
 		BFC376191B1557CD00D46640 /* ServicesCommonContainers_Containers.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC376141B1557CD00D46640 /* ServicesCommonContainers_Containers.pb.swift */; };
@@ -275,6 +276,7 @@
 		BF7A4B041B0A64D9007B6BFB /* ServicesRegistry_All.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesRegistry_All.pb.swift; sourceTree = "<group>"; };
 		BF98CB721AE08CA400F96BFE /* ServicesRegistryRequests_Requests.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesRegistryRequests_Requests.pb.swift; sourceTree = "<group>"; };
 		BF98CB731AE08CA400F96BFE /* ServicesRegistryResponses_Responses.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesRegistryResponses_Responses.pb.swift; sourceTree = "<group>"; };
+		BFBEB61E1B27B4DB00F8B5E3 /* ServicesOrganizationActionsUpdateTeam_Update_team.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesOrganizationActionsUpdateTeam_Update_team.pb.swift; sourceTree = "<group>"; };
 		BFC3760F1B15073800D46640 /* ServicesGroupActionsAddToGroup_Add_to_group.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesGroupActionsAddToGroup_Add_to_group.pb.swift; sourceTree = "<group>"; };
 		BFC376121B151BE600D46640 /* ServicesGroupActionsGetMembershipRequests_Get_membership_requests.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesGroupActionsGetMembershipRequests_Get_membership_requests.pb.swift; sourceTree = "<group>"; };
 		BFC376141B1557CD00D46640 /* ServicesCommonContainers_Containers.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesCommonContainers_Containers.pb.swift; sourceTree = "<group>"; };
@@ -401,6 +403,7 @@
 				BF79ED6E1AF803D100A90034 /* ServicesOrganizationActionsGetTokens_Get_tokens.pb.swift */,
 				BF1B13E31AE1944300F36620 /* ServicesOrganizationActionsGetTopLevelTeam_Get_top_level_team.pb.swift */,
 				BF1B13E41AE1944300F36620 /* ServicesOrganizationActionsUpdateLocation_Update_location.pb.swift */,
+				BFBEB61E1B27B4DB00F8B5E3 /* ServicesOrganizationActionsUpdateTeam_Update_team.pb.swift */,
 				BF5AF6F01AE2E231000E876E /* ServicesOrganizationContainers_Containers.pb.swift */,
 				BFC376181B1557CD00D46640 /* ServicesOrganizationContainersIntegration_Integration.pb.swift */,
 				BF1B13E81AE1944300F36620 /* ServicesProfileActionsAddTags_Add_tags.pb.swift */,
@@ -678,6 +681,7 @@
 				BF1B14541AE1944300F36620 /* ServicesResumeActionsGetResume_Get_resume.pb.swift in Sources */,
 				BF1B14561AE1944300F36620 /* ServicesSearchActionsSearch_Search.pb.swift in Sources */,
 				BF1B14571AE1944300F36620 /* ServicesSearchContainersSearch_Search.pb.swift in Sources */,
+				BFBEB61F1B27B4DB00F8B5E3 /* ServicesOrganizationActionsUpdateTeam_Update_team.pb.swift in Sources */,
 				BF1B14581AE1944300F36620 /* ServicesUserActionsAuthenticateUser_Authenticate_user.pb.swift in Sources */,
 				BF7A4B051B0A64D9007B6BFB /* ServicesUserActionsGetAuthenticationInstructions_Get_authentication_instructions.pb.swift in Sources */,
 				BF608BC51B2536BC00F4736C /* ServicesUserActionsGetActiveDevices_Get_active_devices.pb.swift in Sources */,

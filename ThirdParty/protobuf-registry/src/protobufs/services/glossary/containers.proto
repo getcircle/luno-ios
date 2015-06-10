@@ -1,9 +1,10 @@
 package services.glossary.containers;
 
-import "protobufs/services/common/containers.proto";
-
 // GENERATED OPTIONS FOR: JAVA
 option java_package = "com.rhlabs.protobufs.services.glossary.containers";
+
+import "protobufs/services/common/containers.proto";
+
 
 message TermV1 {
     optional uint32 version = 1 [default = 1];

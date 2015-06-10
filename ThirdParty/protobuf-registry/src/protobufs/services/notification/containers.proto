@@ -1,5 +1,8 @@
 package services.notification.containers;
 
+// GENERATED OPTIONS FOR: JAVA
+option java_package = "com.rhlabs.protobufs.services.notification.containers";
+
 enum NotificationChannelV1 {
     MOBILE_PUSH = 0;
 }
@@ -35,8 +38,7 @@ message NotificationPreferenceV1 {
 message NotificationTypeV1 {
 
     enum TypeIdV1 {
-        GROUP_MEMBERSHIP_REQUEST = 0;
-        UPCOMING_BIRTHDAY_TEAM = 1;
+         GOOGLE_GROUPS = 0;
     }
 
     optional uint32 version = 1 [default = 1];
@@ -51,10 +53,18 @@ message NotificationV1 {
     optional NotificationTypeV1.TypeIdV1 notification_type_id = 2;
 
     optional GroupMembershipRequestNotificationV1 group_membership_request = 3;
+    optional GroupMembershipRequestResponseNotificationV1 group_membership_request_response = 4;
 }
 
 message GroupMembershipRequestNotificationV1 {
     optional uint32 version = 1 [default = 1];
     optional string requester_profile_id = 2;
-    optional string group_id = 3;
+    optional string group_key = 3;
+}
+
+message GroupMembershipRequestResponseNotificationV1 {
+    optional uint32 version = 1 [default = 1];
+    optional string group_manager_profile_id = 2;
+    optional bool approved = 3;
+    optional string group_key = 4;
 }

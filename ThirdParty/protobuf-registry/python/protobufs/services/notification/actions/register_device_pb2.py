@@ -20,7 +20,7 @@ import protobufs.services.user.containers_pb2
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='protobufs/services/notification/actions/register_device.proto',
   package='services.notification.actions.register_device',
-  serialized_pb=_b('\n=protobufs/services/notification/actions/register_device.proto\x12-services.notification.actions.register_device\x1a\x30protobufs/services/notification/containers.proto\x1a(protobufs/services/user/containers.proto\"S\n\tRequestV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x32\n\x06\x64\x65vice\x18\x02 \x01(\x0b\x32\".services.user.containers.DeviceV1\"s\n\nResponseV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12Q\n\x12notification_token\x18\x02 \x01(\x0b\x32\x35.services.notification.containers.NotificationTokenV1')
+  serialized_pb=_b('\n=protobufs/services/notification/actions/register_device.proto\x12-services.notification.actions.register_device\x1a\x30protobufs/services/notification/containers.proto\x1a(protobufs/services/user/containers.proto\"S\n\tRequestV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x32\n\x06\x64\x65vice\x18\x02 \x01(\x0b\x32\".services.user.containers.DeviceV1\"s\n\nResponseV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12Q\n\x12notification_token\x18\x02 \x01(\x0b\x32\x35.services.notification.containers.NotificationTokenV1BD\nBcom.rhlabs.protobufs.services.notification.actions.register_device')
   ,
   dependencies=[protobufs.services.notification.containers_pb2.DESCRIPTOR,protobufs.services.user.containers_pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
@@ -121,4 +121,6 @@ ResponseV1 = _reflection.GeneratedProtocolMessageType('ResponseV1', (_message.Me
 _sym_db.RegisterMessage(ResponseV1)
 
 
+DESCRIPTOR.has_options = True
+DESCRIPTOR._options = _descriptor._ParseOptions(descriptor_pb2.FileOptions(), _b('\nBcom.rhlabs.protobufs.services.notification.actions.register_device'))
 # @@protoc_insertion_point(module_scope)

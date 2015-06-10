@@ -1,5 +1,8 @@
 package services.notification.actions.get_preferences;
 
+// GENERATED OPTIONS FOR: JAVA
+option java_package = "com.rhlabs.protobufs.services.notification.actions.get_preferences";
+
 import "protobufs/services/notification/containers.proto";
 
 message RequestV1 {

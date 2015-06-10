@@ -43,6 +43,7 @@ public func == (lhs: Services.Profile.Containers.ProfileV1, rhs: Services.Profil
   fieldCheck = fieldCheck && (lhs.hasSeatingInfo == rhs.hasSeatingInfo) && (!lhs.hasSeatingInfo || lhs.seatingInfo == rhs.seatingInfo)
   fieldCheck = fieldCheck && (lhs.hasEmail == rhs.hasEmail) && (!lhs.hasEmail || lhs.email == rhs.email)
   fieldCheck = fieldCheck && (lhs.hasIsAdmin == rhs.hasIsAdmin) && (!lhs.hasIsAdmin || lhs.isAdmin == rhs.isAdmin)
+  fieldCheck = fieldCheck && (lhs.hasSmallImageUrl == rhs.hasSmallImageUrl) && (!lhs.hasSmallImageUrl || lhs.smallImageUrl == rhs.smallImageUrl)
   return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
 }
 
@@ -525,6 +526,7 @@ public extension Services.Profile.Containers {
            case "seatingInfo": return seatingInfo
            case "email": return email
            case "isAdmin": return isAdmin
+           case "smallImageUrl": return smallImageUrl
            default: return nil
            }
     }
@@ -588,6 +590,9 @@ public extension Services.Profile.Containers {
 
     public private(set) var hasIsAdmin:Bool = false
     public private(set) var isAdmin:Bool = false
+
+    public private(set) var hasSmallImageUrl:Bool = false
+    public private(set) var smallImageUrl:String = ""
 
     public private(set) var items:Array<Services.Profile.Containers.ProfileItemV1>  = Array<Services.Profile.Containers.ProfileItemV1>()
     public private(set) var contactMethods:Array<Services.Profile.Containers.ContactMethodV1>  = Array<Services.Profile.Containers.ContactMethodV1>()
@@ -664,6 +669,9 @@ public extension Services.Profile.Containers {
       if hasIsAdmin {
         output.writeBool(22, value:isAdmin)
       }
+      if hasSmallImageUrl {
+        output.writeString(23, value:smallImageUrl)
+      }
       unknownFields.writeToCodedOutputStream(output)
     }
     override public func serializedSize() -> Int32 {
@@ -738,6 +746,9 @@ public extension Services.Profile.Containers {
       }
       if hasIsAdmin {
         serialize_size += isAdmin.computeBoolSize(22)
+      }
+      if hasSmallImageUrl {
+        serialize_size += smallImageUrl.computeStringSize(23)
       }
       serialize_size += unknownFields.serializedSize()
       memoizedSerializedSize = serialize_size
@@ -854,6 +865,9 @@ public extension Services.Profile.Containers {
       if hasIsAdmin {
         output += "\(indent) isAdmin: \(isAdmin) \n"
       }
+      if hasSmallImageUrl {
+        output += "\(indent) smallImageUrl: \(smallImageUrl) \n"
+      }
       unknownFields.writeDescriptionTo(&output, indent:indent)
     }
     override public var hashValue:Int {
@@ -924,6 +938,9 @@ public extension Services.Profile.Containers {
             }
             if hasIsAdmin {
                hashCode = (hashCode &* 31) &+ isAdmin.hashValue
+            }
+            if hasSmallImageUrl {
+               hashCode = (hashCode &* 31) &+ smallImageUrl.hashValue
             }
             hashCode = (hashCode &* 31) &+  unknownFields.hashValue
             return hashCode
@@ -1445,6 +1462,29 @@ public extension Services.Profile.Containers {
          builderResult.isAdmin = false
          return self
     }
+    public var hasSmallImageUrl:Bool {
+         get {
+              return builderResult.hasSmallImageUrl
+         }
+    }
+    public var smallImageUrl:String {
+         get {
+              return builderResult.smallImageUrl
+         }
+         set (value) {
+             builderResult.hasSmallImageUrl = true
+             builderResult.smallImageUrl = value
+         }
+    }
+    public func setSmallImageUrl(value:String)-> Services.Profile.Containers.ProfileV1Builder {
+      self.smallImageUrl = value
+      return self
+    }
+    public func clearSmallImageUrl() -> Services.Profile.Containers.ProfileV1Builder{
+         builderResult.hasSmallImageUrl = false
+         builderResult.smallImageUrl = ""
+         return self
+    }
     override public var internalGetResult:GeneratedMessage {
          get {
             return builderResult
@@ -1535,6 +1575,9 @@ public extension Services.Profile.Containers {
       if other.hasIsAdmin {
            isAdmin = other.isAdmin
       }
+      if other.hasSmallImageUrl {
+           smallImageUrl = other.smallImageUrl
+      }
       mergeUnknownFields(other.unknownFields)
       return self
     }
@@ -1619,6 +1662,9 @@ public extension Services.Profile.Containers {
 
         case 176 :
           isAdmin = input.readBool()
+
+        case 186 :
+          smallImageUrl = input.readString()
 
         default:
           if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {

@@ -3,6 +3,9 @@ package services.organization.containers;
 // GENERATED OPTIONS FOR: JAVA
 option java_package = "com.rhlabs.protobufs.services.organization.containers";
 
+import "protobufs/services/common/containers.proto";
+
+
 message AddressV1 {
     optional uint32 version = 1 [default = 1];
     optional string id = 2;
@@ -63,6 +66,7 @@ message TeamV1 {
     optional string department = 7;
     optional uint32 profile_count = 8;
     optional ColorV1 color = 9;
+    optional services.common.containers.PermissionsV1 permissions = 10;
 }
 
 message TeamDescendantsV1 {
@@ -76,4 +80,5 @@ message TokenV1 {
     optional uint32 version = 1 [default = 1];
     optional string key = 2;
     optional string requested_by_user_id = 3;
+    optional string id = 4;
 }

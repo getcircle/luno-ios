@@ -43,6 +43,7 @@ import "protobufs/services/organization/actions/get_tokens.proto";
 import "protobufs/services/organization/actions/enable_integration.proto";
 import "protobufs/services/organization/actions/get_integration.proto";
 import "protobufs/services/organization/actions/disable_integration.proto";
+import "protobufs/services/organization/actions/update_team.proto";
 
 import "protobufs/services/profile/actions/create_profile.proto";
 import "protobufs/services/profile/actions/get_extended_profile.proto";
@@ -156,6 +157,7 @@ message Organization {
         optional services.organization.actions.enable_integration.RequestV1 enable_integration = 217;
         optional services.organization.actions.get_integration.RequestV1 get_integration = 218;
         optional services.organization.actions.disable_integration.RequestV1 disable_integration = 219;
+        optional services.organization.actions.update_team.RequestV1 update_team = 220;
     }
 }
 

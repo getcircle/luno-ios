@@ -13,15 +13,13 @@ from google.protobuf import descriptor_pb2
 _sym_db = _symbol_database.Default()
 
 
-import protobufs.services.glossary.containers_pb2
 
 
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='protobufs/services/glossary/actions/delete_term.proto',
   package='services.glossary.actions.delete_term',
-  serialized_pb=_b('\n5protobufs/services/glossary/actions/delete_term.proto\x12%services.glossary.actions.delete_term\x1a,protobufs/services/glossary/containers.proto\"+\n\tRequestV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\n\n\x02id\x18\x02 \x01(\t\" \n\nResponseV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x42<\n:com.rhlabs.protobufs.services.glossary.actions.delete_term')
-  ,
-  dependencies=[protobufs.services.glossary.containers_pb2.DESCRIPTOR,])
+  serialized_pb=_b('\n5protobufs/services/glossary/actions/delete_term.proto\x12%services.glossary.actions.delete_term\"+\n\tRequestV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\n\n\x02id\x18\x02 \x01(\t\" \n\nResponseV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x42<\n:com.rhlabs.protobufs.services.glossary.actions.delete_term')
+)
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 
@@ -59,8 +57,8 @@ _REQUESTV1 = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=142,
-  serialized_end=185,
+  serialized_start=96,
+  serialized_end=139,
 )
 
 
@@ -89,8 +87,8 @@ _RESPONSEV1 = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=187,
-  serialized_end=219,
+  serialized_start=141,
+  serialized_end=173,
 )
 
 DESCRIPTOR.message_types_by_name['RequestV1'] = _REQUESTV1

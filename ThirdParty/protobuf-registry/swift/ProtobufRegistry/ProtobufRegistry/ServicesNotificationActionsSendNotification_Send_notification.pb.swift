@@ -11,6 +11,7 @@ public func == (lhs: Services.Notification.Actions.SendNotification.RequestV1, r
   fieldCheck = fieldCheck && (lhs.hasVersion == rhs.hasVersion) && (!lhs.hasVersion || lhs.version == rhs.version)
   fieldCheck = fieldCheck && (lhs.hasToProfileId == rhs.hasToProfileId) && (!lhs.hasToProfileId || lhs.toProfileId == rhs.toProfileId)
   fieldCheck = fieldCheck && (lhs.hasNotification == rhs.hasNotification) && (!lhs.hasNotification || lhs.notification == rhs.notification)
+  fieldCheck = fieldCheck && (lhs.toProfileIds == rhs.toProfileIds)
   return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
 }
 
@@ -60,6 +61,7 @@ public extension Services.Notification.Actions.SendNotification {
 
     public private(set) var hasNotification:Bool = false
     public private(set) var notification:Services.Notification.Containers.NotificationV1!
+    public private(set) var toProfileIds:Array<String> = Array<String>()
     required public init() {
          super.init()
     }
@@ -75,6 +77,11 @@ public extension Services.Notification.Actions.SendNotification {
       }
       if hasNotification {
         output.writeMessage(3, value:notification)
+      }
+      if !toProfileIds.isEmpty {
+        for oneValuetoProfileIds in toProfileIds {
+          output.writeString(4, value:oneValuetoProfileIds)
+        }
       }
       unknownFields.writeToCodedOutputStream(output)
     }
@@ -96,6 +103,12 @@ public extension Services.Notification.Actions.SendNotification {
               serialize_size += varSizenotification
           }
       }
+      var dataSizeToProfileIds:Int32 = 0
+      for oneValuetoProfileIds in toProfileIds {
+          dataSizeToProfileIds += oneValuetoProfileIds.computeStringSizeNoTag()
+      }
+      serialize_size += dataSizeToProfileIds
+      serialize_size += 1 * Int32(toProfileIds.count)
       serialize_size += unknownFields.serializedSize()
       memoizedSerializedSize = serialize_size
       return serialize_size
@@ -148,6 +161,11 @@ public extension Services.Notification.Actions.SendNotification {
         notification?.writeDescriptionTo(&output, indent:"\(indent)  ")
         output += "\(indent) }\n"
       }
+      var toProfileIdsElementIndex:Int = 0
+      for oneValuetoProfileIds in toProfileIds  {
+          output += "\(indent) toProfileIds[\(toProfileIdsElementIndex)]: \(oneValuetoProfileIds)\n"
+          toProfileIdsElementIndex++
+      }
       unknownFields.writeDescriptionTo(&output, indent:indent)
     }
     override public var hashValue:Int {
@@ -163,6 +181,9 @@ public extension Services.Notification.Actions.SendNotification {
                 if let hashValuenotification = notification?.hashValue {
                     hashCode = (hashCode &* 31) &+ hashValuenotification
                 }
+            }
+            for oneValuetoProfileIds in toProfileIds {
+                hashCode = (hashCode &* 31) &+ oneValuetoProfileIds.hashValue
             }
             hashCode = (hashCode &* 31) &+  unknownFields.hashValue
             return hashCode
@@ -270,6 +291,22 @@ public extension Services.Notification.Actions.SendNotification {
       builderResult.notification = nil
       return self
     }
+    public var toProfileIds:Array<String> {
+         get {
+             return builderResult.toProfileIds
+         }
+         set (array) {
+             builderResult.toProfileIds = array
+         }
+    }
+    public func setToProfileIds(value:Array<String>)-> Services.Notification.Actions.SendNotification.RequestV1Builder {
+      self.toProfileIds = value
+      return self
+    }
+    public func clearToProfileIds() -> Services.Notification.Actions.SendNotification.RequestV1Builder {
+       builderResult.toProfileIds.removeAll(keepCapacity: false)
+       return self
+    }
     override public var internalGetResult:GeneratedMessage {
          get {
             return builderResult
@@ -303,6 +340,9 @@ public extension Services.Notification.Actions.SendNotification {
       if (other.hasNotification) {
           mergeNotification(other.notification)
       }
+      if !other.toProfileIds.isEmpty {
+          builderResult.toProfileIds += other.toProfileIds
+      }
       mergeUnknownFields(other.unknownFields)
       return self
     }
@@ -331,6 +371,9 @@ public extension Services.Notification.Actions.SendNotification {
           }
           input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
           notification = subBuilder.buildPartial()
+
+        case 34 :
+          toProfileIds += [input.readString()]
 
         default:
           if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {

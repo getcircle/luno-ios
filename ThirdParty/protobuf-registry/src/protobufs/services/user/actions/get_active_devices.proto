@@ -1,5 +1,8 @@
 package services.user.actions.get_active_devices;
 
+// GENERATED OPTIONS FOR: JAVA
+option java_package = "com.rhlabs.protobufs.services.user.actions.get_active_devices";
+
 import "protobufs/services/user/containers.proto";
 
 message RequestV1 {

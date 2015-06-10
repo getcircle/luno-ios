@@ -1,5 +1,8 @@
 package services.notification.actions.register_device;
 
+// GENERATED OPTIONS FOR: JAVA
+option java_package = "com.rhlabs.protobufs.services.notification.actions.register_device";
+
 import "protobufs/services/notification/containers.proto";
 import "protobufs/services/user/containers.proto";
 

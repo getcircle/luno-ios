@@ -19,7 +19,7 @@ import protobufs.services.notification.containers_pb2
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='protobufs/services/notification/actions/send_notification.proto',
   package='services.notification.actions.send_notification',
-  serialized_pb=_b('\n?protobufs/services/notification/actions/send_notification.proto\x12/services.notification.actions.send_notification\x1a\x30protobufs/services/notification/containers.proto\"~\n\tRequestV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x15\n\rto_profile_id\x18\x02 \x01(\t\x12\x46\n\x0cnotification\x18\x03 \x01(\x0b\x32\x30.services.notification.containers.NotificationV1\" \n\nResponseV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31')
+  serialized_pb=_b('\n?protobufs/services/notification/actions/send_notification.proto\x12/services.notification.actions.send_notification\x1a\x30protobufs/services/notification/containers.proto\"\x96\x01\n\tRequestV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x15\n\rto_profile_id\x18\x02 \x01(\t\x12\x46\n\x0cnotification\x18\x03 \x01(\x0b\x32\x30.services.notification.containers.NotificationV1\x12\x16\n\x0eto_profile_ids\x18\x04 \x03(\t\" \n\nResponseV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x42\x46\nDcom.rhlabs.protobufs.services.notification.actions.send_notification')
   ,
   dependencies=[protobufs.services.notification.containers_pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
@@ -55,6 +55,13 @@ _REQUESTV1 = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
+    _descriptor.FieldDescriptor(
+      name='to_profile_ids', full_name='services.notification.actions.send_notification.RequestV1.to_profile_ids', index=3,
+      number=4, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
   ],
   extensions=[
   ],
@@ -66,8 +73,8 @@ _REQUESTV1 = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=166,
-  serialized_end=292,
+  serialized_start=167,
+  serialized_end=317,
 )
 
 
@@ -96,8 +103,8 @@ _RESPONSEV1 = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=294,
-  serialized_end=326,
+  serialized_start=319,
+  serialized_end=351,
 )
 
 _REQUESTV1.fields_by_name['notification'].message_type = protobufs.services.notification.containers_pb2._NOTIFICATIONV1
@@ -119,4 +126,6 @@ ResponseV1 = _reflection.GeneratedProtocolMessageType('ResponseV1', (_message.Me
 _sym_db.RegisterMessage(ResponseV1)
 
 
+DESCRIPTOR.has_options = True
+DESCRIPTOR._options = _descriptor._ParseOptions(descriptor_pb2.FileOptions(), _b('\nDcom.rhlabs.protobufs.services.notification.actions.send_notification'))
 # @@protoc_insertion_point(module_scope)

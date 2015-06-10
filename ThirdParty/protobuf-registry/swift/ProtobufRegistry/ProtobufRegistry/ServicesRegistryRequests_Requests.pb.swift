@@ -292,6 +292,11 @@ public var ServicesRegistryRequestsOrganizationdisableIntegration:ConcreateExten
        return Services.Registry.Requests.RequestsRoot.sharedInstance.ServicesRegistryRequestsOrganizationdisableIntegrationStatic
    }
 }
+public var ServicesRegistryRequestsOrganizationupdateTeam:ConcreateExtensionField {
+   get {
+       return Services.Registry.Requests.RequestsRoot.sharedInstance.ServicesRegistryRequestsOrganizationupdateTeamStatic
+   }
+}
 public var ServicesRegistryRequestsProfilecreateProfile:ConcreateExtensionField {
    get {
        return Services.Registry.Requests.RequestsRoot.sharedInstance.ServicesRegistryRequestsProfilecreateProfileStatic
@@ -622,6 +627,7 @@ public extension Services.Registry.Requests {
     var ServicesRegistryRequestsOrganizationenableIntegrationStatic:ConcreateExtensionField
     var ServicesRegistryRequestsOrganizationgetIntegrationStatic:ConcreateExtensionField
     var ServicesRegistryRequestsOrganizationdisableIntegrationStatic:ConcreateExtensionField
+    var ServicesRegistryRequestsOrganizationupdateTeamStatic:ConcreateExtensionField
     var ServicesRegistryRequestsProfilecreateProfileStatic:ConcreateExtensionField
     var ServicesRegistryRequestsProfilegetExtendedProfileStatic:ConcreateExtensionField
     var ServicesRegistryRequestsProfilegetProfileStatic:ConcreateExtensionField
@@ -719,6 +725,7 @@ public extension Services.Registry.Requests {
       ServicesRegistryRequestsOrganizationenableIntegrationStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionRequestParamsV1.self, fieldNumber: 217, defaultValue:Services.Organization.Actions.EnableIntegration.RequestV1(), messageOrGroupClass:Services.Organization.Actions.EnableIntegration.RequestV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
       ServicesRegistryRequestsOrganizationgetIntegrationStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionRequestParamsV1.self, fieldNumber: 218, defaultValue:Services.Organization.Actions.GetIntegration.RequestV1(), messageOrGroupClass:Services.Organization.Actions.GetIntegration.RequestV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
       ServicesRegistryRequestsOrganizationdisableIntegrationStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionRequestParamsV1.self, fieldNumber: 219, defaultValue:Services.Organization.Actions.DisableIntegration.RequestV1(), messageOrGroupClass:Services.Organization.Actions.DisableIntegration.RequestV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
+      ServicesRegistryRequestsOrganizationupdateTeamStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionRequestParamsV1.self, fieldNumber: 220, defaultValue:Services.Organization.Actions.UpdateTeam.RequestV1(), messageOrGroupClass:Services.Organization.Actions.UpdateTeam.RequestV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
       ServicesRegistryRequestsProfilecreateProfileStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionRequestParamsV1.self, fieldNumber: 300, defaultValue:Services.Profile.Actions.CreateProfile.RequestV1(), messageOrGroupClass:Services.Profile.Actions.CreateProfile.RequestV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
       ServicesRegistryRequestsProfilegetExtendedProfileStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionRequestParamsV1.self, fieldNumber: 301, defaultValue:Services.Profile.Actions.GetExtendedProfile.RequestV1(), messageOrGroupClass:Services.Profile.Actions.GetExtendedProfile.RequestV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
       ServicesRegistryRequestsProfilegetProfileStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionRequestParamsV1.self, fieldNumber: 302, defaultValue:Services.Profile.Actions.GetProfile.RequestV1(), messageOrGroupClass:Services.Profile.Actions.GetProfile.RequestV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
@@ -816,6 +823,7 @@ public extension Services.Registry.Requests {
       Services.Organization.Actions.EnableIntegration.EnableIntegrationRoot.sharedInstance.registerAllExtensions(extensionRegistry)
       Services.Organization.Actions.GetIntegration.GetIntegrationRoot.sharedInstance.registerAllExtensions(extensionRegistry)
       Services.Organization.Actions.DisableIntegration.DisableIntegrationRoot.sharedInstance.registerAllExtensions(extensionRegistry)
+      Services.Organization.Actions.UpdateTeam.UpdateTeamRoot.sharedInstance.registerAllExtensions(extensionRegistry)
       Services.Profile.Actions.CreateProfile.CreateProfileRoot.sharedInstance.registerAllExtensions(extensionRegistry)
       Services.Profile.Actions.GetExtendedProfile.GetExtendedProfileRoot.sharedInstance.registerAllExtensions(extensionRegistry)
       Services.Profile.Actions.GetProfile.GetProfileRoot.sharedInstance.registerAllExtensions(extensionRegistry)
@@ -912,6 +920,7 @@ public extension Services.Registry.Requests {
       registry.addExtension(ServicesRegistryRequestsOrganizationenableIntegrationStatic)
       registry.addExtension(ServicesRegistryRequestsOrganizationgetIntegrationStatic)
       registry.addExtension(ServicesRegistryRequestsOrganizationdisableIntegrationStatic)
+      registry.addExtension(ServicesRegistryRequestsOrganizationupdateTeamStatic)
       registry.addExtension(ServicesRegistryRequestsProfilecreateProfileStatic)
       registry.addExtension(ServicesRegistryRequestsProfilegetExtendedProfileStatic)
       registry.addExtension(ServicesRegistryRequestsProfilegetProfileStatic)
@@ -1235,6 +1244,9 @@ public extension Services.Registry.Requests {
     }
     public class func disableIntegration() -> ConcreateExtensionField {
          return ServicesRegistryRequestsOrganizationdisableIntegration
+    }
+    public class func updateTeam() -> ConcreateExtensionField {
+         return ServicesRegistryRequestsOrganizationupdateTeam
     }
     required public init() {
          super.init()

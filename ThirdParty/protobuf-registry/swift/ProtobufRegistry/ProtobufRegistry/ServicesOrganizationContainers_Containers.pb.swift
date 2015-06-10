@@ -92,6 +92,7 @@ public func == (lhs: Services.Organization.Containers.TeamV1, rhs: Services.Orga
   fieldCheck = fieldCheck && (lhs.hasDepartment == rhs.hasDepartment) && (!lhs.hasDepartment || lhs.department == rhs.department)
   fieldCheck = fieldCheck && (lhs.hasProfileCount == rhs.hasProfileCount) && (!lhs.hasProfileCount || lhs.profileCount == rhs.profileCount)
   fieldCheck = fieldCheck && (lhs.hasColor == rhs.hasColor) && (!lhs.hasColor || lhs.color == rhs.color)
+  fieldCheck = fieldCheck && (lhs.hasPermissions == rhs.hasPermissions) && (!lhs.hasPermissions || lhs.permissions == rhs.permissions)
   return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
 }
 
@@ -115,6 +116,7 @@ public func == (lhs: Services.Organization.Containers.TokenV1, rhs: Services.Org
   fieldCheck = fieldCheck && (lhs.hasVersion == rhs.hasVersion) && (!lhs.hasVersion || lhs.version == rhs.version)
   fieldCheck = fieldCheck && (lhs.hasKey == rhs.hasKey) && (!lhs.hasKey || lhs.key == rhs.key)
   fieldCheck = fieldCheck && (lhs.hasRequestedByUserId == rhs.hasRequestedByUserId) && (!lhs.hasRequestedByUserId || lhs.requestedByUserId == rhs.requestedByUserId)
+  fieldCheck = fieldCheck && (lhs.hasId == rhs.hasId) && (!lhs.hasId || lhs.id == rhs.id)
   return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
 }
 
@@ -131,6 +133,7 @@ public extension Services.Organization.Containers {
     init() {
       extensionRegistry = ExtensionRegistry()
       registerAllExtensions(extensionRegistry)
+      Services.Common.Containers.ContainersRoot.sharedInstance.registerAllExtensions(extensionRegistry)
     }
     public func registerAllExtensions(registry:ExtensionRegistry) {
     }
@@ -2490,6 +2493,7 @@ public extension Services.Organization.Containers {
            case "department": return department
            case "profileCount": return profileCount
            case "color": return color
+           case "permissions": return permissions
            default: return nil
            }
     }
@@ -2517,6 +2521,8 @@ public extension Services.Organization.Containers {
 
     public private(set) var hasColor:Bool = false
     public private(set) var color:Services.Organization.Containers.ColorV1!
+    public private(set) var hasPermissions:Bool = false
+    public private(set) var permissions:Services.Common.Containers.PermissionsV1!
     public private(set) var path:Array<Services.Organization.Containers.PathPartV1>  = Array<Services.Organization.Containers.PathPartV1>()
     required public init() {
          super.init()
@@ -2551,6 +2557,9 @@ public extension Services.Organization.Containers {
       }
       if hasColor {
         output.writeMessage(9, value:color)
+      }
+      if hasPermissions {
+        output.writeMessage(10, value:permissions)
       }
       unknownFields.writeToCodedOutputStream(output)
     }
@@ -2588,6 +2597,11 @@ public extension Services.Organization.Containers {
       if hasColor {
           if let varSizecolor = color?.computeMessageSize(9) {
               serialize_size += varSizecolor
+          }
+      }
+      if hasPermissions {
+          if let varSizepermissions = permissions?.computeMessageSize(10) {
+              serialize_size += varSizepermissions
           }
       }
       serialize_size += unknownFields.serializedSize()
@@ -2664,6 +2678,11 @@ public extension Services.Organization.Containers {
         color?.writeDescriptionTo(&output, indent:"\(indent)  ")
         output += "\(indent) }\n"
       }
+      if hasPermissions {
+        output += "\(indent) permissions {\n"
+        permissions?.writeDescriptionTo(&output, indent:"\(indent)  ")
+        output += "\(indent) }\n"
+      }
       unknownFields.writeDescriptionTo(&output, indent:indent)
     }
     override public var hashValue:Int {
@@ -2696,6 +2715,11 @@ public extension Services.Organization.Containers {
             if hasColor {
                 if let hashValuecolor = color?.hashValue {
                     hashCode = (hashCode &* 31) &+ hashValuecolor
+                }
+            }
+            if hasPermissions {
+                if let hashValuepermissions = permissions?.hashValue {
+                    hashCode = (hashCode &* 31) &+ hashValuepermissions
                 }
             }
             hashCode = (hashCode &* 31) &+  unknownFields.hashValue
@@ -2935,6 +2959,38 @@ public extension Services.Organization.Containers {
       builderResult.color = nil
       return self
     }
+    public var hasPermissions:Bool {
+         get {
+             return builderResult.hasPermissions
+         }
+    }
+    public var permissions:Services.Common.Containers.PermissionsV1! {
+         get {
+             return builderResult.permissions
+         }
+         set (value) {
+             builderResult.hasPermissions = true
+             builderResult.permissions = value
+         }
+    }
+    public func setPermissions(value:Services.Common.Containers.PermissionsV1!)-> Services.Organization.Containers.TeamV1Builder {
+      self.permissions = value
+      return self
+    }
+    public func mergePermissions(value:Services.Common.Containers.PermissionsV1) -> Services.Organization.Containers.TeamV1Builder {
+      if (builderResult.hasPermissions) {
+        builderResult.permissions = Services.Common.Containers.PermissionsV1.builderWithPrototype(builderResult.permissions).mergeFrom(value).buildPartial()
+      } else {
+        builderResult.permissions = value
+      }
+      builderResult.hasPermissions = true
+      return self
+    }
+    public func clearPermissions() -> Services.Organization.Containers.TeamV1Builder {
+      builderResult.hasPermissions = false
+      builderResult.permissions = nil
+      return self
+    }
     override public var internalGetResult:GeneratedMessage {
          get {
             return builderResult
@@ -2986,6 +3042,9 @@ public extension Services.Organization.Containers {
       if (other.hasColor) {
           mergeColor(other.color)
       }
+      if (other.hasPermissions) {
+          mergePermissions(other.permissions)
+      }
       mergeUnknownFields(other.unknownFields)
       return self
     }
@@ -3034,6 +3093,14 @@ public extension Services.Organization.Containers {
           }
           input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
           color = subBuilder.buildPartial()
+
+        case 82 :
+          var subBuilder:Services.Common.Containers.PermissionsV1Builder = Services.Common.Containers.PermissionsV1.builder()
+          if hasPermissions {
+            subBuilder.mergeFrom(permissions)
+          }
+          input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
+          permissions = subBuilder.buildPartial()
 
         default:
           if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
@@ -3373,6 +3440,7 @@ public extension Services.Organization.Containers {
            case "version": return version
            case "key": return key
            case "requestedByUserId": return requestedByUserId
+           case "id": return id
            default: return nil
            }
     }
@@ -3385,6 +3453,9 @@ public extension Services.Organization.Containers {
 
     public private(set) var hasRequestedByUserId:Bool = false
     public private(set) var requestedByUserId:String = ""
+
+    public private(set) var hasId:Bool = false
+    public private(set) var id:String = ""
 
     required public init() {
          super.init()
@@ -3401,6 +3472,9 @@ public extension Services.Organization.Containers {
       }
       if hasRequestedByUserId {
         output.writeString(3, value:requestedByUserId)
+      }
+      if hasId {
+        output.writeString(4, value:id)
       }
       unknownFields.writeToCodedOutputStream(output)
     }
@@ -3419,6 +3493,9 @@ public extension Services.Organization.Containers {
       }
       if hasRequestedByUserId {
         serialize_size += requestedByUserId.computeStringSize(3)
+      }
+      if hasId {
+        serialize_size += id.computeStringSize(4)
       }
       serialize_size += unknownFields.serializedSize()
       memoizedSerializedSize = serialize_size
@@ -3470,6 +3547,9 @@ public extension Services.Organization.Containers {
       if hasRequestedByUserId {
         output += "\(indent) requestedByUserId: \(requestedByUserId) \n"
       }
+      if hasId {
+        output += "\(indent) id: \(id) \n"
+      }
       unknownFields.writeDescriptionTo(&output, indent:indent)
     }
     override public var hashValue:Int {
@@ -3483,6 +3563,9 @@ public extension Services.Organization.Containers {
             }
             if hasRequestedByUserId {
                hashCode = (hashCode &* 31) &+ requestedByUserId.hashValue
+            }
+            if hasId {
+               hashCode = (hashCode &* 31) &+ id.hashValue
             }
             hashCode = (hashCode &* 31) &+  unknownFields.hashValue
             return hashCode
@@ -3581,6 +3664,29 @@ public extension Services.Organization.Containers {
          builderResult.requestedByUserId = ""
          return self
     }
+    public var hasId:Bool {
+         get {
+              return builderResult.hasId
+         }
+    }
+    public var id:String {
+         get {
+              return builderResult.id
+         }
+         set (value) {
+             builderResult.hasId = true
+             builderResult.id = value
+         }
+    }
+    public func setId(value:String)-> Services.Organization.Containers.TokenV1Builder {
+      self.id = value
+      return self
+    }
+    public func clearId() -> Services.Organization.Containers.TokenV1Builder{
+         builderResult.hasId = false
+         builderResult.id = ""
+         return self
+    }
     override public var internalGetResult:GeneratedMessage {
          get {
             return builderResult
@@ -3614,6 +3720,9 @@ public extension Services.Organization.Containers {
       if other.hasRequestedByUserId {
            requestedByUserId = other.requestedByUserId
       }
+      if other.hasId {
+           id = other.id
+      }
       mergeUnknownFields(other.unknownFields)
       return self
     }
@@ -3637,6 +3746,9 @@ public extension Services.Organization.Containers {
 
         case 26 :
           requestedByUserId = input.readString()
+
+        case 34 :
+          id = input.readString()
 
         default:
           if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
