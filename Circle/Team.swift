@@ -13,28 +13,20 @@ typealias UpdateTeamCompletionHandler = (team: Services.Organization.Containers.
 
 extension Services.Organization.Actions {
 
-    static func updateTeam(team: Services.Organization.Containers.TeamV1, completionHandler: UpdateProfileCompletionHandler?) {
-//        let requestBuilder = Services.Organization.Actions.UpdateTeam.RequestV1.builder()
-//        requestBuilder.team = team
-//        
-//        let client = ServiceClient(serviceName: "organization")
-//        client.callAction(
-//            "update_team",
-//            extensionField: Services.Registry.Requests.Profile.updateProfile(),
-//            requestBuilder: requestBuilder) { (_, _, wrapped, error) -> Void in
-//                let response = wrapped?.response?.result.getExtension(
-//                    Services.Registry.Responses.Profile.updateProfile()
-//                    ) as? Services.Profile.Actions.UpdateProfile.ResponseV1
-//                ObjectStore.sharedInstance.update(response?.profile, type: .Profile)
-//                completionHandler?(profile: response?.profile, error: error)
-//                // DWM - Discuss with Michael
-//                // TODO: Either check for no errors or pass than along in the userInfo
-//                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-//                    NSNotificationCenter.defaultCenter().postNotificationName(
-//                        ProfileServiceNotifications.onProfileUpdatedNotification,
-//                        object: nil
-//                    )
-//                })
-//        }
+    static func updateTeam(team: Services.Organization.Containers.TeamV1, completionHandler: UpdateTeamCompletionHandler?) {
+        let requestBuilder = Services.Organization.Actions.UpdateTeam.RequestV1.builder()
+        requestBuilder.team = team
+        
+        let client = ServiceClient(serviceName: "organization")
+        client.callAction(
+            "update_team",
+            extensionField: Services.Registry.Requests.Organization.updateTeam(),
+            requestBuilder: requestBuilder) { (_, _, wrapped, error) -> Void in
+                let response = wrapped?.response?.result.getExtension(
+                    Services.Registry.Responses.Organization.updateTeam()
+                ) as? Services.Organization.Actions.UpdateTeam.ResponseV1
+                ObjectStore.sharedInstance.update(response?.team, type: .Team)
+                completionHandler?(team: response?.team, error: error)
+        }
     }
 }

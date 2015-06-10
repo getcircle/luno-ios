@@ -88,10 +88,8 @@ class EditTeamViewController: UIViewController, UITextFieldDelegate {
         let teamNameBuilder = team.toBuilder()
         teamNameBuilder.name = teamNameField.text.trimWhitespace()
         let updatedTeam = teamNameBuilder.build()
-        // TODO: Add service call
-        
         let hud = MBProgressHUD.showHUDAddedTo(view, animated: true)
-        delay(0.3, { () -> () in
+        Services.Organization.Actions.updateTeam(updatedTeam, completionHandler: { (team, error) -> Void in
             self.editTeamViewControllerDelegate?.onTeamDetailsUpdated(self.team)
             hud.hide(true)
             self.close(sender)

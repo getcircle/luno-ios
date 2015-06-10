@@ -18,13 +18,13 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TEAM NAME" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="chT-aL-zxf">
-                    <rect key="frame" x="15" y="84" width="570" height="18"/>
+                    <rect key="frame" x="15" y="20" width="570" height="18"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tIM-un-VOO" userLabel="TeamNameContainer">
-                    <rect key="frame" x="0.0" y="122" width="600" height="60"/>
+                    <rect key="frame" x="0.0" y="58" width="600" height="60"/>
                     <subviews>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Team name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bdi-5Q-vkp" userLabel="TeamNameField">
                             <rect key="frame" x="15" y="10" width="570" height="40"/>
@@ -54,7 +54,7 @@
                 <constraint firstItem="chT-aL-zxf" firstAttribute="leading" secondItem="81D-FE-ffL" secondAttribute="leading" constant="15" id="2Ff-Yb-XIA"/>
                 <constraint firstItem="tIM-un-VOO" firstAttribute="leading" secondItem="81D-FE-ffL" secondAttribute="leading" id="DNa-Nh-nbW"/>
                 <constraint firstItem="tIM-un-VOO" firstAttribute="top" secondItem="81D-FE-ffL" secondAttribute="top" constant="94" id="GBd-SX-EiF"/>
-                <constraint firstItem="chT-aL-zxf" firstAttribute="top" secondItem="81D-FE-ffL" secondAttribute="top" constant="84" id="T9H-fb-Rpy"/>
+                <constraint firstItem="chT-aL-zxf" firstAttribute="top" secondItem="81D-FE-ffL" secondAttribute="top" constant="20" id="T9H-fb-Rpy"/>
                 <constraint firstAttribute="trailing" secondItem="chT-aL-zxf" secondAttribute="trailing" constant="15" id="VQL-CH-1GD"/>
                 <constraint firstItem="tIM-un-VOO" firstAttribute="top" secondItem="chT-aL-zxf" secondAttribute="bottom" constant="20" id="Wc5-Yh-DF7"/>
                 <constraint firstAttribute="trailing" secondItem="tIM-un-VOO" secondAttribute="trailing" id="bFS-vV-TQu"/>
