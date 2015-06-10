@@ -34,8 +34,12 @@ class TeamHeaderCollectionReusableView: CircleCollectionReusableView {
     }
     
     func setData(team: Services.Organization.Containers.TeamV1) {
-        teamNameLabel.attributedText = NSAttributedString(string: team.name.uppercaseString, attributes: [NSKernAttributeName: 2.0])
+        teamNameLabel.attributedText = NSAttributedString(
+            string: team.name.uppercaseString, 
+            attributes: [NSKernAttributeName: 2.0]
+        )
         teamNameLabel.layer.borderWidth = 0.0
+        
         if team.name != team.department &&
             team.department.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) != "" {
             departmentNameLabel.hidden = false
