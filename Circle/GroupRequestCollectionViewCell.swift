@@ -39,7 +39,7 @@ class GroupRequestCollectionViewCell: CircleCollectionViewCell {
     }
     
     override class var sizeCalculationMethod: SizeCalculation {
-        return .Dynamic
+        return .Fixed
     }
     
     override func awakeFromNib() {
@@ -50,7 +50,7 @@ class GroupRequestCollectionViewCell: CircleCollectionViewCell {
         configureViews()
         configureButtons()
     }
-    
+
     // MARK: - Configuration
 
     private func configureViews() {
@@ -112,15 +112,7 @@ class GroupRequestCollectionViewCell: CircleCollectionViewCell {
         
         notificationMessageLabel.attributedText = messageAttributed
     }
-    
-    override func intrinsicContentSize() -> CGSize {
-        // 30.0 is the hardcoded number based on the gap size between label and buttons
-        notificationMessageLabel.layoutIfNeeded()
-        let intrinsicSize = notificationMessageLabel.intrinsicContentSize()
-        let dynamicHeight = intrinsicSize.height + 30.0 + approveButton.frameHeight
-        return CGSizeMake(self.dynamicType.width, dynamicHeight)
-    }
-    
+        
     // MARK: - IBActions
     
     @IBAction func approveRequestButtonTapped(sender: UIView) {
