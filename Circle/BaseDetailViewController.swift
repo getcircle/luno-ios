@@ -78,13 +78,9 @@ MFMessageComposeViewControllerDelegate {
             }
             return
         }, completion: nil)
-    }
-    
-    override func viewDidDisappear(animated: Bool) {
-        super.viewDidDisappear(animated)
         unregisterNotifications()
     }
-    
+
     private func addCloseButton() {
         if navigationItem.leftBarButtonItem == nil {
             let closeButton = UIBarButtonItem(

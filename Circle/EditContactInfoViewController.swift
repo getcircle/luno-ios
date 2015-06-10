@@ -35,18 +35,13 @@ class EditContactInfoViewController: UIViewController, UINavigationControllerDel
         configureNavigationButtons()
         configureFormFields()
         formBuilder.build(rootContentView)
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
         registerNotifications()
     }
     
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
+    deinit {
         unregisterNotifications()
     }
-    
+        
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
