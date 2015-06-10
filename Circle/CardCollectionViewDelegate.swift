@@ -52,12 +52,12 @@ class CardCollectionViewDelegate: NSObject, UICollectionViewDelegateFlowLayout, 
             
             // Use a prototype cell if size calculation method of choice is Dynamic
             // Instantiate a prototype cell and cache it for later use
-            if prototypeCellsHolder[card.title] == nil {
+            if prototypeCellsHolder[card.contentClassName] == nil {
                 let cellNibViews = NSBundle.mainBundle().loadNibNamed(card.contentClassName, owner: self, options: nil)
-                prototypeCellsHolder[card.title] = cellNibViews.first as? CircleCollectionViewCell
+                prototypeCellsHolder[card.contentClassName] = cellNibViews.first as? CircleCollectionViewCell
             }
             
-            if let prototypeCell = prototypeCellsHolder[card.title] {
+            if let prototypeCell = prototypeCellsHolder[card.contentClassName] {
                 prototypeCell.setData(card.content[indexPath.row])
                 dataSource.configureCell(prototypeCell, atIndexPath: indexPath)
                 prototypeCell.setNeedsLayout()
