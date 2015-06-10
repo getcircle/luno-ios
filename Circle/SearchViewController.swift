@@ -124,7 +124,7 @@ class SearchViewController: UIViewController,
     private func configurePullToRefreshView() {
         refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: "refreshContent:", forControlEvents: .ValueChanged)
-        collectionView.addSubview(refreshControl)
+        collectionView.insertSubview(refreshControl, atIndex: 0)
         collectionView.alwaysBounceVertical = true
     }
     

@@ -75,6 +75,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Will ideally use a URL router here
     }
     
+    func application(application: UIApplication, handleActionWithIdentifier identifier: String?, forRemoteNotification userInfo: [NSObject : AnyObject], completionHandler: () -> Void) {
+        if let identifier = identifier {
+            if identifier == self.dynamicType.NotificationActionApprove {
+                println("Approve")
+            }
+            else if identifier == self.dynamicType.NotificationActionDeny {
+                println("Deny")
+            }
+        }
+        
+        completionHandler()
+    }
+    
     // MARK: - Notification
     
     func registerNotifications() {
