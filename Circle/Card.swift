@@ -501,10 +501,10 @@ class Card: Equatable {
         if maxVisibleItems > 0 {
 
             if cardContentType == .Flat && content.count > maxVisibleItems {
-                content = Array(content[0..<maxVisibleItems])
+                content = Array(allContent[0..<maxVisibleItems])
             }
             else if cardContentType == .Aggregate && content.first!.count > maxVisibleItems {
-                content[0] = Array((content.first! as![AnyObject])[0..<maxVisibleItems])
+                content[0] = Array((allContent.first! as![AnyObject])[0..<maxVisibleItems])
             }
         }
     }
