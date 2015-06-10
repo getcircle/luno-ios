@@ -201,6 +201,7 @@ extension Services.User.Actions {
                 deviceBuilder.osVersion = "\(currentDevice.systemName) \(currentDevice.systemVersion)"
                 deviceBuilder.appVersion = "\(appVersion) (\(appBuild))"
                 deviceBuilder.deviceUuid = UIDevice.currentDevice().identifierForVendor.UUIDString
+                deviceBuilder.provider = .Apple
                 deviceBuilder.userId = loggedInUser.id
                 if let pushToken = pushToken {
                     deviceBuilder.notificationToken = pushToken
