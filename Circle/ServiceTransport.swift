@@ -184,9 +184,9 @@ class HttpsTransport: BaseTransport {
         static var totalRequests = 0
     }
     
-    private func printErrorMessage(error: NSError?) {
+    private func printErrorMessage(serviceRequest: Soa.ServiceRequestV1, error: NSError?) {
         if let error = error {
-            println("Error Description: \(error.description)")
+            println("Error Description: \(serviceRequest.control.service):\(serviceRequest.actions[0].control.action): \(error.description)")
             if let userInfo = error.userInfo {
                 if let errorDetails = userInfo["error_details"] as? [ProtobufRegistry.Soa.ActionResultV1.ErrorDetailV1] {
                     for errorDetail in errorDetails {
@@ -212,8 +212,7 @@ class HttpsTransport: BaseTransport {
                     actionResponse: actionResponse
                 )
                 let endTime = CACurrentMediaTime()
-                // println("\(serviceRequest.control.service):\(serviceRequest.actions[0].control.action): Time - \(endTime - startTime)")
-                self.printErrorMessage(error)
+                self.printErrorMessage(serviceRequest, error: error)
                 completionHandler(request, response, wrapped, error)
         }
     }
