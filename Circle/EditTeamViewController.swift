@@ -90,7 +90,9 @@ class EditTeamViewController: UIViewController, UITextFieldDelegate {
         let updatedTeam = teamNameBuilder.build()
         let hud = MBProgressHUD.showHUDAddedTo(view, animated: true)
         Services.Organization.Actions.updateTeam(updatedTeam, completionHandler: { (team, error) -> Void in
-            self.editTeamViewControllerDelegate?.onTeamDetailsUpdated(self.team)
+            if let team = team {
+                self.editTeamViewControllerDelegate?.onTeamDetailsUpdated(team)
+            }
             hud.hide(true)
             self.close(sender)
         })

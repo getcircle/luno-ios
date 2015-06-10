@@ -72,8 +72,7 @@ class TeamDetailDataSource: CardDataSource {
     private func addTeamActionsCard() {
 
         // Add team actions card
-        let isAdmin = self.selectedTeam.permissions.canEdit
-        if isAdmin {
+        if let permissions = self.selectedTeam.permissions where permissions.canEdit {
             let teamActionsCard = Card(cardType: .Settings, title: "")
             teamActionsCard.sectionInset = UIEdgeInsetsMake(25.0, 0.0, 40.0, 0.0)
             teamActionsCard.addContent(content: [[
