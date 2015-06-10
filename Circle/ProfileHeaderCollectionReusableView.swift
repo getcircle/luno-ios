@@ -131,11 +131,16 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
                 self.profileImage.image = image
                 if self.backgroundImageView.image != image {
                     self.backgroundImageView.image = image
+                    self.loadLargeProfileImage(userProfile)
                     self.addBlurEffect()
                 }
                 self.verifiedProfileButton.hidden = !userProfile.verified
             })
         }
+    }
+    
+    private func loadLargeProfileImage(userProfile: Services.Profile.Containers.ProfileV1) {
+        self.backgroundImageView.setLargerProfileImage(userProfile)
     }
 
     func setOffice(office: Services.Organization.Containers.LocationV1) {
