@@ -62,6 +62,7 @@ struct AppStrings {
     static let GroupRequestSentConfirmation = NSLocalizedString("Your request to join this group was sent to the group admins.", comment: "Confirmation message indicating a group request was successfully sent to the admins")
     static let GroupJoinSuccessConfirmation = NSLocalizedString("Great! You are now a member of the group.", comment: "Confirmation message that a user was able to successfully join a group")
     
+    static let NotificationTitle = NSLocalizedString("Notification", comment: "Title for showing a notification message")
     static let NotificationsTitle = NSLocalizedString("Notifications", comment: "Title of the view that shows content related to notifications")
     static let NotificationInfoText = NSLocalizedString("We'd like to notify you when new people join, you are invited to events or when someone on your team is having a work anniversary. Turn notifications on?", comment: "Message indicating the users why we would like to notify them and asking for notifications permission")
     
