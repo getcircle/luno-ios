@@ -196,8 +196,24 @@ class CircleImageView: UIImageView {
         )
     }
     
-    func setLargerProfileImage(profile: Services.Profile.Containers.ProfileV1) {
+    func setLargerProfileImage(profile: Services.Profile.Containers.ProfileV1, successHandler: ((image: UIImage) -> Void)? = nil) {
         if let imageURL = NSURL(string: profile.imageUrl) {
+            if successHandler != nil {
+                let urlRequest = NSURLRequest(URL: imageURL)
+                setImageWithURLRequest(
+                    urlRequest, 
+                    placeholderImage: nil, 
+                    success: { (request, response, image) -> Void in
+                        if let imageID = self.imageProfileIdentifier where imageID == profile.id {
+                            successHandler!(image: image)
+                        }
+                    },
+                    failure: nil
+                )
+            }
+            else {
+            
+            }
             setImageWithURL(imageURL)
         }
     }

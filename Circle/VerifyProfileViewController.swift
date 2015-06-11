@@ -69,7 +69,10 @@ class VerifyProfileViewController:
     
     private func populateData() {
         profile = AuthViewController.getLoggedInUserProfile()
-        profileImageView.setLargerProfileImage(profile)
+        profileImageView.setLargerProfileImage(profile, successHandler: {(image) -> Void in
+            self.profileImageView.image = image
+            self.checkDataAndEnableNext()
+        })
     }
     
     // MARK: - IBActions
