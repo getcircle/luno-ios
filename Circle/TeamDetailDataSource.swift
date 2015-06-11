@@ -57,7 +57,8 @@ class TeamDetailDataSource: CardDataSource {
                 if let error = error {
                     storedError = error
                 }
-                else if let teams = teams where teams.count > 0 {
+                else if let teams = teams {
+                    self.teams.extend(teams)
                 }
                 dispatch_group_leave(actionsGroup)
             })
