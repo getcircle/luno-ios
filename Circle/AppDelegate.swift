@@ -72,16 +72,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject], fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
-        
+        // Display an alert when the notification is received in the foreground
+        handleRemoteNotification(userInfo)
     }
     
     func application(application: UIApplication, handleActionWithIdentifier identifier: String?, forRemoteNotification userInfo: [NSObject : AnyObject], completionHandler: () -> Void) {
         if let identifier = identifier {
+
             if identifier == NotificationAction.Approve.rawValue {
-                println("Approve")
+                if let requestID = userInfo[NotificationUserInfoKey.GroupRequestID.rawValue] as? String {
+                    actOnGroupRequest(requestID, shouldApprove: true)
+                }
             }
             else if identifier == NotificationAction.Deny.rawValue {
-                println("Deny")
+                if let requestID = userInfo[NotificationUserInfoKey.GroupRequestID.rawValue] as? String {
+                    actOnGroupRequest(requestID, shouldApprove: false)
+                }
             }
         }
         

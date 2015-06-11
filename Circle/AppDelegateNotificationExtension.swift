@@ -16,8 +16,14 @@ extension AppDelegate {
         case Deny = "DENY"
     }
     
+    // These are set on the server and are based on a client-server contract
     enum NotificationCategory: String {
         case GroupRequest = "GROUP_REQUEST"
+    }
+    
+    // These are set on the server and are based on a client-server contract
+    enum NotificationUserInfoKey: String {
+        case GroupRequestID = "request_id"
     }
     
     func registerForRemoteNotifications() {
@@ -55,7 +61,7 @@ extension AppDelegate {
         return notificationCategories
     }
     
-    private func handleRemoteNotification(userInfo: [NSObject : AnyObject]) {
+    internal func handleRemoteNotification(userInfo: [NSObject : AnyObject]) {
         var alertTitle = AppStrings.NotificationTitle
         var alertMessage = ""
         
@@ -84,7 +90,7 @@ extension AppDelegate {
         if let notificationCategory = userInfo["category"] as? String, category = NotificationCategory(rawValue: notificationCategory)  {
             switch (category) {
             case .GroupRequest:
-                if let requestID = userInfo["request_id"] as? String {
+                if let requestID = userInfo[NotificationUserInfoKey.GroupRequestID.rawValue] as? String {
                     let approveAction = UIAlertAction(
                         title: AppStrings.GroupRequestApproveButtonTitle, 
                         style: .Default,
@@ -125,7 +131,7 @@ extension AppDelegate {
         window?.rootViewController?.presentViewController(alertController, animated: true, completion: nil)
     }
     
-    private func actOnGroupRequest(requestID: String, shouldApprove: Bool) {
+    internal func actOnGroupRequest(requestID: String, shouldApprove: Bool) {
         var status = Services.Group.Actions.RespondToMembershipRequest.RequestV1.ResponseActionV1.Approve
         Services.Group.Actions.respondToMembershipRequest(requestID, action: status, completionHandler: nil)
     }
