@@ -10,7 +10,7 @@ public enum MediaTypeV1
 
   private final int value;
 
-  private MediaTypeV1(int value) {
+  MediaTypeV1(int value) {
     this.value = value;
   }
 

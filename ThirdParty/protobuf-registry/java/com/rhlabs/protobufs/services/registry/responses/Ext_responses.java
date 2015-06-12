@@ -85,6 +85,16 @@ public final class Ext_responses {
       .setName("services.registry.responses.logout")
       .setTag(114)
       .buildOptional();
+  public static final Extension<ActionResultV1 , com.rhlabs.protobufs.services.user.actions.get_authentication_instructions.GetAuthenticationInstructionsResponseV1> get_authentication_instructions = Extension
+      .messageExtending(com.rhlabs.protobufs.services.user.actions.get_authentication_instructions.GetAuthenticationInstructionsResponseV1.class, ActionResultV1.class)
+      .setName("services.registry.responses.get_authentication_instructions")
+      .setTag(115)
+      .buildOptional();
+  public static final Extension<ActionResultV1 , com.rhlabs.protobufs.services.user.actions.get_active_devices.GetActiveDevicesResponseV1> get_active_devices = Extension
+      .messageExtending(com.rhlabs.protobufs.services.user.actions.get_active_devices.GetActiveDevicesResponseV1.class, ActionResultV1.class)
+      .setName("services.registry.responses.get_active_devices")
+      .setTag(116)
+      .buildOptional();
   public static final Extension<ActionResultV1 , com.rhlabs.protobufs.services.organization.actions.create_organization.CreateOrganizationResponseV1> create_organization = Extension
       .messageExtending(com.rhlabs.protobufs.services.organization.actions.create_organization.CreateOrganizationResponseV1.class, ActionResultV1.class)
       .setName("services.registry.responses.create_organization")
@@ -169,6 +179,26 @@ public final class Ext_responses {
       .messageExtending(com.rhlabs.protobufs.services.organization.actions.get_tokens.GetTokensResponseV1.class, ActionResultV1.class)
       .setName("services.registry.responses.get_tokens")
       .setTag(216)
+      .buildOptional();
+  public static final Extension<ActionResultV1 , com.rhlabs.protobufs.services.organization.actions.enable_integration.EnableIntegrationResponseV1> enable_integration = Extension
+      .messageExtending(com.rhlabs.protobufs.services.organization.actions.enable_integration.EnableIntegrationResponseV1.class, ActionResultV1.class)
+      .setName("services.registry.responses.enable_integration")
+      .setTag(217)
+      .buildOptional();
+  public static final Extension<ActionResultV1 , com.rhlabs.protobufs.services.organization.actions.get_integration.GetIntegrationResponseV1> get_integration = Extension
+      .messageExtending(com.rhlabs.protobufs.services.organization.actions.get_integration.GetIntegrationResponseV1.class, ActionResultV1.class)
+      .setName("services.registry.responses.get_integration")
+      .setTag(218)
+      .buildOptional();
+  public static final Extension<ActionResultV1 , com.rhlabs.protobufs.services.organization.actions.disable_integration.DisableIntegrationResponseV1> disable_integration = Extension
+      .messageExtending(com.rhlabs.protobufs.services.organization.actions.disable_integration.DisableIntegrationResponseV1.class, ActionResultV1.class)
+      .setName("services.registry.responses.disable_integration")
+      .setTag(219)
+      .buildOptional();
+  public static final Extension<ActionResultV1 , com.rhlabs.protobufs.services.organization.actions.update_team.UpdateTeamResponseV1> update_team = Extension
+      .messageExtending(com.rhlabs.protobufs.services.organization.actions.update_team.UpdateTeamResponseV1.class, ActionResultV1.class)
+      .setName("services.registry.responses.update_team")
+      .setTag(220)
       .buildOptional();
   public static final Extension<ActionResultV1 , com.rhlabs.protobufs.services.profile.actions.create_profile.CreateProfileResponseV1> create_profile = Extension
       .messageExtending(com.rhlabs.protobufs.services.profile.actions.create_profile.CreateProfileResponseV1.class, ActionResultV1.class)
@@ -369,5 +399,90 @@ public final class Ext_responses {
       .messageExtending(com.rhlabs.protobufs.services.sync.actions.complete_sync.CompleteSyncResponseV1.class, ActionResultV1.class)
       .setName("services.registry.responses.complete_sync")
       .setTag(1002)
+      .buildOptional();
+  public static final Extension<ActionResultV1 , com.rhlabs.protobufs.services.group.actions.get_groups.GetGroupsResponseV1> get_groups = Extension
+      .messageExtending(com.rhlabs.protobufs.services.group.actions.get_groups.GetGroupsResponseV1.class, ActionResultV1.class)
+      .setName("services.registry.responses.get_groups")
+      .setTag(1100)
+      .buildOptional();
+  public static final Extension<ActionResultV1 , com.rhlabs.protobufs.services.group.actions.join_group.JoinGroupResponseV1> join_group = Extension
+      .messageExtending(com.rhlabs.protobufs.services.group.actions.join_group.JoinGroupResponseV1.class, ActionResultV1.class)
+      .setName("services.registry.responses.join_group")
+      .setTag(1101)
+      .buildOptional();
+  public static final Extension<ActionResultV1 , com.rhlabs.protobufs.services.group.actions.respond_to_membership_request.RespondToMembershipRequestResponseV1> respond_to_membership_request = Extension
+      .messageExtending(com.rhlabs.protobufs.services.group.actions.respond_to_membership_request.RespondToMembershipRequestResponseV1.class, ActionResultV1.class)
+      .setName("services.registry.responses.respond_to_membership_request")
+      .setTag(1102)
+      .buildOptional();
+  public static final Extension<ActionResultV1 , com.rhlabs.protobufs.services.group.actions.leave_group.LeaveGroupResponseV1> leave_group = Extension
+      .messageExtending(com.rhlabs.protobufs.services.group.actions.leave_group.LeaveGroupResponseV1.class, ActionResultV1.class)
+      .setName("services.registry.responses.leave_group")
+      .setTag(1103)
+      .buildOptional();
+  public static final Extension<ActionResultV1 , com.rhlabs.protobufs.services.group.actions.get_members.GetMembersResponseV1> get_members = Extension
+      .messageExtending(com.rhlabs.protobufs.services.group.actions.get_members.GetMembersResponseV1.class, ActionResultV1.class)
+      .setName("services.registry.responses.get_members")
+      .setTag(1104)
+      .buildOptional();
+  public static final Extension<ActionResultV1 , com.rhlabs.protobufs.services.group.actions.get_group.GetGroupResponseV1> get_group = Extension
+      .messageExtending(com.rhlabs.protobufs.services.group.actions.get_group.GetGroupResponseV1.class, ActionResultV1.class)
+      .setName("services.registry.responses.get_group")
+      .setTag(1105)
+      .buildOptional();
+  public static final Extension<ActionResultV1 , com.rhlabs.protobufs.services.group.actions.add_to_group.AddToGroupResponseV1> add_to_group = Extension
+      .messageExtending(com.rhlabs.protobufs.services.group.actions.add_to_group.AddToGroupResponseV1.class, ActionResultV1.class)
+      .setName("services.registry.responses.add_to_group")
+      .setTag(1106)
+      .buildOptional();
+  public static final Extension<ActionResultV1 , com.rhlabs.protobufs.services.group.actions.get_membership_requests.GetMembershipRequestsResponseV1> get_membership_requests = Extension
+      .messageExtending(com.rhlabs.protobufs.services.group.actions.get_membership_requests.GetMembershipRequestsResponseV1.class, ActionResultV1.class)
+      .setName("services.registry.responses.get_membership_requests")
+      .setTag(1107)
+      .buildOptional();
+  public static final Extension<ActionResultV1 , com.rhlabs.protobufs.services.glossary.actions.create_term.CreateTermResponseV1> create_term = Extension
+      .messageExtending(com.rhlabs.protobufs.services.glossary.actions.create_term.CreateTermResponseV1.class, ActionResultV1.class)
+      .setName("services.registry.responses.create_term")
+      .setTag(1200)
+      .buildOptional();
+  public static final Extension<ActionResultV1 , com.rhlabs.protobufs.services.glossary.actions.get_term.GetTermResponseV1> get_term = Extension
+      .messageExtending(com.rhlabs.protobufs.services.glossary.actions.get_term.GetTermResponseV1.class, ActionResultV1.class)
+      .setName("services.registry.responses.get_term")
+      .setTag(1201)
+      .buildOptional();
+  public static final Extension<ActionResultV1 , com.rhlabs.protobufs.services.glossary.actions.get_terms.GetTermsResponseV1> get_terms = Extension
+      .messageExtending(com.rhlabs.protobufs.services.glossary.actions.get_terms.GetTermsResponseV1.class, ActionResultV1.class)
+      .setName("services.registry.responses.get_terms")
+      .setTag(1202)
+      .buildOptional();
+  public static final Extension<ActionResultV1 , com.rhlabs.protobufs.services.glossary.actions.update_term.UpdateTermResponseV1> update_term = Extension
+      .messageExtending(com.rhlabs.protobufs.services.glossary.actions.update_term.UpdateTermResponseV1.class, ActionResultV1.class)
+      .setName("services.registry.responses.update_term")
+      .setTag(1203)
+      .buildOptional();
+  public static final Extension<ActionResultV1 , com.rhlabs.protobufs.services.glossary.actions.delete_term.DeleteTermResponseV1> delete_term = Extension
+      .messageExtending(com.rhlabs.protobufs.services.glossary.actions.delete_term.DeleteTermResponseV1.class, ActionResultV1.class)
+      .setName("services.registry.responses.delete_term")
+      .setTag(1204)
+      .buildOptional();
+  public static final Extension<ActionResultV1 , com.rhlabs.protobufs.services.notification.actions.register_device.RegisterDeviceResponseV1> register_device = Extension
+      .messageExtending(com.rhlabs.protobufs.services.notification.actions.register_device.RegisterDeviceResponseV1.class, ActionResultV1.class)
+      .setName("services.registry.responses.register_device")
+      .setTag(1300)
+      .buildOptional();
+  public static final Extension<ActionResultV1 , com.rhlabs.protobufs.services.notification.actions.get_preferences.GetPreferencesResponseV1> get_preferences = Extension
+      .messageExtending(com.rhlabs.protobufs.services.notification.actions.get_preferences.GetPreferencesResponseV1.class, ActionResultV1.class)
+      .setName("services.registry.responses.get_preferences")
+      .setTag(1301)
+      .buildOptional();
+  public static final Extension<ActionResultV1 , com.rhlabs.protobufs.services.notification.actions.update_preference.UpdatePreferenceResponseV1> update_preference = Extension
+      .messageExtending(com.rhlabs.protobufs.services.notification.actions.update_preference.UpdatePreferenceResponseV1.class, ActionResultV1.class)
+      .setName("services.registry.responses.update_preference")
+      .setTag(1302)
+      .buildOptional();
+  public static final Extension<ActionResultV1 , com.rhlabs.protobufs.services.notification.actions.send_notification.SendNotificationResponseV1> send_notification = Extension
+      .messageExtending(com.rhlabs.protobufs.services.notification.actions.send_notification.SendNotificationResponseV1.class, ActionResultV1.class)
+      .setName("services.registry.responses.send_notification")
+      .setTag(1303)
       .buildOptional();
 }

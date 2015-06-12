@@ -27,17 +27,19 @@ public final class FileDescriptorProto extends Message {
   public static final List<ServiceDescriptorProto> DEFAULT_SERVICE = Collections.emptyList();
   public static final List<FieldDescriptorProto> DEFAULT_EXTENSION = Collections.emptyList();
 
+  /**
+   * file name, relative to root of source tree
+   */
   @ProtoField(tag = 1, type = STRING)
   public final String name;
 
   /**
-   * file name, relative to root of source tree
+   * e.g. "foo", "foo.bar", etc.
    */
   @ProtoField(tag = 2, type = STRING)
   public final String _package;
 
   /**
-   * e.g. "foo", "foo.bar", etc.
    * Names of files imported by this file.
    */
   @ProtoField(tag = 3, type = STRING, label = REPEATED)
@@ -173,13 +175,16 @@ public final class FileDescriptorProto extends Message {
       this.source_code_info = message.source_code_info;
     }
 
+    /**
+     * file name, relative to root of source tree
+     */
     public Builder name(String name) {
       this.name = name;
       return this;
     }
 
     /**
-     * file name, relative to root of source tree
+     * e.g. "foo", "foo.bar", etc.
      */
     public Builder _package(String _package) {
       this._package = _package;
@@ -187,7 +192,6 @@ public final class FileDescriptorProto extends Message {
     }
 
     /**
-     * e.g. "foo", "foo.bar", etc.
      * Names of files imported by this file.
      */
     public Builder dependency(List<String> dependency) {

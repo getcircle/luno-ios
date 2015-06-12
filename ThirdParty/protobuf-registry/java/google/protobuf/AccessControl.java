@@ -11,7 +11,7 @@ public enum AccessControl
 
   private final int value;
 
-  private AccessControl(int value) {
+  AccessControl(int value) {
     this.value = value;
   }
 

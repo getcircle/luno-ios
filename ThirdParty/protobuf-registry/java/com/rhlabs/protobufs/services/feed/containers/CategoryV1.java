@@ -2,6 +2,8 @@
 // Source file: ./src/protobufs/services/feed/containers.proto
 package com.rhlabs.protobufs.services.feed.containers;
 
+import com.rhlabs.protobufs.services.group.containers.GroupV1;
+import com.rhlabs.protobufs.services.group.containers.MembershipRequestV1;
 import com.rhlabs.protobufs.services.note.containers.NoteV1;
 import com.rhlabs.protobufs.services.organization.containers.AddressV1;
 import com.rhlabs.protobufs.services.organization.containers.LocationV1;
@@ -33,6 +35,8 @@ public final class CategoryV1 extends Message {
   public static final List<TeamV1> DEFAULT_TEAMS = Collections.emptyList();
   public static final List<NoteV1> DEFAULT_NOTES = Collections.emptyList();
   public static final List<LocationV1> DEFAULT_LOCATIONS = Collections.emptyList();
+  public static final List<MembershipRequestV1> DEFAULT_GROUP_MEMBERSHIP_REQUESTS = Collections.emptyList();
+  public static final List<GroupV1> DEFAULT_GROUPS = Collections.emptyList();
 
   @ProtoField(tag = 1, type = UINT32)
   public final Integer version;
@@ -67,7 +71,13 @@ public final class CategoryV1 extends Message {
   @ProtoField(tag = 11, label = REPEATED, messageType = LocationV1.class)
   public final List<LocationV1> locations;
 
-  public CategoryV1(Integer version, String title, String content_key, CategoryTypeV1 category_type, Integer total_count, List<ProfileV1> profiles, List<AddressV1> addresses, List<TagV1> tags, List<TeamV1> teams, List<NoteV1> notes, List<LocationV1> locations) {
+  @ProtoField(tag = 12, label = REPEATED, messageType = MembershipRequestV1.class)
+  public final List<MembershipRequestV1> group_membership_requests;
+
+  @ProtoField(tag = 13, label = REPEATED, messageType = GroupV1.class)
+  public final List<GroupV1> groups;
+
+  public CategoryV1(Integer version, String title, String content_key, CategoryTypeV1 category_type, Integer total_count, List<ProfileV1> profiles, List<AddressV1> addresses, List<TagV1> tags, List<TeamV1> teams, List<NoteV1> notes, List<LocationV1> locations, List<MembershipRequestV1> group_membership_requests, List<GroupV1> groups) {
     this.version = version;
     this.title = title;
     this.content_key = content_key;
@@ -79,10 +89,12 @@ public final class CategoryV1 extends Message {
     this.teams = immutableCopyOf(teams);
     this.notes = immutableCopyOf(notes);
     this.locations = immutableCopyOf(locations);
+    this.group_membership_requests = immutableCopyOf(group_membership_requests);
+    this.groups = immutableCopyOf(groups);
   }
 
   private CategoryV1(Builder builder) {
-    this(builder.version, builder.title, builder.content_key, builder.category_type, builder.total_count, builder.profiles, builder.addresses, builder.tags, builder.teams, builder.notes, builder.locations);
+    this(builder.version, builder.title, builder.content_key, builder.category_type, builder.total_count, builder.profiles, builder.addresses, builder.tags, builder.teams, builder.notes, builder.locations, builder.group_membership_requests, builder.groups);
     setBuilder(builder);
   }
 
@@ -101,7 +113,9 @@ public final class CategoryV1 extends Message {
         && equals(tags, o.tags)
         && equals(teams, o.teams)
         && equals(notes, o.notes)
-        && equals(locations, o.locations);
+        && equals(locations, o.locations)
+        && equals(group_membership_requests, o.group_membership_requests)
+        && equals(groups, o.groups);
   }
 
   @Override
@@ -119,6 +133,8 @@ public final class CategoryV1 extends Message {
       result = result * 37 + (teams != null ? teams.hashCode() : 1);
       result = result * 37 + (notes != null ? notes.hashCode() : 1);
       result = result * 37 + (locations != null ? locations.hashCode() : 1);
+      result = result * 37 + (group_membership_requests != null ? group_membership_requests.hashCode() : 1);
+      result = result * 37 + (groups != null ? groups.hashCode() : 1);
       hashCode = result;
     }
     return result;
@@ -137,6 +153,8 @@ public final class CategoryV1 extends Message {
     public List<TeamV1> teams;
     public List<NoteV1> notes;
     public List<LocationV1> locations;
+    public List<MembershipRequestV1> group_membership_requests;
+    public List<GroupV1> groups;
 
     public Builder() {
     }
@@ -155,6 +173,8 @@ public final class CategoryV1 extends Message {
       this.teams = copyOf(message.teams);
       this.notes = copyOf(message.notes);
       this.locations = copyOf(message.locations);
+      this.group_membership_requests = copyOf(message.group_membership_requests);
+      this.groups = copyOf(message.groups);
     }
 
     public Builder version(Integer version) {
@@ -212,6 +232,16 @@ public final class CategoryV1 extends Message {
       return this;
     }
 
+    public Builder group_membership_requests(List<MembershipRequestV1> group_membership_requests) {
+      this.group_membership_requests = checkForNulls(group_membership_requests);
+      return this;
+    }
+
+    public Builder groups(List<GroupV1> groups) {
+      this.groups = checkForNulls(groups);
+      return this;
+    }
+
     @Override
     public CategoryV1 build() {
       return new CategoryV1(this);
@@ -231,11 +261,12 @@ public final class CategoryV1 extends Message {
     EXECUTIVES(9),
     ORGANIZATION(10),
     NOTES(11),
-    SKILLS(12);
+    SKILLS(12),
+    GROUP_MEMBERSHIP_REQUESTS(13);
 
     private final int value;
 
-    private CategoryTypeV1(int value) {
+    CategoryTypeV1(int value) {
       this.value = value;
     }
 

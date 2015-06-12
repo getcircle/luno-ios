@@ -9,7 +9,7 @@ message RequestV1 {
     optional uint32 version = 1 [default = 1];
     optional string profile_id = 2;
     optional services.group.containers.GroupProviderV1 provider = 3;
-    repeated string group_keys = 4;
+    repeated string group_ids = 4;
 }
 
 message ResponseV1 {

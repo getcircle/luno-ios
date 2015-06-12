@@ -14,6 +14,7 @@ public final class TokenV1 extends Message {
   public static final Integer DEFAULT_VERSION = 1;
   public static final String DEFAULT_KEY = "";
   public static final String DEFAULT_REQUESTED_BY_USER_ID = "";
+  public static final String DEFAULT_ID = "";
 
   @ProtoField(tag = 1, type = UINT32)
   public final Integer version;
@@ -24,14 +25,18 @@ public final class TokenV1 extends Message {
   @ProtoField(tag = 3, type = STRING)
   public final String requested_by_user_id;
 
-  public TokenV1(Integer version, String key, String requested_by_user_id) {
+  @ProtoField(tag = 4, type = STRING)
+  public final String id;
+
+  public TokenV1(Integer version, String key, String requested_by_user_id, String id) {
     this.version = version;
     this.key = key;
     this.requested_by_user_id = requested_by_user_id;
+    this.id = id;
   }
 
   private TokenV1(Builder builder) {
-    this(builder.version, builder.key, builder.requested_by_user_id);
+    this(builder.version, builder.key, builder.requested_by_user_id, builder.id);
     setBuilder(builder);
   }
 
@@ -42,7 +47,8 @@ public final class TokenV1 extends Message {
     TokenV1 o = (TokenV1) other;
     return equals(version, o.version)
         && equals(key, o.key)
-        && equals(requested_by_user_id, o.requested_by_user_id);
+        && equals(requested_by_user_id, o.requested_by_user_id)
+        && equals(id, o.id);
   }
 
   @Override
@@ -52,6 +58,7 @@ public final class TokenV1 extends Message {
       result = version != null ? version.hashCode() : 0;
       result = result * 37 + (key != null ? key.hashCode() : 0);
       result = result * 37 + (requested_by_user_id != null ? requested_by_user_id.hashCode() : 0);
+      result = result * 37 + (id != null ? id.hashCode() : 0);
       hashCode = result;
     }
     return result;
@@ -62,6 +69,7 @@ public final class TokenV1 extends Message {
     public Integer version;
     public String key;
     public String requested_by_user_id;
+    public String id;
 
     public Builder() {
     }
@@ -72,6 +80,7 @@ public final class TokenV1 extends Message {
       this.version = message.version;
       this.key = message.key;
       this.requested_by_user_id = message.requested_by_user_id;
+      this.id = message.id;
     }
 
     public Builder version(Integer version) {
@@ -86,6 +95,11 @@ public final class TokenV1 extends Message {
 
     public Builder requested_by_user_id(String requested_by_user_id) {
       this.requested_by_user_id = requested_by_user_id;
+      return this;
+    }
+
+    public Builder id(String id) {
+      this.id = id;
       return this;
     }
 

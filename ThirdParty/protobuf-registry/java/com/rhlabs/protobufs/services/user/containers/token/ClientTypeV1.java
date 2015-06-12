@@ -13,7 +13,7 @@ public enum ClientTypeV1
 
   private final int value;
 
-  private ClientTypeV1(int value) {
+  ClientTypeV1(int value) {
     this.value = value;
   }
 

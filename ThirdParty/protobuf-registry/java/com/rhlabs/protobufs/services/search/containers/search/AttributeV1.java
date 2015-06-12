@@ -13,7 +13,7 @@ public enum AttributeV1
 
   private final int value;
 
-  private AttributeV1(int value) {
+  AttributeV1(int value) {
     this.value = value;
   }
 

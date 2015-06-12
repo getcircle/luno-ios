@@ -7,7 +7,8 @@ import "protobufs/services/group/containers.proto";
 
 message RequestV1 {
     optional uint32 version = 1 [default = 1];
-    optional string group_key = 2;
+    optional string group_id = 2;
+    optional services.group.containers.GroupProviderV1 provider = 3;
 }
 
 message ResponseV1 {

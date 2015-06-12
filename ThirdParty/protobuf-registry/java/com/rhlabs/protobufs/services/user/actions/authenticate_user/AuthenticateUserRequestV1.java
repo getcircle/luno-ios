@@ -118,7 +118,7 @@ public final class AuthenticateUserRequestV1 extends Message {
 
     private final int value;
 
-    private AuthBackendV1(int value) {
+    AuthBackendV1(int value) {
       this.value = value;
     }
 

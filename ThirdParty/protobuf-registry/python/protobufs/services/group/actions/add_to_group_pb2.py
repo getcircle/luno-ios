@@ -19,7 +19,7 @@ import protobufs.services.group.containers_pb2
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='protobufs/services/group/actions/add_to_group.proto',
   package='services.group.actions.add_to_group',
-  serialized_pb=_b('\n3protobufs/services/group/actions/add_to_group.proto\x12#services.group.actions.add_to_group\x1a)protobufs/services/group/containers.proto\"G\n\tRequestV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x11\n\tgroup_key\x18\x02 \x01(\t\x12\x13\n\x0bprofile_ids\x18\x03 \x03(\t\"Z\n\nResponseV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x38\n\x0bnew_members\x18\x02 \x03(\x0b\x32#.services.group.containers.MemberV1B:\n8com.rhlabs.protobufs.services.group.actions.add_to_group')
+  serialized_pb=_b('\n3protobufs/services/group/actions/add_to_group.proto\x12#services.group.actions.add_to_group\x1a)protobufs/services/group/containers.proto\"\x84\x01\n\tRequestV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x10\n\x08group_id\x18\x02 \x01(\t\x12\x13\n\x0bprofile_ids\x18\x03 \x03(\t\x12<\n\x08provider\x18\x04 \x01(\x0e\x32*.services.group.containers.GroupProviderV1\"Z\n\nResponseV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x38\n\x0bnew_members\x18\x02 \x03(\x0b\x32#.services.group.containers.MemberV1B:\n8com.rhlabs.protobufs.services.group.actions.add_to_group')
   ,
   dependencies=[protobufs.services.group.containers_pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
@@ -42,7 +42,7 @@ _REQUESTV1 = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='group_key', full_name='services.group.actions.add_to_group.RequestV1.group_key', index=1,
+      name='group_id', full_name='services.group.actions.add_to_group.RequestV1.group_id', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
@@ -52,6 +52,13 @@ _REQUESTV1 = _descriptor.Descriptor(
       name='profile_ids', full_name='services.group.actions.add_to_group.RequestV1.profile_ids', index=2,
       number=3, type=9, cpp_type=9, label=3,
       has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='provider', full_name='services.group.actions.add_to_group.RequestV1.provider', index=3,
+      number=4, type=14, cpp_type=8, label=1,
+      has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
@@ -66,8 +73,8 @@ _REQUESTV1 = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=135,
-  serialized_end=206,
+  serialized_start=136,
+  serialized_end=268,
 )
 
 
@@ -103,10 +110,11 @@ _RESPONSEV1 = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=208,
-  serialized_end=298,
+  serialized_start=270,
+  serialized_end=360,
 )
 
+_REQUESTV1.fields_by_name['provider'].enum_type = protobufs.services.group.containers_pb2._GROUPPROVIDERV1
 _RESPONSEV1.fields_by_name['new_members'].message_type = protobufs.services.group.containers_pb2._MEMBERV1
 DESCRIPTOR.message_types_by_name['RequestV1'] = _REQUESTV1
 DESCRIPTOR.message_types_by_name['ResponseV1'] = _RESPONSEV1

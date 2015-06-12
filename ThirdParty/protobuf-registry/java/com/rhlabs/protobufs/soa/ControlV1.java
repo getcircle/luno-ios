@@ -2,13 +2,14 @@
 // Source file: ./src/service_protobufs/soa.proto
 package com.rhlabs.protobufs.soa;
 
-import com.squareup.wire.Message;
+import com.squareup.wire.ExtendableMessage;
+import com.squareup.wire.Extension;
 import com.squareup.wire.ProtoField;
 
 import static com.squareup.wire.Message.Datatype.STRING;
 import static com.squareup.wire.Message.Datatype.UINT32;
 
-public final class ControlV1 extends Message {
+public final class ControlV1 extends ExtendableMessage<ControlV1> {
   private static final long serialVersionUID = 0L;
 
   public static final Integer DEFAULT_VERSION = 1;
@@ -40,6 +41,7 @@ public final class ControlV1 extends Message {
     if (other == this) return true;
     if (!(other instanceof ControlV1)) return false;
     ControlV1 o = (ControlV1) other;
+    if (!extensionsEqual(o)) return false;
     return equals(version, o.version)
         && equals(token, o.token)
         && equals(service, o.service);
@@ -49,7 +51,8 @@ public final class ControlV1 extends Message {
   public int hashCode() {
     int result = hashCode;
     if (result == 0) {
-      result = version != null ? version.hashCode() : 0;
+      result = extensionsHashCode();
+      result = result * 37 + (version != null ? version.hashCode() : 0);
       result = result * 37 + (token != null ? token.hashCode() : 0);
       result = result * 37 + (service != null ? service.hashCode() : 0);
       hashCode = result;
@@ -57,7 +60,7 @@ public final class ControlV1 extends Message {
     return result;
   }
 
-  public static final class Builder extends Message.Builder<ControlV1> {
+  public static final class Builder extends ExtendableBuilder<ControlV1> {
 
     public Integer version;
     public String token;
@@ -86,6 +89,12 @@ public final class ControlV1 extends Message {
 
     public Builder service(String service) {
       this.service = service;
+      return this;
+    }
+
+    @Override
+    public <E> Builder setExtension(Extension<ControlV1, E> extension, E value) {
+      super.setExtension(extension, value);
       return this;
     }
 

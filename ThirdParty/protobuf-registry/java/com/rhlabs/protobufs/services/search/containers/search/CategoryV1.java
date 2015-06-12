@@ -13,7 +13,7 @@ public enum CategoryV1
 
   private final int value;
 
-  private CategoryV1(int value) {
+  CategoryV1(int value) {
     this.value = value;
   }
 

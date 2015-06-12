@@ -203,7 +203,7 @@ public final class IdentityV1 extends Message {
 
     private final int value;
 
-    private ProviderV1(int value) {
+    ProviderV1(int value) {
       this.value = value;
     }
 

@@ -21,6 +21,7 @@ public final class GetProfilesRequestV1 extends Message {
   public static final String DEFAULT_ADDRESS_ID = "";
   public static final List<String> DEFAULT_IDS = Collections.emptyList();
   public static final String DEFAULT_LOCATION_ID = "";
+  public static final List<String> DEFAULT_EMAILS = Collections.emptyList();
 
   @ProtoField(tag = 1, type = UINT32)
   public final Integer version;
@@ -43,7 +44,10 @@ public final class GetProfilesRequestV1 extends Message {
   @ProtoField(tag = 7, type = STRING)
   public final String location_id;
 
-  public GetProfilesRequestV1(Integer version, String team_id, String organization_id, String tag_id, String address_id, List<String> ids, String location_id) {
+  @ProtoField(tag = 8, type = STRING, label = REPEATED)
+  public final List<String> emails;
+
+  public GetProfilesRequestV1(Integer version, String team_id, String organization_id, String tag_id, String address_id, List<String> ids, String location_id, List<String> emails) {
     this.version = version;
     this.team_id = team_id;
     this.organization_id = organization_id;
@@ -51,10 +55,11 @@ public final class GetProfilesRequestV1 extends Message {
     this.address_id = address_id;
     this.ids = immutableCopyOf(ids);
     this.location_id = location_id;
+    this.emails = immutableCopyOf(emails);
   }
 
   private GetProfilesRequestV1(Builder builder) {
-    this(builder.version, builder.team_id, builder.organization_id, builder.tag_id, builder.address_id, builder.ids, builder.location_id);
+    this(builder.version, builder.team_id, builder.organization_id, builder.tag_id, builder.address_id, builder.ids, builder.location_id, builder.emails);
     setBuilder(builder);
   }
 
@@ -69,7 +74,8 @@ public final class GetProfilesRequestV1 extends Message {
         && equals(tag_id, o.tag_id)
         && equals(address_id, o.address_id)
         && equals(ids, o.ids)
-        && equals(location_id, o.location_id);
+        && equals(location_id, o.location_id)
+        && equals(emails, o.emails);
   }
 
   @Override
@@ -83,6 +89,7 @@ public final class GetProfilesRequestV1 extends Message {
       result = result * 37 + (address_id != null ? address_id.hashCode() : 0);
       result = result * 37 + (ids != null ? ids.hashCode() : 1);
       result = result * 37 + (location_id != null ? location_id.hashCode() : 0);
+      result = result * 37 + (emails != null ? emails.hashCode() : 1);
       hashCode = result;
     }
     return result;
@@ -97,6 +104,7 @@ public final class GetProfilesRequestV1 extends Message {
     public String address_id;
     public List<String> ids;
     public String location_id;
+    public List<String> emails;
 
     public Builder() {
     }
@@ -111,6 +119,7 @@ public final class GetProfilesRequestV1 extends Message {
       this.address_id = message.address_id;
       this.ids = copyOf(message.ids);
       this.location_id = message.location_id;
+      this.emails = copyOf(message.emails);
     }
 
     public Builder version(Integer version) {
@@ -145,6 +154,11 @@ public final class GetProfilesRequestV1 extends Message {
 
     public Builder location_id(String location_id) {
       this.location_id = location_id;
+      return this;
+    }
+
+    public Builder emails(List<String> emails) {
+      this.emails = checkForNulls(emails);
       return this;
     }
 

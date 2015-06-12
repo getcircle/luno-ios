@@ -2,7 +2,8 @@
 // Source file: ./src/service_protobufs/soa.proto
 package com.rhlabs.protobufs.soa;
 
-import com.squareup.wire.Message;
+import com.squareup.wire.ExtendableMessage;
+import com.squareup.wire.Extension;
 import com.squareup.wire.ProtoField;
 import java.util.Collections;
 import java.util.List;
@@ -10,7 +11,7 @@ import java.util.List;
 import static com.squareup.wire.Message.Datatype.UINT32;
 import static com.squareup.wire.Message.Label.REPEATED;
 
-public final class ServiceResponseV1 extends Message {
+public final class ServiceResponseV1 extends ExtendableMessage<ServiceResponseV1> {
   private static final long serialVersionUID = 0L;
 
   public static final Integer DEFAULT_VERSION = 1;
@@ -41,6 +42,7 @@ public final class ServiceResponseV1 extends Message {
     if (other == this) return true;
     if (!(other instanceof ServiceResponseV1)) return false;
     ServiceResponseV1 o = (ServiceResponseV1) other;
+    if (!extensionsEqual(o)) return false;
     return equals(version, o.version)
         && equals(control, o.control)
         && equals(actions, o.actions);
@@ -50,7 +52,8 @@ public final class ServiceResponseV1 extends Message {
   public int hashCode() {
     int result = hashCode;
     if (result == 0) {
-      result = version != null ? version.hashCode() : 0;
+      result = extensionsHashCode();
+      result = result * 37 + (version != null ? version.hashCode() : 0);
       result = result * 37 + (control != null ? control.hashCode() : 0);
       result = result * 37 + (actions != null ? actions.hashCode() : 1);
       hashCode = result;
@@ -58,7 +61,7 @@ public final class ServiceResponseV1 extends Message {
     return result;
   }
 
-  public static final class Builder extends Message.Builder<ServiceResponseV1> {
+  public static final class Builder extends ExtendableBuilder<ServiceResponseV1> {
 
     public Integer version;
     public ControlV1 control;
@@ -87,6 +90,12 @@ public final class ServiceResponseV1 extends Message {
 
     public Builder actions(List<ActionResponseV1> actions) {
       this.actions = checkForNulls(actions);
+      return this;
+    }
+
+    @Override
+    public <E> Builder setExtension(Extension<ServiceResponseV1, E> extension, E value) {
+      super.setExtension(extension, value);
       return this;
     }
 

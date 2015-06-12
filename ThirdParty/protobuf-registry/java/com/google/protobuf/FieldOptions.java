@@ -312,7 +312,7 @@ public final class FieldOptions extends ExtendableMessage<FieldOptions> {
 
     private final int value;
 
-    private CType(int value) {
+    CType(int value) {
       this.value = value;
     }
 

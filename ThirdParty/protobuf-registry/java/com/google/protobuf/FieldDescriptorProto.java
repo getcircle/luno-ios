@@ -262,13 +262,15 @@ public final class FieldDescriptorProto extends Message {
     TYPE_FIXED32(7),
     TYPE_BOOL(8),
     TYPE_STRING(9),
-    TYPE_GROUP(10),
     /**
      * Tag-delimited aggregate.
      */
-    TYPE_MESSAGE(11),
+    TYPE_GROUP(10),
     /**
      * Length-delimited aggregate.
+     */
+    TYPE_MESSAGE(11),
+    /**
      * New in version 2.
      */
     TYPE_BYTES(12),
@@ -276,6 +278,9 @@ public final class FieldDescriptorProto extends Message {
     TYPE_ENUM(14),
     TYPE_SFIXED32(15),
     TYPE_SFIXED64(16),
+    /**
+     * Uses ZigZag encoding.
+     */
     TYPE_SINT32(17),
     /**
      * Uses ZigZag encoding.
@@ -284,7 +289,7 @@ public final class FieldDescriptorProto extends Message {
 
     private final int value;
 
-    private Type(int value) {
+    Type(int value) {
       this.value = value;
     }
 
@@ -305,7 +310,7 @@ public final class FieldDescriptorProto extends Message {
 
     private final int value;
 
-    private Label(int value) {
+    Label(int value) {
       this.value = value;
     }
 

@@ -21,6 +21,9 @@ public final class GetOrganizationRequestV1 extends Message {
   @ProtoField(tag = 2, type = STRING)
   public final String organization_id;
 
+  /**
+   * TODO i would rather this just be domain
+   */
   @ProtoField(tag = 3, type = STRING)
   public final String organization_domain;
 
@@ -84,6 +87,9 @@ public final class GetOrganizationRequestV1 extends Message {
       return this;
     }
 
+    /**
+     * TODO i would rather this just be domain
+     */
     public Builder organization_domain(String organization_domain) {
       this.organization_domain = organization_domain;
       return this;

@@ -2,12 +2,13 @@
 // Source file: ./src/service_protobufs/soa.proto
 package com.rhlabs.protobufs.soa;
 
-import com.squareup.wire.Message;
+import com.squareup.wire.ExtendableMessage;
+import com.squareup.wire.Extension;
 import com.squareup.wire.ProtoField;
 
 import static com.squareup.wire.Message.Datatype.UINT32;
 
-public final class ActionRequestV1 extends Message {
+public final class ActionRequestV1 extends ExtendableMessage<ActionRequestV1> {
   private static final long serialVersionUID = 0L;
 
   public static final Integer DEFAULT_VERSION = 1;
@@ -37,6 +38,7 @@ public final class ActionRequestV1 extends Message {
     if (other == this) return true;
     if (!(other instanceof ActionRequestV1)) return false;
     ActionRequestV1 o = (ActionRequestV1) other;
+    if (!extensionsEqual(o)) return false;
     return equals(version, o.version)
         && equals(control, o.control)
         && equals(params, o.params);
@@ -46,7 +48,8 @@ public final class ActionRequestV1 extends Message {
   public int hashCode() {
     int result = hashCode;
     if (result == 0) {
-      result = version != null ? version.hashCode() : 0;
+      result = extensionsHashCode();
+      result = result * 37 + (version != null ? version.hashCode() : 0);
       result = result * 37 + (control != null ? control.hashCode() : 0);
       result = result * 37 + (params != null ? params.hashCode() : 0);
       hashCode = result;
@@ -54,7 +57,7 @@ public final class ActionRequestV1 extends Message {
     return result;
   }
 
-  public static final class Builder extends Message.Builder<ActionRequestV1> {
+  public static final class Builder extends ExtendableBuilder<ActionRequestV1> {
 
     public Integer version;
     public ActionControlV1 control;
@@ -83,6 +86,12 @@ public final class ActionRequestV1 extends Message {
 
     public Builder params(ActionRequestParamsV1 params) {
       this.params = params;
+      return this;
+    }
+
+    @Override
+    public <E> Builder setExtension(Extension<ActionRequestV1, E> extension, E value) {
+      super.setExtension(extension, value);
       return this;
     }
 

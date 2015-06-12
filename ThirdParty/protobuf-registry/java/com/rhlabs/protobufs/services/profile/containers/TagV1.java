@@ -120,7 +120,7 @@ public final class TagV1 extends Message {
 
     private final int value;
 
-    private TagTypeV1(int value) {
+    TagTypeV1(int value) {
       this.value = value;
     }
 

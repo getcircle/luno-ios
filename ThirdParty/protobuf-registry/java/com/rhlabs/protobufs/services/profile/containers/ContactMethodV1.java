@@ -138,7 +138,7 @@ public final class ContactMethodV1 extends Message {
 
     private final int value;
 
-    private ContactMethodTypeV1(int value) {
+    ContactMethodTypeV1(int value) {
       this.value = value;
     }
 

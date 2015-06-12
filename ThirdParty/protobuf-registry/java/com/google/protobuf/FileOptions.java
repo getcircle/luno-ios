@@ -401,20 +401,23 @@ public final class FileOptions extends ExtendableMessage<FileOptions> {
 
   public enum OptimizeMode
       implements ProtoEnum {
-    SPEED(1),
     /**
      * Generate complete code for parsing, serialization,
+     */
+    SPEED(1),
+    /**
      * etc.
+     * Use ReflectionOps to implement these methods.
      */
     CODE_SIZE(2),
     /**
-     * Use ReflectionOps to implement these methods.
+     * Generate code using MessageLite and the lite runtime.
      */
     LITE_RUNTIME(3);
 
     private final int value;
 
-    private OptimizeMode(int value) {
+    OptimizeMode(int value) {
       this.value = value;
     }
 

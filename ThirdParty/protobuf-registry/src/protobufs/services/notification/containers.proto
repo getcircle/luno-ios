@@ -1,5 +1,7 @@
 package services.notification.containers;
 
+import "protobufs/services/group/containers.proto";
+
 // GENERATED OPTIONS FOR: JAVA
 option java_package = "com.rhlabs.protobufs.services.notification.containers";
 
@@ -59,12 +61,15 @@ message NotificationV1 {
 message GroupMembershipRequestNotificationV1 {
     optional uint32 version = 1 [default = 1];
     optional string requester_profile_id = 2;
-    optional string group_key = 3;
+    optional string group_id = 3;
+    optional services.group.containers.GroupProviderV1 provider = 4;
+    optional string request_id = 5;
 }
 
 message GroupMembershipRequestResponseNotificationV1 {
     optional uint32 version = 1 [default = 1];
     optional string group_manager_profile_id = 2;
     optional bool approved = 3;
-    optional string group_key = 4;
+    optional string group_id = 4;
+    optional services.group.containers.GroupProviderV1 provider = 5;
 }

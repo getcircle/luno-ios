@@ -2,6 +2,7 @@
 // Source file: ./src/protobufs/services/organization/containers.proto
 package com.rhlabs.protobufs.services.organization.containers;
 
+import com.rhlabs.protobufs.services.common.containers.PermissionsV1;
 import com.squareup.wire.Message;
 import com.squareup.wire.ProtoField;
 import java.util.Collections;
@@ -50,7 +51,10 @@ public final class TeamV1 extends Message {
   @ProtoField(tag = 9)
   public final ColorV1 color;
 
-  public TeamV1(Integer version, String id, String name, String owner_id, String organization_id, List<PathPartV1> path, String department, Integer profile_count, ColorV1 color) {
+  @ProtoField(tag = 10)
+  public final PermissionsV1 permissions;
+
+  public TeamV1(Integer version, String id, String name, String owner_id, String organization_id, List<PathPartV1> path, String department, Integer profile_count, ColorV1 color, PermissionsV1 permissions) {
     this.version = version;
     this.id = id;
     this.name = name;
@@ -60,10 +64,11 @@ public final class TeamV1 extends Message {
     this.department = department;
     this.profile_count = profile_count;
     this.color = color;
+    this.permissions = permissions;
   }
 
   private TeamV1(Builder builder) {
-    this(builder.version, builder.id, builder.name, builder.owner_id, builder.organization_id, builder.path, builder.department, builder.profile_count, builder.color);
+    this(builder.version, builder.id, builder.name, builder.owner_id, builder.organization_id, builder.path, builder.department, builder.profile_count, builder.color, builder.permissions);
     setBuilder(builder);
   }
 
@@ -80,7 +85,8 @@ public final class TeamV1 extends Message {
         && equals(path, o.path)
         && equals(department, o.department)
         && equals(profile_count, o.profile_count)
-        && equals(color, o.color);
+        && equals(color, o.color)
+        && equals(permissions, o.permissions);
   }
 
   @Override
@@ -96,6 +102,7 @@ public final class TeamV1 extends Message {
       result = result * 37 + (department != null ? department.hashCode() : 0);
       result = result * 37 + (profile_count != null ? profile_count.hashCode() : 0);
       result = result * 37 + (color != null ? color.hashCode() : 0);
+      result = result * 37 + (permissions != null ? permissions.hashCode() : 0);
       hashCode = result;
     }
     return result;
@@ -112,6 +119,7 @@ public final class TeamV1 extends Message {
     public String department;
     public Integer profile_count;
     public ColorV1 color;
+    public PermissionsV1 permissions;
 
     public Builder() {
     }
@@ -128,6 +136,7 @@ public final class TeamV1 extends Message {
       this.department = message.department;
       this.profile_count = message.profile_count;
       this.color = message.color;
+      this.permissions = message.permissions;
     }
 
     public Builder version(Integer version) {
@@ -172,6 +181,11 @@ public final class TeamV1 extends Message {
 
     public Builder color(ColorV1 color) {
       this.color = color;
+      return this;
+    }
+
+    public Builder permissions(PermissionsV1 permissions) {
+      this.permissions = permissions;
       return this;
     }
 

@@ -104,7 +104,7 @@ public final class PayloadV1 extends Message {
 
     private final int value;
 
-    private PayloadTypeV1(int value) {
+    PayloadTypeV1(int value) {
       this.value = value;
     }
 

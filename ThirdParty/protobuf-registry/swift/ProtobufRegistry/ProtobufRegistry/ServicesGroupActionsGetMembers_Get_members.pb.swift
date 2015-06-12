@@ -9,7 +9,7 @@ public func == (lhs: Services.Group.Actions.GetMembers.RequestV1, rhs: Services.
   }
   var fieldCheck:Bool = (lhs.hashValue == rhs.hashValue)
   fieldCheck = fieldCheck && (lhs.hasVersion == rhs.hasVersion) && (!lhs.hasVersion || lhs.version == rhs.version)
-  fieldCheck = fieldCheck && (lhs.hasGroupKey == rhs.hasGroupKey) && (!lhs.hasGroupKey || lhs.groupKey == rhs.groupKey)
+  fieldCheck = fieldCheck && (lhs.hasGroupId == rhs.hasGroupId) && (!lhs.hasGroupId || lhs.groupId == rhs.groupId)
   fieldCheck = fieldCheck && (lhs.hasRole == rhs.hasRole) && (!lhs.hasRole || lhs.role == rhs.role)
   fieldCheck = fieldCheck && (lhs.hasProvider == rhs.hasProvider) && (!lhs.hasProvider || lhs.provider == rhs.provider)
   return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
@@ -48,7 +48,7 @@ public extension Services.Group.Actions.GetMembers {
     override public subscript(key: String) -> Any? {
            switch key {
            case "version": return version
-           case "groupKey": return groupKey
+           case "groupId": return groupId
            case "role": return self.role
            case "provider": return self.provider
            default: return nil
@@ -58,8 +58,8 @@ public extension Services.Group.Actions.GetMembers {
     public private(set) var hasVersion:Bool = false
     public private(set) var version:UInt32 = UInt32(1)
 
-    public private(set) var hasGroupKey:Bool = false
-    public private(set) var groupKey:String = ""
+    public private(set) var hasGroupId:Bool = false
+    public private(set) var groupId:String = ""
 
     public private(set) var role:Services.Group.Containers.RoleV1 = Services.Group.Containers.RoleV1.Member
     public private(set) var hasRole:Bool = false
@@ -75,8 +75,8 @@ public extension Services.Group.Actions.GetMembers {
       if hasVersion {
         output.writeUInt32(1, value:version)
       }
-      if hasGroupKey {
-        output.writeString(2, value:groupKey)
+      if hasGroupId {
+        output.writeString(2, value:groupId)
       }
       if hasRole {
         output.writeEnum(3, value:role.rawValue)
@@ -96,8 +96,8 @@ public extension Services.Group.Actions.GetMembers {
       if hasVersion {
         serialize_size += version.computeUInt32Size(1)
       }
-      if hasGroupKey {
-        serialize_size += groupKey.computeStringSize(2)
+      if hasGroupId {
+        serialize_size += groupId.computeStringSize(2)
       }
       if (hasRole) {
         serialize_size += role.rawValue.computeEnumSize(3)
@@ -149,8 +149,8 @@ public extension Services.Group.Actions.GetMembers {
       if hasVersion {
         output += "\(indent) version: \(version) \n"
       }
-      if hasGroupKey {
-        output += "\(indent) groupKey: \(groupKey) \n"
+      if hasGroupId {
+        output += "\(indent) groupId: \(groupId) \n"
       }
       if (hasRole) {
         output += "\(indent) role: \(role.rawValue)\n"
@@ -166,8 +166,8 @@ public extension Services.Group.Actions.GetMembers {
             if hasVersion {
                hashCode = (hashCode &* 31) &+ version.hashValue
             }
-            if hasGroupKey {
-               hashCode = (hashCode &* 31) &+ groupKey.hashValue
+            if hasGroupId {
+               hashCode = (hashCode &* 31) &+ groupId.hashValue
             }
             if hasRole {
                hashCode = (hashCode &* 31) &+ Int(role.rawValue)
@@ -226,27 +226,27 @@ public extension Services.Group.Actions.GetMembers {
          builderResult.version = UInt32(1)
          return self
     }
-    public var hasGroupKey:Bool {
+    public var hasGroupId:Bool {
          get {
-              return builderResult.hasGroupKey
+              return builderResult.hasGroupId
          }
     }
-    public var groupKey:String {
+    public var groupId:String {
          get {
-              return builderResult.groupKey
+              return builderResult.groupId
          }
          set (value) {
-             builderResult.hasGroupKey = true
-             builderResult.groupKey = value
+             builderResult.hasGroupId = true
+             builderResult.groupId = value
          }
     }
-    public func setGroupKey(value:String)-> Services.Group.Actions.GetMembers.RequestV1Builder {
-      self.groupKey = value
+    public func setGroupId(value:String)-> Services.Group.Actions.GetMembers.RequestV1Builder {
+      self.groupId = value
       return self
     }
-    public func clearGroupKey() -> Services.Group.Actions.GetMembers.RequestV1Builder{
-         builderResult.hasGroupKey = false
-         builderResult.groupKey = ""
+    public func clearGroupId() -> Services.Group.Actions.GetMembers.RequestV1Builder{
+         builderResult.hasGroupId = false
+         builderResult.groupId = ""
          return self
     }
       public var hasRole:Bool{
@@ -322,8 +322,8 @@ public extension Services.Group.Actions.GetMembers {
       if other.hasVersion {
            version = other.version
       }
-      if other.hasGroupKey {
-           groupKey = other.groupKey
+      if other.hasGroupId {
+           groupId = other.groupId
       }
       if other.hasRole {
            role = other.role
@@ -350,7 +350,7 @@ public extension Services.Group.Actions.GetMembers {
           version = input.readUInt32()
 
         case 18 :
-          groupKey = input.readString()
+          groupId = input.readString()
 
         case 24 :
           let valueIntrole = input.readEnum()

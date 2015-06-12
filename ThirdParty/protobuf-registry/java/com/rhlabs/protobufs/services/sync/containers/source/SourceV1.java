@@ -10,7 +10,7 @@ public enum SourceV1
 
   private final int value;
 
-  private SourceV1(int value) {
+  SourceV1(int value) {
     this.value = value;
   }
 

@@ -2,12 +2,13 @@
 // Source file: ./src/service_protobufs/soa.proto
 package com.rhlabs.protobufs.soa;
 
-import com.squareup.wire.Message;
+import com.squareup.wire.ExtendableMessage;
+import com.squareup.wire.Extension;
 import com.squareup.wire.ProtoField;
 
 import static com.squareup.wire.Message.Datatype.UINT32;
 
-public final class PaginatorV1 extends Message {
+public final class PaginatorV1 extends ExtendableMessage<PaginatorV1> {
   private static final long serialVersionUID = 0L;
 
   public static final Integer DEFAULT_VERSION = 1;
@@ -59,6 +60,7 @@ public final class PaginatorV1 extends Message {
     if (other == this) return true;
     if (!(other instanceof PaginatorV1)) return false;
     PaginatorV1 o = (PaginatorV1) other;
+    if (!extensionsEqual(o)) return false;
     return equals(version, o.version)
         && equals(next_page, o.next_page)
         && equals(previous_page, o.previous_page)
@@ -72,7 +74,8 @@ public final class PaginatorV1 extends Message {
   public int hashCode() {
     int result = hashCode;
     if (result == 0) {
-      result = version != null ? version.hashCode() : 0;
+      result = extensionsHashCode();
+      result = result * 37 + (version != null ? version.hashCode() : 0);
       result = result * 37 + (next_page != null ? next_page.hashCode() : 0);
       result = result * 37 + (previous_page != null ? previous_page.hashCode() : 0);
       result = result * 37 + (count != null ? count.hashCode() : 0);
@@ -84,7 +87,7 @@ public final class PaginatorV1 extends Message {
     return result;
   }
 
-  public static final class Builder extends Message.Builder<PaginatorV1> {
+  public static final class Builder extends ExtendableBuilder<PaginatorV1> {
 
     public Integer version;
     public Integer next_page;
@@ -141,6 +144,12 @@ public final class PaginatorV1 extends Message {
 
     public Builder total_pages(Integer total_pages) {
       this.total_pages = total_pages;
+      return this;
+    }
+
+    @Override
+    public <E> Builder setExtension(Extension<PaginatorV1, E> extension, E value) {
+      super.setExtension(extension, value);
       return this;
     }
 

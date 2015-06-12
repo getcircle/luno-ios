@@ -3,8 +3,10 @@
 package com.rhlabs.protobufs.services.user.containers;
 
 import com.squareup.wire.Message;
+import com.squareup.wire.ProtoEnum;
 import com.squareup.wire.ProtoField;
 
+import static com.squareup.wire.Message.Datatype.ENUM;
 import static com.squareup.wire.Message.Datatype.STRING;
 import static com.squareup.wire.Message.Datatype.UINT32;
 
@@ -20,6 +22,7 @@ public final class DeviceV1 extends Message {
   public static final String DEFAULT_DEVICE_UUID = "";
   public static final String DEFAULT_USER_ID = "";
   public static final String DEFAULT_LANGUAGE_PREFERENCE = "";
+  public static final ProviderV1 DEFAULT_PROVIDER = ProviderV1.APPLE;
 
   @ProtoField(tag = 1, type = UINT32)
   public final Integer version;
@@ -48,7 +51,10 @@ public final class DeviceV1 extends Message {
   @ProtoField(tag = 9, type = STRING)
   public final String language_preference;
 
-  public DeviceV1(Integer version, String id, String notification_token, String platform, String os_version, String app_version, String device_uuid, String user_id, String language_preference) {
+  @ProtoField(tag = 10, type = ENUM)
+  public final ProviderV1 provider;
+
+  public DeviceV1(Integer version, String id, String notification_token, String platform, String os_version, String app_version, String device_uuid, String user_id, String language_preference, ProviderV1 provider) {
     this.version = version;
     this.id = id;
     this.notification_token = notification_token;
@@ -58,10 +64,11 @@ public final class DeviceV1 extends Message {
     this.device_uuid = device_uuid;
     this.user_id = user_id;
     this.language_preference = language_preference;
+    this.provider = provider;
   }
 
   private DeviceV1(Builder builder) {
-    this(builder.version, builder.id, builder.notification_token, builder.platform, builder.os_version, builder.app_version, builder.device_uuid, builder.user_id, builder.language_preference);
+    this(builder.version, builder.id, builder.notification_token, builder.platform, builder.os_version, builder.app_version, builder.device_uuid, builder.user_id, builder.language_preference, builder.provider);
     setBuilder(builder);
   }
 
@@ -78,7 +85,8 @@ public final class DeviceV1 extends Message {
         && equals(app_version, o.app_version)
         && equals(device_uuid, o.device_uuid)
         && equals(user_id, o.user_id)
-        && equals(language_preference, o.language_preference);
+        && equals(language_preference, o.language_preference)
+        && equals(provider, o.provider);
   }
 
   @Override
@@ -94,6 +102,7 @@ public final class DeviceV1 extends Message {
       result = result * 37 + (device_uuid != null ? device_uuid.hashCode() : 0);
       result = result * 37 + (user_id != null ? user_id.hashCode() : 0);
       result = result * 37 + (language_preference != null ? language_preference.hashCode() : 0);
+      result = result * 37 + (provider != null ? provider.hashCode() : 0);
       hashCode = result;
     }
     return result;
@@ -110,6 +119,7 @@ public final class DeviceV1 extends Message {
     public String device_uuid;
     public String user_id;
     public String language_preference;
+    public ProviderV1 provider;
 
     public Builder() {
     }
@@ -126,6 +136,7 @@ public final class DeviceV1 extends Message {
       this.device_uuid = message.device_uuid;
       this.user_id = message.user_id;
       this.language_preference = message.language_preference;
+      this.provider = message.provider;
     }
 
     public Builder version(Integer version) {
@@ -173,9 +184,31 @@ public final class DeviceV1 extends Message {
       return this;
     }
 
+    public Builder provider(ProviderV1 provider) {
+      this.provider = provider;
+      return this;
+    }
+
     @Override
     public DeviceV1 build() {
       return new DeviceV1(this);
+    }
+  }
+
+  public enum ProviderV1
+      implements ProtoEnum {
+    APPLE(0),
+    GOOGLE(1);
+
+    private final int value;
+
+    ProviderV1(int value) {
+      this.value = value;
+    }
+
+    @Override
+    public int getValue() {
+      return value;
     }
   }
 }
