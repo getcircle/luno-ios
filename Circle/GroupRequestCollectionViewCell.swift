@@ -89,11 +89,11 @@ class GroupRequestCollectionViewCell: CircleCollectionViewCell {
         }
         
         let groupName: String
-        if let group = groups[membershipRequest.groupKey] {
+        if let group = groups[membershipRequest.groupId] {
             groupName = group.name
         }
         else {
-            groupName = membershipRequest.groupKey
+            groupName = membershipRequest.groupId
         }
         
         let message = NSString(format:AppStrings.GroupRequestMessage, profileName, groupName)

@@ -42,7 +42,7 @@ class GroupDetailDataSource: CardDataSource {
     }
     
     func updateGroup(completionHandler: ((error: NSError?) -> Void)?) {
-        Services.Group.Actions.getGroup(selectedGroup.email, completionHandler: { (group, error) -> Void in
+        Services.Group.Actions.getGroup(selectedGroup.id, completionHandler: { (group, error) -> Void in
             if let error = error {
                 // Handle case where view controller needs to pop out
                 // TODO: look for DOES NOT EXIST error
@@ -106,7 +106,7 @@ class GroupDetailDataSource: CardDataSource {
 
         // Fetch owners
         dispatch_group_enter(actionsGroup)
-        Services.Group.Actions.getMembers(selectedGroup.email, role: .Owner) {
+        Services.Group.Actions.getMembers(selectedGroup.id, role: .Owner) {
             (members, nextRequest, error) -> Void in
             if let members = members {
                 self.ownerProfiles.extend(members.map({ $0.profile }))
@@ -120,7 +120,7 @@ class GroupDetailDataSource: CardDataSource {
         
         // Fetch group managers
         dispatch_group_enter(actionsGroup)
-        Services.Group.Actions.getMembers(selectedGroup.email, role: .Manager) {
+        Services.Group.Actions.getMembers(selectedGroup.id, role: .Manager) {
             (members, nextRequest, error) -> Void in
             if let members = members {
                 self.managerMemberProfiles.extend(members.map({ $0.profile }))
@@ -134,7 +134,7 @@ class GroupDetailDataSource: CardDataSource {
         
         // Fetch Members
         dispatch_group_enter(actionsGroup)
-        Services.Group.Actions.getMembers(selectedGroup.email, role: .Member) {
+        Services.Group.Actions.getMembers(selectedGroup.id, role: .Member) {
             (members, nextRequest, error) -> Void in
             if let members = members {
                 self.memberProfiles.extend(members.map({ $0.profile }))

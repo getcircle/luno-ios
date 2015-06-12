@@ -45,7 +45,7 @@ class SearchLandingDataSource: CardDataSource {
                             }
                             
                             for group in category.groups {
-                                self.groupsAssociatedWithGroupRequests[group.email] = group
+                                self.groupsAssociatedWithGroupRequests[group.id] = group
                             }
                         }
                         else if category.profiles.count > 0 {

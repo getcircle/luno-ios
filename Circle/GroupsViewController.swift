@@ -65,7 +65,7 @@ class GroupsViewController: OverviewViewController, GroupJoinRequestDelegate {
 
         if let selectedIndexPath = collectionView.indexPathForItemAtPoint(buttonPoint) {
             let hud = MBProgressHUD.showHUDAddedTo(view, animated: true)
-            Services.Group.Actions.joinGroup(group.email, completionHandler: { (request, error) -> Void in
+            Services.Group.Actions.joinGroup(group.id, completionHandler: { (request, error) -> Void in
                 hud.hide(true)
                 if let request = request where error == nil {
                     // TODO: Manually update the hasRequested to true for this group
@@ -83,7 +83,7 @@ class GroupsViewController: OverviewViewController, GroupJoinRequestDelegate {
     }
     
     private func updateGroup(group: Services.Group.Containers.GroupV1, atIndexPath indexPath: NSIndexPath) {
-        Services.Group.Actions.getGroup(group.email, completionHandler: { (updatedGroup, error) -> Void in
+        Services.Group.Actions.getGroup(group.id, completionHandler: { (updatedGroup, error) -> Void in
             if let updatedGroup = updatedGroup {
                 (self.dataSource as! GroupsDataSource).replaceLocalGroup(updatedGroup, atIndex: indexPath.row)
                 self.collectionView.reloadData()

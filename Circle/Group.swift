@@ -47,9 +47,10 @@ typealias AddMembersCompletionHandler = (
 
 extension Services.Group.Actions {
     
-    static func getGroup(groupKey: String, completionHandler: GetGroupCompletionHandler?) {
+    static func getGroup(groupId: String, completionHandler: GetGroupCompletionHandler?) {
         let requestBuilder = Services.Group.Actions.GetGroup.RequestV1.builder()
-        requestBuilder.groupKey = groupKey
+        requestBuilder.groupId = groupId
+        requestBuilder.provider = .Google
         
         let client = ServiceClient(serviceName: "group")
         client.callAction("get_group",
@@ -68,13 +69,13 @@ extension Services.Group.Actions {
     
     
     static func getMembers(
-        groupKey: String,
+        groupId: String,
         role: Services.Group.Containers.RoleV1,
         paginatorBuilder: Soa.PaginatorV1Builder? = nil,
         completionHandler: GetGroupProfilesCompletionHandler?
     ) {
         let requestBuilder = Services.Group.Actions.GetMembers.RequestV1.builder()
-        requestBuilder.groupKey = groupKey
+        requestBuilder.groupId = groupId
         requestBuilder.role = role
         requestBuilder.provider = .Google
         
@@ -117,46 +118,48 @@ extension Services.Group.Actions {
     }
     
     static func joinGroup(
-        groupKey: String,
+        groupId: String,
         completionHandler: JoinGroupCompletionHandler?
     ) {
-            let requestBuilder = Services.Group.Actions.JoinGroup.RequestV1.builder()
-            requestBuilder.groupKey = groupKey
+        let requestBuilder = Services.Group.Actions.JoinGroup.RequestV1.builder()
+        requestBuilder.groupId = groupId
+        requestBuilder.provider = .Google
 
-            let client = ServiceClient(serviceName: "group")
-            client.callAction("join_group",
-                extensionField: Services.Registry.Requests.Group.joinGroup(),
-                requestBuilder: requestBuilder,
-                paginatorBuilder: nil
-            ){
-                (_, _, wrapped, error) -> Void in
-                let response = wrapped?.response?.result.getExtension(
-                    Services.Registry.Responses.Group.joinGroup()
-                ) as? Services.Group.Actions.JoinGroup.ResponseV1
-                completionHandler?(request: response?.request, error: error)
-            }
+        let client = ServiceClient(serviceName: "group")
+        client.callAction("join_group",
+            extensionField: Services.Registry.Requests.Group.joinGroup(),
+            requestBuilder: requestBuilder,
+            paginatorBuilder: nil
+        ){
+            (_, _, wrapped, error) -> Void in
+            let response = wrapped?.response?.result.getExtension(
+                Services.Registry.Responses.Group.joinGroup()
+            ) as? Services.Group.Actions.JoinGroup.ResponseV1
+            completionHandler?(request: response?.request, error: error)
+        }
     }
 
     static func leaveGroup(
-        groupKey: String,
+        groupId: String,
         completionHandler: LeaveGroupCompletionHandler?
     ) {
-            let requestBuilder = Services.Group.Actions.LeaveGroup.RequestV1.builder()
-            requestBuilder.groupKey = groupKey
-            
-            let client = ServiceClient(serviceName: "group")
-            client.callAction("leave_group",
-                extensionField: Services.Registry.Requests.Group.leaveGroup(),
-                requestBuilder: requestBuilder,
-                paginatorBuilder: nil
-            ){
-                (_, _, wrapped, error) -> Void in
-                let response = wrapped?.response?.result.getExtension(
-                    Services.Registry.Responses.Group.leaveGroup()
-                ) as? Services.Group.Actions.LeaveGroup.ResponseV1
+        let requestBuilder = Services.Group.Actions.LeaveGroup.RequestV1.builder()
+        requestBuilder.groupId = groupId
+        requestBuilder.provider = .Google
+        
+        let client = ServiceClient(serviceName: "group")
+        client.callAction("leave_group",
+            extensionField: Services.Registry.Requests.Group.leaveGroup(),
+            requestBuilder: requestBuilder,
+            paginatorBuilder: nil
+        ){
+            (_, _, wrapped, error) -> Void in
+            let response = wrapped?.response?.result.getExtension(
+                Services.Registry.Responses.Group.leaveGroup()
+            ) as? Services.Group.Actions.LeaveGroup.ResponseV1
 
-                completionHandler?(error: error)
-            }
+            completionHandler?(error: error)
+        }
     }
     
     static func respondToMembershipRequest(
@@ -183,13 +186,14 @@ extension Services.Group.Actions {
     }
     
     static func addMembers(
-        groupKey: String, 
+        groupId: String,
         profiles: Array<Services.Profile.Containers.ProfileV1>, 
         completionHandler: AddMembersCompletionHandler?
     ) {
         let requestBuilder = Services.Group.Actions.AddToGroup.RequestV1.builder()
-        requestBuilder.groupKey = groupKey
+        requestBuilder.groupId = groupId
         requestBuilder.profileIds = profiles.map({ $0.id })
+        requestBuilder.provider = .Google
 
         let client = ServiceClient(serviceName: "group")
         client.callAction("add_to_group",

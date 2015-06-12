@@ -199,7 +199,7 @@ class GroupDetailViewController: DetailViewController,
             let dataSource = (self.dataSource as! GroupDetailDataSource)
             let hud = MBProgressHUD.showHUDAddedTo(presentedViewController.view, animated: true)
             Services.Group.Actions.addMembers(
-                dataSource.selectedGroup.email,
+                dataSource.selectedGroup.id,
                 profiles: profiles, 
                 completionHandler: { (newMembers, error) -> Void in
                     hud.hide(true)
@@ -221,7 +221,7 @@ class GroupDetailViewController: DetailViewController,
 
         switch actionType {
         case .LeaveGroup:
-            Services.Group.Actions.leaveGroup(dataSource.selectedGroup.email, completionHandler: { (error) -> Void in
+            Services.Group.Actions.leaveGroup(dataSource.selectedGroup.id, completionHandler: { (error) -> Void in
                 hud.hide(true)
                 if error == nil {
                     self.updateGroup()
@@ -229,7 +229,7 @@ class GroupDetailViewController: DetailViewController,
             })
             
         case .JoinGroup, .RequestGroup:
-            Services.Group.Actions.joinGroup(dataSource.selectedGroup.email, completionHandler: { (request, error) -> Void in
+            Services.Group.Actions.joinGroup(dataSource.selectedGroup.id, completionHandler: { (request, error) -> Void in
                 hud.hide(true)
                 if let request = request where error == nil {
                     if request.status == .Approved {
