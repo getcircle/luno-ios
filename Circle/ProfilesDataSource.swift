@@ -94,8 +94,19 @@ class ProfilesDataSource: CardDataSource {
             let response = wrapped?.response?.result.getExtension(
                 Services.Registry.Requests.Profile.getProfiles()
             ) as? Services.Profile.Actions.GetProfiles.ResponseV1
+            let membersResponse = wrapped?.response?.result.getExtension(
+                Services.Registry.Requests.Group.getMembers()
+            ) as? Services.Group.Actions.GetMembers.ResponseV1
             
             if let profiles = response?.profiles {
+                self.profiles.extend(profiles)
+                self.card.addContent(content: profiles)
+                self.handleNewContentAddedToCard(self.card, newContent: profiles)
+            } else if let members = membersResponse?.members {
+                var profiles = Array<Services.Profile.Containers.ProfileV1>()
+                for member in members {
+                    profiles.append(member.profile)
+                }
                 self.profiles.extend(profiles)
                 self.card.addContent(content: profiles)
                 self.handleNewContentAddedToCard(self.card, newContent: profiles)
