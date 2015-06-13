@@ -47,6 +47,8 @@ class TeamDetailDataSource: CardDataSource {
                         }
                         return true
                     })
+                    
+                    self.profiles = allProfilesExceptOwner!
                 }
                 dispatch_group_leave(actionsGroup)
             }
