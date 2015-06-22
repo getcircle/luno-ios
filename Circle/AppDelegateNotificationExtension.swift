@@ -43,14 +43,14 @@ extension AppDelegate {
         approveAction.title = AppStrings.GroupRequestApproveButtonTitle
         approveAction.identifier = NotificationAction.Approve.rawValue
         approveAction.destructive = false
-        approveAction.authenticationRequired = false
+        approveAction.authenticationRequired = true
 
         var denyAction = UIMutableUserNotificationAction()
         denyAction.activationMode = .Background
         denyAction.title = AppStrings.GroupRequestDenyButtonTitle
         denyAction.identifier = NotificationAction.Deny.rawValue
         denyAction.destructive = false
-        denyAction.authenticationRequired = false
+        denyAction.authenticationRequired = true
         
         var groupRequestActionCategory = UIMutableUserNotificationCategory()
         groupRequestActionCategory.identifier = NotificationCategory.GroupRequest.rawValue
