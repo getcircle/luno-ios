@@ -15,7 +15,7 @@ public final class GetMembersRequestV1 extends Message {
   private static final long serialVersionUID = 0L;
 
   public static final Integer DEFAULT_VERSION = 1;
-  public static final String DEFAULT_GROUP_KEY = "";
+  public static final String DEFAULT_GROUP_ID = "";
   public static final RoleV1 DEFAULT_ROLE = RoleV1.MEMBER;
   public static final GroupProviderV1 DEFAULT_PROVIDER = GroupProviderV1.GOOGLE;
 
@@ -23,7 +23,7 @@ public final class GetMembersRequestV1 extends Message {
   public final Integer version;
 
   @ProtoField(tag = 2, type = STRING)
-  public final String group_key;
+  public final String group_id;
 
   @ProtoField(tag = 3, type = ENUM)
   public final RoleV1 role;
@@ -31,15 +31,15 @@ public final class GetMembersRequestV1 extends Message {
   @ProtoField(tag = 4, type = ENUM)
   public final GroupProviderV1 provider;
 
-  public GetMembersRequestV1(Integer version, String group_key, RoleV1 role, GroupProviderV1 provider) {
+  public GetMembersRequestV1(Integer version, String group_id, RoleV1 role, GroupProviderV1 provider) {
     this.version = version;
-    this.group_key = group_key;
+    this.group_id = group_id;
     this.role = role;
     this.provider = provider;
   }
 
   private GetMembersRequestV1(Builder builder) {
-    this(builder.version, builder.group_key, builder.role, builder.provider);
+    this(builder.version, builder.group_id, builder.role, builder.provider);
     setBuilder(builder);
   }
 
@@ -49,7 +49,7 @@ public final class GetMembersRequestV1 extends Message {
     if (!(other instanceof GetMembersRequestV1)) return false;
     GetMembersRequestV1 o = (GetMembersRequestV1) other;
     return equals(version, o.version)
-        && equals(group_key, o.group_key)
+        && equals(group_id, o.group_id)
         && equals(role, o.role)
         && equals(provider, o.provider);
   }
@@ -59,7 +59,7 @@ public final class GetMembersRequestV1 extends Message {
     int result = hashCode;
     if (result == 0) {
       result = version != null ? version.hashCode() : 0;
-      result = result * 37 + (group_key != null ? group_key.hashCode() : 0);
+      result = result * 37 + (group_id != null ? group_id.hashCode() : 0);
       result = result * 37 + (role != null ? role.hashCode() : 0);
       result = result * 37 + (provider != null ? provider.hashCode() : 0);
       hashCode = result;
@@ -70,7 +70,7 @@ public final class GetMembersRequestV1 extends Message {
   public static final class Builder extends Message.Builder<GetMembersRequestV1> {
 
     public Integer version;
-    public String group_key;
+    public String group_id;
     public RoleV1 role;
     public GroupProviderV1 provider;
 
@@ -81,7 +81,7 @@ public final class GetMembersRequestV1 extends Message {
       super(message);
       if (message == null) return;
       this.version = message.version;
-      this.group_key = message.group_key;
+      this.group_id = message.group_id;
       this.role = message.role;
       this.provider = message.provider;
     }
@@ -91,8 +91,8 @@ public final class GetMembersRequestV1 extends Message {
       return this;
     }
 
-    public Builder group_key(String group_key) {
-      this.group_key = group_key;
+    public Builder group_id(String group_id) {
+      this.group_id = group_id;
       return this;
     }
 

@@ -112,6 +112,7 @@
 		BF7025921AFD70A50085F6EE /* ServicesGroupContainersPermissionsWhoCanJoin_Who_can_join.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7025871AFD70A50085F6EE /* ServicesGroupContainersPermissionsWhoCanJoin_Who_can_join.pb.swift */; };
 		BF7025931AFD70A50085F6EE /* ServicesGroupContainersPermissionsWhoCanViewGroup_Who_can_view_group.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7025881AFD70A50085F6EE /* ServicesGroupContainersPermissionsWhoCanViewGroup_Who_can_view_group.pb.swift */; };
 		BF7025941AFD70A50085F6EE /* ServicesGroupContainersPermissionsWhoCanViewMembership_Who_can_view_membership.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7025891AFD70A50085F6EE /* ServicesGroupContainersPermissionsWhoCanViewMembership_Who_can_view_membership.pb.swift */; };
+		BF77573B1B3DF01A007495E6 /* ServicesSearchContainers_Containers.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF77573A1B3DF01A007495E6 /* ServicesSearchContainers_Containers.pb.swift */; };
 		BF79D9901B16911D0052FE48 /* ServicesGroupActionsGetGroups_Get_groups.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF79D98E1B16911D0052FE48 /* ServicesGroupActionsGetGroups_Get_groups.pb.swift */; };
 		BF79D9911B16911D0052FE48 /* ServicesGroupActionsGetMembers_Get_members.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF79D98F1B16911D0052FE48 /* ServicesGroupActionsGetMembers_Get_members.pb.swift */; };
 		BF79ED711AF803D100A90034 /* ServicesOrganizationActionsCreateToken_Create_token.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF79ED6D1AF803D100A90034 /* ServicesOrganizationActionsCreateToken_Create_token.pb.swift */; };
@@ -262,6 +263,7 @@
 		BF7025871AFD70A50085F6EE /* ServicesGroupContainersPermissionsWhoCanJoin_Who_can_join.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesGroupContainersPermissionsWhoCanJoin_Who_can_join.pb.swift; sourceTree = "<group>"; };
 		BF7025881AFD70A50085F6EE /* ServicesGroupContainersPermissionsWhoCanViewGroup_Who_can_view_group.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesGroupContainersPermissionsWhoCanViewGroup_Who_can_view_group.pb.swift; sourceTree = "<group>"; };
 		BF7025891AFD70A50085F6EE /* ServicesGroupContainersPermissionsWhoCanViewMembership_Who_can_view_membership.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesGroupContainersPermissionsWhoCanViewMembership_Who_can_view_membership.pb.swift; sourceTree = "<group>"; };
+		BF77573A1B3DF01A007495E6 /* ServicesSearchContainers_Containers.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesSearchContainers_Containers.pb.swift; sourceTree = "<group>"; };
 		BF79D98E1B16911D0052FE48 /* ServicesGroupActionsGetGroups_Get_groups.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesGroupActionsGetGroups_Get_groups.pb.swift; sourceTree = "<group>"; };
 		BF79D98F1B16911D0052FE48 /* ServicesGroupActionsGetMembers_Get_members.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesGroupActionsGetMembers_Get_members.pb.swift; sourceTree = "<group>"; };
 		BF79ED6D1AF803D100A90034 /* ServicesOrganizationActionsCreateToken_Create_token.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesOrganizationActionsCreateToken_Create_token.pb.swift; sourceTree = "<group>"; };
@@ -436,6 +438,7 @@
 				BF1B14011AE1944300F36620 /* ServicesResumeActionsGetResume_Get_resume.pb.swift */,
 				BF5AF6E81AE2D603000E876E /* ServicesResumeContainers_Containers.pb.swift */,
 				BF1B14031AE1944300F36620 /* ServicesSearchActionsSearch_Search.pb.swift */,
+				BF77573A1B3DF01A007495E6 /* ServicesSearchContainers_Containers.pb.swift */,
 				BF1B14041AE1944300F36620 /* ServicesSearchContainersSearch_Search.pb.swift */,
 				BF79ED701AF803D100A90034 /* ServicesSyncActionsCompleteSync_Complete_sync.pb.swift */,
 				BF79ED751AF803DC00A90034 /* ServicesSyncActionsStartSync_Start_sync.pb.swift */,
@@ -681,6 +684,7 @@
 				BF1B14541AE1944300F36620 /* ServicesResumeActionsGetResume_Get_resume.pb.swift in Sources */,
 				BF1B14561AE1944300F36620 /* ServicesSearchActionsSearch_Search.pb.swift in Sources */,
 				BF1B14571AE1944300F36620 /* ServicesSearchContainersSearch_Search.pb.swift in Sources */,
+				BF77573B1B3DF01A007495E6 /* ServicesSearchContainers_Containers.pb.swift in Sources */,
 				BFBEB61F1B27B4DB00F8B5E3 /* ServicesOrganizationActionsUpdateTeam_Update_team.pb.swift in Sources */,
 				BF1B14581AE1944300F36620 /* ServicesUserActionsAuthenticateUser_Authenticate_user.pb.swift in Sources */,
 				BF7A4B051B0A64D9007B6BFB /* ServicesUserActionsGetAuthenticationInstructions_Get_authentication_instructions.pb.swift in Sources */,

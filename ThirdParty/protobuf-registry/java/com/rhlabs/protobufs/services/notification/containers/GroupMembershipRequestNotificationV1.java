@@ -2,9 +2,11 @@
 // Source file: ./src/protobufs/services/notification/containers.proto
 package com.rhlabs.protobufs.services.notification.containers;
 
+import com.rhlabs.protobufs.services.group.containers.GroupProviderV1;
 import com.squareup.wire.Message;
 import com.squareup.wire.ProtoField;
 
+import static com.squareup.wire.Message.Datatype.ENUM;
 import static com.squareup.wire.Message.Datatype.STRING;
 import static com.squareup.wire.Message.Datatype.UINT32;
 
@@ -13,7 +15,9 @@ public final class GroupMembershipRequestNotificationV1 extends Message {
 
   public static final Integer DEFAULT_VERSION = 1;
   public static final String DEFAULT_REQUESTER_PROFILE_ID = "";
-  public static final String DEFAULT_GROUP_KEY = "";
+  public static final String DEFAULT_GROUP_ID = "";
+  public static final GroupProviderV1 DEFAULT_PROVIDER = GroupProviderV1.GOOGLE;
+  public static final String DEFAULT_REQUEST_ID = "";
 
   @ProtoField(tag = 1, type = UINT32)
   public final Integer version;
@@ -22,16 +26,24 @@ public final class GroupMembershipRequestNotificationV1 extends Message {
   public final String requester_profile_id;
 
   @ProtoField(tag = 3, type = STRING)
-  public final String group_key;
+  public final String group_id;
 
-  public GroupMembershipRequestNotificationV1(Integer version, String requester_profile_id, String group_key) {
+  @ProtoField(tag = 4, type = ENUM)
+  public final GroupProviderV1 provider;
+
+  @ProtoField(tag = 5, type = STRING)
+  public final String request_id;
+
+  public GroupMembershipRequestNotificationV1(Integer version, String requester_profile_id, String group_id, GroupProviderV1 provider, String request_id) {
     this.version = version;
     this.requester_profile_id = requester_profile_id;
-    this.group_key = group_key;
+    this.group_id = group_id;
+    this.provider = provider;
+    this.request_id = request_id;
   }
 
   private GroupMembershipRequestNotificationV1(Builder builder) {
-    this(builder.version, builder.requester_profile_id, builder.group_key);
+    this(builder.version, builder.requester_profile_id, builder.group_id, builder.provider, builder.request_id);
     setBuilder(builder);
   }
 
@@ -42,7 +54,9 @@ public final class GroupMembershipRequestNotificationV1 extends Message {
     GroupMembershipRequestNotificationV1 o = (GroupMembershipRequestNotificationV1) other;
     return equals(version, o.version)
         && equals(requester_profile_id, o.requester_profile_id)
-        && equals(group_key, o.group_key);
+        && equals(group_id, o.group_id)
+        && equals(provider, o.provider)
+        && equals(request_id, o.request_id);
   }
 
   @Override
@@ -51,7 +65,9 @@ public final class GroupMembershipRequestNotificationV1 extends Message {
     if (result == 0) {
       result = version != null ? version.hashCode() : 0;
       result = result * 37 + (requester_profile_id != null ? requester_profile_id.hashCode() : 0);
-      result = result * 37 + (group_key != null ? group_key.hashCode() : 0);
+      result = result * 37 + (group_id != null ? group_id.hashCode() : 0);
+      result = result * 37 + (provider != null ? provider.hashCode() : 0);
+      result = result * 37 + (request_id != null ? request_id.hashCode() : 0);
       hashCode = result;
     }
     return result;
@@ -61,7 +77,9 @@ public final class GroupMembershipRequestNotificationV1 extends Message {
 
     public Integer version;
     public String requester_profile_id;
-    public String group_key;
+    public String group_id;
+    public GroupProviderV1 provider;
+    public String request_id;
 
     public Builder() {
     }
@@ -71,7 +89,9 @@ public final class GroupMembershipRequestNotificationV1 extends Message {
       if (message == null) return;
       this.version = message.version;
       this.requester_profile_id = message.requester_profile_id;
-      this.group_key = message.group_key;
+      this.group_id = message.group_id;
+      this.provider = message.provider;
+      this.request_id = message.request_id;
     }
 
     public Builder version(Integer version) {
@@ -84,8 +104,18 @@ public final class GroupMembershipRequestNotificationV1 extends Message {
       return this;
     }
 
-    public Builder group_key(String group_key) {
-      this.group_key = group_key;
+    public Builder group_id(String group_id) {
+      this.group_id = group_id;
+      return this;
+    }
+
+    public Builder provider(GroupProviderV1 provider) {
+      this.provider = provider;
+      return this;
+    }
+
+    public Builder request_id(String request_id) {
+      this.request_id = request_id;
       return this;
     }
 

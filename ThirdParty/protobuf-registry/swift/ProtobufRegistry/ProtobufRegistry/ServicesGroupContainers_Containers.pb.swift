@@ -22,6 +22,7 @@ public func == (lhs: Services.Group.Containers.GroupV1, rhs: Services.Group.Cont
   fieldCheck = fieldCheck && (lhs.hasCanRequest == rhs.hasCanRequest) && (!lhs.hasCanRequest || lhs.canRequest == rhs.canRequest)
   fieldCheck = fieldCheck && (lhs.hasIsManager == rhs.hasIsManager) && (!lhs.hasIsManager || lhs.isManager == rhs.isManager)
   fieldCheck = fieldCheck && (lhs.hasHasPendingRequest == rhs.hasHasPendingRequest) && (!lhs.hasHasPendingRequest || lhs.hasPendingRequest == rhs.hasPendingRequest)
+  fieldCheck = fieldCheck && (lhs.hasPermissions == rhs.hasPermissions) && (!lhs.hasPermissions || lhs.permissions == rhs.permissions)
   return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
 }
 
@@ -96,6 +97,7 @@ public extension Services.Group.Containers {
     init() {
       extensionRegistry = ExtensionRegistry()
       registerAllExtensions(extensionRegistry)
+      Services.Common.Containers.ContainersRoot.sharedInstance.registerAllExtensions(extensionRegistry)
       Services.Group.Containers.Permissions.WhoCanJoin.WhoCanJoinRoot.sharedInstance.registerAllExtensions(extensionRegistry)
       Services.Group.Containers.Permissions.WhoCanViewMembership.WhoCanViewMembershipRoot.sharedInstance.registerAllExtensions(extensionRegistry)
       Services.Group.Containers.Permissions.WhoCanViewGroup.WhoCanViewGroupRoot.sharedInstance.registerAllExtensions(extensionRegistry)
@@ -159,6 +161,7 @@ public extension Services.Group.Containers {
            case "canRequest": return canRequest
            case "isManager": return isManager
            case "hasPendingRequest": return hasPendingRequest
+           case "permissions": return permissions
            default: return nil
            }
     }
@@ -201,6 +204,8 @@ public extension Services.Group.Containers {
     public private(set) var hasHasPendingRequest:Bool = false
     public private(set) var hasPendingRequest:Bool = false
 
+    public private(set) var hasPermissions:Bool = false
+    public private(set) var permissions:Services.Common.Containers.PermissionsV1!
     public private(set) var aliases:Array<String> = Array<String>()
     required public init() {
          super.init()
@@ -252,6 +257,9 @@ public extension Services.Group.Containers {
       }
       if hasHasPendingRequest {
         output.writeBool(14, value:hasPendingRequest)
+      }
+      if hasPermissions {
+        output.writeMessage(15, value:permissions)
       }
       unknownFields.writeToCodedOutputStream(output)
     }
@@ -306,6 +314,11 @@ public extension Services.Group.Containers {
       }
       if hasHasPendingRequest {
         serialize_size += hasPendingRequest.computeBoolSize(14)
+      }
+      if hasPermissions {
+          if let varSizepermissions = permissions?.computeMessageSize(15) {
+              serialize_size += varSizepermissions
+          }
       }
       serialize_size += unknownFields.serializedSize()
       memoizedSerializedSize = serialize_size
@@ -392,6 +405,11 @@ public extension Services.Group.Containers {
       if hasHasPendingRequest {
         output += "\(indent) hasPendingRequest: \(hasPendingRequest) \n"
       }
+      if hasPermissions {
+        output += "\(indent) permissions {\n"
+        permissions?.writeDescriptionTo(&output, indent:"\(indent)  ")
+        output += "\(indent) }\n"
+      }
       unknownFields.writeDescriptionTo(&output, indent:indent)
     }
     override public var hashValue:Int {
@@ -438,6 +456,11 @@ public extension Services.Group.Containers {
             }
             if hasHasPendingRequest {
                hashCode = (hashCode &* 31) &+ hasPendingRequest.hashValue
+            }
+            if hasPermissions {
+                if let hashValuepermissions = permissions?.hashValue {
+                    hashCode = (hashCode &* 31) &+ hashValuepermissions
+                }
             }
             hashCode = (hashCode &* 31) &+  unknownFields.hashValue
             return hashCode
@@ -782,6 +805,38 @@ public extension Services.Group.Containers {
          builderResult.hasPendingRequest = false
          return self
     }
+    public var hasPermissions:Bool {
+         get {
+             return builderResult.hasPermissions
+         }
+    }
+    public var permissions:Services.Common.Containers.PermissionsV1! {
+         get {
+             return builderResult.permissions
+         }
+         set (value) {
+             builderResult.hasPermissions = true
+             builderResult.permissions = value
+         }
+    }
+    public func setPermissions(value:Services.Common.Containers.PermissionsV1!)-> Services.Group.Containers.GroupV1Builder {
+      self.permissions = value
+      return self
+    }
+    public func mergePermissions(value:Services.Common.Containers.PermissionsV1) -> Services.Group.Containers.GroupV1Builder {
+      if (builderResult.hasPermissions) {
+        builderResult.permissions = Services.Common.Containers.PermissionsV1.builderWithPrototype(builderResult.permissions).mergeFrom(value).buildPartial()
+      } else {
+        builderResult.permissions = value
+      }
+      builderResult.hasPermissions = true
+      return self
+    }
+    public func clearPermissions() -> Services.Group.Containers.GroupV1Builder {
+      builderResult.hasPermissions = false
+      builderResult.permissions = nil
+      return self
+    }
     override public var internalGetResult:GeneratedMessage {
          get {
             return builderResult
@@ -848,6 +903,9 @@ public extension Services.Group.Containers {
       if other.hasHasPendingRequest {
            hasPendingRequest = other.hasPendingRequest
       }
+      if (other.hasPermissions) {
+          mergePermissions(other.permissions)
+      }
       mergeUnknownFields(other.unknownFields)
       return self
     }
@@ -909,6 +967,14 @@ public extension Services.Group.Containers {
 
         case 112 :
           hasPendingRequest = input.readBool()
+
+        case 122 :
+          var subBuilder:Services.Common.Containers.PermissionsV1Builder = Services.Common.Containers.PermissionsV1.builder()
+          if hasPermissions {
+            subBuilder.mergeFrom(permissions)
+          }
+          input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
+          permissions = subBuilder.buildPartial()
 
         default:
           if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {

@@ -20,7 +20,7 @@ public final class MembershipRequestV1 extends Message {
   public static final MembershipRequestStatusV1 DEFAULT_STATUS = MembershipRequestStatusV1.PENDING;
   public static final String DEFAULT_REQUESTER_PROFILE_ID = "";
   public static final List<String> DEFAULT_APPROVER_PROFILE_IDS = Collections.emptyList();
-  public static final String DEFAULT_GROUP_KEY = "";
+  public static final String DEFAULT_GROUP_ID = "";
   public static final GroupProviderV1 DEFAULT_PROVIDER = GroupProviderV1.GOOGLE;
   public static final List<MembershipRequestMetaV1> DEFAULT_META = Collections.emptyList();
   public static final String DEFAULT_CREATED = "";
@@ -41,7 +41,7 @@ public final class MembershipRequestV1 extends Message {
   public final List<String> approver_profile_ids;
 
   @ProtoField(tag = 6, type = STRING)
-  public final String group_key;
+  public final String group_id;
 
   @ProtoField(tag = 7, type = ENUM)
   public final GroupProviderV1 provider;
@@ -52,20 +52,20 @@ public final class MembershipRequestV1 extends Message {
   @ProtoField(tag = 9, type = STRING)
   public final String created;
 
-  public MembershipRequestV1(Integer version, String id, MembershipRequestStatusV1 status, String requester_profile_id, List<String> approver_profile_ids, String group_key, GroupProviderV1 provider, List<MembershipRequestMetaV1> meta, String created) {
+  public MembershipRequestV1(Integer version, String id, MembershipRequestStatusV1 status, String requester_profile_id, List<String> approver_profile_ids, String group_id, GroupProviderV1 provider, List<MembershipRequestMetaV1> meta, String created) {
     this.version = version;
     this.id = id;
     this.status = status;
     this.requester_profile_id = requester_profile_id;
     this.approver_profile_ids = immutableCopyOf(approver_profile_ids);
-    this.group_key = group_key;
+    this.group_id = group_id;
     this.provider = provider;
     this.meta = immutableCopyOf(meta);
     this.created = created;
   }
 
   private MembershipRequestV1(Builder builder) {
-    this(builder.version, builder.id, builder.status, builder.requester_profile_id, builder.approver_profile_ids, builder.group_key, builder.provider, builder.meta, builder.created);
+    this(builder.version, builder.id, builder.status, builder.requester_profile_id, builder.approver_profile_ids, builder.group_id, builder.provider, builder.meta, builder.created);
     setBuilder(builder);
   }
 
@@ -79,7 +79,7 @@ public final class MembershipRequestV1 extends Message {
         && equals(status, o.status)
         && equals(requester_profile_id, o.requester_profile_id)
         && equals(approver_profile_ids, o.approver_profile_ids)
-        && equals(group_key, o.group_key)
+        && equals(group_id, o.group_id)
         && equals(provider, o.provider)
         && equals(meta, o.meta)
         && equals(created, o.created);
@@ -94,7 +94,7 @@ public final class MembershipRequestV1 extends Message {
       result = result * 37 + (status != null ? status.hashCode() : 0);
       result = result * 37 + (requester_profile_id != null ? requester_profile_id.hashCode() : 0);
       result = result * 37 + (approver_profile_ids != null ? approver_profile_ids.hashCode() : 1);
-      result = result * 37 + (group_key != null ? group_key.hashCode() : 0);
+      result = result * 37 + (group_id != null ? group_id.hashCode() : 0);
       result = result * 37 + (provider != null ? provider.hashCode() : 0);
       result = result * 37 + (meta != null ? meta.hashCode() : 1);
       result = result * 37 + (created != null ? created.hashCode() : 0);
@@ -110,7 +110,7 @@ public final class MembershipRequestV1 extends Message {
     public MembershipRequestStatusV1 status;
     public String requester_profile_id;
     public List<String> approver_profile_ids;
-    public String group_key;
+    public String group_id;
     public GroupProviderV1 provider;
     public List<MembershipRequestMetaV1> meta;
     public String created;
@@ -126,7 +126,7 @@ public final class MembershipRequestV1 extends Message {
       this.status = message.status;
       this.requester_profile_id = message.requester_profile_id;
       this.approver_profile_ids = copyOf(message.approver_profile_ids);
-      this.group_key = message.group_key;
+      this.group_id = message.group_id;
       this.provider = message.provider;
       this.meta = copyOf(message.meta);
       this.created = message.created;
@@ -157,8 +157,8 @@ public final class MembershipRequestV1 extends Message {
       return this;
     }
 
-    public Builder group_key(String group_key) {
-      this.group_key = group_key;
+    public Builder group_id(String group_id) {
+      this.group_id = group_id;
       return this;
     }
 

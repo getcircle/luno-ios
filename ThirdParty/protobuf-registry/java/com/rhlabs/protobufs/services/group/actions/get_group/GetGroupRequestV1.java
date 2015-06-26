@@ -2,9 +2,11 @@
 // Source file: ./src/protobufs/services/group/actions/get_group.proto
 package com.rhlabs.protobufs.services.group.actions.get_group;
 
+import com.rhlabs.protobufs.services.group.containers.GroupProviderV1;
 import com.squareup.wire.Message;
 import com.squareup.wire.ProtoField;
 
+import static com.squareup.wire.Message.Datatype.ENUM;
 import static com.squareup.wire.Message.Datatype.STRING;
 import static com.squareup.wire.Message.Datatype.UINT32;
 
@@ -12,21 +14,26 @@ public final class GetGroupRequestV1 extends Message {
   private static final long serialVersionUID = 0L;
 
   public static final Integer DEFAULT_VERSION = 1;
-  public static final String DEFAULT_GROUP_KEY = "";
+  public static final String DEFAULT_GROUP_ID = "";
+  public static final GroupProviderV1 DEFAULT_PROVIDER = GroupProviderV1.GOOGLE;
 
   @ProtoField(tag = 1, type = UINT32)
   public final Integer version;
 
   @ProtoField(tag = 2, type = STRING)
-  public final String group_key;
+  public final String group_id;
 
-  public GetGroupRequestV1(Integer version, String group_key) {
+  @ProtoField(tag = 3, type = ENUM)
+  public final GroupProviderV1 provider;
+
+  public GetGroupRequestV1(Integer version, String group_id, GroupProviderV1 provider) {
     this.version = version;
-    this.group_key = group_key;
+    this.group_id = group_id;
+    this.provider = provider;
   }
 
   private GetGroupRequestV1(Builder builder) {
-    this(builder.version, builder.group_key);
+    this(builder.version, builder.group_id, builder.provider);
     setBuilder(builder);
   }
 
@@ -36,7 +43,8 @@ public final class GetGroupRequestV1 extends Message {
     if (!(other instanceof GetGroupRequestV1)) return false;
     GetGroupRequestV1 o = (GetGroupRequestV1) other;
     return equals(version, o.version)
-        && equals(group_key, o.group_key);
+        && equals(group_id, o.group_id)
+        && equals(provider, o.provider);
   }
 
   @Override
@@ -44,7 +52,8 @@ public final class GetGroupRequestV1 extends Message {
     int result = hashCode;
     if (result == 0) {
       result = version != null ? version.hashCode() : 0;
-      result = result * 37 + (group_key != null ? group_key.hashCode() : 0);
+      result = result * 37 + (group_id != null ? group_id.hashCode() : 0);
+      result = result * 37 + (provider != null ? provider.hashCode() : 0);
       hashCode = result;
     }
     return result;
@@ -53,7 +62,8 @@ public final class GetGroupRequestV1 extends Message {
   public static final class Builder extends Message.Builder<GetGroupRequestV1> {
 
     public Integer version;
-    public String group_key;
+    public String group_id;
+    public GroupProviderV1 provider;
 
     public Builder() {
     }
@@ -62,7 +72,8 @@ public final class GetGroupRequestV1 extends Message {
       super(message);
       if (message == null) return;
       this.version = message.version;
-      this.group_key = message.group_key;
+      this.group_id = message.group_id;
+      this.provider = message.provider;
     }
 
     public Builder version(Integer version) {
@@ -70,8 +81,13 @@ public final class GetGroupRequestV1 extends Message {
       return this;
     }
 
-    public Builder group_key(String group_key) {
-      this.group_key = group_key;
+    public Builder group_id(String group_id) {
+      this.group_id = group_id;
+      return this;
+    }
+
+    public Builder provider(GroupProviderV1 provider) {
+      this.provider = provider;
       return this;
     }
 

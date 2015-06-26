@@ -19,9 +19,7 @@ public func == (lhs: Services.Search.Actions.Search.ResponseV1, rhs: Services.Se
   }
   var fieldCheck:Bool = (lhs.hashValue == rhs.hashValue)
   fieldCheck = fieldCheck && (lhs.hasVersion == rhs.hasVersion) && (!lhs.hasVersion || lhs.version == rhs.version)
-  fieldCheck = fieldCheck && (lhs.profiles == rhs.profiles)
-  fieldCheck = fieldCheck && (lhs.teams == rhs.teams)
-  fieldCheck = fieldCheck && (lhs.addresses == rhs.addresses)
+  fieldCheck = fieldCheck && (lhs.results == rhs.results)
   return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
 }
 
@@ -38,8 +36,7 @@ public extension Services.Search.Actions.Search {
     init() {
       extensionRegistry = ExtensionRegistry()
       registerAllExtensions(extensionRegistry)
-      Services.Organization.Containers.ContainersRoot.sharedInstance.registerAllExtensions(extensionRegistry)
-      Services.Profile.Containers.ContainersRoot.sharedInstance.registerAllExtensions(extensionRegistry)
+      Services.Search.Containers.ContainersRoot.sharedInstance.registerAllExtensions(extensionRegistry)
     }
     public func registerAllExtensions(registry:ExtensionRegistry) {
     }
@@ -292,9 +289,7 @@ public extension Services.Search.Actions.Search {
     public private(set) var hasVersion:Bool = false
     public private(set) var version:UInt32 = UInt32(1)
 
-    public private(set) var profiles:Array<Services.Profile.Containers.ProfileV1>  = Array<Services.Profile.Containers.ProfileV1>()
-    public private(set) var teams:Array<Services.Organization.Containers.TeamV1>  = Array<Services.Organization.Containers.TeamV1>()
-    public private(set) var addresses:Array<Services.Organization.Containers.AddressV1>  = Array<Services.Organization.Containers.AddressV1>()
+    public private(set) var results:Array<Services.Search.Containers.SearchResultsV1>  = Array<Services.Search.Containers.SearchResultsV1>()
     required public init() {
          super.init()
     }
@@ -305,14 +300,8 @@ public extension Services.Search.Actions.Search {
       if hasVersion {
         output.writeUInt32(1, value:version)
       }
-      for oneElementprofiles in profiles {
-          output.writeMessage(2, value:oneElementprofiles)
-      }
-      for oneElementteams in teams {
-          output.writeMessage(3, value:oneElementteams)
-      }
-      for oneElementaddresses in addresses {
-          output.writeMessage(4, value:oneElementaddresses)
+      for oneElementresults in results {
+          output.writeMessage(2, value:oneElementresults)
       }
       unknownFields.writeToCodedOutputStream(output)
     }
@@ -326,14 +315,8 @@ public extension Services.Search.Actions.Search {
       if hasVersion {
         serialize_size += version.computeUInt32Size(1)
       }
-      for oneElementprofiles in profiles {
-          serialize_size += oneElementprofiles.computeMessageSize(2)
-      }
-      for oneElementteams in teams {
-          serialize_size += oneElementteams.computeMessageSize(3)
-      }
-      for oneElementaddresses in addresses {
-          serialize_size += oneElementaddresses.computeMessageSize(4)
+      for oneElementresults in results {
+          serialize_size += oneElementresults.computeMessageSize(2)
       }
       serialize_size += unknownFields.serializedSize()
       memoizedSerializedSize = serialize_size
@@ -379,26 +362,12 @@ public extension Services.Search.Actions.Search {
       if hasVersion {
         output += "\(indent) version: \(version) \n"
       }
-      var profilesElementIndex:Int = 0
-      for oneElementprofiles in profiles {
-          output += "\(indent) profiles[\(profilesElementIndex)] {\n"
-          oneElementprofiles.writeDescriptionTo(&output, indent:"\(indent)  ")
+      var resultsElementIndex:Int = 0
+      for oneElementresults in results {
+          output += "\(indent) results[\(resultsElementIndex)] {\n"
+          oneElementresults.writeDescriptionTo(&output, indent:"\(indent)  ")
           output += "\(indent)}\n"
-          profilesElementIndex++
-      }
-      var teamsElementIndex:Int = 0
-      for oneElementteams in teams {
-          output += "\(indent) teams[\(teamsElementIndex)] {\n"
-          oneElementteams.writeDescriptionTo(&output, indent:"\(indent)  ")
-          output += "\(indent)}\n"
-          teamsElementIndex++
-      }
-      var addressesElementIndex:Int = 0
-      for oneElementaddresses in addresses {
-          output += "\(indent) addresses[\(addressesElementIndex)] {\n"
-          oneElementaddresses.writeDescriptionTo(&output, indent:"\(indent)  ")
-          output += "\(indent)}\n"
-          addressesElementIndex++
+          resultsElementIndex++
       }
       unknownFields.writeDescriptionTo(&output, indent:indent)
     }
@@ -408,14 +377,8 @@ public extension Services.Search.Actions.Search {
             if hasVersion {
                hashCode = (hashCode &* 31) &+ version.hashValue
             }
-            for oneElementprofiles in profiles {
-                hashCode = (hashCode &* 31) &+ oneElementprofiles.hashValue
-            }
-            for oneElementteams in teams {
-                hashCode = (hashCode &* 31) &+ oneElementteams.hashValue
-            }
-            for oneElementaddresses in addresses {
-                hashCode = (hashCode &* 31) &+ oneElementaddresses.hashValue
+            for oneElementresults in results {
+                hashCode = (hashCode &* 31) &+ oneElementresults.hashValue
             }
             hashCode = (hashCode &* 31) &+  unknownFields.hashValue
             return hashCode
@@ -468,52 +431,20 @@ public extension Services.Search.Actions.Search {
          builderResult.version = UInt32(1)
          return self
     }
-    public var profiles:Array<Services.Profile.Containers.ProfileV1> {
+    public var results:Array<Services.Search.Containers.SearchResultsV1> {
          get {
-             return builderResult.profiles
+             return builderResult.results
          }
          set (value) {
-             builderResult.profiles = value
+             builderResult.results = value
          }
     }
-    public func setProfiles(value:Array<Services.Profile.Containers.ProfileV1>)-> Services.Search.Actions.Search.ResponseV1Builder {
-      self.profiles = value
+    public func setResults(value:Array<Services.Search.Containers.SearchResultsV1>)-> Services.Search.Actions.Search.ResponseV1Builder {
+      self.results = value
       return self
     }
-    public func clearProfiles() -> Services.Search.Actions.Search.ResponseV1Builder {
-      builderResult.profiles.removeAll(keepCapacity: false)
-      return self
-    }
-    public var teams:Array<Services.Organization.Containers.TeamV1> {
-         get {
-             return builderResult.teams
-         }
-         set (value) {
-             builderResult.teams = value
-         }
-    }
-    public func setTeams(value:Array<Services.Organization.Containers.TeamV1>)-> Services.Search.Actions.Search.ResponseV1Builder {
-      self.teams = value
-      return self
-    }
-    public func clearTeams() -> Services.Search.Actions.Search.ResponseV1Builder {
-      builderResult.teams.removeAll(keepCapacity: false)
-      return self
-    }
-    public var addresses:Array<Services.Organization.Containers.AddressV1> {
-         get {
-             return builderResult.addresses
-         }
-         set (value) {
-             builderResult.addresses = value
-         }
-    }
-    public func setAddresses(value:Array<Services.Organization.Containers.AddressV1>)-> Services.Search.Actions.Search.ResponseV1Builder {
-      self.addresses = value
-      return self
-    }
-    public func clearAddresses() -> Services.Search.Actions.Search.ResponseV1Builder {
-      builderResult.addresses.removeAll(keepCapacity: false)
+    public func clearResults() -> Services.Search.Actions.Search.ResponseV1Builder {
+      builderResult.results.removeAll(keepCapacity: false)
       return self
     }
     override public var internalGetResult:GeneratedMessage {
@@ -543,14 +474,8 @@ public extension Services.Search.Actions.Search {
       if other.hasVersion {
            version = other.version
       }
-      if !other.profiles.isEmpty  {
-         builderResult.profiles += other.profiles
-      }
-      if !other.teams.isEmpty  {
-         builderResult.teams += other.teams
-      }
-      if !other.addresses.isEmpty  {
-         builderResult.addresses += other.addresses
+      if !other.results.isEmpty  {
+         builderResult.results += other.results
       }
       mergeUnknownFields(other.unknownFields)
       return self
@@ -571,19 +496,9 @@ public extension Services.Search.Actions.Search {
           version = input.readUInt32()
 
         case 18 :
-          var subBuilder = Services.Profile.Containers.ProfileV1.builder()
+          var subBuilder = Services.Search.Containers.SearchResultsV1.builder()
           input.readMessage(subBuilder,extensionRegistry:extensionRegistry)
-          profiles += [subBuilder.buildPartial()]
-
-        case 26 :
-          var subBuilder = Services.Organization.Containers.TeamV1.builder()
-          input.readMessage(subBuilder,extensionRegistry:extensionRegistry)
-          teams += [subBuilder.buildPartial()]
-
-        case 34 :
-          var subBuilder = Services.Organization.Containers.AddressV1.builder()
-          input.readMessage(subBuilder,extensionRegistry:extensionRegistry)
-          addresses += [subBuilder.buildPartial()]
+          results += [subBuilder.buildPartial()]
 
         default:
           if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {

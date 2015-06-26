@@ -3,6 +3,8 @@ package services.group.containers;
 // GENERATED OPTIONS FOR: JAVA
 option java_package = "com.rhlabs.protobufs.services.group.containers";
 
+import "protobufs/services/common/containers.proto";
+
 import "protobufs/services/group/containers/permissions/who_can_join.proto";
 import "protobufs/services/group/containers/permissions/who_can_view_membership.proto";
 import "protobufs/services/group/containers/permissions/who_can_view_group.proto";
@@ -29,6 +31,7 @@ message GroupV1 {
     optional bool can_request = 12;
     optional bool is_manager = 13;
     optional bool has_pending_request = 14;
+    optional services.common.containers.PermissionsV1 permissions = 15;
 }
 
 message GroupSettingsV1 {

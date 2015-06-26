@@ -6,10 +6,12 @@ import com.squareup.wire.ProtoEnum;
 
 public enum CategoryV1
     implements ProtoEnum {
-  PEOPLE(0),
+  PROFILES(0),
   TEAMS(1),
   LOCATIONS(2),
-  SKILLS(3);
+  SKILLS(3),
+  INTERESTS(4),
+  GROUPS(5);
 
   private final int value;
 

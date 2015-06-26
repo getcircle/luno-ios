@@ -2,9 +2,7 @@
 // Source file: ./src/protobufs/services/search/actions/search.proto
 package com.rhlabs.protobufs.services.search.actions.search;
 
-import com.rhlabs.protobufs.services.organization.containers.AddressV1;
-import com.rhlabs.protobufs.services.organization.containers.TeamV1;
-import com.rhlabs.protobufs.services.profile.containers.ProfileV1;
+import com.rhlabs.protobufs.services.search.containers.SearchResultsV1;
 import com.squareup.wire.Message;
 import com.squareup.wire.ProtoField;
 import java.util.Collections;
@@ -17,31 +15,21 @@ public final class SearchResponseV1 extends Message {
   private static final long serialVersionUID = 0L;
 
   public static final Integer DEFAULT_VERSION = 1;
-  public static final List<ProfileV1> DEFAULT_PROFILES = Collections.emptyList();
-  public static final List<TeamV1> DEFAULT_TEAMS = Collections.emptyList();
-  public static final List<AddressV1> DEFAULT_ADDRESSES = Collections.emptyList();
+  public static final List<SearchResultsV1> DEFAULT_RESULTS = Collections.emptyList();
 
   @ProtoField(tag = 1, type = UINT32)
   public final Integer version;
 
-  @ProtoField(tag = 2, label = REPEATED, messageType = ProfileV1.class)
-  public final List<ProfileV1> profiles;
+  @ProtoField(tag = 2, label = REPEATED, messageType = SearchResultsV1.class)
+  public final List<SearchResultsV1> results;
 
-  @ProtoField(tag = 3, label = REPEATED, messageType = TeamV1.class)
-  public final List<TeamV1> teams;
-
-  @ProtoField(tag = 4, label = REPEATED, messageType = AddressV1.class)
-  public final List<AddressV1> addresses;
-
-  public SearchResponseV1(Integer version, List<ProfileV1> profiles, List<TeamV1> teams, List<AddressV1> addresses) {
+  public SearchResponseV1(Integer version, List<SearchResultsV1> results) {
     this.version = version;
-    this.profiles = immutableCopyOf(profiles);
-    this.teams = immutableCopyOf(teams);
-    this.addresses = immutableCopyOf(addresses);
+    this.results = immutableCopyOf(results);
   }
 
   private SearchResponseV1(Builder builder) {
-    this(builder.version, builder.profiles, builder.teams, builder.addresses);
+    this(builder.version, builder.results);
     setBuilder(builder);
   }
 
@@ -51,9 +39,7 @@ public final class SearchResponseV1 extends Message {
     if (!(other instanceof SearchResponseV1)) return false;
     SearchResponseV1 o = (SearchResponseV1) other;
     return equals(version, o.version)
-        && equals(profiles, o.profiles)
-        && equals(teams, o.teams)
-        && equals(addresses, o.addresses);
+        && equals(results, o.results);
   }
 
   @Override
@@ -61,9 +47,7 @@ public final class SearchResponseV1 extends Message {
     int result = hashCode;
     if (result == 0) {
       result = version != null ? version.hashCode() : 0;
-      result = result * 37 + (profiles != null ? profiles.hashCode() : 1);
-      result = result * 37 + (teams != null ? teams.hashCode() : 1);
-      result = result * 37 + (addresses != null ? addresses.hashCode() : 1);
+      result = result * 37 + (results != null ? results.hashCode() : 1);
       hashCode = result;
     }
     return result;
@@ -72,9 +56,7 @@ public final class SearchResponseV1 extends Message {
   public static final class Builder extends Message.Builder<SearchResponseV1> {
 
     public Integer version;
-    public List<ProfileV1> profiles;
-    public List<TeamV1> teams;
-    public List<AddressV1> addresses;
+    public List<SearchResultsV1> results;
 
     public Builder() {
     }
@@ -83,9 +65,7 @@ public final class SearchResponseV1 extends Message {
       super(message);
       if (message == null) return;
       this.version = message.version;
-      this.profiles = copyOf(message.profiles);
-      this.teams = copyOf(message.teams);
-      this.addresses = copyOf(message.addresses);
+      this.results = copyOf(message.results);
     }
 
     public Builder version(Integer version) {
@@ -93,18 +73,8 @@ public final class SearchResponseV1 extends Message {
       return this;
     }
 
-    public Builder profiles(List<ProfileV1> profiles) {
-      this.profiles = checkForNulls(profiles);
-      return this;
-    }
-
-    public Builder teams(List<TeamV1> teams) {
-      this.teams = checkForNulls(teams);
-      return this;
-    }
-
-    public Builder addresses(List<AddressV1> addresses) {
-      this.addresses = checkForNulls(addresses);
+    public Builder results(List<SearchResultsV1> results) {
+      this.results = checkForNulls(results);
       return this;
     }
 

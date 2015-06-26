@@ -4,12 +4,14 @@ package services.user.actions.complete_authorization;
 option java_package = "com.rhlabs.protobufs.services.user.actions.complete_authorization";
 
 import "protobufs/services/user/containers.proto";
+import "protobufs/services/user/containers/token.proto";
 
 message RequestV1 {
     optional uint32 version = 1 [default = 1];
     optional services.user.containers.IdentityV1.ProviderV1 provider = 2;
     optional services.user.containers.OAuth2DetailsV1 oauth2_details = 3;
     optional services.user.containers.OAuthSDKDetailsV1 oauth_sdk_details = 4;
+    optional services.user.containers.token.ClientTypeV1 client_type = 5;
 }
 
 message ResponseV1 {

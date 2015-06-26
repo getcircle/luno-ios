@@ -12,6 +12,7 @@ public func == (lhs: Services.User.Actions.CompleteAuthorization.RequestV1, rhs:
   fieldCheck = fieldCheck && (lhs.hasProvider == rhs.hasProvider) && (!lhs.hasProvider || lhs.provider == rhs.provider)
   fieldCheck = fieldCheck && (lhs.hasOauth2Details == rhs.hasOauth2Details) && (!lhs.hasOauth2Details || lhs.oauth2Details == rhs.oauth2Details)
   fieldCheck = fieldCheck && (lhs.hasOauthSdkDetails == rhs.hasOauthSdkDetails) && (!lhs.hasOauthSdkDetails || lhs.oauthSdkDetails == rhs.oauthSdkDetails)
+  fieldCheck = fieldCheck && (lhs.hasClientType == rhs.hasClientType) && (!lhs.hasClientType || lhs.clientType == rhs.clientType)
   return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
 }
 
@@ -42,6 +43,7 @@ public extension Services.User.Actions.CompleteAuthorization {
       extensionRegistry = ExtensionRegistry()
       registerAllExtensions(extensionRegistry)
       Services.User.Containers.ContainersRoot.sharedInstance.registerAllExtensions(extensionRegistry)
+      Services.User.Containers.Token.TokenRoot.sharedInstance.registerAllExtensions(extensionRegistry)
     }
     public func registerAllExtensions(registry:ExtensionRegistry) {
     }
@@ -54,6 +56,7 @@ public extension Services.User.Actions.CompleteAuthorization {
            case "provider": return self.provider
            case "oauth2Details": return oauth2Details
            case "oauthSdkDetails": return oauthSdkDetails
+           case "clientType": return self.clientType
            default: return nil
            }
     }
@@ -67,6 +70,8 @@ public extension Services.User.Actions.CompleteAuthorization {
     public private(set) var oauth2Details:Services.User.Containers.OAuth2DetailsV1!
     public private(set) var hasOauthSdkDetails:Bool = false
     public private(set) var oauthSdkDetails:Services.User.Containers.OAuthSDKDetailsV1!
+    public private(set) var clientType:Services.User.Containers.Token.ClientTypeV1 = Services.User.Containers.Token.ClientTypeV1.Ios
+    public private(set) var hasClientType:Bool = false
     required public init() {
          super.init()
     }
@@ -85,6 +90,9 @@ public extension Services.User.Actions.CompleteAuthorization {
       }
       if hasOauthSdkDetails {
         output.writeMessage(4, value:oauthSdkDetails)
+      }
+      if hasClientType {
+        output.writeEnum(5, value:clientType.rawValue)
       }
       unknownFields.writeToCodedOutputStream(output)
     }
@@ -110,6 +118,9 @@ public extension Services.User.Actions.CompleteAuthorization {
           if let varSizeoauthSdkDetails = oauthSdkDetails?.computeMessageSize(4) {
               serialize_size += varSizeoauthSdkDetails
           }
+      }
+      if (hasClientType) {
+        serialize_size += clientType.rawValue.computeEnumSize(5)
       }
       serialize_size += unknownFields.serializedSize()
       memoizedSerializedSize = serialize_size
@@ -168,6 +179,9 @@ public extension Services.User.Actions.CompleteAuthorization {
         oauthSdkDetails?.writeDescriptionTo(&output, indent:"\(indent)  ")
         output += "\(indent) }\n"
       }
+      if (hasClientType) {
+        output += "\(indent) clientType: \(clientType.rawValue)\n"
+      }
       unknownFields.writeDescriptionTo(&output, indent:indent)
     }
     override public var hashValue:Int {
@@ -188,6 +202,9 @@ public extension Services.User.Actions.CompleteAuthorization {
                 if let hashValueoauthSdkDetails = oauthSdkDetails?.hashValue {
                     hashCode = (hashCode &* 31) &+ hashValueoauthSdkDetails
                 }
+            }
+            if hasClientType {
+               hashCode = (hashCode &* 31) &+ Int(clientType.rawValue)
             }
             hashCode = (hashCode &* 31) &+  unknownFields.hashValue
             return hashCode
@@ -327,6 +344,29 @@ public extension Services.User.Actions.CompleteAuthorization {
       builderResult.oauthSdkDetails = nil
       return self
     }
+      public var hasClientType:Bool{
+          get {
+              return builderResult.hasClientType
+          }
+      }
+      public var clientType:Services.User.Containers.Token.ClientTypeV1 {
+          get {
+              return builderResult.clientType
+          }
+          set (value) {
+              builderResult.hasClientType = true
+              builderResult.clientType = value
+          }
+      }
+      public func setClientType(value:Services.User.Containers.Token.ClientTypeV1)-> Services.User.Actions.CompleteAuthorization.RequestV1Builder {
+        self.clientType = value
+        return self
+      }
+      public func clearClientType() -> Services.User.Actions.CompleteAuthorization.RequestV1Builder {
+         builderResult.hasClientType = false
+         builderResult.clientType = .Ios
+         return self
+      }
     override public var internalGetResult:GeneratedMessage {
          get {
             return builderResult
@@ -362,6 +402,9 @@ public extension Services.User.Actions.CompleteAuthorization {
       }
       if (other.hasOauthSdkDetails) {
           mergeOauthSdkDetails(other.oauthSdkDetails)
+      }
+      if other.hasClientType {
+           clientType = other.clientType
       }
       mergeUnknownFields(other.unknownFields)
       return self
@@ -404,6 +447,14 @@ public extension Services.User.Actions.CompleteAuthorization {
           }
           input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
           oauthSdkDetails = subBuilder.buildPartial()
+
+        case 40 :
+          let valueIntclientType = input.readEnum()
+          if let enumsclientType = Services.User.Containers.Token.ClientTypeV1(rawValue:valueIntclientType){
+               clientType = enumsclientType
+          } else {
+               unknownFieldsBuilder.mergeVarintField(5, value:Int64(valueIntclientType))
+          }
 
         default:
           if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {

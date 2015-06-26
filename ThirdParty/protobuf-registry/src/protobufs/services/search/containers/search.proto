@@ -4,10 +4,12 @@ package services.search.containers.search;
 option java_package = "com.rhlabs.protobufs.services.search.containers.search";
 
 enum CategoryV1 {
-    PEOPLE = 0;
+    PROFILES = 0;
     TEAMS = 1;
     LOCATIONS = 2;
     SKILLS = 3;
+    INTERESTS = 4;
+    GROUPS = 5;
 }
 
 enum AttributeV1 {

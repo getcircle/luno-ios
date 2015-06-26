@@ -26,10 +26,12 @@ public extension Services.Search.Containers.Search {
   //Enum type declaration start 
 
   public enum CategoryV1:Int32 {
-    case People = 0
+    case Profiles = 0
     case Teams = 1
     case Locations = 2
     case Skills = 3
+    case Interests = 4
+    case Groups = 5
 
   }
 

@@ -1,10 +1,9 @@
 package services.search.actions.search;
 
+import "protobufs/services/search/containers.proto";
+
 // GENERATED OPTIONS FOR: JAVA
 option java_package = "com.rhlabs.protobufs.services.search.actions.search";
-
-import "protobufs/services/organization/containers.proto";
-import "protobufs/services/profile/containers.proto";
 
 message RequestV1 {
     optional uint32 version = 1 [default = 1];
@@ -13,7 +12,5 @@ message RequestV1 {
 
 message ResponseV1 {
     optional uint32 version = 1 [default = 1];
-    repeated services.profile.containers.ProfileV1 profiles = 2;
-    repeated services.organization.containers.TeamV1 teams = 3;
-    repeated services.organization.containers.AddressV1 addresses = 4;
+    repeated services.search.containers.SearchResultsV1 results = 2;
 }

@@ -19,7 +19,7 @@ public final class GetGroupsRequestV1 extends Message {
   public static final Integer DEFAULT_VERSION = 1;
   public static final String DEFAULT_PROFILE_ID = "";
   public static final GroupProviderV1 DEFAULT_PROVIDER = GroupProviderV1.GOOGLE;
-  public static final List<String> DEFAULT_GROUP_KEYS = Collections.emptyList();
+  public static final List<String> DEFAULT_GROUP_IDS = Collections.emptyList();
 
   @ProtoField(tag = 1, type = UINT32)
   public final Integer version;
@@ -31,17 +31,17 @@ public final class GetGroupsRequestV1 extends Message {
   public final GroupProviderV1 provider;
 
   @ProtoField(tag = 4, type = STRING, label = REPEATED)
-  public final List<String> group_keys;
+  public final List<String> group_ids;
 
-  public GetGroupsRequestV1(Integer version, String profile_id, GroupProviderV1 provider, List<String> group_keys) {
+  public GetGroupsRequestV1(Integer version, String profile_id, GroupProviderV1 provider, List<String> group_ids) {
     this.version = version;
     this.profile_id = profile_id;
     this.provider = provider;
-    this.group_keys = immutableCopyOf(group_keys);
+    this.group_ids = immutableCopyOf(group_ids);
   }
 
   private GetGroupsRequestV1(Builder builder) {
-    this(builder.version, builder.profile_id, builder.provider, builder.group_keys);
+    this(builder.version, builder.profile_id, builder.provider, builder.group_ids);
     setBuilder(builder);
   }
 
@@ -53,7 +53,7 @@ public final class GetGroupsRequestV1 extends Message {
     return equals(version, o.version)
         && equals(profile_id, o.profile_id)
         && equals(provider, o.provider)
-        && equals(group_keys, o.group_keys);
+        && equals(group_ids, o.group_ids);
   }
 
   @Override
@@ -63,7 +63,7 @@ public final class GetGroupsRequestV1 extends Message {
       result = version != null ? version.hashCode() : 0;
       result = result * 37 + (profile_id != null ? profile_id.hashCode() : 0);
       result = result * 37 + (provider != null ? provider.hashCode() : 0);
-      result = result * 37 + (group_keys != null ? group_keys.hashCode() : 1);
+      result = result * 37 + (group_ids != null ? group_ids.hashCode() : 1);
       hashCode = result;
     }
     return result;
@@ -74,7 +74,7 @@ public final class GetGroupsRequestV1 extends Message {
     public Integer version;
     public String profile_id;
     public GroupProviderV1 provider;
-    public List<String> group_keys;
+    public List<String> group_ids;
 
     public Builder() {
     }
@@ -85,7 +85,7 @@ public final class GetGroupsRequestV1 extends Message {
       this.version = message.version;
       this.profile_id = message.profile_id;
       this.provider = message.provider;
-      this.group_keys = copyOf(message.group_keys);
+      this.group_ids = copyOf(message.group_ids);
     }
 
     public Builder version(Integer version) {
@@ -103,8 +103,8 @@ public final class GetGroupsRequestV1 extends Message {
       return this;
     }
 
-    public Builder group_keys(List<String> group_keys) {
-      this.group_keys = checkForNulls(group_keys);
+    public Builder group_ids(List<String> group_ids) {
+      this.group_ids = checkForNulls(group_ids);
       return this;
     }
 

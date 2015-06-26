@@ -2,6 +2,7 @@
 // Source file: ./src/protobufs/services/group/containers.proto
 package com.rhlabs.protobufs.services.group.containers;
 
+import com.rhlabs.protobufs.services.common.containers.PermissionsV1;
 import com.squareup.wire.Message;
 import com.squareup.wire.ProtoField;
 import java.util.Collections;
@@ -73,7 +74,10 @@ public final class GroupV1 extends Message {
   @ProtoField(tag = 14, type = BOOL)
   public final Boolean has_pending_request;
 
-  public GroupV1(Integer version, String id, String email, String name, String display_name, String group_description, List<String> aliases, Integer members_count, GroupProviderV1 provider, Boolean can_join, Boolean is_member, Boolean can_request, Boolean is_manager, Boolean has_pending_request) {
+  @ProtoField(tag = 15)
+  public final PermissionsV1 permissions;
+
+  public GroupV1(Integer version, String id, String email, String name, String display_name, String group_description, List<String> aliases, Integer members_count, GroupProviderV1 provider, Boolean can_join, Boolean is_member, Boolean can_request, Boolean is_manager, Boolean has_pending_request, PermissionsV1 permissions) {
     this.version = version;
     this.id = id;
     this.email = email;
@@ -88,10 +92,11 @@ public final class GroupV1 extends Message {
     this.can_request = can_request;
     this.is_manager = is_manager;
     this.has_pending_request = has_pending_request;
+    this.permissions = permissions;
   }
 
   private GroupV1(Builder builder) {
-    this(builder.version, builder.id, builder.email, builder.name, builder.display_name, builder.group_description, builder.aliases, builder.members_count, builder.provider, builder.can_join, builder.is_member, builder.can_request, builder.is_manager, builder.has_pending_request);
+    this(builder.version, builder.id, builder.email, builder.name, builder.display_name, builder.group_description, builder.aliases, builder.members_count, builder.provider, builder.can_join, builder.is_member, builder.can_request, builder.is_manager, builder.has_pending_request, builder.permissions);
     setBuilder(builder);
   }
 
@@ -113,7 +118,8 @@ public final class GroupV1 extends Message {
         && equals(is_member, o.is_member)
         && equals(can_request, o.can_request)
         && equals(is_manager, o.is_manager)
-        && equals(has_pending_request, o.has_pending_request);
+        && equals(has_pending_request, o.has_pending_request)
+        && equals(permissions, o.permissions);
   }
 
   @Override
@@ -134,6 +140,7 @@ public final class GroupV1 extends Message {
       result = result * 37 + (can_request != null ? can_request.hashCode() : 0);
       result = result * 37 + (is_manager != null ? is_manager.hashCode() : 0);
       result = result * 37 + (has_pending_request != null ? has_pending_request.hashCode() : 0);
+      result = result * 37 + (permissions != null ? permissions.hashCode() : 0);
       hashCode = result;
     }
     return result;
@@ -155,6 +162,7 @@ public final class GroupV1 extends Message {
     public Boolean can_request;
     public Boolean is_manager;
     public Boolean has_pending_request;
+    public PermissionsV1 permissions;
 
     public Builder() {
     }
@@ -176,6 +184,7 @@ public final class GroupV1 extends Message {
       this.can_request = message.can_request;
       this.is_manager = message.is_manager;
       this.has_pending_request = message.has_pending_request;
+      this.permissions = message.permissions;
     }
 
     public Builder version(Integer version) {
@@ -245,6 +254,11 @@ public final class GroupV1 extends Message {
 
     public Builder has_pending_request(Boolean has_pending_request) {
       this.has_pending_request = has_pending_request;
+      return this;
+    }
+
+    public Builder permissions(PermissionsV1 permissions) {
+      this.permissions = permissions;
       return this;
     }
 
