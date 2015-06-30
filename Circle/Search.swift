@@ -101,7 +101,7 @@ extension Services.Search.Actions {
         let results = SearchResults()
         
         switch category {
-        case .People:
+        case .Profiles:
             var toFilter: Array<Services.Profile.Containers.ProfileV1>
             if attribute != nil && attributeValue != nil {
                 toFilter = ObjectStore.sharedInstance.getProfilesForAttribute(attribute!, value: attributeValue!)

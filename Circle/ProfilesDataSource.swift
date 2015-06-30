@@ -131,7 +131,7 @@ class ProfilesDataSource: CardDataSource {
     override func handleFiltering(query: String, completionHandler: (error: NSError?) -> Void) {
         Services.Search.Actions.search(
             query,
-            category: .People,
+            category: .Profiles,
             attribute: searchAttribute,
             attributeValue: searchAttributeValue,
             objects: profiles
