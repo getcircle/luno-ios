@@ -208,13 +208,13 @@ class CircleImageView: UIImageView {
                             successHandler!(image: image)
                         }
                     },
-                    failure: nil
+                    failure: { (request, response, error) -> Void in
+                        println("Error setLargerProfileImage \(error)")
+                    }
                 )
+            } else {
+                setImageWithURL(imageURL)
             }
-            else {
-            
-            }
-            setImageWithURL(imageURL)
         }
     }
     
