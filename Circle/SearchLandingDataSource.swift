@@ -18,6 +18,11 @@ class SearchLandingDataSource: CardDataSource {
     private var profilesAssociatedWithNotes = Array<Services.Profile.Containers.ProfileV1>()
     
     override func loadData(completionHandler: (error: NSError?) -> Void) {
+        if (state == .Loading) {
+            return;
+        }
+        
+        state = .Loading
         if let currentProfile = AuthViewController.getLoggedInUserProfile() {
             Services.Feed.Actions.getProfileFeed(currentProfile.id) { (categories, error) -> Void in
                 if error == nil {
@@ -71,7 +76,10 @@ class SearchLandingDataSource: CardDataSource {
                     }
                 }
                 completionHandler(error: error)
+                self.state == .Loaded
             }
+        } else {
+            state = .Loaded
         }
     }
     

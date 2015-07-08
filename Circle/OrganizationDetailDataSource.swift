@@ -16,13 +16,17 @@ class OrganizationDetailDataSource: CardDataSource {
     private var supportGoogleGroups = false
     
     override func loadData(completionHandler: (error: NSError?) -> Void) {
-        resetCards()
         
-        // Get the header early
-        let placeholderCard = Card(cardType: .Placeholder, title: "")
-        placeholderCard.addHeader(headerClass: OrganizationHeaderCollectionReusableView.self)
-        placeholderCard.sectionInset = UIEdgeInsetsZero
-        appendCard(placeholderCard)
+        if (state == .Loading) {
+            return;
+        }
+        
+        state = .Loading
+        
+        if cards.count == 0 {
+            // Get the header early
+            addPlaceholderCard()
+        }
         
         if let currentProfile = AuthViewController.getLoggedInUserProfile() {
             var storedError: NSError!
@@ -34,6 +38,8 @@ class OrganizationDetailDataSource: CardDataSource {
                     storedError = error
                 }
                 else {
+                    self.resetCards()
+                    self.addPlaceholderCard()
                     for category in categories ?? [] {
                         let categoryCard = Card(category: category)
                         categoryCard.addDefaultHeader()
@@ -77,8 +83,18 @@ class OrganizationDetailDataSource: CardDataSource {
             dispatch_group_notify(actionsGroup, GlobalMainQueue) { () -> Void in
                 self.addGroupsCard()
                 completionHandler(error: storedError)
+                self.state = .Loaded
             }
+        } else {
+            state = .Loaded
         }
+    }
+    
+    private func addPlaceholderCard() {
+        let placeholderCard = Card(cardType: .Placeholder, title: "")
+        placeholderCard.addHeader(headerClass: OrganizationHeaderCollectionReusableView.self)
+        placeholderCard.sectionInset = UIEdgeInsetsZero
+        appendCard(placeholderCard)
     }
     
     private func addGroupsCard() {

@@ -140,7 +140,7 @@ class CardDataSource: NSObject, UICollectionViewDataSource {
         case Header
     }
     
-    private(set) var state: CardDataSourceState = .Loaded
+    internal(set) var state: CardDataSourceState = .Loaded
     private(set) var nextRequest: Soa.ServiceRequestV1?
     private(set) var nextRequestCompletionHandler: ServiceCompletionHandler?
     private var hasLoadedOnce = false
