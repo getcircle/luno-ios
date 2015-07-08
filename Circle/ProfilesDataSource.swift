@@ -70,6 +70,9 @@ class ProfilesDataSource: CardDataSource {
     
     override func setInitialData(content: [AnyObject], ofType: Card.CardType?) {
         profiles.extend(content as! [Services.Profile.Containers.ProfileV1])
+        if let type = ofType {
+            cardType = type
+        }
     }
     
     override func setInitialData(#content: [AnyObject], ofType: Card.CardType?, nextRequest withNextRequest: Soa.ServiceRequestV1?) {
