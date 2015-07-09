@@ -143,16 +143,12 @@ struct AppTheme {
     private static func changeThemeByOrganization(organization: Services.Organization.Containers.OrganizationV1) {
         let newTheme: Theme
         switch organization.domain {
-            case "soul-cycle.com":
-                newTheme = SoulCycleTheme()
             case "lookout.com":
                 newTheme = LookoutTheme()
             case "netflix.com":
                 newTheme = NetflixTheme()
             case "box.com":
                 newTheme = BoxTheme()
-            case "lyft.com":
-                newTheme = LyftTheme()
             default:
                 newTheme = DefaultTheme()
         }
