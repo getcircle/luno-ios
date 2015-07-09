@@ -67,6 +67,7 @@ class ProfileImagesCollectionViewCell: CircleCollectionViewCell {
             })
             for profile in profiles {
                 var profileImage = profileImageViews[counter]
+                profileImage.imageProfileIdentifier = profile.id
                 profileImage.setImageWithProfile(profile)
                 profileImage.hidden = false
                 counter += 1
