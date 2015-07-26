@@ -28,23 +28,6 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
         delegate = self
         var tabBarViewControllers = [UIViewController]()
 
-        // Home Tab
-        let homeViewController = self.storyboard?.instantiateViewControllerWithIdentifier("HomeViewController") as! HomeViewController
-        let homeNavigationController = UINavigationController(rootViewController: homeViewController)
-        let homeTabImage = UIImage(named: "Home")
-        let homeTabImageDefault = homeTabImage?
-            .imageWithTintColor(UIColor.appTabBarDeselectedTintColor(), scale: UIScreen.mainScreen().scale)
-            .imageWithRenderingMode(.AlwaysOriginal)
-        let homeTabImageSelected = homeTabImage?.imageWithRenderingMode(.AlwaysTemplate)
-        
-        homeNavigationController.tabBarItem = UITabBarItem(
-            title: "",
-            image: homeTabImageDefault,
-            selectedImage: homeTabImageSelected
-        )
-        homeNavigationController.tabBarItem.imageInsets = tabBarItemImageInset
-        tabBarViewControllers.append(homeNavigationController)
-
         // Search Tab
         var searchViewController = SearchViewController(nibName: "SearchViewController", bundle: nil)
         let searchNavigationController = UINavigationController(rootViewController: searchViewController)
@@ -73,25 +56,7 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
             // Reloading tabs
             // Keep only the first one and re-add organization & profile tabs
             // This allows us to switch between organizations easily.
-            tabBarViewControllers = [tabBarViewControllers[0], tabBarViewControllers[1]]
-
-            // Organization Tab
-            let orgVC = OrganizationDetailViewController()
-            let navController = UINavigationController(rootViewController: orgVC)
-
-            let orgTabImage = UIImage(named: "Briefcase")
-            let orgTabImageDefault = orgTabImage?
-                .imageWithTintColor(UIColor.appTabBarDeselectedTintColor(), scale: UIScreen.mainScreen().scale)
-                .imageWithRenderingMode(.AlwaysOriginal)
-            let orgTabImageSelected = orgTabImage?.imageWithRenderingMode(.AlwaysTemplate)
-            let organization = AuthViewController.getLoggedInUserOrganization()!
-            navController.tabBarItem = UITabBarItem(
-                title: "",
-                image: orgTabImageDefault,
-                selectedImage: orgTabImageSelected
-            )
-            navController.tabBarItem.imageInsets = tabBarItemImageInset
-            tabBarViewControllers.append(navController)
+            tabBarViewControllers = [tabBarViewControllers[0]]
 
             // Profile Tab
             let profileViewController = CurrentUserProfileDetailViewController.forProfile(
