@@ -124,6 +124,8 @@
 		8F22CBF91A29A8EB0026376E /* AuthViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F22CBF71A29A8EB0026376E /* AuthViewController.xib */; };
 		8F22CBFB1A29AF450026376E /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F22CBFA1A29AF450026376E /* UIViewExtension.swift */; };
 		8F22CBFE1A29C7120026376E /* GCDUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F22CBFD1A29C7120026376E /* GCDUtils.swift */; };
+		8F29F63A1B656CBC00E5D76C /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F29F6381B656CBC00E5D76C /* SearchViewController.swift */; };
+		8F29F63B1B656CBC00E5D76C /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F29F6391B656CBC00E5D76C /* SearchViewController.xib */; };
 		8F2D7DF01A5B2412001D36B0 /* ProfilesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F2D7DEF1A5B2412001D36B0 /* ProfilesDataSource.swift */; };
 		8F306B8D1A7416E00024EB03 /* OfficesOverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F306B8B1A7416E00024EB03 /* OfficesOverviewViewController.swift */; };
 		8F306B8E1A7416E00024EB03 /* OfficesOverviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F306B8C1A7416E00024EB03 /* OfficesOverviewViewController.xib */; };
@@ -499,6 +501,8 @@
 		8F22CBF71A29A8EB0026376E /* AuthViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AuthViewController.xib; sourceTree = "<group>"; };
 		8F22CBFA1A29AF450026376E /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		8F22CBFD1A29C7120026376E /* GCDUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCDUtils.swift; sourceTree = "<group>"; };
+		8F29F6381B656CBC00E5D76C /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		8F29F6391B656CBC00E5D76C /* SearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchViewController.xib; sourceTree = "<group>"; };
 		8F2D7DEF1A5B2412001D36B0 /* ProfilesDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfilesDataSource.swift; sourceTree = "<group>"; };
 		8F306B8B1A7416E00024EB03 /* OfficesOverviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OfficesOverviewViewController.swift; sourceTree = "<group>"; };
 		8F306B8C1A7416E00024EB03 /* OfficesOverviewViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OfficesOverviewViewController.xib; sourceTree = "<group>"; };
@@ -833,6 +837,7 @@
 				8FA6A4B11AFEAEF200ACC39D /* GroupDetailViewController.swift */,
 				8FA6A4AD1AFE92AE00ACC39D /* GroupsViewController.swift */,
 				BFAE43531A8B05010085AB2B /* HomelessViewController.swift */,
+				8FF297FC1A4A4DCA00306CFC /* HomeViewController.swift */,
 				8F9F60B71A896CE400FCAA25 /* MainTabBarViewController.swift */,
 				8FD907F81A6070D70025A17B /* MapViewController.swift */,
 				BF8DAC861A6D7EB1000860DD /* NewNoteViewController.swift */,
@@ -849,7 +854,7 @@
 				8FC8780A1AB276B1003FDB27 /* ProfileDetailViewController.swift */,
 				8F50CB9F1B1392C100AC5277 /* ProfilesSelectorViewController.swift */,
 				8F00049A1A2419730096477A /* ProfilesViewController.swift */,
-				8FF297FC1A4A4DCA00306CFC /* HomeViewController.swift */,
+				8F29F6381B656CBC00E5D76C /* SearchViewController.swift */,
 				8F9F60CA1A8C439E00FCAA25 /* SettingsViewController.swift */,
 				BFF5E6F31A814C2C00827757 /* SocialConnectViewController.swift */,
 				8FAA14BA1B093D190098CC45 /* SplashViewController.swift */,
@@ -1006,12 +1011,13 @@
 				8F7E2DCC1A8FDBB500B8548D /* PasscodeTouchIDViewController.xib */,
 				BFCFDB101A9165A9009A5FD4 /* PositionCollectionViewCell.xib */,
 				8FCC95CC1A52828B00421E65 /* ProfileCollectionViewCell.xib */,
-				8F22CBDF1A27A8E60026376E /* ProfileHeaderCollectionReusableView.xib */,
 				8F57AD341B0FD6F400DD40D8 /* ProfileGridItemCollectionViewCell.xib */,
+				8F22CBDF1A27A8E60026376E /* ProfileHeaderCollectionReusableView.xib */,
 				8FF298021A4A4E3600306CFC /* ProfileImagesCollectionViewCell.xib */,
 				BFCFDB191A917944009A5FD4 /* ProfileSectionHeaderCollectionReusableView.xib */,
 				8F7795141A92769E00BEF6EA /* QuickActionsCollectionViewCell.xib */,
 				8FF298091A4B490E00306CFC /* SearchHeaderView.xib */,
+				8F29F6391B656CBC00E5D76C /* SearchViewController.xib */,
 				8F9F60D41A8C481F00FCAA25 /* SettingsCollectionViewCell.xib */,
 				8F9F60CB1A8C439E00FCAA25 /* SettingsViewController.xib */,
 				8F9F60AE1A88738100FCAA25 /* SocialConnectCollectionViewCell.xib */,
@@ -1490,6 +1496,7 @@
 				8F0ADD4D1AC5344E00A44B68 /* Loader_00049@2x.png in Resources */,
 				8F7795161A92769E00BEF6EA /* QuickActionsCollectionViewCell.xib in Resources */,
 				8F085A921A6C175C00F8139B /* TeamsCollectionViewCell.xib in Resources */,
+				8F29F63B1B656CBC00E5D76C /* SearchViewController.xib in Resources */,
 				8F07ACB31AE878F100D1F41D /* MPDismissKeyboard.png in Resources */,
 				8F0ADD561AC5344E00A44B68 /* Loader_00058@2x.png in Resources */,
 				8FCC312D1AA28AC10093F00A /* AppreciationCollectionViewCell.xib in Resources */,
@@ -1680,6 +1687,7 @@
 				8FC878161AB4B60F003FDB27 /* CurrentUserProfileDetailViewController.swift in Sources */,
 				8FF2984D1A4E29F400306CFC /* PaddedLabel.swift in Sources */,
 				8F4E53781A5A0D9E00DC876B /* NotesCollectionViewCell.swift in Sources */,
+				8F29F63A1B656CBC00E5D76C /* SearchViewController.swift in Sources */,
 				8F77950A1A910E8700BEF6EA /* TagsOverviewDataSource.swift in Sources */,
 				8F085A911A6C175C00F8139B /* TeamsCollectionViewCell.swift in Sources */,
 				8F1D0B701AC5E77900488BD7 /* WebViewController.swift in Sources */,

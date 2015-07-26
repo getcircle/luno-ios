@@ -41,10 +41,10 @@
             </objects>
             <point key="canvasLocation" x="-371" y="-1336"/>
         </scene>
-        <!--Search-->
+        <!--Home-->
         <scene sceneID="HTA-V4-sgE">
             <objects>
-                <viewController storyboardIdentifier="HomeViewController" title="Search" extendedLayoutIncludesOpaqueBars="YES" id="PMD-gG-9c6" customClass="HomeViewController" customModule="circle" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeViewController" title="Home" extendedLayoutIncludesOpaqueBars="YES" id="PMD-gG-9c6" customClass="HomeViewController" customModule="circle" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="iQd-um-0Yq"/>
                         <viewControllerLayoutGuide type="bottom" id="rUn-MN-xeZ"/>
@@ -87,10 +87,10 @@
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="5kQ-sW-5v8" firstAttribute="leading" secondItem="bGb-OZ-dC1" secondAttribute="leading" id="2lx-ER-7df"/>
-                            <constraint firstItem="5kQ-sW-5v8" firstAttribute="top" secondItem="iQd-um-0Yq" secondAttribute="bottom" id="3h5-Ga-KBe"/>
+                            <constraint firstItem="5kQ-sW-5v8" firstAttribute="top" secondItem="iQd-um-0Yq" secondAttribute="bottom" id="819-cJ-6sg"/>
                             <constraint firstAttribute="trailing" secondItem="FpX-4G-cZW" secondAttribute="trailing" id="UnW-tG-yPS"/>
+                            <constraint firstItem="rUn-MN-xeZ" firstAttribute="top" secondItem="FpX-4G-cZW" secondAttribute="bottom" id="YQb-ba-jzk"/>
                             <constraint firstAttribute="trailing" secondItem="5kQ-sW-5v8" secondAttribute="trailing" id="cqS-IH-9aj"/>
-                            <constraint firstItem="rUn-MN-xeZ" firstAttribute="top" secondItem="FpX-4G-cZW" secondAttribute="bottom" id="ihf-mG-9Li"/>
                             <constraint firstItem="FpX-4G-cZW" firstAttribute="top" secondItem="5kQ-sW-5v8" secondAttribute="bottom" id="kIK-Uf-HCa"/>
                             <constraint firstItem="FpX-4G-cZW" firstAttribute="leading" secondItem="bGb-OZ-dC1" secondAttribute="leading" id="o2Z-d8-o7d"/>
                         </constraints>
@@ -100,7 +100,6 @@
                     <connections>
                         <outlet property="collectionView" destination="FpX-4G-cZW" id="47Q-HQ-Uri"/>
                         <outlet property="searchHeaderContainerView" destination="5kQ-sW-5v8" id="IPE-OO-odc"/>
-                        <outlet property="searchHeaderContinerViewTopConstraint" destination="3h5-Ga-KBe" id="RQm-cp-2FF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Vf-V8-GjI" userLabel="First Responder" sceneMemberID="firstResponder"/>

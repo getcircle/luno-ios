@@ -29,18 +29,35 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
         var tabBarViewControllers = [UIViewController]()
 
         // Home Tab
-        let searchViewController = self.storyboard?.instantiateViewControllerWithIdentifier("HomeViewController") as! HomeViewController
-        let searchNavigationController = UINavigationController(rootViewController: searchViewController)
+        let homeViewController = self.storyboard?.instantiateViewControllerWithIdentifier("HomeViewController") as! HomeViewController
+        let homeNavigationController = UINavigationController(rootViewController: homeViewController)
         let homeTabImage = UIImage(named: "Home")
         let homeTabImageDefault = homeTabImage?
             .imageWithTintColor(UIColor.appTabBarDeselectedTintColor(), scale: UIScreen.mainScreen().scale)
             .imageWithRenderingMode(.AlwaysOriginal)
         let homeTabImageSelected = homeTabImage?.imageWithRenderingMode(.AlwaysTemplate)
         
-        searchNavigationController.tabBarItem = UITabBarItem(
+        homeNavigationController.tabBarItem = UITabBarItem(
             title: "",
             image: homeTabImageDefault,
             selectedImage: homeTabImageSelected
+        )
+        homeNavigationController.tabBarItem.imageInsets = tabBarItemImageInset
+        tabBarViewControllers.append(homeNavigationController)
+
+        // Search Tab
+        var searchViewController = SearchViewController(nibName: "SearchViewController", bundle: nil)
+        let searchNavigationController = UINavigationController(rootViewController: searchViewController)
+        let searchTabImage = UIImage(named: "SearchTab")
+        let searchTabImageDefault = searchTabImage?
+            .imageWithTintColor(UIColor.appTabBarDeselectedTintColor(), scale: UIScreen.mainScreen().scale)
+            .imageWithRenderingMode(.AlwaysOriginal)
+        let searchTabImageSelected = searchTabImage?.imageWithRenderingMode(.AlwaysTemplate)
+        
+        searchNavigationController.tabBarItem = UITabBarItem(
+            title: "",
+            image: searchTabImageDefault,
+            selectedImage: searchTabImageSelected
         )
         searchNavigationController.tabBarItem.imageInsets = tabBarItemImageInset
         tabBarViewControllers.append(searchNavigationController)
@@ -56,7 +73,7 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
             // Reloading tabs
             // Keep only the first one and re-add organization & profile tabs
             // This allows us to switch between organizations easily.
-            tabBarViewControllers = [tabBarViewControllers[0]]
+            tabBarViewControllers = [tabBarViewControllers[0], tabBarViewControllers[1]]
 
             // Organization Tab
             let orgVC = OrganizationDetailViewController()
@@ -135,9 +152,9 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
                 
                 // Activate Search
                 if selectedIndex == 0 && sourceViewController is HomeViewController {
-                    let searchVC = sourceViewController as! HomeViewController
-                    if searchVC.view.window != nil {
-                        searchVC.activateSearch(false)
+                    let homeVC = sourceViewController as! HomeViewController
+                    if homeVC.view.window != nil {
+                        homeVC.activateSearch(false)
                     }
                 }
             }
@@ -160,7 +177,9 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
         }
 
         var source: Tracker.Source
-        if sourceViewController! is HomeViewController {
+        if sourceViewController! is SearchViewController {
+            source = .Search
+        } else if sourceViewController! is HomeViewController {
             source = .Home
         } else if sourceViewController! is CurrentUserProfileDetailViewController {
             source = .UserProfile
@@ -172,7 +191,9 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
         }
 
         var destination: Tracker.Source
-        if destinationViewController! is HomeViewController {
+        if destinationViewController! is SearchViewController {
+            destination = .Search
+        } else if destinationViewController! is HomeViewController {
             destination = .Home
         } else if destinationViewController! is CurrentUserProfileDetailViewController {
             destination = .UserProfile
