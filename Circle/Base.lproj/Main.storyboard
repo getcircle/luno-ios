@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="gsH-2F-RFu">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="gsH-2F-RFu">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <scenes>
         <!--Home-->
@@ -44,7 +44,7 @@
         <!--Search-->
         <scene sceneID="HTA-V4-sgE">
             <objects>
-                <viewController storyboardIdentifier="SearchViewController" title="Search" extendedLayoutIncludesOpaqueBars="YES" id="PMD-gG-9c6" customClass="SearchViewController" customModule="circle" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeViewController" title="Search" extendedLayoutIncludesOpaqueBars="YES" id="PMD-gG-9c6" customClass="HomeViewController" customModule="circle" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="iQd-um-0Yq"/>
                         <viewControllerLayoutGuide type="bottom" id="rUn-MN-xeZ"/>

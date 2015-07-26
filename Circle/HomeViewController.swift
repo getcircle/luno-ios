@@ -1,5 +1,5 @@
 //
-//  SearchViewController.swift
+//  HomeViewController.swift
 //  Circle
 //
 //  Created by Ravi Rani on 12/23/14.
@@ -12,7 +12,7 @@ import MBProgressHUD
 import MessageUI
 import ProtobufRegistry
 
-class SearchViewController: UIViewController,
+class HomeViewController: UIViewController,
     UICollectionViewDelegate,
     UITextFieldDelegate,
     MFMailComposeViewControllerDelegate,
@@ -30,7 +30,7 @@ class SearchViewController: UIViewController,
     private var errorMessageView: CircleErrorMessageView!
     private var data = [Card]()
     private var firstLoad = false
-    private var landingDataSource: SearchLandingDataSource!
+    private var landingDataSource: HomeFeedDataSource!
     private var launchScreenView: UIView?
     private var refreshControl: UIRefreshControl!
     private var searchHeaderView: SearchHeaderView!
@@ -149,7 +149,7 @@ class SearchViewController: UIViewController,
     // MARK: - Load Data
     
     func loadData() {
-        if let currentDataSource = (collectionView.dataSource as? SearchLandingDataSource) {
+        if let currentDataSource = (collectionView.dataSource as? HomeFeedDataSource) {
             currentDataSource.loadData { (error) -> Void in
                 self.activityIndicatorView.stopAnimating()
                 self.refreshControl.endRefreshing()
@@ -187,7 +187,7 @@ class SearchViewController: UIViewController,
         collectionView.backgroundColor = UIColor.appViewBackgroundColor()
         (collectionView.delegate as! CardCollectionViewDelegate?)?.delegate = self
         
-        landingDataSource = SearchLandingDataSource()
+        landingDataSource = HomeFeedDataSource()
         landingDataSource.cardHeaderDelegate = self
         landingDataSource.groupRequestDelegate = self
         collectionView.dataSource = landingDataSource
@@ -406,7 +406,7 @@ class SearchViewController: UIViewController,
     // MARK: - Card Header View Delegate
     
     func cardHeaderTapped(sender: AnyObject!, card: Card!) {
-        if collectionView.dataSource is SearchLandingDataSource {
+        if collectionView.dataSource is HomeFeedDataSource {
             handleFeedHeaderTapped(card)
         } else {
             handleQueryHeaderTapped(card)
@@ -505,7 +505,7 @@ class SearchViewController: UIViewController,
     }
     
     func refreshContent(sender: AnyObject!) {
-        if collectionView.dataSource is SearchLandingDataSource {
+        if collectionView.dataSource is HomeFeedDataSource {
             loadData()
         }
         else {

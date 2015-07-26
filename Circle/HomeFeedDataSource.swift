@@ -1,5 +1,5 @@
 //
-//  SearchLandingDataSource.swift
+//  HomeFeedDataSource.swift
 //  Circle
 //
 //  Created by Ravi Rani on 1/3/15.
@@ -9,7 +9,7 @@
 import Foundation
 import ProtobufRegistry
 
-class SearchLandingDataSource: CardDataSource {
+class HomeFeedDataSource: CardDataSource {
 
     var groupRequestDelegate: GroupRequestDelegate?
 

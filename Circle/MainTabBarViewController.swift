@@ -29,7 +29,7 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
         var tabBarViewControllers = [UIViewController]()
 
         // Home Tab
-        let searchViewController = self.storyboard?.instantiateViewControllerWithIdentifier("SearchViewController") as! SearchViewController
+        let searchViewController = self.storyboard?.instantiateViewControllerWithIdentifier("HomeViewController") as! HomeViewController
         let searchNavigationController = UINavigationController(rootViewController: searchViewController)
         let homeTabImage = UIImage(named: "Home")
         let homeTabImageDefault = homeTabImage?
@@ -125,8 +125,8 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
         if let sourceViewController = getActiveViewController(viewController) {
             
             if sourceViewController.isViewLoaded() && sourceViewController.view.window == nil {
-                if sourceViewController is SearchViewController {
-                    (sourceViewController as! SearchViewController).loadData()
+                if sourceViewController is HomeViewController {
+                    (sourceViewController as! HomeViewController).loadData()
                 } else if sourceViewController is CurrentUserProfileDetailViewController {
                     (sourceViewController as! CurrentUserProfileDetailViewController).loadData()
                 } else if sourceViewController is OrganizationDetailViewController {
@@ -134,8 +134,8 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
                 }
                 
                 // Activate Search
-                if selectedIndex == 0 && sourceViewController is SearchViewController {
-                    let searchVC = sourceViewController as! SearchViewController
+                if selectedIndex == 0 && sourceViewController is HomeViewController {
+                    let searchVC = sourceViewController as! HomeViewController
                     if searchVC.view.window != nil {
                         searchVC.activateSearch(false)
                     }
@@ -160,7 +160,7 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
         }
 
         var source: Tracker.Source
-        if sourceViewController! is SearchViewController {
+        if sourceViewController! is HomeViewController {
             source = .Home
         } else if sourceViewController! is CurrentUserProfileDetailViewController {
             source = .UserProfile
@@ -172,7 +172,7 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
         }
 
         var destination: Tracker.Source
-        if destinationViewController! is SearchViewController {
+        if destinationViewController! is HomeViewController {
             destination = .Home
         } else if destinationViewController! is CurrentUserProfileDetailViewController {
             destination = .UserProfile
