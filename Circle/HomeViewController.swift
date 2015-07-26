@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import AMScrollingNavbar
 import MBProgressHUD
 import MessageUI
 import ProtobufRegistry
@@ -205,10 +204,6 @@ class HomeViewController: UIViewController,
     // MARK: - TextField Delegate
     
     func textFieldDidBeginEditing(textField: UITextField) {
-        // only hide the navbar if we haven't searched for text yet
-        if searchHeaderView.searchTextField.text == "" {
-            hideNavbarAnimated(false)
-        }
         searchHeaderView.showCancelButton()
         wasErrorViewVisible = errorMessageView.isVisible()
         errorMessageView.hide()
@@ -233,7 +228,6 @@ class HomeViewController: UIViewController,
     // MARK: Search Targets
     
     func activateSearch(isQuickAction: Bool) {
-        hideNavbarAnimated(false)
         queryDataSource.isQuickAction = isQuickAction
         searchHeaderView.searchTextField.becomeFirstResponder()
     }
