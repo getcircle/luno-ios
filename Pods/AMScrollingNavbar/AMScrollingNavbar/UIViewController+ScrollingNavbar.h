@@ -150,11 +150,20 @@
 /** Use superview as container view
  *
  * Set the scrollable view's superview as main container.
- * Default to YES, set it to NO when using a UITableViewController or a UICollectionViewController
+ * Default to YES, set it to NO when using a UITableViewController or a UICollectionViewController subclasses
  *
  * @param useSuperview The BOOL flag.
  */
 - (void)setUseSuperview:(BOOL)useSuperview;
+
+/** Expand on active
+ *
+ * Determines if the navbar should expand when the app becomes active (e.g. after being sent to background)
+ * Default to YES
+ *
+ * @param expandOnActive The BOOL flag.
+ */
+- (void)setExpandOnActive:(BOOL)expandOnActive;
 
 @end
 
