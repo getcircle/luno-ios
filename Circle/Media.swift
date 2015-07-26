@@ -66,11 +66,11 @@ extension Services.Media.Actions {
     static func uploadProfileImage(profileId: String, image: UIImage, completionHandler: CompleteImageUploadCompletionHandler?) {
         startImageUpload(.Profile, key: profileId) { (instructions, error) -> Void in
             if let instructions = instructions {
-                Alamofire.upload(.PUT, instructions.uploadUrl, UIImagePNGRepresentation(image))
-                    .progress { (bytesWritten, totalBytesWritten, totalBytesExpectedToWrite) in
+                Alamofire.upload(.PUT, instructions.uploadUrl, data: UIImagePNGRepresentation(image))
+                    .progress(closure: { (bytesWritten, totalBytesWritten, totalBytesExpectedToWrite) -> Void in
                         println("progress \(totalBytesWritten): \(totalBytesExpectedToWrite)")
-                    }
-                    .response { (request, response, _, error) -> Void in
+                    })
+                    .response({ (request, response, _, error) -> Void in
                         self.completeImageUpload(
                             .Profile,
                             mediaKey: profileId,
@@ -80,7 +80,7 @@ extension Services.Media.Actions {
                             completionHandler?(mediaURL: mediaURL, error: error)
                             return
                         }
-                    }
+                    })
             } else {
                 println("encountered error: \(error)")
             }

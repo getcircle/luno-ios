@@ -50,8 +50,8 @@ protocol ServiceTransport {
 public typealias ServiceTransportCompletionHandler = (NSURLRequest, NSHTTPURLResponse?, Soa.ServiceResponseV1?, Soa.ActionResponseV1?, NSError?) -> Void
 
 extension Request {
-    static func ServiceResponseSerializer() -> Serializer {
-        return { (request, response, data) in
+    static func ServiceResponseSerializer() -> GenericResponseSerializer<Soa.ServiceResponseV1> {
+        return GenericResponseSerializer { (request, response, data) in
             if data == nil {
                 return (nil, nil)
             }
@@ -79,8 +79,8 @@ extension Request {
     }
     
     func responseProtobuf(completionHandler: ServiceTransportCompletionHandler) -> Self {
-        return response(serializer: Request.ServiceResponseSerializer(), completionHandler: { (request, response, serviceResponse, error) in
-            let serviceResponse = serviceResponse as? Soa.ServiceResponseV1
+        return response(responseSerializer: Request.ServiceResponseSerializer(), completionHandler: { (request, response, serviceResponse, error) in
+            let serviceResponse = serviceResponse as Soa.ServiceResponseV1?
             let actionResponse = serviceResponse?.actions[0]
             var serviceError = error
             if serviceError == nil {
