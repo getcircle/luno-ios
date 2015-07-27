@@ -36,6 +36,7 @@ class SearchHeaderView: UIView {
 
         // Initialization code
         customizeSearchField()
+        hideCancelButton()
     }
     
     
@@ -85,6 +86,7 @@ class SearchHeaderView: UIView {
             options: .CurveEaseInOut,
             animations: { () -> Void in
                 self.searchTextField.layoutIfNeeded()
+                self.cancelButton.alpha = 1.0
             },
             completion: nil
         )
@@ -101,6 +103,7 @@ class SearchHeaderView: UIView {
             options: .CurveEaseInOut,
             animations: { () -> Void in
                 self.searchTextField.layoutIfNeeded()
+                self.cancelButton.alpha = 0.0
             },
             completion: nil
         )

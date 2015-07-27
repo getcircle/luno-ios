@@ -7,6 +7,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchViewController" customModule="circle" customModuleProvider="target">
             <connections>
                 <outlet property="collectionView" destination="Fwr-5i-cVS" id="kWI-hP-ZKE"/>
+                <outlet property="orgImageView" destination="upC-eP-cbx" id="blN-4h-DbS"/>
                 <outlet property="searchHeaderContainerView" destination="2Gj-LW-DSH" id="hAH-df-eGN"/>
                 <outlet property="searchHeaderContainerViewLeftConstraint" destination="Fdr-0a-oZZ" id="Cb8-uA-DPg"/>
                 <outlet property="searchHeaderContainerViewRightConstraint" destination="ZVc-NS-eYS" id="oho-zH-cK1"/>
@@ -20,6 +21,12 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="upC-eP-cbx" customClass="CircleImageView" customModule="circle" customModuleProvider="target">
+                    <rect key="frame" x="20" y="-140" width="560" height="120"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="120" id="koW-PN-Iml"/>
+                    </constraints>
+                </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4ld-Ol-lAs" userLabel="StatusBarView">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="20"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -66,9 +73,13 @@
                 <constraint firstAttribute="trailing" secondItem="4ld-Ol-lAs" secondAttribute="trailing" id="9Rx-sS-sbe"/>
                 <constraint firstItem="4ld-Ol-lAs" firstAttribute="top" secondItem="WXk-LZ-AcM" secondAttribute="top" id="FHX-5e-Gq3"/>
                 <constraint firstItem="2Gj-LW-DSH" firstAttribute="leading" secondItem="WXk-LZ-AcM" secondAttribute="leading" id="Fdr-0a-oZZ"/>
+                <constraint firstItem="upC-eP-cbx" firstAttribute="leading" secondItem="WXk-LZ-AcM" secondAttribute="leading" constant="20" id="Iwh-jz-vLQ"/>
                 <constraint firstAttribute="trailing" secondItem="Fwr-5i-cVS" secondAttribute="trailing" id="NvP-Ty-x2P"/>
+                <constraint firstAttribute="centerX" secondItem="upC-eP-cbx" secondAttribute="centerX" id="Suq-nP-q4j"/>
                 <constraint firstAttribute="trailing" secondItem="2Gj-LW-DSH" secondAttribute="trailing" id="ZVc-NS-eYS"/>
+                <constraint firstItem="2Gj-LW-DSH" firstAttribute="top" secondItem="upC-eP-cbx" secondAttribute="bottom" constant="40" id="f3B-E3-keY"/>
                 <constraint firstItem="Fwr-5i-cVS" firstAttribute="top" secondItem="2Gj-LW-DSH" secondAttribute="bottom" id="uAL-zU-bkQ"/>
+                <constraint firstAttribute="trailing" secondItem="upC-eP-cbx" secondAttribute="trailing" constant="20" id="urK-f9-qib"/>
                 <constraint firstItem="4ld-Ol-lAs" firstAttribute="leading" secondItem="WXk-LZ-AcM" secondAttribute="leading" id="wD6-h7-hHs"/>
                 <constraint firstItem="2Gj-LW-DSH" firstAttribute="top" secondItem="4ld-Ol-lAs" secondAttribute="bottom" id="zYu-5b-Vq5"/>
             </constraints>

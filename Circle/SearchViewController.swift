@@ -20,6 +20,7 @@ class SearchViewController: UIViewController,
     CardHeaderViewDelegate
 {
     @IBOutlet weak private(set) var collectionView: UICollectionView!
+    @IBOutlet weak private(set) var orgImageView: CircleImageView!
     @IBOutlet weak private(set) var searchHeaderContainerView: UIView!
     @IBOutlet weak private(set) var searchHeaderContainerViewTopConstraint: NSLayoutConstraint!
     @IBOutlet weak private(set) var searchHeaderContainerViewLeftConstraint: NSLayoutConstraint!
@@ -51,6 +52,7 @@ class SearchViewController: UIViewController,
         configureLaunchScreenView()
         configureSearchHeaderView()
         configureCollectionView()
+        configureOrgImageView()
         activityIndicatorView = view.addActivityIndicator()
         activityIndicatorView.stopAnimating()
         errorMessageView = view.addErrorMessageView(nil, tryAgainHandler: { () -> Void in
@@ -67,8 +69,6 @@ class SearchViewController: UIViewController,
         super.viewWillAppear(animated)
         activateSearchFieldIfPreSet()
         registerNotifications()
-        navigationItem.title = ""
-        self.navigationController?.navigationBar.makeTransparent()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -83,20 +83,12 @@ class SearchViewController: UIViewController,
             hideAndRemoveLaunchView()
         }
         
-        navigationController?.navigationBar.makeTransparent()
-        edgesForExtendedLayout = .Top
-        navigationItem.title = ""
+        navigationController?.setNavigationBarHidden(true, animated: false)
     }
 
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        transitionCoordinator()?.animateAlongsideTransition({ (transitionContext) -> Void in
-            var toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey) as UIViewController!
-            if !(toViewController is BaseDetailViewController) {
-                toViewController.navigationController?.navigationBar.makeOpaque()
-            }
-            return
-        }, completion: nil)
+        navigationController?.setNavigationBarHidden(false, animated: true)
     }
 
     override func viewDidDisappear(animated: Bool) {
@@ -112,7 +104,7 @@ class SearchViewController: UIViewController,
     
     private func configureView() {
         view.backgroundColor = UIColor.appViewBackgroundColor()
-        edgesForExtendedLayout = .Top
+        extendedLayoutIncludesOpaqueBars = true
         statusBarView.backgroundColor = UIColor.appUIBackgroundColor()
     }
     
@@ -137,6 +129,12 @@ class SearchViewController: UIViewController,
             searchHeaderView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
             searchHeaderView.layer.cornerRadius = 10.0
             selectedAction = .None
+        }
+    }
+    
+    private func configureOrgImageView() {
+        if let currentOrganization = AuthViewController.getLoggedInUserOrganization() {
+            orgImageView.setImageWithURL(NSURL(string: currentOrganization.imageUrl)!, animated: true)
         }
     }
     
@@ -198,6 +196,10 @@ class SearchViewController: UIViewController,
     // Search View Animations
     
     private func moveSearchToTop(animated: Bool) {
+        if searchHeaderContainerViewTopConstraint.constant == 0 {
+            return
+        }
+        
         searchHeaderContainerViewTopConstraint.constant = 0
         searchHeaderContainerViewLeftConstraint.constant = 0
         searchHeaderContainerViewRightConstraint.constant = 0
@@ -205,11 +207,17 @@ class SearchViewController: UIViewController,
         
         UIView.animateWithDuration(animated ? 0.3 : 0.0, animations: { () -> Void in
             self.searchHeaderContainerView.layoutIfNeeded()
+            self.orgImageView.layoutIfNeeded()
             self.collectionView.alpha = 1.0
+            self.orgImageView.alpha = 0.0
         })
     }
     
     private func moveSearchToCenter(animated: Bool) {
+        if searchHeaderContainerViewTopConstraint.constant != 0 {
+            return
+        }
+        
         searchHeaderContainerViewTopConstraint.constant = view.center.y - (searchHeaderContainerView.frameHeight / 2.0)
         searchHeaderContainerViewLeftConstraint.constant = 15
         searchHeaderContainerViewRightConstraint.constant = 15
@@ -217,7 +225,9 @@ class SearchViewController: UIViewController,
 
         UIView.animateWithDuration(animated ? 0.3 : 0.0, animations: { () -> Void in
             self.searchHeaderContainerView.layoutIfNeeded()
+            self.orgImageView.layoutIfNeeded()
             self.collectionView.alpha = 0.0
+            self.orgImageView.alpha = 1.0
         })
     }
     
