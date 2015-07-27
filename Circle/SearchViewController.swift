@@ -21,7 +21,10 @@ class SearchViewController: UIViewController,
 {
     @IBOutlet weak private(set) var collectionView: UICollectionView!
     @IBOutlet weak private(set) var searchHeaderContainerView: UIView!
-    @IBOutlet weak private(set) var searchHeaderContinerViewTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak private(set) var searchHeaderContainerViewTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak private(set) var searchHeaderContainerViewLeftConstraint: NSLayoutConstraint!
+    @IBOutlet weak private(set) var searchHeaderContainerViewRightConstraint: NSLayoutConstraint!
+    @IBOutlet weak private(set) var statusBarView: UIView!
     
     private var activityIndicatorView: CircleActivityIndicatorView!
     private var errorMessageView: CircleErrorMessageView!
@@ -57,12 +60,15 @@ class SearchViewController: UIViewController,
         })
         
         loadData()
+        moveSearchToCenter(false)
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         activateSearchFieldIfPreSet()
         registerNotifications()
+        navigationItem.title = ""
+        self.navigationController?.navigationBar.makeTransparent()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -76,8 +82,23 @@ class SearchViewController: UIViewController,
         else if let user = AuthViewController.getLoggedInUser() where launchScreenView != nil {
             hideAndRemoveLaunchView()
         }
+        
+        navigationController?.navigationBar.makeTransparent()
+        edgesForExtendedLayout = .Top
+        navigationItem.title = ""
     }
-    
+
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        transitionCoordinator()?.animateAlongsideTransition({ (transitionContext) -> Void in
+            var toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey) as UIViewController!
+            if !(toViewController is BaseDetailViewController) {
+                toViewController.navigationController?.navigationBar.makeOpaque()
+            }
+            return
+        }, completion: nil)
+    }
+
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
         unregisterNotifications(false)
@@ -91,6 +112,8 @@ class SearchViewController: UIViewController,
     
     private func configureView() {
         view.backgroundColor = UIColor.appViewBackgroundColor()
+        edgesForExtendedLayout = .Top
+        statusBarView.backgroundColor = UIColor.appUIBackgroundColor()
     }
     
     private func configureLaunchScreenView() {
@@ -172,10 +195,37 @@ class SearchViewController: UIViewController,
         }
     }
     
+    // Search View Animations
+    
+    private func moveSearchToTop(animated: Bool) {
+        searchHeaderContainerViewTopConstraint.constant = 0
+        searchHeaderContainerViewLeftConstraint.constant = 0
+        searchHeaderContainerViewRightConstraint.constant = 0
+        searchHeaderContainerView.setNeedsUpdateConstraints()
+        
+        UIView.animateWithDuration(animated ? 0.3 : 0.0, animations: { () -> Void in
+            self.searchHeaderContainerView.layoutIfNeeded()
+            self.collectionView.alpha = 1.0
+        })
+    }
+    
+    private func moveSearchToCenter(animated: Bool) {
+        searchHeaderContainerViewTopConstraint.constant = view.center.y - (searchHeaderContainerView.frameHeight / 2.0)
+        searchHeaderContainerViewLeftConstraint.constant = 15
+        searchHeaderContainerViewRightConstraint.constant = 15
+        searchHeaderContainerView.setNeedsUpdateConstraints()
+
+        UIView.animateWithDuration(animated ? 0.3 : 0.0, animations: { () -> Void in
+            self.searchHeaderContainerView.layoutIfNeeded()
+            self.collectionView.alpha = 0.0
+        })
+    }
+    
     // MARK: - TextField Delegate
     
     func textFieldDidBeginEditing(textField: UITextField) {
         // Animate container up
+        moveSearchToTop(true)
         searchHeaderView.showCancelButton()
         wasErrorViewVisible = errorMessageView.isVisible()
         errorMessageView.hide()
@@ -186,6 +236,7 @@ class SearchViewController: UIViewController,
     
     func didCancel(sender: UIView) {
         // Animate it down
+        moveSearchToCenter(true)
         selectedAction = .None
         dataSource.resetCards()
         collectionView.reloadData()
