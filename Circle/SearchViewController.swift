@@ -34,6 +34,7 @@ class SearchViewController: UIViewController,
     private let dataSource = SearchQueryDataSource()
     private var cardCollectionViewDelegate: CardCollectionViewDelegate?
     private var launchScreenView: UIView?
+    private var searchFieldBottomBorder: UIView?
     private var searchHeaderView: SearchHeaderView!
     private var selectedAction: QuickAction = .None {
         didSet {
@@ -125,7 +126,7 @@ class SearchViewController: UIViewController,
             searchHeaderView.searchTextField.delegate = self
             searchHeaderView.searchTextField.addTarget(self, action: "search", forControlEvents: .EditingChanged)
             searchHeaderContainerView.addSubview(searchHeaderView)
-            searchHeaderContainerView.addBottomBorder(offset: 0.0)
+            searchFieldBottomBorder = searchHeaderContainerView.addBottomBorder(offset: 0.0)
             searchHeaderView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
             searchHeaderView.layer.cornerRadius = 10.0
             selectedAction = .None
@@ -208,6 +209,8 @@ class SearchViewController: UIViewController,
         UIView.animateWithDuration(animated ? 0.3 : 0.0, animations: { () -> Void in
             self.searchHeaderContainerView.layoutIfNeeded()
             self.orgImageView.layoutIfNeeded()
+            self.searchFieldBottomBorder?.layoutIfNeeded()
+            self.collectionView.layoutIfNeeded()
             self.collectionView.alpha = 1.0
             self.orgImageView.alpha = 0.0
         })
@@ -226,8 +229,10 @@ class SearchViewController: UIViewController,
         UIView.animateWithDuration(animated ? 0.3 : 0.0, animations: { () -> Void in
             self.searchHeaderContainerView.layoutIfNeeded()
             self.orgImageView.layoutIfNeeded()
-            self.collectionView.alpha = 0.0
+            self.searchFieldBottomBorder?.layoutIfNeeded()
+            self.collectionView.layoutIfNeeded()
             self.orgImageView.alpha = 1.0
+            self.collectionView.alpha = 0.0
         })
     }
     
