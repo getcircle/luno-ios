@@ -21,6 +21,7 @@ class SearchViewController: UIViewController,
 {
     @IBOutlet weak private(set) var collectionView: UICollectionView!
     @IBOutlet weak private(set) var orgImageView: CircleImageView!
+    @IBOutlet weak private(set) var poweredByLabel: UILabel!
     @IBOutlet weak private(set) var searchHeaderContainerView: UIView!
     @IBOutlet weak private(set) var searchHeaderContainerViewTopConstraint: NSLayoutConstraint!
     @IBOutlet weak private(set) var searchHeaderContainerViewLeftConstraint: NSLayoutConstraint!
@@ -54,6 +55,7 @@ class SearchViewController: UIViewController,
         configureSearchHeaderView()
         configureCollectionView()
         configureOrgImageView()
+        configurePoweredByLabel()
         activityIndicatorView = view.addActivityIndicator()
         activityIndicatorView.stopAnimating()
         errorMessageView = view.addErrorMessageView(nil, tryAgainHandler: { () -> Void in
@@ -139,6 +141,17 @@ class SearchViewController: UIViewController,
         }
     }
     
+    private func configurePoweredByLabel() {
+        poweredByLabel.attributedText = NSAttributedString(
+                string: "Powered by Circle".localizedUppercaseString(),
+                attributes: [
+                    NSKernAttributeName: NSNumber(double: 2.0),
+                    NSForegroundColorAttributeName: poweredByLabel.textColor,
+                    NSFontAttributeName: poweredByLabel.font
+                ]
+            )
+    }
+    
     // MARK: - Launch View
     
     private func hideAndRemoveLaunchView() {
@@ -211,8 +224,10 @@ class SearchViewController: UIViewController,
             self.orgImageView.layoutIfNeeded()
             self.searchFieldBottomBorder?.layoutIfNeeded()
             self.collectionView.layoutIfNeeded()
+            self.poweredByLabel.layoutIfNeeded()
             self.collectionView.alpha = 1.0
             self.orgImageView.alpha = 0.0
+            self.poweredByLabel.alpha = 0.0
         })
     }
     
@@ -231,8 +246,10 @@ class SearchViewController: UIViewController,
             self.orgImageView.layoutIfNeeded()
             self.searchFieldBottomBorder?.layoutIfNeeded()
             self.collectionView.layoutIfNeeded()
+            self.poweredByLabel.layoutIfNeeded()
             self.orgImageView.alpha = 1.0
             self.collectionView.alpha = 0.0
+            self.poweredByLabel.alpha = 1.0
         })
     }
     
