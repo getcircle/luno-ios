@@ -44,17 +44,6 @@ extension Services.Search.Actions {
                 return
             })
         })
-        
-        // Send a search request to the servers
-//            let requestBuilder = Services.Search.Containers.Search.Search.RequestV1.builder()
-//            requestBuilder.query = query
-//            let client = ServiceClient(serviceName: "search")
-//            client.callAction("search", extensionField: SearchSoa.ServiceRequestV1s_search, requestBuilder: requestBuilder) {
-//                (_, _, _, actionResponse, error) -> Void in
-//                let response = actionResponse?.result.getExtension(SearchSoa.ServiceResponseV1s_search) as? Services.Search.Containers.Search.Search.ResponseV1
-//                SearchCache.sharedInstance.update(response?.profiles, teams: response?.teams, addresses: response?.addresses)
-//                completionHandler(profiles: response?.profiles, teams: response?.teams, addresses: response?.addresses)
-//            }
     }
     
     static func filter(

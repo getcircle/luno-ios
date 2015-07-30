@@ -19,6 +19,8 @@ typealias GetOrganizationCompletionHandler = (organization: Services.Organizatio
 
 typealias GetLocationsCompletionHandler = (locations: Array<Services.Organization.Containers.LocationV1>?, error: NSError?) -> Void
 
+typealias GetLocationCompletionHandler = (location: Services.Organization.Containers.LocationV1?, error: NSError?) -> Void
+
 typealias GetIntegrationStatusCompletionHandler = (status: Bool, error: NSError?) -> Void
 
 extension Services.Organization.Actions {
@@ -122,7 +124,24 @@ extension Services.Organization.Actions {
                 completionHandler?(organization: response?.organization, error: error)
         }
     }
-    
+
+    static func getLocation(#locationId: String, completionHandler: GetLocationCompletionHandler?) {
+        let requestBuilder = Services.Organization.Actions.GetLocation.RequestV1.builder()
+        requestBuilder.locationId = locationId
+        
+        let client = ServiceClient(serviceName: "organization")
+        client.callAction(
+            "get_location",
+            extensionField: Services.Registry.Requests.Organization.getLocation(),
+            requestBuilder: requestBuilder
+            ) { (_, _, wrapped, error) -> Void in
+                let response = wrapped?.response?.result.getExtension(
+                    Services.Registry.Responses.Organization.getLocation()
+                ) as? Services.Organization.Actions.GetLocation.ResponseV1
+                completionHandler?(location: response?.location, error: error)
+        }
+    }
+
     static func getLocations(organizationId: String, completionHandler: GetLocationsCompletionHandler?) {
         let requestBuilder = Services.Organization.Actions.GetLocations.RequestV1.builder()
         requestBuilder.organizationId = organizationId

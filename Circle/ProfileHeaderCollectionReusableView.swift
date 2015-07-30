@@ -23,7 +23,6 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
     @IBOutlet weak private(set) var titleLabel: UILabel!
     @IBOutlet weak private(set) var titleNavLabel: UILabel!
     @IBOutlet weak private(set) var profileImage: CircleImageView!
-    @IBOutlet weak private(set) var sectionsView: UIView!
     @IBOutlet weak private(set) var verifiedProfileButton: UIButton!
     @IBOutlet weak private(set) var daylightIndicatorImage: UIImageView!
     @IBOutlet weak private(set) var daylightIndicatorNavImage: UIImageView!
@@ -65,12 +64,20 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
 
         // Initialization code
         addBlurEffect()
+        configureLabels()
         configureContainerView()
         configureVerifiedProfileButton()
         configureEditImageButton()
     }
     
     // MARK: - Configuration
+    
+    private func configureLabels() {
+        
+        for label in [nameLabel, nameNavLabel, titleLabel, titleNavLabel] {
+            label.text = ""
+        }
+    }
 
     private func configureContainerView() {
         profileImage.makeItCircular()
@@ -123,37 +130,40 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
 
     func setOffice(office: Services.Organization.Containers.LocationV1) {
         if location == nil {
-            location = office
-            let officeName = office.address.officeName()
-            let officeStateAndCountry = (office.address.hasRegion ? office.address.region : "") + ", " + office.address.countryCode
-            nameLabel.text = officeName
-            nameNavLabel.text = officeName
-            titleLabel.text = office.address.officeCurrentDateAndTimeLabel()
-            titleNavLabel.text = office.address.officeCurrentTimeLabel(nil)
-            if let indicatorImage = office.address.officeDaylightIndicator() {
-                daylightIndicatorImage.alpha = 1.0
-                daylightIndicatorImage.image = indicatorImage
-                daylightIndicatorImage.tintColor = titleLabel.textColor
-                daylightIndicatorNavImage.image = indicatorImage
-                daylightIndicatorNavImage.tintColor = titleNavLabel.textColor
-            }
-            
-            self.profileImage.contentMode = .ScaleAspectFill
-            if location!.hasImageUrl {
-                profileImage.setImageWithLocation(location!) { (image) -> Void in
-                    self.profileImage.image = image
-                    if self.backgroundImageView != image {
-                        self.backgroundImageView.image = image
-                        self.addBlurEffect()
-                    }
+            if let address = office.address {
+                
+                location = office
+                let officeName = office.address.officeName()
+                let officeStateAndCountry = (office.address.hasRegion ? office.address.region : "") + ", " + office.address.countryCode
+                nameLabel.text = officeName
+                nameNavLabel.text = officeName
+                titleLabel.text = office.address.officeCurrentDateAndTimeLabel()
+                titleNavLabel.text = office.address.officeCurrentTimeLabel(nil)
+                if let indicatorImage = office.address.officeDaylightIndicator() {
+                    daylightIndicatorImage.alpha = 1.0
+                    daylightIndicatorImage.image = indicatorImage
+                    daylightIndicatorImage.tintColor = titleLabel.textColor
+                    daylightIndicatorNavImage.image = indicatorImage
+                    daylightIndicatorNavImage.tintColor = titleNavLabel.textColor
                 }
-            } else {
-                // TODO: - Remove hardcoded image
-                profileImage.image = UIImage(named: "SF")
-                backgroundImageView.image = UIImage(named: "SF")
-                addBlurEffect()
+                
+                self.profileImage.contentMode = .ScaleAspectFill
+                if location!.hasImageUrl {
+                    profileImage.setImageWithLocation(location!) { (image) -> Void in
+                        self.profileImage.image = image
+                        if self.backgroundImageView != image {
+                            self.backgroundImageView.image = image
+                            self.addBlurEffect()
+                        }
+                    }
+                } else {
+                    // TODO: - Remove hardcoded image
+                    profileImage.image = UIImage(named: "SF")
+                    backgroundImageView.image = UIImage(named: "SF")
+                    addBlurEffect()
+                }
+                verifiedProfileButton.hidden = true
             }
-            verifiedProfileButton.hidden = true
         }
     }
     
@@ -190,7 +200,7 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
             // Reduce opacity of the name and title label at a faster pace
             let titleLabelAlpha = 1.0 - contentOffset.y/(titleLabel.frame.origin.y - 40.0)
             let nameLabelAlpha = 1.0 - contentOffset.y/(nameLabel.frame.origin.y - 40.0)
-            let sectionsAlpha = 1.0 - contentOffset.y/(sectionsView.frame.origin.y - 40.0)
+            let sectionsAlpha = 1.0 - contentOffset.y/(nameNavLabel.frame.origin.y - 40.0)
             titleLabel.alpha = titleLabelAlpha
             nameLabel.alpha = nameLabelAlpha
             daylightIndicatorImage.alpha = titleLabelAlpha
@@ -198,7 +208,6 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
             nameNavLabel.alpha = sectionsAlpha <= 0.0 ? nameNavLabel.alpha + 1/20 : 0.0
             titleNavLabel.alpha = sectionsAlpha <= 0.0 ? titleNavLabel.alpha + 1/20 : 0.0
             daylightIndicatorNavImage.alpha = titleNavLabel.alpha
-            sectionsView.alpha = sectionsAlpha
         }
         else {
             // Change alpha faster for profile image

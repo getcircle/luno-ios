@@ -24,8 +24,8 @@ class OfficeCollectionViewCell: CircleCollectionViewCell {
     
     override func setData(data: AnyObject) {
         if let location = data as? Services.Organization.Containers.LocationV1 {
-            officeNameLabel.text = location.address.officeName()
-            numbrOfPeopleLabel.text = String(location.profileCount)
+            officeNameLabel.text = location.name
+            numbrOfPeopleLabel.text = location.profileCount == 0 ? "" : String(location.profileCount)
         }
     }
 }

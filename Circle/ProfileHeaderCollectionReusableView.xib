@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
@@ -34,19 +34,12 @@
                                 </mask>
                             </variation>
                         </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ravi Rani" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="1Tu-Zx-9yR" userLabel="NameLabel">
-                            <rect key="frame" x="181" y="237" width="112" height="39"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="1Tu-Zx-9yR" userLabel="NameLabel">
+                            <rect key="frame" x="209" y="237" width="56" height="39"/>
                             <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="28"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4NY-Ue-zhf" userLabel="SegmentedControlView">
-                            <rect key="frame" x="0.0" y="349" width="474" height="35"/>
-                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="35" id="HK9-TE-Fkf"/>
-                            </constraints>
-                        </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ravi Rani" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="zJL-k5-Ada" userLabel="NameNavLabel">
                             <rect key="frame" x="30" y="357" width="414" height="20"/>
                             <constraints>
@@ -56,8 +49,8 @@
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Really really really big title for people who are founders, engineers, designers, etc and want to tell the world" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="Raz-vM-IgD" userLabel="TitleNavLabel">
-                            <rect key="frame" x="31" y="377" width="413" height="16"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sub Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="Raz-vM-IgD" userLabel="TitleNavLabel">
+                            <rect key="frame" x="209" y="377" width="56" height="16"/>
                             <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
@@ -72,21 +65,21 @@
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                         </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Co-founder" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="GGm-ME-NAZ" userLabel="TitleLabel">
-                            <rect key="frame" x="201" y="274" width="73" height="20"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sub Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="GGm-ME-NAZ" userLabel="TitleLabel">
+                            <rect key="frame" x="209" y="274" width="56" height="20"/>
                             <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
                             <color key="textColor" red="0.78431372549019607" green="0.78431372549019607" blue="0.78431372549019607" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ces-e9-sN5" userLabel="DaylightIndicatorImage">
-                            <rect key="frame" x="186" y="279" width="10" height="11"/>
+                            <rect key="frame" x="194" y="279" width="10" height="11"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="10" id="HbT-Wp-ECu"/>
                                 <constraint firstAttribute="height" constant="11" id="heA-l8-TSe"/>
                             </constraints>
                         </imageView>
                         <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hdG-v4-wEq" userLabel="DaylightIndicatorNavImage">
-                            <rect key="frame" x="16" y="380" width="10" height="11"/>
+                            <rect key="frame" x="194" y="380" width="10" height="11"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="11" id="ISW-Qi-9Tg"/>
                                 <constraint firstAttribute="width" constant="10" id="Kol-ug-wct"/>
@@ -111,10 +104,8 @@
                         <constraint firstAttribute="centerX" secondItem="kX0-a4-Q8w" secondAttribute="centerX" id="0Mb-av-Phn"/>
                         <constraint firstItem="GGm-ME-NAZ" firstAttribute="leading" secondItem="ces-e9-sN5" secondAttribute="trailing" constant="5" id="279-2X-42o"/>
                         <constraint firstItem="Raz-vM-IgD" firstAttribute="centerY" secondItem="ces-e9-sN5" secondAttribute="centerY" constant="1" id="2bK-VM-tKh"/>
-                        <constraint firstAttribute="trailing" secondItem="4NY-Ue-zhf" secondAttribute="trailing" id="4EM-7l-rEw"/>
                         <constraint firstAttribute="trailing" secondItem="zJL-k5-Ada" secondAttribute="trailing" constant="30" id="5H5-fB-W0v"/>
                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="1Tu-Zx-9yR" secondAttribute="trailing" constant="15" id="5He-Dz-wX2"/>
-                        <constraint firstAttribute="bottom" secondItem="4NY-Ue-zhf" secondAttribute="bottom" constant="15" id="7HY-CJ-mPE"/>
                         <constraint firstItem="hdG-v4-wEq" firstAttribute="centerY" secondItem="Raz-vM-IgD" secondAttribute="centerY" id="8yQ-sR-Isl"/>
                         <constraint firstItem="Raz-vM-IgD" firstAttribute="centerX" secondItem="zJL-k5-Ada" secondAttribute="centerX" id="9Y0-TL-xAN"/>
                         <constraint firstItem="GGm-ME-NAZ" firstAttribute="centerY" secondItem="ces-e9-sN5" secondAttribute="centerY" id="9eg-Jw-EfM"/>
@@ -132,7 +123,6 @@
                         <constraint firstItem="GGm-ME-NAZ" firstAttribute="leading" secondItem="JUx-bd-ahe" secondAttribute="leading" constant="30" id="Q2H-Rz-j8c"/>
                         <constraint firstAttribute="trailing" secondItem="GGm-ME-NAZ" secondAttribute="trailing" constant="30" id="UkJ-Vb-niE"/>
                         <constraint firstItem="ab6-6x-tgQ" firstAttribute="leading" secondItem="JUx-bd-ahe" secondAttribute="leading" id="Xh3-G9-6kt"/>
-                        <constraint firstItem="4NY-Ue-zhf" firstAttribute="leading" secondItem="JUx-bd-ahe" secondAttribute="leading" id="YPf-X2-o7d"/>
                         <constraint firstItem="1Tu-Zx-9yR" firstAttribute="top" secondItem="kX0-a4-Q8w" secondAttribute="bottom" constant="12" id="b8p-d8-vRT"/>
                         <constraint firstItem="GGm-ME-NAZ" firstAttribute="centerX" secondItem="1Tu-Zx-9yR" secondAttribute="centerX" id="beT-MI-PAr"/>
                         <constraint firstAttribute="centerX" secondItem="1Tu-Zx-9yR" secondAttribute="centerX" id="dFv-F5-py9"/>
@@ -180,7 +170,6 @@
                 <outlet property="nameLabel" destination="1Tu-Zx-9yR" id="dCN-I3-cEP"/>
                 <outlet property="nameNavLabel" destination="zJL-k5-Ada" id="fZN-PC-Fce"/>
                 <outlet property="profileImage" destination="kX0-a4-Q8w" id="idA-m8-Iy4"/>
-                <outlet property="sectionsView" destination="4NY-Ue-zhf" id="NH8-Ga-N14"/>
                 <outlet property="titleLabel" destination="GGm-ME-NAZ" id="FRS-1Y-xvS"/>
                 <outlet property="titleNavLabel" destination="Raz-vM-IgD" id="4tA-Yx-E8u"/>
                 <outlet property="verifiedProfileButton" destination="xmj-MC-afc" id="JX3-5E-uLr"/>

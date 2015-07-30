@@ -25,18 +25,26 @@ class OfficeDetailDataSource: CardDataSource {
     
     override func loadData(completionHandler: (error: NSError?) -> Void) {
         resetCards()
-        
-        // Add placeholder card to load profile header instantly
-        var placeholderCard = Card(cardType: .Placeholder, title: "Info")
-        placeholderCard.sectionInset = UIEdgeInsetsZero
-        placeholderCard.addHeader(
-            headerClass: ProfileHeaderCollectionReusableView.self
-        )
-        appendCard(placeholderCard)
+        addPlaceholderCard()
         
         // Fetch data within a dispatch group, calling populateData when all tasks have finished
         var storedError: NSError!
         var actionsGroup = dispatch_group_create()
+        
+        if selectedOffice.address == nil { 
+            dispatch_group_enter(actionsGroup)
+            Services.Organization.Actions.getLocation(locationId: selectedOffice.id, completionHandler: { (location, error) -> Void in
+                if let location = location {
+                    self.selectedOffice = location
+                }
+                
+                if let error = error {
+                    storedError = error
+                }
+                dispatch_group_leave(actionsGroup)
+            })
+        }
+
         dispatch_group_enter(actionsGroup)
         Services.Organization.Actions.getTeams(locationId: self.selectedOffice.id) { (teams, nextRequest, error) -> Void in
             if let teams = teams {
@@ -48,6 +56,7 @@ class OfficeDetailDataSource: CardDataSource {
             }
             dispatch_group_leave(actionsGroup)
         }
+        
         dispatch_group_enter(actionsGroup)
         Services.Profile.Actions.getProfiles(locationId: self.selectedOffice.id) { (profiles, nextRequest, error) -> Void in
             if let profiles = profiles {
@@ -93,8 +102,23 @@ class OfficeDetailDataSource: CardDataSource {
     }
     
     // MARK: - Helpers
+    
+    private func addPlaceholderCard() {
+        
+        // Add placeholder card to load profile header instantly
+        var placeholderCard = Card(cardType: .Placeholder, title: "Info")
+        placeholderCard.sectionInset = UIEdgeInsetsZero
+        placeholderCard.addHeader(
+            headerClass: ProfileHeaderCollectionReusableView.self
+        )
+        
+        appendCard(placeholderCard)
+    }
 
     private func populateData() {
+        
+        resetCards()
+        addPlaceholderCard()
         
         // Address
         let addressCard = Card(cardType: .OfficeAddress, title: AppStrings.CardTitleAddress)
