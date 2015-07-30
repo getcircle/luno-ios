@@ -328,6 +328,10 @@ class SearchViewController: UIViewController,
                     Tracker.sharedInstance.track(.DetailItemTapped, properties: properties)
                     navigationController?.pushViewController(profileVC, animated: true)
                 }
+                else if let selectedTeam = dataSource.contentAtIndexPath(indexPath) as? Services.Organization.Containers.TeamV1 {
+                    loadTeamDetail(selectedTeam, properties: &properties)
+                }
+
             case .GroupMemberImages:
                 let viewController = ProfilesViewController()
                 viewController.dataSource.setInitialData(selectedCard.content[0] as! [AnyObject], ofType: nil)
@@ -352,14 +356,7 @@ class SearchViewController: UIViewController,
                 
             case .Team:
                 if let selectedTeam = dataSource.contentAtIndexPath(indexPath) as? Services.Organization.Containers.TeamV1 {
-                    let viewController = TeamDetailViewController()
-                    (viewController.dataSource as! TeamDetailDataSource).selectedTeam = selectedTeam
-                    viewController.hidesBottomBarWhenPushed = false
-                    properties.append(TrackerProperty.withKey(.Destination).withSource(.Detail))
-                    properties.append(TrackerProperty.withKey(.DestinationDetailType).withDetailType(.Team))
-                    properties.append(TrackerProperty.withDestinationId("team_id").withString(selectedTeam.id))
-                    Tracker.sharedInstance.track(.DetailItemTapped, properties: properties)
-                    navigationController?.pushViewController(viewController, animated: true)
+                    loadTeamDetail(selectedTeam, properties: &properties)
                 }
                 
             case .StatTile:
@@ -402,6 +399,17 @@ class SearchViewController: UIViewController,
                 break
             }
         }
+    }
+    
+    private func loadTeamDetail(selectedTeam: Services.Organization.Containers.TeamV1, inout properties: [TrackerProperty]) {
+        let viewController = TeamDetailViewController()
+        (viewController.dataSource as! TeamDetailDataSource).selectedTeam = selectedTeam
+        viewController.hidesBottomBarWhenPushed = false
+        properties.append(TrackerProperty.withKey(.Destination).withSource(.Detail))
+        properties.append(TrackerProperty.withKey(.DestinationDetailType).withDetailType(.Team))
+        properties.append(TrackerProperty.withDestinationId("team_id").withString(selectedTeam.id))
+        Tracker.sharedInstance.track(.DetailItemTapped, properties: properties)
+        navigationController?.pushViewController(viewController, animated: true)
     }
     
     func scrollViewDidScroll(scrollView: UIScrollView) {

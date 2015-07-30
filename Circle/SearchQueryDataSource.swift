@@ -80,7 +80,7 @@ class SearchQueryDataSource: CardDataSource {
                 teamsShowContentCount = false
             }
             
-            let teamsCard = Card(cardType: .Team, title: "Teams", showContentCount: teamsShowContentCount)
+            let teamsCard = Card(cardType: .Profiles, title: "Teams", showContentCount: teamsShowContentCount)
             teamsCard.addHeader(headerClass: headerClass)
             teamsCard.addContent(content: visibleTeams as [AnyObject], maxVisibleItems: 3)
             teamsCard.contentCount = visibleTeams.count
