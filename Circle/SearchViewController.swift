@@ -72,6 +72,11 @@ class SearchViewController: UIViewController,
         super.viewWillAppear(animated)
         activateSearchFieldIfPreSet()
         registerNotifications()
+        
+        transitionCoordinator()?.animateAlongsideTransition({ (transitionContext) -> Void in
+            self.navigationController?.setNavigationBarHidden(true, animated: true)
+            return
+        }, completion: nil)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -97,6 +102,7 @@ class SearchViewController: UIViewController,
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
         unregisterNotifications(false)
+        navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
     deinit {
@@ -108,6 +114,7 @@ class SearchViewController: UIViewController,
     private func configureView() {
         view.backgroundColor = UIColor.appViewBackgroundColor()
         extendedLayoutIncludesOpaqueBars = true
+        edgesForExtendedLayout = .Top
         statusBarView.backgroundColor = UIColor.appUIBackgroundColor()
     }
     
