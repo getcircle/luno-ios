@@ -10,6 +10,7 @@ import Foundation
 import ProtobufRegistry
 
 typealias SearchCompletionHandler = (result: Services.Search.Actions.SearchResults?, error: NSError?) -> Void
+typealias SearchResultsCompletionHandler = (results: Array<Services.Search.Containers.SearchResultsV1>?, error: NSError?) -> Void
 typealias FilterCompletionHandler = (content: [AnyObject], error: NSError?) -> Void
 
 extension Services.Search.Actions {
@@ -63,6 +64,22 @@ extension Services.Search.Actions {
         completionHandler: FilterCompletionHandler?
     ) {
             
+    }
+    
+    static func search(query: String, completionHandler: SearchResultsCompletionHandler?) {
+        let requestBuilder = Services.Search.Actions.Search.RequestV1.builder()
+        requestBuilder.query = query
+        
+        let client = ServiceClient(serviceName: "search")
+        client.callAction(
+            "search",
+            extensionField: Services.Registry.Requests.Search.search(),
+            requestBuilder: requestBuilder) { (_, _, wrappedResponse, error) -> Void in
+                let response = wrappedResponse?.response?.result.getExtension(
+                    Services.Registry.Responses.Search.search()
+                ) as? Services.Search.Actions.Search.ResponseV1
+                completionHandler?(results: response?.results, error: error)
+        }
     }
     
     static func search(

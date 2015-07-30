@@ -17,28 +17,31 @@ class SearchQueryDataSource: CardDataSource {
     private var searchTerm = ""
     private var visibleProfiles = Array<Services.Profile.Containers.ProfileV1>()
     private var visibleTeams = Array<Services.Organization.Containers.TeamV1>()
-    private var visibleAddresses = Array<Services.Organization.Containers.AddressV1>()
-    private var visibleTags = Array<Services.Profile.Containers.TagV1>()
+    private var visibleLocations = Array<Services.Organization.Containers.LocationV1>()
     
     override func loadData(completionHandler: (error: NSError?) -> Void) {
     }
     
     override func filter(string: String, completionHandler: (error: NSError?) -> Void) {
         searchTerm = string
-        Services.Search.Actions.search(string, showRecents: isQuickAction, completionHandler: { (results, error) -> Void in
+        Services.Search.Actions.search(string, completionHandler: { (results, error) -> Void in
             if let results = results {
-                if let profiles = results.profiles {
-                    self.visibleProfiles = profiles
+                for result in results {
+                    switch result.category {
+                    case .Profiles:
+                        self.visibleProfiles = result.profiles
+
+                    case .Locations:
+                        self.visibleLocations = result.locations
+
+                    case .Teams:
+                        self.visibleTeams = result.teams
+                        
+                    default:
+                        break
+                    }
                 }
-                if let teams = results.teams {
-                    self.visibleTeams = teams
-                }
-                if let addresses = results.addresses {
-                    self.visibleAddresses = addresses
-                }
-                if let skills = results.skills {
-                    self.visibleTags = skills
-                }
+                
                 self.updateVisibleCards()
             }
             completionHandler(error: error)
@@ -84,21 +87,22 @@ class SearchQueryDataSource: CardDataSource {
             teamsCard.sectionInset = sectionInset
             appendCard(teamsCard)
         }
-        
-        if visibleTags.count > 0 {
-            let maxVisibleItems = 10
-            var interestsShowContentCount = true
-            if visibleTags.count <= maxVisibleItems {
-                interestsShowContentCount = false
+
+        if visibleLocations.count > 0 {
+            let maxVisibleItems = 3
+            var locationsShowContentCount = true
+            if visibleLocations.count <= maxVisibleItems {
+                locationsShowContentCount = false
             }
-            let interestsCard = Card(cardType: .Tags, title: "Tags", showContentCount: interestsShowContentCount)
-            interestsCard.addHeader(headerClass: headerClass)
-            interestsCard.addContent(content: visibleTags as [AnyObject], maxVisibleItems: 10)
-            interestsCard.contentCount = visibleTags.count
-            interestsCard.sectionInset = sectionInset
-            appendCard(interestsCard)
+            
+            let locationsCard = Card(cardType: .Offices, title: "Offices", showContentCount: locationsShowContentCount)
+            locationsCard.addHeader(headerClass: headerClass)
+            locationsCard.addContent(content: visibleLocations as [AnyObject], maxVisibleItems: 3)
+            locationsCard.contentCount = visibleLocations.count
+            locationsCard.sectionInset = sectionInset
+            appendCard(locationsCard)
         }
-        
+
         if searchTerm == "" && !isQuickAction {
             let statsCard = Card(cardType: .StatTile, title: "Categories", showContentCount: false)
             statsCard.addHeader(headerClass: headerClass)
