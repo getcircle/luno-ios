@@ -15,7 +15,6 @@ class HomeFeedDataSource: CardDataSource {
 
     private var groupsAssociatedWithGroupRequests = Dictionary<String, Services.Group.Containers.GroupV1>()
     private var profilesAssociatedWithGroupRequests = Dictionary<String, Services.Profile.Containers.ProfileV1>()
-    private var profilesAssociatedWithNotes = Array<Services.Profile.Containers.ProfileV1>()
     
     override func loadData(completionHandler: (error: NSError?) -> Void) {
         if (state == .Loading) {
@@ -37,12 +36,7 @@ class HomeFeedDataSource: CardDataSource {
                     for category in categories ?? [] {
                         let categoryCard = Card(category: category)
                         categoryCard.addDefaultHeader()
-                        if category.notes.count > 0 {
-                            categoryCard.addContent(content: category.notes, maxVisibleItems: 5)
-                            categoryCard.metaData = category.profiles
-                            self.profilesAssociatedWithNotes = category.profiles
-                        }
-                        else if category.groupMembershipRequests.count > 0 {
+                        if category.groupMembershipRequests.count > 0 {
                             categoryCard.showContentCount = false
                             categoryCard.addContent(content: category.groupMembershipRequests)
                             for profile in category.profiles {
@@ -85,10 +79,6 @@ class HomeFeedDataSource: CardDataSource {
     
     override func configureCell(cell: CircleCollectionViewCell, atIndexPath indexPath: NSIndexPath) {
         cell.backgroundColor = UIColor.whiteColor()
-        
-        if cell is NotesCollectionViewCell && profilesAssociatedWithNotes.count > 0 {
-            (cell as! NotesCollectionViewCell).setProfile(profilesAssociatedWithNotes[indexPath.row])
-        }
         
         if cell is GroupRequestCollectionViewCell {
             (cell as! GroupRequestCollectionViewCell).groupRequestDelegate = groupRequestDelegate

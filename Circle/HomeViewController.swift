@@ -18,7 +18,6 @@ class HomeViewController: UIViewController,
     MFMessageComposeViewControllerDelegate,
     SearchHeaderViewDelegate,
     CardHeaderViewDelegate,
-    NewNoteViewControllerDelegate,
     GroupRequestDelegate
 {
     @IBOutlet weak private(set) var collectionView: UICollectionView!
@@ -312,22 +311,6 @@ class HomeViewController: UIViewController,
                     navigationController?.pushViewController(viewController, animated: true)
                 }
             
-            case .Notes:
-                if let selectedNote = dataSource.contentAtIndexPath(indexPath) as? Services.Note.Containers.NoteV1 {
-                    if let profiles = selectedCard.metaData as? [Services.Profile.Containers.ProfileV1] {
-                        if let selectedProfile = profiles[indexPath.row] as Services.Profile.Containers.ProfileV1? {
-                            let viewController = NewNoteViewController(nibName: "NewNoteViewController", bundle: nil)
-                            viewController.profile = selectedProfile
-                            viewController.delegate = self
-                            viewController.note = selectedNote
-                            viewController.hidesBottomBarWhenPushed = false
-                            properties.append(TrackerProperty.withKey(.Destination).withSource(.Detail))
-                            properties.append(TrackerProperty.withKey(.DestinationDetailType).withDetailType(.Note))
-                            Tracker.sharedInstance.track(.DetailItemTapped, properties: properties)
-                            navigationController?.pushViewController(viewController, animated: true)
-                        }
-                    }
-                }
             case .StatTile:
                 let cell = collectionView.dataSource?.collectionView(collectionView, cellForItemAtIndexPath: indexPath) as! StatTileCollectionViewCell
                 switch cell.tileType! {
@@ -431,13 +414,6 @@ class HomeViewController: UIViewController,
             interestsOverviewViewController.title = card.title
             interestsOverviewViewController.hidesBottomBarWhenPushed = false
             navigationController?.pushViewController(interestsOverviewViewController, animated: true)
-            
-        case .Notes:
-            let viewController = NotesOverviewViewController(nibName: "NotesOverviewViewController", bundle: nil)
-            viewController.dataSource.setInitialData(content: card.allContent as [AnyObject], ofType: nil, withMetaData: card.metaData)
-            viewController.title = card.title
-            viewController.hidesBottomBarWhenPushed = false
-            navigationController?.pushViewController(viewController, animated: true)
             
         default:
             break
@@ -606,15 +582,6 @@ class HomeViewController: UIViewController,
                 return true
             }
 
-        case .Note:
-            let viewController = NewNoteViewController(nibName: "NewNoteViewController", bundle: nil)
-            viewController.profile = profile
-            let noteNavigationController = UINavigationController(rootViewController: viewController)
-            presentViewController(noteNavigationController, animated: true, completion: { () -> Void in
-                self.resetQuickAction()
-            })
-            return true
-            
         case .Phone:
             if let recipient = profile.getCellPhone() as String? {
                 if let phoneURL = NSURL(string: NSString(format: "tel://%@", recipient.removePhoneNumberFormatting()) as String) {
@@ -645,16 +612,6 @@ class HomeViewController: UIViewController,
     
     func messageComposeViewController(controller: MFMessageComposeViewController!, didFinishWithResult result: MessageComposeResult) {
         controller.dismissViewControllerAnimated(true, completion: nil)
-    }
-    
-    // MARK: - NewNoteViewControllerDelegate
-    
-    func didAddNote(note: Services.Note.Containers.NoteV1) {
-        loadData()
-    }
-    
-    func didDeleteNote(note: Services.Note.Containers.NoteV1) {
-        loadData()
     }
     
     // MARK: - GroupRequestDelegate

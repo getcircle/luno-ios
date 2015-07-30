@@ -66,7 +66,6 @@ class Card: Equatable {
     }
 
     enum CardType: String {
-        case AddNote = "AddNote"
         case Anniversaries = "Anniversaries"
         case Appreciate = "Appreciate"
         case Appreciations = "Appreciations"
@@ -82,7 +81,6 @@ class Card: Equatable {
         case Offices = "Offices"
         case OfficeAddress = "Office Address"
         case NewHires = "NewHires"
-        case Notes = "Notes"
         case Profiles = "Profiles"
         case ProfilesGrid = "ProfilesGrid"
         case Placeholder = "Placeholder"
@@ -105,13 +103,6 @@ class Card: Equatable {
 
         static func infoByCardType(type: CardType) -> CardTypeInfo {
             switch type {
-
-            case AddNote:
-                return CardTypeInfo(
-                    imageName: "Plus",
-                    classType: AddNoteCollectionViewCell.self,
-                    contentType: .Flat
-                )
 
             case Anniversaries:
                 return CardTypeInfo(
@@ -208,13 +199,6 @@ class Card: Equatable {
                 return CardTypeInfo(
                     imageName: "FeedLocation",
                     classType: AddressCollectionViewCell.self,
-                    contentType: .Flat
-                )
-
-            case Notes:
-                return CardTypeInfo(
-                    imageName: "Notepad",
-                    classType: NotesCollectionViewCell.self,
                     contentType: .Flat
                 )
 
@@ -375,8 +359,6 @@ class Card: Equatable {
             cardType = .Birthdays
         case .NewHires:
             cardType = .NewHires
-        case .Notes:
-            cardType = .Notes
         case .DirectReports, .Peers:
             cardType = .GroupMemberImages
         case .Locations:

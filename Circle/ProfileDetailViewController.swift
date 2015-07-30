@@ -303,31 +303,6 @@ class ProfileDetailViewController:
         }
     }
 
-    // MARK: - Tracking
-    
-    private func trackNewNoteAction() {
-        let properties = getTrackingProperties(nil)
-        Tracker.sharedInstance.track(.NewNote, properties: properties)
-    }
-    
-    private func trackViewNoteAction(note: Services.Note.Containers.NoteV1) {
-        let properties = getTrackingProperties(note)
-        Tracker.sharedInstance.track(.ViewNote, properties: properties)
-    }
-    
-    private func getTrackingProperties(note: Services.Note.Containers.NoteV1?) -> [TrackerProperty] {
-        var properties = [
-            TrackerProperty.withKey(.ActiveViewController).withString(self.dynamicType.description()),
-            TrackerProperty.withDestinationId("profileId").withString(profile.id),
-            TrackerProperty.withKey(.Source).withSource(.Detail),
-            TrackerProperty.withKey(.SourceDetailType).withDetailType(.Profile),
-            TrackerProperty.withKey(.Destination).withSource(.Detail),
-            TrackerProperty.withKey(.DestinationDetailType).withDetailType(.Note),
-        ]
-
-        return properties
-    }
-
     // MARK: - EditProfileDelegate
     
     func didFinishEditingProfile() {

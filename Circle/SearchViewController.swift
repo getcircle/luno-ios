@@ -619,16 +619,6 @@ class SearchViewController: UIViewController,
         controller.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    // MARK: - NewNoteViewControllerDelegate
-    
-    func didAddNote(note: Services.Note.Containers.NoteV1) {
-        loadData()
-    }
-    
-    func didDeleteNote(note: Services.Note.Containers.NoteV1) {
-        loadData()
-    }
-    
     // MARK: - Tracking
     
     private func trackQueryCardHeaderTapped(card: Card) {

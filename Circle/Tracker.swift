@@ -26,7 +26,6 @@ class TrackerProperty {
     
     enum OverviewType: String {
         case Groups = "Groups"
-        case Notes = "Notes"
         case Offices = "Offices"
         case Profiles = "Profiles"
         case Teams = "Teams"
@@ -35,7 +34,6 @@ class TrackerProperty {
     
     enum DetailType: String {
         case Group = "Group"
-        case Note = "Note"
         case Office = "Office"
         case Profile = "Profile"
         case Team = "Team"
@@ -107,12 +105,6 @@ class Tracker {
         case ViewScrolled = "View Scrolled"
         case CardHeaderTapped = "Card Header Tapped"
         case DetailItemTapped = "Detail Item Tapped"
-        case NewNote = "New Note"
-        case SaveNote = "Save Note"
-        case DeleteNote = "Delete Note"
-        case UpdateNote = "Update Note"
-        case DismissNote = "Dismiss Note"
-        case ViewNote = "View Note"
     }
     
     enum Source: String {

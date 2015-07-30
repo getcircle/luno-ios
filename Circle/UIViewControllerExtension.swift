@@ -14,7 +14,6 @@ enum QuickAction: Int {
     case Email
     case Message
     case MoreInfo
-    case Note
     case Phone
     case Slack
     
@@ -54,13 +53,6 @@ enum QuickAction: Int {
                 placeholder: AppStrings.QuickActionInfoPlaceholder
             )
         
-        case .Note:
-            return MetaInfo(
-                actionLabel: AppStrings.QuickActionNoteLabel,
-                imageSource: "Notebook",
-                placeholder: AppStrings.QuickActionNotePlaceholder
-            )
-
         case .Phone:
             return MetaInfo(
                 actionLabel: AppStrings.QuickActionCallLabel,

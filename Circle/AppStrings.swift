@@ -14,7 +14,6 @@ struct AppStrings {
     static let ActionSheetPickAPhotoButtonTitle = NSLocalizedString("Pick a photo", comment: "Button prompt to pick a photo from user's photos")
     static let ActionSheetTakeAPictureButtonTitle = NSLocalizedString("Take a picture", comment: "Button prompt to take a picture using the camera")
 
-    static let AddNoteCTATitle = NSLocalizedString("Add private note", comment: "Title of the button to add a private note on a co-worker")
     static let AddTagsNavigationTitle = NSLocalizedString("Add Tags", comment: "Title of the view to add interests")
     static let AppreciateCTATitle = NSLocalizedString("Appreciate", comment: "Title of the button to leave an appreciation for a co-worker")
     
@@ -76,7 +75,6 @@ struct AppStrings {
     static let ProfileInfoAddButtonTitle = NSLocalizedString("Add", comment: "Title of the button to add info")
     static let ProfileInfoEditButtonTitle = NSLocalizedString("Edit", comment: "Title of the button to edit info")
     
-    static let ProfileNotesTabTitle = NSLocalizedString("Notes", comment: "Title of the Notes section")
     static let ProfileAppreciationTabTitle = NSLocalizedString("Appreciation", comment: "Title of the Appreciation section")
     
     static let ProfileSectionAboutTitle = NSLocalizedString("About", comment: "Title of the section which shows user bio, nick name and other personal info")
@@ -100,15 +98,13 @@ struct AppStrings {
     static let QuickActionEmailLabel = NSLocalizedString("Email", comment: "Title for button used to send an email")
     static let QuickActionInfoLabel = NSLocalizedString("Info", comment: "Title for button used to see info")
     static let QuickActionMessageLabel = NSLocalizedString("Message", comment: "Title for button used to send a message")
-    static let QuickActionNoteLabel = NSLocalizedString("Note", comment: "Title for button used to take a note")
     static let QuickActionSlackLabel = NSLocalizedString("Slack", comment: "Title for button used send a message via Slack")
     static let QuickActionVideoLabel = NSLocalizedString("Video", comment: "Title for button used to initial a video call")
     
-    static let QuickActionNonePlaceholder = NSLocalizedString("Find people, teams, and skills", comment: "Placeholder text for search field used to search people, teams and skills.")
+    static let QuickActionNonePlaceholder = NSLocalizedString("Find people, teams, and locations", comment: "Placeholder text for search field used to search people, teams and skills.")
     static let QuickActionEmailPlaceholder = NSLocalizedString("Who do you want to email?", comment: "Placeholder for search field used to search for the person user intends to email")
     static let QuickActionInfoPlaceholder = NSLocalizedString("Who do you want contact info on?", comment: "Placeholder for search field used to search for the person user intends to email")
     static let QuickActionMessagePlaceholder = NSLocalizedString("Who do you want to message?", comment: "Placeholder for search field used to search for the person user intends to send a message")
-    static let QuickActionNotePlaceholder = NSLocalizedString("Who do you want to take a note on?", comment: "Placeholder for search field used to search for the person user intends to take a note about")
     static let QuickActionCallPlaceholder = NSLocalizedString("Who do you want to call?", comment: "Placeholder for search field used to search for the person user intends to call")
     static let QuickActionSlackPlaceholder = NSLocalizedString("Who do you want to message?", comment: "Placeholder for search field used to search for the person user intends to send a message")
     

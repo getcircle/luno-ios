@@ -52,7 +52,7 @@ class ProfileDetailDataSource: CardDataSource {
         
         dispatch_group_enter(actionsGroup)
         Services.Profile.Actions.getExtendedProfile(profile.id) {
-            (profile, manager, team, address, interests, skills, notes, identities, resume, location,  error) -> Void in
+            (profile, manager, team, address, interests, skills, identities, resume, location,  error) -> Void in
             
             if let error = error {
                 storedError = error
