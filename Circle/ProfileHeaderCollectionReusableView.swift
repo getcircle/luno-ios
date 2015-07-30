@@ -9,10 +9,6 @@
 import UIKit
 import ProtobufRegistry
 
-protocol ProfileDetailSegmentedControlDelegate {
-    func onButtonTouchUpInsideAtIndex(index: Int)
-}
-
 protocol ProfileEditImageButtonDelegate {
     func onEditImageButtonTapped(sender: UIView!)
 }
@@ -33,14 +29,6 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
     @IBOutlet weak private(set) var daylightIndicatorNavImage: UIImageView!
     
     var profileEditImageButtonDelegate: ProfileEditImageButtonDelegate?
-    var profileSegmentedControlDelegate: ProfileDetailSegmentedControlDelegate?
-    var sections: [ProfileDetailView]? {
-        didSet {
-            if sections != nil {
-                configureSegmentedControl(sections: sections!)
-            }
-        }
-    }
     var tappedButton: UIButton?
     var tappedButtonIndex: Int?
     private(set) var visualEffectView: UIVisualEffectView?
@@ -100,16 +88,6 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
         verifiedProfileButton.backgroundColor = UIColor.appTintColor()
         verifiedProfileButton.makeItCircular()
         verifiedProfileButton.hidden = true
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
-        if sectionIndicatorView?.frame.width == 0.0 {
-            sectionIndicatorLeftOffsetConstraint?.constant = segmentedControlButtons[selectedButtonIndex()].frame.origin.x
-            sectionIndicatorWidthConstraint?.constant = segmentedControlButtons[selectedButtonIndex()].frame.width
-            adjustSectionIndicator(false)
-        }
     }
     
     private func configureEditImageButton() {
@@ -177,153 +155,6 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
             }
             verifiedProfileButton.hidden = true
         }
-    }
-
-    // MARK: - Segmented Control
-
-    private func configureSegmentedControl(sections withSections: [ProfileDetailView]) {
-        
-        // Ensure we only configure the controls once
-        if controlsConfigured {
-            return
-        } else {
-            controlsConfigured = true
-        }
-        
-        // Setup the segment buttons
-        let buttonSegmentOffset: CGFloat = 0.5
-        let width: CGFloat = (frame.width - (CGFloat(withSections.count - 1) * buttonSegmentOffset)) / CGFloat(withSections.count)
-        buttonContainerWidth = width
-        let buttonContainerSize = CGSizeMake(width, sectionsView.frame.height)
-        
-        var previousButtonContainer: UIView?
-        for section in withSections {
-            let buttonContainerView = UIView(forAutoLayout: ())
-            buttonContainerView.backgroundColor = UIColor.clearColor()
-            buttonContainerView.opaque = true
-            sectionsView.addSubview(buttonContainerView)
-            buttonContainerView.autoSetDimensionsToSize(buttonContainerSize)
-
-            let button = UIButton.buttonWithType(.Custom) as! UIButton
-            button.setTitleColor(UIColor.appSegmentedControlTitleNormalColor(), forState: .Normal)
-            button.setTitleColor(UIColor.appSegmentedControlTitleSelectedColor(), forState: .Selected)
-            button.tintColor = UIColor.appSegmentedControlTitleNormalColor()
-            button.setAttributedTitle(
-                NSAttributedString(string: section.title.uppercaseString, attributes: buttonAttributes), 
-                forState: .Normal
-            )
-            
-            button.addTarget(
-                self,
-                action: "segmentButtonPressed:", 
-                forControlEvents: .TouchUpInside
-            )
-            
-            buttonContainerView.addSubview(button)
-            button.autoCenterInSuperview()
-            
-            if let previous = previousButtonContainer {
-                buttonContainerView.autoPinEdge(.Left, toEdge: .Right, ofView: previous, withOffset: buttonSegmentOffset)
-            } else {
-                buttonContainerView.autoPinEdge(.Left, toEdge: .Left, ofView: sectionsView)
-            }
-            buttonContainerView.autoPinEdge(.Top, toEdge: .Top, ofView: sectionsView)
-            previousButtonContainer = buttonContainerView
-            segmentedControlButtons.append(button)
-        }
-        
-        // Setup the section indicator view
-        sectionIndicatorView = UIView.newAutoLayoutView()
-        sectionsView.addSubview(sectionIndicatorView!)
-        
-        selectButtonAtIndex(0)
-        sectionIndicatorView?.backgroundColor = UIColor.appTintColor()
-        sectionIndicatorView?.autoSetDimension(.Height, toSize: 1.5)
-        sectionIndicatorView?.autoPinEdgeToSuperviewEdge(.Bottom, withInset: 5.0)
-        sectionIndicatorWidthConstraint = sectionIndicatorView?.autoSetDimension(.Width, toSize: segmentedControlButtons[0].frame.width)
-        sectionIndicatorLeftOffsetConstraint = sectionIndicatorView?.autoPinEdgeToSuperviewEdge(.Left, withInset: segmentedControlButtons[0].frame.origin.x)
-    }
-    
-    func segmentButtonPressed(sender: AnyObject!) {
-        if let tappedButtonIndex = tappedButtonIndex {
-            profileSegmentedControlDelegate?.onButtonTouchUpInsideAtIndex(tappedButtonIndex)
-        }
-    }
-    
-    func updateTitle(title: String, forSegmentAtIndex index: Int) {
-        if segmentedControlButtons.count > index {
-            segmentedControlButtons[index].setAttributedTitle(
-                NSAttributedString(
-                    string: title.uppercaseString, 
-                    attributes: buttonAttributes
-                ),
-                forState: .Normal
-            )
-        }
-    }
-    
-    func beginMovingSectionIndicatorView(contentOffset: CGPoint) {
-        sectionIndicatorViewIsAnimating = true
-        sectionIndicatorWidthConstraint?.constant = sectionIndicatorBeginningWidth
-        adjustSectionIndicator(true)
-    }
-    
-    func updateSectionIndicatorView(contentOffset: CGPoint) {
-
-        // We aren't animating the width of the sectionIndicator if someone taps on the segmented controls
-        let currentSelectedButton = segmentedControlButtons[selectedButtonIndex()]
-        var animationOffset = (currentSelectedButton.frame.width / 2) + currentSelectedButton.frame.origin.x - (sectionIndicatorBeginningWidth / 2.0)
-        if !sectionIndicatorViewIsAnimating {
-            animationOffset = currentSelectedButton.frame.origin.x
-        }
-        sectionIndicatorLeftOffsetConstraint?.constant = (contentOffset.x / CGFloat(sections!.count)) + animationOffset
-        adjustSectionIndicator(true)
-    }
-    
-    func finishMovingSelectionIndicatorView(contentOffset: CGPoint) {
-        let buttonIndexToBeSelected = Int(contentOffset.x/frame.width)
-        if buttonIndexToBeSelected < segmentedControlButtons.count {
-            sectionIndicatorWidthConstraint?.constant = segmentedControlButtons[buttonIndexToBeSelected].frame.width
-            sectionIndicatorLeftOffsetConstraint?.constant = contentOffset.x / CGFloat(sections!.count) + segmentedControlButtons[buttonIndexToBeSelected].frame.origin.x
-            selectButtonAtIndex(buttonIndexToBeSelected)
-        }
-        adjustSectionIndicator(true)
-        sectionIndicatorViewIsAnimating = false
-    }
-    
-    private func adjustSectionIndicator(animated: Bool) {
-        UIView.animateWithDuration(
-            animated ? 0.3 : 0.0,
-            delay: 0,
-            usingSpringWithDamping: 0.8,
-            initialSpringVelocity: 0.8,
-            options: .CurveEaseInOut,
-            animations: { () -> Void in
-                self.sectionIndicatorView?.superview?.layoutIfNeeded()
-                return
-            },
-            completion: nil
-        )
-    }
-    
-    private func selectButtonAtIndex(index: Int) {
-        if index < segmentedControlButtons.count {
-            for button in segmentedControlButtons {
-                button.selected = false
-            }
-
-            segmentedControlButtons[index].selected = true
-        }
-    }
-    
-    private func selectedButtonIndex() -> Int {
-        for (index, button) in enumerate(segmentedControlButtons) {
-            if button.selected == true {
-                return index
-            }
-        }
-        
-        return 0
     }
     
     // MARK: - Helpers
