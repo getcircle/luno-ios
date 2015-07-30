@@ -78,6 +78,7 @@ class OverviewViewController:
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        navigationController?.navigationBar.makeOpaque()
         activateSearchIfApplicable()
         loadData()
     }

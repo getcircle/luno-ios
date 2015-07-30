@@ -70,13 +70,20 @@ class SearchViewController: UIViewController,
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        activateSearchFieldIfPreSet()
         registerNotifications()
-        
-        transitionCoordinator()?.animateAlongsideTransition({ (transitionContext) -> Void in
+
+        if let transitionCoordinator = transitionCoordinator() where transitionCoordinator.initiallyInteractive() {
+            transitionCoordinator.animateAlongsideTransition({ (transitionContext) -> Void in
+                self.setNavigationBarState(transitionContext)
+            }, completion: nil)
+            
+            transitionCoordinator.notifyWhenInteractionEndsUsingBlock({ (transitionContext) -> Void in
+                self.setNavigationBarState(transitionContext)
+            })
+        }
+        else {
             self.navigationController?.setNavigationBarHidden(true, animated: true)
-            return
-        }, completion: nil)
+        }
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -90,8 +97,6 @@ class SearchViewController: UIViewController,
         else if let user = AuthViewController.getLoggedInUser() where launchScreenView != nil {
             hideAndRemoveLaunchView()
         }
-        
-        navigationController?.setNavigationBarHidden(true, animated: false)
     }
 
     override func viewWillDisappear(animated: Bool) {
@@ -102,11 +107,19 @@ class SearchViewController: UIViewController,
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
         unregisterNotifications(false)
-        navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
     deinit {
         unregisterNotifications(true)
+    }
+    
+    private func setNavigationBarState(transitionContext: UIViewControllerTransitionCoordinatorContext) {
+        if transitionContext.isCancelled() {
+            self.navigationController?.setNavigationBarHidden(false, animated: true)
+        }
+        else {
+            self.navigationController?.setNavigationBarHidden(true, animated: true)
+        }
     }
     
     // MARK: - Configuration
