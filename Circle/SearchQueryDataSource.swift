@@ -23,6 +23,10 @@ class SearchQueryDataSource: CardDataSource {
     }
     
     override func filter(string: String, completionHandler: (error: NSError?) -> Void) {
+        if string == searchTerm && searchTerm.trimWhitespace() != "" {
+            return
+        }
+        
         searchTerm = string
         
         if searchTerm.trimWhitespace() == "" {
