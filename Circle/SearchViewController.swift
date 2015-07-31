@@ -359,44 +359,34 @@ class SearchViewController: UIViewController,
                     navigationController?.pushViewController(viewController, animated: true)
                 }
                 
-            case .StatTile:
-                let cell = collectionView.dataSource?.collectionView(collectionView, cellForItemAtIndexPath: indexPath) as! StatTileCollectionViewCell
-                switch cell.tileType! {
-                case .People:
-                    let viewController = ProfilesViewController()
-                    (viewController.dataSource as! ProfilesDataSource).configureForOrganization()
-                    viewController.title = "People"
-                    navigationController?.pushViewController(viewController, animated: true)
-                case .Offices:
-                    // TODO This should be coming from a paginated data source
-                    let viewController = OfficesOverviewViewController(nibName: "OfficesOverviewViewController", bundle: nil)
-                    viewController.title = "Offices"
-                    viewController.dataSource.setInitialData(
-                        ObjectStore.sharedInstance.locations.values.array,
-                        ofType: nil
-                    )
-                    navigationController?.pushViewController(viewController, animated: true)
-                case .Teams:
-                    let viewController = TeamsOverviewViewController()
-                    viewController.title = "Teams"
-                    (viewController.dataSource as! TeamsOverviewDataSource).configureForOrganization()
-                    navigationController?.pushViewController(viewController, animated: true)
-                case .Interests:
-                    // TODO This should be coming from a paginated data source
-                    let interestsOverviewViewController = TagsOverviewViewController(nibName: "TagsOverviewViewController", bundle: nil)
-                    interestsOverviewViewController.title = "Interests"
-                    interestsOverviewViewController.dataSource.setInitialData(content: ObjectStore.sharedInstance.activeInterests.values.array)
-                    navigationController?.pushViewController(interestsOverviewViewController, animated: true)
-                case .Skills:
-                    // TODO This should be coming from a paginated data source
-                    let interestsOverviewViewController = TagsOverviewViewController(nibName: "TagsOverviewViewController", bundle: nil)
-                    interestsOverviewViewController.title = "Skills"
-                    interestsOverviewViewController.dataSource.setInitialData(content: ObjectStore.sharedInstance.activeSkills.values.array)
-                    navigationController?.pushViewController(interestsOverviewViewController, animated: true)
+            case .SearchCategory:
+                if let searchCategory = dataSource.contentAtIndexPath(indexPath) as? SearchCategory {
+                    switch searchCategory.type {
+                    case .People:
+                        let viewController = ProfilesViewController()
+                        (viewController.dataSource as! ProfilesDataSource).configureForOrganization()
+                        viewController.title = "People"
+                        navigationController?.pushViewController(viewController, animated: true)
+                    case .Offices:
+                        // TODO This should be coming from a paginated data source
+                        let viewController = OfficesOverviewViewController(nibName: "OfficesOverviewViewController", bundle: nil)
+                        viewController.title = "Offices"
+                        viewController.dataSource.setInitialData(
+                            ObjectStore.sharedInstance.locations.values.array,
+                            ofType: nil
+                        )
+                        navigationController?.pushViewController(viewController, animated: true)
+                    case .Teams:
+                        let viewController = TeamsOverviewViewController()
+                        viewController.title = "Teams"
+                        (viewController.dataSource as! TeamsOverviewDataSource).configureForOrganization()
+                        navigationController?.pushViewController(viewController, animated: true)
+                    }
                 }
                 
             default:
                 break
+
             }
         }
     }

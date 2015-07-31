@@ -78,7 +78,7 @@ class SearchQueryDataSource: CardDataSource {
         }
 
         if searchTerm == "" && !isQuickAction {
-            let statsCard = Card(cardType: .StatTile, title: "Categories", showContentCount: false)
+            let searchCategoriesCard = Card(cardType: .SearchCategory, title: "", showContentCount: false)
             
             let peopleCount = ObjectStore.sharedInstance.profiles.values.array.count
             let peopleTitle = peopleCount == 1 ? "Person" : "People"
@@ -90,40 +90,33 @@ class SearchQueryDataSource: CardDataSource {
             let teamsTitle = teamsCount == 1 ? "Team" : "Teams"
 
             let stats = [
-                [
-                    "title": peopleTitle,
-                    "value": peopleCount,
-                    "type": StatTileCollectionViewCell.TileType.People.rawValue
-                ],
-                [
-                    "title": officeTitle,
-                    "value": officeCount,
-                    "type": StatTileCollectionViewCell.TileType.Offices.rawValue
-                ],
-                [
-                    "title": teamsTitle,
-                    "value": teamsCount,
-                    "type": StatTileCollectionViewCell.TileType.Teams.rawValue
-                ]
-            ] as [AnyObject]
-            statsCard.addContent(content: stats)
-            
-            statsCard.sectionInset = UIEdgeInsetsMake(10.0, 10.0, 20.0, 10.0)
-            appendCard(statsCard)
+                SearchCategory(
+                    categoryTitle: peopleTitle,
+                    ofType: .People,
+                    withCount: peopleCount,
+                    withImageSource: "FeedPeers"
+                ),
+                SearchCategory(
+                    categoryTitle: officeTitle,
+                    ofType: .Offices,
+                    withCount: officeCount,
+                    withImageSource: "FeedLocation"
+                ),
+                SearchCategory(
+                    categoryTitle: teamsTitle,
+                    ofType: .Teams,
+                    withCount: teamsCount,
+                    withImageSource: "FeedReports"
+                )
+            ]
+            searchCategoriesCard.addContent(content: stats as [AnyObject])
+            searchCategoriesCard.sectionInset = sectionInset
+            appendCard(searchCategoriesCard)
         }
     }
     
     override func configureCell(cell: CircleCollectionViewCell, atIndexPath indexPath: NSIndexPath) {
-        if cell is TeamGridItemCollectionViewCell {
-            (cell as! TeamGridItemCollectionViewCell).sizeMode = .Compact
-        } else if cell is ProfileCollectionViewCell {
-            cell.backgroundColor = UIColor.clearColor()
-        } else if cell is StatTileCollectionViewCell {
-            cell.backgroundColor = UIColor.whiteColor()
-            cell.addRoundCorners(radius: 5.0)
-        } else if cell is OfficeCollectionViewCell {
-            cell.backgroundColor = UIColor.clearColor()
-        }
+        cell.backgroundColor = UIColor.whiteColor()
     }
     
 }

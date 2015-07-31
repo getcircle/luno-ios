@@ -86,7 +86,7 @@ class Card: Equatable {
         case Settings = "Settings"
         case SocialConnectCTAs = "SocialConnectCTAs"
         case SocialToggle = "SocialToggle"
-        case StatTile = "StatTile"
+        case SearchCategory = "SearchCategory"
         case QuickActions = "QuickActions"
         case Team = "Team"
         case TeamsGrid = "TeamsGrid"
@@ -249,10 +249,10 @@ class Card: Equatable {
                     contentType: .Flat
                 )
 
-            case StatTile:
+            case SearchCategory:
                 return CardTypeInfo(
                     imageName: String(),
-                    classType: StatTileCollectionViewCell.self,
+                    classType: SearchCategoryCollectionViewCell.self,
                     contentType: .Flat
                 )
 
