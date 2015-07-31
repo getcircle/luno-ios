@@ -215,10 +215,13 @@ class SearchViewController: UIViewController,
             self.searchFieldBottomBorder?.layoutIfNeeded()
             self.collectionView.layoutIfNeeded()
             self.poweredByLabel.layoutIfNeeded()
-            self.collectionView.alpha = 1.0
             self.orgImageView.alpha = 0.0
             self.poweredByLabel.alpha = 0.0
-        })
+        }) { (completed) -> Void in
+            UIView.animateWithDuration(animated ? 0.2 : 0.0, animations: { () -> Void in
+                self.collectionView.alpha = 1.0
+            })
+        }
     }
     
     private func moveSearchToCenter(animated: Bool) {
