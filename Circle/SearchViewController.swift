@@ -301,8 +301,8 @@ class SearchViewController: UIViewController,
     }
     
     func search() {
-        let query = searchHeaderView.searchTextField.text
-        dataSource.filter(searchHeaderView.searchTextField.text) { (error) -> Void in
+        let term = searchHeaderView.searchTextField.text
+        dataSource.filter(term.trimWhitespace()) { (error) -> Void in
             self.collectionView.reloadData()
         }
     }

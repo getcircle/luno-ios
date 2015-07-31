@@ -26,15 +26,13 @@ class SearchQueryDataSource: CardDataSource {
         searchTerm = string
         
         if searchTerm.trimWhitespace() == "" {
+            clearData()
             updateVisibleCards()
             completionHandler(error: nil)
         }
         else {
             Services.Search.Actions.search(string, completionHandler: { (results, error) -> Void in
-                self.visibleProfiles.removeAll(keepCapacity: true)
-                self.visibleTeams.removeAll(keepCapacity: true)
-                self.visibleLocations.removeAll(keepCapacity: true)
-                
+                self.clearData()
                 if let results = results {
                     for result in results {
                         switch result.category {
@@ -57,6 +55,12 @@ class SearchQueryDataSource: CardDataSource {
                 completionHandler(error: error)
             })
         }
+    }
+    
+    private func clearData() {
+        visibleProfiles.removeAll(keepCapacity: true)
+        visibleTeams.removeAll(keepCapacity: true)
+        visibleLocations.removeAll(keepCapacity: true)
     }
     
     private func updateVisibleCards() {
