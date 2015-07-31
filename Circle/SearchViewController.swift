@@ -25,7 +25,6 @@ class SearchViewController: UIViewController,
     @IBOutlet weak private(set) var searchHeaderContainerViewTopConstraint: NSLayoutConstraint!
     @IBOutlet weak private(set) var searchHeaderContainerViewLeftConstraint: NSLayoutConstraint!
     @IBOutlet weak private(set) var searchHeaderContainerViewRightConstraint: NSLayoutConstraint!
-    @IBOutlet weak private(set) var statusBarView: UIView!
     
     private var activityIndicatorView: CircleActivityIndicatorView!
     private var errorMessageView: CircleErrorMessageView!
@@ -64,24 +63,14 @@ class SearchViewController: UIViewController,
         })
         
         loadData()
-        moveSearchToCenter(false)
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        navigationController?.navigationBar.translucent = false
         registerNotifications()
-
-        if let transitionCoordinator = transitionCoordinator() where transitionCoordinator.initiallyInteractive() {
-            transitionCoordinator.animateAlongsideTransition({ (transitionContext) -> Void in
-                self.setNavigationBarState(transitionContext)
-            }, completion: nil)
-            
-            transitionCoordinator.notifyWhenInteractionEndsUsingBlock({ (transitionContext) -> Void in
-                self.setNavigationBarState(transitionContext)
-            })
-        }
-        else {
-            self.navigationController?.setNavigationBarHidden(true, animated: true)
+        if firstLoad {
+            moveSearchToCenter(false)        
         }
     }
     
@@ -97,12 +86,7 @@ class SearchViewController: UIViewController,
             hideAndRemoveLaunchView()
         }
     }
-
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-        navigationController?.setNavigationBarHidden(false, animated: true)
-    }
-
+    
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
         unregisterNotifications(false)
@@ -112,22 +96,11 @@ class SearchViewController: UIViewController,
         unregisterNotifications(true)
     }
     
-    private func setNavigationBarState(transitionContext: UIViewControllerTransitionCoordinatorContext) {
-        if transitionContext.isCancelled() {
-            self.navigationController?.setNavigationBarHidden(false, animated: true)
-        }
-        else {
-            self.navigationController?.setNavigationBarHidden(true, animated: true)
-        }
-    }
-    
     // MARK: - Configuration
     
     private func configureView() {
         view.backgroundColor = UIColor.appViewBackgroundColor()
-        extendedLayoutIncludesOpaqueBars = true
-        edgesForExtendedLayout = .Top
-        statusBarView.backgroundColor = UIColor.appUIBackgroundColor()
+        navigationItem.title = "Search"
     }
     
     private func configureLaunchScreenView() {
@@ -253,7 +226,7 @@ class SearchViewController: UIViewController,
             return
         }
         
-        searchHeaderContainerViewTopConstraint.constant = view.center.y - (searchHeaderContainerView.frameHeight / 2.0)
+        searchHeaderContainerViewTopConstraint.constant = view.frameHeight / 2
         searchHeaderContainerViewLeftConstraint.constant = 15
         searchHeaderContainerViewRightConstraint.constant = 15
         searchHeaderContainerView.setNeedsUpdateConstraints()

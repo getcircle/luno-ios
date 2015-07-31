@@ -73,7 +73,7 @@ MFMessageComposeViewControllerDelegate {
         super.viewWillDisappear(animated)
         transitionCoordinator()?.animateAlongsideTransition({ (transitionContext) -> Void in
             var toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey) as UIViewController!
-            if !(toViewController is BaseDetailViewController || toViewController is SearchViewController) {
+            if !(toViewController is BaseDetailViewController) {
                 toViewController.navigationController?.navigationBar.makeOpaque()
             }
             return
