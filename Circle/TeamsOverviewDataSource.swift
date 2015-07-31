@@ -11,6 +11,7 @@ import ProtobufRegistry
 
 class TeamsOverviewDataSource: CardDataSource {
     
+    var showAsList = false
     private var card: Card!
     private var cardType: Card.CardType = .Team
     private var teams = Array<Services.Organization.Containers.TeamV1>()
@@ -62,8 +63,14 @@ class TeamsOverviewDataSource: CardDataSource {
     override func loadInitialData(completionHandler: (error: NSError?) -> Void) {
         super.loadInitialData(completionHandler)
         
+        var sectionInset = UIEdgeInsetsMake(10.0, 10.0, 10.0, 10.0)
+        if showAsList {
+            cardType = .Profiles
+            sectionInset = UIEdgeInsetsZero
+        }
+        
         card = Card(cardType: cardType, title: "")
-        card.sectionInset = UIEdgeInsetsMake(10.0, 10.0, 10.0, 10.0)
+        card.sectionInset = sectionInset
         
         registerNextRequestCompletionHandler { (_, _, wrapped, error) -> Void in
             let response = wrapped?.response?.result.getExtension(

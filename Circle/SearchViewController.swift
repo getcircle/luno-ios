@@ -356,6 +356,7 @@ class SearchViewController: UIViewController,
                         let viewController = TeamsOverviewViewController()
                         viewController.title = "Teams"
                         (viewController.dataSource as! TeamsOverviewDataSource).configureForOrganization()
+                        (viewController.dataSource as! TeamsOverviewDataSource).showAsList = true
                         navigationController?.pushViewController(viewController, animated: true)
                     }
                 }
