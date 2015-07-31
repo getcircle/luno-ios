@@ -116,9 +116,6 @@ class SearchQueryDataSource: CardDataSource {
             let teamsCount = ObjectStore.sharedInstance.teams.values.array.count
             let teamsTitle = teamsCount == 1 ? "Team" : "Teams"
 
-            let skillsCount = ObjectStore.sharedInstance.activeSkills.values.array.count
-            let skillsTitle = skillsCount == 1 ? "Skill" : "Skills"
-            
             let stats = [
                 [
                     "title": peopleTitle,
@@ -134,11 +131,6 @@ class SearchQueryDataSource: CardDataSource {
                     "title": teamsTitle,
                     "value": teamsCount,
                     "type": StatTileCollectionViewCell.TileType.Teams.rawValue
-                ],
-                [
-                    "title": skillsTitle,
-                    "value": skillsCount,
-                    "type": StatTileCollectionViewCell.TileType.Skills.rawValue
                 ]
             ] as [AnyObject]
             statsCard.addContent(content: stats)
