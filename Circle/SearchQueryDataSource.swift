@@ -24,39 +24,45 @@ class SearchQueryDataSource: CardDataSource {
     
     override func filter(string: String, completionHandler: (error: NSError?) -> Void) {
         searchTerm = string
-        Services.Search.Actions.search(string, completionHandler: { (results, error) -> Void in
-            self.visibleProfiles.removeAll(keepCapacity: true)
-            self.visibleTeams.removeAll(keepCapacity: true)
-            self.visibleLocations.removeAll(keepCapacity: true)
-            
-            if let results = results {
-                for result in results {
-                    switch result.category {
-                    case .Profiles:
-                        self.visibleProfiles = result.profiles
-
-                    case .Locations:
-                        self.visibleLocations = result.locations
-
-                    case .Teams:
-                        self.visibleTeams = result.teams
-                        
-                    default:
-                        break
-                    }
-                }
+        
+        if searchTerm.trimWhitespace() == "" {
+            updateVisibleCards()
+            completionHandler(error: nil)
+        }
+        else {
+            Services.Search.Actions.search(string, completionHandler: { (results, error) -> Void in
+                self.visibleProfiles.removeAll(keepCapacity: true)
+                self.visibleTeams.removeAll(keepCapacity: true)
+                self.visibleLocations.removeAll(keepCapacity: true)
                 
-                self.updateVisibleCards()
-            }
-            completionHandler(error: error)
-        })
+                if let results = results {
+                    for result in results {
+                        switch result.category {
+                        case .Profiles:
+                            self.visibleProfiles = result.profiles
+
+                        case .Locations:
+                            self.visibleLocations = result.locations
+
+                        case .Teams:
+                            self.visibleTeams = result.teams
+                            
+                        default:
+                            break
+                        }
+                    }
+                    
+                    self.updateVisibleCards()
+                }
+                completionHandler(error: error)
+            })
+        }
     }
     
     private func updateVisibleCards() {
         resetCards()
         
-        let sectionInset = UIEdgeInsetsMake(0.0, 0.0, 10.0, 0.0)
-        let headerClass = ProfileSectionHeaderCollectionReusableView.self
+        let sectionInset = UIEdgeInsetsZero
         var content = [AnyObject]()
         for data in [visibleProfiles, visibleTeams, visibleLocations] {
             if data.count > 0 {
