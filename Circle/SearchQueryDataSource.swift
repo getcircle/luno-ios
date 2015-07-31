@@ -25,6 +25,10 @@ class SearchQueryDataSource: CardDataSource {
     override func filter(string: String, completionHandler: (error: NSError?) -> Void) {
         searchTerm = string
         Services.Search.Actions.search(string, completionHandler: { (results, error) -> Void in
+            self.visibleProfiles.removeAll(keepCapacity: true)
+            self.visibleTeams.removeAll(keepCapacity: true)
+            self.visibleLocations.removeAll(keepCapacity: true)
+            
             if let results = results {
                 for result in results {
                     switch result.category {
@@ -50,62 +54,31 @@ class SearchQueryDataSource: CardDataSource {
     
     private func updateVisibleCards() {
         resetCards()
+        
         let sectionInset = UIEdgeInsetsMake(0.0, 0.0, 10.0, 0.0)
         let headerClass = ProfileSectionHeaderCollectionReusableView.self
-
-        // TODO these should be sorted by relevancy
-        if visibleProfiles.count > 0 {
-            
-            // Don't show title if there is no search string implying those
-            // are straight up suggestions without any search term
-            
+        var content = [AnyObject]()
+        for data in [visibleProfiles, visibleTeams, visibleLocations] {
+            if data.count > 0 {
+                content.extend(data as! [AnyObject])
+            }
+        }
+        
+        if content.count > 0 {
             let maxVisibleItems = 3
             let profilesCardTitle = searchTerm.trimWhitespace() == "" ? "Recent" : "People"
             var peopleShowContentCount = searchTerm.trimWhitespace() == "" ? false : true
             if visibleProfiles.count <= maxVisibleItems {
                 peopleShowContentCount = false
             }
-            let peopleCard = Card(cardType: .Profiles, title: profilesCardTitle, showContentCount: peopleShowContentCount)
-            peopleCard.addHeader(headerClass: headerClass)
-            peopleCard.addContent(content: visibleProfiles as [AnyObject], maxVisibleItems: 3)
-            peopleCard.contentCount = visibleProfiles.count
-            peopleCard.sectionInset = sectionInset
-            appendCard(peopleCard)
-        }
-
-        if visibleTeams.count > 0 {
-            let maxVisibleItems = 3
-            var teamsShowContentCount = true
-            if visibleTeams.count <= maxVisibleItems {
-                teamsShowContentCount = false
-            }
-            
-            let teamsCard = Card(cardType: .Profiles, title: "Teams", showContentCount: teamsShowContentCount)
-            teamsCard.addHeader(headerClass: headerClass)
-            teamsCard.addContent(content: visibleTeams as [AnyObject], maxVisibleItems: 3)
-            teamsCard.contentCount = visibleTeams.count
-            teamsCard.sectionInset = sectionInset
-            appendCard(teamsCard)
-        }
-
-        if visibleLocations.count > 0 {
-            let maxVisibleItems = 3
-            var locationsShowContentCount = true
-            if visibleLocations.count <= maxVisibleItems {
-                locationsShowContentCount = false
-            }
-            
-            let locationsCard = Card(cardType: .Offices, title: "Offices", showContentCount: locationsShowContentCount)
-            locationsCard.addHeader(headerClass: headerClass)
-            locationsCard.addContent(content: visibleLocations as [AnyObject], maxVisibleItems: 3)
-            locationsCard.contentCount = visibleLocations.count
-            locationsCard.sectionInset = sectionInset
-            appendCard(locationsCard)
+            let resultsCard = Card(cardType: .Profiles, title: profilesCardTitle, showContentCount: peopleShowContentCount)
+            resultsCard.addContent(content: content)
+            resultsCard.sectionInset = sectionInset
+            appendCard(resultsCard)
         }
 
         if searchTerm == "" && !isQuickAction {
             let statsCard = Card(cardType: .StatTile, title: "Categories", showContentCount: false)
-            statsCard.addHeader(headerClass: headerClass)
             
             let peopleCount = ObjectStore.sharedInstance.profiles.values.array.count
             let peopleTitle = peopleCount == 1 ? "Person" : "People"

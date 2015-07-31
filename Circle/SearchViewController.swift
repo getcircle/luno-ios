@@ -16,8 +16,7 @@ class SearchViewController: UIViewController,
     UITextFieldDelegate,
     MFMailComposeViewControllerDelegate,
     MFMessageComposeViewControllerDelegate,
-    SearchHeaderViewDelegate,
-    CardHeaderViewDelegate
+    SearchHeaderViewDelegate
 {
     @IBOutlet weak private(set) var collectionView: UICollectionView!
     @IBOutlet weak private(set) var orgImageView: CircleImageView!
@@ -216,9 +215,7 @@ class SearchViewController: UIViewController,
         collectionView.backgroundColor = UIColor.appViewBackgroundColor()
         cardCollectionViewDelegate = (collectionView.delegate as! CardCollectionViewDelegate)
         cardCollectionViewDelegate?.delegate = self
-        println(collectionView.delegate)
         collectionView.dataSource = dataSource
-        dataSource.cardHeaderDelegate = self
     }
     
     private func activateSearchFieldIfPreSet() {
@@ -329,7 +326,7 @@ class SearchViewController: UIViewController,
         }
         else {
             switch selectedCard.type {
-            case .Profiles, .Birthdays, .Anniversaries, .NewHires:
+            case .Profiles:
                 if let profile = dataSource.contentAtIndexPath(indexPath) as? Services.Profile.Containers.ProfileV1 {
                     let profileVC = ProfileDetailViewController(profile: profile)
                     if selectedCard.type == .Anniversaries {
@@ -348,22 +345,10 @@ class SearchViewController: UIViewController,
                     Tracker.sharedInstance.track(.DetailItemTapped, properties: properties)
                     navigationController?.pushViewController(profileVC, animated: true)
                 }
-                else if let selectedTeam = dataSource.contentAtIndexPath(indexPath) as? Services.Organization.Containers.TeamV1 {
-                    loadTeamDetail(selectedTeam, properties: &properties)
+                else if let team = dataSource.contentAtIndexPath(indexPath) as? Services.Organization.Containers.TeamV1 {
+                    loadTeamDetail(team, properties: &properties)
                 }
-
-            case .GroupMemberImages:
-                let viewController = ProfilesViewController()
-                viewController.dataSource.setInitialData(selectedCard.content[0] as! [AnyObject], ofType: nil)
-                viewController.title = selectedCard.title
-                viewController.hidesBottomBarWhenPushed = false
-                properties.append(TrackerProperty.withKey(.Destination).withSource(.Overview))
-                properties.append(TrackerProperty.withKey(.DestinationOverviewType).withOverviewType(.Profiles))
-                Tracker.sharedInstance.track(.DetailItemTapped, properties: properties)
-                navigationController?.pushViewController(viewController, animated: true)
-                
-            case .Offices:
-                if let office = dataSource.contentAtIndexPath(indexPath) as? Services.Organization.Containers.LocationV1 {
+                else if let office = dataSource.contentAtIndexPath(indexPath) as? Services.Organization.Containers.LocationV1 {
                     let viewController = OfficeDetailViewController()
                     (viewController.dataSource as! OfficeDetailDataSource).selectedOffice = office
                     viewController.hidesBottomBarWhenPushed = false
@@ -372,11 +357,6 @@ class SearchViewController: UIViewController,
                     properties.append(TrackerProperty.withDestinationId("office_id").withString(office.id))
                     Tracker.sharedInstance.track(.DetailItemTapped, properties: properties)
                     navigationController?.pushViewController(viewController, animated: true)
-                }
-                
-            case .Team:
-                if let selectedTeam = dataSource.contentAtIndexPath(indexPath) as? Services.Organization.Containers.TeamV1 {
-                    loadTeamDetail(selectedTeam, properties: &properties)
                 }
                 
             case .StatTile:
@@ -456,38 +436,6 @@ class SearchViewController: UIViewController,
                 viewController.hidesBottomBarWhenPushed = false
                 navigationController?.pushViewController(viewController, animated: true)
             }
-        }
-    }
-    
-    // MARK: - Card Header View Delegate
-    
-    func cardHeaderTapped(sender: AnyObject!, card: Card!) {
-        trackQueryCardHeaderTapped(card)
-        switch card.type {
-        case .Profiles:
-            let viewController = ProfilesViewController(isFilterView: true)
-            viewController.dataSource.setInitialData(card.allContent, ofType: nil)
-            viewController.title = card.title
-            viewController.searchHeaderView?.searchTextField.text = searchHeaderView.searchTextField.text
-            navigationController?.pushViewController(viewController, animated: true)
-        case .Tags:
-            let interestsOverviewViewController = TagsOverviewViewController(
-                nibName: "TagsOverviewViewController",
-                bundle: nil,
-                isFilterView: true
-            )
-            interestsOverviewViewController.dataSource.setInitialData(content: card.allContent[0] as! [AnyObject])
-            interestsOverviewViewController.title = card.title
-            interestsOverviewViewController.searchHeaderView.searchTextField.text = searchHeaderView.searchTextField.text
-            navigationController?.pushViewController(interestsOverviewViewController, animated: true)
-        case .Team:
-            let viewController = TeamsOverviewViewController(isFilterView: true)
-            viewController.dataSource.setInitialData(card.allContent, ofType: nil)
-            viewController.title = card.title
-            viewController.searchHeaderView?.searchTextField.text = searchHeaderView.searchTextField.text
-            navigationController?.pushViewController(viewController, animated: true)
-        default:
-            break
         }
     }
     
@@ -648,18 +596,6 @@ class SearchViewController: UIViewController,
     }
     
     // MARK: - Tracking
-    
-    private func trackQueryCardHeaderTapped(card: Card) {
-        let properties = [
-            TrackerProperty.withKeyString("card_type").withString(card.type.rawValue),
-            TrackerProperty.withKey(.Source).withSource(.Search),
-            TrackerProperty.withKey(.Destination).withSource(.Overview),
-            TrackerProperty.withKey(.DestinationOverviewType).withString(card.title),
-            TrackerProperty.withKeyString("card_title").withString(card.title),
-            TrackerProperty.withKey(.ActiveViewController).withString(self.dynamicType.description())
-        ]
-        Tracker.sharedInstance.track(.CardHeaderTapped, properties: properties)
-    }
     
     private func trackTagSelected(interest: Services.Profile.Containers.TagV1) {
         let properties = [
