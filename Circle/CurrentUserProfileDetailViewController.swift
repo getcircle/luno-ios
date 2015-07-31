@@ -187,24 +187,7 @@ class CurrentUserProfileDetailViewController: ProfileDetailViewController,
             let aboutViewNavController = UINavigationController(rootViewController: aboutViewController)
             navigationController?.presentViewController(aboutViewNavController, animated: true, completion: nil)
             break
-            
-        case .Tags:
-            let interestSelectorViewController = TagScrollingSelectorViewController(nibName: "TagScrollingSelectorViewController", bundle: nil)
-            if let interests = (dataSource as! CurrentUserProfileDetailDataSource).interests {
-                interestSelectorViewController.preSelectTags = interests
-            }
-            let interestsNavController = UINavigationController(rootViewController: interestSelectorViewController)
-            navigationController?.presentViewController(interestsNavController, animated: true, completion: nil)
-            
-        case .Skills:
-            var existingSkills = Array<Services.Profile.Containers.TagV1>()
-            if let skills = (dataSource as! CurrentUserProfileDetailDataSource).skills {
-                existingSkills = skills
-            }
-            let tagInputViewController = TagInputViewController(existingTags: existingSkills)
-            let tagInputNavController = UINavigationController(rootViewController: tagInputViewController)
-            navigationController?.presentViewController(tagInputNavController, animated: true, completion: nil)
-            
+
         default:
             super.cardHeaderTapped(sender, card: card)
         }

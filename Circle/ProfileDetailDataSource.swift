@@ -19,11 +19,9 @@ class ProfileDetailDataSource: CardDataSource {
     
     private(set) var address: Services.Organization.Containers.AddressV1?
     private(set) var identities: Array<Services.User.Containers.IdentityV1>?
-    private(set) var interests: Array<Services.Profile.Containers.TagV1>?
     private(set) var groups: Array<Services.Group.Containers.GroupV1>?
     private(set) var location: Services.Organization.Containers.LocationV1?
     private(set) var manager: Services.Profile.Containers.ProfileV1?
-    private(set) var skills: Array<Services.Profile.Containers.TagV1>?
     private(set) var team: Services.Organization.Containers.TeamV1?
     private(set) var resume: Services.Resume.Containers.ResumeV1?
 
@@ -52,7 +50,7 @@ class ProfileDetailDataSource: CardDataSource {
         
         dispatch_group_enter(actionsGroup)
         Services.Profile.Actions.getExtendedProfile(profile.id) {
-            (profile, manager, team, address, interests, skills, identities, resume, location,  error) -> Void in
+            (profile, manager, team, address, identities, resume, location,  error) -> Void in
             
             if let error = error {
                 storedError = error
@@ -61,8 +59,6 @@ class ProfileDetailDataSource: CardDataSource {
                 self.manager = manager
                 self.team = team
                 self.address = address
-                self.skills = skills
-                self.interests = interests
                 self.identities = identities
                 self.resume = resume
                 self.location = location
@@ -100,10 +96,8 @@ class ProfileDetailDataSource: CardDataSource {
             }
         }
         sections.append(getAboutSection())
-        sections.append(getSkillsSection())
         sections.append(getManagerSection())
         sections.extend(getOfficeSections())
-        sections.append(getInterestsSection())
         sections.append(getBasicInfoSection())
         sections.append(getWorkExperienceSection())
         sections.append(getEducationSection())
@@ -255,35 +249,7 @@ class ProfileDetailDataSource: CardDataSource {
         ]
         return Section(title: AppStrings.ProfileSectionManagerTeamTitle, items: sectionItems, cardType: .Profiles, addCardHeader: true)
     }
-    
-    private func getSkillsSection() -> Section {
-        let sectionItems = [
-            SectionItem(
-                title: AppStrings.ProfileSectionExpertiseTitle,
-                container: "skills",
-                containerKey: "name",
-                contentType: .Skills,
-                image: nil
-            )
-        ]
-        
-        return Section(title: AppStrings.ProfileSectionExpertiseTitle, items: sectionItems, cardType: .Skills, addCardHeader: true, allowEmptyContent: true)
-    }
-    
-    private func getInterestsSection() -> Section {
-        let sectionItems = [
-            SectionItem(
-                title: AppStrings.ProfileSectionInterestsTitle,
-                container: "interests",
-                containerKey: "name",
-                contentType: .Interests,
-                image: nil
-            )
-        ]
-        
-        return Section(title: AppStrings.ProfileSectionInterestsTitle, items: sectionItems, cardType: .Tags, addCardHeader: true, allowEmptyContent: true)
-    }
-    
+
     private func getEducationSection() -> Section {
         let sectionItems = [
             SectionItem(
@@ -361,16 +327,12 @@ class ProfileDetailDataSource: CardDataSource {
             addGroupItemsToCard(item, card: card)
         case .KeyValue:
             addKeyValueItemToCard(item, card: card)
-        case .Tags:
-            addTagsItemToCard(item, card: card)
         case .Profiles:
             addOfficeTeamManagerItemToCard(item, card: card)
         case .Position:
             addPositionItemToCard(item, card: card)
         case .QuickActions:
             addQuickActionsItemToCard(item, card: card)
-        case .Skills:
-            addSkillsItemToCard(item, card: card)
         case .SocialConnectCTAs:
             addSocialConnectItemToCard(item, card: card)
         case .TextValue:
@@ -459,29 +421,7 @@ class ProfileDetailDataSource: CardDataSource {
             }
         }
     }
-    
-    private func addTagsItemToCard(item: SectionItem, card: Card) {
-        if let interests = interests {
-            if interests.count > 0 {
-                card.addContent(content: interests as [AnyObject], maxVisibleItems: numberOfTagItemsVisibleInitially)
-                if interests.count > numberOfTagItemsVisibleInitially {
-                    card.addDefaultFooter()
-                }
-            }
-        }
-    }
-    
-    private func addSkillsItemToCard(item: SectionItem, card: Card) {
-        if let skills = skills {
-            if skills.count > 0 {
-                card.addContent(content: skills as [AnyObject], maxVisibleItems: numberOfSkillItemsVisibleInitially)
-                if skills.count > numberOfSkillItemsVisibleInitially {
-                    card.addDefaultFooter()
-                }
-            }
-        }
-    }
-    
+
     private func addSocialConnectItemToCard(item: SectionItem, card: Card) {
         var dataDict: [String: AnyObject] = [
             "key": item.containerKey,

@@ -179,18 +179,7 @@ class EditAboutViewController: UIViewController, UITextViewDelegate {
     // MARK: - IBActions
     
     private func goToNextVC() {
-        // TODO: Check for hire date and go to projects
-        // If hire date is under two weeks, show skills or interests
-//        if ABTestUtils.shouldShowInterests() {
-            let interestSelectorVC = TagScrollingSelectorViewController(nibName: "TagScrollingSelectorViewController", bundle: nil)
-            interestSelectorVC.theme = .Onboarding
-            interestSelectorVC.addNextButton = true
-            navigationController?.pushViewController(interestSelectorVC, animated: true)
-//        }
-//        else {
-//            let tagInputViewController = TagInputViewController(theme: .Onboarding)
-//            tagInputViewController.addNextButton = true
-//            navigationController?.pushViewController(tagInputViewController, animated: true)
-//        }
+        let notificationsVC = NotificationsViewController(nibName: "NotificationsViewController", bundle: nil)
+        navigationController?.pushViewController(notificationsVC, animated: true)
     }
 }
