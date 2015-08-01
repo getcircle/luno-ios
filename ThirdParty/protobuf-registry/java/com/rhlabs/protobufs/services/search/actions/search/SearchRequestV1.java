@@ -2,9 +2,11 @@
 // Source file: ./src/protobufs/services/search/actions/search.proto
 package com.rhlabs.protobufs.services.search.actions.search;
 
+import com.rhlabs.protobufs.services.search.containers.search.CategoryV1;
 import com.squareup.wire.Message;
 import com.squareup.wire.ProtoField;
 
+import static com.squareup.wire.Message.Datatype.ENUM;
 import static com.squareup.wire.Message.Datatype.STRING;
 import static com.squareup.wire.Message.Datatype.UINT32;
 
@@ -13,6 +15,7 @@ public final class SearchRequestV1 extends Message {
 
   public static final Integer DEFAULT_VERSION = 1;
   public static final String DEFAULT_QUERY = "";
+  public static final CategoryV1 DEFAULT_CATEGORY = CategoryV1.PROFILES;
 
   @ProtoField(tag = 1, type = UINT32)
   public final Integer version;
@@ -20,13 +23,17 @@ public final class SearchRequestV1 extends Message {
   @ProtoField(tag = 2, type = STRING)
   public final String query;
 
-  public SearchRequestV1(Integer version, String query) {
+  @ProtoField(tag = 3, type = ENUM)
+  public final CategoryV1 category;
+
+  public SearchRequestV1(Integer version, String query, CategoryV1 category) {
     this.version = version;
     this.query = query;
+    this.category = category;
   }
 
   private SearchRequestV1(Builder builder) {
-    this(builder.version, builder.query);
+    this(builder.version, builder.query, builder.category);
     setBuilder(builder);
   }
 
@@ -36,7 +43,8 @@ public final class SearchRequestV1 extends Message {
     if (!(other instanceof SearchRequestV1)) return false;
     SearchRequestV1 o = (SearchRequestV1) other;
     return equals(version, o.version)
-        && equals(query, o.query);
+        && equals(query, o.query)
+        && equals(category, o.category);
   }
 
   @Override
@@ -45,6 +53,7 @@ public final class SearchRequestV1 extends Message {
     if (result == 0) {
       result = version != null ? version.hashCode() : 0;
       result = result * 37 + (query != null ? query.hashCode() : 0);
+      result = result * 37 + (category != null ? category.hashCode() : 0);
       hashCode = result;
     }
     return result;
@@ -54,6 +63,7 @@ public final class SearchRequestV1 extends Message {
 
     public Integer version;
     public String query;
+    public CategoryV1 category;
 
     public Builder() {
     }
@@ -63,6 +73,7 @@ public final class SearchRequestV1 extends Message {
       if (message == null) return;
       this.version = message.version;
       this.query = message.query;
+      this.category = message.category;
     }
 
     public Builder version(Integer version) {
@@ -72,6 +83,11 @@ public final class SearchRequestV1 extends Message {
 
     public Builder query(String query) {
       this.query = query;
+      return this;
+    }
+
+    public Builder category(CategoryV1 category) {
+      this.category = category;
       return this;
     }
 

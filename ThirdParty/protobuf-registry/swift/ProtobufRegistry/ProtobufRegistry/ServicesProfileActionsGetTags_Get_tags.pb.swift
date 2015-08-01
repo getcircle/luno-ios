@@ -12,6 +12,7 @@ public func == (lhs: Services.Profile.Actions.GetTags.RequestV1, rhs: Services.P
   fieldCheck = fieldCheck && (lhs.hasProfileId == rhs.hasProfileId) && (!lhs.hasProfileId || lhs.profileId == rhs.profileId)
   fieldCheck = fieldCheck && (lhs.hasOrganizationId == rhs.hasOrganizationId) && (!lhs.hasOrganizationId || lhs.organizationId == rhs.organizationId)
   fieldCheck = fieldCheck && (lhs.hasTagType == rhs.hasTagType) && (!lhs.hasTagType || lhs.tagType == rhs.tagType)
+  fieldCheck = fieldCheck && (lhs.ids == rhs.ids)
   return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
 }
 
@@ -66,6 +67,7 @@ public extension Services.Profile.Actions.GetTags {
 
     public private(set) var tagType:Services.Profile.Containers.TagV1.TagTypeV1 = Services.Profile.Containers.TagV1.TagTypeV1.Skill
     public private(set) var hasTagType:Bool = false
+    public private(set) var ids:Array<String> = Array<String>()
     required public init() {
          super.init()
     }
@@ -84,6 +86,11 @@ public extension Services.Profile.Actions.GetTags {
       }
       if hasTagType {
         output.writeEnum(4, value:tagType.rawValue)
+      }
+      if !ids.isEmpty {
+        for oneValueids in ids {
+          output.writeString(5, value:oneValueids)
+        }
       }
       unknownFields.writeToCodedOutputStream(output)
     }
@@ -106,6 +113,12 @@ public extension Services.Profile.Actions.GetTags {
       if (hasTagType) {
         serialize_size += tagType.rawValue.computeEnumSize(4)
       }
+      var dataSizeIds:Int32 = 0
+      for oneValueids in ids {
+          dataSizeIds += oneValueids.computeStringSizeNoTag()
+      }
+      serialize_size += dataSizeIds
+      serialize_size += 1 * Int32(ids.count)
       serialize_size += unknownFields.serializedSize()
       memoizedSerializedSize = serialize_size
       return serialize_size
@@ -159,6 +172,11 @@ public extension Services.Profile.Actions.GetTags {
       if (hasTagType) {
         output += "\(indent) tagType: \(tagType.rawValue)\n"
       }
+      var idsElementIndex:Int = 0
+      for oneValueids in ids  {
+          output += "\(indent) ids[\(idsElementIndex)]: \(oneValueids)\n"
+          idsElementIndex++
+      }
       unknownFields.writeDescriptionTo(&output, indent:indent)
     }
     override public var hashValue:Int {
@@ -175,6 +193,9 @@ public extension Services.Profile.Actions.GetTags {
             }
             if hasTagType {
                hashCode = (hashCode &* 31) &+ Int(tagType.rawValue)
+            }
+            for oneValueids in ids {
+                hashCode = (hashCode &* 31) &+ oneValueids.hashValue
             }
             hashCode = (hashCode &* 31) &+  unknownFields.hashValue
             return hashCode
@@ -296,6 +317,22 @@ public extension Services.Profile.Actions.GetTags {
          builderResult.tagType = .Skill
          return self
       }
+    public var ids:Array<String> {
+         get {
+             return builderResult.ids
+         }
+         set (array) {
+             builderResult.ids = array
+         }
+    }
+    public func setIds(value:Array<String>)-> Services.Profile.Actions.GetTags.RequestV1Builder {
+      self.ids = value
+      return self
+    }
+    public func clearIds() -> Services.Profile.Actions.GetTags.RequestV1Builder {
+       builderResult.ids.removeAll(keepCapacity: false)
+       return self
+    }
     override public var internalGetResult:GeneratedMessage {
          get {
             return builderResult
@@ -332,6 +369,9 @@ public extension Services.Profile.Actions.GetTags {
       if other.hasTagType {
            tagType = other.tagType
       }
+      if !other.ids.isEmpty {
+          builderResult.ids += other.ids
+      }
       mergeUnknownFields(other.unknownFields)
       return self
     }
@@ -363,6 +403,9 @@ public extension Services.Profile.Actions.GetTags {
           } else {
                unknownFieldsBuilder.mergeVarintField(4, value:Int64(valueInttagType))
           }
+
+        case 42 :
+          ids += [input.readString()]
 
         default:
           if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {

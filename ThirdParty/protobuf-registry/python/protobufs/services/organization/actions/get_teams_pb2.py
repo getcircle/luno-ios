@@ -19,7 +19,7 @@ import protobufs.services.organization.containers_pb2
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='protobufs/services/organization/actions/get_teams.proto',
   package='services.organization.actions.get_teams',
-  serialized_pb=_b('\n7protobufs/services/organization/actions/get_teams.proto\x12\'services.organization.actions.get_teams\x1a\x30protobufs/services/organization/containers.proto\"M\n\tRequestV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x17\n\x0forganization_id\x18\x02 \x01(\t\x12\x13\n\x0blocation_id\x18\x03 \x01(\t\"Y\n\nResponseV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x37\n\x05teams\x18\x02 \x03(\x0b\x32(.services.organization.containers.TeamV1B>\n<com.rhlabs.protobufs.services.organization.actions.get_teams')
+  serialized_pb=_b('\n7protobufs/services/organization/actions/get_teams.proto\x12\'services.organization.actions.get_teams\x1a\x30protobufs/services/organization/containers.proto\"e\n\tRequestV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x17\n\x0forganization_id\x18\x02 \x01(\t\x12\x13\n\x0blocation_id\x18\x03 \x01(\t\x12\x16\n\x0etop_level_only\x18\x04 \x01(\x08\"Y\n\nResponseV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x37\n\x05teams\x18\x02 \x03(\x0b\x32(.services.organization.containers.TeamV1B>\n<com.rhlabs.protobufs.services.organization.actions.get_teams')
   ,
   dependencies=[protobufs.services.organization.containers_pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
@@ -55,6 +55,13 @@ _REQUESTV1 = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
+    _descriptor.FieldDescriptor(
+      name='top_level_only', full_name='services.organization.actions.get_teams.RequestV1.top_level_only', index=3,
+      number=4, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
   ],
   extensions=[
   ],
@@ -67,7 +74,7 @@ _REQUESTV1 = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=150,
-  serialized_end=227,
+  serialized_end=251,
 )
 
 
@@ -103,8 +110,8 @@ _RESPONSEV1 = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=229,
-  serialized_end=318,
+  serialized_start=253,
+  serialized_end=342,
 )
 
 _RESPONSEV1.fields_by_name['teams'].message_type = protobufs.services.organization.containers_pb2._TEAMV1

@@ -2,13 +2,10 @@
 // Source file: ./src/protobufs/services/profile/actions/get_extended_profile.proto
 package com.rhlabs.protobufs.services.profile.actions.get_extended_profile;
 
-import com.rhlabs.protobufs.services.note.containers.NoteV1;
 import com.rhlabs.protobufs.services.organization.containers.AddressV1;
 import com.rhlabs.protobufs.services.organization.containers.LocationV1;
 import com.rhlabs.protobufs.services.organization.containers.TeamV1;
 import com.rhlabs.protobufs.services.profile.containers.ProfileV1;
-import com.rhlabs.protobufs.services.profile.containers.TagV1;
-import com.rhlabs.protobufs.services.resume.containers.ResumeV1;
 import com.rhlabs.protobufs.services.user.containers.IdentityV1;
 import com.squareup.wire.Message;
 import com.squareup.wire.ProtoField;
@@ -22,11 +19,8 @@ public final class GetExtendedProfileResponseV1 extends Message {
   private static final long serialVersionUID = 0L;
 
   public static final Integer DEFAULT_VERSION = 1;
-  public static final List<NoteV1> DEFAULT_NOTES = Collections.emptyList();
   public static final List<IdentityV1> DEFAULT_IDENTITIES = Collections.emptyList();
   public static final List<ProfileV1> DEFAULT_DIRECT_REPORTS = Collections.emptyList();
-  public static final List<TagV1> DEFAULT_INTERESTS = Collections.emptyList();
-  public static final List<TagV1> DEFAULT_SKILLS = Collections.emptyList();
 
   @ProtoField(tag = 1, type = UINT32)
   public final Integer version;
@@ -43,44 +37,28 @@ public final class GetExtendedProfileResponseV1 extends Message {
   @ProtoField(tag = 5)
   public final TeamV1 team;
 
-  @ProtoField(tag = 6, label = REPEATED, messageType = NoteV1.class)
-  public final List<NoteV1> notes;
-
-  @ProtoField(tag = 7, label = REPEATED, messageType = IdentityV1.class)
+  @ProtoField(tag = 6, label = REPEATED, messageType = IdentityV1.class)
   public final List<IdentityV1> identities;
 
-  @ProtoField(tag = 8, label = REPEATED, messageType = ProfileV1.class)
+  @ProtoField(tag = 7, label = REPEATED, messageType = ProfileV1.class)
   public final List<ProfileV1> direct_reports;
 
-  @ProtoField(tag = 9)
-  public final ResumeV1 resume;
-
-  @ProtoField(tag = 10)
+  @ProtoField(tag = 8)
   public final LocationV1 location;
 
-  @ProtoField(tag = 11, label = REPEATED, messageType = TagV1.class)
-  public final List<TagV1> interests;
-
-  @ProtoField(tag = 12, label = REPEATED, messageType = TagV1.class)
-  public final List<TagV1> skills;
-
-  public GetExtendedProfileResponseV1(Integer version, ProfileV1 profile, AddressV1 address, ProfileV1 manager, TeamV1 team, List<NoteV1> notes, List<IdentityV1> identities, List<ProfileV1> direct_reports, ResumeV1 resume, LocationV1 location, List<TagV1> interests, List<TagV1> skills) {
+  public GetExtendedProfileResponseV1(Integer version, ProfileV1 profile, AddressV1 address, ProfileV1 manager, TeamV1 team, List<IdentityV1> identities, List<ProfileV1> direct_reports, LocationV1 location) {
     this.version = version;
     this.profile = profile;
     this.address = address;
     this.manager = manager;
     this.team = team;
-    this.notes = immutableCopyOf(notes);
     this.identities = immutableCopyOf(identities);
     this.direct_reports = immutableCopyOf(direct_reports);
-    this.resume = resume;
     this.location = location;
-    this.interests = immutableCopyOf(interests);
-    this.skills = immutableCopyOf(skills);
   }
 
   private GetExtendedProfileResponseV1(Builder builder) {
-    this(builder.version, builder.profile, builder.address, builder.manager, builder.team, builder.notes, builder.identities, builder.direct_reports, builder.resume, builder.location, builder.interests, builder.skills);
+    this(builder.version, builder.profile, builder.address, builder.manager, builder.team, builder.identities, builder.direct_reports, builder.location);
     setBuilder(builder);
   }
 
@@ -94,13 +72,9 @@ public final class GetExtendedProfileResponseV1 extends Message {
         && equals(address, o.address)
         && equals(manager, o.manager)
         && equals(team, o.team)
-        && equals(notes, o.notes)
         && equals(identities, o.identities)
         && equals(direct_reports, o.direct_reports)
-        && equals(resume, o.resume)
-        && equals(location, o.location)
-        && equals(interests, o.interests)
-        && equals(skills, o.skills);
+        && equals(location, o.location);
   }
 
   @Override
@@ -112,13 +86,9 @@ public final class GetExtendedProfileResponseV1 extends Message {
       result = result * 37 + (address != null ? address.hashCode() : 0);
       result = result * 37 + (manager != null ? manager.hashCode() : 0);
       result = result * 37 + (team != null ? team.hashCode() : 0);
-      result = result * 37 + (notes != null ? notes.hashCode() : 1);
       result = result * 37 + (identities != null ? identities.hashCode() : 1);
       result = result * 37 + (direct_reports != null ? direct_reports.hashCode() : 1);
-      result = result * 37 + (resume != null ? resume.hashCode() : 0);
       result = result * 37 + (location != null ? location.hashCode() : 0);
-      result = result * 37 + (interests != null ? interests.hashCode() : 1);
-      result = result * 37 + (skills != null ? skills.hashCode() : 1);
       hashCode = result;
     }
     return result;
@@ -131,13 +101,9 @@ public final class GetExtendedProfileResponseV1 extends Message {
     public AddressV1 address;
     public ProfileV1 manager;
     public TeamV1 team;
-    public List<NoteV1> notes;
     public List<IdentityV1> identities;
     public List<ProfileV1> direct_reports;
-    public ResumeV1 resume;
     public LocationV1 location;
-    public List<TagV1> interests;
-    public List<TagV1> skills;
 
     public Builder() {
     }
@@ -150,13 +116,9 @@ public final class GetExtendedProfileResponseV1 extends Message {
       this.address = message.address;
       this.manager = message.manager;
       this.team = message.team;
-      this.notes = copyOf(message.notes);
       this.identities = copyOf(message.identities);
       this.direct_reports = copyOf(message.direct_reports);
-      this.resume = message.resume;
       this.location = message.location;
-      this.interests = copyOf(message.interests);
-      this.skills = copyOf(message.skills);
     }
 
     public Builder version(Integer version) {
@@ -184,11 +146,6 @@ public final class GetExtendedProfileResponseV1 extends Message {
       return this;
     }
 
-    public Builder notes(List<NoteV1> notes) {
-      this.notes = checkForNulls(notes);
-      return this;
-    }
-
     public Builder identities(List<IdentityV1> identities) {
       this.identities = checkForNulls(identities);
       return this;
@@ -199,23 +156,8 @@ public final class GetExtendedProfileResponseV1 extends Message {
       return this;
     }
 
-    public Builder resume(ResumeV1 resume) {
-      this.resume = resume;
-      return this;
-    }
-
     public Builder location(LocationV1 location) {
       this.location = location;
-      return this;
-    }
-
-    public Builder interests(List<TagV1> interests) {
-      this.interests = checkForNulls(interests);
-      return this;
-    }
-
-    public Builder skills(List<TagV1> skills) {
-      this.skills = checkForNulls(skills);
       return this;
     }
 

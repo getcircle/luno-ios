@@ -20,7 +20,7 @@ import protobufs.services.common.containers_pb2
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='protobufs/services/organization/containers/integration.proto',
   package='services.organization.containers.integration',
-  serialized_pb=_b('\n<protobufs/services/organization/containers/integration.proto\x12,services.organization.containers.integration\x1a*protobufs/services/common/containers.proto\"\x8b\x02\n\rIntegrationV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\n\n\x02id\x18\x02 \x01(\t\x12\x17\n\x0forganization_id\x18\x03 \x01(\t\x12Y\n\x10integration_type\x18\x04 \x01(\x0e\x32?.services.organization.containers.integration.IntegrationTypeV1\x12[\n\rgoogle_groups\x18\x05 \x01(\x0b\x32\x42.services.organization.containers.integration.GoogleGroupDetailsV1H\x00\x42\t\n\x07\x64\x65tails\"O\n\x14GoogleGroupDetailsV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x13\n\x0b\x61\x64min_email\x18\x02 \x01(\t\x12\x0e\n\x06scopes\x18\x03 \x03(\t*&\n\x11IntegrationTypeV1\x12\x11\n\rGOOGLE_GROUPS\x10\x00\x42\x43\nAcom.rhlabs.protobufs.services.organization.containers.integration')
+  serialized_pb=_b('\n<protobufs/services/organization/containers/integration.proto\x12,services.organization.containers.integration\x1a*protobufs/services/common/containers.proto\"\x8b\x02\n\rIntegrationV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\n\n\x02id\x18\x02 \x01(\t\x12\x17\n\x0forganization_id\x18\x03 \x01(\t\x12Y\n\x10integration_type\x18\x04 \x01(\x0e\x32?.services.organization.containers.integration.IntegrationTypeV1\x12[\n\rgoogle_groups\x18\x05 \x01(\x0b\x32\x42.services.organization.containers.integration.GoogleGroupDetailsV1H\x00\x42\t\n\x07\x64\x65tails\"b\n\x14GoogleGroupDetailsV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x13\n\x0b\x61\x64min_email\x18\x02 \x01(\t\x12\x0e\n\x06scopes\x18\x03 \x03(\t\x12\x11\n\tread_only\x18\x04 \x01(\x08*&\n\x11IntegrationTypeV1\x12\x11\n\rGOOGLE_GROUPS\x10\x00\x42\x43\nAcom.rhlabs.protobufs.services.organization.containers.integration')
   ,
   dependencies=[protobufs.services.common.containers_pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
@@ -38,8 +38,8 @@ _INTEGRATIONTYPEV1 = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=505,
-  serialized_end=543,
+  serialized_start=524,
+  serialized_end=562,
 )
 _sym_db.RegisterEnumDescriptor(_INTEGRATIONTYPEV1)
 
@@ -137,6 +137,13 @@ _GOOGLEGROUPDETAILSV1 = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
+    _descriptor.FieldDescriptor(
+      name='read_only', full_name='services.organization.containers.integration.GoogleGroupDetailsV1.read_only', index=3,
+      number=4, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
   ],
   extensions=[
   ],
@@ -149,7 +156,7 @@ _GOOGLEGROUPDETAILSV1 = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=424,
-  serialized_end=503,
+  serialized_end=522,
 )
 
 _INTEGRATIONV1.fields_by_name['integration_type'].enum_type = _INTEGRATIONTYPEV1

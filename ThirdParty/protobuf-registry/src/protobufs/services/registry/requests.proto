@@ -67,27 +67,8 @@ import "protobufs/services/profile/actions/remove_tags.proto";
 
 import "protobufs/services/search/actions/search.proto";
 
-import "protobufs/services/feed/actions/get_profile_feed.proto";
-import "protobufs/services/feed/actions/get_organization_feed.proto";
-
 import "protobufs/services/media/actions/start_image_upload.proto";
 import "protobufs/services/media/actions/complete_image_upload.proto";
-
-import "protobufs/services/note/actions/create_note.proto";
-import "protobufs/services/note/actions/get_notes.proto";
-import "protobufs/services/note/actions/delete_note.proto";
-import "protobufs/services/note/actions/update_note.proto";
-
-import "protobufs/services/resume/actions/bulk_create_educations.proto";
-import "protobufs/services/resume/actions/bulk_create_positions.proto";
-import "protobufs/services/resume/actions/create_company.proto";
-import "protobufs/services/resume/actions/get_resume.proto";
-import "protobufs/services/resume/actions/bulk_create_companies.proto";
-
-import "protobufs/services/appreciation/actions/create_appreciation.proto";
-import "protobufs/services/appreciation/actions/get_appreciation.proto";
-import "protobufs/services/appreciation/actions/delete_appreciation.proto";
-import "protobufs/services/appreciation/actions/update_appreciation.proto";
 
 import "protobufs/services/sync/actions/start_sync.proto";
 import "protobufs/services/sync/actions/sync.proto";
@@ -192,45 +173,10 @@ message Search {
     }
 }
 
-message Feed {
-    extend soa.ActionRequestParamsV1 {
-        optional services.feed.actions.get_profile_feed.RequestV1 get_profile_feed = 500;
-        optional services.feed.actions.get_organization_feed.RequestV1 get_organization_feed = 501;
-    }
-}
-
 message Media {
     extend soa.ActionRequestParamsV1 {
         optional services.media.actions.start_image_upload.RequestV1 start_image_upload = 600;
         optional services.media.actions.complete_image_upload.RequestV1 complete_image_upload = 601;
-    }
-}
-
-message Note {
-    extend soa.ActionRequestParamsV1 {
-        optional services.note.actions.create_note.RequestV1 create_note = 700;
-        optional services.note.actions.get_notes.RequestV1 get_notes = 701;
-        optional services.note.actions.delete_note.RequestV1 delete_note = 702;
-        optional services.note.actions.update_note.RequestV1 update_note = 703;
-    }
-}
-
-message Resume {
-    extend soa.ActionRequestParamsV1 {
-        optional services.resume.actions.bulk_create_educations.RequestV1 bulk_create_educations = 800;
-        optional services.resume.actions.bulk_create_positions.RequestV1 bulk_create_positions = 801;
-        optional services.resume.actions.create_company.RequestV1 create_company = 802;
-        optional services.resume.actions.get_resume.RequestV1 get_resume = 803;
-        optional services.resume.actions.bulk_create_companies.RequestV1 bulk_create_companies = 804;
-    }
-}
-
-message Appreciation {
-    extend soa.ActionRequestParamsV1 {
-        optional services.appreciation.actions.create_appreciation.RequestV1 create_appreciation = 900;
-        optional services.appreciation.actions.get_appreciation.RequestV1 get_appreciation = 901;
-        optional services.appreciation.actions.delete_appreciation.RequestV1 delete_appreciation = 902;
-        optional services.appreciation.actions.update_appreciation.RequestV1 update_appreciation = 903;
     }
 }
 

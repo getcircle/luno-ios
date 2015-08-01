@@ -300,16 +300,6 @@ public final class Ext_responses {
       .setName("services.registry.responses.search")
       .setTag(400)
       .buildOptional();
-  public static final Extension<ActionResultV1 , com.rhlabs.protobufs.services.feed.actions.get_profile_feed.GetProfileFeedResponseV1> get_profile_feed = Extension
-      .messageExtending(com.rhlabs.protobufs.services.feed.actions.get_profile_feed.GetProfileFeedResponseV1.class, ActionResultV1.class)
-      .setName("services.registry.responses.get_profile_feed")
-      .setTag(500)
-      .buildOptional();
-  public static final Extension<ActionResultV1 , com.rhlabs.protobufs.services.feed.actions.get_organization_feed.GetOrganizationFeedResponseV1> get_organization_feed = Extension
-      .messageExtending(com.rhlabs.protobufs.services.feed.actions.get_organization_feed.GetOrganizationFeedResponseV1.class, ActionResultV1.class)
-      .setName("services.registry.responses.get_organization_feed")
-      .setTag(501)
-      .buildOptional();
   public static final Extension<ActionResultV1 , com.rhlabs.protobufs.services.media.actions.start_image_upload.StartImageUploadResponseV1> start_image_upload = Extension
       .messageExtending(com.rhlabs.protobufs.services.media.actions.start_image_upload.StartImageUploadResponseV1.class, ActionResultV1.class)
       .setName("services.registry.responses.start_image_upload")
@@ -319,71 +309,6 @@ public final class Ext_responses {
       .messageExtending(com.rhlabs.protobufs.services.media.actions.complete_image_upload.CompleteImageUploadResponseV1.class, ActionResultV1.class)
       .setName("services.registry.responses.complete_image_upload")
       .setTag(601)
-      .buildOptional();
-  public static final Extension<ActionResultV1 , com.rhlabs.protobufs.services.note.actions.create_note.CreateNoteResponseV1> create_note = Extension
-      .messageExtending(com.rhlabs.protobufs.services.note.actions.create_note.CreateNoteResponseV1.class, ActionResultV1.class)
-      .setName("services.registry.responses.create_note")
-      .setTag(700)
-      .buildOptional();
-  public static final Extension<ActionResultV1 , com.rhlabs.protobufs.services.note.actions.get_notes.GetNotesResponseV1> get_notes = Extension
-      .messageExtending(com.rhlabs.protobufs.services.note.actions.get_notes.GetNotesResponseV1.class, ActionResultV1.class)
-      .setName("services.registry.responses.get_notes")
-      .setTag(701)
-      .buildOptional();
-  public static final Extension<ActionResultV1 , com.rhlabs.protobufs.services.note.actions.delete_note.DeleteNoteResponseV1> delete_note = Extension
-      .messageExtending(com.rhlabs.protobufs.services.note.actions.delete_note.DeleteNoteResponseV1.class, ActionResultV1.class)
-      .setName("services.registry.responses.delete_note")
-      .setTag(702)
-      .buildOptional();
-  public static final Extension<ActionResultV1 , com.rhlabs.protobufs.services.note.actions.update_note.UpdateNoteResponseV1> update_note = Extension
-      .messageExtending(com.rhlabs.protobufs.services.note.actions.update_note.UpdateNoteResponseV1.class, ActionResultV1.class)
-      .setName("services.registry.responses.update_note")
-      .setTag(703)
-      .buildOptional();
-  public static final Extension<ActionResultV1 , com.rhlabs.protobufs.services.resume.actions.bulk_create_educations.BulkCreateEducationsResponseV1> bulk_create_educations = Extension
-      .messageExtending(com.rhlabs.protobufs.services.resume.actions.bulk_create_educations.BulkCreateEducationsResponseV1.class, ActionResultV1.class)
-      .setName("services.registry.responses.bulk_create_educations")
-      .setTag(800)
-      .buildOptional();
-  public static final Extension<ActionResultV1 , com.rhlabs.protobufs.services.resume.actions.bulk_create_positions.BulkCreatePositionsResponseV1> bulk_create_positions = Extension
-      .messageExtending(com.rhlabs.protobufs.services.resume.actions.bulk_create_positions.BulkCreatePositionsResponseV1.class, ActionResultV1.class)
-      .setName("services.registry.responses.bulk_create_positions")
-      .setTag(801)
-      .buildOptional();
-  public static final Extension<ActionResultV1 , com.rhlabs.protobufs.services.resume.actions.create_company.CreateCompanyResponseV1> create_company = Extension
-      .messageExtending(com.rhlabs.protobufs.services.resume.actions.create_company.CreateCompanyResponseV1.class, ActionResultV1.class)
-      .setName("services.registry.responses.create_company")
-      .setTag(802)
-      .buildOptional();
-  public static final Extension<ActionResultV1 , com.rhlabs.protobufs.services.resume.actions.get_resume.GetResumeResponseV1> get_resume = Extension
-      .messageExtending(com.rhlabs.protobufs.services.resume.actions.get_resume.GetResumeResponseV1.class, ActionResultV1.class)
-      .setName("services.registry.responses.get_resume")
-      .setTag(803)
-      .buildOptional();
-  public static final Extension<ActionResultV1 , com.rhlabs.protobufs.services.resume.actions.bulk_create_companies.BulkCreateCompaniesResponseV1> bulk_create_companies = Extension
-      .messageExtending(com.rhlabs.protobufs.services.resume.actions.bulk_create_companies.BulkCreateCompaniesResponseV1.class, ActionResultV1.class)
-      .setName("services.registry.responses.bulk_create_companies")
-      .setTag(804)
-      .buildOptional();
-  public static final Extension<ActionResultV1 , com.rhlabs.protobufs.services.appreciation.actions.create_appreciation.CreateAppreciationResponseV1> create_appreciation = Extension
-      .messageExtending(com.rhlabs.protobufs.services.appreciation.actions.create_appreciation.CreateAppreciationResponseV1.class, ActionResultV1.class)
-      .setName("services.registry.responses.create_appreciation")
-      .setTag(900)
-      .buildOptional();
-  public static final Extension<ActionResultV1 , com.rhlabs.protobufs.services.appreciation.actions.get_appreciation.GetAppreciationResponseV1> get_appreciation = Extension
-      .messageExtending(com.rhlabs.protobufs.services.appreciation.actions.get_appreciation.GetAppreciationResponseV1.class, ActionResultV1.class)
-      .setName("services.registry.responses.get_appreciation")
-      .setTag(901)
-      .buildOptional();
-  public static final Extension<ActionResultV1 , com.rhlabs.protobufs.services.appreciation.actions.delete_appreciation.DeleteAppreciationResponseV1> delete_appreciation = Extension
-      .messageExtending(com.rhlabs.protobufs.services.appreciation.actions.delete_appreciation.DeleteAppreciationResponseV1.class, ActionResultV1.class)
-      .setName("services.registry.responses.delete_appreciation")
-      .setTag(902)
-      .buildOptional();
-  public static final Extension<ActionResultV1 , com.rhlabs.protobufs.services.appreciation.actions.update_appreciation.UpdateAppreciationResponseV1> update_appreciation = Extension
-      .messageExtending(com.rhlabs.protobufs.services.appreciation.actions.update_appreciation.UpdateAppreciationResponseV1.class, ActionResultV1.class)
-      .setName("services.registry.responses.update_appreciation")
-      .setTag(903)
       .buildOptional();
   public static final Extension<ActionResultV1 , com.rhlabs.protobufs.services.sync.actions.start_sync.StartSyncResponseV1> start_sync = Extension
       .messageExtending(com.rhlabs.protobufs.services.sync.actions.start_sync.StartSyncResponseV1.class, ActionResultV1.class)
