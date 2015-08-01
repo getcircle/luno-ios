@@ -100,7 +100,11 @@ class SearchViewController: UIViewController,
     
     private func configureView() {
         view.backgroundColor = UIColor.appViewBackgroundColor()
-        navigationItem.title = "Search"
+        setNavigationTitle(false)
+    }
+    
+    private func setNavigationTitle(isSearchActive: Bool) {
+        navigationItem.title = isSearchActive ? "Search" : "Home"
     }
     
     private func configureLaunchScreenView() {
@@ -255,6 +259,7 @@ class SearchViewController: UIViewController,
         wasErrorViewVisible = errorMessageView.isVisible()
         errorMessageView.hide()
         search()
+        setNavigationTitle(true)
     }
     
     // MARK: - SearchHeaderViewDelegate
@@ -268,6 +273,7 @@ class SearchViewController: UIViewController,
         if wasErrorViewVisible && dataSource.cards.count <= 1 {
             errorMessageView.show()
         }
+        setNavigationTitle(false)
     }
     
     // MARK: Search Targets
