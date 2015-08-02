@@ -107,19 +107,15 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
         if let sourceViewController = getActiveViewController(viewController) {
             
             if sourceViewController.isViewLoaded() && sourceViewController.view.window == nil {
-                if sourceViewController is HomeViewController {
-                    (sourceViewController as! HomeViewController).loadData()
-                } else if sourceViewController is CurrentUserProfileDetailViewController {
+                if sourceViewController is CurrentUserProfileDetailViewController {
                     (sourceViewController as! CurrentUserProfileDetailViewController).loadData()
-                } else if sourceViewController is OrganizationDetailViewController {
-                    (sourceViewController as! OrganizationDetailViewController).loadData()
                 }
                 
                 // Activate Search
-                if selectedIndex == 0 && sourceViewController is HomeViewController {
-                    let homeVC = sourceViewController as! HomeViewController
-                    if homeVC.view.window != nil {
-                        homeVC.activateSearch(false)
+                if selectedIndex == 0 && sourceViewController is SearchViewController {
+                    let searchVC = sourceViewController as! SearchViewController
+                    if searchVC.view.window != nil {
+                        searchVC.activateSearch(false)
                     }
                 }
             }
@@ -144,12 +140,8 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
         var source: Tracker.Source
         if sourceViewController! is SearchViewController {
             source = .Search
-        } else if sourceViewController! is HomeViewController {
-            source = .Home
         } else if sourceViewController! is CurrentUserProfileDetailViewController {
             source = .UserProfile
-        } else if sourceViewController! is OrganizationDetailViewController {
-            source = .Organization
         } else {
             assert(false, "Unhandled TabBar Source View Controller")
             source = .Unknown
@@ -158,12 +150,8 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
         var destination: Tracker.Source
         if destinationViewController! is SearchViewController {
             destination = .Search
-        } else if destinationViewController! is HomeViewController {
-            destination = .Home
         } else if destinationViewController! is CurrentUserProfileDetailViewController {
             destination = .UserProfile
-        } else if destinationViewController! is OrganizationDetailViewController {
-            destination = .Organization
         } else {
             assert(false, "Unhandled TabBar Destination View Controller")
             destination = .Unknown

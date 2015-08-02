@@ -23,7 +23,6 @@ class ProfileDetailDataSource: CardDataSource {
     private(set) var location: Services.Organization.Containers.LocationV1?
     private(set) var manager: Services.Profile.Containers.ProfileV1?
     private(set) var team: Services.Organization.Containers.TeamV1?
-    private(set) var resume: Services.Resume.Containers.ResumeV1?
 
     private var supportGoogleGroups = false
 
@@ -50,7 +49,7 @@ class ProfileDetailDataSource: CardDataSource {
         
         dispatch_group_enter(actionsGroup)
         Services.Profile.Actions.getExtendedProfile(profile.id) {
-            (profile, manager, team, address, identities, resume, location,  error) -> Void in
+            (profile, manager, team, address, identities, location,  error) -> Void in
             
             if let error = error {
                 storedError = error
@@ -60,7 +59,6 @@ class ProfileDetailDataSource: CardDataSource {
                 self.team = team
                 self.address = address
                 self.identities = identities
-                self.resume = resume
                 self.location = location
             }
             dispatch_group_leave(actionsGroup)
@@ -99,8 +97,6 @@ class ProfileDetailDataSource: CardDataSource {
         sections.append(getManagerSection())
         sections.extend(getOfficeSections())
         sections.append(getBasicInfoSection())
-        sections.append(getWorkExperienceSection())
-        sections.append(getEducationSection())
         
         if self.supportGoogleGroups {
             sections.append(getGroupsSection())
@@ -249,32 +245,6 @@ class ProfileDetailDataSource: CardDataSource {
         ]
         return Section(title: AppStrings.ProfileSectionManagerTeamTitle, items: sectionItems, cardType: .Profiles, addCardHeader: true)
     }
-
-    private func getEducationSection() -> Section {
-        let sectionItems = [
-            SectionItem(
-                title: AppStrings.ProfileSectionEducationTitle,
-                container: "education",
-                containerKey: "name",
-                contentType: .Education,
-                image: nil
-            )
-        ]
-        return Section(title: AppStrings.ProfileSectionEducationTitle, items: sectionItems, cardType: .Education, addCardHeader: true)
-    }
-    
-    private func getWorkExperienceSection() -> Section {
-        let sectionItems = [
-            SectionItem(
-                title: AppStrings.ProfileSectionExperienceTitle,
-                container: "position",
-                containerKey: "title",
-                contentType: .Position,
-                image: nil
-            )
-        ]
-        return Section(title: AppStrings.ProfileSectionExperienceTitle, items: sectionItems, cardType: .Position, addCardHeader: true)
-    }
     
     // MARK: - Populate Data
     
@@ -321,16 +291,12 @@ class ProfileDetailDataSource: CardDataSource {
         switch card.type {
         case .Banners:
             addBannerItemToCard(item, card: card)
-        case .Education:
-            addEducationItemToCard(item, card: card)
         case .Group:
             addGroupItemsToCard(item, card: card)
         case .KeyValue:
             addKeyValueItemToCard(item, card: card)
         case .Profiles:
             addOfficeTeamManagerItemToCard(item, card: card)
-        case .Position:
-            addPositionItemToCard(item, card: card)
         case .QuickActions:
             addQuickActionsItemToCard(item, card: card)
         case .SocialConnectCTAs:
@@ -430,24 +396,6 @@ class ProfileDetailDataSource: CardDataSource {
         ]
 
         card.addContent(content: [dataDict])
-    }
-    
-    private func addEducationItemToCard(item: SectionItem, card: Card) {
-        if let resume = resume {
-            card.addContent(content: resume.educations as [AnyObject], maxVisibleItems: numberOfEducationItemsVisibleInitially)
-            if resume.educations.count > numberOfEducationItemsVisibleInitially {
-                card.addDefaultFooter()
-            }
-        }
-    }
-    
-    private func addPositionItemToCard(item: SectionItem, card: Card) {
-        if let resume = resume {
-            card.addContent(content: resume.positions as [AnyObject], maxVisibleItems: numberOfExperienceItemsVisibleInitially)
-            if resume.positions.count > numberOfExperienceItemsVisibleInitially {
-                card.addDefaultFooter()
-            }
-        }
     }
     
     private func addBannerItemToCard(item: SectionItem, card: Card) {
