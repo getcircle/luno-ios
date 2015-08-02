@@ -24,6 +24,7 @@ public func == (lhs: Services.Organization.Containers.Integration.GoogleGroupDet
   fieldCheck = fieldCheck && (lhs.hasVersion == rhs.hasVersion) && (!lhs.hasVersion || lhs.version == rhs.version)
   fieldCheck = fieldCheck && (lhs.hasAdminEmail == rhs.hasAdminEmail) && (!lhs.hasAdminEmail || lhs.adminEmail == rhs.adminEmail)
   fieldCheck = fieldCheck && (lhs.scopes == rhs.scopes)
+  fieldCheck = fieldCheck && (lhs.hasReadOnly == rhs.hasReadOnly) && (!lhs.hasReadOnly || lhs.readOnly == rhs.readOnly)
   return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
 }
 
@@ -501,6 +502,7 @@ public extension Services.Organization.Containers.Integration {
            switch key {
            case "version": return version
            case "adminEmail": return adminEmail
+           case "readOnly": return readOnly
            default: return nil
            }
     }
@@ -510,6 +512,9 @@ public extension Services.Organization.Containers.Integration {
 
     public private(set) var hasAdminEmail:Bool = false
     public private(set) var adminEmail:String = ""
+
+    public private(set) var hasReadOnly:Bool = false
+    public private(set) var readOnly:Bool = false
 
     public private(set) var scopes:Array<String> = Array<String>()
     required public init() {
@@ -529,6 +534,9 @@ public extension Services.Organization.Containers.Integration {
         for oneValuescopes in scopes {
           output.writeString(3, value:oneValuescopes)
         }
+      }
+      if hasReadOnly {
+        output.writeBool(4, value:readOnly)
       }
       unknownFields.writeToCodedOutputStream(output)
     }
@@ -551,6 +559,9 @@ public extension Services.Organization.Containers.Integration {
       }
       serialize_size += dataSizeScopes
       serialize_size += 1 * Int32(scopes.count)
+      if hasReadOnly {
+        serialize_size += readOnly.computeBoolSize(4)
+      }
       serialize_size += unknownFields.serializedSize()
       memoizedSerializedSize = serialize_size
       return serialize_size
@@ -603,6 +614,9 @@ public extension Services.Organization.Containers.Integration {
           output += "\(indent) scopes[\(scopesElementIndex)]: \(oneValuescopes)\n"
           scopesElementIndex++
       }
+      if hasReadOnly {
+        output += "\(indent) readOnly: \(readOnly) \n"
+      }
       unknownFields.writeDescriptionTo(&output, indent:indent)
     }
     override public var hashValue:Int {
@@ -616,6 +630,9 @@ public extension Services.Organization.Containers.Integration {
             }
             for oneValuescopes in scopes {
                 hashCode = (hashCode &* 31) &+ oneValuescopes.hashValue
+            }
+            if hasReadOnly {
+               hashCode = (hashCode &* 31) &+ readOnly.hashValue
             }
             hashCode = (hashCode &* 31) &+  unknownFields.hashValue
             return hashCode
@@ -707,6 +724,29 @@ public extension Services.Organization.Containers.Integration {
        builderResult.scopes.removeAll(keepCapacity: false)
        return self
     }
+    public var hasReadOnly:Bool {
+         get {
+              return builderResult.hasReadOnly
+         }
+    }
+    public var readOnly:Bool {
+         get {
+              return builderResult.readOnly
+         }
+         set (value) {
+             builderResult.hasReadOnly = true
+             builderResult.readOnly = value
+         }
+    }
+    public func setReadOnly(value:Bool)-> Services.Organization.Containers.Integration.GoogleGroupDetailsV1Builder {
+      self.readOnly = value
+      return self
+    }
+    public func clearReadOnly() -> Services.Organization.Containers.Integration.GoogleGroupDetailsV1Builder{
+         builderResult.hasReadOnly = false
+         builderResult.readOnly = false
+         return self
+    }
     override public var internalGetResult:GeneratedMessage {
          get {
             return builderResult
@@ -740,6 +780,9 @@ public extension Services.Organization.Containers.Integration {
       if !other.scopes.isEmpty {
           builderResult.scopes += other.scopes
       }
+      if other.hasReadOnly {
+           readOnly = other.readOnly
+      }
       mergeUnknownFields(other.unknownFields)
       return self
     }
@@ -763,6 +806,9 @@ public extension Services.Organization.Containers.Integration {
 
         case 26 :
           scopes += [input.readString()]
+
+        case 32 :
+          readOnly = input.readBool()
 
         default:
           if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {

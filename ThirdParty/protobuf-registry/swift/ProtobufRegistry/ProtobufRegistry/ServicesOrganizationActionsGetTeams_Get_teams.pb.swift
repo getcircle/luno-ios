@@ -11,6 +11,7 @@ public func == (lhs: Services.Organization.Actions.GetTeams.RequestV1, rhs: Serv
   fieldCheck = fieldCheck && (lhs.hasVersion == rhs.hasVersion) && (!lhs.hasVersion || lhs.version == rhs.version)
   fieldCheck = fieldCheck && (lhs.hasOrganizationId == rhs.hasOrganizationId) && (!lhs.hasOrganizationId || lhs.organizationId == rhs.organizationId)
   fieldCheck = fieldCheck && (lhs.hasLocationId == rhs.hasLocationId) && (!lhs.hasLocationId || lhs.locationId == rhs.locationId)
+  fieldCheck = fieldCheck && (lhs.hasTopLevelOnly == rhs.hasTopLevelOnly) && (!lhs.hasTopLevelOnly || lhs.topLevelOnly == rhs.topLevelOnly)
   return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
 }
 
@@ -49,6 +50,7 @@ public extension Services.Organization.Actions.GetTeams {
            case "version": return version
            case "organizationId": return organizationId
            case "locationId": return locationId
+           case "topLevelOnly": return topLevelOnly
            default: return nil
            }
     }
@@ -61,6 +63,9 @@ public extension Services.Organization.Actions.GetTeams {
 
     public private(set) var hasLocationId:Bool = false
     public private(set) var locationId:String = ""
+
+    public private(set) var hasTopLevelOnly:Bool = false
+    public private(set) var topLevelOnly:Bool = false
 
     required public init() {
          super.init()
@@ -77,6 +82,9 @@ public extension Services.Organization.Actions.GetTeams {
       }
       if hasLocationId {
         output.writeString(3, value:locationId)
+      }
+      if hasTopLevelOnly {
+        output.writeBool(4, value:topLevelOnly)
       }
       unknownFields.writeToCodedOutputStream(output)
     }
@@ -95,6 +103,9 @@ public extension Services.Organization.Actions.GetTeams {
       }
       if hasLocationId {
         serialize_size += locationId.computeStringSize(3)
+      }
+      if hasTopLevelOnly {
+        serialize_size += topLevelOnly.computeBoolSize(4)
       }
       serialize_size += unknownFields.serializedSize()
       memoizedSerializedSize = serialize_size
@@ -146,6 +157,9 @@ public extension Services.Organization.Actions.GetTeams {
       if hasLocationId {
         output += "\(indent) locationId: \(locationId) \n"
       }
+      if hasTopLevelOnly {
+        output += "\(indent) topLevelOnly: \(topLevelOnly) \n"
+      }
       unknownFields.writeDescriptionTo(&output, indent:indent)
     }
     override public var hashValue:Int {
@@ -159,6 +173,9 @@ public extension Services.Organization.Actions.GetTeams {
             }
             if hasLocationId {
                hashCode = (hashCode &* 31) &+ locationId.hashValue
+            }
+            if hasTopLevelOnly {
+               hashCode = (hashCode &* 31) &+ topLevelOnly.hashValue
             }
             hashCode = (hashCode &* 31) &+  unknownFields.hashValue
             return hashCode
@@ -257,6 +274,29 @@ public extension Services.Organization.Actions.GetTeams {
          builderResult.locationId = ""
          return self
     }
+    public var hasTopLevelOnly:Bool {
+         get {
+              return builderResult.hasTopLevelOnly
+         }
+    }
+    public var topLevelOnly:Bool {
+         get {
+              return builderResult.topLevelOnly
+         }
+         set (value) {
+             builderResult.hasTopLevelOnly = true
+             builderResult.topLevelOnly = value
+         }
+    }
+    public func setTopLevelOnly(value:Bool)-> Services.Organization.Actions.GetTeams.RequestV1Builder {
+      self.topLevelOnly = value
+      return self
+    }
+    public func clearTopLevelOnly() -> Services.Organization.Actions.GetTeams.RequestV1Builder{
+         builderResult.hasTopLevelOnly = false
+         builderResult.topLevelOnly = false
+         return self
+    }
     override public var internalGetResult:GeneratedMessage {
          get {
             return builderResult
@@ -290,6 +330,9 @@ public extension Services.Organization.Actions.GetTeams {
       if other.hasLocationId {
            locationId = other.locationId
       }
+      if other.hasTopLevelOnly {
+           topLevelOnly = other.topLevelOnly
+      }
       mergeUnknownFields(other.unknownFields)
       return self
     }
@@ -313,6 +356,9 @@ public extension Services.Organization.Actions.GetTeams {
 
         case 26 :
           locationId = input.readString()
+
+        case 32 :
+          topLevelOnly = input.readBool()
 
         default:
           if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {

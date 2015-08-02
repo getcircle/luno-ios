@@ -1,6 +1,7 @@
 package services.search.actions.search;
 
 import "protobufs/services/search/containers.proto";
+import "protobufs/services/search/containers/search.proto";
 
 // GENERATED OPTIONS FOR: JAVA
 option java_package = "com.rhlabs.protobufs.services.search.actions.search";
@@ -8,6 +9,7 @@ option java_package = "com.rhlabs.protobufs.services.search.actions.search";
 message RequestV1 {
     optional uint32 version = 1 [default = 1];
     optional string query = 2;
+    optional services.search.containers.search.CategoryV1 category = 3;
 }
 
 message ResponseV1 {

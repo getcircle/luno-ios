@@ -5,10 +5,13 @@ package com.rhlabs.protobufs.services.profile.actions.get_tags;
 import com.rhlabs.protobufs.services.profile.containers.TagV1;
 import com.squareup.wire.Message;
 import com.squareup.wire.ProtoField;
+import java.util.Collections;
+import java.util.List;
 
 import static com.squareup.wire.Message.Datatype.ENUM;
 import static com.squareup.wire.Message.Datatype.STRING;
 import static com.squareup.wire.Message.Datatype.UINT32;
+import static com.squareup.wire.Message.Label.REPEATED;
 
 public final class GetTagsRequestV1 extends Message {
   private static final long serialVersionUID = 0L;
@@ -17,6 +20,7 @@ public final class GetTagsRequestV1 extends Message {
   public static final String DEFAULT_PROFILE_ID = "";
   public static final String DEFAULT_ORGANIZATION_ID = "";
   public static final TagV1.TagTypeV1 DEFAULT_TAG_TYPE = TagV1.TagTypeV1.SKILL;
+  public static final List<String> DEFAULT_IDS = Collections.emptyList();
 
   @ProtoField(tag = 1, type = UINT32)
   public final Integer version;
@@ -30,15 +34,19 @@ public final class GetTagsRequestV1 extends Message {
   @ProtoField(tag = 4, type = ENUM)
   public final TagV1.TagTypeV1 tag_type;
 
-  public GetTagsRequestV1(Integer version, String profile_id, String organization_id, TagV1.TagTypeV1 tag_type) {
+  @ProtoField(tag = 5, type = STRING, label = REPEATED)
+  public final List<String> ids;
+
+  public GetTagsRequestV1(Integer version, String profile_id, String organization_id, TagV1.TagTypeV1 tag_type, List<String> ids) {
     this.version = version;
     this.profile_id = profile_id;
     this.organization_id = organization_id;
     this.tag_type = tag_type;
+    this.ids = immutableCopyOf(ids);
   }
 
   private GetTagsRequestV1(Builder builder) {
-    this(builder.version, builder.profile_id, builder.organization_id, builder.tag_type);
+    this(builder.version, builder.profile_id, builder.organization_id, builder.tag_type, builder.ids);
     setBuilder(builder);
   }
 
@@ -50,7 +58,8 @@ public final class GetTagsRequestV1 extends Message {
     return equals(version, o.version)
         && equals(profile_id, o.profile_id)
         && equals(organization_id, o.organization_id)
-        && equals(tag_type, o.tag_type);
+        && equals(tag_type, o.tag_type)
+        && equals(ids, o.ids);
   }
 
   @Override
@@ -61,6 +70,7 @@ public final class GetTagsRequestV1 extends Message {
       result = result * 37 + (profile_id != null ? profile_id.hashCode() : 0);
       result = result * 37 + (organization_id != null ? organization_id.hashCode() : 0);
       result = result * 37 + (tag_type != null ? tag_type.hashCode() : 0);
+      result = result * 37 + (ids != null ? ids.hashCode() : 1);
       hashCode = result;
     }
     return result;
@@ -72,6 +82,7 @@ public final class GetTagsRequestV1 extends Message {
     public String profile_id;
     public String organization_id;
     public TagV1.TagTypeV1 tag_type;
+    public List<String> ids;
 
     public Builder() {
     }
@@ -83,6 +94,7 @@ public final class GetTagsRequestV1 extends Message {
       this.profile_id = message.profile_id;
       this.organization_id = message.organization_id;
       this.tag_type = message.tag_type;
+      this.ids = copyOf(message.ids);
     }
 
     public Builder version(Integer version) {
@@ -102,6 +114,11 @@ public final class GetTagsRequestV1 extends Message {
 
     public Builder tag_type(TagV1.TagTypeV1 tag_type) {
       this.tag_type = tag_type;
+      return this;
+    }
+
+    public Builder ids(List<String> ids) {
+      this.ids = checkForNulls(ids);
       return this;
     }
 

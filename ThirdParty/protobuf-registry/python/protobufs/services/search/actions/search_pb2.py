@@ -14,14 +14,15 @@ _sym_db = _symbol_database.Default()
 
 
 import protobufs.services.search.containers_pb2
+import protobufs.services.search.containers.search_pb2
 
 
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='protobufs/services/search/actions/search.proto',
   package='services.search.actions.search',
-  serialized_pb=_b('\n.protobufs/services/search/actions/search.proto\x12\x1eservices.search.actions.search\x1a*protobufs/services/search/containers.proto\".\n\tRequestV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\r\n\x05query\x18\x02 \x01(\t\"^\n\nResponseV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12<\n\x07results\x18\x02 \x03(\x0b\x32+.services.search.containers.SearchResultsV1B5\n3com.rhlabs.protobufs.services.search.actions.search')
+  serialized_pb=_b('\n.protobufs/services/search/actions/search.proto\x12\x1eservices.search.actions.search\x1a*protobufs/services/search/containers.proto\x1a\x31protobufs/services/search/containers/search.proto\"o\n\tRequestV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\r\n\x05query\x18\x02 \x01(\t\x12?\n\x08\x63\x61tegory\x18\x03 \x01(\x0e\x32-.services.search.containers.search.CategoryV1\"^\n\nResponseV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12<\n\x07results\x18\x02 \x03(\x0b\x32+.services.search.containers.SearchResultsV1B5\n3com.rhlabs.protobufs.services.search.actions.search')
   ,
-  dependencies=[protobufs.services.search.containers_pb2.DESCRIPTOR,])
+  dependencies=[protobufs.services.search.containers_pb2.DESCRIPTOR,protobufs.services.search.containers.search_pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 
@@ -48,6 +49,13 @@ _REQUESTV1 = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
+    _descriptor.FieldDescriptor(
+      name='category', full_name='services.search.actions.search.RequestV1.category', index=2,
+      number=3, type=14, cpp_type=8, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
   ],
   extensions=[
   ],
@@ -59,8 +67,8 @@ _REQUESTV1 = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=126,
-  serialized_end=172,
+  serialized_start=177,
+  serialized_end=288,
 )
 
 
@@ -96,10 +104,11 @@ _RESPONSEV1 = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=174,
-  serialized_end=268,
+  serialized_start=290,
+  serialized_end=384,
 )
 
+_REQUESTV1.fields_by_name['category'].enum_type = protobufs.services.search.containers.search_pb2._CATEGORYV1
 _RESPONSEV1.fields_by_name['results'].message_type = protobufs.services.search.containers_pb2._SEARCHRESULTSV1
 DESCRIPTOR.message_types_by_name['RequestV1'] = _REQUESTV1
 DESCRIPTOR.message_types_by_name['ResponseV1'] = _RESPONSEV1

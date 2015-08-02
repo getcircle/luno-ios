@@ -10,6 +10,7 @@ message RequestV1 {
     optional string profile_id = 2;
     optional string organization_id = 3;
     optional services.profile.containers.TagV1.TagTypeV1 tag_type = 4;
+    repeated string ids = 5;
 }
 
 message ResponseV1 {

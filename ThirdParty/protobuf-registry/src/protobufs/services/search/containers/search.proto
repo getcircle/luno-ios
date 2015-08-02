@@ -12,6 +12,7 @@ enum CategoryV1 {
     GROUPS = 5;
 }
 
+// XXX this object should be deleted
 enum AttributeV1 {
     LOCATION_ID = 0;
     TEAM_ID = 1;

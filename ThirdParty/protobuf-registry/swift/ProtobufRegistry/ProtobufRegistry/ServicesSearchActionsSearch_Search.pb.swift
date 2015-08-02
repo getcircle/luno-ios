@@ -10,6 +10,7 @@ public func == (lhs: Services.Search.Actions.Search.RequestV1, rhs: Services.Sea
   var fieldCheck:Bool = (lhs.hashValue == rhs.hashValue)
   fieldCheck = fieldCheck && (lhs.hasVersion == rhs.hasVersion) && (!lhs.hasVersion || lhs.version == rhs.version)
   fieldCheck = fieldCheck && (lhs.hasQuery == rhs.hasQuery) && (!lhs.hasQuery || lhs.query == rhs.query)
+  fieldCheck = fieldCheck && (lhs.hasCategory == rhs.hasCategory) && (!lhs.hasCategory || lhs.category == rhs.category)
   return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
 }
 
@@ -37,6 +38,7 @@ public extension Services.Search.Actions.Search {
       extensionRegistry = ExtensionRegistry()
       registerAllExtensions(extensionRegistry)
       Services.Search.Containers.ContainersRoot.sharedInstance.registerAllExtensions(extensionRegistry)
+      Services.Search.Containers.Search.SearchRoot.sharedInstance.registerAllExtensions(extensionRegistry)
     }
     public func registerAllExtensions(registry:ExtensionRegistry) {
     }
@@ -47,6 +49,7 @@ public extension Services.Search.Actions.Search {
            switch key {
            case "version": return version
            case "query": return query
+           case "category": return self.category
            default: return nil
            }
     }
@@ -57,6 +60,8 @@ public extension Services.Search.Actions.Search {
     public private(set) var hasQuery:Bool = false
     public private(set) var query:String = ""
 
+    public private(set) var category:Services.Search.Containers.Search.CategoryV1 = Services.Search.Containers.Search.CategoryV1.Profiles
+    public private(set) var hasCategory:Bool = false
     required public init() {
          super.init()
     }
@@ -69,6 +74,9 @@ public extension Services.Search.Actions.Search {
       }
       if hasQuery {
         output.writeString(2, value:query)
+      }
+      if hasCategory {
+        output.writeEnum(3, value:category.rawValue)
       }
       unknownFields.writeToCodedOutputStream(output)
     }
@@ -84,6 +92,9 @@ public extension Services.Search.Actions.Search {
       }
       if hasQuery {
         serialize_size += query.computeStringSize(2)
+      }
+      if (hasCategory) {
+        serialize_size += category.rawValue.computeEnumSize(3)
       }
       serialize_size += unknownFields.serializedSize()
       memoizedSerializedSize = serialize_size
@@ -132,6 +143,9 @@ public extension Services.Search.Actions.Search {
       if hasQuery {
         output += "\(indent) query: \(query) \n"
       }
+      if (hasCategory) {
+        output += "\(indent) category: \(category.rawValue)\n"
+      }
       unknownFields.writeDescriptionTo(&output, indent:indent)
     }
     override public var hashValue:Int {
@@ -142,6 +156,9 @@ public extension Services.Search.Actions.Search {
             }
             if hasQuery {
                hashCode = (hashCode &* 31) &+ query.hashValue
+            }
+            if hasCategory {
+               hashCode = (hashCode &* 31) &+ Int(category.rawValue)
             }
             hashCode = (hashCode &* 31) &+  unknownFields.hashValue
             return hashCode
@@ -217,6 +234,29 @@ public extension Services.Search.Actions.Search {
          builderResult.query = ""
          return self
     }
+      public var hasCategory:Bool{
+          get {
+              return builderResult.hasCategory
+          }
+      }
+      public var category:Services.Search.Containers.Search.CategoryV1 {
+          get {
+              return builderResult.category
+          }
+          set (value) {
+              builderResult.hasCategory = true
+              builderResult.category = value
+          }
+      }
+      public func setCategory(value:Services.Search.Containers.Search.CategoryV1)-> Services.Search.Actions.Search.RequestV1Builder {
+        self.category = value
+        return self
+      }
+      public func clearCategory() -> Services.Search.Actions.Search.RequestV1Builder {
+         builderResult.hasCategory = false
+         builderResult.category = .Profiles
+         return self
+      }
     override public var internalGetResult:GeneratedMessage {
          get {
             return builderResult
@@ -247,6 +287,9 @@ public extension Services.Search.Actions.Search {
       if other.hasQuery {
            query = other.query
       }
+      if other.hasCategory {
+           category = other.category
+      }
       mergeUnknownFields(other.unknownFields)
       return self
     }
@@ -267,6 +310,14 @@ public extension Services.Search.Actions.Search {
 
         case 18 :
           query = input.readString()
+
+        case 24 :
+          let valueIntcategory = input.readEnum()
+          if let enumscategory = Services.Search.Containers.Search.CategoryV1(rawValue:valueIntcategory){
+               category = enumscategory
+          } else {
+               unknownFieldsBuilder.mergeVarintField(3, value:Int64(valueIntcategory))
+          }
 
         default:
           if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {

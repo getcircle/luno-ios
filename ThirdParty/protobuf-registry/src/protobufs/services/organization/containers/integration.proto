@@ -23,4 +23,5 @@ message GoogleGroupDetailsV1 {
     optional uint32 version = 1 [default = 1];
     optional string admin_email = 2;
     repeated string scopes = 3;
+    optional bool read_only = 4;
 }

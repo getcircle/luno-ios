@@ -70,7 +70,6 @@ class Card: Equatable {
         case Banners = "Banners"
         case Birthdays = "Birthdays"
         case Empty = "Empty"
-        case Education = "Education"
         case Group = "Group"
         case GroupMemberImages = "GroupMemberImages"
         case GroupRequest = "GroupRequest"
@@ -82,7 +81,6 @@ class Card: Equatable {
         case Profiles = "Profiles"
         case ProfilesGrid = "ProfilesGrid"
         case Placeholder = "Placeholder"
-        case Position = "Position"
         case Settings = "Settings"
         case SocialConnectCTAs = "SocialConnectCTAs"
         case SocialToggle = "SocialToggle"
@@ -127,13 +125,6 @@ class Card: Equatable {
                 return CardTypeInfo(
                     imageName: "Info",
                     classType: EmptyCollectionViewCell.self,
-                    contentType: .Flat
-                )
-
-            case Education:
-                return CardTypeInfo(
-                    imageName: "GraduateCap",
-                    classType: EducationCollectionViewCell.self,
                     contentType: .Flat
                 )
 
@@ -211,13 +202,6 @@ class Card: Equatable {
                 return CardTypeInfo(
                     imageName: "Info",
                     classType: CircleCollectionViewCell.self,
-                    contentType: .Flat
-                )
-
-            case Position:
-                return CardTypeInfo(
-                    imageName: "Satchel",
-                    classType: PositionCollectionViewCell.self,
                     contentType: .Flat
                 )
 
@@ -330,41 +314,6 @@ class Card: Equatable {
             contentCount: withContentCount,
             addDefaultFooter: addDefaultFooter ?? false,
             showContentCount: withShowContentCount
-        )
-    }
-
-    convenience init(category: Services.Feed.Containers.CategoryV1, addDefaultFooter: Bool? = false) {
-        var cardType: CardType
-
-        switch category.categoryType {
-        case .Anniversaries:
-            cardType = .Anniversaries
-        case .Birthdays:
-            cardType = .Birthdays
-        case .NewHires:
-            cardType = .NewHires
-        case .DirectReports, .Peers:
-            cardType = .GroupMemberImages
-        case .Locations:
-            cardType = .Offices
-        case .Interests, .Skills:
-            cardType = .Tags
-        case .Executives:
-            cardType = .Profiles
-        case .Departments:
-            cardType = .TeamsGrid
-        case .GroupMembershipRequests:
-            cardType = .GroupRequest
-        default:
-            cardType = .Profiles
-        }
-
-        self.init(
-            cardType: cardType,
-            title: category.title,
-            content: nil,
-            contentCount: String(category.totalCount).toInt() ?? 0,
-            addDefaultFooter: addDefaultFooter ?? false
         )
     }
 

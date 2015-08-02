@@ -19,7 +19,7 @@ import protobufs.services.profile.containers_pb2
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='protobufs/services/profile/actions/get_tags.proto',
   package='services.profile.actions.get_tags',
-  serialized_pb=_b('\n1protobufs/services/profile/actions/get_tags.proto\x12!services.profile.actions.get_tags\x1a+protobufs/services/profile/containers.proto\"\x8c\x01\n\tRequestV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x12\n\nprofile_id\x18\x02 \x01(\t\x12\x17\n\x0forganization_id\x18\x03 \x01(\t\x12>\n\x08tag_type\x18\x04 \x01(\x0e\x32,.services.profile.containers.TagV1.TagTypeV1\"R\n\nResponseV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x30\n\x04tags\x18\x02 \x03(\x0b\x32\".services.profile.containers.TagV1B8\n6com.rhlabs.protobufs.services.profile.actions.get_tags')
+  serialized_pb=_b('\n1protobufs/services/profile/actions/get_tags.proto\x12!services.profile.actions.get_tags\x1a+protobufs/services/profile/containers.proto\"\x99\x01\n\tRequestV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x12\n\nprofile_id\x18\x02 \x01(\t\x12\x17\n\x0forganization_id\x18\x03 \x01(\t\x12>\n\x08tag_type\x18\x04 \x01(\x0e\x32,.services.profile.containers.TagV1.TagTypeV1\x12\x0b\n\x03ids\x18\x05 \x03(\t\"R\n\nResponseV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x30\n\x04tags\x18\x02 \x03(\x0b\x32\".services.profile.containers.TagV1B8\n6com.rhlabs.protobufs.services.profile.actions.get_tags')
   ,
   dependencies=[protobufs.services.profile.containers_pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
@@ -62,6 +62,13 @@ _REQUESTV1 = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
+    _descriptor.FieldDescriptor(
+      name='ids', full_name='services.profile.actions.get_tags.RequestV1.ids', index=4,
+      number=5, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
   ],
   extensions=[
   ],
@@ -74,7 +81,7 @@ _REQUESTV1 = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=134,
-  serialized_end=274,
+  serialized_end=287,
 )
 
 
@@ -110,8 +117,8 @@ _RESPONSEV1 = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=276,
-  serialized_end=358,
+  serialized_start=289,
+  serialized_end=371,
 )
 
 _REQUESTV1.fields_by_name['tag_type'].enum_type = protobufs.services.profile.containers_pb2._TAGV1_TAGTYPEV1

@@ -7,6 +7,7 @@ import com.squareup.wire.ProtoField;
 import java.util.Collections;
 import java.util.List;
 
+import static com.squareup.wire.Message.Datatype.BOOL;
 import static com.squareup.wire.Message.Datatype.STRING;
 import static com.squareup.wire.Message.Datatype.UINT32;
 import static com.squareup.wire.Message.Label.REPEATED;
@@ -17,6 +18,7 @@ public final class GoogleGroupDetailsV1 extends Message {
   public static final Integer DEFAULT_VERSION = 1;
   public static final String DEFAULT_ADMIN_EMAIL = "";
   public static final List<String> DEFAULT_SCOPES = Collections.emptyList();
+  public static final Boolean DEFAULT_READ_ONLY = false;
 
   @ProtoField(tag = 1, type = UINT32)
   public final Integer version;
@@ -27,14 +29,18 @@ public final class GoogleGroupDetailsV1 extends Message {
   @ProtoField(tag = 3, type = STRING, label = REPEATED)
   public final List<String> scopes;
 
-  public GoogleGroupDetailsV1(Integer version, String admin_email, List<String> scopes) {
+  @ProtoField(tag = 4, type = BOOL)
+  public final Boolean read_only;
+
+  public GoogleGroupDetailsV1(Integer version, String admin_email, List<String> scopes, Boolean read_only) {
     this.version = version;
     this.admin_email = admin_email;
     this.scopes = immutableCopyOf(scopes);
+    this.read_only = read_only;
   }
 
   private GoogleGroupDetailsV1(Builder builder) {
-    this(builder.version, builder.admin_email, builder.scopes);
+    this(builder.version, builder.admin_email, builder.scopes, builder.read_only);
     setBuilder(builder);
   }
 
@@ -45,7 +51,8 @@ public final class GoogleGroupDetailsV1 extends Message {
     GoogleGroupDetailsV1 o = (GoogleGroupDetailsV1) other;
     return equals(version, o.version)
         && equals(admin_email, o.admin_email)
-        && equals(scopes, o.scopes);
+        && equals(scopes, o.scopes)
+        && equals(read_only, o.read_only);
   }
 
   @Override
@@ -55,6 +62,7 @@ public final class GoogleGroupDetailsV1 extends Message {
       result = version != null ? version.hashCode() : 0;
       result = result * 37 + (admin_email != null ? admin_email.hashCode() : 0);
       result = result * 37 + (scopes != null ? scopes.hashCode() : 1);
+      result = result * 37 + (read_only != null ? read_only.hashCode() : 0);
       hashCode = result;
     }
     return result;
@@ -65,6 +73,7 @@ public final class GoogleGroupDetailsV1 extends Message {
     public Integer version;
     public String admin_email;
     public List<String> scopes;
+    public Boolean read_only;
 
     public Builder() {
     }
@@ -75,6 +84,7 @@ public final class GoogleGroupDetailsV1 extends Message {
       this.version = message.version;
       this.admin_email = message.admin_email;
       this.scopes = copyOf(message.scopes);
+      this.read_only = message.read_only;
     }
 
     public Builder version(Integer version) {
@@ -89,6 +99,11 @@ public final class GoogleGroupDetailsV1 extends Message {
 
     public Builder scopes(List<String> scopes) {
       this.scopes = checkForNulls(scopes);
+      return this;
+    }
+
+    public Builder read_only(Boolean read_only) {
+      this.read_only = read_only;
       return this;
     }
 
