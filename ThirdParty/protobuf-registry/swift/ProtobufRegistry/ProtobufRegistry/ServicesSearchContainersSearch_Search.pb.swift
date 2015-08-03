@@ -44,8 +44,6 @@ public extension Services.Search.Containers.Search {
   public enum AttributeV1:Int32 {
     case LocationId = 0
     case TeamId = 1
-    case SkillId = 2
-    case OrganizationId = 3
 
   }
 

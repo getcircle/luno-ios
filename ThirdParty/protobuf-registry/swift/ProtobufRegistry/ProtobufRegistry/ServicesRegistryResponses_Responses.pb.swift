@@ -75,6 +75,14 @@ public func == (lhs: Services.Registry.Responses.Notification, rhs: Services.Reg
   return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
 }
 
+public func == (lhs: Services.Registry.Responses.History, rhs: Services.Registry.Responses.History) -> Bool {
+  if (lhs === rhs) {
+    return true
+  }
+  var fieldCheck:Bool = (lhs.hashValue == rhs.hashValue)
+  return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
+}
+
 public var ServicesRegistryResponsesUsercreateUser:ConcreateExtensionField {
    get {
        return Services.Registry.Responses.ResponsesRoot.sharedInstance.ServicesRegistryResponsesUsercreateUserStatic
@@ -475,6 +483,11 @@ public var ServicesRegistryResponsesNotificationsendNotification:ConcreateExtens
        return Services.Registry.Responses.ResponsesRoot.sharedInstance.ServicesRegistryResponsesNotificationsendNotificationStatic
    }
 }
+public var ServicesRegistryResponsesHistoryrecordAction:ConcreateExtensionField {
+   get {
+       return Services.Registry.Responses.ResponsesRoot.sharedInstance.ServicesRegistryResponsesHistoryrecordActionStatic
+   }
+}
 public extension Services.Registry.Responses {
   public struct ResponsesRoot {
     public static var sharedInstance : ResponsesRoot {
@@ -563,6 +576,7 @@ public extension Services.Registry.Responses {
     var ServicesRegistryResponsesNotificationgetPreferencesStatic:ConcreateExtensionField
     var ServicesRegistryResponsesNotificationupdatePreferenceStatic:ConcreateExtensionField
     var ServicesRegistryResponsesNotificationsendNotificationStatic:ConcreateExtensionField
+    var ServicesRegistryResponsesHistoryrecordActionStatic:ConcreateExtensionField
     public var extensionRegistry:ExtensionRegistry
 
     init() {
@@ -646,6 +660,7 @@ public extension Services.Registry.Responses {
       ServicesRegistryResponsesNotificationgetPreferencesStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 1301, defaultValue:Services.Notification.Actions.GetPreferences.ResponseV1(), messageOrGroupClass:Services.Notification.Actions.GetPreferences.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
       ServicesRegistryResponsesNotificationupdatePreferenceStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 1302, defaultValue:Services.Notification.Actions.UpdatePreference.ResponseV1(), messageOrGroupClass:Services.Notification.Actions.UpdatePreference.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
       ServicesRegistryResponsesNotificationsendNotificationStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 1303, defaultValue:Services.Notification.Actions.SendNotification.ResponseV1(), messageOrGroupClass:Services.Notification.Actions.SendNotification.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
+      ServicesRegistryResponsesHistoryrecordActionStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 1400, defaultValue:Services.History.Actions.RecordAction.RequestV1(), messageOrGroupClass:Services.History.Actions.RecordAction.RequestV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
       extensionRegistry = ExtensionRegistry()
       registerAllExtensions(extensionRegistry)
       Soa.SoaRoot.sharedInstance.registerAllExtensions(extensionRegistry)
@@ -729,6 +744,7 @@ public extension Services.Registry.Responses {
       Services.Notification.Actions.GetPreferences.GetPreferencesRoot.sharedInstance.registerAllExtensions(extensionRegistry)
       Services.Notification.Actions.UpdatePreference.UpdatePreferenceRoot.sharedInstance.registerAllExtensions(extensionRegistry)
       Services.Notification.Actions.SendNotification.SendNotificationRoot.sharedInstance.registerAllExtensions(extensionRegistry)
+      Services.History.Actions.RecordAction.RecordActionRoot.sharedInstance.registerAllExtensions(extensionRegistry)
     }
     public func registerAllExtensions(registry:ExtensionRegistry) {
       registry.addExtension(ServicesRegistryResponsesUsercreateUserStatic)
@@ -811,6 +827,7 @@ public extension Services.Registry.Responses {
       registry.addExtension(ServicesRegistryResponsesNotificationgetPreferencesStatic)
       registry.addExtension(ServicesRegistryResponsesNotificationupdatePreferenceStatic)
       registry.addExtension(ServicesRegistryResponsesNotificationsendNotificationStatic)
+      registry.addExtension(ServicesRegistryResponsesHistoryrecordActionStatic)
     }
   }
 
@@ -2350,6 +2367,155 @@ public extension Services.Registry.Responses {
          return mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
     }
     public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> Services.Registry.Responses.NotificationBuilder {
+      var unknownFieldsBuilder:UnknownFieldSetBuilder = UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
+      while (true) {
+        var tag = input.readTag()
+        switch tag {
+        case 0: 
+          self.unknownFields = unknownFieldsBuilder.build()
+          return self
+
+        default:
+          if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
+             unknownFields = unknownFieldsBuilder.build()
+             return self
+          }
+        }
+      }
+    }
+  }
+
+  final public class History : GeneratedMessage, GeneratedMessageProtocol {
+    override public subscript(key: String) -> Any? {
+           switch key {
+           default: return nil
+           }
+    }
+
+    public class func recordAction() -> ConcreateExtensionField {
+         return ServicesRegistryResponsesHistoryrecordAction
+    }
+    required public init() {
+         super.init()
+    }
+    override public func isInitialized() -> Bool {
+     return true
+    }
+    override public func writeToCodedOutputStream(output:CodedOutputStream) {
+      unknownFields.writeToCodedOutputStream(output)
+    }
+    override public func serializedSize() -> Int32 {
+      var serialize_size:Int32 = memoizedSerializedSize
+      if serialize_size != -1 {
+       return serialize_size
+      }
+
+      serialize_size = 0
+      serialize_size += unknownFields.serializedSize()
+      memoizedSerializedSize = serialize_size
+      return serialize_size
+    }
+    public class func parseFromData(data:NSData) -> Services.Registry.Responses.History {
+      return Services.Registry.Responses.History.builder().mergeFromData(data, extensionRegistry:Services.Registry.Responses.ResponsesRoot.sharedInstance.extensionRegistry).build()
+    }
+    public class func parseFromData(data:NSData, extensionRegistry:ExtensionRegistry) -> Services.Registry.Responses.History {
+      return Services.Registry.Responses.History.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
+    }
+    public class func parseFromInputStream(input:NSInputStream) -> Services.Registry.Responses.History {
+      return Services.Registry.Responses.History.builder().mergeFromInputStream(input).build()
+    }
+    public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->Services.Registry.Responses.History {
+      return Services.Registry.Responses.History.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
+    }
+    public class func parseFromCodedInputStream(input:CodedInputStream) -> Services.Registry.Responses.History {
+      return Services.Registry.Responses.History.builder().mergeFromCodedInputStream(input).build()
+    }
+    public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> Services.Registry.Responses.History {
+      return Services.Registry.Responses.History.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
+    }
+    public class func builder() -> Services.Registry.Responses.HistoryBuilder {
+      return Services.Registry.Responses.History.classBuilder() as! Services.Registry.Responses.HistoryBuilder
+    }
+    public func builder() -> Services.Registry.Responses.HistoryBuilder {
+      return classBuilder() as! Services.Registry.Responses.HistoryBuilder
+    }
+    public override class func classBuilder() -> MessageBuilder {
+      return Services.Registry.Responses.HistoryBuilder()
+    }
+    public override func classBuilder() -> MessageBuilder {
+      return Services.Registry.Responses.History.builder()
+    }
+    public func toBuilder() -> Services.Registry.Responses.HistoryBuilder {
+      return Services.Registry.Responses.History.builderWithPrototype(self)
+    }
+    public class func builderWithPrototype(prototype:Services.Registry.Responses.History) -> Services.Registry.Responses.HistoryBuilder {
+      return Services.Registry.Responses.History.builder().mergeFrom(prototype)
+    }
+    override public func writeDescriptionTo(inout output:String, indent:String) {
+      unknownFields.writeDescriptionTo(&output, indent:indent)
+    }
+    override public var hashValue:Int {
+        get {
+            var hashCode:Int = 7
+            hashCode = (hashCode &* 31) &+  unknownFields.hashValue
+            return hashCode
+        }
+    }
+
+
+    //Meta information declaration start
+
+    override public class func className() -> String {
+        return "Services.Registry.Responses.History"
+    }
+    override public func className() -> String {
+        return "Services.Registry.Responses.History"
+    }
+    override public func classMetaType() -> GeneratedMessage.Type {
+        return Services.Registry.Responses.History.self
+    }
+    //Meta information declaration end
+
+  }
+
+  final public class HistoryBuilder : GeneratedMessageBuilder {
+    private var builderResult:Services.Registry.Responses.History
+
+    required override public init () {
+       builderResult = Services.Registry.Responses.History()
+       super.init()
+    }
+    override public var internalGetResult:GeneratedMessage {
+         get {
+            return builderResult
+         }
+    }
+    public override func clear() -> Services.Registry.Responses.HistoryBuilder {
+      builderResult = Services.Registry.Responses.History()
+      return self
+    }
+    public override func clone() -> Services.Registry.Responses.HistoryBuilder {
+      return Services.Registry.Responses.History.builderWithPrototype(builderResult)
+    }
+    public override func build() -> Services.Registry.Responses.History {
+         checkInitialized()
+         return buildPartial()
+    }
+    public func buildPartial() -> Services.Registry.Responses.History {
+      var returnMe:Services.Registry.Responses.History = builderResult
+      return returnMe
+    }
+    public func mergeFrom(other:Services.Registry.Responses.History) -> Services.Registry.Responses.HistoryBuilder {
+      if (other == Services.Registry.Responses.History()) {
+       return self
+      }
+      mergeUnknownFields(other.unknownFields)
+      return self
+    }
+    public override func mergeFromCodedInputStream(input:CodedInputStream) ->Services.Registry.Responses.HistoryBuilder {
+         return mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
+    }
+    public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> Services.Registry.Responses.HistoryBuilder {
       var unknownFieldsBuilder:UnknownFieldSetBuilder = UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
       while (true) {
         var tag = input.readTag()

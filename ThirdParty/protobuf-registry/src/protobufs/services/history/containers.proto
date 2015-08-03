@@ -1,0 +1,23 @@
+package services.history.containers;
+
+enum ActionTypeV1 {
+    UPDATE_DESCRIPTION = 0;
+}
+
+enum MethodTypeV1 {
+    UPDATE = 0;
+    DELETE = 1;
+}
+
+message ActionV1 {
+    optional uint32 version = 1 [default = 1];
+    optional string id = 2;
+    optional string column_name = 3;
+    optional string data_type = 4;
+    optional string old_value = 5;
+    optional string new_value = 6;
+    optional ActionTypeV1 action_type = 7;
+    optional MethodTypeV1 method_type = 8;
+    optional string organization_id = 9;
+    optional string correlation_id = 10;
+}

@@ -3,18 +3,16 @@
 import Foundation
 public extension Services.Search.Containers{}
 
-public func == (lhs: Services.Search.Containers.SearchResultsV1, rhs: Services.Search.Containers.SearchResultsV1) -> Bool {
+public func == (lhs: Services.Search.Containers.SearchResultV1, rhs: Services.Search.Containers.SearchResultV1) -> Bool {
   if (lhs === rhs) {
     return true
   }
   var fieldCheck:Bool = (lhs.hashValue == rhs.hashValue)
   fieldCheck = fieldCheck && (lhs.hasVersion == rhs.hasVersion) && (!lhs.hasVersion || lhs.version == rhs.version)
-  fieldCheck = fieldCheck && (lhs.hasCategory == rhs.hasCategory) && (!lhs.hasCategory || lhs.category == rhs.category)
-  fieldCheck = fieldCheck && (lhs.profiles == rhs.profiles)
-  fieldCheck = fieldCheck && (lhs.teams == rhs.teams)
-  fieldCheck = fieldCheck && (lhs.locations == rhs.locations)
-  fieldCheck = fieldCheck && (lhs.tags == rhs.tags)
-  fieldCheck = fieldCheck && (lhs.groups == rhs.groups)
+  fieldCheck = fieldCheck && (lhs.hasProfile == rhs.hasProfile) && (!lhs.hasProfile || lhs.profile == rhs.profile)
+  fieldCheck = fieldCheck && (lhs.hasTeam == rhs.hasTeam) && (!lhs.hasTeam || lhs.team == rhs.team)
+  fieldCheck = fieldCheck && (lhs.hasLocation == rhs.hasLocation) && (!lhs.hasLocation || lhs.location == rhs.location)
+  fieldCheck = fieldCheck && (lhs.hasGroup == rhs.hasGroup) && (!lhs.hasGroup || lhs.group == rhs.group)
   return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
 }
 
@@ -40,11 +38,14 @@ public extension Services.Search.Containers {
     }
   }
 
-  final public class SearchResultsV1 : GeneratedMessage, GeneratedMessageProtocol {
+  final public class SearchResultV1 : GeneratedMessage, GeneratedMessageProtocol {
     override public subscript(key: String) -> Any? {
            switch key {
            case "version": return version
-           case "category": return self.category
+           case "profile": return profile
+           case "team": return team
+           case "location": return location
+           case "group": return group
            default: return nil
            }
     }
@@ -52,13 +53,14 @@ public extension Services.Search.Containers {
     public private(set) var hasVersion:Bool = false
     public private(set) var version:UInt32 = UInt32(1)
 
-    public private(set) var category:Services.Search.Containers.Search.CategoryV1 = Services.Search.Containers.Search.CategoryV1.Profiles
-    public private(set) var hasCategory:Bool = false
-    public private(set) var profiles:Array<Services.Profile.Containers.ProfileV1>  = Array<Services.Profile.Containers.ProfileV1>()
-    public private(set) var teams:Array<Services.Organization.Containers.TeamV1>  = Array<Services.Organization.Containers.TeamV1>()
-    public private(set) var locations:Array<Services.Organization.Containers.LocationV1>  = Array<Services.Organization.Containers.LocationV1>()
-    public private(set) var tags:Array<Services.Profile.Containers.TagV1>  = Array<Services.Profile.Containers.TagV1>()
-    public private(set) var groups:Array<Services.Group.Containers.GroupV1>  = Array<Services.Group.Containers.GroupV1>()
+    public private(set) var hasProfile:Bool = false
+    public private(set) var profile:Services.Profile.Containers.ProfileV1!
+    public private(set) var hasTeam:Bool = false
+    public private(set) var team:Services.Organization.Containers.TeamV1!
+    public private(set) var hasLocation:Bool = false
+    public private(set) var location:Services.Organization.Containers.LocationV1!
+    public private(set) var hasGroup:Bool = false
+    public private(set) var group:Services.Group.Containers.GroupV1!
     required public init() {
          super.init()
     }
@@ -69,23 +71,17 @@ public extension Services.Search.Containers {
       if hasVersion {
         output.writeUInt32(1, value:version)
       }
-      if hasCategory {
-        output.writeEnum(2, value:category.rawValue)
+      if hasProfile {
+        output.writeMessage(2, value:profile)
       }
-      for oneElementprofiles in profiles {
-          output.writeMessage(3, value:oneElementprofiles)
+      if hasTeam {
+        output.writeMessage(3, value:team)
       }
-      for oneElementteams in teams {
-          output.writeMessage(4, value:oneElementteams)
+      if hasLocation {
+        output.writeMessage(4, value:location)
       }
-      for oneElementlocations in locations {
-          output.writeMessage(5, value:oneElementlocations)
-      }
-      for oneElementtags in tags {
-          output.writeMessage(6, value:oneElementtags)
-      }
-      for oneElementgroups in groups {
-          output.writeMessage(7, value:oneElementgroups)
+      if hasGroup {
+        output.writeMessage(5, value:group)
       }
       unknownFields.writeToCodedOutputStream(output)
     }
@@ -99,105 +95,89 @@ public extension Services.Search.Containers {
       if hasVersion {
         serialize_size += version.computeUInt32Size(1)
       }
-      if (hasCategory) {
-        serialize_size += category.rawValue.computeEnumSize(2)
+      if hasProfile {
+          if let varSizeprofile = profile?.computeMessageSize(2) {
+              serialize_size += varSizeprofile
+          }
       }
-      for oneElementprofiles in profiles {
-          serialize_size += oneElementprofiles.computeMessageSize(3)
+      if hasTeam {
+          if let varSizeteam = team?.computeMessageSize(3) {
+              serialize_size += varSizeteam
+          }
       }
-      for oneElementteams in teams {
-          serialize_size += oneElementteams.computeMessageSize(4)
+      if hasLocation {
+          if let varSizelocation = location?.computeMessageSize(4) {
+              serialize_size += varSizelocation
+          }
       }
-      for oneElementlocations in locations {
-          serialize_size += oneElementlocations.computeMessageSize(5)
-      }
-      for oneElementtags in tags {
-          serialize_size += oneElementtags.computeMessageSize(6)
-      }
-      for oneElementgroups in groups {
-          serialize_size += oneElementgroups.computeMessageSize(7)
+      if hasGroup {
+          if let varSizegroup = group?.computeMessageSize(5) {
+              serialize_size += varSizegroup
+          }
       }
       serialize_size += unknownFields.serializedSize()
       memoizedSerializedSize = serialize_size
       return serialize_size
     }
-    public class func parseFromData(data:NSData) -> Services.Search.Containers.SearchResultsV1 {
-      return Services.Search.Containers.SearchResultsV1.builder().mergeFromData(data, extensionRegistry:Services.Search.Containers.ContainersRoot.sharedInstance.extensionRegistry).build()
+    public class func parseFromData(data:NSData) -> Services.Search.Containers.SearchResultV1 {
+      return Services.Search.Containers.SearchResultV1.builder().mergeFromData(data, extensionRegistry:Services.Search.Containers.ContainersRoot.sharedInstance.extensionRegistry).build()
     }
-    public class func parseFromData(data:NSData, extensionRegistry:ExtensionRegistry) -> Services.Search.Containers.SearchResultsV1 {
-      return Services.Search.Containers.SearchResultsV1.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
+    public class func parseFromData(data:NSData, extensionRegistry:ExtensionRegistry) -> Services.Search.Containers.SearchResultV1 {
+      return Services.Search.Containers.SearchResultV1.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
     }
-    public class func parseFromInputStream(input:NSInputStream) -> Services.Search.Containers.SearchResultsV1 {
-      return Services.Search.Containers.SearchResultsV1.builder().mergeFromInputStream(input).build()
+    public class func parseFromInputStream(input:NSInputStream) -> Services.Search.Containers.SearchResultV1 {
+      return Services.Search.Containers.SearchResultV1.builder().mergeFromInputStream(input).build()
     }
-    public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->Services.Search.Containers.SearchResultsV1 {
-      return Services.Search.Containers.SearchResultsV1.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
+    public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->Services.Search.Containers.SearchResultV1 {
+      return Services.Search.Containers.SearchResultV1.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
     }
-    public class func parseFromCodedInputStream(input:CodedInputStream) -> Services.Search.Containers.SearchResultsV1 {
-      return Services.Search.Containers.SearchResultsV1.builder().mergeFromCodedInputStream(input).build()
+    public class func parseFromCodedInputStream(input:CodedInputStream) -> Services.Search.Containers.SearchResultV1 {
+      return Services.Search.Containers.SearchResultV1.builder().mergeFromCodedInputStream(input).build()
     }
-    public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> Services.Search.Containers.SearchResultsV1 {
-      return Services.Search.Containers.SearchResultsV1.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
+    public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> Services.Search.Containers.SearchResultV1 {
+      return Services.Search.Containers.SearchResultV1.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
     }
-    public class func builder() -> Services.Search.Containers.SearchResultsV1Builder {
-      return Services.Search.Containers.SearchResultsV1.classBuilder() as! Services.Search.Containers.SearchResultsV1Builder
+    public class func builder() -> Services.Search.Containers.SearchResultV1Builder {
+      return Services.Search.Containers.SearchResultV1.classBuilder() as! Services.Search.Containers.SearchResultV1Builder
     }
-    public func builder() -> Services.Search.Containers.SearchResultsV1Builder {
-      return classBuilder() as! Services.Search.Containers.SearchResultsV1Builder
+    public func builder() -> Services.Search.Containers.SearchResultV1Builder {
+      return classBuilder() as! Services.Search.Containers.SearchResultV1Builder
     }
     public override class func classBuilder() -> MessageBuilder {
-      return Services.Search.Containers.SearchResultsV1Builder()
+      return Services.Search.Containers.SearchResultV1Builder()
     }
     public override func classBuilder() -> MessageBuilder {
-      return Services.Search.Containers.SearchResultsV1.builder()
+      return Services.Search.Containers.SearchResultV1.builder()
     }
-    public func toBuilder() -> Services.Search.Containers.SearchResultsV1Builder {
-      return Services.Search.Containers.SearchResultsV1.builderWithPrototype(self)
+    public func toBuilder() -> Services.Search.Containers.SearchResultV1Builder {
+      return Services.Search.Containers.SearchResultV1.builderWithPrototype(self)
     }
-    public class func builderWithPrototype(prototype:Services.Search.Containers.SearchResultsV1) -> Services.Search.Containers.SearchResultsV1Builder {
-      return Services.Search.Containers.SearchResultsV1.builder().mergeFrom(prototype)
+    public class func builderWithPrototype(prototype:Services.Search.Containers.SearchResultV1) -> Services.Search.Containers.SearchResultV1Builder {
+      return Services.Search.Containers.SearchResultV1.builder().mergeFrom(prototype)
     }
     override public func writeDescriptionTo(inout output:String, indent:String) {
       if hasVersion {
         output += "\(indent) version: \(version) \n"
       }
-      if (hasCategory) {
-        output += "\(indent) category: \(category.rawValue)\n"
+      if hasProfile {
+        output += "\(indent) profile {\n"
+        profile?.writeDescriptionTo(&output, indent:"\(indent)  ")
+        output += "\(indent) }\n"
       }
-      var profilesElementIndex:Int = 0
-      for oneElementprofiles in profiles {
-          output += "\(indent) profiles[\(profilesElementIndex)] {\n"
-          oneElementprofiles.writeDescriptionTo(&output, indent:"\(indent)  ")
-          output += "\(indent)}\n"
-          profilesElementIndex++
+      if hasTeam {
+        output += "\(indent) team {\n"
+        team?.writeDescriptionTo(&output, indent:"\(indent)  ")
+        output += "\(indent) }\n"
       }
-      var teamsElementIndex:Int = 0
-      for oneElementteams in teams {
-          output += "\(indent) teams[\(teamsElementIndex)] {\n"
-          oneElementteams.writeDescriptionTo(&output, indent:"\(indent)  ")
-          output += "\(indent)}\n"
-          teamsElementIndex++
+      if hasLocation {
+        output += "\(indent) location {\n"
+        location?.writeDescriptionTo(&output, indent:"\(indent)  ")
+        output += "\(indent) }\n"
       }
-      var locationsElementIndex:Int = 0
-      for oneElementlocations in locations {
-          output += "\(indent) locations[\(locationsElementIndex)] {\n"
-          oneElementlocations.writeDescriptionTo(&output, indent:"\(indent)  ")
-          output += "\(indent)}\n"
-          locationsElementIndex++
-      }
-      var tagsElementIndex:Int = 0
-      for oneElementtags in tags {
-          output += "\(indent) tags[\(tagsElementIndex)] {\n"
-          oneElementtags.writeDescriptionTo(&output, indent:"\(indent)  ")
-          output += "\(indent)}\n"
-          tagsElementIndex++
-      }
-      var groupsElementIndex:Int = 0
-      for oneElementgroups in groups {
-          output += "\(indent) groups[\(groupsElementIndex)] {\n"
-          oneElementgroups.writeDescriptionTo(&output, indent:"\(indent)  ")
-          output += "\(indent)}\n"
-          groupsElementIndex++
+      if hasGroup {
+        output += "\(indent) group {\n"
+        group?.writeDescriptionTo(&output, indent:"\(indent)  ")
+        output += "\(indent) }\n"
       }
       unknownFields.writeDescriptionTo(&output, indent:indent)
     }
@@ -207,23 +187,25 @@ public extension Services.Search.Containers {
             if hasVersion {
                hashCode = (hashCode &* 31) &+ version.hashValue
             }
-            if hasCategory {
-               hashCode = (hashCode &* 31) &+ Int(category.rawValue)
+            if hasProfile {
+                if let hashValueprofile = profile?.hashValue {
+                    hashCode = (hashCode &* 31) &+ hashValueprofile
+                }
             }
-            for oneElementprofiles in profiles {
-                hashCode = (hashCode &* 31) &+ oneElementprofiles.hashValue
+            if hasTeam {
+                if let hashValueteam = team?.hashValue {
+                    hashCode = (hashCode &* 31) &+ hashValueteam
+                }
             }
-            for oneElementteams in teams {
-                hashCode = (hashCode &* 31) &+ oneElementteams.hashValue
+            if hasLocation {
+                if let hashValuelocation = location?.hashValue {
+                    hashCode = (hashCode &* 31) &+ hashValuelocation
+                }
             }
-            for oneElementlocations in locations {
-                hashCode = (hashCode &* 31) &+ oneElementlocations.hashValue
-            }
-            for oneElementtags in tags {
-                hashCode = (hashCode &* 31) &+ oneElementtags.hashValue
-            }
-            for oneElementgroups in groups {
-                hashCode = (hashCode &* 31) &+ oneElementgroups.hashValue
+            if hasGroup {
+                if let hashValuegroup = group?.hashValue {
+                    hashCode = (hashCode &* 31) &+ hashValuegroup
+                }
             }
             hashCode = (hashCode &* 31) &+  unknownFields.hashValue
             return hashCode
@@ -234,23 +216,23 @@ public extension Services.Search.Containers {
     //Meta information declaration start
 
     override public class func className() -> String {
-        return "Services.Search.Containers.SearchResultsV1"
+        return "Services.Search.Containers.SearchResultV1"
     }
     override public func className() -> String {
-        return "Services.Search.Containers.SearchResultsV1"
+        return "Services.Search.Containers.SearchResultV1"
     }
     override public func classMetaType() -> GeneratedMessage.Type {
-        return Services.Search.Containers.SearchResultsV1.self
+        return Services.Search.Containers.SearchResultV1.self
     }
     //Meta information declaration end
 
   }
 
-  final public class SearchResultsV1Builder : GeneratedMessageBuilder {
-    private var builderResult:Services.Search.Containers.SearchResultsV1
+  final public class SearchResultV1Builder : GeneratedMessageBuilder {
+    private var builderResult:Services.Search.Containers.SearchResultV1
 
     required override public init () {
-       builderResult = Services.Search.Containers.SearchResultsV1()
+       builderResult = Services.Search.Containers.SearchResultV1()
        super.init()
     }
     public var hasVersion:Bool {
@@ -267,116 +249,141 @@ public extension Services.Search.Containers {
              builderResult.version = value
          }
     }
-    public func setVersion(value:UInt32)-> Services.Search.Containers.SearchResultsV1Builder {
+    public func setVersion(value:UInt32)-> Services.Search.Containers.SearchResultV1Builder {
       self.version = value
       return self
     }
-    public func clearVersion() -> Services.Search.Containers.SearchResultsV1Builder{
+    public func clearVersion() -> Services.Search.Containers.SearchResultV1Builder{
          builderResult.hasVersion = false
          builderResult.version = UInt32(1)
          return self
     }
-      public var hasCategory:Bool{
-          get {
-              return builderResult.hasCategory
-          }
+    public var hasProfile:Bool {
+         get {
+             return builderResult.hasProfile
+         }
+    }
+    public var profile:Services.Profile.Containers.ProfileV1! {
+         get {
+             return builderResult.profile
+         }
+         set (value) {
+             builderResult.hasProfile = true
+             builderResult.profile = value
+         }
+    }
+    public func setProfile(value:Services.Profile.Containers.ProfileV1!)-> Services.Search.Containers.SearchResultV1Builder {
+      self.profile = value
+      return self
+    }
+    public func mergeProfile(value:Services.Profile.Containers.ProfileV1) -> Services.Search.Containers.SearchResultV1Builder {
+      if (builderResult.hasProfile) {
+        builderResult.profile = Services.Profile.Containers.ProfileV1.builderWithPrototype(builderResult.profile).mergeFrom(value).buildPartial()
+      } else {
+        builderResult.profile = value
       }
-      public var category:Services.Search.Containers.Search.CategoryV1 {
-          get {
-              return builderResult.category
-          }
-          set (value) {
-              builderResult.hasCategory = true
-              builderResult.category = value
-          }
+      builderResult.hasProfile = true
+      return self
+    }
+    public func clearProfile() -> Services.Search.Containers.SearchResultV1Builder {
+      builderResult.hasProfile = false
+      builderResult.profile = nil
+      return self
+    }
+    public var hasTeam:Bool {
+         get {
+             return builderResult.hasTeam
+         }
+    }
+    public var team:Services.Organization.Containers.TeamV1! {
+         get {
+             return builderResult.team
+         }
+         set (value) {
+             builderResult.hasTeam = true
+             builderResult.team = value
+         }
+    }
+    public func setTeam(value:Services.Organization.Containers.TeamV1!)-> Services.Search.Containers.SearchResultV1Builder {
+      self.team = value
+      return self
+    }
+    public func mergeTeam(value:Services.Organization.Containers.TeamV1) -> Services.Search.Containers.SearchResultV1Builder {
+      if (builderResult.hasTeam) {
+        builderResult.team = Services.Organization.Containers.TeamV1.builderWithPrototype(builderResult.team).mergeFrom(value).buildPartial()
+      } else {
+        builderResult.team = value
       }
-      public func setCategory(value:Services.Search.Containers.Search.CategoryV1)-> Services.Search.Containers.SearchResultsV1Builder {
-        self.category = value
-        return self
+      builderResult.hasTeam = true
+      return self
+    }
+    public func clearTeam() -> Services.Search.Containers.SearchResultV1Builder {
+      builderResult.hasTeam = false
+      builderResult.team = nil
+      return self
+    }
+    public var hasLocation:Bool {
+         get {
+             return builderResult.hasLocation
+         }
+    }
+    public var location:Services.Organization.Containers.LocationV1! {
+         get {
+             return builderResult.location
+         }
+         set (value) {
+             builderResult.hasLocation = true
+             builderResult.location = value
+         }
+    }
+    public func setLocation(value:Services.Organization.Containers.LocationV1!)-> Services.Search.Containers.SearchResultV1Builder {
+      self.location = value
+      return self
+    }
+    public func mergeLocation(value:Services.Organization.Containers.LocationV1) -> Services.Search.Containers.SearchResultV1Builder {
+      if (builderResult.hasLocation) {
+        builderResult.location = Services.Organization.Containers.LocationV1.builderWithPrototype(builderResult.location).mergeFrom(value).buildPartial()
+      } else {
+        builderResult.location = value
       }
-      public func clearCategory() -> Services.Search.Containers.SearchResultsV1Builder {
-         builderResult.hasCategory = false
-         builderResult.category = .Profiles
-         return self
+      builderResult.hasLocation = true
+      return self
+    }
+    public func clearLocation() -> Services.Search.Containers.SearchResultV1Builder {
+      builderResult.hasLocation = false
+      builderResult.location = nil
+      return self
+    }
+    public var hasGroup:Bool {
+         get {
+             return builderResult.hasGroup
+         }
+    }
+    public var group:Services.Group.Containers.GroupV1! {
+         get {
+             return builderResult.group
+         }
+         set (value) {
+             builderResult.hasGroup = true
+             builderResult.group = value
+         }
+    }
+    public func setGroup(value:Services.Group.Containers.GroupV1!)-> Services.Search.Containers.SearchResultV1Builder {
+      self.group = value
+      return self
+    }
+    public func mergeGroup(value:Services.Group.Containers.GroupV1) -> Services.Search.Containers.SearchResultV1Builder {
+      if (builderResult.hasGroup) {
+        builderResult.group = Services.Group.Containers.GroupV1.builderWithPrototype(builderResult.group).mergeFrom(value).buildPartial()
+      } else {
+        builderResult.group = value
       }
-    public var profiles:Array<Services.Profile.Containers.ProfileV1> {
-         get {
-             return builderResult.profiles
-         }
-         set (value) {
-             builderResult.profiles = value
-         }
-    }
-    public func setProfiles(value:Array<Services.Profile.Containers.ProfileV1>)-> Services.Search.Containers.SearchResultsV1Builder {
-      self.profiles = value
+      builderResult.hasGroup = true
       return self
     }
-    public func clearProfiles() -> Services.Search.Containers.SearchResultsV1Builder {
-      builderResult.profiles.removeAll(keepCapacity: false)
-      return self
-    }
-    public var teams:Array<Services.Organization.Containers.TeamV1> {
-         get {
-             return builderResult.teams
-         }
-         set (value) {
-             builderResult.teams = value
-         }
-    }
-    public func setTeams(value:Array<Services.Organization.Containers.TeamV1>)-> Services.Search.Containers.SearchResultsV1Builder {
-      self.teams = value
-      return self
-    }
-    public func clearTeams() -> Services.Search.Containers.SearchResultsV1Builder {
-      builderResult.teams.removeAll(keepCapacity: false)
-      return self
-    }
-    public var locations:Array<Services.Organization.Containers.LocationV1> {
-         get {
-             return builderResult.locations
-         }
-         set (value) {
-             builderResult.locations = value
-         }
-    }
-    public func setLocations(value:Array<Services.Organization.Containers.LocationV1>)-> Services.Search.Containers.SearchResultsV1Builder {
-      self.locations = value
-      return self
-    }
-    public func clearLocations() -> Services.Search.Containers.SearchResultsV1Builder {
-      builderResult.locations.removeAll(keepCapacity: false)
-      return self
-    }
-    public var tags:Array<Services.Profile.Containers.TagV1> {
-         get {
-             return builderResult.tags
-         }
-         set (value) {
-             builderResult.tags = value
-         }
-    }
-    public func setTags(value:Array<Services.Profile.Containers.TagV1>)-> Services.Search.Containers.SearchResultsV1Builder {
-      self.tags = value
-      return self
-    }
-    public func clearTags() -> Services.Search.Containers.SearchResultsV1Builder {
-      builderResult.tags.removeAll(keepCapacity: false)
-      return self
-    }
-    public var groups:Array<Services.Group.Containers.GroupV1> {
-         get {
-             return builderResult.groups
-         }
-         set (value) {
-             builderResult.groups = value
-         }
-    }
-    public func setGroups(value:Array<Services.Group.Containers.GroupV1>)-> Services.Search.Containers.SearchResultsV1Builder {
-      self.groups = value
-      return self
-    }
-    public func clearGroups() -> Services.Search.Containers.SearchResultsV1Builder {
-      builderResult.groups.removeAll(keepCapacity: false)
+    public func clearGroup() -> Services.Search.Containers.SearchResultV1Builder {
+      builderResult.hasGroup = false
+      builderResult.group = nil
       return self
     }
     override public var internalGetResult:GeneratedMessage {
@@ -384,53 +391,47 @@ public extension Services.Search.Containers {
             return builderResult
          }
     }
-    public override func clear() -> Services.Search.Containers.SearchResultsV1Builder {
-      builderResult = Services.Search.Containers.SearchResultsV1()
+    public override func clear() -> Services.Search.Containers.SearchResultV1Builder {
+      builderResult = Services.Search.Containers.SearchResultV1()
       return self
     }
-    public override func clone() -> Services.Search.Containers.SearchResultsV1Builder {
-      return Services.Search.Containers.SearchResultsV1.builderWithPrototype(builderResult)
+    public override func clone() -> Services.Search.Containers.SearchResultV1Builder {
+      return Services.Search.Containers.SearchResultV1.builderWithPrototype(builderResult)
     }
-    public override func build() -> Services.Search.Containers.SearchResultsV1 {
+    public override func build() -> Services.Search.Containers.SearchResultV1 {
          checkInitialized()
          return buildPartial()
     }
-    public func buildPartial() -> Services.Search.Containers.SearchResultsV1 {
-      var returnMe:Services.Search.Containers.SearchResultsV1 = builderResult
+    public func buildPartial() -> Services.Search.Containers.SearchResultV1 {
+      var returnMe:Services.Search.Containers.SearchResultV1 = builderResult
       return returnMe
     }
-    public func mergeFrom(other:Services.Search.Containers.SearchResultsV1) -> Services.Search.Containers.SearchResultsV1Builder {
-      if (other == Services.Search.Containers.SearchResultsV1()) {
+    public func mergeFrom(other:Services.Search.Containers.SearchResultV1) -> Services.Search.Containers.SearchResultV1Builder {
+      if (other == Services.Search.Containers.SearchResultV1()) {
        return self
       }
       if other.hasVersion {
            version = other.version
       }
-      if other.hasCategory {
-           category = other.category
+      if (other.hasProfile) {
+          mergeProfile(other.profile)
       }
-      if !other.profiles.isEmpty  {
-         builderResult.profiles += other.profiles
+      if (other.hasTeam) {
+          mergeTeam(other.team)
       }
-      if !other.teams.isEmpty  {
-         builderResult.teams += other.teams
+      if (other.hasLocation) {
+          mergeLocation(other.location)
       }
-      if !other.locations.isEmpty  {
-         builderResult.locations += other.locations
-      }
-      if !other.tags.isEmpty  {
-         builderResult.tags += other.tags
-      }
-      if !other.groups.isEmpty  {
-         builderResult.groups += other.groups
+      if (other.hasGroup) {
+          mergeGroup(other.group)
       }
       mergeUnknownFields(other.unknownFields)
       return self
     }
-    public override func mergeFromCodedInputStream(input:CodedInputStream) ->Services.Search.Containers.SearchResultsV1Builder {
+    public override func mergeFromCodedInputStream(input:CodedInputStream) ->Services.Search.Containers.SearchResultV1Builder {
          return mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
     }
-    public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> Services.Search.Containers.SearchResultsV1Builder {
+    public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> Services.Search.Containers.SearchResultV1Builder {
       var unknownFieldsBuilder:UnknownFieldSetBuilder = UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
       while (true) {
         var tag = input.readTag()
@@ -442,38 +443,37 @@ public extension Services.Search.Containers {
         case 8 :
           version = input.readUInt32()
 
-        case 16 :
-          let valueIntcategory = input.readEnum()
-          if let enumscategory = Services.Search.Containers.Search.CategoryV1(rawValue:valueIntcategory){
-               category = enumscategory
-          } else {
-               unknownFieldsBuilder.mergeVarintField(2, value:Int64(valueIntcategory))
+        case 18 :
+          var subBuilder:Services.Profile.Containers.ProfileV1Builder = Services.Profile.Containers.ProfileV1.builder()
+          if hasProfile {
+            subBuilder.mergeFrom(profile)
           }
+          input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
+          profile = subBuilder.buildPartial()
 
         case 26 :
-          var subBuilder = Services.Profile.Containers.ProfileV1.builder()
-          input.readMessage(subBuilder,extensionRegistry:extensionRegistry)
-          profiles += [subBuilder.buildPartial()]
+          var subBuilder:Services.Organization.Containers.TeamV1Builder = Services.Organization.Containers.TeamV1.builder()
+          if hasTeam {
+            subBuilder.mergeFrom(team)
+          }
+          input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
+          team = subBuilder.buildPartial()
 
         case 34 :
-          var subBuilder = Services.Organization.Containers.TeamV1.builder()
-          input.readMessage(subBuilder,extensionRegistry:extensionRegistry)
-          teams += [subBuilder.buildPartial()]
+          var subBuilder:Services.Organization.Containers.LocationV1Builder = Services.Organization.Containers.LocationV1.builder()
+          if hasLocation {
+            subBuilder.mergeFrom(location)
+          }
+          input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
+          location = subBuilder.buildPartial()
 
         case 42 :
-          var subBuilder = Services.Organization.Containers.LocationV1.builder()
-          input.readMessage(subBuilder,extensionRegistry:extensionRegistry)
-          locations += [subBuilder.buildPartial()]
-
-        case 50 :
-          var subBuilder = Services.Profile.Containers.TagV1.builder()
-          input.readMessage(subBuilder,extensionRegistry:extensionRegistry)
-          tags += [subBuilder.buildPartial()]
-
-        case 58 :
-          var subBuilder = Services.Group.Containers.GroupV1.builder()
-          input.readMessage(subBuilder,extensionRegistry:extensionRegistry)
-          groups += [subBuilder.buildPartial()]
+          var subBuilder:Services.Group.Containers.GroupV1Builder = Services.Group.Containers.GroupV1.builder()
+          if hasGroup {
+            subBuilder.mergeFrom(group)
+          }
+          input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
+          group = subBuilder.buildPartial()
 
         default:
           if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {

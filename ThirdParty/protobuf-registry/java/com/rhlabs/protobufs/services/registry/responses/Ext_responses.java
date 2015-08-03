@@ -410,4 +410,9 @@ public final class Ext_responses {
       .setName("services.registry.responses.send_notification")
       .setTag(1303)
       .buildOptional();
+  public static final Extension<ActionResultV1 , com.rhlabs.protobufs.services.history.actions.record_action.RecordActionRequestV1> record_action = Extension
+      .messageExtending(com.rhlabs.protobufs.services.history.actions.record_action.RecordActionRequestV1.class, ActionResultV1.class)
+      .setName("services.registry.responses.record_action")
+      .setTag(1400)
+      .buildOptional();
 }

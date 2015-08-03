@@ -1,0 +1,12 @@
+package services.history.actions.record_action;
+
+import "protobufs/services/history/containers.proto";
+
+message RequestV1 {
+    optional uint32 version = 1 [default = 1];
+    optional services.history.containers.ActionV1 action = 2;
+}
+
+message ResponseV1 {
+    optional uint32 version = 1 [default = 1];
+}

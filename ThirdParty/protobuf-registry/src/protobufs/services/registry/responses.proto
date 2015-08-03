@@ -94,6 +94,8 @@ import "protobufs/services/notification/actions/get_preferences.proto";
 import "protobufs/services/notification/actions/update_preference.proto";
 import "protobufs/services/notification/actions/send_notification.proto";
 
+import "protobufs/services/history/actions/record_action.proto";
+
 message User {
     extend soa.ActionResultV1 {
         optional services.user.actions.create_user.ResponseV1 create_user = 100;
@@ -216,5 +218,12 @@ message Notification {
         optional services.notification.actions.get_preferences.ResponseV1 get_preferences = 1301;
         optional services.notification.actions.update_preference.ResponseV1 update_preference = 1302;
         optional services.notification.actions.send_notification.ResponseV1 send_notification = 1303;
+    }
+}
+
+
+message History {
+    extend soa.ActionResultV1 {
+        optional services.history.actions.record_action.RequestV1 record_action = 1400;
     }
 }

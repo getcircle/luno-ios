@@ -2,7 +2,7 @@
 // Source file: ./src/protobufs/services/search/actions/search.proto
 package com.rhlabs.protobufs.services.search.actions.search;
 
-import com.rhlabs.protobufs.services.search.containers.SearchResultsV1;
+import com.rhlabs.protobufs.services.search.containers.SearchResultV1;
 import com.squareup.wire.Message;
 import com.squareup.wire.ProtoField;
 import java.util.Collections;
@@ -15,15 +15,15 @@ public final class SearchResponseV1 extends Message {
   private static final long serialVersionUID = 0L;
 
   public static final Integer DEFAULT_VERSION = 1;
-  public static final List<SearchResultsV1> DEFAULT_RESULTS = Collections.emptyList();
+  public static final List<SearchResultV1> DEFAULT_RESULTS = Collections.emptyList();
 
   @ProtoField(tag = 1, type = UINT32)
   public final Integer version;
 
-  @ProtoField(tag = 2, label = REPEATED, messageType = SearchResultsV1.class)
-  public final List<SearchResultsV1> results;
+  @ProtoField(tag = 2, label = REPEATED, messageType = SearchResultV1.class)
+  public final List<SearchResultV1> results;
 
-  public SearchResponseV1(Integer version, List<SearchResultsV1> results) {
+  public SearchResponseV1(Integer version, List<SearchResultV1> results) {
     this.version = version;
     this.results = immutableCopyOf(results);
   }
@@ -56,7 +56,7 @@ public final class SearchResponseV1 extends Message {
   public static final class Builder extends Message.Builder<SearchResponseV1> {
 
     public Integer version;
-    public List<SearchResultsV1> results;
+    public List<SearchResultV1> results;
 
     public Builder() {
     }
@@ -73,7 +73,7 @@ public final class SearchResponseV1 extends Message {
       return this;
     }
 
-    public Builder results(List<SearchResultsV1> results) {
+    public Builder results(List<SearchResultV1> results) {
       this.results = checkForNulls(results);
       return this;
     }

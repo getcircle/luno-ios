@@ -5,13 +5,10 @@ import "protobufs/services/organization/containers.proto";
 import "protobufs/services/profile/containers.proto";
 import "protobufs/services/search/containers/search.proto";
 
-message SearchResultsV1 {
+message SearchResultV1 {
     optional uint32 version = 1 [default = 1];
-    optional services.search.containers.search.CategoryV1 category = 2;
-
-    repeated services.profile.containers.ProfileV1 profiles = 3;
-    repeated services.organization.containers.TeamV1 teams = 4;
-    repeated services.organization.containers.LocationV1 locations = 5;
-    repeated services.profile.containers.TagV1 tags = 6;
-    repeated services.group.containers.GroupV1 groups = 7;
+    optional services.profile.containers.ProfileV1 profile = 2;
+    optional services.organization.containers.TeamV1 team = 3;
+    optional services.organization.containers.LocationV1 location = 4;
+    optional services.group.containers.GroupV1 group = 5;
 }
