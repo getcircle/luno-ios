@@ -260,8 +260,6 @@
 		BF59AA931A2C152F00C0CDB9 /* UITableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF59AA921A2C152F00C0CDB9 /* UITableViewExtension.swift */; };
 		BF6A2D0F1AAD08DA00692315 /* EmptyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6A2D0D1AAD08DA00692315 /* EmptyCollectionViewCell.swift */; };
 		BF6A2D101AAD08DA00692315 /* EmptyCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF6A2D0E1AAD08DA00692315 /* EmptyCollectionViewCell.xib */; };
-		BF6ACE371AC75057009F2B05 /* TagInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6ACE351AC75057009F2B05 /* TagInputViewController.swift */; };
-		BF6ACE381AC75057009F2B05 /* TagInputViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF6ACE361AC75057009F2B05 /* TagInputViewController.xib */; };
 		BF6ACE3E1AC766EF009F2B05 /* TagSuggestionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6ACE3C1AC766EF009F2B05 /* TagSuggestionCollectionViewCell.swift */; };
 		BF6ACE3F1AC766EF009F2B05 /* TagSuggestionCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF6ACE3D1AC766EF009F2B05 /* TagSuggestionCollectionViewCell.xib */; };
 		BF768A621AB402D100D677B1 /* PaginatorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF768A611AB402D100D677B1 /* PaginatorExtension.swift */; };
@@ -608,8 +606,6 @@
 		BF59AA921A2C152F00C0CDB9 /* UITableViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewExtension.swift; sourceTree = "<group>"; };
 		BF6A2D0D1AAD08DA00692315 /* EmptyCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyCollectionViewCell.swift; sourceTree = "<group>"; };
 		BF6A2D0E1AAD08DA00692315 /* EmptyCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmptyCollectionViewCell.xib; sourceTree = "<group>"; };
-		BF6ACE351AC75057009F2B05 /* TagInputViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagInputViewController.swift; sourceTree = "<group>"; };
-		BF6ACE361AC75057009F2B05 /* TagInputViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TagInputViewController.xib; sourceTree = "<group>"; };
 		BF6ACE3C1AC766EF009F2B05 /* TagSuggestionCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagSuggestionCollectionViewCell.swift; sourceTree = "<group>"; };
 		BF6ACE3D1AC766EF009F2B05 /* TagSuggestionCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TagSuggestionCollectionViewCell.xib; sourceTree = "<group>"; };
 		BF768A611AB402D100D677B1 /* PaginatorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaginatorExtension.swift; sourceTree = "<group>"; };
@@ -791,7 +787,6 @@
 				BFF5E6F31A814C2C00827757 /* SocialConnectViewController.swift */,
 				8FAA14BA1B093D190098CC45 /* SplashViewController.swift */,
 				8F7400221A6862BF00D96B60 /* TagDetailViewController.swift */,
-				BF6ACE351AC75057009F2B05 /* TagInputViewController.swift */,
 				8FF298431A4DF38E00306CFC /* TagScrollingSelectorViewController.swift */,
 				8F7795021A909AFC00BEF6EA /* TagsOverviewViewController.swift */,
 				8F085A841A6B0C1E00F8139B /* TeamDetailViewController.swift */,
@@ -941,7 +936,6 @@
 				8FAA14BB1B093D190098CC45 /* SplashViewController.xib */,
 				8FF298461A4E050100306CFC /* TagCollectionViewCell.xib */,
 				8F74001C1A684F2400D96B60 /* TagHeaderCollectionReusableView.xib */,
-				BF6ACE361AC75057009F2B05 /* TagInputViewController.xib */,
 				8F65C5061A52661700C7F3E6 /* TagScrollingCollectionViewCell.xib */,
 				8F682F401A65F9090066BDEE /* TagScrollingSelectorViewController.xib */,
 				8F7795031A909AFC00BEF6EA /* TagsOverviewViewController.xib */,
@@ -1325,7 +1319,6 @@
 				8F0ADD301AC5344E00A44B68 /* Loader_00020@2x.png in Resources */,
 				8FA6A4BA1AFED58B00ACC39D /* GroupHeaderCollectionReusableView.xib in Resources */,
 				8F0ADD331AC5344E00A44B68 /* Loader_00023@2x.png in Resources */,
-				BF6ACE381AC75057009F2B05 /* TagInputViewController.xib in Resources */,
 				8F0ADD221AC5344E00A44B68 /* Loader_00006@2x.png in Resources */,
 				8F085A961A6C191400F8139B /* TeamGridItemCollectionViewCell.xib in Resources */,
 				8F5933CD1AC9FD8B00905E14 /* NotificationsViewController.xib in Resources */,
@@ -1654,7 +1647,6 @@
 				BF768A621AB402D100D677B1 /* PaginatorExtension.swift in Sources */,
 				8F22CBF81A29A8EB0026376E /* AuthViewController.swift in Sources */,
 				8F7E2DC61A8FC00000B8548D /* PasscodeTouchIDSplashViewController.swift in Sources */,
-				BF6ACE371AC75057009F2B05 /* TagInputViewController.swift in Sources */,
 				8FC8780B1AB276B1003FDB27 /* ProfileDetailViewController.swift in Sources */,
 				8F9F60B81A896CE400FCAA25 /* MainTabBarViewController.swift in Sources */,
 				8F9F60D51A8C481F00FCAA25 /* SettingsCollectionViewCell.swift in Sources */,
