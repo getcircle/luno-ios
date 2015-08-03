@@ -18,6 +18,7 @@ public func == (lhs: Services.History.Containers.ActionV1, rhs: Services.History
   fieldCheck = fieldCheck && (lhs.hasMethodType == rhs.hasMethodType) && (!lhs.hasMethodType || lhs.methodType == rhs.methodType)
   fieldCheck = fieldCheck && (lhs.hasOrganizationId == rhs.hasOrganizationId) && (!lhs.hasOrganizationId || lhs.organizationId == rhs.organizationId)
   fieldCheck = fieldCheck && (lhs.hasCorrelationId == rhs.hasCorrelationId) && (!lhs.hasCorrelationId || lhs.correlationId == rhs.correlationId)
+  fieldCheck = fieldCheck && (lhs.hasByProfileId == rhs.hasByProfileId) && (!lhs.hasByProfileId || lhs.byProfileId == rhs.byProfileId)
   return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
 }
 
@@ -75,6 +76,7 @@ public extension Services.History.Containers {
            case "methodType": return self.methodType
            case "organizationId": return organizationId
            case "correlationId": return correlationId
+           case "byProfileId": return byProfileId
            default: return nil
            }
     }
@@ -106,6 +108,9 @@ public extension Services.History.Containers {
 
     public private(set) var hasCorrelationId:Bool = false
     public private(set) var correlationId:String = ""
+
+    public private(set) var hasByProfileId:Bool = false
+    public private(set) var byProfileId:String = ""
 
     required public init() {
          super.init()
@@ -143,6 +148,9 @@ public extension Services.History.Containers {
       }
       if hasCorrelationId {
         output.writeString(10, value:correlationId)
+      }
+      if hasByProfileId {
+        output.writeString(11, value:byProfileId)
       }
       unknownFields.writeToCodedOutputStream(output)
     }
@@ -182,6 +190,9 @@ public extension Services.History.Containers {
       }
       if hasCorrelationId {
         serialize_size += correlationId.computeStringSize(10)
+      }
+      if hasByProfileId {
+        serialize_size += byProfileId.computeStringSize(11)
       }
       serialize_size += unknownFields.serializedSize()
       memoizedSerializedSize = serialize_size
@@ -254,6 +265,9 @@ public extension Services.History.Containers {
       if hasCorrelationId {
         output += "\(indent) correlationId: \(correlationId) \n"
       }
+      if hasByProfileId {
+        output += "\(indent) byProfileId: \(byProfileId) \n"
+      }
       unknownFields.writeDescriptionTo(&output, indent:indent)
     }
     override public var hashValue:Int {
@@ -288,6 +302,9 @@ public extension Services.History.Containers {
             }
             if hasCorrelationId {
                hashCode = (hashCode &* 31) &+ correlationId.hashValue
+            }
+            if hasByProfileId {
+               hashCode = (hashCode &* 31) &+ byProfileId.hashValue
             }
             hashCode = (hashCode &* 31) &+  unknownFields.hashValue
             return hashCode
@@ -547,6 +564,29 @@ public extension Services.History.Containers {
          builderResult.correlationId = ""
          return self
     }
+    public var hasByProfileId:Bool {
+         get {
+              return builderResult.hasByProfileId
+         }
+    }
+    public var byProfileId:String {
+         get {
+              return builderResult.byProfileId
+         }
+         set (value) {
+             builderResult.hasByProfileId = true
+             builderResult.byProfileId = value
+         }
+    }
+    public func setByProfileId(value:String)-> Services.History.Containers.ActionV1Builder {
+      self.byProfileId = value
+      return self
+    }
+    public func clearByProfileId() -> Services.History.Containers.ActionV1Builder{
+         builderResult.hasByProfileId = false
+         builderResult.byProfileId = ""
+         return self
+    }
     override public var internalGetResult:GeneratedMessage {
          get {
             return builderResult
@@ -600,6 +640,9 @@ public extension Services.History.Containers {
       }
       if other.hasCorrelationId {
            correlationId = other.correlationId
+      }
+      if other.hasByProfileId {
+           byProfileId = other.byProfileId
       }
       mergeUnknownFields(other.unknownFields)
       return self
@@ -655,6 +698,9 @@ public extension Services.History.Containers {
 
         case 82 :
           correlationId = input.readString()
+
+        case 90 :
+          byProfileId = input.readString()
 
         default:
           if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {

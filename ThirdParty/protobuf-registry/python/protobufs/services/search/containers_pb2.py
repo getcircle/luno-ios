@@ -22,7 +22,7 @@ import protobufs.services.search.containers.search_pb2
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='protobufs/services/search/containers.proto',
   package='services.search.containers',
-  serialized_pb=_b('\n*protobufs/services/search/containers.proto\x12\x1aservices.search.containers\x1a)protobufs/services/group/containers.proto\x1a\x30protobufs/services/organization/containers.proto\x1a+protobufs/services/profile/containers.proto\x1a\x31protobufs/services/search/containers/search.proto\"\x88\x02\n\x0eSearchResultV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x37\n\x07profile\x18\x02 \x01(\x0b\x32&.services.profile.containers.ProfileV1\x12\x36\n\x04team\x18\x03 \x01(\x0b\x32(.services.organization.containers.TeamV1\x12>\n\x08location\x18\x04 \x01(\x0b\x32,.services.organization.containers.LocationV1\x12\x31\n\x05group\x18\x05 \x01(\x0b\x32\".services.group.containers.GroupV1')
+  serialized_pb=_b('\n*protobufs/services/search/containers.proto\x12\x1aservices.search.containers\x1a)protobufs/services/group/containers.proto\x1a\x30protobufs/services/organization/containers.proto\x1a+protobufs/services/profile/containers.proto\x1a\x31protobufs/services/search/containers/search.proto\"\x9a\x02\n\x0eSearchResultV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x39\n\x07profile\x18\x02 \x01(\x0b\x32&.services.profile.containers.ProfileV1H\x00\x12\x38\n\x04team\x18\x03 \x01(\x0b\x32(.services.organization.containers.TeamV1H\x00\x12@\n\x08location\x18\x04 \x01(\x0b\x32,.services.organization.containers.LocationV1H\x00\x12\x33\n\x05group\x18\x05 \x01(\x0b\x32\".services.group.containers.GroupV1H\x00\x42\x08\n\x06object')
   ,
   dependencies=[protobufs.services.group.containers_pb2.DESCRIPTOR,protobufs.services.organization.containers_pb2.DESCRIPTOR,protobufs.services.profile.containers_pb2.DESCRIPTOR,protobufs.services.search.containers.search_pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
@@ -82,15 +82,30 @@ _SEARCHRESULTV1 = _descriptor.Descriptor(
   is_extendable=False,
   extension_ranges=[],
   oneofs=[
+    _descriptor.OneofDescriptor(
+      name='object', full_name='services.search.containers.SearchResultV1.object',
+      index=0, containing_type=None, fields=[]),
   ],
   serialized_start=264,
-  serialized_end=528,
+  serialized_end=546,
 )
 
 _SEARCHRESULTV1.fields_by_name['profile'].message_type = protobufs.services.profile.containers_pb2._PROFILEV1
 _SEARCHRESULTV1.fields_by_name['team'].message_type = protobufs.services.organization.containers_pb2._TEAMV1
 _SEARCHRESULTV1.fields_by_name['location'].message_type = protobufs.services.organization.containers_pb2._LOCATIONV1
 _SEARCHRESULTV1.fields_by_name['group'].message_type = protobufs.services.group.containers_pb2._GROUPV1
+_SEARCHRESULTV1.oneofs_by_name['object'].fields.append(
+  _SEARCHRESULTV1.fields_by_name['profile'])
+_SEARCHRESULTV1.fields_by_name['profile'].containing_oneof = _SEARCHRESULTV1.oneofs_by_name['object']
+_SEARCHRESULTV1.oneofs_by_name['object'].fields.append(
+  _SEARCHRESULTV1.fields_by_name['team'])
+_SEARCHRESULTV1.fields_by_name['team'].containing_oneof = _SEARCHRESULTV1.oneofs_by_name['object']
+_SEARCHRESULTV1.oneofs_by_name['object'].fields.append(
+  _SEARCHRESULTV1.fields_by_name['location'])
+_SEARCHRESULTV1.fields_by_name['location'].containing_oneof = _SEARCHRESULTV1.oneofs_by_name['object']
+_SEARCHRESULTV1.oneofs_by_name['object'].fields.append(
+  _SEARCHRESULTV1.fields_by_name['group'])
+_SEARCHRESULTV1.fields_by_name['group'].containing_oneof = _SEARCHRESULTV1.oneofs_by_name['object']
 DESCRIPTOR.message_types_by_name['SearchResultV1'] = _SEARCHRESULTV1
 
 SearchResultV1 = _reflection.GeneratedProtocolMessageType('SearchResultV1', (_message.Message,), dict(

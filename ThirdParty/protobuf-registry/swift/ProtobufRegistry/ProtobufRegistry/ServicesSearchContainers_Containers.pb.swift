@@ -39,6 +39,65 @@ public extension Services.Search.Containers {
   }
 
   final public class SearchResultV1 : GeneratedMessage, GeneratedMessageProtocol {
+
+
+    //OneOf declaration start
+
+    public enum Object {
+      case ObjectOneOfNotSet
+
+      public func checkOneOfIsSet() -> Bool {
+           switch self {
+           case .ObjectOneOfNotSet:
+                return false
+           default:
+                return true
+           }
+      }
+      case Profile(Services.Profile.Containers.ProfileV1)
+
+      public static func getProfile(value:Object) ->Services.Profile.Containers.ProfileV1? {
+           switch value {
+           case .Profile(let enumValue):
+                return enumValue
+           default:
+                return nil
+           }
+      }
+      case Team(Services.Organization.Containers.TeamV1)
+
+      public static func getTeam(value:Object) ->Services.Organization.Containers.TeamV1? {
+           switch value {
+           case .Team(let enumValue):
+                return enumValue
+           default:
+                return nil
+           }
+      }
+      case Location(Services.Organization.Containers.LocationV1)
+
+      public static func getLocation(value:Object) ->Services.Organization.Containers.LocationV1? {
+           switch value {
+           case .Location(let enumValue):
+                return enumValue
+           default:
+                return nil
+           }
+      }
+      case Group(Services.Group.Containers.GroupV1)
+
+      public static func getGroup(value:Object) ->Services.Group.Containers.GroupV1? {
+           switch value {
+           case .Group(let enumValue):
+                return enumValue
+           default:
+                return nil
+           }
+      }
+    }
+    //OneOf declaration end
+
+    private var storageObject:Services.Search.Containers.SearchResultV1.Object =  Services.Search.Containers.SearchResultV1.Object.ObjectOneOfNotSet
     override public subscript(key: String) -> Any? {
            switch key {
            case "version": return version
@@ -53,14 +112,78 @@ public extension Services.Search.Containers {
     public private(set) var hasVersion:Bool = false
     public private(set) var version:UInt32 = UInt32(1)
 
-    public private(set) var hasProfile:Bool = false
-    public private(set) var profile:Services.Profile.Containers.ProfileV1!
-    public private(set) var hasTeam:Bool = false
-    public private(set) var team:Services.Organization.Containers.TeamV1!
-    public private(set) var hasLocation:Bool = false
-    public private(set) var location:Services.Organization.Containers.LocationV1!
-    public private(set) var hasGroup:Bool = false
-    public private(set) var group:Services.Group.Containers.GroupV1!
+    public private(set) var hasProfile:Bool {
+          get {
+               if Services.Search.Containers.SearchResultV1.Object.getProfile(storageObject) == nil {
+                   return false
+               }
+               return true
+          }
+          set(newValue) {
+          }
+    }
+    public private(set) var profile:Services.Profile.Containers.ProfileV1!{
+         get {
+              return Services.Search.Containers.SearchResultV1.Object.getProfile(storageObject)
+         }
+         set (newvalue) {
+              storageObject = Services.Search.Containers.SearchResultV1.Object.Profile(newvalue)
+         }
+    }
+    public private(set) var hasTeam:Bool {
+          get {
+               if Services.Search.Containers.SearchResultV1.Object.getTeam(storageObject) == nil {
+                   return false
+               }
+               return true
+          }
+          set(newValue) {
+          }
+    }
+    public private(set) var team:Services.Organization.Containers.TeamV1!{
+         get {
+              return Services.Search.Containers.SearchResultV1.Object.getTeam(storageObject)
+         }
+         set (newvalue) {
+              storageObject = Services.Search.Containers.SearchResultV1.Object.Team(newvalue)
+         }
+    }
+    public private(set) var hasLocation:Bool {
+          get {
+               if Services.Search.Containers.SearchResultV1.Object.getLocation(storageObject) == nil {
+                   return false
+               }
+               return true
+          }
+          set(newValue) {
+          }
+    }
+    public private(set) var location:Services.Organization.Containers.LocationV1!{
+         get {
+              return Services.Search.Containers.SearchResultV1.Object.getLocation(storageObject)
+         }
+         set (newvalue) {
+              storageObject = Services.Search.Containers.SearchResultV1.Object.Location(newvalue)
+         }
+    }
+    public private(set) var hasGroup:Bool {
+          get {
+               if Services.Search.Containers.SearchResultV1.Object.getGroup(storageObject) == nil {
+                   return false
+               }
+               return true
+          }
+          set(newValue) {
+          }
+    }
+    public private(set) var group:Services.Group.Containers.GroupV1!{
+         get {
+              return Services.Search.Containers.SearchResultV1.Object.getGroup(storageObject)
+         }
+         set (newvalue) {
+              storageObject = Services.Search.Containers.SearchResultV1.Object.Group(newvalue)
+         }
+    }
     required public init() {
          super.init()
     }

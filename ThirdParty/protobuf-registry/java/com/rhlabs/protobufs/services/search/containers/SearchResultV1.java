@@ -7,9 +7,11 @@ import com.rhlabs.protobufs.services.organization.containers.LocationV1;
 import com.rhlabs.protobufs.services.organization.containers.TeamV1;
 import com.rhlabs.protobufs.services.profile.containers.ProfileV1;
 import com.squareup.wire.Message;
+import com.squareup.wire.ProtoEnum;
 import com.squareup.wire.ProtoField;
 
 import static com.squareup.wire.Message.Datatype.UINT32;
+import static com.squareup.wire.Message.Label.ONE_OF;
 
 public final class SearchResultV1 extends Message {
   private static final long serialVersionUID = 0L;
@@ -19,28 +21,61 @@ public final class SearchResultV1 extends Message {
   @ProtoField(tag = 1, type = UINT32)
   public final Integer version;
 
-  @ProtoField(tag = 2)
+  @ProtoField(tag = 2, label = ONE_OF)
   public final ProfileV1 profile;
 
-  @ProtoField(tag = 3)
+  @ProtoField(tag = 3, label = ONE_OF)
   public final TeamV1 team;
 
-  @ProtoField(tag = 4)
+  @ProtoField(tag = 4, label = ONE_OF)
   public final LocationV1 location;
 
-  @ProtoField(tag = 5)
+  @ProtoField(tag = 5, label = ONE_OF)
   public final GroupV1 group;
 
-  public SearchResultV1(Integer version, ProfileV1 profile, TeamV1 team, LocationV1 location, GroupV1 group) {
+  public final Object object;
+
+  public enum Object
+      implements ProtoEnum {
+    OBJECT_NOT_SET(0),
+    PROFILE(2),
+    TEAM(3),
+    LOCATION(4),
+    GROUP(5);
+
+    private final int value;
+
+    Object(int value) {
+      this.value = value;
+    }
+
+    public int getValue() {
+      return value;
+    }
+
+    public static Object valueOf(int value) {
+      switch (value) {
+        case 0: return OBJECT_NOT_SET;
+        case 2: return PROFILE;
+        case 3: return TEAM;
+        case 4: return LOCATION;
+        case 5: return GROUP;
+      }
+      return null;
+    }
+  }
+
+  public SearchResultV1(Integer version, ProfileV1 profile, TeamV1 team, LocationV1 location, GroupV1 group, Object object) {
     this.version = version;
     this.profile = profile;
     this.team = team;
     this.location = location;
     this.group = group;
+    this.object = object;
   }
 
   private SearchResultV1(Builder builder) {
-    this(builder.version, builder.profile, builder.team, builder.location, builder.group);
+    this(builder.version, builder.profile, builder.team, builder.location, builder.group, builder.object);
     setBuilder(builder);
   }
 
@@ -78,6 +113,8 @@ public final class SearchResultV1 extends Message {
     public LocationV1 location;
     public GroupV1 group;
 
+    public Object object = Object.OBJECT_NOT_SET;
+
     public Builder() {
     }
 
@@ -89,6 +126,7 @@ public final class SearchResultV1 extends Message {
       this.team = message.team;
       this.location = message.location;
       this.group = message.group;
+      this.object = message.object;
     }
 
     public Builder version(Integer version) {
@@ -98,21 +136,41 @@ public final class SearchResultV1 extends Message {
 
     public Builder profile(ProfileV1 profile) {
       this.profile = profile;
+
+      this.team = null;
+      this.location = null;
+      this.group = null;
+      this.object = profile == null ? Object.OBJECT_NOT_SET : Object.PROFILE;
       return this;
     }
 
     public Builder team(TeamV1 team) {
       this.team = team;
+
+      this.profile = null;
+      this.location = null;
+      this.group = null;
+      this.object = team == null ? Object.OBJECT_NOT_SET : Object.TEAM;
       return this;
     }
 
     public Builder location(LocationV1 location) {
       this.location = location;
+
+      this.profile = null;
+      this.team = null;
+      this.group = null;
+      this.object = location == null ? Object.OBJECT_NOT_SET : Object.LOCATION;
       return this;
     }
 
     public Builder group(GroupV1 group) {
       this.group = group;
+
+      this.profile = null;
+      this.team = null;
+      this.location = null;
+      this.object = group == null ? Object.OBJECT_NOT_SET : Object.GROUP;
       return this;
     }
 

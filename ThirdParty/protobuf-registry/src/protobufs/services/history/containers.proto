@@ -20,4 +20,5 @@ message ActionV1 {
     optional MethodTypeV1 method_type = 8;
     optional string organization_id = 9;
     optional string correlation_id = 10;
+    optional string by_profile_id = 11;
 }

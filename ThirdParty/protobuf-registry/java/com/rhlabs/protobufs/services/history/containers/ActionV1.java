@@ -22,6 +22,7 @@ public final class ActionV1 extends Message {
   public static final MethodTypeV1 DEFAULT_METHOD_TYPE = MethodTypeV1.UPDATE;
   public static final String DEFAULT_ORGANIZATION_ID = "";
   public static final String DEFAULT_CORRELATION_ID = "";
+  public static final String DEFAULT_BY_PROFILE_ID = "";
 
   @ProtoField(tag = 1, type = UINT32)
   public final Integer version;
@@ -53,7 +54,10 @@ public final class ActionV1 extends Message {
   @ProtoField(tag = 10, type = STRING)
   public final String correlation_id;
 
-  public ActionV1(Integer version, String id, String column_name, String data_type, String old_value, String new_value, ActionTypeV1 action_type, MethodTypeV1 method_type, String organization_id, String correlation_id) {
+  @ProtoField(tag = 11, type = STRING)
+  public final String by_profile_id;
+
+  public ActionV1(Integer version, String id, String column_name, String data_type, String old_value, String new_value, ActionTypeV1 action_type, MethodTypeV1 method_type, String organization_id, String correlation_id, String by_profile_id) {
     this.version = version;
     this.id = id;
     this.column_name = column_name;
@@ -64,10 +68,11 @@ public final class ActionV1 extends Message {
     this.method_type = method_type;
     this.organization_id = organization_id;
     this.correlation_id = correlation_id;
+    this.by_profile_id = by_profile_id;
   }
 
   private ActionV1(Builder builder) {
-    this(builder.version, builder.id, builder.column_name, builder.data_type, builder.old_value, builder.new_value, builder.action_type, builder.method_type, builder.organization_id, builder.correlation_id);
+    this(builder.version, builder.id, builder.column_name, builder.data_type, builder.old_value, builder.new_value, builder.action_type, builder.method_type, builder.organization_id, builder.correlation_id, builder.by_profile_id);
     setBuilder(builder);
   }
 
@@ -85,7 +90,8 @@ public final class ActionV1 extends Message {
         && equals(action_type, o.action_type)
         && equals(method_type, o.method_type)
         && equals(organization_id, o.organization_id)
-        && equals(correlation_id, o.correlation_id);
+        && equals(correlation_id, o.correlation_id)
+        && equals(by_profile_id, o.by_profile_id);
   }
 
   @Override
@@ -102,6 +108,7 @@ public final class ActionV1 extends Message {
       result = result * 37 + (method_type != null ? method_type.hashCode() : 0);
       result = result * 37 + (organization_id != null ? organization_id.hashCode() : 0);
       result = result * 37 + (correlation_id != null ? correlation_id.hashCode() : 0);
+      result = result * 37 + (by_profile_id != null ? by_profile_id.hashCode() : 0);
       hashCode = result;
     }
     return result;
@@ -119,6 +126,7 @@ public final class ActionV1 extends Message {
     public MethodTypeV1 method_type;
     public String organization_id;
     public String correlation_id;
+    public String by_profile_id;
 
     public Builder() {
     }
@@ -136,6 +144,7 @@ public final class ActionV1 extends Message {
       this.method_type = message.method_type;
       this.organization_id = message.organization_id;
       this.correlation_id = message.correlation_id;
+      this.by_profile_id = message.by_profile_id;
     }
 
     public Builder version(Integer version) {
@@ -185,6 +194,11 @@ public final class ActionV1 extends Message {
 
     public Builder correlation_id(String correlation_id) {
       this.correlation_id = correlation_id;
+      return this;
+    }
+
+    public Builder by_profile_id(String by_profile_id) {
+      this.by_profile_id = by_profile_id;
       return this;
     }
 

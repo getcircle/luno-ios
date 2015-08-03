@@ -19,7 +19,7 @@ _sym_db = _symbol_database.Default()
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='protobufs/services/history/containers.proto',
   package='services.history.containers',
-  serialized_pb=_b('\n+protobufs/services/history/containers.proto\x12\x1bservices.history.containers\"\xa9\x02\n\x08\x41\x63tionV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\n\n\x02id\x18\x02 \x01(\t\x12\x13\n\x0b\x63olumn_name\x18\x03 \x01(\t\x12\x11\n\tdata_type\x18\x04 \x01(\t\x12\x11\n\told_value\x18\x05 \x01(\t\x12\x11\n\tnew_value\x18\x06 \x01(\t\x12>\n\x0b\x61\x63tion_type\x18\x07 \x01(\x0e\x32).services.history.containers.ActionTypeV1\x12>\n\x0bmethod_type\x18\x08 \x01(\x0e\x32).services.history.containers.MethodTypeV1\x12\x17\n\x0forganization_id\x18\t \x01(\t\x12\x16\n\x0e\x63orrelation_id\x18\n \x01(\t*&\n\x0c\x41\x63tionTypeV1\x12\x16\n\x12UPDATE_DESCRIPTION\x10\x00*&\n\x0cMethodTypeV1\x12\n\n\x06UPDATE\x10\x00\x12\n\n\x06\x44\x45LETE\x10\x01')
+  serialized_pb=_b('\n+protobufs/services/history/containers.proto\x12\x1bservices.history.containers\"\xc0\x02\n\x08\x41\x63tionV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\n\n\x02id\x18\x02 \x01(\t\x12\x13\n\x0b\x63olumn_name\x18\x03 \x01(\t\x12\x11\n\tdata_type\x18\x04 \x01(\t\x12\x11\n\told_value\x18\x05 \x01(\t\x12\x11\n\tnew_value\x18\x06 \x01(\t\x12>\n\x0b\x61\x63tion_type\x18\x07 \x01(\x0e\x32).services.history.containers.ActionTypeV1\x12>\n\x0bmethod_type\x18\x08 \x01(\x0e\x32).services.history.containers.MethodTypeV1\x12\x17\n\x0forganization_id\x18\t \x01(\t\x12\x16\n\x0e\x63orrelation_id\x18\n \x01(\t\x12\x15\n\rby_profile_id\x18\x0b \x01(\t*&\n\x0c\x41\x63tionTypeV1\x12\x16\n\x12UPDATE_DESCRIPTION\x10\x00*&\n\x0cMethodTypeV1\x12\n\n\x06UPDATE\x10\x00\x12\n\n\x06\x44\x45LETE\x10\x01')
 )
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
@@ -36,8 +36,8 @@ _ACTIONTYPEV1 = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=376,
-  serialized_end=414,
+  serialized_start=399,
+  serialized_end=437,
 )
 _sym_db.RegisterEnumDescriptor(_ACTIONTYPEV1)
 
@@ -59,8 +59,8 @@ _METHODTYPEV1 = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=416,
-  serialized_end=454,
+  serialized_start=439,
+  serialized_end=477,
 )
 _sym_db.RegisterEnumDescriptor(_METHODTYPEV1)
 
@@ -148,6 +148,13 @@ _ACTIONV1 = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
+    _descriptor.FieldDescriptor(
+      name='by_profile_id', full_name='services.history.containers.ActionV1.by_profile_id', index=10,
+      number=11, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
   ],
   extensions=[
   ],
@@ -160,7 +167,7 @@ _ACTIONV1 = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=77,
-  serialized_end=374,
+  serialized_end=397,
 )
 
 _ACTIONV1.fields_by_name['action_type'].enum_type = _ACTIONTYPEV1
