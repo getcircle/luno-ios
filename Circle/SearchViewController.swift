@@ -128,6 +128,7 @@ class SearchViewController: UIViewController,
             searchHeaderView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
             searchHeaderView.layer.cornerRadius = 10.0
             selectedAction = .None
+            searchHeaderContainerView.layer.borderColor = UIColor.grayColor().colorWithAlphaComponent(0.2).CGColor
         }
     }
     
@@ -219,6 +220,8 @@ class SearchViewController: UIViewController,
             self.searchFieldBottomBorder?.layoutIfNeeded()
             self.collectionView.layoutIfNeeded()
             self.poweredByLabel.layoutIfNeeded()
+            self.searchHeaderContainerView.addRoundCorners(radius: 0.0)
+            self.searchHeaderContainerView.layer.borderWidth = 0.0
             self.orgImageView.alpha = 0.0
             self.poweredByLabel.alpha = 0.0
         }) { (completed) -> Void in
@@ -244,6 +247,8 @@ class SearchViewController: UIViewController,
             self.searchFieldBottomBorder?.layoutIfNeeded()
             self.collectionView.layoutIfNeeded()
             self.poweredByLabel.layoutIfNeeded()
+            self.searchHeaderContainerView.addRoundCorners(radius: 4.0)
+            self.searchHeaderContainerView.layer.borderWidth = 1.0
             self.orgImageView.alpha = 1.0
             self.collectionView.alpha = 0.0
             self.poweredByLabel.alpha = 1.0
