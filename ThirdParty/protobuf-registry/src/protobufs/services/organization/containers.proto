@@ -38,6 +38,7 @@ message LocationV1 {
     optional string organization_id = 5;
     optional uint32 profile_count = 6;
     optional string image_url = 7;
+    optional string description = 8;
 }
 
 message OrganizationV1 {
@@ -67,6 +68,7 @@ message TeamV1 {
     optional uint32 profile_count = 8;
     optional ColorV1 color = 9;
     optional services.common.containers.PermissionsV1 permissions = 10;
+    optional string description = 11;
 }
 
 message TeamDescendantsV1 {

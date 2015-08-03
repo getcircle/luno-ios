@@ -23,6 +23,7 @@ public final class TeamV1 extends Message {
   public static final List<PathPartV1> DEFAULT_PATH = Collections.emptyList();
   public static final String DEFAULT_DEPARTMENT = "";
   public static final Integer DEFAULT_PROFILE_COUNT = 0;
+  public static final String DEFAULT_DESCRIPTION = "";
 
   @ProtoField(tag = 1, type = UINT32)
   public final Integer version;
@@ -54,7 +55,10 @@ public final class TeamV1 extends Message {
   @ProtoField(tag = 10)
   public final PermissionsV1 permissions;
 
-  public TeamV1(Integer version, String id, String name, String owner_id, String organization_id, List<PathPartV1> path, String department, Integer profile_count, ColorV1 color, PermissionsV1 permissions) {
+  @ProtoField(tag = 11, type = STRING)
+  public final String description;
+
+  public TeamV1(Integer version, String id, String name, String owner_id, String organization_id, List<PathPartV1> path, String department, Integer profile_count, ColorV1 color, PermissionsV1 permissions, String description) {
     this.version = version;
     this.id = id;
     this.name = name;
@@ -65,10 +69,11 @@ public final class TeamV1 extends Message {
     this.profile_count = profile_count;
     this.color = color;
     this.permissions = permissions;
+    this.description = description;
   }
 
   private TeamV1(Builder builder) {
-    this(builder.version, builder.id, builder.name, builder.owner_id, builder.organization_id, builder.path, builder.department, builder.profile_count, builder.color, builder.permissions);
+    this(builder.version, builder.id, builder.name, builder.owner_id, builder.organization_id, builder.path, builder.department, builder.profile_count, builder.color, builder.permissions, builder.description);
     setBuilder(builder);
   }
 
@@ -86,7 +91,8 @@ public final class TeamV1 extends Message {
         && equals(department, o.department)
         && equals(profile_count, o.profile_count)
         && equals(color, o.color)
-        && equals(permissions, o.permissions);
+        && equals(permissions, o.permissions)
+        && equals(description, o.description);
   }
 
   @Override
@@ -103,6 +109,7 @@ public final class TeamV1 extends Message {
       result = result * 37 + (profile_count != null ? profile_count.hashCode() : 0);
       result = result * 37 + (color != null ? color.hashCode() : 0);
       result = result * 37 + (permissions != null ? permissions.hashCode() : 0);
+      result = result * 37 + (description != null ? description.hashCode() : 0);
       hashCode = result;
     }
     return result;
@@ -120,6 +127,7 @@ public final class TeamV1 extends Message {
     public Integer profile_count;
     public ColorV1 color;
     public PermissionsV1 permissions;
+    public String description;
 
     public Builder() {
     }
@@ -137,6 +145,7 @@ public final class TeamV1 extends Message {
       this.profile_count = message.profile_count;
       this.color = message.color;
       this.permissions = message.permissions;
+      this.description = message.description;
     }
 
     public Builder version(Integer version) {
@@ -186,6 +195,11 @@ public final class TeamV1 extends Message {
 
     public Builder permissions(PermissionsV1 permissions) {
       this.permissions = permissions;
+      return this;
+    }
+
+    public Builder description(String description) {
+      this.description = description;
       return this;
     }
 

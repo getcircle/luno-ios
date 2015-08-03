@@ -33,11 +33,11 @@ public final class SearchResultV1 extends Message {
   @ProtoField(tag = 5, label = ONE_OF)
   public final GroupV1 group;
 
-  public final Object object;
+  public final Result_object result_object;
 
-  public enum Object
+  public enum Result_object
       implements ProtoEnum {
-    OBJECT_NOT_SET(0),
+    RESULT_OBJECT_NOT_SET(0),
     PROFILE(2),
     TEAM(3),
     LOCATION(4),
@@ -45,7 +45,7 @@ public final class SearchResultV1 extends Message {
 
     private final int value;
 
-    Object(int value) {
+    Result_object(int value) {
       this.value = value;
     }
 
@@ -53,9 +53,9 @@ public final class SearchResultV1 extends Message {
       return value;
     }
 
-    public static Object valueOf(int value) {
+    public static Result_object valueOf(int value) {
       switch (value) {
-        case 0: return OBJECT_NOT_SET;
+        case 0: return RESULT_OBJECT_NOT_SET;
         case 2: return PROFILE;
         case 3: return TEAM;
         case 4: return LOCATION;
@@ -65,17 +65,17 @@ public final class SearchResultV1 extends Message {
     }
   }
 
-  public SearchResultV1(Integer version, ProfileV1 profile, TeamV1 team, LocationV1 location, GroupV1 group, Object object) {
+  public SearchResultV1(Integer version, ProfileV1 profile, TeamV1 team, LocationV1 location, GroupV1 group, Result_object result_object) {
     this.version = version;
     this.profile = profile;
     this.team = team;
     this.location = location;
     this.group = group;
-    this.object = object;
+    this.result_object = result_object;
   }
 
   private SearchResultV1(Builder builder) {
-    this(builder.version, builder.profile, builder.team, builder.location, builder.group, builder.object);
+    this(builder.version, builder.profile, builder.team, builder.location, builder.group, builder.result_object);
     setBuilder(builder);
   }
 
@@ -113,7 +113,7 @@ public final class SearchResultV1 extends Message {
     public LocationV1 location;
     public GroupV1 group;
 
-    public Object object = Object.OBJECT_NOT_SET;
+    public Result_object result_object = Result_object.RESULT_OBJECT_NOT_SET;
 
     public Builder() {
     }
@@ -126,7 +126,7 @@ public final class SearchResultV1 extends Message {
       this.team = message.team;
       this.location = message.location;
       this.group = message.group;
-      this.object = message.object;
+      this.result_object = message.result_object;
     }
 
     public Builder version(Integer version) {
@@ -140,7 +140,7 @@ public final class SearchResultV1 extends Message {
       this.team = null;
       this.location = null;
       this.group = null;
-      this.object = profile == null ? Object.OBJECT_NOT_SET : Object.PROFILE;
+      this.result_object = profile == null ? Result_object.RESULT_OBJECT_NOT_SET : Result_object.PROFILE;
       return this;
     }
 
@@ -150,7 +150,7 @@ public final class SearchResultV1 extends Message {
       this.profile = null;
       this.location = null;
       this.group = null;
-      this.object = team == null ? Object.OBJECT_NOT_SET : Object.TEAM;
+      this.result_object = team == null ? Result_object.RESULT_OBJECT_NOT_SET : Result_object.TEAM;
       return this;
     }
 
@@ -160,7 +160,7 @@ public final class SearchResultV1 extends Message {
       this.profile = null;
       this.team = null;
       this.group = null;
-      this.object = location == null ? Object.OBJECT_NOT_SET : Object.LOCATION;
+      this.result_object = location == null ? Result_object.RESULT_OBJECT_NOT_SET : Result_object.LOCATION;
       return this;
     }
 
@@ -170,7 +170,7 @@ public final class SearchResultV1 extends Message {
       this.profile = null;
       this.team = null;
       this.location = null;
-      this.object = group == null ? Object.OBJECT_NOT_SET : Object.GROUP;
+      this.result_object = group == null ? Result_object.RESULT_OBJECT_NOT_SET : Result_object.GROUP;
       return this;
     }
 

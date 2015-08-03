@@ -49,6 +49,7 @@ public func == (lhs: Services.Organization.Containers.LocationV1, rhs: Services.
   fieldCheck = fieldCheck && (lhs.hasOrganizationId == rhs.hasOrganizationId) && (!lhs.hasOrganizationId || lhs.organizationId == rhs.organizationId)
   fieldCheck = fieldCheck && (lhs.hasProfileCount == rhs.hasProfileCount) && (!lhs.hasProfileCount || lhs.profileCount == rhs.profileCount)
   fieldCheck = fieldCheck && (lhs.hasImageUrl == rhs.hasImageUrl) && (!lhs.hasImageUrl || lhs.imageUrl == rhs.imageUrl)
+  fieldCheck = fieldCheck && (lhs.hasDescription == rhs.hasDescription) && (!lhs.hasDescription || lhs.description_ == rhs.description_)
   return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
 }
 
@@ -93,6 +94,7 @@ public func == (lhs: Services.Organization.Containers.TeamV1, rhs: Services.Orga
   fieldCheck = fieldCheck && (lhs.hasProfileCount == rhs.hasProfileCount) && (!lhs.hasProfileCount || lhs.profileCount == rhs.profileCount)
   fieldCheck = fieldCheck && (lhs.hasColor == rhs.hasColor) && (!lhs.hasColor || lhs.color == rhs.color)
   fieldCheck = fieldCheck && (lhs.hasPermissions == rhs.hasPermissions) && (!lhs.hasPermissions || lhs.permissions == rhs.permissions)
+  fieldCheck = fieldCheck && (lhs.hasDescription == rhs.hasDescription) && (!lhs.hasDescription || lhs.description_ == rhs.description_)
   return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
 }
 
@@ -1251,6 +1253,7 @@ public extension Services.Organization.Containers {
            case "organizationId": return organizationId
            case "profileCount": return profileCount
            case "imageUrl": return imageUrl
+           case "description_": return description_
            default: return nil
            }
     }
@@ -1274,6 +1277,9 @@ public extension Services.Organization.Containers {
 
     public private(set) var hasImageUrl:Bool = false
     public private(set) var imageUrl:String = ""
+
+    public private(set) var hasDescription:Bool = false
+    public private(set) var description_:String = ""
 
     required public init() {
          super.init()
@@ -1302,6 +1308,9 @@ public extension Services.Organization.Containers {
       }
       if hasImageUrl {
         output.writeString(7, value:imageUrl)
+      }
+      if hasDescription {
+        output.writeString(8, value:description_)
       }
       unknownFields.writeToCodedOutputStream(output)
     }
@@ -1334,6 +1343,9 @@ public extension Services.Organization.Containers {
       }
       if hasImageUrl {
         serialize_size += imageUrl.computeStringSize(7)
+      }
+      if hasDescription {
+        serialize_size += description_.computeStringSize(8)
       }
       serialize_size += unknownFields.serializedSize()
       memoizedSerializedSize = serialize_size
@@ -1399,6 +1411,9 @@ public extension Services.Organization.Containers {
       if hasImageUrl {
         output += "\(indent) imageUrl: \(imageUrl) \n"
       }
+      if hasDescription {
+        output += "\(indent) description_: \(description_) \n"
+      }
       unknownFields.writeDescriptionTo(&output, indent:indent)
     }
     override public var hashValue:Int {
@@ -1426,6 +1441,9 @@ public extension Services.Organization.Containers {
             }
             if hasImageUrl {
                hashCode = (hashCode &* 31) &+ imageUrl.hashValue
+            }
+            if hasDescription {
+               hashCode = (hashCode &* 31) &+ description_.hashValue
             }
             hashCode = (hashCode &* 31) &+  unknownFields.hashValue
             return hashCode
@@ -1625,6 +1643,29 @@ public extension Services.Organization.Containers {
          builderResult.imageUrl = ""
          return self
     }
+    public var hasDescription:Bool {
+         get {
+              return builderResult.hasDescription
+         }
+    }
+    public var description_:String {
+         get {
+              return builderResult.description_
+         }
+         set (value) {
+             builderResult.hasDescription = true
+             builderResult.description_ = value
+         }
+    }
+    public func setDescription(value:String)-> Services.Organization.Containers.LocationV1Builder {
+      self.description_ = value
+      return self
+    }
+    public func clearDescription() -> Services.Organization.Containers.LocationV1Builder{
+         builderResult.hasDescription = false
+         builderResult.description_ = ""
+         return self
+    }
     override public var internalGetResult:GeneratedMessage {
          get {
             return builderResult
@@ -1670,6 +1711,9 @@ public extension Services.Organization.Containers {
       if other.hasImageUrl {
            imageUrl = other.imageUrl
       }
+      if other.hasDescription {
+           description_ = other.description_
+      }
       mergeUnknownFields(other.unknownFields)
       return self
     }
@@ -1710,6 +1754,9 @@ public extension Services.Organization.Containers {
 
         case 58 :
           imageUrl = input.readString()
+
+        case 66 :
+          description_ = input.readString()
 
         default:
           if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
@@ -2494,6 +2541,7 @@ public extension Services.Organization.Containers {
            case "profileCount": return profileCount
            case "color": return color
            case "permissions": return permissions
+           case "description_": return description_
            default: return nil
            }
     }
@@ -2523,6 +2571,9 @@ public extension Services.Organization.Containers {
     public private(set) var color:Services.Organization.Containers.ColorV1!
     public private(set) var hasPermissions:Bool = false
     public private(set) var permissions:Services.Common.Containers.PermissionsV1!
+    public private(set) var hasDescription:Bool = false
+    public private(set) var description_:String = ""
+
     public private(set) var path:Array<Services.Organization.Containers.PathPartV1>  = Array<Services.Organization.Containers.PathPartV1>()
     required public init() {
          super.init()
@@ -2560,6 +2611,9 @@ public extension Services.Organization.Containers {
       }
       if hasPermissions {
         output.writeMessage(10, value:permissions)
+      }
+      if hasDescription {
+        output.writeString(11, value:description_)
       }
       unknownFields.writeToCodedOutputStream(output)
     }
@@ -2603,6 +2657,9 @@ public extension Services.Organization.Containers {
           if let varSizepermissions = permissions?.computeMessageSize(10) {
               serialize_size += varSizepermissions
           }
+      }
+      if hasDescription {
+        serialize_size += description_.computeStringSize(11)
       }
       serialize_size += unknownFields.serializedSize()
       memoizedSerializedSize = serialize_size
@@ -2683,6 +2740,9 @@ public extension Services.Organization.Containers {
         permissions?.writeDescriptionTo(&output, indent:"\(indent)  ")
         output += "\(indent) }\n"
       }
+      if hasDescription {
+        output += "\(indent) description_: \(description_) \n"
+      }
       unknownFields.writeDescriptionTo(&output, indent:indent)
     }
     override public var hashValue:Int {
@@ -2721,6 +2781,9 @@ public extension Services.Organization.Containers {
                 if let hashValuepermissions = permissions?.hashValue {
                     hashCode = (hashCode &* 31) &+ hashValuepermissions
                 }
+            }
+            if hasDescription {
+               hashCode = (hashCode &* 31) &+ description_.hashValue
             }
             hashCode = (hashCode &* 31) &+  unknownFields.hashValue
             return hashCode
@@ -2991,6 +3054,29 @@ public extension Services.Organization.Containers {
       builderResult.permissions = nil
       return self
     }
+    public var hasDescription:Bool {
+         get {
+              return builderResult.hasDescription
+         }
+    }
+    public var description_:String {
+         get {
+              return builderResult.description_
+         }
+         set (value) {
+             builderResult.hasDescription = true
+             builderResult.description_ = value
+         }
+    }
+    public func setDescription(value:String)-> Services.Organization.Containers.TeamV1Builder {
+      self.description_ = value
+      return self
+    }
+    public func clearDescription() -> Services.Organization.Containers.TeamV1Builder{
+         builderResult.hasDescription = false
+         builderResult.description_ = ""
+         return self
+    }
     override public var internalGetResult:GeneratedMessage {
          get {
             return builderResult
@@ -3044,6 +3130,9 @@ public extension Services.Organization.Containers {
       }
       if (other.hasPermissions) {
           mergePermissions(other.permissions)
+      }
+      if other.hasDescription {
+           description_ = other.description_
       }
       mergeUnknownFields(other.unknownFields)
       return self
@@ -3101,6 +3190,9 @@ public extension Services.Organization.Containers {
           }
           input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
           permissions = subBuilder.buildPartial()
+
+        case 90 :
+          description_ = input.readString()
 
         default:
           if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {

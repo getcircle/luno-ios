@@ -43,12 +43,12 @@ public extension Services.Search.Containers {
 
     //OneOf declaration start
 
-    public enum Object {
-      case ObjectOneOfNotSet
+    public enum ResultObject {
+      case ResultObjectOneOfNotSet
 
       public func checkOneOfIsSet() -> Bool {
            switch self {
-           case .ObjectOneOfNotSet:
+           case .ResultObjectOneOfNotSet:
                 return false
            default:
                 return true
@@ -56,7 +56,7 @@ public extension Services.Search.Containers {
       }
       case Profile(Services.Profile.Containers.ProfileV1)
 
-      public static func getProfile(value:Object) ->Services.Profile.Containers.ProfileV1? {
+      public static func getProfile(value:ResultObject) ->Services.Profile.Containers.ProfileV1? {
            switch value {
            case .Profile(let enumValue):
                 return enumValue
@@ -66,7 +66,7 @@ public extension Services.Search.Containers {
       }
       case Team(Services.Organization.Containers.TeamV1)
 
-      public static func getTeam(value:Object) ->Services.Organization.Containers.TeamV1? {
+      public static func getTeam(value:ResultObject) ->Services.Organization.Containers.TeamV1? {
            switch value {
            case .Team(let enumValue):
                 return enumValue
@@ -76,7 +76,7 @@ public extension Services.Search.Containers {
       }
       case Location(Services.Organization.Containers.LocationV1)
 
-      public static func getLocation(value:Object) ->Services.Organization.Containers.LocationV1? {
+      public static func getLocation(value:ResultObject) ->Services.Organization.Containers.LocationV1? {
            switch value {
            case .Location(let enumValue):
                 return enumValue
@@ -86,7 +86,7 @@ public extension Services.Search.Containers {
       }
       case Group(Services.Group.Containers.GroupV1)
 
-      public static func getGroup(value:Object) ->Services.Group.Containers.GroupV1? {
+      public static func getGroup(value:ResultObject) ->Services.Group.Containers.GroupV1? {
            switch value {
            case .Group(let enumValue):
                 return enumValue
@@ -97,7 +97,7 @@ public extension Services.Search.Containers {
     }
     //OneOf declaration end
 
-    private var storageObject:Services.Search.Containers.SearchResultV1.Object =  Services.Search.Containers.SearchResultV1.Object.ObjectOneOfNotSet
+    private var storageResultObject:Services.Search.Containers.SearchResultV1.ResultObject =  Services.Search.Containers.SearchResultV1.ResultObject.ResultObjectOneOfNotSet
     override public subscript(key: String) -> Any? {
            switch key {
            case "version": return version
@@ -114,7 +114,7 @@ public extension Services.Search.Containers {
 
     public private(set) var hasProfile:Bool {
           get {
-               if Services.Search.Containers.SearchResultV1.Object.getProfile(storageObject) == nil {
+               if Services.Search.Containers.SearchResultV1.ResultObject.getProfile(storageResultObject) == nil {
                    return false
                }
                return true
@@ -124,15 +124,15 @@ public extension Services.Search.Containers {
     }
     public private(set) var profile:Services.Profile.Containers.ProfileV1!{
          get {
-              return Services.Search.Containers.SearchResultV1.Object.getProfile(storageObject)
+              return Services.Search.Containers.SearchResultV1.ResultObject.getProfile(storageResultObject)
          }
          set (newvalue) {
-              storageObject = Services.Search.Containers.SearchResultV1.Object.Profile(newvalue)
+              storageResultObject = Services.Search.Containers.SearchResultV1.ResultObject.Profile(newvalue)
          }
     }
     public private(set) var hasTeam:Bool {
           get {
-               if Services.Search.Containers.SearchResultV1.Object.getTeam(storageObject) == nil {
+               if Services.Search.Containers.SearchResultV1.ResultObject.getTeam(storageResultObject) == nil {
                    return false
                }
                return true
@@ -142,15 +142,15 @@ public extension Services.Search.Containers {
     }
     public private(set) var team:Services.Organization.Containers.TeamV1!{
          get {
-              return Services.Search.Containers.SearchResultV1.Object.getTeam(storageObject)
+              return Services.Search.Containers.SearchResultV1.ResultObject.getTeam(storageResultObject)
          }
          set (newvalue) {
-              storageObject = Services.Search.Containers.SearchResultV1.Object.Team(newvalue)
+              storageResultObject = Services.Search.Containers.SearchResultV1.ResultObject.Team(newvalue)
          }
     }
     public private(set) var hasLocation:Bool {
           get {
-               if Services.Search.Containers.SearchResultV1.Object.getLocation(storageObject) == nil {
+               if Services.Search.Containers.SearchResultV1.ResultObject.getLocation(storageResultObject) == nil {
                    return false
                }
                return true
@@ -160,15 +160,15 @@ public extension Services.Search.Containers {
     }
     public private(set) var location:Services.Organization.Containers.LocationV1!{
          get {
-              return Services.Search.Containers.SearchResultV1.Object.getLocation(storageObject)
+              return Services.Search.Containers.SearchResultV1.ResultObject.getLocation(storageResultObject)
          }
          set (newvalue) {
-              storageObject = Services.Search.Containers.SearchResultV1.Object.Location(newvalue)
+              storageResultObject = Services.Search.Containers.SearchResultV1.ResultObject.Location(newvalue)
          }
     }
     public private(set) var hasGroup:Bool {
           get {
-               if Services.Search.Containers.SearchResultV1.Object.getGroup(storageObject) == nil {
+               if Services.Search.Containers.SearchResultV1.ResultObject.getGroup(storageResultObject) == nil {
                    return false
                }
                return true
@@ -178,10 +178,10 @@ public extension Services.Search.Containers {
     }
     public private(set) var group:Services.Group.Containers.GroupV1!{
          get {
-              return Services.Search.Containers.SearchResultV1.Object.getGroup(storageObject)
+              return Services.Search.Containers.SearchResultV1.ResultObject.getGroup(storageResultObject)
          }
          set (newvalue) {
-              storageObject = Services.Search.Containers.SearchResultV1.Object.Group(newvalue)
+              storageResultObject = Services.Search.Containers.SearchResultV1.ResultObject.Group(newvalue)
          }
     }
     required public init() {

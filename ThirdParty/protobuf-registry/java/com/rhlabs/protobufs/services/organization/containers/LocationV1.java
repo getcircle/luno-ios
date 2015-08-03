@@ -17,6 +17,7 @@ public final class LocationV1 extends Message {
   public static final String DEFAULT_ORGANIZATION_ID = "";
   public static final Integer DEFAULT_PROFILE_COUNT = 0;
   public static final String DEFAULT_IMAGE_URL = "";
+  public static final String DEFAULT_DESCRIPTION = "";
 
   @ProtoField(tag = 1, type = UINT32)
   public final Integer version;
@@ -39,7 +40,10 @@ public final class LocationV1 extends Message {
   @ProtoField(tag = 7, type = STRING)
   public final String image_url;
 
-  public LocationV1(Integer version, String id, String name, AddressV1 address, String organization_id, Integer profile_count, String image_url) {
+  @ProtoField(tag = 8, type = STRING)
+  public final String description;
+
+  public LocationV1(Integer version, String id, String name, AddressV1 address, String organization_id, Integer profile_count, String image_url, String description) {
     this.version = version;
     this.id = id;
     this.name = name;
@@ -47,10 +51,11 @@ public final class LocationV1 extends Message {
     this.organization_id = organization_id;
     this.profile_count = profile_count;
     this.image_url = image_url;
+    this.description = description;
   }
 
   private LocationV1(Builder builder) {
-    this(builder.version, builder.id, builder.name, builder.address, builder.organization_id, builder.profile_count, builder.image_url);
+    this(builder.version, builder.id, builder.name, builder.address, builder.organization_id, builder.profile_count, builder.image_url, builder.description);
     setBuilder(builder);
   }
 
@@ -65,7 +70,8 @@ public final class LocationV1 extends Message {
         && equals(address, o.address)
         && equals(organization_id, o.organization_id)
         && equals(profile_count, o.profile_count)
-        && equals(image_url, o.image_url);
+        && equals(image_url, o.image_url)
+        && equals(description, o.description);
   }
 
   @Override
@@ -79,6 +85,7 @@ public final class LocationV1 extends Message {
       result = result * 37 + (organization_id != null ? organization_id.hashCode() : 0);
       result = result * 37 + (profile_count != null ? profile_count.hashCode() : 0);
       result = result * 37 + (image_url != null ? image_url.hashCode() : 0);
+      result = result * 37 + (description != null ? description.hashCode() : 0);
       hashCode = result;
     }
     return result;
@@ -93,6 +100,7 @@ public final class LocationV1 extends Message {
     public String organization_id;
     public Integer profile_count;
     public String image_url;
+    public String description;
 
     public Builder() {
     }
@@ -107,6 +115,7 @@ public final class LocationV1 extends Message {
       this.organization_id = message.organization_id;
       this.profile_count = message.profile_count;
       this.image_url = message.image_url;
+      this.description = message.description;
     }
 
     public Builder version(Integer version) {
@@ -141,6 +150,11 @@ public final class LocationV1 extends Message {
 
     public Builder image_url(String image_url) {
       this.image_url = image_url;
+      return this;
+    }
+
+    public Builder description(String description) {
+      this.description = description;
       return this;
     }
 
