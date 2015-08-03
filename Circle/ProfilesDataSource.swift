@@ -32,8 +32,6 @@ class ProfilesDataSource: CardDataSource {
         let organizationId = AuthViewController.getLoggedInUserOrganization()!.id
         let requestBuilder = Services.Profile.Actions.GetProfiles.RequestV1.builder()
         requestBuilder.organizationId = organizationId
-        searchAttribute = .OrganizationId
-        searchAttributeValue = organizationId
         configureForParameters(requestBuilder)
     }
     

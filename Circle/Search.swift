@@ -10,7 +10,7 @@ import Foundation
 import ProtobufRegistry
 
 typealias SearchCompletionHandler = (result: Services.Search.Actions.SearchResults?, error: NSError?) -> Void
-typealias SearchResultsCompletionHandler = (results: Array<Services.Search.Containers.SearchResultsV1>?, error: NSError?) -> Void
+typealias SearchResultsCompletionHandler = (results: Array<Services.Search.Containers.SearchResultV1>?, error: NSError?) -> Void
 typealias FilterCompletionHandler = (content: [AnyObject], error: NSError?) -> Void
 
 extension Services.Search.Actions {

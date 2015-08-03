@@ -15,9 +15,7 @@ class SearchQueryDataSource: CardDataSource {
     private let whitespaceCharacterSet = NSCharacterSet.whitespaceCharacterSet()
     
     private var searchTerm = ""
-    private var visibleProfiles = Array<Services.Profile.Containers.ProfileV1>()
-    private var visibleTeams = Array<Services.Organization.Containers.TeamV1>()
-    private var visibleLocations = Array<Services.Organization.Containers.LocationV1>()
+    private var searchResults = [AnyObject]()
     
     override func loadData(completionHandler: (error: NSError?) -> Void) {
     }
@@ -39,54 +37,38 @@ class SearchQueryDataSource: CardDataSource {
                 self.clearData()
                 if let results = results {
                     for result in results {
-                        switch result.category {
-                        case .Profiles:
-                            self.visibleProfiles = result.profiles
-
-                        case .Locations:
-                            self.visibleLocations = result.locations
-
-                        case .Teams:
-                            self.visibleTeams = result.teams
-                            
-                        default:
-                            break
+                        if let profile = result.profile {
+                            self.searchResults.append(profile)
+                        }
+                        else if let team = result.team {
+                            self.searchResults.append(team)
+                        }
+                        else if let location = result.location {
+                            self.searchResults.append(location)
                         }
                     }
                     
                     self.updateVisibleCards()
                 }
                 completionHandler(error: error)
+                return
             })
         }
     }
     
     private func clearData() {
-        visibleProfiles.removeAll(keepCapacity: true)
-        visibleTeams.removeAll(keepCapacity: true)
-        visibleLocations.removeAll(keepCapacity: true)
+        searchResults.removeAll(keepCapacity: true)
     }
     
     private func updateVisibleCards() {
         resetCards()
         
         let sectionInset = UIEdgeInsetsZero
-        var content = [AnyObject]()
-        for data in [visibleProfiles, visibleTeams, visibleLocations] {
-            if data.count > 0 {
-                content.extend(data as! [AnyObject])
-            }
-        }
-        
-        if content.count > 0 {
+        if searchResults.count > 0 {
             let maxVisibleItems = 3
             let profilesCardTitle = searchTerm.trimWhitespace() == "" ? "Recent" : "People"
-            var peopleShowContentCount = searchTerm.trimWhitespace() == "" ? false : true
-            if visibleProfiles.count <= maxVisibleItems {
-                peopleShowContentCount = false
-            }
-            let resultsCard = Card(cardType: .Profiles, title: profilesCardTitle, showContentCount: peopleShowContentCount)
-            resultsCard.addContent(content: content)
+            let resultsCard = Card(cardType: .Profiles, title: profilesCardTitle, showContentCount: false)
+            resultsCard.addContent(content: searchResults)
             resultsCard.sectionInset = sectionInset
             appendCard(resultsCard)
         }
