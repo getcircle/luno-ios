@@ -75,14 +75,14 @@ class ProfileCollectionViewCell: CircleCollectionViewCell {
             }
         }
         subTextLabel.text = subtitle
+        
         profileImageView.imageProfileIdentifier = profile.id
+        profileImageView.makeItCircular()
+        profileImageView.contentMode = .ScaleAspectFill
         profileImageView.setImageWithProfile(profile)
     }
 
     private func setTeam(team: Services.Organization.Containers.TeamV1) {
-        profileImageView.imageText = ""
-        profileImageView.backgroundColor = UIColor.appTeamHeaderBackgroundColor(team)
-        profileImageView.image = nil
         nameLabel.text = team.name
         if team.profileCount == 0 && team.name != team.department {
             subTextLabel.text = team.department
@@ -90,21 +90,23 @@ class ProfileCollectionViewCell: CircleCollectionViewCell {
         else {
             subTextLabel.text = getCountLabel(team.profileCount)
         }
-        teamNameLetterLabel.text = team.name[0]
-        teamNameLetterLabel.hidden = false
+        teamNameLetterLabel.hidden = true
+
+        profileImageView.imageText = ""
+        profileImageView.removeRoundedCorners()
+        profileImageView.contentMode = .Center
+        profileImageView.image = UIImage(named: "Reports")
     }
     
     private func setLocation(location: Services.Organization.Containers.LocationV1) {
         nameLabel.text = location.address == nil ? location.name : location.address.officeName()
-        profileImageView.imageText = ""
-        if location.hasImageUrl {
-            profileImageView.setImageWithLocation(location) { (image) -> Void in
-                self.profileImageView.image = image
-            }
-        } else {
-            profileImageView.image = UIImage(named: "SF")
-        }
         subTextLabel.text = getCountLabel(location.profileCount)
+        
+        profileImageView.imageText = ""
+        profileImageView.removeRoundedCorners()
+        profileImageView.contentMode = .Center
+        profileImageView.image = UIImage(named: "Location")
+        teamNameLetterLabel.hidden = true
     }
 
     // MARK: - Helpers

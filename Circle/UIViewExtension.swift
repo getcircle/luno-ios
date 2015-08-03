@@ -28,6 +28,10 @@ extension UIView {
         layer.cornerRadiusWithMaskToBounds(cornerRadius)
     }
     
+    func removeRoundedCorners() {
+        layer.cornerRadiusWithMaskToBounds(0)
+    }
+    
     func addShakeAnimation() {
         var animation = CABasicAnimation(keyPath: "position")
         animation.duration = 0.1

@@ -13,7 +13,7 @@ extension CALayer {
     
     func cornerRadiusWithMaskToBounds(radius: CGFloat) {
         cornerRadius = radius
-        masksToBounds = true
+        masksToBounds = radius > 0
         contentsScale = UIScreen.mainScreen().scale
     }
     
