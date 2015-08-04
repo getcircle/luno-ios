@@ -17,16 +17,12 @@ class SearchQueryDataSource: CardDataSource {
     private var searchTerm = ""
     private var searchResults = [AnyObject]()
     
-    override func loadData(completionHandler: (error: NSError?) -> Void) {
-    }
-    
     override func filter(string: String, completionHandler: (error: NSError?) -> Void) {
         if string == searchTerm && searchTerm.trimWhitespace() != "" {
             return
         }
         
         searchTerm = string
-        
         if searchTerm.trimWhitespace() == "" {
             clearData()
             updateVisibleCards()
@@ -76,13 +72,13 @@ class SearchQueryDataSource: CardDataSource {
         if searchTerm == "" && !isQuickAction {
             let searchCategoriesCard = Card(cardType: .SearchCategory, title: "", showContentCount: false)
             
-            let peopleCount = ObjectStore.sharedInstance.profiles.values.array.count
+            let peopleCount = ObjectStore.sharedInstance.profilesCount
             let peopleTitle = peopleCount == 1 ? "Person" : "People"
 
-            let officeCount = ObjectStore.sharedInstance.locations.values.array.count
+            let officeCount = ObjectStore.sharedInstance.locationsCount
             let officeTitle = officeCount == 1 ? "Office" : "Offices"
             
-            let teamsCount = ObjectStore.sharedInstance.teams.values.array.count
+            let teamsCount = ObjectStore.sharedInstance.teamsCount
             let teamsTitle = teamsCount == 1 ? "Team" : "Teams"
 
             let stats = [

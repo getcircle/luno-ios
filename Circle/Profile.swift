@@ -205,7 +205,6 @@ extension Services.Profile.Actions {
                 let response = wrapped?.response?.result.getExtension(
                     Services.Registry.Responses.Profile.updateProfile()
                 ) as? Services.Profile.Actions.UpdateProfile.ResponseV1
-                ObjectStore.sharedInstance.update(response?.profile, type: .Profile)
                 completionHandler?(profile: response?.profile, error: error)
                 // DWM - Discuss with Michael
                 // TODO: Either check for no errors or pass than along in the userInfo

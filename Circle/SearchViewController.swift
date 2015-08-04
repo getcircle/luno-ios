@@ -358,10 +358,6 @@ class SearchViewController: UIViewController,
                         // TODO This should be coming from a paginated data source
                         let viewController = OfficesOverviewViewController(nibName: "OfficesOverviewViewController", bundle: nil)
                         viewController.title = "Offices"
-                        viewController.dataSource.setInitialData(
-                            ObjectStore.sharedInstance.locations.values.array,
-                            ofType: nil
-                        )
                         navigationController?.pushViewController(viewController, animated: true)
                     case .Teams:
                         let viewController = TeamsOverviewViewController()

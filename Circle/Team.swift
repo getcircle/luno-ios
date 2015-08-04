@@ -25,7 +25,6 @@ extension Services.Organization.Actions {
                 let response = wrapped?.response?.result.getExtension(
                     Services.Registry.Responses.Organization.updateTeam()
                 ) as? Services.Organization.Actions.UpdateTeam.ResponseV1
-                ObjectStore.sharedInstance.update(response?.team, type: .Team)
                 completionHandler?(team: response?.team, error: error)
         }
     }

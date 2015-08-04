@@ -10,25 +10,28 @@ import UIKit
 import ProtobufRegistry
 
 class OfficesOverviewDataSource: CardDataSource {
-
-    private(set) var offices = Array<Services.Organization.Containers.LocationV1>()
     
-    // MARK: - Set Initial Data
-    
-    override func setInitialData(content: [AnyObject], ofType: Card.CardType?) {
-        let cardType = ofType != nil ? ofType : .Offices
-        let officesCard = Card(cardType: cardType!, title: "")
-        officesCard.addContent(content: content)
-        officesCard.sectionInset = UIEdgeInsetsZero        
-        offices.extend(content as! Array<Services.Organization.Containers.LocationV1>)
-        appendCard(officesCard)
-    }
+    private(set) var locations = Array<Services.Organization.Containers.LocationV1>()
     
     // MARK: - Load Data
 
     override func loadData(completionHandler: (error: NSError?) -> Void) {
-        // Currently all the content is loaded and passed to this view controller
-        // So, directly call the completion handler
-        completionHandler(error: nil)
+
+        if let organization = AuthViewController.getLoggedInUserOrganization() {
+            Services.Organization.Actions.getLocations(organization.id) { (locations, error) -> Void in
+                self.resetCards()
+                self.locations.removeAll(keepCapacity: true)
+                
+                if let locations = locations {
+                    let officesCard = Card(cardType: .Offices, title: "")
+                    officesCard.addContent(content: locations)
+                    self.locations.extend(locations)
+                    officesCard.sectionInset = UIEdgeInsetsZero
+                    self.appendCard(officesCard)
+                }
+                
+                completionHandler(error: nil)
+            }
+        }
     }
 }

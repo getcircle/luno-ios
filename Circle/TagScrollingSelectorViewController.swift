@@ -50,7 +50,6 @@ class TagScrollingSelectorViewController:
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        interests = ObjectStore.sharedInstance.interests.values.array
         
         // Configurations
         configureView()

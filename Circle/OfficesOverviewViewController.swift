@@ -17,6 +17,7 @@ class OfficesOverviewViewController: UIViewController, UICollectionViewDataSourc
     private var activityIndicatorView: CircleActivityIndicatorView!
     private(set) var dataSource = OfficesOverviewDataSource()
     private(set) var delegate = CardCollectionViewDelegate()
+    private var mapHeaderView: MapHeaderCollectionReusableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +35,9 @@ class OfficesOverviewViewController: UIViewController, UICollectionViewDataSourc
             if error == nil {
                 self.activityIndicatorView.stopAnimating()
                 self.collectionView.reloadData()
+                if self.mapHeaderView != nil {
+                    self.mapHeaderView.setData(offices: self.dataSource.locations)
+                }
             }
         }
     }
@@ -76,7 +80,7 @@ class OfficesOverviewViewController: UIViewController, UICollectionViewDataSourc
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 0
     }
-    
+
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         // This function should never get called for this specific use case
         return UICollectionViewCell()
@@ -93,7 +97,7 @@ class OfficesOverviewViewController: UIViewController, UICollectionViewDataSourc
             forIndexPath: indexPath
         ) as! MapHeaderCollectionReusableView
         
-        supplementaryView.setData(offices: dataSource.offices)
+        mapHeaderView = supplementaryView
         supplementaryView.allowInteraction = true
         return supplementaryView
     }
