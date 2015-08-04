@@ -135,7 +135,7 @@ class ProfilesDataSource: CardDataSource {
             category: .Profiles,
             attribute: searchAttribute,
             attributeValue: searchAttributeValue,
-            completionHandler: { (results, error) -> Void in
+            completionHandler: { (query, results, error) -> Void in
                 
                 var resultProfiles = Array<Services.Profile.Containers.ProfileV1>()
                 if let results = results {

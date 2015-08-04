@@ -105,7 +105,7 @@ class TeamsOverviewDataSource: CardDataSource {
             category: .Teams,
             attribute: nil,
             attributeValue: nil,
-            completionHandler: { (results, error) -> Void in
+            completionHandler: { (query, results, error) -> Void in
                 
                 var resultTeams = Array<Services.Organization.Containers.TeamV1>()
                 if let results = results {

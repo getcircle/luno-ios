@@ -9,7 +9,7 @@
 import Foundation
 import ProtobufRegistry
 
-typealias SearchCompletionHandler = (results: Array<Services.Search.Containers.SearchResultV1>?, error: NSError?) -> Void
+typealias SearchCompletionHandler = (query: String, results: Array<Services.Search.Containers.SearchResultV1>?, error: NSError?) -> Void
 
 extension Services.Search.Actions {
     
@@ -40,7 +40,7 @@ extension Services.Search.Actions {
                 let response = wrappedResponse?.response?.result.getExtension(
                     Services.Registry.Responses.Search.search()
                 ) as? Services.Search.Actions.Search.ResponseV1
-                completionHandler?(results: response?.results, error: error)
+                completionHandler?(query: query, results: response?.results, error: error)
         }
     }
 }

@@ -17,6 +17,8 @@ class SearchQueryDataSource: CardDataSource {
     private var searchTerm = ""
     private var searchResults = [AnyObject]()
     private var searchCache = Dictionary<String, Array<AnyObject>>()
+    private var completionHandler: ((error: NSError?) -> Void)?
+    private var searchTriggerTimer: NSTimer?
     
     override init() {
         super.init()
@@ -53,29 +55,45 @@ class SearchQueryDataSource: CardDataSource {
                 completionHandler(error: nil)
             }
             else {
-                Services.Search.Actions.search(string, completionHandler: { (results, error) -> Void in
-                    self.clearData()
-                    if let results = results where self.searchTerm != "" {
-                        for result in results {
-                            if let profile = result.profile {
-                                self.searchResults.append(profile)
-                            }
-                            else if let team = result.team {
-                                self.searchResults.append(team)
-                            }
-                            else if let location = result.location {
-                                self.searchResults.append(location)
-                            }
-                        }
-
-                        self.searchCache[string] = self.searchResults
-                        self.updateVisibleCards()
-                    }
-                    completionHandler(error: error)
-                    return
-                })
+                self.completionHandler = completionHandler
+                if let timer = searchTriggerTimer {
+                    timer.invalidate()
+                }
+                
+                searchTriggerTimer = NSTimer.scheduledTimerWithTimeInterval(
+                    0.3, 
+                    target: self, 
+                    selector: "search", 
+                    userInfo: nil, 
+                    repeats: false
+                )
             }
         }
+    }
+    
+    func search() {
+        Services.Search.Actions.search(searchTerm, completionHandler: { (query, results, error) -> Void in
+            self.clearData()
+            if let results = results where self.searchTerm != "" {
+                for result in results {
+                    if let profile = result.profile {
+                        self.searchResults.append(profile)
+                    }
+                    else if let team = result.team {
+                        self.searchResults.append(team)
+                    }
+                    else if let location = result.location {
+                        self.searchResults.append(location)
+                    }
+                }
+                
+                self.searchCache[query] = self.searchResults
+                self.updateVisibleCards()
+            }
+            
+            self.completionHandler?(error: error)
+            return
+        })
     }
     
     func clearCache() {
