@@ -16,40 +16,70 @@ class SearchQueryDataSource: CardDataSource {
     
     private var searchTerm = ""
     private var searchResults = [AnyObject]()
+    private var searchCache = Dictionary<String, Array<AnyObject>>()
+    
+    override init() {
+        super.init()
+        
+        // Currently purge all memory
+        NSNotificationCenter.defaultCenter().addObserver(
+            self, 
+            selector: "clearCache", 
+            name:UIApplicationDidReceiveMemoryWarningNotification, 
+            object: nil
+        )
+    }
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
     
     override func filter(string: String, completionHandler: (error: NSError?) -> Void) {
         if string == searchTerm && searchTerm.trimWhitespace() != "" {
             return
         }
         
-        searchTerm = string
-        if searchTerm.trimWhitespace() == "" {
+        searchTerm = string.trimWhitespace()
+        if searchTerm == "" {
             clearData()
             updateVisibleCards()
             completionHandler(error: nil)
         }
         else {
-            Services.Search.Actions.search(string, completionHandler: { (results, error) -> Void in
+            if let results = searchCache[searchTerm] {
                 self.clearData()
-                if let results = results {
-                    for result in results {
-                        if let profile = result.profile {
-                            self.searchResults.append(profile)
+                searchResults.extend(results)
+                self.updateVisibleCards()
+                completionHandler(error: nil)
+            }
+            else {
+                Services.Search.Actions.search(string, completionHandler: { (results, error) -> Void in
+                    self.clearData()
+                    if let results = results where self.searchTerm != "" {
+                        for result in results {
+                            if let profile = result.profile {
+                                self.searchResults.append(profile)
+                            }
+                            else if let team = result.team {
+                                self.searchResults.append(team)
+                            }
+                            else if let location = result.location {
+                                self.searchResults.append(location)
+                            }
                         }
-                        else if let team = result.team {
-                            self.searchResults.append(team)
-                        }
-                        else if let location = result.location {
-                            self.searchResults.append(location)
-                        }
+
+                        self.searchCache[string] = self.searchResults
+                        self.updateVisibleCards()
                     }
-                    
-                    self.updateVisibleCards()
-                }
-                completionHandler(error: error)
-                return
-            })
+                    completionHandler(error: error)
+                    return
+                })
+            }
         }
+    }
+    
+    func clearCache() {
+        self.searchCache.removeAll(keepCapacity: true)
     }
     
     private func clearData() {

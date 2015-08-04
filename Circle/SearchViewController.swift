@@ -265,6 +265,10 @@ class SearchViewController: UIViewController,
         errorMessageView.hide()
         search()
         setNavigationTitle(true)
+        if textField.text.trimWhitespace() == "" {
+            // Clear cache when starting a new search
+            dataSource.clearCache()
+        }
     }
     
     // MARK: - SearchHeaderViewDelegate
