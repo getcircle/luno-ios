@@ -265,10 +265,6 @@ class SearchViewController: UIViewController,
         errorMessageView.hide()
         search()
         setNavigationTitle(true)
-        if textField.text.trimWhitespace() == "" {
-            // Clear cache when starting a new search
-            dataSource.clearCache()
-        }
     }
     
     // MARK: - SearchHeaderViewDelegate
@@ -283,6 +279,8 @@ class SearchViewController: UIViewController,
             errorMessageView.show()
         }
         setNavigationTitle(false)
+        // Clear cache at the end of a search session
+        dataSource.clearCache()
     }
     
     // MARK: Search Targets
