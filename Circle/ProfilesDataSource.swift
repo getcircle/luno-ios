@@ -135,11 +135,22 @@ class ProfilesDataSource: CardDataSource {
             category: .Profiles,
             attribute: searchAttribute,
             attributeValue: searchAttributeValue,
-            objects: profiles
-        ) { (result, error) -> Void in
-            self.card.resetContent(result?.profiles ?? [])
-            completionHandler(error: error)
-        }
+            completionHandler: { (results, error) -> Void in
+                
+                var resultProfiles = Array<Services.Profile.Containers.ProfileV1>()
+                if let results = results {
+                    for result in results {
+                        if let profile = result.profile {
+                            resultProfiles.append(profile)
+                        }
+                    }
+                }
+
+                self.card.resetContent(resultProfiles)
+                completionHandler(error: error)
+                return
+            }
+        )
     }
     
     override func clearFilter(completionHandler: () -> Void) {
