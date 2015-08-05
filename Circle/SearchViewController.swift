@@ -563,6 +563,29 @@ class SearchViewController: UIViewController,
                 viewController.title = profile.firstName + "' Direct Reports"
                 navigationController?.pushViewController(viewController, animated: true)
             }
+            
+        case .AddressOfOffice:
+            if let location = searchAction.underlyingObject as? Services.Organization.Containers.LocationV1 {
+                let viewController = MapViewController()
+                viewController.selectedOffice = location
+                presentViewController(viewController, animated: true, completion: nil)
+            }
+            
+        case .TeamsInOffice:
+            if let location = searchAction.underlyingObject as? Services.Organization.Containers.LocationV1 {
+                let viewController = TeamsOverviewViewController()
+                (viewController.dataSource as! TeamsOverviewDataSource).configureForLocation(location.id)
+                viewController.title = searchAction.getTitle()
+                navigationController?.pushViewController(viewController, animated: true)
+            }
+
+        case .PeopleInOffice:
+            if let location = searchAction.underlyingObject as? Services.Organization.Containers.LocationV1 {
+                let viewController = ProfilesViewController()
+                (viewController.dataSource as! ProfilesDataSource).configureForLocation(location.id)
+                viewController.title = searchAction.getTitle()
+                navigationController?.pushViewController(viewController, animated: true)
+            }
         
         default:
             break;

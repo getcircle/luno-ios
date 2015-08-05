@@ -75,4 +75,46 @@ class SearchAction: SearchSuggestion {
         searchActions.append(reportsToAction)
         return searchActions
     }
+    
+    static func searchActionsForLocation(location: Services.Organization.Containers.LocationV1) -> [SearchAction] {
+        var searchActions = [SearchAction]()
+        
+        // Address action
+        let addressAction = SearchAction(
+            title: "Address of " + location.name,
+            ofType: .AddressOfOffice,
+            withImageSource: "Compass"
+        )
+        addressAction.underlyingObject = location as AnyObject
+        searchActions.append(addressAction)
+        
+        // Local time
+        let timeAction = SearchAction(
+            title: "Local Time is 3:40pm (8-hours ahead of you)",
+            ofType: .LocalTimeAtOffice,
+            withImageSource: "Info"
+        )
+        timeAction.underlyingObject = location as AnyObject
+        searchActions.append(timeAction)
+
+        // Teams
+        let teamsAction = SearchAction(
+            title: "Teams in " + location.name + " Office",
+            ofType: .TeamsInOffice,
+            withImageSource: "SearchTab"
+        )
+        teamsAction.underlyingObject = location as AnyObject
+        searchActions.append(teamsAction)
+
+        // People
+        let peopleAction = SearchAction(
+            title: "People in " + location.name + " Office",
+            ofType: .PeopleInOffice,
+            withImageSource: "SearchTab"
+        )
+        peopleAction.underlyingObject = location as AnyObject
+        searchActions.append(peopleAction)
+        
+        return searchActions
+    }
 }

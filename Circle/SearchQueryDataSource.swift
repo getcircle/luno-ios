@@ -166,6 +166,9 @@ class SearchQueryDataSource: CardDataSource {
             if let profile = searchResults.first as? Services.Profile.Containers.ProfileV1 {
                 searchSuggestions.extend(SearchAction.searchActionsForProfile(profile) as [SearchSuggestion])
             }
+            else if let location = searchResults.first as? Services.Organization.Containers.LocationV1 {
+                searchSuggestions.extend(SearchAction.searchActionsForLocation(location) as [SearchSuggestion])
+            }
         }
     }
     
