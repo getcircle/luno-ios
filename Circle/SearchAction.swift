@@ -90,7 +90,7 @@ class SearchAction: SearchSuggestion {
         
         // Local time
         let timeAction = SearchAction(
-            title: "Local Time is 3:40pm (8-hours ahead of you)",
+            title: "Local Time is " + location.address.officeCurrentTimeLabel(nil, addDifferenceText: true),
             ofType: .LocalTimeAtOffice,
             withImageSource: "Info"
         )

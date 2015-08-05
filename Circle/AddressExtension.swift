@@ -77,11 +77,35 @@ extension Services.Organization.Containers.AddressV1 {
         return currentDateString
     }
     
-    func officeCurrentTimeLabel(date: NSDate?) -> String {
+    func officeCurrentTimeLabel(date: NSDate?, addDifferenceText: Bool? = false) -> String {
         var currentDate = date ?? NSDate()
         let officeTimeZone = NSTimeZone(name: timezone)!
         NSDateFormatter.sharedOfficeCurrentTimeFormatter.timeZone = officeTimeZone
-        return NSDateFormatter.sharedOfficeCurrentTimeFormatter.stringFromDate(currentDate)
+        var currentTime = NSDateFormatter.sharedOfficeCurrentTimeFormatter.stringFromDate(currentDate)
+        if let addText = addDifferenceText where addText {
+            let sourceSeconds = NSTimeZone.systemTimeZone().secondsFromGMTForDate(currentDate)
+            let destinationSeconds = officeTimeZone.secondsFromGMTForDate(currentDate)
+            let hoursDifference = (destinationSeconds - sourceSeconds)/3600
+            
+            if hoursDifference > 0 {
+                if hoursDifference == 1 {
+                    currentTime += " (1 hour ahead)"
+                }
+                else {
+                    currentTime += " (" + String(hoursDifference) + " hours ahead)"
+                }
+            }
+            else if hoursDifference < 0 {
+                if hoursDifference == -1 {
+                    currentTime += " (1 hour behind)"
+                }
+                else {
+                    currentTime += " (" + String((-1 * hoursDifference)) + " hours behind)"
+                }
+            }
+        }
+        
+        return currentTime
     }
     
     func officeDaylightIndicator() -> UIImage? {
