@@ -39,7 +39,7 @@ class SearchAction: SearchSuggestion {
         
         // Email
         let emailAction = SearchAction(
-            title: "Email " + profile.fullName,
+            title: "Email " + profile.firstName,
             ofType: .EmailPerson,
             withImageSource: "Email"
         )
@@ -48,7 +48,7 @@ class SearchAction: SearchSuggestion {
 
         // Message
         let messageAction = SearchAction(
-            title: "Message " + profile.fullName,
+            title: "Message " + profile.firstName,
             ofType: .MessagePerson,
             withImageSource: "Sms"
         )
@@ -57,7 +57,7 @@ class SearchAction: SearchSuggestion {
 
         // Call Action
         let callAction = SearchAction(
-            title: "Call " + profile.fullName,
+            title: "Call " + profile.firstName,
             ofType: .CallPerson,
             withImageSource: "Call"
         )
@@ -67,7 +67,7 @@ class SearchAction: SearchSuggestion {
         // Reports To Action
         // TODO: Only show for managers
         let reportsToAction = SearchAction(
-            title: "Reports to " + profile.fullName,
+            title: "Reports to " + profile.firstName,
             ofType: .ReportsToPerson,
             withImageSource: "SearchTab"
         )
