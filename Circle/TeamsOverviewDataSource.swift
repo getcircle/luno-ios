@@ -14,6 +14,8 @@ class TeamsOverviewDataSource: CardDataSource {
     var showAsList = false
     private var card: Card!
     private var cardType: Card.CardType = .Team
+    private(set) var searchAttribute: Services.Search.Containers.Search.AttributeV1?
+    private(set) var searchAttributeValue: String?
     private var teams = Array<Services.Organization.Containers.TeamV1>()
     
     // MARK: - Configuration
@@ -21,6 +23,8 @@ class TeamsOverviewDataSource: CardDataSource {
     func configureForLocation(locationId: String) {
         let requestBuilder = Services.Organization.Actions.GetTeams.RequestV1.builder()
         requestBuilder.locationId = locationId
+        searchAttribute = .LocationId
+        searchAttributeValue = locationId
         configureForParameters(requestBuilder)
     }
     
@@ -103,8 +107,8 @@ class TeamsOverviewDataSource: CardDataSource {
         Services.Search.Actions.search(
             query,
             category: .Teams,
-            attribute: nil,
-            attributeValue: nil,
+            attribute: searchAttribute,
+            attributeValue: searchAttributeValue,
             completionHandler: { (query, results, error) -> Void in
                 
                 var resultTeams = Array<Services.Organization.Containers.TeamV1>()

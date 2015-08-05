@@ -17,7 +17,7 @@ extension Services.Search.Actions {
         query: String,
         category: Services.Search.Containers.Search.CategoryV1? = nil,
         attribute: Services.Search.Containers.Search.AttributeV1? = nil,
-        attributeValue: AnyObject? = nil,
+        attributeValue: String? = nil,
         completionHandler: SearchCompletionHandler?
     ) {
         let requestBuilder = Services.Search.Actions.Search.RequestV1.builder()
@@ -27,11 +27,11 @@ extension Services.Search.Actions {
             requestBuilder.category = category
         }
         
-//        if let attribute = attribute, attributeValue = attributeValue {
-//            requestBuilder.attribute = attribute
-//            requestBuilder.attributeValue = attributeValue
-//        }
-//        
+        if let attribute = attribute, attributeValue = attributeValue {
+            requestBuilder.attribute = attribute
+            requestBuilder.attributeValue = attributeValue
+        }
+        
         let client = ServiceClient(serviceName: "search")
         client.callAction(
             "search",

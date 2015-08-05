@@ -12,7 +12,7 @@ import ProtobufRegistry
 class ProfilesDataSource: CardDataSource {
 
     private(set) var searchAttribute: Services.Search.Containers.Search.AttributeV1?
-    private(set) var searchAttributeValue: AnyObject?
+    private(set) var searchAttributeValue: String?
     
     private var card: Card!
     private var cardType: Card.CardType = UIDevice.currentDevice().userInterfaceIdiom == .Pad ? .ProfilesGrid : .Profiles
