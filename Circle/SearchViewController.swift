@@ -35,11 +35,6 @@ class SearchViewController: UIViewController,
     private var launchScreenView: UIView?
     private var searchFieldBottomBorder: UIView?
     private var searchHeaderView: SearchHeaderView!
-    private var selectedAction: QuickAction = .None {
-        didSet {
-            searchHeaderView.searchTextField.placeholder = QuickAction.metaInfoForQuickAction(selectedAction).placeholder
-        }
-    }
     private var shadowAdded = false
     private var wasErrorViewVisible = false
     
@@ -127,7 +122,6 @@ class SearchViewController: UIViewController,
             searchFieldBottomBorder = searchHeaderContainerView.addBottomBorder(offset: 0.0)
             searchHeaderView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
             searchHeaderView.layer.cornerRadius = 10.0
-            selectedAction = .None
             searchHeaderContainerView.layer.borderColor = UIColor.grayColor().colorWithAlphaComponent(0.2).CGColor
         }
     }
@@ -272,7 +266,6 @@ class SearchViewController: UIViewController,
     func didCancel(sender: UIView) {
         // Animate it down
         moveSearchToCenter(true)
-        selectedAction = .None
         dataSource.resetCards()
         collectionView.reloadData()
         if wasErrorViewVisible && dataSource.cards.count <= 1 {
@@ -307,73 +300,68 @@ class SearchViewController: UIViewController,
             TrackerProperty.withKey(.ActiveViewController).withString(self.dynamicType.description())
         ]
         
-        // Handle quick actions - this assumes quick actions will be on profiles only
-        if selectedAction != .None {
+        switch selectedCard.type {
+        case .Profiles:
             if let profile = dataSource.contentAtIndexPath(indexPath) as? Services.Profile.Containers.ProfileV1 {
-                performQuickAction(profile)
+                let profileVC = ProfileDetailViewController(profile: profile)
+                if selectedCard.type == .Anniversaries {
+                    (profileVC.dataSource as! ProfileDetailDataSource).addBannerOfType = .Anniversary
+                }
+                else if selectedCard.type == .Birthdays {
+                    (profileVC.dataSource as! ProfileDetailDataSource).addBannerOfType = .Birthday
+                }
+                else if selectedCard.type == .NewHires {
+                    (profileVC.dataSource as! ProfileDetailDataSource).addBannerOfType = .NewHire
+                }
+                profileVC.hidesBottomBarWhenPushed = false
+                properties.append(TrackerProperty.withKey(.Destination).withSource(.Detail))
+                properties.append(TrackerProperty.withKey(.DestinationDetailType).withDetailType(.Profile))
+                properties.append(TrackerProperty.withDestinationId("profileId").withString(profile.id))
+                Tracker.sharedInstance.track(.DetailItemTapped, properties: properties)
+                navigationController?.pushViewController(profileVC, animated: true)
             }
-        }
-        else {
-            switch selectedCard.type {
-            case .Profiles:
-                if let profile = dataSource.contentAtIndexPath(indexPath) as? Services.Profile.Containers.ProfileV1 {
-                    let profileVC = ProfileDetailViewController(profile: profile)
-                    if selectedCard.type == .Anniversaries {
-                        (profileVC.dataSource as! ProfileDetailDataSource).addBannerOfType = .Anniversary
-                    }
-                    else if selectedCard.type == .Birthdays {
-                        (profileVC.dataSource as! ProfileDetailDataSource).addBannerOfType = .Birthday
-                    }
-                    else if selectedCard.type == .NewHires {
-                        (profileVC.dataSource as! ProfileDetailDataSource).addBannerOfType = .NewHire
-                    }
-                    profileVC.hidesBottomBarWhenPushed = false
-                    properties.append(TrackerProperty.withKey(.Destination).withSource(.Detail))
-                    properties.append(TrackerProperty.withKey(.DestinationDetailType).withDetailType(.Profile))
-                    properties.append(TrackerProperty.withDestinationId("profileId").withString(profile.id))
-                    Tracker.sharedInstance.track(.DetailItemTapped, properties: properties)
-                    navigationController?.pushViewController(profileVC, animated: true)
-                }
-                else if let team = dataSource.contentAtIndexPath(indexPath) as? Services.Organization.Containers.TeamV1 {
-                    loadTeamDetail(team, properties: &properties)
-                }
-                else if let office = dataSource.contentAtIndexPath(indexPath) as? Services.Organization.Containers.LocationV1 {
-                    let viewController = OfficeDetailViewController()
-                    (viewController.dataSource as! OfficeDetailDataSource).selectedOffice = office
-                    viewController.hidesBottomBarWhenPushed = false
-                    properties.append(TrackerProperty.withKey(.Destination).withSource(.Detail))
-                    properties.append(TrackerProperty.withKey(.DestinationDetailType).withDetailType(.Office))
-                    properties.append(TrackerProperty.withDestinationId("office_id").withString(office.id))
-                    Tracker.sharedInstance.track(.DetailItemTapped, properties: properties)
+            else if let team = dataSource.contentAtIndexPath(indexPath) as? Services.Organization.Containers.TeamV1 {
+                loadTeamDetail(team, properties: &properties)
+            }
+            else if let office = dataSource.contentAtIndexPath(indexPath) as? Services.Organization.Containers.LocationV1 {
+                let viewController = OfficeDetailViewController()
+                (viewController.dataSource as! OfficeDetailDataSource).selectedOffice = office
+                viewController.hidesBottomBarWhenPushed = false
+                properties.append(TrackerProperty.withKey(.Destination).withSource(.Detail))
+                properties.append(TrackerProperty.withKey(.DestinationDetailType).withDetailType(.Office))
+                properties.append(TrackerProperty.withDestinationId("office_id").withString(office.id))
+                Tracker.sharedInstance.track(.DetailItemTapped, properties: properties)
+                navigationController?.pushViewController(viewController, animated: true)
+            }
+            
+        case .SearchSuggestion:
+            if let searchCategory = dataSource.contentAtIndexPath(indexPath) as? SearchCategory {
+                switch searchCategory.type {
+                case .People:
+                    let viewController = ProfilesViewController()
+                    (viewController.dataSource as! ProfilesDataSource).configureForOrganization()
+                    viewController.title = "People"
+                    navigationController?.pushViewController(viewController, animated: true)
+                case .Offices:
+                    // TODO This should be coming from a paginated data source
+                    let viewController = OfficesOverviewViewController(nibName: "OfficesOverviewViewController", bundle: nil)
+                    viewController.title = "Offices"
+                    navigationController?.pushViewController(viewController, animated: true)
+                case .Teams:
+                    let viewController = TeamsOverviewViewController()
+                    viewController.title = "Teams"
+                    (viewController.dataSource as! TeamsOverviewDataSource).configureForOrganization()
+                    (viewController.dataSource as! TeamsOverviewDataSource).showAsList = true
                     navigationController?.pushViewController(viewController, animated: true)
                 }
-                
-            case .SearchCategory:
-                if let searchCategory = dataSource.contentAtIndexPath(indexPath) as? SearchCategory {
-                    switch searchCategory.type {
-                    case .People:
-                        let viewController = ProfilesViewController()
-                        (viewController.dataSource as! ProfilesDataSource).configureForOrganization()
-                        viewController.title = "People"
-                        navigationController?.pushViewController(viewController, animated: true)
-                    case .Offices:
-                        // TODO This should be coming from a paginated data source
-                        let viewController = OfficesOverviewViewController(nibName: "OfficesOverviewViewController", bundle: nil)
-                        viewController.title = "Offices"
-                        navigationController?.pushViewController(viewController, animated: true)
-                    case .Teams:
-                        let viewController = TeamsOverviewViewController()
-                        viewController.title = "Teams"
-                        (viewController.dataSource as! TeamsOverviewDataSource).configureForOrganization()
-                        (viewController.dataSource as! TeamsOverviewDataSource).showAsList = true
-                        navigationController?.pushViewController(viewController, animated: true)
-                    }
-                }
-                
-            default:
-                break
-
             }
+            else if let searchAction = dataSource.contentAtIndexPath(indexPath) as? SearchAction {
+                handleSearchAction(searchAction)
+            }
+            
+        default:
+            break
+            
         }
     }
     
@@ -422,24 +410,6 @@ class SearchViewController: UIViewController,
         collectionView.collectionViewLayout.invalidateLayout()
     }
     
-    // MARK: - IBActions
-    
-    @IBAction func messageButtonTapped(sender: AnyObject!) {
-        selectedAction = .Message
-        activateSearch(true)
-    }
-    
-    @IBAction func emailButtonTapped(sender: AnyObject!) {
-        selectedAction = .Email
-        activateSearch(true)
-    }
-    
-    @IBAction func phoneButtonTapped(sender: AnyObject!) {
-        selectedAction = .Phone
-        activateSearch(true)
-    }
-    
-
     // MARK: - Notifications
     
     private func registerNotifications() {
@@ -501,27 +471,14 @@ class SearchViewController: UIViewController,
         collectionView.reloadData()
         loadData()
     }
-
-    func quickActionSelected(notification: NSNotification) {
-        if let userInfo = notification.userInfo {
-            if let quickAction = userInfo[QuickActionNotifications.QuickActionTypeUserInfoKey] as? Int {
-                if let quickActionType = QuickAction(rawValue: quickAction) {
-                    selectedAction = quickActionType
-                    activateSearch(true)
-                }
-            }
-        }
-    }
     
     // MARK: - Quick Actions
     
-    private func performQuickAction(profile: Services.Profile.Containers.ProfileV1) -> Bool {
+    private func performQuickAction(selectedAction: QuickAction, profile: Services.Profile.Containers.ProfileV1) -> Bool {
         switch selectedAction {
         case .Email:
             if let email = profile.getEmail() {
-                presentMailViewController([email], subject: "Hey", messageBody: "", completionHandler: {() -> Void in
-                    self.resetQuickAction()
-                })
+                presentMailViewController([email], subject: "Hey", messageBody: "", completionHandler: nil)
                 return true
             }
             
@@ -533,9 +490,7 @@ class SearchViewController: UIViewController,
                 recipient = email
             }
             if recipient != nil {
-                presentMessageViewController([recipient!], subject: "Hey", messageBody: "", completionHandler: {() -> Void in
-                    self.resetQuickAction()
-                })
+                presentMessageViewController([recipient!], subject: "Hey", messageBody: "", completionHandler: nil)
                 return true
             }
 
@@ -552,11 +507,6 @@ class SearchViewController: UIViewController,
         }
         
         return false
-    }
-    
-    private func resetQuickAction() {
-        selectedAction = .None
-        searchHeaderView.cancelButtonTapped(self)
     }
     
     // MARK: - MFMailComposeViewControllerDelegate
@@ -582,5 +532,31 @@ class SearchViewController: UIViewController,
             TrackerProperty.withDestinationId("interest_id").withString(interest.id)
         ]
         Tracker.sharedInstance.track(.DetailItemTapped, properties: properties)
+    }
+    
+    // MARK: - Search Actions
+    
+    private func handleSearchAction(searchAction: SearchAction) {
+        
+        switch searchAction.type {
+        case .EmailPerson:
+            if let profile = searchAction.underlyingObject as? Services.Profile.Containers.ProfileV1 {
+                performQuickAction(.Email, profile: profile)
+            }
+            
+        case .MessagePerson:
+            if let profile = searchAction.underlyingObject as? Services.Profile.Containers.ProfileV1 {
+                performQuickAction(.Message, profile: profile)
+            }
+
+        
+        case .CallPerson:
+            if let profile = searchAction.underlyingObject as? Services.Profile.Containers.ProfileV1 {
+                performQuickAction(.Phone, profile: profile)
+            }
+        
+        default:
+            break;
+        }
     }
 }

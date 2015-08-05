@@ -16,6 +16,7 @@ class SearchQueryDataSource: CardDataSource {
     
     private var searchTerm = ""
     private var searchResults = [AnyObject]()
+    private var searchSuggestions = [SearchSuggestion]()
     private var searchCache = Dictionary<String, Array<AnyObject>>()
     private var completionHandler: ((error: NSError?) -> Void)?
     private var searchTriggerTimer: NSTimer?
@@ -44,14 +45,15 @@ class SearchQueryDataSource: CardDataSource {
         searchTerm = string.trimWhitespace()
         if searchTerm == "" {
             clearData()
-            updateVisibleCards()
+            populateDefaultSearchSuggestions()
+            addCards()
             completionHandler(error: nil)
         }
         else {
             if let results = searchCache[searchTerm] {
                 self.clearData()
                 searchResults.extend(results)
-                self.updateVisibleCards()
+                self.addCards()
                 completionHandler(error: nil)
             }
             else {
@@ -88,7 +90,7 @@ class SearchQueryDataSource: CardDataSource {
                 }
                 
                 self.searchCache[query] = self.searchResults
-                self.updateVisibleCards()
+                self.addCards()
             }
             
             self.completionHandler?(error: error)
@@ -102,12 +104,45 @@ class SearchQueryDataSource: CardDataSource {
     
     private func clearData() {
         searchResults.removeAll(keepCapacity: true)
+        searchSuggestions.removeAll(keepCapacity: true)
     }
     
-    private func updateVisibleCards() {
+    private func populateDefaultSearchSuggestions() {
+        let peopleCount = ObjectStore.sharedInstance.profilesCount
+        let peopleTitle = peopleCount == 1 ? "Person" : "People"
+        
+        let officeCount = ObjectStore.sharedInstance.locationsCount
+        let officeTitle = officeCount == 1 ? "Office" : "Offices"
+        
+        let teamsCount = ObjectStore.sharedInstance.teamsCount
+        let teamsTitle = teamsCount == 1 ? "Team" : "Teams"
+        
+        searchSuggestions.extend([
+            SearchCategory(
+                categoryTitle: peopleTitle,
+                ofType: .People,
+                withCount: peopleCount,
+                withImageSource: "FeedPeers"
+            ),
+            SearchCategory(
+                categoryTitle: officeTitle,
+                ofType: .Offices,
+                withCount: officeCount,
+                withImageSource: "FeedLocation"
+            ),
+            SearchCategory(
+                categoryTitle: teamsTitle,
+                ofType: .Teams,
+                withCount: teamsCount,
+                withImageSource: "FeedReports"
+            )
+        ])
+    }
+    
+    private func addCards() {
         resetCards()
         
-        let sectionInset = UIEdgeInsetsZero
+        let sectionInset = UIEdgeInsetsMake(0.0, 0.0, 1.0, 0.0)
         if searchResults.count > 0 {
             let maxVisibleItems = 3
             let profilesCardTitle = searchTerm.trimWhitespace() == "" ? "Recent" : "People"
@@ -115,43 +150,22 @@ class SearchQueryDataSource: CardDataSource {
             resultsCard.addContent(content: searchResults)
             resultsCard.sectionInset = sectionInset
             appendCard(resultsCard)
+            addSearchActions()
         }
 
-        if searchTerm == "" && !isQuickAction {
-            let searchCategoriesCard = Card(cardType: .SearchCategory, title: "", showContentCount: false)
-            
-            let peopleCount = ObjectStore.sharedInstance.profilesCount
-            let peopleTitle = peopleCount == 1 ? "Person" : "People"
-
-            let officeCount = ObjectStore.sharedInstance.locationsCount
-            let officeTitle = officeCount == 1 ? "Office" : "Offices"
-            
-            let teamsCount = ObjectStore.sharedInstance.teamsCount
-            let teamsTitle = teamsCount == 1 ? "Team" : "Teams"
-
-            let stats = [
-                SearchCategory(
-                    categoryTitle: peopleTitle,
-                    ofType: .People,
-                    withCount: peopleCount,
-                    withImageSource: "FeedPeers"
-                ),
-                SearchCategory(
-                    categoryTitle: officeTitle,
-                    ofType: .Offices,
-                    withCount: officeCount,
-                    withImageSource: "FeedLocation"
-                ),
-                SearchCategory(
-                    categoryTitle: teamsTitle,
-                    ofType: .Teams,
-                    withCount: teamsCount,
-                    withImageSource: "FeedReports"
-                )
-            ]
-            searchCategoriesCard.addContent(content: stats as [AnyObject])
-            searchCategoriesCard.sectionInset = sectionInset
-            appendCard(searchCategoriesCard)
+        if searchSuggestions.count > 0 {
+            let searchSuggestionsCard = Card(cardType: .SearchSuggestion, title: "", showContentCount: false)
+            searchSuggestionsCard.addContent(content: searchSuggestions as [AnyObject])
+            searchSuggestionsCard.sectionInset = sectionInset
+            appendCard(searchSuggestionsCard)
+        }
+    }
+    
+    private func addSearchActions() {
+        if searchResults.count == 1 {
+            if let profile = searchResults.first as? Services.Profile.Containers.ProfileV1 {
+                searchSuggestions.extend(SearchAction.searchActionsForProfile(profile) as [SearchSuggestion])
+            }
         }
     }
     

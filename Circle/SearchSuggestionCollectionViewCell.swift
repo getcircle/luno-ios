@@ -1,5 +1,5 @@
 //
-//  SearchCategoryCollectionViewCell.swift
+//  SearchSuggestionCollectionViewCell.swift
 //  Circle
 //
 //  Created by Michael Hahn on 3/15/15.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SearchCategoryCollectionViewCell: CircleCollectionViewCell {
+class SearchSuggestionCollectionViewCell: CircleCollectionViewCell {
         
     override class var height: CGFloat {
         return 50.0
@@ -18,13 +18,13 @@ class SearchCategoryCollectionViewCell: CircleCollectionViewCell {
     @IBOutlet weak private(set) var titleLabel: UILabel!
     
     override class var classReuseIdentifier: String {
-        return "SearchCategoryCollectionViewCell"
+        return "SearchSuggestionCollectionViewCell"
     }
     
     override func setData(data: AnyObject) {
-        if let searchCategory = data as? SearchCategory {
-            titleLabel.text = (searchCategory.title + " (" + String(searchCategory.count) + ")").uppercaseString
-            imageView.image = UIImage(named: searchCategory.imageSource)
+        if let searchSuggestion = data as? SearchSuggestion {
+            titleLabel.text = searchSuggestion.getTitle()
+            imageView.image = UIImage(named: searchSuggestion.imageSource)
         }
     }
 }

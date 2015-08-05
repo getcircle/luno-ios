@@ -8,23 +8,24 @@
 
 import Foundation
 
-class SearchCategory {
+class SearchCategory: SearchSuggestion {
     
-    enum TileType: Int {
+    enum Type: Int {
         case People = 1
         case Offices
         case Teams
     }
     
-    private(set) var title: String
     var count: Int
-    var imageSource: String
-    var type: TileType
+    var type: Type
     
-    init(categoryTitle: String, ofType: TileType, withCount: Int, withImageSource : String) {
-        title = categoryTitle
+    init(categoryTitle: String, ofType: Type, withCount: Int, withImageSource : String) {
         type = ofType
         count = withCount
-        imageSource = withImageSource
+        super.init(title: categoryTitle, imageSource: withImageSource)
+    }
+    
+    override func getTitle() -> String {
+        return (title + " (" + String(count) + ")").uppercaseString
     }
 }

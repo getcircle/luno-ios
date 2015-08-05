@@ -84,7 +84,7 @@ class Card: Equatable {
         case Settings = "Settings"
         case SocialConnectCTAs = "SocialConnectCTAs"
         case SocialToggle = "SocialToggle"
-        case SearchCategory = "SearchCategory"
+        case SearchSuggestion = "SearchSuggestion"
         case QuickActions = "QuickActions"
         case Team = "Team"
         case TeamsGrid = "TeamsGrid"
@@ -233,10 +233,10 @@ class Card: Equatable {
                     contentType: .Flat
                 )
 
-            case SearchCategory:
+            case SearchSuggestion:
                 return CardTypeInfo(
                     imageName: String(),
-                    classType: SearchCategoryCollectionViewCell.self,
+                    classType: SearchSuggestionCollectionViewCell.self,
                     contentType: .Flat
                 )
 
