@@ -86,8 +86,6 @@ class Card: Equatable {
         case SocialToggle = "SocialToggle"
         case SearchSuggestion = "SearchSuggestion"
         case QuickActions = "QuickActions"
-        case Team = "Team"
-        case TeamsGrid = "TeamsGrid"
         case TextValue = "TextValue"
         case Skills = "Skills"
 
@@ -245,20 +243,6 @@ class Card: Equatable {
                     imageName: "Info",
                     classType: QuickActionsCollectionViewCell.self,
                     contentType: .Flat
-                )
-
-            case Team:
-                return CardTypeInfo(
-                    imageName: "FeedTeam",
-                    classType: TeamGridItemCollectionViewCell.self,
-                    contentType: .Flat
-                )
-
-            case TeamsGrid:
-                return CardTypeInfo(
-                    imageName: "FeedTeam",
-                    classType: TeamsCollectionViewCell.self,
-                    contentType: .Aggregate
                 )
 
             case TextValue:

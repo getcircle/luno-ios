@@ -11,9 +11,8 @@ import ProtobufRegistry
 
 class TeamsOverviewDataSource: CardDataSource {
     
-    var showAsList = false
     private var card: Card!
-    private var cardType: Card.CardType = .Team
+    private var cardType: Card.CardType = .Profiles
     private(set) var searchAttribute: Services.Search.Containers.Search.AttributeV1?
     private(set) var searchAttributeValue: String?
     private var teams = Array<Services.Organization.Containers.TeamV1>()
@@ -67,11 +66,7 @@ class TeamsOverviewDataSource: CardDataSource {
     override func loadInitialData(completionHandler: (error: NSError?) -> Void) {
         super.loadInitialData(completionHandler)
         
-        var sectionInset = UIEdgeInsetsMake(10.0, 10.0, 10.0, 10.0)
-        if showAsList {
-            cardType = .Profiles
-            sectionInset = UIEdgeInsetsZero
-        }
+        var sectionInset = UIEdgeInsetsZero        
         
         card = Card(cardType: cardType, title: "")
         card.sectionInset = sectionInset

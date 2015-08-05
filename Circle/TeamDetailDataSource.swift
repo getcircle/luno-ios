@@ -109,23 +109,29 @@ class TeamDetailDataSource: CardDataSource {
         }
         
         let sectionHeaderClass = ProfileSectionHeaderCollectionReusableView.self
-        if profiles.count > 0 {
-            let membersCardTitle = AppStrings.GroupMembersSectionTitle.localizedUppercaseString()
-            let membersCard = Card(cardType: .Profiles, title: membersCardTitle)
-            membersCard.showContentCount = false
-            membersCard.addHeader(headerClass: sectionHeaderClass)
-            membersCard.addContent(content: profiles)
-            membersCard.sectionInset = self.sectionInset
-            appendCard(membersCard)
-        }
-        
         if teams.count > 0 {
-            var teamsCard = Card(cardType: .TeamsGrid, title: AppStrings.TeamSubTeamsSectionTitle)
+            var teamsCard = Card(
+                cardType: .Profiles,
+                title: AppStrings.TeamSubTeamsSectionTitle + " (" + String(selectedTeam.childTeamCount) + ")"
+            )
             teamsCard.showContentCount = false
             teamsCard.addHeader(headerClass: sectionHeaderClass)
             teamsCard.addContent(content: teams)
             teamsCard.sectionInset = sectionInset
             appendCard(teamsCard)
+        }
+
+        if profiles.count > 0 {
+            let membersCardTitle = AppStrings.GroupMembersSectionTitle.localizedUppercaseString()
+            let membersCard = Card(
+                cardType: .Profiles,
+                title: membersCardTitle + " (" + String(selectedTeam.profileCount) + ")"
+            )
+            membersCard.showContentCount = false
+            membersCard.addHeader(headerClass: sectionHeaderClass)
+            membersCard.addContent(content: profiles)
+            membersCard.sectionInset = self.sectionInset
+            appendCard(membersCard)
         }
         
         addTeamActionsCard()

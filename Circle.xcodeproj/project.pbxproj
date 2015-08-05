@@ -37,10 +37,6 @@
 		8F085A8A1A6B0CB300F8139B /* TeamDetailDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F085A891A6B0CB300F8139B /* TeamDetailDataSource.swift */; };
 		8F085A8D1A6B5B4900F8139B /* TeamHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F085A8B1A6B5B4900F8139B /* TeamHeaderCollectionReusableView.swift */; };
 		8F085A8E1A6B5B4900F8139B /* TeamHeaderCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F085A8C1A6B5B4900F8139B /* TeamHeaderCollectionReusableView.xib */; };
-		8F085A911A6C175C00F8139B /* TeamsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F085A8F1A6C175C00F8139B /* TeamsCollectionViewCell.swift */; };
-		8F085A921A6C175C00F8139B /* TeamsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F085A901A6C175C00F8139B /* TeamsCollectionViewCell.xib */; };
-		8F085A951A6C191400F8139B /* TeamGridItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F085A931A6C191400F8139B /* TeamGridItemCollectionViewCell.swift */; };
-		8F085A961A6C191400F8139B /* TeamGridItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F085A941A6C191400F8139B /* TeamGridItemCollectionViewCell.xib */; };
 		8F08A9F91A748F5200B93149 /* CardFooterCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F08A9F71A748F5200B93149 /* CardFooterCollectionReusableView.swift */; };
 		8F08A9FA1A748F5200B93149 /* CardFooterCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F08A9F81A748F5200B93149 /* CardFooterCollectionReusableView.xib */; };
 		8F0ADCDC1AC527F900A44B68 /* CircleActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0ADCDB1AC527F900A44B68 /* CircleActivityIndicatorView.swift */; };
@@ -382,10 +378,6 @@
 		8F085A891A6B0CB300F8139B /* TeamDetailDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamDetailDataSource.swift; sourceTree = "<group>"; };
 		8F085A8B1A6B5B4900F8139B /* TeamHeaderCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamHeaderCollectionReusableView.swift; sourceTree = "<group>"; };
 		8F085A8C1A6B5B4900F8139B /* TeamHeaderCollectionReusableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TeamHeaderCollectionReusableView.xib; sourceTree = "<group>"; };
-		8F085A8F1A6C175C00F8139B /* TeamsCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamsCollectionViewCell.swift; sourceTree = "<group>"; };
-		8F085A901A6C175C00F8139B /* TeamsCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TeamsCollectionViewCell.xib; sourceTree = "<group>"; };
-		8F085A931A6C191400F8139B /* TeamGridItemCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamGridItemCollectionViewCell.swift; sourceTree = "<group>"; };
-		8F085A941A6C191400F8139B /* TeamGridItemCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TeamGridItemCollectionViewCell.xib; sourceTree = "<group>"; };
 		8F08A9F71A748F5200B93149 /* CardFooterCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardFooterCollectionReusableView.swift; sourceTree = "<group>"; };
 		8F08A9F81A748F5200B93149 /* CardFooterCollectionReusableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CardFooterCollectionReusableView.xib; sourceTree = "<group>"; };
 		8F0ADCDB1AC527F900A44B68 /* CircleActivityIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleActivityIndicatorView.swift; sourceTree = "<group>"; };
@@ -838,9 +830,7 @@
 				8F65C5051A52661700C7F3E6 /* TagScrollingCollectionViewCell.swift */,
 				BF6ACE3C1AC766EF009F2B05 /* TagSuggestionCollectionViewCell.swift */,
 				BF2B34591ACD307200667B50 /* TagToken.swift */,
-				8F085A931A6C191400F8139B /* TeamGridItemCollectionViewCell.swift */,
 				8F085A8B1A6B5B4900F8139B /* TeamHeaderCollectionReusableView.swift */,
-				8F085A8F1A6C175C00F8139B /* TeamsCollectionViewCell.swift */,
 				BFCFDB1F1A91951A009A5FD4 /* TextValueCollectionViewCell.swift */,
 				BFCFDB291A92759A009A5FD4 /* ToggleSocialConnectionCollectionViewCell.swift */,
 				BF97F2D61ACA0B4500F1BC2E /* TokenField.swift */,
@@ -946,9 +936,7 @@
 				8F682F401A65F9090066BDEE /* TagScrollingSelectorViewController.xib */,
 				8F7795031A909AFC00BEF6EA /* TagsOverviewViewController.xib */,
 				BF6ACE3D1AC766EF009F2B05 /* TagSuggestionCollectionViewCell.xib */,
-				8F085A941A6C191400F8139B /* TeamGridItemCollectionViewCell.xib */,
 				8F085A8C1A6B5B4900F8139B /* TeamHeaderCollectionReusableView.xib */,
-				8F085A901A6C175C00F8139B /* TeamsCollectionViewCell.xib */,
 				8F823E4B1A729E1B0006264B /* TeamsOverviewViewController.xib */,
 				BFCFDB201A91951A009A5FD4 /* TextValueCollectionViewCell.xib */,
 				BFCFDB2A1A92759A009A5FD4 /* ToggleSocialConnectionCollectionViewCell.xib */,
@@ -1326,7 +1314,6 @@
 				8FA6A4BA1AFED58B00ACC39D /* GroupHeaderCollectionReusableView.xib in Resources */,
 				8F0ADD331AC5344E00A44B68 /* Loader_00023@2x.png in Resources */,
 				8F0ADD221AC5344E00A44B68 /* Loader_00006@2x.png in Resources */,
-				8F085A961A6C191400F8139B /* TeamGridItemCollectionViewCell.xib in Resources */,
 				8F5933CD1AC9FD8B00905E14 /* NotificationsViewController.xib in Resources */,
 				8F0ADD531AC5344E00A44B68 /* Loader_00055@2x.png in Resources */,
 				8F085A8E1A6B5B4900F8139B /* TeamHeaderCollectionReusableView.xib in Resources */,
@@ -1398,7 +1385,6 @@
 				8F0ADD211AC5344E00A44B68 /* Loader_00005@2x.png in Resources */,
 				8F0ADD4D1AC5344E00A44B68 /* Loader_00049@2x.png in Resources */,
 				8F7795161A92769E00BEF6EA /* QuickActionsCollectionViewCell.xib in Resources */,
-				8F085A921A6C175C00F8139B /* TeamsCollectionViewCell.xib in Resources */,
 				8F29F63B1B656CBC00E5D76C /* SearchViewController.xib in Resources */,
 				8F07ACB31AE878F100D1F41D /* MPDismissKeyboard.png in Resources */,
 				8F0ADD561AC5344E00A44B68 /* Loader_00058@2x.png in Resources */,
@@ -1588,7 +1574,6 @@
 				8FF2984D1A4E29F400306CFC /* PaddedLabel.swift in Sources */,
 				8F29F63A1B656CBC00E5D76C /* SearchViewController.swift in Sources */,
 				8F77950A1A910E8700BEF6EA /* TagsOverviewDataSource.swift in Sources */,
-				8F085A911A6C175C00F8139B /* TeamsCollectionViewCell.swift in Sources */,
 				8F1D0B701AC5E77900488BD7 /* WebViewController.swift in Sources */,
 				8F0004961A2419730096477A /* AppDelegate.swift in Sources */,
 				8F823E4C1A729E1B0006264B /* TeamsOverviewViewController.swift in Sources */,
@@ -1702,7 +1687,6 @@
 				8FD907FB1A6072360025A17B /* MapViewAnimator.swift in Sources */,
 				8F02B1FC1A54A08000A1A307 /* RootNavigationDelegate.swift in Sources */,
 				8F7795151A92769E00BEF6EA /* QuickActionsCollectionViewCell.swift in Sources */,
-				8F085A951A6C191400F8139B /* TeamGridItemCollectionViewCell.swift in Sources */,
 				8F5933E31ACBC12400905E14 /* ProfileExtension.swift in Sources */,
 				BF2B345A1ACD307200667B50 /* TagToken.swift in Sources */,
 				8F65C5071A52661700C7F3E6 /* TagScrollingCollectionViewCell.swift in Sources */,

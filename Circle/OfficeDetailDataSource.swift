@@ -73,13 +73,6 @@ class OfficeDetailDataSource: CardDataSource {
             completionHandler(error: storedError)
         }
     }
-
-    override func configureCell(cell: CircleCollectionViewCell, atIndexPath indexPath: NSIndexPath) {
-        if let profileCell = cell as? ProfileCollectionViewCell {
-            let profile = contentAtIndexPath(indexPath) as? Services.Profile.Containers.ProfileV1
-            profileCell.subTextLabel.text = profile?.title
-        }
-    }
     
     // MARK: - UICollectionViewDataSource
     
@@ -147,7 +140,7 @@ class OfficeDetailDataSource: CardDataSource {
         // Teams
         if teams.count > 0 {
             let teamsCard = Card(
-                cardType: .TeamsGrid,
+                cardType: .Profiles,
                 title: AppStrings.CardTitleOfficeTeam,
                 contentCount: nextTeamsRequest?.getPaginator().countAsInt() ?? teams.count
             )

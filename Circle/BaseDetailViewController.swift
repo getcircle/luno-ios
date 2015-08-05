@@ -113,19 +113,6 @@ MFMessageComposeViewControllerDelegate {
         When overriding, subclasses should call the super static function as well.
     */
     func registerNotifications() {
-        NSNotificationCenter.defaultCenter().addObserver(
-            self,
-            selector: "didSelectTag:",
-            name: TagScrollingCollectionViewCellNotifications.onTagSelectedNotification,
-            object: nil
-        )
-        
-        NSNotificationCenter.defaultCenter().addObserver(
-            self,
-            selector: "didSelectTeam:",
-            name: TeamsCollectionViewCellNotifications.onTeamSelectedNotification,
-            object: nil
-        )
     }
     
     /**
@@ -137,43 +124,8 @@ MFMessageComposeViewControllerDelegate {
         When overriding, subclasses should call the super static function as well.
     */
     func unregisterNotifications() {
-        NSNotificationCenter.defaultCenter().removeObserver(
-            self,
-            name: TagScrollingCollectionViewCellNotifications.onTagSelectedNotification,
-            object: nil
-        )
-        
-        NSNotificationCenter.defaultCenter().removeObserver(
-            self,
-            name: TeamsCollectionViewCellNotifications.onTeamSelectedNotification,
-            object: nil
-        )
     }
     
-    // MARK: - Notification Handlers
-    
-    func didSelectTag(notification: NSNotification) {
-        if let userInfo = notification.userInfo {
-            if let selectedTag = userInfo["interest"] as? Services.Profile.Containers.TagV1 {
-                let viewController = TagDetailViewController()
-                (viewController.dataSource as! TagDetailDataSource).selectedTag = selectedTag
-                viewController.hidesBottomBarWhenPushed = false
-                navigationController?.pushViewController(viewController, animated: true)
-            }
-        }
-    }
-    
-    func didSelectTeam(notification: NSNotification!) {
-        if let userInfo = notification.userInfo {
-            if let selectedTeam = userInfo["team"] as? Services.Organization.Containers.TeamV1 {
-                let viewController = TeamDetailViewController()
-                (viewController.dataSource as! TeamDetailDataSource).selectedTeam = selectedTeam
-                viewController.hidesBottomBarWhenPushed = false
-                navigationController?.pushViewController(viewController, animated: true)
-            }
-        }
-    }
-
     // MARK: - MFMailComposeViewControllerDelegate
     
     func mailComposeController(

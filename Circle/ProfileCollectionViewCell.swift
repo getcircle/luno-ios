@@ -84,12 +84,7 @@ class ProfileCollectionViewCell: CircleCollectionViewCell {
 
     private func setTeam(team: Services.Organization.Containers.TeamV1) {
         nameLabel.text = team.name
-        if team.profileCount == 0 && team.name != team.department {
-            subTextLabel.text = team.department
-        }
-        else {
-            subTextLabel.text = getCountLabel(team.profileCount)
-        }
+        subTextLabel.text = team.getTeamCounts()
         teamNameLetterLabel.hidden = true
 
         profileImageView.imageText = ""

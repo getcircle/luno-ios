@@ -97,10 +97,10 @@ class OfficeDetailViewController: DetailViewController,
     func cardHeaderTapped(sender: AnyObject!, card: Card!) {
         let officeDetailDataSource = dataSource as! OfficeDetailDataSource
         switch card.type {
-        case .TeamsGrid:
+        case .Profiles:
             let viewController = TeamsOverviewViewController()
             viewController.dataSource.setInitialData(
-                content: card.allContent[0] as! [AnyObject],
+                content: card.allContent,
                 ofType: nil,
                 nextRequest: officeDetailDataSource.nextTeamsRequest
             )

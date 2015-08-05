@@ -84,11 +84,11 @@ class SearchViewController: UIViewController,
     
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
-        unregisterNotifications(false)
+        unregisterNotifications()
     }
     
     deinit {
-        unregisterNotifications(true)
+        unregisterNotifications()
     }
     
     // MARK: - Configuration
@@ -352,7 +352,6 @@ class SearchViewController: UIViewController,
                     let viewController = TeamsOverviewViewController()
                     viewController.title = "Teams"
                     (viewController.dataSource as! TeamsOverviewDataSource).configureForOrganization()
-                    (viewController.dataSource as! TeamsOverviewDataSource).showAsList = true
                     navigationController?.pushViewController(viewController, animated: true)
                 }
             }
@@ -414,54 +413,17 @@ class SearchViewController: UIViewController,
     // MARK: - Notifications
     
     private func registerNotifications() {
-        // Always make sure we register only once
-        // Usually this is not needed because the calls are ensured to be balanced
-        // but in this case, we deregister from some in viewDidDisappear and some in deinit
-        // Thereafter every viewWillAppear calls for registeration. So, we need to ensure
-        // we don't register more than once.
-        unregisterNotifications(true)
-        NSNotificationCenter.defaultCenter().addObserver(
-            self,
-            selector: "didSelectTag:",
-            name: TagScrollingCollectionViewCellNotifications.onTagSelectedNotification,
-            object: nil
-        )
-        
+        unregisterNotifications()
         NSNotificationCenter.defaultCenter().addObserver(
             self,
             selector: "userLoggedIn:",
             name: AuthNotifications.onLoginNotification,
             object: nil
         )
-        
-        NSNotificationCenter.defaultCenter().addObserver(
-            self,
-            selector: "quickActionSelected:",
-            name: QuickActionNotifications.onQuickActionStarted,
-            object: nil
-        )
     }
     
-    private func unregisterNotifications(removeAll: Bool) {
-        if removeAll {
-            NSNotificationCenter.defaultCenter().removeObserver(self)
-        }
-        else {
-            // We need to remove observer only from some notifications
-            // specifically the ones that modify the view hierarchy
-            NSNotificationCenter.defaultCenter().removeObserver(
-                self,
-                name: TagScrollingCollectionViewCellNotifications.onTagSelectedNotification,
-                object: nil
-            )
-            
-            NSNotificationCenter.defaultCenter().removeObserver(
-                self,
-                name: QuickActionNotifications.onQuickActionStarted,
-                object: nil
-            )
-            
-        }
+    private func unregisterNotifications() {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
     // MARK: - Notification Handlers

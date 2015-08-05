@@ -42,8 +42,14 @@ class TeamDetailViewController: DetailViewController, EditTeamViewControllerDele
                 if let profile = dataSource.contentAtIndexPath(indexPath) as? Services.Profile.Containers.ProfileV1 {
                     let profileVC = ProfileDetailViewController(profile: profile)
                     navigationController?.pushViewController(profileVC, animated: true)
+                }                
+                else if let team = dataSource.contentAtIndexPath(indexPath) as? Services.Organization.Containers.TeamV1 {
+                    let viewController = TeamDetailViewController()
+                    (viewController.dataSource as! TeamDetailDataSource).selectedTeam = team
+                    navigationController?.pushViewController(viewController, animated: true)
                 }
 
+                
             case .Settings:
                 let editTeamViewController = EditTeamViewController(nibName: "EditTeamViewController", bundle: nil)
                 let editTeamNavController = UINavigationController(rootViewController: editTeamViewController)
