@@ -25,6 +25,7 @@ public final class TeamV1 extends Message {
   public static final Integer DEFAULT_PROFILE_COUNT = 0;
   public static final String DEFAULT_DESCRIPTION = "";
   public static final String DEFAULT_IMAGE_URL = "";
+  public static final Integer DEFAULT_CHILD_TEAM_COUNT = 0;
 
   @ProtoField(tag = 1, type = UINT32)
   public final Integer version;
@@ -65,7 +66,10 @@ public final class TeamV1 extends Message {
   @ProtoField(tag = 13, type = STRING)
   public final String image_url;
 
-  public TeamV1(Integer version, String id, String name, String owner_id, String organization_id, List<PathPartV1> path, String department, Integer profile_count, ColorV1 color, PermissionsV1 permissions, String description, TeamStatusV1 status, String image_url) {
+  @ProtoField(tag = 14, type = UINT32)
+  public final Integer child_team_count;
+
+  public TeamV1(Integer version, String id, String name, String owner_id, String organization_id, List<PathPartV1> path, String department, Integer profile_count, ColorV1 color, PermissionsV1 permissions, String description, TeamStatusV1 status, String image_url, Integer child_team_count) {
     this.version = version;
     this.id = id;
     this.name = name;
@@ -79,10 +83,11 @@ public final class TeamV1 extends Message {
     this.description = description;
     this.status = status;
     this.image_url = image_url;
+    this.child_team_count = child_team_count;
   }
 
   private TeamV1(Builder builder) {
-    this(builder.version, builder.id, builder.name, builder.owner_id, builder.organization_id, builder.path, builder.department, builder.profile_count, builder.color, builder.permissions, builder.description, builder.status, builder.image_url);
+    this(builder.version, builder.id, builder.name, builder.owner_id, builder.organization_id, builder.path, builder.department, builder.profile_count, builder.color, builder.permissions, builder.description, builder.status, builder.image_url, builder.child_team_count);
     setBuilder(builder);
   }
 
@@ -103,7 +108,8 @@ public final class TeamV1 extends Message {
         && equals(permissions, o.permissions)
         && equals(description, o.description)
         && equals(status, o.status)
-        && equals(image_url, o.image_url);
+        && equals(image_url, o.image_url)
+        && equals(child_team_count, o.child_team_count);
   }
 
   @Override
@@ -123,6 +129,7 @@ public final class TeamV1 extends Message {
       result = result * 37 + (description != null ? description.hashCode() : 0);
       result = result * 37 + (status != null ? status.hashCode() : 0);
       result = result * 37 + (image_url != null ? image_url.hashCode() : 0);
+      result = result * 37 + (child_team_count != null ? child_team_count.hashCode() : 0);
       hashCode = result;
     }
     return result;
@@ -143,6 +150,7 @@ public final class TeamV1 extends Message {
     public String description;
     public TeamStatusV1 status;
     public String image_url;
+    public Integer child_team_count;
 
     public Builder() {
     }
@@ -163,6 +171,7 @@ public final class TeamV1 extends Message {
       this.description = message.description;
       this.status = message.status;
       this.image_url = message.image_url;
+      this.child_team_count = message.child_team_count;
     }
 
     public Builder version(Integer version) {
@@ -227,6 +236,11 @@ public final class TeamV1 extends Message {
 
     public Builder image_url(String image_url) {
       this.image_url = image_url;
+      return this;
+    }
+
+    public Builder child_team_count(Integer child_team_count) {
+      this.child_team_count = child_team_count;
       return this;
     }
 

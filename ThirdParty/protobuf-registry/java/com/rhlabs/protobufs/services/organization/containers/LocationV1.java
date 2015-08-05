@@ -2,11 +2,16 @@
 // Source file: ./src/protobufs/services/organization/containers.proto
 package com.rhlabs.protobufs.services.organization.containers;
 
+import com.rhlabs.protobufs.services.common.containers.PermissionsV1;
+import com.rhlabs.protobufs.services.profile.containers.ProfileV1;
 import com.squareup.wire.Message;
 import com.squareup.wire.ProtoField;
+import java.util.Collections;
+import java.util.List;
 
 import static com.squareup.wire.Message.Datatype.STRING;
 import static com.squareup.wire.Message.Datatype.UINT32;
+import static com.squareup.wire.Message.Label.REPEATED;
 
 public final class LocationV1 extends Message {
   private static final long serialVersionUID = 0L;
@@ -19,6 +24,7 @@ public final class LocationV1 extends Message {
   public static final String DEFAULT_IMAGE_URL = "";
   public static final String DEFAULT_DESCRIPTION = "";
   public static final String DEFAULT_ESTABLISHED_DATE = "";
+  public static final List<ProfileV1> DEFAULT_POINTS_OF_CONTACT = Collections.emptyList();
 
   @ProtoField(tag = 1, type = UINT32)
   public final Integer version;
@@ -47,7 +53,13 @@ public final class LocationV1 extends Message {
   @ProtoField(tag = 9, type = STRING)
   public final String established_date;
 
-  public LocationV1(Integer version, String id, String name, AddressV1 address, String organization_id, Integer profile_count, String image_url, String description, String established_date) {
+  @ProtoField(tag = 10, label = REPEATED, messageType = ProfileV1.class)
+  public final List<ProfileV1> points_of_contact;
+
+  @ProtoField(tag = 11)
+  public final PermissionsV1 permissions;
+
+  public LocationV1(Integer version, String id, String name, AddressV1 address, String organization_id, Integer profile_count, String image_url, String description, String established_date, List<ProfileV1> points_of_contact, PermissionsV1 permissions) {
     this.version = version;
     this.id = id;
     this.name = name;
@@ -57,10 +69,12 @@ public final class LocationV1 extends Message {
     this.image_url = image_url;
     this.description = description;
     this.established_date = established_date;
+    this.points_of_contact = immutableCopyOf(points_of_contact);
+    this.permissions = permissions;
   }
 
   private LocationV1(Builder builder) {
-    this(builder.version, builder.id, builder.name, builder.address, builder.organization_id, builder.profile_count, builder.image_url, builder.description, builder.established_date);
+    this(builder.version, builder.id, builder.name, builder.address, builder.organization_id, builder.profile_count, builder.image_url, builder.description, builder.established_date, builder.points_of_contact, builder.permissions);
     setBuilder(builder);
   }
 
@@ -77,7 +91,9 @@ public final class LocationV1 extends Message {
         && equals(profile_count, o.profile_count)
         && equals(image_url, o.image_url)
         && equals(description, o.description)
-        && equals(established_date, o.established_date);
+        && equals(established_date, o.established_date)
+        && equals(points_of_contact, o.points_of_contact)
+        && equals(permissions, o.permissions);
   }
 
   @Override
@@ -93,6 +109,8 @@ public final class LocationV1 extends Message {
       result = result * 37 + (image_url != null ? image_url.hashCode() : 0);
       result = result * 37 + (description != null ? description.hashCode() : 0);
       result = result * 37 + (established_date != null ? established_date.hashCode() : 0);
+      result = result * 37 + (points_of_contact != null ? points_of_contact.hashCode() : 1);
+      result = result * 37 + (permissions != null ? permissions.hashCode() : 0);
       hashCode = result;
     }
     return result;
@@ -109,6 +127,8 @@ public final class LocationV1 extends Message {
     public String image_url;
     public String description;
     public String established_date;
+    public List<ProfileV1> points_of_contact;
+    public PermissionsV1 permissions;
 
     public Builder() {
     }
@@ -125,6 +145,8 @@ public final class LocationV1 extends Message {
       this.image_url = message.image_url;
       this.description = message.description;
       this.established_date = message.established_date;
+      this.points_of_contact = copyOf(message.points_of_contact);
+      this.permissions = message.permissions;
     }
 
     public Builder version(Integer version) {
@@ -169,6 +191,16 @@ public final class LocationV1 extends Message {
 
     public Builder established_date(String established_date) {
       this.established_date = established_date;
+      return this;
+    }
+
+    public Builder points_of_contact(List<ProfileV1> points_of_contact) {
+      this.points_of_contact = checkForNulls(points_of_contact);
+      return this;
+    }
+
+    public Builder permissions(PermissionsV1 permissions) {
+      this.permissions = permissions;
       return this;
     }
 

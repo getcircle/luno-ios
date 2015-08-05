@@ -4,7 +4,7 @@ package services.organization.containers;
 option java_package = "com.rhlabs.protobufs.services.organization.containers";
 
 import "protobufs/services/common/containers.proto";
-
+import "protobufs/services/profile/containers.proto";
 
 message AddressV1 {
     optional uint32 version = 1 [default = 1];
@@ -40,6 +40,8 @@ message LocationV1 {
     optional string image_url = 7;
     optional string description = 8;
     optional string established_date = 9;
+    repeated services.profile.containers.ProfileV1 points_of_contact = 10;
+    optional services.common.containers.PermissionsV1 permissions = 11;
 }
 
 message OrganizationV1 {
@@ -72,6 +74,7 @@ message TeamV1 {
     optional string description = 11;
     optional TeamStatusV1 status = 12;
     optional string image_url = 13;
+    optional uint32 child_team_count = 14;
 }
 
 message TeamDescendantsV1 {

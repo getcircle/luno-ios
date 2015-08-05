@@ -51,6 +51,8 @@ public func == (lhs: Services.Organization.Containers.LocationV1, rhs: Services.
   fieldCheck = fieldCheck && (lhs.hasImageUrl == rhs.hasImageUrl) && (!lhs.hasImageUrl || lhs.imageUrl == rhs.imageUrl)
   fieldCheck = fieldCheck && (lhs.hasDescription == rhs.hasDescription) && (!lhs.hasDescription || lhs.description_ == rhs.description_)
   fieldCheck = fieldCheck && (lhs.hasEstablishedDate == rhs.hasEstablishedDate) && (!lhs.hasEstablishedDate || lhs.establishedDate == rhs.establishedDate)
+  fieldCheck = fieldCheck && (lhs.pointsOfContact == rhs.pointsOfContact)
+  fieldCheck = fieldCheck && (lhs.hasPermissions == rhs.hasPermissions) && (!lhs.hasPermissions || lhs.permissions == rhs.permissions)
   return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
 }
 
@@ -98,6 +100,7 @@ public func == (lhs: Services.Organization.Containers.TeamV1, rhs: Services.Orga
   fieldCheck = fieldCheck && (lhs.hasDescription == rhs.hasDescription) && (!lhs.hasDescription || lhs.description_ == rhs.description_)
   fieldCheck = fieldCheck && (lhs.hasStatus == rhs.hasStatus) && (!lhs.hasStatus || lhs.status == rhs.status)
   fieldCheck = fieldCheck && (lhs.hasImageUrl == rhs.hasImageUrl) && (!lhs.hasImageUrl || lhs.imageUrl == rhs.imageUrl)
+  fieldCheck = fieldCheck && (lhs.hasChildTeamCount == rhs.hasChildTeamCount) && (!lhs.hasChildTeamCount || lhs.childTeamCount == rhs.childTeamCount)
   return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
 }
 
@@ -151,6 +154,7 @@ public extension Services.Organization.Containers {
       extensionRegistry = ExtensionRegistry()
       registerAllExtensions(extensionRegistry)
       Services.Common.Containers.ContainersRoot.sharedInstance.registerAllExtensions(extensionRegistry)
+      Services.Profile.Containers.ContainersRoot.sharedInstance.registerAllExtensions(extensionRegistry)
     }
     public func registerAllExtensions(registry:ExtensionRegistry) {
     }
@@ -1270,6 +1274,7 @@ public extension Services.Organization.Containers {
            case "imageUrl": return imageUrl
            case "description_": return description_
            case "establishedDate": return establishedDate
+           case "permissions": return permissions
            default: return nil
            }
     }
@@ -1300,6 +1305,9 @@ public extension Services.Organization.Containers {
     public private(set) var hasEstablishedDate:Bool = false
     public private(set) var establishedDate:String = ""
 
+    public private(set) var hasPermissions:Bool = false
+    public private(set) var permissions:Services.Common.Containers.PermissionsV1!
+    public private(set) var pointsOfContact:Array<Services.Profile.Containers.ProfileV1>  = Array<Services.Profile.Containers.ProfileV1>()
     required public init() {
          super.init()
     }
@@ -1333,6 +1341,12 @@ public extension Services.Organization.Containers {
       }
       if hasEstablishedDate {
         output.writeString(9, value:establishedDate)
+      }
+      for oneElementpointsOfContact in pointsOfContact {
+          output.writeMessage(10, value:oneElementpointsOfContact)
+      }
+      if hasPermissions {
+        output.writeMessage(11, value:permissions)
       }
       unknownFields.writeToCodedOutputStream(output)
     }
@@ -1371,6 +1385,14 @@ public extension Services.Organization.Containers {
       }
       if hasEstablishedDate {
         serialize_size += establishedDate.computeStringSize(9)
+      }
+      for oneElementpointsOfContact in pointsOfContact {
+          serialize_size += oneElementpointsOfContact.computeMessageSize(10)
+      }
+      if hasPermissions {
+          if let varSizepermissions = permissions?.computeMessageSize(11) {
+              serialize_size += varSizepermissions
+          }
       }
       serialize_size += unknownFields.serializedSize()
       memoizedSerializedSize = serialize_size
@@ -1442,6 +1464,18 @@ public extension Services.Organization.Containers {
       if hasEstablishedDate {
         output += "\(indent) establishedDate: \(establishedDate) \n"
       }
+      var pointsOfContactElementIndex:Int = 0
+      for oneElementpointsOfContact in pointsOfContact {
+          output += "\(indent) pointsOfContact[\(pointsOfContactElementIndex)] {\n"
+          oneElementpointsOfContact.writeDescriptionTo(&output, indent:"\(indent)  ")
+          output += "\(indent)}\n"
+          pointsOfContactElementIndex++
+      }
+      if hasPermissions {
+        output += "\(indent) permissions {\n"
+        permissions?.writeDescriptionTo(&output, indent:"\(indent)  ")
+        output += "\(indent) }\n"
+      }
       unknownFields.writeDescriptionTo(&output, indent:indent)
     }
     override public var hashValue:Int {
@@ -1475,6 +1509,14 @@ public extension Services.Organization.Containers {
             }
             if hasEstablishedDate {
                hashCode = (hashCode &* 31) &+ establishedDate.hashValue
+            }
+            for oneElementpointsOfContact in pointsOfContact {
+                hashCode = (hashCode &* 31) &+ oneElementpointsOfContact.hashValue
+            }
+            if hasPermissions {
+                if let hashValuepermissions = permissions?.hashValue {
+                    hashCode = (hashCode &* 31) &+ hashValuepermissions
+                }
             }
             hashCode = (hashCode &* 31) &+  unknownFields.hashValue
             return hashCode
@@ -1720,6 +1762,54 @@ public extension Services.Organization.Containers {
          builderResult.establishedDate = ""
          return self
     }
+    public var pointsOfContact:Array<Services.Profile.Containers.ProfileV1> {
+         get {
+             return builderResult.pointsOfContact
+         }
+         set (value) {
+             builderResult.pointsOfContact = value
+         }
+    }
+    public func setPointsOfContact(value:Array<Services.Profile.Containers.ProfileV1>)-> Services.Organization.Containers.LocationV1Builder {
+      self.pointsOfContact = value
+      return self
+    }
+    public func clearPointsOfContact() -> Services.Organization.Containers.LocationV1Builder {
+      builderResult.pointsOfContact.removeAll(keepCapacity: false)
+      return self
+    }
+    public var hasPermissions:Bool {
+         get {
+             return builderResult.hasPermissions
+         }
+    }
+    public var permissions:Services.Common.Containers.PermissionsV1! {
+         get {
+             return builderResult.permissions
+         }
+         set (value) {
+             builderResult.hasPermissions = true
+             builderResult.permissions = value
+         }
+    }
+    public func setPermissions(value:Services.Common.Containers.PermissionsV1!)-> Services.Organization.Containers.LocationV1Builder {
+      self.permissions = value
+      return self
+    }
+    public func mergePermissions(value:Services.Common.Containers.PermissionsV1) -> Services.Organization.Containers.LocationV1Builder {
+      if (builderResult.hasPermissions) {
+        builderResult.permissions = Services.Common.Containers.PermissionsV1.builderWithPrototype(builderResult.permissions).mergeFrom(value).buildPartial()
+      } else {
+        builderResult.permissions = value
+      }
+      builderResult.hasPermissions = true
+      return self
+    }
+    public func clearPermissions() -> Services.Organization.Containers.LocationV1Builder {
+      builderResult.hasPermissions = false
+      builderResult.permissions = nil
+      return self
+    }
     override public var internalGetResult:GeneratedMessage {
          get {
             return builderResult
@@ -1771,6 +1861,12 @@ public extension Services.Organization.Containers {
       if other.hasEstablishedDate {
            establishedDate = other.establishedDate
       }
+      if !other.pointsOfContact.isEmpty  {
+         builderResult.pointsOfContact += other.pointsOfContact
+      }
+      if (other.hasPermissions) {
+          mergePermissions(other.permissions)
+      }
       mergeUnknownFields(other.unknownFields)
       return self
     }
@@ -1817,6 +1913,19 @@ public extension Services.Organization.Containers {
 
         case 74 :
           establishedDate = input.readString()
+
+        case 82 :
+          var subBuilder = Services.Profile.Containers.ProfileV1.builder()
+          input.readMessage(subBuilder,extensionRegistry:extensionRegistry)
+          pointsOfContact += [subBuilder.buildPartial()]
+
+        case 90 :
+          var subBuilder:Services.Common.Containers.PermissionsV1Builder = Services.Common.Containers.PermissionsV1.builder()
+          if hasPermissions {
+            subBuilder.mergeFrom(permissions)
+          }
+          input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
+          permissions = subBuilder.buildPartial()
 
         default:
           if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
@@ -2604,6 +2713,7 @@ public extension Services.Organization.Containers {
            case "description_": return description_
            case "status": return status
            case "imageUrl": return imageUrl
+           case "childTeamCount": return childTeamCount
            default: return nil
            }
     }
@@ -2640,6 +2750,9 @@ public extension Services.Organization.Containers {
     public private(set) var status:Services.Organization.Containers.TeamStatusV1!
     public private(set) var hasImageUrl:Bool = false
     public private(set) var imageUrl:String = ""
+
+    public private(set) var hasChildTeamCount:Bool = false
+    public private(set) var childTeamCount:UInt32 = UInt32(0)
 
     public private(set) var path:Array<Services.Organization.Containers.PathPartV1>  = Array<Services.Organization.Containers.PathPartV1>()
     required public init() {
@@ -2687,6 +2800,9 @@ public extension Services.Organization.Containers {
       }
       if hasImageUrl {
         output.writeString(13, value:imageUrl)
+      }
+      if hasChildTeamCount {
+        output.writeUInt32(14, value:childTeamCount)
       }
       unknownFields.writeToCodedOutputStream(output)
     }
@@ -2741,6 +2857,9 @@ public extension Services.Organization.Containers {
       }
       if hasImageUrl {
         serialize_size += imageUrl.computeStringSize(13)
+      }
+      if hasChildTeamCount {
+        serialize_size += childTeamCount.computeUInt32Size(14)
       }
       serialize_size += unknownFields.serializedSize()
       memoizedSerializedSize = serialize_size
@@ -2832,6 +2951,9 @@ public extension Services.Organization.Containers {
       if hasImageUrl {
         output += "\(indent) imageUrl: \(imageUrl) \n"
       }
+      if hasChildTeamCount {
+        output += "\(indent) childTeamCount: \(childTeamCount) \n"
+      }
       unknownFields.writeDescriptionTo(&output, indent:indent)
     }
     override public var hashValue:Int {
@@ -2881,6 +3003,9 @@ public extension Services.Organization.Containers {
             }
             if hasImageUrl {
                hashCode = (hashCode &* 31) &+ imageUrl.hashValue
+            }
+            if hasChildTeamCount {
+               hashCode = (hashCode &* 31) &+ childTeamCount.hashValue
             }
             hashCode = (hashCode &* 31) &+  unknownFields.hashValue
             return hashCode
@@ -3229,6 +3354,29 @@ public extension Services.Organization.Containers {
          builderResult.imageUrl = ""
          return self
     }
+    public var hasChildTeamCount:Bool {
+         get {
+              return builderResult.hasChildTeamCount
+         }
+    }
+    public var childTeamCount:UInt32 {
+         get {
+              return builderResult.childTeamCount
+         }
+         set (value) {
+             builderResult.hasChildTeamCount = true
+             builderResult.childTeamCount = value
+         }
+    }
+    public func setChildTeamCount(value:UInt32)-> Services.Organization.Containers.TeamV1Builder {
+      self.childTeamCount = value
+      return self
+    }
+    public func clearChildTeamCount() -> Services.Organization.Containers.TeamV1Builder{
+         builderResult.hasChildTeamCount = false
+         builderResult.childTeamCount = UInt32(0)
+         return self
+    }
     override public var internalGetResult:GeneratedMessage {
          get {
             return builderResult
@@ -3291,6 +3439,9 @@ public extension Services.Organization.Containers {
       }
       if other.hasImageUrl {
            imageUrl = other.imageUrl
+      }
+      if other.hasChildTeamCount {
+           childTeamCount = other.childTeamCount
       }
       mergeUnknownFields(other.unknownFields)
       return self
@@ -3362,6 +3513,9 @@ public extension Services.Organization.Containers {
 
         case 106 :
           imageUrl = input.readString()
+
+        case 112 :
+          childTeamCount = input.readUInt32()
 
         default:
           if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
