@@ -6,7 +6,9 @@ import com.squareup.wire.ProtoEnum;
 
 public enum MediaTypeV1
     implements ProtoEnum {
-  PROFILE(1);
+  PROFILE(1),
+  TEAM(2),
+  LOCATION(3);
 
   private final int value;
 

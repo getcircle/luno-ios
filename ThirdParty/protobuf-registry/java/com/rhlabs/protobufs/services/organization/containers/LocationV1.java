@@ -18,6 +18,7 @@ public final class LocationV1 extends Message {
   public static final Integer DEFAULT_PROFILE_COUNT = 0;
   public static final String DEFAULT_IMAGE_URL = "";
   public static final String DEFAULT_DESCRIPTION = "";
+  public static final String DEFAULT_ESTABLISHED_DATE = "";
 
   @ProtoField(tag = 1, type = UINT32)
   public final Integer version;
@@ -43,7 +44,10 @@ public final class LocationV1 extends Message {
   @ProtoField(tag = 8, type = STRING)
   public final String description;
 
-  public LocationV1(Integer version, String id, String name, AddressV1 address, String organization_id, Integer profile_count, String image_url, String description) {
+  @ProtoField(tag = 9, type = STRING)
+  public final String established_date;
+
+  public LocationV1(Integer version, String id, String name, AddressV1 address, String organization_id, Integer profile_count, String image_url, String description, String established_date) {
     this.version = version;
     this.id = id;
     this.name = name;
@@ -52,10 +56,11 @@ public final class LocationV1 extends Message {
     this.profile_count = profile_count;
     this.image_url = image_url;
     this.description = description;
+    this.established_date = established_date;
   }
 
   private LocationV1(Builder builder) {
-    this(builder.version, builder.id, builder.name, builder.address, builder.organization_id, builder.profile_count, builder.image_url, builder.description);
+    this(builder.version, builder.id, builder.name, builder.address, builder.organization_id, builder.profile_count, builder.image_url, builder.description, builder.established_date);
     setBuilder(builder);
   }
 
@@ -71,7 +76,8 @@ public final class LocationV1 extends Message {
         && equals(organization_id, o.organization_id)
         && equals(profile_count, o.profile_count)
         && equals(image_url, o.image_url)
-        && equals(description, o.description);
+        && equals(description, o.description)
+        && equals(established_date, o.established_date);
   }
 
   @Override
@@ -86,6 +92,7 @@ public final class LocationV1 extends Message {
       result = result * 37 + (profile_count != null ? profile_count.hashCode() : 0);
       result = result * 37 + (image_url != null ? image_url.hashCode() : 0);
       result = result * 37 + (description != null ? description.hashCode() : 0);
+      result = result * 37 + (established_date != null ? established_date.hashCode() : 0);
       hashCode = result;
     }
     return result;
@@ -101,6 +108,7 @@ public final class LocationV1 extends Message {
     public Integer profile_count;
     public String image_url;
     public String description;
+    public String established_date;
 
     public Builder() {
     }
@@ -116,6 +124,7 @@ public final class LocationV1 extends Message {
       this.profile_count = message.profile_count;
       this.image_url = message.image_url;
       this.description = message.description;
+      this.established_date = message.established_date;
     }
 
     public Builder version(Integer version) {
@@ -155,6 +164,11 @@ public final class LocationV1 extends Message {
 
     public Builder description(String description) {
       this.description = description;
+      return this;
+    }
+
+    public Builder established_date(String established_date) {
+      this.established_date = established_date;
       return this;
     }
 

@@ -39,6 +39,7 @@ message LocationV1 {
     optional uint32 profile_count = 6;
     optional string image_url = 7;
     optional string description = 8;
+    optional string established_date = 9;
 }
 
 message OrganizationV1 {
@@ -69,6 +70,8 @@ message TeamV1 {
     optional ColorV1 color = 9;
     optional services.common.containers.PermissionsV1 permissions = 10;
     optional string description = 11;
+    optional TeamStatusV1 status = 12;
+    optional string image_url = 13;
 }
 
 message TeamDescendantsV1 {
@@ -76,6 +79,13 @@ message TeamDescendantsV1 {
     optional uint32 depth = 2;
     optional string parent_team_id = 3;
     repeated TeamV1 teams = 4;
+}
+
+message TeamStatusV1 {
+    optional uint32 version = 1 [default = 1];
+    optional string value = 2;
+    optional string created = 3;
+    optional string by_profile_id = 4;
 }
 
 message TokenV1 {

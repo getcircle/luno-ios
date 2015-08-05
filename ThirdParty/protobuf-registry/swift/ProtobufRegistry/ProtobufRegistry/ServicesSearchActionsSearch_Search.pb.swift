@@ -12,6 +12,7 @@ public func == (lhs: Services.Search.Actions.Search.RequestV1, rhs: Services.Sea
   fieldCheck = fieldCheck && (lhs.hasQuery == rhs.hasQuery) && (!lhs.hasQuery || lhs.query == rhs.query)
   fieldCheck = fieldCheck && (lhs.hasCategory == rhs.hasCategory) && (!lhs.hasCategory || lhs.category == rhs.category)
   fieldCheck = fieldCheck && (lhs.hasAttribute == rhs.hasAttribute) && (!lhs.hasAttribute || lhs.attribute == rhs.attribute)
+  fieldCheck = fieldCheck && (lhs.hasAttributeValue == rhs.hasAttributeValue) && (!lhs.hasAttributeValue || lhs.attributeValue == rhs.attributeValue)
   return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
 }
 
@@ -52,6 +53,7 @@ public extension Services.Search.Actions.Search {
            case "query": return query
            case "category": return self.category
            case "attribute": return self.attribute
+           case "attributeValue": return attributeValue
            default: return nil
            }
     }
@@ -66,6 +68,9 @@ public extension Services.Search.Actions.Search {
     public private(set) var hasCategory:Bool = false
     public private(set) var attribute:Services.Search.Containers.Search.AttributeV1 = Services.Search.Containers.Search.AttributeV1.LocationId
     public private(set) var hasAttribute:Bool = false
+    public private(set) var hasAttributeValue:Bool = false
+    public private(set) var attributeValue:String = ""
+
     required public init() {
          super.init()
     }
@@ -84,6 +89,9 @@ public extension Services.Search.Actions.Search {
       }
       if hasAttribute {
         output.writeEnum(4, value:attribute.rawValue)
+      }
+      if hasAttributeValue {
+        output.writeString(5, value:attributeValue)
       }
       unknownFields.writeToCodedOutputStream(output)
     }
@@ -105,6 +113,9 @@ public extension Services.Search.Actions.Search {
       }
       if (hasAttribute) {
         serialize_size += attribute.rawValue.computeEnumSize(4)
+      }
+      if hasAttributeValue {
+        serialize_size += attributeValue.computeStringSize(5)
       }
       serialize_size += unknownFields.serializedSize()
       memoizedSerializedSize = serialize_size
@@ -159,6 +170,9 @@ public extension Services.Search.Actions.Search {
       if (hasAttribute) {
         output += "\(indent) attribute: \(attribute.rawValue)\n"
       }
+      if hasAttributeValue {
+        output += "\(indent) attributeValue: \(attributeValue) \n"
+      }
       unknownFields.writeDescriptionTo(&output, indent:indent)
     }
     override public var hashValue:Int {
@@ -175,6 +189,9 @@ public extension Services.Search.Actions.Search {
             }
             if hasAttribute {
                hashCode = (hashCode &* 31) &+ Int(attribute.rawValue)
+            }
+            if hasAttributeValue {
+               hashCode = (hashCode &* 31) &+ attributeValue.hashValue
             }
             hashCode = (hashCode &* 31) &+  unknownFields.hashValue
             return hashCode
@@ -296,6 +313,29 @@ public extension Services.Search.Actions.Search {
          builderResult.attribute = .LocationId
          return self
       }
+    public var hasAttributeValue:Bool {
+         get {
+              return builderResult.hasAttributeValue
+         }
+    }
+    public var attributeValue:String {
+         get {
+              return builderResult.attributeValue
+         }
+         set (value) {
+             builderResult.hasAttributeValue = true
+             builderResult.attributeValue = value
+         }
+    }
+    public func setAttributeValue(value:String)-> Services.Search.Actions.Search.RequestV1Builder {
+      self.attributeValue = value
+      return self
+    }
+    public func clearAttributeValue() -> Services.Search.Actions.Search.RequestV1Builder{
+         builderResult.hasAttributeValue = false
+         builderResult.attributeValue = ""
+         return self
+    }
     override public var internalGetResult:GeneratedMessage {
          get {
             return builderResult
@@ -331,6 +371,9 @@ public extension Services.Search.Actions.Search {
       }
       if other.hasAttribute {
            attribute = other.attribute
+      }
+      if other.hasAttributeValue {
+           attributeValue = other.attributeValue
       }
       mergeUnknownFields(other.unknownFields)
       return self
@@ -368,6 +411,9 @@ public extension Services.Search.Actions.Search {
           } else {
                unknownFieldsBuilder.mergeVarintField(4, value:Int64(valueIntattribute))
           }
+
+        case 42 :
+          attributeValue = input.readString()
 
         default:
           if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {

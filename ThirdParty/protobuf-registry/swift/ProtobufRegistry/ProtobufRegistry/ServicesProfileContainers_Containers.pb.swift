@@ -36,7 +36,6 @@ public func == (lhs: Services.Profile.Containers.ProfileV1, rhs: Services.Profil
   fieldCheck = fieldCheck && (lhs.hasHireDate == rhs.hasHireDate) && (!lhs.hasHireDate || lhs.hireDate == rhs.hireDate)
   fieldCheck = fieldCheck && (lhs.hasVerified == rhs.hasVerified) && (!lhs.hasVerified || lhs.verified == rhs.verified)
   fieldCheck = fieldCheck && (lhs.items == rhs.items)
-  fieldCheck = fieldCheck && (lhs.hasAbout == rhs.hasAbout) && (!lhs.hasAbout || lhs.about == rhs.about)
   fieldCheck = fieldCheck && (lhs.hasLocationId == rhs.hasLocationId) && (!lhs.hasLocationId || lhs.locationId == rhs.locationId)
   fieldCheck = fieldCheck && (lhs.hasNickname == rhs.hasNickname) && (!lhs.hasNickname || lhs.nickname == rhs.nickname)
   fieldCheck = fieldCheck && (lhs.contactMethods == rhs.contactMethods)
@@ -44,6 +43,18 @@ public func == (lhs: Services.Profile.Containers.ProfileV1, rhs: Services.Profil
   fieldCheck = fieldCheck && (lhs.hasEmail == rhs.hasEmail) && (!lhs.hasEmail || lhs.email == rhs.email)
   fieldCheck = fieldCheck && (lhs.hasIsAdmin == rhs.hasIsAdmin) && (!lhs.hasIsAdmin || lhs.isAdmin == rhs.isAdmin)
   fieldCheck = fieldCheck && (lhs.hasSmallImageUrl == rhs.hasSmallImageUrl) && (!lhs.hasSmallImageUrl || lhs.smallImageUrl == rhs.smallImageUrl)
+  fieldCheck = fieldCheck && (lhs.hasStatus == rhs.hasStatus) && (!lhs.hasStatus || lhs.status == rhs.status)
+  return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
+}
+
+public func == (lhs: Services.Profile.Containers.ProfileStatusV1, rhs: Services.Profile.Containers.ProfileStatusV1) -> Bool {
+  if (lhs === rhs) {
+    return true
+  }
+  var fieldCheck:Bool = (lhs.hashValue == rhs.hashValue)
+  fieldCheck = fieldCheck && (lhs.hasVersion == rhs.hasVersion) && (!lhs.hasVersion || lhs.version == rhs.version)
+  fieldCheck = fieldCheck && (lhs.hasValue == rhs.hasValue) && (!lhs.hasValue || lhs.value == rhs.value)
+  fieldCheck = fieldCheck && (lhs.hasCreated == rhs.hasCreated) && (!lhs.hasCreated || lhs.created == rhs.created)
   return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
 }
 
@@ -520,13 +531,13 @@ public extension Services.Profile.Containers {
            case "birthDate": return birthDate
            case "hireDate": return hireDate
            case "verified": return verified
-           case "about": return about
            case "locationId": return locationId
            case "nickname": return nickname
            case "seatingInfo": return seatingInfo
            case "email": return email
            case "isAdmin": return isAdmin
            case "smallImageUrl": return smallImageUrl
+           case "status": return status
            default: return nil
            }
     }
@@ -573,9 +584,6 @@ public extension Services.Profile.Containers {
     public private(set) var hasVerified:Bool = false
     public private(set) var verified:Bool = false
 
-    public private(set) var hasAbout:Bool = false
-    public private(set) var about:String = ""
-
     public private(set) var hasLocationId:Bool = false
     public private(set) var locationId:String = ""
 
@@ -594,6 +602,8 @@ public extension Services.Profile.Containers {
     public private(set) var hasSmallImageUrl:Bool = false
     public private(set) var smallImageUrl:String = ""
 
+    public private(set) var hasStatus:Bool = false
+    public private(set) var status:Services.Profile.Containers.ProfileStatusV1!
     public private(set) var items:Array<Services.Profile.Containers.ProfileItemV1>  = Array<Services.Profile.Containers.ProfileItemV1>()
     public private(set) var contactMethods:Array<Services.Profile.Containers.ContactMethodV1>  = Array<Services.Profile.Containers.ContactMethodV1>()
     required public init() {
@@ -648,29 +658,29 @@ public extension Services.Profile.Containers {
       for oneElementitems in items {
           output.writeMessage(15, value:oneElementitems)
       }
-      if hasAbout {
-        output.writeString(16, value:about)
-      }
       if hasLocationId {
-        output.writeString(17, value:locationId)
+        output.writeString(16, value:locationId)
       }
       if hasNickname {
-        output.writeString(18, value:nickname)
+        output.writeString(17, value:nickname)
       }
       for oneElementcontactMethods in contactMethods {
-          output.writeMessage(19, value:oneElementcontactMethods)
+          output.writeMessage(18, value:oneElementcontactMethods)
       }
       if hasSeatingInfo {
-        output.writeString(20, value:seatingInfo)
+        output.writeString(19, value:seatingInfo)
       }
       if hasEmail {
-        output.writeString(21, value:email)
+        output.writeString(20, value:email)
       }
       if hasIsAdmin {
-        output.writeBool(22, value:isAdmin)
+        output.writeBool(21, value:isAdmin)
       }
       if hasSmallImageUrl {
-        output.writeString(23, value:smallImageUrl)
+        output.writeString(22, value:smallImageUrl)
+      }
+      if hasStatus {
+        output.writeMessage(23, value:status)
       }
       unknownFields.writeToCodedOutputStream(output)
     }
@@ -726,29 +736,31 @@ public extension Services.Profile.Containers {
       for oneElementitems in items {
           serialize_size += oneElementitems.computeMessageSize(15)
       }
-      if hasAbout {
-        serialize_size += about.computeStringSize(16)
-      }
       if hasLocationId {
-        serialize_size += locationId.computeStringSize(17)
+        serialize_size += locationId.computeStringSize(16)
       }
       if hasNickname {
-        serialize_size += nickname.computeStringSize(18)
+        serialize_size += nickname.computeStringSize(17)
       }
       for oneElementcontactMethods in contactMethods {
-          serialize_size += oneElementcontactMethods.computeMessageSize(19)
+          serialize_size += oneElementcontactMethods.computeMessageSize(18)
       }
       if hasSeatingInfo {
-        serialize_size += seatingInfo.computeStringSize(20)
+        serialize_size += seatingInfo.computeStringSize(19)
       }
       if hasEmail {
-        serialize_size += email.computeStringSize(21)
+        serialize_size += email.computeStringSize(20)
       }
       if hasIsAdmin {
-        serialize_size += isAdmin.computeBoolSize(22)
+        serialize_size += isAdmin.computeBoolSize(21)
       }
       if hasSmallImageUrl {
-        serialize_size += smallImageUrl.computeStringSize(23)
+        serialize_size += smallImageUrl.computeStringSize(22)
+      }
+      if hasStatus {
+          if let varSizestatus = status?.computeMessageSize(23) {
+              serialize_size += varSizestatus
+          }
       }
       serialize_size += unknownFields.serializedSize()
       memoizedSerializedSize = serialize_size
@@ -840,9 +852,6 @@ public extension Services.Profile.Containers {
           output += "\(indent)}\n"
           itemsElementIndex++
       }
-      if hasAbout {
-        output += "\(indent) about: \(about) \n"
-      }
       if hasLocationId {
         output += "\(indent) locationId: \(locationId) \n"
       }
@@ -867,6 +876,11 @@ public extension Services.Profile.Containers {
       }
       if hasSmallImageUrl {
         output += "\(indent) smallImageUrl: \(smallImageUrl) \n"
+      }
+      if hasStatus {
+        output += "\(indent) status {\n"
+        status?.writeDescriptionTo(&output, indent:"\(indent)  ")
+        output += "\(indent) }\n"
       }
       unknownFields.writeDescriptionTo(&output, indent:indent)
     }
@@ -918,9 +932,6 @@ public extension Services.Profile.Containers {
             for oneElementitems in items {
                 hashCode = (hashCode &* 31) &+ oneElementitems.hashValue
             }
-            if hasAbout {
-               hashCode = (hashCode &* 31) &+ about.hashValue
-            }
             if hasLocationId {
                hashCode = (hashCode &* 31) &+ locationId.hashValue
             }
@@ -941,6 +952,11 @@ public extension Services.Profile.Containers {
             }
             if hasSmallImageUrl {
                hashCode = (hashCode &* 31) &+ smallImageUrl.hashValue
+            }
+            if hasStatus {
+                if let hashValuestatus = status?.hashValue {
+                    hashCode = (hashCode &* 31) &+ hashValuestatus
+                }
             }
             hashCode = (hashCode &* 31) &+  unknownFields.hashValue
             return hashCode
@@ -1308,29 +1324,6 @@ public extension Services.Profile.Containers {
       builderResult.items.removeAll(keepCapacity: false)
       return self
     }
-    public var hasAbout:Bool {
-         get {
-              return builderResult.hasAbout
-         }
-    }
-    public var about:String {
-         get {
-              return builderResult.about
-         }
-         set (value) {
-             builderResult.hasAbout = true
-             builderResult.about = value
-         }
-    }
-    public func setAbout(value:String)-> Services.Profile.Containers.ProfileV1Builder {
-      self.about = value
-      return self
-    }
-    public func clearAbout() -> Services.Profile.Containers.ProfileV1Builder{
-         builderResult.hasAbout = false
-         builderResult.about = ""
-         return self
-    }
     public var hasLocationId:Bool {
          get {
               return builderResult.hasLocationId
@@ -1485,6 +1478,38 @@ public extension Services.Profile.Containers {
          builderResult.smallImageUrl = ""
          return self
     }
+    public var hasStatus:Bool {
+         get {
+             return builderResult.hasStatus
+         }
+    }
+    public var status:Services.Profile.Containers.ProfileStatusV1! {
+         get {
+             return builderResult.status
+         }
+         set (value) {
+             builderResult.hasStatus = true
+             builderResult.status = value
+         }
+    }
+    public func setStatus(value:Services.Profile.Containers.ProfileStatusV1!)-> Services.Profile.Containers.ProfileV1Builder {
+      self.status = value
+      return self
+    }
+    public func mergeStatus(value:Services.Profile.Containers.ProfileStatusV1) -> Services.Profile.Containers.ProfileV1Builder {
+      if (builderResult.hasStatus) {
+        builderResult.status = Services.Profile.Containers.ProfileStatusV1.builderWithPrototype(builderResult.status).mergeFrom(value).buildPartial()
+      } else {
+        builderResult.status = value
+      }
+      builderResult.hasStatus = true
+      return self
+    }
+    public func clearStatus() -> Services.Profile.Containers.ProfileV1Builder {
+      builderResult.hasStatus = false
+      builderResult.status = nil
+      return self
+    }
     override public var internalGetResult:GeneratedMessage {
          get {
             return builderResult
@@ -1554,9 +1579,6 @@ public extension Services.Profile.Containers {
       if !other.items.isEmpty  {
          builderResult.items += other.items
       }
-      if other.hasAbout {
-           about = other.about
-      }
       if other.hasLocationId {
            locationId = other.locationId
       }
@@ -1577,6 +1599,9 @@ public extension Services.Profile.Containers {
       }
       if other.hasSmallImageUrl {
            smallImageUrl = other.smallImageUrl
+      }
+      if (other.hasStatus) {
+          mergeStatus(other.status)
       }
       mergeUnknownFields(other.unknownFields)
       return self
@@ -1641,30 +1666,316 @@ public extension Services.Profile.Containers {
           items += [subBuilder.buildPartial()]
 
         case 130 :
-          about = input.readString()
-
-        case 138 :
           locationId = input.readString()
 
-        case 146 :
+        case 138 :
           nickname = input.readString()
 
-        case 154 :
+        case 146 :
           var subBuilder = Services.Profile.Containers.ContactMethodV1.builder()
           input.readMessage(subBuilder,extensionRegistry:extensionRegistry)
           contactMethods += [subBuilder.buildPartial()]
 
-        case 162 :
+        case 154 :
           seatingInfo = input.readString()
 
-        case 170 :
+        case 162 :
           email = input.readString()
 
-        case 176 :
+        case 168 :
           isAdmin = input.readBool()
 
-        case 186 :
+        case 178 :
           smallImageUrl = input.readString()
+
+        case 186 :
+          var subBuilder:Services.Profile.Containers.ProfileStatusV1Builder = Services.Profile.Containers.ProfileStatusV1.builder()
+          if hasStatus {
+            subBuilder.mergeFrom(status)
+          }
+          input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
+          status = subBuilder.buildPartial()
+
+        default:
+          if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
+             unknownFields = unknownFieldsBuilder.build()
+             return self
+          }
+        }
+      }
+    }
+  }
+
+  final public class ProfileStatusV1 : GeneratedMessage, GeneratedMessageProtocol {
+    override public subscript(key: String) -> Any? {
+           switch key {
+           case "version": return version
+           case "value": return value
+           case "created": return created
+           default: return nil
+           }
+    }
+
+    public private(set) var hasVersion:Bool = false
+    public private(set) var version:UInt32 = UInt32(0)
+
+    public private(set) var hasValue:Bool = false
+    public private(set) var value:String = ""
+
+    public private(set) var hasCreated:Bool = false
+    public private(set) var created:String = ""
+
+    required public init() {
+         super.init()
+    }
+    override public func isInitialized() -> Bool {
+     return true
+    }
+    override public func writeToCodedOutputStream(output:CodedOutputStream) {
+      if hasVersion {
+        output.writeUInt32(1, value:version)
+      }
+      if hasValue {
+        output.writeString(2, value:value)
+      }
+      if hasCreated {
+        output.writeString(3, value:created)
+      }
+      unknownFields.writeToCodedOutputStream(output)
+    }
+    override public func serializedSize() -> Int32 {
+      var serialize_size:Int32 = memoizedSerializedSize
+      if serialize_size != -1 {
+       return serialize_size
+      }
+
+      serialize_size = 0
+      if hasVersion {
+        serialize_size += version.computeUInt32Size(1)
+      }
+      if hasValue {
+        serialize_size += value.computeStringSize(2)
+      }
+      if hasCreated {
+        serialize_size += created.computeStringSize(3)
+      }
+      serialize_size += unknownFields.serializedSize()
+      memoizedSerializedSize = serialize_size
+      return serialize_size
+    }
+    public class func parseFromData(data:NSData) -> Services.Profile.Containers.ProfileStatusV1 {
+      return Services.Profile.Containers.ProfileStatusV1.builder().mergeFromData(data, extensionRegistry:Services.Profile.Containers.ContainersRoot.sharedInstance.extensionRegistry).build()
+    }
+    public class func parseFromData(data:NSData, extensionRegistry:ExtensionRegistry) -> Services.Profile.Containers.ProfileStatusV1 {
+      return Services.Profile.Containers.ProfileStatusV1.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
+    }
+    public class func parseFromInputStream(input:NSInputStream) -> Services.Profile.Containers.ProfileStatusV1 {
+      return Services.Profile.Containers.ProfileStatusV1.builder().mergeFromInputStream(input).build()
+    }
+    public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->Services.Profile.Containers.ProfileStatusV1 {
+      return Services.Profile.Containers.ProfileStatusV1.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
+    }
+    public class func parseFromCodedInputStream(input:CodedInputStream) -> Services.Profile.Containers.ProfileStatusV1 {
+      return Services.Profile.Containers.ProfileStatusV1.builder().mergeFromCodedInputStream(input).build()
+    }
+    public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> Services.Profile.Containers.ProfileStatusV1 {
+      return Services.Profile.Containers.ProfileStatusV1.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
+    }
+    public class func builder() -> Services.Profile.Containers.ProfileStatusV1Builder {
+      return Services.Profile.Containers.ProfileStatusV1.classBuilder() as! Services.Profile.Containers.ProfileStatusV1Builder
+    }
+    public func builder() -> Services.Profile.Containers.ProfileStatusV1Builder {
+      return classBuilder() as! Services.Profile.Containers.ProfileStatusV1Builder
+    }
+    public override class func classBuilder() -> MessageBuilder {
+      return Services.Profile.Containers.ProfileStatusV1Builder()
+    }
+    public override func classBuilder() -> MessageBuilder {
+      return Services.Profile.Containers.ProfileStatusV1.builder()
+    }
+    public func toBuilder() -> Services.Profile.Containers.ProfileStatusV1Builder {
+      return Services.Profile.Containers.ProfileStatusV1.builderWithPrototype(self)
+    }
+    public class func builderWithPrototype(prototype:Services.Profile.Containers.ProfileStatusV1) -> Services.Profile.Containers.ProfileStatusV1Builder {
+      return Services.Profile.Containers.ProfileStatusV1.builder().mergeFrom(prototype)
+    }
+    override public func writeDescriptionTo(inout output:String, indent:String) {
+      if hasVersion {
+        output += "\(indent) version: \(version) \n"
+      }
+      if hasValue {
+        output += "\(indent) value: \(value) \n"
+      }
+      if hasCreated {
+        output += "\(indent) created: \(created) \n"
+      }
+      unknownFields.writeDescriptionTo(&output, indent:indent)
+    }
+    override public var hashValue:Int {
+        get {
+            var hashCode:Int = 7
+            if hasVersion {
+               hashCode = (hashCode &* 31) &+ version.hashValue
+            }
+            if hasValue {
+               hashCode = (hashCode &* 31) &+ value.hashValue
+            }
+            if hasCreated {
+               hashCode = (hashCode &* 31) &+ created.hashValue
+            }
+            hashCode = (hashCode &* 31) &+  unknownFields.hashValue
+            return hashCode
+        }
+    }
+
+
+    //Meta information declaration start
+
+    override public class func className() -> String {
+        return "Services.Profile.Containers.ProfileStatusV1"
+    }
+    override public func className() -> String {
+        return "Services.Profile.Containers.ProfileStatusV1"
+    }
+    override public func classMetaType() -> GeneratedMessage.Type {
+        return Services.Profile.Containers.ProfileStatusV1.self
+    }
+    //Meta information declaration end
+
+  }
+
+  final public class ProfileStatusV1Builder : GeneratedMessageBuilder {
+    private var builderResult:Services.Profile.Containers.ProfileStatusV1
+
+    required override public init () {
+       builderResult = Services.Profile.Containers.ProfileStatusV1()
+       super.init()
+    }
+    public var hasVersion:Bool {
+         get {
+              return builderResult.hasVersion
+         }
+    }
+    public var version:UInt32 {
+         get {
+              return builderResult.version
+         }
+         set (value) {
+             builderResult.hasVersion = true
+             builderResult.version = value
+         }
+    }
+    public func setVersion(value:UInt32)-> Services.Profile.Containers.ProfileStatusV1Builder {
+      self.version = value
+      return self
+    }
+    public func clearVersion() -> Services.Profile.Containers.ProfileStatusV1Builder{
+         builderResult.hasVersion = false
+         builderResult.version = UInt32(0)
+         return self
+    }
+    public var hasValue:Bool {
+         get {
+              return builderResult.hasValue
+         }
+    }
+    public var value:String {
+         get {
+              return builderResult.value
+         }
+         set (value) {
+             builderResult.hasValue = true
+             builderResult.value = value
+         }
+    }
+    public func setValue(value:String)-> Services.Profile.Containers.ProfileStatusV1Builder {
+      self.value = value
+      return self
+    }
+    public func clearValue() -> Services.Profile.Containers.ProfileStatusV1Builder{
+         builderResult.hasValue = false
+         builderResult.value = ""
+         return self
+    }
+    public var hasCreated:Bool {
+         get {
+              return builderResult.hasCreated
+         }
+    }
+    public var created:String {
+         get {
+              return builderResult.created
+         }
+         set (value) {
+             builderResult.hasCreated = true
+             builderResult.created = value
+         }
+    }
+    public func setCreated(value:String)-> Services.Profile.Containers.ProfileStatusV1Builder {
+      self.created = value
+      return self
+    }
+    public func clearCreated() -> Services.Profile.Containers.ProfileStatusV1Builder{
+         builderResult.hasCreated = false
+         builderResult.created = ""
+         return self
+    }
+    override public var internalGetResult:GeneratedMessage {
+         get {
+            return builderResult
+         }
+    }
+    public override func clear() -> Services.Profile.Containers.ProfileStatusV1Builder {
+      builderResult = Services.Profile.Containers.ProfileStatusV1()
+      return self
+    }
+    public override func clone() -> Services.Profile.Containers.ProfileStatusV1Builder {
+      return Services.Profile.Containers.ProfileStatusV1.builderWithPrototype(builderResult)
+    }
+    public override func build() -> Services.Profile.Containers.ProfileStatusV1 {
+         checkInitialized()
+         return buildPartial()
+    }
+    public func buildPartial() -> Services.Profile.Containers.ProfileStatusV1 {
+      var returnMe:Services.Profile.Containers.ProfileStatusV1 = builderResult
+      return returnMe
+    }
+    public func mergeFrom(other:Services.Profile.Containers.ProfileStatusV1) -> Services.Profile.Containers.ProfileStatusV1Builder {
+      if (other == Services.Profile.Containers.ProfileStatusV1()) {
+       return self
+      }
+      if other.hasVersion {
+           version = other.version
+      }
+      if other.hasValue {
+           value = other.value
+      }
+      if other.hasCreated {
+           created = other.created
+      }
+      mergeUnknownFields(other.unknownFields)
+      return self
+    }
+    public override func mergeFromCodedInputStream(input:CodedInputStream) ->Services.Profile.Containers.ProfileStatusV1Builder {
+         return mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
+    }
+    public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> Services.Profile.Containers.ProfileStatusV1Builder {
+      var unknownFieldsBuilder:UnknownFieldSetBuilder = UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
+      while (true) {
+        var tag = input.readTag()
+        switch tag {
+        case 0: 
+          self.unknownFields = unknownFieldsBuilder.build()
+          return self
+
+        case 8 :
+          version = input.readUInt32()
+
+        case 18 :
+          value = input.readString()
+
+        case 26 :
+          created = input.readString()
 
         default:
           if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {

@@ -19,7 +19,7 @@ _sym_db = _symbol_database.Default()
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='protobufs/services/media/containers/media.proto',
   package='services.media.containers.media',
-  serialized_pb=_b('\n/protobufs/services/media/containers/media.proto\x12\x1fservices.media.containers.media*\x1a\n\x0bMediaTypeV1\x12\x0b\n\x07PROFILE\x10\x01\x42\x36\n4com.rhlabs.protobufs.services.media.containers.media')
+  serialized_pb=_b('\n/protobufs/services/media/containers/media.proto\x12\x1fservices.media.containers.media*2\n\x0bMediaTypeV1\x12\x0b\n\x07PROFILE\x10\x01\x12\x08\n\x04TEAM\x10\x02\x12\x0c\n\x08LOCATION\x10\x03\x42\x36\n4com.rhlabs.protobufs.services.media.containers.media')
 )
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
@@ -33,16 +33,26 @@ _MEDIATYPEV1 = _descriptor.EnumDescriptor(
       name='PROFILE', index=0, number=1,
       options=None,
       type=None),
+    _descriptor.EnumValueDescriptor(
+      name='TEAM', index=1, number=2,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='LOCATION', index=2, number=3,
+      options=None,
+      type=None),
   ],
   containing_type=None,
   options=None,
   serialized_start=84,
-  serialized_end=110,
+  serialized_end=134,
 )
 _sym_db.RegisterEnumDescriptor(_MEDIATYPEV1)
 
 MediaTypeV1 = enum_type_wrapper.EnumTypeWrapper(_MEDIATYPEV1)
 PROFILE = 1
+TEAM = 2
+LOCATION = 3
 
 
 DESCRIPTOR.enum_types_by_name['MediaTypeV1'] = _MEDIATYPEV1

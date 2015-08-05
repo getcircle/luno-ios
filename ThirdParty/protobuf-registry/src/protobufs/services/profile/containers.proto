@@ -39,14 +39,20 @@ message ProfileV1 {
     optional string hire_date = 13;
     optional bool verified = 14;
     repeated ProfileItemV1 items = 15;
-    optional string about = 16;
-    optional string location_id = 17;
-    optional string nickname = 18;
-    repeated ContactMethodV1 contact_methods = 19;
-    optional string seating_info = 20;
-    optional string email = 21;
-    optional bool is_admin = 22;
-    optional string small_image_url = 23;
+    optional string location_id = 16;
+    optional string nickname = 17;
+    repeated ContactMethodV1 contact_methods = 18;
+    optional string seating_info = 19;
+    optional string email = 20;
+    optional bool is_admin = 21;
+    optional string small_image_url = 22;
+    optional ProfileStatusV1 status = 23;
+}
+
+message ProfileStatusV1 {
+    optional uint32 version = 1;
+    optional string value = 2;
+    optional string created = 3;
 }
 
 message ProfileItemV1 {

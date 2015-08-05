@@ -18,6 +18,7 @@ public final class SearchRequestV1 extends Message {
   public static final String DEFAULT_QUERY = "";
   public static final CategoryV1 DEFAULT_CATEGORY = CategoryV1.PROFILES;
   public static final AttributeV1 DEFAULT_ATTRIBUTE = AttributeV1.LOCATION_ID;
+  public static final String DEFAULT_ATTRIBUTE_VALUE = "";
 
   @ProtoField(tag = 1, type = UINT32)
   public final Integer version;
@@ -31,15 +32,19 @@ public final class SearchRequestV1 extends Message {
   @ProtoField(tag = 4, type = ENUM)
   public final AttributeV1 attribute;
 
-  public SearchRequestV1(Integer version, String query, CategoryV1 category, AttributeV1 attribute) {
+  @ProtoField(tag = 5, type = STRING)
+  public final String attribute_value;
+
+  public SearchRequestV1(Integer version, String query, CategoryV1 category, AttributeV1 attribute, String attribute_value) {
     this.version = version;
     this.query = query;
     this.category = category;
     this.attribute = attribute;
+    this.attribute_value = attribute_value;
   }
 
   private SearchRequestV1(Builder builder) {
-    this(builder.version, builder.query, builder.category, builder.attribute);
+    this(builder.version, builder.query, builder.category, builder.attribute, builder.attribute_value);
     setBuilder(builder);
   }
 
@@ -51,7 +56,8 @@ public final class SearchRequestV1 extends Message {
     return equals(version, o.version)
         && equals(query, o.query)
         && equals(category, o.category)
-        && equals(attribute, o.attribute);
+        && equals(attribute, o.attribute)
+        && equals(attribute_value, o.attribute_value);
   }
 
   @Override
@@ -62,6 +68,7 @@ public final class SearchRequestV1 extends Message {
       result = result * 37 + (query != null ? query.hashCode() : 0);
       result = result * 37 + (category != null ? category.hashCode() : 0);
       result = result * 37 + (attribute != null ? attribute.hashCode() : 0);
+      result = result * 37 + (attribute_value != null ? attribute_value.hashCode() : 0);
       hashCode = result;
     }
     return result;
@@ -73,6 +80,7 @@ public final class SearchRequestV1 extends Message {
     public String query;
     public CategoryV1 category;
     public AttributeV1 attribute;
+    public String attribute_value;
 
     public Builder() {
     }
@@ -84,6 +92,7 @@ public final class SearchRequestV1 extends Message {
       this.query = message.query;
       this.category = message.category;
       this.attribute = message.attribute;
+      this.attribute_value = message.attribute_value;
     }
 
     public Builder version(Integer version) {
@@ -103,6 +112,11 @@ public final class SearchRequestV1 extends Message {
 
     public Builder attribute(AttributeV1 attribute) {
       this.attribute = attribute;
+      return this;
+    }
+
+    public Builder attribute_value(String attribute_value) {
+      this.attribute_value = attribute_value;
       return this;
     }
 

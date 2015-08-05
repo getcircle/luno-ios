@@ -30,7 +30,6 @@ public final class ProfileV1 extends Message {
   public static final String DEFAULT_HIRE_DATE = "";
   public static final Boolean DEFAULT_VERIFIED = false;
   public static final List<ProfileItemV1> DEFAULT_ITEMS = Collections.emptyList();
-  public static final String DEFAULT_ABOUT = "";
   public static final String DEFAULT_LOCATION_ID = "";
   public static final String DEFAULT_NICKNAME = "";
   public static final List<ContactMethodV1> DEFAULT_CONTACT_METHODS = Collections.emptyList();
@@ -85,30 +84,30 @@ public final class ProfileV1 extends Message {
   public final List<ProfileItemV1> items;
 
   @ProtoField(tag = 16, type = STRING)
-  public final String about;
-
-  @ProtoField(tag = 17, type = STRING)
   public final String location_id;
 
-  @ProtoField(tag = 18, type = STRING)
+  @ProtoField(tag = 17, type = STRING)
   public final String nickname;
 
-  @ProtoField(tag = 19, label = REPEATED, messageType = ContactMethodV1.class)
+  @ProtoField(tag = 18, label = REPEATED, messageType = ContactMethodV1.class)
   public final List<ContactMethodV1> contact_methods;
 
-  @ProtoField(tag = 20, type = STRING)
+  @ProtoField(tag = 19, type = STRING)
   public final String seating_info;
 
-  @ProtoField(tag = 21, type = STRING)
+  @ProtoField(tag = 20, type = STRING)
   public final String email;
 
-  @ProtoField(tag = 22, type = BOOL)
+  @ProtoField(tag = 21, type = BOOL)
   public final Boolean is_admin;
 
-  @ProtoField(tag = 23, type = STRING)
+  @ProtoField(tag = 22, type = STRING)
   public final String small_image_url;
 
-  public ProfileV1(Integer version, String id, String organization_id, String user_id, String address_id, String title, String first_name, String last_name, String image_url, String team_id, String full_name, String birth_date, String hire_date, Boolean verified, List<ProfileItemV1> items, String about, String location_id, String nickname, List<ContactMethodV1> contact_methods, String seating_info, String email, Boolean is_admin, String small_image_url) {
+  @ProtoField(tag = 23)
+  public final ProfileStatusV1 status;
+
+  public ProfileV1(Integer version, String id, String organization_id, String user_id, String address_id, String title, String first_name, String last_name, String image_url, String team_id, String full_name, String birth_date, String hire_date, Boolean verified, List<ProfileItemV1> items, String location_id, String nickname, List<ContactMethodV1> contact_methods, String seating_info, String email, Boolean is_admin, String small_image_url, ProfileStatusV1 status) {
     this.version = version;
     this.id = id;
     this.organization_id = organization_id;
@@ -124,7 +123,6 @@ public final class ProfileV1 extends Message {
     this.hire_date = hire_date;
     this.verified = verified;
     this.items = immutableCopyOf(items);
-    this.about = about;
     this.location_id = location_id;
     this.nickname = nickname;
     this.contact_methods = immutableCopyOf(contact_methods);
@@ -132,10 +130,11 @@ public final class ProfileV1 extends Message {
     this.email = email;
     this.is_admin = is_admin;
     this.small_image_url = small_image_url;
+    this.status = status;
   }
 
   private ProfileV1(Builder builder) {
-    this(builder.version, builder.id, builder.organization_id, builder.user_id, builder.address_id, builder.title, builder.first_name, builder.last_name, builder.image_url, builder.team_id, builder.full_name, builder.birth_date, builder.hire_date, builder.verified, builder.items, builder.about, builder.location_id, builder.nickname, builder.contact_methods, builder.seating_info, builder.email, builder.is_admin, builder.small_image_url);
+    this(builder.version, builder.id, builder.organization_id, builder.user_id, builder.address_id, builder.title, builder.first_name, builder.last_name, builder.image_url, builder.team_id, builder.full_name, builder.birth_date, builder.hire_date, builder.verified, builder.items, builder.location_id, builder.nickname, builder.contact_methods, builder.seating_info, builder.email, builder.is_admin, builder.small_image_url, builder.status);
     setBuilder(builder);
   }
 
@@ -159,14 +158,14 @@ public final class ProfileV1 extends Message {
         && equals(hire_date, o.hire_date)
         && equals(verified, o.verified)
         && equals(items, o.items)
-        && equals(about, o.about)
         && equals(location_id, o.location_id)
         && equals(nickname, o.nickname)
         && equals(contact_methods, o.contact_methods)
         && equals(seating_info, o.seating_info)
         && equals(email, o.email)
         && equals(is_admin, o.is_admin)
-        && equals(small_image_url, o.small_image_url);
+        && equals(small_image_url, o.small_image_url)
+        && equals(status, o.status);
   }
 
   @Override
@@ -188,7 +187,6 @@ public final class ProfileV1 extends Message {
       result = result * 37 + (hire_date != null ? hire_date.hashCode() : 0);
       result = result * 37 + (verified != null ? verified.hashCode() : 0);
       result = result * 37 + (items != null ? items.hashCode() : 1);
-      result = result * 37 + (about != null ? about.hashCode() : 0);
       result = result * 37 + (location_id != null ? location_id.hashCode() : 0);
       result = result * 37 + (nickname != null ? nickname.hashCode() : 0);
       result = result * 37 + (contact_methods != null ? contact_methods.hashCode() : 1);
@@ -196,6 +194,7 @@ public final class ProfileV1 extends Message {
       result = result * 37 + (email != null ? email.hashCode() : 0);
       result = result * 37 + (is_admin != null ? is_admin.hashCode() : 0);
       result = result * 37 + (small_image_url != null ? small_image_url.hashCode() : 0);
+      result = result * 37 + (status != null ? status.hashCode() : 0);
       hashCode = result;
     }
     return result;
@@ -218,7 +217,6 @@ public final class ProfileV1 extends Message {
     public String hire_date;
     public Boolean verified;
     public List<ProfileItemV1> items;
-    public String about;
     public String location_id;
     public String nickname;
     public List<ContactMethodV1> contact_methods;
@@ -226,6 +224,7 @@ public final class ProfileV1 extends Message {
     public String email;
     public Boolean is_admin;
     public String small_image_url;
+    public ProfileStatusV1 status;
 
     public Builder() {
     }
@@ -248,7 +247,6 @@ public final class ProfileV1 extends Message {
       this.hire_date = message.hire_date;
       this.verified = message.verified;
       this.items = copyOf(message.items);
-      this.about = message.about;
       this.location_id = message.location_id;
       this.nickname = message.nickname;
       this.contact_methods = copyOf(message.contact_methods);
@@ -256,6 +254,7 @@ public final class ProfileV1 extends Message {
       this.email = message.email;
       this.is_admin = message.is_admin;
       this.small_image_url = message.small_image_url;
+      this.status = message.status;
     }
 
     public Builder version(Integer version) {
@@ -333,11 +332,6 @@ public final class ProfileV1 extends Message {
       return this;
     }
 
-    public Builder about(String about) {
-      this.about = about;
-      return this;
-    }
-
     public Builder location_id(String location_id) {
       this.location_id = location_id;
       return this;
@@ -370,6 +364,11 @@ public final class ProfileV1 extends Message {
 
     public Builder small_image_url(String small_image_url) {
       this.small_image_url = small_image_url;
+      return this;
+    }
+
+    public Builder status(ProfileStatusV1 status) {
+      this.status = status;
       return this;
     }
 

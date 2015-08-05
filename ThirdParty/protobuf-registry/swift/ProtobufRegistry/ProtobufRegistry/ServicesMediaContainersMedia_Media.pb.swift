@@ -27,6 +27,8 @@ public extension Services.Media.Containers.Media {
 
   public enum MediaTypeV1:Int32 {
     case Profile = 1
+    case Team = 2
+    case Location = 3
 
   }
 

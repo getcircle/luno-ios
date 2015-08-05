@@ -11,6 +11,7 @@ message RequestV1 {
     optional string query = 2;
     optional services.search.containers.search.CategoryV1 category = 3;
     optional services.search.containers.search.AttributeV1 attribute = 4;
+    optional string attribute_value = 5;
 }
 
 message ResponseV1 {
