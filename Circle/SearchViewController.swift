@@ -122,6 +122,7 @@ class SearchViewController: UIViewController,
             searchFieldBottomBorder = searchHeaderContainerView.addBottomBorder(offset: 0.0)
             searchHeaderView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
             searchHeaderView.layer.cornerRadius = 10.0
+            searchHeaderView.searchTextField.placeholder = AppStrings.QuickActionNonePlaceholder
             searchHeaderContainerView.layer.borderColor = UIColor.grayColor().colorWithAlphaComponent(0.2).CGColor
         }
     }
