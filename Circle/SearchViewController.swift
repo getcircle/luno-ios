@@ -554,6 +554,14 @@ class SearchViewController: UIViewController,
             if let profile = searchAction.underlyingObject as? Services.Profile.Containers.ProfileV1 {
                 performQuickAction(.Phone, profile: profile)
             }
+            
+        case .ReportsToPerson:
+            if let profile = searchAction.underlyingObject as? Services.Profile.Containers.ProfileV1 {
+                let viewController = ProfilesViewController()
+                (viewController.dataSource as! ProfilesDataSource).configureForDirectReports(profile)
+                viewController.title = profile.firstName + "' Direct Reports"
+                navigationController?.pushViewController(viewController, animated: true)
+            }
         
         default:
             break;

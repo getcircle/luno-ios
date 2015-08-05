@@ -152,6 +152,24 @@ extension Services.Profile.Actions {
         }
     }
     
+    static func getDirectReports(profileId: String, completionHandler: GetProfilesCompletionHandler?) {
+        let requestBuilder = Services.Profile.Actions.GetDirectReports.RequestV1.builder()
+        requestBuilder.profileId = profileId
+        let client = ServiceClient(serviceName: "profile")
+        client.callAction(
+            "get_direct_reports",
+            extensionField: Services.Registry.Requests.Profile.getDirectReports(),
+            requestBuilder: requestBuilder
+            ) { (_, _, wrapped, error) -> Void in
+                
+                let response = wrapped?.response?.result.getExtension(
+                    Services.Registry.Responses.Profile.getDirectReports()
+                ) as? Services.Profile.Actions.GetDirectReports.ResponseV1
+                let nextRequest = wrapped?.getNextRequest()
+                completionHandler?(profiles: response?.profiles, nextRequest: nextRequest, error: error)
+        }
+    }
+    
     static func getTags(organizationId: String, tagType: Services.Profile.Containers.TagV1.TagTypeV1?, completionHandler: GetTagsCompletionHandler?) {
         let requestBuilder = Services.Profile.Actions.GetTags.RequestV1.builder()
         requestBuilder.organizationId = organizationId

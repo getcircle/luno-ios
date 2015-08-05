@@ -63,7 +63,23 @@ class ProfilesDataSource: CardDataSource {
             registerNextRequest(nextRequest: serviceRequest)
         }
     }
-    
+
+    func configureForDirectReports(profile: Services.Profile.Containers.ProfileV1) {
+        let requestBuilder = Services.Profile.Actions.GetDirectReports.RequestV1.builder()
+        requestBuilder.profileId = profile.id
+
+        let client = ServiceClient(serviceName: "profile")
+        let serviceRequest = client.buildRequest(
+            "get_direct_reports",
+            extensionField: Services.Registry.Requests.Profile.getDirectReports(),
+            requestBuilder: requestBuilder,
+            paginatorBuilder: nil
+        )
+        if nextRequest == nil {
+            registerNextRequest(nextRequest: serviceRequest)
+        }
+    }
+
     // MARK: - Set Initial Data
     
     override func setInitialData(content: [AnyObject], ofType: Card.CardType?) {
@@ -98,12 +114,22 @@ class ProfilesDataSource: CardDataSource {
             let membersResponse = wrapped?.response?.result.getExtension(
                 Services.Registry.Requests.Group.getMembers()
             ) as? Services.Group.Actions.GetMembers.ResponseV1
+            let directReportsResponse = wrapped?.response?.result.getExtension(
+                Services.Registry.Requests.Profile.getDirectReports()
+            ) as? Services.Profile.Actions.GetDirectReports.ResponseV1
+            
             
             if let profiles = response?.profiles {
                 self.profiles.extend(profiles)
                 self.card.addContent(content: profiles)
                 self.handleNewContentAddedToCard(self.card, newContent: profiles)
-            } else if let members = membersResponse?.members {
+            }
+            else if let profiles = directReportsResponse?.profiles {
+                self.profiles.extend(profiles)
+                self.card.addContent(content: profiles)
+                self.handleNewContentAddedToCard(self.card, newContent: profiles)
+            }
+            else if let members = membersResponse?.members {
                 var profiles = Array<Services.Profile.Containers.ProfileV1>()
                 for member in members {
                     profiles.append(member.profile)

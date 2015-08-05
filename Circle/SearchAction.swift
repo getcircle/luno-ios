@@ -63,6 +63,16 @@ class SearchAction: SearchSuggestion {
         )
         callAction.underlyingObject = profile as AnyObject
         searchActions.append(callAction)
+
+        // Reports To Action
+        // TODO: Only show for managers
+        let reportsToAction = SearchAction(
+            title: "Reports to " + profile.fullName,
+            ofType: .ReportsToPerson,
+            withImageSource: "SearchTab"
+        )
+        reportsToAction.underlyingObject = profile as AnyObject
+        searchActions.append(reportsToAction)
         return searchActions
     }
 }
