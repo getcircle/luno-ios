@@ -11,6 +11,7 @@ import ProtobufRegistry
 
 class SearchQueryDataSource: CardDataSource {
     
+    let queryTriggerTimer = 0.2
     var isQuickAction: Bool = false
     private let whitespaceCharacterSet = NSCharacterSet.whitespaceCharacterSet()
     
@@ -63,7 +64,7 @@ class SearchQueryDataSource: CardDataSource {
                 }
                 
                 searchTriggerTimer = NSTimer.scheduledTimerWithTimeInterval(
-                    0.3, 
+                    queryTriggerTimer,
                     target: self, 
                     selector: "search", 
                     userInfo: nil, 
