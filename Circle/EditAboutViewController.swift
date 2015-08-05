@@ -107,8 +107,8 @@ class EditAboutViewController: UIViewController, UITextViewDelegate {
     }
     
     private func populateData() {
-        if profile.hasAbout {
-            bioTextView.text = profile.about
+        if profile.hasStatus {
+            bioTextView.text = profile.status.value
         }
 
         if profile.hasNickname {
@@ -164,7 +164,7 @@ class EditAboutViewController: UIViewController, UITextViewDelegate {
     private func updateProfile(completion: () -> Void) {
         let builder = profile.toBuilder()
         if bioTextView.text.trimWhitespace() != "" {
-            builder.about = bioTextView.text
+//            builder.status = bioTextView.text
         }
         
         builder.nickname = nickNameTextField.text

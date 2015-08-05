@@ -443,8 +443,8 @@ class ProfileDetailDataSource: CardDataSource {
     }
     
     private func addAboutItemToCard(item: SectionItem, card: Card) {
-        if profile.hasAbout {
-            card.addContent(content: [profile.about] as [AnyObject])
+        if profile.hasStatus {
+            card.addContent(content: [profile.status] as [AnyObject])
         }
         else if let team = team, location = location {
             // TODO: Remove after testing UI
