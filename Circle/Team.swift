@@ -29,3 +29,29 @@ extension Services.Organization.Actions {
         }
     }
 }
+
+extension Services.Organization.Containers.TeamV1 {
+    
+    public func getTeamCounts() -> String {
+        var teamCountsString = ""
+        
+        if childTeamCount > 0 {
+            if childTeamCount == 1 {
+                teamCountsString += "1 Team"
+            }
+            else {
+                teamCountsString += String(childTeamCount) + " Teams"
+            }
+            
+            teamCountsString += ", "
+        }
+        if profileCount == 1 {
+            teamCountsString += "1 Person"
+        }
+        else {
+            teamCountsString += String(profileCount) + " People"
+        }
+        
+        return teamCountsString
+    }
+}

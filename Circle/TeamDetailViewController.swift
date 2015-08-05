@@ -101,12 +101,12 @@ class TeamDetailViewController: DetailViewController, EditTeamViewControllerDele
                 profileHeaderView.teamNameLabel.font = UIFont(name: profileHeaderView.teamNameLabel.font.familyName, size: maxFontSize)
             }
             
-            // Modify alpha for departmentlabel
+            // Modify alpha for subTitleLabel
             if contentOffset.y > 0.0 {
-                profileHeaderView.departmentNameLabel.alpha = 1.0 - contentOffset.y/(profileHeaderView.departmentNameLabel.frame.origin.y - 40.0)
+                profileHeaderView.subTitleLabel.alpha = 1.0 - contentOffset.y/(profileHeaderView.subTitleLabel.frame.origin.y - 40.0)
             }
             else {
-                profileHeaderView.departmentNameLabel.alpha = 1.0
+                profileHeaderView.subTitleLabel.alpha = 1.0
             }
             
             // Update constraints and request layout
