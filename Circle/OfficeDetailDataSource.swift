@@ -90,7 +90,6 @@ class OfficeDetailDataSource: CardDataSource {
             return ContentType(rawValue: (rowDataDictionary["type"] as! Int!))!
         }
         
-        
         return .Other
     }
     

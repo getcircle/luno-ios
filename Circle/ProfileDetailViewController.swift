@@ -278,28 +278,20 @@ class ProfileDetailViewController:
     }
     
     func onManagerTapped(notification: NSNotification?) {
-        if let dataSource = dataSource as? ProfileDetailDataSource {
-            let profileVC = ProfileDetailViewController(profile: dataSource.manager!)
-            profileVC.hidesBottomBarWhenPushed = false
-            navigationController?.pushViewController(profileVC, animated: true)
+        if let dataSource = dataSource as? ProfileDetailDataSource, manager = dataSource.manager {
+            showProfileDetail(manager)
         }
     }
     
     func onOfficeTapped(notification: NSNotification?) {
-        if let dataSource = dataSource as? ProfileDetailDataSource {
-            let officeDetailVC = OfficeDetailViewController()
-            (officeDetailVC.dataSource as! OfficeDetailDataSource).selectedOffice = dataSource.location
-            officeDetailVC.hidesBottomBarWhenPushed = false
-            navigationController?.pushViewController(officeDetailVC, animated: true)
+        if let dataSource = dataSource as? ProfileDetailDataSource, location = dataSource.location {
+            showLocationDetail(location)
         }
     }
     
     func onTeamTapped(notification: NSNotification?) {
-        if let dataSource = dataSource as? ProfileDetailDataSource {
-            let teamVC = TeamDetailViewController()
-            (teamVC.dataSource as! TeamDetailDataSource).selectedTeam = dataSource.team!
-            teamVC.hidesBottomBarWhenPushed = false
-            navigationController?.pushViewController(teamVC, animated: true)
+        if let dataSource = dataSource as? ProfileDetailDataSource, team = dataSource.team {
+            showTeamDetail(team)
         }
     }
 

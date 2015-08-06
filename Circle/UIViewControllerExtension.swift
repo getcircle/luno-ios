@@ -8,6 +8,7 @@
 
 import MessageUI
 import UIKit
+import ProtobufRegistry
 
 enum QuickAction: Int {
     case None
@@ -289,4 +290,25 @@ extension UIViewController {
         alertController.addAction(okAction)
         presentViewController(alertController, animated: true, completion: nil)
     }
+    
+    // MARK: - Common Navigation VCs
+    
+    func showProfileDetail(profile: Services.Profile.Containers.ProfileV1) {
+        let profileDetailVC = ProfileDetailViewController(profile: profile)
+        navigationController?.pushViewController(profileDetailVC, animated: true)
+    }
+
+    func showTeamDetail(team: Services.Organization.Containers.TeamV1) {
+        let teamDetailVC = TeamDetailViewController()
+        (teamDetailVC.dataSource as! TeamDetailDataSource).selectedTeam = team
+        navigationController?.pushViewController(teamDetailVC, animated: true)
+    }
+    
+    func showLocationDetail(location: Services.Organization.Containers.LocationV1) {
+        let locationDetailVC = OfficeDetailViewController()
+        (locationDetailVC.dataSource as! OfficeDetailDataSource).selectedOffice = location
+        navigationController?.pushViewController(locationDetailVC, animated: true)
+    }
+    
+    
 }

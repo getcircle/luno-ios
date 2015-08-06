@@ -304,35 +304,25 @@ class SearchViewController: UIViewController,
         switch selectedCard.type {
         case .Profiles:
             if let profile = dataSource.contentAtIndexPath(indexPath) as? Services.Profile.Containers.ProfileV1 {
-                let profileVC = ProfileDetailViewController(profile: profile)
-                if selectedCard.type == .Anniversaries {
-                    (profileVC.dataSource as! ProfileDetailDataSource).addBannerOfType = .Anniversary
-                }
-                else if selectedCard.type == .Birthdays {
-                    (profileVC.dataSource as! ProfileDetailDataSource).addBannerOfType = .Birthday
-                }
-                else if selectedCard.type == .NewHires {
-                    (profileVC.dataSource as! ProfileDetailDataSource).addBannerOfType = .NewHire
-                }
-                profileVC.hidesBottomBarWhenPushed = false
                 properties.append(TrackerProperty.withKey(.Destination).withSource(.Detail))
                 properties.append(TrackerProperty.withKey(.DestinationDetailType).withDetailType(.Profile))
                 properties.append(TrackerProperty.withDestinationId("profileId").withString(profile.id))
                 Tracker.sharedInstance.track(.DetailItemTapped, properties: properties)
-                navigationController?.pushViewController(profileVC, animated: true)
+                showProfileDetail(profile)
             }
             else if let team = dataSource.contentAtIndexPath(indexPath) as? Services.Organization.Containers.TeamV1 {
-                loadTeamDetail(team, properties: &properties)
+                properties.append(TrackerProperty.withKey(.Destination).withSource(.Detail))
+                properties.append(TrackerProperty.withKey(.DestinationDetailType).withDetailType(.Team))
+                properties.append(TrackerProperty.withDestinationId("team_id").withString(team.id))
+                Tracker.sharedInstance.track(.DetailItemTapped, properties: properties)
+                showTeamDetail(team)
             }
-            else if let office = dataSource.contentAtIndexPath(indexPath) as? Services.Organization.Containers.LocationV1 {
-                let viewController = OfficeDetailViewController()
-                (viewController.dataSource as! OfficeDetailDataSource).selectedOffice = office
-                viewController.hidesBottomBarWhenPushed = false
+            else if let location = dataSource.contentAtIndexPath(indexPath) as? Services.Organization.Containers.LocationV1 {
                 properties.append(TrackerProperty.withKey(.Destination).withSource(.Detail))
                 properties.append(TrackerProperty.withKey(.DestinationDetailType).withDetailType(.Office))
-                properties.append(TrackerProperty.withDestinationId("office_id").withString(office.id))
+                properties.append(TrackerProperty.withDestinationId("office_id").withString(location.id))
                 Tracker.sharedInstance.track(.DetailItemTapped, properties: properties)
-                navigationController?.pushViewController(viewController, animated: true)
+                showLocationDetail(location)
             }
             
         case .SearchSuggestion:
@@ -363,17 +353,6 @@ class SearchViewController: UIViewController,
             break
             
         }
-    }
-    
-    private func loadTeamDetail(selectedTeam: Services.Organization.Containers.TeamV1, inout properties: [TrackerProperty]) {
-        let viewController = TeamDetailViewController()
-        (viewController.dataSource as! TeamDetailDataSource).selectedTeam = selectedTeam
-        viewController.hidesBottomBarWhenPushed = false
-        properties.append(TrackerProperty.withKey(.Destination).withSource(.Detail))
-        properties.append(TrackerProperty.withKey(.DestinationDetailType).withDetailType(.Team))
-        properties.append(TrackerProperty.withDestinationId("team_id").withString(selectedTeam.id))
-        Tracker.sharedInstance.track(.DetailItemTapped, properties: properties)
-        navigationController?.pushViewController(viewController, animated: true)
     }
     
     func scrollViewDidScroll(scrollView: UIScrollView) {

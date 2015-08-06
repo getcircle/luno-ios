@@ -65,8 +65,7 @@ class GroupDetailViewController: DetailViewController,
                 
             case .Profiles:
                 if let profile = content as? Services.Profile.Containers.ProfileV1 {
-                    let profileVC = ProfileDetailViewController(profile: profile)
-                    navigationController?.pushViewController(profileVC, animated: true)
+                    showProfileDetail(profile)
                 }
                 
             case .KeyValue:

@@ -40,13 +40,10 @@ class TeamDetailViewController: DetailViewController, EditTeamViewControllerDele
             switch tappedCard.type {
             case .Profiles:
                 if let profile = dataSource.contentAtIndexPath(indexPath) as? Services.Profile.Containers.ProfileV1 {
-                    let profileVC = ProfileDetailViewController(profile: profile)
-                    navigationController?.pushViewController(profileVC, animated: true)
-                }                
+                    showProfileDetail(profile)
+                }
                 else if let team = dataSource.contentAtIndexPath(indexPath) as? Services.Organization.Containers.TeamV1 {
-                    let viewController = TeamDetailViewController()
-                    (viewController.dataSource as! TeamDetailDataSource).selectedTeam = team
-                    navigationController?.pushViewController(viewController, animated: true)
+                    showTeamDetail(team)
                 }
 
                 

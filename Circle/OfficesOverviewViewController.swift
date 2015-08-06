@@ -69,9 +69,7 @@ class OfficesOverviewViewController: UIViewController, UICollectionViewDataSourc
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         if let office = dataSource.contentAtIndexPath(indexPath) as? Services.Organization.Containers.LocationV1 {
             trackOfficeSelected(office)
-            var officeDetailVC = OfficeDetailViewController()
-            (officeDetailVC.dataSource as! OfficeDetailDataSource).selectedOffice = office
-            navigationController?.pushViewController(officeDetailVC, animated: true)
+            showLocationDetail(office)
         }
     }
     
