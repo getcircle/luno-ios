@@ -228,7 +228,6 @@
 		8FD7EC4D1AA53EB7004A2CEA /* AddressExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD7EC4C1AA53EB7004A2CEA /* AddressExtension.swift */; };
 		8FD907F71A6033310025A17B /* OfficeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD907F61A6033310025A17B /* OfficeDetailViewController.swift */; };
 		8FD907F91A6070D70025A17B /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD907F81A6070D70025A17B /* MapViewController.swift */; };
-		8FD907FB1A6072360025A17B /* MapViewAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD907FA1A6072360025A17B /* MapViewAnimator.swift */; };
 		8FEB032B1A5F69020081BB65 /* OfficeDetailDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FEB032A1A5F69020081BB65 /* OfficeDetailDataSource.swift */; };
 		8FEE3D961A8309A400B17569 /* EditContactInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FEE3D951A8309A400B17569 /* EditContactInfoViewController.swift */; };
 		8FEE3D9B1A84172800B17569 /* FormBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FEE3D9A1A84172800B17569 /* FormBuilder.swift */; };
@@ -572,7 +571,6 @@
 		8FD7EC4C1AA53EB7004A2CEA /* AddressExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressExtension.swift; sourceTree = "<group>"; };
 		8FD907F61A6033310025A17B /* OfficeDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OfficeDetailViewController.swift; sourceTree = "<group>"; };
 		8FD907F81A6070D70025A17B /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
-		8FD907FA1A6072360025A17B /* MapViewAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewAnimator.swift; sourceTree = "<group>"; };
 		8FEB032A1A5F69020081BB65 /* OfficeDetailDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OfficeDetailDataSource.swift; sourceTree = "<group>"; };
 		8FEE3D951A8309A400B17569 /* EditContactInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditContactInfoViewController.swift; sourceTree = "<group>"; };
 		8FEE3D9A1A84172800B17569 /* FormBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormBuilder.swift; sourceTree = "<group>"; };
@@ -951,7 +949,6 @@
 			isa = PBXGroup;
 			children = (
 				8F74003E1A6A442900D96B60 /* CircleAlertViewAnimator.swift */,
-				8FD907FA1A6072360025A17B /* MapViewAnimator.swift */,
 			);
 			name = Animators;
 			sourceTree = "<group>";
@@ -1684,7 +1681,6 @@
 				8F65C5011A51462500C7F3E6 /* CircleCollectionViewCell.swift in Sources */,
 				8F9F60D21A8C46C100FCAA25 /* SettingsDataSource.swift in Sources */,
 				8F834F971A9E9F21007B7095 /* ContactInfoViewController.swift in Sources */,
-				8FD907FB1A6072360025A17B /* MapViewAnimator.swift in Sources */,
 				8F02B1FC1A54A08000A1A307 /* RootNavigationDelegate.swift in Sources */,
 				8F7795151A92769E00BEF6EA /* QuickActionsCollectionViewCell.swift in Sources */,
 				8F5933E31ACBC12400905E14 /* ProfileExtension.swift in Sources */,

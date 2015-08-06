@@ -123,17 +123,7 @@ class MapViewController: UIViewController, UIViewControllerTransitioningDelegate
             addressLabel.autoPinEdgeToSuperviewEdge(.Right, withInset: 15.0)
         }
     }
-    
-    // MARK: - Animators
-    
-    func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return MapViewAnimator()
-    }
-    
-    func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return MapViewAnimator()
-    }
-    
+        
     func close(sender: AnyObject) {
         dismissViewControllerAnimated(true, completion: nil)
     }
