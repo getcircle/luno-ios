@@ -57,6 +57,12 @@ class OfficeDetailViewController: DetailViewController,
                 default:
                     break
                 }
+            
+            case .Profiles:
+                if let team = dataSource.contentAtIndexPath(indexPath) as? Services.Organization.Containers.TeamV1 {
+                    showTeamDetail(team)
+                }
+                break;
                 
             case .OfficeAddress:
                 presentFullScreenMapView(true)

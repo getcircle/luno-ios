@@ -501,7 +501,7 @@ class SearchViewController: UIViewController,
             if let profile = searchAction.underlyingObject as? Services.Profile.Containers.ProfileV1 {
                 let viewController = ProfilesViewController()
                 (viewController.dataSource as! ProfilesDataSource).configureForDirectReports(profile)
-                viewController.title = profile.firstName + "' Direct Reports"
+                viewController.title = profile.firstName + "'s Direct Reports"
                 navigationController?.pushViewController(viewController, animated: true)
             }
             
