@@ -20,7 +20,6 @@ typealias GetExtendedProfileCompletionHandler = (
     manager: Services.Profile.Containers.ProfileV1?,
     team: Services.Organization.Containers.TeamV1?,
     address: Services.Organization.Containers.AddressV1?,
-    identities: Array<Services.User.Containers.IdentityV1>?,
     location: Services.Organization.Containers.LocationV1?,
     error: NSError?
 ) -> Void
@@ -145,7 +144,6 @@ extension Services.Profile.Actions {
                 manager: response?.manager,
                 team: response?.team,
                 address: response?.address,
-                identities: response?.identities,
                 location: response?.location,
                 error: error
             )

@@ -62,5 +62,22 @@ class KeyValueCollectionViewCell: CircleCollectionViewCell {
             nameImageView.setNeedsUpdateConstraints()
             nameImageView.layoutIfNeeded()
         }
+        else if let keyValueData = data as? KeyValueData {
+            nameLabel.text = keyValueData.title.uppercaseString
+            valueLabel.text = keyValueData.value
+            
+            if keyValueData.isTappable {
+                nameImageView.alpha = 1.0
+                nameImageView.image = UIImage(named: "Next")?.imageWithRenderingMode(.AlwaysTemplate)
+                nameImageView.tintColor = UIColor.appKeyValueNextImageTintColor()
+                nameImageViewWidthConstraint.constant = 15.0
+            }
+            else {
+                nameImageViewWidthConstraint.constant = 0.0
+                nameImageView.alpha = 0.0
+            }
+            nameImageView.setNeedsUpdateConstraints()
+            nameImageView.layoutIfNeeded()
+        }
     }
 }

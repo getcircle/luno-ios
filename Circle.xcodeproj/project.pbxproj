@@ -136,6 +136,7 @@
 		8F4A98AC1A633BF6005AD63C /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4A98AB1A633BF6005AD63C /* UIImageExtension.swift */; };
 		8F4A98B31A6350B9005AD63C /* CircleCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4A98B21A6350B9005AD63C /* CircleCollectionReusableView.swift */; };
 		8F50CBA01B1392C100AC5277 /* ProfilesSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F50CB9F1B1392C100AC5277 /* ProfilesSelectorViewController.swift */; };
+		8F51A8021B73ECFE00323DD1 /* KeyValueData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F51A8011B73ECFE00323DD1 /* KeyValueData.swift */; };
 		8F5244901B29302800E50A14 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F52448F1B29302800E50A14 /* Fabric.framework */; };
 		8F5424111B6B00E000AEFB11 /* SearchCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5424101B6B00E000AEFB11 /* SearchCategory.swift */; };
 		8F57AD351B0FD6F400DD40D8 /* ProfileGridItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F57AD331B0FD6F400DD40D8 /* ProfileGridItemCollectionViewCell.swift */; };
@@ -477,6 +478,7 @@
 		8F4A98AB1A633BF6005AD63C /* UIImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		8F4A98B21A6350B9005AD63C /* CircleCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleCollectionReusableView.swift; sourceTree = "<group>"; };
 		8F50CB9F1B1392C100AC5277 /* ProfilesSelectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfilesSelectorViewController.swift; sourceTree = "<group>"; };
+		8F51A8011B73ECFE00323DD1 /* KeyValueData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyValueData.swift; sourceTree = "<group>"; };
 		8F52448F1B29302800E50A14 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		8F5424101B6B00E000AEFB11 /* SearchCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchCategory.swift; sourceTree = "<group>"; };
 		8F57AD331B0FD6F400DD40D8 /* ProfileGridItemCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileGridItemCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -870,6 +872,7 @@
 			isa = PBXGroup;
 			children = (
 				8F65C4FA1A50F92500C7F3E6 /* Card.swift */,
+				8F51A8011B73ECFE00323DD1 /* KeyValueData.swift */,
 				8F0E44861A61EE99008710E7 /* LocationAnnotation.swift */,
 				8F5424101B6B00E000AEFB11 /* SearchCategory.swift */,
 				8F2068901B708DE200E498AC /* SearchSuggestion.swift */,
@@ -1605,6 +1608,7 @@
 				8F4A98B31A6350B9005AD63C /* CircleCollectionReusableView.swift in Sources */,
 				8F93E2BF1B26C08D004671D7 /* Team.swift in Sources */,
 				8F0E44871A61EE99008710E7 /* LocationAnnotation.swift in Sources */,
+				8F51A8021B73ECFE00323DD1 /* KeyValueData.swift in Sources */,
 				8F0ADCDC1AC527F900A44B68 /* CircleActivityIndicatorView.swift in Sources */,
 				8F4A98AC1A633BF6005AD63C /* UIImageExtension.swift in Sources */,
 				8FA6A4AE1AFE92AE00ACC39D /* GroupsViewController.swift in Sources */,

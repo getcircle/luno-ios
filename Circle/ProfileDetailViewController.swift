@@ -158,20 +158,6 @@ class ProfileDetailViewController:
             object: nil
         )
 
-        NSNotificationCenter.defaultCenter().addObserver(
-            self,
-            selector: "bannerCTATapped:",
-            name: BannerNotifications.onBannerCTATappedNotification,
-            object: nil
-        )
-
-        NSNotificationCenter.defaultCenter().addObserver(
-            self,
-            selector: "bannerCloseTapped:",
-            name: BannerNotifications.onBannerCloseTappedNotification,
-            object: nil
-        )
-
         super.registerNotifications()
     }
     
@@ -182,18 +168,6 @@ class ProfileDetailViewController:
             object: nil
         )
 
-        NSNotificationCenter.defaultCenter().removeObserver(
-            self,
-            name: BannerNotifications.onBannerCTATappedNotification,
-            object: nil
-        )
-        
-        NSNotificationCenter.defaultCenter().removeObserver(
-            self,
-            name: BannerNotifications.onBannerCloseTappedNotification,
-            object: nil
-        )
-        
         super.unregisterNotifications()
     }
     
@@ -207,16 +181,6 @@ class ProfileDetailViewController:
                 }
             }
         }
-    }
-
-    func bannerCTATapped(notification: NSNotification) {
-        (dataSource as! ProfileDetailDataSource).addBannerOfType = nil
-        reloadData()
-    }
-
-    func bannerCloseTapped(notification: NSNotification) {
-        (dataSource as! ProfileDetailDataSource).addBannerOfType = nil
-        reloadData()
     }
 
     func reloadData() {

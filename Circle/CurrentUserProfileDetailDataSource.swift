@@ -13,60 +13,29 @@ class CurrentUserProfileDetailDataSource: ProfileDetailDataSource {
 
     var editImageButtonDelegate: ProfileEditImageButtonDelegate?
     
-    override func configureSections() {
-        super.configureSections()
-        sections.removeAtIndex(0)
-        sections.insert(getContactPreferencesSection(), atIndex: 0)
-//        if let socialConnectSection = getSocialConnectSection() {
-//            sections.insert(socialConnectSection, atIndex: 1)
-//        }
-    }
-
-    private func getSocialConnectSection() -> Section? {
-        if profile.id == AuthViewController.getLoggedInUserProfile()!.id {
-            if let identities = identities {
-                var hasLinkedInIdentity = false
-                for identity in identities {
-                    if identity.provider == Services.User.Containers.IdentityV1.ProviderV1.Linkedin {
-                        hasLinkedInIdentity = true
-                    }
-                }
-                
-                if !hasLinkedInIdentity {
-                    let sectionItems = [
-                        SectionItem(
-                            title: AppStrings.SocialConnectLinkedInCTA.localizedUppercaseString(),
-                            container: "social",
-                            containerKey: "profile",
-                            contentType: .LinkedInConnect,
-                            image: ItemImage(name: "LinkedIn", tint: UIColor.linkedinColor())
-                        )
-                    ]
-                    return Section(title: "Social", items: sectionItems, cardType: .SocialConnectCTAs)
-                }
-            }
-        }
-        return nil
-    }
-    
-    private func getContactPreferencesSection() -> Section {
-        var contactPreferencesSectionItem = SectionItem(
+    override internal func addContactsCard() -> Card? {
+        let card = Card(cardType: .KeyValue, title: "")
+        card.sectionInset = sectionInsetWithLargerBootomMargin
+        let contactData = KeyValueData(
+            type: .ContactPreferences,
             title: AppStrings.ProfileSectionContactPreferencesTitle,
-            container: "", 
-            containerKey: "", 
-            contentType: .ContactPreferences,
-            image: ItemImage.genericNextImage,
-            defaultValue: ""
+            value: ""
         )
-        
-        return Section(title: "", items: [contactPreferencesSectionItem], cardType: .KeyValue)
+        contactData.isTappable = true
+        card.addContent(content: [contactData])
+        appendCard(card)
+        return card
     }
     
-    override func getAboutSection() -> Section {
-        var aboutSection = super.getAboutSection()
-        aboutSection.addCardHeader = true
-        aboutSection.allowEmptyContent = true
-        return aboutSection
+    override internal func addStatusCard() -> Card? {
+        if let card = super.addStatusCard() {
+            card.addHeader(headerClass: ProfileSectionHeaderCollectionReusableView.self)
+            card.sectionInset = sectionInsetWithLargerBootomMargin
+            card.allowEditingContent = true
+            return card
+        }
+        
+        return nil
     }
     
     override func configureHeader(header: CircleCollectionReusableView, atIndexPath indexPath: NSIndexPath) {
