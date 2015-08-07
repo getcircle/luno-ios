@@ -231,10 +231,7 @@ class VerifyProfileViewController:
     }
 
     private func verificationComplete() {
-        let editAboutViewController = EditAboutViewController(addCharacterLimit: true)
-        editAboutViewController.profile = profile
-        editAboutViewController.addNextButton = true
-        editAboutViewController.theme = .Onboarding
-        navigationController?.pushViewController(editAboutViewController, animated: true)
+        let notificationsVC = NotificationsViewController(nibName: "NotificationsViewController", bundle: nil)
+        navigationController?.pushViewController(notificationsVC, animated: true)        
     }
 }

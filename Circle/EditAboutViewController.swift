@@ -68,7 +68,7 @@ class EditAboutViewController: UIViewController, UITextViewDelegate {
     private func configureView() {
         switch theme {
         case .Regular:
-            view.backgroundColor = UIColor.whiteColor()
+            view.backgroundColor = UIColor.appViewBackgroundColor()
 
         case .Onboarding:
             view.backgroundColor = UIColor.appUIBackgroundColor()
