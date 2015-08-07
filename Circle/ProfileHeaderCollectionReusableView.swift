@@ -23,25 +23,9 @@ class ProfileHeaderCollectionReusableView: DetailHeaderCollectionReusableView {
     @IBOutlet weak private(set) var daylightIndicatorNavImage: UIImageView!
     
     private(set) var visualEffectView: UIVisualEffectView?
-    
-    private var buttonContainerWidth: CGFloat = 0.0
+
     private var location: Services.Organization.Containers.LocationV1?
     private var profile: Services.Profile.Containers.ProfileV1?
-    
-    private var sectionIndicatorView: UIView?
-    private var sectionIndicatorLeftOffsetConstraint: NSLayoutConstraint?
-    private var sectionIndicatorWidthConstraint: NSLayoutConstraint?
-    private var sectionIndicatorViewIsAnimating = false
-    private var segmentedControlButtons = [UIButton]()
-    private var controlsConfigured = false
-    
-    private let buttonAttributes = [
-        NSKernAttributeName: NSNumber(double: 2.0),
-        NSForegroundColorAttributeName: UIColor.appSegmentedControlTitleNormalColor(),
-        NSFontAttributeName: UIFont.appSegmentedControlTitleFont()
-    ]
-    private let sectionIndicatorBeginningWidth: CGFloat = 30.0
-
     
     override class var classReuseIdentifier: String {
         return "ProfileHeaderCollectionReusableView"
@@ -141,13 +125,29 @@ class ProfileHeaderCollectionReusableView: DetailHeaderCollectionReusableView {
                             self.addBlurEffect()
                         }
                     }
-                } else {
-                    // TODO: - Remove hardcoded image
-                    profileImage.image = UIImage(named: "SF")
-                    backgroundImageView.image = UIImage(named: "SF")
-                    addBlurEffect()
                 }
                 verifiedProfileButton.hidden = true
+            }
+        }
+    }
+    
+    func setTeam(team: Services.Organization.Containers.TeamV1) {
+        nameLabel.text = team.name
+        nameNavLabel.text = team.name
+        
+        let teamCounts = team.getTeamCounts().uppercaseString
+        titleLabel.attributedText = NSAttributedString(
+            string: teamCounts,
+            attributes: [NSKernAttributeName: 0.5]
+        )
+        titleNavLabel.text = teamCounts
+        
+        let teamColor = UIColor.appTeamHeaderBackgroundColor(team)
+        profileImage.setImageWithTeam(team) { (image) -> Void in
+            self.profileImage.image = image
+            if self.backgroundImageView != image {
+                self.backgroundImageView.image = image
+                self.addBlurEffect()
             }
         }
     }

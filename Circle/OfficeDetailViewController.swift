@@ -32,8 +32,8 @@ class OfficeDetailViewController: DetailViewController,
         dataSource.cardHeaderDelegate = self
         
         collectionView.delegate = delegate
-        (dataSource as! OfficeDetailDataSource).editImageButtonDelegate = self
         (layout as! StickyHeaderCollectionViewLayout).headerHeight = ProfileHeaderCollectionReusableView.height
+        (dataSource as! OfficeDetailDataSource).editImageButtonDelegate = self
         super.configureCollectionView()
     }
     

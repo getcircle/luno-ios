@@ -300,7 +300,7 @@ extension UIViewController {
 
     func showTeamDetail(team: Services.Organization.Containers.TeamV1) {
         let teamDetailVC = TeamDetailViewController()
-        (teamDetailVC.dataSource as! TeamDetailDataSource).selectedTeam = team
+        (teamDetailVC.dataSource as! TeamDetailDataSource).team = team
         navigationController?.pushViewController(teamDetailVC, animated: true)
     }
     

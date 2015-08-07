@@ -166,7 +166,38 @@ class CircleImageView: UIImageView {
             addImageLabelForLocation(location)
         }
     }
-    
+
+    func setImageWithTeam(team: Services.Organization.Containers.TeamV1, successHandler: ((image: UIImage) -> Void)? = nil) {
+        if let imageURL = NSURL(string: team.imageUrl) where team.imageUrl.trimWhitespace() != "" {
+            let imageURLRequest = NSURLRequest(URL: imageURL)
+            setImageWithURLRequest(
+                imageURLRequest,
+                placeholderImage: nil,
+                success: { (urlRequest, response, image) -> Void in
+                    if let image = image {
+                        if let successCallback = successHandler {
+                            successCallback(image: image)
+                        }
+                        else {
+                            self.image = image
+                        }
+                    }
+                },
+                failure: { (imageURLRequest, response, error) -> Void in
+                    self.addImageLabelForTeam(team)
+                    if let response = response {
+                        println("Response \(response.statusCode) \(response)")
+                    }
+                    
+                    println("failed to fetch image for team: \(team.imageUrl) error: \(error?.localizedDescription)")
+                }
+            )
+        }
+        else {
+            addImageLabelForTeam(team)
+        }
+    }
+
     func setImageWithURL(imageURL: NSURL, animated: Bool, successHandler: ((image: UIImage) -> Void)? = nil) {
         var shouldAnimate = animated
         let isImageCached = isImageInCache(imageURL)
@@ -233,7 +264,14 @@ class CircleImageView: UIImageView {
             self.imageLabel.backgroundColor = UIColor.appProfileImageBackgroundColor()
         }
     }
-    
+
+    private func addImageLabelForTeam(team: Services.Organization.Containers.TeamV1) {
+        if self.addLabelIfImageLoadingFails {
+            self.imageText = team.name[0]
+            self.imageLabel.backgroundColor = UIColor.appTeamHeaderBackgroundColor(team)
+        }
+    }
+
     private func isImageInCache(url: NSURL) -> Bool {
         if let urlString = url.absoluteString {
             let imageURLRequest = NSURLRequest(URL: url)

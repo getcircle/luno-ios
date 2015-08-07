@@ -12,9 +12,9 @@ import ProtobufRegistry
 class TeamDetailDataSource: CardDataSource {
     
     var editImageButtonDelegate: EditImageButtonDelegate?
-    var selectedTeam: Services.Organization.Containers.TeamV1!
+    var team: Services.Organization.Containers.TeamV1!
     
-    private(set) var profileHeaderView: TeamHeaderCollectionReusableView!
+    private(set) var profileHeaderView: ProfileHeaderCollectionReusableView?
 
     private var ownerProfile: Services.Profile.Containers.ProfileV1!
     private var profiles = Array<Services.Profile.Containers.ProfileV1>()
@@ -37,13 +37,13 @@ class TeamDetailDataSource: CardDataSource {
             
             // Fetch owners and members
             dispatch_group_enter(actionsGroup)
-            Services.Profile.Actions.getProfiles(selectedTeam!.id) { (profiles, _, error) -> Void in
+            Services.Profile.Actions.getProfiles(team!.id) { (profiles, _, error) -> Void in
                 if let error = error {
                     storedError = error
                 }
                 else {
                     var allProfilesExceptOwner = profiles?.filter({ (profile) -> Bool in
-                        if profile.userId == self.selectedTeam.ownerId {
+                        if profile.userId == self.team.ownerId {
                             self.ownerProfile = profile
                             return false
                         }
@@ -57,7 +57,7 @@ class TeamDetailDataSource: CardDataSource {
             
             // Fetch sub-teams
             dispatch_group_enter(actionsGroup)
-            Services.Organization.Actions.getTeamDescendants(self.selectedTeam!.id, depth: 1, completionHandler: { (teams, error) -> Void in
+            Services.Organization.Actions.getTeamDescendants(self.team!.id, depth: 1, completionHandler: { (teams, error) -> Void in
                 if let error = error {
                     storedError = error
                 }
@@ -75,7 +75,7 @@ class TeamDetailDataSource: CardDataSource {
     }
     
     private func canEdit() -> Bool {
-        if let permissions = self.selectedTeam.permissions where permissions.canEdit {
+        if let permissions = self.team.permissions where permissions.canEdit {
             return true
         }
         
@@ -88,7 +88,7 @@ class TeamDetailDataSource: CardDataSource {
         let placeholderHeaderCard = Card(cardType: .Placeholder, title: "")
         placeholderHeaderCard.sectionInset = UIEdgeInsetsZero
         placeholderHeaderCard.addHeader(
-            headerClass: TeamHeaderCollectionReusableView.self
+            headerClass: ProfileHeaderCollectionReusableView.self
         )
         appendCard(placeholderHeaderCard)
     }
@@ -122,7 +122,7 @@ class TeamDetailDataSource: CardDataSource {
         if teams.count > 0 {
             var teamsCard = Card(
                 cardType: .Profiles,
-                title: AppStrings.TeamSubTeamsSectionTitle + " (" + String(selectedTeam.childTeamCount) + ")"
+                title: AppStrings.TeamSubTeamsSectionTitle + " (" + String(team.childTeamCount) + ")"
             )
             teamsCard.showContentCount = false
             teamsCard.addHeader(headerClass: sectionHeaderClass)
@@ -135,7 +135,7 @@ class TeamDetailDataSource: CardDataSource {
             let membersCardTitle = AppStrings.GroupMembersSectionTitle.localizedUppercaseString()
             let membersCard = Card(
                 cardType: .Profiles,
-                title: membersCardTitle + " (" + String(selectedTeam.profileCount) + ")"
+                title: membersCardTitle + " (" + String(team.profileCount) + ")"
             )
             membersCard.showContentCount = false
             membersCard.addHeader(headerClass: sectionHeaderClass)
@@ -155,8 +155,12 @@ class TeamDetailDataSource: CardDataSource {
     ) {
         
         super.configureHeader(header, atIndexPath: indexPath)
-        if let teamHeader = header as? TeamHeaderCollectionReusableView {
-            teamHeader.setData(selectedTeam)
+        if let teamHeader = header as? ProfileHeaderCollectionReusableView {
+            if canEdit() {
+                teamHeader.editImageButtonDelegate = editImageButtonDelegate
+                teamHeader.setEditImageButtonHidden(false)
+            }
+            teamHeader.setTeam(team)
             profileHeaderView = teamHeader
         }
     }
