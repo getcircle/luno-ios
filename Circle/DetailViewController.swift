@@ -210,7 +210,7 @@ class DetailViewController: BaseDetailViewController,
         else {
             imageToUpload = info[UIImagePickerControllerOriginalImage] as? UIImage
         }
-        
+
         handleImageUpload { () -> Void in
             self.reloadHeader()
             self.imageToUpload = nil

@@ -231,7 +231,7 @@ class VerifyProfileViewController:
     }
 
     private func verificationComplete() {
-        let editAboutViewController = EditAboutViewController(nibName: "EditAboutViewController", bundle: nil)
+        let editAboutViewController = EditAboutViewController(addCharacterLimit: true)
         editAboutViewController.profile = profile
         editAboutViewController.addNextButton = true
         editAboutViewController.theme = .Onboarding
