@@ -9,7 +9,7 @@
 import UIKit
 import ProtobufRegistry
 
-class TeamHeaderCollectionReusableView: CircleCollectionReusableView {
+class TeamHeaderCollectionReusableView: DetailHeaderCollectionReusableView {
 
     override class var classReuseIdentifier: String {
         return "TeamHeaderCollectionReusableView"

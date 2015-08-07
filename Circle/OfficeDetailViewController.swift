@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MBProgressHUD
 import ProtobufRegistry
 
 class OfficeDetailViewController: DetailViewController,
@@ -31,6 +32,7 @@ class OfficeDetailViewController: DetailViewController,
         dataSource.cardHeaderDelegate = self
         
         collectionView.delegate = delegate
+        (dataSource as! OfficeDetailDataSource).editImageButtonDelegate = self
         (layout as! StickyHeaderCollectionViewLayout).headerHeight = ProfileHeaderCollectionReusableView.height
         super.configureCollectionView()
     }
@@ -45,13 +47,13 @@ class OfficeDetailViewController: DetailViewController,
                 switch officeDetailDataSource.typeOfContent(indexPath) {
                 case .PeopleCount:
                     let viewController = ProfilesViewController()
-                    (viewController.dataSource as! ProfilesDataSource).configureForLocation(officeDetailDataSource.selectedOffice.id)
+                    (viewController.dataSource as! ProfilesDataSource).configureForLocation(officeDetailDataSource.location.id)
                     viewController.dataSource.setInitialData(
                         content: officeDetailDataSource.profiles,
                         ofType: nil,
                         nextRequest: officeDetailDataSource.nextProfilesRequest
                     )
-                    viewController.title = "People @ " + officeDetailDataSource.selectedOffice.address.city
+                    viewController.title = "People @ " + officeDetailDataSource.location.address.city
                     navigationController?.pushViewController(viewController, animated: true)
                     
                 default:
@@ -86,7 +88,7 @@ class OfficeDetailViewController: DetailViewController,
     private func presentFullScreenMapView(animated: Bool) {
         var mapViewController = MapViewController()
         if let headerView = (dataSource as! OfficeDetailDataSource).profileHeaderView {
-            mapViewController.selectedOffice = (dataSource as! OfficeDetailDataSource).selectedOffice
+            mapViewController.location = (dataSource as! OfficeDetailDataSource).location
             presentViewController(mapViewController, animated: animated, completion: nil)
         }
     }
@@ -132,5 +134,39 @@ class OfficeDetailViewController: DetailViewController,
             TrackerProperty.withKey(.ActiveViewController).withString(self.dynamicType.description())
         ]
         Tracker.sharedInstance.track(.CardHeaderTapped, properties: properties)
+    }
+    
+    // Image Upload
+
+    internal override func handleImageUpload(completion: () -> Void) {
+        let dataSource = (self.dataSource as! OfficeDetailDataSource)
+        if let newImage = imageToUpload {
+            let hud = MBProgressHUD.showHUDAddedTo(view, animated: true)
+            Services.Media.Actions.uploadImage(
+                newImage,
+                forMediaType: .Location,
+                withKey: dataSource.location.id
+            ) { (mediaURL, error) -> Void in
+                if let mediaURL = mediaURL {
+                    let locationBuilder = dataSource.location.toBuilder()
+                    locationBuilder.imageUrl = mediaURL
+                    Services.Organization.Actions.updateLocation(locationBuilder.build()) { (location, error) -> Void in
+                        if let location = location {
+                            dataSource.location = location
+                            hud.hide(true)
+                            completion()
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    internal override func reloadHeader() {
+        if let dataSource = dataSource as? OfficeDetailDataSource {
+            if let headerView = dataSource.profileHeaderView as? ProfileHeaderCollectionReusableView {
+                headerView.setOffice(dataSource.location)
+            }
+        }
     }
 }

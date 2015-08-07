@@ -11,7 +11,8 @@ import ProtobufRegistry
 
 class OfficeDetailDataSource: CardDataSource {
     
-    var selectedOffice: Services.Organization.Containers.LocationV1!
+    var editImageButtonDelegate: EditImageButtonDelegate?
+    var location: Services.Organization.Containers.LocationV1!
 
     private(set) var profiles = Array<Services.Profile.Containers.ProfileV1>()
     private(set) var nextProfilesRequest: Soa.ServiceRequestV1?
@@ -31,11 +32,11 @@ class OfficeDetailDataSource: CardDataSource {
         var storedError: NSError!
         var actionsGroup = dispatch_group_create()
         
-        if selectedOffice.address == nil { 
+        if location.address == nil { 
             dispatch_group_enter(actionsGroup)
-            Services.Organization.Actions.getLocation(locationId: selectedOffice.id, completionHandler: { (location, error) -> Void in
+            Services.Organization.Actions.getLocation(locationId: location.id, completionHandler: { (location, error) -> Void in
                 if let location = location {
-                    self.selectedOffice = location
+                    self.location = location
                 }
                 
                 if let error = error {
@@ -46,7 +47,7 @@ class OfficeDetailDataSource: CardDataSource {
         }
 
         dispatch_group_enter(actionsGroup)
-        Services.Organization.Actions.getTeams(locationId: self.selectedOffice.id) { (teams, nextRequest, error) -> Void in
+        Services.Organization.Actions.getTeams(locationId: self.location.id) { (teams, nextRequest, error) -> Void in
             if let teams = teams {
                 self.teams.extend(teams)
                 self.nextTeamsRequest = nextRequest
@@ -58,7 +59,7 @@ class OfficeDetailDataSource: CardDataSource {
         }
         
         dispatch_group_enter(actionsGroup)
-        Services.Profile.Actions.getProfiles(locationId: self.selectedOffice.id) { (profiles, nextRequest, error) -> Void in
+        Services.Profile.Actions.getProfiles(locationId: self.location.id) { (profiles, nextRequest, error) -> Void in
             if let profiles = profiles {
                 self.profiles.extend(profiles)
                 self.nextProfilesRequest = nextRequest
@@ -79,7 +80,11 @@ class OfficeDetailDataSource: CardDataSource {
     override func configureHeader(header: CircleCollectionReusableView, atIndexPath indexPath: NSIndexPath) {
         
         if let profileHeader = header as? ProfileHeaderCollectionReusableView {
-            profileHeader.setOffice(selectedOffice)
+            if canEdit() {
+                profileHeader.editImageButtonDelegate = editImageButtonDelegate
+                profileHeader.setEditImageButtonHidden(false)
+            }
+            profileHeader.setOffice(location)
             profileHeaderView = profileHeader
         }
     }
@@ -115,7 +120,7 @@ class OfficeDetailDataSource: CardDataSource {
         // Address
         let addressCard = Card(cardType: .OfficeAddress, title: AppStrings.CardTitleAddress)
         addressCard.sectionInset = defaultSectionInset
-        addressCard.addContent(content: [selectedOffice.address] as [AnyObject])
+        addressCard.addContent(content: [location.address] as [AnyObject])
         appendCard(addressCard)
         
         // People Count
@@ -123,7 +128,7 @@ class OfficeDetailDataSource: CardDataSource {
         let image = ItemImage.genericNextImage
         var content: [String: AnyObject] = [
             "name": AppStrings.CardTitlePeople,
-            "value": String(selectedOffice.profileCount),
+            "value": String(location.profileCount),
             "image": image.name,
             "imageTintColor": image.tint,
             "type": ContentType.PeopleCount.rawValue
@@ -150,5 +155,14 @@ class OfficeDetailDataSource: CardDataSource {
             )
             appendCard(teamsCard)
         }
+    }
+    
+    private func canEdit() -> Bool {
+        if let permissions = self.location.permissions where permissions.canEdit {
+            return true
+        }
+
+        // TODO: Set to false once persmissions are being returned
+        return true
     }
 }

@@ -12,16 +12,9 @@ import ProtobufRegistry
 
 class CurrentUserProfileDetailViewController: ProfileDetailViewController,
     CardHeaderViewDelegate,
-    UINavigationControllerDelegate,
-    UIImagePickerControllerDelegate,
-    ProfileEditImageButtonDelegate,
+    EditImageButtonDelegate,
     EditProfileDelegate
 {
-
-    private var addImageActionSheet: UIAlertController?
-    private var didUploadPhoto = false
-    private var imageToUpload: UIImage?
-    private var socialConnectVC = SocialConnectViewController()
     
     convenience init(
         profile withProfile: Services.Profile.Containers.ProfileV1,
@@ -60,7 +53,7 @@ class CurrentUserProfileDetailViewController: ProfileDetailViewController,
 
     // MARK: - Helpers
     
-    private func reloadHeader() {
+    internal override func reloadHeader() {
         if let dataSource = dataSource as? CurrentUserProfileDetailDataSource {
             if let headerView = dataSource.profileHeaderView {
                 headerView.setProfile(profile)
@@ -101,18 +94,6 @@ class CurrentUserProfileDetailViewController: ProfileDetailViewController,
     
     // MARK: - Notifications
     
-    override func registerNotifications() {
-        
-        NSNotificationCenter.defaultCenter().addObserver(
-            self,
-            selector: "socialConnectCTATapped:",
-            name: SocialConnectCollectionViewCellNotifications.onCTATappedNotification,
-            object: nil
-        )
-        
-        super.registerNotifications()
-    }
-    
     private func registerFullLifecycleNotifications() {
         // Do not un-register this notification in viewDidDisappear
         NSNotificationCenter.defaultCenter().addObserver(
@@ -121,58 +102,11 @@ class CurrentUserProfileDetailViewController: ProfileDetailViewController,
             name: ProfileServiceNotifications.onProfileUpdatedNotification,
             object: nil
         )
-        NSNotificationCenter.defaultCenter().addObserver(
-            self,
-            selector: "onSocialAccountConnected:",
-            name: SocialConnectNotifications.onServiceConnectedNotification,
-            object: socialConnectVC
-        )
     }
-
-    override func unregisterNotifications() {
-        
-        NSNotificationCenter.defaultCenter().removeObserver(
-            self,
-            name: SocialConnectCollectionViewCellNotifications.onCTATappedNotification,
-            object: nil
-        )
-        
-        super.unregisterNotifications()
-    }
-    
     
     // MARK: - Notification handlers
-    
-    func socialConnectCTATapped(notification: NSNotification) {
-        if let userInfo = notification.userInfo {
-            if let typeOfCTA = userInfo["type"] as? Int {
-                if let contentType = ContentType(rawValue: typeOfCTA) {
-                    switch contentType {
-                    case .LinkedInConnect:
-                        socialConnectVC.provider = .Linkedin
-                        let socialNavController = UINavigationController(rootViewController: socialConnectVC)
-                        navigationController?.presentViewController(socialNavController, animated: true, completion:nil)
-                        
-                    default:
-                        break
-                    }
-                }
-            }
-        }
-    }
 
     func onProfileUpdated(notification: NSNotification) {
-        profile = AuthViewController.getLoggedInUserProfile()!
-        reloadData()
-    }
-    
-    func onSocialAccountConnected(notification: NSNotification) {
-        Services.User.Actions.getIdentities(profile.userId) { (identities, error) -> Void in
-            if identities != nil {
-                AuthViewController.updateIdentities(identities!)
-                self.profile = AuthViewController.getLoggedInUserProfile()!
-            }
-        }
         profile = AuthViewController.getLoggedInUserProfile()!
         reloadData()
     }
@@ -193,103 +127,14 @@ class CurrentUserProfileDetailViewController: ProfileDetailViewController,
         }
     }
     
-    // MARK: - Image Upload
-    
-    func onEditImageButtonTapped(sender: UIView!) {
-
-        var actionSheet = UIAlertController(
-            title: AppStrings.ActionSheetAddAPictureButtonTitle,
-            message: nil,
-            preferredStyle: .ActionSheet
-        )
-        actionSheet.view.tintColor = UIColor.appActionSheetControlsTintColor()
-        
-        var takeAPictureActionControl = UIAlertAction(
-            title: AppStrings.ActionSheetTakeAPictureButtonTitle,
-            style: .Default,
-            handler: takeAPictureAction
-        )
-        actionSheet.addAction(takeAPictureActionControl)
-        
-        var pickAPhotoActionControl = UIAlertAction(
-            title: AppStrings.ActionSheetPickAPhotoButtonTitle,
-            style: .Default,
-            handler: pickAPhotoAction
-        )
-        actionSheet.addAction(pickAPhotoActionControl)
-        
-        var cancelControl = UIAlertAction(
-            title: AppStrings.GenericCancelButtonTitle,
-            style: .Cancel,
-            handler: { (action) -> Void in
-                self.dismissAddImageActionSheet(true)
-            }
-        )
-        actionSheet.addAction(cancelControl)
-        addImageActionSheet = actionSheet
-        if let popoverViewController = actionSheet.popoverPresentationController {
-            popoverViewController.sourceRect = sender.bounds
-            popoverViewController.sourceView = sender
-        }
-        presentViewController(actionSheet, animated: true, completion: nil)
-    }
-    
-    func takeAPictureAction(action: UIAlertAction!) {
-        dismissAddImageActionSheet(false)
-        if UIImagePickerController.isSourceTypeAvailable(.Camera) {
-            var pickerVC = UIImagePickerController()
-            pickerVC.sourceType = .Camera
-            pickerVC.cameraCaptureMode = .Photo
-            if UIImagePickerController.isCameraDeviceAvailable(.Front) {
-                pickerVC.cameraDevice = .Front
-            }
-            else {
-                pickerVC.cameraDevice = .Rear
-            }
-            
-            pickerVC.allowsEditing = true
-            pickerVC.delegate = self
-            presentViewController(pickerVC, animated: true, completion: nil)
-        }
-    }
-    
-    func pickAPhotoAction(action: UIAlertAction!) {
-        dismissAddImageActionSheet(false)
-        if UIImagePickerController.isSourceTypeAvailable(.PhotoLibrary) {
-            var pickerVC = UIImagePickerController()
-            pickerVC.sourceType = .PhotoLibrary
-            pickerVC.allowsEditing = true
-            pickerVC.delegate = self
-            presentViewController(pickerVC, animated: true, completion: nil)
-        }
-    }
-    
-    // MARK: - UIImagePickerControllerDelegate
-    
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
-        if let pickedImage = info[UIImagePickerControllerEditedImage] as? UIImage {
-            imageToUpload = pickedImage
-        }
-        else {
-            // XXX when is this ever hit?
-            imageToUpload = info[UIImagePickerControllerOriginalImage] as? UIImage
-        }
-        
-        handleImageUpload { () -> Void in
-            self.reloadHeader()
-            self.imageToUpload = nil
-        }
-        dismissViewControllerAnimated(true, completion: nil)
-    }
-    
-    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-        dismissViewControllerAnimated(true, completion: nil)
-    }
-    
-    private func handleImageUpload(completion: () -> Void) {
+    internal override func handleImageUpload(completion: () -> Void) {
         if let newImage = imageToUpload {
             let hud = MBProgressHUD.showHUDAddedTo(view, animated: true)
-            Services.Media.Actions.uploadProfileImage(profile.id, image: newImage) { (mediaURL, error) -> Void in
+            Services.Media.Actions.uploadImage(
+                newImage,
+                forMediaType: .Profile,
+                withKey: profile.id
+            ) { (mediaURL, error) -> Void in
                 if let mediaURL = mediaURL {
                     let profileBuilder = self.profile.toBuilder()
                     profileBuilder.imageUrl = mediaURL
@@ -303,14 +148,6 @@ class CurrentUserProfileDetailViewController: ProfileDetailViewController,
                     }
                 }
             }
-        }
-    }
-    
-    private func dismissAddImageActionSheet(animated: Bool) {
-        if addImageActionSheet != nil {
-            addImageActionSheet!.dismissViewControllerAnimated(animated, completion: {() -> Void in
-                self.addImageActionSheet = nil
-            })
         }
     }
     

@@ -9,15 +9,10 @@
 import UIKit
 import ProtobufRegistry
 
-protocol ProfileEditImageButtonDelegate {
-    func onEditImageButtonTapped(sender: UIView!)
-}
-
-class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
+class ProfileHeaderCollectionReusableView: DetailHeaderCollectionReusableView {
 
     @IBOutlet weak private(set) var backgroundImageView: CircleImageView!
     @IBOutlet weak private(set) var containerView: UIView!
-    @IBOutlet weak private(set) var editImageButton: UIButton!
     @IBOutlet weak private(set) var nameLabel: UILabel!
     @IBOutlet weak private(set) var nameNavLabel: UILabel!
     @IBOutlet weak private(set) var titleLabel: UILabel!
@@ -27,9 +22,6 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
     @IBOutlet weak private(set) var daylightIndicatorImage: UIImageView!
     @IBOutlet weak private(set) var daylightIndicatorNavImage: UIImageView!
     
-    var profileEditImageButtonDelegate: ProfileEditImageButtonDelegate?
-    var tappedButton: UIButton?
-    var tappedButtonIndex: Int?
     private(set) var visualEffectView: UIVisualEffectView?
     
     private var buttonContainerWidth: CGFloat = 0.0
@@ -67,7 +59,6 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
         configureLabels()
         configureContainerView()
         configureVerifiedProfileButton()
-        configureEditImageButton()
     }
     
     // MARK: - Configuration
@@ -95,12 +86,6 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
         verifiedProfileButton.backgroundColor = UIColor.appTintColor()
         verifiedProfileButton.makeItCircular()
         verifiedProfileButton.hidden = true
-    }
-    
-    private func configureEditImageButton() {
-        editImageButton.convertToTemplateImageForState(.Normal)
-        editImageButton.tintColor = UIColor.appViewBackgroundColor()
-        editImageButton.hidden = true
     }
 
     func setProfile(userProfile: Services.Profile.Containers.ProfileV1) {
@@ -204,7 +189,7 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
             titleLabel.alpha = titleLabelAlpha
             nameLabel.alpha = nameLabelAlpha
             daylightIndicatorImage.alpha = titleLabelAlpha
-            editImageButton.alpha = titleLabelAlpha
+            editImageButton?.alpha = titleLabelAlpha
             nameNavLabel.alpha = sectionsAlpha <= 0.0 ? nameNavLabel.alpha + 1/20 : 0.0
             titleNavLabel.alpha = sectionsAlpha <= 0.0 ? titleNavLabel.alpha + 1/20 : 0.0
             daylightIndicatorNavImage.alpha = titleNavLabel.alpha
@@ -226,15 +211,5 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
             verifiedProfileButton.transform = CGAffineTransformIdentity
             verifiedProfileButton.center = CGPointMake(profileImage.center.x + (profileImage.frame.width/2.0), verifiedProfileButton.center.y)
         }
-    }
-    
-    // MARK: - IBAction
-    
-    @IBAction func editImageButtonTapped(sender: AnyObject!) {
-        profileEditImageButtonDelegate?.onEditImageButtonTapped(sender as! UIView)
-    }
-    
-    func setEditImageButtonHidden(hidden: Bool) {
-        editImageButton.hidden = hidden
     }
 }

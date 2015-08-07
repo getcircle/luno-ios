@@ -188,27 +188,7 @@ extension Services.Profile.Actions {
         }
     }
     
-    static func getActiveTags(organizationId: String, tagType: Services.Profile.Containers.TagV1.TagTypeV1?, paginatorBuilder: Soa.PaginatorV1Builder? = nil, completionHandler: GetTagsCompletionHandler?) {
-        let requestBuilder = Services.Profile.Actions.GetActiveTags.RequestV1.builder()
-        requestBuilder.organizationId = organizationId
-        if tagType != nil {
-            requestBuilder.tagType = tagType!
-        }
-        
-        let client = ServiceClient(serviceName: "profile")
-        client.callAction(
-            "get_active_tags",
-            extensionField: Services.Registry.Requests.Profile.getActiveTags(),
-            requestBuilder: requestBuilder,
-            paginatorBuilder: paginatorBuilder
-        ) { (_, _, wrapped, error) -> Void in
-            let response = wrapped?.response?.result.getExtension(
-                Services.Registry.Responses.Profile.getActiveTags()
-            ) as? Services.Profile.Actions.GetActiveTags.ResponseV1
-            completionHandler?(interests: response?.tags, error: error)
-        }
-    }
-    
+
     static func updateProfile(profile: Services.Profile.Containers.ProfileV1, completionHandler: UpdateProfileCompletionHandler?) {
         let requestBuilder = Services.Profile.Actions.UpdateProfile.RequestV1.builder()
         requestBuilder.profile = profile

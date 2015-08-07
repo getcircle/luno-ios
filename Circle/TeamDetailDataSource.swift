@@ -10,6 +10,8 @@ import UIKit
 import ProtobufRegistry
 
 class TeamDetailDataSource: CardDataSource {
+    
+    var editImageButtonDelegate: EditImageButtonDelegate?
     var selectedTeam: Services.Organization.Containers.TeamV1!
     
     private(set) var profileHeaderView: TeamHeaderCollectionReusableView!
@@ -71,19 +73,13 @@ class TeamDetailDataSource: CardDataSource {
             }
         }
     }
-
-    private func addTeamActionsCard() {
-
-        // Add team actions card
+    
+    private func canEdit() -> Bool {
         if let permissions = self.selectedTeam.permissions where permissions.canEdit {
-            let teamActionsCard = Card(cardType: .Settings, title: "")
-            teamActionsCard.sectionInset = UIEdgeInsetsMake(25.0, 0.0, 40.0, 0.0)
-            teamActionsCard.addContent(content: [[
-                "text" : AppStrings.TeamEditButtonTitle,
-                "type": ContentType.EditTeam.rawValue
-            ]])
-            appendCard(teamActionsCard)
+            return true
         }
+        
+        return false
     }
     
     private func addPlaceholderCard() {
@@ -95,6 +91,20 @@ class TeamDetailDataSource: CardDataSource {
             headerClass: TeamHeaderCollectionReusableView.self
         )
         appendCard(placeholderHeaderCard)
+    }
+    
+    private func addTeamActionsCard() {
+        
+        // Add team actions card
+        if canEdit() {
+            let teamActionsCard = Card(cardType: .Settings, title: "")
+            teamActionsCard.sectionInset = UIEdgeInsetsMake(25.0, 0.0, 40.0, 0.0)
+            teamActionsCard.addContent(content: [[
+                "text" : AppStrings.TeamEditButtonTitle,
+                "type": ContentType.EditTeam.rawValue
+            ]])
+            appendCard(teamActionsCard)
+        }
     }
     
     private func populateData() {

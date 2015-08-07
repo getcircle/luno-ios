@@ -177,7 +177,11 @@ class VerifyProfileViewController:
     private func handleImageUpload(completion: () -> Void) {
         if didUploadPhoto {
             let hud = MBProgressHUD.showHUDAddedTo(view, animated: true)
-            Services.Media.Actions.uploadProfileImage(profile.id, image: profileImageView.image!) { (mediaURL, error) -> Void in
+            Services.Media.Actions.uploadImage(
+                profileImageView.image!,
+                forMediaType: .Profile,
+                withKey: profile.id
+            ) { (mediaURL, error) -> Void in
                 if let mediaURL = mediaURL {
                     let profileBuilder = self.profile.toBuilder()
                     profileBuilder.imageUrl = mediaURL

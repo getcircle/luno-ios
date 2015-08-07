@@ -137,6 +137,7 @@
 		8F4A98B31A6350B9005AD63C /* CircleCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4A98B21A6350B9005AD63C /* CircleCollectionReusableView.swift */; };
 		8F50CBA01B1392C100AC5277 /* ProfilesSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F50CB9F1B1392C100AC5277 /* ProfilesSelectorViewController.swift */; };
 		8F51A8021B73ECFE00323DD1 /* KeyValueData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F51A8011B73ECFE00323DD1 /* KeyValueData.swift */; };
+		8F51A8041B741F1200323DD1 /* DetailHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F51A8031B741F1200323DD1 /* DetailHeaderCollectionReusableView.swift */; };
 		8F5244901B29302800E50A14 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F52448F1B29302800E50A14 /* Fabric.framework */; };
 		8F5424111B6B00E000AEFB11 /* SearchCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5424101B6B00E000AEFB11 /* SearchCategory.swift */; };
 		8F57AD351B0FD6F400DD40D8 /* ProfileGridItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F57AD331B0FD6F400DD40D8 /* ProfileGridItemCollectionViewCell.swift */; };
@@ -479,6 +480,7 @@
 		8F4A98B21A6350B9005AD63C /* CircleCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleCollectionReusableView.swift; sourceTree = "<group>"; };
 		8F50CB9F1B1392C100AC5277 /* ProfilesSelectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfilesSelectorViewController.swift; sourceTree = "<group>"; };
 		8F51A8011B73ECFE00323DD1 /* KeyValueData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyValueData.swift; sourceTree = "<group>"; };
+		8F51A8031B741F1200323DD1 /* DetailHeaderCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailHeaderCollectionReusableView.swift; sourceTree = "<group>"; };
 		8F52448F1B29302800E50A14 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		8F5424101B6B00E000AEFB11 /* SearchCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchCategory.swift; sourceTree = "<group>"; };
 		8F57AD331B0FD6F400DD40D8 /* ProfileGridItemCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileGridItemCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -806,6 +808,7 @@
 				8F4A98B21A6350B9005AD63C /* CircleCollectionReusableView.swift */,
 				8F65C5001A51462500C7F3E6 /* CircleCollectionViewCell.swift */,
 				8FF298511A4E2B3300306CFC /* Common */,
+				8F51A8031B741F1200323DD1 /* DetailHeaderCollectionReusableView.swift */,
 				BF6A2D0D1AAD08DA00692315 /* EmptyCollectionViewCell.swift */,
 				8FA6A4A81AFDCA8100ACC39D /* GroupCollectionViewCell.swift */,
 				8FA6A4B71AFED58B00ACC39D /* GroupHeaderCollectionReusableView.swift */,
@@ -1682,6 +1685,7 @@
 				8FAA14BC1B093D190098CC45 /* SplashViewController.swift in Sources */,
 				BF9D72121A68492C002CDC66 /* ObjectStore.swift in Sources */,
 				BFB83F131A8D2D80000223C0 /* Mixpanel.swift in Sources */,
+				8F51A8041B741F1200323DD1 /* DetailHeaderCollectionReusableView.swift in Sources */,
 				8F65C5011A51462500C7F3E6 /* CircleCollectionViewCell.swift in Sources */,
 				8F9F60D21A8C46C100FCAA25 /* SettingsDataSource.swift in Sources */,
 				8F834F971A9E9F21007B7095 /* ContactInfoViewController.swift in Sources */,

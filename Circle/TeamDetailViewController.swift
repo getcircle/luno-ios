@@ -30,6 +30,8 @@ class TeamDetailViewController: DetailViewController, EditTeamViewControllerDele
         collectionView.delegate = delegate
         
         (layout as! StickyHeaderCollectionViewLayout).headerHeight = TeamHeaderCollectionReusableView.height
+        
+        (dataSource as! TeamDetailDataSource).editImageButtonDelegate = self
         super.configureCollectionView()
     }
     
@@ -86,9 +88,11 @@ class TeamDetailViewController: DetailViewController, EditTeamViewControllerDele
                 var newY: CGFloat = initialYConstrainValue
                 newY += max(-distanceToMove, -contentOffset.y + pointAtWhichHeightShouldStartIncreasing)
                 profileHeaderView.teamNameLabelCenterYConstraint.constant = newY
+                profileHeaderView.editImageButton?.alpha = 0.0
             }
             else {
                 profileHeaderView.teamNameLabelCenterYConstraint.constant = initialYConstrainValue
+                profileHeaderView.editImageButton?.alpha = 1.0
             }
             
             let minFontSize: CGFloat = 15.0

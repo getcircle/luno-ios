@@ -26,7 +26,6 @@ class CircleCollectionReusableView: UICollectionReusableView {
         return 44.0
     }
     
-    
     var currentCard: Card?
     var cardHeaderDelegate: CardHeaderViewDelegate?
     

@@ -508,7 +508,7 @@ class SearchViewController: UIViewController,
         case .AddressOfOffice:
             if let location = searchAction.underlyingObject as? Services.Organization.Containers.LocationV1 {
                 let viewController = MapViewController()
-                viewController.selectedOffice = location
+                viewController.location = location
                 presentViewController(viewController, animated: true, completion: nil)
             }
             

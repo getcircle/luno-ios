@@ -11,7 +11,7 @@ import ProtobufRegistry
 
 class CurrentUserProfileDetailDataSource: ProfileDetailDataSource {
 
-    var editImageButtonDelegate: ProfileEditImageButtonDelegate?
+    var editImageButtonDelegate: EditImageButtonDelegate?
     
     override internal func addContactsCard() -> Card? {
         let card = Card(cardType: .KeyValue, title: "")
@@ -43,7 +43,7 @@ class CurrentUserProfileDetailDataSource: ProfileDetailDataSource {
         
         if let profileHeader = header as? ProfileHeaderCollectionReusableView {
             profileHeader.setEditImageButtonHidden(false)
-            profileHeader.profileEditImageButtonDelegate = editImageButtonDelegate
+            profileHeader.editImageButtonDelegate = editImageButtonDelegate
         }
         
         if let headerView = header as? ProfileSectionHeaderCollectionReusableView, card = cardAtSection(indexPath.section) where card.allowEditingContent {

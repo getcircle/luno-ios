@@ -10,17 +10,25 @@ import MessageUI
 import UIKit
 import ProtobufRegistry
 
-class DetailViewController: BaseDetailViewController, UICollectionViewDelegate {
 
-    private(set) var activityIndicatorView: CircleActivityIndicatorView!
-    private(set) var collectionView: UICollectionView!
-    private(set) var errorMessageView: CircleErrorMessageView!
+class DetailViewController: BaseDetailViewController,
+    UICollectionViewDelegate,
+    UIImagePickerControllerDelegate,
+    UINavigationControllerDelegate,
+    EditImageButtonDelegate {
 
     var animationSourceRect: CGRect?
     var dataSource: CardDataSource!
     var delegate: CardCollectionViewDelegate!
     var layout: UICollectionViewFlowLayout!
-    
+
+    private(set) var activityIndicatorView: CircleActivityIndicatorView!
+    private(set) var collectionView: UICollectionView!
+    private(set) var errorMessageView: CircleErrorMessageView!
+
+    private var addImageActionSheet: UIAlertController?
+    private(set) var imageToUpload: UIImage?
+
     override func loadView() {
         var rootView = UIView(frame: UIScreen.mainScreen().bounds)
         rootView.opaque = true
@@ -112,5 +120,114 @@ class DetailViewController: BaseDetailViewController, UICollectionViewDelegate {
         collectionView.collectionViewLayout.invalidateLayout()
     }
     
+    // MARK: - EditImageButtonDelegate
+    
+    func onEditImageButtonTapped(sender: UIView!) {
+        
+        var actionSheet = UIAlertController(
+            title: AppStrings.ActionSheetAddAPictureButtonTitle,
+            message: nil,
+            preferredStyle: .ActionSheet
+        )
+        actionSheet.view.tintColor = UIColor.appActionSheetControlsTintColor()
+        
+        var takeAPictureActionControl = UIAlertAction(
+            title: AppStrings.ActionSheetTakeAPictureButtonTitle,
+            style: .Default,
+            handler: takeAPictureAction
+        )
+        actionSheet.addAction(takeAPictureActionControl)
+        
+        var pickAPhotoActionControl = UIAlertAction(
+            title: AppStrings.ActionSheetPickAPhotoButtonTitle,
+            style: .Default,
+            handler: pickAPhotoAction
+        )
+        actionSheet.addAction(pickAPhotoActionControl)
+        
+        var cancelControl = UIAlertAction(
+            title: AppStrings.GenericCancelButtonTitle,
+            style: .Cancel,
+            handler: { (action) -> Void in
+                self.dismissAddImageActionSheet(true)
+            }
+        )
+        actionSheet.addAction(cancelControl)
+        addImageActionSheet = actionSheet
+        if let popoverViewController = actionSheet.popoverPresentationController {
+            popoverViewController.sourceRect = sender.bounds
+            popoverViewController.sourceView = sender
+        }
+        presentViewController(actionSheet, animated: true, completion: nil)
+    }
+    
+    // MARK: - Image Upload
+
+    func takeAPictureAction(action: UIAlertAction!) {
+        dismissAddImageActionSheet(false)
+        if UIImagePickerController.isSourceTypeAvailable(.Camera) {
+            var pickerVC = UIImagePickerController()
+            pickerVC.sourceType = .Camera
+            pickerVC.cameraCaptureMode = .Photo
+            if UIImagePickerController.isCameraDeviceAvailable(.Front) {
+                pickerVC.cameraDevice = .Front
+            }
+            else {
+                pickerVC.cameraDevice = .Rear
+            }
+            
+            pickerVC.allowsEditing = true
+            pickerVC.delegate = self
+            presentViewController(pickerVC, animated: true, completion: nil)
+        }
+    }
+    
+    func pickAPhotoAction(action: UIAlertAction!) {
+        dismissAddImageActionSheet(false)
+        if UIImagePickerController.isSourceTypeAvailable(.PhotoLibrary) {
+            var pickerVC = UIImagePickerController()
+            pickerVC.sourceType = .PhotoLibrary
+            pickerVC.allowsEditing = true
+            pickerVC.delegate = self
+            presentViewController(pickerVC, animated: true, completion: nil)
+        }
+    }
+    
+    private func dismissAddImageActionSheet(animated: Bool) {
+        if addImageActionSheet != nil {
+            addImageActionSheet!.dismissViewControllerAnimated(animated, completion: {() -> Void in
+                self.addImageActionSheet = nil
+            })
+        }
+    }
+    
+    // MARK: - UIImagePickerControllerDelegate
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
+        if let pickedImage = info[UIImagePickerControllerEditedImage] as? UIImage {
+            imageToUpload = pickedImage
+        }
+        else {
+            imageToUpload = info[UIImagePickerControllerOriginalImage] as? UIImage
+        }
+        
+        handleImageUpload { () -> Void in
+            self.reloadHeader()
+            self.imageToUpload = nil
+        }
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    internal func handleImageUpload(completion: () -> Void) {
+        fatalError("Should be overriden by child classes")
+    }
+    
+    internal func reloadHeader() {
+        fatalError("Should be overriden by child classes")
+    }
 }
 

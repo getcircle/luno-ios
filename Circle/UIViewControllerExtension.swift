@@ -306,7 +306,7 @@ extension UIViewController {
     
     func showLocationDetail(location: Services.Organization.Containers.LocationV1) {
         let locationDetailVC = OfficeDetailViewController()
-        (locationDetailVC.dataSource as! OfficeDetailDataSource).selectedOffice = location
+        (locationDetailVC.dataSource as! OfficeDetailDataSource).location = location
         navigationController?.pushViewController(locationDetailVC, animated: true)
     }
     

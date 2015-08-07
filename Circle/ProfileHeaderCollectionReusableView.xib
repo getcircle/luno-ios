@@ -85,19 +85,6 @@
                                 <constraint firstAttribute="width" constant="10" id="Kol-ug-wct"/>
                             </constraints>
                         </imageView>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ab6-6x-tgQ" userLabel="EditImageButton">
-                            <rect key="frame" x="0.0" y="359" width="474" height="40"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="40" id="gWv-6x-Ojj"/>
-                            </constraints>
-                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="15" maxY="0.0"/>
-                            <state key="normal" image="Camera">
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <connections>
-                                <action selector="editImageButtonTapped:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="ymX-XG-IGw"/>
-                            </connections>
-                        </button>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
@@ -111,10 +98,8 @@
                         <constraint firstItem="GGm-ME-NAZ" firstAttribute="centerY" secondItem="ces-e9-sN5" secondAttribute="centerY" id="9eg-Jw-EfM"/>
                         <constraint firstItem="zJL-k5-Ada" firstAttribute="leading" secondItem="Raz-vM-IgD" secondAttribute="leading" id="BCZ-DR-Nf7"/>
                         <constraint firstAttribute="bottom" secondItem="Raz-vM-IgD" secondAttribute="bottom" constant="6" id="Cb3-Ht-JcU"/>
-                        <constraint firstAttribute="trailing" secondItem="ab6-6x-tgQ" secondAttribute="trailing" id="Ce8-f8-uIz"/>
                         <constraint firstAttribute="centerY" secondItem="kX0-a4-Q8w" secondAttribute="centerY" constant="15" id="Cq9-g3-mi2"/>
                         <constraint firstItem="Raz-vM-IgD" firstAttribute="leading" secondItem="ces-e9-sN5" secondAttribute="trailing" constant="5" id="DEK-Ae-wLW"/>
-                        <constraint firstAttribute="bottom" secondItem="ab6-6x-tgQ" secondAttribute="bottom" id="DfH-3r-s95"/>
                         <constraint firstItem="1Tu-Zx-9yR" firstAttribute="top" secondItem="GGm-ME-NAZ" secondAttribute="bottom" constant="-3" id="Gpm-JD-Y0c"/>
                         <constraint firstAttribute="bottom" secondItem="zJL-k5-Ada" secondAttribute="bottom" constant="22" id="Gpu-y0-Hjt"/>
                         <constraint firstItem="Raz-vM-IgD" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="JUx-bd-ahe" secondAttribute="leading" constant="30" id="HsL-an-SSV"/>
@@ -122,7 +107,6 @@
                         <constraint firstItem="Raz-vM-IgD" firstAttribute="leading" secondItem="hdG-v4-wEq" secondAttribute="trailing" constant="5" id="Pev-Fs-dvK"/>
                         <constraint firstItem="GGm-ME-NAZ" firstAttribute="leading" secondItem="JUx-bd-ahe" secondAttribute="leading" constant="30" id="Q2H-Rz-j8c"/>
                         <constraint firstAttribute="trailing" secondItem="GGm-ME-NAZ" secondAttribute="trailing" constant="30" id="UkJ-Vb-niE"/>
-                        <constraint firstItem="ab6-6x-tgQ" firstAttribute="leading" secondItem="JUx-bd-ahe" secondAttribute="leading" id="Xh3-G9-6kt"/>
                         <constraint firstItem="1Tu-Zx-9yR" firstAttribute="top" secondItem="kX0-a4-Q8w" secondAttribute="bottom" constant="12" id="b8p-d8-vRT"/>
                         <constraint firstItem="GGm-ME-NAZ" firstAttribute="centerX" secondItem="1Tu-Zx-9yR" secondAttribute="centerX" id="beT-MI-PAr"/>
                         <constraint firstAttribute="centerX" secondItem="1Tu-Zx-9yR" secondAttribute="centerX" id="dFv-F5-py9"/>
@@ -166,7 +150,6 @@
                 <outlet property="containerView" destination="JUx-bd-ahe" id="YQJ-86-Iry"/>
                 <outlet property="daylightIndicatorImage" destination="ces-e9-sN5" id="9Fp-Jg-ErA"/>
                 <outlet property="daylightIndicatorNavImage" destination="hdG-v4-wEq" id="gob-8Z-vmw"/>
-                <outlet property="editImageButton" destination="ab6-6x-tgQ" id="lBn-AQ-8p2"/>
                 <outlet property="nameLabel" destination="1Tu-Zx-9yR" id="dCN-I3-cEP"/>
                 <outlet property="nameNavLabel" destination="zJL-k5-Ada" id="fZN-PC-Fce"/>
                 <outlet property="profileImage" destination="kX0-a4-Q8w" id="idA-m8-Iy4"/>
@@ -178,7 +161,6 @@
         </collectionReusableView>
     </objects>
     <resources>
-        <image name="Camera" width="21" height="17"/>
         <image name="SmallCheck" width="8" height="9"/>
     </resources>
 </document>

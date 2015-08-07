@@ -63,8 +63,13 @@ extension Services.Media.Actions {
         }
     }
     
-    static func uploadProfileImage(profileId: String, image: UIImage, completionHandler: CompleteImageUploadCompletionHandler?) {
-        startImageUpload(.Profile, key: profileId) { (instructions, error) -> Void in
+    static func uploadImage(
+        image: UIImage,
+        forMediaType mediaType: Services.Media.Containers.Media.MediaTypeV1,
+        withKey mediaKey: String,
+        andCompletionHandler completionHandler: CompleteImageUploadCompletionHandler?
+    ) {
+        startImageUpload(mediaType, key: mediaKey) { (instructions, error) -> Void in
             if let instructions = instructions {
                 Alamofire.upload(.PUT, instructions.uploadUrl, data: UIImagePNGRepresentation(image))
                     .progress(closure: { (bytesWritten, totalBytesWritten, totalBytesExpectedToWrite) -> Void in
@@ -72,13 +77,13 @@ extension Services.Media.Actions {
                     })
                     .response({ (request, response, _, error) -> Void in
                         self.completeImageUpload(
-                            .Profile,
-                            mediaKey: profileId,
+                            mediaType,
+                            mediaKey: mediaKey,
                             uploadId: instructions.uploadId,
                             uploadKey: instructions.uploadKey
                         ) { (mediaURL, error) -> Void in
-                            completionHandler?(mediaURL: mediaURL, error: error)
-                            return
+                                completionHandler?(mediaURL: mediaURL, error: error)
+                                return
                         }
                     })
             } else {
