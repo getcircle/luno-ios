@@ -74,11 +74,53 @@ class OfficeDetailViewController: DetailViewController,
         }
     }
     
+    // MARK: - Notifications
+    
+    override func registerNotifications() {
+        NSNotificationCenter.defaultCenter().addObserver(
+            self,
+            selector: "loadData",
+            name: LocationServiceNotifications.onLocationUpdatedNotification,
+            object: nil
+        )
+    }
+    
+    override func unregisterNotifications() {
+        NSNotificationCenter.defaultCenter().removeObserver(
+            self,
+            name: LocationServiceNotifications.onLocationUpdatedNotification,
+            object: nil
+        )
+    }
+
     // MARK: - CardHeaderViewDelegate
     
     func cardHeaderTapped(sender: AnyObject!, card: Card!) {
         let officeDetailDataSource = dataSource as! OfficeDetailDataSource
         switch card.type {
+        case .TextValue:
+            if card.content.count > 0 {
+                if let data = card.content.first as? TextData {
+                    switch data.type {
+                    case .LocationDescription:
+                        let editDescriptionViewController = EditLocationDescriptionViewController(addCharacterLimit: false)
+                        editDescriptionViewController.location = (dataSource as! OfficeDetailDataSource).location
+                        let editDescriptionViewNavController = UINavigationController(
+                            rootViewController: editDescriptionViewController
+                        )
+                        navigationController?.presentViewController(
+                            editDescriptionViewNavController,
+                            animated: true,
+                            completion: nil
+                        )
+                        
+                    default:
+                        break
+                    }
+                }
+            }
+            break
+            
         case .Profiles:
             if card.content.count > 0 {
                 if let team = card.content.first as? Services.Organization.Containers.TeamV1 {

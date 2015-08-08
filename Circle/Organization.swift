@@ -16,7 +16,6 @@ typealias GetOrganizationCompletionHandler = (organization: Services.Organizatio
 typealias GetLocationsCompletionHandler = (locations: Array<Services.Organization.Containers.LocationV1>?, error: NSError?) -> Void
 typealias GetLocationCompletionHandler = (location: Services.Organization.Containers.LocationV1?, error: NSError?) -> Void
 typealias GetIntegrationStatusCompletionHandler = (status: Bool, error: NSError?) -> Void
-typealias UpdateLocationCompletionHandler = (location: Services.Organization.Containers.LocationV1?, error: NSError?) -> Void
 
 extension Services.Organization.Actions {
         
@@ -181,26 +180,6 @@ extension Services.Organization.Actions {
 
             CircleCache.setIntegrationSetting(status, ofType: type)
             completionHandler?(status: status, error: error)
-        }
-    }
-    
-    static func updateLocation(
-        location: Services.Organization.Containers.LocationV1,
-        completionHandler: UpdateLocationCompletionHandler?
-    ) {
-        let requestBuilder = Services.Organization.Actions.UpdateLocation.RequestV1.builder()
-        requestBuilder.location = location
-        
-        let client = ServiceClient(serviceName: "organization")
-        client.callAction(
-            "update_location",
-            extensionField: Services.Registry.Requests.Organization.updateLocation(),
-            requestBuilder: requestBuilder
-        ) { (_, _, wrapped, error) -> Void in
-            let response = wrapped?.response?.result.getExtension(
-                Services.Registry.Responses.Profile.updateProfile()
-            ) as? Services.Organization.Actions.UpdateLocation.ResponseV1
-            completionHandler?(location: response?.location, error: error)
         }
     }
 }

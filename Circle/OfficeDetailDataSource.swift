@@ -21,6 +21,7 @@ class OfficeDetailDataSource: CardDataSource {
     private(set) var profileHeaderView: CircleCollectionReusableView?
     
     private let defaultSectionInset = UIEdgeInsetsMake(0.0, 0.0, 25.0, 0.0)
+    private let sectionHeaderClass = ProfileSectionHeaderCollectionReusableView.self
     
     // MARK: - Load Data
     
@@ -32,19 +33,17 @@ class OfficeDetailDataSource: CardDataSource {
         var storedError: NSError!
         var actionsGroup = dispatch_group_create()
         
-        if location.address == nil { 
-            dispatch_group_enter(actionsGroup)
-            Services.Organization.Actions.getLocation(locationId: location.id, completionHandler: { (location, error) -> Void in
-                if let location = location {
-                    self.location = location
-                }
-                
-                if let error = error {
-                    storedError = error
-                }
-                dispatch_group_leave(actionsGroup)
-            })
-        }
+        dispatch_group_enter(actionsGroup)
+        Services.Organization.Actions.getLocation(locationId: location.id, completionHandler: { (location, error) -> Void in
+            if let location = location {
+                self.location = location
+            }
+            
+            if let error = error {
+                storedError = error
+            }
+            dispatch_group_leave(actionsGroup)
+        })
 
         dispatch_group_enter(actionsGroup)
         Services.Organization.Actions.getTeams(locationId: self.location.id) { (teams, nextRequest, error) -> Void in
@@ -87,6 +86,11 @@ class OfficeDetailDataSource: CardDataSource {
             profileHeader.setOffice(location)
             profileHeaderView = profileHeader
         }
+        
+        if let headerView = header as? ProfileSectionHeaderCollectionReusableView,
+            card = cardAtSection(indexPath.section) where card.allowEditingContent && canEdit() {
+                headerView.showAddEditButton = true
+        }        
     }
 
     // MARK: - Helpers
@@ -111,6 +115,25 @@ class OfficeDetailDataSource: CardDataSource {
         appendCard(addressCard)
     }
     
+    private func addDescriptionCard() {
+        if location.description_.trimWhitespace() != "" || canEdit() {
+            
+            let descriptionCard = Card(cardType: .TextValue, title: "Description")
+            descriptionCard.sectionInset = defaultSectionInset
+            descriptionCard.addContent(content: [
+                TextData(type: .LocationDescription, andValue: location.description_)
+            ])
+            
+            if canEdit() {
+                descriptionCard.showContentCount = false
+                descriptionCard.addHeader(headerClass: sectionHeaderClass)
+                descriptionCard.allowEditingContent = true
+            }
+            
+            appendCard(descriptionCard)
+        }
+    }
+    
     private func addPeopleCard() {
         if profiles.count > 0 {
             let profilesCard = Card(
@@ -120,9 +143,7 @@ class OfficeDetailDataSource: CardDataSource {
             )
             profilesCard.addContent(content: profiles as [AnyObject], maxVisibleItems: 3)
             profilesCard.sectionInset = defaultSectionInset
-            profilesCard.addHeader(
-                headerClass: ProfileSectionHeaderCollectionReusableView.self
-            )
+            profilesCard.addHeader(headerClass: sectionHeaderClass)
             appendCard(profilesCard)
         }
     }
@@ -137,9 +158,7 @@ class OfficeDetailDataSource: CardDataSource {
             )
             teamsCard.addContent(content: teams as [AnyObject], maxVisibleItems: 3)
             teamsCard.sectionInset = defaultSectionInset
-            teamsCard.addHeader(
-                headerClass: ProfileSectionHeaderCollectionReusableView.self
-            )
+            teamsCard.addHeader(headerClass: sectionHeaderClass)
             appendCard(teamsCard)
         }
     }
@@ -148,6 +167,7 @@ class OfficeDetailDataSource: CardDataSource {
         resetCards()
         addPlaceholderCard()
         addAddressCard()
+        addDescriptionCard()
         addPeopleCard()
         addTeamsCard()
     }

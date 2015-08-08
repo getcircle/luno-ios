@@ -106,6 +106,7 @@
 		8F15A4041B75741200693E26 /* EditTeamDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F15A4031B75741200693E26 /* EditTeamDescriptionViewController.swift */; };
 		8F15A4061B75742B00693E26 /* EditLocationDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F15A4051B75742B00693E26 /* EditLocationDescriptionViewController.swift */; };
 		8F15A4081B75889900693E26 /* TextData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F15A4071B75889900693E26 /* TextData.swift */; };
+		8F15A40C1B75C57300693E26 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F15A40B1B75C57300693E26 /* Location.swift */; };
 		8F1D0B701AC5E77900488BD7 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1D0B6F1AC5E77900488BD7 /* WebViewController.swift */; };
 		8F1D0B861AC8AB1200488BD7 /* Loader_00059@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F1D0B851AC8AB1200488BD7 /* Loader_00059@2x.png */; };
 		8F1D0B8F1AC9101100488BD7 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1D0B8D1AC9101100488BD7 /* WelcomeViewController.swift */; };
@@ -453,6 +454,7 @@
 		8F15A4031B75741200693E26 /* EditTeamDescriptionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTeamDescriptionViewController.swift; sourceTree = "<group>"; };
 		8F15A4051B75742B00693E26 /* EditLocationDescriptionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditLocationDescriptionViewController.swift; sourceTree = "<group>"; };
 		8F15A4071B75889900693E26 /* TextData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextData.swift; sourceTree = "<group>"; };
+		8F15A40B1B75C57300693E26 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		8F1D0B6F1AC5E77900488BD7 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		8F1D0B851AC8AB1200488BD7 /* Loader_00059@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Loader_00059@2x.png"; sourceTree = "<group>"; };
 		8F1D0B8D1AC9101100488BD7 /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
@@ -1164,12 +1166,13 @@
 			isa = PBXGroup;
 			children = (
 				8FA6A4B51AFEB47D00ACC39D /* Group.swift */,
+				8F15A40B1B75C57300693E26 /* Location.swift */,
 				BF093F0E1A672F8900BA60BD /* Media.swift */,
 				BF9D72111A68492C002CDC66 /* ObjectStore.swift */,
 				BF004C4F1A5CF91200AB8A6F /* Organization.swift */,
 				BF3F0F601A5B1C1100D4287E /* Profile.swift */,
-				8F93E2BE1B26C08D004671D7 /* Team.swift */,
 				BFE213C71A5EE63F0033E2F5 /* Search.swift */,
+				8F93E2BE1B26C08D004671D7 /* Team.swift */,
 				BF2CBFD51A473E9100BE589D /* User.swift */,
 			);
 			name = Services;
@@ -1606,6 +1609,7 @@
 				BF25722D1A6450F20052C3E3 /* VerifyPhoneNumberViewController.swift in Sources */,
 				8FF298441A4DF38E00306CFC /* TagScrollingSelectorViewController.swift in Sources */,
 				8F22CBFB1A29AF450026376E /* UIViewExtension.swift in Sources */,
+				8F15A40C1B75C57300693E26 /* Location.swift in Sources */,
 				8F5933D21ACB5B4300905E14 /* ABTestUtils.m in Sources */,
 				8F15A4081B75889900693E26 /* TextData.swift in Sources */,
 				BF004C501A5CF91200AB8A6F /* Organization.swift in Sources */,
