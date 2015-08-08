@@ -20,7 +20,7 @@ class OfficeDetailDataSource: CardDataSource {
     private(set) var nextTeamsRequest: Soa.ServiceRequestV1?
     private(set) var profileHeaderView: CircleCollectionReusableView?
     
-    private let defaultSectionInset = UIEdgeInsetsMake(0.0, 0.0, 20.0, 0.0)
+    private let defaultSectionInset = UIEdgeInsetsMake(0.0, 0.0, 25.0, 0.0)
     
     // MARK: - Load Data
     
@@ -111,36 +111,32 @@ class OfficeDetailDataSource: CardDataSource {
         
         appendCard(placeholderCard)
     }
-
-    private func populateData() {
-        
-        resetCards()
-        addPlaceholderCard()
-        
+    
+    private func addAddressCard() {
         // Address
         let addressCard = Card(cardType: .OfficeAddress, title: AppStrings.CardTitleAddress)
         addressCard.sectionInset = defaultSectionInset
         addressCard.addContent(content: [location.address] as [AnyObject])
         appendCard(addressCard)
-        
-        // People Count
-        let keyValueCard = Card(cardType: .KeyValue, title: AppStrings.CardTitlePeople)
-        let image = ItemImage.genericNextImage
-        var content: [String: AnyObject] = [
-            "name": AppStrings.CardTitlePeople,
-            "value": String(location.profileCount),
-            "image": image.name,
-            "imageTintColor": image.tint,
-            "type": ContentType.PeopleCount.rawValue
-        ]
-        
-        if let imageSize = image.size {
-            content["imageSize"] = NSValue(CGSize: imageSize)
+    }
+    
+    private func addPeopleCard() {
+        if profiles.count > 0 {
+            let profilesCard = Card(
+                cardType: .Profiles, 
+                title: AppStrings.CardTitlePeople, 
+                contentCount: Int(location.profileCount)
+            )
+            profilesCard.addContent(content: profiles as [AnyObject], maxVisibleItems: 3)
+            profilesCard.sectionInset = defaultSectionInset
+            profilesCard.addHeader(
+                headerClass: ProfileSectionHeaderCollectionReusableView.self
+            )
+            appendCard(profilesCard)
         }
-        keyValueCard.addContent(content: [content] as [AnyObject])
-        keyValueCard.sectionInset = defaultSectionInset
-        appendCard(keyValueCard)
-        
+    }
+
+    private func addTeamsCard() {
         // Teams
         if teams.count > 0 {
             let teamsCard = Card(
@@ -148,13 +144,21 @@ class OfficeDetailDataSource: CardDataSource {
                 title: AppStrings.CardTitleOfficeTeam,
                 contentCount: nextTeamsRequest?.getPaginator().countAsInt() ?? teams.count
             )
-            teamsCard.addContent(content: teams as [AnyObject], maxVisibleItems: 6)
-            teamsCard.sectionInset = UIEdgeInsetsZero
+            teamsCard.addContent(content: teams as [AnyObject], maxVisibleItems: 3)
+            teamsCard.sectionInset = defaultSectionInset
             teamsCard.addHeader(
                 headerClass: ProfileSectionHeaderCollectionReusableView.self
             )
             appendCard(teamsCard)
         }
+    }
+
+    private func populateData() {
+        resetCards()
+        addPlaceholderCard()
+        addAddressCard()
+        addPeopleCard()
+        addTeamsCard()
     }
     
     private func canEdit() -> Bool {

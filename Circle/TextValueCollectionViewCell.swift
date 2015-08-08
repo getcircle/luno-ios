@@ -43,5 +43,4 @@ class TextValueCollectionViewCell: CircleCollectionViewCell {
             }
         }
     }
-
 }

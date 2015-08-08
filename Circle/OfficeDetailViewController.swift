@@ -106,16 +106,31 @@ class OfficeDetailViewController: DetailViewController,
         let officeDetailDataSource = dataSource as! OfficeDetailDataSource
         switch card.type {
         case .Profiles:
-            let viewController = TeamsOverviewViewController()
-            viewController.dataSource.setInitialData(
-                content: card.allContent,
-                ofType: nil,
-                nextRequest: officeDetailDataSource.nextTeamsRequest
-            )
-            viewController.title = card.title
-            viewController.hidesBottomBarWhenPushed = true
-            trackCardHeaderTapped(card, overviewType: .Teams)
-            navigationController?.pushViewController(viewController, animated: true)
+            if card.content.count > 0 {
+                if let team = card.content.first as? Services.Organization.Containers.TeamV1 {
+                    let viewController = TeamsOverviewViewController()
+                    viewController.dataSource.setInitialData(
+                        content: card.allContent,
+                        ofType: nil,
+                        nextRequest: officeDetailDataSource.nextTeamsRequest
+                    )
+                    viewController.title = card.title
+                    trackCardHeaderTapped(card, overviewType: .Teams)
+                    navigationController?.pushViewController(viewController, animated: true)
+                }
+                else if let profile = card.content.first as? Services.Profile.Containers.ProfileV1 {
+                    let viewController = ProfilesViewController()
+                    viewController.dataSource.setInitialData(
+                        content: card.allContent,
+                        ofType: nil,
+                        nextRequest: officeDetailDataSource.nextProfilesRequest
+                    )
+                    viewController.title = card.title
+                    trackCardHeaderTapped(card, overviewType: .Profiles)
+                    navigationController?.pushViewController(viewController, animated: true)                
+                }
+            }
+            
         default:
             break
         }
