@@ -11,7 +11,6 @@ import ProtobufRegistry
 
 class ProfileDetailViewController:
     DetailViewController,
-    CardFooterViewDelegate,
     CardHeaderViewDelegate
 {
 
@@ -42,7 +41,6 @@ class ProfileDetailViewController:
     
     override func configureCollectionView() {
         collectionView.dataSource = dataSource
-        dataSource.cardFooterDelegate = self
         
         collectionView.delegate = delegate
         (layout as! StickyHeaderCollectionViewLayout).headerHeight = ProfileHeaderCollectionReusableView.height
@@ -138,15 +136,7 @@ class ProfileDetailViewController:
             profileHeaderView.adjustViewForScrollContentOffset(scrollView.contentOffset)
         }
     }
-    
-    
-    // MARK: - CardFooterViewDelegate
-    
-    func cardFooterTapped(card: Card!) {
-        card.toggleShowingFullContent()
-        collectionView.reloadSections(NSIndexSet(index: card.cardIndex))
-    }
-    
+
     // MARK: - Notifications
     
     override func registerNotifications() {

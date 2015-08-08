@@ -167,7 +167,6 @@ class GroupDetailDataSource: CardDataSource {
                 let groupMembersCard = Card(
                     cardType: .Profiles,
                     title: title,
-                    addDefaultFooter: false,
                     contentCount: nextRequest?.getPaginator().countAsInt() ?? cardContent.count,
                     showContentCount: true
                 )

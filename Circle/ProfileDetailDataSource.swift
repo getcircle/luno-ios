@@ -13,8 +13,6 @@ class ProfileDetailDataSource: CardDataSource {
 
     var profile: Services.Profile.Containers.ProfileV1!
     var profileHeaderView: ProfileHeaderCollectionReusableView?
-
-    internal var sections = [Section]()
     
     private(set) var address: Services.Organization.Containers.AddressV1?
     private(set) var groups: Array<Services.Group.Containers.GroupV1>?

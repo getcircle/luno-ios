@@ -33,8 +33,7 @@ class SettingsDataSource: CardDataSource {
         // Security card
         var securityCard = Card(
             cardType: .Settings,
-            title: NSLocalizedString("Security", comment: "Title of section related to security settings"),
-            addDefaultFooter: false
+            title: NSLocalizedString("Security", comment: "Title of section related to security settings")
         )
         securityCard.addHeader(headerClass: sectionHeaderClass)
         securityCard.sectionInset = sectionInset
@@ -50,8 +49,7 @@ class SettingsDataSource: CardDataSource {
         // Contact card
         var contactCard = Card(
             cardType: .Settings,
-            title: NSLocalizedString("Contact", comment: "Title of contact us section"),
-            addDefaultFooter: false
+            title: NSLocalizedString("Contact", comment: "Title of contact us section")
         )
         contactCard.addHeader(headerClass: sectionHeaderClass)
         contactCard.sectionInset = sectionInset
@@ -71,8 +69,7 @@ class SettingsDataSource: CardDataSource {
         // Legal card
         var legalCard = Card(
             cardType: .Settings,
-            title: NSLocalizedString("Legal", comment: "Title of legal section"),
-            addDefaultFooter: false
+            title: NSLocalizedString("Legal", comment: "Title of legal section")
         )
         legalCard.addHeader(headerClass: sectionHeaderClass)
         legalCard.sectionInset = sectionInset
@@ -97,8 +94,7 @@ class SettingsDataSource: CardDataSource {
         if let identities = AuthViewController.getLoggedInUserIdentities() {
             var socialCard = Card(
                 cardType: .SocialToggle,
-                title: "Social",
-                addDefaultFooter: false
+                title: "Social"
             )
             socialCard.addHeader(headerClass: sectionHeaderClass)
             socialCard.sectionInset = sectionInset
@@ -110,8 +106,7 @@ class SettingsDataSource: CardDataSource {
         // Account card
         var logoutCard = Card(
             cardType: .Settings, 
-            title: "Account",
-            addDefaultFooter: false
+            title: "Account"
         )
         logoutCard.addHeader(headerClass: sectionHeaderClass)
         logoutCard.sectionInset = sectionInset
@@ -129,7 +124,7 @@ class SettingsDataSource: CardDataSource {
         appendCard(logoutCard)
         
         // Version card
-        var versionCard = Card(cardType: .Settings, title: "", addDefaultFooter: false)
+        var versionCard = Card(cardType: .Settings, title: "")
         versionCard.addHeader(headerClass: sectionHeaderClass)
         versionCard.sectionInset = sectionInset
         versionCard.showContentCount = false

@@ -26,96 +26,24 @@ class ItemImage {
 }
 
 enum ContentType: Int {
-    case About = 1
-    case Banner
-    case Birthday
+    case Birthday = 1
     case CellPhone
     case ContactPreferences
-    case Education
     case EditTeam
     case Email
     case Facebook
-    case Github
     case Groups
     case HireDate
-    case Interests
     case JoinGroup
     case LeaveGroup
     case LinkedIn
     case LinkedInConnect
-    case Manager
-    case ManagerTeam
     case Office
-    case OfficeTeam
     case Other
-    case PeopleCount
-    case Position
     case RequestGroup
     case SeatingInfo
-    case Skills
-    case Tags
-    case Team
     case Twitter
-    case QuickActions
     case WorkPhone
-}
-
-class SectionItem {
-    var title: String
-    var image: ItemImage?
-    var container: String
-    var containerKey: String
-    var contentType: ContentType!
-    var defaultValue: Any?
-    
-    init(
-        title itemTitle: String,
-        container itemContainer: String,
-        containerKey itemContainerKey: String,
-        contentType type: ContentType,
-        image itemImage: ItemImage?,
-        defaultValue itemDefaultValue: Any? = nil
-        ) {
-            title = itemTitle
-            container = itemContainer
-            containerKey = itemContainerKey
-            image = itemImage
-            contentType = type
-            defaultValue = itemDefaultValue
-    }
-}
-
-class Section {
-    var title: String
-    var items: [SectionItem]
-    var cardType: Card.CardType
-    var addCardHeader: Bool
-    
-    /**
-        If set, data sources add the section even when
-        no content is set. This is primarily applicable 
-        on logged in user's profile where they need to
-        add content for section that are not filled.
-    */
-    var allowEmptyContent: Bool
-    
-    init(
-        title sectionTitle: String,
-        items sectionItems: [SectionItem],
-        cardType sectionCardType: Card.CardType,
-        addCardHeader sectionCardAddHeader: Bool = false,
-        allowEmptyContent sectionCardAllowEmptyContent: Bool? = false
-        ) {
-            title = sectionTitle
-            items = sectionItems
-            cardType = sectionCardType
-            addCardHeader = sectionCardAddHeader
-            allowEmptyContent = sectionCardAllowEmptyContent != nil ? sectionCardAllowEmptyContent! : false
-    }
-    
-    func toString() -> String {
-        return title
-    }
 }
 
 enum CardDataSourceState {

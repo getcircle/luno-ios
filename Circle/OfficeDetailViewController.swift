@@ -11,7 +11,6 @@ import MBProgressHUD
 import ProtobufRegistry
 
 class OfficeDetailViewController: DetailViewController,
-    CardFooterViewDelegate,
     CardHeaderViewDelegate
 {
 
@@ -28,7 +27,6 @@ class OfficeDetailViewController: DetailViewController,
 
     override func configureCollectionView() {
         collectionView.dataSource = dataSource
-        dataSource.cardFooterDelegate = self
         dataSource.cardHeaderDelegate = self
         
         collectionView.delegate = delegate
@@ -42,24 +40,7 @@ class OfficeDetailViewController: DetailViewController,
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let officeDetailDataSource = dataSource as! OfficeDetailDataSource
         if let card = dataSource.cardAtSection(indexPath.section) {
-            switch card.type {
-            case .KeyValue:
-                switch officeDetailDataSource.typeOfContent(indexPath) {
-                case .PeopleCount:
-                    let viewController = ProfilesViewController()
-                    (viewController.dataSource as! ProfilesDataSource).configureForLocation(officeDetailDataSource.location.id)
-                    viewController.dataSource.setInitialData(
-                        content: officeDetailDataSource.profiles,
-                        ofType: nil,
-                        nextRequest: officeDetailDataSource.nextProfilesRequest
-                    )
-                    viewController.title = "People @ " + officeDetailDataSource.location.address.city
-                    navigationController?.pushViewController(viewController, animated: true)
-                    
-                default:
-                    break
-                }
-            
+            switch card.type {            
             case .Profiles:
                 if let team = dataSource.contentAtIndexPath(indexPath) as? Services.Organization.Containers.TeamV1 {
                     showTeamDetail(team)
@@ -93,13 +74,6 @@ class OfficeDetailViewController: DetailViewController,
         }
     }
     
-    // MARK: - CardFooterViewDelegate
-    
-    func cardFooterTapped(card: Card!) {
-        card.toggleShowingFullContent()
-        collectionView.reloadSections(NSIndexSet(index: card.cardIndex))
-    }
-    
     // MARK: - CardHeaderViewDelegate
     
     func cardHeaderTapped(sender: AnyObject!, card: Card!) {
@@ -114,7 +88,7 @@ class OfficeDetailViewController: DetailViewController,
                         ofType: nil,
                         nextRequest: officeDetailDataSource.nextTeamsRequest
                     )
-                    viewController.title = card.title
+                    viewController.title = "Teams @ " + officeDetailDataSource.location.address.city
                     trackCardHeaderTapped(card, overviewType: .Teams)
                     navigationController?.pushViewController(viewController, animated: true)
                 }
@@ -125,7 +99,7 @@ class OfficeDetailViewController: DetailViewController,
                         ofType: nil,
                         nextRequest: officeDetailDataSource.nextProfilesRequest
                     )
-                    viewController.title = card.title
+                    viewController.title = "People @ " + officeDetailDataSource.location.address.city
                     trackCardHeaderTapped(card, overviewType: .Profiles)
                     navigationController?.pushViewController(viewController, animated: true)                
                 }

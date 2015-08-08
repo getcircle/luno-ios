@@ -88,16 +88,7 @@ class OfficeDetailDataSource: CardDataSource {
             profileHeaderView = profileHeader
         }
     }
-    
-    func typeOfContent(indexPath: NSIndexPath) -> ContentType {
-        let card = cards[indexPath.section]
-        if let rowDataDictionary = card.content[indexPath.row] as? [String: AnyObject] {
-            return ContentType(rawValue: (rowDataDictionary["type"] as! Int!))!
-        }
-        
-        return .Other
-    }
-    
+
     // MARK: - Helpers
     
     private func addPlaceholderCard() {
