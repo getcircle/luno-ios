@@ -105,6 +105,7 @@
 		8F15A4021B7573F300693E26 /* EditTeamStatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F15A4011B7573F300693E26 /* EditTeamStatusViewController.swift */; };
 		8F15A4041B75741200693E26 /* EditTeamDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F15A4031B75741200693E26 /* EditTeamDescriptionViewController.swift */; };
 		8F15A4061B75742B00693E26 /* EditLocationDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F15A4051B75742B00693E26 /* EditLocationDescriptionViewController.swift */; };
+		8F15A4081B75889900693E26 /* TextData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F15A4071B75889900693E26 /* TextData.swift */; };
 		8F1D0B701AC5E77900488BD7 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1D0B6F1AC5E77900488BD7 /* WebViewController.swift */; };
 		8F1D0B861AC8AB1200488BD7 /* Loader_00059@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F1D0B851AC8AB1200488BD7 /* Loader_00059@2x.png */; };
 		8F1D0B8F1AC9101100488BD7 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1D0B8D1AC9101100488BD7 /* WelcomeViewController.swift */; };
@@ -451,6 +452,7 @@
 		8F15A4011B7573F300693E26 /* EditTeamStatusViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTeamStatusViewController.swift; sourceTree = "<group>"; };
 		8F15A4031B75741200693E26 /* EditTeamDescriptionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTeamDescriptionViewController.swift; sourceTree = "<group>"; };
 		8F15A4051B75742B00693E26 /* EditLocationDescriptionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditLocationDescriptionViewController.swift; sourceTree = "<group>"; };
+		8F15A4071B75889900693E26 /* TextData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextData.swift; sourceTree = "<group>"; };
 		8F1D0B6F1AC5E77900488BD7 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		8F1D0B851AC8AB1200488BD7 /* Loader_00059@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Loader_00059@2x.png"; sourceTree = "<group>"; };
 		8F1D0B8D1AC9101100488BD7 /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
@@ -892,6 +894,7 @@
 				8F5424101B6B00E000AEFB11 /* SearchCategory.swift */,
 				8F2068901B708DE200E498AC /* SearchSuggestion.swift */,
 				8F2068931B708F7400E498AC /* SearchAction.swift */,
+				8F15A4071B75889900693E26 /* TextData.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1604,6 +1607,7 @@
 				8FF298441A4DF38E00306CFC /* TagScrollingSelectorViewController.swift in Sources */,
 				8F22CBFB1A29AF450026376E /* UIViewExtension.swift in Sources */,
 				8F5933D21ACB5B4300905E14 /* ABTestUtils.m in Sources */,
+				8F15A4081B75889900693E26 /* TextData.swift in Sources */,
 				BF004C501A5CF91200AB8A6F /* Organization.swift in Sources */,
 				BFE213C81A5EE63F0033E2F5 /* Search.swift in Sources */,
 				8F0544AE1ABA3C7800570327 /* TextInputViewController.swift in Sources */,

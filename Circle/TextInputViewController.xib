@@ -23,7 +23,7 @@
                     <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What are you working on?" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zyX-as-QsV" userLabel="PlaceholderLabel">
-                            <rect key="frame" x="21" y="18" width="199" height="24"/>
+                            <rect key="frame" x="21" y="18" width="558" height="24"/>
                             <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
                             <color key="textColor" red="0.62745098039215685" green="0.62745098039215685" blue="0.62745098039215685" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
@@ -50,6 +50,7 @@
                         <constraint firstItem="zyX-as-QsV" firstAttribute="top" secondItem="Yp0-Eg-r2B" secondAttribute="top" constant="18" id="0oj-M2-BQY"/>
                         <constraint firstItem="2W3-xn-7Nn" firstAttribute="top" secondItem="Yp0-Eg-r2B" secondAttribute="top" constant="10" id="3VU-f0-5lR"/>
                         <constraint firstAttribute="trailing" secondItem="0vY-qU-4zk" secondAttribute="trailing" constant="10" id="GQ1-yA-g4e"/>
+                        <constraint firstAttribute="trailing" secondItem="zyX-as-QsV" secondAttribute="trailing" constant="21" id="Mz4-vf-cHk"/>
                         <constraint firstAttribute="bottom" secondItem="0vY-qU-4zk" secondAttribute="bottom" constant="10" id="flL-NM-2pm"/>
                         <constraint firstItem="2W3-xn-7Nn" firstAttribute="leading" secondItem="Yp0-Eg-r2B" secondAttribute="leading" constant="15" id="fpD-Nc-bzh"/>
                         <constraint firstAttribute="trailing" secondItem="2W3-xn-7Nn" secondAttribute="trailing" constant="15" id="jcY-Ol-Eoa"/>

@@ -16,11 +16,13 @@ class TeamDetailDataSource: CardDataSource {
     
     private(set) var profileHeaderView: ProfileHeaderCollectionReusableView?
 
-    private var ownerProfile: Services.Profile.Containers.ProfileV1!
+    private var managerProfile: Services.Profile.Containers.ProfileV1!
     private var profiles = Array<Services.Profile.Containers.ProfileV1>()
-    private let sectionInset = UIEdgeInsetsMake(0.0, 0.0, 25.0, 0.0)
     private var teams = Array<Services.Organization.Containers.TeamV1>()
     
+    private let sectionInset = UIEdgeInsetsMake(0.0, 0.0, 25.0, 0.0)
+    private let sectionHeaderClass = ProfileSectionHeaderCollectionReusableView.self
+
     // MARK: - Load Data
     
     override func loadData(completionHandler: (error: NSError?) -> Void) {
@@ -35,7 +37,7 @@ class TeamDetailDataSource: CardDataSource {
             var storedError: NSError!
             var actionsGroup = dispatch_group_create()
             
-            // Fetch owners and members
+            // Fetch managers and members
             dispatch_group_enter(actionsGroup)
             Services.Organization.Actions.getTeam(team.id) { (team, error) -> Void in
                 if let error = error {
@@ -53,15 +55,15 @@ class TeamDetailDataSource: CardDataSource {
                     storedError = error
                 }
                 else {
-                    var allProfilesExceptOwner = profiles?.filter({ (profile) -> Bool in
+                    var allProfilesExceptManager = profiles?.filter({ (profile) -> Bool in
                         if profile.userId == self.team.ownerId {
-                            self.ownerProfile = profile
+                            self.managerProfile = profile
                             return false
                         }
                         return true
                     })
                     
-                    self.profiles = allProfilesExceptOwner!
+                    self.profiles = allProfilesExceptManager!
                 }
                 dispatch_group_leave(actionsGroup)
             }
@@ -104,25 +106,7 @@ class TeamDetailDataSource: CardDataSource {
         appendCard(placeholderHeaderCard)
     }
     
-    private func addTeamActionsCard() {
-        
-        // Add team actions card
-        if canEdit() {
-            let teamActionsCard = Card(cardType: .Settings, title: "")
-            teamActionsCard.sectionInset = UIEdgeInsetsMake(25.0, 0.0, 25.0, 0.0)
-            teamActionsCard.addContent(content: [[
-                "text" : AppStrings.TeamEditButtonTitle,
-                "type": ContentType.EditTeam.rawValue
-            ]])
-            appendCard(teamActionsCard)
-        }
-    }
-    
-    private func populateData() {
-        resetCards()
-        addPlaceholderCard()
-        let sectionHeaderClass = ProfileSectionHeaderCollectionReusableView.self
-        
+    private func addStatusCard() {
         // hasStatus on the object is not returning correct value
         var hasStatus = false
         if let status = team.status {
@@ -134,7 +118,9 @@ class TeamDetailDataSource: CardDataSource {
             let statusCard = Card(cardType: .TextValue, title: "Status")
             statusCard.sectionInset = self.sectionInset
             if let status = team.status where team.status.value.trimWhitespace() != "" {
-                statusCard.addContent(content: [status.value])
+                statusCard.addContent(content: [
+                    TextData(type: .TeamStatus, andValue: status.value)
+                ])
             }
             
             if canEdit() {
@@ -142,19 +128,42 @@ class TeamDetailDataSource: CardDataSource {
                 statusCard.addHeader(headerClass: sectionHeaderClass)
                 statusCard.allowEditingContent = true
             }
-
+            
             appendCard(statusCard)
         }
-        
-        if let owner = self.ownerProfile {
-            let ownerCard = Card(cardType: .Profiles, title: "Manager")
-            ownerCard.showContentCount = false
-            ownerCard.addHeader(headerClass: sectionHeaderClass)
-            ownerCard.addContent(content: [self.ownerProfile])
-            ownerCard.sectionInset = self.sectionInset
-            self.appendCard(ownerCard)
-        }
+    }
+    
+    private func addDescriptionCard() {
+        if team.description_.trimWhitespace() != "" || canEdit() {
+            
+            let descriptionCard = Card(cardType: .TextValue, title: "Description")
+            descriptionCard.sectionInset = self.sectionInset
+            descriptionCard.addContent(content: [
+                TextData(type: .TeamDescription, andValue: team.description_)
+            ])
 
+            if canEdit() {
+                descriptionCard.showContentCount = false
+                descriptionCard.addHeader(headerClass: sectionHeaderClass)
+                descriptionCard.allowEditingContent = true
+            }
+            
+            appendCard(descriptionCard)
+        }
+    }
+    
+    private func addManagerCard() {
+        if let manager = self.managerProfile {
+            let managerCard = Card(cardType: .Profiles, title: "Manager")
+            managerCard.showContentCount = false
+            managerCard.addHeader(headerClass: sectionHeaderClass)
+            managerCard.addContent(content: [self.managerProfile])
+            managerCard.sectionInset = self.sectionInset
+            self.appendCard(managerCard)
+        }
+    }
+    
+    private func addSubTeamsCard() {
         if teams.count > 0 {
             var teamsCard = Card(
                 cardType: .Profiles,
@@ -166,7 +175,9 @@ class TeamDetailDataSource: CardDataSource {
             teamsCard.sectionInset = sectionInset
             appendCard(teamsCard)
         }
-
+    }
+    
+    private func addMembersCard() {
         if profiles.count > 0 {
             let membersCardTitle = AppStrings.GroupMembersSectionTitle.localizedUppercaseString()
             let membersCard = Card(
@@ -179,7 +190,30 @@ class TeamDetailDataSource: CardDataSource {
             membersCard.sectionInset = self.sectionInset
             appendCard(membersCard)
         }
+    }
+    
+    private func addTeamActionsCard() {
         
+        // Add team actions card
+        if canEdit() {
+            let teamActionsCard = Card(cardType: .Settings, title: "")
+            teamActionsCard.sectionInset = UIEdgeInsetsMake(25.0, 0.0, 25.0, 0.0)
+            teamActionsCard.addContent(content: [[
+                "text" : AppStrings.TeamEditButtonTitle,
+                "type": ContentType.EditTeam.rawValue
+                ]])
+            appendCard(teamActionsCard)
+        }
+    }
+    
+    private func populateData() {
+        resetCards()
+        addPlaceholderCard()
+        addStatusCard()
+        addDescriptionCard()
+        addManagerCard()
+        addSubTeamsCard()
+        addMembersCard()
         addTeamActionsCard()
     }
 

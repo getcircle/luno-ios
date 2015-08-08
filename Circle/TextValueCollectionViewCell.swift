@@ -26,6 +26,7 @@ class TextValueCollectionViewCell: CircleCollectionViewCell {
         super.awakeFromNib()
         
         selectedBackgroundView = nil
+        textLabel.text = ""
     }
 
     override func intrinsicContentSize() -> CGSize {
@@ -36,9 +37,9 @@ class TextValueCollectionViewCell: CircleCollectionViewCell {
     }
     
     override func setData(data: AnyObject) {
-        if let value = data as? String {
-            if value != "" {
-                textLabel.text = value
+        if let textData = data as? TextData {
+            if textData.value.trimWhitespace() != "" {
+                textLabel.text = "\"" + textData.value + "\""
             }
         }
     }

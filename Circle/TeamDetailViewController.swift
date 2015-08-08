@@ -139,10 +139,38 @@ class TeamDetailViewController:
     func cardHeaderTapped(sender: AnyObject!, card: Card!) {
         switch card.type {
         case .TextValue:
-            let editStatusViewController = EditTeamStatusViewController(addCharacterLimit: true)
-            editStatusViewController.team = (dataSource as! TeamDetailDataSource).team
-            let editStatusViewNavController = UINavigationController(rootViewController: editStatusViewController)
-            navigationController?.presentViewController(editStatusViewNavController, animated: true, completion: nil)
+            if card.content.count > 0 {
+                if let data = card.content.first as? TextData {
+                    switch data.type {
+                    case .TeamStatus:
+                        let editStatusViewController = EditTeamStatusViewController(addCharacterLimit: true)
+                        editStatusViewController.team = (dataSource as! TeamDetailDataSource).team
+                        let editStatusViewNavController = UINavigationController(
+                            rootViewController: editStatusViewController
+                        )
+                        navigationController?.presentViewController(
+                            editStatusViewNavController, 
+                            animated: true, 
+                            completion: nil
+                        )
+
+                    case .TeamDescription:
+                        let editDescriptionViewController = EditTeamDescriptionViewController(addCharacterLimit: false)
+                        editDescriptionViewController.team = (dataSource as! TeamDetailDataSource).team
+                        let editDescriptionViewNavController = UINavigationController(
+                            rootViewController: editDescriptionViewController
+                        )
+                        navigationController?.presentViewController(
+                            editDescriptionViewNavController,
+                            animated: true,
+                            completion: nil
+                        )
+
+                    default:
+                        break
+                    }
+                }
+            }
             break
             
         default:

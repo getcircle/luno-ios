@@ -116,7 +116,9 @@ class ProfileDetailDataSource: CardDataSource {
         
         let card = Card(cardType: .TextValue, title: "Status")
         card.sectionInset = sectionInsetWithLargerBootomMargin
-        card.addContent(content: [statusText] as [AnyObject])
+        card.addContent(content: [
+            TextData(type: .ProfileStatus, andValue: statusText)
+        ])
         appendCard(card)
         return card
     }
