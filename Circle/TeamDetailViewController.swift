@@ -10,7 +10,10 @@ import UIKit
 import MBProgressHUD
 import ProtobufRegistry
 
-class TeamDetailViewController: DetailViewController, EditTeamViewControllerDelegate {
+class TeamDetailViewController:
+    DetailViewController,
+    EditTeamViewControllerDelegate,
+    CardHeaderViewDelegate {
 
     // MARK: - Initialization
     
@@ -26,6 +29,7 @@ class TeamDetailViewController: DetailViewController, EditTeamViewControllerDele
     override func configureCollectionView() {
         // Data Source
         collectionView.dataSource = dataSource
+        dataSource.cardHeaderDelegate = self
         
         // Delegate
         collectionView.delegate = delegate
@@ -77,6 +81,25 @@ class TeamDetailViewController: DetailViewController, EditTeamViewControllerDele
         loadData()
     }
     
+    // MARK: - Notifications
+    
+    override func registerNotifications() {
+        NSNotificationCenter.defaultCenter().addObserver(
+            self, 
+            selector: "loadData",
+            name: TeamServiceNotifications.onTeamUpdatedNotification, 
+            object: nil
+        )
+    }
+    
+    override func unregisterNotifications() {
+        NSNotificationCenter.defaultCenter().removeObserver(
+            self,
+            name: TeamServiceNotifications.onTeamUpdatedNotification,
+            object: nil
+        )
+    }
+    
     // Image Upload
     
     internal override func handleImageUpload(completion: () -> Void) {
@@ -108,6 +131,22 @@ class TeamDetailViewController: DetailViewController, EditTeamViewControllerDele
             if let headerView = dataSource.profileHeaderView {
                 headerView.setTeam(dataSource.team)
             }
+        }
+    }
+    
+    // MARK: - CardHeaderViewDelegate
+    
+    func cardHeaderTapped(sender: AnyObject!, card: Card!) {
+        switch card.type {
+        case .TextValue:
+            let editStatusViewController = EditTeamStatusViewController(addCharacterLimit: true)
+            editStatusViewController.team = (dataSource as! TeamDetailDataSource).team
+            let editStatusViewNavController = UINavigationController(rootViewController: editStatusViewController)
+            navigationController?.presentViewController(editStatusViewNavController, animated: true, completion: nil)
+            break
+            
+        default:
+            break
         }
     }
 }

@@ -37,6 +37,17 @@ class TeamDetailDataSource: CardDataSource {
             
             // Fetch owners and members
             dispatch_group_enter(actionsGroup)
+            Services.Organization.Actions.getTeam(team.id) { (team, error) -> Void in
+                if let error = error {
+                    storedError = error
+                }
+                else {
+                    self.team = team
+                }
+                dispatch_group_leave(actionsGroup)
+            }
+
+            dispatch_group_enter(actionsGroup)
             Services.Profile.Actions.getProfiles(team!.id) { (profiles, _, error) -> Void in
                 if let error = error {
                     storedError = error
@@ -86,7 +97,7 @@ class TeamDetailDataSource: CardDataSource {
         
         // Add a placeholder card for header view
         let placeholderHeaderCard = Card(cardType: .Placeholder, title: "")
-        placeholderHeaderCard.sectionInset = UIEdgeInsetsZero
+        placeholderHeaderCard.sectionInset = self.sectionInset
         placeholderHeaderCard.addHeader(
             headerClass: ProfileHeaderCollectionReusableView.self
         )
@@ -98,7 +109,7 @@ class TeamDetailDataSource: CardDataSource {
         // Add team actions card
         if canEdit() {
             let teamActionsCard = Card(cardType: .Settings, title: "")
-            teamActionsCard.sectionInset = UIEdgeInsetsMake(25.0, 0.0, 40.0, 0.0)
+            teamActionsCard.sectionInset = UIEdgeInsetsMake(25.0, 0.0, 25.0, 0.0)
             teamActionsCard.addContent(content: [[
                 "text" : AppStrings.TeamEditButtonTitle,
                 "type": ContentType.EditTeam.rawValue
@@ -110,15 +121,40 @@ class TeamDetailDataSource: CardDataSource {
     private func populateData() {
         resetCards()
         addPlaceholderCard()
+        let sectionHeaderClass = ProfileSectionHeaderCollectionReusableView.self
+        
+        // hasStatus on the object is not returning correct value
+        var hasStatus = false
+        if let status = team.status {
+            hasStatus = true
+        }
+        
+        if hasStatus || canEdit() {
+            
+            let statusCard = Card(cardType: .TextValue, title: "Status")
+            statusCard.sectionInset = self.sectionInset
+            if let status = team.status where team.status.value.trimWhitespace() != "" {
+                statusCard.addContent(content: [status.value])
+            }
+            
+            if canEdit() {
+                statusCard.showContentCount = false
+                statusCard.addHeader(headerClass: sectionHeaderClass)
+                statusCard.allowEditingContent = true
+            }
+
+            appendCard(statusCard)
+        }
         
         if let owner = self.ownerProfile {
-            let ownerCard = Card(cardType: .Profiles, title: "")
+            let ownerCard = Card(cardType: .Profiles, title: "Manager")
+            ownerCard.showContentCount = false
+            ownerCard.addHeader(headerClass: sectionHeaderClass)
             ownerCard.addContent(content: [self.ownerProfile])
             ownerCard.sectionInset = self.sectionInset
             self.appendCard(ownerCard)
         }
-        
-        let sectionHeaderClass = ProfileSectionHeaderCollectionReusableView.self
+
         if teams.count > 0 {
             var teamsCard = Card(
                 cardType: .Profiles,
@@ -162,6 +198,11 @@ class TeamDetailDataSource: CardDataSource {
             }
             teamHeader.setTeam(team)
             profileHeaderView = teamHeader
+        }
+        
+        if let headerView = header as? ProfileSectionHeaderCollectionReusableView,
+            card = cardAtSection(indexPath.section) where card.allowEditingContent && canEdit() {
+            headerView.showAddEditButton = true
         }
     }
     

@@ -9,10 +9,32 @@
 import Foundation
 import ProtobufRegistry
 
+struct TeamServiceNotifications {
+    static let onTeamUpdatedNotification = "com.rhlabs.notification:onTeamUpdatedNotification"
+}
+
+typealias GetTeamCompletionHandler = (team: Services.Organization.Containers.TeamV1?, error: NSError?) -> Void
 typealias UpdateTeamCompletionHandler = (team: Services.Organization.Containers.TeamV1?, error: NSError?) -> Void
 
 extension Services.Organization.Actions {
 
+    static func getTeam(teamId: String, completionHandler: GetTeamCompletionHandler?) {
+        let requestBuilder = Services.Organization.Actions.GetTeam.RequestV1.builder()
+        requestBuilder.teamId = teamId
+        
+        let client = ServiceClient(serviceName: "organization")
+        client.callAction(
+            "get_team",
+            extensionField: Services.Registry.Requests.Organization.getTeam(),
+            requestBuilder: requestBuilder
+        ) { (_, _, wrapped, error) -> Void in
+            let response = wrapped?.response?.result.getExtension(
+                Services.Registry.Responses.Organization.getTeam()
+            ) as? Services.Organization.Actions.GetTeam.ResponseV1
+            completionHandler?(team: response?.team, error: error)
+        }
+    }
+    
     static func updateTeam(team: Services.Organization.Containers.TeamV1, completionHandler: UpdateTeamCompletionHandler?) {
         let requestBuilder = Services.Organization.Actions.UpdateTeam.RequestV1.builder()
         requestBuilder.team = team
@@ -21,11 +43,18 @@ extension Services.Organization.Actions {
         client.callAction(
             "update_team",
             extensionField: Services.Registry.Requests.Organization.updateTeam(),
-            requestBuilder: requestBuilder) { (_, _, wrapped, error) -> Void in
-                let response = wrapped?.response?.result.getExtension(
-                    Services.Registry.Responses.Organization.updateTeam()
-                ) as? Services.Organization.Actions.UpdateTeam.ResponseV1
-                completionHandler?(team: response?.team, error: error)
+            requestBuilder: requestBuilder
+        ) { (_, _, wrapped, error) -> Void in
+            let response = wrapped?.response?.result.getExtension(
+                Services.Registry.Responses.Organization.updateTeam()
+            ) as? Services.Organization.Actions.UpdateTeam.ResponseV1
+            completionHandler?(team: response?.team, error: error)
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                NSNotificationCenter.defaultCenter().postNotificationName(
+                    TeamServiceNotifications.onTeamUpdatedNotification,
+                    object: nil
+                )
+            })
         }
     }
 }

@@ -1,5 +1,5 @@
 //
-//  EditAboutViewController.swift
+//  TextInputViewController.swift
 //  Circle
 //
 //  Created by Ravi Rani on 3/18/15.
@@ -10,15 +10,14 @@ import UIKit
 import ProtobufRegistry
 import MBProgressHUD
 
-class EditAboutViewController: UIViewController, UITextViewDelegate {
+class TextInputViewController: UIViewController, UITextViewDelegate {
 
     enum Themes {
         case Onboarding
         case Regular
     }
-
+    
     var addNextButton: Bool = false
-    var profile: Services.Profile.Containers.ProfileV1!
     var theme: Themes = .Regular
     
     @IBOutlet weak private(set) var characterLimitLabel: UILabel!
@@ -27,13 +26,15 @@ class EditAboutViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak private(set) var placeholderLabel: UILabel!
     @IBOutlet weak private(set) var textView: UITextView!
 
+    internal let characterLimit = 144
+    
     private var allControls = [AnyObject]()
     private var addCharacterLimit: Bool
-    private let characterLimit = 144
+    private var hud: MBProgressHUD?
 
     init(addCharacterLimit: Bool) {
         self.addCharacterLimit = addCharacterLimit
-        super.init(nibName: "EditAboutViewController", bundle: nil)
+        super.init(nibName: "TextInputViewController", bundle: nil)
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -45,11 +46,12 @@ class EditAboutViewController: UIViewController, UITextViewDelegate {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        assert(profile != nil, "Profile should be set for this view controller")
+        assertRequiredData()
         registerNotifications()
         configureView()
         configureNavigationBar()
         configureTextFields()
+        configurePlaceholderLabel()
         configureCharacterLimitLabel()
         populateData()
     }
@@ -78,7 +80,8 @@ class EditAboutViewController: UIViewController, UITextViewDelegate {
     }
     
     private func configureNavigationBar() {
-        title = AppStrings.ProfileSectionStatusTitle
+        title = getViewTitle()
+        
         if addNextButton {
             addNextButtonWithAction("done:")
         }
@@ -93,6 +96,7 @@ class EditAboutViewController: UIViewController, UITextViewDelegate {
     
     private func configureTextFields() {
         allControls.append(textView)
+        textView.text = ""
         
         switch theme {
         case .Regular:
@@ -112,9 +116,13 @@ class EditAboutViewController: UIViewController, UITextViewDelegate {
         }
     }
     
+    private func configurePlaceholderLabel() {
+        placeholderLabel.text = getTextPlaceholder()
+    }
+    
     private func populateData() {
-        if profile.hasStatus {
-            textView.text = profile.status.value
+        if let data = getData() {
+            textView.text = data
             placeholderLabel.hidden = true
         }
     }
@@ -159,14 +167,13 @@ class EditAboutViewController: UIViewController, UITextViewDelegate {
     // MARK: - IBActions
     
     @IBAction func done(sender: AnyObject!) {
-        updateProfile { () -> Void in
-            if self.addNextButton {
-                self.goToNextVC()
-            }
-            else {
-                self.dismissView()
-            }
+        let data = textView.text.trimWhitespace()
+        if count(data) > characterLimit && addCharacterLimit {
+            return
         }
+
+        hud = MBProgressHUD.showHUDAddedTo(view, animated: true)
+        saveData(data)
     }
 
     @IBAction func cancel(sender: AnyObject!) {
@@ -221,32 +228,37 @@ class EditAboutViewController: UIViewController, UITextViewDelegate {
         }
     }
     
-    private func updateProfile(completion: () -> Void) {
-        let statusBuilder: Services.Profile.Containers.ProfileStatusV1Builder
-        if let status = profile.status {
-            statusBuilder = status.toBuilder()
+    internal func assertRequiredData() {
+        fatalError("Must be implemented by subclasses")
+    }
+    
+    internal func getViewTitle() -> String {
+        fatalError("Must be implemented by subclasses")
+    }
+    
+    internal func getTextPlaceholder() -> String {
+        fatalError("Must be implemented by subclasses")
+    }
+    
+    internal func getData() -> String? {
+        fatalError("Must be implemented by subclasses")
+    }
+
+    internal func saveData(data: String) {
+        fatalError("Must be implemented by subclasses")
+    }
+    
+    
+    final internal func onDataSaved() {
+        if let hud = self.hud {
+            hud.hide(true)
+        }
+        
+        if addNextButton {
+            goToNextVC()
         }
         else {
-            statusBuilder = Services.Profile.Containers.ProfileStatusV1Builder()
-        }
-        
-        let profileBuilder = profile.toBuilder()
-        let statusText = textView.text.trimWhitespace()
-        if count(statusText) > characterLimit {
-            return
-        }
-        if statusText != "" {
-            statusBuilder.value = statusText
-        }
-        
-        profileBuilder.status = statusBuilder.build()
-        let hud = MBProgressHUD.showHUDAddedTo(view, animated: true)
-        Services.Profile.Actions.updateProfile(profileBuilder.build()) { (profile, error) -> Void in
-            if let profile = profile {
-                AuthViewController.updateUserProfile(profile)
-            }
-            hud.hide(true)
-            completion()
+            dismissView()
         }
     }
     
