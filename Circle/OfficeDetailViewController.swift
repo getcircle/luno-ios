@@ -10,8 +10,10 @@ import UIKit
 import MBProgressHUD
 import ProtobufRegistry
 
-class OfficeDetailViewController: DetailViewController,
-    CardHeaderViewDelegate
+class OfficeDetailViewController:
+    DetailViewController,
+    CardHeaderViewDelegate,
+    ProfileSelectorDelegate
 {
 
     // MARK: - Initialization
@@ -122,36 +124,52 @@ class OfficeDetailViewController: DetailViewController,
             break
             
         case .Profiles:
-            if card.content.count > 0 {
-                if let team = card.content.first as? Services.Organization.Containers.TeamV1 {
-                    let viewController = TeamsOverviewViewController()
-                    viewController.dataSource.setInitialData(
-                        content: card.allContent,
-                        ofType: nil,
-                        nextRequest: officeDetailDataSource.nextTeamsRequest
-                    )
-                    viewController.title = "Teams @ " + officeDetailDataSource.location.address.city
-                    trackCardHeaderTapped(card, overviewType: .Teams)
-                    navigationController?.pushViewController(viewController, animated: true)
+            switch card.subType {
+            case .Members:
+                let viewController = ProfilesViewController()
+                viewController.dataSource.setInitialData(
+                    content: card.allContent,
+                    ofType: nil,
+                    nextRequest: officeDetailDataSource.nextProfilesRequest
+                )
+                viewController.title = "People @ " + officeDetailDataSource.location.address.city
+                trackCardHeaderTapped(card, overviewType: .Profiles)
+                navigationController?.pushViewController(viewController, animated: true)
+            
+            case .Teams:
+                let viewController = TeamsOverviewViewController()
+                viewController.dataSource.setInitialData(
+                    content: card.allContent,
+                    ofType: nil,
+                    nextRequest: officeDetailDataSource.nextTeamsRequest
+                )
+                viewController.title = "Teams @ " + officeDetailDataSource.location.address.city
+                trackCardHeaderTapped(card, overviewType: .Teams)
+                navigationController?.pushViewController(viewController, animated: true)
+
+            case .PointsOfContact:
+                let profilesSelectorViewController = ProfilesSelectorViewController()
+                (profilesSelectorViewController.dataSource as! ProfilesDataSource).configureForLocation(
+                    officeDetailDataSource.location.id
+                )
+                if let profiles = card.allContent as? Array<Services.Profile.Containers.ProfileV1> {
+                    profilesSelectorViewController.selectedProfiles = profiles
                 }
-                else if let profile = card.content.first as? Services.Profile.Containers.ProfileV1 {
-                    let viewController = ProfilesViewController()
-                    viewController.dataSource.setInitialData(
-                        content: card.allContent,
-                        ofType: nil,
-                        nextRequest: officeDetailDataSource.nextProfilesRequest
-                    )
-                    viewController.title = "People @ " + officeDetailDataSource.location.address.city
-                    trackCardHeaderTapped(card, overviewType: .Profiles)
-                    navigationController?.pushViewController(viewController, animated: true)                
-                }
+                profilesSelectorViewController.addSearchFilterView = false
+                profilesSelectorViewController.profileSelectorDelegate = self
+                profilesSelectorViewController.title = "Points of Contact"
+                let addMemberNavController = UINavigationController(rootViewController: profilesSelectorViewController)
+                navigationController?.presentViewController(addMemberNavController, animated: true, completion: nil)
+                
+            default:
+                break
             }
             
         default:
             break
         }
     }
-    
+
     // MARK: - Tracking
     
     func trackCardHeaderTapped(card: Card, overviewType: TrackerProperty.OverviewType) {
@@ -199,5 +217,28 @@ class OfficeDetailViewController: DetailViewController,
                 headerView.setOffice(dataSource.location)
             }
         }
+    }
+    
+    // MARK: - ProfilesSelectorDelegate
+    
+    func onSelectedProfiles(profiles: Array<Services.Profile.Containers.ProfileV1>) -> Bool {
+        if let presentedViewController = presentedViewController, officeDataSource = dataSource as? OfficeDetailDataSource {
+            let hud = MBProgressHUD.showHUDAddedTo(presentedViewController.view, animated: true)
+            let locationBuilder = (dataSource as! OfficeDetailDataSource).location.toBuilder()
+            locationBuilder.pointsOfContact = profiles
+            
+            Services.Organization.Actions.updateLocation(locationBuilder.build(), completionHandler: { (location, error) -> Void in
+                hud.hide(true)
+                if let location = location where error == nil {
+                    officeDataSource.location = location
+                    self.loadData()
+                    presentedViewController.dismissViewControllerAnimated(true, completion: nil)
+                }
+            })
+            
+            return false
+        }
+        
+        return true
     }
 }

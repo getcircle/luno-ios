@@ -125,11 +125,7 @@ class CardDataSource: NSObject, UICollectionViewDataSource {
     func setInitialData(content: [AnyObject], ofType: Card.CardType? = .Profiles) {
         fatalError("All subclasses need to override this")
     }
-    
-    func setInitialData(#content: [AnyObject], ofType: Card.CardType? = .Profiles, withMetaData metaData:AnyObject? = nil) {
-        fatalError("All subclasses need to override this")
-    }
-    
+        
     func setInitialData(#content: [AnyObject], ofType: Card.CardType? = .Profiles, nextRequest withNextRequest: Soa.ServiceRequestV1?) {
         fatalError("All subclasses need to override this")
     }

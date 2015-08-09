@@ -29,6 +29,7 @@ class OfficeDetailDataSource: CardDataSource {
         resetCards()
         addPlaceholderCard()
         
+        println("Updating LOCATION DATA")
         // Fetch data within a dispatch group, calling populateData when all tasks have finished
         var storedError: NSError!
         var actionsGroup = dispatch_group_create()
@@ -134,10 +135,28 @@ class OfficeDetailDataSource: CardDataSource {
         }
     }
     
+    private func addPointOfContactCard() {
+        if location.pointsOfContact.count > 0 || canEdit() {
+            let pointsOfContactCard = Card(cardType: .Profiles, subType: .PointsOfContact, title: "Points of Contact")
+            pointsOfContactCard.sectionInset = defaultSectionInset
+            if location.pointsOfContact.count > 0 {
+                pointsOfContactCard.addContent(content: location.pointsOfContact)
+            }
+            
+            if canEdit() {
+                pointsOfContactCard.showContentCount = false
+                pointsOfContactCard.addHeader(headerClass: sectionHeaderClass)
+                pointsOfContactCard.allowEditingContent = true
+            }
+            appendCard(pointsOfContactCard)
+        }
+    }
+    
     private func addPeopleCard() {
         if profiles.count > 0 {
             let profilesCard = Card(
-                cardType: .Profiles, 
+                cardType: .Profiles,
+                subType: .Members,
                 title: AppStrings.CardTitlePeople, 
                 contentCount: Int(location.profileCount)
             )
@@ -153,6 +172,7 @@ class OfficeDetailDataSource: CardDataSource {
         if teams.count > 0 {
             let teamsCard = Card(
                 cardType: .Profiles,
+                subType: .Teams,
                 title: AppStrings.CardTitleOfficeTeam,
                 contentCount: nextTeamsRequest?.getPaginator().countAsInt() ?? teams.count
             )
@@ -168,6 +188,7 @@ class OfficeDetailDataSource: CardDataSource {
         addPlaceholderCard()
         addAddressCard()
         addDescriptionCard()
+        addPointOfContactCard()
         addPeopleCard()
         addTeamsCard()
     }

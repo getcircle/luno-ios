@@ -16,7 +16,7 @@ class ProfilesDataSource: CardDataSource {
     
     private var card: Card!
     private var cardType: Card.CardType = UIDevice.currentDevice().userInterfaceIdiom == .Pad ? .ProfilesGrid : .Profiles
-    private var profiles = Array<Services.Profile.Containers.ProfileV1>()
+    private(set) var profiles = Array<Services.Profile.Containers.ProfileV1>()
     
     // MARK: - Configuration
     
@@ -82,7 +82,7 @@ class ProfilesDataSource: CardDataSource {
 
     // MARK: - Set Initial Data
     
-    override func setInitialData(content: [AnyObject], ofType: Card.CardType?) {
+    override func setInitialData(content: [AnyObject], ofType: Card.CardType? = .Profiles) {
         profiles.extend(content as! [Services.Profile.Containers.ProfileV1])
         if let type = ofType {
             cardType = type

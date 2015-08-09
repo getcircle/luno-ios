@@ -19,7 +19,7 @@ class ProfilesSelectorViewController: ProfilesViewController,
     TokenFieldDataSource,
     TokenFieldDelegate
 {
-    private var selectedProfiles = Array<Services.Profile.Containers.ProfileV1>()
+    var selectedProfiles = Array<Services.Profile.Containers.ProfileV1>()
     private var selectedProfileIDs = Set<String>()
     private var tokenField: TokenField!
     private var tokenFieldBottomBorder: UIView!
@@ -38,11 +38,20 @@ class ProfilesSelectorViewController: ProfilesViewController,
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureLocalState()
         configureNavigationBar()
         configureTokenField()
     }
 
     // MARK: Configuration
+    
+    private func configureLocalState() {
+        if selectedProfiles.count > 0 {
+            for profile in selectedProfiles {
+                selectedProfileIDs.insert(profile.id)
+            }
+        }
+    }
     
     private func configureNavigationBar() {
         addDoneButtonWithAction("doneButtonTapped:")

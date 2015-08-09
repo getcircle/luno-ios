@@ -31,7 +31,7 @@ extension Services.Organization.Actions {
                 requestBuilder: requestBuilder
             ) { (_, _, wrapped, error) -> Void in
                 let response = wrapped?.response?.result.getExtension(
-                    Services.Registry.Responses.Profile.updateProfile()
+                    Services.Registry.Responses.Organization.updateLocation()
                 ) as? Services.Organization.Actions.UpdateLocation.ResponseV1
                 completionHandler?(location: response?.location, error: error)
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
@@ -42,5 +42,4 @@ extension Services.Organization.Actions {
                 })
             }
     }
-
 }

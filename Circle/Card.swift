@@ -59,6 +59,7 @@ class Card: Equatable {
     }
     private(set) var title: String
     private(set) var type: CardType
+    private(set) var subType: CardSubType = .None
 
     enum CardContentType {
         case Flat
@@ -254,6 +255,13 @@ class Card: Equatable {
             }
         }
     }
+    
+    enum CardSubType: String {
+        case Members = "Members"
+        case Teams = "Teams"
+        case PointsOfContact = "PointsOfContact"
+        case None = "None"
+    }
 
     required init(
         cardType: CardType,
@@ -300,6 +308,25 @@ class Card: Equatable {
             showContentCount: withShowContentCount
         )
     }
+    
+    convenience init(
+        cardType: CardType,
+        subType withSubType: CardSubType,
+        title withTitle: String,
+        contentCount withContentCount: Int? = nil
+    ){
+        self.init(
+            cardType: cardType,
+            title: withTitle,
+            content: nil,
+            contentCount: withContentCount,
+            addDefaultFooter:  false,
+            showContentCount: false
+        )
+        
+        subType = withSubType
+    }
+
 
     func addContent(content withContent: [AnyObject], maxVisibleItems withMaxVisibleItems: Int) {
         switch cardContentType {
