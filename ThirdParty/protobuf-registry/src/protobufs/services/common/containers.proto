@@ -20,3 +20,10 @@ message PermissionsV1 {
     optional bool can_delete = 3;
     optional bool can_add = 4;
 }
+
+message DescriptionV1 {
+    optional uint32 version = 1 [default = 1];
+    optional string value = 2;
+    optional string by_profile_id = 3;
+    optional string changed = 4;
+}

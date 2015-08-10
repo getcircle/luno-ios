@@ -49,7 +49,7 @@ public func == (lhs: Services.Organization.Containers.LocationV1, rhs: Services.
   fieldCheck = fieldCheck && (lhs.hasOrganizationId == rhs.hasOrganizationId) && (!lhs.hasOrganizationId || lhs.organizationId == rhs.organizationId)
   fieldCheck = fieldCheck && (lhs.hasProfileCount == rhs.hasProfileCount) && (!lhs.hasProfileCount || lhs.profileCount == rhs.profileCount)
   fieldCheck = fieldCheck && (lhs.hasImageUrl == rhs.hasImageUrl) && (!lhs.hasImageUrl || lhs.imageUrl == rhs.imageUrl)
-  fieldCheck = fieldCheck && (lhs.hasDescription == rhs.hasDescription) && (!lhs.hasDescription || lhs.description_ == rhs.description_)
+  fieldCheck = fieldCheck && (lhs.hasLocationDescription == rhs.hasLocationDescription) && (!lhs.hasLocationDescription || lhs.locationDescription == rhs.locationDescription)
   fieldCheck = fieldCheck && (lhs.hasEstablishedDate == rhs.hasEstablishedDate) && (!lhs.hasEstablishedDate || lhs.establishedDate == rhs.establishedDate)
   fieldCheck = fieldCheck && (lhs.pointsOfContact == rhs.pointsOfContact)
   fieldCheck = fieldCheck && (lhs.hasPermissions == rhs.hasPermissions) && (!lhs.hasPermissions || lhs.permissions == rhs.permissions)
@@ -67,6 +67,9 @@ public func == (lhs: Services.Organization.Containers.OrganizationV1, rhs: Servi
   fieldCheck = fieldCheck && (lhs.hasDomain == rhs.hasDomain) && (!lhs.hasDomain || lhs.domain == rhs.domain)
   fieldCheck = fieldCheck && (lhs.hasImageUrl == rhs.hasImageUrl) && (!lhs.hasImageUrl || lhs.imageUrl == rhs.imageUrl)
   fieldCheck = fieldCheck && (lhs.hasTintColor == rhs.hasTintColor) && (!lhs.hasTintColor || lhs.tintColor == rhs.tintColor)
+  fieldCheck = fieldCheck && (lhs.hasProfileCount == rhs.hasProfileCount) && (!lhs.hasProfileCount || lhs.profileCount == rhs.profileCount)
+  fieldCheck = fieldCheck && (lhs.hasTeamCount == rhs.hasTeamCount) && (!lhs.hasTeamCount || lhs.teamCount == rhs.teamCount)
+  fieldCheck = fieldCheck && (lhs.hasLocationCount == rhs.hasLocationCount) && (!lhs.hasLocationCount || lhs.locationCount == rhs.locationCount)
   return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
 }
 
@@ -97,7 +100,7 @@ public func == (lhs: Services.Organization.Containers.TeamV1, rhs: Services.Orga
   fieldCheck = fieldCheck && (lhs.hasProfileCount == rhs.hasProfileCount) && (!lhs.hasProfileCount || lhs.profileCount == rhs.profileCount)
   fieldCheck = fieldCheck && (lhs.hasColor == rhs.hasColor) && (!lhs.hasColor || lhs.color == rhs.color)
   fieldCheck = fieldCheck && (lhs.hasPermissions == rhs.hasPermissions) && (!lhs.hasPermissions || lhs.permissions == rhs.permissions)
-  fieldCheck = fieldCheck && (lhs.hasDescription == rhs.hasDescription) && (!lhs.hasDescription || lhs.description_ == rhs.description_)
+  fieldCheck = fieldCheck && (lhs.hasTeamDescription == rhs.hasTeamDescription) && (!lhs.hasTeamDescription || lhs.teamDescription == rhs.teamDescription)
   fieldCheck = fieldCheck && (lhs.hasStatus == rhs.hasStatus) && (!lhs.hasStatus || lhs.status == rhs.status)
   fieldCheck = fieldCheck && (lhs.hasImageUrl == rhs.hasImageUrl) && (!lhs.hasImageUrl || lhs.imageUrl == rhs.imageUrl)
   fieldCheck = fieldCheck && (lhs.hasChildTeamCount == rhs.hasChildTeamCount) && (!lhs.hasChildTeamCount || lhs.childTeamCount == rhs.childTeamCount)
@@ -1272,7 +1275,7 @@ public extension Services.Organization.Containers {
            case "organizationId": return organizationId
            case "profileCount": return profileCount
            case "imageUrl": return imageUrl
-           case "description_": return description_
+           case "locationDescription": return locationDescription
            case "establishedDate": return establishedDate
            case "permissions": return permissions
            default: return nil
@@ -1299,9 +1302,8 @@ public extension Services.Organization.Containers {
     public private(set) var hasImageUrl:Bool = false
     public private(set) var imageUrl:String = ""
 
-    public private(set) var hasDescription:Bool = false
-    public private(set) var description_:String = ""
-
+    public private(set) var hasLocationDescription:Bool = false
+    public private(set) var locationDescription:Services.Common.Containers.DescriptionV1!
     public private(set) var hasEstablishedDate:Bool = false
     public private(set) var establishedDate:String = ""
 
@@ -1336,8 +1338,8 @@ public extension Services.Organization.Containers {
       if hasImageUrl {
         output.writeString(7, value:imageUrl)
       }
-      if hasDescription {
-        output.writeString(8, value:description_)
+      if hasLocationDescription {
+        output.writeMessage(8, value:locationDescription)
       }
       if hasEstablishedDate {
         output.writeString(9, value:establishedDate)
@@ -1380,8 +1382,10 @@ public extension Services.Organization.Containers {
       if hasImageUrl {
         serialize_size += imageUrl.computeStringSize(7)
       }
-      if hasDescription {
-        serialize_size += description_.computeStringSize(8)
+      if hasLocationDescription {
+          if let varSizelocationDescription = locationDescription?.computeMessageSize(8) {
+              serialize_size += varSizelocationDescription
+          }
       }
       if hasEstablishedDate {
         serialize_size += establishedDate.computeStringSize(9)
@@ -1458,8 +1462,10 @@ public extension Services.Organization.Containers {
       if hasImageUrl {
         output += "\(indent) imageUrl: \(imageUrl) \n"
       }
-      if hasDescription {
-        output += "\(indent) description_: \(description_) \n"
+      if hasLocationDescription {
+        output += "\(indent) locationDescription {\n"
+        locationDescription?.writeDescriptionTo(&output, indent:"\(indent)  ")
+        output += "\(indent) }\n"
       }
       if hasEstablishedDate {
         output += "\(indent) establishedDate: \(establishedDate) \n"
@@ -1504,8 +1510,10 @@ public extension Services.Organization.Containers {
             if hasImageUrl {
                hashCode = (hashCode &* 31) &+ imageUrl.hashValue
             }
-            if hasDescription {
-               hashCode = (hashCode &* 31) &+ description_.hashValue
+            if hasLocationDescription {
+                if let hashValuelocationDescription = locationDescription?.hashValue {
+                    hashCode = (hashCode &* 31) &+ hashValuelocationDescription
+                }
             }
             if hasEstablishedDate {
                hashCode = (hashCode &* 31) &+ establishedDate.hashValue
@@ -1716,28 +1724,37 @@ public extension Services.Organization.Containers {
          builderResult.imageUrl = ""
          return self
     }
-    public var hasDescription:Bool {
+    public var hasLocationDescription:Bool {
          get {
-              return builderResult.hasDescription
+             return builderResult.hasLocationDescription
          }
     }
-    public var description_:String {
+    public var locationDescription:Services.Common.Containers.DescriptionV1! {
          get {
-              return builderResult.description_
+             return builderResult.locationDescription
          }
          set (value) {
-             builderResult.hasDescription = true
-             builderResult.description_ = value
+             builderResult.hasLocationDescription = true
+             builderResult.locationDescription = value
          }
     }
-    public func setDescription(value:String)-> Services.Organization.Containers.LocationV1Builder {
-      self.description_ = value
+    public func setLocationDescription(value:Services.Common.Containers.DescriptionV1!)-> Services.Organization.Containers.LocationV1Builder {
+      self.locationDescription = value
       return self
     }
-    public func clearDescription() -> Services.Organization.Containers.LocationV1Builder{
-         builderResult.hasDescription = false
-         builderResult.description_ = ""
-         return self
+    public func mergeLocationDescription(value:Services.Common.Containers.DescriptionV1) -> Services.Organization.Containers.LocationV1Builder {
+      if (builderResult.hasLocationDescription) {
+        builderResult.locationDescription = Services.Common.Containers.DescriptionV1.builderWithPrototype(builderResult.locationDescription).mergeFrom(value).buildPartial()
+      } else {
+        builderResult.locationDescription = value
+      }
+      builderResult.hasLocationDescription = true
+      return self
+    }
+    public func clearLocationDescription() -> Services.Organization.Containers.LocationV1Builder {
+      builderResult.hasLocationDescription = false
+      builderResult.locationDescription = nil
+      return self
     }
     public var hasEstablishedDate:Bool {
          get {
@@ -1855,8 +1872,8 @@ public extension Services.Organization.Containers {
       if other.hasImageUrl {
            imageUrl = other.imageUrl
       }
-      if other.hasDescription {
-           description_ = other.description_
+      if (other.hasLocationDescription) {
+          mergeLocationDescription(other.locationDescription)
       }
       if other.hasEstablishedDate {
            establishedDate = other.establishedDate
@@ -1909,7 +1926,12 @@ public extension Services.Organization.Containers {
           imageUrl = input.readString()
 
         case 66 :
-          description_ = input.readString()
+          var subBuilder:Services.Common.Containers.DescriptionV1Builder = Services.Common.Containers.DescriptionV1.builder()
+          if hasLocationDescription {
+            subBuilder.mergeFrom(locationDescription)
+          }
+          input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
+          locationDescription = subBuilder.buildPartial()
 
         case 74 :
           establishedDate = input.readString()
@@ -1946,6 +1968,9 @@ public extension Services.Organization.Containers {
            case "domain": return domain
            case "imageUrl": return imageUrl
            case "tintColor": return tintColor
+           case "profileCount": return profileCount
+           case "teamCount": return teamCount
+           case "locationCount": return locationCount
            default: return nil
            }
     }
@@ -1967,6 +1992,15 @@ public extension Services.Organization.Containers {
 
     public private(set) var hasTintColor:Bool = false
     public private(set) var tintColor:Services.Organization.Containers.ColorV1!
+    public private(set) var hasProfileCount:Bool = false
+    public private(set) var profileCount:UInt32 = UInt32(0)
+
+    public private(set) var hasTeamCount:Bool = false
+    public private(set) var teamCount:UInt32 = UInt32(0)
+
+    public private(set) var hasLocationCount:Bool = false
+    public private(set) var locationCount:UInt32 = UInt32(0)
+
     required public init() {
          super.init()
     }
@@ -1991,6 +2025,15 @@ public extension Services.Organization.Containers {
       }
       if hasTintColor {
         output.writeMessage(6, value:tintColor)
+      }
+      if hasProfileCount {
+        output.writeUInt32(7, value:profileCount)
+      }
+      if hasTeamCount {
+        output.writeUInt32(8, value:teamCount)
+      }
+      if hasLocationCount {
+        output.writeUInt32(9, value:locationCount)
       }
       unknownFields.writeToCodedOutputStream(output)
     }
@@ -2020,6 +2063,15 @@ public extension Services.Organization.Containers {
           if let varSizetintColor = tintColor?.computeMessageSize(6) {
               serialize_size += varSizetintColor
           }
+      }
+      if hasProfileCount {
+        serialize_size += profileCount.computeUInt32Size(7)
+      }
+      if hasTeamCount {
+        serialize_size += teamCount.computeUInt32Size(8)
+      }
+      if hasLocationCount {
+        serialize_size += locationCount.computeUInt32Size(9)
       }
       serialize_size += unknownFields.serializedSize()
       memoizedSerializedSize = serialize_size
@@ -2082,6 +2134,15 @@ public extension Services.Organization.Containers {
         tintColor?.writeDescriptionTo(&output, indent:"\(indent)  ")
         output += "\(indent) }\n"
       }
+      if hasProfileCount {
+        output += "\(indent) profileCount: \(profileCount) \n"
+      }
+      if hasTeamCount {
+        output += "\(indent) teamCount: \(teamCount) \n"
+      }
+      if hasLocationCount {
+        output += "\(indent) locationCount: \(locationCount) \n"
+      }
       unknownFields.writeDescriptionTo(&output, indent:indent)
     }
     override public var hashValue:Int {
@@ -2106,6 +2167,15 @@ public extension Services.Organization.Containers {
                 if let hashValuetintColor = tintColor?.hashValue {
                     hashCode = (hashCode &* 31) &+ hashValuetintColor
                 }
+            }
+            if hasProfileCount {
+               hashCode = (hashCode &* 31) &+ profileCount.hashValue
+            }
+            if hasTeamCount {
+               hashCode = (hashCode &* 31) &+ teamCount.hashValue
+            }
+            if hasLocationCount {
+               hashCode = (hashCode &* 31) &+ locationCount.hashValue
             }
             hashCode = (hashCode &* 31) &+  unknownFields.hashValue
             return hashCode
@@ -2282,6 +2352,75 @@ public extension Services.Organization.Containers {
       builderResult.tintColor = nil
       return self
     }
+    public var hasProfileCount:Bool {
+         get {
+              return builderResult.hasProfileCount
+         }
+    }
+    public var profileCount:UInt32 {
+         get {
+              return builderResult.profileCount
+         }
+         set (value) {
+             builderResult.hasProfileCount = true
+             builderResult.profileCount = value
+         }
+    }
+    public func setProfileCount(value:UInt32)-> Services.Organization.Containers.OrganizationV1Builder {
+      self.profileCount = value
+      return self
+    }
+    public func clearProfileCount() -> Services.Organization.Containers.OrganizationV1Builder{
+         builderResult.hasProfileCount = false
+         builderResult.profileCount = UInt32(0)
+         return self
+    }
+    public var hasTeamCount:Bool {
+         get {
+              return builderResult.hasTeamCount
+         }
+    }
+    public var teamCount:UInt32 {
+         get {
+              return builderResult.teamCount
+         }
+         set (value) {
+             builderResult.hasTeamCount = true
+             builderResult.teamCount = value
+         }
+    }
+    public func setTeamCount(value:UInt32)-> Services.Organization.Containers.OrganizationV1Builder {
+      self.teamCount = value
+      return self
+    }
+    public func clearTeamCount() -> Services.Organization.Containers.OrganizationV1Builder{
+         builderResult.hasTeamCount = false
+         builderResult.teamCount = UInt32(0)
+         return self
+    }
+    public var hasLocationCount:Bool {
+         get {
+              return builderResult.hasLocationCount
+         }
+    }
+    public var locationCount:UInt32 {
+         get {
+              return builderResult.locationCount
+         }
+         set (value) {
+             builderResult.hasLocationCount = true
+             builderResult.locationCount = value
+         }
+    }
+    public func setLocationCount(value:UInt32)-> Services.Organization.Containers.OrganizationV1Builder {
+      self.locationCount = value
+      return self
+    }
+    public func clearLocationCount() -> Services.Organization.Containers.OrganizationV1Builder{
+         builderResult.hasLocationCount = false
+         builderResult.locationCount = UInt32(0)
+         return self
+    }
     override public var internalGetResult:GeneratedMessage {
          get {
             return builderResult
@@ -2324,6 +2463,15 @@ public extension Services.Organization.Containers {
       if (other.hasTintColor) {
           mergeTintColor(other.tintColor)
       }
+      if other.hasProfileCount {
+           profileCount = other.profileCount
+      }
+      if other.hasTeamCount {
+           teamCount = other.teamCount
+      }
+      if other.hasLocationCount {
+           locationCount = other.locationCount
+      }
       mergeUnknownFields(other.unknownFields)
       return self
     }
@@ -2361,6 +2509,15 @@ public extension Services.Organization.Containers {
           }
           input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
           tintColor = subBuilder.buildPartial()
+
+        case 56 :
+          profileCount = input.readUInt32()
+
+        case 64 :
+          teamCount = input.readUInt32()
+
+        case 72 :
+          locationCount = input.readUInt32()
 
         default:
           if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
@@ -2710,7 +2867,7 @@ public extension Services.Organization.Containers {
            case "profileCount": return profileCount
            case "color": return color
            case "permissions": return permissions
-           case "description_": return description_
+           case "teamDescription": return teamDescription
            case "status": return status
            case "imageUrl": return imageUrl
            case "childTeamCount": return childTeamCount
@@ -2743,9 +2900,8 @@ public extension Services.Organization.Containers {
     public private(set) var color:Services.Organization.Containers.ColorV1!
     public private(set) var hasPermissions:Bool = false
     public private(set) var permissions:Services.Common.Containers.PermissionsV1!
-    public private(set) var hasDescription:Bool = false
-    public private(set) var description_:String = ""
-
+    public private(set) var hasTeamDescription:Bool = false
+    public private(set) var teamDescription:Services.Common.Containers.DescriptionV1!
     public private(set) var hasStatus:Bool = false
     public private(set) var status:Services.Organization.Containers.TeamStatusV1!
     public private(set) var hasImageUrl:Bool = false
@@ -2792,8 +2948,8 @@ public extension Services.Organization.Containers {
       if hasPermissions {
         output.writeMessage(10, value:permissions)
       }
-      if hasDescription {
-        output.writeString(11, value:description_)
+      if hasTeamDescription {
+        output.writeMessage(11, value:teamDescription)
       }
       if hasStatus {
         output.writeMessage(12, value:status)
@@ -2847,8 +3003,10 @@ public extension Services.Organization.Containers {
               serialize_size += varSizepermissions
           }
       }
-      if hasDescription {
-        serialize_size += description_.computeStringSize(11)
+      if hasTeamDescription {
+          if let varSizeteamDescription = teamDescription?.computeMessageSize(11) {
+              serialize_size += varSizeteamDescription
+          }
       }
       if hasStatus {
           if let varSizestatus = status?.computeMessageSize(12) {
@@ -2940,8 +3098,10 @@ public extension Services.Organization.Containers {
         permissions?.writeDescriptionTo(&output, indent:"\(indent)  ")
         output += "\(indent) }\n"
       }
-      if hasDescription {
-        output += "\(indent) description_: \(description_) \n"
+      if hasTeamDescription {
+        output += "\(indent) teamDescription {\n"
+        teamDescription?.writeDescriptionTo(&output, indent:"\(indent)  ")
+        output += "\(indent) }\n"
       }
       if hasStatus {
         output += "\(indent) status {\n"
@@ -2993,8 +3153,10 @@ public extension Services.Organization.Containers {
                     hashCode = (hashCode &* 31) &+ hashValuepermissions
                 }
             }
-            if hasDescription {
-               hashCode = (hashCode &* 31) &+ description_.hashValue
+            if hasTeamDescription {
+                if let hashValueteamDescription = teamDescription?.hashValue {
+                    hashCode = (hashCode &* 31) &+ hashValueteamDescription
+                }
             }
             if hasStatus {
                 if let hashValuestatus = status?.hashValue {
@@ -3276,28 +3438,37 @@ public extension Services.Organization.Containers {
       builderResult.permissions = nil
       return self
     }
-    public var hasDescription:Bool {
+    public var hasTeamDescription:Bool {
          get {
-              return builderResult.hasDescription
+             return builderResult.hasTeamDescription
          }
     }
-    public var description_:String {
+    public var teamDescription:Services.Common.Containers.DescriptionV1! {
          get {
-              return builderResult.description_
+             return builderResult.teamDescription
          }
          set (value) {
-             builderResult.hasDescription = true
-             builderResult.description_ = value
+             builderResult.hasTeamDescription = true
+             builderResult.teamDescription = value
          }
     }
-    public func setDescription(value:String)-> Services.Organization.Containers.TeamV1Builder {
-      self.description_ = value
+    public func setTeamDescription(value:Services.Common.Containers.DescriptionV1!)-> Services.Organization.Containers.TeamV1Builder {
+      self.teamDescription = value
       return self
     }
-    public func clearDescription() -> Services.Organization.Containers.TeamV1Builder{
-         builderResult.hasDescription = false
-         builderResult.description_ = ""
-         return self
+    public func mergeTeamDescription(value:Services.Common.Containers.DescriptionV1) -> Services.Organization.Containers.TeamV1Builder {
+      if (builderResult.hasTeamDescription) {
+        builderResult.teamDescription = Services.Common.Containers.DescriptionV1.builderWithPrototype(builderResult.teamDescription).mergeFrom(value).buildPartial()
+      } else {
+        builderResult.teamDescription = value
+      }
+      builderResult.hasTeamDescription = true
+      return self
+    }
+    public func clearTeamDescription() -> Services.Organization.Containers.TeamV1Builder {
+      builderResult.hasTeamDescription = false
+      builderResult.teamDescription = nil
+      return self
     }
     public var hasStatus:Bool {
          get {
@@ -3431,8 +3602,8 @@ public extension Services.Organization.Containers {
       if (other.hasPermissions) {
           mergePermissions(other.permissions)
       }
-      if other.hasDescription {
-           description_ = other.description_
+      if (other.hasTeamDescription) {
+          mergeTeamDescription(other.teamDescription)
       }
       if (other.hasStatus) {
           mergeStatus(other.status)
@@ -3501,7 +3672,12 @@ public extension Services.Organization.Containers {
           permissions = subBuilder.buildPartial()
 
         case 90 :
-          description_ = input.readString()
+          var subBuilder:Services.Common.Containers.DescriptionV1Builder = Services.Common.Containers.DescriptionV1.builder()
+          if hasTeamDescription {
+            subBuilder.mergeFrom(teamDescription)
+          }
+          input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
+          teamDescription = subBuilder.buildPartial()
 
         case 98 :
           var subBuilder:Services.Organization.Containers.TeamStatusV1Builder = Services.Organization.Containers.TeamStatusV1.builder()

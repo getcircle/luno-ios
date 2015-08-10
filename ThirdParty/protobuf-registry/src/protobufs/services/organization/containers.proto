@@ -38,7 +38,7 @@ message LocationV1 {
     optional string organization_id = 5;
     optional uint32 profile_count = 6;
     optional string image_url = 7;
-    optional string description = 8;
+    optional services.common.containers.DescriptionV1 location_description = 8;
     optional string established_date = 9;
     repeated services.profile.containers.ProfileV1 points_of_contact = 10;
     optional services.common.containers.PermissionsV1 permissions = 11;
@@ -51,6 +51,9 @@ message OrganizationV1 {
     optional string domain = 4;
     optional string image_url = 5;
     optional ColorV1 tint_color = 6;
+    optional uint32 profile_count = 7;
+    optional uint32 team_count = 8;
+    optional uint32 location_count = 9;
 }
 
 message PathPartV1 {
@@ -71,7 +74,7 @@ message TeamV1 {
     optional uint32 profile_count = 8;
     optional ColorV1 color = 9;
     optional services.common.containers.PermissionsV1 permissions = 10;
-    optional string description = 11;
+    optional services.common.containers.DescriptionV1 team_description = 11;
     optional TeamStatusV1 status = 12;
     optional string image_url = 13;
     optional uint32 child_team_count = 14;

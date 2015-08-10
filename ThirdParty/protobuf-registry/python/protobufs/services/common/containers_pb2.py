@@ -18,7 +18,7 @@ _sym_db = _symbol_database.Default()
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='protobufs/services/common/containers.proto',
   package='services.common.containers',
-  serialized_pb=_b('\n*protobufs/services/common/containers.proto\x12\x1aservices.common.containers\"<\n\nKeyValueV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x0b\n\x03key\x18\x02 \x01(\t\x12\r\n\x05value\x18\x03 \x01(\t\"T\n\x05MapV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x37\n\x07\x63ontent\x18\x02 \x03(\x0b\x32&.services.common.containers.KeyValueV1\"Z\n\rPermissionsV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x10\n\x08\x63\x61n_edit\x18\x02 \x01(\x08\x12\x12\n\ncan_delete\x18\x03 \x01(\x08\x12\x0f\n\x07\x63\x61n_add\x18\x04 \x01(\x08\x42\x31\n/com.rhlabs.protobufs.services.common.containers')
+  serialized_pb=_b('\n*protobufs/services/common/containers.proto\x12\x1aservices.common.containers\"<\n\nKeyValueV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x0b\n\x03key\x18\x02 \x01(\t\x12\r\n\x05value\x18\x03 \x01(\t\"T\n\x05MapV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x37\n\x07\x63ontent\x18\x02 \x03(\x0b\x32&.services.common.containers.KeyValueV1\"Z\n\rPermissionsV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x10\n\x08\x63\x61n_edit\x18\x02 \x01(\x08\x12\x12\n\ncan_delete\x18\x03 \x01(\x08\x12\x0f\n\x07\x63\x61n_add\x18\x04 \x01(\x08\"Z\n\rDescriptionV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\r\n\x05value\x18\x02 \x01(\t\x12\x15\n\rby_profile_id\x18\x03 \x01(\t\x12\x0f\n\x07\x63hanged\x18\x04 \x01(\tB1\n/com.rhlabs.protobufs.services.common.containers')
 )
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
@@ -156,10 +156,62 @@ _PERMISSIONSV1 = _descriptor.Descriptor(
   serialized_end=312,
 )
 
+
+_DESCRIPTIONV1 = _descriptor.Descriptor(
+  name='DescriptionV1',
+  full_name='services.common.containers.DescriptionV1',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='version', full_name='services.common.containers.DescriptionV1.version', index=0,
+      number=1, type=13, cpp_type=3, label=1,
+      has_default_value=True, default_value=1,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='value', full_name='services.common.containers.DescriptionV1.value', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='by_profile_id', full_name='services.common.containers.DescriptionV1.by_profile_id', index=2,
+      number=3, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='changed', full_name='services.common.containers.DescriptionV1.changed', index=3,
+      number=4, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=314,
+  serialized_end=404,
+)
+
 _MAPV1.fields_by_name['content'].message_type = _KEYVALUEV1
 DESCRIPTOR.message_types_by_name['KeyValueV1'] = _KEYVALUEV1
 DESCRIPTOR.message_types_by_name['MapV1'] = _MAPV1
 DESCRIPTOR.message_types_by_name['PermissionsV1'] = _PERMISSIONSV1
+DESCRIPTOR.message_types_by_name['DescriptionV1'] = _DESCRIPTIONV1
 
 KeyValueV1 = _reflection.GeneratedProtocolMessageType('KeyValueV1', (_message.Message,), dict(
   DESCRIPTOR = _KEYVALUEV1,
@@ -181,6 +233,13 @@ PermissionsV1 = _reflection.GeneratedProtocolMessageType('PermissionsV1', (_mess
   # @@protoc_insertion_point(class_scope:services.common.containers.PermissionsV1)
   ))
 _sym_db.RegisterMessage(PermissionsV1)
+
+DescriptionV1 = _reflection.GeneratedProtocolMessageType('DescriptionV1', (_message.Message,), dict(
+  DESCRIPTOR = _DESCRIPTIONV1,
+  __module__ = 'protobufs.services.common.containers_pb2'
+  # @@protoc_insertion_point(class_scope:services.common.containers.DescriptionV1)
+  ))
+_sym_db.RegisterMessage(DescriptionV1)
 
 
 DESCRIPTOR.has_options = True
