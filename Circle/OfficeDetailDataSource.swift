@@ -105,12 +105,16 @@ class OfficeDetailDataSource: CardDataSource {
     }
     
     private func addDescriptionCard() {
-        if location.description_.trimWhitespace() != "" || canEdit() {
+        if location.locationDescription?.value.trimWhitespace() != "" || canEdit() {
+            var description = NSLocalizedString("Add a description", comment: "Add a description to the location")
+            if let value = location.locationDescription?.value where value.trimWhitespace() != "" {
+                description = value
+            }
             
             let descriptionCard = Card(cardType: .TextValue, title: "Description")
             descriptionCard.sectionInset = defaultSectionInset
             descriptionCard.addContent(content: [
-                TextData(type: .LocationDescription, andValue: location.description_)
+                TextData(type: .LocationDescription, andValue: description)
             ])
             
             if canEdit() {
@@ -169,7 +173,6 @@ class OfficeDetailDataSource: CardDataSource {
             return true
         }
 
-        // TODO: Set to false once persmissions are being returned
-        return true
+        return false
     }
 }

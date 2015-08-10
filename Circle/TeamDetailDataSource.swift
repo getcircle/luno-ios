@@ -134,12 +134,16 @@ class TeamDetailDataSource: CardDataSource {
     }
     
     private func addDescriptionCard() {
-        if team.description_.trimWhitespace() != "" || canEdit() {
+        if team.teamDescription?.value.trimWhitespace() != "" || canEdit() {
+            var description = NSLocalizedString("Add a description", comment: "Add a description to the team")
+            if let value = team.teamDescription?.value where value.trimWhitespace() != "" {
+                description = value
+            }
             
             let descriptionCard = Card(cardType: .TextValue, title: "Description")
             descriptionCard.sectionInset = self.sectionInset
             descriptionCard.addContent(content: [
-                TextData(type: .TeamDescription, andValue: team.description_)
+                TextData(type: .TeamDescription, andValue: description)
             ])
 
             if canEdit() {

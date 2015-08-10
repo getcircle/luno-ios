@@ -18,8 +18,8 @@ class EditLocationDescriptionViewController: TextInputViewController {
     }
     
     override func getData() -> String? {
-        if location.hasDescription {
-            return location.description_.trimWhitespace()
+        if location.hasLocationDescription {
+            return location.locationDescription.value.trimWhitespace()
         }
         
         return nil
@@ -35,7 +35,14 @@ class EditLocationDescriptionViewController: TextInputViewController {
     
     override func saveData(data: String) {
         let locationBuilder = location.toBuilder()
-        locationBuilder.description_ = data
+        let descriptionBuilder: Services.Common.Containers.DescriptionV1Builder
+        if let description = locationBuilder.locationDescription {
+            descriptionBuilder = description.toBuilder()
+        } else {
+            descriptionBuilder = Services.Common.Containers.DescriptionV1.builder()
+        }
+        descriptionBuilder.value = data
+        locationBuilder.locationDescription = descriptionBuilder.build()
         Services.Organization.Actions.updateLocation(locationBuilder.build()) { (location, error) -> Void in
             self.onDataSaved()
         }
