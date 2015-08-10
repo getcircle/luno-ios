@@ -136,17 +136,6 @@ class OfficeDetailViewController:
                 trackCardHeaderTapped(card, overviewType: .Profiles)
                 navigationController?.pushViewController(viewController, animated: true)
             
-            case .Teams:
-                let viewController = TeamsOverviewViewController()
-                viewController.dataSource.setInitialData(
-                    content: card.allContent,
-                    ofType: nil,
-                    nextRequest: officeDetailDataSource.nextTeamsRequest
-                )
-                viewController.title = "Teams @ " + officeDetailDataSource.location.address.city
-                trackCardHeaderTapped(card, overviewType: .Teams)
-                navigationController?.pushViewController(viewController, animated: true)
-
             case .PointsOfContact:
                 let profilesSelectorViewController = ProfilesSelectorViewController()
                 (profilesSelectorViewController.dataSource as! ProfilesDataSource).configureForLocation(

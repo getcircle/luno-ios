@@ -47,18 +47,6 @@ class OfficeDetailDataSource: CardDataSource {
         })
 
         dispatch_group_enter(actionsGroup)
-        Services.Organization.Actions.getTeams(locationId: self.location.id) { (teams, nextRequest, error) -> Void in
-            if let teams = teams {
-                self.teams.extend(teams)
-                self.nextTeamsRequest = nextRequest
-            }
-            if let error = error {
-                storedError = error
-            }
-            dispatch_group_leave(actionsGroup)
-        }
-        
-        dispatch_group_enter(actionsGroup)
         Services.Profile.Actions.getProfiles(locationId: self.location.id) { (profiles, nextRequest, error) -> Void in
             if let profiles = profiles {
                 self.profiles.extend(profiles)
@@ -167,22 +155,6 @@ class OfficeDetailDataSource: CardDataSource {
         }
     }
 
-    private func addTeamsCard() {
-        // Teams
-        if teams.count > 0 {
-            let teamsCard = Card(
-                cardType: .Profiles,
-                subType: .Teams,
-                title: AppStrings.CardTitleOfficeTeam,
-                contentCount: nextTeamsRequest?.getPaginator().countAsInt() ?? teams.count
-            )
-            teamsCard.addContent(content: teams as [AnyObject], maxVisibleItems: 3)
-            teamsCard.sectionInset = defaultSectionInset
-            teamsCard.addHeader(headerClass: sectionHeaderClass)
-            appendCard(teamsCard)
-        }
-    }
-
     private func populateData() {
         resetCards()
         addPlaceholderCard()
@@ -190,7 +162,6 @@ class OfficeDetailDataSource: CardDataSource {
         addDescriptionCard()
         addPointOfContactCard()
         addPeopleCard()
-        addTeamsCard()
     }
     
     private func canEdit() -> Bool {
