@@ -171,6 +171,7 @@ class ProfileHeaderCollectionReusableView: DetailHeaderCollectionReusableView {
             }
             
             if office.hasImageUrl && imageUpdated {
+                profileImage.imageProfileIdentifier = office.id
                 profileImage.setImageWithLocation(office) { (image) -> Void in
                     self.profileImage.image = image
                     if self.backgroundImageView != image {
@@ -198,6 +199,7 @@ class ProfileHeaderCollectionReusableView: DetailHeaderCollectionReusableView {
         titleNavLabel.text = teamCounts
         
         let teamColor = UIColor.appTeamHeaderBackgroundColor(team)
+        profileImage.imageProfileIdentifier = team.id
         profileImage.setImageWithTeam(team) { (image) -> Void in
             self.profileImage.image = image
             if self.backgroundImageView != image {

@@ -131,11 +131,6 @@ class CircleImageView: UIImageView {
     
     func setImageWithLocation(location: Services.Organization.Containers.LocationV1, successHandler: ((image: UIImage) -> Void)? = nil) {
         if let imageURL = NSURL(string: location.imageUrl) where location.imageUrl.trimWhitespace() != "" {
-            let isImageCached = isImageInCache(imageURL)
-            if !isImageCached {
-                transform = CGAffineTransformMakeScale(0.0, 0.0)
-            }
-            
             let imageURLRequest = NSMutableURLRequest(URL: imageURL)
             imageURLRequest.timeoutInterval = timeoutInterval
             setImageWithURLRequest(
@@ -143,21 +138,23 @@ class CircleImageView: UIImageView {
                 placeholderImage: nil,
                 success: { (urlRequest, response, image) -> Void in
                     if let image = image {
+                        
+                        if let imageID = self.imageProfileIdentifier {
+                            if imageID != location.id {
+                                return
+                            }
+                        }
+
                         if let successCallback = successHandler {
-                            self.transform = CGAffineTransformIdentity
                             successCallback(image: image)
                         }
                         else {
                             self.image = image
-                            if !isImageCached {
-                                self.makeImageVisible(!isImageCached)
-                            }
                         }
                     }
                 },
                 failure: { (imageURLRequest, response, error) -> Void in
                     self.addImageLabelForLocation(location)
-                    self.makeImageVisible(false)
                     if let response = response {
                         println("Response \(response.statusCode) \(response)")
                     }
@@ -180,6 +177,12 @@ class CircleImageView: UIImageView {
                 placeholderImage: nil,
                 success: { (urlRequest, response, image) -> Void in
                     if let image = image {
+                        if let imageID = self.imageProfileIdentifier {
+                            if imageID != team.id {
+                                return
+                            }
+                        }
+
                         if let successCallback = successHandler {
                             successCallback(image: image)
                         }
