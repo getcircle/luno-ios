@@ -15,6 +15,8 @@ class CircleImageView: UIImageView {
     struct ProfileColorsHolder {
         static var colors = [String: UIColor]()
     }
+    
+    let timeoutInterval = 5.0
         
     override var image: UIImage? {
         didSet {
@@ -82,7 +84,8 @@ class CircleImageView: UIImageView {
         }
         
         if let imageURL = NSURL(string: profileImageURL) where profileImageURL.trimWhitespace() != "" {
-            let imageURLRequest = NSURLRequest(URL: imageURL)
+            let imageURLRequest = NSMutableURLRequest(URL: imageURL)
+            imageURLRequest.timeoutInterval = timeoutInterval
             let isImageCached = isImageInCache(imageURL)
             if !isImageCached {
                 transform = CGAffineTransformMakeScale(0.0, 0.0)
@@ -133,7 +136,8 @@ class CircleImageView: UIImageView {
                 transform = CGAffineTransformMakeScale(0.0, 0.0)
             }
             
-            let imageURLRequest = NSURLRequest(URL: imageURL)
+            let imageURLRequest = NSMutableURLRequest(URL: imageURL)
+            imageURLRequest.timeoutInterval = timeoutInterval
             setImageWithURLRequest(
                 imageURLRequest,
                 placeholderImage: nil,
@@ -169,7 +173,8 @@ class CircleImageView: UIImageView {
 
     func setImageWithTeam(team: Services.Organization.Containers.TeamV1, successHandler: ((image: UIImage) -> Void)? = nil) {
         if let imageURL = NSURL(string: team.imageUrl) where team.imageUrl.trimWhitespace() != "" {
-            let imageURLRequest = NSURLRequest(URL: imageURL)
+            let imageURLRequest = NSMutableURLRequest(URL: imageURL)
+            imageURLRequest.timeoutInterval = timeoutInterval
             setImageWithURLRequest(
                 imageURLRequest,
                 placeholderImage: nil,
@@ -206,7 +211,8 @@ class CircleImageView: UIImageView {
             alpha = 0.0
         }
         
-        let imageURLRequest = NSURLRequest(URL: imageURL)
+        let imageURLRequest = NSMutableURLRequest(URL: imageURL)
+        imageURLRequest.timeoutInterval = timeoutInterval
         setImageWithURLRequest(
             imageURLRequest,
             placeholderImage: nil,
@@ -230,7 +236,8 @@ class CircleImageView: UIImageView {
     func setLargerProfileImage(profile: Services.Profile.Containers.ProfileV1, successHandler: ((image: UIImage) -> Void)? = nil) {
         if let imageURL = NSURL(string: profile.imageUrl) {
             if successHandler != nil {
-                let urlRequest = NSURLRequest(URL: imageURL)
+                let urlRequest = NSMutableURLRequest(URL: imageURL)
+                urlRequest.timeoutInterval = timeoutInterval
                 setImageWithURLRequest(
                     urlRequest, 
                     placeholderImage: nil, 
@@ -274,7 +281,8 @@ class CircleImageView: UIImageView {
 
     private func isImageInCache(url: NSURL) -> Bool {
         if let urlString = url.absoluteString {
-            let imageURLRequest = NSURLRequest(URL: url)
+            let imageURLRequest = NSMutableURLRequest(URL: url)
+            imageURLRequest.timeoutInterval = timeoutInterval
             if let cachedUIImage = UIImageView.sharedImageCache().cachedImageForRequest(imageURLRequest) {
                 return true
             }
