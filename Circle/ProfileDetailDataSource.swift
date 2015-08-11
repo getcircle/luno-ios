@@ -83,7 +83,8 @@ class ProfileDetailDataSource: CardDataSource {
         addContactsCard()
         addStatusCard()
         addLocationCard()
-        addManagerAndTeamCard()
+        addManagerCard()
+        addTeamCard()
         addGroupsCard()
         setDataInHeader()
     }
@@ -124,7 +125,7 @@ class ProfileDetailDataSource: CardDataSource {
     internal func addLocationCard() -> Card? {
         //TODO: Add seating info and timezone
         if let location = location {
-            let card = Card(cardType: .Profiles, title: "Office")
+            let card = Card(cardType: .Profiles, title: "Works at")
             card.showContentCount = false
             card.addHeader(headerClass: ProfileSectionHeaderCollectionReusableView.self)
             card.sectionInset = sectionInsetWithLargerBootomMargin
@@ -136,19 +137,35 @@ class ProfileDetailDataSource: CardDataSource {
         return nil
     }
     
-    internal func addManagerAndTeamCard() -> Card? {
+    internal func addManagerCard() -> Card? {
         var content = [AnyObject]()
         
         if let manager = manager {
             content.append(manager)
         }
         
+        if content.count > 0 {
+            let card = Card(cardType: .Profiles, title: "Reports to")
+            card.showContentCount = false
+            card.addHeader(headerClass: ProfileSectionHeaderCollectionReusableView.self)
+            card.sectionInset = sectionInsetWithLargerBootomMargin
+            card.addContent(content: content)
+            appendCard(card)
+            return card
+        }
+        
+        return nil
+    }
+
+    internal func addTeamCard() -> Card? {
+        var content = [AnyObject]()
+        
         if let team = team {
             content.append(team)
         }
         
         if content.count > 0 {
-            let card = Card(cardType: .Profiles, title: "Manager & Team")
+            let card = Card(cardType: .Profiles, title: "Team")
             card.showContentCount = false
             card.addHeader(headerClass: ProfileSectionHeaderCollectionReusableView.self)
             card.sectionInset = sectionInsetWithLargerBootomMargin
