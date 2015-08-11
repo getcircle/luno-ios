@@ -367,21 +367,7 @@ class SearchViewController: UIViewController,
             properties: properties
         )
     }
-    
-    //MARK: - Tag Selected Notification
-    
-    func didSelectTag(notification: NSNotification) {
-        if let userInfo = notification.userInfo {
-            if let selectedTag = userInfo["interest"] as? Services.Profile.Containers.TagV1 {
-                trackTagSelected(selectedTag)
-                let viewController = TagDetailViewController()
-                (viewController.dataSource as! TagDetailDataSource).selectedTag = selectedTag
-                viewController.hidesBottomBarWhenPushed = false
-                navigationController?.pushViewController(viewController, animated: true)
-            }
-        }
-    }
-    
+        
     // MARK: - Orientation change
     
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {

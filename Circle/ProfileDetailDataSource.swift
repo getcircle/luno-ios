@@ -191,16 +191,6 @@ class ProfileDetailDataSource: CardDataSource {
             //TODO: Add groups card
         }
     }
-    
-    // MARK: - Cell Configuration
-    
-    override func configureCell(cell: CircleCollectionViewCell, atIndexPath indexPath: NSIndexPath) {
-        if cell is QuickActionsCollectionViewCell {
-            let quickActionsCell = cell as! QuickActionsCollectionViewCell
-            quickActionsCell.backgroundColor = UIColor.whiteColor()
-            quickActionsCell.quickActions = [.Phone, .Message, .Email, .MoreInfo]
-        }
-    }
 
     // MARK: - Cell Type
     

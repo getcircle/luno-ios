@@ -75,7 +75,6 @@ class Card: Equatable {
         case GroupMemberImages = "GroupMemberImages"
         case GroupRequest = "GroupRequest"
         case KeyValue = "KeyValue"
-        case Tags = "Tags"
         case Offices = "Offices"
         case OfficeAddress = "Office Address"
         case NewHires = "NewHires"
@@ -88,7 +87,6 @@ class Card: Equatable {
         case SearchSuggestion = "SearchSuggestion"
         case ContactMethods = "ContactMethods"
         case TextValue = "TextValue"
-        case Skills = "Skills"
 
         struct CardTypeInfo {
             var imageName: String
@@ -148,13 +146,6 @@ class Card: Equatable {
                     contentType: .Flat
                 )
 
-            case Tags:
-                return CardTypeInfo(
-                    imageName: "FeedSkills",
-                    classType: TagScrollingCollectionViewCell.self,
-                    contentType: .Aggregate
-                )
-
             case KeyValue:
                 return CardTypeInfo(
                     imageName: "Info",
@@ -209,13 +200,6 @@ class Card: Equatable {
                     imageName: "Settings",
                     classType: SettingsCollectionViewCell.self,
                     contentType: .Flat
-                )
-
-            case Skills:
-                return CardTypeInfo(
-                    imageName: "FeedSkills",
-                    classType: TagScrollingCollectionViewCell.self,
-                    contentType: .Aggregate
                 )
 
             case SocialConnectCTAs:

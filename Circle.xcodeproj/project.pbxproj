@@ -165,23 +165,11 @@
 		8F65C4FE1A51222100C7F3E6 /* OfficeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F65C4FC1A51222100C7F3E6 /* OfficeCollectionViewCell.swift */; };
 		8F65C4FF1A51222100C7F3E6 /* OfficeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F65C4FD1A51222100C7F3E6 /* OfficeCollectionViewCell.xib */; };
 		8F65C5011A51462500C7F3E6 /* CircleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F65C5001A51462500C7F3E6 /* CircleCollectionViewCell.swift */; };
-		8F65C5071A52661700C7F3E6 /* TagScrollingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F65C5051A52661700C7F3E6 /* TagScrollingCollectionViewCell.swift */; };
-		8F65C5081A52661700C7F3E6 /* TagScrollingCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F65C5061A52661700C7F3E6 /* TagScrollingCollectionViewCell.xib */; };
-		8F682F411A65F9090066BDEE /* TagScrollingSelectorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F682F401A65F9090066BDEE /* TagScrollingSelectorViewController.xib */; };
 		8F682F521A67AF360066BDEE /* CircleTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F682F511A67AF360066BDEE /* CircleTextField.swift */; };
-		8F74001D1A684F2400D96B60 /* TagHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F74001B1A684F2400D96B60 /* TagHeaderCollectionReusableView.swift */; };
-		8F74001E1A684F2400D96B60 /* TagHeaderCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F74001C1A684F2400D96B60 /* TagHeaderCollectionReusableView.xib */; };
-		8F7400231A6862BF00D96B60 /* TagDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7400221A6862BF00D96B60 /* TagDetailViewController.swift */; };
-		8F7400251A6863B000D96B60 /* TagDetailDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7400241A6863B000D96B60 /* TagDetailDataSource.swift */; };
 		8F74002A1A68878800D96B60 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7400291A68878800D96B60 /* GradientView.swift */; };
 		8F7400391A6A3FF700D96B60 /* CircleAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7400371A6A3FF700D96B60 /* CircleAlertViewController.swift */; };
 		8F74003F1A6A442900D96B60 /* CircleAlertViewAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F74003E1A6A442900D96B60 /* CircleAlertViewAnimator.swift */; };
-		8F7795041A909AFC00BEF6EA /* TagsOverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7795021A909AFC00BEF6EA /* TagsOverviewViewController.swift */; };
-		8F7795051A909AFC00BEF6EA /* TagsOverviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F7795031A909AFC00BEF6EA /* TagsOverviewViewController.xib */; };
-		8F77950A1A910E8700BEF6EA /* TagsOverviewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7795091A910E8700BEF6EA /* TagsOverviewDataSource.swift */; };
 		8F77950C1A917FB400BEF6EA /* CircleCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F77950B1A917FB400BEF6EA /* CircleCache.swift */; };
-		8F7795151A92769E00BEF6EA /* QuickActionsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7795131A92769E00BEF6EA /* QuickActionsCollectionViewCell.swift */; };
-		8F7795161A92769E00BEF6EA /* QuickActionsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F7795141A92769E00BEF6EA /* QuickActionsCollectionViewCell.xib */; };
 		8F7E2DC61A8FC00000B8548D /* PasscodeTouchIDSplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7E2DC41A8FC00000B8548D /* PasscodeTouchIDSplashViewController.swift */; };
 		8F7E2DC71A8FC00000B8548D /* PasscodeTouchIDSplashViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F7E2DC51A8FC00000B8548D /* PasscodeTouchIDSplashViewController.xib */; };
 		8F7E2DCD1A8FDBB600B8548D /* PasscodeTouchIDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7E2DCB1A8FDBB500B8548D /* PasscodeTouchIDViewController.swift */; };
@@ -247,9 +235,6 @@
 		8FF298041A4A4E3600306CFC /* ProfileImagesCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8FF298021A4A4E3600306CFC /* ProfileImagesCollectionViewCell.xib */; };
 		8FF2980A1A4B490E00306CFC /* SearchHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF298081A4B490E00306CFC /* SearchHeaderView.swift */; };
 		8FF2980B1A4B490E00306CFC /* SearchHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8FF298091A4B490E00306CFC /* SearchHeaderView.xib */; };
-		8FF298441A4DF38E00306CFC /* TagScrollingSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF298431A4DF38E00306CFC /* TagScrollingSelectorViewController.swift */; };
-		8FF298471A4E050100306CFC /* TagCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF298451A4E050100306CFC /* TagCollectionViewCell.swift */; };
-		8FF298481A4E050100306CFC /* TagCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8FF298461A4E050100306CFC /* TagCollectionViewCell.xib */; };
 		8FF2984D1A4E29F400306CFC /* PaddedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF2984C1A4E29F400306CFC /* PaddedLabel.swift */; };
 		8FF298531A4E306600306CFC /* CenterAlignFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF298521A4E306600306CFC /* CenterAlignFlowLayout.swift */; };
 		BF004C501A5CF91200AB8A6F /* Organization.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF004C4F1A5CF91200AB8A6F /* Organization.swift */; };
@@ -267,8 +252,6 @@
 		BF59AA931A2C152F00C0CDB9 /* UITableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF59AA921A2C152F00C0CDB9 /* UITableViewExtension.swift */; };
 		BF6A2D0F1AAD08DA00692315 /* EmptyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6A2D0D1AAD08DA00692315 /* EmptyCollectionViewCell.swift */; };
 		BF6A2D101AAD08DA00692315 /* EmptyCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF6A2D0E1AAD08DA00692315 /* EmptyCollectionViewCell.xib */; };
-		BF6ACE3E1AC766EF009F2B05 /* TagSuggestionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6ACE3C1AC766EF009F2B05 /* TagSuggestionCollectionViewCell.swift */; };
-		BF6ACE3F1AC766EF009F2B05 /* TagSuggestionCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF6ACE3D1AC766EF009F2B05 /* TagSuggestionCollectionViewCell.xib */; };
 		BF768A621AB402D100D677B1 /* PaginatorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF768A611AB402D100D677B1 /* PaginatorExtension.swift */; };
 		BF768A741AB66E4700D677B1 /* SearchSuggestionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF768A721AB66E4700D677B1 /* SearchSuggestionCollectionViewCell.swift */; };
 		BF768A751AB66E4700D677B1 /* SearchSuggestionCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF768A731AB66E4700D677B1 /* SearchSuggestionCollectionViewCell.xib */; };
@@ -518,23 +501,11 @@
 		8F65C4FC1A51222100C7F3E6 /* OfficeCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OfficeCollectionViewCell.swift; sourceTree = "<group>"; };
 		8F65C4FD1A51222100C7F3E6 /* OfficeCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OfficeCollectionViewCell.xib; sourceTree = "<group>"; };
 		8F65C5001A51462500C7F3E6 /* CircleCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleCollectionViewCell.swift; sourceTree = "<group>"; };
-		8F65C5051A52661700C7F3E6 /* TagScrollingCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagScrollingCollectionViewCell.swift; sourceTree = "<group>"; };
-		8F65C5061A52661700C7F3E6 /* TagScrollingCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TagScrollingCollectionViewCell.xib; sourceTree = "<group>"; };
-		8F682F401A65F9090066BDEE /* TagScrollingSelectorViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TagScrollingSelectorViewController.xib; sourceTree = "<group>"; };
 		8F682F511A67AF360066BDEE /* CircleTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleTextField.swift; sourceTree = "<group>"; };
-		8F74001B1A684F2400D96B60 /* TagHeaderCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagHeaderCollectionReusableView.swift; sourceTree = "<group>"; };
-		8F74001C1A684F2400D96B60 /* TagHeaderCollectionReusableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TagHeaderCollectionReusableView.xib; sourceTree = "<group>"; };
-		8F7400221A6862BF00D96B60 /* TagDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagDetailViewController.swift; sourceTree = "<group>"; };
-		8F7400241A6863B000D96B60 /* TagDetailDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagDetailDataSource.swift; sourceTree = "<group>"; };
 		8F7400291A68878800D96B60 /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		8F7400371A6A3FF700D96B60 /* CircleAlertViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleAlertViewController.swift; sourceTree = "<group>"; };
 		8F74003E1A6A442900D96B60 /* CircleAlertViewAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleAlertViewAnimator.swift; sourceTree = "<group>"; };
-		8F7795021A909AFC00BEF6EA /* TagsOverviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagsOverviewViewController.swift; sourceTree = "<group>"; };
-		8F7795031A909AFC00BEF6EA /* TagsOverviewViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TagsOverviewViewController.xib; sourceTree = "<group>"; };
-		8F7795091A910E8700BEF6EA /* TagsOverviewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagsOverviewDataSource.swift; sourceTree = "<group>"; };
 		8F77950B1A917FB400BEF6EA /* CircleCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleCache.swift; sourceTree = "<group>"; };
-		8F7795131A92769E00BEF6EA /* QuickActionsCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickActionsCollectionViewCell.swift; sourceTree = "<group>"; };
-		8F7795141A92769E00BEF6EA /* QuickActionsCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuickActionsCollectionViewCell.xib; sourceTree = "<group>"; };
 		8F7E2DC41A8FC00000B8548D /* PasscodeTouchIDSplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasscodeTouchIDSplashViewController.swift; sourceTree = "<group>"; };
 		8F7E2DC51A8FC00000B8548D /* PasscodeTouchIDSplashViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PasscodeTouchIDSplashViewController.xib; sourceTree = "<group>"; };
 		8F7E2DCB1A8FDBB500B8548D /* PasscodeTouchIDViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasscodeTouchIDViewController.swift; sourceTree = "<group>"; };
@@ -600,9 +571,6 @@
 		8FF298021A4A4E3600306CFC /* ProfileImagesCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileImagesCollectionViewCell.xib; sourceTree = "<group>"; };
 		8FF298081A4B490E00306CFC /* SearchHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchHeaderView.swift; sourceTree = "<group>"; };
 		8FF298091A4B490E00306CFC /* SearchHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchHeaderView.xib; sourceTree = "<group>"; };
-		8FF298431A4DF38E00306CFC /* TagScrollingSelectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagScrollingSelectorViewController.swift; sourceTree = "<group>"; };
-		8FF298451A4E050100306CFC /* TagCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagCollectionViewCell.swift; sourceTree = "<group>"; };
-		8FF298461A4E050100306CFC /* TagCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TagCollectionViewCell.xib; sourceTree = "<group>"; };
 		8FF2984C1A4E29F400306CFC /* PaddedLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaddedLabel.swift; sourceTree = "<group>"; };
 		8FF298521A4E306600306CFC /* CenterAlignFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CenterAlignFlowLayout.swift; sourceTree = "<group>"; };
 		BF004C4F1A5CF91200AB8A6F /* Organization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Organization.swift; sourceTree = "<group>"; };
@@ -620,8 +588,6 @@
 		BF59AA921A2C152F00C0CDB9 /* UITableViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewExtension.swift; sourceTree = "<group>"; };
 		BF6A2D0D1AAD08DA00692315 /* EmptyCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyCollectionViewCell.swift; sourceTree = "<group>"; };
 		BF6A2D0E1AAD08DA00692315 /* EmptyCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmptyCollectionViewCell.xib; sourceTree = "<group>"; };
-		BF6ACE3C1AC766EF009F2B05 /* TagSuggestionCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagSuggestionCollectionViewCell.swift; sourceTree = "<group>"; };
-		BF6ACE3D1AC766EF009F2B05 /* TagSuggestionCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TagSuggestionCollectionViewCell.xib; sourceTree = "<group>"; };
 		BF768A611AB402D100D677B1 /* PaginatorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaginatorExtension.swift; sourceTree = "<group>"; };
 		BF768A721AB66E4700D677B1 /* SearchSuggestionCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchSuggestionCollectionViewCell.swift; sourceTree = "<group>"; };
 		BF768A731AB66E4700D677B1 /* SearchSuggestionCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchSuggestionCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -803,9 +769,6 @@
 				8F9F60CA1A8C439E00FCAA25 /* SettingsViewController.swift */,
 				BFF5E6F31A814C2C00827757 /* SocialConnectViewController.swift */,
 				8FAA14BA1B093D190098CC45 /* SplashViewController.swift */,
-				8F7400221A6862BF00D96B60 /* TagDetailViewController.swift */,
-				8FF298431A4DF38E00306CFC /* TagScrollingSelectorViewController.swift */,
-				8F7795021A909AFC00BEF6EA /* TagsOverviewViewController.swift */,
 				8F085A841A6B0C1E00F8139B /* TeamDetailViewController.swift */,
 				8F823E4A1A729E1B0006264B /* TeamsOverviewViewController.swift */,
 				8F0544AC1ABA3C7800570327 /* TextInputViewController.swift */,
@@ -828,6 +791,7 @@
 				8F4A98B21A6350B9005AD63C /* CircleCollectionReusableView.swift */,
 				8F65C5001A51462500C7F3E6 /* CircleCollectionViewCell.swift */,
 				8FF298511A4E2B3300306CFC /* Common */,
+				8F15A40F1B79B40700693E26 /* ContactCollectionViewCell.swift */,
 				8F51A8031B741F1200323DD1 /* DetailHeaderCollectionReusableView.swift */,
 				BF6A2D0D1AAD08DA00692315 /* EmptyCollectionViewCell.swift */,
 				8FA6A4A81AFDCA8100ACC39D /* GroupCollectionViewCell.swift */,
@@ -842,23 +806,16 @@
 				8F22CBDE1A27A8E60026376E /* ProfileHeaderCollectionReusableView.swift */,
 				8FF298011A4A4E3600306CFC /* ProfileImagesCollectionViewCell.swift */,
 				BFCFDB181A917944009A5FD4 /* ProfileSectionHeaderCollectionReusableView.swift */,
-				8F7795131A92769E00BEF6EA /* QuickActionsCollectionViewCell.swift */,
 				8FF298081A4B490E00306CFC /* SearchHeaderView.swift */,
 				BF768A721AB66E4700D677B1 /* SearchSuggestionCollectionViewCell.swift */,
 				8F22CBEC1A283D3D0026376E /* SeparatorDecorationView.swift */,
 				8F9F60D31A8C481F00FCAA25 /* SettingsCollectionViewCell.swift */,
 				8F9F60AD1A88738100FCAA25 /* SocialConnectCollectionViewCell.swift */,
-				8FF298451A4E050100306CFC /* TagCollectionViewCell.swift */,
-				8F74001B1A684F2400D96B60 /* TagHeaderCollectionReusableView.swift */,
-				8F65C5051A52661700C7F3E6 /* TagScrollingCollectionViewCell.swift */,
-				BF6ACE3C1AC766EF009F2B05 /* TagSuggestionCollectionViewCell.swift */,
 				BF2B34591ACD307200667B50 /* TagToken.swift */,
 				8F085A8B1A6B5B4900F8139B /* TeamHeaderCollectionReusableView.swift */,
 				BFCFDB1F1A91951A009A5FD4 /* TextValueCollectionViewCell.swift */,
 				BFCFDB291A92759A009A5FD4 /* ToggleSocialConnectionCollectionViewCell.swift */,
 				BF97F2D61ACA0B4500F1BC2E /* TokenField.swift */,
-				8F15A40F1B79B40700693E26 /* ContactCollectionViewCell.swift */,
-				8F15A4101B79B40700693E26 /* ContactCollectionViewCell.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -924,6 +881,7 @@
 				8FC878211AB6A511003FDB27 /* BannerCollectionViewCell.xib */,
 				8F08A9F81A748F5200B93149 /* CardFooterCollectionReusableView.xib */,
 				8F65C4F41A50F28E00C7F3E6 /* CardHeaderCollectionReusableView.xib */,
+				8F15A4101B79B40700693E26 /* ContactCollectionViewCell.xib */,
 				8FEE3D9C1A85B97E00B17569 /* EditContactInfoViewController.xib */,
 				8F93E2BA1B26BBFD004671D7 /* EditTeamViewController.xib */,
 				BFCFDB031A915249009A5FD4 /* EducationCollectionViewCell.xib */,
@@ -948,7 +906,6 @@
 				8F22CBDF1A27A8E60026376E /* ProfileHeaderCollectionReusableView.xib */,
 				8FF298021A4A4E3600306CFC /* ProfileImagesCollectionViewCell.xib */,
 				BFCFDB191A917944009A5FD4 /* ProfileSectionHeaderCollectionReusableView.xib */,
-				8F7795141A92769E00BEF6EA /* QuickActionsCollectionViewCell.xib */,
 				8FF298091A4B490E00306CFC /* SearchHeaderView.xib */,
 				BF768A731AB66E4700D677B1 /* SearchSuggestionCollectionViewCell.xib */,
 				8F29F6391B656CBC00E5D76C /* SearchViewController.xib */,
@@ -956,12 +913,6 @@
 				8F9F60CB1A8C439E00FCAA25 /* SettingsViewController.xib */,
 				8F9F60AE1A88738100FCAA25 /* SocialConnectCollectionViewCell.xib */,
 				8FAA14BB1B093D190098CC45 /* SplashViewController.xib */,
-				8FF298461A4E050100306CFC /* TagCollectionViewCell.xib */,
-				8F74001C1A684F2400D96B60 /* TagHeaderCollectionReusableView.xib */,
-				8F65C5061A52661700C7F3E6 /* TagScrollingCollectionViewCell.xib */,
-				8F682F401A65F9090066BDEE /* TagScrollingSelectorViewController.xib */,
-				8F7795031A909AFC00BEF6EA /* TagsOverviewViewController.xib */,
-				BF6ACE3D1AC766EF009F2B05 /* TagSuggestionCollectionViewCell.xib */,
 				8F085A8C1A6B5B4900F8139B /* TeamHeaderCollectionReusableView.xib */,
 				8F823E4B1A729E1B0006264B /* TeamsOverviewViewController.xib */,
 				8F0544AD1ABA3C7800570327 /* TextInputViewController.xib */,
@@ -1093,8 +1044,6 @@
 				8F2D7DEF1A5B2412001D36B0 /* ProfilesDataSource.swift */,
 				BFE213CE1A5F0B1D0033E2F5 /* SearchQueryDataSource.swift */,
 				8F9F60D11A8C46C100FCAA25 /* SettingsDataSource.swift */,
-				8F7400241A6863B000D96B60 /* TagDetailDataSource.swift */,
-				8F7795091A910E8700BEF6EA /* TagsOverviewDataSource.swift */,
 				8F085A891A6B0CB300F8139B /* TeamDetailDataSource.swift */,
 				8F823E4E1A72A0850006264B /* TeamsOverviewDataSource.swift */,
 				8FA6A4B31AFEAF5000ACC39D /* GroupDetailDataSource.swift */,
@@ -1344,7 +1293,6 @@
 				8F5933CD1AC9FD8B00905E14 /* NotificationsViewController.xib in Resources */,
 				8F0ADD531AC5344E00A44B68 /* Loader_00055@2x.png in Resources */,
 				8F085A8E1A6B5B4900F8139B /* TeamHeaderCollectionReusableView.xib in Resources */,
-				8F682F411A65F9090066BDEE /* TagScrollingSelectorViewController.xib in Resources */,
 				BFCFDB221A91951A009A5FD4 /* TextValueCollectionViewCell.xib in Resources */,
 				8FEE3D9D1A85B97E00B17569 /* EditContactInfoViewController.xib in Resources */,
 				8F22CBE91A27FDA70026376E /* KeyValueCollectionViewCell.xib in Resources */,
@@ -1357,7 +1305,6 @@
 				8F07ACAB1AE878F100D1F41D /* MPArrowLeft.png in Resources */,
 				8F0ADD441AC5344E00A44B68 /* Loader_00040@2x.png in Resources */,
 				8F07ACB61AE878F100D1F41D /* MPLogo@2x.png in Resources */,
-				8F7795051A909AFC00BEF6EA /* TagsOverviewViewController.xib in Resources */,
 				8F81713D1A62E07000CB7692 /* VerifyProfileViewController.xib in Resources */,
 				8F07ACAD1AE878F100D1F41D /* MPArrowRight.png in Resources */,
 				8F22CBF91A29A8EB0026376E /* AuthViewController.xib in Resources */,
@@ -1412,11 +1359,9 @@
 				8F9F60CD1A8C439E00FCAA25 /* SettingsViewController.xib in Resources */,
 				8F0ADD211AC5344E00A44B68 /* Loader_00005@2x.png in Resources */,
 				8F0ADD4D1AC5344E00A44B68 /* Loader_00049@2x.png in Resources */,
-				8F7795161A92769E00BEF6EA /* QuickActionsCollectionViewCell.xib in Resources */,
 				8F29F63B1B656CBC00E5D76C /* SearchViewController.xib in Resources */,
 				8F07ACB31AE878F100D1F41D /* MPDismissKeyboard.png in Resources */,
 				8F0ADD561AC5344E00A44B68 /* Loader_00058@2x.png in Resources */,
-				8F65C5081A52661700C7F3E6 /* TagScrollingCollectionViewCell.xib in Resources */,
 				8F0ADD501AC5344E00A44B68 /* Loader_00052@2x.png in Resources */,
 				8F0ADD471AC5344E00A44B68 /* Loader_00043@2x.png in Resources */,
 				8F07ACAE1AE878F100D1F41D /* MPArrowRight@2x.png in Resources */,
@@ -1426,7 +1371,6 @@
 				8F0ADD291AC5344E00A44B68 /* Loader_00013@2x.png in Resources */,
 				8F0ADD401AC5344E00A44B68 /* Loader_00036@2x.png in Resources */,
 				BFAE43561A8B05010085AB2B /* HomelessViewController.xib in Resources */,
-				8FF298481A4E050100306CFC /* TagCollectionViewCell.xib in Resources */,
 				8F22CBE11A27A8E60026376E /* ProfileHeaderCollectionReusableView.xib in Resources */,
 				8F0ADD2C1AC5344E00A44B68 /* Loader_00016@2x.png in Resources */,
 				8F823E441A714B5D0006264B /* OrganizationHeaderCollectionReusableView.xib in Resources */,
@@ -1440,7 +1384,6 @@
 				8F7E2DCE1A8FDBB600B8548D /* PasscodeTouchIDViewController.xib in Resources */,
 				8F65C4F61A50F28E00C7F3E6 /* CardHeaderCollectionReusableView.xib in Resources */,
 				BFCFDB121A9165A9009A5FD4 /* PositionCollectionViewCell.xib in Resources */,
-				BF6ACE3F1AC766EF009F2B05 /* TagSuggestionCollectionViewCell.xib in Resources */,
 				8F0ADD511AC5344E00A44B68 /* Loader_00053@2x.png in Resources */,
 				8F0ADD201AC5344E00A44B68 /* Loader_00004@2x.png in Resources */,
 				8F0ADD351AC5344E00A44B68 /* Loader_00025@2x.png in Resources */,
@@ -1460,7 +1403,6 @@
 				BF25722E1A6450F20052C3E3 /* VerifyPhoneNumberViewController.xib in Resources */,
 				BFCFDB2C1A92759A009A5FD4 /* ToggleSocialConnectionCollectionViewCell.xib in Resources */,
 				8FC878231AB6A511003FDB27 /* BannerCollectionViewCell.xib in Resources */,
-				8F74001E1A684F2400D96B60 /* TagHeaderCollectionReusableView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1592,7 +1534,6 @@
 				BFCFDB1A1A917944009A5FD4 /* ProfileSectionHeaderCollectionReusableView.swift in Sources */,
 				8F9F60AF1A88738100FCAA25 /* SocialConnectCollectionViewCell.swift in Sources */,
 				8F65C4FB1A50F92500C7F3E6 /* Card.swift in Sources */,
-				8F74001D1A684F2400D96B60 /* TagHeaderCollectionReusableView.swift in Sources */,
 				8F5424111B6B00E000AEFB11 /* SearchCategory.swift in Sources */,
 				8F22CBE01A27A8E60026376E /* ProfileHeaderCollectionReusableView.swift in Sources */,
 				8F306B8D1A7416E00024EB03 /* OfficesOverviewViewController.swift in Sources */,
@@ -1601,7 +1542,6 @@
 				8FC878161AB4B60F003FDB27 /* CurrentUserProfileDetailViewController.swift in Sources */,
 				8FF2984D1A4E29F400306CFC /* PaddedLabel.swift in Sources */,
 				8F29F63A1B656CBC00E5D76C /* SearchViewController.swift in Sources */,
-				8F77950A1A910E8700BEF6EA /* TagsOverviewDataSource.swift in Sources */,
 				8F1D0B701AC5E77900488BD7 /* WebViewController.swift in Sources */,
 				8F0004961A2419730096477A /* AppDelegate.swift in Sources */,
 				8F823E4C1A729E1B0006264B /* TeamsOverviewViewController.swift in Sources */,
@@ -1614,7 +1554,6 @@
 				BF768A741AB66E4700D677B1 /* SearchSuggestionCollectionViewCell.swift in Sources */,
 				8F22CBE51A27ED190026376E /* StickyHeaderCollectionViewLayout.swift in Sources */,
 				BF25722D1A6450F20052C3E3 /* VerifyPhoneNumberViewController.swift in Sources */,
-				8FF298441A4DF38E00306CFC /* TagScrollingSelectorViewController.swift in Sources */,
 				8F22CBFB1A29AF450026376E /* UIViewExtension.swift in Sources */,
 				8F15A40C1B75C57300693E26 /* Location.swift in Sources */,
 				8F5933D21ACB5B4300905E14 /* ABTestUtils.m in Sources */,
@@ -1648,11 +1587,9 @@
 				BF59AA931A2C152F00C0CDB9 /* UITableViewExtension.swift in Sources */,
 				BF2CBFD61A473E9100BE589D /* User.swift in Sources */,
 				8F8167D31AE5712400B7B9B7 /* AppDelegateCacheExtension.swift in Sources */,
-				8F7400251A6863B000D96B60 /* TagDetailDataSource.swift in Sources */,
 				8F93E2BB1B26BBFD004671D7 /* EditTeamViewController.swift in Sources */,
 				8F4805E41A5DE4B800273731 /* MapHeaderCollectionReusableView.swift in Sources */,
 				8FC8781F1AB68B38003FDB27 /* CircleButton.swift in Sources */,
-				8FF298471A4E050100306CFC /* TagCollectionViewCell.swift in Sources */,
 				BF0B10591ACD3DA500E27DC2 /* BackspaceTextField.swift in Sources */,
 				8FD907F91A6070D70025A17B /* MapViewController.swift in Sources */,
 				8F22CBF11A2844F50026376E /* UINavigationBarExtension.swift in Sources */,
@@ -1690,11 +1627,9 @@
 				8F22CBFE1A29C7120026376E /* GCDUtils.swift in Sources */,
 				8FD7EC4D1AA53EB7004A2CEA /* AddressExtension.swift in Sources */,
 				8F00049D1A2419730096477A /* DetailViewController.swift in Sources */,
-				8F7400231A6862BF00D96B60 /* TagDetailViewController.swift in Sources */,
 				8FA6A4B91AFED58B00ACC39D /* GroupHeaderCollectionReusableView.swift in Sources */,
 				8FEE3D961A8309A400B17569 /* EditContactInfoViewController.swift in Sources */,
 				BF7DF98F1A44E53200A4F924 /* ServiceTransport.swift in Sources */,
-				BF6ACE3E1AC766EF009F2B05 /* TagSuggestionCollectionViewCell.swift in Sources */,
 				8F2068941B708F7400E498AC /* SearchAction.swift in Sources */,
 				BF220F041AB0221D00C948D0 /* ServiceRequestExtension.swift in Sources */,
 				8F085A851A6B0C1E00F8139B /* TeamDetailViewController.swift in Sources */,
@@ -1721,10 +1656,8 @@
 				8F9F60D21A8C46C100FCAA25 /* SettingsDataSource.swift in Sources */,
 				8F834F971A9E9F21007B7095 /* ContactInfoViewController.swift in Sources */,
 				8F02B1FC1A54A08000A1A307 /* RootNavigationDelegate.swift in Sources */,
-				8F7795151A92769E00BEF6EA /* QuickActionsCollectionViewCell.swift in Sources */,
 				8F5933E31ACBC12400905E14 /* ProfileExtension.swift in Sources */,
 				BF2B345A1ACD307200667B50 /* TagToken.swift in Sources */,
-				8F65C5071A52661700C7F3E6 /* TagScrollingCollectionViewCell.swift in Sources */,
 				8F5933C61AC9FAD000905E14 /* AppDelegateNotificationExtension.swift in Sources */,
 				8F65C4F51A50F28E00C7F3E6 /* CardHeaderCollectionReusableView.swift in Sources */,
 				8FA6A4B01AFE937300ACC39D /* GroupsDataSource.swift in Sources */,
@@ -1735,7 +1668,6 @@
 				BFF5E6F51A814C2C00827757 /* SocialConnectViewController.swift in Sources */,
 				8F15A4061B75742B00693E26 /* EditLocationDescriptionViewController.swift in Sources */,
 				BFEDF2EF1ABA251C00E6F3D5 /* OverviewViewController.swift in Sources */,
-				8F7795041A909AFC00BEF6EA /* TagsOverviewViewController.swift in Sources */,
 				8F5933CC1AC9FD8B00905E14 /* NotificationsViewController.swift in Sources */,
 				8F306B931A74171C0024EB03 /* OfficesOverviewDataSource.swift in Sources */,
 				BFE213CF1A5F0B1D0033E2F5 /* SearchQueryDataSource.swift in Sources */,
