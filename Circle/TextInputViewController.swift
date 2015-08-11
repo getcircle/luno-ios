@@ -10,8 +10,12 @@ import UIKit
 import ProtobufRegistry
 import MBProgressHUD
 
-class TextInputViewController: UIViewController, UITextViewDelegate {
+protocol TextInputViewControllerDelegate {
+    func onTextInputValueUpdated(updatedValue: String)
+}
 
+class TextInputViewController: UIViewController, UITextViewDelegate {
+    
     enum Themes {
         case Onboarding
         case Regular
@@ -31,9 +35,11 @@ class TextInputViewController: UIViewController, UITextViewDelegate {
     private var allControls = [AnyObject]()
     private var addCharacterLimit: Bool
     private var hud: MBProgressHUD?
+    private var delegate: TextInputViewControllerDelegate?
 
-    init(addCharacterLimit: Bool) {
+    init(addCharacterLimit: Bool, withDelegate: TextInputViewControllerDelegate? = nil) {
         self.addCharacterLimit = addCharacterLimit
+        self.delegate = withDelegate
         super.init(nibName: "TextInputViewController", bundle: nil)
     }
 
@@ -254,6 +260,7 @@ class TextInputViewController: UIViewController, UITextViewDelegate {
             hud.hide(true)
         }
         
+        delegate?.onTextInputValueUpdated(textView.text)
         if addNextButton {
             goToNextVC()
         }

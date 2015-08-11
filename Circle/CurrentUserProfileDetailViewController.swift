@@ -116,7 +116,7 @@ class CurrentUserProfileDetailViewController: ProfileDetailViewController,
     override func cardHeaderTapped(sender: AnyObject!, card: Card!) {
         switch card.type {
         case .TextValue:
-            let editStatusViewController = EditProfileStatusViewController(addCharacterLimit: true)
+            let editStatusViewController = EditProfileStatusViewController(addCharacterLimit: true, withDelegate: self)
             editStatusViewController.profile = profile
             let editStatusViewNavController = UINavigationController(rootViewController: editStatusViewController)
             navigationController?.presentViewController(editStatusViewNavController, animated: true, completion: nil)

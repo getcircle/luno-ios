@@ -105,7 +105,7 @@ class OfficeDetailViewController:
                 if let data = card.content.first as? TextData {
                     switch data.type {
                     case .LocationDescription:
-                        let editDescriptionViewController = EditLocationDescriptionViewController(addCharacterLimit: false)
+                        let editDescriptionViewController = EditLocationDescriptionViewController(addCharacterLimit: false, withDelegate: self)
                         editDescriptionViewController.location = (dataSource as! OfficeDetailDataSource).location
                         let editDescriptionViewNavController = UINavigationController(
                             rootViewController: editDescriptionViewController

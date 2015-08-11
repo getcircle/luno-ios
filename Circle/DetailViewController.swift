@@ -15,6 +15,7 @@ class DetailViewController: BaseDetailViewController,
     UICollectionViewDelegate,
     UIImagePickerControllerDelegate,
     UINavigationControllerDelegate,
+    TextInputViewControllerDelegate,
     EditImageButtonDelegate {
 
     var animationSourceRect: CGRect?
@@ -228,6 +229,12 @@ class DetailViewController: BaseDetailViewController,
     
     internal func reloadHeader() {
         fatalError("Should be overriden by child classes")
+    }
+    
+    // MARK: - TextInputViewControllerDelegate
+
+    func onTextInputValueUpdated(updatedValue: String) {
+        loadData()
     }
 }
 

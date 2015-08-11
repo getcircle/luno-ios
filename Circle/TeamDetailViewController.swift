@@ -143,7 +143,7 @@ class TeamDetailViewController:
                 if let data = card.content.first as? TextData {
                     switch data.type {
                     case .TeamStatus:
-                        let editStatusViewController = EditTeamStatusViewController(addCharacterLimit: true)
+                        let editStatusViewController = EditTeamStatusViewController(addCharacterLimit: true, withDelegate: self)
                         editStatusViewController.team = (dataSource as! TeamDetailDataSource).team
                         let editStatusViewNavController = UINavigationController(
                             rootViewController: editStatusViewController
@@ -155,7 +155,7 @@ class TeamDetailViewController:
                         )
 
                     case .TeamDescription:
-                        let editDescriptionViewController = EditTeamDescriptionViewController(addCharacterLimit: false)
+                        let editDescriptionViewController = EditTeamDescriptionViewController(addCharacterLimit: false, withDelegate: self)
                         editDescriptionViewController.team = (dataSource as! TeamDetailDataSource).team
                         let editDescriptionViewNavController = UINavigationController(
                             rootViewController: editDescriptionViewController
