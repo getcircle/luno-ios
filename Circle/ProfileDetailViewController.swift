@@ -54,6 +54,11 @@ class ProfileDetailViewController:
             if let card = dataSource.cardAtSection(indexPath.section) {
                 if let dataSource = collectionView.dataSource as? ProfileDetailDataSource {
                     switch card.type {
+                    case .ContactMethods:
+                        if let contactMethod = dataSource.contentAtIndexPath(indexPath) as? Services.Profile.Containers.ContactMethodV1 {
+                            performQuickAction(contactMethod)
+                        }
+                        
                     case .KeyValue:
                         handleKeyValueCardSelection(dataSource, indexPath: indexPath)
                         
@@ -106,19 +111,6 @@ class ProfileDetailViewController:
     
     internal func handleKeyValueCardSelection(dataSource: ProfileDetailDataSource, indexPath: NSIndexPath) {
         switch dataSource.typeOfCell(indexPath) {
-        case .CellPhone:
-            if let phone = profile.getCellPhone() {
-                performQuickAction(.Phone, additionalData: phone)
-            }
-            
-        case .Email:
-            performQuickAction(.Email)
-            
-        case .WorkPhone:
-            if let phone = profile.getCellPhone() {
-                performQuickAction(.Phone, additionalData: phone)
-            }
-
         case .Groups:
             let groupsViewController = GroupsViewController()
             groupsViewController.title = AppStrings.ProfileSectionGroupsTitle
@@ -136,43 +128,9 @@ class ProfileDetailViewController:
             profileHeaderView.adjustViewForScrollContentOffset(scrollView.contentOffset)
         }
     }
-
-    // MARK: - Notifications
-    
-    override func registerNotifications() {
-
-        NSNotificationCenter.defaultCenter().addObserver(
-            self,
-            selector: "quickActionButtonTapped:",
-            name: QuickActionNotifications.onQuickActionStarted,
-            object: nil
-        )
-
-        super.registerNotifications()
-    }
-    
-    override func unregisterNotifications() {
-        
-        NSNotificationCenter.defaultCenter().removeObserver(self,
-            name: QuickActionNotifications.onQuickActionStarted,
-            object: nil
-        )
-
-        super.unregisterNotifications()
-    }
     
     // MARK: - Notification handlers
     
-    func quickActionButtonTapped(notification: NSNotification) {
-        if let userInfo = notification.userInfo {
-            if let quickAction = userInfo[QuickActionNotifications.QuickActionTypeUserInfoKey] as? Int {
-                if let quickActionType = QuickAction(rawValue: quickAction) {
-                    performQuickAction(quickActionType)
-                }
-            }
-        }
-    }
-
     func reloadData() {
         if let dataSource = dataSource as? ProfileDetailDataSource {
             dataSource.profile = profile
@@ -182,49 +140,38 @@ class ProfileDetailViewController:
         }
     }
     
-    private func performQuickAction(quickAction: QuickAction, additionalData: AnyObject? = nil) {
-        switch quickAction {
+    private func performQuickAction(contactMethod: Services.Profile.Containers.ContactMethodV1) {
+        switch contactMethod.contactMethodType {
         case .Email:
-            if let email = profile.getEmail() {
-                presentMailViewController(
-                    [email],
-                    subject: "Hey",
-                    messageBody: "",
-                    completionHandler: nil
-                )
-            }
+            presentMailViewController(
+                [contactMethod.value],
+                subject: "Hey",
+                messageBody: "",
+                completionHandler: nil
+            )
             
-        case .Message:
-            var recipient: String?
-            if let phone = profile.getCellPhone() {
-                recipient = phone
-            } else if let email = profile.getEmail() {
-                recipient = email
-            }
-            if recipient != nil {
-                presentMessageViewController(
-                    [recipient!],
-                    subject: "Hey",
-                    messageBody: "",
-                    completionHandler: nil
-                )
-            }
+//        case .Message:
+//            var recipient: String?
+//            if let phone = profile.getCellPhone() {
+//                recipient = phone
+//            } else if let email = profile.getEmail() {
+//                recipient = email
+//            }
+//            if recipient != nil {
+//                presentMessageViewController(
+//                    [recipient!],
+//                    subject: "Hey",
+//                    messageBody: "",
+//                    completionHandler: nil
+//                )
+//            }
             
-        case .Phone:
+        case .CellPhone:
             if let number = profile.getCellPhone() as String? {
                 if let phoneURL = NSURL(string: NSString(format: "tel://%@", number.removePhoneNumberFormatting()) as String) {
                     UIApplication.sharedApplication().openURL(phoneURL)
                 }
             }
-            
-        case .MoreInfo:
-            let contactInfoViewController = ContactInfoViewController()
-            contactInfoViewController.profile = profile
-            contactInfoViewController.shouldBlurBackground = false
-            contactInfoViewController.addCancelButton = true
-            contactInfoViewController.modalPresentationStyle = .Custom
-            contactInfoViewController.transitioningDelegate = contactInfoViewController
-            presentViewController(contactInfoViewController, animated: true, completion: nil)
             
         default:
             break

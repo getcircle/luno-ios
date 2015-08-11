@@ -86,7 +86,7 @@ class Card: Equatable {
         case SocialConnectCTAs = "SocialConnectCTAs"
         case SocialToggle = "SocialToggle"
         case SearchSuggestion = "SearchSuggestion"
-        case QuickActions = "QuickActions"
+        case ContactMethods = "ContactMethods"
         case TextValue = "TextValue"
         case Skills = "Skills"
 
@@ -239,10 +239,10 @@ class Card: Equatable {
                     contentType: .Flat
                 )
 
-            case QuickActions:
+            case .ContactMethods:
                 return CardTypeInfo(
                     imageName: "Info",
-                    classType: QuickActionsCollectionViewCell.self,
+                    classType: ContactCollectionViewCell.self,
                     contentType: .Flat
                 )
 

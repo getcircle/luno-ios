@@ -10,9 +10,9 @@ import UIKit
 
 class TextValueCollectionViewCell: CircleCollectionViewCell {
 
-    @IBOutlet weak var textLabel: UILabel!
-    @IBOutlet weak var textLabelTopConstraint: NSLayoutConstraint!
-    @IBOutlet weak var textLabelBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak private(set) var textLabel: UILabel!
+    @IBOutlet weak private(set) var textLabelTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak private(set) var textLabelBottomConstraint: NSLayoutConstraint!
     
     override class var classReuseIdentifier: String {
         return "TextValueCollectionViewCell"

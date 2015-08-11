@@ -14,17 +14,12 @@ class CurrentUserProfileDetailDataSource: ProfileDetailDataSource {
     var editImageButtonDelegate: EditImageButtonDelegate?
     
     override internal func addContactsCard() -> Card? {
-        let card = Card(cardType: .KeyValue, title: "")
-        card.sectionInset = sectionInsetWithLargerBootomMargin
-        let contactData = KeyValueData(
-            type: .ContactPreferences,
-            title: AppStrings.ProfileSectionContactPreferencesTitle,
-            value: ""
-        )
-        contactData.isTappable = true
-        card.addContent(content: [contactData])
-        appendCard(card)
-        return card
+        if let card = super.addContactsCard() {
+            card.allowEditingContent = true
+            return card
+        }
+        
+        return nil
     }
     
     override internal func addStatusCard() -> Card? {

@@ -80,8 +80,8 @@ class ProfileDetailDataSource: CardDataSource {
     internal func populateData() {
         resetCards()
         addPlaceholderCard()
-        addContactsCard()
         addStatusCard()
+        addContactsCard()
         addLocationCard()
         addManagerCard()
         addTeamCard()
@@ -100,9 +100,18 @@ class ProfileDetailDataSource: CardDataSource {
     }
 
     internal func addContactsCard() -> Card? {
-        let card = Card(cardType: .QuickActions, title: "")
-        card.sectionInset = sectionInset
-        card.addContent(content: [["profile": profile]], maxVisibleItems: 0)
+        let card = Card(cardType: .ContactMethods, title: "Contact")
+        card.showContentCount = false
+        card.addHeader(headerClass: ProfileSectionHeaderCollectionReusableView.self)
+        card.sectionInset = sectionInsetWithLargerBootomMargin
+        var contactMethods = Array<Services.Profile.Containers.ContactMethodV1>()
+        let emailContactMethod = Services.Profile.Containers.ContactMethodV1Builder()
+        emailContactMethod.contactMethodType = .Email
+        emailContactMethod.value = profile.email
+        emailContactMethod.label = "Email"
+        contactMethods.append(emailContactMethod.build())
+        contactMethods.extend(profile.contactMethods)
+        card.addContent(content: contactMethods)
         appendCard(card)
         return card
     }

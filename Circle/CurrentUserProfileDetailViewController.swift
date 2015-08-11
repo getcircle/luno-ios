@@ -115,6 +115,13 @@ class CurrentUserProfileDetailViewController: ProfileDetailViewController,
     
     override func cardHeaderTapped(sender: AnyObject!, card: Card!) {
         switch card.type {
+        case .ContactMethods:
+            let editProfileVC = EditContactInfoViewController(nibName: "EditContactInfoViewController", bundle: nil)
+            editProfileVC.profile = profile
+            editProfileVC.editProfileDelegate = self
+            let editProfileNavVC = UINavigationController(rootViewController: editProfileVC)
+            navigationController?.presentViewController(editProfileNavVC, animated: true, completion: nil)
+            
         case .TextValue:
             let editStatusViewController = EditProfileStatusViewController(addCharacterLimit: true, withDelegate: self)
             editStatusViewController.profile = profile
@@ -148,22 +155,6 @@ class CurrentUserProfileDetailViewController: ProfileDetailViewController,
                     }
                 }
             }
-        }
-    }
-    
-    // MARK: - UICollectionViewDelegate
-    
-    override func handleKeyValueCardSelection(dataSource: ProfileDetailDataSource, indexPath: NSIndexPath) {
-        switch dataSource.typeOfCell(indexPath) {
-        case .ContactPreferences:
-            let editProfileVC = EditContactInfoViewController(nibName: "EditContactInfoViewController", bundle: nil)
-            editProfileVC.profile = profile
-            editProfileVC.editProfileDelegate = self
-            let editProfileNavVC = UINavigationController(rootViewController: editProfileVC)
-            navigationController?.presentViewController(editProfileNavVC, animated: true, completion: nil)
-            
-        default:
-            super.handleKeyValueCardSelection(dataSource, indexPath: indexPath)
         }
     }
 }
