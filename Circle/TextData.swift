@@ -21,9 +21,11 @@ class TextData {
     private(set) var editProfileId: String?
     private(set) var editedTimestamp: String?
     private(set) var type: TextDataType
+    var placeholder: String?
     
-    init(type withType: TextDataType, andValue: String) {
+    init(type withType: TextDataType, andValue: String, andPlaceholder: String? = nil) {
         type = withType
         value = andValue
+        placeholder = andPlaceholder
     }
 }

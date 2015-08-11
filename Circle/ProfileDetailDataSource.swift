@@ -94,7 +94,7 @@ class ProfileDetailDataSource: CardDataSource {
         // Add placeholder card to load profile header instantly
         var card = Card(cardType: .Placeholder, title: "Info")
         card.addHeader(headerClass: ProfileHeaderCollectionReusableView.self)
-        card.sectionInset = UIEdgeInsetsZero
+        card.sectionInset = sectionInsetWithLargerBootomMargin
         appendCard(card)
         return card
     }
@@ -117,15 +117,30 @@ class ProfileDetailDataSource: CardDataSource {
     }
     
     internal func addStatusCard() -> Card? {
-        var statusText = "I am working on.."
+        var statusText = ""
         if let status = profile.status {
             statusText = status.value
         }
         
-        let card = Card(cardType: .TextValue, title: "Status")
+        let card = Card(
+            cardType: .TextValue, 
+            title: NSLocalizedString(
+                "Currently working on",
+                comment: "Title of the section showing what a person is working on"
+            )
+        )
+        card.addHeader(headerClass: ProfileSectionHeaderCollectionReusableView.self)
         card.sectionInset = sectionInsetWithLargerBootomMargin
+        card.showContentCount = false
         card.addContent(content: [
-            TextData(type: .ProfileStatus, andValue: statusText)
+            TextData(
+                type: .ProfileStatus, 
+                andValue: statusText,
+                andPlaceholder: NSLocalizedString(
+                    "Ask me!",
+                    comment: "Text indicating a person should be asked directly for what they are working on."
+                )
+            )
         ])
         appendCard(card)
         return card

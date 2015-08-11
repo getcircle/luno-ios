@@ -24,9 +24,14 @@ class CurrentUserProfileDetailDataSource: ProfileDetailDataSource {
     
     override internal func addStatusCard() -> Card? {
         if let card = super.addStatusCard() {
-            card.addHeader(headerClass: ProfileSectionHeaderCollectionReusableView.self)
-            card.sectionInset = sectionInsetWithLargerBootomMargin
             card.allowEditingContent = true
+            
+            // Add a different placeholder when current user is looking at it
+            if let textData = card.content.first as? TextData {
+                textData.placeholder = NSLocalizedString("Add details", comment: "Generic text asking user to add details")
+                card.resetContent()
+                card.addContent(content: [textData])
+            }
             return card
         }
         
