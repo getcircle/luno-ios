@@ -44,8 +44,8 @@ class OfficeDetailViewController:
         if let card = dataSource.cardAtSection(indexPath.section) {
             switch card.type {            
             case .Profiles:
-                if let team = dataSource.contentAtIndexPath(indexPath) as? Services.Organization.Containers.TeamV1 {
-                    showTeamDetail(team)
+                if let profile = dataSource.contentAtIndexPath(indexPath) as? Services.Profile.Containers.ProfileV1 {
+                    showProfileDetail(profile)
                 }
                 break;
                 
