@@ -18,6 +18,7 @@ class ProfileHeaderCollectionReusableView: DetailHeaderCollectionReusableView {
     @IBOutlet weak private(set) var titleLabel: UILabel!
     @IBOutlet weak private(set) var titleNavLabel: UILabel!
     @IBOutlet weak private(set) var profileImage: CircleImageView!
+    @IBOutlet weak private(set) var profileImageCenterYConstraint: NSLayoutConstraint!
     @IBOutlet weak private(set) var verifiedProfileButton: UIButton!
     @IBOutlet weak private(set) var daylightIndicatorImage: UIImageView!
     @IBOutlet weak private(set) var daylightIndicatorNavImage: UIImageView!
@@ -34,6 +35,7 @@ class ProfileHeaderCollectionReusableView: DetailHeaderCollectionReusableView {
 
     private var location: Services.Organization.Containers.LocationV1?
     private var profile: Services.Profile.Containers.ProfileV1?
+    private var secondaryViews = [UIView]()
     
     override class var classReuseIdentifier: String {
         return "ProfileHeaderCollectionReusableView"
@@ -42,12 +44,17 @@ class ProfileHeaderCollectionReusableView: DetailHeaderCollectionReusableView {
     override class var height: CGFloat {
         return 300.0
     }
+    
+    class var heightWithoutSecondaryInfo: CGFloat {
+        return 240.0
+    }
 
     override func awakeFromNib() {
         super.awakeFromNib()
 
         // Initialization code
         addBlurEffect()
+        secondaryViews.extend([hireDateLabel, locationImageView, locationLabel, localTimeLabel, separatorView])
         configureLabels()
         configureContainerView()
         configureVerifiedProfileButton()
@@ -139,6 +146,7 @@ class ProfileHeaderCollectionReusableView: DetailHeaderCollectionReusableView {
     }
 
     func setOffice(office: Services.Organization.Containers.LocationV1) {
+        hideSecondaryViews()
         if location == nil {
             if let address = office.address {
                 
@@ -174,6 +182,7 @@ class ProfileHeaderCollectionReusableView: DetailHeaderCollectionReusableView {
     }
     
     func setTeam(team: Services.Organization.Containers.TeamV1) {
+        hideSecondaryViews()
         nameLabel.text = team.name
         nameNavLabel.text = team.name
         
@@ -196,6 +205,15 @@ class ProfileHeaderCollectionReusableView: DetailHeaderCollectionReusableView {
     }
     
     // MARK: - Helpers
+    
+    private func hideSecondaryViews() {
+        for view in secondaryViews {
+            view.hidden = true
+        }
+        profileImageCenterYConstraint.constant = 15.0
+        profileImage.setNeedsUpdateConstraints()
+        profileImage.layoutIfNeeded()
+    }
     
     private func addBlurEffect() {
         if visualEffectView == nil {
@@ -255,6 +273,7 @@ class ProfileHeaderCollectionReusableView: DetailHeaderCollectionReusableView {
             daylightIndicatorNavImage.alpha = titleNavLabel.alpha
             visualEffectView?.alpha = otherViewsAlpha
             containerView.alpha = otherViewsAlpha
+            editImageButton?.alpha = otherViewsAlpha
             profileImage.alpha = profileImageAlpha
             profileImage.transform = CGAffineTransformIdentity
             verifiedProfileButton.alpha = profileImageAlpha

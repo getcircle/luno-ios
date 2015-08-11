@@ -101,7 +101,11 @@ class TeamDetailDataSource: CardDataSource {
         let placeholderHeaderCard = Card(cardType: .Placeholder, title: "")
         placeholderHeaderCard.sectionInset = self.sectionInset
         placeholderHeaderCard.addHeader(
-            headerClass: ProfileHeaderCollectionReusableView.self
+            headerClass: ProfileHeaderCollectionReusableView.self,
+            headerSize: CGSizeMake(
+                ProfileHeaderCollectionReusableView.width,
+                ProfileHeaderCollectionReusableView.heightWithoutSecondaryInfo
+            )            
         )
         appendCard(placeholderHeaderCard)
     }

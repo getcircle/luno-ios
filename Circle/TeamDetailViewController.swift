@@ -34,7 +34,7 @@ class TeamDetailViewController:
         // Delegate
         collectionView.delegate = delegate
         
-        (layout as! StickyHeaderCollectionViewLayout).headerHeight = ProfileHeaderCollectionReusableView.height
+        (layout as! StickyHeaderCollectionViewLayout).headerHeight = ProfileHeaderCollectionReusableView.heightWithoutSecondaryInfo
         (dataSource as! TeamDetailDataSource).editImageButtonDelegate = self
         super.configureCollectionView()
     }

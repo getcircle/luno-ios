@@ -23,16 +23,8 @@
                             <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="kX0-a4-Q8w" secondAttribute="height" multiplier="1:1" id="147-lS-seV"/>
-                                <constraint firstAttribute="height" constant="80" id="KTA-jy-xKn"/>
-                                <constraint firstAttribute="width" secondItem="kX0-a4-Q8w" secondAttribute="height" multiplier="1:1" id="d7J-P5-Nnk"/>
                                 <constraint firstAttribute="width" constant="80" id="x17-ec-d5B"/>
                             </constraints>
-                            <variation key="default">
-                                <mask key="constraints">
-                                    <exclude reference="KTA-jy-xKn"/>
-                                    <exclude reference="d7J-P5-Nnk"/>
-                                </mask>
-                            </variation>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ravi Rani" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="1Tu-Zx-9yR" userLabel="NameLabel">
                             <rect key="frame" x="185" y="140" width="104" height="36"/>
@@ -184,6 +176,7 @@
                 <outlet property="nameLabel" destination="1Tu-Zx-9yR" id="dCN-I3-cEP"/>
                 <outlet property="nameNavLabel" destination="zJL-k5-Ada" id="fZN-PC-Fce"/>
                 <outlet property="profileImage" destination="kX0-a4-Q8w" id="idA-m8-Iy4"/>
+                <outlet property="profileImageCenterYConstraint" destination="Cq9-g3-mi2" id="1r7-Vb-ruU"/>
                 <outlet property="separatorView" destination="trO-6j-7OW" id="9aA-Lc-0fZ"/>
                 <outlet property="titleLabel" destination="GGm-ME-NAZ" id="FRS-1Y-xvS"/>
                 <outlet property="titleNavLabel" destination="Raz-vM-IgD" id="4tA-Yx-E8u"/>

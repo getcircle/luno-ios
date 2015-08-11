@@ -89,7 +89,11 @@ class OfficeDetailDataSource: CardDataSource {
         var placeholderCard = Card(cardType: .Placeholder, title: "Info")
         placeholderCard.sectionInset = UIEdgeInsetsZero
         placeholderCard.addHeader(
-            headerClass: ProfileHeaderCollectionReusableView.self
+            headerClass: ProfileHeaderCollectionReusableView.self,
+            headerSize: CGSizeMake(
+                ProfileHeaderCollectionReusableView.width,
+                ProfileHeaderCollectionReusableView.heightWithoutSecondaryInfo
+            )
         )
         
         appendCard(placeholderCard)
