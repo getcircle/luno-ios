@@ -56,7 +56,7 @@ class CurrentUserProfileDetailViewController: ProfileDetailViewController,
     internal override func reloadHeader() {
         if let dataSource = dataSource as? CurrentUserProfileDetailDataSource {
             if let headerView = dataSource.profileHeaderView {
-                headerView.setProfile(profile)
+                headerView.setProfile(profile, location: dataSource.location)
             }
         }
     }

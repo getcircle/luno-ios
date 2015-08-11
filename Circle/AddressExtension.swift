@@ -23,6 +23,15 @@ extension Services.Organization.Containers.AddressV1 {
         return address
     }
     
+    func cityRegion() -> String {
+        var address = city
+        if hasRegion {
+            address += ", " + region
+        }
+
+        return address
+    }
+
     func cityRegionPostalCode() -> String {
         var address = city
         if hasRegion {

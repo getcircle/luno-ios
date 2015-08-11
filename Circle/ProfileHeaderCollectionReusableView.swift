@@ -22,6 +22,14 @@ class ProfileHeaderCollectionReusableView: DetailHeaderCollectionReusableView {
     @IBOutlet weak private(set) var daylightIndicatorImage: UIImageView!
     @IBOutlet weak private(set) var daylightIndicatorNavImage: UIImageView!
     
+    // Secondary Info
+    
+    @IBOutlet weak private(set) var hireDateLabel: UILabel!
+    @IBOutlet weak private(set) var locationImageView: UIImageView!
+    @IBOutlet weak private(set) var locationLabel: UILabel!
+    @IBOutlet weak private(set) var localTimeLabel: UILabel!
+    @IBOutlet weak private(set) var separatorView: UIView!
+    
     private(set) var visualEffectView: UIVisualEffectView?
 
     private var location: Services.Organization.Containers.LocationV1?
@@ -32,7 +40,7 @@ class ProfileHeaderCollectionReusableView: DetailHeaderCollectionReusableView {
     }
     
     override class var height: CGFloat {
-        return 240.0
+        return 300.0
     }
 
     override func awakeFromNib() {
@@ -43,13 +51,14 @@ class ProfileHeaderCollectionReusableView: DetailHeaderCollectionReusableView {
         configureLabels()
         configureContainerView()
         configureVerifiedProfileButton()
+        configureLocationImage()
     }
     
     // MARK: - Configuration
     
     private func configureLabels() {
         
-        for label in [nameLabel, nameNavLabel, titleLabel, titleNavLabel] {
+        for label in [nameLabel, nameNavLabel, titleLabel, titleNavLabel, hireDateLabel, locationLabel, localTimeLabel] {
             label.text = ""
         }
     }
@@ -62,6 +71,7 @@ class ProfileHeaderCollectionReusableView: DetailHeaderCollectionReusableView {
         visualEffectView!.contentView.addSubview(containerView)
         containerView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero, excludingEdge: .Bottom)
         containerView.autoMatchDimension(.Height, toDimension: .Height, ofView: backgroundImageView)
+        containerView.backgroundColor = UIColor.blackColor()
     }
     
     private func configureVerifiedProfileButton() {
@@ -71,14 +81,45 @@ class ProfileHeaderCollectionReusableView: DetailHeaderCollectionReusableView {
         verifiedProfileButton.makeItCircular()
         verifiedProfileButton.hidden = true
     }
+    
+    private func configureLocationImage() {
+        locationImageView.image = locationImageView.image?.imageWithRenderingMode(.AlwaysTemplate)
+        locationImageView.tintColor = UIColor(red: 200, green: 200, blue: 200)
+        locationImageView.hidden = true
+    }
 
-    func setProfile(userProfile: Services.Profile.Containers.ProfileV1) {
-        var hasProfileImageChanged = profile?.imageUrl != userProfile.imageUrl
-        profile = userProfile
+    func setProfile(
+        userProfile: Services.Profile.Containers.ProfileV1, 
+        location userLocation: Services.Organization.Containers.LocationV1?
+    ) {
+        let loadingEllipsis = ". . ."
+        var hireDateText = "At "
+        if let organization = AuthViewController.getLoggedInUserOrganization() {
+            hireDateText += organization.name
+        }
+        
         nameLabel.text = userProfile.nameWithNickName()
         nameNavLabel.text = nameLabel.text
         titleLabel.text = userProfile.title
         titleNavLabel.text = titleLabel.text
+        locationLabel.text = loadingEllipsis
+        localTimeLabel.text = loadingEllipsis
+        hireDateLabel.text = loadingEllipsis
+        
+        if let userLocation = userLocation {
+            containerView.backgroundColor = UIColor.clearColor()
+            locationLabel.text = userLocation.address.cityRegion()
+            localTimeLabel.text = userLocation.address.officeCurrentDateAndTimeLabel()
+            locationImageView.hidden = false
+            if userProfile.hasHireDate && userProfile.hireDate.trimWhitespace() != "" {
+                hireDateLabel.text = hireDateText + " since " + NSDateFormatter.sharedAnniversaryFormatter.stringFromDate(
+                    userProfile.hireDate.toDate()!
+                )
+            }
+        }
+        
+        var hasProfileImageChanged = profile?.imageUrl != userProfile.imageUrl
+        profile = userProfile
         profileImage.imageProfileIdentifier = userProfile.id
         if hasProfileImageChanged {
             profileImage.setImageWithProfile(userProfile, successHandler: { (image) -> Void in
@@ -101,6 +142,7 @@ class ProfileHeaderCollectionReusableView: DetailHeaderCollectionReusableView {
         if location == nil {
             if let address = office.address {
                 
+                containerView.backgroundColor = UIColor.clearColor()
                 location = office
                 let officeName = office.address.officeName()
                 let officeStateAndCountry = (office.address.hasRegion ? office.address.region : "") + ", " + office.address.countryCode
@@ -135,6 +177,7 @@ class ProfileHeaderCollectionReusableView: DetailHeaderCollectionReusableView {
         nameLabel.text = team.name
         nameNavLabel.text = team.name
         
+        containerView.backgroundColor = UIColor.clearColor()
         let teamCounts = team.getTeamCounts().uppercaseString
         titleLabel.attributedText = NSAttributedString(
             string: teamCounts,
@@ -182,17 +225,24 @@ class ProfileHeaderCollectionReusableView: DetailHeaderCollectionReusableView {
                 verifiedProfileButton.center = CGPointMake(profileImage.center.x + (profileImage.frame.width/2.0), verifiedProfileButton.center.y)
             }
             
-            // Reduce opacity of the name and title label at a faster pace
-            let titleLabelAlpha = 1.0 - contentOffset.y/(titleLabel.frame.origin.y - 40.0)
-            let nameLabelAlpha = 1.0 - contentOffset.y/(nameLabel.frame.origin.y - 40.0)
-            let sectionsAlpha = 1.0 - contentOffset.y/(nameNavLabel.frame.origin.y - 40.0)
-            titleLabel.alpha = titleLabelAlpha
-            nameLabel.alpha = nameLabelAlpha
-            daylightIndicatorImage.alpha = titleLabelAlpha
-            editImageButton?.alpha = titleLabelAlpha
-            nameNavLabel.alpha = sectionsAlpha <= 0.0 ? nameNavLabel.alpha + 1/20 : 0.0
-            titleNavLabel.alpha = sectionsAlpha <= 0.0 ? titleNavLabel.alpha + 1/20 : 0.0
-            daylightIndicatorNavImage.alpha = titleNavLabel.alpha
+            let delta: CGFloat = 40.0
+            let navViews = Set([nameNavLabel, titleNavLabel, daylightIndicatorNavImage])
+            let excludedViews = Set([profileImage, verifiedProfileButton])
+            for view: UIView in (containerView.subviews as! [UIView]) {
+                if excludedViews.contains(view) {
+                    continue
+                }
+                
+                let alpha = 1.0 - contentOffset.y/(view.frame.origin.y - delta)
+                if navViews.contains(view) {
+                    view.alpha = alpha <= 0.0 ? view.alpha + 1/20 : 0.0
+                }
+                else {
+                    view.alpha = alpha
+                }
+            }
+            
+            editImageButton?.alpha = nameLabel.alpha
         }
         else {
             // Change alpha faster for profile image
@@ -200,14 +250,14 @@ class ProfileHeaderCollectionReusableView: DetailHeaderCollectionReusableView {
             
             // Change it slower for everything else
             let otherViewsAlpha = max(0.0, 1.0 - -contentOffset.y/120.0)
-            verifiedProfileButton.alpha = profileImageAlpha
             nameNavLabel.alpha = 0.0
             titleNavLabel.alpha = 0.0
             daylightIndicatorNavImage.alpha = titleNavLabel.alpha
-            profileImage.alpha = profileImageAlpha
             visualEffectView?.alpha = otherViewsAlpha
             containerView.alpha = otherViewsAlpha
+            profileImage.alpha = profileImageAlpha
             profileImage.transform = CGAffineTransformIdentity
+            verifiedProfileButton.alpha = profileImageAlpha
             verifiedProfileButton.transform = CGAffineTransformIdentity
             verifiedProfileButton.center = CGPointMake(profileImage.center.x + (profileImage.frame.width/2.0), verifiedProfileButton.center.y)
         }

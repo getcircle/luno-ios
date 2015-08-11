@@ -86,6 +86,7 @@ class ProfileDetailDataSource: CardDataSource {
         addManagerAndTeamCard()
         addBasicInfoCard()
         addGroupsCard()
+        setDataInHeader()
     }
     
     internal func addPlaceholderCard() -> Card? {
@@ -230,8 +231,8 @@ class ProfileDetailDataSource: CardDataSource {
         super.configureHeader(header, atIndexPath: indexPath)
         
         if let profileHeader = header as? ProfileHeaderCollectionReusableView {
-            profileHeader.setProfile(profile!)
             profileHeaderView = profileHeader
+            setDataInHeader()
         }
     }
 
@@ -241,5 +242,9 @@ class ProfileDetailDataSource: CardDataSource {
         }
         
         return false
+    }
+    
+    private func setDataInHeader() {
+        profileHeaderView?.setProfile(profile, location: location)
     }
 }

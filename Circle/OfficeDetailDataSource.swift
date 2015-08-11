@@ -29,7 +29,6 @@ class OfficeDetailDataSource: CardDataSource {
         resetCards()
         addPlaceholderCard()
         
-        println("Updating LOCATION DATA")
         // Fetch data within a dispatch group, calling populateData when all tasks have finished
         var storedError: NSError!
         var actionsGroup = dispatch_group_create()
