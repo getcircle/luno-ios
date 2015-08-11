@@ -61,7 +61,7 @@ class OfficeDetailViewController:
     }
 
     func scrollViewDidScroll(scrollView: UIScrollView) {
-        if let profileHeaderView = (dataSource as! OfficeDetailDataSource).profileHeaderView as? ProfileHeaderCollectionReusableView {
+        if let profileHeaderView = (dataSource as! OfficeDetailDataSource).profileHeaderView {
             profileHeaderView.adjustViewForScrollContentOffset(scrollView.contentOffset)
         }
     }
@@ -201,10 +201,8 @@ class OfficeDetailViewController:
     }
     
     internal override func reloadHeader() {
-        if let dataSource = dataSource as? OfficeDetailDataSource {
-            if let headerView = dataSource.profileHeaderView as? ProfileHeaderCollectionReusableView {
-                headerView.setOffice(dataSource.location)
-            }
+        if let dataSource = dataSource as? OfficeDetailDataSource, headerView = dataSource.profileHeaderView {
+            headerView.setOffice(dataSource.location)
         }
     }
     

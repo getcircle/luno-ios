@@ -18,7 +18,7 @@ class OfficeDetailDataSource: CardDataSource {
     private(set) var nextProfilesRequest: Soa.ServiceRequestV1?
     private(set) var teams = Array<Services.Organization.Containers.TeamV1>()
     private(set) var nextTeamsRequest: Soa.ServiceRequestV1?
-    private(set) var profileHeaderView: CircleCollectionReusableView?
+    private(set) var profileHeaderView: ProfileHeaderCollectionReusableView?
     
     private let defaultSectionInset = UIEdgeInsetsMake(0.0, 0.0, 25.0, 0.0)
     private let sectionHeaderClass = ProfileSectionHeaderCollectionReusableView.self

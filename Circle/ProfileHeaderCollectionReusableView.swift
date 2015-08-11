@@ -147,37 +147,40 @@ class ProfileHeaderCollectionReusableView: DetailHeaderCollectionReusableView {
 
     func setOffice(office: Services.Organization.Containers.LocationV1) {
         hideSecondaryViews()
-        if location == nil {
-            if let address = office.address {
-                
-                containerView.backgroundColor = UIColor.clearColor()
-                location = office
-                let officeName = office.address.officeName()
-                let officeStateAndCountry = (office.address.hasRegion ? office.address.region : "") + ", " + office.address.countryCode
-                nameLabel.text = officeName
-                nameNavLabel.text = officeName
-                titleLabel.text = office.address.officeCurrentDateAndTimeLabel()
-                titleNavLabel.text = office.address.officeCurrentTimeLabel(nil)
-                if let indicatorImage = office.address.officeDaylightIndicator() {
-                    daylightIndicatorImage.alpha = 1.0
-                    daylightIndicatorImage.image = indicatorImage
-                    daylightIndicatorImage.tintColor = titleLabel.textColor
-                    daylightIndicatorNavImage.image = indicatorImage
-                    daylightIndicatorNavImage.tintColor = titleNavLabel.textColor
-                }
-                
-                self.profileImage.contentMode = .ScaleAspectFill
-                if location!.hasImageUrl {
-                    profileImage.setImageWithLocation(location!) { (image) -> Void in
-                        self.profileImage.image = image
-                        if self.backgroundImageView != image {
-                            self.backgroundImageView.image = image
-                            self.addBlurEffect()
-                        }
+        if let address = office.address {
+            containerView.backgroundColor = UIColor.clearColor()
+            let officeName = office.address.officeName()
+            let officeStateAndCountry = (office.address.hasRegion ? office.address.region : "") + ", " + office.address.countryCode
+            nameLabel.text = officeName
+            nameNavLabel.text = officeName
+            titleLabel.text = office.address.officeCurrentDateAndTimeLabel()
+            titleNavLabel.text = office.address.officeCurrentTimeLabel(nil)
+            if let indicatorImage = office.address.officeDaylightIndicator() {
+                daylightIndicatorImage.alpha = 1.0
+                daylightIndicatorImage.image = indicatorImage
+                daylightIndicatorImage.tintColor = titleLabel.textColor
+                daylightIndicatorNavImage.image = indicatorImage
+                daylightIndicatorNavImage.tintColor = titleNavLabel.textColor
+            }
+            
+            self.profileImage.contentMode = .ScaleAspectFill
+            
+            var imageUpdated = true
+            if let location = location where office.imageUrl == location.imageUrl && office.hasImageUrl {
+                imageUpdated = false
+            }
+            
+            if office.hasImageUrl && imageUpdated {
+                profileImage.setImageWithLocation(office) { (image) -> Void in
+                    self.profileImage.image = image
+                    if self.backgroundImageView != image {
+                        self.backgroundImageView.image = image
+                        self.addBlurEffect()
                     }
                 }
-                verifiedProfileButton.hidden = true
             }
+            verifiedProfileButton.hidden = true
+            location = office
         }
     }
     
