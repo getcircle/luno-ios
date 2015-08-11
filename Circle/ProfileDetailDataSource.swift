@@ -84,7 +84,6 @@ class ProfileDetailDataSource: CardDataSource {
         addStatusCard()
         addLocationCard()
         addManagerAndTeamCard()
-        addBasicInfoCard()
         addGroupsCard()
         setDataInHeader()
     }
@@ -160,43 +159,7 @@ class ProfileDetailDataSource: CardDataSource {
         
         return nil
     }
-    
-    internal func addBasicInfoCard() -> Card? {
-        var content = [KeyValueData]()
-        
-        if profile.hasHireDate && profile.hireDate.trimWhitespace() != "" {
-            content.append(
-                KeyValueData(
-                    type: .HireDate,
-                    title: "Hire Date",
-                    value: NSDateFormatter.sharedAnniversaryFormatter.stringFromDate(profile.hireDate.toDate()!)
-                )
-            )
-        }
 
-        if profile.hasBirthDate && profile.birthDate.trimWhitespace() != "" {
-            content.append(
-                KeyValueData(
-                    type: .Birthday,
-                    title: "Birthday",
-                    value: NSDateFormatter.sharedBirthdayFormatter.stringFromDate(profile.birthDate.toDate()!)
-                )
-            )
-        }
-        
-        if content.count > 0 {
-            let card = Card(cardType: .KeyValue, title: "Info")
-            card.showContentCount = false
-            card.addHeader(headerClass: ProfileSectionHeaderCollectionReusableView.self)
-            card.sectionInset = sectionInsetWithLargerBootomMargin
-            card.addContent(content: content)
-            appendCard(card)
-            return card
-        }
-        
-        return nil
-    }
-    
     internal func addGroupsCard() {
         if supportGoogleGroups {
             //TODO: Add groups card
