@@ -90,7 +90,7 @@ extension UIView {
         return visualEffectView
     }
     
-    func addActivityIndicator(color: UIColor = UIColor.appActivityIndicatorViewColor(), start: Bool = true) -> CircleActivityIndicatorView {
+    func addActivityIndicator(color: UIColor = UIColor.appActivityIndicatorViewColor(), start: Bool = true, horizontalOffset: CGFloat = 0.0) -> CircleActivityIndicatorView {
         var activityIndicatorView = CircleActivityIndicatorView(tintColor: color)
         activityIndicatorView.hidesWhenStopped = true
         if start {
@@ -98,7 +98,8 @@ extension UIView {
         }
         addSubview(activityIndicatorView)
         bringSubviewToFront(activityIndicatorView)
-        activityIndicatorView.autoCenterInSuperview()
+        activityIndicatorView.autoAlignAxis(.Vertical, toSameAxisOfView: self, withOffset: 0.0)
+        activityIndicatorView.autoAlignAxis(.Horizontal, toSameAxisOfView: self, withOffset: horizontalOffset)
         let height = min(frame.height - 10.0, CircleActivityIndicatorView.height)
         let width = height
         activityIndicatorView.autoSetDimensionsToSize(CGSizeMake(width, height))
