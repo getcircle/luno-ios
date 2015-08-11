@@ -14,14 +14,14 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Email" translatesAutoresizingMaskIntoConstraints="NO" id="gV9-AB-Nqx">
-                        <rect key="frame" x="15" y="15" width="30" height="30"/>
+                        <rect key="frame" x="17" y="17" width="26" height="26"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="30" id="eBF-gL-0iP"/>
+                            <constraint firstAttribute="height" constant="26" id="eBF-gL-0iP"/>
                             <constraint firstAttribute="width" secondItem="gV9-AB-Nqx" secondAttribute="height" multiplier="1:1" id="kvl-Hs-Jbu"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EMAIL" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WDz-fz-0pR">
-                        <rect key="frame" x="55" y="21" width="109" height="18"/>
+                        <rect key="frame" x="60" y="21" width="104" height="18"/>
                         <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="13"/>
                         <color key="textColor" red="0.46666666666666667" green="0.46666666666666667" blue="0.46666666666666667" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -38,9 +38,9 @@
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="aom-or-946" firstAttribute="leading" secondItem="WDz-fz-0pR" secondAttribute="trailing" constant="10" id="6Mj-HN-OHu"/>
-                <constraint firstItem="WDz-fz-0pR" firstAttribute="leading" secondItem="gV9-AB-Nqx" secondAttribute="trailing" constant="10" id="6tb-ac-jEV"/>
+                <constraint firstItem="WDz-fz-0pR" firstAttribute="leading" secondItem="gV9-AB-Nqx" secondAttribute="trailing" constant="17" id="6tb-ac-jEV"/>
                 <constraint firstAttribute="centerY" secondItem="aom-or-946" secondAttribute="centerY" id="CYk-oO-Par"/>
-                <constraint firstItem="gV9-AB-Nqx" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="15" id="ass-xJ-cbJ"/>
+                <constraint firstItem="gV9-AB-Nqx" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="17" id="ass-xJ-cbJ"/>
                 <constraint firstAttribute="centerY" secondItem="gV9-AB-Nqx" secondAttribute="centerY" id="i2u-Lt-OpN"/>
                 <constraint firstAttribute="trailing" secondItem="aom-or-946" secondAttribute="trailing" constant="15" id="xNs-z5-2xC"/>
                 <constraint firstAttribute="centerY" secondItem="WDz-fz-0pR" secondAttribute="centerY" id="yvc-wu-RsJ"/>

@@ -182,7 +182,7 @@ class ProfileDetailDataSource: CardDataSource {
             appendCard(card)
             return card
         }
-        
+
         return nil
     }
 
