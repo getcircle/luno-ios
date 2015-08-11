@@ -39,7 +39,14 @@ class TextValueCollectionViewCell: CircleCollectionViewCell {
     override func setData(data: AnyObject) {
         if let textData = data as? TextData {
             if textData.value.trimWhitespace() != "" {
-                textLabel.text = "\"" + textData.value + "\""
+                if textData.type == .TeamStatus || textData.type == .ProfileStatus {
+                    textLabel.text = "\"" + textData.value + "\""
+                    textLabel.font = UIFont(name: "Avenir-Oblique", size: textLabel.font.pointSize)
+                }
+                else {
+                    textLabel.text = textData.value
+                    textLabel.font = UIFont(name: "Avenir-Roman", size: textLabel.font.pointSize)
+                }
             }
         }
     }
