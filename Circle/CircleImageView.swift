@@ -196,7 +196,7 @@ class CircleImageView: UIImageView {
                     if let response = response {
                         println("Response \(response.statusCode) \(response)")
                     }
-                    
+
                     println("failed to fetch image for team: \(team.imageUrl) error: \(error?.localizedDescription)")
                 }
             )

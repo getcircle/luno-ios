@@ -99,7 +99,7 @@ class ProfileHeaderCollectionReusableView: DetailHeaderCollectionReusableView {
         userProfile: Services.Profile.Containers.ProfileV1, 
         location userLocation: Services.Organization.Containers.LocationV1?
     ) {
-        let loadingEllipsis = ". . ."
+        let loadingEllipsis = "\u{2026}"
         var hireDateText = "At "
         if let organization = AuthViewController.getLoggedInUserOrganization() {
             hireDateText += organization.name

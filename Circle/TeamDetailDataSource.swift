@@ -113,17 +113,19 @@ class TeamDetailDataSource: CardDataSource {
     private func addStatusCard() {
         // hasStatus on the object is not returning correct value
         var hasStatus = false
+        var createdTimestamp = ""
         if let status = team.status {
             hasStatus = true
+            createdTimestamp = status.created
         }
         
         if hasStatus || canEdit() {
             
-            let statusCard = Card(cardType: .TextValue, title: "Status")
+            let statusCard = Card(cardType: .TextValue, title: "Currently working on")
             statusCard.sectionInset = self.sectionInset
             if let status = team.status where team.status.value.trimWhitespace() != "" {
                 statusCard.addContent(content: [
-                    TextData(type: .TeamStatus, andValue: status.value)
+                    TextData(type: .TeamStatus, andValue: status.value, andTimestamp: createdTimestamp)
                 ])
             }
             

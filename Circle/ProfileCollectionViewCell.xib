@@ -14,26 +14,26 @@
                 <rect key="frame" x="0.0" y="0.0" width="415" height="70"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CEO" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bkV-ww-aQf" userLabel="Title">
-                        <rect key="frame" x="60" y="38" width="340" height="18"/>
+                        <rect key="frame" x="65" y="38" width="335" height="18"/>
                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="13"/>
                         <color key="textColor" red="0.4392156862745098" green="0.4392156862745098" blue="0.4392156862745098" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="John Appleseed" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9nj-gl-dh0" userLabel="Name">
-                        <rect key="frame" x="60" y="16" width="340" height="21"/>
+                        <rect key="frame" x="65" y="16" width="335" height="21"/>
                         <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="15"/>
                         <color key="textColor" red="0.18823529411764706" green="0.18823529411764706" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WaH-1I-lf2" userLabel="ProfileImage" customClass="CircleImageView" customModule="circle" customModuleProvider="target">
-                        <rect key="frame" x="10" y="15" width="40" height="40"/>
+                        <rect key="frame" x="15" y="15" width="40" height="40"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="40" id="bUi-IP-iXH"/>
                             <constraint firstAttribute="width" secondItem="WaH-1I-lf2" secondAttribute="height" multiplier="1:1" id="vW8-OR-jDb"/>
                         </constraints>
                     </imageView>
                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="D" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Uo-RU-eGd" userLabel="TeamLetterLabel">
-                        <rect key="frame" x="10" y="15" width="40" height="40"/>
+                        <rect key="frame" x="15" y="15" width="40" height="40"/>
                         <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="22"/>
                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -49,7 +49,7 @@
                 <constraint firstItem="bkV-ww-aQf" firstAttribute="leading" secondItem="9nj-gl-dh0" secondAttribute="leading" id="IDj-BR-Asz"/>
                 <constraint firstItem="0Uo-RU-eGd" firstAttribute="bottom" secondItem="WaH-1I-lf2" secondAttribute="bottom" id="Jcb-Jr-pbH"/>
                 <constraint firstItem="9nj-gl-dh0" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="16" id="PwW-a2-cpz"/>
-                <constraint firstItem="WaH-1I-lf2" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="SMf-Cz-AoV"/>
+                <constraint firstItem="WaH-1I-lf2" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="15" id="SMf-Cz-AoV"/>
                 <constraint firstAttribute="trailing" secondItem="9nj-gl-dh0" secondAttribute="trailing" constant="15" id="Wbj-mA-mTg"/>
                 <constraint firstAttribute="centerY" secondItem="WaH-1I-lf2" secondAttribute="centerY" id="ZZ7-Fu-qz3"/>
                 <constraint firstItem="0Uo-RU-eGd" firstAttribute="leading" secondItem="WaH-1I-lf2" secondAttribute="leading" id="eke-g1-8HY"/>

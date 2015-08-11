@@ -118,8 +118,11 @@ class ProfileDetailDataSource: CardDataSource {
     
     internal func addStatusCard() -> Card? {
         var statusText = ""
+        var createdTimestamp = ""
         if let status = profile.status {
             statusText = status.value
+            createdTimestamp = status.created
+
         }
         
         let card = Card(
@@ -139,7 +142,8 @@ class ProfileDetailDataSource: CardDataSource {
                 andPlaceholder: NSLocalizedString(
                     "Ask me!",
                     comment: "Text indicating a person should be asked directly for what they are working on."
-                )
+                ),
+                andTimestamp: createdTimestamp
             )
         ])
         appendCard(card)
