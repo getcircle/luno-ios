@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import ProtobufRegistry
 
 class TextData {
     
@@ -23,12 +24,19 @@ class TextData {
     private(set) var type: TextDataType
     var placeholder: String?
     private(set) var updatedTimestamp: String?
+    private(set) var authorProfile: Services.Profile.Containers.ProfileV1?
 
-    init(type withType: TextDataType, andValue: String, andPlaceholder: String? = nil, andTimestamp: String? = nil) {
+    init(type withType: TextDataType,
+        andValue: String, 
+        andPlaceholder: String? = nil, 
+        andTimestamp: String? = nil,
+        andAuthor: Services.Profile.Containers.ProfileV1? = nil
+    ) {
         type = withType
         value = andValue
         placeholder = andPlaceholder
         updatedTimestamp = andTimestamp
+        authorProfile = andAuthor
     }
     
     func getFormattedTimestamp() -> String? {
@@ -57,7 +65,13 @@ class TextData {
                     formattedTimestamp += String(diffComponents.minute) + "m "
                 }
                 
-                return formattedTimestamp + "ago"
+                formattedTimestamp += "ago"
+                
+                if let author = authorProfile {
+                    formattedTimestamp += " by " + author.fullName
+                }
+
+                return formattedTimestamp
             }
         }
         

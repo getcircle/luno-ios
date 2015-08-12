@@ -19,6 +19,7 @@ class TeamDetailDataSource: CardDataSource {
     private var managerProfile: Services.Profile.Containers.ProfileV1!
     private(set) var profiles = Array<Services.Profile.Containers.ProfileV1>()
     private(set) var teams = Array<Services.Organization.Containers.TeamV1>()
+    private(set) var statusProfile: Services.Profile.Containers.ProfileV1?
     
     private let sectionInset = UIEdgeInsetsMake(0.0, 0.0, 25.0, 0.0)
     private let sectionHeaderClass = ProfileSectionHeaderCollectionReusableView.self
@@ -36,6 +37,20 @@ class TeamDetailDataSource: CardDataSource {
             
             var storedError: NSError!
             var actionsGroup = dispatch_group_create()
+            
+            // TODO: Remove after profiles come back inflated
+            if team.hasStatus && team.status != nil {
+                dispatch_group_enter(actionsGroup)
+                Services.Profile.Actions.getProfile(team.status.byProfileId, completionHandler: { (profile, error) -> Void in
+                    if let error = error {
+                        storedError = error
+                    }
+                    else  if let profile = profile {
+                        self.statusProfile = profile
+                    }
+                    dispatch_group_leave(actionsGroup)
+                })
+            }
             
             // Fetch managers and members
             dispatch_group_enter(actionsGroup)
@@ -125,7 +140,12 @@ class TeamDetailDataSource: CardDataSource {
             statusCard.sectionInset = self.sectionInset
             if let status = team.status where team.status.value.trimWhitespace() != "" {
                 statusCard.addContent(content: [
-                    TextData(type: .TeamStatus, andValue: status.value, andTimestamp: createdTimestamp)
+                    TextData(
+                        type: .TeamStatus, 
+                        andValue: status.value, 
+                        andTimestamp: createdTimestamp,
+                        andAuthor: statusProfile
+                    )
                 ])
             }
             
