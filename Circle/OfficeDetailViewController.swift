@@ -165,6 +165,9 @@ class OfficeDetailViewController:
                     nextRequest: officeDetailDataSource.nextProfilesRequest
                 )
                 viewController.title = "People @ " + officeDetailDataSource.location.address.city
+                (viewController.dataSource as! ProfilesDataSource).configureForLocation(
+                    officeDetailDataSource.location.id
+                )
                 trackCardHeaderTapped(card, overviewType: .Profiles)
                 navigationController?.pushViewController(viewController, animated: true)
                 

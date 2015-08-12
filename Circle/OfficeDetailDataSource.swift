@@ -16,8 +16,6 @@ class OfficeDetailDataSource: CardDataSource {
 
     private(set) var profiles = Array<Services.Profile.Containers.ProfileV1>()
     private(set) var nextProfilesRequest: Soa.ServiceRequestV1?
-    private(set) var teams = Array<Services.Organization.Containers.TeamV1>()
-    private(set) var nextTeamsRequest: Soa.ServiceRequestV1?
     private(set) var profileHeaderView: ProfileHeaderCollectionReusableView?
     
     private let defaultSectionInset = UIEdgeInsetsMake(0.0, 0.0, 25.0, 0.0)
@@ -176,10 +174,10 @@ class OfficeDetailDataSource: CardDataSource {
                 title: AppStrings.CardTitlePeople + " (" + String(location.profileCount) + ")",
                 contentCount: Int(location.profileCount)
             )
-            profilesCard.addContent(content: profiles as [AnyObject], maxVisibleItems: 3)
+            profilesCard.addContent(content: profiles as [AnyObject], maxVisibleItems: Card.MaxListEntries)
             profilesCard.sectionInset = defaultSectionInset
             profilesCard.addHeader(headerClass: sectionHeaderClass)
-            if profiles.count > 3 {
+            if profiles.count > Card.MaxListEntries {
                 profilesCard.addDefaultFooter()
             }
             appendCard(profilesCard)

@@ -26,7 +26,18 @@ class TeamsOverviewDataSource: CardDataSource {
         searchAttributeValue = locationId
         configureForParameters(requestBuilder)
     }
-    
+
+    func configureForTeam(teamId: String, setupOnlySearch: Bool) {
+        if !setupOnlySearch {
+            let requestBuilder = Services.Profile.Actions.GetProfiles.RequestV1.builder()
+            requestBuilder.teamId = teamId
+            configureForParameters(requestBuilder)
+        }
+        
+        searchAttribute = .TeamId
+        searchAttributeValue = teamId
+    }
+
     func configureForOrganization() {
         let requestBuilder = Services.Organization.Actions.GetTeams.RequestV1.builder()
         let organizationId = AuthViewController.getLoggedInUserOrganization()!.id

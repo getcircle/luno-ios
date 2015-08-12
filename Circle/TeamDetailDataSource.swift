@@ -17,8 +17,8 @@ class TeamDetailDataSource: CardDataSource {
     private(set) var profileHeaderView: ProfileHeaderCollectionReusableView?
 
     private var managerProfile: Services.Profile.Containers.ProfileV1!
-    private var profiles = Array<Services.Profile.Containers.ProfileV1>()
-    private var teams = Array<Services.Organization.Containers.TeamV1>()
+    private(set) var profiles = Array<Services.Profile.Containers.ProfileV1>()
+    private(set) var teams = Array<Services.Organization.Containers.TeamV1>()
     
     private let sectionInset = UIEdgeInsetsMake(0.0, 0.0, 25.0, 0.0)
     private let sectionHeaderClass = ProfileSectionHeaderCollectionReusableView.self
@@ -177,27 +177,35 @@ class TeamDetailDataSource: CardDataSource {
         if teams.count > 0 {
             var teamsCard = Card(
                 cardType: .Profiles,
-                title: AppStrings.TeamSubTeamsSectionTitle + " (" + String(team.childTeamCount) + ")"
+                subType: .Teams,
+                title: AppStrings.TeamSubTeamsSectionTitle + " (" + String(teams.count) + ")"
             )
             teamsCard.showContentCount = false
             teamsCard.addHeader(headerClass: sectionHeaderClass)
-            teamsCard.addContent(content: teams)
+            teamsCard.addContent(content: teams, maxVisibleItems: Card.MaxListEntries)
             teamsCard.sectionInset = sectionInset
+            if teams.count > Card.MaxListEntries {
+                teamsCard.addDefaultFooter()
+            }
             appendCard(teamsCard)
         }
     }
     
     private func addMembersCard() {
         if profiles.count > 0 {
-            let membersCardTitle = AppStrings.GroupMembersSectionTitle.localizedUppercaseString()
+            let membersCardTitle = AppStrings.CardTitlePeople.localizedUppercaseString()
             let membersCard = Card(
                 cardType: .Profiles,
-                title: membersCardTitle + " (" + String(team.profileCount) + ")"
+                subType: .Members,
+                title: membersCardTitle + " (" + String(profiles.count) + ")"
             )
             membersCard.showContentCount = false
             membersCard.addHeader(headerClass: sectionHeaderClass)
-            membersCard.addContent(content: profiles)
+            membersCard.addContent(content: profiles, maxVisibleItems: Card.MaxListEntries)
             membersCard.sectionInset = self.sectionInset
+            if profiles.count > Card.MaxListEntries {
+                membersCard.addDefaultFooter()
+            }
             appendCard(membersCard)
         }
     }
@@ -211,7 +219,7 @@ class TeamDetailDataSource: CardDataSource {
             teamActionsCard.addContent(content: [[
                 "text" : AppStrings.TeamEditButtonTitle,
                 "type": ContentType.EditTeam.rawValue
-                ]])
+            ]])
             appendCard(teamActionsCard)
         }
     }
@@ -247,6 +255,37 @@ class TeamDetailDataSource: CardDataSource {
         if let headerView = header as? ProfileSectionHeaderCollectionReusableView,
             card = cardAtSection(indexPath.section) where card.allowEditingContent && canEdit() {
             headerView.showAddEditButton = true
+        }
+    }
+    
+    override func configureFooter(footer: CircleCollectionReusableView, atIndexPath indexPath: NSIndexPath) {
+        if let footerView = footer as? CardFooterCollectionReusableView, card = cardAtSection(indexPath.section) {
+            switch card.subType {
+            case .Members:
+                footerView.setButtonTitle(
+                    NSString(
+                        format: NSLocalizedString(
+                            "View all %d People",
+                            comment: "Title of the button to see all the people"
+                        ),
+                        profiles.count
+                    ) as String
+                )
+
+            case .Teams:
+                footerView.setButtonTitle(
+                    NSString(
+                        format: NSLocalizedString(
+                            "View all %d Teams",
+                            comment: "Title of the button to see all the teams"
+                        ),
+                        teams.count
+                    ) as String
+                )
+                
+            default:
+                break
+            }
         }
     }
     

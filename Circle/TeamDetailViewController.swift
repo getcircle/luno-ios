@@ -13,7 +13,8 @@ import ProtobufRegistry
 class TeamDetailViewController:
     DetailViewController,
     EditTeamViewControllerDelegate,
-    CardHeaderViewDelegate {
+    CardHeaderViewDelegate,
+    CardFooterViewDelegate {
 
     // MARK: - Initialization
     
@@ -30,6 +31,7 @@ class TeamDetailViewController:
         // Data Source
         collectionView.dataSource = dataSource
         dataSource.cardHeaderDelegate = self
+        dataSource.cardFooterDelegate = self
         
         // Delegate
         collectionView.delegate = delegate
@@ -175,6 +177,45 @@ class TeamDetailViewController:
             
         default:
             break
+        }
+    }
+    
+    // MARK: - CardFooterDelegate 
+    
+    func cardFooterTapped(card: Card!) {
+        let teamDetailDataSource = dataSource as! TeamDetailDataSource
+        switch card.type {
+        case .Profiles:
+            switch card.subType {
+            case .Members:
+                let viewController = ProfilesViewController()
+                viewController.dataSource.setInitialData(
+                    content: card.allContent,
+                    ofType: nil,
+                    nextRequest: nil
+                )
+                viewController.title = "People in " + teamDetailDataSource.team.name
+                (viewController.dataSource as! ProfilesDataSource).configureForTeam(teamDetailDataSource.team.id, setupOnlySearch: true)
+                navigationController?.pushViewController(viewController, animated: true)
+            
+            case .Teams:
+                let viewController = ProfilesViewController()
+                viewController.dataSource.setInitialData(
+                    content: card.allContent,
+                    ofType: nil,
+                    nextRequest: nil
+                )
+                viewController.title = "Teams in " + teamDetailDataSource.team.name
+                (viewController.dataSource as! ProfilesDataSource).configureForTeam(teamDetailDataSource.team.id, setupOnlySearch: true)
+                navigationController?.pushViewController(viewController, animated: true)
+                
+            default:
+                break
+            }
+            
+        default:
+            break
+        
         }
     }
 }
