@@ -1,38 +1,51 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionReusableView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="U6b-Vx-4bR" customClass="CardFooterCollectionReusableView" customModule="circle" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
-                <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qfk-AU-riU">
-                    <rect key="frame" x="10" y="0.0" width="300" height="40"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                <button contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qfk-AU-riU">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="40" id="bLY-T6-hWM"/>
+                        <constraint firstAttribute="height" constant="60" id="cXA-wG-sWp"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
-                    <state key="normal" image="Down">
-                        <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="15"/>
+                    <inset key="contentEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    <state key="normal" title="View more">
+                        <color key="titleColor" red="0.18823529411764706" green="0.18823529411764706" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
                         <action selector="footerButtonTapped:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="Yxm-w8-dng"/>
                     </connections>
                 </button>
+                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NavRight" translatesAutoresizingMaskIntoConstraints="NO" id="eSt-nK-4ON">
+                    <rect key="frame" x="294" y="21" width="11" height="19"/>
+                </imageView>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="Qfk-AU-riU" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" constant="10" id="63G-Yo-dY7"/>
-                <constraint firstAttribute="bottom" secondItem="Qfk-AU-riU" secondAttribute="bottom" priority="750" id="Yww-O3-LDq"/>
-                <constraint firstAttribute="trailing" secondItem="Qfk-AU-riU" secondAttribute="trailing" constant="10" id="ZQp-xe-dHP"/>
+                <constraint firstItem="Qfk-AU-riU" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" id="63G-Yo-dY7"/>
+                <constraint firstAttribute="centerY" secondItem="eSt-nK-4ON" secondAttribute="centerY" id="7j2-74-upd"/>
+                <constraint firstItem="eSt-nK-4ON" firstAttribute="centerY" secondItem="Qfk-AU-riU" secondAttribute="centerY" id="FIV-6C-Jvz"/>
+                <constraint firstAttribute="trailing" secondItem="Qfk-AU-riU" secondAttribute="trailing" id="ZQp-xe-dHP"/>
+                <constraint firstAttribute="bottom" secondItem="Qfk-AU-riU" secondAttribute="bottom" id="lNP-Bf-5dT"/>
+                <constraint firstAttribute="trailing" secondItem="eSt-nK-4ON" secondAttribute="trailing" constant="15" id="npE-Dl-eci"/>
                 <constraint firstItem="Qfk-AU-riU" firstAttribute="top" secondItem="U6b-Vx-4bR" secondAttribute="top" id="xk9-V8-5rZ"/>
             </constraints>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="lNP-Bf-5dT"/>
+                    <exclude reference="7j2-74-upd"/>
+                </mask>
+            </variation>
             <connections>
                 <outlet property="footerButton" destination="Qfk-AU-riU" id="D3I-cb-r4D"/>
                 <outlet property="footerButtonLeadingConstraint" destination="63G-Yo-dY7" id="Q0r-uM-qrU"/>
@@ -42,6 +55,6 @@
         </collectionReusableView>
     </objects>
     <resources>
-        <image name="Down" width="22" height="22"/>
+        <image name="NavRight" width="11" height="19"/>
     </resources>
 </document>

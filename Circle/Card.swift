@@ -359,11 +359,9 @@ class Card: Equatable {
     }
 
     func addDefaultFooter() {
-        if !isContentAllContent() {
-            addFooter(
-                footerClass: CardFooterCollectionReusableView.self
-            )
-        }
+        addFooter(
+            footerClass: CardFooterCollectionReusableView.self
+        )
     }
 
     func addFooter(footerClass withFooterClass: CircleCollectionReusableView.Type) {
@@ -378,7 +376,7 @@ class Card: Equatable {
         sectionInset = UIEdgeInsetsMake(
             sectionInset.top,
             sectionInset.left,
-            0.0,
+            1.0,
             sectionInset.right
         )
     }

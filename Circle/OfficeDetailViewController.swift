@@ -13,6 +13,7 @@ import ProtobufRegistry
 class OfficeDetailViewController:
     DetailViewController,
     CardHeaderViewDelegate,
+    CardFooterViewDelegate,
     ProfileSelectorDelegate
 {
 
@@ -30,6 +31,7 @@ class OfficeDetailViewController:
     override func configureCollectionView() {
         collectionView.dataSource = dataSource
         dataSource.cardHeaderDelegate = self
+        dataSource.cardFooterDelegate = self
         
         collectionView.delegate = delegate
         (layout as! StickyHeaderCollectionViewLayout).headerHeight = ProfileHeaderCollectionReusableView.heightWithoutSecondaryInfo
@@ -125,17 +127,6 @@ class OfficeDetailViewController:
             
         case .Profiles:
             switch card.subType {
-            case .Members:
-                let viewController = ProfilesViewController()
-                viewController.dataSource.setInitialData(
-                    content: card.allContent,
-                    ofType: nil,
-                    nextRequest: officeDetailDataSource.nextProfilesRequest
-                )
-                viewController.title = "People @ " + officeDetailDataSource.location.address.city
-                trackCardHeaderTapped(card, overviewType: .Profiles)
-                navigationController?.pushViewController(viewController, animated: true)
-            
             case .PointsOfContact:
                 let profilesSelectorViewController = ProfilesSelectorViewController()
                 (profilesSelectorViewController.dataSource as! ProfilesDataSource).configureForLocation(
@@ -149,6 +140,33 @@ class OfficeDetailViewController:
                 profilesSelectorViewController.title = "Points of Contact"
                 let addMemberNavController = UINavigationController(rootViewController: profilesSelectorViewController)
                 navigationController?.presentViewController(addMemberNavController, animated: true, completion: nil)
+                
+            default:
+                break
+            }
+            
+        default:
+            break
+        }
+    }
+    
+    // MARK: - CardFooterDelegate
+    
+    func cardFooterTapped(card: Card!) {
+        let officeDetailDataSource = dataSource as! OfficeDetailDataSource
+        switch card.type {
+        case .Profiles:
+            switch card.subType {
+            case .Members:
+                let viewController = ProfilesViewController()
+                viewController.dataSource.setInitialData(
+                    content: card.allContent,
+                    ofType: nil,
+                    nextRequest: officeDetailDataSource.nextProfilesRequest
+                )
+                viewController.title = "People @ " + officeDetailDataSource.location.address.city
+                trackCardHeaderTapped(card, overviewType: .Profiles)
+                navigationController?.pushViewController(viewController, animated: true)
                 
             default:
                 break

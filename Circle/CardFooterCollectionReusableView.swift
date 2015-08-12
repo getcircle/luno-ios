@@ -23,14 +23,10 @@ class CardFooterCollectionReusableView: CircleCollectionReusableView {
     }
     
     override class var height: CGFloat {
-        return 40.0
+        return 60.0
     }
     
-    var card: Card? {
-        didSet {
-            setButtonTitle()
-        }
-    }
+    var card: Card?
     var cardFooterDelegate: CardFooterViewDelegate?
     var insetEdges: Bool = true {
         didSet {
@@ -47,17 +43,14 @@ class CardFooterCollectionReusableView: CircleCollectionReusableView {
         super.awakeFromNib()
         footerButton.tintColor = UIColor.darkGrayColor()
         footerButton.addBottomBorder(offset: 1.0)
+        footerButton.setBackgroundImage(
+            UIImage.imageFromColor(UIColor.appControlHighlightedColor(), withRect: footerButton.frame), 
+            forState: .Highlighted
+        )
     }
     
-    private func setButtonTitle() {
-        UIView.setAnimationsEnabled(false)
-        if card != nil && (card?.isContentAllContent() ?? false) {
-            footerButton.setImage(UIImage(named: "Up")?.templateImage(), forState: .Normal)
-        }
-        else {
-            footerButton.setImage(UIImage(named: "Down")?.templateImage(), forState: .Normal)
-        }
-        UIView.setAnimationsEnabled(true)
+    func setButtonTitle(title: String) {
+        footerButton.setTitle(title, forState: .Normal)
     }
     
     private func updateViewForInsetEdges() {
@@ -78,6 +71,5 @@ class CardFooterCollectionReusableView: CircleCollectionReusableView {
     
     @IBAction func footerButtonTapped(sender: AnyObject!) {
         cardFooterDelegate?.cardFooterTapped(card)
-        setButtonTitle()
     }
 }

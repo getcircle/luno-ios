@@ -80,6 +80,17 @@ class OfficeDetailDataSource: CardDataSource {
                 headerView.showAddEditButton = true
         }        
     }
+    
+    override func configureFooter(footer: CircleCollectionReusableView, atIndexPath indexPath: NSIndexPath) {
+        if let footerView = footer as? CardFooterCollectionReusableView {
+            footerView.setButtonTitle(
+                NSString(
+                    format: NSLocalizedString("View all %d People", comment: "Title of the button to see all the people"),
+                    location.profileCount
+                ) as String
+            )
+        }
+    }
 
     // MARK: - Helpers
     
@@ -132,7 +143,17 @@ class OfficeDetailDataSource: CardDataSource {
     
     private func addPointOfContactCard() {
         if location.pointsOfContact.count > 0 || canEdit() {
-            let pointsOfContactCard = Card(cardType: .Profiles, subType: .PointsOfContact, title: "Points of Contact")
+            let pointsOfContactCard = Card(
+                cardType: .Profiles,
+                subType: .PointsOfContact,
+                title: NSString(
+                    format: NSLocalizedString(
+                        "Points of Contact (%d)",
+                        comment: "Section showing points of contact (people) at a location"
+                    ),
+                    location.pointsOfContact.count
+                ) as String
+            )
             pointsOfContactCard.sectionInset = defaultSectionInset
             if location.pointsOfContact.count > 0 {
                 pointsOfContactCard.addContent(content: location.pointsOfContact)
@@ -152,12 +173,15 @@ class OfficeDetailDataSource: CardDataSource {
             let profilesCard = Card(
                 cardType: .Profiles,
                 subType: .Members,
-                title: AppStrings.CardTitlePeople, 
+                title: AppStrings.CardTitlePeople + " (" + String(location.profileCount) + ")",
                 contentCount: Int(location.profileCount)
             )
             profilesCard.addContent(content: profiles as [AnyObject], maxVisibleItems: 3)
             profilesCard.sectionInset = defaultSectionInset
             profilesCard.addHeader(headerClass: sectionHeaderClass)
+            if profiles.count > 3 {
+                profilesCard.addDefaultFooter()
+            }
             appendCard(profilesCard)
         }
     }
