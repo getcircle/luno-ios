@@ -19,7 +19,7 @@ import protobufs.services.profile.containers_pb2
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='protobufs/services/profile/actions/get_profiles.proto',
   package='services.profile.actions.get_profiles',
-  serialized_pb=_b('\n5protobufs/services/profile/actions/get_profiles.proto\x12%services.profile.actions.get_profiles\x1a+protobufs/services/profile/containers.proto\"\x9f\x01\n\tRequestV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x0f\n\x07team_id\x18\x02 \x01(\t\x12\x17\n\x0forganization_id\x18\x03 \x01(\t\x12\x0e\n\x06tag_id\x18\x04 \x01(\t\x12\x12\n\naddress_id\x18\x05 \x01(\t\x12\x0b\n\x03ids\x18\x06 \x03(\t\x12\x13\n\x0blocation_id\x18\x07 \x01(\t\x12\x0e\n\x06\x65mails\x18\x08 \x03(\t\"Z\n\nResponseV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x38\n\x08profiles\x18\x02 \x03(\x0b\x32&.services.profile.containers.ProfileV1B<\n:com.rhlabs.protobufs.services.profile.actions.get_profiles')
+  serialized_pb=_b('\n5protobufs/services/profile/actions/get_profiles.proto\x12%services.profile.actions.get_profiles\x1a+protobufs/services/profile/containers.proto\"Q\n\tRequestV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x0e\n\x06tag_id\x18\x02 \x01(\t\x12\x0b\n\x03ids\x18\x03 \x03(\t\x12\x13\n\x0blocation_id\x18\x04 \x01(\t\"Z\n\nResponseV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x38\n\x08profiles\x18\x02 \x03(\x0b\x32&.services.profile.containers.ProfileV1B<\n:com.rhlabs.protobufs.services.profile.actions.get_profiles')
   ,
   dependencies=[protobufs.services.profile.containers_pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
@@ -42,51 +42,23 @@ _REQUESTV1 = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='team_id', full_name='services.profile.actions.get_profiles.RequestV1.team_id', index=1,
+      name='tag_id', full_name='services.profile.actions.get_profiles.RequestV1.tag_id', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='organization_id', full_name='services.profile.actions.get_profiles.RequestV1.organization_id', index=2,
-      number=3, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
+      name='ids', full_name='services.profile.actions.get_profiles.RequestV1.ids', index=2,
+      number=3, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='tag_id', full_name='services.profile.actions.get_profiles.RequestV1.tag_id', index=3,
+      name='location_id', full_name='services.profile.actions.get_profiles.RequestV1.location_id', index=3,
       number=4, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-    _descriptor.FieldDescriptor(
-      name='address_id', full_name='services.profile.actions.get_profiles.RequestV1.address_id', index=4,
-      number=5, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-    _descriptor.FieldDescriptor(
-      name='ids', full_name='services.profile.actions.get_profiles.RequestV1.ids', index=5,
-      number=6, type=9, cpp_type=9, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-    _descriptor.FieldDescriptor(
-      name='location_id', full_name='services.profile.actions.get_profiles.RequestV1.location_id', index=6,
-      number=7, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-    _descriptor.FieldDescriptor(
-      name='emails', full_name='services.profile.actions.get_profiles.RequestV1.emails', index=7,
-      number=8, type=9, cpp_type=9, label=3,
-      has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
@@ -101,8 +73,8 @@ _REQUESTV1 = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=142,
-  serialized_end=301,
+  serialized_start=141,
+  serialized_end=222,
 )
 
 
@@ -138,8 +110,8 @@ _RESPONSEV1 = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=303,
-  serialized_end=393,
+  serialized_start=224,
+  serialized_end=314,
 )
 
 _RESPONSEV1.fields_by_name['profiles'].message_type = protobufs.services.profile.containers_pb2._PROFILEV1

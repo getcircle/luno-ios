@@ -9,13 +9,9 @@ public func == (lhs: Services.Profile.Actions.GetProfiles.RequestV1, rhs: Servic
   }
   var fieldCheck:Bool = (lhs.hashValue == rhs.hashValue)
   fieldCheck = fieldCheck && (lhs.hasVersion == rhs.hasVersion) && (!lhs.hasVersion || lhs.version == rhs.version)
-  fieldCheck = fieldCheck && (lhs.hasTeamId == rhs.hasTeamId) && (!lhs.hasTeamId || lhs.teamId == rhs.teamId)
-  fieldCheck = fieldCheck && (lhs.hasOrganizationId == rhs.hasOrganizationId) && (!lhs.hasOrganizationId || lhs.organizationId == rhs.organizationId)
   fieldCheck = fieldCheck && (lhs.hasTagId == rhs.hasTagId) && (!lhs.hasTagId || lhs.tagId == rhs.tagId)
-  fieldCheck = fieldCheck && (lhs.hasAddressId == rhs.hasAddressId) && (!lhs.hasAddressId || lhs.addressId == rhs.addressId)
   fieldCheck = fieldCheck && (lhs.ids == rhs.ids)
   fieldCheck = fieldCheck && (lhs.hasLocationId == rhs.hasLocationId) && (!lhs.hasLocationId || lhs.locationId == rhs.locationId)
-  fieldCheck = fieldCheck && (lhs.emails == rhs.emails)
   return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
 }
 
@@ -52,10 +48,7 @@ public extension Services.Profile.Actions.GetProfiles {
     override public subscript(key: String) -> Any? {
            switch key {
            case "version": return version
-           case "teamId": return teamId
-           case "organizationId": return organizationId
            case "tagId": return tagId
-           case "addressId": return addressId
            case "locationId": return locationId
            default: return nil
            }
@@ -64,23 +57,13 @@ public extension Services.Profile.Actions.GetProfiles {
     public private(set) var hasVersion:Bool = false
     public private(set) var version:UInt32 = UInt32(1)
 
-    public private(set) var hasTeamId:Bool = false
-    public private(set) var teamId:String = ""
-
-    public private(set) var hasOrganizationId:Bool = false
-    public private(set) var organizationId:String = ""
-
     public private(set) var hasTagId:Bool = false
     public private(set) var tagId:String = ""
-
-    public private(set) var hasAddressId:Bool = false
-    public private(set) var addressId:String = ""
 
     public private(set) var hasLocationId:Bool = false
     public private(set) var locationId:String = ""
 
     public private(set) var ids:Array<String> = Array<String>()
-    public private(set) var emails:Array<String> = Array<String>()
     required public init() {
          super.init()
     }
@@ -91,30 +74,16 @@ public extension Services.Profile.Actions.GetProfiles {
       if hasVersion {
         output.writeUInt32(1, value:version)
       }
-      if hasTeamId {
-        output.writeString(2, value:teamId)
-      }
-      if hasOrganizationId {
-        output.writeString(3, value:organizationId)
-      }
       if hasTagId {
-        output.writeString(4, value:tagId)
-      }
-      if hasAddressId {
-        output.writeString(5, value:addressId)
+        output.writeString(2, value:tagId)
       }
       if !ids.isEmpty {
         for oneValueids in ids {
-          output.writeString(6, value:oneValueids)
+          output.writeString(3, value:oneValueids)
         }
       }
       if hasLocationId {
-        output.writeString(7, value:locationId)
-      }
-      if !emails.isEmpty {
-        for oneValueemails in emails {
-          output.writeString(8, value:oneValueemails)
-        }
+        output.writeString(4, value:locationId)
       }
       unknownFields.writeToCodedOutputStream(output)
     }
@@ -128,17 +97,8 @@ public extension Services.Profile.Actions.GetProfiles {
       if hasVersion {
         serialize_size += version.computeUInt32Size(1)
       }
-      if hasTeamId {
-        serialize_size += teamId.computeStringSize(2)
-      }
-      if hasOrganizationId {
-        serialize_size += organizationId.computeStringSize(3)
-      }
       if hasTagId {
-        serialize_size += tagId.computeStringSize(4)
-      }
-      if hasAddressId {
-        serialize_size += addressId.computeStringSize(5)
+        serialize_size += tagId.computeStringSize(2)
       }
       var dataSizeIds:Int32 = 0
       for oneValueids in ids {
@@ -147,14 +107,8 @@ public extension Services.Profile.Actions.GetProfiles {
       serialize_size += dataSizeIds
       serialize_size += 1 * Int32(ids.count)
       if hasLocationId {
-        serialize_size += locationId.computeStringSize(7)
+        serialize_size += locationId.computeStringSize(4)
       }
-      var dataSizeEmails:Int32 = 0
-      for oneValueemails in emails {
-          dataSizeEmails += oneValueemails.computeStringSizeNoTag()
-      }
-      serialize_size += dataSizeEmails
-      serialize_size += 1 * Int32(emails.count)
       serialize_size += unknownFields.serializedSize()
       memoizedSerializedSize = serialize_size
       return serialize_size
@@ -199,17 +153,8 @@ public extension Services.Profile.Actions.GetProfiles {
       if hasVersion {
         output += "\(indent) version: \(version) \n"
       }
-      if hasTeamId {
-        output += "\(indent) teamId: \(teamId) \n"
-      }
-      if hasOrganizationId {
-        output += "\(indent) organizationId: \(organizationId) \n"
-      }
       if hasTagId {
         output += "\(indent) tagId: \(tagId) \n"
-      }
-      if hasAddressId {
-        output += "\(indent) addressId: \(addressId) \n"
       }
       var idsElementIndex:Int = 0
       for oneValueids in ids  {
@@ -219,11 +164,6 @@ public extension Services.Profile.Actions.GetProfiles {
       if hasLocationId {
         output += "\(indent) locationId: \(locationId) \n"
       }
-      var emailsElementIndex:Int = 0
-      for oneValueemails in emails  {
-          output += "\(indent) emails[\(emailsElementIndex)]: \(oneValueemails)\n"
-          emailsElementIndex++
-      }
       unknownFields.writeDescriptionTo(&output, indent:indent)
     }
     override public var hashValue:Int {
@@ -232,26 +172,14 @@ public extension Services.Profile.Actions.GetProfiles {
             if hasVersion {
                hashCode = (hashCode &* 31) &+ version.hashValue
             }
-            if hasTeamId {
-               hashCode = (hashCode &* 31) &+ teamId.hashValue
-            }
-            if hasOrganizationId {
-               hashCode = (hashCode &* 31) &+ organizationId.hashValue
-            }
             if hasTagId {
                hashCode = (hashCode &* 31) &+ tagId.hashValue
-            }
-            if hasAddressId {
-               hashCode = (hashCode &* 31) &+ addressId.hashValue
             }
             for oneValueids in ids {
                 hashCode = (hashCode &* 31) &+ oneValueids.hashValue
             }
             if hasLocationId {
                hashCode = (hashCode &* 31) &+ locationId.hashValue
-            }
-            for oneValueemails in emails {
-                hashCode = (hashCode &* 31) &+ oneValueemails.hashValue
             }
             hashCode = (hashCode &* 31) &+  unknownFields.hashValue
             return hashCode
@@ -304,52 +232,6 @@ public extension Services.Profile.Actions.GetProfiles {
          builderResult.version = UInt32(1)
          return self
     }
-    public var hasTeamId:Bool {
-         get {
-              return builderResult.hasTeamId
-         }
-    }
-    public var teamId:String {
-         get {
-              return builderResult.teamId
-         }
-         set (value) {
-             builderResult.hasTeamId = true
-             builderResult.teamId = value
-         }
-    }
-    public func setTeamId(value:String)-> Services.Profile.Actions.GetProfiles.RequestV1Builder {
-      self.teamId = value
-      return self
-    }
-    public func clearTeamId() -> Services.Profile.Actions.GetProfiles.RequestV1Builder{
-         builderResult.hasTeamId = false
-         builderResult.teamId = ""
-         return self
-    }
-    public var hasOrganizationId:Bool {
-         get {
-              return builderResult.hasOrganizationId
-         }
-    }
-    public var organizationId:String {
-         get {
-              return builderResult.organizationId
-         }
-         set (value) {
-             builderResult.hasOrganizationId = true
-             builderResult.organizationId = value
-         }
-    }
-    public func setOrganizationId(value:String)-> Services.Profile.Actions.GetProfiles.RequestV1Builder {
-      self.organizationId = value
-      return self
-    }
-    public func clearOrganizationId() -> Services.Profile.Actions.GetProfiles.RequestV1Builder{
-         builderResult.hasOrganizationId = false
-         builderResult.organizationId = ""
-         return self
-    }
     public var hasTagId:Bool {
          get {
               return builderResult.hasTagId
@@ -371,29 +253,6 @@ public extension Services.Profile.Actions.GetProfiles {
     public func clearTagId() -> Services.Profile.Actions.GetProfiles.RequestV1Builder{
          builderResult.hasTagId = false
          builderResult.tagId = ""
-         return self
-    }
-    public var hasAddressId:Bool {
-         get {
-              return builderResult.hasAddressId
-         }
-    }
-    public var addressId:String {
-         get {
-              return builderResult.addressId
-         }
-         set (value) {
-             builderResult.hasAddressId = true
-             builderResult.addressId = value
-         }
-    }
-    public func setAddressId(value:String)-> Services.Profile.Actions.GetProfiles.RequestV1Builder {
-      self.addressId = value
-      return self
-    }
-    public func clearAddressId() -> Services.Profile.Actions.GetProfiles.RequestV1Builder{
-         builderResult.hasAddressId = false
-         builderResult.addressId = ""
          return self
     }
     public var ids:Array<String> {
@@ -435,22 +294,6 @@ public extension Services.Profile.Actions.GetProfiles {
          builderResult.locationId = ""
          return self
     }
-    public var emails:Array<String> {
-         get {
-             return builderResult.emails
-         }
-         set (array) {
-             builderResult.emails = array
-         }
-    }
-    public func setEmails(value:Array<String>)-> Services.Profile.Actions.GetProfiles.RequestV1Builder {
-      self.emails = value
-      return self
-    }
-    public func clearEmails() -> Services.Profile.Actions.GetProfiles.RequestV1Builder {
-       builderResult.emails.removeAll(keepCapacity: false)
-       return self
-    }
     override public var internalGetResult:GeneratedMessage {
          get {
             return builderResult
@@ -478,26 +321,14 @@ public extension Services.Profile.Actions.GetProfiles {
       if other.hasVersion {
            version = other.version
       }
-      if other.hasTeamId {
-           teamId = other.teamId
-      }
-      if other.hasOrganizationId {
-           organizationId = other.organizationId
-      }
       if other.hasTagId {
            tagId = other.tagId
-      }
-      if other.hasAddressId {
-           addressId = other.addressId
       }
       if !other.ids.isEmpty {
           builderResult.ids += other.ids
       }
       if other.hasLocationId {
            locationId = other.locationId
-      }
-      if !other.emails.isEmpty {
-          builderResult.emails += other.emails
       }
       mergeUnknownFields(other.unknownFields)
       return self
@@ -518,25 +349,13 @@ public extension Services.Profile.Actions.GetProfiles {
           version = input.readUInt32()
 
         case 18 :
-          teamId = input.readString()
-
-        case 26 :
-          organizationId = input.readString()
-
-        case 34 :
           tagId = input.readString()
 
-        case 42 :
-          addressId = input.readString()
-
-        case 50 :
+        case 26 :
           ids += [input.readString()]
 
-        case 58 :
+        case 34 :
           locationId = input.readString()
-
-        case 66 :
-          emails += [input.readString()]
 
         default:
           if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {

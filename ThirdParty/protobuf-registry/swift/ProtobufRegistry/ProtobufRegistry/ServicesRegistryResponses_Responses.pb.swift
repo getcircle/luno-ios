@@ -178,49 +178,9 @@ public var ServicesRegistryResponsesOrganizationgetOrganization:ConcreateExtensi
        return Services.Registry.Responses.ResponsesRoot.sharedInstance.ServicesRegistryResponsesOrganizationgetOrganizationStatic
    }
 }
-public var ServicesRegistryResponsesOrganizationcreateTeam:ConcreateExtensionField {
-   get {
-       return Services.Registry.Responses.ResponsesRoot.sharedInstance.ServicesRegistryResponsesOrganizationcreateTeamStatic
-   }
-}
-public var ServicesRegistryResponsesOrganizationcreateAddress:ConcreateExtensionField {
-   get {
-       return Services.Registry.Responses.ResponsesRoot.sharedInstance.ServicesRegistryResponsesOrganizationcreateAddressStatic
-   }
-}
-public var ServicesRegistryResponsesOrganizationdeleteAddress:ConcreateExtensionField {
-   get {
-       return Services.Registry.Responses.ResponsesRoot.sharedInstance.ServicesRegistryResponsesOrganizationdeleteAddressStatic
-   }
-}
-public var ServicesRegistryResponsesOrganizationgetAddress:ConcreateExtensionField {
-   get {
-       return Services.Registry.Responses.ResponsesRoot.sharedInstance.ServicesRegistryResponsesOrganizationgetAddressStatic
-   }
-}
 public var ServicesRegistryResponsesOrganizationgetTeam:ConcreateExtensionField {
    get {
        return Services.Registry.Responses.ResponsesRoot.sharedInstance.ServicesRegistryResponsesOrganizationgetTeamStatic
-   }
-}
-public var ServicesRegistryResponsesOrganizationgetTeams:ConcreateExtensionField {
-   get {
-       return Services.Registry.Responses.ResponsesRoot.sharedInstance.ServicesRegistryResponsesOrganizationgetTeamsStatic
-   }
-}
-public var ServicesRegistryResponsesOrganizationgetAddresses:ConcreateExtensionField {
-   get {
-       return Services.Registry.Responses.ResponsesRoot.sharedInstance.ServicesRegistryResponsesOrganizationgetAddressesStatic
-   }
-}
-public var ServicesRegistryResponsesOrganizationgetTeamDescendants:ConcreateExtensionField {
-   get {
-       return Services.Registry.Responses.ResponsesRoot.sharedInstance.ServicesRegistryResponsesOrganizationgetTeamDescendantsStatic
-   }
-}
-public var ServicesRegistryResponsesOrganizationgetTopLevelTeam:ConcreateExtensionField {
-   get {
-       return Services.Registry.Responses.ResponsesRoot.sharedInstance.ServicesRegistryResponsesOrganizationgetTopLevelTeamStatic
    }
 }
 public var ServicesRegistryResponsesOrganizationcreateLocation:ConcreateExtensionField {
@@ -273,6 +233,36 @@ public var ServicesRegistryResponsesOrganizationupdateTeam:ConcreateExtensionFie
        return Services.Registry.Responses.ResponsesRoot.sharedInstance.ServicesRegistryResponsesOrganizationupdateTeamStatic
    }
 }
+public var ServicesRegistryResponsesOrganizationaddDirectReports:ConcreateExtensionField {
+   get {
+       return Services.Registry.Responses.ResponsesRoot.sharedInstance.ServicesRegistryResponsesOrganizationaddDirectReportsStatic
+   }
+}
+public var ServicesRegistryResponsesOrganizationgetLocationMembers:ConcreateExtensionField {
+   get {
+       return Services.Registry.Responses.ResponsesRoot.sharedInstance.ServicesRegistryResponsesOrganizationgetLocationMembersStatic
+   }
+}
+public var ServicesRegistryResponsesOrganizationgetProfileReportingDetails:ConcreateExtensionField {
+   get {
+       return Services.Registry.Responses.ResponsesRoot.sharedInstance.ServicesRegistryResponsesOrganizationgetProfileReportingDetailsStatic
+   }
+}
+public var ServicesRegistryResponsesOrganizationgetTeamReportingDetails:ConcreateExtensionField {
+   get {
+       return Services.Registry.Responses.ResponsesRoot.sharedInstance.ServicesRegistryResponsesOrganizationgetTeamReportingDetailsStatic
+   }
+}
+public var ServicesRegistryResponsesOrganizationsetManager:ConcreateExtensionField {
+   get {
+       return Services.Registry.Responses.ResponsesRoot.sharedInstance.ServicesRegistryResponsesOrganizationsetManagerStatic
+   }
+}
+public var ServicesRegistryResponsesOrganizationaddLocationMembers:ConcreateExtensionField {
+   get {
+       return Services.Registry.Responses.ResponsesRoot.sharedInstance.ServicesRegistryResponsesOrganizationaddLocationMembersStatic
+   }
+}
 public var ServicesRegistryResponsesProfilecreateProfile:ConcreateExtensionField {
    get {
        return Services.Registry.Responses.ResponsesRoot.sharedInstance.ServicesRegistryResponsesProfilecreateProfileStatic
@@ -313,21 +303,6 @@ public var ServicesRegistryResponsesProfilegetProfiles:ConcreateExtensionField {
        return Services.Registry.Responses.ResponsesRoot.sharedInstance.ServicesRegistryResponsesProfilegetProfilesStatic
    }
 }
-public var ServicesRegistryResponsesProfilegetDirectReports:ConcreateExtensionField {
-   get {
-       return Services.Registry.Responses.ResponsesRoot.sharedInstance.ServicesRegistryResponsesProfilegetDirectReportsStatic
-   }
-}
-public var ServicesRegistryResponsesProfilegetPeers:ConcreateExtensionField {
-   get {
-       return Services.Registry.Responses.ResponsesRoot.sharedInstance.ServicesRegistryResponsesProfilegetPeersStatic
-   }
-}
-public var ServicesRegistryResponsesProfilegetProfileStats:ConcreateExtensionField {
-   get {
-       return Services.Registry.Responses.ResponsesRoot.sharedInstance.ServicesRegistryResponsesProfilegetProfileStatsStatic
-   }
-}
 public var ServicesRegistryResponsesProfilegetUpcomingAnniversaries:ConcreateExtensionField {
    get {
        return Services.Registry.Responses.ResponsesRoot.sharedInstance.ServicesRegistryResponsesProfilegetUpcomingAnniversariesStatic
@@ -356,11 +331,6 @@ public var ServicesRegistryResponsesProfilebulkCreateProfiles:ConcreateExtension
 public var ServicesRegistryResponsesProfilebulkUpdateProfiles:ConcreateExtensionField {
    get {
        return Services.Registry.Responses.ResponsesRoot.sharedInstance.ServicesRegistryResponsesProfilebulkUpdateProfilesStatic
-   }
-}
-public var ServicesRegistryResponsesProfilegetAttributesForProfiles:ConcreateExtensionField {
-   get {
-       return Services.Registry.Responses.ResponsesRoot.sharedInstance.ServicesRegistryResponsesProfilegetAttributesForProfilesStatic
    }
 }
 public var ServicesRegistryResponsesProfileremoveTags:ConcreateExtensionField {
@@ -515,15 +485,7 @@ public extension Services.Registry.Responses {
     var ServicesRegistryResponsesUsergetActiveDevicesStatic:ConcreateExtensionField
     var ServicesRegistryResponsesOrganizationcreateOrganizationStatic:ConcreateExtensionField
     var ServicesRegistryResponsesOrganizationgetOrganizationStatic:ConcreateExtensionField
-    var ServicesRegistryResponsesOrganizationcreateTeamStatic:ConcreateExtensionField
-    var ServicesRegistryResponsesOrganizationcreateAddressStatic:ConcreateExtensionField
-    var ServicesRegistryResponsesOrganizationdeleteAddressStatic:ConcreateExtensionField
-    var ServicesRegistryResponsesOrganizationgetAddressStatic:ConcreateExtensionField
     var ServicesRegistryResponsesOrganizationgetTeamStatic:ConcreateExtensionField
-    var ServicesRegistryResponsesOrganizationgetTeamsStatic:ConcreateExtensionField
-    var ServicesRegistryResponsesOrganizationgetAddressesStatic:ConcreateExtensionField
-    var ServicesRegistryResponsesOrganizationgetTeamDescendantsStatic:ConcreateExtensionField
-    var ServicesRegistryResponsesOrganizationgetTopLevelTeamStatic:ConcreateExtensionField
     var ServicesRegistryResponsesOrganizationcreateLocationStatic:ConcreateExtensionField
     var ServicesRegistryResponsesOrganizationupdateLocationStatic:ConcreateExtensionField
     var ServicesRegistryResponsesOrganizationgetLocationsStatic:ConcreateExtensionField
@@ -534,6 +496,12 @@ public extension Services.Registry.Responses {
     var ServicesRegistryResponsesOrganizationgetIntegrationStatic:ConcreateExtensionField
     var ServicesRegistryResponsesOrganizationdisableIntegrationStatic:ConcreateExtensionField
     var ServicesRegistryResponsesOrganizationupdateTeamStatic:ConcreateExtensionField
+    var ServicesRegistryResponsesOrganizationaddDirectReportsStatic:ConcreateExtensionField
+    var ServicesRegistryResponsesOrganizationgetLocationMembersStatic:ConcreateExtensionField
+    var ServicesRegistryResponsesOrganizationgetProfileReportingDetailsStatic:ConcreateExtensionField
+    var ServicesRegistryResponsesOrganizationgetTeamReportingDetailsStatic:ConcreateExtensionField
+    var ServicesRegistryResponsesOrganizationsetManagerStatic:ConcreateExtensionField
+    var ServicesRegistryResponsesOrganizationaddLocationMembersStatic:ConcreateExtensionField
     var ServicesRegistryResponsesProfilecreateProfileStatic:ConcreateExtensionField
     var ServicesRegistryResponsesProfilegetExtendedProfileStatic:ConcreateExtensionField
     var ServicesRegistryResponsesProfilegetProfileStatic:ConcreateExtensionField
@@ -542,16 +510,12 @@ public extension Services.Registry.Responses {
     var ServicesRegistryResponsesProfileaddTagsStatic:ConcreateExtensionField
     var ServicesRegistryResponsesProfileupdateProfileStatic:ConcreateExtensionField
     var ServicesRegistryResponsesProfilegetProfilesStatic:ConcreateExtensionField
-    var ServicesRegistryResponsesProfilegetDirectReportsStatic:ConcreateExtensionField
-    var ServicesRegistryResponsesProfilegetPeersStatic:ConcreateExtensionField
-    var ServicesRegistryResponsesProfilegetProfileStatsStatic:ConcreateExtensionField
     var ServicesRegistryResponsesProfilegetUpcomingAnniversariesStatic:ConcreateExtensionField
     var ServicesRegistryResponsesProfilegetUpcomingBirthdaysStatic:ConcreateExtensionField
     var ServicesRegistryResponsesProfilegetRecentHiresStatic:ConcreateExtensionField
     var ServicesRegistryResponsesProfilegetActiveTagsStatic:ConcreateExtensionField
     var ServicesRegistryResponsesProfilebulkCreateProfilesStatic:ConcreateExtensionField
     var ServicesRegistryResponsesProfilebulkUpdateProfilesStatic:ConcreateExtensionField
-    var ServicesRegistryResponsesProfilegetAttributesForProfilesStatic:ConcreateExtensionField
     var ServicesRegistryResponsesProfileremoveTagsStatic:ConcreateExtensionField
     var ServicesRegistryResponsesSearchsearchStatic:ConcreateExtensionField
     var ServicesRegistryResponsesMediastartImageUploadStatic:ConcreateExtensionField
@@ -599,25 +563,23 @@ public extension Services.Registry.Responses {
       ServicesRegistryResponsesUsergetActiveDevicesStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 116, defaultValue:Services.User.Actions.GetActiveDevices.ResponseV1(), messageOrGroupClass:Services.User.Actions.GetActiveDevices.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
       ServicesRegistryResponsesOrganizationcreateOrganizationStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 200, defaultValue:Services.Organization.Actions.CreateOrganization.ResponseV1(), messageOrGroupClass:Services.Organization.Actions.CreateOrganization.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
       ServicesRegistryResponsesOrganizationgetOrganizationStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 201, defaultValue:Services.Organization.Actions.GetOrganization.ResponseV1(), messageOrGroupClass:Services.Organization.Actions.GetOrganization.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
-      ServicesRegistryResponsesOrganizationcreateTeamStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 202, defaultValue:Services.Organization.Actions.CreateTeam.ResponseV1(), messageOrGroupClass:Services.Organization.Actions.CreateTeam.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
-      ServicesRegistryResponsesOrganizationcreateAddressStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 203, defaultValue:Services.Organization.Actions.CreateAddress.ResponseV1(), messageOrGroupClass:Services.Organization.Actions.CreateAddress.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
-      ServicesRegistryResponsesOrganizationdeleteAddressStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 204, defaultValue:Services.Organization.Actions.DeleteAddress.ResponseV1(), messageOrGroupClass:Services.Organization.Actions.DeleteAddress.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
-      ServicesRegistryResponsesOrganizationgetAddressStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 205, defaultValue:Services.Organization.Actions.GetAddress.ResponseV1(), messageOrGroupClass:Services.Organization.Actions.GetAddress.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
-      ServicesRegistryResponsesOrganizationgetTeamStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 206, defaultValue:Services.Organization.Actions.GetTeam.ResponseV1(), messageOrGroupClass:Services.Organization.Actions.GetTeam.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
-      ServicesRegistryResponsesOrganizationgetTeamsStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 207, defaultValue:Services.Organization.Actions.GetTeams.ResponseV1(), messageOrGroupClass:Services.Organization.Actions.GetTeams.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
-      ServicesRegistryResponsesOrganizationgetAddressesStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 208, defaultValue:Services.Organization.Actions.GetAddresses.ResponseV1(), messageOrGroupClass:Services.Organization.Actions.GetAddresses.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
-      ServicesRegistryResponsesOrganizationgetTeamDescendantsStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 209, defaultValue:Services.Organization.Actions.GetTeamDescendants.ResponseV1(), messageOrGroupClass:Services.Organization.Actions.GetTeamDescendants.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
-      ServicesRegistryResponsesOrganizationgetTopLevelTeamStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 210, defaultValue:Services.Organization.Actions.GetTopLevelTeam.ResponseV1(), messageOrGroupClass:Services.Organization.Actions.GetTopLevelTeam.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
-      ServicesRegistryResponsesOrganizationcreateLocationStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 211, defaultValue:Services.Organization.Actions.CreateLocation.ResponseV1(), messageOrGroupClass:Services.Organization.Actions.CreateLocation.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
-      ServicesRegistryResponsesOrganizationupdateLocationStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 212, defaultValue:Services.Organization.Actions.UpdateLocation.ResponseV1(), messageOrGroupClass:Services.Organization.Actions.UpdateLocation.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
-      ServicesRegistryResponsesOrganizationgetLocationsStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 213, defaultValue:Services.Organization.Actions.GetLocations.ResponseV1(), messageOrGroupClass:Services.Organization.Actions.GetLocations.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
-      ServicesRegistryResponsesOrganizationgetLocationStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 214, defaultValue:Services.Organization.Actions.GetLocation.ResponseV1(), messageOrGroupClass:Services.Organization.Actions.GetLocation.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
-      ServicesRegistryResponsesOrganizationcreateTokenStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 215, defaultValue:Services.Organization.Actions.CreateToken.ResponseV1(), messageOrGroupClass:Services.Organization.Actions.CreateToken.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
-      ServicesRegistryResponsesOrganizationgetTokensStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 216, defaultValue:Services.Organization.Actions.GetTokens.ResponseV1(), messageOrGroupClass:Services.Organization.Actions.GetTokens.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
-      ServicesRegistryResponsesOrganizationenableIntegrationStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 217, defaultValue:Services.Organization.Actions.EnableIntegration.ResponseV1(), messageOrGroupClass:Services.Organization.Actions.EnableIntegration.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
-      ServicesRegistryResponsesOrganizationgetIntegrationStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 218, defaultValue:Services.Organization.Actions.GetIntegration.ResponseV1(), messageOrGroupClass:Services.Organization.Actions.GetIntegration.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
-      ServicesRegistryResponsesOrganizationdisableIntegrationStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 219, defaultValue:Services.Organization.Actions.DisableIntegration.ResponseV1(), messageOrGroupClass:Services.Organization.Actions.DisableIntegration.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
-      ServicesRegistryResponsesOrganizationupdateTeamStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 220, defaultValue:Services.Organization.Actions.UpdateTeam.ResponseV1(), messageOrGroupClass:Services.Organization.Actions.UpdateTeam.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
+      ServicesRegistryResponsesOrganizationgetTeamStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 202, defaultValue:Services.Organization.Actions.GetTeam.ResponseV1(), messageOrGroupClass:Services.Organization.Actions.GetTeam.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
+      ServicesRegistryResponsesOrganizationcreateLocationStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 203, defaultValue:Services.Organization.Actions.CreateLocation.ResponseV1(), messageOrGroupClass:Services.Organization.Actions.CreateLocation.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
+      ServicesRegistryResponsesOrganizationupdateLocationStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 204, defaultValue:Services.Organization.Actions.UpdateLocation.ResponseV1(), messageOrGroupClass:Services.Organization.Actions.UpdateLocation.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
+      ServicesRegistryResponsesOrganizationgetLocationsStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 205, defaultValue:Services.Organization.Actions.GetLocations.ResponseV1(), messageOrGroupClass:Services.Organization.Actions.GetLocations.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
+      ServicesRegistryResponsesOrganizationgetLocationStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 206, defaultValue:Services.Organization.Actions.GetLocation.ResponseV1(), messageOrGroupClass:Services.Organization.Actions.GetLocation.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
+      ServicesRegistryResponsesOrganizationcreateTokenStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 207, defaultValue:Services.Organization.Actions.CreateToken.ResponseV1(), messageOrGroupClass:Services.Organization.Actions.CreateToken.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
+      ServicesRegistryResponsesOrganizationgetTokensStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 208, defaultValue:Services.Organization.Actions.GetTokens.ResponseV1(), messageOrGroupClass:Services.Organization.Actions.GetTokens.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
+      ServicesRegistryResponsesOrganizationenableIntegrationStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 209, defaultValue:Services.Organization.Actions.EnableIntegration.ResponseV1(), messageOrGroupClass:Services.Organization.Actions.EnableIntegration.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
+      ServicesRegistryResponsesOrganizationgetIntegrationStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 210, defaultValue:Services.Organization.Actions.GetIntegration.ResponseV1(), messageOrGroupClass:Services.Organization.Actions.GetIntegration.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
+      ServicesRegistryResponsesOrganizationdisableIntegrationStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 211, defaultValue:Services.Organization.Actions.DisableIntegration.ResponseV1(), messageOrGroupClass:Services.Organization.Actions.DisableIntegration.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
+      ServicesRegistryResponsesOrganizationupdateTeamStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 212, defaultValue:Services.Organization.Actions.UpdateTeam.ResponseV1(), messageOrGroupClass:Services.Organization.Actions.UpdateTeam.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
+      ServicesRegistryResponsesOrganizationaddDirectReportsStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 213, defaultValue:Services.Organization.Actions.AddDirectReports.ResponseV1(), messageOrGroupClass:Services.Organization.Actions.AddDirectReports.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
+      ServicesRegistryResponsesOrganizationgetLocationMembersStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 214, defaultValue:Services.Organization.Actions.GetLocationMembers.ResponseV1(), messageOrGroupClass:Services.Organization.Actions.GetLocationMembers.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
+      ServicesRegistryResponsesOrganizationgetProfileReportingDetailsStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 215, defaultValue:Services.Organization.Actions.GetProfileReportingDetails.ResponseV1(), messageOrGroupClass:Services.Organization.Actions.GetProfileReportingDetails.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
+      ServicesRegistryResponsesOrganizationgetTeamReportingDetailsStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 216, defaultValue:Services.Organization.Actions.GetTeamReportingDetails.ResponseV1(), messageOrGroupClass:Services.Organization.Actions.GetTeamReportingDetails.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
+      ServicesRegistryResponsesOrganizationsetManagerStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 217, defaultValue:Services.Organization.Actions.SetManager.ResponseV1(), messageOrGroupClass:Services.Organization.Actions.SetManager.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
+      ServicesRegistryResponsesOrganizationaddLocationMembersStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 218, defaultValue:Services.Organization.Actions.AddLocationMembers.ResponseV1(), messageOrGroupClass:Services.Organization.Actions.AddLocationMembers.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
       ServicesRegistryResponsesProfilecreateProfileStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 300, defaultValue:Services.Profile.Actions.CreateProfile.ResponseV1(), messageOrGroupClass:Services.Profile.Actions.CreateProfile.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
       ServicesRegistryResponsesProfilegetExtendedProfileStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 301, defaultValue:Services.Profile.Actions.GetExtendedProfile.ResponseV1(), messageOrGroupClass:Services.Profile.Actions.GetExtendedProfile.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
       ServicesRegistryResponsesProfilegetProfileStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 302, defaultValue:Services.Profile.Actions.GetProfile.ResponseV1(), messageOrGroupClass:Services.Profile.Actions.GetProfile.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
@@ -626,17 +588,13 @@ public extension Services.Registry.Responses {
       ServicesRegistryResponsesProfileaddTagsStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 305, defaultValue:Services.Profile.Actions.AddTags.ResponseV1(), messageOrGroupClass:Services.Profile.Actions.AddTags.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
       ServicesRegistryResponsesProfileupdateProfileStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 306, defaultValue:Services.Profile.Actions.UpdateProfile.ResponseV1(), messageOrGroupClass:Services.Profile.Actions.UpdateProfile.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
       ServicesRegistryResponsesProfilegetProfilesStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 307, defaultValue:Services.Profile.Actions.GetProfiles.ResponseV1(), messageOrGroupClass:Services.Profile.Actions.GetProfiles.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
-      ServicesRegistryResponsesProfilegetDirectReportsStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 308, defaultValue:Services.Profile.Actions.GetDirectReports.ResponseV1(), messageOrGroupClass:Services.Profile.Actions.GetDirectReports.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
-      ServicesRegistryResponsesProfilegetPeersStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 309, defaultValue:Services.Profile.Actions.GetPeers.ResponseV1(), messageOrGroupClass:Services.Profile.Actions.GetPeers.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
-      ServicesRegistryResponsesProfilegetProfileStatsStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 310, defaultValue:Services.Profile.Actions.GetProfileStats.ResponseV1(), messageOrGroupClass:Services.Profile.Actions.GetProfileStats.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
-      ServicesRegistryResponsesProfilegetUpcomingAnniversariesStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 311, defaultValue:Services.Profile.Actions.GetUpcomingAnniversaries.ResponseV1(), messageOrGroupClass:Services.Profile.Actions.GetUpcomingAnniversaries.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
-      ServicesRegistryResponsesProfilegetUpcomingBirthdaysStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 312, defaultValue:Services.Profile.Actions.GetUpcomingBirthdays.ResponseV1(), messageOrGroupClass:Services.Profile.Actions.GetUpcomingBirthdays.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
-      ServicesRegistryResponsesProfilegetRecentHiresStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 313, defaultValue:Services.Profile.Actions.GetRecentHires.ResponseV1(), messageOrGroupClass:Services.Profile.Actions.GetRecentHires.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
-      ServicesRegistryResponsesProfilegetActiveTagsStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 314, defaultValue:Services.Profile.Actions.GetActiveTags.ResponseV1(), messageOrGroupClass:Services.Profile.Actions.GetActiveTags.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
-      ServicesRegistryResponsesProfilebulkCreateProfilesStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 315, defaultValue:Services.Profile.Actions.BulkCreateProfiles.ResponseV1(), messageOrGroupClass:Services.Profile.Actions.BulkCreateProfiles.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
-      ServicesRegistryResponsesProfilebulkUpdateProfilesStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 316, defaultValue:Services.Profile.Actions.BulkUpdateProfiles.ResponseV1(), messageOrGroupClass:Services.Profile.Actions.BulkUpdateProfiles.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
-      ServicesRegistryResponsesProfilegetAttributesForProfilesStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 317, defaultValue:Services.Profile.Actions.GetAttributesForProfiles.ResponseV1(), messageOrGroupClass:Services.Profile.Actions.GetAttributesForProfiles.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
-      ServicesRegistryResponsesProfileremoveTagsStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 318, defaultValue:Services.Profile.Actions.RemoveTags.ResponseV1(), messageOrGroupClass:Services.Profile.Actions.RemoveTags.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
+      ServicesRegistryResponsesProfilegetUpcomingAnniversariesStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 308, defaultValue:Services.Profile.Actions.GetUpcomingAnniversaries.ResponseV1(), messageOrGroupClass:Services.Profile.Actions.GetUpcomingAnniversaries.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
+      ServicesRegistryResponsesProfilegetUpcomingBirthdaysStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 309, defaultValue:Services.Profile.Actions.GetUpcomingBirthdays.ResponseV1(), messageOrGroupClass:Services.Profile.Actions.GetUpcomingBirthdays.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
+      ServicesRegistryResponsesProfilegetRecentHiresStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 310, defaultValue:Services.Profile.Actions.GetRecentHires.ResponseV1(), messageOrGroupClass:Services.Profile.Actions.GetRecentHires.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
+      ServicesRegistryResponsesProfilegetActiveTagsStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 311, defaultValue:Services.Profile.Actions.GetActiveTags.ResponseV1(), messageOrGroupClass:Services.Profile.Actions.GetActiveTags.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
+      ServicesRegistryResponsesProfilebulkCreateProfilesStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 312, defaultValue:Services.Profile.Actions.BulkCreateProfiles.ResponseV1(), messageOrGroupClass:Services.Profile.Actions.BulkCreateProfiles.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
+      ServicesRegistryResponsesProfilebulkUpdateProfilesStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 313, defaultValue:Services.Profile.Actions.BulkUpdateProfiles.ResponseV1(), messageOrGroupClass:Services.Profile.Actions.BulkUpdateProfiles.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
+      ServicesRegistryResponsesProfileremoveTagsStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 314, defaultValue:Services.Profile.Actions.RemoveTags.ResponseV1(), messageOrGroupClass:Services.Profile.Actions.RemoveTags.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
       ServicesRegistryResponsesSearchsearchStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 400, defaultValue:Services.Search.Actions.Search.ResponseV1(), messageOrGroupClass:Services.Search.Actions.Search.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
       ServicesRegistryResponsesMediastartImageUploadStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 600, defaultValue:Services.Media.Actions.StartImageUpload.ResponseV1(), messageOrGroupClass:Services.Media.Actions.StartImageUpload.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
       ServicesRegistryResponsesMediacompleteImageUploadStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 601, defaultValue:Services.Media.Actions.CompleteImageUpload.ResponseV1(), messageOrGroupClass:Services.Media.Actions.CompleteImageUpload.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
@@ -682,16 +640,8 @@ public extension Services.Registry.Responses {
       Services.User.Actions.GetAuthenticationInstructions.GetAuthenticationInstructionsRoot.sharedInstance.registerAllExtensions(extensionRegistry)
       Services.User.Actions.GetActiveDevices.GetActiveDevicesRoot.sharedInstance.registerAllExtensions(extensionRegistry)
       Services.Organization.Actions.CreateOrganization.CreateOrganizationRoot.sharedInstance.registerAllExtensions(extensionRegistry)
-      Services.Organization.Actions.CreateTeam.CreateTeamRoot.sharedInstance.registerAllExtensions(extensionRegistry)
-      Services.Organization.Actions.CreateAddress.CreateAddressRoot.sharedInstance.registerAllExtensions(extensionRegistry)
-      Services.Organization.Actions.DeleteAddress.DeleteAddressRoot.sharedInstance.registerAllExtensions(extensionRegistry)
-      Services.Organization.Actions.GetAddress.GetAddressRoot.sharedInstance.registerAllExtensions(extensionRegistry)
       Services.Organization.Actions.GetTeam.GetTeamRoot.sharedInstance.registerAllExtensions(extensionRegistry)
       Services.Organization.Actions.GetOrganization.GetOrganizationRoot.sharedInstance.registerAllExtensions(extensionRegistry)
-      Services.Organization.Actions.GetTeams.GetTeamsRoot.sharedInstance.registerAllExtensions(extensionRegistry)
-      Services.Organization.Actions.GetAddresses.GetAddressesRoot.sharedInstance.registerAllExtensions(extensionRegistry)
-      Services.Organization.Actions.GetTeamDescendants.GetTeamDescendantsRoot.sharedInstance.registerAllExtensions(extensionRegistry)
-      Services.Organization.Actions.GetTopLevelTeam.GetTopLevelTeamRoot.sharedInstance.registerAllExtensions(extensionRegistry)
       Services.Organization.Actions.CreateLocation.CreateLocationRoot.sharedInstance.registerAllExtensions(extensionRegistry)
       Services.Organization.Actions.UpdateLocation.UpdateLocationRoot.sharedInstance.registerAllExtensions(extensionRegistry)
       Services.Organization.Actions.GetLocations.GetLocationsRoot.sharedInstance.registerAllExtensions(extensionRegistry)
@@ -702,6 +652,12 @@ public extension Services.Registry.Responses {
       Services.Organization.Actions.GetIntegration.GetIntegrationRoot.sharedInstance.registerAllExtensions(extensionRegistry)
       Services.Organization.Actions.DisableIntegration.DisableIntegrationRoot.sharedInstance.registerAllExtensions(extensionRegistry)
       Services.Organization.Actions.UpdateTeam.UpdateTeamRoot.sharedInstance.registerAllExtensions(extensionRegistry)
+      Services.Organization.Actions.AddDirectReports.AddDirectReportsRoot.sharedInstance.registerAllExtensions(extensionRegistry)
+      Services.Organization.Actions.GetLocationMembers.GetLocationMembersRoot.sharedInstance.registerAllExtensions(extensionRegistry)
+      Services.Organization.Actions.GetProfileReportingDetails.GetProfileReportingDetailsRoot.sharedInstance.registerAllExtensions(extensionRegistry)
+      Services.Organization.Actions.GetTeamReportingDetails.GetTeamReportingDetailsRoot.sharedInstance.registerAllExtensions(extensionRegistry)
+      Services.Organization.Actions.SetManager.SetManagerRoot.sharedInstance.registerAllExtensions(extensionRegistry)
+      Services.Organization.Actions.AddLocationMembers.AddLocationMembersRoot.sharedInstance.registerAllExtensions(extensionRegistry)
       Services.Profile.Actions.CreateProfile.CreateProfileRoot.sharedInstance.registerAllExtensions(extensionRegistry)
       Services.Profile.Actions.GetExtendedProfile.GetExtendedProfileRoot.sharedInstance.registerAllExtensions(extensionRegistry)
       Services.Profile.Actions.GetProfile.GetProfileRoot.sharedInstance.registerAllExtensions(extensionRegistry)
@@ -710,16 +666,12 @@ public extension Services.Registry.Responses {
       Services.Profile.Actions.AddTags.AddTagsRoot.sharedInstance.registerAllExtensions(extensionRegistry)
       Services.Profile.Actions.UpdateProfile.UpdateProfileRoot.sharedInstance.registerAllExtensions(extensionRegistry)
       Services.Profile.Actions.GetProfiles.GetProfilesRoot.sharedInstance.registerAllExtensions(extensionRegistry)
-      Services.Profile.Actions.GetDirectReports.GetDirectReportsRoot.sharedInstance.registerAllExtensions(extensionRegistry)
-      Services.Profile.Actions.GetPeers.GetPeersRoot.sharedInstance.registerAllExtensions(extensionRegistry)
-      Services.Profile.Actions.GetProfileStats.GetProfileStatsRoot.sharedInstance.registerAllExtensions(extensionRegistry)
       Services.Profile.Actions.GetUpcomingAnniversaries.GetUpcomingAnniversariesRoot.sharedInstance.registerAllExtensions(extensionRegistry)
       Services.Profile.Actions.GetUpcomingBirthdays.GetUpcomingBirthdaysRoot.sharedInstance.registerAllExtensions(extensionRegistry)
       Services.Profile.Actions.GetRecentHires.GetRecentHiresRoot.sharedInstance.registerAllExtensions(extensionRegistry)
       Services.Profile.Actions.GetActiveTags.GetActiveTagsRoot.sharedInstance.registerAllExtensions(extensionRegistry)
       Services.Profile.Actions.BulkCreateProfiles.BulkCreateProfilesRoot.sharedInstance.registerAllExtensions(extensionRegistry)
       Services.Profile.Actions.BulkUpdateProfiles.BulkUpdateProfilesRoot.sharedInstance.registerAllExtensions(extensionRegistry)
-      Services.Profile.Actions.GetAttributesForProfiles.GetAttributesForProfilesRoot.sharedInstance.registerAllExtensions(extensionRegistry)
       Services.Profile.Actions.RemoveTags.RemoveTagsRoot.sharedInstance.registerAllExtensions(extensionRegistry)
       Services.Search.Actions.Search.SearchRoot.sharedInstance.registerAllExtensions(extensionRegistry)
       Services.Media.Actions.StartImageUpload.StartImageUploadRoot.sharedInstance.registerAllExtensions(extensionRegistry)
@@ -766,15 +718,7 @@ public extension Services.Registry.Responses {
       registry.addExtension(ServicesRegistryResponsesUsergetActiveDevicesStatic)
       registry.addExtension(ServicesRegistryResponsesOrganizationcreateOrganizationStatic)
       registry.addExtension(ServicesRegistryResponsesOrganizationgetOrganizationStatic)
-      registry.addExtension(ServicesRegistryResponsesOrganizationcreateTeamStatic)
-      registry.addExtension(ServicesRegistryResponsesOrganizationcreateAddressStatic)
-      registry.addExtension(ServicesRegistryResponsesOrganizationdeleteAddressStatic)
-      registry.addExtension(ServicesRegistryResponsesOrganizationgetAddressStatic)
       registry.addExtension(ServicesRegistryResponsesOrganizationgetTeamStatic)
-      registry.addExtension(ServicesRegistryResponsesOrganizationgetTeamsStatic)
-      registry.addExtension(ServicesRegistryResponsesOrganizationgetAddressesStatic)
-      registry.addExtension(ServicesRegistryResponsesOrganizationgetTeamDescendantsStatic)
-      registry.addExtension(ServicesRegistryResponsesOrganizationgetTopLevelTeamStatic)
       registry.addExtension(ServicesRegistryResponsesOrganizationcreateLocationStatic)
       registry.addExtension(ServicesRegistryResponsesOrganizationupdateLocationStatic)
       registry.addExtension(ServicesRegistryResponsesOrganizationgetLocationsStatic)
@@ -785,6 +729,12 @@ public extension Services.Registry.Responses {
       registry.addExtension(ServicesRegistryResponsesOrganizationgetIntegrationStatic)
       registry.addExtension(ServicesRegistryResponsesOrganizationdisableIntegrationStatic)
       registry.addExtension(ServicesRegistryResponsesOrganizationupdateTeamStatic)
+      registry.addExtension(ServicesRegistryResponsesOrganizationaddDirectReportsStatic)
+      registry.addExtension(ServicesRegistryResponsesOrganizationgetLocationMembersStatic)
+      registry.addExtension(ServicesRegistryResponsesOrganizationgetProfileReportingDetailsStatic)
+      registry.addExtension(ServicesRegistryResponsesOrganizationgetTeamReportingDetailsStatic)
+      registry.addExtension(ServicesRegistryResponsesOrganizationsetManagerStatic)
+      registry.addExtension(ServicesRegistryResponsesOrganizationaddLocationMembersStatic)
       registry.addExtension(ServicesRegistryResponsesProfilecreateProfileStatic)
       registry.addExtension(ServicesRegistryResponsesProfilegetExtendedProfileStatic)
       registry.addExtension(ServicesRegistryResponsesProfilegetProfileStatic)
@@ -793,16 +743,12 @@ public extension Services.Registry.Responses {
       registry.addExtension(ServicesRegistryResponsesProfileaddTagsStatic)
       registry.addExtension(ServicesRegistryResponsesProfileupdateProfileStatic)
       registry.addExtension(ServicesRegistryResponsesProfilegetProfilesStatic)
-      registry.addExtension(ServicesRegistryResponsesProfilegetDirectReportsStatic)
-      registry.addExtension(ServicesRegistryResponsesProfilegetPeersStatic)
-      registry.addExtension(ServicesRegistryResponsesProfilegetProfileStatsStatic)
       registry.addExtension(ServicesRegistryResponsesProfilegetUpcomingAnniversariesStatic)
       registry.addExtension(ServicesRegistryResponsesProfilegetUpcomingBirthdaysStatic)
       registry.addExtension(ServicesRegistryResponsesProfilegetRecentHiresStatic)
       registry.addExtension(ServicesRegistryResponsesProfilegetActiveTagsStatic)
       registry.addExtension(ServicesRegistryResponsesProfilebulkCreateProfilesStatic)
       registry.addExtension(ServicesRegistryResponsesProfilebulkUpdateProfilesStatic)
-      registry.addExtension(ServicesRegistryResponsesProfilegetAttributesForProfilesStatic)
       registry.addExtension(ServicesRegistryResponsesProfileremoveTagsStatic)
       registry.addExtension(ServicesRegistryResponsesSearchsearchStatic)
       registry.addExtension(ServicesRegistryResponsesMediastartImageUploadStatic)
@@ -1041,32 +987,8 @@ public extension Services.Registry.Responses {
     public class func getOrganization() -> ConcreateExtensionField {
          return ServicesRegistryResponsesOrganizationgetOrganization
     }
-    public class func createTeam() -> ConcreateExtensionField {
-         return ServicesRegistryResponsesOrganizationcreateTeam
-    }
-    public class func createAddress() -> ConcreateExtensionField {
-         return ServicesRegistryResponsesOrganizationcreateAddress
-    }
-    public class func deleteAddress() -> ConcreateExtensionField {
-         return ServicesRegistryResponsesOrganizationdeleteAddress
-    }
-    public class func getAddress() -> ConcreateExtensionField {
-         return ServicesRegistryResponsesOrganizationgetAddress
-    }
     public class func getTeam() -> ConcreateExtensionField {
          return ServicesRegistryResponsesOrganizationgetTeam
-    }
-    public class func getTeams() -> ConcreateExtensionField {
-         return ServicesRegistryResponsesOrganizationgetTeams
-    }
-    public class func getAddresses() -> ConcreateExtensionField {
-         return ServicesRegistryResponsesOrganizationgetAddresses
-    }
-    public class func getTeamDescendants() -> ConcreateExtensionField {
-         return ServicesRegistryResponsesOrganizationgetTeamDescendants
-    }
-    public class func getTopLevelTeam() -> ConcreateExtensionField {
-         return ServicesRegistryResponsesOrganizationgetTopLevelTeam
     }
     public class func createLocation() -> ConcreateExtensionField {
          return ServicesRegistryResponsesOrganizationcreateLocation
@@ -1097,6 +1019,24 @@ public extension Services.Registry.Responses {
     }
     public class func updateTeam() -> ConcreateExtensionField {
          return ServicesRegistryResponsesOrganizationupdateTeam
+    }
+    public class func addDirectReports() -> ConcreateExtensionField {
+         return ServicesRegistryResponsesOrganizationaddDirectReports
+    }
+    public class func getLocationMembers() -> ConcreateExtensionField {
+         return ServicesRegistryResponsesOrganizationgetLocationMembers
+    }
+    public class func getProfileReportingDetails() -> ConcreateExtensionField {
+         return ServicesRegistryResponsesOrganizationgetProfileReportingDetails
+    }
+    public class func getTeamReportingDetails() -> ConcreateExtensionField {
+         return ServicesRegistryResponsesOrganizationgetTeamReportingDetails
+    }
+    public class func setManager() -> ConcreateExtensionField {
+         return ServicesRegistryResponsesOrganizationsetManager
+    }
+    public class func addLocationMembers() -> ConcreateExtensionField {
+         return ServicesRegistryResponsesOrganizationaddLocationMembers
     }
     required public init() {
          super.init()
@@ -1268,15 +1208,6 @@ public extension Services.Registry.Responses {
     public class func getProfiles() -> ConcreateExtensionField {
          return ServicesRegistryResponsesProfilegetProfiles
     }
-    public class func getDirectReports() -> ConcreateExtensionField {
-         return ServicesRegistryResponsesProfilegetDirectReports
-    }
-    public class func getPeers() -> ConcreateExtensionField {
-         return ServicesRegistryResponsesProfilegetPeers
-    }
-    public class func getProfileStats() -> ConcreateExtensionField {
-         return ServicesRegistryResponsesProfilegetProfileStats
-    }
     public class func getUpcomingAnniversaries() -> ConcreateExtensionField {
          return ServicesRegistryResponsesProfilegetUpcomingAnniversaries
     }
@@ -1294,9 +1225,6 @@ public extension Services.Registry.Responses {
     }
     public class func bulkUpdateProfiles() -> ConcreateExtensionField {
          return ServicesRegistryResponsesProfilebulkUpdateProfiles
-    }
-    public class func getAttributesForProfiles() -> ConcreateExtensionField {
-         return ServicesRegistryResponsesProfilegetAttributesForProfiles
     }
     public class func removeTags() -> ConcreateExtensionField {
          return ServicesRegistryResponsesProfileremoveTags

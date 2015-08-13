@@ -11,7 +11,6 @@ public func == (lhs: Services.Organization.Actions.GetLocation.RequestV1, rhs: S
   fieldCheck = fieldCheck && (lhs.hasVersion == rhs.hasVersion) && (!lhs.hasVersion || lhs.version == rhs.version)
   fieldCheck = fieldCheck && (lhs.hasLocationId == rhs.hasLocationId) && (!lhs.hasLocationId || lhs.locationId == rhs.locationId)
   fieldCheck = fieldCheck && (lhs.hasName == rhs.hasName) && (!lhs.hasName || lhs.name == rhs.name)
-  fieldCheck = fieldCheck && (lhs.hasOrganizationId == rhs.hasOrganizationId) && (!lhs.hasOrganizationId || lhs.organizationId == rhs.organizationId)
   return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
 }
 
@@ -50,7 +49,6 @@ public extension Services.Organization.Actions.GetLocation {
            case "version": return version
            case "locationId": return locationId
            case "name": return name
-           case "organizationId": return organizationId
            default: return nil
            }
     }
@@ -63,9 +61,6 @@ public extension Services.Organization.Actions.GetLocation {
 
     public private(set) var hasName:Bool = false
     public private(set) var name:String = ""
-
-    public private(set) var hasOrganizationId:Bool = false
-    public private(set) var organizationId:String = ""
 
     required public init() {
          super.init()
@@ -82,9 +77,6 @@ public extension Services.Organization.Actions.GetLocation {
       }
       if hasName {
         output.writeString(3, value:name)
-      }
-      if hasOrganizationId {
-        output.writeString(4, value:organizationId)
       }
       unknownFields.writeToCodedOutputStream(output)
     }
@@ -103,9 +95,6 @@ public extension Services.Organization.Actions.GetLocation {
       }
       if hasName {
         serialize_size += name.computeStringSize(3)
-      }
-      if hasOrganizationId {
-        serialize_size += organizationId.computeStringSize(4)
       }
       serialize_size += unknownFields.serializedSize()
       memoizedSerializedSize = serialize_size
@@ -157,9 +146,6 @@ public extension Services.Organization.Actions.GetLocation {
       if hasName {
         output += "\(indent) name: \(name) \n"
       }
-      if hasOrganizationId {
-        output += "\(indent) organizationId: \(organizationId) \n"
-      }
       unknownFields.writeDescriptionTo(&output, indent:indent)
     }
     override public var hashValue:Int {
@@ -173,9 +159,6 @@ public extension Services.Organization.Actions.GetLocation {
             }
             if hasName {
                hashCode = (hashCode &* 31) &+ name.hashValue
-            }
-            if hasOrganizationId {
-               hashCode = (hashCode &* 31) &+ organizationId.hashValue
             }
             hashCode = (hashCode &* 31) &+  unknownFields.hashValue
             return hashCode
@@ -274,29 +257,6 @@ public extension Services.Organization.Actions.GetLocation {
          builderResult.name = ""
          return self
     }
-    public var hasOrganizationId:Bool {
-         get {
-              return builderResult.hasOrganizationId
-         }
-    }
-    public var organizationId:String {
-         get {
-              return builderResult.organizationId
-         }
-         set (value) {
-             builderResult.hasOrganizationId = true
-             builderResult.organizationId = value
-         }
-    }
-    public func setOrganizationId(value:String)-> Services.Organization.Actions.GetLocation.RequestV1Builder {
-      self.organizationId = value
-      return self
-    }
-    public func clearOrganizationId() -> Services.Organization.Actions.GetLocation.RequestV1Builder{
-         builderResult.hasOrganizationId = false
-         builderResult.organizationId = ""
-         return self
-    }
     override public var internalGetResult:GeneratedMessage {
          get {
             return builderResult
@@ -330,9 +290,6 @@ public extension Services.Organization.Actions.GetLocation {
       if other.hasName {
            name = other.name
       }
-      if other.hasOrganizationId {
-           organizationId = other.organizationId
-      }
       mergeUnknownFields(other.unknownFields)
       return self
     }
@@ -356,9 +313,6 @@ public extension Services.Organization.Actions.GetLocation {
 
         case 26 :
           name = input.readString()
-
-        case 34 :
-          organizationId = input.readString()
 
         default:
           if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {

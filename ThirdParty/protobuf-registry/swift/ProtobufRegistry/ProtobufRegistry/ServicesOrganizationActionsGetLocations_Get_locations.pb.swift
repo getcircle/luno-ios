@@ -9,7 +9,7 @@ public func == (lhs: Services.Organization.Actions.GetLocations.RequestV1, rhs: 
   }
   var fieldCheck:Bool = (lhs.hashValue == rhs.hashValue)
   fieldCheck = fieldCheck && (lhs.hasVersion == rhs.hasVersion) && (!lhs.hasVersion || lhs.version == rhs.version)
-  fieldCheck = fieldCheck && (lhs.hasOrganizationId == rhs.hasOrganizationId) && (!lhs.hasOrganizationId || lhs.organizationId == rhs.organizationId)
+  fieldCheck = fieldCheck && (lhs.hasProfileId == rhs.hasProfileId) && (!lhs.hasProfileId || lhs.profileId == rhs.profileId)
   return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
 }
 
@@ -46,7 +46,7 @@ public extension Services.Organization.Actions.GetLocations {
     override public subscript(key: String) -> Any? {
            switch key {
            case "version": return version
-           case "organizationId": return organizationId
+           case "profileId": return profileId
            default: return nil
            }
     }
@@ -54,8 +54,8 @@ public extension Services.Organization.Actions.GetLocations {
     public private(set) var hasVersion:Bool = false
     public private(set) var version:UInt32 = UInt32(1)
 
-    public private(set) var hasOrganizationId:Bool = false
-    public private(set) var organizationId:String = ""
+    public private(set) var hasProfileId:Bool = false
+    public private(set) var profileId:String = ""
 
     required public init() {
          super.init()
@@ -67,8 +67,8 @@ public extension Services.Organization.Actions.GetLocations {
       if hasVersion {
         output.writeUInt32(1, value:version)
       }
-      if hasOrganizationId {
-        output.writeString(2, value:organizationId)
+      if hasProfileId {
+        output.writeString(2, value:profileId)
       }
       unknownFields.writeToCodedOutputStream(output)
     }
@@ -82,8 +82,8 @@ public extension Services.Organization.Actions.GetLocations {
       if hasVersion {
         serialize_size += version.computeUInt32Size(1)
       }
-      if hasOrganizationId {
-        serialize_size += organizationId.computeStringSize(2)
+      if hasProfileId {
+        serialize_size += profileId.computeStringSize(2)
       }
       serialize_size += unknownFields.serializedSize()
       memoizedSerializedSize = serialize_size
@@ -129,8 +129,8 @@ public extension Services.Organization.Actions.GetLocations {
       if hasVersion {
         output += "\(indent) version: \(version) \n"
       }
-      if hasOrganizationId {
-        output += "\(indent) organizationId: \(organizationId) \n"
+      if hasProfileId {
+        output += "\(indent) profileId: \(profileId) \n"
       }
       unknownFields.writeDescriptionTo(&output, indent:indent)
     }
@@ -140,8 +140,8 @@ public extension Services.Organization.Actions.GetLocations {
             if hasVersion {
                hashCode = (hashCode &* 31) &+ version.hashValue
             }
-            if hasOrganizationId {
-               hashCode = (hashCode &* 31) &+ organizationId.hashValue
+            if hasProfileId {
+               hashCode = (hashCode &* 31) &+ profileId.hashValue
             }
             hashCode = (hashCode &* 31) &+  unknownFields.hashValue
             return hashCode
@@ -194,27 +194,27 @@ public extension Services.Organization.Actions.GetLocations {
          builderResult.version = UInt32(1)
          return self
     }
-    public var hasOrganizationId:Bool {
+    public var hasProfileId:Bool {
          get {
-              return builderResult.hasOrganizationId
+              return builderResult.hasProfileId
          }
     }
-    public var organizationId:String {
+    public var profileId:String {
          get {
-              return builderResult.organizationId
+              return builderResult.profileId
          }
          set (value) {
-             builderResult.hasOrganizationId = true
-             builderResult.organizationId = value
+             builderResult.hasProfileId = true
+             builderResult.profileId = value
          }
     }
-    public func setOrganizationId(value:String)-> Services.Organization.Actions.GetLocations.RequestV1Builder {
-      self.organizationId = value
+    public func setProfileId(value:String)-> Services.Organization.Actions.GetLocations.RequestV1Builder {
+      self.profileId = value
       return self
     }
-    public func clearOrganizationId() -> Services.Organization.Actions.GetLocations.RequestV1Builder{
-         builderResult.hasOrganizationId = false
-         builderResult.organizationId = ""
+    public func clearProfileId() -> Services.Organization.Actions.GetLocations.RequestV1Builder{
+         builderResult.hasProfileId = false
+         builderResult.profileId = ""
          return self
     }
     override public var internalGetResult:GeneratedMessage {
@@ -244,8 +244,8 @@ public extension Services.Organization.Actions.GetLocations {
       if other.hasVersion {
            version = other.version
       }
-      if other.hasOrganizationId {
-           organizationId = other.organizationId
+      if other.hasProfileId {
+           profileId = other.profileId
       }
       mergeUnknownFields(other.unknownFields)
       return self
@@ -266,7 +266,7 @@ public extension Services.Organization.Actions.GetLocations {
           version = input.readUInt32()
 
         case 18 :
-          organizationId = input.readString()
+          profileId = input.readString()
 
         default:
           if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {

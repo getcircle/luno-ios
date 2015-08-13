@@ -1,13 +1,11 @@
-package services.organization.actions.get_top_level_team;
-
-// GENERATED OPTIONS FOR: JAVA
-option java_package = "com.rhlabs.protobufs.services.organization.actions.get_top_level_team";
+package services.organization.actions.add_direct_reports;
 
 import "protobufs/services/organization/containers.proto";
 
 message RequestV1 {
     optional uint32 version = 1 [default = 1];
-    optional string organization_id = 2;
+    optional string profile_id = 2;
+    repeated string direct_reports_profile_ids = 3;
 }
 
 message ResponseV1 {

@@ -16,10 +16,11 @@ message RequestV1 {
 message ResponseV1 {
     optional uint32 version = 1 [default = 1];
     optional services.profile.containers.ProfileV1 profile = 2;
-    optional services.organization.containers.AddressV1 address = 3;
-    optional services.profile.containers.ProfileV1 manager = 4;
-    optional services.organization.containers.TeamV1 team = 5;
-    repeated services.user.containers.IdentityV1 identities = 6;
+    optional services.profile.containers.ProfileV1 manager = 3;
+    optional services.organization.containers.TeamV1 team = 4;
+    repeated services.user.containers.IdentityV1 identities = 5;
     repeated services.profile.containers.ProfileV1 direct_reports = 7;
-    optional services.organization.containers.LocationV1 location = 8;
+    repeated services.organization.containers.LocationV1 locations = 8;
+    optional services.organization.containers.TeamV1 manages_team = 9;
+    repeated services.profile.containers.ProfileV1 peers = 10;
 }

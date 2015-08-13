@@ -24,16 +24,8 @@ import "protobufs/services/user/actions/get_authentication_instructions.proto";
 import "protobufs/services/user/actions/get_active_devices.proto";
 
 import "protobufs/services/organization/actions/create_organization.proto";
-import "protobufs/services/organization/actions/create_team.proto";
-import "protobufs/services/organization/actions/create_address.proto";
-import "protobufs/services/organization/actions/delete_address.proto";
-import "protobufs/services/organization/actions/get_address.proto";
 import "protobufs/services/organization/actions/get_team.proto";
 import "protobufs/services/organization/actions/get_organization.proto";
-import "protobufs/services/organization/actions/get_teams.proto";
-import "protobufs/services/organization/actions/get_addresses.proto";
-import "protobufs/services/organization/actions/get_team_descendants.proto";
-import "protobufs/services/organization/actions/get_top_level_team.proto";
 import "protobufs/services/organization/actions/create_location.proto";
 import "protobufs/services/organization/actions/update_location.proto";
 import "protobufs/services/organization/actions/get_locations.proto";
@@ -44,6 +36,12 @@ import "protobufs/services/organization/actions/enable_integration.proto";
 import "protobufs/services/organization/actions/get_integration.proto";
 import "protobufs/services/organization/actions/disable_integration.proto";
 import "protobufs/services/organization/actions/update_team.proto";
+import "protobufs/services/organization/actions/add_direct_reports.proto";
+import "protobufs/services/organization/actions/get_location_members.proto";
+import "protobufs/services/organization/actions/get_profile_reporting_details.proto";
+import "protobufs/services/organization/actions/get_team_reporting_details.proto";
+import "protobufs/services/organization/actions/set_manager.proto";
+import "protobufs/services/organization/actions/add_location_members.proto";
 
 import "protobufs/services/profile/actions/create_profile.proto";
 import "protobufs/services/profile/actions/get_extended_profile.proto";
@@ -53,16 +51,12 @@ import "protobufs/services/profile/actions/get_tags.proto";
 import "protobufs/services/profile/actions/add_tags.proto";
 import "protobufs/services/profile/actions/update_profile.proto";
 import "protobufs/services/profile/actions/get_profiles.proto";
-import "protobufs/services/profile/actions/get_direct_reports.proto";
-import "protobufs/services/profile/actions/get_peers.proto";
-import "protobufs/services/profile/actions/get_profile_stats.proto";
 import "protobufs/services/profile/actions/get_upcoming_anniversaries.proto";
 import "protobufs/services/profile/actions/get_upcoming_birthdays.proto";
 import "protobufs/services/profile/actions/get_recent_hires.proto";
 import "protobufs/services/profile/actions/get_active_tags.proto";
 import "protobufs/services/profile/actions/bulk_create_profiles.proto";
 import "protobufs/services/profile/actions/bulk_update_profiles.proto";
-import "protobufs/services/profile/actions/get_attributes_for_profiles.proto";
 import "protobufs/services/profile/actions/remove_tags.proto";
 
 import "protobufs/services/search/actions/search.proto";
@@ -122,32 +116,29 @@ message Organization {
     extend soa.ActionRequestParamsV1 {
         optional services.organization.actions.create_organization.RequestV1 create_organization = 200;
         optional services.organization.actions.get_organization.RequestV1 get_organization = 201;
-        optional services.organization.actions.create_team.RequestV1 create_team = 202;
-        optional services.organization.actions.create_address.RequestV1 create_address = 203;
-        optional services.organization.actions.delete_address.RequestV1 delete_address = 204;
-        optional services.organization.actions.get_address.RequestV1 get_address = 205;
-        optional services.organization.actions.get_team.RequestV1 get_team = 206;
-        optional services.organization.actions.get_teams.RequestV1 get_teams = 207;
-        optional services.organization.actions.get_addresses.RequestV1 get_addresses = 208;
-        optional services.organization.actions.get_team_descendants.RequestV1 get_team_descendants = 209;
-        optional services.organization.actions.get_top_level_team.RequestV1 get_top_level_team = 210;
-        optional services.organization.actions.create_location.RequestV1 create_location = 211;
-        optional services.organization.actions.update_location.RequestV1 update_location = 212;
-        optional services.organization.actions.get_locations.RequestV1 get_locations = 213;
-        optional services.organization.actions.get_location.RequestV1 get_location = 214;
-        optional services.organization.actions.create_token.RequestV1 create_token = 215;
-        optional services.organization.actions.get_tokens.RequestV1 get_tokens = 216;
-        optional services.organization.actions.enable_integration.RequestV1 enable_integration = 217;
-        optional services.organization.actions.get_integration.RequestV1 get_integration = 218;
-        optional services.organization.actions.disable_integration.RequestV1 disable_integration = 219;
-        optional services.organization.actions.update_team.RequestV1 update_team = 220;
+        optional services.organization.actions.get_team.RequestV1 get_team = 202;
+        optional services.organization.actions.create_location.RequestV1 create_location = 203;
+        optional services.organization.actions.update_location.RequestV1 update_location = 204;
+        optional services.organization.actions.get_locations.RequestV1 get_locations = 205;
+        optional services.organization.actions.get_location.RequestV1 get_location = 206;
+        optional services.organization.actions.create_token.RequestV1 create_token = 207;
+        optional services.organization.actions.get_tokens.RequestV1 get_tokens = 208;
+        optional services.organization.actions.enable_integration.RequestV1 enable_integration = 209;
+        optional services.organization.actions.get_integration.RequestV1 get_integration = 210;
+        optional services.organization.actions.disable_integration.RequestV1 disable_integration = 211;
+        optional services.organization.actions.update_team.RequestV1 update_team = 212;
+        optional services.organization.actions.add_direct_reports.RequestV1 add_direct_reports = 213;
+        optional services.organization.actions.get_location_members.RequestV1 get_location_members = 214;
+        optional services.organization.actions.get_profile_reporting_details.RequestV1 get_profile_reporting_details = 215;
+        optional services.organization.actions.get_team_reporting_details.RequestV1 get_team_reporting_details = 216;
+        optional services.organization.actions.set_manager.RequestV1 set_manager = 217;
+        optional services.organization.actions.add_location_members.RequestV1 add_location_members = 218;
     }
 }
 
 message Profile {
     extend soa.ActionRequestParamsV1 {
         optional services.profile.actions.create_profile.RequestV1 create_profile = 300;
-        // XXX: need to finish this one, has a lot of dependencies
         optional services.profile.actions.get_extended_profile.RequestV1 get_extended_profile = 301;
         optional services.profile.actions.get_profile.RequestV1 get_profile = 302;
         optional services.profile.actions.create_tags.RequestV1 create_tags = 303;
@@ -155,17 +146,13 @@ message Profile {
         optional services.profile.actions.add_tags.RequestV1 add_tags = 305;
         optional services.profile.actions.update_profile.RequestV1 update_profile = 306;
         optional services.profile.actions.get_profiles.RequestV1 get_profiles = 307;
-        optional services.profile.actions.get_direct_reports.RequestV1 get_direct_reports = 308;
-        optional services.profile.actions.get_peers.RequestV1 get_peers = 309;
-        optional services.profile.actions.get_profile_stats.RequestV1 get_profile_stats = 310;
-        optional services.profile.actions.get_upcoming_anniversaries.RequestV1 get_upcoming_anniversaries = 311;
-        optional services.profile.actions.get_upcoming_birthdays.RequestV1 get_upcoming_birthdays = 312;
-        optional services.profile.actions.get_recent_hires.RequestV1 get_recent_hires = 313;
-        optional services.profile.actions.get_active_tags.RequestV1 get_active_tags = 314;
-        optional services.profile.actions.bulk_create_profiles.RequestV1 bulk_create_profiles = 315;
-        optional services.profile.actions.bulk_update_profiles.RequestV1 bulk_update_profiles = 316;
-        optional services.profile.actions.get_attributes_for_profiles.RequestV1 get_attributes_for_profiles = 317;
-        optional services.profile.actions.remove_tags.RequestV1 remove_tags = 318;
+        optional services.profile.actions.get_upcoming_anniversaries.RequestV1 get_upcoming_anniversaries = 308;
+        optional services.profile.actions.get_upcoming_birthdays.RequestV1 get_upcoming_birthdays = 309;
+        optional services.profile.actions.get_recent_hires.RequestV1 get_recent_hires = 310;
+        optional services.profile.actions.get_active_tags.RequestV1 get_active_tags = 311;
+        optional services.profile.actions.bulk_create_profiles.RequestV1 bulk_create_profiles = 312;
+        optional services.profile.actions.bulk_update_profiles.RequestV1 bulk_update_profiles = 313;
+        optional services.profile.actions.remove_tags.RequestV1 remove_tags = 314;
     }
 }
 

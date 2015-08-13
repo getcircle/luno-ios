@@ -1,13 +1,11 @@
-package services.organization.actions.get_team;
-
-// GENERATED OPTIONS FOR: JAVA
-option java_package = "com.rhlabs.protobufs.services.organization.actions.get_team";
+package services.organization.actions.set_manager;
 
 import "protobufs/services/organization/containers.proto";
 
 message RequestV1 {
     optional uint32 version = 1 [default = 1];
-    optional string team_id = 2;
+    optional string profile_id = 2;
+    optional string manager_profile_id = 3;
 }
 
 message ResponseV1 {

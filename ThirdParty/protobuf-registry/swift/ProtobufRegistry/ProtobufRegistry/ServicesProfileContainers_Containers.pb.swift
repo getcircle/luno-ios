@@ -25,21 +25,17 @@ public func == (lhs: Services.Profile.Containers.ProfileV1, rhs: Services.Profil
   fieldCheck = fieldCheck && (lhs.hasId == rhs.hasId) && (!lhs.hasId || lhs.id == rhs.id)
   fieldCheck = fieldCheck && (lhs.hasOrganizationId == rhs.hasOrganizationId) && (!lhs.hasOrganizationId || lhs.organizationId == rhs.organizationId)
   fieldCheck = fieldCheck && (lhs.hasUserId == rhs.hasUserId) && (!lhs.hasUserId || lhs.userId == rhs.userId)
-  fieldCheck = fieldCheck && (lhs.hasAddressId == rhs.hasAddressId) && (!lhs.hasAddressId || lhs.addressId == rhs.addressId)
   fieldCheck = fieldCheck && (lhs.hasTitle == rhs.hasTitle) && (!lhs.hasTitle || lhs.title == rhs.title)
   fieldCheck = fieldCheck && (lhs.hasFirstName == rhs.hasFirstName) && (!lhs.hasFirstName || lhs.firstName == rhs.firstName)
   fieldCheck = fieldCheck && (lhs.hasLastName == rhs.hasLastName) && (!lhs.hasLastName || lhs.lastName == rhs.lastName)
   fieldCheck = fieldCheck && (lhs.hasImageUrl == rhs.hasImageUrl) && (!lhs.hasImageUrl || lhs.imageUrl == rhs.imageUrl)
-  fieldCheck = fieldCheck && (lhs.hasTeamId == rhs.hasTeamId) && (!lhs.hasTeamId || lhs.teamId == rhs.teamId)
   fieldCheck = fieldCheck && (lhs.hasFullName == rhs.hasFullName) && (!lhs.hasFullName || lhs.fullName == rhs.fullName)
   fieldCheck = fieldCheck && (lhs.hasBirthDate == rhs.hasBirthDate) && (!lhs.hasBirthDate || lhs.birthDate == rhs.birthDate)
   fieldCheck = fieldCheck && (lhs.hasHireDate == rhs.hasHireDate) && (!lhs.hasHireDate || lhs.hireDate == rhs.hireDate)
   fieldCheck = fieldCheck && (lhs.hasVerified == rhs.hasVerified) && (!lhs.hasVerified || lhs.verified == rhs.verified)
   fieldCheck = fieldCheck && (lhs.items == rhs.items)
-  fieldCheck = fieldCheck && (lhs.hasLocationId == rhs.hasLocationId) && (!lhs.hasLocationId || lhs.locationId == rhs.locationId)
   fieldCheck = fieldCheck && (lhs.hasNickname == rhs.hasNickname) && (!lhs.hasNickname || lhs.nickname == rhs.nickname)
   fieldCheck = fieldCheck && (lhs.contactMethods == rhs.contactMethods)
-  fieldCheck = fieldCheck && (lhs.hasSeatingInfo == rhs.hasSeatingInfo) && (!lhs.hasSeatingInfo || lhs.seatingInfo == rhs.seatingInfo)
   fieldCheck = fieldCheck && (lhs.hasEmail == rhs.hasEmail) && (!lhs.hasEmail || lhs.email == rhs.email)
   fieldCheck = fieldCheck && (lhs.hasIsAdmin == rhs.hasIsAdmin) && (!lhs.hasIsAdmin || lhs.isAdmin == rhs.isAdmin)
   fieldCheck = fieldCheck && (lhs.hasSmallImageUrl == rhs.hasSmallImageUrl) && (!lhs.hasSmallImageUrl || lhs.smallImageUrl == rhs.smallImageUrl)
@@ -521,19 +517,15 @@ public extension Services.Profile.Containers {
            case "id": return id
            case "organizationId": return organizationId
            case "userId": return userId
-           case "addressId": return addressId
            case "title": return title
            case "firstName": return firstName
            case "lastName": return lastName
            case "imageUrl": return imageUrl
-           case "teamId": return teamId
            case "fullName": return fullName
            case "birthDate": return birthDate
            case "hireDate": return hireDate
            case "verified": return verified
-           case "locationId": return locationId
            case "nickname": return nickname
-           case "seatingInfo": return seatingInfo
            case "email": return email
            case "isAdmin": return isAdmin
            case "smallImageUrl": return smallImageUrl
@@ -554,9 +546,6 @@ public extension Services.Profile.Containers {
     public private(set) var hasUserId:Bool = false
     public private(set) var userId:String = ""
 
-    public private(set) var hasAddressId:Bool = false
-    public private(set) var addressId:String = ""
-
     public private(set) var hasTitle:Bool = false
     public private(set) var title:String = ""
 
@@ -568,9 +557,6 @@ public extension Services.Profile.Containers {
 
     public private(set) var hasImageUrl:Bool = false
     public private(set) var imageUrl:String = ""
-
-    public private(set) var hasTeamId:Bool = false
-    public private(set) var teamId:String = ""
 
     public private(set) var hasFullName:Bool = false
     public private(set) var fullName:String = ""
@@ -584,14 +570,8 @@ public extension Services.Profile.Containers {
     public private(set) var hasVerified:Bool = false
     public private(set) var verified:Bool = false
 
-    public private(set) var hasLocationId:Bool = false
-    public private(set) var locationId:String = ""
-
     public private(set) var hasNickname:Bool = false
     public private(set) var nickname:String = ""
-
-    public private(set) var hasSeatingInfo:Bool = false
-    public private(set) var seatingInfo:String = ""
 
     public private(set) var hasEmail:Bool = false
     public private(set) var email:String = ""
@@ -625,62 +605,50 @@ public extension Services.Profile.Containers {
       if hasUserId {
         output.writeString(4, value:userId)
       }
-      if hasAddressId {
-        output.writeString(5, value:addressId)
-      }
       if hasTitle {
-        output.writeString(6, value:title)
+        output.writeString(5, value:title)
       }
       if hasFirstName {
-        output.writeString(7, value:firstName)
+        output.writeString(6, value:firstName)
       }
       if hasLastName {
-        output.writeString(8, value:lastName)
+        output.writeString(7, value:lastName)
       }
       if hasImageUrl {
-        output.writeString(9, value:imageUrl)
-      }
-      if hasTeamId {
-        output.writeString(10, value:teamId)
+        output.writeString(8, value:imageUrl)
       }
       if hasFullName {
-        output.writeString(11, value:fullName)
+        output.writeString(9, value:fullName)
       }
       if hasBirthDate {
-        output.writeString(12, value:birthDate)
+        output.writeString(10, value:birthDate)
       }
       if hasHireDate {
-        output.writeString(13, value:hireDate)
+        output.writeString(11, value:hireDate)
       }
       if hasVerified {
-        output.writeBool(14, value:verified)
+        output.writeBool(12, value:verified)
       }
       for oneElementitems in items {
-          output.writeMessage(15, value:oneElementitems)
-      }
-      if hasLocationId {
-        output.writeString(16, value:locationId)
+          output.writeMessage(13, value:oneElementitems)
       }
       if hasNickname {
-        output.writeString(17, value:nickname)
+        output.writeString(14, value:nickname)
       }
       for oneElementcontactMethods in contactMethods {
-          output.writeMessage(18, value:oneElementcontactMethods)
-      }
-      if hasSeatingInfo {
-        output.writeString(19, value:seatingInfo)
+          output.writeMessage(15, value:oneElementcontactMethods)
       }
       if hasEmail {
-        output.writeString(20, value:email)
+        output.writeString(16, value:email)
       }
       if hasIsAdmin {
-        output.writeBool(21, value:isAdmin)
+        output.writeBool(17, value:isAdmin)
       }
       if hasSmallImageUrl {
-        output.writeString(22, value:smallImageUrl)
+        output.writeString(18, value:smallImageUrl)
       }
       if hasStatus {
-        output.writeMessage(23, value:status)
+        output.writeMessage(19, value:status)
       }
       unknownFields.writeToCodedOutputStream(output)
     }
@@ -703,62 +671,50 @@ public extension Services.Profile.Containers {
       if hasUserId {
         serialize_size += userId.computeStringSize(4)
       }
-      if hasAddressId {
-        serialize_size += addressId.computeStringSize(5)
-      }
       if hasTitle {
-        serialize_size += title.computeStringSize(6)
+        serialize_size += title.computeStringSize(5)
       }
       if hasFirstName {
-        serialize_size += firstName.computeStringSize(7)
+        serialize_size += firstName.computeStringSize(6)
       }
       if hasLastName {
-        serialize_size += lastName.computeStringSize(8)
+        serialize_size += lastName.computeStringSize(7)
       }
       if hasImageUrl {
-        serialize_size += imageUrl.computeStringSize(9)
-      }
-      if hasTeamId {
-        serialize_size += teamId.computeStringSize(10)
+        serialize_size += imageUrl.computeStringSize(8)
       }
       if hasFullName {
-        serialize_size += fullName.computeStringSize(11)
+        serialize_size += fullName.computeStringSize(9)
       }
       if hasBirthDate {
-        serialize_size += birthDate.computeStringSize(12)
+        serialize_size += birthDate.computeStringSize(10)
       }
       if hasHireDate {
-        serialize_size += hireDate.computeStringSize(13)
+        serialize_size += hireDate.computeStringSize(11)
       }
       if hasVerified {
-        serialize_size += verified.computeBoolSize(14)
+        serialize_size += verified.computeBoolSize(12)
       }
       for oneElementitems in items {
-          serialize_size += oneElementitems.computeMessageSize(15)
-      }
-      if hasLocationId {
-        serialize_size += locationId.computeStringSize(16)
+          serialize_size += oneElementitems.computeMessageSize(13)
       }
       if hasNickname {
-        serialize_size += nickname.computeStringSize(17)
+        serialize_size += nickname.computeStringSize(14)
       }
       for oneElementcontactMethods in contactMethods {
-          serialize_size += oneElementcontactMethods.computeMessageSize(18)
-      }
-      if hasSeatingInfo {
-        serialize_size += seatingInfo.computeStringSize(19)
+          serialize_size += oneElementcontactMethods.computeMessageSize(15)
       }
       if hasEmail {
-        serialize_size += email.computeStringSize(20)
+        serialize_size += email.computeStringSize(16)
       }
       if hasIsAdmin {
-        serialize_size += isAdmin.computeBoolSize(21)
+        serialize_size += isAdmin.computeBoolSize(17)
       }
       if hasSmallImageUrl {
-        serialize_size += smallImageUrl.computeStringSize(22)
+        serialize_size += smallImageUrl.computeStringSize(18)
       }
       if hasStatus {
-          if let varSizestatus = status?.computeMessageSize(23) {
+          if let varSizestatus = status?.computeMessageSize(19) {
               serialize_size += varSizestatus
           }
       }
@@ -815,9 +771,6 @@ public extension Services.Profile.Containers {
       if hasUserId {
         output += "\(indent) userId: \(userId) \n"
       }
-      if hasAddressId {
-        output += "\(indent) addressId: \(addressId) \n"
-      }
       if hasTitle {
         output += "\(indent) title: \(title) \n"
       }
@@ -829,9 +782,6 @@ public extension Services.Profile.Containers {
       }
       if hasImageUrl {
         output += "\(indent) imageUrl: \(imageUrl) \n"
-      }
-      if hasTeamId {
-        output += "\(indent) teamId: \(teamId) \n"
       }
       if hasFullName {
         output += "\(indent) fullName: \(fullName) \n"
@@ -852,9 +802,6 @@ public extension Services.Profile.Containers {
           output += "\(indent)}\n"
           itemsElementIndex++
       }
-      if hasLocationId {
-        output += "\(indent) locationId: \(locationId) \n"
-      }
       if hasNickname {
         output += "\(indent) nickname: \(nickname) \n"
       }
@@ -864,9 +811,6 @@ public extension Services.Profile.Containers {
           oneElementcontactMethods.writeDescriptionTo(&output, indent:"\(indent)  ")
           output += "\(indent)}\n"
           contactMethodsElementIndex++
-      }
-      if hasSeatingInfo {
-        output += "\(indent) seatingInfo: \(seatingInfo) \n"
       }
       if hasEmail {
         output += "\(indent) email: \(email) \n"
@@ -899,9 +843,6 @@ public extension Services.Profile.Containers {
             if hasUserId {
                hashCode = (hashCode &* 31) &+ userId.hashValue
             }
-            if hasAddressId {
-               hashCode = (hashCode &* 31) &+ addressId.hashValue
-            }
             if hasTitle {
                hashCode = (hashCode &* 31) &+ title.hashValue
             }
@@ -913,9 +854,6 @@ public extension Services.Profile.Containers {
             }
             if hasImageUrl {
                hashCode = (hashCode &* 31) &+ imageUrl.hashValue
-            }
-            if hasTeamId {
-               hashCode = (hashCode &* 31) &+ teamId.hashValue
             }
             if hasFullName {
                hashCode = (hashCode &* 31) &+ fullName.hashValue
@@ -932,17 +870,11 @@ public extension Services.Profile.Containers {
             for oneElementitems in items {
                 hashCode = (hashCode &* 31) &+ oneElementitems.hashValue
             }
-            if hasLocationId {
-               hashCode = (hashCode &* 31) &+ locationId.hashValue
-            }
             if hasNickname {
                hashCode = (hashCode &* 31) &+ nickname.hashValue
             }
             for oneElementcontactMethods in contactMethods {
                 hashCode = (hashCode &* 31) &+ oneElementcontactMethods.hashValue
-            }
-            if hasSeatingInfo {
-               hashCode = (hashCode &* 31) &+ seatingInfo.hashValue
             }
             if hasEmail {
                hashCode = (hashCode &* 31) &+ email.hashValue
@@ -1078,29 +1010,6 @@ public extension Services.Profile.Containers {
          builderResult.userId = ""
          return self
     }
-    public var hasAddressId:Bool {
-         get {
-              return builderResult.hasAddressId
-         }
-    }
-    public var addressId:String {
-         get {
-              return builderResult.addressId
-         }
-         set (value) {
-             builderResult.hasAddressId = true
-             builderResult.addressId = value
-         }
-    }
-    public func setAddressId(value:String)-> Services.Profile.Containers.ProfileV1Builder {
-      self.addressId = value
-      return self
-    }
-    public func clearAddressId() -> Services.Profile.Containers.ProfileV1Builder{
-         builderResult.hasAddressId = false
-         builderResult.addressId = ""
-         return self
-    }
     public var hasTitle:Bool {
          get {
               return builderResult.hasTitle
@@ -1191,29 +1100,6 @@ public extension Services.Profile.Containers {
     public func clearImageUrl() -> Services.Profile.Containers.ProfileV1Builder{
          builderResult.hasImageUrl = false
          builderResult.imageUrl = ""
-         return self
-    }
-    public var hasTeamId:Bool {
-         get {
-              return builderResult.hasTeamId
-         }
-    }
-    public var teamId:String {
-         get {
-              return builderResult.teamId
-         }
-         set (value) {
-             builderResult.hasTeamId = true
-             builderResult.teamId = value
-         }
-    }
-    public func setTeamId(value:String)-> Services.Profile.Containers.ProfileV1Builder {
-      self.teamId = value
-      return self
-    }
-    public func clearTeamId() -> Services.Profile.Containers.ProfileV1Builder{
-         builderResult.hasTeamId = false
-         builderResult.teamId = ""
          return self
     }
     public var hasFullName:Bool {
@@ -1324,29 +1210,6 @@ public extension Services.Profile.Containers {
       builderResult.items.removeAll(keepCapacity: false)
       return self
     }
-    public var hasLocationId:Bool {
-         get {
-              return builderResult.hasLocationId
-         }
-    }
-    public var locationId:String {
-         get {
-              return builderResult.locationId
-         }
-         set (value) {
-             builderResult.hasLocationId = true
-             builderResult.locationId = value
-         }
-    }
-    public func setLocationId(value:String)-> Services.Profile.Containers.ProfileV1Builder {
-      self.locationId = value
-      return self
-    }
-    public func clearLocationId() -> Services.Profile.Containers.ProfileV1Builder{
-         builderResult.hasLocationId = false
-         builderResult.locationId = ""
-         return self
-    }
     public var hasNickname:Bool {
          get {
               return builderResult.hasNickname
@@ -1385,29 +1248,6 @@ public extension Services.Profile.Containers {
     public func clearContactMethods() -> Services.Profile.Containers.ProfileV1Builder {
       builderResult.contactMethods.removeAll(keepCapacity: false)
       return self
-    }
-    public var hasSeatingInfo:Bool {
-         get {
-              return builderResult.hasSeatingInfo
-         }
-    }
-    public var seatingInfo:String {
-         get {
-              return builderResult.seatingInfo
-         }
-         set (value) {
-             builderResult.hasSeatingInfo = true
-             builderResult.seatingInfo = value
-         }
-    }
-    public func setSeatingInfo(value:String)-> Services.Profile.Containers.ProfileV1Builder {
-      self.seatingInfo = value
-      return self
-    }
-    public func clearSeatingInfo() -> Services.Profile.Containers.ProfileV1Builder{
-         builderResult.hasSeatingInfo = false
-         builderResult.seatingInfo = ""
-         return self
     }
     public var hasEmail:Bool {
          get {
@@ -1546,9 +1386,6 @@ public extension Services.Profile.Containers {
       if other.hasUserId {
            userId = other.userId
       }
-      if other.hasAddressId {
-           addressId = other.addressId
-      }
       if other.hasTitle {
            title = other.title
       }
@@ -1560,9 +1397,6 @@ public extension Services.Profile.Containers {
       }
       if other.hasImageUrl {
            imageUrl = other.imageUrl
-      }
-      if other.hasTeamId {
-           teamId = other.teamId
       }
       if other.hasFullName {
            fullName = other.fullName
@@ -1579,17 +1413,11 @@ public extension Services.Profile.Containers {
       if !other.items.isEmpty  {
          builderResult.items += other.items
       }
-      if other.hasLocationId {
-           locationId = other.locationId
-      }
       if other.hasNickname {
            nickname = other.nickname
       }
       if !other.contactMethods.isEmpty  {
          builderResult.contactMethods += other.contactMethods
-      }
-      if other.hasSeatingInfo {
-           seatingInfo = other.seatingInfo
       }
       if other.hasEmail {
            email = other.email
@@ -1631,64 +1459,52 @@ public extension Services.Profile.Containers {
           userId = input.readString()
 
         case 42 :
-          addressId = input.readString()
-
-        case 50 :
           title = input.readString()
 
-        case 58 :
+        case 50 :
           firstName = input.readString()
 
-        case 66 :
+        case 58 :
           lastName = input.readString()
 
-        case 74 :
+        case 66 :
           imageUrl = input.readString()
 
-        case 82 :
-          teamId = input.readString()
-
-        case 90 :
+        case 74 :
           fullName = input.readString()
 
-        case 98 :
+        case 82 :
           birthDate = input.readString()
 
-        case 106 :
+        case 90 :
           hireDate = input.readString()
 
-        case 112 :
+        case 96 :
           verified = input.readBool()
 
-        case 122 :
+        case 106 :
           var subBuilder = Services.Profile.Containers.ProfileItemV1.builder()
           input.readMessage(subBuilder,extensionRegistry:extensionRegistry)
           items += [subBuilder.buildPartial()]
 
-        case 130 :
-          locationId = input.readString()
-
-        case 138 :
+        case 114 :
           nickname = input.readString()
 
-        case 146 :
+        case 122 :
           var subBuilder = Services.Profile.Containers.ContactMethodV1.builder()
           input.readMessage(subBuilder,extensionRegistry:extensionRegistry)
           contactMethods += [subBuilder.buildPartial()]
 
-        case 154 :
-          seatingInfo = input.readString()
-
-        case 162 :
+        case 130 :
           email = input.readString()
 
-        case 168 :
+        case 136 :
           isAdmin = input.readBool()
 
-        case 178 :
+        case 146 :
           smallImageUrl = input.readString()
 
-        case 186 :
+        case 154 :
           var subBuilder:Services.Profile.Containers.ProfileStatusV1Builder = Services.Profile.Containers.ProfileStatusV1.builder()
           if hasStatus {
             subBuilder.mergeFrom(status)

@@ -3,40 +3,6 @@
 import Foundation
 public extension Services.Organization.Containers{}
 
-public func == (lhs: Services.Organization.Containers.AddressV1, rhs: Services.Organization.Containers.AddressV1) -> Bool {
-  if (lhs === rhs) {
-    return true
-  }
-  var fieldCheck:Bool = (lhs.hashValue == rhs.hashValue)
-  fieldCheck = fieldCheck && (lhs.hasVersion == rhs.hasVersion) && (!lhs.hasVersion || lhs.version == rhs.version)
-  fieldCheck = fieldCheck && (lhs.hasId == rhs.hasId) && (!lhs.hasId || lhs.id == rhs.id)
-  fieldCheck = fieldCheck && (lhs.hasOrganizationId == rhs.hasOrganizationId) && (!lhs.hasOrganizationId || lhs.organizationId == rhs.organizationId)
-  fieldCheck = fieldCheck && (lhs.hasName == rhs.hasName) && (!lhs.hasName || lhs.name == rhs.name)
-  fieldCheck = fieldCheck && (lhs.hasAddress1 == rhs.hasAddress1) && (!lhs.hasAddress1 || lhs.address1 == rhs.address1)
-  fieldCheck = fieldCheck && (lhs.hasAddress2 == rhs.hasAddress2) && (!lhs.hasAddress2 || lhs.address2 == rhs.address2)
-  fieldCheck = fieldCheck && (lhs.hasCity == rhs.hasCity) && (!lhs.hasCity || lhs.city == rhs.city)
-  fieldCheck = fieldCheck && (lhs.hasRegion == rhs.hasRegion) && (!lhs.hasRegion || lhs.region == rhs.region)
-  fieldCheck = fieldCheck && (lhs.hasPostalCode == rhs.hasPostalCode) && (!lhs.hasPostalCode || lhs.postalCode == rhs.postalCode)
-  fieldCheck = fieldCheck && (lhs.hasCountryCode == rhs.hasCountryCode) && (!lhs.hasCountryCode || lhs.countryCode == rhs.countryCode)
-  fieldCheck = fieldCheck && (lhs.hasProfileCount == rhs.hasProfileCount) && (!lhs.hasProfileCount || lhs.profileCount == rhs.profileCount)
-  fieldCheck = fieldCheck && (lhs.hasLatitude == rhs.hasLatitude) && (!lhs.hasLatitude || lhs.latitude == rhs.latitude)
-  fieldCheck = fieldCheck && (lhs.hasLongitude == rhs.hasLongitude) && (!lhs.hasLongitude || lhs.longitude == rhs.longitude)
-  fieldCheck = fieldCheck && (lhs.hasTimezone == rhs.hasTimezone) && (!lhs.hasTimezone || lhs.timezone == rhs.timezone)
-  return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
-}
-
-public func == (lhs: Services.Organization.Containers.ColorV1, rhs: Services.Organization.Containers.ColorV1) -> Bool {
-  if (lhs === rhs) {
-    return true
-  }
-  var fieldCheck:Bool = (lhs.hashValue == rhs.hashValue)
-  fieldCheck = fieldCheck && (lhs.hasVersion == rhs.hasVersion) && (!lhs.hasVersion || lhs.version == rhs.version)
-  fieldCheck = fieldCheck && (lhs.hasRed == rhs.hasRed) && (!lhs.hasRed || lhs.red == rhs.red)
-  fieldCheck = fieldCheck && (lhs.hasGreen == rhs.hasGreen) && (!lhs.hasGreen || lhs.green == rhs.green)
-  fieldCheck = fieldCheck && (lhs.hasBlue == rhs.hasBlue) && (!lhs.hasBlue || lhs.blue == rhs.blue)
-  return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
-}
-
 public func == (lhs: Services.Organization.Containers.LocationV1, rhs: Services.Organization.Containers.LocationV1) -> Bool {
   if (lhs === rhs) {
     return true
@@ -45,11 +11,19 @@ public func == (lhs: Services.Organization.Containers.LocationV1, rhs: Services.
   fieldCheck = fieldCheck && (lhs.hasVersion == rhs.hasVersion) && (!lhs.hasVersion || lhs.version == rhs.version)
   fieldCheck = fieldCheck && (lhs.hasId == rhs.hasId) && (!lhs.hasId || lhs.id == rhs.id)
   fieldCheck = fieldCheck && (lhs.hasName == rhs.hasName) && (!lhs.hasName || lhs.name == rhs.name)
-  fieldCheck = fieldCheck && (lhs.hasAddress == rhs.hasAddress) && (!lhs.hasAddress || lhs.address == rhs.address)
+  fieldCheck = fieldCheck && (lhs.hasAddress1 == rhs.hasAddress1) && (!lhs.hasAddress1 || lhs.address1 == rhs.address1)
+  fieldCheck = fieldCheck && (lhs.hasAddress2 == rhs.hasAddress2) && (!lhs.hasAddress2 || lhs.address2 == rhs.address2)
+  fieldCheck = fieldCheck && (lhs.hasCity == rhs.hasCity) && (!lhs.hasCity || lhs.city == rhs.city)
+  fieldCheck = fieldCheck && (lhs.hasRegion == rhs.hasRegion) && (!lhs.hasRegion || lhs.region == rhs.region)
+  fieldCheck = fieldCheck && (lhs.hasPostalCode == rhs.hasPostalCode) && (!lhs.hasPostalCode || lhs.postalCode == rhs.postalCode)
+  fieldCheck = fieldCheck && (lhs.hasCountryCode == rhs.hasCountryCode) && (!lhs.hasCountryCode || lhs.countryCode == rhs.countryCode)
+  fieldCheck = fieldCheck && (lhs.hasLatitude == rhs.hasLatitude) && (!lhs.hasLatitude || lhs.latitude == rhs.latitude)
+  fieldCheck = fieldCheck && (lhs.hasLongitude == rhs.hasLongitude) && (!lhs.hasLongitude || lhs.longitude == rhs.longitude)
+  fieldCheck = fieldCheck && (lhs.hasTimezone == rhs.hasTimezone) && (!lhs.hasTimezone || lhs.timezone == rhs.timezone)
   fieldCheck = fieldCheck && (lhs.hasOrganizationId == rhs.hasOrganizationId) && (!lhs.hasOrganizationId || lhs.organizationId == rhs.organizationId)
   fieldCheck = fieldCheck && (lhs.hasProfileCount == rhs.hasProfileCount) && (!lhs.hasProfileCount || lhs.profileCount == rhs.profileCount)
   fieldCheck = fieldCheck && (lhs.hasImageUrl == rhs.hasImageUrl) && (!lhs.hasImageUrl || lhs.imageUrl == rhs.imageUrl)
-  fieldCheck = fieldCheck && (lhs.hasLocationDescription == rhs.hasLocationDescription) && (!lhs.hasLocationDescription || lhs.locationDescription == rhs.locationDescription)
+  fieldCheck = fieldCheck && (lhs.hasDescription == rhs.hasDescription) && (!lhs.hasDescription || lhs.description_ == rhs.description_)
   fieldCheck = fieldCheck && (lhs.hasEstablishedDate == rhs.hasEstablishedDate) && (!lhs.hasEstablishedDate || lhs.establishedDate == rhs.establishedDate)
   fieldCheck = fieldCheck && (lhs.pointsOfContact == rhs.pointsOfContact)
   fieldCheck = fieldCheck && (lhs.hasPermissions == rhs.hasPermissions) && (!lhs.hasPermissions || lhs.permissions == rhs.permissions)
@@ -66,22 +40,9 @@ public func == (lhs: Services.Organization.Containers.OrganizationV1, rhs: Servi
   fieldCheck = fieldCheck && (lhs.hasName == rhs.hasName) && (!lhs.hasName || lhs.name == rhs.name)
   fieldCheck = fieldCheck && (lhs.hasDomain == rhs.hasDomain) && (!lhs.hasDomain || lhs.domain == rhs.domain)
   fieldCheck = fieldCheck && (lhs.hasImageUrl == rhs.hasImageUrl) && (!lhs.hasImageUrl || lhs.imageUrl == rhs.imageUrl)
-  fieldCheck = fieldCheck && (lhs.hasTintColor == rhs.hasTintColor) && (!lhs.hasTintColor || lhs.tintColor == rhs.tintColor)
   fieldCheck = fieldCheck && (lhs.hasProfileCount == rhs.hasProfileCount) && (!lhs.hasProfileCount || lhs.profileCount == rhs.profileCount)
   fieldCheck = fieldCheck && (lhs.hasTeamCount == rhs.hasTeamCount) && (!lhs.hasTeamCount || lhs.teamCount == rhs.teamCount)
   fieldCheck = fieldCheck && (lhs.hasLocationCount == rhs.hasLocationCount) && (!lhs.hasLocationCount || lhs.locationCount == rhs.locationCount)
-  return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
-}
-
-public func == (lhs: Services.Organization.Containers.PathPartV1, rhs: Services.Organization.Containers.PathPartV1) -> Bool {
-  if (lhs === rhs) {
-    return true
-  }
-  var fieldCheck:Bool = (lhs.hashValue == rhs.hashValue)
-  fieldCheck = fieldCheck && (lhs.hasVersion == rhs.hasVersion) && (!lhs.hasVersion || lhs.version == rhs.version)
-  fieldCheck = fieldCheck && (lhs.hasId == rhs.hasId) && (!lhs.hasId || lhs.id == rhs.id)
-  fieldCheck = fieldCheck && (lhs.hasName == rhs.hasName) && (!lhs.hasName || lhs.name == rhs.name)
-  fieldCheck = fieldCheck && (lhs.hasOwnerId == rhs.hasOwnerId) && (!lhs.hasOwnerId || lhs.ownerId == rhs.ownerId)
   return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
 }
 
@@ -93,29 +54,15 @@ public func == (lhs: Services.Organization.Containers.TeamV1, rhs: Services.Orga
   fieldCheck = fieldCheck && (lhs.hasVersion == rhs.hasVersion) && (!lhs.hasVersion || lhs.version == rhs.version)
   fieldCheck = fieldCheck && (lhs.hasId == rhs.hasId) && (!lhs.hasId || lhs.id == rhs.id)
   fieldCheck = fieldCheck && (lhs.hasName == rhs.hasName) && (!lhs.hasName || lhs.name == rhs.name)
-  fieldCheck = fieldCheck && (lhs.hasOwnerId == rhs.hasOwnerId) && (!lhs.hasOwnerId || lhs.ownerId == rhs.ownerId)
   fieldCheck = fieldCheck && (lhs.hasOrganizationId == rhs.hasOrganizationId) && (!lhs.hasOrganizationId || lhs.organizationId == rhs.organizationId)
-  fieldCheck = fieldCheck && (lhs.path == rhs.path)
-  fieldCheck = fieldCheck && (lhs.hasDepartment == rhs.hasDepartment) && (!lhs.hasDepartment || lhs.department == rhs.department)
-  fieldCheck = fieldCheck && (lhs.hasProfileCount == rhs.hasProfileCount) && (!lhs.hasProfileCount || lhs.profileCount == rhs.profileCount)
-  fieldCheck = fieldCheck && (lhs.hasColor == rhs.hasColor) && (!lhs.hasColor || lhs.color == rhs.color)
+  fieldCheck = fieldCheck && (lhs.hasManagerProfileId == rhs.hasManagerProfileId) && (!lhs.hasManagerProfileId || lhs.managerProfileId == rhs.managerProfileId)
+  fieldCheck = fieldCheck && (lhs.hasManager == rhs.hasManager) && (!lhs.hasManager || lhs.manager == rhs.manager)
   fieldCheck = fieldCheck && (lhs.hasPermissions == rhs.hasPermissions) && (!lhs.hasPermissions || lhs.permissions == rhs.permissions)
-  fieldCheck = fieldCheck && (lhs.hasTeamDescription == rhs.hasTeamDescription) && (!lhs.hasTeamDescription || lhs.teamDescription == rhs.teamDescription)
+  fieldCheck = fieldCheck && (lhs.hasDescription == rhs.hasDescription) && (!lhs.hasDescription || lhs.description_ == rhs.description_)
   fieldCheck = fieldCheck && (lhs.hasStatus == rhs.hasStatus) && (!lhs.hasStatus || lhs.status == rhs.status)
   fieldCheck = fieldCheck && (lhs.hasImageUrl == rhs.hasImageUrl) && (!lhs.hasImageUrl || lhs.imageUrl == rhs.imageUrl)
   fieldCheck = fieldCheck && (lhs.hasChildTeamCount == rhs.hasChildTeamCount) && (!lhs.hasChildTeamCount || lhs.childTeamCount == rhs.childTeamCount)
-  return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
-}
-
-public func == (lhs: Services.Organization.Containers.TeamDescendantsV1, rhs: Services.Organization.Containers.TeamDescendantsV1) -> Bool {
-  if (lhs === rhs) {
-    return true
-  }
-  var fieldCheck:Bool = (lhs.hashValue == rhs.hashValue)
-  fieldCheck = fieldCheck && (lhs.hasVersion == rhs.hasVersion) && (!lhs.hasVersion || lhs.version == rhs.version)
-  fieldCheck = fieldCheck && (lhs.hasDepth == rhs.hasDepth) && (!lhs.hasDepth || lhs.depth == rhs.depth)
-  fieldCheck = fieldCheck && (lhs.hasParentTeamId == rhs.hasParentTeamId) && (!lhs.hasParentTeamId || lhs.parentTeamId == rhs.parentTeamId)
-  fieldCheck = fieldCheck && (lhs.teams == rhs.teams)
+  fieldCheck = fieldCheck && (lhs.hasProfileCount == rhs.hasProfileCount) && (!lhs.hasProfileCount || lhs.profileCount == rhs.profileCount)
   return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
 }
 
@@ -163,12 +110,11 @@ public extension Services.Organization.Containers {
     }
   }
 
-  final public class AddressV1 : GeneratedMessage, GeneratedMessageProtocol {
+  final public class LocationV1 : GeneratedMessage, GeneratedMessageProtocol {
     override public subscript(key: String) -> Any? {
            switch key {
            case "version": return version
            case "id": return id
-           case "organizationId": return organizationId
            case "name": return name
            case "address1": return address1
            case "address2": return address2
@@ -176,10 +122,15 @@ public extension Services.Organization.Containers {
            case "region": return region
            case "postalCode": return postalCode
            case "countryCode": return countryCode
-           case "profileCount": return profileCount
            case "latitude": return latitude
            case "longitude": return longitude
            case "timezone": return timezone
+           case "organizationId": return organizationId
+           case "profileCount": return profileCount
+           case "imageUrl": return imageUrl
+           case "description_": return description_
+           case "establishedDate": return establishedDate
+           case "permissions": return permissions
            default: return nil
            }
     }
@@ -189,9 +140,6 @@ public extension Services.Organization.Containers {
 
     public private(set) var hasId:Bool = false
     public private(set) var id:String = ""
-
-    public private(set) var hasOrganizationId:Bool = false
-    public private(set) var organizationId:String = ""
 
     public private(set) var hasName:Bool = false
     public private(set) var name:String = ""
@@ -214,9 +162,6 @@ public extension Services.Organization.Containers {
     public private(set) var hasCountryCode:Bool = false
     public private(set) var countryCode:String = ""
 
-    public private(set) var hasProfileCount:Bool = false
-    public private(set) var profileCount:String = ""
-
     public private(set) var hasLatitude:Bool = false
     public private(set) var latitude:String = ""
 
@@ -226,1073 +171,6 @@ public extension Services.Organization.Containers {
     public private(set) var hasTimezone:Bool = false
     public private(set) var timezone:String = ""
 
-    required public init() {
-         super.init()
-    }
-    override public func isInitialized() -> Bool {
-     return true
-    }
-    override public func writeToCodedOutputStream(output:CodedOutputStream) {
-      if hasVersion {
-        output.writeUInt32(1, value:version)
-      }
-      if hasId {
-        output.writeString(2, value:id)
-      }
-      if hasOrganizationId {
-        output.writeString(3, value:organizationId)
-      }
-      if hasName {
-        output.writeString(4, value:name)
-      }
-      if hasAddress1 {
-        output.writeString(5, value:address1)
-      }
-      if hasAddress2 {
-        output.writeString(6, value:address2)
-      }
-      if hasCity {
-        output.writeString(7, value:city)
-      }
-      if hasRegion {
-        output.writeString(8, value:region)
-      }
-      if hasPostalCode {
-        output.writeString(9, value:postalCode)
-      }
-      if hasCountryCode {
-        output.writeString(10, value:countryCode)
-      }
-      if hasProfileCount {
-        output.writeString(11, value:profileCount)
-      }
-      if hasLatitude {
-        output.writeString(12, value:latitude)
-      }
-      if hasLongitude {
-        output.writeString(13, value:longitude)
-      }
-      if hasTimezone {
-        output.writeString(14, value:timezone)
-      }
-      unknownFields.writeToCodedOutputStream(output)
-    }
-    override public func serializedSize() -> Int32 {
-      var serialize_size:Int32 = memoizedSerializedSize
-      if serialize_size != -1 {
-       return serialize_size
-      }
-
-      serialize_size = 0
-      if hasVersion {
-        serialize_size += version.computeUInt32Size(1)
-      }
-      if hasId {
-        serialize_size += id.computeStringSize(2)
-      }
-      if hasOrganizationId {
-        serialize_size += organizationId.computeStringSize(3)
-      }
-      if hasName {
-        serialize_size += name.computeStringSize(4)
-      }
-      if hasAddress1 {
-        serialize_size += address1.computeStringSize(5)
-      }
-      if hasAddress2 {
-        serialize_size += address2.computeStringSize(6)
-      }
-      if hasCity {
-        serialize_size += city.computeStringSize(7)
-      }
-      if hasRegion {
-        serialize_size += region.computeStringSize(8)
-      }
-      if hasPostalCode {
-        serialize_size += postalCode.computeStringSize(9)
-      }
-      if hasCountryCode {
-        serialize_size += countryCode.computeStringSize(10)
-      }
-      if hasProfileCount {
-        serialize_size += profileCount.computeStringSize(11)
-      }
-      if hasLatitude {
-        serialize_size += latitude.computeStringSize(12)
-      }
-      if hasLongitude {
-        serialize_size += longitude.computeStringSize(13)
-      }
-      if hasTimezone {
-        serialize_size += timezone.computeStringSize(14)
-      }
-      serialize_size += unknownFields.serializedSize()
-      memoizedSerializedSize = serialize_size
-      return serialize_size
-    }
-    public class func parseFromData(data:NSData) -> Services.Organization.Containers.AddressV1 {
-      return Services.Organization.Containers.AddressV1.builder().mergeFromData(data, extensionRegistry:Services.Organization.Containers.ContainersRoot.sharedInstance.extensionRegistry).build()
-    }
-    public class func parseFromData(data:NSData, extensionRegistry:ExtensionRegistry) -> Services.Organization.Containers.AddressV1 {
-      return Services.Organization.Containers.AddressV1.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
-    }
-    public class func parseFromInputStream(input:NSInputStream) -> Services.Organization.Containers.AddressV1 {
-      return Services.Organization.Containers.AddressV1.builder().mergeFromInputStream(input).build()
-    }
-    public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->Services.Organization.Containers.AddressV1 {
-      return Services.Organization.Containers.AddressV1.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
-    }
-    public class func parseFromCodedInputStream(input:CodedInputStream) -> Services.Organization.Containers.AddressV1 {
-      return Services.Organization.Containers.AddressV1.builder().mergeFromCodedInputStream(input).build()
-    }
-    public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> Services.Organization.Containers.AddressV1 {
-      return Services.Organization.Containers.AddressV1.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
-    }
-    public class func builder() -> Services.Organization.Containers.AddressV1Builder {
-      return Services.Organization.Containers.AddressV1.classBuilder() as! Services.Organization.Containers.AddressV1Builder
-    }
-    public func builder() -> Services.Organization.Containers.AddressV1Builder {
-      return classBuilder() as! Services.Organization.Containers.AddressV1Builder
-    }
-    public override class func classBuilder() -> MessageBuilder {
-      return Services.Organization.Containers.AddressV1Builder()
-    }
-    public override func classBuilder() -> MessageBuilder {
-      return Services.Organization.Containers.AddressV1.builder()
-    }
-    public func toBuilder() -> Services.Organization.Containers.AddressV1Builder {
-      return Services.Organization.Containers.AddressV1.builderWithPrototype(self)
-    }
-    public class func builderWithPrototype(prototype:Services.Organization.Containers.AddressV1) -> Services.Organization.Containers.AddressV1Builder {
-      return Services.Organization.Containers.AddressV1.builder().mergeFrom(prototype)
-    }
-    override public func writeDescriptionTo(inout output:String, indent:String) {
-      if hasVersion {
-        output += "\(indent) version: \(version) \n"
-      }
-      if hasId {
-        output += "\(indent) id: \(id) \n"
-      }
-      if hasOrganizationId {
-        output += "\(indent) organizationId: \(organizationId) \n"
-      }
-      if hasName {
-        output += "\(indent) name: \(name) \n"
-      }
-      if hasAddress1 {
-        output += "\(indent) address1: \(address1) \n"
-      }
-      if hasAddress2 {
-        output += "\(indent) address2: \(address2) \n"
-      }
-      if hasCity {
-        output += "\(indent) city: \(city) \n"
-      }
-      if hasRegion {
-        output += "\(indent) region: \(region) \n"
-      }
-      if hasPostalCode {
-        output += "\(indent) postalCode: \(postalCode) \n"
-      }
-      if hasCountryCode {
-        output += "\(indent) countryCode: \(countryCode) \n"
-      }
-      if hasProfileCount {
-        output += "\(indent) profileCount: \(profileCount) \n"
-      }
-      if hasLatitude {
-        output += "\(indent) latitude: \(latitude) \n"
-      }
-      if hasLongitude {
-        output += "\(indent) longitude: \(longitude) \n"
-      }
-      if hasTimezone {
-        output += "\(indent) timezone: \(timezone) \n"
-      }
-      unknownFields.writeDescriptionTo(&output, indent:indent)
-    }
-    override public var hashValue:Int {
-        get {
-            var hashCode:Int = 7
-            if hasVersion {
-               hashCode = (hashCode &* 31) &+ version.hashValue
-            }
-            if hasId {
-               hashCode = (hashCode &* 31) &+ id.hashValue
-            }
-            if hasOrganizationId {
-               hashCode = (hashCode &* 31) &+ organizationId.hashValue
-            }
-            if hasName {
-               hashCode = (hashCode &* 31) &+ name.hashValue
-            }
-            if hasAddress1 {
-               hashCode = (hashCode &* 31) &+ address1.hashValue
-            }
-            if hasAddress2 {
-               hashCode = (hashCode &* 31) &+ address2.hashValue
-            }
-            if hasCity {
-               hashCode = (hashCode &* 31) &+ city.hashValue
-            }
-            if hasRegion {
-               hashCode = (hashCode &* 31) &+ region.hashValue
-            }
-            if hasPostalCode {
-               hashCode = (hashCode &* 31) &+ postalCode.hashValue
-            }
-            if hasCountryCode {
-               hashCode = (hashCode &* 31) &+ countryCode.hashValue
-            }
-            if hasProfileCount {
-               hashCode = (hashCode &* 31) &+ profileCount.hashValue
-            }
-            if hasLatitude {
-               hashCode = (hashCode &* 31) &+ latitude.hashValue
-            }
-            if hasLongitude {
-               hashCode = (hashCode &* 31) &+ longitude.hashValue
-            }
-            if hasTimezone {
-               hashCode = (hashCode &* 31) &+ timezone.hashValue
-            }
-            hashCode = (hashCode &* 31) &+  unknownFields.hashValue
-            return hashCode
-        }
-    }
-
-
-    //Meta information declaration start
-
-    override public class func className() -> String {
-        return "Services.Organization.Containers.AddressV1"
-    }
-    override public func className() -> String {
-        return "Services.Organization.Containers.AddressV1"
-    }
-    override public func classMetaType() -> GeneratedMessage.Type {
-        return Services.Organization.Containers.AddressV1.self
-    }
-    //Meta information declaration end
-
-  }
-
-  final public class AddressV1Builder : GeneratedMessageBuilder {
-    private var builderResult:Services.Organization.Containers.AddressV1
-
-    required override public init () {
-       builderResult = Services.Organization.Containers.AddressV1()
-       super.init()
-    }
-    public var hasVersion:Bool {
-         get {
-              return builderResult.hasVersion
-         }
-    }
-    public var version:UInt32 {
-         get {
-              return builderResult.version
-         }
-         set (value) {
-             builderResult.hasVersion = true
-             builderResult.version = value
-         }
-    }
-    public func setVersion(value:UInt32)-> Services.Organization.Containers.AddressV1Builder {
-      self.version = value
-      return self
-    }
-    public func clearVersion() -> Services.Organization.Containers.AddressV1Builder{
-         builderResult.hasVersion = false
-         builderResult.version = UInt32(1)
-         return self
-    }
-    public var hasId:Bool {
-         get {
-              return builderResult.hasId
-         }
-    }
-    public var id:String {
-         get {
-              return builderResult.id
-         }
-         set (value) {
-             builderResult.hasId = true
-             builderResult.id = value
-         }
-    }
-    public func setId(value:String)-> Services.Organization.Containers.AddressV1Builder {
-      self.id = value
-      return self
-    }
-    public func clearId() -> Services.Organization.Containers.AddressV1Builder{
-         builderResult.hasId = false
-         builderResult.id = ""
-         return self
-    }
-    public var hasOrganizationId:Bool {
-         get {
-              return builderResult.hasOrganizationId
-         }
-    }
-    public var organizationId:String {
-         get {
-              return builderResult.organizationId
-         }
-         set (value) {
-             builderResult.hasOrganizationId = true
-             builderResult.organizationId = value
-         }
-    }
-    public func setOrganizationId(value:String)-> Services.Organization.Containers.AddressV1Builder {
-      self.organizationId = value
-      return self
-    }
-    public func clearOrganizationId() -> Services.Organization.Containers.AddressV1Builder{
-         builderResult.hasOrganizationId = false
-         builderResult.organizationId = ""
-         return self
-    }
-    public var hasName:Bool {
-         get {
-              return builderResult.hasName
-         }
-    }
-    public var name:String {
-         get {
-              return builderResult.name
-         }
-         set (value) {
-             builderResult.hasName = true
-             builderResult.name = value
-         }
-    }
-    public func setName(value:String)-> Services.Organization.Containers.AddressV1Builder {
-      self.name = value
-      return self
-    }
-    public func clearName() -> Services.Organization.Containers.AddressV1Builder{
-         builderResult.hasName = false
-         builderResult.name = ""
-         return self
-    }
-    public var hasAddress1:Bool {
-         get {
-              return builderResult.hasAddress1
-         }
-    }
-    public var address1:String {
-         get {
-              return builderResult.address1
-         }
-         set (value) {
-             builderResult.hasAddress1 = true
-             builderResult.address1 = value
-         }
-    }
-    public func setAddress1(value:String)-> Services.Organization.Containers.AddressV1Builder {
-      self.address1 = value
-      return self
-    }
-    public func clearAddress1() -> Services.Organization.Containers.AddressV1Builder{
-         builderResult.hasAddress1 = false
-         builderResult.address1 = ""
-         return self
-    }
-    public var hasAddress2:Bool {
-         get {
-              return builderResult.hasAddress2
-         }
-    }
-    public var address2:String {
-         get {
-              return builderResult.address2
-         }
-         set (value) {
-             builderResult.hasAddress2 = true
-             builderResult.address2 = value
-         }
-    }
-    public func setAddress2(value:String)-> Services.Organization.Containers.AddressV1Builder {
-      self.address2 = value
-      return self
-    }
-    public func clearAddress2() -> Services.Organization.Containers.AddressV1Builder{
-         builderResult.hasAddress2 = false
-         builderResult.address2 = ""
-         return self
-    }
-    public var hasCity:Bool {
-         get {
-              return builderResult.hasCity
-         }
-    }
-    public var city:String {
-         get {
-              return builderResult.city
-         }
-         set (value) {
-             builderResult.hasCity = true
-             builderResult.city = value
-         }
-    }
-    public func setCity(value:String)-> Services.Organization.Containers.AddressV1Builder {
-      self.city = value
-      return self
-    }
-    public func clearCity() -> Services.Organization.Containers.AddressV1Builder{
-         builderResult.hasCity = false
-         builderResult.city = ""
-         return self
-    }
-    public var hasRegion:Bool {
-         get {
-              return builderResult.hasRegion
-         }
-    }
-    public var region:String {
-         get {
-              return builderResult.region
-         }
-         set (value) {
-             builderResult.hasRegion = true
-             builderResult.region = value
-         }
-    }
-    public func setRegion(value:String)-> Services.Organization.Containers.AddressV1Builder {
-      self.region = value
-      return self
-    }
-    public func clearRegion() -> Services.Organization.Containers.AddressV1Builder{
-         builderResult.hasRegion = false
-         builderResult.region = ""
-         return self
-    }
-    public var hasPostalCode:Bool {
-         get {
-              return builderResult.hasPostalCode
-         }
-    }
-    public var postalCode:String {
-         get {
-              return builderResult.postalCode
-         }
-         set (value) {
-             builderResult.hasPostalCode = true
-             builderResult.postalCode = value
-         }
-    }
-    public func setPostalCode(value:String)-> Services.Organization.Containers.AddressV1Builder {
-      self.postalCode = value
-      return self
-    }
-    public func clearPostalCode() -> Services.Organization.Containers.AddressV1Builder{
-         builderResult.hasPostalCode = false
-         builderResult.postalCode = ""
-         return self
-    }
-    public var hasCountryCode:Bool {
-         get {
-              return builderResult.hasCountryCode
-         }
-    }
-    public var countryCode:String {
-         get {
-              return builderResult.countryCode
-         }
-         set (value) {
-             builderResult.hasCountryCode = true
-             builderResult.countryCode = value
-         }
-    }
-    public func setCountryCode(value:String)-> Services.Organization.Containers.AddressV1Builder {
-      self.countryCode = value
-      return self
-    }
-    public func clearCountryCode() -> Services.Organization.Containers.AddressV1Builder{
-         builderResult.hasCountryCode = false
-         builderResult.countryCode = ""
-         return self
-    }
-    public var hasProfileCount:Bool {
-         get {
-              return builderResult.hasProfileCount
-         }
-    }
-    public var profileCount:String {
-         get {
-              return builderResult.profileCount
-         }
-         set (value) {
-             builderResult.hasProfileCount = true
-             builderResult.profileCount = value
-         }
-    }
-    public func setProfileCount(value:String)-> Services.Organization.Containers.AddressV1Builder {
-      self.profileCount = value
-      return self
-    }
-    public func clearProfileCount() -> Services.Organization.Containers.AddressV1Builder{
-         builderResult.hasProfileCount = false
-         builderResult.profileCount = ""
-         return self
-    }
-    public var hasLatitude:Bool {
-         get {
-              return builderResult.hasLatitude
-         }
-    }
-    public var latitude:String {
-         get {
-              return builderResult.latitude
-         }
-         set (value) {
-             builderResult.hasLatitude = true
-             builderResult.latitude = value
-         }
-    }
-    public func setLatitude(value:String)-> Services.Organization.Containers.AddressV1Builder {
-      self.latitude = value
-      return self
-    }
-    public func clearLatitude() -> Services.Organization.Containers.AddressV1Builder{
-         builderResult.hasLatitude = false
-         builderResult.latitude = ""
-         return self
-    }
-    public var hasLongitude:Bool {
-         get {
-              return builderResult.hasLongitude
-         }
-    }
-    public var longitude:String {
-         get {
-              return builderResult.longitude
-         }
-         set (value) {
-             builderResult.hasLongitude = true
-             builderResult.longitude = value
-         }
-    }
-    public func setLongitude(value:String)-> Services.Organization.Containers.AddressV1Builder {
-      self.longitude = value
-      return self
-    }
-    public func clearLongitude() -> Services.Organization.Containers.AddressV1Builder{
-         builderResult.hasLongitude = false
-         builderResult.longitude = ""
-         return self
-    }
-    public var hasTimezone:Bool {
-         get {
-              return builderResult.hasTimezone
-         }
-    }
-    public var timezone:String {
-         get {
-              return builderResult.timezone
-         }
-         set (value) {
-             builderResult.hasTimezone = true
-             builderResult.timezone = value
-         }
-    }
-    public func setTimezone(value:String)-> Services.Organization.Containers.AddressV1Builder {
-      self.timezone = value
-      return self
-    }
-    public func clearTimezone() -> Services.Organization.Containers.AddressV1Builder{
-         builderResult.hasTimezone = false
-         builderResult.timezone = ""
-         return self
-    }
-    override public var internalGetResult:GeneratedMessage {
-         get {
-            return builderResult
-         }
-    }
-    public override func clear() -> Services.Organization.Containers.AddressV1Builder {
-      builderResult = Services.Organization.Containers.AddressV1()
-      return self
-    }
-    public override func clone() -> Services.Organization.Containers.AddressV1Builder {
-      return Services.Organization.Containers.AddressV1.builderWithPrototype(builderResult)
-    }
-    public override func build() -> Services.Organization.Containers.AddressV1 {
-         checkInitialized()
-         return buildPartial()
-    }
-    public func buildPartial() -> Services.Organization.Containers.AddressV1 {
-      var returnMe:Services.Organization.Containers.AddressV1 = builderResult
-      return returnMe
-    }
-    public func mergeFrom(other:Services.Organization.Containers.AddressV1) -> Services.Organization.Containers.AddressV1Builder {
-      if (other == Services.Organization.Containers.AddressV1()) {
-       return self
-      }
-      if other.hasVersion {
-           version = other.version
-      }
-      if other.hasId {
-           id = other.id
-      }
-      if other.hasOrganizationId {
-           organizationId = other.organizationId
-      }
-      if other.hasName {
-           name = other.name
-      }
-      if other.hasAddress1 {
-           address1 = other.address1
-      }
-      if other.hasAddress2 {
-           address2 = other.address2
-      }
-      if other.hasCity {
-           city = other.city
-      }
-      if other.hasRegion {
-           region = other.region
-      }
-      if other.hasPostalCode {
-           postalCode = other.postalCode
-      }
-      if other.hasCountryCode {
-           countryCode = other.countryCode
-      }
-      if other.hasProfileCount {
-           profileCount = other.profileCount
-      }
-      if other.hasLatitude {
-           latitude = other.latitude
-      }
-      if other.hasLongitude {
-           longitude = other.longitude
-      }
-      if other.hasTimezone {
-           timezone = other.timezone
-      }
-      mergeUnknownFields(other.unknownFields)
-      return self
-    }
-    public override func mergeFromCodedInputStream(input:CodedInputStream) ->Services.Organization.Containers.AddressV1Builder {
-         return mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
-    }
-    public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> Services.Organization.Containers.AddressV1Builder {
-      var unknownFieldsBuilder:UnknownFieldSetBuilder = UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
-      while (true) {
-        var tag = input.readTag()
-        switch tag {
-        case 0: 
-          self.unknownFields = unknownFieldsBuilder.build()
-          return self
-
-        case 8 :
-          version = input.readUInt32()
-
-        case 18 :
-          id = input.readString()
-
-        case 26 :
-          organizationId = input.readString()
-
-        case 34 :
-          name = input.readString()
-
-        case 42 :
-          address1 = input.readString()
-
-        case 50 :
-          address2 = input.readString()
-
-        case 58 :
-          city = input.readString()
-
-        case 66 :
-          region = input.readString()
-
-        case 74 :
-          postalCode = input.readString()
-
-        case 82 :
-          countryCode = input.readString()
-
-        case 90 :
-          profileCount = input.readString()
-
-        case 98 :
-          latitude = input.readString()
-
-        case 106 :
-          longitude = input.readString()
-
-        case 114 :
-          timezone = input.readString()
-
-        default:
-          if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
-             unknownFields = unknownFieldsBuilder.build()
-             return self
-          }
-        }
-      }
-    }
-  }
-
-  final public class ColorV1 : GeneratedMessage, GeneratedMessageProtocol {
-    override public subscript(key: String) -> Any? {
-           switch key {
-           case "version": return version
-           case "red": return red
-           case "green": return green
-           case "blue": return blue
-           default: return nil
-           }
-    }
-
-    public private(set) var hasVersion:Bool = false
-    public private(set) var version:UInt32 = UInt32(0)
-
-    public private(set) var hasRed:Bool = false
-    public private(set) var red:UInt32 = UInt32(0)
-
-    public private(set) var hasGreen:Bool = false
-    public private(set) var green:UInt32 = UInt32(0)
-
-    public private(set) var hasBlue:Bool = false
-    public private(set) var blue:UInt32 = UInt32(0)
-
-    required public init() {
-         super.init()
-    }
-    override public func isInitialized() -> Bool {
-     return true
-    }
-    override public func writeToCodedOutputStream(output:CodedOutputStream) {
-      if hasVersion {
-        output.writeUInt32(1, value:version)
-      }
-      if hasRed {
-        output.writeUInt32(2, value:red)
-      }
-      if hasGreen {
-        output.writeUInt32(3, value:green)
-      }
-      if hasBlue {
-        output.writeUInt32(4, value:blue)
-      }
-      unknownFields.writeToCodedOutputStream(output)
-    }
-    override public func serializedSize() -> Int32 {
-      var serialize_size:Int32 = memoizedSerializedSize
-      if serialize_size != -1 {
-       return serialize_size
-      }
-
-      serialize_size = 0
-      if hasVersion {
-        serialize_size += version.computeUInt32Size(1)
-      }
-      if hasRed {
-        serialize_size += red.computeUInt32Size(2)
-      }
-      if hasGreen {
-        serialize_size += green.computeUInt32Size(3)
-      }
-      if hasBlue {
-        serialize_size += blue.computeUInt32Size(4)
-      }
-      serialize_size += unknownFields.serializedSize()
-      memoizedSerializedSize = serialize_size
-      return serialize_size
-    }
-    public class func parseFromData(data:NSData) -> Services.Organization.Containers.ColorV1 {
-      return Services.Organization.Containers.ColorV1.builder().mergeFromData(data, extensionRegistry:Services.Organization.Containers.ContainersRoot.sharedInstance.extensionRegistry).build()
-    }
-    public class func parseFromData(data:NSData, extensionRegistry:ExtensionRegistry) -> Services.Organization.Containers.ColorV1 {
-      return Services.Organization.Containers.ColorV1.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
-    }
-    public class func parseFromInputStream(input:NSInputStream) -> Services.Organization.Containers.ColorV1 {
-      return Services.Organization.Containers.ColorV1.builder().mergeFromInputStream(input).build()
-    }
-    public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->Services.Organization.Containers.ColorV1 {
-      return Services.Organization.Containers.ColorV1.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
-    }
-    public class func parseFromCodedInputStream(input:CodedInputStream) -> Services.Organization.Containers.ColorV1 {
-      return Services.Organization.Containers.ColorV1.builder().mergeFromCodedInputStream(input).build()
-    }
-    public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> Services.Organization.Containers.ColorV1 {
-      return Services.Organization.Containers.ColorV1.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
-    }
-    public class func builder() -> Services.Organization.Containers.ColorV1Builder {
-      return Services.Organization.Containers.ColorV1.classBuilder() as! Services.Organization.Containers.ColorV1Builder
-    }
-    public func builder() -> Services.Organization.Containers.ColorV1Builder {
-      return classBuilder() as! Services.Organization.Containers.ColorV1Builder
-    }
-    public override class func classBuilder() -> MessageBuilder {
-      return Services.Organization.Containers.ColorV1Builder()
-    }
-    public override func classBuilder() -> MessageBuilder {
-      return Services.Organization.Containers.ColorV1.builder()
-    }
-    public func toBuilder() -> Services.Organization.Containers.ColorV1Builder {
-      return Services.Organization.Containers.ColorV1.builderWithPrototype(self)
-    }
-    public class func builderWithPrototype(prototype:Services.Organization.Containers.ColorV1) -> Services.Organization.Containers.ColorV1Builder {
-      return Services.Organization.Containers.ColorV1.builder().mergeFrom(prototype)
-    }
-    override public func writeDescriptionTo(inout output:String, indent:String) {
-      if hasVersion {
-        output += "\(indent) version: \(version) \n"
-      }
-      if hasRed {
-        output += "\(indent) red: \(red) \n"
-      }
-      if hasGreen {
-        output += "\(indent) green: \(green) \n"
-      }
-      if hasBlue {
-        output += "\(indent) blue: \(blue) \n"
-      }
-      unknownFields.writeDescriptionTo(&output, indent:indent)
-    }
-    override public var hashValue:Int {
-        get {
-            var hashCode:Int = 7
-            if hasVersion {
-               hashCode = (hashCode &* 31) &+ version.hashValue
-            }
-            if hasRed {
-               hashCode = (hashCode &* 31) &+ red.hashValue
-            }
-            if hasGreen {
-               hashCode = (hashCode &* 31) &+ green.hashValue
-            }
-            if hasBlue {
-               hashCode = (hashCode &* 31) &+ blue.hashValue
-            }
-            hashCode = (hashCode &* 31) &+  unknownFields.hashValue
-            return hashCode
-        }
-    }
-
-
-    //Meta information declaration start
-
-    override public class func className() -> String {
-        return "Services.Organization.Containers.ColorV1"
-    }
-    override public func className() -> String {
-        return "Services.Organization.Containers.ColorV1"
-    }
-    override public func classMetaType() -> GeneratedMessage.Type {
-        return Services.Organization.Containers.ColorV1.self
-    }
-    //Meta information declaration end
-
-  }
-
-  final public class ColorV1Builder : GeneratedMessageBuilder {
-    private var builderResult:Services.Organization.Containers.ColorV1
-
-    required override public init () {
-       builderResult = Services.Organization.Containers.ColorV1()
-       super.init()
-    }
-    public var hasVersion:Bool {
-         get {
-              return builderResult.hasVersion
-         }
-    }
-    public var version:UInt32 {
-         get {
-              return builderResult.version
-         }
-         set (value) {
-             builderResult.hasVersion = true
-             builderResult.version = value
-         }
-    }
-    public func setVersion(value:UInt32)-> Services.Organization.Containers.ColorV1Builder {
-      self.version = value
-      return self
-    }
-    public func clearVersion() -> Services.Organization.Containers.ColorV1Builder{
-         builderResult.hasVersion = false
-         builderResult.version = UInt32(0)
-         return self
-    }
-    public var hasRed:Bool {
-         get {
-              return builderResult.hasRed
-         }
-    }
-    public var red:UInt32 {
-         get {
-              return builderResult.red
-         }
-         set (value) {
-             builderResult.hasRed = true
-             builderResult.red = value
-         }
-    }
-    public func setRed(value:UInt32)-> Services.Organization.Containers.ColorV1Builder {
-      self.red = value
-      return self
-    }
-    public func clearRed() -> Services.Organization.Containers.ColorV1Builder{
-         builderResult.hasRed = false
-         builderResult.red = UInt32(0)
-         return self
-    }
-    public var hasGreen:Bool {
-         get {
-              return builderResult.hasGreen
-         }
-    }
-    public var green:UInt32 {
-         get {
-              return builderResult.green
-         }
-         set (value) {
-             builderResult.hasGreen = true
-             builderResult.green = value
-         }
-    }
-    public func setGreen(value:UInt32)-> Services.Organization.Containers.ColorV1Builder {
-      self.green = value
-      return self
-    }
-    public func clearGreen() -> Services.Organization.Containers.ColorV1Builder{
-         builderResult.hasGreen = false
-         builderResult.green = UInt32(0)
-         return self
-    }
-    public var hasBlue:Bool {
-         get {
-              return builderResult.hasBlue
-         }
-    }
-    public var blue:UInt32 {
-         get {
-              return builderResult.blue
-         }
-         set (value) {
-             builderResult.hasBlue = true
-             builderResult.blue = value
-         }
-    }
-    public func setBlue(value:UInt32)-> Services.Organization.Containers.ColorV1Builder {
-      self.blue = value
-      return self
-    }
-    public func clearBlue() -> Services.Organization.Containers.ColorV1Builder{
-         builderResult.hasBlue = false
-         builderResult.blue = UInt32(0)
-         return self
-    }
-    override public var internalGetResult:GeneratedMessage {
-         get {
-            return builderResult
-         }
-    }
-    public override func clear() -> Services.Organization.Containers.ColorV1Builder {
-      builderResult = Services.Organization.Containers.ColorV1()
-      return self
-    }
-    public override func clone() -> Services.Organization.Containers.ColorV1Builder {
-      return Services.Organization.Containers.ColorV1.builderWithPrototype(builderResult)
-    }
-    public override func build() -> Services.Organization.Containers.ColorV1 {
-         checkInitialized()
-         return buildPartial()
-    }
-    public func buildPartial() -> Services.Organization.Containers.ColorV1 {
-      var returnMe:Services.Organization.Containers.ColorV1 = builderResult
-      return returnMe
-    }
-    public func mergeFrom(other:Services.Organization.Containers.ColorV1) -> Services.Organization.Containers.ColorV1Builder {
-      if (other == Services.Organization.Containers.ColorV1()) {
-       return self
-      }
-      if other.hasVersion {
-           version = other.version
-      }
-      if other.hasRed {
-           red = other.red
-      }
-      if other.hasGreen {
-           green = other.green
-      }
-      if other.hasBlue {
-           blue = other.blue
-      }
-      mergeUnknownFields(other.unknownFields)
-      return self
-    }
-    public override func mergeFromCodedInputStream(input:CodedInputStream) ->Services.Organization.Containers.ColorV1Builder {
-         return mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
-    }
-    public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> Services.Organization.Containers.ColorV1Builder {
-      var unknownFieldsBuilder:UnknownFieldSetBuilder = UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
-      while (true) {
-        var tag = input.readTag()
-        switch tag {
-        case 0: 
-          self.unknownFields = unknownFieldsBuilder.build()
-          return self
-
-        case 8 :
-          version = input.readUInt32()
-
-        case 16 :
-          red = input.readUInt32()
-
-        case 24 :
-          green = input.readUInt32()
-
-        case 32 :
-          blue = input.readUInt32()
-
-        default:
-          if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
-             unknownFields = unknownFieldsBuilder.build()
-             return self
-          }
-        }
-      }
-    }
-  }
-
-  final public class LocationV1 : GeneratedMessage, GeneratedMessageProtocol {
-    override public subscript(key: String) -> Any? {
-           switch key {
-           case "version": return version
-           case "id": return id
-           case "name": return name
-           case "address": return address
-           case "organizationId": return organizationId
-           case "profileCount": return profileCount
-           case "imageUrl": return imageUrl
-           case "locationDescription": return locationDescription
-           case "establishedDate": return establishedDate
-           case "permissions": return permissions
-           default: return nil
-           }
-    }
-
-    public private(set) var hasVersion:Bool = false
-    public private(set) var version:UInt32 = UInt32(1)
-
-    public private(set) var hasId:Bool = false
-    public private(set) var id:String = ""
-
-    public private(set) var hasName:Bool = false
-    public private(set) var name:String = ""
-
-    public private(set) var hasAddress:Bool = false
-    public private(set) var address:Services.Organization.Containers.AddressV1!
     public private(set) var hasOrganizationId:Bool = false
     public private(set) var organizationId:String = ""
 
@@ -1302,8 +180,8 @@ public extension Services.Organization.Containers {
     public private(set) var hasImageUrl:Bool = false
     public private(set) var imageUrl:String = ""
 
-    public private(set) var hasLocationDescription:Bool = false
-    public private(set) var locationDescription:Services.Common.Containers.DescriptionV1!
+    public private(set) var hasDescription:Bool = false
+    public private(set) var description_:Services.Common.Containers.DescriptionV1!
     public private(set) var hasEstablishedDate:Bool = false
     public private(set) var establishedDate:String = ""
 
@@ -1326,29 +204,53 @@ public extension Services.Organization.Containers {
       if hasName {
         output.writeString(3, value:name)
       }
-      if hasAddress {
-        output.writeMessage(4, value:address)
+      if hasAddress1 {
+        output.writeString(4, value:address1)
+      }
+      if hasAddress2 {
+        output.writeString(5, value:address2)
+      }
+      if hasCity {
+        output.writeString(6, value:city)
+      }
+      if hasRegion {
+        output.writeString(7, value:region)
+      }
+      if hasPostalCode {
+        output.writeString(8, value:postalCode)
+      }
+      if hasCountryCode {
+        output.writeString(9, value:countryCode)
+      }
+      if hasLatitude {
+        output.writeString(10, value:latitude)
+      }
+      if hasLongitude {
+        output.writeString(11, value:longitude)
+      }
+      if hasTimezone {
+        output.writeString(12, value:timezone)
       }
       if hasOrganizationId {
-        output.writeString(5, value:organizationId)
+        output.writeString(13, value:organizationId)
       }
       if hasProfileCount {
-        output.writeUInt32(6, value:profileCount)
+        output.writeUInt32(14, value:profileCount)
       }
       if hasImageUrl {
-        output.writeString(7, value:imageUrl)
+        output.writeString(15, value:imageUrl)
       }
-      if hasLocationDescription {
-        output.writeMessage(8, value:locationDescription)
+      if hasDescription {
+        output.writeMessage(16, value:description_)
       }
       if hasEstablishedDate {
-        output.writeString(9, value:establishedDate)
+        output.writeString(17, value:establishedDate)
       }
       for oneElementpointsOfContact in pointsOfContact {
-          output.writeMessage(10, value:oneElementpointsOfContact)
+          output.writeMessage(18, value:oneElementpointsOfContact)
       }
       if hasPermissions {
-        output.writeMessage(11, value:permissions)
+        output.writeMessage(19, value:permissions)
       }
       unknownFields.writeToCodedOutputStream(output)
     }
@@ -1368,33 +270,55 @@ public extension Services.Organization.Containers {
       if hasName {
         serialize_size += name.computeStringSize(3)
       }
-      if hasAddress {
-          if let varSizeaddress = address?.computeMessageSize(4) {
-              serialize_size += varSizeaddress
-          }
+      if hasAddress1 {
+        serialize_size += address1.computeStringSize(4)
+      }
+      if hasAddress2 {
+        serialize_size += address2.computeStringSize(5)
+      }
+      if hasCity {
+        serialize_size += city.computeStringSize(6)
+      }
+      if hasRegion {
+        serialize_size += region.computeStringSize(7)
+      }
+      if hasPostalCode {
+        serialize_size += postalCode.computeStringSize(8)
+      }
+      if hasCountryCode {
+        serialize_size += countryCode.computeStringSize(9)
+      }
+      if hasLatitude {
+        serialize_size += latitude.computeStringSize(10)
+      }
+      if hasLongitude {
+        serialize_size += longitude.computeStringSize(11)
+      }
+      if hasTimezone {
+        serialize_size += timezone.computeStringSize(12)
       }
       if hasOrganizationId {
-        serialize_size += organizationId.computeStringSize(5)
+        serialize_size += organizationId.computeStringSize(13)
       }
       if hasProfileCount {
-        serialize_size += profileCount.computeUInt32Size(6)
+        serialize_size += profileCount.computeUInt32Size(14)
       }
       if hasImageUrl {
-        serialize_size += imageUrl.computeStringSize(7)
+        serialize_size += imageUrl.computeStringSize(15)
       }
-      if hasLocationDescription {
-          if let varSizelocationDescription = locationDescription?.computeMessageSize(8) {
-              serialize_size += varSizelocationDescription
+      if hasDescription {
+          if let varSizedescription_ = description_?.computeMessageSize(16) {
+              serialize_size += varSizedescription_
           }
       }
       if hasEstablishedDate {
-        serialize_size += establishedDate.computeStringSize(9)
+        serialize_size += establishedDate.computeStringSize(17)
       }
       for oneElementpointsOfContact in pointsOfContact {
-          serialize_size += oneElementpointsOfContact.computeMessageSize(10)
+          serialize_size += oneElementpointsOfContact.computeMessageSize(18)
       }
       if hasPermissions {
-          if let varSizepermissions = permissions?.computeMessageSize(11) {
+          if let varSizepermissions = permissions?.computeMessageSize(19) {
               serialize_size += varSizepermissions
           }
       }
@@ -1448,10 +372,32 @@ public extension Services.Organization.Containers {
       if hasName {
         output += "\(indent) name: \(name) \n"
       }
-      if hasAddress {
-        output += "\(indent) address {\n"
-        address?.writeDescriptionTo(&output, indent:"\(indent)  ")
-        output += "\(indent) }\n"
+      if hasAddress1 {
+        output += "\(indent) address1: \(address1) \n"
+      }
+      if hasAddress2 {
+        output += "\(indent) address2: \(address2) \n"
+      }
+      if hasCity {
+        output += "\(indent) city: \(city) \n"
+      }
+      if hasRegion {
+        output += "\(indent) region: \(region) \n"
+      }
+      if hasPostalCode {
+        output += "\(indent) postalCode: \(postalCode) \n"
+      }
+      if hasCountryCode {
+        output += "\(indent) countryCode: \(countryCode) \n"
+      }
+      if hasLatitude {
+        output += "\(indent) latitude: \(latitude) \n"
+      }
+      if hasLongitude {
+        output += "\(indent) longitude: \(longitude) \n"
+      }
+      if hasTimezone {
+        output += "\(indent) timezone: \(timezone) \n"
       }
       if hasOrganizationId {
         output += "\(indent) organizationId: \(organizationId) \n"
@@ -1462,9 +408,9 @@ public extension Services.Organization.Containers {
       if hasImageUrl {
         output += "\(indent) imageUrl: \(imageUrl) \n"
       }
-      if hasLocationDescription {
-        output += "\(indent) locationDescription {\n"
-        locationDescription?.writeDescriptionTo(&output, indent:"\(indent)  ")
+      if hasDescription {
+        output += "\(indent) description_ {\n"
+        description_?.writeDescriptionTo(&output, indent:"\(indent)  ")
         output += "\(indent) }\n"
       }
       if hasEstablishedDate {
@@ -1496,10 +442,32 @@ public extension Services.Organization.Containers {
             if hasName {
                hashCode = (hashCode &* 31) &+ name.hashValue
             }
-            if hasAddress {
-                if let hashValueaddress = address?.hashValue {
-                    hashCode = (hashCode &* 31) &+ hashValueaddress
-                }
+            if hasAddress1 {
+               hashCode = (hashCode &* 31) &+ address1.hashValue
+            }
+            if hasAddress2 {
+               hashCode = (hashCode &* 31) &+ address2.hashValue
+            }
+            if hasCity {
+               hashCode = (hashCode &* 31) &+ city.hashValue
+            }
+            if hasRegion {
+               hashCode = (hashCode &* 31) &+ region.hashValue
+            }
+            if hasPostalCode {
+               hashCode = (hashCode &* 31) &+ postalCode.hashValue
+            }
+            if hasCountryCode {
+               hashCode = (hashCode &* 31) &+ countryCode.hashValue
+            }
+            if hasLatitude {
+               hashCode = (hashCode &* 31) &+ latitude.hashValue
+            }
+            if hasLongitude {
+               hashCode = (hashCode &* 31) &+ longitude.hashValue
+            }
+            if hasTimezone {
+               hashCode = (hashCode &* 31) &+ timezone.hashValue
             }
             if hasOrganizationId {
                hashCode = (hashCode &* 31) &+ organizationId.hashValue
@@ -1510,9 +478,9 @@ public extension Services.Organization.Containers {
             if hasImageUrl {
                hashCode = (hashCode &* 31) &+ imageUrl.hashValue
             }
-            if hasLocationDescription {
-                if let hashValuelocationDescription = locationDescription?.hashValue {
-                    hashCode = (hashCode &* 31) &+ hashValuelocationDescription
+            if hasDescription {
+                if let hashValuedescription_ = description_?.hashValue {
+                    hashCode = (hashCode &* 31) &+ hashValuedescription_
                 }
             }
             if hasEstablishedDate {
@@ -1623,37 +591,212 @@ public extension Services.Organization.Containers {
          builderResult.name = ""
          return self
     }
-    public var hasAddress:Bool {
+    public var hasAddress1:Bool {
          get {
-             return builderResult.hasAddress
+              return builderResult.hasAddress1
          }
     }
-    public var address:Services.Organization.Containers.AddressV1! {
+    public var address1:String {
          get {
-             return builderResult.address
+              return builderResult.address1
          }
          set (value) {
-             builderResult.hasAddress = true
-             builderResult.address = value
+             builderResult.hasAddress1 = true
+             builderResult.address1 = value
          }
     }
-    public func setAddress(value:Services.Organization.Containers.AddressV1!)-> Services.Organization.Containers.LocationV1Builder {
-      self.address = value
+    public func setAddress1(value:String)-> Services.Organization.Containers.LocationV1Builder {
+      self.address1 = value
       return self
     }
-    public func mergeAddress(value:Services.Organization.Containers.AddressV1) -> Services.Organization.Containers.LocationV1Builder {
-      if (builderResult.hasAddress) {
-        builderResult.address = Services.Organization.Containers.AddressV1.builderWithPrototype(builderResult.address).mergeFrom(value).buildPartial()
-      } else {
-        builderResult.address = value
-      }
-      builderResult.hasAddress = true
+    public func clearAddress1() -> Services.Organization.Containers.LocationV1Builder{
+         builderResult.hasAddress1 = false
+         builderResult.address1 = ""
+         return self
+    }
+    public var hasAddress2:Bool {
+         get {
+              return builderResult.hasAddress2
+         }
+    }
+    public var address2:String {
+         get {
+              return builderResult.address2
+         }
+         set (value) {
+             builderResult.hasAddress2 = true
+             builderResult.address2 = value
+         }
+    }
+    public func setAddress2(value:String)-> Services.Organization.Containers.LocationV1Builder {
+      self.address2 = value
       return self
     }
-    public func clearAddress() -> Services.Organization.Containers.LocationV1Builder {
-      builderResult.hasAddress = false
-      builderResult.address = nil
+    public func clearAddress2() -> Services.Organization.Containers.LocationV1Builder{
+         builderResult.hasAddress2 = false
+         builderResult.address2 = ""
+         return self
+    }
+    public var hasCity:Bool {
+         get {
+              return builderResult.hasCity
+         }
+    }
+    public var city:String {
+         get {
+              return builderResult.city
+         }
+         set (value) {
+             builderResult.hasCity = true
+             builderResult.city = value
+         }
+    }
+    public func setCity(value:String)-> Services.Organization.Containers.LocationV1Builder {
+      self.city = value
       return self
+    }
+    public func clearCity() -> Services.Organization.Containers.LocationV1Builder{
+         builderResult.hasCity = false
+         builderResult.city = ""
+         return self
+    }
+    public var hasRegion:Bool {
+         get {
+              return builderResult.hasRegion
+         }
+    }
+    public var region:String {
+         get {
+              return builderResult.region
+         }
+         set (value) {
+             builderResult.hasRegion = true
+             builderResult.region = value
+         }
+    }
+    public func setRegion(value:String)-> Services.Organization.Containers.LocationV1Builder {
+      self.region = value
+      return self
+    }
+    public func clearRegion() -> Services.Organization.Containers.LocationV1Builder{
+         builderResult.hasRegion = false
+         builderResult.region = ""
+         return self
+    }
+    public var hasPostalCode:Bool {
+         get {
+              return builderResult.hasPostalCode
+         }
+    }
+    public var postalCode:String {
+         get {
+              return builderResult.postalCode
+         }
+         set (value) {
+             builderResult.hasPostalCode = true
+             builderResult.postalCode = value
+         }
+    }
+    public func setPostalCode(value:String)-> Services.Organization.Containers.LocationV1Builder {
+      self.postalCode = value
+      return self
+    }
+    public func clearPostalCode() -> Services.Organization.Containers.LocationV1Builder{
+         builderResult.hasPostalCode = false
+         builderResult.postalCode = ""
+         return self
+    }
+    public var hasCountryCode:Bool {
+         get {
+              return builderResult.hasCountryCode
+         }
+    }
+    public var countryCode:String {
+         get {
+              return builderResult.countryCode
+         }
+         set (value) {
+             builderResult.hasCountryCode = true
+             builderResult.countryCode = value
+         }
+    }
+    public func setCountryCode(value:String)-> Services.Organization.Containers.LocationV1Builder {
+      self.countryCode = value
+      return self
+    }
+    public func clearCountryCode() -> Services.Organization.Containers.LocationV1Builder{
+         builderResult.hasCountryCode = false
+         builderResult.countryCode = ""
+         return self
+    }
+    public var hasLatitude:Bool {
+         get {
+              return builderResult.hasLatitude
+         }
+    }
+    public var latitude:String {
+         get {
+              return builderResult.latitude
+         }
+         set (value) {
+             builderResult.hasLatitude = true
+             builderResult.latitude = value
+         }
+    }
+    public func setLatitude(value:String)-> Services.Organization.Containers.LocationV1Builder {
+      self.latitude = value
+      return self
+    }
+    public func clearLatitude() -> Services.Organization.Containers.LocationV1Builder{
+         builderResult.hasLatitude = false
+         builderResult.latitude = ""
+         return self
+    }
+    public var hasLongitude:Bool {
+         get {
+              return builderResult.hasLongitude
+         }
+    }
+    public var longitude:String {
+         get {
+              return builderResult.longitude
+         }
+         set (value) {
+             builderResult.hasLongitude = true
+             builderResult.longitude = value
+         }
+    }
+    public func setLongitude(value:String)-> Services.Organization.Containers.LocationV1Builder {
+      self.longitude = value
+      return self
+    }
+    public func clearLongitude() -> Services.Organization.Containers.LocationV1Builder{
+         builderResult.hasLongitude = false
+         builderResult.longitude = ""
+         return self
+    }
+    public var hasTimezone:Bool {
+         get {
+              return builderResult.hasTimezone
+         }
+    }
+    public var timezone:String {
+         get {
+              return builderResult.timezone
+         }
+         set (value) {
+             builderResult.hasTimezone = true
+             builderResult.timezone = value
+         }
+    }
+    public func setTimezone(value:String)-> Services.Organization.Containers.LocationV1Builder {
+      self.timezone = value
+      return self
+    }
+    public func clearTimezone() -> Services.Organization.Containers.LocationV1Builder{
+         builderResult.hasTimezone = false
+         builderResult.timezone = ""
+         return self
     }
     public var hasOrganizationId:Bool {
          get {
@@ -1724,36 +867,36 @@ public extension Services.Organization.Containers {
          builderResult.imageUrl = ""
          return self
     }
-    public var hasLocationDescription:Bool {
+    public var hasDescription:Bool {
          get {
-             return builderResult.hasLocationDescription
+             return builderResult.hasDescription
          }
     }
-    public var locationDescription:Services.Common.Containers.DescriptionV1! {
+    public var description_:Services.Common.Containers.DescriptionV1! {
          get {
-             return builderResult.locationDescription
+             return builderResult.description_
          }
          set (value) {
-             builderResult.hasLocationDescription = true
-             builderResult.locationDescription = value
+             builderResult.hasDescription = true
+             builderResult.description_ = value
          }
     }
-    public func setLocationDescription(value:Services.Common.Containers.DescriptionV1!)-> Services.Organization.Containers.LocationV1Builder {
-      self.locationDescription = value
+    public func setDescription(value:Services.Common.Containers.DescriptionV1!)-> Services.Organization.Containers.LocationV1Builder {
+      self.description_ = value
       return self
     }
-    public func mergeLocationDescription(value:Services.Common.Containers.DescriptionV1) -> Services.Organization.Containers.LocationV1Builder {
-      if (builderResult.hasLocationDescription) {
-        builderResult.locationDescription = Services.Common.Containers.DescriptionV1.builderWithPrototype(builderResult.locationDescription).mergeFrom(value).buildPartial()
+    public func mergeDescription(value:Services.Common.Containers.DescriptionV1) -> Services.Organization.Containers.LocationV1Builder {
+      if (builderResult.hasDescription) {
+        builderResult.description_ = Services.Common.Containers.DescriptionV1.builderWithPrototype(builderResult.description_).mergeFrom(value).buildPartial()
       } else {
-        builderResult.locationDescription = value
+        builderResult.description_ = value
       }
-      builderResult.hasLocationDescription = true
+      builderResult.hasDescription = true
       return self
     }
-    public func clearLocationDescription() -> Services.Organization.Containers.LocationV1Builder {
-      builderResult.hasLocationDescription = false
-      builderResult.locationDescription = nil
+    public func clearDescription() -> Services.Organization.Containers.LocationV1Builder {
+      builderResult.hasDescription = false
+      builderResult.description_ = nil
       return self
     }
     public var hasEstablishedDate:Bool {
@@ -1860,8 +1003,32 @@ public extension Services.Organization.Containers {
       if other.hasName {
            name = other.name
       }
-      if (other.hasAddress) {
-          mergeAddress(other.address)
+      if other.hasAddress1 {
+           address1 = other.address1
+      }
+      if other.hasAddress2 {
+           address2 = other.address2
+      }
+      if other.hasCity {
+           city = other.city
+      }
+      if other.hasRegion {
+           region = other.region
+      }
+      if other.hasPostalCode {
+           postalCode = other.postalCode
+      }
+      if other.hasCountryCode {
+           countryCode = other.countryCode
+      }
+      if other.hasLatitude {
+           latitude = other.latitude
+      }
+      if other.hasLongitude {
+           longitude = other.longitude
+      }
+      if other.hasTimezone {
+           timezone = other.timezone
       }
       if other.hasOrganizationId {
            organizationId = other.organizationId
@@ -1872,8 +1039,8 @@ public extension Services.Organization.Containers {
       if other.hasImageUrl {
            imageUrl = other.imageUrl
       }
-      if (other.hasLocationDescription) {
-          mergeLocationDescription(other.locationDescription)
+      if (other.hasDescription) {
+          mergeDescription(other.description_)
       }
       if other.hasEstablishedDate {
            establishedDate = other.establishedDate
@@ -1909,39 +1076,58 @@ public extension Services.Organization.Containers {
           name = input.readString()
 
         case 34 :
-          var subBuilder:Services.Organization.Containers.AddressV1Builder = Services.Organization.Containers.AddressV1.builder()
-          if hasAddress {
-            subBuilder.mergeFrom(address)
-          }
-          input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
-          address = subBuilder.buildPartial()
+          address1 = input.readString()
 
         case 42 :
-          organizationId = input.readString()
+          address2 = input.readString()
 
-        case 48 :
-          profileCount = input.readUInt32()
+        case 50 :
+          city = input.readString()
 
         case 58 :
-          imageUrl = input.readString()
+          region = input.readString()
 
         case 66 :
-          var subBuilder:Services.Common.Containers.DescriptionV1Builder = Services.Common.Containers.DescriptionV1.builder()
-          if hasLocationDescription {
-            subBuilder.mergeFrom(locationDescription)
-          }
-          input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
-          locationDescription = subBuilder.buildPartial()
+          postalCode = input.readString()
 
         case 74 :
-          establishedDate = input.readString()
+          countryCode = input.readString()
 
         case 82 :
+          latitude = input.readString()
+
+        case 90 :
+          longitude = input.readString()
+
+        case 98 :
+          timezone = input.readString()
+
+        case 106 :
+          organizationId = input.readString()
+
+        case 112 :
+          profileCount = input.readUInt32()
+
+        case 122 :
+          imageUrl = input.readString()
+
+        case 130 :
+          var subBuilder:Services.Common.Containers.DescriptionV1Builder = Services.Common.Containers.DescriptionV1.builder()
+          if hasDescription {
+            subBuilder.mergeFrom(description_)
+          }
+          input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
+          description_ = subBuilder.buildPartial()
+
+        case 138 :
+          establishedDate = input.readString()
+
+        case 146 :
           var subBuilder = Services.Profile.Containers.ProfileV1.builder()
           input.readMessage(subBuilder,extensionRegistry:extensionRegistry)
           pointsOfContact += [subBuilder.buildPartial()]
 
-        case 90 :
+        case 154 :
           var subBuilder:Services.Common.Containers.PermissionsV1Builder = Services.Common.Containers.PermissionsV1.builder()
           if hasPermissions {
             subBuilder.mergeFrom(permissions)
@@ -1967,7 +1153,6 @@ public extension Services.Organization.Containers {
            case "name": return name
            case "domain": return domain
            case "imageUrl": return imageUrl
-           case "tintColor": return tintColor
            case "profileCount": return profileCount
            case "teamCount": return teamCount
            case "locationCount": return locationCount
@@ -1990,8 +1175,6 @@ public extension Services.Organization.Containers {
     public private(set) var hasImageUrl:Bool = false
     public private(set) var imageUrl:String = ""
 
-    public private(set) var hasTintColor:Bool = false
-    public private(set) var tintColor:Services.Organization.Containers.ColorV1!
     public private(set) var hasProfileCount:Bool = false
     public private(set) var profileCount:UInt32 = UInt32(0)
 
@@ -2023,17 +1206,14 @@ public extension Services.Organization.Containers {
       if hasImageUrl {
         output.writeString(5, value:imageUrl)
       }
-      if hasTintColor {
-        output.writeMessage(6, value:tintColor)
-      }
       if hasProfileCount {
-        output.writeUInt32(7, value:profileCount)
+        output.writeUInt32(6, value:profileCount)
       }
       if hasTeamCount {
-        output.writeUInt32(8, value:teamCount)
+        output.writeUInt32(7, value:teamCount)
       }
       if hasLocationCount {
-        output.writeUInt32(9, value:locationCount)
+        output.writeUInt32(8, value:locationCount)
       }
       unknownFields.writeToCodedOutputStream(output)
     }
@@ -2059,19 +1239,14 @@ public extension Services.Organization.Containers {
       if hasImageUrl {
         serialize_size += imageUrl.computeStringSize(5)
       }
-      if hasTintColor {
-          if let varSizetintColor = tintColor?.computeMessageSize(6) {
-              serialize_size += varSizetintColor
-          }
-      }
       if hasProfileCount {
-        serialize_size += profileCount.computeUInt32Size(7)
+        serialize_size += profileCount.computeUInt32Size(6)
       }
       if hasTeamCount {
-        serialize_size += teamCount.computeUInt32Size(8)
+        serialize_size += teamCount.computeUInt32Size(7)
       }
       if hasLocationCount {
-        serialize_size += locationCount.computeUInt32Size(9)
+        serialize_size += locationCount.computeUInt32Size(8)
       }
       serialize_size += unknownFields.serializedSize()
       memoizedSerializedSize = serialize_size
@@ -2129,11 +1304,6 @@ public extension Services.Organization.Containers {
       if hasImageUrl {
         output += "\(indent) imageUrl: \(imageUrl) \n"
       }
-      if hasTintColor {
-        output += "\(indent) tintColor {\n"
-        tintColor?.writeDescriptionTo(&output, indent:"\(indent)  ")
-        output += "\(indent) }\n"
-      }
       if hasProfileCount {
         output += "\(indent) profileCount: \(profileCount) \n"
       }
@@ -2162,11 +1332,6 @@ public extension Services.Organization.Containers {
             }
             if hasImageUrl {
                hashCode = (hashCode &* 31) &+ imageUrl.hashValue
-            }
-            if hasTintColor {
-                if let hashValuetintColor = tintColor?.hashValue {
-                    hashCode = (hashCode &* 31) &+ hashValuetintColor
-                }
             }
             if hasProfileCount {
                hashCode = (hashCode &* 31) &+ profileCount.hashValue
@@ -2320,38 +1485,6 @@ public extension Services.Organization.Containers {
          builderResult.imageUrl = ""
          return self
     }
-    public var hasTintColor:Bool {
-         get {
-             return builderResult.hasTintColor
-         }
-    }
-    public var tintColor:Services.Organization.Containers.ColorV1! {
-         get {
-             return builderResult.tintColor
-         }
-         set (value) {
-             builderResult.hasTintColor = true
-             builderResult.tintColor = value
-         }
-    }
-    public func setTintColor(value:Services.Organization.Containers.ColorV1!)-> Services.Organization.Containers.OrganizationV1Builder {
-      self.tintColor = value
-      return self
-    }
-    public func mergeTintColor(value:Services.Organization.Containers.ColorV1) -> Services.Organization.Containers.OrganizationV1Builder {
-      if (builderResult.hasTintColor) {
-        builderResult.tintColor = Services.Organization.Containers.ColorV1.builderWithPrototype(builderResult.tintColor).mergeFrom(value).buildPartial()
-      } else {
-        builderResult.tintColor = value
-      }
-      builderResult.hasTintColor = true
-      return self
-    }
-    public func clearTintColor() -> Services.Organization.Containers.OrganizationV1Builder {
-      builderResult.hasTintColor = false
-      builderResult.tintColor = nil
-      return self
-    }
     public var hasProfileCount:Bool {
          get {
               return builderResult.hasProfileCount
@@ -2460,9 +1593,6 @@ public extension Services.Organization.Containers {
       if other.hasImageUrl {
            imageUrl = other.imageUrl
       }
-      if (other.hasTintColor) {
-          mergeTintColor(other.tintColor)
-      }
       if other.hasProfileCount {
            profileCount = other.profileCount
       }
@@ -2502,348 +1632,14 @@ public extension Services.Organization.Containers {
         case 42 :
           imageUrl = input.readString()
 
-        case 50 :
-          var subBuilder:Services.Organization.Containers.ColorV1Builder = Services.Organization.Containers.ColorV1.builder()
-          if hasTintColor {
-            subBuilder.mergeFrom(tintColor)
-          }
-          input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
-          tintColor = subBuilder.buildPartial()
-
-        case 56 :
+        case 48 :
           profileCount = input.readUInt32()
 
-        case 64 :
+        case 56 :
           teamCount = input.readUInt32()
 
-        case 72 :
+        case 64 :
           locationCount = input.readUInt32()
-
-        default:
-          if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
-             unknownFields = unknownFieldsBuilder.build()
-             return self
-          }
-        }
-      }
-    }
-  }
-
-  final public class PathPartV1 : GeneratedMessage, GeneratedMessageProtocol {
-    override public subscript(key: String) -> Any? {
-           switch key {
-           case "version": return version
-           case "id": return id
-           case "name": return name
-           case "ownerId": return ownerId
-           default: return nil
-           }
-    }
-
-    public private(set) var hasVersion:Bool = false
-    public private(set) var version:UInt32 = UInt32(1)
-
-    public private(set) var hasId:Bool = false
-    public private(set) var id:String = ""
-
-    public private(set) var hasName:Bool = false
-    public private(set) var name:String = ""
-
-    public private(set) var hasOwnerId:Bool = false
-    public private(set) var ownerId:String = ""
-
-    required public init() {
-         super.init()
-    }
-    override public func isInitialized() -> Bool {
-     return true
-    }
-    override public func writeToCodedOutputStream(output:CodedOutputStream) {
-      if hasVersion {
-        output.writeUInt32(1, value:version)
-      }
-      if hasId {
-        output.writeString(2, value:id)
-      }
-      if hasName {
-        output.writeString(3, value:name)
-      }
-      if hasOwnerId {
-        output.writeString(4, value:ownerId)
-      }
-      unknownFields.writeToCodedOutputStream(output)
-    }
-    override public func serializedSize() -> Int32 {
-      var serialize_size:Int32 = memoizedSerializedSize
-      if serialize_size != -1 {
-       return serialize_size
-      }
-
-      serialize_size = 0
-      if hasVersion {
-        serialize_size += version.computeUInt32Size(1)
-      }
-      if hasId {
-        serialize_size += id.computeStringSize(2)
-      }
-      if hasName {
-        serialize_size += name.computeStringSize(3)
-      }
-      if hasOwnerId {
-        serialize_size += ownerId.computeStringSize(4)
-      }
-      serialize_size += unknownFields.serializedSize()
-      memoizedSerializedSize = serialize_size
-      return serialize_size
-    }
-    public class func parseFromData(data:NSData) -> Services.Organization.Containers.PathPartV1 {
-      return Services.Organization.Containers.PathPartV1.builder().mergeFromData(data, extensionRegistry:Services.Organization.Containers.ContainersRoot.sharedInstance.extensionRegistry).build()
-    }
-    public class func parseFromData(data:NSData, extensionRegistry:ExtensionRegistry) -> Services.Organization.Containers.PathPartV1 {
-      return Services.Organization.Containers.PathPartV1.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
-    }
-    public class func parseFromInputStream(input:NSInputStream) -> Services.Organization.Containers.PathPartV1 {
-      return Services.Organization.Containers.PathPartV1.builder().mergeFromInputStream(input).build()
-    }
-    public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->Services.Organization.Containers.PathPartV1 {
-      return Services.Organization.Containers.PathPartV1.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
-    }
-    public class func parseFromCodedInputStream(input:CodedInputStream) -> Services.Organization.Containers.PathPartV1 {
-      return Services.Organization.Containers.PathPartV1.builder().mergeFromCodedInputStream(input).build()
-    }
-    public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> Services.Organization.Containers.PathPartV1 {
-      return Services.Organization.Containers.PathPartV1.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
-    }
-    public class func builder() -> Services.Organization.Containers.PathPartV1Builder {
-      return Services.Organization.Containers.PathPartV1.classBuilder() as! Services.Organization.Containers.PathPartV1Builder
-    }
-    public func builder() -> Services.Organization.Containers.PathPartV1Builder {
-      return classBuilder() as! Services.Organization.Containers.PathPartV1Builder
-    }
-    public override class func classBuilder() -> MessageBuilder {
-      return Services.Organization.Containers.PathPartV1Builder()
-    }
-    public override func classBuilder() -> MessageBuilder {
-      return Services.Organization.Containers.PathPartV1.builder()
-    }
-    public func toBuilder() -> Services.Organization.Containers.PathPartV1Builder {
-      return Services.Organization.Containers.PathPartV1.builderWithPrototype(self)
-    }
-    public class func builderWithPrototype(prototype:Services.Organization.Containers.PathPartV1) -> Services.Organization.Containers.PathPartV1Builder {
-      return Services.Organization.Containers.PathPartV1.builder().mergeFrom(prototype)
-    }
-    override public func writeDescriptionTo(inout output:String, indent:String) {
-      if hasVersion {
-        output += "\(indent) version: \(version) \n"
-      }
-      if hasId {
-        output += "\(indent) id: \(id) \n"
-      }
-      if hasName {
-        output += "\(indent) name: \(name) \n"
-      }
-      if hasOwnerId {
-        output += "\(indent) ownerId: \(ownerId) \n"
-      }
-      unknownFields.writeDescriptionTo(&output, indent:indent)
-    }
-    override public var hashValue:Int {
-        get {
-            var hashCode:Int = 7
-            if hasVersion {
-               hashCode = (hashCode &* 31) &+ version.hashValue
-            }
-            if hasId {
-               hashCode = (hashCode &* 31) &+ id.hashValue
-            }
-            if hasName {
-               hashCode = (hashCode &* 31) &+ name.hashValue
-            }
-            if hasOwnerId {
-               hashCode = (hashCode &* 31) &+ ownerId.hashValue
-            }
-            hashCode = (hashCode &* 31) &+  unknownFields.hashValue
-            return hashCode
-        }
-    }
-
-
-    //Meta information declaration start
-
-    override public class func className() -> String {
-        return "Services.Organization.Containers.PathPartV1"
-    }
-    override public func className() -> String {
-        return "Services.Organization.Containers.PathPartV1"
-    }
-    override public func classMetaType() -> GeneratedMessage.Type {
-        return Services.Organization.Containers.PathPartV1.self
-    }
-    //Meta information declaration end
-
-  }
-
-  final public class PathPartV1Builder : GeneratedMessageBuilder {
-    private var builderResult:Services.Organization.Containers.PathPartV1
-
-    required override public init () {
-       builderResult = Services.Organization.Containers.PathPartV1()
-       super.init()
-    }
-    public var hasVersion:Bool {
-         get {
-              return builderResult.hasVersion
-         }
-    }
-    public var version:UInt32 {
-         get {
-              return builderResult.version
-         }
-         set (value) {
-             builderResult.hasVersion = true
-             builderResult.version = value
-         }
-    }
-    public func setVersion(value:UInt32)-> Services.Organization.Containers.PathPartV1Builder {
-      self.version = value
-      return self
-    }
-    public func clearVersion() -> Services.Organization.Containers.PathPartV1Builder{
-         builderResult.hasVersion = false
-         builderResult.version = UInt32(1)
-         return self
-    }
-    public var hasId:Bool {
-         get {
-              return builderResult.hasId
-         }
-    }
-    public var id:String {
-         get {
-              return builderResult.id
-         }
-         set (value) {
-             builderResult.hasId = true
-             builderResult.id = value
-         }
-    }
-    public func setId(value:String)-> Services.Organization.Containers.PathPartV1Builder {
-      self.id = value
-      return self
-    }
-    public func clearId() -> Services.Organization.Containers.PathPartV1Builder{
-         builderResult.hasId = false
-         builderResult.id = ""
-         return self
-    }
-    public var hasName:Bool {
-         get {
-              return builderResult.hasName
-         }
-    }
-    public var name:String {
-         get {
-              return builderResult.name
-         }
-         set (value) {
-             builderResult.hasName = true
-             builderResult.name = value
-         }
-    }
-    public func setName(value:String)-> Services.Organization.Containers.PathPartV1Builder {
-      self.name = value
-      return self
-    }
-    public func clearName() -> Services.Organization.Containers.PathPartV1Builder{
-         builderResult.hasName = false
-         builderResult.name = ""
-         return self
-    }
-    public var hasOwnerId:Bool {
-         get {
-              return builderResult.hasOwnerId
-         }
-    }
-    public var ownerId:String {
-         get {
-              return builderResult.ownerId
-         }
-         set (value) {
-             builderResult.hasOwnerId = true
-             builderResult.ownerId = value
-         }
-    }
-    public func setOwnerId(value:String)-> Services.Organization.Containers.PathPartV1Builder {
-      self.ownerId = value
-      return self
-    }
-    public func clearOwnerId() -> Services.Organization.Containers.PathPartV1Builder{
-         builderResult.hasOwnerId = false
-         builderResult.ownerId = ""
-         return self
-    }
-    override public var internalGetResult:GeneratedMessage {
-         get {
-            return builderResult
-         }
-    }
-    public override func clear() -> Services.Organization.Containers.PathPartV1Builder {
-      builderResult = Services.Organization.Containers.PathPartV1()
-      return self
-    }
-    public override func clone() -> Services.Organization.Containers.PathPartV1Builder {
-      return Services.Organization.Containers.PathPartV1.builderWithPrototype(builderResult)
-    }
-    public override func build() -> Services.Organization.Containers.PathPartV1 {
-         checkInitialized()
-         return buildPartial()
-    }
-    public func buildPartial() -> Services.Organization.Containers.PathPartV1 {
-      var returnMe:Services.Organization.Containers.PathPartV1 = builderResult
-      return returnMe
-    }
-    public func mergeFrom(other:Services.Organization.Containers.PathPartV1) -> Services.Organization.Containers.PathPartV1Builder {
-      if (other == Services.Organization.Containers.PathPartV1()) {
-       return self
-      }
-      if other.hasVersion {
-           version = other.version
-      }
-      if other.hasId {
-           id = other.id
-      }
-      if other.hasName {
-           name = other.name
-      }
-      if other.hasOwnerId {
-           ownerId = other.ownerId
-      }
-      mergeUnknownFields(other.unknownFields)
-      return self
-    }
-    public override func mergeFromCodedInputStream(input:CodedInputStream) ->Services.Organization.Containers.PathPartV1Builder {
-         return mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
-    }
-    public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> Services.Organization.Containers.PathPartV1Builder {
-      var unknownFieldsBuilder:UnknownFieldSetBuilder = UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
-      while (true) {
-        var tag = input.readTag()
-        switch tag {
-        case 0: 
-          self.unknownFields = unknownFieldsBuilder.build()
-          return self
-
-        case 8 :
-          version = input.readUInt32()
-
-        case 18 :
-          id = input.readString()
-
-        case 26 :
-          name = input.readString()
-
-        case 34 :
-          ownerId = input.readString()
 
         default:
           if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
@@ -2861,16 +1657,15 @@ public extension Services.Organization.Containers {
            case "version": return version
            case "id": return id
            case "name": return name
-           case "ownerId": return ownerId
            case "organizationId": return organizationId
-           case "department": return department
-           case "profileCount": return profileCount
-           case "color": return color
+           case "managerProfileId": return managerProfileId
+           case "manager": return manager
            case "permissions": return permissions
-           case "teamDescription": return teamDescription
+           case "description_": return description_
            case "status": return status
            case "imageUrl": return imageUrl
            case "childTeamCount": return childTeamCount
+           case "profileCount": return profileCount
            default: return nil
            }
     }
@@ -2884,24 +1679,18 @@ public extension Services.Organization.Containers {
     public private(set) var hasName:Bool = false
     public private(set) var name:String = ""
 
-    public private(set) var hasOwnerId:Bool = false
-    public private(set) var ownerId:String = ""
-
     public private(set) var hasOrganizationId:Bool = false
     public private(set) var organizationId:String = ""
 
-    public private(set) var hasDepartment:Bool = false
-    public private(set) var department:String = ""
+    public private(set) var hasManagerProfileId:Bool = false
+    public private(set) var managerProfileId:String = ""
 
-    public private(set) var hasProfileCount:Bool = false
-    public private(set) var profileCount:UInt32 = UInt32(0)
-
-    public private(set) var hasColor:Bool = false
-    public private(set) var color:Services.Organization.Containers.ColorV1!
+    public private(set) var hasManager:Bool = false
+    public private(set) var manager:Services.Profile.Containers.ProfileV1!
     public private(set) var hasPermissions:Bool = false
     public private(set) var permissions:Services.Common.Containers.PermissionsV1!
-    public private(set) var hasTeamDescription:Bool = false
-    public private(set) var teamDescription:Services.Common.Containers.DescriptionV1!
+    public private(set) var hasDescription:Bool = false
+    public private(set) var description_:Services.Common.Containers.DescriptionV1!
     public private(set) var hasStatus:Bool = false
     public private(set) var status:Services.Organization.Containers.TeamStatusV1!
     public private(set) var hasImageUrl:Bool = false
@@ -2910,7 +1699,9 @@ public extension Services.Organization.Containers {
     public private(set) var hasChildTeamCount:Bool = false
     public private(set) var childTeamCount:UInt32 = UInt32(0)
 
-    public private(set) var path:Array<Services.Organization.Containers.PathPartV1>  = Array<Services.Organization.Containers.PathPartV1>()
+    public private(set) var hasProfileCount:Bool = false
+    public private(set) var profileCount:UInt32 = UInt32(0)
+
     required public init() {
          super.init()
     }
@@ -2927,38 +1718,32 @@ public extension Services.Organization.Containers {
       if hasName {
         output.writeString(3, value:name)
       }
-      if hasOwnerId {
-        output.writeString(4, value:ownerId)
-      }
       if hasOrganizationId {
-        output.writeString(5, value:organizationId)
+        output.writeString(4, value:organizationId)
       }
-      for oneElementpath in path {
-          output.writeMessage(6, value:oneElementpath)
+      if hasManagerProfileId {
+        output.writeString(5, value:managerProfileId)
       }
-      if hasDepartment {
-        output.writeString(7, value:department)
-      }
-      if hasProfileCount {
-        output.writeUInt32(8, value:profileCount)
-      }
-      if hasColor {
-        output.writeMessage(9, value:color)
+      if hasManager {
+        output.writeMessage(6, value:manager)
       }
       if hasPermissions {
-        output.writeMessage(10, value:permissions)
+        output.writeMessage(7, value:permissions)
       }
-      if hasTeamDescription {
-        output.writeMessage(11, value:teamDescription)
+      if hasDescription {
+        output.writeMessage(8, value:description_)
       }
       if hasStatus {
-        output.writeMessage(12, value:status)
+        output.writeMessage(9, value:status)
       }
       if hasImageUrl {
-        output.writeString(13, value:imageUrl)
+        output.writeString(10, value:imageUrl)
       }
       if hasChildTeamCount {
-        output.writeUInt32(14, value:childTeamCount)
+        output.writeUInt32(11, value:childTeamCount)
+      }
+      if hasProfileCount {
+        output.writeUInt32(12, value:profileCount)
       }
       unknownFields.writeToCodedOutputStream(output)
     }
@@ -2978,46 +1763,40 @@ public extension Services.Organization.Containers {
       if hasName {
         serialize_size += name.computeStringSize(3)
       }
-      if hasOwnerId {
-        serialize_size += ownerId.computeStringSize(4)
-      }
       if hasOrganizationId {
-        serialize_size += organizationId.computeStringSize(5)
+        serialize_size += organizationId.computeStringSize(4)
       }
-      for oneElementpath in path {
-          serialize_size += oneElementpath.computeMessageSize(6)
+      if hasManagerProfileId {
+        serialize_size += managerProfileId.computeStringSize(5)
       }
-      if hasDepartment {
-        serialize_size += department.computeStringSize(7)
-      }
-      if hasProfileCount {
-        serialize_size += profileCount.computeUInt32Size(8)
-      }
-      if hasColor {
-          if let varSizecolor = color?.computeMessageSize(9) {
-              serialize_size += varSizecolor
+      if hasManager {
+          if let varSizemanager = manager?.computeMessageSize(6) {
+              serialize_size += varSizemanager
           }
       }
       if hasPermissions {
-          if let varSizepermissions = permissions?.computeMessageSize(10) {
+          if let varSizepermissions = permissions?.computeMessageSize(7) {
               serialize_size += varSizepermissions
           }
       }
-      if hasTeamDescription {
-          if let varSizeteamDescription = teamDescription?.computeMessageSize(11) {
-              serialize_size += varSizeteamDescription
+      if hasDescription {
+          if let varSizedescription_ = description_?.computeMessageSize(8) {
+              serialize_size += varSizedescription_
           }
       }
       if hasStatus {
-          if let varSizestatus = status?.computeMessageSize(12) {
+          if let varSizestatus = status?.computeMessageSize(9) {
               serialize_size += varSizestatus
           }
       }
       if hasImageUrl {
-        serialize_size += imageUrl.computeStringSize(13)
+        serialize_size += imageUrl.computeStringSize(10)
       }
       if hasChildTeamCount {
-        serialize_size += childTeamCount.computeUInt32Size(14)
+        serialize_size += childTeamCount.computeUInt32Size(11)
+      }
+      if hasProfileCount {
+        serialize_size += profileCount.computeUInt32Size(12)
       }
       serialize_size += unknownFields.serializedSize()
       memoizedSerializedSize = serialize_size
@@ -3069,28 +1848,15 @@ public extension Services.Organization.Containers {
       if hasName {
         output += "\(indent) name: \(name) \n"
       }
-      if hasOwnerId {
-        output += "\(indent) ownerId: \(ownerId) \n"
-      }
       if hasOrganizationId {
         output += "\(indent) organizationId: \(organizationId) \n"
       }
-      var pathElementIndex:Int = 0
-      for oneElementpath in path {
-          output += "\(indent) path[\(pathElementIndex)] {\n"
-          oneElementpath.writeDescriptionTo(&output, indent:"\(indent)  ")
-          output += "\(indent)}\n"
-          pathElementIndex++
+      if hasManagerProfileId {
+        output += "\(indent) managerProfileId: \(managerProfileId) \n"
       }
-      if hasDepartment {
-        output += "\(indent) department: \(department) \n"
-      }
-      if hasProfileCount {
-        output += "\(indent) profileCount: \(profileCount) \n"
-      }
-      if hasColor {
-        output += "\(indent) color {\n"
-        color?.writeDescriptionTo(&output, indent:"\(indent)  ")
+      if hasManager {
+        output += "\(indent) manager {\n"
+        manager?.writeDescriptionTo(&output, indent:"\(indent)  ")
         output += "\(indent) }\n"
       }
       if hasPermissions {
@@ -3098,9 +1864,9 @@ public extension Services.Organization.Containers {
         permissions?.writeDescriptionTo(&output, indent:"\(indent)  ")
         output += "\(indent) }\n"
       }
-      if hasTeamDescription {
-        output += "\(indent) teamDescription {\n"
-        teamDescription?.writeDescriptionTo(&output, indent:"\(indent)  ")
+      if hasDescription {
+        output += "\(indent) description_ {\n"
+        description_?.writeDescriptionTo(&output, indent:"\(indent)  ")
         output += "\(indent) }\n"
       }
       if hasStatus {
@@ -3113,6 +1879,9 @@ public extension Services.Organization.Containers {
       }
       if hasChildTeamCount {
         output += "\(indent) childTeamCount: \(childTeamCount) \n"
+      }
+      if hasProfileCount {
+        output += "\(indent) profileCount: \(profileCount) \n"
       }
       unknownFields.writeDescriptionTo(&output, indent:indent)
     }
@@ -3128,24 +1897,15 @@ public extension Services.Organization.Containers {
             if hasName {
                hashCode = (hashCode &* 31) &+ name.hashValue
             }
-            if hasOwnerId {
-               hashCode = (hashCode &* 31) &+ ownerId.hashValue
-            }
             if hasOrganizationId {
                hashCode = (hashCode &* 31) &+ organizationId.hashValue
             }
-            for oneElementpath in path {
-                hashCode = (hashCode &* 31) &+ oneElementpath.hashValue
+            if hasManagerProfileId {
+               hashCode = (hashCode &* 31) &+ managerProfileId.hashValue
             }
-            if hasDepartment {
-               hashCode = (hashCode &* 31) &+ department.hashValue
-            }
-            if hasProfileCount {
-               hashCode = (hashCode &* 31) &+ profileCount.hashValue
-            }
-            if hasColor {
-                if let hashValuecolor = color?.hashValue {
-                    hashCode = (hashCode &* 31) &+ hashValuecolor
+            if hasManager {
+                if let hashValuemanager = manager?.hashValue {
+                    hashCode = (hashCode &* 31) &+ hashValuemanager
                 }
             }
             if hasPermissions {
@@ -3153,9 +1913,9 @@ public extension Services.Organization.Containers {
                     hashCode = (hashCode &* 31) &+ hashValuepermissions
                 }
             }
-            if hasTeamDescription {
-                if let hashValueteamDescription = teamDescription?.hashValue {
-                    hashCode = (hashCode &* 31) &+ hashValueteamDescription
+            if hasDescription {
+                if let hashValuedescription_ = description_?.hashValue {
+                    hashCode = (hashCode &* 31) &+ hashValuedescription_
                 }
             }
             if hasStatus {
@@ -3168,6 +1928,9 @@ public extension Services.Organization.Containers {
             }
             if hasChildTeamCount {
                hashCode = (hashCode &* 31) &+ childTeamCount.hashValue
+            }
+            if hasProfileCount {
+               hashCode = (hashCode &* 31) &+ profileCount.hashValue
             }
             hashCode = (hashCode &* 31) &+  unknownFields.hashValue
             return hashCode
@@ -3266,29 +2029,6 @@ public extension Services.Organization.Containers {
          builderResult.name = ""
          return self
     }
-    public var hasOwnerId:Bool {
-         get {
-              return builderResult.hasOwnerId
-         }
-    }
-    public var ownerId:String {
-         get {
-              return builderResult.ownerId
-         }
-         set (value) {
-             builderResult.hasOwnerId = true
-             builderResult.ownerId = value
-         }
-    }
-    public func setOwnerId(value:String)-> Services.Organization.Containers.TeamV1Builder {
-      self.ownerId = value
-      return self
-    }
-    public func clearOwnerId() -> Services.Organization.Containers.TeamV1Builder{
-         builderResult.hasOwnerId = false
-         builderResult.ownerId = ""
-         return self
-    }
     public var hasOrganizationId:Bool {
          get {
               return builderResult.hasOrganizationId
@@ -3312,98 +2052,59 @@ public extension Services.Organization.Containers {
          builderResult.organizationId = ""
          return self
     }
-    public var path:Array<Services.Organization.Containers.PathPartV1> {
+    public var hasManagerProfileId:Bool {
          get {
-             return builderResult.path
+              return builderResult.hasManagerProfileId
+         }
+    }
+    public var managerProfileId:String {
+         get {
+              return builderResult.managerProfileId
          }
          set (value) {
-             builderResult.path = value
+             builderResult.hasManagerProfileId = true
+             builderResult.managerProfileId = value
          }
     }
-    public func setPath(value:Array<Services.Organization.Containers.PathPartV1>)-> Services.Organization.Containers.TeamV1Builder {
-      self.path = value
+    public func setManagerProfileId(value:String)-> Services.Organization.Containers.TeamV1Builder {
+      self.managerProfileId = value
       return self
     }
-    public func clearPath() -> Services.Organization.Containers.TeamV1Builder {
-      builderResult.path.removeAll(keepCapacity: false)
-      return self
-    }
-    public var hasDepartment:Bool {
-         get {
-              return builderResult.hasDepartment
-         }
-    }
-    public var department:String {
-         get {
-              return builderResult.department
-         }
-         set (value) {
-             builderResult.hasDepartment = true
-             builderResult.department = value
-         }
-    }
-    public func setDepartment(value:String)-> Services.Organization.Containers.TeamV1Builder {
-      self.department = value
-      return self
-    }
-    public func clearDepartment() -> Services.Organization.Containers.TeamV1Builder{
-         builderResult.hasDepartment = false
-         builderResult.department = ""
+    public func clearManagerProfileId() -> Services.Organization.Containers.TeamV1Builder{
+         builderResult.hasManagerProfileId = false
+         builderResult.managerProfileId = ""
          return self
     }
-    public var hasProfileCount:Bool {
+    public var hasManager:Bool {
          get {
-              return builderResult.hasProfileCount
+             return builderResult.hasManager
          }
     }
-    public var profileCount:UInt32 {
+    public var manager:Services.Profile.Containers.ProfileV1! {
          get {
-              return builderResult.profileCount
+             return builderResult.manager
          }
          set (value) {
-             builderResult.hasProfileCount = true
-             builderResult.profileCount = value
+             builderResult.hasManager = true
+             builderResult.manager = value
          }
     }
-    public func setProfileCount(value:UInt32)-> Services.Organization.Containers.TeamV1Builder {
-      self.profileCount = value
+    public func setManager(value:Services.Profile.Containers.ProfileV1!)-> Services.Organization.Containers.TeamV1Builder {
+      self.manager = value
       return self
     }
-    public func clearProfileCount() -> Services.Organization.Containers.TeamV1Builder{
-         builderResult.hasProfileCount = false
-         builderResult.profileCount = UInt32(0)
-         return self
-    }
-    public var hasColor:Bool {
-         get {
-             return builderResult.hasColor
-         }
-    }
-    public var color:Services.Organization.Containers.ColorV1! {
-         get {
-             return builderResult.color
-         }
-         set (value) {
-             builderResult.hasColor = true
-             builderResult.color = value
-         }
-    }
-    public func setColor(value:Services.Organization.Containers.ColorV1!)-> Services.Organization.Containers.TeamV1Builder {
-      self.color = value
-      return self
-    }
-    public func mergeColor(value:Services.Organization.Containers.ColorV1) -> Services.Organization.Containers.TeamV1Builder {
-      if (builderResult.hasColor) {
-        builderResult.color = Services.Organization.Containers.ColorV1.builderWithPrototype(builderResult.color).mergeFrom(value).buildPartial()
+    public func mergeManager(value:Services.Profile.Containers.ProfileV1) -> Services.Organization.Containers.TeamV1Builder {
+      if (builderResult.hasManager) {
+        builderResult.manager = Services.Profile.Containers.ProfileV1.builderWithPrototype(builderResult.manager).mergeFrom(value).buildPartial()
       } else {
-        builderResult.color = value
+        builderResult.manager = value
       }
-      builderResult.hasColor = true
+      builderResult.hasManager = true
       return self
     }
-    public func clearColor() -> Services.Organization.Containers.TeamV1Builder {
-      builderResult.hasColor = false
-      builderResult.color = nil
+    public func clearManager() -> Services.Organization.Containers.TeamV1Builder {
+      builderResult.hasManager = false
+      builderResult.manager = nil
       return self
     }
     public var hasPermissions:Bool {
@@ -3438,36 +2139,36 @@ public extension Services.Organization.Containers {
       builderResult.permissions = nil
       return self
     }
-    public var hasTeamDescription:Bool {
+    public var hasDescription:Bool {
          get {
-             return builderResult.hasTeamDescription
+             return builderResult.hasDescription
          }
     }
-    public var teamDescription:Services.Common.Containers.DescriptionV1! {
+    public var description_:Services.Common.Containers.DescriptionV1! {
          get {
-             return builderResult.teamDescription
+             return builderResult.description_
          }
          set (value) {
-             builderResult.hasTeamDescription = true
-             builderResult.teamDescription = value
+             builderResult.hasDescription = true
+             builderResult.description_ = value
          }
     }
-    public func setTeamDescription(value:Services.Common.Containers.DescriptionV1!)-> Services.Organization.Containers.TeamV1Builder {
-      self.teamDescription = value
+    public func setDescription(value:Services.Common.Containers.DescriptionV1!)-> Services.Organization.Containers.TeamV1Builder {
+      self.description_ = value
       return self
     }
-    public func mergeTeamDescription(value:Services.Common.Containers.DescriptionV1) -> Services.Organization.Containers.TeamV1Builder {
-      if (builderResult.hasTeamDescription) {
-        builderResult.teamDescription = Services.Common.Containers.DescriptionV1.builderWithPrototype(builderResult.teamDescription).mergeFrom(value).buildPartial()
+    public func mergeDescription(value:Services.Common.Containers.DescriptionV1) -> Services.Organization.Containers.TeamV1Builder {
+      if (builderResult.hasDescription) {
+        builderResult.description_ = Services.Common.Containers.DescriptionV1.builderWithPrototype(builderResult.description_).mergeFrom(value).buildPartial()
       } else {
-        builderResult.teamDescription = value
+        builderResult.description_ = value
       }
-      builderResult.hasTeamDescription = true
+      builderResult.hasDescription = true
       return self
     }
-    public func clearTeamDescription() -> Services.Organization.Containers.TeamV1Builder {
-      builderResult.hasTeamDescription = false
-      builderResult.teamDescription = nil
+    public func clearDescription() -> Services.Organization.Containers.TeamV1Builder {
+      builderResult.hasDescription = false
+      builderResult.description_ = nil
       return self
     }
     public var hasStatus:Bool {
@@ -3548,6 +2249,29 @@ public extension Services.Organization.Containers {
          builderResult.childTeamCount = UInt32(0)
          return self
     }
+    public var hasProfileCount:Bool {
+         get {
+              return builderResult.hasProfileCount
+         }
+    }
+    public var profileCount:UInt32 {
+         get {
+              return builderResult.profileCount
+         }
+         set (value) {
+             builderResult.hasProfileCount = true
+             builderResult.profileCount = value
+         }
+    }
+    public func setProfileCount(value:UInt32)-> Services.Organization.Containers.TeamV1Builder {
+      self.profileCount = value
+      return self
+    }
+    public func clearProfileCount() -> Services.Organization.Containers.TeamV1Builder{
+         builderResult.hasProfileCount = false
+         builderResult.profileCount = UInt32(0)
+         return self
+    }
     override public var internalGetResult:GeneratedMessage {
          get {
             return builderResult
@@ -3581,29 +2305,20 @@ public extension Services.Organization.Containers {
       if other.hasName {
            name = other.name
       }
-      if other.hasOwnerId {
-           ownerId = other.ownerId
-      }
       if other.hasOrganizationId {
            organizationId = other.organizationId
       }
-      if !other.path.isEmpty  {
-         builderResult.path += other.path
+      if other.hasManagerProfileId {
+           managerProfileId = other.managerProfileId
       }
-      if other.hasDepartment {
-           department = other.department
-      }
-      if other.hasProfileCount {
-           profileCount = other.profileCount
-      }
-      if (other.hasColor) {
-          mergeColor(other.color)
+      if (other.hasManager) {
+          mergeManager(other.manager)
       }
       if (other.hasPermissions) {
           mergePermissions(other.permissions)
       }
-      if (other.hasTeamDescription) {
-          mergeTeamDescription(other.teamDescription)
+      if (other.hasDescription) {
+          mergeDescription(other.description_)
       }
       if (other.hasStatus) {
           mergeStatus(other.status)
@@ -3613,6 +2328,9 @@ public extension Services.Organization.Containers {
       }
       if other.hasChildTeamCount {
            childTeamCount = other.childTeamCount
+      }
+      if other.hasProfileCount {
+           profileCount = other.profileCount
       }
       mergeUnknownFields(other.unknownFields)
       return self
@@ -3639,31 +2357,20 @@ public extension Services.Organization.Containers {
           name = input.readString()
 
         case 34 :
-          ownerId = input.readString()
-
-        case 42 :
           organizationId = input.readString()
 
+        case 42 :
+          managerProfileId = input.readString()
+
         case 50 :
-          var subBuilder = Services.Organization.Containers.PathPartV1.builder()
-          input.readMessage(subBuilder,extensionRegistry:extensionRegistry)
-          path += [subBuilder.buildPartial()]
-
-        case 58 :
-          department = input.readString()
-
-        case 64 :
-          profileCount = input.readUInt32()
-
-        case 74 :
-          var subBuilder:Services.Organization.Containers.ColorV1Builder = Services.Organization.Containers.ColorV1.builder()
-          if hasColor {
-            subBuilder.mergeFrom(color)
+          var subBuilder:Services.Profile.Containers.ProfileV1Builder = Services.Profile.Containers.ProfileV1.builder()
+          if hasManager {
+            subBuilder.mergeFrom(manager)
           }
           input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
-          color = subBuilder.buildPartial()
+          manager = subBuilder.buildPartial()
 
-        case 82 :
+        case 58 :
           var subBuilder:Services.Common.Containers.PermissionsV1Builder = Services.Common.Containers.PermissionsV1.builder()
           if hasPermissions {
             subBuilder.mergeFrom(permissions)
@@ -3671,15 +2378,15 @@ public extension Services.Organization.Containers {
           input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
           permissions = subBuilder.buildPartial()
 
-        case 90 :
+        case 66 :
           var subBuilder:Services.Common.Containers.DescriptionV1Builder = Services.Common.Containers.DescriptionV1.builder()
-          if hasTeamDescription {
-            subBuilder.mergeFrom(teamDescription)
+          if hasDescription {
+            subBuilder.mergeFrom(description_)
           }
           input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
-          teamDescription = subBuilder.buildPartial()
+          description_ = subBuilder.buildPartial()
 
-        case 98 :
+        case 74 :
           var subBuilder:Services.Organization.Containers.TeamStatusV1Builder = Services.Organization.Containers.TeamStatusV1.builder()
           if hasStatus {
             subBuilder.mergeFrom(status)
@@ -3687,333 +2394,14 @@ public extension Services.Organization.Containers {
           input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
           status = subBuilder.buildPartial()
 
-        case 106 :
+        case 82 :
           imageUrl = input.readString()
 
-        case 112 :
+        case 88 :
           childTeamCount = input.readUInt32()
 
-        default:
-          if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {
-             unknownFields = unknownFieldsBuilder.build()
-             return self
-          }
-        }
-      }
-    }
-  }
-
-  final public class TeamDescendantsV1 : GeneratedMessage, GeneratedMessageProtocol {
-    override public subscript(key: String) -> Any? {
-           switch key {
-           case "version": return version
-           case "depth": return depth
-           case "parentTeamId": return parentTeamId
-           default: return nil
-           }
-    }
-
-    public private(set) var hasVersion:Bool = false
-    public private(set) var version:UInt32 = UInt32(1)
-
-    public private(set) var hasDepth:Bool = false
-    public private(set) var depth:UInt32 = UInt32(0)
-
-    public private(set) var hasParentTeamId:Bool = false
-    public private(set) var parentTeamId:String = ""
-
-    public private(set) var teams:Array<Services.Organization.Containers.TeamV1>  = Array<Services.Organization.Containers.TeamV1>()
-    required public init() {
-         super.init()
-    }
-    override public func isInitialized() -> Bool {
-     return true
-    }
-    override public func writeToCodedOutputStream(output:CodedOutputStream) {
-      if hasVersion {
-        output.writeUInt32(1, value:version)
-      }
-      if hasDepth {
-        output.writeUInt32(2, value:depth)
-      }
-      if hasParentTeamId {
-        output.writeString(3, value:parentTeamId)
-      }
-      for oneElementteams in teams {
-          output.writeMessage(4, value:oneElementteams)
-      }
-      unknownFields.writeToCodedOutputStream(output)
-    }
-    override public func serializedSize() -> Int32 {
-      var serialize_size:Int32 = memoizedSerializedSize
-      if serialize_size != -1 {
-       return serialize_size
-      }
-
-      serialize_size = 0
-      if hasVersion {
-        serialize_size += version.computeUInt32Size(1)
-      }
-      if hasDepth {
-        serialize_size += depth.computeUInt32Size(2)
-      }
-      if hasParentTeamId {
-        serialize_size += parentTeamId.computeStringSize(3)
-      }
-      for oneElementteams in teams {
-          serialize_size += oneElementteams.computeMessageSize(4)
-      }
-      serialize_size += unknownFields.serializedSize()
-      memoizedSerializedSize = serialize_size
-      return serialize_size
-    }
-    public class func parseFromData(data:NSData) -> Services.Organization.Containers.TeamDescendantsV1 {
-      return Services.Organization.Containers.TeamDescendantsV1.builder().mergeFromData(data, extensionRegistry:Services.Organization.Containers.ContainersRoot.sharedInstance.extensionRegistry).build()
-    }
-    public class func parseFromData(data:NSData, extensionRegistry:ExtensionRegistry) -> Services.Organization.Containers.TeamDescendantsV1 {
-      return Services.Organization.Containers.TeamDescendantsV1.builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
-    }
-    public class func parseFromInputStream(input:NSInputStream) -> Services.Organization.Containers.TeamDescendantsV1 {
-      return Services.Organization.Containers.TeamDescendantsV1.builder().mergeFromInputStream(input).build()
-    }
-    public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) ->Services.Organization.Containers.TeamDescendantsV1 {
-      return Services.Organization.Containers.TeamDescendantsV1.builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
-    }
-    public class func parseFromCodedInputStream(input:CodedInputStream) -> Services.Organization.Containers.TeamDescendantsV1 {
-      return Services.Organization.Containers.TeamDescendantsV1.builder().mergeFromCodedInputStream(input).build()
-    }
-    public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> Services.Organization.Containers.TeamDescendantsV1 {
-      return Services.Organization.Containers.TeamDescendantsV1.builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
-    }
-    public class func builder() -> Services.Organization.Containers.TeamDescendantsV1Builder {
-      return Services.Organization.Containers.TeamDescendantsV1.classBuilder() as! Services.Organization.Containers.TeamDescendantsV1Builder
-    }
-    public func builder() -> Services.Organization.Containers.TeamDescendantsV1Builder {
-      return classBuilder() as! Services.Organization.Containers.TeamDescendantsV1Builder
-    }
-    public override class func classBuilder() -> MessageBuilder {
-      return Services.Organization.Containers.TeamDescendantsV1Builder()
-    }
-    public override func classBuilder() -> MessageBuilder {
-      return Services.Organization.Containers.TeamDescendantsV1.builder()
-    }
-    public func toBuilder() -> Services.Organization.Containers.TeamDescendantsV1Builder {
-      return Services.Organization.Containers.TeamDescendantsV1.builderWithPrototype(self)
-    }
-    public class func builderWithPrototype(prototype:Services.Organization.Containers.TeamDescendantsV1) -> Services.Organization.Containers.TeamDescendantsV1Builder {
-      return Services.Organization.Containers.TeamDescendantsV1.builder().mergeFrom(prototype)
-    }
-    override public func writeDescriptionTo(inout output:String, indent:String) {
-      if hasVersion {
-        output += "\(indent) version: \(version) \n"
-      }
-      if hasDepth {
-        output += "\(indent) depth: \(depth) \n"
-      }
-      if hasParentTeamId {
-        output += "\(indent) parentTeamId: \(parentTeamId) \n"
-      }
-      var teamsElementIndex:Int = 0
-      for oneElementteams in teams {
-          output += "\(indent) teams[\(teamsElementIndex)] {\n"
-          oneElementteams.writeDescriptionTo(&output, indent:"\(indent)  ")
-          output += "\(indent)}\n"
-          teamsElementIndex++
-      }
-      unknownFields.writeDescriptionTo(&output, indent:indent)
-    }
-    override public var hashValue:Int {
-        get {
-            var hashCode:Int = 7
-            if hasVersion {
-               hashCode = (hashCode &* 31) &+ version.hashValue
-            }
-            if hasDepth {
-               hashCode = (hashCode &* 31) &+ depth.hashValue
-            }
-            if hasParentTeamId {
-               hashCode = (hashCode &* 31) &+ parentTeamId.hashValue
-            }
-            for oneElementteams in teams {
-                hashCode = (hashCode &* 31) &+ oneElementteams.hashValue
-            }
-            hashCode = (hashCode &* 31) &+  unknownFields.hashValue
-            return hashCode
-        }
-    }
-
-
-    //Meta information declaration start
-
-    override public class func className() -> String {
-        return "Services.Organization.Containers.TeamDescendantsV1"
-    }
-    override public func className() -> String {
-        return "Services.Organization.Containers.TeamDescendantsV1"
-    }
-    override public func classMetaType() -> GeneratedMessage.Type {
-        return Services.Organization.Containers.TeamDescendantsV1.self
-    }
-    //Meta information declaration end
-
-  }
-
-  final public class TeamDescendantsV1Builder : GeneratedMessageBuilder {
-    private var builderResult:Services.Organization.Containers.TeamDescendantsV1
-
-    required override public init () {
-       builderResult = Services.Organization.Containers.TeamDescendantsV1()
-       super.init()
-    }
-    public var hasVersion:Bool {
-         get {
-              return builderResult.hasVersion
-         }
-    }
-    public var version:UInt32 {
-         get {
-              return builderResult.version
-         }
-         set (value) {
-             builderResult.hasVersion = true
-             builderResult.version = value
-         }
-    }
-    public func setVersion(value:UInt32)-> Services.Organization.Containers.TeamDescendantsV1Builder {
-      self.version = value
-      return self
-    }
-    public func clearVersion() -> Services.Organization.Containers.TeamDescendantsV1Builder{
-         builderResult.hasVersion = false
-         builderResult.version = UInt32(1)
-         return self
-    }
-    public var hasDepth:Bool {
-         get {
-              return builderResult.hasDepth
-         }
-    }
-    public var depth:UInt32 {
-         get {
-              return builderResult.depth
-         }
-         set (value) {
-             builderResult.hasDepth = true
-             builderResult.depth = value
-         }
-    }
-    public func setDepth(value:UInt32)-> Services.Organization.Containers.TeamDescendantsV1Builder {
-      self.depth = value
-      return self
-    }
-    public func clearDepth() -> Services.Organization.Containers.TeamDescendantsV1Builder{
-         builderResult.hasDepth = false
-         builderResult.depth = UInt32(0)
-         return self
-    }
-    public var hasParentTeamId:Bool {
-         get {
-              return builderResult.hasParentTeamId
-         }
-    }
-    public var parentTeamId:String {
-         get {
-              return builderResult.parentTeamId
-         }
-         set (value) {
-             builderResult.hasParentTeamId = true
-             builderResult.parentTeamId = value
-         }
-    }
-    public func setParentTeamId(value:String)-> Services.Organization.Containers.TeamDescendantsV1Builder {
-      self.parentTeamId = value
-      return self
-    }
-    public func clearParentTeamId() -> Services.Organization.Containers.TeamDescendantsV1Builder{
-         builderResult.hasParentTeamId = false
-         builderResult.parentTeamId = ""
-         return self
-    }
-    public var teams:Array<Services.Organization.Containers.TeamV1> {
-         get {
-             return builderResult.teams
-         }
-         set (value) {
-             builderResult.teams = value
-         }
-    }
-    public func setTeams(value:Array<Services.Organization.Containers.TeamV1>)-> Services.Organization.Containers.TeamDescendantsV1Builder {
-      self.teams = value
-      return self
-    }
-    public func clearTeams() -> Services.Organization.Containers.TeamDescendantsV1Builder {
-      builderResult.teams.removeAll(keepCapacity: false)
-      return self
-    }
-    override public var internalGetResult:GeneratedMessage {
-         get {
-            return builderResult
-         }
-    }
-    public override func clear() -> Services.Organization.Containers.TeamDescendantsV1Builder {
-      builderResult = Services.Organization.Containers.TeamDescendantsV1()
-      return self
-    }
-    public override func clone() -> Services.Organization.Containers.TeamDescendantsV1Builder {
-      return Services.Organization.Containers.TeamDescendantsV1.builderWithPrototype(builderResult)
-    }
-    public override func build() -> Services.Organization.Containers.TeamDescendantsV1 {
-         checkInitialized()
-         return buildPartial()
-    }
-    public func buildPartial() -> Services.Organization.Containers.TeamDescendantsV1 {
-      var returnMe:Services.Organization.Containers.TeamDescendantsV1 = builderResult
-      return returnMe
-    }
-    public func mergeFrom(other:Services.Organization.Containers.TeamDescendantsV1) -> Services.Organization.Containers.TeamDescendantsV1Builder {
-      if (other == Services.Organization.Containers.TeamDescendantsV1()) {
-       return self
-      }
-      if other.hasVersion {
-           version = other.version
-      }
-      if other.hasDepth {
-           depth = other.depth
-      }
-      if other.hasParentTeamId {
-           parentTeamId = other.parentTeamId
-      }
-      if !other.teams.isEmpty  {
-         builderResult.teams += other.teams
-      }
-      mergeUnknownFields(other.unknownFields)
-      return self
-    }
-    public override func mergeFromCodedInputStream(input:CodedInputStream) ->Services.Organization.Containers.TeamDescendantsV1Builder {
-         return mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
-    }
-    public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) -> Services.Organization.Containers.TeamDescendantsV1Builder {
-      var unknownFieldsBuilder:UnknownFieldSetBuilder = UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
-      while (true) {
-        var tag = input.readTag()
-        switch tag {
-        case 0: 
-          self.unknownFields = unknownFieldsBuilder.build()
-          return self
-
-        case 8 :
-          version = input.readUInt32()
-
-        case 16 :
-          depth = input.readUInt32()
-
-        case 26 :
-          parentTeamId = input.readString()
-
-        case 34 :
-          var subBuilder = Services.Organization.Containers.TeamV1.builder()
-          input.readMessage(subBuilder,extensionRegistry:extensionRegistry)
-          teams += [subBuilder.buildPartial()]
+        case 96 :
+          profileCount = input.readUInt32()
 
         default:
           if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {

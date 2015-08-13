@@ -6,42 +6,26 @@ option java_package = "com.rhlabs.protobufs.services.organization.containers";
 import "protobufs/services/common/containers.proto";
 import "protobufs/services/profile/containers.proto";
 
-message AddressV1 {
-    optional uint32 version = 1 [default = 1];
-    optional string id = 2;
-    optional string organization_id = 3;
-    optional string name = 4;
-    optional string address_1 = 5;
-    optional string address_2 = 6;
-    optional string city = 7;
-    optional string region = 8;
-    optional string postal_code = 9;
-    optional string country_code = 10;
-    optional string profile_count = 11;
-    optional string latitude = 12;
-    optional string longitude = 13;
-    optional string timezone = 14;
-}
-
-message ColorV1 {
-    optional uint32 version = 1;
-    optional uint32 red = 2;
-    optional uint32 green = 3;
-    optional uint32 blue = 4;
-}
-
 message LocationV1 {
     optional uint32 version = 1 [default = 1];
     optional string id = 2;
     optional string name = 3;
-    optional AddressV1 address = 4;
-    optional string organization_id = 5;
-    optional uint32 profile_count = 6;
-    optional string image_url = 7;
-    optional services.common.containers.DescriptionV1 location_description = 8;
-    optional string established_date = 9;
-    repeated services.profile.containers.ProfileV1 points_of_contact = 10;
-    optional services.common.containers.PermissionsV1 permissions = 11;
+    optional string address_1 = 4;
+    optional string address_2 = 5;
+    optional string city = 6;
+    optional string region = 7;
+    optional string postal_code = 8;
+    optional string country_code = 9;
+    optional string latitude = 10;
+    optional string longitude = 11;
+    optional string timezone = 12;
+    optional string organization_id = 13;
+    optional uint32 profile_count = 14;
+    optional string image_url = 15;
+    optional services.common.containers.DescriptionV1 description = 16;
+    optional string established_date = 17;
+    repeated services.profile.containers.ProfileV1 points_of_contact = 18;
+    optional services.common.containers.PermissionsV1 permissions = 19;
 }
 
 message OrganizationV1 {
@@ -50,41 +34,24 @@ message OrganizationV1 {
     optional string name = 3;
     optional string domain = 4;
     optional string image_url = 5;
-    optional ColorV1 tint_color = 6;
-    optional uint32 profile_count = 7;
-    optional uint32 team_count = 8;
-    optional uint32 location_count = 9;
-}
-
-message PathPartV1 {
-    optional uint32 version = 1 [default = 1];
-    optional string id = 2;
-    optional string name = 3;
-    optional string owner_id = 4;
+    optional uint32 profile_count = 6;
+    optional uint32 team_count = 7;
+    optional uint32 location_count = 8;
 }
 
 message TeamV1 {
     optional uint32 version = 1 [default = 1];
     optional string id = 2;
     optional string name = 3;
-    optional string owner_id = 4;
-    optional string organization_id = 5;
-    repeated PathPartV1 path = 6;
-    optional string department = 7;
-    optional uint32 profile_count = 8;
-    optional ColorV1 color = 9;
-    optional services.common.containers.PermissionsV1 permissions = 10;
-    optional services.common.containers.DescriptionV1 team_description = 11;
-    optional TeamStatusV1 status = 12;
-    optional string image_url = 13;
-    optional uint32 child_team_count = 14;
-}
-
-message TeamDescendantsV1 {
-    optional uint32 version = 1 [default = 1];
-    optional uint32 depth = 2;
-    optional string parent_team_id = 3;
-    repeated TeamV1 teams = 4;
+    optional string organization_id = 4;
+    optional string manager_profile_id = 5;
+    optional services.profile.containers.ProfileV1 manager = 6;
+    optional services.common.containers.PermissionsV1 permissions = 7;
+    optional services.common.containers.DescriptionV1 description = 8;
+    optional TeamStatusV1 status = 9;
+    optional string image_url = 10;
+    optional uint32 child_team_count = 11;
+    optional uint32 profile_count = 12;
 }
 
 message TeamStatusV1 {

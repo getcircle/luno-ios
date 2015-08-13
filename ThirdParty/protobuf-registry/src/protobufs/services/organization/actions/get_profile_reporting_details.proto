@@ -1,0 +1,17 @@
+package services.organization.actions.get_profile_reporting_details;
+
+import "protobufs/services/organization/containers.proto";
+
+message RequestV1 {
+    optional uint32 version = 1 [default = 1];
+    optional string profile_id = 2;
+}
+
+message ResponseV1 {
+    optional uint32 version = 1 [default = 1];
+    repeated string peers_profile_ids = 2;
+    optional string manager_profile_id = 3;
+    repeated string direct_reports_profile_ids = 4;
+    optional services.organization.containers.TeamV1 manages_team = 5;
+    optional services.organization.containers.TeamV1 team = 6;
+}

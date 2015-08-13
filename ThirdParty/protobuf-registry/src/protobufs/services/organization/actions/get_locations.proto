@@ -7,7 +7,7 @@ import "protobufs/services/organization/containers.proto";
 
 message RequestV1 {
     optional uint32 version = 1 [default = 1];
-    optional string organization_id = 2;
+    optional string profile_id = 2;
 }
 
 message ResponseV1 {

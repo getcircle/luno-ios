@@ -16,6 +16,9 @@ public final class OrganizationV1 extends Message {
   public static final String DEFAULT_NAME = "";
   public static final String DEFAULT_DOMAIN = "";
   public static final String DEFAULT_IMAGE_URL = "";
+  public static final Integer DEFAULT_PROFILE_COUNT = 0;
+  public static final Integer DEFAULT_TEAM_COUNT = 0;
+  public static final Integer DEFAULT_LOCATION_COUNT = 0;
 
   @ProtoField(tag = 1, type = UINT32)
   public final Integer version;
@@ -35,17 +38,29 @@ public final class OrganizationV1 extends Message {
   @ProtoField(tag = 6)
   public final ColorV1 tint_color;
 
-  public OrganizationV1(Integer version, String id, String name, String domain, String image_url, ColorV1 tint_color) {
+  @ProtoField(tag = 7, type = UINT32)
+  public final Integer profile_count;
+
+  @ProtoField(tag = 8, type = UINT32)
+  public final Integer team_count;
+
+  @ProtoField(tag = 9, type = UINT32)
+  public final Integer location_count;
+
+  public OrganizationV1(Integer version, String id, String name, String domain, String image_url, ColorV1 tint_color, Integer profile_count, Integer team_count, Integer location_count) {
     this.version = version;
     this.id = id;
     this.name = name;
     this.domain = domain;
     this.image_url = image_url;
     this.tint_color = tint_color;
+    this.profile_count = profile_count;
+    this.team_count = team_count;
+    this.location_count = location_count;
   }
 
   private OrganizationV1(Builder builder) {
-    this(builder.version, builder.id, builder.name, builder.domain, builder.image_url, builder.tint_color);
+    this(builder.version, builder.id, builder.name, builder.domain, builder.image_url, builder.tint_color, builder.profile_count, builder.team_count, builder.location_count);
     setBuilder(builder);
   }
 
@@ -59,7 +74,10 @@ public final class OrganizationV1 extends Message {
         && equals(name, o.name)
         && equals(domain, o.domain)
         && equals(image_url, o.image_url)
-        && equals(tint_color, o.tint_color);
+        && equals(tint_color, o.tint_color)
+        && equals(profile_count, o.profile_count)
+        && equals(team_count, o.team_count)
+        && equals(location_count, o.location_count);
   }
 
   @Override
@@ -72,6 +90,9 @@ public final class OrganizationV1 extends Message {
       result = result * 37 + (domain != null ? domain.hashCode() : 0);
       result = result * 37 + (image_url != null ? image_url.hashCode() : 0);
       result = result * 37 + (tint_color != null ? tint_color.hashCode() : 0);
+      result = result * 37 + (profile_count != null ? profile_count.hashCode() : 0);
+      result = result * 37 + (team_count != null ? team_count.hashCode() : 0);
+      result = result * 37 + (location_count != null ? location_count.hashCode() : 0);
       hashCode = result;
     }
     return result;
@@ -85,6 +106,9 @@ public final class OrganizationV1 extends Message {
     public String domain;
     public String image_url;
     public ColorV1 tint_color;
+    public Integer profile_count;
+    public Integer team_count;
+    public Integer location_count;
 
     public Builder() {
     }
@@ -98,6 +122,9 @@ public final class OrganizationV1 extends Message {
       this.domain = message.domain;
       this.image_url = message.image_url;
       this.tint_color = message.tint_color;
+      this.profile_count = message.profile_count;
+      this.team_count = message.team_count;
+      this.location_count = message.location_count;
     }
 
     public Builder version(Integer version) {
@@ -127,6 +154,21 @@ public final class OrganizationV1 extends Message {
 
     public Builder tint_color(ColorV1 tint_color) {
       this.tint_color = tint_color;
+      return this;
+    }
+
+    public Builder profile_count(Integer profile_count) {
+      this.profile_count = profile_count;
+      return this;
+    }
+
+    public Builder team_count(Integer team_count) {
+      this.team_count = team_count;
+      return this;
+    }
+
+    public Builder location_count(Integer location_count) {
+      this.location_count = location_count;
       return this;
     }
 

@@ -7,13 +7,9 @@ import "protobufs/services/profile/containers.proto";
 
 message RequestV1 {
     optional uint32 version = 1 [default = 1];
-    optional string team_id = 2;
-    optional string organization_id = 3;
-    optional string tag_id = 4;
-    optional string address_id = 5;
-    repeated string ids = 6;
-    optional string location_id = 7;
-    repeated string emails = 8;
+    optional string tag_id = 2;
+    repeated string ids = 3;
+    optional string location_id = 4;
 }
 
 message ResponseV1 {

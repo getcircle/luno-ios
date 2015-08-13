@@ -2,6 +2,7 @@
 // Source file: ./src/protobufs/services/organization/containers.proto
 package com.rhlabs.protobufs.services.organization.containers;
 
+import com.rhlabs.protobufs.services.common.containers.DescriptionV1;
 import com.rhlabs.protobufs.services.common.containers.PermissionsV1;
 import com.squareup.wire.Message;
 import com.squareup.wire.ProtoField;
@@ -23,7 +24,6 @@ public final class TeamV1 extends Message {
   public static final List<PathPartV1> DEFAULT_PATH = Collections.emptyList();
   public static final String DEFAULT_DEPARTMENT = "";
   public static final Integer DEFAULT_PROFILE_COUNT = 0;
-  public static final String DEFAULT_DESCRIPTION = "";
   public static final String DEFAULT_IMAGE_URL = "";
   public static final Integer DEFAULT_CHILD_TEAM_COUNT = 0;
 
@@ -57,8 +57,8 @@ public final class TeamV1 extends Message {
   @ProtoField(tag = 10)
   public final PermissionsV1 permissions;
 
-  @ProtoField(tag = 11, type = STRING)
-  public final String description;
+  @ProtoField(tag = 11)
+  public final DescriptionV1 team_description;
 
   @ProtoField(tag = 12)
   public final TeamStatusV1 status;
@@ -69,7 +69,7 @@ public final class TeamV1 extends Message {
   @ProtoField(tag = 14, type = UINT32)
   public final Integer child_team_count;
 
-  public TeamV1(Integer version, String id, String name, String owner_id, String organization_id, List<PathPartV1> path, String department, Integer profile_count, ColorV1 color, PermissionsV1 permissions, String description, TeamStatusV1 status, String image_url, Integer child_team_count) {
+  public TeamV1(Integer version, String id, String name, String owner_id, String organization_id, List<PathPartV1> path, String department, Integer profile_count, ColorV1 color, PermissionsV1 permissions, DescriptionV1 team_description, TeamStatusV1 status, String image_url, Integer child_team_count) {
     this.version = version;
     this.id = id;
     this.name = name;
@@ -80,14 +80,14 @@ public final class TeamV1 extends Message {
     this.profile_count = profile_count;
     this.color = color;
     this.permissions = permissions;
-    this.description = description;
+    this.team_description = team_description;
     this.status = status;
     this.image_url = image_url;
     this.child_team_count = child_team_count;
   }
 
   private TeamV1(Builder builder) {
-    this(builder.version, builder.id, builder.name, builder.owner_id, builder.organization_id, builder.path, builder.department, builder.profile_count, builder.color, builder.permissions, builder.description, builder.status, builder.image_url, builder.child_team_count);
+    this(builder.version, builder.id, builder.name, builder.owner_id, builder.organization_id, builder.path, builder.department, builder.profile_count, builder.color, builder.permissions, builder.team_description, builder.status, builder.image_url, builder.child_team_count);
     setBuilder(builder);
   }
 
@@ -106,7 +106,7 @@ public final class TeamV1 extends Message {
         && equals(profile_count, o.profile_count)
         && equals(color, o.color)
         && equals(permissions, o.permissions)
-        && equals(description, o.description)
+        && equals(team_description, o.team_description)
         && equals(status, o.status)
         && equals(image_url, o.image_url)
         && equals(child_team_count, o.child_team_count);
@@ -126,7 +126,7 @@ public final class TeamV1 extends Message {
       result = result * 37 + (profile_count != null ? profile_count.hashCode() : 0);
       result = result * 37 + (color != null ? color.hashCode() : 0);
       result = result * 37 + (permissions != null ? permissions.hashCode() : 0);
-      result = result * 37 + (description != null ? description.hashCode() : 0);
+      result = result * 37 + (team_description != null ? team_description.hashCode() : 0);
       result = result * 37 + (status != null ? status.hashCode() : 0);
       result = result * 37 + (image_url != null ? image_url.hashCode() : 0);
       result = result * 37 + (child_team_count != null ? child_team_count.hashCode() : 0);
@@ -147,7 +147,7 @@ public final class TeamV1 extends Message {
     public Integer profile_count;
     public ColorV1 color;
     public PermissionsV1 permissions;
-    public String description;
+    public DescriptionV1 team_description;
     public TeamStatusV1 status;
     public String image_url;
     public Integer child_team_count;
@@ -168,7 +168,7 @@ public final class TeamV1 extends Message {
       this.profile_count = message.profile_count;
       this.color = message.color;
       this.permissions = message.permissions;
-      this.description = message.description;
+      this.team_description = message.team_description;
       this.status = message.status;
       this.image_url = message.image_url;
       this.child_team_count = message.child_team_count;
@@ -224,8 +224,8 @@ public final class TeamV1 extends Message {
       return this;
     }
 
-    public Builder description(String description) {
-      this.description = description;
+    public Builder team_description(DescriptionV1 team_description) {
+      this.team_description = team_description;
       return this;
     }
 

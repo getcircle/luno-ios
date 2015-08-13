@@ -10,8 +10,6 @@ public func == (lhs: Services.Organization.Actions.GetTeam.RequestV1, rhs: Servi
   var fieldCheck:Bool = (lhs.hashValue == rhs.hashValue)
   fieldCheck = fieldCheck && (lhs.hasVersion == rhs.hasVersion) && (!lhs.hasVersion || lhs.version == rhs.version)
   fieldCheck = fieldCheck && (lhs.hasTeamId == rhs.hasTeamId) && (!lhs.hasTeamId || lhs.teamId == rhs.teamId)
-  fieldCheck = fieldCheck && (lhs.hasName == rhs.hasName) && (!lhs.hasName || lhs.name == rhs.name)
-  fieldCheck = fieldCheck && (lhs.hasOrganizationId == rhs.hasOrganizationId) && (!lhs.hasOrganizationId || lhs.organizationId == rhs.organizationId)
   return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
 }
 
@@ -49,8 +47,6 @@ public extension Services.Organization.Actions.GetTeam {
            switch key {
            case "version": return version
            case "teamId": return teamId
-           case "name": return name
-           case "organizationId": return organizationId
            default: return nil
            }
     }
@@ -60,12 +56,6 @@ public extension Services.Organization.Actions.GetTeam {
 
     public private(set) var hasTeamId:Bool = false
     public private(set) var teamId:String = ""
-
-    public private(set) var hasName:Bool = false
-    public private(set) var name:String = ""
-
-    public private(set) var hasOrganizationId:Bool = false
-    public private(set) var organizationId:String = ""
 
     required public init() {
          super.init()
@@ -79,12 +69,6 @@ public extension Services.Organization.Actions.GetTeam {
       }
       if hasTeamId {
         output.writeString(2, value:teamId)
-      }
-      if hasName {
-        output.writeString(3, value:name)
-      }
-      if hasOrganizationId {
-        output.writeString(4, value:organizationId)
       }
       unknownFields.writeToCodedOutputStream(output)
     }
@@ -100,12 +84,6 @@ public extension Services.Organization.Actions.GetTeam {
       }
       if hasTeamId {
         serialize_size += teamId.computeStringSize(2)
-      }
-      if hasName {
-        serialize_size += name.computeStringSize(3)
-      }
-      if hasOrganizationId {
-        serialize_size += organizationId.computeStringSize(4)
       }
       serialize_size += unknownFields.serializedSize()
       memoizedSerializedSize = serialize_size
@@ -154,12 +132,6 @@ public extension Services.Organization.Actions.GetTeam {
       if hasTeamId {
         output += "\(indent) teamId: \(teamId) \n"
       }
-      if hasName {
-        output += "\(indent) name: \(name) \n"
-      }
-      if hasOrganizationId {
-        output += "\(indent) organizationId: \(organizationId) \n"
-      }
       unknownFields.writeDescriptionTo(&output, indent:indent)
     }
     override public var hashValue:Int {
@@ -170,12 +142,6 @@ public extension Services.Organization.Actions.GetTeam {
             }
             if hasTeamId {
                hashCode = (hashCode &* 31) &+ teamId.hashValue
-            }
-            if hasName {
-               hashCode = (hashCode &* 31) &+ name.hashValue
-            }
-            if hasOrganizationId {
-               hashCode = (hashCode &* 31) &+ organizationId.hashValue
             }
             hashCode = (hashCode &* 31) &+  unknownFields.hashValue
             return hashCode
@@ -251,52 +217,6 @@ public extension Services.Organization.Actions.GetTeam {
          builderResult.teamId = ""
          return self
     }
-    public var hasName:Bool {
-         get {
-              return builderResult.hasName
-         }
-    }
-    public var name:String {
-         get {
-              return builderResult.name
-         }
-         set (value) {
-             builderResult.hasName = true
-             builderResult.name = value
-         }
-    }
-    public func setName(value:String)-> Services.Organization.Actions.GetTeam.RequestV1Builder {
-      self.name = value
-      return self
-    }
-    public func clearName() -> Services.Organization.Actions.GetTeam.RequestV1Builder{
-         builderResult.hasName = false
-         builderResult.name = ""
-         return self
-    }
-    public var hasOrganizationId:Bool {
-         get {
-              return builderResult.hasOrganizationId
-         }
-    }
-    public var organizationId:String {
-         get {
-              return builderResult.organizationId
-         }
-         set (value) {
-             builderResult.hasOrganizationId = true
-             builderResult.organizationId = value
-         }
-    }
-    public func setOrganizationId(value:String)-> Services.Organization.Actions.GetTeam.RequestV1Builder {
-      self.organizationId = value
-      return self
-    }
-    public func clearOrganizationId() -> Services.Organization.Actions.GetTeam.RequestV1Builder{
-         builderResult.hasOrganizationId = false
-         builderResult.organizationId = ""
-         return self
-    }
     override public var internalGetResult:GeneratedMessage {
          get {
             return builderResult
@@ -327,12 +247,6 @@ public extension Services.Organization.Actions.GetTeam {
       if other.hasTeamId {
            teamId = other.teamId
       }
-      if other.hasName {
-           name = other.name
-      }
-      if other.hasOrganizationId {
-           organizationId = other.organizationId
-      }
       mergeUnknownFields(other.unknownFields)
       return self
     }
@@ -353,12 +267,6 @@ public extension Services.Organization.Actions.GetTeam {
 
         case 18 :
           teamId = input.readString()
-
-        case 26 :
-          name = input.readString()
-
-        case 34 :
-          organizationId = input.readString()
 
         default:
           if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {

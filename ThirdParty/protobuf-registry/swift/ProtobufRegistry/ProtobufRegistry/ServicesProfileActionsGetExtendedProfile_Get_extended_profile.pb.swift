@@ -21,12 +21,13 @@ public func == (lhs: Services.Profile.Actions.GetExtendedProfile.ResponseV1, rhs
   var fieldCheck:Bool = (lhs.hashValue == rhs.hashValue)
   fieldCheck = fieldCheck && (lhs.hasVersion == rhs.hasVersion) && (!lhs.hasVersion || lhs.version == rhs.version)
   fieldCheck = fieldCheck && (lhs.hasProfile == rhs.hasProfile) && (!lhs.hasProfile || lhs.profile == rhs.profile)
-  fieldCheck = fieldCheck && (lhs.hasAddress == rhs.hasAddress) && (!lhs.hasAddress || lhs.address == rhs.address)
   fieldCheck = fieldCheck && (lhs.hasManager == rhs.hasManager) && (!lhs.hasManager || lhs.manager == rhs.manager)
   fieldCheck = fieldCheck && (lhs.hasTeam == rhs.hasTeam) && (!lhs.hasTeam || lhs.team == rhs.team)
   fieldCheck = fieldCheck && (lhs.identities == rhs.identities)
   fieldCheck = fieldCheck && (lhs.directReports == rhs.directReports)
-  fieldCheck = fieldCheck && (lhs.hasLocation == rhs.hasLocation) && (!lhs.hasLocation || lhs.location == rhs.location)
+  fieldCheck = fieldCheck && (lhs.locations == rhs.locations)
+  fieldCheck = fieldCheck && (lhs.hasManagesTeam == rhs.hasManagesTeam) && (!lhs.hasManagesTeam || lhs.managesTeam == rhs.managesTeam)
+  fieldCheck = fieldCheck && (lhs.peers == rhs.peers)
   return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
 }
 
@@ -337,10 +338,9 @@ public extension Services.Profile.Actions.GetExtendedProfile {
            switch key {
            case "version": return version
            case "profile": return profile
-           case "address": return address
            case "manager": return manager
            case "team": return team
-           case "location": return location
+           case "managesTeam": return managesTeam
            default: return nil
            }
     }
@@ -350,16 +350,16 @@ public extension Services.Profile.Actions.GetExtendedProfile {
 
     public private(set) var hasProfile:Bool = false
     public private(set) var profile:Services.Profile.Containers.ProfileV1!
-    public private(set) var hasAddress:Bool = false
-    public private(set) var address:Services.Organization.Containers.AddressV1!
     public private(set) var hasManager:Bool = false
     public private(set) var manager:Services.Profile.Containers.ProfileV1!
     public private(set) var hasTeam:Bool = false
     public private(set) var team:Services.Organization.Containers.TeamV1!
-    public private(set) var hasLocation:Bool = false
-    public private(set) var location:Services.Organization.Containers.LocationV1!
+    public private(set) var hasManagesTeam:Bool = false
+    public private(set) var managesTeam:Services.Organization.Containers.TeamV1!
     public private(set) var identities:Array<Services.User.Containers.IdentityV1>  = Array<Services.User.Containers.IdentityV1>()
     public private(set) var directReports:Array<Services.Profile.Containers.ProfileV1>  = Array<Services.Profile.Containers.ProfileV1>()
+    public private(set) var locations:Array<Services.Organization.Containers.LocationV1>  = Array<Services.Organization.Containers.LocationV1>()
+    public private(set) var peers:Array<Services.Profile.Containers.ProfileV1>  = Array<Services.Profile.Containers.ProfileV1>()
     required public init() {
          super.init()
     }
@@ -373,23 +373,26 @@ public extension Services.Profile.Actions.GetExtendedProfile {
       if hasProfile {
         output.writeMessage(2, value:profile)
       }
-      if hasAddress {
-        output.writeMessage(3, value:address)
-      }
       if hasManager {
-        output.writeMessage(4, value:manager)
+        output.writeMessage(3, value:manager)
       }
       if hasTeam {
-        output.writeMessage(5, value:team)
+        output.writeMessage(4, value:team)
       }
       for oneElementidentities in identities {
-          output.writeMessage(6, value:oneElementidentities)
+          output.writeMessage(5, value:oneElementidentities)
       }
       for oneElementdirectReports in directReports {
           output.writeMessage(7, value:oneElementdirectReports)
       }
-      if hasLocation {
-        output.writeMessage(8, value:location)
+      for oneElementlocations in locations {
+          output.writeMessage(8, value:oneElementlocations)
+      }
+      if hasManagesTeam {
+        output.writeMessage(9, value:managesTeam)
+      }
+      for oneElementpeers in peers {
+          output.writeMessage(10, value:oneElementpeers)
       }
       unknownFields.writeToCodedOutputStream(output)
     }
@@ -408,31 +411,32 @@ public extension Services.Profile.Actions.GetExtendedProfile {
               serialize_size += varSizeprofile
           }
       }
-      if hasAddress {
-          if let varSizeaddress = address?.computeMessageSize(3) {
-              serialize_size += varSizeaddress
-          }
-      }
       if hasManager {
-          if let varSizemanager = manager?.computeMessageSize(4) {
+          if let varSizemanager = manager?.computeMessageSize(3) {
               serialize_size += varSizemanager
           }
       }
       if hasTeam {
-          if let varSizeteam = team?.computeMessageSize(5) {
+          if let varSizeteam = team?.computeMessageSize(4) {
               serialize_size += varSizeteam
           }
       }
       for oneElementidentities in identities {
-          serialize_size += oneElementidentities.computeMessageSize(6)
+          serialize_size += oneElementidentities.computeMessageSize(5)
       }
       for oneElementdirectReports in directReports {
           serialize_size += oneElementdirectReports.computeMessageSize(7)
       }
-      if hasLocation {
-          if let varSizelocation = location?.computeMessageSize(8) {
-              serialize_size += varSizelocation
+      for oneElementlocations in locations {
+          serialize_size += oneElementlocations.computeMessageSize(8)
+      }
+      if hasManagesTeam {
+          if let varSizemanagesTeam = managesTeam?.computeMessageSize(9) {
+              serialize_size += varSizemanagesTeam
           }
+      }
+      for oneElementpeers in peers {
+          serialize_size += oneElementpeers.computeMessageSize(10)
       }
       serialize_size += unknownFields.serializedSize()
       memoizedSerializedSize = serialize_size
@@ -483,11 +487,6 @@ public extension Services.Profile.Actions.GetExtendedProfile {
         profile?.writeDescriptionTo(&output, indent:"\(indent)  ")
         output += "\(indent) }\n"
       }
-      if hasAddress {
-        output += "\(indent) address {\n"
-        address?.writeDescriptionTo(&output, indent:"\(indent)  ")
-        output += "\(indent) }\n"
-      }
       if hasManager {
         output += "\(indent) manager {\n"
         manager?.writeDescriptionTo(&output, indent:"\(indent)  ")
@@ -512,10 +511,24 @@ public extension Services.Profile.Actions.GetExtendedProfile {
           output += "\(indent)}\n"
           directReportsElementIndex++
       }
-      if hasLocation {
-        output += "\(indent) location {\n"
-        location?.writeDescriptionTo(&output, indent:"\(indent)  ")
+      var locationsElementIndex:Int = 0
+      for oneElementlocations in locations {
+          output += "\(indent) locations[\(locationsElementIndex)] {\n"
+          oneElementlocations.writeDescriptionTo(&output, indent:"\(indent)  ")
+          output += "\(indent)}\n"
+          locationsElementIndex++
+      }
+      if hasManagesTeam {
+        output += "\(indent) managesTeam {\n"
+        managesTeam?.writeDescriptionTo(&output, indent:"\(indent)  ")
         output += "\(indent) }\n"
+      }
+      var peersElementIndex:Int = 0
+      for oneElementpeers in peers {
+          output += "\(indent) peers[\(peersElementIndex)] {\n"
+          oneElementpeers.writeDescriptionTo(&output, indent:"\(indent)  ")
+          output += "\(indent)}\n"
+          peersElementIndex++
       }
       unknownFields.writeDescriptionTo(&output, indent:indent)
     }
@@ -528,11 +541,6 @@ public extension Services.Profile.Actions.GetExtendedProfile {
             if hasProfile {
                 if let hashValueprofile = profile?.hashValue {
                     hashCode = (hashCode &* 31) &+ hashValueprofile
-                }
-            }
-            if hasAddress {
-                if let hashValueaddress = address?.hashValue {
-                    hashCode = (hashCode &* 31) &+ hashValueaddress
                 }
             }
             if hasManager {
@@ -551,10 +559,16 @@ public extension Services.Profile.Actions.GetExtendedProfile {
             for oneElementdirectReports in directReports {
                 hashCode = (hashCode &* 31) &+ oneElementdirectReports.hashValue
             }
-            if hasLocation {
-                if let hashValuelocation = location?.hashValue {
-                    hashCode = (hashCode &* 31) &+ hashValuelocation
+            for oneElementlocations in locations {
+                hashCode = (hashCode &* 31) &+ oneElementlocations.hashValue
+            }
+            if hasManagesTeam {
+                if let hashValuemanagesTeam = managesTeam?.hashValue {
+                    hashCode = (hashCode &* 31) &+ hashValuemanagesTeam
                 }
+            }
+            for oneElementpeers in peers {
+                hashCode = (hashCode &* 31) &+ oneElementpeers.hashValue
             }
             hashCode = (hashCode &* 31) &+  unknownFields.hashValue
             return hashCode
@@ -637,38 +651,6 @@ public extension Services.Profile.Actions.GetExtendedProfile {
     public func clearProfile() -> Services.Profile.Actions.GetExtendedProfile.ResponseV1Builder {
       builderResult.hasProfile = false
       builderResult.profile = nil
-      return self
-    }
-    public var hasAddress:Bool {
-         get {
-             return builderResult.hasAddress
-         }
-    }
-    public var address:Services.Organization.Containers.AddressV1! {
-         get {
-             return builderResult.address
-         }
-         set (value) {
-             builderResult.hasAddress = true
-             builderResult.address = value
-         }
-    }
-    public func setAddress(value:Services.Organization.Containers.AddressV1!)-> Services.Profile.Actions.GetExtendedProfile.ResponseV1Builder {
-      self.address = value
-      return self
-    }
-    public func mergeAddress(value:Services.Organization.Containers.AddressV1) -> Services.Profile.Actions.GetExtendedProfile.ResponseV1Builder {
-      if (builderResult.hasAddress) {
-        builderResult.address = Services.Organization.Containers.AddressV1.builderWithPrototype(builderResult.address).mergeFrom(value).buildPartial()
-      } else {
-        builderResult.address = value
-      }
-      builderResult.hasAddress = true
-      return self
-    }
-    public func clearAddress() -> Services.Profile.Actions.GetExtendedProfile.ResponseV1Builder {
-      builderResult.hasAddress = false
-      builderResult.address = nil
       return self
     }
     public var hasManager:Bool {
@@ -767,36 +749,68 @@ public extension Services.Profile.Actions.GetExtendedProfile {
       builderResult.directReports.removeAll(keepCapacity: false)
       return self
     }
-    public var hasLocation:Bool {
+    public var locations:Array<Services.Organization.Containers.LocationV1> {
          get {
-             return builderResult.hasLocation
-         }
-    }
-    public var location:Services.Organization.Containers.LocationV1! {
-         get {
-             return builderResult.location
+             return builderResult.locations
          }
          set (value) {
-             builderResult.hasLocation = true
-             builderResult.location = value
+             builderResult.locations = value
          }
     }
-    public func setLocation(value:Services.Organization.Containers.LocationV1!)-> Services.Profile.Actions.GetExtendedProfile.ResponseV1Builder {
-      self.location = value
+    public func setLocations(value:Array<Services.Organization.Containers.LocationV1>)-> Services.Profile.Actions.GetExtendedProfile.ResponseV1Builder {
+      self.locations = value
       return self
     }
-    public func mergeLocation(value:Services.Organization.Containers.LocationV1) -> Services.Profile.Actions.GetExtendedProfile.ResponseV1Builder {
-      if (builderResult.hasLocation) {
-        builderResult.location = Services.Organization.Containers.LocationV1.builderWithPrototype(builderResult.location).mergeFrom(value).buildPartial()
+    public func clearLocations() -> Services.Profile.Actions.GetExtendedProfile.ResponseV1Builder {
+      builderResult.locations.removeAll(keepCapacity: false)
+      return self
+    }
+    public var hasManagesTeam:Bool {
+         get {
+             return builderResult.hasManagesTeam
+         }
+    }
+    public var managesTeam:Services.Organization.Containers.TeamV1! {
+         get {
+             return builderResult.managesTeam
+         }
+         set (value) {
+             builderResult.hasManagesTeam = true
+             builderResult.managesTeam = value
+         }
+    }
+    public func setManagesTeam(value:Services.Organization.Containers.TeamV1!)-> Services.Profile.Actions.GetExtendedProfile.ResponseV1Builder {
+      self.managesTeam = value
+      return self
+    }
+    public func mergeManagesTeam(value:Services.Organization.Containers.TeamV1) -> Services.Profile.Actions.GetExtendedProfile.ResponseV1Builder {
+      if (builderResult.hasManagesTeam) {
+        builderResult.managesTeam = Services.Organization.Containers.TeamV1.builderWithPrototype(builderResult.managesTeam).mergeFrom(value).buildPartial()
       } else {
-        builderResult.location = value
+        builderResult.managesTeam = value
       }
-      builderResult.hasLocation = true
+      builderResult.hasManagesTeam = true
       return self
     }
-    public func clearLocation() -> Services.Profile.Actions.GetExtendedProfile.ResponseV1Builder {
-      builderResult.hasLocation = false
-      builderResult.location = nil
+    public func clearManagesTeam() -> Services.Profile.Actions.GetExtendedProfile.ResponseV1Builder {
+      builderResult.hasManagesTeam = false
+      builderResult.managesTeam = nil
+      return self
+    }
+    public var peers:Array<Services.Profile.Containers.ProfileV1> {
+         get {
+             return builderResult.peers
+         }
+         set (value) {
+             builderResult.peers = value
+         }
+    }
+    public func setPeers(value:Array<Services.Profile.Containers.ProfileV1>)-> Services.Profile.Actions.GetExtendedProfile.ResponseV1Builder {
+      self.peers = value
+      return self
+    }
+    public func clearPeers() -> Services.Profile.Actions.GetExtendedProfile.ResponseV1Builder {
+      builderResult.peers.removeAll(keepCapacity: false)
       return self
     }
     override public var internalGetResult:GeneratedMessage {
@@ -829,9 +843,6 @@ public extension Services.Profile.Actions.GetExtendedProfile {
       if (other.hasProfile) {
           mergeProfile(other.profile)
       }
-      if (other.hasAddress) {
-          mergeAddress(other.address)
-      }
       if (other.hasManager) {
           mergeManager(other.manager)
       }
@@ -844,8 +855,14 @@ public extension Services.Profile.Actions.GetExtendedProfile {
       if !other.directReports.isEmpty  {
          builderResult.directReports += other.directReports
       }
-      if (other.hasLocation) {
-          mergeLocation(other.location)
+      if !other.locations.isEmpty  {
+         builderResult.locations += other.locations
+      }
+      if (other.hasManagesTeam) {
+          mergeManagesTeam(other.managesTeam)
+      }
+      if !other.peers.isEmpty  {
+         builderResult.peers += other.peers
       }
       mergeUnknownFields(other.unknownFields)
       return self
@@ -874,14 +891,6 @@ public extension Services.Profile.Actions.GetExtendedProfile {
           profile = subBuilder.buildPartial()
 
         case 26 :
-          var subBuilder:Services.Organization.Containers.AddressV1Builder = Services.Organization.Containers.AddressV1.builder()
-          if hasAddress {
-            subBuilder.mergeFrom(address)
-          }
-          input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
-          address = subBuilder.buildPartial()
-
-        case 34 :
           var subBuilder:Services.Profile.Containers.ProfileV1Builder = Services.Profile.Containers.ProfileV1.builder()
           if hasManager {
             subBuilder.mergeFrom(manager)
@@ -889,7 +898,7 @@ public extension Services.Profile.Actions.GetExtendedProfile {
           input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
           manager = subBuilder.buildPartial()
 
-        case 42 :
+        case 34 :
           var subBuilder:Services.Organization.Containers.TeamV1Builder = Services.Organization.Containers.TeamV1.builder()
           if hasTeam {
             subBuilder.mergeFrom(team)
@@ -897,7 +906,7 @@ public extension Services.Profile.Actions.GetExtendedProfile {
           input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
           team = subBuilder.buildPartial()
 
-        case 50 :
+        case 42 :
           var subBuilder = Services.User.Containers.IdentityV1.builder()
           input.readMessage(subBuilder,extensionRegistry:extensionRegistry)
           identities += [subBuilder.buildPartial()]
@@ -908,12 +917,22 @@ public extension Services.Profile.Actions.GetExtendedProfile {
           directReports += [subBuilder.buildPartial()]
 
         case 66 :
-          var subBuilder:Services.Organization.Containers.LocationV1Builder = Services.Organization.Containers.LocationV1.builder()
-          if hasLocation {
-            subBuilder.mergeFrom(location)
+          var subBuilder = Services.Organization.Containers.LocationV1.builder()
+          input.readMessage(subBuilder,extensionRegistry:extensionRegistry)
+          locations += [subBuilder.buildPartial()]
+
+        case 74 :
+          var subBuilder:Services.Organization.Containers.TeamV1Builder = Services.Organization.Containers.TeamV1.builder()
+          if hasManagesTeam {
+            subBuilder.mergeFrom(managesTeam)
           }
           input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
-          location = subBuilder.buildPartial()
+          managesTeam = subBuilder.buildPartial()
+
+        case 82 :
+          var subBuilder = Services.Profile.Containers.ProfileV1.builder()
+          input.readMessage(subBuilder,extensionRegistry:extensionRegistry)
+          peers += [subBuilder.buildPartial()]
 
         default:
           if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {

@@ -2,6 +2,7 @@
 // Source file: ./src/protobufs/services/organization/containers.proto
 package com.rhlabs.protobufs.services.organization.containers;
 
+import com.rhlabs.protobufs.services.common.containers.DescriptionV1;
 import com.rhlabs.protobufs.services.common.containers.PermissionsV1;
 import com.rhlabs.protobufs.services.profile.containers.ProfileV1;
 import com.squareup.wire.Message;
@@ -22,7 +23,6 @@ public final class LocationV1 extends Message {
   public static final String DEFAULT_ORGANIZATION_ID = "";
   public static final Integer DEFAULT_PROFILE_COUNT = 0;
   public static final String DEFAULT_IMAGE_URL = "";
-  public static final String DEFAULT_DESCRIPTION = "";
   public static final String DEFAULT_ESTABLISHED_DATE = "";
   public static final List<ProfileV1> DEFAULT_POINTS_OF_CONTACT = Collections.emptyList();
 
@@ -47,8 +47,8 @@ public final class LocationV1 extends Message {
   @ProtoField(tag = 7, type = STRING)
   public final String image_url;
 
-  @ProtoField(tag = 8, type = STRING)
-  public final String description;
+  @ProtoField(tag = 8)
+  public final DescriptionV1 location_description;
 
   @ProtoField(tag = 9, type = STRING)
   public final String established_date;
@@ -59,7 +59,7 @@ public final class LocationV1 extends Message {
   @ProtoField(tag = 11)
   public final PermissionsV1 permissions;
 
-  public LocationV1(Integer version, String id, String name, AddressV1 address, String organization_id, Integer profile_count, String image_url, String description, String established_date, List<ProfileV1> points_of_contact, PermissionsV1 permissions) {
+  public LocationV1(Integer version, String id, String name, AddressV1 address, String organization_id, Integer profile_count, String image_url, DescriptionV1 location_description, String established_date, List<ProfileV1> points_of_contact, PermissionsV1 permissions) {
     this.version = version;
     this.id = id;
     this.name = name;
@@ -67,14 +67,14 @@ public final class LocationV1 extends Message {
     this.organization_id = organization_id;
     this.profile_count = profile_count;
     this.image_url = image_url;
-    this.description = description;
+    this.location_description = location_description;
     this.established_date = established_date;
     this.points_of_contact = immutableCopyOf(points_of_contact);
     this.permissions = permissions;
   }
 
   private LocationV1(Builder builder) {
-    this(builder.version, builder.id, builder.name, builder.address, builder.organization_id, builder.profile_count, builder.image_url, builder.description, builder.established_date, builder.points_of_contact, builder.permissions);
+    this(builder.version, builder.id, builder.name, builder.address, builder.organization_id, builder.profile_count, builder.image_url, builder.location_description, builder.established_date, builder.points_of_contact, builder.permissions);
     setBuilder(builder);
   }
 
@@ -90,7 +90,7 @@ public final class LocationV1 extends Message {
         && equals(organization_id, o.organization_id)
         && equals(profile_count, o.profile_count)
         && equals(image_url, o.image_url)
-        && equals(description, o.description)
+        && equals(location_description, o.location_description)
         && equals(established_date, o.established_date)
         && equals(points_of_contact, o.points_of_contact)
         && equals(permissions, o.permissions);
@@ -107,7 +107,7 @@ public final class LocationV1 extends Message {
       result = result * 37 + (organization_id != null ? organization_id.hashCode() : 0);
       result = result * 37 + (profile_count != null ? profile_count.hashCode() : 0);
       result = result * 37 + (image_url != null ? image_url.hashCode() : 0);
-      result = result * 37 + (description != null ? description.hashCode() : 0);
+      result = result * 37 + (location_description != null ? location_description.hashCode() : 0);
       result = result * 37 + (established_date != null ? established_date.hashCode() : 0);
       result = result * 37 + (points_of_contact != null ? points_of_contact.hashCode() : 1);
       result = result * 37 + (permissions != null ? permissions.hashCode() : 0);
@@ -125,7 +125,7 @@ public final class LocationV1 extends Message {
     public String organization_id;
     public Integer profile_count;
     public String image_url;
-    public String description;
+    public DescriptionV1 location_description;
     public String established_date;
     public List<ProfileV1> points_of_contact;
     public PermissionsV1 permissions;
@@ -143,7 +143,7 @@ public final class LocationV1 extends Message {
       this.organization_id = message.organization_id;
       this.profile_count = message.profile_count;
       this.image_url = message.image_url;
-      this.description = message.description;
+      this.location_description = message.location_description;
       this.established_date = message.established_date;
       this.points_of_contact = copyOf(message.points_of_contact);
       this.permissions = message.permissions;
@@ -184,8 +184,8 @@ public final class LocationV1 extends Message {
       return this;
     }
 
-    public Builder description(String description) {
-      this.description = description;
+    public Builder location_description(DescriptionV1 location_description) {
+      this.location_description = location_description;
       return this;
     }
 
