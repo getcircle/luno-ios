@@ -9,6 +9,10 @@
 import UIKit
 import ProtobufRegistry
 
+protocol ProfileCollectionViewCellDelegate {
+    func onProfileAddButton(checked: Bool)
+}
+
 class ProfileCollectionViewCell: CircleCollectionViewCell {
 
     enum SizeMode {
@@ -24,14 +28,22 @@ class ProfileCollectionViewCell: CircleCollectionViewCell {
         return 70.0
     }
     
+    var delegate: ProfileCollectionViewCellDelegate?
+    
     @IBOutlet weak private(set) var nameLabel: UILabel!
+    @IBOutlet weak private(set) var nameLabelRightConstraint: NSLayoutConstraint!
     @IBOutlet weak private(set) var profileImageView: CircleImageView!
     @IBOutlet weak private(set) var subTextLabel: UILabel!
     @IBOutlet weak private(set) var teamNameLetterLabel: UILabel!
+    @IBOutlet weak private(set) var addButton: UIButton!
+    @IBOutlet weak private(set) var separatorView: UIView!
+
+    private var nameLabelRightConstraintInitialValue: CGFloat!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        configureAddButton()
         if !(self is ProfileGridItemCollectionViewCell) {
             profileImageView.makeItCircular()
         }
@@ -39,8 +51,50 @@ class ProfileCollectionViewCell: CircleCollectionViewCell {
         subTextLabel.font = UIFont.appSecondaryTextFont()
         nameLabel.textColor = UIColor.appPrimaryTextColor()
         subTextLabel.textColor = UIColor.appSecondaryTextColor()
+        nameLabelRightConstraintInitialValue = nameLabelRightConstraint.constant
     }
 
+    // MARK: - Configuration
+    
+    private func configureAddButton() {
+        addButton.addRoundCorners(radius: 4.0)
+        separatorView.backgroundColor = UIColor.appSecondaryTextColor().colorWithAlphaComponent(0.3)
+        addButton.layer.borderColor = UIColor.appSecondaryTextColor().CGColor
+        addButton.layer.borderWidth = 1.0
+        addButton.setImage(
+            UIImage.imageFromColor(UIColor.appControlHighlightedColor(), withRect: addButton.frame),
+            forState: .Highlighted
+        )
+        addButton.hidden = true
+        separatorView.hidden = true
+    }
+    
+    private func setAddButtonChecked(checked: Bool) {
+        if checked {
+            addButton.setImage(UIImage(named: "Check"), forState: .Normal)
+        }
+        else {
+            addButton.setImage(nil, forState: .Normal)
+        }
+    }
+    
+    func supportAddButton(setChecked: Bool) {
+        addButton.hidden = false
+        separatorView.hidden = false
+        nameLabelRightConstraint.constant = nameLabelRightConstraintInitialValue + 20 + addButton.frameWidth
+        nameLabel.setNeedsUpdateConstraints()
+        nameLabel.layoutIfNeeded()
+        setAddButtonChecked(setChecked)
+    }
+    
+    private func resetNameLabelConstraints() {
+        if nameLabelRightConstraint.constant != nameLabelRightConstraintInitialValue {
+            nameLabelRightConstraint.constant = nameLabelRightConstraintInitialValue
+            nameLabel.setNeedsUpdateConstraints()
+            nameLabel.layoutIfNeeded()
+        }
+    }
+    
     override func setData(data: AnyObject) {
         teamNameLetterLabel.hidden = true
         if let profile = data as? Services.Profile.Containers.ProfileV1 {
@@ -52,6 +106,10 @@ class ProfileCollectionViewCell: CircleCollectionViewCell {
         else if let location = data as? Services.Organization.Containers.LocationV1 {
             setLocation(location)
         }
+        
+        addButton.hidden = true
+        separatorView.hidden = true
+        resetNameLabelConstraints()
     }
     
     private func setProfile(profile: Services.Profile.Containers.ProfileV1) {
@@ -147,4 +205,12 @@ class ProfileCollectionViewCell: CircleCollectionViewCell {
         return label
     }
     
+    // MARK: - IBActions
+    
+    @IBAction func addButtonTapped(sender: AnyObject) {
+        // Toggle image
+        let checked = addButton.imageForState(.Normal) == nil
+        setAddButtonChecked(checked)
+        delegate?.onProfileAddButton(checked)
+    }
 }

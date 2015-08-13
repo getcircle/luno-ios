@@ -14,7 +14,7 @@ class OfficeDetailViewController:
     DetailViewController,
     CardHeaderViewDelegate,
     CardFooterViewDelegate,
-    ProfileSelectorDelegate
+    ProfileCollectionViewCellDelegate
 {
 
     // MARK: - Initialization
@@ -36,6 +36,7 @@ class OfficeDetailViewController:
         collectionView.delegate = delegate
         (layout as! StickyHeaderCollectionViewLayout).headerHeight = ProfileHeaderCollectionReusableView.heightWithoutSecondaryInfo
         (dataSource as! OfficeDetailDataSource).editImageButtonDelegate = self
+        (dataSource as! OfficeDetailDataSource).profileCellDelegate = self
         super.configureCollectionView()
     }
     
@@ -124,27 +125,7 @@ class OfficeDetailViewController:
                 }
             }
             break
-            
-        case .Profiles:
-            switch card.subType {
-            case .PointsOfContact:
-                let profilesSelectorViewController = ProfilesSelectorViewController()
-                (profilesSelectorViewController.dataSource as! ProfilesDataSource).configureForLocation(
-                    officeDetailDataSource.location.id
-                )
-                if let profiles = card.allContent as? Array<Services.Profile.Containers.ProfileV1> {
-                    profilesSelectorViewController.selectedProfiles = profiles
-                }
-                profilesSelectorViewController.addSearchFilterView = false
-                profilesSelectorViewController.profileSelectorDelegate = self
-                profilesSelectorViewController.title = "Points of Contact"
-                let addMemberNavController = UINavigationController(rootViewController: profilesSelectorViewController)
-                navigationController?.presentViewController(addMemberNavController, animated: true, completion: nil)
-                
-            default:
-                break
-            }
-            
+
         default:
             break
         }
@@ -227,26 +208,31 @@ class OfficeDetailViewController:
         }
     }
     
-    // MARK: - ProfilesSelectorDelegate
+    // MARK - ProfileCollectionViewCellDelegate
     
-    func onSelectedProfiles(profiles: Array<Services.Profile.Containers.ProfileV1>) -> Bool {
-        if let presentedViewController = presentedViewController, officeDataSource = dataSource as? OfficeDetailDataSource {
-            let hud = MBProgressHUD.showHUDAddedTo(presentedViewController.view, animated: true)
-            let locationBuilder = (dataSource as! OfficeDetailDataSource).location.toBuilder()
-            locationBuilder.pointsOfContact = profiles
+    func onProfileAddButton(checked: Bool) {
+        if let officeDataSource = dataSource as? OfficeDetailDataSource, 
+            loggedInUserProfile = AuthViewController.getLoggedInUserProfile()
+        {
+            let hud = MBProgressHUD.showHUDAddedTo(view, animated: true)
+            var pointsOfContact = Set(officeDataSource.location.pointsOfContact)
+            if checked {
+                pointsOfContact.insert(loggedInUserProfile)
+                hud.labelText = "Adding you as a point of contact"
+            }
+            else {
+                pointsOfContact.remove(loggedInUserProfile)
+            }
             
+            let locationBuilder = (dataSource as! OfficeDetailDataSource).location.toBuilder()
+            locationBuilder.pointsOfContact = Array(pointsOfContact)
             Services.Organization.Actions.updateLocation(locationBuilder.build(), completionHandler: { (location, error) -> Void in
                 hud.hide(true)
                 if let location = location where error == nil {
                     officeDataSource.location = location
                     self.loadData()
-                    presentedViewController.dismissViewControllerAnimated(true, completion: nil)
                 }
             })
-            
-            return false
         }
-        
-        return true
     }
 }

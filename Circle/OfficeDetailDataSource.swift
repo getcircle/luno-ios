@@ -13,6 +13,7 @@ class OfficeDetailDataSource: CardDataSource {
     
     var editImageButtonDelegate: EditImageButtonDelegate?
     var location: Services.Organization.Containers.LocationV1!
+    var profileCellDelegate: ProfileCollectionViewCellDelegate?
 
     private(set) var profiles = Array<Services.Profile.Containers.ProfileV1>()
     private(set) var nextProfilesRequest: Soa.ServiceRequestV1?
@@ -20,6 +21,8 @@ class OfficeDetailDataSource: CardDataSource {
     
     private let defaultSectionInset = UIEdgeInsetsMake(0.0, 0.0, 25.0, 0.0)
     private let sectionHeaderClass = ProfileSectionHeaderCollectionReusableView.self
+    
+    private var isLoggedInUserPOC = false
     
     // MARK: - Load Data
     
@@ -61,6 +64,23 @@ class OfficeDetailDataSource: CardDataSource {
     }
     
     // MARK: - UICollectionViewDataSource
+    
+    override func configureCell(cell: CircleCollectionViewCell, atIndexPath indexPath: NSIndexPath) {
+        if canEdit() {
+            if let
+                card = cardAtSection(indexPath.section),
+                cell = cell as? ProfileCollectionViewCell
+                where card.subType == .PointsOfContact
+            {
+                if let loggedInUserProfile = AuthViewController.getLoggedInUserProfile(),
+                    content: AnyObject = contentAtIndexPath(indexPath)
+                    where (content as! Services.Profile.Containers.ProfileV1).id == loggedInUserProfile.id {
+                        cell.supportAddButton(isLoggedInUserPOC)
+                        cell.delegate = profileCellDelegate
+                }
+            }
+        }
+    }
     
     override func configureHeader(header: CircleCollectionReusableView, atIndexPath indexPath: NSIndexPath) {
         
@@ -109,6 +129,7 @@ class OfficeDetailDataSource: CardDataSource {
     }
     
     private func addAddressCard() {
+
         // Address
         let addressCard = Card(cardType: .OfficeAddress, title: AppStrings.CardTitleAddress)
         addressCard.sectionInset = defaultSectionInset
@@ -140,6 +161,10 @@ class OfficeDetailDataSource: CardDataSource {
     }
     
     private func addPointOfContactCard() {
+        
+        // Show points of contact section if there is data or user can edit
+        // Show existing points of contact with logged in user at the bottom
+        // Show checked or unchecked status
         if location.pointsOfContact.count > 0 || canEdit() {
             let pointsOfContactCard = Card(
                 cardType: .Profiles,
@@ -152,16 +177,35 @@ class OfficeDetailDataSource: CardDataSource {
                     location.pointsOfContact.count
                 ) as String
             )
-            pointsOfContactCard.sectionInset = defaultSectionInset
-            if location.pointsOfContact.count > 0 {
-                pointsOfContactCard.addContent(content: location.pointsOfContact)
-            }
             
+            pointsOfContactCard.sectionInset = defaultSectionInset
             if canEdit() {
                 pointsOfContactCard.showContentCount = false
                 pointsOfContactCard.addHeader(headerClass: sectionHeaderClass)
-                pointsOfContactCard.allowEditingContent = true
+                
+                if let loggedInProfile = AuthViewController.getLoggedInUserProfile() {
+                    isLoggedInUserPOC = false
+                    var pocsInModifiedOrder = Array<Services.Profile.Containers.ProfileV1>()
+                    
+                    // Check if logged in user is already a POC or not
+                    // Add them to the last position
+                    for pocProfile in location.pointsOfContact {
+                        if loggedInProfile.id == pocProfile.id {
+                            isLoggedInUserPOC = true
+                        }
+                        else {
+                            pocsInModifiedOrder.append(pocProfile)
+                        }
+                    }
+                    
+                    pocsInModifiedOrder.append(loggedInProfile)
+                    pointsOfContactCard.addContent(content: pocsInModifiedOrder)
+                }
             }
+            else if location.pointsOfContact.count > 0 {
+                pointsOfContactCard.addContent(content: location.pointsOfContact)
+            }
+            
             appendCard(pointsOfContactCard)
         }
     }

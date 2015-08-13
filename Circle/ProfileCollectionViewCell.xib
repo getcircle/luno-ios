@@ -38,6 +38,26 @@
                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="72z-HK-1is">
+                        <rect key="frame" x="375" y="23" width="25" height="25"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="25" id="pnE-uu-AqO"/>
+                            <constraint firstAttribute="width" secondItem="72z-HK-1is" secondAttribute="height" multiplier="1:1" id="slb-4Z-Ddh"/>
+                        </constraints>
+                        <state key="normal" image="Check">
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <connections>
+                            <action selector="addButtonTapped:" destination="gTV-IL-0wX" eventType="touchUpInside" id="C2x-Op-e8h"/>
+                        </connections>
+                    </button>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vfd-Yv-LMR">
+                        <rect key="frame" x="359" y="12" width="1" height="46"/>
+                        <color key="backgroundColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="1" id="R4c-42-5bO"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
@@ -46,24 +66,35 @@
                 <constraint firstItem="bkV-ww-aQf" firstAttribute="top" secondItem="9nj-gl-dh0" secondAttribute="bottom" constant="1" id="2XQ-DN-rzh"/>
                 <constraint firstItem="0Uo-RU-eGd" firstAttribute="top" secondItem="WaH-1I-lf2" secondAttribute="top" id="BOl-Lz-Ejn"/>
                 <constraint firstItem="0Uo-RU-eGd" firstAttribute="trailing" secondItem="WaH-1I-lf2" secondAttribute="trailing" id="C2l-pn-1Dj"/>
+                <constraint firstAttribute="centerY" secondItem="72z-HK-1is" secondAttribute="centerY" id="EzT-4t-moj"/>
                 <constraint firstItem="bkV-ww-aQf" firstAttribute="leading" secondItem="9nj-gl-dh0" secondAttribute="leading" id="IDj-BR-Asz"/>
                 <constraint firstItem="0Uo-RU-eGd" firstAttribute="bottom" secondItem="WaH-1I-lf2" secondAttribute="bottom" id="Jcb-Jr-pbH"/>
+                <constraint firstAttribute="trailing" secondItem="72z-HK-1is" secondAttribute="trailing" constant="15" id="Kg3-FW-HI3"/>
+                <constraint firstItem="72z-HK-1is" firstAttribute="leading" secondItem="vfd-Yv-LMR" secondAttribute="trailing" constant="15" id="MKz-lU-Oq8"/>
                 <constraint firstItem="9nj-gl-dh0" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="16" id="PwW-a2-cpz"/>
                 <constraint firstItem="WaH-1I-lf2" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="15" id="SMf-Cz-AoV"/>
                 <constraint firstAttribute="trailing" secondItem="9nj-gl-dh0" secondAttribute="trailing" constant="15" id="Wbj-mA-mTg"/>
                 <constraint firstAttribute="centerY" secondItem="WaH-1I-lf2" secondAttribute="centerY" id="ZZ7-Fu-qz3"/>
+                <constraint firstAttribute="bottom" secondItem="vfd-Yv-LMR" secondAttribute="bottom" constant="12" id="bAM-oa-GKL"/>
+                <constraint firstItem="vfd-Yv-LMR" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="12" id="eF4-xm-DHy"/>
                 <constraint firstItem="0Uo-RU-eGd" firstAttribute="leading" secondItem="WaH-1I-lf2" secondAttribute="leading" id="eke-g1-8HY"/>
                 <constraint firstItem="9nj-gl-dh0" firstAttribute="leading" secondItem="WaH-1I-lf2" secondAttribute="trailing" constant="10" id="lu8-eB-H0J"/>
                 <constraint firstItem="bkV-ww-aQf" firstAttribute="width" secondItem="9nj-gl-dh0" secondAttribute="width" id="qZz-5q-AA8"/>
             </constraints>
             <size key="customSize" width="415" height="86"/>
             <connections>
+                <outlet property="addButton" destination="72z-HK-1is" id="eJk-A4-mi8"/>
                 <outlet property="nameLabel" destination="9nj-gl-dh0" id="XIg-BE-1mH"/>
+                <outlet property="nameLabelRightConstraint" destination="Wbj-mA-mTg" id="a70-ps-kG9"/>
                 <outlet property="profileImageView" destination="WaH-1I-lf2" id="RBG-XJ-Tcr"/>
+                <outlet property="separatorView" destination="vfd-Yv-LMR" id="eO3-99-MRd"/>
                 <outlet property="subTextLabel" destination="bkV-ww-aQf" id="hr8-SX-saP"/>
                 <outlet property="teamNameLetterLabel" destination="0Uo-RU-eGd" id="3An-xs-U08"/>
             </connections>
             <point key="canvasLocation" x="277.5" y="175"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="Check" width="18" height="17"/>
+    </resources>
 </document>
