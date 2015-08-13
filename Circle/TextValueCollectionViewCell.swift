@@ -46,6 +46,7 @@ class TextValueCollectionViewCell: CircleCollectionViewCell {
         textLabelBottomConstraint.constant = 20
         if let textData = data as? TextData {
             if textData.value.trimWhitespace() != "" {
+                textLabel.textColor = UIColor.appPrimaryTextColor()
                 if textData.type == .TeamStatus || textData.type == .ProfileStatus {
                     textLabel.text = "\"" + textData.value + "\""
                     textLabel.font = obliqueFont
@@ -62,10 +63,11 @@ class TextValueCollectionViewCell: CircleCollectionViewCell {
                 }
             }
             else if let placeholder = textData.placeholder {
+                textLabel.textColor = UIColor.appSecondaryTextColor()
                 textLabel.text = placeholder
                 textLabel.font = normalFont
             }
-            
+
             textLabel.setNeedsUpdateConstraints()
             textLabel.layoutIfNeeded()
         }
