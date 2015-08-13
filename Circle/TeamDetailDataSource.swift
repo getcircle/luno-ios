@@ -16,10 +16,11 @@ class TeamDetailDataSource: CardDataSource {
     
     private(set) var profileHeaderView: ProfileHeaderCollectionReusableView?
 
-    private var managerProfile: Services.Profile.Containers.ProfileV1!
+    private(set) var managerProfile: Services.Profile.Containers.ProfileV1!
     private(set) var profiles = Array<Services.Profile.Containers.ProfileV1>()
     private(set) var teams = Array<Services.Organization.Containers.TeamV1>()
     private(set) var statusProfile: Services.Profile.Containers.ProfileV1?
+    private(set) var descriptionProfile: Services.Profile.Containers.ProfileV1?
     
     private let sectionInset = UIEdgeInsetsMake(0.0, 0.0, 25.0, 0.0)
     private let sectionHeaderClass = ProfileSectionHeaderCollectionReusableView.self
@@ -41,7 +42,7 @@ class TeamDetailDataSource: CardDataSource {
             // TODO: Remove after profiles come back inflated
             if team.hasStatus && team.status != nil {
                 dispatch_group_enter(actionsGroup)
-                Services.Profile.Actions.getProfile(team.status.byProfileId, completionHandler: { (profile, error) -> Void in
+                Services.Profile.Actions.getProfile(team.status.byProfileId) { (profile, error) -> Void in
                     if let error = error {
                         storedError = error
                     }
@@ -49,7 +50,21 @@ class TeamDetailDataSource: CardDataSource {
                         self.statusProfile = profile
                     }
                     dispatch_group_leave(actionsGroup)
-                })
+                }
+            }
+            
+            // TODO: Remove after profiles come back inflated
+            if team.hasTeamDescription && team.teamDescription != nil {
+                dispatch_group_enter(actionsGroup)
+                Services.Profile.Actions.getProfile(team.teamDescription.byProfileId) { (profile, error) -> Void in
+                    if let error = error {
+                        storedError = error
+                    }
+                    else  if let profile = profile {
+                        self.descriptionProfile = profile
+                    }
+                    dispatch_group_leave(actionsGroup)
+                }
             }
             
             // Fetch managers and members
@@ -90,7 +105,7 @@ class TeamDetailDataSource: CardDataSource {
                     storedError = error
                 }
                 else if let teams = teams {
-                    self.teams.extend(teams)
+                    self.teams = teams
                 }
                 dispatch_group_leave(actionsGroup)
             })
@@ -160,24 +175,31 @@ class TeamDetailDataSource: CardDataSource {
     }
     
     private func addDescriptionCard() {
-        if team.teamDescription?.value.trimWhitespace() != "" || canEdit() {
-            var description = NSLocalizedString("Add a description", comment: "Add a description to the team")
-            if let value = team.teamDescription?.value where value.trimWhitespace() != "" {
-                description = value
-            }
+        var description = ""
+        if let value = team.teamDescription?.value where value.trimWhitespace() != "" {
+            description = value
+        }
+        
+        if description != "" || canEdit() {
             
             let descriptionCard = Card(cardType: .TextValue, title: "Description")
+            descriptionCard.addHeader(headerClass: sectionHeaderClass)
+            descriptionCard.showContentCount = false
             descriptionCard.sectionInset = self.sectionInset
+            descriptionCard.allowEditingContent = canEdit()
             descriptionCard.addContent(content: [
-                TextData(type: .TeamDescription, andValue: description)
+                TextData(
+                    type: .TeamDescription, 
+                    andValue: description,
+                    andTimestamp: team.teamDescription?.changed,
+                    andPlaceholder: NSLocalizedString(
+                        "Add a description for your team", 
+                        comment: "Add a description to the team"
+                    ),
+                    andAuthor: descriptionProfile
+                )
             ])
 
-            if canEdit() {
-                descriptionCard.showContentCount = false
-                descriptionCard.addHeader(headerClass: sectionHeaderClass)
-                descriptionCard.allowEditingContent = true
-            }
-            
             appendCard(descriptionCard)
         }
     }

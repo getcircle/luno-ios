@@ -18,6 +18,7 @@ class OfficeDetailDataSource: CardDataSource {
     private(set) var profiles = Array<Services.Profile.Containers.ProfileV1>()
     private(set) var nextProfilesRequest: Soa.ServiceRequestV1?
     private(set) var profileHeaderView: ProfileHeaderCollectionReusableView?
+    private(set) var descriptionProfile: Services.Profile.Containers.ProfileV1?
     
     private let defaultSectionInset = UIEdgeInsetsMake(0.0, 0.0, 25.0, 0.0)
     private let sectionHeaderClass = ProfileSectionHeaderCollectionReusableView.self
@@ -33,6 +34,20 @@ class OfficeDetailDataSource: CardDataSource {
         // Fetch data within a dispatch group, calling populateData when all tasks have finished
         var storedError: NSError!
         var actionsGroup = dispatch_group_create()
+        
+        // TODO: Remove after profiles come back inflated
+        if location.hasLocationDescription && location.locationDescription != nil {
+            dispatch_group_enter(actionsGroup)
+            Services.Profile.Actions.getProfile(location.locationDescription.byProfileId) { (profile, error) -> Void in
+                if let error = error {
+                    storedError = error
+                }
+                else  if let profile = profile {
+                    self.descriptionProfile = profile
+                }
+                dispatch_group_leave(actionsGroup)
+            }
+        }
         
         dispatch_group_enter(actionsGroup)
         Services.Organization.Actions.getLocation(locationId: location.id, completionHandler: { (location, error) -> Void in
@@ -138,23 +153,30 @@ class OfficeDetailDataSource: CardDataSource {
     }
     
     private func addDescriptionCard() {
-        if location.locationDescription?.value.trimWhitespace() != "" || canEdit() {
-            var description = NSLocalizedString("Add a description", comment: "Add a description to the location")
-            if let value = location.locationDescription?.value where value.trimWhitespace() != "" {
-                description = value
-            }
+        var description = ""
+        if let value = location.locationDescription?.value where value.trimWhitespace() != "" {
+            description = value
+        }
+        
+        if description != "" || canEdit() {
             
             let descriptionCard = Card(cardType: .TextValue, title: "Description")
+            descriptionCard.addHeader(headerClass: sectionHeaderClass)
+            descriptionCard.showContentCount = false
             descriptionCard.sectionInset = defaultSectionInset
+            descriptionCard.allowEditingContent = canEdit()
             descriptionCard.addContent(content: [
-                TextData(type: .LocationDescription, andValue: description)
+                TextData(
+                    type: .LocationDescription,
+                    andValue: description,
+                    andTimestamp: location.locationDescription?.changed,
+                    andPlaceholder: NSLocalizedString(
+                        "Add a description for your location",
+                        comment: "Add a description to the location"
+                    ),
+                    andAuthor: descriptionProfile
+                )
             ])
-            
-            if canEdit() {
-                descriptionCard.showContentCount = false
-                descriptionCard.addHeader(headerClass: sectionHeaderClass)
-                descriptionCard.allowEditingContent = true
-            }
             
             appendCard(descriptionCard)
         }
@@ -178,11 +200,11 @@ class OfficeDetailDataSource: CardDataSource {
                 ) as String
             )
             
+            pointsOfContactCard.showContentCount = false
+            pointsOfContactCard.addHeader(headerClass: sectionHeaderClass)
             pointsOfContactCard.sectionInset = defaultSectionInset
+            
             if canEdit() {
-                pointsOfContactCard.showContentCount = false
-                pointsOfContactCard.addHeader(headerClass: sectionHeaderClass)
-                
                 if let loggedInProfile = AuthViewController.getLoggedInUserProfile() {
                     isLoggedInUserPOC = false
                     var pocsInModifiedOrder = Array<Services.Profile.Containers.ProfileV1>()
