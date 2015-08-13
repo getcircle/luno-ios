@@ -218,4 +218,14 @@ class TeamDetailViewController:
         
         }
     }
+    
+    // MARK: - TextInputViewControllerDelegate
+    
+    override func onTextInputValueUpdated(updatedObject: AnyObject?) {
+        if let team = updatedObject as? Services.Organization.Containers.TeamV1 {
+            (dataSource as! TeamDetailDataSource).team = team
+        }
+
+        super.onTextInputValueUpdated(updatedObject)
+    }
 }

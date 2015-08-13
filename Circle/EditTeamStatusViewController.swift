@@ -46,7 +46,7 @@ class EditTeamStatusViewController: TextInputViewController {
         let teamBuilder = team.toBuilder()
         teamBuilder.status = statusBuilder.build()
         Services.Organization.Actions.updateTeam(teamBuilder.build()) { (team, error) -> Void in
-            self.onDataSaved()
+            self.onDataSaved(team)
         }
     }
 }

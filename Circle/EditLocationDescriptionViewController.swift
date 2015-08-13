@@ -44,7 +44,7 @@ class EditLocationDescriptionViewController: TextInputViewController {
         descriptionBuilder.value = data
         locationBuilder.locationDescription = descriptionBuilder.build()
         Services.Organization.Actions.updateLocation(locationBuilder.build()) { (location, error) -> Void in
-            self.onDataSaved()
+            self.onDataSaved(location)
         }
     }
 }

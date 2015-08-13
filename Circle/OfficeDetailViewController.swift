@@ -235,4 +235,14 @@ class OfficeDetailViewController:
             })
         }
     }
+    
+    // MARK: - TextInputViewControllerDelegate
+    
+    override func onTextInputValueUpdated(updatedObject: AnyObject?) {
+        if let location = updatedObject as? Services.Organization.Containers.LocationV1 {
+            (dataSource as! OfficeDetailDataSource).location = location
+        }
+        
+        super.onTextInputValueUpdated(updatedObject)
+    }
 }

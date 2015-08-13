@@ -11,7 +11,7 @@ import ProtobufRegistry
 import MBProgressHUD
 
 protocol TextInputViewControllerDelegate {
-    func onTextInputValueUpdated(updatedValue: String)
+    func onTextInputValueUpdated(updatedObject: AnyObject?)
 }
 
 class TextInputViewController: UIViewController, UITextViewDelegate {
@@ -127,9 +127,12 @@ class TextInputViewController: UIViewController, UITextViewDelegate {
     }
     
     private func populateData() {
-        if let data = getData() {
+        if let data = getData() where data.trimWhitespace() != "" {
             textView.text = data
             placeholderLabel.hidden = true
+        }
+        else {
+            placeholderLabel.hidden = false
         }
     }
     
@@ -255,12 +258,12 @@ class TextInputViewController: UIViewController, UITextViewDelegate {
     }
     
     
-    final internal func onDataSaved() {
+    final internal func onDataSaved(updatedObject: AnyObject?) {
         if let hud = self.hud {
             hud.hide(true)
         }
         
-        delegate?.onTextInputValueUpdated(textView.text)
+        delegate?.onTextInputValueUpdated(updatedObject)
         if addNextButton {
             goToNextVC()
         }

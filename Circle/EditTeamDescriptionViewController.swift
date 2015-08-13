@@ -44,7 +44,7 @@ class EditTeamDescriptionViewController: TextInputViewController {
         descriptionBuilder.value = data
         teamBuilder.teamDescription = descriptionBuilder.build()
         Services.Organization.Actions.updateTeam(teamBuilder.build()) { (team, error) -> Void in
-            self.onDataSaved()
+            self.onDataSaved(team)
         }
     }
 }

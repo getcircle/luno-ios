@@ -50,7 +50,7 @@ class EditProfileStatusViewController: TextInputViewController {
                 AuthViewController.updateUserProfile(profile)
             }
             
-            self.onDataSaved()
+            self.onDataSaved(profile)
         }
     }
 }

@@ -233,7 +233,7 @@ class DetailViewController: BaseDetailViewController,
     
     // MARK: - TextInputViewControllerDelegate
 
-    func onTextInputValueUpdated(updatedValue: String) {
+    func onTextInputValueUpdated(updatedObject: AnyObject?) {
         loadData()
     }
 }
