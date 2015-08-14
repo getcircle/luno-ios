@@ -20,7 +20,6 @@ class SearchAction: SearchSuggestion {
         case AddressOfOffice
         case LocalTimeAtOffice
         case ContactsOfOffice
-        case TeamsInOffice
         case PeopleInOffice
         
         case MembersOfTeam
@@ -90,21 +89,12 @@ class SearchAction: SearchSuggestion {
         
         // Local time
         let timeAction = SearchAction(
-            title: "Local Time is " + location.address.officeCurrentTimeLabel(nil, addDifferenceText: true),
+            title: "Local Time is " + location.officeCurrentTimeLabel(nil, addDifferenceText: true),
             ofType: .LocalTimeAtOffice,
             withImageSource: "Info"
         )
         timeAction.underlyingObject = location as AnyObject
         searchActions.append(timeAction)
-
-        // Teams
-        let teamsAction = SearchAction(
-            title: "Teams in " + location.name + " Office",
-            ofType: .TeamsInOffice,
-            withImageSource: "SearchTab"
-        )
-        teamsAction.underlyingObject = location as AnyObject
-        searchActions.append(teamsAction)
 
         // People
         let peopleAction = SearchAction(

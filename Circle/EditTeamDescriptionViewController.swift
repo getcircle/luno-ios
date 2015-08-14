@@ -18,8 +18,8 @@ class EditTeamDescriptionViewController: TextInputViewController {
     }
     
     override func getData() -> String? {
-        if team.hasTeamDescription {
-            return team.teamDescription.value.trimWhitespace()
+        if team.hasDescription {
+            return team.description_.value.trimWhitespace()
         }
         
         return nil
@@ -36,13 +36,13 @@ class EditTeamDescriptionViewController: TextInputViewController {
     override func saveData(data: String) {
         let teamBuilder = team.toBuilder()
         let descriptionBuilder: Services.Common.Containers.DescriptionV1Builder
-        if let description = teamBuilder.teamDescription {
+        if let description = teamBuilder.description_ {
             descriptionBuilder = description.toBuilder()
         } else {
             descriptionBuilder = Services.Common.Containers.DescriptionV1.builder()
         }
         descriptionBuilder.value = data
-        teamBuilder.teamDescription = descriptionBuilder.build()
+        teamBuilder.description_ = descriptionBuilder.build()
         Services.Organization.Actions.updateTeam(teamBuilder.build()) { (team, error) -> Void in
             self.onDataSaved(team)
         }

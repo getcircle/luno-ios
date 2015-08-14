@@ -18,9 +18,11 @@ typealias GetProfilesCompletionHandler = (profiles: Array<Services.Profile.Conta
 typealias GetExtendedProfileCompletionHandler = (
     profile: Services.Profile.Containers.ProfileV1?,
     manager: Services.Profile.Containers.ProfileV1?,
+    peers: Array<Services.Profile.Containers.ProfileV1>?,
+    directReports: Array<Services.Profile.Containers.ProfileV1>?,
     team: Services.Organization.Containers.TeamV1?,
-    address: Services.Organization.Containers.AddressV1?,
-    location: Services.Organization.Containers.LocationV1?,
+    managesTeam: Services.Organization.Containers.TeamV1?,
+    locations: Array<Services.Organization.Containers.LocationV1>?,
     error: NSError?
 ) -> Void
 typealias GetTagsCompletionHandler = (interests: Array<Services.Profile.Containers.TagV1>?, error: NSError?) -> Void
@@ -47,9 +49,8 @@ extension Services.Profile.Actions {
         self.getProfile(requestBuilder, completionHandler: completionHandler)
     }
     
-    static func getProfile(#userId: String, completionHandler: GetProfileCompletionHandler?) {
+    static func getProfile(completionHandler: GetProfileCompletionHandler?) {
         let requestBuilder = Services.Profile.Actions.GetProfile.RequestV1.builder()
-        requestBuilder.userId = userId
         self.getProfile(requestBuilder, completionHandler: completionHandler)
     }
     
@@ -90,7 +91,6 @@ extension Services.Profile.Actions {
         completionHandler: GetProfilesCompletionHandler?
     ) {
         let requestBuilder = Services.Profile.Actions.GetProfiles.RequestV1.builder()
-        requestBuilder.organizationId = organizationId
         self.getProfiles(requestBuilder, paginatorBuilder: paginatorBuilder, completionHandler: completionHandler)
     }
     
@@ -102,17 +102,6 @@ extension Services.Profile.Actions {
     ) {
         let requestBuilder = Services.Profile.Actions.GetProfiles.RequestV1.builder()
         requestBuilder.tagId = tagId
-        requestBuilder.organizationId = organizationId
-        self.getProfiles(requestBuilder, paginatorBuilder: paginatorBuilder, completionHandler: completionHandler)
-    }
-    
-    static func getProfiles(
-        #addressId: String,
-        paginatorBuilder: Soa.PaginatorV1Builder? = nil,
-        completionHandler: GetProfilesCompletionHandler?
-    ) {
-        let requestBuilder = Services.Profile.Actions.GetProfiles.RequestV1.builder()
-        requestBuilder.addressId = addressId
         self.getProfiles(requestBuilder, paginatorBuilder: paginatorBuilder, completionHandler: completionHandler)
     }
     
@@ -142,29 +131,13 @@ extension Services.Profile.Actions {
             completionHandler?(
                 profile: response?.profile,
                 manager: response?.manager,
+                peers: response?.peers,
+                directReports: response?.directReports,
                 team: response?.team,
-                address: response?.address,
-                location: response?.location,
+                managesTeam: response?.managesTeam,
+                locations: response?.locations,
                 error: error
             )
-        }
-    }
-    
-    static func getDirectReports(profileId: String, completionHandler: GetProfilesCompletionHandler?) {
-        let requestBuilder = Services.Profile.Actions.GetDirectReports.RequestV1.builder()
-        requestBuilder.profileId = profileId
-        let client = ServiceClient(serviceName: "profile")
-        client.callAction(
-            "get_direct_reports",
-            extensionField: Services.Registry.Requests.Profile.getDirectReports(),
-            requestBuilder: requestBuilder
-            ) { (_, _, wrapped, error) -> Void in
-                
-                let response = wrapped?.response?.result.getExtension(
-                    Services.Registry.Responses.Profile.getDirectReports()
-                ) as? Services.Profile.Actions.GetDirectReports.ResponseV1
-                let nextRequest = wrapped?.getNextRequest()
-                completionHandler?(profiles: response?.profiles, nextRequest: nextRequest, error: error)
         }
     }
     

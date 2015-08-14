@@ -18,14 +18,6 @@ class TeamsOverviewDataSource: CardDataSource {
     private var teams = Array<Services.Organization.Containers.TeamV1>()
     
     // MARK: - Configuration
-    
-    func configureForLocation(locationId: String) {
-        let requestBuilder = Services.Organization.Actions.GetTeams.RequestV1.builder()
-        requestBuilder.locationId = locationId
-        searchAttribute = .LocationId
-        searchAttributeValue = locationId
-        configureForParameters(requestBuilder)
-    }
 
     func configureForTeam(teamId: String, setupOnlySearch: Bool) {
         if !setupOnlySearch {
@@ -40,8 +32,6 @@ class TeamsOverviewDataSource: CardDataSource {
 
     func configureForOrganization() {
         let requestBuilder = Services.Organization.Actions.GetTeams.RequestV1.builder()
-        let organizationId = AuthViewController.getLoggedInUserOrganization()!.id
-        requestBuilder.organizationId = organizationId
         configureForParameters(requestBuilder)
     }
     

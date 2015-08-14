@@ -36,9 +36,9 @@ class OfficeDetailDataSource: CardDataSource {
         var actionsGroup = dispatch_group_create()
         
         // TODO: Remove after profiles come back inflated
-        if location.hasLocationDescription && location.locationDescription != nil {
+        if location.hasDescription && location.description_ != nil {
             dispatch_group_enter(actionsGroup)
-            Services.Profile.Actions.getProfile(location.locationDescription.byProfileId) { (profile, error) -> Void in
+            Services.Profile.Actions.getProfile(location.description_.byProfileId) { (profile, error) -> Void in
                 if let error = error {
                     storedError = error
                 }
@@ -148,13 +148,13 @@ class OfficeDetailDataSource: CardDataSource {
         // Address
         let addressCard = Card(cardType: .OfficeAddress, title: AppStrings.CardTitleAddress)
         addressCard.sectionInset = defaultSectionInset
-        addressCard.addContent(content: [location.address] as [AnyObject])
+        addressCard.addContent(content: [location] as [AnyObject])
         appendCard(addressCard)
     }
     
     private func addDescriptionCard() {
         var description = ""
-        if let value = location.locationDescription?.value where value.trimWhitespace() != "" {
+        if let value = location.description_?.value where value.trimWhitespace() != "" {
             description = value
         }
         
@@ -169,7 +169,7 @@ class OfficeDetailDataSource: CardDataSource {
                 TextData(
                     type: .LocationDescription,
                     andValue: description,
-                    andTimestamp: location.locationDescription?.changed,
+                    andTimestamp: location.description_?.changed,
                     andPlaceholder: NSLocalizedString(
                         "Add a description for your location",
                         comment: "Add a description to the location"

@@ -14,7 +14,6 @@ class ProfileDetailDataSource: CardDataSource {
     var profile: Services.Profile.Containers.ProfileV1!
     var profileHeaderView: ProfileHeaderCollectionReusableView?
     
-    private(set) var address: Services.Organization.Containers.AddressV1?
     private(set) var groups: Array<Services.Group.Containers.GroupV1>?
     private(set) var location: Services.Organization.Containers.LocationV1?
     private(set) var manager: Services.Profile.Containers.ProfileV1?
@@ -42,16 +41,21 @@ class ProfileDetailDataSource: CardDataSource {
         
         dispatch_group_enter(actionsGroup)
         Services.Profile.Actions.getExtendedProfile(profile.id) {
-            (profile, manager, team, address, location,  error) -> Void in
+            (profile, manager, peers, directReports, team, managesTeam, locations, error) -> Void in
             
             if let error = error {
                 storedError = error
             }
             else {
+                println("PROFILE: \(profile)")
+                println("TEAM: \(team)")
+                println("DIRECT REPORTS: \(directReports)")
+                println("PEERS: \(peers)")
+                println("MANAGES TEAM: \(managesTeam)")
                 self.manager = manager
                 self.team = team
-                self.address = address
-                self.location = location
+                // TODO support multiple locations
+                self.location = locations?[0]
             }
             dispatch_group_leave(actionsGroup)
             completionHandler(error: error)

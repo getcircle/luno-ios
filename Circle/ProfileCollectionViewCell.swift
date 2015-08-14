@@ -152,7 +152,7 @@ class ProfileCollectionViewCell: CircleCollectionViewCell {
     }
     
     private func setLocation(location: Services.Organization.Containers.LocationV1) {
-        nameLabel.text = location.address == nil ? location.name : location.address.officeName()
+        nameLabel.text = location.officeName()
         subTextLabel.text = getCountLabel(location.profileCount)
         
         profileImageView.imageText = ""

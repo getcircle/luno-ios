@@ -115,8 +115,8 @@ class ProfileHeaderCollectionReusableView: DetailHeaderCollectionReusableView {
         
         if let userLocation = userLocation {
             containerView.backgroundColor = UIColor.clearColor()
-            locationLabel.text = userLocation.address.cityRegion()
-            localTimeLabel.text = userLocation.address.officeCurrentDateAndTimeLabel()
+            locationLabel.text = userLocation.cityRegion()
+            localTimeLabel.text = userLocation.officeCurrentDateAndTimeLabel()
             locationImageView.hidden = false
             if userProfile.hasHireDate && userProfile.hireDate.trimWhitespace() != "" {
                 hireDateLabel.text = hireDateText + " since " + NSDateFormatter.sharedAnniversaryFormatter.stringFromDate(
@@ -147,42 +147,40 @@ class ProfileHeaderCollectionReusableView: DetailHeaderCollectionReusableView {
 
     func setOffice(office: Services.Organization.Containers.LocationV1) {
         hideSecondaryViews()
-        if let address = office.address {
-            containerView.backgroundColor = UIColor.clearColor()
-            let officeName = office.address.officeName()
-            let officeStateAndCountry = (office.address.hasRegion ? office.address.region : "") + ", " + office.address.countryCode
-            nameLabel.text = officeName
-            nameNavLabel.text = officeName
-            titleLabel.text = office.address.officeCurrentDateAndTimeLabel()
-            titleNavLabel.text = office.address.officeCurrentTimeLabel(nil)
-            if let indicatorImage = office.address.officeDaylightIndicator() {
-                daylightIndicatorImage.alpha = 1.0
-                daylightIndicatorImage.image = indicatorImage
-                daylightIndicatorImage.tintColor = titleLabel.textColor
-                daylightIndicatorNavImage.image = indicatorImage
-                daylightIndicatorNavImage.tintColor = titleNavLabel.textColor
-            }
-            
-            self.profileImage.contentMode = .ScaleAspectFill
-            
-            var imageUpdated = true
-            if let location = location where office.imageUrl == location.imageUrl && office.hasImageUrl {
-                imageUpdated = false
-            }
-            
-            if office.hasImageUrl && imageUpdated {
-                profileImage.imageProfileIdentifier = office.id
-                profileImage.setImageWithLocation(office) { (image) -> Void in
-                    self.profileImage.image = image
-                    if self.backgroundImageView != image {
-                        self.backgroundImageView.image = image
-                        self.addBlurEffect()
-                    }
+        containerView.backgroundColor = UIColor.clearColor()
+        let officeName = office.officeName()
+        let officeStateAndCountry = (office.hasRegion ? office.region : "") + ", " + office.countryCode
+        nameLabel.text = officeName
+        nameNavLabel.text = officeName
+        titleLabel.text = office.officeCurrentDateAndTimeLabel()
+        titleNavLabel.text = office.officeCurrentTimeLabel(nil)
+        if let indicatorImage = office.officeDaylightIndicator() {
+            daylightIndicatorImage.alpha = 1.0
+            daylightIndicatorImage.image = indicatorImage
+            daylightIndicatorImage.tintColor = titleLabel.textColor
+            daylightIndicatorNavImage.image = indicatorImage
+            daylightIndicatorNavImage.tintColor = titleNavLabel.textColor
+        }
+        
+        self.profileImage.contentMode = .ScaleAspectFill
+        
+        var imageUpdated = true
+        if let location = location where office.imageUrl == location.imageUrl && office.hasImageUrl {
+            imageUpdated = false
+        }
+        
+        if office.hasImageUrl && imageUpdated {
+            profileImage.imageProfileIdentifier = office.id
+            profileImage.setImageWithLocation(office) { (image) -> Void in
+                self.profileImage.image = image
+                if self.backgroundImageView != image {
+                    self.backgroundImageView.image = image
+                    self.addBlurEffect()
                 }
             }
-            verifiedProfileButton.hidden = true
-            location = office
         }
+        verifiedProfileButton.hidden = true
+        location = office
     }
     
     func setTeam(team: Services.Organization.Containers.TeamV1) {

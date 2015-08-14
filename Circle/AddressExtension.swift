@@ -9,7 +9,7 @@
 import Foundation
 import ProtobufRegistry
 
-extension Services.Organization.Containers.AddressV1 {
+extension Services.Organization.Containers.LocationV1 {
 
     func shortOfficeAddress() -> String {
         var address = address1

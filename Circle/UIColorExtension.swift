@@ -127,11 +127,6 @@ extension UIColor {
         if let color = TeamColorsHolder.colors[team.id] {
             return color
         }
-        else if team.hasColor {
-            let color = UIColor(red: Int(team.color.red), green: Int(team.color.green), blue: Int(team.color.blue))
-            TeamColorsHolder.colors[team.id] = color
-            return color
-        }
         else {
             let color = getRandomColor()
             TeamColorsHolder.colors[team.id] = color

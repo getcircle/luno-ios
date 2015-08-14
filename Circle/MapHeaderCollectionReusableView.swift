@@ -64,7 +64,7 @@ class MapHeaderCollectionReusableView: CircleCollectionReusableView, MKMapViewDe
     
     // MARK: - Set data
     
-    func setData(office: Services.Organization.Containers.AddressV1) {
+    func setData(office: Services.Organization.Containers.LocationV1) {
         var addressString = ""
         if office.hasAddress1 {
             addressString = office.address1 + " "
@@ -97,9 +97,9 @@ class MapHeaderCollectionReusableView: CircleCollectionReusableView, MKMapViewDe
         // Annotate all offices
         for office in offices {
             mapView.addAnnotation(
-                MapHeaderCollectionReusableView.annotationTitleForLocation(office.address),
-                latitude: office.address.latitude,
-                longitude: office.address.longitude
+                MapHeaderCollectionReusableView.annotationTitleForLocation(office),
+                latitude: office.latitude,
+                longitude: office.longitude
             )
         }
         mapView.showAnnotations(mapView.annotations, animated: true)
@@ -117,7 +117,7 @@ class MapHeaderCollectionReusableView: CircleCollectionReusableView, MKMapViewDe
         }
     }
 
-    static func annotationTitleForLocation(office: Services.Organization.Containers.AddressV1) -> String {
+    static func annotationTitleForLocation(office: Services.Organization.Containers.LocationV1) -> String {
         let annotationTitle = NSString(
             format: NSLocalizedString("%@ Office",
                 comment: "Title of map annotation indicating the name of the office at a location. E.g., San Francisco Office"),

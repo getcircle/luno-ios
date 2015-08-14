@@ -58,7 +58,7 @@ class ObjectStore {
             }
         }
         
-        Services.Organization.Actions.getLocations(profile.organizationId) { (locations, error) -> Void in
+        Services.Organization.Actions.getLocations() { (locations, error) -> Void in
             self.locationsCount = locations?.count ?? 0
         }
     }

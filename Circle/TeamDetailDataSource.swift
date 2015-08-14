@@ -19,8 +19,6 @@ class TeamDetailDataSource: CardDataSource {
     private(set) var managerProfile: Services.Profile.Containers.ProfileV1!
     private(set) var profiles = Array<Services.Profile.Containers.ProfileV1>()
     private(set) var teams = Array<Services.Organization.Containers.TeamV1>()
-    private(set) var statusProfile: Services.Profile.Containers.ProfileV1?
-    private(set) var descriptionProfile: Services.Profile.Containers.ProfileV1?
     
     private let sectionInset = UIEdgeInsetsMake(0.0, 0.0, 25.0, 0.0)
     private let sectionHeaderClass = ProfileSectionHeaderCollectionReusableView.self
@@ -38,78 +36,39 @@ class TeamDetailDataSource: CardDataSource {
             
             var storedError: NSError!
             var actionsGroup = dispatch_group_create()
-            
-            // TODO: Remove after profiles come back inflated
-            if team.hasStatus && team.status != nil {
-                dispatch_group_enter(actionsGroup)
-                Services.Profile.Actions.getProfile(team.status.byProfileId) { (profile, error) -> Void in
-                    if let error = error {
-                        storedError = error
-                    }
-                    else  if let profile = profile {
-                        self.statusProfile = profile
-                    }
-                    dispatch_group_leave(actionsGroup)
-                }
-            }
-            
-            // TODO: Remove after profiles come back inflated
-            if team.hasTeamDescription && team.teamDescription != nil {
-                dispatch_group_enter(actionsGroup)
-                Services.Profile.Actions.getProfile(team.teamDescription.byProfileId) { (profile, error) -> Void in
-                    if let error = error {
-                        storedError = error
-                    }
-                    else  if let profile = profile {
-                        self.descriptionProfile = profile
-                    }
-                    dispatch_group_leave(actionsGroup)
-                }
-            }
-            
-            // Fetch managers and members
-            dispatch_group_enter(actionsGroup)
-            Services.Organization.Actions.getTeam(team.id) { (team, error) -> Void in
-                if let error = error {
-                    storedError = error
-                }
-                else {
-                    self.team = team
-                }
-                dispatch_group_leave(actionsGroup)
-            }
 
+            // Fetch reporting info
             dispatch_group_enter(actionsGroup)
-            Services.Profile.Actions.getProfiles(team!.id) { (profiles, _, error) -> Void in
+            Services.Organization.Actions.getTeamReportingDetails(team.id) { (members, childTeams, manager, error) -> Void in
                 if let error = error {
                     storedError = error
                 }
                 else {
-                    var allProfilesExceptManager = profiles?.filter({ (profile) -> Bool in
-                        if profile.userId == self.team.ownerId {
-                            self.managerProfile = profile
-                            return false
-                        }
-                        return true
-                    })
-                    
-                    self.profiles = allProfilesExceptManager!
+                    println("MEMBERS: \(members)")
+                    println("CHILD TEAMS: \(childTeams)")
+                    println("MANAGER: \(manager)")
+                    // TODO we should safely unwrap these better to handle cases where we don't have data
+                    self.teams = childTeams!
+                    self.managerProfile = manager!
                 }
                 dispatch_group_leave(actionsGroup)
             }
             
-            // Fetch sub-teams
+            // Fetch members
             dispatch_group_enter(actionsGroup)
-            Services.Organization.Actions.getTeamDescendants(self.team!.id, depth: 1, completionHandler: { (teams, error) -> Void in
+            Services.Profile.Actions.getProfiles(team.id) { (profiles, nextRequest, error) -> Void in
                 if let error = error {
                     storedError = error
                 }
-                else if let teams = teams {
-                    self.teams = teams
+                else {
+                    if let profiles = profiles {
+                        // TODO update whatever counts there are of this
+                        self.profiles = profiles
+                    }
                 }
                 dispatch_group_leave(actionsGroup)
-            })
-        
+            }
+            
             dispatch_group_notify(actionsGroup, GlobalMainQueue) { () -> Void in
                 self.populateData()
                 completionHandler(error: storedError)
@@ -159,7 +118,7 @@ class TeamDetailDataSource: CardDataSource {
                         type: .TeamStatus, 
                         andValue: status.value, 
                         andTimestamp: createdTimestamp,
-                        andAuthor: statusProfile
+                        andAuthor: team.status?.byProfile
                     )
                 ])
             }
@@ -176,7 +135,7 @@ class TeamDetailDataSource: CardDataSource {
     
     private func addDescriptionCard() {
         var description = ""
-        if let value = team.teamDescription?.value where value.trimWhitespace() != "" {
+        if let value = team.description_?.value where value.trimWhitespace() != "" {
             description = value
         }
         
@@ -191,12 +150,12 @@ class TeamDetailDataSource: CardDataSource {
                 TextData(
                     type: .TeamDescription, 
                     andValue: description,
-                    andTimestamp: team.teamDescription?.changed,
+                    andTimestamp: team.description_?.changed,
                     andPlaceholder: NSLocalizedString(
                         "Add a description for your team", 
                         comment: "Add a description to the team"
                     ),
-                    andAuthor: descriptionProfile
+                    andAuthor: team.description_?.byProfile
                 )
             ])
 

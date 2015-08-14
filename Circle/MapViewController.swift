@@ -47,13 +47,13 @@ class MapViewController: UIViewController, UIViewControllerTransitioningDelegate
         let annotationTitle = NSString(
             format: NSLocalizedString("%@ Office",
                 comment: "Title of map annotation indicating the name of the office at a location. E.g., San Francisco Office"),
-            location.address.city
+            location.city
         )
         
         mapView.annotateAndSetRegion(
             annotationTitle as String,
-            latitude: location.address.latitude,
-            longitude: location.address.longitude
+            latitude: location.latitude,
+            longitude: location.longitude
         )
     }
 
@@ -110,7 +110,7 @@ class MapViewController: UIViewController, UIViewControllerTransitioningDelegate
         }
         else {
             let addressLabel = UILabel(forAutoLayout: ())
-            addressLabel.text = location.address.fullAddress()
+            addressLabel.text = location.fullAddress()
             addressLabel.backgroundColor = UIColor.clearColor()
             addressLabel.font = UIFont.appAttributeValueLabelFont()
             addressLabel.textColor = UIColor.whiteColor()

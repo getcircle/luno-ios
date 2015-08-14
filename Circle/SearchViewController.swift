@@ -487,26 +487,20 @@ class SearchViewController: UIViewController,
             }
             
         case .ReportsToPerson:
-            if let profile = searchAction.underlyingObject as? Services.Profile.Containers.ProfileV1 {
-                let viewController = ProfilesViewController()
-                (viewController.dataSource as! ProfilesDataSource).configureForDirectReports(profile)
-                viewController.title = profile.firstName + "'s Direct Reports"
-                navigationController?.pushViewController(viewController, animated: true)
-            }
+            // TODO add support for this
+            break
+//            if let profile = searchAction.underlyingObject as? Services.Profile.Containers.ProfileV1 {
+//                let viewController = ProfilesViewController()
+//                (viewController.dataSource as! ProfilesDataSource).configureForDirectReports(profile)
+//                viewController.title = profile.firstName + "'s Direct Reports"
+//                navigationController?.pushViewController(viewController, animated: true)
+//            }
             
         case .AddressOfOffice:
             if let location = searchAction.underlyingObject as? Services.Organization.Containers.LocationV1 {
                 let viewController = MapViewController()
                 viewController.location = location
                 presentViewController(viewController, animated: true, completion: nil)
-            }
-            
-        case .TeamsInOffice:
-            if let location = searchAction.underlyingObject as? Services.Organization.Containers.LocationV1 {
-                let viewController = TeamsOverviewViewController()
-                (viewController.dataSource as! TeamsOverviewDataSource).configureForLocation(location.id)
-                viewController.title = searchAction.getTitle()
-                navigationController?.pushViewController(viewController, animated: true)
             }
 
         case .PeopleInOffice:

@@ -18,7 +18,7 @@ class OfficesOverviewDataSource: CardDataSource {
     override func loadData(completionHandler: (error: NSError?) -> Void) {
 
         if let organization = AuthViewController.getLoggedInUserOrganization() {
-            Services.Organization.Actions.getLocations(organization.id) { (locations, error) -> Void in
+            Services.Organization.Actions.getLocations() { (locations, error) -> Void in
                 self.resetCards()
                 self.locations.removeAll(keepCapacity: true)
                 

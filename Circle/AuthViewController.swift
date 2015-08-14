@@ -330,7 +330,7 @@ class AuthViewController: UIViewController {
     
     private func fetchAndCacheUserProfile(userId: String, completion: (error: NSError?) -> Void) {
         // XXX handle profile doesn't exist
-        Services.Profile.Actions.getProfile(userId: userId) { (profile, error) -> Void in
+        Services.Profile.Actions.getProfile { (profile, error) -> Void in
             if let profile = profile {
                 self.dynamicType.updateUserProfile(profile)
                 self.fetchAndCacheUserOrganization(profile.organizationId, userId: profile.userId, completion: completion)
@@ -341,7 +341,7 @@ class AuthViewController: UIViewController {
     }
     
     private func fetchAndCacheUserOrganization(organizationId: String, userId: String, completion: (error: NSError?) -> Void) {
-        Services.Organization.Actions.getOrganization(organizationId) { (organization, error) -> Void in
+        Services.Organization.Actions.getOrganization() { (organization, error) -> Void in
             if let organization = organization {
                 self.dynamicType.updateOrganization(organization)
                 self.fetchAndCacheUserIdentities(userId, completion: completion)
