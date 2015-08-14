@@ -18,7 +18,6 @@ class OfficeDetailDataSource: CardDataSource {
     private(set) var profiles = Array<Services.Profile.Containers.ProfileV1>()
     private(set) var nextProfilesRequest: Soa.ServiceRequestV1?
     private(set) var profileHeaderView: ProfileHeaderCollectionReusableView?
-    private(set) var descriptionProfile: Services.Profile.Containers.ProfileV1?
     
     private let defaultSectionInset = UIEdgeInsetsMake(0.0, 0.0, 25.0, 0.0)
     private let sectionHeaderClass = ProfileSectionHeaderCollectionReusableView.self
@@ -34,21 +33,7 @@ class OfficeDetailDataSource: CardDataSource {
         // Fetch data within a dispatch group, calling populateData when all tasks have finished
         var storedError: NSError!
         var actionsGroup = dispatch_group_create()
-        
-        // TODO: Remove after profiles come back inflated
-        if location.hasDescription && location.description_ != nil {
-            dispatch_group_enter(actionsGroup)
-            Services.Profile.Actions.getProfile(location.description_.byProfileId) { (profile, error) -> Void in
-                if let error = error {
-                    storedError = error
-                }
-                else  if let profile = profile {
-                    self.descriptionProfile = profile
-                }
-                dispatch_group_leave(actionsGroup)
-            }
-        }
-        
+
         dispatch_group_enter(actionsGroup)
         Services.Organization.Actions.getLocation(locationId: location.id, completionHandler: { (location, error) -> Void in
             if let location = location {
@@ -154,6 +139,7 @@ class OfficeDetailDataSource: CardDataSource {
     
     private func addDescriptionCard() {
         var description = ""
+
         if let value = location.description_?.value where value.trimWhitespace() != "" {
             description = value
         }
@@ -174,7 +160,7 @@ class OfficeDetailDataSource: CardDataSource {
                         "Add a description for your location",
                         comment: "Add a description to the location"
                     ),
-                    andAuthor: descriptionProfile
+                    andAuthor: location.description_?.byProfile
                 )
             ])
             
