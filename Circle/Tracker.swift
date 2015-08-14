@@ -26,7 +26,7 @@ class TrackerProperty {
     
     enum OverviewType: String {
         case Groups = "Groups"
-        case Offices = "Offices"
+        case Locations = "Locations"
         case Profiles = "Profiles"
         case Teams = "Teams"
         case Tags = "Tags"
@@ -34,7 +34,7 @@ class TrackerProperty {
     
     enum DetailType: String {
         case Group = "Group"
-        case Office = "Office"
+        case Location = "Location"
         case Profile = "Profile"
         case Team = "Team"
         case Tag = "Tag"

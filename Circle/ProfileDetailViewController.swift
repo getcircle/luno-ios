@@ -68,7 +68,7 @@ class ProfileDetailViewController:
                             onTeamTapped(nil)
                         }
                         else if data is Services.Organization.Containers.LocationV1 {
-                            onOfficeTapped(nil)
+                            onLocationsTapped(nil)
                         }
                         else if data is Services.Profile.Containers.ProfileV1 {
                             onManagerTapped(nil)
@@ -184,7 +184,7 @@ class ProfileDetailViewController:
         }
     }
     
-    func onOfficeTapped(notification: NSNotification?) {
+    func onLocationsTapped(notification: NSNotification?) {
         if let dataSource = dataSource as? ProfileDetailDataSource, location = dataSource.location {
             showLocationDetail(location)
         }

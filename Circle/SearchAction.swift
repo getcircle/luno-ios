@@ -17,10 +17,10 @@ class SearchAction: SearchSuggestion {
         case MessagePerson
         case ReportsToPerson
         
-        case AddressOfOffice
-        case LocalTimeAtOffice
-        case ContactsOfOffice
-        case PeopleInOffice
+        case AddressOfLocation
+        case LocalTimeAtLocation
+        case ContactsOfLocation
+        case PeopleInLocation
         
         case MembersOfTeam
     }
@@ -81,7 +81,7 @@ class SearchAction: SearchSuggestion {
         // Address action
         let addressAction = SearchAction(
             title: "Address of " + location.name,
-            ofType: .AddressOfOffice,
+            ofType: .AddressOfLocation,
             withImageSource: "Compass"
         )
         addressAction.underlyingObject = location as AnyObject
@@ -90,7 +90,7 @@ class SearchAction: SearchSuggestion {
         // Local time
         let timeAction = SearchAction(
             title: "Local Time is " + location.officeCurrentTimeLabel(nil, addDifferenceText: true),
-            ofType: .LocalTimeAtOffice,
+            ofType: .LocalTimeAtLocation,
             withImageSource: "Info"
         )
         timeAction.underlyingObject = location as AnyObject
@@ -99,7 +99,7 @@ class SearchAction: SearchSuggestion {
         // People
         let peopleAction = SearchAction(
             title: "People in " + location.name + " Office",
-            ofType: .PeopleInOffice,
+            ofType: .PeopleInLocation,
             withImageSource: "SearchTab"
         )
         peopleAction.underlyingObject = location as AnyObject

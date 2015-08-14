@@ -1,5 +1,5 @@
 //
-//  OfficesOverviewDataSource.swift
+//  LocationsOverviewDataSource.swift
 //  Circle
 //
 //  Created by Ravi Rani on 1/24/15.
@@ -9,7 +9,7 @@
 import UIKit
 import ProtobufRegistry
 
-class OfficesOverviewDataSource: CardDataSource {
+class LocationsOverviewDataSource: CardDataSource {
     
     private(set) var locations = Array<Services.Organization.Containers.LocationV1>()
     
@@ -23,7 +23,7 @@ class OfficesOverviewDataSource: CardDataSource {
                 self.locations.removeAll(keepCapacity: true)
                 
                 if let locations = locations {
-                    let officesCard = Card(cardType: .Offices, title: "")
+                    let officesCard = Card(cardType: .Locations, title: "")
                     officesCard.addContent(content: locations)
                     self.locations.extend(locations)
                     officesCard.sectionInset = UIEdgeInsetsZero

@@ -79,8 +79,8 @@ class Card: Equatable {
         case GroupMemberImages = "GroupMemberImages"
         case GroupRequest = "GroupRequest"
         case KeyValue = "KeyValue"
-        case Offices = "Offices"
-        case OfficeAddress = "Office Address"
+        case Locations = "Locations"
+        case LocationsAddress = "Locations Address"
         case NewHires = "NewHires"
         case Profiles = "Profiles"
         case ProfilesGrid = "ProfilesGrid"
@@ -157,14 +157,14 @@ class Card: Equatable {
                     contentType: .Flat
                 )
 
-            case Offices:
+            case Locations:
                 return CardTypeInfo(
                     imageName: "FeedLocation",
-                    classType: OfficeCollectionViewCell.self,
+                    classType: LocationCollectionViewCell.self,
                     contentType: .Flat
                 )
 
-            case OfficeAddress:
+            case LocationsAddress:
                 return CardTypeInfo(
                     imageName: "FeedLocation",
                     classType: AddressCollectionViewCell.self,

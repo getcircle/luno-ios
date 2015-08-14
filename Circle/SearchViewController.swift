@@ -321,7 +321,7 @@ class SearchViewController: UIViewController,
             }
             else if let location = dataSource.contentAtIndexPath(indexPath) as? Services.Organization.Containers.LocationV1 {
                 properties.append(TrackerProperty.withKey(.Destination).withSource(.Detail))
-                properties.append(TrackerProperty.withKey(.DestinationDetailType).withDetailType(.Office))
+                properties.append(TrackerProperty.withKey(.DestinationDetailType).withDetailType(.Location))
                 properties.append(TrackerProperty.withDestinationId("office_id").withString(location.id))
                 Tracker.sharedInstance.track(.DetailItemTapped, properties: properties)
                 showLocationDetail(location)
@@ -336,9 +336,9 @@ class SearchViewController: UIViewController,
                     (viewController.dataSource as! ProfilesDataSource).configureForOrganization()
                     viewController.title = "People"
                     navigationController?.pushViewController(viewController, animated: true)
-                case .Offices:
+                case .Locations:
                     // TODO This should be coming from a paginated data source
-                    let viewController = OfficesOverviewViewController(nibName: "OfficesOverviewViewController", bundle: nil)
+                    let viewController = LocationsOverviewViewController(nibName: "LocationsOverviewViewController", bundle: nil)
                     viewController.title = "Offices"
                     navigationController?.pushViewController(viewController, animated: true)
                 case .Teams:
@@ -496,14 +496,14 @@ class SearchViewController: UIViewController,
 //                navigationController?.pushViewController(viewController, animated: true)
 //            }
             
-        case .AddressOfOffice:
+        case .AddressOfLocation:
             if let location = searchAction.underlyingObject as? Services.Organization.Containers.LocationV1 {
                 let viewController = MapViewController()
                 viewController.location = location
                 presentViewController(viewController, animated: true, completion: nil)
             }
 
-        case .PeopleInOffice:
+        case .PeopleInLocation:
             if let location = searchAction.underlyingObject as? Services.Organization.Containers.LocationV1 {
                 let viewController = ProfilesViewController()
                 (viewController.dataSource as! ProfilesDataSource).configureForLocation(location.id)

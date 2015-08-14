@@ -1,5 +1,5 @@
 //
-//  OfficeDetailDataSource.swift
+//  LocationDetailDataSource.swift
 //  Circle
 //
 //  Created by Ravi Rani on 1/8/15.
@@ -9,7 +9,7 @@
 import UIKit
 import ProtobufRegistry
 
-class OfficeDetailDataSource: CardDataSource {
+class LocationDetailDataSource: CardDataSource {
     
     var editImageButtonDelegate: EditImageButtonDelegate?
     var location: Services.Organization.Containers.LocationV1!
@@ -89,7 +89,7 @@ class OfficeDetailDataSource: CardDataSource {
                 profileHeader.editImageButtonDelegate = editImageButtonDelegate
                 profileHeader.setEditImageButtonHidden(false)
             }
-            profileHeader.setOffice(location)
+            profileHeader.setLocations(location)
             profileHeaderView = profileHeader
         }
         
@@ -131,7 +131,7 @@ class OfficeDetailDataSource: CardDataSource {
     private func addAddressCard() {
 
         // Address
-        let addressCard = Card(cardType: .OfficeAddress, title: AppStrings.CardTitleAddress)
+        let addressCard = Card(cardType: .LocationsAddress, title: AppStrings.CardTitleAddress)
         addressCard.sectionInset = defaultSectionInset
         addressCard.addContent(content: [location] as [AnyObject])
         appendCard(addressCard)

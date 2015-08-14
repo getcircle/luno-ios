@@ -38,7 +38,7 @@ enum ContentType: Int {
     case LeaveGroup
     case LinkedIn
     case LinkedInConnect
-    case Office
+    case Locations
     case Other
     case RequestGroup
     case SeatingInfo

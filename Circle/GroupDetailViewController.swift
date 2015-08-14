@@ -167,7 +167,7 @@ class GroupDetailViewController: DetailViewController,
         let properties = [
             TrackerProperty.withKeyString("card_type").withString(card.type.rawValue),
             TrackerProperty.withKey(.Source).withSource(.Detail),
-            TrackerProperty.withKey(.SourceDetailType).withDetailType(.Office),
+            TrackerProperty.withKey(.SourceDetailType).withDetailType(.Location),
             TrackerProperty.withKey(.Destination).withSource(.Overview),
             TrackerProperty.withKey(.DestinationOverviewType).withOverviewType(overviewType),
             TrackerProperty.withKeyString("card_title").withString(card.title),

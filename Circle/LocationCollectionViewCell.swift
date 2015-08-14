@@ -1,5 +1,5 @@
 //
-//  OfficeCollectionViewCell.swift
+//  LocationCollectionViewCell.swift
 //  Circle
 //
 //  Created by Ravi Rani on 12/28/14.
@@ -9,10 +9,10 @@
 import UIKit
 import ProtobufRegistry
 
-class OfficeCollectionViewCell: CircleCollectionViewCell {
+class LocationCollectionViewCell: CircleCollectionViewCell {
 
     override class var classReuseIdentifier: String {
-        return "OfficeCollectionViewCell"
+        return "LocationCollectionViewCell"
     }
     
     override class var height: CGFloat {

@@ -11,7 +11,7 @@ import ProtobufRegistry
 
 extension Services.Organization.Containers.LocationV1 {
 
-    func shortOfficeAddress() -> String {
+    func shortLocationsAddress() -> String {
         var address = address1
         
         if hasAddress2 {
@@ -46,7 +46,7 @@ extension Services.Organization.Containers.LocationV1 {
     }
     
     func fullAddress() -> String {
-        var address = shortOfficeAddress()
+        var address = shortLocationsAddress()
         address += ",\n" + city
         if hasRegion {
             address += ", " + region
@@ -78,8 +78,8 @@ extension Services.Organization.Containers.LocationV1 {
         var currentDate = date ?? NSDate()
         var currentDateString: String
         let officeTimeZone = NSTimeZone(name: timezone)!
-        NSDateFormatter.sharedOfficeCurrentDateFormatter.timeZone = officeTimeZone
-        currentDateString = NSDateFormatter.sharedOfficeCurrentDateFormatter.stringFromDate(currentDate)
+        NSDateFormatter.sharedLocationsCurrentDateFormatter.timeZone = officeTimeZone
+        currentDateString = NSDateFormatter.sharedLocationsCurrentDateFormatter.stringFromDate(currentDate)
         if NSBundle.mainBundle().preferredLocalizations[0] as! String == "en" {
             currentDateString += dateSuffixForDate(currentDate)
         }
@@ -89,8 +89,8 @@ extension Services.Organization.Containers.LocationV1 {
     func officeCurrentTimeLabel(date: NSDate?, addDifferenceText: Bool? = false) -> String {
         var currentDate = date ?? NSDate()
         let officeTimeZone = NSTimeZone(name: timezone)!
-        NSDateFormatter.sharedOfficeCurrentTimeFormatter.timeZone = officeTimeZone
-        var currentTime = NSDateFormatter.sharedOfficeCurrentTimeFormatter.stringFromDate(currentDate)
+        NSDateFormatter.sharedLocationsCurrentTimeFormatter.timeZone = officeTimeZone
+        var currentTime = NSDateFormatter.sharedLocationsCurrentTimeFormatter.stringFromDate(currentDate)
         if let addText = addDifferenceText where addText {
             let sourceSeconds = NSTimeZone.systemTimeZone().secondsFromGMTForDate(currentDate)
             let destinationSeconds = officeTimeZone.secondsFromGMTForDate(currentDate)

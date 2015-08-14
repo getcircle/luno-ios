@@ -128,7 +128,7 @@ class SearchQueryDataSource: CardDataSource {
             ),
             SearchCategory(
                 categoryTitle: officeTitle,
-                ofType: .Offices,
+                ofType: .Locations,
                 withCount: officeCount,
                 withImageSource: "FeedLocation"
             ),

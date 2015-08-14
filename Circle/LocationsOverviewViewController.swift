@@ -1,5 +1,5 @@
 //
-//  OfficesOverviewViewController.swift
+//  LocationsOverviewViewController.swift
 //  Circle
 //
 //  Created by Ravi Rani on 1/24/15.
@@ -9,13 +9,13 @@
 import UIKit
 import ProtobufRegistry
 
-class OfficesOverviewViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+class LocationsOverviewViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
 
     @IBOutlet weak private(set) var collectionView: UICollectionView!
     @IBOutlet weak private(set) var mapHeaderCollectionView: UICollectionView!
     
     private var activityIndicatorView: CircleActivityIndicatorView!
-    private(set) var dataSource = OfficesOverviewDataSource()
+    private(set) var dataSource = LocationsOverviewDataSource()
     private(set) var delegate = CardCollectionViewDelegate()
     private var mapHeaderView: MapHeaderCollectionReusableView!
     
@@ -68,7 +68,7 @@ class OfficesOverviewViewController: UIViewController, UICollectionViewDataSourc
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         if let office = dataSource.contentAtIndexPath(indexPath) as? Services.Organization.Containers.LocationV1 {
-            trackOfficeSelected(office)
+            trackLocationsSelected(office)
             showLocationDetail(office)
         }
     }
@@ -112,13 +112,13 @@ class OfficesOverviewViewController: UIViewController, UICollectionViewDataSourc
     
     // MARK: - Tracking
     
-    func trackOfficeSelected(office: Services.Organization.Containers.LocationV1) {
+    func trackLocationsSelected(office: Services.Organization.Containers.LocationV1) {
         let properties = [
             TrackerProperty.withKey(.ActiveViewController).withString(self.dynamicType.description()),
             TrackerProperty.withKey(.Source).withSource(.Overview),
-            TrackerProperty.withKey(.SourceOverviewType).withOverviewType(.Offices),
+            TrackerProperty.withKey(.SourceOverviewType).withOverviewType(.Locations),
             TrackerProperty.withKey(.Destination).withSource(.Detail),
-            TrackerProperty.withKey(.DestinationDetailType).withDetailType(.Office),
+            TrackerProperty.withKey(.DestinationDetailType).withDetailType(.Location),
             TrackerProperty.withDestinationId("office_id").withString(office.id)
         ]
         Tracker.sharedInstance.track(.DetailItemTapped, properties: properties)

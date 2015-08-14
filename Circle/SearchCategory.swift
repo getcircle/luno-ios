@@ -12,7 +12,7 @@ class SearchCategory: SearchSuggestion {
     
     enum Type: Int {
         case People = 1
-        case Offices
+        case Locations
         case Teams
     }
     

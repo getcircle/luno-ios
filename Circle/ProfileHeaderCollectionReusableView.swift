@@ -145,7 +145,7 @@ class ProfileHeaderCollectionReusableView: DetailHeaderCollectionReusableView {
         self.backgroundImageView.setLargerProfileImage(userProfile)
     }
 
-    func setOffice(office: Services.Organization.Containers.LocationV1) {
+    func setLocations(office: Services.Organization.Containers.LocationV1) {
         hideSecondaryViews()
         containerView.backgroundColor = UIColor.clearColor()
         let officeName = office.officeName()

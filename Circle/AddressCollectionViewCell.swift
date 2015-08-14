@@ -34,7 +34,7 @@ class AddressCollectionViewCell: CircleCollectionViewCell {
     
     override func setData(data: AnyObject) {
         if let office = data as? Services.Organization.Containers.LocationV1 {
-            addressLabel.text = office.shortOfficeAddress()
+            addressLabel.text = office.shortLocationsAddress()
             cityStateLabel.text = office.cityRegionPostalCode()
         }
     }

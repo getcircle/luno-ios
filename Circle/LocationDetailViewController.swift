@@ -1,5 +1,5 @@
 //
-//  OfficeDetailViewController.swift
+//  LocationDetailViewController.swift
 //  Circle
 //
 //  Created by Ravi Rani on 1/9/15.
@@ -10,7 +10,7 @@ import UIKit
 import MBProgressHUD
 import ProtobufRegistry
 
-class OfficeDetailViewController:
+class LocationDetailViewController:
     DetailViewController,
     CardHeaderViewDelegate,
     CardFooterViewDelegate,
@@ -22,7 +22,7 @@ class OfficeDetailViewController:
     override func customInit() {
         super.customInit()
         
-        dataSource = OfficeDetailDataSource()
+        dataSource = LocationDetailDataSource()
         delegate = CardCollectionViewDelegate()
     }
     
@@ -35,15 +35,15 @@ class OfficeDetailViewController:
         
         collectionView.delegate = delegate
         (layout as! StickyHeaderCollectionViewLayout).headerHeight = ProfileHeaderCollectionReusableView.heightWithoutSecondaryInfo
-        (dataSource as! OfficeDetailDataSource).editImageButtonDelegate = self
-        (dataSource as! OfficeDetailDataSource).profileCellDelegate = self
+        (dataSource as! LocationDetailDataSource).editImageButtonDelegate = self
+        (dataSource as! LocationDetailDataSource).profileCellDelegate = self
         super.configureCollectionView()
     }
     
     // MARK: - Collection View delegate
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        let officeDetailDataSource = dataSource as! OfficeDetailDataSource
+        let officeDetailDataSource = dataSource as! LocationDetailDataSource
         if let card = dataSource.cardAtSection(indexPath.section) {
             switch card.type {            
             case .Profiles:
@@ -52,7 +52,7 @@ class OfficeDetailViewController:
                 }
                 break;
                 
-            case .OfficeAddress:
+            case .LocationsAddress:
                 presentFullScreenMapView(true)
                 break
                 
@@ -64,7 +64,7 @@ class OfficeDetailViewController:
     }
 
     func scrollViewDidScroll(scrollView: UIScrollView) {
-        if let profileHeaderView = (dataSource as! OfficeDetailDataSource).profileHeaderView {
+        if let profileHeaderView = (dataSource as! LocationDetailDataSource).profileHeaderView {
             profileHeaderView.adjustViewForScrollContentOffset(scrollView.contentOffset)
         }
     }
@@ -73,8 +73,8 @@ class OfficeDetailViewController:
     
     private func presentFullScreenMapView(animated: Bool) {
         var mapViewController = MapViewController()
-        if let headerView = (dataSource as! OfficeDetailDataSource).profileHeaderView {
-            mapViewController.location = (dataSource as! OfficeDetailDataSource).location
+        if let headerView = (dataSource as! LocationDetailDataSource).profileHeaderView {
+            mapViewController.location = (dataSource as! LocationDetailDataSource).location
             presentViewController(mapViewController, animated: animated, completion: nil)
         }
     }
@@ -101,7 +101,7 @@ class OfficeDetailViewController:
     // MARK: - CardHeaderViewDelegate
     
     func cardHeaderTapped(sender: AnyObject!, card: Card!) {
-        let officeDetailDataSource = dataSource as! OfficeDetailDataSource
+        let officeDetailDataSource = dataSource as! LocationDetailDataSource
         switch card.type {
         case .TextValue:
             if card.content.count > 0 {
@@ -109,7 +109,7 @@ class OfficeDetailViewController:
                     switch data.type {
                     case .LocationDescription:
                         let editDescriptionViewController = EditLocationDescriptionViewController(addCharacterLimit: false, withDelegate: self)
-                        editDescriptionViewController.location = (dataSource as! OfficeDetailDataSource).location
+                        editDescriptionViewController.location = (dataSource as! LocationDetailDataSource).location
                         let editDescriptionViewNavController = UINavigationController(
                             rootViewController: editDescriptionViewController
                         )
@@ -134,7 +134,7 @@ class OfficeDetailViewController:
     // MARK: - CardFooterDelegate
     
     func cardFooterTapped(card: Card!) {
-        let officeDetailDataSource = dataSource as! OfficeDetailDataSource
+        let officeDetailDataSource = dataSource as! LocationDetailDataSource
         switch card.type {
         case .Profiles:
             switch card.subType {
@@ -167,7 +167,7 @@ class OfficeDetailViewController:
         let properties = [
             TrackerProperty.withKeyString("card_type").withString(card.type.rawValue),
             TrackerProperty.withKey(.Source).withSource(.Detail),
-            TrackerProperty.withKey(.SourceDetailType).withDetailType(.Office),
+            TrackerProperty.withKey(.SourceDetailType).withDetailType(.Location),
             TrackerProperty.withKey(.Destination).withSource(.Overview),
             TrackerProperty.withKey(.DestinationOverviewType).withOverviewType(overviewType),
             TrackerProperty.withKeyString("card_title").withString(card.title),
@@ -179,7 +179,7 @@ class OfficeDetailViewController:
     // Image Upload
 
     internal override func handleImageUpload(completion: () -> Void) {
-        let dataSource = (self.dataSource as! OfficeDetailDataSource)
+        let dataSource = (self.dataSource as! LocationDetailDataSource)
         if let newImage = imageToUpload {
             let hud = MBProgressHUD.showHUDAddedTo(view, animated: true)
             Services.Media.Actions.uploadImage(
@@ -203,15 +203,15 @@ class OfficeDetailViewController:
     }
     
     internal override func reloadHeader() {
-        if let dataSource = dataSource as? OfficeDetailDataSource, headerView = dataSource.profileHeaderView {
-            headerView.setOffice(dataSource.location)
+        if let dataSource = dataSource as? LocationDetailDataSource, headerView = dataSource.profileHeaderView {
+            headerView.setLocations(dataSource.location)
         }
     }
     
     // MARK - ProfileCollectionViewCellDelegate
     
     func onProfileAddButton(checked: Bool) {
-        if let officeDataSource = dataSource as? OfficeDetailDataSource, 
+        if let officeDataSource = dataSource as? LocationDetailDataSource, 
             loggedInUserProfile = AuthViewController.getLoggedInUserProfile()
         {
             let hud = MBProgressHUD.showHUDAddedTo(view, animated: true)
@@ -224,7 +224,7 @@ class OfficeDetailViewController:
                 pointsOfContact.remove(loggedInUserProfile)
             }
             
-            let locationBuilder = (dataSource as! OfficeDetailDataSource).location.toBuilder()
+            let locationBuilder = (dataSource as! LocationDetailDataSource).location.toBuilder()
             locationBuilder.pointsOfContact = Array(pointsOfContact)
             Services.Organization.Actions.updateLocation(locationBuilder.build(), completionHandler: { (location, error) -> Void in
                 hud.hide(true)
@@ -240,7 +240,7 @@ class OfficeDetailViewController:
     
     override func onTextInputValueUpdated(updatedObject: AnyObject?) {
         if let location = updatedObject as? Services.Organization.Containers.LocationV1 {
-            (dataSource as! OfficeDetailDataSource).location = location
+            (dataSource as! LocationDetailDataSource).location = location
         }
         
         super.onTextInputValueUpdated(updatedObject)

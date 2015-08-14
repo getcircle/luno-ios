@@ -73,7 +73,7 @@ extension NSDateFormatter {
         return Static.instance
     }
     
-    class var sharedOfficeCurrentDateFormatter: NSDateFormatter {
+    class var sharedLocationsCurrentDateFormatter: NSDateFormatter {
         struct Static {
             static let instance = dateFormatter
             static var dateFormatter: NSDateFormatter {
@@ -87,7 +87,7 @@ extension NSDateFormatter {
         return Static.instance
     }
     
-    class var sharedOfficeCurrentTimeFormatter: NSDateFormatter {
+    class var sharedLocationsCurrentTimeFormatter: NSDateFormatter {
         struct Static {
             static let instance = dateFormatter
             static var dateFormatter: NSDateFormatter {
