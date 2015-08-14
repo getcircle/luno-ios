@@ -72,8 +72,16 @@ class CircleCache {
             if let keyString = key as? String where keyString.hasPrefix("cache_") {
                 removeObjectForKey(keyString)
             }
-            
         }
+        
+        // Remove entries from the persistent store
+        // ASSUMPTION: We will be only using it as a cache for now
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), { () -> Void in
+            let realm = Realm()
+            realm.write {
+                realm.deleteAll()
+            }
+        })
     }
     
     private func _setValidationTimer(timeInSeconds: Int, forKey key: String) {
