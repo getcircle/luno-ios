@@ -37,6 +37,18 @@ class TeamDetailDataSource: CardDataSource {
             var storedError: NSError!
             var actionsGroup = dispatch_group_create()
 
+            // Fetch extended team details
+            dispatch_group_enter(actionsGroup)
+            Services.Organization.Actions.getTeam(team.id) { (team, error) -> Void in
+                if let error = error {
+                    storedError = error
+                }
+                else {
+                    self.team = team
+                }
+                dispatch_group_leave(actionsGroup)
+            }
+            
             // Fetch reporting info
             dispatch_group_enter(actionsGroup)
             Services.Organization.Actions.getTeamReportingDetails(team.id) { (members, childTeams, manager, error) -> Void in
@@ -44,9 +56,6 @@ class TeamDetailDataSource: CardDataSource {
                     storedError = error
                 }
                 else {
-                    println("MEMBERS: \(members)")
-                    println("CHILD TEAMS: \(childTeams)")
-                    println("MANAGER: \(manager)")
                     // TODO we should safely unwrap these better to handle cases where we don't have data
                     self.teams = childTeams!
                     self.managerProfile = manager!
@@ -112,21 +121,24 @@ class TeamDetailDataSource: CardDataSource {
             
             let statusCard = Card(cardType: .TextValue, title: "Currently working on")
             statusCard.sectionInset = self.sectionInset
-            if let status = team.status where team.status.value.trimWhitespace() != "" {
-                statusCard.addContent(content: [
-                    TextData(
-                        type: .TeamStatus, 
-                        andValue: status.value, 
-                        andTimestamp: createdTimestamp,
-                        andAuthor: team.status?.byProfile
-                    )
-                ])
-            }
-            
+            let textData = TextData(
+                type: .TeamStatus,
+                andValue: team.status?.value ?? "",
+                andPlaceholder: NSLocalizedString("Add details",
+                    comment: "Generic text asking user to add details"
+                ),
+                andTimestamp: createdTimestamp,
+                andAuthor: team.status?.byProfile
+            )
+
             if canEdit() {
                 statusCard.showContentCount = false
                 statusCard.addHeader(headerClass: sectionHeaderClass)
                 statusCard.allowEditingContent = true
+                statusCard.addContent(content: [textData])
+            }
+            else if let status = team.status where team.status.value.trimWhitespace() != "" {
+                statusCard.addContent(content: [textData])
             }
             
             appendCard(statusCard)
