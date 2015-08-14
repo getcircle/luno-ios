@@ -147,7 +147,8 @@ class LocationDetailViewController:
                 )
                 viewController.title = "People @ " + officeDetailDataSource.location.city
                 (viewController.dataSource as! ProfilesDataSource).configureForLocation(
-                    officeDetailDataSource.location.id
+                    officeDetailDataSource.location.id,
+                    setupOnlySearch: true
                 )
                 trackCardHeaderTapped(card, overviewType: .Profiles)
                 navigationController?.pushViewController(viewController, animated: true)

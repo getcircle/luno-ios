@@ -506,7 +506,7 @@ class SearchViewController: UIViewController,
         case .PeopleInLocation:
             if let location = searchAction.underlyingObject as? Services.Organization.Containers.LocationV1 {
                 let viewController = ProfilesViewController()
-                (viewController.dataSource as! ProfilesDataSource).configureForLocation(location.id)
+                (viewController.dataSource as! ProfilesDataSource).configureForLocation(location.id, setupOnlySearch: false)
                 viewController.title = searchAction.getTitle()
                 navigationController?.pushViewController(viewController, animated: true)
             }

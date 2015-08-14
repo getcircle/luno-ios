@@ -20,12 +20,15 @@ class ProfilesDataSource: CardDataSource {
     
     // MARK: - Configuration
     
-    func configureForLocation(locationId: String) {
-        let requestBuilder = Services.Profile.Actions.GetProfiles.RequestV1.builder()
-        requestBuilder.locationId = locationId
+    func configureForLocation(locationId: String, setupOnlySearch: Bool) {
+        if !setupOnlySearch {
+            let requestBuilder = Services.Profile.Actions.GetProfiles.RequestV1.builder()
+            requestBuilder.locationId = locationId
+            configureForParameters(requestBuilder)
+        }
+
         searchAttribute = .LocationId
         searchAttributeValue = locationId
-        configureForParameters(requestBuilder)
     }
 
     func configureForTeam(teamId: String, setupOnlySearch: Bool) {
