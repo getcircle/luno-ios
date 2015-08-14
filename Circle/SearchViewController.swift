@@ -309,6 +309,7 @@ class SearchViewController: UIViewController,
                 properties.append(TrackerProperty.withDestinationId("profileId").withString(profile.id))
                 Tracker.sharedInstance.track(.DetailItemTapped, properties: properties)
                 showProfileDetail(profile)
+                CircleCache.recordProfileSearchResult(profile)
             }
             else if let team = dataSource.contentAtIndexPath(indexPath) as? Services.Organization.Containers.TeamV1 {
                 properties.append(TrackerProperty.withKey(.Destination).withSource(.Detail))
@@ -316,6 +317,7 @@ class SearchViewController: UIViewController,
                 properties.append(TrackerProperty.withDestinationId("team_id").withString(team.id))
                 Tracker.sharedInstance.track(.DetailItemTapped, properties: properties)
                 showTeamDetail(team)
+                CircleCache.recordTeamSearchResult(team)
             }
             else if let location = dataSource.contentAtIndexPath(indexPath) as? Services.Organization.Containers.LocationV1 {
                 properties.append(TrackerProperty.withKey(.Destination).withSource(.Detail))
@@ -323,6 +325,7 @@ class SearchViewController: UIViewController,
                 properties.append(TrackerProperty.withDestinationId("office_id").withString(location.id))
                 Tracker.sharedInstance.track(.DetailItemTapped, properties: properties)
                 showLocationDetail(location)
+                CircleCache.recordLocationSearchResult(location)
             }
             
         case .SearchSuggestion:

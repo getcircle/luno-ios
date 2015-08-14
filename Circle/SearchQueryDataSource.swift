@@ -46,6 +46,7 @@ class SearchQueryDataSource: CardDataSource {
         searchTerm = string.trimWhitespace()
         if searchTerm == "" {
             clearData()
+            searchResults.extend(CircleCache.getRecordedSearchResults(Card.MaxListEntries))
             populateDefaultSearchSuggestions()
             addCards()
             completionHandler(error: nil)
@@ -145,17 +146,28 @@ class SearchQueryDataSource: CardDataSource {
         
         let sectionInset = UIEdgeInsetsMake(0.0, 0.0, 1.0, 0.0)
         if searchResults.count > 0 {
+            let emptySearchTerm = searchTerm.trimWhitespace() == ""
             let maxVisibleItems = 3
-            let profilesCardTitle = searchTerm.trimWhitespace() == "" ? "Recent" : "People"
+            let profilesCardTitle = emptySearchTerm ? NSLocalizedString("Recent", comment: "Title of the section showing recent search results") : NSLocalizedString("Results", comment: "Title of the section showing search results")
             let resultsCard = Card(cardType: .Profiles, title: profilesCardTitle, showContentCount: false)
             resultsCard.addContent(content: searchResults)
             resultsCard.sectionInset = sectionInset
+            if emptySearchTerm {
+                resultsCard.addHeader(headerClass: ProfileSectionHeaderCollectionReusableView.self)
+            }
             appendCard(resultsCard)
             addSearchActions()
         }
 
         if searchSuggestions.count > 0 {
-            let searchSuggestionsCard = Card(cardType: .SearchSuggestion, title: "", showContentCount: false)
+            let searchSuggestionsCard = Card(
+                cardType: .SearchSuggestion, 
+                title: NSLocalizedString("Explore",
+                    comment: "Title which presents options to explore the content"
+                ),
+                showContentCount: false
+            )
+            searchSuggestionsCard.addHeader(headerClass: ProfileSectionHeaderCollectionReusableView.self)
             searchSuggestionsCard.addContent(content: searchSuggestions as [AnyObject])
             searchSuggestionsCard.sectionInset = sectionInset
             appendCard(searchSuggestionsCard)

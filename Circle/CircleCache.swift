@@ -8,6 +8,7 @@
 
 import Foundation
 import ProtobufRegistry
+import RealmSwift
 
 /**
     CircleCache is a simple key, value disk cache. It can be used to store app level settings
@@ -120,6 +121,54 @@ extension CircleCache {
         existingProfilesIDs = uniqueProfileIDs.array as! [String]
         existingProfilesIDs = Array(existingProfilesIDs[0..<maxRecords])
         CircleCache.sharedInstance.setObject(existingProfilesIDs, forKey: CircleCache.Keys.RecentProfileVisits)
+    }
+    
+    static func recordProfileSearchResult(profile: Services.Profile.Containers.ProfileV1) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), { () -> Void in
+            let recentSearchResult = RecentSearchResult()
+            recentSearchResult.id = profile.id
+            recentSearchResult.object = profile.data()
+            recentSearchResult.type = RecentSearchResult.ResultType.Profile.rawValue
+            RecentSearchResult.createOrUpdate(recentSearchResult)
+        })
+    }
+
+    static func recordTeamSearchResult(team: Services.Organization.Containers.TeamV1) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), { () -> Void in
+            let recentSearchResult = RecentSearchResult()
+            recentSearchResult.id = team.id
+            recentSearchResult.object = team.data()
+            recentSearchResult.type = RecentSearchResult.ResultType.Team.rawValue
+            RecentSearchResult.createOrUpdate(recentSearchResult)
+        })
+    }
+
+    static func recordLocationSearchResult(location: Services.Organization.Containers.LocationV1) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), { () -> Void in
+            let recentSearchResult = RecentSearchResult()
+            recentSearchResult.id = location.id
+            recentSearchResult.object = location.data()
+            recentSearchResult.type = RecentSearchResult.ResultType.Location.rawValue
+            RecentSearchResult.createOrUpdate(recentSearchResult)
+        })
+    }
+    
+    static func getRecordedSearchResults(limit: Int) -> [AnyObject] {
+        var searchResults = [AnyObject]()
+        let recordedResults = Realm().objects(RecentSearchResult).sorted("updated", ascending: false)
+        var counter: Int = 0
+        for result in recordedResults {
+            if counter >= limit {
+                break
+            }
+            
+            if let resultObject: AnyObject = RecentSearchResult.getObjectFromResult(result) {
+                searchResults.append(resultObject)
+                counter++
+            }
+        }
+        
+        return searchResults
     }
     
     static func setIntegrationSetting(value: Bool, ofType type: Services.Organization.Containers.Integration.IntegrationTypeV1) {

@@ -207,6 +207,7 @@
 		8FA6A4BF1AFFDCBE00ACC39D /* GroupRequestCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8FA6A4BD1AFFDCBE00ACC39D /* GroupRequestCollectionViewCell.xib */; };
 		8FAA14BC1B093D190098CC45 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FAA14BA1B093D190098CC45 /* SplashViewController.swift */; };
 		8FAA14BD1B093D190098CC45 /* SplashViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8FAA14BB1B093D190098CC45 /* SplashViewController.xib */; };
+		8FB35CD91B7D56CE00A3FE07 /* RecentSearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB35CD81B7D56CE00A3FE07 /* RecentSearchResult.swift */; };
 		8FC7BB3B1A58A6E2005BDDDB /* CardDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC7BB3A1A58A6E2005BDDDB /* CardDataSource.swift */; };
 		8FC7BB431A58B15B005BDDDB /* CardCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC7BB421A58B15B005BDDDB /* CardCollectionViewDelegate.swift */; };
 		8FC877FC1AB21775003FDB27 /* DebugUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC877FB1AB21775003FDB27 /* DebugUtils.swift */; };
@@ -541,6 +542,7 @@
 		8FA6A4BD1AFFDCBE00ACC39D /* GroupRequestCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupRequestCollectionViewCell.xib; sourceTree = "<group>"; };
 		8FAA14BA1B093D190098CC45 /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		8FAA14BB1B093D190098CC45 /* SplashViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SplashViewController.xib; sourceTree = "<group>"; };
+		8FB35CD81B7D56CE00A3FE07 /* RecentSearchResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentSearchResult.swift; sourceTree = "<group>"; };
 		8FC7BB3A1A58A6E2005BDDDB /* CardDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardDataSource.swift; sourceTree = "<group>"; };
 		8FC7BB421A58B15B005BDDDB /* CardCollectionViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardCollectionViewDelegate.swift; sourceTree = "<group>"; };
 		8FC877FB1AB21775003FDB27 /* DebugUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DebugUtils.swift; sourceTree = "<group>"; };
@@ -855,6 +857,7 @@
 				8F2068901B708DE200E498AC /* SearchSuggestion.swift */,
 				8F2068931B708F7400E498AC /* SearchAction.swift */,
 				8F15A4071B75889900693E26 /* TextData.swift */,
+				8FB35CD81B7D56CE00A3FE07 /* RecentSearchResult.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1207,6 +1210,7 @@
 		8F0004881A2419730096477A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = "RH Labs Inc.";
 				TargetAttributes = {
@@ -1637,6 +1641,7 @@
 				BFE213CD1A5EF7E30033E2F5 /* AppDelegateSearchCacheExtension.swift in Sources */,
 				BFAF272F1ACB75A600E881BC /* ContactInfoDataSource.swift in Sources */,
 				8F22CBE81A27FDA70026376E /* KeyValueCollectionViewCell.swift in Sources */,
+				8FB35CD91B7D56CE00A3FE07 /* RecentSearchResult.swift in Sources */,
 				8F5933D01ACA331700905E14 /* UIDeviceExtension.swift in Sources */,
 				8FA6A4B61AFEB47D00ACC39D /* Group.swift in Sources */,
 				8F15A4001B756AF700693E26 /* EditProfileStatusViewController.swift in Sources */,
