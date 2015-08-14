@@ -143,10 +143,10 @@ class SearchQueryDataSource: CardDataSource {
     
     private func addCards() {
         resetCards()
-        
+
+        let emptySearchTerm = searchTerm.trimWhitespace() == ""
         let sectionInset = UIEdgeInsetsMake(0.0, 0.0, 1.0, 0.0)
         if searchResults.count > 0 {
-            let emptySearchTerm = searchTerm.trimWhitespace() == ""
             let maxVisibleItems = 3
             let profilesCardTitle = emptySearchTerm ? NSLocalizedString("Recent", comment: "Title of the section showing recent search results") : NSLocalizedString("Results", comment: "Title of the section showing search results")
             let resultsCard = Card(cardType: .Profiles, title: profilesCardTitle, showContentCount: false)
@@ -167,7 +167,12 @@ class SearchQueryDataSource: CardDataSource {
                 ),
                 showContentCount: false
             )
-            searchSuggestionsCard.addHeader(headerClass: ProfileSectionHeaderCollectionReusableView.self)
+            
+            if emptySearchTerm {
+                // Explore options are shown here
+                searchSuggestionsCard.addHeader(headerClass: ProfileSectionHeaderCollectionReusableView.self)
+            }
+            
             searchSuggestionsCard.addContent(content: searchSuggestions as [AnyObject])
             searchSuggestionsCard.sectionInset = sectionInset
             appendCard(searchSuggestionsCard)
