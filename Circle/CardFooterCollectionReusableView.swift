@@ -52,6 +52,8 @@ class CardFooterCollectionReusableView: CircleCollectionReusableView {
             forState: .Highlighted
         )
         footerImageView.hidden = true
+        footerButton.setTitleColor(UIColor.appPrimaryTextColor(), forState: .Normal)
+        footerButton.titleLabel?.font = UIFont.appPrimaryTextFont()
     }
     
     func setButtonTitle(title: String) {

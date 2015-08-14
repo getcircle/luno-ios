@@ -64,14 +64,14 @@ class ProfileDetailViewController:
                         
                     case .Profiles:
                         let data: AnyObject? = dataSource.contentAtIndexPath(indexPath)
-                        if data is Services.Organization.Containers.TeamV1 {
-                            onTeamTapped(nil)
+                        if let team = data as? Services.Organization.Containers.TeamV1 {
+                            showTeamDetail(team)
                         }
-                        else if data is Services.Organization.Containers.LocationV1 {
-                            onLocationsTapped(nil)
+                        else if let location = data as? Services.Organization.Containers.LocationV1 {
+                            showLocationDetail(location)
                         }
-                        else if data is Services.Profile.Containers.ProfileV1 {
-                            onManagerTapped(nil)
+                        else if let profile = data as? Services.Profile.Containers.ProfileV1 {
+                            showProfileDetail(profile)
                         }
                     
                     case .Group:
@@ -175,24 +175,6 @@ class ProfileDetailViewController:
             
         default:
             break
-        }
-    }
-    
-    func onManagerTapped(notification: NSNotification?) {
-        if let dataSource = dataSource as? ProfileDetailDataSource, manager = dataSource.manager {
-            showProfileDetail(manager)
-        }
-    }
-    
-    func onLocationsTapped(notification: NSNotification?) {
-        if let dataSource = dataSource as? ProfileDetailDataSource, location = dataSource.location {
-            showLocationDetail(location)
-        }
-    }
-    
-    func onTeamTapped(notification: NSNotification?) {
-        if let dataSource = dataSource as? ProfileDetailDataSource, team = dataSource.team {
-            showTeamDetail(team)
         }
     }
 
