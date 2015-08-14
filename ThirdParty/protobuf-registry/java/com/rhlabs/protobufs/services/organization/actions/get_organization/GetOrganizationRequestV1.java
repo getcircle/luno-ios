@@ -12,29 +12,21 @@ public final class GetOrganizationRequestV1 extends Message {
   private static final long serialVersionUID = 0L;
 
   public static final Integer DEFAULT_VERSION = 1;
-  public static final String DEFAULT_ORGANIZATION_ID = "";
-  public static final String DEFAULT_ORGANIZATION_DOMAIN = "";
+  public static final String DEFAULT_DOMAIN = "";
 
   @ProtoField(tag = 1, type = UINT32)
   public final Integer version;
 
   @ProtoField(tag = 2, type = STRING)
-  public final String organization_id;
+  public final String domain;
 
-  /**
-   * TODO i would rather this just be domain
-   */
-  @ProtoField(tag = 3, type = STRING)
-  public final String organization_domain;
-
-  public GetOrganizationRequestV1(Integer version, String organization_id, String organization_domain) {
+  public GetOrganizationRequestV1(Integer version, String domain) {
     this.version = version;
-    this.organization_id = organization_id;
-    this.organization_domain = organization_domain;
+    this.domain = domain;
   }
 
   private GetOrganizationRequestV1(Builder builder) {
-    this(builder.version, builder.organization_id, builder.organization_domain);
+    this(builder.version, builder.domain);
     setBuilder(builder);
   }
 
@@ -44,8 +36,7 @@ public final class GetOrganizationRequestV1 extends Message {
     if (!(other instanceof GetOrganizationRequestV1)) return false;
     GetOrganizationRequestV1 o = (GetOrganizationRequestV1) other;
     return equals(version, o.version)
-        && equals(organization_id, o.organization_id)
-        && equals(organization_domain, o.organization_domain);
+        && equals(domain, o.domain);
   }
 
   @Override
@@ -53,8 +44,7 @@ public final class GetOrganizationRequestV1 extends Message {
     int result = hashCode;
     if (result == 0) {
       result = version != null ? version.hashCode() : 0;
-      result = result * 37 + (organization_id != null ? organization_id.hashCode() : 0);
-      result = result * 37 + (organization_domain != null ? organization_domain.hashCode() : 0);
+      result = result * 37 + (domain != null ? domain.hashCode() : 0);
       hashCode = result;
     }
     return result;
@@ -63,8 +53,7 @@ public final class GetOrganizationRequestV1 extends Message {
   public static final class Builder extends Message.Builder<GetOrganizationRequestV1> {
 
     public Integer version;
-    public String organization_id;
-    public String organization_domain;
+    public String domain;
 
     public Builder() {
     }
@@ -73,8 +62,7 @@ public final class GetOrganizationRequestV1 extends Message {
       super(message);
       if (message == null) return;
       this.version = message.version;
-      this.organization_id = message.organization_id;
-      this.organization_domain = message.organization_domain;
+      this.domain = message.domain;
     }
 
     public Builder version(Integer version) {
@@ -82,16 +70,8 @@ public final class GetOrganizationRequestV1 extends Message {
       return this;
     }
 
-    public Builder organization_id(String organization_id) {
-      this.organization_id = organization_id;
-      return this;
-    }
-
-    /**
-     * TODO i would rather this just be domain
-     */
-    public Builder organization_domain(String organization_domain) {
-      this.organization_domain = organization_domain;
+    public Builder domain(String domain) {
+      this.domain = domain;
       return this;
     }
 

@@ -1,0 +1,12 @@
+package services.organization.actions.get_descendants;
+
+message RequestV1 {
+    optional uint32 version = 1 [default = 1];
+    optional string profile_id = 2;
+    optional string team_id = 3;
+}
+
+message ResponseV1 {
+    optional uint32 version = 1 [default = 1];
+    repeated string profile_ids = 3;
+}

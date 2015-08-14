@@ -2,6 +2,7 @@
 // Source file: ./src/protobufs/services/profile/actions/get_profiles.proto
 package com.rhlabs.protobufs.services.profile.actions.get_profiles;
 
+import com.rhlabs.protobufs.services.common.containers.InflationsV1;
 import com.squareup.wire.Message;
 import com.squareup.wire.ProtoField;
 import java.util.Collections;
@@ -15,51 +16,40 @@ public final class GetProfilesRequestV1 extends Message {
   private static final long serialVersionUID = 0L;
 
   public static final Integer DEFAULT_VERSION = 1;
-  public static final String DEFAULT_TEAM_ID = "";
-  public static final String DEFAULT_ORGANIZATION_ID = "";
   public static final String DEFAULT_TAG_ID = "";
-  public static final String DEFAULT_ADDRESS_ID = "";
   public static final List<String> DEFAULT_IDS = Collections.emptyList();
   public static final String DEFAULT_LOCATION_ID = "";
-  public static final List<String> DEFAULT_EMAILS = Collections.emptyList();
+  public static final String DEFAULT_TEAM_ID = "";
 
   @ProtoField(tag = 1, type = UINT32)
   public final Integer version;
 
   @ProtoField(tag = 2, type = STRING)
-  public final String team_id;
-
-  @ProtoField(tag = 3, type = STRING)
-  public final String organization_id;
-
-  @ProtoField(tag = 4, type = STRING)
   public final String tag_id;
 
-  @ProtoField(tag = 5, type = STRING)
-  public final String address_id;
-
-  @ProtoField(tag = 6, type = STRING, label = REPEATED)
+  @ProtoField(tag = 3, type = STRING, label = REPEATED)
   public final List<String> ids;
 
-  @ProtoField(tag = 7, type = STRING)
+  @ProtoField(tag = 4, type = STRING)
   public final String location_id;
 
-  @ProtoField(tag = 8, type = STRING, label = REPEATED)
-  public final List<String> emails;
+  @ProtoField(tag = 5, type = STRING)
+  public final String team_id;
 
-  public GetProfilesRequestV1(Integer version, String team_id, String organization_id, String tag_id, String address_id, List<String> ids, String location_id, List<String> emails) {
+  @ProtoField(tag = 6)
+  public final InflationsV1 inflations;
+
+  public GetProfilesRequestV1(Integer version, String tag_id, List<String> ids, String location_id, String team_id, InflationsV1 inflations) {
     this.version = version;
-    this.team_id = team_id;
-    this.organization_id = organization_id;
     this.tag_id = tag_id;
-    this.address_id = address_id;
     this.ids = immutableCopyOf(ids);
     this.location_id = location_id;
-    this.emails = immutableCopyOf(emails);
+    this.team_id = team_id;
+    this.inflations = inflations;
   }
 
   private GetProfilesRequestV1(Builder builder) {
-    this(builder.version, builder.team_id, builder.organization_id, builder.tag_id, builder.address_id, builder.ids, builder.location_id, builder.emails);
+    this(builder.version, builder.tag_id, builder.ids, builder.location_id, builder.team_id, builder.inflations);
     setBuilder(builder);
   }
 
@@ -69,13 +59,11 @@ public final class GetProfilesRequestV1 extends Message {
     if (!(other instanceof GetProfilesRequestV1)) return false;
     GetProfilesRequestV1 o = (GetProfilesRequestV1) other;
     return equals(version, o.version)
-        && equals(team_id, o.team_id)
-        && equals(organization_id, o.organization_id)
         && equals(tag_id, o.tag_id)
-        && equals(address_id, o.address_id)
         && equals(ids, o.ids)
         && equals(location_id, o.location_id)
-        && equals(emails, o.emails);
+        && equals(team_id, o.team_id)
+        && equals(inflations, o.inflations);
   }
 
   @Override
@@ -83,13 +71,11 @@ public final class GetProfilesRequestV1 extends Message {
     int result = hashCode;
     if (result == 0) {
       result = version != null ? version.hashCode() : 0;
-      result = result * 37 + (team_id != null ? team_id.hashCode() : 0);
-      result = result * 37 + (organization_id != null ? organization_id.hashCode() : 0);
       result = result * 37 + (tag_id != null ? tag_id.hashCode() : 0);
-      result = result * 37 + (address_id != null ? address_id.hashCode() : 0);
       result = result * 37 + (ids != null ? ids.hashCode() : 1);
       result = result * 37 + (location_id != null ? location_id.hashCode() : 0);
-      result = result * 37 + (emails != null ? emails.hashCode() : 1);
+      result = result * 37 + (team_id != null ? team_id.hashCode() : 0);
+      result = result * 37 + (inflations != null ? inflations.hashCode() : 0);
       hashCode = result;
     }
     return result;
@@ -98,13 +84,11 @@ public final class GetProfilesRequestV1 extends Message {
   public static final class Builder extends Message.Builder<GetProfilesRequestV1> {
 
     public Integer version;
-    public String team_id;
-    public String organization_id;
     public String tag_id;
-    public String address_id;
     public List<String> ids;
     public String location_id;
-    public List<String> emails;
+    public String team_id;
+    public InflationsV1 inflations;
 
     public Builder() {
     }
@@ -113,13 +97,11 @@ public final class GetProfilesRequestV1 extends Message {
       super(message);
       if (message == null) return;
       this.version = message.version;
-      this.team_id = message.team_id;
-      this.organization_id = message.organization_id;
       this.tag_id = message.tag_id;
-      this.address_id = message.address_id;
       this.ids = copyOf(message.ids);
       this.location_id = message.location_id;
-      this.emails = copyOf(message.emails);
+      this.team_id = message.team_id;
+      this.inflations = message.inflations;
     }
 
     public Builder version(Integer version) {
@@ -127,23 +109,8 @@ public final class GetProfilesRequestV1 extends Message {
       return this;
     }
 
-    public Builder team_id(String team_id) {
-      this.team_id = team_id;
-      return this;
-    }
-
-    public Builder organization_id(String organization_id) {
-      this.organization_id = organization_id;
-      return this;
-    }
-
     public Builder tag_id(String tag_id) {
       this.tag_id = tag_id;
-      return this;
-    }
-
-    public Builder address_id(String address_id) {
-      this.address_id = address_id;
       return this;
     }
 
@@ -157,8 +124,13 @@ public final class GetProfilesRequestV1 extends Message {
       return this;
     }
 
-    public Builder emails(List<String> emails) {
-      this.emails = checkForNulls(emails);
+    public Builder team_id(String team_id) {
+      this.team_id = team_id;
+      return this;
+    }
+
+    public Builder inflations(InflationsV1 inflations) {
+      this.inflations = inflations;
       return this;
     }
 

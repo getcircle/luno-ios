@@ -4,14 +4,12 @@ package com.rhlabs.protobufs.services.organization.containers;
 
 import com.rhlabs.protobufs.services.common.containers.DescriptionV1;
 import com.rhlabs.protobufs.services.common.containers.PermissionsV1;
+import com.rhlabs.protobufs.services.profile.containers.ProfileV1;
 import com.squareup.wire.Message;
 import com.squareup.wire.ProtoField;
-import java.util.Collections;
-import java.util.List;
 
 import static com.squareup.wire.Message.Datatype.STRING;
 import static com.squareup.wire.Message.Datatype.UINT32;
-import static com.squareup.wire.Message.Label.REPEATED;
 
 public final class TeamV1 extends Message {
   private static final long serialVersionUID = 0L;
@@ -19,13 +17,11 @@ public final class TeamV1 extends Message {
   public static final Integer DEFAULT_VERSION = 1;
   public static final String DEFAULT_ID = "";
   public static final String DEFAULT_NAME = "";
-  public static final String DEFAULT_OWNER_ID = "";
   public static final String DEFAULT_ORGANIZATION_ID = "";
-  public static final List<PathPartV1> DEFAULT_PATH = Collections.emptyList();
-  public static final String DEFAULT_DEPARTMENT = "";
-  public static final Integer DEFAULT_PROFILE_COUNT = 0;
+  public static final String DEFAULT_MANAGER_PROFILE_ID = "";
   public static final String DEFAULT_IMAGE_URL = "";
   public static final Integer DEFAULT_CHILD_TEAM_COUNT = 0;
+  public static final Integer DEFAULT_PROFILE_COUNT = 0;
 
   @ProtoField(tag = 1, type = UINT32)
   public final Integer version;
@@ -37,57 +33,49 @@ public final class TeamV1 extends Message {
   public final String name;
 
   @ProtoField(tag = 4, type = STRING)
-  public final String owner_id;
-
-  @ProtoField(tag = 5, type = STRING)
   public final String organization_id;
 
-  @ProtoField(tag = 6, label = REPEATED, messageType = PathPartV1.class)
-  public final List<PathPartV1> path;
+  @ProtoField(tag = 5, type = STRING)
+  public final String manager_profile_id;
 
-  @ProtoField(tag = 7, type = STRING)
-  public final String department;
+  @ProtoField(tag = 6)
+  public final ProfileV1 manager;
 
-  @ProtoField(tag = 8, type = UINT32)
-  public final Integer profile_count;
-
-  @ProtoField(tag = 9)
-  public final ColorV1 color;
-
-  @ProtoField(tag = 10)
+  @ProtoField(tag = 7)
   public final PermissionsV1 permissions;
 
-  @ProtoField(tag = 11)
-  public final DescriptionV1 team_description;
+  @ProtoField(tag = 8)
+  public final DescriptionV1 description;
 
-  @ProtoField(tag = 12)
+  @ProtoField(tag = 9)
   public final TeamStatusV1 status;
 
-  @ProtoField(tag = 13, type = STRING)
+  @ProtoField(tag = 10, type = STRING)
   public final String image_url;
 
-  @ProtoField(tag = 14, type = UINT32)
+  @ProtoField(tag = 11, type = UINT32)
   public final Integer child_team_count;
 
-  public TeamV1(Integer version, String id, String name, String owner_id, String organization_id, List<PathPartV1> path, String department, Integer profile_count, ColorV1 color, PermissionsV1 permissions, DescriptionV1 team_description, TeamStatusV1 status, String image_url, Integer child_team_count) {
+  @ProtoField(tag = 12, type = UINT32)
+  public final Integer profile_count;
+
+  public TeamV1(Integer version, String id, String name, String organization_id, String manager_profile_id, ProfileV1 manager, PermissionsV1 permissions, DescriptionV1 description, TeamStatusV1 status, String image_url, Integer child_team_count, Integer profile_count) {
     this.version = version;
     this.id = id;
     this.name = name;
-    this.owner_id = owner_id;
     this.organization_id = organization_id;
-    this.path = immutableCopyOf(path);
-    this.department = department;
-    this.profile_count = profile_count;
-    this.color = color;
+    this.manager_profile_id = manager_profile_id;
+    this.manager = manager;
     this.permissions = permissions;
-    this.team_description = team_description;
+    this.description = description;
     this.status = status;
     this.image_url = image_url;
     this.child_team_count = child_team_count;
+    this.profile_count = profile_count;
   }
 
   private TeamV1(Builder builder) {
-    this(builder.version, builder.id, builder.name, builder.owner_id, builder.organization_id, builder.path, builder.department, builder.profile_count, builder.color, builder.permissions, builder.team_description, builder.status, builder.image_url, builder.child_team_count);
+    this(builder.version, builder.id, builder.name, builder.organization_id, builder.manager_profile_id, builder.manager, builder.permissions, builder.description, builder.status, builder.image_url, builder.child_team_count, builder.profile_count);
     setBuilder(builder);
   }
 
@@ -99,17 +87,15 @@ public final class TeamV1 extends Message {
     return equals(version, o.version)
         && equals(id, o.id)
         && equals(name, o.name)
-        && equals(owner_id, o.owner_id)
         && equals(organization_id, o.organization_id)
-        && equals(path, o.path)
-        && equals(department, o.department)
-        && equals(profile_count, o.profile_count)
-        && equals(color, o.color)
+        && equals(manager_profile_id, o.manager_profile_id)
+        && equals(manager, o.manager)
         && equals(permissions, o.permissions)
-        && equals(team_description, o.team_description)
+        && equals(description, o.description)
         && equals(status, o.status)
         && equals(image_url, o.image_url)
-        && equals(child_team_count, o.child_team_count);
+        && equals(child_team_count, o.child_team_count)
+        && equals(profile_count, o.profile_count);
   }
 
   @Override
@@ -119,17 +105,15 @@ public final class TeamV1 extends Message {
       result = version != null ? version.hashCode() : 0;
       result = result * 37 + (id != null ? id.hashCode() : 0);
       result = result * 37 + (name != null ? name.hashCode() : 0);
-      result = result * 37 + (owner_id != null ? owner_id.hashCode() : 0);
       result = result * 37 + (organization_id != null ? organization_id.hashCode() : 0);
-      result = result * 37 + (path != null ? path.hashCode() : 1);
-      result = result * 37 + (department != null ? department.hashCode() : 0);
-      result = result * 37 + (profile_count != null ? profile_count.hashCode() : 0);
-      result = result * 37 + (color != null ? color.hashCode() : 0);
+      result = result * 37 + (manager_profile_id != null ? manager_profile_id.hashCode() : 0);
+      result = result * 37 + (manager != null ? manager.hashCode() : 0);
       result = result * 37 + (permissions != null ? permissions.hashCode() : 0);
-      result = result * 37 + (team_description != null ? team_description.hashCode() : 0);
+      result = result * 37 + (description != null ? description.hashCode() : 0);
       result = result * 37 + (status != null ? status.hashCode() : 0);
       result = result * 37 + (image_url != null ? image_url.hashCode() : 0);
       result = result * 37 + (child_team_count != null ? child_team_count.hashCode() : 0);
+      result = result * 37 + (profile_count != null ? profile_count.hashCode() : 0);
       hashCode = result;
     }
     return result;
@@ -140,17 +124,15 @@ public final class TeamV1 extends Message {
     public Integer version;
     public String id;
     public String name;
-    public String owner_id;
     public String organization_id;
-    public List<PathPartV1> path;
-    public String department;
-    public Integer profile_count;
-    public ColorV1 color;
+    public String manager_profile_id;
+    public ProfileV1 manager;
     public PermissionsV1 permissions;
-    public DescriptionV1 team_description;
+    public DescriptionV1 description;
     public TeamStatusV1 status;
     public String image_url;
     public Integer child_team_count;
+    public Integer profile_count;
 
     public Builder() {
     }
@@ -161,17 +143,15 @@ public final class TeamV1 extends Message {
       this.version = message.version;
       this.id = message.id;
       this.name = message.name;
-      this.owner_id = message.owner_id;
       this.organization_id = message.organization_id;
-      this.path = copyOf(message.path);
-      this.department = message.department;
-      this.profile_count = message.profile_count;
-      this.color = message.color;
+      this.manager_profile_id = message.manager_profile_id;
+      this.manager = message.manager;
       this.permissions = message.permissions;
-      this.team_description = message.team_description;
+      this.description = message.description;
       this.status = message.status;
       this.image_url = message.image_url;
       this.child_team_count = message.child_team_count;
+      this.profile_count = message.profile_count;
     }
 
     public Builder version(Integer version) {
@@ -189,33 +169,18 @@ public final class TeamV1 extends Message {
       return this;
     }
 
-    public Builder owner_id(String owner_id) {
-      this.owner_id = owner_id;
-      return this;
-    }
-
     public Builder organization_id(String organization_id) {
       this.organization_id = organization_id;
       return this;
     }
 
-    public Builder path(List<PathPartV1> path) {
-      this.path = checkForNulls(path);
+    public Builder manager_profile_id(String manager_profile_id) {
+      this.manager_profile_id = manager_profile_id;
       return this;
     }
 
-    public Builder department(String department) {
-      this.department = department;
-      return this;
-    }
-
-    public Builder profile_count(Integer profile_count) {
-      this.profile_count = profile_count;
-      return this;
-    }
-
-    public Builder color(ColorV1 color) {
-      this.color = color;
+    public Builder manager(ProfileV1 manager) {
+      this.manager = manager;
       return this;
     }
 
@@ -224,8 +189,8 @@ public final class TeamV1 extends Message {
       return this;
     }
 
-    public Builder team_description(DescriptionV1 team_description) {
-      this.team_description = team_description;
+    public Builder description(DescriptionV1 description) {
+      this.description = description;
       return this;
     }
 
@@ -241,6 +206,11 @@ public final class TeamV1 extends Message {
 
     public Builder child_team_count(Integer child_team_count) {
       this.child_team_count = child_team_count;
+      return this;
+    }
+
+    public Builder profile_count(Integer profile_count) {
+      this.profile_count = profile_count;
       return this;
     }
 

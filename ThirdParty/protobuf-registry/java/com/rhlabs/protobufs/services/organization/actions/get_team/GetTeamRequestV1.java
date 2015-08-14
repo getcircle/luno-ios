@@ -13,8 +13,6 @@ public final class GetTeamRequestV1 extends Message {
 
   public static final Integer DEFAULT_VERSION = 1;
   public static final String DEFAULT_TEAM_ID = "";
-  public static final String DEFAULT_NAME = "";
-  public static final String DEFAULT_ORGANIZATION_ID = "";
 
   @ProtoField(tag = 1, type = UINT32)
   public final Integer version;
@@ -22,21 +20,13 @@ public final class GetTeamRequestV1 extends Message {
   @ProtoField(tag = 2, type = STRING)
   public final String team_id;
 
-  @ProtoField(tag = 3, type = STRING)
-  public final String name;
-
-  @ProtoField(tag = 4, type = STRING)
-  public final String organization_id;
-
-  public GetTeamRequestV1(Integer version, String team_id, String name, String organization_id) {
+  public GetTeamRequestV1(Integer version, String team_id) {
     this.version = version;
     this.team_id = team_id;
-    this.name = name;
-    this.organization_id = organization_id;
   }
 
   private GetTeamRequestV1(Builder builder) {
-    this(builder.version, builder.team_id, builder.name, builder.organization_id);
+    this(builder.version, builder.team_id);
     setBuilder(builder);
   }
 
@@ -46,9 +36,7 @@ public final class GetTeamRequestV1 extends Message {
     if (!(other instanceof GetTeamRequestV1)) return false;
     GetTeamRequestV1 o = (GetTeamRequestV1) other;
     return equals(version, o.version)
-        && equals(team_id, o.team_id)
-        && equals(name, o.name)
-        && equals(organization_id, o.organization_id);
+        && equals(team_id, o.team_id);
   }
 
   @Override
@@ -57,8 +45,6 @@ public final class GetTeamRequestV1 extends Message {
     if (result == 0) {
       result = version != null ? version.hashCode() : 0;
       result = result * 37 + (team_id != null ? team_id.hashCode() : 0);
-      result = result * 37 + (name != null ? name.hashCode() : 0);
-      result = result * 37 + (organization_id != null ? organization_id.hashCode() : 0);
       hashCode = result;
     }
     return result;
@@ -68,8 +54,6 @@ public final class GetTeamRequestV1 extends Message {
 
     public Integer version;
     public String team_id;
-    public String name;
-    public String organization_id;
 
     public Builder() {
     }
@@ -79,8 +63,6 @@ public final class GetTeamRequestV1 extends Message {
       if (message == null) return;
       this.version = message.version;
       this.team_id = message.team_id;
-      this.name = message.name;
-      this.organization_id = message.organization_id;
     }
 
     public Builder version(Integer version) {
@@ -90,16 +72,6 @@ public final class GetTeamRequestV1 extends Message {
 
     public Builder team_id(String team_id) {
       this.team_id = team_id;
-      return this;
-    }
-
-    public Builder name(String name) {
-      this.name = name;
-      return this;
-    }
-
-    public Builder organization_id(String organization_id) {
-      this.organization_id = organization_id;
       return this;
     }
 

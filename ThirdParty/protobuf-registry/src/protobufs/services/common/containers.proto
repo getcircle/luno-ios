@@ -1,5 +1,7 @@
 package services.common.containers;
 
+import "protobufs/services/profile/containers.proto";
+
 // GENERATED OPTIONS FOR: JAVA
 option java_package = "com.rhlabs.protobufs.services.common.containers";
 
@@ -26,4 +28,12 @@ message DescriptionV1 {
     optional string value = 2;
     optional string by_profile_id = 3;
     optional string changed = 4;
+    optional services.profile.containers.ProfileV1 by_profile = 5;
+}
+
+message InflationsV1 {
+    optional uint32 version = 1 [default = 1];
+    optional bool enabled = 2 [default = true];
+    repeated string only = 3;
+    repeated string exclude = 4;
 }

@@ -14,7 +14,6 @@ public final class GetLocationRequestV1 extends Message {
   public static final Integer DEFAULT_VERSION = 1;
   public static final String DEFAULT_LOCATION_ID = "";
   public static final String DEFAULT_NAME = "";
-  public static final String DEFAULT_ORGANIZATION_ID = "";
 
   @ProtoField(tag = 1, type = UINT32)
   public final Integer version;
@@ -25,18 +24,14 @@ public final class GetLocationRequestV1 extends Message {
   @ProtoField(tag = 3, type = STRING)
   public final String name;
 
-  @ProtoField(tag = 4, type = STRING)
-  public final String organization_id;
-
-  public GetLocationRequestV1(Integer version, String location_id, String name, String organization_id) {
+  public GetLocationRequestV1(Integer version, String location_id, String name) {
     this.version = version;
     this.location_id = location_id;
     this.name = name;
-    this.organization_id = organization_id;
   }
 
   private GetLocationRequestV1(Builder builder) {
-    this(builder.version, builder.location_id, builder.name, builder.organization_id);
+    this(builder.version, builder.location_id, builder.name);
     setBuilder(builder);
   }
 
@@ -47,8 +42,7 @@ public final class GetLocationRequestV1 extends Message {
     GetLocationRequestV1 o = (GetLocationRequestV1) other;
     return equals(version, o.version)
         && equals(location_id, o.location_id)
-        && equals(name, o.name)
-        && equals(organization_id, o.organization_id);
+        && equals(name, o.name);
   }
 
   @Override
@@ -58,7 +52,6 @@ public final class GetLocationRequestV1 extends Message {
       result = version != null ? version.hashCode() : 0;
       result = result * 37 + (location_id != null ? location_id.hashCode() : 0);
       result = result * 37 + (name != null ? name.hashCode() : 0);
-      result = result * 37 + (organization_id != null ? organization_id.hashCode() : 0);
       hashCode = result;
     }
     return result;
@@ -69,7 +62,6 @@ public final class GetLocationRequestV1 extends Message {
     public Integer version;
     public String location_id;
     public String name;
-    public String organization_id;
 
     public Builder() {
     }
@@ -80,7 +72,6 @@ public final class GetLocationRequestV1 extends Message {
       this.version = message.version;
       this.location_id = message.location_id;
       this.name = message.name;
-      this.organization_id = message.organization_id;
     }
 
     public Builder version(Integer version) {
@@ -95,11 +86,6 @@ public final class GetLocationRequestV1 extends Message {
 
     public Builder name(String name) {
       this.name = name;
-      return this;
-    }
-
-    public Builder organization_id(String organization_id) {
-      this.organization_id = organization_id;
       return this;
     }
 

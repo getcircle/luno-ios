@@ -105,99 +105,99 @@ public final class Ext_responses {
       .setName("services.registry.responses.get_organization")
       .setTag(201)
       .buildOptional();
-  public static final Extension<ActionResultV1 , com.rhlabs.protobufs.services.organization.actions.create_team.CreateTeamResponseV1> create_team = Extension
-      .messageExtending(com.rhlabs.protobufs.services.organization.actions.create_team.CreateTeamResponseV1.class, ActionResultV1.class)
-      .setName("services.registry.responses.create_team")
-      .setTag(202)
-      .buildOptional();
-  public static final Extension<ActionResultV1 , com.rhlabs.protobufs.services.organization.actions.create_address.CreateAddressResponseV1> create_address = Extension
-      .messageExtending(com.rhlabs.protobufs.services.organization.actions.create_address.CreateAddressResponseV1.class, ActionResultV1.class)
-      .setName("services.registry.responses.create_address")
-      .setTag(203)
-      .buildOptional();
-  public static final Extension<ActionResultV1 , com.rhlabs.protobufs.services.organization.actions.delete_address.DeleteAddressResponseV1> delete_address = Extension
-      .messageExtending(com.rhlabs.protobufs.services.organization.actions.delete_address.DeleteAddressResponseV1.class, ActionResultV1.class)
-      .setName("services.registry.responses.delete_address")
-      .setTag(204)
-      .buildOptional();
-  public static final Extension<ActionResultV1 , com.rhlabs.protobufs.services.organization.actions.get_address.GetAddressResponseV1> get_address = Extension
-      .messageExtending(com.rhlabs.protobufs.services.organization.actions.get_address.GetAddressResponseV1.class, ActionResultV1.class)
-      .setName("services.registry.responses.get_address")
-      .setTag(205)
-      .buildOptional();
   public static final Extension<ActionResultV1 , com.rhlabs.protobufs.services.organization.actions.get_team.GetTeamResponseV1> get_team = Extension
       .messageExtending(com.rhlabs.protobufs.services.organization.actions.get_team.GetTeamResponseV1.class, ActionResultV1.class)
       .setName("services.registry.responses.get_team")
-      .setTag(206)
-      .buildOptional();
-  public static final Extension<ActionResultV1 , com.rhlabs.protobufs.services.organization.actions.get_teams.GetTeamsResponseV1> get_teams = Extension
-      .messageExtending(com.rhlabs.protobufs.services.organization.actions.get_teams.GetTeamsResponseV1.class, ActionResultV1.class)
-      .setName("services.registry.responses.get_teams")
-      .setTag(207)
-      .buildOptional();
-  public static final Extension<ActionResultV1 , com.rhlabs.protobufs.services.organization.actions.get_addresses.GetAddressesResponseV1> get_addresses = Extension
-      .messageExtending(com.rhlabs.protobufs.services.organization.actions.get_addresses.GetAddressesResponseV1.class, ActionResultV1.class)
-      .setName("services.registry.responses.get_addresses")
-      .setTag(208)
-      .buildOptional();
-  public static final Extension<ActionResultV1 , com.rhlabs.protobufs.services.organization.actions.get_team_descendants.GetTeamDescendantsResponseV1> get_team_descendants = Extension
-      .messageExtending(com.rhlabs.protobufs.services.organization.actions.get_team_descendants.GetTeamDescendantsResponseV1.class, ActionResultV1.class)
-      .setName("services.registry.responses.get_team_descendants")
-      .setTag(209)
-      .buildOptional();
-  public static final Extension<ActionResultV1 , com.rhlabs.protobufs.services.organization.actions.get_top_level_team.GetTopLevelTeamResponseV1> get_top_level_team = Extension
-      .messageExtending(com.rhlabs.protobufs.services.organization.actions.get_top_level_team.GetTopLevelTeamResponseV1.class, ActionResultV1.class)
-      .setName("services.registry.responses.get_top_level_team")
-      .setTag(210)
+      .setTag(202)
       .buildOptional();
   public static final Extension<ActionResultV1 , com.rhlabs.protobufs.services.organization.actions.create_location.CreateLocationResponseV1> create_location = Extension
       .messageExtending(com.rhlabs.protobufs.services.organization.actions.create_location.CreateLocationResponseV1.class, ActionResultV1.class)
       .setName("services.registry.responses.create_location")
-      .setTag(211)
+      .setTag(203)
       .buildOptional();
   public static final Extension<ActionResultV1 , com.rhlabs.protobufs.services.organization.actions.update_location.UpdateLocationResponseV1> update_location = Extension
       .messageExtending(com.rhlabs.protobufs.services.organization.actions.update_location.UpdateLocationResponseV1.class, ActionResultV1.class)
       .setName("services.registry.responses.update_location")
-      .setTag(212)
+      .setTag(204)
       .buildOptional();
   public static final Extension<ActionResultV1 , com.rhlabs.protobufs.services.organization.actions.get_locations.GetLocationsResponseV1> get_locations = Extension
       .messageExtending(com.rhlabs.protobufs.services.organization.actions.get_locations.GetLocationsResponseV1.class, ActionResultV1.class)
       .setName("services.registry.responses.get_locations")
-      .setTag(213)
+      .setTag(205)
       .buildOptional();
   public static final Extension<ActionResultV1 , com.rhlabs.protobufs.services.organization.actions.get_location.GetLocationResponseV1> get_location = Extension
       .messageExtending(com.rhlabs.protobufs.services.organization.actions.get_location.GetLocationResponseV1.class, ActionResultV1.class)
       .setName("services.registry.responses.get_location")
-      .setTag(214)
+      .setTag(206)
       .buildOptional();
   public static final Extension<ActionResultV1 , com.rhlabs.protobufs.services.organization.actions.create_token.CreateTokenResponseV1> create_token = Extension
       .messageExtending(com.rhlabs.protobufs.services.organization.actions.create_token.CreateTokenResponseV1.class, ActionResultV1.class)
       .setName("services.registry.responses.create_token")
-      .setTag(215)
+      .setTag(207)
       .buildOptional();
   public static final Extension<ActionResultV1 , com.rhlabs.protobufs.services.organization.actions.get_tokens.GetTokensResponseV1> get_tokens = Extension
       .messageExtending(com.rhlabs.protobufs.services.organization.actions.get_tokens.GetTokensResponseV1.class, ActionResultV1.class)
       .setName("services.registry.responses.get_tokens")
-      .setTag(216)
+      .setTag(208)
       .buildOptional();
   public static final Extension<ActionResultV1 , com.rhlabs.protobufs.services.organization.actions.enable_integration.EnableIntegrationResponseV1> enable_integration = Extension
       .messageExtending(com.rhlabs.protobufs.services.organization.actions.enable_integration.EnableIntegrationResponseV1.class, ActionResultV1.class)
       .setName("services.registry.responses.enable_integration")
-      .setTag(217)
+      .setTag(209)
       .buildOptional();
   public static final Extension<ActionResultV1 , com.rhlabs.protobufs.services.organization.actions.get_integration.GetIntegrationResponseV1> get_integration = Extension
       .messageExtending(com.rhlabs.protobufs.services.organization.actions.get_integration.GetIntegrationResponseV1.class, ActionResultV1.class)
       .setName("services.registry.responses.get_integration")
-      .setTag(218)
+      .setTag(210)
       .buildOptional();
   public static final Extension<ActionResultV1 , com.rhlabs.protobufs.services.organization.actions.disable_integration.DisableIntegrationResponseV1> disable_integration = Extension
       .messageExtending(com.rhlabs.protobufs.services.organization.actions.disable_integration.DisableIntegrationResponseV1.class, ActionResultV1.class)
       .setName("services.registry.responses.disable_integration")
-      .setTag(219)
+      .setTag(211)
       .buildOptional();
   public static final Extension<ActionResultV1 , com.rhlabs.protobufs.services.organization.actions.update_team.UpdateTeamResponseV1> update_team = Extension
       .messageExtending(com.rhlabs.protobufs.services.organization.actions.update_team.UpdateTeamResponseV1.class, ActionResultV1.class)
       .setName("services.registry.responses.update_team")
+      .setTag(212)
+      .buildOptional();
+  public static final Extension<ActionResultV1 , com.rhlabs.protobufs.services.organization.actions.add_direct_reports.AddDirectReportsResponseV1> add_direct_reports = Extension
+      .messageExtending(com.rhlabs.protobufs.services.organization.actions.add_direct_reports.AddDirectReportsResponseV1.class, ActionResultV1.class)
+      .setName("services.registry.responses.add_direct_reports")
+      .setTag(213)
+      .buildOptional();
+  public static final Extension<ActionResultV1 , com.rhlabs.protobufs.services.organization.actions.get_location_members.GetLocationMembersResponseV1> get_location_members = Extension
+      .messageExtending(com.rhlabs.protobufs.services.organization.actions.get_location_members.GetLocationMembersResponseV1.class, ActionResultV1.class)
+      .setName("services.registry.responses.get_location_members")
+      .setTag(214)
+      .buildOptional();
+  public static final Extension<ActionResultV1 , com.rhlabs.protobufs.services.organization.actions.get_profile_reporting_details.GetProfileReportingDetailsResponseV1> get_profile_reporting_details = Extension
+      .messageExtending(com.rhlabs.protobufs.services.organization.actions.get_profile_reporting_details.GetProfileReportingDetailsResponseV1.class, ActionResultV1.class)
+      .setName("services.registry.responses.get_profile_reporting_details")
+      .setTag(215)
+      .buildOptional();
+  public static final Extension<ActionResultV1 , com.rhlabs.protobufs.services.organization.actions.get_team_reporting_details.GetTeamReportingDetailsResponseV1> get_team_reporting_details = Extension
+      .messageExtending(com.rhlabs.protobufs.services.organization.actions.get_team_reporting_details.GetTeamReportingDetailsResponseV1.class, ActionResultV1.class)
+      .setName("services.registry.responses.get_team_reporting_details")
+      .setTag(216)
+      .buildOptional();
+  public static final Extension<ActionResultV1 , com.rhlabs.protobufs.services.organization.actions.set_manager.SetManagerResponseV1> set_manager = Extension
+      .messageExtending(com.rhlabs.protobufs.services.organization.actions.set_manager.SetManagerResponseV1.class, ActionResultV1.class)
+      .setName("services.registry.responses.set_manager")
+      .setTag(217)
+      .buildOptional();
+  public static final Extension<ActionResultV1 , com.rhlabs.protobufs.services.organization.actions.add_location_members.AddLocationMembersResponseV1> add_location_members = Extension
+      .messageExtending(com.rhlabs.protobufs.services.organization.actions.add_location_members.AddLocationMembersResponseV1.class, ActionResultV1.class)
+      .setName("services.registry.responses.add_location_members")
+      .setTag(218)
+      .buildOptional();
+  public static final Extension<ActionResultV1 , com.rhlabs.protobufs.services.organization.actions.get_teams.GetTeamsResponseV1> get_teams = Extension
+      .messageExtending(com.rhlabs.protobufs.services.organization.actions.get_teams.GetTeamsResponseV1.class, ActionResultV1.class)
+      .setName("services.registry.responses.get_teams")
+      .setTag(219)
+      .buildOptional();
+  public static final Extension<ActionResultV1 , com.rhlabs.protobufs.services.organization.actions.get_descendants.GetDescendantsResponseV1> get_descendants = Extension
+      .messageExtending(com.rhlabs.protobufs.services.organization.actions.get_descendants.GetDescendantsResponseV1.class, ActionResultV1.class)
+      .setName("services.registry.responses.get_descendants")
       .setTag(220)
       .buildOptional();
   public static final Extension<ActionResultV1 , com.rhlabs.protobufs.services.profile.actions.create_profile.CreateProfileResponseV1> create_profile = Extension
@@ -240,60 +240,40 @@ public final class Ext_responses {
       .setName("services.registry.responses.get_profiles")
       .setTag(307)
       .buildOptional();
-  public static final Extension<ActionResultV1 , com.rhlabs.protobufs.services.profile.actions.get_direct_reports.GetDirectReportsResponseV1> get_direct_reports = Extension
-      .messageExtending(com.rhlabs.protobufs.services.profile.actions.get_direct_reports.GetDirectReportsResponseV1.class, ActionResultV1.class)
-      .setName("services.registry.responses.get_direct_reports")
-      .setTag(308)
-      .buildOptional();
-  public static final Extension<ActionResultV1 , com.rhlabs.protobufs.services.profile.actions.get_peers.GetPeersResponseV1> get_peers = Extension
-      .messageExtending(com.rhlabs.protobufs.services.profile.actions.get_peers.GetPeersResponseV1.class, ActionResultV1.class)
-      .setName("services.registry.responses.get_peers")
-      .setTag(309)
-      .buildOptional();
-  public static final Extension<ActionResultV1 , com.rhlabs.protobufs.services.profile.actions.get_profile_stats.GetProfileStatsResponseV1> get_profile_stats = Extension
-      .messageExtending(com.rhlabs.protobufs.services.profile.actions.get_profile_stats.GetProfileStatsResponseV1.class, ActionResultV1.class)
-      .setName("services.registry.responses.get_profile_stats")
-      .setTag(310)
-      .buildOptional();
   public static final Extension<ActionResultV1 , com.rhlabs.protobufs.services.profile.actions.get_upcoming_anniversaries.GetUpcomingAnniversariesResponseV1> get_upcoming_anniversaries = Extension
       .messageExtending(com.rhlabs.protobufs.services.profile.actions.get_upcoming_anniversaries.GetUpcomingAnniversariesResponseV1.class, ActionResultV1.class)
       .setName("services.registry.responses.get_upcoming_anniversaries")
-      .setTag(311)
+      .setTag(308)
       .buildOptional();
   public static final Extension<ActionResultV1 , com.rhlabs.protobufs.services.profile.actions.get_upcoming_birthdays.GetUpcomingBirthdaysResponseV1> get_upcoming_birthdays = Extension
       .messageExtending(com.rhlabs.protobufs.services.profile.actions.get_upcoming_birthdays.GetUpcomingBirthdaysResponseV1.class, ActionResultV1.class)
       .setName("services.registry.responses.get_upcoming_birthdays")
-      .setTag(312)
+      .setTag(309)
       .buildOptional();
   public static final Extension<ActionResultV1 , com.rhlabs.protobufs.services.profile.actions.get_recent_hires.GetRecentHiresResponseV1> get_recent_hires = Extension
       .messageExtending(com.rhlabs.protobufs.services.profile.actions.get_recent_hires.GetRecentHiresResponseV1.class, ActionResultV1.class)
       .setName("services.registry.responses.get_recent_hires")
-      .setTag(313)
+      .setTag(310)
       .buildOptional();
   public static final Extension<ActionResultV1 , com.rhlabs.protobufs.services.profile.actions.get_active_tags.GetActiveTagsResponseV1> get_active_tags = Extension
       .messageExtending(com.rhlabs.protobufs.services.profile.actions.get_active_tags.GetActiveTagsResponseV1.class, ActionResultV1.class)
       .setName("services.registry.responses.get_active_tags")
-      .setTag(314)
+      .setTag(311)
       .buildOptional();
   public static final Extension<ActionResultV1 , com.rhlabs.protobufs.services.profile.actions.bulk_create_profiles.BulkCreateProfilesResponseV1> bulk_create_profiles = Extension
       .messageExtending(com.rhlabs.protobufs.services.profile.actions.bulk_create_profiles.BulkCreateProfilesResponseV1.class, ActionResultV1.class)
       .setName("services.registry.responses.bulk_create_profiles")
-      .setTag(315)
+      .setTag(312)
       .buildOptional();
   public static final Extension<ActionResultV1 , com.rhlabs.protobufs.services.profile.actions.bulk_update_profiles.BulkUpdateProfilesResponseV1> bulk_update_profiles = Extension
       .messageExtending(com.rhlabs.protobufs.services.profile.actions.bulk_update_profiles.BulkUpdateProfilesResponseV1.class, ActionResultV1.class)
       .setName("services.registry.responses.bulk_update_profiles")
-      .setTag(316)
-      .buildOptional();
-  public static final Extension<ActionResultV1 , com.rhlabs.protobufs.services.profile.actions.get_attributes_for_profiles.GetAttributesForProfilesResponseV1> get_attributes_for_profiles = Extension
-      .messageExtending(com.rhlabs.protobufs.services.profile.actions.get_attributes_for_profiles.GetAttributesForProfilesResponseV1.class, ActionResultV1.class)
-      .setName("services.registry.responses.get_attributes_for_profiles")
-      .setTag(317)
+      .setTag(313)
       .buildOptional();
   public static final Extension<ActionResultV1 , com.rhlabs.protobufs.services.profile.actions.remove_tags.RemoveTagsResponseV1> remove_tags = Extension
       .messageExtending(com.rhlabs.protobufs.services.profile.actions.remove_tags.RemoveTagsResponseV1.class, ActionResultV1.class)
       .setName("services.registry.responses.remove_tags")
-      .setTag(318)
+      .setTag(314)
       .buildOptional();
   public static final Extension<ActionResultV1 , com.rhlabs.protobufs.services.search.actions.search.SearchResponseV1> search = Extension
       .messageExtending(com.rhlabs.protobufs.services.search.actions.search.SearchResponseV1.class, ActionResultV1.class)

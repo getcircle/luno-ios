@@ -2,6 +2,7 @@
 // Source file: ./src/protobufs/services/profile/actions/get_profile.proto
 package com.rhlabs.protobufs.services.profile.actions.get_profile;
 
+import com.rhlabs.protobufs.services.common.containers.InflationsV1;
 import com.squareup.wire.Message;
 import com.squareup.wire.ProtoField;
 
@@ -13,7 +14,6 @@ public final class GetProfileRequestV1 extends Message {
 
   public static final Integer DEFAULT_VERSION = 1;
   public static final String DEFAULT_PROFILE_ID = "";
-  public static final String DEFAULT_USER_ID = "";
 
   @ProtoField(tag = 1, type = UINT32)
   public final Integer version;
@@ -21,17 +21,17 @@ public final class GetProfileRequestV1 extends Message {
   @ProtoField(tag = 2, type = STRING)
   public final String profile_id;
 
-  @ProtoField(tag = 3, type = STRING)
-  public final String user_id;
+  @ProtoField(tag = 3)
+  public final InflationsV1 inflations;
 
-  public GetProfileRequestV1(Integer version, String profile_id, String user_id) {
+  public GetProfileRequestV1(Integer version, String profile_id, InflationsV1 inflations) {
     this.version = version;
     this.profile_id = profile_id;
-    this.user_id = user_id;
+    this.inflations = inflations;
   }
 
   private GetProfileRequestV1(Builder builder) {
-    this(builder.version, builder.profile_id, builder.user_id);
+    this(builder.version, builder.profile_id, builder.inflations);
     setBuilder(builder);
   }
 
@@ -42,7 +42,7 @@ public final class GetProfileRequestV1 extends Message {
     GetProfileRequestV1 o = (GetProfileRequestV1) other;
     return equals(version, o.version)
         && equals(profile_id, o.profile_id)
-        && equals(user_id, o.user_id);
+        && equals(inflations, o.inflations);
   }
 
   @Override
@@ -51,7 +51,7 @@ public final class GetProfileRequestV1 extends Message {
     if (result == 0) {
       result = version != null ? version.hashCode() : 0;
       result = result * 37 + (profile_id != null ? profile_id.hashCode() : 0);
-      result = result * 37 + (user_id != null ? user_id.hashCode() : 0);
+      result = result * 37 + (inflations != null ? inflations.hashCode() : 0);
       hashCode = result;
     }
     return result;
@@ -61,7 +61,7 @@ public final class GetProfileRequestV1 extends Message {
 
     public Integer version;
     public String profile_id;
-    public String user_id;
+    public InflationsV1 inflations;
 
     public Builder() {
     }
@@ -71,7 +71,7 @@ public final class GetProfileRequestV1 extends Message {
       if (message == null) return;
       this.version = message.version;
       this.profile_id = message.profile_id;
-      this.user_id = message.user_id;
+      this.inflations = message.inflations;
     }
 
     public Builder version(Integer version) {
@@ -84,8 +84,8 @@ public final class GetProfileRequestV1 extends Message {
       return this;
     }
 
-    public Builder user_id(String user_id) {
-      this.user_id = user_id;
+    public Builder inflations(InflationsV1 inflations) {
+      this.inflations = inflations;
       return this;
     }
 

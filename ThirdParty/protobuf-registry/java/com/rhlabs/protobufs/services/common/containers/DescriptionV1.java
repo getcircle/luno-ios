@@ -2,6 +2,7 @@
 // Source file: ./src/protobufs/services/common/containers.proto
 package com.rhlabs.protobufs.services.common.containers;
 
+import com.rhlabs.protobufs.services.profile.containers.ProfileV1;
 import com.squareup.wire.Message;
 import com.squareup.wire.ProtoField;
 
@@ -28,15 +29,19 @@ public final class DescriptionV1 extends Message {
   @ProtoField(tag = 4, type = STRING)
   public final String changed;
 
-  public DescriptionV1(Integer version, String value, String by_profile_id, String changed) {
+  @ProtoField(tag = 5)
+  public final ProfileV1 by_profile;
+
+  public DescriptionV1(Integer version, String value, String by_profile_id, String changed, ProfileV1 by_profile) {
     this.version = version;
     this.value = value;
     this.by_profile_id = by_profile_id;
     this.changed = changed;
+    this.by_profile = by_profile;
   }
 
   private DescriptionV1(Builder builder) {
-    this(builder.version, builder.value, builder.by_profile_id, builder.changed);
+    this(builder.version, builder.value, builder.by_profile_id, builder.changed, builder.by_profile);
     setBuilder(builder);
   }
 
@@ -48,7 +53,8 @@ public final class DescriptionV1 extends Message {
     return equals(version, o.version)
         && equals(value, o.value)
         && equals(by_profile_id, o.by_profile_id)
-        && equals(changed, o.changed);
+        && equals(changed, o.changed)
+        && equals(by_profile, o.by_profile);
   }
 
   @Override
@@ -59,6 +65,7 @@ public final class DescriptionV1 extends Message {
       result = result * 37 + (value != null ? value.hashCode() : 0);
       result = result * 37 + (by_profile_id != null ? by_profile_id.hashCode() : 0);
       result = result * 37 + (changed != null ? changed.hashCode() : 0);
+      result = result * 37 + (by_profile != null ? by_profile.hashCode() : 0);
       hashCode = result;
     }
     return result;
@@ -70,6 +77,7 @@ public final class DescriptionV1 extends Message {
     public String value;
     public String by_profile_id;
     public String changed;
+    public ProfileV1 by_profile;
 
     public Builder() {
     }
@@ -81,6 +89,7 @@ public final class DescriptionV1 extends Message {
       this.value = message.value;
       this.by_profile_id = message.by_profile_id;
       this.changed = message.changed;
+      this.by_profile = message.by_profile;
     }
 
     public Builder version(Integer version) {
@@ -100,6 +109,11 @@ public final class DescriptionV1 extends Message {
 
     public Builder changed(String changed) {
       this.changed = changed;
+      return this;
+    }
+
+    public Builder by_profile(ProfileV1 by_profile) {
+      this.by_profile = by_profile;
       return this;
     }
 

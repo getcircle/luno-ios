@@ -42,6 +42,8 @@ import "protobufs/services/organization/actions/get_profile_reporting_details.pr
 import "protobufs/services/organization/actions/get_team_reporting_details.proto";
 import "protobufs/services/organization/actions/set_manager.proto";
 import "protobufs/services/organization/actions/add_location_members.proto";
+import "protobufs/services/organization/actions/get_teams.proto";
+import "protobufs/services/organization/actions/get_descendants.proto";
 
 import "protobufs/services/profile/actions/create_profile.proto";
 import "protobufs/services/profile/actions/get_extended_profile.proto";
@@ -133,6 +135,8 @@ message Organization {
         optional services.organization.actions.get_team_reporting_details.ResponseV1 get_team_reporting_details = 216;
         optional services.organization.actions.set_manager.ResponseV1 set_manager = 217;
         optional services.organization.actions.add_location_members.ResponseV1 add_location_members = 218;
+        optional services.organization.actions.get_teams.ResponseV1 get_teams = 219;
+        optional services.organization.actions.get_descendants.ResponseV1 get_descendants = 220;
     }
 }
 

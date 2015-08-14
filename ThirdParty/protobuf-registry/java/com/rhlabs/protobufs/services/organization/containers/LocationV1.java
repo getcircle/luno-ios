@@ -20,6 +20,15 @@ public final class LocationV1 extends Message {
   public static final Integer DEFAULT_VERSION = 1;
   public static final String DEFAULT_ID = "";
   public static final String DEFAULT_NAME = "";
+  public static final String DEFAULT_ADDRESS_1 = "";
+  public static final String DEFAULT_ADDRESS_2 = "";
+  public static final String DEFAULT_CITY = "";
+  public static final String DEFAULT_REGION = "";
+  public static final String DEFAULT_POSTAL_CODE = "";
+  public static final String DEFAULT_COUNTRY_CODE = "";
+  public static final String DEFAULT_LATITUDE = "";
+  public static final String DEFAULT_LONGITUDE = "";
+  public static final String DEFAULT_TIMEZONE = "";
   public static final String DEFAULT_ORGANIZATION_ID = "";
   public static final Integer DEFAULT_PROFILE_COUNT = 0;
   public static final String DEFAULT_IMAGE_URL = "";
@@ -35,46 +44,78 @@ public final class LocationV1 extends Message {
   @ProtoField(tag = 3, type = STRING)
   public final String name;
 
-  @ProtoField(tag = 4)
-  public final AddressV1 address;
+  @ProtoField(tag = 4, type = STRING)
+  public final String address_1;
 
   @ProtoField(tag = 5, type = STRING)
-  public final String organization_id;
+  public final String address_2;
 
-  @ProtoField(tag = 6, type = UINT32)
-  public final Integer profile_count;
+  @ProtoField(tag = 6, type = STRING)
+  public final String city;
 
   @ProtoField(tag = 7, type = STRING)
-  public final String image_url;
+  public final String region;
 
-  @ProtoField(tag = 8)
-  public final DescriptionV1 location_description;
+  @ProtoField(tag = 8, type = STRING)
+  public final String postal_code;
 
   @ProtoField(tag = 9, type = STRING)
+  public final String country_code;
+
+  @ProtoField(tag = 10, type = STRING)
+  public final String latitude;
+
+  @ProtoField(tag = 11, type = STRING)
+  public final String longitude;
+
+  @ProtoField(tag = 12, type = STRING)
+  public final String timezone;
+
+  @ProtoField(tag = 13, type = STRING)
+  public final String organization_id;
+
+  @ProtoField(tag = 14, type = UINT32)
+  public final Integer profile_count;
+
+  @ProtoField(tag = 15, type = STRING)
+  public final String image_url;
+
+  @ProtoField(tag = 16)
+  public final DescriptionV1 description;
+
+  @ProtoField(tag = 17, type = STRING)
   public final String established_date;
 
-  @ProtoField(tag = 10, label = REPEATED, messageType = ProfileV1.class)
+  @ProtoField(tag = 18, label = REPEATED, messageType = ProfileV1.class)
   public final List<ProfileV1> points_of_contact;
 
-  @ProtoField(tag = 11)
+  @ProtoField(tag = 19)
   public final PermissionsV1 permissions;
 
-  public LocationV1(Integer version, String id, String name, AddressV1 address, String organization_id, Integer profile_count, String image_url, DescriptionV1 location_description, String established_date, List<ProfileV1> points_of_contact, PermissionsV1 permissions) {
+  public LocationV1(Integer version, String id, String name, String address_1, String address_2, String city, String region, String postal_code, String country_code, String latitude, String longitude, String timezone, String organization_id, Integer profile_count, String image_url, DescriptionV1 description, String established_date, List<ProfileV1> points_of_contact, PermissionsV1 permissions) {
     this.version = version;
     this.id = id;
     this.name = name;
-    this.address = address;
+    this.address_1 = address_1;
+    this.address_2 = address_2;
+    this.city = city;
+    this.region = region;
+    this.postal_code = postal_code;
+    this.country_code = country_code;
+    this.latitude = latitude;
+    this.longitude = longitude;
+    this.timezone = timezone;
     this.organization_id = organization_id;
     this.profile_count = profile_count;
     this.image_url = image_url;
-    this.location_description = location_description;
+    this.description = description;
     this.established_date = established_date;
     this.points_of_contact = immutableCopyOf(points_of_contact);
     this.permissions = permissions;
   }
 
   private LocationV1(Builder builder) {
-    this(builder.version, builder.id, builder.name, builder.address, builder.organization_id, builder.profile_count, builder.image_url, builder.location_description, builder.established_date, builder.points_of_contact, builder.permissions);
+    this(builder.version, builder.id, builder.name, builder.address_1, builder.address_2, builder.city, builder.region, builder.postal_code, builder.country_code, builder.latitude, builder.longitude, builder.timezone, builder.organization_id, builder.profile_count, builder.image_url, builder.description, builder.established_date, builder.points_of_contact, builder.permissions);
     setBuilder(builder);
   }
 
@@ -86,11 +127,19 @@ public final class LocationV1 extends Message {
     return equals(version, o.version)
         && equals(id, o.id)
         && equals(name, o.name)
-        && equals(address, o.address)
+        && equals(address_1, o.address_1)
+        && equals(address_2, o.address_2)
+        && equals(city, o.city)
+        && equals(region, o.region)
+        && equals(postal_code, o.postal_code)
+        && equals(country_code, o.country_code)
+        && equals(latitude, o.latitude)
+        && equals(longitude, o.longitude)
+        && equals(timezone, o.timezone)
         && equals(organization_id, o.organization_id)
         && equals(profile_count, o.profile_count)
         && equals(image_url, o.image_url)
-        && equals(location_description, o.location_description)
+        && equals(description, o.description)
         && equals(established_date, o.established_date)
         && equals(points_of_contact, o.points_of_contact)
         && equals(permissions, o.permissions);
@@ -103,11 +152,19 @@ public final class LocationV1 extends Message {
       result = version != null ? version.hashCode() : 0;
       result = result * 37 + (id != null ? id.hashCode() : 0);
       result = result * 37 + (name != null ? name.hashCode() : 0);
-      result = result * 37 + (address != null ? address.hashCode() : 0);
+      result = result * 37 + (address_1 != null ? address_1.hashCode() : 0);
+      result = result * 37 + (address_2 != null ? address_2.hashCode() : 0);
+      result = result * 37 + (city != null ? city.hashCode() : 0);
+      result = result * 37 + (region != null ? region.hashCode() : 0);
+      result = result * 37 + (postal_code != null ? postal_code.hashCode() : 0);
+      result = result * 37 + (country_code != null ? country_code.hashCode() : 0);
+      result = result * 37 + (latitude != null ? latitude.hashCode() : 0);
+      result = result * 37 + (longitude != null ? longitude.hashCode() : 0);
+      result = result * 37 + (timezone != null ? timezone.hashCode() : 0);
       result = result * 37 + (organization_id != null ? organization_id.hashCode() : 0);
       result = result * 37 + (profile_count != null ? profile_count.hashCode() : 0);
       result = result * 37 + (image_url != null ? image_url.hashCode() : 0);
-      result = result * 37 + (location_description != null ? location_description.hashCode() : 0);
+      result = result * 37 + (description != null ? description.hashCode() : 0);
       result = result * 37 + (established_date != null ? established_date.hashCode() : 0);
       result = result * 37 + (points_of_contact != null ? points_of_contact.hashCode() : 1);
       result = result * 37 + (permissions != null ? permissions.hashCode() : 0);
@@ -121,11 +178,19 @@ public final class LocationV1 extends Message {
     public Integer version;
     public String id;
     public String name;
-    public AddressV1 address;
+    public String address_1;
+    public String address_2;
+    public String city;
+    public String region;
+    public String postal_code;
+    public String country_code;
+    public String latitude;
+    public String longitude;
+    public String timezone;
     public String organization_id;
     public Integer profile_count;
     public String image_url;
-    public DescriptionV1 location_description;
+    public DescriptionV1 description;
     public String established_date;
     public List<ProfileV1> points_of_contact;
     public PermissionsV1 permissions;
@@ -139,11 +204,19 @@ public final class LocationV1 extends Message {
       this.version = message.version;
       this.id = message.id;
       this.name = message.name;
-      this.address = message.address;
+      this.address_1 = message.address_1;
+      this.address_2 = message.address_2;
+      this.city = message.city;
+      this.region = message.region;
+      this.postal_code = message.postal_code;
+      this.country_code = message.country_code;
+      this.latitude = message.latitude;
+      this.longitude = message.longitude;
+      this.timezone = message.timezone;
       this.organization_id = message.organization_id;
       this.profile_count = message.profile_count;
       this.image_url = message.image_url;
-      this.location_description = message.location_description;
+      this.description = message.description;
       this.established_date = message.established_date;
       this.points_of_contact = copyOf(message.points_of_contact);
       this.permissions = message.permissions;
@@ -164,8 +237,48 @@ public final class LocationV1 extends Message {
       return this;
     }
 
-    public Builder address(AddressV1 address) {
-      this.address = address;
+    public Builder address_1(String address_1) {
+      this.address_1 = address_1;
+      return this;
+    }
+
+    public Builder address_2(String address_2) {
+      this.address_2 = address_2;
+      return this;
+    }
+
+    public Builder city(String city) {
+      this.city = city;
+      return this;
+    }
+
+    public Builder region(String region) {
+      this.region = region;
+      return this;
+    }
+
+    public Builder postal_code(String postal_code) {
+      this.postal_code = postal_code;
+      return this;
+    }
+
+    public Builder country_code(String country_code) {
+      this.country_code = country_code;
+      return this;
+    }
+
+    public Builder latitude(String latitude) {
+      this.latitude = latitude;
+      return this;
+    }
+
+    public Builder longitude(String longitude) {
+      this.longitude = longitude;
+      return this;
+    }
+
+    public Builder timezone(String timezone) {
+      this.timezone = timezone;
       return this;
     }
 
@@ -184,8 +297,8 @@ public final class LocationV1 extends Message {
       return this;
     }
 
-    public Builder location_description(DescriptionV1 location_description) {
-      this.location_description = location_description;
+    public Builder description(DescriptionV1 description) {
+      this.description = description;
       return this;
     }
 

@@ -5,39 +5,22 @@ package com.rhlabs.protobufs.services.organization.actions.get_teams;
 import com.squareup.wire.Message;
 import com.squareup.wire.ProtoField;
 
-import static com.squareup.wire.Message.Datatype.BOOL;
-import static com.squareup.wire.Message.Datatype.STRING;
 import static com.squareup.wire.Message.Datatype.UINT32;
 
 public final class GetTeamsRequestV1 extends Message {
   private static final long serialVersionUID = 0L;
 
   public static final Integer DEFAULT_VERSION = 1;
-  public static final String DEFAULT_ORGANIZATION_ID = "";
-  public static final String DEFAULT_LOCATION_ID = "";
-  public static final Boolean DEFAULT_TOP_LEVEL_ONLY = false;
 
   @ProtoField(tag = 1, type = UINT32)
   public final Integer version;
 
-  @ProtoField(tag = 2, type = STRING)
-  public final String organization_id;
-
-  @ProtoField(tag = 3, type = STRING)
-  public final String location_id;
-
-  @ProtoField(tag = 4, type = BOOL)
-  public final Boolean top_level_only;
-
-  public GetTeamsRequestV1(Integer version, String organization_id, String location_id, Boolean top_level_only) {
+  public GetTeamsRequestV1(Integer version) {
     this.version = version;
-    this.organization_id = organization_id;
-    this.location_id = location_id;
-    this.top_level_only = top_level_only;
   }
 
   private GetTeamsRequestV1(Builder builder) {
-    this(builder.version, builder.organization_id, builder.location_id, builder.top_level_only);
+    this(builder.version);
     setBuilder(builder);
   }
 
@@ -45,32 +28,18 @@ public final class GetTeamsRequestV1 extends Message {
   public boolean equals(Object other) {
     if (other == this) return true;
     if (!(other instanceof GetTeamsRequestV1)) return false;
-    GetTeamsRequestV1 o = (GetTeamsRequestV1) other;
-    return equals(version, o.version)
-        && equals(organization_id, o.organization_id)
-        && equals(location_id, o.location_id)
-        && equals(top_level_only, o.top_level_only);
+    return equals(version, ((GetTeamsRequestV1) other).version);
   }
 
   @Override
   public int hashCode() {
     int result = hashCode;
-    if (result == 0) {
-      result = version != null ? version.hashCode() : 0;
-      result = result * 37 + (organization_id != null ? organization_id.hashCode() : 0);
-      result = result * 37 + (location_id != null ? location_id.hashCode() : 0);
-      result = result * 37 + (top_level_only != null ? top_level_only.hashCode() : 0);
-      hashCode = result;
-    }
-    return result;
+    return result != 0 ? result : (hashCode = version != null ? version.hashCode() : 0);
   }
 
   public static final class Builder extends Message.Builder<GetTeamsRequestV1> {
 
     public Integer version;
-    public String organization_id;
-    public String location_id;
-    public Boolean top_level_only;
 
     public Builder() {
     }
@@ -79,28 +48,10 @@ public final class GetTeamsRequestV1 extends Message {
       super(message);
       if (message == null) return;
       this.version = message.version;
-      this.organization_id = message.organization_id;
-      this.location_id = message.location_id;
-      this.top_level_only = message.top_level_only;
     }
 
     public Builder version(Integer version) {
       this.version = version;
-      return this;
-    }
-
-    public Builder organization_id(String organization_id) {
-      this.organization_id = organization_id;
-      return this;
-    }
-
-    public Builder location_id(String location_id) {
-      this.location_id = location_id;
-      return this;
-    }
-
-    public Builder top_level_only(Boolean top_level_only) {
-      this.top_level_only = top_level_only;
       return this;
     }
 

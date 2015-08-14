@@ -2,7 +2,6 @@
 // Source file: ./src/protobufs/services/profile/actions/get_extended_profile.proto
 package com.rhlabs.protobufs.services.profile.actions.get_extended_profile;
 
-import com.rhlabs.protobufs.services.organization.containers.AddressV1;
 import com.rhlabs.protobufs.services.organization.containers.LocationV1;
 import com.rhlabs.protobufs.services.organization.containers.TeamV1;
 import com.rhlabs.protobufs.services.profile.containers.ProfileV1;
@@ -21,6 +20,8 @@ public final class GetExtendedProfileResponseV1 extends Message {
   public static final Integer DEFAULT_VERSION = 1;
   public static final List<IdentityV1> DEFAULT_IDENTITIES = Collections.emptyList();
   public static final List<ProfileV1> DEFAULT_DIRECT_REPORTS = Collections.emptyList();
+  public static final List<LocationV1> DEFAULT_LOCATIONS = Collections.emptyList();
+  public static final List<ProfileV1> DEFAULT_PEERS = Collections.emptyList();
 
   @ProtoField(tag = 1, type = UINT32)
   public final Integer version;
@@ -29,36 +30,40 @@ public final class GetExtendedProfileResponseV1 extends Message {
   public final ProfileV1 profile;
 
   @ProtoField(tag = 3)
-  public final AddressV1 address;
-
-  @ProtoField(tag = 4)
   public final ProfileV1 manager;
 
-  @ProtoField(tag = 5)
+  @ProtoField(tag = 4)
   public final TeamV1 team;
 
-  @ProtoField(tag = 6, label = REPEATED, messageType = IdentityV1.class)
+  @ProtoField(tag = 5, label = REPEATED, messageType = IdentityV1.class)
   public final List<IdentityV1> identities;
 
   @ProtoField(tag = 7, label = REPEATED, messageType = ProfileV1.class)
   public final List<ProfileV1> direct_reports;
 
-  @ProtoField(tag = 8)
-  public final LocationV1 location;
+  @ProtoField(tag = 8, label = REPEATED, messageType = LocationV1.class)
+  public final List<LocationV1> locations;
 
-  public GetExtendedProfileResponseV1(Integer version, ProfileV1 profile, AddressV1 address, ProfileV1 manager, TeamV1 team, List<IdentityV1> identities, List<ProfileV1> direct_reports, LocationV1 location) {
+  @ProtoField(tag = 9)
+  public final TeamV1 manages_team;
+
+  @ProtoField(tag = 10, label = REPEATED, messageType = ProfileV1.class)
+  public final List<ProfileV1> peers;
+
+  public GetExtendedProfileResponseV1(Integer version, ProfileV1 profile, ProfileV1 manager, TeamV1 team, List<IdentityV1> identities, List<ProfileV1> direct_reports, List<LocationV1> locations, TeamV1 manages_team, List<ProfileV1> peers) {
     this.version = version;
     this.profile = profile;
-    this.address = address;
     this.manager = manager;
     this.team = team;
     this.identities = immutableCopyOf(identities);
     this.direct_reports = immutableCopyOf(direct_reports);
-    this.location = location;
+    this.locations = immutableCopyOf(locations);
+    this.manages_team = manages_team;
+    this.peers = immutableCopyOf(peers);
   }
 
   private GetExtendedProfileResponseV1(Builder builder) {
-    this(builder.version, builder.profile, builder.address, builder.manager, builder.team, builder.identities, builder.direct_reports, builder.location);
+    this(builder.version, builder.profile, builder.manager, builder.team, builder.identities, builder.direct_reports, builder.locations, builder.manages_team, builder.peers);
     setBuilder(builder);
   }
 
@@ -69,12 +74,13 @@ public final class GetExtendedProfileResponseV1 extends Message {
     GetExtendedProfileResponseV1 o = (GetExtendedProfileResponseV1) other;
     return equals(version, o.version)
         && equals(profile, o.profile)
-        && equals(address, o.address)
         && equals(manager, o.manager)
         && equals(team, o.team)
         && equals(identities, o.identities)
         && equals(direct_reports, o.direct_reports)
-        && equals(location, o.location);
+        && equals(locations, o.locations)
+        && equals(manages_team, o.manages_team)
+        && equals(peers, o.peers);
   }
 
   @Override
@@ -83,12 +89,13 @@ public final class GetExtendedProfileResponseV1 extends Message {
     if (result == 0) {
       result = version != null ? version.hashCode() : 0;
       result = result * 37 + (profile != null ? profile.hashCode() : 0);
-      result = result * 37 + (address != null ? address.hashCode() : 0);
       result = result * 37 + (manager != null ? manager.hashCode() : 0);
       result = result * 37 + (team != null ? team.hashCode() : 0);
       result = result * 37 + (identities != null ? identities.hashCode() : 1);
       result = result * 37 + (direct_reports != null ? direct_reports.hashCode() : 1);
-      result = result * 37 + (location != null ? location.hashCode() : 0);
+      result = result * 37 + (locations != null ? locations.hashCode() : 1);
+      result = result * 37 + (manages_team != null ? manages_team.hashCode() : 0);
+      result = result * 37 + (peers != null ? peers.hashCode() : 1);
       hashCode = result;
     }
     return result;
@@ -98,12 +105,13 @@ public final class GetExtendedProfileResponseV1 extends Message {
 
     public Integer version;
     public ProfileV1 profile;
-    public AddressV1 address;
     public ProfileV1 manager;
     public TeamV1 team;
     public List<IdentityV1> identities;
     public List<ProfileV1> direct_reports;
-    public LocationV1 location;
+    public List<LocationV1> locations;
+    public TeamV1 manages_team;
+    public List<ProfileV1> peers;
 
     public Builder() {
     }
@@ -113,12 +121,13 @@ public final class GetExtendedProfileResponseV1 extends Message {
       if (message == null) return;
       this.version = message.version;
       this.profile = message.profile;
-      this.address = message.address;
       this.manager = message.manager;
       this.team = message.team;
       this.identities = copyOf(message.identities);
       this.direct_reports = copyOf(message.direct_reports);
-      this.location = message.location;
+      this.locations = copyOf(message.locations);
+      this.manages_team = message.manages_team;
+      this.peers = copyOf(message.peers);
     }
 
     public Builder version(Integer version) {
@@ -128,11 +137,6 @@ public final class GetExtendedProfileResponseV1 extends Message {
 
     public Builder profile(ProfileV1 profile) {
       this.profile = profile;
-      return this;
-    }
-
-    public Builder address(AddressV1 address) {
-      this.address = address;
       return this;
     }
 
@@ -156,8 +160,18 @@ public final class GetExtendedProfileResponseV1 extends Message {
       return this;
     }
 
-    public Builder location(LocationV1 location) {
-      this.location = location;
+    public Builder locations(List<LocationV1> locations) {
+      this.locations = checkForNulls(locations);
+      return this;
+    }
+
+    public Builder manages_team(TeamV1 manages_team) {
+      this.manages_team = manages_team;
+      return this;
+    }
+
+    public Builder peers(List<ProfileV1> peers) {
+      this.peers = checkForNulls(peers);
       return this;
     }
 

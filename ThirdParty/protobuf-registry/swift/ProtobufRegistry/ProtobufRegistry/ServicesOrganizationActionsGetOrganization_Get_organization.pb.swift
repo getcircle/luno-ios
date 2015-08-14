@@ -9,8 +9,7 @@ public func == (lhs: Services.Organization.Actions.GetOrganization.RequestV1, rh
   }
   var fieldCheck:Bool = (lhs.hashValue == rhs.hashValue)
   fieldCheck = fieldCheck && (lhs.hasVersion == rhs.hasVersion) && (!lhs.hasVersion || lhs.version == rhs.version)
-  fieldCheck = fieldCheck && (lhs.hasOrganizationId == rhs.hasOrganizationId) && (!lhs.hasOrganizationId || lhs.organizationId == rhs.organizationId)
-  fieldCheck = fieldCheck && (lhs.hasOrganizationDomain == rhs.hasOrganizationDomain) && (!lhs.hasOrganizationDomain || lhs.organizationDomain == rhs.organizationDomain)
+  fieldCheck = fieldCheck && (lhs.hasDomain == rhs.hasDomain) && (!lhs.hasDomain || lhs.domain == rhs.domain)
   return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
 }
 
@@ -47,8 +46,7 @@ public extension Services.Organization.Actions.GetOrganization {
     override public subscript(key: String) -> Any? {
            switch key {
            case "version": return version
-           case "organizationId": return organizationId
-           case "organizationDomain": return organizationDomain
+           case "domain": return domain
            default: return nil
            }
     }
@@ -56,11 +54,8 @@ public extension Services.Organization.Actions.GetOrganization {
     public private(set) var hasVersion:Bool = false
     public private(set) var version:UInt32 = UInt32(1)
 
-    public private(set) var hasOrganizationId:Bool = false
-    public private(set) var organizationId:String = ""
-
-    public private(set) var hasOrganizationDomain:Bool = false
-    public private(set) var organizationDomain:String = ""
+    public private(set) var hasDomain:Bool = false
+    public private(set) var domain:String = ""
 
     required public init() {
          super.init()
@@ -72,11 +67,8 @@ public extension Services.Organization.Actions.GetOrganization {
       if hasVersion {
         output.writeUInt32(1, value:version)
       }
-      if hasOrganizationId {
-        output.writeString(2, value:organizationId)
-      }
-      if hasOrganizationDomain {
-        output.writeString(3, value:organizationDomain)
+      if hasDomain {
+        output.writeString(2, value:domain)
       }
       unknownFields.writeToCodedOutputStream(output)
     }
@@ -90,11 +82,8 @@ public extension Services.Organization.Actions.GetOrganization {
       if hasVersion {
         serialize_size += version.computeUInt32Size(1)
       }
-      if hasOrganizationId {
-        serialize_size += organizationId.computeStringSize(2)
-      }
-      if hasOrganizationDomain {
-        serialize_size += organizationDomain.computeStringSize(3)
+      if hasDomain {
+        serialize_size += domain.computeStringSize(2)
       }
       serialize_size += unknownFields.serializedSize()
       memoizedSerializedSize = serialize_size
@@ -140,11 +129,8 @@ public extension Services.Organization.Actions.GetOrganization {
       if hasVersion {
         output += "\(indent) version: \(version) \n"
       }
-      if hasOrganizationId {
-        output += "\(indent) organizationId: \(organizationId) \n"
-      }
-      if hasOrganizationDomain {
-        output += "\(indent) organizationDomain: \(organizationDomain) \n"
+      if hasDomain {
+        output += "\(indent) domain: \(domain) \n"
       }
       unknownFields.writeDescriptionTo(&output, indent:indent)
     }
@@ -154,11 +140,8 @@ public extension Services.Organization.Actions.GetOrganization {
             if hasVersion {
                hashCode = (hashCode &* 31) &+ version.hashValue
             }
-            if hasOrganizationId {
-               hashCode = (hashCode &* 31) &+ organizationId.hashValue
-            }
-            if hasOrganizationDomain {
-               hashCode = (hashCode &* 31) &+ organizationDomain.hashValue
+            if hasDomain {
+               hashCode = (hashCode &* 31) &+ domain.hashValue
             }
             hashCode = (hashCode &* 31) &+  unknownFields.hashValue
             return hashCode
@@ -211,50 +194,27 @@ public extension Services.Organization.Actions.GetOrganization {
          builderResult.version = UInt32(1)
          return self
     }
-    public var hasOrganizationId:Bool {
+    public var hasDomain:Bool {
          get {
-              return builderResult.hasOrganizationId
+              return builderResult.hasDomain
          }
     }
-    public var organizationId:String {
+    public var domain:String {
          get {
-              return builderResult.organizationId
+              return builderResult.domain
          }
          set (value) {
-             builderResult.hasOrganizationId = true
-             builderResult.organizationId = value
+             builderResult.hasDomain = true
+             builderResult.domain = value
          }
     }
-    public func setOrganizationId(value:String)-> Services.Organization.Actions.GetOrganization.RequestV1Builder {
-      self.organizationId = value
+    public func setDomain(value:String)-> Services.Organization.Actions.GetOrganization.RequestV1Builder {
+      self.domain = value
       return self
     }
-    public func clearOrganizationId() -> Services.Organization.Actions.GetOrganization.RequestV1Builder{
-         builderResult.hasOrganizationId = false
-         builderResult.organizationId = ""
-         return self
-    }
-    public var hasOrganizationDomain:Bool {
-         get {
-              return builderResult.hasOrganizationDomain
-         }
-    }
-    public var organizationDomain:String {
-         get {
-              return builderResult.organizationDomain
-         }
-         set (value) {
-             builderResult.hasOrganizationDomain = true
-             builderResult.organizationDomain = value
-         }
-    }
-    public func setOrganizationDomain(value:String)-> Services.Organization.Actions.GetOrganization.RequestV1Builder {
-      self.organizationDomain = value
-      return self
-    }
-    public func clearOrganizationDomain() -> Services.Organization.Actions.GetOrganization.RequestV1Builder{
-         builderResult.hasOrganizationDomain = false
-         builderResult.organizationDomain = ""
+    public func clearDomain() -> Services.Organization.Actions.GetOrganization.RequestV1Builder{
+         builderResult.hasDomain = false
+         builderResult.domain = ""
          return self
     }
     override public var internalGetResult:GeneratedMessage {
@@ -284,11 +244,8 @@ public extension Services.Organization.Actions.GetOrganization {
       if other.hasVersion {
            version = other.version
       }
-      if other.hasOrganizationId {
-           organizationId = other.organizationId
-      }
-      if other.hasOrganizationDomain {
-           organizationDomain = other.organizationDomain
+      if other.hasDomain {
+           domain = other.domain
       }
       mergeUnknownFields(other.unknownFields)
       return self
@@ -309,10 +266,7 @@ public extension Services.Organization.Actions.GetOrganization {
           version = input.readUInt32()
 
         case 18 :
-          organizationId = input.readString()
-
-        case 26 :
-          organizationDomain = input.readString()
+          domain = input.readString()
 
         default:
           if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {

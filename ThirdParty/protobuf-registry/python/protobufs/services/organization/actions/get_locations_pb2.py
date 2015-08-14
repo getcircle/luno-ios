@@ -13,15 +13,16 @@ from google.protobuf import descriptor_pb2
 _sym_db = _symbol_database.Default()
 
 
+import protobufs.services.common.containers_pb2
 import protobufs.services.organization.containers_pb2
 
 
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='protobufs/services/organization/actions/get_locations.proto',
   package='services.organization.actions.get_locations',
-  serialized_pb=_b('\n;protobufs/services/organization/actions/get_locations.proto\x12+services.organization.actions.get_locations\x1a\x30protobufs/services/organization/containers.proto\"3\n\tRequestV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x12\n\nprofile_id\x18\x02 \x01(\t\"a\n\nResponseV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12?\n\tlocations\x18\x02 \x03(\x0b\x32,.services.organization.containers.LocationV1BB\n@com.rhlabs.protobufs.services.organization.actions.get_locations')
+  serialized_pb=_b('\n;protobufs/services/organization/actions/get_locations.proto\x12+services.organization.actions.get_locations\x1a*protobufs/services/common/containers.proto\x1a\x30protobufs/services/organization/containers.proto\"q\n\tRequestV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x12\n\nprofile_id\x18\x02 \x01(\t\x12<\n\ninflations\x18\x03 \x01(\x0b\x32(.services.common.containers.InflationsV1\"a\n\nResponseV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12?\n\tlocations\x18\x02 \x03(\x0b\x32,.services.organization.containers.LocationV1BB\n@com.rhlabs.protobufs.services.organization.actions.get_locations')
   ,
-  dependencies=[protobufs.services.organization.containers_pb2.DESCRIPTOR,])
+  dependencies=[protobufs.services.common.containers_pb2.DESCRIPTOR,protobufs.services.organization.containers_pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 
@@ -48,6 +49,13 @@ _REQUESTV1 = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
+    _descriptor.FieldDescriptor(
+      name='inflations', full_name='services.organization.actions.get_locations.RequestV1.inflations', index=2,
+      number=3, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
   ],
   extensions=[
   ],
@@ -59,8 +67,8 @@ _REQUESTV1 = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=158,
-  serialized_end=209,
+  serialized_start=202,
+  serialized_end=315,
 )
 
 
@@ -96,10 +104,11 @@ _RESPONSEV1 = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=211,
-  serialized_end=308,
+  serialized_start=317,
+  serialized_end=414,
 )
 
+_REQUESTV1.fields_by_name['inflations'].message_type = protobufs.services.common.containers_pb2._INFLATIONSV1
 _RESPONSEV1.fields_by_name['locations'].message_type = protobufs.services.organization.containers_pb2._LOCATIONV1
 DESCRIPTOR.message_types_by_name['RequestV1'] = _REQUESTV1
 DESCRIPTOR.message_types_by_name['ResponseV1'] = _RESPONSEV1

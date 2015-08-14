@@ -12,6 +12,8 @@ public func == (lhs: Services.Profile.Actions.GetProfiles.RequestV1, rhs: Servic
   fieldCheck = fieldCheck && (lhs.hasTagId == rhs.hasTagId) && (!lhs.hasTagId || lhs.tagId == rhs.tagId)
   fieldCheck = fieldCheck && (lhs.ids == rhs.ids)
   fieldCheck = fieldCheck && (lhs.hasLocationId == rhs.hasLocationId) && (!lhs.hasLocationId || lhs.locationId == rhs.locationId)
+  fieldCheck = fieldCheck && (lhs.hasTeamId == rhs.hasTeamId) && (!lhs.hasTeamId || lhs.teamId == rhs.teamId)
+  fieldCheck = fieldCheck && (lhs.hasInflations == rhs.hasInflations) && (!lhs.hasInflations || lhs.inflations == rhs.inflations)
   return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
 }
 
@@ -38,6 +40,7 @@ public extension Services.Profile.Actions.GetProfiles {
     init() {
       extensionRegistry = ExtensionRegistry()
       registerAllExtensions(extensionRegistry)
+      Services.Common.Containers.ContainersRoot.sharedInstance.registerAllExtensions(extensionRegistry)
       Services.Profile.Containers.ContainersRoot.sharedInstance.registerAllExtensions(extensionRegistry)
     }
     public func registerAllExtensions(registry:ExtensionRegistry) {
@@ -50,6 +53,8 @@ public extension Services.Profile.Actions.GetProfiles {
            case "version": return version
            case "tagId": return tagId
            case "locationId": return locationId
+           case "teamId": return teamId
+           case "inflations": return inflations
            default: return nil
            }
     }
@@ -63,6 +68,11 @@ public extension Services.Profile.Actions.GetProfiles {
     public private(set) var hasLocationId:Bool = false
     public private(set) var locationId:String = ""
 
+    public private(set) var hasTeamId:Bool = false
+    public private(set) var teamId:String = ""
+
+    public private(set) var hasInflations:Bool = false
+    public private(set) var inflations:Services.Common.Containers.InflationsV1!
     public private(set) var ids:Array<String> = Array<String>()
     required public init() {
          super.init()
@@ -84,6 +94,12 @@ public extension Services.Profile.Actions.GetProfiles {
       }
       if hasLocationId {
         output.writeString(4, value:locationId)
+      }
+      if hasTeamId {
+        output.writeString(5, value:teamId)
+      }
+      if hasInflations {
+        output.writeMessage(6, value:inflations)
       }
       unknownFields.writeToCodedOutputStream(output)
     }
@@ -108,6 +124,14 @@ public extension Services.Profile.Actions.GetProfiles {
       serialize_size += 1 * Int32(ids.count)
       if hasLocationId {
         serialize_size += locationId.computeStringSize(4)
+      }
+      if hasTeamId {
+        serialize_size += teamId.computeStringSize(5)
+      }
+      if hasInflations {
+          if let varSizeinflations = inflations?.computeMessageSize(6) {
+              serialize_size += varSizeinflations
+          }
       }
       serialize_size += unknownFields.serializedSize()
       memoizedSerializedSize = serialize_size
@@ -164,6 +188,14 @@ public extension Services.Profile.Actions.GetProfiles {
       if hasLocationId {
         output += "\(indent) locationId: \(locationId) \n"
       }
+      if hasTeamId {
+        output += "\(indent) teamId: \(teamId) \n"
+      }
+      if hasInflations {
+        output += "\(indent) inflations {\n"
+        inflations?.writeDescriptionTo(&output, indent:"\(indent)  ")
+        output += "\(indent) }\n"
+      }
       unknownFields.writeDescriptionTo(&output, indent:indent)
     }
     override public var hashValue:Int {
@@ -180,6 +212,14 @@ public extension Services.Profile.Actions.GetProfiles {
             }
             if hasLocationId {
                hashCode = (hashCode &* 31) &+ locationId.hashValue
+            }
+            if hasTeamId {
+               hashCode = (hashCode &* 31) &+ teamId.hashValue
+            }
+            if hasInflations {
+                if let hashValueinflations = inflations?.hashValue {
+                    hashCode = (hashCode &* 31) &+ hashValueinflations
+                }
             }
             hashCode = (hashCode &* 31) &+  unknownFields.hashValue
             return hashCode
@@ -294,6 +334,61 @@ public extension Services.Profile.Actions.GetProfiles {
          builderResult.locationId = ""
          return self
     }
+    public var hasTeamId:Bool {
+         get {
+              return builderResult.hasTeamId
+         }
+    }
+    public var teamId:String {
+         get {
+              return builderResult.teamId
+         }
+         set (value) {
+             builderResult.hasTeamId = true
+             builderResult.teamId = value
+         }
+    }
+    public func setTeamId(value:String)-> Services.Profile.Actions.GetProfiles.RequestV1Builder {
+      self.teamId = value
+      return self
+    }
+    public func clearTeamId() -> Services.Profile.Actions.GetProfiles.RequestV1Builder{
+         builderResult.hasTeamId = false
+         builderResult.teamId = ""
+         return self
+    }
+    public var hasInflations:Bool {
+         get {
+             return builderResult.hasInflations
+         }
+    }
+    public var inflations:Services.Common.Containers.InflationsV1! {
+         get {
+             return builderResult.inflations
+         }
+         set (value) {
+             builderResult.hasInflations = true
+             builderResult.inflations = value
+         }
+    }
+    public func setInflations(value:Services.Common.Containers.InflationsV1!)-> Services.Profile.Actions.GetProfiles.RequestV1Builder {
+      self.inflations = value
+      return self
+    }
+    public func mergeInflations(value:Services.Common.Containers.InflationsV1) -> Services.Profile.Actions.GetProfiles.RequestV1Builder {
+      if (builderResult.hasInflations) {
+        builderResult.inflations = Services.Common.Containers.InflationsV1.builderWithPrototype(builderResult.inflations).mergeFrom(value).buildPartial()
+      } else {
+        builderResult.inflations = value
+      }
+      builderResult.hasInflations = true
+      return self
+    }
+    public func clearInflations() -> Services.Profile.Actions.GetProfiles.RequestV1Builder {
+      builderResult.hasInflations = false
+      builderResult.inflations = nil
+      return self
+    }
     override public var internalGetResult:GeneratedMessage {
          get {
             return builderResult
@@ -330,6 +425,12 @@ public extension Services.Profile.Actions.GetProfiles {
       if other.hasLocationId {
            locationId = other.locationId
       }
+      if other.hasTeamId {
+           teamId = other.teamId
+      }
+      if (other.hasInflations) {
+          mergeInflations(other.inflations)
+      }
       mergeUnknownFields(other.unknownFields)
       return self
     }
@@ -356,6 +457,17 @@ public extension Services.Profile.Actions.GetProfiles {
 
         case 34 :
           locationId = input.readString()
+
+        case 42 :
+          teamId = input.readString()
+
+        case 50 :
+          var subBuilder:Services.Common.Containers.InflationsV1Builder = Services.Common.Containers.InflationsV1.builder()
+          if hasInflations {
+            subBuilder.mergeFrom(inflations)
+          }
+          input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
+          inflations = subBuilder.buildPartial()
 
         default:
           if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {

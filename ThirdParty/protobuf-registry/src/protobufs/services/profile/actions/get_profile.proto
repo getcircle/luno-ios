@@ -3,12 +3,13 @@ package services.profile.actions.get_profile;
 // GENERATED OPTIONS FOR: JAVA
 option java_package = "com.rhlabs.protobufs.services.profile.actions.get_profile";
 
+import "protobufs/services/common/containers.proto";
 import "protobufs/services/profile/containers.proto";
 
 message RequestV1 {
     optional uint32 version = 1 [default = 1];
     optional string profile_id = 2;
-    optional string user_id = 3;
+    optional services.common.containers.InflationsV1 inflations = 3;
 }
 
 message ResponseV1 {

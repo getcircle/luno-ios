@@ -10,6 +10,7 @@ public func == (lhs: Services.Organization.Actions.GetLocations.RequestV1, rhs: 
   var fieldCheck:Bool = (lhs.hashValue == rhs.hashValue)
   fieldCheck = fieldCheck && (lhs.hasVersion == rhs.hasVersion) && (!lhs.hasVersion || lhs.version == rhs.version)
   fieldCheck = fieldCheck && (lhs.hasProfileId == rhs.hasProfileId) && (!lhs.hasProfileId || lhs.profileId == rhs.profileId)
+  fieldCheck = fieldCheck && (lhs.hasInflations == rhs.hasInflations) && (!lhs.hasInflations || lhs.inflations == rhs.inflations)
   return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
 }
 
@@ -36,6 +37,7 @@ public extension Services.Organization.Actions.GetLocations {
     init() {
       extensionRegistry = ExtensionRegistry()
       registerAllExtensions(extensionRegistry)
+      Services.Common.Containers.ContainersRoot.sharedInstance.registerAllExtensions(extensionRegistry)
       Services.Organization.Containers.ContainersRoot.sharedInstance.registerAllExtensions(extensionRegistry)
     }
     public func registerAllExtensions(registry:ExtensionRegistry) {
@@ -47,6 +49,7 @@ public extension Services.Organization.Actions.GetLocations {
            switch key {
            case "version": return version
            case "profileId": return profileId
+           case "inflations": return inflations
            default: return nil
            }
     }
@@ -57,6 +60,8 @@ public extension Services.Organization.Actions.GetLocations {
     public private(set) var hasProfileId:Bool = false
     public private(set) var profileId:String = ""
 
+    public private(set) var hasInflations:Bool = false
+    public private(set) var inflations:Services.Common.Containers.InflationsV1!
     required public init() {
          super.init()
     }
@@ -69,6 +74,9 @@ public extension Services.Organization.Actions.GetLocations {
       }
       if hasProfileId {
         output.writeString(2, value:profileId)
+      }
+      if hasInflations {
+        output.writeMessage(3, value:inflations)
       }
       unknownFields.writeToCodedOutputStream(output)
     }
@@ -84,6 +92,11 @@ public extension Services.Organization.Actions.GetLocations {
       }
       if hasProfileId {
         serialize_size += profileId.computeStringSize(2)
+      }
+      if hasInflations {
+          if let varSizeinflations = inflations?.computeMessageSize(3) {
+              serialize_size += varSizeinflations
+          }
       }
       serialize_size += unknownFields.serializedSize()
       memoizedSerializedSize = serialize_size
@@ -132,6 +145,11 @@ public extension Services.Organization.Actions.GetLocations {
       if hasProfileId {
         output += "\(indent) profileId: \(profileId) \n"
       }
+      if hasInflations {
+        output += "\(indent) inflations {\n"
+        inflations?.writeDescriptionTo(&output, indent:"\(indent)  ")
+        output += "\(indent) }\n"
+      }
       unknownFields.writeDescriptionTo(&output, indent:indent)
     }
     override public var hashValue:Int {
@@ -142,6 +160,11 @@ public extension Services.Organization.Actions.GetLocations {
             }
             if hasProfileId {
                hashCode = (hashCode &* 31) &+ profileId.hashValue
+            }
+            if hasInflations {
+                if let hashValueinflations = inflations?.hashValue {
+                    hashCode = (hashCode &* 31) &+ hashValueinflations
+                }
             }
             hashCode = (hashCode &* 31) &+  unknownFields.hashValue
             return hashCode
@@ -217,6 +240,38 @@ public extension Services.Organization.Actions.GetLocations {
          builderResult.profileId = ""
          return self
     }
+    public var hasInflations:Bool {
+         get {
+             return builderResult.hasInflations
+         }
+    }
+    public var inflations:Services.Common.Containers.InflationsV1! {
+         get {
+             return builderResult.inflations
+         }
+         set (value) {
+             builderResult.hasInflations = true
+             builderResult.inflations = value
+         }
+    }
+    public func setInflations(value:Services.Common.Containers.InflationsV1!)-> Services.Organization.Actions.GetLocations.RequestV1Builder {
+      self.inflations = value
+      return self
+    }
+    public func mergeInflations(value:Services.Common.Containers.InflationsV1) -> Services.Organization.Actions.GetLocations.RequestV1Builder {
+      if (builderResult.hasInflations) {
+        builderResult.inflations = Services.Common.Containers.InflationsV1.builderWithPrototype(builderResult.inflations).mergeFrom(value).buildPartial()
+      } else {
+        builderResult.inflations = value
+      }
+      builderResult.hasInflations = true
+      return self
+    }
+    public func clearInflations() -> Services.Organization.Actions.GetLocations.RequestV1Builder {
+      builderResult.hasInflations = false
+      builderResult.inflations = nil
+      return self
+    }
     override public var internalGetResult:GeneratedMessage {
          get {
             return builderResult
@@ -247,6 +302,9 @@ public extension Services.Organization.Actions.GetLocations {
       if other.hasProfileId {
            profileId = other.profileId
       }
+      if (other.hasInflations) {
+          mergeInflations(other.inflations)
+      }
       mergeUnknownFields(other.unknownFields)
       return self
     }
@@ -267,6 +325,14 @@ public extension Services.Organization.Actions.GetLocations {
 
         case 18 :
           profileId = input.readString()
+
+        case 26 :
+          var subBuilder:Services.Common.Containers.InflationsV1Builder = Services.Common.Containers.InflationsV1.builder()
+          if hasInflations {
+            subBuilder.mergeFrom(inflations)
+          }
+          input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
+          inflations = subBuilder.buildPartial()
 
         default:
           if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {

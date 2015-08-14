@@ -75,6 +75,7 @@ public func == (lhs: Services.Organization.Containers.TeamStatusV1, rhs: Service
   fieldCheck = fieldCheck && (lhs.hasValue == rhs.hasValue) && (!lhs.hasValue || lhs.value == rhs.value)
   fieldCheck = fieldCheck && (lhs.hasCreated == rhs.hasCreated) && (!lhs.hasCreated || lhs.created == rhs.created)
   fieldCheck = fieldCheck && (lhs.hasByProfileId == rhs.hasByProfileId) && (!lhs.hasByProfileId || lhs.byProfileId == rhs.byProfileId)
+  fieldCheck = fieldCheck && (lhs.hasByProfile == rhs.hasByProfile) && (!lhs.hasByProfile || lhs.byProfile == rhs.byProfile)
   return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
 }
 
@@ -2420,6 +2421,7 @@ public extension Services.Organization.Containers {
            case "value": return value
            case "created": return created
            case "byProfileId": return byProfileId
+           case "byProfile": return byProfile
            default: return nil
            }
     }
@@ -2436,6 +2438,8 @@ public extension Services.Organization.Containers {
     public private(set) var hasByProfileId:Bool = false
     public private(set) var byProfileId:String = ""
 
+    public private(set) var hasByProfile:Bool = false
+    public private(set) var byProfile:Services.Profile.Containers.ProfileV1!
     required public init() {
          super.init()
     }
@@ -2454,6 +2458,9 @@ public extension Services.Organization.Containers {
       }
       if hasByProfileId {
         output.writeString(4, value:byProfileId)
+      }
+      if hasByProfile {
+        output.writeMessage(5, value:byProfile)
       }
       unknownFields.writeToCodedOutputStream(output)
     }
@@ -2475,6 +2482,11 @@ public extension Services.Organization.Containers {
       }
       if hasByProfileId {
         serialize_size += byProfileId.computeStringSize(4)
+      }
+      if hasByProfile {
+          if let varSizebyProfile = byProfile?.computeMessageSize(5) {
+              serialize_size += varSizebyProfile
+          }
       }
       serialize_size += unknownFields.serializedSize()
       memoizedSerializedSize = serialize_size
@@ -2529,6 +2541,11 @@ public extension Services.Organization.Containers {
       if hasByProfileId {
         output += "\(indent) byProfileId: \(byProfileId) \n"
       }
+      if hasByProfile {
+        output += "\(indent) byProfile {\n"
+        byProfile?.writeDescriptionTo(&output, indent:"\(indent)  ")
+        output += "\(indent) }\n"
+      }
       unknownFields.writeDescriptionTo(&output, indent:indent)
     }
     override public var hashValue:Int {
@@ -2545,6 +2562,11 @@ public extension Services.Organization.Containers {
             }
             if hasByProfileId {
                hashCode = (hashCode &* 31) &+ byProfileId.hashValue
+            }
+            if hasByProfile {
+                if let hashValuebyProfile = byProfile?.hashValue {
+                    hashCode = (hashCode &* 31) &+ hashValuebyProfile
+                }
             }
             hashCode = (hashCode &* 31) &+  unknownFields.hashValue
             return hashCode
@@ -2666,6 +2688,38 @@ public extension Services.Organization.Containers {
          builderResult.byProfileId = ""
          return self
     }
+    public var hasByProfile:Bool {
+         get {
+             return builderResult.hasByProfile
+         }
+    }
+    public var byProfile:Services.Profile.Containers.ProfileV1! {
+         get {
+             return builderResult.byProfile
+         }
+         set (value) {
+             builderResult.hasByProfile = true
+             builderResult.byProfile = value
+         }
+    }
+    public func setByProfile(value:Services.Profile.Containers.ProfileV1!)-> Services.Organization.Containers.TeamStatusV1Builder {
+      self.byProfile = value
+      return self
+    }
+    public func mergeByProfile(value:Services.Profile.Containers.ProfileV1) -> Services.Organization.Containers.TeamStatusV1Builder {
+      if (builderResult.hasByProfile) {
+        builderResult.byProfile = Services.Profile.Containers.ProfileV1.builderWithPrototype(builderResult.byProfile).mergeFrom(value).buildPartial()
+      } else {
+        builderResult.byProfile = value
+      }
+      builderResult.hasByProfile = true
+      return self
+    }
+    public func clearByProfile() -> Services.Organization.Containers.TeamStatusV1Builder {
+      builderResult.hasByProfile = false
+      builderResult.byProfile = nil
+      return self
+    }
     override public var internalGetResult:GeneratedMessage {
          get {
             return builderResult
@@ -2702,6 +2756,9 @@ public extension Services.Organization.Containers {
       if other.hasByProfileId {
            byProfileId = other.byProfileId
       }
+      if (other.hasByProfile) {
+          mergeByProfile(other.byProfile)
+      }
       mergeUnknownFields(other.unknownFields)
       return self
     }
@@ -2728,6 +2785,14 @@ public extension Services.Organization.Containers {
 
         case 34 :
           byProfileId = input.readString()
+
+        case 42 :
+          var subBuilder:Services.Profile.Containers.ProfileV1Builder = Services.Profile.Containers.ProfileV1.builder()
+          if hasByProfile {
+            subBuilder.mergeFrom(byProfile)
+          }
+          input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
+          byProfile = subBuilder.buildPartial()
 
         default:
           if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {

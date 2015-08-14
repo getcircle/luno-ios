@@ -35,32 +35,28 @@ public final class OrganizationV1 extends Message {
   @ProtoField(tag = 5, type = STRING)
   public final String image_url;
 
-  @ProtoField(tag = 6)
-  public final ColorV1 tint_color;
-
-  @ProtoField(tag = 7, type = UINT32)
+  @ProtoField(tag = 6, type = UINT32)
   public final Integer profile_count;
 
-  @ProtoField(tag = 8, type = UINT32)
+  @ProtoField(tag = 7, type = UINT32)
   public final Integer team_count;
 
-  @ProtoField(tag = 9, type = UINT32)
+  @ProtoField(tag = 8, type = UINT32)
   public final Integer location_count;
 
-  public OrganizationV1(Integer version, String id, String name, String domain, String image_url, ColorV1 tint_color, Integer profile_count, Integer team_count, Integer location_count) {
+  public OrganizationV1(Integer version, String id, String name, String domain, String image_url, Integer profile_count, Integer team_count, Integer location_count) {
     this.version = version;
     this.id = id;
     this.name = name;
     this.domain = domain;
     this.image_url = image_url;
-    this.tint_color = tint_color;
     this.profile_count = profile_count;
     this.team_count = team_count;
     this.location_count = location_count;
   }
 
   private OrganizationV1(Builder builder) {
-    this(builder.version, builder.id, builder.name, builder.domain, builder.image_url, builder.tint_color, builder.profile_count, builder.team_count, builder.location_count);
+    this(builder.version, builder.id, builder.name, builder.domain, builder.image_url, builder.profile_count, builder.team_count, builder.location_count);
     setBuilder(builder);
   }
 
@@ -74,7 +70,6 @@ public final class OrganizationV1 extends Message {
         && equals(name, o.name)
         && equals(domain, o.domain)
         && equals(image_url, o.image_url)
-        && equals(tint_color, o.tint_color)
         && equals(profile_count, o.profile_count)
         && equals(team_count, o.team_count)
         && equals(location_count, o.location_count);
@@ -89,7 +84,6 @@ public final class OrganizationV1 extends Message {
       result = result * 37 + (name != null ? name.hashCode() : 0);
       result = result * 37 + (domain != null ? domain.hashCode() : 0);
       result = result * 37 + (image_url != null ? image_url.hashCode() : 0);
-      result = result * 37 + (tint_color != null ? tint_color.hashCode() : 0);
       result = result * 37 + (profile_count != null ? profile_count.hashCode() : 0);
       result = result * 37 + (team_count != null ? team_count.hashCode() : 0);
       result = result * 37 + (location_count != null ? location_count.hashCode() : 0);
@@ -105,7 +99,6 @@ public final class OrganizationV1 extends Message {
     public String name;
     public String domain;
     public String image_url;
-    public ColorV1 tint_color;
     public Integer profile_count;
     public Integer team_count;
     public Integer location_count;
@@ -121,7 +114,6 @@ public final class OrganizationV1 extends Message {
       this.name = message.name;
       this.domain = message.domain;
       this.image_url = message.image_url;
-      this.tint_color = message.tint_color;
       this.profile_count = message.profile_count;
       this.team_count = message.team_count;
       this.location_count = message.location_count;
@@ -149,11 +141,6 @@ public final class OrganizationV1 extends Message {
 
     public Builder image_url(String image_url) {
       this.image_url = image_url;
-      return this;
-    }
-
-    public Builder tint_color(ColorV1 tint_color) {
-      this.tint_color = tint_color;
       return this;
     }
 

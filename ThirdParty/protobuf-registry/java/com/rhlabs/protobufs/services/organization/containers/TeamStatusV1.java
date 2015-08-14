@@ -2,6 +2,7 @@
 // Source file: ./src/protobufs/services/organization/containers.proto
 package com.rhlabs.protobufs.services.organization.containers;
 
+import com.rhlabs.protobufs.services.profile.containers.ProfileV1;
 import com.squareup.wire.Message;
 import com.squareup.wire.ProtoField;
 
@@ -28,15 +29,19 @@ public final class TeamStatusV1 extends Message {
   @ProtoField(tag = 4, type = STRING)
   public final String by_profile_id;
 
-  public TeamStatusV1(Integer version, String value, String created, String by_profile_id) {
+  @ProtoField(tag = 5)
+  public final ProfileV1 by_profile;
+
+  public TeamStatusV1(Integer version, String value, String created, String by_profile_id, ProfileV1 by_profile) {
     this.version = version;
     this.value = value;
     this.created = created;
     this.by_profile_id = by_profile_id;
+    this.by_profile = by_profile;
   }
 
   private TeamStatusV1(Builder builder) {
-    this(builder.version, builder.value, builder.created, builder.by_profile_id);
+    this(builder.version, builder.value, builder.created, builder.by_profile_id, builder.by_profile);
     setBuilder(builder);
   }
 
@@ -48,7 +53,8 @@ public final class TeamStatusV1 extends Message {
     return equals(version, o.version)
         && equals(value, o.value)
         && equals(created, o.created)
-        && equals(by_profile_id, o.by_profile_id);
+        && equals(by_profile_id, o.by_profile_id)
+        && equals(by_profile, o.by_profile);
   }
 
   @Override
@@ -59,6 +65,7 @@ public final class TeamStatusV1 extends Message {
       result = result * 37 + (value != null ? value.hashCode() : 0);
       result = result * 37 + (created != null ? created.hashCode() : 0);
       result = result * 37 + (by_profile_id != null ? by_profile_id.hashCode() : 0);
+      result = result * 37 + (by_profile != null ? by_profile.hashCode() : 0);
       hashCode = result;
     }
     return result;
@@ -70,6 +77,7 @@ public final class TeamStatusV1 extends Message {
     public String value;
     public String created;
     public String by_profile_id;
+    public ProfileV1 by_profile;
 
     public Builder() {
     }
@@ -81,6 +89,7 @@ public final class TeamStatusV1 extends Message {
       this.value = message.value;
       this.created = message.created;
       this.by_profile_id = message.by_profile_id;
+      this.by_profile = message.by_profile;
     }
 
     public Builder version(Integer version) {
@@ -100,6 +109,11 @@ public final class TeamStatusV1 extends Message {
 
     public Builder by_profile_id(String by_profile_id) {
       this.by_profile_id = by_profile_id;
+      return this;
+    }
+
+    public Builder by_profile(ProfileV1 by_profile) {
+      this.by_profile = by_profile;
       return this;
     }
 
