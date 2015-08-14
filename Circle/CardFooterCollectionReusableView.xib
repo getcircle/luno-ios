@@ -2,19 +2,20 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionReusableView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="U6b-Vx-4bR" customClass="CardFooterCollectionReusableView" customModule="circle" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
-                <button contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qfk-AU-riU">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+                <button contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qfk-AU-riU">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="60" id="cXA-wG-sWp"/>
+                        <constraint firstAttribute="height" constant="70" id="cXA-wG-sWp"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="15"/>
                     <inset key="contentEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -27,34 +28,44 @@
                     </connections>
                 </button>
                 <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NavRight" translatesAutoresizingMaskIntoConstraints="NO" id="eSt-nK-4ON">
-                    <rect key="frame" x="294" y="21" width="11" height="19"/>
+                    <rect key="frame" x="294" y="26" width="11" height="19"/>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FeedPeers" translatesAutoresizingMaskIntoConstraints="NO" id="o89-ma-71t">
+                    <rect key="frame" x="15" y="15" width="40" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="o89-ma-71t" secondAttribute="height" multiplier="1:1" id="J3e-YN-ddV"/>
+                        <constraint firstAttribute="height" constant="40" id="USB-Xb-of1"/>
+                    </constraints>
                 </imageView>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="Qfk-AU-riU" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" id="63G-Yo-dY7"/>
-                <constraint firstAttribute="centerY" secondItem="eSt-nK-4ON" secondAttribute="centerY" id="7j2-74-upd"/>
                 <constraint firstItem="eSt-nK-4ON" firstAttribute="centerY" secondItem="Qfk-AU-riU" secondAttribute="centerY" id="FIV-6C-Jvz"/>
+                <constraint firstAttribute="centerY" secondItem="o89-ma-71t" secondAttribute="centerY" id="NQO-Wk-5V8"/>
                 <constraint firstAttribute="trailing" secondItem="Qfk-AU-riU" secondAttribute="trailing" id="ZQp-xe-dHP"/>
-                <constraint firstAttribute="bottom" secondItem="Qfk-AU-riU" secondAttribute="bottom" id="lNP-Bf-5dT"/>
+                <constraint firstItem="Qfk-AU-riU" firstAttribute="centerY" secondItem="o89-ma-71t" secondAttribute="centerY" id="kOj-iA-unQ"/>
                 <constraint firstAttribute="trailing" secondItem="eSt-nK-4ON" secondAttribute="trailing" constant="15" id="npE-Dl-eci"/>
+                <constraint firstItem="o89-ma-71t" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" constant="15" id="wKp-tO-wnO"/>
                 <constraint firstItem="Qfk-AU-riU" firstAttribute="top" secondItem="U6b-Vx-4bR" secondAttribute="top" id="xk9-V8-5rZ"/>
             </constraints>
             <variation key="default">
                 <mask key="constraints">
-                    <exclude reference="lNP-Bf-5dT"/>
-                    <exclude reference="7j2-74-upd"/>
+                    <exclude reference="NQO-Wk-5V8"/>
                 </mask>
             </variation>
             <connections>
                 <outlet property="footerButton" destination="Qfk-AU-riU" id="D3I-cb-r4D"/>
                 <outlet property="footerButtonLeadingConstraint" destination="63G-Yo-dY7" id="Q0r-uM-qrU"/>
                 <outlet property="footerButtonTrailingConstraint" destination="ZQp-xe-dHP" id="iu9-Z2-h5P"/>
+                <outlet property="footerImageView" destination="o89-ma-71t" id="RFL-WD-GKJ"/>
+                <outlet property="footerNextImageView" destination="eSt-nK-4ON" id="dF3-6F-lyS"/>
             </connections>
             <point key="canvasLocation" x="211" y="139"/>
         </collectionReusableView>
     </objects>
     <resources>
+        <image name="FeedPeers" width="20" height="14"/>
         <image name="NavRight" width="11" height="19"/>
     </resources>
 </document>

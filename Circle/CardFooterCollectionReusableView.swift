@@ -17,13 +17,15 @@ class CardFooterCollectionReusableView: CircleCollectionReusableView {
     @IBOutlet weak private(set) var footerButton: UIButton!
     @IBOutlet weak private(set) var footerButtonLeadingConstraint: NSLayoutConstraint!
     @IBOutlet weak private(set) var footerButtonTrailingConstraint: NSLayoutConstraint!
+    @IBOutlet weak private(set) var footerImageView: UIImageView!
+    @IBOutlet weak private(set) var footerNextImageView: UIImageView!
  
     override class var classReuseIdentifier: String {
         return "CardFooterCollectionReusableView"
     }
     
     override class var height: CGFloat {
-        return 60.0
+        return 70.0
     }
     
     var card: Card?
@@ -37,6 +39,8 @@ class CardFooterCollectionReusableView: CircleCollectionReusableView {
     override func prepareForReuse() {
         super.prepareForReuse()
         card = nil
+        footerImageView.hidden = true
+        footerButton.contentEdgeInsets = UIEdgeInsetsMake(0.0, 15.0, 0.0, 0.0)
     }
     
     override func awakeFromNib() {
@@ -47,10 +51,21 @@ class CardFooterCollectionReusableView: CircleCollectionReusableView {
             UIImage.imageFromColor(UIColor.appControlHighlightedColor(), withRect: footerButton.frame), 
             forState: .Highlighted
         )
+        footerImageView.hidden = true
     }
     
     func setButtonTitle(title: String) {
         footerButton.setTitle(title, forState: .Normal)
+    }
+    
+    func setImage(image: UIImage?) {
+        footerImageView.image = image
+        footerImageView.hidden = false
+        footerButton.contentEdgeInsets = UIEdgeInsetsMake(0.0, 15.0 + footerImageView.frameWidth + 10.0, 0.0, 0.0)
+    }
+    
+    func setNextImageHidden(hidden: Bool) {
+        footerNextImageView.hidden = hidden
     }
     
     private func updateViewForInsetEdges() {

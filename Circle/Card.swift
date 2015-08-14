@@ -247,6 +247,7 @@ class Card: Equatable {
     enum CardSubType: String {
         case Members = "Members"
         case Teams = "Teams"
+        case ManagedTeams = "ManagedTeams"
         case PointsOfContact = "PointsOfContact"
         case None = "None"
     }

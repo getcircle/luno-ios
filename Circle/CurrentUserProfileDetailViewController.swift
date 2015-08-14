@@ -113,7 +113,7 @@ class CurrentUserProfileDetailViewController: ProfileDetailViewController,
     
     // MARK: - CardHeaderViewDelegate
     
-    override func cardHeaderTapped(sender: AnyObject!, card: Card!) {
+    func cardHeaderTapped(sender: AnyObject!, card: Card!) {
         switch card.type {
         case .ContactMethods:
             let editProfileVC = EditContactInfoViewController(nibName: "EditContactInfoViewController", bundle: nil)
@@ -127,10 +127,9 @@ class CurrentUserProfileDetailViewController: ProfileDetailViewController,
             editStatusViewController.profile = profile
             let editStatusViewNavController = UINavigationController(rootViewController: editStatusViewController)
             navigationController?.presentViewController(editStatusViewNavController, animated: true, completion: nil)
-            break
-
+            
         default:
-            super.cardHeaderTapped(sender, card: card)
+            break
         }
     }
     

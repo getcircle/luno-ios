@@ -11,7 +11,7 @@ import ProtobufRegistry
 
 class ProfileDetailViewController:
     DetailViewController,
-    CardHeaderViewDelegate
+    CardFooterViewDelegate
 {
 
     var profile: Services.Profile.Containers.ProfileV1!
@@ -41,8 +41,8 @@ class ProfileDetailViewController:
     
     override func configureCollectionView() {
         collectionView.dataSource = dataSource
-        
         collectionView.delegate = delegate
+        dataSource.cardFooterDelegate = self
         (layout as! StickyHeaderCollectionViewLayout).headerHeight = ProfileHeaderCollectionReusableView.height
         super.configureCollectionView()
     }
@@ -206,16 +206,7 @@ class ProfileDetailViewController:
             }
         }
     }
-    
-    // MARK: - CardHeaderViewDelegate
-    
-    func cardHeaderTapped(sender: AnyObject!, card: Card!) {
-        switch card.type {
-        default:
-            break
-        }
-    }
-    
+
     // MARK: - Gesture Recognizers
     
     func profileImageTapped(recognizer: UIGestureRecognizer) {
@@ -224,5 +215,41 @@ class ProfileDetailViewController:
     
     func profileBackgroundImageTapped(recognizer: UIGestureRecognizer) {
         collectionView.setContentOffset(CGPointZero, animated: true)
+    }
+    
+    // MARK: - CardFooterDelegate
+    
+    func cardFooterTapped(card: Card!) {
+        var content: Array<Services.Profile.Containers.ProfileV1>?
+        var title: String?
+        let profileDetailDataSource = dataSource as! ProfileDetailDataSource
+        
+        switch card.subType {
+        case .Teams:
+            if let peers = profileDetailDataSource.peers {
+                content = peers
+                title = profileDetailDataSource.profile.firstName + "'s Peers"
+            }
+            
+        case .ManagedTeams:
+            if let directReports = profileDetailDataSource.directReports {
+                content = directReports
+                title = profileDetailDataSource.profile.firstName + "'s Direct Reports"
+            }
+
+        default:
+            break
+        }
+        
+        if let content = content, title = title {
+            let viewController = ProfilesViewController()
+            viewController.dataSource.setInitialData(
+                content: content,
+                ofType: nil,
+                nextRequest: nil
+            )
+            viewController.title = title
+            navigationController?.pushViewController(viewController, animated: true)
+        }
     }
 }

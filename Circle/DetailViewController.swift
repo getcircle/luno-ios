@@ -34,7 +34,7 @@ class DetailViewController: BaseDetailViewController,
         var rootView = UIView(frame: UIScreen.mainScreen().bounds)
         rootView.opaque = true
         view = rootView
-        
+
         if layout == nil {
             layout = initializeCollectionViewLayout()
         }

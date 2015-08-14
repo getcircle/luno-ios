@@ -14,9 +14,12 @@ class ProfileDetailDataSource: CardDataSource {
     var profile: Services.Profile.Containers.ProfileV1!
     var profileHeaderView: ProfileHeaderCollectionReusableView?
     
+    private(set) var directReports: Array<Services.Profile.Containers.ProfileV1>?
     private(set) var groups: Array<Services.Group.Containers.GroupV1>?
     private(set) var location: Services.Organization.Containers.LocationV1?
     private(set) var manager: Services.Profile.Containers.ProfileV1?
+    private(set) var managesTeam: Services.Organization.Containers.TeamV1?
+    private(set) var peers: Array<Services.Profile.Containers.ProfileV1>?
     private(set) var team: Services.Organization.Containers.TeamV1?
 
     private var supportGoogleGroups = false
@@ -47,15 +50,13 @@ class ProfileDetailDataSource: CardDataSource {
                 storedError = error
             }
             else {
-                println("PROFILE: \(profile)")
-                println("TEAM: \(team)")
-                println("DIRECT REPORTS: \(directReports)")
-                println("PEERS: \(peers)")
-                println("MANAGES TEAM: \(managesTeam)")
-                self.manager = manager
-                self.team = team
+                self.directReports = directReports
                 // TODO support multiple locations
-                self.location = locations?[0]
+                self.location = locations?.first
+                self.manager = manager
+                self.managesTeam = managesTeam
+                self.peers = peers
+                self.team = team
             }
             dispatch_group_leave(actionsGroup)
             completionHandler(error: error)
@@ -89,6 +90,7 @@ class ProfileDetailDataSource: CardDataSource {
         addLocationCard()
         addManagerCard()
         addTeamCard()
+        addManagesTeamCard()
         addGroupsCard()
         setDataInHeader()
     }
@@ -191,21 +193,43 @@ class ProfileDetailDataSource: CardDataSource {
 
     internal func addTeamCard() -> Card? {
         var content = [AnyObject]()
-        
+
         if let team = team {
             content.append(team)
         }
         
         if content.count > 0 {
-            let card = Card(cardType: .Profiles, title: "Team")
+            let card = Card(cardType: .Profiles, subType: .Teams, title: "Team")
             card.showContentCount = false
             card.addHeader(headerClass: ProfileSectionHeaderCollectionReusableView.self)
             card.sectionInset = sectionInsetWithLargerBootomMargin
             card.addContent(content: content)
+            card.addDefaultFooter()
             appendCard(card)
             return card
         }
 
+        return nil
+    }
+    
+    internal func addManagesTeamCard() -> Card? {
+        var content = [AnyObject]()
+        
+        if let managesTeam = managesTeam {
+            content.append(managesTeam)
+        }
+        
+        if content.count > 0 {
+            let card = Card(cardType: .Profiles, subType: .ManagedTeams, title: "Manages")
+            card.showContentCount = false
+            card.addHeader(headerClass: ProfileSectionHeaderCollectionReusableView.self)
+            card.sectionInset = sectionInsetWithLargerBootomMargin
+            card.addContent(content: content)
+            card.addDefaultFooter()
+            appendCard(card)
+            return card
+        }
+        
         return nil
     }
 
@@ -235,6 +259,42 @@ class ProfileDetailDataSource: CardDataSource {
         if let profileHeader = header as? ProfileHeaderCollectionReusableView {
             profileHeaderView = profileHeader
             setDataInHeader()
+        }
+    }
+    
+    override func configureFooter(footer: CircleCollectionReusableView, atIndexPath indexPath: NSIndexPath) {
+        super.configureFooter(footer, atIndexPath: indexPath)
+        
+        if let footerView = footer as? CardFooterCollectionReusableView, card = cardAtSection(indexPath.section) {
+            
+            switch card.subType {
+            case .Teams:
+                footerView.setButtonTitle(
+                    NSString(format: NSLocalizedString(
+                            "With %d Peers",
+                            comment: "Text indicating number of peers a person works with"
+                        ),
+                        self.peers?.count ?? 0
+                    ) as String
+                )
+                footerView.setImage(UIImage(named: "FeedPeers"))
+                footerView.setNextImageHidden(true)
+                
+            case .ManagedTeams:
+                footerView.setButtonTitle(
+                    NSString(format: NSLocalizedString(
+                            "%d Direct Reports",
+                            comment: "Text indicating number of direct reports a person has"
+                        ),
+                        self.directReports?.count ?? 0
+                    ) as String
+                )
+                footerView.setImage(UIImage(named: "FeedPeers"))
+                footerView.setNextImageHidden(true)
+
+            default:
+                break
+            }
         }
     }
 
