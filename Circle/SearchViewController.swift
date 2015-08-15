@@ -47,23 +47,22 @@ class SearchViewController: UIViewController,
         configureLaunchScreenView()
         configureSearchHeaderView()
         configureCollectionView()
-        configureOrgImageView()
         configurePoweredByLabel()
         activityIndicatorView = view.addActivityIndicator()
         activityIndicatorView.stopAnimating()
+        loadOrgImageView()
         errorMessageView = view.addErrorMessageView(nil, tryAgainHandler: { () -> Void in
             self.errorMessageView.hide()
             self.activityIndicatorView.startAnimating()
             self.loadData()
         })
-        
+        registerNotifications()
         loadData()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.translucent = false
-        registerNotifications()
         if firstLoad {
             moveSearchToCenter(false)        
         }
@@ -80,11 +79,6 @@ class SearchViewController: UIViewController,
         else if let user = AuthViewController.getLoggedInUser() where launchScreenView != nil {
             hideAndRemoveLaunchView()
         }
-    }
-    
-    override func viewDidDisappear(animated: Bool) {
-        super.viewDidDisappear(animated)
-        unregisterNotifications()
     }
     
     deinit {
@@ -127,8 +121,8 @@ class SearchViewController: UIViewController,
         }
     }
     
-    private func configureOrgImageView() {
-        if let currentOrganization = AuthViewController.getLoggedInUserOrganization() {
+    private func loadOrgImageView() {
+        if let currentOrganization = AuthViewController.getLoggedInUserOrganization() where orgImageView.image == nil {
             orgImageView.setImageWithURL(NSURL(string: currentOrganization.imageUrl)!, animated: true)
         }
     }
@@ -381,7 +375,6 @@ class SearchViewController: UIViewController,
     // MARK: - Notifications
     
     private func registerNotifications() {
-        unregisterNotifications()
         NSNotificationCenter.defaultCenter().addObserver(
             self,
             selector: "userLoggedIn:",
@@ -400,6 +393,7 @@ class SearchViewController: UIViewController,
         hideAndRemoveLaunchView()
         dataSource.resetCards()
         collectionView.reloadData()
+        loadOrgImageView()
         loadData()
     }
     
