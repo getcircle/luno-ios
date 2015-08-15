@@ -11,8 +11,11 @@ import ProtobufRegistry
 
 class SearchQueryDataSource: CardDataSource {
     
-    let queryTriggerTimer = 0.2
     var isQuickAction: Bool = false
+
+    let queryTriggerTimer = 0.2
+
+    private let sectionInset = UIEdgeInsetsMake(0.0, 0.0, 1.0, 0.0)
     private let whitespaceCharacterSet = NSCharacterSet.whitespaceCharacterSet()
     
     private var searchTerm = ""
@@ -21,6 +24,7 @@ class SearchQueryDataSource: CardDataSource {
     private var searchCache = Dictionary<String, Array<AnyObject>>()
     private var completionHandler: ((error: NSError?) -> Void)?
     private var searchTriggerTimer: NSTimer?
+    
     
     override init() {
         super.init()
@@ -145,7 +149,6 @@ class SearchQueryDataSource: CardDataSource {
         resetCards()
 
         let emptySearchTerm = searchTerm.trimWhitespace() == ""
-        let sectionInset = UIEdgeInsetsMake(0.0, 0.0, 1.0, 0.0)
         if searchResults.count > 0 {
             let maxVisibleItems = 3
             let profilesCardTitle = emptySearchTerm ? NSLocalizedString("Recent", comment: "Title of the section showing recent search results") : NSLocalizedString("Results", comment: "Title of the section showing search results")
@@ -156,6 +159,7 @@ class SearchQueryDataSource: CardDataSource {
                 resultsCard.addHeader(headerClass: ProfileSectionHeaderCollectionReusableView.self)
             }
             appendCard(resultsCard)
+            addInfoCards()
             addSearchActions()
         }
 
@@ -179,6 +183,17 @@ class SearchQueryDataSource: CardDataSource {
         }
     }
     
+    private func addInfoCards() {
+        if searchResults.count == 1 {
+            if let profile = searchResults.first as? Services.Profile.Containers.ProfileV1 {
+               addStatusCard(profile)
+            }
+            else if let team = searchResults.first as? Services.Organization.Containers.TeamV1 {
+                addStatusCard(team)
+            }
+        }
+    }
+    
     private func addSearchActions() {
         if searchResults.count == 1 {
             if let profile = searchResults.first as? Services.Profile.Containers.ProfileV1 {
@@ -194,4 +209,34 @@ class SearchQueryDataSource: CardDataSource {
         cell.backgroundColor = UIColor.whiteColor()
     }
     
+    private func addStatusCard(profile: Services.Profile.Containers.ProfileV1) {
+        if let status = profile.status where status.value.trimWhitespace() != "" {
+            let statusCard = Card(cardType: .TextValue, title: "")
+            statusCard.addContent(content: [
+                TextData(
+                    type: .ProfileStatus,
+                    andValue: "I'm currently working on " + status.value,
+                    andTimestamp: status.created
+                )
+                ])
+            statusCard.sectionInset = sectionInset
+            appendCard(statusCard)
+        }
+    }
+
+    private func addStatusCard(team: Services.Organization.Containers.TeamV1) {
+        if let status = team.status where status.value.trimWhitespace() != "" {
+            let statusCard = Card(cardType: .TextValue, title: "")
+            statusCard.addContent(content: [
+                TextData(
+                    type: .TeamStatus,
+                    andValue: "We are currently working on " + status.value,
+                    andTimestamp: status.created,
+                    andAuthor: status.byProfile
+                )
+            ])
+            statusCard.sectionInset = sectionInset
+            appendCard(statusCard)
+        }
+    }
 }

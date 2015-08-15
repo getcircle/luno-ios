@@ -24,7 +24,8 @@ class SearchSuggestionCollectionViewCell: CircleCollectionViewCell {
     override func setData(data: AnyObject) {
         if let searchSuggestion = data as? SearchSuggestion {
             titleLabel.text = searchSuggestion.getTitle()
-            imageView.image = UIImage(named: searchSuggestion.imageSource)
+            imageView.image = UIImage(named: searchSuggestion.imageSource)?.imageWithRenderingMode(.AlwaysTemplate)
+            imageView.tintColor = UIColor(red: 120, green: 120, blue: 120)
         }
     }
 }
