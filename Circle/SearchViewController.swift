@@ -490,6 +490,22 @@ class SearchViewController: UIViewController,
 //                navigationController?.pushViewController(viewController, animated: true)
 //            }
             
+        case .MembersOfTeam:
+            if let team = searchAction.underlyingObject as? Services.Organization.Containers.TeamV1 {
+                let viewController = ProfilesViewController()
+                (viewController.dataSource as! ProfilesDataSource).configureForTeam(team.id, setupOnlySearch: false)
+                viewController.title = searchAction.getTitle()
+                navigationController?.pushViewController(viewController, animated: true)
+            }
+            
+        case .SubTeamsOfTeam:
+            if let team = searchAction.underlyingObject as? Services.Organization.Containers.TeamV1 {
+                let viewController = TeamsOverviewViewController()
+                (viewController.dataSource as! TeamsOverviewDataSource).configureForTeam(team.id, setupOnlySearch: false)
+                viewController.title = searchAction.getTitle()
+                navigationController?.pushViewController(viewController, animated: true)
+            }
+            
         case .AddressOfLocation:
             if let location = searchAction.underlyingObject as? Services.Organization.Containers.LocationV1 {
                 let viewController = MapViewController()

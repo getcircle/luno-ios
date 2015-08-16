@@ -23,6 +23,7 @@ class SearchAction: SearchSuggestion {
         case PeopleInLocation
         
         case MembersOfTeam
+        case SubTeamsOfTeam
     }
     
     var type: Type
@@ -74,7 +75,33 @@ class SearchAction: SearchSuggestion {
         searchActions.append(reportsToAction)
         return searchActions
     }
-    
+
+    static func searchActionsForTeam(team: Services.Organization.Containers.TeamV1) -> [SearchAction] {
+        var searchActions = [SearchAction]()
+        
+        // Members of Team
+        let membersAction = SearchAction(
+            title: "Works in " + team.name,
+            ofType: .MembersOfTeam,
+            withImageSource: "SearchTab"
+        )
+        membersAction.underlyingObject = team as AnyObject
+        searchActions.append(membersAction)
+        
+        if team.childTeamCount > 0 {
+            // Sub teams of Team
+            let subTeamsAction = SearchAction(
+                title: "Teams in " + team.name,
+                ofType: .SubTeamsOfTeam,
+                withImageSource: "SearchTab"
+            )
+            subTeamsAction.underlyingObject = team as AnyObject
+            searchActions.append(subTeamsAction)
+        }
+        
+        return searchActions
+    }
+
     static func searchActionsForLocation(location: Services.Organization.Containers.LocationV1) -> [SearchAction] {
         var searchActions = [SearchAction]()
         
