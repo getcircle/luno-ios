@@ -145,6 +145,7 @@ class ProfileCollectionViewCell: CircleCollectionViewCell {
         subTextLabel.text = team.getTeamCounts()
         teamNameLetterLabel.hidden = true
 
+        profileImageView.imageProfileIdentifier = team.id
         profileImageView.imageText = ""
         profileImageView.removeRoundedCorners()
         profileImageView.contentMode = .Center
@@ -155,6 +156,7 @@ class ProfileCollectionViewCell: CircleCollectionViewCell {
         nameLabel.text = location.officeName()
         subTextLabel.text = getCountLabel(location.profileCount)
         
+        profileImageView.imageProfileIdentifier = location.id
         profileImageView.imageText = ""
         profileImageView.removeRoundedCorners()
         profileImageView.contentMode = .Center
