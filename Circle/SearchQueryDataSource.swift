@@ -114,35 +114,37 @@ class SearchQueryDataSource: CardDataSource {
     }
     
     private func populateDefaultSearchSuggestions() {
-        let peopleCount = ObjectStore.sharedInstance.profilesCount
-        let peopleTitle = peopleCount == 1 ? "Person" : "People"
-        
-        let officeCount = ObjectStore.sharedInstance.locationsCount
-        let officeTitle = officeCount == 1 ? "Office" : "Offices"
-        
-        let teamsCount = ObjectStore.sharedInstance.teamsCount
-        let teamsTitle = teamsCount == 1 ? "Team" : "Teams"
-        
-        searchSuggestions.extend([
-            SearchCategory(
-                categoryTitle: peopleTitle,
-                ofType: .People,
-                withCount: peopleCount,
-                withImageSource: "FeedPeers"
-            ),
-            SearchCategory(
-                categoryTitle: officeTitle,
-                ofType: .Locations,
-                withCount: officeCount,
-                withImageSource: "FeedLocation"
-            ),
-            SearchCategory(
-                categoryTitle: teamsTitle,
-                ofType: .Teams,
-                withCount: teamsCount,
-                withImageSource: "FeedReports"
-            )
-        ])
+        if let organization = AuthViewController.getLoggedInUserOrganization() {
+            let peopleCount = Int(organization.profileCount)
+            let peopleTitle = peopleCount == 1 ? "Person" : "People"
+            
+            let locationsCount = Int(organization.locationCount)
+            let locationsTitle = locationsCount == 1 ? "Office" : "Offices"
+            
+            let teamsCount = Int(organization.teamCount)
+            let teamsTitle = teamsCount == 1 ? "Team" : "Teams"
+            
+            searchSuggestions.extend([
+                SearchCategory(
+                    categoryTitle: peopleTitle,
+                    ofType: .People,
+                    withCount: peopleCount,
+                    withImageSource: "FeedPeers"
+                ),
+                SearchCategory(
+                    categoryTitle: locationsTitle,
+                    ofType: .Locations,
+                    withCount: locationsCount,
+                    withImageSource: "FeedLocation"
+                ),
+                SearchCategory(
+                    categoryTitle: teamsTitle,
+                    ofType: .Teams,
+                    withCount: teamsCount,
+                    withImageSource: "FeedReports"
+                )
+            ])
+        }
     }
     
     private func addCards() {

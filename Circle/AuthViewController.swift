@@ -304,7 +304,6 @@ class AuthViewController: UIViewController {
                     return
                 }
                 
-                ObjectStore.sharedInstance.repopulate()
                 NSNotificationCenter.defaultCenter().postNotificationName(
                     AuthNotifications.onLoginNotification,
                     object: nil
@@ -333,30 +332,30 @@ class AuthViewController: UIViewController {
         Services.Profile.Actions.getProfile { (profile, error) -> Void in
             if let profile = profile {
                 self.dynamicType.updateUserProfile(profile)
-                self.fetchAndCacheUserOrganization(profile.organizationId, userId: profile.userId, completion: completion)
+                self.dynamicType.fetchAndCacheUserOrganization(profile.userId, completion: completion)
             } else {
                 completion(error: error)
             }
         }
     }
     
-    private func fetchAndCacheUserOrganization(organizationId: String, userId: String, completion: (error: NSError?) -> Void) {
+    static func fetchAndCacheUserOrganization(userId: String, completion: ((error: NSError?) -> Void)?) {
         Services.Organization.Actions.getOrganization() { (organization, error) -> Void in
             if let organization = organization {
-                self.dynamicType.updateOrganization(organization)
+                self.updateOrganization(organization)
                 self.fetchAndCacheUserIdentities(userId, completion: completion)
             } else {
-                completion(error: error)
+                completion?(error: error)
             }
         }
     }
     
-    private func fetchAndCacheUserIdentities(userId: String, completion: (error: NSError?) -> Void) {
+    static func fetchAndCacheUserIdentities(userId: String, completion: ((error: NSError?) -> Void)?) {
         Services.User.Actions.getIdentities(userId) { (identities, error) -> Void in
             if let identities = identities {
-                self.dynamicType.updateIdentities(identities)
+                self.updateIdentities(identities)
             }
-            completion(error: error)
+            completion?(error: error)
         }
 
     }
@@ -383,7 +382,6 @@ class AuthViewController: UIViewController {
             LoggedInUserHolder.user = nil
             LoggedInUserHolder.token = nil
             LoggedInUserHolder.organization = nil
-            ObjectStore.sharedInstance.reset(self)
             
             // Remove persistent cached data
             NSUserDefaults.standardUserDefaults().removeObjectForKey(DefaultsUserKey)
@@ -531,6 +529,11 @@ class AuthViewController: UIViewController {
             if getLoggedInUserProfile() == nil {
                 self.presentHomelessViewController()
                 return false
+            }
+            
+            // Check if the counts are zero. If yes, fetch and update organization details in local cache
+            if let organization = getLoggedInUserOrganization() where organization.profileCount == 0 {
+                fetchAndCacheUserOrganization(user.id, completion: nil)
             }
             
             AppTheme.updateThemeForOrganization()

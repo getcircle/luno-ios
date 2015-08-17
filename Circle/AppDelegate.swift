@@ -26,9 +26,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Setup Third Party Services
         Crashlytics.startWithAPIKey("e4192b2c032ea5f8065aac4bde634b85760f8d49")
         Mixpanel.setup()
-
-        // Populate the Search Cache
-        loadStoreForUser()
         
         // Record device
         Services.User.Actions.recordDevice(nil, completionHandler: nil)
@@ -38,9 +35,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Register app level notifications
         registerNotifications()
-        
-        // Configure image cache
-        setupImageCache()
 
         return true
     }
