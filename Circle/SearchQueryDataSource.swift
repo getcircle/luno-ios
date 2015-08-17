@@ -160,9 +160,14 @@ class SearchQueryDataSource: CardDataSource {
             if emptySearchTerm {
                 resultsCard.addHeader(headerClass: ProfileSectionHeaderCollectionReusableView.self)
             }
+            
             appendCard(resultsCard)
-            addInfoCards()
-            addSearchActions()
+            
+            // Do not show info cards or search actions when results are presented in Recents
+            if !emptySearchTerm {
+                addInfoCards()
+                addSearchActions()
+            }
         }
 
         if searchSuggestions.count > 0 {

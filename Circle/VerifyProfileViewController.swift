@@ -232,6 +232,6 @@ class VerifyProfileViewController:
 
     private func verificationComplete() {
         let notificationsVC = NotificationsViewController(nibName: "NotificationsViewController", bundle: nil)
-        navigationController?.pushViewController(notificationsVC, animated: true)        
+        navigationController?.pushViewController(notificationsVC, animated: true)
     }
 }
