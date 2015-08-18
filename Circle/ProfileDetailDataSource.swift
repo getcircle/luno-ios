@@ -85,6 +85,7 @@ class ProfileDetailDataSource: CardDataSource {
     internal func populateData() {
         resetCards()
         addPlaceholderCard()
+        addInfoCard()
         addStatusCard()
         addContactsCard()
         addLocationCard()
@@ -100,11 +101,24 @@ class ProfileDetailDataSource: CardDataSource {
         // Add placeholder card to load profile header instantly
         var card = Card(cardType: .Placeholder, title: "Info")
         card.addHeader(headerClass: ProfileHeaderCollectionReusableView.self)
-        card.sectionInset = sectionInsetWithLargerBootomMargin
+        card.sectionInset = sectionInset
         appendCard(card)
         return card
     }
+    
+    internal func addInfoCard() -> Card? {
 
+        if let location = location {
+            var card = Card(cardType: .ProfileInfo, title: "Profile Info")
+            card.sectionInset = sectionInsetWithLargerBootomMargin
+            card.addContent(content: [location])
+            appendCard(card)
+            return card
+        }
+        
+        return nil
+    }
+    
     internal func addContactsCard() -> Card? {
         let card = Card(cardType: .ContactMethods, title: "Contact")
         card.showContentCount = false

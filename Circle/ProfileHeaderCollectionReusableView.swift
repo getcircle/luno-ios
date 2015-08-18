@@ -26,10 +26,6 @@ class ProfileHeaderCollectionReusableView: DetailHeaderCollectionReusableView {
     // Secondary Info
     
     @IBOutlet weak private(set) var hireDateLabel: UILabel!
-    @IBOutlet weak private(set) var locationImageView: UIImageView!
-    @IBOutlet weak private(set) var locationLabel: UILabel!
-    @IBOutlet weak private(set) var localTimeLabel: UILabel!
-    @IBOutlet weak private(set) var separatorView: UIView!
     
     private(set) var visualEffectView: UIVisualEffectView?
 
@@ -42,7 +38,7 @@ class ProfileHeaderCollectionReusableView: DetailHeaderCollectionReusableView {
     }
     
     override class var height: CGFloat {
-        return 300.0
+        return 260.0
     }
     
     class var heightWithoutSecondaryInfo: CGFloat {
@@ -54,18 +50,17 @@ class ProfileHeaderCollectionReusableView: DetailHeaderCollectionReusableView {
 
         // Initialization code
         addBlurEffect()
-        secondaryViews.extend([hireDateLabel, locationImageView, locationLabel, localTimeLabel, separatorView])
+        secondaryViews.extend([hireDateLabel])
         configureLabels()
         configureContainerView()
         configureVerifiedProfileButton()
-        configureLocationImage()
     }
     
     // MARK: - Configuration
     
     private func configureLabels() {
         
-        for label in [nameLabel, nameNavLabel, titleLabel, titleNavLabel, hireDateLabel, locationLabel, localTimeLabel] {
+        for label in [nameLabel, nameNavLabel, titleLabel, titleNavLabel, hireDateLabel] {
             label.text = ""
         }
     }
@@ -88,18 +83,11 @@ class ProfileHeaderCollectionReusableView: DetailHeaderCollectionReusableView {
         verifiedProfileButton.makeItCircular()
         verifiedProfileButton.hidden = true
     }
-    
-    private func configureLocationImage() {
-        locationImageView.image = locationImageView.image?.imageWithRenderingMode(.AlwaysTemplate)
-        locationImageView.tintColor = UIColor(red: 200, green: 200, blue: 200)
-        locationImageView.hidden = true
-    }
 
     func setProfile(
         userProfile: Services.Profile.Containers.ProfileV1, 
         location userLocation: Services.Organization.Containers.LocationV1?
     ) {
-        let loadingEllipsis = "\u{2026}"
         var hireDateText = "At "
         if let organization = AuthViewController.getLoggedInUserOrganization() {
             hireDateText += organization.name
@@ -109,20 +97,11 @@ class ProfileHeaderCollectionReusableView: DetailHeaderCollectionReusableView {
         nameNavLabel.text = nameLabel.text
         titleLabel.text = userProfile.title
         titleNavLabel.text = titleLabel.text
-        locationLabel.text = loadingEllipsis
-        localTimeLabel.text = loadingEllipsis
-        hireDateLabel.text = loadingEllipsis
-        
-        if let userLocation = userLocation {
-            containerView.backgroundColor = UIColor.clearColor()
-            locationLabel.text = userLocation.cityRegion()
-            localTimeLabel.text = userLocation.officeCurrentDateAndTimeLabel()
-            locationImageView.hidden = false
-            if userProfile.hasHireDate && userProfile.hireDate.trimWhitespace() != "" {
-                hireDateLabel.text = hireDateText + " since " + NSDateFormatter.sharedAnniversaryFormatter.stringFromDate(
-                    userProfile.hireDate.toDate()!
-                )
-            }
+        containerView.backgroundColor = UIColor.clearColor()
+        if userProfile.hasHireDate && userProfile.hireDate.trimWhitespace() != "" {
+            hireDateLabel.text = hireDateText + " since " + NSDateFormatter.sharedAnniversaryFormatter.stringFromDate(
+                userProfile.hireDate.toDate()!
+            )
         }
         
         var hasProfileImageChanged = profile?.imageUrl != userProfile.imageUrl

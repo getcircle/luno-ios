@@ -91,6 +91,7 @@ class Card: Equatable {
         case SearchSuggestion = "SearchSuggestion"
         case ContactMethods = "ContactMethods"
         case TextValue = "TextValue"
+        case ProfileInfo = "ProfileInfo"
 
         struct CardTypeInfo {
             var imageName: String
@@ -192,6 +193,13 @@ class Card: Equatable {
                     contentType: .Flat
                 )
 
+            case ProfileInfo:
+                return CardTypeInfo(
+                    imageName: "Info",
+                    classType: ProfileInfoCollectionViewCell.self,
+                    contentType: .Flat
+                )
+                
             case Placeholder:
                 return CardTypeInfo(
                     imageName: "Info",
