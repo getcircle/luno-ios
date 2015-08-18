@@ -46,6 +46,7 @@ class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate {
         configureView()
         configureTargets()
         phoneNumberFormatter = NBAsYouTypeFormatter(regionCode: "US")
+        populateExistingNumberIfExists()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -82,6 +83,28 @@ class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate {
         actionButton.addTarget(self, action: "actionButtonTapped:", forControlEvents: .TouchUpInside)
         resendCodeButton.addTarget(self, action: "resendCodeButtonTapped:", forControlEvents: .TouchUpInside)
     }
+    
+    private func populateExistingNumberIfExists() {
+        if let loggedInUserProfile = AuthViewController.getLoggedInUserProfile()
+            where loggedInUserProfile.contactMethods.count > 0
+        {
+            var existingNumber: String?
+            for contactMethod in loggedInUserProfile.contactMethods {
+                if contactMethod.contactMethodType == .CellPhone {
+                    existingNumber = contactMethod.value
+                    break
+                }
+            }
+            
+            if let existingNumber = existingNumber {
+                let onlyDigits = "".join(existingNumber
+                    .componentsSeparatedByCharactersInSet(NSCharacterSet.decimalDigitCharacterSet().invertedSet)
+                )
+                phoneNumberField.text = phoneNumberFormatter.inputStringAndRememberPosition(onlyDigits)
+                validateNumberAndEnableActionButton()
+            }
+        }
+    }
 
     // MARK: - UITextFieldDelegate
     
@@ -107,13 +130,17 @@ class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate {
     
     private func handlePhoneNumberInput(textField: UITextField, string: String, range: NSRange) {
         if range.length > 0 {
-            textField.text = phoneNumberFormatter.removeLastDigit()
+            textField.text = phoneNumberFormatter.removeLastDigitAndRememberPosition()
         } else if let numericValue = string.toInt() {
             if phoneNumberFormatter.getRememberedPosition() < 14 {
                 textField.text = phoneNumberFormatter.inputDigitAndRememberPosition(string)
             }
         }
         
+        validateNumberAndEnableActionButton()
+    }
+    
+    private func validateNumberAndEnableActionButton() {
         if phoneNumberFormatter.getRememberedPosition() == 14 {
             actionButton.enabled = true
         } else {
