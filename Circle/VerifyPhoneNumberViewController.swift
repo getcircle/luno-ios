@@ -42,6 +42,7 @@ class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureNavigationBar()
         configureView()
         configureTargets()
         phoneNumberFormatter = NBAsYouTypeFormatter(regionCode: "US")
@@ -53,12 +54,15 @@ class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate {
     }
     
     // MARK: - Configuration
+    
+    private func configureNavigationBar() {
+        navigationController?.navigationBar.makeTransparent()
+        title = "Verify Phone"
+        let rightBarButtonItem = UIBarButtonItem(title: "Skip", style: .Plain, target: self, action: "skipTapped:")
+        navigationItem.rightBarButtonItem = rightBarButtonItem
+    }
 
     private func configureView() {
-        navigationController?.navigationBar.makeTransparent()
-        
-        title = "Verify Phone"
-
         view.backgroundColor = UIColor.appUIBackgroundColor()
         phoneNumberField.delegate = self
         phoneNumberField.tintColor = UIColor.whiteColor()
@@ -364,5 +368,9 @@ class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate {
     private func verificationComplete() {
         let verifyProfileVC = VerifyProfileViewController(nibName: "VerifyProfileViewController", bundle: nil)
         navigationController?.setViewControllers([verifyProfileVC], animated: true)
+    }
+    
+    func skipTapped(sender: AnyObject) {
+        verificationComplete()
     }
 }
