@@ -73,7 +73,7 @@ class ProfileHeaderCollectionReusableView: DetailHeaderCollectionReusableView {
         visualEffectView!.contentView.addSubview(containerView)
         containerView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero, excludingEdge: .Bottom)
         containerView.autoMatchDimension(.Height, toDimension: .Height, ofView: backgroundImageView)
-        containerView.backgroundColor = UIColor.blackColor()
+        containerView.backgroundColor = UIColor(red: 85, green: 85, blue: 85)
     }
     
     private func configureVerifiedProfileButton() {
@@ -97,11 +97,14 @@ class ProfileHeaderCollectionReusableView: DetailHeaderCollectionReusableView {
         nameNavLabel.text = nameLabel.text
         titleLabel.text = userProfile.title
         titleNavLabel.text = titleLabel.text
-        containerView.backgroundColor = UIColor.clearColor()
         if userProfile.hasHireDate && userProfile.hireDate.trimWhitespace() != "" {
             hireDateLabel.text = hireDateText + " since " + NSDateFormatter.sharedAnniversaryFormatter.stringFromDate(
                 userProfile.hireDate.toDate()!
             )
+        }
+        
+        if let userLocation = userLocation {
+            containerView.backgroundColor = UIColor.clearColor()
         }
         
         var hasProfileImageChanged = profile?.imageUrl != userProfile.imageUrl
