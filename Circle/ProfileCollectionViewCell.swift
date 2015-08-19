@@ -141,7 +141,7 @@ class ProfileCollectionViewCell: CircleCollectionViewCell {
     }
 
     private func setTeam(team: Services.Organization.Containers.TeamV1) {
-        nameLabel.text = team.name
+        nameLabel.text = team.getName()
         subTextLabel.text = team.getTeamCounts()
         teamNameLetterLabel.hidden = true
 

@@ -61,6 +61,18 @@ extension Services.Organization.Actions {
 
 extension Services.Organization.Containers.TeamV1 {
     
+    public func getName() -> String {
+        if count(name) > 0 {
+            return name
+        }
+        else if let manager = manager where count(manager.firstName) > 0 {
+            return manager.firstName + "'s Nameless Team"
+        }
+        else {
+            return "Nameless Team"
+        }
+    }
+    
     public func getTeamCounts() -> String {
         var teamCountsString = ""
         

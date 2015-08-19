@@ -16,7 +16,7 @@ class ProfilesDataSource: CardDataSource {
     
     private var card: Card!
     private var cardType: Card.CardType = UIDevice.currentDevice().userInterfaceIdiom == .Pad ? .ProfilesGrid : .Profiles
-    private(set) var profiles = Array<Services.Profile.Containers.ProfileV1>()
+    private var data = [AnyObject]()
     
     // MARK: - Configuration
     
@@ -78,8 +78,8 @@ class ProfilesDataSource: CardDataSource {
 
     // MARK: - Set Initial Data
     
-    override func setInitialData(content: [AnyObject], ofType: Card.CardType? = .Profiles) {
-        profiles.extend(content as! [Services.Profile.Containers.ProfileV1])
+    override func setInitialData(content: [AnyObject], ofType: Card.CardType? = nil) {
+        data.extend(content)
         if let type = ofType {
             cardType = type
         }
@@ -112,7 +112,7 @@ class ProfilesDataSource: CardDataSource {
             ) as? Services.Group.Actions.GetMembers.ResponseV1
             
             if let profiles = response?.profiles {
-                self.profiles.extend(profiles)
+                self.data.extend(profiles as [AnyObject])
                 self.card.addContent(content: profiles)
                 self.handleNewContentAddedToCard(self.card, newContent: profiles)
             }
@@ -126,15 +126,15 @@ class ProfilesDataSource: CardDataSource {
                 for member in members {
                     profiles.append(member.profile)
                 }
-                self.profiles.extend(profiles)
+                self.data.extend(profiles as [AnyObject])
                 self.card.addContent(content: profiles)
                 self.handleNewContentAddedToCard(self.card, newContent: profiles)
             }
         }
         
         appendCard(card)
-        card.addContent(content: profiles)
-        if profiles.count > 0 {
+        card.addContent(content: data)
+        if data.count > 0 {
             completionHandler(error: nil)
         } else {
             if canTriggerNextRequest() {
@@ -173,7 +173,7 @@ class ProfilesDataSource: CardDataSource {
     
     override func clearFilter(completionHandler: () -> Void) {
         super.clearFilter(completionHandler)
-        card.resetContent(profiles)
+        card.resetContent(data)
         completionHandler()
     }
 }

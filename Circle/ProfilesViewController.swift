@@ -33,6 +33,9 @@ class ProfilesViewController: OverviewViewController {
             trackViewProfile(profile)
             showProfileDetail(profile)
         }
+        else if let team = dataSource.contentAtIndexPath(indexPath) as? Services.Organization.Containers.TeamV1 {
+            showTeamDetail(team)
+        }
     }
     
     // MARK: - Tracking

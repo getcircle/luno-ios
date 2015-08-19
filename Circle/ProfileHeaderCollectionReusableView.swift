@@ -173,8 +173,8 @@ class ProfileHeaderCollectionReusableView: DetailHeaderCollectionReusableView {
     
     func setTeam(team: Services.Organization.Containers.TeamV1) {
         hideSecondaryViews()
-        nameLabel.text = team.name
-        nameNavLabel.text = team.name
+        nameLabel.text = team.getName()
+        nameNavLabel.text = team.getName()
         
         containerView.backgroundColor = UIColor.clearColor()
         let teamCounts = team.getTeamCounts().uppercaseString

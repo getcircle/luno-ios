@@ -194,7 +194,7 @@ class TeamDetailViewController:
                     ofType: nil,
                     nextRequest: nil
                 )
-                viewController.title = "People in " + teamDetailDataSource.team.name
+                viewController.title = "People in " + teamDetailDataSource.team.getName()
                 (viewController.dataSource as! ProfilesDataSource).configureForTeam(teamDetailDataSource.team.id, setupOnlySearch: true)
                 navigationController?.pushViewController(viewController, animated: true)
             
@@ -205,7 +205,7 @@ class TeamDetailViewController:
                     ofType: nil,
                     nextRequest: nil
                 )
-                viewController.title = "Teams in " + teamDetailDataSource.team.name
+                viewController.title = "Teams in " + teamDetailDataSource.team.getName()
                 (viewController.dataSource as! ProfilesDataSource).configureForTeam(teamDetailDataSource.team.id, setupOnlySearch: true)
                 navigationController?.pushViewController(viewController, animated: true)
                 
