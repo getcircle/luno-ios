@@ -126,6 +126,10 @@ class VerifyProfileViewController:
         presentViewController(actionSheet, animated: true, completion: nil)
     }
     
+    @IBAction func skipButtonTapped(sender: AnyObject) {
+        verificationComplete()
+    }
+    
     func takeAPictureAction(action: UIAlertAction!) {
         dismissAddImageActionSheet(false)
         if UIImagePickerController.isSourceTypeAvailable(.Camera) {
@@ -232,6 +236,6 @@ class VerifyProfileViewController:
 
     private func verificationComplete() {
         let notificationsVC = NotificationsViewController(nibName: "NotificationsViewController", bundle: nil)
-        navigationController?.pushViewController(notificationsVC, animated: true)
+        navigationController?.setViewControllers([notificationsVC], animated: true)
     }
 }

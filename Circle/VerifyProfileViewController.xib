@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
@@ -54,7 +54,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NIK-YA-0mi">
-                    <rect key="frame" x="10" y="530" width="380" height="50"/>
+                    <rect key="frame" x="10" y="500" width="380" height="50"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="uhS-ND-wwQ"/>
@@ -73,6 +73,21 @@
                         <action selector="nextButtonTapped:" destination="-1" eventType="touchUpInside" id="YRe-Pm-YK2"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qnw-FY-X4e" userLabel="SkipButton">
+                    <rect key="frame" x="100" y="560" width="200" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="200" id="r1h-7M-YsO"/>
+                        <constraint firstAttribute="height" constant="30" id="uTB-aH-39J"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="14"/>
+                    <state key="normal" title="Skip">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="skipButtonTapped:" destination="-1" eventType="touchUpInside" id="Dq5-QA-W6U"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="0.1843137255" green="0.2156862745" blue="0.24313725489999999" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
@@ -82,17 +97,25 @@
                 <constraint firstAttribute="trailing" secondItem="NIK-YA-0mi" secondAttribute="trailing" constant="10" id="38e-Fx-a7T"/>
                 <constraint firstItem="NIK-YA-0mi" firstAttribute="top" relation="greaterThanOrEqual" secondItem="aOO-ob-RG8" secondAttribute="bottom" constant="15" id="CV5-t6-VIY"/>
                 <constraint firstItem="FSt-IP-PnO" firstAttribute="bottom" secondItem="Cwx-Iz-cj2" secondAttribute="bottom" id="IoU-WQ-Gec"/>
+                <constraint firstAttribute="bottom" secondItem="qnw-FY-X4e" secondAttribute="bottom" constant="10" id="KfK-KI-Q3V"/>
                 <constraint firstItem="aOO-ob-RG8" firstAttribute="top" secondItem="Cwx-Iz-cj2" secondAttribute="bottom" constant="30" id="RXB-gs-3uz"/>
                 <constraint firstAttribute="bottom" secondItem="NIK-YA-0mi" secondAttribute="bottom" constant="20" id="Tdu-Ir-G1s"/>
                 <constraint firstItem="FSt-IP-PnO" firstAttribute="leading" secondItem="Cwx-Iz-cj2" secondAttribute="leading" id="U4V-cw-A90"/>
+                <constraint firstItem="qnw-FY-X4e" firstAttribute="top" secondItem="NIK-YA-0mi" secondAttribute="bottom" constant="10" id="eYH-eG-vJs"/>
                 <constraint firstItem="Cwx-Iz-cj2" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="gxL-GP-qnj"/>
                 <constraint firstAttribute="centerX" secondItem="NIK-YA-0mi" secondAttribute="centerX" id="kxh-dN-VSD"/>
+                <constraint firstAttribute="centerX" secondItem="qnw-FY-X4e" secondAttribute="centerX" id="m5A-W6-HpT"/>
                 <constraint firstItem="aOO-ob-RG8" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="mtC-0x-iNB"/>
                 <constraint firstItem="NIK-YA-0mi" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="pJZ-9i-Jz2"/>
                 <constraint firstAttribute="centerX" secondItem="aOO-ob-RG8" secondAttribute="centerX" id="uBz-wU-X2e"/>
                 <constraint firstItem="Cwx-Iz-cj2" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="zKf-dM-CIg"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="Tdu-Ir-G1s"/>
+                </mask>
+            </variation>
             <point key="canvasLocation" x="-265" y="36"/>
         </view>
     </objects>
