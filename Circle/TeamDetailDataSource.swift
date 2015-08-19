@@ -57,8 +57,13 @@ class TeamDetailDataSource: CardDataSource {
                 }
                 else {
                     // TODO we should safely unwrap these better to handle cases where we don't have data
-                    self.teams = childTeams!
-                    self.managerProfile = manager!
+                    if let childTeams = childTeams {
+                        self.teams = childTeams
+                    }
+                    
+                    if let manager = manager {
+                        self.managerProfile = manager
+                    }
                 }
                 dispatch_group_leave(actionsGroup)
             }

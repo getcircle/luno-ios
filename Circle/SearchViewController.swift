@@ -393,6 +393,7 @@ class SearchViewController: UIViewController,
         hideAndRemoveLaunchView()
         dataSource.resetCards()
         collectionView.reloadData()
+        orgImageView.image = nil
         loadOrgImageView()
         loadData()
     }
