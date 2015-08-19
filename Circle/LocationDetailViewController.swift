@@ -145,7 +145,7 @@ class LocationDetailViewController:
                     ofType: nil,
                     nextRequest: officeDetailDataSource.nextProfilesRequest
                 )
-                viewController.title = "People @ " + officeDetailDataSource.location.city
+                viewController.title = "People @ " + officeDetailDataSource.location.name
                 (viewController.dataSource as! ProfilesDataSource).configureForLocation(
                     officeDetailDataSource.location.id,
                     setupOnlySearch: true
