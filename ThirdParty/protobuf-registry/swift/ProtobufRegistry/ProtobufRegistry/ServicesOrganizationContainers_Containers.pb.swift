@@ -63,6 +63,7 @@ public func == (lhs: Services.Organization.Containers.TeamV1, rhs: Services.Orga
   fieldCheck = fieldCheck && (lhs.hasImageUrl == rhs.hasImageUrl) && (!lhs.hasImageUrl || lhs.imageUrl == rhs.imageUrl)
   fieldCheck = fieldCheck && (lhs.hasChildTeamCount == rhs.hasChildTeamCount) && (!lhs.hasChildTeamCount || lhs.childTeamCount == rhs.childTeamCount)
   fieldCheck = fieldCheck && (lhs.hasProfileCount == rhs.hasProfileCount) && (!lhs.hasProfileCount || lhs.profileCount == rhs.profileCount)
+  fieldCheck = fieldCheck && (lhs.hasDisplayName == rhs.hasDisplayName) && (!lhs.hasDisplayName || lhs.displayName == rhs.displayName)
   return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
 }
 
@@ -1667,6 +1668,7 @@ public extension Services.Organization.Containers {
            case "imageUrl": return imageUrl
            case "childTeamCount": return childTeamCount
            case "profileCount": return profileCount
+           case "displayName": return displayName
            default: return nil
            }
     }
@@ -1702,6 +1704,9 @@ public extension Services.Organization.Containers {
 
     public private(set) var hasProfileCount:Bool = false
     public private(set) var profileCount:UInt32 = UInt32(0)
+
+    public private(set) var hasDisplayName:Bool = false
+    public private(set) var displayName:String = ""
 
     required public init() {
          super.init()
@@ -1745,6 +1750,9 @@ public extension Services.Organization.Containers {
       }
       if hasProfileCount {
         output.writeUInt32(12, value:profileCount)
+      }
+      if hasDisplayName {
+        output.writeString(13, value:displayName)
       }
       unknownFields.writeToCodedOutputStream(output)
     }
@@ -1798,6 +1806,9 @@ public extension Services.Organization.Containers {
       }
       if hasProfileCount {
         serialize_size += profileCount.computeUInt32Size(12)
+      }
+      if hasDisplayName {
+        serialize_size += displayName.computeStringSize(13)
       }
       serialize_size += unknownFields.serializedSize()
       memoizedSerializedSize = serialize_size
@@ -1884,6 +1895,9 @@ public extension Services.Organization.Containers {
       if hasProfileCount {
         output += "\(indent) profileCount: \(profileCount) \n"
       }
+      if hasDisplayName {
+        output += "\(indent) displayName: \(displayName) \n"
+      }
       unknownFields.writeDescriptionTo(&output, indent:indent)
     }
     override public var hashValue:Int {
@@ -1932,6 +1946,9 @@ public extension Services.Organization.Containers {
             }
             if hasProfileCount {
                hashCode = (hashCode &* 31) &+ profileCount.hashValue
+            }
+            if hasDisplayName {
+               hashCode = (hashCode &* 31) &+ displayName.hashValue
             }
             hashCode = (hashCode &* 31) &+  unknownFields.hashValue
             return hashCode
@@ -2273,6 +2290,29 @@ public extension Services.Organization.Containers {
          builderResult.profileCount = UInt32(0)
          return self
     }
+    public var hasDisplayName:Bool {
+         get {
+              return builderResult.hasDisplayName
+         }
+    }
+    public var displayName:String {
+         get {
+              return builderResult.displayName
+         }
+         set (value) {
+             builderResult.hasDisplayName = true
+             builderResult.displayName = value
+         }
+    }
+    public func setDisplayName(value:String)-> Services.Organization.Containers.TeamV1Builder {
+      self.displayName = value
+      return self
+    }
+    public func clearDisplayName() -> Services.Organization.Containers.TeamV1Builder{
+         builderResult.hasDisplayName = false
+         builderResult.displayName = ""
+         return self
+    }
     override public var internalGetResult:GeneratedMessage {
          get {
             return builderResult
@@ -2332,6 +2372,9 @@ public extension Services.Organization.Containers {
       }
       if other.hasProfileCount {
            profileCount = other.profileCount
+      }
+      if other.hasDisplayName {
+           displayName = other.displayName
       }
       mergeUnknownFields(other.unknownFields)
       return self
@@ -2403,6 +2446,9 @@ public extension Services.Organization.Containers {
 
         case 96 :
           profileCount = input.readUInt32()
+
+        case 106 :
+          displayName = input.readString()
 
         default:
           if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {

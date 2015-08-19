@@ -53,6 +53,7 @@ message TeamV1 {
     optional string image_url = 10;
     optional uint32 child_team_count = 11;
     optional uint32 profile_count = 12;
+    optional string display_name = 13;
 }
 
 message TeamStatusV1 {
