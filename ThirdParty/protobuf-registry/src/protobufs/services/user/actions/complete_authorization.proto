@@ -1,3 +1,4 @@
+syntax = "proto2";
 package services.user.actions.complete_authorization;
 
 // GENERATED OPTIONS FOR: JAVA

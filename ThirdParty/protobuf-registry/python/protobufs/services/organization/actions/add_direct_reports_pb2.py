@@ -13,15 +13,16 @@ from google.protobuf import descriptor_pb2
 _sym_db = _symbol_database.Default()
 
 
-import protobufs.services.organization.containers_pb2
+from protobufs.services.organization import containers_pb2 as protobufs_dot_services_dot_organization_dot_containers__pb2
 
 
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='protobufs/services/organization/actions/add_direct_reports.proto',
   package='services.organization.actions.add_direct_reports',
-  serialized_pb=_b('\n@protobufs/services/organization/actions/add_direct_reports.proto\x12\x30services.organization.actions.add_direct_reports\x1a\x30protobufs/services/organization/containers.proto\"W\n\tRequestV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x12\n\nprofile_id\x18\x02 \x01(\t\x12\"\n\x1a\x64irect_reports_profile_ids\x18\x03 \x03(\t\"X\n\nResponseV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x36\n\x04team\x18\x02 \x01(\x0b\x32(.services.organization.containers.TeamV1')
+  syntax='proto2',
+  serialized_pb=_b('\n@protobufs/services/organization/actions/add_direct_reports.proto\x12\x30services.organization.actions.add_direct_reports\x1a\x30protobufs/services/organization/containers.proto\"W\n\tRequestV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x12\n\nprofile_id\x18\x02 \x01(\t\x12\"\n\x1a\x64irect_reports_profile_ids\x18\x03 \x03(\t\"X\n\nResponseV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x36\n\x04team\x18\x02 \x01(\x0b\x32(.services.organization.containers.TeamV1BG\nEcom.rhlabs.protobufs.services.organization.actions.add_direct_reports')
   ,
-  dependencies=[protobufs.services.organization.containers_pb2.DESCRIPTOR,])
+  dependencies=[protobufs_dot_services_dot_organization_dot_containers__pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 
@@ -63,6 +64,7 @@ _REQUESTV1 = _descriptor.Descriptor(
   ],
   options=None,
   is_extendable=False,
+  syntax='proto2',
   extension_ranges=[],
   oneofs=[
   ],
@@ -100,6 +102,7 @@ _RESPONSEV1 = _descriptor.Descriptor(
   ],
   options=None,
   is_extendable=False,
+  syntax='proto2',
   extension_ranges=[],
   oneofs=[
   ],
@@ -107,7 +110,7 @@ _RESPONSEV1 = _descriptor.Descriptor(
   serialized_end=345,
 )
 
-_RESPONSEV1.fields_by_name['team'].message_type = protobufs.services.organization.containers_pb2._TEAMV1
+_RESPONSEV1.fields_by_name['team'].message_type = protobufs_dot_services_dot_organization_dot_containers__pb2._TEAMV1
 DESCRIPTOR.message_types_by_name['RequestV1'] = _REQUESTV1
 DESCRIPTOR.message_types_by_name['ResponseV1'] = _RESPONSEV1
 
@@ -126,4 +129,6 @@ ResponseV1 = _reflection.GeneratedProtocolMessageType('ResponseV1', (_message.Me
 _sym_db.RegisterMessage(ResponseV1)
 
 
+DESCRIPTOR.has_options = True
+DESCRIPTOR._options = _descriptor._ParseOptions(descriptor_pb2.FileOptions(), _b('\nEcom.rhlabs.protobufs.services.organization.actions.add_direct_reports'))
 # @@protoc_insertion_point(module_scope)

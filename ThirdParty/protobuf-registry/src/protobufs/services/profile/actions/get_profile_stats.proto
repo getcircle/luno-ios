@@ -1,3 +1,4 @@
+syntax = "proto2";
 package services.profile.actions.get_profile_stats;
 
 // GENERATED OPTIONS FOR: JAVA

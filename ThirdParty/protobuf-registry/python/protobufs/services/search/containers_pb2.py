@@ -13,18 +13,19 @@ from google.protobuf import descriptor_pb2
 _sym_db = _symbol_database.Default()
 
 
-import protobufs.services.group.containers_pb2
-import protobufs.services.organization.containers_pb2
-import protobufs.services.profile.containers_pb2
-import protobufs.services.search.containers.search_pb2
+from protobufs.services.group import containers_pb2 as protobufs_dot_services_dot_group_dot_containers__pb2
+from protobufs.services.organization import containers_pb2 as protobufs_dot_services_dot_organization_dot_containers__pb2
+from protobufs.services.profile import containers_pb2 as protobufs_dot_services_dot_profile_dot_containers__pb2
+from protobufs.services.search.containers import search_pb2 as protobufs_dot_services_dot_search_dot_containers_dot_search__pb2
 
 
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='protobufs/services/search/containers.proto',
   package='services.search.containers',
-  serialized_pb=_b('\n*protobufs/services/search/containers.proto\x12\x1aservices.search.containers\x1a)protobufs/services/group/containers.proto\x1a\x30protobufs/services/organization/containers.proto\x1a+protobufs/services/profile/containers.proto\x1a\x31protobufs/services/search/containers/search.proto\"\xa1\x02\n\x0eSearchResultV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x39\n\x07profile\x18\x02 \x01(\x0b\x32&.services.profile.containers.ProfileV1H\x00\x12\x38\n\x04team\x18\x03 \x01(\x0b\x32(.services.organization.containers.TeamV1H\x00\x12@\n\x08location\x18\x04 \x01(\x0b\x32,.services.organization.containers.LocationV1H\x00\x12\x33\n\x05group\x18\x05 \x01(\x0b\x32\".services.group.containers.GroupV1H\x00\x42\x0f\n\rresult_object')
+  syntax='proto2',
+  serialized_pb=_b('\n*protobufs/services/search/containers.proto\x12\x1aservices.search.containers\x1a)protobufs/services/group/containers.proto\x1a\x30protobufs/services/organization/containers.proto\x1a+protobufs/services/profile/containers.proto\x1a\x31protobufs/services/search/containers/search.proto\"\xa1\x02\n\x0eSearchResultV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x39\n\x07profile\x18\x02 \x01(\x0b\x32&.services.profile.containers.ProfileV1H\x00\x12\x38\n\x04team\x18\x03 \x01(\x0b\x32(.services.organization.containers.TeamV1H\x00\x12@\n\x08location\x18\x04 \x01(\x0b\x32,.services.organization.containers.LocationV1H\x00\x12\x33\n\x05group\x18\x05 \x01(\x0b\x32\".services.group.containers.GroupV1H\x00\x42\x0f\n\rresult_objectB1\n/com.rhlabs.protobufs.services.search.containers')
   ,
-  dependencies=[protobufs.services.group.containers_pb2.DESCRIPTOR,protobufs.services.organization.containers_pb2.DESCRIPTOR,protobufs.services.profile.containers_pb2.DESCRIPTOR,protobufs.services.search.containers.search_pb2.DESCRIPTOR,])
+  dependencies=[protobufs_dot_services_dot_group_dot_containers__pb2.DESCRIPTOR,protobufs_dot_services_dot_organization_dot_containers__pb2.DESCRIPTOR,protobufs_dot_services_dot_profile_dot_containers__pb2.DESCRIPTOR,protobufs_dot_services_dot_search_dot_containers_dot_search__pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 
@@ -80,6 +81,7 @@ _SEARCHRESULTV1 = _descriptor.Descriptor(
   ],
   options=None,
   is_extendable=False,
+  syntax='proto2',
   extension_ranges=[],
   oneofs=[
     _descriptor.OneofDescriptor(
@@ -90,10 +92,10 @@ _SEARCHRESULTV1 = _descriptor.Descriptor(
   serialized_end=553,
 )
 
-_SEARCHRESULTV1.fields_by_name['profile'].message_type = protobufs.services.profile.containers_pb2._PROFILEV1
-_SEARCHRESULTV1.fields_by_name['team'].message_type = protobufs.services.organization.containers_pb2._TEAMV1
-_SEARCHRESULTV1.fields_by_name['location'].message_type = protobufs.services.organization.containers_pb2._LOCATIONV1
-_SEARCHRESULTV1.fields_by_name['group'].message_type = protobufs.services.group.containers_pb2._GROUPV1
+_SEARCHRESULTV1.fields_by_name['profile'].message_type = protobufs_dot_services_dot_profile_dot_containers__pb2._PROFILEV1
+_SEARCHRESULTV1.fields_by_name['team'].message_type = protobufs_dot_services_dot_organization_dot_containers__pb2._TEAMV1
+_SEARCHRESULTV1.fields_by_name['location'].message_type = protobufs_dot_services_dot_organization_dot_containers__pb2._LOCATIONV1
+_SEARCHRESULTV1.fields_by_name['group'].message_type = protobufs_dot_services_dot_group_dot_containers__pb2._GROUPV1
 _SEARCHRESULTV1.oneofs_by_name['result_object'].fields.append(
   _SEARCHRESULTV1.fields_by_name['profile'])
 _SEARCHRESULTV1.fields_by_name['profile'].containing_oneof = _SEARCHRESULTV1.oneofs_by_name['result_object']
@@ -116,4 +118,6 @@ SearchResultV1 = _reflection.GeneratedProtocolMessageType('SearchResultV1', (_me
 _sym_db.RegisterMessage(SearchResultV1)
 
 
+DESCRIPTOR.has_options = True
+DESCRIPTOR._options = _descriptor._ParseOptions(descriptor_pb2.FileOptions(), _b('\n/com.rhlabs.protobufs.services.search.containers'))
 # @@protoc_insertion_point(module_scope)

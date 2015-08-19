@@ -1,4 +1,8 @@
+syntax = "proto2";
 package services.history.actions.record_action;
+
+// GENERATED OPTIONS FOR: JAVA
+option java_package = "com.rhlabs.protobufs.services.history.actions.record_action";
 
 import "protobufs/services/history/containers.proto";
 

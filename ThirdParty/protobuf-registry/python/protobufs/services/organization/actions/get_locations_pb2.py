@@ -13,16 +13,17 @@ from google.protobuf import descriptor_pb2
 _sym_db = _symbol_database.Default()
 
 
-import protobufs.services.common.containers_pb2
-import protobufs.services.organization.containers_pb2
+from protobufs.services.common import containers_pb2 as protobufs_dot_services_dot_common_dot_containers__pb2
+from protobufs.services.organization import containers_pb2 as protobufs_dot_services_dot_organization_dot_containers__pb2
 
 
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='protobufs/services/organization/actions/get_locations.proto',
   package='services.organization.actions.get_locations',
+  syntax='proto2',
   serialized_pb=_b('\n;protobufs/services/organization/actions/get_locations.proto\x12+services.organization.actions.get_locations\x1a*protobufs/services/common/containers.proto\x1a\x30protobufs/services/organization/containers.proto\"q\n\tRequestV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x12\n\nprofile_id\x18\x02 \x01(\t\x12<\n\ninflations\x18\x03 \x01(\x0b\x32(.services.common.containers.InflationsV1\"a\n\nResponseV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12?\n\tlocations\x18\x02 \x03(\x0b\x32,.services.organization.containers.LocationV1BB\n@com.rhlabs.protobufs.services.organization.actions.get_locations')
   ,
-  dependencies=[protobufs.services.common.containers_pb2.DESCRIPTOR,protobufs.services.organization.containers_pb2.DESCRIPTOR,])
+  dependencies=[protobufs_dot_services_dot_common_dot_containers__pb2.DESCRIPTOR,protobufs_dot_services_dot_organization_dot_containers__pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 
@@ -64,6 +65,7 @@ _REQUESTV1 = _descriptor.Descriptor(
   ],
   options=None,
   is_extendable=False,
+  syntax='proto2',
   extension_ranges=[],
   oneofs=[
   ],
@@ -101,6 +103,7 @@ _RESPONSEV1 = _descriptor.Descriptor(
   ],
   options=None,
   is_extendable=False,
+  syntax='proto2',
   extension_ranges=[],
   oneofs=[
   ],
@@ -108,8 +111,8 @@ _RESPONSEV1 = _descriptor.Descriptor(
   serialized_end=414,
 )
 
-_REQUESTV1.fields_by_name['inflations'].message_type = protobufs.services.common.containers_pb2._INFLATIONSV1
-_RESPONSEV1.fields_by_name['locations'].message_type = protobufs.services.organization.containers_pb2._LOCATIONV1
+_REQUESTV1.fields_by_name['inflations'].message_type = protobufs_dot_services_dot_common_dot_containers__pb2._INFLATIONSV1
+_RESPONSEV1.fields_by_name['locations'].message_type = protobufs_dot_services_dot_organization_dot_containers__pb2._LOCATIONV1
 DESCRIPTOR.message_types_by_name['RequestV1'] = _REQUESTV1
 DESCRIPTOR.message_types_by_name['ResponseV1'] = _RESPONSEV1
 

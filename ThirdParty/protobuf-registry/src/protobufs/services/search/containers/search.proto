@@ -1,3 +1,4 @@
+syntax = "proto2";
 package services.search.containers.search;
 
 // GENERATED OPTIONS FOR: JAVA

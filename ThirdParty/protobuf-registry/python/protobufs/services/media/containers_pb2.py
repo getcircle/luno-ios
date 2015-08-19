@@ -18,6 +18,7 @@ _sym_db = _symbol_database.Default()
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='protobufs/services/media/containers.proto',
   package='services.media.containers',
+  syntax='proto2',
   serialized_pb=_b('\n)protobufs/services/media/containers.proto\x12\x19services.media.containers\"e\n\x14UploadInstructionsV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x11\n\tupload_id\x18\x02 \x01(\t\x12\x12\n\nupload_url\x18\x03 \x01(\t\x12\x12\n\nupload_key\x18\x04 \x01(\tB0\n.com.rhlabs.protobufs.services.media.containers')
 )
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
@@ -68,6 +69,7 @@ _UPLOADINSTRUCTIONSV1 = _descriptor.Descriptor(
   ],
   options=None,
   is_extendable=False,
+  syntax='proto2',
   extension_ranges=[],
   oneofs=[
   ],

@@ -1,3 +1,4 @@
+syntax = "proto2";
 package services.organization.actions.get_tokens;
 
 // GENERATED OPTIONS FOR: JAVA

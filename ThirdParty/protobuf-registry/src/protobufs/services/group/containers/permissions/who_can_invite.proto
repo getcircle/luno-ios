@@ -1,3 +1,4 @@
+syntax = "proto2";
 package services.group.containers.permissions.who_can_invite;
 
 // GENERATED OPTIONS FOR: JAVA

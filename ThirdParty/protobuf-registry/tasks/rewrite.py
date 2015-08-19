@@ -13,6 +13,8 @@ OPTION_RE = re.compile('^option ([^;]+)')
 def options():
     print 'rewriting options...'
     with common.base_directory():
+        with open('headers.yml') as headers_file:
+            headers = yaml.load(headers_file)
         with open('options.yml') as options_file:
             options = yaml.load(options_file)
 
@@ -54,18 +56,30 @@ def options():
                     'package': package,
                     'camel_case_container': camel_case_container,
                 }
+
+                for value in headers:
+                    header.append(value + ';\n')
+
                 header.append(package_line)
                 for language, language_options in options.iteritems():
                     header_added = False
                     for option in language_options:
+                        option_prefix = 'option '
                         if isinstance(option, dict):
                             if not re.search(option.values()[0]['file_regex'], file_path):
                                 continue
                             else:
-                                option = '%s = "%s"' % (
-                                    option.keys()[0],
-                                    option.values()[0]['option'],
-                                )
+                                try:
+                                    option = '%s = "%s"' % (
+                                        option.keys()[0],
+                                        option.values()[0]['option'],
+                                    )
+                                except KeyError:
+                                    option_prefix = ''
+                                    option = '%s=%s' % (
+                                        option.keys()[0],
+                                        option.values()[0]['value'],
+                                    )
 
                         if not header_added:
                             header.append('\n')
@@ -73,7 +87,7 @@ def options():
                             header_added = True
 
                         formatted_option = option % option_format_args
-                        option_output = 'option %s;\n' % (formatted_option,)
+                        option_output = '%s%s;\n' % (option_prefix, formatted_option,)
                         existing_option = current_options.pop(formatted_option, None)
                         if existing_option and existing_option != option_output:
                             print 'existing option mismatch. existing: %s, new: %s' % (existing_option, option_output)

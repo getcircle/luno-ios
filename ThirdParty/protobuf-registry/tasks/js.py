@@ -21,5 +21,5 @@ def compile():
     with common.base_directory():
         run(
             'pbjs src/protobufs/services/registry/all.proto'
-            ' -path=src -target=commonjs -min > js/index.js'
+            ' --path=src --target=commonjs --min > js/index.js'
         )

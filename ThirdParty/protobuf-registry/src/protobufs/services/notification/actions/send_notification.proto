@@ -1,3 +1,4 @@
+syntax = "proto2";
 package services.notification.actions.send_notification;
 
 // GENERATED OPTIONS FOR: JAVA

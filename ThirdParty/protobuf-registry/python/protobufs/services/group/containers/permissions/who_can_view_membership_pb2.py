@@ -19,6 +19,7 @@ _sym_db = _symbol_database.Default()
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='protobufs/services/group/containers/permissions/who_can_view_membership.proto',
   package='services.group.containers.permissions.who_can_view_membership',
+  syntax='proto2',
   serialized_pb=_b('\nMprotobufs/services/group/containers/permissions/who_can_view_membership.proto\x12=services.group.containers.permissions.who_can_view_membership*Y\n!WhoCanViewMembershipPermissionsV1\x12\x11\n\rALL_IN_DOMAIN\x10\x00\x12\x0f\n\x0b\x41LL_MEMBERS\x10\x01\x12\x10\n\x0c\x41LL_MANAGERS\x10\x02\x42T\nRcom.rhlabs.protobufs.services.group.containers.permissions.who_can_view_membership')
 )
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)

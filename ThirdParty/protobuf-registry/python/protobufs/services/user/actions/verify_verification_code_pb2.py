@@ -18,6 +18,7 @@ _sym_db = _symbol_database.Default()
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='protobufs/services/user/actions/verify_verification_code.proto',
   package='services.user.actions.verify_verification_code',
+  syntax='proto2',
   serialized_pb=_b('\n>protobufs/services/user/actions/verify_verification_code.proto\x12.services.user.actions.verify_verification_code\">\n\tRequestV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x0f\n\x07user_id\x18\x02 \x01(\t\x12\x0c\n\x04\x63ode\x18\x03 \x01(\t\"2\n\nResponseV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x10\n\x08verified\x18\x02 \x01(\x08\x42\x45\nCcom.rhlabs.protobufs.services.user.actions.verify_verification_code')
 )
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
@@ -61,6 +62,7 @@ _REQUESTV1 = _descriptor.Descriptor(
   ],
   options=None,
   is_extendable=False,
+  syntax='proto2',
   extension_ranges=[],
   oneofs=[
   ],
@@ -98,6 +100,7 @@ _RESPONSEV1 = _descriptor.Descriptor(
   ],
   options=None,
   is_extendable=False,
+  syntax='proto2',
   extension_ranges=[],
   oneofs=[
   ],

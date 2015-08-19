@@ -1,3 +1,4 @@
+syntax = "proto2";
 package services.user.actions.request_access;
 
 // GENERATED OPTIONS FOR: JAVA

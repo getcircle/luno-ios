@@ -1,3 +1,4 @@
+syntax = "proto2";
 package services.user.actions.bulk_create_users;
 
 // GENERATED OPTIONS FOR: JAVA

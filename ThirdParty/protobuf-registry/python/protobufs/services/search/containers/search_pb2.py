@@ -19,6 +19,7 @@ _sym_db = _symbol_database.Default()
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='protobufs/services/search/containers/search.proto',
   package='services.search.containers.search',
+  syntax='proto2',
   serialized_pb=_b('\n1protobufs/services/search/containers/search.proto\x12!services.search.containers.search*[\n\nCategoryV1\x12\x0c\n\x08PROFILES\x10\x00\x12\t\n\x05TEAMS\x10\x01\x12\r\n\tLOCATIONS\x10\x02\x12\n\n\x06SKILLS\x10\x03\x12\r\n\tINTERESTS\x10\x04\x12\n\n\x06GROUPS\x10\x05*+\n\x0b\x41ttributeV1\x12\x0f\n\x0bLOCATION_ID\x10\x00\x12\x0b\n\x07TEAM_ID\x10\x01\x42\x38\n6com.rhlabs.protobufs.services.search.containers.search')
 )
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)

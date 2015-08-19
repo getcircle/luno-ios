@@ -18,6 +18,7 @@ _sym_db = _symbol_database.Default()
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='protobufs/services/user/containers.proto',
   package='services.user.containers',
+  syntax='proto2',
   serialized_pb=_b('\n(protobufs/services/user/containers.proto\x12\x18services.user.containers\"B\n\x0f\x41\x63\x63\x65ssRequestV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\n\n\x02id\x18\x02 \x01(\t\x12\x0f\n\x07user_id\x18\x03 \x01(\t\"\xaa\x02\n\x08\x44\x65viceV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\n\n\x02id\x18\x02 \x01(\t\x12\x1a\n\x12notification_token\x18\x03 \x01(\t\x12\x10\n\x08platform\x18\x04 \x01(\t\x12\x12\n\nos_version\x18\x05 \x01(\t\x12\x13\n\x0b\x61pp_version\x18\x06 \x01(\t\x12\x13\n\x0b\x64\x65vice_uuid\x18\x07 \x01(\t\x12\x0f\n\x07user_id\x18\x08 \x01(\t\x12\x1b\n\x13language_preference\x18\t \x01(\t\x12?\n\x08provider\x18\n \x01(\x0e\x32-.services.user.containers.DeviceV1.ProviderV1\"#\n\nProviderV1\x12\t\n\x05\x41PPLE\x10\x00\x12\n\n\x06GOOGLE\x10\x01\"\xaf\x02\n\nIdentityV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\n\n\x02id\x18\x02 \x01(\t\x12\x41\n\x08provider\x18\x03 \x01(\x0e\x32/.services.user.containers.IdentityV1.ProviderV1\x12\x11\n\tfull_name\x18\x04 \x01(\t\x12\r\n\x05\x65mail\x18\x05 \x01(\t\x12\x14\n\x0c\x61\x63\x63\x65ss_token\x18\x06 \x01(\t\x12\x12\n\nexpires_at\x18\x07 \x01(\t\x12\x14\n\x0cprovider_uid\x18\x08 \x01(\t\x12\x0f\n\x07user_id\x18\t \x01(\t\x12\x15\n\rrefresh_token\x18\n \x01(\t\"4\n\nProviderV1\x12\x0c\n\x08INTERNAL\x10\x00\x12\x0c\n\x08LINKEDIN\x10\x01\x12\n\n\x06GOOGLE\x10\x02\"B\n\x0fOAuth2DetailsV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x0c\n\x04\x63ode\x18\x02 \x01(\t\x12\r\n\x05state\x18\x03 \x01(\t\"G\n\x11OAuthSDKDetailsV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x0c\n\x04\x63ode\x18\x02 \x01(\t\x12\x10\n\x08id_token\x18\x03 \x01(\t\"\xab\x01\n\x06UserV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\n\n\x02id\x18\x02 \x01(\t\x12\x15\n\rprimary_email\x18\x03 \x01(\t\x12\x10\n\x08is_admin\x18\x04 \x01(\x08\x12\x11\n\tis_active\x18\x05 \x01(\x08\x12\x14\n\x0cphone_number\x18\x06 \x01(\t\x12\x1d\n\x15phone_number_verified\x18\x07 \x01(\x08\x12\x10\n\x08password\x18\x08 \x01(\tB/\n-com.rhlabs.protobufs.services.user.containers')
 )
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
@@ -109,6 +110,7 @@ _ACCESSREQUESTV1 = _descriptor.Descriptor(
   ],
   options=None,
   is_extendable=False,
+  syntax='proto2',
   extension_ranges=[],
   oneofs=[
   ],
@@ -203,6 +205,7 @@ _DEVICEV1 = _descriptor.Descriptor(
   ],
   options=None,
   is_extendable=False,
+  syntax='proto2',
   extension_ranges=[],
   oneofs=[
   ],
@@ -297,6 +300,7 @@ _IDENTITYV1 = _descriptor.Descriptor(
   ],
   options=None,
   is_extendable=False,
+  syntax='proto2',
   extension_ranges=[],
   oneofs=[
   ],
@@ -341,6 +345,7 @@ _OAUTH2DETAILSV1 = _descriptor.Descriptor(
   ],
   options=None,
   is_extendable=False,
+  syntax='proto2',
   extension_ranges=[],
   oneofs=[
   ],
@@ -385,6 +390,7 @@ _OAUTHSDKDETAILSV1 = _descriptor.Descriptor(
   ],
   options=None,
   is_extendable=False,
+  syntax='proto2',
   extension_ranges=[],
   oneofs=[
   ],
@@ -464,6 +470,7 @@ _USERV1 = _descriptor.Descriptor(
   ],
   options=None,
   is_extendable=False,
+  syntax='proto2',
   extension_ranges=[],
   oneofs=[
   ],

@@ -13,15 +13,16 @@ from google.protobuf import descriptor_pb2
 _sym_db = _symbol_database.Default()
 
 
-import protobufs.services.user.containers.token_pb2
+from protobufs.services.user.containers import token_pb2 as protobufs_dot_services_dot_user_dot_containers_dot_token__pb2
 
 
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='protobufs/services/user/actions/logout.proto',
   package='services.user.actions.logout',
+  syntax='proto2',
   serialized_pb=_b('\n,protobufs/services/user/actions/logout.proto\x12\x1cservices.user.actions.logout\x1a.protobufs/services/user/containers/token.proto\"}\n\tRequestV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x41\n\x0b\x63lient_type\x18\x02 \x01(\x0e\x32,.services.user.containers.token.ClientTypeV1\x12\x19\n\nrevoke_all\x18\x03 \x01(\x08:\x05\x66\x61lse\" \n\nResponseV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x42\x33\n1com.rhlabs.protobufs.services.user.actions.logout')
   ,
-  dependencies=[protobufs.services.user.containers.token_pb2.DESCRIPTOR,])
+  dependencies=[protobufs_dot_services_dot_user_dot_containers_dot_token__pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 
@@ -63,6 +64,7 @@ _REQUESTV1 = _descriptor.Descriptor(
   ],
   options=None,
   is_extendable=False,
+  syntax='proto2',
   extension_ranges=[],
   oneofs=[
   ],
@@ -93,6 +95,7 @@ _RESPONSEV1 = _descriptor.Descriptor(
   ],
   options=None,
   is_extendable=False,
+  syntax='proto2',
   extension_ranges=[],
   oneofs=[
   ],
@@ -100,7 +103,7 @@ _RESPONSEV1 = _descriptor.Descriptor(
   serialized_end=285,
 )
 
-_REQUESTV1.fields_by_name['client_type'].enum_type = protobufs.services.user.containers.token_pb2._CLIENTTYPEV1
+_REQUESTV1.fields_by_name['client_type'].enum_type = protobufs_dot_services_dot_user_dot_containers_dot_token__pb2._CLIENTTYPEV1
 DESCRIPTOR.message_types_by_name['RequestV1'] = _REQUESTV1
 DESCRIPTOR.message_types_by_name['ResponseV1'] = _RESPONSEV1
 

@@ -1,3 +1,4 @@
+syntax = "proto2";
 package services.user.actions.get_identities;
 
 // GENERATED OPTIONS FOR: JAVA

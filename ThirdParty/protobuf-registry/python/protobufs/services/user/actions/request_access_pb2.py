@@ -13,15 +13,16 @@ from google.protobuf import descriptor_pb2
 _sym_db = _symbol_database.Default()
 
 
-import protobufs.services.user.containers_pb2
+from protobufs.services.user import containers_pb2 as protobufs_dot_services_dot_user_dot_containers__pb2
 
 
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='protobufs/services/user/actions/request_access.proto',
   package='services.user.actions.request_access',
+  syntax='proto2',
   serialized_pb=_b('\n4protobufs/services/user/actions/request_access.proto\x12$services.user.actions.request_access\x1a(protobufs/services/user/containers.proto\"0\n\tRequestV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x0f\n\x07user_id\x18\x02 \x01(\t\"c\n\nResponseV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x41\n\x0e\x61\x63\x63\x65ss_request\x18\x02 \x01(\x0b\x32).services.user.containers.AccessRequestV1B;\n9com.rhlabs.protobufs.services.user.actions.request_access')
   ,
-  dependencies=[protobufs.services.user.containers_pb2.DESCRIPTOR,])
+  dependencies=[protobufs_dot_services_dot_user_dot_containers__pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 
@@ -56,6 +57,7 @@ _REQUESTV1 = _descriptor.Descriptor(
   ],
   options=None,
   is_extendable=False,
+  syntax='proto2',
   extension_ranges=[],
   oneofs=[
   ],
@@ -93,6 +95,7 @@ _RESPONSEV1 = _descriptor.Descriptor(
   ],
   options=None,
   is_extendable=False,
+  syntax='proto2',
   extension_ranges=[],
   oneofs=[
   ],
@@ -100,7 +103,7 @@ _RESPONSEV1 = _descriptor.Descriptor(
   serialized_end=285,
 )
 
-_RESPONSEV1.fields_by_name['access_request'].message_type = protobufs.services.user.containers_pb2._ACCESSREQUESTV1
+_RESPONSEV1.fields_by_name['access_request'].message_type = protobufs_dot_services_dot_user_dot_containers__pb2._ACCESSREQUESTV1
 DESCRIPTOR.message_types_by_name['RequestV1'] = _REQUESTV1
 DESCRIPTOR.message_types_by_name['ResponseV1'] = _RESPONSEV1
 

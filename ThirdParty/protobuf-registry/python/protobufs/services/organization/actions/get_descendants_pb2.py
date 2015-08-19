@@ -18,7 +18,8 @@ _sym_db = _symbol_database.Default()
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='protobufs/services/organization/actions/get_descendants.proto',
   package='services.organization.actions.get_descendants',
-  serialized_pb=_b('\n=protobufs/services/organization/actions/get_descendants.proto\x12-services.organization.actions.get_descendants\"D\n\tRequestV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x12\n\nprofile_id\x18\x02 \x01(\t\x12\x0f\n\x07team_id\x18\x03 \x01(\t\"5\n\nResponseV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x13\n\x0bprofile_ids\x18\x03 \x03(\t')
+  syntax='proto2',
+  serialized_pb=_b('\n=protobufs/services/organization/actions/get_descendants.proto\x12-services.organization.actions.get_descendants\"T\n\tRequestV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x12\n\nprofile_id\x18\x02 \x01(\t\x12\x0f\n\x07team_id\x18\x03 \x01(\t\x12\x0e\n\x06\x64irect\x18\x04 \x01(\x08\"5\n\nResponseV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x13\n\x0bprofile_ids\x18\x03 \x03(\tBD\nBcom.rhlabs.protobufs.services.organization.actions.get_descendants')
 )
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
@@ -53,6 +54,13 @@ _REQUESTV1 = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
+    _descriptor.FieldDescriptor(
+      name='direct', full_name='services.organization.actions.get_descendants.RequestV1.direct', index=3,
+      number=4, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
   ],
   extensions=[
   ],
@@ -61,11 +69,12 @@ _REQUESTV1 = _descriptor.Descriptor(
   ],
   options=None,
   is_extendable=False,
+  syntax='proto2',
   extension_ranges=[],
   oneofs=[
   ],
   serialized_start=112,
-  serialized_end=180,
+  serialized_end=196,
 )
 
 
@@ -98,11 +107,12 @@ _RESPONSEV1 = _descriptor.Descriptor(
   ],
   options=None,
   is_extendable=False,
+  syntax='proto2',
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=182,
-  serialized_end=235,
+  serialized_start=198,
+  serialized_end=251,
 )
 
 DESCRIPTOR.message_types_by_name['RequestV1'] = _REQUESTV1
@@ -123,4 +133,6 @@ ResponseV1 = _reflection.GeneratedProtocolMessageType('ResponseV1', (_message.Me
 _sym_db.RegisterMessage(ResponseV1)
 
 
+DESCRIPTOR.has_options = True
+DESCRIPTOR._options = _descriptor._ParseOptions(descriptor_pb2.FileOptions(), _b('\nBcom.rhlabs.protobufs.services.organization.actions.get_descendants'))
 # @@protoc_insertion_point(module_scope)

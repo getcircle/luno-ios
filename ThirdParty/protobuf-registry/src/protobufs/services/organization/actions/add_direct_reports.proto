@@ -1,4 +1,8 @@
+syntax = "proto2";
 package services.organization.actions.add_direct_reports;
+
+// GENERATED OPTIONS FOR: JAVA
+option java_package = "com.rhlabs.protobufs.services.organization.actions.add_direct_reports";
 
 import "protobufs/services/organization/containers.proto";
 

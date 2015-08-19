@@ -14,15 +14,16 @@ from google.protobuf import descriptor_pb2
 _sym_db = _symbol_database.Default()
 
 
-import google.protobuf.descriptor_pb2
+from google.protobuf import descriptor_pb2 as google_dot_protobuf_dot_descriptor__pb2
 
 
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='google/protobuf/swift-descriptor.proto',
   package='google.protobuf',
+  syntax='proto2',
   serialized_pb=_b('\n&google/protobuf/swift-descriptor.proto\x12\x0fgoogle.protobuf\x1a google/protobuf/descriptor.proto\"\xa0\x01\n\x10SwiftFileOptions\x12\x14\n\x0c\x63lass_prefix\x18\x01 \x01(\t\x12Q\n\x17\x65ntities_access_control\x18\x02 \x01(\x0e\x32\x1e.google.protobuf.AccessControl:\x10InternalEntities\x12#\n\x15\x63ompile_for_framework\x18\x03 \x01(\x08:\x04true*9\n\rAccessControl\x12\x14\n\x10InternalEntities\x10\x00\x12\x12\n\x0ePublicEntities\x10\x01:^\n\x12swift_file_options\x12\x1c.google.protobuf.FileOptions\x18\xae\xe5\xb6\x02 \x01(\x0b\x32!.google.protobuf.SwiftFileOptionsB\x0e\xf2\xaa\xb6\x13\x02\x18\x00\xf2\xaa\xb6\x13\x02\x10\x01')
   ,
-  dependencies=[google.protobuf.descriptor_pb2.DESCRIPTOR,])
+  dependencies=[google_dot_protobuf_dot_descriptor__pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 _ACCESSCONTROL = _descriptor.EnumDescriptor(
@@ -97,6 +98,7 @@ _SWIFTFILEOPTIONS = _descriptor.Descriptor(
   ],
   options=None,
   is_extendable=False,
+  syntax='proto2',
   extension_ranges=[],
   oneofs=[
   ],
@@ -117,7 +119,7 @@ SwiftFileOptions = _reflection.GeneratedProtocolMessageType('SwiftFileOptions', 
 _sym_db.RegisterMessage(SwiftFileOptions)
 
 swift_file_options.message_type = _SWIFTFILEOPTIONS
-google.protobuf.descriptor_pb2.FileOptions.RegisterExtension(swift_file_options)
+google_dot_protobuf_dot_descriptor__pb2.FileOptions.RegisterExtension(swift_file_options)
 
 DESCRIPTOR.has_options = True
 DESCRIPTOR._options = _descriptor._ParseOptions(descriptor_pb2.FileOptions(), _b('\362\252\266\023\002\030\000\362\252\266\023\002\020\001'))

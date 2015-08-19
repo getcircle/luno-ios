@@ -19,6 +19,7 @@ _sym_db = _symbol_database.Default()
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='protobufs/services/group/containers/permissions/who_can_invite.proto',
   package='services.group.containers.permissions.who_can_invite',
+  syntax='proto2',
   serialized_pb=_b('\nDprotobufs/services/group/containers/permissions/who_can_invite.proto\x12\x34services.group.containers.permissions.who_can_invite*>\n\x19WhoCanInvitePermissionsV1\x12\x0f\n\x0b\x41LL_MEMBERS\x10\x00\x12\x10\n\x0c\x41LL_MANAGERS\x10\x01\x42K\nIcom.rhlabs.protobufs.services.group.containers.permissions.who_can_invite')
 )
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)

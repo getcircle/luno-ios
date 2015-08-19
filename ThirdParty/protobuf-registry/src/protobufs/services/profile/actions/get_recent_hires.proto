@@ -1,3 +1,4 @@
+syntax = "proto2";
 package services.profile.actions.get_recent_hires;
 
 // GENERATED OPTIONS FOR: JAVA

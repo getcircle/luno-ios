@@ -1,3 +1,4 @@
+syntax = "proto2";
 package services.glossary.actions.get_terms;
 
 // GENERATED OPTIONS FOR: JAVA

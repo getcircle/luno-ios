@@ -1,3 +1,4 @@
+syntax = "proto2";
 package services.user.actions.verify_verification_code;
 
 // GENERATED OPTIONS FOR: JAVA

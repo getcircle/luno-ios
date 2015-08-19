@@ -13,15 +13,16 @@ from google.protobuf import descriptor_pb2
 _sym_db = _symbol_database.Default()
 
 
-import protobufs.services.profile.containers_pb2
+from protobufs.services.profile import containers_pb2 as protobufs_dot_services_dot_profile_dot_containers__pb2
 
 
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='protobufs/services/profile/actions/bulk_update_profiles.proto',
   package='services.profile.actions.bulk_update_profiles',
+  syntax='proto2',
   serialized_pb=_b('\n=protobufs/services/profile/actions/bulk_update_profiles.proto\x12-services.profile.actions.bulk_update_profiles\x1a+protobufs/services/profile/containers.proto\"Y\n\tRequestV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x38\n\x08profiles\x18\x02 \x03(\x0b\x32&.services.profile.containers.ProfileV1\"Z\n\nResponseV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x38\n\x08profiles\x18\x02 \x03(\x0b\x32&.services.profile.containers.ProfileV1BD\nBcom.rhlabs.protobufs.services.profile.actions.bulk_update_profiles')
   ,
-  dependencies=[protobufs.services.profile.containers_pb2.DESCRIPTOR,])
+  dependencies=[protobufs_dot_services_dot_profile_dot_containers__pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 
@@ -56,6 +57,7 @@ _REQUESTV1 = _descriptor.Descriptor(
   ],
   options=None,
   is_extendable=False,
+  syntax='proto2',
   extension_ranges=[],
   oneofs=[
   ],
@@ -93,6 +95,7 @@ _RESPONSEV1 = _descriptor.Descriptor(
   ],
   options=None,
   is_extendable=False,
+  syntax='proto2',
   extension_ranges=[],
   oneofs=[
   ],
@@ -100,8 +103,8 @@ _RESPONSEV1 = _descriptor.Descriptor(
   serialized_end=338,
 )
 
-_REQUESTV1.fields_by_name['profiles'].message_type = protobufs.services.profile.containers_pb2._PROFILEV1
-_RESPONSEV1.fields_by_name['profiles'].message_type = protobufs.services.profile.containers_pb2._PROFILEV1
+_REQUESTV1.fields_by_name['profiles'].message_type = protobufs_dot_services_dot_profile_dot_containers__pb2._PROFILEV1
+_RESPONSEV1.fields_by_name['profiles'].message_type = protobufs_dot_services_dot_profile_dot_containers__pb2._PROFILEV1
 DESCRIPTOR.message_types_by_name['RequestV1'] = _REQUESTV1
 DESCRIPTOR.message_types_by_name['ResponseV1'] = _RESPONSEV1
 

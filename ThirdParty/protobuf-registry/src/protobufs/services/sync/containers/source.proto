@@ -1,3 +1,4 @@
+syntax = "proto2";
 package services.sync.containers.source;
 
 // GENERATED OPTIONS FOR: JAVA

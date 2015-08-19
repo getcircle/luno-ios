@@ -13,15 +13,16 @@ from google.protobuf import descriptor_pb2
 _sym_db = _symbol_database.Default()
 
 
-import protobufs.services.group.containers_pb2
+from protobufs.services.group import containers_pb2 as protobufs_dot_services_dot_group_dot_containers__pb2
 
 
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='protobufs/services/group/actions/get_membership_requests.proto',
   package='services.group.actions.get_membership_requests',
+  syntax='proto2',
   serialized_pb=_b('\n>protobufs/services/group/actions/get_membership_requests.proto\x12.services.group.actions.get_membership_requests\x1a)protobufs/services/group/containers.proto\"e\n\tRequestV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x44\n\x06status\x18\x02 \x01(\x0e\x32\x34.services.group.containers.MembershipRequestStatusV1\"b\n\nResponseV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12@\n\x08requests\x18\x02 \x03(\x0b\x32..services.group.containers.MembershipRequestV1BE\nCcom.rhlabs.protobufs.services.group.actions.get_membership_requests')
   ,
-  dependencies=[protobufs.services.group.containers_pb2.DESCRIPTOR,])
+  dependencies=[protobufs_dot_services_dot_group_dot_containers__pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 
@@ -56,6 +57,7 @@ _REQUESTV1 = _descriptor.Descriptor(
   ],
   options=None,
   is_extendable=False,
+  syntax='proto2',
   extension_ranges=[],
   oneofs=[
   ],
@@ -93,6 +95,7 @@ _RESPONSEV1 = _descriptor.Descriptor(
   ],
   options=None,
   is_extendable=False,
+  syntax='proto2',
   extension_ranges=[],
   oneofs=[
   ],
@@ -100,8 +103,8 @@ _RESPONSEV1 = _descriptor.Descriptor(
   serialized_end=358,
 )
 
-_REQUESTV1.fields_by_name['status'].enum_type = protobufs.services.group.containers_pb2._MEMBERSHIPREQUESTSTATUSV1
-_RESPONSEV1.fields_by_name['requests'].message_type = protobufs.services.group.containers_pb2._MEMBERSHIPREQUESTV1
+_REQUESTV1.fields_by_name['status'].enum_type = protobufs_dot_services_dot_group_dot_containers__pb2._MEMBERSHIPREQUESTSTATUSV1
+_RESPONSEV1.fields_by_name['requests'].message_type = protobufs_dot_services_dot_group_dot_containers__pb2._MEMBERSHIPREQUESTV1
 DESCRIPTOR.message_types_by_name['RequestV1'] = _REQUESTV1
 DESCRIPTOR.message_types_by_name['ResponseV1'] = _RESPONSEV1
 

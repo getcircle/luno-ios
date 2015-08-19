@@ -1,3 +1,4 @@
+syntax = "proto2";
 package services.group.actions.join_group;
 
 // GENERATED OPTIONS FOR: JAVA

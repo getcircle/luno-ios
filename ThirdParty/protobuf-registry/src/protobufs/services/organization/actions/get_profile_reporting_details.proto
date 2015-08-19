@@ -1,4 +1,8 @@
+syntax = "proto2";
 package services.organization.actions.get_profile_reporting_details;
+
+// GENERATED OPTIONS FOR: JAVA
+option java_package = "com.rhlabs.protobufs.services.organization.actions.get_profile_reporting_details";
 
 import "protobufs/services/organization/containers.proto";
 

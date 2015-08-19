@@ -1,3 +1,4 @@
+syntax = "proto2";
 package services.notification.actions.register_device;
 
 // GENERATED OPTIONS FOR: JAVA

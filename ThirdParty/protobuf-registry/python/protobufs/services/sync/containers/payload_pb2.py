@@ -18,6 +18,7 @@ _sym_db = _symbol_database.Default()
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='protobufs/services/sync/containers/payload.proto',
   package='services.sync.containers.payload',
+  syntax='proto2',
   serialized_pb=_b('\n0protobufs/services/sync/containers/payload.proto\x12 services.sync.containers.payload\"\xa9\x01\n\tPayloadV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x0f\n\x07payload\x18\x02 \x01(\t\x12O\n\x0cpayload_type\x18\x03 \x01(\x0e\x32\x39.services.sync.containers.payload.PayloadV1.PayloadTypeV1\"&\n\rPayloadTypeV1\x12\t\n\x05USERS\x10\x00\x12\n\n\x06GROUPS\x10\x01\x42\x37\n5com.rhlabs.protobufs.services.sync.containers.payload')
 )
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
@@ -84,6 +85,7 @@ _PAYLOADV1 = _descriptor.Descriptor(
   ],
   options=None,
   is_extendable=False,
+  syntax='proto2',
   extension_ranges=[],
   oneofs=[
   ],

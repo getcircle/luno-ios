@@ -13,15 +13,16 @@ from google.protobuf import descriptor_pb2
 _sym_db = _symbol_database.Default()
 
 
-import protobufs.services.group.containers_pb2
+from protobufs.services.group import containers_pb2 as protobufs_dot_services_dot_group_dot_containers__pb2
 
 
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='protobufs/services/group/actions/get_group.proto',
   package='services.group.actions.get_group',
+  syntax='proto2',
   serialized_pb=_b('\n0protobufs/services/group/actions/get_group.proto\x12 services.group.actions.get_group\x1a)protobufs/services/group/containers.proto\"o\n\tRequestV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x10\n\x08group_id\x18\x02 \x01(\t\x12<\n\x08provider\x18\x03 \x01(\x0e\x32*.services.group.containers.GroupProviderV1\"S\n\nResponseV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x31\n\x05group\x18\x02 \x01(\x0b\x32\".services.group.containers.GroupV1B7\n5com.rhlabs.protobufs.services.group.actions.get_group')
   ,
-  dependencies=[protobufs.services.group.containers_pb2.DESCRIPTOR,])
+  dependencies=[protobufs_dot_services_dot_group_dot_containers__pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 
@@ -63,6 +64,7 @@ _REQUESTV1 = _descriptor.Descriptor(
   ],
   options=None,
   is_extendable=False,
+  syntax='proto2',
   extension_ranges=[],
   oneofs=[
   ],
@@ -100,6 +102,7 @@ _RESPONSEV1 = _descriptor.Descriptor(
   ],
   options=None,
   is_extendable=False,
+  syntax='proto2',
   extension_ranges=[],
   oneofs=[
   ],
@@ -107,8 +110,8 @@ _RESPONSEV1 = _descriptor.Descriptor(
   serialized_end=325,
 )
 
-_REQUESTV1.fields_by_name['provider'].enum_type = protobufs.services.group.containers_pb2._GROUPPROVIDERV1
-_RESPONSEV1.fields_by_name['group'].message_type = protobufs.services.group.containers_pb2._GROUPV1
+_REQUESTV1.fields_by_name['provider'].enum_type = protobufs_dot_services_dot_group_dot_containers__pb2._GROUPPROVIDERV1
+_RESPONSEV1.fields_by_name['group'].message_type = protobufs_dot_services_dot_group_dot_containers__pb2._GROUPV1
 DESCRIPTOR.message_types_by_name['RequestV1'] = _REQUESTV1
 DESCRIPTOR.message_types_by_name['ResponseV1'] = _RESPONSEV1
 

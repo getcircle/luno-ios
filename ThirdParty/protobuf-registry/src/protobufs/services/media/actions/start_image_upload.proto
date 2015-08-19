@@ -1,3 +1,4 @@
+syntax = "proto2";
 package services.media.actions.start_image_upload;
 
 // GENERATED OPTIONS FOR: JAVA

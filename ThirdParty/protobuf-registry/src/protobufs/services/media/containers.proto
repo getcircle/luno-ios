@@ -1,3 +1,4 @@
+syntax = "proto2";
 package services.media.containers;
 
 // GENERATED OPTIONS FOR: JAVA

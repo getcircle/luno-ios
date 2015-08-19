@@ -13,16 +13,17 @@ from google.protobuf import descriptor_pb2
 _sym_db = _symbol_database.Default()
 
 
-import protobufs.services.common.containers_pb2
-import protobufs.services.profile.containers_pb2
+from protobufs.services.common import containers_pb2 as protobufs_dot_services_dot_common_dot_containers__pb2
+from protobufs.services.profile import containers_pb2 as protobufs_dot_services_dot_profile_dot_containers__pb2
 
 
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='protobufs/services/organization/containers.proto',
   package='services.organization.containers',
+  syntax='proto2',
   serialized_pb=_b('\n0protobufs/services/organization/containers.proto\x12 services.organization.containers\x1a*protobufs/services/common/containers.proto\x1a+protobufs/services/profile/containers.proto\"\x80\x04\n\nLocationV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\n\n\x02id\x18\x02 \x01(\t\x12\x0c\n\x04name\x18\x03 \x01(\t\x12\x11\n\taddress_1\x18\x04 \x01(\t\x12\x11\n\taddress_2\x18\x05 \x01(\t\x12\x0c\n\x04\x63ity\x18\x06 \x01(\t\x12\x0e\n\x06region\x18\x07 \x01(\t\x12\x13\n\x0bpostal_code\x18\x08 \x01(\t\x12\x14\n\x0c\x63ountry_code\x18\t \x01(\t\x12\x10\n\x08latitude\x18\n \x01(\t\x12\x11\n\tlongitude\x18\x0b \x01(\t\x12\x10\n\x08timezone\x18\x0c \x01(\t\x12\x17\n\x0forganization_id\x18\r \x01(\t\x12\x15\n\rprofile_count\x18\x0e \x01(\r\x12\x11\n\timage_url\x18\x0f \x01(\t\x12>\n\x0b\x64\x65scription\x18\x10 \x01(\x0b\x32).services.common.containers.DescriptionV1\x12\x18\n\x10\x65stablished_date\x18\x11 \x01(\t\x12\x41\n\x11points_of_contact\x18\x12 \x03(\x0b\x32&.services.profile.containers.ProfileV1\x12>\n\x0bpermissions\x18\x13 \x01(\x0b\x32).services.common.containers.PermissionsV1\"\xa4\x01\n\x0eOrganizationV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\n\n\x02id\x18\x02 \x01(\t\x12\x0c\n\x04name\x18\x03 \x01(\t\x12\x0e\n\x06\x64omain\x18\x04 \x01(\t\x12\x11\n\timage_url\x18\x05 \x01(\t\x12\x15\n\rprofile_count\x18\x06 \x01(\r\x12\x12\n\nteam_count\x18\x07 \x01(\r\x12\x16\n\x0elocation_count\x18\x08 \x01(\r\"\xa8\x03\n\x06TeamV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\n\n\x02id\x18\x02 \x01(\t\x12\x0c\n\x04name\x18\x03 \x01(\t\x12\x17\n\x0forganization_id\x18\x04 \x01(\t\x12\x1a\n\x12manager_profile_id\x18\x05 \x01(\t\x12\x37\n\x07manager\x18\x06 \x01(\x0b\x32&.services.profile.containers.ProfileV1\x12>\n\x0bpermissions\x18\x07 \x01(\x0b\x32).services.common.containers.PermissionsV1\x12>\n\x0b\x64\x65scription\x18\x08 \x01(\x0b\x32).services.common.containers.DescriptionV1\x12>\n\x06status\x18\t \x01(\x0b\x32..services.organization.containers.TeamStatusV1\x12\x11\n\timage_url\x18\n \x01(\t\x12\x18\n\x10\x63hild_team_count\x18\x0b \x01(\r\x12\x15\n\rprofile_count\x18\x0c \x01(\r\"\x95\x01\n\x0cTeamStatusV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\r\n\x05value\x18\x02 \x01(\t\x12\x0f\n\x07\x63reated\x18\x03 \x01(\t\x12\x15\n\rby_profile_id\x18\x04 \x01(\t\x12:\n\nby_profile\x18\x05 \x01(\x0b\x32&.services.profile.containers.ProfileV1\"T\n\x07TokenV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x0b\n\x03key\x18\x02 \x01(\t\x12\x1c\n\x14requested_by_user_id\x18\x03 \x01(\t\x12\n\n\x02id\x18\x04 \x01(\tB7\n5com.rhlabs.protobufs.services.organization.containers')
   ,
-  dependencies=[protobufs.services.common.containers_pb2.DESCRIPTOR,protobufs.services.profile.containers_pb2.DESCRIPTOR,])
+  dependencies=[protobufs_dot_services_dot_common_dot_containers__pb2.DESCRIPTOR,protobufs_dot_services_dot_profile_dot_containers__pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 
@@ -176,6 +177,7 @@ _LOCATIONV1 = _descriptor.Descriptor(
   ],
   options=None,
   is_extendable=False,
+  syntax='proto2',
   extension_ranges=[],
   oneofs=[
   ],
@@ -255,6 +257,7 @@ _ORGANIZATIONV1 = _descriptor.Descriptor(
   ],
   options=None,
   is_extendable=False,
+  syntax='proto2',
   extension_ranges=[],
   oneofs=[
   ],
@@ -362,6 +365,7 @@ _TEAMV1 = _descriptor.Descriptor(
   ],
   options=None,
   is_extendable=False,
+  syntax='proto2',
   extension_ranges=[],
   oneofs=[
   ],
@@ -420,6 +424,7 @@ _TEAMSTATUSV1 = _descriptor.Descriptor(
   ],
   options=None,
   is_extendable=False,
+  syntax='proto2',
   extension_ranges=[],
   oneofs=[
   ],
@@ -471,6 +476,7 @@ _TOKENV1 = _descriptor.Descriptor(
   ],
   options=None,
   is_extendable=False,
+  syntax='proto2',
   extension_ranges=[],
   oneofs=[
   ],
@@ -478,14 +484,14 @@ _TOKENV1 = _descriptor.Descriptor(
   serialized_end=1520,
 )
 
-_LOCATIONV1.fields_by_name['description'].message_type = protobufs.services.common.containers_pb2._DESCRIPTIONV1
-_LOCATIONV1.fields_by_name['points_of_contact'].message_type = protobufs.services.profile.containers_pb2._PROFILEV1
-_LOCATIONV1.fields_by_name['permissions'].message_type = protobufs.services.common.containers_pb2._PERMISSIONSV1
-_TEAMV1.fields_by_name['manager'].message_type = protobufs.services.profile.containers_pb2._PROFILEV1
-_TEAMV1.fields_by_name['permissions'].message_type = protobufs.services.common.containers_pb2._PERMISSIONSV1
-_TEAMV1.fields_by_name['description'].message_type = protobufs.services.common.containers_pb2._DESCRIPTIONV1
+_LOCATIONV1.fields_by_name['description'].message_type = protobufs_dot_services_dot_common_dot_containers__pb2._DESCRIPTIONV1
+_LOCATIONV1.fields_by_name['points_of_contact'].message_type = protobufs_dot_services_dot_profile_dot_containers__pb2._PROFILEV1
+_LOCATIONV1.fields_by_name['permissions'].message_type = protobufs_dot_services_dot_common_dot_containers__pb2._PERMISSIONSV1
+_TEAMV1.fields_by_name['manager'].message_type = protobufs_dot_services_dot_profile_dot_containers__pb2._PROFILEV1
+_TEAMV1.fields_by_name['permissions'].message_type = protobufs_dot_services_dot_common_dot_containers__pb2._PERMISSIONSV1
+_TEAMV1.fields_by_name['description'].message_type = protobufs_dot_services_dot_common_dot_containers__pb2._DESCRIPTIONV1
 _TEAMV1.fields_by_name['status'].message_type = _TEAMSTATUSV1
-_TEAMSTATUSV1.fields_by_name['by_profile'].message_type = protobufs.services.profile.containers_pb2._PROFILEV1
+_TEAMSTATUSV1.fields_by_name['by_profile'].message_type = protobufs_dot_services_dot_profile_dot_containers__pb2._PROFILEV1
 DESCRIPTOR.message_types_by_name['LocationV1'] = _LOCATIONV1
 DESCRIPTOR.message_types_by_name['OrganizationV1'] = _ORGANIZATIONV1
 DESCRIPTOR.message_types_by_name['TeamV1'] = _TEAMV1

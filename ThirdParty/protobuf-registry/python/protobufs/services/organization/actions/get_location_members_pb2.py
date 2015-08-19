@@ -18,7 +18,8 @@ _sym_db = _symbol_database.Default()
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='protobufs/services/organization/actions/get_location_members.proto',
   package='services.organization.actions.get_location_members',
-  serialized_pb=_b('\nBprotobufs/services/organization/actions/get_location_members.proto\x12\x32services.organization.actions.get_location_members\"4\n\tRequestV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x13\n\x0blocation_id\x18\x02 \x01(\t\"<\n\nResponseV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x1a\n\x12member_profile_ids\x18\x02 \x03(\t')
+  syntax='proto2',
+  serialized_pb=_b('\nBprotobufs/services/organization/actions/get_location_members.proto\x12\x32services.organization.actions.get_location_members\"4\n\tRequestV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x13\n\x0blocation_id\x18\x02 \x01(\t\"<\n\nResponseV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x1a\n\x12member_profile_ids\x18\x02 \x03(\tBI\nGcom.rhlabs.protobufs.services.organization.actions.get_location_members')
 )
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
@@ -54,6 +55,7 @@ _REQUESTV1 = _descriptor.Descriptor(
   ],
   options=None,
   is_extendable=False,
+  syntax='proto2',
   extension_ranges=[],
   oneofs=[
   ],
@@ -91,6 +93,7 @@ _RESPONSEV1 = _descriptor.Descriptor(
   ],
   options=None,
   is_extendable=False,
+  syntax='proto2',
   extension_ranges=[],
   oneofs=[
   ],
@@ -116,4 +119,6 @@ ResponseV1 = _reflection.GeneratedProtocolMessageType('ResponseV1', (_message.Me
 _sym_db.RegisterMessage(ResponseV1)
 
 
+DESCRIPTOR.has_options = True
+DESCRIPTOR._options = _descriptor._ParseOptions(descriptor_pb2.FileOptions(), _b('\nGcom.rhlabs.protobufs.services.organization.actions.get_location_members'))
 # @@protoc_insertion_point(module_scope)

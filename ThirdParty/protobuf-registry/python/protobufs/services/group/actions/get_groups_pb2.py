@@ -13,15 +13,16 @@ from google.protobuf import descriptor_pb2
 _sym_db = _symbol_database.Default()
 
 
-import protobufs.services.group.containers_pb2
+from protobufs.services.group import containers_pb2 as protobufs_dot_services_dot_group_dot_containers__pb2
 
 
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='protobufs/services/group/actions/get_groups.proto',
   package='services.group.actions.get_groups',
+  syntax='proto2',
   serialized_pb=_b('\n1protobufs/services/group/actions/get_groups.proto\x12!services.group.actions.get_groups\x1a)protobufs/services/group/containers.proto\"\x84\x01\n\tRequestV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x12\n\nprofile_id\x18\x02 \x01(\t\x12<\n\x08provider\x18\x03 \x01(\x0e\x32*.services.group.containers.GroupProviderV1\x12\x11\n\tgroup_ids\x18\x04 \x03(\t\"T\n\nResponseV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x32\n\x06groups\x18\x02 \x03(\x0b\x32\".services.group.containers.GroupV1B8\n6com.rhlabs.protobufs.services.group.actions.get_groups')
   ,
-  dependencies=[protobufs.services.group.containers_pb2.DESCRIPTOR,])
+  dependencies=[protobufs_dot_services_dot_group_dot_containers__pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 
@@ -70,6 +71,7 @@ _REQUESTV1 = _descriptor.Descriptor(
   ],
   options=None,
   is_extendable=False,
+  syntax='proto2',
   extension_ranges=[],
   oneofs=[
   ],
@@ -107,6 +109,7 @@ _RESPONSEV1 = _descriptor.Descriptor(
   ],
   options=None,
   is_extendable=False,
+  syntax='proto2',
   extension_ranges=[],
   oneofs=[
   ],
@@ -114,8 +117,8 @@ _RESPONSEV1 = _descriptor.Descriptor(
   serialized_end=350,
 )
 
-_REQUESTV1.fields_by_name['provider'].enum_type = protobufs.services.group.containers_pb2._GROUPPROVIDERV1
-_RESPONSEV1.fields_by_name['groups'].message_type = protobufs.services.group.containers_pb2._GROUPV1
+_REQUESTV1.fields_by_name['provider'].enum_type = protobufs_dot_services_dot_group_dot_containers__pb2._GROUPPROVIDERV1
+_RESPONSEV1.fields_by_name['groups'].message_type = protobufs_dot_services_dot_group_dot_containers__pb2._GROUPV1
 DESCRIPTOR.message_types_by_name['RequestV1'] = _REQUESTV1
 DESCRIPTOR.message_types_by_name['ResponseV1'] = _RESPONSEV1
 

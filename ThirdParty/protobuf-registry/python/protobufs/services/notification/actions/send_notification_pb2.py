@@ -13,15 +13,16 @@ from google.protobuf import descriptor_pb2
 _sym_db = _symbol_database.Default()
 
 
-import protobufs.services.notification.containers_pb2
+from protobufs.services.notification import containers_pb2 as protobufs_dot_services_dot_notification_dot_containers__pb2
 
 
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='protobufs/services/notification/actions/send_notification.proto',
   package='services.notification.actions.send_notification',
+  syntax='proto2',
   serialized_pb=_b('\n?protobufs/services/notification/actions/send_notification.proto\x12/services.notification.actions.send_notification\x1a\x30protobufs/services/notification/containers.proto\"\x96\x01\n\tRequestV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x15\n\rto_profile_id\x18\x02 \x01(\t\x12\x46\n\x0cnotification\x18\x03 \x01(\x0b\x32\x30.services.notification.containers.NotificationV1\x12\x16\n\x0eto_profile_ids\x18\x04 \x03(\t\" \n\nResponseV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x42\x46\nDcom.rhlabs.protobufs.services.notification.actions.send_notification')
   ,
-  dependencies=[protobufs.services.notification.containers_pb2.DESCRIPTOR,])
+  dependencies=[protobufs_dot_services_dot_notification_dot_containers__pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 
@@ -70,6 +71,7 @@ _REQUESTV1 = _descriptor.Descriptor(
   ],
   options=None,
   is_extendable=False,
+  syntax='proto2',
   extension_ranges=[],
   oneofs=[
   ],
@@ -100,6 +102,7 @@ _RESPONSEV1 = _descriptor.Descriptor(
   ],
   options=None,
   is_extendable=False,
+  syntax='proto2',
   extension_ranges=[],
   oneofs=[
   ],
@@ -107,7 +110,7 @@ _RESPONSEV1 = _descriptor.Descriptor(
   serialized_end=351,
 )
 
-_REQUESTV1.fields_by_name['notification'].message_type = protobufs.services.notification.containers_pb2._NOTIFICATIONV1
+_REQUESTV1.fields_by_name['notification'].message_type = protobufs_dot_services_dot_notification_dot_containers__pb2._NOTIFICATIONV1
 DESCRIPTOR.message_types_by_name['RequestV1'] = _REQUESTV1
 DESCRIPTOR.message_types_by_name['ResponseV1'] = _RESPONSEV1
 

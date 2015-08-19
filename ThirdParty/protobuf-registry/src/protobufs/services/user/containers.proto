@@ -1,3 +1,4 @@
+syntax = "proto2";
 package services.user.containers;
 
 // GENERATED OPTIONS FOR: JAVA

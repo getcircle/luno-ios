@@ -19,6 +19,7 @@ _sym_db = _symbol_database.Default()
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='protobufs/services/media/containers/media.proto',
   package='services.media.containers.media',
+  syntax='proto2',
   serialized_pb=_b('\n/protobufs/services/media/containers/media.proto\x12\x1fservices.media.containers.media*2\n\x0bMediaTypeV1\x12\x0b\n\x07PROFILE\x10\x01\x12\x08\n\x04TEAM\x10\x02\x12\x0c\n\x08LOCATION\x10\x03\x42\x36\n4com.rhlabs.protobufs.services.media.containers.media')
 )
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)

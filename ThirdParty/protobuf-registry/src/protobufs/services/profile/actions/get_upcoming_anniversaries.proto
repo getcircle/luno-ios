@@ -1,3 +1,4 @@
+syntax = "proto2";
 package services.profile.actions.get_upcoming_anniversaries;
 
 // GENERATED OPTIONS FOR: JAVA

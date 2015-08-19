@@ -1,9 +1,11 @@
+syntax = "proto2";
 package services.notification.containers;
-
-import "protobufs/services/group/containers.proto";
 
 // GENERATED OPTIONS FOR: JAVA
 option java_package = "com.rhlabs.protobufs.services.notification.containers";
+
+import "protobufs/services/group/containers.proto";
+
 
 enum NotificationChannelV1 {
     MOBILE_PUSH = 0;

@@ -1,4 +1,8 @@
+syntax = "proto2";
 package services.search.containers;
+
+// GENERATED OPTIONS FOR: JAVA
+option java_package = "com.rhlabs.protobufs.services.search.containers";
 
 import "protobufs/services/group/containers.proto";
 import "protobufs/services/organization/containers.proto";

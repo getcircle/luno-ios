@@ -18,6 +18,7 @@ _sym_db = _symbol_database.Default()
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='protobufs/services/glossary/actions/delete_term.proto',
   package='services.glossary.actions.delete_term',
+  syntax='proto2',
   serialized_pb=_b('\n5protobufs/services/glossary/actions/delete_term.proto\x12%services.glossary.actions.delete_term\"+\n\tRequestV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\n\n\x02id\x18\x02 \x01(\t\" \n\nResponseV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x42<\n:com.rhlabs.protobufs.services.glossary.actions.delete_term')
 )
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
@@ -54,6 +55,7 @@ _REQUESTV1 = _descriptor.Descriptor(
   ],
   options=None,
   is_extendable=False,
+  syntax='proto2',
   extension_ranges=[],
   oneofs=[
   ],
@@ -84,6 +86,7 @@ _RESPONSEV1 = _descriptor.Descriptor(
   ],
   options=None,
   is_extendable=False,
+  syntax='proto2',
   extension_ranges=[],
   oneofs=[
   ],

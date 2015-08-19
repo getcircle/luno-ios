@@ -13,16 +13,17 @@ from google.protobuf import descriptor_pb2
 _sym_db = _symbol_database.Default()
 
 
-import protobufs.services.user.containers_pb2
-import protobufs.services.user.containers.token_pb2
+from protobufs.services.user import containers_pb2 as protobufs_dot_services_dot_user_dot_containers__pb2
+from protobufs.services.user.containers import token_pb2 as protobufs_dot_services_dot_user_dot_containers_dot_token__pb2
 
 
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='protobufs/services/user/actions/authenticate_user.proto',
   package='services.user.actions.authenticate_user',
+  syntax='proto2',
   serialized_pb=_b('\n7protobufs/services/user/actions/authenticate_user.proto\x12\'services.user.actions.authenticate_user\x1a(protobufs/services/user/containers.proto\x1a.protobufs/services/user/containers/token.proto\"\xf9\x02\n\tRequestV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12Q\n\x07\x62\x61\x63kend\x18\x02 \x01(\x0e\x32@.services.user.actions.authenticate_user.RequestV1.AuthBackendV1\x12U\n\x0b\x63redentials\x18\x03 \x01(\x0b\x32@.services.user.actions.authenticate_user.RequestV1.CredentialsV1\x12\x41\n\x0b\x63lient_type\x18\x04 \x01(\x0e\x32,.services.user.containers.token.ClientTypeV1\x1a@\n\rCredentialsV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x0b\n\x03key\x18\x02 \x01(\t\x12\x0e\n\x06secret\x18\x03 \x01(\t\")\n\rAuthBackendV1\x12\x0c\n\x08INTERNAL\x10\x00\x12\n\n\x06GOOGLE\x10\x01\"q\n\nResponseV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12.\n\x04user\x18\x02 \x01(\x0b\x32 .services.user.containers.UserV1\x12\r\n\x05token\x18\x03 \x01(\t\x12\x10\n\x08new_user\x18\x04 \x01(\x08\x42>\n<com.rhlabs.protobufs.services.user.actions.authenticate_user')
   ,
-  dependencies=[protobufs.services.user.containers_pb2.DESCRIPTOR,protobufs.services.user.containers.token_pb2.DESCRIPTOR,])
+  dependencies=[protobufs_dot_services_dot_user_dot_containers__pb2.DESCRIPTOR,protobufs_dot_services_dot_user_dot_containers_dot_token__pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 
@@ -86,6 +87,7 @@ _REQUESTV1_CREDENTIALSV1 = _descriptor.Descriptor(
   ],
   options=None,
   is_extendable=False,
+  syntax='proto2',
   extension_ranges=[],
   oneofs=[
   ],
@@ -137,6 +139,7 @@ _REQUESTV1 = _descriptor.Descriptor(
   ],
   options=None,
   is_extendable=False,
+  syntax='proto2',
   extension_ranges=[],
   oneofs=[
   ],
@@ -188,6 +191,7 @@ _RESPONSEV1 = _descriptor.Descriptor(
   ],
   options=None,
   is_extendable=False,
+  syntax='proto2',
   extension_ranges=[],
   oneofs=[
   ],
@@ -198,9 +202,9 @@ _RESPONSEV1 = _descriptor.Descriptor(
 _REQUESTV1_CREDENTIALSV1.containing_type = _REQUESTV1
 _REQUESTV1.fields_by_name['backend'].enum_type = _REQUESTV1_AUTHBACKENDV1
 _REQUESTV1.fields_by_name['credentials'].message_type = _REQUESTV1_CREDENTIALSV1
-_REQUESTV1.fields_by_name['client_type'].enum_type = protobufs.services.user.containers.token_pb2._CLIENTTYPEV1
+_REQUESTV1.fields_by_name['client_type'].enum_type = protobufs_dot_services_dot_user_dot_containers_dot_token__pb2._CLIENTTYPEV1
 _REQUESTV1_AUTHBACKENDV1.containing_type = _REQUESTV1
-_RESPONSEV1.fields_by_name['user'].message_type = protobufs.services.user.containers_pb2._USERV1
+_RESPONSEV1.fields_by_name['user'].message_type = protobufs_dot_services_dot_user_dot_containers__pb2._USERV1
 DESCRIPTOR.message_types_by_name['RequestV1'] = _REQUESTV1
 DESCRIPTOR.message_types_by_name['ResponseV1'] = _RESPONSEV1
 

@@ -14,6 +14,7 @@ public func == (lhs: Services.Profile.Actions.GetProfiles.RequestV1, rhs: Servic
   fieldCheck = fieldCheck && (lhs.hasLocationId == rhs.hasLocationId) && (!lhs.hasLocationId || lhs.locationId == rhs.locationId)
   fieldCheck = fieldCheck && (lhs.hasTeamId == rhs.hasTeamId) && (!lhs.hasTeamId || lhs.teamId == rhs.teamId)
   fieldCheck = fieldCheck && (lhs.hasInflations == rhs.hasInflations) && (!lhs.hasInflations || lhs.inflations == rhs.inflations)
+  fieldCheck = fieldCheck && (lhs.hasManagerId == rhs.hasManagerId) && (!lhs.hasManagerId || lhs.managerId == rhs.managerId)
   return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
 }
 
@@ -55,6 +56,7 @@ public extension Services.Profile.Actions.GetProfiles {
            case "locationId": return locationId
            case "teamId": return teamId
            case "inflations": return inflations
+           case "managerId": return managerId
            default: return nil
            }
     }
@@ -73,6 +75,9 @@ public extension Services.Profile.Actions.GetProfiles {
 
     public private(set) var hasInflations:Bool = false
     public private(set) var inflations:Services.Common.Containers.InflationsV1!
+    public private(set) var hasManagerId:Bool = false
+    public private(set) var managerId:String = ""
+
     public private(set) var ids:Array<String> = Array<String>()
     required public init() {
          super.init()
@@ -100,6 +105,9 @@ public extension Services.Profile.Actions.GetProfiles {
       }
       if hasInflations {
         output.writeMessage(6, value:inflations)
+      }
+      if hasManagerId {
+        output.writeString(7, value:managerId)
       }
       unknownFields.writeToCodedOutputStream(output)
     }
@@ -132,6 +140,9 @@ public extension Services.Profile.Actions.GetProfiles {
           if let varSizeinflations = inflations?.computeMessageSize(6) {
               serialize_size += varSizeinflations
           }
+      }
+      if hasManagerId {
+        serialize_size += managerId.computeStringSize(7)
       }
       serialize_size += unknownFields.serializedSize()
       memoizedSerializedSize = serialize_size
@@ -196,6 +207,9 @@ public extension Services.Profile.Actions.GetProfiles {
         inflations?.writeDescriptionTo(&output, indent:"\(indent)  ")
         output += "\(indent) }\n"
       }
+      if hasManagerId {
+        output += "\(indent) managerId: \(managerId) \n"
+      }
       unknownFields.writeDescriptionTo(&output, indent:indent)
     }
     override public var hashValue:Int {
@@ -220,6 +234,9 @@ public extension Services.Profile.Actions.GetProfiles {
                 if let hashValueinflations = inflations?.hashValue {
                     hashCode = (hashCode &* 31) &+ hashValueinflations
                 }
+            }
+            if hasManagerId {
+               hashCode = (hashCode &* 31) &+ managerId.hashValue
             }
             hashCode = (hashCode &* 31) &+  unknownFields.hashValue
             return hashCode
@@ -389,6 +406,29 @@ public extension Services.Profile.Actions.GetProfiles {
       builderResult.inflations = nil
       return self
     }
+    public var hasManagerId:Bool {
+         get {
+              return builderResult.hasManagerId
+         }
+    }
+    public var managerId:String {
+         get {
+              return builderResult.managerId
+         }
+         set (value) {
+             builderResult.hasManagerId = true
+             builderResult.managerId = value
+         }
+    }
+    public func setManagerId(value:String)-> Services.Profile.Actions.GetProfiles.RequestV1Builder {
+      self.managerId = value
+      return self
+    }
+    public func clearManagerId() -> Services.Profile.Actions.GetProfiles.RequestV1Builder{
+         builderResult.hasManagerId = false
+         builderResult.managerId = ""
+         return self
+    }
     override public var internalGetResult:GeneratedMessage {
          get {
             return builderResult
@@ -431,6 +471,9 @@ public extension Services.Profile.Actions.GetProfiles {
       if (other.hasInflations) {
           mergeInflations(other.inflations)
       }
+      if other.hasManagerId {
+           managerId = other.managerId
+      }
       mergeUnknownFields(other.unknownFields)
       return self
     }
@@ -468,6 +511,9 @@ public extension Services.Profile.Actions.GetProfiles {
           }
           input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
           inflations = subBuilder.buildPartial()
+
+        case 58 :
+          managerId = input.readString()
 
         default:
           if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {

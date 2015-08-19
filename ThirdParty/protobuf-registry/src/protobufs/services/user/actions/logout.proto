@@ -1,3 +1,4 @@
+syntax = "proto2";
 package services.user.actions.logout;
 
 // GENERATED OPTIONS FOR: JAVA

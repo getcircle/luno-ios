@@ -1,3 +1,4 @@
+syntax = "proto2";
 package services.organization.actions.update_team;
 
 // GENERATED OPTIONS FOR: JAVA

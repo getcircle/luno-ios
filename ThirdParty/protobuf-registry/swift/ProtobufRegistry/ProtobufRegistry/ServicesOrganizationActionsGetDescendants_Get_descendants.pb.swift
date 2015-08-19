@@ -11,6 +11,7 @@ public func == (lhs: Services.Organization.Actions.GetDescendants.RequestV1, rhs
   fieldCheck = fieldCheck && (lhs.hasVersion == rhs.hasVersion) && (!lhs.hasVersion || lhs.version == rhs.version)
   fieldCheck = fieldCheck && (lhs.hasProfileId == rhs.hasProfileId) && (!lhs.hasProfileId || lhs.profileId == rhs.profileId)
   fieldCheck = fieldCheck && (lhs.hasTeamId == rhs.hasTeamId) && (!lhs.hasTeamId || lhs.teamId == rhs.teamId)
+  fieldCheck = fieldCheck && (lhs.hasDirect == rhs.hasDirect) && (!lhs.hasDirect || lhs.direct == rhs.direct)
   return (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
 }
 
@@ -48,6 +49,7 @@ public extension Services.Organization.Actions.GetDescendants {
            case "version": return version
            case "profileId": return profileId
            case "teamId": return teamId
+           case "direct": return direct
            default: return nil
            }
     }
@@ -60,6 +62,9 @@ public extension Services.Organization.Actions.GetDescendants {
 
     public private(set) var hasTeamId:Bool = false
     public private(set) var teamId:String = ""
+
+    public private(set) var hasDirect:Bool = false
+    public private(set) var direct:Bool = false
 
     required public init() {
          super.init()
@@ -76,6 +81,9 @@ public extension Services.Organization.Actions.GetDescendants {
       }
       if hasTeamId {
         output.writeString(3, value:teamId)
+      }
+      if hasDirect {
+        output.writeBool(4, value:direct)
       }
       unknownFields.writeToCodedOutputStream(output)
     }
@@ -94,6 +102,9 @@ public extension Services.Organization.Actions.GetDescendants {
       }
       if hasTeamId {
         serialize_size += teamId.computeStringSize(3)
+      }
+      if hasDirect {
+        serialize_size += direct.computeBoolSize(4)
       }
       serialize_size += unknownFields.serializedSize()
       memoizedSerializedSize = serialize_size
@@ -145,6 +156,9 @@ public extension Services.Organization.Actions.GetDescendants {
       if hasTeamId {
         output += "\(indent) teamId: \(teamId) \n"
       }
+      if hasDirect {
+        output += "\(indent) direct: \(direct) \n"
+      }
       unknownFields.writeDescriptionTo(&output, indent:indent)
     }
     override public var hashValue:Int {
@@ -158,6 +172,9 @@ public extension Services.Organization.Actions.GetDescendants {
             }
             if hasTeamId {
                hashCode = (hashCode &* 31) &+ teamId.hashValue
+            }
+            if hasDirect {
+               hashCode = (hashCode &* 31) &+ direct.hashValue
             }
             hashCode = (hashCode &* 31) &+  unknownFields.hashValue
             return hashCode
@@ -256,6 +273,29 @@ public extension Services.Organization.Actions.GetDescendants {
          builderResult.teamId = ""
          return self
     }
+    public var hasDirect:Bool {
+         get {
+              return builderResult.hasDirect
+         }
+    }
+    public var direct:Bool {
+         get {
+              return builderResult.direct
+         }
+         set (value) {
+             builderResult.hasDirect = true
+             builderResult.direct = value
+         }
+    }
+    public func setDirect(value:Bool)-> Services.Organization.Actions.GetDescendants.RequestV1Builder {
+      self.direct = value
+      return self
+    }
+    public func clearDirect() -> Services.Organization.Actions.GetDescendants.RequestV1Builder{
+         builderResult.hasDirect = false
+         builderResult.direct = false
+         return self
+    }
     override public var internalGetResult:GeneratedMessage {
          get {
             return builderResult
@@ -289,6 +329,9 @@ public extension Services.Organization.Actions.GetDescendants {
       if other.hasTeamId {
            teamId = other.teamId
       }
+      if other.hasDirect {
+           direct = other.direct
+      }
       mergeUnknownFields(other.unknownFields)
       return self
     }
@@ -312,6 +355,9 @@ public extension Services.Organization.Actions.GetDescendants {
 
         case 26 :
           teamId = input.readString()
+
+        case 32 :
+          direct = input.readBool()
 
         default:
           if (!parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag)) {

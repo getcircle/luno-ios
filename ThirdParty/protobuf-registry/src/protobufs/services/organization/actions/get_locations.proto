@@ -1,3 +1,4 @@
+syntax = "proto2";
 package services.organization.actions.get_locations;
 
 // GENERATED OPTIONS FOR: JAVA

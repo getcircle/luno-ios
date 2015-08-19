@@ -1,4 +1,8 @@
+syntax = "proto2";
 package services.organization.actions.set_manager;
+
+// GENERATED OPTIONS FOR: JAVA
+option java_package = "com.rhlabs.protobufs.services.organization.actions.set_manager";
 
 import "protobufs/services/organization/containers.proto";
 

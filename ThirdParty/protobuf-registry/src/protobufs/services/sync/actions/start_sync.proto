@@ -1,3 +1,4 @@
+syntax = "proto2";
 package services.sync.actions.start_sync;
 
 // GENERATED OPTIONS FOR: JAVA

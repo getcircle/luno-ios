@@ -1,3 +1,4 @@
+syntax = "proto2";
 package services.group.actions.respond_to_membership_request;
 
 // GENERATED OPTIONS FOR: JAVA

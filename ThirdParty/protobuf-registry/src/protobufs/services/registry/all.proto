@@ -1,3 +1,4 @@
+syntax = "proto2";
 package services.registry;
 
 // GENERATED OPTIONS FOR: JAVA

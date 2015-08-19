@@ -1,3 +1,4 @@
+syntax = "proto2";
 package services.profile.actions.bulk_update_profiles;
 
 // GENERATED OPTIONS FOR: JAVA

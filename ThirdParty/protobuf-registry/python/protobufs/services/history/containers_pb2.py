@@ -19,7 +19,8 @@ _sym_db = _symbol_database.Default()
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='protobufs/services/history/containers.proto',
   package='services.history.containers',
-  serialized_pb=_b('\n+protobufs/services/history/containers.proto\x12\x1bservices.history.containers\"\x89\x03\n\x08\x41\x63tionV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\n\n\x02id\x18\x02 \x01(\t\x12\x13\n\x0b\x63olumn_name\x18\x03 \x01(\t\x12\x11\n\tdata_type\x18\x04 \x01(\t\x12\x11\n\told_value\x18\x05 \x01(\t\x12\x11\n\tnew_value\x18\x06 \x01(\t\x12>\n\x0b\x61\x63tion_type\x18\x07 \x01(\x0e\x32).services.history.containers.ActionTypeV1\x12>\n\x0bmethod_type\x18\x08 \x01(\x0e\x32).services.history.containers.MethodTypeV1\x12\x17\n\x0forganization_id\x18\t \x01(\t\x12\x16\n\x0e\x63orrelation_id\x18\n \x01(\t\x12\x15\n\rby_profile_id\x18\x0b \x01(\t\x12\x12\n\ntable_name\x18\x0c \x01(\t\x12\x18\n\x10primary_key_name\x18\r \x01(\t\x12\x19\n\x11primary_key_value\x18\x0e \x01(\t*&\n\x0c\x41\x63tionTypeV1\x12\x16\n\x12UPDATE_DESCRIPTION\x10\x00*&\n\x0cMethodTypeV1\x12\n\n\x06UPDATE\x10\x00\x12\n\n\x06\x44\x45LETE\x10\x01')
+  syntax='proto2',
+  serialized_pb=_b('\n+protobufs/services/history/containers.proto\x12\x1bservices.history.containers\"\x89\x03\n\x08\x41\x63tionV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\n\n\x02id\x18\x02 \x01(\t\x12\x13\n\x0b\x63olumn_name\x18\x03 \x01(\t\x12\x11\n\tdata_type\x18\x04 \x01(\t\x12\x11\n\told_value\x18\x05 \x01(\t\x12\x11\n\tnew_value\x18\x06 \x01(\t\x12>\n\x0b\x61\x63tion_type\x18\x07 \x01(\x0e\x32).services.history.containers.ActionTypeV1\x12>\n\x0bmethod_type\x18\x08 \x01(\x0e\x32).services.history.containers.MethodTypeV1\x12\x17\n\x0forganization_id\x18\t \x01(\t\x12\x16\n\x0e\x63orrelation_id\x18\n \x01(\t\x12\x15\n\rby_profile_id\x18\x0b \x01(\t\x12\x12\n\ntable_name\x18\x0c \x01(\t\x12\x18\n\x10primary_key_name\x18\r \x01(\t\x12\x19\n\x11primary_key_value\x18\x0e \x01(\t*&\n\x0c\x41\x63tionTypeV1\x12\x16\n\x12UPDATE_DESCRIPTION\x10\x00*&\n\x0cMethodTypeV1\x12\n\n\x06UPDATE\x10\x00\x12\n\n\x06\x44\x45LETE\x10\x01\x42\x32\n0com.rhlabs.protobufs.services.history.containers')
 )
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
@@ -184,6 +185,7 @@ _ACTIONV1 = _descriptor.Descriptor(
   ],
   options=None,
   is_extendable=False,
+  syntax='proto2',
   extension_ranges=[],
   oneofs=[
   ],
@@ -205,4 +207,6 @@ ActionV1 = _reflection.GeneratedProtocolMessageType('ActionV1', (_message.Messag
 _sym_db.RegisterMessage(ActionV1)
 
 
+DESCRIPTOR.has_options = True
+DESCRIPTOR._options = _descriptor._ParseOptions(descriptor_pb2.FileOptions(), _b('\n0com.rhlabs.protobufs.services.history.containers'))
 # @@protoc_insertion_point(module_scope)

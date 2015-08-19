@@ -1,3 +1,4 @@
+syntax = "proto2";
 package services.user.actions.record_device;
 
 // GENERATED OPTIONS FOR: JAVA

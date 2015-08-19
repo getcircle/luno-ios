@@ -1,3 +1,4 @@
+syntax = "proto2";
 package services.organization.containers.integration;
 
 // GENERATED OPTIONS FOR: JAVA

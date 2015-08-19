@@ -1,3 +1,4 @@
+syntax = "proto2";
 package services.user.actions.delete_identity;
 
 // GENERATED OPTIONS FOR: JAVA

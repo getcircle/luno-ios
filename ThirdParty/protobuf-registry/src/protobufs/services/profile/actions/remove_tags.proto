@@ -1,3 +1,4 @@
+syntax = "proto2";
 package services.profile.actions.remove_tags;
 
 // GENERATED OPTIONS FOR: JAVA

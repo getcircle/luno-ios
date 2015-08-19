@@ -13,15 +13,16 @@ from google.protobuf import descriptor_pb2
 _sym_db = _symbol_database.Default()
 
 
-import protobufs.services.sync.containers.source_pb2
+from protobufs.services.sync.containers import source_pb2 as protobufs_dot_services_dot_sync_dot_containers_dot_source__pb2
 
 
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='protobufs/services/sync/actions/start_sync.proto',
   package='services.sync.actions.start_sync',
+  syntax='proto2',
   serialized_pb=_b('\n0protobufs/services/sync/actions/start_sync.proto\x12 services.sync.actions.start_sync\x1a/protobufs/services/sync/containers/source.proto\"Z\n\tRequestV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x39\n\x06source\x18\x02 \x01(\x0e\x32).services.sync.containers.source.SourceV1\"1\n\nResponseV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x0f\n\x07sync_id\x18\x02 \x01(\tB7\n5com.rhlabs.protobufs.services.sync.actions.start_sync')
   ,
-  dependencies=[protobufs.services.sync.containers.source_pb2.DESCRIPTOR,])
+  dependencies=[protobufs_dot_services_dot_sync_dot_containers_dot_source__pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 
@@ -56,6 +57,7 @@ _REQUESTV1 = _descriptor.Descriptor(
   ],
   options=None,
   is_extendable=False,
+  syntax='proto2',
   extension_ranges=[],
   oneofs=[
   ],
@@ -93,6 +95,7 @@ _RESPONSEV1 = _descriptor.Descriptor(
   ],
   options=None,
   is_extendable=False,
+  syntax='proto2',
   extension_ranges=[],
   oneofs=[
   ],
@@ -100,7 +103,7 @@ _RESPONSEV1 = _descriptor.Descriptor(
   serialized_end=276,
 )
 
-_REQUESTV1.fields_by_name['source'].enum_type = protobufs.services.sync.containers.source_pb2._SOURCEV1
+_REQUESTV1.fields_by_name['source'].enum_type = protobufs_dot_services_dot_sync_dot_containers_dot_source__pb2._SOURCEV1
 DESCRIPTOR.message_types_by_name['RequestV1'] = _REQUESTV1
 DESCRIPTOR.message_types_by_name['ResponseV1'] = _RESPONSEV1
 

@@ -13,15 +13,16 @@ from google.protobuf import descriptor_pb2
 _sym_db = _symbol_database.Default()
 
 
-import protobufs.services.user.containers_pb2
+from protobufs.services.user import containers_pb2 as protobufs_dot_services_dot_user_dot_containers__pb2
 
 
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='protobufs/services/user/actions/delete_identity.proto',
   package='services.user.actions.delete_identity',
+  syntax='proto2',
   serialized_pb=_b('\n5protobufs/services/user/actions/delete_identity.proto\x12%services.user.actions.delete_identity\x1a(protobufs/services/user/containers.proto\"W\n\tRequestV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x36\n\x08identity\x18\x02 \x01(\x0b\x32$.services.user.containers.IdentityV1\" \n\nResponseV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x42<\n:com.rhlabs.protobufs.services.user.actions.delete_identity')
   ,
-  dependencies=[protobufs.services.user.containers_pb2.DESCRIPTOR,])
+  dependencies=[protobufs_dot_services_dot_user_dot_containers__pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 
@@ -56,6 +57,7 @@ _REQUESTV1 = _descriptor.Descriptor(
   ],
   options=None,
   is_extendable=False,
+  syntax='proto2',
   extension_ranges=[],
   oneofs=[
   ],
@@ -86,6 +88,7 @@ _RESPONSEV1 = _descriptor.Descriptor(
   ],
   options=None,
   is_extendable=False,
+  syntax='proto2',
   extension_ranges=[],
   oneofs=[
   ],
@@ -93,7 +96,7 @@ _RESPONSEV1 = _descriptor.Descriptor(
   serialized_end=259,
 )
 
-_REQUESTV1.fields_by_name['identity'].message_type = protobufs.services.user.containers_pb2._IDENTITYV1
+_REQUESTV1.fields_by_name['identity'].message_type = protobufs_dot_services_dot_user_dot_containers__pb2._IDENTITYV1
 DESCRIPTOR.message_types_by_name['RequestV1'] = _REQUESTV1
 DESCRIPTOR.message_types_by_name['ResponseV1'] = _RESPONSEV1
 

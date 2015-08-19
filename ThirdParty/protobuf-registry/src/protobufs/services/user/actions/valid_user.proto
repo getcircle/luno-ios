@@ -1,3 +1,4 @@
+syntax = "proto2";
 package services.user.actions.valid_user;
 
 // GENERATED OPTIONS FOR: JAVA

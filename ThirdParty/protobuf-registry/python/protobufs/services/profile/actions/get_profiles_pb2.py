@@ -13,16 +13,17 @@ from google.protobuf import descriptor_pb2
 _sym_db = _symbol_database.Default()
 
 
-import protobufs.services.common.containers_pb2
-import protobufs.services.profile.containers_pb2
+from protobufs.services.common import containers_pb2 as protobufs_dot_services_dot_common_dot_containers__pb2
+from protobufs.services.profile import containers_pb2 as protobufs_dot_services_dot_profile_dot_containers__pb2
 
 
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='protobufs/services/profile/actions/get_profiles.proto',
   package='services.profile.actions.get_profiles',
-  serialized_pb=_b('\n5protobufs/services/profile/actions/get_profiles.proto\x12%services.profile.actions.get_profiles\x1a*protobufs/services/common/containers.proto\x1a+protobufs/services/profile/containers.proto\"\xa0\x01\n\tRequestV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x0e\n\x06tag_id\x18\x02 \x01(\t\x12\x0b\n\x03ids\x18\x03 \x03(\t\x12\x13\n\x0blocation_id\x18\x04 \x01(\t\x12\x0f\n\x07team_id\x18\x05 \x01(\t\x12<\n\ninflations\x18\x06 \x01(\x0b\x32(.services.common.containers.InflationsV1\"Z\n\nResponseV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x38\n\x08profiles\x18\x02 \x03(\x0b\x32&.services.profile.containers.ProfileV1B<\n:com.rhlabs.protobufs.services.profile.actions.get_profiles')
+  syntax='proto2',
+  serialized_pb=_b('\n5protobufs/services/profile/actions/get_profiles.proto\x12%services.profile.actions.get_profiles\x1a*protobufs/services/common/containers.proto\x1a+protobufs/services/profile/containers.proto\"\xb4\x01\n\tRequestV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x0e\n\x06tag_id\x18\x02 \x01(\t\x12\x0b\n\x03ids\x18\x03 \x03(\t\x12\x13\n\x0blocation_id\x18\x04 \x01(\t\x12\x0f\n\x07team_id\x18\x05 \x01(\t\x12<\n\ninflations\x18\x06 \x01(\x0b\x32(.services.common.containers.InflationsV1\x12\x12\n\nmanager_id\x18\x07 \x01(\t\"Z\n\nResponseV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x38\n\x08profiles\x18\x02 \x03(\x0b\x32&.services.profile.containers.ProfileV1B<\n:com.rhlabs.protobufs.services.profile.actions.get_profiles')
   ,
-  dependencies=[protobufs.services.common.containers_pb2.DESCRIPTOR,protobufs.services.profile.containers_pb2.DESCRIPTOR,])
+  dependencies=[protobufs_dot_services_dot_common_dot_containers__pb2.DESCRIPTOR,protobufs_dot_services_dot_profile_dot_containers__pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 
@@ -77,6 +78,13 @@ _REQUESTV1 = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
+    _descriptor.FieldDescriptor(
+      name='manager_id', full_name='services.profile.actions.get_profiles.RequestV1.manager_id', index=6,
+      number=7, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
   ],
   extensions=[
   ],
@@ -85,11 +93,12 @@ _REQUESTV1 = _descriptor.Descriptor(
   ],
   options=None,
   is_extendable=False,
+  syntax='proto2',
   extension_ranges=[],
   oneofs=[
   ],
   serialized_start=186,
-  serialized_end=346,
+  serialized_end=366,
 )
 
 
@@ -122,15 +131,16 @@ _RESPONSEV1 = _descriptor.Descriptor(
   ],
   options=None,
   is_extendable=False,
+  syntax='proto2',
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=348,
-  serialized_end=438,
+  serialized_start=368,
+  serialized_end=458,
 )
 
-_REQUESTV1.fields_by_name['inflations'].message_type = protobufs.services.common.containers_pb2._INFLATIONSV1
-_RESPONSEV1.fields_by_name['profiles'].message_type = protobufs.services.profile.containers_pb2._PROFILEV1
+_REQUESTV1.fields_by_name['inflations'].message_type = protobufs_dot_services_dot_common_dot_containers__pb2._INFLATIONSV1
+_RESPONSEV1.fields_by_name['profiles'].message_type = protobufs_dot_services_dot_profile_dot_containers__pb2._PROFILEV1
 DESCRIPTOR.message_types_by_name['RequestV1'] = _REQUESTV1
 DESCRIPTOR.message_types_by_name['ResponseV1'] = _RESPONSEV1
 

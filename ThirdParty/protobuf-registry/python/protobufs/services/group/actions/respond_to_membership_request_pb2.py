@@ -18,6 +18,7 @@ _sym_db = _symbol_database.Default()
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='protobufs/services/group/actions/respond_to_membership_request.proto',
   package='services.group.actions.respond_to_membership_request',
+  syntax='proto2',
   serialized_pb=_b('\nDprotobufs/services/group/actions/respond_to_membership_request.proto\x12\x34services.group.actions.respond_to_membership_request\"\xd1\x01\n\tRequestV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x12\n\nrequest_id\x18\x02 \x01(\t\x12`\n\x06\x61\x63tion\x18\x03 \x01(\x0e\x32P.services.group.actions.respond_to_membership_request.RequestV1.ResponseActionV1\x12\x0f\n\x07message\x18\x04 \x01(\t\")\n\x10ResponseActionV1\x12\x0b\n\x07\x41PPROVE\x10\x00\x12\x08\n\x04\x44\x45NY\x10\x01\" \n\nResponseV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x42K\nIcom.rhlabs.protobufs.services.group.actions.respond_to_membership_request')
 )
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
@@ -91,6 +92,7 @@ _REQUESTV1 = _descriptor.Descriptor(
   ],
   options=None,
   is_extendable=False,
+  syntax='proto2',
   extension_ranges=[],
   oneofs=[
   ],
@@ -121,6 +123,7 @@ _RESPONSEV1 = _descriptor.Descriptor(
   ],
   options=None,
   is_extendable=False,
+  syntax='proto2',
   extension_ranges=[],
   oneofs=[
   ],

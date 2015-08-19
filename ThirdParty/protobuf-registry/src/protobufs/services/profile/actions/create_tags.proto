@@ -1,3 +1,4 @@
+syntax = "proto2";
 package services.profile.actions.create_tags;
 
 // GENERATED OPTIONS FOR: JAVA
