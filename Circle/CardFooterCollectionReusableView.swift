@@ -41,6 +41,7 @@ class CardFooterCollectionReusableView: CircleCollectionReusableView {
         card = nil
         footerImageView.hidden = true
         footerButton.contentEdgeInsets = UIEdgeInsetsMake(0.0, 15.0, 0.0, 0.0)
+        footerButton.enabled = true
     }
     
     override func awakeFromNib() {
@@ -54,6 +55,10 @@ class CardFooterCollectionReusableView: CircleCollectionReusableView {
         footerImageView.hidden = true
         footerButton.setTitleColor(UIColor.appPrimaryTextColor(), forState: .Normal)
         footerButton.titleLabel?.font = UIFont.appPrimaryTextFont()
+    }
+    
+    func setButtonEnabled(enabled: Bool) {
+        footerButton.enabled = enabled
     }
     
     func setButtonTitle(title: String) {

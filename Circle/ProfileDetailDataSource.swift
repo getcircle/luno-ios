@@ -283,26 +283,50 @@ class ProfileDetailDataSource: CardDataSource {
             
             switch card.subType {
             case .Teams:
-                footerView.setButtonTitle(
-                    NSString(format: NSLocalizedString(
-                            "With %d Peers",
-                            comment: "Text indicating number of peers a person works with"
-                        ),
-                        self.peers?.count ?? 0
-                    ) as String
-                )
+                let peerCount = self.peers?.count ?? 0
+                var buttonTitle = NSString(format: NSLocalizedString(
+                        "With %d Peers",
+                        comment: "Text indicating number of peers a person works with"
+                    ),
+                    peerCount
+                ) as String
+
+                if peerCount == 1 {
+                    buttonTitle = NSLocalizedString(
+                        "With 1 Peer",
+                        comment: "Text indicating one other person works with the user"
+                    )
+                }
+                
+                if peerCount == 0 {
+                    footerView.setButtonEnabled(false)
+                }
+                
+                footerView.setButtonTitle(buttonTitle)
                 footerView.setImage(UIImage(named: "FeedPeers"))
                 footerView.setNextImageHidden(true)
                 
             case .ManagedTeams:
-                footerView.setButtonTitle(
-                    NSString(format: NSLocalizedString(
-                            "%d Direct Reports",
-                            comment: "Text indicating number of direct reports a person has"
-                        ),
-                        self.directReports?.count ?? 0
-                    ) as String
-                )
+                let directReportsCount = self.directReports?.count ?? 0
+                var buttonTitle = NSString(format: NSLocalizedString(
+                        "%d Direct Reports",
+                        comment: "Text indicating number of direct reports a person has"
+                    ),
+                    directReportsCount
+                ) as String
+                
+                if directReportsCount == 1 {
+                    buttonTitle = NSLocalizedString(
+                        "1 Direct Report",
+                        comment: "Text indicating this person has one direct report"
+                    )
+                }
+                
+                if directReportsCount == 0 {
+                    footerView.setButtonEnabled(false)
+                }
+
+                footerView.setButtonTitle(buttonTitle)
                 footerView.setImage(UIImage(named: "FeedPeers"))
                 footerView.setNextImageHidden(true)
 
