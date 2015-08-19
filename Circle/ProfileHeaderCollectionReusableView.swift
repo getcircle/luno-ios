@@ -105,7 +105,7 @@ class ProfileHeaderCollectionReusableView: DetailHeaderCollectionReusableView {
         }
         
         var titleText = userProfile.title
-        if let userTeam = userTeam {
+        if let userTeam = userTeam where count(userTeam.name) > 0 {
             titleText += " (" + userTeam.name + ")"
         }
         
