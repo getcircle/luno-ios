@@ -178,17 +178,6 @@ class ProfileDetailViewController:
         }
     }
 
-    // MARK: - EditProfileDelegate
-    
-    func didFinishEditingProfile() {
-        if let loggedInUserProfile = AuthViewController.getLoggedInUserProfile() {
-            if profile.id == loggedInUserProfile.id {
-                profile = loggedInUserProfile
-                reloadData()
-            }
-        }
-    }
-
     // MARK: - Gesture Recognizers
     
     func profileImageTapped(recognizer: UIGestureRecognizer) {

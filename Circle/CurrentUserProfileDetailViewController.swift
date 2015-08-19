@@ -49,6 +49,19 @@ class CurrentUserProfileDetailViewController: ProfileDetailViewController,
     override func viewDidLoad() {
         super.viewDidLoad()
         registerFullLifecycleNotifications()
+        configureNavigationBar()
+    }
+    
+    // MARK: - Configuration
+    
+    private func configureNavigationBar() {
+        let rightBarButtonItem = UIBarButtonItem(
+            title: "Edit", 
+            style: .Plain, 
+            target: self, 
+            action: "editTitleTapped:"
+        )
+        navigationItem.rightBarButtonItem = rightBarButtonItem
     }
 
     // MARK: - Helpers
@@ -90,6 +103,14 @@ class CurrentUserProfileDetailViewController: ProfileDetailViewController,
         let welcomeVC = WelcomeViewController(nibName: "WelcomeViewController", bundle: nil)
         let onboardingNavigationController = UINavigationController(rootViewController: welcomeVC)
         navigationController?.presentViewController(onboardingNavigationController, animated: true, completion: nil)
+    }
+    
+    func editTitleTapped(sender: AnyObject) {
+        let editTitleVC = EditTitleViewController(nibName: "EditTitleViewController", bundle: nil)
+        editTitleVC.profile = profile
+        editTitleVC.editProfileDelegate = self
+        let editTitleNavController = UINavigationController(rootViewController: editTitleVC)
+        navigationController?.presentViewController(editTitleNavController, animated: true, completion: nil)
     }
     
     // MARK: - Notifications
@@ -153,6 +174,17 @@ class CurrentUserProfileDetailViewController: ProfileDetailViewController,
                         }
                     }
                 }
+            }
+        }
+    }
+    
+    // MARK: - EditProfileDelegate
+    
+    func didFinishEditingProfile() {
+        if let loggedInUserProfile = AuthViewController.getLoggedInUserProfile() {
+            if profile.id == loggedInUserProfile.id {
+                profile = loggedInUserProfile
+                reloadData()
             }
         }
     }
