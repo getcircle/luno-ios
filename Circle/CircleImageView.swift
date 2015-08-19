@@ -232,7 +232,13 @@ class CircleImageView: UIImageView {
                     })
                 }
             },
-            failure: nil
+            failure: { (imageURLRequest, response, error) -> Void in
+                if let response = response {
+                    println("Response \(response.statusCode) \(response)")
+                }
+                
+                println("failed to fetch image for URL: \(imageURL) error: \(error?.localizedDescription)")
+            }
         )
     }
     
@@ -269,14 +275,14 @@ class CircleImageView: UIImageView {
     }
     
     private func addImageLabelForLocation(location: Services.Organization.Containers.LocationV1) {
-        if self.addLabelIfImageLoadingFails {
+        if self.addLabelIfImageLoadingFails && count(location.name) > 0 {
             self.imageText = location.name[0]
             self.imageLabel.backgroundColor = UIColor.appProfileImageBackgroundColor()
         }
     }
 
     private func addImageLabelForTeam(team: Services.Organization.Containers.TeamV1) {
-        if self.addLabelIfImageLoadingFails {
+        if self.addLabelIfImageLoadingFails && count(team.name) > 0 {
             self.imageText = team.name[0]
             self.imageLabel.backgroundColor = UIColor.appTeamHeaderBackgroundColor(team)
         }
