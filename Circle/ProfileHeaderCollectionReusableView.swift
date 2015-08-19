@@ -85,28 +85,34 @@ class ProfileHeaderCollectionReusableView: DetailHeaderCollectionReusableView {
     }
 
     func setProfile(
-        userProfile: Services.Profile.Containers.ProfileV1, 
-        location userLocation: Services.Organization.Containers.LocationV1?
+        userProfile: Services.Profile.Containers.ProfileV1,
+        location userLocation: Services.Organization.Containers.LocationV1?,
+        team userTeam: Services.Organization.Containers.TeamV1?
     ) {
         var hireDateText = "At "
         if let organization = AuthViewController.getLoggedInUserOrganization() {
             hireDateText += organization.name
         }
         
-        nameLabel.text = userProfile.nameWithNickName()
-        nameNavLabel.text = nameLabel.text
-        titleLabel.text = userProfile.title
-        titleNavLabel.text = titleLabel.text
         if userProfile.hasHireDate && userProfile.hireDate.trimWhitespace() != "" {
             hireDateLabel.text = hireDateText + " since " + NSDateFormatter.sharedAnniversaryFormatter.stringFromDate(
                 userProfile.hireDate.toDate()!
             )
         }
-        
+
         if let userLocation = userLocation {
             containerView.backgroundColor = UIColor.clearColor()
         }
         
+        var titleText = userProfile.title
+        if let userTeam = userTeam {
+            titleText += " (" + userTeam.name + ")"
+        }
+        
+        nameLabel.text = userProfile.nameWithNickName()
+        nameNavLabel.text = nameLabel.text
+        titleLabel.text = titleText
+        titleNavLabel.text = titleLabel.text
         var hasProfileImageChanged = profile?.imageUrl != userProfile.imageUrl
         profile = userProfile
         profileImage.imageProfileIdentifier = userProfile.id

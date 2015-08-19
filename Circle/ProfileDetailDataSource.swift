@@ -345,6 +345,6 @@ class ProfileDetailDataSource: CardDataSource {
     }
     
     private func setDataInHeader() {
-        profileHeaderView?.setProfile(profile, location: location)
+        profileHeaderView?.setProfile(profile, location: location, team: team)
     }
 }
