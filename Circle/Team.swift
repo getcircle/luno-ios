@@ -65,6 +65,9 @@ extension Services.Organization.Containers.TeamV1 {
         if count(name) > 0 {
             return name
         }
+        else if count(displayName) > 0 {
+            return displayName
+        }
         else if let manager = manager where count(manager.firstName) > 0 {
             return manager.firstName + "'s Nameless Team"
         }
