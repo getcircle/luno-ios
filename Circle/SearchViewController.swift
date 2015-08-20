@@ -482,14 +482,12 @@ class SearchViewController: UIViewController,
             }
             
         case .ReportsToPerson:
-            // TODO add support for this
-            break
-//            if let profile = searchAction.underlyingObject as? Services.Profile.Containers.ProfileV1 {
-//                let viewController = ProfilesViewController()
-//                (viewController.dataSource as! ProfilesDataSource).configureForDirectReports(profile)
-//                viewController.title = profile.firstName + "'s Direct Reports"
-//                navigationController?.pushViewController(viewController, animated: true)
-//            }
+            if let profile = searchAction.underlyingObject as? Services.Profile.Containers.ProfileV1 {
+                let viewController = ProfilesViewController()
+                (viewController.dataSource as! ProfilesDataSource).configureForDirectReports(profile)
+                viewController.title = profile.firstName + "'s Direct Reports"
+                navigationController?.pushViewController(viewController, animated: true)
+            }
             
         case .MembersOfTeam:
             if let team = searchAction.underlyingObject as? Services.Organization.Containers.TeamV1 {

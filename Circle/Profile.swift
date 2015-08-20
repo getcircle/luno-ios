@@ -76,6 +76,16 @@ extension Services.Profile.Actions {
     }
     
     static func getProfiles(
+        #managerId: String,
+        paginatorBuilder: Soa.PaginatorV1Builder? = nil,
+        completionHandler: GetProfilesCompletionHandler?
+    ) {
+        let requestBuilder = Services.Profile.Actions.GetProfiles.RequestV1.builder()
+        requestBuilder.managerId = managerId
+        self.getProfiles(requestBuilder, paginatorBuilder: paginatorBuilder, completionHandler: completionHandler)
+    }
+
+    static func getProfiles(
         teamId: String,
         paginatorBuilder: Soa.PaginatorV1Builder? = nil,
         completionHandler: GetProfilesCompletionHandler?

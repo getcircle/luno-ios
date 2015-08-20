@@ -41,6 +41,12 @@ class ProfilesDataSource: CardDataSource {
         searchAttribute = .TeamId
         searchAttributeValue = teamId
     }
+    
+    func configureForDirectReports(profile: Services.Profile.Containers.ProfileV1) {
+        let requestBuilder = Services.Profile.Actions.GetProfiles.RequestV1.builder()
+        requestBuilder.managerId = profile.id
+        configureForParameters(requestBuilder)
+    }
 
     func configureForOrganization() {
         let requestBuilder = Services.Profile.Actions.GetProfiles.RequestV1.builder()
