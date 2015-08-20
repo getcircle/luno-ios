@@ -122,11 +122,6 @@ class ProfilesDataSource: CardDataSource {
                 self.card.addContent(content: profiles)
                 self.handleNewContentAddedToCard(self.card, newContent: profiles)
             }
-//            else if let profiles = directReportsResponse?.profiles {
-//                self.profiles.extend(profiles)
-//                self.card.addContent(content: profiles)
-//                self.handleNewContentAddedToCard(self.card, newContent: profiles)
-//            }
             else if let members = membersResponse?.members {
                 var profiles = Array<Services.Profile.Containers.ProfileV1>()
                 for member in members {

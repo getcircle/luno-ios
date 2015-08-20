@@ -192,7 +192,7 @@ class TeamDetailViewController:
                 viewController.dataSource.setInitialData(
                     content: card.allContent,
                     ofType: nil,
-                    nextRequest: nil
+                    nextRequest: teamDetailDataSource.profilesNextRequest
                 )
                 viewController.title = "People in " + teamDetailDataSource.team.getName()
                 (viewController.dataSource as! ProfilesDataSource).configureForTeam(teamDetailDataSource.team.id, setupOnlySearch: true)
@@ -203,7 +203,7 @@ class TeamDetailViewController:
                 viewController.dataSource.setInitialData(
                     content: card.allContent,
                     ofType: nil,
-                    nextRequest: teamDetailDataSource.profilesNextRequest
+                    nextRequest: nil
                 )
                 viewController.title = "Teams in " + teamDetailDataSource.team.getName()
                 (viewController.dataSource as! ProfilesDataSource).configureForTeam(teamDetailDataSource.team.id, setupOnlySearch: true)
