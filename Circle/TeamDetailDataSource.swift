@@ -18,6 +18,7 @@ class TeamDetailDataSource: CardDataSource {
 
     private(set) var managerProfile: Services.Profile.Containers.ProfileV1!
     private(set) var profiles = Array<Services.Profile.Containers.ProfileV1>()
+    private(set) var profilesNextRequest: Soa.ServiceRequestV1?
     private(set) var teams = Array<Services.Organization.Containers.TeamV1>()
     
     private let sectionInset = UIEdgeInsetsMake(0.0, 0.0, 25.0, 0.0)
@@ -56,7 +57,6 @@ class TeamDetailDataSource: CardDataSource {
                     storedError = error
                 }
                 else {
-                    // TODO we should safely unwrap these better to handle cases where we don't have data
                     if let childTeams = childTeams {
                         self.teams = childTeams
                     }
@@ -78,6 +78,10 @@ class TeamDetailDataSource: CardDataSource {
                     if let profiles = profiles {
                         // TODO update whatever counts there are of this
                         self.profiles = profiles
+                    }
+                    
+                    if let nextRequest = nextRequest {
+                        self.profilesNextRequest = nextRequest
                     }
                 }
                 dispatch_group_leave(actionsGroup)
@@ -215,7 +219,7 @@ class TeamDetailDataSource: CardDataSource {
             let membersCard = Card(
                 cardType: .Profiles,
                 subType: .Members,
-                title: membersCardTitle + " (" + String(profiles.count) + ")"
+                title: membersCardTitle + " (" + String(team.profileCount) + ")"
             )
             membersCard.showContentCount = false
             membersCard.addHeader(headerClass: sectionHeaderClass)
@@ -286,7 +290,7 @@ class TeamDetailDataSource: CardDataSource {
                             "View all %d People",
                             comment: "Title of the button to see all the people"
                         ),
-                        profiles.count
+                        team.profileCount
                     ) as String
                 )
 
