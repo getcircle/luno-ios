@@ -47,36 +47,26 @@ class TextData {
             if let updatedDate = NSDateFormatter.dateFromTimestampString(timestamp),
                 calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)
             {
-
-                switch (type) {
+                let unitFlags = NSCalendarUnit.CalendarUnitDay | NSCalendarUnit.CalendarUnitHour | NSCalendarUnit.CalendarUnitMinute
+                let diffComponents = calendar.components(
+                    unitFlags,
+                    fromDate: updatedDate,
+                    toDate: today,
+                    options: nil
+                )
                 
-                case .TeamStatus, .ProfileStatus:
-                    let unitFlags = NSCalendarUnit.CalendarUnitDay | NSCalendarUnit.CalendarUnitHour | NSCalendarUnit.CalendarUnitMinute
-                    let diffComponents = calendar.components(
-                        unitFlags,
-                        fromDate: updatedDate,
-                        toDate: today,
-                        options: nil
-                    )
-                    
-                    if diffComponents.day > 0 {
-                        formattedTimestamp += String(diffComponents.day) + "d "
-                    }
-                    
-                    if diffComponents.hour > 0 {
-                        formattedTimestamp += String(diffComponents.hour) + "h "
-                    }
-                    else if diffComponents.day == 0 {
-                        let minuteString = diffComponents.minute == 0 ? "<1" : String(diffComponents.minute)
-                        formattedTimestamp += minuteString + "m "
-                    }
-                    formattedTimestamp += "ago"
-                    
-                    
-                case .TeamDescription, .LocationDescription:
-                    formattedTimestamp += NSDateFormatter.sharedBirthdayFormatter.stringFromDate(updatedDate)
-                    
+                if diffComponents.day > 0 {
+                    formattedTimestamp += String(diffComponents.day) + "d "
                 }
+                
+                if diffComponents.hour > 0 {
+                    formattedTimestamp += String(diffComponents.hour) + "h "
+                }
+                else if diffComponents.day == 0 {
+                    let minuteString = diffComponents.minute == 0 ? "<1" : String(diffComponents.minute)
+                    formattedTimestamp += minuteString + "m "
+                }
+                formattedTimestamp += "ago"
 
                 if let author = authorProfile {
                     formattedTimestamp += " by " + author.fullName
