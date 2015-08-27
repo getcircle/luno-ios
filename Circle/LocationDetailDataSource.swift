@@ -89,7 +89,7 @@ class LocationDetailDataSource: CardDataSource {
                 profileHeader.editImageButtonDelegate = editImageButtonDelegate
                 profileHeader.setEditImageButtonHidden(false)
             }
-            profileHeader.setLocations(location)
+            profileHeader.setLocation(location)
             profileHeaderView = profileHeader
         }
         
@@ -121,7 +121,7 @@ class LocationDetailDataSource: CardDataSource {
             headerClass: ProfileHeaderCollectionReusableView.self,
             headerSize: CGSizeMake(
                 ProfileHeaderCollectionReusableView.width,
-                ProfileHeaderCollectionReusableView.heightWithoutSecondaryInfo
+                ProfileHeaderCollectionReusableView.height
             )
         )
         

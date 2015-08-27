@@ -34,7 +34,7 @@ class LocationDetailViewController:
         dataSource.cardFooterDelegate = self
         
         collectionView.delegate = delegate
-        (layout as! StickyHeaderCollectionViewLayout).headerHeight = ProfileHeaderCollectionReusableView.heightWithoutSecondaryInfo
+        (layout as! StickyHeaderCollectionViewLayout).headerHeight = ProfileHeaderCollectionReusableView.height
         (dataSource as! LocationDetailDataSource).editImageButtonDelegate = self
         (dataSource as! LocationDetailDataSource).profileCellDelegate = self
         super.configureCollectionView()
@@ -205,7 +205,7 @@ class LocationDetailViewController:
     
     internal override func reloadHeader() {
         if let dataSource = dataSource as? LocationDetailDataSource, headerView = dataSource.profileHeaderView {
-            headerView.setLocations(dataSource.location)
+            headerView.setLocation(dataSource.location)
         }
     }
     

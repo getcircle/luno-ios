@@ -64,20 +64,13 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ces-e9-sN5" userLabel="DaylightIndicatorImage">
-                            <rect key="frame" x="144" y="198" width="10" height="11"/>
+                            <rect key="frame" x="132" y="226" width="10" height="11"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="10" id="HbT-Wp-ECu"/>
                                 <constraint firstAttribute="height" constant="11" id="heA-l8-TSe"/>
                             </constraints>
                         </imageView>
-                        <imageView hidden="YES" userInteractionEnabled="NO" alpha="0.0" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hdG-v4-wEq" userLabel="DaylightIndicatorNavImage">
-                            <rect key="frame" x="194" y="241" width="10" height="11"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="11" id="ISW-Qi-9Tg"/>
-                                <constraint firstAttribute="width" constant="10" id="Kol-ug-wct"/>
-                            </constraints>
-                        </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="At RH Labs since January 2015" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tG1-Nl-XRF">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="At RH Labs since January 2015" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tG1-Nl-XRF" userLabel="SecondaryInfoLabel">
                             <rect key="frame" x="147" y="222" width="180" height="18"/>
                             <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="13"/>
                             <color key="textColor" red="0.78431372549019607" green="0.78431372549019607" blue="0.78431372549019607" alpha="1" colorSpace="calibratedRGB"/>
@@ -91,16 +84,16 @@
                         <constraint firstAttribute="centerX" secondItem="tG1-Nl-XRF" secondAttribute="centerX" id="4s5-Wj-RLF"/>
                         <constraint firstAttribute="trailing" secondItem="zJL-k5-Ada" secondAttribute="trailing" constant="30" id="5H5-fB-W0v"/>
                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="1Tu-Zx-9yR" secondAttribute="trailing" constant="15" id="5He-Dz-wX2"/>
-                        <constraint firstItem="hdG-v4-wEq" firstAttribute="centerY" secondItem="Raz-vM-IgD" secondAttribute="centerY" id="8yQ-sR-Isl"/>
                         <constraint firstItem="Raz-vM-IgD" firstAttribute="centerX" secondItem="zJL-k5-Ada" secondAttribute="centerX" id="9Y0-TL-xAN"/>
                         <constraint firstItem="GGm-ME-NAZ" firstAttribute="centerY" secondItem="ces-e9-sN5" secondAttribute="centerY" id="9eg-Jw-EfM"/>
                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="tG1-Nl-XRF" secondAttribute="trailing" constant="10" id="A3a-pG-cI9"/>
                         <constraint firstAttribute="bottom" secondItem="Raz-vM-IgD" secondAttribute="bottom" constant="6" id="Cb3-Ht-JcU"/>
                         <constraint firstAttribute="centerY" secondItem="kX0-a4-Q8w" secondAttribute="centerY" constant="20" id="Cq9-g3-mi2"/>
+                        <constraint firstItem="tG1-Nl-XRF" firstAttribute="leading" secondItem="ces-e9-sN5" secondAttribute="trailing" constant="5" id="FHY-Pl-hB4"/>
                         <constraint firstAttribute="bottom" secondItem="zJL-k5-Ada" secondAttribute="bottom" constant="22" id="Gpu-y0-Hjt"/>
                         <constraint firstItem="Raz-vM-IgD" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="JUx-bd-ahe" secondAttribute="leading" constant="40" id="HsL-an-SSV"/>
                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="GGm-ME-NAZ" secondAttribute="trailing" constant="15" id="L4T-g7-5tl"/>
-                        <constraint firstItem="Raz-vM-IgD" firstAttribute="leading" secondItem="hdG-v4-wEq" secondAttribute="trailing" constant="5" id="Pev-Fs-dvK"/>
+                        <constraint firstItem="tG1-Nl-XRF" firstAttribute="centerY" secondItem="ces-e9-sN5" secondAttribute="centerY" id="P2p-lu-kaP"/>
                         <constraint firstItem="1Tu-Zx-9yR" firstAttribute="top" secondItem="kX0-a4-Q8w" secondAttribute="bottom" constant="10" id="b8p-d8-vRT"/>
                         <constraint firstItem="GGm-ME-NAZ" firstAttribute="centerX" secondItem="1Tu-Zx-9yR" secondAttribute="centerX" id="beT-MI-PAr"/>
                         <constraint firstAttribute="centerX" secondItem="1Tu-Zx-9yR" secondAttribute="centerX" id="dFv-F5-py9"/>
@@ -114,6 +107,12 @@
                         <constraint firstItem="kX0-a4-Q8w" firstAttribute="centerY" secondItem="xmj-MC-afc" secondAttribute="centerY" id="yju-DX-RIW"/>
                         <constraint firstItem="GGm-ME-NAZ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="JUx-bd-ahe" secondAttribute="leading" constant="15" id="zVE-Z1-qvJ"/>
                     </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="279-2X-42o"/>
+                            <exclude reference="9eg-Jw-EfM"/>
+                        </mask>
+                    </variation>
                 </view>
             </subviews>
             <constraints>
@@ -130,12 +129,11 @@
                 <outlet property="backgroundImageView" destination="65x-XU-UUc" id="N2p-Zs-1AQ"/>
                 <outlet property="containerView" destination="JUx-bd-ahe" id="YQJ-86-Iry"/>
                 <outlet property="daylightIndicatorImage" destination="ces-e9-sN5" id="9Fp-Jg-ErA"/>
-                <outlet property="daylightIndicatorNavImage" destination="hdG-v4-wEq" id="gob-8Z-vmw"/>
-                <outlet property="hireDateLabel" destination="tG1-Nl-XRF" id="R4w-pe-O76"/>
                 <outlet property="nameLabel" destination="1Tu-Zx-9yR" id="dCN-I3-cEP"/>
                 <outlet property="nameNavLabel" destination="zJL-k5-Ada" id="fZN-PC-Fce"/>
                 <outlet property="profileImage" destination="kX0-a4-Q8w" id="idA-m8-Iy4"/>
                 <outlet property="profileImageCenterYConstraint" destination="Cq9-g3-mi2" id="1r7-Vb-ruU"/>
+                <outlet property="secondaryInfoLabel" destination="tG1-Nl-XRF" id="VMJ-PH-Uvo"/>
                 <outlet property="titleLabel" destination="GGm-ME-NAZ" id="FRS-1Y-xvS"/>
                 <outlet property="titleNavLabel" destination="Raz-vM-IgD" id="4tA-Yx-E8u"/>
                 <outlet property="verifiedProfileButton" destination="xmj-MC-afc" id="JX3-5E-uLr"/>

@@ -21,11 +21,10 @@ class ProfileHeaderCollectionReusableView: DetailHeaderCollectionReusableView {
     @IBOutlet weak private(set) var profileImageCenterYConstraint: NSLayoutConstraint!
     @IBOutlet weak private(set) var verifiedProfileButton: UIButton!
     @IBOutlet weak private(set) var daylightIndicatorImage: UIImageView!
-    @IBOutlet weak private(set) var daylightIndicatorNavImage: UIImageView!
     
     // Secondary Info
     
-    @IBOutlet weak private(set) var hireDateLabel: UILabel!
+    @IBOutlet weak private(set) var secondaryInfoLabel: UILabel!
     
     private(set) var visualEffectView: UIVisualEffectView?
 
@@ -50,7 +49,7 @@ class ProfileHeaderCollectionReusableView: DetailHeaderCollectionReusableView {
 
         // Initialization code
         addBlurEffect()
-        secondaryViews.extend([hireDateLabel])
+        secondaryViews.extend([secondaryInfoLabel])
         configureLabels()
         configureContainerView()
         configureVerifiedProfileButton()
@@ -60,7 +59,7 @@ class ProfileHeaderCollectionReusableView: DetailHeaderCollectionReusableView {
     
     private func configureLabels() {
         
-        for label in [nameLabel, nameNavLabel, titleLabel, titleNavLabel, hireDateLabel] {
+        for label in [nameLabel, nameNavLabel, titleLabel, titleNavLabel, secondaryInfoLabel] {
             label.text = ""
         }
     }
@@ -90,7 +89,7 @@ class ProfileHeaderCollectionReusableView: DetailHeaderCollectionReusableView {
         team userTeam: Services.Organization.Containers.TeamV1?
     ) {
         if let hireDateString = userProfile.getFormattedHireDate() {
-            hireDateLabel.text = hireDateString
+            secondaryInfoLabel.text = hireDateString
         }
 
         if let userLocation = userLocation {
@@ -126,21 +125,31 @@ class ProfileHeaderCollectionReusableView: DetailHeaderCollectionReusableView {
         self.backgroundImageView.setLargerProfileImage(userProfile)
     }
 
-    func setLocations(office: Services.Organization.Containers.LocationV1) {
-        hideSecondaryViews()
+    func setLocation(office: Services.Organization.Containers.LocationV1) {
         containerView.backgroundColor = UIColor.clearColor()
         let officeName = office.officeName()
-        let officeStateAndCountry = (office.hasRegion ? office.region : "") + ", " + office.countryCode
+        var officeTitleText = office.cityRegion()
+        if office.profileCount == 1 {
+            officeTitleText += " (" +
+                NSLocalizedString("1 Person", comment: "Title indicating there is one person at an office") +
+            ")"
+        }
+        else {
+            officeTitleText += " (" + (NSString(format:
+                NSLocalizedString("%d People", comment: "Title indicating there are %d people at an office"),
+                office.profileCount
+            ) as String) + ") "
+        }
+        
         nameLabel.text = officeName
         nameNavLabel.text = officeName
-        titleLabel.text = office.officeCurrentDateAndTimeLabel()
-        titleNavLabel.text = office.officeCurrentTimeLabel(nil)
+        titleLabel.text = officeTitleText
+        titleNavLabel.text = officeTitleText
+        secondaryInfoLabel.text = office.officeCurrentDateAndTimeLabel()
         if let indicatorImage = office.officeDaylightIndicator() {
             daylightIndicatorImage.alpha = 1.0
             daylightIndicatorImage.image = indicatorImage
-            daylightIndicatorImage.tintColor = titleLabel.textColor
-            daylightIndicatorNavImage.image = indicatorImage
-            daylightIndicatorNavImage.tintColor = titleNavLabel.textColor
+            daylightIndicatorImage.tintColor = secondaryInfoLabel.textColor
         }
         
         self.profileImage.contentMode = .ScaleAspectFill
@@ -228,7 +237,7 @@ class ProfileHeaderCollectionReusableView: DetailHeaderCollectionReusableView {
             }
             
             let delta: CGFloat = 40.0
-            let navViews = Set([nameNavLabel, titleNavLabel, daylightIndicatorNavImage])
+            let navViews = Set([nameNavLabel, titleNavLabel] as [UIView])
             let excludedViews = Set([profileImage, verifiedProfileButton])
             for view: UIView in (containerView.subviews as! [UIView]) {
                 if excludedViews.contains(view) {
@@ -254,7 +263,6 @@ class ProfileHeaderCollectionReusableView: DetailHeaderCollectionReusableView {
             let otherViewsAlpha = max(0.0, 1.0 - -contentOffset.y/120.0)
             nameNavLabel.alpha = 0.0
             titleNavLabel.alpha = 0.0
-            daylightIndicatorNavImage.alpha = titleNavLabel.alpha
             visualEffectView?.alpha = otherViewsAlpha
             containerView.alpha = otherViewsAlpha
             editImageButton?.alpha = otherViewsAlpha
