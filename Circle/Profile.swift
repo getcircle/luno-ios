@@ -313,7 +313,7 @@ extension Services.Profile.Containers.ProfileV1 {
                     if diffComponents.month == 0 && diffComponents.year == 0 {
                         println(diffComponents.day)
                         if diffComponents.day < 7 {
-                            formattedHireDate = ["\u{2013} New at " + organization.name + ". Say hi!"]
+                            formattedHireDate = ["\u{2B50} New at " + organization.name + ". Say hi!"]
                         }
                         else if diffComponents.day / 7 == 1 {
                             formattedHireDate.append(
