@@ -123,6 +123,13 @@ class CurrentUserProfileDetailViewController: ProfileDetailViewController,
             name: ProfileServiceNotifications.onProfileUpdatedNotification,
             object: nil
         )
+        
+        NSNotificationCenter.defaultCenter().addObserver(
+            self,
+            selector: "onProfileUpdated:",
+            name: AuthNotifications.onProfileChangedNotification,
+            object: nil
+        )
     }
     
     // MARK: - Notification handlers
