@@ -205,6 +205,7 @@ class VerifyProfileViewController:
                 self.addImageActionSheet = nil
             })
         }
+        
         checkDataAndEnableNext()
     }
     

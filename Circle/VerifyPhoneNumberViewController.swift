@@ -393,8 +393,16 @@ class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate {
     }
     
     private func verificationComplete() {
-        let verifyProfileVC = VerifyProfileViewController(nibName: "VerifyProfileViewController", bundle: nil)
-        navigationController?.setViewControllers([verifyProfileVC], animated: true)
+        if let loggedInUserProfile = AuthViewController.getLoggedInUserProfile()
+            where (!loggedInUserProfile.hasImageUrl || loggedInUserProfile.imageUrl.trimWhitespace() == "")
+        {
+            let verifyProfileVC = VerifyProfileViewController(nibName: "VerifyProfileViewController", bundle: nil)
+            navigationController?.setViewControllers([verifyProfileVC], animated: true)
+        }
+        else {
+            let notificationsVC = NotificationsViewController(nibName: "NotificationsViewController", bundle: nil)
+            navigationController?.setViewControllers([notificationsVC], animated: true)
+        }
     }
     
     func skipTapped(sender: AnyObject) {
