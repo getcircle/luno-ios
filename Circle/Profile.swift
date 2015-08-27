@@ -260,4 +260,80 @@ extension Services.Profile.Containers.ProfileV1 {
         return nil
     }
     
+    func getFormattedHireDate() -> String? {
+        if hasHireDate && hireDate.trimWhitespace() != "" {
+            if let hireDate = hireDate.toDate(), organization = AuthViewController.getLoggedInUserOrganization() {
+
+                // Hyphen
+                var formattedHireDate = ["\u{2013} at " + organization.name + " for"]
+                var done = false
+                
+                let today = NSDate()
+                if let calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian) {
+                    let unitFlags = NSCalendarUnit.CalendarUnitDay | NSCalendarUnit.CalendarUnitYear | NSCalendarUnit.CalendarUnitMonth
+                    let diffComponents = calendar.components(
+                        unitFlags,
+                        fromDate: hireDate,
+                        toDate: today,
+                        options: nil
+                    )
+                    
+                    // Only show year if its greater than a month
+                    if diffComponents.year == 1 {
+                        formattedHireDate.append(
+                            NSLocalizedString("1 year", comment: "String indicating duration of 1 year")
+                        )
+                    }
+                    else if diffComponents.year > 1 {
+                        formattedHireDate.append(NSString(
+                                format: NSLocalizedString("%d years", comment: "String indicating duration of %d years"),
+                                diffComponents.year
+                            ) as String
+                        )
+                    }
+                    
+                    // Show months between 1 to 3 years
+                    if (diffComponents.year == 0 || diffComponents.year < 3) && diffComponents.month > 0 {
+                        if diffComponents.month == 1 {
+                            formattedHireDate.append(
+                                NSLocalizedString("1 month", comment: "String indicating duration of 1 month")
+                            )
+                        }
+                        else if diffComponents.month < 12 {
+                            formattedHireDate.append(NSString(
+                                    format: NSLocalizedString("%d months", comment: "String indicating duration of %d months"),
+                                    diffComponents.month
+                                ) as String
+                            )
+                        }
+                    }
+                    
+                    // Show "New at company. Say hi!" for seven days 
+                    // and then duration in weeks
+                    if diffComponents.month == 0 && diffComponents.year == 0 {
+                        println(diffComponents.day)
+                        if diffComponents.day < 7 {
+                            formattedHireDate = ["\u{2013} New at " + organization.name + ". Say hi!"]
+                        }
+                        else if diffComponents.day / 7 == 1 {
+                            formattedHireDate.append(
+                                NSLocalizedString("1 week", comment: "String indicating duration of 1 week")
+                            )
+                        }
+                        else {
+                            formattedHireDate.append(NSString(
+                                    format: NSLocalizedString("%d weeks", comment: "String indicating duration of %d weeks"),
+                                    diffComponents.day / 7
+                                ) as String
+                            )
+                        }
+                    }
+                    
+                    return " ".join(formattedHireDate)
+                }
+            }
+        }
+        
+        return nil
+    }    
 }

@@ -89,15 +89,8 @@ class ProfileHeaderCollectionReusableView: DetailHeaderCollectionReusableView {
         location userLocation: Services.Organization.Containers.LocationV1?,
         team userTeam: Services.Organization.Containers.TeamV1?
     ) {
-        var hireDateText = "At "
-        if let organization = AuthViewController.getLoggedInUserOrganization() {
-            hireDateText += organization.name
-        }
-        
-        if userProfile.hasHireDate && userProfile.hireDate.trimWhitespace() != "" {
-            hireDateLabel.text = hireDateText + " since " + NSDateFormatter.sharedAnniversaryFormatter.stringFromDate(
-                userProfile.hireDate.toDate()!
-            )
+        if let hireDateString = userProfile.getFormattedHireDate() {
+            hireDateLabel.text = hireDateString
         }
 
         if let userLocation = userLocation {

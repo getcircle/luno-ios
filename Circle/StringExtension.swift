@@ -48,7 +48,7 @@ extension String {
         dateFormatter.dateFormat = "YYYY-MM-dd"
         return dateFormatter.dateFromString(self)
     }
-    
+        
     func trimWhitespace() -> String {
         return self.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
     }
