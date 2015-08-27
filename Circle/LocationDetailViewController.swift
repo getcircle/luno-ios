@@ -216,17 +216,17 @@ class LocationDetailViewController:
             loggedInUserProfile = AuthViewController.getLoggedInUserProfile()
         {
             let hud = MBProgressHUD.showHUDAddedTo(view, animated: true)
-            var pointsOfContact = Set(officeDataSource.location.pointsOfContact)
+            var pointsOfContact = NSMutableOrderedSet(array: officeDataSource.location.pointsOfContact)
             if checked {
-                pointsOfContact.insert(loggedInUserProfile)
+                pointsOfContact.addObject(loggedInUserProfile)
                 hud.labelText = "Adding you as a point of contact"
             }
             else {
-                pointsOfContact.remove(loggedInUserProfile)
+                pointsOfContact.removeObject(loggedInUserProfile)
             }
             
             let locationBuilder = (dataSource as! LocationDetailDataSource).location.toBuilder()
-            locationBuilder.pointsOfContact = Array(pointsOfContact)
+            locationBuilder.pointsOfContact = pointsOfContact.array as! Array<Services.Profile.Containers.ProfileV1>
             Services.Organization.Actions.updateLocation(locationBuilder.build(), completionHandler: { (location, error) -> Void in
                 hud.hide(true)
                 if let location = location where error == nil {
