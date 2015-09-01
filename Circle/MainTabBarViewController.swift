@@ -46,10 +46,10 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
         tabBarViewControllers.append(searchNavigationController)
 
         setViewControllers(tabBarViewControllers, animated: true)
-        addTabsForAuthenticatedUser()
+        addTabsForAuthenticatedUserAndSelectProfileTab(false)
     }
 
-    func addTabsForAuthenticatedUser() {
+    private func addTabsForAuthenticatedUserAndSelectProfileTab(selectProfileTab: Bool) {
         var tabBarViewControllers = viewControllers ?? [UIViewController]()
 
         if let loggedInUserProfile = AuthViewController.getLoggedInUserProfile() {
@@ -79,15 +79,24 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
             tabBarViewControllers.append(profileNavController)
 
             setViewControllers(tabBarViewControllers, animated: true)
+            
+            if selectProfileTab {
+                selectedViewController = profileNavController
+                profileNavController.navigationBar.makeTransparent()
+            }
         }
     }
 
+    @objc private func didLogin() {
+        addTabsForAuthenticatedUserAndSelectProfileTab(true)
+    }
+    
     // MARK: - Notifications
 
     private func registerNotifications() {
         NSNotificationCenter.defaultCenter().addObserver(
             self,
-            selector: "addTabsForAuthenticatedUser",
+            selector: "didLogin",
             name: AuthNotifications.onLoginNotification,
             object: nil
         )
