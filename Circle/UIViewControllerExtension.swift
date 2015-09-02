@@ -277,7 +277,6 @@ extension UIViewController {
                 target: self,
                 action: callbackMethod
             )
-            cancelButtonItem.imageInsets = UIEdgeInsetsMake(2.0, -19.0, 0.0, 0.0)
             navigationItem.leftBarButtonItem = cancelButtonItem
             return cancelButtonItem
         }
