@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		478E7A6F1B97938E0077B910 /* OpenSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 478E7A6C1B97938E0077B910 /* OpenSans-Light.ttf */; };
+		478E7A701B97938E0077B910 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 478E7A6D1B97938E0077B910 /* OpenSans-Regular.ttf */; };
+		478E7A711B97938E0077B910 /* OpenSans-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 478E7A6E1B97938E0077B910 /* OpenSans-Semibold.ttf */; };
 		7899CA44139AE8B96BACC3EA /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		8F0004961A2419730096477A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0004951A2419730096477A /* AppDelegate.swift */; };
 		8F00049B1A2419730096477A /* ProfilesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F00049A1A2419730096477A /* ProfilesViewController.swift */; };
@@ -336,6 +339,9 @@
 
 /* Begin PBXFileReference section */
 		0E955F60570F60CAEDB21587 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		478E7A6C1B97938E0077B910 /* OpenSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Light.ttf"; sourceTree = "<group>"; };
+		478E7A6D1B97938E0077B910 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
+		478E7A6E1B97938E0077B910 /* OpenSans-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Semibold.ttf"; sourceTree = "<group>"; };
 		4BE4CE18D8FDD109BFC6307A /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F0004901A2419730096477A /* circle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = circle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F0004941A2419730096477A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -662,6 +668,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		478E7A6B1B97938E0077B910 /* OpenSans */ = {
+			isa = PBXGroup;
+			children = (
+				478E7A6C1B97938E0077B910 /* OpenSans-Light.ttf */,
+				478E7A6D1B97938E0077B910 /* OpenSans-Regular.ttf */,
+				478E7A6E1B97938E0077B910 /* OpenSans-Semibold.ttf */,
+			);
+			path = OpenSans;
+			sourceTree = "<group>";
+		};
 		8F0004871A2419730096477A = {
 			isa = PBXGroup;
 			children = (
@@ -867,6 +883,7 @@
 		8F0004C41A25BA510096477A /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				478E7A6B1B97938E0077B910 /* OpenSans */,
 				8F0ADCE01AC5344E00A44B68 /* Loader */,
 				8F0004A11A2419730096477A /* Images.xcassets */,
 			);
@@ -1294,6 +1311,7 @@
 				8F0ADD221AC5344E00A44B68 /* Loader_00006@2x.png in Resources */,
 				8F5933CD1AC9FD8B00905E14 /* NotificationsViewController.xib in Resources */,
 				8F0ADD531AC5344E00A44B68 /* Loader_00055@2x.png in Resources */,
+				478E7A711B97938E0077B910 /* OpenSans-Semibold.ttf in Resources */,
 				BFCFDB221A91951A009A5FD4 /* TextValueCollectionViewCell.xib in Resources */,
 				8FEE3D9D1A85B97E00B17569 /* EditContactInfoViewController.xib in Resources */,
 				8F22CBE91A27FDA70026376E /* KeyValueCollectionViewCell.xib in Resources */,
@@ -1356,6 +1374,7 @@
 				8F0004A51A2419730096477A /* LaunchScreen.xib in Resources */,
 				8F0ADD381AC5344E00A44B68 /* Loader_00028@2x.png in Resources */,
 				8F0ADD1C1AC5344E00A44B68 /* Loader_00000@2x.png in Resources */,
+				478E7A6F1B97938E0077B910 /* OpenSans-Light.ttf in Resources */,
 				8F0ADD3D1AC5344E00A44B68 /* Loader_00033@2x.png in Resources */,
 				8F9F60CD1A8C439E00FCAA25 /* SettingsViewController.xib in Resources */,
 				8F0ADD211AC5344E00A44B68 /* Loader_00005@2x.png in Resources */,
@@ -1376,6 +1395,7 @@
 				8F0ADD2C1AC5344E00A44B68 /* Loader_00016@2x.png in Resources */,
 				8F823E441A714B5D0006264B /* OrganizationHeaderCollectionReusableView.xib in Resources */,
 				8F0004A21A2419730096477A /* Images.xcassets in Resources */,
+				478E7A701B97938E0077B910 /* OpenSans-Regular.ttf in Resources */,
 				BF768A751AB66E4700D677B1 /* SearchSuggestionCollectionViewCell.xib in Resources */,
 				8F6501271B009986006BB260 /* VENTouchLockPasscodeView.xib in Resources */,
 				8F0ADD521AC5344E00A44B68 /* Loader_00054@2x.png in Resources */,
