@@ -14,32 +14,12 @@ extension UIFont {
         return UIFont(name: "Avenir-Roman", size: 17.0)
     }
     
-    static func appSegmentedControlTitleFont() -> UIFont! {
-        return UIFont(name: "Avenir-Medium", size: 13.0)
-    }
-    
-    static func lightFont() -> UIFont! {
-        return UIFont(name: "Avenir-Light", size: 17.0)
-    }
-    
     static func lightFont(size: CGFloat) -> UIFont! {
         return UIFont(name: "Avenir-Light", size: size)
     }
     
-    static func appSettingsCardHeader() -> UIFont {
-        return UIFont(name: "Avenir-Roman", size: 12.0)!
-    }
-
-    static func appCTATitleFont() -> UIFont {
-        return UIFont(name: "Avenir-Medium", size: 12.0)!
-    }
-    
     static func appSocialCTATitleFont() -> UIFont {
         return UIFont(name: "Avenir-Roman", size: 12.0)!
-    }
-    
-    static func appTagsOverviewSectionHeader() -> UIFont {
-        return UIFont(name: "Avenir-Medium", size: 15.0)!
     }
     
     static func appAttributeTitleLabelFont() -> UIFont {
