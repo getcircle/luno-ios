@@ -319,7 +319,7 @@ class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate {
         verificationCodeFieldVerticalSpacing.constant = 83
         verificationCodeField.setNeedsDisplay()
         verificationCodeFieldWidth.constant = 100
-        verificationCodeField.font = UIFont.lightFont(30.0)
+        verificationCodeField.font = UIFont.appVerificationCodeFieldFont()
         
         verificationCodeField.setNeedsUpdateConstraints()
         
