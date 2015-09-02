@@ -9,13 +9,15 @@
 import UIKit
 
 extension UIFont {
-
+    
+    // MARK: - v1
+    
     static func navigationBarFont() -> UIFont! {
         return UIFont(name: "Avenir-Roman", size: 17.0)
     }
     
-    static func lightFont(size: CGFloat) -> UIFont! {
-        return UIFont(name: "Avenir-Light", size: size)
+    static func appVerificationCodeFieldFont() -> UIFont! {
+        return UIFont(name: "Avenir-Light", size: 30.0)
     }
     
     static func appSocialCTATitleFont() -> UIFont {
@@ -64,5 +66,31 @@ extension UIFont {
 
     static func appSecondaryActionCTAFont() -> UIFont {
         return UIFont(name: "Avenir-Light", size: 18.0)!
+    }
+    
+    // MARK: - v2
+
+    static func lightFont(size: CGFloat) -> UIFont! {
+        return UIFont(name: "OpenSans-Light", size: size)
+    }
+    
+    static func regularFont(size: CGFloat) -> UIFont! {
+        return UIFont(name: "OpenSans", size: size)!
+    }
+    
+    static func semiboldFont(size: CGFloat) -> UIFont! {
+        return UIFont(name: "OpenSans-Semibold", size: size)!
+    }
+    
+    static func headerTextFont() -> UIFont! {
+        return semiboldFont(11.0)
+    }
+    
+    static func mainTextFont() -> UIFont! {
+        return regularFont(14.0)
+    }
+    
+    static func secondaryTextFont() -> UIFont! {
+        return regularFont(12.0)
     }
 }
