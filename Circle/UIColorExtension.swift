@@ -183,12 +183,13 @@ extension UIColor {
     
     static func appProfileImageBackgroundColor(randomNumber withRandomNumber: Int? = 0) -> UIColor {
         let palette = [
-            UIColor(red: 30, green: 146, blue: 57),
-            UIColor(red: 14, green: 99, blue: 177),
-            UIColor(red: 109, green: 109, blue: 109),
-            UIColor(red: 213, green: 102, blue: 19),
-            UIColor(red: 119, green: 65, blue: 133),
-            UIColor(red: 179, green: 44, blue: 40),
+            UIColor(red: 198, green: 174, blue: 141),
+            UIColor(red: 196, green: 105, blue: 115),
+            UIColor(red: 192, green: 133, blue: 174),
+            UIColor(red: 179, green: 125, blue: 209),
+            UIColor(red: 137, green: 143, blue: 210),
+            UIColor(red: 119, green: 165, blue: 197),
+            UIColor(red: 140, green: 203, blue: 157),
         ]
 
         var randomNumber = withRandomNumber != nil && withRandomNumber != 0 ? withRandomNumber : palette.count
