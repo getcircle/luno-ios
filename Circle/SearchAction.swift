@@ -41,7 +41,7 @@ class SearchAction: SearchSuggestion {
         let emailAction = SearchAction(
             title: "Email " + profile.firstName,
             ofType: .EmailPerson,
-            withImageSource: "Email"
+            withImageSource: "detail_email"
         )
         emailAction.underlyingObject = profile as AnyObject
         searchActions.append(emailAction)
