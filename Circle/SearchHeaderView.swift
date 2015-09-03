@@ -50,8 +50,8 @@ class SearchHeaderView: UIView {
             searchTextField.frame.height
         ))
         leftView.backgroundColor = UIColor.clearColor()
-        leftViewImageView = UIImageView(image: UIImage(named: "Search")?.imageWithRenderingMode(.AlwaysTemplate))
-        leftViewImageView.contentMode = .ScaleAspectFit
+        leftViewImageView = UIImageView(image: UIImage(named: "searchbar_search")?.imageWithRenderingMode(.AlwaysTemplate))
+        leftViewImageView.contentMode = .Center
         leftViewImageView.frame = CGRectMake(10.0, (searchTextField.frame.height - 16.0)/2.0, 16.0, 16.0)
         leftView.addSubview(leftViewImageView)
         

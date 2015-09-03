@@ -3,21 +3,22 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "Search.png"
+      "filename" : "searchbar_search.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "Search@2x.png"
+      "filename" : "searchbar_search@2x.png"
     },
     {
       "idiom" : "universal",
       "scale" : "3x",
-      "filename" : "Search@3x.png"
+      "filename" : "searchbar_search@3x.png"
     }
   ],
   "info" : {
     "version" : 1,
-    "author" : "xcode"
+    "author" : "xcode",
+    "template-rendering-intent" : "template"
   }
 }
