@@ -123,9 +123,9 @@ extension Services.Organization.Containers.LocationV1 {
         let components = calendar?.components(NSCalendarUnit.CalendarUnitHour, fromDate: NSDate())
         var image: UIImage?
         if components?.hour >= 18 || components?.hour < 6 {
-            image = UIImage(named: "Moon")
+            image = UIImage(named: "hero_moon")
         } else {
-            image = UIImage(named: "Sun")
+            image = UIImage(named: "hero_sun")
         }
 
         return image?.imageWithRenderingMode(.AlwaysTemplate)
