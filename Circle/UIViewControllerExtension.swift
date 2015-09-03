@@ -57,7 +57,7 @@ enum QuickAction: Int {
         case .Phone:
             return MetaInfo(
                 actionLabel: AppStrings.QuickActionCallLabel,
-                imageSource: "Call",
+                imageSource: "detail_phone",
                 placeholder: AppStrings.QuickActionCallPlaceholder
             )
             

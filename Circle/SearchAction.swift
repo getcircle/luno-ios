@@ -59,7 +59,7 @@ class SearchAction: SearchSuggestion {
         let callAction = SearchAction(
             title: "Call " + profile.firstName,
             ofType: .CallPerson,
-            withImageSource: "Call"
+            withImageSource: "detail_phone"
         )
         callAction.underlyingObject = profile as AnyObject
         searchActions.append(callAction)

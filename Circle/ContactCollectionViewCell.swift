@@ -50,7 +50,7 @@ class ContactCollectionViewCell: CircleCollectionViewCell {
             return "detail_email"
             
         case .Phone, .CellPhone:
-            return "Call"
+            return "detail_phone"
             
         default:
             return nil
