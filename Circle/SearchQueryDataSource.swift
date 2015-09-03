@@ -129,19 +129,19 @@ class SearchQueryDataSource: CardDataSource {
                     categoryTitle: peopleTitle,
                     ofType: .People,
                     withCount: peopleCount,
-                    withImageSource: "FeedPeers"
+                    withImageSource: "results_search"
                 ),
                 SearchCategory(
                     categoryTitle: locationsTitle,
                     ofType: .Locations,
                     withCount: locationsCount,
-                    withImageSource: "detail_location"
+                    withImageSource: "results_search"
                 ),
                 SearchCategory(
                     categoryTitle: teamsTitle,
                     ofType: .Teams,
                     withCount: teamsCount,
-                    withImageSource: "detail_group"
+                    withImageSource: "results_search"
                 )
             ])
         }
