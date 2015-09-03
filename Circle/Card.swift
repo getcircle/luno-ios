@@ -160,14 +160,14 @@ class Card: Equatable {
 
             case Locations:
                 return CardTypeInfo(
-                    imageName: "FeedLocation",
+                    imageName: "detail_location",
                     classType: LocationCollectionViewCell.self,
                     contentType: .Flat
                 )
 
             case LocationsAddress:
                 return CardTypeInfo(
-                    imageName: "FeedLocation",
+                    imageName: "detail_location",
                     classType: AddressCollectionViewCell.self,
                     contentType: .Flat
                 )
