@@ -160,7 +160,7 @@ class ProfileCollectionViewCell: CircleCollectionViewCell {
         profileImageView.imageText = ""
         profileImageView.removeRoundedCorners()
         profileImageView.contentMode = .Center
-        profileImageView.image = UIImage(named: "Location")
+        profileImageView.image = UIImage(named: "detail_office")
         teamNameLetterLabel.hidden = true
     }
 
