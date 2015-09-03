@@ -149,7 +149,7 @@ class ProfileCollectionViewCell: CircleCollectionViewCell {
         profileImageView.imageText = ""
         profileImageView.removeRoundedCorners()
         profileImageView.contentMode = .Center
-        profileImageView.image = UIImage(named: "Reports")
+        profileImageView.image = UIImage(named: "detail_group")
     }
     
     private func setLocation(location: Services.Organization.Containers.LocationV1) {

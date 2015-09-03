@@ -141,7 +141,7 @@ class SearchQueryDataSource: CardDataSource {
                     categoryTitle: teamsTitle,
                     ofType: .Teams,
                     withCount: teamsCount,
-                    withImageSource: "FeedReports"
+                    withImageSource: "detail_group"
                 )
             ])
         }

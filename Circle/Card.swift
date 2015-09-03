@@ -174,14 +174,14 @@ class Card: Equatable {
 
             case Profiles:
                 return CardTypeInfo(
-                    imageName: "Users",
+                    imageName: "detail_group",
                     classType: ProfileCollectionViewCell.self,
                     contentType: .Flat
                 )
 
             case ProfilesGrid:
                 return CardTypeInfo(
-                    imageName: "Users",
+                    imageName: "detail_group",
                     classType: ProfileGridItemCollectionViewCell.self,
                     contentType: .Flat
                 )

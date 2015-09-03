@@ -3,21 +3,22 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "FeedReports.png"
+      "filename" : "detail_group.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "FeedReports@2x.png"
+      "filename" : "detail_group@2x.png"
     },
     {
       "idiom" : "universal",
       "scale" : "3x",
-      "filename" : "FeedReports@3x.png"
+      "filename" : "detail_group@3x.png"
     }
   ],
   "info" : {
     "version" : 1,
-    "author" : "xcode"
+    "author" : "xcode",
+    "template-rendering-intent" : "template"
   }
 }
