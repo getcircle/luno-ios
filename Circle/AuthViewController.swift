@@ -202,6 +202,7 @@ class AuthViewController: UIViewController {
     
     private static func cacheProfileData(profile: Services.Profile.Containers.ProfileV1) {
         NSUserDefaults.standardUserDefaults().setObject(profile.data(), forKey: DefaultsProfileKey)
+        CircleCache.updateCachedDataInRecordedSearchResultsForProfile(profile)
     }
     
     private static func cacheOrganizationData(organization: Services.Organization.Containers.OrganizationV1) {

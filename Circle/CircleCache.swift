@@ -140,6 +140,15 @@ extension CircleCache {
             RecentSearchResult.createOrUpdate(recentSearchResult)
         })
     }
+    
+    static func updateCachedDataInRecordedSearchResultsForProfile(profile: Services.Profile.Containers.ProfileV1) {
+        let recordedSearchResultsForProfile = Realm().objects(RecentSearchResult).filter("id = %@ AND type = %d", profile.id, RecentSearchResult.ResultType.Profile.rawValue)
+        for searchResult in recordedSearchResultsForProfile {
+            Realm().write({ () -> Void in
+                searchResult.object = profile.data()
+            })
+        }
+    }
 
     static func recordTeamSearchResult(team: Services.Organization.Containers.TeamV1) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), { () -> Void in
