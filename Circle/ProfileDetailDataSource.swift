@@ -303,8 +303,6 @@ class ProfileDetailDataSource: CardDataSource {
                 }
                 
                 footerView.setButtonTitle(buttonTitle)
-                footerView.setImage(UIImage(named: "FeedPeers"))
-                footerView.setNextImageHidden(true)
                 
             case .ManagedTeams:
                 let directReportsCount = self.directReports?.count ?? 0
@@ -327,8 +325,6 @@ class ProfileDetailDataSource: CardDataSource {
                 }
 
                 footerView.setButtonTitle(buttonTitle)
-                footerView.setImage(UIImage(named: "FeedPeers"))
-                footerView.setNextImageHidden(true)
 
             default:
                 break
