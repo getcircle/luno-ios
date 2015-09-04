@@ -20,6 +20,7 @@
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kX0-a4-Q8w" userLabel="ProfileImageView" customClass="CircleImageView" customModule="circle" customModuleProvider="target">
                             <rect key="frame" x="197" y="70" width="80" height="80"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="kX0-a4-Q8w" secondAttribute="height" multiplier="1:1" id="147-lS-seV"/>
                                 <constraint firstAttribute="width" constant="80" id="x17-ec-d5B"/>

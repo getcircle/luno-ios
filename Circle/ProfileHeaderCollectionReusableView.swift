@@ -55,6 +55,12 @@ class ProfileHeaderCollectionReusableView: DetailHeaderCollectionReusableView {
         configureVerifiedProfileButton()
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        profileImage.layer.borderWidth = 0.0
+    }
+    
     // MARK: - Configuration
     
     private func configureLabels() {
@@ -152,7 +158,8 @@ class ProfileHeaderCollectionReusableView: DetailHeaderCollectionReusableView {
             daylightIndicatorImage.tintColor = secondaryInfoLabel.textColor
         }
         
-        self.profileImage.contentMode = .ScaleAspectFill
+        profileImage.image = UIImage(named: "hero_office")
+        profileImage.makeItCircular(true)
         
         var imageUpdated = true
         if let location = location where office.imageUrl == location.imageUrl && office.hasImageUrl {
@@ -160,14 +167,13 @@ class ProfileHeaderCollectionReusableView: DetailHeaderCollectionReusableView {
         }
         
         if office.hasImageUrl && imageUpdated {
-            profileImage.imageProfileIdentifier = office.id
-            profileImage.setImageWithLocation(office) { (image) -> Void in
-                self.profileImage.image = image
+            backgroundImageView.imageProfileIdentifier = office.id
+            backgroundImageView.setImageWithLocation(office, successHandler: { (image) -> Void in
                 if self.backgroundImageView != image {
                     self.backgroundImageView.image = image
                     self.addBlurEffect()
                 }
-            }
+            })
         }
         verifiedProfileButton.hidden = true
         location = office
