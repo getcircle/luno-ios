@@ -73,9 +73,9 @@ class MapViewController: UIViewController, UIViewControllerTransitioningDelegate
         // Close Button
         closeButton = UIButton(forAutoLayout: ())
         closeButton.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.8)
-        closeButton.setImage(UIImage(named: "Close")?.imageWithRenderingMode(.AlwaysTemplate), forState: .Normal)
+        closeButton.setImage(UIImage(named: "close")?.imageWithRenderingMode(.AlwaysTemplate), forState: .Normal)
         closeButton.tintColor = UIColor.whiteColor()
-        closeButton.imageEdgeInsets = UIEdgeInsetsMake(10.0, 10.0, 10.0, 10.0)
+        closeButton.imageEdgeInsets = UIEdgeInsetsMake(-7.0, -7.0, -7.0, -7.0)
         closeButton.layer.cornerRadius = 18.0
         closeButton.addTarget(self, action: "close:", forControlEvents: .TouchUpInside)
         view.addSubview(closeButton)

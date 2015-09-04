@@ -36,7 +36,7 @@ enum QuickAction: Int {
         case .Email:
             return MetaInfo(
                 actionLabel: AppStrings.QuickActionEmailLabel,
-                imageSource: "Email",
+                imageSource: "detail_email",
                 placeholder: AppStrings.QuickActionEmailPlaceholder
             )
             
@@ -57,7 +57,7 @@ enum QuickAction: Int {
         case .Phone:
             return MetaInfo(
                 actionLabel: AppStrings.QuickActionCallLabel,
-                imageSource: "Call",
+                imageSource: "detail_phone",
                 placeholder: AppStrings.QuickActionCallPlaceholder
             )
             
@@ -272,7 +272,7 @@ extension UIViewController {
     func addCloseButtonWithAction(callbackMethod: Selector) -> UIBarButtonItem? {
         if isBeingPresentedModally() {
             let cancelButtonItem = UIBarButtonItem(
-                image: UIImage(named: "Close"),
+                image: UIImage(named: "close"),
                 style: .Plain,
                 target: self,
                 action: callbackMethod

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="gsH-2F-RFu">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="gsH-2F-RFu">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
@@ -8,7 +8,7 @@
         <scene sceneID="I8F-MY-69s">
             <objects>
                 <navigationController id="xqF-2W-85W" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Home" image="Home" id="xJk-VL-UwP">
+                    <tabBarItem key="tabBarItem" title="Home" image="search_tab_bar" id="xJk-VL-UwP">
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
                     </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="qSr-Lg-0YX">
@@ -40,6 +40,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Home" width="24" height="20"/>
+        <image name="search_tab_bar" width="50" height="50"/>
     </resources>
 </document>

@@ -44,8 +44,7 @@ extension AppDelegate {
             UIOffsetMake(0.0, -60.0),
             forBarMetrics: .Default
         )
-        var backButtonImage = UIImage(named: "PreviousFilled")!.imageWithRenderingMode(.AlwaysTemplate)
-        backButtonImage = backButtonImage.resizableImageWithCapInsets(UIEdgeInsetsMake(0.0, 32.0, 0.0, 0.0))
+        var backButtonImage = UIImage(named: "navbar_back")!.imageWithRenderingMode(.AlwaysTemplate)
         UIBarButtonItem.appearance().setBackButtonBackgroundImage(
             backButtonImage,
             forState: .Normal,

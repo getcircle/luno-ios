@@ -132,14 +132,14 @@ class Card: Equatable {
 
             case Group:
                 return CardTypeInfo(
-                    imageName: "FeedPeers",
+                    imageName: "detail_group",
                     classType: GroupCollectionViewCell.self,
                     contentType: .Flat
                 )
                 
             case GroupMemberImages:
                 return CardTypeInfo(
-                    imageName: "FeedPeers",
+                    imageName: "detail_group",
                     classType: ProfileImagesCollectionViewCell.self,
                     contentType: .Aggregate
                 )
@@ -160,28 +160,28 @@ class Card: Equatable {
 
             case Locations:
                 return CardTypeInfo(
-                    imageName: "FeedLocation",
+                    imageName: "detail_location",
                     classType: LocationCollectionViewCell.self,
                     contentType: .Flat
                 )
 
             case LocationsAddress:
                 return CardTypeInfo(
-                    imageName: "FeedLocation",
+                    imageName: "detail_location",
                     classType: AddressCollectionViewCell.self,
                     contentType: .Flat
                 )
 
             case Profiles:
                 return CardTypeInfo(
-                    imageName: "Users",
+                    imageName: "detail_group",
                     classType: ProfileCollectionViewCell.self,
                     contentType: .Flat
                 )
 
             case ProfilesGrid:
                 return CardTypeInfo(
-                    imageName: "Users",
+                    imageName: "detail_group",
                     classType: ProfileGridItemCollectionViewCell.self,
                     contentType: .Flat
                 )

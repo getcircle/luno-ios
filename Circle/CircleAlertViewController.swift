@@ -146,12 +146,12 @@ class CircleAlertViewController: UIViewController, UIViewControllerTransitioning
 
         cancelButton = UIButton(forAutoLayout: ())
         if let cancelButton = cancelButton {
-            cancelButton.setImage(UIImage(named: "Close"), forState: .Normal)
+            cancelButton.setImage(UIImage(named: "close"), forState: .Normal)
             cancelButton.convertToTemplateImageForState(.Normal)
             cancelButton.tintColor = UIColor.whiteColor()
             cancelButton.showsTouchWhenHighlighted = true
-            cancelButton.imageEdgeInsets = UIEdgeInsetsMake(10.0, 10.0, 10.0, 10.0)
             cancelButton.addTarget(self, action: "viewTapped:", forControlEvents: .TouchUpInside)
+            cancelButton.imageEdgeInsets = UIEdgeInsetsMake(-7.0, -7.0, -7.0, -7.0)
             view.addSubview(cancelButton)
             view.bringSubviewToFront(cancelButton)
 

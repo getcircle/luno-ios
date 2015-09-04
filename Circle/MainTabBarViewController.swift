@@ -31,7 +31,7 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
         // Search Tab
         var searchViewController = SearchViewController(nibName: "SearchViewController", bundle: nil)
         let searchNavigationController = UINavigationController(rootViewController: searchViewController)
-        let searchTabImage = UIImage(named: "Home")
+        let searchTabImage = UIImage(named: "search_tab_bar")
         let searchTabImageDefault = searchTabImage?
             .imageWithTintColor(UIColor.appTabBarDeselectedTintColor(), scale: UIScreen.mainScreen().scale)
             .imageWithRenderingMode(.AlwaysOriginal)
@@ -65,7 +65,7 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
             )
 
             let profileNavController = UINavigationController(rootViewController: profileViewController)
-            let profileTabImage = UIImage(named: "User")
+            let profileTabImage = UIImage(named: "profile_tab_bar")
             let profileTabImageDefault = profileTabImage?
                 .imageWithTintColor(UIColor.appTabBarDeselectedTintColor(), scale: UIScreen.mainScreen().scale)
                 .imageWithRenderingMode(.AlwaysOriginal)

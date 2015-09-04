@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -30,7 +30,7 @@
                 <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NavRight" translatesAutoresizingMaskIntoConstraints="NO" id="eSt-nK-4ON">
                     <rect key="frame" x="294" y="26" width="11" height="19"/>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FeedPeers" translatesAutoresizingMaskIntoConstraints="NO" id="o89-ma-71t">
+                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="detail_group" translatesAutoresizingMaskIntoConstraints="NO" id="o89-ma-71t">
                     <rect key="frame" x="15" y="15" width="40" height="40"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="o89-ma-71t" secondAttribute="height" multiplier="1:1" id="J3e-YN-ddV"/>
@@ -65,7 +65,7 @@
         </collectionReusableView>
     </objects>
     <resources>
-        <image name="FeedPeers" width="20" height="14"/>
         <image name="NavRight" width="11" height="19"/>
+        <image name="detail_group" width="50" height="50"/>
     </resources>
 </document>

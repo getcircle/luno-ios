@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -17,7 +17,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OCg-d4-JTO" userLabel="Location">
                         <rect key="frame" x="0.0" y="0.0" width="160" height="50"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FeedLocation" translatesAutoresizingMaskIntoConstraints="NO" id="H3g-ih-ShO" userLabel="LocationImageView">
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="detail_location" translatesAutoresizingMaskIntoConstraints="NO" id="H3g-ih-ShO" userLabel="LocationImageView">
                                 <rect key="frame" x="20" y="15" width="20" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="20" id="6Za-Ug-P7y"/>
@@ -102,6 +102,6 @@
     </objects>
     <resources>
         <image name="Clock" width="16" height="15"/>
-        <image name="FeedLocation" width="14" height="18"/>
+        <image name="detail_location" width="50" height="50"/>
     </resources>
 </document>

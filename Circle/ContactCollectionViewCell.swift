@@ -47,10 +47,10 @@ class ContactCollectionViewCell: CircleCollectionViewCell {
         
         switch contactMethodType {
         case .Email:
-            return "Email"
+            return "detail_email"
             
         case .Phone, .CellPhone:
-            return "Call"
+            return "detail_phone"
             
         default:
             return nil

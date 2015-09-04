@@ -21,13 +21,13 @@ class DetailHeaderCollectionReusableView: CircleCollectionReusableView {
         editImageButton = UIButton(forAutoLayout: ())
         
         if let editImageButton = editImageButton {
-            editImageButton.setImage(UIImage(named: "Camera"), forState: .Normal)
+            editImageButton.setImage(UIImage(named: "edit_profile_camera"), forState: .Normal)
             editImageButton.convertToTemplateImageForState(.Normal)
             editImageButton.tintColor = UIColor.appViewBackgroundColor()
             editImageButton.hidden = true
             editImageButton.contentHorizontalAlignment = .Right
             editImageButton.contentVerticalAlignment = .Center
-            editImageButton.imageEdgeInsets = UIEdgeInsetsMake(0.0, 0.0, 0.0, 15.0)
+            editImageButton.imageView?.contentMode = .ScaleAspectFill
             parentView.addSubview(editImageButton)
             editImageButton.addTarget(self, action: "editImageButtonTapped:", forControlEvents: .TouchUpInside)
             editImageButton.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero, excludingEdge: .Top)
