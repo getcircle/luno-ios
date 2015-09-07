@@ -85,10 +85,6 @@ class LocationDetailDataSource: CardDataSource {
     override func configureHeader(header: CircleCollectionReusableView, atIndexPath indexPath: NSIndexPath) {
         
         if let profileHeader = header as? ProfileHeaderCollectionReusableView {
-            if canEdit() {
-                profileHeader.editImageButtonDelegate = editImageButtonDelegate
-                profileHeader.setEditImageButtonHidden(false)
-            }
             profileHeader.setLocation(location)
             profileHeaderView = profileHeader
         }
