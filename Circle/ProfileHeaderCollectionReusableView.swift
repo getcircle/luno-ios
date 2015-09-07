@@ -37,11 +37,11 @@ class ProfileHeaderCollectionReusableView: DetailHeaderCollectionReusableView {
     }
     
     override class var height: CGFloat {
-        return 260.0
+        return 280.0
     }
     
     class var heightWithoutSecondaryInfo: CGFloat {
-        return 240.0
+        return 250.0
     }
 
     override func awakeFromNib() {
