@@ -168,12 +168,12 @@ class ProfileHeaderCollectionReusableView: DetailHeaderCollectionReusableView {
         
         if office.hasImageUrl && imageUpdated {
             backgroundImageView.imageProfileIdentifier = office.id
-            backgroundImageView.setImageWithLocation(office, successHandler: { (image) -> Void in
+            backgroundImageView.setImageWithLocation(office) { (image) -> Void in
                 if self.backgroundImageView != image {
                     self.backgroundImageView.image = image
                     self.addBlurEffect()
                 }
-            })
+            }
         }
         verifiedProfileButton.hidden = true
         location = office
