@@ -266,10 +266,6 @@ class TeamDetailDataSource: CardDataSource {
         
         super.configureHeader(header, atIndexPath: indexPath)
         if let teamHeader = header as? ProfileHeaderCollectionReusableView {
-            if canEdit() {
-                teamHeader.editImageButtonDelegate = editImageButtonDelegate
-                teamHeader.setEditImageButtonHidden(false)
-            }
             teamHeader.setTeam(team)
             profileHeaderView = teamHeader
         }
