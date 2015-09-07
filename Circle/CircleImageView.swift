@@ -188,7 +188,6 @@ class CircleImageView: UIImageView {
                     }
                 },
                 failure: { (imageURLRequest, response, error) -> Void in
-                    self.addImageLabelForTeam(team)
                     if let response = response {
                         println("Response \(response.statusCode) \(response)")
                     }
@@ -196,9 +195,6 @@ class CircleImageView: UIImageView {
                     println("failed to fetch image for team: \(team.imageUrl) error: \(error?.localizedDescription)")
                 }
             )
-        }
-        else {
-            addImageLabelForTeam(team)
         }
     }
 

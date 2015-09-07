@@ -192,10 +192,11 @@ class ProfileHeaderCollectionReusableView: DetailHeaderCollectionReusableView {
         )
         titleNavLabel.text = teamCounts
         
-        let teamColor = UIColor.appTeamHeaderBackgroundColor(team)
-        profileImage.imageProfileIdentifier = team.id
-        profileImage.setImageWithTeam(team) { (image) -> Void in
-            self.profileImage.image = image
+        profileImage.image = UIImage(named: "hero_group")
+        profileImage.makeItCircular(true)
+        
+        backgroundImageView.imageProfileIdentifier = team.id
+        backgroundImageView.setImageWithTeam(team) { (image) -> Void in
             if self.backgroundImageView != image {
                 self.backgroundImageView.image = image
                 self.addBlurEffect()
