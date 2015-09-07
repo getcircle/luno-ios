@@ -93,7 +93,7 @@ extension NSDateFormatter {
             static var dateFormatter: NSDateFormatter {
                 let dateFormatter = NSDateFormatter()
                 dateFormatter.locale = NSLocale.currentLocale()
-                dateFormatter.dateFormat = "h:mm a zzz"
+                dateFormatter.dateFormat = "h:mm a"
                 return dateFormatter
             }
         }
@@ -122,16 +122,10 @@ extension NSDateFormatter {
     
     static func localizedRelativeDateString(date: NSDate) -> String {
         let dateFormatter = NSDateFormatter.sharedRelativeDateFormatter
-        if NSCalendar.currentCalendar().isDateInToday(date) {
-            dateFormatter.timeStyle = .ShortStyle
-            dateFormatter.dateStyle = .NoStyle
-        }
-        else {
-            dateFormatter.doesRelativeDateFormatting = true
-            dateFormatter.timeStyle = .NoStyle
-            dateFormatter.dateStyle = .ShortStyle
-        }
-
+        dateFormatter.doesRelativeDateFormatting = true
+        dateFormatter.timeStyle = .NoStyle
+        dateFormatter.dateStyle = .ShortStyle
+        
         return dateFormatter.stringFromDate(date)
     }
 }
