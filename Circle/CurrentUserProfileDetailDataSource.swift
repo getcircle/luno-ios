@@ -41,11 +41,6 @@ class CurrentUserProfileDetailDataSource: ProfileDetailDataSource {
     override func configureHeader(header: CircleCollectionReusableView, atIndexPath indexPath: NSIndexPath) {
         super.configureHeader(header, atIndexPath: indexPath)
         
-        if let profileHeader = header as? ProfileHeaderCollectionReusableView {
-            profileHeader.setEditImageButtonHidden(false)
-            profileHeader.editImageButtonDelegate = editImageButtonDelegate
-        }
-        
         if let headerView = header as? ProfileSectionHeaderCollectionReusableView, card = cardAtSection(indexPath.section) where card.allowEditingContent {
             headerView.showAddEditButton = true
         }
