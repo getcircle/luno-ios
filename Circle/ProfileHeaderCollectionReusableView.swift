@@ -101,15 +101,10 @@ class ProfileHeaderCollectionReusableView: DetailHeaderCollectionReusableView {
         if let userLocation = userLocation {
             containerView.backgroundColor = UIColor.clearColor()
         }
-        
-        var titleText = userProfile.title
-        if let userTeam = userTeam where count(userTeam.name) > 0 {
-            titleText += " (" + userTeam.name + ")"
-        }
-        
+                
         nameLabel.text = userProfile.nameWithNickName()
         nameNavLabel.text = nameLabel.text
-        titleLabel.text = titleText.localizedUppercaseString()
+        titleLabel.text = userProfile.title.localizedUppercaseString()
         titleNavLabel.text = titleLabel.text
         var hasProfileImageChanged = profile?.imageUrl != userProfile.imageUrl
         profile = userProfile
