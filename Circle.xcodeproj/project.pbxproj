@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4748F1311B9E446D0083E96C /* UIBarButtonItemExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4748F1301B9E446D0083E96C /* UIBarButtonItemExtension.swift */; };
 		478E7A6F1B97938E0077B910 /* OpenSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 478E7A6C1B97938E0077B910 /* OpenSans-Light.ttf */; };
 		478E7A701B97938E0077B910 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 478E7A6D1B97938E0077B910 /* OpenSans-Regular.ttf */; };
 		478E7A711B97938E0077B910 /* OpenSans-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 478E7A6E1B97938E0077B910 /* OpenSans-Semibold.ttf */; };
@@ -339,6 +340,7 @@
 
 /* Begin PBXFileReference section */
 		0E955F60570F60CAEDB21587 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		4748F1301B9E446D0083E96C /* UIBarButtonItemExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIBarButtonItemExtension.swift; sourceTree = "<group>"; };
 		478E7A6C1B97938E0077B910 /* OpenSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Light.ttf"; sourceTree = "<group>"; };
 		478E7A6D1B97938E0077B910 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
 		478E7A6E1B97938E0077B910 /* OpenSans-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Semibold.ttf"; sourceTree = "<group>"; };
@@ -861,6 +863,7 @@
 				BF59AA921A2C152F00C0CDB9 /* UITableViewExtension.swift */,
 				8FEE88461A411BA90011CE4A /* UIViewControllerExtension.swift */,
 				8F22CBFA1A29AF450026376E /* UIViewExtension.swift */,
+				4748F1301B9E446D0083E96C /* UIBarButtonItemExtension.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -1557,6 +1560,7 @@
 				8F9F60AF1A88738100FCAA25 /* SocialConnectCollectionViewCell.swift in Sources */,
 				8F65C4FB1A50F92500C7F3E6 /* Card.swift in Sources */,
 				8F5424111B6B00E000AEFB11 /* SearchCategory.swift in Sources */,
+				4748F1311B9E446D0083E96C /* UIBarButtonItemExtension.swift in Sources */,
 				8F22CBE01A27A8E60026376E /* ProfileHeaderCollectionReusableView.swift in Sources */,
 				8F306B8D1A7416E00024EB03 /* LocationsOverviewViewController.swift in Sources */,
 				BF8FC3D91A44DA83007FD8BA /* StringExtension.swift in Sources */,
