@@ -109,7 +109,7 @@ class ProfileHeaderCollectionReusableView: DetailHeaderCollectionReusableView {
         
         nameLabel.text = userProfile.nameWithNickName()
         nameNavLabel.text = nameLabel.text
-        titleLabel.text = titleText
+        titleLabel.text = titleText.localizedUppercaseString()
         titleNavLabel.text = titleLabel.text
         var hasProfileImageChanged = profile?.imageUrl != userProfile.imageUrl
         profile = userProfile
@@ -149,7 +149,7 @@ class ProfileHeaderCollectionReusableView: DetailHeaderCollectionReusableView {
         
         nameLabel.text = officeName
         nameNavLabel.text = officeName
-        titleLabel.text = officeTitleText
+        titleLabel.text = officeTitleText.localizedUppercaseString()
         titleNavLabel.text = officeTitleText
         secondaryInfoLabel.text = office.officeCurrentDateAndTimeLabel()
         if let indicatorImage = office.officeDaylightIndicator() {
@@ -187,7 +187,7 @@ class ProfileHeaderCollectionReusableView: DetailHeaderCollectionReusableView {
         containerView.backgroundColor = UIColor.clearColor()
         let teamCounts = team.getTeamCounts().uppercaseString
         titleLabel.attributedText = NSAttributedString(
-            string: teamCounts,
+            string: teamCounts.localizedUppercaseString(),
             attributes: [NSKernAttributeName: 0.5]
         )
         titleNavLabel.text = teamCounts
