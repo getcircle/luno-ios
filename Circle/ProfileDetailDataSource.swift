@@ -85,7 +85,6 @@ class ProfileDetailDataSource: CardDataSource {
     internal func populateData() {
         resetCards()
         addPlaceholderCard()
-        addInfoCard()
         addStatusCard()
         addContactsCard()
         addLocationCard()
@@ -104,19 +103,6 @@ class ProfileDetailDataSource: CardDataSource {
         card.sectionInset = sectionInset
         appendCard(card)
         return card
-    }
-    
-    internal func addInfoCard() -> Card? {
-
-        if let location = location {
-            var card = Card(cardType: .ProfileInfo, title: "Profile Info")
-            card.sectionInset = sectionInsetWithLargerBootomMargin
-            card.addContent(content: [location])
-            appendCard(card)
-            return card
-        }
-        
-        return nil
     }
     
     internal func addContactsCard() -> Card? {
