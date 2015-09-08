@@ -25,7 +25,7 @@ class ProfileDetailDataSource: CardDataSource {
     private var supportGoogleGroups = false
     
     internal let sectionInset = UIEdgeInsetsMake(0.0, 0.0, 1.0, 0.0)
-    internal let sectionInsetWithLargerBootomMargin = UIEdgeInsetsMake(0.0, 0.0, 25.0, 0.0)
+    internal let sectionInsetWithLargerBottomMargin = UIEdgeInsetsMake(0.0, 0.0, 25.0, 0.0)
     
     convenience init(profile withProfile: Services.Profile.Containers.ProfileV1) {
         self.init()
@@ -109,7 +109,7 @@ class ProfileDetailDataSource: CardDataSource {
         let card = Card(cardType: .ContactMethods, title: "Contact")
         card.showContentCount = false
         card.addHeader(headerClass: ProfileSectionHeaderCollectionReusableView.self)
-        card.sectionInset = sectionInsetWithLargerBootomMargin
+        card.sectionInset = sectionInsetWithLargerBottomMargin
         var contactMethods = Array<Services.Profile.Containers.ContactMethodV1>()
         let emailContactMethod = Services.Profile.Containers.ContactMethodV1Builder()
         emailContactMethod.contactMethodType = .Email
@@ -139,7 +139,7 @@ class ProfileDetailDataSource: CardDataSource {
             )
         )
         card.addHeader(headerClass: ProfileSectionHeaderCollectionReusableView.self)
-        card.sectionInset = sectionInsetWithLargerBootomMargin
+        card.sectionInset = sectionInsetWithLargerBottomMargin
         card.showContentCount = false
         card.addContent(content: [
             TextData(
@@ -162,7 +162,7 @@ class ProfileDetailDataSource: CardDataSource {
             let card = Card(cardType: .Profiles, title: "Works at")
             card.showContentCount = false
             card.addHeader(headerClass: ProfileSectionHeaderCollectionReusableView.self)
-            card.sectionInset = sectionInsetWithLargerBootomMargin
+            card.sectionInset = sectionInsetWithLargerBottomMargin
             card.addContent(content: [location])
             appendCard(card)
             return card
@@ -182,7 +182,7 @@ class ProfileDetailDataSource: CardDataSource {
             let card = Card(cardType: .Profiles, title: "Reports to")
             card.showContentCount = false
             card.addHeader(headerClass: ProfileSectionHeaderCollectionReusableView.self)
-            card.sectionInset = sectionInsetWithLargerBootomMargin
+            card.sectionInset = sectionInsetWithLargerBottomMargin
             card.addContent(content: content)
             appendCard(card)
             return card
@@ -202,7 +202,7 @@ class ProfileDetailDataSource: CardDataSource {
             let card = Card(cardType: .Profiles, subType: .Teams, title: "Team")
             card.showContentCount = false
             card.addHeader(headerClass: ProfileSectionHeaderCollectionReusableView.self)
-            card.sectionInset = sectionInsetWithLargerBootomMargin
+            card.sectionInset = sectionInsetWithLargerBottomMargin
             card.addContent(content: content)
             card.addDefaultFooter()
             appendCard(card)
@@ -223,7 +223,7 @@ class ProfileDetailDataSource: CardDataSource {
             let card = Card(cardType: .Profiles, subType: .ManagedTeams, title: "Manages")
             card.showContentCount = false
             card.addHeader(headerClass: ProfileSectionHeaderCollectionReusableView.self)
-            card.sectionInset = sectionInsetWithLargerBootomMargin
+            card.sectionInset = sectionInsetWithLargerBottomMargin
             card.addContent(content: content)
             card.addDefaultFooter()
             appendCard(card)
