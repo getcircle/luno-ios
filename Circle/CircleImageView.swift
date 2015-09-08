@@ -266,13 +266,6 @@ class CircleImageView: UIImageView {
         }
     }
 
-    private func addImageLabelForTeam(team: Services.Organization.Containers.TeamV1) {
-        if self.addLabelIfImageLoadingFails && count(team.name) > 0 {
-            self.imageText = team.name[0]
-            self.imageLabel.backgroundColor = UIColor.appTeamHeaderBackgroundColor(team)
-        }
-    }
-
     private func isImageInCache(url: NSURL) -> Bool {
         if let urlString = url.absoluteString {
             let imageURLRequest = NSMutableURLRequest(URL: url)
