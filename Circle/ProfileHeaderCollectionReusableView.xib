@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -75,7 +75,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ces-e9-sN5" userLabel="DaylightIndicatorImage">
-                            <rect key="frame" x="138" y="219" width="10" height="11"/>
+                            <rect key="frame" x="133" y="219" width="10" height="11"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="10" id="HbT-Wp-ECu"/>
                                 <constraint firstAttribute="height" constant="11" id="heA-l8-TSe"/>
@@ -100,7 +100,7 @@
                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="tG1-Nl-XRF" secondAttribute="trailing" constant="10" id="A3a-pG-cI9"/>
                         <constraint firstAttribute="bottom" secondItem="Raz-vM-IgD" secondAttribute="bottom" constant="6" id="Cb3-Ht-JcU"/>
                         <constraint firstAttribute="centerY" secondItem="kX0-a4-Q8w" secondAttribute="centerY" constant="30" id="Cq9-g3-mi2"/>
-                        <constraint firstItem="tG1-Nl-XRF" firstAttribute="leading" secondItem="ces-e9-sN5" secondAttribute="trailing" constant="5" id="FHY-Pl-hB4"/>
+                        <constraint firstItem="tG1-Nl-XRF" firstAttribute="leading" secondItem="ces-e9-sN5" secondAttribute="trailing" constant="10" id="FHY-Pl-hB4"/>
                         <constraint firstAttribute="bottom" secondItem="zJL-k5-Ada" secondAttribute="bottom" constant="22" id="Gpu-y0-Hjt"/>
                         <constraint firstItem="Raz-vM-IgD" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="JUx-bd-ahe" secondAttribute="leading" constant="40" id="HsL-an-SSV"/>
                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="GGm-ME-NAZ" secondAttribute="trailing" constant="15" id="L4T-g7-5tl"/>
