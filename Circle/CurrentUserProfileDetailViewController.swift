@@ -55,12 +55,7 @@ class CurrentUserProfileDetailViewController: ProfileDetailViewController,
     // MARK: - Configuration
     
     private func configureNavigationBar() {
-        let rightBarButtonItem = UIBarButtonItem(
-            title: "Edit", 
-            style: .Plain, 
-            target: self, 
-            action: "editTitleTapped:"
-        )
+        let rightBarButtonItem = UIBarButtonItem.roundedItemWithTitle(AppStrings.ProfileInfoEditButtonTitle.localizedUppercaseString(), target: self, action: "editTitleTapped:")
         navigationItem.rightBarButtonItem = rightBarButtonItem
     }
 

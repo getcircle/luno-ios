@@ -71,18 +71,19 @@ extension Services.Organization.Containers.LocationV1 {
     
     func officeCurrentDateAndTimeLabel() -> String {
         let currentDate = NSDate()
-        return officeCurrentDateLabel(currentDate) + " " + officeCurrentTimeLabel(currentDate)
+        return officeCurrentDateLabel(currentDate) + ", " + officeCurrentTimeLabel(currentDate)
     }
     
     func officeCurrentDateLabel(date: NSDate?) -> String {
         var currentDate = date ?? NSDate()
         var currentDateString: String
         let officeTimeZone = NSTimeZone(name: timezone)!
-        NSDateFormatter.sharedLocationsCurrentDateFormatter.timeZone = officeTimeZone
-        currentDateString = NSDateFormatter.sharedLocationsCurrentDateFormatter.stringFromDate(currentDate)
-        if NSBundle.mainBundle().preferredLocalizations[0] as! String == "en" {
-            currentDateString += dateSuffixForDate(currentDate)
-        }
+        
+        // Convert date to the time zone the office is in.
+        currentDate = currentDate.dateByAddingTimeInterval(Double(officeTimeZone.secondsFromGMTForDate(currentDate)))
+        
+        currentDateString = NSDateFormatter.localizedRelativeDateString(currentDate)
+        
         return currentDateString
     }
     
@@ -129,16 +130,6 @@ extension Services.Organization.Containers.LocationV1 {
         }
 
         return image?.imageWithRenderingMode(.AlwaysTemplate)
-    }
-    
-    func dateSuffixForDate(date: NSDate) -> String {
-        let dayOfMonth = NSCalendar.currentCalendar().componentsInTimeZone(NSTimeZone(name: timezone)!, fromDate: date).day
-        switch dayOfMonth {
-        case 1, 21, 31: return "st"
-        case 2, 22: return "nd"
-        case 3, 23: return "rd"
-        default: return "th"
-        }
     }
 
 }

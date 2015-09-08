@@ -37,11 +37,11 @@ class ProfileHeaderCollectionReusableView: DetailHeaderCollectionReusableView {
     }
     
     override class var height: CGFloat {
-        return 260.0
+        return 280.0
     }
     
     class var heightWithoutSecondaryInfo: CGFloat {
-        return 240.0
+        return 250.0
     }
 
     override func awakeFromNib() {
@@ -53,6 +53,12 @@ class ProfileHeaderCollectionReusableView: DetailHeaderCollectionReusableView {
         configureLabels()
         configureContainerView()
         configureVerifiedProfileButton()
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        profileImage.layer.borderWidth = 0.0
     }
     
     // MARK: - Configuration
@@ -95,16 +101,17 @@ class ProfileHeaderCollectionReusableView: DetailHeaderCollectionReusableView {
         if let userLocation = userLocation {
             containerView.backgroundColor = UIColor.clearColor()
         }
-        
-        var titleText = userProfile.title
-        if let userTeam = userTeam where count(userTeam.name) > 0 {
-            titleText += " (" + userTeam.name + ")"
-        }
-        
+                
         nameLabel.text = userProfile.nameWithNickName()
         nameNavLabel.text = nameLabel.text
-        titleLabel.text = titleText
-        titleNavLabel.text = titleLabel.text
+        titleLabel.attributedText = NSAttributedString(
+            string: userProfile.title.localizedUppercaseString(),
+            attributes: [NSKernAttributeName: 2.0]
+        )
+        titleNavLabel.attributedText = NSAttributedString(
+            string: titleLabel.attributedText.string,
+            attributes: [NSKernAttributeName: 0.5]
+        )
         var hasProfileImageChanged = profile?.imageUrl != userProfile.imageUrl
         profile = userProfile
         profileImage.imageProfileIdentifier = userProfile.id
@@ -143,8 +150,14 @@ class ProfileHeaderCollectionReusableView: DetailHeaderCollectionReusableView {
         
         nameLabel.text = officeName
         nameNavLabel.text = officeName
-        titleLabel.text = officeTitleText
-        titleNavLabel.text = officeTitleText
+        titleLabel.attributedText = NSAttributedString(
+            string: officeTitleText.localizedUppercaseString(),
+            attributes: [NSKernAttributeName: 2.0]
+        )
+        titleNavLabel.attributedText = NSAttributedString(
+            string: titleLabel.attributedText.string,
+            attributes: [NSKernAttributeName: 0.5]
+        )
         secondaryInfoLabel.text = office.officeCurrentDateAndTimeLabel()
         if let indicatorImage = office.officeDaylightIndicator() {
             daylightIndicatorImage.alpha = 1.0
@@ -152,7 +165,8 @@ class ProfileHeaderCollectionReusableView: DetailHeaderCollectionReusableView {
             daylightIndicatorImage.tintColor = secondaryInfoLabel.textColor
         }
         
-        self.profileImage.contentMode = .ScaleAspectFill
+        profileImage.image = UIImage(named: "hero_office")
+        profileImage.makeItCircular(true)
         
         var imageUpdated = true
         if let location = location where office.imageUrl == location.imageUrl && office.hasImageUrl {
@@ -160,9 +174,8 @@ class ProfileHeaderCollectionReusableView: DetailHeaderCollectionReusableView {
         }
         
         if office.hasImageUrl && imageUpdated {
-            profileImage.imageProfileIdentifier = office.id
-            profileImage.setImageWithLocation(office) { (image) -> Void in
-                self.profileImage.image = image
+            backgroundImageView.imageProfileIdentifier = office.id
+            backgroundImageView.setImageWithLocation(office) { (image) -> Void in
                 if self.backgroundImageView != image {
                     self.backgroundImageView.image = image
                     self.addBlurEffect()
@@ -181,15 +194,18 @@ class ProfileHeaderCollectionReusableView: DetailHeaderCollectionReusableView {
         containerView.backgroundColor = UIColor.clearColor()
         let teamCounts = team.getTeamCounts().uppercaseString
         titleLabel.attributedText = NSAttributedString(
-            string: teamCounts,
+            string: teamCounts.localizedUppercaseString(),
+            attributes: [NSKernAttributeName: 2.0]
+        )
+        titleNavLabel.attributedText = NSAttributedString(
+            string: titleLabel.attributedText.string,
             attributes: [NSKernAttributeName: 0.5]
         )
-        titleNavLabel.text = teamCounts
+        profileImage.image = UIImage(named: "hero_group")
+        profileImage.makeItCircular(true)
         
-        let teamColor = UIColor.appTeamHeaderBackgroundColor(team)
-        profileImage.imageProfileIdentifier = team.id
-        profileImage.setImageWithTeam(team) { (image) -> Void in
-            self.profileImage.image = image
+        backgroundImageView.imageProfileIdentifier = team.id
+        backgroundImageView.setImageWithTeam(team) { (image) -> Void in
             if self.backgroundImageView != image {
                 self.backgroundImageView.image = image
                 self.addBlurEffect()

@@ -154,7 +154,6 @@ class CircleImageView: UIImageView {
                     }
                 },
                 failure: { (imageURLRequest, response, error) -> Void in
-                    self.addImageLabelForLocation(location)
                     if let response = response {
                         println("Response \(response.statusCode) \(response)")
                     }
@@ -162,9 +161,6 @@ class CircleImageView: UIImageView {
                     println("failed to fetch image for location: \(location.imageUrl) error: \(error?.localizedDescription)")
                 }
             )
-        }
-        else {
-            addImageLabelForLocation(location)
         }
     }
 
@@ -192,7 +188,6 @@ class CircleImageView: UIImageView {
                     }
                 },
                 failure: { (imageURLRequest, response, error) -> Void in
-                    self.addImageLabelForTeam(team)
                     if let response = response {
                         println("Response \(response.statusCode) \(response)")
                     }
@@ -200,9 +195,6 @@ class CircleImageView: UIImageView {
                     println("failed to fetch image for team: \(team.imageUrl) error: \(error?.localizedDescription)")
                 }
             )
-        }
-        else {
-            addImageLabelForTeam(team)
         }
     }
 
@@ -271,20 +263,6 @@ class CircleImageView: UIImageView {
             var appProfileImageBackgroundColor = ProfileColorsHolder.colors[profile.id] ?? UIColor.appProfileImageBackgroundColor()
             ProfileColorsHolder.colors[profile.id] = appProfileImageBackgroundColor
             imageLabel.backgroundColor = appProfileImageBackgroundColor
-        }
-    }
-    
-    private func addImageLabelForLocation(location: Services.Organization.Containers.LocationV1) {
-        if self.addLabelIfImageLoadingFails && count(location.name) > 0 {
-            self.imageText = location.name[0]
-            self.imageLabel.backgroundColor = UIColor.appProfileImageBackgroundColor()
-        }
-    }
-
-    private func addImageLabelForTeam(team: Services.Organization.Containers.TeamV1) {
-        if self.addLabelIfImageLoadingFails && count(team.name) > 0 {
-            self.imageText = team.name[0]
-            self.imageLabel.backgroundColor = UIColor.appTeamHeaderBackgroundColor(team)
         }
     }
 
