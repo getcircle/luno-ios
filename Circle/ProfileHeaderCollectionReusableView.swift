@@ -108,7 +108,10 @@ class ProfileHeaderCollectionReusableView: DetailHeaderCollectionReusableView {
             string: userProfile.title.localizedUppercaseString(),
             attributes: [NSKernAttributeName: 2.0]
         )
-        titleNavLabel.text = titleLabel.attributedText.string
+        titleNavLabel.attributedText = NSAttributedString(
+            string: titleLabel.attributedText.string,
+            attributes: [NSKernAttributeName: 0.5]
+        )
         var hasProfileImageChanged = profile?.imageUrl != userProfile.imageUrl
         profile = userProfile
         profileImage.imageProfileIdentifier = userProfile.id
@@ -151,7 +154,10 @@ class ProfileHeaderCollectionReusableView: DetailHeaderCollectionReusableView {
             string: officeTitleText.localizedUppercaseString(),
             attributes: [NSKernAttributeName: 2.0]
         )
-        titleNavLabel.text = titleLabel.attributedText.string
+        titleNavLabel.attributedText = NSAttributedString(
+            string: titleLabel.attributedText.string,
+            attributes: [NSKernAttributeName: 0.5]
+        )
         secondaryInfoLabel.text = office.officeCurrentDateAndTimeLabel()
         if let indicatorImage = office.officeDaylightIndicator() {
             daylightIndicatorImage.alpha = 1.0
@@ -191,8 +197,10 @@ class ProfileHeaderCollectionReusableView: DetailHeaderCollectionReusableView {
             string: teamCounts.localizedUppercaseString(),
             attributes: [NSKernAttributeName: 2.0]
         )
-        titleNavLabel.text = titleLabel.attributedText.string
-        
+        titleNavLabel.attributedText = NSAttributedString(
+            string: titleLabel.attributedText.string,
+            attributes: [NSKernAttributeName: 0.5]
+        )
         profileImage.image = UIImage(named: "hero_group")
         profileImage.makeItCircular(true)
         
