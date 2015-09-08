@@ -20,11 +20,10 @@ extension UIBarButtonItem {
         button.layer.borderWidth = 2.0
         let borderColor = UIColor(white: 1.0, alpha: 0.2)
         button.layer.borderColor = borderColor.CGColor
-        
-        button.setTitle(title, forState: .Normal)
-        button.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-        button.setTitleColor(borderColor, forState: .Highlighted)
+
         button.titleLabel?.font = UIFont.headerTextFont()
+        button.setAttributedTitle(NSAttributedString(string: title, attributes: [NSKernAttributeName: 1.0, NSForegroundColorAttributeName: UIColor.whiteColor()]), forState: .Normal)
+        button.setAttributedTitle(NSAttributedString(string: title, attributes: [NSKernAttributeName: 1.0, NSForegroundColorAttributeName: borderColor]), forState: .Highlighted)
         
         let verticalPadding = CGFloat(6.0)
         let horizontalPadding = verticalPadding * 2
