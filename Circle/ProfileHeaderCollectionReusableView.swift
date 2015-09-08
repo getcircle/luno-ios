@@ -104,8 +104,11 @@ class ProfileHeaderCollectionReusableView: DetailHeaderCollectionReusableView {
                 
         nameLabel.text = userProfile.nameWithNickName()
         nameNavLabel.text = nameLabel.text
-        titleLabel.text = userProfile.title.localizedUppercaseString()
-        titleNavLabel.text = titleLabel.text
+        titleLabel.attributedText = NSAttributedString(
+            string: userProfile.title.localizedUppercaseString(),
+            attributes: [NSKernAttributeName: 2.0]
+        )
+        titleNavLabel.text = titleLabel.attributedText.string
         var hasProfileImageChanged = profile?.imageUrl != userProfile.imageUrl
         profile = userProfile
         profileImage.imageProfileIdentifier = userProfile.id
@@ -144,8 +147,11 @@ class ProfileHeaderCollectionReusableView: DetailHeaderCollectionReusableView {
         
         nameLabel.text = officeName
         nameNavLabel.text = officeName
-        titleLabel.text = officeTitleText.localizedUppercaseString()
-        titleNavLabel.text = titleLabel.text
+        titleLabel.attributedText = NSAttributedString(
+            string: officeTitleText.localizedUppercaseString(),
+            attributes: [NSKernAttributeName: 2.0]
+        )
+        titleNavLabel.text = titleLabel.attributedText.string
         secondaryInfoLabel.text = office.officeCurrentDateAndTimeLabel()
         if let indicatorImage = office.officeDaylightIndicator() {
             daylightIndicatorImage.alpha = 1.0
@@ -183,7 +189,7 @@ class ProfileHeaderCollectionReusableView: DetailHeaderCollectionReusableView {
         let teamCounts = team.getTeamCounts().uppercaseString
         titleLabel.attributedText = NSAttributedString(
             string: teamCounts.localizedUppercaseString(),
-            attributes: [NSKernAttributeName: 0.5]
+            attributes: [NSKernAttributeName: 2.0]
         )
         titleNavLabel.text = titleLabel.attributedText.string
         
