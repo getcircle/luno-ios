@@ -50,7 +50,7 @@ extension UIView {
             borderView.autoPinEdge(.Left, toEdge: .Left, ofView: self)
             borderView.autoPinEdge(.Bottom, toEdge: .Bottom, ofView: self, withOffset: withOffset ?? 1.0)
             borderView.autoMatchDimension(.Width, toDimension: .Width, ofView: self)
-            borderView.autoSetDimension(.Height, toSize: 0.5)
+            borderView.autoSetDimension(.Height, toSize: 1.0)
         }
         
         return borderView
@@ -64,7 +64,7 @@ extension UIView {
             borderView.autoPinEdge(.Left, toEdge: .Left, ofView: self)
             borderView.autoPinEdge(.Top, toEdge: .Top, ofView: self, withOffset: withOffset ?? 1.0)
             borderView.autoMatchDimension(.Width, toDimension: .Width, ofView: self)
-            borderView.autoSetDimension(.Height, toSize: 0.5)
+            borderView.autoSetDimension(.Height, toSize: 1.0)
         }
         
         return borderView
