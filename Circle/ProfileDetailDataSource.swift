@@ -269,7 +269,7 @@ class ProfileDetailDataSource: CardDataSource {
             case .Teams:
                 let peerCount = self.peers?.count ?? 0
                 var buttonTitle = NSString(format: NSLocalizedString(
-                        "With %d Peers",
+                        "Works with %d Peers",
                         comment: "Text indicating number of peers a person works with"
                     ),
                     peerCount
@@ -277,7 +277,7 @@ class ProfileDetailDataSource: CardDataSource {
 
                 if peerCount == 1 {
                     buttonTitle = NSLocalizedString(
-                        "With 1 Peer",
+                        "Works with 1 Peer",
                         comment: "Text indicating one other person works with the user"
                     )
                 }
@@ -291,7 +291,7 @@ class ProfileDetailDataSource: CardDataSource {
             case .ManagedTeams:
                 let directReportsCount = self.directReports?.count ?? 0
                 var buttonTitle = NSString(format: NSLocalizedString(
-                        "%d Direct Reports",
+                        "View %d Direct Reports",
                         comment: "Text indicating number of direct reports a person has"
                     ),
                     directReportsCount
@@ -299,7 +299,7 @@ class ProfileDetailDataSource: CardDataSource {
                 
                 if directReportsCount == 1 {
                     buttonTitle = NSLocalizedString(
-                        "1 Direct Report",
+                        "View 1 Direct Report",
                         comment: "Text indicating this person has one direct report"
                     )
                 }
