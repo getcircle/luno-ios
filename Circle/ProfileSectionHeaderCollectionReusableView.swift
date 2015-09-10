@@ -11,6 +11,7 @@ import UIKit
 class ProfileSectionHeaderCollectionReusableView: CircleCollectionReusableView {
 
     @IBOutlet weak var cardTitleLabel: UILabel!
+    @IBOutlet weak var cardSubtitleLabel: UILabel!
     @IBOutlet weak var updateButton: CircleButton!
     @IBOutlet private(set) weak var cardView: UIView!
     
@@ -34,6 +35,7 @@ class ProfileSectionHeaderCollectionReusableView: CircleCollectionReusableView {
         super.awakeFromNib()
 
         cardTitleLabel.textColor = UIColor.appSectionHeaderTextColor()
+        cardSubtitleLabel.textColor = UIColor.appSecondaryTextColor()
         configureUpdateButton()
     }
     
@@ -41,6 +43,7 @@ class ProfileSectionHeaderCollectionReusableView: CircleCollectionReusableView {
         super.prepareForReuse()
         updateButton.hidden = true
         addBottomBorder = false
+        cardSubtitleLabel.hidden = true
     }
     
     override func drawRect(rect: CGRect) {

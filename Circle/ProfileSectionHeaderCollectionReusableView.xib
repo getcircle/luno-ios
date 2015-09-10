@@ -4,6 +4,9 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <customFonts key="customFonts">
+        <mutableArray key="OpenSans-Regular.ttf">
+            <string>OpenSans</string>
+        </mutableArray>
         <mutableArray key="OpenSans-Semibold.ttf">
             <string>OpenSans-Semibold</string>
             <string>OpenSans-Semibold</string>
@@ -19,7 +22,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FUa-tk-nIn" userLabel="Card View">
                     <rect key="frame" x="10" y="0.0" width="300" height="32"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="PEOPLE" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="538-Iu-4CO">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="PEOPLE" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="538-Iu-4CO" userLabel="Title Label">
                             <rect key="frame" x="10" y="9" width="40.5" height="15"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="15" id="dH1-j7-bXX"/>
@@ -40,15 +43,25 @@
                                 <action selector="updateButtonTapped:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="U7L-0X-oas"/>
                             </connections>
                         </button>
+                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Today, 12:41 pm" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zqy-AN-GNI" userLabel="Subtitle Label">
+                            <rect key="frame" x="206.5" y="0.0" width="83.5" height="32"/>
+                            <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="11"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="49R-WV-QsX" secondAttribute="trailing" id="EIN-Fk-eDs"/>
+                        <constraint firstAttribute="bottom" secondItem="Zqy-AN-GNI" secondAttribute="bottom" id="HVR-BO-WYv"/>
                         <constraint firstAttribute="bottom" secondItem="49R-WV-QsX" secondAttribute="bottom" id="NNz-fM-uTH"/>
                         <constraint firstItem="538-Iu-4CO" firstAttribute="leading" secondItem="FUa-tk-nIn" secondAttribute="leading" constant="10" id="Pmc-Da-Nha"/>
+                        <constraint firstAttribute="trailing" secondItem="Zqy-AN-GNI" secondAttribute="trailing" constant="10" id="Sjq-Vp-5a7"/>
                         <constraint firstAttribute="centerY" secondItem="538-Iu-4CO" secondAttribute="centerY" id="Tnu-QR-zk5"/>
                         <constraint firstItem="49R-WV-QsX" firstAttribute="top" secondItem="FUa-tk-nIn" secondAttribute="top" id="blj-Hy-Pif"/>
-                        <constraint firstItem="49R-WV-QsX" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="538-Iu-4CO" secondAttribute="trailing" constant="10" id="mDj-gE-TI2"/>
+                        <constraint firstItem="Zqy-AN-GNI" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="538-Iu-4CO" secondAttribute="trailing" constant="20" id="cvh-DM-td5"/>
+                        <constraint firstItem="Zqy-AN-GNI" firstAttribute="top" secondItem="FUa-tk-nIn" secondAttribute="top" id="lkS-3R-HC0"/>
+                        <constraint firstItem="49R-WV-QsX" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="538-Iu-4CO" secondAttribute="trailing" constant="20" id="mDj-gE-TI2"/>
                     </constraints>
                 </view>
             </subviews>
@@ -60,6 +73,7 @@
                 <constraint firstAttribute="bottom" secondItem="FUa-tk-nIn" secondAttribute="bottom" id="Z0U-5S-fQO"/>
             </constraints>
             <connections>
+                <outlet property="cardSubtitleLabel" destination="Zqy-AN-GNI" id="G6m-Ec-U4C"/>
                 <outlet property="cardTitleLabel" destination="538-Iu-4CO" id="3mV-jS-vRw"/>
                 <outlet property="cardView" destination="FUa-tk-nIn" id="yTe-Ub-9fY"/>
                 <outlet property="updateButton" destination="49R-WV-QsX" id="75d-Vh-6qw"/>
