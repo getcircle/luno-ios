@@ -88,11 +88,6 @@ class LocationDetailDataSource: CardDataSource {
             profileHeader.setLocation(location)
             profileHeaderView = profileHeader
         }
-        
-        if let headerView = header as? ProfileSectionHeaderCollectionReusableView,
-            card = cardAtSection(indexPath.section) where card.allowEditingContent && canEdit() {
-                headerView.showAddEditButton = true
-        }        
     }
     
     override func configureFooter(footer: CircleCollectionReusableView, atIndexPath indexPath: NSIndexPath) {

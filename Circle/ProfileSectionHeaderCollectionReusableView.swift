@@ -12,36 +12,28 @@ class ProfileSectionHeaderCollectionReusableView: CircleCollectionReusableView {
 
     @IBOutlet weak var cardTitleLabel: UILabel!
     @IBOutlet weak var addEditButton: CircleButton!
-    @IBOutlet weak var nextIconImage: UIImageView!
-    @IBOutlet weak var cardContentCountLabel: UILabel!
-    @IBOutlet weak var cardTriggerButton: UIButton!
     
     var showAddEditButton: Bool = false
-
-    private var bottomBorder: UIView?
-    
-    var addBottomBorder: Bool? {
+    var addBottomBorder = false {
         didSet {
-            if let addBorder = addBottomBorder {
-                if bottomBorder == nil {
-                    bottomBorder = cardTitleLabel.addBottomBorder(offset: 8.0)
-                }
-            }
+            setNeedsDisplay()
         }
     }
+    
+    private var bottomBorder: UIView?
 
     override class var classReuseIdentifier: String {
         return "ProfileSectionHeaderCollectionReusableView"
+    }
+    
+    override class var height: CGFloat {
+        return 32.0
     }
 
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        cardTitleLabel.font = UIFont.appAttributeTitleLabelFont()
-        cardTitleLabel.textColor = UIColor.appAttributeTitleLabelColor()
-        nextIconImage.alpha = 0.0
-        cardContentCountLabel.alpha = 0.0
-        cardTriggerButton.enabled = false
+        cardTitleLabel.textColor = UIColor.appSectionHeaderTextColor()
         addEditButton.alpha = 0.0
         configureAddEditButton()
     }
@@ -49,6 +41,13 @@ class ProfileSectionHeaderCollectionReusableView: CircleCollectionReusableView {
     override func prepareForReuse() {
         super.prepareForReuse()
         showAddEditButton = false
+        addBottomBorder = false
+    }
+    
+    override func drawRect(rect: CGRect) {
+        super.drawRect(rect)
+        
+        configureBottomBorder()
     }
     
     // MARK: - Configuration
@@ -57,36 +56,27 @@ class ProfileSectionHeaderCollectionReusableView: CircleCollectionReusableView {
         addEditButton.addRoundCorners(radius: 3.0)
         addEditButton.tintColor = UIColor.appTintColor()
         addEditButton.setTitleColor(UIColor.appTintColor(), forState: .Normal)
-        addEditButton.addTarget(self, action: "addEditButtonTapped:", forControlEvents: .TouchUpInside)
     }
-
+    
+    private func configureBottomBorder() {
+        if addBottomBorder && bottomBorder == nil {
+            bottomBorder = addBottomBorder()
+        }
+        bottomBorder?.hidden = !addBottomBorder
+    }
+    
     override func setCard(card: Card) {
-        cardTitleLabel.text = card.title.localizedUppercaseString()
         addEditButton.alpha = showAddEditButton ? 1.0 : 0.0
-        nextIconImage.alpha = 0.0
-        cardContentCountLabel.alpha = 0.0
-        cardTriggerButton.enabled = false
         if showAddEditButton {
             let buttonTitle = card.content.count > 0 ? AppStrings.ProfileInfoEditButtonTitle : AppStrings.ProfileInfoAddButtonTitle
             addEditButton.setTitle(buttonTitle.localizedUppercaseString(), forState: .Normal)
         }
-    
-        if !showAddEditButton && card.showContentCount {
-            nextIconImage.alpha = 1.0
-            cardContentCountLabel.alpha = 1.0
-            cardContentCountLabel.text = card.contentCountLabel()
-            cardTriggerButton.enabled = true
-        }
+        cardTitleLabel.attributedText = NSAttributedString.headerText(card.title.localizedUppercaseString())
+        
         super.setCard(card)
     }
     
     @IBAction func addEditButtonTapped(sender: AnyObject!) {
-        if let card = currentCard {
-            cardHeaderDelegate?.cardHeaderTapped(sender, card: card)
-        }
-    }
-    
-    @IBAction func cardHeaderTapped(sender: AnyObject) {
         if let card = currentCard {
             cardHeaderDelegate?.cardHeaderTapped(sender, card: card)
         }
