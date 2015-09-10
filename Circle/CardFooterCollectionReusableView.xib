@@ -2,70 +2,64 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionReusableView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="U6b-Vx-4bR" customClass="CardFooterCollectionReusableView" customModule="circle" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="48"/>
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
-                <button contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qfk-AU-riU">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
-                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ner-Nq-aas" userLabel="Card View">
+                    <rect key="frame" x="10" y="0.0" width="300" height="48"/>
+                    <subviews>
+                        <button contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qfk-AU-riU">
+                            <rect key="frame" x="0.0" y="0.0" width="300" height="48"/>
+                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                            <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="15"/>
+                            <inset key="contentEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <state key="normal" title="View more">
+                                <color key="titleColor" red="0.18823529411764706" green="0.18823529411764706" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="footerButtonTapped:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="Yxm-w8-dng"/>
+                            </connections>
+                        </button>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ArrowRight" translatesAutoresizingMaskIntoConstraints="NO" id="eSt-nK-4ON">
+                            <rect key="frame" x="274" y="0.0" width="6" height="48"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="6" id="OZd-hf-Ef8"/>
+                            </constraints>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="70" id="cXA-wG-sWp"/>
+                        <constraint firstAttribute="bottom" secondItem="Qfk-AU-riU" secondAttribute="bottom" id="8i8-iR-BXg"/>
+                        <constraint firstItem="Qfk-AU-riU" firstAttribute="leading" secondItem="ner-Nq-aas" secondAttribute="leading" id="AgE-yB-P6K"/>
+                        <constraint firstAttribute="trailing" secondItem="eSt-nK-4ON" secondAttribute="trailing" constant="20" id="Bdn-pF-gEk"/>
+                        <constraint firstAttribute="trailing" secondItem="Qfk-AU-riU" secondAttribute="trailing" id="Od3-br-EmP"/>
+                        <constraint firstAttribute="bottom" secondItem="eSt-nK-4ON" secondAttribute="bottom" id="RFB-Fj-Lsx"/>
+                        <constraint firstItem="eSt-nK-4ON" firstAttribute="top" secondItem="ner-Nq-aas" secondAttribute="top" id="ViL-SV-fkm"/>
+                        <constraint firstAttribute="height" constant="48" id="aFb-8I-JVB"/>
+                        <constraint firstItem="Qfk-AU-riU" firstAttribute="top" secondItem="ner-Nq-aas" secondAttribute="top" id="mYW-iq-Lbr"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="15"/>
-                    <inset key="contentEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
-                    <state key="normal" title="View more">
-                        <color key="titleColor" red="0.18823529411764706" green="0.18823529411764706" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="footerButtonTapped:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="Yxm-w8-dng"/>
-                    </connections>
-                </button>
-                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NavRight" translatesAutoresizingMaskIntoConstraints="NO" id="eSt-nK-4ON">
-                    <rect key="frame" x="294" y="26" width="11" height="19"/>
-                </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="detail_group" translatesAutoresizingMaskIntoConstraints="NO" id="o89-ma-71t">
-                    <rect key="frame" x="15" y="15" width="40" height="40"/>
-                    <constraints>
-                        <constraint firstAttribute="width" secondItem="o89-ma-71t" secondAttribute="height" multiplier="1:1" id="J3e-YN-ddV"/>
-                        <constraint firstAttribute="height" constant="40" id="USB-Xb-of1"/>
-                    </constraints>
-                </imageView>
+                </view>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="Qfk-AU-riU" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" id="63G-Yo-dY7"/>
-                <constraint firstItem="eSt-nK-4ON" firstAttribute="centerY" secondItem="Qfk-AU-riU" secondAttribute="centerY" id="FIV-6C-Jvz"/>
-                <constraint firstAttribute="centerY" secondItem="o89-ma-71t" secondAttribute="centerY" id="NQO-Wk-5V8"/>
-                <constraint firstAttribute="trailing" secondItem="Qfk-AU-riU" secondAttribute="trailing" id="ZQp-xe-dHP"/>
-                <constraint firstItem="Qfk-AU-riU" firstAttribute="centerY" secondItem="o89-ma-71t" secondAttribute="centerY" id="kOj-iA-unQ"/>
-                <constraint firstAttribute="trailing" secondItem="eSt-nK-4ON" secondAttribute="trailing" constant="15" id="npE-Dl-eci"/>
-                <constraint firstItem="o89-ma-71t" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" constant="15" id="wKp-tO-wnO"/>
-                <constraint firstItem="Qfk-AU-riU" firstAttribute="top" secondItem="U6b-Vx-4bR" secondAttribute="top" id="xk9-V8-5rZ"/>
+                <constraint firstAttribute="trailing" secondItem="ner-Nq-aas" secondAttribute="trailing" constant="10" id="2m7-gu-tjQ"/>
+                <constraint firstItem="ner-Nq-aas" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" constant="10" id="Cf0-qt-Hid"/>
+                <constraint firstItem="ner-Nq-aas" firstAttribute="top" secondItem="U6b-Vx-4bR" secondAttribute="top" id="YaP-EJ-3fJ"/>
             </constraints>
-            <variation key="default">
-                <mask key="constraints">
-                    <exclude reference="NQO-Wk-5V8"/>
-                </mask>
-            </variation>
             <connections>
                 <outlet property="footerButton" destination="Qfk-AU-riU" id="D3I-cb-r4D"/>
-                <outlet property="footerButtonLeadingConstraint" destination="63G-Yo-dY7" id="Q0r-uM-qrU"/>
-                <outlet property="footerButtonTrailingConstraint" destination="ZQp-xe-dHP" id="iu9-Z2-h5P"/>
-                <outlet property="footerImageView" destination="o89-ma-71t" id="RFL-WD-GKJ"/>
                 <outlet property="footerNextImageView" destination="eSt-nK-4ON" id="dF3-6F-lyS"/>
             </connections>
             <point key="canvasLocation" x="211" y="139"/>
         </collectionReusableView>
     </objects>
     <resources>
-        <image name="NavRight" width="11" height="19"/>
-        <image name="detail_group" width="50" height="50"/>
+        <image name="ArrowRight" width="8" height="16"/>
     </resources>
 </document>
