@@ -41,9 +41,9 @@ class CardFooterCollectionReusableView: CircleCollectionReusableView {
             UIImage.imageFromColor(UIColor.appControlHighlightedColor(), withRect: footerButton.frame), 
             forState: .Highlighted
         )
-        footerButton.setTitleColor(UIColor.appCardFooterContentColor(), forState: .Normal)
+        footerButton.setTitleColor(UIColor.appHighlightColor(), forState: .Normal)
         footerButton.titleLabel?.font = UIFont.regularFont(13.0)
-        footerNextImageView.tintColor = UIColor.appCardFooterContentColor()
+        footerNextImageView.tintColor = UIColor.appHighlightColor()
     }
     
     func setButtonEnabled(enabled: Bool) {
