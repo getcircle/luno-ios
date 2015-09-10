@@ -23,7 +23,7 @@ class Card: Equatable {
     var cardIndex = 0
     var contentCount: Int
     var metaData: AnyObject?
-    var sectionInset = UIEdgeInsetsMake(10.0, 10.0, 10.0, 10.0)
+    var sectionInset = UIEdgeInsetsMake(0.0, 10.0, 10.0, 10.0)
     var showAllContent: Bool = false {
         didSet {
             if showAllContent {
