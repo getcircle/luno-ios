@@ -74,6 +74,7 @@ struct AppStrings {
     
     static let ProfileInfoAddButtonTitle = NSLocalizedString("Add", comment: "Title of the button to add info")
     static let ProfileInfoEditButtonTitle = NSLocalizedString("Edit", comment: "Title of the button to edit info")
+    static let ProfileInfoUpdateButtonTitle = NSLocalizedString("Update", comment: "Title of the button to update info")
     
     static let ProfileAppreciationTabTitle = NSLocalizedString("Appreciation", comment: "Title of the Appreciation section")
     
