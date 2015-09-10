@@ -250,6 +250,9 @@ class ProfileDetailDataSource: CardDataSource {
             profileHeaderView = profileHeader
             setDataInHeader()
         }
+        else if let cardHeader = header as? ProfileSectionHeaderCollectionReusableView {
+            cardHeader.addBottomBorder = true
+        }
     }
     
     override func configureFooter(footer: CircleCollectionReusableView, atIndexPath indexPath: NSIndexPath) {
