@@ -80,7 +80,7 @@ extension UIColor {
     }
     
     static func appSeparatorViewColor() -> UIColor {
-        return UIColor(red: 222, green: 222, blue: 222)
+        return UIColor.blackColor().colorWithAlphaComponent(0.12)
     }
     
     static func appViewBackgroundColor() -> UIColor {
@@ -230,6 +230,10 @@ extension UIColor {
     
     static func appAttributeTitleLabelColor() -> UIColor {
         return UIColor(red: 119, green: 119, blue: 119)
+    }
+    
+    static func appSectionHeaderTextColor() -> UIColor {
+        return UIColor.blackColor().colorWithAlphaComponent(0.4)
     }
 
     static func appAttributeValueLabelColor() -> UIColor {
