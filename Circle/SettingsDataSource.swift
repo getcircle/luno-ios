@@ -196,4 +196,8 @@ class SettingsDataSource: CardDataSource {
             cell.selectedBackgroundView = nil
         }
     }
+    
+    override func configureHeader(header: CircleCollectionReusableView, atIndexPath indexPath: NSIndexPath) {
+        header.backgroundColor = UIColor.clearColor()
+    }
 }
