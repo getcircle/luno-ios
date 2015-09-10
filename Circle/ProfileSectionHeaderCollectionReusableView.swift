@@ -11,10 +11,9 @@ import UIKit
 class ProfileSectionHeaderCollectionReusableView: CircleCollectionReusableView {
 
     @IBOutlet weak var cardTitleLabel: UILabel!
-    @IBOutlet weak var addEditButton: CircleButton!
+    @IBOutlet weak var updateButton: CircleButton!
     @IBOutlet private(set) weak var cardView: UIView!
     
-    var showAddEditButton: Bool = false
     var addBottomBorder = false {
         didSet {
             setNeedsDisplay()
@@ -35,13 +34,12 @@ class ProfileSectionHeaderCollectionReusableView: CircleCollectionReusableView {
         super.awakeFromNib()
 
         cardTitleLabel.textColor = UIColor.appSectionHeaderTextColor()
-        addEditButton.alpha = 0.0
-        configureAddEditButton()
+        configureUpdateButton()
     }
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        showAddEditButton = false
+        updateButton.hidden = true
         addBottomBorder = false
     }
     
@@ -53,10 +51,12 @@ class ProfileSectionHeaderCollectionReusableView: CircleCollectionReusableView {
     
     // MARK: - Configuration
     
-    private func configureAddEditButton() {
-        addEditButton.addRoundCorners(radius: 3.0)
-        addEditButton.tintColor = UIColor.appTintColor()
-        addEditButton.setTitleColor(UIColor.appTintColor(), forState: .Normal)
+    private func configureUpdateButton() {
+        let attributedTitle = NSMutableAttributedString(attributedString: NSAttributedString.headerText(AppStrings.ProfileInfoUpdateButtonTitle.localizedUppercaseString()))
+        attributedTitle.addAttribute(NSForegroundColorAttributeName, value: UIColor.appHighlightColor(), range: NSMakeRange(0, count(attributedTitle.string)))
+        
+        updateButton.setAttributedTitle(attributedTitle, forState: .Normal)
+        updateButton.sizeToFit()
     }
     
     private func configureBottomBorder() {
@@ -67,17 +67,13 @@ class ProfileSectionHeaderCollectionReusableView: CircleCollectionReusableView {
     }
     
     override func setCard(card: Card) {
-        addEditButton.alpha = showAddEditButton ? 1.0 : 0.0
-        if showAddEditButton {
-            let buttonTitle = card.content.count > 0 ? AppStrings.ProfileInfoEditButtonTitle : AppStrings.ProfileInfoAddButtonTitle
-            addEditButton.setTitle(buttonTitle.localizedUppercaseString(), forState: .Normal)
-        }
+        updateButton.hidden = !card.allowEditingContent
         cardTitleLabel.attributedText = NSAttributedString.headerText(card.title.localizedUppercaseString())
         
         super.setCard(card)
     }
     
-    @IBAction func addEditButtonTapped(sender: AnyObject!) {
+    @IBAction func updateButtonTapped(sender: AnyObject!) {
         if let card = currentCard {
             cardHeaderDelegate?.cardHeaderTapped(sender, card: card)
         }
