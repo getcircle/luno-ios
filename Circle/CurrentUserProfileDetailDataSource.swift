@@ -13,15 +13,6 @@ class CurrentUserProfileDetailDataSource: ProfileDetailDataSource {
 
     var editImageButtonDelegate: EditImageButtonDelegate?
     
-    override internal func addContactsCard() -> Card? {
-        if let card = super.addContactsCard() {
-            card.allowEditingContent = true
-            return card
-        }
-        
-        return nil
-    }
-    
     override internal func addStatusCard() -> Card? {
         if let card = super.addStatusCard() {
             card.allowEditingContent = true

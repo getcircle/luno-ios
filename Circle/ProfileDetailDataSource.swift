@@ -250,7 +250,12 @@ class ProfileDetailDataSource: CardDataSource {
             profileHeaderView = profileHeader
             setDataInHeader()
         }
-        else if let cardHeader = header as? ProfileSectionHeaderCollectionReusableView {
+        else if let cardHeader = header as? ProfileSectionHeaderCollectionReusableView, let card = cardAtSection(indexPath.section) {
+            if card.type == .ContactMethods {
+                cardHeader.cardSubtitleLabel.hidden = false
+                cardHeader.cardSubtitleLabel.text = location?.officeCurrentDateAndTimeLabel()
+            }
+            
             cardHeader.addBottomBorder = true
         }
     }

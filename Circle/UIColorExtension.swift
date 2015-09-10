@@ -72,7 +72,7 @@ extension UIColor {
     }
 
     static func appSecondaryTextColor() -> UIColor {
-        return UIColor(red: 112, green: 112, blue: 112)
+        return UIColor.blackColor().colorWithAlphaComponent(0.5)
     }
 
     static func appSecondaryCTABackgroundColor() -> UIColor {
