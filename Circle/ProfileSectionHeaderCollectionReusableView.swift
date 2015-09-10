@@ -12,6 +12,7 @@ class ProfileSectionHeaderCollectionReusableView: CircleCollectionReusableView {
 
     @IBOutlet weak var cardTitleLabel: UILabel!
     @IBOutlet weak var addEditButton: CircleButton!
+    @IBOutlet private(set) weak var cardView: UIView!
     
     var showAddEditButton: Bool = false
     var addBottomBorder = false {
@@ -60,7 +61,7 @@ class ProfileSectionHeaderCollectionReusableView: CircleCollectionReusableView {
     
     private func configureBottomBorder() {
         if addBottomBorder && bottomBorder == nil {
-            bottomBorder = addBottomBorder()
+            bottomBorder = cardView.addBottomBorder(offset: -1.0)
         }
         bottomBorder?.hidden = !addBottomBorder
     }
