@@ -68,7 +68,7 @@ extension UIColor {
     }
     
     static func appPrimaryTextColor() -> UIColor {
-        return UIColor(red: 48, green: 48, blue: 48)
+        return UIColor.blackColor().colorWithAlphaComponent(0.8)
     }
 
     static func appSecondaryTextColor() -> UIColor {
