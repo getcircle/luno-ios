@@ -276,6 +276,10 @@ extension UIColor {
         return UIColor(red: 0, green: 137, blue: 163)
     }
 
+    static func appCardFooterContentColor() -> UIColor {
+        return UIColor(red: 122, green: 142, blue: 255)
+    }
+    
     // MARK: - Social
     
     static func twitterColor() -> UIColor {
