@@ -47,8 +47,8 @@ class ProfileCollectionViewCell: CircleCollectionViewCell {
         if !(self is ProfileGridItemCollectionViewCell) {
             profileImageView.makeItCircular()
         }
-        nameLabel.font = UIFont.appPrimaryTextFont()
-        subTextLabel.font = UIFont.appSecondaryTextFont()
+        nameLabel.font = UIFont.mainTextFont()
+        subTextLabel.font = UIFont.secondaryTextFont()
         nameLabel.textColor = UIColor.appPrimaryTextColor()
         subTextLabel.textColor = UIColor.appSecondaryTextColor()
         nameLabelRightConstraintInitialValue = nameLabelRightConstraint.constant
