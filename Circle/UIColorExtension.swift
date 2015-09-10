@@ -280,6 +280,10 @@ extension UIColor {
         return UIColor(red: 122, green: 142, blue: 255)
     }
     
+    static func appIconBorderColor() -> UIColor {
+        return UIColor.blackColor().colorWithAlphaComponent(0.2)
+    }
+    
     // MARK: - Social
     
     static func twitterColor() -> UIColor {
