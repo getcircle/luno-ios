@@ -10,58 +10,64 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="32"/>
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="PEOPLE" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="538-Iu-4CO">
-                    <rect key="frame" x="15" y="9" width="225" height="15"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FUa-tk-nIn" userLabel="Card View">
+                    <rect key="frame" x="10" y="0.0" width="300" height="32"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="PEOPLE" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="538-Iu-4CO">
+                            <rect key="frame" x="10" y="9" width="52" height="15"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="15" id="dH1-j7-bXX"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
+                            <color key="textColor" red="0.1505631506" green="0.1505586505" blue="0.15056121350000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="49R-WV-QsX" userLabel="AddEditButton" customClass="CircleButton" customModule="circle" customModuleProvider="target">
+                            <rect key="frame" x="210" y="0.0" width="80" height="32"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="32" id="QAu-MO-KsH"/>
+                                <constraint firstAttribute="width" constant="40" id="ROe-vS-jZW"/>
+                                <constraint firstAttribute="width" constant="80" id="tPP-Kc-LCf"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="13"/>
+                            <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <inset key="imageEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
+                            <state key="normal" title="EDIT">
+                                <color key="titleColor" red="0.14901960784313725" green="0.14901960784313725" blue="0.14901960784313725" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="QAu-MO-KsH"/>
+                                    <exclude reference="ROe-vS-jZW"/>
+                                </mask>
+                            </variation>
+                            <connections>
+                                <action selector="addEditButtonTapped:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="eUW-gm-Z9a"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="15" id="dH1-j7-bXX"/>
+                        <constraint firstAttribute="trailing" secondItem="49R-WV-QsX" secondAttribute="trailing" constant="10" id="EIN-Fk-eDs"/>
+                        <constraint firstAttribute="bottom" secondItem="49R-WV-QsX" secondAttribute="bottom" id="NNz-fM-uTH"/>
+                        <constraint firstItem="538-Iu-4CO" firstAttribute="leading" secondItem="FUa-tk-nIn" secondAttribute="leading" constant="10" id="Pmc-Da-Nha"/>
+                        <constraint firstAttribute="centerY" secondItem="538-Iu-4CO" secondAttribute="centerY" id="Tnu-QR-zk5"/>
+                        <constraint firstItem="49R-WV-QsX" firstAttribute="top" secondItem="FUa-tk-nIn" secondAttribute="top" id="blj-Hy-Pif"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
-                    <color key="textColor" red="0.1505631506" green="0.1505586505" blue="0.15056121350000001" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="49R-WV-QsX" userLabel="AddEditButton" customClass="CircleButton" customModule="circle" customModuleProvider="target">
-                    <rect key="frame" x="240" y="10" width="80" height="12"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="32" id="QAu-MO-KsH"/>
-                        <constraint firstAttribute="width" constant="40" id="ROe-vS-jZW"/>
-                        <constraint firstAttribute="width" constant="80" id="tPP-Kc-LCf"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="13"/>
-                    <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
-                    <inset key="imageEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
-                    <state key="normal" title="EDIT">
-                        <color key="titleColor" red="0.14901960784313725" green="0.14901960784313725" blue="0.14901960784313725" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <variation key="default">
-                        <mask key="constraints">
-                            <exclude reference="QAu-MO-KsH"/>
-                            <exclude reference="ROe-vS-jZW"/>
-                        </mask>
-                    </variation>
-                    <connections>
-                        <action selector="addEditButtonTapped:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="eUW-gm-Z9a"/>
-                    </connections>
-                </button>
+                </view>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="49R-WV-QsX" firstAttribute="leading" secondItem="538-Iu-4CO" secondAttribute="trailing" id="0ef-eZ-SB7"/>
-                <constraint firstAttribute="trailing" secondItem="49R-WV-QsX" secondAttribute="trailing" id="5dT-r6-WX3"/>
-                <constraint firstAttribute="centerY" secondItem="49R-WV-QsX" secondAttribute="centerY" id="KaE-Yd-VzL"/>
-                <constraint firstItem="49R-WV-QsX" firstAttribute="top" secondItem="U6b-Vx-4bR" secondAttribute="top" constant="10" id="O7K-gk-xJj"/>
-                <constraint firstItem="538-Iu-4CO" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" constant="15" id="cN1-np-5yv"/>
-                <constraint firstAttribute="bottom" secondItem="49R-WV-QsX" secondAttribute="bottom" constant="10" id="dOf-a0-Cnp"/>
-                <constraint firstAttribute="centerY" secondItem="538-Iu-4CO" secondAttribute="centerY" id="nVi-5I-MbB"/>
+                <constraint firstItem="FUa-tk-nIn" firstAttribute="top" secondItem="U6b-Vx-4bR" secondAttribute="top" id="1n1-Fd-fb6"/>
+                <constraint firstItem="FUa-tk-nIn" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" constant="10" id="384-FO-QzN"/>
+                <constraint firstAttribute="trailing" secondItem="FUa-tk-nIn" secondAttribute="trailing" constant="10" id="EUj-vf-ngk"/>
+                <constraint firstAttribute="bottom" secondItem="FUa-tk-nIn" secondAttribute="bottom" id="Z0U-5S-fQO"/>
             </constraints>
-            <variation key="default">
-                <mask key="constraints">
-                    <exclude reference="KaE-Yd-VzL"/>
-                </mask>
-            </variation>
             <connections>
                 <outlet property="addEditButton" destination="49R-WV-QsX" id="Or7-zP-HSb"/>
                 <outlet property="cardTitleLabel" destination="538-Iu-4CO" id="3mV-jS-vRw"/>
+                <outlet property="cardView" destination="FUa-tk-nIn" id="yTe-Ub-9fY"/>
             </connections>
             <point key="canvasLocation" x="-359" y="35"/>
         </collectionReusableView>
