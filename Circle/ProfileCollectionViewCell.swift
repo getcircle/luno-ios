@@ -154,7 +154,7 @@ class ProfileCollectionViewCell: CircleCollectionViewCell {
     
     private func setLocation(location: Services.Organization.Containers.LocationV1) {
         nameLabel.text = location.officeName()
-        subTextLabel.text = getCountLabel(location.profileCount)
+        subTextLabel.text = location.cityRegion() + " (\(getCountLabel(location.profileCount)))"
         
         profileImageView.imageProfileIdentifier = location.id
         profileImageView.imageText = ""
