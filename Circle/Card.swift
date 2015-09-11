@@ -381,7 +381,7 @@ class Card: Equatable {
         sectionInset = UIEdgeInsetsMake(
             sectionInset.top,
             sectionInset.left,
-            1.0,
+            0.0,
             sectionInset.right
         )
     }
