@@ -27,8 +27,8 @@ class SettingsDataSource: CardDataSource {
     
     override func loadData(completionHandler: (error: NSError?) -> Void) {
         
-        let sectionHeaderClass = ProfileSectionHeaderCollectionReusableView.self
-        let sectionInset = UIEdgeInsetsMake(0.0, 0.0, 20.0, 0.0)
+        let sectionHeaderClass = SettingsSectionHeaderCollectionReusableView.self
+        let sectionInset = UIEdgeInsetsMake(0.0, 0.0, 0.0, 0.0)
 
         // Security card
         var securityCard = Card(
