@@ -17,6 +17,23 @@ enum SizeCalculation {
 class CircleCollectionViewCell: UICollectionViewCell {
     
     var card: Card?
+    var showSeparator = false
+    var separatorInset = UIEdgeInsetsZero {
+        didSet {
+            if !UIEdgeInsetsEqualToEdgeInsets(separatorInset, oldValue) {
+                bottomBorder?.removeFromSuperview()
+                bottomBorder = nil
+                setNeedsDisplay()
+            }
+        }
+    }
+    var separatorColor: UIColor?  {
+        didSet {
+            bottomBorder?.backgroundColor = separatorColor
+        }
+    }
+    
+    private var bottomBorder: UIView?
 
     // Reuse identifier for dequeuing and reusing cells
     class var classReuseIdentifier: String {
@@ -42,7 +59,7 @@ class CircleCollectionViewCell: UICollectionViewCell {
     
     // Default min. line spacing expected by the cell
     class var lineSpacing: CGFloat {
-        return 1.0
+        return 0.0
     }
 
     // If the size calculation method is set to Fixed, the
@@ -75,6 +92,21 @@ class CircleCollectionViewCell: UICollectionViewCell {
         // Collection view does some trickery and removes constraints from
         // background views. So, we have to add it again in code
         selectedBackgroundView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        showSeparator = false
+    }
+    
+    override func drawRect(rect: CGRect) {
+        super.drawRect(rect)
+        
+        if bottomBorder == nil && showSeparator {
+            bottomBorder = addBottomBorder(edgeInsets: separatorInset, color: separatorColor)
+        }
+        bottomBorder?.hidden = !showSeparator
     }
     
     // Generic setData function..The cells receive content in this function

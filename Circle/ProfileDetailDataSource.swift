@@ -315,6 +315,16 @@ class ProfileDetailDataSource: CardDataSource {
             }
         }
     }
+    
+    override func configureCell(cell: CircleCollectionViewCell, atIndexPath indexPath: NSIndexPath) {
+        let card = cards[indexPath.section]
+        
+        let isLastCell = (indexPath.row == card.content.count - 1)
+        
+        cell.separatorInset = UIEdgeInsetsMake(0.0, 20.0, 0.0, 0.0)
+        cell.separatorColor = UIColor.blackColor().colorWithAlphaComponent(0.06)
+        cell.showSeparator = !(isLastCell && !card.addFooter)
+    }
 
     private func isProfileLoggedInUserProfile() -> Bool {
         if let loggedInUserProfile = AuthViewController.getLoggedInUserProfile() {

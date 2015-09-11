@@ -24,6 +24,10 @@ class SettingsCollectionViewCell: CircleCollectionViewCell {
         return 44.0
     }
     
+    override class var lineSpacing: CGFloat {
+        return 1.0
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
