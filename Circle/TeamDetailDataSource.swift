@@ -137,15 +137,8 @@ class TeamDetailDataSource: CardDataSource {
                 andAuthor: team.status?.byProfile
             )
 
-            if canEdit() {
-                statusCard.showContentCount = false
-                statusCard.addHeader(headerClass: sectionHeaderClass)
-                statusCard.allowEditingContent = true
-                statusCard.addContent(content: [textData])
-            }
-            else if let status = team.status where team.status.value.trimWhitespace() != "" {
-                statusCard.addContent(content: [textData])
-            }
+            statusCard.addHeader(headerClass: sectionHeaderClass)
+            statusCard.addContent(content: [textData])
             
             appendCard(statusCard)
         }
@@ -162,7 +155,6 @@ class TeamDetailDataSource: CardDataSource {
             let descriptionCard = Card(cardType: .TextValue, title: "Description")
             descriptionCard.addHeader(headerClass: sectionHeaderClass)
             descriptionCard.showContentCount = false
-            descriptionCard.allowEditingContent = canEdit()
             descriptionCard.addContent(content: [
                 TextData(
                     type: .TeamDescription, 
@@ -225,20 +217,6 @@ class TeamDetailDataSource: CardDataSource {
         }
     }
     
-    private func addTeamActionsCard() {
-        
-        // Add team actions card
-        if canEdit() {
-            let teamActionsCard = Card(cardType: .Settings, title: "")
-            teamActionsCard.sectionInset = UIEdgeInsetsMake(25.0, 0.0, 25.0, 0.0)
-            teamActionsCard.addContent(content: [[
-                "text" : AppStrings.TeamEditButtonTitle,
-                "type": ContentType.EditTeam.rawValue
-            ]])
-            appendCard(teamActionsCard)
-        }
-    }
-    
     private func populateData() {
         resetCards()
         addPlaceholderCard()
@@ -247,7 +225,6 @@ class TeamDetailDataSource: CardDataSource {
         addManagerCard()
         addSubTeamsCard()
         addMembersCard()
-        addTeamActionsCard()
     }
 
     // MARK: - UICollectionViewDataSource
