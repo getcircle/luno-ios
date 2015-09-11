@@ -49,6 +49,7 @@ class ProfileSectionHeaderCollectionReusableView: CircleCollectionReusableView {
     override func drawRect(rect: CGRect) {
         super.drawRect(rect)
         
+        cardView.addRoundCorners(corners: .TopLeft | .TopRight, radius: 4.0)
         configureBottomBorder()
     }
     

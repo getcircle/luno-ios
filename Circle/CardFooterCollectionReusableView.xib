@@ -53,6 +53,7 @@
                 <constraint firstItem="ner-Nq-aas" firstAttribute="top" secondItem="U6b-Vx-4bR" secondAttribute="top" id="YaP-EJ-3fJ"/>
             </constraints>
             <connections>
+                <outlet property="cardView" destination="ner-Nq-aas" id="aqZ-Ew-ud2"/>
                 <outlet property="footerButton" destination="Qfk-AU-riU" id="D3I-cb-r4D"/>
                 <outlet property="footerNextImageView" destination="eSt-nK-4ON" id="dF3-6F-lyS"/>
             </connections>

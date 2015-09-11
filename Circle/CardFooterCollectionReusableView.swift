@@ -16,7 +16,8 @@ class CardFooterCollectionReusableView: CircleCollectionReusableView {
 
     @IBOutlet weak private(set) var footerButton: UIButton!
     @IBOutlet weak private(set) var footerNextImageView: UIImageView!
- 
+    @IBOutlet weak private var cardView: UIView!
+    
     override class var classReuseIdentifier: String {
         return "CardFooterCollectionReusableView"
     }
@@ -44,6 +45,12 @@ class CardFooterCollectionReusableView: CircleCollectionReusableView {
         footerButton.setTitleColor(UIColor.appHighlightColor(), forState: .Normal)
         footerButton.titleLabel?.font = UIFont.regularFont(13.0)
         footerNextImageView.tintColor = UIColor.appHighlightColor()
+    }
+    
+    override func drawRect(rect: CGRect) {
+        super.drawRect(rect)
+        
+        cardView.addRoundCorners(corners: .BottomLeft | .BottomRight, radius: 4.0)
     }
     
     func setButtonEnabled(enabled: Bool) {

@@ -283,10 +283,18 @@ class TeamDetailDataSource: CardDataSource {
         else {
             if let card = cardAtSection(indexPath.section) {
                 let isLastCell = (indexPath.row == card.content.count - 1)
+                let isLastViewInSection = (isLastCell && !card.addFooter)
+                
+                if isLastViewInSection {
+                    cell.addRoundCorners(corners: .BottomLeft | .BottomRight, radius: 4.0)
+                }
+                else {
+                    cell.removeRoundedCorners()
+                }
                 
                 cell.separatorInset = UIEdgeInsetsMake(0.0, 20.0, 0.0, 0.0)
                 cell.separatorColor = UIColor.appCardContentSeparatorViewColor()
-                cell.showSeparator = !(isLastCell && !card.addFooter)
+                cell.showSeparator = !isLastViewInSection
             }
         }
     }
