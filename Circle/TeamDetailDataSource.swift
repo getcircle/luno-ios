@@ -21,7 +21,6 @@ class TeamDetailDataSource: CardDataSource {
     private(set) var profilesNextRequest: Soa.ServiceRequestV1?
     private(set) var teams = Array<Services.Organization.Containers.TeamV1>()
     
-    private let sectionInset = UIEdgeInsetsMake(0.0, 0.0, 25.0, 0.0)
     private let sectionHeaderClass = ProfileSectionHeaderCollectionReusableView.self
 
     // MARK: - Load Data
@@ -106,7 +105,6 @@ class TeamDetailDataSource: CardDataSource {
         
         // Add a placeholder card for header view
         let placeholderHeaderCard = Card(cardType: .Placeholder, title: "")
-        placeholderHeaderCard.sectionInset = self.sectionInset
         placeholderHeaderCard.addHeader(
             headerClass: ProfileHeaderCollectionReusableView.self,
             headerSize: CGSizeMake(
@@ -129,7 +127,6 @@ class TeamDetailDataSource: CardDataSource {
         if hasStatus || canEdit() {
             
             let statusCard = Card(cardType: .TextValue, title: "Currently working on")
-            statusCard.sectionInset = self.sectionInset
             let textData = TextData(
                 type: .TeamStatus,
                 andValue: team.status?.value ?? "",
@@ -165,7 +162,6 @@ class TeamDetailDataSource: CardDataSource {
             let descriptionCard = Card(cardType: .TextValue, title: "Description")
             descriptionCard.addHeader(headerClass: sectionHeaderClass)
             descriptionCard.showContentCount = false
-            descriptionCard.sectionInset = self.sectionInset
             descriptionCard.allowEditingContent = canEdit()
             descriptionCard.addContent(content: [
                 TextData(
@@ -190,7 +186,6 @@ class TeamDetailDataSource: CardDataSource {
             managerCard.showContentCount = false
             managerCard.addHeader(headerClass: sectionHeaderClass)
             managerCard.addContent(content: [self.managerProfile])
-            managerCard.sectionInset = self.sectionInset
             self.appendCard(managerCard)
         }
     }
@@ -205,7 +200,6 @@ class TeamDetailDataSource: CardDataSource {
             teamsCard.showContentCount = false
             teamsCard.addHeader(headerClass: sectionHeaderClass)
             teamsCard.addContent(content: teams, maxVisibleItems: Card.MaxListEntries)
-            teamsCard.sectionInset = sectionInset
             if teams.count > Card.MaxListEntries {
                 teamsCard.addDefaultFooter()
             }
@@ -224,7 +218,6 @@ class TeamDetailDataSource: CardDataSource {
             membersCard.showContentCount = false
             membersCard.addHeader(headerClass: sectionHeaderClass)
             membersCard.addContent(content: profiles, maxVisibleItems: Card.MaxListEntries)
-            membersCard.sectionInset = self.sectionInset
             if profiles.count > Card.MaxListEntries {
                 membersCard.addDefaultFooter()
             }
@@ -269,6 +262,9 @@ class TeamDetailDataSource: CardDataSource {
             teamHeader.setTeam(team)
             profileHeaderView = teamHeader
         }
+        else if let cardHeader = header as? ProfileSectionHeaderCollectionReusableView {
+            cardHeader.addBottomBorder = true
+        }
     }
     
     override func configureFooter(footer: CircleCollectionReusableView, atIndexPath indexPath: NSIndexPath) {
@@ -306,6 +302,15 @@ class TeamDetailDataSource: CardDataSource {
         if let content = contentAtIndexPath(indexPath) as? [String: AnyObject], settingsCell = cell as? SettingsCollectionViewCell {
             settingsCell.itemLabel.textAlignment = .Center
             settingsCell.itemLabel.textColor = UIColor.appTintColor()
+        }
+        else {
+            let card = cards[indexPath.section]
+            
+            let isLastCell = (indexPath.row == card.content.count - 1)
+            
+            cell.separatorInset = UIEdgeInsetsMake(0.0, 20.0, 0.0, 0.0)
+            cell.separatorColor = UIColor.blackColor().colorWithAlphaComponent(0.06)
+            cell.showSeparator = !(isLastCell && !card.addFooter)
         }
     }
 }
