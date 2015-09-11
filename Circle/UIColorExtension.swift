@@ -83,6 +83,10 @@ extension UIColor {
         return UIColor.blackColor().colorWithAlphaComponent(0.12)
     }
     
+    static func appCardContentSeparatorViewColor() -> UIColor {
+        return UIColor.blackColor().colorWithAlphaComponent(0.06)
+    }
+    
     static func appViewBackgroundColor() -> UIColor {
         return UIColor(red: 242, green: 244, blue: 245)
     }
