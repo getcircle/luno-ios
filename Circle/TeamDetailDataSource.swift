@@ -308,7 +308,7 @@ class TeamDetailDataSource: CardDataSource {
                 let isLastCell = (indexPath.row == card.content.count - 1)
                 
                 cell.separatorInset = UIEdgeInsetsMake(0.0, 20.0, 0.0, 0.0)
-                cell.separatorColor = UIColor.blackColor().colorWithAlphaComponent(0.06)
+                cell.separatorColor = UIColor.appCardContentSeparatorViewColor()
                 cell.showSeparator = !(isLastCell && !card.addFooter)
             }
         }
