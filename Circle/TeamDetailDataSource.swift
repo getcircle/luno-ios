@@ -304,13 +304,13 @@ class TeamDetailDataSource: CardDataSource {
             settingsCell.itemLabel.textColor = UIColor.appTintColor()
         }
         else {
-            let card = cards[indexPath.section]
-            
-            let isLastCell = (indexPath.row == card.content.count - 1)
-            
-            cell.separatorInset = UIEdgeInsetsMake(0.0, 20.0, 0.0, 0.0)
-            cell.separatorColor = UIColor.blackColor().colorWithAlphaComponent(0.06)
-            cell.showSeparator = !(isLastCell && !card.addFooter)
+            if let card = cardAtSection(indexPath.section) {
+                let isLastCell = (indexPath.row == card.content.count - 1)
+                
+                cell.separatorInset = UIEdgeInsetsMake(0.0, 20.0, 0.0, 0.0)
+                cell.separatorColor = UIColor.blackColor().colorWithAlphaComponent(0.06)
+                cell.showSeparator = !(isLastCell && !card.addFooter)
+            }
         }
     }
 }
