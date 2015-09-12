@@ -136,4 +136,5 @@ struct AppStrings {
     
     static let SignInPlaceHolderText = NSLocalizedString("Work email address", comment: "Placeholder text indicating text field for entering work email address")
     static let SignOutButtonTitle = NSLocalizedString("Sign out", comment: "Title of sign out button")
+    static let SignOutDisconnectButtonTitle = NSLocalizedString("Sign out & disconnect account", comment: "Title of sign out and disconnect button")
 }
