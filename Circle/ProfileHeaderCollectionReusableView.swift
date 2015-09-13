@@ -98,10 +98,10 @@ class ProfileHeaderCollectionReusableView: DetailHeaderCollectionReusableView {
             secondaryInfoLabel.text = hireDateString
         }
 
-        if let userLocation = userLocation {
+//        if let userLocation = userLocation {
             containerView.backgroundColor = UIColor.clearColor()
-        }
-                
+//        }
+        
         nameLabel.text = userProfile.nameWithNickName()
         nameNavLabel.text = nameLabel.text
         titleLabel.attributedText = NSAttributedString(

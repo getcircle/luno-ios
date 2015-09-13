@@ -105,7 +105,7 @@ class SettingsViewController: UIViewController, UICollectionViewDelegate, MFMail
             message += NSString(format:"Device: %@", UIDevice.currentDevice().modelName) as String
             
             presentMailViewController(
-                ["Circle Feedback<feedback@circlehq.co>"],
+                ["Luno Feedback<feedback@lunohq.com>"],
                 subject: AppStrings.EmailFeedbackSubject + " - v" + NSBundle.appVersion(),
                 messageBody: message,
                 completionHandler: nil

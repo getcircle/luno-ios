@@ -129,7 +129,7 @@ class SearchViewController: UIViewController,
     
     private func configurePoweredByLabel() {
         poweredByLabel.attributedText = NSAttributedString(
-                string: "Powered by Circle".localizedUppercaseString(),
+                string: "Powered by Luno".localizedUppercaseString(),
                 attributes: [
                     NSKernAttributeName: NSNumber(double: 2.0),
                     NSForegroundColorAttributeName: poweredByLabel.textColor,

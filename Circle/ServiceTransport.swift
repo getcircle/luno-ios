@@ -12,9 +12,9 @@ import ProtobufRegistry
 
 let ServiceErrorDomain = "co.circlehq.circle.services"
 
-let AttributionsURL = "http://www.circlehq.co/attributions.html"
-let PrivacyPolicyURL = "http://www.circlehq.co/privacy.html"
-let TermsURL = "http://www.circlehq.co/terms.html"
+let AttributionsURL = "http://www.lunohq.com/attributions.html"
+let PrivacyPolicyURL = "http://www.lunohq.com/privacy.html"
+let TermsURL = "http://www.lunohq.com/terms.html"
 
 public struct WrappedResponse {
     
@@ -130,8 +130,8 @@ struct ServiceHttpRequest: URLRequestConvertible {
         var host: String {
             switch self {
             case .Local: return "localhost"
-            case .Staging: return "api.circlehq.co"
-            case .Production: return "api.circlehq.co"
+            case .Staging: return "api.lunohq.com"
+            case .Production: return "api.lunohq.com"
             }
         }
         
