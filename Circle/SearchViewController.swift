@@ -33,7 +33,6 @@ class SearchViewController: UIViewController,
     private let dataSource = SearchQueryDataSource()
     private var cardCollectionViewDelegate: CardCollectionViewDelegate?
     private var launchScreenView: UIView?
-    private var searchFieldBottomBorder: UIView?
     private var searchHeaderView: SearchHeaderView!
     private var shadowAdded = false
     private var wasErrorViewVisible = false
@@ -113,7 +112,6 @@ class SearchViewController: UIViewController,
             searchHeaderView.searchTextField.delegate = self
             searchHeaderView.searchTextField.addTarget(self, action: "search", forControlEvents: .EditingChanged)
             searchHeaderContainerView.addSubview(searchHeaderView)
-            searchFieldBottomBorder = searchHeaderContainerView.addBottomBorder(offset: 0.0)
             searchHeaderView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
             searchHeaderView.layer.cornerRadius = 10.0
             searchHeaderView.searchTextField.placeholder = AppStrings.QuickActionNonePlaceholder
@@ -206,7 +204,6 @@ class SearchViewController: UIViewController,
         UIView.animateWithDuration(animated ? 0.3 : 0.0, animations: { () -> Void in
             self.searchHeaderContainerView.layoutIfNeeded()
             self.orgImageView.layoutIfNeeded()
-            self.searchFieldBottomBorder?.layoutIfNeeded()
             self.collectionView.layoutIfNeeded()
             self.poweredByLabel.layoutIfNeeded()
             self.searchHeaderContainerView.addRoundCorners(radius: 0.0)
@@ -233,7 +230,6 @@ class SearchViewController: UIViewController,
         UIView.animateWithDuration(animated ? 0.3 : 0.0, animations: { () -> Void in
             self.searchHeaderContainerView.layoutIfNeeded()
             self.orgImageView.layoutIfNeeded()
-            self.searchFieldBottomBorder?.layoutIfNeeded()
             self.collectionView.layoutIfNeeded()
             self.poweredByLabel.layoutIfNeeded()
             self.searchHeaderContainerView.addRoundCorners(radius: 4.0)
