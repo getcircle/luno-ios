@@ -26,16 +26,6 @@ class SettingsViewController: UIViewController, UICollectionViewDelegate, MFMail
         configureNavigationBar()
     }
     
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        registerNotifications()
-    }
-    
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-        unregisterNotifications()
-    }
-    
     // MARK: - Configuration
     
     private func configureView() {
@@ -78,6 +68,26 @@ class SettingsViewController: UIViewController, UICollectionViewDelegate, MFMail
             AuthViewController.logOut()
         })
     }
+
+    @IBAction func logoutDisconnectButtonTapped(sender: AnyObject!) {
+        if let identities = AuthViewController.getLoggedInUserIdentities() {
+            for identity in identities {
+                if identity.provider == .Google {
+                    Services.User.Actions.deleteIdentity(identity) { (error) -> Void in
+                        if error != nil {
+                            println("error deleting user identity: \(error)")
+                        } else {
+                            self.dismissViewControllerAnimated(true) { () -> Void in
+                                AuthViewController.logOut()
+                            }
+                        }
+                    }
+                    
+                    break
+                }
+            }
+        }
+    }
     
     // MARK: - UICollectionViewDelegate
     
@@ -95,12 +105,14 @@ class SettingsViewController: UIViewController, UICollectionViewDelegate, MFMail
             message += NSString(format:"Device: %@", UIDevice.currentDevice().modelName) as String
             
             presentMailViewController(
-                ["Circle Feedback<feedback@circlehq.co>"],
+                ["Luno Feedback<feedback@lunohq.com>"],
                 subject: AppStrings.EmailFeedbackSubject + " - v" + NSBundle.appVersion(),
                 messageBody: message,
                 completionHandler: nil
             )
             
+        case .Disconnect:
+            logoutDisconnectButtonTapped(collectionView)
             
         case .LogOut:
             logoutButtonTapped(collectionView)
@@ -126,60 +138,6 @@ class SettingsViewController: UIViewController, UICollectionViewDelegate, MFMail
 
         default:
             break
-        }
-    }
-    
-    // MARK: - Notifications
-    
-    private func registerNotifications() {
-        NSNotificationCenter.defaultCenter().addObserver(
-            self,
-            selector: "didToggleProvider:",
-            name: ToggleSocialConnectionCollectionViewCellNotifications.onProviderToggled,
-            object: nil
-        )
-    }
-    
-    private func unregisterNotifications() {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
-    }
-    
-    func didToggleProvider(notification: NSNotification) {
-        if let userInfo = notification.userInfo {
-            if let enable = userInfo["enable"] as? Bool {
-                if let identity = userInfo["identity"] as? Services.User.Containers.IdentityV1 {
-                    switch identity.provider {
-                    case .Linkedin:
-                        if enable {
-                            let socialConnectVC = SocialConnectViewController(provider: .Linkedin)
-                            presentViewController(socialConnectVC, animated: true, completion: nil)
-                        }
-                    default:
-                        break
-                    }
-                    
-                    if !enable {
-                        Services.User.Actions.deleteIdentity(identity) { (error) -> Void in
-                            if error != nil {
-                                println("error deleting user identity: \(error)")
-                            } else {
-                                if identity.provider == .Google {
-                                    self.dismissViewControllerAnimated(true) { () -> Void in
-                                        AuthViewController.logOut()
-                                    }
-                                } else {
-                                    Services.User.Actions.getIdentities(AuthViewController.getLoggedInUser()!.id) { (identities, error) -> Void in
-                                        if let identities = identities {
-                                            AuthViewController.updateIdentities(identities)
-                                        }
-                                        self.collectionView.reloadData()
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
         }
     }
     

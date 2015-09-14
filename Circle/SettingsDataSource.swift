@@ -15,6 +15,7 @@ class SettingsDataSource: CardDataSource {
         case AccountEmail
         case ContactEmail
         case ContactPhone
+        case Disconnect
         case GoogleDisconnect
         case LegalAttributions
         case LegalPrivacy
@@ -89,19 +90,6 @@ class SettingsDataSource: CardDataSource {
             ],
         ])
         appendCard(legalCard)
-        
-        // Social card
-        if let identities = AuthViewController.getLoggedInUserIdentities() {
-            var socialCard = Card(
-                cardType: .SocialToggle,
-                title: "Social"
-            )
-            socialCard.addHeader(headerClass: sectionHeaderClass)
-            socialCard.sectionInset = sectionInset
-            socialCard.showContentCount = false
-            socialCard.addContent(content: identities as [AnyObject])
-            appendCard(socialCard)
-        }
 
         // Account card
         var logoutCard = Card(
@@ -111,16 +99,28 @@ class SettingsDataSource: CardDataSource {
         logoutCard.addHeader(headerClass: sectionHeaderClass)
         logoutCard.sectionInset = sectionInset
         logoutCard.showContentCount = false
-        logoutCard.addContent(content: [
-            [
-                "text": AuthViewController.getLoggedInUser()!.primaryEmail,
-                "type": SettingsCellType.AccountEmail.rawValue
-            ],
-            [
-                "text": AppStrings.SignOutButtonTitle,
-                "type": SettingsCellType.LogOut.rawValue
-            ]
-        ])
+        var accountContent = [[
+            "text": AuthViewController.getLoggedInUser()!.primaryEmail,
+            "type": SettingsCellType.AccountEmail.rawValue
+        ],
+        [
+            "text": AppStrings.SignOutButtonTitle,
+            "type": SettingsCellType.LogOut.rawValue
+        ]]
+        
+        if let identities = AuthViewController.getLoggedInUserIdentities() where identities.count > 0 {
+            for identity in identities {
+                if identity.provider == .Google {
+                    accountContent.append([
+                        "text": AppStrings.SignOutDisconnectButtonTitle,
+                        "type": SettingsCellType.Disconnect.rawValue
+                    ])
+                    break
+                }
+            }
+        }
+
+        logoutCard.addContent(content: accountContent)
         appendCard(logoutCard)
         
         // Version card
@@ -172,7 +172,7 @@ class SettingsDataSource: CardDataSource {
                 )
                 backgroundView = nil
             
-            case .LogOut:
+            case .Disconnect, .LogOut:
                 textAlignment = .Center
             
             case .SecurityPasscodeAndTouchID:

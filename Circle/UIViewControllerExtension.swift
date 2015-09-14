@@ -122,7 +122,7 @@ extension UIViewController {
                 }
                 
                 var message: String = messageBody ?? ""
-                message += "\n\n\nSent using Circle app"
+                message += "\n\n\nSent from luno"
                 mailVC.setMessageBody(message, isHTML: false)
                 
                 if let composeDelegate = self as? MFMailComposeViewControllerDelegate {
@@ -169,7 +169,7 @@ extension UIViewController {
             
             // Body
             var message: String = messageBody ?? ""
-            message += "\n\n\nSent using Circle app"
+            message += "\n\n\nSent from luno"
             messageVC.body = messageBody
             
             // Delegate

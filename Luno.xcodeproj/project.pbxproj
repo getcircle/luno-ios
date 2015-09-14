@@ -349,7 +349,7 @@
 		478E7A6E1B97938E0077B910 /* OpenSans-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Semibold.ttf"; sourceTree = "<group>"; };
 		47D1BF721BA08DF000BFF46B /* NSAttributedStringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSAttributedStringExtension.swift; sourceTree = "<group>"; };
 		4BE4CE18D8FDD109BFC6307A /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		8F0004901A2419730096477A /* circle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = circle.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8F0004901A2419730096477A /* luno.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = luno.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F0004941A2419730096477A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8F0004951A2419730096477A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8F00049A1A2419730096477A /* ProfilesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilesViewController.swift; sourceTree = "<group>"; };
@@ -357,7 +357,7 @@
 		8F00049F1A2419730096477A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8F0004A11A2419730096477A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		8F0004A41A2419730096477A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		8F0004AA1A2419730096477A /* CircleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CircleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8F0004AA1A2419730096477A /* LunoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LunoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F0004AF1A2419730096477A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8F0004B01A2419730096477A /* CircleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleTests.swift; sourceTree = "<group>"; };
 		8F0004BA1A241BDE0096477A /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
@@ -696,8 +696,8 @@
 		8F0004911A2419730096477A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8F0004901A2419730096477A /* circle.app */,
-				8F0004AA1A2419730096477A /* CircleTests.xctest */,
+				8F0004901A2419730096477A /* luno.app */,
+				8F0004AA1A2419730096477A /* LunoTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1186,9 +1186,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		8F00048F1A2419730096477A /* Circle */ = {
+		8F00048F1A2419730096477A /* Luno */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8F0004B41A2419730096477A /* Build configuration list for PBXNativeTarget "Circle" */;
+			buildConfigurationList = 8F0004B41A2419730096477A /* Build configuration list for PBXNativeTarget "Luno" */;
 			buildPhases = (
 				C51663628A70DADB14DD6582 /* Check Pods Manifest.lock */,
 				8F00048C1A2419730096477A /* Sources */,
@@ -1204,14 +1204,14 @@
 			dependencies = (
 				BF24FCFC1A4A25F0003DF4C2 /* PBXTargetDependency */,
 			);
-			name = Circle;
+			name = Luno;
 			productName = Circle;
-			productReference = 8F0004901A2419730096477A /* circle.app */;
+			productReference = 8F0004901A2419730096477A /* luno.app */;
 			productType = "com.apple.product-type.application";
 		};
-		8F0004A91A2419730096477A /* CircleTests */ = {
+		8F0004A91A2419730096477A /* LunoTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8F0004B71A2419730096477A /* Build configuration list for PBXNativeTarget "CircleTests" */;
+			buildConfigurationList = 8F0004B71A2419730096477A /* Build configuration list for PBXNativeTarget "LunoTests" */;
 			buildPhases = (
 				D1CEA30AD39857098E1E755B /* Check Pods Manifest.lock */,
 				8F0004A61A2419730096477A /* Sources */,
@@ -1225,9 +1225,9 @@
 			dependencies = (
 				8F0004AC1A2419730096477A /* PBXTargetDependency */,
 			);
-			name = CircleTests;
+			name = LunoTests;
 			productName = CircleTests;
-			productReference = 8F0004AA1A2419730096477A /* CircleTests.xctest */;
+			productReference = 8F0004AA1A2419730096477A /* LunoTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -1238,7 +1238,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0610;
-				ORGANIZATIONNAME = "RH Labs Inc.";
+				ORGANIZATIONNAME = "Luno Inc.";
 				TargetAttributes = {
 					8F00048F1A2419730096477A = {
 						CreatedOnToolsVersion = 6.1;
@@ -1258,7 +1258,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 8F00048B1A2419730096477A /* Build configuration list for PBXProject "Circle" */;
+			buildConfigurationList = 8F00048B1A2419730096477A /* Build configuration list for PBXProject "Luno" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -1277,8 +1277,8 @@
 			);
 			projectRoot = "";
 			targets = (
-				8F00048F1A2419730096477A /* Circle */,
-				8F0004A91A2419730096477A /* CircleTests */,
+				8F00048F1A2419730096477A /* Luno */,
+				8F0004A91A2419730096477A /* LunoTests */,
 			);
 		};
 /* End PBXProject section */
@@ -1720,7 +1720,7 @@
 /* Begin PBXTargetDependency section */
 		8F0004AC1A2419730096477A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 8F00048F1A2419730096477A /* Circle */;
+			target = 8F00048F1A2419730096477A /* Luno */;
 			targetProxy = 8F0004AB1A2419730096477A /* PBXContainerItemProxy */;
 		};
 		BF24FCFC1A4A25F0003DF4C2 /* PBXTargetDependency */ = {
@@ -1787,6 +1787,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = luno;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1823,6 +1824,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = luno;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -1848,7 +1850,7 @@
 				);
 				INFOPLIST_FILE = Circle/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = circle;
+				PRODUCT_NAME = luno;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$SRCROOT/Circle/Circle-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1870,7 +1872,7 @@
 				);
 				INFOPLIST_FILE = Circle/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = circle;
+				PRODUCT_NAME = luno;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$SRCROOT/Circle/Circle-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
@@ -1894,7 +1896,7 @@
 				);
 				INFOPLIST_FILE = CircleTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = LunoTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Circle.app/Circle";
 			};
 			name = Debug;
@@ -1911,7 +1913,7 @@
 				);
 				INFOPLIST_FILE = CircleTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = LunoTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Circle.app/Circle";
 			};
 			name = Release;
@@ -1919,7 +1921,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		8F00048B1A2419730096477A /* Build configuration list for PBXProject "Circle" */ = {
+		8F00048B1A2419730096477A /* Build configuration list for PBXProject "Luno" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8F0004B21A2419730096477A /* Debug */,
@@ -1928,7 +1930,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8F0004B41A2419730096477A /* Build configuration list for PBXNativeTarget "Circle" */ = {
+		8F0004B41A2419730096477A /* Build configuration list for PBXNativeTarget "Luno" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8F0004B51A2419730096477A /* Debug */,
@@ -1937,7 +1939,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8F0004B71A2419730096477A /* Build configuration list for PBXNativeTarget "CircleTests" */ = {
+		8F0004B71A2419730096477A /* Build configuration list for PBXNativeTarget "LunoTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8F0004B81A2419730096477A /* Debug */,

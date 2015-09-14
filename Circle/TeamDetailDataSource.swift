@@ -137,15 +137,8 @@ class TeamDetailDataSource: CardDataSource {
                 andAuthor: team.status?.byProfile
             )
 
-            if canEdit() {
-                statusCard.showContentCount = false
-                statusCard.addHeader(headerClass: sectionHeaderClass)
-                statusCard.allowEditingContent = true
-                statusCard.addContent(content: [textData])
-            }
-            else if let status = team.status where team.status.value.trimWhitespace() != "" {
-                statusCard.addContent(content: [textData])
-            }
+            statusCard.addHeader(headerClass: sectionHeaderClass)
+            statusCard.addContent(content: [textData])
             
             appendCard(statusCard)
         }

@@ -70,7 +70,7 @@ struct AppStrings {
     static let RequestAccessConfirmationTest = NSLocalizedString("Great! We will notify you when your account is ready to access. Thanks!", comment: "Confirmation text shown when user requests access to the app.")
     
     static let PasswordTextFieldPlaceholder = NSLocalizedString("Password", comment: "Placeholder for password text field")
-    static let PrivateBetaInfoText = NSLocalizedString("circle is currently available only to employees at participating companies! You can request access below or try logging into a different account.", comment: "Message indicating that the app is only available to employees of participating companies and the user can either request access or try a different account")
+    static let PrivateBetaInfoText = NSLocalizedString("luno is currently available only to employees at participating companies! You can request access below or try logging into a different account.", comment: "Message indicating that the app is only available to employees of participating companies and the user can either request access or try a different account")
     
     static let ProfileInfoAddButtonTitle = NSLocalizedString("Add", comment: "Title of the button to add info")
     static let ProfileInfoEditButtonTitle = NSLocalizedString("Edit", comment: "Title of the button to edit info")
@@ -131,10 +131,11 @@ struct AppStrings {
     static let TextPlaceholderFilterTags = NSLocalizedString("Filter interests", comment: "Placeholder text for filter interests input box")
     static let TextDownloadApp = NSLocalizedString("We tried opening the %@ app but it looks like you do not have it installed. Would you like to download it from the App Store?", comment: "Message of the alert dialog asking user if they would like to download %@ app")
     
-    static let WaitlistInfoText = NSLocalizedString("circle is currently available only to employees at participating companies! You are on our list and we will notify you when your account is ready. Thanks!", comment: "Message indicating that the app is only available to employees of participating companies and the user's request to access it is in progress")
-    static let WelcomeTitleText = NSLocalizedString("Welcome to circle", comment: "Header text for welcoming users to the app")
+    static let WaitlistInfoText = NSLocalizedString("luno is currently available only to employees at participating companies! You are on our list and we will notify you when your account is ready. Thanks!", comment: "Message indicating that the app is only available to employees of participating companies and the user's request to access it is in progress")
+    static let WelcomeTitleText = NSLocalizedString("Welcome to luno", comment: "Header text for welcoming users to the app")
     static let WelcomeInfoText = NSLocalizedString("The easiest way to access any information on the people, teams, and locations that make up your company.\n\nLets get started by setting up your profile.", comment: "Tag line message shown on welcome view")
     
     static let SignInPlaceHolderText = NSLocalizedString("Work email address", comment: "Placeholder text indicating text field for entering work email address")
     static let SignOutButtonTitle = NSLocalizedString("Sign out", comment: "Title of sign out button")
+    static let SignOutDisconnectButtonTitle = NSLocalizedString("Sign out & disconnect account", comment: "Title of sign out and disconnect button")
 }
