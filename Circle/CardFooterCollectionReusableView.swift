@@ -37,11 +37,6 @@ class CardFooterCollectionReusableView: CircleCollectionReusableView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-        // Rasterize layers
-        layer.shouldRasterize = true
-        layer.rasterizationScale = UIScreen.mainScreen().scale
-        
         footerButton.tintColor = UIColor.darkGrayColor()
         footerButton.setBackgroundImage(
             UIImage.imageFromColor(UIColor.appControlHighlightedColor(), withRect: footerButton.frame), 

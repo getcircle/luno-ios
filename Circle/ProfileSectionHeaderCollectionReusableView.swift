@@ -33,10 +33,6 @@ class ProfileSectionHeaderCollectionReusableView: CircleCollectionReusableView {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-
-        // Rasterize layers
-        layer.shouldRasterize = true
-        layer.rasterizationScale = UIScreen.mainScreen().scale
         
         cardTitleLabel.textColor = UIColor.appSectionHeaderTextColor()
         cardSubtitleLabel.textColor = UIColor.appSecondaryTextColor()
