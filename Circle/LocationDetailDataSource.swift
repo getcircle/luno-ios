@@ -249,11 +249,11 @@ class LocationDetailDataSource: CardDataSource {
         addPeopleCard()
     }
     
-    private func canEdit() -> Bool {
+    override func canEdit() -> Bool {
         if let permissions = self.location.permissions where permissions.canEdit {
             return true
         }
 
-        return false
+        return super.canEdit()
     }
 }

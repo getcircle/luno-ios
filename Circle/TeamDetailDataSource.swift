@@ -93,12 +93,12 @@ class TeamDetailDataSource: CardDataSource {
         }
     }
     
-    private func canEdit() -> Bool {
+    override func canEdit() -> Bool {
         if let permissions = self.team.permissions where permissions.canEdit {
             return true
         }
         
-        return false
+        return super.canEdit()
     }
     
     private func addPlaceholderCard() {

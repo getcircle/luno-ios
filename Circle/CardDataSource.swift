@@ -138,6 +138,10 @@ class CardDataSource: NSObject, UICollectionViewDataSource {
         
     }
     
+    func canEdit() -> Bool {
+        return false
+    }
+    
     /**
     Configure cell instances for display. The default implementation of this method is empty.
     
