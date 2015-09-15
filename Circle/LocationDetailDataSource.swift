@@ -156,7 +156,6 @@ class LocationDetailDataSource: CardDataSource {
             let descriptionCard = Card(cardType: .TextValue, title: "Description")
             descriptionCard.addHeader(headerClass: sectionHeaderClass)
             descriptionCard.showContentCount = false
-            descriptionCard.allowEditingContent = canEdit()
             descriptionCard.addContent(content: [
                 TextData(
                     type: .LocationDescription,
