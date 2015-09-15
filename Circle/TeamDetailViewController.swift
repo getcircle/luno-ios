@@ -54,14 +54,6 @@ class TeamDetailViewController:
                     showTeamDetail(team)
                 }
 
-                
-            case .Settings:
-                let editTeamViewController = EditTeamViewController(nibName: "EditTeamViewController", bundle: nil)
-                let editTeamNavController = UINavigationController(rootViewController: editTeamViewController)
-                editTeamViewController.team = (dataSource as! TeamDetailDataSource).team
-                editTeamViewController.editTeamViewControllerDelegate = self
-                navigationController?.presentViewController(editTeamNavController, animated: true, completion: nil)
-
             default:
                 break
             }
@@ -227,5 +219,15 @@ class TeamDetailViewController:
         }
 
         super.onTextInputValueUpdated(updatedObject)
+    }
+    
+    // MARK: - Actions
+    
+    override func editButtonTapped(sender: AnyObject) {
+        let editTeamViewController = EditTeamViewController(nibName: "EditTeamViewController", bundle: nil)
+        let editTeamNavController = UINavigationController(rootViewController: editTeamViewController)
+        editTeamViewController.team = (dataSource as! TeamDetailDataSource).team
+        editTeamViewController.editTeamViewControllerDelegate = self
+        navigationController?.presentViewController(editTeamNavController, animated: true, completion: nil)
     }
 }
