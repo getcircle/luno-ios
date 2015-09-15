@@ -13,6 +13,10 @@ class CurrentUserProfileDetailDataSource: ProfileDetailDataSource {
 
     var editImageButtonDelegate: EditImageButtonDelegate?
     
+    override func canEdit() -> Bool {
+        return true
+    }
+    
     override internal func addStatusCard() -> Card? {
         if let card = super.addStatusCard() {
             card.allowEditingContent = true

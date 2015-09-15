@@ -49,14 +49,6 @@ class CurrentUserProfileDetailViewController: ProfileDetailViewController,
     override func viewDidLoad() {
         super.viewDidLoad()
         registerFullLifecycleNotifications()
-        configureNavigationBar()
-    }
-    
-    // MARK: - Configuration
-    
-    private func configureNavigationBar() {
-        let rightBarButtonItem = UIBarButtonItem.roundedItemWithTitle(AppStrings.ProfileInfoEditButtonTitle.localizedUppercaseString(), target: self, action: "editTitleTapped:")
-        navigationItem.rightBarButtonItem = rightBarButtonItem
     }
 
     // MARK: - Helpers
@@ -101,7 +93,7 @@ class CurrentUserProfileDetailViewController: ProfileDetailViewController,
         navigationController?.presentViewController(onboardingNavigationController, animated: true, completion: nil)
     }
     
-    func editTitleTapped(sender: AnyObject) {
+    override func editButtonTapped(sender: AnyObject) {
         let editTitleVC = EditTitleViewController(nibName: "EditTitleViewController", bundle: nil)
         editTitleVC.profile = profile
         editTitleVC.editProfileDelegate = self
