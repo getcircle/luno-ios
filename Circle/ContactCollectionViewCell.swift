@@ -22,6 +22,12 @@ class ContactCollectionViewCell: CircleCollectionViewCell {
         return 70.0
     }
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        contactImageView.makeItCircular(true, borderColor: UIColor.appIconBorderColor())
+    }
+    
     override func setData(data: AnyObject) {
         if let contactMethod = data as? Services.Profile.Containers.ContactMethodV1 {
             
