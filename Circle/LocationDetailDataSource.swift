@@ -19,7 +19,6 @@ class LocationDetailDataSource: CardDataSource {
     private(set) var nextProfilesRequest: Soa.ServiceRequestV1?
     private(set) var profileHeaderView: ProfileHeaderCollectionReusableView?
     
-    private let defaultSectionInset = UIEdgeInsetsMake(0.0, 0.0, 25.0, 0.0)
     private let sectionHeaderClass = ProfileSectionHeaderCollectionReusableView.self
     
     private var isLoggedInUserPOC = false
@@ -66,17 +65,32 @@ class LocationDetailDataSource: CardDataSource {
     // MARK: - UICollectionViewDataSource
     
     override func configureCell(cell: CircleCollectionViewCell, atIndexPath indexPath: NSIndexPath) {
-        if canEdit() {
-            if let
-                card = cardAtSection(indexPath.section),
-                cell = cell as? ProfileCollectionViewCell
-                where card.subType == .PointsOfContact
-            {
-                if let loggedInUserProfile = AuthViewController.getLoggedInUserProfile(),
-                    content: AnyObject = contentAtIndexPath(indexPath)
-                    where (content as! Services.Profile.Containers.ProfileV1).id == loggedInUserProfile.id {
-                        cell.supportAddButton(isLoggedInUserPOC)
-                        cell.delegate = profileCellDelegate
+        if let card = cardAtSection(indexPath.section) {
+            let isLastCell = (indexPath.row == card.content.count - 1)
+            let isLastViewInSection = (isLastCell && !card.addFooter)
+            
+            if isLastViewInSection {
+                cell.addRoundCorners(corners: .BottomLeft | .BottomRight, radius: 4.0)
+            }
+            else {
+                cell.removeRoundedCorners()
+            }
+            
+            cell.separatorInset = UIEdgeInsetsMake(0.0, 20.0, 0.0, 0.0)
+            cell.separatorColor = UIColor.appCardContentSeparatorViewColor()
+            cell.showSeparator = !isLastViewInSection
+            
+            if canEdit() {
+                if let
+                    cell = cell as? ProfileCollectionViewCell
+                    where card.subType == .PointsOfContact
+                {
+                    if let loggedInUserProfile = AuthViewController.getLoggedInUserProfile(),
+                        content: AnyObject = contentAtIndexPath(indexPath)
+                        where (content as! Services.Profile.Containers.ProfileV1).id == loggedInUserProfile.id {
+                            cell.supportAddButton(isLoggedInUserPOC)
+                            cell.delegate = profileCellDelegate
+                    }
                 }
             }
         }
@@ -88,11 +102,9 @@ class LocationDetailDataSource: CardDataSource {
             profileHeader.setLocation(location)
             profileHeaderView = profileHeader
         }
-        
-        if let headerView = header as? ProfileSectionHeaderCollectionReusableView,
-            card = cardAtSection(indexPath.section) where card.allowEditingContent && canEdit() {
-                headerView.showAddEditButton = true
-        }        
+        else if let cardHeader = header as? ProfileSectionHeaderCollectionReusableView {
+            cardHeader.addBottomBorder = true
+        }
     }
     
     override func configureFooter(footer: CircleCollectionReusableView, atIndexPath indexPath: NSIndexPath) {
@@ -128,7 +140,6 @@ class LocationDetailDataSource: CardDataSource {
 
         // Address
         let addressCard = Card(cardType: .LocationsAddress, title: AppStrings.CardTitleAddress)
-        addressCard.sectionInset = defaultSectionInset
         addressCard.addContent(content: [location] as [AnyObject])
         appendCard(addressCard)
     }
@@ -145,8 +156,6 @@ class LocationDetailDataSource: CardDataSource {
             let descriptionCard = Card(cardType: .TextValue, title: "Description")
             descriptionCard.addHeader(headerClass: sectionHeaderClass)
             descriptionCard.showContentCount = false
-            descriptionCard.sectionInset = defaultSectionInset
-            descriptionCard.allowEditingContent = canEdit()
             descriptionCard.addContent(content: [
                 TextData(
                     type: .LocationDescription,
@@ -184,7 +193,6 @@ class LocationDetailDataSource: CardDataSource {
             
             pointsOfContactCard.showContentCount = false
             pointsOfContactCard.addHeader(headerClass: sectionHeaderClass)
-            pointsOfContactCard.sectionInset = defaultSectionInset
             
             if canEdit() {
                 if let loggedInProfile = AuthViewController.getLoggedInUserProfile() {
@@ -223,7 +231,6 @@ class LocationDetailDataSource: CardDataSource {
                 contentCount: Int(location.profileCount)
             )
             profilesCard.addContent(content: profiles as [AnyObject], maxVisibleItems: Card.MaxListEntries)
-            profilesCard.sectionInset = defaultSectionInset
             profilesCard.addHeader(headerClass: sectionHeaderClass)
             if profiles.count > Card.MaxListEntries {
                 profilesCard.addDefaultFooter()
@@ -241,11 +248,11 @@ class LocationDetailDataSource: CardDataSource {
         addPeopleCard()
     }
     
-    private func canEdit() -> Bool {
+    override func canEdit() -> Bool {
         if let permissions = self.location.permissions where permissions.canEdit {
             return true
         }
 
-        return false
+        return super.canEdit()
     }
 }

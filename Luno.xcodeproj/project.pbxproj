@@ -7,10 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4744B6F91BA34D100000898C /* SettingsSectionHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4744B6F81BA34D100000898C /* SettingsSectionHeaderCollectionReusableView.swift */; };
+		4744B6FC1BA34D480000898C /* SettingsSectionHeaderCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4744B6FB1BA34D480000898C /* SettingsSectionHeaderCollectionReusableView.xib */; };
 		4748F1311B9E446D0083E96C /* UIBarButtonItemExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4748F1301B9E446D0083E96C /* UIBarButtonItemExtension.swift */; };
 		478E7A6F1B97938E0077B910 /* OpenSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 478E7A6C1B97938E0077B910 /* OpenSans-Light.ttf */; };
 		478E7A701B97938E0077B910 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 478E7A6D1B97938E0077B910 /* OpenSans-Regular.ttf */; };
 		478E7A711B97938E0077B910 /* OpenSans-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 478E7A6E1B97938E0077B910 /* OpenSans-Semibold.ttf */; };
+		47D1BF731BA08DF000BFF46B /* NSAttributedStringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D1BF721BA08DF000BFF46B /* NSAttributedStringExtension.swift */; };
 		7899CA44139AE8B96BACC3EA /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		8F0004961A2419730096477A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0004951A2419730096477A /* AppDelegate.swift */; };
 		8F00049B1A2419730096477A /* ProfilesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F00049A1A2419730096477A /* ProfilesViewController.swift */; };
@@ -117,8 +120,6 @@
 		8F1D0B901AC9101100488BD7 /* WelcomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F1D0B8E1AC9101100488BD7 /* WelcomeViewController.xib */; };
 		8F2068911B708DE200E498AC /* SearchSuggestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F2068901B708DE200E498AC /* SearchSuggestion.swift */; };
 		8F2068941B708F7400E498AC /* SearchAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F2068931B708F7400E498AC /* SearchAction.swift */; };
-		8F2097431B82EF6300A67FD9 /* ProfileInfoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F2097411B82EF6300A67FD9 /* ProfileInfoCollectionViewCell.swift */; };
-		8F2097441B82EF6300A67FD9 /* ProfileInfoCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F2097421B82EF6300A67FD9 /* ProfileInfoCollectionViewCell.xib */; };
 		8F2234B21A6F7A7500C39E39 /* CircleImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F2234B11A6F7A7500C39E39 /* CircleImageView.swift */; };
 		8F22CB771A2661890026376E /* AppDelegateAppearanceExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F22CB761A2661890026376E /* AppDelegateAppearanceExtension.swift */; };
 		8F22CBE01A27A8E60026376E /* ProfileHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F22CBDE1A27A8E60026376E /* ProfileHeaderCollectionReusableView.swift */; };
@@ -340,10 +341,13 @@
 
 /* Begin PBXFileReference section */
 		0E955F60570F60CAEDB21587 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		4744B6F81BA34D100000898C /* SettingsSectionHeaderCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsSectionHeaderCollectionReusableView.swift; sourceTree = "<group>"; };
+		4744B6FB1BA34D480000898C /* SettingsSectionHeaderCollectionReusableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsSectionHeaderCollectionReusableView.xib; sourceTree = "<group>"; };
 		4748F1301B9E446D0083E96C /* UIBarButtonItemExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIBarButtonItemExtension.swift; sourceTree = "<group>"; };
 		478E7A6C1B97938E0077B910 /* OpenSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Light.ttf"; sourceTree = "<group>"; };
 		478E7A6D1B97938E0077B910 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
 		478E7A6E1B97938E0077B910 /* OpenSans-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Semibold.ttf"; sourceTree = "<group>"; };
+		47D1BF721BA08DF000BFF46B /* NSAttributedStringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSAttributedStringExtension.swift; sourceTree = "<group>"; };
 		4BE4CE18D8FDD109BFC6307A /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F0004901A2419730096477A /* luno.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = luno.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F0004941A2419730096477A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -454,8 +458,6 @@
 		8F1D0B8E1AC9101100488BD7 /* WelcomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WelcomeViewController.xib; sourceTree = "<group>"; };
 		8F2068901B708DE200E498AC /* SearchSuggestion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchSuggestion.swift; sourceTree = "<group>"; };
 		8F2068931B708F7400E498AC /* SearchAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchAction.swift; sourceTree = "<group>"; };
-		8F2097411B82EF6300A67FD9 /* ProfileInfoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileInfoCollectionViewCell.swift; sourceTree = "<group>"; };
-		8F2097421B82EF6300A67FD9 /* ProfileInfoCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileInfoCollectionViewCell.xib; sourceTree = "<group>"; };
 		8F2234B11A6F7A7500C39E39 /* CircleImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleImageView.swift; sourceTree = "<group>"; };
 		8F22CB761A2661890026376E /* AppDelegateAppearanceExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegateAppearanceExtension.swift; sourceTree = "<group>"; };
 		8F22CB7A1A268C040026376E /* Circle-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Circle-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -822,7 +824,6 @@
 				8F823E411A714B5D0006264B /* OrganizationHeaderCollectionReusableView.swift */,
 				8FCC95CB1A52828B00421E65 /* ProfileCollectionViewCell.swift */,
 				8F57AD331B0FD6F400DD40D8 /* ProfileGridItemCollectionViewCell.swift */,
-				8F2097411B82EF6300A67FD9 /* ProfileInfoCollectionViewCell.swift */,
 				8F22CBDE1A27A8E60026376E /* ProfileHeaderCollectionReusableView.swift */,
 				8FF298011A4A4E3600306CFC /* ProfileImagesCollectionViewCell.swift */,
 				BFCFDB181A917944009A5FD4 /* ProfileSectionHeaderCollectionReusableView.swift */,
@@ -830,6 +831,7 @@
 				BF768A721AB66E4700D677B1 /* SearchSuggestionCollectionViewCell.swift */,
 				8F22CBEC1A283D3D0026376E /* SeparatorDecorationView.swift */,
 				8F9F60D31A8C481F00FCAA25 /* SettingsCollectionViewCell.swift */,
+				4744B6F81BA34D100000898C /* SettingsSectionHeaderCollectionReusableView.swift */,
 				8F9F60AD1A88738100FCAA25 /* SocialConnectCollectionViewCell.swift */,
 				BF2B34591ACD307200667B50 /* TagToken.swift */,
 				BFCFDB1F1A91951A009A5FD4 /* TextValueCollectionViewCell.swift */,
@@ -864,6 +866,7 @@
 				8FEE88461A411BA90011CE4A /* UIViewControllerExtension.swift */,
 				8F22CBFA1A29AF450026376E /* UIViewExtension.swift */,
 				4748F1301B9E446D0083E96C /* UIBarButtonItemExtension.swift */,
+				47D1BF721BA08DF000BFF46B /* NSAttributedStringExtension.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -926,12 +929,12 @@
 				8F57AD341B0FD6F400DD40D8 /* ProfileGridItemCollectionViewCell.xib */,
 				8F22CBDF1A27A8E60026376E /* ProfileHeaderCollectionReusableView.xib */,
 				8FF298021A4A4E3600306CFC /* ProfileImagesCollectionViewCell.xib */,
-				8F2097421B82EF6300A67FD9 /* ProfileInfoCollectionViewCell.xib */,
 				BFCFDB191A917944009A5FD4 /* ProfileSectionHeaderCollectionReusableView.xib */,
 				8FF298091A4B490E00306CFC /* SearchHeaderView.xib */,
 				BF768A731AB66E4700D677B1 /* SearchSuggestionCollectionViewCell.xib */,
 				8F29F6391B656CBC00E5D76C /* SearchViewController.xib */,
 				8F9F60D41A8C481F00FCAA25 /* SettingsCollectionViewCell.xib */,
+				4744B6FB1BA34D480000898C /* SettingsSectionHeaderCollectionReusableView.xib */,
 				8F9F60CB1A8C439E00FCAA25 /* SettingsViewController.xib */,
 				8F9F60AE1A88738100FCAA25 /* SocialConnectCollectionViewCell.xib */,
 				8FAA14BB1B093D190098CC45 /* SplashViewController.xib */,
@@ -1310,7 +1313,6 @@
 				8F0ADD301AC5344E00A44B68 /* Loader_00020@2x.png in Resources */,
 				8FA6A4BA1AFED58B00ACC39D /* GroupHeaderCollectionReusableView.xib in Resources */,
 				8F0ADD331AC5344E00A44B68 /* Loader_00023@2x.png in Resources */,
-				8F2097441B82EF6300A67FD9 /* ProfileInfoCollectionViewCell.xib in Resources */,
 				8F0ADD221AC5344E00A44B68 /* Loader_00006@2x.png in Resources */,
 				8F5933CD1AC9FD8B00905E14 /* NotificationsViewController.xib in Resources */,
 				8F0ADD531AC5344E00A44B68 /* Loader_00055@2x.png in Resources */,
@@ -1318,6 +1320,7 @@
 				BFCFDB221A91951A009A5FD4 /* TextValueCollectionViewCell.xib in Resources */,
 				8FEE3D9D1A85B97E00B17569 /* EditContactInfoViewController.xib in Resources */,
 				8F22CBE91A27FDA70026376E /* KeyValueCollectionViewCell.xib in Resources */,
+				4744B6FC1BA34D480000898C /* SettingsSectionHeaderCollectionReusableView.xib in Resources */,
 				8F0ADD451AC5344E00A44B68 /* Loader_00041@2x.png in Resources */,
 				8F0ADD2E1AC5344E00A44B68 /* Loader_00018@2x.png in Resources */,
 				8FF2980B1A4B490E00306CFC /* SearchHeaderView.xib in Resources */,
@@ -1567,6 +1570,7 @@
 				8F834FA01A9FFC2F007B7095 /* AppStrings.swift in Sources */,
 				8FC878161AB4B60F003FDB27 /* CurrentUserProfileDetailViewController.swift in Sources */,
 				8FF2984D1A4E29F400306CFC /* PaddedLabel.swift in Sources */,
+				47D1BF731BA08DF000BFF46B /* NSAttributedStringExtension.swift in Sources */,
 				8F29F63A1B656CBC00E5D76C /* SearchViewController.swift in Sources */,
 				8F1D0B701AC5E77900488BD7 /* WebViewController.swift in Sources */,
 				8F0004961A2419730096477A /* AppDelegate.swift in Sources */,
@@ -1588,6 +1592,7 @@
 				BFE213C81A5EE63F0033E2F5 /* Search.swift in Sources */,
 				8F0544AE1ABA3C7800570327 /* TextInputViewController.swift in Sources */,
 				8F57AD351B0FD6F400DD40D8 /* ProfileGridItemCollectionViewCell.swift in Sources */,
+				4744B6F91BA34D100000898C /* SettingsSectionHeaderCollectionReusableView.swift in Sources */,
 				BFCFDB2B1A92759A009A5FD4 /* ToggleSocialConnectionCollectionViewCell.swift in Sources */,
 				8FC8781D1AB539F6003FDB27 /* CurrentUserProfileDetailDataSource.swift in Sources */,
 				8F0004BB1A241BDE0096477A /* UIColorExtension.swift in Sources */,
@@ -1609,7 +1614,6 @@
 				8F0ADCDC1AC527F900A44B68 /* CircleActivityIndicatorView.swift in Sources */,
 				8F4A98AC1A633BF6005AD63C /* UIImageExtension.swift in Sources */,
 				8FA6A4AE1AFE92AE00ACC39D /* GroupsViewController.swift in Sources */,
-				8F2097431B82EF6300A67FD9 /* ProfileInfoCollectionViewCell.swift in Sources */,
 				8FCC95CD1A52828B00421E65 /* ProfileCollectionViewCell.swift in Sources */,
 				BF59AA931A2C152F00C0CDB9 /* UITableViewExtension.swift in Sources */,
 				BF2CBFD61A473E9100BE589D /* User.swift in Sources */,

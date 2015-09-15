@@ -47,8 +47,8 @@ class ProfileCollectionViewCell: CircleCollectionViewCell {
         if !(self is ProfileGridItemCollectionViewCell) {
             profileImageView.makeItCircular()
         }
-        nameLabel.font = UIFont.appPrimaryTextFont()
-        subTextLabel.font = UIFont.appSecondaryTextFont()
+        nameLabel.font = UIFont.mainTextFont()
+        subTextLabel.font = UIFont.secondaryTextFont()
         nameLabel.textColor = UIColor.appPrimaryTextColor()
         subTextLabel.textColor = UIColor.appSecondaryTextColor()
         nameLabelRightConstraintInitialValue = nameLabelRightConstraint.constant
@@ -147,18 +147,18 @@ class ProfileCollectionViewCell: CircleCollectionViewCell {
 
         profileImageView.imageProfileIdentifier = team.id
         profileImageView.imageText = ""
-        profileImageView.removeRoundedCorners()
+        profileImageView.makeItCircular(true, borderColor: UIColor.appIconBorderColor())
         profileImageView.contentMode = .Center
         profileImageView.image = UIImage(named: "detail_group")
     }
     
     private func setLocation(location: Services.Organization.Containers.LocationV1) {
         nameLabel.text = location.officeName()
-        subTextLabel.text = getCountLabel(location.profileCount)
+        subTextLabel.text = location.cityRegion() + " (\(getCountLabel(location.profileCount)))"
         
         profileImageView.imageProfileIdentifier = location.id
         profileImageView.imageText = ""
-        profileImageView.removeRoundedCorners()
+        profileImageView.makeItCircular(true, borderColor: UIColor.appIconBorderColor())
         profileImageView.contentMode = .Center
         profileImageView.image = UIImage(named: "detail_office")
         teamNameLetterLabel.hidden = true

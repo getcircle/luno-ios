@@ -21,7 +21,6 @@ class TeamDetailDataSource: CardDataSource {
     private(set) var profilesNextRequest: Soa.ServiceRequestV1?
     private(set) var teams = Array<Services.Organization.Containers.TeamV1>()
     
-    private let sectionInset = UIEdgeInsetsMake(0.0, 0.0, 25.0, 0.0)
     private let sectionHeaderClass = ProfileSectionHeaderCollectionReusableView.self
 
     // MARK: - Load Data
@@ -94,19 +93,18 @@ class TeamDetailDataSource: CardDataSource {
         }
     }
     
-    private func canEdit() -> Bool {
+    override func canEdit() -> Bool {
         if let permissions = self.team.permissions where permissions.canEdit {
             return true
         }
         
-        return false
+        return super.canEdit()
     }
     
     private func addPlaceholderCard() {
         
         // Add a placeholder card for header view
         let placeholderHeaderCard = Card(cardType: .Placeholder, title: "")
-        placeholderHeaderCard.sectionInset = self.sectionInset
         placeholderHeaderCard.addHeader(
             headerClass: ProfileHeaderCollectionReusableView.self,
             headerSize: CGSizeMake(
@@ -129,7 +127,6 @@ class TeamDetailDataSource: CardDataSource {
         if hasStatus || canEdit() {
             
             let statusCard = Card(cardType: .TextValue, title: "Currently working on")
-            statusCard.sectionInset = self.sectionInset
             let textData = TextData(
                 type: .TeamStatus,
                 andValue: team.status?.value ?? "",
@@ -139,7 +136,7 @@ class TeamDetailDataSource: CardDataSource {
                 andTimestamp: createdTimestamp,
                 andAuthor: team.status?.byProfile
             )
-
+            
             if canEdit() {
                 statusCard.showContentCount = false
                 statusCard.addHeader(headerClass: sectionHeaderClass)
@@ -165,8 +162,6 @@ class TeamDetailDataSource: CardDataSource {
             let descriptionCard = Card(cardType: .TextValue, title: "Description")
             descriptionCard.addHeader(headerClass: sectionHeaderClass)
             descriptionCard.showContentCount = false
-            descriptionCard.sectionInset = self.sectionInset
-            descriptionCard.allowEditingContent = canEdit()
             descriptionCard.addContent(content: [
                 TextData(
                     type: .TeamDescription, 
@@ -190,7 +185,6 @@ class TeamDetailDataSource: CardDataSource {
             managerCard.showContentCount = false
             managerCard.addHeader(headerClass: sectionHeaderClass)
             managerCard.addContent(content: [self.managerProfile])
-            managerCard.sectionInset = self.sectionInset
             self.appendCard(managerCard)
         }
     }
@@ -205,7 +199,6 @@ class TeamDetailDataSource: CardDataSource {
             teamsCard.showContentCount = false
             teamsCard.addHeader(headerClass: sectionHeaderClass)
             teamsCard.addContent(content: teams, maxVisibleItems: Card.MaxListEntries)
-            teamsCard.sectionInset = sectionInset
             if teams.count > Card.MaxListEntries {
                 teamsCard.addDefaultFooter()
             }
@@ -224,25 +217,10 @@ class TeamDetailDataSource: CardDataSource {
             membersCard.showContentCount = false
             membersCard.addHeader(headerClass: sectionHeaderClass)
             membersCard.addContent(content: profiles, maxVisibleItems: Card.MaxListEntries)
-            membersCard.sectionInset = self.sectionInset
             if profiles.count > Card.MaxListEntries {
                 membersCard.addDefaultFooter()
             }
             appendCard(membersCard)
-        }
-    }
-    
-    private func addTeamActionsCard() {
-        
-        // Add team actions card
-        if canEdit() {
-            let teamActionsCard = Card(cardType: .Settings, title: "")
-            teamActionsCard.sectionInset = UIEdgeInsetsMake(25.0, 0.0, 25.0, 0.0)
-            teamActionsCard.addContent(content: [[
-                "text" : AppStrings.TeamEditButtonTitle,
-                "type": ContentType.EditTeam.rawValue
-            ]])
-            appendCard(teamActionsCard)
         }
     }
     
@@ -254,7 +232,6 @@ class TeamDetailDataSource: CardDataSource {
         addManagerCard()
         addSubTeamsCard()
         addMembersCard()
-        addTeamActionsCard()
     }
 
     // MARK: - UICollectionViewDataSource
@@ -269,10 +246,8 @@ class TeamDetailDataSource: CardDataSource {
             teamHeader.setTeam(team)
             profileHeaderView = teamHeader
         }
-        
-        if let headerView = header as? ProfileSectionHeaderCollectionReusableView,
-            card = cardAtSection(indexPath.section) where card.allowEditingContent && canEdit() {
-            headerView.showAddEditButton = true
+        else if let cardHeader = header as? ProfileSectionHeaderCollectionReusableView {
+            cardHeader.addBottomBorder = true
         }
     }
     
@@ -311,6 +286,23 @@ class TeamDetailDataSource: CardDataSource {
         if let content = contentAtIndexPath(indexPath) as? [String: AnyObject], settingsCell = cell as? SettingsCollectionViewCell {
             settingsCell.itemLabel.textAlignment = .Center
             settingsCell.itemLabel.textColor = UIColor.appTintColor()
+        }
+        else {
+            if let card = cardAtSection(indexPath.section) {
+                let isLastCell = (indexPath.row == card.content.count - 1)
+                let isLastViewInSection = (isLastCell && !card.addFooter)
+                
+                if isLastViewInSection {
+                    cell.addRoundCorners(corners: .BottomLeft | .BottomRight, radius: 4.0)
+                }
+                else {
+                    cell.removeRoundedCorners()
+                }
+                
+                cell.separatorInset = UIEdgeInsetsMake(0.0, 20.0, 0.0, 0.0)
+                cell.separatorColor = UIColor.appCardContentSeparatorViewColor()
+                cell.showSeparator = !isLastViewInSection
+            }
         }
     }
 }

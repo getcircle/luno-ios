@@ -23,7 +23,7 @@ class Card: Equatable {
     var cardIndex = 0
     var contentCount: Int
     var metaData: AnyObject?
-    var sectionInset = UIEdgeInsetsMake(1.0, 10.0, 25.0, 10.0)
+    var sectionInset = UIEdgeInsetsMake(0.0, 10.0, 10.0, 10.0)
     var showAllContent: Bool = false {
         didSet {
             if showAllContent {
@@ -91,7 +91,6 @@ class Card: Equatable {
         case SearchSuggestion = "SearchSuggestion"
         case ContactMethods = "ContactMethods"
         case TextValue = "TextValue"
-        case ProfileInfo = "ProfileInfo"
 
         struct CardTypeInfo {
             var imageName: String
@@ -190,13 +189,6 @@ class Card: Equatable {
                 return CardTypeInfo(
                     imageName: "FeedNewHire",
                     classType: ProfileCollectionViewCell.self,
-                    contentType: .Flat
-                )
-
-            case ProfileInfo:
-                return CardTypeInfo(
-                    imageName: "Info",
-                    classType: ProfileInfoCollectionViewCell.self,
                     contentType: .Flat
                 )
                 
@@ -389,7 +381,7 @@ class Card: Equatable {
         sectionInset = UIEdgeInsetsMake(
             sectionInset.top,
             sectionInset.left,
-            1.0,
+            0.0,
             sectionInset.right
         )
     }

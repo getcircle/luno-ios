@@ -64,6 +64,8 @@ class DetailViewController: BaseDetailViewController,
                 }
             }
             
+            self.configureNavigationBar()
+            
             self.collectionView.reloadData()
         }
     }
@@ -112,6 +114,13 @@ class DetailViewController: BaseDetailViewController,
             self.activityIndicatorView.startAnimating()
             self.loadData()
         })
+    }
+    
+    private func configureNavigationBar() {
+        if dataSource.canEdit() {
+            let rightBarButtonItem = UIBarButtonItem.roundedItemWithTitle(AppStrings.ProfileInfoEditButtonTitle.localizedUppercaseString(), target: self, action: "editButtonTapped:")
+            navigationItem.rightBarButtonItem = rightBarButtonItem
+        }
     }
 
     // MARK: - Orientation change
@@ -235,6 +244,11 @@ class DetailViewController: BaseDetailViewController,
 
     func onTextInputValueUpdated(updatedObject: AnyObject?) {
         loadData()
+    }
+    
+    // MARK: - Actions
+    
+    @objc internal func editButtonTapped(sender: AnyObject) {
     }
 }
 

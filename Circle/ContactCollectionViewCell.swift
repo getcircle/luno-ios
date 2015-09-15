@@ -12,7 +12,6 @@ import ProtobufRegistry
 class ContactCollectionViewCell: CircleCollectionViewCell {
 
     @IBOutlet weak private(set) var contactImageView: UIImageView!
-    @IBOutlet weak private(set) var contactMethodNameLabel: UILabel!
     @IBOutlet weak private(set) var contactMethodValueLabel: UILabel!
     
     override class var classReuseIdentifier: String {
@@ -20,12 +19,13 @@ class ContactCollectionViewCell: CircleCollectionViewCell {
     }
     
     override class var height: CGFloat {
-        return 60.0
+        return 70.0
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
+        contactImageView.makeItCircular(true, borderColor: UIColor.appIconBorderColor())
     }
     
     override func setData(data: AnyObject) {
@@ -33,11 +33,10 @@ class ContactCollectionViewCell: CircleCollectionViewCell {
             
             if let imageSource = getImageByType(contactMethod.contactMethodType) {
                 contactImageView.image = UIImage(named: imageSource)?.imageWithRenderingMode(.AlwaysTemplate)
-                contactImageView.tintColor = contactMethodNameLabel.textColor
+                contactImageView.tintColor = UIColor.appIconColor()
             }
             
-            contactMethodNameLabel.text = getLabelByType(contactMethod.contactMethodType)
-            contactMethodValueLabel.text = contactMethod.value
+            contactMethodValueLabel.attributedText = NSAttributedString.mainText(contactMethod.value)
         }
     }
     
@@ -54,20 +53,6 @@ class ContactCollectionViewCell: CircleCollectionViewCell {
             
         default:
             return nil
-        }
-    }
-
-    private func getLabelByType(contactMethodType: Services.Profile.Containers.ContactMethodV1.ContactMethodTypeV1) -> String {
-        
-        switch contactMethodType {
-        case .Email:
-            return "Email"
-            
-        case .Phone, .CellPhone:
-            return "Phone"
-            
-        default:
-            return ""
         }
     }
 }

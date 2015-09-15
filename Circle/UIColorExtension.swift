@@ -68,11 +68,11 @@ extension UIColor {
     }
     
     static func appPrimaryTextColor() -> UIColor {
-        return UIColor(red: 48, green: 48, blue: 48)
+        return UIColor.blackColor().colorWithAlphaComponent(0.8)
     }
 
     static func appSecondaryTextColor() -> UIColor {
-        return UIColor(red: 112, green: 112, blue: 112)
+        return UIColor.blackColor().colorWithAlphaComponent(0.5)
     }
 
     static func appSecondaryCTABackgroundColor() -> UIColor {
@@ -80,11 +80,15 @@ extension UIColor {
     }
     
     static func appSeparatorViewColor() -> UIColor {
-        return UIColor(red: 222, green: 222, blue: 222)
+        return UIColor.blackColor().colorWithAlphaComponent(0.12)
+    }
+    
+    static func appCardContentSeparatorViewColor() -> UIColor {
+        return UIColor.blackColor().colorWithAlphaComponent(0.06)
     }
     
     static func appViewBackgroundColor() -> UIColor {
-        return UIColor(red: 240, green: 240, blue: 240)
+        return UIColor(red: 242, green: 244, blue: 245)
     }
     
     static func appLinkedinConnectCTABackgroundColor() -> UIColor {
@@ -231,6 +235,10 @@ extension UIColor {
     static func appAttributeTitleLabelColor() -> UIColor {
         return UIColor(red: 119, green: 119, blue: 119)
     }
+    
+    static func appSectionHeaderTextColor() -> UIColor {
+        return UIColor.blackColor().colorWithAlphaComponent(0.4)
+    }
 
     static func appAttributeValueLabelColor() -> UIColor {
         return UIColor(red: 48, green: 48, blue: 48)
@@ -272,6 +280,18 @@ extension UIColor {
         return UIColor(red: 0, green: 137, blue: 163)
     }
 
+    static func appHighlightColor() -> UIColor {
+        return UIColor(red: 122, green: 142, blue: 255)
+    }
+    
+    static func appIconBorderColor() -> UIColor {
+        return UIColor.blackColor().colorWithAlphaComponent(0.2)
+    }
+    
+    static func appIconColor() -> UIColor {
+        return UIColor.blackColor().colorWithAlphaComponent(0.5)
+    }
+    
     // MARK: - Social
     
     static func twitterColor() -> UIColor {

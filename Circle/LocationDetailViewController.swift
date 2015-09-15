@@ -12,7 +12,6 @@ import ProtobufRegistry
 
 class LocationDetailViewController:
     DetailViewController,
-    CardHeaderViewDelegate,
     CardFooterViewDelegate,
     ProfileCollectionViewCellDelegate
 {
@@ -30,7 +29,6 @@ class LocationDetailViewController:
 
     override func configureCollectionView() {
         collectionView.dataSource = dataSource
-        dataSource.cardHeaderDelegate = self
         dataSource.cardFooterDelegate = self
         
         collectionView.delegate = delegate
@@ -96,39 +94,6 @@ class LocationDetailViewController:
             name: LocationServiceNotifications.onLocationUpdatedNotification,
             object: nil
         )
-    }
-
-    // MARK: - CardHeaderViewDelegate
-    
-    func cardHeaderTapped(sender: AnyObject!, card: Card!) {
-        let officeDetailDataSource = dataSource as! LocationDetailDataSource
-        switch card.type {
-        case .TextValue:
-            if card.content.count > 0 {
-                if let data = card.content.first as? TextData {
-                    switch data.type {
-                    case .LocationDescription:
-                        let editDescriptionViewController = EditLocationDescriptionViewController(addCharacterLimit: false, withDelegate: self)
-                        editDescriptionViewController.location = (dataSource as! LocationDetailDataSource).location
-                        let editDescriptionViewNavController = UINavigationController(
-                            rootViewController: editDescriptionViewController
-                        )
-                        navigationController?.presentViewController(
-                            editDescriptionViewNavController,
-                            animated: true,
-                            completion: nil
-                        )
-                        
-                    default:
-                        break
-                    }
-                }
-            }
-            break
-
-        default:
-            break
-        }
     }
     
     // MARK: - CardFooterDelegate
@@ -245,5 +210,20 @@ class LocationDetailViewController:
         }
         
         super.onTextInputValueUpdated(updatedObject)
+    }
+    
+    // MARK: - Actions
+    
+    override func editButtonTapped(sender: AnyObject) {
+        let editDescriptionViewController = EditLocationDescriptionViewController(addCharacterLimit: false, withDelegate: self)
+        editDescriptionViewController.location = (dataSource as! LocationDetailDataSource).location
+        let editDescriptionViewNavController = UINavigationController(
+            rootViewController: editDescriptionViewController
+        )
+        navigationController?.presentViewController(
+            editDescriptionViewNavController,
+            animated: true,
+            completion: nil
+        )
     }
 }

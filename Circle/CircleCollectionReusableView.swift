@@ -13,7 +13,15 @@ protocol CardHeaderViewDelegate {
 }
 
 class CircleCollectionReusableView: UICollectionReusableView {
-
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        // Rasterize layers
+        layer.shouldRasterize = true
+        layer.rasterizationScale = UIScreen.mainScreen().scale
+    }
+    
     class var classReuseIdentifier: String {
         return "CircleCollectionReusableView"
     }

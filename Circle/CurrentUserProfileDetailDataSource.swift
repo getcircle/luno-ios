@@ -13,13 +13,8 @@ class CurrentUserProfileDetailDataSource: ProfileDetailDataSource {
 
     var editImageButtonDelegate: EditImageButtonDelegate?
     
-    override internal func addContactsCard() -> Card? {
-        if let card = super.addContactsCard() {
-            card.allowEditingContent = true
-            return card
-        }
-        
-        return nil
+    override func canEdit() -> Bool {
+        return true
     }
     
     override internal func addStatusCard() -> Card? {
@@ -36,13 +31,5 @@ class CurrentUserProfileDetailDataSource: ProfileDetailDataSource {
         }
         
         return nil
-    }
-    
-    override func configureHeader(header: CircleCollectionReusableView, atIndexPath indexPath: NSIndexPath) {
-        super.configureHeader(header, atIndexPath: indexPath)
-        
-        if let headerView = header as? ProfileSectionHeaderCollectionReusableView, card = cardAtSection(indexPath.section) where card.allowEditingContent {
-            headerView.showAddEditButton = true
-        }
     }
 }

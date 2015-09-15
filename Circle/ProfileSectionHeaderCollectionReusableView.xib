@@ -1,101 +1,84 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="OpenSans-Regular.ttf">
+            <string>OpenSans</string>
+        </mutableArray>
+        <mutableArray key="OpenSans-Semibold.ttf">
+            <string>OpenSans-Semibold</string>
+            <string>OpenSans-Semibold</string>
+        </mutableArray>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionReusableView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="U6b-Vx-4bR" customClass="ProfileSectionHeaderCollectionReusableView" customModule="circle" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="32"/>
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="PEOPLE" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="538-Iu-4CO">
-                    <rect key="frame" x="15" y="15" width="225" height="21"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FUa-tk-nIn" userLabel="Card View">
+                    <rect key="frame" x="10" y="0.0" width="300" height="32"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="PEOPLE" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="538-Iu-4CO" userLabel="Title Label">
+                            <rect key="frame" x="10" y="9" width="40.5" height="15"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="15" id="dH1-j7-bXX"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="11"/>
+                            <color key="textColor" red="0.1505631506" green="0.1505586505" blue="0.15056121350000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="49R-WV-QsX" userLabel="Update Button" customClass="CircleButton" customModule="circle" customModuleProvider="target">
+                            <rect key="frame" x="238" y="0.0" width="62" height="32"/>
+                            <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="11"/>
+                            <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
+                            <inset key="imageEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
+                            <state key="normal" title="UPDATE">
+                                <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="updateButtonTapped:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="U7L-0X-oas"/>
+                            </connections>
+                        </button>
+                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Today, 12:41 pm" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zqy-AN-GNI" userLabel="Subtitle Label">
+                            <rect key="frame" x="206.5" y="0.0" width="83.5" height="32"/>
+                            <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="11"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="21" id="dH1-j7-bXX"/>
+                        <constraint firstAttribute="trailing" secondItem="49R-WV-QsX" secondAttribute="trailing" id="EIN-Fk-eDs"/>
+                        <constraint firstAttribute="bottom" secondItem="Zqy-AN-GNI" secondAttribute="bottom" id="HVR-BO-WYv"/>
+                        <constraint firstAttribute="bottom" secondItem="49R-WV-QsX" secondAttribute="bottom" id="NNz-fM-uTH"/>
+                        <constraint firstItem="538-Iu-4CO" firstAttribute="leading" secondItem="FUa-tk-nIn" secondAttribute="leading" constant="10" id="Pmc-Da-Nha"/>
+                        <constraint firstAttribute="trailing" secondItem="Zqy-AN-GNI" secondAttribute="trailing" constant="10" id="Sjq-Vp-5a7"/>
+                        <constraint firstAttribute="centerY" secondItem="538-Iu-4CO" secondAttribute="centerY" id="Tnu-QR-zk5"/>
+                        <constraint firstItem="49R-WV-QsX" firstAttribute="top" secondItem="FUa-tk-nIn" secondAttribute="top" id="blj-Hy-Pif"/>
+                        <constraint firstItem="Zqy-AN-GNI" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="538-Iu-4CO" secondAttribute="trailing" constant="20" id="cvh-DM-td5"/>
+                        <constraint firstItem="Zqy-AN-GNI" firstAttribute="top" secondItem="FUa-tk-nIn" secondAttribute="top" id="lkS-3R-HC0"/>
+                        <constraint firstItem="49R-WV-QsX" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="538-Iu-4CO" secondAttribute="trailing" constant="20" id="mDj-gE-TI2"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
-                    <color key="textColor" red="0.1505631506" green="0.1505586505" blue="0.15056121350000001" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="49R-WV-QsX" userLabel="AddEditButton" customClass="CircleButton" customModule="circle" customModuleProvider="target">
-                    <rect key="frame" x="240" y="10" width="80" height="30"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="32" id="QAu-MO-KsH"/>
-                        <constraint firstAttribute="width" constant="40" id="ROe-vS-jZW"/>
-                        <constraint firstAttribute="width" constant="80" id="tPP-Kc-LCf"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="13"/>
-                    <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
-                    <inset key="imageEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
-                    <state key="normal" title="EDIT">
-                        <color key="titleColor" red="0.14901960784313725" green="0.14901960784313725" blue="0.14901960784313725" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <variation key="default">
-                        <mask key="constraints">
-                            <exclude reference="QAu-MO-KsH"/>
-                            <exclude reference="ROe-vS-jZW"/>
-                        </mask>
-                    </variation>
-                </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Next" translatesAutoresizingMaskIntoConstraints="NO" id="EWc-EW-ClT" userLabel="NextIcon">
-                    <rect key="frame" x="294" y="19" width="11" height="11"/>
-                    <constraints>
-                        <constraint firstAttribute="width" secondItem="EWc-EW-ClT" secondAttribute="height" multiplier="1:1" id="CrF-CD-fIS"/>
-                        <constraint firstAttribute="width" constant="11" id="gDX-dR-hdf"/>
-                    </constraints>
-                </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="All (5)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V0u-EL-B23" userLabel="CardContentCount">
-                    <rect key="frame" x="250" y="15" width="39" height="21"/>
-                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="15"/>
-                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nsc-fA-dAz" userLabel="TriggerButton">
-                    <rect key="frame" x="10" y="0.0" width="300" height="50"/>
-                    <connections>
-                        <action selector="cardHeaderTapped:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="bl3-nr-Mck"/>
-                    </connections>
-                </button>
+                </view>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="49R-WV-QsX" firstAttribute="leading" secondItem="538-Iu-4CO" secondAttribute="trailing" id="0ef-eZ-SB7"/>
-                <constraint firstAttribute="trailing" secondItem="49R-WV-QsX" secondAttribute="trailing" id="5dT-r6-WX3"/>
-                <constraint firstItem="EWc-EW-ClT" firstAttribute="width" secondItem="EWc-EW-ClT" secondAttribute="height" multiplier="1:1" id="6Vd-TF-c7K"/>
-                <constraint firstItem="nsc-fA-dAz" firstAttribute="top" secondItem="U6b-Vx-4bR" secondAttribute="top" id="9qx-zp-rDe"/>
-                <constraint firstAttribute="centerY" secondItem="EWc-EW-ClT" secondAttribute="centerY" id="DZi-gR-cDy"/>
-                <constraint firstAttribute="centerY" secondItem="49R-WV-QsX" secondAttribute="centerY" id="KaE-Yd-VzL"/>
-                <constraint firstItem="EWc-EW-ClT" firstAttribute="leading" secondItem="V0u-EL-B23" secondAttribute="trailing" constant="5" id="MCo-Nl-Yvs"/>
-                <constraint firstAttribute="centerY" secondItem="V0u-EL-B23" secondAttribute="centerY" id="MsL-ig-IAn"/>
-                <constraint firstItem="49R-WV-QsX" firstAttribute="top" secondItem="U6b-Vx-4bR" secondAttribute="top" constant="10" id="O7K-gk-xJj"/>
-                <constraint firstAttribute="trailing" secondItem="nsc-fA-dAz" secondAttribute="trailing" constant="10" id="TEy-ug-SxH"/>
-                <constraint firstAttribute="trailing" secondItem="EWc-EW-ClT" secondAttribute="trailing" constant="15" id="Xtu-c3-1ZK"/>
-                <constraint firstItem="nsc-fA-dAz" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" constant="10" id="ZKq-SI-S3D"/>
-                <constraint firstItem="538-Iu-4CO" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" constant="15" id="cN1-np-5yv"/>
-                <constraint firstAttribute="bottom" secondItem="49R-WV-QsX" secondAttribute="bottom" constant="10" id="dOf-a0-Cnp"/>
-                <constraint firstAttribute="centerY" secondItem="538-Iu-4CO" secondAttribute="centerY" id="nVi-5I-MbB"/>
-                <constraint firstAttribute="bottom" secondItem="nsc-fA-dAz" secondAttribute="bottom" id="xsI-Gq-wd1"/>
+                <constraint firstItem="FUa-tk-nIn" firstAttribute="top" secondItem="U6b-Vx-4bR" secondAttribute="top" id="1n1-Fd-fb6"/>
+                <constraint firstItem="FUa-tk-nIn" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" constant="10" id="384-FO-QzN"/>
+                <constraint firstAttribute="trailing" secondItem="FUa-tk-nIn" secondAttribute="trailing" constant="10" id="EUj-vf-ngk"/>
+                <constraint firstAttribute="bottom" secondItem="FUa-tk-nIn" secondAttribute="bottom" id="Z0U-5S-fQO"/>
             </constraints>
-            <variation key="default">
-                <mask key="constraints">
-                    <exclude reference="KaE-Yd-VzL"/>
-                </mask>
-            </variation>
             <connections>
-                <outlet property="addEditButton" destination="49R-WV-QsX" id="Or7-zP-HSb"/>
-                <outlet property="cardContentCountLabel" destination="V0u-EL-B23" id="wOe-23-SBp"/>
+                <outlet property="cardSubtitleLabel" destination="Zqy-AN-GNI" id="G6m-Ec-U4C"/>
                 <outlet property="cardTitleLabel" destination="538-Iu-4CO" id="3mV-jS-vRw"/>
-                <outlet property="cardTriggerButton" destination="nsc-fA-dAz" id="Qoj-Mj-Bkh"/>
-                <outlet property="nextIconImage" destination="EWc-EW-ClT" id="vo0-Ad-VpO"/>
+                <outlet property="cardView" destination="FUa-tk-nIn" id="yTe-Ub-9fY"/>
+                <outlet property="updateButton" destination="49R-WV-QsX" id="75d-Vh-6qw"/>
             </connections>
             <point key="canvasLocation" x="-359" y="35"/>
         </collectionReusableView>
     </objects>
-    <resources>
-        <image name="Next" width="22" height="22"/>
-    </resources>
 </document>

@@ -24,9 +24,6 @@ class ProfileDetailDataSource: CardDataSource {
 
     private var supportGoogleGroups = false
     
-    internal let sectionInset = UIEdgeInsetsMake(0.0, 0.0, 1.0, 0.0)
-    internal let sectionInsetWithLargerBootomMargin = UIEdgeInsetsMake(0.0, 0.0, 25.0, 0.0)
-    
     convenience init(profile withProfile: Services.Profile.Containers.ProfileV1) {
         self.init()
         profile = withProfile
@@ -85,7 +82,6 @@ class ProfileDetailDataSource: CardDataSource {
     internal func populateData() {
         resetCards()
         addPlaceholderCard()
-        addInfoCard()
         addStatusCard()
         addContactsCard()
         addLocationCard()
@@ -101,29 +97,14 @@ class ProfileDetailDataSource: CardDataSource {
         // Add placeholder card to load profile header instantly
         var card = Card(cardType: .Placeholder, title: "Info")
         card.addHeader(headerClass: ProfileHeaderCollectionReusableView.self)
-        card.sectionInset = sectionInset
         appendCard(card)
         return card
-    }
-    
-    internal func addInfoCard() -> Card? {
-
-        if let location = location {
-            var card = Card(cardType: .ProfileInfo, title: "Profile Info")
-            card.sectionInset = sectionInsetWithLargerBootomMargin
-            card.addContent(content: [location])
-            appendCard(card)
-            return card
-        }
-        
-        return nil
     }
     
     internal func addContactsCard() -> Card? {
         let card = Card(cardType: .ContactMethods, title: "Contact")
         card.showContentCount = false
         card.addHeader(headerClass: ProfileSectionHeaderCollectionReusableView.self)
-        card.sectionInset = sectionInsetWithLargerBootomMargin
         var contactMethods = Array<Services.Profile.Containers.ContactMethodV1>()
         let emailContactMethod = Services.Profile.Containers.ContactMethodV1Builder()
         emailContactMethod.contactMethodType = .Email
@@ -153,7 +134,6 @@ class ProfileDetailDataSource: CardDataSource {
             )
         )
         card.addHeader(headerClass: ProfileSectionHeaderCollectionReusableView.self)
-        card.sectionInset = sectionInsetWithLargerBootomMargin
         card.showContentCount = false
         card.addContent(content: [
             TextData(
@@ -176,7 +156,6 @@ class ProfileDetailDataSource: CardDataSource {
             let card = Card(cardType: .Profiles, title: "Works at")
             card.showContentCount = false
             card.addHeader(headerClass: ProfileSectionHeaderCollectionReusableView.self)
-            card.sectionInset = sectionInsetWithLargerBootomMargin
             card.addContent(content: [location])
             appendCard(card)
             return card
@@ -196,7 +175,6 @@ class ProfileDetailDataSource: CardDataSource {
             let card = Card(cardType: .Profiles, title: "Reports to")
             card.showContentCount = false
             card.addHeader(headerClass: ProfileSectionHeaderCollectionReusableView.self)
-            card.sectionInset = sectionInsetWithLargerBootomMargin
             card.addContent(content: content)
             appendCard(card)
             return card
@@ -216,7 +194,6 @@ class ProfileDetailDataSource: CardDataSource {
             let card = Card(cardType: .Profiles, subType: .Teams, title: "Team")
             card.showContentCount = false
             card.addHeader(headerClass: ProfileSectionHeaderCollectionReusableView.self)
-            card.sectionInset = sectionInsetWithLargerBootomMargin
             card.addContent(content: content)
             card.addDefaultFooter()
             appendCard(card)
@@ -237,7 +214,6 @@ class ProfileDetailDataSource: CardDataSource {
             let card = Card(cardType: .Profiles, subType: .ManagedTeams, title: "Manages")
             card.showContentCount = false
             card.addHeader(headerClass: ProfileSectionHeaderCollectionReusableView.self)
-            card.sectionInset = sectionInsetWithLargerBootomMargin
             card.addContent(content: content)
             card.addDefaultFooter()
             appendCard(card)
@@ -274,6 +250,14 @@ class ProfileDetailDataSource: CardDataSource {
             profileHeaderView = profileHeader
             setDataInHeader()
         }
+        else if let cardHeader = header as? ProfileSectionHeaderCollectionReusableView, let card = cardAtSection(indexPath.section) {
+            if card.type == .ContactMethods {
+                cardHeader.cardSubtitleLabel.hidden = false
+                cardHeader.cardSubtitleLabel.text = location?.officeCurrentDateAndTimeLabel()
+            }
+            
+            cardHeader.addBottomBorder = true
+        }
     }
     
     override func configureFooter(footer: CircleCollectionReusableView, atIndexPath indexPath: NSIndexPath) {
@@ -285,7 +269,7 @@ class ProfileDetailDataSource: CardDataSource {
             case .Teams:
                 let peerCount = self.peers?.count ?? 0
                 var buttonTitle = NSString(format: NSLocalizedString(
-                        "With %d Peers",
+                        "Works with %d Peers",
                         comment: "Text indicating number of peers a person works with"
                     ),
                     peerCount
@@ -293,7 +277,7 @@ class ProfileDetailDataSource: CardDataSource {
 
                 if peerCount == 1 {
                     buttonTitle = NSLocalizedString(
-                        "With 1 Peer",
+                        "Works with 1 Peer",
                         comment: "Text indicating one other person works with the user"
                     )
                 }
@@ -307,7 +291,7 @@ class ProfileDetailDataSource: CardDataSource {
             case .ManagedTeams:
                 let directReportsCount = self.directReports?.count ?? 0
                 var buttonTitle = NSString(format: NSLocalizedString(
-                        "%d Direct Reports",
+                        "View %d Direct Reports",
                         comment: "Text indicating number of direct reports a person has"
                     ),
                     directReportsCount
@@ -315,7 +299,7 @@ class ProfileDetailDataSource: CardDataSource {
                 
                 if directReportsCount == 1 {
                     buttonTitle = NSLocalizedString(
-                        "1 Direct Report",
+                        "View 1 Direct Report",
                         comment: "Text indicating this person has one direct report"
                     )
                 }
@@ -329,6 +313,25 @@ class ProfileDetailDataSource: CardDataSource {
             default:
                 break
             }
+        }
+    }
+    
+    override func configureCell(cell: CircleCollectionViewCell, atIndexPath indexPath: NSIndexPath) {
+        if let card = cardAtSection(indexPath.section) {
+            
+            let isLastCell = (indexPath.row == card.content.count - 1)
+            let isLastViewInSection = (isLastCell && !card.addFooter)
+            
+            if isLastViewInSection {
+                cell.addRoundCorners(corners: .BottomLeft | .BottomRight, radius: 4.0)
+            }
+            else {
+                cell.removeRoundedCorners()
+            }
+            
+            cell.separatorInset = UIEdgeInsetsMake(0.0, 20.0, 0.0, 0.0)
+            cell.separatorColor = UIColor.appCardContentSeparatorViewColor()
+            cell.showSeparator = !isLastViewInSection
         }
     }
 

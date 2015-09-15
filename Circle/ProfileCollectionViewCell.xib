@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -14,26 +14,26 @@
                 <rect key="frame" x="0.0" y="0.0" width="415" height="70"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CEO" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bkV-ww-aQf" userLabel="Title">
-                        <rect key="frame" x="65" y="38" width="335" height="18"/>
+                        <rect key="frame" x="70" y="37.5" width="330" height="18"/>
                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="13"/>
                         <color key="textColor" red="0.4392156862745098" green="0.4392156862745098" blue="0.4392156862745098" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="John Appleseed" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9nj-gl-dh0" userLabel="Name">
-                        <rect key="frame" x="65" y="16" width="335" height="21"/>
+                        <rect key="frame" x="70" y="16" width="330" height="20.5"/>
                         <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="15"/>
                         <color key="textColor" red="0.18823529411764706" green="0.18823529411764706" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WaH-1I-lf2" userLabel="ProfileImage" customClass="CircleImageView" customModule="circle" customModuleProvider="target">
-                        <rect key="frame" x="15" y="15" width="40" height="40"/>
+                        <rect key="frame" x="10" y="10" width="50" height="50"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="40" id="bUi-IP-iXH"/>
+                            <constraint firstAttribute="width" constant="50" id="bUi-IP-iXH"/>
                             <constraint firstAttribute="width" secondItem="WaH-1I-lf2" secondAttribute="height" multiplier="1:1" id="vW8-OR-jDb"/>
                         </constraints>
                     </imageView>
                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="D" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Uo-RU-eGd" userLabel="TeamLetterLabel">
-                        <rect key="frame" x="15" y="15" width="40" height="40"/>
+                        <rect key="frame" x="10" y="10" width="50" height="50"/>
                         <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="22"/>
                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -72,7 +72,7 @@
                 <constraint firstAttribute="trailing" secondItem="72z-HK-1is" secondAttribute="trailing" constant="15" id="Kg3-FW-HI3"/>
                 <constraint firstItem="72z-HK-1is" firstAttribute="leading" secondItem="vfd-Yv-LMR" secondAttribute="trailing" constant="15" id="MKz-lU-Oq8"/>
                 <constraint firstItem="9nj-gl-dh0" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="16" id="PwW-a2-cpz"/>
-                <constraint firstItem="WaH-1I-lf2" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="15" id="SMf-Cz-AoV"/>
+                <constraint firstItem="WaH-1I-lf2" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="SMf-Cz-AoV"/>
                 <constraint firstAttribute="trailing" secondItem="9nj-gl-dh0" secondAttribute="trailing" constant="15" id="Wbj-mA-mTg"/>
                 <constraint firstAttribute="centerY" secondItem="WaH-1I-lf2" secondAttribute="centerY" id="ZZ7-Fu-qz3"/>
                 <constraint firstAttribute="bottom" secondItem="vfd-Yv-LMR" secondAttribute="bottom" constant="12" id="bAM-oa-GKL"/>

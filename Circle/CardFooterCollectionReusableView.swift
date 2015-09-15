@@ -15,46 +15,47 @@ protocol CardFooterViewDelegate {
 class CardFooterCollectionReusableView: CircleCollectionReusableView {
 
     @IBOutlet weak private(set) var footerButton: UIButton!
-    @IBOutlet weak private(set) var footerButtonLeadingConstraint: NSLayoutConstraint!
-    @IBOutlet weak private(set) var footerButtonTrailingConstraint: NSLayoutConstraint!
-    @IBOutlet weak private(set) var footerImageView: UIImageView!
     @IBOutlet weak private(set) var footerNextImageView: UIImageView!
- 
+    @IBOutlet weak private var cardView: UIView!
+    
     override class var classReuseIdentifier: String {
         return "CardFooterCollectionReusableView"
     }
     
     override class var height: CGFloat {
-        return 70.0
+        return 48.0
     }
     
     var card: Card?
     var cardFooterDelegate: CardFooterViewDelegate?
-    var insetEdges: Bool = true {
-        didSet {
-            updateViewForInsetEdges()
-        }
-    }
     
     override func prepareForReuse() {
         super.prepareForReuse()
         card = nil
-        footerImageView.hidden = true
-        footerButton.contentEdgeInsets = UIEdgeInsetsMake(0.0, 15.0, 0.0, 0.0)
         footerButton.enabled = true
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        // Rasterize layers
+        layer.shouldRasterize = true
+        layer.rasterizationScale = UIScreen.mainScreen().scale
+        
         footerButton.tintColor = UIColor.darkGrayColor()
-        footerButton.addBottomBorder(offset: 1.0)
         footerButton.setBackgroundImage(
             UIImage.imageFromColor(UIColor.appControlHighlightedColor(), withRect: footerButton.frame), 
             forState: .Highlighted
         )
-        footerImageView.hidden = true
-        footerButton.setTitleColor(UIColor.appPrimaryTextColor(), forState: .Normal)
-        footerButton.titleLabel?.font = UIFont.appPrimaryTextFont()
+        footerButton.setTitleColor(UIColor.appHighlightColor(), forState: .Normal)
+        footerButton.titleLabel?.font = UIFont.regularFont(13.0)
+        footerNextImageView.tintColor = UIColor.appHighlightColor()
+    }
+    
+    override func drawRect(rect: CGRect) {
+        super.drawRect(rect)
+        
+        cardView.addRoundCorners(corners: .BottomLeft | .BottomRight, radius: 4.0)
     }
     
     func setButtonEnabled(enabled: Bool) {
@@ -65,28 +66,8 @@ class CardFooterCollectionReusableView: CircleCollectionReusableView {
         footerButton.setTitle(title, forState: .Normal)
     }
     
-    func setImage(image: UIImage?) {
-        footerImageView.image = image
-        footerImageView.hidden = false
-        footerButton.contentEdgeInsets = UIEdgeInsetsMake(0.0, 15.0 + footerImageView.frameWidth + 10.0, 0.0, 0.0)
-    }
-    
     func setNextImageHidden(hidden: Bool) {
         footerNextImageView.hidden = hidden
-    }
-    
-    private func updateViewForInsetEdges() {
-        if insetEdges {
-            footerButtonLeadingConstraint.constant = 10.0
-            footerButtonTrailingConstraint.constant = 10.0
-        }
-        else {
-            footerButtonLeadingConstraint.constant = 0.0
-            footerButtonTrailingConstraint.constant = 0.0
-        }
-        
-        footerButton.setNeedsUpdateConstraints()
-        footerButton.layoutIfNeeded()
     }
     
     // MARK: - IBActions
