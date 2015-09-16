@@ -48,6 +48,17 @@ class TeamsOverviewDataSource: CardDataSource {
         }
     }
     
+    override func configureCell(cell: CircleCollectionViewCell, atIndexPath indexPath: NSIndexPath) {
+        if let card = cardAtSection(indexPath.section) {
+            let isLastCell = (indexPath.row == card.content.count - 1)
+            let isLastViewInSection = (isLastCell && !card.addFooter)
+            
+            cell.separatorInset = UIEdgeInsetsMake(0.0, 70.0, 0.0, 20.0)
+            cell.separatorColor = UIColor.appCardContentSeparatorViewColor()
+            cell.showSeparator = !isLastViewInSection
+        }
+    }
+    
     // MARK: - Set Initial Data
 
     override func setInitialData(content: [AnyObject], ofType: Card.CardType?) {
