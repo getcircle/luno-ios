@@ -60,7 +60,7 @@ extension UIView {
         if let parentView = superview {
             parentView.addSubview(borderView)
             borderView.autoPinEdge(.Left, toEdge: .Left, ofView: self, withOffset: edgeInsets.left)
-            borderView.autoPinEdge(.Right, toEdge: .Right, ofView: self, withOffset: edgeInsets.right)
+            borderView.autoPinEdge(.Right, toEdge: .Right, ofView: self, withOffset: -edgeInsets.right)
             borderView.autoPinEdge(.Bottom, toEdge: .Bottom, ofView: self, withOffset: withOffset ?? 1.0)
             borderView.autoSetDimension(.Height, toSize: 1.0)
         }
