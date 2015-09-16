@@ -94,7 +94,7 @@ class AuthViewController: UIViewController {
             attributes: [NSForegroundColorAttributeName: UIColor.whiteColor()]
         )
         workEmailTextField.tintColor = UIColor.whiteColor()
-        workEmailTextField.addBottomBorder(offset: nil, color: UIColor.whiteColor())
+        workEmailTextField.addBottomBorder(color: UIColor.whiteColor())
         googleSignInButton.titleLabel!.font = UIFont.appSocialCTATitleFont()
         googleSignInButton.addRoundCorners(radius: 2.0)
         googleSignInButton.backgroundColor = UIColor.appTintColor()
@@ -111,7 +111,7 @@ class AuthViewController: UIViewController {
             attributes: [NSForegroundColorAttributeName: UIColor.whiteColor()]
         )
         passwordTextField.tintColor = UIColor.whiteColor()
-        passwordFieldBottomBorder = passwordTextField.addBottomBorder(offset: nil, color: UIColor.whiteColor())
+        passwordFieldBottomBorder = passwordTextField.addBottomBorder(color: UIColor.whiteColor())
         passwordTextField.alpha = 0.0
         passwordFieldBottomBorder.alpha = 0.0
     }

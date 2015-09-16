@@ -54,16 +54,12 @@ extension UIView {
         layer.addAnimation(animation, forKey: "position")
     }
     
-    func addBottomBorder(offset withOffset: CGFloat? = 1.0, edgeInsets: UIEdgeInsets = UIEdgeInsetsZero, color: UIColor? = UIColor.appSeparatorViewColor()) -> UIView {
+    func addBottomBorder(edgeInsets: UIEdgeInsets = UIEdgeInsetsZero, color: UIColor? = UIColor.appSeparatorViewColor()) -> UIView {
         var borderView = UIView(forAutoLayout: ())
         borderView.backgroundColor = color
-        if let parentView = superview {
-            parentView.addSubview(borderView)
-            borderView.autoPinEdge(.Left, toEdge: .Left, ofView: self, withOffset: edgeInsets.left)
-            borderView.autoPinEdge(.Right, toEdge: .Right, ofView: self, withOffset: -edgeInsets.right)
-            borderView.autoPinEdge(.Bottom, toEdge: .Bottom, ofView: self, withOffset: withOffset ?? 1.0)
-            borderView.autoSetDimension(.Height, toSize: 1.0)
-        }
+        addSubview(borderView)
+        borderView.autoSetDimension(.Height, toSize: 1.0)
+        borderView.autoPinEdgesToSuperviewEdgesWithInsets(edgeInsets, excludingEdge: .Top)
         
         return borderView
     }

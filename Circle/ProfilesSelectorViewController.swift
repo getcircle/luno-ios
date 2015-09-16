@@ -75,7 +75,7 @@ class ProfilesSelectorViewController: ProfilesViewController,
         tokenField.autoSetDimension(.Height, toSize: 44.0)
         tokenField.dataSource = self
         tokenField.delegate = self
-        tokenFieldBottomBorder = tokenField.addBottomBorder(offset: 0.0)
+        tokenFieldBottomBorder = tokenField.addBottomBorder()
         tokenField.reloadData()
         tokenField.becomeFirstResponder()
         
