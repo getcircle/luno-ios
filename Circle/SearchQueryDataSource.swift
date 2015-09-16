@@ -217,6 +217,9 @@ class SearchQueryDataSource: CardDataSource {
     
     override func configureCell(cell: CircleCollectionViewCell, atIndexPath indexPath: NSIndexPath) {
         cell.backgroundColor = UIColor.appSearchBackgroundColor()
+        cell.separatorInset = UIEdgeInsetsMake(0.0, 70.0, 0.0, 20.0)
+        cell.separatorColor = UIColor.appSearchCardSeparatorViewColor()
+        cell.showSeparator = true
     }
     
     override func configureHeader(header: CircleCollectionReusableView, atIndexPath indexPath: NSIndexPath) {
