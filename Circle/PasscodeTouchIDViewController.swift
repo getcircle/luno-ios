@@ -50,7 +50,7 @@ class PasscodeTouchIDViewController: UIViewController {
     private func configurePasscodeOptionButtons() {
         if firstLoad {
             firstLoad = false
-            changePasscodeButton.addBottomBorder(offset: 0.0)
+            changePasscodeButton.addBottomBorder()
         }
 
         if VENTouchLock.sharedInstance().isPasscodeSet() {

@@ -216,7 +216,16 @@ class SearchQueryDataSource: CardDataSource {
     }
     
     override func configureCell(cell: CircleCollectionViewCell, atIndexPath indexPath: NSIndexPath) {
-        cell.backgroundColor = UIColor.whiteColor()
+        cell.backgroundColor = UIColor.appSearchBackgroundColor()
+        cell.separatorInset = UIEdgeInsetsMake(0.0, 70.0, 0.0, 20.0)
+        cell.separatorColor = UIColor.appSearchCardSeparatorViewColor()
+        cell.showSeparator = true
+    }
+    
+    override func configureHeader(header: CircleCollectionReusableView, atIndexPath indexPath: NSIndexPath) {
+        if let cardHeader = header as? ProfileSectionHeaderCollectionReusableView {
+            cardHeader.cardView.backgroundColor = UIColor.appSearchBackgroundColor()
+        }
     }
     
     private func addStatusCard(profile: Services.Profile.Containers.ProfileV1) {
@@ -229,7 +238,6 @@ class SearchQueryDataSource: CardDataSource {
                     andTimestamp: status.created
                 )
                 ])
-            statusCard.sectionInset = sectionInset
             appendCard(statusCard)
         }
     }

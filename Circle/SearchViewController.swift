@@ -177,7 +177,7 @@ class SearchViewController: UIViewController,
     
     private func configureCollectionView() {
         collectionView.keyboardDismissMode = .OnDrag
-        collectionView.backgroundColor = UIColor.appViewBackgroundColor()
+        collectionView.backgroundColor = UIColor.appSearchBackgroundColor()
         cardCollectionViewDelegate = (collectionView.delegate as! CardCollectionViewDelegate)
         cardCollectionViewDelegate?.delegate = self
         collectionView.dataSource = dataSource

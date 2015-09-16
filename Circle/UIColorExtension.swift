@@ -87,8 +87,16 @@ extension UIColor {
         return UIColor.blackColor().colorWithAlphaComponent(0.06)
     }
     
+    static func appSearchCardSeparatorViewColor() -> UIColor {
+        return UIColor.blackColor().colorWithAlphaComponent(0.05)
+    }
+    
     static func appViewBackgroundColor() -> UIColor {
         return UIColor(red: 242, green: 244, blue: 245)
+    }
+    
+    static func appSearchBackgroundColor() -> UIColor {
+        return UIColor(red: 247, green: 248, blue: 250)
     }
     
     static func appLinkedinConnectCTABackgroundColor() -> UIColor {

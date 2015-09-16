@@ -17,7 +17,11 @@ enum SizeCalculation {
 class CircleCollectionViewCell: UICollectionViewCell {
     
     var card: Card?
-    var showSeparator = false
+    var showSeparator = false {
+        didSet {
+            bottomBorder?.hidden = !showSeparator
+        }
+    }
     var separatorInset = UIEdgeInsetsZero {
         didSet {
             if !UIEdgeInsetsEqualToEdgeInsets(separatorInset, oldValue) {
@@ -104,9 +108,9 @@ class CircleCollectionViewCell: UICollectionViewCell {
         super.drawRect(rect)
         
         if bottomBorder == nil && showSeparator {
-            bottomBorder = addBottomBorder(edgeInsets: separatorInset, color: separatorColor)
+            bottomBorder = contentView.addBottomBorder(edgeInsets: separatorInset, color: separatorColor)
+            bottomBorder?.hidden = !showSeparator
         }
-        bottomBorder?.hidden = !showSeparator
     }
     
     // Generic setData function..The cells receive content in this function

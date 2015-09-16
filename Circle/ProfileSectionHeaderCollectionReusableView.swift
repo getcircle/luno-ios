@@ -65,7 +65,7 @@ class ProfileSectionHeaderCollectionReusableView: CircleCollectionReusableView {
     
     private func configureBottomBorder() {
         if addBottomBorder && bottomBorder == nil {
-            bottomBorder = cardView.addBottomBorder(offset: -1.0)
+            bottomBorder = cardView.addBottomBorder()
         }
         bottomBorder?.hidden = !addBottomBorder
     }

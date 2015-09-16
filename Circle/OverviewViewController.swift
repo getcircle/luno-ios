@@ -139,7 +139,7 @@ class OverviewViewController:
             searchHeaderView!.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero, excludingEdge: .Bottom)
             searchHeaderView!.autoSetDimension(.Height, toSize: 44.0)
             searchHeaderView!.layer.cornerRadius = 10.0
-            searchHeaderView!.addBottomBorder(offset: 0.0)
+            searchHeaderView!.addBottomBorder()
         }
     }
     

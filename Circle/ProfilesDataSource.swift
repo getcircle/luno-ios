@@ -81,6 +81,17 @@ class ProfilesDataSource: CardDataSource {
             registerNextRequest(nextRequest: serviceRequest)
         }
     }
+    
+    override func configureCell(cell: CircleCollectionViewCell, atIndexPath indexPath: NSIndexPath) {
+        if let card = cardAtSection(indexPath.section) {
+            let isLastCell = (indexPath.row == card.content.count - 1)
+            let isLastViewInSection = (isLastCell && !card.addFooter)
+            
+            cell.separatorInset = UIEdgeInsetsMake(0.0, 70.0, 0.0, 20.0)
+            cell.separatorColor = UIColor.appCardContentSeparatorViewColor()
+            cell.showSeparator = !isLastViewInSection
+        }
+    }
 
     // MARK: - Set Initial Data
     
@@ -106,7 +117,7 @@ class ProfilesDataSource: CardDataSource {
             card.sectionInset = UIEdgeInsetsMake(20.0, 20.0, 20.0, 20.0)
         }
         else {
-            card.sectionInset = UIEdgeInsetsMake(1.0, 0.0, 0.0, 0.0)
+            card.sectionInset = UIEdgeInsetsMake(0.0, 0.0, 0.0, 0.0)
         }
         
         registerNextRequestCompletionHandler { (_, _, wrapped, error) -> Void in
