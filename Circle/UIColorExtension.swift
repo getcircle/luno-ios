@@ -91,6 +91,10 @@ extension UIColor {
         return UIColor(red: 242, green: 244, blue: 245)
     }
     
+    static func appSearchBackgroundColor() -> UIColor {
+        return UIColor(red: 247, green: 248, blue: 250)
+    }
+    
     static func appLinkedinConnectCTABackgroundColor() -> UIColor {
         return UIColor(red: 36, green: 104, blue: 167)
     }
