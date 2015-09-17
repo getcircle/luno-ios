@@ -24,6 +24,10 @@ class ProfileDetailDataSource: CardDataSource {
 
     private var supportGoogleGroups = false
     
+    override class var cardSeparatorInset: UIEdgeInsets {
+        return UIEdgeInsetsMake(0.0, 20.0, 0.0, 0.0)
+    }
+    
     convenience init(profile withProfile: Services.Profile.Containers.ProfileV1) {
         self.init()
         profile = withProfile
@@ -329,8 +333,6 @@ class ProfileDetailDataSource: CardDataSource {
                 cell.removeRoundedCorners()
             }
             
-            cell.separatorInset = UIEdgeInsetsMake(0.0, 20.0, 0.0, 0.0)
-            cell.separatorColor = UIColor.appCardContentSeparatorViewColor()
             cell.showSeparator = !isLastViewInSection
         }
     }

@@ -18,6 +18,10 @@ class ProfilesDataSource: CardDataSource {
     private var cardType: Card.CardType = UIDevice.currentDevice().userInterfaceIdiom == .Pad ? .ProfilesGrid : .Profiles
     private var data = [AnyObject]()
     
+    override class var cardSeparatorInset: UIEdgeInsets {
+        return UIEdgeInsetsMake(0.0, 70.0, 0.0, 20.0)
+    }
+    
     // MARK: - Configuration
     
     func configureForLocation(locationId: String, setupOnlySearch: Bool) {
@@ -87,8 +91,6 @@ class ProfilesDataSource: CardDataSource {
             let isLastCell = (indexPath.row == card.content.count - 1)
             let isLastViewInSection = (isLastCell && !card.addFooter)
             
-            cell.separatorInset = UIEdgeInsetsMake(0.0, 70.0, 0.0, 20.0)
-            cell.separatorColor = UIColor.appCardContentSeparatorViewColor()
             cell.showSeparator = !isLastViewInSection
         }
     }

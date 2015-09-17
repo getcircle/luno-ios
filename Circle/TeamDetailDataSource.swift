@@ -23,6 +23,10 @@ class TeamDetailDataSource: CardDataSource {
     
     private let sectionHeaderClass = ProfileSectionHeaderCollectionReusableView.self
 
+    override class var cardSeparatorInset: UIEdgeInsets {
+        return UIEdgeInsetsMake(0.0, 20.0, 0.0, 0.0)
+    }
+    
     // MARK: - Load Data
     
     override func loadData(completionHandler: (error: NSError?) -> Void) {
@@ -299,8 +303,6 @@ class TeamDetailDataSource: CardDataSource {
                     cell.removeRoundedCorners()
                 }
                 
-                cell.separatorInset = UIEdgeInsetsMake(0.0, 20.0, 0.0, 0.0)
-                cell.separatorColor = UIColor.appCardContentSeparatorViewColor()
                 cell.showSeparator = !isLastViewInSection
             }
         }

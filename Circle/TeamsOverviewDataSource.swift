@@ -17,6 +17,10 @@ class TeamsOverviewDataSource: CardDataSource {
     private(set) var searchAttributeValue: String?
     private var teams = Array<Services.Organization.Containers.TeamV1>()
     
+    override class var cardSeparatorInset: UIEdgeInsets {
+        return UIEdgeInsetsMake(0.0, 70.0, 0.0, 20.0)
+    }
+    
     // MARK: - Configuration
 
     func configureForTeam(teamId: String, setupOnlySearch: Bool) {
@@ -53,8 +57,6 @@ class TeamsOverviewDataSource: CardDataSource {
             let isLastCell = (indexPath.row == card.content.count - 1)
             let isLastViewInSection = (isLastCell && !card.addFooter)
             
-            cell.separatorInset = UIEdgeInsetsMake(0.0, 70.0, 0.0, 20.0)
-            cell.separatorColor = UIColor.appCardContentSeparatorViewColor()
             cell.showSeparator = !isLastViewInSection
         }
     }

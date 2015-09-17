@@ -22,6 +22,10 @@ class LocationDetailDataSource: CardDataSource {
     private let sectionHeaderClass = ProfileSectionHeaderCollectionReusableView.self
     
     private var isLoggedInUserPOC = false
+
+    override class var cardSeparatorInset: UIEdgeInsets {
+        return UIEdgeInsetsMake(0.0, 20.0, 0.0, 0.0)
+    }
     
     // MARK: - Load Data
     
@@ -76,8 +80,6 @@ class LocationDetailDataSource: CardDataSource {
                 cell.removeRoundedCorners()
             }
             
-            cell.separatorInset = UIEdgeInsetsMake(0.0, 20.0, 0.0, 0.0)
-            cell.separatorColor = UIColor.appCardContentSeparatorViewColor()
             cell.showSeparator = !isLastViewInSection
             
             if canEdit() {

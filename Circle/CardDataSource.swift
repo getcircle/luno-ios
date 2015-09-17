@@ -75,6 +75,12 @@ class CardDataSource: NSObject, UICollectionViewDataSource {
     var contentThreshold: Float = 50.0
     var delegate: CardDataSourceDelegate?
 
+    class var cardSeparatorColor: UIColor {
+        return UIColor.appCardContentSeparatorViewColor()
+    }
+    class var cardSeparatorInset: UIEdgeInsets {
+        return UIEdgeInsetsZero
+    }
     
     var animateContent = false
     private var animatedRowIndexes = NSMutableIndexSet()
@@ -183,6 +189,8 @@ class CardDataSource: NSObject, UICollectionViewDataSource {
         
         cell.card = card
         cell.setData(card.content[indexPath.row])
+        cell.separatorColor = self.dynamicType.cardSeparatorColor
+        cell.separatorInset = self.dynamicType.cardSeparatorInset
         configureCell(cell, atIndexPath: indexPath)
         animate(cell, ofType: .Cell, atIndexPath: indexPath)
         return cell

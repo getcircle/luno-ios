@@ -25,6 +25,12 @@ class SearchQueryDataSource: CardDataSource {
     private var completionHandler: ((error: NSError?) -> Void)?
     private var searchTriggerTimer: NSTimer?
     
+    override class var cardSeparatorColor: UIColor {
+        return UIColor.appSearchCardSeparatorViewColor()
+    }
+    override class var cardSeparatorInset: UIEdgeInsets {
+        return UIEdgeInsetsMake(0.0, 70.0, 0.0, 20.0)
+    }
     
     override init() {
         super.init()
@@ -217,8 +223,6 @@ class SearchQueryDataSource: CardDataSource {
     
     override func configureCell(cell: CircleCollectionViewCell, atIndexPath indexPath: NSIndexPath) {
         cell.backgroundColor = UIColor.appSearchBackgroundColor()
-        cell.separatorInset = UIEdgeInsetsMake(0.0, 70.0, 0.0, 20.0)
-        cell.separatorColor = UIColor.appSearchCardSeparatorViewColor()
         cell.showSeparator = true
     }
     
