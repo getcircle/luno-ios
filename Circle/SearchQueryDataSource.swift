@@ -15,7 +15,6 @@ class SearchQueryDataSource: CardDataSource {
 
     let queryTriggerTimer = 0.2
 
-    private let sectionInset = UIEdgeInsetsMake(0.0, 0.0, 1.0, 0.0)
     private let whitespaceCharacterSet = NSCharacterSet.whitespaceCharacterSet()
     
     private var searchTerm = ""
@@ -162,7 +161,6 @@ class SearchQueryDataSource: CardDataSource {
             let profilesCardTitle = emptySearchTerm ? NSLocalizedString("Recent", comment: "Title of the section showing recent search results") : NSLocalizedString("Results", comment: "Title of the section showing search results")
             let resultsCard = Card(cardType: .Profiles, title: profilesCardTitle, showContentCount: false)
             resultsCard.addContent(content: searchResults)
-            resultsCard.sectionInset = sectionInset
             if emptySearchTerm {
                 resultsCard.addHeader(headerClass: ProfileSectionHeaderCollectionReusableView.self)
             }
@@ -191,7 +189,6 @@ class SearchQueryDataSource: CardDataSource {
             }
             
             searchSuggestionsCard.addContent(content: searchSuggestions as [AnyObject])
-            searchSuggestionsCard.sectionInset = sectionInset
             appendCard(searchSuggestionsCard)
         }
     }
@@ -257,7 +254,6 @@ class SearchQueryDataSource: CardDataSource {
                     andAuthor: status.byProfile
                 )
             ])
-            statusCard.sectionInset = sectionInset
             appendCard(statusCard)
         }
     }
