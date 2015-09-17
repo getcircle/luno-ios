@@ -70,17 +70,16 @@ class LocationDetailDataSource: CardDataSource {
     
     override func configureCell(cell: CircleCollectionViewCell, atIndexPath indexPath: NSIndexPath) {
         if let card = cardAtSection(indexPath.section) {
-            let isLastCell = (indexPath.row == card.content.count - 1)
-            let isLastViewInSection = (isLastCell && !card.addFooter)
+            let cellIsBottomOfSection = cellAtIndexPathIsBottomOfSection(indexPath)
             
-            if isLastViewInSection {
+            if cellIsBottomOfSection {
                 cell.addRoundCorners(corners: .BottomLeft | .BottomRight, radius: 4.0)
             }
             else {
                 cell.removeRoundedCorners()
             }
             
-            cell.showSeparator = !isLastViewInSection
+            cell.showSeparator = !cellIsBottomOfSection
             
             if canEdit() {
                 if let

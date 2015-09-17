@@ -53,12 +53,7 @@ class TeamsOverviewDataSource: CardDataSource {
     }
     
     override func configureCell(cell: CircleCollectionViewCell, atIndexPath indexPath: NSIndexPath) {
-        if let card = cardAtSection(indexPath.section) {
-            let isLastCell = (indexPath.row == card.content.count - 1)
-            let isLastViewInSection = (isLastCell && !card.addFooter)
-            
-            cell.showSeparator = !isLastViewInSection
-        }
+        cell.showSeparator = !cellAtIndexPathIsBottomOfSection(indexPath)
     }
     
     // MARK: - Set Initial Data

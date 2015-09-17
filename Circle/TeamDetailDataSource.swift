@@ -292,19 +292,16 @@ class TeamDetailDataSource: CardDataSource {
             settingsCell.itemLabel.textColor = UIColor.appTintColor()
         }
         else {
-            if let card = cardAtSection(indexPath.section) {
-                let isLastCell = (indexPath.row == card.content.count - 1)
-                let isLastViewInSection = (isLastCell && !card.addFooter)
-                
-                if isLastViewInSection {
-                    cell.addRoundCorners(corners: .BottomLeft | .BottomRight, radius: 4.0)
-                }
-                else {
-                    cell.removeRoundedCorners()
-                }
-                
-                cell.showSeparator = !isLastViewInSection
+            let cellIsBottomOfSection = cellAtIndexPathIsBottomOfSection(indexPath)
+            
+            if cellIsBottomOfSection {
+                cell.addRoundCorners(corners: .BottomLeft | .BottomRight, radius: 4.0)
             }
+            else {
+                cell.removeRoundedCorners()
+            }
+            
+            cell.showSeparator = !cellIsBottomOfSection
         }
     }
 }

@@ -321,20 +321,16 @@ class ProfileDetailDataSource: CardDataSource {
     }
     
     override func configureCell(cell: CircleCollectionViewCell, atIndexPath indexPath: NSIndexPath) {
-        if let card = cardAtSection(indexPath.section) {
-            
-            let isLastCell = (indexPath.row == card.content.count - 1)
-            let isLastViewInSection = (isLastCell && !card.addFooter)
-            
-            if isLastViewInSection {
-                cell.addRoundCorners(corners: .BottomLeft | .BottomRight, radius: 4.0)
-            }
-            else {
-                cell.removeRoundedCorners()
-            }
-            
-            cell.showSeparator = !isLastViewInSection
+        let cellIsBottomOfSection = cellAtIndexPathIsBottomOfSection(indexPath)
+        
+        if cellIsBottomOfSection {
+            cell.addRoundCorners(corners: .BottomLeft | .BottomRight, radius: 4.0)
         }
+        else {
+            cell.removeRoundedCorners()
+        }
+        
+        cell.showSeparator = !cellIsBottomOfSection
     }
 
     private func isProfileLoggedInUserProfile() -> Bool {
