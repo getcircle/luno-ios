@@ -258,6 +258,7 @@ class ProfileDetailDataSource: CardDataSource {
             if card.type == .ContactMethods {
                 cardHeader.cardSubtitleLabel.hidden = false
                 cardHeader.cardSubtitleLabel.text = location?.officeCurrentDateAndTimeLabel()
+                cardHeader.daylightIndicatorImageView.image = location?.officeDaylightIndicator()
             }
             
             cardHeader.addBottomBorder = true
