@@ -1,8 +1,8 @@
 source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '8.0'
-link_with 'Circle', 'CircleTests'
-workspace 'Circle'
-xcodeproj 'Circle.xcodeproj'
+link_with 'Luno', 'LunoTests'
+workspace 'Luno'
+xcodeproj 'Luno.xcodeproj'
 use_frameworks!
 
 pod 'libPhoneNumber-iOS', '~> 0.7'

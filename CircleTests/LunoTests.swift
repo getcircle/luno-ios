@@ -1,6 +1,6 @@
 //
-//  CircleTests.swift
-//  CircleTests
+//  LunoTests.swift
+//  LunoTests
 //
 //  Created by Ravi Rani on 11/24/14.
 //  Copyright (c) 2014 RavCode. All rights reserved.
@@ -8,9 +8,9 @@
 
 import UIKit
 import XCTest
-import circle
+import luno
 
-class CircleTests: XCTestCase {
+class LunoTests: XCTestCase {
     
     override func setUp() {
         super.setUp()

@@ -21,7 +21,7 @@
 		8F0004A01A2419730096477A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F00049E1A2419730096477A /* Main.storyboard */; };
 		8F0004A21A2419730096477A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8F0004A11A2419730096477A /* Images.xcassets */; };
 		8F0004A51A2419730096477A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F0004A31A2419730096477A /* LaunchScreen.xib */; };
-		8F0004B11A2419730096477A /* CircleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0004B01A2419730096477A /* CircleTests.swift */; };
+		8F0004B11A2419730096477A /* LunoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0004B01A2419730096477A /* LunoTests.swift */; };
 		8F0004BB1A241BDE0096477A /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0004BA1A241BDE0096477A /* UIColorExtension.swift */; };
 		8F02B1FC1A54A08000A1A307 /* RootNavigationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F02B1FB1A54A08000A1A307 /* RootNavigationDelegate.swift */; };
 		8F0544AE1ABA3C7800570327 /* TextInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0544AC1ABA3C7800570327 /* TextInputViewController.swift */; };
@@ -359,7 +359,7 @@
 		8F0004A41A2419730096477A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		8F0004AA1A2419730096477A /* LunoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LunoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F0004AF1A2419730096477A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8F0004B01A2419730096477A /* CircleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleTests.swift; sourceTree = "<group>"; };
+		8F0004B01A2419730096477A /* LunoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LunoTests.swift; sourceTree = "<group>"; };
 		8F0004BA1A241BDE0096477A /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		8F02B1FB1A54A08000A1A307 /* RootNavigationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootNavigationDelegate.swift; sourceTree = "<group>"; };
 		8F0544AC1ABA3C7800570327 /* TextInputViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextInputViewController.swift; sourceTree = "<group>"; };
@@ -685,8 +685,8 @@
 		8F0004871A2419730096477A = {
 			isa = PBXGroup;
 			children = (
-				8F0004921A2419730096477A /* Circle */,
-				8F0004AD1A2419730096477A /* CircleTests */,
+				8F0004921A2419730096477A /* Luno */,
+				8F0004AD1A2419730096477A /* LunoTests */,
 				8F0004911A2419730096477A /* Products */,
 				D3792F80AEE37ECED92A044F /* Pods */,
 				31F9C7E511DF7D5BF18D0B04 /* Frameworks */,
@@ -702,7 +702,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		8F0004921A2419730096477A /* Circle */ = {
+		8F0004921A2419730096477A /* Luno */ = {
 			isa = PBXGroup;
 			children = (
 				8F5933CE1ACA142300905E14 /* circle.entitlements */,
@@ -725,6 +725,7 @@
 				8F0004C01A25B9FE0096477A /* ViewControllers */,
 				8F0004C11A25BA090096477A /* Views */,
 			);
+			name = Luno;
 			path = Circle;
 			sourceTree = "<group>";
 		};
@@ -740,12 +741,13 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		8F0004AD1A2419730096477A /* CircleTests */ = {
+		8F0004AD1A2419730096477A /* LunoTests */ = {
 			isa = PBXGroup;
 			children = (
-				8F0004B01A2419730096477A /* CircleTests.swift */,
+				8F0004B01A2419730096477A /* LunoTests.swift */,
 				8F0004AE1A2419730096477A /* Supporting Files */,
 			);
+			name = LunoTests;
 			path = CircleTests;
 			sourceTree = "<group>";
 		};
@@ -1711,7 +1713,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8F0004B11A2419730096477A /* CircleTests.swift in Sources */,
+				8F0004B11A2419730096477A /* LunoTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1897,7 +1899,7 @@
 				INFOPLIST_FILE = CircleTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = LunoTests;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Circle.app/Circle";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/luno.app/luno";
 			};
 			name = Debug;
 		};
@@ -1914,7 +1916,7 @@
 				INFOPLIST_FILE = CircleTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = LunoTests;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Circle.app/Circle";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/luno.app/luno";
 			};
 			name = Release;
 		};
