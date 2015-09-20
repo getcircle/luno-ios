@@ -26,7 +26,7 @@ class ProfilesDataSource: CardDataSource {
     
     func configureForLocation(locationId: String, setupOnlySearch: Bool) {
         if !setupOnlySearch {
-            let requestBuilder = Services.Profile.Actions.GetProfiles.RequestV1.builder()
+            let requestBuilder = Services.Profile.Actions.GetProfiles.RequestV1.Builder()
             requestBuilder.locationId = locationId
             configureForParameters(requestBuilder)
         }
@@ -37,7 +37,7 @@ class ProfilesDataSource: CardDataSource {
 
     func configureForTeam(teamId: String, setupOnlySearch: Bool) {
         if !setupOnlySearch {
-            let requestBuilder = Services.Profile.Actions.GetProfiles.RequestV1.builder()
+            let requestBuilder = Services.Profile.Actions.GetProfiles.RequestV1.Builder()
             requestBuilder.teamId = teamId
             configureForParameters(requestBuilder)
         }
@@ -47,13 +47,13 @@ class ProfilesDataSource: CardDataSource {
     }
     
     func configureForDirectReports(profile: Services.Profile.Containers.ProfileV1) {
-        let requestBuilder = Services.Profile.Actions.GetProfiles.RequestV1.builder()
+        let requestBuilder = Services.Profile.Actions.GetProfiles.RequestV1.Builder()
         requestBuilder.managerId = profile.id
         configureForParameters(requestBuilder)
     }
 
     func configureForOrganization() {
-        let requestBuilder = Services.Profile.Actions.GetProfiles.RequestV1.builder()
+        let requestBuilder = Services.Profile.Actions.GetProfiles.RequestV1.Builder()
         configureForParameters(requestBuilder)
     }
     
@@ -71,7 +71,7 @@ class ProfilesDataSource: CardDataSource {
     }
     
     func configureForGroup(group: Services.Group.Containers.GroupV1, role: Services.Group.Containers.RoleV1) {
-        let requestBuilder = Services.Group.Actions.GetMembers.RequestV1.builder()
+        let requestBuilder = Services.Group.Actions.GetMembers.RequestV1.Builder()
         requestBuilder.groupId = group.id
         requestBuilder.role = role
         let client = ServiceClient(serviceName: "group")

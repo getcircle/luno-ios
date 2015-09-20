@@ -39,7 +39,7 @@ class EditLocationDescriptionViewController: TextInputViewController {
         if let description = locationBuilder.description_ {
             descriptionBuilder = description.toBuilder()
         } else {
-            descriptionBuilder = Services.Common.Containers.DescriptionV1.builder()
+            descriptionBuilder = Services.Common.Containers.DescriptionV1.Builder()
         }
         descriptionBuilder.value = data
         locationBuilder.description_ = descriptionBuilder.build()

@@ -25,7 +25,7 @@ class TeamsOverviewDataSource: CardDataSource {
 
     func configureForTeam(teamId: String, setupOnlySearch: Bool) {
         if !setupOnlySearch {
-            let requestBuilder = Services.Profile.Actions.GetProfiles.RequestV1.builder()
+            let requestBuilder = Services.Profile.Actions.GetProfiles.RequestV1.Builder()
             requestBuilder.teamId = teamId
             configureForParameters(requestBuilder)
         }
@@ -35,7 +35,7 @@ class TeamsOverviewDataSource: CardDataSource {
     }
 
     func configureForOrganization() {
-        let requestBuilder = Services.Organization.Actions.GetTeams.RequestV1.builder()
+        let requestBuilder = Services.Organization.Actions.GetTeams.RequestV1.Builder()
         configureForParameters(requestBuilder)
     }
     

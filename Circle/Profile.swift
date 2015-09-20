@@ -44,13 +44,13 @@ extension Services.Profile.Actions {
     }
     
     static func getProfile(profileId: String, completionHandler: GetProfileCompletionHandler?) {
-        let requestBuilder = Services.Profile.Actions.GetProfile.RequestV1.builder()
+        let requestBuilder = Services.Profile.Actions.GetProfile.RequestV1.Builder()
         requestBuilder.profileId = profileId
         self.getProfile(requestBuilder, completionHandler: completionHandler)
     }
     
     static func getProfile(completionHandler: GetProfileCompletionHandler?) {
-        let requestBuilder = Services.Profile.Actions.GetProfile.RequestV1.builder()
+        let requestBuilder = Services.Profile.Actions.GetProfile.RequestV1.Builder()
         self.getProfile(requestBuilder, completionHandler: completionHandler)
     }
     
@@ -80,7 +80,7 @@ extension Services.Profile.Actions {
         paginatorBuilder: Soa.PaginatorV1Builder? = nil,
         completionHandler: GetProfilesCompletionHandler?
     ) {
-        let requestBuilder = Services.Profile.Actions.GetProfiles.RequestV1.builder()
+        let requestBuilder = Services.Profile.Actions.GetProfiles.RequestV1.Builder()
         requestBuilder.managerId = managerId
         self.getProfiles(requestBuilder, paginatorBuilder: paginatorBuilder, completionHandler: completionHandler)
     }
@@ -90,7 +90,7 @@ extension Services.Profile.Actions {
         paginatorBuilder: Soa.PaginatorV1Builder? = nil,
         completionHandler: GetProfilesCompletionHandler?
     ) {
-        let requestBuilder = Services.Profile.Actions.GetProfiles.RequestV1.builder()
+        let requestBuilder = Services.Profile.Actions.GetProfiles.RequestV1.Builder()
         requestBuilder.teamId = teamId
         self.getProfiles(requestBuilder, paginatorBuilder: paginatorBuilder, completionHandler: completionHandler)
     }
@@ -100,7 +100,7 @@ extension Services.Profile.Actions {
         paginatorBuilder: Soa.PaginatorV1Builder? = nil,
         completionHandler: GetProfilesCompletionHandler?
     ) {
-        let requestBuilder = Services.Profile.Actions.GetProfiles.RequestV1.builder()
+        let requestBuilder = Services.Profile.Actions.GetProfiles.RequestV1.Builder()
         self.getProfiles(requestBuilder, paginatorBuilder: paginatorBuilder, completionHandler: completionHandler)
     }
     
@@ -110,7 +110,7 @@ extension Services.Profile.Actions {
         paginatorBuilder: Soa.PaginatorV1Builder? = nil,
         completionHandler: GetProfilesCompletionHandler?
     ) {
-        let requestBuilder = Services.Profile.Actions.GetProfiles.RequestV1.builder()
+        let requestBuilder = Services.Profile.Actions.GetProfiles.RequestV1.Builder()
         requestBuilder.tagId = tagId
         self.getProfiles(requestBuilder, paginatorBuilder: paginatorBuilder, completionHandler: completionHandler)
     }
@@ -120,13 +120,13 @@ extension Services.Profile.Actions {
         paginatorBuilder: Soa.PaginatorV1Builder? = nil,
         completionHandler: GetProfilesCompletionHandler?
     ) {
-        let requestBuilder = Services.Profile.Actions.GetProfiles.RequestV1.builder()
+        let requestBuilder = Services.Profile.Actions.GetProfiles.RequestV1.Builder()
         requestBuilder.locationId = locationId
         self.getProfiles(requestBuilder, paginatorBuilder: paginatorBuilder, completionHandler: completionHandler)
     }
     
     static func getExtendedProfile(profileId: String, completionHandler: GetExtendedProfileCompletionHandler?) {
-        let requestBuilder = Services.Profile.Actions.GetExtendedProfile.RequestV1.builder()
+        let requestBuilder = Services.Profile.Actions.GetExtendedProfile.RequestV1.Builder()
         requestBuilder.profileId = profileId
         let client = ServiceClient(serviceName: "profile")
         client.callAction(
@@ -152,7 +152,7 @@ extension Services.Profile.Actions {
     }
     
     static func getTags(organizationId: String, tagType: Services.Profile.Containers.TagV1.TagTypeV1?, completionHandler: GetTagsCompletionHandler?) {
-        let requestBuilder = Services.Profile.Actions.GetTags.RequestV1.builder()
+        let requestBuilder = Services.Profile.Actions.GetTags.RequestV1.Builder()
         requestBuilder.organizationId = organizationId
         if tagType != nil {
             requestBuilder.tagType = tagType!
@@ -173,7 +173,7 @@ extension Services.Profile.Actions {
     
 
     static func updateProfile(profile: Services.Profile.Containers.ProfileV1, completionHandler: UpdateProfileCompletionHandler?) {
-        let requestBuilder = Services.Profile.Actions.UpdateProfile.RequestV1.builder()
+        let requestBuilder = Services.Profile.Actions.UpdateProfile.RequestV1.Builder()
         requestBuilder.profile = profile
         
         let client = ServiceClient(serviceName: "profile")
@@ -197,7 +197,7 @@ extension Services.Profile.Actions {
     }
     
     static func addTags(profileId: String, tags: Array<Services.Profile.Containers.TagV1>, completionHandler: AddTagsCompletionHandler?) {
-        let requestBuilder = Services.Profile.Actions.AddTags.RequestV1.builder()
+        let requestBuilder = Services.Profile.Actions.AddTags.RequestV1.Builder()
         requestBuilder.profileId = profileId
         requestBuilder.tags = tags
         
@@ -222,7 +222,7 @@ extension Services.Profile.Actions {
     }
     
     static func removeTags(profileId: String, tags: Array<Services.Profile.Containers.TagV1>, completionHandler: RemoveTagsCompletionHandler?) {
-        let requestBuilder = Services.Profile.Actions.RemoveTags.RequestV1.builder()
+        let requestBuilder = Services.Profile.Actions.RemoveTags.RequestV1.Builder()
         requestBuilder.profileId = profileId
         requestBuilder.tags = tags
         

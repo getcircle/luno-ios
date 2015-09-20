@@ -137,7 +137,7 @@ class AuthViewController: UIViewController {
             userInfo = notification.userInfo,
             authDetails = userInfo["oauth_sdk_details"] as? Services.User.Containers.OAuthSDKDetailsV1
         {
-            let credentials = Services.User.Actions.AuthenticateUser.RequestV1.CredentialsV1.builder()
+            let credentials = Services.User.Actions.AuthenticateUser.RequestV1.CredentialsV1.Builder()
             credentials.key = authDetails.code
             credentials.secret = authDetails.idToken
             let data = [authDetails.data().base64EncodedStringWithOptions(nil): "\(NSDate())"]
@@ -155,7 +155,7 @@ class AuthViewController: UIViewController {
         let (data, error) = Locksmith.loadDataForUserAccount(LocksmithMainUserAccount, inService: LocksmithAuthDetailsService)
         if let authDetailsString = data?.allKeys[0] as? String, data = NSData(base64EncodedString: authDetailsString, options: nil) {
             let authDetails = Services.User.Containers.OAuthSDKDetailsV1.parseFromData(data)
-            let credentials = Services.User.Actions.AuthenticateUser.RequestV1.CredentialsV1.builder()
+            let credentials = Services.User.Actions.AuthenticateUser.RequestV1.CredentialsV1.Builder()
             credentials.key = authDetails.code
             credentials.secret = authDetails.idToken
             login(.Google, credentials: credentials.build(), silent: true)
@@ -654,7 +654,7 @@ class AuthViewController: UIViewController {
     }
 
     private func signInUser() {
-        let credentials = Services.User.Actions.AuthenticateUser.RequestV1.CredentialsV1.builder()
+        let credentials = Services.User.Actions.AuthenticateUser.RequestV1.CredentialsV1.Builder()
         credentials.key = workEmailTextField.text.trimWhitespace()
         credentials.secret = passwordTextField.text.trimWhitespace()
         login(.Internal, credentials: credentials.build())

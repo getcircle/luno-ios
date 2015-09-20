@@ -58,7 +58,7 @@ class ContactInfoDataSource: CardDataSource {
     func contactMethodAtIndexPath(indexPath: NSIndexPath) -> Services.Profile.Containers.ContactMethodV1? {
         
         if indexPath.row == 0 {
-            let contactMethodBuilder = Services.Profile.Containers.ContactMethodV1.builder()
+            let contactMethodBuilder = Services.Profile.Containers.ContactMethodV1.Builder()
             contactMethodBuilder.label = AppStrings.QuickActionEmailLabel
             contactMethodBuilder.value = profile.email
             contactMethodBuilder.contactMethodType = .Email

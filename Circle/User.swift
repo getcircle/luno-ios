@@ -30,7 +30,7 @@ extension Services.User.Actions {
         password: String,
         completionHandler: CreateUserCompletionHandler?
     ) {
-            let requestBuilder = Services.User.Actions.CreateUser.RequestV1.builder()
+            let requestBuilder = Services.User.Actions.CreateUser.RequestV1.Builder()
             requestBuilder.email = email
             requestBuilder.password = password
             let client = ServiceClient(serviceName: "user")
@@ -48,7 +48,7 @@ extension Services.User.Actions {
         credentials: Services.User.Actions.AuthenticateUser.RequestV1.CredentialsV1,
         completionHandler: AuthenticateUserCompletionHandler?
     ) {
-        let requestBuilder = Services.User.Actions.AuthenticateUser.RequestV1.builder()
+        let requestBuilder = Services.User.Actions.AuthenticateUser.RequestV1.Builder()
         requestBuilder.backend = backend
         requestBuilder.credentials = credentials
         requestBuilder.clientType = .Ios
@@ -63,7 +63,7 @@ extension Services.User.Actions {
     }
     
     static func updateUser(user: Services.User.Containers.UserV1, completionHandler: UpdateUserCompletionHandler?) {
-        let requestBuilder = Services.User.Actions.UpdateUser.RequestV1.builder()
+        let requestBuilder = Services.User.Actions.UpdateUser.RequestV1.Builder()
         requestBuilder.user = user
         
         let client = ServiceClient(serviceName: "user")
@@ -80,7 +80,7 @@ extension Services.User.Actions {
     }
     
     static func sendVerificationCode(user: Services.User.Containers.UserV1, completionHandler: SendVerificationCodeCompletionHandler?) {
-        let requestBuilder = Services.User.Actions.SendVerificationCode.RequestV1.builder()
+        let requestBuilder = Services.User.Actions.SendVerificationCode.RequestV1.Builder()
         requestBuilder.userId = user.id
         
         let client = ServiceClient(serviceName: "user")
@@ -95,7 +95,7 @@ extension Services.User.Actions {
     }
     
     static func verifyVerificationCode(code: String, user: Services.User.Containers.UserV1, completionHandler: VerifyVerificationCodeCompletionHandler?) {
-        let requestBuilder = Services.User.Actions.VerifyVerificationCode.RequestV1.builder()
+        let requestBuilder = Services.User.Actions.VerifyVerificationCode.RequestV1.Builder()
         requestBuilder.userId = user.id
         requestBuilder.code = code
         
@@ -113,7 +113,7 @@ extension Services.User.Actions {
     }
     
     static func getAuthorizationInstructions(provider: Services.User.Containers.IdentityV1.ProviderV1, loginHint: String? = nil, completionHandler: GetAuthorizationInstructionsCompletionHandler?) {
-        let requestBuilder = Services.User.Actions.GetAuthorizationInstructions.RequestV1.builder()
+        let requestBuilder = Services.User.Actions.GetAuthorizationInstructions.RequestV1.Builder()
         requestBuilder.provider = provider
         if loginHint != nil {
             requestBuilder.loginHint = loginHint!
@@ -132,7 +132,7 @@ extension Services.User.Actions {
     }
 
     static func getAuthenticationInstructions(email: String, completionHandler: GetAuthenticationInstructionsCompletionHandler?) {
-        let requestBuilder = Services.User.Actions.GetAuthenticationInstructions.RequestV1.builder()
+        let requestBuilder = Services.User.Actions.GetAuthenticationInstructions.RequestV1.Builder()
         requestBuilder.email = email
 
         let client = ServiceClient(serviceName: "user")
@@ -175,7 +175,7 @@ extension Services.User.Actions {
     }
     
     static func getIdentities(userId: String, completionHandler: GetIdentitiesCompletionHandler?) {
-        let requestBuilder = Services.User.Actions.GetIdentities.RequestV1.builder()
+        let requestBuilder = Services.User.Actions.GetIdentities.RequestV1.Builder()
         requestBuilder.userId = userId
         
         let client = ServiceClient(serviceName: "user")
@@ -193,7 +193,7 @@ extension Services.User.Actions {
     static func recordDevice(pushToken: String?, completionHandler: RecordDeviceCompletionHandler?) {
         dispatch_async(dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0), { () -> Void in
             if let loggedInUser = AuthViewController.getLoggedInUser() {
-                let deviceBuilder = Services.User.Containers.DeviceV1.builder()
+                let deviceBuilder = Services.User.Containers.DeviceV1.Builder()
                 let currentDevice = UIDevice.currentDevice()
                 let appVersion = NSBundle.appVersion()
                 let appBuild = NSBundle.appBuild()
@@ -206,7 +206,7 @@ extension Services.User.Actions {
                 if let pushToken = pushToken {
                     deviceBuilder.notificationToken = pushToken
                 }
-                let requestBuilder = Services.User.Actions.RecordDevice.RequestV1.builder()
+                let requestBuilder = Services.User.Actions.RecordDevice.RequestV1.Builder()
                 requestBuilder.device = deviceBuilder.build()
                 
                 let client = ServiceClient(serviceName: "user")
@@ -230,7 +230,7 @@ extension Services.User.Actions {
     static func requestAccess(completionHandler: RequestAccessCompletionHandler?) {
         dispatch_async(dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0), { () -> Void in
             if let loggedInUser = AuthViewController.getLoggedInUser() {
-                let requestBuilder = Services.User.Actions.RequestAccess.RequestV1.builder()
+                let requestBuilder = Services.User.Actions.RequestAccess.RequestV1.Builder()
                 requestBuilder.userId = loggedInUser.id
                 
                 let client = ServiceClient(serviceName: "user")
@@ -252,7 +252,7 @@ extension Services.User.Actions {
     }
     
     static func deleteIdentity(identity: Services.User.Containers.IdentityV1, completionHandler: DeleteIdentityCompletionHandler?) {
-        let requestBuilder = Services.User.Actions.DeleteIdentity.RequestV1.builder()
+        let requestBuilder = Services.User.Actions.DeleteIdentity.RequestV1.Builder()
         requestBuilder.identity = identity
         
         let client = ServiceClient(serviceName: "user")
@@ -269,7 +269,7 @@ extension Services.User.Actions {
     }
     
     static func logout(completionHandler: LogoutCompletionHandler?) {
-        let requestBuilder = Services.User.Actions.Logout.RequestV1.builder()
+        let requestBuilder = Services.User.Actions.Logout.RequestV1.Builder()
         requestBuilder.clientType = .Ios
         let client = ServiceClient(serviceName: "user")
         client.callAction(

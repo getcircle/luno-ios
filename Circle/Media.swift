@@ -20,7 +20,7 @@ extension Services.Media.Actions {
         key: String,
         completionHandler: StartImageUploadCompletionHandler?
     ) {
-        let requestBuilder = Services.Media.Actions.StartImageUpload.RequestV1.builder()
+        let requestBuilder = Services.Media.Actions.StartImageUpload.RequestV1.Builder()
         requestBuilder.mediaType = mediaType
         requestBuilder.mediaKey = key
 
@@ -44,7 +44,7 @@ extension Services.Media.Actions {
         uploadKey: String,
         completionHandler: CompleteImageUploadCompletionHandler?
     ) {
-        let requestBuilder = Services.Media.Actions.CompleteImageUpload.RequestV1.builder()
+        let requestBuilder = Services.Media.Actions.CompleteImageUpload.RequestV1.Builder()
         requestBuilder.mediaType = mediaType
         requestBuilder.mediaKey = mediaKey
         requestBuilder.uploadId = uploadId

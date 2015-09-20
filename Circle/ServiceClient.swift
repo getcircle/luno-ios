@@ -37,19 +37,19 @@ public class ServiceClient {
         requestBuilder: AbstractMessageBuilder,
         paginatorBuilder: Soa.PaginatorV1Builder?
     ) -> Soa.ServiceRequestV1 {
-        let serviceRequest = Soa.ServiceRequestV1.builder()
-        let control = Soa.ControlV1.builder()
+        let serviceRequest = Soa.ServiceRequestV1.Builder()
+        let control = Soa.ControlV1.Builder()
         control.service = serviceName
         if let token = token {
             control.token = token
         }
         serviceRequest.control = control.build()
         
-        let actionRequest = Soa.ActionRequestV1.builder()
-        let actionControl = Soa.ActionControlV1.builder()
+        let actionRequest = Soa.ActionRequestV1.Builder()
+        let actionControl = Soa.ActionControlV1.Builder()
         var paginatorBuilder = paginatorBuilder
         if paginatorBuilder == nil {
-            paginatorBuilder = Soa.PaginatorV1.builder()
+            paginatorBuilder = Soa.PaginatorV1.Builder()
         }
         actionControl.service = serviceName
         actionControl.action = actionName

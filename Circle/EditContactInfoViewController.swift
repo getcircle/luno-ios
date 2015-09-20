@@ -284,7 +284,7 @@ class EditContactInfoViewController: UIViewController, UINavigationControllerDel
                                 contactMethod = existingContactMethod.toBuilder()
                             }
                             else {
-                                contactMethod = Services.Profile.Containers.ContactMethodV1.builder()
+                                contactMethod = Services.Profile.Containers.ContactMethodV1.Builder()
                             }
 
                             contactMethod.label = contactItem.placeholder

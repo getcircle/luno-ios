@@ -39,7 +39,7 @@ class EditTeamDescriptionViewController: TextInputViewController {
         if let description = teamBuilder.description_ {
             descriptionBuilder = description.toBuilder()
         } else {
-            descriptionBuilder = Services.Common.Containers.DescriptionV1.builder()
+            descriptionBuilder = Services.Common.Containers.DescriptionV1.Builder()
         }
         descriptionBuilder.value = data
         teamBuilder.description_ = descriptionBuilder.build()
