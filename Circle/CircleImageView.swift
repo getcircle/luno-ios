@@ -118,9 +118,9 @@ class CircleImageView: UIImageView {
                     self.addImageLabelForProfile(profile)
                     self.makeImageVisible(false)
                     if let response = response {
-                        println("Response \(response.statusCode) \(response)")
+                        print("Response \(response.statusCode) \(response)")
                     }
-                    println("failed to fetch image for profile: \(profileImageURL) error: \(error?.localizedDescription)")
+                    print("failed to fetch image for profile: \(profileImageURL) error: \(error?.localizedDescription)")
                 }
             )
         }
@@ -155,10 +155,10 @@ class CircleImageView: UIImageView {
                 },
                 failure: { (imageURLRequest, response, error) -> Void in
                     if let response = response {
-                        println("Response \(response.statusCode) \(response)")
+                        print("Response \(response.statusCode) \(response)")
                     }
 
-                    println("failed to fetch image for location: \(location.imageUrl) error: \(error?.localizedDescription)")
+                    print("failed to fetch image for location: \(location.imageUrl) error: \(error?.localizedDescription)")
                 }
             )
         }
@@ -189,10 +189,10 @@ class CircleImageView: UIImageView {
                 },
                 failure: { (imageURLRequest, response, error) -> Void in
                     if let response = response {
-                        println("Response \(response.statusCode) \(response)")
+                        print("Response \(response.statusCode) \(response)")
                     }
 
-                    println("failed to fetch image for team: \(team.imageUrl) error: \(error?.localizedDescription)")
+                    print("failed to fetch image for team: \(team.imageUrl) error: \(error?.localizedDescription)")
                 }
             )
         }
@@ -226,10 +226,10 @@ class CircleImageView: UIImageView {
             },
             failure: { (imageURLRequest, response, error) -> Void in
                 if let response = response {
-                    println("Response \(response.statusCode) \(response)")
+                    print("Response \(response.statusCode) \(response)")
                 }
                 
-                println("failed to fetch image for URL: \(imageURL) error: \(error?.localizedDescription)")
+                print("failed to fetch image for URL: \(imageURL) error: \(error?.localizedDescription)")
             }
         )
     }
@@ -248,7 +248,7 @@ class CircleImageView: UIImageView {
                         }
                     },
                     failure: { (request, response, error) -> Void in
-                        println("Error setLargerProfileImage \(error)")
+                        print("Error setLargerProfileImage \(error)")
                     }
                 )
             } else {

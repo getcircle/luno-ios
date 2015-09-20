@@ -143,7 +143,7 @@ class AuthViewController: UIViewController {
             let data = [authDetails.data().base64EncodedStringWithOptions(nil): "\(NSDate())"]
             let error = Locksmith.saveData(data, forUserAccount: LocksmithMainUserAccount, inService: LocksmithAuthDetailsService)
             if error != nil {
-                println("error saving authDetails: \(error)")
+                print("error saving authDetails: \(error)")
             }
             login(.Google, credentials: credentials.build())
         }
@@ -160,7 +160,7 @@ class AuthViewController: UIViewController {
             credentials.secret = authDetails.idToken
             login(.Google, credentials: credentials.build(), silent: true)
         } else if error != nil {
-            println("error trying to silently login: \(error)")
+            print("error trying to silently login: \(error)")
         }
     }
     
@@ -232,7 +232,7 @@ class AuthViewController: UIViewController {
         )
         if error != nil {
             // XXX what is the correct way to report errors?
-            println("Error: \(error)")
+            print("Error: \(error)")
         }
         
         // Cache user data in user defaults
@@ -366,7 +366,7 @@ class AuthViewController: UIViewController {
     static func logOut() {
         Services.User.Actions.logout { (error) in
             if error != nil {
-                println("error logging user out from server: \(error)")
+                print("error logging user out from server: \(error)")
             }
             
             // Clear all objects in CircleCache
@@ -641,7 +641,7 @@ class AuthViewController: UIViewController {
         Services.User.Actions.createUser(workEmailTextField.text.trimWhitespace(), password: passwordTextField.text.trimWhitespace()) { (user, error) -> Void in
             self.hideLoadingState()
             if error != nil {
-                println("Error \(error)")
+                print("Error \(error)")
                 self.googleSignInButton.addShakeAnimation()
                 let alertController = UIAlertController(title: "Error signing up", message: "There was an error in creating your account. Please try again.", preferredStyle: .Alert)
                 alertController.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))

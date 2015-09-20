@@ -61,7 +61,7 @@ extension Request {
             }
             
             if response?.statusCode != 200 {
-                // println("error making service request: \(response?)")
+                // print("error making service request: \(response?)")
                 if response?.statusCode == 401 {
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
                         AuthViewController.logOut()
@@ -186,11 +186,11 @@ class HttpsTransport: BaseTransport {
     
     private func printErrorMessage(serviceRequest: Soa.ServiceRequestV1, error: NSError?) {
         if let error = error {
-            println("Error Description: \(serviceRequest.control.service):\(serviceRequest.actions[0].control.action): \(error.description)")
+            print("Error Description: \(serviceRequest.control.service):\(serviceRequest.actions[0].control.action): \(error.description)")
             if let userInfo = error.userInfo {
                 if let errorDetails = userInfo["error_details"] as? [ProtobufRegistry.Soa.ActionResultV1.ErrorDetailV1] {
                     for errorDetail in errorDetails {
-                        println("Error Details: \(errorDetail)")
+                        print("Error Details: \(errorDetail)")
                     }
                 }
             }

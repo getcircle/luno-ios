@@ -230,11 +230,11 @@ class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate {
                         AuthViewController.updateUser(userBuilder.build())
                         self.verificationComplete()
                     } else {
-                        println("user verification failed")
+                        print("user verification failed")
                         self.actionButton.addShakeAnimation()
                     }
                 } else {
-                    println("error verifying user")
+                    print("error verifying user")
                     self.actionButton.addShakeAnimation()
                 }
             }
@@ -264,7 +264,7 @@ class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate {
                     }
                 } else {
                     self.toggleLoadingState(button)
-                    println("error updating user: \(error)")
+                    print("error updating user: \(error)")
                     completionHandler(error)
                 }
             }

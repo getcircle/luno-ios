@@ -156,7 +156,7 @@ struct AppTheme {
         if String(stringInterpolationSegment: AppTheme.currentTheme.dynamicType) != String(stringInterpolationSegment: newTheme.dynamicType) {
             AppTheme.currentTheme = newTheme
             updateAppearanceProxy()
-            println(organization.domain)
+            print(organization.domain)
         }
     }
     

@@ -73,7 +73,7 @@ extension Services.Media.Actions {
             if let instructions = instructions {
                 Alamofire.upload(.PUT, instructions.uploadUrl, data: UIImagePNGRepresentation(image))
                     .progress(closure: { (bytesWritten, totalBytesWritten, totalBytesExpectedToWrite) -> Void in
-                        println("progress \(totalBytesWritten): \(totalBytesExpectedToWrite)")
+                        print("progress \(totalBytesWritten): \(totalBytesExpectedToWrite)")
                     })
                     .response({ (request, response, _, error) -> Void in
                         self.completeImageUpload(
@@ -87,7 +87,7 @@ extension Services.Media.Actions {
                         }
                     })
             } else {
-                println("encountered error: \(error)")
+                print("encountered error: \(error)")
             }
         }
     }

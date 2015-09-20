@@ -311,7 +311,7 @@ extension Services.Profile.Containers.ProfileV1 {
                     // Show "New at company. Say hi!" for seven days 
                     // and then duration in weeks
                     if diffComponents.month == 0 && diffComponents.year == 0 {
-                        println(diffComponents.day)
+                        print(diffComponents.day)
                         if diffComponents.day < 7 {
                             formattedHireDate = ["\u{2B50} New at " + organization.name + ". Say hi!"]
                         }

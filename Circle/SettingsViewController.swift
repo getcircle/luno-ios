@@ -75,7 +75,7 @@ class SettingsViewController: UIViewController, UICollectionViewDelegate, MFMail
                 if identity.provider == .Google {
                     Services.User.Actions.deleteIdentity(identity) { (error) -> Void in
                         if error != nil {
-                            println("error deleting user identity: \(error)")
+                            print("error deleting user identity: \(error)")
                         } else {
                             self.dismissViewControllerAnimated(true) { () -> Void in
                                 AuthViewController.logOut()
