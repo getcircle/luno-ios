@@ -44,7 +44,7 @@ class MapHeaderCollectionReusableView: CircleCollectionReusableView, MKMapViewDe
 
     // MARK: - MKMapViewDelegate
     
-    func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView! {
         if annotation is MKUserLocation {
             return nil
         }
@@ -90,7 +90,7 @@ class MapHeaderCollectionReusableView: CircleCollectionReusableView, MKMapViewDe
         }
     }
     
-    func setData(#offices: [Services.Organization.Containers.LocationV1]) {
+    func setData(offices offices: [Services.Organization.Containers.LocationV1]) {
         // Remove existing annotations
         mapView.removeAnnotations(mapView.annotations)
         

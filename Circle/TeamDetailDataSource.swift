@@ -295,7 +295,7 @@ class TeamDetailDataSource: CardDataSource {
             let cellIsBottomOfSection = cellAtIndexPathIsBottomOfSection(indexPath)
             
             if cellIsBottomOfSection {
-                cell.addRoundCorners(corners: .BottomLeft | .BottomRight, radius: 4.0)
+                cell.addRoundCorners([.BottomLeft, .BottomRight], radius: 4.0)
             }
             else {
                 cell.removeRoundedCorners()

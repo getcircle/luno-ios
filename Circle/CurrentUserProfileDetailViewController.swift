@@ -63,7 +63,7 @@ class CurrentUserProfileDetailViewController: ProfileDetailViewController,
     
     private func addSettingsButton() {
         if navigationItem.leftBarButtonItem == nil {
-            var settingsButton = UIButton.buttonWithType(.Custom) as! UIButton
+            let settingsButton = UIButton(type: .Custom)
             settingsButton.frame = CGRectMake(0.0, 0.0, 22.0, 22.0)
             settingsButton.setImage(UIImage(named: "navbar_settings")?.imageWithRenderingMode(.AlwaysTemplate), forState: .Normal)
             settingsButton.imageEdgeInsets = UIEdgeInsetsMake(-15.0, -15.0, -15.0, -15.0)

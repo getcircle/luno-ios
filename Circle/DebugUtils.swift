@@ -16,9 +16,9 @@ class DebugUtils {
         call()
         let endTime = CACurrentMediaTime()
         if let title = title {
-            print("\(title): ")
+            print("\(title): ", terminator: "")
         }
-        println("Time - \(endTime - startTime)")
+        print("Time - \(endTime - startTime)")
     }
 
 }

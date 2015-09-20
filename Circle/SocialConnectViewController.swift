@@ -55,7 +55,7 @@ class SocialConnectViewController: UIViewController, WKNavigationDelegate {
     
     private func configureView() {
         view.backgroundColor = UIColor.appViewBackgroundColor()
-        activityIndicator = view.addActivityIndicator(color: UIColor.appTintColor())
+        activityIndicator = view.addActivityIndicator(UIColor.appTintColor())
     }
     
     private func configureNavigationBar() {
@@ -112,7 +112,7 @@ class SocialConnectViewController: UIViewController, WKNavigationDelegate {
                     let components = NSURLComponents(URL: url!, resolvingAgainstBaseURL: false),
                     items = components.queryItems as? [NSURLQueryItem] {
                     for item in items {
-                        if let value = item.value, data = NSData(base64EncodedString: value, options: nil) {
+                        if let value = item.value, data = NSData(base64EncodedString: value, options: []) {
                             switch item.name {
                             case "user": user = Services.User.Containers.UserV1.parseFromData(data)
                             case "identity": identity = Services.User.Containers.IdentityV1.parseFromData(data)
@@ -135,7 +135,7 @@ class SocialConnectViewController: UIViewController, WKNavigationDelegate {
                     )
                 }
             } else {
-                println("error connecting to provider")
+                print("error connecting to provider")
             }
             decisionHandler(.Cancel)
             self.dismiss()
@@ -146,7 +146,7 @@ class SocialConnectViewController: UIViewController, WKNavigationDelegate {
     
     // MARK: - Observers
     
-    override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject : AnyObject], context: UnsafeMutablePointer<Void>) {
+    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         if keyPath == "loading" {
             if let loading: Bool = change["new"] as? Bool {
                 if !loading {

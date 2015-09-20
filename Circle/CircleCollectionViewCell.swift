@@ -108,7 +108,7 @@ class CircleCollectionViewCell: UICollectionViewCell {
         super.drawRect(rect)
         
         if bottomBorder == nil && showSeparator {
-            bottomBorder = contentView.addBottomBorder(edgeInsets: separatorInset, color: separatorColor)
+            bottomBorder = contentView.addBottomBorder(separatorInset, color: separatorColor)
             bottomBorder?.hidden = !showSeparator
         }
     }

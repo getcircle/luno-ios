@@ -204,7 +204,7 @@ extension UIColor {
             UIColor(red: 140, green: 203, blue: 157),
         ]
 
-        var randomNumber = withRandomNumber != nil && withRandomNumber != 0 ? withRandomNumber : palette.count
+        let randomNumber = withRandomNumber != nil && withRandomNumber != 0 ? withRandomNumber : palette.count
         return palette[Int(arc4random_uniform(UInt32(randomNumber!)))]
     }
     

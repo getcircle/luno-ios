@@ -10,7 +10,7 @@ import UIKit
 
 class CenterAlignFlowLayout: UICollectionViewFlowLayout {
 
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
         minimumInteritemSpacing = 10.0
@@ -18,7 +18,7 @@ class CenterAlignFlowLayout: UICollectionViewFlowLayout {
         minimumLineSpacing = 14.0
     }
     
-    override func layoutAttributesForElementsInRect(rect: CGRect) -> [AnyObject]? {
+    override func layoutAttributesForElementsInRect(rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         let currentAttributes = super.layoutAttributesForElementsInRect(rect) as! [UICollectionViewLayoutAttributes]
         
         // Collect item attributes by row

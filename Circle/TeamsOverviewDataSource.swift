@@ -65,7 +65,7 @@ class TeamsOverviewDataSource: CardDataSource {
         }
     }
     
-    override func setInitialData(#content: [AnyObject], ofType: Card.CardType?, nextRequest withNextRequest: Soa.ServiceRequestV1?) {
+    override func setInitialData(content content: [AnyObject], ofType: Card.CardType?, nextRequest withNextRequest: Soa.ServiceRequestV1?) {
         registerNextRequest(nextRequest: withNextRequest)
         setInitialData(content, ofType: ofType)
     }

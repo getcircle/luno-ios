@@ -131,7 +131,7 @@ class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate {
     private func handlePhoneNumberInput(textField: UITextField, string: String, range: NSRange) {
         if range.length > 0 {
             textField.text = phoneNumberFormatter.removeLastDigitAndRememberPosition()
-        } else if let numericValue = string.toInt() {
+        } else if let numericValue = Int(string) {
             if phoneNumberFormatter.getRememberedPosition() < 14 {
                 textField.text = phoneNumberFormatter.inputDigitAndRememberPosition(string)
             }
@@ -156,7 +156,7 @@ class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate {
             } else {
                 textField.text = ""
             }
-        } else if let numericValue = string.toInt() {
+        } else if let numericValue = Int(string) {
             if codeDigits < 6 {
                 textField.text = textField.text + string
                 codeDigits += 1
@@ -184,7 +184,7 @@ class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate {
     func resendCodeButtonTapped(sender: AnyObject!) {
         triggerSendingVerificationCode(resendCodeButton) { (error) -> Void in
             if error != nil {
-                println("error: \(error)")
+                print("error: \(error)")
                 self.resendCodeButton.addShakeAnimation()
             }
         }
@@ -195,7 +195,7 @@ class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate {
             if error == nil {
                 self.switchToConfirmation()
             } else {
-                println("error: \(error)")
+                print("error: \(error)")
                 self.actionButton.addShakeAnimation()
             }
         }
@@ -288,7 +288,7 @@ class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate {
             default:
                 tintColor = UIColor.appUIBackgroundColor()
             }
-            activityIndicatorView = button.addActivityIndicator(color: tintColor)
+            activityIndicatorView = button.addActivityIndicator(tintColor)
             toggleLoadingStateTextHolder = button.titleLabel?.text
             button.setTitle("", forState: .Normal)
         }

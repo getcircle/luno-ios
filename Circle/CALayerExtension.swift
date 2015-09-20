@@ -18,7 +18,7 @@ extension CALayer {
     }
     
     static func gradientLayerWithFrame(frame: CGRect, startColor: CGColorRef, endColor: CGColorRef) -> CAGradientLayer {
-        var gradientLayer = CAGradientLayer()
+        let gradientLayer = CAGradientLayer()
         gradientLayer.frame = frame
         gradientLayer.colors = [startColor, endColor]
         return gradientLayer

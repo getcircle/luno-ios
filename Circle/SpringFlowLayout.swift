@@ -23,7 +23,7 @@ class SpringFlowLayout: UICollectionViewFlowLayout {
         configure()
     }
 
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         configure()
     }
@@ -121,7 +121,7 @@ class SpringFlowLayout: UICollectionViewFlowLayout {
         }
     }
     
-    override func layoutAttributesForElementsInRect(rect: CGRect) -> [AnyObject]? {
+    override func layoutAttributesForElementsInRect(rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         return dynamicAnimator?.itemsInRect(rect)
     }
     
@@ -178,16 +178,16 @@ class SpringFlowLayout: UICollectionViewFlowLayout {
         return false
     }
     
-    override func prepareForCollectionViewUpdates(updateItems: [AnyObject]!) {
+    override func prepareForCollectionViewUpdates(updateItems: [UICollectionViewUpdateItem]) {
         super.prepareForCollectionViewUpdates(updateItems)
         
-        for item in updateItems as! [UICollectionViewUpdateItem] {
+        for item in updateItems {
             if item.updateAction == .Insert {
-                if (dynamicAnimator?.layoutAttributesForCellAtIndexPath(item.indexPathAfterUpdate!) != nil) {
+                if (dynamicAnimator?.layoutAttributesForCellAtIndexPath(item.indexPathAfterUpdate) != nil) {
                     return
                 }
                 
-                let attributes = UICollectionViewLayoutAttributes(forCellWithIndexPath: item.indexPathAfterUpdate!)
+                let attributes = UICollectionViewLayoutAttributes(forCellWithIndexPath: item.indexPathAfterUpdate)
                 let springBehavior = UIAttachmentBehavior(item: attributes, attachedToAnchor: attributes.center)
                 
                 springBehavior.length = 1.0

@@ -55,7 +55,7 @@ class SearchQueryDataSource: CardDataSource {
         searchTerm = string.trimWhitespace()
         if searchTerm == "" {
             clearData()
-            searchResults.extend(CircleCache.getRecordedSearchResults(Card.MaxListEntries))
+            searchResults.appendContentsOf(CircleCache.getRecordedSearchResults(Card.MaxListEntries))
             populateDefaultSearchSuggestions()
             addCards()
             completionHandler(error: nil)
@@ -63,7 +63,7 @@ class SearchQueryDataSource: CardDataSource {
         else {
             if let results = searchCache[searchTerm] {
                 self.clearData()
-                searchResults.extend(results)
+                searchResults.appendContentsOf(results)
                 self.addCards()
                 completionHandler(error: nil)
             }

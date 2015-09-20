@@ -30,7 +30,7 @@ extension UICollectionViewFlowLayout {
         
         // Add separators
         for index in 0..<separatorViewYPositions.count {
-            var decorationViewAttribute = UICollectionViewLayoutAttributes(
+            let decorationViewAttribute = UICollectionViewLayoutAttributes(
                 forDecorationViewOfKind: SeparatorDecorationView.classReuseIdentifier,
                 withIndexPath: separatorViewIndexPaths[index]
             )

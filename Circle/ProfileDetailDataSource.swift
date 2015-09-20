@@ -99,7 +99,7 @@ class ProfileDetailDataSource: CardDataSource {
     internal func addPlaceholderCard() -> Card? {
         
         // Add placeholder card to load profile header instantly
-        var card = Card(cardType: .Placeholder, title: "Info")
+        let card = Card(cardType: .Placeholder, title: "Info")
         card.addHeader(headerClass: ProfileHeaderCollectionReusableView.self)
         appendCard(card)
         return card
@@ -325,7 +325,7 @@ class ProfileDetailDataSource: CardDataSource {
         let cellIsBottomOfSection = cellAtIndexPathIsBottomOfSection(indexPath)
         
         if cellIsBottomOfSection {
-            cell.addRoundCorners(corners: .BottomLeft | .BottomRight, radius: 4.0)
+            cell.addRoundCorners([.BottomLeft, .BottomRight], radius: 4.0)
         }
         else {
             cell.removeRoundedCorners()

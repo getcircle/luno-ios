@@ -26,7 +26,7 @@ MFMessageComposeViewControllerDelegate {
         customInit()
     }
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         customInit()
     }
@@ -72,7 +72,7 @@ MFMessageComposeViewControllerDelegate {
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         transitionCoordinator()?.animateAlongsideTransition({ (transitionContext) -> Void in
-            var toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey) as UIViewController!
+            let toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey) as UIViewController!
             if !(toViewController is BaseDetailViewController) {
                 toViewController.navigationController?.navigationBar.makeOpaque()
             }
@@ -129,16 +129,16 @@ MFMessageComposeViewControllerDelegate {
     // MARK: - MFMailComposeViewControllerDelegate
     
     func mailComposeController(
-        controller: MFMailComposeViewController!,
+        controller: MFMailComposeViewController,
         didFinishWithResult result: MFMailComposeResult,
-        error: NSError!
+        error: NSError?
         ) {
             dismissViewControllerAnimated(true, completion: nil)
     }
     
     // MARK: MFMessageComposeViewControllerDelegate
     
-    func messageComposeViewController(controller: MFMessageComposeViewController!, didFinishWithResult result: MessageComposeResult) {
+    func messageComposeViewController(controller: MFMessageComposeViewController, didFinishWithResult result: MessageComposeResult) {
         controller.dismissViewControllerAnimated(true, completion: nil)
     }
 }

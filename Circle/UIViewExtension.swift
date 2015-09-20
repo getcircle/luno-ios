@@ -31,8 +31,8 @@ extension UIView {
             let maskPath = UIBezierPath(roundedRect: bounds, byRoundingCorners: corners, cornerRadii: CGSizeMake(radius, radius))
             
             let maskLayer = CAShapeLayer()
-            maskLayer?.frame = bounds
-            maskLayer?.path = maskPath.CGPath
+            maskLayer.frame = bounds
+            maskLayer.path = maskPath.CGPath
             
             layer.masksToBounds = true
             layer.mask = maskLayer
@@ -45,7 +45,7 @@ extension UIView {
     }
     
     func addShakeAnimation() {
-        var animation = CABasicAnimation(keyPath: "position")
+        let animation = CABasicAnimation(keyPath: "position")
         animation.duration = 0.1
         animation.repeatCount = 1
         animation.autoreverses = true
@@ -91,7 +91,7 @@ extension UIView {
     func addVisualEffectView(style: UIBlurEffectStyle) -> UIVisualEffectView {
         let blurEffect = UIBlurEffect(style: style)
         var visualEffectView = UIVisualEffectView(effect: blurEffect)
-        visualEffectView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        visualEffectView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(visualEffectView)
         sendSubviewToBack(visualEffectView)
         visualEffectView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)

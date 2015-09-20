@@ -323,7 +323,7 @@ class Card: Equatable {
             content.append(withContent)
 
         default:
-            content.extend(withContent)
+            content.appendContentsOf(withContent)
         }
 
         allContent = content

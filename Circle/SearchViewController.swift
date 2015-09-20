@@ -161,7 +161,7 @@ class SearchViewController: UIViewController,
     
     private func addShadowToSearchField() {
         if !shadowAdded {
-            var path = UIBezierPath()
+            let path = UIBezierPath()
             path.moveToPoint(CGPointMake(-0.1, 5.0))
             path.addLineToPoint(CGPointMake(-0.1, searchHeaderView.frame.height - 0.9))
             path.addLineToPoint(CGPointMake(searchHeaderView.frame.width + 0.1, searchHeaderView.frame.height - 0.9))
@@ -433,13 +433,13 @@ class SearchViewController: UIViewController,
     
     // MARK: - MFMailComposeViewControllerDelegate
     
-    func mailComposeController(controller: MFMailComposeViewController!, didFinishWithResult result: MFMailComposeResult, error: NSError!) {
+    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
         controller.dismissViewControllerAnimated(true, completion: nil)
     }
     
     // MARK: MFMessageComposeViewControllerDelegate
     
-    func messageComposeViewController(controller: MFMessageComposeViewController!, didFinishWithResult result: MessageComposeResult) {
+    func messageComposeViewController(controller: MFMessageComposeViewController, didFinishWithResult result: MessageComposeResult) {
         controller.dismissViewControllerAnimated(true, completion: nil)
     }
     

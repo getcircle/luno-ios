@@ -27,7 +27,7 @@ extension AppDelegate {
     }
     
     func registerForRemoteNotifications() {
-        let notificationTypes: UIUserNotificationType = .Badge | .Sound | .Alert
+        let notificationTypes: UIUserNotificationType = [.Badge, .Sound, .Alert]
         let notificationSettings = UIUserNotificationSettings(
             forTypes: notificationTypes, 
             categories: getNotificationCategories()
@@ -38,21 +38,21 @@ extension AppDelegate {
     }
     
     private func getNotificationCategories() -> Set<UIUserNotificationCategory>? {
-        var approveAction = UIMutableUserNotificationAction()
+        let approveAction = UIMutableUserNotificationAction()
         approveAction.activationMode = .Background
         approveAction.title = AppStrings.GroupRequestApproveButtonTitle
         approveAction.identifier = NotificationAction.Approve.rawValue
         approveAction.destructive = false
         approveAction.authenticationRequired = true
 
-        var denyAction = UIMutableUserNotificationAction()
+        let denyAction = UIMutableUserNotificationAction()
         denyAction.activationMode = .Background
         denyAction.title = AppStrings.GroupRequestDenyButtonTitle
         denyAction.identifier = NotificationAction.Deny.rawValue
         denyAction.destructive = false
         denyAction.authenticationRequired = true
         
-        var groupRequestActionCategory = UIMutableUserNotificationCategory()
+        let groupRequestActionCategory = UIMutableUserNotificationCategory()
         groupRequestActionCategory.identifier = NotificationCategory.GroupRequest.rawValue
         groupRequestActionCategory.setActions([approveAction, denyAction], forContext: .Default)
         

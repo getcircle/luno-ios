@@ -29,7 +29,7 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
         var tabBarViewControllers = [UIViewController]()
 
         // Search Tab
-        var searchViewController = SearchViewController(nibName: "SearchViewController", bundle: nil)
+        let searchViewController = SearchViewController(nibName: "SearchViewController", bundle: nil)
         let searchNavigationController = UINavigationController(rootViewController: searchViewController)
         let searchTabImage = UIImage(named: "search_tab_bar")
         let searchTabImageDefault = searchTabImage?

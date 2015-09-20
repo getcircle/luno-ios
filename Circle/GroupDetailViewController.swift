@@ -120,7 +120,7 @@ class GroupDetailViewController: DetailViewController,
             
             // Size needs to be modified much sooner
             if contentOffset.y > pointAtWhichSizeShouldStartChanging {
-                var size = max(minFontSize, maxFontSize - ((contentOffset.y - pointAtWhichSizeShouldStartChanging) / (maxFontSize - minFontSize)))
+                let size = max(minFontSize, maxFontSize - ((contentOffset.y - pointAtWhichSizeShouldStartChanging) / (maxFontSize - minFontSize)))
                 groupHeaderView.groupNameLabel.font = UIFont(name: groupHeaderView.groupNameLabel.font.familyName, size: size)
             }
             else {

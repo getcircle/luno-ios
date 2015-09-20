@@ -97,7 +97,7 @@ SKStoreProductViewControllerDelegate {
             frame: parentContainerView.bounds, 
             collectionViewLayout: collectionViewLayout
         )
-        collectionView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.opaque = true
         collectionView.backgroundColor = UIColor.appViewBackgroundColor()
         parentContainerView.addSubview(collectionView)
@@ -239,16 +239,16 @@ SKStoreProductViewControllerDelegate {
     // MARK: - MFMailComposeViewControllerDelegate
     
     func mailComposeController(
-        controller: MFMailComposeViewController!,
+        controller: MFMailComposeViewController,
         didFinishWithResult result: MFMailComposeResult,
-        error: NSError!
+        error: NSError?
         ) {
             dismissViewControllerAnimated(true, completion: nil)
     }
     
     // MARK: - SKStoreProductViewControllerDelegate
     
-    func productViewControllerDidFinish(viewController: SKStoreProductViewController!) {
+    func productViewControllerDidFinish(viewController: SKStoreProductViewController) {
         viewController.dismissViewControllerAnimated(true, completion: nil)
     }
 }

@@ -194,7 +194,7 @@ class EditContactInfoViewController: UIViewController, UINavigationControllerDel
     private func configureView() {
         title = AppStrings.ProfileSectionContactPreferencesTitle
         view.backgroundColor = UIColor.appViewBackgroundColor()
-        var tapGestureRecognizer = UITapGestureRecognizer(target: self, action: "viewTapped:")
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: "viewTapped:")
         view.addGestureRecognizer(tapGestureRecognizer)
     }
 

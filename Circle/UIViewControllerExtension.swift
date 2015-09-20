@@ -112,7 +112,7 @@ extension UIViewController {
             
             if MFMailComposeViewController.canSendMail() {
                 
-                var mailVC = MFMailComposeViewController()
+                let mailVC = MFMailComposeViewController()
                 if toRecipients?.count > 0 {
                     mailVC.setToRecipients(toRecipients)
                 }
@@ -153,7 +153,7 @@ extension UIViewController {
             
         if MFMessageComposeViewController.canSendText() {
             
-            var messageVC = MFMessageComposeViewController()
+            let messageVC = MFMessageComposeViewController()
 
             // Recipients
             if toRecipients?.count > 0 {
@@ -200,7 +200,7 @@ extension UIViewController {
     }
     
     func setStatusBarHidden(hidden: Bool, animated: Bool? = true) {
-        var withAnimation: UIStatusBarAnimation = animated != nil ? (animated! ? .Fade : .None) : .Fade
+        let withAnimation: UIStatusBarAnimation = animated != nil ? (animated! ? .Fade : .None) : .Fade
         UIApplication.sharedApplication().setStatusBarHidden(hidden, withAnimation: withAnimation)
     }
     

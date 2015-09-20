@@ -26,7 +26,7 @@ class MapViewController: UIViewController, UIViewControllerTransitioningDelegate
         customInit()
     }
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         customInit()
     }
@@ -86,7 +86,7 @@ class MapViewController: UIViewController, UIViewControllerTransitioningDelegate
         
         // Address View
         addressContainerView = UIView(frame: CGRectMake(0.0, 0.0, view.frame.width, 35.0))
-        addressSnapshotView?.setTranslatesAutoresizingMaskIntoConstraints(false)
+        addressSnapshotView?.translatesAutoresizingMaskIntoConstraints = false
         addressContainerView.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.8)
         view.addSubview(addressContainerView)
         addressContainerView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero, excludingEdge: .Top)
@@ -105,7 +105,7 @@ class MapViewController: UIViewController, UIViewControllerTransitioningDelegate
     private func configureAddressView() {
         if let addressView = addressSnapshotView {
             addressContainerView.addSubview(addressView)
-            addressView.setTranslatesAutoresizingMaskIntoConstraints(false)
+            addressView.translatesAutoresizingMaskIntoConstraints = false
             addressView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
         }
         else {
@@ -130,7 +130,7 @@ class MapViewController: UIViewController, UIViewControllerTransitioningDelegate
     
     // MARK: - MKMapViewDelegate
     
-    func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView! {
         if annotation is MKUserLocation {
             return nil
         }

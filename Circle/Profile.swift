@@ -76,7 +76,7 @@ extension Services.Profile.Actions {
     }
     
     static func getProfiles(
-        #managerId: String,
+        managerId managerId: String,
         paginatorBuilder: Soa.PaginatorV1Builder? = nil,
         completionHandler: GetProfilesCompletionHandler?
     ) {
@@ -96,7 +96,7 @@ extension Services.Profile.Actions {
     }
     
     static func getProfiles(
-        #organizationId: String,
+        organizationId organizationId: String,
         paginatorBuilder: Soa.PaginatorV1Builder? = nil,
         completionHandler: GetProfilesCompletionHandler?
     ) {
@@ -105,7 +105,7 @@ extension Services.Profile.Actions {
     }
     
     static func getProfiles(
-        #tagId: String,
+        tagId tagId: String,
         organizationId: String,
         paginatorBuilder: Soa.PaginatorV1Builder? = nil,
         completionHandler: GetProfilesCompletionHandler?
@@ -116,7 +116,7 @@ extension Services.Profile.Actions {
     }
     
     static func getProfiles(
-        #locationId: String,
+        locationId locationId: String,
         paginatorBuilder: Soa.PaginatorV1Builder? = nil,
         completionHandler: GetProfilesCompletionHandler?
     ) {

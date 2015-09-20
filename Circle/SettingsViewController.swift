@@ -144,9 +144,9 @@ class SettingsViewController: UIViewController, UICollectionViewDelegate, MFMail
     // MARK: - MFMailComposeViewControllerDelegate
     
     func mailComposeController(
-        controller: MFMailComposeViewController!,
+        controller: MFMailComposeViewController,
         didFinishWithResult result: MFMailComposeResult,
-        error: NSError!
+        error: NSError?
         ) {
             dismissViewControllerAnimated(true, completion: nil)
     }

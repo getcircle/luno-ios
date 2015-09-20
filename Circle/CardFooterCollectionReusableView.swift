@@ -55,7 +55,7 @@ class CardFooterCollectionReusableView: CircleCollectionReusableView {
     override func drawRect(rect: CGRect) {
         super.drawRect(rect)
         
-        cardView.addRoundCorners(corners: .BottomLeft | .BottomRight, radius: 4.0)
+        cardView.addRoundCorners([.BottomLeft, .BottomRight], radius: 4.0)
     }
     
     func setButtonEnabled(enabled: Bool) {

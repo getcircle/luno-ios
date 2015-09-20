@@ -59,7 +59,7 @@ extension Services.Organization.Actions {
         }
     }
 
-    static func getLocation(#locationId: String, completionHandler: GetLocationCompletionHandler?) {
+    static func getLocation(locationId locationId: String, completionHandler: GetLocationCompletionHandler?) {
         let requestBuilder = Services.Organization.Actions.GetLocation.RequestV1.builder()
         requestBuilder.locationId = locationId
         

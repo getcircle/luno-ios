@@ -253,7 +253,7 @@ class AuthViewController: UIViewController {
         googleSignInButtonText = googleSignInButton.titleLabel?.text
         googleSignInButton.setCustomAttributedTitle("", forState: .Normal)
         if activityIndicator == nil {
-            activityIndicator = googleSignInButton.addActivityIndicator(color: UIColor.whiteColor(), start: false)
+            activityIndicator = googleSignInButton.addActivityIndicator(UIColor.whiteColor(), start: false)
         }
         activityIndicator?.startAnimating()
         googleSignInButton.enabled = false
@@ -523,7 +523,7 @@ class AuthViewController: UIViewController {
     
     // MARK: - Authentication Helpers
     
-    static func checkUser(#unverifiedPhoneHandler: (() -> Void)?, unverifiedProfileHandler: (() -> Void)?) -> Bool {
+    static func checkUser(unverifiedPhoneHandler unverifiedPhoneHandler: (() -> Void)?, unverifiedProfileHandler: (() -> Void)?) -> Bool {
         if let user = getLoggedInUser() {
             Crashlytics.sharedInstance().setUserIdentifier(user.id)
 

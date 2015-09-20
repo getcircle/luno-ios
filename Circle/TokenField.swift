@@ -74,7 +74,7 @@ class TokenField: UIView,
         customInit()
     }
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         customInit()
     }
@@ -138,7 +138,7 @@ class TokenField: UIView,
             tokenConstraints.removeAll(keepCapacity: false)
         }
         
-        for view in contentView.subviews as! [UIView] {
+        for view in contentView.subviews {
             view.removeFromSuperview()
         }
         
@@ -198,7 +198,7 @@ class TokenField: UIView,
         var lineIndex = 0
         // TODO figure out how to not need this
         let width = UIScreen.mainScreen().bounds.width
-        for view in contentView.subviews as! [UIView] {
+        for view in contentView.subviews {
             let size = view.intrinsicContentSize()
             if previousView != nil {
                 tokenConstraints.append(view.autoPinEdgeToSuperviewEdge(.Top, withInset: topPadding, relation: .GreaterThanOrEqual))
@@ -298,7 +298,7 @@ class TokenField: UIView,
 
     func textFieldDidEnterBackspace(textField: BackspaceTextField) {
         var didDeleteToken = false
-        for (index, token) in enumerate(tokens) {
+        for (index, token) in tokens.enumerate() {
             if token.highlighted {
                 // TODO use Int instead of UInt
                 delegate?.tokenField?(self, didDeleteTokenAtIndex: UInt(index))
