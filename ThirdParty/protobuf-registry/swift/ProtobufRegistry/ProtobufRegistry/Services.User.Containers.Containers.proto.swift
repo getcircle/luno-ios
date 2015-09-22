@@ -57,7 +57,7 @@ public func == (lhs: Services.User.Containers.IdentityV1, rhs: Services.User.Con
   return fieldCheck
 }
 
-public func == (lhs: Services.User.Containers.Oauth2DetailsV1, rhs: Services.User.Containers.Oauth2DetailsV1) -> Bool {
+public func == (lhs: Services.User.Containers.OAuth2DetailsV1, rhs: Services.User.Containers.OAuth2DetailsV1) -> Bool {
   if (lhs === rhs) {
     return true
   }
@@ -69,7 +69,7 @@ public func == (lhs: Services.User.Containers.Oauth2DetailsV1, rhs: Services.Use
   return fieldCheck
 }
 
-public func == (lhs: Services.User.Containers.OauthSdkdetailsV1, rhs: Services.User.Containers.OauthSdkdetailsV1) -> Bool {
+public func == (lhs: Services.User.Containers.OAuthSDKDetailsV1, rhs: Services.User.Containers.OAuthSDKDetailsV1) -> Bool {
   if (lhs === rhs) {
     return true
   }
@@ -1617,7 +1617,7 @@ public extension Services.User.Containers {
 
   }
 
-  final public class Oauth2DetailsV1 : GeneratedMessage, GeneratedMessageProtocol {
+  final public class OAuth2DetailsV1 : GeneratedMessage, GeneratedMessageProtocol {
     public private(set) var hasVersion:Bool = false
     public private(set) var version:UInt32 = UInt32(1)
 
@@ -1665,51 +1665,51 @@ public extension Services.User.Containers {
       memoizedSerializedSize = serialize_size
       return serialize_size
     }
-    public class func parseArrayDelimitedFromInputStream(input:NSInputStream) throws -> Array<Services.User.Containers.Oauth2DetailsV1> {
-      var mergedArray = Array<Services.User.Containers.Oauth2DetailsV1>()
+    public class func parseArrayDelimitedFromInputStream(input:NSInputStream) throws -> Array<Services.User.Containers.OAuth2DetailsV1> {
+      var mergedArray = Array<Services.User.Containers.OAuth2DetailsV1>()
       while let value = try parseFromDelimitedFromInputStream(input) {
         mergedArray += [value]
       }
       return mergedArray
     }
-    public class func parseFromDelimitedFromInputStream(input:NSInputStream) throws -> Services.User.Containers.Oauth2DetailsV1? {
-      return try Services.User.Containers.Oauth2DetailsV1.Builder().mergeDelimitedFromInputStream(input)?.build()
+    public class func parseFromDelimitedFromInputStream(input:NSInputStream) throws -> Services.User.Containers.OAuth2DetailsV1? {
+      return try Services.User.Containers.OAuth2DetailsV1.Builder().mergeDelimitedFromInputStream(input)?.build()
     }
-    public class func parseFromData(data:NSData) throws -> Services.User.Containers.Oauth2DetailsV1 {
-      return try Services.User.Containers.Oauth2DetailsV1.Builder().mergeFromData(data, extensionRegistry:Services.User.Containers.ContainersRoot.sharedInstance.extensionRegistry).build()
+    public class func parseFromData(data:NSData) throws -> Services.User.Containers.OAuth2DetailsV1 {
+      return try Services.User.Containers.OAuth2DetailsV1.Builder().mergeFromData(data, extensionRegistry:Services.User.Containers.ContainersRoot.sharedInstance.extensionRegistry).build()
     }
-    public class func parseFromData(data:NSData, extensionRegistry:ExtensionRegistry) throws -> Services.User.Containers.Oauth2DetailsV1 {
-      return try Services.User.Containers.Oauth2DetailsV1.Builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
+    public class func parseFromData(data:NSData, extensionRegistry:ExtensionRegistry) throws -> Services.User.Containers.OAuth2DetailsV1 {
+      return try Services.User.Containers.OAuth2DetailsV1.Builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
     }
-    public class func parseFromInputStream(input:NSInputStream) throws -> Services.User.Containers.Oauth2DetailsV1 {
-      return try Services.User.Containers.Oauth2DetailsV1.Builder().mergeFromInputStream(input).build()
+    public class func parseFromInputStream(input:NSInputStream) throws -> Services.User.Containers.OAuth2DetailsV1 {
+      return try Services.User.Containers.OAuth2DetailsV1.Builder().mergeFromInputStream(input).build()
     }
-    public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) throws -> Services.User.Containers.Oauth2DetailsV1 {
-      return try Services.User.Containers.Oauth2DetailsV1.Builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
+    public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) throws -> Services.User.Containers.OAuth2DetailsV1 {
+      return try Services.User.Containers.OAuth2DetailsV1.Builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
     }
-    public class func parseFromCodedInputStream(input:CodedInputStream) throws -> Services.User.Containers.Oauth2DetailsV1 {
-      return try Services.User.Containers.Oauth2DetailsV1.Builder().mergeFromCodedInputStream(input).build()
+    public class func parseFromCodedInputStream(input:CodedInputStream) throws -> Services.User.Containers.OAuth2DetailsV1 {
+      return try Services.User.Containers.OAuth2DetailsV1.Builder().mergeFromCodedInputStream(input).build()
     }
-    public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) throws -> Services.User.Containers.Oauth2DetailsV1 {
-      return try Services.User.Containers.Oauth2DetailsV1.Builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
+    public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) throws -> Services.User.Containers.OAuth2DetailsV1 {
+      return try Services.User.Containers.OAuth2DetailsV1.Builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
     }
-    public class func getBuilder() -> Services.User.Containers.Oauth2DetailsV1.Builder {
-      return Services.User.Containers.Oauth2DetailsV1.classBuilder() as! Services.User.Containers.Oauth2DetailsV1.Builder
+    public class func getBuilder() -> Services.User.Containers.OAuth2DetailsV1.Builder {
+      return Services.User.Containers.OAuth2DetailsV1.classBuilder() as! Services.User.Containers.OAuth2DetailsV1.Builder
     }
-    public func getBuilder() -> Services.User.Containers.Oauth2DetailsV1.Builder {
-      return classBuilder() as! Services.User.Containers.Oauth2DetailsV1.Builder
+    public func getBuilder() -> Services.User.Containers.OAuth2DetailsV1.Builder {
+      return classBuilder() as! Services.User.Containers.OAuth2DetailsV1.Builder
     }
     public override class func classBuilder() -> MessageBuilder {
-      return Services.User.Containers.Oauth2DetailsV1.Builder()
+      return Services.User.Containers.OAuth2DetailsV1.Builder()
     }
     public override func classBuilder() -> MessageBuilder {
-      return Services.User.Containers.Oauth2DetailsV1.Builder()
+      return Services.User.Containers.OAuth2DetailsV1.Builder()
     }
-    public func toBuilder() throws -> Services.User.Containers.Oauth2DetailsV1.Builder {
-      return try Services.User.Containers.Oauth2DetailsV1.builderWithPrototype(self)
+    public func toBuilder() throws -> Services.User.Containers.OAuth2DetailsV1.Builder {
+      return try Services.User.Containers.OAuth2DetailsV1.builderWithPrototype(self)
     }
-    public class func builderWithPrototype(prototype:Services.User.Containers.Oauth2DetailsV1) throws -> Services.User.Containers.Oauth2DetailsV1.Builder {
-      return try Services.User.Containers.Oauth2DetailsV1.Builder().mergeFrom(prototype)
+    public class func builderWithPrototype(prototype:Services.User.Containers.OAuth2DetailsV1) throws -> Services.User.Containers.OAuth2DetailsV1.Builder {
+      return try Services.User.Containers.OAuth2DetailsV1.Builder().mergeFrom(prototype)
     }
     override public func writeDescriptionTo(inout output:String, indent:String) throws {
       if hasVersion {
@@ -1744,19 +1744,19 @@ public extension Services.User.Containers {
     //Meta information declaration start
 
     override public class func className() -> String {
-        return "Services.User.Containers.Oauth2DetailsV1"
+        return "Services.User.Containers.OAuth2DetailsV1"
     }
     override public func className() -> String {
-        return "Services.User.Containers.Oauth2DetailsV1"
+        return "Services.User.Containers.OAuth2DetailsV1"
     }
     override public func classMetaType() -> GeneratedMessage.Type {
-        return Services.User.Containers.Oauth2DetailsV1.self
+        return Services.User.Containers.OAuth2DetailsV1.self
     }
     //Meta information declaration end
 
     final public class Builder : GeneratedMessageBuilder {
-      private var builderResult:Services.User.Containers.Oauth2DetailsV1 = Services.User.Containers.Oauth2DetailsV1()
-      public func getMessage() -> Services.User.Containers.Oauth2DetailsV1 {
+      private var builderResult:Services.User.Containers.OAuth2DetailsV1 = Services.User.Containers.OAuth2DetailsV1()
+      public func getMessage() -> Services.User.Containers.OAuth2DetailsV1 {
           return builderResult
       }
 
@@ -1777,11 +1777,11 @@ public extension Services.User.Containers {
                builderResult.version = value
            }
       }
-      public func setVersion(value:UInt32) -> Services.User.Containers.Oauth2DetailsV1.Builder {
+      public func setVersion(value:UInt32) -> Services.User.Containers.OAuth2DetailsV1.Builder {
         self.version = value
         return self
       }
-      public func clearVersion() -> Services.User.Containers.Oauth2DetailsV1.Builder{
+      public func clearVersion() -> Services.User.Containers.OAuth2DetailsV1.Builder{
            builderResult.hasVersion = false
            builderResult.version = UInt32(1)
            return self
@@ -1800,11 +1800,11 @@ public extension Services.User.Containers {
                builderResult.code = value
            }
       }
-      public func setCode(value:String) -> Services.User.Containers.Oauth2DetailsV1.Builder {
+      public func setCode(value:String) -> Services.User.Containers.OAuth2DetailsV1.Builder {
         self.code = value
         return self
       }
-      public func clearCode() -> Services.User.Containers.Oauth2DetailsV1.Builder{
+      public func clearCode() -> Services.User.Containers.OAuth2DetailsV1.Builder{
            builderResult.hasCode = false
            builderResult.code = ""
            return self
@@ -1823,11 +1823,11 @@ public extension Services.User.Containers {
                builderResult.state = value
            }
       }
-      public func setState(value:String) -> Services.User.Containers.Oauth2DetailsV1.Builder {
+      public func setState(value:String) -> Services.User.Containers.OAuth2DetailsV1.Builder {
         self.state = value
         return self
       }
-      public func clearState() -> Services.User.Containers.Oauth2DetailsV1.Builder{
+      public func clearState() -> Services.User.Containers.OAuth2DetailsV1.Builder{
            builderResult.hasState = false
            builderResult.state = ""
            return self
@@ -1837,23 +1837,23 @@ public extension Services.User.Containers {
               return builderResult
            }
       }
-      public override func clear() -> Services.User.Containers.Oauth2DetailsV1.Builder {
-        builderResult = Services.User.Containers.Oauth2DetailsV1()
+      public override func clear() -> Services.User.Containers.OAuth2DetailsV1.Builder {
+        builderResult = Services.User.Containers.OAuth2DetailsV1()
         return self
       }
-      public override func clone() throws -> Services.User.Containers.Oauth2DetailsV1.Builder {
-        return try Services.User.Containers.Oauth2DetailsV1.builderWithPrototype(builderResult)
+      public override func clone() throws -> Services.User.Containers.OAuth2DetailsV1.Builder {
+        return try Services.User.Containers.OAuth2DetailsV1.builderWithPrototype(builderResult)
       }
-      public override func build() throws -> Services.User.Containers.Oauth2DetailsV1 {
+      public override func build() throws -> Services.User.Containers.OAuth2DetailsV1 {
            try checkInitialized()
            return buildPartial()
       }
-      public func buildPartial() -> Services.User.Containers.Oauth2DetailsV1 {
-        let returnMe:Services.User.Containers.Oauth2DetailsV1 = builderResult
+      public func buildPartial() -> Services.User.Containers.OAuth2DetailsV1 {
+        let returnMe:Services.User.Containers.OAuth2DetailsV1 = builderResult
         return returnMe
       }
-      public func mergeFrom(other:Services.User.Containers.Oauth2DetailsV1) throws -> Services.User.Containers.Oauth2DetailsV1.Builder {
-        if other == Services.User.Containers.Oauth2DetailsV1() {
+      public func mergeFrom(other:Services.User.Containers.OAuth2DetailsV1) throws -> Services.User.Containers.OAuth2DetailsV1.Builder {
+        if other == Services.User.Containers.OAuth2DetailsV1() {
          return self
         }
         if other.hasVersion {
@@ -1868,10 +1868,10 @@ public extension Services.User.Containers {
         try mergeUnknownFields(other.unknownFields)
         return self
       }
-      public override func mergeFromCodedInputStream(input:CodedInputStream) throws -> Services.User.Containers.Oauth2DetailsV1.Builder {
+      public override func mergeFromCodedInputStream(input:CodedInputStream) throws -> Services.User.Containers.OAuth2DetailsV1.Builder {
            return try mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
       }
-      public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) throws -> Services.User.Containers.Oauth2DetailsV1.Builder {
+      public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) throws -> Services.User.Containers.OAuth2DetailsV1.Builder {
         let unknownFieldsBuilder:UnknownFieldSet.Builder = try UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
         while (true) {
           let tag = try input.readTag()
@@ -1901,7 +1901,7 @@ public extension Services.User.Containers {
 
   }
 
-  final public class OauthSdkdetailsV1 : GeneratedMessage, GeneratedMessageProtocol {
+  final public class OAuthSDKDetailsV1 : GeneratedMessage, GeneratedMessageProtocol {
     public private(set) var hasVersion:Bool = false
     public private(set) var version:UInt32 = UInt32(1)
 
@@ -1949,51 +1949,51 @@ public extension Services.User.Containers {
       memoizedSerializedSize = serialize_size
       return serialize_size
     }
-    public class func parseArrayDelimitedFromInputStream(input:NSInputStream) throws -> Array<Services.User.Containers.OauthSdkdetailsV1> {
-      var mergedArray = Array<Services.User.Containers.OauthSdkdetailsV1>()
+    public class func parseArrayDelimitedFromInputStream(input:NSInputStream) throws -> Array<Services.User.Containers.OAuthSDKDetailsV1> {
+      var mergedArray = Array<Services.User.Containers.OAuthSDKDetailsV1>()
       while let value = try parseFromDelimitedFromInputStream(input) {
         mergedArray += [value]
       }
       return mergedArray
     }
-    public class func parseFromDelimitedFromInputStream(input:NSInputStream) throws -> Services.User.Containers.OauthSdkdetailsV1? {
-      return try Services.User.Containers.OauthSdkdetailsV1.Builder().mergeDelimitedFromInputStream(input)?.build()
+    public class func parseFromDelimitedFromInputStream(input:NSInputStream) throws -> Services.User.Containers.OAuthSDKDetailsV1? {
+      return try Services.User.Containers.OAuthSDKDetailsV1.Builder().mergeDelimitedFromInputStream(input)?.build()
     }
-    public class func parseFromData(data:NSData) throws -> Services.User.Containers.OauthSdkdetailsV1 {
-      return try Services.User.Containers.OauthSdkdetailsV1.Builder().mergeFromData(data, extensionRegistry:Services.User.Containers.ContainersRoot.sharedInstance.extensionRegistry).build()
+    public class func parseFromData(data:NSData) throws -> Services.User.Containers.OAuthSDKDetailsV1 {
+      return try Services.User.Containers.OAuthSDKDetailsV1.Builder().mergeFromData(data, extensionRegistry:Services.User.Containers.ContainersRoot.sharedInstance.extensionRegistry).build()
     }
-    public class func parseFromData(data:NSData, extensionRegistry:ExtensionRegistry) throws -> Services.User.Containers.OauthSdkdetailsV1 {
-      return try Services.User.Containers.OauthSdkdetailsV1.Builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
+    public class func parseFromData(data:NSData, extensionRegistry:ExtensionRegistry) throws -> Services.User.Containers.OAuthSDKDetailsV1 {
+      return try Services.User.Containers.OAuthSDKDetailsV1.Builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
     }
-    public class func parseFromInputStream(input:NSInputStream) throws -> Services.User.Containers.OauthSdkdetailsV1 {
-      return try Services.User.Containers.OauthSdkdetailsV1.Builder().mergeFromInputStream(input).build()
+    public class func parseFromInputStream(input:NSInputStream) throws -> Services.User.Containers.OAuthSDKDetailsV1 {
+      return try Services.User.Containers.OAuthSDKDetailsV1.Builder().mergeFromInputStream(input).build()
     }
-    public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) throws -> Services.User.Containers.OauthSdkdetailsV1 {
-      return try Services.User.Containers.OauthSdkdetailsV1.Builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
+    public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) throws -> Services.User.Containers.OAuthSDKDetailsV1 {
+      return try Services.User.Containers.OAuthSDKDetailsV1.Builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
     }
-    public class func parseFromCodedInputStream(input:CodedInputStream) throws -> Services.User.Containers.OauthSdkdetailsV1 {
-      return try Services.User.Containers.OauthSdkdetailsV1.Builder().mergeFromCodedInputStream(input).build()
+    public class func parseFromCodedInputStream(input:CodedInputStream) throws -> Services.User.Containers.OAuthSDKDetailsV1 {
+      return try Services.User.Containers.OAuthSDKDetailsV1.Builder().mergeFromCodedInputStream(input).build()
     }
-    public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) throws -> Services.User.Containers.OauthSdkdetailsV1 {
-      return try Services.User.Containers.OauthSdkdetailsV1.Builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
+    public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) throws -> Services.User.Containers.OAuthSDKDetailsV1 {
+      return try Services.User.Containers.OAuthSDKDetailsV1.Builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
     }
-    public class func getBuilder() -> Services.User.Containers.OauthSdkdetailsV1.Builder {
-      return Services.User.Containers.OauthSdkdetailsV1.classBuilder() as! Services.User.Containers.OauthSdkdetailsV1.Builder
+    public class func getBuilder() -> Services.User.Containers.OAuthSDKDetailsV1.Builder {
+      return Services.User.Containers.OAuthSDKDetailsV1.classBuilder() as! Services.User.Containers.OAuthSDKDetailsV1.Builder
     }
-    public func getBuilder() -> Services.User.Containers.OauthSdkdetailsV1.Builder {
-      return classBuilder() as! Services.User.Containers.OauthSdkdetailsV1.Builder
+    public func getBuilder() -> Services.User.Containers.OAuthSDKDetailsV1.Builder {
+      return classBuilder() as! Services.User.Containers.OAuthSDKDetailsV1.Builder
     }
     public override class func classBuilder() -> MessageBuilder {
-      return Services.User.Containers.OauthSdkdetailsV1.Builder()
+      return Services.User.Containers.OAuthSDKDetailsV1.Builder()
     }
     public override func classBuilder() -> MessageBuilder {
-      return Services.User.Containers.OauthSdkdetailsV1.Builder()
+      return Services.User.Containers.OAuthSDKDetailsV1.Builder()
     }
-    public func toBuilder() throws -> Services.User.Containers.OauthSdkdetailsV1.Builder {
-      return try Services.User.Containers.OauthSdkdetailsV1.builderWithPrototype(self)
+    public func toBuilder() throws -> Services.User.Containers.OAuthSDKDetailsV1.Builder {
+      return try Services.User.Containers.OAuthSDKDetailsV1.builderWithPrototype(self)
     }
-    public class func builderWithPrototype(prototype:Services.User.Containers.OauthSdkdetailsV1) throws -> Services.User.Containers.OauthSdkdetailsV1.Builder {
-      return try Services.User.Containers.OauthSdkdetailsV1.Builder().mergeFrom(prototype)
+    public class func builderWithPrototype(prototype:Services.User.Containers.OAuthSDKDetailsV1) throws -> Services.User.Containers.OAuthSDKDetailsV1.Builder {
+      return try Services.User.Containers.OAuthSDKDetailsV1.Builder().mergeFrom(prototype)
     }
     override public func writeDescriptionTo(inout output:String, indent:String) throws {
       if hasVersion {
@@ -2028,19 +2028,19 @@ public extension Services.User.Containers {
     //Meta information declaration start
 
     override public class func className() -> String {
-        return "Services.User.Containers.OauthSdkdetailsV1"
+        return "Services.User.Containers.OAuthSDKDetailsV1"
     }
     override public func className() -> String {
-        return "Services.User.Containers.OauthSdkdetailsV1"
+        return "Services.User.Containers.OAuthSDKDetailsV1"
     }
     override public func classMetaType() -> GeneratedMessage.Type {
-        return Services.User.Containers.OauthSdkdetailsV1.self
+        return Services.User.Containers.OAuthSDKDetailsV1.self
     }
     //Meta information declaration end
 
     final public class Builder : GeneratedMessageBuilder {
-      private var builderResult:Services.User.Containers.OauthSdkdetailsV1 = Services.User.Containers.OauthSdkdetailsV1()
-      public func getMessage() -> Services.User.Containers.OauthSdkdetailsV1 {
+      private var builderResult:Services.User.Containers.OAuthSDKDetailsV1 = Services.User.Containers.OAuthSDKDetailsV1()
+      public func getMessage() -> Services.User.Containers.OAuthSDKDetailsV1 {
           return builderResult
       }
 
@@ -2061,11 +2061,11 @@ public extension Services.User.Containers {
                builderResult.version = value
            }
       }
-      public func setVersion(value:UInt32) -> Services.User.Containers.OauthSdkdetailsV1.Builder {
+      public func setVersion(value:UInt32) -> Services.User.Containers.OAuthSDKDetailsV1.Builder {
         self.version = value
         return self
       }
-      public func clearVersion() -> Services.User.Containers.OauthSdkdetailsV1.Builder{
+      public func clearVersion() -> Services.User.Containers.OAuthSDKDetailsV1.Builder{
            builderResult.hasVersion = false
            builderResult.version = UInt32(1)
            return self
@@ -2084,11 +2084,11 @@ public extension Services.User.Containers {
                builderResult.code = value
            }
       }
-      public func setCode(value:String) -> Services.User.Containers.OauthSdkdetailsV1.Builder {
+      public func setCode(value:String) -> Services.User.Containers.OAuthSDKDetailsV1.Builder {
         self.code = value
         return self
       }
-      public func clearCode() -> Services.User.Containers.OauthSdkdetailsV1.Builder{
+      public func clearCode() -> Services.User.Containers.OAuthSDKDetailsV1.Builder{
            builderResult.hasCode = false
            builderResult.code = ""
            return self
@@ -2107,11 +2107,11 @@ public extension Services.User.Containers {
                builderResult.idToken = value
            }
       }
-      public func setIdToken(value:String) -> Services.User.Containers.OauthSdkdetailsV1.Builder {
+      public func setIdToken(value:String) -> Services.User.Containers.OAuthSDKDetailsV1.Builder {
         self.idToken = value
         return self
       }
-      public func clearIdToken() -> Services.User.Containers.OauthSdkdetailsV1.Builder{
+      public func clearIdToken() -> Services.User.Containers.OAuthSDKDetailsV1.Builder{
            builderResult.hasIdToken = false
            builderResult.idToken = ""
            return self
@@ -2121,23 +2121,23 @@ public extension Services.User.Containers {
               return builderResult
            }
       }
-      public override func clear() -> Services.User.Containers.OauthSdkdetailsV1.Builder {
-        builderResult = Services.User.Containers.OauthSdkdetailsV1()
+      public override func clear() -> Services.User.Containers.OAuthSDKDetailsV1.Builder {
+        builderResult = Services.User.Containers.OAuthSDKDetailsV1()
         return self
       }
-      public override func clone() throws -> Services.User.Containers.OauthSdkdetailsV1.Builder {
-        return try Services.User.Containers.OauthSdkdetailsV1.builderWithPrototype(builderResult)
+      public override func clone() throws -> Services.User.Containers.OAuthSDKDetailsV1.Builder {
+        return try Services.User.Containers.OAuthSDKDetailsV1.builderWithPrototype(builderResult)
       }
-      public override func build() throws -> Services.User.Containers.OauthSdkdetailsV1 {
+      public override func build() throws -> Services.User.Containers.OAuthSDKDetailsV1 {
            try checkInitialized()
            return buildPartial()
       }
-      public func buildPartial() -> Services.User.Containers.OauthSdkdetailsV1 {
-        let returnMe:Services.User.Containers.OauthSdkdetailsV1 = builderResult
+      public func buildPartial() -> Services.User.Containers.OAuthSDKDetailsV1 {
+        let returnMe:Services.User.Containers.OAuthSDKDetailsV1 = builderResult
         return returnMe
       }
-      public func mergeFrom(other:Services.User.Containers.OauthSdkdetailsV1) throws -> Services.User.Containers.OauthSdkdetailsV1.Builder {
-        if other == Services.User.Containers.OauthSdkdetailsV1() {
+      public func mergeFrom(other:Services.User.Containers.OAuthSDKDetailsV1) throws -> Services.User.Containers.OAuthSDKDetailsV1.Builder {
+        if other == Services.User.Containers.OAuthSDKDetailsV1() {
          return self
         }
         if other.hasVersion {
@@ -2152,10 +2152,10 @@ public extension Services.User.Containers {
         try mergeUnknownFields(other.unknownFields)
         return self
       }
-      public override func mergeFromCodedInputStream(input:CodedInputStream) throws -> Services.User.Containers.OauthSdkdetailsV1.Builder {
+      public override func mergeFromCodedInputStream(input:CodedInputStream) throws -> Services.User.Containers.OAuthSDKDetailsV1.Builder {
            return try mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
       }
-      public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) throws -> Services.User.Containers.OauthSdkdetailsV1.Builder {
+      public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) throws -> Services.User.Containers.OAuthSDKDetailsV1.Builder {
         let unknownFieldsBuilder:UnknownFieldSet.Builder = try UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
         while (true) {
           let tag = try input.readTag()

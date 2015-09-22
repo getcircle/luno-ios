@@ -5329,7 +5329,7 @@ public extension Google.Protobuf {
 
       //Enum type declaration start 
 
-      public enum Ctype:Int32 {
+      public enum CType:Int32 {
         case String = 0
         case Cord = 1
         case StringPiece = 2
@@ -5338,7 +5338,7 @@ public extension Google.Protobuf {
 
       //Enum type declaration end 
 
-    public private(set) var ctype:Google.Protobuf.FieldOptions.Ctype = Google.Protobuf.FieldOptions.Ctype.String
+    public private(set) var ctype:Google.Protobuf.FieldOptions.CType = Google.Protobuf.FieldOptions.CType.String
     public private(set) var hasCtype:Bool = false
     public private(set) var hasPacked:Bool = false
     public private(set) var packed:Bool = false
@@ -5566,7 +5566,7 @@ public extension Google.Protobuf {
                 return builderResult.hasCtype
             }
         }
-        public var ctype:Google.Protobuf.FieldOptions.Ctype {
+        public var ctype:Google.Protobuf.FieldOptions.CType {
             get {
                 return builderResult.ctype
             }
@@ -5575,7 +5575,7 @@ public extension Google.Protobuf {
                 builderResult.ctype = value
             }
         }
-        public func setCtype(value:Google.Protobuf.FieldOptions.Ctype) -> Google.Protobuf.FieldOptions.Builder {
+        public func setCtype(value:Google.Protobuf.FieldOptions.CType) -> Google.Protobuf.FieldOptions.Builder {
           self.ctype = value
           return self
         }
@@ -5778,7 +5778,7 @@ public extension Google.Protobuf {
 
           case 8 :
             let valueIntctype = try input.readEnum()
-            if let enumsctype = Google.Protobuf.FieldOptions.Ctype(rawValue:valueIntctype){
+            if let enumsctype = Google.Protobuf.FieldOptions.CType(rawValue:valueIntctype){
                  ctype = enumsctype
             } else {
                  try unknownFieldsBuilder.mergeVarintField(1, value:Int64(valueIntctype))

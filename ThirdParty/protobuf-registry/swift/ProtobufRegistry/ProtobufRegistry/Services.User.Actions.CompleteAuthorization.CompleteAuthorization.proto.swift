@@ -62,9 +62,9 @@ public extension Services.User.Actions.CompleteAuthorization {
     public private(set) var provider:Services.User.Containers.IdentityV1.ProviderV1 = Services.User.Containers.IdentityV1.ProviderV1.Internal
     public private(set) var hasProvider:Bool = false
     public private(set) var hasOauth2Details:Bool = false
-    public private(set) var oauth2Details:Services.User.Containers.Oauth2DetailsV1!
+    public private(set) var oauth2Details:Services.User.Containers.OAuth2DetailsV1!
     public private(set) var hasOauthSdkDetails:Bool = false
-    public private(set) var oauthSdkDetails:Services.User.Containers.OauthSdkdetailsV1!
+    public private(set) var oauthSdkDetails:Services.User.Containers.OAuthSDKDetailsV1!
     public private(set) var clientType:Services.User.Containers.Token.ClientTypeV1 = Services.User.Containers.Token.ClientTypeV1.Ios
     public private(set) var hasClientType:Bool = false
     required public init() {
@@ -290,7 +290,7 @@ public extension Services.User.Actions.CompleteAuthorization {
                return builderResult.hasOauth2Details
            }
       }
-      public var oauth2Details:Services.User.Containers.Oauth2DetailsV1! {
+      public var oauth2Details:Services.User.Containers.OAuth2DetailsV1! {
            get {
                if oauth2DetailsBuilder_ != nil {
                   builderResult.oauth2Details = oauth2DetailsBuilder_.getMessage()
@@ -302,14 +302,14 @@ public extension Services.User.Actions.CompleteAuthorization {
                builderResult.oauth2Details = value
            }
       }
-      private var oauth2DetailsBuilder_:Services.User.Containers.Oauth2DetailsV1.Builder! {
+      private var oauth2DetailsBuilder_:Services.User.Containers.OAuth2DetailsV1.Builder! {
            didSet {
               builderResult.hasOauth2Details = true
            }
       }
-      public func getOauth2DetailsBuilder() -> Services.User.Containers.Oauth2DetailsV1.Builder {
+      public func getOauth2DetailsBuilder() -> Services.User.Containers.OAuth2DetailsV1.Builder {
         if oauth2DetailsBuilder_ == nil {
-           oauth2DetailsBuilder_ = Services.User.Containers.Oauth2DetailsV1.Builder()
+           oauth2DetailsBuilder_ = Services.User.Containers.OAuth2DetailsV1.Builder()
            builderResult.oauth2Details = oauth2DetailsBuilder_.getMessage()
            if oauth2Details != nil {
               try! oauth2DetailsBuilder_.mergeFrom(oauth2Details)
@@ -317,13 +317,13 @@ public extension Services.User.Actions.CompleteAuthorization {
         }
         return oauth2DetailsBuilder_
       }
-      public func setOauth2Details(value:Services.User.Containers.Oauth2DetailsV1!) -> Services.User.Actions.CompleteAuthorization.RequestV1.Builder {
+      public func setOauth2Details(value:Services.User.Containers.OAuth2DetailsV1!) -> Services.User.Actions.CompleteAuthorization.RequestV1.Builder {
         self.oauth2Details = value
         return self
       }
-      public func mergeOauth2Details(value:Services.User.Containers.Oauth2DetailsV1) throws -> Services.User.Actions.CompleteAuthorization.RequestV1.Builder {
+      public func mergeOauth2Details(value:Services.User.Containers.OAuth2DetailsV1) throws -> Services.User.Actions.CompleteAuthorization.RequestV1.Builder {
         if builderResult.hasOauth2Details {
-          builderResult.oauth2Details = try Services.User.Containers.Oauth2DetailsV1.builderWithPrototype(builderResult.oauth2Details).mergeFrom(value).buildPartial()
+          builderResult.oauth2Details = try Services.User.Containers.OAuth2DetailsV1.builderWithPrototype(builderResult.oauth2Details).mergeFrom(value).buildPartial()
         } else {
           builderResult.oauth2Details = value
         }
@@ -341,7 +341,7 @@ public extension Services.User.Actions.CompleteAuthorization {
                return builderResult.hasOauthSdkDetails
            }
       }
-      public var oauthSdkDetails:Services.User.Containers.OauthSdkdetailsV1! {
+      public var oauthSdkDetails:Services.User.Containers.OAuthSDKDetailsV1! {
            get {
                if oauthSdkDetailsBuilder_ != nil {
                   builderResult.oauthSdkDetails = oauthSdkDetailsBuilder_.getMessage()
@@ -353,14 +353,14 @@ public extension Services.User.Actions.CompleteAuthorization {
                builderResult.oauthSdkDetails = value
            }
       }
-      private var oauthSdkDetailsBuilder_:Services.User.Containers.OauthSdkdetailsV1.Builder! {
+      private var oauthSdkDetailsBuilder_:Services.User.Containers.OAuthSDKDetailsV1.Builder! {
            didSet {
               builderResult.hasOauthSdkDetails = true
            }
       }
-      public func getOauthSdkDetailsBuilder() -> Services.User.Containers.OauthSdkdetailsV1.Builder {
+      public func getOauthSdkDetailsBuilder() -> Services.User.Containers.OAuthSDKDetailsV1.Builder {
         if oauthSdkDetailsBuilder_ == nil {
-           oauthSdkDetailsBuilder_ = Services.User.Containers.OauthSdkdetailsV1.Builder()
+           oauthSdkDetailsBuilder_ = Services.User.Containers.OAuthSDKDetailsV1.Builder()
            builderResult.oauthSdkDetails = oauthSdkDetailsBuilder_.getMessage()
            if oauthSdkDetails != nil {
               try! oauthSdkDetailsBuilder_.mergeFrom(oauthSdkDetails)
@@ -368,13 +368,13 @@ public extension Services.User.Actions.CompleteAuthorization {
         }
         return oauthSdkDetailsBuilder_
       }
-      public func setOauthSdkDetails(value:Services.User.Containers.OauthSdkdetailsV1!) -> Services.User.Actions.CompleteAuthorization.RequestV1.Builder {
+      public func setOauthSdkDetails(value:Services.User.Containers.OAuthSDKDetailsV1!) -> Services.User.Actions.CompleteAuthorization.RequestV1.Builder {
         self.oauthSdkDetails = value
         return self
       }
-      public func mergeOauthSdkDetails(value:Services.User.Containers.OauthSdkdetailsV1) throws -> Services.User.Actions.CompleteAuthorization.RequestV1.Builder {
+      public func mergeOauthSdkDetails(value:Services.User.Containers.OAuthSDKDetailsV1) throws -> Services.User.Actions.CompleteAuthorization.RequestV1.Builder {
         if builderResult.hasOauthSdkDetails {
-          builderResult.oauthSdkDetails = try Services.User.Containers.OauthSdkdetailsV1.builderWithPrototype(builderResult.oauthSdkDetails).mergeFrom(value).buildPartial()
+          builderResult.oauthSdkDetails = try Services.User.Containers.OAuthSDKDetailsV1.builderWithPrototype(builderResult.oauthSdkDetails).mergeFrom(value).buildPartial()
         } else {
           builderResult.oauthSdkDetails = value
         }
@@ -476,7 +476,7 @@ public extension Services.User.Actions.CompleteAuthorization {
             }
 
           case 26 :
-            let subBuilder:Services.User.Containers.Oauth2DetailsV1.Builder = Services.User.Containers.Oauth2DetailsV1.Builder()
+            let subBuilder:Services.User.Containers.OAuth2DetailsV1.Builder = Services.User.Containers.OAuth2DetailsV1.Builder()
             if hasOauth2Details {
               try subBuilder.mergeFrom(oauth2Details)
             }
@@ -484,7 +484,7 @@ public extension Services.User.Actions.CompleteAuthorization {
             oauth2Details = subBuilder.buildPartial()
 
           case 34 :
-            let subBuilder:Services.User.Containers.OauthSdkdetailsV1.Builder = Services.User.Containers.OauthSdkdetailsV1.Builder()
+            let subBuilder:Services.User.Containers.OAuthSDKDetailsV1.Builder = Services.User.Containers.OAuthSDKDetailsV1.Builder()
             if hasOauthSdkDetails {
               try subBuilder.mergeFrom(oauthSdkDetails)
             }
@@ -523,7 +523,7 @@ public extension Services.User.Actions.CompleteAuthorization {
     public private(set) var newUser:Bool = false
 
     public private(set) var hasOauthSdkDetails:Bool = false
-    public private(set) var oauthSdkDetails:Services.User.Containers.OauthSdkdetailsV1!
+    public private(set) var oauthSdkDetails:Services.User.Containers.OAuthSDKDetailsV1!
     required public init() {
          super.init()
     }
@@ -855,7 +855,7 @@ public extension Services.User.Actions.CompleteAuthorization {
                return builderResult.hasOauthSdkDetails
            }
       }
-      public var oauthSdkDetails:Services.User.Containers.OauthSdkdetailsV1! {
+      public var oauthSdkDetails:Services.User.Containers.OAuthSDKDetailsV1! {
            get {
                if oauthSdkDetailsBuilder_ != nil {
                   builderResult.oauthSdkDetails = oauthSdkDetailsBuilder_.getMessage()
@@ -867,14 +867,14 @@ public extension Services.User.Actions.CompleteAuthorization {
                builderResult.oauthSdkDetails = value
            }
       }
-      private var oauthSdkDetailsBuilder_:Services.User.Containers.OauthSdkdetailsV1.Builder! {
+      private var oauthSdkDetailsBuilder_:Services.User.Containers.OAuthSDKDetailsV1.Builder! {
            didSet {
               builderResult.hasOauthSdkDetails = true
            }
       }
-      public func getOauthSdkDetailsBuilder() -> Services.User.Containers.OauthSdkdetailsV1.Builder {
+      public func getOauthSdkDetailsBuilder() -> Services.User.Containers.OAuthSDKDetailsV1.Builder {
         if oauthSdkDetailsBuilder_ == nil {
-           oauthSdkDetailsBuilder_ = Services.User.Containers.OauthSdkdetailsV1.Builder()
+           oauthSdkDetailsBuilder_ = Services.User.Containers.OAuthSDKDetailsV1.Builder()
            builderResult.oauthSdkDetails = oauthSdkDetailsBuilder_.getMessage()
            if oauthSdkDetails != nil {
               try! oauthSdkDetailsBuilder_.mergeFrom(oauthSdkDetails)
@@ -882,13 +882,13 @@ public extension Services.User.Actions.CompleteAuthorization {
         }
         return oauthSdkDetailsBuilder_
       }
-      public func setOauthSdkDetails(value:Services.User.Containers.OauthSdkdetailsV1!) -> Services.User.Actions.CompleteAuthorization.ResponseV1.Builder {
+      public func setOauthSdkDetails(value:Services.User.Containers.OAuthSDKDetailsV1!) -> Services.User.Actions.CompleteAuthorization.ResponseV1.Builder {
         self.oauthSdkDetails = value
         return self
       }
-      public func mergeOauthSdkDetails(value:Services.User.Containers.OauthSdkdetailsV1) throws -> Services.User.Actions.CompleteAuthorization.ResponseV1.Builder {
+      public func mergeOauthSdkDetails(value:Services.User.Containers.OAuthSDKDetailsV1) throws -> Services.User.Actions.CompleteAuthorization.ResponseV1.Builder {
         if builderResult.hasOauthSdkDetails {
-          builderResult.oauthSdkDetails = try Services.User.Containers.OauthSdkdetailsV1.builderWithPrototype(builderResult.oauthSdkDetails).mergeFrom(value).buildPartial()
+          builderResult.oauthSdkDetails = try Services.User.Containers.OAuthSDKDetailsV1.builderWithPrototype(builderResult.oauthSdkDetails).mergeFrom(value).buildPartial()
         } else {
           builderResult.oauthSdkDetails = value
         }
@@ -978,7 +978,7 @@ public extension Services.User.Actions.CompleteAuthorization {
             newUser = try input.readBool()
 
           case 42 :
-            let subBuilder:Services.User.Containers.OauthSdkdetailsV1.Builder = Services.User.Containers.OauthSdkdetailsV1.Builder()
+            let subBuilder:Services.User.Containers.OAuthSDKDetailsV1.Builder = Services.User.Containers.OAuthSDKDetailsV1.Builder()
             if hasOauthSdkDetails {
               try subBuilder.mergeFrom(oauthSdkDetails)
             }
