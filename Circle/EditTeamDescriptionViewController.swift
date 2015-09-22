@@ -34,16 +34,16 @@ class EditTeamDescriptionViewController: TextInputViewController {
     }
     
     override func saveData(data: String) {
-        let teamBuilder = team.toBuilder()
-        let descriptionBuilder: Services.Common.Containers.DescriptionV1Builder
+        let teamBuilder = try! team.toBuilder()
+        let descriptionBuilder: Services.Common.Containers.DescriptionV1.Builder
         if let description = teamBuilder.description_ {
-            descriptionBuilder = description.toBuilder()
+            descriptionBuilder = try! description.toBuilder()
         } else {
             descriptionBuilder = Services.Common.Containers.DescriptionV1.Builder()
         }
         descriptionBuilder.value = data
-        teamBuilder.description_ = descriptionBuilder.build()
-        Services.Organization.Actions.updateTeam(teamBuilder.build()) { (team, error) -> Void in
+        teamBuilder.description_ = try! descriptionBuilder.build()
+        Services.Organization.Actions.updateTeam(try! teamBuilder.build()) { (team, error) -> Void in
             self.onDataSaved(team)
         }
     }

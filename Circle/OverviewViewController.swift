@@ -214,7 +214,7 @@ class OverviewViewController:
             if isFilterView && searchHeaderView!.searchTextField.text == "" {
                 navigationController?.popViewControllerAnimated(true)
             } else {
-                filter(searchHeaderView!.searchTextField.text)
+                filter(searchHeaderView!.searchTextField.text ?? "")
             }
         }
     }

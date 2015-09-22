@@ -54,7 +54,7 @@ class GroupDetailViewController: DetailViewController,
     // MARK: - Collection View delegate
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        if let card = dataSource.cardAtSection(indexPath.section), content: AnyObject = dataSource.contentAtIndexPath(indexPath) {
+        if let card = dataSource.cardAtSection(indexPath.section), content = dataSource.contentAtIndexPath(indexPath) as? [String: AnyObject] {
             switch card.type {
             case .Settings:
                 if let contentTypeValue = content["type"] as? Int, contentType = ContentType(rawValue: contentTypeValue) {

@@ -177,7 +177,7 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
     private func getActiveViewController(viewController: UIViewController?) -> UIViewController? {
         var activeViewController: UIViewController?
         if let navigationController = viewController as? UINavigationController {
-            activeViewController = navigationController.viewControllers.first as? UIViewController
+            activeViewController = navigationController.viewControllers.first
         } else {
             activeViewController = selectedViewController
         }

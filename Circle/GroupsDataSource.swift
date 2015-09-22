@@ -28,7 +28,7 @@ class GroupsDataSource: CardDataSource {
                 self.card = Card(cardType: self.cardType, title: "")
                 self.card.sectionInset = UIEdgeInsetsMake(1.0, 0.0, 0.0, 0.0)
                 if let groups = groups {
-                    self.groups.extend(groups)
+                    self.groups.appendContentsOf(groups)
                     self.card.addContent(content: groups)
                 }
                 self.appendCard(self.card)
@@ -49,7 +49,7 @@ class GroupsDataSource: CardDataSource {
             ) as? Services.Group.Actions.GetGroups.ResponseV1
             
             if let groups = response?.groups {
-                self.groups.extend(groups)
+                self.groups.appendContentsOf(groups)
                 self.card.addContent(content: groups)
                 self.handleNewContentAddedToCard(self.card, newContent: groups)
             }

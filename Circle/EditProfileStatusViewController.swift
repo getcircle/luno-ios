@@ -34,18 +34,18 @@ class EditProfileStatusViewController: TextInputViewController {
     }
     
     override func saveData(data: String) {
-        let statusBuilder: Services.Profile.Containers.ProfileStatusV1Builder
+        let statusBuilder: Services.Profile.Containers.ProfileStatusV1.Builder
         if let status = profile.status {
-            statusBuilder = status.toBuilder()
+            statusBuilder = try! status.toBuilder()
         }
         else {
-            statusBuilder = Services.Profile.Containers.ProfileStatusV1Builder()
+            statusBuilder = Services.Profile.Containers.ProfileStatusV1.Builder()
         }
         statusBuilder.value = data
         
-        let profileBuilder = profile.toBuilder()
-        profileBuilder.status = statusBuilder.build()
-        Services.Profile.Actions.updateProfile(profileBuilder.build()) { (profile, error) -> Void in
+        let profileBuilder = try! profile.toBuilder()
+        profileBuilder.status = try! statusBuilder.build()
+        Services.Profile.Actions.updateProfile(try! profileBuilder.build()) { (profile, error) -> Void in
             if let profile = profile {
                 AuthViewController.updateUserProfile(profile)
             }

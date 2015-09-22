@@ -12,8 +12,7 @@ import ProtobufRegistry
 extension Soa.PaginatorV1 {
     
     func countAsInt() -> Int {
-        let value = String(count)
-        return String(count).toInt() ?? 0
+        return Int(count)
     }
     
 }

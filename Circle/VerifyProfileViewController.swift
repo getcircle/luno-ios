@@ -26,8 +26,8 @@ class VerifyProfileViewController:
         didSet {
             // only set the staticProfile once
             if staticProfile == nil {
-                let profileBuilder = profile.toBuilder()
-                staticProfile = profileBuilder.build()
+                let profileBuilder = try! profile.toBuilder()
+                staticProfile = try! profileBuilder.build()
             }
         }
     }
@@ -167,9 +167,9 @@ class VerifyProfileViewController:
     }
     
     private func updateProfile(completion: () -> Void) {
-        let builder = profile.toBuilder()
+        let builder = try! profile.toBuilder()
         builder.verified = true
-        Services.Profile.Actions.updateProfile(builder.build()) { (profile, error) -> Void in
+        Services.Profile.Actions.updateProfile(try! builder.build()) { (profile, error) -> Void in
             if let profile = profile {
                 AuthViewController.updateUserProfile(profile)
                 self.profile = profile
@@ -187,9 +187,9 @@ class VerifyProfileViewController:
                 withKey: profile.id
             ) { (mediaURL, error) -> Void in
                 if let mediaURL = mediaURL {
-                    let profileBuilder = self.profile.toBuilder()
+                    let profileBuilder = try! self.profile.toBuilder()
                     profileBuilder.imageUrl = mediaURL
-                    self.profile = profileBuilder.build()
+                    self.profile = try! profileBuilder.build()
                     self.updateProfile(completion)
                     hud.hide(true)
                 }

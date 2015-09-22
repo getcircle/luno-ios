@@ -175,13 +175,13 @@ class ProfileCollectionViewCell: CircleCollectionViewCell {
             let dateString = dateFormatter.stringFromDate(hireDate)
             
             // calculate the upcoming anniversary to get the accurate number of years the anniversary represents
-            let nowComponents = calendar?.components(.CalendarUnitYear, fromDate: NSDate())
-            let upcomingAnniveraryComponents = calendar?.components(.CalendarUnitDay | .CalendarUnitMonth, fromDate: hireDate)
+            let nowComponents = calendar?.components(.Year, fromDate: NSDate())
+            let upcomingAnniveraryComponents = calendar?.components([.Day, .Month], fromDate: hireDate)
             upcomingAnniveraryComponents?.year = nowComponents!.year
             let upcomingAnniversary = calendar?.dateFromComponents(upcomingAnniveraryComponents!)
             
             let components = calendar?.components(
-                .CalendarUnitYear,
+                .Year,
                 fromDate: hireDate,
                 toDate: upcomingAnniversary!,
                 options: .WrapComponents

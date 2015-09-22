@@ -8,6 +8,7 @@
 
 import UIKit
 import ProtobufRegistry
+import ProtocolBuffers
 
 class ProfilesDataSource: CardDataSource {
 
@@ -126,7 +127,7 @@ class ProfilesDataSource: CardDataSource {
             ) as? Services.Group.Actions.GetMembers.ResponseV1
             
             if let profiles = response?.profiles {
-                self.data.extend(profiles as [AnyObject])
+                self.data.appendContentsOf(profiles as [AnyObject])
                 self.card.addContent(content: profiles)
                 self.handleNewContentAddedToCard(self.card, newContent: profiles)
             }
@@ -135,7 +136,7 @@ class ProfilesDataSource: CardDataSource {
                 for member in members {
                     profiles.append(member.profile)
                 }
-                self.data.extend(profiles as [AnyObject])
+                self.data.appendContentsOf(profiles as [AnyObject])
                 self.card.addContent(content: profiles)
                 self.handleNewContentAddedToCard(self.card, newContent: profiles)
             }

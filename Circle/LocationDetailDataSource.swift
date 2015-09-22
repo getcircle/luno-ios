@@ -52,7 +52,7 @@ class LocationDetailDataSource: CardDataSource {
         dispatch_group_enter(actionsGroup)
         Services.Profile.Actions.getProfiles(locationId: self.location.id) { (profiles, nextRequest, error) -> Void in
             if let profiles = profiles {
-                self.profiles.extend(profiles)
+                self.profiles.appendContentsOf(profiles)
                 self.nextProfilesRequest = nextRequest
             }
             if let error = error {

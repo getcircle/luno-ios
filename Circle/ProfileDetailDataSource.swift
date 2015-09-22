@@ -110,12 +110,12 @@ class ProfileDetailDataSource: CardDataSource {
         card.showContentCount = false
         card.addHeader(headerClass: ProfileSectionHeaderCollectionReusableView.self)
         var contactMethods = Array<Services.Profile.Containers.ContactMethodV1>()
-        let emailContactMethod = Services.Profile.Containers.ContactMethodV1Builder()
+        let emailContactMethod = Services.Profile.Containers.ContactMethodV1.Builder()
         emailContactMethod.contactMethodType = .Email
         emailContactMethod.value = profile.email
         emailContactMethod.label = "Email"
-        contactMethods.append(emailContactMethod.build())
-        contactMethods.extend(profile.contactMethods)
+        contactMethods.append(try! emailContactMethod.build())
+        contactMethods.appendContentsOf(profile.contactMethods)
         card.addContent(content: contactMethods)
         appendCard(card)
         return card

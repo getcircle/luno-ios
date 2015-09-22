@@ -109,7 +109,7 @@ class GroupDetailDataSource: CardDataSource {
         Services.Group.Actions.getMembers(selectedGroup.id, role: .Owner) {
             (members, nextRequest, error) -> Void in
             if let members = members {
-                self.ownerProfiles.extend(members.map({ $0.profile }))
+                self.ownerProfiles.appendContentsOf(members.map({ $0.profile }))
                 self.nextOwnersRequest = nextRequest
             }
             if let error = error {
@@ -123,7 +123,7 @@ class GroupDetailDataSource: CardDataSource {
         Services.Group.Actions.getMembers(selectedGroup.id, role: .Manager) {
             (members, nextRequest, error) -> Void in
             if let members = members {
-                self.managerMemberProfiles.extend(members.map({ $0.profile }))
+                self.managerMemberProfiles.appendContentsOf(members.map({ $0.profile }))
                 self.nextManagerMembersRequest = nextRequest
             }
             if let error = error {
@@ -137,7 +137,7 @@ class GroupDetailDataSource: CardDataSource {
         Services.Group.Actions.getMembers(selectedGroup.id, role: .Member) {
             (members, nextRequest, error) -> Void in
             if let members = members {
-                self.memberProfiles.extend(members.map({ $0.profile }))
+                self.memberProfiles.appendContentsOf(members.map({ $0.profile }))
                 self.nextMembersRequest = nextRequest
             }
             if let error = error {

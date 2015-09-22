@@ -129,7 +129,7 @@ class SearchQueryDataSource: CardDataSource {
             let teamsCount = Int(organization.teamCount)
             let teamsTitle = teamsCount == 1 ? "Team" : "Teams"
             
-            searchSuggestions.extend([
+            searchSuggestions.appendContentsOf([
                 SearchCategory(
                     categoryTitle: peopleTitle,
                     ofType: .People,
@@ -207,13 +207,13 @@ class SearchQueryDataSource: CardDataSource {
     private func addSearchActions() {
         if searchResults.count == 1 {
             if let profile = searchResults.first as? Services.Profile.Containers.ProfileV1 {
-                searchSuggestions.extend(SearchAction.searchActionsForProfile(profile) as [SearchSuggestion])
+                searchSuggestions.appendContentsOf(SearchAction.searchActionsForProfile(profile) as [SearchSuggestion])
             }
             else if let team = searchResults.first as? Services.Organization.Containers.TeamV1 {
-                searchSuggestions.extend(SearchAction.searchActionsForTeam(team) as [SearchSuggestion])
+                searchSuggestions.appendContentsOf(SearchAction.searchActionsForTeam(team) as [SearchSuggestion])
             }
             else if let location = searchResults.first as? Services.Organization.Containers.LocationV1 {
-                searchSuggestions.extend(SearchAction.searchActionsForLocation(location) as [SearchSuggestion])
+                searchSuggestions.appendContentsOf(SearchAction.searchActionsForLocation(location) as [SearchSuggestion])
             }
         }
     }

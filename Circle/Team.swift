@@ -62,13 +62,13 @@ extension Services.Organization.Actions {
 extension Services.Organization.Containers.TeamV1 {
     
     public func getName() -> String {
-        if count(name) > 0 {
+        if name.characters.count > 0 {
             return name
         }
-        else if count(displayName) > 0 {
+        else if displayName.characters.count > 0 {
             return displayName
         }
-        else if let manager = manager where count(manager.firstName) > 0 {
+        else if let manager = manager where manager.firstName.characters.count > 0 {
             return manager.firstName + "'s Nameless Team"
         }
         else {

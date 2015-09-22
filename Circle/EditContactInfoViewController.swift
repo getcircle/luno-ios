@@ -188,7 +188,7 @@ class EditContactInfoViewController: UIViewController, UINavigationControllerDel
             }
         }
         
-        formBuilder.sections.extend(formSections)
+        formBuilder.sections.appendContentsOf(formSections)
     }
     
     private func configureView() {
@@ -269,7 +269,7 @@ class EditContactInfoViewController: UIViewController, UINavigationControllerDel
     // MARK: - Helpers
 
     private func updateProfile(completion: () -> Void) {
-        let builder = profile.toBuilder()
+        let builder = try! profile.toBuilder()
         builder.verified = true
         
         formBuilder.updateValues()
@@ -279,9 +279,9 @@ class EditContactInfoViewController: UIViewController, UINavigationControllerDel
                 if let value = item.value {
                     if let contactItem = item as? FormBuilder.ContactSectionItem {
                         if value.trimWhitespace() != "" && (contactItem.inputEnabled == nil || contactItem.inputEnabled == true) {
-                            var contactMethod: Services.Profile.Containers.ContactMethodV1Builder
+                            var contactMethod: Services.Profile.Containers.ContactMethodV1.Builder
                             if let existingContactMethod = existingContactMethodsByType[contactItem.contactMethodType] {
-                                contactMethod = existingContactMethod.toBuilder()
+                                contactMethod = try! existingContactMethod.toBuilder()
                             }
                             else {
                                 contactMethod = Services.Profile.Containers.ContactMethodV1.Builder()
@@ -290,14 +290,14 @@ class EditContactInfoViewController: UIViewController, UINavigationControllerDel
                             contactMethod.label = contactItem.placeholder
                             contactMethod.value = value.trimWhitespace()
                             contactMethod.contactMethodType = contactItem.contactMethodType
-                            contactMethods.append(contactMethod.build())
+                            contactMethods.append(try! contactMethod.build())
                         }
                     }
                 }
             }
         }
         builder.contactMethods = contactMethods
-        Services.Profile.Actions.updateProfile(builder.build()) { (profile, error) -> Void in
+        Services.Profile.Actions.updateProfile(try! builder.build()) { (profile, error) -> Void in
             if let profile = profile {
                 AuthViewController.updateUserProfile(profile)
             }

@@ -25,7 +25,7 @@ class LocationsOverviewDataSource: CardDataSource {
                 if let locations = locations {
                     let officesCard = Card(cardType: .Locations, title: "")
                     officesCard.addContent(content: locations)
-                    self.locations.extend(locations)
+                    self.locations.appendContentsOf(locations)
                     officesCard.sectionInset = UIEdgeInsetsZero
                     self.appendCard(officesCard)
                 }

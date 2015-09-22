@@ -121,7 +121,7 @@ extension Services.Organization.Containers.LocationV1 {
     func officeDaylightIndicator() -> UIImage? {
         let calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)
         calendar?.timeZone = NSTimeZone(name: timezone)!
-        let components = calendar?.components(NSCalendarUnit.CalendarUnitHour, fromDate: NSDate())
+        let components = calendar?.components(.Hour, fromDate: NSDate())
         var image: UIImage?
         if components?.hour >= 18 || components?.hour < 6 {
             image = UIImage(named: "hero_moon")

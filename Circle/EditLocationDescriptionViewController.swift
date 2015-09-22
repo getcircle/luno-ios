@@ -34,16 +34,16 @@ class EditLocationDescriptionViewController: TextInputViewController {
     }
     
     override func saveData(data: String) {
-        let locationBuilder = location.toBuilder()
-        let descriptionBuilder: Services.Common.Containers.DescriptionV1Builder
+        let locationBuilder = try! location.toBuilder()
+        let descriptionBuilder: Services.Common.Containers.DescriptionV1.Builder
         if let description = locationBuilder.description_ {
-            descriptionBuilder = description.toBuilder()
+            descriptionBuilder = try! description.toBuilder()
         } else {
             descriptionBuilder = Services.Common.Containers.DescriptionV1.Builder()
         }
         descriptionBuilder.value = data
-        locationBuilder.description_ = descriptionBuilder.build()
-        Services.Organization.Actions.updateLocation(locationBuilder.build()) { (location, error) -> Void in
+        locationBuilder.description_ = try! descriptionBuilder.build()
+        Services.Organization.Actions.updateLocation(try! locationBuilder.build()) { (location, error) -> Void in
             self.onDataSaved(location)
         }
     }

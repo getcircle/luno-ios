@@ -8,6 +8,7 @@
 
 import Foundation
 import ProtobufRegistry
+import ProtocolBuffers
 
 struct ProfileServiceNotifications {
     static let onProfileUpdatedNotification = "com.rhlabs.notification:onProfileUpdatedNotification"
@@ -56,7 +57,7 @@ extension Services.Profile.Actions {
     
     private static func getProfiles(
         requestBuilder: AbstractMessageBuilder,
-        paginatorBuilder: Soa.PaginatorV1Builder? = nil,
+        paginatorBuilder: Soa.PaginatorV1.Builder? = nil,
         completionHandler: GetProfilesCompletionHandler?
     ) {
         let client = ServiceClient(serviceName: "profile")
@@ -77,7 +78,7 @@ extension Services.Profile.Actions {
     
     static func getProfiles(
         managerId managerId: String,
-        paginatorBuilder: Soa.PaginatorV1Builder? = nil,
+        paginatorBuilder: Soa.PaginatorV1.Builder? = nil,
         completionHandler: GetProfilesCompletionHandler?
     ) {
         let requestBuilder = Services.Profile.Actions.GetProfiles.RequestV1.Builder()
@@ -87,7 +88,7 @@ extension Services.Profile.Actions {
 
     static func getProfiles(
         teamId: String,
-        paginatorBuilder: Soa.PaginatorV1Builder? = nil,
+        paginatorBuilder: Soa.PaginatorV1.Builder? = nil,
         completionHandler: GetProfilesCompletionHandler?
     ) {
         let requestBuilder = Services.Profile.Actions.GetProfiles.RequestV1.Builder()
@@ -97,7 +98,7 @@ extension Services.Profile.Actions {
     
     static func getProfiles(
         organizationId organizationId: String,
-        paginatorBuilder: Soa.PaginatorV1Builder? = nil,
+        paginatorBuilder: Soa.PaginatorV1.Builder? = nil,
         completionHandler: GetProfilesCompletionHandler?
     ) {
         let requestBuilder = Services.Profile.Actions.GetProfiles.RequestV1.Builder()
@@ -107,7 +108,7 @@ extension Services.Profile.Actions {
     static func getProfiles(
         tagId tagId: String,
         organizationId: String,
-        paginatorBuilder: Soa.PaginatorV1Builder? = nil,
+        paginatorBuilder: Soa.PaginatorV1.Builder? = nil,
         completionHandler: GetProfilesCompletionHandler?
     ) {
         let requestBuilder = Services.Profile.Actions.GetProfiles.RequestV1.Builder()
@@ -117,7 +118,7 @@ extension Services.Profile.Actions {
     
     static func getProfiles(
         locationId locationId: String,
-        paginatorBuilder: Soa.PaginatorV1Builder? = nil,
+        paginatorBuilder: Soa.PaginatorV1.Builder? = nil,
         completionHandler: GetProfilesCompletionHandler?
     ) {
         let requestBuilder = Services.Profile.Actions.GetProfiles.RequestV1.Builder()
@@ -270,12 +271,12 @@ extension Services.Profile.Containers.ProfileV1 {
                 
                 let today = NSDate()
                 if let calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian) {
-                    let unitFlags = NSCalendarUnit.CalendarUnitDay | NSCalendarUnit.CalendarUnitYear | NSCalendarUnit.CalendarUnitMonth
+                    let unitFlags = [.Day, .Year, .Month] as NSCalendarUnit
                     let diffComponents = calendar.components(
                         unitFlags,
                         fromDate: hireDate,
                         toDate: today,
-                        options: nil
+                        options: []
                     )
                     
                     // Only show year if its greater than a month
@@ -329,7 +330,7 @@ extension Services.Profile.Containers.ProfileV1 {
                         }
                     }
                     
-                    return " ".join(formattedHireDate)
+                    return formattedHireDate.joinWithSeparator(" ")
                 }
             }
         }

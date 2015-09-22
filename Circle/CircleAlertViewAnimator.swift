@@ -21,7 +21,7 @@ class CircleAlertViewAnimator: NSObject, UIViewControllerAnimatedTransitioning {
         
         if toViewController is CircleAlertViewController {
             // present animation
-            containerView.addSubview(toViewController.view)
+            containerView?.addSubview(toViewController.view)
             toViewController.view.frame = fromViewController.view.frame
 
             let alertViewController = toViewController as! CircleAlertViewController

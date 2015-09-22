@@ -70,12 +70,12 @@ extension Services.Media.Actions {
         andCompletionHandler completionHandler: CompleteImageUploadCompletionHandler?
     ) {
         startImageUpload(mediaType, key: mediaKey) { (instructions, error) -> Void in
-            if let instructions = instructions {
-                Alamofire.upload(.PUT, instructions.uploadUrl, data: UIImagePNGRepresentation(image))
-                    .progress(closure: { (bytesWritten, totalBytesWritten, totalBytesExpectedToWrite) -> Void in
+            if let instructions = instructions, let data = UIImagePNGRepresentation(image) {
+                Alamofire.upload(.PUT, instructions.uploadUrl, data: data)
+                    .progress { bytesWritten, totalBytesWritten, totalBytesExpectedToWrite in
                         print("progress \(totalBytesWritten): \(totalBytesExpectedToWrite)")
-                    })
-                    .response({ (request, response, _, error) -> Void in
+                    }
+                    .response { request, response, _, error in
                         self.completeImageUpload(
                             mediaType,
                             mediaKey: mediaKey,
@@ -85,7 +85,7 @@ extension Services.Media.Actions {
                                 completionHandler?(mediaURL: mediaURL, error: error)
                                 return
                         }
-                    })
+                    }
             } else {
                 print("encountered error: \(error)")
             }

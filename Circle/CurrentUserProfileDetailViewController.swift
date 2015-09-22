@@ -12,7 +12,6 @@ import ProtobufRegistry
 
 class CurrentUserProfileDetailViewController: ProfileDetailViewController,
     CardHeaderViewDelegate,
-    EditImageButtonDelegate,
     EditProfileDelegate
 {
     
@@ -158,9 +157,9 @@ class CurrentUserProfileDetailViewController: ProfileDetailViewController,
                 withKey: profile.id
             ) { (mediaURL, error) -> Void in
                 if let mediaURL = mediaURL {
-                    let profileBuilder = self.profile.toBuilder()
+                    let profileBuilder = try! self.profile.toBuilder()
                     profileBuilder.imageUrl = mediaURL
-                    Services.Profile.Actions.updateProfile(profileBuilder.build()) { (profile, error) -> Void in
+                    Services.Profile.Actions.updateProfile(try! profileBuilder.build()) { (profile, error) -> Void in
                         if let profile = profile {
                             AuthViewController.updateUserProfile(profile)
                             self.profile = profile

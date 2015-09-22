@@ -97,9 +97,7 @@ class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate {
             }
             
             if let existingNumber = existingNumber {
-                let onlyDigits = "".join(existingNumber
-                    .componentsSeparatedByCharactersInSet(NSCharacterSet.decimalDigitCharacterSet().invertedSet)
-                )
+                let onlyDigits = existingNumber.componentsSeparatedByCharactersInSet(NSCharacterSet.decimalDigitCharacterSet().invertedSet).joinWithSeparator("")
                 phoneNumberField.text = phoneNumberFormatter.inputStringAndRememberPosition(onlyDigits)
                 validateNumberAndEnableActionButton()
             }
@@ -152,13 +150,13 @@ class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate {
         if range.length > 0 {
             if codeDigits > 0 {
                 codeDigits -= range.length
-                textField.text = textField.text[0..<codeDigits]
+                textField.text = textField.text?[0..<codeDigits]
             } else {
                 textField.text = ""
             }
         } else if let numericValue = Int(string) {
             if codeDigits < 6 {
-                textField.text = textField.text + string
+                textField.text = (textField.text ?? "") + string
                 codeDigits += 1
             }
         } else {
@@ -204,11 +202,11 @@ class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate {
     func handleVerificationCodeSubmit(sender: AnyObject!) {
         self.toggleLoadingState(actionButton)
         if bypassChecks {
-            if let user = AuthViewController.getLoggedInUser() {
-                let builder = user.toBuilder()
-                builder.phoneNumber = phoneNumberField.text
+            if let user = AuthViewController.getLoggedInUser(), let phoneNumber = phoneNumberField.text {
+                let builder = try! user.toBuilder()
+                builder.phoneNumber = phoneNumber
                 builder.phoneNumberVerified = true
-                Services.User.Actions.updateUser(builder.build()) { (user, error) -> Void in
+                Services.User.Actions.updateUser(try! builder.build()) { (user, error) -> Void in
                     if let user = user {
                         AuthViewController.updateUser(user)
                     }
@@ -219,15 +217,14 @@ class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate {
             return
         }
         
-        let code = verificationCodeField.text
-        if let user = AuthViewController.getLoggedInUser() {
+        if let user = AuthViewController.getLoggedInUser(), let code = verificationCodeField.text {
             Services.User.Actions.verifyVerificationCode(code, user: user) { (verified, error) -> Void in
                 self.toggleLoadingState(self.actionButton)
                 if error == nil {
                     if verified! {
-                        let userBuilder = user.toBuilder()
+                        let userBuilder = try! user.toBuilder()
                         userBuilder.phoneNumberVerified = true
-                        AuthViewController.updateUser(userBuilder.build())
+                        AuthViewController.updateUser(try! userBuilder.build())
                         self.verificationComplete()
                     } else {
                         print("user verification failed")
@@ -252,11 +249,10 @@ class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate {
             return
         }
         
-        let phoneNumber = phoneNumberField.text
-        if let user = AuthViewController.getLoggedInUser() {
-            let userBuilder = user.toBuilder()
+        if let user = AuthViewController.getLoggedInUser(), let phoneNumber = phoneNumberField.text {
+            let userBuilder = try! user.toBuilder()
             userBuilder.phoneNumber = phoneNumber
-            Services.User.Actions.updateUser(userBuilder.build()) { (user, error) -> Void in
+            Services.User.Actions.updateUser(try! userBuilder.build()) { (user, error) -> Void in
                 if error == nil {
                     Services.User.Actions.sendVerificationCode(user!) { (error) -> Void in
                         self.toggleLoadingState(button)
@@ -308,9 +304,11 @@ class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate {
     private func mainSwitchToConfirmationAnimation() {
         phoneNumberFieldPreviousVerticalSpacing = phoneNumberFieldVerticalSpacing.constant
         phoneNumberFieldVerticalSpacing.constant = 15
-        phoneNumberField.font = phoneNumberField.font.fontWithSize(
-            phoneNumberField.font.pointSize * phoneNumberFieldShrinkFactor
-        )
+        if let phoneNumberFieldFont = phoneNumberField.font {
+            phoneNumberField.font = phoneNumberFieldFont.fontWithSize(
+                phoneNumberFieldFont.pointSize * phoneNumberFieldShrinkFactor
+            )
+        }
         phoneNumberFieldWidth.constant = phoneNumberFieldWidth.constant * phoneNumberFieldShrinkFactor
         phoneNumberField.setNeedsUpdateConstraints()
         phoneNumberField.resignFirstResponder()
@@ -354,10 +352,12 @@ class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate {
         activeField = .PhoneNumber
         phoneNumberFieldVerticalSpacing.constant = phoneNumberFieldPreviousVerticalSpacing
         phoneNumberField.setNeedsUpdateConstraints()
+        if let phoneNumberFieldFont = phoneNumberField.font {
+            phoneNumberField.font = phoneNumberFieldFont.fontWithSize(
+                phoneNumberFieldFont.pointSize / phoneNumberFieldShrinkFactor
+            )
+        }
         
-        phoneNumberField.font = phoneNumberField.font.fontWithSize(
-            phoneNumberField.font.pointSize / phoneNumberFieldShrinkFactor
-        )
         phoneNumberFieldWidth.constant = phoneNumberFieldWidth.constant / phoneNumberFieldShrinkFactor
         
         verificationCodeFieldWidth.constant = 0

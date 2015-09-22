@@ -89,13 +89,13 @@ class CircleCollectionViewCell: UICollectionViewCell {
         
         // Setup background view
         selectedBackgroundView = UIView(forAutoLayout: ())
-        selectedBackgroundView.backgroundColor = UIColor.appControlHighlightedColor()
-        selectedBackgroundView.opaque = true
-        contentView.bringSubviewToFront(selectedBackgroundView)
+        selectedBackgroundView?.backgroundColor = UIColor.appControlHighlightedColor()
+        selectedBackgroundView?.opaque = true
+        contentView.bringSubviewToFront(selectedBackgroundView!)
 
         // Collection view does some trickery and removes constraints from
         // background views. So, we have to add it again in code
-        selectedBackgroundView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
+        selectedBackgroundView?.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
     }
     
     override func prepareForReuse() {

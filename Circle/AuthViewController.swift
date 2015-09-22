@@ -166,21 +166,21 @@ class AuthViewController: UIViewController {
     
     private static func loadCachedUser() -> Services.User.Containers.UserV1? {
         if let data = NSUserDefaults.standardUserDefaults().objectForKey(DefaultsUserKey) as? NSData {
-            return Services.User.Containers.UserV1.parseFromData(data)
+            return try! Services.User.Containers.UserV1.parseFromData(data)
         }
         return nil
     }
     
     private static func loadCachedProfile() -> Services.Profile.Containers.ProfileV1? {
         if let data = NSUserDefaults.standardUserDefaults().objectForKey(DefaultsProfileKey) as? NSData {
-            return Services.Profile.Containers.ProfileV1.parseFromData(data)
+            return try! Services.Profile.Containers.ProfileV1.parseFromData(data)
         }
         return nil
     }
     
     private static func loadCachedOrganization() -> Services.Organization.Containers.OrganizationV1? {
         if let data = NSUserDefaults.standardUserDefaults().objectForKey(DefaultsOrganizationKey) as? NSData {
-            return Services.Organization.Containers.OrganizationV1.parseFromData(data)
+            return try! Services.Organization.Containers.OrganizationV1.parseFromData(data)
         }
         return nil
     }
@@ -189,7 +189,7 @@ class AuthViewController: UIViewController {
         if let data = NSUserDefaults.standardUserDefaults().objectForKey(DefaultsIdentitiesKey) as? [NSData] {
             var identities = Array<Services.User.Containers.IdentityV1>()
             for object in data {
-                identities.append(Services.User.Containers.IdentityV1.parseFromData(object))
+                identities.append(try! Services.User.Containers.IdentityV1.parseFromData(object))
             }
             return identities
         }
@@ -212,10 +212,10 @@ class AuthViewController: UIViewController {
     private static func cacheUserIdentities(identities: Array<Services.User.Containers.IdentityV1>) {
         var cleanIdentities = [NSData]()
         for identity in identities {
-            let builder = identity.toBuilder()
+            let builder = try! identity.toBuilder()
             builder.clearAccessToken()
             builder.clearRefreshToken()
-            cleanIdentities.append(builder.build().data())
+            cleanIdentities.append(try! builder.build().data())
         }
         NSUserDefaults.standardUserDefaults().setObject(cleanIdentities, forKey: DefaultsIdentitiesKey)
     }
@@ -225,12 +225,13 @@ class AuthViewController: UIViewController {
         self.dynamicType.cacheTokenAndUserInMemory(token, user: user)
 
         // Cache token to keychain
-        let error = Locksmith.updateData(
-            [token: "\(NSDate())"],
-            forUserAccount: user.id,
-            inService: LocksmithAuthTokenService
-        )
-        if error != nil {
+        do {
+            try Locksmith.updateData(
+                [token: "\(NSDate())"],
+                forUserAccount: user.id,
+                inService: LocksmithAuthTokenService)
+        }
+        catch {
             // XXX what is the correct way to report errors?
             print("Error: \(error)")
         }
@@ -373,10 +374,15 @@ class AuthViewController: UIViewController {
             CircleCache.sharedInstance.clearCache()
 
             // Clear keychain
-            if let user = LoggedInUserHolder.user {
-                Locksmith.deleteDataForUserAccount(user.id, inService: LocksmithAuthTokenService)
+            do {
+                if let user = LoggedInUserHolder.user {
+                    try Locksmith.deleteDataForUserAccount(user.id, inService: LocksmithAuthTokenService)
+                }
+                try Locksmith.deleteDataForUserAccount(LocksmithMainUserAccount, inService: LocksmithAuthDetailsService)
             }
-            Locksmith.deleteDataForUserAccount(LocksmithMainUserAccount, inService: LocksmithAuthDetailsService)
+            catch {
+                print("Error: \(error)")
+            }
             
             // Remove local cached date
             LoggedInUserHolder.profile = nil
@@ -472,8 +478,8 @@ class AuthViewController: UIViewController {
             return token
         } else {
             if let user = self.getLoggedInUser() {
-                let (data, error) = Locksmith.loadDataForUserAccount(user.id, inService: LocksmithAuthTokenService)
-                if let token = data?.allKeys[0] as? String {
+                let dict = Locksmith.loadDataForUserAccount(user.id, inService: LocksmithAuthTokenService)
+                if let token = dict?.keys.first {
                     cacheTokenAndUserInMemory(token, user: user)
                     return token
                 }
@@ -595,12 +601,12 @@ class AuthViewController: UIViewController {
         // If google sign in, redirect to social connect
         // If password sign in, show password
         // If user does not have an account, show password and change title to create account
-        if workEmailTextField.text.trimWhitespace() == "" {
+        if workEmailTextField.text?.trimWhitespace() == "" {
             googleSignInButton.addShakeAnimation()
             return
         }
         
-        if passwordTextField.alpha == 1.0 && passwordTextField.text.trimWhitespace() == "" {
+        if passwordTextField.alpha == 1.0 && passwordTextField.text?.trimWhitespace() == "" {
             googleSignInButton.addShakeAnimation()
             return
         }
@@ -620,7 +626,7 @@ class AuthViewController: UIViewController {
     }
     
     private func checkAuthenticationMethod() {
-        Services.User.Actions.getAuthenticationInstructions(workEmailTextField.text, completionHandler: { (accountExists, authorizationURL, error) -> Void in
+        Services.User.Actions.getAuthenticationInstructions(workEmailTextField.text ?? "", completionHandler: { (accountExists, authorizationURL, error) -> Void in
             self.hideLoadingState()
             
             if error != nil {
@@ -638,7 +644,7 @@ class AuthViewController: UIViewController {
     }
     
     private func signUpUser() {
-        Services.User.Actions.createUser(workEmailTextField.text.trimWhitespace(), password: passwordTextField.text.trimWhitespace()) { (user, error) -> Void in
+        Services.User.Actions.createUser(workEmailTextField.text?.trimWhitespace() ?? "", password: passwordTextField.text?.trimWhitespace() ?? "") { (user, error) -> Void in
             self.hideLoadingState()
             if error != nil {
                 print("Error \(error)")
@@ -655,9 +661,9 @@ class AuthViewController: UIViewController {
 
     private func signInUser() {
         let credentials = Services.User.Actions.AuthenticateUser.RequestV1.CredentialsV1.Builder()
-        credentials.key = workEmailTextField.text.trimWhitespace()
-        credentials.secret = passwordTextField.text.trimWhitespace()
-        login(.Internal, credentials: credentials.build())
+        credentials.key = workEmailTextField.text?.trimWhitespace() ?? ""
+        credentials.secret = passwordTextField.text?.trimWhitespace() ?? ""
+        login(.Internal, credentials: try! credentials.build())
     }
     
     private func openExternalAuth(authorizationURL: String) {

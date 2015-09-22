@@ -27,9 +27,14 @@ class RecentSearchResult: Object {
     }
     
     static func createOrUpdate(recentSearchResult: RecentSearchResult) {
-        let realm = Realm()
-        realm.write {
-            realm.add(recentSearchResult, update: true)
+        do {
+            let realm = try Realm()
+            try realm.write {
+                realm.add(recentSearchResult, update: true)
+            }
+        }
+        catch {
+            print("Error: \(error)")
         }
     }
     
@@ -37,13 +42,13 @@ class RecentSearchResult: Object {
         if let resultType = RecentSearchResult.ResultType(rawValue: result.type) {
             switch resultType {
             case .Profile:
-                return Services.Profile.Containers.ProfileV1.parseFromData(result.object)
+                return try! Services.Profile.Containers.ProfileV1.parseFromData(result.object)
                 
             case .Team:
-                return Services.Organization.Containers.TeamV1.parseFromData(result.object)
+                return try! Services.Organization.Containers.TeamV1.parseFromData(result.object)
                 
             case .Location:
-                return Services.Organization.Containers.LocationV1.parseFromData(result.object)
+                return try! Services.Organization.Containers.LocationV1.parseFromData(result.object)
             }
         }
         

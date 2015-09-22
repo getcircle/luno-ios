@@ -25,7 +25,7 @@ extension Services.Organization.Actions {
     
     static func getTeams(
         organizationId: String,
-        paginatorBuilder: Soa.PaginatorV1Builder? = nil,
+        paginatorBuilder: Soa.PaginatorV1.Builder? = nil,
         completionHandler: GetTeamsCompletionHandler?
     ) {
         let requestBuilder = Services.Organization.Actions.GetTeams.RequestV1.Builder()

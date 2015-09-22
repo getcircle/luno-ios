@@ -82,7 +82,7 @@ class WebViewController: UIViewController {
     
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         if keyPath == "loading" {
-            if let loading: Bool = change["new"] as? Bool {
+            if let loading: Bool = change?["new"] as? Bool {
                 if !loading {
                     UIView.animateWithDuration(0.3) { () -> Void in
                         self.webView.alpha = 1.0

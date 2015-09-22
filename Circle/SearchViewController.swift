@@ -274,9 +274,10 @@ class SearchViewController: UIViewController,
     }
     
     func search() {
-        let term = searchHeaderView.searchTextField.text
-        dataSource.filter(term.trimWhitespace()) { (error) -> Void in
-            self.collectionView.reloadData()
+        if let term = searchHeaderView.searchTextField.text {
+            dataSource.filter(term.trimWhitespace()) { (error) -> Void in
+                self.collectionView.reloadData()
+            }
         }
     }
     

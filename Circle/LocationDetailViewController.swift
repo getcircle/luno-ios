@@ -154,9 +154,9 @@ class LocationDetailViewController:
                 withKey: dataSource.location.id
             ) { (mediaURL, error) -> Void in
                 if let mediaURL = mediaURL {
-                    let locationBuilder = dataSource.location.toBuilder()
+                    let locationBuilder = try! dataSource.location.toBuilder()
                     locationBuilder.imageUrl = mediaURL
-                    Services.Organization.Actions.updateLocation(locationBuilder.build()) { (location, error) -> Void in
+                    Services.Organization.Actions.updateLocation(try! locationBuilder.build()) { (location, error) -> Void in
                         if let location = location {
                             dataSource.location = location
                             hud.hide(true)
@@ -190,9 +190,9 @@ class LocationDetailViewController:
                 pointsOfContact.removeObject(loggedInUserProfile)
             }
             
-            let locationBuilder = (dataSource as! LocationDetailDataSource).location.toBuilder()
+            let locationBuilder = try! (dataSource as! LocationDetailDataSource).location.toBuilder()
             locationBuilder.pointsOfContact = pointsOfContact.array as! Array<Services.Profile.Containers.ProfileV1>
-            Services.Organization.Actions.updateLocation(locationBuilder.build(), completionHandler: { (location, error) -> Void in
+            Services.Organization.Actions.updateLocation(try! locationBuilder.build(), completionHandler: { (location, error) -> Void in
                 hud.hide(true)
                 if let location = location where error == nil {
                     officeDataSource.location = location

@@ -71,7 +71,7 @@ extension Services.Group.Actions {
     static func getMembers(
         groupId: String,
         role: Services.Group.Containers.RoleV1,
-        paginatorBuilder: Soa.PaginatorV1Builder? = nil,
+        paginatorBuilder: Soa.PaginatorV1.Builder? = nil,
         completionHandler: GetGroupProfilesCompletionHandler?
     ) {
         let requestBuilder = Services.Group.Actions.GetMembers.RequestV1.Builder()
@@ -96,7 +96,7 @@ extension Services.Group.Actions {
     
     static func getGroups(
         profileId: String?,
-        paginatorBuilder: Soa.PaginatorV1Builder? = nil,
+        paginatorBuilder: Soa.PaginatorV1.Builder? = nil,
         completionHandler: GetGroupsCompletionHandler?
     ) {
     

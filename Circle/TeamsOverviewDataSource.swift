@@ -8,6 +8,7 @@
 
 import UIKit
 import ProtobufRegistry
+import ProtocolBuffers
 
 class TeamsOverviewDataSource: CardDataSource {
     
@@ -59,7 +60,7 @@ class TeamsOverviewDataSource: CardDataSource {
     // MARK: - Set Initial Data
 
     override func setInitialData(content: [AnyObject], ofType: Card.CardType?) {
-        teams.extend(content as! [Services.Organization.Containers.TeamV1])
+        teams.appendContentsOf(content as! [Services.Organization.Containers.TeamV1])
         if ofType != nil {
             cardType = ofType!
         }
@@ -86,7 +87,7 @@ class TeamsOverviewDataSource: CardDataSource {
             ) as? Services.Organization.Actions.GetTeams.ResponseV1
             
             if let teams = response?.teams {
-                self.teams.extend(teams)
+                self.teams.appendContentsOf(teams)
                 self.card.addContent(content: teams)
                 self.handleNewContentAddedToCard(self.card, newContent: teams)
             }

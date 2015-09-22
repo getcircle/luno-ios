@@ -192,7 +192,7 @@ extension Services.User.Actions {
 
     static func recordDevice(pushToken: String?, completionHandler: RecordDeviceCompletionHandler?) {
         dispatch_async(dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0), { () -> Void in
-            if let loggedInUser = AuthViewController.getLoggedInUser() {
+            if let loggedInUser = AuthViewController.getLoggedInUser(), let deviceUuid = UIDevice.currentDevice().identifierForVendor?.UUIDString {
                 let deviceBuilder = Services.User.Containers.DeviceV1.Builder()
                 let currentDevice = UIDevice.currentDevice()
                 let appVersion = NSBundle.appVersion()
@@ -200,14 +200,14 @@ extension Services.User.Actions {
                 deviceBuilder.platform = UIDevice.currentDevice().modelName
                 deviceBuilder.osVersion = "\(currentDevice.systemName) \(currentDevice.systemVersion)"
                 deviceBuilder.appVersion = "\(appVersion) (\(appBuild))"
-                deviceBuilder.deviceUuid = UIDevice.currentDevice().identifierForVendor.UUIDString
+                deviceBuilder.deviceUuid = deviceUuid
                 deviceBuilder.provider = .Apple
                 deviceBuilder.userId = loggedInUser.id
                 if let pushToken = pushToken {
                     deviceBuilder.notificationToken = pushToken
                 }
                 let requestBuilder = Services.User.Actions.RecordDevice.RequestV1.Builder()
-                requestBuilder.device = deviceBuilder.build()
+                requestBuilder.device = try! deviceBuilder.build()
                 
                 let client = ServiceClient(serviceName: "user")
                 client.callAction(

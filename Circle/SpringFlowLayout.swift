@@ -44,12 +44,12 @@ class SpringFlowLayout: UICollectionViewFlowLayout {
         interfaceOrientation = statusBarOrientation
         // Overflow the actual rect slightly to avoid flickering
         let visibleRect = CGRectInset(collectionView!.bounds, -100, -100)
-        let itemsInVisibleRect = super.layoutAttributesForElementsInRect(visibleRect) as! [UICollectionViewLayoutAttributes]
+        let itemsInVisibleRect = super.layoutAttributesForElementsInRect(visibleRect)!
         let itemsIndexPathsInVisibleRect = NSSet(array: itemsInVisibleRect.map { item in item.indexPath })
         
         // Step 1: Remove any behaviors that are no longer visible
         let noLongerVisibleBehaviors = dynamicAnimator?.behaviors.filter { behavior in
-            if let firstItem: AnyObject = behavior.items?.first {
+            if let firstItem: AnyObject = behavior.childBehaviors.first {
                 return !itemsIndexPathsInVisibleRect.containsObject(firstItem.indexPath)
             }
             return true
@@ -121,9 +121,9 @@ class SpringFlowLayout: UICollectionViewFlowLayout {
         }
     }
     
-    override func layoutAttributesForElementsInRect(rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
-        return dynamicAnimator?.itemsInRect(rect)
-    }
+//    override func layoutAttributesForElementsInRect(rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+//        return dynamicAnimator?.itemsInRect(rect)
+//    }
     
     override func layoutAttributesForItemAtIndexPath(indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes! {
         if let attributes = dynamicAnimator?.layoutAttributesForCellAtIndexPath(indexPath) {

@@ -73,7 +73,7 @@ class CircleImageView: UIImageView {
     
     private func updateAcceptableContentTypes() {
         let serializer = AFImageResponseSerializer()
-        serializer.acceptableContentTypes = serializer.acceptableContentTypes.union(["image/jpg", "image/pjpeg"])
+        serializer.acceptableContentTypes = serializer.acceptableContentTypes?.union(["image/jpg", "image/pjpeg"])
         imageResponseSerializer = serializer
     }
     
@@ -92,15 +92,13 @@ class CircleImageView: UIImageView {
             }
             
             setImageWithURLRequest(
-                imageURLRequest, 
-                placeholderImage: nil, 
+                imageURLRequest,
+                placeholderImage: nil,
                 success: { (urlRequest, response, image) -> Void in
-                    if let image = image {
-                        if let imageID = self.imageProfileIdentifier {
-                            if imageID != profile.id {
-                                self.transform = CGAffineTransformIdentity
-                                return
-                            }
+                    if let imageID = self.imageProfileIdentifier {
+                        if imageID != profile.id {
+                            self.transform = CGAffineTransformIdentity
+                            return
                         }
                         
                         if let successCallback = successHandler {
@@ -117,10 +115,8 @@ class CircleImageView: UIImageView {
                 failure: { (imageURLRequest, response, error) -> Void in
                     self.addImageLabelForProfile(profile)
                     self.makeImageVisible(false)
-                    if let response = response {
-                        print("Response \(response.statusCode) \(response)")
-                    }
-                    print("failed to fetch image for profile: \(profileImageURL) error: \(error?.localizedDescription)")
+                    print("Response \(response.statusCode) \(response)")
+                    print("failed to fetch image for profile: \(profileImageURL) error: \(error.localizedDescription)")
                 }
             )
         }
@@ -137,28 +133,23 @@ class CircleImageView: UIImageView {
                 imageURLRequest,
                 placeholderImage: nil,
                 success: { (urlRequest, response, image) -> Void in
-                    if let image = image {
-                        
-                        if let imageID = self.imageProfileIdentifier {
-                            if imageID != location.id {
-                                return
-                            }
+                    if let imageID = self.imageProfileIdentifier {
+                        if imageID != location.id {
+                            return
                         }
-
-                        if let successCallback = successHandler {
-                            successCallback(image: image)
-                        }
-                        else {
-                            self.image = image
-                        }
+                    }
+                    
+                    if let successCallback = successHandler {
+                        successCallback(image: image)
+                    }
+                    else {
+                        self.image = image
                     }
                 },
                 failure: { (imageURLRequest, response, error) -> Void in
-                    if let response = response {
-                        print("Response \(response.statusCode) \(response)")
-                    }
-
-                    print("failed to fetch image for location: \(location.imageUrl) error: \(error?.localizedDescription)")
+                    print("Response \(response.statusCode) \(response)")
+            
+                    print("failed to fetch image for location: \(location.imageUrl) error: \(error.localizedDescription)")
                 }
             )
         }
@@ -172,32 +163,28 @@ class CircleImageView: UIImageView {
                 imageURLRequest,
                 placeholderImage: nil,
                 success: { (urlRequest, response, image) -> Void in
-                    if let image = image {
-                        if let imageID = self.imageProfileIdentifier {
-                            if imageID != team.id {
-                                return
-                            }
+                    if let imageID = self.imageProfileIdentifier {
+                        if imageID != team.id {
+                            return
                         }
-
-                        if let successCallback = successHandler {
-                            successCallback(image: image)
-                        }
-                        else {
-                            self.image = image
-                        }
+                    }
+                    
+                    if let successCallback = successHandler {
+                        successCallback(image: image)
+                    }
+                    else {
+                        self.image = image
                     }
                 },
                 failure: { (imageURLRequest, response, error) -> Void in
-                    if let response = response {
-                        print("Response \(response.statusCode) \(response)")
-                    }
-
-                    print("failed to fetch image for team: \(team.imageUrl) error: \(error?.localizedDescription)")
+                    print("Response \(response.statusCode) \(response)")
+                    
+                    print("failed to fetch image for team: \(team.imageUrl) error: \(error.localizedDescription)")
                 }
             )
         }
     }
-
+    
     func setImageWithURL(imageURL: NSURL, animated: Bool, successHandler: ((image: UIImage) -> Void)? = nil) {
         var shouldAnimate = animated
         let isImageCached = isImageInCache(imageURL)
@@ -212,24 +199,20 @@ class CircleImageView: UIImageView {
             imageURLRequest,
             placeholderImage: nil,
             success: { (urlRequest, response, image) -> Void in
-                if let image = image {
-                    if let successCallback = successHandler {
-                        successCallback(image: image)
-                    }
-                    else {
-                        self.image = image
-                    }
-                    UIView.animateWithDuration(shouldAnimate ? 0.3 : 0.0, animations: { () -> Void in
-                        self.alpha = 1.0
-                    })
+                if let successCallback = successHandler {
+                    successCallback(image: image)
                 }
+                else {
+                    self.image = image
+                }
+                UIView.animateWithDuration(shouldAnimate ? 0.3 : 0.0, animations: { () -> Void in
+                    self.alpha = 1.0
+                })
             },
             failure: { (imageURLRequest, response, error) -> Void in
-                if let response = response {
-                    print("Response \(response.statusCode) \(response)")
-                }
+                print("Response \(response.statusCode) \(response)")
                 
-                print("failed to fetch image for URL: \(imageURL) error: \(error?.localizedDescription)")
+                print("failed to fetch image for URL: \(imageURL) error: \(error.localizedDescription)")
             }
         )
     }
@@ -267,12 +250,10 @@ class CircleImageView: UIImageView {
     }
 
     private func isImageInCache(url: NSURL) -> Bool {
-        if let urlString = url.absoluteString {
-            let imageURLRequest = NSMutableURLRequest(URL: url)
-            imageURLRequest.timeoutInterval = timeoutInterval
-            if let cachedUIImage = UIImageView.sharedImageCache().cachedImageForRequest(imageURLRequest) {
-                return true
-            }
+        let imageURLRequest = NSMutableURLRequest(URL: url)
+        imageURLRequest.timeoutInterval = timeoutInterval
+        if let cachedUIImage = UIImageView.sharedImageCache().cachedImageForRequest(imageURLRequest) {
+            return true
         }
         
         return false
