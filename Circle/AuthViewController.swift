@@ -140,27 +140,27 @@ class AuthViewController: UIViewController {
             let credentials = Services.User.Actions.AuthenticateUser.RequestV1.CredentialsV1.Builder()
             credentials.key = authDetails.code
             credentials.secret = authDetails.idToken
-            let data = [authDetails.data().base64EncodedStringWithOptions(nil): "\(NSDate())"]
-            let error = Locksmith.saveData(data, forUserAccount: LocksmithMainUserAccount, inService: LocksmithAuthDetailsService)
-            if error != nil {
+            let data = [authDetails.data().base64EncodedStringWithOptions([]): "\(NSDate())"]
+            do {
+                try Locksmith.saveData(data, forUserAccount: LocksmithMainUserAccount, inService: LocksmithAuthDetailsService)
+            }
+            catch {
                 print("error saving authDetails: \(error)")
             }
-            login(.Google, credentials: credentials.build())
+            login(.Google, credentials: try! credentials.build())
         }
     }
     
     // MARK: - Helpers
     
     private func trySilentAuthentication() {
-        let (data, error) = Locksmith.loadDataForUserAccount(LocksmithMainUserAccount, inService: LocksmithAuthDetailsService)
-        if let authDetailsString = data?.allKeys[0] as? String, data = NSData(base64EncodedString: authDetailsString, options: nil) {
-            let authDetails = Services.User.Containers.OAuthSDKDetailsV1.parseFromData(data)
-            let credentials = Services.User.Actions.AuthenticateUser.RequestV1.CredentialsV1.Builder()
+        let dict = Locksmith.loadDataForUserAccount(LocksmithMainUserAccount, inService: LocksmithAuthDetailsService)
+        if let authDetailsString = dict?.keys.first, data = NSData(base64EncodedString: authDetailsString, options: []) {
+            let authDetails = try! Services.User.Containers.OAuthSDKDetailsV1.parseFromData(data)
+            let credentials = try! Services.User.Actions.AuthenticateUser.RequestV1.CredentialsV1.Builder()
             credentials.key = authDetails.code
             credentials.secret = authDetails.idToken
-            login(.Google, credentials: credentials.build(), silent: true)
-        } else if error != nil {
-            print("error trying to silently login: \(error)")
+            login(.Google, credentials: try! credentials.build(), silent: true)
         }
     }
     

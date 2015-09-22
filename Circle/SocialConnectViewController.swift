@@ -108,15 +108,14 @@ class SocialConnectViewController: UIViewController, WKNavigationDelegate {
                 var user: Services.User.Containers.UserV1?
                 var identity: Services.User.Containers.IdentityV1?
                 var authDetails: Services.User.Containers.OAuthSDKDetailsV1?
-                if
-                    let components = NSURLComponents(URL: url!, resolvingAgainstBaseURL: false),
-                    items = components.queryItems as? [NSURLQueryItem] {
+                if let components = NSURLComponents(URL: url!, resolvingAgainstBaseURL: false) {
+                    let items = components.queryItems!
                     for item in items {
                         if let value = item.value, data = NSData(base64EncodedString: value, options: []) {
                             switch item.name {
-                            case "user": user = Services.User.Containers.UserV1.parseFromData(data)
-                            case "identity": identity = Services.User.Containers.IdentityV1.parseFromData(data)
-                            case "oauth_sdk_details": authDetails = Services.User.Containers.OAuthSDKDetailsV1.parseFromData(data)
+                            case "user": user = try! Services.User.Containers.UserV1.parseFromData(data)
+                            case "identity": identity = try! Services.User.Containers.IdentityV1.parseFromData(data)
+                            case "oauth_sdk_details": authDetails = try! Services.User.Containers.OAuthSDKDetailsV1.parseFromData(data)
                             default: break
                             }
                         }

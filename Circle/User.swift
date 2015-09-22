@@ -153,7 +153,7 @@ extension Services.User.Actions {
         oAuthSDKDetails: Services.User.Containers.OAuthSDKDetailsV1?,
         completionHandler: CompleteAuthorizationCompletionHandler?
     ) {
-        let requestBuilder = Services.User.Actions.CompleteAuthorization.RequestV1.builder()
+        let requestBuilder = Services.User.Actions.CompleteAuthorization.RequestV1.Builder()
         requestBuilder.provider = provider
         if let oAuth2Details = oAuth2Details {
             requestBuilder.oauth2Details = oAuth2Details
