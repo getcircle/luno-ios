@@ -130,7 +130,7 @@ extension Services.Organization.Actions {
             ) as? Services.Organization.Actions.GetIntegration.ResponseV1
             
             var status = false
-            if let response = response, integration = response.integration {
+            if let response = response where response.integration != nil {
                 status = true
             }
 

@@ -88,7 +88,7 @@ extension Services.Organization.Containers.LocationV1 {
     }
     
     func officeCurrentTimeLabel(date: NSDate?, addDifferenceText: Bool? = false) -> String {
-        var currentDate = date ?? NSDate()
+        let currentDate = date ?? NSDate()
         let officeTimeZone = NSTimeZone(name: timezone)!
         NSDateFormatter.sharedLocationsCurrentTimeFormatter.timeZone = officeTimeZone
         var currentTime = NSDateFormatter.sharedLocationsCurrentTimeFormatter.stringFromDate(currentDate)

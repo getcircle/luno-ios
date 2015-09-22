@@ -102,7 +102,7 @@ extension Request {
                             "errors": result.errors,
                             "error_details": result.errorDetails,
                         ]
-                        serviceError = NSError(domain: ServiceErrorDomain, code: -1, userInfo: userInfo as! [NSObject : AnyObject])
+                        serviceError = NSError(domain: ServiceErrorDomain, code: -1, userInfo: userInfo as? [NSObject : AnyObject])
                     }
                 }
             }
@@ -208,7 +208,6 @@ class HttpsTransport: BaseTransport {
     }
     
     override func processRequest(serviceRequest: Soa.ServiceRequestV1, serializedRequest: NSData, completionHandler: ServiceCompletionHandler) {
-        let startTime = CACurrentMediaTime()
         NetworkActivity.totalRequests++
         updateNetworkIndicatorVisibility()
         
@@ -221,7 +220,6 @@ class HttpsTransport: BaseTransport {
                     serviceResponse: serviceResponse,
                     actionResponse: actionResponse
                 )
-                let endTime = CACurrentMediaTime()
                 self.printErrorMessage(serviceRequest, error: error)
                 completionHandler(request, response, wrapped, error)
         }

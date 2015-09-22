@@ -273,7 +273,7 @@ class TokenField: UIView,
     
     override func becomeFirstResponder() -> Bool {
         invisibleTextField?.resignFirstResponder()
-        tokens.map { $0.highlighted = false }
+        tokens.forEach { $0.highlighted = false }
         return inputTextField?.becomeFirstResponder() ?? false
     }
     
@@ -331,7 +331,7 @@ class TokenField: UIView,
     
     func textFieldDidBeginEditing(textField: BackspaceTextField) {
         if textField != invisibleTextField {
-            tokens.map { $0.highlighted = false }
+            tokens.forEach { $0.highlighted = false }
         }
         delegate?.tokenFieldDidBeginEditing?(self)
     }

@@ -114,7 +114,7 @@ class ProfileHeaderCollectionReusableView: DetailHeaderCollectionReusableView {
                 attributes: [NSKernAttributeName: 0.5]
             )
         }
-        var hasProfileImageChanged = profile?.imageUrl != userProfile.imageUrl
+        let hasProfileImageChanged = profile?.imageUrl != userProfile.imageUrl
         profile = userProfile
         profileImage.imageProfileIdentifier = userProfile.id
         if hasProfileImageChanged {

@@ -55,7 +55,7 @@ extension UIView {
     }
     
     func addBottomBorder(edgeInsets: UIEdgeInsets = UIEdgeInsetsZero, color: UIColor? = UIColor.appSeparatorViewColor()) -> UIView {
-        var borderView = UIView(forAutoLayout: ())
+        let borderView = UIView(forAutoLayout: ())
         borderView.backgroundColor = color
         addSubview(borderView)
         borderView.autoSetDimension(.Height, toSize: 1.0)
@@ -65,7 +65,7 @@ extension UIView {
     }
     
     func addTopBorder(offset withOffset: CGFloat? = 1.0) -> UIView {
-        var borderView = UIView(forAutoLayout: ())
+        let borderView = UIView(forAutoLayout: ())
         borderView.backgroundColor = UIColor.appSeparatorViewColor()
         if let parentView = superview {
             parentView.addSubview(borderView)
@@ -79,7 +79,7 @@ extension UIView {
     }
     
     func addGradientView() -> UIView {
-        var gradientView = GradientView(forAutoLayout: ())
+        let gradientView = GradientView(forAutoLayout: ())
         gradientView.backgroundColor = UIColor.clearColor()
         addSubview(gradientView)
         sendSubviewToBack(gradientView)
@@ -90,7 +90,7 @@ extension UIView {
     
     func addVisualEffectView(style: UIBlurEffectStyle) -> UIVisualEffectView {
         let blurEffect = UIBlurEffect(style: style)
-        var visualEffectView = UIVisualEffectView(effect: blurEffect)
+        let visualEffectView = UIVisualEffectView(effect: blurEffect)
         visualEffectView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(visualEffectView)
         sendSubviewToBack(visualEffectView)
@@ -99,7 +99,7 @@ extension UIView {
     }
     
     func addActivityIndicator(color: UIColor = UIColor.appActivityIndicatorViewColor(), start: Bool = true, horizontalOffset: CGFloat = 0.0) -> CircleActivityIndicatorView {
-        var activityIndicatorView = CircleActivityIndicatorView(tintColor: color)
+        let activityIndicatorView = CircleActivityIndicatorView(tintColor: color)
         activityIndicatorView.hidesWhenStopped = true
         if start {
             activityIndicatorView.startAnimating()
@@ -116,7 +116,7 @@ extension UIView {
     }
 
     func addErrorMessageView(error: NSError?, tryAgainHandler: (()-> Void)?) -> CircleErrorMessageView {
-        var errorView = CircleErrorMessageView(error: error, errorHandler: tryAgainHandler)
+        let errorView = CircleErrorMessageView(error: error, errorHandler: tryAgainHandler)
         errorView.hide()
         addSubview(errorView)
         bringSubviewToFront(errorView)

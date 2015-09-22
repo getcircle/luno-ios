@@ -38,10 +38,9 @@ class ProfileImagesCollectionViewCell: CircleCollectionViewCell {
     // MARK: - Configuration
     
     private func configureContentView() {
-        let containerWidth = cardContentView.frame.width
         var currentX: CGFloat = 0.0
-        for i in 0...numberOfProfileImageViews {
-            var profileImage = CircleImageView(frame: CGRectMake(currentX, 0.0, profileImageWidthHeight, profileImageWidthHeight))
+        for _ in 0...numberOfProfileImageViews {
+            let profileImage = CircleImageView(frame: CGRectMake(currentX, 0.0, profileImageWidthHeight, profileImageWidthHeight))
             cardContentView.addSubview(profileImage)
             profileImage.contentMode = .ScaleAspectFill
             profileImage.hidden = true
@@ -66,7 +65,7 @@ class ProfileImagesCollectionViewCell: CircleCollectionViewCell {
                 return $0
             })
             for profile in profiles {
-                var profileImage = profileImageViews[counter]
+                let profileImage = profileImageViews[counter]
                 profileImage.imageProfileIdentifier = profile.id
                 profileImage.setImageWithProfile(profile)
                 profileImage.hidden = false

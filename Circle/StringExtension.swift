@@ -21,7 +21,6 @@ extension String {
             
             if needsUpperCase {
                 needsUpperCase = false
-                var string = String(character)
                 camelCase += String(character).uppercaseString
                 continue
             }

@@ -157,16 +157,7 @@ extension UIColor {
         }
     }
     
-    private static func getRandomColor() -> UIColor {
-        let randomPalette = [
-            UIColor(red: 17, green: 36, blue: 65),
-            UIColor(red: 65, green: 20, blue: 20),
-            UIColor(red: 70, green: 33, blue: 18),
-            UIColor(red: 37, green: 37, blue: 37),
-            UIColor(red: 20, green: 50, blue: 21),
-            UIColor(red: 44, green: 25, blue: 49)
-        ]
-        
+    private static func getRandomColor() -> UIColor {        
         // flatuicolors.com
         let palette = [
             UIColor(red: 26, green: 188, blue: 156),

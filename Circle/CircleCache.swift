@@ -67,10 +67,10 @@ class CircleCache {
     }
     
     func clearCache() {
-        var keys = NSUserDefaults.standardUserDefaults().dictionaryRepresentation().keys
+        let keys = NSUserDefaults.standardUserDefaults().dictionaryRepresentation().keys
         for key in keys {
-            if let keyString = key as? String where keyString.hasPrefix("cache_") {
-                removeObjectForKey(keyString)
+            if key.hasPrefix("cache_") {
+                removeObjectForKey(key)
             }
         }
         
@@ -128,7 +128,7 @@ extension CircleCache {
     
     static func recordProfileVisit(profile: Services.Profile.Containers.ProfileV1) {
         var existingProfilesIDs = CircleCache.sharedInstance.objectForKey(CircleCache.Keys.RecentProfileVisits) as! [String]? ?? [String]()
-        var uniqueProfileIDs = NSMutableOrderedSet(array: existingProfilesIDs)
+        let uniqueProfileIDs = NSMutableOrderedSet(array: existingProfilesIDs)
         uniqueProfileIDs.insertObject(profile.id, atIndex: 0)
         let maxRecords: Int = min(uniqueProfileIDs.count, 5)
         existingProfilesIDs = uniqueProfileIDs.array as! [String]

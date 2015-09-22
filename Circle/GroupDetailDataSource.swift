@@ -102,7 +102,7 @@ class GroupDetailDataSource: CardDataSource {
     private func fetchAllMembers(completionHandler: (error: NSError?) -> Void) {
         // Fetch data within a dispatch group, calling populateData when all tasks have finished
         var storedError: NSError!
-        var actionsGroup = dispatch_group_create()
+        let actionsGroup = dispatch_group_create()
 
         // Fetch owners
         dispatch_group_enter(actionsGroup)

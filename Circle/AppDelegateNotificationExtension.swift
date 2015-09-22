@@ -110,9 +110,6 @@ extension AppDelegate {
                 }
                 
                 break
-                
-            default:
-                break
             }
         }
         
@@ -132,7 +129,7 @@ extension AppDelegate {
     }
     
     internal func actOnGroupRequest(requestID: String, shouldApprove: Bool) {
-        var status = Services.Group.Actions.RespondToMembershipRequest.RequestV1.ResponseActionV1.Approve
+        let status = Services.Group.Actions.RespondToMembershipRequest.RequestV1.ResponseActionV1.Approve
         Services.Group.Actions.respondToMembershipRequest(requestID, action: status, completionHandler: nil)
     }
 }

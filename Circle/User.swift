@@ -260,11 +260,9 @@ extension Services.User.Actions {
             "delete_identity",
             extensionField: Services.Registry.Requests.User.deleteIdentity(),
             requestBuilder: requestBuilder
-        ) { (_, _, wrapped, error) -> Void in
-            let response = wrapped?.response?.result.getExtension(
-                Services.Registry.Responses.User.deleteIdentity()
-            ) as? Services.User.Actions.RequestAccess.ResponseV1
-            completionHandler?(error: error)
+            ) { (_, _, wrapped, error) -> Void in
+                wrapped?.response?.result.getExtension(Services.Registry.Responses.User.deleteIdentity())
+                completionHandler?(error: error)
         }
     }
     

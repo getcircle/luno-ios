@@ -58,7 +58,7 @@ class MapViewController: UIViewController, UIViewControllerTransitioningDelegate
     }
 
     override func loadView() {
-        var rootView = UIView(frame: UIScreen.mainScreen().bounds)
+        let rootView = UIView(frame: UIScreen.mainScreen().bounds)
         rootView.backgroundColor = UIColor.clearColor()
         rootView.opaque = false
         view = rootView
@@ -92,11 +92,11 @@ class MapViewController: UIViewController, UIViewControllerTransitioningDelegate
         addressContainerView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero, excludingEdge: .Top)
         addressContainerView.autoSetDimension(.Height, toSize: 60.0)
         
-        var tapGestureRecognizer = UITapGestureRecognizer(target: self, action: "close:")
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: "close:")
         tapGestureRecognizer.numberOfTapsRequired = 1
         addressContainerView.addGestureRecognizer(tapGestureRecognizer)
         
-        var panGestureRecognizer = UIPanGestureRecognizer(target: self, action: "close:")
+        let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: "close:")
         addressContainerView.addGestureRecognizer(panGestureRecognizer)
     }
 

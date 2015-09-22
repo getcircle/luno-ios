@@ -157,7 +157,7 @@ class AuthViewController: UIViewController {
         let dict = Locksmith.loadDataForUserAccount(LocksmithMainUserAccount, inService: LocksmithAuthDetailsService)
         if let authDetailsString = dict?.keys.first, data = NSData(base64EncodedString: authDetailsString, options: []) {
             let authDetails = try! Services.User.Containers.OAuthSDKDetailsV1.parseFromData(data)
-            let credentials = try! Services.User.Actions.AuthenticateUser.RequestV1.CredentialsV1.Builder()
+            let credentials = Services.User.Actions.AuthenticateUser.RequestV1.CredentialsV1.Builder()
             credentials.key = authDetails.code
             credentials.secret = authDetails.idToken
             login(.Google, credentials: try! credentials.build(), silent: true)

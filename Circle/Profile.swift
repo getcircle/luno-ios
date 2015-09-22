@@ -215,9 +215,7 @@ extension Services.Profile.Actions {
                         object: nil
                     )
                 })
-                let response = wrapped?.response?.result.getExtension(
-                    Services.Registry.Responses.Profile.addTags()
-                ) as? Services.Profile.Actions.AddTags.ResponseV1
+                wrapped?.response?.result.getExtension(Services.Registry.Responses.Profile.addTags())
                 completionHandler?(error: error)
         }
     }
@@ -232,17 +230,15 @@ extension Services.Profile.Actions {
             "remove_tags",
             extensionField: Services.Registry.Requests.Profile.removeTags(),
             requestBuilder: requestBuilder
-        ) { (_, _, wrapped, error) -> Void in
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                NSNotificationCenter.defaultCenter().postNotificationName(
-                    ProfileServiceNotifications.onProfileUpdatedNotification,
-                    object: nil
-                )
-            })
-            let response = wrapped?.response?.result.getExtension(
-                Services.Registry.Responses.Profile.removeTags()
-            ) as? Services.Profile.Actions.RemoveTags.ResponseV1
-            completionHandler?(error: error)
+            ) { (_, _, wrapped, error) -> Void in
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    NSNotificationCenter.defaultCenter().postNotificationName(
+                        ProfileServiceNotifications.onProfileUpdatedNotification,
+                        object: nil
+                    )
+                })
+                wrapped?.response?.result.getExtension(Services.Registry.Responses.Profile.removeTags())
+                completionHandler?(error: error)
         }
     }
 }
@@ -267,7 +263,6 @@ extension Services.Profile.Containers.ProfileV1 {
 
                 // Hyphen
                 var formattedHireDate = ["\u{2013} at " + organization.name + " for"]
-                var done = false
                 
                 let today = NSDate()
                 if let calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian) {

@@ -75,7 +75,7 @@ class SearchViewController: UIViewController,
                 hideAndRemoveLaunchView()
             }
         }
-        else if let user = AuthViewController.getLoggedInUser() where launchScreenView != nil {
+        else if AuthViewController.getLoggedInUser() != nil && launchScreenView != nil {
             hideAndRemoveLaunchView()
         }
     }

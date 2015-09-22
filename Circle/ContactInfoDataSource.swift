@@ -35,7 +35,7 @@ class ContactInfoDataSource: CardDataSource {
         content.append(emailKeyValueDict)
         
         for contactMethod in profile.contactMethods {
-            var dataDict: [String: AnyObject] = [
+            let dataDict: [String: AnyObject] = [
                 "key": contactMethod.label,
                 "name": contactMethod.label,
                 "value": contactMethod.value,

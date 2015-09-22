@@ -243,7 +243,7 @@ class CircleImageView: UIImageView {
     private func addImageLabelForProfile(profile: Services.Profile.Containers.ProfileV1) {
         if let imageID = imageProfileIdentifier where addLabelIfImageLoadingFails && imageID == profile.id {
             imageText = profile.firstName[0] + profile.lastName[0]
-            var appProfileImageBackgroundColor = ProfileColorsHolder.colors[profile.id] ?? UIColor.appProfileImageBackgroundColor()
+            let appProfileImageBackgroundColor = ProfileColorsHolder.colors[profile.id] ?? UIColor.appProfileImageBackgroundColor()
             ProfileColorsHolder.colors[profile.id] = appProfileImageBackgroundColor
             imageLabel.backgroundColor = appProfileImageBackgroundColor
         }
@@ -252,7 +252,7 @@ class CircleImageView: UIImageView {
     private func isImageInCache(url: NSURL) -> Bool {
         let imageURLRequest = NSMutableURLRequest(URL: url)
         imageURLRequest.timeoutInterval = timeoutInterval
-        if let cachedUIImage = UIImageView.sharedImageCache().cachedImageForRequest(imageURLRequest) {
+        if UIImageView.sharedImageCache().cachedImageForRequest(imageURLRequest) != nil {
             return true
         }
         

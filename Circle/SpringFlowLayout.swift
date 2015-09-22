@@ -125,7 +125,7 @@ class SpringFlowLayout: UICollectionViewFlowLayout {
 //        return dynamicAnimator?.itemsInRect(rect)
 //    }
     
-    override func layoutAttributesForItemAtIndexPath(indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes! {
+    override func layoutAttributesForItemAtIndexPath(indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes? {
         if let attributes = dynamicAnimator?.layoutAttributesForCellAtIndexPath(indexPath) {
             return attributes
         } else {

@@ -35,7 +35,7 @@ class LocationDetailDataSource: CardDataSource {
         
         // Fetch data within a dispatch group, calling populateData when all tasks have finished
         var storedError: NSError!
-        var actionsGroup = dispatch_group_create()
+        let actionsGroup = dispatch_group_create()
 
         dispatch_group_enter(actionsGroup)
         Services.Organization.Actions.getLocation(locationId: location.id, completionHandler: { (location, error) -> Void in

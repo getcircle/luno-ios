@@ -62,7 +62,7 @@ extension Services.Group.Actions {
                 let response = wrapped?.response?.result.getExtension(
                     Services.Registry.Responses.Group.getGroup()
                 ) as? Services.Group.Actions.GetGroup.ResponseV1
-                let nextRequest = wrapped?.getNextRequest()
+                wrapped?.getNextRequest()
                 completionHandler?(group: response?.group, error: error)
         }
     }
@@ -154,10 +154,7 @@ extension Services.Group.Actions {
             paginatorBuilder: nil
         ){
             (_, _, wrapped, error) -> Void in
-            let response = wrapped?.response?.result.getExtension(
-                Services.Registry.Responses.Group.leaveGroup()
-            ) as? Services.Group.Actions.LeaveGroup.ResponseV1
-
+            wrapped?.response?.result.getExtension(Services.Registry.Responses.Group.leaveGroup())
             completionHandler?(error: error)
         }
     }
@@ -166,7 +163,7 @@ extension Services.Group.Actions {
         requestId: String,
         action: Services.Group.Actions.RespondToMembershipRequest.RequestV1.ResponseActionV1,
         completionHandler: RespondToMembershipRequestCompletionHandler?
-    ) {
+        ) {
             let requestBuilder = Services.Group.Actions.RespondToMembershipRequest.RequestV1.Builder()
             requestBuilder.action = action
             requestBuilder.requestId = requestId
@@ -178,9 +175,7 @@ extension Services.Group.Actions {
                 paginatorBuilder: nil
             ){
                 (_, _, wrapped, error) -> Void in
-                let response = wrapped?.response?.result.getExtension(
-                    Services.Registry.Responses.Group.respondToMembershipRequest()
-                ) as? Services.Group.Actions.RespondToMembershipRequest.ResponseV1
+                wrapped?.response?.result.getExtension(Services.Registry.Responses.Group.respondToMembershipRequest())
                 completionHandler?(error: error)
             }
     }

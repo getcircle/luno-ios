@@ -33,7 +33,7 @@ class CenterAlignFlowLayout: UICollectionViewFlowLayout {
         }
         
         // Update frames to center them
-        for (perRowCenterY, perRowItemsAttributes) in itemAttributesByRow {
+        for (_, perRowItemsAttributes) in itemAttributesByRow {
         
             // Figure out the starting X co-ordinate of the first item
             let totalSpacing = minimumInteritemSpacing * (CGFloat(perRowItemsAttributes.count) - 1.0)

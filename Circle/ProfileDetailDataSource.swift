@@ -41,7 +41,7 @@ class ProfileDetailDataSource: CardDataSource {
         }
 
         var storedError: NSError!
-        var actionsGroup = dispatch_group_create()
+        let actionsGroup = dispatch_group_create()
         
         dispatch_group_enter(actionsGroup)
         Services.Profile.Actions.getExtendedProfile(profile.id) {

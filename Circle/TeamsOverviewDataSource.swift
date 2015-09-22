@@ -76,7 +76,7 @@ class TeamsOverviewDataSource: CardDataSource {
     override func loadInitialData(completionHandler: (error: NSError?) -> Void) {
         super.loadInitialData(completionHandler)
         
-        var sectionInset = UIEdgeInsetsZero        
+        let sectionInset = UIEdgeInsetsZero        
         
         card = Card(cardType: cardType, title: "")
         card.sectionInset = sectionInset

@@ -115,7 +115,7 @@ class ProfileCollectionViewCell: CircleCollectionViewCell {
     private func setProfile(profile: Services.Profile.Containers.ProfileV1) {
         nameLabel.text = profile.fullName
         var subtitle = profile.title
-        if let cardType = card?.type {
+        if card?.type != nil {
             switch card!.type {
             case .Birthdays:
                 if let date = profile.birthDate.toDate() {

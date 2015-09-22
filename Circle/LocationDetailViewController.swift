@@ -41,7 +41,6 @@ class LocationDetailViewController:
     // MARK: - Collection View delegate
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        let officeDetailDataSource = dataSource as! LocationDetailDataSource
         if let card = dataSource.cardAtSection(indexPath.section) {
             switch card.type {            
             case .Profiles:
@@ -70,8 +69,8 @@ class LocationDetailViewController:
     // MARK: - Present Map View
     
     private func presentFullScreenMapView(animated: Bool) {
-        var mapViewController = MapViewController()
-        if let headerView = (dataSource as! LocationDetailDataSource).profileHeaderView {
+        let mapViewController = MapViewController()
+        if (dataSource as! LocationDetailDataSource).profileHeaderView != nil {
             mapViewController.location = (dataSource as! LocationDetailDataSource).location
             presentViewController(mapViewController, animated: animated, completion: nil)
         }
@@ -181,7 +180,7 @@ class LocationDetailViewController:
             loggedInUserProfile = AuthViewController.getLoggedInUserProfile()
         {
             let hud = MBProgressHUD.showHUDAddedTo(view, animated: true)
-            var pointsOfContact = NSMutableOrderedSet(array: officeDataSource.location.pointsOfContact)
+            let pointsOfContact = NSMutableOrderedSet(array: officeDataSource.location.pointsOfContact)
             if checked {
                 pointsOfContact.addObject(loggedInUserProfile)
                 hud.labelText = "Adding you as a point of contact"

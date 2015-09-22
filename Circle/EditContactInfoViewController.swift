@@ -75,7 +75,7 @@ class EditContactInfoViewController: UIViewController, UINavigationControllerDel
     }
     
     private func configureFormFields() {
-        var formSections = [
+        let formSections = [
             FormBuilder.Section(
                 title: AppStrings.QuickActionCallLabel,
                 imageSource: "TitlePhone",

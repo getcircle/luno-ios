@@ -129,7 +129,7 @@ class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate {
     private func handlePhoneNumberInput(textField: UITextField, string: String, range: NSRange) {
         if range.length > 0 {
             textField.text = phoneNumberFormatter.removeLastDigitAndRememberPosition()
-        } else if let numericValue = Int(string) {
+        } else if Int(string) != nil {
             if phoneNumberFormatter.getRememberedPosition() < 14 {
                 textField.text = phoneNumberFormatter.inputDigitAndRememberPosition(string)
             }
@@ -154,7 +154,7 @@ class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate {
             } else {
                 textField.text = ""
             }
-        } else if let numericValue = Int(string) {
+        } else if Int(string) != nil {
             if codeDigits < 6 {
                 textField.text = (textField.text ?? "") + string
                 codeDigits += 1
