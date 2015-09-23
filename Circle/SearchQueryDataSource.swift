@@ -157,7 +157,6 @@ class SearchQueryDataSource: CardDataSource {
 
         let emptySearchTerm = searchTerm.trimWhitespace() == ""
         if searchResults.count > 0 {
-            let maxVisibleItems = 3
             let profilesCardTitle = emptySearchTerm ? NSLocalizedString("Recent", comment: "Title of the section showing recent search results") : NSLocalizedString("Results", comment: "Title of the section showing search results")
             let resultsCard = Card(cardType: .Profiles, title: profilesCardTitle, showContentCount: false)
             resultsCard.addContent(content: searchResults)

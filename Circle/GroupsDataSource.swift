@@ -59,7 +59,7 @@ class GroupsDataSource: CardDataSource {
     // MARK: - UICollectionViewDataSource
     
     override func configureCell(cell: CircleCollectionViewCell, atIndexPath indexPath: NSIndexPath) {
-        if let group = contentAtIndexPath(indexPath) as? Services.Group.Containers.GroupV1, cell = cell as? GroupCollectionViewCell {
+        if let cell = cell as? GroupCollectionViewCell where contentAtIndexPath(indexPath) is Services.Group.Containers.GroupV1 {
             cell.groupJoinRequestDelegate = groupJoinRequestDelegate
         }
     }

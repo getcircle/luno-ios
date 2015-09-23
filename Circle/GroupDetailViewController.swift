@@ -64,7 +64,7 @@ class GroupDetailViewController: DetailViewController,
                 
                 
             case .Profiles:
-                if let profile = content as? Services.Profile.Containers.ProfileV1 {
+                if let profile = dataSource.contentAtIndexPath(indexPath) as? Services.Profile.Containers.ProfileV1 {
                     showProfileDetail(profile)
                 }
                 
