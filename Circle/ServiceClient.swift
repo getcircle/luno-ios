@@ -8,7 +8,6 @@
 
 import Foundation
 import ProtobufRegistry
-import ProtocolBuffers
 
 public typealias ServiceCompletionHandler = (NSURLRequest, NSHTTPURLResponse?, WrappedResponse?, NSError?) -> Void
 

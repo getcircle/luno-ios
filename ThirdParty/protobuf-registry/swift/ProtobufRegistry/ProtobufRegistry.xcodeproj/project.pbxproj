@@ -7,7 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		474DF2C01BACC57800DC92E9 /* ProtocolBuffers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 474DF2B71BACC56C00DC92E9 /* ProtocolBuffers.framework */; };
+		470732081BB3308B009D4F53 /* AbstractMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470731FA1BB3308B009D4F53 /* AbstractMessage.swift */; settings = {ASSET_TAGS = (); }; };
+		470732091BB3308B009D4F53 /* CodedInputStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470731FB1BB3308B009D4F53 /* CodedInputStream.swift */; settings = {ASSET_TAGS = (); }; };
+		4707320A1BB3308B009D4F53 /* CodedOutputStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470731FC1BB3308B009D4F53 /* CodedOutputStream.swift */; settings = {ASSET_TAGS = (); }; };
+		4707320B1BB3308B009D4F53 /* ConcreateExtensionField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470731FD1BB3308B009D4F53 /* ConcreateExtensionField.swift */; settings = {ASSET_TAGS = (); }; };
+		4707320C1BB3308B009D4F53 /* ExtendableMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470731FE1BB3308B009D4F53 /* ExtendableMessage.swift */; settings = {ASSET_TAGS = (); }; };
+		4707320D1BB3308B009D4F53 /* ExtensionRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470731FF1BB3308B009D4F53 /* ExtensionRegistry.swift */; settings = {ASSET_TAGS = (); }; };
+		4707320E1BB3308B009D4F53 /* Field.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470732001BB3308B009D4F53 /* Field.swift */; settings = {ASSET_TAGS = (); }; };
+		4707320F1BB3308B009D4F53 /* GeneratedMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470732011BB3308B009D4F53 /* GeneratedMessage.swift */; settings = {ASSET_TAGS = (); }; };
+		470732101BB3308B009D4F53 /* Google.Protobuf.Descriptor.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470732021BB3308B009D4F53 /* Google.Protobuf.Descriptor.proto.swift */; settings = {ASSET_TAGS = (); }; };
+		470732111BB3308B009D4F53 /* Google.Protobuf.SwiftDescriptor.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470732031BB3308B009D4F53 /* Google.Protobuf.SwiftDescriptor.proto.swift */; settings = {ASSET_TAGS = (); }; };
+		470732121BB3308B009D4F53 /* ProtocolBuffers.h in Headers */ = {isa = PBXBuildFile; fileRef = 470732041BB3308B009D4F53 /* ProtocolBuffers.h */; settings = {ASSET_TAGS = (); }; };
+		470732131BB3308B009D4F53 /* RingBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470732051BB3308B009D4F53 /* RingBuffer.swift */; settings = {ASSET_TAGS = (); }; };
+		470732141BB3308B009D4F53 /* UnknownFieldSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470732061BB3308B009D4F53 /* UnknownFieldSet.swift */; settings = {ASSET_TAGS = (); }; };
+		470732151BB3308B009D4F53 /* WireFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470732071BB3308B009D4F53 /* WireFormat.swift */; settings = {ASSET_TAGS = (); }; };
 		474DF2C41BACC5C800DC92E9 /* Services.History.Actions.RecordAction.RecordAction.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474DF2C31BACC5C800DC92E9 /* Services.History.Actions.RecordAction.RecordAction.proto.swift */; settings = {ASSET_TAGS = (); }; };
 		474DF2C61BACC5D100DC92E9 /* Services.History.Containers.Containers.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474DF2C51BACC5D100DC92E9 /* Services.History.Containers.Containers.proto.swift */; settings = {ASSET_TAGS = (); }; };
 		474DF2C81BACC5FA00DC92E9 /* Services.Registry.All.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474DF2C71BACC5FA00DC92E9 /* Services.Registry.All.proto.swift */; settings = {ASSET_TAGS = (); }; };
@@ -114,48 +127,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		474DF2B61BACC56C00DC92E9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 474DF2AE1BACC56B00DC92E9 /* ProtocolBuffers.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 3F85569919C71BCF003802F2;
-			remoteInfo = ProtocolBuffers;
-		};
-		474DF2B81BACC56C00DC92E9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 474DF2AE1BACC56B00DC92E9 /* ProtocolBuffers.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 3F8556A419C71BCF003802F2;
-			remoteInfo = UnitTesting;
-		};
-		474DF2BA1BACC56C00DC92E9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 474DF2AE1BACC56B00DC92E9 /* ProtocolBuffers.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 3F41061C1A1A667700742090;
-			remoteInfo = "ProtocolBuffers(OSX)";
-		};
-		474DF2BC1BACC56C00DC92E9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 474DF2AE1BACC56B00DC92E9 /* ProtocolBuffers.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 3F4106261A1A667800742090;
-			remoteInfo = "UnitTesting(OSX)";
-		};
-		474DF2BE1BACC56C00DC92E9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 474DF2AE1BACC56B00DC92E9 /* ProtocolBuffers.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 3F31A1A91BA199C000F477C1;
-			remoteInfo = "ProtocolBuffers(watchOS)";
-		};
-		474DF2C11BACC58100DC92E9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 474DF2AE1BACC56B00DC92E9 /* ProtocolBuffers.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 3F85569819C71BCF003802F2;
-			remoteInfo = ProtocolBuffers;
-		};
 		BFC6CEFC1A44B58B0081F45B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFC6CEE61A44B58B0081F45B /* Project object */;
@@ -166,7 +137,20 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		474DF2AE1BACC56B00DC92E9 /* ProtocolBuffers.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ProtocolBuffers.xcodeproj; path = "../../../../../protobuf-swift/src/ProtocolBuffers/ProtocolBuffers.xcodeproj"; sourceTree = "<group>"; };
+		470731FA1BB3308B009D4F53 /* AbstractMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractMessage.swift; sourceTree = "<group>"; };
+		470731FB1BB3308B009D4F53 /* CodedInputStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodedInputStream.swift; sourceTree = "<group>"; };
+		470731FC1BB3308B009D4F53 /* CodedOutputStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodedOutputStream.swift; sourceTree = "<group>"; };
+		470731FD1BB3308B009D4F53 /* ConcreateExtensionField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConcreateExtensionField.swift; sourceTree = "<group>"; };
+		470731FE1BB3308B009D4F53 /* ExtendableMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendableMessage.swift; sourceTree = "<group>"; };
+		470731FF1BB3308B009D4F53 /* ExtensionRegistry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionRegistry.swift; sourceTree = "<group>"; };
+		470732001BB3308B009D4F53 /* Field.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Field.swift; sourceTree = "<group>"; };
+		470732011BB3308B009D4F53 /* GeneratedMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneratedMessage.swift; sourceTree = "<group>"; };
+		470732021BB3308B009D4F53 /* Google.Protobuf.Descriptor.proto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Google.Protobuf.Descriptor.proto.swift; sourceTree = "<group>"; };
+		470732031BB3308B009D4F53 /* Google.Protobuf.SwiftDescriptor.proto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Google.Protobuf.SwiftDescriptor.proto.swift; sourceTree = "<group>"; };
+		470732041BB3308B009D4F53 /* ProtocolBuffers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProtocolBuffers.h; sourceTree = "<group>"; };
+		470732051BB3308B009D4F53 /* RingBuffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RingBuffer.swift; sourceTree = "<group>"; };
+		470732061BB3308B009D4F53 /* UnknownFieldSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnknownFieldSet.swift; sourceTree = "<group>"; };
+		470732071BB3308B009D4F53 /* WireFormat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WireFormat.swift; sourceTree = "<group>"; };
 		474DF2C31BACC5C800DC92E9 /* Services.History.Actions.RecordAction.RecordAction.proto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Services.History.Actions.RecordAction.RecordAction.proto.swift; sourceTree = "<group>"; };
 		474DF2C51BACC5D100DC92E9 /* Services.History.Containers.Containers.proto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Services.History.Containers.Containers.proto.swift; sourceTree = "<group>"; };
 		474DF2C71BACC5FA00DC92E9 /* Services.Registry.All.proto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Services.Registry.All.proto.swift; sourceTree = "<group>"; };
@@ -281,7 +265,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				474DF2C01BACC57800DC92E9 /* ProtocolBuffers.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -295,22 +278,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		474DF2AF1BACC56B00DC92E9 /* Products */ = {
+		470731F91BB3308B009D4F53 /* ProtocolBuffers */ = {
 			isa = PBXGroup;
 			children = (
-				474DF2B71BACC56C00DC92E9 /* ProtocolBuffers.framework */,
-				474DF2B91BACC56C00DC92E9 /* ProtocolBuffersTests.xctest */,
-				474DF2BB1BACC56C00DC92E9 /* ProtocolBuffers.framework */,
-				474DF2BD1BACC56C00DC92E9 /* UnitTesting(OSX).xctest */,
-				474DF2BF1BACC56C00DC92E9 /* ProtocolBuffers.framework */,
+				470731FA1BB3308B009D4F53 /* AbstractMessage.swift */,
+				470731FB1BB3308B009D4F53 /* CodedInputStream.swift */,
+				470731FC1BB3308B009D4F53 /* CodedOutputStream.swift */,
+				470731FD1BB3308B009D4F53 /* ConcreateExtensionField.swift */,
+				470731FE1BB3308B009D4F53 /* ExtendableMessage.swift */,
+				470731FF1BB3308B009D4F53 /* ExtensionRegistry.swift */,
+				470732001BB3308B009D4F53 /* Field.swift */,
+				470732011BB3308B009D4F53 /* GeneratedMessage.swift */,
+				470732021BB3308B009D4F53 /* Google.Protobuf.Descriptor.proto.swift */,
+				470732031BB3308B009D4F53 /* Google.Protobuf.SwiftDescriptor.proto.swift */,
+				470732041BB3308B009D4F53 /* ProtocolBuffers.h */,
+				470732051BB3308B009D4F53 /* RingBuffer.swift */,
+				470732061BB3308B009D4F53 /* UnknownFieldSet.swift */,
+				470732071BB3308B009D4F53 /* WireFormat.swift */,
 			);
-			name = Products;
+			name = ProtocolBuffers;
+			path = "ProtocolBuffers/runtime-pb-swift";
 			sourceTree = "<group>";
 		};
 		BFC6CEE51A44B58B0081F45B = {
 			isa = PBXGroup;
 			children = (
-				474DF2AE1BACC56B00DC92E9 /* ProtocolBuffers.xcodeproj */,
+				470731F91BB3308B009D4F53 /* ProtocolBuffers */,
 				BFC6CEF11A44B58B0081F45B /* ProtobufRegistry */,
 				BFC6CEFE1A44B58B0081F45B /* ProtobufRegistryTests */,
 				47E670751BAE586F009DE80A /* ProtobufRegistry.framework */,
@@ -460,6 +453,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				470732121BB3308B009D4F53 /* ProtocolBuffers.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -478,7 +472,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				474DF2C21BACC58100DC92E9 /* PBXTargetDependency */,
 			);
 			name = ProtobufRegistry;
 			productName = ProtobufRegistry;
@@ -531,12 +524,6 @@
 			mainGroup = BFC6CEE51A44B58B0081F45B;
 			productRefGroup = BFC6CEE51A44B58B0081F45B;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 474DF2AF1BACC56B00DC92E9 /* Products */;
-					ProjectRef = 474DF2AE1BACC56B00DC92E9 /* ProtocolBuffers.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				BFC6CEEE1A44B58B0081F45B /* ProtobufRegistry */,
@@ -544,44 +531,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		474DF2B71BACC56C00DC92E9 /* ProtocolBuffers.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = ProtocolBuffers.framework;
-			remoteRef = 474DF2B61BACC56C00DC92E9 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		474DF2B91BACC56C00DC92E9 /* ProtocolBuffersTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = ProtocolBuffersTests.xctest;
-			remoteRef = 474DF2B81BACC56C00DC92E9 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		474DF2BB1BACC56C00DC92E9 /* ProtocolBuffers.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = ProtocolBuffers.framework;
-			remoteRef = 474DF2BA1BACC56C00DC92E9 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		474DF2BD1BACC56C00DC92E9 /* UnitTesting(OSX).xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "UnitTesting(OSX).xctest";
-			remoteRef = 474DF2BC1BACC56C00DC92E9 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		474DF2BF1BACC56C00DC92E9 /* ProtocolBuffers.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = ProtocolBuffers.framework;
-			remoteRef = 474DF2BE1BACC56C00DC92E9 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		BFC6CEED1A44B58B0081F45B /* Resources */ = {
@@ -607,12 +556,16 @@
 			files = (
 				474DF2C81BACC5FA00DC92E9 /* Services.Registry.All.proto.swift in Sources */,
 				474DF2C41BACC5C800DC92E9 /* Services.History.Actions.RecordAction.RecordAction.proto.swift in Sources */,
+				470732101BB3308B009D4F53 /* Google.Protobuf.Descriptor.proto.swift in Sources */,
 				474DF2C61BACC5D100DC92E9 /* Services.History.Containers.Containers.proto.swift in Sources */,
 				474DF2CC1BACC62600DC92E9 /* Services.Media.Actions.CompleteImageUpload.CompleteImageUpload.proto.swift in Sources */,
 				474DF2CD1BACC62600DC92E9 /* Services.Media.Actions.StartImageUpload.StartImageUpload.proto.swift in Sources */,
 				474DF2CE1BACC62600DC92E9 /* Services.Media.Containers.Media.Media.proto.swift in Sources */,
+				4707320E1BB3308B009D4F53 /* Field.swift in Sources */,
 				474DF2D01BACC67D00DC92E9 /* Services.Organization.Actions.AddDirectReports.AddDirectReports.proto.swift in Sources */,
+				4707320B1BB3308B009D4F53 /* ConcreateExtensionField.swift in Sources */,
 				474DF2D21BACC68700DC92E9 /* Services.Organization.Actions.CreateLocation.CreateLocation.proto.swift in Sources */,
+				4707320C1BB3308B009D4F53 /* ExtendableMessage.swift in Sources */,
 				474DF2D41BACC6A600DC92E9 /* Services.Organization.Containers.Integration.Integration.proto.swift in Sources */,
 				474DF2D61BACC6B900DC92E9 /* Services.Organization.Actions.GetLocation.GetLocation.proto.swift in Sources */,
 				474DF2D81BACC6BF00DC92E9 /* Services.Organization.Actions.GetLocations.GetLocations.proto.swift in Sources */,
@@ -627,13 +580,16 @@
 				474DF2EA1BACC73B00DC92E9 /* Services.Glossary.Actions.CreateTerm.CreateTerm.proto.swift in Sources */,
 				474DF2EC1BACC75100DC92E9 /* Services.Organization.Actions.DisableIntegration.DisableIntegration.proto.swift in Sources */,
 				474DF2EE1BACC76E00DC92E9 /* Services.Profile.Actions.CreateProfile.CreateProfile.proto.swift in Sources */,
+				470732081BB3308B009D4F53 /* AbstractMessage.swift in Sources */,
 				474DF2F01BACC78E00DC92E9 /* Services.Organization.Actions.GetProfileReportingDetails.GetProfileReportingDetails.proto.swift in Sources */,
 				474DF2F21BACC79E00DC92E9 /* Services.Profile.Actions.CreateTags.CreateTags.proto.swift in Sources */,
 				474DF2F41BACC7AE00DC92E9 /* Services.Profile.Actions.GetActiveTags.GetActiveTags.proto.swift in Sources */,
+				470732111BB3308B009D4F53 /* Google.Protobuf.SwiftDescriptor.proto.swift in Sources */,
 				474DF2F61BACC7BD00DC92E9 /* Services.Notification.Actions.GetPreferences.GetPreferences.proto.swift in Sources */,
 				474DF2FB1BACC7D300DC92E9 /* Services.Notification.Actions.RegisterDevice.RegisterDevice.proto.swift in Sources */,
 				474DF2FC1BACC7D300DC92E9 /* Services.Notification.Actions.SendNotification.SendNotification.proto.swift in Sources */,
 				474DF2FD1BACC7D300DC92E9 /* Services.Notification.Actions.UpdatePreference.UpdatePreference.proto.swift in Sources */,
+				4707320A1BB3308B009D4F53 /* CodedOutputStream.swift in Sources */,
 				474DF2FE1BACC7D300DC92E9 /* Services.Notification.Containers.Containers.proto.swift in Sources */,
 				474DF3001BACC80800DC92E9 /* Services.Profile.Actions.GetProfile.GetProfile.proto.swift in Sources */,
 				474DF3021BACC84000DC92E9 /* Services.Organization.Actions.GetLocationMembers.GetLocationMembers.proto.swift in Sources */,
@@ -648,6 +604,7 @@
 				474DF3141BACC8CC00DC92E9 /* Services.Profile.Actions.RemoveTags.RemoveTags.proto.swift in Sources */,
 				474DF3161BACC92A00DC92E9 /* Services.Profile.Actions.UpdateProfile.UpdateProfile.proto.swift in Sources */,
 				474DF3181BACC94300DC92E9 /* Services.Profile.Actions.GetExtendedProfile.GetExtendedProfile.proto.swift in Sources */,
+				470732091BB3308B009D4F53 /* CodedInputStream.swift in Sources */,
 				474DF31C1BACC95500DC92E9 /* Services.Search.Actions.Search.Search.proto.swift in Sources */,
 				474DF31E1BACC95500DC92E9 /* Services.Search.Containers.Search.Search.proto.swift in Sources */,
 				474DF31D1BACC95500DC92E9 /* Services.Search.Containers.Containers.proto.swift in Sources */,
@@ -688,7 +645,9 @@
 				474DF3641BACCCD400DC92E9 /* Services.Group.Actions.GetGroup.GetGroup.proto.swift in Sources */,
 				474DF3661BACCCE600DC92E9 /* Services.Group.Containers.Permissions.WhoCanInvite.WhoCanInvite.proto.swift in Sources */,
 				474DF3681BACCCF200DC92E9 /* Services.Group.Actions.LeaveGroup.LeaveGroup.proto.swift in Sources */,
+				4707320D1BB3308B009D4F53 /* ExtensionRegistry.swift in Sources */,
 				474DF36A1BACCD0C00DC92E9 /* Services.Group.Containers.Containers.proto.swift in Sources */,
+				470732151BB3308B009D4F53 /* WireFormat.swift in Sources */,
 				474DF36C1BACCD4800DC92E9 /* Services.Group.Actions.RespondToMembershipRequest.RespondToMembershipRequest.proto.swift in Sources */,
 				474DF36E1BACCD6300DC92E9 /* Services.Group.Containers.Permissions.WhoCanJoin.WhoCanJoin.proto.swift in Sources */,
 				474DF3701BACCD9100DC92E9 /* Services.Group.Containers.Permissions.WhoCanViewGroup.WhoCanViewGroup.proto.swift in Sources */,
@@ -700,12 +659,15 @@
 				474DF37C1BACCE5400DC92E9 /* Services.Sync.Actions.CompleteSync.CompleteSync.proto.swift in Sources */,
 				474DF37E1BACCE5F00DC92E9 /* Services.Sync.Actions.StartSync.StartSync.proto.swift in Sources */,
 				474DF3801BACCE9A00DC92E9 /* Services.Group.Actions.GetMembers.GetMembers.proto.swift in Sources */,
+				470732131BB3308B009D4F53 /* RingBuffer.swift in Sources */,
 				474DF3821BACCEDF00DC92E9 /* Services.Sync.Actions.Sync.Sync.proto.swift in Sources */,
 				474DF3841BACCEF600DC92E9 /* Services.Sync.Containers.Payload.Payload.proto.swift in Sources */,
 				474DF3861BACCF0700DC92E9 /* Services.Sync.Containers.Source.Source.proto.swift in Sources */,
+				4707320F1BB3308B009D4F53 /* GeneratedMessage.swift in Sources */,
 				474DF3881BACCF1C00DC92E9 /* Services.Registry.Requests.Requests.proto.swift in Sources */,
 				474DF38A1BACCF3200DC92E9 /* Services.Registry.Responses.Responses.proto.swift in Sources */,
 				474DF38C1BACCF5100DC92E9 /* Services.Organization.Actions.GetIntegration.GetIntegration.proto.swift in Sources */,
+				470732141BB3308B009D4F53 /* UnknownFieldSet.swift in Sources */,
 				474DF38E1BACCF7900DC92E9 /* Services.User.Actions.Logout.Logout.proto.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -721,11 +683,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		474DF2C21BACC58100DC92E9 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = ProtocolBuffers;
-			targetProxy = 474DF2C11BACC58100DC92E9 /* PBXContainerItemProxy */;
-		};
 		BFC6CEFD1A44B58B0081F45B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = BFC6CEEE1A44B58B0081F45B /* ProtobufRegistry */;

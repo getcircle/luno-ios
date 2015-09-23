@@ -8,7 +8,6 @@
 
 import UIKit
 import ProtobufRegistry
-import ProtocolBuffers
 
 class TeamsOverviewDataSource: CardDataSource {
     

@@ -8,7 +8,6 @@
 
 import Foundation
 import ProtobufRegistry
-import ProtocolBuffers
 
 struct ProfileServiceNotifications {
     static let onProfileUpdatedNotification = "com.rhlabs.notification:onProfileUpdatedNotification"
