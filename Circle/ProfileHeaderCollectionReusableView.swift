@@ -108,9 +108,9 @@ class ProfileHeaderCollectionReusableView: DetailHeaderCollectionReusableView {
             string: userProfile.title.localizedUppercaseString(),
             attributes: [NSKernAttributeName: 2.0]
         )
-        if let titleNavLabelAttributedText = titleNavLabel.attributedText {
+        if let titleLabelAttributedText = titleLabel.attributedText {
             titleNavLabel.attributedText = NSAttributedString(
-                string: titleNavLabelAttributedText.string,
+                string: titleLabelAttributedText.string,
                 attributes: [NSKernAttributeName: 0.5]
             )
         }
@@ -156,9 +156,9 @@ class ProfileHeaderCollectionReusableView: DetailHeaderCollectionReusableView {
             string: officeTitleText.localizedUppercaseString(),
             attributes: [NSKernAttributeName: 2.0]
         )
-        if let titleNavLabelAttributedText = titleNavLabel.attributedText {
+        if let titleLabelAttributedText = titleLabel.attributedText {
             titleNavLabel.attributedText = NSAttributedString(
-                string: titleNavLabelAttributedText.string,
+                string: titleLabelAttributedText.string,
                 attributes: [NSKernAttributeName: 0.5]
             )
         }
@@ -201,9 +201,9 @@ class ProfileHeaderCollectionReusableView: DetailHeaderCollectionReusableView {
             string: teamCounts.localizedUppercaseString(),
             attributes: [NSKernAttributeName: 2.0]
         )
-        if let titleNavLabelAttributedText = titleNavLabel.attributedText {
+        if let titleLabelAttributedText = titleLabel.attributedText {
             titleNavLabel.attributedText = NSAttributedString(
-                string: titleNavLabelAttributedText.string,
+                string: titleLabelAttributedText.string,
                 attributes: [NSKernAttributeName: 0.5]
             )
         }
