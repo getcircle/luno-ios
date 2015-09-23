@@ -2,8 +2,6 @@
 // Source file start_image_upload.proto
 
 import Foundation
-import ProtocolBuffers
-
 
 public extension Services.Media.Actions{ public struct StartImageUpload { }}
 

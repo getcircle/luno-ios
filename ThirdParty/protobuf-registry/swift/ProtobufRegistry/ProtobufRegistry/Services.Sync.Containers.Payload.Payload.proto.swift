@@ -2,8 +2,6 @@
 // Source file payload.proto
 
 import Foundation
-import ProtocolBuffers
-
 
 public extension Services.Sync{ public struct Containers { public struct Payload { }}}
 

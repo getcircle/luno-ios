@@ -2,8 +2,6 @@
 // Source file send_notification.proto
 
 import Foundation
-import ProtocolBuffers
-
 
 public extension Services.Notification.Actions{ public struct SendNotification { }}
 

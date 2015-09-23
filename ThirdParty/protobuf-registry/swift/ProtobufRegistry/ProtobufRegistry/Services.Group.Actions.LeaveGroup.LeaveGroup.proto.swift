@@ -2,8 +2,6 @@
 // Source file leave_group.proto
 
 import Foundation
-import ProtocolBuffers
-
 
 public extension Services.Group.Actions{ public struct LeaveGroup { }}
 

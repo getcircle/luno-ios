@@ -2,8 +2,6 @@
 // Source file register_device.proto
 
 import Foundation
-import ProtocolBuffers
-
 
 public extension Services.Notification.Actions{ public struct RegisterDevice { }}
 

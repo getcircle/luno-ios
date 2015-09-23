@@ -2,8 +2,6 @@
 // Source file request_access.proto
 
 import Foundation
-import ProtocolBuffers
-
 
 public extension Services.User.Actions{ public struct RequestAccess { }}
 

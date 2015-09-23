@@ -2,8 +2,6 @@
 // Source file get_profile_stats.proto
 
 import Foundation
-import ProtocolBuffers
-
 
 public extension Services.Profile.Actions{ public struct GetProfileStats { }}
 

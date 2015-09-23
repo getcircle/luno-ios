@@ -2,8 +2,6 @@
 // Source file get_profile_reporting_details.proto
 
 import Foundation
-import ProtocolBuffers
-
 
 public extension Services.Organization.Actions{ public struct GetProfileReportingDetails { }}
 

@@ -2,8 +2,6 @@
 // Source file get_upcoming_anniversaries.proto
 
 import Foundation
-import ProtocolBuffers
-
 
 public extension Services.Profile.Actions{ public struct GetUpcomingAnniversaries { }}
 

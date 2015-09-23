@@ -2,8 +2,6 @@
 // Source file get_extended_profile.proto
 
 import Foundation
-import ProtocolBuffers
-
 
 public extension Services.Profile.Actions{ public struct GetExtendedProfile { }}
 

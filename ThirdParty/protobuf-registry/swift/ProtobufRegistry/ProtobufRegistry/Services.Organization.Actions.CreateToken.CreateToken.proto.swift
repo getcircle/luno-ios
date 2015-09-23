@@ -2,8 +2,6 @@
 // Source file create_token.proto
 
 import Foundation
-import ProtocolBuffers
-
 
 public extension Services.Organization.Actions{ public struct CreateToken { }}
 

@@ -2,8 +2,6 @@
 // Source file send_verification_code.proto
 
 import Foundation
-import ProtocolBuffers
-
 
 public extension Services.User.Actions{ public struct SendVerificationCode { }}
 

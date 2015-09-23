@@ -2,8 +2,6 @@
 // Source file add_direct_reports.proto
 
 import Foundation
-import ProtocolBuffers
-
 
 public extension Services{ public struct Organization { public struct Actions { public struct AddDirectReports { }}}}
 

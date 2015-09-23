@@ -2,8 +2,6 @@
 // Source file who_can_invite.proto
 
 import Foundation
-import ProtocolBuffers
-
 
 public extension Services.Group{ public struct Containers { public struct Permissions { public struct WhoCanInvite { }}}}
 

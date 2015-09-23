@@ -2,8 +2,6 @@
 // Source file soa.proto
 
 import Foundation
-import ProtocolBuffers
-
 
 public struct Soa { }
 

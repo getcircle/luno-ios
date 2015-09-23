@@ -2,8 +2,6 @@
 // Source file containers.proto
 
 import Foundation
-import ProtocolBuffers
-
 
 public extension Services.Organization.Containers{}
 

@@ -2,8 +2,6 @@
 // Source file get_identities.proto
 
 import Foundation
-import ProtocolBuffers
-
 
 public extension Services.User.Actions{ public struct GetIdentities { }}
 

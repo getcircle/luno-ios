@@ -2,8 +2,6 @@
 // Source file update_profile.proto
 
 import Foundation
-import ProtocolBuffers
-
 
 public extension Services.Profile.Actions{ public struct UpdateProfile { }}
 

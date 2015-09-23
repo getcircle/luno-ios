@@ -2,8 +2,6 @@
 // Source file bulk_update_profiles.proto
 
 import Foundation
-import ProtocolBuffers
-
 
 public extension Services.Profile.Actions{ public struct BulkUpdateProfiles { }}
 

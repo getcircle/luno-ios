@@ -2,8 +2,6 @@
 // Source file get_recent_hires.proto
 
 import Foundation
-import ProtocolBuffers
-
 
 public extension Services.Profile.Actions{ public struct GetRecentHires { }}
 

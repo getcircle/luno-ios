@@ -2,8 +2,6 @@
 // Source file add_to_group.proto
 
 import Foundation
-import ProtocolBuffers
-
 
 public extension Services{ public struct Group { public struct Actions { public struct AddToGroup { }}}}
 

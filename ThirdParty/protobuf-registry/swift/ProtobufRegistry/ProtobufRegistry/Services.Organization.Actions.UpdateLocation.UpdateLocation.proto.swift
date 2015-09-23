@@ -2,8 +2,6 @@
 // Source file update_location.proto
 
 import Foundation
-import ProtocolBuffers
-
 
 public extension Services.Organization.Actions{ public struct UpdateLocation { }}
 

@@ -2,8 +2,6 @@
 // Source file respond_to_membership_request.proto
 
 import Foundation
-import ProtocolBuffers
-
 
 public extension Services.Group.Actions{ public struct RespondToMembershipRequest { }}
 

@@ -2,8 +2,6 @@
 // Source file who_can_join.proto
 
 import Foundation
-import ProtocolBuffers
-
 
 public extension Services.Group.Containers.Permissions{ public struct WhoCanJoin { }}
 

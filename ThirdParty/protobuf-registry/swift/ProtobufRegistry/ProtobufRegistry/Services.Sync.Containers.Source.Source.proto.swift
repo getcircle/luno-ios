@@ -2,8 +2,6 @@
 // Source file source.proto
 
 import Foundation
-import ProtocolBuffers
-
 
 public extension Services.Sync.Containers{ public struct Source { }}
 

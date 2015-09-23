@@ -2,8 +2,6 @@
 // Source file get_authentication_instructions.proto
 
 import Foundation
-import ProtocolBuffers
-
 
 public extension Services.User.Actions{ public struct GetAuthenticationInstructions { }}
 

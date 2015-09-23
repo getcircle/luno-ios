@@ -2,8 +2,6 @@
 // Source file update_term.proto
 
 import Foundation
-import ProtocolBuffers
-
 
 public extension Services.Glossary.Actions{ public struct UpdateTerm { }}
 

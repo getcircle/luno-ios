@@ -2,8 +2,6 @@
 // Source file integration.proto
 
 import Foundation
-import ProtocolBuffers
-
 
 public extension Services.Organization{ public struct Containers { public struct Integration { }}}
 

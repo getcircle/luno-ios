@@ -2,8 +2,6 @@
 // Source file create_term.proto
 
 import Foundation
-import ProtocolBuffers
-
 
 public extension Services{ public struct Glossary { public struct Actions { public struct CreateTerm { }}}}
 

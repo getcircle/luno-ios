@@ -2,8 +2,6 @@
 // Source file all.proto
 
 import Foundation
-import ProtocolBuffers
-
 
 public extension Services{ public struct Registry { }}
 

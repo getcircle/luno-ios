@@ -2,8 +2,6 @@
 // Source file get_preferences.proto
 
 import Foundation
-import ProtocolBuffers
-
 
 public extension Services{ public struct Notification { public struct Actions { public struct GetPreferences { }}}}
 

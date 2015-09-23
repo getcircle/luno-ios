@@ -2,8 +2,6 @@
 // Source file get_team_reporting_details.proto
 
 import Foundation
-import ProtocolBuffers
-
 
 public extension Services.Organization.Actions{ public struct GetTeamReportingDetails { }}
 

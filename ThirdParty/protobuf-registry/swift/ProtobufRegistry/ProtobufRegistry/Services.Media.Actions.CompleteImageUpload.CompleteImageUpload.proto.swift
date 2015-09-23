@@ -2,8 +2,6 @@
 // Source file complete_image_upload.proto
 
 import Foundation
-import ProtocolBuffers
-
 
 public extension Services{ public struct Media { public struct Actions { public struct CompleteImageUpload { }}}}
 

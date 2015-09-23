@@ -2,8 +2,6 @@
 // Source file requests.proto
 
 import Foundation
-import ProtocolBuffers
-
 
 public extension Services.Registry{ public struct Requests { }}
 

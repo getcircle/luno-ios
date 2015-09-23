@@ -2,8 +2,6 @@
 // Source file update_preference.proto
 
 import Foundation
-import ProtocolBuffers
-
 
 public extension Services.Notification.Actions{ public struct UpdatePreference { }}
 

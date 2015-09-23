@@ -2,8 +2,6 @@
 // Source file get_user.proto
 
 import Foundation
-import ProtocolBuffers
-
 
 public extension Services.User.Actions{ public struct GetUser { }}
 

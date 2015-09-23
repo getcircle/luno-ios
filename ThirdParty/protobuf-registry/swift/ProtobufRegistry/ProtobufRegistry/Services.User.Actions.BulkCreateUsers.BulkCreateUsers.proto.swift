@@ -2,8 +2,6 @@
 // Source file bulk_create_users.proto
 
 import Foundation
-import ProtocolBuffers
-
 
 public extension Services.User.Actions{ public struct BulkCreateUsers { }}
 

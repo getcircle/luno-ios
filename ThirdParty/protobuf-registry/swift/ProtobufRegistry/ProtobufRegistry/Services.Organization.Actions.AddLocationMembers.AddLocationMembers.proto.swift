@@ -2,8 +2,6 @@
 // Source file add_location_members.proto
 
 import Foundation
-import ProtocolBuffers
-
 
 public extension Services.Organization.Actions{ public struct AddLocationMembers { }}
 

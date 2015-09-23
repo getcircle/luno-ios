@@ -2,8 +2,6 @@
 // Source file record_device.proto
 
 import Foundation
-import ProtocolBuffers
-
 
 public extension Services.User.Actions{ public struct RecordDevice { }}
 

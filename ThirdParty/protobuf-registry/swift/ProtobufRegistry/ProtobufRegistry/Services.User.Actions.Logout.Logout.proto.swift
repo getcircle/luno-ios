@@ -2,8 +2,6 @@
 // Source file logout.proto
 
 import Foundation
-import ProtocolBuffers
-
 
 public extension Services.User.Actions{ public struct Logout { }}
 

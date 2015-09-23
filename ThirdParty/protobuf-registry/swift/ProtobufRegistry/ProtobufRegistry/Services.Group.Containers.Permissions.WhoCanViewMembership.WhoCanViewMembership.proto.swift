@@ -2,8 +2,6 @@
 // Source file who_can_view_membership.proto
 
 import Foundation
-import ProtocolBuffers
-
 
 public extension Services.Group.Containers.Permissions{ public struct WhoCanViewMembership { }}
 

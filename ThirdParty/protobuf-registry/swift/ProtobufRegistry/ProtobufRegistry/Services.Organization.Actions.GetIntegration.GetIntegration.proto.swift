@@ -2,8 +2,6 @@
 // Source file get_integration.proto
 
 import Foundation
-import ProtocolBuffers
-
 
 public extension Services.Organization.Actions{ public struct GetIntegration { }}
 

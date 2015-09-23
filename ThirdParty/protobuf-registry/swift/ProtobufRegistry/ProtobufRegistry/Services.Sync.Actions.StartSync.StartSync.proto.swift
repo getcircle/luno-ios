@@ -2,8 +2,6 @@
 // Source file start_sync.proto
 
 import Foundation
-import ProtocolBuffers
-
 
 public extension Services.Sync.Actions{ public struct StartSync { }}
 

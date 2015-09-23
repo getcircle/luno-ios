@@ -2,8 +2,6 @@
 // Source file get_terms.proto
 
 import Foundation
-import ProtocolBuffers
-
 
 public extension Services.Glossary.Actions{ public struct GetTerms { }}
 

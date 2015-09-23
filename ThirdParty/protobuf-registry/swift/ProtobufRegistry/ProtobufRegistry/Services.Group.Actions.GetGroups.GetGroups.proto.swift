@@ -2,8 +2,6 @@
 // Source file get_groups.proto
 
 import Foundation
-import ProtocolBuffers
-
 
 public extension Services.Group.Actions{ public struct GetGroups { }}
 

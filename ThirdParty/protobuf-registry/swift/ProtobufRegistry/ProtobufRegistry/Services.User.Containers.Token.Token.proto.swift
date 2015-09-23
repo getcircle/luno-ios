@@ -2,8 +2,6 @@
 // Source file token.proto
 
 import Foundation
-import ProtocolBuffers
-
 
 public extension Services.User{ public struct Containers { public struct Token { }}}
 

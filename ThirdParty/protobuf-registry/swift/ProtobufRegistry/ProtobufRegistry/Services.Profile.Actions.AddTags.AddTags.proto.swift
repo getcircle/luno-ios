@@ -2,8 +2,6 @@
 // Source file add_tags.proto
 
 import Foundation
-import ProtocolBuffers
-
 
 public extension Services{ public struct Profile { public struct Actions { public struct AddTags { }}}}
 

@@ -2,8 +2,6 @@
 // Source file containers.proto
 
 import Foundation
-import ProtocolBuffers
-
 
 public struct Services { public struct Common { public struct Containers { }}}
 

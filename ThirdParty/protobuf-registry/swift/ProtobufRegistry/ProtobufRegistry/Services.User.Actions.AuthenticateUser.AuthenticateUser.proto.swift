@@ -2,8 +2,6 @@
 // Source file authenticate_user.proto
 
 import Foundation
-import ProtocolBuffers
-
 
 public extension Services{ public struct User { public struct Actions { public struct AuthenticateUser { }}}}
 

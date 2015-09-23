@@ -2,8 +2,6 @@
 // Source file complete_authorization.proto
 
 import Foundation
-import ProtocolBuffers
-
 
 public extension Services.User.Actions{ public struct CompleteAuthorization { }}
 

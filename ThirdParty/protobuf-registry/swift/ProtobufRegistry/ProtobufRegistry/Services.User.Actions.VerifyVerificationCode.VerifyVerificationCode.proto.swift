@@ -2,8 +2,6 @@
 // Source file verify_verification_code.proto
 
 import Foundation
-import ProtocolBuffers
-
 
 public extension Services.User.Actions{ public struct VerifyVerificationCode { }}
 

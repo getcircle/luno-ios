@@ -2,8 +2,6 @@
 // Source file complete_sync.proto
 
 import Foundation
-import ProtocolBuffers
-
 
 public extension Services{ public struct Sync { public struct Actions { public struct CompleteSync { }}}}
 
