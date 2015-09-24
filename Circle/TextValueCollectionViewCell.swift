@@ -13,7 +13,6 @@ class TextValueCollectionViewCell: CircleCollectionViewCell {
     @IBOutlet weak private(set) var textLabel: UILabel!
     @IBOutlet weak private(set) var textLabelTopConstraint: NSLayoutConstraint!
     @IBOutlet weak private(set) var textLabelBottomConstraint: NSLayoutConstraint!
-    @IBOutlet weak private(set) var timestampLabel: UILabel!
 
     override class var classReuseIdentifier: String {
         return "TextValueCollectionViewCell"
@@ -28,7 +27,6 @@ class TextValueCollectionViewCell: CircleCollectionViewCell {
         
         selectedBackgroundView = nil
         textLabel.text = ""
-        timestampLabel.hidden = true
     }
 
     override func intrinsicContentSize() -> CGSize {
@@ -39,28 +37,31 @@ class TextValueCollectionViewCell: CircleCollectionViewCell {
     }
     
     override func setData(data: AnyObject) {
-        let normalFont = UIFont(name: "Avenir-Roman", size: textLabel.font.pointSize)
-        let obliqueFont = UIFont(name: "Avenir-Oblique", size: textLabel.font.pointSize)
+        let normalFont = UIFont.regularFont(textLabel.font.pointSize)
+        let italicFont = UIFont.italicFont(textLabel.font.pointSize)
 
-        timestampLabel.hidden = true
-        textLabelBottomConstraint.constant = 20
         if let textData = data as? TextData {
             if textData.value.trimWhitespace() != "" {
-                textLabel.textColor = UIColor.appPrimaryTextColor()
+                let text: String
+                let font: UIFont
+
                 if textData.type == .TeamStatus || textData.type == .ProfileStatus {
-                    textLabel.text = "\"" + textData.value + "\""
-                    textLabel.font = obliqueFont
+                    text = "\"" + textData.value + "\""
+                    font = italicFont
                 }
                 else {
-                    textLabel.text = textData.value
-                    textLabel.font = normalFont
+                    text = textData.value
+                    font = normalFont
                 }
                 
+                let attributedText = NSMutableAttributedString(string: text, attributes: [NSForegroundColorAttributeName: UIColor.appPrimaryTextColor(), NSFontAttributeName: font])
+                
                 if let timestamp = textData.getFormattedTimestamp() {
-                    timestampLabel.text = timestamp
-                    timestampLabel.hidden = false
-                    textLabelBottomConstraint.constant = 50
+                    let attributedTimestamp = NSAttributedString(string: "  \(timestamp)", attributes: [NSForegroundColorAttributeName: UIColor.appSecondaryTextColor(), NSFontAttributeName: UIFont.regularFont(10.0)])
+                    attributedText.appendAttributedString(attributedTimestamp)
                 }
+                
+                textLabel.attributedText = attributedText
             }
             else if let placeholder = textData.placeholder {
                 textLabel.textColor = UIColor.appSecondaryTextColor()
