@@ -35,6 +35,7 @@ message IdentityV1 {
         INTERNAL = 0;
         LINKEDIN = 1;
         GOOGLE = 2;
+        SAML = 3;
     }
 
     optional uint32 version = 1 [default = 1];
@@ -70,4 +71,12 @@ message UserV1 {
     optional string phone_number = 6;
     optional bool phone_number_verified = 7;
     optional string password = 8;
+}
+
+message SAMLDetailsV1 {
+    optional uint32 version = 1 [default = 1];
+    optional string saml_response = 2;
+    optional string relay_state = 3;
+    optional string domain = 4;
+    optional string auth_state = 5;
 }

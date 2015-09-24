@@ -21,7 +21,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='protobufs/services/user/actions/complete_authorization.proto',
   package='services.user.actions.complete_authorization',
   syntax='proto2',
-  serialized_pb=_b('\n<protobufs/services/user/actions/complete_authorization.proto\x12,services.user.actions.complete_authorization\x1a(protobufs/services/user/containers.proto\x1a.protobufs/services/user/containers/token.proto\"\xb0\x02\n\tRequestV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x41\n\x08provider\x18\x02 \x01(\x0e\x32/.services.user.containers.IdentityV1.ProviderV1\x12\x41\n\x0eoauth2_details\x18\x03 \x01(\x0b\x32).services.user.containers.OAuth2DetailsV1\x12\x46\n\x11oauth_sdk_details\x18\x04 \x01(\x0b\x32+.services.user.containers.OAuthSDKDetailsV1\x12\x41\n\x0b\x63lient_type\x18\x05 \x01(\x0e\x32,.services.user.containers.token.ClientTypeV1\"\xe2\x01\n\nResponseV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12.\n\x04user\x18\x02 \x01(\x0b\x32 .services.user.containers.UserV1\x12\x36\n\x08identity\x18\x03 \x01(\x0b\x32$.services.user.containers.IdentityV1\x12\x10\n\x08new_user\x18\x04 \x01(\x08\x12\x46\n\x11oauth_sdk_details\x18\x05 \x01(\x0b\x32+.services.user.containers.OAuthSDKDetailsV1BC\nAcom.rhlabs.protobufs.services.user.actions.complete_authorization')
+  serialized_pb=_b('\n<protobufs/services/user/actions/complete_authorization.proto\x12,services.user.actions.complete_authorization\x1a(protobufs/services/user/containers.proto\x1a.protobufs/services/user/containers/token.proto\"\x85\x03\n\tRequestV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x41\n\x08provider\x18\x02 \x01(\x0e\x32/.services.user.containers.IdentityV1.ProviderV1\x12\x41\n\x0eoauth2_details\x18\x03 \x01(\x0b\x32).services.user.containers.OAuth2DetailsV1\x12\x46\n\x11oauth_sdk_details\x18\x04 \x01(\x0b\x32+.services.user.containers.OAuthSDKDetailsV1\x12\x41\n\x0b\x63lient_type\x18\x05 \x01(\x0e\x32,.services.user.containers.token.ClientTypeV1\x12\x14\n\x0c\x61uthenticate\x18\x06 \x01(\x08\x12=\n\x0csaml_details\x18\x07 \x01(\x0b\x32\'.services.user.containers.SAMLDetailsV1\"\xb7\x02\n\nResponseV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12.\n\x04user\x18\x02 \x01(\x0b\x32 .services.user.containers.UserV1\x12\x36\n\x08identity\x18\x03 \x01(\x0b\x32$.services.user.containers.IdentityV1\x12\x10\n\x08new_user\x18\x04 \x01(\x08\x12\x46\n\x11oauth_sdk_details\x18\x05 \x01(\x0b\x32+.services.user.containers.OAuthSDKDetailsV1\x12\x14\n\x0credirect_uri\x18\x06 \x01(\t\x12=\n\x0csaml_details\x18\x07 \x01(\x0b\x32\'.services.user.containers.SAMLDetailsV1BC\nAcom.rhlabs.protobufs.services.user.actions.complete_authorization')
   ,
   dependencies=[protobufs_dot_services_dot_user_dot_containers__pb2.DESCRIPTOR,protobufs_dot_services_dot_user_dot_containers_dot_token__pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
@@ -71,6 +71,20 @@ _REQUESTV1 = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
+    _descriptor.FieldDescriptor(
+      name='authenticate', full_name='services.user.actions.complete_authorization.RequestV1.authenticate', index=5,
+      number=6, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='saml_details', full_name='services.user.actions.complete_authorization.RequestV1.saml_details', index=6,
+      number=7, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
   ],
   extensions=[
   ],
@@ -84,7 +98,7 @@ _REQUESTV1 = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=201,
-  serialized_end=505,
+  serialized_end=590,
 )
 
 
@@ -130,6 +144,20 @@ _RESPONSEV1 = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
+    _descriptor.FieldDescriptor(
+      name='redirect_uri', full_name='services.user.actions.complete_authorization.ResponseV1.redirect_uri', index=5,
+      number=6, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='saml_details', full_name='services.user.actions.complete_authorization.ResponseV1.saml_details', index=6,
+      number=7, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
   ],
   extensions=[
   ],
@@ -142,17 +170,19 @@ _RESPONSEV1 = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=508,
-  serialized_end=734,
+  serialized_start=593,
+  serialized_end=904,
 )
 
 _REQUESTV1.fields_by_name['provider'].enum_type = protobufs_dot_services_dot_user_dot_containers__pb2._IDENTITYV1_PROVIDERV1
 _REQUESTV1.fields_by_name['oauth2_details'].message_type = protobufs_dot_services_dot_user_dot_containers__pb2._OAUTH2DETAILSV1
 _REQUESTV1.fields_by_name['oauth_sdk_details'].message_type = protobufs_dot_services_dot_user_dot_containers__pb2._OAUTHSDKDETAILSV1
 _REQUESTV1.fields_by_name['client_type'].enum_type = protobufs_dot_services_dot_user_dot_containers_dot_token__pb2._CLIENTTYPEV1
+_REQUESTV1.fields_by_name['saml_details'].message_type = protobufs_dot_services_dot_user_dot_containers__pb2._SAMLDETAILSV1
 _RESPONSEV1.fields_by_name['user'].message_type = protobufs_dot_services_dot_user_dot_containers__pb2._USERV1
 _RESPONSEV1.fields_by_name['identity'].message_type = protobufs_dot_services_dot_user_dot_containers__pb2._IDENTITYV1
 _RESPONSEV1.fields_by_name['oauth_sdk_details'].message_type = protobufs_dot_services_dot_user_dot_containers__pb2._OAUTHSDKDETAILSV1
+_RESPONSEV1.fields_by_name['saml_details'].message_type = protobufs_dot_services_dot_user_dot_containers__pb2._SAMLDETAILSV1
 DESCRIPTOR.message_types_by_name['RequestV1'] = _REQUESTV1
 DESCRIPTOR.message_types_by_name['ResponseV1'] = _RESPONSEV1
 

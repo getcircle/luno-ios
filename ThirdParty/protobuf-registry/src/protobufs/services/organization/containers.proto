@@ -70,3 +70,9 @@ message TokenV1 {
     optional string requested_by_user_id = 3;
     optional string id = 4;
 }
+
+message SSOV1 {
+    optional uint32 version = 1 [default = 1];
+    optional string metadata_url = 2;
+    optional string metadata = 3;
+}

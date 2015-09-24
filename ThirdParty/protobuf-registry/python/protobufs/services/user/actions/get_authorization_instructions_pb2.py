@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='protobufs/services/user/actions/get_authorization_instructions.proto',
   package='services.user.actions.get_authorization_instructions',
   syntax='proto2',
-  serialized_pb=_b('\nDprotobufs/services/user/actions/get_authorization_instructions.proto\x12\x34services.user.actions.get_authorization_instructions\x1a(protobufs/services/user/containers.proto\"v\n\tRequestV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x41\n\x08provider\x18\x02 \x01(\x0e\x32/.services.user.containers.IdentityV1.ProviderV1\x12\x12\n\nlogin_hint\x18\x03 \x01(\t\";\n\nResponseV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x19\n\x11\x61uthorization_url\x18\x02 \x01(\tBK\nIcom.rhlabs.protobufs.services.user.actions.get_authorization_instructions')
+  serialized_pb=_b('\nDprotobufs/services/user/actions/get_authorization_instructions.proto\x12\x34services.user.actions.get_authorization_instructions\x1a(protobufs/services/user/containers.proto\"\x9c\x01\n\tRequestV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x41\n\x08provider\x18\x02 \x01(\x0e\x32/.services.user.containers.IdentityV1.ProviderV1\x12\x12\n\nlogin_hint\x18\x03 \x01(\t\x12\x14\n\x0credirect_uri\x18\x04 \x01(\t\x12\x0e\n\x06\x64omain\x18\x05 \x01(\t\";\n\nResponseV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x19\n\x11\x61uthorization_url\x18\x02 \x01(\tBK\nIcom.rhlabs.protobufs.services.user.actions.get_authorization_instructions')
   ,
   dependencies=[protobufs_dot_services_dot_user_dot_containers__pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
@@ -56,6 +56,20 @@ _REQUESTV1 = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
+    _descriptor.FieldDescriptor(
+      name='redirect_uri', full_name='services.user.actions.get_authorization_instructions.RequestV1.redirect_uri', index=3,
+      number=4, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='domain', full_name='services.user.actions.get_authorization_instructions.RequestV1.domain', index=4,
+      number=5, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
   ],
   extensions=[
   ],
@@ -68,8 +82,8 @@ _REQUESTV1 = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=168,
-  serialized_end=286,
+  serialized_start=169,
+  serialized_end=325,
 )
 
 
@@ -106,8 +120,8 @@ _RESPONSEV1 = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=288,
-  serialized_end=347,
+  serialized_start=327,
+  serialized_end=386,
 )
 
 _REQUESTV1.fields_by_name['provider'].enum_type = protobufs_dot_services_dot_user_dot_containers__pb2._IDENTITYV1_PROVIDERV1

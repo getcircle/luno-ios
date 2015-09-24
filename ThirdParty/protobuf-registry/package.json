@@ -1,6 +1,6 @@
 {
   "name": "protobufs",
-  "version": "2.38.5",
+  "version": "2.42.0",
   "description": "Circle Javascript Protobufs",
   "main": "js/index.js",
   "directories": {
@@ -20,6 +20,6 @@
   },
   "homepage": "https://github.com/getcircle/protobuf-registry",
   "dependencies": {
-    "protobufjs": "mhahn/ProtoBuf.js"
+    "protobufjs": "~4.0.0"
   }
 }
