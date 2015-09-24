@@ -55,7 +55,7 @@ class AuthViewController: UIViewController {
     private var activityIndicator: CircleActivityIndicatorView?
     private var googleSignInButtonText: String?
     private var passwordFieldBottomBorder: UIView!
-    private var socialConnectVC = SocialConnectViewController()
+    private var authorizationVC = AuthorizationViewController()
     private var isNewAccount = false
     
     override func viewDidLoad() {
@@ -120,9 +120,9 @@ class AuthViewController: UIViewController {
         // Do not unregister this notification in viewDidDisappear
         NSNotificationCenter.defaultCenter().addObserver(
             self,
-            selector: "onSocialAccountConnected:",
-            name: SocialConnectNotifications.onServiceConnectedNotification,
-            object: socialConnectVC
+            selector: "onServiceAuthorized:",
+            name: AuthorizationNotifications.onServiceAuthorizedNotification,
+            object: authorizationVC
         )
     }
 
@@ -132,7 +132,7 @@ class AuthViewController: UIViewController {
         workEmailTextField.resignFirstResponder()
     }
 
-    func onSocialAccountConnected(notification: NSNotification) {
+    func onServiceAuthorized(notification: NSNotification) {
         if let
             userInfo = notification.userInfo,
             authDetails = userInfo["oauth_sdk_details"] as? Services.User.Containers.OAuthSDKDetailsV1
@@ -667,12 +667,12 @@ class AuthViewController: UIViewController {
     }
     
     private func openExternalAuth(authorizationURL: String) {
-        socialConnectVC.provider = .Google
-        socialConnectVC.loginHint = workEmailTextField.text
+        authorizationVC.provider = .Google
+        authorizationVC.loginHint = workEmailTextField.text
         if authorizationURL.trimWhitespace() != "" {
-            socialConnectVC.authorizationURL = authorizationURL
+            authorizationVC.authorizationURL = authorizationURL
         }
-        let socialNavController = UINavigationController(rootViewController: socialConnectVC)
+        let socialNavController = UINavigationController(rootViewController: authorizationVC)
         if (UIDevice.currentDevice().userInterfaceIdiom == .Pad) {
             socialNavController.modalPresentationStyle = .FormSheet
         }

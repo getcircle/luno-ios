@@ -1,5 +1,5 @@
 //
-//  SocialConnectViewController.swift
+//  AuthorizationViewController.swift
 //  Circle
 //
 //  Created by Michael Hahn on 2/3/15.
@@ -10,16 +10,16 @@ import ProtobufRegistry
 import UIKit
 import WebKit
 
-struct SocialConnectNotifications {
+struct AuthorizationNotifications {
     
-    static let onServiceConnectedNotification = "com.rhlabs.notification:onSocialServiceConnectedNotification"
+    static let onServiceAuthorizedNotification = "com.rhlabs.notification:onServiceAuthorizedNotification"
     static let serviceProviderUserInfoKey = "provider"
     static let serviceUserUserInfoKey = "user"
     static let serviceIdentityUserInfoKey = "identity"
     static let serviceOAuthSDKDetailsUserInfoKey = "oauth_sdk_details"
 }
 
-class SocialConnectViewController: UIViewController, WKNavigationDelegate {
+class AuthorizationViewController: UIViewController, WKNavigationDelegate {
 
     var activityIndicator: CircleActivityIndicatorView!
     var webView: WKWebView!
@@ -123,13 +123,13 @@ class SocialConnectViewController: UIViewController, WKNavigationDelegate {
                 }
                 if let user = user, identity = identity, authDetails = authDetails {
                     NSNotificationCenter.defaultCenter().postNotificationName(
-                        SocialConnectNotifications.onServiceConnectedNotification, 
+                        AuthorizationNotifications.onServiceAuthorizedNotification,
                         object: self,
                         userInfo: [
-                            SocialConnectNotifications.serviceProviderUserInfoKey: NSNumber(int: provider?.rawValue ?? 0),
-                            SocialConnectNotifications.serviceUserUserInfoKey: user,
-                            SocialConnectNotifications.serviceIdentityUserInfoKey: identity,
-                            SocialConnectNotifications.serviceOAuthSDKDetailsUserInfoKey: authDetails
+                            AuthorizationNotifications.serviceProviderUserInfoKey: NSNumber(int: provider?.rawValue ?? 0),
+                            AuthorizationNotifications.serviceUserUserInfoKey: user,
+                            AuthorizationNotifications.serviceIdentityUserInfoKey: identity,
+                            AuthorizationNotifications.serviceOAuthSDKDetailsUserInfoKey: authDetails
                         ]
                     )
                 }
