@@ -335,7 +335,7 @@ class ProfileDetailDataSource: CardDataSource {
     }
 
     private func isProfileLoggedInUserProfile() -> Bool {
-        if let loggedInUserProfile = AuthViewController.getLoggedInUserProfile() {
+        if let loggedInUserProfile = AuthenticationViewController.getLoggedInUserProfile() {
             return loggedInUserProfile.id == profile.id
         }
         

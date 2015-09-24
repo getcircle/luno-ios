@@ -65,12 +65,12 @@ class SettingsViewController: UIViewController, UICollectionViewDelegate, MFMail
     
     @IBAction func logoutButtonTapped(sender: AnyObject!) {
         dismissViewControllerAnimated(false, completion: { () -> Void in
-            AuthViewController.logOut()
+            AuthenticationViewController.logOut()
         })
     }
 
     @IBAction func logoutDisconnectButtonTapped(sender: AnyObject!) {
-        if let identities = AuthViewController.getLoggedInUserIdentities() {
+        if let identities = AuthenticationViewController.getLoggedInUserIdentities() {
             for identity in identities {
                 if identity.provider == .Google {
                     Services.User.Actions.deleteIdentity(identity) { (error) -> Void in
@@ -78,7 +78,7 @@ class SettingsViewController: UIViewController, UICollectionViewDelegate, MFMail
                             print("error deleting user identity: \(error)")
                         } else {
                             self.dismissViewControllerAnimated(true) { () -> Void in
-                                AuthViewController.logOut()
+                                AuthenticationViewController.logOut()
                             }
                         }
                     }

@@ -1,5 +1,5 @@
 //
-//  AuthViewController.swift
+//  AuthenticationViewController.swift
 //  Circle
 //
 //  Created by Ravi Rani on 11/28/14.
@@ -24,17 +24,17 @@ struct LoggedInUserHolder {
     static var token: String?
 }
 
-struct AuthNotifications {
+struct AuthenticationNotifications {
     static let onLoginNotification = "com.rhlabs.notification:onLoginNotification"
     static let onLogoutNotification = "com.rhlabs.notification:onLogoutNotification"
     static let onProfileChangedNotification = "com.rhlabs.notification:onProfileChangedNotification"
     static let onUserChangedNotification = "com.rhlabs.notifcation:onUserChangedNotification"
 }
 
-private let AuthPasscode = "AuthPasscode"
+private let AuthenticationPasscode = "AuthenticationPasscode"
 private let LocksmithMainUserAccount = "LocksmithMainUserAccount"
-private let LocksmithAuthTokenService = "LocksmithAuthTokenService"
-private let LocksmithAuthDetailsService = "LocksmithAuthDetailsService"
+private let LocksmithAuthenticationTokenService = "LocksmithAuthenticationTokenService"
+private let LocksmithAuthenticationDetailsService = "LocksmithAuthenticationDetailsService"
 private let DefaultsUserKey = "DefaultsUserKey"
 private let DefaultsProfileKey = "DefaultsProfileKey"
 private let DefaultsLastLoggedInUserEmail = "DefaultsLastLoggedInUserEmail"
@@ -44,7 +44,7 @@ private let DefaultsIdentitiesKey = "DefaultsIdentitiesKey"
 private let GoogleClientID = "1077014421904-pes3pbf96obmp75kb00qouoiqf18u78h.apps.googleusercontent.com"
 private let GoogleServerClientID = "1077014421904-1a697ks3qvtt6975qfqhmed8529en8s2.apps.googleusercontent.com"
 
-class AuthViewController: UIViewController {
+class AuthenticationViewController: UIViewController {
 
     @IBOutlet weak var instructionLabel: UILabel!
     @IBOutlet weak var workEmailTextField: UITextField!
@@ -142,7 +142,7 @@ class AuthViewController: UIViewController {
             credentials.secret = authDetails.idToken
             let data = [authDetails.data().base64EncodedStringWithOptions([]): "\(NSDate())"]
             do {
-                try Locksmith.saveData(data, forUserAccount: LocksmithMainUserAccount, inService: LocksmithAuthDetailsService)
+                try Locksmith.saveData(data, forUserAccount: LocksmithMainUserAccount, inService: LocksmithAuthenticationDetailsService)
             }
             catch {
                 print("error saving authDetails: \(error)")
@@ -154,7 +154,7 @@ class AuthViewController: UIViewController {
     // MARK: - Helpers
     
     private func trySilentAuthentication() {
-        let dict = Locksmith.loadDataForUserAccount(LocksmithMainUserAccount, inService: LocksmithAuthDetailsService)
+        let dict = Locksmith.loadDataForUserAccount(LocksmithMainUserAccount, inService: LocksmithAuthenticationDetailsService)
         if let authDetailsString = dict?.keys.first, data = NSData(base64EncodedString: authDetailsString, options: []) {
             let authDetails = try! Services.User.Containers.OAuthSDKDetailsV1.parseFromData(data)
             let credentials = Services.User.Actions.AuthenticateUser.RequestV1.CredentialsV1.Builder()
@@ -229,7 +229,7 @@ class AuthViewController: UIViewController {
             try Locksmith.updateData(
                 [token: "\(NSDate())"],
                 forUserAccount: user.id,
-                inService: LocksmithAuthTokenService)
+                inService: LocksmithAuthenticationTokenService)
         }
         catch {
             // XXX what is the correct way to report errors?
@@ -307,7 +307,7 @@ class AuthViewController: UIViewController {
                 }
                 
                 NSNotificationCenter.defaultCenter().postNotificationName(
-                    AuthNotifications.onLoginNotification,
+                    AuthenticationNotifications.onLoginNotification,
                     object: nil
                 )
                 
@@ -376,9 +376,9 @@ class AuthViewController: UIViewController {
             // Clear keychain
             do {
                 if let user = LoggedInUserHolder.user {
-                    try Locksmith.deleteDataForUserAccount(user.id, inService: LocksmithAuthTokenService)
+                    try Locksmith.deleteDataForUserAccount(user.id, inService: LocksmithAuthenticationTokenService)
                 }
-                try Locksmith.deleteDataForUserAccount(LocksmithMainUserAccount, inService: LocksmithAuthDetailsService)
+                try Locksmith.deleteDataForUserAccount(LocksmithMainUserAccount, inService: LocksmithAuthenticationDetailsService)
             }
             catch {
                 print("Error: \(error)")
@@ -397,14 +397,14 @@ class AuthViewController: UIViewController {
             
             // Notify everyone
             NSNotificationCenter.defaultCenter().postNotificationName(
-                AuthNotifications.onLogoutNotification,
+                AuthenticationNotifications.onLogoutNotification,
                 object: nil
             )
             
             // Switch to default theme on logout
             AppTheme.switchToDefaultTheme()
             
-            // Present auth view
+            // Present Authentication view
             self.presentSplashViewController()
         }
     }
@@ -416,15 +416,15 @@ class AuthViewController: UIViewController {
     }
 
     static func presentSplashViewController() {
-        // Check if user is logged in. If not, present auth view controller
+        // Check if user is logged in. If not, present authentication view controller
         let splashViewController = SplashViewController(nibName: "SplashViewController", bundle: nil)
         self.presentViewControllerWithNavigationController(splashViewController)
     }
     
     static func presentAuthViewController() {
-        // Check if user is logged in. If not, present auth view controller
-        let authViewController = AuthViewController(nibName: "AuthViewController", bundle: nil)
-        self.presentViewControllerWithNavigationController(authViewController)
+        // Check if user is logged in. If not, present authentication view controller
+        let authenticationViewController = AuthenticationViewController(nibName: "AuthenticationViewController", bundle: nil)
+        self.presentViewControllerWithNavigationController(authenticationViewController)
     }
 
     static func presentWelcomeView(goToPhoneVerification: Bool) {
@@ -478,7 +478,7 @@ class AuthViewController: UIViewController {
             return token
         } else {
             if let user = self.getLoggedInUser() {
-                let dict = Locksmith.loadDataForUserAccount(user.id, inService: LocksmithAuthTokenService)
+                let dict = Locksmith.loadDataForUserAccount(user.id, inService: LocksmithAuthenticationTokenService)
                 if let token = dict?.keys.first {
                     cacheTokenAndUserInMemory(token, user: user)
                     return token
@@ -503,7 +503,7 @@ class AuthViewController: UIViewController {
         LoggedInUserHolder.profile = profile
         cacheProfileData(profile)
         NSNotificationCenter.defaultCenter().postNotificationName(
-            AuthNotifications.onProfileChangedNotification,
+            AuthenticationNotifications.onProfileChangedNotification,
             object: profile
         )
     }
@@ -512,7 +512,7 @@ class AuthViewController: UIViewController {
         LoggedInUserHolder.user = user
         cacheUserData(user)
         NSNotificationCenter.defaultCenter().postNotificationName(
-            AuthNotifications.onUserChangedNotification,
+            AuthenticationNotifications.onUserChangedNotification,
             object: user
         )
     }
@@ -585,8 +585,8 @@ class AuthViewController: UIViewController {
     
     static func initializeSplashViewWithPasscodeAndTouchID() {
         VENTouchLock.sharedInstance().setKeychainService(
-            LocksmithAuthTokenService, 
-            keychainAccount: AuthPasscode, 
+            LocksmithAuthenticationTokenService, 
+            keychainAccount: AuthenticationPasscode, 
             touchIDReason: NSLocalizedString("Touch to unlock circle", comment: "Help text for touch ID alert"),
             passcodeAttemptLimit: 10, 
             splashViewControllerClass: PasscodeTouchIDSplashViewController.self
@@ -633,7 +633,7 @@ class AuthViewController: UIViewController {
                 self.googleSignInButton.addShakeAnimation()
             }
             else if let authorizationURL = authorizationURL where authorizationURL.trimWhitespace() != "" {
-                self.openExternalAuth(authorizationURL)
+                self.openExternalAuthentication(authorizationURL)
             }
             else {
                 let newAccount = (accountExists != nil) ? !(accountExists!) : true
@@ -666,7 +666,7 @@ class AuthViewController: UIViewController {
         login(.Internal, credentials: try! credentials.build())
     }
     
-    private func openExternalAuth(authorizationURL: String) {
+    private func openExternalAuthentication(authorizationURL: String) {
         authorizationVC.provider = .Google
         authorizationVC.loginHint = workEmailTextField.text
         if authorizationURL.trimWhitespace() != "" {

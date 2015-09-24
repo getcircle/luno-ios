@@ -79,7 +79,7 @@ class SplashViewController: UIViewController {
     // MARK: - IBActions
     
     @IBAction func getStartedButtonTapped(sender: AnyObject) {
-        let authViewController = AuthViewController(nibName: "AuthViewController", bundle: nil)
-        navigationController?.pushViewController(authViewController, animated: true)
+        let authenticationViewController = AuthenticationViewController(nibName: "AuthenticationViewController", bundle: nil)
+        navigationController?.pushViewController(authenticationViewController, animated: true)
     }
 }

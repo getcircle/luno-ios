@@ -100,7 +100,7 @@ class SettingsDataSource: CardDataSource {
         logoutCard.sectionInset = sectionInset
         logoutCard.showContentCount = false
         var accountContent = [[
-            "text": AuthViewController.getLoggedInUser()!.primaryEmail,
+            "text": AuthenticationViewController.getLoggedInUser()!.primaryEmail,
             "type": SettingsCellType.AccountEmail.rawValue
         ],
         [
@@ -108,7 +108,7 @@ class SettingsDataSource: CardDataSource {
             "type": SettingsCellType.LogOut.rawValue
         ]]
         
-        if let identities = AuthViewController.getLoggedInUserIdentities() where identities.count > 0 {
+        if let identities = AuthenticationViewController.getLoggedInUserIdentities() where identities.count > 0 {
             for identity in identities {
                 if identity.provider == .Google {
                     accountContent.append([

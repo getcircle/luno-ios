@@ -71,11 +71,11 @@ class SearchViewController: UIViewController,
         super.viewDidAppear(animated)
         if firstLoad {
             firstLoad = false
-            if checkUserAndPresentAuthViewController() {
+            if checkUserAndPresentAuthenticationViewController() {
                 hideAndRemoveLaunchView()
             }
         }
-        else if AuthViewController.getLoggedInUser() != nil && launchScreenView != nil {
+        else if AuthenticationViewController.getLoggedInUser() != nil && launchScreenView != nil {
             hideAndRemoveLaunchView()
         }
     }
@@ -120,7 +120,7 @@ class SearchViewController: UIViewController,
     }
     
     private func loadOrgImageView() {
-        if let currentOrganization = AuthViewController.getLoggedInUserOrganization() where orgImageView.image == nil {
+        if let currentOrganization = AuthenticationViewController.getLoggedInUserOrganization() where orgImageView.image == nil {
             orgImageView.setImageWithURL(NSURL(string: currentOrganization.imageUrl)!, animated: true)
         }
     }
@@ -375,7 +375,7 @@ class SearchViewController: UIViewController,
         NSNotificationCenter.defaultCenter().addObserver(
             self,
             selector: "userLoggedIn:",
-            name: AuthNotifications.onLoginNotification,
+            name: AuthenticationNotifications.onLoginNotification,
             object: nil
         )
     }

@@ -299,7 +299,7 @@ class EditContactInfoViewController: UIViewController, UINavigationControllerDel
         builder.contactMethods = contactMethods
         Services.Profile.Actions.updateProfile(try! builder.build()) { (profile, error) -> Void in
             if let profile = profile {
-                AuthViewController.updateUserProfile(profile)
+                AuthenticationViewController.updateUserProfile(profile)
             }
             completion()
         }

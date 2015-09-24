@@ -66,7 +66,7 @@ extension Request {
                 // print("error making service request: \(response?)")
                 if response?.statusCode == 401 {
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                        AuthViewController.logOut()
+                        AuthenticationViewController.logOut()
                     })
                 }
                 
@@ -167,8 +167,8 @@ struct ServiceHttpRequest: URLRequestConvertible {
         }
     }
     
-    static let environment = Environment.Production
-//    static let environment = Environment.Local
+//    static let environment = Environment.Production
+    static let environment = Environment.Local
     
     var data: NSData
     var token: String?

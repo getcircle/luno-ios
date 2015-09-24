@@ -85,7 +85,7 @@ class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate {
     }
     
     private func populateExistingNumberIfExists() {
-        if let loggedInUserProfile = AuthViewController.getLoggedInUserProfile()
+        if let loggedInUserProfile = AuthenticationViewController.getLoggedInUserProfile()
             where loggedInUserProfile.contactMethods.count > 0
         {
             var existingNumber: String?
@@ -202,13 +202,13 @@ class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate {
     func handleVerificationCodeSubmit(sender: AnyObject!) {
         self.toggleLoadingState(actionButton)
         if bypassChecks {
-            if let user = AuthViewController.getLoggedInUser(), phoneNumber = phoneNumberField.text {
+            if let user = AuthenticationViewController.getLoggedInUser(), phoneNumber = phoneNumberField.text {
                 let builder = try! user.toBuilder()
                 builder.phoneNumber = phoneNumber
                 builder.phoneNumberVerified = true
                 Services.User.Actions.updateUser(try! builder.build()) { (user, error) -> Void in
                     if let user = user {
-                        AuthViewController.updateUser(user)
+                        AuthenticationViewController.updateUser(user)
                     }
                     self.toggleLoadingState(self.actionButton)
                     self.verificationComplete()
@@ -217,14 +217,14 @@ class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate {
             return
         }
         
-        if let user = AuthViewController.getLoggedInUser(), code = verificationCodeField.text {
+        if let user = AuthenticationViewController.getLoggedInUser(), code = verificationCodeField.text {
             Services.User.Actions.verifyVerificationCode(code, user: user) { (verified, error) -> Void in
                 self.toggleLoadingState(self.actionButton)
                 if error == nil {
                     if verified! {
                         let userBuilder = try! user.toBuilder()
                         userBuilder.phoneNumberVerified = true
-                        AuthViewController.updateUser(try! userBuilder.build())
+                        AuthenticationViewController.updateUser(try! userBuilder.build())
                         self.verificationComplete()
                     } else {
                         print("user verification failed")
@@ -249,7 +249,7 @@ class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate {
             return
         }
         
-        if let user = AuthViewController.getLoggedInUser(), phoneNumber = phoneNumberField.text {
+        if let user = AuthenticationViewController.getLoggedInUser(), phoneNumber = phoneNumberField.text {
             let userBuilder = try! user.toBuilder()
             userBuilder.phoneNumber = phoneNumber
             Services.User.Actions.updateUser(try! userBuilder.build()) { (user, error) -> Void in
@@ -393,7 +393,7 @@ class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate {
     }
     
     private func verificationComplete() {
-        if let loggedInUserProfile = AuthViewController.getLoggedInUserProfile()
+        if let loggedInUserProfile = AuthenticationViewController.getLoggedInUserProfile()
             where (!loggedInUserProfile.hasImageUrl || loggedInUserProfile.imageUrl.trimWhitespace() == "")
         {
             let verifyProfileVC = VerifyProfileViewController(nibName: "VerifyProfileViewController", bundle: nil)

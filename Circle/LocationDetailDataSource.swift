@@ -85,7 +85,7 @@ class LocationDetailDataSource: CardDataSource {
                     cell = cell as? ProfileCollectionViewCell
                     where card.subType == .PointsOfContact
                 {
-                    if let loggedInUserProfile = AuthViewController.getLoggedInUserProfile(),
+                    if let loggedInUserProfile = AuthenticationViewController.getLoggedInUserProfile(),
                         content: AnyObject = contentAtIndexPath(indexPath)
                         where (content as! Services.Profile.Containers.ProfileV1).id == loggedInUserProfile.id {
                             cell.supportAddButton(isLoggedInUserPOC)
@@ -166,7 +166,7 @@ class LocationDetailDataSource: CardDataSource {
             pointsOfContactCard.addHeader(headerClass: sectionHeaderClass)
             
             if canEdit() {
-                if let loggedInProfile = AuthViewController.getLoggedInUserProfile() {
+                if let loggedInProfile = AuthenticationViewController.getLoggedInUserProfile() {
                     isLoggedInUserPOC = false
                     var pocsInModifiedOrder = Array<Services.Profile.Containers.ProfileV1>()
                     

@@ -87,7 +87,7 @@ class EditTitleViewController: UIViewController, UITextFieldDelegate {
         let hud = MBProgressHUD.showHUDAddedTo(view, animated: true)
         Services.Profile.Actions.updateProfile(updatedProfile, completionHandler: { (profile, error) -> Void in
             if let profile = profile {
-                AuthViewController.updateUserProfile(profile)
+                AuthenticationViewController.updateUserProfile(profile)
                 self.editProfileDelegate?.didFinishEditingProfile()
             }
             hud.hide(true)

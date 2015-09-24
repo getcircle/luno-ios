@@ -17,11 +17,11 @@ extension Mixpanel {
         Mixpanel.sharedInstance().registerSuperPropertiesOnce([
             "\(TrackingPrefix)environemnt": ServiceHttpRequest.environment.name
         ])
-        if let user = AuthViewController.getLoggedInUser() {
+        if let user = AuthenticationViewController.getLoggedInUser() {
             identifyUser(user, newUser: false)
             registerSuperPropertiesForUser(user)
         }
-        if let profile = AuthViewController.getLoggedInUserProfile() {
+        if let profile = AuthenticationViewController.getLoggedInUserProfile() {
             registerSuperPropertiesForProfile(profile)
         }
     }

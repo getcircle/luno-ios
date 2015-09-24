@@ -35,7 +35,7 @@ class TeamDetailDataSource: CardDataSource {
             addPlaceholderCard()
         }
         
-        if AuthViewController.getLoggedInUserProfile() != nil {
+        if AuthenticationViewController.getLoggedInUserProfile() != nil {
             
             var storedError: NSError!
             let actionsGroup = dispatch_group_create()

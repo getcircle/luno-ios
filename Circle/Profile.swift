@@ -258,7 +258,7 @@ extension Services.Profile.Containers.ProfileV1 {
     
     func getFormattedHireDate() -> String? {
         if hasHireDate && hireDate.trimWhitespace() != "" {
-            if let hireDate = hireDate.toDate(), organization = AuthViewController.getLoggedInUserOrganization() {
+            if let hireDate = hireDate.toDate(), organization = AuthenticationViewController.getLoggedInUserOrganization() {
 
                 // Hyphen
                 var formattedHireDate = ["\u{2013} at " + organization.name + " for"]

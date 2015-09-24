@@ -119,7 +119,7 @@ class SearchQueryDataSource: CardDataSource {
     }
     
     private func populateDefaultSearchSuggestions() {
-        if let organization = AuthViewController.getLoggedInUserOrganization() {
+        if let organization = AuthenticationViewController.getLoggedInUserOrganization() {
             let peopleCount = Int(organization.profileCount)
             let peopleTitle = peopleCount == 1 ? "Person" : "People"
             

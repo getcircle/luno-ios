@@ -70,7 +70,7 @@ struct AppTheme {
     
     static func updateThemeForOrganization() {
         // Switch app themes for organization
-        if let organization = AuthViewController.getLoggedInUserOrganization() {
+        if let organization = AuthenticationViewController.getLoggedInUserOrganization() {
             AppTheme.changeThemeByOrganization(organization)
         }
     }

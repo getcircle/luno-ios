@@ -192,7 +192,7 @@ extension Services.User.Actions {
 
     static func recordDevice(pushToken: String?, completionHandler: RecordDeviceCompletionHandler?) {
         dispatch_async(dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0), { () -> Void in
-            if let loggedInUser = AuthViewController.getLoggedInUser(), deviceUuid = UIDevice.currentDevice().identifierForVendor?.UUIDString {
+            if let loggedInUser = AuthenticationViewController.getLoggedInUser(), deviceUuid = UIDevice.currentDevice().identifierForVendor?.UUIDString {
                 let deviceBuilder = Services.User.Containers.DeviceV1.Builder()
                 let currentDevice = UIDevice.currentDevice()
                 let appVersion = NSBundle.appVersion()
@@ -229,7 +229,7 @@ extension Services.User.Actions {
 
     static func requestAccess(completionHandler: RequestAccessCompletionHandler?) {
         dispatch_async(dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0), { () -> Void in
-            if let loggedInUser = AuthViewController.getLoggedInUser() {
+            if let loggedInUser = AuthenticationViewController.getLoggedInUser() {
                 let requestBuilder = Services.User.Actions.RequestAccess.RequestV1.Builder()
                 requestBuilder.userId = loggedInUser.id
                 

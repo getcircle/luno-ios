@@ -102,7 +102,7 @@ class PasscodeTouchIDSplashViewController: VENTouchLockSplashViewController {
         }
         
         dismissViewControllerAnimated(false, completion: { () -> Void in
-            AuthViewController.logOut()
+            AuthenticationViewController.logOut()
         })
     }
 }
