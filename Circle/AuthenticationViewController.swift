@@ -34,7 +34,6 @@ struct AuthenticationNotifications {
 private let AuthenticationPasscode = "AuthenticationPasscode"
 private let LocksmithMainUserAccount = "LocksmithMainUserAccount"
 private let LocksmithAuthenticationTokenService = "LocksmithAuthenticationTokenService"
-private let LocksmithAuthenticationDetailsService = "LocksmithAuthenticationDetailsService"
 private let DefaultsUserKey = "DefaultsUserKey"
 private let DefaultsProfileKey = "DefaultsProfileKey"
 private let DefaultsLastLoggedInUserEmail = "DefaultsLastLoggedInUserEmail"
@@ -65,7 +64,6 @@ class AuthenticationViewController: UIViewController {
         configureView()
         configureGoogleAuthentication()
         configurePasswordField()
-        trySilentAuthentication()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -133,35 +131,29 @@ class AuthenticationViewController: UIViewController {
     }
 
     func onServiceAuthorized(notification: NSNotification) {
-        if let
-            userInfo = notification.userInfo,
-            authDetails = userInfo["oauth_sdk_details"] as? Services.User.Containers.OAuthSDKDetailsV1
-        {
-            let credentials = Services.User.Actions.AuthenticateUser.RequestV1.CredentialsV1.Builder()
-            credentials.key = authDetails.code
-            credentials.secret = authDetails.idToken
-            let data = [authDetails.data().base64EncodedStringWithOptions([]): "\(NSDate())"]
-            do {
-                try Locksmith.saveData(data, forUserAccount: LocksmithMainUserAccount, inService: LocksmithAuthenticationDetailsService)
+        if let userInfo = notification.userInfo {
+            if let authDetails = userInfo["oauth_sdk_details"] as? Services.User.Containers.OAuthSDKDetailsV1 {
+                googleLogin(authDetails)
+
+            } else if let samlDetails = userInfo["saml_details"] as? Services.User.Containers.SAMLDetailsV1 {
+                samlLogin(samlDetails)
             }
-            catch {
-                print("error saving authDetails: \(error)")
-            }
-            login(.Google, credentials: try! credentials.build())
         }
     }
     
     // MARK: - Helpers
     
-    private func trySilentAuthentication() {
-        let dict = Locksmith.loadDataForUserAccount(LocksmithMainUserAccount, inService: LocksmithAuthenticationDetailsService)
-        if let authDetailsString = dict?.keys.first, data = NSData(base64EncodedString: authDetailsString, options: []) {
-            let authDetails = try! Services.User.Containers.OAuthSDKDetailsV1.parseFromData(data)
-            let credentials = Services.User.Actions.AuthenticateUser.RequestV1.CredentialsV1.Builder()
-            credentials.key = authDetails.code
-            credentials.secret = authDetails.idToken
-            login(.Google, credentials: try! credentials.build(), silent: true)
-        }
+    private func googleLogin(authDetails: Services.User.Containers.OAuthSDKDetailsV1) {
+        let credentials = Services.User.Actions.AuthenticateUser.RequestV1.CredentialsV1.Builder()
+        credentials.key = authDetails.code
+        credentials.secret = authDetails.idToken
+        login(.Google, credentials: try! credentials.build())
+    }
+    
+    private func samlLogin(samlDetails: Services.User.Containers.SAMLDetailsV1) {
+        let credentials = Services.User.Actions.AuthenticateUser.RequestV1.CredentialsV1.Builder()
+        credentials.secret = samlDetails.authState
+        login(.Saml, credentials: try! credentials.build())
     }
     
     private static func loadCachedUser() -> Services.User.Containers.UserV1? {
@@ -378,7 +370,6 @@ class AuthenticationViewController: UIViewController {
                 if let user = LoggedInUserHolder.user {
                     try Locksmith.deleteDataForUserAccount(user.id, inService: LocksmithAuthenticationTokenService)
                 }
-                try Locksmith.deleteDataForUserAccount(LocksmithMainUserAccount, inService: LocksmithAuthenticationDetailsService)
             }
             catch {
                 print("Error: \(error)")
@@ -626,14 +617,22 @@ class AuthenticationViewController: UIViewController {
     }
     
     private func checkAuthenticationMethod() {
-        Services.User.Actions.getAuthenticationInstructions(workEmailTextField.text ?? "", completionHandler: { (accountExists, authorizationURL, error) -> Void in
+        Services.User.Actions.getAuthenticationInstructions(workEmailTextField.text ?? "", completionHandler: { (backend, accountExists, authorizationURL, error) -> Void in
             self.hideLoadingState()
+            
+            var provider: Services.User.Containers.IdentityV1.ProviderV1
+            switch backend! {
+            case .Saml:
+                provider = .Saml
+            default:
+                provider = .Google
+            }
             
             if error != nil {
                 self.googleSignInButton.addShakeAnimation()
             }
             else if let authorizationURL = authorizationURL where authorizationURL.trimWhitespace() != "" {
-                self.openExternalAuthentication(authorizationURL)
+                self.openExternalAuthentication(provider, authorizationURL: authorizationURL)
             }
             else {
                 let newAccount = (accountExists != nil) ? !(accountExists!) : true
@@ -666,8 +665,8 @@ class AuthenticationViewController: UIViewController {
         login(.Internal, credentials: try! credentials.build())
     }
     
-    private func openExternalAuthentication(authorizationURL: String) {
-        authorizationVC.provider = .Google
+    private func openExternalAuthentication(provider: Services.User.Containers.IdentityV1.ProviderV1, authorizationURL: String) {
+        authorizationVC.provider = provider
         authorizationVC.loginHint = workEmailTextField.text
         if authorizationURL.trimWhitespace() != "" {
             authorizationVC.authorizationURL = authorizationURL

@@ -115,6 +115,7 @@ struct AppStrings {
     static let SocialConnectDefaultCTA = NSLocalizedString("Connect", comment: "Button title for connecting with generic social account")
     static let SocialConnectGooglePlusCTA = NSLocalizedString("Sign in with Google", comment: "Button title for sign in with Google button")
     static let SocialConnectLinkedInCTA = NSLocalizedString("Connect with LinkedIn", comment: "Button title for connect with LinkedIn button")
+    static let SocialConnectSAMLCTA = NSLocalizedString("Sign in with Okta", comment: "Button title for sign in with Okta button")
     static let StartUsingAppCTA = NSLocalizedString("Start using circle", comment: "Button title shown on the first screen to prompt user to sign up")
 
     static let TeamEditButtonTitle = NSLocalizedString("Edit team", comment: "Title of the button to edit detail of a team")

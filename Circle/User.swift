@@ -15,7 +15,7 @@ typealias UpdateUserCompletionHandler = (user: Services.User.Containers.UserV1?,
 typealias SendVerificationCodeCompletionHandler = (error: NSError?) -> Void
 typealias VerifyVerificationCodeCompletionHandler = (verified: Bool?, error: NSError?) -> Void
 typealias GetAuthorizationInstructionsCompletionHandler = (authorizationURL: String?, error: NSError?) -> Void
-typealias GetAuthenticationInstructionsCompletionHandler = (accountExists: Bool?, authorizationURL: String?, error: NSError?) -> Void
+typealias GetAuthenticationInstructionsCompletionHandler = (backend: Services.User.Actions.AuthenticateUser.RequestV1.AuthBackendV1?, accountExists: Bool?, authorizationURL: String?, error: NSError?) -> Void
 typealias CompleteAuthorizationCompletionHandler = (user: Services.User.Containers.UserV1?, identity: Services.User.Containers.IdentityV1?, error: NSError?) -> Void
 typealias GetIdentitiesCompletionHandler = (identities: Array<Services.User.Containers.IdentityV1>?, error: NSError?) -> Void
 typealias RecordDeviceCompletionHandler = (device: Services.User.Containers.DeviceV1?, error: NSError?) -> Void
@@ -143,7 +143,7 @@ extension Services.User.Actions {
                 let response = wrapped?.response?.result.getExtension(
                     Services.Registry.Responses.User.getAuthenticationInstructions()
                 ) as? Services.User.Actions.GetAuthenticationInstructions.ResponseV1
-                completionHandler?(accountExists: response?.userExists, authorizationURL: response?.authorizationUrl, error: error)
+                completionHandler?(backend: response?.backend, accountExists: response?.userExists, authorizationURL: response?.authorizationUrl, error: error)
             }
     }
     

@@ -128,19 +128,21 @@ class BaseTransport: ServiceTransport {
 struct ServiceHttpRequest: URLRequestConvertible {
     
     enum Environment {
+        case Dev
         case Local
         case Staging
         case Production
         
         var scheme: String {
             switch self {
-            case .Local: return "http"
+            case .Local, .Dev: return "http"
             default: return "https"
             }
         }
         
         var host: String {
             switch self {
+            case .Dev: return "api.dev.lunohq.com"
             case .Local: return "localhost"
             case .Staging: return "api.lunohq.com"
             case .Production: return "api.lunohq.com"
@@ -160,15 +162,26 @@ struct ServiceHttpRequest: URLRequestConvertible {
         
         var name: String {
             switch self {
+            case .Dev: return "dev"
             case .Local: return "local"
             case .Staging: return "staging"
             case .Production: return "production"
             }
         }
+        
+        var redirectHosts: [String] {
+            switch self {
+            case .Dev: return ["api.dev.lunohq.com", "www.dev.lunohq.com"]
+            case .Local: return ["localhost", "local.lunohq.com:9110"]
+            case .Staging: return ["api.staging.lunohq.com", "www.staging.lunohq.com"]
+            case .Production: return ["api.lunohq.com", "www.lunohq.com"]
+            }
+        }
     }
     
 //    static let environment = Environment.Production
-    static let environment = Environment.Local
+//    static let environment = Environment.Local
+    static let environment = Environment.Dev
     
     var data: NSData
     var token: String?

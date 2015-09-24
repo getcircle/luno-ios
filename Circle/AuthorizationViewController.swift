@@ -17,6 +17,7 @@ struct AuthorizationNotifications {
     static let serviceUserUserInfoKey = "user"
     static let serviceIdentityUserInfoKey = "identity"
     static let serviceOAuthSDKDetailsUserInfoKey = "oauth_sdk_details"
+    static let serviceSAMLDetailsUserInfoKey = "saml_details"
 }
 
 class AuthorizationViewController: UIViewController, WKNavigationDelegate {
@@ -64,6 +65,8 @@ class AuthorizationViewController: UIViewController, WKNavigationDelegate {
             title = AppStrings.SocialConnectLinkedInCTA
         case .Google:
             title = AppStrings.SocialConnectGooglePlusCTA
+        case .Saml:
+            title = AppStrings.SocialConnectSAMLCTA
         default:
             title = AppStrings.SocialConnectDefaultCTA
         }
@@ -103,11 +106,15 @@ class AuthorizationViewController: UIViewController, WKNavigationDelegate {
     
     func webView(webView: WKWebView, decidePolicyForNavigationAction navigationAction: WKNavigationAction, decisionHandler: (WKNavigationActionPolicy) -> Void) {
         let url = navigationAction.request.URL
-        if url!.host == ServiceHttpRequest.environment.host && (url!.path!.hasSuffix("success") || url!.path!.hasSuffix("error")) {
-            if url!.path!.hasSuffix("success") {
+        if (
+            ServiceHttpRequest.environment.redirectHosts.contains(url!.host!) &&
+            (url!.path!.hasSuffix("success") || url!.path!.hasSuffix("error") || url!.path!.hasSuffix("auth"))
+        ) {
+            if url!.path!.hasSuffix("success") || url!.path!.hasSuffix("auth") {
                 var user: Services.User.Containers.UserV1?
                 var identity: Services.User.Containers.IdentityV1?
                 var authDetails: Services.User.Containers.OAuthSDKDetailsV1?
+                var samlDetails: Services.User.Containers.SAMLDetailsV1?
                 if let components = NSURLComponents(URL: url!, resolvingAgainstBaseURL: false) {
                     let items = components.queryItems!
                     for item in items {
@@ -116,21 +123,27 @@ class AuthorizationViewController: UIViewController, WKNavigationDelegate {
                             case "user": user = try! Services.User.Containers.UserV1.parseFromData(data)
                             case "identity": identity = try! Services.User.Containers.IdentityV1.parseFromData(data)
                             case "oauth_sdk_details": authDetails = try! Services.User.Containers.OAuthSDKDetailsV1.parseFromData(data)
+                            case "saml_details": samlDetails = try! Services.User.Containers.SAMLDetailsV1.parseFromData(data)
                             default: break
                             }
                         }
                     }
                 }
-                if let user = user, identity = identity, authDetails = authDetails {
+                if let user = user, identity = identity {
+                    var userInfo: [String: AnyObject] = [
+                        AuthorizationNotifications.serviceProviderUserInfoKey: NSNumber(int: provider?.rawValue ?? 0),
+                        AuthorizationNotifications.serviceUserUserInfoKey: user,
+                        AuthorizationNotifications.serviceIdentityUserInfoKey: identity,
+                    ]
+                    if let authDetails = authDetails {
+                        userInfo[AuthorizationNotifications.serviceOAuthSDKDetailsUserInfoKey] = authDetails
+                    } else if let samlDetails = samlDetails {
+                        userInfo[AuthorizationNotifications.serviceSAMLDetailsUserInfoKey] = samlDetails
+                    }
                     NSNotificationCenter.defaultCenter().postNotificationName(
                         AuthorizationNotifications.onServiceAuthorizedNotification,
                         object: self,
-                        userInfo: [
-                            AuthorizationNotifications.serviceProviderUserInfoKey: NSNumber(int: provider?.rawValue ?? 0),
-                            AuthorizationNotifications.serviceUserUserInfoKey: user,
-                            AuthorizationNotifications.serviceIdentityUserInfoKey: identity,
-                            AuthorizationNotifications.serviceOAuthSDKDetailsUserInfoKey: authDetails
-                        ]
+                        userInfo: userInfo
                     )
                 }
             } else {
