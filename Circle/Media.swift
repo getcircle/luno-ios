@@ -70,7 +70,7 @@ extension Services.Media.Actions {
         andCompletionHandler completionHandler: CompleteImageUploadCompletionHandler?
     ) {
         startImageUpload(mediaType, key: mediaKey) { (instructions, error) -> Void in
-            if let instructions = instructions, let data = UIImagePNGRepresentation(image) {
+            if let instructions = instructions, data = UIImagePNGRepresentation(image) {
                 Alamofire.upload(.PUT, instructions.uploadUrl, data: data)
                     .progress { bytesWritten, totalBytesWritten, totalBytesExpectedToWrite in
                         print("progress \(totalBytesWritten): \(totalBytesExpectedToWrite)")

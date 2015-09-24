@@ -202,7 +202,7 @@ class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate {
     func handleVerificationCodeSubmit(sender: AnyObject!) {
         self.toggleLoadingState(actionButton)
         if bypassChecks {
-            if let user = AuthViewController.getLoggedInUser(), let phoneNumber = phoneNumberField.text {
+            if let user = AuthViewController.getLoggedInUser(), phoneNumber = phoneNumberField.text {
                 let builder = try! user.toBuilder()
                 builder.phoneNumber = phoneNumber
                 builder.phoneNumberVerified = true
@@ -217,7 +217,7 @@ class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate {
             return
         }
         
-        if let user = AuthViewController.getLoggedInUser(), let code = verificationCodeField.text {
+        if let user = AuthViewController.getLoggedInUser(), code = verificationCodeField.text {
             Services.User.Actions.verifyVerificationCode(code, user: user) { (verified, error) -> Void in
                 self.toggleLoadingState(self.actionButton)
                 if error == nil {
@@ -249,7 +249,7 @@ class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate {
             return
         }
         
-        if let user = AuthViewController.getLoggedInUser(), let phoneNumber = phoneNumberField.text {
+        if let user = AuthViewController.getLoggedInUser(), phoneNumber = phoneNumberField.text {
             let userBuilder = try! user.toBuilder()
             userBuilder.phoneNumber = phoneNumber
             Services.User.Actions.updateUser(try! userBuilder.build()) { (user, error) -> Void in
