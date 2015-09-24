@@ -19,7 +19,7 @@ typealias UpdateTeamCompletionHandler = (team: Services.Organization.Containers.
 extension Services.Organization.Actions {
 
     static func getTeam(teamId: String, completionHandler: GetTeamCompletionHandler?) {
-        let requestBuilder = Services.Organization.Actions.GetTeam.RequestV1.builder()
+        let requestBuilder = Services.Organization.Actions.GetTeam.RequestV1.Builder()
         requestBuilder.teamId = teamId
         
         let client = ServiceClient(serviceName: "organization")
@@ -36,7 +36,7 @@ extension Services.Organization.Actions {
     }
     
     static func updateTeam(team: Services.Organization.Containers.TeamV1, completionHandler: UpdateTeamCompletionHandler?) {
-        let requestBuilder = Services.Organization.Actions.UpdateTeam.RequestV1.builder()
+        let requestBuilder = Services.Organization.Actions.UpdateTeam.RequestV1.Builder()
         requestBuilder.team = team
         
         let client = ServiceClient(serviceName: "organization")
@@ -62,13 +62,13 @@ extension Services.Organization.Actions {
 extension Services.Organization.Containers.TeamV1 {
     
     public func getName() -> String {
-        if count(name) > 0 {
+        if name.characters.count > 0 {
             return name
         }
-        else if count(displayName) > 0 {
+        else if displayName.characters.count > 0 {
             return displayName
         }
-        else if let manager = manager where count(manager.firstName) > 0 {
+        else if let manager = manager where manager.firstName.characters.count > 0 {
             return manager.firstName + "'s Nameless Team"
         }
         else {

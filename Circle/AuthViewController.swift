@@ -137,50 +137,50 @@ class AuthViewController: UIViewController {
             userInfo = notification.userInfo,
             authDetails = userInfo["oauth_sdk_details"] as? Services.User.Containers.OAuthSDKDetailsV1
         {
-            let credentials = Services.User.Actions.AuthenticateUser.RequestV1.CredentialsV1.builder()
+            let credentials = Services.User.Actions.AuthenticateUser.RequestV1.CredentialsV1.Builder()
             credentials.key = authDetails.code
             credentials.secret = authDetails.idToken
-            let data = [authDetails.data().base64EncodedStringWithOptions(nil): "\(NSDate())"]
-            let error = Locksmith.saveData(data, forUserAccount: LocksmithMainUserAccount, inService: LocksmithAuthDetailsService)
-            if error != nil {
-                println("error saving authDetails: \(error)")
+            let data = [authDetails.data().base64EncodedStringWithOptions([]): "\(NSDate())"]
+            do {
+                try Locksmith.saveData(data, forUserAccount: LocksmithMainUserAccount, inService: LocksmithAuthDetailsService)
             }
-            login(.Google, credentials: credentials.build())
+            catch {
+                print("error saving authDetails: \(error)")
+            }
+            login(.Google, credentials: try! credentials.build())
         }
     }
     
     // MARK: - Helpers
     
     private func trySilentAuthentication() {
-        let (data, error) = Locksmith.loadDataForUserAccount(LocksmithMainUserAccount, inService: LocksmithAuthDetailsService)
-        if let authDetailsString = data?.allKeys[0] as? String, data = NSData(base64EncodedString: authDetailsString, options: nil) {
-            let authDetails = Services.User.Containers.OAuthSDKDetailsV1.parseFromData(data)
-            let credentials = Services.User.Actions.AuthenticateUser.RequestV1.CredentialsV1.builder()
+        let dict = Locksmith.loadDataForUserAccount(LocksmithMainUserAccount, inService: LocksmithAuthDetailsService)
+        if let authDetailsString = dict?.keys.first, data = NSData(base64EncodedString: authDetailsString, options: []) {
+            let authDetails = try! Services.User.Containers.OAuthSDKDetailsV1.parseFromData(data)
+            let credentials = Services.User.Actions.AuthenticateUser.RequestV1.CredentialsV1.Builder()
             credentials.key = authDetails.code
             credentials.secret = authDetails.idToken
-            login(.Google, credentials: credentials.build(), silent: true)
-        } else if error != nil {
-            println("error trying to silently login: \(error)")
+            login(.Google, credentials: try! credentials.build(), silent: true)
         }
     }
     
     private static func loadCachedUser() -> Services.User.Containers.UserV1? {
         if let data = NSUserDefaults.standardUserDefaults().objectForKey(DefaultsUserKey) as? NSData {
-            return Services.User.Containers.UserV1.parseFromData(data)
+            return try! Services.User.Containers.UserV1.parseFromData(data)
         }
         return nil
     }
     
     private static func loadCachedProfile() -> Services.Profile.Containers.ProfileV1? {
         if let data = NSUserDefaults.standardUserDefaults().objectForKey(DefaultsProfileKey) as? NSData {
-            return Services.Profile.Containers.ProfileV1.parseFromData(data)
+            return try! Services.Profile.Containers.ProfileV1.parseFromData(data)
         }
         return nil
     }
     
     private static func loadCachedOrganization() -> Services.Organization.Containers.OrganizationV1? {
         if let data = NSUserDefaults.standardUserDefaults().objectForKey(DefaultsOrganizationKey) as? NSData {
-            return Services.Organization.Containers.OrganizationV1.parseFromData(data)
+            return try! Services.Organization.Containers.OrganizationV1.parseFromData(data)
         }
         return nil
     }
@@ -189,7 +189,7 @@ class AuthViewController: UIViewController {
         if let data = NSUserDefaults.standardUserDefaults().objectForKey(DefaultsIdentitiesKey) as? [NSData] {
             var identities = Array<Services.User.Containers.IdentityV1>()
             for object in data {
-                identities.append(Services.User.Containers.IdentityV1.parseFromData(object))
+                identities.append(try! Services.User.Containers.IdentityV1.parseFromData(object))
             }
             return identities
         }
@@ -212,10 +212,10 @@ class AuthViewController: UIViewController {
     private static func cacheUserIdentities(identities: Array<Services.User.Containers.IdentityV1>) {
         var cleanIdentities = [NSData]()
         for identity in identities {
-            let builder = identity.toBuilder()
+            let builder = try! identity.toBuilder()
             builder.clearAccessToken()
             builder.clearRefreshToken()
-            cleanIdentities.append(builder.build().data())
+            cleanIdentities.append(try! builder.build().data())
         }
         NSUserDefaults.standardUserDefaults().setObject(cleanIdentities, forKey: DefaultsIdentitiesKey)
     }
@@ -225,14 +225,15 @@ class AuthViewController: UIViewController {
         self.dynamicType.cacheTokenAndUserInMemory(token, user: user)
 
         // Cache token to keychain
-        let error = Locksmith.updateData(
-            [token: "\(NSDate())"],
-            forUserAccount: user.id,
-            inService: LocksmithAuthTokenService
-        )
-        if error != nil {
+        do {
+            try Locksmith.updateData(
+                [token: "\(NSDate())"],
+                forUserAccount: user.id,
+                inService: LocksmithAuthTokenService)
+        }
+        catch {
             // XXX what is the correct way to report errors?
-            println("Error: \(error)")
+            print("Error: \(error)")
         }
         
         // Cache user data in user defaults
@@ -253,7 +254,7 @@ class AuthViewController: UIViewController {
         googleSignInButtonText = googleSignInButton.titleLabel?.text
         googleSignInButton.setCustomAttributedTitle("", forState: .Normal)
         if activityIndicator == nil {
-            activityIndicator = googleSignInButton.addActivityIndicator(color: UIColor.whiteColor(), start: false)
+            activityIndicator = googleSignInButton.addActivityIndicator(UIColor.whiteColor(), start: false)
         }
         activityIndicator?.startAnimating()
         googleSignInButton.enabled = false
@@ -366,17 +367,22 @@ class AuthViewController: UIViewController {
     static func logOut() {
         Services.User.Actions.logout { (error) in
             if error != nil {
-                println("error logging user out from server: \(error)")
+                print("error logging user out from server: \(error)")
             }
             
             // Clear all objects in CircleCache
             CircleCache.sharedInstance.clearCache()
 
             // Clear keychain
-            if let user = LoggedInUserHolder.user {
-                Locksmith.deleteDataForUserAccount(user.id, inService: LocksmithAuthTokenService)
+            do {
+                if let user = LoggedInUserHolder.user {
+                    try Locksmith.deleteDataForUserAccount(user.id, inService: LocksmithAuthTokenService)
+                }
+                try Locksmith.deleteDataForUserAccount(LocksmithMainUserAccount, inService: LocksmithAuthDetailsService)
             }
-            Locksmith.deleteDataForUserAccount(LocksmithMainUserAccount, inService: LocksmithAuthDetailsService)
+            catch {
+                print("Error: \(error)")
+            }
             
             // Remove local cached date
             LoggedInUserHolder.profile = nil
@@ -472,8 +478,8 @@ class AuthViewController: UIViewController {
             return token
         } else {
             if let user = self.getLoggedInUser() {
-                let (data, error) = Locksmith.loadDataForUserAccount(user.id, inService: LocksmithAuthTokenService)
-                if let token = data?.allKeys[0] as? String {
+                let dict = Locksmith.loadDataForUserAccount(user.id, inService: LocksmithAuthTokenService)
+                if let token = dict?.keys.first {
                     cacheTokenAndUserInMemory(token, user: user)
                     return token
                 }
@@ -523,7 +529,7 @@ class AuthViewController: UIViewController {
     
     // MARK: - Authentication Helpers
     
-    static func checkUser(#unverifiedPhoneHandler: (() -> Void)?, unverifiedProfileHandler: (() -> Void)?) -> Bool {
+    static func checkUser(unverifiedPhoneHandler unverifiedPhoneHandler: (() -> Void)?, unverifiedProfileHandler: (() -> Void)?) -> Bool {
         if let user = getLoggedInUser() {
             Crashlytics.sharedInstance().setUserIdentifier(user.id)
 
@@ -595,12 +601,12 @@ class AuthViewController: UIViewController {
         // If google sign in, redirect to social connect
         // If password sign in, show password
         // If user does not have an account, show password and change title to create account
-        if workEmailTextField.text.trimWhitespace() == "" {
+        if workEmailTextField.text?.trimWhitespace() == "" {
             googleSignInButton.addShakeAnimation()
             return
         }
         
-        if passwordTextField.alpha == 1.0 && passwordTextField.text.trimWhitespace() == "" {
+        if passwordTextField.alpha == 1.0 && passwordTextField.text?.trimWhitespace() == "" {
             googleSignInButton.addShakeAnimation()
             return
         }
@@ -620,7 +626,7 @@ class AuthViewController: UIViewController {
     }
     
     private func checkAuthenticationMethod() {
-        Services.User.Actions.getAuthenticationInstructions(workEmailTextField.text, completionHandler: { (accountExists, authorizationURL, error) -> Void in
+        Services.User.Actions.getAuthenticationInstructions(workEmailTextField.text ?? "", completionHandler: { (accountExists, authorizationURL, error) -> Void in
             self.hideLoadingState()
             
             if error != nil {
@@ -638,10 +644,10 @@ class AuthViewController: UIViewController {
     }
     
     private func signUpUser() {
-        Services.User.Actions.createUser(workEmailTextField.text.trimWhitespace(), password: passwordTextField.text.trimWhitespace()) { (user, error) -> Void in
+        Services.User.Actions.createUser(workEmailTextField.text?.trimWhitespace() ?? "", password: passwordTextField.text?.trimWhitespace() ?? "") { (user, error) -> Void in
             self.hideLoadingState()
             if error != nil {
-                println("Error \(error)")
+                print("Error \(error)")
                 self.googleSignInButton.addShakeAnimation()
                 let alertController = UIAlertController(title: "Error signing up", message: "There was an error in creating your account. Please try again.", preferredStyle: .Alert)
                 alertController.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
@@ -654,10 +660,10 @@ class AuthViewController: UIViewController {
     }
 
     private func signInUser() {
-        let credentials = Services.User.Actions.AuthenticateUser.RequestV1.CredentialsV1.builder()
-        credentials.key = workEmailTextField.text.trimWhitespace()
-        credentials.secret = passwordTextField.text.trimWhitespace()
-        login(.Internal, credentials: credentials.build())
+        let credentials = Services.User.Actions.AuthenticateUser.RequestV1.CredentialsV1.Builder()
+        credentials.key = workEmailTextField.text?.trimWhitespace() ?? ""
+        credentials.secret = passwordTextField.text?.trimWhitespace() ?? ""
+        login(.Internal, credentials: try! credentials.build())
     }
     
     private func openExternalAuth(authorizationURL: String) {

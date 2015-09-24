@@ -35,7 +35,7 @@ class LocationDetailDataSource: CardDataSource {
         
         // Fetch data within a dispatch group, calling populateData when all tasks have finished
         var storedError: NSError!
-        var actionsGroup = dispatch_group_create()
+        let actionsGroup = dispatch_group_create()
 
         dispatch_group_enter(actionsGroup)
         Services.Organization.Actions.getLocation(locationId: location.id, completionHandler: { (location, error) -> Void in
@@ -52,7 +52,7 @@ class LocationDetailDataSource: CardDataSource {
         dispatch_group_enter(actionsGroup)
         Services.Profile.Actions.getProfiles(locationId: self.location.id) { (profiles, nextRequest, error) -> Void in
             if let profiles = profiles {
-                self.profiles.extend(profiles)
+                self.profiles.appendContentsOf(profiles)
                 self.nextProfilesRequest = nextRequest
             }
             if let error = error {
@@ -73,7 +73,7 @@ class LocationDetailDataSource: CardDataSource {
             let cellIsBottomOfSection = cellAtIndexPathIsBottomOfSection(indexPath)
             
             if cellIsBottomOfSection {
-                cell.addRoundCorners(corners: .BottomLeft | .BottomRight, radius: 4.0)
+                cell.addRoundCorners([.BottomLeft, .BottomRight], radius: 4.0)
             }
             else {
                 cell.removeRoundedCorners()
@@ -124,7 +124,7 @@ class LocationDetailDataSource: CardDataSource {
     private func addPlaceholderCard() {
         
         // Add placeholder card to load profile header instantly
-        var placeholderCard = Card(cardType: .Placeholder, title: "Info")
+        let placeholderCard = Card(cardType: .Placeholder, title: "Info")
         placeholderCard.sectionInset = UIEdgeInsetsZero
         placeholderCard.addHeader(
             headerClass: ProfileHeaderCollectionReusableView.self,

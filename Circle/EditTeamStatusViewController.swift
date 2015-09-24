@@ -34,18 +34,18 @@ class EditTeamStatusViewController: TextInputViewController {
     }
     
     override func saveData(data: String) {
-        let statusBuilder: Services.Organization.Containers.TeamStatusV1Builder
+        let statusBuilder: Services.Organization.Containers.TeamStatusV1.Builder
         if let status = team.status {
-            statusBuilder = status.toBuilder()
+            statusBuilder = try! status.toBuilder()
         }
         else {
-            statusBuilder = Services.Organization.Containers.TeamStatusV1Builder()
+            statusBuilder = Services.Organization.Containers.TeamStatusV1.Builder()
         }
         statusBuilder.value = data
         
-        let teamBuilder = team.toBuilder()
-        teamBuilder.status = statusBuilder.build()
-        Services.Organization.Actions.updateTeam(teamBuilder.build()) { (team, error) -> Void in
+        let teamBuilder = try! team.toBuilder()
+        teamBuilder.status = try! statusBuilder.build()
+        Services.Organization.Actions.updateTeam(try! teamBuilder.build()) { (team, error) -> Void in
             self.onDataSaved(team)
         }
     }

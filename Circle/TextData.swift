@@ -47,12 +47,12 @@ class TextData {
             if let updatedDate = NSDateFormatter.dateFromTimestampString(timestamp),
                 calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)
             {
-                let unitFlags = NSCalendarUnit.CalendarUnitDay | NSCalendarUnit.CalendarUnitHour | NSCalendarUnit.CalendarUnitMinute
+                let unitFlags: NSCalendarUnit = [NSCalendarUnit.Day, NSCalendarUnit.Hour, NSCalendarUnit.Minute]
                 let diffComponents = calendar.components(
                     unitFlags,
                     fromDate: updatedDate,
                     toDate: today,
-                    options: nil
+                    options: []
                 )
                 
                 if diffComponents.day > 0 {

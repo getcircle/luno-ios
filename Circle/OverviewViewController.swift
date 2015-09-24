@@ -38,7 +38,7 @@ class OverviewViewController:
         customInit()
     }
 
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         customInit()
     }
@@ -119,7 +119,7 @@ class OverviewViewController:
     func configureCollectionView() {
         view.addSubview(collectionView)
         collectionView.backgroundColor = UIColor.appViewBackgroundColor()
-        collectionView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.dataSource = dataSource
         collectionView.delegate = delegate
         (collectionView.delegate as! CardCollectionViewDelegate).delegate = self
@@ -214,7 +214,7 @@ class OverviewViewController:
             if isFilterView && searchHeaderView!.searchTextField.text == "" {
                 navigationController?.popViewControllerAnimated(true)
             } else {
-                filter(searchHeaderView!.searchTextField.text)
+                filter(searchHeaderView!.searchTextField.text ?? "")
             }
         }
     }

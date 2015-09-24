@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 RH Labs Inc. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import ProtobufRegistry
 
 func ==(lhs: Card, rhs: Card) -> Bool {
@@ -323,7 +323,7 @@ class Card: Equatable {
             content.append(withContent)
 
         default:
-            content.extend(withContent)
+            content.appendContentsOf(withContent)
         }
 
         allContent = content

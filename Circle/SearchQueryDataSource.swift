@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 RH Labs Inc. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import ProtobufRegistry
 
 class SearchQueryDataSource: CardDataSource {
@@ -55,7 +55,7 @@ class SearchQueryDataSource: CardDataSource {
         searchTerm = string.trimWhitespace()
         if searchTerm == "" {
             clearData()
-            searchResults.extend(CircleCache.getRecordedSearchResults(Card.MaxListEntries))
+            searchResults.appendContentsOf(CircleCache.getRecordedSearchResults(Card.MaxListEntries))
             populateDefaultSearchSuggestions()
             addCards()
             completionHandler(error: nil)
@@ -63,7 +63,7 @@ class SearchQueryDataSource: CardDataSource {
         else {
             if let results = searchCache[searchTerm] {
                 self.clearData()
-                searchResults.extend(results)
+                searchResults.appendContentsOf(results)
                 self.addCards()
                 completionHandler(error: nil)
             }
@@ -129,7 +129,7 @@ class SearchQueryDataSource: CardDataSource {
             let teamsCount = Int(organization.teamCount)
             let teamsTitle = teamsCount == 1 ? "Team" : "Teams"
             
-            searchSuggestions.extend([
+            searchSuggestions.appendContentsOf([
                 SearchCategory(
                     categoryTitle: peopleTitle,
                     ofType: .People,
@@ -157,7 +157,6 @@ class SearchQueryDataSource: CardDataSource {
 
         let emptySearchTerm = searchTerm.trimWhitespace() == ""
         if searchResults.count > 0 {
-            let maxVisibleItems = 3
             let profilesCardTitle = emptySearchTerm ? NSLocalizedString("Recent", comment: "Title of the section showing recent search results") : NSLocalizedString("Results", comment: "Title of the section showing search results")
             let resultsCard = Card(cardType: .Profiles, title: profilesCardTitle, showContentCount: false)
             resultsCard.addContent(content: searchResults)
@@ -207,13 +206,13 @@ class SearchQueryDataSource: CardDataSource {
     private func addSearchActions() {
         if searchResults.count == 1 {
             if let profile = searchResults.first as? Services.Profile.Containers.ProfileV1 {
-                searchSuggestions.extend(SearchAction.searchActionsForProfile(profile) as [SearchSuggestion])
+                searchSuggestions.appendContentsOf(SearchAction.searchActionsForProfile(profile) as [SearchSuggestion])
             }
             else if let team = searchResults.first as? Services.Organization.Containers.TeamV1 {
-                searchSuggestions.extend(SearchAction.searchActionsForTeam(team) as [SearchSuggestion])
+                searchSuggestions.appendContentsOf(SearchAction.searchActionsForTeam(team) as [SearchSuggestion])
             }
             else if let location = searchResults.first as? Services.Organization.Containers.LocationV1 {
-                searchSuggestions.extend(SearchAction.searchActionsForLocation(location) as [SearchSuggestion])
+                searchSuggestions.appendContentsOf(SearchAction.searchActionsForLocation(location) as [SearchSuggestion])
             }
         }
     }

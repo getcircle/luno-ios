@@ -41,7 +41,7 @@ class ProfileDetailDataSource: CardDataSource {
         }
 
         var storedError: NSError!
-        var actionsGroup = dispatch_group_create()
+        let actionsGroup = dispatch_group_create()
         
         dispatch_group_enter(actionsGroup)
         Services.Profile.Actions.getExtendedProfile(profile.id) {
@@ -99,7 +99,7 @@ class ProfileDetailDataSource: CardDataSource {
     internal func addPlaceholderCard() -> Card? {
         
         // Add placeholder card to load profile header instantly
-        var card = Card(cardType: .Placeholder, title: "Info")
+        let card = Card(cardType: .Placeholder, title: "Info")
         card.addHeader(headerClass: ProfileHeaderCollectionReusableView.self)
         appendCard(card)
         return card
@@ -110,12 +110,12 @@ class ProfileDetailDataSource: CardDataSource {
         card.showContentCount = false
         card.addHeader(headerClass: ProfileSectionHeaderCollectionReusableView.self)
         var contactMethods = Array<Services.Profile.Containers.ContactMethodV1>()
-        let emailContactMethod = Services.Profile.Containers.ContactMethodV1Builder()
+        let emailContactMethod = Services.Profile.Containers.ContactMethodV1.Builder()
         emailContactMethod.contactMethodType = .Email
         emailContactMethod.value = profile.email
         emailContactMethod.label = "Email"
-        contactMethods.append(emailContactMethod.build())
-        contactMethods.extend(profile.contactMethods)
+        contactMethods.append(try! emailContactMethod.build())
+        contactMethods.appendContentsOf(profile.contactMethods)
         card.addContent(content: contactMethods)
         appendCard(card)
         return card
@@ -254,7 +254,7 @@ class ProfileDetailDataSource: CardDataSource {
             profileHeaderView = profileHeader
             setDataInHeader()
         }
-        else if let cardHeader = header as? ProfileSectionHeaderCollectionReusableView, let card = cardAtSection(indexPath.section) {
+        else if let cardHeader = header as? ProfileSectionHeaderCollectionReusableView, card = cardAtSection(indexPath.section) {
             if card.type == .ContactMethods {
                 cardHeader.cardSubtitleLabel.hidden = false
                 cardHeader.cardSubtitleLabel.text = location?.officeCurrentDateAndTimeLabel()
@@ -325,7 +325,7 @@ class ProfileDetailDataSource: CardDataSource {
         let cellIsBottomOfSection = cellAtIndexPathIsBottomOfSection(indexPath)
         
         if cellIsBottomOfSection {
-            cell.addRoundCorners(corners: .BottomLeft | .BottomRight, radius: 4.0)
+            cell.addRoundCorners([.BottomLeft, .BottomRight], radius: 4.0)
         }
         else {
             cell.removeRoundedCorners()

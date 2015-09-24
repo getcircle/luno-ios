@@ -36,10 +36,10 @@ class TeamDetailDataSource: CardDataSource {
             addPlaceholderCard()
         }
         
-        if let currentProfile = AuthViewController.getLoggedInUserProfile() {
+        if AuthViewController.getLoggedInUserProfile() != nil {
             
             var storedError: NSError!
-            var actionsGroup = dispatch_group_create()
+            let actionsGroup = dispatch_group_create()
 
             // Fetch extended team details
             dispatch_group_enter(actionsGroup)
@@ -147,7 +147,7 @@ class TeamDetailDataSource: CardDataSource {
                 statusCard.allowEditingContent = true
                 statusCard.addContent(content: [textData])
             }
-            else if let status = team.status where team.status.value.trimWhitespace() != "" {
+            else if let status = team.status where status.value.trimWhitespace() != "" {
                 statusCard.addContent(content: [textData])
             }
             
@@ -188,14 +188,14 @@ class TeamDetailDataSource: CardDataSource {
             let managerCard = Card(cardType: .Profiles, title: "Manager")
             managerCard.showContentCount = false
             managerCard.addHeader(headerClass: sectionHeaderClass)
-            managerCard.addContent(content: [self.managerProfile])
+            managerCard.addContent(content: [manager])
             self.appendCard(managerCard)
         }
     }
     
     private func addSubTeamsCard() {
         if teams.count > 0 {
-            var teamsCard = Card(
+            let teamsCard = Card(
                 cardType: .Profiles,
                 subType: .Teams,
                 title: AppStrings.TeamSubTeamsSectionTitle + " (" + String(teams.count) + ")"
@@ -287,7 +287,7 @@ class TeamDetailDataSource: CardDataSource {
     }
     
     override func configureCell(cell: CircleCollectionViewCell, atIndexPath indexPath: NSIndexPath) {
-        if let content = contentAtIndexPath(indexPath) as? [String: AnyObject], settingsCell = cell as? SettingsCollectionViewCell {
+        if let settingsCell = cell as? SettingsCollectionViewCell where contentAtIndexPath(indexPath) != nil {
             settingsCell.itemLabel.textAlignment = .Center
             settingsCell.itemLabel.textColor = UIColor.appTintColor()
         }
@@ -295,7 +295,7 @@ class TeamDetailDataSource: CardDataSource {
             let cellIsBottomOfSection = cellAtIndexPathIsBottomOfSection(indexPath)
             
             if cellIsBottomOfSection {
-                cell.addRoundCorners(corners: .BottomLeft | .BottomRight, radius: 4.0)
+                cell.addRoundCorners([.BottomLeft, .BottomRight], radius: 4.0)
             }
             else {
                 cell.removeRoundedCorners()

@@ -23,7 +23,7 @@ class SpringFlowLayout: UICollectionViewFlowLayout {
         configure()
     }
 
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         configure()
     }
@@ -44,12 +44,12 @@ class SpringFlowLayout: UICollectionViewFlowLayout {
         interfaceOrientation = statusBarOrientation
         // Overflow the actual rect slightly to avoid flickering
         let visibleRect = CGRectInset(collectionView!.bounds, -100, -100)
-        let itemsInVisibleRect = super.layoutAttributesForElementsInRect(visibleRect) as! [UICollectionViewLayoutAttributes]
+        let itemsInVisibleRect = super.layoutAttributesForElementsInRect(visibleRect)!
         let itemsIndexPathsInVisibleRect = NSSet(array: itemsInVisibleRect.map { item in item.indexPath })
         
         // Step 1: Remove any behaviors that are no longer visible
         let noLongerVisibleBehaviors = dynamicAnimator?.behaviors.filter { behavior in
-            if let firstItem: AnyObject = behavior.items?.first {
+            if let firstItem: AnyObject = behavior.childBehaviors.first {
                 return !itemsIndexPathsInVisibleRect.containsObject(firstItem.indexPath)
             }
             return true
@@ -121,11 +121,11 @@ class SpringFlowLayout: UICollectionViewFlowLayout {
         }
     }
     
-    override func layoutAttributesForElementsInRect(rect: CGRect) -> [AnyObject]? {
-        return dynamicAnimator?.itemsInRect(rect)
-    }
+//    override func layoutAttributesForElementsInRect(rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+//        return dynamicAnimator?.itemsInRect(rect)
+//    }
     
-    override func layoutAttributesForItemAtIndexPath(indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes! {
+    override func layoutAttributesForItemAtIndexPath(indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes? {
         if let attributes = dynamicAnimator?.layoutAttributesForCellAtIndexPath(indexPath) {
             return attributes
         } else {
@@ -178,16 +178,16 @@ class SpringFlowLayout: UICollectionViewFlowLayout {
         return false
     }
     
-    override func prepareForCollectionViewUpdates(updateItems: [AnyObject]!) {
+    override func prepareForCollectionViewUpdates(updateItems: [UICollectionViewUpdateItem]) {
         super.prepareForCollectionViewUpdates(updateItems)
         
-        for item in updateItems as! [UICollectionViewUpdateItem] {
+        for item in updateItems {
             if item.updateAction == .Insert {
-                if (dynamicAnimator?.layoutAttributesForCellAtIndexPath(item.indexPathAfterUpdate!) != nil) {
+                if (dynamicAnimator?.layoutAttributesForCellAtIndexPath(item.indexPathAfterUpdate) != nil) {
                     return
                 }
                 
-                let attributes = UICollectionViewLayoutAttributes(forCellWithIndexPath: item.indexPathAfterUpdate!)
+                let attributes = UICollectionViewLayoutAttributes(forCellWithIndexPath: item.indexPathAfterUpdate)
                 let springBehavior = UIAttachmentBehavior(item: attributes, attachedToAnchor: attributes.center)
                 
                 springBehavior.length = 1.0

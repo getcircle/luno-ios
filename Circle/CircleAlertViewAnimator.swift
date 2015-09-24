@@ -9,19 +9,19 @@
 import UIKit
 
 class CircleAlertViewAnimator: NSObject, UIViewControllerAnimatedTransitioning {
-    func transitionDuration(transitionContext: UIViewControllerContextTransitioning) -> NSTimeInterval {
+    func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval {
         return 0.5
     }
     
     func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
         
-        var containerView = transitionContext.containerView()
-        var fromViewController = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey) as UIViewController!
-        var toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey) as UIViewController!
+        let containerView = transitionContext.containerView()
+        let fromViewController = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey) as UIViewController!
+        let toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey) as UIViewController!
         
         if toViewController is CircleAlertViewController {
             // present animation
-            containerView.addSubview(toViewController.view)
+            containerView?.addSubview(toViewController.view)
             toViewController.view.frame = fromViewController.view.frame
 
             let alertViewController = toViewController as! CircleAlertViewController

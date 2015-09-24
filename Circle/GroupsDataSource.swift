@@ -28,7 +28,7 @@ class GroupsDataSource: CardDataSource {
                 self.card = Card(cardType: self.cardType, title: "")
                 self.card.sectionInset = UIEdgeInsetsMake(1.0, 0.0, 0.0, 0.0)
                 if let groups = groups {
-                    self.groups.extend(groups)
+                    self.groups.appendContentsOf(groups)
                     self.card.addContent(content: groups)
                 }
                 self.appendCard(self.card)
@@ -49,7 +49,7 @@ class GroupsDataSource: CardDataSource {
             ) as? Services.Group.Actions.GetGroups.ResponseV1
             
             if let groups = response?.groups {
-                self.groups.extend(groups)
+                self.groups.appendContentsOf(groups)
                 self.card.addContent(content: groups)
                 self.handleNewContentAddedToCard(self.card, newContent: groups)
             }
@@ -59,7 +59,7 @@ class GroupsDataSource: CardDataSource {
     // MARK: - UICollectionViewDataSource
     
     override func configureCell(cell: CircleCollectionViewCell, atIndexPath indexPath: NSIndexPath) {
-        if let group = contentAtIndexPath(indexPath) as? Services.Group.Containers.GroupV1, cell = cell as? GroupCollectionViewCell {
+        if let cell = cell as? GroupCollectionViewCell where contentAtIndexPath(indexPath) is Services.Group.Containers.GroupV1 {
             cell.groupJoinRequestDelegate = groupJoinRequestDelegate
         }
     }

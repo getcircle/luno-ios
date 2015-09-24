@@ -21,12 +21,9 @@ extension UIDevice {
         
         let machine = systemInfo.machine
         var identifier = ""
-        let mirror = reflect(machine)
-        for i in 0..<reflect(machine).count {
-            if mirror[i].1.value as! Int8 == 0 {
-                break
-            }
-            identifier.append(UnicodeScalar(UInt8(mirror[i].1.value as! Int8)))
+        let mirror = Mirror(reflecting: machine)
+        for child in mirror.children where child.value as? Int8 != 0 {
+            identifier.append(UnicodeScalar(UInt8(child.value as! Int8)))
         }
 
         return identifier

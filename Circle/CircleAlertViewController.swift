@@ -28,7 +28,7 @@ class CircleAlertViewController: UIViewController, UIViewControllerTransitioning
     private(set) var visualEffectView: UIView!
     
     final override func loadView() {
-        var rootView = UIView(frame: UIScreen.mainScreen().bounds)
+        let rootView = UIView(frame: UIScreen.mainScreen().bounds)
         rootView.opaque = true
         view = rootView
         

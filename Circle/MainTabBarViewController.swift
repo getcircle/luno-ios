@@ -29,7 +29,7 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
         var tabBarViewControllers = [UIViewController]()
 
         // Search Tab
-        var searchViewController = SearchViewController(nibName: "SearchViewController", bundle: nil)
+        let searchViewController = SearchViewController(nibName: "SearchViewController", bundle: nil)
         let searchNavigationController = UINavigationController(rootViewController: searchViewController)
         let searchTabImage = UIImage(named: "search_tab_bar")
         let searchTabImageDefault = searchTabImage?
@@ -177,7 +177,7 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
     private func getActiveViewController(viewController: UIViewController?) -> UIViewController? {
         var activeViewController: UIViewController?
         if let navigationController = viewController as? UINavigationController {
-            activeViewController = navigationController.viewControllers.first as? UIViewController
+            activeViewController = navigationController.viewControllers.first
         } else {
             activeViewController = selectedViewController
         }

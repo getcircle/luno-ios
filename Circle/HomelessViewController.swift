@@ -96,7 +96,7 @@ class HomelessViewController: UIViewController {
                 NSUserDefaults.standardUserDefaults().setObject(accessRequest!.userId, forKey: "requested_access_to_app")
                 NSUserDefaults.standardUserDefaults().synchronize()
             } else {
-                println("Error requesting access: \(error)")
+                print("Error requesting access: \(error)")
             }
         }
     }

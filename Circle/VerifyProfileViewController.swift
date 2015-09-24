@@ -26,8 +26,8 @@ class VerifyProfileViewController:
         didSet {
             // only set the staticProfile once
             if staticProfile == nil {
-                let profileBuilder = profile.toBuilder()
-                staticProfile = profileBuilder.build()
+                let profileBuilder = try! profile.toBuilder()
+                staticProfile = try! profileBuilder.build()
             }
         }
     }
@@ -79,7 +79,7 @@ class VerifyProfileViewController:
     // MARK: - IBActions
     
     @IBAction func nextButtonTapped(sender: AnyObject!) {
-        let activityIndicatorView = nextButton.addActivityIndicator(color: UIColor.appUIBackgroundColor())
+        let activityIndicatorView = nextButton.addActivityIndicator(UIColor.appUIBackgroundColor())
         nextButton.setTitle("", forState: .Normal)
         handleImageUpload { () -> Void in
             activityIndicatorView.stopAnimating()
@@ -89,28 +89,28 @@ class VerifyProfileViewController:
     }
     
     @IBAction func editImageButtonTapped(sender: UIView!) {
-        var actionSheet = UIAlertController(
+        let actionSheet = UIAlertController(
             title: AppStrings.ActionSheetAddAPictureButtonTitle,
             message: nil,
             preferredStyle: .ActionSheet
         )
         actionSheet.view.tintColor = UIColor.appActionSheetControlsTintColor()
 
-        var takeAPictureActionControl = UIAlertAction(
+        let takeAPictureActionControl = UIAlertAction(
             title: AppStrings.ActionSheetTakeAPictureButtonTitle,
             style: .Default,
             handler: takeAPictureAction
         )
         actionSheet.addAction(takeAPictureActionControl)
 
-        var pickAPhotoActionControl = UIAlertAction(
+        let pickAPhotoActionControl = UIAlertAction(
             title: AppStrings.ActionSheetPickAPhotoButtonTitle,
             style: .Default,
             handler: pickAPhotoAction
         )
         actionSheet.addAction(pickAPhotoActionControl)
 
-        var cancelControl = UIAlertAction(
+        let cancelControl = UIAlertAction(
             title: AppStrings.GenericCancelButtonTitle,
             style: .Cancel,
             handler: { (action) -> Void in
@@ -133,7 +133,7 @@ class VerifyProfileViewController:
     func takeAPictureAction(action: UIAlertAction!) {
         dismissAddImageActionSheet(false)
         if UIImagePickerController.isSourceTypeAvailable(.Camera) {
-            var pickerVC = UIImagePickerController()
+            let pickerVC = UIImagePickerController()
             pickerVC.sourceType = .Camera
             pickerVC.cameraCaptureMode = .Photo
             if UIImagePickerController.isCameraDeviceAvailable(.Front) {
@@ -152,7 +152,7 @@ class VerifyProfileViewController:
     func pickAPhotoAction(action: UIAlertAction!) {
         dismissAddImageActionSheet(false)
         if UIImagePickerController.isSourceTypeAvailable(.PhotoLibrary) {
-            var pickerVC = UIImagePickerController()
+            let pickerVC = UIImagePickerController()
             pickerVC.sourceType = .PhotoLibrary
             pickerVC.allowsEditing = true
             pickerVC.delegate = self
@@ -167,9 +167,9 @@ class VerifyProfileViewController:
     }
     
     private func updateProfile(completion: () -> Void) {
-        let builder = profile.toBuilder()
+        let builder = try! profile.toBuilder()
         builder.verified = true
-        Services.Profile.Actions.updateProfile(builder.build()) { (profile, error) -> Void in
+        Services.Profile.Actions.updateProfile(try! builder.build()) { (profile, error) -> Void in
             if let profile = profile {
                 AuthViewController.updateUserProfile(profile)
                 self.profile = profile
@@ -187,9 +187,9 @@ class VerifyProfileViewController:
                 withKey: profile.id
             ) { (mediaURL, error) -> Void in
                 if let mediaURL = mediaURL {
-                    let profileBuilder = self.profile.toBuilder()
+                    let profileBuilder = try! self.profile.toBuilder()
                     profileBuilder.imageUrl = mediaURL
-                    self.profile = profileBuilder.build()
+                    self.profile = try! profileBuilder.build()
                     self.updateProfile(completion)
                     hud.hide(true)
                 }
@@ -211,7 +211,7 @@ class VerifyProfileViewController:
     
     // MARK: - UIImagePickerDelegate
     
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         if let pickedImage = info[UIImagePickerControllerEditedImage] as? UIImage {
             profileImageView.image = pickedImage
             didUploadPhoto = true

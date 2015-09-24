@@ -75,7 +75,7 @@ class SettingsViewController: UIViewController, UICollectionViewDelegate, MFMail
                 if identity.provider == .Google {
                     Services.User.Actions.deleteIdentity(identity) { (error) -> Void in
                         if error != nil {
-                            println("error deleting user identity: \(error)")
+                            print("error deleting user identity: \(error)")
                         } else {
                             self.dismissViewControllerAnimated(true) { () -> Void in
                                 AuthViewController.logOut()
@@ -144,9 +144,9 @@ class SettingsViewController: UIViewController, UICollectionViewDelegate, MFMail
     // MARK: - MFMailComposeViewControllerDelegate
     
     func mailComposeController(
-        controller: MFMailComposeViewController!,
+        controller: MFMailComposeViewController,
         didFinishWithResult result: MFMailComposeResult,
-        error: NSError!
+        error: NSError?
         ) {
             dismissViewControllerAnimated(true, completion: nil)
     }

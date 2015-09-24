@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 RH Labs Inc. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 extension NSAttributedString {
  

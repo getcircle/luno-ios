@@ -49,7 +49,7 @@ class ProfileHeaderCollectionReusableView: DetailHeaderCollectionReusableView {
 
         // Initialization code
         addBlurEffect()
-        secondaryViews.extend([secondaryInfoLabel])
+        secondaryViews.appendContentsOf([secondaryInfoLabel])
         configureLabels()
         configureContainerView()
         configureVerifiedProfileButton()
@@ -108,11 +108,13 @@ class ProfileHeaderCollectionReusableView: DetailHeaderCollectionReusableView {
             string: userProfile.title.localizedUppercaseString(),
             attributes: [NSKernAttributeName: 2.0]
         )
-        titleNavLabel.attributedText = NSAttributedString(
-            string: titleLabel.attributedText.string,
-            attributes: [NSKernAttributeName: 0.5]
-        )
-        var hasProfileImageChanged = profile?.imageUrl != userProfile.imageUrl
+        if let titleLabelAttributedText = titleLabel.attributedText {
+            titleNavLabel.attributedText = NSAttributedString(
+                string: titleLabelAttributedText.string,
+                attributes: [NSKernAttributeName: 0.5]
+            )
+        }
+        let hasProfileImageChanged = profile?.imageUrl != userProfile.imageUrl
         profile = userProfile
         profileImage.imageProfileIdentifier = userProfile.id
         if hasProfileImageChanged {
@@ -154,10 +156,12 @@ class ProfileHeaderCollectionReusableView: DetailHeaderCollectionReusableView {
             string: officeTitleText.localizedUppercaseString(),
             attributes: [NSKernAttributeName: 2.0]
         )
-        titleNavLabel.attributedText = NSAttributedString(
-            string: titleLabel.attributedText.string,
-            attributes: [NSKernAttributeName: 0.5]
-        )
+        if let titleLabelAttributedText = titleLabel.attributedText {
+            titleNavLabel.attributedText = NSAttributedString(
+                string: titleLabelAttributedText.string,
+                attributes: [NSKernAttributeName: 0.5]
+            )
+        }
         secondaryInfoLabel.text = office.officeCurrentDateAndTimeLabel()
         if let indicatorImage = office.officeDaylightIndicator() {
             daylightIndicatorImage.alpha = 1.0
@@ -197,10 +201,12 @@ class ProfileHeaderCollectionReusableView: DetailHeaderCollectionReusableView {
             string: teamCounts.localizedUppercaseString(),
             attributes: [NSKernAttributeName: 2.0]
         )
-        titleNavLabel.attributedText = NSAttributedString(
-            string: titleLabel.attributedText.string,
-            attributes: [NSKernAttributeName: 0.5]
-        )
+        if let titleLabelAttributedText = titleLabel.attributedText {
+            titleNavLabel.attributedText = NSAttributedString(
+                string: titleLabelAttributedText.string,
+                attributes: [NSKernAttributeName: 0.5]
+            )
+        }
         profileImage.image = UIImage(named: "hero_group")
         profileImage.makeItCircular(true)
         
@@ -228,7 +234,7 @@ class ProfileHeaderCollectionReusableView: DetailHeaderCollectionReusableView {
         if visualEffectView == nil {
             let blurEffect = UIBlurEffect(style: .Dark)
             visualEffectView = UIVisualEffectView(effect: blurEffect)
-            visualEffectView!.setTranslatesAutoresizingMaskIntoConstraints(false)
+            visualEffectView!.translatesAutoresizingMaskIntoConstraints = false
             insertSubview(visualEffectView!, aboveSubview: backgroundImageView)
             visualEffectView!.autoSetDimensionsToSize(UIScreen.mainScreen().bounds.size)
         }
@@ -246,7 +252,7 @@ class ProfileHeaderCollectionReusableView: DetailHeaderCollectionReusableView {
             verifiedProfileButton.alpha = profileImageFractionValue
 
             if profileImageFractionValue >= 0 {
-                var transform = CGAffineTransformMakeScale(profileImageFractionValue, profileImageFractionValue)
+                let transform = CGAffineTransformMakeScale(profileImageFractionValue, profileImageFractionValue)
                 profileImage.transform = transform
                 verifiedProfileButton.transform = transform
                 verifiedProfileButton.center = CGPointMake(profileImage.center.x + (profileImage.frame.width/2.0), verifiedProfileButton.center.y)
@@ -255,7 +261,7 @@ class ProfileHeaderCollectionReusableView: DetailHeaderCollectionReusableView {
             let delta: CGFloat = 40.0
             let navViews = Set([nameNavLabel, titleNavLabel] as [UIView])
             let excludedViews = Set([profileImage, verifiedProfileButton])
-            for view: UIView in (containerView.subviews as! [UIView]) {
+            for view: UIView in (containerView.subviews ) {
                 if excludedViews.contains(view) {
                     continue
                 }

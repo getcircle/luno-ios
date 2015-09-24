@@ -20,7 +20,7 @@ extension Services.Search.Actions {
         attributeValue: String? = nil,
         completionHandler: SearchCompletionHandler?
     ) {
-        let requestBuilder = Services.Search.Actions.Search.RequestV1.builder()
+        let requestBuilder = Services.Search.Actions.Search.RequestV1.Builder()
         requestBuilder.query = query
         
         if let category = category {

@@ -67,19 +67,24 @@ class CircleCache {
     }
     
     func clearCache() {
-        var keys = NSUserDefaults.standardUserDefaults().dictionaryRepresentation().keys
+        let keys = NSUserDefaults.standardUserDefaults().dictionaryRepresentation().keys
         for key in keys {
-            if let keyString = key as? String where keyString.hasPrefix("cache_") {
-                removeObjectForKey(keyString)
+            if key.hasPrefix("cache_") {
+                removeObjectForKey(key)
             }
         }
         
         // Remove entries from the persistent store
         // ASSUMPTION: We will be only using it as a cache for now
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), { () -> Void in
-            let realm = Realm()
-            realm.write {
-                realm.deleteAll()
+            do {
+                let realm = try Realm()
+                try realm.write {
+                    realm.deleteAll()
+                }
+            }
+            catch {
+                print("Error: \(error)")
             }
         })
     }
@@ -123,7 +128,7 @@ extension CircleCache {
     
     static func recordProfileVisit(profile: Services.Profile.Containers.ProfileV1) {
         var existingProfilesIDs = CircleCache.sharedInstance.objectForKey(CircleCache.Keys.RecentProfileVisits) as! [String]? ?? [String]()
-        var uniqueProfileIDs = NSMutableOrderedSet(array: existingProfilesIDs)
+        let uniqueProfileIDs = NSMutableOrderedSet(array: existingProfilesIDs)
         uniqueProfileIDs.insertObject(profile.id, atIndex: 0)
         let maxRecords: Int = min(uniqueProfileIDs.count, 5)
         existingProfilesIDs = uniqueProfileIDs.array as! [String]
@@ -142,11 +147,16 @@ extension CircleCache {
     }
     
     static func updateCachedDataInRecordedSearchResultsForProfile(profile: Services.Profile.Containers.ProfileV1) {
-        let recordedSearchResultsForProfile = Realm().objects(RecentSearchResult).filter("id = %@ AND type = %d", profile.id, RecentSearchResult.ResultType.Profile.rawValue)
-        for searchResult in recordedSearchResultsForProfile {
-            Realm().write({ () -> Void in
-                searchResult.object = profile.data()
-            })
+        do {
+            let recordedSearchResultsForProfile = try Realm().objects(RecentSearchResult).filter("id = %@ AND type = %d", profile.id, RecentSearchResult.ResultType.Profile.rawValue)
+            for searchResult in recordedSearchResultsForProfile {
+                try Realm().write({ () -> Void in
+                    searchResult.object = profile.data()
+                })
+            }
+        }
+        catch {
+            print("Error: \(error)")
         }
     }
 
@@ -172,17 +182,23 @@ extension CircleCache {
     
     static func getRecordedSearchResults(limit: Int) -> [AnyObject] {
         var searchResults = [AnyObject]()
-        let recordedResults = Realm().objects(RecentSearchResult).sorted("updated", ascending: false)
-        var counter: Int = 0
-        for result in recordedResults {
-            if counter >= limit {
-                break
+        
+        do {
+            let recordedResults = try Realm().objects(RecentSearchResult).sorted("updated", ascending: false)
+            var counter: Int = 0
+            for result in recordedResults {
+                if counter >= limit {
+                    break
+                }
+                
+                if let resultObject: AnyObject = RecentSearchResult.getObjectFromResult(result) {
+                    searchResults.append(resultObject)
+                    counter++
+                }
             }
-            
-            if let resultObject: AnyObject = RecentSearchResult.getObjectFromResult(result) {
-                searchResults.append(resultObject)
-                counter++
-            }
+        }
+        catch {
+            print("Error: \(error)")
         }
         
         return searchResults

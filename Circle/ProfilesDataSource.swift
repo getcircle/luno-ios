@@ -26,7 +26,7 @@ class ProfilesDataSource: CardDataSource {
     
     func configureForLocation(locationId: String, setupOnlySearch: Bool) {
         if !setupOnlySearch {
-            let requestBuilder = Services.Profile.Actions.GetProfiles.RequestV1.builder()
+            let requestBuilder = Services.Profile.Actions.GetProfiles.RequestV1.Builder()
             requestBuilder.locationId = locationId
             configureForParameters(requestBuilder)
         }
@@ -37,7 +37,7 @@ class ProfilesDataSource: CardDataSource {
 
     func configureForTeam(teamId: String, setupOnlySearch: Bool) {
         if !setupOnlySearch {
-            let requestBuilder = Services.Profile.Actions.GetProfiles.RequestV1.builder()
+            let requestBuilder = Services.Profile.Actions.GetProfiles.RequestV1.Builder()
             requestBuilder.teamId = teamId
             configureForParameters(requestBuilder)
         }
@@ -47,13 +47,13 @@ class ProfilesDataSource: CardDataSource {
     }
     
     func configureForDirectReports(profile: Services.Profile.Containers.ProfileV1) {
-        let requestBuilder = Services.Profile.Actions.GetProfiles.RequestV1.builder()
+        let requestBuilder = Services.Profile.Actions.GetProfiles.RequestV1.Builder()
         requestBuilder.managerId = profile.id
         configureForParameters(requestBuilder)
     }
 
     func configureForOrganization() {
-        let requestBuilder = Services.Profile.Actions.GetProfiles.RequestV1.builder()
+        let requestBuilder = Services.Profile.Actions.GetProfiles.RequestV1.Builder()
         configureForParameters(requestBuilder)
     }
     
@@ -71,7 +71,7 @@ class ProfilesDataSource: CardDataSource {
     }
     
     func configureForGroup(group: Services.Group.Containers.GroupV1, role: Services.Group.Containers.RoleV1) {
-        let requestBuilder = Services.Group.Actions.GetMembers.RequestV1.builder()
+        let requestBuilder = Services.Group.Actions.GetMembers.RequestV1.Builder()
         requestBuilder.groupId = group.id
         requestBuilder.role = role
         let client = ServiceClient(serviceName: "group")
@@ -93,13 +93,13 @@ class ProfilesDataSource: CardDataSource {
     // MARK: - Set Initial Data
     
     override func setInitialData(content: [AnyObject], ofType: Card.CardType? = nil) {
-        data.extend(content)
+        data.appendContentsOf(content)
         if let type = ofType {
             cardType = type
         }
     }
     
-    override func setInitialData(#content: [AnyObject], ofType: Card.CardType?, nextRequest withNextRequest: Soa.ServiceRequestV1?) {
+    override func setInitialData(content content: [AnyObject], ofType: Card.CardType?, nextRequest withNextRequest: Soa.ServiceRequestV1?) {
         registerNextRequest(nextRequest: withNextRequest)
         setInitialData(content, ofType: ofType)
     }
@@ -126,7 +126,7 @@ class ProfilesDataSource: CardDataSource {
             ) as? Services.Group.Actions.GetMembers.ResponseV1
             
             if let profiles = response?.profiles {
-                self.data.extend(profiles as [AnyObject])
+                self.data.appendContentsOf(profiles as [AnyObject])
                 self.card.addContent(content: profiles)
                 self.handleNewContentAddedToCard(self.card, newContent: profiles)
             }
@@ -135,7 +135,7 @@ class ProfilesDataSource: CardDataSource {
                 for member in members {
                     profiles.append(member.profile)
                 }
-                self.data.extend(profiles as [AnyObject])
+                self.data.appendContentsOf(profiles as [AnyObject])
                 self.card.addContent(content: profiles)
                 self.handleNewContentAddedToCard(self.card, newContent: profiles)
             }

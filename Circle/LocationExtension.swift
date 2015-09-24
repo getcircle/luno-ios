@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 RH Labs Inc. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import ProtobufRegistry
 
 extension Services.Organization.Containers.LocationV1 {
@@ -88,7 +88,7 @@ extension Services.Organization.Containers.LocationV1 {
     }
     
     func officeCurrentTimeLabel(date: NSDate?, addDifferenceText: Bool? = false) -> String {
-        var currentDate = date ?? NSDate()
+        let currentDate = date ?? NSDate()
         let officeTimeZone = NSTimeZone(name: timezone)!
         NSDateFormatter.sharedLocationsCurrentTimeFormatter.timeZone = officeTimeZone
         var currentTime = NSDateFormatter.sharedLocationsCurrentTimeFormatter.stringFromDate(currentDate)
@@ -121,7 +121,7 @@ extension Services.Organization.Containers.LocationV1 {
     func officeDaylightIndicator() -> UIImage? {
         let calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)
         calendar?.timeZone = NSTimeZone(name: timezone)!
-        let components = calendar?.components(NSCalendarUnit.CalendarUnitHour, fromDate: NSDate())
+        let components = calendar?.components(.Hour, fromDate: NSDate())
         var image: UIImage?
         if components?.hour >= 18 || components?.hour < 6 {
             image = UIImage(named: "hero_moon")

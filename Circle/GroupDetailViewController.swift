@@ -54,7 +54,7 @@ class GroupDetailViewController: DetailViewController,
     // MARK: - Collection View delegate
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        if let card = dataSource.cardAtSection(indexPath.section), content: AnyObject = dataSource.contentAtIndexPath(indexPath) {
+        if let card = dataSource.cardAtSection(indexPath.section), content = dataSource.contentAtIndexPath(indexPath) as? [String: AnyObject] {
             switch card.type {
             case .Settings:
                 if let contentTypeValue = content["type"] as? Int, contentType = ContentType(rawValue: contentTypeValue) {
@@ -64,7 +64,7 @@ class GroupDetailViewController: DetailViewController,
                 
                 
             case .Profiles:
-                if let profile = content as? Services.Profile.Containers.ProfileV1 {
+                if let profile = dataSource.contentAtIndexPath(indexPath) as? Services.Profile.Containers.ProfileV1 {
                     showProfileDetail(profile)
                 }
                 
@@ -120,7 +120,7 @@ class GroupDetailViewController: DetailViewController,
             
             // Size needs to be modified much sooner
             if contentOffset.y > pointAtWhichSizeShouldStartChanging {
-                var size = max(minFontSize, maxFontSize - ((contentOffset.y - pointAtWhichSizeShouldStartChanging) / (maxFontSize - minFontSize)))
+                let size = max(minFontSize, maxFontSize - ((contentOffset.y - pointAtWhichSizeShouldStartChanging) / (maxFontSize - minFontSize)))
                 groupHeaderView.groupNameLabel.font = UIFont(name: groupHeaderView.groupNameLabel.font.familyName, size: size)
             }
             else {

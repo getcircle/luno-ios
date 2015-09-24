@@ -12,8 +12,8 @@ class CircleTextField: UITextField {
 
     var placeholderColor: UIColor? {
         didSet {
-            var defaultPlaceholderColor = UIColor.grayColor().colorWithAlphaComponent(0.75)
-            if let placeholderText = placeholder {
+            let defaultPlaceholderColor = UIColor.grayColor().colorWithAlphaComponent(0.75)
+            if let placeholderText = placeholder, font = self.font {
                 attributedPlaceholder = NSAttributedString(
                     string: placeholderText, 
                     attributes: [

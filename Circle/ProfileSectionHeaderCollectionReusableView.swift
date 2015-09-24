@@ -51,7 +51,7 @@ class ProfileSectionHeaderCollectionReusableView: CircleCollectionReusableView {
     override func drawRect(rect: CGRect) {
         super.drawRect(rect)
         
-        cardView.addRoundCorners(corners: .TopLeft | .TopRight, radius: 4.0)
+        cardView.addRoundCorners([.TopLeft, .TopRight], radius: 4.0)
         configureBottomBorder()
     }
     
@@ -59,7 +59,7 @@ class ProfileSectionHeaderCollectionReusableView: CircleCollectionReusableView {
     
     private func configureUpdateButton() {
         let attributedTitle = NSMutableAttributedString(attributedString: NSAttributedString.headerText(AppStrings.ProfileInfoUpdateButtonTitle.localizedUppercaseString()))
-        attributedTitle.addAttribute(NSForegroundColorAttributeName, value: UIColor.appHighlightColor(), range: NSMakeRange(0, count(attributedTitle.string)))
+        attributedTitle.addAttribute(NSForegroundColorAttributeName, value: UIColor.appHighlightColor(), range: NSMakeRange(0, attributedTitle.string.characters.count))
         
         updateButton.setAttributedTitle(attributedTitle, forState: .Normal)
         updateButton.sizeToFit()

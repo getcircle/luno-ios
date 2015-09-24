@@ -43,7 +43,7 @@ class TextInputViewController: UIViewController, UITextViewDelegate {
         super.init(nibName: "TextInputViewController", bundle: nil)
     }
 
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         addCharacterLimit = true
         super.init(coder: aDecoder)
     }
@@ -177,7 +177,7 @@ class TextInputViewController: UIViewController, UITextViewDelegate {
     
     @IBAction func done(sender: AnyObject!) {
         let data = textView.text.trimWhitespace()
-        if count(data) > characterLimit && addCharacterLimit {
+        if data.characters.count > characterLimit && addCharacterLimit {
             return
         }
 
@@ -197,13 +197,13 @@ class TextInputViewController: UIViewController, UITextViewDelegate {
     
     func textViewDidChange(textView: UITextView) {
         updateCharacterLimit()
-        placeholderLabel.hidden = !(count(self.textView.text) == 0)
+        placeholderLabel.hidden = !(self.textView.text.characters.count == 0)
     }
 
     // MARK: - Helpers
     
     private func updateCharacterLimit() {
-        let numberOfCharactersLeft = characterLimit - count(textView.text)
+        let numberOfCharactersLeft = characterLimit - textView.text.characters.count
         characterLimitLabel.text = String(numberOfCharactersLeft)
         if numberOfCharactersLeft < 0 {
             characterLimitLabel.textColor = UIColor.redColor().colorWithAlphaComponent(0.5)

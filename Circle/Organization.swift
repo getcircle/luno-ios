@@ -25,10 +25,10 @@ extension Services.Organization.Actions {
     
     static func getTeams(
         organizationId: String,
-        paginatorBuilder: Soa.PaginatorV1Builder? = nil,
+        paginatorBuilder: Soa.PaginatorV1.Builder? = nil,
         completionHandler: GetTeamsCompletionHandler?
     ) {
-        let requestBuilder = Services.Organization.Actions.GetTeams.RequestV1.builder()
+        let requestBuilder = Services.Organization.Actions.GetTeams.RequestV1.Builder()
         let client = ServiceClient(serviceName: "organization")
         client.callAction(
             "get_teams",
@@ -45,7 +45,7 @@ extension Services.Organization.Actions {
     }
     
     static func getOrganization(completionHandler: GetOrganizationCompletionHandler?) {
-        let requestBuilder = Services.Organization.Actions.GetOrganization.RequestV1.builder()
+        let requestBuilder = Services.Organization.Actions.GetOrganization.RequestV1.Builder()
         
         let client = ServiceClient(serviceName: "organization")
         client.callAction(
@@ -59,8 +59,8 @@ extension Services.Organization.Actions {
         }
     }
 
-    static func getLocation(#locationId: String, completionHandler: GetLocationCompletionHandler?) {
-        let requestBuilder = Services.Organization.Actions.GetLocation.RequestV1.builder()
+    static func getLocation(locationId locationId: String, completionHandler: GetLocationCompletionHandler?) {
+        let requestBuilder = Services.Organization.Actions.GetLocation.RequestV1.Builder()
         requestBuilder.locationId = locationId
         
         let client = ServiceClient(serviceName: "organization")
@@ -77,7 +77,7 @@ extension Services.Organization.Actions {
     }
 
     static func getLocations(completionHandler: GetLocationsCompletionHandler?) {
-        let requestBuilder = Services.Organization.Actions.GetLocations.RequestV1.builder()
+        let requestBuilder = Services.Organization.Actions.GetLocations.RequestV1.Builder()
         
         let client = ServiceClient(serviceName: "organization")
         client.callAction(
@@ -93,7 +93,7 @@ extension Services.Organization.Actions {
     }
     
     static func getTeamReportingDetails(teamId: String, completionHandler: GetTeamReportingDetailsCompletionHandler?) {
-        let requestBuilder = Services.Organization.Actions.GetTeamReportingDetails.RequestV1.builder()
+        let requestBuilder = Services.Organization.Actions.GetTeamReportingDetails.RequestV1.Builder()
         requestBuilder.teamId = teamId
         
         let client = ServiceClient(serviceName: "organization")
@@ -116,7 +116,7 @@ extension Services.Organization.Actions {
             return
         }
         
-        let requestBuilder = Services.Organization.Actions.GetIntegration.RequestV1.builder()
+        let requestBuilder = Services.Organization.Actions.GetIntegration.RequestV1.Builder()
         requestBuilder.integrationType = type
 
         let client = ServiceClient(serviceName: "organization")
@@ -130,7 +130,7 @@ extension Services.Organization.Actions {
             ) as? Services.Organization.Actions.GetIntegration.ResponseV1
             
             var status = false
-            if let response = response, integration = response.integration {
+            if let response = response where response.integration != nil {
                 status = true
             }
 

@@ -31,7 +31,7 @@ extension MKMapView {
         ))
     }
     
-    func coordinatesFromLatitudeAndLongitudeStrings(#latitude: String, longitude: String) -> CLLocationCoordinate2D {
+    func coordinatesFromLatitudeAndLongitudeStrings(latitude latitude: String, longitude: String) -> CLLocationCoordinate2D {
         return CLLocationCoordinate2DMake((latitude as NSString).doubleValue, (longitude as NSString).doubleValue)
     }
     

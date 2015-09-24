@@ -48,7 +48,7 @@ typealias AddMembersCompletionHandler = (
 extension Services.Group.Actions {
     
     static func getGroup(groupId: String, completionHandler: GetGroupCompletionHandler?) {
-        let requestBuilder = Services.Group.Actions.GetGroup.RequestV1.builder()
+        let requestBuilder = Services.Group.Actions.GetGroup.RequestV1.Builder()
         requestBuilder.groupId = groupId
         requestBuilder.provider = .Google
         
@@ -62,7 +62,7 @@ extension Services.Group.Actions {
                 let response = wrapped?.response?.result.getExtension(
                     Services.Registry.Responses.Group.getGroup()
                 ) as? Services.Group.Actions.GetGroup.ResponseV1
-                let nextRequest = wrapped?.getNextRequest()
+                wrapped?.getNextRequest()
                 completionHandler?(group: response?.group, error: error)
         }
     }
@@ -71,10 +71,10 @@ extension Services.Group.Actions {
     static func getMembers(
         groupId: String,
         role: Services.Group.Containers.RoleV1,
-        paginatorBuilder: Soa.PaginatorV1Builder? = nil,
+        paginatorBuilder: Soa.PaginatorV1.Builder? = nil,
         completionHandler: GetGroupProfilesCompletionHandler?
     ) {
-        let requestBuilder = Services.Group.Actions.GetMembers.RequestV1.builder()
+        let requestBuilder = Services.Group.Actions.GetMembers.RequestV1.Builder()
         requestBuilder.groupId = groupId
         requestBuilder.role = role
         requestBuilder.provider = .Google
@@ -96,11 +96,11 @@ extension Services.Group.Actions {
     
     static func getGroups(
         profileId: String?,
-        paginatorBuilder: Soa.PaginatorV1Builder? = nil,
+        paginatorBuilder: Soa.PaginatorV1.Builder? = nil,
         completionHandler: GetGroupsCompletionHandler?
     ) {
     
-        let requestBuilder = Services.Group.Actions.GetGroups.RequestV1.builder()
+        let requestBuilder = Services.Group.Actions.GetGroups.RequestV1.Builder()
         if let profileId = profileId {
             requestBuilder.profileId = profileId
         }
@@ -121,7 +121,7 @@ extension Services.Group.Actions {
         groupId: String,
         completionHandler: JoinGroupCompletionHandler?
     ) {
-        let requestBuilder = Services.Group.Actions.JoinGroup.RequestV1.builder()
+        let requestBuilder = Services.Group.Actions.JoinGroup.RequestV1.Builder()
         requestBuilder.groupId = groupId
         requestBuilder.provider = .Google
 
@@ -143,7 +143,7 @@ extension Services.Group.Actions {
         groupId: String,
         completionHandler: LeaveGroupCompletionHandler?
     ) {
-        let requestBuilder = Services.Group.Actions.LeaveGroup.RequestV1.builder()
+        let requestBuilder = Services.Group.Actions.LeaveGroup.RequestV1.Builder()
         requestBuilder.groupId = groupId
         requestBuilder.provider = .Google
         
@@ -154,10 +154,7 @@ extension Services.Group.Actions {
             paginatorBuilder: nil
         ){
             (_, _, wrapped, error) -> Void in
-            let response = wrapped?.response?.result.getExtension(
-                Services.Registry.Responses.Group.leaveGroup()
-            ) as? Services.Group.Actions.LeaveGroup.ResponseV1
-
+            wrapped?.response?.result.getExtension(Services.Registry.Responses.Group.leaveGroup())
             completionHandler?(error: error)
         }
     }
@@ -166,8 +163,8 @@ extension Services.Group.Actions {
         requestId: String,
         action: Services.Group.Actions.RespondToMembershipRequest.RequestV1.ResponseActionV1,
         completionHandler: RespondToMembershipRequestCompletionHandler?
-    ) {
-            let requestBuilder = Services.Group.Actions.RespondToMembershipRequest.RequestV1.builder()
+        ) {
+            let requestBuilder = Services.Group.Actions.RespondToMembershipRequest.RequestV1.Builder()
             requestBuilder.action = action
             requestBuilder.requestId = requestId
             
@@ -178,9 +175,7 @@ extension Services.Group.Actions {
                 paginatorBuilder: nil
             ){
                 (_, _, wrapped, error) -> Void in
-                let response = wrapped?.response?.result.getExtension(
-                    Services.Registry.Responses.Group.respondToMembershipRequest()
-                ) as? Services.Group.Actions.RespondToMembershipRequest.ResponseV1
+                wrapped?.response?.result.getExtension(Services.Registry.Responses.Group.respondToMembershipRequest())
                 completionHandler?(error: error)
             }
     }
@@ -190,7 +185,7 @@ extension Services.Group.Actions {
         profiles: Array<Services.Profile.Containers.ProfileV1>, 
         completionHandler: AddMembersCompletionHandler?
     ) {
-        let requestBuilder = Services.Group.Actions.AddToGroup.RequestV1.builder()
+        let requestBuilder = Services.Group.Actions.AddToGroup.RequestV1.Builder()
         requestBuilder.groupId = groupId
         requestBuilder.profileIds = profiles.map({ $0.id })
         requestBuilder.provider = .Google

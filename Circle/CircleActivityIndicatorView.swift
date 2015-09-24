@@ -29,7 +29,7 @@ class CircleActivityIndicatorView: UIImageView {
         customInit()
     }
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         customInit()
     }
@@ -51,7 +51,7 @@ class CircleActivityIndicatorView: UIImageView {
         }
 
         frame = CGRectMake(0.0, 0.0, self.dynamicType.width, self.dynamicType.height)
-        setTranslatesAutoresizingMaskIntoConstraints(false)
+        translatesAutoresizingMaskIntoConstraints = false
         animationImages = animatedImages
     }
     

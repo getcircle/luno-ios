@@ -13,7 +13,7 @@ extension String {
     public var camelcaseString: String {
         var camelCase = ""
         var needsUpperCase = false
-        for character in self {
+        for character in self.characters {
             if character == "_" {
                 needsUpperCase = true
                 continue
@@ -21,7 +21,6 @@ extension String {
             
             if needsUpperCase {
                 needsUpperCase = false
-                var string = String(character)
                 camelCase += String(character).uppercaseString
                 continue
             }
@@ -32,13 +31,13 @@ extension String {
     }
 
     subscript(integerIndex: Int) -> String {
-        let index = advance(startIndex, integerIndex)
+        let index = startIndex.advancedBy(integerIndex)
         return String(self[index])
     }
     
     subscript(integerRange: Range<Int>) -> String {
-        let start = advance(startIndex, integerRange.startIndex)
-        let end = advance(startIndex, integerRange.endIndex)
+        let start = startIndex.advancedBy(integerRange.startIndex)
+        let end = startIndex.advancedBy(integerRange.endIndex)
         let range = start..<end
         return self[range]
     }
@@ -60,7 +59,7 @@ extension String {
     
         There is currently no validation that the final string is a valid phone number.
     
-        :returns:
+        - returns:
     */
     func removePhoneNumberFormatting() -> String {
         var phoneNumber = self.stringByReplacingOccurrencesOfString(" ", withString: "", options: .LiteralSearch, range: nil)

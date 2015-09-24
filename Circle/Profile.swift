@@ -44,19 +44,19 @@ extension Services.Profile.Actions {
     }
     
     static func getProfile(profileId: String, completionHandler: GetProfileCompletionHandler?) {
-        let requestBuilder = Services.Profile.Actions.GetProfile.RequestV1.builder()
+        let requestBuilder = Services.Profile.Actions.GetProfile.RequestV1.Builder()
         requestBuilder.profileId = profileId
         self.getProfile(requestBuilder, completionHandler: completionHandler)
     }
     
     static func getProfile(completionHandler: GetProfileCompletionHandler?) {
-        let requestBuilder = Services.Profile.Actions.GetProfile.RequestV1.builder()
+        let requestBuilder = Services.Profile.Actions.GetProfile.RequestV1.Builder()
         self.getProfile(requestBuilder, completionHandler: completionHandler)
     }
     
     private static func getProfiles(
         requestBuilder: AbstractMessageBuilder,
-        paginatorBuilder: Soa.PaginatorV1Builder? = nil,
+        paginatorBuilder: Soa.PaginatorV1.Builder? = nil,
         completionHandler: GetProfilesCompletionHandler?
     ) {
         let client = ServiceClient(serviceName: "profile")
@@ -76,57 +76,57 @@ extension Services.Profile.Actions {
     }
     
     static func getProfiles(
-        #managerId: String,
-        paginatorBuilder: Soa.PaginatorV1Builder? = nil,
+        managerId managerId: String,
+        paginatorBuilder: Soa.PaginatorV1.Builder? = nil,
         completionHandler: GetProfilesCompletionHandler?
     ) {
-        let requestBuilder = Services.Profile.Actions.GetProfiles.RequestV1.builder()
+        let requestBuilder = Services.Profile.Actions.GetProfiles.RequestV1.Builder()
         requestBuilder.managerId = managerId
         self.getProfiles(requestBuilder, paginatorBuilder: paginatorBuilder, completionHandler: completionHandler)
     }
 
     static func getProfiles(
         teamId: String,
-        paginatorBuilder: Soa.PaginatorV1Builder? = nil,
+        paginatorBuilder: Soa.PaginatorV1.Builder? = nil,
         completionHandler: GetProfilesCompletionHandler?
     ) {
-        let requestBuilder = Services.Profile.Actions.GetProfiles.RequestV1.builder()
+        let requestBuilder = Services.Profile.Actions.GetProfiles.RequestV1.Builder()
         requestBuilder.teamId = teamId
         self.getProfiles(requestBuilder, paginatorBuilder: paginatorBuilder, completionHandler: completionHandler)
     }
     
     static func getProfiles(
-        #organizationId: String,
-        paginatorBuilder: Soa.PaginatorV1Builder? = nil,
+        organizationId organizationId: String,
+        paginatorBuilder: Soa.PaginatorV1.Builder? = nil,
         completionHandler: GetProfilesCompletionHandler?
     ) {
-        let requestBuilder = Services.Profile.Actions.GetProfiles.RequestV1.builder()
+        let requestBuilder = Services.Profile.Actions.GetProfiles.RequestV1.Builder()
         self.getProfiles(requestBuilder, paginatorBuilder: paginatorBuilder, completionHandler: completionHandler)
     }
     
     static func getProfiles(
-        #tagId: String,
+        tagId tagId: String,
         organizationId: String,
-        paginatorBuilder: Soa.PaginatorV1Builder? = nil,
+        paginatorBuilder: Soa.PaginatorV1.Builder? = nil,
         completionHandler: GetProfilesCompletionHandler?
     ) {
-        let requestBuilder = Services.Profile.Actions.GetProfiles.RequestV1.builder()
+        let requestBuilder = Services.Profile.Actions.GetProfiles.RequestV1.Builder()
         requestBuilder.tagId = tagId
         self.getProfiles(requestBuilder, paginatorBuilder: paginatorBuilder, completionHandler: completionHandler)
     }
     
     static func getProfiles(
-        #locationId: String,
-        paginatorBuilder: Soa.PaginatorV1Builder? = nil,
+        locationId locationId: String,
+        paginatorBuilder: Soa.PaginatorV1.Builder? = nil,
         completionHandler: GetProfilesCompletionHandler?
     ) {
-        let requestBuilder = Services.Profile.Actions.GetProfiles.RequestV1.builder()
+        let requestBuilder = Services.Profile.Actions.GetProfiles.RequestV1.Builder()
         requestBuilder.locationId = locationId
         self.getProfiles(requestBuilder, paginatorBuilder: paginatorBuilder, completionHandler: completionHandler)
     }
     
     static func getExtendedProfile(profileId: String, completionHandler: GetExtendedProfileCompletionHandler?) {
-        let requestBuilder = Services.Profile.Actions.GetExtendedProfile.RequestV1.builder()
+        let requestBuilder = Services.Profile.Actions.GetExtendedProfile.RequestV1.Builder()
         requestBuilder.profileId = profileId
         let client = ServiceClient(serviceName: "profile")
         client.callAction(
@@ -152,7 +152,7 @@ extension Services.Profile.Actions {
     }
     
     static func getTags(organizationId: String, tagType: Services.Profile.Containers.TagV1.TagTypeV1?, completionHandler: GetTagsCompletionHandler?) {
-        let requestBuilder = Services.Profile.Actions.GetTags.RequestV1.builder()
+        let requestBuilder = Services.Profile.Actions.GetTags.RequestV1.Builder()
         requestBuilder.organizationId = organizationId
         if tagType != nil {
             requestBuilder.tagType = tagType!
@@ -173,7 +173,7 @@ extension Services.Profile.Actions {
     
 
     static func updateProfile(profile: Services.Profile.Containers.ProfileV1, completionHandler: UpdateProfileCompletionHandler?) {
-        let requestBuilder = Services.Profile.Actions.UpdateProfile.RequestV1.builder()
+        let requestBuilder = Services.Profile.Actions.UpdateProfile.RequestV1.Builder()
         requestBuilder.profile = profile
         
         let client = ServiceClient(serviceName: "profile")
@@ -197,7 +197,7 @@ extension Services.Profile.Actions {
     }
     
     static func addTags(profileId: String, tags: Array<Services.Profile.Containers.TagV1>, completionHandler: AddTagsCompletionHandler?) {
-        let requestBuilder = Services.Profile.Actions.AddTags.RequestV1.builder()
+        let requestBuilder = Services.Profile.Actions.AddTags.RequestV1.Builder()
         requestBuilder.profileId = profileId
         requestBuilder.tags = tags
         
@@ -214,15 +214,13 @@ extension Services.Profile.Actions {
                         object: nil
                     )
                 })
-                let response = wrapped?.response?.result.getExtension(
-                    Services.Registry.Responses.Profile.addTags()
-                ) as? Services.Profile.Actions.AddTags.ResponseV1
+                wrapped?.response?.result.getExtension(Services.Registry.Responses.Profile.addTags())
                 completionHandler?(error: error)
         }
     }
     
     static func removeTags(profileId: String, tags: Array<Services.Profile.Containers.TagV1>, completionHandler: RemoveTagsCompletionHandler?) {
-        let requestBuilder = Services.Profile.Actions.RemoveTags.RequestV1.builder()
+        let requestBuilder = Services.Profile.Actions.RemoveTags.RequestV1.Builder()
         requestBuilder.profileId = profileId
         requestBuilder.tags = tags
         
@@ -231,17 +229,15 @@ extension Services.Profile.Actions {
             "remove_tags",
             extensionField: Services.Registry.Requests.Profile.removeTags(),
             requestBuilder: requestBuilder
-        ) { (_, _, wrapped, error) -> Void in
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                NSNotificationCenter.defaultCenter().postNotificationName(
-                    ProfileServiceNotifications.onProfileUpdatedNotification,
-                    object: nil
-                )
-            })
-            let response = wrapped?.response?.result.getExtension(
-                Services.Registry.Responses.Profile.removeTags()
-            ) as? Services.Profile.Actions.RemoveTags.ResponseV1
-            completionHandler?(error: error)
+            ) { (_, _, wrapped, error) -> Void in
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    NSNotificationCenter.defaultCenter().postNotificationName(
+                        ProfileServiceNotifications.onProfileUpdatedNotification,
+                        object: nil
+                    )
+                })
+                wrapped?.response?.result.getExtension(Services.Registry.Responses.Profile.removeTags())
+                completionHandler?(error: error)
         }
     }
 }
@@ -266,16 +262,15 @@ extension Services.Profile.Containers.ProfileV1 {
 
                 // Hyphen
                 var formattedHireDate = ["\u{2013} at " + organization.name + " for"]
-                var done = false
                 
                 let today = NSDate()
                 if let calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian) {
-                    let unitFlags = NSCalendarUnit.CalendarUnitDay | NSCalendarUnit.CalendarUnitYear | NSCalendarUnit.CalendarUnitMonth
+                    let unitFlags = [.Day, .Year, .Month] as NSCalendarUnit
                     let diffComponents = calendar.components(
                         unitFlags,
                         fromDate: hireDate,
                         toDate: today,
-                        options: nil
+                        options: []
                     )
                     
                     // Only show year if its greater than a month
@@ -311,7 +306,7 @@ extension Services.Profile.Containers.ProfileV1 {
                     // Show "New at company. Say hi!" for seven days 
                     // and then duration in weeks
                     if diffComponents.month == 0 && diffComponents.year == 0 {
-                        println(diffComponents.day)
+                        print(diffComponents.day)
                         if diffComponents.day < 7 {
                             formattedHireDate = ["\u{2B50} New at " + organization.name + ". Say hi!"]
                         }
@@ -329,7 +324,7 @@ extension Services.Profile.Containers.ProfileV1 {
                         }
                     }
                     
-                    return " ".join(formattedHireDate)
+                    return formattedHireDate.joinWithSeparator(" ")
                 }
             }
         }

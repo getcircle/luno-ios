@@ -60,7 +60,7 @@ class BackspaceTextField: UIView, UITextFieldDelegate {
         customInit()
     }
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         customInit()
     }
@@ -80,7 +80,10 @@ class BackspaceTextField: UIView, UITextFieldDelegate {
     
     var text: String {
         get {
-            var result = textField.text
+            guard var result = textField.text else {
+                return ""
+            }
+            
             if result.startIndex != result.endIndex {
                 result.removeAtIndex(result.startIndex)
             }

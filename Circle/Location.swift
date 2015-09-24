@@ -21,7 +21,7 @@ extension Services.Organization.Actions {
         location: Services.Organization.Containers.LocationV1,
         completionHandler: UpdateLocationCompletionHandler?
     ) {
-            let requestBuilder = Services.Organization.Actions.UpdateLocation.RequestV1.builder()
+            let requestBuilder = Services.Organization.Actions.UpdateLocation.RequestV1.Builder()
             requestBuilder.location = location
             
             let client = ServiceClient(serviceName: "organization")

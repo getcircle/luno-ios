@@ -20,7 +20,7 @@ extension Services.Media.Actions {
         key: String,
         completionHandler: StartImageUploadCompletionHandler?
     ) {
-        let requestBuilder = Services.Media.Actions.StartImageUpload.RequestV1.builder()
+        let requestBuilder = Services.Media.Actions.StartImageUpload.RequestV1.Builder()
         requestBuilder.mediaType = mediaType
         requestBuilder.mediaKey = key
 
@@ -44,7 +44,7 @@ extension Services.Media.Actions {
         uploadKey: String,
         completionHandler: CompleteImageUploadCompletionHandler?
     ) {
-        let requestBuilder = Services.Media.Actions.CompleteImageUpload.RequestV1.builder()
+        let requestBuilder = Services.Media.Actions.CompleteImageUpload.RequestV1.Builder()
         requestBuilder.mediaType = mediaType
         requestBuilder.mediaKey = mediaKey
         requestBuilder.uploadId = uploadId
@@ -70,12 +70,12 @@ extension Services.Media.Actions {
         andCompletionHandler completionHandler: CompleteImageUploadCompletionHandler?
     ) {
         startImageUpload(mediaType, key: mediaKey) { (instructions, error) -> Void in
-            if let instructions = instructions {
-                Alamofire.upload(.PUT, instructions.uploadUrl, data: UIImagePNGRepresentation(image))
-                    .progress(closure: { (bytesWritten, totalBytesWritten, totalBytesExpectedToWrite) -> Void in
-                        println("progress \(totalBytesWritten): \(totalBytesExpectedToWrite)")
-                    })
-                    .response({ (request, response, _, error) -> Void in
+            if let instructions = instructions, data = UIImagePNGRepresentation(image) {
+                Alamofire.upload(.PUT, instructions.uploadUrl, data: data)
+                    .progress { bytesWritten, totalBytesWritten, totalBytesExpectedToWrite in
+                        print("progress \(totalBytesWritten): \(totalBytesExpectedToWrite)")
+                    }
+                    .response { request, response, _, error in
                         self.completeImageUpload(
                             mediaType,
                             mediaKey: mediaKey,
@@ -85,9 +85,9 @@ extension Services.Media.Actions {
                                 completionHandler?(mediaURL: mediaURL, error: error)
                                 return
                         }
-                    })
+                    }
             } else {
-                println("encountered error: \(error)")
+                print("encountered error: \(error)")
             }
         }
     }

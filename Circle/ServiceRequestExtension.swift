@@ -12,18 +12,18 @@ import ProtobufRegistry
 extension Soa.ServiceRequestV1 {
     
     func getNextRequest(paginator: Soa.PaginatorV1) -> Soa.ServiceRequestV1 {
-        let serviceRequestBuilder = toBuilder()
+        let serviceRequestBuilder = try! toBuilder()
         serviceRequestBuilder.actions.removeAll(keepCapacity: true)
         for action in actions {
-            let actionBuilder = action.toBuilder()
-            let actionControlBuilder = action.control.toBuilder()
-            let paginatorBuilder = paginator.toBuilder()
+            let actionBuilder = try! action.toBuilder()
+            let actionControlBuilder = try! action.control.toBuilder()
+            let paginatorBuilder = try! paginator.toBuilder()
             paginatorBuilder.page = paginator.nextPage
-            actionControlBuilder.paginator = paginatorBuilder.build()
-            actionBuilder.control = actionControlBuilder.build()
-            serviceRequestBuilder.actions.append(actionBuilder.build())
+            actionControlBuilder.paginator = try! paginatorBuilder.build()
+            actionBuilder.control = try! actionControlBuilder.build()
+            serviceRequestBuilder.actions.append(try! actionBuilder.build())
         }
-        return serviceRequestBuilder.build()
+        return try! serviceRequestBuilder.build()
     }
     
     func getPaginator() -> Soa.PaginatorV1 {

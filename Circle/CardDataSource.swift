@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 RH Labs Inc. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import ProtobufRegistry
 
 class ItemImage {
@@ -118,7 +118,7 @@ class CardDataSource: NSObject, UICollectionViewDataSource {
     Each subclass must override this method. The default implementation does not do anything and it is not
     expected to be called from the subclasses.
     
-    :param: completionHandler Closure called when the data or status is available.
+    - parameter completionHandler: Closure called when the data or status is available.
     */
     func loadData(completionHandler: (error: NSError?) -> Void) {
         if !hasLoadedOnce {
@@ -132,7 +132,7 @@ class CardDataSource: NSObject, UICollectionViewDataSource {
         fatalError("All subclasses need to override this")
     }
         
-    func setInitialData(#content: [AnyObject], ofType: Card.CardType? = .Profiles, nextRequest withNextRequest: Soa.ServiceRequestV1?) {
+    func setInitialData(content content: [AnyObject], ofType: Card.CardType? = .Profiles, nextRequest withNextRequest: Soa.ServiceRequestV1?) {
         fatalError("All subclasses need to override this")
     }
     
@@ -158,8 +158,8 @@ class CardDataSource: NSObject, UICollectionViewDataSource {
     be minimum and generally not include fixed layout changes. A good use case of cell configuration would be 
     to hide/show a label within a cell depending on the use case.
     
-    :param: cell Cell being configured.
-    :param: indexPath Indexpath of the cell.
+    - parameter cell: Cell being configured.
+    - parameter indexPath: Indexpath of the cell.
     */
     func configureCell(cell: CircleCollectionViewCell, atIndexPath indexPath: NSIndexPath) {
         // Default Implementation
@@ -213,8 +213,8 @@ class CardDataSource: NSObject, UICollectionViewDataSource {
         The customization should be minimum and generally not include fixed layout changes. A good use case of header 
         configuration would be to hide/show a label within a header depending on the use case.
         
-        :param: header Header being configured.
-        :param: indexPath Indexpath of the header.
+        - parameter header: Header being configured.
+        - parameter indexPath: Indexpath of the header.
     */
     func configureHeader(header: CircleCollectionReusableView, atIndexPath indexPath: NSIndexPath) {
         // Default Implementation
@@ -244,8 +244,8 @@ class CardDataSource: NSObject, UICollectionViewDataSource {
     The customization should be minimum and generally not include fixed layout changes. A good use case of footer
     configuration would be to hide/show a label within a footer depending on the use case.
     
-    :param: footer Footer being configured.
-    :param: indexPath Indexpath of the footer.
+    - parameter footer: Footer being configured.
+    - parameter indexPath: Indexpath of the footer.
     */
     func configureFooter(footer: CircleCollectionReusableView, atIndexPath indexPath: NSIndexPath) {
         // Default Implementation
@@ -311,7 +311,7 @@ class CardDataSource: NSObject, UICollectionViewDataSource {
             
         }
         
-        let intIndex = uniqueIndex.toInt() ?? 0
+        let intIndex = Int(uniqueIndex) ?? 0
         if animatedRowIndexes.containsIndex(intIndex) == false {
             animatedRowIndexes.addIndex(intIndex)
             let finalFrame = view.frame
@@ -346,7 +346,7 @@ class CardDataSource: NSObject, UICollectionViewDataSource {
     }
     
     final func removeCard(card: Card) {
-        if let index = find(cards, card) {
+        if let index = cards.indexOf(card) {
             cards.removeAtIndex(index)
         }
     }
@@ -414,9 +414,9 @@ class CardDataSource: NSObject, UICollectionViewDataSource {
     /**
         Return the card at a particular section.
     
-        :param: section Section index.
+        - parameter section: Section index.
     
-        :returns: Card object or nil.
+        - returns: Card object or nil.
     */
     func cardAtSection(section: Int) -> Card? {
         return cards[section] ?? nil
@@ -424,7 +424,7 @@ class CardDataSource: NSObject, UICollectionViewDataSource {
     
     func sectionForCard(card withCard: Card) -> Int? {
         var section: Int?
-        for (cardIndex, card) in enumerate(cards) {
+        for (cardIndex, card) in cards.enumerate() {
             if card == withCard {
                 section = cardIndex
                 break
@@ -436,9 +436,9 @@ class CardDataSource: NSObject, UICollectionViewDataSource {
     /**
         Return the content object at a particular indexPath.
         
-        :param: indexPath NSIndexPath.
+        - parameter indexPath: NSIndexPath.
         
-        :returns: AnyObject content object or nil.
+        - returns: AnyObject content object or nil.
     */
     func contentAtIndexPath(indexPath: NSIndexPath) -> AnyObject? {
         if let card = cards[indexPath.section] as Card? {

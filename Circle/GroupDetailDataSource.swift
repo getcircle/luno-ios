@@ -102,14 +102,14 @@ class GroupDetailDataSource: CardDataSource {
     private func fetchAllMembers(completionHandler: (error: NSError?) -> Void) {
         // Fetch data within a dispatch group, calling populateData when all tasks have finished
         var storedError: NSError!
-        var actionsGroup = dispatch_group_create()
+        let actionsGroup = dispatch_group_create()
 
         // Fetch owners
         dispatch_group_enter(actionsGroup)
         Services.Group.Actions.getMembers(selectedGroup.id, role: .Owner) {
             (members, nextRequest, error) -> Void in
             if let members = members {
-                self.ownerProfiles.extend(members.map({ $0.profile }))
+                self.ownerProfiles.appendContentsOf(members.map({ $0.profile }))
                 self.nextOwnersRequest = nextRequest
             }
             if let error = error {
@@ -123,7 +123,7 @@ class GroupDetailDataSource: CardDataSource {
         Services.Group.Actions.getMembers(selectedGroup.id, role: .Manager) {
             (members, nextRequest, error) -> Void in
             if let members = members {
-                self.managerMemberProfiles.extend(members.map({ $0.profile }))
+                self.managerMemberProfiles.appendContentsOf(members.map({ $0.profile }))
                 self.nextManagerMembersRequest = nextRequest
             }
             if let error = error {
@@ -137,7 +137,7 @@ class GroupDetailDataSource: CardDataSource {
         Services.Group.Actions.getMembers(selectedGroup.id, role: .Member) {
             (members, nextRequest, error) -> Void in
             if let members = members {
-                self.memberProfiles.extend(members.map({ $0.profile }))
+                self.memberProfiles.appendContentsOf(members.map({ $0.profile }))
                 self.nextMembersRequest = nextRequest
             }
             if let error = error {

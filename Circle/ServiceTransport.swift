@@ -53,36 +53,48 @@ extension Request {
     static func ServiceResponseSerializer() -> GenericResponseSerializer<Soa.ServiceResponseV1> {
         return GenericResponseSerializer { (request, response, data) in
             if data == nil {
-                return (nil, nil)
+                let failureReason = "Data could not be serialized. Input data was nil."
+                return .Failure(data, Error.errorWithCode(.DataSerializationFailed, failureReason: failureReason))
             }
             
             if data!.length == 0 {
-                return (nil, nil)
+                let failureReason = "Data could not be serialized. Input data had length = 0."
+                return .Failure(data, Error.errorWithCode(.DataSerializationFailed, failureReason: failureReason))
             }
             
             if response?.statusCode != 200 {
-                // println("error making service request: \(response?)")
+                // print("error making service request: \(response?)")
                 if response?.statusCode == 401 {
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
                         AuthViewController.logOut()
                     })
                 }
-                return (nil, nil)
+                
+                let failureReason = "Status code validation failed. Got status code: \(response?.statusCode)"
+                return .Failure(data, Error.errorWithCode(.StatusCodeValidationFailed, failureReason: failureReason))
             }
             
-            let serviceResponse = Soa.ServiceResponseV1.parseFromData(
+            let serviceResponse = try! Soa.ServiceResponseV1.parseFromData(
                 data!,
                 extensionRegistry: Services.Registry.Responses.ResponsesRoot.sharedInstance.extensionRegistry
             )
-            return (serviceResponse, nil)
+            return .Success(serviceResponse)
         }
     }
     
     func responseProtobuf(completionHandler: ServiceTransportCompletionHandler) -> Self {
-        return response(responseSerializer: Request.ServiceResponseSerializer(), completionHandler: { (request, response, serviceResponse, error) in
-            let serviceResponse = serviceResponse as Soa.ServiceResponseV1?
+        return response(responseSerializer: Request.ServiceResponseSerializer(), completionHandler: { (request, response, result) in
+            var serviceResponse: Soa.ServiceResponseV1?
+            var serviceError: NSError?
+            
+            if case .Success(let response) = result {
+                serviceResponse = response
+            }
+            else if case .Failure(_, let error) = result {
+                serviceError = error as NSError
+            }
+            
             let actionResponse = serviceResponse?.actions[0]
-            var serviceError = error
             if serviceError == nil {
                 if let result = actionResponse?.result {
                     if !result.success {
@@ -90,12 +102,12 @@ extension Request {
                             "errors": result.errors,
                             "error_details": result.errorDetails,
                         ]
-                        serviceError = NSError(domain: ServiceErrorDomain, code: -1, userInfo: userInfo as [NSObject : AnyObject])
+                        serviceError = NSError(domain: ServiceErrorDomain, code: -1, userInfo: userInfo as? [NSObject : AnyObject])
                     }
                 }
             }
 
-            completionHandler(request, response, serviceResponse, actionResponse, serviceError)
+            completionHandler(request!, response, serviceResponse, actionResponse, serviceError)
         })
     }
 }
@@ -166,7 +178,7 @@ struct ServiceHttpRequest: URLRequestConvertible {
         token = withToken
     }
     
-    var URLRequest: NSURLRequest {
+    var URLRequest: NSMutableURLRequest {
         let mutableURLRequest = NSMutableURLRequest(URL: ServiceHttpRequest.environment.serviceEndpoint)
         mutableURLRequest.setValue("application/x-protobuf", forHTTPHeaderField: "Content-Type")
         mutableURLRequest.setValue("gzip", forHTTPHeaderField: "Accept-Encoding")
@@ -186,19 +198,16 @@ class HttpsTransport: BaseTransport {
     
     private func printErrorMessage(serviceRequest: Soa.ServiceRequestV1, error: NSError?) {
         if let error = error {
-            println("Error Description: \(serviceRequest.control.service):\(serviceRequest.actions[0].control.action): \(error.description)")
-            if let userInfo = error.userInfo {
-                if let errorDetails = userInfo["error_details"] as? [ProtobufRegistry.Soa.ActionResultV1.ErrorDetailV1] {
-                    for errorDetail in errorDetails {
-                        println("Error Details: \(errorDetail)")
-                    }
+            print("Error Description: \(serviceRequest.control.service):\(serviceRequest.actions[0].control.action): \(error.description)")
+            if let errorDetails = error.userInfo["error_details"] as? [ProtobufRegistry.Soa.ActionResultV1.ErrorDetailV1] {
+                for errorDetail in errorDetails {
+                    print("Error Details: \(errorDetail)")
                 }
             }
         }
     }
     
     override func processRequest(serviceRequest: Soa.ServiceRequestV1, serializedRequest: NSData, completionHandler: ServiceCompletionHandler) {
-        let startTime = CACurrentMediaTime()
         NetworkActivity.totalRequests++
         updateNetworkIndicatorVisibility()
         
@@ -211,7 +220,6 @@ class HttpsTransport: BaseTransport {
                     serviceResponse: serviceResponse,
                     actionResponse: actionResponse
                 )
-                let endTime = CACurrentMediaTime()
                 self.printErrorMessage(serviceRequest, error: error)
                 completionHandler(request, response, wrapped, error)
         }

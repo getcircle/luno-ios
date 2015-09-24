@@ -35,7 +35,7 @@ class ContactInfoDataSource: CardDataSource {
         content.append(emailKeyValueDict)
         
         for contactMethod in profile.contactMethods {
-            var dataDict: [String: AnyObject] = [
+            let dataDict: [String: AnyObject] = [
                 "key": contactMethod.label,
                 "name": contactMethod.label,
                 "value": contactMethod.value,
@@ -58,11 +58,11 @@ class ContactInfoDataSource: CardDataSource {
     func contactMethodAtIndexPath(indexPath: NSIndexPath) -> Services.Profile.Containers.ContactMethodV1? {
         
         if indexPath.row == 0 {
-            let contactMethodBuilder = Services.Profile.Containers.ContactMethodV1.builder()
+            let contactMethodBuilder = Services.Profile.Containers.ContactMethodV1.Builder()
             contactMethodBuilder.label = AppStrings.QuickActionEmailLabel
             contactMethodBuilder.value = profile.email
             contactMethodBuilder.contactMethodType = .Email
-            return contactMethodBuilder.build()
+            return try! contactMethodBuilder.build()
         }
         else if (indexPath.row - 1) < profile.contactMethods.count {
             let contactMethod = profile.contactMethods[indexPath.row - 1]

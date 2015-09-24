@@ -74,7 +74,7 @@ SKStoreProductViewControllerDelegate {
     override func configureModalParentView() {
         parentContainerView.addRoundCorners(radius: 0.0)
         
-        var titleLabel = UILabel(forAutoLayout: ())
+        let titleLabel = UILabel(forAutoLayout: ())
         titleLabel.opaque = true
         titleLabel.backgroundColor = UIColor.appTintColor()
         titleLabel.textColor = UIColor.whiteColor()
@@ -97,7 +97,7 @@ SKStoreProductViewControllerDelegate {
             frame: parentContainerView.bounds, 
             collectionViewLayout: collectionViewLayout
         )
-        collectionView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.opaque = true
         collectionView.backgroundColor = UIColor.appViewBackgroundColor()
         parentContainerView.addSubview(collectionView)
@@ -169,7 +169,7 @@ SKStoreProductViewControllerDelegate {
             // If we got here, we didn't have a valid native URL...now check for a web URL
             if let webURL = appURLForContactMethodType.webAppURL where webURL.trimWhitespace() != "" {
                 let webURLWithUserIdentifier = NSString(format: webURL, contactMethod.value)
-                if let webNSURL = NSURL(string: webURLWithUserIdentifier as String) {
+                if NSURL(string: webURLWithUserIdentifier as String) != nil {
                     // Redirect to generic webview controller
                     let webViewController = WebViewController(pageURL: webURLWithUserIdentifier as String)
                     let webViewNavigationController = UINavigationController(rootViewController: webViewController)
@@ -239,16 +239,16 @@ SKStoreProductViewControllerDelegate {
     // MARK: - MFMailComposeViewControllerDelegate
     
     func mailComposeController(
-        controller: MFMailComposeViewController!,
+        controller: MFMailComposeViewController,
         didFinishWithResult result: MFMailComposeResult,
-        error: NSError!
+        error: NSError?
         ) {
             dismissViewControllerAnimated(true, completion: nil)
     }
     
     // MARK: - SKStoreProductViewControllerDelegate
     
-    func productViewControllerDidFinish(viewController: SKStoreProductViewController!) {
+    func productViewControllerDidFinish(viewController: SKStoreProductViewController) {
         viewController.dismissViewControllerAnimated(true, completion: nil)
     }
 }

@@ -76,14 +76,14 @@ class EditTitleViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func done(sender: AnyObject!) {
         
-        if titleNameField.text.trimWhitespace() == "" {
+        guard let title = titleNameField.text?.trimWhitespace() where title != "" else {
             showToast(AppStrings.TitleErrorCannotBeEmpty, title: AppStrings.GenericErrorDialogTitle)
             return
         }
         
-        let profileBuilder = profile.toBuilder()
-        profileBuilder.title = titleNameField.text.trimWhitespace()
-        let updatedProfile = profileBuilder.build()
+        let profileBuilder = try! profile.toBuilder()
+        profileBuilder.title = title
+        let updatedProfile = try! profileBuilder.build()
         let hud = MBProgressHUD.showHUDAddedTo(view, animated: true)
         Services.Profile.Actions.updateProfile(updatedProfile, completionHandler: { (profile, error) -> Void in
             if let profile = profile {

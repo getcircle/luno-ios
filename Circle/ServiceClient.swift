@@ -35,32 +35,32 @@ public class ServiceClient {
         actionName: String,
         extensionField: ConcreateExtensionField,
         requestBuilder: AbstractMessageBuilder,
-        paginatorBuilder: Soa.PaginatorV1Builder?
+        paginatorBuilder: Soa.PaginatorV1.Builder?
     ) -> Soa.ServiceRequestV1 {
-        let serviceRequest = Soa.ServiceRequestV1.builder()
-        let control = Soa.ControlV1.builder()
+        let serviceRequest = Soa.ServiceRequestV1.Builder()
+        let control = Soa.ControlV1.Builder()
         control.service = serviceName
         if let token = token {
             control.token = token
         }
-        serviceRequest.control = control.build()
+        serviceRequest.control = try! control.build()
         
-        let actionRequest = Soa.ActionRequestV1.builder()
-        let actionControl = Soa.ActionControlV1.builder()
+        let actionRequest = Soa.ActionRequestV1.Builder()
+        let actionControl = Soa.ActionControlV1.Builder()
         var paginatorBuilder = paginatorBuilder
         if paginatorBuilder == nil {
-            paginatorBuilder = Soa.PaginatorV1.builder()
+            paginatorBuilder = Soa.PaginatorV1.Builder()
         }
         actionControl.service = serviceName
         actionControl.action = actionName
-        actionControl.paginator = paginatorBuilder!.build()
-        actionRequest.control = actionControl.build()
+        actionControl.paginator = try! paginatorBuilder!.build()
+        actionRequest.control = try! actionControl.build()
         
-        let actionRequestParams = Soa.ActionRequestParamsV1.builder()
-        actionRequestParams.setExtension(extensionField, value: requestBuilder.build())
-        actionRequest.params = actionRequestParams.build()
-        serviceRequest.actions += [actionRequest.build()]
-        return serviceRequest.build()
+        let actionRequestParams = Soa.ActionRequestParamsV1.Builder()
+        try! actionRequestParams.setExtension(extensionField, value: try! requestBuilder.build())
+        actionRequest.params = try! actionRequestParams.build()
+        serviceRequest.actions += [try! actionRequest.build()]
+        return try! serviceRequest.build()
     }
     
     public func callAction(
@@ -82,7 +82,7 @@ public class ServiceClient {
         actionName: String,
         extensionField: ConcreateExtensionField,
         requestBuilder: AbstractMessageBuilder,
-        paginatorBuilder: Soa.PaginatorV1Builder?,
+        paginatorBuilder: Soa.PaginatorV1.Builder?,
         completionHandler: ServiceCompletionHandler
     ) {
         let serviceRequest = buildRequest(

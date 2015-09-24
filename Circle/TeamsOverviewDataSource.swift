@@ -25,7 +25,7 @@ class TeamsOverviewDataSource: CardDataSource {
 
     func configureForTeam(teamId: String, setupOnlySearch: Bool) {
         if !setupOnlySearch {
-            let requestBuilder = Services.Profile.Actions.GetProfiles.RequestV1.builder()
+            let requestBuilder = Services.Profile.Actions.GetProfiles.RequestV1.Builder()
             requestBuilder.teamId = teamId
             configureForParameters(requestBuilder)
         }
@@ -35,7 +35,7 @@ class TeamsOverviewDataSource: CardDataSource {
     }
 
     func configureForOrganization() {
-        let requestBuilder = Services.Organization.Actions.GetTeams.RequestV1.builder()
+        let requestBuilder = Services.Organization.Actions.GetTeams.RequestV1.Builder()
         configureForParameters(requestBuilder)
     }
     
@@ -59,13 +59,13 @@ class TeamsOverviewDataSource: CardDataSource {
     // MARK: - Set Initial Data
 
     override func setInitialData(content: [AnyObject], ofType: Card.CardType?) {
-        teams.extend(content as! [Services.Organization.Containers.TeamV1])
+        teams.appendContentsOf(content as! [Services.Organization.Containers.TeamV1])
         if ofType != nil {
             cardType = ofType!
         }
     }
     
-    override func setInitialData(#content: [AnyObject], ofType: Card.CardType?, nextRequest withNextRequest: Soa.ServiceRequestV1?) {
+    override func setInitialData(content content: [AnyObject], ofType: Card.CardType?, nextRequest withNextRequest: Soa.ServiceRequestV1?) {
         registerNextRequest(nextRequest: withNextRequest)
         setInitialData(content, ofType: ofType)
     }
@@ -75,7 +75,7 @@ class TeamsOverviewDataSource: CardDataSource {
     override func loadInitialData(completionHandler: (error: NSError?) -> Void) {
         super.loadInitialData(completionHandler)
         
-        var sectionInset = UIEdgeInsetsZero        
+        let sectionInset = UIEdgeInsetsZero        
         
         card = Card(cardType: cardType, title: "")
         card.sectionInset = sectionInset
@@ -86,7 +86,7 @@ class TeamsOverviewDataSource: CardDataSource {
             ) as? Services.Organization.Actions.GetTeams.ResponseV1
             
             if let teams = response?.teams {
-                self.teams.extend(teams)
+                self.teams.appendContentsOf(teams)
                 self.card.addContent(content: teams)
                 self.handleNewContentAddedToCard(self.card, newContent: teams)
             }

@@ -22,7 +22,7 @@ class StickyHeaderCollectionViewLayout: UICollectionViewFlowLayout, UICollection
         customInit()
     }
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         customInit()
     }
@@ -36,7 +36,7 @@ class StickyHeaderCollectionViewLayout: UICollectionViewFlowLayout, UICollection
     
     override func prepareLayout() {
         if headerHeight == 0.0 {
-            println("headerHeight should be set to greater than zero")
+            print("headerHeight should be set to greater than zero")
         }
 
         offsetToMakeHeaderSticky = headerHeight - stickySectionHeight
@@ -48,10 +48,10 @@ class StickyHeaderCollectionViewLayout: UICollectionViewFlowLayout, UICollection
         return true
     }
     
-    override func layoutAttributesForElementsInRect(rect: CGRect) -> [AnyObject]? {
+    override func layoutAttributesForElementsInRect(rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
 
         let contentOffset = collectionView!.contentOffset
-        var attributes = super.layoutAttributesForElementsInRect(rect) as! [UICollectionViewLayoutAttributes]
+        var attributes = super.layoutAttributesForElementsInRect(rect)!
         
         var isHeaderMissing = true
         for attribute in attributes {
@@ -68,7 +68,7 @@ class StickyHeaderCollectionViewLayout: UICollectionViewFlowLayout, UICollection
             )
             
             if headerAttributes != nil {
-                attributes.append(headerAttributes)
+                attributes.append(headerAttributes!)
             }
         }
         

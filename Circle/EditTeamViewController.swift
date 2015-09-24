@@ -80,14 +80,14 @@ class EditTeamViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func done(sender: AnyObject!) {
         
-        if teamNameField.text.trimWhitespace() == "" {
+        guard let teamName = teamNameField.text?.trimWhitespace() where teamName != "" else {
             showToast(AppStrings.TeamNameErrorCannotBeEmpty, title: AppStrings.GenericErrorDialogTitle)
             return
         }
         
-        let teamNameBuilder = team.toBuilder()
-        teamNameBuilder.name = teamNameField.text.trimWhitespace()
-        let updatedTeam = teamNameBuilder.build()
+        let teamNameBuilder = try! team.toBuilder()
+        teamNameBuilder.name = teamName
+        let updatedTeam = try! teamNameBuilder.build()
         let hud = MBProgressHUD.showHUDAddedTo(view, animated: true)
         Services.Organization.Actions.updateTeam(updatedTeam, completionHandler: { (team, error) -> Void in
             if let team = team {

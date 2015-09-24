@@ -39,10 +39,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
-    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
-        return GIDSignIn.sharedInstance().handleURL(url, sourceApplication: sourceApplication, annotation: annotation)
-    }
-    
     func applicationDidBecomeActive(application: UIApplication) {
         Tracker.sharedInstance.trackSessionStart()
     }
@@ -62,7 +58,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
-        println("Error registering for notifications \(error)")
+        print("Error registering for notifications \(error)")
     }
     
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject], fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
@@ -103,8 +99,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Notification Handlers
 
     func recordUsersLocaleSetting(sender: AnyObject!) {
-        let preferredLanguage: String = NSLocale.preferredLanguages()[0] as! String
+        let preferredLanguage: String = NSLocale.preferredLanguages()[0] 
         // TODO: Register language
-        println(preferredLanguage)
+        print(preferredLanguage)
     }
 }

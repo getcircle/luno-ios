@@ -13,7 +13,7 @@ extension UIImage {
 
     static func imageFromColor(color: UIColor, withRect imageRect: CGRect) -> UIImage {
         UIGraphicsBeginImageContext(imageRect.size)
-        var context = UIGraphicsGetCurrentContext()
+        let context = UIGraphicsGetCurrentContext()
         CGContextSetFillColorWithColor(context, color.CGColor)
         CGContextFillRect(context, imageRect)
         let image = UIGraphicsGetImageFromCurrentImageContext()
@@ -32,14 +32,14 @@ extension UIImage {
     func imageWithTintColor(tintColor: UIColor, scale: CGFloat) -> UIImage {
         UIGraphicsBeginImageContextWithOptions(size, false, scale)
         let context = UIGraphicsGetCurrentContext()
-        CGContextSetBlendMode(context, kCGBlendModeNormal)
+        CGContextSetBlendMode(context, CGBlendMode.Normal)
         CGContextSetAlpha(context, 1)
         
         let rect = CGRectMake(0.0, 0.0, size.width, size.height)
         CGContextBeginTransparencyLayerWithRect(context, rect, nil)
         tintColor.setFill()
         drawInRect(rect)
-        UIRectFillUsingBlendMode(rect, kCGBlendModeSourceIn)
+        UIRectFillUsingBlendMode(rect, CGBlendMode.SourceIn)
         CGContextEndTransparencyLayer(context)
         
         let tintedImage = UIGraphicsGetImageFromCurrentImageContext()

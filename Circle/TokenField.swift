@@ -74,7 +74,7 @@ class TokenField: UIView,
         customInit()
     }
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         customInit()
     }
@@ -89,7 +89,7 @@ class TokenField: UIView,
         scrollView = UIScrollView.newAutoLayoutView()
         scrollView.showsVerticalScrollIndicator = true
         addSubview(scrollView)
-        UIView.autoSetIdentifier("ScrollView PinEdgesToSuperViewEdges", forConstraints: { () -> Void in
+        NSLayoutConstraint.autoSetIdentifier("ScrollView PinEdgesToSuperViewEdges", forConstraints: { () -> Void in
             self.scrollView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
             return
         })
@@ -99,11 +99,11 @@ class TokenField: UIView,
         contentView = UIView.newAutoLayoutView()
         scrollView.addSubview(contentView)
         contentView.autoMatchDimension(.Width, toDimension: .Width, ofView: self).autoIdentify("ContentView Width")
-        UIView.autoSetPriority(750, forConstraints: { () -> Void in
+        NSLayoutConstraint.autoSetPriority(750, forConstraints: { () -> Void in
             self.contentView.autoSetContentCompressionResistancePriorityForAxis(.Vertical)
             self.contentView.autoSetContentCompressionResistancePriorityForAxis(.Horizontal)
         })
-        UIView.autoSetIdentifier("ContentView PinEdgesToSuperViewEdges", forConstraints: { () -> Void in
+        NSLayoutConstraint.autoSetIdentifier("ContentView PinEdgesToSuperViewEdges", forConstraints: { () -> Void in
             self.contentView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
             return
         })
@@ -138,7 +138,7 @@ class TokenField: UIView,
             tokenConstraints.removeAll(keepCapacity: false)
         }
         
-        for view in contentView.subviews as! [UIView] {
+        for view in contentView.subviews {
             view.removeFromSuperview()
         }
         
@@ -175,7 +175,7 @@ class TokenField: UIView,
         inputTextField?.autoSetDimension(.Width, toSize: UIScreen.mainScreen().bounds.width - leftPadding, relation: .LessThanOrEqual)
         inputTextField?.autoSetDimension(.Width, toSize: 80.0, relation: .GreaterThanOrEqual)
         inputTextField?.autoSetDimension(.Height, toSize: tokenHeight)
-        UIView.autoSetPriority(1000, forConstraints: { () -> Void in
+        NSLayoutConstraint.autoSetPriority(1000, forConstraints: { () -> Void in
             self.inputTextField?.autoSetContentCompressionResistancePriorityForAxis(.Horizontal)
             return
         })
@@ -198,7 +198,7 @@ class TokenField: UIView,
         var lineIndex = 0
         // TODO figure out how to not need this
         let width = UIScreen.mainScreen().bounds.width
-        for view in contentView.subviews as! [UIView] {
+        for view in contentView.subviews {
             let size = view.intrinsicContentSize()
             if previousView != nil {
                 tokenConstraints.append(view.autoPinEdgeToSuperviewEdge(.Top, withInset: topPadding, relation: .GreaterThanOrEqual))
@@ -273,7 +273,7 @@ class TokenField: UIView,
     
     override func becomeFirstResponder() -> Bool {
         invisibleTextField?.resignFirstResponder()
-        tokens.map { $0.highlighted = false }
+        tokens.forEach { $0.highlighted = false }
         return inputTextField?.becomeFirstResponder() ?? false
     }
     
@@ -298,7 +298,7 @@ class TokenField: UIView,
 
     func textFieldDidEnterBackspace(textField: BackspaceTextField) {
         var didDeleteToken = false
-        for (index, token) in enumerate(tokens) {
+        for (index, token) in tokens.enumerate() {
             if token.highlighted {
                 // TODO use Int instead of UInt
                 delegate?.tokenField?(self, didDeleteTokenAtIndex: UInt(index))
@@ -331,7 +331,7 @@ class TokenField: UIView,
     
     func textFieldDidBeginEditing(textField: BackspaceTextField) {
         if textField != invisibleTextField {
-            tokens.map { $0.highlighted = false }
+            tokens.forEach { $0.highlighted = false }
         }
         delegate?.tokenFieldDidBeginEditing?(self)
     }

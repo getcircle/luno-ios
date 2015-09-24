@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 RH Labs Inc. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import ProtobufRegistry
 
 protocol Theme {
@@ -156,7 +156,7 @@ struct AppTheme {
         if String(stringInterpolationSegment: AppTheme.currentTheme.dynamicType) != String(stringInterpolationSegment: newTheme.dynamicType) {
             AppTheme.currentTheme = newTheme
             updateAppearanceProxy()
-            println(organization.domain)
+            print(organization.domain)
         }
     }
     

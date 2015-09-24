@@ -26,7 +26,7 @@ class MapViewController: UIViewController, UIViewControllerTransitioningDelegate
         customInit()
     }
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         customInit()
     }
@@ -58,7 +58,7 @@ class MapViewController: UIViewController, UIViewControllerTransitioningDelegate
     }
 
     override func loadView() {
-        var rootView = UIView(frame: UIScreen.mainScreen().bounds)
+        let rootView = UIView(frame: UIScreen.mainScreen().bounds)
         rootView.backgroundColor = UIColor.clearColor()
         rootView.opaque = false
         view = rootView
@@ -86,17 +86,17 @@ class MapViewController: UIViewController, UIViewControllerTransitioningDelegate
         
         // Address View
         addressContainerView = UIView(frame: CGRectMake(0.0, 0.0, view.frame.width, 35.0))
-        addressSnapshotView?.setTranslatesAutoresizingMaskIntoConstraints(false)
+        addressSnapshotView?.translatesAutoresizingMaskIntoConstraints = false
         addressContainerView.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.8)
         view.addSubview(addressContainerView)
         addressContainerView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero, excludingEdge: .Top)
         addressContainerView.autoSetDimension(.Height, toSize: 60.0)
         
-        var tapGestureRecognizer = UITapGestureRecognizer(target: self, action: "close:")
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: "close:")
         tapGestureRecognizer.numberOfTapsRequired = 1
         addressContainerView.addGestureRecognizer(tapGestureRecognizer)
         
-        var panGestureRecognizer = UIPanGestureRecognizer(target: self, action: "close:")
+        let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: "close:")
         addressContainerView.addGestureRecognizer(panGestureRecognizer)
     }
 
@@ -105,7 +105,7 @@ class MapViewController: UIViewController, UIViewControllerTransitioningDelegate
     private func configureAddressView() {
         if let addressView = addressSnapshotView {
             addressContainerView.addSubview(addressView)
-            addressView.setTranslatesAutoresizingMaskIntoConstraints(false)
+            addressView.translatesAutoresizingMaskIntoConstraints = false
             addressView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
         }
         else {
@@ -130,7 +130,7 @@ class MapViewController: UIViewController, UIViewControllerTransitioningDelegate
     
     // MARK: - MKMapViewDelegate
     
-    func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         if annotation is MKUserLocation {
             return nil
         }

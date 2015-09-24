@@ -21,7 +21,7 @@
 		8F0004A01A2419730096477A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F00049E1A2419730096477A /* Main.storyboard */; };
 		8F0004A21A2419730096477A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8F0004A11A2419730096477A /* Images.xcassets */; };
 		8F0004A51A2419730096477A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F0004A31A2419730096477A /* LaunchScreen.xib */; };
-		8F0004B11A2419730096477A /* CircleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0004B01A2419730096477A /* CircleTests.swift */; };
+		8F0004B11A2419730096477A /* LunoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0004B01A2419730096477A /* LunoTests.swift */; };
 		8F0004BB1A241BDE0096477A /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0004BA1A241BDE0096477A /* UIColorExtension.swift */; };
 		8F02B1FC1A54A08000A1A307 /* RootNavigationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F02B1FB1A54A08000A1A307 /* RootNavigationDelegate.swift */; };
 		8F0544AE1ABA3C7800570327 /* TextInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0544AC1ABA3C7800570327 /* TextInputViewController.swift */; };
@@ -265,7 +265,6 @@
 		BF7DF98F1A44E53200A4F924 /* ServiceTransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7DF98E1A44E53200A4F924 /* ServiceTransport.swift */; };
 		BF8FC3D91A44DA83007FD8BA /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8FC3D81A44DA83007FD8BA /* StringExtension.swift */; };
 		BF97F2D71ACA0B4500F1BC2E /* TokenField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF97F2D61ACA0B4500F1BC2E /* TokenField.swift */; };
-		BFA4F6461AE34CD300385D45 /* GoogleSignIn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFA4F6451AE34CD300385D45 /* GoogleSignIn.framework */; };
 		BFAE43551A8B05010085AB2B /* HomelessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAE43531A8B05010085AB2B /* HomelessViewController.swift */; };
 		BFAE43561A8B05010085AB2B /* HomelessViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFAE43541A8B05010085AB2B /* HomelessViewController.xib */; };
 		BFAF272F1ACB75A600E881BC /* ContactInfoDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAF272E1ACB75A600E881BC /* ContactInfoDataSource.swift */; };
@@ -274,7 +273,6 @@
 		BFB83F131A8D2D80000223C0 /* Mixpanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB83F121A8D2D80000223C0 /* Mixpanel.swift */; };
 		BFB83F171A8D63B7000223C0 /* Tracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB83F161A8D63B7000223C0 /* Tracker.swift */; };
 		BFC6CF9C1A44D2B90081F45B /* ServiceClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC6CF9B1A44D2B90081F45B /* ServiceClient.swift */; };
-		BFCB028D1AE36692004DE2F3 /* GoogleSignIn.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BFCB028C1AE36692004DE2F3 /* GoogleSignIn.bundle */; };
 		BFCB028F1AE367BD004DE2F3 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFCB028E1AE367BD004DE2F3 /* AddressBook.framework */; };
 		BFCB02911AE367CA004DE2F3 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFCB02901AE367CA004DE2F3 /* SystemConfiguration.framework */; };
 		BFCFDB051A915249009A5FD4 /* EducationCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFCFDB031A915249009A5FD4 /* EducationCollectionViewCell.xib */; };
@@ -359,7 +357,7 @@
 		8F0004A41A2419730096477A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		8F0004AA1A2419730096477A /* LunoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LunoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F0004AF1A2419730096477A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8F0004B01A2419730096477A /* CircleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleTests.swift; sourceTree = "<group>"; };
+		8F0004B01A2419730096477A /* LunoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LunoTests.swift; sourceTree = "<group>"; };
 		8F0004BA1A241BDE0096477A /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		8F02B1FB1A54A08000A1A307 /* RootNavigationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootNavigationDelegate.swift; sourceTree = "<group>"; };
 		8F0544AC1ABA3C7800570327 /* TextInputViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextInputViewController.swift; sourceTree = "<group>"; };
@@ -606,7 +604,6 @@
 		BF7DF98E1A44E53200A4F924 /* ServiceTransport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceTransport.swift; sourceTree = "<group>"; };
 		BF8FC3D81A44DA83007FD8BA /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		BF97F2D61ACA0B4500F1BC2E /* TokenField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenField.swift; sourceTree = "<group>"; };
-		BFA4F6451AE34CD300385D45 /* GoogleSignIn.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleSignIn.framework; sourceTree = "<group>"; };
 		BFAE43531A8B05010085AB2B /* HomelessViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomelessViewController.swift; sourceTree = "<group>"; };
 		BFAE43541A8B05010085AB2B /* HomelessViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomelessViewController.xib; sourceTree = "<group>"; };
 		BFAF272E1ACB75A600E881BC /* ContactInfoDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactInfoDataSource.swift; sourceTree = "<group>"; };
@@ -615,7 +612,6 @@
 		BFB83F121A8D2D80000223C0 /* Mixpanel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mixpanel.swift; sourceTree = "<group>"; };
 		BFB83F161A8D63B7000223C0 /* Tracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tracker.swift; sourceTree = "<group>"; };
 		BFC6CF9B1A44D2B90081F45B /* ServiceClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceClient.swift; sourceTree = "<group>"; };
-		BFCB028C1AE36692004DE2F3 /* GoogleSignIn.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = GoogleSignIn.bundle; sourceTree = "<group>"; };
 		BFCB028E1AE367BD004DE2F3 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		BFCB02901AE367CA004DE2F3 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		BFCFDB031A915249009A5FD4 /* EducationCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EducationCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -642,7 +638,6 @@
 				BFCB02911AE367CA004DE2F3 /* SystemConfiguration.framework in Frameworks */,
 				BFCB028F1AE367BD004DE2F3 /* AddressBook.framework in Frameworks */,
 				8F4805C41A5B643F00273731 /* Crashlytics.framework in Frameworks */,
-				BFA4F6461AE34CD300385D45 /* GoogleSignIn.framework in Frameworks */,
 				DF400245E813C40A9AB735B3 /* Pods.framework in Frameworks */,
 				8F5244901B29302800E50A14 /* Fabric.framework in Frameworks */,
 			);
@@ -664,8 +659,6 @@
 			isa = PBXGroup;
 			children = (
 				BFCB028E1AE367BD004DE2F3 /* AddressBook.framework */,
-				BFCB028C1AE36692004DE2F3 /* GoogleSignIn.bundle */,
-				BFA4F6451AE34CD300385D45 /* GoogleSignIn.framework */,
 				4BE4CE18D8FDD109BFC6307A /* Pods.framework */,
 				BFCB02901AE367CA004DE2F3 /* SystemConfiguration.framework */,
 			);
@@ -685,8 +678,8 @@
 		8F0004871A2419730096477A = {
 			isa = PBXGroup;
 			children = (
-				8F0004921A2419730096477A /* Circle */,
-				8F0004AD1A2419730096477A /* CircleTests */,
+				8F0004921A2419730096477A /* Luno */,
+				8F0004AD1A2419730096477A /* LunoTests */,
 				8F0004911A2419730096477A /* Products */,
 				D3792F80AEE37ECED92A044F /* Pods */,
 				31F9C7E511DF7D5BF18D0B04 /* Frameworks */,
@@ -702,7 +695,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		8F0004921A2419730096477A /* Circle */ = {
+		8F0004921A2419730096477A /* Luno */ = {
 			isa = PBXGroup;
 			children = (
 				8F5933CE1ACA142300905E14 /* circle.entitlements */,
@@ -725,6 +718,7 @@
 				8F0004C01A25B9FE0096477A /* ViewControllers */,
 				8F0004C11A25BA090096477A /* Views */,
 			);
+			name = Luno;
 			path = Circle;
 			sourceTree = "<group>";
 		};
@@ -740,12 +734,13 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		8F0004AD1A2419730096477A /* CircleTests */ = {
+		8F0004AD1A2419730096477A /* LunoTests */ = {
 			isa = PBXGroup;
 			children = (
-				8F0004B01A2419730096477A /* CircleTests.swift */,
+				8F0004B01A2419730096477A /* LunoTests.swift */,
 				8F0004AE1A2419730096477A /* Supporting Files */,
 			);
+			name = LunoTests;
 			path = CircleTests;
 			sourceTree = "<group>";
 		};
@@ -1236,8 +1231,9 @@
 		8F0004881A2419730096477A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftMigration = 0700;
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0610;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Luno Inc.";
 				TargetAttributes = {
 					8F00048F1A2419730096477A = {
@@ -1305,7 +1301,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BFCB028D1AE36692004DE2F3 /* GoogleSignIn.bundle in Resources */,
 				8F0ADD481AC5344E00A44B68 /* Loader_00044@2x.png in Resources */,
 				8F0ADD2F1AC5344E00A44B68 /* Loader_00019@2x.png in Resources */,
 				8F0ADD4A1AC5344E00A44B68 /* Loader_00046@2x.png in Resources */,
@@ -1711,7 +1706,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8F0004B11A2419730096477A /* CircleTests.swift in Sources */,
+				8F0004B11A2419730096477A /* LunoTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1770,6 +1765,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1839,6 +1835,7 @@
 				CODE_SIGN_ENTITLEMENTS = Circle/circle.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Circle",
@@ -1850,6 +1847,7 @@
 				);
 				INFOPLIST_FILE = Circle/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.rhlabs.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = luno;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$SRCROOT/Circle/Circle-Bridging-Header.h";
@@ -1865,6 +1863,7 @@
 				CODE_SIGN_ENTITLEMENTS = Circle/circle.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Circle",
@@ -1872,6 +1871,7 @@
 				);
 				INFOPLIST_FILE = Circle/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.rhlabs.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = luno;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$SRCROOT/Circle/Circle-Bridging-Header.h";
@@ -1896,8 +1896,9 @@
 				);
 				INFOPLIST_FILE = CircleTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.rhlabs.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = LunoTests;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Circle.app/Circle";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/luno.app/luno";
 			};
 			name = Debug;
 		};
@@ -1913,8 +1914,9 @@
 				);
 				INFOPLIST_FILE = CircleTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.rhlabs.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = LunoTests;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Circle.app/Circle";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/luno.app/luno";
 			};
 			name = Release;
 		};

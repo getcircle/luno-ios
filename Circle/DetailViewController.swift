@@ -31,7 +31,7 @@ class DetailViewController: BaseDetailViewController,
     private(set) var imageToUpload: UIImage?
 
     override func loadView() {
-        var rootView = UIView(frame: UIScreen.mainScreen().bounds)
+        let rootView = UIView(frame: UIScreen.mainScreen().bounds)
         rootView.opaque = true
         view = rootView
 
@@ -134,28 +134,28 @@ class DetailViewController: BaseDetailViewController,
     
     func onEditImageButtonTapped(sender: UIView!) {
         
-        var actionSheet = UIAlertController(
+        let actionSheet = UIAlertController(
             title: AppStrings.ActionSheetAddAPictureButtonTitle,
             message: nil,
             preferredStyle: .ActionSheet
         )
         actionSheet.view.tintColor = UIColor.appActionSheetControlsTintColor()
         
-        var takeAPictureActionControl = UIAlertAction(
+        let takeAPictureActionControl = UIAlertAction(
             title: AppStrings.ActionSheetTakeAPictureButtonTitle,
             style: .Default,
             handler: takeAPictureAction
         )
         actionSheet.addAction(takeAPictureActionControl)
         
-        var pickAPhotoActionControl = UIAlertAction(
+        let pickAPhotoActionControl = UIAlertAction(
             title: AppStrings.ActionSheetPickAPhotoButtonTitle,
             style: .Default,
             handler: pickAPhotoAction
         )
         actionSheet.addAction(pickAPhotoActionControl)
         
-        var cancelControl = UIAlertAction(
+        let cancelControl = UIAlertAction(
             title: AppStrings.GenericCancelButtonTitle,
             style: .Cancel,
             handler: { (action) -> Void in
@@ -176,7 +176,7 @@ class DetailViewController: BaseDetailViewController,
     func takeAPictureAction(action: UIAlertAction!) {
         dismissAddImageActionSheet(false)
         if UIImagePickerController.isSourceTypeAvailable(.Camera) {
-            var pickerVC = UIImagePickerController()
+            let pickerVC = UIImagePickerController()
             pickerVC.sourceType = .Camera
             pickerVC.cameraCaptureMode = .Photo
             if UIImagePickerController.isCameraDeviceAvailable(.Front) {
@@ -195,7 +195,7 @@ class DetailViewController: BaseDetailViewController,
     func pickAPhotoAction(action: UIAlertAction!) {
         dismissAddImageActionSheet(false)
         if UIImagePickerController.isSourceTypeAvailable(.PhotoLibrary) {
-            var pickerVC = UIImagePickerController()
+            let pickerVC = UIImagePickerController()
             pickerVC.sourceType = .PhotoLibrary
             pickerVC.allowsEditing = true
             pickerVC.delegate = self
@@ -213,7 +213,7 @@ class DetailViewController: BaseDetailViewController,
     
     // MARK: - UIImagePickerControllerDelegate
     
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         if let pickedImage = info[UIImagePickerControllerEditedImage] as? UIImage {
             imageToUpload = pickedImage
         }

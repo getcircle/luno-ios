@@ -43,7 +43,7 @@ class SearchHeaderView: UIView {
     // MARK: - Configuration
     
     private func customizeSearchField() {
-        var leftView = UIView(frame: CGRectMake(
+        let leftView = UIView(frame: CGRectMake(
             10.0,
             0.0,
             36.0,

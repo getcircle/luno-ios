@@ -32,7 +32,7 @@ class SettingsDataSource: CardDataSource {
         let sectionInset = UIEdgeInsetsMake(0.0, 0.0, 0.0, 0.0)
 
         // Security card
-        var securityCard = Card(
+        let securityCard = Card(
             cardType: .Settings,
             title: NSLocalizedString("Security", comment: "Title of section related to security settings")
         )
@@ -48,7 +48,7 @@ class SettingsDataSource: CardDataSource {
         appendCard(securityCard)
 
         // Contact card
-        var contactCard = Card(
+        let contactCard = Card(
             cardType: .Settings,
             title: NSLocalizedString("Contact", comment: "Title of contact us section")
         )
@@ -68,7 +68,7 @@ class SettingsDataSource: CardDataSource {
         appendCard(contactCard)
 
         // Legal card
-        var legalCard = Card(
+        let legalCard = Card(
             cardType: .Settings,
             title: NSLocalizedString("Legal", comment: "Title of legal section")
         )
@@ -92,7 +92,7 @@ class SettingsDataSource: CardDataSource {
         appendCard(legalCard)
 
         // Account card
-        var logoutCard = Card(
+        let logoutCard = Card(
             cardType: .Settings, 
             title: "Account"
         )
@@ -124,7 +124,7 @@ class SettingsDataSource: CardDataSource {
         appendCard(logoutCard)
         
         // Version card
-        var versionCard = Card(cardType: .Settings, title: "")
+        let versionCard = Card(cardType: .Settings, title: "")
         versionCard.addHeader(headerClass: sectionHeaderClass)
         versionCard.sectionInset = sectionInset
         versionCard.showContentCount = false
