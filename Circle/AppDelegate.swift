@@ -39,10 +39,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
-    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
-        return GIDSignIn.sharedInstance().handleURL(url, sourceApplication: sourceApplication, annotation: annotation)
-    }
-    
     func applicationDidBecomeActive(application: UIApplication) {
         Tracker.sharedInstance.trackSessionStart()
     }

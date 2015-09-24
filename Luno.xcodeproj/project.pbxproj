@@ -265,7 +265,6 @@
 		BF7DF98F1A44E53200A4F924 /* ServiceTransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7DF98E1A44E53200A4F924 /* ServiceTransport.swift */; };
 		BF8FC3D91A44DA83007FD8BA /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8FC3D81A44DA83007FD8BA /* StringExtension.swift */; };
 		BF97F2D71ACA0B4500F1BC2E /* TokenField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF97F2D61ACA0B4500F1BC2E /* TokenField.swift */; };
-		BFA4F6461AE34CD300385D45 /* GoogleSignIn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFA4F6451AE34CD300385D45 /* GoogleSignIn.framework */; };
 		BFAE43551A8B05010085AB2B /* HomelessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAE43531A8B05010085AB2B /* HomelessViewController.swift */; };
 		BFAE43561A8B05010085AB2B /* HomelessViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFAE43541A8B05010085AB2B /* HomelessViewController.xib */; };
 		BFAF272F1ACB75A600E881BC /* ContactInfoDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAF272E1ACB75A600E881BC /* ContactInfoDataSource.swift */; };
@@ -274,7 +273,6 @@
 		BFB83F131A8D2D80000223C0 /* Mixpanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB83F121A8D2D80000223C0 /* Mixpanel.swift */; };
 		BFB83F171A8D63B7000223C0 /* Tracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB83F161A8D63B7000223C0 /* Tracker.swift */; };
 		BFC6CF9C1A44D2B90081F45B /* ServiceClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC6CF9B1A44D2B90081F45B /* ServiceClient.swift */; };
-		BFCB028D1AE36692004DE2F3 /* GoogleSignIn.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BFCB028C1AE36692004DE2F3 /* GoogleSignIn.bundle */; };
 		BFCB028F1AE367BD004DE2F3 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFCB028E1AE367BD004DE2F3 /* AddressBook.framework */; };
 		BFCB02911AE367CA004DE2F3 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFCB02901AE367CA004DE2F3 /* SystemConfiguration.framework */; };
 		BFCFDB051A915249009A5FD4 /* EducationCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFCFDB031A915249009A5FD4 /* EducationCollectionViewCell.xib */; };
@@ -606,7 +604,6 @@
 		BF7DF98E1A44E53200A4F924 /* ServiceTransport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceTransport.swift; sourceTree = "<group>"; };
 		BF8FC3D81A44DA83007FD8BA /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		BF97F2D61ACA0B4500F1BC2E /* TokenField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenField.swift; sourceTree = "<group>"; };
-		BFA4F6451AE34CD300385D45 /* GoogleSignIn.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleSignIn.framework; sourceTree = "<group>"; };
 		BFAE43531A8B05010085AB2B /* HomelessViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomelessViewController.swift; sourceTree = "<group>"; };
 		BFAE43541A8B05010085AB2B /* HomelessViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomelessViewController.xib; sourceTree = "<group>"; };
 		BFAF272E1ACB75A600E881BC /* ContactInfoDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactInfoDataSource.swift; sourceTree = "<group>"; };
@@ -615,7 +612,6 @@
 		BFB83F121A8D2D80000223C0 /* Mixpanel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mixpanel.swift; sourceTree = "<group>"; };
 		BFB83F161A8D63B7000223C0 /* Tracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tracker.swift; sourceTree = "<group>"; };
 		BFC6CF9B1A44D2B90081F45B /* ServiceClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceClient.swift; sourceTree = "<group>"; };
-		BFCB028C1AE36692004DE2F3 /* GoogleSignIn.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = GoogleSignIn.bundle; sourceTree = "<group>"; };
 		BFCB028E1AE367BD004DE2F3 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		BFCB02901AE367CA004DE2F3 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		BFCFDB031A915249009A5FD4 /* EducationCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EducationCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -642,7 +638,6 @@
 				BFCB02911AE367CA004DE2F3 /* SystemConfiguration.framework in Frameworks */,
 				BFCB028F1AE367BD004DE2F3 /* AddressBook.framework in Frameworks */,
 				8F4805C41A5B643F00273731 /* Crashlytics.framework in Frameworks */,
-				BFA4F6461AE34CD300385D45 /* GoogleSignIn.framework in Frameworks */,
 				DF400245E813C40A9AB735B3 /* Pods.framework in Frameworks */,
 				8F5244901B29302800E50A14 /* Fabric.framework in Frameworks */,
 			);
@@ -664,8 +659,6 @@
 			isa = PBXGroup;
 			children = (
 				BFCB028E1AE367BD004DE2F3 /* AddressBook.framework */,
-				BFCB028C1AE36692004DE2F3 /* GoogleSignIn.bundle */,
-				BFA4F6451AE34CD300385D45 /* GoogleSignIn.framework */,
 				4BE4CE18D8FDD109BFC6307A /* Pods.framework */,
 				BFCB02901AE367CA004DE2F3 /* SystemConfiguration.framework */,
 			);
@@ -1308,7 +1301,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BFCB028D1AE36692004DE2F3 /* GoogleSignIn.bundle in Resources */,
 				8F0ADD481AC5344E00A44B68 /* Loader_00044@2x.png in Resources */,
 				8F0ADD2F1AC5344E00A44B68 /* Loader_00019@2x.png in Resources */,
 				8F0ADD4A1AC5344E00A44B68 /* Loader_00046@2x.png in Resources */,
@@ -1843,7 +1835,7 @@
 				CODE_SIGN_ENTITLEMENTS = Circle/circle.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				ENABLE_BITCODE = NO;
+				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Circle",
@@ -1871,7 +1863,7 @@
 				CODE_SIGN_ENTITLEMENTS = Circle/circle.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				ENABLE_BITCODE = NO;
+				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Circle",

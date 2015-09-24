@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 RH Labs Inc. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import ProtobufRegistry
 
 typealias CreateUserCompletionHandler = (user: Services.User.Containers.UserV1?, error: NSError?) -> Void

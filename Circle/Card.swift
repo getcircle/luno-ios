@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 RH Labs Inc. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import ProtobufRegistry
 
 func ==(lhs: Card, rhs: Card) -> Bool {
