@@ -111,6 +111,10 @@ extension UIColor {
         return UIColor(red: 220, green: 220, blue: 220)
     }
     
+    static func appSearchIconTintColor() -> UIColor {
+        return UIColor.blackColor().colorWithAlphaComponent(0.4)
+    }
+    
     static func appTagNormalBackgroundColor() -> UIColor {
         return UIColor.whiteColor()
     }

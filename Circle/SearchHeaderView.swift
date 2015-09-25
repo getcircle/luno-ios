@@ -53,6 +53,7 @@ class SearchHeaderView: UIView {
         leftViewImageView = UIImageView(image: UIImage(named: "searchbar_search")?.imageWithRenderingMode(.AlwaysTemplate))
         leftViewImageView.contentMode = .Center
         leftViewImageView.frame = CGRectMake(10.0, (searchTextField.frame.height - 16.0)/2.0, 16.0, 16.0)
+        leftViewImageView.tintColor = UIColor.appSearchIconTintColor()
         leftView.addSubview(leftViewImageView)
         
         searchTextField.leftViewMode = .Always
@@ -66,7 +67,6 @@ class SearchHeaderView: UIView {
     }
     
     func updateView() {
-        leftViewImageView.tintColor = searchFieldTextColor
         searchTextField.backgroundColor = searchFieldBackgroundColor
         searchTextField.textColor = searchFieldTextColor
         searchTextField.tintColor = searchFieldTintColor
