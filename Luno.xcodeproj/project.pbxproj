@@ -14,6 +14,7 @@
 		478E7A701B97938E0077B910 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 478E7A6D1B97938E0077B910 /* OpenSans-Regular.ttf */; };
 		478E7A711B97938E0077B910 /* OpenSans-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 478E7A6E1B97938E0077B910 /* OpenSans-Semibold.ttf */; };
 		47D1BF731BA08DF000BFF46B /* NSAttributedStringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D1BF721BA08DF000BFF46B /* NSAttributedStringExtension.swift */; };
+		47D85C941BB49C7A0093222F /* OpenSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 47D85C921BB49BA30093222F /* OpenSans-Italic.ttf */; settings = {ASSET_TAGS = (); }; };
 		7899CA44139AE8B96BACC3EA /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		8F0004961A2419730096477A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0004951A2419730096477A /* AppDelegate.swift */; };
 		8F00049B1A2419730096477A /* ProfilesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F00049A1A2419730096477A /* ProfilesViewController.swift */; };
@@ -346,6 +347,7 @@
 		478E7A6D1B97938E0077B910 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
 		478E7A6E1B97938E0077B910 /* OpenSans-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Semibold.ttf"; sourceTree = "<group>"; };
 		47D1BF721BA08DF000BFF46B /* NSAttributedStringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSAttributedStringExtension.swift; sourceTree = "<group>"; };
+		47D85C921BB49BA30093222F /* OpenSans-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Italic.ttf"; sourceTree = "<group>"; };
 		4BE4CE18D8FDD109BFC6307A /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F0004901A2419730096477A /* luno.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = luno.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F0004941A2419730096477A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -671,6 +673,7 @@
 				478E7A6C1B97938E0077B910 /* OpenSans-Light.ttf */,
 				478E7A6D1B97938E0077B910 /* OpenSans-Regular.ttf */,
 				478E7A6E1B97938E0077B910 /* OpenSans-Semibold.ttf */,
+				47D85C921BB49BA30093222F /* OpenSans-Italic.ttf */,
 			);
 			path = OpenSans;
 			sourceTree = "<group>";
@@ -1328,6 +1331,7 @@
 				8F81713D1A62E07000CB7692 /* VerifyProfileViewController.xib in Resources */,
 				8F07ACAD1AE878F100D1F41D /* MPArrowRight.png in Resources */,
 				8F22CBF91A29A8EB0026376E /* AuthViewController.xib in Resources */,
+				47D85C941BB49C7A0093222F /* OpenSans-Italic.ttf in Resources */,
 				8F07ACB81AE878F100D1F41D /* MPSurvey.storyboard in Resources */,
 				8F0ADD361AC5344E00A44B68 /* Loader_00026@2x.png in Resources */,
 				8F0ADD3E1AC5344E00A44B68 /* Loader_00034@2x.png in Resources */,
