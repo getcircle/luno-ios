@@ -125,7 +125,6 @@ class LocationDetailDataSource: CardDataSource {
         
         // Add placeholder card to load profile header instantly
         let placeholderCard = Card(cardType: .Placeholder, title: "Info")
-        placeholderCard.sectionInset = UIEdgeInsetsZero
         placeholderCard.addHeader(
             headerClass: ProfileHeaderCollectionReusableView.self,
             headerSize: CGSizeMake(
@@ -141,6 +140,7 @@ class LocationDetailDataSource: CardDataSource {
 
         // Address
         let addressCard = Card(cardType: .LocationsAddress, title: AppStrings.CardTitleAddress)
+        addressCard.addHeader(headerClass: sectionHeaderClass)
         addressCard.addContent(content: [location] as [AnyObject])
         appendCard(addressCard)
     }
