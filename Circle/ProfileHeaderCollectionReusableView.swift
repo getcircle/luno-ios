@@ -9,7 +9,7 @@
 import UIKit
 import ProtobufRegistry
 
-class ProfileHeaderCollectionReusableView: DetailHeaderCollectionReusableView {
+class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
 
     @IBOutlet weak private(set) var backgroundImageView: CircleImageView!
     @IBOutlet weak private(set) var containerView: UIView!
@@ -274,8 +274,6 @@ class ProfileHeaderCollectionReusableView: DetailHeaderCollectionReusableView {
                     view.alpha = alpha
                 }
             }
-            
-            editImageButton?.alpha = nameLabel.alpha
         }
         else {
             // Change alpha faster for profile image
@@ -287,7 +285,6 @@ class ProfileHeaderCollectionReusableView: DetailHeaderCollectionReusableView {
             titleNavLabel.alpha = 0.0
             visualEffectView?.alpha = otherViewsAlpha
             containerView.alpha = otherViewsAlpha
-            editImageButton?.alpha = otherViewsAlpha
             profileImage.alpha = profileImageAlpha
             profileImage.transform = CGAffineTransformIdentity
             verifiedProfileButton.alpha = profileImageAlpha

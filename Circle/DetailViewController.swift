@@ -15,8 +15,7 @@ class DetailViewController: BaseDetailViewController,
     UICollectionViewDelegate,
     UIImagePickerControllerDelegate,
     UINavigationControllerDelegate,
-    TextInputViewControllerDelegate,
-    EditImageButtonDelegate {
+    TextInputViewControllerDelegate {
 
     var animationSourceRect: CGRect?
     var dataSource: CardDataSource!

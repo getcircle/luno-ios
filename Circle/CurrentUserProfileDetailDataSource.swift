@@ -10,8 +10,6 @@ import UIKit
 import ProtobufRegistry
 
 class CurrentUserProfileDetailDataSource: ProfileDetailDataSource {
-
-    var editImageButtonDelegate: EditImageButtonDelegate?
     
     override func canEdit() -> Bool {
         return true

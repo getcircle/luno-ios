@@ -11,7 +11,6 @@ import ProtobufRegistry
 
 class LocationDetailDataSource: CardDataSource {
     
-    var editImageButtonDelegate: EditImageButtonDelegate?
     var location: Services.Organization.Containers.LocationV1!
     var profileCellDelegate: ProfileCollectionViewCellDelegate?
 

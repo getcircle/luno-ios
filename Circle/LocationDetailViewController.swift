@@ -33,7 +33,6 @@ class LocationDetailViewController:
         
         collectionView.delegate = delegate
         (layout as! StickyHeaderCollectionViewLayout).headerHeight = ProfileHeaderCollectionReusableView.height
-        (dataSource as! LocationDetailDataSource).editImageButtonDelegate = self
         (dataSource as! LocationDetailDataSource).profileCellDelegate = self
         super.configureCollectionView()
     }

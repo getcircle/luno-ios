@@ -11,7 +11,6 @@ import ProtobufRegistry
 
 class TeamDetailDataSource: CardDataSource {
     
-    var editImageButtonDelegate: EditImageButtonDelegate?
     var team: Services.Organization.Containers.TeamV1!
     
     private(set) var profileHeaderView: ProfileHeaderCollectionReusableView?

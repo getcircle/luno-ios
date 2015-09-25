@@ -22,7 +22,6 @@ class CurrentUserProfileDetailViewController: ProfileDetailViewController,
         self.init()
         profile = withProfile
         dataSource = CurrentUserProfileDetailDataSource(profile: profile)
-        (dataSource as! CurrentUserProfileDetailDataSource).editImageButtonDelegate = self
         dataSource.cardHeaderDelegate = self
         delegate = CardCollectionViewDelegate()
         
