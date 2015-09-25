@@ -19,7 +19,7 @@ struct AppStrings {
     
     static let CardTitlePeople = NSLocalizedString("People", comment: "Title of the card showing people")
     static let CardTitleOfficeTeam = NSLocalizedString("Office Teams", comment: "Title of the card showing teams in a office")
-    static let CardTitleAddress = NSLocalizedString("Location", comment: "Title of the card showing address")
+    static let CardTitleAddress = NSLocalizedString("Address", comment: "Title of the card showing address")
     
     static let ContactLabelCellPhone = NSLocalizedString("Cell Phone", comment: "Label for showing cell phone")
     static let ContactLabelPersonalEmail = NSLocalizedString("Personal Email", comment: "Label for showing personal email")
