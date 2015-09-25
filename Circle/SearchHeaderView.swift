@@ -23,7 +23,7 @@ class SearchHeaderView: UIView {
     var delegate: SearchHeaderViewDelegate?
     var searchFieldBackgroundColor = UIColor.appSearchTextFieldBackground()
     var searchFieldTextColor = UIColor.appPrimaryTextColor()
-    var searchFieldTintColor = UIColor.appTintColor()
+    var searchFieldTintColor = UIColor.appHighlightColor()
 
     private var leftViewImageView: UIImageView!
     
@@ -62,7 +62,6 @@ class SearchHeaderView: UIView {
         
         searchFieldBackgroundColor = UIColor.whiteColor()
         containerBackgroundColor = UIColor.whiteColor()
-        searchFieldTintColor = UIColor.appTintColor()
         updateView()
     }
     
@@ -71,6 +70,7 @@ class SearchHeaderView: UIView {
         searchTextField.textColor = searchFieldTextColor
         searchTextField.tintColor = searchFieldTintColor
         searchTextField.superview?.backgroundColor = containerBackgroundColor
+        cancelButton.setTitleColor(UIColor.appHighlightColor(), forState: .Normal)
     }
 
     // MARK: - CancelButtonState
