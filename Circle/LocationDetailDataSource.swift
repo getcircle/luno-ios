@@ -145,35 +145,6 @@ class LocationDetailDataSource: CardDataSource {
         appendCard(addressCard)
     }
     
-    private func addDescriptionCard() {
-        var description = ""
-
-        if let value = location.description_?.value where value.trimWhitespace() != "" {
-            description = value
-        }
-        
-        if description != "" || canEdit() {
-            
-            let descriptionCard = Card(cardType: .TextValue, title: "Description")
-            descriptionCard.addHeader(headerClass: sectionHeaderClass)
-            descriptionCard.showContentCount = false
-            descriptionCard.addContent(content: [
-                TextData(
-                    type: .LocationDescription,
-                    andValue: description,
-                    andTimestamp: location.description_?.changed,
-                    andPlaceholder: NSLocalizedString(
-                        "Add a description for your location",
-                        comment: "Add a description to the location"
-                    ),
-                    andAuthor: location.description_?.byProfile
-                )
-            ])
-            
-            appendCard(descriptionCard)
-        }
-    }
-    
     private func addPointOfContactCard() {
         
         // Show points of contact section if there is data or user can edit
@@ -244,16 +215,7 @@ class LocationDetailDataSource: CardDataSource {
         resetCards()
         addPlaceholderCard()
         addAddressCard()
-        addDescriptionCard()
         addPointOfContactCard()
         addPeopleCard()
-    }
-    
-    override func canEdit() -> Bool {
-        if let permissions = self.location.permissions where permissions.canEdit {
-            return true
-        }
-
-        return super.canEdit()
     }
 }
