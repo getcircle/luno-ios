@@ -22,7 +22,7 @@ class SearchHeaderView: UIView {
     var containerBackgroundColor = UIColor.appViewBackgroundColor()
     var delegate: SearchHeaderViewDelegate?
     var searchFieldBackgroundColor = UIColor.appSearchTextFieldBackground()
-    var searchFieldTextColor = UIColor.appDefaultDarkTextColor()
+    var searchFieldTextColor = UIColor.appPrimaryTextColor()
     var searchFieldTintColor = UIColor.appTintColor()
 
     private var leftViewImageView: UIImageView!
