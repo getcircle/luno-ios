@@ -48,7 +48,7 @@ extension UIColor {
     }
     
     static func appNavigationBarTintColor() -> UIColor {
-        return AppTheme.currentTheme.app_nav_bar_text_controls_color
+        return UIColor.whiteColor()
     }
     
     static func appNavigationBarTitleColor() -> UIColor {

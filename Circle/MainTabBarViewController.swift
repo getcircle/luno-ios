@@ -115,18 +115,12 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
         // Refresh data for selected view controllers
         if let sourceViewController = getActiveViewController(viewController) {
             
-            if sourceViewController.isViewLoaded() && sourceViewController.view.window == nil {
-                if sourceViewController is CurrentUserProfileDetailViewController {
-                    (sourceViewController as! CurrentUserProfileDetailViewController).loadData()
-                }
-                
-                // Activate Search
-                if selectedIndex == 0 && sourceViewController is SearchViewController {
-                    let searchVC = sourceViewController as! SearchViewController
-                    if searchVC.view.window != nil {
-                        searchVC.activateSearch(false)
-                    }
-                }
+            if sourceViewController is CurrentUserProfileDetailViewController {
+                UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: false)
+                (sourceViewController as! CurrentUserProfileDetailViewController).loadData()
+            }
+            else if sourceViewController is SearchViewController {
+                UIApplication.sharedApplication().setStatusBarStyle(.Default, animated: false)
             }
             
             if !(sourceViewController is BaseDetailViewController) {

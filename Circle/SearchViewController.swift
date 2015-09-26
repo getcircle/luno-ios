@@ -196,7 +196,9 @@ class SearchViewController: UIViewController,
             return
         }
         
-        searchHeaderContainerViewTopConstraint.constant = 0
+        navigationController?.setNavigationBarHidden(true, animated: true)
+        
+        searchHeaderContainerViewTopConstraint.constant = 20
         searchHeaderContainerViewLeftConstraint.constant = 0
         searchHeaderContainerViewRightConstraint.constant = 0
         searchHeaderContainerView.setNeedsUpdateConstraints()
@@ -218,9 +220,11 @@ class SearchViewController: UIViewController,
     }
     
     private func moveSearchToCenter(animated: Bool) {
-        if searchHeaderContainerViewTopConstraint.constant != 0 {
+        if searchHeaderContainerViewTopConstraint.constant != 20 {
             return
         }
+        
+        navigationController?.setNavigationBarHidden(false, animated: true)
         
         searchHeaderContainerViewTopConstraint.constant = view.frameHeight / 2
         searchHeaderContainerViewLeftConstraint.constant = 15
