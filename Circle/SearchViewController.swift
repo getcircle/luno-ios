@@ -25,6 +25,7 @@ class SearchViewController: UIViewController,
     @IBOutlet weak private(set) var searchHeaderContainerViewTopConstraint: NSLayoutConstraint!
     @IBOutlet weak private(set) var searchHeaderContainerViewLeftConstraint: NSLayoutConstraint!
     @IBOutlet weak private(set) var searchHeaderContainerViewRightConstraint: NSLayoutConstraint!
+    @IBOutlet weak private(set) var searchHeaderContainerViewHeightConstraint: NSLayoutConstraint!
     
     private var activityIndicatorView: CircleActivityIndicatorView!
     private var errorMessageView: CircleErrorMessageView!
@@ -112,7 +113,8 @@ class SearchViewController: UIViewController,
             searchHeaderView.searchTextField.delegate = self
             searchHeaderView.searchTextField.addTarget(self, action: "search", forControlEvents: .EditingChanged)
             searchHeaderContainerView.addSubview(searchHeaderView)
-            searchHeaderView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
+            searchHeaderView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero, excludingEdge: .Top)
+            searchHeaderView.autoSetDimension(.Height, toSize: 50.0)
             searchHeaderView.layer.cornerRadius = 10.0
             searchHeaderView.searchTextField.attributedPlaceholder = NSAttributedString(string: AppStrings.QuickActionNonePlaceholder, attributes: [NSForegroundColorAttributeName: UIColor.appSecondaryTextColor()])
             searchHeaderContainerView.layer.borderColor = UIColor.grayColor().colorWithAlphaComponent(0.2).CGColor
@@ -198,12 +200,14 @@ class SearchViewController: UIViewController,
         
         navigationController?.setNavigationBarHidden(true, animated: true)
         
-        searchHeaderContainerViewTopConstraint.constant = 20
+        searchHeaderContainerViewTopConstraint.constant = 0
         searchHeaderContainerViewLeftConstraint.constant = 0
         searchHeaderContainerViewRightConstraint.constant = 0
+        searchHeaderContainerViewHeightConstraint.constant = 70
         searchHeaderContainerView.setNeedsUpdateConstraints()
         
         UIView.animateWithDuration(animated ? 0.3 : 0.0, animations: { () -> Void in
+            self.searchHeaderContainerView.backgroundColor = UIColor.whiteColor()
             self.searchHeaderContainerView.layoutIfNeeded()
             self.orgImageView.layoutIfNeeded()
             self.collectionView.layoutIfNeeded()
@@ -220,7 +224,7 @@ class SearchViewController: UIViewController,
     }
     
     private func moveSearchToCenter(animated: Bool) {
-        if searchHeaderContainerViewTopConstraint.constant != 20 {
+        if searchHeaderContainerViewTopConstraint.constant != 0 {
             return
         }
         
@@ -229,9 +233,11 @@ class SearchViewController: UIViewController,
         searchHeaderContainerViewTopConstraint.constant = view.frameHeight / 2
         searchHeaderContainerViewLeftConstraint.constant = 15
         searchHeaderContainerViewRightConstraint.constant = 15
+        searchHeaderContainerViewHeightConstraint.constant = 50
         searchHeaderContainerView.setNeedsUpdateConstraints()
 
         UIView.animateWithDuration(animated ? 0.3 : 0.0, animations: { () -> Void in
+            self.searchHeaderContainerView.backgroundColor = self.view.backgroundColor
             self.searchHeaderContainerView.layoutIfNeeded()
             self.orgImageView.layoutIfNeeded()
             self.collectionView.layoutIfNeeded()
