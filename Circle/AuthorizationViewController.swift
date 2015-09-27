@@ -108,7 +108,7 @@ class AuthorizationViewController: UIViewController, WKNavigationDelegate {
     func webView(webView: WKWebView, decidePolicyForNavigationAction navigationAction: WKNavigationAction, decisionHandler: (WKNavigationActionPolicy) -> Void) {
         let url = navigationAction.request.URL
         if (
-            ServiceHttpRequest.environment.redirectHosts.contains(url!.host!) &&
+            url!.host!.hasSuffix(ServiceHttpRequest.environment.redirectHostSuffix) &&
             (url!.path!.hasSuffix("success") || url!.path!.hasSuffix("error") || url!.path!.hasSuffix("auth"))
         ) {
             if url!.path!.hasSuffix("success") || url!.path!.hasSuffix("auth") {

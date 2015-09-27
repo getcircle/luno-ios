@@ -169,18 +169,15 @@ struct ServiceHttpRequest: URLRequestConvertible {
             }
         }
         
-        var redirectHosts: [String] {
+        var redirectHostSuffix: String {
             switch self {
-            case .Dev: return ["api.dev.lunohq.com", "www.dev.lunohq.com"]
-            case .Local: return ["localhost", "local.lunohq.com:9110"]
-            case .Staging: return ["api.staging.lunohq.com", "www.staging.lunohq.com"]
-            case .Production: return ["api.lunohq.com", "www.lunohq.com"]
+            case .Dev, .Local, .Staging, .Production: return "lunohq.com"
             }
         }
     }
     
-//    static let environment = Environment.Production
-    static let environment = Environment.Local
+    static let environment = Environment.Production
+//    static let environment = Environment.Local
 //    static let environment = Environment.Dev
     
     var data: NSData
