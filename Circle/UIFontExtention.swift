@@ -86,6 +86,10 @@ extension UIFont {
         return UIFont(name: "OpenSans-Italic", size: size)
     }
     
+    static func boldFont(size: CGFloat) -> UIFont! {
+        return UIFont(name: "OpenSans-Bold", size: size)
+    }
+    
     static func headerTextFont() -> UIFont! {
         return semiboldFont(11.0)
     }
