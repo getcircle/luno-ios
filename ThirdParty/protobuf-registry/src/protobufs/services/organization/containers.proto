@@ -72,7 +72,13 @@ message TokenV1 {
 }
 
 message SSOV1 {
+
+    enum ProviderV1 {
+        OKTA = 0;
+    }
+
     optional uint32 version = 1 [default = 1];
     optional string metadata_url = 2;
     optional string metadata = 3;
+    optional ProviderV1 provider = 4;
 }

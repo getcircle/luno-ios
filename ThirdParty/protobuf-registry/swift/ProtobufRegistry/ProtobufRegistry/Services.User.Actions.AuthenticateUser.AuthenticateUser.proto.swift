@@ -361,7 +361,7 @@ public extension Services.User.Actions.AuthenticateUser {
       public enum AuthBackendV1:Int32 {
         case Internal = 0
         case Google = 1
-        case Saml = 2
+        case Okta = 2
 
       }
 

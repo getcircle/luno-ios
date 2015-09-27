@@ -35,7 +35,7 @@ message IdentityV1 {
         INTERNAL = 0;
         LINKEDIN = 1;
         GOOGLE = 2;
-        SAML = 3;
+        OKTA = 3;
     }
 
     optional uint32 version = 1 [default = 1];

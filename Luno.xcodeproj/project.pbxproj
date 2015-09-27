@@ -133,7 +133,6 @@
 		8F22CBF11A2844F50026376E /* UINavigationBarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F22CBF01A2844F50026376E /* UINavigationBarExtension.swift */; };
 		8F22CBF51A2865030026376E /* ProfileDetailDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F22CBF41A2865030026376E /* ProfileDetailDataSource.swift */; };
 		8F22CBF81A29A8EB0026376E /* AuthenticationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F22CBF61A29A8EB0026376E /* AuthenticationViewController.swift */; };
-		8F22CBF91A29A8EB0026376E /* AuthenticationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F22CBF71A29A8EB0026376E /* AuthenticationViewController.xib */; };
 		8F22CBFB1A29AF450026376E /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F22CBFA1A29AF450026376E /* UIViewExtension.swift */; };
 		8F22CBFE1A29C7120026376E /* GCDUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F22CBFD1A29C7120026376E /* GCDUtils.swift */; };
 		8F29F63A1B656CBC00E5D76C /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F29F6381B656CBC00E5D76C /* SearchViewController.swift */; };

@@ -25,6 +25,7 @@ class AuthorizationViewController: UIViewController, WKNavigationDelegate {
     var activityIndicator: CircleActivityIndicatorView!
     var webView: WKWebView!
     var provider: Services.User.Containers.IdentityV1.ProviderV1?
+    var providerName: String?
     var loginHint: String?
     var authorizationURL: String?
     
@@ -61,12 +62,12 @@ class AuthorizationViewController: UIViewController, WKNavigationDelegate {
     
     private func configureNavigationBar() {
         switch provider! {
-        case .Linkedin:
-            title = AppStrings.SocialConnectLinkedInCTA
-        case .Google:
-            title = AppStrings.SocialConnectGooglePlusCTA
-        case .Saml:
-            title = AppStrings.SocialConnectSAMLCTA
+        case .Google, .Okta:
+            if let providerName = providerName {
+                title = NSString(format: AppStrings.SocialSignInCTA, providerName) as String
+            } else {
+                title = AppStrings.SocialConnectDefaultCTA
+            }
         default:
             title = AppStrings.SocialConnectDefaultCTA
         }

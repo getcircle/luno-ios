@@ -136,7 +136,7 @@ class AuthenticationViewController: UIViewController {
                 googleLogin(authDetails)
 
             } else if let samlDetails = userInfo["saml_details"] as? Services.User.Containers.SAMLDetailsV1 {
-                samlLogin(samlDetails)
+                oktaLogin(samlDetails)
             }
         }
     }
@@ -150,10 +150,10 @@ class AuthenticationViewController: UIViewController {
         login(.Google, credentials: try! credentials.build())
     }
     
-    private func samlLogin(samlDetails: Services.User.Containers.SAMLDetailsV1) {
+    private func oktaLogin(samlDetails: Services.User.Containers.SAMLDetailsV1) {
         let credentials = Services.User.Actions.AuthenticateUser.RequestV1.CredentialsV1.Builder()
         credentials.secret = samlDetails.authState
-        login(.Saml, credentials: try! credentials.build())
+        login(.Okta, credentials: try! credentials.build())
     }
     
     private static func loadCachedUser() -> Services.User.Containers.UserV1? {
@@ -617,13 +617,13 @@ class AuthenticationViewController: UIViewController {
     }
     
     private func checkAuthenticationMethod() {
-        Services.User.Actions.getAuthenticationInstructions(workEmailTextField.text ?? "", completionHandler: { (backend, accountExists, authorizationURL, error) -> Void in
+        Services.User.Actions.getAuthenticationInstructions(workEmailTextField.text ?? "", completionHandler: { (backend, accountExists, authorizationURL, providerName, error) -> Void in
             self.hideLoadingState()
             
             var provider: Services.User.Containers.IdentityV1.ProviderV1
             switch backend! {
-            case .Saml:
-                provider = .Saml
+            case .Okta:
+                provider = .Okta
             default:
                 provider = .Google
             }
@@ -631,8 +631,8 @@ class AuthenticationViewController: UIViewController {
             if error != nil {
                 self.googleSignInButton.addShakeAnimation()
             }
-            else if let authorizationURL = authorizationURL where authorizationURL.trimWhitespace() != "" {
-                self.openExternalAuthentication(provider, authorizationURL: authorizationURL)
+            else if let authorizationURL = authorizationURL, providerName = providerName where authorizationURL.trimWhitespace() != "" {
+                self.openExternalAuthentication(provider, authorizationURL: authorizationURL, providerName: providerName)
             }
             else {
                 let newAccount = (accountExists != nil) ? !(accountExists!) : true
@@ -665,9 +665,10 @@ class AuthenticationViewController: UIViewController {
         login(.Internal, credentials: try! credentials.build())
     }
     
-    private func openExternalAuthentication(provider: Services.User.Containers.IdentityV1.ProviderV1, authorizationURL: String) {
+    private func openExternalAuthentication(provider: Services.User.Containers.IdentityV1.ProviderV1, authorizationURL: String, providerName: String) {
         authorizationVC.provider = provider
         authorizationVC.loginHint = workEmailTextField.text
+        authorizationVC.providerName = providerName
         if authorizationURL.trimWhitespace() != "" {
             authorizationVC.authorizationURL = authorizationURL
         }

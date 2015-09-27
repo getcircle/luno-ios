@@ -107,6 +107,7 @@ public func == (lhs: Services.Organization.Containers.SSOV1, rhs: Services.Organ
   fieldCheck = fieldCheck && (lhs.hasVersion == rhs.hasVersion) && (!lhs.hasVersion || lhs.version == rhs.version)
   fieldCheck = fieldCheck && (lhs.hasMetadataUrl == rhs.hasMetadataUrl) && (!lhs.hasMetadataUrl || lhs.metadataUrl == rhs.metadataUrl)
   fieldCheck = fieldCheck && (lhs.hasMetadata == rhs.hasMetadata) && (!lhs.hasMetadata || lhs.metadata == rhs.metadata)
+  fieldCheck = fieldCheck && (lhs.hasProvider == rhs.hasProvider) && (!lhs.hasProvider || lhs.provider == rhs.provider)
   fieldCheck = (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
   return fieldCheck
 }
@@ -3311,6 +3312,17 @@ public extension Services.Organization.Containers {
   }
 
   final public class SSOV1 : GeneratedMessage, GeneratedMessageProtocol {
+
+
+      //Enum type declaration start 
+
+      public enum ProviderV1:Int32 {
+        case Okta = 0
+
+      }
+
+      //Enum type declaration end 
+
     public private(set) var hasVersion:Bool = false
     public private(set) var version:UInt32 = UInt32(1)
 
@@ -3320,6 +3332,8 @@ public extension Services.Organization.Containers {
     public private(set) var hasMetadata:Bool = false
     public private(set) var metadata:String = ""
 
+    public private(set) var provider:Services.Organization.Containers.SSOV1.ProviderV1 = Services.Organization.Containers.SSOV1.ProviderV1.Okta
+    public private(set) var hasProvider:Bool = false
     required public init() {
          super.init()
     }
@@ -3335,6 +3349,9 @@ public extension Services.Organization.Containers {
       }
       if hasMetadata {
         try output.writeString(3, value:metadata)
+      }
+      if hasProvider {
+        try output.writeEnum(4, value:provider.rawValue)
       }
       try unknownFields.writeToCodedOutputStream(output)
     }
@@ -3353,6 +3370,9 @@ public extension Services.Organization.Containers {
       }
       if hasMetadata {
         serialize_size += metadata.computeStringSize(3)
+      }
+      if (hasProvider) {
+        serialize_size += provider.rawValue.computeEnumSize(4)
       }
       serialize_size += unknownFields.serializedSize()
       memoizedSerializedSize = serialize_size
@@ -3414,6 +3434,9 @@ public extension Services.Organization.Containers {
       if hasMetadata {
         output += "\(indent) metadata: \(metadata) \n"
       }
+      if (hasProvider) {
+        output += "\(indent) provider: \(provider.rawValue)\n"
+      }
       unknownFields.writeDescriptionTo(&output, indent:indent)
     }
     override public var hashValue:Int {
@@ -3427,6 +3450,9 @@ public extension Services.Organization.Containers {
             }
             if hasMetadata {
                hashCode = (hashCode &* 31) &+ metadata.hashValue
+            }
+            if hasProvider {
+               hashCode = (hashCode &* 31) &+ Int(provider.rawValue)
             }
             hashCode = (hashCode &* 31) &+  unknownFields.hashValue
             return hashCode
@@ -3525,6 +3551,29 @@ public extension Services.Organization.Containers {
            builderResult.metadata = ""
            return self
       }
+        public var hasProvider:Bool{
+            get {
+                return builderResult.hasProvider
+            }
+        }
+        public var provider:Services.Organization.Containers.SSOV1.ProviderV1 {
+            get {
+                return builderResult.provider
+            }
+            set (value) {
+                builderResult.hasProvider = true
+                builderResult.provider = value
+            }
+        }
+        public func setProvider(value:Services.Organization.Containers.SSOV1.ProviderV1) -> Services.Organization.Containers.SSOV1.Builder {
+          self.provider = value
+          return self
+        }
+        public func clearProvider() -> Services.Organization.Containers.SSOV1.Builder {
+           builderResult.hasProvider = false
+           builderResult.provider = .Okta
+           return self
+        }
       override public var internalGetResult:GeneratedMessage {
            get {
               return builderResult
@@ -3558,6 +3607,9 @@ public extension Services.Organization.Containers {
         if other.hasMetadata {
              metadata = other.metadata
         }
+        if other.hasProvider {
+             provider = other.provider
+        }
         try mergeUnknownFields(other.unknownFields)
         return self
       }
@@ -3581,6 +3633,14 @@ public extension Services.Organization.Containers {
 
           case 26 :
             metadata = try input.readString()
+
+          case 32 :
+            let valueIntprovider = try input.readEnum()
+            if let enumsprovider = Services.Organization.Containers.SSOV1.ProviderV1(rawValue:valueIntprovider){
+                 provider = enumsprovider
+            } else {
+                 try unknownFieldsBuilder.mergeVarintField(4, value:Int64(valueIntprovider))
+            }
 
           default:
             if (!(try parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag))) {

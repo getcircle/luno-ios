@@ -21,7 +21,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='protobufs/services/user/actions/authenticate_user.proto',
   package='services.user.actions.authenticate_user',
   syntax='proto2',
-  serialized_pb=_b('\n7protobufs/services/user/actions/authenticate_user.proto\x12\'services.user.actions.authenticate_user\x1a(protobufs/services/user/containers.proto\x1a.protobufs/services/user/containers/token.proto\"\x83\x03\n\tRequestV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12Q\n\x07\x62\x61\x63kend\x18\x02 \x01(\x0e\x32@.services.user.actions.authenticate_user.RequestV1.AuthBackendV1\x12U\n\x0b\x63redentials\x18\x03 \x01(\x0b\x32@.services.user.actions.authenticate_user.RequestV1.CredentialsV1\x12\x41\n\x0b\x63lient_type\x18\x04 \x01(\x0e\x32,.services.user.containers.token.ClientTypeV1\x1a@\n\rCredentialsV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x0b\n\x03key\x18\x02 \x01(\t\x12\x0e\n\x06secret\x18\x03 \x01(\t\"3\n\rAuthBackendV1\x12\x0c\n\x08INTERNAL\x10\x00\x12\n\n\x06GOOGLE\x10\x01\x12\x08\n\x04SAML\x10\x02\"q\n\nResponseV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12.\n\x04user\x18\x02 \x01(\x0b\x32 .services.user.containers.UserV1\x12\r\n\x05token\x18\x03 \x01(\t\x12\x10\n\x08new_user\x18\x04 \x01(\x08\x42>\n<com.rhlabs.protobufs.services.user.actions.authenticate_user')
+  serialized_pb=_b('\n7protobufs/services/user/actions/authenticate_user.proto\x12\'services.user.actions.authenticate_user\x1a(protobufs/services/user/containers.proto\x1a.protobufs/services/user/containers/token.proto\"\x83\x03\n\tRequestV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12Q\n\x07\x62\x61\x63kend\x18\x02 \x01(\x0e\x32@.services.user.actions.authenticate_user.RequestV1.AuthBackendV1\x12U\n\x0b\x63redentials\x18\x03 \x01(\x0b\x32@.services.user.actions.authenticate_user.RequestV1.CredentialsV1\x12\x41\n\x0b\x63lient_type\x18\x04 \x01(\x0e\x32,.services.user.containers.token.ClientTypeV1\x1a@\n\rCredentialsV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x0b\n\x03key\x18\x02 \x01(\t\x12\x0e\n\x06secret\x18\x03 \x01(\t\"3\n\rAuthBackendV1\x12\x0c\n\x08INTERNAL\x10\x00\x12\n\n\x06GOOGLE\x10\x01\x12\x08\n\x04OKTA\x10\x02\"q\n\nResponseV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12.\n\x04user\x18\x02 \x01(\x0b\x32 .services.user.containers.UserV1\x12\r\n\x05token\x18\x03 \x01(\t\x12\x10\n\x08new_user\x18\x04 \x01(\x08\x42>\n<com.rhlabs.protobufs.services.user.actions.authenticate_user')
   ,
   dependencies=[protobufs_dot_services_dot_user_dot_containers__pb2.DESCRIPTOR,protobufs_dot_services_dot_user_dot_containers_dot_token__pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
@@ -43,7 +43,7 @@ _REQUESTV1_AUTHBACKENDV1 = _descriptor.EnumDescriptor(
       options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='SAML', index=2, number=2,
+      name='OKTA', index=2, number=2,
       options=None,
       type=None),
   ],
