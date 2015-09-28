@@ -31,7 +31,7 @@ class SearchViewController: UIViewController,
     private var errorMessageView: CircleErrorMessageView!
     private var data = [Card]()
     private var firstLoad = false
-    private let dataSource = SearchQueryDataSource()
+    private var dataSource: CardDataSource = SearchQueryDataSource()
     private var cardCollectionViewDelegate: CardCollectionViewDelegate?
     private var launchScreenView: UIView?
     private var searchHeaderView: SearchHeaderView!
@@ -66,6 +66,18 @@ class SearchViewController: UIViewController,
         if firstLoad {
             moveSearchToCenter(false)        
         }
+
+        if searchHeaderContainerViewTopConstraint.constant == 0 {
+            navigationController?.setNavigationBarHidden(true, animated: false)
+        }
+        UIApplication.sharedApplication().setStatusBarStyle(.Default, animated: false)
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        navigationController?.setNavigationBarHidden(false, animated: false)
+        UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: false)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -89,6 +101,7 @@ class SearchViewController: UIViewController,
     
     private func configureView() {
         view.backgroundColor = UIColor.appViewBackgroundColor()
+        navigationController?.view.backgroundColor = view.backgroundColor
         setNavigationTitle(false)
     }
     
@@ -116,7 +129,7 @@ class SearchViewController: UIViewController,
             searchHeaderView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero, excludingEdge: .Top)
             searchHeaderView.autoSetDimension(.Height, toSize: 50.0)
             searchHeaderView.layer.cornerRadius = 10.0
-            searchHeaderView.searchTextField.attributedPlaceholder = NSAttributedString(string: AppStrings.QuickActionNonePlaceholder, attributes: [NSForegroundColorAttributeName: UIColor.appSecondaryTextColor()])
+            resetSearchFieldPlaceholderText()
             searchHeaderContainerView.layer.borderColor = UIColor.grayColor().colorWithAlphaComponent(0.2).CGColor
         }
     }
@@ -136,6 +149,10 @@ class SearchViewController: UIViewController,
                     NSFontAttributeName: poweredByLabel.font
                 ]
             )
+    }
+    
+    private func resetSearchFieldPlaceholderText() {
+        searchHeaderView.searchTextField.attributedPlaceholder = NSAttributedString(string: AppStrings.QuickActionNonePlaceholder, attributes: [NSForegroundColorAttributeName: UIColor.appSecondaryTextColor()])
     }
     
     // MARK: - Launch View
@@ -265,6 +282,9 @@ class SearchViewController: UIViewController,
     // MARK: - SearchHeaderViewDelegate
     
     func didCancel(sender: UIView) {
+        searchHeaderView.hideTag()
+        resetSearchFieldPlaceholderText()
+        
         // Animate it down
         moveSearchToCenter(true)
         dataSource.resetCards()
@@ -274,7 +294,14 @@ class SearchViewController: UIViewController,
         }
         setNavigationTitle(false)
         // Clear cache at the end of a search session
-        dataSource.clearCache()
+        if let searchQueryDataSource = dataSource as? SearchQueryDataSource {
+            searchQueryDataSource.clearCache()
+        }
+        else {
+            dataSource = SearchQueryDataSource()
+            collectionView.dataSource = dataSource
+            collectionView.reloadData()
+        }
     }
     
     // MARK: Search Targets
@@ -333,20 +360,47 @@ class SearchViewController: UIViewController,
             if let searchCategory = dataSource.contentAtIndexPath(indexPath) as? SearchCategory {
                 switch searchCategory.type {
                 case .People:
-                    let viewController = ProfilesViewController()
-                    (viewController.dataSource as! ProfilesDataSource).configureForOrganization()
-                    viewController.title = "People"
-                    navigationController?.pushViewController(viewController, animated: true)
+                    let profilesDataSource = ProfilesDataSource()
+                    profilesDataSource.configureForOrganization()
+                    
+                    collectionView.dataSource = profilesDataSource
+                    collectionView.reloadData()
+                    
+                    searchHeaderView.showTagWithTitle(searchCategory.title.localizedUppercaseString())
+                    
+                    profilesDataSource.loadData({ (error) -> Void in
+                        self.collectionView.reloadData()
+                    })
+                    
+                    dataSource = profilesDataSource
                 case .Locations:
                     // TODO This should be coming from a paginated data source
-                    let viewController = LocationsOverviewViewController(nibName: "LocationsOverviewViewController", bundle: nil)
-                    viewController.title = "Offices"
-                    navigationController?.pushViewController(viewController, animated: true)
+                    let locationsDataSource = LocationsOverviewDataSource()
+                    
+                    collectionView.dataSource = locationsDataSource
+                    collectionView.reloadData()
+                    
+                    searchHeaderView.showTagWithTitle(searchCategory.title.localizedUppercaseString())
+                    
+                    locationsDataSource.loadData({ (error) -> Void in
+                        self.collectionView.reloadData()
+                    })
+                    
+                    dataSource = locationsDataSource
                 case .Teams:
-                    let viewController = TeamsOverviewViewController()
-                    viewController.title = "Teams"
-                    (viewController.dataSource as! TeamsOverviewDataSource).configureForOrganization()
-                    navigationController?.pushViewController(viewController, animated: true)
+                    let teamsDataSource = TeamsOverviewDataSource()
+                    teamsDataSource.configureForOrganization()
+                    
+                    collectionView.dataSource = teamsDataSource
+                    collectionView.reloadData()
+
+                    searchHeaderView.showTagWithTitle(searchCategory.title.localizedUppercaseString())
+                    
+                    teamsDataSource.loadData({ (error) -> Void in
+                        self.collectionView.reloadData()
+                    })
+                    
+                    dataSource = teamsDataSource
                 }
             }
             else if let searchAction = dataSource.contentAtIndexPath(indexPath) as? SearchAction {

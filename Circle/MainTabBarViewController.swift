@@ -119,9 +119,6 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
                 UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: false)
                 (sourceViewController as! CurrentUserProfileDetailViewController).loadData()
             }
-            else if sourceViewController is SearchViewController {
-                UIApplication.sharedApplication().setStatusBarStyle(.Default, animated: false)
-            }
             
             if !(sourceViewController is BaseDetailViewController) {
                 sourceViewController.navigationController?.navigationBar.makeOpaque()
